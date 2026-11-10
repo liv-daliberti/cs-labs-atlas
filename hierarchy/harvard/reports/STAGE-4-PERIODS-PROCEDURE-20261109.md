@@ -1,0 +1,15 @@
+# Harvard stage 4: appointment periods, procedure to run when the Wayback listings land
+
+Harvard is a released school, so `atlas stage-gate harvard 4 --run` refuses; call the tools directly, in the PRIVATE overlay
+(`tools/overlay_root.py harvard --out hierarchy/harvard/tmp/overlay --private`; verify main afterwards with `--verify`). One Wayback fetcher at a time project-wide.
+
+State at drafting: 71 PIs in the trial build (38 frozen + 33 additions); 17 additions have a reviewed OpenAlex identity but only 2026 listing evidence, so the builder (criterion c) admits none of their earlier papers; only 5 reviewed dated periods exist (Brooks 2002, Sudan 2015, Zittrain 2010, Alvarez-Melis 2023, Brantley 2024-07-01).
+
+Order (each step resumable; ISO dates only, `2026-10-29`, never `20261029`):
+1. Listings first. Wait for the per-year plan (`listings/scripts/plan_fetch.py`, ONE_CAPTURE_PER_YEAR) to reach 110 rows or an accepted shortfall (`plan_fetch.py harvard --check` exit 0, read from the overlay store). Then `tools/listing_rows.py harvard`, `census_build.py harvard`, `home_departments_school.py harvard`, `pi_hierarchy.py harvard` (Slurm, 3 cpu, 32G, 59 min, alone).
+2. `periods_school.py fetch harvard` (Wayback, 1 cpu, 8G): each PI's homepage nearest 2026 and nearest the first listed year. The charter `[periods].profile_patterns` carries `seas.harvard.edu/person/{first}-{last}`; add `dbmi.hms.harvard.edu/people/{first}-{last}` and the HBS, MCB and Economics profile shapes for the additions before this step (charter edit on the branch, then `atlas charters`).
+3. `periods_school.py extract harvard`, then `gaps` (dated captures for each missing year in a PI's professor span: a capture naming the PI with a ladder title proves that calendar year; roster years alone never bridge), then `extend` (unit profile pages for each unlisted window year of the additions), `truncated`, `deep`.
+4. Type the periods by hand where evidence is explicit (CV or profile "joined Harvard in ..."): `reviewed/faculty-periods.json` entries with facultyStart/facultyEnd ISO dates and a url+sha256+quote source; a departure the page states is `faculty_end_moved` evidence (the 2016-2022 faculty who left: Seltzer, Adams, Rush, Singer, Nelson, Nagpal, Cox, Kuindersma, Mullainathan). Never infer a start from a roster observation.
+5. Gate: `bin/atlas stage-gate harvard 4` (exit code, gate g4: every PI has a period or contiguous listings; any `unproven_years` needs `why_unproven`), then re-run `pi_hierarchy.py harvard` and compare lab-paper rows per PI before and after (expected: the 17 zero-paper additions gain papers only for years a dated capture or period proves).
+6. Hash discipline: `overlay_root.py harvard --out hierarchy/harvard/tmp/overlay --verify` must print "unchanged"; nothing in main's derived is written until the owner-approved canonical rebuild.
+Do-not list: no half-year slots (one capture per calendar year), no fetch from a host whose robots.txt names ClaudeBot or anthropic-ai, SEAS profile host backs off after a block marker (retry later in small batches).
