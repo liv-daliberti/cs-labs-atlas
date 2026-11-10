@@ -161,5 +161,6 @@
   "n_student_papers": 690,
   "n_coverage_pool": 3771,
   "n_student_candidates": 0
- }
+ },
+ "note": "2026-11-10 reviewer limits: lab_precision (35 rows) was judged by a fresh reviewer from the packet rows ONLY (authorship affiliation, appointment listing, venue/title, field fit); it fetched no DOI or landing page, so 35/35 is a WEAK check of namesake and affiliation risk. student_precision (40): reviewer fetched pages for ambiguous quotes; paper-side namesakes were not checked; 2 unclear (common names). lab_coverage (15): true_lab_paper judged from the DBLP record alone; the 2 misses (Koudas EDBT 2025, Lindell CVPR 2022) are not in the OpenAlex Toronto sweep. student_coverage: 0 items (no thesis-advisor relations)."
 }
