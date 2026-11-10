@@ -1,7 +1,8 @@
 # Common Crawl as a second historical source (pilot 2026-11-07)
 
-Status: module `listings/scripts/cc.py` + `tests/test_cc.py` written; **no Common Crawl request beyond robots.txt, the front page and
-collinfo.json was made**, because both data hosts disallow automated clients (below). Owner decision pending.
+Status (2026-11-09): code complete and tested offline (`listings/scripts/cc.py`, `cc_fill.py`, `cc_fill.slurm`, tests `test_cc.py`,
+`test_cc_fill.py`); **no Common Crawl request beyond robots.txt has been made**, because both data hosts still disallow automated clients
+(re-read 2026-11-09, unchanged). Coverage was therefore NOT measured. Owner decision pending (see "Owner decisions").
 
 ## What Common Crawl says (read 2026-11-07)
 - Terms of Use (updated 2024-03-07): limited, non-exclusive licence; crawled content "may be subject to separate terms of use ... from the
@@ -24,3 +25,50 @@ robots files before any CDX or WARC request, target hosts naming ClaudeBot / ant
 Same `captures` table as Wayback: `capture_url = commoncrawl:<warc filename>:<offset>:<length>`, `wayback_timestamp` = CC capture time, sha256 of raw
 page bytes, zlib body, `note` = JSON {source, crawl, warc_filename, warc_offset, warc_length, digest}. No schema change; Common Crawl bodies carry no
 Wayback banner or rewriting, so `W.raw_html` is not needed.
+
+## Path (cc_fill.py), 2026-11-09
+`cc_fill.py <school> --db <private copy of captures.sqlite>` walks the school's slots (config or charter, same loader as plan_fetch) and, for every
+plan row that is `nocapture`/`unusable`, asks Common Crawl for the slot's exact URL(s):
+1. `cc.gate()` (robots of index + data hosts); refused => exit 4, nothing else requested.
+2. `collinfo.json` -> `cc.pick_crawls()`: crawls dated in each half-year, nearest 1 Apr / 1 Oct first. Phase 1 asks ONE crawl per half (so one per
+   calendar year for H1; H2 only when H1 is not ok for ONE_CAPTURE_PER_YEAR schools); `--gap-crawls` adds the remaining crawls of that half.
+3. `cc.cdx_cached()`: exact URL, `status:200`, `mime:text/html`; answer cached in the `cdx` table under `commoncrawl:<crawl>:<url>` (each pair asked
+   once, resumable); 3 errors in one crawl skip that crawl for the run (slot stays as it was, never "no capture").
+4. Target host: `cc.host_ok()` reads the school host's CURRENT robots.txt (cached 1 day, recorded in `cc_robots` with sha256); a host that disallows
+   ClaudeBot / anthropic-ai / Claude-Web (or any of school_web.AI_AGENTS) is skipped.
+5. `cc.fetch_record()` one WARC byte range, `cc.store()` into `captures` (capture_url `commoncrawl:<warc>:<offset>:<length>`, sha256 of the page bytes,
+   `note` JSON with crawl id, warc filename/offset/length, digest => the exact range is re-fetchable at `https://data.commoncrawl.org/<warc filename>`).
+6. `plan_fetch.slot_usable()` decides usability (Chinese-listing fix included); the row becomes `ok` with `wayback_timestamp` = the crawl capture time
+   (column name kept; the capture_url prefix `commoncrawl:` marks the source). H2 rows of ONE_CAPTURE schools whose H1 became ok turn `out_of_scope`.
+Politeness: generic UA, `MIN_GAP`=5 s between any two requests (index, WARC, robots), backoff 30 s doubling + Retry-After, 4 tries, one process, one
+connection, no parallel range reads. Prefix slots (`prefix` option) are not queried (exact URLs only) and stay Wayback-only.
+
+Not done on purpose: `plan_fetch.py` itself still treats only `web.archive.org` finals as valid (its "redirected away from the capture" guard); Common
+Crawl rows are written by `cc_fill.py`, not by plan_fetch, so Wayback logic is untouched. Reviewer tools that read `capture_url` must accept the
+`commoncrawl:` prefix (evidence_check / reader export checked: TODO for the merge task).
+
+## Merge steps for a school's live captures.sqlite (its own worker does these)
+1. Copy the live DB to a private path; run cc_fill on the copy (`sbatch listings/scripts/cc_fill.slurm <school> <copy>`).
+2. After the owner decision and the worker's agreement: `attach` the copy and `insert or ignore` its `captures` rows with `capture_url like 'commoncrawl:%'`,
+   `insert or replace` only the `plan` rows whose status moved to ok/out_of_scope, `insert or ignore` `cdx` and `cc_robots`. Re-run `plan_fetch.py <school> --check`.
+3. Rebuild the listings (`run_school.sh` derived steps) and spot-check 5 captured pages by eye (names/titles present in the stored text).
+
+## Runbook per school (run only after the owner decision; tasks T0xx in the queue)
+| school | slots/years waiting | notes |
+|---|---|---|
+| Tsinghua (baseline 2026-11-09: 191 nocapture, 23 ok, 6 unusable of 220 plan rows) | pre-2021 CS/SW/IIIS; Chinese hosts | Chinese format slots use charter_usable; check robots of each *.tsinghua.edu.cn host |
+| Harvard | ONE_CAPTURE_PER_YEAR school; H2 only when H1 not ok | many Harvard hosts: expect robots checks per host |
+| ZJU CST/CS/CSE/ISEE | pre-2021 | Chinese format slots |
+| NTU SCSE/CCDS | all years | host checks for ntu.edu.sg |
+| Toronto 2016-2020 CS, UTSC, Statistics | UTSC was Wayback-challenged | CC has no bot challenge but check robots |
+| SJTU historical | | Chinese format slots |
+
+## Owner decisions
+1. Common Crawl's own robots.txt disallows automated clients on index.commoncrawl.org and data.commoncrawl.org. Recommendation: ask Common Crawl
+   (info at commoncrawl.org) whether a polite research client may use the CDX index and WARC ranges; until a written yes, do not run. Do NOT use
+   the S3 mirror (commoncrawl.s3.amazonaws.com / `s3://commoncrawl`; no robots.txt there) as a way around the disallow without an explicit owner call.
+2. Terms of Use: crawled content stays under its owners' terms; no harvesting of personally identifiable information. Faculty listings are names and
+   titles (PII-adjacent). Recommendation: use Common Crawl captures only as private evidence (url + sha256 + quote), not host the bodies on the public
+   site, same as Wayback bodies.
+3. Whether CC rows may carry `wayback_timestamp` (column reuse) or a schema column `source` is added. Recommendation: keep the column, rely on the
+   `commoncrawl:` prefix and `note.source`.

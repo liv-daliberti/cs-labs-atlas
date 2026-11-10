@@ -88,3 +88,41 @@ def test_ai_named_host_not_used():
     robots = b'User-agent: ClaudeBot\nDisallow: /\n'
     assert not cc.host_allowed(200, robots.decode(), 'https://x.edu/people/')
     assert cc.host_allowed(200, 'User-agent: *\nAllow: /\n', 'https://x.edu/people/')
+
+
+def test_pick_crawls_one_per_half_nearest_middle():
+    info = [{'id': 'CC-MAIN-2019-13'}, {'id': 'CC-MAIN-2019-04'}, {'id': 'CC-MAIN-2019-39'}, {'id': 'CC-MAIN-2015-11'}]
+    got = cc.pick_crawls(info)
+    assert got[(2019, 'H1')] == ['CC-MAIN-2019-13', 'CC-MAIN-2019-04'] and got[(2019, 'H2')] == ['CC-MAIN-2019-39']
+    assert not any(y == 2015 for y, _ in got)
+
+
+def test_cdx_cached_asks_once_and_stops_after_errors():
+    con = sqlite3.connect(':memory:')
+    cc.init_tables(con)
+    line = json.dumps(dict(url='https://x.edu/p', timestamp='20190301000000', filename='f.warc.gz', offset='1', length='2', digest='D'))
+    ok = {cc.INDEX + '/robots.txt': (200, {}, b'User-agent: *\nAllow: /\n'), cc.DATA + '/robots.txt': (404, {}, b''),
+          cc.INDEX + '/CC-MAIN-2019-13-index': (200, {}, line.encode())}
+    h = fake(ok)
+    errs = {}
+    assert cc.cdx_cached(con, 'CC-MAIN-2019-13', 'x.edu/p', errs, http=h)[0]['offset'] == 1
+    n = len(h.calls)
+    assert cc.cdx_cached(con, 'CC-MAIN-2019-13', 'x.edu/p', errs, http=h)[0]['crawl'] == 'CC-MAIN-2019-13' and len(h.calls) == n
+    bad = fake({k: v for k, v in ok.items() if 'index?' not in k and '-index' not in k} | {cc.INDEX + '/CC-MAIN-2020-10-index': (500, {}, b'')})
+    for _ in range(cc.MAX_CRAWL_ERRORS):
+        with pytest.raises(cc.CCRefused):
+            cc.cdx_cached(con, 'CC-MAIN-2020-10', 'x.edu/p', errs, http=bad)
+    m = len(bad.calls)
+    with pytest.raises(cc.CCRefused):
+        cc.cdx_cached(con, 'CC-MAIN-2020-10', 'x.edu/p', errs, http=bad)
+    assert len(bad.calls) == m  # skipped without a request
+
+
+def test_target_robots_recorded_and_ai_optout_refused():
+    con = sqlite3.connect(':memory:')
+    cc.init_tables(con)
+    h = fake({'https://x.edu/robots.txt': (200, {}, b'User-agent: ClaudeBot\nDisallow: /\n')})
+    assert cc.host_ok(con, 'https://x.edu/people/', http=h) is False
+    assert con.execute('select ai_allowed, length(robots_sha256) from cc_robots').fetchone() == (0, 64)
+    n = len(h.calls)
+    assert cc.host_ok(con, 'https://x.edu/people/', http=h) is False and len(h.calls) == n  # cached for a day
