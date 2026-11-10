@@ -24,3 +24,19 @@ def test_hkust_bilingual_names_roles_and_profiles_without_contact_cells():
 def test_hkust_ignores_unlinked_and_incomplete_table_rows():
     html = '<tr class="search"><td class="name">No link</td><td>Professor</td></tr>'
     assert parse(html, 'hkust_faculty_table')[1] == []
+
+
+CARDS = '''<a class="card news-card people-card search" href="profile/dyyeung"><div class="content"><p class="people-name">Dit-Yan YEUNG</p>
+<p class="people-info1">Professor and Head</p></div></a><a class="card news-card people-card search" href="profile/dyyeung"><p class="people-name">Dit-Yan YEUNG</p></a>'''
+POSITION = '''<table class="ruler fancy"><tbody><tr><td>
+<a href="/~gchan/">CHAN, Shueng-Han Gary</a></td><td class="nowrap">陳雙幸</td><td>x</td><td>6990</td><td>3543</td><td>Professor</td><td>NE</td></tr></tbody></table>'''
+
+
+def test_hkust_card_era_listing_parses_once_per_person():
+    _, rows = parse(CARDS, 'hkust_faculty_any')
+    assert [r['name_listed'] for r in rows] == ['Dit-Yan YEUNG'] and rows[0]['titles'] == ['Professor and Head']
+
+
+def test_hkust_position_table_era_listing_parses_name_title():
+    _, rows = parse(POSITION, 'hkust_faculty_any')
+    assert rows[0]['name_listed'] == 'Shueng-Han Gary CHAN 陳雙幸' and rows[0]['titles'] == ['Professor']

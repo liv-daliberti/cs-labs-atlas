@@ -102,4 +102,4 @@ def test_listing_slots_carry_the_charter_format():
     """HKUST's hkust_faculty_table has no detector, so plan_fetch needs the slot's format (2026-11-10: archived captures parsed 0 entries without it)."""
     import school_config as S
     slots = S.listing_slots('hkust')
-    assert slots and slots[0].get('format') == 'hkust_faculty_table'
+    assert slots and slots[0].get('format') == 'hkust_faculty_any'

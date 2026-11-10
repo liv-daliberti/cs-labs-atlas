@@ -390,7 +390,50 @@ def hkust_faculty_table(h):
     return out
 
 
+def hkust_faculty_cards(h):
+    """HKUST CSE 2018-2021 card directory (www.cse.ust.hk/admin/people/faculty/): a.people-card with p.people-name and p.people-info1 (title)."""
+    from bs4 import BeautifulSoup
+    out = []
+    for a in BeautifulSoup(h, 'html.parser').select('a.people-card'):
+        nm = a.select_one('.people-name')
+        if nm is None:
+            continue
+        titles = [clean(t.get_text(' ', strip=True)) for t in a.select('.people-info1')]
+        out.append(dict(name_listed=nm.get_text(' ', strip=True), titles=[t for t in titles if t], profile=a.get('href'), homepage=None, division=None))
+    seen, uniq = set(), []
+    for e in out:   # the page repeats every card for the mobile layout
+        if e['name_listed'] not in seen:
+            seen.add(e['name_listed']); uniq.append(e)
+    return uniq
+
+
+def hkust_faculty_position_tables(h):
+    """HKUST CSE 2016-2017 'Faculty by Position' tables: <td><a>SURNAME, Given</a></td><td>Chinese name</td> ... <td>Position</td>. Listed as 'Given SURNAME Chinese'."""
+    from bs4 import BeautifulSoup
+    out = []
+    for row in BeautifulSoup(h, 'html.parser').select('table.fancy tbody tr'):
+        cells = row.find_all('td', recursive=False)
+        a = cells[0].find('a') if cells else None
+        if a is None or len(cells) < 6 or ',' not in a.get_text():
+            continue
+        fam, giv = [x.strip() for x in a.get_text(' ', strip=True).split(',', 1)]
+        zh = cells[1].get_text(' ', strip=True).replace('\xa0', ' ').strip()
+        title = clean(cells[5].get_text(' ', strip=True))
+        out.append(dict(name_listed=' '.join(x for x in (giv, fam.upper(), zh) if x), titles=[title] if title else [], profile=a.get('href'), homepage=None, division=None))
+    return out
+
+
+def hkust_faculty_any(h):
+    """The three HKUST CSE directory eras (2016-17 position tables, 2018-21 cards, 2022- text table): the first that parses."""
+    for fn in (hkust_faculty_table, hkust_faculty_cards, hkust_faculty_position_tables):
+        es = fn(h)
+        if es:
+            return es
+    return []
+
+
 FORMATS = {
+    'hkust_faculty_any': (hkust_faculty_any, re.compile(r'(?!)')),
     'hkust_faculty_table': (hkust_faculty_table, re.compile(r'(?!)')),
     'toronto_research': (lambda h: toronto_directory(h, 'researchstream'), re.compile(r'(?!)')),
     'toronto_teaching': (lambda h: toronto_directory(h, 'teachingstream'), re.compile(r'(?!)')),
