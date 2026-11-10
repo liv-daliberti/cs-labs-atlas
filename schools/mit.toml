@@ -54,6 +54,211 @@ delay = 20                                # the pace that avoided 429s on 2026-1
 landing = "https://hdl.handle.net/{id}"
 relation_dois = true                      # MIT puts the published version DOI in dc:relation (92 of 100 sampled OA Articles records; dc:identifier has it in 3)
 
+# Hosts the mit tools contact (stage 0, 2026-11-10). Derived from evidence: the raw capture stores (hierarchy/mit/raw/*captures*.sqlite) and the full-text download ledger (stores/mit/fulltext_assets.csv). The long tail of faculty personal sites is read per capture under school_web robots checks and is not enumerated here.
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (257 captures in the mit raw stores; listings, lab pages, theses)"
+probe = ""
+
+[[hosts]]
+host = "api.openalex.org"
+use = "live"
+purpose = "OpenAlex API (snapshot first; the shared 10k/day key; 50 captures in the raw stores)"
+probe = ""
+
+[[hosts]]
+host = "dblp.org"
+use = "none"
+purpose = "DBLP: local dump only, never fetched (project rule)"
+probe = ""
+
+[[hosts]]
+host = "orcid.org"
+use = "none"
+purpose = "ORCID: never contacted (project rule); the raw stores hold 226 older captures from before the rule"
+probe = ""
+
+[[hosts]]
+host = "storage.googleapis.com"
+use = "live"
+purpose = "Third-party source: 10049 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "dspace.mit.edu"
+use = "live"
+purpose = "School site: 6182 captures in the raw stores (6182 live, 0 via Wayback; 6162 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://dspace.mit.edu/home"
+
+[[hosts]]
+host = "pmc-oa-opendata.s3.amazonaws.com"
+use = "live"
+purpose = "Third-party source: 1720 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "cf003.cdn.4science.cloud"
+use = "live"
+purpose = "Third-party source: 1265 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "proceedings.mlr.press"
+use = "live"
+purpose = "Third-party source: 676 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "papers.nips.cc"
+use = "live"
+purpose = "Third-party source: 667 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "drops.dagstuhl.de"
+use = "live"
+purpose = "Third-party source: 421 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "aclanthology.org"
+use = "live"
+purpose = "Third-party source: 390 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "raw.githubusercontent.com"
+use = "live"
+purpose = "Third-party source: 361 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "www.csail.mit.edu"
+use = "live"
+purpose = "School site: 349 captures in the raw stores (349 live, 0 via Wayback; 253 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.csail.mit.edu/"
+
+[[hosts]]
+host = "openaccess.thecvf.com"
+use = "live"
+purpose = "Third-party source: 338 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "catalog.mit.edu"
+use = "live"
+purpose = "School site: 332 captures in the raw stores (46 live, 286 via Wayback; 332 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://catalog.mit.edu/"
+
+[[hosts]]
+host = "people.csail.mit.edu"
+use = "live"
+purpose = "School site: 285 captures in the raw stores (285 live, 0 via Wayback; 275 HTTP 200); 44 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://people.csail.mit.edu/"
+
+[[hosts]]
+host = "www.eecs.mit.edu"
+use = "live"
+purpose = "School site: 239 captures in the raw stores (218 live, 21 via Wayback; 190 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.eecs.mit.edu/"
+
+[[hosts]]
+host = "www.rle.mit.edu"
+use = "live"
+purpose = "School site: 122 captures in the raw stores (122 live, 0 via Wayback; 101 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.rle.mit.edu/"
+
+[[hosts]]
+host = "groups.csail.mit.edu"
+use = "live"
+purpose = "School site: 96 captures in the raw stores (96 live, 0 via Wayback; 92 HTTP 200); 16 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://groups.csail.mit.edu/"
+
+[[hosts]]
+host = "www.mit.edu"
+use = "live"
+purpose = "School site: 57 captures in the raw stores (56 live, 1 via Wayback; 55 HTTP 200); 20 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://www.mit.edu/"
+
+[[hosts]]
+host = "web.mit.edu"
+use = "live"
+purpose = "School site: 46 captures in the raw stores (46 live, 0 via Wayback; 41 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://web.mit.edu/"
+
+[[hosts]]
+host = "persci.mit.edu"
+use = "live"
+purpose = "School site: 39 captures in the raw stores (39 live, 0 via Wayback; 24 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://persci.mit.edu/"
+
+[[hosts]]
+host = "sia.mit.edu"
+use = "live"
+purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 11 HTTP 200); 13 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://sia.mit.edu/"
+
+[[hosts]]
+host = "www.media.mit.edu"
+use = "live"
+purpose = "School site: 26 captures in the raw stores (20 live, 6 via Wayback; 26 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.media.mit.edu/"
+
+[[hosts]]
+host = "equs.mit.edu"
+use = "live"
+purpose = "School site: 21 captures in the raw stores (21 live, 0 via Wayback; 19 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://equs.mit.edu/"
+
+[[hosts]]
+host = "nms.csail.mit.edu"
+use = "live"
+purpose = "School site: 20 captures in the raw stores (20 live, 0 via Wayback; 1 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://nms.csail.mit.edu/"
+
+[[hosts]]
+host = "math.mit.edu"
+use = "live"
+purpose = "School site: 18 captures in the raw stores (18 live, 0 via Wayback; 18 HTTP 200); 1 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://math.mit.edu/"
+
+[[hosts]]
+host = "csg.csail.mit.edu"
+use = "live"
+purpose = "School site: 17 captures in the raw stores (17 live, 0 via Wayback; 15 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://csg.csail.mit.edu/"
+
+[[hosts]]
+host = "toc.csail.mit.edu"
+use = "live"
+purpose = "School site: 17 captures in the raw stores (17 live, 0 via Wayback; 17 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://toc.csail.mit.edu/"
+
+[[hosts]]
+host = "dig.csail.mit.edu"
+use = "live"
+purpose = "School site: 16 captures in the raw stores (16 live, 0 via Wayback; 11 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://dig.csail.mit.edu/"
+
+[[hosts]]
+host = "lids.mit.edu"
+use = "live"
+purpose = "School site: 16 captures in the raw stores (16 live, 0 via Wayback; 16 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://lids.mit.edu/"
+
+[[hosts]]
+host = "cbmm.mit.edu"
+use = "live"
+purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 11 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://cbmm.mit.edu/"
+
+[[hosts]]
+host = "futuretech.mit.edu"
+use = "live"
+purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 15 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://futuretech.mit.edu/"
+
 [collector]
 # 2026-11-10 (owner): discovery channels re-enabled for every loop. wayback_acm stays OFF (and WAYBACK_HOLD=1 in the loop scripts) while Wayback listing captures run; CORE stays paused.
 # Re-enable wayback_acm later: append "wayback_acm" here and set WAYBACK_HOLD=0 for the loops. OpenAlex spend is capped by OA_RESERVE=4000 (docs/CHANNELS.md).
