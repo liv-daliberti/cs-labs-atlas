@@ -432,9 +432,6 @@ def hkust_faculty_any(h):
     return []
 
 
-FORMATS = {
-    'hkust_faculty_any': (hkust_faculty_any, re.compile(r'(?!)')),
-
 def tsinghua_cs_list(h):
     """Tsinghua CS faculty list (jzgml.htm): institute <h4>, rank band <h3>, then <li> cards `<h2><a title=NAME>` + first <p> = title.
     Phone and e-mail <p>s are contact lines and are never kept."""
@@ -489,6 +486,7 @@ def tsinghua_au_cards(h):
 
 
 FORMATS = {
+    'hkust_faculty_any': (hkust_faculty_any, re.compile(r'(?!)')),
     'tsinghua_cs_list': (tsinghua_cs_list, re.compile(r'class="people01-nr"')),
     'tsinghua_sw_names': (tsinghua_sw_names, re.compile(r'class="group-title"')),
     'tsinghua_iiis_cards': (tsinghua_iiis_cards, re.compile(r'class="ls16 flex"')),
