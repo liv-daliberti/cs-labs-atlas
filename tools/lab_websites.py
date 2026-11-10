@@ -496,18 +496,29 @@ def official_homepage_fallback(school, doc):
     department profile itself links ('Personal Webpage', a school_profile_link check) when a stored 200 capture of that exact page exists. The earlier selection (a lab
     site or a DBLP URL) stays in `website_note` with its hash, so nothing is lost; the student and paper audits already ran on it."""
     for r in doc.get('labs', []):
-        if r.get('coverage') != 'website' or r.get('official_link_status') == 'recorded' or not r.get('url'):
+        rejected = r.get('coverage') == 'pending' and r.get('rejected_url')   # the chosen site did not name the PI (a lab site shared by several PIs)
+        if not rejected and (r.get('coverage') != 'website' or r.get('official_link_status') == 'recorded' or not r.get('url')):
             continue
+        r_url = r.get('url') or r.get('rejected_url')
         links = [c for c in r.get('checks') or [] if c.get('source') == 'school_profile_link' and c.get('on') and c.get('url') and c.get('result') in ('listed', 'ok')]
+        listing = next((c for c in r.get('checks') or [] if c.get('source') == 'department_listing' and c.get('result') == 'ok' and c.get('url')), None)
+        for c in r.get('checks') or []:   # the department profile IS the PI's personal page ('/~id' on the school host), reached from the department listing
+            if c.get('source') == 'school_profile' and c.get('result') == 'ok' and listing and re.match(r'^/~[^/]+/?$', urlsplit(c.get('url') or '').path):
+                links.append(dict(source='department_listing_link', url=c['url'], on=listing['url'], result='listed', at=c.get('at'), anchor='department listing to the personal profile page'))
         for chk in links:
-            caps = stored_captures(school, {chk['url']})
-            hit = caps.get(chk['url']) if isinstance(caps, dict) else None
+            variants = {chk['url'], chk['url'].rstrip('/'), chk['url'].rstrip('/') + '/'}
+            caps = stored_captures(school, variants)
+            hit = next((caps[v] for v in variants if v in caps), None)
             sha = (hit or {}).get('sha256') if isinstance(hit, dict) else (hit[0] if hit else None)
             if not sha:
                 continue
-            r['website_note'] = dict(replaced_url=r['url'], replaced_sha256=r.get('sha256'), replaced_kind=r.get('kind'), found_via=r.get('found_via'),
+            if chk['url'].rstrip('/') == r_url.rstrip('/'):
+                continue   # the rejected or already-selected site itself
+            r['website_note'] = dict(replaced_url=r_url, replaced_sha256=r.get('sha256'), replaced_kind=r.get('kind'), found_via=r.get('found_via'),
                                      why='no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)')
-            r.update(url=chk['url'], kind='pi_homepage', reason_code='pi_homepage_only_no_lab_site', found_via='school_profile_link', listed_on=chk['on'], sha256=sha,
+            for k in ('rejected_url', 'rejected_reason', 'evidence_gaps'):
+                r.pop(k, None) if rejected else None
+            r.update(coverage='website', url=chk['url'], kind='pi_homepage', reason_code='pi_homepage_only_no_lab_site', found_via='school_profile_link', listed_on=chk['on'], sha256=sha,
                      evidence=dict(url=chk['url'], sha256=sha, quote=None), official_link_status='recorded', official_link_evidence=[chk])
             for k in ('people_page', 'alumni_page', 'pubs_page'):
                 r['website_note'][k] = r.pop(k, None)
@@ -677,6 +688,9 @@ def main():
             doc = enrich_official_links(s, attach_stored_captures(s, doc))
         if a.cmd in ('build', 'enrich'):
             doc = verify_websites(s, doc, a.out)
+            if a.cmd == 'build' and any(x.get('coverage') == 'pending' and x.get('rejected_url') for x in doc['labs']):
+                doc = official_homepage_fallback(s, doc)   # a lab site shared by several PIs was rejected: the profile-linked personal page, then verified again
+                doc = verify_websites(s, doc, a.out)
         summary = counts(doc)
         if a.cmd in ('build', 'enrich'):
             out = Path(a.out) if a.out else P.data_w('lab-websites.json', s)

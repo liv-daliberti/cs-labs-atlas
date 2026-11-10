@@ -140,3 +140,13 @@ def test_unit_listing_alias_records_an_official_listing_link(monkeypatch, tmp_pa
     assert r['official_link_status'] == 'recorded' and r['checks'][-1]['source'] == 'department_listing_link' and L.official_check(r['checks'][-1], r['url'])
     other = dict(labs=[dict(pi='C D', coverage='website', url='https://ece.example.edu/eecd', checks=[], official_link_status='not_recorded')])
     assert L.unit_listing_alias_links('x', other)['labs'][0]['official_link_status'] == 'not_recorded'
+
+
+def test_page1_tie_accepts_letter_superscript_markers_after_the_family_name():
+    import re
+    import pi_fulltext_affiliation as F
+    aff = re.compile(r'hong\s+kong\s+university\s+of\s+science\s+and\s+technology', re.I)
+    flat = 'Modeling Equations Xiaojian Yanga , Gaocheng Liua , Kun Xua,b,c,∗ a Department of Mathematics, Hong Kong University of Science and Technology, Clear Water Bay b Department of Mechanical and Aerospace Engineering arXiv:2607.10176v1 Abstract'
+    how, quotes = F.tie(flat, [('Kun', 'Xu')], aff)
+    assert how and 'Hong Kong University' in ' '.join(quotes)
+    assert not F.tie('Xuan Li, Hong Kong University of Science and Technology Abstract', [('Kun', 'Xu')], aff)[0]

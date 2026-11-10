@@ -119,7 +119,7 @@ def tie(flat, names, aff):
     head = flat[:re.search(r'\babstract\b', flat[:6000], re.I).start()] if re.search(r'\babstract\b', flat[:6000], re.I) else flat[:2500]
     for first, last in names:
         rx = re.compile(r'(?<![A-Za-z])' + re.escape(first[0]) + (re.escape(first[1:]) if len(first) > 1 else r'\.?') +
-                        r'[\w.\-]*(?:\s+[A-Z][\w.\-]*){0,2}(?:\s+\([A-Za-z.\- ]{1,20}\))?\s+' + re.escape(last) + r'(?![a-z])', re.I)
+                        r'[\w.\-]*(?:\s+[A-Z][\w.\-]*){0,2}(?:\s+\([A-Za-z.\- ]{1,20}\))?\s+' + re.escape(last) + r'(?:(?=[a-d](?:,[a-d])*[,\u2217*\u2020\s])|(?![a-z]))', re.I)
         for m in rx.finditer(head):
             tail = head[m.end():m.end() + 14]
             mk = re.match(r'\s?([0-9,\s∗*†‡§¶♯]+)', tail)
