@@ -22,7 +22,7 @@ import match
 YEARS = list(range(2016, 2027))
 # Owner-delegated 2026-11-09: a dated listing proves appointment for its own calendar year only, so these schools plan ONE capture per year and slot:
 # the Jan-Jun capture; the Jul-Dec half is tried only when the first half has no usable capture (otherwise it is recorded out_of_scope).
-ONE_CAPTURE_PER_YEAR = {"harvard"}
+ONE_CAPTURE_PER_YEAR = {"harvard", "toronto"}
 
 
 def ts_date(ts):
