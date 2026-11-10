@@ -132,6 +132,14 @@ def repair_gzip(c):
     return n
 
 
+def registered_domain(host):
+    """Registered domain by label count: the last two labels, three under a two-letter ccTLD with a generic second level (x.ac.uk)."""
+    parts = (host or '').lower().rstrip('.').split('.')
+    if len(parts) >= 3 and len(parts[-1]) == 2 and parts[-2] in ('ac', 'co', 'edu', 'com', 'org', 'gov', 'net'):
+        return '.'.join(parts[-3:])
+    return '.'.join(parts[-2:])
+
+
 def robots_row(c, host, refresh=False, scheme='https'):
     """The host's robots.txt (stored in `robots`). scheme='http' reads http://host/robots.txt and stores it under the key 'http://host', apart from the HTTPS
     row: an explicitly approved exact-origin policy for a site that only serves http (ZJU, 2026-11-10); HTTPS permission is never inferred from it."""
@@ -142,17 +150,17 @@ def robots_row(c, host, refresh=False, scheme='https'):
         try:
             url = f'{scheme}://{host}/robots.txt'
             seen = {url}
-            for hop in range(4):
+            for hop in range(6):   # RFC 9309 2.3.1.2: follow at least five redirects
                 r = requests.get(url, headers={'User-Agent': UA}, timeout=30, allow_redirects=False)
                 location = getattr(r, 'headers', {}).get('Location')
-                if r.status_code not in (301, 302, 303, 307, 308) or not location or hop == 3:
+                if r.status_code not in (301, 302, 303, 307, 308) or not location or hop == 5:
                     break
                 target = urllib.parse.urljoin(url, location)
                 parsed = urllib.parse.urlsplit(target)
-                # A few official sites place robots.txt under /content/dam/.
-                # Only same-origin HTTPS policy files may be followed; never
-                # fetch another host or ordinary site content before permission.
-                if (parsed.scheme != scheme or parsed.netloc != host or
+                # A few official sites place robots.txt under /content/dam/, and many send cs.x.edu/robots.txt to
+                # www.cs.x.edu/robots.txt. Only HTTPS policy files on the same registered domain may be followed
+                # (RFC 9309; a cross-domain redirect is unreadable); never fetch ordinary site content before permission.
+                if (parsed.scheme != scheme or registered_domain(parsed.hostname or '') != registered_domain(host) or
                         not parsed.path.endswith('/robots.txt') or parsed.query or parsed.fragment or target in seen):
                     break
                 c.execute('create table if not exists robots_redirects (host text, source_url text primary key, target_url text, status int, fetched_at text)')
@@ -162,6 +170,10 @@ def robots_row(c, host, refresh=False, scheme='https'):
                 seen.add(url)
             body = r.text if r.status_code == 200 else ''
             row = (r.status_code, body)
+            if url != f'{scheme}://{host}/robots.txt':
+                c.execute('create table if not exists robots_final (host text primary key, final_url text, status int, body_sha256 text, fetched_at text)')
+                c.execute('insert or replace into robots_final values (?,?,?,?,?)',
+                          (host, url, r.status_code, hashlib.sha256(body.encode()).hexdigest(), time.strftime('%Y-%m-%dT%H:%M:%S')))
         except Exception as e:  # noqa: BLE001 (network errors of any kind: unreachable)
             row = (-1, repr(e)[:300])
         c.execute('insert or replace into robots values (?,?,?,?)', (key, time.strftime('%Y-%m-%dT%H:%M:%S'), row[0], row[1])); c.commit()

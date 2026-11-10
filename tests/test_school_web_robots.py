@@ -175,3 +175,38 @@ def test_urls_on_host_lists_department_and_unit_slots():
     cfg = {'departments': [{'listings': [{'url': 'https://old.edu/people/'}, {'url': 'https://new.edu/p'}]}],
            'affiliated_units': [{'listings': ['old.edu/people/faculty/', 'x.edu/y']}]}
     assert H.urls_on_host(cfg, 'old.edu') == ['https://old.edu/people/', 'old.edu/people/faculty/']
+
+
+def _robots_get(chain):
+    from types import SimpleNamespace
+    def get(url, **kwargs):
+        status, loc, text = chain[url]
+        return SimpleNamespace(status_code=status, headers={'Location': loc} if loc else {}, text=text)
+    return get
+
+
+def test_robots_redirect_within_registered_domain_is_followed(tmp_path, monkeypatch):
+    import requests
+    monkeypatch.setattr(W, 'db_path', lambda key: tmp_path / 'captures.sqlite')
+    chain = {'https://cs.example.edu/robots.txt': (301, 'https://www.cs.example.edu/robots.txt', ''),
+             'https://www.cs.example.edu/robots.txt': (200, None, 'User-agent: *\nDisallow: /private/\n')}
+    monkeypatch.setattr(requests, 'get', _robots_get(chain))
+    c = W.con('fixture')
+    st, body = W.robots_row(c, 'cs.example.edu')
+    assert st == 200 and 'private' in body
+    assert c.execute('select final_url, status from robots_final').fetchone() == ('https://www.cs.example.edu/robots.txt', 200)
+    assert c.execute('select count(*) from robots_redirects').fetchone()[0] == 1
+
+
+def test_robots_redirect_to_another_domain_stays_unreadable(tmp_path, monkeypatch):
+    import requests
+    monkeypatch.setattr(W, 'db_path', lambda key: tmp_path / 'captures.sqlite')
+    chain = {'https://a.example.edu/robots.txt': (302, 'https://evil.example.com/robots.txt', '')}
+    monkeypatch.setattr(requests, 'get', _robots_get(chain))
+    st, body = W.robots_row(W.con('fixture'), 'a.example.edu')
+    assert st == 302 and W.robots_decision(st, body, '/x')[:2] == (False, False)
+
+
+def test_registered_domain():
+    assert W.registered_domain('www.cs.stanford.edu') == 'stanford.edu'
+    assert W.registered_domain('www.cs.ox.ac.uk') == 'ox.ac.uk'
