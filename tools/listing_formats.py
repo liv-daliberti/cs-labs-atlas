@@ -434,6 +434,65 @@ def hkust_faculty_any(h):
 
 FORMATS = {
     'hkust_faculty_any': (hkust_faculty_any, re.compile(r'(?!)')),
+
+def tsinghua_cs_list(h):
+    """Tsinghua CS faculty list (jzgml.htm): institute <h4>, rank band <h3>, then <li> cards `<h2><a title=NAME>` + first <p> = title.
+    Phone and e-mail <p>s are contact lines and are never kept."""
+    from bs4 import BeautifulSoup
+    out = []
+    for dl in BeautifulSoup(h, 'html.parser').select('div.people01-nr dl'):
+        division = clean(dl.find('h4').get_text(' ', strip=True)) if dl.find('h4') else None
+        for li in dl.select('li'):
+            a = li.select_one('div.text h2 a[href]')
+            if a is None:
+                continue
+            ps = li.select('div.text p')
+            out.append(dict(name_listed=clean(a.get_text(' ', strip=True)), titles=[clean(ps[0].get_text(' ', strip=True))] if ps else [],
+                            profile=a['href'], homepage=None, division=division))
+    return out
+
+
+def tsinghua_sw_names(h):
+    """Tsinghua School of Software list (szdw/jsml.htm): `.group-title` bands (institute or 院士) with `.name-container a.name` links; no titles."""
+    from bs4 import BeautifulSoup
+    out, division = [], None
+    for el in BeautifulSoup(h, 'html.parser').select('div.group-title, div.group-people'):
+        if 'group-title' in el.get('class', []):
+            division = clean(el.get_text(' ', strip=True))
+            continue
+        for a in el.select('div.name-container a.name[href]'):
+            out.append(dict(name_listed=clean(a.get_text(' ', strip=True)), titles=[], profile=a['href'], homepage=None, division=division))
+    return out
+
+
+def tsinghua_iiis_cards(h):
+    """Tsinghua IIIS people page (rydw.htm): `ul.ls16 li a` cards with `<h4>` name and `<p>` title line; interest text is not a title."""
+    from bs4 import BeautifulSoup
+    out = []
+    for a in BeautifulSoup(h, 'html.parser').select('ul.ls16 li a[href]'):
+        n, t = a.select_one('div.txt h4'), a.select_one('div.txt p')
+        if n is not None:
+            out.append(dict(name_listed=clean(n.get_text(' ', strip=True)), titles=[clean(t.get_text(' ', strip=True))] if t else [],
+                            profile=a['href'], homepage=None, division=None))
+    return out
+
+
+def tsinghua_au_cards(h):
+    """Tsinghua Automation institute pages (szdw/jsdw1/<group>/<institute>.htm): `ul.list13 li a` cards, name in `<h3><big>`; no title on the card."""
+    from bs4 import BeautifulSoup
+    out = []
+    for a in BeautifulSoup(h, 'html.parser').select('ul.list13 li a[href]'):
+        n = a.select_one('div.con h3')
+        if n is not None and clean(n.get_text(' ', strip=True)):
+            out.append(dict(name_listed=clean(n.get_text(' ', strip=True)), titles=[], profile=a['href'], homepage=None, division=None))
+    return out
+
+
+FORMATS = {
+    'tsinghua_cs_list': (tsinghua_cs_list, re.compile(r'class="people01-nr"')),
+    'tsinghua_sw_names': (tsinghua_sw_names, re.compile(r'class="group-title"')),
+    'tsinghua_iiis_cards': (tsinghua_iiis_cards, re.compile(r'class="ls16 flex"')),
+    'tsinghua_au_cards': (tsinghua_au_cards, re.compile(r'class="list13 flex"')),
     'hkust_faculty_table': (hkust_faculty_table, re.compile(r'(?!)')),
     'toronto_research': (lambda h: toronto_directory(h, 'researchstream'), re.compile(r'(?!)')),
     'toronto_teaching': (lambda h: toronto_directory(h, 'teachingstream'), re.compile(r'(?!)')),

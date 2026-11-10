@@ -72,6 +72,17 @@ url = "https://www.cs.tsinghua.edu.cn/szzk/jzgml.htm"
   match = ""
   format = ""
   title_filter = ''
+  [[departments.listings]]
+  slot = "CS jzgml archive 2021-2025"
+  kind = "main"
+  url = "www.cs.tsinghua.edu.cn/szzk/jzgml.htm"
+  from = "20210101"
+  to = "20251231"
+  prefix = false
+  match = ""
+  format = "tsinghua_cs_list"
+  title_filter = ''
+  # Wayback CDX 2026-11-10: this URL holds 200 captures 2021-2026 only; 2016-2020 lived on the older /publish/cs/<id>/ site (ids unverified, no captures read yet).
 
 [[departments]]
 code = "IIIS"
@@ -90,6 +101,17 @@ url = "https://iiis.tsinghua.edu.cn/en/People.htm"
   match = ""
   format = ""
   title_filter = ''
+  [[departments.listings]]
+  slot = "IIIS rydw archive 2025"
+  kind = "main"
+  url = "iiis.tsinghua.edu.cn/rydw.htm"
+  from = "20250101"
+  to = "20251231"
+  prefix = false
+  match = ""
+  format = "tsinghua_iiis_cards"
+  title_filter = ''
+  # CDX: rydw.htm captured 2025-2026 only; IIIS /zh/ site captures 2011-2022 need era discovery.
 
 [[departments]]
 code = "SW"
@@ -108,6 +130,17 @@ url = "https://www.thss.tsinghua.edu.cn/szdw/jsml.htm"
   match = ""
   format = ""
   title_filter = ''
+  [[departments.listings]]
+  slot = "SW jsml archive 2022-2025"
+  kind = "main"
+  url = "www.thss.tsinghua.edu.cn/szdw/jsml.htm"
+  from = "20220101"
+  to = "20251231"
+  prefix = false
+  match = ""
+  format = "tsinghua_sw_names"
+  title_filter = ''
+  # CDX: 2022-2025 only; the card lists names without titles, so rows rely on the department title_match being tolerant of empty titles (check at stage 1); older /publish/soft/<id>/ site unverified.
 
 [[departments]]
 code = "AIR"
@@ -144,6 +177,17 @@ url = "https://www.au.tsinghua.edu.cn/szdw/jsdw1/ayjscz/kzyjcyjs.htm"
   match = ""
   format = ""
   title_filter = ''
+  [[departments.listings]]
+  slot = "AU kzyjcyjs archive 2022-2024"
+  kind = "main"
+  url = "www.au.tsinghua.edu.cn/szdw/jsdw1/ayjscz/kzyjcyjs.htm"
+  from = "20220101"
+  to = "20241231"
+  prefix = false
+  match = ""
+  format = "tsinghua_au_cards"
+  title_filter = ''
+  # CDX: 2022-2024 only for this one institute page (a single institute, not the whole department); other AU institute pages need their own slots.
 
 [[departments]]
 code = "INSC"
