@@ -1218,21 +1218,31 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenhaopeng.html",
    "profile_sha256": "0f3ab15113824637ad10a7ba40c3f9c5d138d9d0de950ea70b4a4e7dcc10e61b",
    "url": "http://reins.se.sjtu.edu.cn/",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (-1, \"ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\\\'reins.se.sjtu.edu.cn\\\\'\"); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/chenhaopeng.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_archived_website",
+   "reason_code": "lab_site",
+   "reason": "the lab site linked from the official profile is unreachable now (DNS failure or HTTP 404, 2026-11-10); its Wayback id_ capture of 2026-05-16T02:44:01 is stored (sha256 recorded) and is the lab homepage, which does not name the PI on its front page",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "http://reins.se.sjtu.edu.cn/",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenhaopeng.html",
+     "linked_url": "http://reins.se.sjtu.edu.cn/",
+     "result": "listed",
+     "at": "2026-11-10T18:00:00",
+     "source_sha256": "0f3ab15113824637ad10a7ba40c3f9c5d138d9d0de950ea70b4a4e7dcc10e61b"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260516024401id_/http://reins.se.sjtu.edu.cn/",
+     "result": "ok_wayback",
+     "at": "2026-05-16T02:44:01",
+     "sha256": "20e9604d69c62fc2a61bb7a8f3b34a0e2a3cad2b3eb0fc386115a226c47c03f5"
     }
-   ]
+   ],
+   "kind": "lab_site",
+   "found_via": "school_profile_link",
+   "sha256": "20e9604d69c62fc2a61bb7a8f3b34a0e2a3cad2b3eb0fc386115a226c47c03f5"
   },
   {
    "pi": "陈黎兴",
@@ -5393,21 +5403,31 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/yangxubo.html",
    "profile_sha256": "06b440bddf0dac8186f7588bb53dfbf3f3b444dea71228841da19afa90107cfe",
    "url": "http://dalab.se.sjtu.edu.cn",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (-1, \"ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\\\'dalab.se.sjtu.edu.cn\\\\'\"); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/yangxubo.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_archived_website",
+   "reason_code": "lab_site",
+   "reason": "the lab site linked from the official profile is unreachable now (DNS failure or HTTP 404, 2026-11-10); its Wayback id_ capture of 2019-12-14T16:44:46 is stored (sha256 recorded) and is the lab homepage, which does not name the PI on its front page",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "http://dalab.se.sjtu.edu.cn",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/yangxubo.html",
+     "linked_url": "http://dalab.se.sjtu.edu.cn",
+     "result": "listed",
+     "at": "2026-11-10T18:00:00",
+     "source_sha256": "06b440bddf0dac8186f7588bb53dfbf3f3b444dea71228841da19afa90107cfe"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20191214164446id_/http://dalab.se.sjtu.edu.cn/",
+     "result": "ok_wayback",
+     "at": "2019-12-14T16:44:46",
+     "sha256": "242024dc739eccf526ccad20f3d4214f5d6abec81d290ce526cc63e0bed75bf2"
     }
-   ]
+   ],
+   "kind": "lab_site",
+   "found_via": "school_profile_link",
+   "sha256": "242024dc739eccf526ccad20f3d4214f5d6abec81d290ce526cc63e0bed75bf2"
   },
   {
    "pi": "杨 旸",
@@ -6518,21 +6538,31 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuhongzi.html",
    "profile_sha256": "c0be1f008bfa99c80e0e0f347ebc12427caa652bca67c2723c5a89661646e0b9",
    "url": "https://lion.sjtu.edu.cn/index",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (404, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/zhuhongzi.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_archived_website",
+   "reason_code": "lab_site",
+   "reason": "the lab site linked from the official profile is unreachable now (DNS failure or HTTP 404, 2026-11-10); its Wayback id_ capture of 2025-04-24T12:35:44 is stored (sha256 recorded) and is the lab homepage, which does not name the PI on its front page",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://lion.sjtu.edu.cn/index",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuhongzi.html",
+     "linked_url": "https://lion.sjtu.edu.cn/index",
+     "result": "listed",
+     "at": "2026-11-10T18:00:00",
+     "source_sha256": "c0be1f008bfa99c80e0e0f347ebc12427caa652bca67c2723c5a89661646e0b9"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20250424123544id_/https://lion.sjtu.edu.cn/index",
+     "result": "ok_wayback",
+     "at": "2025-04-24T12:35:44",
+     "sha256": "09fa24d2e867970f0386fc256d5a7368c00d2235c8e6ae44d6df832e698c2300"
     }
-   ]
+   ],
+   "kind": "lab_site",
+   "found_via": "school_profile_link",
+   "sha256": "09fa24d2e867970f0386fc256d5a7368c00d2235c8e6ae44d6df832e698c2300"
   },
   {
    "pi": "朱燕民",
