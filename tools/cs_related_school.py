@@ -81,6 +81,26 @@ def clean_dblp(n):
     return re.sub(r'\s+\d{4}$', '', n)
 
 
+def source_id(c):
+    """A short source identity of a candidate: the DBLP pid tail ('89/6764-38') or the OpenAlex author id ('A5069353502')."""
+    if c.get('dblp'):
+        return c['dblp'].rsplit('/pid/', 1)[-1]
+    return (c.get('openalex') or ['?'])[0].rsplit('/', 1)[-1]
+
+
+def disambiguate_display_names(cands):
+    """A display name is not an identity: two source records with one name ('Bin Li', two DBLP pids) must not share a decision key. Colliding names get the
+    source id appended ('Bin Li [89/6764-38]'), so each identity is decided on its own and the stage-2 gate can see it; unique names are untouched."""
+    groups = collections.defaultdict(list)
+    for c in cands:
+        groups[' '.join(toks(c['name']))].append(c)
+    for rows in groups.values():
+        if len(rows) > 1:
+            for c in rows:
+                c['name'] = f"{c['name']} [{source_id(c)}]"
+    return cands
+
+
 def census_rows(doc):
     """The census rows of a census-faculty.json: {'faculty': [...]} (the stage-2 tools' layout) or a bare list (a composed first-native school such as ZJU).
     A missing file is an empty census, not a crash."""
@@ -114,6 +134,7 @@ def candidates(key):
         out.append(dict(name=nm, aliases=[n for n in r['names'] if n != r['name']], source='openalex_rule', openalex=[r['author']], oa_works=r['works'],
                         oa_dblp_works=r['dblp_works'], oa_cs_share=r['cs_share'], oa_years=r['years']))
         have.append(Name([nm] + r['names']))
+    out = disambiguate_display_names(out)
     P.data_w('cs-related-candidates.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(candidates=len(out), **collections.Counter(c['source'] for c in out))))
 
