@@ -53,3 +53,7 @@ seed_set = "col_1721.1_49433"
 delay = 20                                # the pace that avoided 429s on 2026-10-30
 landing = "https://hdl.handle.net/{id}"
 relation_dois = true                      # MIT puts the published version DOI in dc:relation (92 of 100 sampled OA Articles records; dc:identifier has it in 3)
+
+[collector]
+# 2026-11-10: only the download loop plus cheap open-access channels (no openalex/s2: shared 10k-credit/day OpenAlex key; no wayback_acm: one Wayback fetcher at a time). Widen later by adding channel names from fulltext-push/channels/; applies at the next 59-min restart unless CHANNELS is set in the environment (the 2026-11-10 restarts set it).
+channels = ["oa_arxiv", "europepmc", "pmc"]

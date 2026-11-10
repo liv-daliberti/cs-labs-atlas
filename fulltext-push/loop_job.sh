@@ -12,6 +12,16 @@ _restart_log() { printf '{"at": "%s", "loop_job": %s}\n' "$(date -u +%FT%TZ)" "$
 
 # 2026-11-06: the resubmission carries the standing options on the sbatch command line (a script's #SBATCH directives lose to it, and an SBATCH_* variable
 # loses to the directives): partition all, account mltheory, 59 minutes (the loop restarts itself 15 min before), the bad-node excludes.
+# 2026-11-10 disk guard (disk_guard.py): while $CS_ATLAS_FT_RAW/downloads_stopped_for_disk exists no download job starts and none is resubmitted.
+# The owner clears it by hand (rm) once space is back. The guard's own job sets LOOP_RESUBMIT_IGNORE_STOP=1 so it keeps watching.
+downloads_stopped() { [ -e "${CS_ATLAS_FT_RAW:-${CS_ATLAS_CODE:?}/fulltext-push/raw}/downloads_stopped_for_disk" ]; }
+refuse_if_downloads_stopped() {
+  if downloads_stopped; then
+    printf '{"at": "%s", "refused": "downloads_stopped_for_disk marker exists (disk guard); remove raw/downloads_stopped_for_disk after freeing space"}\n' "$(date -u +%FT%TZ)"
+    exit 3
+  fi
+}
+
 RESUBMIT_OPTS=(--partition=all --account=mltheory --time=00:59:00 --exclude=node302,node014,node805,node808)
 
 # 2026-11-06 bug: the options after the script name ("downloads.slurm --array=3") are the SCRIPT's arguments, not sbatch's, so every task resubmitted
@@ -53,7 +63,9 @@ run_restartable() {
   local rc=0
   while kill -0 "$CHILD" 2>/dev/null; do wait "$CHILD"; rc=$?; done
   trap - TERM INT USR1
-  if [ -n "$RESTART" ]; then
+  if [ -n "$RESTART" ] && [ -z "${LOOP_RESUBMIT_IGNORE_STOP:-}" ] && downloads_stopped; then
+    _restart_log "\"resubmit refused: disk guard marker exists\""
+  elif [ -n "$RESTART" ]; then
     _restart_log "\"time limit near: loop stopped (exit $rc), resubmitting\""
     _resubmit "${args[@]}"
   fi

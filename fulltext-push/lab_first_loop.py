@@ -140,6 +140,19 @@ def run(out, args, label, hours=None):
     state(out, child_pid=None)
 
 
+def acquire_lock(guard, wait_s, step_s=5.0, sleep=time.sleep):
+    """flock(LOCK_EX|LOCK_NB), retried every step_s for up to wait_s seconds; True when taken."""
+    deadline = time.monotonic() + wait_s
+    while True:
+        try:
+            fcntl.flock(guard, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            return True
+        except BlockingIOError:
+            if time.monotonic() >= deadline:
+                return False
+            sleep(step_s)
+
+
 def main():
     school = sys.argv[1]
     hours = float(sys.argv[sys.argv.index('--full-hours') + 1]) if '--full-hours' in sys.argv else 2.0
@@ -150,11 +163,15 @@ def main():
     made = store_layout.ensure(out)
     if made:
         print(json.dumps(dict(at=F.now(), store_layout_created=made)), flush=True)
+    marker = F.P.FT_RAW / 'downloads_stopped_for_disk'  # disk guard (disk_guard.py): no loop starts while it exists
+    if marker.exists():
+        print(json.dumps(dict(at=F.now(), exit='disk guard marker exists', marker=str(marker))), flush=True)
+        return
     guard = open(out / '.loop.lock', 'a')
-    try:
-        fcntl.flock(guard, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except BlockingIOError:
-        print(json.dumps(dict(at=F.now(), exit='another loop holds .loop.lock')), flush=True)
+    # 2026-11-10: a predecessor that was just cancelled (scancel + immediate resubmit) still holds the lock for a minute or two; all eight
+    # restarted loops exited at once on it and ran channels only. Wait up to LOOP_LOCK_WAIT_S (default 300 s) before giving up.
+    if not acquire_lock(guard, float(os.environ.get('LOOP_LOCK_WAIT_S', '300'))):
+        print(json.dumps(dict(at=F.now(), exit='another loop holds .loop.lock', waited_s=float(os.environ.get('LOOP_LOCK_WAIT_S', '300')))), flush=True)
         return
     signal.signal(signal.SIGTERM, _on_term)
     signal.signal(signal.SIGINT, _on_term)

@@ -252,7 +252,8 @@ hints = ["<lab>.cs.jhu.edu", "www.cs.jhu.edu/~<name>/", "<name>.cs.jhu.edu", "<l
 
 [collector]
 # the script's default list; no repository channel ('dspace' / 'oai_repo' would ask JScholarship, which disallows AI agents)
-channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "figshare", "labpages", "pihomes", "wayback_acm"]
+# 2026-11-10: wayback_acm is OFF while the project Wayback listing chain runs (one Wayback fetcher at a time; archive.org returned HTTP 429). Re-enable: append "wayback_acm" to this list; it applies at the next 59-min loop restart.
+channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "figshare", "labpages", "pihomes"]
 
 [repository]
 name = "JScholarship (Johns Hopkins University Libraries; never asked directly: its robots.txt disallows ClaudeBot and anthropic-ai; reached only through OpenAlex and CORE)"

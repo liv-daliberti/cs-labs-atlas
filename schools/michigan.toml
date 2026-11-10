@@ -393,3 +393,7 @@ host = "api.ror.org"
 use = "live"
 purpose = "ROR relationships (stage 0)"
 probe = ""
+
+[collector]
+# 2026-11-10: only the download loop plus cheap open-access channels (no openalex/s2: shared 10k-credit/day OpenAlex key; no wayback_acm: one Wayback fetcher at a time). Widen later by adding channel names from fulltext-push/channels/; applies at the next 59-min restart unless CHANNELS is set in the environment (the 2026-11-10 restarts set it).
+channels = ["oa_arxiv", "europepmc", "pmc"]

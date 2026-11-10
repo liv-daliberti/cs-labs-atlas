@@ -139,6 +139,7 @@ endpoints = []
 robots = "unreachable"
 note = "Pending host and endpoint verification. Collect explicit thesis supervisor statements only; repository authorship alone is not advising."
 [collector]
+# 2026-11-10: wayback_acm is OFF while the project Wayback listing chain runs (one Wayback fetcher at a time; archive.org returned HTTP 429). Re-enable: append "wayback_acm" to this list; it applies at the next 59-min loop restart.
 channels = ["oa_arxiv", "openalex", "s2", "labpages"]
 [students]
 directories = []

@@ -226,7 +226,8 @@ ETD records by sitemap: eng_etds 1,366, art_sci_etds 3,472 (the /etd/ umbrella s
 Not yet classed usable: stage 6 decides by a 20-record pilot of whether the record page carries an advisor line."""
 
 [collector]
-channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "figshare", "labpages", "pihomes", "wayback_acm"]
+# 2026-11-10: wayback_acm is OFF while the project Wayback listing chain runs (one Wayback fetcher at a time; archive.org returned HTTP 429). Re-enable: append "wayback_acm" to this list; it applies at the next 59-min loop restart.
+channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "figshare", "labpages", "pihomes"]
 
 [students]
 rosters = []

@@ -19,6 +19,7 @@ export FTP_PY="$CS_ATLAS_COLLECTOR_PY"
 . "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1  # code of one commit, data shared (docs/CONTRIBUTING.md); submit with `atlas submit`
 cd "$CS_ATLAS_FULLTEXT_PUSH"
 . "$CS_ATLAS_CODE/fulltext-push/loop_job.sh"
+refuse_if_downloads_stopped   # disk guard marker (2026-11-10)
 RESTART_LOG="$CS_ATLAS_FT_LOGS/lab_first_loop-michigan.out"
 ./run_steps.sh michigan oa_arxiv openalex proceedings arxiv_title dblp_ee s2  europepmc pmc figshare labpages pihomes wayback_acm \
     >> "$CS_ATLAS_FT_LOGS"/steps-michigan.log 2>&1 < /dev/null &

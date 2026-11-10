@@ -585,3 +585,7 @@ cdx_url = "smartech.gatech.edu/handle/1853/*"
 cdx_original_rx = '.*handle/1853/[0-9]+(\?show=full)?$'
 parser = "smartech"
 stop_on_unparsed = false
+
+[collector]
+# 2026-11-10: only the download loop plus cheap open-access channels (no openalex/s2: shared 10k-credit/day OpenAlex key; no wayback_acm: one Wayback fetcher at a time). Widen later by adding channel names from fulltext-push/channels/; applies at the next 59-min restart unless CHANNELS is set in the environment (the 2026-11-10 restarts set it).
+channels = ["oa_arxiv", "europepmc", "pmc"]

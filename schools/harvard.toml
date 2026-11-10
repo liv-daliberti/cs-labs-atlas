@@ -233,6 +233,7 @@ robots = "allowed"
 note = "DASH (dash.harvard.edu, DSpace 7): robots.txt allows /entities/publication/<uuid> and /items (no AI-agent group, no Crawl-delay; Disallow /search /browse /entities/*/*/* /processes ...). Sitemaps hold 103,850 URLs (2,620 publication pages in sitemap2, about 100k items in sitemap0-1). One probe of an item page after five sitemap requests got 'Web Firewall 429 - The service is under heavy load' (2026-11-05): treated as a challenge, not retried, host marked wayback-only (owner D5). At 100,000 records and the house 5 s minimum that would be 139 hours; DASH holds few dissertations (Harvard theses go through ProQuest and the departments), so it is not a student source. OAI is not probed."
 
 [collector]
+# 2026-11-10: wayback_acm is OFF while the project Wayback listing chain runs (one Wayback fetcher at a time; archive.org returned HTTP 429). Re-enable: append "wayback_acm" to this list; it applies at the next 59-min loop restart.
 channels = ["oa_arxiv", "openalex", "s2", "labpages"]
 
 [students]
