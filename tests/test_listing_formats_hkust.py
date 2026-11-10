@@ -182,3 +182,11 @@ def test_hand_evidence_accepts_a_stored_js_rendered_dom(monkeypatch):
     monkeypatch.setattr(R, 'read', lambda p, d=None: [dict(name='Mansun Chan', unit='ECE', url='https://x.example/p', sha256=sha, quote='Mansun CHAN Professor')])
     ev = R.hand_evidence('hkust', c)
     assert ev['mansun chan'][0]['hand'] is True
+
+
+def test_unit_profile_path_matches_a_name_token_in_a_short_unit_handle():
+    import labpage_audit as A
+    assert A.unit_profile_path('https://ece.hkust.edu.hk/eezhiyao', ['Zhiyao Xie'])
+    assert A.unit_profile_path('https://ece.hkust.edu.hk/zilim', ['Zili Meng'])
+    assert not A.unit_profile_path('https://ece.hkust.edu.hk/people_list', ['Zili Meng'])
+    assert not A.unit_profile_path('https://ece.hkust.edu.hk/about/people/faculty/x/y', ['Zili Meng'])

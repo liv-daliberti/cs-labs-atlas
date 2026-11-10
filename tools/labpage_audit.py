@@ -954,6 +954,8 @@ def discover_lab(kit, school, p, ctx, full=True):
             if re.search(dom, urlsplit(u).hostname or '') and re.search(r'/(people|faculty|profile|directory)/', u) and \
                     fam and fam.replace(' ', '-') in fold(u):
                 profiles.append(u)
+            elif re.search(dom, urlsplit(u).hostname or '') and str(e.get('kind') or '').startswith('unit_listing') and unit_profile_path(u, names_):
+                profiles.append(u)   # a unit's own short profile address ('/eezhiyao', '/zilim': the unit handle carries a name token of the PI) that the census recorded as the PI's listing page
         for prof in list(dict.fromkeys(profiles))[:3]:
             r = kit.get(prof)
             add('school_profile', prof, result_of(r), capture_url=r.get('capture_url'), sha256=r.get('sha256'))
@@ -1316,6 +1318,17 @@ def profile_slug_hit(href, names):
         if len(tk) >= 2 and re.fullmatch(re.escape('-'.join(tk)) + r'(-\d+)?', s) or len(tk) >= 2 and re.fullmatch(re.escape('.'.join(tk)) + r'(\.\d+)?', s):
             return True
     return False
+
+
+def unit_profile_path(url, names):
+    """True when `url` is a short path (one or two segments) on the unit's host whose last segment carries a given-name or family-name token of the PI
+    ('/eezhiyao' for Zhiyao Xie, '/zilim' for Zili Meng, '/eekhaled'); a listing index ('/people_list', '/people') never qualifies."""
+    segs = [x for x in urlsplit(url).path.split('/') if x]
+    if not segs or len(segs) > 2 or segs[-1].lower() in ('people', 'people_list', 'faculty', 'directory'):
+        return False
+    last = fold(segs[-1])
+    toks = {t for n in names for t in re.findall(r'[a-z]{3,}', fold(n))}
+    return any(t in last for t in toks)
 
 
 def cmd_discover(school, only=None, redo=False, redo_unrecorded=False):
