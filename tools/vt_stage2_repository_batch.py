@@ -6,13 +6,11 @@ affiliate-unit review and OpenAlex sweep may change them.
 import collections
 import hashlib
 import json
-import sys
 import unicodedata
 import zlib
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import school_web as W  # noqa: E402
+import school_web as W
 
 
 ROOT = Path(__file__).resolve().parents[1]
