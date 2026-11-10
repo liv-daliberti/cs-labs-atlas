@@ -20,11 +20,11 @@
   "VECTOR"
  ],
  "counts": {
-  "not_faculty_listed": 415,
-  "research_or_other_rank": 6,
-  "accepted": 82,
+  "not_faculty_listed": 422,
+  "research_or_other_rank": 12,
+  "accepted": 71,
   "duplicate_dblp_record": 3,
-  "faculty_not_computing": 4,
+  "faculty_not_computing": 2,
   "census_alias": 1
  },
  "decisions": [
@@ -3138,8 +3138,8 @@
     "David Andrew Johns"
    ],
    "source": "dblp_affiliation",
-   "decision": "accepted",
-   "reason": "faculty (ECE listing, professor rank) with 7 DBLP records 2016-2026 naming the school",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/18/4015"
@@ -3154,76 +3154,7 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Toronto, ON, Canada"
      }
-    ],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5017469224"
-     ],
-     "school_works": 8,
-     "dblp_indexed": 6,
-     "share": 0.75,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5017469224",
-       "basis": "full name: David A. Johns",
-       "works": 8,
-       "dblp_indexed": 6,
-       "years": [
-        2016,
-        2025
-       ],
-       "names": [
-        "David A. Johns",
-        "David Andrew Johns"
-       ],
-       "orcids": [
-        "0000-0001-8198-9890"
-       ],
-       "venues": [
-        "IEEE Transactions on Circuits and Systems I Regular Papers",
-        "IEEE Transactions on Circuits & Systems II Express Briefs",
-        "Symposium on VLSI Circuits"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2344185339",
-         "year": 2016,
-         "title": "A Simplified Model for Passive-Switched-Capacitor Filters With Complex Poles",
-         "venue": "IEEE Transactions on Circuits & Systems II Express Briefs"
-        },
-        {
-         "oa": "https://openalex.org/W2799902197",
-         "year": 2018,
-         "title": "A low-power sub-GHz RF receiver front-end with enhanced blocker tolerance",
-         "venue": "IEEE Custom Integrated Circuits Conference (CICC)"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2745156861",
-         "year": 2017,
-         "title": "A 150-μW 3rd-order butterworth passive-switched-capacitor filter with 92 dB SFDR",
-         "venue": "Symposium on VLSI Circuits"
-        },
-        {
-         "oa": "https://openalex.org/W2767517179",
-         "year": 2017,
-         "title": "A Building Block IC for Designing Emerging Hybrid and Multilevel Converters",
-         "venue": "IEEE Journal of Emerging and Selected Topics in Power Electronics"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    ]
    },
    "faculty_evidence": [
     {
@@ -3232,7 +3163,7 @@
      "sha256": "8db416d170db17131aa91d92a8179004cd906bb78d13ea0279178f6c79ab659a",
      "observed": "20261109",
      "quote": "Johns, David A. Professor",
-     "ladder": true
+     "ladder": false
     }
    ],
    "years_listed": [
@@ -6189,8 +6120,8 @@
    "name": "James M. Drake",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (MIE); computing-share test fails: 8 of 110 school works DBLP-indexed (share 0.07; 1 OpenAlex author ids)",
+   "decision": "not_faculty_listed",
+   "reason": "no 2016-2026 faculty listing of the searched units (ECE, INFO, MIE, ROBOTICS, STAT, UTIAS, UTM, VECTOR) names them with a professor title",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/171/7079"
@@ -6205,91 +6136,10 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Toronto, The Hospital for Sick Children, Toronto, Canada"
      }
-    ],
-    "openalex_share": {
-     "result": "not_computing",
-     "ids": [
-      "https://openalex.org/A5002892990"
-     ],
-     "school_works": 110,
-     "dblp_indexed": 8,
-     "share": 0.073,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5002892990",
-       "basis": "full name: James M. Drake",
-       "works": 110,
-       "dblp_indexed": 8,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "James M. Drake",
-        "James Drake",
-        "J. Drake"
-       ],
-       "orcids": [
-        "0000-0001-6841-9025"
-       ],
-       "venues": [
-        "Journal of Neurosurgery Pediatrics",
-        "Plastic & Reconstructive Surgery",
-        "Medical Physics"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2730726400",
-         "year": 2017,
-         "title": "Ultrasonic motor-induced geometric distortions in magnetic resonance images",
-         "venue": "Medical & Biological Engineering & Computing"
-        },
-        {
-         "oa": "https://openalex.org/W2755608157",
-         "year": 2017,
-         "title": "Novel force-sensing system for minimally invasive surgical instruments",
-         "venue": null
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2345476621",
-         "year": 2016,
-         "title": "MAGNETIC RESONANCE GUIDED HIGH INTENSITY FOCUSED ULTRASOUND – MATHEMATICAL MODELING OF AN INNOVATIVE, STATE OF THE ART TECHNOLOGY FOR CANCER THERAPY",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W2346921574",
-         "year": 2016,
-         "title": "Utility of brain MRI in children with sleep‐disordered breathing",
-         "venue": "The Laryngoscope"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    ]
    },
-   "faculty_evidence": [
-    {
-     "unit": "MIE",
-     "url": "https://www.mie.utoronto.ca/faculty-staff/cross-appointed-status-only-adjunct/",
-     "sha256": "3aed95700bba2c113a85f21ca3ad7f1c8bb14f0b9de42daba8c3d254809030c7",
-     "observed": "20261109",
-     "quote": "James Drake Professor",
-     "ladder": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
+   "faculty_evidence": [],
+   "years_listed": [],
    "units_searched": [
     "ECE",
     "INFO",
@@ -9164,8 +9014,8 @@
    "name": "Merve Bodur",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "accepted",
-   "reason": "faculty (MIE listing, professor rank) with 43 DBLP records 2016-2026 naming the school",
+   "decision": "not_faculty_listed",
+   "reason": "no 2016-2026 faculty listing of the searched units (ECE, INFO, MIE, ROBOTICS, STAT, UTIAS, UTM, VECTOR) names them with a professor title",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/139/0496"
@@ -9181,90 +9031,10 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Edinburgh, School of Mathematics, UK"
      }
-    ],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5014659223"
-     ],
-     "school_works": 34,
-     "dblp_indexed": 24,
-     "share": 0.706,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5014659223",
-       "basis": "full name: Merve Bodur",
-       "works": 34,
-       "dblp_indexed": 24,
-       "years": [
-        2016,
-        2025
-       ],
-       "names": [
-        "Merve Bodur",
-        "Bodur, Merve"
-       ],
-       "orcids": [
-        "0000-0002-9276-3755"
-       ],
-       "venues": [
-        "INFORMS journal on computing",
-        "Mathematical Programming",
-        "Computers & Operations Research"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2416587397",
-         "year": 2016,
-         "title": "Mixed-Integer Rounding Enhanced Benders Decomposition for Multiclass Service-System Staffing and Scheduling with Arrival Rate Uncertainty",
-         "venue": "Management Science"
-        },
-        {
-         "oa": "https://openalex.org/W2497949436",
-         "year": 2016,
-         "title": "A new lift-and-project operator",
-         "venue": "European Journal of Operational Research"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W3168672666",
-         "year": 2020,
-         "title": "Routing and Wavelength Assignment with Protection: A Quadratic Unconstrained Binary Optimization Approach",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W3120991541",
-         "year": 2021,
-         "title": "Copositive Duality for Discrete Markets and Games",
-         "venue": null
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    ]
    },
-   "faculty_evidence": [
-    {
-     "unit": "MIE",
-     "url": "https://www.mie.utoronto.ca/faculty-staff/cross-appointed-status-only-adjunct/",
-     "sha256": "3aed95700bba2c113a85f21ca3ad7f1c8bb14f0b9de42daba8c3d254809030c7",
-     "observed": "20261109",
-     "quote": "Merve Bodur Associate Professor",
-     "ladder": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
+   "faculty_evidence": [],
+   "years_listed": [],
    "units_searched": [
     "ECE",
     "INFO",
@@ -9687,8 +9457,8 @@
    "name": "Milos R. Popovic",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (MIE); computing-share test fails: 20 of 179 school works DBLP-indexed (share 0.11; 1 OpenAlex author ids)",
+   "decision": "not_faculty_listed",
+   "reason": "no 2016-2026 faculty listing of the searched units (ECE, INFO, MIE, ROBOTICS, STAT, UTIAS, UTM, VECTOR) names them with a professor title",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/60/5015"
@@ -9703,91 +9473,10 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Toronto, ON, Canada"
      }
-    ],
-    "openalex_share": {
-     "result": "not_computing",
-     "ids": [
-      "https://openalex.org/A5004992178"
-     ],
-     "school_works": 179,
-     "dblp_indexed": 20,
-     "share": 0.112,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5004992178",
-       "basis": "full name: Milos R. Popovic",
-       "works": 179,
-       "dblp_indexed": 20,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Milos R. Popovic",
-        "Milos R Popovic",
-        "Popovic, Milos R."
-       ],
-       "orcids": [
-        "0000-0002-2837-2346"
-       ],
-       "venues": [
-        "BioMedical Engineering OnLine",
-        "Journal of Spinal Cord Medicine",
-        "PLoS ONE"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2532670917",
-         "year": 2016,
-         "title": "Directionally-sensitive peripheral nerve recording: Bipolar nerve cuff design",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W2772688672",
-         "year": 2017,
-         "title": "Closed-loop control of standing neuroprosthesis using PID controller",
-         "venue": "Conference proceedings/Conference proceedings - IEEE International Conference on Systems, Man, and Cybernetics"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2341032166",
-         "year": 2016,
-         "title": "Why Is Functional Electrical Stimulation Therapy Capable of Restoring Motor Function Following Severe Injury to the Central Nervous System?",
-         "venue": "Translational Neuroscience"
-        },
-        {
-         "oa": "https://openalex.org/W2401680425",
-         "year": 2016,
-         "title": "The Influence of the Aquatic Environment on Gait Initiation: A Pilot Study",
-         "venue": "Motor Control"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    ]
    },
-   "faculty_evidence": [
-    {
-     "unit": "MIE",
-     "url": "https://www.mie.utoronto.ca/faculty-staff/cross-appointed-status-only-adjunct/",
-     "sha256": "3aed95700bba2c113a85f21ca3ad7f1c8bb14f0b9de42daba8c3d254809030c7",
-     "observed": "20261109",
-     "quote": "Milos Popovic Professor",
-     "ladder": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
+   "faculty_evidence": [],
+   "years_listed": [],
    "units_searched": [
     "ECE",
     "INFO",
@@ -11188,8 +10877,8 @@
    "name": "Paul Chow",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "accepted",
-   "reason": "faculty (ECE listing, professor rank) with 55 DBLP records 2016-2026 naming the school",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/c/PaulChow"
@@ -11204,76 +10893,7 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Toronto, Canada"
      }
-    ],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5035437657"
-     ],
-     "school_works": 52,
-     "dblp_indexed": 46,
-     "share": 0.885,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5035437657",
-       "basis": "full name: Paul Chow",
-       "works": 52,
-       "dblp_indexed": 46,
-       "years": [
-        2016,
-        2025
-       ],
-       "names": [
-        "Paul Chow",
-        "Chow, Paul"
-       ],
-       "orcids": [
-        "0000-0002-0523-7117"
-       ],
-       "venues": [
-        "IEEE International Symposium on Field-Programmable Custom Computing Machines (FCCM)",
-        "ACM/SIGDA International Symposium on Field-Programmable Gate Arrays (FPGA)",
-        "International Conference on Field Programmable Logic and Applications (FPL)"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2293057678",
-         "year": 2016,
-         "title": "A Scalable Heterogeneous Dataflow Architecture For Big Data Analytics Using FPGAs (Abstract Only)",
-         "venue": "ACM/SIGDA International Symposium on Field-Programmable Gate Arrays (FPGA)"
-        },
-        {
-         "oa": "https://openalex.org/W2371584819",
-         "year": 2016,
-         "title": "Extracting Designs of Secure IPs Using FPGA CAD Tools",
-         "venue": null
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2584636165",
-         "year": 2017,
-         "title": "Packet Matching on FPGAs Using HMC Memory",
-         "venue": "ACM/SIGDA International Symposium on Field-Programmable Gate Arrays (FPGA)"
-        },
-        {
-         "oa": "https://openalex.org/W2888171537",
-         "year": 2018,
-         "title": "Building the Infrastructure for Deploying FPGAs in the Cloud",
-         "venue": "Springer eBooks"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    ]
    },
    "faculty_evidence": [
     {
@@ -11282,7 +10902,7 @@
      "sha256": "8db416d170db17131aa91d92a8179004cd906bb78d13ea0279178f6c79ab659a",
      "observed": "20261109",
      "quote": "Chow, Paul Professor",
-     "ladder": true
+     "ladder": false
     }
    ],
    "years_listed": [
@@ -16393,8 +16013,8 @@
    "name": "Yue Li",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "accepted",
-   "reason": "faculty (MIE listing, professor rank) with 35 DBLP records 2016-2026; share test cannot measure (0 of 3 school works DBLP-indexed (share 0.00; 1 OpenAlex author ids))",
+   "decision": "not_faculty_listed",
+   "reason": "no 2016-2026 faculty listing of the searched units (ECE, INFO, MIE, ROBOTICS, STAT, UTIAS, UTM, VECTOR) names them with a professor title",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/61/500-17"
@@ -16412,85 +16032,10 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "McGill University, School of Computer Science, Montreal, QC, Canada"
      }
-    ],
-    "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [
-      "https://openalex.org/A5022914223"
-     ],
-     "school_works": 3,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [
-      {
-       "author": "https://openalex.org/A5100387763",
-       "why": "works end 2016, before the first listing (2026)",
-       "n": 4,
-       "raw": [
-        "Yue Li"
-       ]
-      }
-     ],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5022914223",
-       "basis": "full name: Yue Ru Li",
-       "works": 3,
-       "dblp_indexed": 0,
-       "years": [
-        2022,
-        2026
-       ],
-       "names": [
-        "Yue Ru Li"
-       ],
-       "orcids": [
-        "0000-0002-5963-8549"
-       ],
-       "venues": [
-        "Frontiers in Immunology",
-        "Seminars in Immunology",
-        "The Journal of Immunology"
-       ],
-       "dblp_examples": [],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W4284894493",
-         "year": 2022,
-         "title": "Thymus Reconstitution in Young and Aged Mice Is Facilitated by In Vitro-Generated Progenitor T Cells",
-         "venue": "Frontiers in Immunology"
-        },
-        {
-         "oa": "https://openalex.org/W4386314066",
-         "year": 2023,
-         "title": "Thymus aging and immune reconstitution, progresses and challenges",
-         "venue": "Seminars in Immunology"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    ]
    },
-   "faculty_evidence": [
-    {
-     "unit": "MIE",
-     "url": "https://www.mie.utoronto.ca/faculty-staff/cross-appointed-status-only-adjunct/",
-     "sha256": "3aed95700bba2c113a85f21ca3ad7f1c8bb14f0b9de42daba8c3d254809030c7",
-     "observed": "20261109",
-     "quote": "Yue Li Professor",
-     "ladder": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
+   "faculty_evidence": [],
+   "years_listed": [],
    "units_searched": [
     "ECE",
     "INFO",
@@ -17269,92 +16814,13 @@
     "Garcia, Alberto Leon"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ECE listing, professor rank); computing-share test passes: 110 of 123 school works DBLP-indexed (share 0.89; 1 OpenAlex author ids)",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5055726968"
-     ],
-     "school_works": 123,
-     "dblp_indexed": 110,
-     "share": 0.894,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [
-      {
-       "author": "https://openalex.org/A5089353881",
-       "why": "works end 2022, before the first listing (2026)",
-       "n": 4,
-       "raw": [
-        "Alberto Leon Garcia"
-       ]
-      }
-     ],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5055726968",
-       "basis": "candidate author id",
-       "works": 123,
-       "dblp_indexed": 110,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Alberto Leon-Garcia",
-        "Alberto Leon‐Garcia",
-        "Leon-Garcia, Alberto"
-       ],
-       "orcids": [
-        "0000-0002-9888-0389"
-       ],
-       "venues": [
-        "IEEE Access",
-        "International Conference on Network and Service Management (CNSM)",
-        "IEEE/IFIP Network Operations and Management Symposium (NOMS)"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2307235177",
-         "year": 2016,
-         "title": "Flow embedding in the data plane of multimedia IP communications",
-         "venue": "2012 International Conference on Computing, Networking and Communications (ICNC)"
-        },
-        {
-         "oa": "https://openalex.org/W2309134292",
-         "year": 2016,
-         "title": "CAPEX optimization in multi-chassis multi-rate IP/optical networks",
-         "venue": "2012 International Conference on Computing, Networking and Communications (ICNC)"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2288769037",
-         "year": 2016,
-         "title": "Leveraging Synergy of 5G SDWN and Multi-Layer Resource Management for Network Optimization",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W2771698163",
-         "year": 2017,
-         "title": "A distributed software-defined multi-agent architecture for unifying IoT applications",
-         "venue": "IEEE Annual Information Technology, Electronics and Mobile Communication Conference (IEMCON)"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    "evidence": []
    },
    "faculty_evidence": [
     {
@@ -17363,7 +16829,7 @@
      "sha256": "8db416d170db17131aa91d92a8179004cd906bb78d13ea0279178f6c79ab659a",
      "observed": "20261109",
      "quote": "Leon-Garcia, Alberto Professor",
-     "ladder": true
+     "ladder": false
     }
    ],
    "years_listed": [
@@ -20372,97 +19838,16 @@
     "Y. Lawryshyn"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (MIE listing, professor rank); computing-share test passes: 19 of 55 school works DBLP-indexed (share 0.34; 1 OpenAlex author ids)",
+   "decision": "not_faculty_listed",
+   "reason": "no 2016-2026 faculty listing of the searched units (ECE, INFO, MIE, ROBOTICS, STAT, UTIAS, UTM, VECTOR) names them with a professor title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5074794416"
-     ],
-     "school_works": 55,
-     "dblp_indexed": 19,
-     "share": 0.345,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5074794416",
-       "basis": "candidate author id",
-       "works": 55,
-       "dblp_indexed": 19,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Yuri Lawryshyn",
-        "Yuri A. Lawryshyn",
-        "Lawryshyn, Yuri"
-       ],
-       "orcids": [
-        "0009-0005-8898-5821"
-       ],
-       "venues": [
-        "Journal of Environmental Engineering",
-        "Lecture notes in computer science",
-        "Studies in computational intelligence"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2531470941",
-         "year": 2016,
-         "title": "Using managerial revenue and cost estimates to value early stage real option investments",
-         "venue": "Annals of Operations Research"
-        },
-        {
-         "oa": "https://openalex.org/W2617677450",
-         "year": 2017,
-         "title": "New procedure for valuing patents under imprecise information with a consensual dynamics model and a real options framework",
-         "venue": "Expert Systems with Applications"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2470635625",
-         "year": 2016,
-         "title": "A review of real options approaches: applying models to value a medical device project",
-         "venue": "International Journal of Business Innovation and Research"
-        },
-        {
-         "oa": "https://openalex.org/W2525034160",
-         "year": 2016,
-         "title": "Standard Methodology for Transient Simulations of UV Disinfection Reactors",
-         "venue": "Journal of Environmental Engineering"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    "evidence": []
    },
-   "faculty_evidence": [
-    {
-     "unit": "MIE",
-     "url": "https://www.mie.utoronto.ca/faculty-staff/cross-appointed-status-only-adjunct/",
-     "sha256": "3aed95700bba2c113a85f21ca3ad7f1c8bb14f0b9de42daba8c3d254809030c7",
-     "observed": "20261109",
-     "quote": "Yuri Lawryshyn Associate Professor",
-     "ladder": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
+   "faculty_evidence": [],
+   "years_listed": [],
    "units_searched": [
     "ECE",
     "INFO",
@@ -21812,96 +21197,16 @@
     "Laschowski, Brokoslaw"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (MIE listing, professor rank); computing-share test passes: 11 of 21 school works DBLP-indexed (share 0.52; 1 OpenAlex author ids)",
+   "decision": "not_faculty_listed",
+   "reason": "no 2016-2026 faculty listing of the searched units (ECE, INFO, MIE, ROBOTICS, STAT, UTIAS, UTM, VECTOR) names them with a professor title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5086020840"
-     ],
-     "school_works": 21,
-     "dblp_indexed": 11,
-     "share": 0.524,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5086020840",
-       "basis": "candidate author id",
-       "works": 21,
-       "dblp_indexed": 11,
-       "years": [
-        2022,
-        2026
-       ],
-       "names": [
-        "Brokoslaw Laschowski",
-        "Laschowski, Brokoslaw"
-       ],
-       "orcids": [
-        "0000-0003-2039-6447"
-       ],
-       "venues": [
-        "International Conference on Rehabilitation Robotics",
-        "2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and Biomechatronics (BioRob)",
-        "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W4298088832",
-         "year": 2022,
-         "title": "Stair Recognition for Robotic Exoskeleton Control using Computer Vision and Deep Learning",
-         "venue": "International Conference on Rehabilitation Robotics"
-        },
-        {
-         "oa": "https://openalex.org/W4312840170",
-         "year": 2022,
-         "title": "Simulation of Energy Regeneration in Human Locomotion for Efficient Exoskeleton Actuation",
-         "venue": "2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and Biomechatronics (BioRob)"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W4285310711",
-         "year": 2022,
-         "title": "#ScienceForUkraine: an Initiative to Support the Ukrainian Academic Community. “3 Months Since Russia’s Invasion in Ukraine”, February 26 – May 31, 20",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W4388874014",
-         "year": 2023,
-         "title": "Preliminary Development of a Robotic Hip-Knee Exoskeleton With 3D-Printed Backdrivable Actuators",
-         "venue": null
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    "evidence": []
    },
-   "faculty_evidence": [
-    {
-     "unit": "MIE",
-     "url": "https://www.mie.utoronto.ca/faculty-staff/cross-appointed-status-only-adjunct/",
-     "sha256": "3aed95700bba2c113a85f21ca3ad7f1c8bb14f0b9de42daba8c3d254809030c7",
-     "observed": "20261109",
-     "quote": "Brokoslaw Laschowski Assistant Professor",
-     "ladder": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
+   "faculty_evidence": [],
+   "years_listed": [],
    "units_searched": [
     "ECE",
     "INFO",
@@ -22384,80 +21689,13 @@
     "R. Iravani"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ECE listing, professor rank); computing-share test passes: 9 of 41 school works DBLP-indexed (share 0.22; 1 OpenAlex author ids)",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5037767876"
-     ],
-     "school_works": 41,
-     "dblp_indexed": 9,
-     "share": 0.22,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5037767876",
-       "basis": "candidate author id",
-       "works": 41,
-       "dblp_indexed": 9,
-       "years": [
-        2016,
-        2025
-       ],
-       "names": [
-        "Reza Iravani",
-        "R. Iravani"
-       ],
-       "orcids": [],
-       "venues": [
-        "IEEE Transactions on Power Delivery",
-        "IEEE Transactions on Smart Grid",
-        "IEEE Transactions on Power Systems"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2344324114",
-         "year": 2016,
-         "title": "Feasible Range and Optimal Value of the Virtual Impedance for Droop-Based Control of Microgrids",
-         "venue": "IEEE Transactions on Smart Grid"
-        },
-        {
-         "oa": "https://openalex.org/W2535219938",
-         "year": 2016,
-         "title": "A Distributed, Cooperative Frequency and Voltage Control for Microgrids",
-         "venue": "IEEE Transactions on Smart Grid"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2286755432",
-         "year": 2016,
-         "title": "Power fluctuation minimization in grid connected photovoltaic using supercapacitor energy storage system",
-         "venue": "Journal of Renewable and Sustainable Energy"
-        },
-        {
-         "oa": "https://openalex.org/W2330837283",
-         "year": 2016,
-         "title": "A Wideband Equivalent Model of Type-3 Wind Power Plants for EMT Studies",
-         "venue": "IEEE Transactions on Power Delivery"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    "evidence": []
    },
    "faculty_evidence": [
     {
@@ -22466,7 +21704,7 @@
      "sha256": "8db416d170db17131aa91d92a8179004cd906bb78d13ea0279178f6c79ab659a",
      "observed": "20261109",
      "quote": "Iravani, Reza Professor",
-     "ladder": true
+     "ladder": false
     }
    ],
    "years_listed": [
@@ -23401,97 +22639,16 @@
     "Teng Li"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (MIE listing, professor rank); computing-share test passes: 7 of 34 school works DBLP-indexed (share 0.21; 1 OpenAlex author ids)",
+   "decision": "not_faculty_listed",
+   "reason": "no 2016-2026 faculty listing of the searched units (ECE, INFO, MIE, ROBOTICS, STAT, UTIAS, UTM, VECTOR) names them with a professor title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5073182314"
-     ],
-     "school_works": 34,
-     "dblp_indexed": 7,
-     "share": 0.206,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5073182314",
-       "basis": "candidate author id",
-       "works": 34,
-       "dblp_indexed": 7,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Thomas Looi",
-        "T Looi",
-        "Teng Li"
-       ],
-       "orcids": [
-        "0000-0001-6453-2928"
-       ],
-       "venues": [
-        "Medical Physics",
-        "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
-        "Plastic & Reconstructive Surgery"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2561240586",
-         "year": 2016,
-         "title": "Kinetostatic design of asymmetric notch joints for surgical robots",
-         "venue": "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)"
-        },
-        {
-         "oa": "https://openalex.org/W2755608157",
-         "year": 2017,
-         "title": "Novel force-sensing system for minimally invasive surgical instruments",
-         "venue": null
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2476772630",
-         "year": 2016,
-         "title": "Design and validation of an MR‐conditional robot for transcranial focused ultrasound surgery in infants",
-         "venue": "Medical Physics"
-        },
-        {
-         "oa": "https://openalex.org/W2564278675",
-         "year": 2016,
-         "title": "Evaluation and Implementation of a High-Fidelity Cleft Palate Simulator",
-         "venue": "Plastic & Reconstructive Surgery"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    "evidence": []
    },
-   "faculty_evidence": [
-    {
-     "unit": "MIE",
-     "url": "https://www.mie.utoronto.ca/faculty-staff/cross-appointed-status-only-adjunct/",
-     "sha256": "3aed95700bba2c113a85f21ca3ad7f1c8bb14f0b9de42daba8c3d254809030c7",
-     "observed": "20261109",
-     "quote": "Thomas Looi Assistant Professor",
-     "ladder": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
+   "faculty_evidence": [],
+   "years_listed": [],
    "units_searched": [
     "ECE",
     "INFO",
@@ -23817,81 +22974,13 @@
    "name": "Philip Asare",
    "aliases": [],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ECE listing, professor rank); computing-share test passes: 7 of 13 school works DBLP-indexed (share 0.54; 1 OpenAlex author ids)",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5020918931"
-     ],
-     "school_works": 13,
-     "dblp_indexed": 7,
-     "share": 0.538,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5020918931",
-       "basis": "candidate author id",
-       "works": 13,
-       "dblp_indexed": 7,
-       "years": [
-        2021,
-        2026
-       ],
-       "names": [
-        "Philip Asare"
-       ],
-       "orcids": [
-        "0000-0003-1848-4157"
-       ],
-       "venues": [
-        "ASEE Annual Conference & Exposition",
-        "2022 IEEE Frontiers in Education Conference (FIE)",
-        "IEEE/IFIP International Conference on Dependable Systems and Networks (DSN)"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W3188457563",
-         "year": 2021,
-         "title": "Data-driven Design of Context-aware Monitors for Hazard Prediction in Artificial Pancreas Systems",
-         "venue": "IEEE/IFIP International Conference on Dependable Systems and Networks (DSN)"
-        },
-        {
-         "oa": "https://openalex.org/W4294975674",
-         "year": 2022,
-         "title": "Investigating Innovation Ecosystems for Wearable Medical Devices",
-         "venue": "Proceedings of the Annual International Conference of the IEEE Engineering in Medicine and Biology Society"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W4223445773",
-         "year": 2022,
-         "title": "Developing Global Competence in Global Virtual Team Projects: A Qualitative Exploration of Engineering Students’ Experiences",
-         "venue": "Journal of Studies in International Education"
-        },
-        {
-         "oa": "https://openalex.org/W4391602011",
-         "year": 2024,
-         "title": "Work in Progress: Cultivating Reflective Engineers: Does providing a reflective ePortfolio experience in a first-year design course lead students to b",
-         "venue": "ASEE Annual Conference & Exposition"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    "evidence": []
    },
    "faculty_evidence": [
     {
@@ -23900,7 +22989,7 @@
      "sha256": "8db416d170db17131aa91d92a8179004cd906bb78d13ea0279178f6c79ab659a",
      "observed": "20261109",
      "quote": "Asare, Philip Assistant Professor",
-     "ladder": true
+     "ladder": false
     }
    ],
    "years_listed": [
@@ -24032,83 +23121,13 @@
     "Raymond H. S. Kwong"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ECE listing, professor rank); computing-share test passes: 6 of 12 school works DBLP-indexed (share 0.50; 1 OpenAlex author ids)",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5086966686"
-     ],
-     "school_works": 12,
-     "dblp_indexed": 6,
-     "share": 0.5,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5086966686",
-       "basis": "candidate author id",
-       "works": 12,
-       "dblp_indexed": 6,
-       "years": [
-        2016,
-        2025
-       ],
-       "names": [
-        "Raymond Kwong",
-        "Raymond H. Kwong",
-        "Raymond H. S. Kwong"
-       ],
-       "orcids": [
-        "0000-0001-5652-109X"
-       ],
-       "venues": [
-        "AIAA Guidance, Navigation, and Control Conference and Exhibit",
-        "Proceedings of the ... American Control Conference/Proceedings of the American Control Conference",
-        "Automatica"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2496715562",
-         "year": 2016,
-         "title": "Adaptive cooperative output tracking control for input and output constrained multiagent systems with actuator faults",
-         "venue": "Proceedings of the ... American Control Conference/Proceedings of the American Control Conference"
-        },
-        {
-         "oa": "https://openalex.org/W2782611461",
-         "year": 2017,
-         "title": "Stealthy deception attacks for cyber-physical systems",
-         "venue": "Proceedings of the IEEE Conference on Decision & Control, including the Symposium on Adaptive Processes"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2316923778",
-         "year": 2016,
-         "title": "The Influence of Control Surface Faults on Flexible Aircraft",
-         "venue": "AIAA Guidance, Navigation, and Control Conference and Exhibit"
-        },
-        {
-         "oa": "https://openalex.org/W2558112869",
-         "year": 2016,
-         "title": "Optimal decentralized control of large scale systems",
-         "venue": "Control Theory and Technology"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    "evidence": []
    },
    "faculty_evidence": [
     {
@@ -24117,7 +23136,7 @@
      "sha256": "8db416d170db17131aa91d92a8179004cd906bb78d13ea0279178f6c79ab659a",
      "observed": "20261109",
      "quote": "Kwong, Raymond Professor",
-     "ladder": true
+     "ladder": false
     }
    ],
    "years_listed": [
