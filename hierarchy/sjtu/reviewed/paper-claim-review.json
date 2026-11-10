@@ -14078,6 +14078,57 @@
           "sha256_basis": "Exact original stored compressed work BLOB"
         }
       ]
+    },
+    {
+      "id": "sjtu-20261109-admit4-W7118809623-649c",
+      "pi": "沈 为",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W7118809623",
+        "doi": "10.1007/978-981-95-4835-4_8"
+      },
+      "why": "Held by rule: book or book chapter record (R-PAP-15/21/33): not a research paper without separate review. The coauthor-overlap/affiliation/type rule only flags the row; the original record above is the evidence on file. No finding that the research is invalid or that the PI did not author it; held pending exact owned-work proof.",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "reviewed_at": "2026-11-09",
+      "flag_rule": "hold_type",
+      "evidence": [
+        {
+          "url": "https://openalex.org/W7118809623",
+          "sha256": "0d600ac2f337960110dc02e41dc3c703187fbdd763ac419393d5a613a0491f0b",
+          "quote": "Image Stitching",
+          "kind": "original_local_indexed_work_scalar",
+          "source_field": "title",
+          "sha256_basis": "Exact original stored compressed work BLOB; not DOI landing or publisher HTTP",
+          "original_indexed_record_id": "https://openalex.org/W7118809623",
+          "replay_archive": "/n/fs/resemble/homogenizing-science/scratch/sjtu-first-paper-preparation-1108/successor-v2/year-2026.sqlite",
+          "replay_archive_table": "works",
+          "DOI_reference_only_not_fetched": "10.1007/978-981-95-4835-4_8"
+        },
+        {
+          "url": "https://openalex.org/W7118809623",
+          "sha256": "0d600ac2f337960110dc02e41dc3c703187fbdd763ac419393d5a613a0491f0b",
+          "quote": "Wei Shen",
+          "kind": "original_local_indexed_work_scalar",
+          "source_field": "authorships[0].raw_author_name",
+          "sha256_basis": "Exact original stored compressed work BLOB"
+        },
+        {
+          "url": "https://openalex.org/W7118809623",
+          "sha256": "0d600ac2f337960110dc02e41dc3c703187fbdd763ac419393d5a613a0491f0b",
+          "quote": "Shanghai Jiao Tong University, Shanghai, China",
+          "kind": "original_local_indexed_work_scalar",
+          "source_field": "authorships[0].raw_affiliation_strings",
+          "sha256_basis": "Exact original stored compressed work BLOB"
+        },
+        {
+          "url": "https://openalex.org/W7118809623",
+          "sha256": "0d600ac2f337960110dc02e41dc3c703187fbdd763ac419393d5a613a0491f0b",
+          "quote": "book-chapter",
+          "kind": "original_local_indexed_work_scalar",
+          "source_field": "type",
+          "sha256_basis": "Exact original stored compressed work BLOB"
+        }
+      ]
     }
   ]
 }
