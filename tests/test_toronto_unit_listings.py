@@ -60,3 +60,9 @@ def test_pager_children_are_not_wayback_queried():
     assert C.PAGER_CHILD.search('www.physics.utoronto.ca/members/?page=3')
     assert C.PAGER_CHILD.search('www.ece.utoronto.ca/wp-json/wp/v2/people?per_page=100&page=1&_fields=title')  # an API list has no archive: skipped too
     assert not C.PAGER_CHILD.search('ihpme.utoronto.ca/faculty-directory/')
+
+
+def test_teaching_stream_professor_is_not_ladder():
+    txt = 'Brian Harrington CLTA Assistant Professor, Teaching Stream Computer Science Phone: 416-287-7000'
+    ev = C.faculty_evidence([('UTSC', 'u', 's', 'o', txt)], ['Brian Harrington'])[0]
+    assert ev['ladder'] is False

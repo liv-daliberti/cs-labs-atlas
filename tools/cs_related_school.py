@@ -69,7 +69,7 @@ MIN_DBLP = 5
 SHARE_MIN_CS, SHARE_MIN, SHARE_MIN_N = 5, 0.20, 8
 TODAY = datetime.date.today().isoformat()
 PROF_T = re.compile(r'\b(?:(?:Assistant|Associate|Full|Collegiate|University|Distinguished|Arthur F\. Thurnau)\s+)?Professor\b(?:\s+of\s+[A-Z][\w&,\- ]{2,80})?', re.I)
-NOT_LADDER = re.compile(r'emerit|adjunct|status[- ]only|cross[- ]appointed|visiting|research\s+(?:assistant\s+|associate\s+)?professor|clinical|courtesy|professor\s+of\s+(?:the\s+)?practice|lecturer|postdoc', re.I)
+NOT_LADDER = re.compile(r'emerit|adjunct|status[- ]only|teaching[- ]stream|cross[- ]appointed|visiting|research\s+(?:assistant\s+|associate\s+)?professor|clinical|courtesy|professor\s+of\s+(?:the\s+)?practice|lecturer|postdoc', re.I)
 
 
 def read(p, default=None):
@@ -342,7 +342,7 @@ def faculty_evidence(pages, names, teaching_title=''):
                 # appointment ('Associate Professor of Information, School of Information and Research Associate
                 # Professor, ICPSR', learned 2026-10-30, Libby Hemphill)
                 core = seg[:pt.start() + re.search(r'Professor', seg[pt.start():], re.I).end()]
-                _m = re.match(r'[\s,]*(?:Emerit\w+|Adjunct|\(?Status[- ]only\)?|\(cross-appointed\))', seg[len(core):], re.I)
+                _m = re.match(r'[\s,]*(?:Emerit\w+|Adjunct|\(?Status[- ]only\)?|\(cross-appointed\)|Teaching[- ]Stream|CLTA)', seg[len(core):], re.I)
                 core += _m.group(0) if _m else ''  # 'Professor Emeritus' is emeritus, not ladder (Toronto 2026-11-10)
                 hit = dict(unit=unit, url=url, sha256=sha, observed=obs, quote=q,
                            ladder=not NOT_LADDER.search(core) and not (teaching and teaching.search(core)))
