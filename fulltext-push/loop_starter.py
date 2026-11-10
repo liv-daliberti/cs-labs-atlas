@@ -70,9 +70,12 @@ def submit(school, channels, run=subprocess.run, code=None):
     if t.returncode != 0 or 'Preempts:' in t.stdout + t.stderr:
         return None
     r = run(atlas + OPTS + [SCRIPT], capture_output=True, text=True, env=env, cwd=code, timeout=300)
-    out = (r.stdout + r.stderr).strip().splitlines()
-    last = out[-1] if out else ''
-    return last.rsplit(' ', 1)[-1] if r.returncode == 0 and 'Submitted batch job' in last else None
+    # atlas submit echoes its sbatch command (a '+ sbatch ...' trace on stderr) AFTER the sbatch line: look for the line, not the last one
+    # (2026-11-10: the first run started stanford but recorded None, so a restart could have started it twice)
+    for line in (r.stdout + '\n' + r.stderr).splitlines():
+        if r.returncode == 0 and line.startswith('Submitted batch job '):
+            return line.split()[-1]
+    return None
 
 
 def main(schools):

@@ -70,3 +70,10 @@ def test_submit_does_not_inherit_this_jobs_snapshot(tmp_path, monkeypatch):
         return SimpleNamespace(returncode=0, stdout='Submitted batch job 9', stderr='')
     L.submit('mit', 'x', run, str(tmp_path))
     assert all('SNAPSHOT_REPO' not in e and 'CS_ATLAS_SNAPSHOT_COMMIT' not in e for e in seen)
+
+
+def test_job_id_found_when_a_trace_line_follows(tmp_path):
+    ok = SimpleNamespace(returncode=0, stdout='sbatch: Job 1 to start', stderr='')
+    done = SimpleNamespace(returncode=0, stdout='Submitted batch job 4242\n', stderr='+ sbatch --export=ALL x.slurm\n')
+    run, _ = fake([ok, done])
+    assert L.submit('mit', 'x', run, str(tmp_path)) == '4242'
