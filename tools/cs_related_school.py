@@ -201,6 +201,8 @@ def units(key):
                     for _, lu in (LF.page_links(lh, lurl) or LF.letter_links(lh, lurl)).items() if LF.is_paged(lh) else []:
                         if W.live(c, lu):
                             n['live_pages'] += 1
+            if PAGER_CHILD.search(url):  # a pager child (/page/N/, ?page=N) is followed from its first page's capture by unit_pages_of, never queried on its own
+                continue
             rows = W.cdx_rows(c, re.sub(r'^https?://', '', url), collapse='timestamp:4')
             for r in rows:
                 cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], url, u['code'])
@@ -245,6 +247,9 @@ def unit_pages_of(c, cap, r, code, url):
         W.capture(c, x['timestamp'], x['original'], url, code)
         got += 1
     return got
+
+
+PAGER_CHILD = re.compile(r'/page/\d+/?$|[?&]page=\d+(?:&|$)')
 
 
 def wp_json_people_text(raw):
