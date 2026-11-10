@@ -163,6 +163,17 @@ url = "https://www.thss.tsinghua.edu.cn/szdw/jsml.htm"
   format = "tsinghua_sw_names"
   title_filter = ''
   # CDX: 2022-2025 only; the card lists names without titles, so rows rely on the department title_match being tolerant of empty titles (check at stage 1); older /publish/soft/<id>/ site unverified.
+  [[departments.listings]]
+  slot = "SW publish-soft 3655 archive 2016-2020"
+  kind = "main"
+  url = "www.thss.tsinghua.edu.cn/publish/soft/3655/index.html"
+  from = "20160101"
+  to = "20201231"
+  prefix = false
+  match = ""
+  format = "tsinghua_sw_old_list"
+  title_filter = ''
+  # Old School of Software 教师名录 (CDX 2012-2020, no 2014 capture; samples 2016/2018/2020 parse 72/63/60 rows, 65/55/54 distinct names; bands as titles, honour bands repeat people).
 
 [[departments]]
 code = "AIR"

@@ -82,3 +82,16 @@ def test_cs_old_list_bands_names_and_institute():
 def test_iiis_media_title_is_the_line_after_the_name():
     fmt, rows = L.parse(IIISM)
     assert fmt == 'tsinghua_iiis_media' and rows == [dict(name_listed='姚期智', titles=['院长，教授'], profile='http://iiis.tsinghua.edu.cn/zh/yao/', homepage=None, division='教授系列')]
+
+
+SWOLD = '''<div id="s2_right_con"><p>&nbsp;</p><p style="TEXT-ALIGN: center">教师名录</p><p><strong>院士</strong></p><p><a href="/publish/soft/3641/2010/a.html" a="">孙家广</a></p><hr/>
+<p><strong>杰青</strong></p><p><a href="/publish/soft/3641/2010/b.html">向东</a>&nbsp;&nbsp;&nbsp;<a href="/publish/soft/3641/2010/c.html">雍俊海</a><strong>&nbsp;&nbsp;&nbsp;</strong></p><hr/>
+<p><strong>特聘教授</strong></p><p>Philip.S.Yu </p><hr/><p><strong>讲师/助理研究员/助理教授</strong></p><p><a href="/publish/soft/3641/2011/d.html">宋韶旭</a>&nbsp;&nbsp;&nbsp; 万海&nbsp;&nbsp;<a href="/publish/soft/3641/2013/e.html">刘克彬</a></p></div>'''
+
+
+def test_sw_old_list_bands_links_and_plain_names():
+    fmt, rows = L.parse(SWOLD)
+    assert fmt == 'tsinghua_sw_old_list'
+    got = [(r['name_listed'], r['titles'][0], bool(r['profile'])) for r in rows]
+    assert got == [('孙家广', '院士', True), ('向东', '杰青', True), ('雍俊海', '杰青', True), ('Philip.S.Yu', '特聘教授', False),
+                   ('宋韶旭', '讲师/助理研究员/助理教授', True), ('刘克彬', '讲师/助理研究员/助理教授', True), ('万海', '讲师/助理研究员/助理教授', False)]

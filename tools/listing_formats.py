@@ -634,7 +634,36 @@ def tsinghua_iiis_media(h):
     return out
 
 
+def tsinghua_sw_old_list(h):
+    """Tsinghua School of Software list 2012-2020 (/publish/soft/3655/index.html, 教师名录): `div#s2_right_con` with `<p><strong>band</strong></p>` then a
+    `<p>` of names, linked (`<a>`) or plain text separated by spaces. The band (院士, 杰青, 教授, 讲师/助理研究员/助理教授, ...) is the title; honour bands
+    repeat people who also sit in 教授 and are kept as written."""
+    from bs4 import BeautifulSoup
+    root = BeautifulSoup(h, 'html.parser').select_one('div#s2_right_con')
+    out, band = [], None
+    for p in (root.find_all('p') if root else []):
+        strong = p.find('strong')
+        text = clean(p.get_text(' ', strip=True).replace('\xa0', ' '))
+        if strong is not None and not p.find('a') and clean(strong.get_text(' ', strip=True)) == text:
+            band = text
+            continue
+        if band is None or not text or text == '教师名录':
+            continue
+        links = p.find_all('a', href=True)
+        seen = set()
+        for a in links:
+            name = clean(a.get_text(' ', strip=True)).replace(' ', '')
+            if name:
+                out.append(dict(name_listed=name, titles=[band], profile=a['href'], homepage=None, division=None)); seen.add(name)
+        rest = clean(' '.join(t for t in p.find_all(string=True) if t.find_parent('a') is None).replace('\xa0', ' '))
+        for tok in rest.split():
+            if tok and tok not in seen and re.search(r'[\u4e00-\u9fff]{2,4}|[A-Za-z]{2,}', tok) and tok not in ('、', '，'):
+                out.append(dict(name_listed=tok, titles=[band], profile=None, homepage=None, division=None))
+    return out
+
+
 FORMATS = {
+    'tsinghua_sw_old_list': (tsinghua_sw_old_list, re.compile(r'id="s2_right_con"[^>]*>.{0,400}教师名录', re.S)),
     'tsinghua_cs_old_list': (tsinghua_cs_old_list, re.compile(r'class="box_detail"[^<]*<h1[^>]*>.{0,200}在职教师名录', re.S)),
     'tsinghua_iiis_media': (tsinghua_iiis_media, re.compile(r'class="color_danger"')),
     'vt_main': (lambda h: vt_directory(h, 'main'), re.compile(r'(?!)')),
