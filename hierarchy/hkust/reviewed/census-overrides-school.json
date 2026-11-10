@@ -2157,7 +2157,9 @@
         "quote": "Kani CHEN Professor"
       }
     ],
-    "why_home_department": "several units list this person with a professor title and no captured official page states which is primary (R-HOME-01); an institute (RI) is never the home"
+    "why_home_department": "several units list this person with a professor title and no captured official page states which is primary (R-HOME-01); an institute (RI) is never the home",
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
   },
   "Kam Tim Woo": {
     "home_department": "Emerging Interdisciplinary Areas",
@@ -2176,7 +2178,9 @@
         "quote": "Kam Tim WOO Kam Tim WOO 胡錦添 胡錦添 Affiliated Faculty and Associate Professor of Engineering Education "
       }
     ],
-    "why_home_department": "several units list this person with a professor title and no captured official page states which is primary (R-HOME-01); an institute (RI) is never the home"
+    "why_home_department": "several units list this person with a professor title and no captured official page states which is primary (R-HOME-01); an institute (RI) is never the home",
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Kam Tim Woo' by the homepage, school-affiliation, exact-name or co-author rules (12 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
   },
   "Jiheng Zhang": {
     "home_department": "Industrial Engineering and Decision Analytics",
@@ -2191,7 +2195,28 @@
         "quote": "ZHANG, Jiheng 張季恆 Professor"
       }
     ],
-    "why_home_department": "the IEDA faculty page heads him \"Head & Professor\" with a Guangzhou affiliate title (not a home) and the MATH page also lists him Professor; no page states the primary line (R-HOME-01)"
+    "why_home_department": "the IEDA faculty page heads him \"Head & Professor\" with a Guangzhou affiliate title (not a home) and the MATH page also lists him Professor; no page states the primary line (R-HOME-01)",
+    "dblp": [
+      "https://dblp.org/pid/13/7602"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110): DBLP person selected by the stage-5 rule school_coauthors (tools/dblp_ids_school.py over the 2026-09-01 dump; 30 candidate records of the name; 67 records in 2016-2026). Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "https://dblp.org/pid/13/7602",
+        "dump": "dblp-2026-09-01.xml.gz",
+        "sha256": "ae5799932e28875734ca4616373b1727dfb70ecfecda8ba5a1e4978fc7f2fcd5",
+        "quote": "Jiheng Zhang"
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "school_coauthors",
+      "record_names": [
+        "Jiheng Zhang"
+      ],
+      "candidates": 30,
+      "source_file": "census-1110-overlay dblp-ids.json sha256 eab013245f01ee33a700"
+    }
   },
   "Shenghui Song": {
     "home_department": "Electronic and Computer Engineering",
@@ -2267,5 +2292,196 @@
       }
     ],
     "why_home_department": "listed with a professor title by more than one unit (ECE regular and CBE category rows) and no captured official page states which is primary (R-HOME-01)"
+  },
+  "Fugee Tsung": {
+    "dblp": [
+      "https://dblp.org/pid/95/2794"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110): DBLP person selected by the stage-5 rule unique_name (tools/dblp_ids_school.py over the 2026-09-01 dump; 1 candidate records of the name; 135 records in 2016-2026). Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "https://dblp.org/pid/95/2794",
+        "dump": "dblp-2026-09-01.xml.gz",
+        "sha256": "f632a8c5e4ed9bf167e3b61f94c32de898c6c35761822fc7bceee78e81220259",
+        "quote": "Fugee Tsung"
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "unique_name",
+      "record_names": [
+        "Fugee Tsung"
+      ],
+      "candidates": 1,
+      "source_file": "census-1110-overlay dblp-ids.json sha256 eab013245f01ee33a700"
+    }
+  },
+  "Zhiyao Xie": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Sirui Han": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Wei Xue": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Wei Xue' by the homepage, school-affiliation, exact-name or co-author rules (24 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Ying-Ju Chen": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Ying-Ju Chen' by the homepage, school-affiliation, exact-name or co-author rules (233 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Fengbin Tu": {
+    "dblp": [
+      "https://dblp.org/pid/161/0248"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110): DBLP person selected by the stage-5 rule unique_exact_name (tools/dblp_ids_school.py over the 2026-09-01 dump; 2 candidate records of the name; 81 records in 2016-2026). Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "https://dblp.org/pid/161/0248",
+        "dump": "dblp-2026-09-01.xml.gz",
+        "sha256": "12a0caaf39bbfeb70de94af44d8a245e0d9f3b0fc1509f2abea6d583e1b733e4",
+        "quote": "Fengbin Tu"
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "unique_exact_name",
+      "record_names": [
+        "Fengbin Tu"
+      ],
+      "candidates": 2,
+      "source_file": "census-1110-overlay dblp-ids.json sha256 eab013245f01ee33a700"
+    }
+  },
+  "Yi-Kuen Lee": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Yi-Kuen Lee' by the homepage, school-affiliation, exact-name or co-author rules (140 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Jie Yuan": {
+    "dblp": [
+      "https://dblp.org/pid/40/11342"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110): DBLP person selected by the stage-5 rule school_affiliation (tools/dblp_ids_school.py over the 2026-09-01 dump; 19 candidate records of the name; 2 records in 2016-2026). Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "https://dblp.org/pid/40/11342",
+        "dump": "dblp-2026-09-01.xml.gz",
+        "sha256": "478f164a00c60fb54f93644a56623a0eb527473c43f80dbf2afb638d0049d6ac",
+        "quote": "Hong Kong University of Science and Technology"
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "school_affiliation",
+      "record_names": [
+        "George Jie Yuan"
+      ],
+      "candidates": 19,
+      "source_file": "census-1110-overlay dblp-ids.json sha256 eab013245f01ee33a700"
+    }
+  },
+  "Zili Meng": {
+    "dblp": [
+      "https://dblp.org/pid/198/8304"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110): DBLP person selected by the stage-5 rule unique_exact_name (tools/dblp_ids_school.py over the 2026-09-01 dump; 3 candidate records of the name; 74 records in 2016-2026). Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "https://dblp.org/pid/198/8304",
+        "dump": "dblp-2026-09-01.xml.gz",
+        "sha256": "03beb7c0a3cb396aaf9cdb725ef14eb7e4bba942a54f46c0bf16114860e3508f",
+        "quote": "Zili Meng"
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "unique_exact_name",
+      "record_names": [
+        "Zili Meng"
+      ],
+      "candidates": 3,
+      "source_file": "census-1110-overlay dblp-ids.json sha256 eab013245f01ee33a700"
+    }
+  },
+  "Lin Fu": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Ling Pan": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Hai Zhang": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Hai Zhang' by the homepage, school-affiliation, exact-name or co-author rules (83 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Kar Yan Tam": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Sen Li": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Sen Li' by the homepage, school-affiliation, exact-name or co-author rules (43 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Xiangtong Qi": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Jiashuo Jiang": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Yihan Zhang": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Yihan Zhang' by the homepage, school-affiliation, exact-name or co-author rules (45 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Eric Marberg": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Anyi Rao": {
+    "dblp": [
+      "https://dblp.org/pid/211/7941"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110): DBLP person selected by the stage-5 rule unique_exact_name (tools/dblp_ids_school.py over the 2026-09-01 dump; 67 candidate records of the name; 79 records in 2016-2026). Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "https://dblp.org/pid/211/7941",
+        "dump": "dblp-2026-09-01.xml.gz",
+        "sha256": "98864433f581c107250c6d8a9e868fa668114a3c01d90d2acf5bf24930ec9848",
+        "quote": "Anyi Rao"
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "unique_exact_name",
+      "record_names": [
+        "Anyi Rao"
+      ],
+      "candidates": 67,
+      "source_file": "census-1110-overlay dblp-ids.json sha256 eab013245f01ee33a700"
+    }
+  },
+  "Rob B.N. Scharff": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Yunya Song": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Ajay Joneja": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Wei You": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Wei You' by the homepage, school-affiliation, exact-name or co-author rules (31 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+  },
+  "Wei Zhang": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. Common name: the DBLP person 'Wei Zhang 0001' lists UNSW first and HKUST Electronic Engineering only as one of three affiliations, with no HKUST homepage URL on the record; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
   }
 }
