@@ -20,9 +20,15 @@ def test_school_collector_reads_the_charter_not_a_stale_environment():
 
 
 def test_openalex_reserve_is_configurable(monkeypatch):
-    import importlib
+    import importlib.util
+    monkeypatch.syspath_prepend(str(CODE / 'fulltext-push'))   # this checkout's copy, whatever CS_ATLAS_CODE says
+
+    def load():
+        spec = importlib.util.spec_from_file_location('oa_refresh_probe', CODE / 'fulltext-push' / 'oa_refresh.py')
+        m = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(m)
+        return m
     monkeypatch.setenv('OA_RESERVE', '4000')
-    import oa_refresh
-    assert importlib.reload(oa_refresh).RESERVE == 4000
+    assert load().RESERVE == 4000
     monkeypatch.delenv('OA_RESERVE')
-    assert importlib.reload(oa_refresh).RESERVE == 800
+    assert load().RESERVE == 800
