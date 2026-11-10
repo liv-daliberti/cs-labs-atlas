@@ -63,7 +63,7 @@ def ready(school, store, live, raw):
 
 def submit(school, channels, run=subprocess.run, code=None):
     code = code or os.environ['CS_ATLAS_CODE']
-    env = {k: v for k, v in os.environ.items() if not k.startswith('SLURM_')}
+    env = {k: v for k, v in os.environ.items() if not k.startswith(('SLURM_', 'CS_ATLAS_SNAPSHOT', 'SNAPSHOT_REPO'))}   # a fresh submission of main's script, never this job's own snapshot
     env.update(SCHOOL=school, CHANNELS=channels)
     atlas = [f'{code}/bin/atlas', 'submit']
     t = run(atlas + ['--test-only'] + OPTS + [SCRIPT], capture_output=True, text=True, env=env, cwd=code, timeout=300)

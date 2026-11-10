@@ -58,3 +58,15 @@ def test_preempts_refuses(tmp_path):
     bad = SimpleNamespace(returncode=0, stdout='Preempts: 5', stderr='')
     run, calls = fake([bad])
     assert L.submit('mit', 'x', run, str(tmp_path)) is None and len(calls) == 1
+
+
+def test_submit_does_not_inherit_this_jobs_snapshot(tmp_path, monkeypatch):
+    monkeypatch.setenv('SNAPSHOT_REPO', '/x/worktree')
+    monkeypatch.setenv('CS_ATLAS_SNAPSHOT_COMMIT', 'abc')
+    seen = []
+
+    def run(cmd, **kw):
+        seen.append(kw['env'])
+        return SimpleNamespace(returncode=0, stdout='Submitted batch job 9', stderr='')
+    L.submit('mit', 'x', run, str(tmp_path))
+    assert all('SNAPSHOT_REPO' not in e and 'CS_ATLAS_SNAPSHOT_COMMIT' not in e for e in seen)
