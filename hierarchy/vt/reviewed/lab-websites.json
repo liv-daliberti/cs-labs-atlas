@@ -2908,6 +2908,38 @@
           "quote": "Before joining UIUC, I worked as an Assistant Professor at Virginia Tech from 2016 to 2019."
         }
       ]
+    },
+    {
+      "pi": "Dennis Kafura",
+      "url": "https://people.cs.vt.edu/~kafura/",
+      "coverage": "website",
+      "kind": "pi_homepage",
+      "found_via": "department_listing_link",
+      "listed_on": "https://think.cs.vt.edu/about",
+      "sha256": "0117b2cf41bcfd61a2fa3edebe0f8c0e0f760594e5ad32377187340304034e87",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "reason": "Captured VT-hosted professor-emeritus personal webpage.",
+      "checks": [
+        {
+          "source": "candidate_site",
+          "url": "https://people.cs.vt.edu/~kafura/",
+          "result": "ok",
+          "at": "2026-11-10",
+          "sha256": "0117b2cf41bcfd61a2fa3edebe0f8c0e0f760594e5ad32377187340304034e87",
+          "quote": "Dennis Kafura Professor Emeritus"
+        },
+        {
+          "source": "department_listing_link",
+          "url": "https://people.cs.vt.edu/~kafura/",
+          "on": "https://think.cs.vt.edu/about",
+          "result": "ok",
+          "at": "2026-11-10",
+          "quote": "Dennis Kafura | Professor | Status: Professor (Computer Science) at Virginia Tech | Website: people.cs.vt.edu/~kafura/",
+          "access": "official VT CS project-team page reviewed through web index; direct capture blocked by robots"
+        }
+      ],
+      "reason_code": "pi_homepage_only_no_lab_site"
     }
   ]
 }
