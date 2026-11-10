@@ -412,6 +412,12 @@ def build_row(u, ctx):
         row.update(PIs=fz.get('pis'), known_student_lab_pairs=fz.get('lab_student_pairs'), known_member_lab_pairs=fz.get('member_pairs'), papers=fz.get('distinct'),
                    counts_basis=f"frozen release {ctx['release']['id']}: distinct papers from copies.json summary; PIs and pairs from MANIFEST counts; member pairs = sum of students.json lists",
                    data_as_of_utc=fz.get('builtAt') or '')
+    elif (reg.get('carried') or {}).get(key, {}).get('PIs') is not None:
+        iv = reg['carried'][key]
+        row.update(PIs=iv.get('PIs'), known_student_lab_pairs=iv.get('known_student_lab_pairs'), known_member_lab_pairs=iv.get('known_member_lab_pairs'),
+                   counts_basis='counts carried in the registry (inventory only); no paper package', data_as_of_utc=iv.get('as_of') or '')
+        srcs += [short(P.data(REGISTRY_NAME), root), iv.get('source') or '']
+        flags.append(f"PIs/pairs carried from the registry `carried` entry ({iv.get('as_of') or 'undated'}), not re-derived here")
     else:
         flags.append('no frozen release count and no registered package: counts unknown')
     # websites (the register's `website` coverage, when the school has one)
@@ -419,6 +425,10 @@ def build_row(u, ctx):
     if isinstance(reg_w, dict) and isinstance(reg_w.get('labs'), list):
         row['websites'] = sum(1 for x in reg_w['labs'] if x.get('coverage') == 'website')
         srcs.append(short(ctx['data'](key, 'lab-websites.json'), root))
+    elif (reg.get('carried') or {}).get(key, {}).get('websites') is not None:
+        row['websites'] = reg['carried'][key]['websites']
+        srcs.append((reg['carried'][key].get('source') or '').split(' (')[0])
+        flags.append(f"websites carried from the registry `carried` entry ({reg['carried'][key].get('as_of') or 'undated'}), not re-derived")
     else:
         flags.append('websites blank: no lab-websites.json register for this school')
     # admission and target

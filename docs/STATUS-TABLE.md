@@ -50,7 +50,7 @@ A reviewed input (tracked; `.gitignore` admits it). Paths are relative to the pr
 },
 "inventory": {"ustc": {"site_id": "university-of-science-and-technology-of-china"}}   // cohort schools without a charter: key -> roster site_id
 ```
-Also `paper_target` (2500) and `top_n` (25). A package that is not built yet is flagged, never counted as zero. The registry is not data about papers: only the package directory is.
+`carried`: reviewed figures the tool cannot derive (`PIs`, `websites`, `known_student_lab_pairs`, `known_member_lab_pairs`, with `as_of` and `source`), used only when the live source is absent (no frozen count and no package; no `lab-websites.json` register) and flagged as carried. Also `paper_target` (2500) and `top_n` (25). A package that is not built yet is flagged, never counted as zero. The registry is not data about papers: only the package directory is.
 
 ## Tests and conventions
 `tests/test_status_table.py` (synthetic fixtures: a fake release manifest, package, gate result, roster, git repo; no live data) pins the distinct-works count,

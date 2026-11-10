@@ -4,7 +4,7 @@
  "reviewed_by": "claude-statustool-1110 (seeded from scratch/top25-goal-1107/status-audit-20261110)",
  "paper_target": 2500,
  "top_n": 25,
- "note": "Paths are relative to the project root and must stay under it. packages: the latest isolated package per school (basis label, optional candidates newest-first, optional reviewed split, optional copies_counter, optional next_step). inventory: cohort schools without a charter (key -> roster site_id).",
+ "note": "Paths are relative to the project root and must stay under it. packages: the latest isolated package per school (basis label, optional candidates newest-first, optional reviewed split, optional copies_counter, optional next_step). inventory: cohort schools without a charter (key -> roster site_id). carried: reviewed figures the tool cannot derive (PIs, websites, pair counts) with as_of and source; used only when the live source is absent, and flagged as carried.",
  "inventory": {
   "ustc": {
    "site_id": "university-of-science-and-technology-of-china"
@@ -90,6 +90,101 @@
    "path": "worktrees/harvard-deepdive/hierarchy/harvard/tmp/overlay/hierarchy/harvard/derived",
    "copies_counter": "scratch/downloads-1110/hierarchy/harvard/derived/copies.json",
    "next_step": "Run the Wayback listing chain, periods stage 4, student hand-check, then land the overlay."
+  }
+ },
+ "carried": {
+  "ustc": {
+   "PIs": 85,
+   "websites": 16,
+   "as_of": "2026-11-09T16:05:53Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (inventory counts of 2026-11-09, carried; no paper package)"
+  },
+  "nus": {
+   "PIs": 120,
+   "websites": 86,
+   "as_of": "2026-11-09T16:05:53Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (inventory counts of 2026-11-09, carried; no paper package)"
+  },
+  "cuhk": {
+   "PIs": 33,
+   "websites": 28,
+   "as_of": "2026-11-09T16:05:53Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (inventory counts of 2026-11-09, carried; no paper package)"
+  },
+  "pku": {
+   "PIs": 104,
+   "websites": 34,
+   "as_of": "2026-11-09T16:05:53Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (inventory counts of 2026-11-09, carried; no paper package)"
+  },
+  "whu": {
+   "PIs": 81,
+   "websites": 66,
+   "as_of": "2026-11-09T16:05:53Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (inventory counts of 2026-11-09, carried; no paper package)"
+  },
+  "uestc": {
+   "PIs": 94,
+   "websites": 62,
+   "as_of": "2026-11-09T16:05:53Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (inventory counts of 2026-11-09, carried; no paper package)"
+  },
+  "seu": {
+   "PIs": 61,
+   "websites": 61,
+   "as_of": "2026-11-09T16:05:53Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (inventory counts of 2026-11-09, carried; no paper package)"
+  },
+  "utaustin": {
+   "PIs": 94,
+   "websites": 39,
+   "known_student_lab_pairs": 24,
+   "known_member_lab_pairs": 24,
+   "as_of": "2026-11-09T16:05:53Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (inventory counts of 2026-11-09, carried; no paper package)"
+  },
+  "purdue": {
+   "PIs": 84,
+   "websites": 69,
+   "as_of": "2026-11-09T16:05:53Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (inventory counts of 2026-11-09, carried; no paper package)"
+  },
+  "hit": {
+   "PIs": 142,
+   "websites": 123,
+   "as_of": "2026-11-09T16:05:53Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (inventory counts of 2026-11-09, carried; no paper package)"
+  },
+  "vt": {
+   "PIs": 64,
+   "websites": 48,
+   "as_of": "2026-11-09T16:05:53Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (inventory counts of 2026-11-09, carried; no paper package)"
+  },
+  "mit": {
+   "websites": 128,
+   "as_of": "2026-11-09T16:43:00Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (websites of 2026-11-09, carried; the school has no lab-websites.json register)"
+  },
+  "stanford": {
+   "websites": 107,
+   "as_of": "2026-11-09T16:43:00Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (websites of 2026-11-09, carried; the school has no lab-websites.json register)"
+  },
+  "berkeley": {
+   "websites": 158,
+   "as_of": "2026-11-09T16:43:00Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (websites of 2026-11-09, carried; the school has no lab-websites.json register)"
+  },
+  "princeton": {
+   "websites": 94,
+   "as_of": "2026-11-09T16:43:00Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (websites of 2026-11-09, carried; the school has no lab-websites.json register)"
+  },
+  "cmu": {
+   "websites": 209,
+   "as_of": "2026-11-09T16:43:00Z",
+   "source": "scratch/top25-goal-1107/parallel-progress-current.csv (websites of 2026-11-09, carried; the school has no lab-websites.json register)"
   }
  }
 }

@@ -184,6 +184,17 @@ def test_websites_come_from_the_register(world):
     assert T.build_row(dict(key='alpha', rank='1', rank_low=1, university='A', country='', registered=True), ctx)['websites'] == 2
 
 
+def test_carried_figures_are_used_only_without_a_live_source_and_flagged(world):
+    reg = dict(carried=dict(ghost=dict(PIs=85, websites=16, as_of='2026-11-09T16:05:53Z', source='old.csv (carried)'), alpha=dict(websites=7, as_of='x', source='old.csv')))
+    ctx = ctx_for(world, registry=reg)
+    g = T.build_row(dict(key='ghost', rank='9', rank_low=9, university='G', country='', registered=True), ctx)
+    assert (g['PIs'], g['websites'], g['papers'], g['data_as_of_utc']) == (85, 16, '', '2026-11-09T16:05:53Z') and 'carried' in g['flags']
+    a = T.build_row(dict(key='alpha', rank='1', rank_low=1, university='A', country='', registered=True), ctx)
+    assert a['PIs'] == 10 and a['websites'] == 7                      # the frozen PIs win; only the missing websites are carried
+    put(world / 'hierarchy' / 'alpha' / 'lab-websites.json', dict(labs=[dict(coverage='website')]))
+    assert T.build_row(dict(key='alpha', rank='1', rank_low=1, university='A', country='', registered=True), ctx)['websites'] == 1   # a live register wins
+
+
 def test_queue_state_counts_live_stale_open_and_blocked():
     now = datetime.datetime.now(datetime.timezone.utc)
 
