@@ -25,10 +25,10 @@
 "name": "An Wang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['IC'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/06/4924-1"
 },
@@ -153,10 +153,10 @@
 "name": "Bin Chen [22/5523-5]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2019): 5 works in [2022, 2023, 2024, 2026] with non-Tsinghua institutions ['University of Hong Kong']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Other units"
 ],
 "dblp": "https://dblp.org/pid/22/5523-5"
 },
@@ -653,10 +653,11 @@
 "name": "Bo Bai",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系, 电子工程系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['EE', 'MATH'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"EE",
+"Math"
 ],
 "dblp": "https://dblp.org/pid/10/4008-1"
 },
@@ -1160,10 +1161,10 @@
 "name": "Bowen Wang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['IC'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/64/4732-1"
 },
@@ -3534,8 +3535,8 @@
 "name": "Cong Shi",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (none in the sweep): 2 works in [2022, 2025] with non-Tsinghua institutions ['Chongqing University']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -3936,10 +3937,11 @@
 "name": "Di Guo",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2022): 26 works in [2023, 2024, 2025] with non-Tsinghua institutions ['Beijing University of Posts and Telecommunications']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"CS",
+"Other units"
 ],
 "dblp": "https://dblp.org/pid/29/7028-2"
 },
@@ -4800,8 +4802,8 @@
 "name": "Feng Gao [10/2674-7]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (none in the sweep): 4 works in [2022, 2023] with non-Tsinghua institutions ['Chongqing University', 'Shanghai Jiao Tong University']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -5225,10 +5227,11 @@
 "name": "Guangwen Yang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "census_alias",
+"reason": "[census_alias] covered by the census: pinyin-compatible with census PI 杨广文 (listed in the CS directory, same unit as the candidate's resolved unit evidence ['CS', 'OTHERU']); one pinyin-compatible directory name only; a DBLP name form of an already listed faculty member. No identity is bound (R-PAP-44).",
 "units": [
-"Tsinghua (unit unstated)"
+"CS",
+"Other units"
 ],
 "dblp": "https://dblp.org/pid/67/3001-2"
 },
@@ -5272,10 +5275,12 @@
 "name": "Guiguang Ding",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "census_alias",
+"reason": "[census_alias] covered by the census: pinyin-compatible with census PI 丁贵广 (listed in the SW directory, same unit as the candidate's resolved unit evidence ['AU', 'MED', 'SW']); one pinyin-compatible directory name only; a DBLP name form of an already listed faculty member. No identity is bound (R-PAP-44).",
 "units": [
-"Tsinghua (unit unstated)"
+"Automation",
+"Medicine",
+"Software"
 ],
 "dblp": "https://dblp.org/pid/51/740"
 },
@@ -5386,10 +5391,10 @@
 "name": "Guoqi Li",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (精密仪器系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['PI'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Precision Instruments"
 ],
 "dblp": "https://dblp.org/pid/13/5353-4"
 },
@@ -5586,10 +5591,10 @@
 "name": "Haiqing Xu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2023): 2 works in [2024, 2026] with non-Tsinghua institutions ['Carnegie Mellon University', 'Georgia Institute of Technology']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Other units"
 ],
 "dblp": "https://dblp.org/pid/27/8953-1"
 },
@@ -5827,10 +5832,10 @@
 "name": "Han Xu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "pinyin-compatible with unit-directory person(s) 韩旭 not in the census: needs profile title + computing review (stage-2 EE/AU method).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_name_absent_homonym_in_other_unit] the person's own papers (DBLP records linked to OpenAlex raw affiliation strings) place them in ['EE'] and no pinyin-compatible name is listed in the captured directory of that unit; the only pinyin-compatible directory name(s) ['韩旭'] sit in ['CS'], a unit their own affiliation strings do not name: treated as a homonym, not the same person (pinyin alone never binds, R-PAP-44). Weaker than an absence in every directory: the owner may decline this evidence kind.",
 "units": [
-"Tsinghua (unit unstated)"
+"EE"
 ],
 "dblp": "https://dblp.org/pid/32/34-6"
 },
@@ -6385,10 +6390,10 @@
 "name": "Hao Sun",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "pinyin-compatible with unit-directory person(s) 孙皓 not in the census: needs profile title + computing review (stage-2 EE/AU method).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_name_absent_homonym_in_other_unit] the person's own papers (DBLP records linked to OpenAlex raw affiliation strings) place them in ['CS'] and no pinyin-compatible name is listed in the captured directory of that unit; the only pinyin-compatible directory name(s) ['孙皓'] sit in ['EE'], a unit their own affiliation strings do not name: treated as a homonym, not the same person (pinyin alone never binds, R-PAP-44). Weaker than an absence in every directory: the owner may decline this evidence kind.",
 "units": [
-"Tsinghua (unit unstated)"
+"CS"
 ],
 "dblp": "https://dblp.org/pid/82/2248-12"
 },
@@ -6625,10 +6630,10 @@
 "name": "Hao Zhang [55/2270-131]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "pinyin-compatible with unit-directory person(s) 张颢 not in the census: needs profile title + computing review (stage-2 EE/AU method).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_name_absent_homonym_in_other_unit] the person's own papers (DBLP records linked to OpenAlex raw affiliation strings) place them in ['Mechanical/Vehicle/Aerospace'] and no pinyin-compatible name is listed in the captured directory of that unit; the only pinyin-compatible directory name(s) ['张颢'] sit in ['EE'], a unit their own affiliation strings do not name: treated as a homonym, not the same person (pinyin alone never binds, R-PAP-44). Weaker than an absence in every directory: the owner may decline this evidence kind.",
 "units": [
-"Tsinghua (unit unstated)"
+"Mechanical/Vehicle/Aerospace"
 ],
 "dblp": "https://dblp.org/pid/55/2270-131"
 },
@@ -6989,8 +6994,8 @@
 "name": "Haotian Lin",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2023): 2 works in [2024, 2025] with non-Tsinghua institutions ['Carnegie Mellon University', 'University of California, Berkeley']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -7255,8 +7260,8 @@
 "name": "He Zhang [24/2058-33]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2024): 12 works in [2025, 2026] with non-Tsinghua institutions ['Pennsylvania State University']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -7340,10 +7345,11 @@
 "name": "Heng Shi",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (精密仪器系, 计算机科学与技术系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "research_or_other_rank",
+"reason": "[research_or_other_rank] research_track_unevidenced: plausible match to a directory row with a research-track title (['助理研究员']) in Precision Instruments (精密仪器系) and no independent-PI evidence yet (owner ruling 2026-11-10).",
 "units": [
-"Tsinghua (unit unstated)"
+"CS",
+"Precision Instruments"
 ],
 "dblp": "https://dblp.org/pid/180/3315-2"
 },
@@ -7803,8 +7809,8 @@
 "name": "Hua Fan",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (none in the sweep): 10 works in [2022, 2023, 2024, 2025, 2026] with non-Tsinghua institutions ['University of Electronic Science and Technology of China']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -8345,10 +8351,10 @@
 "name": "Hui Zhang [181/2846-99]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "pinyin-compatible with unit-directory person(s) 张慧 not in the census: needs profile title + computing review (stage-2 EE/AU method).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_name_absent_homonym_in_other_unit] the person's own papers (DBLP records linked to OpenAlex raw affiliation strings) place them in ['Medicine'] and no pinyin-compatible name is listed in the captured directory of that unit; the only pinyin-compatible directory name(s) ['Hui Zhang', '张慧', '张辉'] sit in ['ME', 'SW'], a unit their own affiliation strings do not name: treated as a homonym, not the same person (pinyin alone never binds, R-PAP-44). Weaker than an absence in every directory: the owner may decline this evidence kind.",
 "units": [
-"Tsinghua (unit unstated)"
+"Medicine"
 ],
 "dblp": "https://dblp.org/pid/181/2846-99"
 },
@@ -8378,10 +8384,10 @@
 "name": "Huiyu Mo",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['IC'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/202/9559"
 },
@@ -9277,10 +9283,11 @@
 "name": "Jialin Zhao",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (万科公共卫生与健康学院, 医学院（TM）, 基础医学院, 生物医学工程学院, 药学院, 计算机科学与技术系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['CS', 'MED'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"CS",
+"Medicine"
 ],
 "dblp": "https://dblp.org/pid/160/9058-4"
 },
@@ -9869,10 +9876,10 @@
 "name": "Jian Zhang [07/314-85]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_name_absent_homonym_in_other_unit] the person's own papers (DBLP records linked to OpenAlex raw affiliation strings) place them in ['Integrated Circuits'] and no pinyin-compatible name is listed in the captured directory of that unit; the only pinyin-compatible directory name(s) ['Zhang Jian', '张健'] sit in ['ME'], a unit their own affiliation strings do not name: treated as a homonym, not the same person (pinyin alone never binds, R-PAP-44). Weaker than an absence in every directory: the owner may decline this evidence kind.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/07/314-85"
 },
@@ -9939,10 +9946,10 @@
 "name": "Jianfeng Zhu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['IC'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/69/6211-1"
 },
@@ -10008,10 +10015,10 @@
 "name": "Jiangyuan Gu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['IC'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/184/7513"
 },
@@ -12446,10 +12453,11 @@
 "name": "Juan Liu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系, 电子工程系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['EE', 'MATH'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"EE",
+"Math"
 ],
 "dblp": "https://dblp.org/pid/16/3621-2"
 },
@@ -13194,10 +13202,11 @@
 "name": "Kai Sun [09/1171-14]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (万科公共卫生与健康学院, 医学院（TM）, 基础医学院, 生物医学工程学院, 药学院, 计算机科学与技术系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_name_absent_homonym_in_other_unit] the person's own papers (DBLP records linked to OpenAlex raw affiliation strings) place them in ['CS', 'Medicine'] and no pinyin-compatible name is listed in the captured directory of that unit; the only pinyin-compatible directory name(s) ['孙凯'] sit in ['ENERGY'], a unit their own affiliation strings do not name: treated as a homonym, not the same person (pinyin alone never binds, R-PAP-44). Weaker than an absence in every directory: the owner may decline this evidence kind.",
 "units": [
-"Tsinghua (unit unstated)"
+"CS",
+"Medicine"
 ],
 "dblp": "https://dblp.org/pid/09/1171-14"
 },
@@ -13880,10 +13889,10 @@
 "name": "Kui Xu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (万科公共卫生与健康学院, 医学院（TM）, 基础医学院, 生物医学工程学院, 药学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['MED'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Medicine"
 ],
 "dblp": "https://dblp.org/pid/58/2847-4"
 },
@@ -14865,10 +14874,10 @@
 "name": "Lijuan Li",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['IC'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/06/3198-2"
 },
@@ -15578,8 +15587,8 @@
 "name": "Meng Shen",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (none in the sweep): 14 works in [2022, 2023, 2024, 2025, 2026] with non-Tsinghua institutions ['Beijing Institute of Technology']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -16159,10 +16168,11 @@
 "name": "Ming Lu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2020): 9 works in [2022, 2023, 2025] with non-Tsinghua institutions ['Intel (United States)', 'Nanjing University']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"EE",
+"Other units"
 ],
 "dblp": "https://dblp.org/pid/15/5997-2"
 },
@@ -16569,10 +16579,10 @@
 "name": "Mingxuan Liu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (万科公共卫生与健康学院, 医学院（TM）, 基础医学院, 生物医学工程学院, 药学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['MED'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Medicine"
 ],
 "dblp": "https://dblp.org/pid/253/7461-1"
 },
@@ -16929,10 +16939,10 @@
 "name": "Nan Xu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2020): 8 works in [2023, 2024, 2025] with non-Tsinghua institutions ['Hohai University', 'Ministry of Natural Resources', 'Shenzhen University']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Other units"
 ],
 "dblp": "https://dblp.org/pid/26/4304-8"
 },
@@ -16964,10 +16974,10 @@
 "name": "Neng Zhang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['IC'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/128/4245-2"
 },
@@ -17507,10 +17517,10 @@
 "name": "Peng Dai",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (精密仪器系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['PI'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Precision Instruments"
 ],
 "dblp": "https://dblp.org/pid/08/3547-6"
 },
@@ -17518,10 +17528,11 @@
 "name": "Peng Gong",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2024): 2 works in [2025, 2026] with non-Tsinghua institutions ['University of Hong Kong']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Other units",
+"Economics & Mgmt"
 ],
 "dblp": "https://dblp.org/pid/27/1615-2"
 },
@@ -17704,10 +17715,10 @@
 "name": "Peng Wang [95/4442-220]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_name_absent_homonym_in_other_unit] the person's own papers (DBLP records linked to OpenAlex raw affiliation strings) place them in ['Integrated Circuits'] and no pinyin-compatible name is listed in the captured directory of that unit; the only pinyin-compatible directory name(s) ['王鹏'] sit in ['ENERGY', 'PI'], a unit their own affiliation strings do not name: treated as a homonym, not the same person (pinyin alone never binds, R-PAP-44). Weaker than an absence in every directory: the owner may decline this evidence kind.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/95/4442-220"
 },
@@ -17798,8 +17809,8 @@
 "name": "Peng Zhang [21/1048-11]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (none in the sweep): 5 works in [2023, 2025] with non-Tsinghua institutions [\"Xi'an Jiaotong University\"]; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -17968,8 +17979,8 @@
 "name": "Qi Guo",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (none in the sweep): 2 works in [2023, 2025] with non-Tsinghua institutions ['Chinese Academy of Sciences', 'Institute of Computing Technology', 'University of Chinese Academy of Sciences']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -21099,10 +21110,12 @@
 "name": "Shuai Yuan",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2024): 4 works in [2025, 2026] with non-Tsinghua institutions ['University of Electronic Science and Technology of China', 'University of Hong Kong']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"EE",
+"Integrated Circuits",
+"Other units"
 ],
 "dblp": "https://dblp.org/pid/19/1243-5"
 },
@@ -21507,8 +21520,8 @@
 "name": "Siwei Wang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2022): 5 works in [2023, 2024, 2025, 2026] with non-Tsinghua institutions ['Microsoft Research Asia (China)']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -22870,10 +22883,10 @@
 "name": "Waichon Lio",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2021): 2 works in [2023, 2024] with non-Tsinghua institutions ['Beihang University']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Math"
 ],
 "dblp": "https://dblp.org/pid/223/7902"
 },
@@ -23105,8 +23118,8 @@
 "name": "Wei Gong",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2017): 10 works in [2022, 2024, 2025, 2026] with non-Tsinghua institutions ['University of Science and Technology of China']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -23335,8 +23348,8 @@
 "name": "Wei Shen",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (none in the sweep): 4 works in [2022, 2025] with non-Tsinghua institutions ['Nankai University']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -23838,10 +23851,10 @@
 "name": "Weiyi Zhang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['IC'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/59/803-2"
 },
@@ -25077,8 +25090,8 @@
 "name": "Xiang Zhang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2021): 4 works in [2024, 2025] with non-Tsinghua institutions ['University of California San Diego']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -26314,8 +26327,8 @@
 "name": "Xiaoying Wang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2017): 5 works in [2022, 2024, 2025, 2026] with non-Tsinghua institutions ['Qinghai Institute of Technology', 'Qinghai University']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -27791,10 +27804,12 @@
 "name": "Xuesong Li",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (万科公共卫生与健康学院, 医学院（TM）, 基础医学院, 生物医学工程学院, 自动化系, 药学院, 计算机科学与技术系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_name_absent_homonym_in_other_unit] the person's own papers (DBLP records linked to OpenAlex raw affiliation strings) place them in ['Automation', 'CS', 'Medicine'] and no pinyin-compatible name is listed in the captured directory of that unit; the only pinyin-compatible directory name(s) ['Li Xuesong', '李雪松'] sit in ['ENERGY'], a unit their own affiliation strings do not name: treated as a homonym, not the same person (pinyin alone never binds, R-PAP-44). Weaker than an absence in every directory: the owner may decline this evidence kind.",
 "units": [
-"Tsinghua (unit unstated)"
+"Automation",
+"CS",
+"Medicine"
 ],
 "dblp": "https://dblp.org/pid/76/5858-3"
 },
@@ -28805,8 +28820,8 @@
 "name": "Yang Xu [61/3906-10]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (none in the sweep): 14 works in [2022, 2023, 2024, 2025, 2026] with non-Tsinghua institutions ['Fudan University', 'Peng Cheng Laboratory', 'Shanghai Jiao Tong University']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -28941,8 +28956,8 @@
 "name": "Yangqiu Song",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (none in the sweep): 20 works in [2022, 2023, 2024, 2025, 2026] with non-Tsinghua institutions ['Hong Kong University of Science and Technology', 'The Hong Kong University of Science and Technology (Guangzhou)', 'University of Hong Kong']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -28999,10 +29014,10 @@
 "name": "Yanshu Guo",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2024): 10 works in [2025, 2026] with non-Tsinghua institutions ['Nanyang Technological University', 'Shanghai Jiao Tong University']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/206/8181"
 },
@@ -29408,10 +29423,10 @@
 "name": "Yi Huang [15/6040-36]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['IC'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/15/6040-36"
 },
@@ -29670,10 +29685,10 @@
 "name": "Yi Wen",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (精密仪器系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['PI'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Precision Instruments"
 ],
 "dblp": "https://dblp.org/pid/10/761-2"
 },
@@ -30122,10 +30137,10 @@
 "name": "Yifan Hu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (精密仪器系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['PI'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Precision Instruments"
 ],
 "dblp": "https://dblp.org/pid/92/498-13"
 },
@@ -30403,10 +30418,10 @@
 "name": "Yihang Cheng",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['IC'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/184/7176-3"
 },
@@ -31162,8 +31177,8 @@
 "name": "Yiwei Zhao",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2023): 5 works in [2025, 2026] with non-Tsinghua institutions ['Carnegie Mellon University']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -32152,10 +32167,11 @@
 "name": "Yu Zhang [50/671-83]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "pinyin-compatible with unit-directory person(s) 张彧 not in the census: needs profile title + computing review (stage-2 EE/AU method).",
+"decision": "census_alias",
+"reason": "[census_alias] covered by the census: pinyin-compatible with census PI 张彧 (listed in the EE directory, same unit as the candidate's resolved unit evidence ['EE', 'OTHERU']); one pinyin-compatible directory name only; a DBLP name form of an already listed faculty member. No identity is bound (R-PAP-44).",
 "units": [
-"Tsinghua (unit unstated)"
+"EE",
+"Other units"
 ],
 "dblp": "https://dblp.org/pid/50/671-83"
 },
@@ -32829,8 +32845,8 @@
 "name": "Yue Dong",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (none in the sweep): 4 works in [2023, 2024, 2025, 2026] with non-Tsinghua institutions ['Microsoft (United States)', 'Microsoft Research Asia (China)']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -33287,10 +33303,10 @@
 "name": "Yuhao Liu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['MATH'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Math"
 ],
 "dblp": "https://dblp.org/pid/139/8699-5"
 },
@@ -34006,8 +34022,8 @@
 "name": "Yutong Wu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2022): 2 works in [2023, 2024] with non-Tsinghua institutions ['Nanyang Technological University']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -34515,10 +34531,11 @@
 "name": "Yuyu Luo",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[openalex_current_elsewhere_plus_directories_read] OpenAlex authorships of the person's own DBLP records show them at other institutions after their last Tsinghua-bearing string (2023): 17 works in [2024, 2025, 2026] with non-Tsinghua institutions ['Hong Kong University of Science and Technology', 'Tencent (China)', 'The Hong Kong University of Science and Technology (Guangzhou)']; no Tsinghua string on any of the person's authorships from then on; and no pinyin-compatible name in any of the 13 captured Tsinghua directory groups ['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']. Not currently Tsinghua faculty; a faculty period before the move in an uncaptured unit is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"CS",
+"Other units"
 ],
 "dblp": "https://dblp.org/pid/185/9921"
 },
@@ -35109,10 +35126,10 @@
 "name": "Zhaoyang Weng",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['IC'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/166/2932"
 },
@@ -37391,10 +37408,10 @@
 "name": "Zihan Wu [316/3246]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (集成电路学院) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[unit_resolved_directories_read_name_absent] unit(s) resolved from local evidence ['IC'] (DBLP person note / OpenAlex raw affiliation strings of the person's own papers); the captured faculty directories of those units (listing rows 2016-2026 and 2026-11-10 unit captures) list no person with a pinyin-compatible name, and none appears in any other captured directory (['AIR', 'AU', 'CS', 'EE', 'ENERGY', 'IC', 'IIIS', 'INSC', 'MATH', 'ME', 'MED', 'PI', 'SW']). Method: Text::Unidecode forms (surname overrides) against Chinese names, Latin lists compared as given. A unit not named by the evidence is not excluded.",
 "units": [
-"Tsinghua (unit unstated)"
+"Integrated Circuits"
 ],
 "dblp": "https://dblp.org/pid/316/3246"
 },
