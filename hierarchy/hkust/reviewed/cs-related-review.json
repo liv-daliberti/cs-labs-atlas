@@ -27,8 +27,8 @@
   "RI"
  ],
  "counts": {
-  "not_faculty_listed": 698,
-  "accepted": 54,
+  "not_faculty_listed": 697,
+  "accepted": 55,
   "research_or_other_rank": 4,
   "faculty_not_computing": 8
  },
@@ -7917,52 +7917,6 @@
     "PHYS",
     "RI"
    ]
-  },
-  {
-   "name": "Kai Tang",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "OPEN ITEM, NOT A CLAIM (hold): 2026-11-10 owner threshold (computing as object or method: DBLP records with an HKUST note >= 30 mostly in computing venues, or OpenAlex computing share >= 0.5 with computing venues; hardware/circuits only if computing systems, architecture, EDA or communications/signal processing for computing; judged from the sweep venue lists, not the unit name): MAE Professor on stored Wayback listings 2016-2021 (CAD/CAM, solid modeling; sha256 669cf2f0..., f2a9f196...); OpenAlex A5067743569 98 works, venues mostly manufacturing engineering (Computer-Aided Design 15, Robotics and Computer-Integrated Manufacturing 8, T-ASE 6, J. Manufacturing Science and Engineering 6, J. Manufacturing Processes 6, Int. J. Advanced Manufacturing Technology 6): no computing-venue majority; MAE 2022-2026 listings not read; not admitted | fresh reviewer 2026-11-10: the OpenAlex branch fails (computing-type venues 20-36 of 98 works, 0.20-0.37), but DBLP 57/3315-1 shows 50 records with an HKUST MAE note (>= 30) and no venue tally of those records is available locally (the person is not in the school persons extract); CAD/solid modeling may count as computing as method; decision withheld until the DBLP venue tally is read",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/57/3315-1"
-    ],
-    "dblp_window": 50,
-    "affiliation_notes": [
-     "Hong Kong University of Science and Technology, Department of Mechanical and Aerospace Engineering, Hong Kong",
-     "Schlumberger Technologies, CAD/CAM Division, Ann Arbor, MI, USA",
-     "University of Michigan, IL, USA",
-     "Nanjing Institute of Technology, Department of Mechanical Engineering, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/57/3315-1",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Hong Kong University of Science and Technology, Department of Mechanical and Aerospace Engineering, Hong Kong"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BM",
-    "CBE",
-    "CHEM",
-    "CIVL",
-    "ECE",
-    "EMIA",
-    "IAS",
-    "IEDA",
-    "ISD",
-    "ISOM",
-    "LIFS",
-    "MAE",
-    "MATH",
-    "PHYS",
-    "RI"
-   ],
-   "hold": true
   },
   {
    "name": "Kai Wang",
@@ -36152,6 +36106,101 @@
    "cs_basis": {},
    "faculty_evidence": [],
    "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Kai Tang",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "decision": "accepted",
+   "reason": "faculty (MAE listing, Professor, stored Wayback 2016-2021; current listing unread: MAE robots) with 50 DBLP records 2016-2026 naming the school; owner threshold: venue tally from the second targeted DBLP read: Computer-Aided Design 15, Robotics and Computer-Integrated Manufacturing 7, IEEE T-ASE 6, Int. J. Computer Integrated Manufacturing 4, CoRR 4, TVCG 2, CVGIP 2, J. Computational Design and Engineering 2, J. Computing and Information Science in Engineering 1, Computers & Graphics 1, and others: about 30 of 50 in computing venues (CAD / geometric modeling, graphics, CoRR), so computing as method; fresh-reviewer sample pending",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/57/3315-1"
+    ],
+    "dblp_window": 50,
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/57/3315-1",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "quote": "HKUST MAE note"
+     }
+    ]
+   },
+   "faculty_evidence": [
+    {
+     "unit": "MAE",
+     "url": "https://web.archive.org/web/20160210011203id_/http://www.mae.ust.hk:80/people/faculty.html",
+     "sha256": "d4c1b60028fed54c255cb9a2cc4e3a44be8847f7a4f6a53a984f3ed46ec20d9e",
+     "observed": "20160210",
+     "quote": "Kai TANG 湯凱 Professor",
+     "ladder": true
+    },
+    {
+     "unit": "MAE",
+     "url": "https://web.archive.org/web/20170501221613id_/http://www.mae.ust.hk:80/people/faculty.html",
+     "sha256": "eebb23d31ce8827c3157434af6609603155e3d05cf27fd4b627d58ad68a8e21c",
+     "observed": "20170501",
+     "quote": "Kai TANG 湯凱 Professor",
+     "ladder": true
+    },
+    {
+     "unit": "MAE",
+     "url": "https://web.archive.org/web/20180105041140id_/http://www.mae.ust.hk:80/people/faculty.html?",
+     "sha256": "0df04e1364351cb0dcf3936b001c8d731d0d8dca68a3b498f41bdf19f0d7076d",
+     "observed": "20180105",
+     "quote": "Kai TANG 湯凱 Professor",
+     "ladder": true
+    },
+    {
+     "unit": "MAE",
+     "url": "https://web.archive.org/web/20190501233358id_/https://www.mae.ust.hk/en/people/faculty",
+     "sha256": "ab3dce1cb6562b15d6c92d8b8722cf7d9f65f33f5188cf24e7c8b235c9f09e89",
+     "observed": "20190501",
+     "quote": "Kai TANG湯凱 Professor",
+     "ladder": true
+    },
+    {
+     "unit": "MAE",
+     "url": "https://web.archive.org/web/20200924014032id_/https://www.mae.ust.hk/en/people/faculty",
+     "sha256": "f2a9f19655b2a8fa41197fc416071f904c2549031a5584087d387bada5189838",
+     "observed": "20200924",
+     "quote": "Kai TANG湯凱 Professor",
+     "ladder": true
+    },
+    {
+     "unit": "MAE",
+     "url": "https://web.archive.org/web/20210120064403id_/https://www.mae.ust.hk/en/people/faculty",
+     "sha256": "64a39af75758e1e260f8f81b80040409f52163045f6e6e46ab3be8efee5a5a3e",
+     "observed": "20210120",
+     "quote": "Kai TANG湯凱 Professor",
+     "ladder": true
+    }
+   ],
+   "years_listed": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021
+   ],
    "units_searched": [
     "BM",
     "CBE",
