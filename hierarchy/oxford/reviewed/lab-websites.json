@@ -881,8 +881,8 @@
   {
    "pi": "Cas Cremers",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "Cas Cremers left Oxford: the official Oxford profile URL http://www.cs.ox.ac.uk/people/Cas.Cremers now redirects (response headers HTTP/1.1 301 Moved Permanently -> Location: http://www.cs.ox.ac.uk/people/cas.cremers -> HTTP/1.1 301 Moved Permanently -> Location: http://www.cs.ox.ac.uk/people/cas.cremers/ -> HTTP/1.1 301 Moved Permanently -> Location: https://people.cispa.io/cas.cremers/ -> HTTP/2 200 ) to his new institution's page https://people.cispa.io/cas.cremers/ (CISPA), and cs.ox.ac.uk/cas.cremers/ answers 404 (fetched 2026-11-10T04:23:13Z). The CISPA site disallows our agent in robots.txt. The earlier register entry, a Mastodon account (infosec.exchange/@cascremers) linked from the CISPA page, is not a website and is removed.",
    "audited_at": "2026-11-10T03:54:57+00:00",
    "checks": [
     {
@@ -921,13 +921,6 @@
      "at": "2026-11-10T03:37:09+00:00",
      "result": "listed",
      "anchor": "key exchange and group key establishment",
-     "on": "http://www.cs.ox.ac.uk/people/Cas.Cremers"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "https://infosec.exchange/@cascremers",
-     "at": "2026-11-10T03:37:09+00:00",
-     "result": "listed",
      "on": "http://www.cs.ox.ac.uk/people/Cas.Cremers"
     },
     {
@@ -972,20 +965,20 @@
     },
     {
      "source": "candidate_site",
-     "url": "https://infosec.exchange/@cascremers",
-     "at": "2026-11-10T03:37:13+00:00",
-     "result": "ok",
-     "via": "school_profile_link",
-     "sha256": "3f2f00f11e0ecc89ad3915a119df0d419e1935f071140c8554d739bc0f5d45ed"
-    },
-    {
-     "source": "candidate_site",
      "url": "https://cispa.saarland/group/cremers/",
      "at": "2026-11-10T03:37:13+00:00",
      "result": "ok",
      "via": "dblp_person_url",
      "sha256": "479fc372c7c805d7f4d985e800e1c5d971cd9b1122a1e623009d6d2edfcdf882",
      "final_url": "https://people.cispa.io/cas.cremers/"
+    },
+    {
+     "source": "school_profile_redirect",
+     "url": "http://www.cs.ox.ac.uk/people/Cas.Cremers",
+     "at": "2026-11-10T04:23:13",
+     "result": "redirects_to_other_institution",
+     "location": "https://people.cispa.io/cas.cremers/",
+     "sha256": "99d6ecf83e83a24d1f0ff921cc4e1479b8304e1a96616a20fbbd88e08db8473a"
     }
    ],
    "places_checked": [
@@ -1000,34 +993,20 @@
    "checked_at": "2026-11-10T03:37:13+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "https://infosec.exchange/@cascremers",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "school_profile_link",
-   "listed_on": "http://www.cs.ox.ac.uk/people/Cas.Cremers",
-   "sha256": "3f2f00f11e0ecc89ad3915a119df0d419e1935f071140c8554d739bc0f5d45ed",
-   "evidence": {
-    "url": "https://infosec.exchange/@cascremers",
-    "sha256": "3f2f00f11e0ecc89ad3915a119df0d419e1935f071140c8554d739bc0f5d45ed",
-    "quote": "Cas Cremers (@cascremers@infosec.exchange) - Infosec Exchange"
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "https://infosec.exchange/@cascremers",
-     "at": "2026-11-10T03:37:09+00:00",
-     "result": "listed",
-     "on": "http://www.cs.ox.ac.uk/people/Cas.Cremers"
-    }
-   ],
-   "coverage": "website",
+   "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "cas cremers cascremers infosec exchange infosec exchange to use the mastodon web app"
+   "kind": "other_institution_site",
+   "reason_type": "other_institution",
+   "evidence": {
+    "url": "http://www.cs.ox.ac.uk/people/Cas.Cremers",
+    "sha256": "99d6ecf83e83a24d1f0ff921cc4e1479b8304e1a96616a20fbbd88e08db8473a",
+    "quote": "HTTP/1.1 301 Moved Permanently -> Location: http://www.cs.ox.ac.uk/people/cas.cremers -> HTTP/1.1 301 Moved Permanently -> Location: http://www.cs.ox.ac.uk/people/cas.cremers/ -> HTTP/1.1 301 Moved Permanently -> Location: https://people.cispa.io/cas.cremers/ -> HTTP/2 200 ",
+    "kind": "official_profile_redirect_chain_headers",
+    "observed": "2026-11-10T04:23:13"
+   },
+   "reason_scope": "Recorded search/access outcome; the Oxford site no longer exists; not proof of a Wayback capture or its absence.",
+   "hand_pass": "2026-11-10 claude-oxford-apply-1109 (coordinator call 4): corrected from a Mastodon account to pi_left_school_site_moved"
   },
   {
    "pi": "Bernardo Cuenca Grau",
@@ -3596,8 +3575,8 @@
   {
    "pi": "Joel Ouaknine",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "Joel Ouaknine's site is now at MPI-SWS (https://people.mpi-sws.org/~joel/, linked from his Oxford profile); it is a site at another institution. His Oxford profile URL resolves through redirects to the Oxford-hosted page http://www.cs.ox.ac.uk/people/joel.ouaknine/home.html (response chain: HTTP/1.1 301 Moved Permanently -> Location: http://www.cs.ox.ac.uk/people/joel.ouaknine -> HTTP/1.1 301 Moved Permanently -> Location: http://www.cs.ox.ac.uk/people/joel.ouaknine/ -> HTTP/1.1 302 Found -> Location: http://www.cs.ox.ac.uk/people/joel.ouaknine/home.html -> HTTP/1.1 200 OK; fetched 2026-11-10T04:23:41Z), which the register does not record as a lab site.",
    "audited_at": "2026-11-10T03:55:20+00:00",
    "checks": [
     {
@@ -3744,39 +3723,19 @@
    "checked_at": "2026-11-10T03:44:21+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "url": "https://people.mpi-sws.org/~joel/",
-   "kind": "pi_homepage",
-   "people_page": "https://people.mpi-sws.org/~joel/",
-   "alumni_page": "https://people.mpi-sws.org/~joel/formermembers.html",
-   "pubs_page": "https://people.mpi-sws.org/~joel/pubs.html",
-   "found_via": "dblp_person_url",
-   "listed_on": "http://www.cs.ox.ac.uk/people/Joel.Ouaknine",
-   "sha256": "928b997d8c858709ed36d2e5c7e6d5b2a7cf22b60474356cdde0037dc870fe5e",
-   "evidence": {
-    "url": "https://people.mpi-sws.org/~joel/",
-    "sha256": "928b997d8c858709ed36d2e5c7e6d5b2a7cf22b60474356cdde0037dc870fe5e",
-    "quote": "Joël Ouaknine: Home Page Joël Ouaknine Scientific Director Max Planck Ins"
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "https://people.mpi-sws.org/~joel/",
-     "on": "http://www.cs.ox.ac.uk/people/Joel.Ouaknine",
-     "at": "2026-11-10T03:44:21+00:00",
-     "result": "listed",
-     "anchor": "Please click if you're not automatically redirected",
-     "linked_url": "http://people.mpi-sws.org/~joel/",
-     "source_sha256": "35f3871866b62ea41439848ac5e12ae8ce588253e294ee11b3178ea9871f86e3",
-     "source_capture_url": null,
-     "provenance": "recovered_from_cached_profile_html"
-    }
-   ],
-   "coverage": "website",
+   "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "joel ouaknine home page joel ouaknine scientific director max planck institute for so"
+   "kind": "other_institution_site",
+   "reason_type": "other_institution",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence": {
+    "url": "http://www.cs.ox.ac.uk/people/Joel.Ouaknine",
+    "sha256": "c3fef879f756393f4641dfdeee806223a5d7bbe9f5b4e3bbe3ec2a0f72dd3a16",
+    "quote": "HTTP/1.1 301 Moved Permanently -> Location: http://www.cs.ox.ac.uk/people/joel.ouaknine -> HTTP/1.1 301 Moved Permanently -> Location: http://www.cs.ox.ac.uk/people/joel.ouaknine/ -> HTTP/1.1 302 Found -> Location: http://www.cs.ox.ac.uk/people/joel.ouaknine/home.html -> HTTP/1.1 200 OK",
+    "observed": "2026-11-10T04:23:41"
+   },
+   "hand_pass": "2026-11-10 claude-oxford-apply-1109 (coordinator call 4 sweep): site at MPI-SWS, not an Oxford lab site"
   },
   {
    "pi": "Stephen Pulman",
@@ -6027,8 +5986,8 @@
   {
    "pi": "Reuben Binns",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The official Oxford profile https://www.cs.ox.ac.uk/people/reuben.binns/ (fetched 2026-11-10T04:23:41Z, sha256 012547b5e7cdff2d03d4fa90d1acbcf6248e75e0aac01a1f5e1ad2cdd095847e) links only a Mastodon account (someone.elses.computer/@RDBinns), which is not a website; DBLP and ORCID list no homepage. The earlier register entry pointing at that account is removed.",
    "audited_at": "2026-11-10T03:55:30+00:00",
    "checks": [
     {
@@ -6044,14 +6003,6 @@
      "at": "2026-11-10T00:57:09+00:00",
      "result": "ok",
      "sha256": "012547b5e7cdff2d03d4fa90d1acbcf6248e75e0aac01a1f5e1ad2cdd095847e"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "https://someone.elses.computer/@RDBinns",
-     "at": "2026-11-10T00:57:09+00:00",
-     "result": "listed",
-     "anchor": "Mastodon",
-     "on": "https://www.cs.ox.ac.uk/people/Reuben.Binns"
     },
     {
      "source": "dblp_person_url",
@@ -6070,14 +6021,6 @@
      "url": null,
      "at": "2026-11-10T00:57:09+00:00",
      "result": "no_homepage_field_in_schema"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://someone.elses.computer/@RDBinns",
-     "at": "2026-11-10T00:57:12+00:00",
-     "result": "ok",
-     "via": "school_profile_link",
-     "sha256": "0e29484863cad377da54beb4123cc0f0f749046ddc4268c5afedb93cd392531a"
     }
    ],
    "places_checked": [
@@ -6090,35 +6033,18 @@
    "checked_at": "2026-11-10T00:57:12+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "https://someone.elses.computer/@RDBinns",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "school_profile_link",
-   "listed_on": "https://www.cs.ox.ac.uk/people/Reuben.Binns",
-   "sha256": "0e29484863cad377da54beb4123cc0f0f749046ddc4268c5afedb93cd392531a",
-   "evidence": {
-    "url": "https://someone.elses.computer/@RDBinns",
-    "sha256": "0e29484863cad377da54beb4123cc0f0f749046ddc4268c5afedb93cd392531a",
-    "quote": "Reuben Binns⁉️ (@RDBinns@someone.elses.computer) - Someone Else's Comput"
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "https://someone.elses.computer/@RDBinns",
-     "at": "2026-11-10T00:57:09+00:00",
-     "result": "listed",
-     "anchor": "Mastodon",
-     "on": "https://www.cs.ox.ac.uk/people/Reuben.Binns"
-    }
-   ],
-   "coverage": "website",
+   "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "reuben binns rdbinns someone elses computer someone else s computer to use the mastodon"
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence": {
+    "url": "https://www.cs.ox.ac.uk/people/reuben.binns/",
+    "sha256": "012547b5e7cdff2d03d4fa90d1acbcf6248e75e0aac01a1f5e1ad2cdd095847e",
+    "quote": "Mastodon",
+    "observed": "2026-11-10T04:23:41"
+   },
+   "hand_pass": "2026-11-10 claude-oxford-apply-1109 (coordinator call 4 sweep): Mastodon account is not a website"
   },
   {
    "pi": "Tam Vu",
