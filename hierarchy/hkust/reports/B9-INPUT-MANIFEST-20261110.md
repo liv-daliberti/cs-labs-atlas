@@ -45,3 +45,6 @@
   "held_no_identity": 21
 }
 ```
+
+## b15 raw-input note (2026-11-10)
+b15 reads `raw/dblp-dump-persons-school.json.gz` from the private overlay5 copy (the superset, sha256 d722c959..., 824 persons). Main's raw file is the 800-person file left by the 09:52 overwrite and differs from the superset by 24 bound persons; restoring it needs owner approval (incident note). Inputs otherwise as listed above plus the R-PAP-44 bindings for Zhiyao Xie and Ling Pan.
