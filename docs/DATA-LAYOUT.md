@@ -134,6 +134,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `labpage-recover.sqlite` | work | `hierarchy/{school}/labpage-recover.sqlite` | `hierarchy/{school}/work/labpage-recover.sqlite` | 0/5 | <100MB |
 | `census-overrides.json` | reviewed | `hierarchy/census-overrides.json` | `hierarchy/reviewed/census-overrides.json` | 1/1 | <100MB |
 | `census-overrides-school.json` | reviewed | `hierarchy/{school}/census-overrides-school.json` | `hierarchy/{school}/reviewed/census-overrides-school.json` | - | <100MB |
+| `identity-bindings-school.json` | reviewed | `hierarchy/{school}/identity-bindings-school.json` | `hierarchy/{school}/reviewed/identity-bindings-school.json` | - | <10MB |
 | `student-corrections.json` | reviewed | `hierarchy/student-corrections.json` | `hierarchy/reviewed/student-corrections.json` | 1/1 | <10KB |
 | `student-identity-review.json` | reviewed | `hierarchy/student-identity-review.json` | `hierarchy/reviewed/student-identity-review.json` | 1/1 | <1MB |
 | `student-name-candidates.json` | reviewed | `hierarchy/student-name-candidates.json` | `hierarchy/reviewed/student-name-candidates.json` | 1/1 | <1MB |

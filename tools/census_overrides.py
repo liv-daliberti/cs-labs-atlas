@@ -3,7 +3,8 @@
 hierarchy/reviewed/census-overrides.json is TRACKED and shared by the released schools; only their reviews edit it. A school in onboarding
 (charter status) keeps its section in hierarchy/<key>/reviewed/census-overrides-school.json instead ({person: entry}, committed on the
 school's branch), so a stage tool never dirties a tracked file of the main checkout while a release is frozen (UChicago PROTOCOL-FRICTION 31).
-Readers call section(key); writers call open_section(key) and save().
+Readers call section(key); writers call open_section(key) and save(). An onboarding school's reviewed identity bindings
+(identity-bindings-school.json) are overlaid last by section(), see bind().
 """
 import json
 
@@ -29,7 +30,21 @@ def section(key, resolve=None):
     sec = dict(_read(resolve('census-overrides.json')).get(key) or {})
     for name, v in _read(resolve('census-overrides-school.json', key)).items():
         sec[name] = {**(sec.get(name) or {}), **v}
+    for name, v in _read(resolve('identity-bindings-school.json', key)).items():
+        sec[name] = bind(sec.get(name) or {}, v)
     return sec
+
+
+def bind(base, binding):
+    """A reviewed identity binding (hierarchy/<key>/reviewed/identity-bindings-school.json, {person: entry}) supersedes the person's
+    no_identity hold: the hold keys are dropped (the old reason is kept as `superseded_hold`), the binding's keys win. The file is
+    separate from census-overrides-school.json so an identity review never edits a file another worker owns (2026-11-10, Tsinghua)."""
+    out = {k: v for k, v in base.items() if k not in ('no_identity', 'why_no_identity')}
+    if base.get('no_identity'):
+        out['superseded_hold'] = base.get('why_no_identity')
+    out.update(binding)
+    out['no_identity'] = False
+    return out
 
 
 def open_section(key):

@@ -270,3 +270,15 @@ def test_defense_student_name_keeps_the_nickname_and_drops_the_area():
     L = by_path('labpage_students_school')
     assert L.AREA_PREFIX.sub('', 'Operations Management Ebru Kasikaralar') == 'Ebru Kasikaralar'
     assert L.AREA_PREFIX.sub('', 'Econometrics & Statistics Ming Gao') == 'Ming Gao'
+
+
+def test_identity_bindings_supersede_a_no_identity_hold(tmp_path, monkeypatch):
+    """A reviewed binding file overlays the school's overrides: the hold keys go (reason kept), the binding wins, other people are untouched."""
+    setup(tmp_path, monkeypatch, 'onboarding')
+    (tmp_path / 'u-census-overrides-school.json').write_text(json.dumps({'Dee': {'no_identity': True, 'why_no_identity': 'none found', 'periods': [3]},
+                                                                         'Eli': {'no_identity': True, 'why_no_identity': 'none found'}}))
+    (tmp_path / 'u-identity-bindings-school.json').write_text(json.dumps({'Dee': {'dblp': ['https://dblp.org/pid/x/Dee'], 'aliases': ['Dee X']}}))
+    sec = CO.section('u')
+    assert sec['Dee'] == {'periods': [3], 'superseded_hold': 'none found', 'dblp': ['https://dblp.org/pid/x/Dee'], 'aliases': ['Dee X'], 'no_identity': False}
+    assert sec['Eli'] == {'no_identity': True, 'why_no_identity': 'none found'}
+    assert sec['Ann'] == {'why': 'shared'}

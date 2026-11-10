@@ -293,6 +293,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('missing-pi-review.json', 'reviewed', 'hierarchy/{school}/missing-pi-review.json', 'hierarchy/{school}/reviewed/missing-pi-review.json'),
     ('openalex-identity-review.json', 'reviewed', 'hierarchy/{school}/openalex-identity-review.json', 'hierarchy/{school}/reviewed/openalex-identity-review.json'),
     ('census-overrides-school.json', 'reviewed', 'hierarchy/{school}/census-overrides-school.json', 'hierarchy/{school}/reviewed/census-overrides-school.json'),
+    ('identity-bindings-school.json', 'reviewed', 'hierarchy/{school}/identity-bindings-school.json', 'hierarchy/{school}/reviewed/identity-bindings-school.json'),   # reviewed DBLP bindings that supersede no_identity holds (tsinghua, 2026-11-10)
     ('openalex-identity-proposals.json', 'derived', 'hierarchy/{school}/openalex-identity-proposals.json', 'hierarchy/{school}/derived/openalex-identity-proposals.json'),
     ('cross-school-ids.json', 'derived', 'hierarchy/{school}/cross-school-ids.json', 'hierarchy/{school}/derived/cross-school-ids.json'),
     ('person-urls.json', 'reviewed', 'hierarchy/{school}/person-urls.json', 'hierarchy/{school}/reviewed/person-urls.json'),
