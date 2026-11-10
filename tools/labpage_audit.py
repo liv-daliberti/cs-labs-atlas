@@ -925,7 +925,9 @@ def discover_lab(kit, school, p, ctx, full=True):
                         continue
                     pth = [x for x in urlsplit(href).path.split('/') if x]
                     named = any(t in fold(href) for t in fam_toks) and len(pth) <= 1  # a site named for the PI, not a deep page
-                    if (WEBWORD.search(txt or '') and hh != ph) or (named and hh != ph) or \
+                    # a personal-page link on the profile's own host ('Personal web pages with links' -> /people/samson.abramsky/home.html, Oxford CS) when its path carries the PI's name
+                    own_host_personal = own_host_personal_link(href, txt, ph, fam_toks)
+                    if (WEBWORD.search(txt or '') and hh != ph) or (named and hh != ph) or own_host_personal or \
                             (re.match(r'^\s*https?://', txt or '') and hh != ph):
                         add('school_profile_link', href, 'listed', anchor=(txt or '')[:80], on=prof)
                         cand(href, 'school_profile_link')
@@ -1228,6 +1230,12 @@ def read_discovery(school):
                 r = json.loads(line)
                 out[r['pi']] = r  # the latest record per PI wins
     return out
+
+
+def own_host_personal_link(href, txt, ph, fam_toks):
+    """A profile link on the profile's own host that is the PI's personal page: its anchor says homepage/web pages and its path carries the PI's family name, and it is not a
+    publication list ('Personal web pages with links' -> /people/samson.abramsky/home.html on Oxford CS)."""
+    return (urlsplit(href).hostname or '') == ph and bool(WEBWORD.search(txt or '')) and any(t in fold(href) for t in fam_toks) and not re.search(r'/publications?/', href)
 
 
 def lab_profile_url(p):

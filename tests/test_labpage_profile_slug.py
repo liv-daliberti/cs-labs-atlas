@@ -34,3 +34,10 @@ def test_lab_profile_url_makes_the_census_profile_absolute():
 
 def test_webword_accepts_the_plural_personal_web_pages_anchor():
     assert L.WEBWORD.search('Personal web pages with links') and L.WEBWORD.search('Homepage') and not L.WEBWORD.search('Publications')
+
+
+def test_own_host_personal_link_is_a_site_but_a_publication_list_is_not():
+    ph = 'www.cs.ox.ac.uk'
+    assert L.own_host_personal_link('http://www.cs.ox.ac.uk/people/samson.abramsky/home.html', 'Personal web pages with links', ph, ['abramsky'])
+    assert not L.own_host_personal_link('https://www.cs.ox.ac.uk/people/publications/date/Samson.Abramsky.html', 'Personal web pages', ph, ['abramsky'])
+    assert not L.own_host_personal_link('https://www.cs.ox.ac.uk/research/', 'Research group', ph, ['abramsky'])
