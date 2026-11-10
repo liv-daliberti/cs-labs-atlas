@@ -49,6 +49,14 @@ def thesis_facts(key):
     return dict(total=total, done=done, dissertations=n, fam=fam)
 
 
+def members_listed(rec):
+    """How many members the lab's own page lists (current + alumni). A lab whose page lists members never gets the generic 'No student of this PI in
+    any allowed source' reason (it would be false): its listed members are either added after a hand check or explained by a hand-written reason that
+    says what the page lists (owner-delegated 2026-11-10, found on Harvard's Yiling Chen page: 59 listed members)."""
+    stu = (rec or {}).get('students') or {}
+    return len(stu.get('listed_current') or []) + len(stu.get('listed_alumni') or [])
+
+
 def lab_facts(rec):
     lp, stu = rec.get('lab_page') or {}, rec.get('students') or {}
     site = (lp.get('urls') or {}).get('lab_site') or (lp.get('urls') or {}).get('people_page')
@@ -68,7 +76,7 @@ def main(key):
     cur = json.loads(rf.read_text()) if rf.exists() else {}
     base = school_sources(key)
     th = thesis_facts(key)
-    n = 0
+    n, skipped = 0, []
     for row in LC.lab_rows(key):
         rs = row['reasons'].get('students')
         old = (cur.get(row['pi']) or {}).get('students') or {}
@@ -81,6 +89,11 @@ def main(key):
         if 'students' in e and e['students'].get('code') != 'sources_exhausted':   # hand-written reasons stay; generated ones are refreshed
             continue
         rec = audit.get(row['pi']) or {}
+        if members_listed(rec):   # never the generic reason for a page that lists members
+            if old.get('code') == 'sources_exhausted' and cur.get(row['pi']):
+                cur[row['pi']].pop('students', None)
+            skipped.append(row['pi'])
+            continue
         extra = []
         if th:
             fam = ''.join(ch for ch in row['pi'].split()[-1].lower() if ch.isalpha())
@@ -91,7 +104,7 @@ def main(key):
         n += 1
     rf.parent.mkdir(parents=True, exist_ok=True)
     rf.write_text(json.dumps(cur, indent=1, ensure_ascii=False))
-    print(json.dumps(dict(written=n, total=len(cur))))
+    print(json.dumps(dict(written=n, total=len(cur), skipped_page_lists_members=len(skipped))))
 
 
 if __name__ == '__main__':
