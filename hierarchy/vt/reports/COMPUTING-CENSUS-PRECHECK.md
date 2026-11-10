@@ -1,0 +1,16 @@
+# Virginia Tech computing census pre-check
+
+2026-11-10. This is a source-backed lead audit, not a completed campus census.
+
+| Source and scope | Measured inventory | Admission decision |
+| --- | ---: | --- |
+| CS official faculty page, captured 2026-11-07, SHA-256 `e3f508169f1ce818a27c3351d14a67a6b652c574feb4a62751510d3ec747203e` | 133 people across five named sections; 88 in teaching/research, 13 courtesy, 4 affiliate, 12 adjunct, 16 emeritus | Each section has an exact saved-body and count receipt for 2026 H2. The previous census marked 64 ladder faculty as PI candidates. Older years and individual lab ownership remain open. |
+| ECE official faculty page, SHA-256 `9d2190adde3f53158356d741d186292ebeed8c50e0e8070d2ba6a65f5b9ecd46` | 100 named faculty cards; 93 names outside the CS card set | Review individual profiles for computing scope, appointment, lab, and website; no automatic PI admission. |
+| AOE official faculty page, SHA-256 `12d4b30c9fa58e0189157362a4078b02f642be683f689058658f985a824a230f` | 79 named cards; 77 outside the CS card set | Computing-method cases require individual review. The other affiliated units in the charter still need complete roster and page review. |
+| Sanghani Center page 1, SHA-256 `e5402676a78168418a64eb043473185f2fdabf7755daf1b9721c55ef9e806938` | Page says 8 faculty pages, 40 student pages, 65 alumni pages | Page 1 is incomplete; center membership alone is not a PI home department or advising link. |
+| Existing missed-lab lead file, SHA-256 `833ac43499223bf25ea6129abcbc9a46c0300d9cd44a43a0e3bdec5632982cd0` | 629 publication-based leads: 62 `likely_faculty`, 139 `unclear`, 428 `likely_student_or_postdoc`; 26 exact-name matches to current ECE cards | The classifier is unreliable for admissions: 7 matched ECE faculty cards are labelled `likely_student_or_postdoc`. Review source profiles rather than treating labels as roles. |
+| Existing 64-CS-lab website register, SHA-256 `89d0f284e57fa1b16ba4ee4397d7ddaeb6a5464538d5e516549f49cab67c446a` | 49 fetched PI homes naming the person plus 4 fetched lab sites naming the person; 4 fetched homes did not name the person, 2 were not fetched, 5 have a documented no-site reason | Keep the 53 source-naming URLs as reviewed website leads. Resolve six uncertain URLs and five no-site cases; the older dashboard's 48 website count is not silently replaced. |
+
+The CS roster is a complete unpaged official page for its observed date: all 133 rows were parsed from the saved raw body, and no pagination links were found. `live-listing-sources.json` binds the five sections and expected counts to that body. `listing_rows.py vt` produced 133 quote-bearing rows and no skipped entries. Stage 1 still fails for 2016–2025 because no archive year was accepted. A bounded Wayback CDX request on 2026-11-10 met an existing 429 cooldown; the request was stopped and no missing year was waived.
+
+Next evidence work: complete ECE and affiliated-unit source review, inspect all Sanghani pages without treating the center as a department, resolve the 11 website gaps, then collect dated CS faculty listings for 2016–2025. PI appointment, publication identity, student roster, student-paper relation, and local-copy reviews follow those inputs.

@@ -357,6 +357,43 @@ def cambridge_profile(h):
     return [dict(name_listed=nm, titles=titles, homepage=None, division=None)] if titles else []
 
 
+def vt_directory(h, section):
+    """VT CS cards in one named appointment section; ignore repeated navigation."""
+    main = re.search(r'<main\b[^>]*>(.*?)</main>', h, re.S | re.I)
+    if not main:
+        return []
+    groups = {'teaching and research faculty': 'main', 'courtesy faculty': 'courtesy',
+              'affiliate faculty': 'affiliate', 'adjunct faculty': 'adjunct', 'emeritus faculty': 'emeritus'}
+    parts = re.split(r'<h[23]\b[^>]*>(.*?)</h[23]>', main.group(1), flags=re.S | re.I)
+    selected, out = None, []
+    for i in range(1, len(parts), 2):
+        heading = clean(parts[i])
+        if heading.casefold() in groups:
+            selected = groups[heading.casefold()]
+        elif heading.casefold() != 'find faculty by research area':
+            selected = None
+        if selected != section:
+            continue
+        if selected in ('adjunct', 'emeritus'):
+            for item in re.findall(r'<div\b[^>]*class=[\'\"][^\'\"]*\bvt-text\b[^\'\"]*[\'\"][^>]*>\s*<p>(.*?)</p>', parts[i + 1], re.S | re.I):
+                name = clean(item)
+                link = re.search(r'<a\b[^>]*href=[\'\"]([^\'\"]+)', item, re.I)
+                if name:
+                    out.append(dict(name_listed=name, titles=[heading],
+                                    homepage=H.unescape(link.group(1)).strip() if link else None, division=None))
+            continue
+        for card, role in re.findall(r'<span\b[^>]*class=[\'\"][^\'\"]*\bvt-list-title\b[^\'\"]*[\'\"][^>]*>(.*?)</span>\s*<p\b[^>]*class=[\'\"][^\'\"]*\bvt-list-description\b[^\'\"]*[\'\"][^>]*>(.*?)</p>', parts[i + 1], re.S | re.I):
+            link = re.search(r'<a\b[^>]*href=[\'\"]([^\'\"]+)[\'\"][^>]*>(.*?)</a>', card, re.S | re.I)
+            if not link:
+                continue
+            name = clean(re.sub(r'<span\b[^>]*class=[\'\"]sr-only[\'\"][^>]*>.*?</span>', '', link.group(2), flags=re.S | re.I))
+            if name:
+                out.append(dict(name_listed=name, titles=[clean(role)] if clean(role) else [],
+                                homepage=H.unescape(link.group(1)).strip(), division=None,
+                                quote=clean(card + ' ' + role)))
+    return out
+
+
 def toronto_directory(h, section):
     """One explicitly selected CS directory section, retaining only name and written position.
 
@@ -542,6 +579,11 @@ def tsinghua_air_cards(h):
 
 
 FORMATS = {
+    'vt_main': (lambda h: vt_directory(h, 'main'), re.compile(r'(?!)')),
+    'vt_courtesy': (lambda h: vt_directory(h, 'courtesy'), re.compile(r'(?!)')),
+    'vt_affiliate': (lambda h: vt_directory(h, 'affiliate'), re.compile(r'(?!)')),
+    'vt_adjunct': (lambda h: vt_directory(h, 'adjunct'), re.compile(r'(?!)')),
+    'vt_emeritus': (lambda h: vt_directory(h, 'emeritus'), re.compile(r'(?!)')),
     'hkust_faculty_any': (hkust_faculty_any, re.compile(r'(?!)')),
     'tsinghua_cs_list': (tsinghua_cs_list, re.compile(r'class="people01-nr"')),
     'tsinghua_sw_names': (tsinghua_sw_names, re.compile(r'class="group-title"')),

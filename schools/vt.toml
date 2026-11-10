@@ -89,7 +89,51 @@ url = "https://cs.vt.edu/people/faculty.html"
   to = "20261231"
   prefix = false
   match = ""
-  format = ""
+  format = "vt_main"
+  title_filter = ''
+
+  [[departments.listings]]
+  slot = "courtesy"
+  kind = "courtesy"
+  url = "cs.vt.edu/people/faculty.html"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "vt_courtesy"
+  title_filter = ''
+
+  [[departments.listings]]
+  slot = "affiliate"
+  kind = "courtesy"
+  url = "cs.vt.edu/people/faculty.html"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "vt_affiliate"
+  title_filter = ''
+
+  [[departments.listings]]
+  slot = "adjunct"
+  kind = "main"
+  url = "cs.vt.edu/people/faculty.html"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "vt_adjunct"
+  title_filter = ''
+
+  [[departments.listings]]
+  slot = "emeritus"
+  kind = "main"
+  url = "cs.vt.edu/people/faculty.html"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "vt_emeritus"
   title_filter = ''
 
 [[affiliated_units]]
@@ -101,8 +145,8 @@ listings = ["ece.vt.edu/people/faculty.html"]
 [[affiliated_units]]
 code = "STAT"
 name = "Statistics"
-url = "https://stat.vt.edu/people/faculty.html"
-listings = ["stat.vt.edu/people/faculty.html"]
+url = "https://www.stat.vt.edu/people/stat-faculty.html"
+listings = ["www.stat.vt.edu/people/stat-faculty.html"]
 
 [[affiliated_units]]
 code = "MATH"
@@ -125,14 +169,14 @@ listings = ["me.vt.edu/people/faculty.html"]
 [[affiliated_units]]
 code = "AOE"
 name = "Aerospace and Ocean Engineering"
-url = "https://aoe.vt.edu/people/faculty.html"
-listings = ["aoe.vt.edu/people/faculty.html"]
+url = "https://www.aoe.vt.edu/people/faculty.html"
+listings = ["www.aoe.vt.edu/people/faculty.html"]
 
 [[affiliated_units]]
 code = "CEE"
 name = "Civil and Environmental Engineering"
-url = "https://cee.vt.edu/people/faculty.html"
-listings = ["cee.vt.edu/people/faculty.html"]
+url = "https://www.webapps.cee.vt.edu/index.php?category=people&item=faculty&do=listing"
+listings = ["www.webapps.cee.vt.edu/index.php?category=people&item=faculty&do=listing"]
 
 [[affiliated_units]]
 code = "SANGHANI"
@@ -143,8 +187,8 @@ listings = ["sanghani.cs.vt.edu/people"]
 [[affiliated_units]]
 code = "HUME"
 name = "Hume Center for National Security and Technology (centre)"
-url = "https://hume.vt.edu/people.html"
-listings = ["hume.vt.edu/people.html"]
+url = "https://hume.vt.edu/"
+listings = ["hume.vt.edu/"]
 
 
 [thesis]
@@ -195,10 +239,10 @@ purpose = "Faculty listings, research groups, thesis evidence"
 probe = "https://ece.vt.edu/people/faculty.html"
 
 [[hosts]]
-host = "stat.vt.edu"
+host = "www.stat.vt.edu"
 use = "live"
 purpose = "Faculty listings, research groups, thesis evidence"
-probe = "https://stat.vt.edu/people/faculty.html"
+probe = "https://www.stat.vt.edu/people/stat-faculty.html"
 
 [[hosts]]
 host = "math.vt.edu"
@@ -219,16 +263,16 @@ purpose = "Faculty listings, research groups, thesis evidence"
 probe = "https://me.vt.edu/people/faculty.html"
 
 [[hosts]]
-host = "aoe.vt.edu"
+host = "www.aoe.vt.edu"
 use = "live"
 purpose = "Faculty listings, research groups, thesis evidence"
-probe = "https://aoe.vt.edu/people/faculty.html"
+probe = "https://www.aoe.vt.edu/people/faculty.html"
 
 [[hosts]]
-host = "cee.vt.edu"
+host = "www.webapps.cee.vt.edu"
 use = "live"
 purpose = "Faculty listings, research groups, thesis evidence"
-probe = "https://cee.vt.edu/people/faculty.html"
+probe = "https://www.webapps.cee.vt.edu/index.php?category=people&item=faculty&do=listing"
 
 [[hosts]]
 host = "sanghani.cs.vt.edu"
@@ -240,5 +284,5 @@ probe = "https://sanghani.cs.vt.edu/people/"
 host = "hume.vt.edu"
 use = "live"
 purpose = "Faculty listings, research groups, thesis evidence"
-probe = "https://hume.vt.edu/people.html"
+probe = "https://hume.vt.edu/"
 
