@@ -302,7 +302,7 @@ def talk_item(head, quote):
 def byline_item(quote):
     """A candidate whose whole quote is 'Name,' is one name of a publication byline ('Zhongjie Shi, Wenjing Liao  Generalization ...'), not a roster entry (Georgia Tech round 3)."""
     q = (quote or '').strip()
-    return bool(q) and q.endswith(',') and len(q.split()) <= 4
+    return bool(q) and q.endswith(',') and (len(q.split()) <= 4 or q.count(',') >= 3)   # 'A, B , C, D,': a comma-separated author list (HKUST hand check 2026-11-10)
 
 
 PUBLICATION_HEAD = re.compile(r'\b(?:selected\s+)?(?:publications?|papers|preprints?|journal articles?|conference papers?|refereed)\b', re.I)

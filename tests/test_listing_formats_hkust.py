@@ -72,3 +72,10 @@ def test_publication_list_names_are_not_students():
     assert A.publication_item(None, q, q)
     assert not A.publication_item('Current Group Members', 'PhD student (2022-present)', 'Tianyi Bai PhD 2026')
     assert not A.publication_item('Publications and students', 'PhD student', 'Ann Lee PhD 2024')
+
+
+def test_long_comma_author_lists_are_bylines():
+    import labpage_audit as A
+    assert A.byline_item('Xiaozhe Yao, Youhe Jiang , Ilia Badanin, Qinghao Hu,')
+    assert A.byline_item('Jiarui Zhang *, Yuchen Yang*, Ran Yan , Zhiyu Mei, Liyuan Zhang,')
+    assert not A.byline_item('Luyu Cheng (PhD 2021-2026), Ann Lee')
