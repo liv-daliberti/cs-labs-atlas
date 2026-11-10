@@ -11,3 +11,9 @@ Scope (owner 2026-11-10): computing-related PIs in any HKUST department. Provisi
 Robots slip: mae.hkust.edu.hk answers `User-agent: * / Disallow: /`. One request to https://mae.hkust.edu.hk/people (404) was made on 2026-11-10 after that robots file had been read. It should not have been made. No further request to mae.hkust.edu.hk will be made, live or otherwise; MAE is Wayback-only.
 
 Other host findings: isom.hkust.edu.hk serves an untrusted TLS chain (no workaround attempted, Wayback-only); the other unit hosts allow their directory paths and name no AI agent.
+
+## hosts.json (stage 0 host gate)
+`school_hosts.py hkust` ran in the private overlay on 2026-11-10: 16 hosts, 0 inconsistent (14 live unit hosts and cse; isom and mae Wayback-only; their robots rows were seeded from the earlier checks so neither host was contacted again). The file is NOT in main's derived directory: copying it there was denied by the permission classifier and is queued for the owner.
+- path: /n/fs/resemble/homogenizing-science/code/hierarchy/hkust/tmp/census-1110-overlay/hierarchy/hkust/derived/hosts.json
+- sha256: 8548f3543fb59142a407a1c1559d5af247c7a233293a53c969e6ba133fcdd5e7
+- ISOM and MAE listing URLs (CDX prefix query, 2026-11-10): isom.hkust.edu.hk/faculty-and-staff/directory; www.mae.ust.hk/en/people/faculty and www.mae.ust.hk/people/faculty.html. Hosts mae.ust.hk, mae.hkust.edu.hk, isom.hkust.edu.hk are wayback_only_suffixes.
