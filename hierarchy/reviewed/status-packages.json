@@ -47,10 +47,10 @@
    "next_step": "Close stage-3 website items (T117), then ID preparation and release admission review."
   },
   "hkust": {
-   "basis": "latest isolated native package (b15, 109 PIs incl. 56 census additions, 5,185 distinct works, 794 students in 44 labs), not admitted; gates 1, 2, 4, 5, 6, 7 pass on overlay5; 0 (hosts, owner queue), 3 (Hongbo Fu official link), 8 (copies), 9 (accuracy) open; main raw dblp persons file needs the 824-person superset (write denied, owner approval requested)",
+   "basis": "latest isolated native package (b15, 109 PIs incl. 56 census additions, 5,185 distinct works, 794 students in 44 labs); not admitted: gates 1-9 pass on private overlay5 (stage 0 needs hosts.json in the overlay's layout; on main stage 0 and 1 pass, stage 2 waits on the owner-queued dblp stage); b15 derived files are not promoted into main (owner confirmation); main raw dblp persons file is the 800-person version (b15 reads the 824-person superset from the overlay)",
    "path": "scratch/hkust-expanded-admission-1109/native-b15/hkust",
-   "weak_points": "single-page student acceptance (11 of 18); Yuchong Xie co-advising hold; new_arrival_no_site_yet labels on established faculty; 2019H1/2020H1 listing halves without capture; Fu official link held; title guard 4 holds cleared (arXiv v1 titles match); raw persons read from overlay (main has 800-person file)",
-   "next_step": "Owner: approve writing raw-overlay/dblp-persons-superset.json.gz (sha256 d722c959...) to main raw, hosts.json copy, Fu link; stage 8 copies after chain 32178214; stage 9 draw (T110)."
+   "weak_points": "single-page student acceptance (11 of 18); Yuchong Xie co-advising hold; new_arrival_no_site_yet labels on established faculty; 2019H1/2020H1 listing halves without capture; Hongbo Fu is an access reason (official profile robots-disallowed; personal site in website_note); accuracy is a point estimate by fresh reviewers whose limits are in each verdict (lab 35/35, student 40/40, coverage 14/15 with one false positive: Qifeng Chen Interspeech 2019 byline is Intel Labs/Stanford, build lists it); 4 title-guard retitles cleared against arXiv v1",
+   "next_step": "Owner: (1) approve the 824-person raw persons write (sha256 d722c959...) and the dblp stage, then candidates + stage 2 on main; (2) confirm promotion of the b15 package files to main (list in the coordinator report); T119 past-faculty extension after admission."
   },
   "sjtu": {
    "basis": "latest isolated native package, not admitted",

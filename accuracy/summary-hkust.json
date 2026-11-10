@@ -1,0 +1,146 @@
+{
+ "school": "hkust",
+ "date": "2026-11-10",
+ "seed": 20261029,
+ "n_verdicts": 90,
+ "files": {
+  "pis.json": "615e4a1cef6543b7cd2952f54bba5835f404b508577c38def3088f44520f509e",
+  "students.json": "b5a982a03880bc898981a9d3f6cd32a44bef36852e5d7dc167f6358cc17821ca",
+  "lab_papers.jsonl.gz": "d3aae986641dd7ded103cbef610974a44ac3b730aa9c718bc834fac264234841",
+  "student_papers.jsonl.gz": "a4bf5b83476097898f6fa66c8dd529f8f4839967990b2852a63ffbb500182400",
+  "copies.json": "aa4bd87eb4ee1698edd57b841692b34e063f406418afc74f8aa2062d62f94f90"
+ },
+ "files_now": {
+  "pis.json": "615e4a1cef6543b7cd2952f54bba5835f404b508577c38def3088f44520f509e",
+  "students.json": "b5a982a03880bc898981a9d3f6cd32a44bef36852e5d7dc167f6358cc17821ca",
+  "lab_papers.jsonl.gz": "d3aae986641dd7ded103cbef610974a44ac3b730aa9c718bc834fac264234841",
+  "student_papers.jsonl.gz": "a4bf5b83476097898f6fa66c8dd529f8f4839967990b2852a63ffbb500182400",
+  "copies.json": "aa4bd87eb4ee1698edd57b841692b34e063f406418afc74f8aa2062d62f94f90"
+ },
+ "lab_precision_uniform": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 35,
+  "n": 35,
+  "p": 1.0,
+  "lo": 0.9011,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 40,
+  "n": 40,
+  "p": 1.0,
+  "lo": 0.9124,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 11,
+  "n": 11,
+  "p": 1.0,
+  "lo": 0.7412,
+  "hi": 1.0
+ },
+ "lab_coverage_items": {
+  "drawn": 15,
+  "true_lab_papers": 11,
+  "not_lab_papers_absent": 3,
+  "not_lab_papers_in_build": 1
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "not_at_school": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Qifeng CHEN 陳启峰|conf/interspeech/GermainCK19",
+   "failure_type": "not_at_school",
+   "reason": "[second-pass fresh reviewer; limits: Did not see the Interspeech 2019 camera-ready PDF itself (ISCA page shows no affiliations); v1 PDF not fetched. A camera-ready could in principle list HKUST, but the arXiv byline (Sep 2018, after Chen's HKUST start) says Intel Labs.] arXiv 1806.10522 v2 (14 Sep 2018) PDF page 1 footnote: 'Q. Chen and V. Koltun are with the Intelligent Systems Lab, Intel Labs, Santa Clara'; Germain at Stanford CCRMA (interned at Intel Labs). No HKUST mention. arXiv abs pages (v1, v2) carry no affiliations; the ISCA 2019 page lists authors only, no affiliations. The work was done at Intel Labs, so the paper's own byline does not support HKUST. The build link rests only on the PI's HKUST appointment year (2019 CSE listing 'Assistant Professor'), which is the dataset's fallback rule when no page-1 byline is available; no source here supports HKUST for this paper, so it is not a true HKUST lab paper.",
+   "policy": null
+  }
+ ],
+ "unclear": [],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 5413,
+  "n_student_papers": 3537,
+  "n_coverage_pool": 4308,
+  "n_student_candidates": 0
+ }
+}
