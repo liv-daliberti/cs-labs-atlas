@@ -17,6 +17,18 @@ def _load(name, path):
     return module
 
 
+HOLD_HOSTS = ('web.archive.org', 'archive.org')
+HOLD_REASON = 'source_paused: web.archive.org is reserved for the project listing captures (WAYBACK_HOLD=1); asked again in a later pass'
+
+
+def wayback_held(url, environ=os.environ):
+    """WAYBACK_HOLD=1 (the default in the loop scripts, 2026-11-10): the download loops do not ask web.archive.org / archive.org at all. The 429 cooldown of
+    2026-11-10 04:59Z that stopped the NTU / Tsinghua / ZJU / Harvard capture jobs was drawn by loop collectors (michigan, gatech, epfl) fetching Wayback
+    snapshot candidates already in their catalogs; trimming the wayback_acm channel does not stop those. The attempt is recorded as 'source_paused:' so
+    the pass-start requeue asks again once WAYBACK_HOLD is 0."""
+    return environ.get('WAYBACK_HOLD') == '1' and (urlsplit(str(url)).hostname or '') in HOLD_HOSTS
+
+
 def install(wrapper, quality):
     """Only byte eligibility changes; the original client's policy checks run first."""
     client = wrapper.c.PublicClient
@@ -24,6 +36,8 @@ def install(wrapper, quality):
     original_validate = wrapper.c.base.validate_pdf
 
     def get(self, *args, **kwargs):
+        if args and wayback_held(args[0]):
+            raise RuntimeError(HOLD_REASON)
         data, final, content_type = original_get(self, *args, **kwargs)
         if urlsplit(final).path.lower().endswith('.xml'):
             result = quality.xml_quality(data)

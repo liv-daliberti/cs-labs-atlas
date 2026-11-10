@@ -22,6 +22,7 @@ export FTP_PY="$CS_ATLAS_COLLECTOR_PY"
 cd "$CS_ATLAS_FULLTEXT_PUSH"
 . "$CS_ATLAS_CODE/fulltext-push/loop_job.sh"
 refuse_if_downloads_stopped   # disk guard marker (2026-11-10)
+export WAYBACK_HOLD="${WAYBACK_HOLD:-1}"   # loops leave web.archive.org to the listing captures (collector_quality.wayback_held); WAYBACK_HOLD=0 to allow
 RESTART_LOG="$CS_ATLAS_FT_LOGS/lab_first_loop-$SCHOOL.out"
 # channels: the CHANNELS environment, else the charter's [collector].channels, else the default list
 if [ -z "${CHANNELS:-}" ]; then
