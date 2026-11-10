@@ -2347,8 +2347,26 @@
     "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Wei Xue' by the homepage, school-affiliation, exact-name or co-author rules (24 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
   },
   "Ying-Ju Chen": {
-    "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Ying-Ju Chen' by the homepage, school-affiliation, exact-name or co-author rules (233 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "dblp": [
+      "https://dblp.org/pid/09/1381"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110; owner-approved targeted DBLP pass): R-PAP-44 amended: the PI's own page linked from the official unit listing (https://imchen.people.ust.hk/, sha256 355f1b2cc745e842b31872cd2e57772c810713b3c734232ba27ef8e9d974741f) credits 37 exact long titles of DBLP person https://dblp.org/pid/09/1381, all on that one person; 1 DBLP persons of this base name in the targeted extract, none owning a matched title; name check passed. Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "https://imchen.people.ust.hk/",
+        "sha256": "355f1b2cc745e842b31872cd2e57772c810713b3c734232ba27ef8e9d974741f",
+        "quote": "Combining Spot and Futures Markets: A Hybrid Market Approach to Dynamic Spectrum Access."
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "R-PAP-44 title-only (targeted dump pass)",
+      "exact_titles": 37,
+      "same_base_name_persons": 1,
+      "name_compatible": true,
+      "page": "https://imchen.people.ust.hk/",
+      "page_sha256": "355f1b2cc745e842b31872cd2e57772c810713b3c734232ba27ef8e9d974741f"
+    }
   },
   "Fengbin Tu": {
     "dblp": [
@@ -2374,8 +2392,36 @@
     }
   },
   "Yi-Kuen Lee": {
-    "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Yi-Kuen Lee' by the homepage, school-affiliation, exact-name or co-author rules (140 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "dblp": [
+      "https://dblp.org/pid/41/8402"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110; owner-approved targeted DBLP pass): R-PAP-44 amended: the PI's own page linked from the official unit listing (http://meyklee.people.ust.hk/, sha256 b7990e37198285cdad3d015a39e3ac53aa1cc998dbd5225e934122ad32727c04) credits 29 exact long titles of DBLP person https://dblp.org/pid/41/8402, all on that one person; 1 DBLP persons of this base name in the targeted extract, none owning a matched title; name check passed. Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "http://meyklee.people.ust.hk/",
+        "sha256": "b7990e37198285cdad3d015a39e3ac53aa1cc998dbd5225e934122ad32727c04",
+        "quote": "A Novel Two-Dimensional Model for Micro Thermal Expansion-based Gyroscopes towards Parametric Analysis and Efficient Optimization."
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "R-PAP-44 title-only (targeted dump pass)",
+      "exact_titles": 29,
+      "same_base_name_persons": 1,
+      "name_compatible": true,
+      "page": "http://meyklee.people.ust.hk/",
+      "page_sha256": "b7990e37198285cdad3d015a39e3ac53aa1cc998dbd5225e934122ad32727c04"
+    },
+    "orcid": [
+      "0000-0002-7473-4344"
+    ],
+    "why_orcid": "The official HKUST SENG profile page of Yi-Kuen LEE lists ORCID 0000-0002-7473-4344 (stored capture); author-identity anchor only, not an automatic school or paper admission.",
+    "orcid_evidence": {
+      "url": "https://seng.hkust.edu.hk/about/people/faculty/yi-kuen-lee",
+      "sha256": "06eba17b3b9444178e731b7629d1a4b85ef90b225f99a9d02745a066b59d9ef1",
+      "quote": "ORCID 0000-0002-7473-4344",
+      "observedAt": "2026-11-10"
+    }
   },
   "Jie Yuan": {
     "dblp": [
@@ -2450,8 +2496,26 @@
     }
   },
   "Hai Zhang": {
-    "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Hai Zhang' by the homepage, school-affiliation, exact-name or co-author rules (83 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "dblp": [
+      "https://dblp.org/pid/72/4420"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110; owner-approved targeted DBLP pass): R-PAP-44 amended: the PI's own page linked from the official unit listing (https://www.math.hkust.edu.hk/~haizhang, sha256 ce25b299e09c1dc6ab4d773f4097dc236638d7ad979475970d166df31e6c9f6b) credits 14 exact long titles of DBLP person https://dblp.org/pid/72/4420, all on that one person; 6 DBLP persons of this base name in the targeted extract, none owning a matched title; name check passed. Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "https://www.math.hkust.edu.hk/~haizhang",
+        "sha256": "ce25b299e09c1dc6ab4d773f4097dc236638d7ad979475970d166df31e6c9f6b",
+        "quote": "Optimal Design of Broadband Absorbers with Multiple Plasmonic Nanoparticles via Reduced Basis Method."
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "R-PAP-44 title-only (targeted dump pass)",
+      "exact_titles": 14,
+      "same_base_name_persons": 6,
+      "name_compatible": true,
+      "page": "https://www.math.hkust.edu.hk/~haizhang",
+      "page_sha256": "ce25b299e09c1dc6ab4d773f4097dc236638d7ad979475970d166df31e6c9f6b"
+    }
   },
   "Kar Yan Tam": {
     "no_identity": true,
@@ -2474,8 +2538,26 @@
     "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Yihan Zhang' by the homepage, school-affiliation, exact-name or co-author rules (45 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
   },
   "Eric Marberg": {
-    "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "dblp": [
+      "https://dblp.org/pid/04/10840"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110; owner-approved targeted DBLP pass): R-PAP-44 amended: the PI's own page linked from the official unit listing (https://www.math.hkust.edu.hk/~emarberg, sha256 ac65a8c53a84c108e90b19a1a32de9c3ea267834a22ea13a02601158cefcba10) credits 16 exact long titles of DBLP person https://dblp.org/pid/04/10840, all on that one person; 1 DBLP persons of this base name in the targeted extract, none owning a matched title; name check passed. Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "https://www.math.hkust.edu.hk/~emarberg",
+        "sha256": "ac65a8c53a84c108e90b19a1a32de9c3ea267834a22ea13a02601158cefcba10",
+        "quote": "Extending a word property for twisted Coxeter systems."
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "R-PAP-44 title-only (targeted dump pass)",
+      "exact_titles": 16,
+      "same_base_name_persons": 1,
+      "name_compatible": true,
+      "page": "https://www.math.hkust.edu.hk/~emarberg",
+      "page_sha256": "ac65a8c53a84c108e90b19a1a32de9c3ea267834a22ea13a02601158cefcba10"
+    }
   },
   "Anyi Rao": {
     "dblp": [
@@ -2520,44 +2602,194 @@
     "no_identity": true,
     "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. Common name: the DBLP person 'Wei Zhang 0001' lists UNSW first and HKUST Electronic Engineering only as one of three affiliations, with no HKUST homepage URL on the record; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
   },
-  "Lei Li": {
+  "Daniel Pérez Palomar": {
     "dblp": [
-      "https://dblp.org/pid/13/7007-3"
+      "https://dblp.org/pid/03/1645"
     ],
-    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110): DBLP person 13/7007-3 carries an HKUST affiliation note (Hong Kong University of Science and Technology; The University of Queensland (former)), 72 records 2016-2026; the person is the Assistant Professor of the same name listed by the EMIA directory (https://emia.hkust.edu.hk/people, sha256 f0a678a512ae94f44bdf9b320212af472bffc9f84aff606f15cc51ee36642cb4), whose research areas match the DBLP person's works; a fresh reviewer (2026-11-10) judged the identity supported (alias/email handle or school profile URL on the DBLP record). Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110; coverage audit): DBLP person 03/1645 carries an HKUST affiliation note and 135 records 2016-2026; the person is the professor of the same name listed by the unit directory (listing sha256 92f89da4db8da335f8298ee89b24e29da2c3cfa10353de709e7dd5c27644e71a); the DBLP name is unique among HKUST-noted persons. Identifies the author only; school, appointment, type and edition stay independent build checks.",
     "dblp_evidence": [
       {
-        "url": "https://emia.hkust.edu.hk/people",
-        "sha256": "f0a678a512ae94f44bdf9b320212af472bffc9f84aff606f15cc51ee36642cb4",
-        "quote": "Lei LI Lei LI 李雷 李雷 Assistant Professor"
+        "url": "https://ece.hkust.edu.hk/people_list",
+        "sha256": "92f89da4db8da335f8298ee89b24e29da2c3cfa10353de709e7dd5c27644e71a",
+        "quote": "Daniel P. PALOMAR | Professor (category 37 Primary)"
       }
     ],
     "dblp_identity_review": {
       "date": "2026-11-10",
-      "basis": "DBLP affiliation note naming the school + unit listing + fresh reviewer",
-      "reviewer_verdict": "supported",
-      "same_base_name_persons": "other same-name DBLP persons exist; this pid is the one whose notes name HKUST",
+      "basis": "DBLP school affiliation note + unit listing (coverage audit proposals.json, fresh-reviewer sampled)",
       "name_compatible": true
-    }
+    },
+    "home_department": "Electronic and Computer Engineering",
+    "units_naming_them": [
+      "Electronic and Computer Engineering",
+      "Industrial Engineering and Decision Analytics"
+    ],
+    "home_department_evidence": [
+      {
+        "url": "https://ece.hkust.edu.hk/people_list",
+        "sha256": "92f89da4db8da335f8298ee89b24e29da2c3cfa10353de709e7dd5c27644e71a",
+        "quote": "Daniel P. PALOMAR | Professor (category 37 Primary)"
+      }
+    ],
+    "why_home_department": "several units list this person with a professor title and no captured official page states which is primary (R-HOME-01)",
+    "primary_unresolved": [
+      "Electronic and Computer Engineering",
+      "Industrial Engineering and Decision Analytics"
+    ]
   },
-  "Hao Liu": {
+  "Chi-Ying Tsui": {
     "dblp": [
-      "https://dblp.org/pid/09/3214-26"
+      "https://dblp.org/pid/26/1737"
     ],
-    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110): DBLP person 09/3214-26 carries an HKUST affiliation note (HKUST-GZ; Baidu Research; HKUST; South China University of Technology), 198 records 2016-2026; the person is the Assistant Professor of the same name listed by the EMIA directory (https://emia.hkust.edu.hk/people, sha256 f0a678a512ae94f44bdf9b320212af472bffc9f84aff606f15cc51ee36642cb4), whose research areas match the DBLP person's works; a fresh reviewer (2026-11-10) judged the identity supported (alias/email handle or school profile URL on the DBLP record). Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110; coverage audit): DBLP person 26/1737 carries an HKUST affiliation note and 136 records 2016-2026; the person is the professor of the same name listed by the unit directory (listing sha256 92f89da4db8da335f8298ee89b24e29da2c3cfa10353de709e7dd5c27644e71a); the DBLP name is unique among HKUST-noted persons. Identifies the author only; school, appointment, type and edition stay independent build checks.",
     "dblp_evidence": [
       {
-        "url": "https://emia.hkust.edu.hk/people",
-        "sha256": "f0a678a512ae94f44bdf9b320212af472bffc9f84aff606f15cc51ee36642cb4",
-        "quote": "Hao LIU Hao LIU 劉浩 劉浩 Assistant Professor"
+        "url": "https://ece.hkust.edu.hk/people_list",
+        "sha256": "92f89da4db8da335f8298ee89b24e29da2c3cfa10353de709e7dd5c27644e71a",
+        "quote": "Chi Ying TSUI 崔 志 英 | Professor (category 38 Joint Appointment)"
       }
     ],
     "dblp_identity_review": {
       "date": "2026-11-10",
-      "basis": "DBLP affiliation note naming the school + unit listing + fresh reviewer",
-      "reviewer_verdict": "supported",
-      "same_base_name_persons": "other same-name DBLP persons exist; this pid is the one whose notes name HKUST",
+      "basis": "DBLP school affiliation note + unit listing (coverage audit proposals.json, fresh-reviewer sampled)",
       "name_compatible": true
-    }
+    },
+    "home_department": "Electronic and Computer Engineering",
+    "units_naming_them": [
+      "Electronic and Computer Engineering",
+      "Integrative Systems and Design"
+    ],
+    "home_department_evidence": [
+      {
+        "url": "https://ece.hkust.edu.hk/people_list",
+        "sha256": "92f89da4db8da335f8298ee89b24e29da2c3cfa10353de709e7dd5c27644e71a",
+        "quote": "Chi Ying TSUI 崔 志 英 | Professor (category 38 Joint Appointment)"
+      }
+    ],
+    "why_home_department": "several units list this person with a professor title and no captured official page states which is primary (R-HOME-01)",
+    "primary_unresolved": [
+      "Electronic and Computer Engineering",
+      "Integrative Systems and Design"
+    ]
+  },
+  "Sai-Kit Yeung": {
+    "dblp": [
+      "https://dblp.org/pid/144/7479"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110; coverage audit): DBLP person 144/7479 carries an HKUST affiliation note and 151 records 2016-2026; the person is the professor of the same name listed by the unit directory (listing sha256 85d36d4f6f5bf50e1facac396398c23595185da38df93decc5238ef1f441a987); the DBLP name is unique among HKUST-noted persons. Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "https://cse.hkust.edu.hk/admin/people/faculty/?d=textview&c=joint_appointments",
+        "sha256": "85d36d4f6f5bf50e1facac396398c23595185da38df93decc5238ef1f441a987",
+        "quote": "Sai-Kit YEUNG 楊世傑 | Professor Primary Appointment: ISD"
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "DBLP school affiliation note + unit listing (coverage audit proposals.json, fresh-reviewer sampled)",
+      "name_compatible": true
+    },
+    "home_department": "Integrative Systems and Design",
+    "units_naming_them": [
+      "Integrative Systems and Design"
+    ],
+    "home_department_evidence": [
+      {
+        "url": "https://cse.hkust.edu.hk/admin/people/faculty/?d=textview&c=joint_appointments",
+        "sha256": "85d36d4f6f5bf50e1facac396398c23595185da38df93decc5238ef1f441a987",
+        "quote": "Sai-Kit YEUNG 楊世傑 | Professor Primary Appointment: ISD"
+      }
+    ],
+    "why_home_department": "primary appointment stated on the listing (R-HOME-01)"
+  },
+  "Tristan Braud": {
+    "dblp": [
+      "https://dblp.org/pid/156/6568"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110; coverage audit): DBLP person 156/6568 carries an HKUST affiliation note and 130 records 2016-2026; the person is the professor of the same name listed by the unit directory (listing sha256 85d36d4f6f5bf50e1facac396398c23595185da38df93decc5238ef1f441a987); the DBLP name is unique among HKUST-noted persons. Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "https://cse.hkust.edu.hk/admin/people/faculty/?d=textview&c=joint_appointments",
+        "sha256": "85d36d4f6f5bf50e1facac396398c23595185da38df93decc5238ef1f441a987",
+        "quote": "Tristan C. BRAUD | Assistant Professor Primary Appointment: ISD"
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "DBLP school affiliation note + unit listing (coverage audit proposals.json, fresh-reviewer sampled)",
+      "name_compatible": true
+    },
+    "home_department": "Integrative Systems and Design",
+    "units_naming_them": [
+      "Integrative Systems and Design"
+    ],
+    "home_department_evidence": [
+      {
+        "url": "https://cse.hkust.edu.hk/admin/people/faculty/?d=textview&c=joint_appointments",
+        "sha256": "85d36d4f6f5bf50e1facac396398c23595185da38df93decc5238ef1f441a987",
+        "quote": "Tristan C. BRAUD | Assistant Professor Primary Appointment: ISD"
+      }
+    ],
+    "why_home_department": "primary appointment stated on the listing (R-HOME-01)"
+  },
+  "Yi Yang": {
+    "dblp": [
+      "https://dblp.org/pid/33/4854-42"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110; coverage audit): DBLP person 33/4854-42 carries an HKUST affiliation note and 94 records 2016-2026; the person is the professor of the same name listed by the unit directory (listing sha256 52d743d0eb5d099f763d6cc0394b58c217ff16bcefbf227e6961ac58dbfe2671); the DBLP name is unique among HKUST-noted persons. Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "https://bm.hkust.edu.hk/faculty/yang-yi",
+        "sha256": "52d743d0eb5d099f763d6cc0394b58c217ff16bcefbf227e6961ac58dbfe2671",
+        "quote": "YANG, Yi | Lee Heng Fellow, Associate Professor | Department of Information Systems, Business Statistics & Operations Management"
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "DBLP school affiliation note + unit listing (coverage audit proposals.json, fresh-reviewer sampled)",
+      "name_compatible": true
+    },
+    "home_department": "Information Systems, Business Statistics and Operations Management",
+    "units_naming_them": [
+      "Information Systems, Business Statistics and Operations Management"
+    ],
+    "home_department_evidence": [
+      {
+        "url": "https://bm.hkust.edu.hk/faculty/yang-yi",
+        "sha256": "52d743d0eb5d099f763d6cc0394b58c217ff16bcefbf227e6961ac58dbfe2671",
+        "quote": "YANG, Yi | Lee Heng Fellow, Associate Professor | Department of Information Systems, Business Statistics & Operations Management"
+      }
+    ],
+    "why_home_department": "primary appointment stated on the listing (R-HOME-01)"
+  },
+  "Jun Han": {
+    "dblp": [
+      "https://dblp.org/pid/02/3721-10"
+    ],
+    "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110; coverage audit): DBLP person 02/3721-10 carries an HKUST affiliation note (with CUHK-SZ, a former affiliation) and 40 records 2016-2026; its homepage link (stevenhan1991.github.io) describes an incoming EMIA assistant professor, ex-CUHK-SZ; fresh reviewer judged the identity supported (common name, so the note plus homepage are the corroboration). Identifies the author only; school, appointment, type and edition stay independent build checks.",
+    "dblp_evidence": [
+      {
+        "url": "https://emia.hkust.edu.hk/people",
+        "sha256": "f0a678a512ae94f44bdf9b320212af472bffc9f84aff606f15cc51ee36642cb4",
+        "quote": "Jun HAN 韓俊 | Regular Faculty | Assistant Professor | Research Area: Data visualization, Scientific visualization, Data management, Deep learning"
+      }
+    ],
+    "dblp_identity_review": {
+      "date": "2026-11-10",
+      "basis": "DBLP school note + homepage link + unit listing; fresh reviewer supported",
+      "name_compatible": true
+    },
+    "home_department": "Emerging Interdisciplinary Areas",
+    "units_naming_them": [
+      "Emerging Interdisciplinary Areas"
+    ],
+    "home_department_evidence": [
+      {
+        "url": "https://emia.hkust.edu.hk/people",
+        "sha256": "f0a678a512ae94f44bdf9b320212af472bffc9f84aff606f15cc51ee36642cb4",
+        "quote": "Jun HAN 韓俊 | Regular Faculty | Assistant Professor | Research Area: Data visualization, Scientific visualization, Data management, Deep learning"
+      }
+    ],
+    "why_home_department": "primary appointment stated on the listing (R-HOME-01); EMIA Regular Faculty (Clear Water Bay)"
   }
 }
