@@ -48,7 +48,18 @@ def _persist_get(store, key):
             pass
         _PERSIST[f] = got
     v = _PERSIST[f].get(key)
-    return v if isinstance(v, dict) and 'ok' in v else None
+    return v if _valid(v) else None
+
+
+def _valid(v):
+    """A cached result is trusted only when it has exactly the shape file_quality computes: a corrupted line (2026-11-10: one princeton line read
+    'actuaal_sha256' and crashed the scan with a KeyError) is ignored and the file is checked again."""
+    if not isinstance(v, dict) or not isinstance(v.get('ok'), bool) or not (v.get('reason') is None or isinstance(v.get('reason'), str)):
+        return False
+    if v.get('ok') or 'actual_sha256' in v:
+        s = v.get('actual_sha256')
+        return isinstance(s, str) and len(s) == 64 and all(c in '0123456789abcdef' for c in s) and isinstance(v.get('actual_bytes'), int)
+    return True
 
 
 def _persist_put(store, key, result):

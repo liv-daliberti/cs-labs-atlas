@@ -61,3 +61,16 @@ def test_no_store_no_cache_file(tmp_path, monkeypatch):
     a = tmp_path / 'a.xml'
     a.write_text(XML)
     assert cq.file_quality(a, 'xml')['ok'] and not (tmp_path / cq.CACHE_NAME).exists()
+
+
+def test_a_corrupted_cached_result_is_ignored(tmp_path, monkeypatch):
+    monkeypatch.delenv('COPY_QUALITY_CACHE_DIR', raising=False)
+    cq = fresh()
+    a = tmp_path / 'a.xml'
+    a.write_text(XML)
+    cq.file_quality(a, 'xml', tmp_path)
+    cache = tmp_path / cq.CACHE_NAME
+    cache.write_text(cache.read_text().replace('actual_sha256', 'actuaal_sha256'))
+    cq = fresh()
+    q = cq.file_quality(a, 'xml', tmp_path)
+    assert q['ok'] and len(q['actual_sha256']) == 64
