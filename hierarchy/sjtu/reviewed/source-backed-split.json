@@ -9,63 +9,40 @@
   "held": "rows flagged by the rules (uncorroborated anchors, books and chapters, non-SJTU affiliation, claim-held leaks); proposed or ingested holds, excluded from the kept counts"
  },
  "sealed_package": {
-  "package": "scratch/sjtu-ownedlists-1109/native28/package/sjtu",
+  "package": "scratch/sjtu-coverage-1110/native32/package/sjtu",
+  "job_id": "32181138",
+  "sealed": true,
+  "input_commit": "1a9a519",
   "package_sha256": {
-   "pis.json": "ef8e90d63e43e06c6aed000bd8872e06353921d4b55aa9e05f8becf861ea2917",
-   "students.json": "ea8ae597f683f213e3d9c90f8e40509aaa0957161235a58f48535e36c7bdf258",
-   "lab_papers.jsonl.gz": "469220989e53f6e37145cd3d3d3ae3d7f54083c275fdb86e34d9c5d0b405c443",
-   "student_papers.jsonl.gz": "50839f21492f7f328b8de0c3e22a185f89de7f41d34c81a183fb24b32a6cbdff",
-   "report.json": "43b37099bd14bf032fdb1a608073e4b2a6387d143ea9b9707e837ce5f84aa8be"
+   "pis.json": "46ed8dbd1a07c4a03a3af0e11125e976e4d04c4c50a15ca456118da393c19a96",
+   "students.json": "1d7986aec3eb5d155133748702405e0e4a7ce9e8ce3aebd166efae064d323e50",
+   "lab_papers.jsonl.gz": "1d889533625271506c44a2c43fe4b1d274d5b385c319b83fb7a078195ecd25f2",
+   "student_papers.jsonl.gz": "c4e545acfac2dfa020a460581a47531d38aae6bc0d0a7c9bfc9688aafb7ad2af",
+   "report.json": "1bf1b0b6cdcec50c446da13b67d22792b7ab1e7590975fd44c7c016a9d7330b2"
   },
-  "package_rows": 5033,
-  "package_distinct_works": 4614,
-  "source_backed": {
-   "rows": 2958,
-   "distinct_works": 2832
-  },
-  "heuristic": {
-   "rows": 2054,
-   "distinct_works": 1928,
-   "distinct_works_not_source_backed": 1765
-  },
-  "held_proposed": {
-   "rows": 21
-  },
-  "all_kept": {
-   "rows": 5012,
-   "distinct_works": 4597
-  }
- },
- "unsealed_alternate": {
-  "package": "scratch/sjtu-coverage-1110/native29/package/sjtu",
-  "package_sha256": {
-   "pis.json": "6ec93176533e6acec068358e21af8646aa3627521130b04d553aa1fee3433fb6",
-   "students.json": "ea8ae597f683f213e3d9c90f8e40509aaa0957161235a58f48535e36c7bdf258",
-   "lab_papers.jsonl.gz": "a08c16ca032afc421fe5d896797170d2381618a66b728b2137ab4e7a1dbbafd2",
-   "student_papers.jsonl.gz": "b4eea9a942b0799ff36a75826e41dd7ace40659f8bf3f87ea66b49d9c2d03279",
-   "report.json": "62c0992910ffb530b22e0f7b738a9209446785305733cb0e9e055b4ffee4b439"
-  },
-  "package_rows": 5519,
-  "package_distinct_works": 5036,
+  "package_rows": 5369,
+  "package_distinct_works": 4915,
+  "pis_with_papers": 106,
+  "student_links": 792,
+  "student_links_failing_name_or_date": 19,
   "source_backed": {
    "rows": 2959,
    "distinct_works": 2833
   },
   "heuristic": {
-   "rows": 2410,
-   "distinct_works": 2243,
-   "distinct_works_not_source_backed": 2080
+   "rows": 2406,
+   "distinct_works": 2240,
+   "distinct_works_not_source_backed": 2078
   },
   "held_proposed": {
-   "rows": 150
+   "rows": 4
   },
   "all_kept": {
-   "rows": 5369,
-   "distinct_works": 4913
+   "rows": 5365,
+   "distinct_works": 4911
   },
-  "seal": "REFUSED: one claim-held work re-entered through the pi-works route (runtime 4ca6712 does not apply claim review to pi-works)",
-  "coverage_dblp_pool": {
-   "found": 1452,
+  "lab_coverage_dblp_pool": {
+   "found": 1448,
    "total": 1699
   }
  },
