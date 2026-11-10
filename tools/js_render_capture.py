@@ -88,7 +88,7 @@ def ensure(c):
     c.commit()
 
 
-def render(key, urls, *, wait=20.0, gap=3.0, cap=20, wait_css=None, driver_factory=firefox_driver, raw_fetch=default_raw_fetch, con=None, sleep=time.sleep):
+def render(key, urls, *, wait=20.0, gap=3.0, cap=20, wait_css=None, http_origin=False, driver_factory=firefox_driver, raw_fetch=default_raw_fetch, con=None, sleep=time.sleep):
     """Render each URL once; returns one receipt per URL: {url, status, ...}. status: ok | robots_disallowed | host_blocked | challenge | login | not_settled | capped | error."""
     c = con or W.con(key)
     ensure(c)
@@ -102,7 +102,7 @@ def render(key, urls, *, wait=20.0, gap=3.0, cap=20, wait_css=None, driver_facto
             if host in W._blocked:
                 receipts.append(dict(url=url, status='host_blocked'))
                 continue
-            ok, delay = W.robots_ok(c, url)
+            ok, delay = W.robots_ok(c, url, same_origin=True) if http_origin else W.robots_ok(c, url)
             if not ok:
                 receipts.append(dict(url=url, status='robots_disallowed'))
                 continue
@@ -168,8 +168,9 @@ def main(argv=None):
     ap.add_argument('school'); ap.add_argument('urls', nargs='+')
     ap.add_argument('--wait', type=float, default=20.0); ap.add_argument('--gap', type=float, default=3.0)
     ap.add_argument('--cap', type=int, default=20); ap.add_argument('--wait-css')
+    ap.add_argument('--http-origin', action='store_true', help='read robots.txt at each URL\'s own origin (http://host/robots.txt) for an owner-approved http-only host; HTTPS is never inferred')
     a = ap.parse_args(argv)
-    out = render(a.school, a.urls, wait=a.wait, gap=max(a.gap, 3.0), cap=a.cap, wait_css=a.wait_css)
+    out = render(a.school, a.urls, wait=a.wait, gap=max(a.gap, 3.0), cap=a.cap, wait_css=a.wait_css, http_origin=a.http_origin)
     print(json.dumps(out, ensure_ascii=False, indent=1))
     return 0 if all(r['status'] in ('ok', 'not_settled') for r in out) else 3
 

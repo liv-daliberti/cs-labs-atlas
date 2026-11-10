@@ -84,3 +84,32 @@ def test_wait_css_is_honoured(con):
     d = Driver()
     out, _ = run(con, ['https://x.example/a'], d, wait_css='#app li')
     assert out[0]['status'] == 'ok'
+
+
+def test_http_origin_reads_robots_at_the_urls_own_origin(monkeypatch):
+    """--http-origin: robots comes from http://host/robots.txt (404 = no file = allowed), stored apart from the HTTPS row; the default still reads HTTPS."""
+    c = sqlite3.connect(':memory:')
+    c.execute('create table robots (host text primary key, fetched_at text, status int, body text)')
+    asked = []
+
+    class R:
+        status_code, text, headers = 404, '', {}
+
+    def fake_get(url, **k):
+        asked.append(url)
+        if url.startswith('https://'):
+            raise ConnectionError('https refuses connections')
+        return R()
+    monkeypatch.setattr('requests.get', fake_get)
+    ok, _ = W.robots_ok(c, 'http://www.cst.zju.edu.cn/szdw/list.htm', same_origin=True)
+    assert ok and asked == ['http://www.cst.zju.edu.cn/robots.txt']
+    assert c.execute('select status from robots where host=?', ('http://www.cst.zju.edu.cn',)).fetchone() == (404,)
+    ok_default, _ = W.robots_ok(c, 'http://www.cst.zju.edu.cn/szdw/list.htm')   # the default stays HTTPS: unreachable means no
+    assert not ok_default and asked[-1] == 'https://www.cst.zju.edu.cn/robots.txt'
+
+
+def test_render_passes_http_origin_to_the_robots_check(con, monkeypatch):
+    seen = []
+    monkeypatch.setattr(W, 'robots_ok', lambda c_, u, same_origin=False: (seen.append(same_origin) or (False, 0)))
+    out = J.render('t', ['http://www.cad.zju.edu.cn/innovationteam'], con=con, http_origin=True, driver_factory=lambda: None)
+    assert seen == [True] and out[0]['status'] == 'robots_disallowed'

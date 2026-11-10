@@ -132,12 +132,15 @@ def repair_gzip(c):
     return n
 
 
-def robots_row(c, host, refresh=False):
+def robots_row(c, host, refresh=False, scheme='https'):
+    """The host's robots.txt (stored in `robots`). scheme='http' reads http://host/robots.txt and stores it under the key 'http://host', apart from the HTTPS
+    row: an explicitly approved exact-origin policy for a site that only serves http (ZJU, 2026-11-10); HTTPS permission is never inferred from it."""
     import requests
-    row = c.execute('select status, body from robots where host=?', (host,)).fetchone()
+    key = host if scheme == 'https' else f'{scheme}://{host}'
+    row = c.execute('select status, body from robots where host=?', (key,)).fetchone()
     if row is None or refresh:
         try:
-            url = f'https://{host}/robots.txt'
+            url = f'{scheme}://{host}/robots.txt'
             seen = {url}
             for hop in range(4):
                 r = requests.get(url, headers={'User-Agent': UA}, timeout=30, allow_redirects=False)
@@ -149,7 +152,7 @@ def robots_row(c, host, refresh=False):
                 # A few official sites place robots.txt under /content/dam/.
                 # Only same-origin HTTPS policy files may be followed; never
                 # fetch another host or ordinary site content before permission.
-                if (parsed.scheme != 'https' or parsed.netloc != host or
+                if (parsed.scheme != scheme or parsed.netloc != host or
                         not parsed.path.endswith('/robots.txt') or parsed.query or parsed.fragment or target in seen):
                     break
                 c.execute('create table if not exists robots_redirects (host text, source_url text primary key, target_url text, status int, fetched_at text)')
@@ -161,7 +164,7 @@ def robots_row(c, host, refresh=False):
             row = (r.status_code, body)
         except Exception as e:  # noqa: BLE001 (network errors of any kind: unreachable)
             row = (-1, repr(e)[:300])
-        c.execute('insert or replace into robots values (?,?,?,?)', (host, time.strftime('%Y-%m-%dT%H:%M:%S'), row[0], row[1])); c.commit()
+        c.execute('insert or replace into robots values (?,?,?,?)', (key, time.strftime('%Y-%m-%dT%H:%M:%S'), row[0], row[1])); c.commit()
     return row
 
 
@@ -179,9 +182,11 @@ def robots_decision(status, body, url='/'):
     return ours, ai, delay
 
 
-def robots_ok(c, url):
-    host = urllib.parse.urlsplit(url).netloc
-    st, body = robots_row(c, host)
+def robots_ok(c, url, same_origin=False):
+    """(allowed, crawl delay). same_origin=True reads robots at the URL's own scheme (an approved http-only origin); the default stays HTTPS."""
+    parts = urllib.parse.urlsplit(url)
+    host = parts.netloc
+    st, body = robots_row(c, host, scheme=parts.scheme if same_origin else 'https')
     ours, ai, delay = robots_decision(st, body, url)
     return ours and ai, delay
 
