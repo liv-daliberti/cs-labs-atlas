@@ -18,7 +18,7 @@ from collections import defaultdict
 
 import ftp_common as F
 
-RESERVE = 800
+RESERVE = int(os.environ.get('OA_RESERVE', '800'))   # 2026-11-10: the discovery jobs set OA_RESERVE=4000 (stop at 4,000 credits left of the shared 10,000 a day)
 BUDGET_LOG = F.P.FT_RAW / 'openalex_budget.jsonl'
 REFRESH = F.P.FT_RAW / 'oa_refresh.jsonl'
 EDITIONS = F.P.FT_RAW / 'oa_editions.jsonl'

@@ -228,3 +228,17 @@ random missing papers. Dry run on EPFL: 250 papers asked, 68 open files, 67 new 
 `nsf_par_lab.py search stanford --limit=400` (paywalled publishers first): 1 exact-title hit in 400 searches (0.25%; the earlier four-school run: 265 of
 12,718). The remaining ~17.9k unsearched paywalled titles (stanford 2,864, michigan 4,127, uchicago 757, gatech 10,132) would cost ~15 h of requests for
 ~45 papers: `nsf-par.slurm` stays in the tree, not on the run lists.
+
+## Discovery channels back on for every loop (2026-11-10, owner)
+The owner (2026-11-10: "I want discovery to be re-enabled. We're missing a bunch for georgia tech, michigan, harvard etc.") reversed the same day's trim of the eight big
+schools to oa_arxiv/europepmc/pmc. Policy now:
+- every loop's charter `[collector].channels` is the discovery list oa_arxiv, openalex, proceedings, arxiv_title, dblp_ee, s2, europepmc, pmc, figshare, labpages, pihomes.
+  `school-collector.slurm` reads the charter at every (re)start; the `CHANNELS` environment is ignored unless `CHANNELS_FORCE=1` (a loop resubmits itself with its
+  environment, so a `CHANNELS` set at the first submission used to pin the list and hide the charter).
+- `wayback_acm` stays OFF, and `WAYBACK_HOLD=1` (default in the loop scripts; `collector_quality.wayback_held`) keeps the download collectors off web.archive.org, while any
+  Wayback listing/capture job is queued or running. The 429 cooldown of 2026-11-10 04:59Z was drawn by loop collectors fetching Wayback snapshot candidates already in their
+  catalogs (`raw/host-throttle-429.jsonl` names the job and command of every 429). To release: append `wayback_acm` to the charter and set `WAYBACK_HOLD=0`, only when no listing
+  capture runs. CORE stays paused.
+- OpenAlex: `OA_RESERVE` (default 800; the loop and discovery scripts set 4000) is the `oa_refresh` floor: every list request stops once X-RateLimit-Remaining is under it, so
+  discovery spends at most 6,000 of the shared 10,000 daily credits. Every request is in `raw/openalex_budget.jsonl`. S2 keeps its one-request-per-1.2-s clock.
+- One-off discovery jobs: `SCHOOL=<key> CHANNELS="..." atlas submit fulltext-push/school-channels.slurm` (run_steps.sh; per-channel locks serialize schools).

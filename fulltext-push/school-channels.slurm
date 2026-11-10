@@ -6,7 +6,7 @@
 #SBATCH --account=mltheory
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=8G
-#SBATCH --time=06:00:00
+#SBATCH --time=12:00:00
 #SBATCH --exclude=node302
 #SBATCH --output=fulltext-push/logs/school-channels-%j.out
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # submit from the code root
@@ -14,5 +14,6 @@ export CS_ATLAS_COLLECTOR_PY="$CS_ATLAS_PY"
 export FTP_PY="$CS_ATLAS_PY"
 . "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1
 cd "$CS_ATLAS_FULLTEXT_PUSH"
+export OA_RESERVE="${OA_RESERVE:-4000}" WAYBACK_HOLD="${WAYBACK_HOLD:-1}" WAYBACK_LOW=1   # 2026-11-10: OpenAlex floor 4,000; Wayback left to the listing captures
 : "${SCHOOL:?set SCHOOL}" "${CHANNELS:?set CHANNELS}"
 ./run_steps.sh "$SCHOOL" $CHANNELS >> "$CS_ATLAS_FT_LOGS/steps-$SCHOOL.log" 2>&1 < /dev/null

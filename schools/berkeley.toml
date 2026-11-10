@@ -52,5 +52,6 @@ repository = "eScholarship (escholarship.org)"
 reason = "CloudFront answers 403 'Request blocked' to this client for /robots.txt and /oai (2026-11-04): an access block, not a rule we may read, so nothing is fetched and no workaround is tried."
 
 [collector]
-# 2026-11-10: only the download loop plus cheap open-access channels (no openalex/s2: shared 10k-credit/day OpenAlex key; no wayback_acm: one Wayback fetcher at a time). Widen later by adding channel names from fulltext-push/channels/; applies at the next 59-min restart unless CHANNELS is set in the environment (the 2026-11-10 restarts set it).
-channels = ["oa_arxiv", "europepmc", "pmc"]
+# 2026-11-10 (owner): discovery channels re-enabled for every loop. wayback_acm stays OFF (and WAYBACK_HOLD=1 in the loop scripts) while Wayback listing captures run; CORE stays paused.
+# Re-enable wayback_acm later: append "wayback_acm" here and set WAYBACK_HOLD=0 for the loops. OpenAlex spend is capped by OA_RESERVE=4000 (docs/CHANNELS.md).
+channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "figshare", "labpages", "pihomes"]

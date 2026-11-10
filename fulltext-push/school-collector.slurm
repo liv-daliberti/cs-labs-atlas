@@ -24,11 +24,13 @@ cd "$CS_ATLAS_FULLTEXT_PUSH"
 refuse_if_downloads_stopped   # disk guard marker (2026-11-10)
 export WAYBACK_HOLD="${WAYBACK_HOLD:-1}"   # loops leave web.archive.org to the listing captures (collector_quality.wayback_held); WAYBACK_HOLD=0 to allow
 RESTART_LOG="$CS_ATLAS_FT_LOGS/lab_first_loop-$SCHOOL.out"
-# channels: the CHANNELS environment, else the charter's [collector].channels, else the default list
-if [ -z "${CHANNELS:-}" ]; then
+# channels: the charter's [collector].channels, else the default list below. The CHANNELS environment is IGNORED unless CHANNELS_FORCE=1: a loop resubmits
+# itself with its environment, so a CHANNELS set at the first submission pinned the list for ever and hid the charter (2026-11-10).
+if [ "${CHANNELS_FORCE:-0}" != 1 ] || [ -z "${CHANNELS:-}" ]; then
     CHANNELS=$(PYTHONPATH="$CS_ATLAS_CODE/tools" "$CS_ATLAS_PY" -c "import school_config as S; print(' '.join(S.field(S.get('$SCHOOL'), 'collector.channels', []) or []))" 2>/dev/null)
 fi
-./run_steps.sh "$SCHOOL" ${CHANNELS:-oa_arxiv openalex proceedings arxiv_title dblp_ee s2  europepmc pmc figshare labpages pihomes wayback_acm} \
+export OA_RESERVE="${OA_RESERVE:-4000}"   # OpenAlex: stop at 4,000 credits left of the shared 10,000 a day (oa_refresh.RESERVE)
+./run_steps.sh "$SCHOOL" ${CHANNELS:-oa_arxiv openalex proceedings arxiv_title dblp_ee s2 europepmc pmc figshare labpages pihomes} \
     >> "$CS_ATLAS_FT_LOGS/steps-$SCHOOL.log" 2>&1 < /dev/null &
 EXTRA_PIDS=($!)
 run_restartable "fulltext-push/school-collector.slurm" -- \

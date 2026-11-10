@@ -409,5 +409,6 @@ oai_type_rx = "doctoralThesis"
 parser = "invenio"
 
 [collector]
-# 2026-11-10: wayback_acm is OFF while the project Wayback listing chain runs (one Wayback fetcher at a time; archive.org returned HTTP 429). Re-enable: append "wayback_acm" to this list; it applies at the next 59-min loop restart.
+# 2026-11-10 (owner): discovery channels re-enabled for every loop. wayback_acm stays OFF (and WAYBACK_HOLD=1 in the loop scripts) while Wayback listing captures run; CORE stays paused.
+# Re-enable wayback_acm later: append "wayback_acm" here and set WAYBACK_HOLD=0 for the loops. OpenAlex spend is capped by OA_RESERVE=4000 (docs/CHANNELS.md).
 channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "figshare", "labpages", "pihomes"]

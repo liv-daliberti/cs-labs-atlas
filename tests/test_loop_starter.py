@@ -41,7 +41,7 @@ def fake(outs):
     calls = []
 
     def run(cmd, **kw):
-        calls.append((cmd, kw['env']['SCHOOL'], kw['env']['CHANNELS']))
+        calls.append((cmd, kw['env']['SCHOOL'], kw['env'].get('CHANNELS')))
         return outs.pop(0)
     return run, calls
 

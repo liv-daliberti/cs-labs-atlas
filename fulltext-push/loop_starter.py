@@ -64,7 +64,9 @@ def ready(school, store, live, raw):
 def submit(school, channels, run=subprocess.run, code=None):
     code = code or os.environ['CS_ATLAS_CODE']
     env = {k: v for k, v in os.environ.items() if not k.startswith(('SLURM_', 'CS_ATLAS_SNAPSHOT', 'SNAPSHOT_REPO'))}   # a fresh submission of main's script, never this job's own snapshot
-    env.update(SCHOOL=school, CHANNELS=channels)
+    env.update(SCHOOL=school)
+    if channels:
+        env.update(CHANNELS=channels, CHANNELS_FORCE='1')
     atlas = [f'{code}/bin/atlas', 'submit']
     t = run(atlas + ['--test-only'] + OPTS + [SCRIPT], capture_output=True, text=True, env=env, cwd=code, timeout=300)
     if t.returncode != 0 or 'Preempts:' in t.stdout + t.stderr:
@@ -80,7 +82,7 @@ def submit(school, channels, run=subprocess.run, code=None):
 
 def main(schools):
     state_file = F.P.FT_LOGS / 'loop-starter.json'
-    channels = os.environ.get('LOOP_STARTER_CHANNELS', 'oa_arxiv europepmc pmc')
+    channels = os.environ.get('LOOP_STARTER_CHANNELS', '')   # empty: the charter decides (school-collector.slurm ignores CHANNELS unless CHANNELS_FORCE=1)
     interval = int(os.environ.get('LOOP_STARTER_INTERVAL_S', '60'))
     while True:
         try:
