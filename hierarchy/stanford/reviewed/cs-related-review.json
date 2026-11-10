@@ -11593,7 +11593,7 @@
    "reviewed_stage2": "2026-11-10"
   },
   {
-   "name": "S. Simon Wong",
+   "name": "S. Simon Wong [A5101727468]",
    "aliases": [],
    "source": "openalex_rule",
    "openalex": [
@@ -11646,7 +11646,8 @@
     "home_department": "Electrical Engineering",
     "title_as_listed": "Professor of Electrical Engineering, Emeritus"
    },
-   "reviewed_stage2": "2026-11-10"
+   "reviewed_stage2": "2026-11-10",
+   "display_name": "S. Simon Wong"
   },
   {
    "name": "P. Caragiulo",
@@ -11753,7 +11754,7 @@
    "reviewed_stage2": "2026-11-10"
   },
   {
-   "name": "S. Simon Wong",
+   "name": "S. Simon Wong [A5066440288]",
    "aliases": [],
    "source": "openalex_rule",
    "openalex": [
@@ -11806,7 +11807,9 @@
     "home_department": "Electrical Engineering",
     "title_as_listed": "Professor of Electrical Engineering, Emeritus"
    },
-   "reviewed_stage2": "2026-11-10"
+   "reviewed_stage2": "2026-11-10",
+   "display_name": "S. Simon Wong",
+   "note": "its medical-imaging works are probably OpenAlex mis-merges (fresh reviewer 2026-11-10); alias of S Simon Wong unaffected"
   },
   {
    "name": "Marco Pavone",
@@ -11889,7 +11892,7 @@
    "reviewed_stage2": "2026-11-10"
   },
   {
-   "name": "Leonidas Guibas",
+   "name": "Leonidas Guibas [A5111954013]",
    "aliases": [],
    "source": "openalex_rule",
    "openalex": [
@@ -11926,7 +11929,8 @@
      "pi_quote": "Doctoral Dissertation Co-Advisor (AC) Shengqu Cai, Boyang Deng"
     }
    ],
-   "reviewed_stage2": "2026-11-10"
+   "reviewed_stage2": "2026-11-10",
+   "display_name": "Leonidas Guibas"
   },
   {
    "name": "Ermon, Stefano",
@@ -16489,7 +16493,7 @@
    "reviewed_stage2": "2026-11-10"
   },
   {
-   "name": "Leonidas Guibas",
+   "name": "Leonidas Guibas [A5065368881]",
    "aliases": [],
    "source": "openalex_rule",
    "openalex": [
@@ -16526,7 +16530,8 @@
      "pi_quote": "Doctoral Dissertation Co-Advisor (AC) Shengqu Cai, Boyang Deng"
     }
    ],
-   "reviewed_stage2": "2026-11-10"
+   "reviewed_stage2": "2026-11-10",
+   "display_name": "Leonidas Guibas"
   },
   {
    "name": "John L. Hennessy",
@@ -16813,5 +16818,27 @@
   "Scope follow-up 2026-10-27 (scope_review=cs_related_scope_20261022): re-reviewed the 96 no_profile candidates, the two wrong-person profiles (Grace Gao -> profiles/gracegao; Fan Zhang = MS&E doctoral student), Kay Giesecke and Judith Degen (no title on the profile), and the 12 faculty_no_pi_evidence. Sources: Stanford Profiles reached through department pages (numeric ids / non-name slugs), dated Wayback captures of Stanford Profiles and of department pages and listings (MS&E, Linguistics, Bioengineering, Music, Economics, Statistics, Aero/Astro, GSB, HAI), GSB faculty pages, a faculty CV (Saban) and a CV page (Spiess); profile captures 2016-2024 were read for Stanford Advisees. Every quote is checked against hierarchy/cs-related-captures-stanford.sqlite (sha256 of the stored bytes). Decisions marked \"(reason text; not separately sourced)\" rest on the candidate's OpenAlex record and general knowledge. Counts before: {'accepted': 84, 'no_profile': 43, 'not_faculty': 117, 'faculty_no_pi_evidence': 11, 'no_evidence_found': 2}; after: {'accepted': 87, 'not_faculty': 154, 'faculty_no_pi_evidence': 13, 'no_evidence_found': 3}.",
   "missed-labs review 2026-11-09: 7 accepted (tools/missed_labs_candidates.py snapshot candidates + stored unit listings/catalog + thesis-advisor records); full pool in missed-labs-review.json",
   "stage-2 closure 2026-11-10: 172 candidates of the regenerated cs-related-candidates.json had no decision under their name form; each is the same person (OpenAlex author id) as an existing decision or a PI already in the census, recorded as census_alias or the same negative decision; fresh reviewer (seeded sample seed 1110 plus all borderline, 67 items) agreed on all but two (Sucholutsky reason corrected, Carmona held for owner)"
+ ],
+ "identity_keying_2026_11_10": [
+  {
+   "old": "S. Simon Wong",
+   "new": "S. Simon Wong [A5101727468]",
+   "openalex": "https://openalex.org/A5101727468"
+  },
+  {
+   "old": "S. Simon Wong",
+   "new": "S. Simon Wong [A5066440288]",
+   "openalex": "https://openalex.org/A5066440288"
+  },
+  {
+   "old": "Leonidas Guibas",
+   "new": "Leonidas Guibas [A5111954013]",
+   "openalex": "https://openalex.org/A5111954013"
+  },
+  {
+   "old": "Leonidas Guibas",
+   "new": "Leonidas Guibas [A5065368881]",
+   "openalex": "https://openalex.org/A5065368881"
+  }
  ]
 }
