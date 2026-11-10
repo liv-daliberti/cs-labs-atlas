@@ -273,6 +273,17 @@
         "hierarchy/hkust/reviewed/census-additions.json",
         "native b9 funnel (identity 23, outside_appointment 2016-2022)"
       ]
+    },
+    "students": {
+      "code": "sources_exhausted",
+      "why": "No student or group member is named on the pages reached. The official ECE profile (https://ece.hkust.edu.hk/eezxli, stored live capture sha256 ace9853f76bfa85d, read 2026-11-10) lists title, contact and research interests and links one personal homepage, https://eezxli.home.ece.ust.hk; that host gave no HTTP response from here on 2026-11-10 (curl exit 000 for /robots.txt and /), so its content is unread and a roster may exist there. The lab-page audit's dated checks (department listing ok, DBLP person URL listed without a homepage, ORCID record with no URLs, candidate http://www.ece.ust.hk/ece.php/profile/facultydetail/eezxli robots_disallowed) found no other site. Open until that host answers.",
+      "sources_checked": [
+        "https://ece.hkust.edu.hk/eezxli (sha256 ace9853f76bfa85d, read live 2026-11-10): official ECE profile",
+        "https://eezxli.home.ece.ust.hk (no HTTP response 2026-11-10; robots.txt and / both failed): personal homepage linked from the profile",
+        "hierarchy/hkust/derived/labpage-audit.jsonl.gz record for Zexiang Li (lab-page audit 2026-11-10): department listing, DBLP person URL, ORCID researcher URLs, candidate site"
+      ],
+      "checked": "2026-11-10",
+      "basis": "live official pages only; robots respected; no Wayback"
     }
   },
   "Hongbo Fu": {
