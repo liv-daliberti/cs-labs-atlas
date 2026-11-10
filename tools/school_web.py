@@ -43,6 +43,16 @@ _last = {}
 _blocked = set()
 
 
+APACHE_PERMISSION_403 = re.compile(rb"(?is)<title>\s*403 Forbidden\s*</title>.{0,400}?(?:don't|do not) have permission to access (?:this resource|/\S* on this server).{0,300}?<address>\s*Apache")
+
+
+def apache_path_denial(status, body):
+    """A plain Apache directory-permission 403 ('You don't have permission to access /~sam/ on this server'): the server denies that path,
+    not automated clients. It is a per-path denial (the page is recorded, never retried), not a host block (cs.toronto.edu, 2026-11-10).
+    Any other 403 (a WAF or bot refusal) still closes the host."""
+    return status == 403 and bool(APACHE_PERMISSION_403.search(body or b''))
+
+
 def db_path(key):
     return P.data('school-captures.sqlite', key)
 
@@ -55,12 +65,26 @@ def con(key):
     c.execute('create table if not exists robots (host text primary key, fetched_at text, status int, body text)')
     c.execute('create table if not exists blocked (host text primary key, at text, why text)')
     c.commit()
-    for (h,) in c.execute('select host from blocked'):
+    for (h, why) in c.execute('select host, why from blocked'):
+        m = re.match(r'HTTP 403 access refusal at (\S+)$', why or '')
+        if m:   # re-judge a stored 403 block by the stored body of that page: an Apache permission page is a per-path denial
+            r = c.execute('select status, raw_zlib from live where url=?', (m.group(1),)).fetchone()
+            try:
+                body = zlib.decompress(r[1]) if r and r[1] else b''
+            except zlib.error:
+                body = (r[1] if r else b'') or b''
+            if r and apache_path_denial(r[0], body):
+                continue
         _blocked.add(h)
     # Old collectors did not persist plain access refusals as host blocks.
     # Reuse their receipts so a new URL cannot silently retry the same host.
-    for url, in c.execute('select url from live where status in (401,403,429,999)'):
-        _blocked.add(urllib.parse.urlsplit(url).netloc)
+    for url, st, raw in c.execute('select url, status, raw_zlib from live where status in (401,403,429,999)'):
+        try:
+            body = zlib.decompress(raw) if raw else b''
+        except zlib.error:
+            body = raw or b''
+        if not apache_path_denial(st, body):
+            _blocked.add(urllib.parse.urlsplit(url).netloc)
     return c
 
 
@@ -195,7 +219,7 @@ def live(c, url, refresh=False):
             body, st, ct = repr(e).encode(), -1, None
         transport_status = st
         _last[host] = time.time()
-        if st in (401, 403, 429):
+        if st in (401, 403, 429) and not apache_path_denial(st, body):
             block(c, host, f'HTTP {st} access refusal at {url}')
         if st in (200, 403, 429, 503) and CHALLENGE.search(body[:20000].decode('utf-8', 'replace')):
             st = 999  # a bot challenge: recorded, never worked around; the host is not used again
