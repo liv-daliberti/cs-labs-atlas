@@ -802,6 +802,9 @@ def ntu_img_cards(h):
                 body = re.sub(r'^.*?Appointments:\s*', '', p.decode_contents(), flags=re.S)
                 titles = [clean(x) for x in re.split(r'<br\s*/?>', body, flags=re.I)]
         out.append(dict(name_listed=name, titles=[t for t in titles if t], profile=a.get('href'), homepage=None, division=None))
+    return out
+
+
 def sjtu_cs_en_institutes(h):
     """SJTU School of Computer Science English faculty list (cs.sjtu.edu.cn/en/Faculty.aspx, archived 2016-2024): one `p.tc` per institute, then
     `div.Faculty` with `<h3>Rank:</h3>` followed by `<ul><li><a href=PeopleDetail.aspx?id=N>Family Given</a>` (pinyin, family name first). Commented-out
