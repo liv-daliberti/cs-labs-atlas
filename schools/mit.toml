@@ -57,8 +57,8 @@ relation_dois = true                      # MIT puts the published version DOI i
 # Hosts the mit tools contact (stage 0, 2026-11-10). Derived from evidence: the raw capture stores (hierarchy/mit/raw/*captures*.sqlite) and the full-text download ledger (stores/mit/fulltext_assets.csv). The long tail of faculty personal sites is read per capture under school_web robots checks and is not enumerated here.
 [[hosts]]
 host = "web.archive.org"
-use = "none"
-purpose = "Wayback id_ captures and CDX (257 captures in the mit raw stores; listings, lab pages, theses)"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages) [stage 0 2026-11-10: probe skipped: https://web.archive.org/web/2020id_/https://www.mit.edu/ answers http 302 (redirect to the nearest snapshot); entry otherwise as in the Michigan and Harvard charters]"
 probe = ""
 
 [[hosts]]
@@ -100,7 +100,7 @@ probe = ""
 [[hosts]]
 host = "cf003.cdn.4science.cloud"
 use = "none"
-purpose = "Third-party source: 1265 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 403); must not be live]"
+purpose = "Third-party source: 1265 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: final robots.txt disallowed (HTTP 403); must not be live]"
 probe = ""
 
 [[hosts]]
@@ -154,7 +154,7 @@ probe = "https://catalog.mit.edu/"
 [[hosts]]
 host = "people.csail.mit.edu"
 use = "live"
-purpose = "School site: 285 captures in the raw stores (285 live, 0 via Wayback; 275 HTTP 200); 44 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://people.csail.mit.edu/ only redirects off-host (http 301); robots allowed]"
+purpose = "School site: 285 captures in the raw stores (285 live, 0 via Wayback; 275 HTTP 200); 44 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://people.csail.mit.edu/ only redirects (http 301); robots allowed]"
 probe = ""
 
 [[hosts]]
@@ -172,7 +172,7 @@ probe = "https://www.rle.mit.edu/"
 [[hosts]]
 host = "groups.csail.mit.edu"
 use = "live"
-purpose = "School site: 96 captures in the raw stores (96 live, 0 via Wayback; 92 HTTP 200); 16 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://groups.csail.mit.edu/ only redirects off-host (http 301); robots allowed]"
+purpose = "School site: 96 captures in the raw stores (96 live, 0 via Wayback; 92 HTTP 200); 16 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://groups.csail.mit.edu/ only redirects (http 301); robots allowed]"
 probe = ""
 
 [[hosts]]
