@@ -954,7 +954,7 @@ def discover_lab(kit, school, p, ctx, full=True):
                     pth = [x for x in urlsplit(href).path.split('/') if x]
                     named = any(t in fold(href) for t in fam_toks) and len(pth) <= 1  # a site named for the PI, not a deep page
                     # a personal-page link on the profile's own host ('Personal web pages with links' -> /people/samson.abramsky/home.html, Oxford CS) when its path carries the PI's name
-                    own_host_personal = own_host_personal_link(href, txt, ph, fam_toks)
+                    own_host_personal = own_host_personal_link(href, txt, ph, fam_toks) or same_account_personal_link(href, txt, prof)
                     if (WEBWORD.search(txt or '') and hh != ph) or (named and hh != ph) or own_host_personal or \
                             (re.match(r'^\s*https?://', txt or '') and hh != ph):
                         add('school_profile_link', href, 'listed', anchor=(txt or '')[:80], on=prof)
@@ -1258,6 +1258,15 @@ def read_discovery(school):
                 r = json.loads(line)
                 out[r['pi']] = r  # the latest record per PI wins
     return out
+
+
+def same_account_personal_link(href, txt, prof):
+    """HKUST CSE style (2026-11-10): the profile /admin/people/faculty/profile/<id> links the personal page /~<id>/ or /faculty/<id>/ of the SAME account id on the same
+    host, with the anchor 'Personal Webpage'. The account id need not contain the family name (wilfred, gchan, cktang)."""
+    slug = [x for x in urlsplit(prof).path.split('/') if x][-1:] or ['']
+    pth = urlsplit(href)
+    return (pth.hostname or '') == (urlsplit(prof).hostname or '') and bool(WEBWORD.search(txt or '')) and bool(slug[0]) and \
+        bool(re.match(r'^/(?:~' + re.escape(slug[0]) + r'|faculty/' + re.escape(slug[0]) + r')(?:/|$)', pth.path))
 
 
 def own_host_personal_link(href, txt, ph, fam_toks):

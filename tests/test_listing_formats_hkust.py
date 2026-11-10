@@ -54,3 +54,12 @@ def test_listing_pi_years_account_ids_agree_across_url_eras():
 def test_labpage_audit_has_the_shared_wayback_throttle():
     import labpage_audit as A
     assert A._host_throttle() is not None and hasattr(A._host_throttle(), 'cooldown_left')
+
+
+def test_same_account_personal_link_on_the_profile_host():
+    import labpage_audit as A
+    prof = 'https://cse.hkust.edu.hk/admin/people/faculty/profile/wilfred'
+    assert A.same_account_personal_link('https://cse.hkust.edu.hk/faculty/wilfred/', 'Personal Webpage', prof)
+    assert A.same_account_personal_link('https://cse.hkust.edu.hk/~wilfred/', 'Personal Webpage', prof)
+    assert not A.same_account_personal_link('https://cse.hkust.edu.hk/~other/', 'Personal Webpage', prof)
+    assert not A.same_account_personal_link('https://cse.hkust.edu.hk/faculty/wilfred/', 'Publications list', prof)
