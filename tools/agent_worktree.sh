@@ -4,6 +4,13 @@
 #   tools/agent_worktree.sh new <name> [<kind>]   create the worktree and branch <kind>/<name> from main (kind: agent)
 #   tools/agent_worktree.sh <name>                 the same (shorthand)
 #   tools/agent_worktree.sh land <name>            rebase <kind>/<name> onto main, run the full tests, fast-forward main
+#                                                  The test gate runs on a Slurm compute node (srun: partition all, 2 CPUs, 8G, 50 min,
+#                                                  excluding node302,node014,node805,node808) because the login host's /tmp is shared and
+#                                                  often nearly full. Same env as before; only WHERE the tests run moves. Exit codes: 1 tests
+#                                                  failed (main unchanged), 3 srun gave no test result (allocation failure, cancel, time limit:
+#                                                  main unchanged, nothing skipped). While waiting for the allocation and during the run the
+#                                                  script renews the land lock you hold every 5 min (lock ttl is 1 h).
+#                                                  ATLAS_LAND_TESTS_LOCAL=1 runs the tests on this host as before (no srun).
 #   tools/agent_worktree.sh rm <name>              remove the worktree (refuses with uncommitted changes) and its branch
 #                                                  once merged (-f/--force: also an unmerged branch)
 #   tools/agent_worktree.sh ls                     the worktrees
@@ -32,7 +39,37 @@ case "$cmd" in
     git -C "$dir" rebase main
     # Tool bootstraps use atlas_paths.TOOLS; pin it to the branch so later imports cannot load stale main modules.
     # Charters and vendor code must likewise come from the branch under test.
-    (cd "$dir" && CS_ATLAS_TOOLS="$dir/tools" CS_ATLAS_VENDOR="$dir/vendor" CS_ATLAS_SCHOOL_CONFIGS="$dir/schools" bin/atlas test) || { echo "tests failed: main unchanged"; exit 1; }
+    if [ "${ATLAS_LAND_TESTS_LOCAL:-}" = 1 ] || ! command -v srun >/dev/null 2>&1; then
+      [ "${ATLAS_LAND_TESTS_LOCAL:-}" = 1 ] || echo "srun not found: running the tests on this host" >&2
+      (cd "$dir" && CS_ATLAS_TOOLS="$dir/tools" CS_ATLAS_VENDOR="$dir/vendor" CS_ATLAS_SCHOOL_CONFIGS="$dir/schools" bin/atlas test) || { echo "tests failed: main unchanged"; exit 1; }
+    else
+      # Compute-node gate. The step writes its test exit code to a marker on shared storage, so "tests failed" (marker rc != 0) is
+      # told apart from "srun never ran them" (no marker). Env is propagated (srun default); a TMPDIR that does not exist on the
+      # node (a login-host scratch path) is dropped so the node's own /tmp is used.
+      rcdir="$(dirname "$main_top")/scratch/land-tests"; mkdir -p "$rcdir"
+      rcfile="$rcdir/$name.$$.rc"; rm -f "$rcfile"
+      libdir="$(dirname "$main_top")/env/atlas/lib"
+      renew() { while sleep "${ATLAS_LAND_RENEW_S:-300}"; do "$dir/bin/atlas" task land-lock check 2>/dev/null | grep -q ours && "$dir/bin/atlas" task land-lock acquire >/dev/null 2>&1; done; }
+      renew & renewer=$!
+      echo "land: running the full tests on a compute node (srun, partition all); waiting for the allocation..." >&2
+      t0=$(date +%s)
+      srun --partition=all --exclude=node302,node014,node805,node808 --cpus-per-task=2 --mem=8G --time=00:50:00 --job-name=land-tests --export=ALL \
+        bash -c 'cd "$1" || exit 99; { [ -n "${TMPDIR:-}" ] && [ -d "$TMPDIR" ] && [ -w "$TMPDIR" ]; } || unset TMPDIR
+                 [ -d "$3" ] && export LD_LIBRARY_PATH="$3${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+                 date +%s > "$2.start"; echo "land: tests started on $(hostname)" >&2
+                 CS_ATLAS_TOOLS="$1/tools" CS_ATLAS_VENDOR="$1/vendor" CS_ATLAS_SCHOOL_CONFIGS="$1/schools" bin/atlas test; rc=$?
+                 echo "$rc" > "$2"; exit "$rc"' _ "$dir" "$rcfile" "$libdir" && src=0 || src=$?
+      pkill -P "$renewer" 2>/dev/null || true; kill "$renewer" 2>/dev/null || true; wait "$renewer" 2>/dev/null || true
+      t1=$(date +%s); t_start=$(cat "$rcfile.start" 2>/dev/null || echo "$t1"); rm -f "$rcfile.start"
+      echo "land: srun wait $(( t_start - t0 )) s, run $(( t1 - t_start )) s, srun rc=$src" >&2
+      if [ ! -s "$rcfile" ]; then
+        rm -f "$rcfile"
+        echo "srun gave no test result (allocation failed, cancelled, node failure or the 50 min limit; srun rc=$src): tests did NOT run to completion, main unchanged. Retry, or ATLAS_LAND_TESTS_LOCAL=1 on a host with free /tmp." >&2
+        exit 3
+      fi
+      trc=$(cat "$rcfile"); rm -f "$rcfile"
+      [ "$trc" = 0 ] || { echo "tests failed: main unchanged"; exit 1; }
+    fi
     "$dir/bin/atlas" scan --staged >/dev/null 2>&1 || true
     # landing lock (tools/work_queue.py): one session lands at a time. Warn by default; `git config atlas.landLock enforce` refuses.
     # Session: $ATLAS_SESSION / $CLAUDE_SESSION_ID. Take it first: bin/atlas task land-lock acquire

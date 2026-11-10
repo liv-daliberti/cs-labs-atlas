@@ -34,6 +34,13 @@ changed under `vendor/`, set `CS_ATLAS_VENDOR=$PWD/vendor`.
    commit. Commit messages say what changed and why.
 2. `git rebase main`, then run the full suite: `bin/atlas test` (it includes the `nfs` tests that need the data;
    CI runs the rest), `bin/atlas lint`, `bin/atlas charters`, and `bin/atlas vendor check` if you touched `vendor/`.
+   `tools/agent_worktree.sh land` runs that suite on a Slurm compute node (`srun`, partition `all`, 2 CPUs, 8G, 50 min, excluding
+   node302,node014,node805,node808, job name `land-tests`), because the login host's `/tmp` is shared and often 96-98% full
+   (`tests/test_job_code_snapshot.py` fails with ~1 GB free). The env and data roots are exactly the old ones; only where the tests run moves.
+   Exit 1 = tests failed (main unchanged). Exit 3 = srun produced no test result (could not allocate, cancelled, node failure, 50 min
+   limit): main unchanged, the tests are never skipped and an unverified tree never lands; retry. The land lock you hold is renewed every
+   5 min while the script waits for the allocation and runs (lock ttl 1 h). `ATLAS_LAND_TESTS_LOCAL=1` keeps the old behaviour (tests
+   on the login host); it is also used when `srun` is not installed.
 3. Fast-forward: `git -C <main checkout> merge --ff-only <branch>` (`tools/agent_worktree.sh land` does steps 2-3). If
    `main` moved meanwhile, or the main checkout has someone's uncommitted changes in the same files, the merge refuses:
    rebase again and retry. Never leave `main` with failing tests.
