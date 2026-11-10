@@ -1,7 +1,7 @@
 {
   "school": "tsinghua",
-  "reviewed_at": "2026-11-08",
-  "scope": "Eleven supported PIs only; partial website register. Existing other 50 supported PI websites remain in the prior ledger; this file does not claim complete census coverage.",
+  "reviewed_at": "2026-11-10",
+  "scope": "Eleven supported PIs only; partial website register. Existing other 50 supported PI websites remain in the prior ledger; this file does not claim complete census coverage. 2026-11-10: merged the student-worker sweep (207 PIs) and the 22 EE additions; sites without an official link are recorded as absences with the candidate noted.",
   "labs": [
     {
       "pi": "贺飞",
@@ -522,361 +522,3952 @@
     },
     {
       "pi": "杨家海（校内兼职）",
-      "status": "reviewed_cached_website",
-      "coverage": "website",
-      "url": "https://nmgroup.tsinghua.edu.cn/yjs/index.htm",
-      "kind": "lab_website",
-      "reason": "Pre-existing verified lab site paired with the newly independently supported INSC primary appointment and named laboratory directorship.",
-      "sha256": "6fe704408d2d9c8527b00952dd813069dcb8c58573393076a75f9239bcfbccd8",
-      "checked_at": "2026-11-07T20:32:06",
-      "official_link_status": "recorded",
-      "found_via": "prior_reviewed_official_profile_link",
-      "listed_on": "https://nmgroup.tsinghua.edu.cn/",
-      "evidence": {
-        "url": "https://nmgroup.tsinghua.edu.cn/yjs/index.htm",
-        "sha256": "6fe704408d2d9c8527b00952dd813069dcb8c58573393076a75f9239bcfbccd8",
-        "quote": "杨家海",
-        "observed": "2026-11-07T20:32:06"
-      },
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile does not link a lab or home site that satisfies the register rules: a candidate https://nmgroup.tsinghua.edu.cn/yjs/index.htm was found (owned or cached, earlier review) but has no recorded official discovery link with a dated check, or is a publications page. Not proof that no site exists.",
+      "candidate_site_not_accepted": "https://nmgroup.tsinghua.edu.cn/yjs/index.htm",
       "checks": [
         {
-          "url": "https://nmgroup.tsinghua.edu.cn/yjs/index.htm",
-          "source_url": "https://nmgroup.tsinghua.edu.cn/",
-          "source_sha256": "166f6cbb2f60adbc6e06669646d764c6d410e8f82e5a486c02ac69539b0df90b",
-          "discovery": "literal_client_relocation",
-          "status": "verified_website",
-          "issues": [],
-          "requested_url": "https://nmgroup.tsinghua.edu.cn/yjs/index.htm",
-          "redirect_chain": [],
-          "http_status": 200,
-          "sha256": "6fe704408d2d9c8527b00952dd813069dcb8c58573393076a75f9239bcfbccd8",
-          "observed_at": "2026-11-07T20:32:06"
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1126/3579.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "837b62249f9ea38e18647d86a2847747ecb6367ac8c599e38df842ecc8760772"
         }
-      ],
-      "evidence_gaps": []
+      ]
     },
     {
       "pi": "赵曦滨",
-      "status": "reviewed_cached_website",
-      "coverage": "website",
-      "url": "https://thss-sec.github.io/posts/intro/",
-      "kind": "shared_group_website",
-      "reason_code": "reviewed_official_outbound_owned_site",
-      "reason": "Official-profile literal outbound link and substantive named PI/group content. Shared group ownership is not individual member supervision. Website count does not imply an independently complete lab census. No global English alias inferred from transliteration.",
-      "sha256": "d0f581a83bbc78247d20743e53c153baaa4f9f60be667adcfc84b0166a6be0db",
-      "checked_at": "2026-11-08T01:41:56",
-      "official_link_status": "recorded",
-      "found_via": "school_profile_link",
-      "listed_on": "https://www.thss.tsinghua.edu.cn/faculty/zhaoxibin.htm",
-      "evidence": {
-        "url": "https://thss-sec.github.io/posts/intro/",
-        "sha256": "d0f581a83bbc78247d20743e53c153baaa4f9f60be667adcfc84b0166a6be0db",
-        "observed_at": "2026-11-08T01:41:56",
-        "encoding": "utf-8",
-        "quote": "学术带头人 赵曦滨"
-      },
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile does not link a lab or home site that satisfies the register rules: a candidate https://thss-sec.github.io/posts/intro/ was found (owned or cached, earlier review) but has no recorded official discovery link with a dated check, or is a publications page. Not proof that no site exists.",
+      "candidate_site_not_accepted": "https://thss-sec.github.io/posts/intro/",
       "checks": [
         {
+          "source": "school_profile_page",
           "url": "https://www.thss.tsinghua.edu.cn/faculty/zhaoxibin.htm",
-          "sha256": "255a086a37320f1d69417538c2f7e176d8d0a8ade6e69d7636646cb1df04cf36",
-          "observed_at": "2026-11-08T00:09:20",
-          "encoding": "utf-8",
-          "quote": "姓名: 赵曦滨 职称: 长聘副教授"
-        }
-      ],
-      "literal_official_outbound_links": [
-        {
-          "text": "https://thss-sec.github.io/",
-          "href": "https://thss-sec.github.io/"
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "255a086a37320f1d69417538c2f7e176d8d0a8ade6e69d7636646cb1df04cf36"
         }
       ]
     },
     {
       "pi": "龙明盛",
-      "status": "reviewed_cached_website",
-      "coverage": "website",
-      "url": "https://ise.thss.tsinghua.edu.cn/~mlong/",
-      "kind": "pi_homepage",
-      "reason_code": "reviewed_official_outbound_owned_site",
-      "reason": "Official-profile literal outbound link and substantive named PI/group content. Shared group ownership is not individual member supervision. Website count does not imply an independently complete lab census. No global English alias inferred from transliteration.",
-      "sha256": "f9c2101868c0c079cca5727761600b8ba10f034219bdae77f7f1ecc3d3abba08",
-      "checked_at": "2026-11-08T01:41:56",
-      "official_link_status": "recorded",
-      "found_via": "school_profile_link",
-      "listed_on": "https://www.thss.tsinghua.edu.cn/faculty/longmingsheng.htm",
-      "evidence": {
-        "url": "https://ise.thss.tsinghua.edu.cn/~mlong/",
-        "sha256": "f9c2101868c0c079cca5727761600b8ba10f034219bdae77f7f1ecc3d3abba08",
-        "observed_at": "2026-11-08T01:41:56",
-        "encoding": "utf-8",
-        "quote": "Mingsheng Long Associate Professor"
-      },
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile does not link a lab or home site that satisfies the register rules: a candidate https://ise.thss.tsinghua.edu.cn/~mlong/ was found (owned or cached, earlier review) but has no recorded official discovery link with a dated check, or is a publications page. Not proof that no site exists.",
+      "candidate_site_not_accepted": "https://ise.thss.tsinghua.edu.cn/~mlong/",
       "checks": [
         {
+          "source": "school_profile_page",
           "url": "https://www.thss.tsinghua.edu.cn/faculty/longmingsheng.htm",
-          "sha256": "8fbc00bbdea053886b564f4db2b9f6d4971f9f244855ff5ebeec631f566bcbbb",
-          "observed_at": "2026-11-08T00:10:18",
-          "encoding": "utf-8",
-          "quote": "姓名： 龙明盛 职称： 长聘副教授"
-        }
-      ],
-      "literal_official_outbound_links": [
-        {
-          "text": "http://ise.thss.tsinghua.edu.cn/~mlong",
-          "href": "http://ise.thss.tsinghua.edu.cn/~mlong",
-          "form": "literal_published_text_not_clickable_anchor"
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "8fbc00bbdea053886b564f4db2b9f6d4971f9f244855ff5ebeec631f566bcbbb"
         }
       ]
     },
     {
       "pi": "刘世霞",
-      "status": "reviewed_cached_website",
-      "coverage": "website",
-      "url": "https://shixialiu.com/",
-      "kind": "pi_homepage",
-      "reason_code": "reviewed_official_outbound_owned_site",
-      "reason": "Official-profile literal outbound link and substantive named PI/group content. Shared group ownership is not individual member supervision. Website count does not imply an independently complete lab census. No global English alias inferred from transliteration.",
-      "sha256": "0b38c226951d7da9a7702f73ba56483d92d324e6a34f6ff1965a254b18db11c4",
-      "checked_at": "2026-11-08T01:41:56",
-      "official_link_status": "recorded",
-      "found_via": "school_profile_link",
-      "listed_on": "https://www.thss.tsinghua.edu.cn/faculty/liushixia.htm",
-      "evidence": {
-        "url": "https://shixialiu.com/",
-        "sha256": "0b38c226951d7da9a7702f73ba56483d92d324e6a34f6ff1965a254b18db11c4",
-        "observed_at": "2026-11-08T01:41:56",
-        "encoding": "utf-8",
-        "quote": "Shixia Liu (刘世霞)"
-      },
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile does not link a lab or home site that satisfies the register rules: a candidate https://shixialiu.com/ was found (owned or cached, earlier review) but has no recorded official discovery link with a dated check, or is a publications page. Not proof that no site exists.",
+      "candidate_site_not_accepted": "https://shixialiu.com/",
       "checks": [
         {
+          "source": "school_profile_page",
           "url": "https://www.thss.tsinghua.edu.cn/faculty/liushixia.htm",
-          "sha256": "4949e157b7ff571d4e63777b3c5839940b4a377fd3d718c6c1d4948c39a76b6e",
-          "observed_at": "2026-11-08T00:10:47",
-          "encoding": "utf-8",
-          "quote": "姓名: 刘世霞 职称: 教授"
-        }
-      ],
-      "literal_official_outbound_links": [
-        {
-          "text": "http://shixialiu.com/",
-          "href": "http://shixialiu.com/"
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4949e157b7ff571d4e63777b3c5839940b4a377fd3d718c6c1d4948c39a76b6e"
         }
       ]
     },
     {
       "pi": "杨铮",
-      "status": "reviewed_cached_website",
-      "coverage": "website",
-      "url": "https://tns.thss.tsinghua.edu.cn/~yangzheng/",
-      "kind": "pi_homepage",
-      "reason_code": "reviewed_official_outbound_owned_site",
-      "reason": "Official-profile literal outbound link and substantive named PI/group content. Shared group ownership is not individual member supervision. Website count does not imply an independently complete lab census. No global English alias inferred from transliteration.",
-      "sha256": "fcd87082fcd860f15d9058d7d03d0d3da577f2bbca0ec905dfb0013f94182d23",
-      "checked_at": "2026-11-08T01:39:22",
-      "official_link_status": "recorded",
-      "found_via": "school_profile_link",
-      "listed_on": "https://www.thss.tsinghua.edu.cn/faculty/yangzheng.htm",
-      "evidence": {
-        "url": "https://tns.thss.tsinghua.edu.cn/~yangzheng/",
-        "sha256": "fcd87082fcd860f15d9058d7d03d0d3da577f2bbca0ec905dfb0013f94182d23",
-        "observed_at": "2026-11-08T01:39:22",
-        "encoding": "utf-8",
-        "quote": "Zheng Yang | 杨铮"
-      },
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile does not link a lab or home site that satisfies the register rules: a candidate https://tns.thss.tsinghua.edu.cn/~yangzheng/ was found (owned or cached, earlier review) but has no recorded official discovery link with a dated check, or is a publications page. Not proof that no site exists.",
+      "candidate_site_not_accepted": "https://tns.thss.tsinghua.edu.cn/~yangzheng/",
       "checks": [
         {
+          "source": "school_profile_page",
           "url": "https://www.thss.tsinghua.edu.cn/faculty/yangzheng.htm",
-          "sha256": "5f81daf7d37949a17427a7f076f90659aeb45d0a6301ec98bab08e7f112c0e71",
-          "observed_at": "2026-11-08T00:10:56",
-          "encoding": "utf-8",
-          "quote": "姓名: 杨铮 职称: 副教授"
-        }
-      ],
-      "literal_official_outbound_links": [
-        {
-          "text": "http://tns.thss.tsinghua.edu.cn/~yangzheng/",
-          "href": "http://tns.thss.tsinghua.edu.cn/~yangzheng/"
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "5f81daf7d37949a17427a7f076f90659aeb45d0a6301ec98bab08e7f112c0e71"
         }
       ]
     },
     {
       "pi": "王继良",
-      "status": "reviewed_cached_website",
-      "coverage": "website",
-      "url": "https://tns.thss.tsinghua.edu.cn/~jiliang/",
-      "kind": "pi_homepage",
-      "reason_code": "reviewed_official_outbound_owned_site",
-      "reason": "Official-profile literal outbound link and substantive named PI/group content. Shared group ownership is not individual member supervision. Website count does not imply an independently complete lab census. No global English alias inferred from transliteration.",
-      "sha256": "1d9179d7bb5be0f0d9319e3f3633143c0bd580dad641891f221323fe38fc4ffa",
-      "checked_at": "2026-11-08T01:39:25",
-      "official_link_status": "recorded",
-      "found_via": "school_profile_link",
-      "listed_on": "https://www.thss.tsinghua.edu.cn/faculty/wangjiliang.htm",
-      "evidence": {
-        "url": "https://tns.thss.tsinghua.edu.cn/~jiliang/",
-        "sha256": "1d9179d7bb5be0f0d9319e3f3633143c0bd580dad641891f221323fe38fc4ffa",
-        "observed_at": "2026-11-08T01:39:25",
-        "encoding": "utf-8",
-        "quote": "Jiliang Wang (王继良)"
-      },
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile does not link a lab or home site that satisfies the register rules: a candidate https://tns.thss.tsinghua.edu.cn/~jiliang/ was found (owned or cached, earlier review) but has no recorded official discovery link with a dated check, or is a publications page. Not proof that no site exists.",
+      "candidate_site_not_accepted": "https://tns.thss.tsinghua.edu.cn/~jiliang/",
       "checks": [
         {
+          "source": "school_profile_page",
           "url": "https://www.thss.tsinghua.edu.cn/faculty/wangjiliang.htm",
-          "sha256": "44796737d5299296b24af395b78b6ae7e2687447eebc1e69e52a21c689ba137c",
-          "observed_at": "2026-11-08T00:11:02",
-          "encoding": "utf-8",
-          "quote": "姓名: 王继良 职称: 副教授"
-        }
-      ],
-      "literal_official_outbound_links": [
-        {
-          "text": "http://tns.thss.tsinghua.edu.cn/~jiliang/",
-          "href": "http://tns.thss.tsinghua.edu.cn/~jiliang/"
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "44796737d5299296b24af395b78b6ae7e2687447eebc1e69e52a21c689ba137c"
         }
       ]
     },
     {
       "pi": "何秀强",
-      "status": "reviewed_cached_website",
-      "coverage": "website",
-      "url": "https://xiuq-he.github.io/",
-      "kind": "pi_homepage",
-      "reason_code": "reviewed_official_outbound_owned_site",
-      "reason": "Official-profile literal outbound link and substantive named PI/group content. Shared group ownership is not individual member supervision. Website count does not imply an independently complete lab census. No global English alias inferred from transliteration.",
-      "sha256": "529ffc8c075c145309305e92abaa6fa9135c83b0b389e50ae16fce8768e293b8",
-      "checked_at": "2026-11-08T01:40:59",
-      "official_link_status": "recorded",
-      "found_via": "school_profile_link",
-      "listed_on": "https://www.au.tsinghua.edu.cn/info/1079/4192.htm",
-      "evidence": {
-        "url": "https://xiuq-he.github.io/",
-        "sha256": "529ffc8c075c145309305e92abaa6fa9135c83b0b389e50ae16fce8768e293b8",
-        "observed_at": "2026-11-08T01:40:59",
-        "encoding": "utf-8",
-        "quote": "I am an Assistant Professor in the Department of Automation at Tsinghua University."
-      },
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile does not link a lab or home site that satisfies the register rules: a candidate https://xiuq-he.github.io/ was found (owned or cached, earlier review) but has no recorded official discovery link with a dated check, or is a publications page. Not proof that no site exists.",
+      "candidate_site_not_accepted": "https://xiuq-he.github.io/",
       "checks": [
         {
+          "source": "school_profile_page",
           "url": "https://www.au.tsinghua.edu.cn/info/1079/4192.htm",
-          "sha256": "58dba4703d48461c6639bd35a213fce4804752562187f1f6bb45e70572235712",
-          "observed_at": "2026-11-08T00:13:43",
-          "encoding": "utf-8",
-          "quote": "何秀强 助理教授 检测与电子技术研究所 博士生导师"
-        }
-      ],
-      "literal_official_outbound_links": [
-        {
-          "text": "https://xiuq-he.github.io/",
-          "href": "https://xiuq-he.github.io/"
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "58dba4703d48461c6639bd35a213fce4804752562187f1f6bb45e70572235712"
         }
       ]
     },
     {
       "pi": "张长水",
-      "status": "reviewed_cached_website",
-      "coverage": "website",
-      "url": "https://bigeye.au.tsinghua.edu.cn/paperlist.html",
-      "kind": "pi_publications_homepage",
-      "reason_code": "reviewed_official_outbound_owned_site",
-      "reason": "Official-profile literal outbound link and substantive named PI/group content. Shared group ownership is not individual member supervision. Website count does not imply an independently complete lab census. No global English alias inferred from transliteration.",
-      "sha256": "709718604727a6084e3a894475d86e87897799925769a1ae631087c330c48c12",
-      "checked_at": "2026-11-08T01:41:01",
-      "official_link_status": "recorded",
-      "found_via": "school_profile_link",
-      "listed_on": "https://www.au.tsinghua.edu.cn/info/1078/3257.htm",
-      "evidence": {
-        "url": "https://bigeye.au.tsinghua.edu.cn/paperlist.html",
-        "sha256": "709718604727a6084e3a894475d86e87897799925769a1ae631087c330c48c12",
-        "observed_at": "2026-11-08T01:41:01",
-        "encoding": "utf-8",
-        "quote": "Paper List of ZHANG Changshui"
-      },
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile does not link a lab or home site that satisfies the register rules: a candidate https://bigeye.au.tsinghua.edu.cn/paperlist.html was found (owned or cached, earlier review) but has no recorded official discovery link with a dated check, or is a publications page. Not proof that no site exists.",
+      "candidate_site_not_accepted": "https://bigeye.au.tsinghua.edu.cn/paperlist.html",
       "checks": [
         {
+          "source": "school_profile_page",
           "url": "https://www.au.tsinghua.edu.cn/info/1078/3257.htm",
-          "sha256": "d55cc7174597074e0cd10e2a1885635bfa2139d5aa01742545c3519d467397b5",
-          "observed_at": "2026-11-08T00:11:44",
-          "encoding": "utf-8",
-          "quote": "张长水 教授 信息处理研究所 所长"
-        }
-      ],
-      "literal_official_outbound_links": [
-        {
-          "text": "https://bigeye.au.tsinghua.edu.cn/paperlist.html",
-          "href": "https://bigeye.au.tsinghua.edu.cn/paperlist.html"
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "d55cc7174597074e0cd10e2a1885635bfa2139d5aa01742545c3519d467397b5"
         }
       ]
     },
     {
       "pi": "朱松纯",
-      "status": "reviewed_cached_website",
-      "coverage": "website",
-      "url": "https://zhusongchun.net/",
-      "kind": "pi_homepage",
-      "reason_code": "reviewed_official_outbound_owned_site",
-      "reason": "Official-profile literal outbound link and substantive named PI/group content. Shared group ownership is not individual member supervision. Website count does not imply an independently complete lab census. No global English alias inferred from transliteration.",
-      "sha256": "fd6979b82964c43b23aa99f7d09477cf601398a979ed311afbb6832d06034499",
-      "checked_at": "2026-11-08T01:39:21",
-      "official_link_status": "recorded",
-      "found_via": "school_profile_link",
-      "listed_on": "https://www.au.tsinghua.edu.cn/info/1078/3256.htm",
-      "evidence": {
-        "url": "https://zhusongchun.net/",
-        "sha256": "fd6979b82964c43b23aa99f7d09477cf601398a979ed311afbb6832d06034499",
-        "observed_at": "2026-11-08T01:39:21",
-        "encoding": "utf-8",
-        "quote": "Chair Professor, Peking University & Tsinghua University"
-      },
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile does not link a lab or home site that satisfies the register rules: a candidate https://zhusongchun.net/ was found (owned or cached, earlier review) but has no recorded official discovery link with a dated check, or is a publications page. Not proof that no site exists.",
+      "candidate_site_not_accepted": "https://zhusongchun.net/",
       "checks": [
         {
+          "source": "school_profile_page",
           "url": "https://www.au.tsinghua.edu.cn/info/1078/3256.htm",
-          "sha256": "bdfdb11304563fa3de31a243afd0d0005767aa560e07ab0226c110e3f8a26801",
-          "observed_at": "2026-11-08T00:11:59",
-          "encoding": "utf-8",
-          "quote": "朱松纯 教授，博士生导师 信息处理研究所 基础科学讲席教授 清华大学通用人工智能研究院（筹）院长"
-        }
-      ],
-      "literal_official_outbound_links": [
-        {
-          "text": "https://zhusongchun.net/",
-          "href": "https://zhusongchun.net/"
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "bdfdb11304563fa3de31a243afd0d0005767aa560e07ab0226c110e3f8a26801"
         }
       ]
     },
     {
       "pi": "鲁继文",
-      "status": "reviewed_cached_website",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile does not link a lab or home site that satisfies the register rules: a candidate https://ivg.au.tsinghua.edu.cn/Jiwen_Lu/ was found (owned or cached, earlier review) but has no recorded official discovery link with a dated check, or is a publications page. Not proof that no site exists.",
+      "candidate_site_not_accepted": "https://ivg.au.tsinghua.edu.cn/Jiwen_Lu/",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1078/3156.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "876055c5f1883cc20d45858d524c2e19fbf28cd369ad91e9a7ca528fe841570c"
+        }
+      ]
+    },
+    {
+      "pi": "冯建华",
+      "status": "reviewed_live_website",
       "coverage": "website",
-      "url": "https://ivg.au.tsinghua.edu.cn/Jiwen_Lu/",
-      "kind": "pi_homepage",
-      "reason_code": "reviewed_official_outbound_owned_site",
-      "reason": "Official-profile literal outbound link and substantive named PI/group content. Shared group ownership is not individual member supervision. Website count does not imply an independently complete lab census. No global English alias inferred from transliteration.",
-      "sha256": "7e2cae5b7781d8d0040be5be77bd411f0389abdc996b10fb8bf0b7b05869c90a",
-      "checked_at": "2026-11-08T01:41:56",
+      "url": "https://dbgroup.cs.tsinghua.edu.cn/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "b925c15f546e03e3a57e100ae90d483543a0b2974a5f7064abd9a7fca61acd55",
+      "checked_at": "2026-11-10T00:53:49",
       "official_link_status": "recorded",
       "found_via": "school_profile_link",
-      "listed_on": "https://www.au.tsinghua.edu.cn/info/1078/3156.htm",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1111/3490.htm",
       "evidence": {
-        "url": "https://ivg.au.tsinghua.edu.cn/Jiwen_Lu/",
-        "sha256": "7e2cae5b7781d8d0040be5be77bd411f0389abdc996b10fb8bf0b7b05869c90a",
-        "observed_at": "2026-11-08T01:41:56",
-        "encoding": "utf-8",
-        "quote": "Jiwen Lu Tsinghua University, China"
+        "url": "https://dbgroup.cs.tsinghua.edu.cn/",
+        "sha256": "b925c15f546e03e3a57e100ae90d483543a0b2974a5f7064abd9a7fca61acd55",
+        "quote": "http://dbgroup.cs.tsinghua.edu.cn/",
+        "observed": "2026-11-10T00:53:49"
       },
       "checks": [
         {
-          "url": "https://www.au.tsinghua.edu.cn/info/1078/3156.htm",
-          "sha256": "876055c5f1883cc20d45858d524c2e19fbf28cd369ad91e9a7ca528fe841570c",
-          "observed_at": "2026-11-08T00:12:14",
-          "encoding": "utf-8",
-          "quote": "鲁继文 长聘教授 信息处理研究所 自动化系副主任"
+          "source": "school_profile_link",
+          "url": "https://dbgroup.cs.tsinghua.edu.cn/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1111/3490.htm",
+          "at": "2026-11-10T00:53:49",
+          "result": "ok",
+          "source_sha256": "5099c7335a5f67fa1120d07688ea86425cf348139d7d44361819c3fda462813d",
+          "sha256": "b925c15f546e03e3a57e100ae90d483543a0b2974a5f7064abd9a7fca61acd55"
         }
-      ],
-      "literal_official_outbound_links": [
+      ]
+    },
+    {
+      "pi": "冯铃",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
         {
-          "text": "http://ivg.au.tsinghua.edu.cn/Jiwen_Lu/",
-          "href": "http://ivg.au.tsinghua.edu.cn/Jiwen_Lu/"
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1111/3489.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "44936bffcc1c4dd7db121514714d43e02bffc51f091fff04a790864b4efff561"
+        }
+      ]
+    },
+    {
+      "pi": "李国良",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile does not link a lab or home site that satisfies the register rules: a candidate https://dbgroup.cs.tsinghua.edu.cn/ligl/publications.html was found (owned or cached, earlier review) but has no recorded official discovery link with a dated check, or is a publications page. Not proof that no site exists.",
+      "candidate_site_not_accepted": "https://dbgroup.cs.tsinghua.edu.cn/ligl/publications.html",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1111/3488.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "3c33add4ea774973467fea1ca97193518cce419a1e14873b458b4d118e115ab9"
+        }
+      ]
+    },
+    {
+      "pi": "李涓子",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "Every candidate site refuses our agent (robots.txt or HTTP refusal); not fetched.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1111/3487.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "2d5efa7c2275a95c4bbb4ec7f94faf9ca7c89902a87687fef7944aed42fae51f"
+        }
+      ]
+    },
+    {
+      "pi": "唐杰",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://www.cs.tsinghua.edu.cn/__local/F/E8/85/823F74585A4C6E98E291B37B455_45C91C38_2ACB10.pptx?e=.pptx",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "c6c727d9e795e11f5a1ba717808b9a7cb9fba83e25e283709336385fa42ba6f6",
+      "checked_at": "2026-11-10T00:54:05",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1111/3486.htm",
+      "evidence": {
+        "url": "https://www.cs.tsinghua.edu.cn/__local/F/E8/85/823F74585A4C6E98E291B37B455_45C91C38_2ACB10.pptx?e=.pptx",
+        "sha256": "c6c727d9e795e11f5a1ba717808b9a7cb9fba83e25e283709336385fa42ba6f6",
+        "quote": "https://www.cs.tsinghua.edu.cn/__local/F/E8/85/823F74585A4C6E98E291B37B455_45C91C38_2ACB10.pptx?e=.pptx",
+        "observed": "2026-11-10T00:54:05"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.tsinghua.edu.cn/__local/F/E8/85/823F74585A4C6E98E291B37B455_45C91C38_2ACB10.pptx?e=.pptx",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1111/3486.htm",
+          "at": "2026-11-10T00:53:56",
+          "result": "robots_or_blocked",
+          "source_sha256": "18e73b53486cc86e12a70293a2d61829802b8afe18ab55f9b92569d69c0272be",
+          "sha256": "c6c727d9e795e11f5a1ba717808b9a7cb9fba83e25e283709336385fa42ba6f6"
+        }
+      ]
+    },
+    {
+      "pi": "王建勇",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://dbgroup.cs.tsinghua.edu.cn/wangjy/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "503f904ec0ee4eb1a42e08578cf814bf8beb5d7cf5e5b7d296d1fbb627928d60",
+      "checked_at": "2026-11-10T00:54:42",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1111/3485.htm",
+      "evidence": {
+        "url": "https://dbgroup.cs.tsinghua.edu.cn/wangjy/",
+        "sha256": "503f904ec0ee4eb1a42e08578cf814bf8beb5d7cf5e5b7d296d1fbb627928d60",
+        "quote": "http://dbgroup.cs.tsinghua.edu.cn/wangjy/",
+        "observed": "2026-11-10T00:54:42"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://dbgroup.cs.tsinghua.edu.cn/wangjy/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1111/3485.htm",
+          "at": "2026-11-10T00:54:42",
+          "result": "ok",
+          "source_sha256": "5f57646117a3bcbdd4d5c7dcd0dcaad4b780870c1e0b809fbf332f516894a501",
+          "sha256": "503f904ec0ee4eb1a42e08578cf814bf8beb5d7cf5e5b7d296d1fbb627928d60"
+        }
+      ]
+    },
+    {
+      "pi": "许斌",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://edukg.cn/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "a2b7e6c79cb9c0d3d9503ca715eec2d09ebac4431edcdfe2109d76d69061141c",
+      "checked_at": "2026-11-10T00:54:51",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1111/5271.htm",
+      "evidence": {
+        "url": "https://edukg.cn/",
+        "sha256": "a2b7e6c79cb9c0d3d9503ca715eec2d09ebac4431edcdfe2109d76d69061141c",
+        "quote": "http://edukg.cn/",
+        "observed": "2026-11-10T00:54:51"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://edukg.cn/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1111/5271.htm",
+          "at": "2026-11-10T00:54:42",
+          "result": "robots_or_blocked",
+          "source_sha256": "b8c5b45907a4cf6313101dc76c0aabcdf9174b8bc5d1ae81790d3e4f737944b6",
+          "sha256": "a2b7e6c79cb9c0d3d9503ca715eec2d09ebac4431edcdfe2109d76d69061141c"
+        }
+      ]
+    },
+    {
+      "pi": "喻文健",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://numbda.cs.tsinghua.edu.cn/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "90d9dd58901211d45c095e0bfc02b6c2b5ecf56bb6192a3b8cc7d68f981ef047",
+      "checked_at": "2026-11-10T00:54:56",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1111/4776.htm",
+      "evidence": {
+        "url": "https://numbda.cs.tsinghua.edu.cn/",
+        "sha256": "90d9dd58901211d45c095e0bfc02b6c2b5ecf56bb6192a3b8cc7d68f981ef047",
+        "quote": "http://numbda.cs.tsinghua.edu.cn/",
+        "observed": "2026-11-10T00:54:56"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://numbda.cs.tsinghua.edu.cn/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1111/4776.htm",
+          "at": "2026-11-10T00:54:56",
+          "result": "ok",
+          "source_sha256": "c50575f1a022212b07c9221b1f7a2148af3e6a79ed9403f806b0a6138891d88a",
+          "sha256": "90d9dd58901211d45c095e0bfc02b6c2b5ecf56bb6192a3b8cc7d68f981ef047"
+        }
+      ]
+    },
+    {
+      "pi": "陈渝",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://soft.cs.tsinghua.edu.cn/~chen/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "13f217d7cb5515dc170b8e6050c4ffcce234f36296f55b14e6ff70cbeac97568",
+      "checked_at": "2026-11-10T00:55:01",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1112/3500.htm",
+      "evidence": {
+        "url": "https://soft.cs.tsinghua.edu.cn/~chen/",
+        "sha256": "13f217d7cb5515dc170b8e6050c4ffcce234f36296f55b14e6ff70cbeac97568",
+        "quote": "http://soft.cs.tsinghua.edu.cn/~chen/",
+        "observed": "2026-11-10T00:55:01"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://soft.cs.tsinghua.edu.cn/~chen/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1112/3500.htm",
+          "at": "2026-11-10T00:55:01",
+          "result": "ok",
+          "source_sha256": "63740197490406fcea420ed9fbb4ab56ad64af89bd32838d1f1e762eaffa83ab",
+          "sha256": "13f217d7cb5515dc170b8e6050c4ffcce234f36296f55b14e6ff70cbeac97568"
+        }
+      ]
+    },
+    {
+      "pi": "东昱晓",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "Every candidate site refuses our agent (robots.txt or HTTP refusal); not fetched.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1112/5837.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "362e3676260fc07f6468e87a56295b31c3d214b1b45742faf86180ae2a2bb2ab"
+        }
+      ]
+    },
+    {
+      "pi": "王健楠",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://dbgroup.cs.tsinghua.edu.cn/jnwang/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "3d52cc1b0cfe56ab7031ec4e8056301f347be4595eed8e9b1f7784a7402a6afd",
+      "checked_at": "2026-11-10T00:55:08",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1112/6905.htm",
+      "evidence": {
+        "url": "https://dbgroup.cs.tsinghua.edu.cn/jnwang/",
+        "sha256": "3d52cc1b0cfe56ab7031ec4e8056301f347be4595eed8e9b1f7784a7402a6afd",
+        "quote": "https://dbgroup.cs.tsinghua.edu.cn/jnwang",
+        "observed": "2026-11-10T00:55:08"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://dbgroup.cs.tsinghua.edu.cn/jnwang/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1112/6905.htm",
+          "at": "2026-11-10T00:55:08",
+          "result": "ok",
+          "source_sha256": "23bce3ae4fcd8f5b5becad76891999c7b0b76713610f59113ba6e79059234fa3",
+          "sha256": "3d52cc1b0cfe56ab7031ec4e8056301f347be4595eed8e9b1f7784a7402a6afd"
+        }
+      ]
+    },
+    {
+      "pi": "何卓论",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://eda.cs.tsinghua.edu.cn/~zlhe/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "1dd9b83d6c8429e4dcc63ff1f6c3467074d32a303c14393d7d4354d394ecd43e",
+      "checked_at": "2026-11-10T00:55:13",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1113/7367.htm",
+      "evidence": {
+        "url": "https://eda.cs.tsinghua.edu.cn/~zlhe/",
+        "sha256": "1dd9b83d6c8429e4dcc63ff1f6c3467074d32a303c14393d7d4354d394ecd43e",
+        "quote": "https://eda.cs.tsinghua.edu.cn/~zlhe/",
+        "observed": "2026-11-10T00:55:13"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://eda.cs.tsinghua.edu.cn/~zlhe/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1113/7367.htm",
+          "at": "2026-11-10T00:55:13",
+          "result": "ok",
+          "source_sha256": "ba841d853106976ed806036a0027a7922e63d0af84caae7229c0b1facbdecf1a",
+          "sha256": "1dd9b83d6c8429e4dcc63ff1f6c3467074d32a303c14393d7d4354d394ecd43e"
+        }
+      ]
+    },
+    {
+      "pi": "陈婧",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1107/5688.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "ba12d1435339a204873066cdae79d126d2eb3d18dc6b7b6e0d45d1a905884a60"
+        }
+      ]
+    },
+    {
+      "pi": "陈文光",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1107/3513.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "908520d3e573172ee31354924025157cf6c07dad6e30693837e8a75dce7d8273"
+        }
+      ]
+    },
+    {
+      "pi": "李兆麟",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1107/3511.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "a3ae05d2a0907e2ae56966312b2ba83b9cf5c486b321a97194d0fbe0e776affc"
+        }
+      ]
+    },
+    {
+      "pi": "钱学海",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://alchem.cs.tsinghua.edu.cn",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "1e693297c9fe59bf46b779b9c7f86c401707ac993b4983bd645f226dceb8ce39",
+      "checked_at": "2026-11-10T00:55:19",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1107/6209.htm",
+      "evidence": {
+        "url": "https://alchem.cs.tsinghua.edu.cn",
+        "sha256": "1e693297c9fe59bf46b779b9c7f86c401707ac993b4983bd645f226dceb8ce39",
+        "quote": "https://alchem.cs.tsinghua.edu.cn",
+        "observed": "2026-11-10T00:55:19"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://alchem.cs.tsinghua.edu.cn",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1107/6209.htm",
+          "at": "2026-11-10T00:55:19",
+          "result": "ok",
+          "source_sha256": "08fa4dd8a1050787eab45bda25d05f0f7e2effc26b0834d37f70aa4f1d0605f8",
+          "sha256": "1e693297c9fe59bf46b779b9c7f86c401707ac993b4983bd645f226dceb8ce39"
+        }
+      ]
+    },
+    {
+      "pi": "舒继武",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://storage.cs.tsinghua.edu.cn/~jiwu-shu/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "91dc6e48ba54a2aea0da31753343925da2e84b69b8ca12476e2461cb581be747",
+      "checked_at": "2026-11-10T00:55:28",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1107/3510.htm",
+      "evidence": {
+        "url": "https://storage.cs.tsinghua.edu.cn/~jiwu-shu/",
+        "sha256": "91dc6e48ba54a2aea0da31753343925da2e84b69b8ca12476e2461cb581be747",
+        "quote": "http://storage.cs.tsinghua.edu.cn/~jiwu-shu/",
+        "observed": "2026-11-10T00:55:28"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://storage.cs.tsinghua.edu.cn/~jiwu-shu/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1107/3510.htm",
+          "at": "2026-11-10T00:55:28",
+          "result": "ok",
+          "source_sha256": "60b3982068371630141626be7acfa17d03f5fe908783920f457e6d8e56cf1be7",
+          "sha256": "91dc6e48ba54a2aea0da31753343925da2e84b69b8ca12476e2461cb581be747"
+        }
+      ]
+    },
+    {
+      "pi": "汪东升",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1107/3509.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "d8c7ebadc7994de07dd9f2c19ae1b387ab2d4fe8310be5144128211c02c13511"
+        }
+      ]
+    },
+    {
+      "pi": "武永卫",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://madsys.cs.tsinghua.edu.cn/~yongweiwu/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "0554abc961c63e2e7b32171b438e16ef31da29069f7b1ce8dda748f361af464e",
+      "checked_at": "2026-11-10T00:55:46",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1107/3508.htm",
+      "evidence": {
+        "url": "https://madsys.cs.tsinghua.edu.cn/~yongweiwu/",
+        "sha256": "0554abc961c63e2e7b32171b438e16ef31da29069f7b1ce8dda748f361af464e",
+        "quote": "http://madsys.cs.tsinghua.edu.cn/~yongweiwu/",
+        "observed": "2026-11-10T00:55:46"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://madsys.cs.tsinghua.edu.cn/~yongweiwu/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1107/3508.htm",
+          "at": "2026-11-10T00:55:46",
+          "result": "ok",
+          "source_sha256": "9239c5f0cebde08a743181a6abbe252ce521412e7aaa867d3b5d70441643801b",
+          "sha256": "0554abc961c63e2e7b32171b438e16ef31da29069f7b1ce8dda748f361af464e"
+        }
+      ]
+    },
+    {
+      "pi": "薛巍",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://hpc.cs.tsinghua.edu.cn/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "a5a7d639e3626590ecc85cb64bcbba8db6c3973358aa734b811341df94004402",
+      "checked_at": "2026-11-10T00:55:49",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1107/5272.htm",
+      "evidence": {
+        "url": "https://hpc.cs.tsinghua.edu.cn/",
+        "sha256": "a5a7d639e3626590ecc85cb64bcbba8db6c3973358aa734b811341df94004402",
+        "quote": "https://hpc.cs.tsinghua.edu.cn/",
+        "observed": "2026-11-10T00:55:49"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://hpc.cs.tsinghua.edu.cn/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1107/5272.htm",
+          "at": "2026-11-10T00:55:49",
+          "result": "ok",
+          "source_sha256": "e676416837814b06c2663b7ca1557e681050d650add1bc5b7d0f682793fefc75",
+          "sha256": "a5a7d639e3626590ecc85cb64bcbba8db6c3973358aa734b811341df94004402"
+        }
+      ]
+    },
+    {
+      "pi": "杨广文",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1107/3507.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "d0acce982f1d2497246e21d5f45711eaaf4972ad7ead89c8cea4f2430aa761d6"
+        }
+      ]
+    },
+    {
+      "pi": "翟季冬",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://pacman.cs.tsinghua.edu.cn/~zjd/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "e7192c58f49c466b7c7a02ff21dafc49bfe2afa0d5ec573fec457ba9497e613a",
+      "checked_at": "2026-11-10T00:55:57",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1107/5621.htm",
+      "evidence": {
+        "url": "https://pacman.cs.tsinghua.edu.cn/~zjd/",
+        "sha256": "e7192c58f49c466b7c7a02ff21dafc49bfe2afa0d5ec573fec457ba9497e613a",
+        "quote": "http://pacman.cs.tsinghua.edu.cn/~zjd/",
+        "observed": "2026-11-10T00:55:57"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://pacman.cs.tsinghua.edu.cn/~zjd/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1107/5621.htm",
+          "at": "2026-11-10T00:55:57",
+          "result": "ok",
+          "source_sha256": "a66e00b25ac294cf9e82978f1476b11f38952e1f3ecbaa705ed6dd37a5d9b341",
+          "sha256": "e7192c58f49c466b7c7a02ff21dafc49bfe2afa0d5ec573fec457ba9497e613a"
+        }
+      ]
+    },
+    {
+      "pi": "郑纬民",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1107/3505.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "b3ab0a4963ef8fa5a133c200ad42ba45d52df2120db9237121edecaa5af01910"
+        }
+      ]
+    },
+    {
+      "pi": "陆游游",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://storage.cs.tsinghua.edu.cn/~lu",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "ed1e9300135438bf321b4d1a2fee8a84bc0254d0969e73c73c952ffcc40a17c2",
+      "checked_at": "2026-11-10T00:55:34",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1108/3941.htm",
+      "evidence": {
+        "url": "https://storage.cs.tsinghua.edu.cn/~lu",
+        "sha256": "ed1e9300135438bf321b4d1a2fee8a84bc0254d0969e73c73c952ffcc40a17c2",
+        "quote": "http://storage.cs.tsinghua.edu.cn/~lu",
+        "observed": "2026-11-10T00:55:34"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://storage.cs.tsinghua.edu.cn/~lu",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1108/3941.htm",
+          "at": "2026-11-10T00:55:34",
+          "result": "ok",
+          "source_sha256": "94494c58bfeac3fc837d408437d95cfdb192d32c515682437227fede46568c4e",
+          "sha256": "ed1e9300135438bf321b4d1a2fee8a84bc0254d0969e73c73c952ffcc40a17c2"
+        }
+      ]
+    },
+    {
+      "pi": "张广艳",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1108/3515.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "0bc74853f7cbf6a872fda8819f33c1c50689a0e07f1da97167ef01801e3c7a53"
+        }
+      ]
+    },
+    {
+      "pi": "章明星",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://madsys.cs.tsinghua.edu.cn/~zhangmx/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "92f0f0140f40be0934f3fe9f5e5086d541d131c916c6188a1a2fe86b27b446e6",
+      "checked_at": "2026-11-10T00:56:24",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1108/7056.htm",
+      "evidence": {
+        "url": "https://madsys.cs.tsinghua.edu.cn/~zhangmx/",
+        "sha256": "92f0f0140f40be0934f3fe9f5e5086d541d131c916c6188a1a2fe86b27b446e6",
+        "quote": "http://madsys.cs.tsinghua.edu.cn/~zhangmx/",
+        "observed": "2026-11-10T00:56:24"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://madsys.cs.tsinghua.edu.cn/~zhangmx/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1108/7056.htm",
+          "at": "2026-11-10T00:56:24",
+          "result": "ok",
+          "source_sha256": "14800cf5e6d23dd8e3ea61cccf85982a996227bac996d496509666038824b53d",
+          "sha256": "92f0f0140f40be0934f3fe9f5e5086d541d131c916c6188a1a2fe86b27b446e6"
+        }
+      ]
+    },
+    {
+      "pi": "胡事民",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://cg.cs.tsinghua.edu.cn/shimin.htm",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "a1709dd601086dad109f4c8e7e2941ff78ed1bbb140daf60c804599ed00fef5e",
+      "checked_at": "2026-11-10T00:56:29",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1116/3536.htm",
+      "evidence": {
+        "url": "https://cg.cs.tsinghua.edu.cn/shimin.htm",
+        "sha256": "a1709dd601086dad109f4c8e7e2941ff78ed1bbb140daf60c804599ed00fef5e",
+        "quote": "http://cg.cs.tsinghua.edu.cn/shimin.htm",
+        "observed": "2026-11-10T00:56:29"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://cg.cs.tsinghua.edu.cn/shimin.htm",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1116/3536.htm",
+          "at": "2026-11-10T00:56:29",
+          "result": "ok",
+          "source_sha256": "563c50a4aad16a76c867446f59db8d2d050a73ffdf8aa95549b333350b76e702",
+          "sha256": "a1709dd601086dad109f4c8e7e2941ff78ed1bbb140daf60c804599ed00fef5e"
+        }
+      ]
+    },
+    {
+      "pi": "贾珈",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1116/4777.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "cfb6e7101565b927cc5add14797cc92879b1a3a4830a5cbfb400e2c4d1814fd4"
+        }
+      ]
+    },
+    {
+      "pi": "刘永进",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://cg.cs.tsinghua.edu.cn/people/~Yongjin/Yongjin.htm",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "afd7431cca980e5f22810af80588ef8e3e26f09167c593d789696d49ad62dead",
+      "checked_at": "2026-11-10T00:56:35",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1116/3535.htm",
+      "evidence": {
+        "url": "https://cg.cs.tsinghua.edu.cn/people/~Yongjin/Yongjin.htm",
+        "sha256": "afd7431cca980e5f22810af80588ef8e3e26f09167c593d789696d49ad62dead",
+        "quote": "http://cg.cs.tsinghua.edu.cn/people/~Yongjin/Yongjin.htm",
+        "observed": "2026-11-10T00:56:35"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://cg.cs.tsinghua.edu.cn/people/~Yongjin/Yongjin.htm",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1116/3535.htm",
+          "at": "2026-11-10T00:56:35",
+          "result": "ok",
+          "source_sha256": "c5a64fb8964ef0e57131a88ea7a2d2d6b7f3b8a705218823ffd09eee0fc99889",
+          "sha256": "afd7431cca980e5f22810af80588ef8e3e26f09167c593d789696d49ad62dead"
+        }
+      ]
+    },
+    {
+      "pi": "史元春",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1116/3534.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "e1a7158afe8e2eb4225942f45aa0ba78776e8a2fcbbe1ef163b29f52ff02c6b7"
+        }
+      ]
+    },
+    {
+      "pi": "孙立峰",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1116/3533.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "c7dafd241521cc66b1acc8dbe5beab0de484308a63d6232dbbea81b7f0dd1983"
+        }
+      ]
+    },
+    {
+      "pi": "张松海",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1116/7039.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "5f00cde8873bfb37e755da5e9afd71124055e858fd8121584d442799fcdac904"
+        }
+      ]
+    },
+    {
+      "pi": "朱文武",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1116/3529.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "0a41517e7034ff09be23fcfc9658d5a1613664dee1f80362cbcc1533b1a96885"
+        }
+      ]
+    },
+    {
+      "pi": "崔鹏",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "http://pengcui.thumedialab.com/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "2df73e830192be8d6ec9c523db95d0aee7c35b82603d42df646c907129e2ebfa",
+      "checked_at": "2026-11-10T00:56:38",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1117/3545.htm",
+      "evidence": {
+        "url": "http://pengcui.thumedialab.com/",
+        "sha256": "2df73e830192be8d6ec9c523db95d0aee7c35b82603d42df646c907129e2ebfa",
+        "quote": "http://pengcui.thumedialab.com/",
+        "observed": "2026-11-10T00:56:38"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "http://pengcui.thumedialab.com/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1117/3545.htm",
+          "at": "2026-11-10T00:56:38",
+          "result": "ok",
+          "source_sha256": "68884371f36f6d789a3030905d12a7c73c0c8a56ffa43692fc457d86dd6a5459",
+          "sha256": "2df73e830192be8d6ec9c523db95d0aee7c35b82603d42df646c907129e2ebfa"
+        }
+      ]
+    },
+    {
+      "pi": "任炬",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://juren1987.github.io",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "2a6da67de7e5dde0d1b5177a06a2c19d8d4c3d2f0bda69fb0204167866332913",
+      "checked_at": "2026-11-10T00:56:39",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1117/4596.htm",
+      "evidence": {
+        "url": "https://juren1987.github.io",
+        "sha256": "2a6da67de7e5dde0d1b5177a06a2c19d8d4c3d2f0bda69fb0204167866332913",
+        "quote": "https://juren1987.github.io",
+        "observed": "2026-11-10T00:56:39"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://juren1987.github.io",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1117/4596.htm",
+          "at": "2026-11-10T00:56:39",
+          "result": "ok",
+          "source_sha256": "89d7206d2d1a2dcf6aca1e2dc156ef9ac71d1ff6de55437181499a2739fb12a4",
+          "sha256": "2a6da67de7e5dde0d1b5177a06a2c19d8d4c3d2f0bda69fb0204167866332913"
+        }
+      ]
+    },
+    {
+      "pi": "徐昆",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://cg.cs.tsinghua.edu.cn/people/~kun/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "f76570640072f5e47227c7eab2c321bf3655184536e06e90c4dc1b8464117239",
+      "checked_at": "2026-11-10T00:56:42",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1117/3540.htm",
+      "evidence": {
+        "url": "https://cg.cs.tsinghua.edu.cn/people/~kun/",
+        "sha256": "f76570640072f5e47227c7eab2c321bf3655184536e06e90c4dc1b8464117239",
+        "quote": "http://cg.cs.tsinghua.edu.cn/people/~kun/",
+        "observed": "2026-11-10T00:56:42"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://cg.cs.tsinghua.edu.cn/people/~kun/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1117/3540.htm",
+          "at": "2026-11-10T00:56:42",
+          "result": "ok",
+          "source_sha256": "2e9e18ca8a0a125787e3ed533429c67fe979c1880d064d66e729f4dcd02f5a96",
+          "sha256": "f76570640072f5e47227c7eab2c321bf3655184536e06e90c4dc1b8464117239"
+        }
+      ]
+    },
+    {
+      "pi": "喻纯",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "Every candidate site refuses our agent (robots.txt or HTTP refusal); not fetched.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1117/3539.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "6e47eea72b5d94d3db07d65d69a1a11110f6365020076920fcdae6bf6f60b46a"
+        }
+      ]
+    },
+    {
+      "pi": "陈挺",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "Every candidate site refuses our agent (robots.txt or HTTP refusal); not fetched.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/3560.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "8999258962f7102c00cb1de48e542f0fb331171a225bdaf36cfc24b20d539932"
+        }
+      ]
+    },
+    {
+      "pi": "邓志东",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/3558.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "02651e0a5c8ecbed92915abbe1fa7d3dac40b0d9ea9bf2c2a08109b5419d0700"
+        }
+      ]
+    },
+    {
+      "pi": "冯元",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/6034.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "112d469add722d8b3221c11e04f43148367ff59e40bed4d7791f7ba30d86ca77"
+        }
+      ]
+    },
+    {
+      "pi": "胡晓林",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://www.xlhu.cn/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "fa69f431b2207131451e57dbaa76caf11ef1a0eca51133762ac6351c31240c14",
+      "checked_at": "2026-11-10T00:56:56",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1121/7244.htm",
+      "evidence": {
+        "url": "https://www.xlhu.cn/",
+        "sha256": "fa69f431b2207131451e57dbaa76caf11ef1a0eca51133762ac6351c31240c14",
+        "quote": "http://www.xlhu.cn/",
+        "observed": "2026-11-10T00:56:56"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://www.xlhu.cn/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1121/7244.htm",
+          "at": "2026-11-10T00:56:56",
+          "result": "ok",
+          "source_sha256": "02193a0423caec422a6b95196f50be7519be382cbd93918beb468be1559f9035",
+          "sha256": "fa69f431b2207131451e57dbaa76caf11ef1a0eca51133762ac6351c31240c14"
+        }
+      ]
+    },
+    {
+      "pi": "黄民烈",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://coai.cs.tsinghua.edu.cn/hml was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/5620.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "655cd8ae5403a1e4e8f114e973c57b7bc3654c447dc920921b6c0bd82eeda360"
+        }
+      ]
+    },
+    {
+      "pi": "季铮锋",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/4990.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "b1fedbaf676600394743b15e129bbe9c432588ede542fd80f9d052844a238432"
+        }
+      ]
+    },
+    {
+      "pi": "刘华平",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/5096.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "113f9e4945a5015f22ee52cd5d8999feb48b25e6482bb15890a30d4b2ed6364d"
+        }
+      ]
+    },
+    {
+      "pi": "刘洋",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/3575.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "8ff7469a3798029acf05bd1f133e95a23e46e4ece29de791799795ae68c60dbe"
+        }
+      ]
+    },
+    {
+      "pi": "刘奕群",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "Every candidate site refuses our agent (robots.txt or HTTP refusal); not fetched.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/3557.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4b084d4190d48b78952a0febccc12004fce8c78d0a9ec393d5394692387a6973"
+        }
+      ]
+    },
+    {
+      "pi": "刘知远",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/7037.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "7c409655d6770b35cbf7ea5b8b63a4d8c8c64f9c9343b1aaaf6be0b2ff7b282d"
+        }
+      ]
+    },
+    {
+      "pi": "孙富春",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/3555.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "c16a52d9b75096974fbe5933b29004e108f69b1c436c168e651c982b547a4be9"
+        }
+      ]
+    },
+    {
+      "pi": "孙茂松",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "site_dead_no_wayback",
+      "reason": "Candidate links from the profile did not give a usable lab site (404, publisher or news pages). (candidate sites were dead or not lab pages at the 2026-11-10 live check; Wayback not consulted.)",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/3554.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "32b9bf75990c9f22c9e04cc1a2ef798e96a34cca88ca7481bf33b19f87d99b1f"
+        }
+      ]
+    },
+    {
+      "pi": "应明生",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/3553.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "8882cb84e96182dcf067aabd526bce63d607d1971f8490dc853c59db3884788e"
+        }
+      ]
+    },
+    {
+      "pi": "张钹",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/3552.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "d904633cc6e214810dfd371172f1b7d334ea07a184650a34e26682202b8f4ba3"
+        }
+      ]
+    },
+    {
+      "pi": "张敏",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "Every candidate site refuses our agent (robots.txt or HTTP refusal); not fetched.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1121/5097.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "02d2695aeb89670313e40d21596cb2f7576947877f929ee8430c8573fc9165b7"
+        }
+      ]
+    },
+    {
+      "pi": "朱军",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://ml.cs.tsinghua.edu.cn/~jun/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "dbd0cdf06aea3fe73327c868f0d099e4eb474eade7e9731536d7cbfe5378fda2",
+      "checked_at": "2026-11-10T00:57:14",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1121/3551.htm",
+      "evidence": {
+        "url": "https://ml.cs.tsinghua.edu.cn/~jun/",
+        "sha256": "dbd0cdf06aea3fe73327c868f0d099e4eb474eade7e9731536d7cbfe5378fda2",
+        "quote": "http://ml.cs.tsinghua.edu.cn/~jun/",
+        "observed": "2026-11-10T00:57:14"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://ml.cs.tsinghua.edu.cn/~jun/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1121/3551.htm",
+          "at": "2026-11-10T00:57:14",
+          "result": "ok",
+          "source_sha256": "c316fb73e6e4cf120dd1513e4cac5acf38eab1432156d959ffa700496c1687ca",
+          "sha256": "dbd0cdf06aea3fe73327c868f0d099e4eb474eade7e9731536d7cbfe5378fda2"
+        }
+      ]
+    },
+    {
+      "pi": "艾清遥",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://qingyaoai.github.io",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "075cb70f5aea0aafa01907f0af8127dcc43a2e6fbf0c859803e1896281332cfc",
+      "checked_at": "2026-11-10T00:57:15",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1122/6641.htm",
+      "evidence": {
+        "url": "https://qingyaoai.github.io",
+        "sha256": "075cb70f5aea0aafa01907f0af8127dcc43a2e6fbf0c859803e1896281332cfc",
+        "quote": "https://qingyaoai.github.io",
+        "observed": "2026-11-10T00:57:15"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://qingyaoai.github.io",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1122/6641.htm",
+          "at": "2026-11-10T00:57:15",
+          "result": "ok",
+          "source_sha256": "32ade92d53fd20116ce21f0fb6c1089e698567374db8af9b6d7049b447dd80a6",
+          "sha256": "075cb70f5aea0aafa01907f0af8127dcc43a2e6fbf0c859803e1896281332cfc"
+        }
+      ]
+    },
+    {
+      "pi": "陈键飞",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://ml.cs.tsinghua.edu.cn/~jianfei/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "8c63cf0a2df0f17301a648a6d54fb4f743c60b7bdf18f1107d5493d82b8405c3",
+      "checked_at": "2026-11-10T00:57:18",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1122/5622.htm",
+      "evidence": {
+        "url": "https://ml.cs.tsinghua.edu.cn/~jianfei/",
+        "sha256": "8c63cf0a2df0f17301a648a6d54fb4f743c60b7bdf18f1107d5493d82b8405c3",
+        "quote": "https://ml.cs.tsinghua.edu.cn/~jianfei/",
+        "observed": "2026-11-10T00:57:18"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://ml.cs.tsinghua.edu.cn/~jianfei/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1122/5622.htm",
+          "at": "2026-11-10T00:57:18",
+          "result": "ok",
+          "source_sha256": "6c1103e0eee0590ae850d1a5acfd304d26fb94187434c624f83b5cd66454307c",
+          "sha256": "8c63cf0a2df0f17301a648a6d54fb4f743c60b7bdf18f1107d5493d82b8405c3"
+        }
+      ]
+    },
+    {
+      "pi": "陈建鑫",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1122/6619.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "453bd55c3acb6248095c8b92d9e38c1ce52a81881dc0df1a7bdefb7a66035a09"
+        }
+      ]
+    },
+    {
+      "pi": "王宏宁",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://coai.cs.tsinghua.edu.cn/hw-ai/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "263244afc361000689f492aaf088ab7a3bd5097db2996e986834fcb9476988d9",
+      "checked_at": "2026-11-10T00:57:19",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1122/5712.htm",
+      "evidence": {
+        "url": "https://coai.cs.tsinghua.edu.cn/hw-ai/",
+        "sha256": "263244afc361000689f492aaf088ab7a3bd5097db2996e986834fcb9476988d9",
+        "quote": "https://coai.cs.tsinghua.edu.cn/hw-ai/",
+        "observed": "2026-11-10T00:57:19"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://coai.cs.tsinghua.edu.cn/hw-ai/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1122/5712.htm",
+          "at": "2026-11-10T00:57:19",
+          "result": "ok",
+          "source_sha256": "b3b0a712ccb58e7207f9c9515dd6cb4694ddb42076a6e989382897ecaa3b8c0c",
+          "sha256": "263244afc361000689f492aaf088ab7a3bd5097db2996e986834fcb9476988d9"
+        }
+      ]
+    },
+    {
+      "pi": "徐华",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://thuiar.github.io/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "65c22e62909bebc1d67102e1583c18c392bccf6751eeaf511a6f6080fa5b5dff",
+      "checked_at": "2026-11-10T00:57:20",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1122/3562.htm",
+      "evidence": {
+        "url": "https://thuiar.github.io/",
+        "sha256": "65c22e62909bebc1d67102e1583c18c392bccf6751eeaf511a6f6080fa5b5dff",
+        "quote": "https://thuiar.github.io/",
+        "observed": "2026-11-10T00:57:20"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://thuiar.github.io/",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1122/3562.htm",
+          "at": "2026-11-10T00:57:20",
+          "result": "ok",
+          "source_sha256": "1c6b453512ff59066977e6dfffb6e200e562dc620874468297d8b4b4739d4daf",
+          "sha256": "65c22e62909bebc1d67102e1583c18c392bccf6751eeaf511a6f6080fa5b5dff"
+        }
+      ]
+    },
+    {
+      "pi": "崔勇",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "Every candidate site refuses our agent (robots.txt or HTTP refusal); not fetched.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1126/3589.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "e3e0dda152bba3f591c6abd2933154a6c7dbce2c8f91567fd865d45abec3f3f3"
+        }
+      ]
+    },
+    {
+      "pi": "李丹",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://nasp.cs.tsinghua.edu.cn/lidan.html",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "334eff57ac34b35b4d43649a1dfb29614c13b85a12d1a4f83c0547f828104f45",
+      "checked_at": "2026-11-10T00:58:01",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1126/3948.htm",
+      "evidence": {
+        "url": "https://nasp.cs.tsinghua.edu.cn/lidan.html",
+        "sha256": "334eff57ac34b35b4d43649a1dfb29614c13b85a12d1a4f83c0547f828104f45",
+        "quote": "http://nasp.cs.tsinghua.edu.cn/lidan.html",
+        "observed": "2026-11-10T00:58:01"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://nasp.cs.tsinghua.edu.cn/lidan.html",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1126/3948.htm",
+          "at": "2026-11-10T00:58:01",
+          "result": "ok",
+          "source_sha256": "f5452c49d68e747dd2aa942558ee566807e061c100d75055db9765f38c27a12d",
+          "sha256": "334eff57ac34b35b4d43649a1dfb29614c13b85a12d1a4f83c0547f828104f45"
+        }
+      ]
+    },
+    {
+      "pi": "刘斌",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/szzk/jzgml.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "915b31a143aea99c69561fb62177e1a268b2562b68a10afc3f65c449fedff73d"
+        }
+      ]
+    },
+    {
+      "pi": "刘卫东",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1126/3586.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "cbdb1f4d4216c881b64b4b4440cf9aaf3321c9db9d0b613aa0de1f1425c329e4"
+        }
+      ]
+    },
+    {
+      "pi": "裴丹",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1126/7243.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "d07a1102a817a0e44412a3ebf2ad76ad0aefa8c253eb2fc49811415e2294f8aa"
+        }
+      ]
+    },
+    {
+      "pi": "任丰原",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1126/3585.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "d14267d25e7f847ed00980354ef31c34156197d9e8bf65122973fbdd6d86fc4f"
+        }
+      ]
+    },
+    {
+      "pi": "吴建平",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1126/3582.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "9a5dbcad67c30cf8ec07c187da2620d141e6932401882be0ee9f25ec68e13bae"
+        }
+      ]
+    },
+    {
+      "pi": "徐恪",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1126/7184.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "14ce55c50f5dbd9558125e6b81131fdc0cf70252b644a247f08aff4dcf8d3752"
+        }
+      ]
+    },
+    {
+      "pi": "徐明伟",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://routing.netlab.tsinghua.edu.cn/tiki-index.php?page=Mingwei+Xu",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "aead39c6fb81d65cc14d0909ef106f6447a47555302582e83a543fd6845ee81f",
+      "checked_at": "2026-11-10T00:58:07",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.tsinghua.edu.cn/info/1126/3580.htm",
+      "evidence": {
+        "url": "https://routing.netlab.tsinghua.edu.cn/tiki-index.php?page=Mingwei+Xu",
+        "sha256": "aead39c6fb81d65cc14d0909ef106f6447a47555302582e83a543fd6845ee81f",
+        "quote": "http://routing.netlab.tsinghua.edu.cn/tiki-index.php?page=Mingwei+Xu",
+        "observed": "2026-11-10T00:58:07"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://routing.netlab.tsinghua.edu.cn/tiki-index.php?page=Mingwei+Xu",
+          "on": "https://www.cs.tsinghua.edu.cn/info/1126/3580.htm",
+          "at": "2026-11-10T00:58:07",
+          "result": "ok",
+          "source_sha256": "30b0a6a83f7bf2f9ff1c023527697ed5f256f5639e6679e94fc63393e8eecf68",
+          "sha256": "aead39c6fb81d65cc14d0909ef106f6447a47555302582e83a543fd6845ee81f"
+        }
+      ]
+    },
+    {
+      "pi": "尹 霞",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1126/3578.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "3580a47ad073cb1beeb4dd2f152d5174ae408bc13fa1ed3d938938412edfa9ea"
+        }
+      ]
+    },
+    {
+      "pi": "赵有健",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1126/3576.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "25ba7a15d6b6ee8ace201204f831eb221600c4c0c129661bc269a1f61b2cee23"
+        }
+      ]
+    },
+    {
+      "pi": "于红波",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/szzk/jzgml.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "915b31a143aea99c69561fb62177e1a268b2562b68a10afc3f65c449fedff73d"
+        }
+      ]
+    },
+    {
+      "pi": "邓俊辉",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1131/5100.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "e203ad8cc0406b69460df99160bdcb0673ee2127b45e44e3c4836f052d5f9215"
+        }
+      ]
+    },
+    {
+      "pi": "黄维通",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1131/3605.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "b49cd298d4eb4c7651df26afd56b5b0ebbeee1ec831754ad54054d4e9e012dfa"
+        }
+      ]
+    },
+    {
+      "pi": "马昱春",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1131/5274.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "a883b8eef57116054d49aa05c9e0d3aa5ebc687019b942356a2a6f0a78394fe5"
+        }
+      ]
+    },
+    {
+      "pi": "郑莉",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1131/3603.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "13dfb98b282b7613bf5cffe2dc1296110d3ccd464fd29137d3927cf3cfb45f64"
+        }
+      ]
+    },
+    {
+      "pi": "谌卫军",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1132/3612.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "1702dce3653c4420e5a36c4030d852fe45bed1ec75bf55b908a72c49fdf903a9"
+        }
+      ]
+    },
+    {
+      "pi": "李秀",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1132/3614.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4d2d62848d6f888c3f3d29bc93331489ebf9d4ec2ce2e349101cb1424c12cf69"
+        }
+      ]
+    },
+    {
+      "pi": "乔林",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/info/1132/3613.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "01b0916855c1ecac5389fcd9e889aa3382083b50fcdd1f6fdaf62ae3829701ca"
+        }
+      ]
+    },
+    {
+      "pi": "Andrew Chi-Chih Yao",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Structural_Intelligence.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Duan Luming",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Duan Ran",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Theoretical_Algorithms.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Huang Longbo",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Decision_Intelligence_Laboratory.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Li Jian",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Li_Jian_Research_Group.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Ma Xiongfeng",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Quantum_Information_Science_Group.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Sun Luyan",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Superconducting_Quantum_Computing.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Xu Wei",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/xuwei_0709.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Chen Jianyu",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://people.iiis.tsinghua.edu.cn/~jychen/ was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Deng Dongling",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Gao Mingyu",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/IDEAL__Innovative_Data_centric_Efficient_Architect.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Ma Kaisheng",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/ARChip_Lab.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Xu Yong",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Professor_Xu_Yong_s_Research_Group____Quantum_Info.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Yuan Yang",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Structural_Intelligence.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Chen Yilei",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/IIIS_Cryptography_Study_Group.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Chen Binyi",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://chancharles92.github.io/ was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Du Tao",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://people.iiis.tsinghua.edu.cn/~taodu/ was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Fang Zhixuan",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://people.iiis.tsinghua.edu.cn/~fang/ was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Gao Yang",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Vision_and_Robotics_Lab.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Hou Pan-Yu",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Ion_and_Diamond_Quantum_Information_Research_Group.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "He Tianxing",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/The_Free_Spirited_Research_Group_of_Tsinghua_Unive.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Lyu Kaifeng",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Foundations_of_Machine_Learning_Lab__FunML_Lab_.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Pu Yunfei",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Ion_and_Atomic_Quantum_Networks_and_Quantum_Comput.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Ion_and_Atomic_Quantum_Networks_and_Quantum_Comput.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4e56e8ed7c1c76dcabde766aabc9b9db2e0938a2a7652b5ed8687198e2b7fe87"
+        }
+      ]
+    },
+    {
+      "pi": "Song Yifan",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Professor_Song_Yifan_s_Research_Group.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Wu Yukai",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Physical_Realization_of_Quantum_Computing_and_Quan.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Xu Huazhe",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Tsinghua_Embodied_AI_Lab.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Xu Mengdi",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://www.mengdixu.me/ was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Yi Li",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Laboratory_of_3D_Vision_Computing_and_Machine_Inte.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Zhang Huanchen",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Embryo_Labs.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Zhang Jingzhao",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/AI_Theory_Group.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Zhao Hang",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://hangzhaomit.github.io/ was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Zheng Shuran",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Frances Foong Yao",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+        }
+      ]
+    },
+    {
+      "pi": "Ya-Qin Zhang",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://air.tsinghua.edu.cn/en/our_team/Research_Team.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4aa7de060f2719fdd89b3fa00593e96bb7a10eb6736c652d8fcd56dbc7079a49"
+        }
+      ]
+    },
+    {
+      "pi": "Wei-Ying Ma",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://air.tsinghua.edu.cn/en/our_team/Research_Team.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4aa7de060f2719fdd89b3fa00593e96bb7a10eb6736c652d8fcd56dbc7079a49"
+        }
+      ]
+    },
+    {
+      "pi": "Zaiqing Nie",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://air.tsinghua.edu.cn/en/our_team/Research_Team.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4aa7de060f2719fdd89b3fa00593e96bb7a10eb6736c652d8fcd56dbc7079a49"
+        }
+      ]
+    },
+    {
+      "pi": "Yunxin Liu",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://yunxinliu.github.io/ was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://air.tsinghua.edu.cn/en/our_team/Research_Team.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4aa7de060f2719fdd89b3fa00593e96bb7a10eb6736c652d8fcd56dbc7079a49"
+        }
+      ]
+    },
+    {
+      "pi": "Jingjing Liu",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://air.tsinghua.edu.cn/en/our_team/Research_Team.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4aa7de060f2719fdd89b3fa00593e96bb7a10eb6736c652d8fcd56dbc7079a49"
+        }
+      ]
+    },
+    {
+      "pi": "Yanyan Lan",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://air.tsinghua.edu.cn/en/our_team/Research_Team.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4aa7de060f2719fdd89b3fa00593e96bb7a10eb6736c652d8fcd56dbc7079a49"
+        }
+      ]
+    },
+    {
+      "pi": "Ting Cao",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://tingcao952.github.io/ was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://air.tsinghua.edu.cn/en/our_team/Research_Team.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4aa7de060f2719fdd89b3fa00593e96bb7a10eb6736c652d8fcd56dbc7079a49"
+        }
+      ]
+    },
+    {
+      "pi": "Guyue Zhou",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://air.tsinghua.edu.cn/en/our_team/Research_Team.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4aa7de060f2719fdd89b3fa00593e96bb7a10eb6736c652d8fcd56dbc7079a49"
+        }
+      ]
+    },
+    {
+      "pi": "Jianzhu MA",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://air.tsinghua.edu.cn/en/our_team/Research_Team.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4aa7de060f2719fdd89b3fa00593e96bb7a10eb6736c652d8fcd56dbc7079a49"
+        }
+      ]
+    },
+    {
+      "pi": "孙家广",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.thss.tsinghua.edu.cn/faculty/sunjiaguang.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "6d15569598970621b7972369c353a58e7885225e1e5abd78597f5ffeb4364c75"
+        }
+      ]
+    },
+    {
+      "pi": "顾明",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.thss.tsinghua.edu.cn/faculty/guming.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "7c32d4c55a47b0f38b3fefccc9f4d5163e346676e8e8125a78ac562f54b161d3"
+        }
+      ]
+    },
+    {
+      "pi": "向东",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.thss.tsinghua.edu.cn/faculty/xiangdong.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "477958d7291b2ac5ebd2bdc495458c8dfe00e0a001778984275876f7138f9ab8"
+        }
+      ]
+    },
+    {
+      "pi": "邓仰东",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.thss.tsinghua.edu.cn/faculty/dengyangdong.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "d1bfe5942a911310e6c56ae81600aa7344320fb970d1c6d1a382db87060d258f"
+        }
+      ]
+    },
+    {
+      "pi": "高跃",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "Every candidate site refuses our agent (robots.txt or HTTP refusal); not fetched.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.thss.tsinghua.edu.cn/faculty/gaoyue.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "f71b76686de9b08db6d0dd73dfe262e6d683585324794050976dbbcbdc04a8df"
+        }
+      ]
+    },
+    {
+      "pi": "姜宇",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "Every candidate site refuses our agent (robots.txt or HTTP refusal); not fetched.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.thss.tsinghua.edu.cn/faculty/jiangyu.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "c2e05f658c6a79ad9a2795533d8a48793bdec94af02a2e8b9d9d7461baf6ad9f"
+        }
+      ]
+    },
+    {
+      "pi": "叶晓俊",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://ise.thss.tsinghua.edu.cn/",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+      "sha256": "c7515aee975db446caaf0a85db40e55046509cb26144e2a4fbc2915dc51960a1",
+      "checked_at": "2026-11-10T00:59:30",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.thss.tsinghua.edu.cn/faculty/yexiaojun.htm",
+      "evidence": {
+        "url": "https://ise.thss.tsinghua.edu.cn/",
+        "sha256": "c7515aee975db446caaf0a85db40e55046509cb26144e2a4fbc2915dc51960a1",
+        "quote": "http://ise.thss.tsinghua.edu.cn",
+        "observed": "2026-11-10T00:59:30"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://ise.thss.tsinghua.edu.cn/",
+          "on": "https://www.thss.tsinghua.edu.cn/faculty/yexiaojun.htm",
+          "at": "2026-11-10T00:59:30",
+          "result": "ok",
+          "source_sha256": "c6eed2ec03b06856e268fdb1feff3bf98a7424d46edcf4d04a49185134c73c1d",
+          "sha256": "c7515aee975db446caaf0a85db40e55046509cb26144e2a4fbc2915dc51960a1"
+        }
+      ]
+    },
+    {
+      "pi": "王建民",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.thss.tsinghua.edu.cn/faculty/wangjianmin.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "8f377dd8047e89bab735395ea50aa48491ed52c813f0ceacef190818d8570cfd"
+        }
+      ]
+    },
+    {
+      "pi": "王朝坤",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.thss.tsinghua.edu.cn/faculty/wangchaokun.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "3291a9f02ded80c9b4beeacd5a23ff6e9843fe9e7dff10222831ef19343c9a22"
+        }
+      ]
+    },
+    {
+      "pi": "丁贵广",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.thss.tsinghua.edu.cn/faculty/dingguiguang.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "b916107cd6a672344ee195d4be6ae86d55782d79ed1f5b7c6c2146ace9cd318c"
+        }
+      ]
+    },
+    {
+      "pi": "闻立杰",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.thss.tsinghua.edu.cn/faculty/wenlijie.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "6a56983c2e627c110b45ab9a8edc953a4f474ec0ddc96ebf1a0e48aa16053b04"
+        }
+      ]
+    },
+    {
+      "pi": "雍俊海",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.thss.tsinghua.edu.cn/faculty/yongjunhai.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "69af045c5156ecd05ad8e90e66e5c3e17b3873f5c89c3996aae4d5c9d8a7a4c5"
+        }
+      ]
+    },
+    {
+      "pi": "梁斌",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1081/3165.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "47b35df4ebd8e7b09134a1072c7cf02816443d96fdcacc0bdae50cb1c3a57ba6"
+        }
+      ]
+    },
+    {
+      "pi": "张涛",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1081/3196.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "8eaaabc9ae9501bd8e79baf5c764a29db9f4667886ceb00acce4840fe3147819"
+        }
+      ]
+    },
+    {
+      "pi": "赵明国",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1081/3199.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "09adb5d9464b6438afc577e8c6b39aea91dbca6b50946f379114bae68d032dd2"
+        }
+      ]
+    },
+    {
+      "pi": "卓晴",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1081/3200.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "51e6695abbe7a653fb729f9a4cdb76cb5bccebc4c5eecc75d2c4ed3b65682639"
+        }
+      ]
+    },
+    {
+      "pi": "吴澄",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1075/3144.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "5a874200fb3a422eb41e6f0e66bb34a16be6ecd2ebeac499eb8270d350a77e7e"
+        }
+      ]
+    },
+    {
+      "pi": "范玉顺",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1075/3202.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "bff41f24ec09f7cdac405afeb2c78788a6068578f79781019af0af91ddee4d86"
+        }
+      ]
+    },
+    {
+      "pi": "周彤",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1075/3362.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "9d79b150b0fb4cca0ed8f153e858d25c4a410adb78d54a572c3f3d36f4b5030b"
+        }
+      ]
+    },
+    {
+      "pi": "柴跃廷",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1075/3205.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "671b21edf1d0e819554af79f05e66f977469d807d99c2cff696928cc1deb30b6"
+        }
+      ]
+    },
+    {
+      "pi": "宋士吉",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1075/3206.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "cadf688031fe2a0c276b4b564f9fe35163af377233f5a1017291963cb9f3628c"
+        }
+      ]
+    },
+    {
+      "pi": "刘民",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1075/3162.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "cbf5227a961ff1e1044e71bc3dcb8acd1a337c99771896a8bceb385dfc2e467b"
+        }
+      ]
+    },
+    {
+      "pi": "张和明",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1075/3207.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "65228141eac6a54eba14dab655aec8477af269c3c54e2a534c3387f1090d539b"
+        }
+      ]
+    },
+    {
+      "pi": "范文慧",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1075/3208.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "0eaa4749c1aeae9e11e798ab07ccd8e27d422e5341addbccf99e7455a6e06d35"
+        }
+      ]
+    },
+    {
+      "pi": "黄必清",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1075/3209.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "ceb88079b138042aa7b2f0390e70b8dd05b8dc6bdf500c66b30484f79c33cb10"
+        }
+      ]
+    },
+    {
+      "pi": "游科友",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1075/3204.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "601959dd814e099a394cde4886212d39389df232b47e1bee365dc0082e8cab04"
+        }
+      ]
+    },
+    {
+      "pi": "李翔",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1075/3203.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4ea74ec5944ff3fab73bbeda73d430c59f4c94b77000cf67a1b1210498ef8cce"
+        }
+      ]
+    },
+    {
+      "pi": "黄高",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "site_dead_no_wayback",
+      "reason": "Candidate links from the profile did not give a usable lab site (404, publisher or news pages). (candidate sites were dead or not lab pages at the 2026-11-10 live check; Wayback not consulted.)",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1075/3183.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "909767bb3bb0d43b68b200e8ef70d39996bf5dcaec57dfe1c8e54c8a4c3486c4"
+        }
+      ]
+    },
+    {
+      "pi": "彭黎辉",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1079/3239.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "476617af1fbc51dd450a84d7a0d2174856224bf1cf42b283d3d9ab2921cd9022"
+        }
+      ]
+    },
+    {
+      "pi": "师丽",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1079/3147.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "fc3e1f978864889fb7c2670963b286367c65b2cbdbd53893a65952160b58f5c4"
+        }
+      ]
+    },
+    {
+      "pi": "耿华",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1079/3102.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "e21068e02499a380d1ebb9e216558db5538845823d7fa2932e95f601ea00e764"
+        }
+      ]
+    },
+    {
+      "pi": "叶朝辉",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1079/3241.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "3139362d18b4be6d307cba37a83a191c1e1ce0421fb73f29aaf7176a21345fcb"
+        }
+      ]
+    },
+    {
+      "pi": "杨帆",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1079/3139.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "acde3aaf720585803b497762119c6f5da9cf3b1690b09396216675ee38478945"
+        }
+      ]
+    },
+    {
+      "pi": "叶昊",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1077/3264.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "ecd449cbbc5033e4284b9162990a0a72a562b57723f1dc2209e588143fcd71e2"
+        }
+      ]
+    },
+    {
+      "pi": "王凌",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1077/3265.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "28a5daa77c3be902cef1197790299f4ae3827094eeb90c0e21db7a15f2c3e018"
+        }
+      ]
+    },
+    {
+      "pi": "何潇",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1077/3189.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "6232c95507f1ed6b7868224bbffaf7adc6fdf5cb2312a82eca822bee4e01fa26"
+        }
+      ]
+    },
+    {
+      "pi": "熊智华",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1077/3266.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "135e137f56ff4da7a632ea53ea8d5dc96e460d5f6331502f08c85955fe47c36e"
+        }
+      ]
+    },
+    {
+      "pi": "尚超",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1077/3149.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "9892247b23299e7bb4e95df47a693d1e2231158428e40c22f0539d56aa01869a"
+        }
+      ]
+    },
+    {
+      "pi": "陈峰",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1080/3113.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "4ada7da5fa2c477b07e7e933900dc53eba2bc3138f9ba1eb92ceef618f350127"
+        }
+      ]
+    },
+    {
+      "pi": "季向阳",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1080/3178.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "fbf7a3c56809b8f11b15a79413c85415af873f06e2c99ec55319bb567d9b9c90"
+        }
+      ]
+    },
+    {
+      "pi": "刘烨斌",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1080/3160.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "128cc1e22a8fb38cc24f7a2fc841422bd88217f70396cd90fb192faaba62be88"
+        }
+      ]
+    },
+    {
+      "pi": "陶建华",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1080/3219.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "924fee1437f9ceb01c6bd876abb54488ef5abdf635dfb2ba5ca685fe81dc9aa4"
+        }
+      ]
+    },
+    {
+      "pi": "于国强",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1080/4048.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "e9be0304ca0ee801aa90194070d5925e1253205a2e79e677e6541242f5e22cf8"
+        }
+      ]
+    },
+    {
+      "pi": "韩军功",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1080/3854.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "2219a448641a8fd98eee877308f7c73896ea8f4a909d933bb0f795265a38ff3e"
+        }
+      ]
+    },
+    {
+      "pi": "石宗英",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1080/3118.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "f85db8f818d7c65b4192333efa309e63b9496d8c3629c38819c2d3eb9a0eb4c2"
+        }
+      ]
+    },
+    {
+      "pi": "乔晖",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1080/3222.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "fd4bdaebc52a42604b903ac54f0e25917831a9d347277b22154dd9b2e57bd247"
+        }
+      ]
+    },
+    {
+      "pi": "索津莉",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1080/4368.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "f42fb68c6207b0764b88fb2eba071ee581a6b71600603aa0194d4d6450676e51"
+        }
+      ]
+    },
+    {
+      "pi": "吴嘉敏",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1080/3223.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "eb503c6e125415c7fabf268978f418953da49f8ae7349d8ae8dacf4d73188ebf"
+        }
+      ]
+    },
+    {
+      "pi": "管晓宏",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1076/3185.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "13bd2a098c88e4782f40606156051da415c340e964895154370c7881a1b8f7ba"
+        }
+      ]
+    },
+    {
+      "pi": "张毅",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1076/3242.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "fe8b4eb3f8f874b99bae01a8abe6c75e378601f801b2dbe0493e8ebd7651e478"
+        }
+      ]
+    },
+    {
+      "pi": "赵千川",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1076/3244.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "0951f1d12f7b2d178a6221972dacc0e0bafbb2ef57bb950d00bd830bfa8c5452"
+        }
+      ]
+    },
+    {
+      "pi": "刘云浩",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1076/3158.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "01f28728a3f412049db97a79ef24a52c61df35d155f617e0f02b40f767b11913"
+        }
+      ]
+    },
+    {
+      "pi": "贾庆山",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "Every candidate site refuses our agent (robots.txt or HTTP refusal); not fetched.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1076/3252.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "db5b69af3f8759e222bc765a1e25e2be1a37168b57af56dd71b8aa6ddf4f5384"
+        }
+      ]
+    },
+    {
+      "pi": "李力",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "site_dead_no_wayback",
+      "reason": "Candidate links from the profile did not give a usable lab site (404, publisher or news pages). (candidate sites were dead or not lab pages at the 2026-11-10 live check; Wayback not consulted.)",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1076/3245.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "e367c520795636864e4f2a75ad903ee58ea26b4ab8e36fab6fb3c5d02754a2cb"
+        }
+      ]
+    },
+    {
+      "pi": "吴热冰",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1076/3251.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "7f3dddbb8105ca0b467b3c4e67b2cb22ef21f9282be3a13bd91d1d491628dfac"
+        }
+      ]
+    },
+    {
+      "pi": "莫一林",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1076/3152.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "bebd88e27ee85c9b52d31e321a1c09ace0ba64c949e5fbba71864ed7991552d7"
+        }
+      ]
+    },
+    {
+      "pi": "江奔奔",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "Every candidate site refuses our agent (robots.txt or HTTP refusal); not fetched.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1076/3176.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "87ec1243a417c54910608f6bec04fbe278d362a01ecaad1aa692142da8603de3"
+        }
+      ]
+    },
+    {
+      "pi": "封硕",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "site_dead_no_wayback",
+      "reason": "Candidate links from the profile did not give a usable lab site (404, publisher or news pages). (candidate sites were dead or not lab pages at the 2026-11-10 live check; Wayback not consulted.)",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1076/3247.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "81b26dcb5d70517175c9c83e6ad604b61459759ea34f4844a461c9a68e2bfde5"
+        }
+      ]
+    },
+    {
+      "pi": "李衍达",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1078/3128.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "e73b615e699bbbfb4aa46b4850c5edeccfa917e332a3af93cee622d59e510f69"
+        }
+      ]
+    },
+    {
+      "pi": "张学工",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile does not link a lab or home site that satisfies the register rules: a candidate https://xglab.tech/member/Publications.html was found (owned or cached, earlier review) but has no recorded official discovery link with a dated check, or is a publications page. Not proof that no site exists.",
+      "candidate_site_not_accepted": "https://xglab.tech/member/Publications.html",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1078/3135.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "7b3e2cf55792ffea738529998578c6f9b72cef808395de65c27a0a850870fa70"
+        }
+      ]
+    },
+    {
+      "pi": "周杰",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1078/3126.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "9d60f719b8ba65c6626ec5c5eed812372ab400fb378713e5434fc1670af4c0f6"
+        }
+      ]
+    },
+    {
+      "pi": "李梢",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1078/3172.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "8c49d99494560ace2b57886a4a020a044d8cf89cf7f99ba203416616f9c1f6b1"
+        }
+      ]
+    },
+    {
+      "pi": "汪小我",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "Every candidate site refuses our agent (robots.txt or HTTP refusal); not fetched.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1078/3260.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "7e905e86cd68d11b3d156616753efa77d2569e016e10f39cc8cc06ad394acdc4"
+        }
+      ]
+    },
+    {
+      "pi": "江瑞",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1078/3259.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "9a3b443e6c48eb541acd6013041007fcb6e65b4cc24983ccd3778b4bb72f475d"
+        }
+      ]
+    },
+    {
+      "pi": "高飞飞",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1078/3261.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "e8b08956258bb058e49d41da209a96be0713d9b66266d79a5e785c44414b7104"
+        }
+      ]
+    },
+    {
+      "pi": "古槿",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "Every candidate site refuses our agent (robots.txt or HTTP refusal); not fetched.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1078/3255.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "cde905e54fdecca5d98cef02dd4adfeac07c87b7ee1f24785585c555838f262e"
+        }
+      ]
+    },
+    {
+      "pi": "冯建江",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1078/3262.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "d5f04aed9a981021bf18fc58fe73924f10cf6561fb242bd3733f4b5efe350a0c"
+        }
+      ]
+    },
+    {
+      "pi": "赵虹",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.au.tsinghua.edu.cn/info/1078/3133.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "c77df5d78080acdcf651c0de61fda6ae0a13b2d7a81af2439569902ba1735847"
+        }
+      ]
+    },
+    {
+      "pi": "陈宏伟",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/chenhongwei/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "e3440ad73b7d6784495bdf4b02aa39905fbf153526bc2aa15f8c727b9a5fe65b"
+        }
+      ]
+    },
+    {
+      "pi": "陈明华",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/chenminghua/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "61373774ce95bdd02d48c7ab3ea77f5b05a32cefc82a981c830fe0b5af274571"
+        }
+      ]
+    },
+    {
+      "pi": "熊兵",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/xiongbing/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "bc47dc9c4a3a4d8fd68872697bd3cf4dbef7a3ba94c18fe49abc5c821b765b14"
+        }
+      ]
+    },
+    {
+      "pi": "陈巍",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/chenwei/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "9f722e1d09f285792f44dc0048d7abf8926aa65632e9e055b70cc851da5002b6"
+        }
+      ]
+    },
+    {
+      "pi": "李勇",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/liyong/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "b345ecfad1473d7fd20fe4f1346ada8a1e9723a8251f8586ba4d9da9e67619fe"
+        }
+      ]
+    },
+    {
+      "pi": "陶晓明",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/taoxiaoming/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "67da0b7ce209c894f1a5d8ce40682eca1d64de63578d2d24b1e0cf35e4e612bd"
+        }
+      ]
+    },
+    {
+      "pi": "王昭诚",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/wangzhaocheng/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "de4ed0be4d52506f25ce2e21a72f32b75a47ee2e00175457ed787e59f75041fa"
+        }
+      ]
+    },
+    {
+      "pi": "周盛",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/zhousheng/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "a0877bfa68c7e97bb0451430d29194ff36a2a3b1d1668504107e3937c75fc82e"
+        }
+      ]
+    },
+    {
+      "pi": "陈文华",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/chenwenhua/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "4a4c8b943570c1d9047c50db923af6cfa08cf8b47ab6bcdad11f71a10d874130"
+        }
+      ]
+    },
+    {
+      "pi": "李越",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/liyue/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "5633f6d7490d38197bc076dfd9470edd259856ea8ea206f7a9efba14795d1cab"
+        }
+      ]
+    },
+    {
+      "pi": "黄永峰",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/huangyongfeng/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "4b315d5bcd8edcddf7f6148b79cb0dffb44b261e54b902135787f758878de5c9"
+        }
+      ]
+    },
+    {
+      "pi": "吴及",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/wuji/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "d8398fb2ab80d1a2095c2ffe2b392840186b29bf620cf5441c01f800f54e7448"
+        }
+      ]
+    },
+    {
+      "pi": "周伯文",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/zhoubowen/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "a245356ee88771082985767355229dc575de6542fd22a59d342f2c7b623c26d7"
+        }
+      ]
+    },
+    {
+      "pi": "陈勇",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/chenyong/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "52e8d34dc2f7b09f8f7cac2f58ab52254053c296ee3d06079109d87fa2f55f06"
+        }
+      ]
+    },
+    {
+      "pi": "李学清",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/lixueqing/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "69253b308fd4f181d95566a4d3a69a0cb758c841ca19c41e8bd9b71020c321d4"
+        }
+      ]
+    },
+    {
+      "pi": "李刚",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/ligang/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "e7a0631f50f1ae8221e7b5e83fade9b111a3ded54e863d4bf387209730364756"
+        }
+      ]
+    },
+    {
+      "pi": "李洪",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/lihong/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "f92e71a9dd262c214d95152a518817df56683df6b7a542ece3afe251d05c1527"
+        }
+      ]
+    },
+    {
+      "pi": "任勇",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/renyong/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "2166ad8d2762a64fe509885a3838fb28b0420255b0ff8c0cbd05700ce8ad0776"
+        }
+      ]
+    },
+    {
+      "pi": "姚铮",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/yaozheng/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "9eb391843a56f8a0e411e6694020c2fc65c6d2a53c41fef4812ff7a94fa3c2c8"
+        }
+      ]
+    },
+    {
+      "pi": "杨健",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/yangjian/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "c8c1a00bc1c3b4788f9a694c2a44d05ec071b77457bc43d425f71e9e24f2ece4"
+        }
+      ]
+    },
+    {
+      "pi": "王学谦",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/wangxueqian/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "e4f724d1c02ec9e2d6c12b9be99f1e8aee7e77914c35f378c3926b0dcb09cfe9"
+        }
+      ]
+    },
+    {
+      "pi": "汪玉",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The named official EE profile (captured 2026-11-10) is hosted on the PI's own page space and names no separate homepage or lab site in the captured text; not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/wangyu/zh_CN/index.htm",
+          "at": "2026-11-10T10:30:00",
+          "result": "ok",
+          "sha256": "f9d188a26c5c3e1546e2b4d3201ae81a31d8836d4e46273510b770c4608d45ae"
         }
       ]
     }
