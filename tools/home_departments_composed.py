@@ -8,56 +8,37 @@
 -> hierarchy/<key>/derived/home-departments-school.json (the stage-3 gate input).  usage: home_departments_composed.py <key>
 """
 import json
-import re
 import sys
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import census_overrides as CO  # noqa: E402
 from cs_related_school import census_rows  # noqa: E402
+from home_departments_school import apply_reviewed_homes  # noqa: E402
 
 
 def _read(path, default):
     return json.loads(path.read_text()) if path.exists() else default
 
 
-def _evidence_ok(ev):
-    return (isinstance(ev, list) and ev and all(isinstance(e, dict) and e.get('url') and str(e.get('quote') or '').strip()
-                                                  and re.fullmatch(r'[0-9a-f]{64}', str(e.get('sha256') or '')) for e in ev))
-
-
 def build(rows, overrides, units, centers):
+    """Base rows from the census; a reviewed decision is applied by the landed R-HOME-01 implementation (home_departments_school.apply_reviewed_homes)."""
     out = []
     for x in rows:
         if not x.get('is_pi'):
             continue
         codes = list(x.get('departments') or [])
-        also = [units.get(c, c) for c in codes]
         b = x.get('pi_basis') or {}
-        dec = overrides.get(x['name']) or {}
-        row = dict(name=x['name'], home_department=None, also=[], no_academic_department=False, status='hold', home_basis=None,
-                   evidence=dict(url=b.get('url'), sha256=b.get('sha256'), quote=b.get('quote')), note='')
-        if dec.get('home_department'):
-            ev = dec.get('home_department_evidence')
-            if not _evidence_ok(ev):
-                raise SystemExit(f"{x['name']}: reviewed home_department requires evidence with url, SHA-256 and verbatim quote")
-            home = dec['home_department']
-            unresolved = list(dec.get('primary_unresolved') or [])
-            if unresolved:
-                if len(unresolved) < 2 or home not in unresolved:
-                    raise SystemExit(f"{x['name']}: primary_unresolved needs two or more units including home_department")
-                row.update(home_basis='primary_unresolved', also=[u for u in dict.fromkeys(unresolved + also) if u != home])
-            else:
-                row.update(home_basis='primary_stated', also=[u for u in dict.fromkeys(also + list(dec.get('also_home_departments') or [])) if u != home])
-            row.update(home_department=home, status='accepted', evidence=ev[0], reviewed_home_evidence=ev, note=dec.get('why_home_department') or '')
-        elif len(codes) == 1 and codes[0] not in centers and b.get('url') and b.get('sha256') and b.get('quote'):
-            row.update(home_department=units.get(codes[0], codes[0]), status='accepted', home_basis='listed_title', note=f'the {codes[0]} faculty listing names one unit')
+        row = dict(name=x['name'], home_department=None, also=[units.get(c, c) for c in codes], no_academic_department=False, status='hold',
+                   home_basis=None, evidence=dict(url=b.get('url'), sha256=b.get('sha256'), quote=b.get('quote')), note='')
+        if len(codes) == 1 and codes[0] not in centers and b.get('url') and b.get('sha256') and b.get('quote'):
+            row.update(home_department=units.get(codes[0], codes[0]), also=[], status='accepted', home_basis='listed_title',
+                       note=f'the {codes[0]} faculty listing names one unit')
         else:
-            row['note'] = ('only a center names this PI: no academic unit is evidenced (R-HOME-01 / center rule)' if codes and all(c in centers for c in codes)
+            row['note'] = ('only a center names this PI: no academic unit is evidenced (center rule, R-HOME-01)' if codes and all(c in centers for c in codes)
                            else 'no unit evidenced')
-            row['also'] = also
         out.append(row)
-    return out
+    return apply_reviewed_homes(out, overrides, lambda u: u)
 
 
 def main(key):

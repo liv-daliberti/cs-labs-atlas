@@ -575,8 +575,7 @@
     "collection_person_id": "zju_source_fac_1655aa1ffaac3d5a34f1"
   },
   "许威威": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source name are admitted in this proposal, but no independently owned external bibliography identity is admitted. Name-only paper joins remain held.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No personally owned ORCID reviewed for this new source context; dump identifiers unresolved and not inherited.",
@@ -596,7 +595,30 @@
     "primary_unresolved": [
       "Main College of Computer Science",
       "State Key Laboratory of CAD&CG"
-    ]
+    ],
+    "dblp": [
+      "https://dblp.org/pid/56/3321-3"
+    ],
+    "identity_resolution": {
+      "decision": "verified_title_only_R-PAP-44",
+      "reviewed": "2026-11-09",
+      "basis": "R-PAP-44: the PI's own cached owned page credits 132 exact DBLP titles, all on this one Zhejiang-affiliated DBLP person; the person's Latin name is the pinyin of the PI's Chinese name. The namesake check covered the 2,177 Zhejiang-affiliated DBLP persons of the pinned dump only.",
+      "evidence": [
+        {
+          "url": "https://dblp.org/pid/56/3321-3",
+          "sha256": "d42c8aa9cc8a00a9fabf18cc0e82c1c7fac331e855e0e2a68c8e6f01bd23ece3",
+          "quote": "<www mdate=\"2026-03-04\" key=\"homepages/56/3321-3\">\n<author>Weiwei Xu 0003</author>\n<title>Home Page</title>\n<url>https://orcid.org/0000-0003-3756-3539</url>\n<url>https://www.wikidata.org/entity/Q130967881</url>\n<note type=\"affiliation\">Zhejiang University, Hangzhou, Zhejiang, China</note>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        },
+        {
+          "url": "http://www.cad.zju.edu.cn/home/weiweixu/",
+          "sha256": "f8eb7dce98aadbbfd367aa92f13331d92aff97f3ec40459bf527b88d2051dbc6",
+          "quote": "VividAnimator: An End-to-End Audio and Pose-driven Half-Body Human Animation Framework",
+          "kind": "cached_owned_page_credits_exact_DBLP_titles",
+          "titles_matched": 132
+        }
+      ]
+    }
   },
   "孙凌云": {
     "no_identity": true,
@@ -1320,14 +1342,36 @@
     "collection_person_id": "zju_source_fac_5dc577e7ac031d449ef7"
   },
   "陈翔": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source name are admitted in this proposal, but no independently owned external bibliography identity is admitted. Name-only paper joins remain held.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No personally owned ORCID reviewed for this new source context; dump identifiers unresolved and not inherited.",
       "evidence": []
     },
-    "collection_person_id": "zju_source_fac_8ec7ce477b0449859cf0"
+    "collection_person_id": "zju_source_fac_8ec7ce477b0449859cf0",
+    "dblp": [
+      "https://dblp.org/pid/97/11157"
+    ],
+    "identity_resolution": {
+      "decision": "verified_title_only_R-PAP-44",
+      "reviewed": "2026-11-09",
+      "basis": "R-PAP-44: the PI's own cached owned page credits 24 exact DBLP titles, all on this one Zhejiang-affiliated DBLP person; the person's Latin name is the pinyin of the PI's Chinese name. The namesake check covered the 2,177 Zhejiang-affiliated DBLP persons of the pinned dump only.",
+      "evidence": [
+        {
+          "url": "https://dblp.org/pid/97/11157",
+          "sha256": "49dbb7c41a8fbf2d59801e2b81063ca333020f981577f1a3fa0fdffc439684f6",
+          "quote": "<www mdate=\"2020-05-12\" key=\"homepages/97/11157\">\n<author>Xiang Chen 0001</author>\n<title>Home Page</title>\n<note type=\"affiliation\">Zhejiang University, State Key Lab of CAD&amp;CG, China</note>\n<url>https://orcid.org/0000-0002-6955-8729</url>\n<url>https://www.wikidata.org/entity/Q88616005</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        },
+        {
+          "url": "https://xchen-cs.github.io",
+          "sha256": "783a35169e8cb7899bd265d6cefbba6b74fe3d923678fc19682223a65f921c66",
+          "quote": "GCN-Denoiser: Mesh Denoising with Graph Convolutional Networks",
+          "kind": "cached_owned_page_credits_exact_DBLP_titles",
+          "titles_matched": 24
+        }
+      ]
+    }
   },
   "陶煜波": {
     "no_identity": true,
@@ -1736,12 +1780,33 @@
   },
   "Jian Liu": {
     "collection_person_id": "zju_source_fac_31018a17b50e4be62d87",
-    "no_identity": true,
-    "why_no_identity": "Only the named official faculty/PI role is source-reviewed for this context. No source-owned bibliography/author identifier has been admitted; hold unreviewed global-name and ORCID inheritance without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No independent owned ORCID source admitted for this role-only ICSR context; original dump records remain discovery metadata.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/35/295-12"
+    ],
+    "identity_resolution": {
+      "decision": "verified_official_profile_links_dblp",
+      "reviewed": "2026-11-09",
+      "basis": "The official ICSR profile page of the PI links DBLP name-tree entry Liu_0012:Jian, i.e. the record \"Jian Liu 0012\", whose affiliation note names Zhejiang University. No name-only join.",
+      "evidence": [
+        {
+          "url": "https://dblp.org/pid/35/295-12",
+          "sha256": "828ef864b527765b74fcb83a67c33c342628686a8a62a84d96e8e1c7620fa466",
+          "quote": "<www mdate=\"2025-07-10\" key=\"homepages/35/295-12\">\n<author>Jian Liu 0012</author>\n<title>Home Page</title>\n<note type=\"affiliation\">Zhejiang University, Hangzhou, China</note>\n<note type=\"affiliation\" label=\"PhD 2018\">Aalto University, Espoo, Finland</note>\n<note type=\"affiliation\" label=\"former\">University of Helsinki, Finland</note>\n<url>https://orcid.org/0000-0003-2636-5561</url>\n<url>https://orcid.org/0000-0001-6796-6828</url>\n<url>https://openreview.net/profile?id=~Jian_Liu6</url>\n<url>https://ieeexplore.ieee.org/author/37088997976</url>\n<url>https://ieeexplore.ieee.org/author/37085638360</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        },
+        {
+          "url": "https://person.zju.edu.cn/en/jianliu",
+          "sha256": "e5ed9f9870ea3d356de6412220fbe2549bed149b1262a10a3091fedb81f1e9aa",
+          "quote": "dblp.org/pers/hd/l/Liu_0012:Jian",
+          "kind": "cached_official_profile_page"
+        }
+      ]
     }
   },
   "Wenbo Shen": {
