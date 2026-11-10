@@ -3,7 +3,7 @@
  "reviewed": "2026-11-10",
  "by": "claude-ntu-1110",
  "dump": "dblp-2026-09-01.xml.gz",
- "policy": "school_affiliation / homepage_url / school_coauthors rule bindings kept (Toronto precedent); name-only bindings (unique_name, unique_exact_name) need >=10 exact titles on the PI owned page (R-PAP-44) or an NTU-affiliated OpenAlex author carrying the same ORCID as the DBLP record (R-PAP-42); no-ORCID-conflict check is the builder (R-PAP-42a); dr.ntu.edu.sg is behind an AWS WAF human-verification challenge, so no profile was fetched live",
+ "policy": "school_affiliation / homepage_url / school_coauthors rule bindings kept (Toronto precedent); name-only bindings (unique_name, unique_exact_name) need >=10 exact titles on the PI owned page (R-PAP-44) or an NTU-affiliated OpenAlex author carrying the same ORCID as the DBLP record (R-PAP-42); no-ORCID-conflict check is the builder (R-PAP-42a); dr.ntu.edu.sg is behind an AWS WAF human-verification challenge, so no profile was fetched live; fresh-reviewer spot check of 40 EEE/SPMS/CEE bindings (seed 20261111): 0 wrong, 2 unsure (held), 38 ok",
  "accepted": {
   "Andy W. H. Khong": {
    "pid": "https://dblp.org/pid/66/1858",
@@ -69,12 +69,6 @@
      "ntu_works": 679
     }
    ]
-  },
-  "Cheng Chen": {
-   "pid": "https://dblp.org/pid/10/217-15",
-   "basis": "school_affiliation",
-   "why": "dblp record names NTU / owned homepage",
-   "corroboration": []
   },
   "Chip-Hong Chang": {
    "pid": "https://dblp.org/pid/95/137",
@@ -465,12 +459,6 @@
      "ntu_works": 87
     }
    ]
-  },
-  "Wei Huang": {
-   "pid": "https://dblp.org/pid/81/6685-13",
-   "basis": "school_affiliation",
-   "why": "dblp record names NTU / owned homepage",
-   "corroboration": []
   },
   "Woon-Seng Gan": {
    "pid": "https://dblp.org/pid/g/WoonSengGan",
@@ -927,6 +915,14 @@
   "Tao Huang": {
    "basis": "school_affiliation",
    "why": "identity risk: DBLP Tao Huang 0015 (cryptanalysis, SPMS, last 2018) does not fit a Medicine-list assistant professor"
+  },
+  "Wei Huang": {
+   "basis": "school_affiliation",
+   "why": "fresh-reviewer spot check: DBLP Wei Huang 0013 (Nanchang University, UCSD, A*STAR; graph learning) is likely a namesake; no NTU tie"
+  },
+  "Cheng Chen": {
+   "basis": "school_affiliation",
+   "why": "fresh-reviewer spot check: DBLP Cheng Chen 0015 (ECNU theory group, NTU only as one note) may be a different person"
   }
  }
 }
