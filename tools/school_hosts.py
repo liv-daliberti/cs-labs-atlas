@@ -20,6 +20,11 @@ import school_config as S  # noqa: E402
 import school_web as W  # noqa: E402
 
 
+# Hosts that are never contacted, not even for robots.txt, when the charter says use = none: DBLP (local dump only, never fetch dblp.org),
+# ORCID and the Wayback Machine. Their verdict is recorded without a request.
+NEVER_CONTACT = frozenset({'dblp.org', 'www.dblp.org', 'dblp.uni-trier.de', 'orcid.org', 'pub.orcid.org', 'web.archive.org', 'web-static.archive.org'})
+
+
 def urls_on_host(cfg, host):
     """Listing URLs of the charter's departments and affiliated units that sit on `host` (a moved department site: UChicago friction 25)."""
     out = []
@@ -34,6 +39,13 @@ def main(key, refresh=False):
     cfg = S.get(key); c = W.con(key); out = []
     for h in cfg.get('hosts') or []:
         host, use, probe = h['host'], h.get('use') or 'live', h.get('probe') or ''
+        if use == 'none' and host in NEVER_CONTACT:
+            out.append(dict(host=host, use=use, purpose=h.get('purpose'), robots='not_fetched', robots_status=None, crawl_delay=None, probe=probe,
+                            probe_result='skipped', blocked=None, consistent=True, problems=[],
+                            note='use = none and a never-contact host (local dump only): no request, not even robots.txt',
+                            checked_at=time.strftime('%Y-%m-%dT%H:%M:%S')))
+            print(json.dumps(out[-1], ensure_ascii=False), flush=True)
+            continue
         st, body = W.robots_row(c, host, refresh=refresh)
         ours, ai, delay = W.robots_decision(st, body, probe or '/')
         robots = 'unreachable' if (st == -1 or st >= 500) else ('allowed' if ours and ai else ('disallowed-for-ai-agents' if ours else 'disallowed'))
