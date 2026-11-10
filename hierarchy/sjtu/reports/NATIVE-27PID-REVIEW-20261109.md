@@ -14,3 +14,19 @@ Independent work-level review (`scratch/sjtu-admit-1109/coauthor-check-27pid.jso
 
 - Run SJTU natives only on runtime commit `4ca6712682c16fcdf4cb283fd3335b5e94f157a9` (snapshot of `worktrees/zju-native-runtime-1108`), never on `c49480c` or later main: those activate advisee identity routes and misattribute namesakes (Rui Wang to 王瑞).
 - The 189 proposed holds are now 189 additional `hold` decisions in `reviewed/paper-claim-review.json`, each with original stored-record evidence (url, sha256 of the stored compressed work blob, quote of title/credited authorship/affiliation/type) and the flagging rule recorded in `flag_rule`. A coauthor-overlap rule proposes; it is not evidence. Held works are excluded from the package.
+
+## Corrected package (job 32177052, runtime 4ca6712, input commit 75c2ade before rebase)
+
+| Measure | Value |
+| --- | ---: |
+| Owned DBLP bibliographies | 27 of 198 |
+| Package rows / distinct works | 1782 / 1741 (earlier uncorrected 27-PID: 1970 / 1928; 6-PID baseline: 233) |
+| Held claim decisions in `paper-claim-review.json` | 319 (118 earlier + 201 new, each with stored-record evidence) |
+| Rows with typed faculty period / 2026 listing only | 1669 / 113 |
+| Faculty with at least one paper | 25 |
+| Candidate student links (verified: 0) | 207; 4 fail the name/date check (Jinhua Wu 2021 before 2022 start; Binlin/Binglin Zhou x2; Yiming/Yiting Wang), 161 are undated and cannot be checked |
+| Population audit (school text, date vs period/listing, type) | 1781 of 1782 pass; the one failure is 沈为 "Image Stitching", a book chapter (hold next cycle) |
+| Stored-record open-copy pointers (upper bound, nothing fetched) | 936 PDF URL, 85 landing page, 720 none of 1741 |
+| Isolated ID rehearsal against registry c5df145c (copy; real registry unchanged) | 468 people, 1741 works, 0 conflicts, 1 co-advising hold skipped (Yiming Wang) |
+
+Not met: 2500-paper target (1741 candidates), copies (nothing measured), formal 105-row hand-judged stage 9, 171 faculty without an owned bibliography, 79 without period evidence.
