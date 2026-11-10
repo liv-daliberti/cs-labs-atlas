@@ -291,6 +291,24 @@ def stale_list(x, page_alumni):
     return bool(last and m and int(m.group(1)) - last >= 8)
 
 
+STAFF_RX = re.compile(r'\b(?:administrative|admin)\s+(?:associate|assistant|coordinator|manager)|\bexecutive assistant\b|\boffice manager\b|\b(?:program|student services|department) (?:coordinator|administrator|manager)\b', re.I)
+FOOTER_YEAR_RX = re.compile(r'(?:©|\bcopyright\b|\blast (?:updated|modified)\b)\D{0,30}((?:19|20)\d\d)', re.I)
+
+
+def admin_staff_entry(head, desc, quote):  # head is accepted for symmetry with talk_item; the staff title in the entry decides
+    """Stanford round 6 (2026-11-02): an 'Administrative Associate' in the Contact block of a Stanford Profile (Jenny Lam) is staff, not a student of the lab."""
+    t = f'{desc or ""} {quote or ""}'[:160]
+    return bool(STAFF_RX.search(t) and not re.search(r'\b(?:ph\.?d|student|postdoc|candidate|advisee)\b', t, re.I))
+
+
+def stale_footer_year(text, capture_year=None):
+    """Stanford round 6 (open repair 2 of docs/LAB-PAGES.md): the newest year of a copyright / last-updated footer when it is before 2016,
+    else None. A page that says 'Copyright 2012' is an old page even when captured in 2024; its 'current' students are pre-window."""
+    ys = [int(m.group(1)) for m in FOOTER_YEAR_RX.finditer(text or '')]
+    last = max(ys) if ys else None
+    return last if last and last < 2016 and (capture_year is None or capture_year >= last + 2) else None
+
+
 TALK_HEAD = re.compile(r'\b(?:invited talks?|keynotes?|talks?|awards?|honors?|service|news|outreach|organizer|new position)\b', re.I)
 
 
@@ -1649,6 +1667,10 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'site_at_other_institution', f"the page's header names {inst_[src]}, not this school"
             elif CREDIT_RX.search(x.get('quote') or '') or CREDIT_RX.search((x.get('desc') or '')[:60]):
                 why, x['detail'] = 'name_unresolved', 'site credit or footer'
+            elif fn not in keep and admin_staff_entry(x.get('head'), x.get('desc'), x.get('quote')):
+                why, x['detail'] = 'not_a_student', 'administrative staff (a contact-block or staff entry), not a lab member'
+            elif fn not in keep and (sy := page_stale_footer(kit, school, src, text_cache)):
+                why, x['detail'] = 'undated_cannot_place', f"the page's footer is dated {sy} (before 2016): an old page, its current list is pre-window"
             elif auto_plan and fn not in keep and (nonmember := nonmember_candidate(x.get('name'), x.get('head'))):
                 why, x['detail'] = nonmember
             elif any(names.match_one(x['name'], c) for c in coadv[src]):
@@ -2107,6 +2129,17 @@ def recover_verdicts(school):
     c.close()
     return out
 
+
+
+def page_stale_footer(kit, school, src, cache):
+    """The pre-2016 footer year of a people page (stale_footer_year), read from the stored page text; None when unreadable or current."""
+    try:
+        if src not in cache:
+            cache[src] = kit.lpev.text(school, src)
+    except (KeyError, ValueError):
+        return None
+    m = re.search(r'/web/(\d{4})', src or '')
+    return stale_footer_year(cache[src], int(m.group(1)) if m else None)
 
 
 def caps_heading_is_past(kit, school, src, name, cache):
