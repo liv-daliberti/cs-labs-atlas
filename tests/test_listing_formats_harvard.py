@@ -96,3 +96,10 @@ def test_school_wide_seas_title_filter_does_not_change_capture_parsing(tmp_path,
     del slot['title_filter']
     R.main('harvard')
     assert len(json.loads((tmp_path / 'rows.json').read_text())) == 2
+
+
+def test_listing_slots_carry_the_charter_format():
+    """HKUST's hkust_faculty_table has no detector, so plan_fetch needs the slot's format (2026-11-10: archived captures parsed 0 entries without it)."""
+    import school_config as S
+    slots = S.listing_slots('hkust')
+    assert slots and slots[0].get('format') == 'hkust_faculty_table'
