@@ -6,7 +6,7 @@ import atlas_paths as P
 import orcid_namesake as o
 
 
-def test_classify():
+def test_R_PAP_42_classify():
     assert o.classify('https://orcid.org/0000-0002-8365-4741', ['0000-0002-8365-4741'], 3) == 'match'
     assert o.classify('0000-0003-0655-3303', ['0000-0002-8365-4741'], 1) == 'mixed'
     assert o.classify('0000-0003-3444-8383', ['0000-0001-9817-4065'], 0) == 'not'
@@ -18,7 +18,7 @@ def _overrides():
     return json.loads(path.read_text()) if path.exists() else {}
 
 
-def test_zju_namesake_ids_conflict_with_the_dblp_orcids():
+def test_R_PAP_42_namesake_ids_conflict_with_the_dblp_orcids():
     checked = 0
     for pi, ov in _overrides().items():
         dblp_orcids = set()
@@ -37,7 +37,7 @@ def test_zju_namesake_ids_conflict_with_the_dblp_orcids():
     assert checked in (0, 24)
 
 
-def test_zju_reciprocal_url_bindings_name_the_profile_url():
+def test_R_PAP_42_reciprocal_url_bindings_name_the_profile_url():
     for pi, ov in _overrides().items():
         ir = ov.get('identity_resolution') or {}
         if ir.get('decision') != 'verified_source_exact_reciprocal_profile_url':
