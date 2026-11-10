@@ -19,6 +19,12 @@ SITES = (
     ('Gang Wang', 'https://gangw.cs.illinois.edu/index.html',
      'Before joining UIUC, I worked as an Assistant Professor at Virginia Tech from 2016 to 2019.',
      'University of Illinois Urbana-Champaign'),
+    ('Changhee Jung', 'https://www.cs.purdue.edu/homes/chjung/',
+     'My lab, the CompArch (Compiler and Architecture) research group, was established in 2013 at Virginia Tech and is now based at Purdue.',
+     'Purdue University'),
+    ('Dongyoon Lee', 'https://www3.cs.stonybrook.edu/~dongyoon/',
+     'Before joining Stony Brook University, I worked as an assistant professor at Virginia Tech (2014-2019)',
+     'Stony Brook University'),
 )
 
 
