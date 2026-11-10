@@ -95,3 +95,14 @@ def test_sw_old_list_bands_links_and_plain_names():
     got = [(r['name_listed'], r['titles'][0], bool(r['profile'])) for r in rows]
     assert got == [('孙家广', '院士', True), ('向东', '杰青', True), ('雍俊海', '杰青', True), ('Philip.S.Yu', '特聘教授', False),
                    ('宋韶旭', '讲师/助理研究员/助理教授', True), ('刘克彬', '讲师/助理研究员/助理教授', True), ('万海', '讲师/助理研究员/助理教授', False)]
+
+
+EER = '''<ul class="ul-listb3"><li id="yjs_1"><div class="con"><div class="type">信息光电子研究所</div><div class="txt"><div class="line" id="zc_1_1"><div class="l" id="showdatatitle1">高 级：</div>
+<div class="t"><ul id="showdatainfo1"><a href="http://web.ee.tsinghua.edu.cn/chenhongwei/zh_CN/index.htm" target="_blank">陈宏伟</a><a href="http://web.ee.tsinghua.edu.cn/luoyi/zh_CN/index.htm">罗毅</a></ul></div></div>
+<div class="line" id="zc_1_2"><div class="l">副高级：</div><div class="t"><ul id="showdatainfo2"><a href="http://web.ee.tsinghua.edu.cn/x/zh_CN/index.htm">甲乙</a></ul></div></div></div></div></li></ul>'''
+
+
+def test_ee_rendered_institute_band_and_names():
+    fmt, rows = L.parse(EER)
+    assert fmt == 'tsinghua_ee_rendered'
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('陈宏伟', ['高级'], '信息光电子研究所'), ('罗毅', ['高级'], '信息光电子研究所'), ('甲乙', ['副高级'], '信息光电子研究所')]

@@ -662,7 +662,26 @@ def tsinghua_sw_old_list(h):
     return out
 
 
+def tsinghua_ee_rendered(h):
+    """Tsinghua EE faculty page (ryqk/teacher/xxgdzyjs/js2.htm) AFTER JavaScript (tools/js_render_capture.py): `li#yjs_N` institute (`div.type`), then `div.line` rows
+    with the rank band in `div.l` (高 级 / 副高级 / 中 级) and the names as `<a>` links in `ul[id^=showdatainfo]`. The raw HTML holds the same list only as embedded JSON."""
+    from bs4 import BeautifulSoup
+    out = []
+    for li in BeautifulSoup(h, 'html.parser').select('li[id^=yjs_]'):
+        t = li.select_one('div.type')
+        inst = clean(t.get_text(' ', strip=True)) if t else None
+        for line in li.select('div.line'):
+            band = line.select_one('div.l')
+            band = clean(band.get_text('', strip=True)).replace(' ', '').rstrip('：:') if band else None
+            for a in line.select('ul a[href]'):
+                name = clean(a.get_text(' ', strip=True))
+                if name:
+                    out.append(dict(name_listed=name, titles=[band] if band else [], profile=a['href'], homepage=None, division=inst))
+    return out
+
+
 FORMATS = {
+    'tsinghua_ee_rendered': (tsinghua_ee_rendered, re.compile(r'id="showdatainfo')),
     'tsinghua_sw_old_list': (tsinghua_sw_old_list, re.compile(r'id="s2_right_con"[^>]*>.{0,400}教师名录', re.S)),
     'tsinghua_cs_old_list': (tsinghua_cs_old_list, re.compile(r'class="box_detail"[^<]*<h1[^>]*>.{0,200}在职教师名录', re.S)),
     'tsinghua_iiis_media': (tsinghua_iiis_media, re.compile(r'class="color_danger"')),
