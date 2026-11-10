@@ -37,7 +37,7 @@ legacy_sweep = ""
 [census]
 computing_departments = ["CCDS"]
 center_units = []
-home_units = {CCDS = 'College of Computing and Data Science', SPMS = 'School of Physical and Mathematical Sciences', LKC_MEDICINE = 'Lee Kong Chian School of Medicine'}
+home_units = {EEE = 'School of Electrical and Electronic Engineering', MAE = 'School of Mechanical and Aerospace Engineering', MSE = 'School of Materials Science and Engineering', SBS = 'School of Biological Sciences', WKWSCI = 'Wee Kim Wee School of Communication and Information', HASS = 'School of Humanities and Social Sciences', ADM = 'School of Art, Design and Media', CCDS = 'College of Computing and Data Science', SPMS = 'School of Physical and Mathematical Sciences', LKC_MEDICINE = 'Lee Kong Chian School of Medicine'}
 rank_words = {}
 
 [sweep_check]
@@ -48,7 +48,7 @@ not_faculty = {}
 share_test_settles = []
 
 [site]
-depts = {CCDS = "College of Computing and Data Science", SPMS = "School of Physical and Mathematical Sciences", LKC_MEDICINE = "Lee Kong Chian School of Medicine"}
+depts = {EEE = "School of Electrical and Electronic Engineering", MAE = "School of Mechanical and Aerospace Engineering", MSE = "School of Materials Science and Engineering", SBS = "School of Biological Sciences", WKWSCI = "Wee Kim Wee School of Communication and Information", HASS = "School of Humanities and Social Sciences", ADM = "School of Art, Design and Media", CCDS = "College of Computing and Data Science", SPMS = "School of Physical and Mathematical Sciences", LKC_MEDICINE = "Lee Kong Chian School of Medicine"}
 full_codes = ["CCDS"]
 
 [periods]
@@ -93,8 +93,57 @@ url = "https://www.ntu.edu.sg/computing"
 code = "SPMS"
 name = "School of Physical and Mathematical Sciences"
 url = "https://www.ntu.edu.sg/spms"
-listings = ["www.ntu.edu.sg/spms/about-us/mathematics/people/faculty"]
+listings = ["www.ntu.edu.sg/spms/about-us/mathematics/people/faculty", "www.ntu.edu.sg/spms/about-us/physics/people/faculty"]
 # Literal official unit/navigation sources and Hai Dang Dau's explicit joint appointment; individual computing relevance still required.
+
+[[affiliated_units]]
+code = "EEE"
+name = "School of Electrical and Electronic Engineering"
+url = "https://www.ntu.edu.sg/eee"
+listings = ["www.ntu.edu.sg/eee/about-us/our-people"]
+note = "live read 2026-11-10 (robots allowed; proves 2026 only; no Wayback history); individual computing relevance still required (owner scope rule: computing-related faculty in any unit)"
+
+[[affiliated_units]]
+code = "MAE"
+name = "School of Mechanical and Aerospace Engineering"
+url = "https://www.ntu.edu.sg/mae"
+listings = ["www.ntu.edu.sg/mae/about-us/our-people/faculty"]
+note = "live read 2026-11-10 (robots allowed; proves 2026 only; no Wayback history); individual computing relevance still required (owner scope rule: computing-related faculty in any unit)"
+
+[[affiliated_units]]
+code = "MSE"
+name = "School of Materials Science and Engineering"
+url = "https://www.ntu.edu.sg/mse"
+listings = ["www.ntu.edu.sg/mse/about-us/faculty", "www.ntu.edu.sg/mse/about-us/faculty-staff", "www.ntu.edu.sg/mse/about-us/our-people"]
+note = "live read 2026-11-10 (robots allowed; proves 2026 only; no Wayback history); individual computing relevance still required (owner scope rule: computing-related faculty in any unit)"
+
+[[affiliated_units]]
+code = "SBS"
+name = "School of Biological Sciences"
+url = "https://www.ntu.edu.sg/sbs"
+listings = ["www.ntu.edu.sg/sbs/about-us/our-people"]
+note = "live read 2026-11-10 (robots allowed; proves 2026 only; no Wayback history); individual computing relevance still required (owner scope rule: computing-related faculty in any unit)"
+
+[[affiliated_units]]
+code = "WKWSCI"
+name = "Wee Kim Wee School of Communication and Information"
+url = "https://www.ntu.edu.sg/wkwsci"
+listings = ["www.ntu.edu.sg/wkwsci/about-us/our-people"]
+note = "live read 2026-11-10 (robots allowed; proves 2026 only; no Wayback history); individual computing relevance still required (owner scope rule: computing-related faculty in any unit)"
+
+[[affiliated_units]]
+code = "HASS"
+name = "School of Humanities and Social Sciences"
+url = "https://www.ntu.edu.sg/hass"
+listings = ["www.ntu.edu.sg/hass/about-us/faculty-staff"]
+note = "live read 2026-11-10 (robots allowed; proves 2026 only; no Wayback history); individual computing relevance still required (owner scope rule: computing-related faculty in any unit)"
+
+[[affiliated_units]]
+code = "ADM"
+name = "School of Art, Design and Media"
+url = "https://www.ntu.edu.sg/adm"
+listings = ["www.ntu.edu.sg/adm/about-us/our-people/faculty"]
+note = "live read 2026-11-10 (robots allowed; proves 2026 only; no Wayback history); individual computing relevance still required (owner scope rule: computing-related faculty in any unit)"
 
 [[affiliated_units]]
 code = "LKC_MEDICINE"
