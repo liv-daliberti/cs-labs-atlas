@@ -35,6 +35,13 @@ from dblp_dump_persons import records, text, AUTH, NOTE, URL, YEAR  # noqa: E402
 NOTE_AFF = re.compile(r'<note[^>]*type="affiliation"[^>]*>(.*?)</note>', re.S)
 
 
+def select_pis(people, cov):
+    """The census PIs plus the ladder faculty of affiliated departments. A source without a `kind` (legacy released schools' hand-composed
+    census) belongs to no department and never makes its person an affiliated-ladder target."""
+    return [x for x in people if x.get('is_pi') or any(cov.get((s_.get('kind') or '').split(':')[-1]) == 'affiliated' and s_.get('rank') == 'ladder'
+                                                       for s_ in x.get('sources') or [])]
+
+
 def main(key):
     cfg = S.get(key); aff = S.aff_rx(key)
     doms = [d.lower() for d in (cfg.get('web') or {}).get('domains') or []]
@@ -43,8 +50,7 @@ def main(key):
     adds = json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []
     cov = {d['code']: d.get('coverage') for d in cfg.get('departments') or []}
     # the PIs, plus the ladder faculty of affiliated departments (their CS-related review needs their DBLP output)
-    pis = [x for x in census + adds if x.get('is_pi') or any(cov.get(s_['kind'].split(':')[-1]) == 'affiliated' and s_.get('rank') == 'ladder'
-                                                             for s_ in x.get('sources') or [])]
+    pis = select_pis(census + adds, cov)
     def nurl(u):
         return re.sub(r'^https?://(?:www\.|web\.)?', '', (u or '').lower()).rstrip('/')
     homes = collections.defaultdict(set)  # the homepage each PI's department listing links (tools/listing_rows.py)
