@@ -1,0 +1,219 @@
+{
+ "school": "toronto",
+ "reviewed": "2026-11-10",
+ "by": "claude-toronto-census-1110",
+ "rule": "R-PAP-06 / Tsinghua mixed-id criterion (tools/mixed_openalex_check.py): anchored OpenAlex id with school works but none of the PI DBLP works = mixed_openalex",
+ "scope": "156 PIs; 170 anchored ids (override ids, native-anchored oaAuthorIds, ORCID-matched ids)",
+ "result": {
+  "anchored_verified": 137,
+  "mixed": 0,
+  "undecided": 2,
+  "no_dblp_identity": 31
+ },
+ "oa_only_pis": "29 ids / 25 PIs: computing-share passed; 25 ids carry an ORCID; 21 of them also overlap the unique-name DBLP candidate works (corroboration); held: Peter W. Lehn (no ORCID, no DBLP, no page corroboration); Chi-Guhn Lee second id dropped (no ORCID); Lee, Yano, Yoo, Kwon have an ORCID id but no DBLP person: identity by ORCID id + computing share only",
+ "rows": [
+  [
+   "Ali Sheikholeslami",
+   "A5077605824",
+   102,
+   38,
+   true
+  ],
+  [
+   "Alison Olechowski",
+   "A5053289685",
+   30,
+   24,
+   true
+  ],
+  [
+   "Chi-Guhn Lee",
+   "A5057636084",
+   0,
+   null,
+   true
+  ],
+  [
+   "Chi-Guhn Lee",
+   "A5057024915",
+   0,
+   null,
+   false
+  ],
+  [
+   "Deepa Kundur",
+   "A5077035168",
+   228,
+   97,
+   true
+  ],
+  [
+   "Greg A. Jamieson",
+   "A5040688081",
+   41,
+   22,
+   true
+  ],
+  [
+   "Javed Mostafa",
+   "A5004243939",
+   131,
+   6,
+   true
+  ],
+  [
+   "John W. Simpson-Porco",
+   "A5057955774",
+   81,
+   27,
+   true
+  ],
+  [
+   "Jos\u00e9 Zariffa",
+   "A5048203934",
+   37,
+   29,
+   true
+  ],
+  [
+   "Jos\u00e9 Zariffa",
+   "A5123679147",
+   37,
+   0,
+   true
+  ],
+  [
+   "Luai Al-Labadi",
+   "A5052702119",
+   12,
+   10,
+   true
+  ],
+  [
+   "Luca Scardovi",
+   "A5057702802",
+   54,
+   17,
+   true
+  ],
+  [
+   "Manfredi Maggiore",
+   "A5015751405",
+   79,
+   16,
+   true
+  ],
+  [
+   "Margaret P. Chapman",
+   "A5009559667",
+   35,
+   19,
+   true
+  ],
+  [
+   "Masayuki Yano",
+   "A5088835605",
+   0,
+   null,
+   true
+  ],
+  [
+   "Nadia Caidi",
+   "A5034458996",
+   50,
+   14,
+   true
+  ],
+  [
+   "Paul B. Yoo",
+   "A5031279146",
+   0,
+   null,
+   true
+  ],
+  [
+   "Periklis Andritsos",
+   "A5000377124",
+   52,
+   13,
+   false
+  ],
+  [
+   "Peter W. Lehn",
+   "A5029087161",
+   0,
+   null,
+   false
+  ],
+  [
+   "Priyank Chandra",
+   "A5046684979",
+   62,
+   47,
+   true
+  ],
+  [
+   "Raviraj Adve",
+   "A5070888504",
+   275,
+   106,
+   true
+  ],
+  [
+   "Raviraj Adve",
+   "A5140929433",
+   275,
+   4,
+   false
+  ],
+  [
+   "Roman Genov",
+   "A5109597713",
+   192,
+   8,
+   true
+  ],
+  [
+   "Roman Genov",
+   "A5021668898",
+   192,
+   95,
+   true
+  ],
+  [
+   "Roy H. Kwon",
+   "A5026867352",
+   0,
+   null,
+   true
+  ],
+  [
+   "Salma Emara",
+   "A5025946608",
+   10,
+   8,
+   true
+  ],
+  [
+   "Shahrokh Valaee",
+   "A5089951737",
+   293,
+   149,
+   true
+  ],
+  [
+   "Vahid Sarhangian",
+   "A5055227185",
+   19,
+   12,
+   true
+  ],
+  [
+   "Vaughn Betz",
+   "A5030184404",
+   158,
+   96,
+   true
+  ]
+ ]
+}
