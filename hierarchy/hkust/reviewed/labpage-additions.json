@@ -1,0 +1,1220 @@
+{
+ "school": "hkust",
+ "generated_at": "2026-11-10T09:36:54+00:00",
+ "tool": "tools/labpage_audit.py",
+ "standard": "docs/LAB-PAGES.md",
+ "status": "proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)",
+ "rules": {
+  "LP-STU-01": "A person listed on the PI's own lab page (people, members, alumni section; live page or a Wayback id_ capture), under a people heading, not the PI, not in a faculty/collaborator/staff section, not another PI of the school, whose stated years do not end before 2016 or before the PI's appointment at the school, and who is dated or listed as current on a 2016+ capture (undated alumni only when the lab has only ever been at this school) is a lab member: the same admission the 2026-10-22 lab-page rows had (labpage-evidence.json, R-STU-01 'researched advisees'), with url, sha256 and a verbatim quote naming the person.",
+  "LP-PAP-01": "A paper listed on the PI's own lab publications page whose resolved work carries the PI on the byline, falls in the PI's appointment (R-PAP-01) and whose PI authorship lists the school (or page 1 ties the school to the PI) is a lab paper with identity 'labpage_listing' (R-PAP-04: the lab's own publications page), exactly the rows tools/labpage_recover.py accepts into labpage-recovered.jsonl.gz."
+ },
+ "students": [
+  {
+   "name": "Luyu Cheng",
+   "role": "phd",
+   "years": [
+    2021,
+    2026
+   ],
+   "url": "https://cse.hkust.edu.hk/~parreaux/author/lionel-parreaux/",
+   "sha256": "6c14e89e7e9a646ccc03b63a756632493834a294654a8d38fdfee735304cbe4d",
+   "quote": "PhD Students Anson Yeung (2025–present), 🏆 HKPFS Mark (Pui Hei) Ng (2025–present), 🏆 HKPFS Maxime Mulder (2024–present) Heung Tung Au (2024–present) David (Ching Hang) Mak (2024–present) Chun Yin (Tony) Chau (2023–present), 🏆 HKPFS Cunyuan Gao (2023–present) Yijia (Anto) Chen (2022–present), 🏆 HKPFS John (Chun Kit) Lam (2022–present, co-supervised with Amir ), 🏆 HKPFS Luyu Cheng",
+   "note": "lab-page audit 2026-11-10; section: PhD Students",
+   "pi": "Lionel PARREAUX",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Andong Fan",
+   "role": null,
+   "years": [
+    2022,
+    2024
+   ],
+   "url": "https://cse.hkust.edu.hk/~parreaux/author/lionel-parreaux/",
+   "sha256": "6c14e89e7e9a646ccc03b63a756632493834a294654a8d38fdfee735304cbe4d",
+   "quote": "MPhil Students Ruqing Yang (2023–2025) Andong Fan",
+   "note": "lab-page audit 2026-11-10; section: MPhil Students",
+   "pi": "Lionel PARREAUX",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ishan Bhanuka",
+   "role": null,
+   "years": [
+    2022,
+    2024
+   ],
+   "url": "https://cse.hkust.edu.hk/~parreaux/author/lionel-parreaux/",
+   "sha256": "6c14e89e7e9a646ccc03b63a756632493834a294654a8d38fdfee735304cbe4d",
+   "quote": "MPhil Students Ruqing Yang (2023–2025) Andong Fan (2022–2024) Ishan Bhanuka",
+   "note": "lab-page audit 2026-11-10; section: MPhil Students",
+   "pi": "Lionel PARREAUX",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Gokul Rajiv",
+   "role": null,
+   "years": [
+    2025,
+    2025
+   ],
+   "url": "https://cse.hkust.edu.hk/~parreaux/author/lionel-parreaux/",
+   "sha256": "6c14e89e7e9a646ccc03b63a756632493834a294654a8d38fdfee735304cbe4d",
+   "quote": "Interns Gokul Rajiv",
+   "note": "lab-page audit 2026-11-10; section: MPhil Students > Interns",
+   "pi": "Lionel PARREAUX",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Florent Ferrari",
+   "role": null,
+   "years": [
+    2025,
+    2025
+   ],
+   "url": "https://cse.hkust.edu.hk/~parreaux/author/lionel-parreaux/",
+   "sha256": "6c14e89e7e9a646ccc03b63a756632493834a294654a8d38fdfee735304cbe4d",
+   "quote": "Interns Gokul Rajiv (Summer 2025) Florent Ferrari",
+   "note": "lab-page audit 2026-11-10; section: MPhil Students > Interns",
+   "pi": "Lionel PARREAUX",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Mohammad Broughani",
+   "role": null,
+   "years": [
+    2023,
+    2023
+   ],
+   "url": "https://cse.hkust.edu.hk/~parreaux/author/lionel-parreaux/",
+   "sha256": "6c14e89e7e9a646ccc03b63a756632493834a294654a8d38fdfee735304cbe4d",
+   "quote": "Interns Gokul Rajiv (Summer 2025) Florent Ferrari (Summer 2025) Mohammad Broughani",
+   "note": "lab-page audit 2026-11-10; section: MPhil Students > Interns",
+   "pi": "Lionel PARREAUX",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  }
+ ],
+ "papers": [
+  {
+   "pi": "James Tin-Yau KWOK 郭天佑",
+   "key": "labpage:2bf7ea68525778c8557aed929c55825aaab8be02",
+   "title": "Loss-aware Weight Quantization of Deep Networks",
+   "year": 2018,
+   "doi": "10.48550/arxiv.1802.08635",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Hou, Lu",
+    "Kwok, James T."
+   ],
+   "arxiv": "1802.08635",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W2786548044",
+    "appointment": {
+     "listing": 2018
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Hong Kong University of Science and Technology",
+     "text: Department of Computer Science and Engineering Hong Kong University of Science and Technology Hong Kong"
+    ],
+    "institutions": [
+     "Hong Kong University of Science and Technology"
+    ],
+    "raw_affiliations": [
+     "Department of Computer Science and Engineering Hong Kong University of Science and Technology Hong Kong"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W2786548044",
+     "authorships": [
+      {
+       "raw_author_name": "Hou, Lu",
+       "author": {
+        "id": "https://openalex.org/A5101663633"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Department of Computer Science and Engineering Hong Kong University of Science and Technology Hong Kong"
+       ]
+      },
+      {
+       "raw_author_name": "Kwok, James T.",
+       "author": {
+        "id": "https://openalex.org/A5070273088"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Department of Computer Science and Engineering Hong Kong University of Science and Technology Hong Kong"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://cse.hkust.edu.hk/~jamesk/publication.html",
+     "capture_url": null,
+     "sha256": "636e7d48b6b351dc75848c4d9ca68f53969176ca2c5a7337708cd93aa5342f6c",
+     "quote": "L. Hou, J.T. Kwok . Loss-aware weight quantization of deep networks . International Conference on Learning Representations (ICLR) , Vancouver, BC, Canada, April 2018.",
+     "listed_title": "Loss-aware weight quantization of deep networks",
+     "listed_year": 2018
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "7704219c026ad9e7"
+  },
+  {
+   "pi": "James Tin-Yau KWOK 郭天佑",
+   "key": "labpage:0ee89682f37d5bbebd77827f777def901b0a5440",
+   "title": "Loss-aware Binarization of Deep Networks",
+   "year": 2016,
+   "doi": "10.48550/arxiv.1611.01600",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Hou, Lu",
+    "Yao, Quanming",
+    "Kwok, James T."
+   ],
+   "arxiv": "1611.01600",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W2554592357",
+    "appointment": {
+     "listing": 2016
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Hong Kong University of Science and Technology",
+     "text: Department of Computer Science and Engineering Hong Kong University of Science and Technology Clear Water Bay , Hong Kong"
+    ],
+    "institutions": [
+     "Hong Kong University of Science and Technology"
+    ],
+    "raw_affiliations": [
+     "Department of Computer Science and Engineering Hong Kong University of Science and Technology Clear Water Bay , Hong Kong"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W2554592357",
+     "authorships": [
+      {
+       "raw_author_name": "Hou, Lu",
+       "author": {
+        "id": "https://openalex.org/A5101663633"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Department of Computer Science and Engineering Hong Kong University of Science and Technology Clear Water Bay , Hong Kong"
+       ]
+      },
+      {
+       "raw_author_name": "Yao, Quanming",
+       "author": {
+        "id": "https://openalex.org/A5072484211"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Department of Computer Science and Engineering Hong Kong University of Science and Technology Clear Water Bay , Hong Kong"
+       ]
+      },
+      {
+       "raw_author_name": "Kwok, James T.",
+       "author": {
+        "id": "https://openalex.org/A5070273088"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Department of Computer Science and Engineering Hong Kong University of Science and Technology Clear Water Bay , Hong Kong"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://cse.hkust.edu.hk/~jamesk/publication.html",
+     "capture_url": null,
+     "sha256": "636e7d48b6b351dc75848c4d9ca68f53969176ca2c5a7337708cd93aa5342f6c",
+     "quote": "L. Hou, Q. Yao, J.T. Kwok . Loss-aware binarization of deep networks . International Conference on Learning Representations (ICLR) , Toulon, France, Apr 2017.",
+     "listed_title": "Loss-aware binarization of deep networks",
+     "listed_year": 2017
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "925ce9c410ff5053"
+  },
+  {
+   "pi": "Ke YI 易珂",
+   "key": "labpage:51d86fb2ebb8543b15c6652cec1aeb8e5c36b926",
+   "title": "Frequency Estimation Under Multiparty Differential Privacy: One-shot and Streaming",
+   "year": 2021,
+   "doi": "10.48550/arxiv.2104.01808",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Huang, Ziyue",
+    "Qiu, Yuan",
+    "Yi, Ke",
+    "Cormode, Graham"
+   ],
+   "arxiv": "2104.01808",
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W3145220036",
+    "appointment": {
+     "listing": 2021
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Hong Kong University of Science and Technology",
+     "text: Hong Kong University of Science and Technology , {zhuangbq ,",
+     "text: , Hong Kong University of Science and Technology"
+    ],
+    "institutions": [
+     "Hong Kong University of Science and Technology"
+    ],
+    "raw_affiliations": [
+     "Hong Kong University of Science and Technology , {zhuangbq ,",
+     ", Hong Kong University of Science and Technology"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W3145220036",
+     "authorships": [
+      {
+       "raw_author_name": "Huang, Ziyue",
+       "author": {
+        "id": "https://openalex.org/A5111110651"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Hong Kong University of Science and Technology , {zhuangbq ,",
+        ", Hong Kong University of Science and Technology"
+       ]
+      },
+      {
+       "raw_author_name": "Qiu, Yuan",
+       "author": {
+        "id": "https://openalex.org/A5072101631"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Hong Kong University of Science and Technology , {zhuangbq ,",
+        ", Hong Kong University of Science and Technology"
+       ]
+      },
+      {
+       "raw_author_name": "Yi, Ke",
+       "author": {
+        "id": "https://openalex.org/A5009196125"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Hong Kong University of Science and Technology , {zhuangbq ,",
+        ", Hong Kong University of Science and Technology"
+       ]
+      },
+      {
+       "raw_author_name": "Cormode, Graham",
+       "author": {
+        "id": "https://openalex.org/A5031896681"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I39555362",
+         "display_name": "University of Warwick",
+         "lineage": [
+          "https://openalex.org/I39555362"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "University of Warwick ,",
+        "University of Warwick"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://cse.hkust.edu.hk/~yike/research.htm",
+     "capture_url": null,
+     "sha256": "46ef7ddf8dd81e94a6521fdf76f64c4cb7092fbd97a3e1b467a5bafba59a4ed3",
+     "quote": "Ziyue Huang, Yuan Qiu, Ke Yi, and Graham Cormode. \"Frequency Estimation Under Multiparty Differential Privacy: One-shot and Streaming.\" International Conference on Very Large Data Bases ( VLDB ), September 2022. [pdf]",
+     "listed_title": "Frequency Estimation Under Multiparty Differential Privacy: One-shot and Streaming",
+     "listed_year": 2022
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "8054855ec24b6f57"
+  },
+  {
+   "pi": "Shuai WANG 王帥",
+   "key": "labpage:b68db1521669ab252d69bbd0414bb5f0b60ba9bd",
+   "title": "EAMET: Robust Massive Model Editing via Embedding Alignment Optimization",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2505.11876",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Dai, Yanbo",
+    "Ji, Zhenlan",
+    "Li, Zongjie",
+    "Wang, Shuai"
+   ],
+   "arxiv": "2505.11876",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W4414746930",
+    "appointment": {
+     "periodId": "hkust_faculty_period_reviewed_hkust_fac_shuai-wang"
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Hong Kong University of Science and Technology",
+     "text: Department of Computer Science and Engineering The Hong Kong University of Science and Technology"
+    ],
+    "institutions": [
+     "Hong Kong University of Science and Technology"
+    ],
+    "raw_affiliations": [
+     "Department of Computer Science and Engineering The Hong Kong University of Science and Technology"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4414746930",
+     "authorships": [
+      {
+       "raw_author_name": "Dai, Yanbo",
+       "author": {
+        "id": "https://openalex.org/A5047600726"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Department of Computer Science and Engineering The Hong Kong University of Science and Technology"
+       ]
+      },
+      {
+       "raw_author_name": "Ji, Zhenlan",
+       "author": {
+        "id": "https://openalex.org/A5072001009"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Department of Computer Science and Engineering The Hong Kong University of Science and Technology"
+       ]
+      },
+      {
+       "raw_author_name": "Li, Zongjie",
+       "author": {
+        "id": "https://openalex.org/A5101884078"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Department of Computer Science and Engineering The Hong Kong University of Science and Technology"
+       ]
+      },
+      {
+       "raw_author_name": "Wang, Shuai",
+       "author": {
+        "id": "https://openalex.org/A5100328264"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Department of Computer Science and Engineering The Hong Kong University of Science and Technology"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://cse.hkust.edu.hk/~shuaiw/#publications",
+     "capture_url": null,
+     "sha256": "9c7b66ba2fcec682e8af15deccde2076722e60e3ec49003c64498aa14671c88a",
+     "quote": "EAMET: Robust Massive Model Editing Via Embedding Alignment Optimization. Yanbo Dai, Zhenlan Ji, Zongjie Li, Shuai Wang. ICLR 2026",
+     "listed_title": "EAMET: Robust Massive Model Editing Via Embedding Alignment Optimization",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "2943a332f3d8ce81"
+  },
+  {
+   "pi": "Wei WANG 王威",
+   "key": "labpage:e8f245d46a2c253f8fd17f9809fd058d8f6af583",
+   "title": "AutoTailor: Automatic and Efficient Adaptive Model Deployment for Diverse Edge Devices",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2511.22355",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Liu, Mengyang",
+    "Lu, Chenyu",
+    "Tian, Haodong",
+    "Dong, Fang",
+    "Zhou, Ruiting",
+    "Wang, Wei",
+    "Shen, Dian",
+    "Li, Guangtong",
+    "Wan, Ye",
+    "Li, Li"
+   ],
+   "arxiv": "2511.22355",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W4416945739",
+    "appointment": {
+     "periodId": "hkust_faculty_period_reviewed_hkust_fac_wei-wang"
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Hong Kong University of Science and Technology",
+     "text: HKUST"
+    ],
+    "institutions": [
+     "Hong Kong University of Science and Technology"
+    ],
+    "raw_affiliations": [
+     "HKUST"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4416945739",
+     "authorships": [
+      {
+       "raw_author_name": "Liu, Mengyang",
+       "author": {
+        "id": "https://openalex.org/A5100462406"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I204512498",
+         "display_name": "University of Macau",
+         "lineage": [
+          "https://openalex.org/I204512498"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Southeast University University of Macau"
+       ]
+      },
+      {
+       "raw_author_name": "Lu, Chenyu",
+       "author": {
+        "id": "https://openalex.org/A5070912454"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I76569877",
+         "display_name": "Southeast University",
+         "lineage": [
+          "https://openalex.org/I76569877"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Southeast University"
+       ]
+      },
+      {
+       "raw_author_name": "Tian, Haodong",
+       "author": {
+        "id": "https://openalex.org/A5038852094"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I99065089",
+         "display_name": "Tsinghua University",
+         "lineage": [
+          "https://openalex.org/I99065089"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Tsinghua University"
+       ]
+      },
+      {
+       "raw_author_name": "Dong, Fang",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I76569877",
+         "display_name": "Southeast University",
+         "lineage": [
+          "https://openalex.org/I76569877"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Southeast University"
+       ]
+      },
+      {
+       "raw_author_name": "Zhou, Ruiting",
+       "author": {
+        "id": "https://openalex.org/A5024396134"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I76569877",
+         "display_name": "Southeast University",
+         "lineage": [
+          "https://openalex.org/I76569877"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Southeast University"
+       ]
+      },
+      {
+       "raw_author_name": "Wang, Wei",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "HKUST"
+       ]
+      },
+      {
+       "raw_author_name": "Shen, Dian",
+       "author": {
+        "id": "https://openalex.org/A5056420341"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I76569877",
+         "display_name": "Southeast University",
+         "lineage": [
+          "https://openalex.org/I76569877"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Southeast University"
+       ]
+      },
+      {
+       "raw_author_name": "Li, Guangtong",
+       "author": {
+        "id": "https://openalex.org/A5010779760"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I76569877",
+         "display_name": "Southeast University",
+         "lineage": [
+          "https://openalex.org/I76569877"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Southeast University"
+       ]
+      },
+      {
+       "raw_author_name": "Wan, Ye",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I76569877",
+         "display_name": "Southeast University",
+         "lineage": [
+          "https://openalex.org/I76569877"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Southeast University"
+       ]
+      },
+      {
+       "raw_author_name": "Li, Li",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I204512498",
+         "display_name": "University of Macau",
+         "lineage": [
+          "https://openalex.org/I204512498"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "University of Macau"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://cse.hkust.edu.hk/~weiwa/publications.html",
+     "capture_url": null,
+     "sha256": "059c7d0d128a404c26ac4ea7a1aecf5c6664375c40896e5c368e4f25704810cf",
+     "quote": "Mengyang Liu , Chenyu Lu, Haodong Tian, Fang Dong, Ruiting Zhou, Wei Wang, Dian Shen, Guangtong Li, Ye Wan, and Li Li, ‘‘ AutoTailor: Automatic and Efficient Adaptive Model Deployment for Diverse Edge Devices ,’’ to appear in the Proceedings of 2026 ACM SIGOPS Annual Technical Conference ( ATC ’26 ), Hong Kong, China, November 2026.",
+     "listed_title": "AutoTailor: Automatic and Efficient Adaptive Model Deployment for Diverse Edge Devices",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "cd8938aa78e27a60"
+  },
+  {
+   "pi": "Junxian HE 何俊賢",
+   "key": "labpage:97657747582bbb5ef4c7bc2896edd09325ba01fe",
+   "title": "B-STaR: Monitoring and Balancing Exploration and Exploitation in Self-Taught Reasoners",
+   "year": 2024,
+   "doi": "10.48550/arxiv.2412.17256",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Zeng, Weihao",
+    "Huang, Yuzhen",
+    "Zhao, Lulu",
+    "Wang, Yijun",
+    "Shan, Zifei",
+    "He, Junxian"
+   ],
+   "arxiv": "2412.17256",
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4405767548",
+    "appointment": {
+     "listing": 2024
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Hong Kong University of Science and Technology",
+     "text: The Hong Kong University of Science and Technology"
+    ],
+    "institutions": [
+     "Hong Kong University of Science and Technology"
+    ],
+    "raw_affiliations": [
+     "The Hong Kong University of Science and Technology"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4405767548",
+     "authorships": [
+      {
+       "raw_author_name": "Zeng, Weihao",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "The Hong Kong University of Science and Technology"
+       ]
+      },
+      {
+       "raw_author_name": "Huang, Yuzhen",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "The Hong Kong University of Science and Technology"
+       ]
+      },
+      {
+       "raw_author_name": "Zhao, Lulu",
+       "author": {
+        "id": "https://openalex.org/A5112325389"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I4210100255",
+         "display_name": "Beijing Academy of Artificial Intelligence",
+         "lineage": [
+          "https://openalex.org/I4210100255"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "BAAI"
+       ]
+      },
+      {
+       "raw_author_name": "Wang, Yijun",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I2250653659",
+         "display_name": "Tencent (China)",
+         "lineage": [
+          "https://openalex.org/I2250653659"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Tencent"
+       ]
+      },
+      {
+       "raw_author_name": "Shan, Zifei",
+       "author": {
+        "id": "https://openalex.org/A5074064317"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I2250653659",
+         "display_name": "Tencent (China)",
+         "lineage": [
+          "https://openalex.org/I2250653659"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Tencent"
+       ]
+      },
+      {
+       "raw_author_name": "He, Junxian",
+       "author": {
+        "id": "https://openalex.org/A5015879697"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "The Hong Kong University of Science and Technology"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://jxhe.github.io/publications/",
+     "capture_url": null,
+     "sha256": "e916300fda2219f59ff64da07c29ad71a45339800a75e154dae16ed44318010b",
+     "quote": "B-STaR: Monitoring and Balancing Exploration and Exploitation in Self-Taught Reasoners Weihao Zeng*, Yuzhen Huang*, Lulu Zhao, Yijun Wang, Zifei Shan, Junxian He ICLR 2025. arxiv github",
+     "listed_title": "B-STaR: Monitoring and Balancing Exploration and Exploitation in Self-Taught Reasoners",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "eb449e73e5c478ff"
+  },
+  {
+   "pi": "Jiasi SHEN 沈嘉思",
+   "key": "labpage:5c58cfbd5d8133bbdcafd56c60d0253ce97df960",
+   "title": "Do LLM-Generated Web Apps Behave Correctly? A Contract-Grounded Benchmark for Behavioral Conformance",
+   "year": 2026,
+   "doi": "10.18653/2026.emnlp-main.2018",
+   "venue": "Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+   "byline": [
+    "Chansung Park",
+    "Juyong Jiang",
+    "Jiasi Shen",
+    "Sunghun Kim"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "openalex",
+    "match": "title_search_exact_title",
+    "oa": "https://openalex.org/W7224593413",
+    "appointment": {
+     "periodId": "hkust_faculty_period_reviewed_hkust_fac_jiasi-shen"
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Hong Kong University of Science and Technology",
+     "text: The Hong Kong University of Science and Technology"
+    ],
+    "institutions": [
+     "Hong Kong University of Science and Technology"
+    ],
+    "raw_affiliations": [
+     "The Hong Kong University of Science and Technology"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7224593413",
+     "authorships": [
+      {
+       "raw_author_name": "Chansung Park",
+       "author": {
+        "id": "https://openalex.org/A5065501908"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I142401562",
+         "display_name": "Electronics and Telecommunications Research Institute",
+         "lineage": [
+          "https://openalex.org/I142401562",
+          "https://openalex.org/I2801339556",
+          "https://openalex.org/I4210144908",
+          "https://openalex.org/I4387152098"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Electronics and Telecommunications Research Institute"
+       ]
+      },
+      {
+       "raw_author_name": "Juyong Jiang",
+       "author": {
+        "id": "https://openalex.org/A5007147042"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        },
+        {
+         "id": "https://openalex.org/I4405261251",
+         "display_name": "The Hong Kong University of Science and Technology (Guangzhou)",
+         "lineage": [
+          "https://openalex.org/I4405261251"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "The Hong Kong University of Science and Technology",
+        "The Hong Kong University of Science and Technology ( Guangzhou )"
+       ]
+      },
+      {
+       "raw_author_name": "Jiasi Shen",
+       "author": {
+        "id": "https://openalex.org/A5024117197"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "The Hong Kong University of Science and Technology"
+       ]
+      },
+      {
+       "raw_author_name": "Sunghun Kim",
+       "author": {
+        "id": "https://openalex.org/A5160098798"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I4405261251",
+         "display_name": "The Hong Kong University of Science and Technology (Guangzhou)",
+         "lineage": [
+          "https://openalex.org/I4405261251"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "The Hong Kong University of Science and Technology ( Guangzhou )"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://shenjiasi.com/papers.html",
+     "capture_url": null,
+     "sha256": "bfe9df3707e8a7263eb5fc5933b9e5c659f3208d90b2ddf7bdcf695d9c6faebc",
+     "quote": "Chansung Park 1 , Juyong Jiang 1 , Jiasi Shen , Sunghun Kim. 2026. Do LLM-Generated Web Apps Behave Correctly? A Contract-Grounded Benchmark for Behavioral Conformance. To appear in EMNLP Main Conference.",
+     "listed_title": "Do LLM-Generated Web Apps Behave Correctly? A Contract-Grounded Benchmark for Behavioral Conformance",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "914b2d403b83cbd7"
+  },
+  {
+   "pi": "Jiasi SHEN 沈嘉思",
+   "key": "labpage:a00971a6daac1d0ed3f0206b59c54aa5a9de30b2",
+   "title": "Learning to Code by Learning to Verify: Execution-Grounded Co-Evolution of Code Generation and Self-Verification for Reliable Code LLMs",
+   "year": 2026,
+   "doi": "10.18653/2026.findings-emnlp.1634",
+   "venue": "Findings of the Association for Computational Linguistics: EMNLP (Findings of EMNLP)",
+   "byline": [
+    "Juyong Jiang",
+    "Chansung Park",
+    "Jiasi Shen",
+    "Sunghun Kim"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "openalex",
+    "match": "title_search_exact_title",
+    "oa": "https://openalex.org/W7224389879",
+    "appointment": {
+     "periodId": "hkust_faculty_period_reviewed_hkust_fac_jiasi-shen"
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Hong Kong University of Science and Technology",
+     "text: The Hong Kong University of Science and Technology"
+    ],
+    "institutions": [
+     "Hong Kong University of Science and Technology"
+    ],
+    "raw_affiliations": [
+     "The Hong Kong University of Science and Technology"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7224389879",
+     "authorships": [
+      {
+       "raw_author_name": "Juyong Jiang",
+       "author": {
+        "id": "https://openalex.org/A5007147042"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        },
+        {
+         "id": "https://openalex.org/I4405261251",
+         "display_name": "The Hong Kong University of Science and Technology (Guangzhou)",
+         "lineage": [
+          "https://openalex.org/I4405261251"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "The Hong Kong University of Science and Technology",
+        "The Hong Kong University of Science and Technology (Guangzhou )"
+       ]
+      },
+      {
+       "raw_author_name": "Chansung Park",
+       "author": {
+        "id": "https://openalex.org/A5160071151"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I142401562",
+         "display_name": "Electronics and Telecommunications Research Institute",
+         "lineage": [
+          "https://openalex.org/I142401562",
+          "https://openalex.org/I2801339556",
+          "https://openalex.org/I4210144908",
+          "https://openalex.org/I4387152098"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Electronics and Telecommunications Research Institute"
+       ]
+      },
+      {
+       "raw_author_name": "Jiasi Shen",
+       "author": {
+        "id": "https://openalex.org/A5024117197"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I200769079",
+         "display_name": "Hong Kong University of Science and Technology",
+         "lineage": [
+          "https://openalex.org/I200769079"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "The Hong Kong University of Science and Technology"
+       ]
+      },
+      {
+       "raw_author_name": "Sunghun Kim",
+       "author": {
+        "id": "https://openalex.org/A5160093467"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I4405261251",
+         "display_name": "The Hong Kong University of Science and Technology (Guangzhou)",
+         "lineage": [
+          "https://openalex.org/I4405261251"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "The Hong Kong University of Science and Technology (Guangzhou )"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://shenjiasi.com/papers.html",
+     "capture_url": null,
+     "sha256": "bfe9df3707e8a7263eb5fc5933b9e5c659f3208d90b2ddf7bdcf695d9c6faebc",
+     "quote": "Juyong Jiang 1 , Chansung Park 1 , Jiasi Shen , Sunghun Kim. 2026. Learning to Code by Learning to Verify: Execution-Grounded Co-Evolution of Code Generation and Self-Verification for Reliable Code LLMs. To appear in EMNLP Findings.",
+     "listed_title": "Learning to Code by Learning to Verify: Execution-Grounded Co-Evolution of Code Generation and Self-Verification for Reliable Code LLMs",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "9ad187693ee67414"
+  }
+ ]
+}
