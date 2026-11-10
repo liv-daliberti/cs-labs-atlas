@@ -27,10 +27,10 @@
   "RI"
  ],
  "counts": {
-  "not_faculty_listed": 697,
+  "not_faculty_listed": 698,
   "accepted": 54,
   "research_or_other_rank": 4,
-  "faculty_not_computing": 9
+  "faculty_not_computing": 8
  },
  "decisions": [
   {
@@ -7922,8 +7922,8 @@
    "name": "Kai Tang",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "faculty_not_computing",
-   "reason": "2026-11-10 owner threshold (computing as object or method: DBLP records with an HKUST note >= 30 mostly in computing venues, or OpenAlex computing share >= 0.5 with computing venues; hardware/circuits only if computing systems, architecture, EDA or communications/signal processing for computing; judged from the sweep venue lists, not the unit name): MAE Professor on stored Wayback listings 2016-2021 (CAD/CAM, solid modeling; sha256 669cf2f0..., f2a9f196...); OpenAlex A5067743569 98 works, venues mostly manufacturing engineering (Computer-Aided Design 15, Robotics and Computer-Integrated Manufacturing 8, T-ASE 6, J. Manufacturing Science and Engineering 6, J. Manufacturing Processes 6, Int. J. Advanced Manufacturing Technology 6): no computing-venue majority; MAE 2022-2026 listings not read; not admitted",
+   "decision": "not_faculty_listed",
+   "reason": "OPEN ITEM, NOT A CLAIM (hold): 2026-11-10 owner threshold (computing as object or method: DBLP records with an HKUST note >= 30 mostly in computing venues, or OpenAlex computing share >= 0.5 with computing venues; hardware/circuits only if computing systems, architecture, EDA or communications/signal processing for computing; judged from the sweep venue lists, not the unit name): MAE Professor on stored Wayback listings 2016-2021 (CAD/CAM, solid modeling; sha256 669cf2f0..., f2a9f196...); OpenAlex A5067743569 98 works, venues mostly manufacturing engineering (Computer-Aided Design 15, Robotics and Computer-Integrated Manufacturing 8, T-ASE 6, J. Manufacturing Science and Engineering 6, J. Manufacturing Processes 6, Int. J. Advanced Manufacturing Technology 6): no computing-venue majority; MAE 2022-2026 listings not read; not admitted | fresh reviewer 2026-11-10: the OpenAlex branch fails (computing-type venues 20-36 of 98 works, 0.20-0.37), but DBLP 57/3315-1 shows 50 records with an HKUST MAE note (>= 30) and no venue tally of those records is available locally (the person is not in the school persons extract); CAD/solid modeling may count as computing as method; decision withheld until the DBLP venue tally is read",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/57/3315-1"
@@ -7961,7 +7961,8 @@
     "MATH",
     "PHYS",
     "RI"
-   ]
+   ],
+   "hold": true
   },
   {
    "name": "Kai Wang",
