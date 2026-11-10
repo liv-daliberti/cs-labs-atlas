@@ -20,6 +20,9 @@ import extract
 import match
 
 YEARS = list(range(2016, 2027))
+# Owner-delegated 2026-11-09: a dated listing proves appointment for its own calendar year only, so these schools plan ONE capture per year and slot:
+# the Jan-Jun capture; the Jul-Dec half is tried only when the first half has no usable capture (otherwise it is recorded out_of_scope).
+ONE_CAPTURE_PER_YEAR = {"harvard"}
 
 
 def ts_date(ts):
@@ -195,6 +198,14 @@ def run_slot(school, s, con, pis, max_tries=2):
                                (s["slot"], y, half)).fetchone()
             if done and done[0] in ("ok", "nocapture", "unusable", "out_of_scope"):
                 continue
+            if school in ONE_CAPTURE_PER_YEAR and half == "H2" and y in years:
+                h1 = con.execute("select status from plan where slot=? and year=? and half='H1'", (s["slot"], y)).fetchone()
+                if h1 and h1[0] == "ok":
+                    con.execute("insert or replace into plan values(?,?,?,?,?,?,?,?,?,?)",
+                                (s["slot"], s["dept"], y, half, None, None, None, "out_of_scope",
+                                 "year already proven by its Jan-Jun capture (one capture per calendar year)", "[]"))
+                    con.commit()
+                    continue
             if y not in years:
                 con.execute("insert or replace into plan values(?,?,?,?,?,?,?,?,?,?)",
                             (s["slot"], s["dept"], y, half, None, None, None, "out_of_scope",
