@@ -128,7 +128,12 @@
     "observed": "20191011181854"
    }
   ],
-  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Applied Mathematics'); other named units stay in also. Title read from the captured directory entry quoted here."
+  "why_home_department": "The captured title names several units and no captured official page states which appointment is primary; home_department is only the reporting unit (first-named), every named unit is kept (R-HOME-01).",
+  "primary_unresolved": [
+   "Applied Mathematics",
+   "Applied Physics",
+   "Physics"
+  ]
  },
  "David D. Cox": {
   "openalex": [
@@ -156,7 +161,11 @@
     "observed": "20160620002745"
    }
   ],
-  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Molecular and Cellular Biology'); other named units stay in also. Title read from the captured directory entry quoted here."
+  "why_home_department": "The captured title names several units and no captured official page states which appointment is primary; home_department is only the reporting unit (first-named), every named unit is kept (R-HOME-01).",
+  "primary_unresolved": [
+   "Molecular and Cellular Biology",
+   "Computer Science (Harvard SEAS)"
+  ]
  },
  "Ryan P. Adams": {
   "openalex": [
@@ -206,7 +215,11 @@
     "observed": "20191011181854"
    }
   ],
-  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Electrical Engineering'); other named units stay in also. Title read from the captured directory entry quoted here."
+  "why_home_department": "The captured title names several units and no captured official page states which appointment is primary; home_department is only the reporting unit (first-named), every named unit is kept (R-HOME-01).",
+  "primary_unresolved": [
+   "Electrical Engineering",
+   "Bioengineering"
+  ]
  },
  "Alexander Rush": {
   "openalex": [
@@ -331,7 +344,11 @@
     "observed": "20160620002745"
    }
   ],
-  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('and Computer Science'); other named units stay in also. Title read from the captured directory entry quoted here."
+  "why_home_department": "The captured title names several units and no captured official page states which appointment is primary; home_department is only the reporting unit (first-named), every named unit is kept (R-HOME-01).",
+  "primary_unresolved": [
+   "Engineering and Applied Sciences",
+   "Computer Science (Harvard SEAS)"
+  ]
  },
  "Jelani Nelson": {
   "openalex": [
@@ -376,12 +393,22 @@
   "home_department_evidence": [
    {
     "url": "https://seas.harvard.edu/person/na-li",
+    "sha256": "7264c113536d2f6153b064c7b78705dca66d1af89953d71cfcc012c0620ffdb3",
+    "quote": "Professor of Electrical Engineering and Applied Mathematics Area Chair, Electrical Engineering Primary Teaching Area Electrical & Computer Engineering",
+    "observed": "2026-11-09"
+   },
+   {
+    "url": "https://seas.harvard.edu/person/na-li",
     "sha256": "5915e1f844f0c7ab2cbb80841b6ba964a656fae0dfe006d335c6fdd34e89cdaa",
     "quote": "Na Li Winokur Family Professor of Electrical Engineering and Applied Mathematics Area Chair, Electrical Engineering",
     "observed": "20261108"
    }
   ],
-  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Electrical Engineering'); other named units stay in also. Title read from the captured directory entry quoted here."
+  "why_home_department": "Official SEAS profile states the primary teaching area; other named units stay secondary affiliations (R-HOME-01).",
+  "primary_stated": true,
+  "also_home_departments": [
+   "Applied Mathematics"
+  ]
  },
  "Vijay Janapa Reddi": {
   "openalex": [
@@ -406,7 +433,8 @@
     "observed": "20261108"
    }
   ],
-  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Electrical Engineering'); other named units stay in also. Title read from the captured directory entry quoted here."
+  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Electrical Engineering'); other named units stay in also. Title read from the captured directory entry quoted here.",
+  "primary_stated": true
  },
  "Conor James Walsh": {
   "openalex": [
@@ -459,7 +487,8 @@
     "observed": "20261108"
    }
   ],
-  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Electrical Engineering'); other named units stay in also. Title read from the captured directory entry quoted here."
+  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Electrical Engineering'); other named units stay in also. Title read from the captured directory entry quoted here.",
+  "primary_stated": true
  },
  "Cengiz Pehlevan": {
   "openalex": [
@@ -484,7 +513,8 @@
     "observed": "20261108"
    }
   ],
-  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Applied Mathematics'); other named units stay in also. Title read from the captured directory entry quoted here."
+  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Applied Mathematics'); other named units stay in also. Title read from the captured directory entry quoted here.",
+  "primary_stated": true
  },
  "Robert J. Wood": {
   "home_department": "Engineering and Applied Sciences",
@@ -526,13 +556,23 @@
   "home_department": "Electrical Engineering",
   "home_department_evidence": [
    {
+    "url": "https://seas.harvard.edu/person/gu-yeon-wei",
+    "sha256": "cbf9e426b907607d97de3583c994403c0b580cfcc605a629b4cf52234245ae94",
+    "quote": "Professor of Electrical Engineering and Computer Science Primary Teaching Area Electrical & Computer Engineering",
+    "observed": "2026-11-09"
+   },
+   {
     "url": "https://seas.harvard.edu/faculty?page=%2C8",
     "sha256": "b50afb74c0c71399897f56d58b080093b3608619d2426f0d9d2e02d57792d341",
     "quote": "Gu-Yeon Wei Robert and Suzanne Case Professor of Electrical Engineering and Computer Science 150 Western Ave, Sci&Eng 5",
     "observed": "20261109"
    }
   ],
-  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Electrical Engineering'); other named units stay in also. Title read from the captured directory entry quoted here."
+  "why_home_department": "Official SEAS profile states the primary teaching area; other named units stay secondary affiliations (R-HOME-01).",
+  "primary_stated": true,
+  "also_home_departments": [
+   "Computer Science (Harvard SEAS)"
+  ]
  },
  "Pranav Rajpurkar": {
   "home_department": "Biomedical Informatics",
@@ -604,7 +644,11 @@
     "observed": "20261109"
    }
   ],
-  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Applied Mathematics'); other named units stay in also. Title read from the captured directory entry quoted here."
+  "why_home_department": "The captured title names several units and no captured official page states which appointment is primary; home_department is only the reporting unit (first-named), every named unit is kept (R-HOME-01).",
+  "primary_unresolved": [
+   "Applied Mathematics",
+   "Computer Science (Harvard SEAS)"
+  ]
  },
  "Robert D. Howe": {
   "home_department": "Engineering and Applied Sciences",
@@ -631,8 +675,14 @@
   "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Professor of Engineering and Applied Sciences'); other named units stay in also. Title read from the captured directory entry quoted here."
  },
  "Yue M. Lu": {
-  "home_department": "Electrical Engineering",
+  "home_department": "Applied Mathematics",
   "home_department_evidence": [
+   {
+    "url": "https://seas.harvard.edu/person/yue-lu",
+    "sha256": "7251f8a67c60af36eb648e400708a8c6292fdb4502cc64b59fcd057ffaeb187c",
+    "quote": "Professor of Electrical Engineering and of Applied Mathematics Director of Graduate Studies, Applied Mathematics Primary Teaching Area Applied Mathematics",
+    "observed": "2026-11-09"
+   },
    {
     "url": "https://seas.harvard.edu/faculty?page=%2C4",
     "sha256": "0ab2471cfa23e30ea6319b4787be51a64bbd6abdbc80a6dc96a1dee84d31435f",
@@ -640,11 +690,21 @@
     "observed": "20261109"
    }
   ],
-  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Electrical Engineering'); other named units stay in also. Title read from the captured directory entry quoted here."
+  "why_home_department": "Official SEAS profile states the primary teaching area; other named units stay secondary affiliations (R-HOME-01).",
+  "primary_stated": true,
+  "also_home_departments": [
+   "Electrical Engineering"
+  ]
  },
  "Todd E. Zickler": {
   "home_department": "Electrical Engineering",
   "home_department_evidence": [
+   {
+    "url": "https://seas.harvard.edu/person/todd-zickler",
+    "sha256": "52b32301f14175922e8d00d1157e0c429c33cdf2488364d7c32e03f765cee42d",
+    "quote": "Professor of Electrical Engineering and Computer Science Primary Teaching Area Electrical & Computer Engineering",
+    "observed": "2026-11-09"
+   },
    {
     "url": "https://seas.harvard.edu/faculty?page=%2C9",
     "sha256": "bbc93eb40277723de481bff6886163e8ec31c302271d347ce2340881c17e4937",
@@ -652,7 +712,11 @@
     "observed": "20261109"
    }
   ],
-  "why_home_department": "Home unit is the unit the listed professorial title names (fixed priority order when several are named) ('Electrical Engineering'); other named units stay in also. Title read from the captured directory entry quoted here."
+  "why_home_department": "Official SEAS profile states the primary teaching area; other named units stay secondary affiliations (R-HOME-01).",
+  "primary_stated": true,
+  "also_home_departments": [
+   "Computer Science (Harvard SEAS)"
+  ]
  },
  "Heng Yang": {
   "home_department": "Electrical Engineering",

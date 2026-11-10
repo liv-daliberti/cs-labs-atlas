@@ -72,6 +72,17 @@ def apply_reviewed_homes(rows, overrides, normalize):
         also = [a for a in dict.fromkeys([old] + list(row.get('also') or []) + list(decision.get('also_home_departments') or [])) if a and a != home]
         row.update(home_department=home, also=also, status='accepted', evidence=evidence[0],
                    reviewed_home_evidence=evidence, note=decision.get('why_home_department') or 'reviewed home department with sourced evidence')
+        # Owner-delegated rule 2026-11-09 (docs/RULES.md R-HOME-01): the home is the primary appointment the official page states. When the page names several
+        # units and does not say which is primary, the decision lists them in `primary_unresolved`: the row keeps `home_department` only as the reporting
+        # unit, marks home_basis 'primary_unresolved', and every listed unit stays visible (the others in `also`).
+        unresolved = [normalize(u) for u in decision.get('primary_unresolved') or []]
+        if unresolved:
+            if len(unresolved) < 2 or home not in unresolved:
+                raise SystemExit(f"{row['name']}: primary_unresolved needs two or more units including home_department")
+            row.update(home_basis='primary_unresolved', primary_unresolved=unresolved,
+                       also=[a for a in dict.fromkeys(unresolved + also) if a != home])
+        else:
+            row['home_basis'] = 'primary_stated' if decision.get('primary_stated') else 'listed_title'
     return rows
 
 
