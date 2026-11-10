@@ -1481,6 +1481,7 @@ ROLE_NEAR = re.compile(r"^\W{0,3}[(,:–—-]?\s*(?:[A-Z][\w.&'-]*\s){0,2}?(?:vi
                        r"graduate|grad\b|doctoral|student|candidate|research|visiting|lab manager|engineer|scientist|staff|intern)", re.I)
 
 
+PRIOR_DEGREE_ANY = re.compile(r"(?:\b(?:accelerated\s+\d\+\d\s+)?(?:bachelor|master|undergraduate)['\u2019]?s?(?:\s+and\s+(?:bachelor|master)['\u2019]?s?)?\s+(?:from|at)\b)", re.I)
 PRIOR_DEGREE = re.compile(r"^\W{0,3}\(?\s*(?:bachelor|master|undergraduate|b\.?\s?s\.?c?|m\.?\s?s\.?c?|mphil|b\.?eng|m\.?eng)['\u2019]?s?\s*(?:degree\s+)?(?:from|at)\b", re.I)
 
 
@@ -1500,7 +1501,7 @@ def entry_role(desc, head, role_of):
     if PRIOR_DEGREE.match(d):
         pass   # 'Bachelor's from X, Hong Kong PhD Fellowship': the degree the person holds on arrival, not their role here (HKUST hand check 2026-11-10: 4 of 11 roles wrong); the section heading decides
     elif ROLE_NEAR.match(d):
-        r = role_of(d[:45])[0]
+        r = role_of(PRIOR_DEGREE_ANY.sub(' ', d)[:45])[0]
         if r and r != 'member':
             return r, 'entry'
     h = (head or '').split(' > ')[-1]

@@ -115,3 +115,10 @@ def test_prior_degree_phrases_are_not_roles():
     assert A.entry_role("(Bachelor's from X University, Hong Kong PhD Fellowship)", 'Students > Current/Incoming PhD students', role_of)[0] != 'undergraduate'
     assert A.entry_role("Master's from Y University", 'Current PhD students', role_of)[0] != 'masters'
     assert A.entry_role('(Master student, 2023-2025)', 'Members', role_of)[0] == 'masters'
+
+
+def test_prior_degree_after_a_fellowship_is_not_a_role():
+    import labpage_audit as A
+    role_of = lambda t: ('undergraduate' if 'bachelor' in t.lower() else 'masters' if 'master' in t.lower() else 'phd' if 'phd' in t.lower() else 'member', 0)
+    r = A.entry_role("Hong Kong PhD Fellowship; Bachelor’s from CUHK Shenzhen", 'Current/Incoming', role_of)[0]
+    assert r in ('phd', None) and r != 'undergraduate'
