@@ -436,6 +436,18 @@ def names_project_agents(robots_body):
     names = '|'.join(re.escape(agent) for agent in AI_AGENTS)
     return bool(re.search(r'^\s*user-agent\s*:\s*(?:' + names + r')\s*(?:#.*)?$', robots_body, re.I | re.M))
 
+def _host_throttle():
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'fulltext-push'))
+    try:
+        import host_throttle as HT
+        return HT
+    except ImportError:
+        return None
+    finally:
+        _sys.path.pop(0)
+
+
 def archive_original_url(url):
     """Original host policy also applies to CDX lookups and playback URLs."""
     if (urlsplit(url).hostname or '') not in ('web.archive.org', 'archive.org'):
@@ -539,7 +551,23 @@ class Kit:
         lpcap.DEFAULT_GAP = max(lpcap.DEFAULT_GAP, HOST_GAP)
         lpcap.LOCKDIR = str(P.RATE_STAMPS / 'hosts')  # shared per-host stamps (atlas_paths RATE_STAMPS), one pace for every job and node
         owait = lpcap._wait
-        lpcap._wait = lambda host: owait(host or '_no-host_')  # a link with no host must not name the lock directory itself
+        def _guarded_wait(host):
+            owait(host or '_no-host_')  # a link with no host must not name the lock directory itself
+            if (host or '').endswith('archive.org'):
+                # shared Wayback clock and 429 cooldown (fulltext-push/host_throttle.py, 2026-11-10): wait the cooldown out, low priority
+                HT = _host_throttle()
+                if HT is not None:
+                    HT.wait_slot('web.archive.org', WAYBACK_GAP, low=True)
+        lpcap._wait = _guarded_wait
+        oinsert = lpcap._insert
+
+        def _insert_noting_429(con, orig, final, cap, status, body, ctype, err, *a, **k):
+            if status == 429 and 'archive.org' in str(orig) + str(final):
+                HT = _host_throttle()
+                if HT is not None:
+                    HT.record_429('web.archive.org')   # every client now waits the shared cooldown
+            return oinsert(con, orig, final, cap, status, body, ctype, err, *a, **k)
+        lpcap._insert = _insert_noting_429
         lpcap.GAPS['web.archive.org'] = WAYBACK_GAP
         lpcap.GAPS['archive.org'] = WAYBACK_GAP
         lpcap.GAPS['api.openalex.org'] = max(lpcap.GAPS.get('api.openalex.org', 0), 1.05)

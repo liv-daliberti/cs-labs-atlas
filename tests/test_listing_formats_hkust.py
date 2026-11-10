@@ -49,3 +49,8 @@ def test_listing_pi_years_account_ids_agree_across_url_eras():
     assert L.account('/~gchan/') == 'gchan'
     assert L.account('https://cse.hkust.edu.hk/faculty/horner/') == 'horner'
     assert L.account('https://cse.hkust.edu.hk/admin/people/faculty/') is None
+
+
+def test_labpage_audit_has_the_shared_wayback_throttle():
+    import labpage_audit as A
+    assert A._host_throttle() is not None and hasattr(A._host_throttle(), 'cooldown_left')
