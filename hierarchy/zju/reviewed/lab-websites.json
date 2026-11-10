@@ -5173,30 +5173,10 @@
     },
     {
       "pi": "唐敏",
-      "url": "https://min-tang.github.io/Data/home-ch.html",
-      "kind": "pi_homepage",
-      "reason_code": "pi_homepage_only_no_lab_site",
-      "coverage": "website",
-      "found_via": "web_search_bounded",
-      "listed_on": null,
-      "sha256": "bd206c9a19bae8e3867b00113582810f621859cc92d84ff159a52d905275d107",
-      "checked_at": "2026-11-10T14:47:18",
-      "ownership_sources": [
-        {
-          "url": "https://min-tang.github.io/Data/home-ch.html",
-          "capture_url": "https://min-tang.github.io/Data/home-ch.html",
-          "captured": "2026-11-10T14:47:18",
-          "sha256": "bd206c9a19bae8e3867b00113582810f621859cc92d84ff159a52d905275d107",
-          "quote": "欢迎来到唐敏的主页"
-        },
-        {
-          "url": "https://min-tang.github.io/Data/home-ch.html",
-          "capture_url": "https://min-tang.github.io/Data/home-ch.html",
-          "captured": "2026-11-10T14:47:18",
-          "sha256": "bd206c9a19bae8e3867b00113582810f621859cc92d84ff159a52d905275d107",
-          "quote": "浙江大学人工智能学院教授"
-        }
-      ],
+      "status": "none_found",
+      "reason_code": "no_web_presence_found",
+      "reason": "A bounded web search on 2026-11-10 found a page that names the PI and a Zhejiang University college (https://min-tang.github.io/Data/home-ch.html, captured by the project fetcher, sha256 bd206c9a19ba…), but no official roster, profile card or unit page links it, so it is not recorded as an official-linked website (the stage-3 rule requires a recorded official discovery link). The capture is kept as evidence; this is not proof that no website exists.",
+      "audited_at": "2026-11-10T14:47:18",
       "checks": [
         {
           "source": "department_listing_link",
@@ -5223,10 +5203,12 @@
           "sha256": "bd206c9a19bae8e3867b00113582810f621859cc92d84ff159a52d905275d107"
         }
       ],
-      "evidence_gaps": [
-        "official_link_not_recorded"
-      ],
-      "resource_status": "search-found page that names the PI and the unit; captured by the project fetcher (robots allowed); not linked by the official roster"
+      "reason_scope": "Recorded search outcome; the captured candidate page is kept in checks.",
+      "candidate_page": {
+        "url": "https://min-tang.github.io/Data/home-ch.html",
+        "sha256": "bd206c9a19bae8e3867b00113582810f621859cc92d84ff159a52d905275d107",
+        "quote": "欢迎来到唐敏的主页"
+      }
     },
     {
       "pi": "赵洲",
@@ -5877,30 +5859,10 @@
     },
     {
       "pi": "况琨",
-      "url": "https://kunkuang.github.io/",
-      "kind": "pi_homepage",
-      "reason_code": "pi_homepage_only_no_lab_site",
-      "coverage": "website",
-      "found_via": "web_search_bounded",
-      "listed_on": null,
-      "sha256": "ae3c1a0119f0d6f676db653e0c05e6ffb48fc968268814fdbd3a83224dc7ebdb",
-      "checked_at": "2026-11-10T14:47:36",
-      "ownership_sources": [
-        {
-          "url": "https://kunkuang.github.io/",
-          "capture_url": "https://kunkuang.github.io/",
-          "captured": "2026-11-10T14:47:36",
-          "sha256": "ae3c1a0119f0d6f676db653e0c05e6ffb48fc968268814fdbd3a83224dc7ebdb",
-          "quote": "Kun KUANG"
-        },
-        {
-          "url": "https://kunkuang.github.io/",
-          "capture_url": "https://kunkuang.github.io/",
-          "captured": "2026-11-10T14:47:36",
-          "sha256": "ae3c1a0119f0d6f676db653e0c05e6ffb48fc968268814fdbd3a83224dc7ebdb",
-          "quote": "Associate Professor Lab of Causal-ML College of Artificial Intelligence Zhejiang University"
-        }
-      ],
+      "status": "none_found",
+      "reason_code": "no_web_presence_found",
+      "reason": "A bounded web search on 2026-11-10 found a page that names the PI and a Zhejiang University college (https://kunkuang.github.io/, captured by the project fetcher, sha256 ae3c1a0119f0…), but no official roster, profile card or unit page links it, so it is not recorded as an official-linked website (the stage-3 rule requires a recorded official discovery link). The capture is kept as evidence; this is not proof that no website exists.",
+      "audited_at": "2026-11-10T14:47:36",
       "checks": [
         {
           "source": "department_listing_link",
@@ -5927,10 +5889,12 @@
           "sha256": "ae3c1a0119f0d6f676db653e0c05e6ffb48fc968268814fdbd3a83224dc7ebdb"
         }
       ],
-      "evidence_gaps": [
-        "official_link_not_recorded"
-      ],
-      "resource_status": "search-found page that names the PI and the unit; captured by the project fetcher (robots allowed); not linked by the official roster"
+      "reason_scope": "Recorded search outcome; the captured candidate page is kept in checks.",
+      "candidate_page": {
+        "url": "https://kunkuang.github.io/",
+        "sha256": "ae3c1a0119f0d6f676db653e0c05e6ffb48fc968268814fdbd3a83224dc7ebdb",
+        "quote": "Kun KUANG"
+      }
     },
     {
       "pi": "翁彦琳",
