@@ -38,7 +38,7 @@ SHARED_REVIEWED = 'reviewed'   # hierarchy/reviewed/: shared reviewed files
 # Private copies (2026-11-09, Harvard incident: a builder run through the default symlinks overwrote main's derived files, and a later overlay
 # rebuild deleted a private captures store a running job was filling). `--private` makes these real copies; a rebuild PRESERVES them.
 MUTABLE_RAW = ('school-captures.sqlite', 'labpage-audit-captures.sqlite', 'labpage-audit-discovery.jsonl', 'pi-works.sqlite')
-COPY_LIMIT = 100 * 1024 * 1024   # raw files above this stay main's read-only symlinks (the OpenAlex sweep)
+COPY_LIMIT = 100 * 1024 * 1024   # raw files above this stay main's symlinks (the OpenAlex sweep); atlas_paths.data_w refuses to write through them
 RECEIPT = 'main-derived.sha256.json'
 
 
@@ -74,7 +74,7 @@ def make_private(out, school, main):
         r.unlink()
         r.mkdir()
         for f in sorted((main / 'hierarchy' / school / 'raw').iterdir()):
-            if f.is_file() and f.name in MUTABLE_RAW and f.stat().st_size <= COPY_LIMIT:
+            if f.is_file() and f.stat().st_size <= COPY_LIMIT:   # every small raw file is a real copy (2026-11-10 HKUST incident: a tool wrote main's raw .json.gz through a symlink); only the big sweep stays a read-only link
                 shutil.copy2(f, r / f.name)
             else:
                 link(r / f.name, f)

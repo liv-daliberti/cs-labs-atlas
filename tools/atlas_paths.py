@@ -447,6 +447,9 @@ def data_w(name, school=None, root=None, layout=None):
     write seeds it from main's file when main has one, so a resumable work file (dblp-recover.sqlite) continues and main stays untouched."""
     p = data(name, school, root=root, layout=layout)
     p.parent.mkdir(parents=True, exist_ok=True)
+    if root is None and p.is_symlink() and overlay_main() is not None:   # guard (2026-11-10, HKUST incident): a file that is itself a symlink out of an overlay is main's; writing it would overwrite main
+        if not os.path.realpath(p).startswith(os.path.realpath(CODE) + os.sep):
+            raise PermissionError(f"refusing to write {p}: in an overlay it is a symlink to {os.path.realpath(p)}, outside the overlay root (build the overlay with overlay_root.py --private, which copies small raw files)")
     main = overlay_main() if root is None and _DATA[name][0] == 'work' else None
     if main is not None and not p.exists() and not p.is_symlink():
         try:
