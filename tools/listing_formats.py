@@ -499,6 +499,21 @@ def hkust_faculty_any(h):
     return []
 
 
+def zju_cs_teacher_cards(h):
+    """Zhejiang College of Computer Science 全院教师查询 (csen/qyjscx_95580, rendered: the cards are built by script): `article.teacher-card` with `h1.teacher-name`,
+    one `span.badge` rank (教授, 副教授, 百人计划研究员, 讲师 ...) and the person.zju.edu.cn profile link. E-mail and research lines are contact/topic text and are not kept."""
+    from bs4 import BeautifulSoup
+    out = []
+    for card in BeautifulSoup(h, 'html.parser').select('article.teacher-card'):
+        n = card.select_one('h1.teacher-name')
+        if n is None:
+            continue
+        a = card.select_one('a[href]')
+        out.append(dict(name_listed=re.sub(r'[\s\u3000]+', '', n.get_text()), titles=[clean(b.get_text(' ', strip=True)) for b in card.select('span.badge') if clean(b.get_text(' ', strip=True))],
+                        profile=a['href'] if a else None, homepage=None, division=None))
+    return out
+
+
 def zju_cs_zuzhi_names(h):
     """Zhejiang College of Computer Science 教师名录 (csen/27003 and its institute sub-lists 27055-27063): `ul.zuzhi` holds one `<a title=name href=profile>` per
     teacher; no rank or title is printed (names only), and the institute is the page's `span.titl`. Full-width and wide spaces inside a name are collapsed."""
@@ -787,6 +802,7 @@ FORMATS = {
     'vt_adjunct': (lambda h: vt_directory(h, 'adjunct'), re.compile(r'(?!)')),
     'vt_emeritus': (lambda h: vt_directory(h, 'emeritus'), re.compile(r'(?!)')),
     'hkust_faculty_any': (hkust_faculty_any, re.compile(r'(?!)')),
+    'zju_cs_teacher_cards': (zju_cs_teacher_cards, re.compile(r'class="teacher-card"')),
     'zju_cs_zuzhi_names': (zju_cs_zuzhi_names, re.compile(r'class="zuzhi"')),
     'tsinghua_cs_list': (tsinghua_cs_list, re.compile(r'class="people01-nr"')),
     'tsinghua_sw_names': (tsinghua_sw_names, re.compile(r'class="group-title"')),
