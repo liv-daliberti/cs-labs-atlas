@@ -736,7 +736,8 @@ def reviewed_cross_affiliation_holds(overrides):
 def page1_quote_names_pi(names, quotes):
     """True when a page-1 quote carries the family name of one of the PI's names. Bilingual census names ('Yi R. FUNG 馮一人') end in the Chinese
     part for toks(); the Latin reading is name_toks (HKUST, 2026-11-10: the page-1 tie never matched a bilingual name)."""
-    return any(name_toks(n_)[-1] in toks(' '.join(quotes)) for n_ in names if name_toks(n_))
+    joined = ' '.join(quotes).lower()
+    return any(name_toks(n_)[-1] in toks(joined) or re.search(r'(?<![a-z])' + re.escape(name_toks(n_)[-1]) + r'(?:[a-d](?:,[a-d])*)?[,\u2217*\u2020\s]', joined) for n_ in names if name_toks(n_))
 
 
 def school_basis(ctx, pi, w, a, ident, page1):

@@ -150,3 +150,9 @@ def test_page1_tie_accepts_letter_superscript_markers_after_the_family_name():
     how, quotes = F.tie(flat, [('Kun', 'Xu')], aff)
     assert how and 'Hong Kong University' in ' '.join(quotes)
     assert not F.tie('Xuan Li, Hong Kong University of Science and Technology Abstract', [('Kun', 'Xu')], aff)[0]
+
+
+def test_page1_quote_name_match_tolerates_letter_superscripts():
+    from pihier import papers
+    assert papers.page1_quote_names_pi(['Kun Xu 徐昆'], ['Kun Xua,b,c,∗ a Department of Mathematics, Hong Kong University of Science and Technology'])
+    assert not papers.page1_quote_names_pi(['Kun Xu 徐昆'], ['Xuan Li a Department of Mathematics'])

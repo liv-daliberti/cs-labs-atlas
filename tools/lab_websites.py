@@ -520,6 +520,8 @@ def official_homepage_fallback(school, doc):
                 r.pop(k, None) if rejected else None
             r.update(coverage='website', url=chk['url'], kind='pi_homepage', reason_code='pi_homepage_only_no_lab_site', found_via='school_profile_link', listed_on=chk['on'], sha256=sha,
                      evidence=dict(url=chk['url'], sha256=sha, quote=None), official_link_status='recorded', official_link_evidence=[chk])
+            if chk not in (r.get('checks') or []):
+                r['checks'] = list(r.get('checks') or []) + [chk]   # a synthesized department-listing link must sit in the dated checks the gate reads
             for k in ('people_page', 'alumni_page', 'pubs_page'):
                 r['website_note'][k] = r.pop(k, None)
             r['reason'] = 'Captured PI homepage used as the lab-page fallback.'
