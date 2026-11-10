@@ -27,10 +27,10 @@
   "RI"
  ],
  "counts": {
-  "not_faculty_listed": 700,
+  "not_faculty_listed": 697,
   "accepted": 54,
-  "research_or_other_rank": 3,
-  "faculty_not_computing": 3
+  "research_or_other_rank": 4,
+  "faculty_not_computing": 9
  },
  "decisions": [
   {
@@ -7922,8 +7922,8 @@
    "name": "Kai Tang",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BM, CBE, CHEM, CIVL, ECE, EMIA, IAS, IEDA, ISD, ISOM, LIFS, MAE, MATH, PHYS, RI) names them with a professor title",
+   "decision": "faculty_not_computing",
+   "reason": "2026-11-10 owner threshold (computing as object or method: DBLP records with an HKUST note >= 30 mostly in computing venues, or OpenAlex computing share >= 0.5 with computing venues; hardware/circuits only if computing systems, architecture, EDA or communications/signal processing for computing; judged from the sweep venue lists, not the unit name): MAE Professor on stored Wayback listings 2016-2021 (CAD/CAM, solid modeling; sha256 669cf2f0..., f2a9f196...); OpenAlex A5067743569 98 works, venues mostly manufacturing engineering (Computer-Aided Design 15, Robotics and Computer-Integrated Manufacturing 8, T-ASE 6, J. Manufacturing Science and Engineering 6, J. Manufacturing Processes 6, Int. J. Advanced Manufacturing Technology 6): no computing-venue majority; MAE 2022-2026 listings not read; not admitted",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/57/3315-1"
@@ -10533,8 +10533,8 @@
     "Matthew Ming-Fai Yuen"
    ],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BM, CBE, CHEM, CIVL, ECE, EMIA, IAS, IEDA, ISD, ISOM, LIFS, MAE, MATH, PHYS, RI) names them with a professor title",
+   "decision": "research_or_other_rank",
+   "reason": "stored MAE Wayback listings: Professor 2016-2017, then Adjunct Professor and Professor Emeritus (2020-2021 captures, sha256 f2a9f196..., 64a39af7...); not a current ladder appointment; DBLP 15/1609 5 records",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/15/1609"
@@ -28259,7 +28259,7 @@
    ],
    "source": "openalex_rule",
    "decision": "not_faculty_listed",
-   "reason": "OPEN ITEM, NOT A CLAIM (hold): listed faculty in the stored/rendered unit directory, not admitted: OpenAlex-only identity (A5034194344); very common name; namesake risk (coverage audit 2026-11-10 proposals.json)",
+   "reason": "OPEN ITEM, NOT A CLAIM (hold): listed faculty in the stored/rendered unit directory, not admitted: OpenAlex-only identity (A5034194344); very common name; namesake risk (coverage audit 2026-11-10 proposals.json) | owner threshold check 2026-11-10: computing passes (OpenAlex venue evidence: Shao 9 works IMWUT/mobile computing share .67; Xu 57 works IEEE Trans. Mobile Computing, AAAI, NeurIPS share .70; Liu 52 works graphics/vision, TVCG, TOG, CVPR share .60); admission waits only for a source-bound identity (OpenAlex-only, no DBLP person naming HKUST)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -28799,7 +28799,7 @@
    ],
    "source": "openalex_rule",
    "decision": "not_faculty_listed",
-   "reason": "OPEN ITEM, NOT A CLAIM (hold): listed faculty in the stored/rendered unit directory, not admitted: OpenAlex-only identity (A5063181504); common name; no DBLP person naming HKUST and no title-only binding yet (coverage audit 2026-11-10 proposals.json)",
+   "reason": "OPEN ITEM, NOT A CLAIM (hold): listed faculty in the stored/rendered unit directory, not admitted: OpenAlex-only identity (A5063181504); common name; no DBLP person naming HKUST and no title-only binding yet (coverage audit 2026-11-10 proposals.json) | owner threshold check 2026-11-10: computing passes (OpenAlex venue evidence: Shao 9 works IMWUT/mobile computing share .67; Xu 57 works IEEE Trans. Mobile Computing, AAAI, NeurIPS share .70; Liu 52 works graphics/vision, TVCG, TOG, CVPR share .60); admission waits only for a source-bound identity (OpenAlex-only, no DBLP person naming HKUST)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -29110,8 +29110,8 @@
     "Janet Hui‐wen Hsiao"
    ],
    "source": "openalex_rule",
-   "decision": "not_faculty_listed",
-   "reason": "OPEN ITEM, NOT A CLAIM (hold): listed faculty in the stored/rendered unit directory, not admitted: SOSC primary, CSE joint listing; computational cognitive science; owner field-relevance call queued (coverage audit 2026-11-10 proposals.json)",
+   "decision": "faculty_not_computing",
+   "reason": "2026-11-10 owner threshold (computing as object or method: DBLP records with an HKUST note >= 30 mostly in computing venues, or OpenAlex computing share >= 0.5 with computing venues; hardware/circuits only if computing systems, architecture, EDA or communications/signal processing for computing; judged from the sweep venue lists, not the unit name): SOSC primary, CSE joint listing (sha256 85d36d4f...); OpenAlex A5079353328 63 works 2022-2026, computing share 0.42 (<0.5); venues psychology and cognitive science (Br. J. Psychology, Cognitive Science); not admitted",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -36060,8 +36060,116 @@
     "PHYS",
     "RI"
    ]
+  },
+  {
+   "name": "Chik Patrick Yue",
+   "aliases": [],
+   "source": "coverage_audit",
+   "decision": "faculty_not_computing",
+   "reason": "2026-11-10 owner threshold (computing as object or method: DBLP records with an HKUST note >= 30 mostly in computing venues, or OpenAlex computing share >= 0.5 with computing venues; hardware/circuits only if computing systems, architecture, EDA or communications/signal processing for computing; judged from the sweep venue lists, not the unit name): ECE Professor (rendered ECE directory sha256 92f89da4...); OpenAlex A5033252398 146 school works, 79 DBLP-indexed (0.57) but the venues are circuit design (IEEE J. Solid-State Circuits 10, ASICON 6, A-SSCC 5, Trans. Circuits and Systems I 4, J. Lightwave Technology 4): analog/RF IC design is not computing systems or EDA; not admitted",
+   "cs_basis": {},
+   "faculty_evidence": [],
+   "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Shing-Yu Leung",
+   "aliases": [],
+   "source": "coverage_audit",
+   "decision": "faculty_not_computing",
+   "reason": "2026-11-10 owner threshold (computing as object or method: DBLP records with an HKUST note >= 30 mostly in computing venues, or OpenAlex computing share >= 0.5 with computing venues; hardware/circuits only if computing systems, architecture, EDA or communications/signal processing for computing; judged from the sweep venue lists, not the unit name): MATH Professor (sha256 cdb44b0c...); OpenAlex A5059208158 52 works; venues are numerical analysis and computational physics (J. Scientific Computing 12, SIAM J. Sci. Comput. 7, J. Computational Physics 6): no computing-venue majority; not admitted",
+   "cs_basis": {},
+   "faculty_evidence": [],
+   "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Mao-Sheng Xiong",
+   "aliases": [],
+   "source": "coverage_audit",
+   "decision": "faculty_not_computing",
+   "reason": "2026-11-10 owner threshold (computing as object or method: DBLP records with an HKUST note >= 30 mostly in computing venues, or OpenAlex computing share >= 0.5 with computing venues; hardware/circuits only if computing systems, architecture, EDA or communications/signal processing for computing; judged from the sweep venue lists, not the unit name): MATH Associate Professor (sha256 cdb44b0c...); OpenAlex A5066461623 42 works; venues are coding theory and finite fields (IEEE Trans. Information Theory 16, Designs Codes and Cryptography 6, Finite Fields and Applications 4): mathematics of coding, not computing; not admitted",
+   "cs_basis": {},
+   "faculty_evidence": [],
+   "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Qing Li (ISOM Head)",
+   "aliases": [],
+   "source": "coverage_audit",
+   "decision": "faculty_not_computing",
+   "reason": "2026-11-10 owner threshold (computing as object or method: DBLP records with an HKUST note >= 30 mostly in computing venues, or OpenAlex computing share >= 0.5 with computing venues; hardware/circuits only if computing systems, architecture, EDA or communications/signal processing for computing; judged from the sweep venue lists, not the unit name): ISOM Head and Professor (bm.hkust.edu.hk/faculty/li-qing sha256 7dc57bac...); DBLP 181/2689-25 carries an HKUST note with 8 records 2016-2026 (< 30); information-systems/business research; not admitted",
+   "cs_basis": {},
+   "faculty_evidence": [],
+   "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
   }
  ],
  "identity_keying": "2026-11-10 (claude-hkust-admit-1109): the 26 display names shared by 2-4 DBLP identities are keyed \"Name [source id]\" (tools/cs_related_disambiguate.py); Jun Zhang -> z/JunZhang4 and Wei Zhang -> 10/4661-12 are the ECE professors (affiliation notes name HKUST ECE; Wei Zhang 10/4661-12 is the identity whose DBLP notes name HKUST ECE and whose other notes are NTU and Princeton; 10/4661-1 names UNSW first and CUHK; the listing quote reads 'PhD in Computer Engineering Professor'), the earlier name-keyed decision for Wei Zhang pointed at 10/4661-1 (UNSW) in error; all other identities not_faculty_listed.",
- "holds": "decisions with hold=true are open items, not claims: Jing Wang [02/736-19] (ISOM row unreadable: isom TLS-untrusted), Jing Chen, Wei Jiang, Weijia Zhang (listed professors, DBLP candidate is another or unverified person), Yuan Xie (ECE Chair, OpenAlex-only, no DBLP person naming HKUST); a title-only binding (R-PAP-44 amended) needs a DBLP title lookup that the owner has queued. | 2026-11-10 coverage audit (scratch/hkust-coverage-audit-1110/REPORT.md, proposals.json): listed professors not admitted and not stage-2 candidates, so recorded here: Qijia Shao (ISD, OpenAlex-only, new arrival), Qing Li (ISOM head, field relevance), Chik Patrick Yue (ECE, field relevance), Shing-Yu Leung and Mao-Sheng Xiong (MATH, field relevance) pending the owner field-relevance call; Kai Tang and Matthew Yuen (MAE) and Jing Wang (ISOM) unconfirmable (MAE robots disallow-all; ISOM TLS-untrusted): recorded limits, not claims; the 14 HKUST-GZ cross-campus EMIA colleagues are excluded by the HKUST-GZ rule (Lei Li and Hao Liu withdrawn from b16)."
+ "holds": "decisions with hold=true are open items, not claims: Jing Wang [02/736-19] (ISOM row unreadable: isom TLS-untrusted), Jing Chen, Wei Jiang, Weijia Zhang (listed professors, DBLP candidate is another or unverified person), Yuan Xie (ECE Chair, OpenAlex-only, no DBLP person naming HKUST); a title-only binding (R-PAP-44 amended) needs a DBLP title lookup that the owner has queued. | 2026-11-10 coverage audit (scratch/hkust-coverage-audit-1110/REPORT.md, proposals.json): listed professors not admitted and not stage-2 candidates, so recorded here: Qijia Shao (ISD, OpenAlex-only, new arrival), Qing Li (ISOM head, field relevance), Chik Patrick Yue (ECE, field relevance), Shing-Yu Leung and Mao-Sheng Xiong (MATH, field relevance) pending the owner field-relevance call; Kai Tang and Matthew Yuen (MAE) and Jing Wang (ISOM) unconfirmable (MAE robots disallow-all; ISOM TLS-untrusted): recorded limits, not claims; the 14 HKUST-GZ cross-campus EMIA colleagues are excluded by the HKUST-GZ rule (Lei Li and Hao Liu withdrawn from b16). | The owner threshold (2026-11-10) was applied to Yue, Qing Li, Hsiao, Leung, Xiong, Kai Tang (faculty_not_computing, numbers in each reason) and Matthew Yuen (research_or_other_rank)."
 }
