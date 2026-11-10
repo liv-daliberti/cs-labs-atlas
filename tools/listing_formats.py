@@ -408,7 +408,7 @@ def hkust_faculty_cards(h):
 
 
 def hkust_faculty_position_tables(h):
-    """HKUST CSE 2016-2017 'Faculty by Position' tables: <td><a>SURNAME, Given</a></td><td>Chinese name</td> ... <td>Position</td>. Listed as 'Given SURNAME Chinese'."""
+    """HKUST CSE 2016-2017 'Faculty by Position' tables: <td><a>SURNAME, Given</a></td><td>Chinese name</td> ... <td>Position</td>. Listed as the page prints it, 'SURNAME, Given Chinese', so the quote is found in the page text."""
     from bs4 import BeautifulSoup
     out = []
     for row in BeautifulSoup(h, 'html.parser').select('table.fancy tbody tr'):
@@ -419,7 +419,7 @@ def hkust_faculty_position_tables(h):
         fam, giv = [x.strip() for x in a.get_text(' ', strip=True).split(',', 1)]
         zh = cells[1].get_text(' ', strip=True).replace('\xa0', ' ').strip()
         title = clean(cells[5].get_text(' ', strip=True))
-        out.append(dict(name_listed=' '.join(x for x in (giv, fam.upper(), zh) if x), titles=[title] if title else [], profile=a.get('href'), homepage=None, division=None))
+        out.append(dict(name_listed=' '.join(x for x in (f'{fam}, {giv}', zh) if x), titles=[title] if title else [], profile=a.get('href'), homepage=None, division=None))
     return out
 
 

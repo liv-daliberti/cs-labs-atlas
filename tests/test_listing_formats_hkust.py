@@ -39,4 +39,4 @@ def test_hkust_card_era_listing_parses_once_per_person():
 
 def test_hkust_position_table_era_listing_parses_name_title():
     _, rows = parse(POSITION, 'hkust_faculty_any')
-    assert rows[0]['name_listed'] == 'Shueng-Han Gary CHAN 陳雙幸' and rows[0]['titles'] == ['Professor']
+    assert rows[0]['name_listed'] == 'CHAN, Shueng-Han Gary 陳雙幸' and rows[0]['titles'] == ['Professor']
