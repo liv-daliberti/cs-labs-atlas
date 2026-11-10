@@ -730,7 +730,7 @@ SOCIAL = ('linkedin.com', 'twitter.com', 'x.com', 'facebook.com', 'instagram.com
           'ieeexplore', 'acm.org', 'pubmed', 'ncbi.nlm.nih.gov', 'arxiv.org', 'openreview.net', 'loop.frontiersin', 'mailto:',
           'isni.org', 'viaf.org', 'id.loc.gov', 'd-nb.info', 'catalogue.bnf.fr', 'idref.fr', 'isni.oclc', 'kb.nl', 'nla.gov.au',
           'nii.ac.jp', 'id.ndl.go.jp', 'lccn.loc.gov', 'babelnet', 'ror.org', 'crossref.org', 'mathscinet', 'genealogy.ams.org')
-WEBWORD = re.compile(r'\b(web\s*site|website|home\s*page|homepage|web\s*page|webpage|personal page|personal site|lab|laboratory|'
+WEBWORD = re.compile(r'\b(web\s*sites?|websites?|home\s*pages?|homepages?|web\s*pages?|webpages?|personal pages?|personal sites?|lab|laboratory|'   # plural: Oxford CS 'Personal web pages with links'
                      r'group|research group|research site|visit)\b', re.I)
 PEOPLE_LINK = re.compile(r'^\W*((our|the|lab|group|current)\s+)?(people|members?|team|group members?|lab members?|students?|'
                          r'personnel|researchers|group|lab|research group|who we are|advisees|phd students)\W*$', re.I)

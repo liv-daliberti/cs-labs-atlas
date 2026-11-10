@@ -30,3 +30,7 @@ def test_lab_profile_url_makes_the_census_profile_absolute():
     assert L.lab_profile_url(p) == 'https://www.cs.ox.ac.uk/people/Samson.Abramsky'
     assert L.lab_profile_url(dict(lab=dict(url='https://example.org/home'), listings=[])) is None
     assert L.lab_profile_url(dict(lab=dict(url='/people/X.Y'), listings=[])) is None
+
+
+def test_webword_accepts_the_plural_personal_web_pages_anchor():
+    assert L.WEBWORD.search('Personal web pages with links') and L.WEBWORD.search('Homepage') and not L.WEBWORD.search('Publications')
