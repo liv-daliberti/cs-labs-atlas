@@ -20,7 +20,7 @@ ids_note = "OWNER 2026-11-10: scope is computing-related PIs of every unit incl.
 [web]
 domains = ["utoronto.ca", "toronto.edu"]
 email_domains = ["utoronto.ca", "toronto.edu"]
-wayback_only_suffixes = ["www.utsc.utoronto.ca", "www.statistics.utoronto.ca", "www.matter.toronto.edu", "www.nivdayan.net", "lmp.utoronto.ca"]
+wayback_only_suffixes = ["www.utsc.utoronto.ca", "www.mathematics.utoronto.ca", "www.statistics.utoronto.ca", "www.matter.toronto.edu", "www.nivdayan.net", "lmp.utoronto.ca"]
 excluded_hosts = []
 
 [affiliation]
@@ -153,63 +153,67 @@ url = "https://web.cs.toronto.edu/people/faculty-directory"
 code = "ECE"
 name = "Electrical and Computer Engineering"
 url = "https://www.ece.utoronto.ca/faculty/faculty-directory/"
-listings = ["www.ece.utoronto.ca/faculty/faculty-directory"]
+listings = ["www.ece.utoronto.ca/wp-json/wp/v2/people?per_page=100&page=1&_fields=title,link,class_list", "www.ece.utoronto.ca/wp-json/wp/v2/people?per_page=100&page=2&_fields=title,link,class_list"]
+note = "the HTML directory is a script shell; the site's own wp-json people endpoint (robots allowed, 2 s delay) lists 111 people, current only (proves 2026 only; no Wayback history is expected)"
 
 [[affiliated_units]]
 code = "MIE"
 name = "Mechanical and Industrial Engineering"
-url = "https://www.mie.utoronto.ca/faculty-staff/faculty/"
-listings = ["www.mie.utoronto.ca/faculty-staff/faculty"]
+url = "https://www.mie.utoronto.ca/faculty-staff/core-faculty/"
+listings = ["www.mie.utoronto.ca/faculty-staff/core-faculty/", "www.mie.utoronto.ca/faculty-staff/emeriti/", "www.mie.utoronto.ca/faculty-staff/cross-appointed-status-only-adjunct/"]
+note = "links read from the 2026-11-10 homepage; the old /faculty-staff/faculty/ URL is 404"
 
 [[affiliated_units]]
 code = "UTIAS"
 name = "Aerospace Studies"
-url = "https://www.utias.utoronto.ca/faculty/"
-listings = ["www.utias.utoronto.ca/faculty"]
+url = "https://www.utias.utoronto.ca/faculty-directory/"
+listings = ["www.utias.utoronto.ca/faculty-directory/"]
+note = "link from the 2026-11-10 homepage ('People'); the old /faculty/ URL is not a directory"
 
 [[affiliated_units]]
 code = "STAT"
 name = "Statistical Sciences"
 url = "https://www.statistics.utoronto.ca/people/directories/all-faculty"
-listings = ["www.statistics.utoronto.ca/people/directories/all-faculty"]
+listings = ["www.statistics.utoronto.ca/people/directories/all-faculty/"]
 
 [[affiliated_units]]
 code = "INFO"
 name = "Faculty of Information"
 url = "https://ischool.utoronto.ca/faculty-directory/"
-listings = ["ischool.utoronto.ca/faculty-directory"]
+listings = ["ischool.utoronto.ca/faculty-directory/"]
 
 [[affiliated_units]]
 code = "MATH"
 name = "Mathematics"
-url = "https://www.math.toronto.edu/people/faculty"
-listings = ["www.math.toronto.edu/people/faculty"]
+url = "https://www.mathematics.utoronto.ca/people"
+listings = ["www.mathematics.utoronto.ca/people/"]
+note = "www.math.toronto.edu redirects to www.mathematics.utoronto.ca, whose robots.txt answers 403 to automated clients: Wayback-only (owner 2026-11-05). The exact people URL is unconfirmed; stage 1 finds it from archived homepage links"
 
 [[affiliated_units]]
 code = "UTSC"
 name = "Computer and Mathematical Sciences, Scarborough"
 url = "https://www.utsc.utoronto.ca/cms/people"
-listings = ["www.utsc.utoronto.ca/cms/people"]
+listings = ["www.utsc.utoronto.ca/cms/people/"]
 note = "live probe 2026-11-10: /cms/people is 404 and /cms/faculty served a bot challenge (999); host recorded wayback-only, stage 1 finds the real directory in Wayback captures"
 
 [[affiliated_units]]
 code = "UTM"
 name = "Mathematical and Computational Sciences, Mississauga"
 url = "https://www.utm.utoronto.ca/math-cs-stats/people"
-listings = ["www.utm.utoronto.ca/math-cs-stats/people"]
-note = "live probe 2026-11-10: the old /mcs/people URL is 404; /math-cs-stats/people returns the Mathematics faculty list with Computer Science and Applied Statistics sub-pages (stage 1 to locate those two)"
+listings = ["www.utm.utoronto.ca/math-cs-stats/people/category/faculty---mathematics", "www.utm.utoronto.ca/math-cs-stats/people/category/faculty---computer-science", "www.utm.utoronto.ca/math-cs-stats/people/category/faculty---applied-statistics", "www.utm.utoronto.ca/math-cs-stats/people/category/emeritus"]
+note = "category pages read from the 2026-11-10 /math-cs-stats/people menu"
 
 [[affiliated_units]]
 code = "VECTOR"
 name = "Vector Institute (centre)"
 url = "https://vectorinstitute.ai/team/"
-listings = ["vectorinstitute.ai/team"]
+listings = ["vectorinstitute.ai/team/"]
 
 [[affiliated_units]]
 code = "ROBOTICS"
 name = "Robotics Institute (centre)"
 url = "https://robotics.utoronto.ca/people/"
-listings = ["robotics.utoronto.ca/people"]
+listings = ["robotics.utoronto.ca/people/"]
 
 [thesis]
 kind = "dspace"
@@ -299,6 +303,12 @@ host = "www.utsc.utoronto.ca"
 use = "wayback-only"
 purpose = "Faculty listings, research groups, thesis evidence"
 probe = "https://www.utsc.utoronto.ca/cms/daniel-roy"
+
+[[hosts]]
+host = "www.mathematics.utoronto.ca"
+use = "wayback-only"
+purpose = "Mathematics faculty listing (robots.txt 403 to automated clients 2026-11-10)"
+probe = "https://www.mathematics.utoronto.ca/"
 
 [[hosts]]
 host = "www.utm.utoronto.ca"

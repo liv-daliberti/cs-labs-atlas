@@ -247,13 +247,24 @@ def unit_pages_of(c, cap, r, code, url):
     return got
 
 
+def wp_json_people_text(raw):
+    """The verification text of a WordPress REST people list (ECE): each record's rendered title ('Yang, Yibin<br> Assistant
+    Professor') as one line, markup removed, whitespace collapsed; '' when the body is not that JSON."""
+    import html as _h
+    try:
+        recs = json.loads(raw)
+        return ' '.join(' '.join(_h.unescape(re.sub(r'<[^>]+>', ' ', (r.get('title') or {}).get('rendered', ''))).split()) + ' Profile' for r in recs)
+    except (ValueError, AttributeError, TypeError):
+        return ''
+
+
 def unit_pages(key):
     """(unit code, url, sha256, observed, flat text) of every stored 2016-2026 unit capture and live page."""
     cfg = S.get(key); c = W.con(key)
     codes = {}
     for u in cfg.get('affiliated_units') or []:
         for url in u.get('listings') or []:
-            codes[re.sub(r'^https?://(www\.)?', '', url).rstrip('/').lower()] = u['code']
+            codes[re.sub(r'^(?:https?://)?(?:www\.)?', '', url).split('?')[0].rstrip('/').lower()] = u['code']  # a listing may be an API URL with a query (Toronto ECE wp-json)
 
     def code_of(k):  # a live page of the listing itself, one of its ?page=N pages or one of its A-Z letter pages
         base = k.split('?')[0].rstrip('/')
@@ -271,6 +282,9 @@ def unit_pages(key):
         k = re.sub(r'^https?://(www\.)?', '', url).rstrip('/').lower()
         if st == 200 and code_of(k):
             import zlib
+            if '/wp-json/' in url:
+                out.append((code_of(k), url, sha, at[:10].replace('-', ''), wp_json_people_text(zlib.decompress(raw))))
+                continue
             b = W.extract.blocks(zlib.decompress(raw), 'text/html', url)
             out.append((code_of(k), url, sha, at[:10].replace('-', ''), W.flat(b)))
     return out
