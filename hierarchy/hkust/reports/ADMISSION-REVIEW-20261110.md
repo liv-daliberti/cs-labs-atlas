@@ -32,7 +32,38 @@ All 207 are ORCID-anchored (0000-0001-9831-2202, from his own CSE page) with `hk
 `tools/source_title_guard.py lab_papers.jsonl.gz bulk_arxiv.json bulk_crossref.json`: 375 arXiv ids (DataCite titles, because export.arxiv.org's robots.txt disallows all) and 2,000 non-arXiv DOIs (Crossref; 8 returned 404, not judged). Result: 2 holds, both the same work (arXiv 2606.01143, Binhang Yuan and Kai Chen). Cleared as a genuine retitling: arxiv.org/abs/2606.01143v1 (sha 426f745e4efe435db261301876717aec5f184643d4a588f247e261d0fc0a89c2) carries the record's title "Schedule-Level Shared-Prefix Reuse for LLM RL Training"; the current version (sha dbcb0b9ee20f456ee122ecc126254bd7bb116ea7d7de2b19b7d0a01d11cb17a0) is "PrefixFlow: Training-Time KV Caching for Schedule-Level Prefix Reuse in LLM RL Training". Corrupted titles: 0.
 
 ## 5. Congress-abstract and Zenodo rules
-`papers.not_a_paper` and `non_research_record` (R-PAP-19 congress, R-PAP-33 Zenodo deliverable) applied to all 2,449 rows: 0 drops (HKUST has no Neuromodulation/ERS DOIs and no deliverable-coded Zenodo records). Three Zenodo DOIs were read by hand: Yuan "Revision Provably Reduces Sequential Computation in Diffusion Language Models" (preprint, stays), Narechania "From Interaction to Intent" (arXiv-venue preprint with a Zenodo DOI, stays), Wang "OSDI21 Artifact for SANRAZOR" (an artifact deposit, a software record, not a paper). Held for the owner, never silently dropped: that artifact row and three editorial or front-matter rows the rules let through (two "Message from ..." editorials, "Epilogue"). They are excluded from the admissible count below.
+`papers.not_a_paper` and `non_research_record` (R-PAP-19 congress, R-PAP-33 Zenodo deliverable) applied to all 2,449 rows: 0 drops (HKUST has no Neuromodulation/ERS DOIs and no deliverable-coded Zenodo records). Three Zenodo DOIs were read by hand: Yuan "Revision Provably Reduces Sequential Computation in Diffusion Language Models" (preprint, stays), Narechania "From Interaction to Intent" (arXiv-venue preprint with a Zenodo DOI, stays), Wang "OSDI21 Artifact for SANRAZOR" (an artifact deposit, a software record, not a paper). Those four rows (the artifact deposit, two "Message from ..." editorials, "Epilogue") were held and are now dropped by R-PAP-43 (code commit 2394a3a); the later natives exclude them.
 
-## 6. Identity bindings added (stage 5)
-Fifteen PIs gained a DBLP person from the 2026-09-01 dump (record sha256 and the HKUST affiliation note or the PI's own cse.ust.hk homepage URL as the quote; same-name records recorded). See `census-overrides-school.json`, `dblp_identity_review`. Bo Li (homepage ~bli), Yike Guo (portal biography: Imperial College professor since 2002, HKUST provost 2022-12; DBLP g/YikeGuo, unique name) are the two the owner named. Bo Li's research-portal ORCID (0000-0003-2955-750X, an empty public record under "Li Bo") differs from the ORCID DBLP lists for him (0000-0003-2083-9105); both are kept as recorded and neither is relied on.
+## 6. Identity bindings added (stage 5) and what the current code does with them
+Twenty-two PIs gained a DBLP person from the 2026-09-01 dump (record sha256 and the HKUST affiliation note or the PI's own cse.ust.hk homepage URL as the quote; same-name records recorded in `dblp_identity_review`): Tang, Lin, N. Zhang, Ding, Horner, Ng, Chan, Bo Li, Luo, X. Zhou, D. Xu, Jia, Quan, Sander (alias 'Pedro V. Sander'), Yike Guo, Wei Wang (homepage ~weiwa, uname 王威), Shuai Wang, Ma, L'Yi, C. Li, M. Zhou, Parreaux, Yinghao Xu (career match, not the bare-name record). Bo Li's research-portal ORCID (0000-0003-2955-750X, an empty public record) differs from the ORCID DBLP lists for him (0000-0003-2083-9105); both are kept as recorded and neither is relied on. Yike Guo: portal biography (Imperial College professor since 2002, HKUST provost 2022-12) plus unique-name DBLP g/YikeGuo.
+
+Main's current code (commit 1803966, "source-stated advising for PI paper anchors") no longer admits the advisee-route identities the round-2 trial used (round 2: 416 `advisee_anchored_author_id` + 355 `advisee_coauthor` relations). Rebuilt on current code with the bindings above, the PIs that relied on them (Lei Chen 386, Wei Wang 138, Shuai Wang 158, Ma 33, Papadopoulos 5) recover through their own DBLP persons (Lei and Papadopoulos from the reviewed dump extract, the rest newly bound).
+
+## 7. Isolated natives (overlay roots, never main's derived package)
+| run | job | relations | distinct works | PIs with papers | zero-paper PIs |
+|---|---|---|---|---|---|
+| round 2 (old code) | 32173556 | 2,449 | 2,411 | 37 | 16 |
+| a1: 15 binds, partial persons file | 32176605 | 2,564 | 2,537 | 41 | 12 |
+| a3: 21 binds, current code | 32177098 | 2,932 | 2,843 | 48 | 5 |
+| a6: 24 binds, Zihan rejects, no-paper reasons | 32177396 | 2,935 | 2,849 | 49 | 4 |
+
+The target of 2,500 distinct works is met on admissible rows (2,849 on current rules; no padding: every added row is a bound-identity, HKUST-bylined, in-appointment work). The four PIs still without papers have reasons in `lab-coverage-reasons.json`: Jin (works are MPhil-era), L'Yi (2026 hire), Horner and Ng (works exist but no sourced appointment years; 1,780+ HKUST-credited relations across about 30 PIs are withheld as `outside_appointment` for the same reason).
+
+## 8. Fresh accuracy draw (seed 20261029 on the a6 package; accuracy/sample-hkust.json)
+Lab precision, 35 rows (25 uniform and 5 each of listing and identity-not-reviewed): the first draw (a5) held one error, three security papers attached to Zihan Zhang by DBLP pid 178/8599 (a bare-name record of 375 mixed-person records). Evidence: the papers are Dongdong She's students' work (his page lists Zesen Liu, Yuchong Xie, Kaikai Zhang and 'Zihan Zhang (2027-Fall PhD)'), while the faculty member's profile lists reinforcement learning and game theory. Three exact `reject` reviews were added; after the rebuild the redraw is 35 of 35 correct. Independent affiliation checks: Crossref author-level affiliation names HKUST for 18 rows; 6 arXiv rows were read on the PDF first page (HKUST affiliation or an ust.hk address); 9 rows have no Crossref affiliation and stand on the bound identity plus the byline affiliation in OpenAlex. Titles agree with Crossref/DataCite for all 35. Point estimate 1.00 (35/35), Wilson 95% lower bound about 0.90; the standing bar of 0.95 is not statistically established by 35 rows.
+Not done: student-link precision (40 rows drawn, not judged), lab coverage (15 drawn; 9 are in the build, 6 are not and need hand judgment: Yike Guo ReChoreoNet, Kai Chen FLB and TII, Long Quan Neurocomputing, Shuai Wang remote sensing, Parreaux DARTS artifact), student coverage (no candidates). The summary file is not written, so stage 9 stays open.
+
+## 9. Gates on the isolated a6 package (`atlas stage-gate hkust N`, rc 1 = fail)
+| stage | result | open items |
+|---|---|---|
+| 1 | fail | 11 historical listing years never planned |
+| 2 | fail | cs-related candidates and sweep-check files missing |
+| 3 | fail | 60 PIs without an accepted home department |
+| 4 | fail | one non-ISO start ('2024 (fall)' for Ouyang) |
+| 5 | fail (2 open; was 42) | Horner, Ng: anchors yield 0 papers (appointment years unsourced) |
+| 6 | fail | lab-page student acceptance missing; 30 labs without students or reasons |
+| 7 | fail (2 open; was 3) | lab-page paper acceptance missing; 79 of 255 links unexplained; papers check passes |
+| 8 | fail | no ledger, no lab-page capture store; 8 of 2,849 papers local (0.3%); the store catalog is empty, so copies were never collected |
+| 9 | fail | summary missing (student precision and coverage unjudged) |
+
+Everything above 2 is a collection stage this review did not run (historical Wayback listings, home departments, lab-page rounds, full-text collection, ledger); stages 1-4 and 6 were already open before it.
