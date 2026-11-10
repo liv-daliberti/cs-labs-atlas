@@ -518,11 +518,12 @@ def snapshot_title_works(wanted, dbs=None):
     import oa_snapshot as O
     out = []
     for db in dbs if dbs is not None else [c for c, _ in O.exts()]:
-        for wid, title, body in db.execute('select id, title, body from works where title is not null'):
+        # read the (large) body only for a title that matches: selecting it for every work of every school's store took over an hour (Oxford 2026-11-10)
+        for wid, title in db.execute('select id, title from works where title is not null'):
             k = norm_title(title)
             if k in wanted:
-                w = O.unpack(body)
-                out.append((k, w))
+                body = db.execute('select body from works where id = ?', (wid,)).fetchone()[0]
+                out.append((k, O.unpack(body)))
     return out
 
 
