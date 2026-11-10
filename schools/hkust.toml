@@ -19,7 +19,7 @@ ids_note = "Primary ID, ROR and relationships read from the local OpenAlex insti
 [web]
 domains = ["hkust.edu.hk", "ust.hk"]
 email_domains = ["hkust.edu.hk", "ust.hk", "cse.ust.hk"]
-wayback_only_suffixes = []
+wayback_only_suffixes = ["mae.ust.hk", "mae.hkust.edu.hk", "isom.hkust.edu.hk"]
 excluded_hosts = ["hkust-gz.edu.cn"]
 
 [affiliation]
@@ -117,16 +117,16 @@ note = "faculty link from the 2026-11-10 /eng/index.php menu (the root is a JS r
 [[affiliated_units]]
 code = "ISOM"
 name = "Information Systems, Business Statistics and Operations Management"
-url = "https://isom.hkust.edu.hk/"
-listings = []
-note = "host serves an untrusted TLS chain to automated clients (curl and python: unable to get local issuer certificate, 2026-11-10); no workaround attempted: Wayback-only, directory URL still to be found from archived captures"
+url = "https://isom.hkust.edu.hk/faculty-and-staff/directory"
+listings = ["isom.hkust.edu.hk/faculty-and-staff/directory"]
+note = "host serves an untrusted TLS chain to automated clients (curl and python: unable to get local issuer certificate, 2026-11-10); no workaround attempted: Wayback-only; directory URL found by a CDX prefix query 2026-11-10 (/faculty-and-staff/directory, 2022 captures)"
 
 [[affiliated_units]]
 code = "MAE"
 name = "Mechanical and Aerospace Engineering"
-url = "https://mae.hkust.edu.hk/people"
-listings = []
-note = "robots.txt is User-agent star Disallow slash: Wayback-only (stop; no live read). Current faculty of MAE are also listed on the ECE people_list rows without a category (Shyy, Qiu, Sun, Kim, Lee, Wang: shared people pool, not an ECE appointment)"
+url = "https://www.mae.ust.hk/en/people/faculty"
+listings = ["www.mae.ust.hk/en/people/faculty", "www.mae.ust.hk/people/faculty.html"]
+note = "Wayback listings found by CDX 2026-11-10 (2016 /people/faculty.html, 2018-19 /en/people/faculty on www.mae.ust.hk). robots.txt is User-agent star Disallow slash: Wayback-only (stop; no live read). Current faculty of MAE are also listed on the ECE people_list rows without a category (Shyy, Qiu, Sun, Kim, Lee, Wang: shared people pool, not an ECE appointment)"
 
 [[affiliated_units]]
 code = "PHYS"
