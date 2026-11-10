@@ -938,6 +938,8 @@ def discover_lab(kit, school, p, ctx, full=True):
             seen_l.add(key_)
             r = kit.get(lu)
             add('department_listing', lu, result_of(r), capture_url=r.get('capture_url'), sha256=r.get('sha256'))
+            if unit_profile_path(lu, names_):
+                profiles.append(lu)   # the census listing page IS the unit's own profile of the PI ('/eezhiyao'): its links are read as a school profile
             if r.get('status') == 200 and r.get('content'):
                 base = link_base(r, lu)
                 for href, txt in site_links(kit, r, base):
