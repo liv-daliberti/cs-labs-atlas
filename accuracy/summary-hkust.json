@@ -4,33 +4,33 @@
  "seed": 20261029,
  "n_verdicts": 90,
  "files": {
-  "pis.json": "615e4a1cef6543b7cd2952f54bba5835f404b508577c38def3088f44520f509e",
-  "students.json": "b5a982a03880bc898981a9d3f6cd32a44bef36852e5d7dc167f6358cc17821ca",
-  "lab_papers.jsonl.gz": "d3aae986641dd7ded103cbef610974a44ac3b730aa9c718bc834fac264234841",
-  "student_papers.jsonl.gz": "a4bf5b83476097898f6fa66c8dd529f8f4839967990b2852a63ffbb500182400",
+  "pis.json": "5a89d07a2db87bcce50c4e6844044376c34bdd4723a2c7c2ea89b90d61337327",
+  "students.json": "77c56d4efaf6563f2ea9de0f56e75f5def4cac30da9bed2cf5e9ffff7fe31cf9",
+  "lab_papers.jsonl.gz": "80973b47695b512a27653ac5ce090bf9f50890112be38c7002e04f106ca0f000",
+  "student_papers.jsonl.gz": "5bbcd2e8bb900cacbec4ade3fabc95e3af941dbd81f8e679042b102eb4d78839",
   "copies.json": "aa4bd87eb4ee1698edd57b841692b34e063f406418afc74f8aa2062d62f94f90"
  },
  "files_now": {
-  "pis.json": "615e4a1cef6543b7cd2952f54bba5835f404b508577c38def3088f44520f509e",
-  "students.json": "b5a982a03880bc898981a9d3f6cd32a44bef36852e5d7dc167f6358cc17821ca",
-  "lab_papers.jsonl.gz": "d3aae986641dd7ded103cbef610974a44ac3b730aa9c718bc834fac264234841",
-  "student_papers.jsonl.gz": "a4bf5b83476097898f6fa66c8dd529f8f4839967990b2852a63ffbb500182400",
+  "pis.json": "5a89d07a2db87bcce50c4e6844044376c34bdd4723a2c7c2ea89b90d61337327",
+  "students.json": "77c56d4efaf6563f2ea9de0f56e75f5def4cac30da9bed2cf5e9ffff7fe31cf9",
+  "lab_papers.jsonl.gz": "80973b47695b512a27653ac5ce090bf9f50890112be38c7002e04f106ca0f000",
+  "student_papers.jsonl.gz": "5bbcd2e8bb900cacbec4ade3fabc95e3af941dbd81f8e679042b102eb4d78839",
   "copies.json": "aa4bd87eb4ee1698edd57b841692b34e063f406418afc74f8aa2062d62f94f90"
  },
  "lab_precision_uniform": {
-  "k": 25,
+  "k": 24,
   "n": 25,
-  "p": 1.0,
-  "lo": 0.8668,
-  "hi": 1.0,
+  "p": 0.96,
+  "lo": 0.8046,
+  "hi": 0.9929,
   "unclear": 0
  },
  "lab_precision_uniform_if_abstracts_count": {
-  "k": 25,
+  "k": 24,
   "n": 25,
-  "p": 1.0,
-  "lo": 0.8668,
-  "hi": 1.0,
+  "p": 0.96,
+  "lo": 0.8046,
+  "hi": 0.9929,
   "unclear": 0
  },
  "lab_precision_strata": {
@@ -55,11 +55,11 @@
   }
  },
  "lab_precision_all40": {
-  "k": 35,
+  "k": 34,
   "n": 35,
-  "p": 1.0,
-  "lo": 0.9011,
-  "hi": 1.0,
+  "p": 0.9714,
+  "lo": 0.8547,
+  "hi": 0.9949,
   "unclear": 0
  },
  "student_precision_uniform": {
@@ -123,24 +123,33 @@
   "no_coauthored_paper": 0
  },
  "failures": {
+  "not_a_paper": 1,
   "not_at_school": 1
  },
  "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Lionel PARREAUX|None|https://openalex.org/W7165867448",
+   "failure_type": "not_a_paper",
+   "reason": "[fresh reviewer, limits: Did not open Dagstuhl landing page; judged from title/DOI prefix/venue.] DOI 10.4230/artifacts.26720 is a Dagstuhl DROPS artifact record: an online web demonstration (software artifact companion), not a research paper. Authorship/HKUST ok.",
+   "policy": null
+  },
   {
    "sample": "lab_coverage",
    "stratum": "dblp_person_page",
    "item": "Qifeng CHEN 陳启峰|conf/interspeech/GermainCK19",
    "failure_type": "not_at_school",
-   "reason": "[second-pass fresh reviewer; limits: Did not see the Interspeech 2019 camera-ready PDF itself (ISCA page shows no affiliations); v1 PDF not fetched. A camera-ready could in principle list HKUST, but the arXiv byline (Sep 2018, after Chen's HKUST start) says Intel Labs.] arXiv 1806.10522 v2 (14 Sep 2018) PDF page 1 footnote: 'Q. Chen and V. Koltun are with the Intelligent Systems Lab, Intel Labs, Santa Clara'; Germain at Stanford CCRMA (interned at Intel Labs). No HKUST mention. arXiv abs pages (v1, v2) carry no affiliations; the ISCA 2019 page lists authors only, no affiliations. The work was done at Intel Labs, so the paper's own byline does not support HKUST. The build link rests only on the PI's HKUST appointment year (2019 CSE listing 'Assistant Professor'), which is the dataset's fallback rule when no page-1 byline is available; no source here supports HKUST for this paper, so it is not a true HKUST lab paper.",
+   "reason": "[carried from the b15 draw: identical row key, same claim] [second-pass fresh reviewer; limits: Did not see the Interspeech 2019 camera-ready PDF itself (ISCA page shows no affiliations); v1 PDF not fetched. A camera-ready could in principle list HKUST, but the arXiv byline (Sep 2018, after Chen's HKUST start) says Intel Labs.] arXiv 1806.10522 v2 (14 Sep 2018) PDF page 1 footnote: 'Q. Chen and V. Koltun are with the Intelligent Systems Lab, Intel Labs, Santa Clara'; Germain at Stanford CCRMA (interned at Intel Labs). No HKUST mention. arXiv abs pages (v1, v2) carry no affiliations; the ISCA 2019 page lists authors only, no affiliations. The work was done at Intel Labs, so the paper's own byline does not support HKUST. The build link rests only on the PI's HKUST appointment year (2019 CSE listing 'Assistant Professor'), which is the dataset's fallback rule when no page-1 byline is available; no source here supports HKUST for this paper, so it is not a true HKUST lab paper.",
    "policy": null
   }
  ],
  "unclear": [],
  "screened": [],
  "population": {
-  "n_lab_papers": 5413,
-  "n_student_papers": 3537,
-  "n_coverage_pool": 4308,
+  "n_lab_papers": 5415,
+  "n_student_papers": 3546,
+  "n_coverage_pool": 4310,
   "n_student_candidates": 0
  }
 }
