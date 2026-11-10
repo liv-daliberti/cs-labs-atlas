@@ -3048,8 +3048,8 @@
     }
   },
   "Wei Lu": {
-    "no_identity": false,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
+    "no_identity": true,
+    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -3074,37 +3074,6 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
-    },
-    "dblp": [
-      "https://dblp.org/pid/98/6613-28"
-    ],
-    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 0 records in 2016-2026.",
-    "dblp_identity_review": {
-      "school": "ntu",
-      "pi": "Wei Lu",
-      "PID": "https://dblp.org/pid/98/6613-28",
-      "rule": "school_affiliation",
-      "dump": "dblp-2026-09-01.xml.gz",
-      "dump_record_sha256": "52c05bcbc3abd21abf23b822370aecb82e8b9952a5fbbd5601f8a474c1a6d33f",
-      "dump_record_quote": "Nanyang Technological University, School of Computer Engineering, Singapore",
-      "dump_record_url": "https://dblp.org/pid/98/6613-28",
-      "n_window": 0,
-      "official_listing_source": {
-        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
-        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
-        "quote": "Prof Wei Lu",
-        "observedAt": "2026-11-07T17:47:31"
-      },
-      "reviewer": "claude-ntu-1110",
-      "reviewed": "2026-11-10",
-      "dump_affiliation_notes": [
-        "Hewlett-Packard, IPG R&D Hub, Singapore",
-        "Singapore Research Laboratory of Sony Electronics, Singapore",
-        "Nanyang Technological University, School of Computer Engineering, Singapore"
-      ],
-      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
-      "corroboration": [],
-      "status": "accepted_rule_bound"
     }
   },
   "Luo Jun": {
