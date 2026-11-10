@@ -45,6 +45,169 @@ verdict = "skip"
 repository = "Stanford Digital Repository / PURL (purl.stanford.edu)"
 reason = "no OAI-PMH endpoint on purl.stanford.edu or searchworks.stanford.edu (HTML 404 pages, 2026-11-04). The robots-listed sitemaps give PURL URLs only, no metadata, so a harvest would be one request per PURL over the whole repository: not a bulk interface. robots.txt has no rule for ClaudeBot/anthropic-ai."
 
+# Hosts the stanford tools contact (stage 0, 2026-11-10). Derived from evidence: the raw capture stores (hierarchy/stanford/raw/*captures*.sqlite) and the full-text download ledger (stores/stanford/fulltext_assets.csv). The long tail of faculty personal sites is read per capture under school_web robots checks and is not enumerated here.
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (859 captures in the stanford raw stores; listings, lab pages, theses)"
+probe = ""
+
+[[hosts]]
+host = "api.openalex.org"
+use = "live"
+purpose = "OpenAlex API (snapshot first; the shared 10k/day key; 0 captures in the raw stores)"
+probe = ""
+
+[[hosts]]
+host = "dblp.org"
+use = "none"
+purpose = "DBLP: local dump only, never fetched (project rule)"
+probe = ""
+
+[[hosts]]
+host = "orcid.org"
+use = "none"
+purpose = "ORCID: never contacted (project rule); the raw stores hold 150 older captures from before the rule"
+probe = ""
+
+[[hosts]]
+host = "storage.googleapis.com"
+use = "live"
+purpose = "Third-party source: 8385 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "pmc-oa-opendata.s3.amazonaws.com"
+use = "live"
+purpose = "Third-party source: 2224 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "profiles.stanford.edu"
+use = "live"
+purpose = "School site: 1553 captures in the raw stores (1545 live, 8 via Wayback; 1534 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://profiles.stanford.edu/"
+
+[[hosts]]
+host = "purl.stanford.edu"
+use = "live"
+purpose = "School site: 823 captures in the raw stores (823 live, 0 via Wayback; 823 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://purl.stanford.edu/"
+
+[[hosts]]
+host = "web.stanford.edu"
+use = "live"
+purpose = "School site: 268 captures in the raw stores (268 live, 0 via Wayback; 192 HTTP 200); 193 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://web.stanford.edu/"
+
+[[hosts]]
+host = "papers.nips.cc"
+use = "live"
+purpose = "Third-party source: 307 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "cs.stanford.edu"
+use = "live"
+purpose = "School site: 191 captures in the raw stores (191 live, 0 via Wayback; 78 HTTP 200); 33 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://cs.stanford.edu/"
+
+[[hosts]]
+host = "www.cs.stanford.edu"
+use = "live"
+purpose = "School site: 118 captures in the raw stores (118 live, 0 via Wayback; 118 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.cs.stanford.edu/"
+
+[[hosts]]
+host = "theory.stanford.edu"
+use = "live"
+purpose = "School site: 88 captures in the raw stores (88 live, 0 via Wayback; 44 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://theory.stanford.edu/"
+
+[[hosts]]
+host = "stanford.edu"
+use = "live"
+purpose = "School site: 33 captures in the raw stores (33 live, 0 via Wayback; 30 HTTP 200); 51 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://stanford.edu/"
+
+[[hosts]]
+host = "graphics.stanford.edu"
+use = "live"
+purpose = "School site: 67 captures in the raw stores (67 live, 0 via Wayback; 37 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://graphics.stanford.edu/"
+
+[[hosts]]
+host = "ai.stanford.edu"
+use = "live"
+purpose = "School site: 47 captures in the raw stores (47 live, 0 via Wayback; 16 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://ai.stanford.edu/"
+
+[[hosts]]
+host = "www.stanford.edu"
+use = "live"
+purpose = "School site: 40 captures in the raw stores (40 live, 0 via Wayback; 34 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.stanford.edu/"
+
+[[hosts]]
+host = "crypto.stanford.edu"
+use = "live"
+purpose = "School site: 28 captures in the raw stores (28 live, 0 via Wayback; 21 HTTP 200); 1 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://crypto.stanford.edu/"
+
+[[hosts]]
+host = "nlp.stanford.edu"
+use = "live"
+purpose = "School site: 27 captures in the raw stores (27 live, 0 via Wayback; 13 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://nlp.stanford.edu/"
+
+[[hosts]]
+host = "robotics.stanford.edu"
+use = "live"
+purpose = "School site: 25 captures in the raw stores (25 live, 0 via Wayback; 6 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://robotics.stanford.edu/"
+
+[[hosts]]
+host = "hci.stanford.edu"
+use = "live"
+purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 11 HTTP 200); 8 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://hci.stanford.edu/"
+
+[[hosts]]
+host = "montgomerylab.stanford.edu"
+use = "live"
+purpose = "School site: 21 captures in the raw stores (21 live, 0 via Wayback; 6 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://montgomerylab.stanford.edu/"
+
+[[hosts]]
+host = "med.stanford.edu"
+use = "live"
+purpose = "School site: 21 captures in the raw stores (21 live, 0 via Wayback; 13 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://med.stanford.edu/"
+
+[[hosts]]
+host = "tml.stanford.edu"
+use = "live"
+purpose = "School site: 19 captures in the raw stores (19 live, 0 via Wayback; 7 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://tml.stanford.edu/"
+
+[[hosts]]
+host = "ee.stanford.edu"
+use = "live"
+purpose = "School site: 17 captures in the raw stores (17 live, 0 via Wayback; 17 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://ee.stanford.edu/"
+
+[[hosts]]
+host = "bejerano.stanford.edu"
+use = "live"
+purpose = "School site: 16 captures in the raw stores (16 live, 0 via Wayback; 10 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://bejerano.stanford.edu/"
+
+[[hosts]]
+host = "khatib.stanford.edu"
+use = "live"
+purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 7 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://khatib.stanford.edu/"
+
 [collector]
 # 2026-11-10 (owner): discovery channels re-enabled for every loop. wayback_acm stays OFF (and WAYBACK_HOLD=1 in the loop scripts) while Wayback listing captures run; CORE stays paused.
 # Re-enable wayback_acm later: append "wayback_acm" here and set WAYBACK_HOLD=0 for the loops. OpenAlex spend is capped by OA_RESERVE=4000 (docs/CHANNELS.md).
