@@ -68,6 +68,29 @@ def read(p, default=None):
     return json.loads(p.read_text()) if p.exists() else default
 
 
+def reviewed_name_aliases(key):
+    """Only explicitly sourced name pairs may override the ordinary name matcher."""
+    doc = read(P.data('census-name-aliases.json', key), {}) or {}
+    if not doc:
+        return []
+    assert doc['school'] == key
+    from bs4 import BeautifulSoup
+    out = []
+    for item in doc['rows']:
+        a, b, ev = item['name_a'], item['name_b'], item['evidence']
+        assert a != b and toks(a)[-1] == toks(b)[-1]
+        path = (P.ROOT / ev['raw_path']).resolve()
+        assert path.is_relative_to(P.ROOT.resolve())
+        raw = path.read_bytes()
+        assert hashlib.sha256(raw).hexdigest() == ev['sha256']
+        text = ' '.join(BeautifulSoup(raw, 'html.parser').stripped_strings)
+        assert ev['quote'] in text
+        if ev.get('additional_quote'):
+            assert ev['additional_quote'] in text
+        out.append((a, b))
+    return out
+
+
 def given_compatible(a, b, fam):
     """Two given-name token lists of one family name in one school's faculty listings are one person when: the first
     given names are nickname-equal; one is a 3+ letter prefix of the other ('Raj' / 'Rajesh', 'Mack' / 'Mackillo',
@@ -88,7 +111,7 @@ def given_compatible(a, b, fam):
     return False
 
 
-def merge_people(rows):
+def merge_people(rows, explicit_aliases=()):
     """Group listing rows into persons: same family name and compatible given names (given_compatible); rows of one
     school only, never across schools."""
     groups, by_fam = [], collections.defaultdict(list)
@@ -130,6 +153,16 @@ def merge_people(rows):
                     break
             if merged:
                 break
+    for name_a, name_b in explicit_aliases:
+        a = next((g for g in groups if name_a in g['names']), None)
+        b = next((g for g in groups if name_b in g['names']), None)
+        assert a is not None and b is not None, f'reviewed alias not present in faculty rows: {name_a} / {name_b}'
+        if a is b:
+            continue
+        a['names'] += [n for n in b['names'] if n not in a['names']]
+        a['rows'] += b['rows']
+        groups.remove(b)
+        by_fam[toks(name_b)[-1]].remove(b)
     for g in groups:
         g['rows'].sort(key=lambda r: r['observed'])
     return groups
@@ -151,7 +184,7 @@ def main(key):
                       dump=None)
         d0['orcid'] = sorted(set(d0.get('orcid') or []) | {o['orcid'] for o in h_.get('orcid') or []})
     census, people, listing_rows, n = [], [], [], collections.Counter()
-    groups = merge_people(rows)
+    groups = merge_people(rows, reviewed_name_aliases(key))
     labels = [display_name(g['rows'], g['names']) for g in groups]
     duplicates = [name for name, count in collections.Counter(labels).items() if count > 1]
     if duplicates:

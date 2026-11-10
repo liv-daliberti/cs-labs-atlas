@@ -16,8 +16,9 @@ coverage listings/<key>/coverage.json: department x year -> slots with an ok cap
          half-year without one (nocapture | unusable | out_of_scope)
 usage: listing_rows.py <key>
 """
-import collections, hashlib, json, re, sqlite3, sys, urllib.parse, zlib
+import collections, hashlib, json, re, sqlite3, subprocess, sys, tempfile, urllib.parse, zlib
 from datetime import datetime
+from bs4 import BeautifulSoup
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
@@ -163,6 +164,131 @@ def live_listing_rows(key, cfg, rw, tm, title_filters, kind_of):
     return rows, n, coverage
 
 
+def catalog_listing_coverage(key):
+    """Accept a dated official catalog roster only after checking its saved original and every reviewed role line.
+
+    These catalogs print initials in some years. They establish source coverage here; person identity and
+    appointment periods remain separate review decisions in later stages.
+    """
+    manifest = P.HIERARCHY / key / 'reviewed' / 'catalog-listing-sources.json'
+    if not manifest.exists():
+        return []
+    data = json.loads(manifest.read_text())
+    assert data['school'] == key
+    db = P.LISTINGS / key / 'raw' / 'catalog-captures.sqlite'
+    out = []
+    with sqlite3.connect(f'file:{db}?mode=ro', uri=True) as c:
+        for record in data['records']:
+            year, url, sha = record['start_year'], record['source_url'], record['raw_sha256']
+            saved = c.execute('select year,status,sha256,raw_zlib,content_type from captures where url=?', (url,)).fetchone()
+            if not saved or saved[0] != year or saved[1] != 200 or saved[2] != sha:
+                raise ValueError(f'catalog source metadata mismatch: {key} {year} {url}')
+            raw = zlib.decompress(saved[3])
+            if hashlib.sha256(raw).hexdigest() != sha:
+                raise ValueError(f'catalog source hash mismatch: {key} {year} {url}')
+            if raw.startswith(b'%PDF-'):
+                with tempfile.NamedTemporaryFile(suffix='.pdf') as f:
+                    f.write(raw); f.flush()
+                    text = subprocess.run(['pdftotext', '-layout' if year == 2016 else '-raw', f.name, '-'],
+                                          capture_output=True, check=True, text=True).stdout
+            elif 'html' in (saved[4] or '').lower():
+                text = BeautifulSoup(raw, 'html.parser').get_text(' ', strip=True)
+            else:
+                raise ValueError(f'catalog source is neither a PDF nor HTML: {key} {year} {url}')
+            flat = ' '.join(text.split())
+            lines = record['role_lines']
+            if not lines or not any(x.startswith('Professors:') for x in lines) or not any(x.startswith('Assistant Professors:') for x in lines):
+                raise ValueError(f'catalog lacks a reviewed CS faculty section: {key} {year}')
+            if any(' '.join(line.split()) not in flat for line in lines):
+                raise ValueError(f'catalog role line missing from saved original: {key} {year}')
+            out.append(('CS', year, f'official catalog {year}–{year + 1}', 'ok'))
+    return out
+
+
+def catalog_person_rows(key):
+    """Import full-name graduate catalog role lists after catalog_listing_coverage verified the originals.
+
+    The undergraduate editions mostly print initials; they remain source coverage and review leads, not
+    guessed person records. The graduate rows retain the academic year without inventing a capture day.
+    """
+    manifest = P.HIERARCHY / key / 'reviewed' / 'catalog-listing-sources.json'
+    if not manifest.exists():
+        return []
+    ranks = {'Professors': 'ladder', 'Associate Professors': 'ladder', 'Assistant Professors': 'ladder',
+             'Emeriti Faculty': 'emeritus', 'Visiting Faculty': 'visiting', 'Research Professors': 'research',
+             'Collegiate Associate Professors': 'teaching', 'Collegiate Assistant Professors': 'teaching',
+             'Assistant Professor of Practice': 'teaching', 'Associate Professor of Practice': 'teaching',
+             'Instructors': 'lecturer'}
+    out = []
+    for record in json.loads(manifest.read_text())['records']:
+        if record['source_type'] != 'official_VT_graduate_catalog':
+            continue
+        year = record['start_year']
+        for line in record['role_lines']:
+            label, _, body = line.partition(':')
+            rank = ranks.get(label)
+            if not rank:
+                continue
+            for token in body.split(';'):
+                name = ' '.join(token.strip(' .').split())
+                if len(name.split()) < 2:
+                    continue
+                out.append(dict(name=name, name_listed=name, dept='CS', slot='official graduate catalog',
+                                kind='main', year=year, half='academic_year', observed=str(year),
+                                titles=[label], dept_title=[label], rank=rank, division=None,
+                                homepage=None, capture_url=record['source_url'], sha256=record['raw_sha256'],
+                                quote=line, source_kind='official_graduate_catalog',
+                                identity_status='full_name_as_printed_unmerged' if len(name.split()[0].strip('.')) > 1 else 'initial_as_printed_unmerged'))
+    return out
+
+
+def vt_paired_directory_rows(key):
+    """2016–21 CS initials resolved by a unique same-year, full-name registrar entry.
+
+    Both originals and both exact quotes must still verify; this is a draft
+    census identity, not a PI, lab, or paper admission.
+    """
+    if key != 'vt':
+        return []
+    manifest = P.HIERARCHY / key / 'reviewed' / 'faculty-directory-identity-matches.json'
+    if not manifest.exists():
+        return []
+    doc = json.loads(manifest.read_text())
+    assert doc['school'] == key
+    sources = {r['start_year']: r for r in json.loads((P.HIERARCHY / key / 'reviewed' / 'catalog-listing-sources.json').read_text())['records']}
+    store = P.ROOT / doc['original_capture_store']
+    out = []
+    with sqlite3.connect(f'file:{store}?mode=ro', uri=True) as db:
+        pages = {}
+        for year, url, sha, blob in db.execute('select year,url,sha256,body_zlib from captures'):
+            raw = zlib.decompress(blob)
+            assert hashlib.sha256(raw).hexdigest() == sha
+            paragraphs = {' '.join(p.stripped_strings) for p in BeautifulSoup(raw, 'html.parser').find_all('p')}
+            pages[year] = (url, sha, paragraphs)
+    for r in doc['records']:
+        if not r['admitted_to_draft_census']:
+            assert r['status'] != 'exact_year_unique'
+            continue
+        assert r['status'] == 'exact_year_unique' and len(r['same_year_full_name_entries']) == 1
+        year = r['year']
+        catalog = sources[year]
+        assert r['catalog_source_url'] == catalog['source_url'] and r['catalog_source_sha256'] == catalog['raw_sha256']
+        assert r['catalog_line'] in catalog['role_lines'] and r['role'] in ('Professors', 'Associate Professors', 'Assistant Professors')
+        person = r['same_year_full_name_entries'][0]
+        url, sha, paragraphs = pages[year]
+        assert person['url'] == url and person['raw_sha256'] == sha and person['quote'] in paragraphs
+        name = person['name']
+        out.append(dict(name=name, name_listed=name, dept='CS', slot='official catalog + faculty directory',
+                        kind='main', year=year, half='academic_year', observed=str(year),
+                        titles=[r['role']], dept_title=[r['role']], rank='ladder', division=None,
+                        homepage=None, capture_url=catalog['source_url'], sha256=catalog['raw_sha256'],
+                        quote=r['catalog_line'], source_kind='official_catalog_directory_pair',
+                        identity_status='same_year_official_directory_match',
+                        identity_basis=dict(url=url, sha256=sha, quote=person['quote'])))
+    assert len(out) == doc['by_status']['exact_year_unique']
+    return out
+
+
 def main(key):
     cfg = S.get(key)
     rw = (cfg.get('census') or {}).get('rank_words') or {}
@@ -221,7 +347,16 @@ def main(key):
     rows.extend(live)
     n.update(live_counts)
     n['rows'] += len(live)
-    for dept, year, slot, status in live_coverage:
+    catalog_coverage = catalog_listing_coverage(key)
+    catalog_rows = catalog_person_rows(key)
+    rows.extend(catalog_rows)
+    n['catalog_rows'] += len(catalog_rows)
+    n['rows'] += len(catalog_rows)
+    paired_rows = vt_paired_directory_rows(key)
+    rows.extend(paired_rows)
+    n['paired_directory_rows'] += len(paired_rows)
+    n['rows'] += len(paired_rows)
+    for dept, year, slot, status in live_coverage + catalog_coverage:
         cov[dept][year][slot] = status
     out = P.data('rows.json', key)
     out.parent.mkdir(parents=True, exist_ok=True)  # listings/<key>/derived does not exist for a new school (UChicago friction #12)

@@ -304,6 +304,8 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('paper-source-review.json', 'reviewed', 'hierarchy/{school}/paper-source-review.json', 'hierarchy/{school}/reviewed/paper-source-review.json'),
     ('member-paper-review.json', 'reviewed', 'hierarchy/{school}/member-paper-review.json', 'hierarchy/{school}/reviewed/member-paper-review.json'),
     ('cs-related-hand.json', 'reviewed', 'hierarchy/{school}/cs-related-hand.json', 'hierarchy/{school}/reviewed/cs-related-hand.json'),
+    ('cs-related-source-exclusions.json', 'reviewed', 'hierarchy/{school}/cs-related-source-exclusions.json', 'hierarchy/{school}/reviewed/cs-related-source-exclusions.json'),
+    ('census-name-aliases.json', 'reviewed', 'hierarchy/{school}/census-name-aliases.json', 'hierarchy/{school}/reviewed/census-name-aliases.json'),
     ('faculty-periods.json', 'reviewed', 'periods/{school}-faculty-periods.json', 'hierarchy/{school}/reviewed/faculty-periods.json'),
     # per school: recovered rows and tool state (rebuildable from raw + reviewed)
     ('dblp-recovered.jsonl.gz', 'work', 'hierarchy/{school}/dblp-recovered.jsonl.gz', 'hierarchy/{school}/work/dblp-recovered.jsonl.gz'),

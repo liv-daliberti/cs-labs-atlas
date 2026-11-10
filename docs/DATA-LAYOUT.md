@@ -225,6 +225,8 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `units-done.json` | derived | `hierarchy/{school}/units-done.json` | `hierarchy/{school}/derived/units-done.json` | - | <1MB |
 | `truncated-title-evidence.json` | derived | `hierarchy/{school}/truncated-title-evidence.json` | `hierarchy/{school}/derived/truncated-title-evidence.json` | - | <10MB |
 | `cs-related-hand.json` | reviewed | `hierarchy/{school}/cs-related-hand.json` | `hierarchy/{school}/reviewed/cs-related-hand.json` | - | <10MB |
+| `cs-related-source-exclusions.json` | reviewed | `hierarchy/{school}/cs-related-source-exclusions.json` | `hierarchy/{school}/reviewed/cs-related-source-exclusions.json` | - | <5MB |
+| `census-name-aliases.json` | reviewed | `hierarchy/{school}/census-name-aliases.json` | `hierarchy/{school}/reviewed/census-name-aliases.json` | - | <5MB |
 | `cs-related-candidates-openalex.json` | derived | `hierarchy/{school}/cs-related-candidates-openalex.json` | `hierarchy/{school}/derived/cs-related-candidates-openalex.json` | - | <100MB |
 | `defense-evidence.json` | reviewed | `hierarchy/{school}/defense-evidence.json` | `hierarchy/{school}/reviewed/defense-evidence.json` | - | <100MB |
 | `defense-adviser-evidence.json` | reviewed | `hierarchy/{school}/defense-adviser-evidence.json` | `hierarchy/{school}/reviewed/defense-adviser-evidence.json` | 0/1 | <100MB |

@@ -57,7 +57,7 @@ hand        reviewed/cs-related-hand.json: faculty evidence from a person's own 
 usage: cs_related_school.py candidates|units|units-check|review|profile <key> [<Name> <unit> <url>]
 units-check exits 0 when units-done.json covers every unit URL of the charter (a unit added since the last `units` run, or no run, exits 1)
 """
-import collections, datetime, gzip, json, re, sys
+import collections, datetime, gzip, hashlib, json, re, subprocess, sys
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
@@ -89,6 +89,37 @@ def census_rows(doc):
     return [x for x in (doc or []) if isinstance(x, dict) and x.get('name')]
 
 
+def source_exclusions(key):
+    """Return exact DBLP PIDs excluded by reviewed, hash-checked student/alumni evidence."""
+    doc = read(P.data('cs-related-source-exclusions.json', key), {}) or {}
+    if not doc:
+        return set()
+    assert doc.get('school') == key
+    from bs4 import BeautifulSoup
+    out = set()
+    for row in doc.get('records', []):
+        assert row['source'] == 'dblp_affiliation' and row['decision'] == 'exclude_nonfaculty_vt'
+        pid = row['source_id']
+        assert pid.startswith('https://dblp.org/pid/') and pid not in out
+        ev = row['evidence']
+        path = (P.ROOT / ev['raw_path']).resolve()
+        assert path.is_relative_to(P.ROOT.resolve())
+        raw = path.read_bytes()
+        assert hashlib.sha256(raw).hexdigest() == ev['raw_sha256']
+        if ev['format'] == 'html':
+            body = ' '.join(BeautifulSoup(raw, 'html.parser').stripped_strings)
+        elif ev['format'] == 'pdf':
+            mode = ev.get('pdf_text_mode', 'layout')
+            assert mode in ('layout', 'raw')
+            body = subprocess.run(['pdftotext', f'-{mode}', str(path), '-'], capture_output=True, text=True, check=True).stdout
+        else:
+            raise ValueError(f"unsupported source format: {ev['format']}")
+        body = ' '.join(body.split())
+        assert ev['quotes'] and all(q in body for q in ev['quotes'])
+        out.add(pid)
+    return out
+
+
 def candidates(key):
     census = census_rows(read(P.data('census-faculty.json', key)))
     cov = {d['code']: d.get('coverage') for d in S.get(key).get('departments') or []}
@@ -98,7 +129,13 @@ def candidates(key):
         if any(cov.get(d) == 'affiliated' and r == 'ladder' for d, r in dep_rank) and not any(cov.get(d) == 'full' and r == 'ladder' for d, r in dep_rank):
             out.append(dict(name=x['name'], aliases=x.get('aliases') or [], source='affiliated_department', departments=x.get('departments') or []))
     names = [Name([x['name']] + list(x.get('aliases') or [])) for x in census]
+    pi_names = [Name([x['name']] + list(x.get('aliases') or [])) for x in census if x.get('is_pi')]
+    excluded_pids = source_exclusions(key)
+    seen_exclusions = set()
     for p in read(P.data('dblp-affiliated.json', key), {}).get('persons', []):
+        if p['pid'] in excluded_pids:
+            seen_exclusions.add(p['pid'])
+            continue
         if p.get('n_window', 0) < MIN_DBLP or p.get('disambiguation'):
             continue
         nm = clean_dblp(p['names'][0])
@@ -106,6 +143,17 @@ def candidates(key):
             continue
         out.append(dict(name=nm, aliases=[clean_dblp(n) for n in p['names'][1:]], source='dblp_affiliation', dblp=p['pid'], dblp_window=p['n_window'],
                         affiliations=[a['text'] for a in p['affiliations']], matched_by=p['matched_by']))
+    assert seen_exclusions == excluded_pids, 'reviewed DBLP exclusion PID missing from affiliated source inventory'
+    # A source-checked ladder appointment is a candidate even when its DBLP record is sparse.
+    # The later review still decides computing scope and never admits the role by itself.
+    for e in read(P.data('cs-related-hand.json', key), []):
+        if not e.get('ladder') or not e.get('name'):
+            continue
+        nm = e['name']
+        if any(N.match(nm) for N in pi_names) or any(Name([c['name']] + list(c.get('aliases') or [])).match(nm) for c in out):
+            continue
+        out.append(dict(name=nm, aliases=[], source='official_profile_ladder', unit=e.get('unit'),
+                        source_url=e.get('url'), source_sha256=e.get('sha256')))
     have = names + [Name([c['name']] + list(c.get('aliases') or [])) for c in out]
     for r in read(P.data('cs-related-candidates-openalex.json', key), []):  # (c)
         if r.get('name_matches_pi') or any(N.match(n) for N in have for n in r['names'][:3]):
@@ -463,12 +511,26 @@ def review(key):
     hand = hand_evidence(key)
     dec, adds, n = [], [], collections.Counter()
     seen = set()
+    by_display_name = collections.defaultdict(list)
+    for c in cands:
+        by_display_name[' '.join(toks(c['name']))].append(c)
     for c in cands:
         names = [c['name']] + list(c.get('aliases') or [])
-        if ' '.join(toks(c['name'])) in seen:
+        name_key = ' '.join(toks(c['name']))
+        if len(by_display_name[name_key]) > 1:
+            if name_key not in seen:
+                collisions = by_display_name[name_key]
+                dec.append(dict(name=c['name'], aliases=[], source='multiple_candidate_ids', decision='pending_identity_collision',
+                                reason='distinct candidate source records have the same display name; resolve each source identity before PI admission',
+                                candidate_sources=[dict(source=x['source'], dblp=x.get('dblp'), openalex=x.get('openalex')) for x in collisions],
+                                cs_basis={}, faculty_evidence=[], years_listed=[], units_searched=searched))
+                n['pending_identity_collision'] += 1
+            seen.add(name_key)
+            continue
+        if name_key in seen:
             n['duplicate_dblp_record'] += 1; continue  # two DBLP records of one name: one decision
-        seen.add(' '.join(toks(c['name'])))
-        al = census_alias(census, names) if c['source'] != 'affiliated_department' else None
+        seen.add(name_key)
+        al = census_alias(census, names) if c['source'] not in ('affiliated_department', 'official_profile_ladder') else None
         if al:
             n['census_alias'] += 1
             dec.append(dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision='census_alias', census_name=al,

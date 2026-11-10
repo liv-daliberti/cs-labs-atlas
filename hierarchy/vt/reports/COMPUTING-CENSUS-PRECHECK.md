@@ -2,6 +2,8 @@
 
 2026-11-10. This is a source-backed lead audit, not a completed campus census.
 
+**Stage 1 update:** The formal faculty-listing gate has since passed with zero open items and zero waivers. Nine official catalog rosters cover 2016–24, an archived CS directory covers 2025, and the saved live CS directory covers 2026. The older stage/website counts below describe the pre-check at capture time; see `STAGE-1.md` and `stage-1-gate.json` for current gate status.
+
 | Source and scope | Measured inventory | Admission decision |
 | --- | ---: | --- |
 | CS official faculty page, captured 2026-11-07, SHA-256 `e3f508169f1ce818a27c3351d14a67a6b652c574feb4a62751510d3ec747203e` | 133 people across five named sections; 88 in teaching/research, 13 courtesy, 4 affiliate, 12 adjunct, 16 emeritus | Each section has an exact saved-body and count receipt for 2026 H2. The previous census marked 64 ladder faculty as PI candidates. Older years and individual lab ownership remain open. |

@@ -112,7 +112,16 @@ def g2(key):
     rev = read(P.data('cs-related-review.json', key), {}) or {}
     dec = {d['name']: d for d in rev.get('decisions', [])}
     bad = [f"{c['name']}: no decision" for c in cands if c['name'] not in dec and not any(a in dec for a in c.get('aliases') or [])]
-    bad += [f"{d['name']}: {d['decision']} ({d['reason'][:100]})" for d in dec.values() if d['decision'] == 'pending_openalex']
+    # A display name is not an identity key. Separate DBLP PIDs with the same name
+    # must be resolved before the stage can pass; a single name-keyed decision could
+    # otherwise hide a second person (VT Dong Li / Lei Zhang / Xi Chen, 2026-11-10).
+    by_name = collections.defaultdict(list)
+    for c in cands:
+        by_name[c['name']].append(c)
+    bad += [f"{name}: {len(rows)} candidate identities share a display name; resolve source IDs before admission"
+            for name, rows in by_name.items() if len(rows) > 1]
+    bad += [f"{d['name']}: {d['decision']} ({d['reason'][:100]})" for d in dec.values()
+            if d['decision'] in ('pending_openalex', 'pending_identity_collision')]
     bad += sweep_gate(key)  # the OpenAlex sweep and the DBLP pulls feed the review (owner standard 2026-10-30)
     return bad, dict(candidates=len(cands), **collections.Counter(d['decision'] for d in dec.values()))
 
