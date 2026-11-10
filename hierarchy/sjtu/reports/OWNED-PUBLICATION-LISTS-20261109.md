@@ -56,3 +56,19 @@ Lab coverage (exhaustive over the DBLP-bound PIs): 1380 of 1699 DBLP article or 
 Copies, sampled (no store written; PDFs deleted after hashing): of 100 random source-backed works, 37 downloaded a PDF whose first two pages carry the title, 5 a PDF with another title, 7 were disallowed by robots.txt, 3 errored, 48 had no stored PDF URL. About 37% obtainable by the stored links, against the 85% target (not a gate). A full overlay ledger was not built.
 
 Formal stage 9 composition: lab precision 105 hand judgements (45 source-backed + 60 heuristic) with the checks above, student precision 45, coverage 15 sampled plus exhaustive; not a single formal run of `accuracy/sample.py`.
+
+## Lab-coverage diagnosis and the pi-works build (2026-11-10)
+
+Coverage was recounted by DOI as well as title: the earlier 81.2% undercounted DBLP records whose OpenAlex title is a short form of the DBLP title; the DOI-aware figure for the final 28-PID package is 1415 of 1699 (83.3%). Adding the PI's own OpenAlex works from the API (`pi_fulltext_affiliation.py works sjtu`: 17,716 works, 278 author ids; and `pdf sjtu`: page 1 of the arXiv version ties SJTU for 156 of 457 candidates) and rebuilding (job 32179160, runtime 4ca6712, input commit dc3a63d) raised it to 1452 of 1699 (85.5%). Package: 5519 rows, 5038 distinct works, 109 PIs; after the proposed holds 4913 distinct works, of which 2833 source-backed and 2243 heuristic (2080 heuristic only).
+
+The seal refused (not sealed): one claim-held work (郁昱, a COVID epidemiology paper) re-entered through the pi-works route, which the runtime does not exclude by claim review. The package is complete; that row and 150 newly flagged rows are listed in `scratch/sjtu-coverage-1110/cc29.json` as holds for any further run.
+
+| The 247 uncounted DBLP records (period-covered, 2016-2026) | Count | Fixable by the rules? |
+| --- | ---: | --- |
+| Not in any stored OpenAlex store by title or DOI | 131 | No input of ours; OpenAlex does not carry the work or carries a different title without DOI |
+| PI authorship present but the byline name does not match the PI alias | 44 | Maybe: extra aliases per PI, each needing source evidence |
+| PI authorship names another institution | 25 | No: correctly not an SJTU paper (likely not true lab papers) |
+| Authorship names SJTU, work still absent | 33 | Period or identity gating; needs per-work review |
+| Authorship lists no institution | 14 | Page-1 tie when an arXiv version exists |
+
+Coverage stays below the 0.90 gate by the exhaustive count (the gate's own measure judges true lab papers by hand, which would drop the 25 other-institution records and any pre-move work).
