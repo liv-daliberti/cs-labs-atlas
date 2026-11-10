@@ -53,7 +53,7 @@ legacy_sweep = ""
 [census]
 computing_departments = ["CS"]
 center_units = ["SANGHANI", "HUME"]
-home_units = {"Computer Science" = 'computer\s+science', "Electrical and Computer Engineering" = 'electrical\s+(?:and|&)\s+computer\s+engineering', "Statistics" = 'statistics', "Industrial and Systems Engineering" = 'industrial\s+(?:and|&)\s+systems', "Mathematics" = 'mathematics', "Plant and Environmental Sciences" = 'plant\s+(?:and|&)\s+environmental\s+sciences'}
+home_units = {"Computer Science" = 'computer\s+science', "Electrical and Computer Engineering" = 'electrical\s+(?:and|&)\s+computer\s+engineering', "Statistics" = 'statistics', "Industrial and Systems Engineering" = 'industrial\s+(?:and|&)\s+systems', "Mathematics" = 'mathematics', "Plant and Environmental Sciences" = 'plant\s+(?:and|&)\s+environmental\s+sciences', "Physics" = 'physics', "Chemistry" = 'chemistry', "Business Information Technology" = 'business\s+information\s+technology', "School of Visual Arts" = 'school\s+of\s+visual\s+arts'}
 rank_words = {teaching = '\bprofessor\s+of\s+practice\b|\bcollegiate\s+(?:(?:assistant|associate)\s+)?professor\b|\binstructor\b|\bteaching\b', adjunct = '\badjunct\b|\bvisiting\b'}
 
 [sweep_check]
@@ -173,6 +173,30 @@ url = "https://spes.vt.edu/faculty-staff/faculty.html"
 listings = ["spes.vt.edu/faculty-staff/faculty.html"]
 
 [[affiliated_units]]
+code = "PHYS"
+name = "Physics"
+url = "https://www.phys.vt.edu/About/people/Faculty.html"
+listings = ["www.phys.vt.edu/About/people/Faculty.html"]
+
+[[affiliated_units]]
+code = "CHEM"
+name = "Chemistry"
+url = "https://chem.vt.edu/people/faculty.html"
+listings = ["chem.vt.edu/people/faculty.html"]
+
+[[affiliated_units]]
+code = "BIT"
+name = "Business Information Technology"
+url = "https://bit.vt.edu/faculty/directory.html"
+listings = ["bit.vt.edu/faculty/directory.html"]
+
+[[affiliated_units]]
+code = "SOVA"
+name = "School of Visual Arts"
+url = "https://sova.vt.edu/faculty.html"
+listings = ["sova.vt.edu/faculty.html"]
+
+[[affiliated_units]]
 code = "AOE"
 name = "Aerospace and Ocean Engineering"
 url = "https://www.aoe.vt.edu/people/faculty.html"
@@ -273,6 +297,30 @@ host = "spes.vt.edu"
 use = "live"
 purpose = "Computing-related faculty outside engineering and their lab sites"
 probe = "https://spes.vt.edu/faculty-staff/faculty.html"
+
+[[hosts]]
+host = "www.phys.vt.edu"
+use = "live"
+purpose = "Quantum computing and other computing-method faculty"
+probe = "https://www.phys.vt.edu/About/people/Faculty.html"
+
+[[hosts]]
+host = "chem.vt.edu"
+use = "live"
+purpose = "Computational chemistry faculty and lab sites"
+probe = "https://chem.vt.edu/people/faculty.html"
+
+[[hosts]]
+host = "bit.vt.edu"
+use = "live"
+purpose = "Information systems and computing faculty"
+probe = "https://bit.vt.edu/faculty/directory.html"
+
+[[hosts]]
+host = "sova.vt.edu"
+use = "live"
+purpose = "Immersive computing and visual arts faculty"
+probe = "https://sova.vt.edu/faculty.html"
 
 [[hosts]]
 host = "www.aoe.vt.edu"
