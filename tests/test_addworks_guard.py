@@ -45,3 +45,16 @@ def test_adding_rows_passes_and_removal_fails(guard, capsys):
     db = sqlite3.connect(tmp / 'school' / 'catalog.sqlite')
     db.execute("delete from works where id='a'"); db.commit(); db.close()
     assert G.after('school') == 1
+
+
+def test_an_empty_catalog_before_is_not_a_removed_id(guard, capsys):
+    G, tmp = guard
+    (tmp / 'st').rename(tmp / 'school')
+    db = sqlite3.connect(tmp / 'school' / 'catalog.sqlite')
+    db.execute('delete from works'); db.commit(); db.close()
+    G.before('school')
+    db = sqlite3.connect(tmp / 'school' / 'catalog.sqlite')
+    db.execute("insert into works values ('c','queued')"); db.commit(); db.close()
+    assert G.after('school') == 0
+    out = json.loads(capsys.readouterr().out.strip().splitlines()[-1])
+    assert out['removed'] == 0 and out['added'] == 1

@@ -52,7 +52,7 @@ def before(school):
 def after(school):
     g = guard_dir()
     rec = json.loads((g / f'{school}.before.json').read_text())
-    old = set(gzip.open(g / f'{school}.ids.gz', 'rt').read().split('\n'))
+    old = set(gzip.open(g / f'{school}.ids.gz', 'rt').read().split('\n')) - {''}   # an empty catalog saves an empty file: not an id
     now = work_ids(F.FT / school / 'catalog.sqlite')
     out = dict(school=school, works_before=rec['works_before'], works_after=len(now), added=len(now - old), removed=len(old - now), backup=rec['backup'],
                backup_sha256=rec['backup_sha256'], backup_sha256_now=sha256(rec['backup']), ok=not (old - now))
