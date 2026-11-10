@@ -884,5 +884,56 @@
   "Shan Luo": {
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-09 (zero-paper-review.json, oxford): First listed 2026 (Associate Professor of Computer Science); no DBLP record anchored, none of 13 name hits school-affiliated; no Oxford-affiliated author profile in the sweep. Stage-5 identity (DBLP/ORCID/OpenAlex) is still unresolved, so this is zero-by-appointment-date, not a proven no-identity."
+  },
+  "Alex Rogers": {
+    "openalex": [
+      "https://openalex.org/A5047020165",
+      "https://openalex.org/A5105986872"
+    ],
+    "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): Alex Rogers of Oxford Computer Science (DBLP pid 37/4849, ORCID 0000-0001-6324-0536): A5047020165 carries that ORCID (21 works, ACM/AI Magazine/Building Research & Information/ACM TIST); A5105986872 (8 works 2016-2026, Energy, IEEE Transactions on Smart Grid, IJCAI) is the same person's second profile. The marine biologist Alex D. Rogers (Oxford Zoology) is A5088170432, which also holds some CS works: kept as a mixed id, see the override.",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4319966473",
+        "sha256": "5f9a49441ca41092d637cdd68044cb48ae59af3218df51c615793d3676af6954",
+        "quote": "Alex Rogers | University of Oxford",
+        "observed": "2023-01-01",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+      },
+      {
+        "url": "https://api.openalex.org/works/W7143361897",
+        "sha256": "d7019d5d08f65314b61d7aa6e5bf32ed75334aff3b2d1cb9f81bf3518f02c3c6",
+        "quote": "Alex Rogers | Department of Computer Science, University of Oxford, Oxford, OX1 3QD, UK",
+        "observed": "2026-03-30",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+      }
+    ],
+    "mixed_openalex": [
+      "https://openalex.org/A5088170432"
+    ],
+    "why_mixed_openalex": "Reviewed 2026-11-09: A5088170432 is the OpenAlex profile of the marine biologist Alex D. Rogers (Oxford Zoology: 59 Oxford works, 1 computing; ORCID 0000-0002-4864-2980), and it also absorbed some works of Alex Rogers of Computer Science (its first Oxford work, W4407569062, names the Department of Computer Science). Neither an anchor nor a block (RULES R-PAP-06): 58 zoology works had entered Alex Rogers' lab through it as an anchored author id; the PI's own ORCID, DBLP page and reviewed ids still find his works.",
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4407569062",
+        "sha256": "0b0a686f0beb9dd02c87e794af7f7f2d21e025dd5dc2a473ea6a628f7df2cda8",
+        "quote": "Alex Rogers | Department of Computer Science University of Oxford  Oxford UK",
+        "observed": "2025-02-14",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+      }
+    ]
+  },
+  "Min Chen": {
+    "mixed_openalex": [
+      "https://openalex.org/A5029495631"
+    ],
+    "why_mixed_openalex": "Reviewed 2026-11-09: A5029495631 (raw names 'Mitchell Chen', 'M. Chen'; ORCID 0000-0002-3779-5615) mixes a radiologist's Oxford works (Radiology, European Radiology) with visualization works (Computer Graphics Forum, IEEE TVCG). Neither an anchor nor a block (RULES R-PAP-06); Min Chen's own identifiers still find his works.",
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4282917323",
+        "sha256": "0aab050e52761312fd5a1ae0c4a8a02c2fc9aba7b082c8796ca8bb20ad466bf7",
+        "quote": "Mitchell Chen | From the Department of Radiology (J.T.G., H.W., M.C., G.A.E., A.L., V.M., K.J., S.C., A.E., M.D., A.M., F.G.) and Oxford Interstitial Lung Disease Service (E.F.), Oxford University Hospitals NHS Trust, Oxford, UK; Department of Physiology, Anatomy, and Genetics (J.T.G., P.A.R.), Radcliffe Department of Medicine, Oxford Centre for Clinical Magnetic Resonance Research (J.T.G., B.R.), and Department of Oncology (F.G.), University of Oxford, Old Road Headington, Oxford 0X3 7DQ, UK; Institute of Cancer and Genomic Sciences, University of Birmingham, Birmingham, UK (J.T.G.); POLARIS, Department of Infection Immunity and Cardiovascular Disease (G.J.C., J.M.W.), and Department of Infection, Immunity, and Cardiovascular Disease (R.T.), University of Sheffield, Sheffield, UK; Wolfson School of Mechanical, Electrical and Manufacturing Engineering, Loughborough University, Loughborough, UK (M.K.); and GE Healthcare, Munich, Germany (R.F.S.)",
+        "observed": "2022-05-24",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+      }
+    ]
   }
 }
