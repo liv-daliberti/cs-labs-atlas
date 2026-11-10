@@ -1233,7 +1233,8 @@ def profile_slug_hit(href, names):
     s = seg[0].lower()
     for n in names:
         tk = [x for x in re.sub(r'[^a-z ]', ' ', fold(n)).split() if x]
-        if len(tk) >= 2 and re.fullmatch(re.escape('-'.join(tk)) + r'(-\d+)?', s):
+        # '-' (gatech, Georgia Tech 'gregory-abowd-0') or '.' (Oxford CS '/people/Samson.Abramsky': discovery found no profile for 34 Oxford PIs, 2026-11-10) between the name tokens
+        if len(tk) >= 2 and re.fullmatch(re.escape('-'.join(tk)) + r'(-\d+)?', s) or len(tk) >= 2 and re.fullmatch(re.escape('.'.join(tk)) + r'(\.\d+)?', s):
             return True
     return False
 

@@ -16,3 +16,9 @@ def test_slug_needs_given_and_family_name():
 def test_pure_institutional_profile_is_not_a_lab_website():
     assert L.is_profile('https://profiles.wustl.edu/en/persons/fuhai-li', r'wustl\.edu')
     assert not L.is_profile('https://www.cse.wustl.edu/~kunal/', r'wustl\.edu')
+
+
+def test_a_dotted_first_dot_last_slug_is_a_profile_card():
+    # Oxford Computer Science: '/people/Samson.Abramsky' (2026-11-10: 34 PIs had no school_profile check)
+    assert L.profile_slug_hit('https://www.cs.ox.ac.uk/people/Samson.Abramsky', ['Samson Abramsky'])
+    assert not L.profile_slug_hit('https://www.cs.ox.ac.uk/people/Abramsky', ['Samson Abramsky'])
