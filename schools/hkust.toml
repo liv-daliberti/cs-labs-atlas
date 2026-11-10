@@ -81,6 +81,16 @@ url = "https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview"
   match = ""
   format = "hkust_faculty_any"
   title_filter = ''
+  [[departments.listings]]
+  slot = "CSE regular faculty"
+  kind = "main"
+  url = "cse.hkust.edu.hk/admin/people/faculty/"
+  from = "20220101"
+  to = "20251231"
+  prefix = false
+  match = ""
+  format = "hkust_faculty_any"
+  title_filter = ''
 
 # Discovery leads only; none of these units has been reviewed as complete.
 [[affiliated_units]]
