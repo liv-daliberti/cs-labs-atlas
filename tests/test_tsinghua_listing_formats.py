@@ -106,3 +106,37 @@ def test_ee_rendered_institute_band_and_names():
     fmt, rows = L.parse(EER)
     assert fmt == 'tsinghua_ee_rendered'
     assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('陈宏伟', ['高级'], '信息光电子研究所'), ('罗毅', ['高级'], '信息光电子研究所'), ('甲乙', ['副高级'], '信息光电子研究所')]
+
+
+EEE = '''<ul><li id="yjs_1"> <div class="con"> <div class="type">信息光电子研究所</div></div></li></ul><script>
+function topage_1_1(keyword, yjly, szm) { var qh_itemid = "showdatainfo1"; var qh_data = [{"showTitle":"陈宏伟","fields":{"szm":"C"},"url":{"asString":"http://web.ee.tsinghua.edu.cn/chenhongwei/zh_CN/index.htm"}},{"showTitle":"罗毅","fields":{},"url":{"asString":"http://web.ee.tsinghua.edu.cn/luoyi/zh_CN/index.htm"}}]; x }
+function topage_1_2(keyword, yjly, szm) { var qh_itemid = "showdatainfo2"; var qh_data = [{"showTitle":"熊兵","fields":{},"url":{"asString":"http://web.ee.tsinghua.edu.cn/xiongbing/zh_CN/index.htm"}}]; x }</script>'''
+
+
+def test_ee_embedded_json_bands_and_institute():
+    fmt, rows = L.parse(EEE)
+    assert fmt == 'tsinghua_ee_embedded'
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('陈宏伟', ['高级'], '信息光电子研究所'), ('罗毅', ['高级'], '信息光电子研究所'), ('熊兵', ['副高级'], '信息光电子研究所')]
+
+
+EET = '''<html><body><div>首页 &gt; 人员情况 &gt; 在职教师 图片列表 信息光电子研究所 教 授： 陈宏伟 陈明华 副教授： 鲍捷 讲 师： 甘霖 通信研究所 教 授： 陈巍</div><div>版权所有 清华大学电子工程系</div></body></html>'''
+AUOLD = '''<div class="box_detail"><p><span>系统集成研究所</span></p><p>教 授 / 研究员</p><table uetable="null"><tbody><tr><td><a href="/publish/au/1714/a.html"><img src="x.jpg"/></a></td></tr>
+<tr><td><div><a href="/publish/au/1714/a.html">吴 澄</a></div><div>教授</div></td><td><div><a href="/publish/au/1714/b.html">柴跃廷</a></div><div>研究员</div></td></tr></tbody></table></div>'''
+INSCB = '''<p><strong>教授：</strong></p><p><a href="../info/1157/1.htm">段海新</a> &nbsp; <a href="../info/1157/2.htm">王继龙</a></p><p><strong>副教授：</strong></p><p><a href="../info/1157/3.htm">王会</a> &nbsp; 李宗鹏</p>'''
+
+
+def test_ee_text_archived_template():
+    fmt, rows = L.parse(EET)
+    assert fmt == 'tsinghua_ee_text'
+    assert [(r['name_listed'], r['titles'][0], r['division']) for r in rows] == [('陈宏伟', '教授', '信息光电子研究所'), ('陈明华', '教授', '信息光电子研究所'), ('鲍捷', '副教授', '信息光电子研究所'), ('甘霖', '讲师', '信息光电子研究所'), ('陈巍', '教授', '通信研究所')]
+
+
+def test_au_old_list_names_and_titles_from_text_cells():
+    fmt, rows = L.parse(AUOLD)
+    assert fmt == 'tsinghua_au_old_list'
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('吴澄', ['教授'], '系统集成研究所'), ('柴跃廷', ['研究员'], '系统集成研究所')]
+
+
+def test_insc_bands_links_and_plain_names():
+    rows = L.tsinghua_insc_bands(INSCB)
+    assert [(r['name_listed'], r['titles'][0], bool(r['profile'])) for r in rows] == [('段海新', '教授', True), ('王继龙', '教授', True), ('王会', '副教授', True), ('李宗鹏', '副教授', False)]

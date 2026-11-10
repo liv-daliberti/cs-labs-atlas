@@ -680,7 +680,97 @@ def tsinghua_ee_rendered(h):
     return out
 
 
+def tsinghua_ee_embedded(h):
+    """Tsinghua EE faculty page as ARCHIVED (raw HTML, no JavaScript run): the lists are embedded as `qh_data = [{showTitle, fields, url}]` inside
+    `function topage_<institute>_<band>(...)`; the institute is `li#yjs_<i>` `div.type` and the band 1/2/3 = 高级 / 副高级 / 中级 (same page as tsinghua_ee_rendered)."""
+    import json as _json
+    inst = dict(re.findall(r'<li id="yjs_(\d+)">\s*<div class="con">\s*<div class="type">(.*?)</div>', h, re.S))
+    band = {'1': '高级', '2': '副高级', '3': '中级'}
+    out = []
+    for m in re.finditer(r'function topage_(\d)_(\d)\(keyword, yjly, szm\)\s*\{\s*var qh_itemid = "[^"]+";\s*var qh_data = (\[.*?\]);', h, re.S):
+        i, j, js = m.groups()
+        try:
+            rows = _json.loads(js)
+        except ValueError:
+            continue
+        for e in rows:
+            name = clean(e.get('showTitle') or '')
+            if name:
+                out.append(dict(name_listed=name, titles=[band.get(j, j)], profile=(e.get('url') or {}).get('asString'), homepage=None, division=clean(inst.get(i, '')) or None))
+    return out
+
+
+def tsinghua_au_old_list(h):
+    """Tsinghua Automation faculty list 2016-2019 (/publish/au/1096/index.html, 在职教师 按研究所划分): `div.box_detail` with an institute `<p>` and tables whose text cells are
+    `<div><a>name</a></div><div>title</div>` (the picture cells carry only an image link)."""
+    from bs4 import BeautifulSoup
+    box = BeautifulSoup(h, 'html.parser').select_one('div.box_detail')
+    out, division = [], None
+    for el in (box.find_all(['p', 'td']) if box else []):
+        if el.name == 'p':
+            t = clean(el.get_text(' ', strip=True))
+            if t and len(t) <= 14 and re.search(r'所|中心|系', t):
+                division = t
+            continue
+        divs = el.find_all('div', recursive=False)
+        if len(divs) >= 2 and divs[0].find('a', href=True):
+            name = clean(divs[0].get_text(' ', strip=True)).replace(' ', '')
+            if name:
+                out.append(dict(name_listed=name, titles=[clean(divs[1].get_text(' ', strip=True))], profile=divs[0].find('a')['href'], homepage=None, division=division))
+    return out
+
+
+def tsinghua_insc_bands(h):
+    """Tsinghua INSC faculty page (szdw_/zzjs.htm): `<p><strong>副教授：</strong></p>` band paragraphs, then paragraphs of name links (some names are plain text)."""
+    from bs4 import BeautifulSoup
+    out, band = [], None
+    for p in BeautifulSoup(h, 'html.parser').find_all('p'):
+        text = clean(p.get_text(' ', strip=True).replace('\xa0', ' '))
+        st = p.find('strong')
+        if st is not None and re.fullmatch(r'[^：:]{1,12}[：:]', clean(st.get_text('', strip=True))) and not p.find('a'):
+            band = clean(st.get_text('', strip=True)).rstrip('：:')
+            continue
+        if band is None or not text:
+            continue
+        seen = set()
+        for a in p.find_all('a', href=True):
+            name = clean(a.get_text(' ', strip=True)).replace(' ', '')
+            if name:
+                out.append(dict(name_listed=name, titles=[band], profile=a['href'], homepage=None, division=None)); seen.add(name)
+        rest = clean(' '.join(t for t in p.find_all(string=True) if t.find_parent('a') is None).replace('\xa0', ' '))
+        for tok in rest.split():
+            if tok not in seen and re.fullmatch(r'[\u4e00-\u9fff]{2,4}', tok):
+                out.append(dict(name_listed=tok, titles=[band], profile=None, homepage=None, division=None))
+    return out
+
+
+def tsinghua_ee_text(h):
+    """Tsinghua EE faculty page 2022-2025 as ARCHIVED: plain text after `图片列表`: institute heading (…研究所 / …中心), then `教 授：`, `副教授：`, `讲 师：` ... bands each followed by name tokens."""
+    from bs4 import BeautifulSoup
+    t = BeautifulSoup(h, 'html.parser').get_text(' ')
+    i = t.find('图片列表')
+    area = t[i + 4:] if i >= 0 else t
+    area = re.sub(r'([教讲高中副助])\s+([授师级理])', r'\1\2', area)
+    out, division, band = [], None, None
+    for tok in area.replace('\xa0', ' ').split():
+        if re.search(r'版权所有|Copyright', tok):
+            break
+        if re.search(r'(?:研究所|中心)$', tok) and len(tok) <= 14:
+            division, band = tok, None
+        elif tok.endswith(('：', ':')):
+            band = tok.rstrip('：:')
+        elif band and division and re.fullmatch(r'[\u4e00-\u9fff]{2,4}', tok):
+            out.append(dict(name_listed=tok, titles=[band], profile=None, homepage=None, division=division))
+        elif re.search(r'版权所有|Copyright', tok):
+            break
+    return out
+
+
 FORMATS = {
+    'tsinghua_ee_text': (tsinghua_ee_text, re.compile(r'图片列表.{0,3000}?(?:教\s*授|副教授)\s*[：:]', re.S)),
+    'tsinghua_au_old_list': (tsinghua_au_old_list, re.compile(r'<table[^>]*uetable')),
+    'tsinghua_insc_bands': (tsinghua_insc_bands, re.compile(r'(?!)')),
+    'tsinghua_ee_embedded': (tsinghua_ee_embedded, re.compile(r'function topage_\d_\d\(keyword, yjly, szm\)')),
     'tsinghua_ee_rendered': (tsinghua_ee_rendered, re.compile(r'id="showdatainfo')),
     'tsinghua_sw_old_list': (tsinghua_sw_old_list, re.compile(r'id="s2_right_con"[^>]*>.{0,400}教师名录', re.S)),
     'tsinghua_cs_old_list': (tsinghua_cs_old_list, re.compile(r'class="box_detail"[^<]*<h1[^>]*>.{0,200}在职教师名录', re.S)),
