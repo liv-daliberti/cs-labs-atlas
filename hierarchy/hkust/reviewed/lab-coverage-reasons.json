@@ -1,0 +1,48 @@
+{
+  "Andrew B. HORNER 康立德": {
+    "papers": {
+      "code": "appointment_years_unsourced",
+      "why": "Not a claim of no publications: the build finds 66 HKUST-credited works under his bound identity (DBLP pid 83/9893 and ORCID 0000-0002-9795-5190; OpenAlex author A5056541447, 2016-2025, JASA and acoustics venues, all with a Hong Kong University of Science and Technology byline) and all 66 fall outside his only sourced appointment (the 2026 CSE listing; no period). His official profile and homepage state no start year. Open until a dated source (Wayback listings, CV) proves earlier years.",
+      "sources_checked": [
+        "hierarchy/hkust/reviewed/census-overrides-school.json (DBLP and ORCID binding with dump sha256)",
+        "native pis.json funnel (name_hits 66, school_affiliated 66, identity 66, outside_appointment 66)",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/horner (no start year)",
+        "pub.orcid.org record 0000-0002-9795-5190 (employer HKUST, no dates)"
+      ]
+    }
+  },
+  "Wilfred Siu-Hung NG 吳兆鴻": {
+    "papers": {
+      "code": "appointment_years_unsourced",
+      "why": "Not a claim of no publications: DBLP person n/WilfredNg (155 titles) and ORCID 0000-0001-6639-0521 are bound; 150 school-affiliated name hits, 23 identity-accepted, all 23 outside his only sourced appointment (the 2026 CSE listing; no period). His official profile gives no start year. Open until a dated source proves earlier years.",
+      "sources_checked": [
+        "hierarchy/hkust/reviewed/census-overrides-school.json (DBLP and ORCID binding)",
+        "native pis.json funnel (name_hits 153, school_affiliated 150, identity 23, outside_appointment 23)",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/wilfred (no start year)"
+      ]
+    }
+  },
+  "Yaonan JIN 金耀楠": {
+    "papers": {
+      "code": "no_faculty_period_works",
+      "why": "2026-11-10 reviewed (T110): the only HKUST-affiliated works under his DBLP person (pid 218/5430; 3 works, all 2018) date from his HKUST MPhil years, which his own homepage states ('I obtained my MPhil from Hong Kong University of Science and Technology', https://yj10027.github.io/, sha256 d244b2d5a1a714a10c054fe716ef81df4d9c8466f56586310f3c364015bce377) and the official profile confirms ('Previously, he conducted theoretical computer science research at Huawei. Before that, he obtained his PhD from Columbia University, his MPhil from HKUST', sha256 735b820e24a27e3a92535f542795a1f5ffd0f3b064734d5f3f168e8e18115ff5). A student's work is not a faculty lab paper, and his faculty listing is 2026 only (assistant professor after Huawei). The other 26-36 DBLP titles carry no HKUST byline. No HKUST-affiliated work inside a faculty appointment exists yet; reopen when his 2026 works enter the sweep.",
+      "sources_checked": [
+        "https://yj10027.github.io/ (sha256 d244b2d5...)",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/jinyaonan (sha256 735b820e...)",
+        "DBLP pid 218/5430"
+      ]
+    }
+  },
+  "Sehi L'YI 李世熙": {
+    "papers": {
+      "code": "new_hire_2025_or_later",
+      "why": "2026-11-10 reviewed (T110): new 2026 hire. The official profile says 'Previously, he was an NIH/NHGRI K99/R00 Pathway to Independence Fellow in the Department of Biomedical Informatics at Harvard Medical School' (https://cse.hkust.edu.hk/admin/people/faculty/profile/sehi, sha256 dc078316f20826d201f500956e286538f492f710bfd8f7bbe103c8ed0f24513d) and his homepage the same (https://sehilyi.com/, sha256 56b9dca10a48eacc9a022f543e4ccd4730e985c2787f4f4d7acf76319a56264e). His DBLP person (pid 161/3076, 32 titles, ORCID 0000-0001-7720-2848) is bound; the OpenAlex sweep of HKUST-credited works holds no authorship under it (name hits 0), so every work predates his HKUST appointment. Reopen when HKUST-affiliated works appear.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/sehi (sha256 dc078316...)",
+        "https://sehilyi.com/ (sha256 56b9dca1...)",
+        "DBLP pid 161/3076",
+        "OpenAlex sweep of HKUST-credited works: no authorship under the bound identity"
+      ]
+    }
+  }
+}
