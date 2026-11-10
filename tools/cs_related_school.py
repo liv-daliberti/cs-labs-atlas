@@ -333,6 +333,7 @@ def faculty_evidence(pages, names):
                 # appointment ('Associate Professor of Information, School of Information and Research Associate
                 # Professor, ICPSR', learned 2026-10-30, Libby Hemphill)
                 core = seg[:pt.start() + re.search(r'Professor', seg[pt.start():], re.I).end()]
+                core += re.match(r'[\s,]*(?:Emerit\w+|Adjunct|Status[- ]only)', seg[len(core):], re.I).group(0) if re.match(r'[\s,]*(?:Emerit\w+|Adjunct|Status[- ]only)', seg[len(core):], re.I) else ''  # 'Professor Emeritus' is emeritus, not ladder (Toronto 2026-11-10)
                 hit = dict(unit=unit, url=url, sha256=sha, observed=obs, quote=q, ladder=not NOT_LADDER.search(core))
                 break
             if hit:

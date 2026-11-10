@@ -21,8 +21,10 @@
  ],
  "counts": {
   "not_faculty_listed": 415,
-  "accepted": 92,
+  "research_or_other_rank": 6,
+  "accepted": 82,
   "duplicate_dblp_record": 3,
+  "faculty_not_computing": 4,
   "census_alias": 1
  },
  "decisions": [
@@ -509,8 +511,8 @@
    "name": "Andrew A. Goldenberg",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "accepted",
-   "reason": "faculty (MIE listing, professor rank) with 5 DBLP records 2016-2026; share test cannot measure (0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids))",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/53/6792"
@@ -525,33 +527,7 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Toronto, Robotics and Automation Laboratory, ON, Canada"
      }
-    ],
-    "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [],
-     "school_works": 0,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [
-      {
-       "author": "https://openalex.org/A5069757661",
-       "why": "works end 2023, before the first listing (2026)",
-       "n": 11,
-       "raw": [
-        "Andrew A. Goldenberg",
-        "Andrew Goldenberg"
-       ]
-      }
-     ],
-     "authors": [],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    ]
    },
    "faculty_evidence": [
     {
@@ -560,7 +536,7 @@
      "sha256": "4c62d811056692ef1a4ab41cf2a87c9f4d9e2506ea4ce74e7716c9eaff63e8da",
      "observed": "20261109",
      "quote": "Andrew A. Goldenberg Professor",
-     "ladder": true
+     "ladder": false
     },
     {
      "unit": "MIE",
@@ -568,7 +544,7 @@
      "sha256": "32a27d77cf1bdc0467087b47ef7c608a9a52a5d95bec484e0610ac040a3d5901",
      "observed": "20261109",
      "quote": "Andrew A. Goldenberg Professor",
-     "ladder": true
+     "ladder": false
     }
    ],
    "years_listed": [
@@ -5464,8 +5440,8 @@
    "name": "Hoi-Kwong Lo",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "accepted",
-   "reason": "faculty (ECE listing, professor rank) with 7 DBLP records 2016-2026 naming the school",
+   "decision": "faculty_not_computing",
+   "reason": "faculty (ECE); computing-share test fails: 5 of 53 school works DBLP-indexed (share 0.09; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/94/4523"
@@ -5550,8 +5526,7 @@
       }
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    },
-    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
+    }
    },
    "faculty_evidence": [
     {
@@ -6214,8 +6189,8 @@
    "name": "James M. Drake",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "accepted",
-   "reason": "faculty (MIE listing, professor rank) with 34 DBLP records 2016-2026 naming the school",
+   "decision": "faculty_not_computing",
+   "reason": "faculty (MIE); computing-share test fails: 8 of 110 school works DBLP-indexed (share 0.07; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/171/7079"
@@ -6300,8 +6275,7 @@
       }
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    },
-    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
+    }
    },
    "faculty_evidence": [
     {
@@ -9713,8 +9687,8 @@
    "name": "Milos R. Popovic",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "accepted",
-   "reason": "faculty (MIE listing, professor rank) with 30 DBLP records 2016-2026 naming the school",
+   "decision": "faculty_not_computing",
+   "reason": "faculty (MIE); computing-share test fails: 20 of 179 school works DBLP-indexed (share 0.11; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/60/5015"
@@ -9799,8 +9773,7 @@
       }
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    },
-    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
+    }
    },
    "faculty_evidence": [
     {
@@ -15145,8 +15118,8 @@
    "name": "Xinyu Liu",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "accepted",
-   "reason": "faculty (MIE listing, professor rank) with 29 DBLP records 2016-2026 naming the school",
+   "decision": "faculty_not_computing",
+   "reason": "faculty (MIE); computing-share test fails: 11 of 88 school works DBLP-indexed (share 0.12; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/98/738-2"
@@ -15188,17 +15161,17 @@
        ]
       },
       {
-       "author": "https://openalex.org/A5114217755",
-       "why": "works end 2023, before the first listing (2026)",
-       "n": 4,
+       "author": "https://openalex.org/A5100446465",
+       "why": "works end 2019, before the first listing (2026)",
+       "n": 3,
        "raw": [
         "Xinyu Liu"
        ]
       },
       {
-       "author": "https://openalex.org/A5100446465",
-       "why": "works end 2019, before the first listing (2026)",
-       "n": 3,
+       "author": "https://openalex.org/A5114217755",
+       "why": "works end 2023, before the first listing (2026)",
+       "n": 4,
        "raw": [
         "Xinyu Liu"
        ]
@@ -15262,8 +15235,7 @@
       }
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    },
-    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
+    }
    },
    "faculty_evidence": [
     {
@@ -21664,81 +21636,13 @@
    "name": "Viliam Makis",
    "aliases": [],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (MIE listing, professor rank); computing-share test passes: 11 of 33 school works DBLP-indexed (share 0.33; 1 OpenAlex author ids)",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5051675164"
-     ],
-     "school_works": 33,
-     "dblp_indexed": 11,
-     "share": 0.333,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5051675164",
-       "basis": "candidate author id",
-       "works": 33,
-       "dblp_indexed": 11,
-       "years": [
-        2016,
-        2025
-       ],
-       "names": [
-        "Viliam Makis"
-       ],
-       "orcids": [
-        "0000-0003-2892-6262"
-       ],
-       "venues": [
-        "Mechanical Systems and Signal Processing",
-        "Computers & Industrial Engineering",
-        "International Journal of Production Economics"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2593899435",
-         "year": 2017,
-         "title": "Joint optimization of maintenance policy and inspection interval for a multi-unit series system using proportional hazards model",
-         "venue": "Journal of the Operational Research Society"
-        },
-        {
-         "oa": "https://openalex.org/W2780014678",
-         "year": 2017,
-         "title": "Evaluation of Reliability Function and Mean Residual Life for Degrading Systems Subject to Condition Monitoring and Random Failure",
-         "venue": "IEEE Transactions on Reliability"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2287517642",
-         "year": 2016,
-         "title": "Economic design of multivariate Bayesian control chart with two sampling intervals",
-         "venue": "International Journal of Production Economics"
-        },
-        {
-         "oa": "https://openalex.org/W2293731104",
-         "year": 2016,
-         "title": "Joint optimization of lot-sizing and maintenance policy for a partially observable two-unit system",
-         "venue": "The International Journal of Advanced Manufacturing Technology"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    "evidence": []
    },
    "faculty_evidence": [
     {
@@ -21747,7 +21651,7 @@
      "sha256": "32a27d77cf1bdc0467087b47ef7c608a9a52a5d95bec484e0610ac040a3d5901",
      "observed": "20261109",
      "quote": "Viliam Makis Professor",
-     "ladder": true
+     "ladder": false
     }
    ],
    "years_listed": [
@@ -23408,83 +23312,13 @@
     "Leslie R Shade"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (INFO listing, professor rank); computing-share test passes: 7 of 32 school works DBLP-indexed (share 0.22; 1 OpenAlex author ids)",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5054062328"
-     ],
-     "school_works": 32,
-     "dblp_indexed": 7,
-     "share": 0.219,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5054062328",
-       "basis": "candidate author id",
-       "works": 32,
-       "dblp_indexed": 7,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Leslie Regan Shade",
-        "Leslie Shade",
-        "Leslie R Shade"
-       ],
-       "orcids": [
-        "0000-0003-3440-3222"
-       ],
-       "venues": [
-        "Canadian Journal of Communication",
-        "Journal of Information Policy",
-        "New Media & Society"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2281272570",
-         "year": 2016,
-         "title": "Low power to the people: pirates, protest, and politics in FM radio activism",
-         "venue": "Feminist Media Studies"
-        },
-        {
-         "oa": "https://openalex.org/W2331885610",
-         "year": 2016,
-         "title": "Sexting panic: rethinking criminalization, privacy, and consent",
-         "venue": "New Media & Society"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2531090158",
-         "year": 2016,
-         "title": "Integrating Gender into Canadian Internet Policy: From the Information Highway to the Digital Economy",
-         "venue": "Journal of Information Policy"
-        },
-        {
-         "oa": "https://openalex.org/W2559310985",
-         "year": 2016,
-         "title": "“Honestly, We’re Not Spying on Kids”: School Surveillance of Young People’s Social Media",
-         "venue": "Social Media + Society"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    "evidence": []
    },
    "faculty_evidence": [
     {
@@ -23493,7 +23327,7 @@
      "sha256": "5f7c0fd1988fb76afb7c6b5fb802acd4c0db6a363b7da410c44dde94ebf81fb1",
      "observed": "20261107",
      "quote": "Leslie Regan Shade Professor",
-     "ladder": true
+     "ladder": false
     }
    ],
    "years_listed": [
@@ -23813,82 +23647,13 @@
     "Chun W. Choo"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (INFO listing, professor rank); computing-share test passes: 7 of 13 school works DBLP-indexed (share 0.54; 1 OpenAlex author ids)",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5066631000"
-     ],
-     "school_works": 13,
-     "dblp_indexed": 7,
-     "share": 0.538,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5066631000",
-       "basis": "candidate author id",
-       "works": 13,
-       "dblp_indexed": 7,
-       "years": [
-        2016,
-        2025
-       ],
-       "names": [
-        "Chun Wei Choo",
-        "Chun W. Choo"
-       ],
-       "orcids": [
-        "0000-0003-0410-9313"
-       ],
-       "venues": [
-        "Journal of Knowledge Management",
-        "Journal of the Association for Information Science and Technology",
-        "International Journal of Information Management"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2539873001",
-         "year": 2016,
-         "title": "Revisiting the information audit: A systematic literature review and synthesis",
-         "venue": "International Journal of Information Management"
-        },
-        {
-         "oa": "https://openalex.org/W3082283342",
-         "year": 2020,
-         "title": "Knowledge sabotage as an extreme form of counterproductive knowledge behavior: the role of narcissism, Machiavellianism, psychopathy, and competitiven",
-         "venue": "Journal of Knowledge Management"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W3191845247",
-         "year": 2021,
-         "title": "Information Culture and Effective Use of Information Tools at Work",
-         "venue": "Advances in knowledge acquisition, transfer, and management book series/Advances in knowledge acquisition, transfer and management book series"
-        },
-        {
-         "oa": "https://openalex.org/W4206788117",
-         "year": 2022,
-         "title": "Corporate memory dynamics in project-based organizations (PBOs): multiple case study in Brazilian engineering design firms and a framework proposal",
-         "venue": "The Learning Organization"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    "evidence": []
    },
    "faculty_evidence": [
     {
@@ -23897,7 +23662,7 @@
      "sha256": "5f7c0fd1988fb76afb7c6b5fb802acd4c0db6a363b7da410c44dde94ebf81fb1",
      "observed": "20261107",
      "quote": "Chun Wei Choo Professor",
-     "ladder": true
+     "ladder": false
     }
    ],
    "years_listed": [
@@ -24565,83 +24330,13 @@
     "ANTHONY SINCLAIR"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (MIE listing, professor rank); computing-share test passes: 5 of 21 school works DBLP-indexed (share 0.24; 1 OpenAlex author ids)",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5001831406"
-     ],
-     "school_works": 21,
-     "dblp_indexed": 5,
-     "share": 0.238,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5001831406",
-       "basis": "candidate author id",
-       "works": 21,
-       "dblp_indexed": 5,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Anthony N. Sinclair",
-        "Anthony Sinclair",
-        "Anthony N Sinclair"
-       ],
-       "orcids": [
-        "0000-0002-6429-367X"
-       ],
-       "venues": [
-        "Sensors",
-        "Proceedings of the Institution of Mechanical Engineers Part C Journal of Mechanical Engineering Science",
-        "Ultrasound in Medicine & Biology"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2991970018",
-         "year": 2019,
-         "title": "Dry Coupling of Ultrasonic Transducer Components for High Temperature Applications",
-         "venue": "Sensors"
-        },
-        {
-         "oa": "https://openalex.org/W2999922739",
-         "year": 2020,
-         "title": "Sensors for Ultrasonic Nondestructive Testing (NDT) in Harsh Environments",
-         "venue": "Sensors"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2295517049",
-         "year": 2016,
-         "title": "A New High-Temperature Ultrasonic Transducer for Continuous Inspection",
-         "venue": "IEEE Transactions on Ultrasonics Ferroelectrics and Frequency Control"
-        },
-        {
-         "oa": "https://openalex.org/W2516102035",
-         "year": 2016,
-         "title": "Characterization of RF sputtered thin film potassium sodium niobate (KNN) with silicon and nickel electrodes",
-         "venue": "Microsystem Technologies"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    "evidence": []
    },
    "faculty_evidence": [
     {
@@ -24650,7 +24345,7 @@
      "sha256": "4c62d811056692ef1a4ab41cf2a87c9f4d9e2506ea4ce74e7716c9eaff63e8da",
      "observed": "20261109",
      "quote": "Anthony N. Sinclair Professor",
-     "ladder": true
+     "ladder": false
     },
     {
      "unit": "MIE",
@@ -24658,7 +24353,7 @@
      "sha256": "32a27d77cf1bdc0467087b47ef7c608a9a52a5d95bec484e0610ac040a3d5901",
      "observed": "20261109",
      "quote": "Anthony N. Sinclair Professor",
-     "ladder": true
+     "ladder": false
     }
    ],
    "years_listed": [
@@ -24679,81 +24374,13 @@
    "name": "Paul Milgram",
    "aliases": [],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (MIE listing, professor rank); computing-share test passes: 5 of 9 school works DBLP-indexed (share 0.56; 1 OpenAlex author ids)",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5022906453"
-     ],
-     "school_works": 9,
-     "dblp_indexed": 5,
-     "share": 0.556,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5022906453",
-       "basis": "candidate author id",
-       "works": 9,
-       "dblp_indexed": 5,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Paul Milgram"
-       ],
-       "orcids": [
-        "0000-0001-7174-9498"
-       ],
-       "venues": [
-        "Proceedings of the International Symposium on Human Factors and Ergonomics in Health Care",
-        "Human Factors The Journal of the Human Factors and Ergonomics Society",
-        "PRESENCE Virtual and Augmented Reality"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2766822077",
-         "year": 2017,
-         "title": "Use of Random Dot Patterns in Achieving X-Ray Vision for Near-Field Applications of Stereoscopic Video-Based Augmented Reality Displays",
-         "venue": "PRESENCE Virtual and Augmented Reality"
-        },
-        {
-         "oa": "https://openalex.org/W3025342261",
-         "year": 2020,
-         "title": "Map Displays And Landmark Effects On Wayfinding In Unfamiliar Environments",
-         "venue": "IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2502256390",
-         "year": 2016,
-         "title": "Evaluation of Ergonomically Redesigned Paramedic Bags – A Usability Study",
-         "venue": "Proceedings of the International Symposium on Human Factors and Ergonomics in Health Care"
-        },
-        {
-         "oa": "https://openalex.org/W2811352161",
-         "year": 2018,
-         "title": "Optimizing the Design of Visual Patterns for Labels",
-         "venue": "Proceedings of the International Symposium on Human Factors and Ergonomics in Health Care"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    "evidence": []
    },
    "faculty_evidence": [
     {
@@ -24762,7 +24389,7 @@
      "sha256": "32a27d77cf1bdc0467087b47ef7c608a9a52a5d95bec484e0610ac040a3d5901",
      "observed": "20261109",
      "quote": "Paul Milgram Professor",
-     "ladder": true
+     "ladder": false
     }
    ],
    "years_listed": [

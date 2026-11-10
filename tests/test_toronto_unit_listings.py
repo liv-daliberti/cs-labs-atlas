@@ -28,3 +28,11 @@ def test_unit_pages_match_scheme_less_www_listings(tmp_path, monkeypatch):
     import re
     rx = r'^(?:https?://)?(?:www\.)?'
     assert re.sub(rx, '', 'www.mie.utoronto.ca/a/') == re.sub(rx, '', 'https://www.mie.utoronto.ca/a/')
+
+
+def test_professor_emeritus_row_is_not_ladder():
+    txt = 'Mark S. Fox Professor Emeritus Profile Eldan Cohen Assistant Professor Profile'
+    ev = C.faculty_evidence([('MIE', 'u', 's', '20261110', txt)], ['Mark S. Fox'])
+    assert ev and ev[0]['ladder'] is False, ev
+    ev = C.faculty_evidence([('MIE', 'u', 's', '20261110', txt)], ['Eldan Cohen'])
+    assert ev and ev[0]['ladder'] is True
