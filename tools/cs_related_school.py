@@ -379,6 +379,12 @@ def hand_evidence(key, c=None):
         for url, raw in c.execute('select url, raw_zlib from live where sha256=?', (e['sha256'],)):
             import zlib
             texts.append(W.flat(W.extract.blocks(zlib.decompress(raw), 'text/html', url)))
+        try:   # a JavaScript-rendered page (tools/js_render_capture.py): the stored rendered DOM, matched by its dom_sha256
+            import zlib
+            for url, dz in c.execute('select url, dom_zlib from js_render where dom_sha256=?', (e['sha256'],)):
+                texts.append(W.flat(W.extract.blocks(zlib.decompress(dz), 'text/html', url)))
+        except Exception:   # the store has no js_render table
+            pass
         if not any(' '.join(t.split()).find(' '.join(e['quote'].split())) >= 0 for t in texts if t):
             raise SystemExit(f"cs-related-hand.json: the quote of {e['name']} is not in the stored page {e['sha256'][:12]} (re-run `profile`)")
         out.setdefault(' '.join(toks(e['name'])), []).append(dict(unit=e['unit'], url=e['url'], sha256=e['sha256'], observed=e.get('observed') or '', quote=e['quote'],

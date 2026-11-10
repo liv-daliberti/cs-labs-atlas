@@ -167,3 +167,18 @@ def test_robots_blocked_official_profile_becomes_an_access_reason_and_keeps_the_
     r = L.official_homepage_fallback('hkust', doc)['labs'][0]
     assert r['coverage'] == 'reason' and r['reason_code'] == 'host_blocked_by_robots' and 'url' not in r
     assert r['website_note']['replaced_url'] == 'https://x.example/' and r['website_note']['replaced_sha256'] == 'a' * 64
+
+
+def test_hand_evidence_accepts_a_stored_js_rendered_dom(monkeypatch):
+    import sqlite3, zlib, hashlib
+    import cs_related_school as R
+    html = b'<html><body><div>Mansun CHAN Professor</div></body></html>'
+    sha = hashlib.sha256(html).hexdigest()
+    c = sqlite3.connect(':memory:')
+    c.execute('create table captures (sha256 text, text text)')
+    c.execute('create table live (url text, sha256 text, raw_zlib blob)')
+    c.execute('create table js_render (url text, dom_sha256 text, dom_zlib blob)')
+    c.execute('insert into js_render values (?,?,?)', ('https://x.example/p', sha, zlib.compress(html)))
+    monkeypatch.setattr(R, 'read', lambda p, d=None: [dict(name='Mansun Chan', unit='ECE', url='https://x.example/p', sha256=sha, quote='Mansun CHAN Professor')])
+    ev = R.hand_evidence('hkust', c)
+    assert ev['mansun chan'][0]['hand'] is True
