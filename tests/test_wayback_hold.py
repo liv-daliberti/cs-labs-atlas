@@ -38,3 +38,12 @@ def test_loop_scripts_default_the_hold_on():
     from pathlib import Path
     for f in ('school-collector.slurm', 'michigan-collector.slurm', 'downloads.slurm'):
         assert 'WAYBACK_HOLD="${WAYBACK_HOLD:-1}"' in (Path(__file__).resolve().parents[1] / 'fulltext-push' / f).read_text()
+
+
+def test_status_page_says_wayback_held():
+    import collectors_status as S
+    row = dict(school='x', slurm_job='1', phase='lab_5', rounds=1, updated_at='2026-11-10T00:00:00', attempts_24h=0, downloads_24h=0, lab_queued=0,
+               lab_access_review=0, local=None, lab_papers=None, coverage=None, counted_at=None, alarm=None, paused_sources={}, catalog=None,
+               pending_identity_review=0, wayback_hold=True)
+    assert 'lab_5 (wayback held)' in S.render([row])
+    assert 'wayback held' not in S.render([dict(row, wayback_hold=False)])

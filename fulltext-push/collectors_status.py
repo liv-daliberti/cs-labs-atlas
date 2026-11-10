@@ -90,7 +90,7 @@ def school_status(school):
     # attempts but no download in 24 h: the loop runs but nothing lands (2026-10-31: Michigan's missing sources/)
     alarm = (f"{att.get('attempts', 0):,} attempts and no download in 24 h; most common failure: "
              f"{fails.most_common(1)[0][0]} ({fails.most_common(1)[0][1]:,})") if att.get('attempts', 0) and not downloads and fails else None
-    return dict(school=school, slurm_job=st.get('slurm_job'), host=st.get('host'), phase=st.get('phase'), rounds=st.get('rounds'),
+    return dict(school=school, wayback_hold=bool(st.get('wayback_hold')), slurm_job=st.get('slurm_job'), host=st.get('host'), phase=st.get('phase'), rounds=st.get('rounds'),
                 updated_at=st.get('updated_at'), lab_work_ids=st.get('lab_work_ids'), idle_rounds=st.get('idle_rounds'),
                 attempts_24h=att.get('attempts', 0), downloads_24h=downloads, alarm=alarm, top_failures=dict(fails.most_common(3)),
                 catalog=prog.get('status_counts'), pending_identity_review=(lambda c: prog.get('pending_identity_review') if c is None else c)(pending_canonical(store)), paused_sources=paused,
@@ -105,7 +105,7 @@ def render(rows):
            '|---|---|---|---|---|---|---|---|---|---|---|']
     for r in rows:
         cov = f"{r['local']:,} / {r['lab_papers']:,} ({r['coverage']:.1%})" if r.get('local') is not None and r.get('coverage') is not None else '—'
-        out.append(f"| {r['school']} | {r['slurm_job'] or '—'} | {r['phase'] or '—'} | {r['rounds'] or '—'} | {(r['updated_at'] or '—')[:16]} | "
+        out.append(f"| {r['school']} | {r['slurm_job'] or '—'} | {(r['phase'] or '—') + (' (wayback held)' if r.get('wayback_hold') else '')} | {r['rounds'] or '—'} | {(r['updated_at'] or '—')[:16]} | "
                    f"{r['attempts_24h']:,} | {r['downloads_24h']:,} | {r['lab_queued'] or 0:,} | {r['lab_access_review'] or 0:,} | {cov} | {(r['counted_at'] or '—')[:16]} |")
     alarms = [r for r in rows if r.get('alarm')]
     out += ['', '## Alarms', '']

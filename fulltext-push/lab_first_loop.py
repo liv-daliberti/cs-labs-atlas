@@ -180,7 +180,7 @@ def main():
         job = f"{os.environ['SLURM_ARRAY_JOB_ID']}_{os.environ.get('SLURM_ARRAY_TASK_ID')}"
     # 2026-11-10: the state said 'stopped' (the previous run's) for the whole startup scan; say what the loop is doing
     state(out, slurm_job=job, host=socket.gethostname(), pid=os.getpid(), python=PY, wrapper=WRAPPER, idle_rounds=0, phase='starting', child_pid=None,
-          started=F.now(), stopped_at=None)
+          started=F.now(), stopped_at=None, wayback_hold=os.environ.get('WAYBACK_HOLD') == '1')
     rounds, idle = 0, 0
     while not STOP['flag']:
         rounds += 1
