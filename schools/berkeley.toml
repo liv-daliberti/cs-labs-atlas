@@ -54,8 +54,8 @@ reason = "CloudFront answers 403 'Request blocked' to this client for /robots.tx
 # Hosts the berkeley tools contact (stage 0, 2026-11-10). Derived from evidence: the raw capture stores (hierarchy/berkeley/raw/*captures*.sqlite) and the full-text download ledger (stores/berkeley/fulltext_assets.csv). The long tail of faculty personal sites is read per capture under school_web robots checks and is not enumerated here.
 [[hosts]]
 host = "web.archive.org"
-use = "none"
-purpose = "Wayback id_ captures and CDX (522 captures in the berkeley raw stores; listings, lab pages, theses)"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages) [stage 0 2026-11-10: probe skipped: https://web.archive.org/web/2020id_/https://www.berkeley.edu/ answers http 302 (redirect to the nearest snapshot); entry otherwise as in the Michigan and Harvard charters]"
 probe = ""
 
 [[hosts]]
@@ -144,9 +144,9 @@ probe = "https://lavaei.ieor.berkeley.edu/"
 
 [[hosts]]
 host = "www.cs.berkeley.edu"
-use = "none"
-purpose = "School site: 87 captures in the raw stores (87 live, 0 via Wayback; 59 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 301); must not be live]"
-probe = "https://www.cs.berkeley.edu/"
+use = "live"
+purpose = "School site: 87 captures in the raw stores (87 live, 0 via Wayback; 59 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://www.cs.berkeley.edu/ only redirects (http 301); robots allowed]"
+probe = ""
 
 [[hosts]]
 host = "math.berkeley.edu"
@@ -157,7 +157,7 @@ probe = "https://math.berkeley.edu/"
 [[hosts]]
 host = "www.eecs.berkeley.edu"
 use = "none"
-purpose = "School site: 77 captures in the raw stores (69 live, 8 via Wayback; 71 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 301); must not be live]"
+purpose = "School site: 77 captures in the raw stores (69 live, 8 via Wayback; 71 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: final robots.txt disallowed (HTTP 301); must not be live]"
 probe = "https://www.eecs.berkeley.edu/"
 
 [[hosts]]
@@ -169,7 +169,7 @@ probe = "https://www.ischool.berkeley.edu/"
 [[hosts]]
 host = "people.ischool.berkeley.edu"
 use = "none"
-purpose = "School site: 60 captures in the raw stores (60 live, 0 via Wayback; 30 HTTP 200); 6 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 302); must not be live]"
+purpose = "School site: 60 captures in the raw stores (60 live, 0 via Wayback; 30 HTTP 200); 6 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: final robots.txt disallowed (HTTP 302); must not be live]"
 probe = "https://people.ischool.berkeley.edu/"
 
 [[hosts]]
@@ -199,7 +199,7 @@ probe = "https://nlp.cs.berkeley.edu/"
 [[hosts]]
 host = "www.icsi.berkeley.edu"
 use = "live"
-purpose = "School site: 35 captures in the raw stores (35 live, 0 via Wayback; 22 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://www.icsi.berkeley.edu/ only redirects off-host (http 301); robots allowed]"
+purpose = "School site: 35 captures in the raw stores (35 live, 0 via Wayback; 22 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://www.icsi.berkeley.edu/ only redirects (http 301); robots allowed]"
 probe = ""
 
 [[hosts]]
@@ -240,9 +240,9 @@ probe = "https://humnetlab.berkeley.edu/"
 
 [[hosts]]
 host = "www.me.berkeley.edu"
-use = "none"
-purpose = "School site: 21 captures in the raw stores (21 live, 0 via Wayback; 10 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 301); must not be live]"
-probe = "https://www.me.berkeley.edu/"
+use = "live"
+purpose = "School site: 21 captures in the raw stores (21 live, 0 via Wayback; 10 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://www.me.berkeley.edu/ only redirects (http 301); robots allowed]"
+probe = ""
 
 [[hosts]]
 host = "kellylab.berkeley.edu"
