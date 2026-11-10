@@ -1,7 +1,7 @@
 {
   "Gong Tiantian": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -9,7 +9,7 @@
     },
     "collection_person_id": "ntu_fac_source_2dc999ee9915019f",
     "collection_person_source": {
-      "profile_url": null,
+      "profile_url": "https://dr.ntu.edu.sg/entities/person/Tiantian-Gong",
       "sources": [
         {
           "url": "https://www.ntu.edu.sg/computing/our-faculty",
@@ -17,9 +17,54 @@
           "quote": "Gong Tiantian Computing Security, Cryptography & Digital Trust Assistant Professor",
           "observedAt": "2026-11-07T17:42:34",
           "kind": "named_individual_official_computing_faculty_card"
+        },
+        {
+          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+          "quote": "Asst Prof Tiantian Gong",
+          "observedAt": "2026-11-07T17:47:31",
+          "kind": "named_individual_official_computing_faculty_card"
+        },
+        {
+          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+          "quote": "Appointments: Assistant Professor, College of Computing & Data Science",
+          "observedAt": "2026-11-07T17:47:31"
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/270/9951"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; 12 exact titles on owned page; 39 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Gong Tiantian",
+      "PID": "https://dblp.org/pid/270/9951",
+      "rule": "unique_exact_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "d96355a2cfaae029af1ef42fc95b4e0c63df1c5ef5ff5da6e1963b69e0b044ea",
+      "dump_record_quote": "Tiantian Gong",
+      "dump_record_url": "https://dblp.org/pid/270/9951",
+      "n_window": 39,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty",
+        "sha256": "5dd779e3e641c422302d60e8bdbd0c97129d955bf34f52002b349cad8f6ada17",
+        "quote": "Gong Tiantian Computing Security, Cryptography & Digital Trust Assistant Professor",
+        "observedAt": "2026-11-07T17:42:34"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "owned_page_exact_titles",
+          "count": 12
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Cheng Yu": {
@@ -100,7 +145,7 @@
     ],
     "collection_person_id": "ntu_fac_source_0beb43ae420b0d81",
     "collection_person_source": {
-      "profile_url": null,
+      "profile_url": "https://dr.ntu.edu.sg/entities/person/Yu-Cheng",
       "sources": [
         {
           "url": "https://www.ntu.edu.sg/computing/our-faculty",
@@ -108,6 +153,19 @@
           "quote": "Cheng Yu Artificial Intelligence Artificial Intelligence Nanyang Associate Professor",
           "observedAt": "2026-11-07T17:42:34",
           "kind": "named_individual_official_computing_faculty_card"
+        },
+        {
+          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+          "quote": "Assoc Prof Yu Cheng",
+          "observedAt": "2026-11-07T17:47:31",
+          "kind": "named_individual_official_computing_faculty_card"
+        },
+        {
+          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+          "quote": "Appointments: Nanyang Associate Professor (NRF), College of Computing & Data Science Associate Professor, College of Computing & Data Science",
+          "observedAt": "2026-11-07T17:47:31"
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
@@ -123,7 +181,7 @@
     },
     "collection_person_id": "ntu_fac_source_92d75387f465af5a",
     "collection_person_source": {
-      "profile_url": null,
+      "profile_url": "https://dr.ntu.edu.sg/entities/person/Penghui-Li",
       "sources": [
         {
           "url": "https://www.ntu.edu.sg/computing/our-faculty",
@@ -131,14 +189,27 @@
           "quote": "Li Penghui Computing Security, Cryptography & Digital Trust Assistant Professor",
           "observedAt": "2026-11-07T17:42:34",
           "kind": "named_individual_official_computing_faculty_card"
+        },
+        {
+          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+          "quote": "Asst Prof Penghui Li",
+          "observedAt": "2026-11-07T17:47:31",
+          "kind": "named_individual_official_computing_faculty_card"
+        },
+        {
+          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+          "quote": "Appointments: Assistant Professor, College of Computing & Data Science",
+          "observedAt": "2026-11-07T17:47:31"
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
     }
   },
   "A S Madhukumar": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -163,11 +234,49 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/66/549"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; orcid agrees with NTU-affiliated OpenAlex author; 125 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "A S Madhukumar",
+      "PID": "https://dblp.org/pid/66/549",
+      "rule": "unique_exact_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "36e022b5521347d884d1e2c1dbe2f2e0353ac92005a3b912f367e3a4485e0b23",
+      "dump_record_quote": "A. S. Madhukumar",
+      "dump_record_url": "https://dblp.org/pid/66/549",
+      "n_window": 125,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof A S Madhukumar",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-8740-634X"
+          ],
+          "openalex": [
+            "A5055069205"
+          ],
+          "ntu_works": 135
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Bo An": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -192,11 +301,53 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/42/6178-1"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_coauthors; school_coauthors rule (>=5 records with decided NTU PIs); 442 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Bo An",
+      "PID": "https://dblp.org/pid/42/6178-1",
+      "rule": "school_coauthors",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "a9426a624ae87b23490ac6054f3f517dc62f804bafee5b453f67e78b34932d25",
+      "dump_record_quote": "Bo An 0001",
+      "dump_record_url": "https://dblp.org/pid/42/6178-1",
+      "n_window": 442,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Bo An",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University, Singapore"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-7064-7438"
+          ],
+          "openalex": [
+            "A5017743551",
+            "A5121121720",
+            "A5122911684"
+          ],
+          "ntu_works": 259
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Anupam Chattopadhyay": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -221,11 +372,52 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/99/4535"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 364 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Anupam Chattopadhyay",
+      "PID": "https://dblp.org/pid/99/4535",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "5bec8dfbd6bd66158dd8da637ba2521a940d6296d3b25fa83a9bb61313c8b0da",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/99/4535",
+      "n_window": 364,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Anupam Chattopadhyay",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University, Singapore",
+        "RWTH Aachen University, Germany"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-8818-6983"
+          ],
+          "openalex": [
+            "A5089860351"
+          ],
+          "ntu_works": 326
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Anwitaman Datta": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -250,11 +442,52 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/d/AnwitamanDatta"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 77 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Anwitaman Datta",
+      "PID": "https://dblp.org/pid/d/AnwitamanDatta",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "a66963ededab9e87a589fe3243847803ef1f1377fe9550122bbc933acd1abcd2",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/d/AnwitamanDatta",
+      "n_window": 77,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Anwitaman Datta",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University, Singapore",
+        "Swiss Federal Institute of Technology in Lausanne, Switzerland"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-4203-1572"
+          ],
+          "openalex": [
+            "A5001971672"
+          ],
+          "ntu_works": 84
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Arvind Easwaran": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -279,11 +512,51 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/73/1708"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 183 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Arvind Easwaran",
+      "PID": "https://dblp.org/pid/73/1708",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "8c566e015e4bd33f9a8147d97f23039728cdd509ffd53ed8c8a0971c9a72e096",
+      "dump_record_quote": "Nanyang Technological University",
+      "dump_record_url": "https://dblp.org/pid/73/1708",
+      "n_window": 183,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Arvind Easwaran",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-9628-3847"
+          ],
+          "openalex": [
+            "A5054946593"
+          ],
+          "ntu_works": 137
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Xiaohui Bei": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -308,11 +581,49 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/93/7359"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_name; orcid agrees with NTU-affiliated OpenAlex author; 80 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Xiaohui Bei",
+      "PID": "https://dblp.org/pid/93/7359",
+      "rule": "unique_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "1c9382566e3f70db141f9d80c127f949e011f4e4c371b970f3966453e479fe1c",
+      "dump_record_quote": "Xiaohui Bei",
+      "dump_record_url": "https://dblp.org/pid/93/7359",
+      "n_window": 80,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Xiaohui Bei",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-0870-5019"
+          ],
+          "openalex": [
+            "A5082638698"
+          ],
+          "ntu_works": 68
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Jiawang Bian": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -337,11 +648,52 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/185/7894"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_name; orcid agrees with NTU-affiliated OpenAlex author; 69 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Jiawang Bian",
+      "PID": "https://dblp.org/pid/185/7894",
+      "rule": "unique_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "75ba12af989c2f2bf47f65bc28d0efbacfee9905abaadebf3c9e95ef00bef8b1",
+      "dump_record_quote": "Jiawang Bian",
+      "dump_record_url": "https://dblp.org/pid/185/7894",
+      "n_window": 69,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Asst Prof Jiawang Bian",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nankai University, College of Computer Science, Tianjin, China",
+        "Singapore University of Technology and Design, Tampines, Singapore"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0003-2046-3363"
+          ],
+          "openalex": [
+            "A5072209031"
+          ],
+          "ntu_works": 2
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Wentong Cai": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -366,11 +718,53 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/83/3179"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 181 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Wentong Cai",
+      "PID": "https://dblp.org/pid/83/3179",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "babe63d7b3dcf2e3dcd7cf8d49db94f4e1261c930d9661a4cb5adf2a4e3ac532",
+      "dump_record_quote": "Nanyang Technological University, Division of Computer Science, School of Computer Engineering, Singapore",
+      "dump_record_url": "https://dblp.org/pid/83/3179",
+      "n_window": 181,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Wentong Cai",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University, Division of Computer Science, School of Computer Engineering, Singapore",
+        "University of Exeter, UK"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-0183-3835"
+          ],
+          "openalex": [
+            "A5036580072",
+            "A5103068388"
+          ],
+          "ntu_works": 180
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Cham Tat Jen": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -395,6 +789,44 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/29/3808"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; orcid agrees with NTU-affiliated OpenAlex author; 93 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Cham Tat Jen",
+      "PID": "https://dblp.org/pid/29/3808",
+      "rule": "unique_exact_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "e6ed63277695d3e2862dd61d8555a8b6f9ff65ade2549611ba6b170c382d61c8",
+      "dump_record_quote": "Tat-Jen Cham",
+      "dump_record_url": "https://dblp.org/pid/29/3808",
+      "n_window": 93,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Cham Tat Jen",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0001-5264-2572"
+          ],
+          "openalex": [
+            "A5065578418"
+          ],
+          "ntu_works": 64
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Alvin Chan Guo Wei": {
@@ -663,8 +1095,8 @@
     }
   },
   "Long Cheng": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -689,6 +1121,33 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/58/10813-1"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 230 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Long Cheng",
+      "PID": "https://dblp.org/pid/58/10813-1",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "b1640d9edad184184ab223461c039770e206cc56427856106fe04619503702e1",
+      "dump_record_quote": "Nanyang Technological University, College of Computing and Data Science (CCDS), Singapore",
+      "dump_record_url": "https://dblp.org/pid/58/10813-1",
+      "n_window": 230,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Long Cheng",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Chen Wang": {
@@ -721,8 +1180,8 @@
     }
   },
   "Kang Hao Cheong": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -747,11 +1206,49 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/67/10841"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; orcid agrees with NTU-affiliated OpenAlex author; 99 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Kang Hao Cheong",
+      "PID": "https://dblp.org/pid/67/10841",
+      "rule": "unique_exact_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "9900f4fe7535b11f318ffd3f51ad589a2b24cdfcffc0a5b26e7b3c92f0119ed6",
+      "dump_record_quote": "Kang Hao Cheong",
+      "dump_record_url": "https://dblp.org/pid/67/10841",
+      "n_window": 99,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Kang Hao Cheong",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-4475-5451"
+          ],
+          "openalex": [
+            "A5022778275"
+          ],
+          "ntu_works": 45
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Yeshwanth Cherapanamjeri": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -776,6 +1273,38 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/182/2247"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_name; 44 exact titles on owned page; 52 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Yeshwanth Cherapanamjeri",
+      "PID": "https://dblp.org/pid/182/2247",
+      "rule": "unique_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "3f12d816ec3fbecd61c7ecb7c134eed2dceb3b9ff4ccd68c649fc8d91b8a2670",
+      "dump_record_quote": "Yeshwanth Cherapanamjeri",
+      "dump_record_url": "https://dblp.org/pid/182/2247",
+      "n_window": 52,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Asst Prof Yeshwanth Cherapanamjeri",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "owned_page_exact_titles",
+          "count": 44
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Chia Liang Tien": {
@@ -808,8 +1337,8 @@
     }
   },
   "Chng Eng Siong": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -834,11 +1363,51 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/c/ChngEngSiong"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 381 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Chng Eng Siong",
+      "PID": "https://dblp.org/pid/c/ChngEngSiong",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "dd12708c5415b2b82b196252e754e0d62da757c336144c136889af792046ab35",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/c/ChngEngSiong",
+      "n_window": 381,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Chng Eng Siong",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University, Singapore"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0001-6257-7399"
+          ],
+          "openalex": [
+            "A5070872826"
+          ],
+          "ntu_works": 224
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Will Cong": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -863,6 +1432,48 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/265/6373"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; orcid agrees with NTU-affiliated OpenAlex author; 35 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Will Cong",
+      "PID": "https://dblp.org/pid/265/6373",
+      "rule": "unique_exact_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "5a33d122559e29aa29939b159ffce4c2d179480fd8e1bb08b96cb74fc66e86eb",
+      "dump_record_quote": "Will Cong",
+      "dump_record_url": "https://dblp.org/pid/265/6373",
+      "n_window": 35,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Will Cong",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Cornell University, Ithaca, NY, USA",
+        "Stanford University, Graduate School of Business, CA, USA"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-2617-2367"
+          ],
+          "openalex": [
+            "A5080547297",
+            "A5124028098"
+          ],
+          "ntu_works": 99
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Rob Cornish": {
@@ -953,8 +1564,8 @@
     }
   },
   "Dmitrii Ustiugov": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -979,6 +1590,38 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/191/7824"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_name; 12 exact titles on owned page; 33 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Dmitrii Ustiugov",
+      "PID": "https://dblp.org/pid/191/7824",
+      "rule": "unique_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "e786c917e0a3aed711bf92e60bd0dc6c3cc031e28378dbf572c0961716393ede",
+      "dump_record_quote": "Dmitrii Ustiugov",
+      "dump_record_url": "https://dblp.org/pid/191/7824",
+      "n_window": 33,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Asst Prof Dmitrii Ustiugov",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "owned_page_exact_titles",
+          "count": 12
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Sean Du": {
@@ -1011,8 +1654,8 @@
     }
   },
   "Du Yuxuan": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -1037,11 +1680,38 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/222/7868"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_coauthors; school_coauthors rule (>=5 records with decided NTU PIs); 126 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Du Yuxuan",
+      "PID": "https://dblp.org/pid/222/7868",
+      "rule": "school_coauthors",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "e0467529086a167dfe8babaa9369f516b8e71b2e891629dbb77f283558ef7a3b",
+      "dump_record_quote": "Yuxuan Du",
+      "dump_record_url": "https://dblp.org/pid/222/7868",
+      "n_window": 126,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Asst Prof Du Yuxuan",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Dusit Niyato": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -1066,6 +1736,51 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/76/440"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 2552 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Dusit Niyato",
+      "PID": "https://dblp.org/pid/76/440",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "a262d68964454e090a864e8ec3e46e11796a163d8a529d2b9a82813de33dc073",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/76/440",
+      "n_window": 2552,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Dusit Niyato",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University, Singapore",
+        "University of Manitoba, Winnipeg, MB, Canada",
+        "King Mongkut's Institute of Technology, Bangkok, Thailand"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-7442-7416"
+          ],
+          "openalex": [
+            "A5091266202",
+            "A5126434768",
+            "A5129116751",
+            "A5137821034"
+          ],
+          "ntu_works": 2005
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Pranjal Dutta": {
@@ -1098,8 +1813,8 @@
     }
   },
   "Erik Cambria": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -1124,6 +1839,46 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/80/7421"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 691 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Erik Cambria",
+      "PID": "https://dblp.org/pid/80/7421",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "05be3ac647ce4c025f8c92aaf2bcb6dd6a276cc58734684cce0382aedd9a8a32",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/80/7421",
+      "n_window": 691,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Erik Cambria",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University, Singapore"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-3030-1280"
+          ],
+          "openalex": [
+            "A5100752356"
+          ],
+          "ntu_works": 633
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Fan Xiuyi": {
@@ -1156,8 +1911,8 @@
     }
   },
   "Cong Gao": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -1182,6 +1937,33 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/33/3180"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 242 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Cong Gao",
+      "PID": "https://dblp.org/pid/33/3180",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "560f032e0f7635c3e9eb6e7b65de0ab40499ee54932dc4ed209b3db24de4e60c",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/33/3180",
+      "n_window": 242,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Cong Gao",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Xijie Gao": {
@@ -1243,8 +2025,8 @@
     }
   },
   "He Ying": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -1269,6 +2051,33 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/h/YingHe1"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 239 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "He Ying",
+      "PID": "https://dblp.org/pid/h/YingHe1",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "16c4d1a2fe4555419e855f9f23c6b82a9ed47f362992d4136800f09ffcce3176",
+      "dump_record_quote": "Nanyang Technological University, School of Computer Science and Engineering, Singagore",
+      "dump_record_url": "https://dblp.org/pid/h/YingHe1",
+      "n_window": 239,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof He Ying",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Hui Siu Cheung": {
@@ -1301,8 +2110,8 @@
     }
   },
   "Jagath Chandana Rajapakse": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -1327,6 +2136,44 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/91/665"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_name; orcid agrees with NTU-affiliated OpenAlex author; 83 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Jagath Chandana Rajapakse",
+      "PID": "https://dblp.org/pid/91/665",
+      "rule": "unique_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "d9fb0f2e7dfe24c2edf71eda5e4efa3558554ac200250801a35c1f4f88c3ef36",
+      "dump_record_quote": "Jagath C. Rajapakse",
+      "dump_record_url": "https://dblp.org/pid/91/665",
+      "n_window": 83,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Jagath Chandana Rajapakse",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0001-7944-1658"
+          ],
+          "openalex": [
+            "A5026076885"
+          ],
+          "ntu_works": 123
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Jie Xiong": {
@@ -1583,8 +2430,8 @@
     }
   },
   "Kwoh Chee Keong": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -1609,6 +2456,49 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/32/228"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 116 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Kwoh Chee Keong",
+      "PID": "https://dblp.org/pid/32/228",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "ff63f55cb2e0c0612fa30d021f9e99349a8058642342fd9b04085f255f1a7917",
+      "dump_record_quote": "Nanyang Technological University, School of Computer Engineering, Singapore",
+      "dump_record_url": "https://dblp.org/pid/32/228",
+      "n_window": 116,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Kwoh Chee Keong",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University, School of Computer Engineering, Singapore",
+        "University of London, Imperial College of Science, Technology and Medicine, UK"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-8547-6387"
+          ],
+          "openalex": [
+            "A5027208445",
+            "A5111430977",
+            "A5135674965"
+          ],
+          "ntu_works": 118
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Lam Kwok Yan": {
@@ -1699,8 +2589,8 @@
     }
   },
   "Boyang Albert Li": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -1725,6 +2615,52 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/70/1211-1"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_coauthors; school_coauthors rule (>=5 records with decided NTU PIs); 122 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Boyang Albert Li",
+      "PID": "https://dblp.org/pid/70/1211-1",
+      "rule": "school_coauthors",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "f08de35851ff3e6861a9e330a89484425ff2b617bec2ded4305ed21ad22b4d59",
+      "dump_record_quote": "Boyang Li 0001",
+      "dump_record_url": "https://dblp.org/pid/70/1211-1",
+      "n_window": 122,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Boyang Albert Li",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University, School of Computer Science and Engineering, Singapore",
+        "Baidu USA, Sunnyvale, CA, USA",
+        "Liulishuo Silicon Valley, San Mateo, CA, USA",
+        "Disney Research, Pittsburgh, PA, USA",
+        "Georgia Institute of Technology, School of Interactive Computing, Atlanta, GA, USA"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-6230-2376"
+          ],
+          "openalex": [
+            "A5100732746",
+            "A5123239760",
+            "A5133525484"
+          ],
+          "ntu_works": 52
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Yingzhen Li": {
@@ -1786,8 +2722,8 @@
     }
   },
   "Guosheng Lin": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -1812,11 +2748,51 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/126/4778"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; orcid agrees with NTU-affiliated OpenAlex author; 377 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Guosheng Lin",
+      "PID": "https://dblp.org/pid/126/4778",
+      "rule": "unique_exact_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "064fd3258abd7546618773fbe7ea7ce86ca382c9eb45b7c464b158ff305fa6bd",
+      "dump_record_quote": "Guosheng Lin",
+      "dump_record_url": "https://dblp.org/pid/126/4778",
+      "n_window": 377,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Guosheng Lin",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-0329-7458"
+          ],
+          "openalex": [
+            "A5029912845",
+            "A5077750111",
+            "A5147226983"
+          ],
+          "ntu_works": 224
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Lin Weisi": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -1841,11 +2817,38 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/14/3737"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 545 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Lin Weisi",
+      "PID": "https://dblp.org/pid/14/3737",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "d528bd8197ab230e3acc5085262dd7a721d478480b21b1ba807188cd7a6f9368",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/14/3737",
+      "n_window": 545,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Lin Weisi",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Liu Weichen": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -1870,6 +2873,33 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/24/914"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 161 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Liu Weichen",
+      "PID": "https://dblp.org/pid/24/914",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "a6a8799dc16dc16ab1ae3bcedb38cb630c62177aa3a6a2e4e28e20fc6d4e0860",
+      "dump_record_quote": "Nanyang Technological University, College of Computing and Data Science, Singapore",
+      "dump_record_url": "https://dblp.org/pid/24/914",
+      "n_window": 161,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Liu Weichen",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Liu Yang": {
@@ -1989,8 +3019,8 @@
     }
   },
   "Lu Shijian": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2015,11 +3045,38 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/42/2718"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_coauthors; school_coauthors rule (>=5 records with decided NTU PIs); 384 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Lu Shijian",
+      "PID": "https://dblp.org/pid/42/2718",
+      "rule": "school_coauthors",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "968cd51ccd4083bf251e67197b97bea26c3581b59e82b339447d99bed63f5229",
+      "dump_record_quote": "Shijian Lu",
+      "dump_record_url": "https://dblp.org/pid/42/2718",
+      "n_window": 384,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Lu Shijian",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Wei Lu": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2044,11 +3101,42 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/98/6613-28"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 0 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Wei Lu",
+      "PID": "https://dblp.org/pid/98/6613-28",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "52c05bcbc3abd21abf23b822370aecb82e8b9952a5fbbd5601f8a474c1a6d33f",
+      "dump_record_quote": "Nanyang Technological University, School of Computer Engineering, Singapore",
+      "dump_record_url": "https://dblp.org/pid/98/6613-28",
+      "n_window": 0,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Wei Lu",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Hewlett-Packard, IPG R&D Hub, Singapore",
+        "Singapore Research Laboratory of Sony Electronics, Singapore",
+        "Nanyang Technological University, School of Computer Engineering, Singapore"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Luo Jun": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2073,11 +3161,38 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/42/2501-1"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 227 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Luo Jun",
+      "PID": "https://dblp.org/pid/42/2501-1",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "64b4e250ef6cb78e4103b928d657823710c4f1d6779fd951c6493610e11e85ea",
+      "dump_record_quote": "Nanyang Technological University, School of Computer Science and Engineering, Singapore",
+      "dump_record_url": "https://dblp.org/pid/42/2501-1",
+      "n_window": 227,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Luo Jun",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Luo Siqiang": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2102,6 +3217,33 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/117/5965"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_coauthors; school_coauthors rule (>=5 records with decided NTU PIs); 133 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Luo Siqiang",
+      "PID": "https://dblp.org/pid/117/5965",
+      "rule": "school_coauthors",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "04fa06689552abfdaf4fe330da729caea21303cfac5374addd14f9c6e5fe022e",
+      "dump_record_quote": "Siqiang Luo",
+      "dump_record_url": "https://dblp.org/pid/117/5965",
+      "n_window": 133,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Luo Siqiang",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Luu Anh Tuan": {
@@ -2163,8 +3305,8 @@
     }
   },
   "Mohamed M. Sabry": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2189,6 +3331,44 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/74/5309"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; orcid agrees with NTU-affiliated OpenAlex author; 40 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Mohamed M. Sabry",
+      "PID": "https://dblp.org/pid/74/5309",
+      "rule": "unique_exact_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "0e796a1e6a3261247b9fbafbef1d22d497be7fccb71883a5a0c746c2311c1958",
+      "dump_record_quote": "Mohamed M. Sabry",
+      "dump_record_url": "https://dblp.org/pid/74/5309",
+      "n_window": 40,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Mohamed M. Sabry",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-8018-1264"
+          ],
+          "openalex": [
+            "A5011667950"
+          ],
+          "ntu_works": 34
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Atsushi Nitanda": {
@@ -2221,8 +3401,8 @@
     }
   },
   "Luke Ong （翁之昊）": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2247,6 +3427,48 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/o/CHLukeOng"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 99 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Luke Ong （翁之昊）",
+      "PID": "https://dblp.org/pid/o/CHLukeOng",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "d1c7be5bc0767c4255d61aeaf7b4653152fb5835dd92d7fd8131c9951eaad6c5",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/o/CHLukeOng",
+      "n_window": 99,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Luke Ong （翁之昊）",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University, Singapore",
+        "University of Oxford, UK"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0001-7509-680X"
+          ],
+          "openalex": [
+            "A5025152913",
+            "A5124984728"
+          ],
+          "ntu_works": 19
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Ong Yew Soon": {
@@ -2279,8 +3501,8 @@
     }
   },
   "Pan Xingang": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2305,6 +3527,33 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/211/7940"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_coauthors; school_coauthors rule (>=5 records with decided NTU PIs); 118 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Pan Xingang",
+      "PID": "https://dblp.org/pid/211/7940",
+      "rule": "school_coauthors",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "e5c12635f21687a415305f3b41da1931a60b1d6430d41956d7c3c1481c79a842",
+      "dump_record_quote": "Xingang Pan",
+      "dump_record_url": "https://dblp.org/pid/211/7940",
+      "n_window": 118,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Asst Prof Pan Xingang",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Daniel Paulin": {
@@ -2337,8 +3586,8 @@
     }
   },
   "Yewen Pu": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2363,11 +3612,49 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/53/10322"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; orcid agrees with NTU-affiliated OpenAlex author; 59 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Yewen Pu",
+      "PID": "https://dblp.org/pid/53/10322",
+      "rule": "unique_exact_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "8a592712f04c10f6659f29253baca6f4420dbfe461c3357128cf44885d6d3fcd",
+      "dump_record_quote": "Yewen Pu",
+      "dump_record_url": "https://dblp.org/pid/53/10322",
+      "n_window": 59,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Asst Prof Yewen Pu",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0009-0000-4190-0636"
+          ],
+          "openalex": [
+            "A5052178488"
+          ],
+          "ntu_works": 4
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Qian Kemao": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2392,11 +3679,49 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/78/6459"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_name; orcid agrees with NTU-affiliated OpenAlex author; 14 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Qian Kemao",
+      "PID": "https://dblp.org/pid/78/6459",
+      "rule": "unique_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "15c7ea3768ea3db20fd6e4a36c47db574bc9a189a792dd3cc9d7d56eed02f2f5",
+      "dump_record_quote": "Kemao Qian",
+      "dump_record_url": "https://dblp.org/pid/78/6459",
+      "n_window": 14,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Qian Kemao",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0001-6988-3321"
+          ],
+          "openalex": [
+            "A5017281506"
+          ],
+          "ntu_works": 87
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Quek Hiok Chai": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2421,11 +3746,38 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/q/HiokChaiQuek"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 52 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Quek Hiok Chai",
+      "PID": "https://dblp.org/pid/q/HiokChaiQuek",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "0e33b0b356b54bcc231d0dff0745c2c73d80d2005dcbece329f1ca004d32a3f0",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/q/HiokChaiQuek",
+      "n_window": 52,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Quek Hiok Chai",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Sourav Saha Bhowmick": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2450,6 +3802,33 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/b/SSBhowmick"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 155 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Sourav Saha Bhowmick",
+      "PID": "https://dblp.org/pid/b/SSBhowmick",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "faedb7ac8b232649babd67da3310fa43694173edf42e8b34c9fca960788f3cff",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/b/SSBhowmick",
+      "n_window": 155,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Sourav Saha Bhowmick",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Stefano V. Albrecht": {
@@ -2541,8 +3920,8 @@
     }
   },
   "Sun Aixin": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2567,6 +3946,33 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/78/5155"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 264 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Sun Aixin",
+      "PID": "https://dblp.org/pid/78/5155",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "d4961f00b4034fe4f882545fae984d966d2375c543b46fa67ea89be7ca3b724e",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/78/5155",
+      "n_window": 264,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Sun Aixin",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Yoonchang Sung": {
@@ -2599,8 +4005,8 @@
     }
   },
   "Chee Wei Tan": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2625,11 +4031,53 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/04/3030"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 141 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Chee Wei Tan",
+      "PID": "https://dblp.org/pid/04/3030",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "8e3f258f7125bf713a81a79b3ec46cab5afa91b9390cd11eb154917158684898",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/04/3030",
+      "n_window": 141,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Chee Wei Tan",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University, Singapore",
+        "City University of Hong Kong",
+        "Princeton University, NJ, USA"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-6624-9752"
+          ],
+          "openalex": [
+            "A5079559561"
+          ],
+          "ntu_works": 80
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Tan Rui": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2654,6 +4102,33 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/00/5179-1"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 202 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Tan Rui",
+      "PID": "https://dblp.org/pid/00/5179-1",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "65bfbc9a614a642c2e841cf523184330ce8e8e1f5a8b39dd70d2e821caff8cac",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/00/5179-1",
+      "n_window": 202,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Tan Rui",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Tan Yong Kiam": {
@@ -2686,8 +4161,8 @@
     }
   },
   "Tang Xueyan": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2712,11 +4187,38 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/23/2460"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_coauthors; school_coauthors rule (>=5 records with decided NTU PIs); 115 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Tang Xueyan",
+      "PID": "https://dblp.org/pid/23/2460",
+      "rule": "school_coauthors",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "253e06099c0118645c1e5d6cdc8484847c80ba8e8f41e3d3ef6ab84848690b57",
+      "dump_record_quote": "Xueyan Tang",
+      "dump_record_url": "https://dblp.org/pid/23/2460",
+      "n_window": 115,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Tang Xueyan",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Tao Dacheng": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2741,6 +4243,33 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/46/3391"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 2019 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Tao Dacheng",
+      "PID": "https://dblp.org/pid/46/3391",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "353f5b8718a2807d28137ea17c015347b53bce42f7c70bb6aa722d84c079d46e",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/46/3391",
+      "n_window": 2019,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Tao Dacheng",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Jayne Thompson": {
@@ -2892,8 +4421,8 @@
     }
   },
   "Qichen Wang": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2918,11 +4447,53 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/130/8513-1"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 27 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Qichen Wang",
+      "PID": "https://dblp.org/pid/130/8513-1",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "2394a78bddb1490549165a2c17e3041efaade2995db0a6464707b38a23492c5b",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/130/8513-1",
+      "n_window": 27,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Asst Prof Qichen Wang",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University, Singapore",
+        "Hong Kong Baptist University, Hong Kong",
+        "Hong Kong University of Science and Technology, Hong Kong"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-0959-5536"
+          ],
+          "openalex": [
+            "A5040263211"
+          ],
+          "ntu_works": 9
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Djordje Zikelic": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -2947,64 +4518,46 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
-    }
-  },
-  "Yu Cheng": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
-    "dblp_orcid_review": {
-      "allowed": [],
-      "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
-      "evidence": []
     },
-    "collection_person_id": "ntu_fac_source_f7940c797219aad4",
-    "collection_person_source": {
-      "profile_url": "https://dr.ntu.edu.sg/entities/person/Yu-Cheng",
-      "sources": [
+    "dblp": [
+      "https://dblp.org/pid/150/8968"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_name; orcid agrees with NTU-affiliated OpenAlex author; 76 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Djordje Zikelic",
+      "PID": "https://dblp.org/pid/150/8968",
+      "rule": "unique_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "97d3ac37636dc105527783b423a5d08522e1353d137b6b5807b20e29959f8e94",
+      "dump_record_quote": "Dorde Zikelic",
+      "dump_record_url": "https://dblp.org/pid/150/8968",
+      "n_window": 76,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Asst Prof Djordje Zikelic",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Singapore Management University, Singapore"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
         {
-          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
-          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
-          "quote": "Assoc Prof Yu Cheng",
-          "observedAt": "2026-11-07T17:47:31",
-          "kind": "named_individual_official_computing_faculty_card"
-        },
-        {
-          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
-          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
-          "quote": "Appointments: Nanyang Associate Professor (NRF), College of Computing & Data Science Associate Professor, College of Computing & Data Science",
-          "observedAt": "2026-11-07T17:47:31"
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-4681-1699"
+          ],
+          "openalex": [
+            "A5041082080"
+          ],
+          "ntu_works": 1
         }
       ],
-      "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
-    }
-  },
-  "Penghui Li": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
-    "dblp_orcid_review": {
-      "allowed": [],
-      "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
-      "evidence": []
-    },
-    "collection_person_id": "ntu_fac_source_92688735a6baac1a",
-    "collection_person_source": {
-      "profile_url": "https://dr.ntu.edu.sg/entities/person/Penghui-Li",
-      "sources": [
-        {
-          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
-          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
-          "quote": "Asst Prof Penghui Li",
-          "observedAt": "2026-11-07T17:47:31",
-          "kind": "named_individual_official_computing_faculty_card"
-        },
-        {
-          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
-          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
-          "quote": "Appointments: Assistant Professor, College of Computing & Data Science",
-          "observedAt": "2026-11-07T17:47:31"
-        }
-      ],
-      "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+      "status": "accepted_rule_bound"
     }
   },
   "Jordan Boyd-Graber Ying": {
@@ -3036,38 +4589,9 @@
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
     }
   },
-  "Tiantian Gong": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
-    "dblp_orcid_review": {
-      "allowed": [],
-      "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
-      "evidence": []
-    },
-    "collection_person_id": "ntu_fac_source_9685c88be88c4909",
-    "collection_person_source": {
-      "profile_url": "https://dr.ntu.edu.sg/entities/person/Tiantian-Gong",
-      "sources": [
-        {
-          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
-          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
-          "quote": "Asst Prof Tiantian Gong",
-          "observedAt": "2026-11-07T17:47:31",
-          "kind": "named_individual_official_computing_faculty_card"
-        },
-        {
-          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
-          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
-          "quote": "Appointments: Assistant Professor, College of Computing & Data Science",
-          "observedAt": "2026-11-07T17:47:31"
-        }
-      ],
-      "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
-    }
-  },
   "Wang Wenya": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -3092,11 +4616,38 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/62/7948-1"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 113 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Wang Wenya",
+      "PID": "https://dblp.org/pid/62/7948-1",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "34d7d34e4c195d0ac390b9385d1aa789d42aaa2332d5b622c38ffd90ccf455a1",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/62/7948-1",
+      "n_window": 113,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Asst Prof Wang Wenya",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Xiaofeng Wang": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -3121,11 +4672,41 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/06/6268"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 193 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Xiaofeng Wang",
+      "PID": "https://dblp.org/pid/06/6268",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "45ae0027efd5d7b1e24db43c5498b27f9501d9c9a98dc1c18d1aed867323b83e",
+      "dump_record_quote": "Nanyang Technological University (NTU), College of Computing and Data Science (CCDS), Singapore",
+      "dump_record_url": "https://dblp.org/pid/06/6268",
+      "n_window": 193,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Xiaofeng Wang",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University (NTU), College of Computing and Data Science (CCDS), Singapore",
+        "Indiana University Bloomington, School of Informatics and Computing, IN, USA"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Wang Yong": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -3150,11 +4731,38 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/84/2694-21"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 178 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Wang Yong",
+      "PID": "https://dblp.org/pid/84/2694-21",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "fcbdf3ff9725811851ec5a75f30754f15231a98f41f4d66c807d9b010a5d5515",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/84/2694-21",
+      "n_window": 178,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Asst Prof Wang Yong",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Conrad Watt": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -3179,11 +4787,43 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/165/2801"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; 20 exact titles on owned page; 30 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Conrad Watt",
+      "PID": "https://dblp.org/pid/165/2801",
+      "rule": "unique_exact_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "9173ecb9f8c347521b4f481a7ce75536a4f0c86b64c00c65869fd93bed6a06d6",
+      "dump_record_quote": "Conrad Watt",
+      "dump_record_url": "https://dblp.org/pid/165/2801",
+      "n_window": 30,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Asst Prof Conrad Watt",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "owned_page_exact_titles",
+          "count": 20
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Wei Dong": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -3208,11 +4848,52 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/92/748-7"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 67 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Wei Dong",
+      "PID": "https://dblp.org/pid/92/748-7",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "6c09bece41196eaa9af1c29af949817f768d4a600b749dbec600ee5ce8c345bd",
+      "dump_record_quote": "Nanyang Technological University, College of Computing and Data Science, Singapore",
+      "dump_record_url": "https://dblp.org/pid/92/748-7",
+      "n_window": 67,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Asst Prof Wei Dong",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [
+        "Nanyang Technological University, College of Computing and Data Science, Singapore",
+        "Hong Kong University of Science and Technology, Hong Kong, SAR, China"
+      ],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-0394-4125"
+          ],
+          "openalex": [
+            "A5023558055"
+          ],
+          "ntu_works": 42
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   },
   "Wen Yonggang": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -3237,6 +4918,33 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/33/885"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 307 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Wen Yonggang",
+      "PID": "https://dblp.org/pid/33/885",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "9e630c568acca58b744d705ddd3cbc2fd52b16bd408817465d5a42a112786d40",
+      "dump_record_quote": "Nanyang Technological University, Singapore",
+      "dump_record_url": "https://dblp.org/pid/33/885",
+      "n_window": 307,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Wen Yonggang",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Yeo Chai Kiat": {
@@ -3385,8 +5093,8 @@
     }
   },
   "Zheng Jianmin": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -3411,6 +5119,33 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/09/5452"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_coauthors; school_coauthors rule (>=5 records with decided NTU PIs); 130 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Zheng Jianmin",
+      "PID": "https://dblp.org/pid/09/5452",
+      "rule": "school_coauthors",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "61b49daf79a981940031bee735e81cbbb3346cb28f4241f770b2f4ca694d9aa7",
+      "dump_record_quote": "Jianmin Zheng",
+      "dump_record_url": "https://dblp.org/pid/09/5452",
+      "n_window": 130,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Prof Zheng Jianmin",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Zhang Jie": {
@@ -3472,8 +5207,8 @@
     }
   },
   "Zhang Tianwei": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -3498,11 +5233,38 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/77/7902-4"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 479 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Zhang Tianwei",
+      "PID": "https://dblp.org/pid/77/7902-4",
+      "rule": "school_affiliation",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "626ae6215992018974fb8f740a66abad9189d733a2afa2c72b327367de7ec649",
+      "dump_record_quote": "Nanyang Technological University, School of Computer Science and Engineering, Singapore",
+      "dump_record_url": "https://dblp.org/pid/77/7902-4",
+      "n_window": 479,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Zhang Tianwei",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [],
+      "status": "accepted_rule_bound"
     }
   },
   "Chuanxia Zheng": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -3527,6 +5289,44 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/195/8988"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; orcid agrees with NTU-affiliated OpenAlex author; 81 records in 2016-2026.",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Chuanxia Zheng",
+      "PID": "https://dblp.org/pid/195/8988",
+      "rule": "unique_exact_name",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_sha256": "94e7b7c0971554b1c7ce12e981bb645193f4d2668a455e885889e4cbd526dd43",
+      "dump_record_quote": "Chuanxia Zheng",
+      "dump_record_url": "https://dblp.org/pid/195/8988",
+      "n_window": 81,
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Asst Prof Chuanxia Zheng",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "dump_affiliation_notes": [],
+      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+      "corroboration": [
+        {
+          "kind": "orcid_agrees_with_ntu_openalex_author",
+          "orcids": [
+            "0000-0002-3584-9640"
+          ],
+          "openalex": [
+            "A5066022386"
+          ],
+          "ntu_works": 13
+        }
+      ],
+      "status": "accepted_rule_bound"
     }
   }
 }
