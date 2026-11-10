@@ -37,7 +37,7 @@ legacy_sweep = ""
 [census]
 computing_departments = ["CCDS"]
 center_units = []
-home_units = {EEE = 'School of Electrical and Electronic Engineering', MAE = 'School of Mechanical and Aerospace Engineering', MSE = 'School of Materials Science and Engineering', SBS = 'School of Biological Sciences', WKWSCI = 'Wee Kim Wee School of Communication and Information', HASS = 'School of Humanities and Social Sciences', ADM = 'School of Art, Design and Media', CCDS = 'College of Computing and Data Science', SPMS = 'School of Physical and Mathematical Sciences', LKC_MEDICINE = 'Lee Kong Chian School of Medicine'}
+home_units = {CEE = 'School of Civil and Environmental Engineering', EEE = 'School of Electrical and Electronic Engineering', MAE = 'School of Mechanical and Aerospace Engineering', MSE = 'School of Materials Science and Engineering', SBS = 'School of Biological Sciences', WKWSCI = 'Wee Kim Wee School of Communication and Information', HASS = 'School of Humanities and Social Sciences', ADM = 'School of Art, Design and Media', CCDS = 'College of Computing and Data Science', SPMS = 'School of Physical and Mathematical Sciences', LKC_MEDICINE = 'Lee Kong Chian School of Medicine'}
 rank_words = {}
 
 [sweep_check]
@@ -48,7 +48,7 @@ not_faculty = {}
 share_test_settles = []
 
 [site]
-depts = {EEE = "School of Electrical and Electronic Engineering", MAE = "School of Mechanical and Aerospace Engineering", MSE = "School of Materials Science and Engineering", SBS = "School of Biological Sciences", WKWSCI = "Wee Kim Wee School of Communication and Information", HASS = "School of Humanities and Social Sciences", ADM = "School of Art, Design and Media", CCDS = "College of Computing and Data Science", SPMS = "School of Physical and Mathematical Sciences", LKC_MEDICINE = "Lee Kong Chian School of Medicine"}
+depts = {CEE = "School of Civil and Environmental Engineering", EEE = "School of Electrical and Electronic Engineering", MAE = "School of Mechanical and Aerospace Engineering", MSE = "School of Materials Science and Engineering", SBS = "School of Biological Sciences", WKWSCI = "Wee Kim Wee School of Communication and Information", HASS = "School of Humanities and Social Sciences", ADM = "School of Art, Design and Media", CCDS = "College of Computing and Data Science", SPMS = "School of Physical and Mathematical Sciences", LKC_MEDICINE = "Lee Kong Chian School of Medicine"}
 full_codes = ["CCDS"]
 
 [periods]
@@ -146,11 +146,24 @@ listings = ["www.ntu.edu.sg/adm/about-us/our-people/faculty"]
 note = "live read 2026-11-10 (robots allowed; proves 2026 only; no Wayback history); individual computing relevance still required (owner scope rule: computing-related faculty in any unit)"
 
 [[affiliated_units]]
+code = "CEE"
+name = "School of Civil and Environmental Engineering"
+url = "https://www.ntu.edu.sg/cee"
+listings = ["www.ntu.edu.sg/cee/people/faculty-staff"]
+note = "found 2026-11-10 by following the 301 of /cee/about-us/our-people/faculty (robots allowed); 66 cards, current only"
+
+[[affiliated_units]]
 code = "LKC_MEDICINE"
 name = "Lee Kong Chian School of Medicine"
-url = "" # Exact owned joint-appointment clauses support the name, not a guessed official unit/listing URL.
-listings = []
+url = "https://www.ntu.edu.sg/medicine"
+listings = ["www.ntu.edu.sg/medicine/our-people/faculty"]
+note = "found 2026-11-10 by following the 301 of /medicine/about-us/our-people/faculty (robots allowed); a school-wide table of 271 faculty and joint faculty: only people with computing evidence (DBLP/OpenAlex) can enter; administrators and centres are not PIs (R-HIER-05)"
 # Alvin Chan and Jie Xiong sources name this unit. Computing-related labs may be sought; all medicine staff/lineage are not automatically PIs.
+
+# Unit directories probed 2026-11-10 (www.ntu.edu.sg only, robots allowed, scratch/ntu-admit-1110/stage2/probe3.json) and NOT used:
+#   NIE (/nie/faculty) and SSS (/sss/about-us/our-people): education and policy units; recommended exclusion under R-HIER-05 (computing is not the method), held for the owner.
+#   NBS/business, CCEB, CBE: no directory found under any of 10 path patterns (all 404): unresolved scope, not closed.
+#   MAE, MSE, HASS pages: rendered with tools/js_render_capture.py 2026-11-10 (browser, robots first): MAE faculty page = 46 administrative staff cards, MSE pages = landing carousels, HASS = a link hub to its schools: none is a faculty directory (0 professor titles in the rendered DOM); the real MAE/MSE faculty lists are not found: unresolved scope.
 
 [thesis]
 kind = "none"

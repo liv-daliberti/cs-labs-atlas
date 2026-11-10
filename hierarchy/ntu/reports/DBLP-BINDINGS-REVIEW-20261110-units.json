@@ -1,0 +1,994 @@
+{
+ "school": "ntu",
+ "reviewed": "2026-11-10",
+ "by": "claude-ntu-1110",
+ "dump": "dblp-2026-09-01.xml.gz",
+ "policy": "school_affiliation / homepage_url / school_coauthors rule bindings kept (Toronto precedent); name-only bindings (unique_name, unique_exact_name) need >=10 exact titles on the PI owned page (R-PAP-44) or an NTU-affiliated OpenAlex author carrying the same ORCID as the DBLP record (R-PAP-42); no-ORCID-conflict check is the builder (R-PAP-42a); dr.ntu.edu.sg is behind an AWS WAF human-verification challenge, so no profile was fetched live",
+ "accepted": {
+  "Andy W. H. Khong": {
+   "pid": "https://dblp.org/pid/66/1858",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-0708-4791"
+     ],
+     "openalex": [
+      "A5010202250"
+     ],
+     "ntu_works": 81
+    }
+   ]
+  },
+  "Bernhard Schmidt": {
+   "pid": "https://dblp.org/pid/31/4889-1",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": []
+  },
+  "Changyun Wen": {
+   "pid": "https://dblp.org/pid/67/4562",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0001-9530-360X"
+     ],
+     "openalex": [
+      "A5091488407",
+      "A5100344158"
+     ],
+     "ntu_works": 382
+    }
+   ]
+  },
+  "Chau Yuen": {
+   "pid": "https://dblp.org/pid/01/753",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-9307-2120"
+     ],
+     "openalex": [
+      "A5060020877",
+      "A5090432215",
+      "A5112838990",
+      "A5121271325",
+      "A5121703802",
+      "A5123205895",
+      "A5130671616",
+      "A5133646198"
+     ],
+     "ntu_works": 679
+    }
+   ]
+  },
+  "Cheng Chen": {
+   "pid": "https://dblp.org/pid/10/217-15",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": []
+  },
+  "Chip-Hong Chang": {
+   "pid": "https://dblp.org/pid/95/137",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-8897-6176"
+     ],
+     "openalex": [
+      "A5029335324",
+      "A5151263507"
+     ],
+     "ntu_works": 154
+    }
+   ]
+  },
+  "Feng Zhu": {
+   "pid": "https://dblp.org/pid/71/2791-8",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-9814-6053"
+     ],
+     "openalex": [
+      "A5031222391"
+     ],
+     "ntu_works": 49
+    }
+   ]
+  },
+  "Gary R. W. Greaves": {
+   "pid": "https://dblp.org/pid/130/9168",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-7342-4790"
+     ],
+     "openalex": [
+      "A5054776480"
+     ],
+     "ntu_works": 26
+    }
+   ]
+  },
+  "Guoqiang Hu": {
+   "pid": "https://dblp.org/pid/23/4567-1",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-8618-5581"
+     ],
+     "openalex": [
+      "A5050664552",
+      "A5130387299"
+     ],
+     "ntu_works": 218
+    }
+   ]
+  },
+  "Hung Dinh Nguyen": {
+   "pid": "https://dblp.org/pid/30/1580-1",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0003-2610-5161"
+     ],
+     "openalex": [
+      "A5053800420",
+      "A5090274747"
+     ],
+     "ntu_works": 95
+    }
+   ]
+  },
+  "Jeremie Houssineau": {
+   "pid": "https://dblp.org/pid/132/4855",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0001-8235-0239"
+     ],
+     "openalex": [
+      "A5040820835"
+     ],
+     "ntu_works": 17
+    }
+   ]
+  },
+  "Jian Guo": {
+   "pid": "https://dblp.org/pid/96/2596-1",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0001-8847-6748"
+     ],
+     "openalex": [
+      "A5017263623",
+      "A5135343875"
+     ],
+     "ntu_works": 50
+    }
+   ]
+  },
+  "Jianfei Yang": {
+   "pid": "https://dblp.org/pid/06/5852-1",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-8075-0439"
+     ],
+     "openalex": [
+      "A5005666034"
+     ],
+     "ntu_works": 194
+    }
+   ]
+  },
+  "Keck Voon Ling": {
+   "pid": "https://dblp.org/pid/l/KVLing",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-9293-9394"
+     ],
+     "openalex": [
+      "A5017456876",
+      "A5103648028",
+      "A5126516725"
+     ],
+     "ntu_works": 95
+    }
+   ]
+  },
+  "Kezhi Mao": {
+   "pid": "https://dblp.org/pid/m/KezhiMao",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-9191-8604"
+     ],
+     "openalex": [
+      "A5066203581"
+     ],
+     "ntu_works": 71
+    }
+   ]
+  },
+  "Kye Yak See": {
+   "pid": "https://dblp.org/pid/131/2813",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0003-2452-7627"
+     ],
+     "openalex": [
+      "A5058488059"
+     ],
+     "ntu_works": 152
+    }
+   ]
+  },
+  "Lihua Xie": {
+   "pid": "https://dblp.org/pid/40/2499",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-7137-4136"
+     ],
+     "openalex": [
+      "A5027460918",
+      "A5081620895",
+      "A5100365448",
+      "A5100531722",
+      "A5121969955",
+      "A5122854246",
+      "A5129657267",
+      "A5129740203",
+      "A5130172467",
+      "A5132562406",
+      "A5136102016"
+     ],
+     "ntu_works": 631
+    }
+   ]
+  },
+  "Lihui Chen": {
+   "pid": "https://dblp.org/pid/56/1277-1",
+   "basis": "orcid_agrees_ntu_openalex",
+   "why": "only candidate whose ORCID agrees with an NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "detail": [
+      [
+       "https://dblp.org/pid/56/1277-1",
+       [
+        [
+         "0000-0001-7452-1675",
+         "A5100718988",
+         27
+        ]
+       ]
+      ]
+     ]
+    }
+   ]
+  },
+  "Lipo Wang": {
+   "pid": "https://dblp.org/pid/56/1348",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-4257-7639"
+     ],
+     "openalex": [
+      "A5086764741"
+     ],
+     "ntu_works": 132
+    }
+   ]
+  },
+  "Pak Kwong Chan": {
+   "pid": "https://dblp.org/pid/92/1024",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-9205-0819"
+     ],
+     "openalex": [
+      "A5083943085"
+     ],
+     "ntu_works": 28
+    }
+   ]
+  },
+  "Ran Yan": {
+   "pid": "https://dblp.org/pid/16/5791-2",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-3021-9543"
+     ],
+     "openalex": [
+      "A5100329487"
+     ],
+     "ntu_works": 76
+    }
+   ]
+  },
+  "Rong Su": {
+   "pid": "https://dblp.org/pid/18/657",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0003-3448-0586"
+     ],
+     "openalex": [
+      "A5046844818",
+      "A5108901275"
+     ],
+     "ntu_works": 321
+    }
+   ]
+  },
+  "Soujanya Poria": {
+   "pid": "https://dblp.org/pid/116/4904",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0001-6924-7931",
+      "0000-0003-3167-2208"
+     ],
+     "openalex": [
+      "A5033376109",
+      "A5103285591"
+     ],
+     "ntu_works": 65
+    }
+   ]
+  },
+  "Sunny Hei Wong": {
+   "pid": "https://dblp.org/pid/289/8628",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-3354-9310"
+     ],
+     "openalex": [
+      "A5033997612",
+      "A5109751410",
+      "A5139612248"
+     ],
+     "ntu_works": 119
+    }
+   ]
+  },
+  "Sunwoo Lee": {
+   "pid": "https://dblp.org/pid/56/7811-2",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-9750-7224"
+     ],
+     "openalex": [
+      "A5100698558",
+      "A5122856896"
+     ],
+     "ntu_works": 5
+    }
+   ]
+  },
+  "Tao Huang": {
+   "pid": "https://dblp.org/pid/34/808-15",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": []
+  },
+  "Tee Hiang Cheng": {
+   "pid": "https://dblp.org/pid/c/TeeHiangCheng",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": []
+  },
+  "Thomas Peyrin": {
+   "pid": "https://dblp.org/pid/p/ThomasPeyrin",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-2690-9197"
+     ],
+     "openalex": [
+      "A5012053340"
+     ],
+     "ntu_works": 59
+    }
+   ]
+  },
+  "Tony Tae-Hyoung Kim": {
+   "pid": "https://dblp.org/pid/125/7918",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-1779-1799"
+     ],
+     "openalex": [
+      "A5013775632",
+      "A5076628109"
+     ],
+     "ntu_works": 176
+    }
+   ]
+  },
+  "Tupei Chen": {
+   "pid": "https://dblp.org/pid/231/4866",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-1098-9575"
+     ],
+     "openalex": [
+      "A5018298857",
+      "A5066210684",
+      "A5121603126"
+     ],
+     "ntu_works": 87
+    }
+   ]
+  },
+  "Wei Huang": {
+   "pid": "https://dblp.org/pid/81/6685-13",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": []
+  },
+  "Woon-Seng Gan": {
+   "pid": "https://dblp.org/pid/g/WoonSengGan",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-7143-1823"
+     ],
+     "openalex": [
+      "A5072584895"
+     ],
+     "ntu_works": 196
+    }
+   ]
+  },
+  "Xiao Fan Wang": {
+   "pid": "https://dblp.org/pid/w/XiaoFanWang",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": []
+  },
+  "Xudong Jiang": {
+   "pid": "https://dblp.org/pid/11/2494",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-9104-2315"
+     ],
+     "openalex": [
+      "A5055287990",
+      "A5085533260",
+      "A5103896103",
+      "A5125385815",
+      "A5125566318",
+      "A5127363073",
+      "A5128894358"
+     ],
+     "ntu_works": 194
+    }
+   ]
+  },
+  "Yan Xu": {
+   "pid": "https://dblp.org/pid/03/4702-5",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-0503-183X"
+     ],
+     "openalex": [
+      "A5004472919",
+      "A5013947981",
+      "A5018343158",
+      "A5122995780",
+      "A5125359474",
+      "A5128805017",
+      "A5130918049",
+      "A5135832945",
+      "A5137390910"
+     ],
+     "ntu_works": 504
+    }
+   ]
+  },
+  "Yi Tang": {
+   "pid": "https://dblp.org/pid/88/3775-5",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0001-8725-1336"
+     ],
+     "openalex": [
+      "A5051927490"
+     ],
+     "ntu_works": 317
+    }
+   ]
+  },
+  "Yong Liang Guan": {
+   "pid": "https://dblp.org/pid/19/5809-1",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-9757-630X"
+     ],
+     "openalex": [
+      "A5100719922",
+      "A5100763983",
+      "A5125935068",
+      "A5135863242",
+      "A5135951996"
+     ],
+     "ntu_works": 386
+    }
+   ]
+  },
+  "Zhiping Lin": {
+   "pid": "https://dblp.org/pid/41/479-1",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-1587-1226"
+     ],
+     "openalex": [
+      "A5049506273",
+      "A5083558550",
+      "A5100844860",
+      "A5123434099",
+      "A5123613766"
+     ],
+     "ntu_works": 283
+    }
+   ]
+  },
+  "Ziwei Wang": {
+   "pid": "https://dblp.org/pid/136/5574-10",
+   "basis": "school_affiliation",
+   "why": "dblp record names NTU / owned homepage",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0001-9225-8495"
+     ],
+     "openalex": [
+      "A5100338337",
+      "A5100389366",
+      "A5115087394",
+      "A5115767836",
+      "A5126117726",
+      "A5139775112"
+     ],
+     "ntu_works": 27
+    }
+   ]
+  },
+  "Wee Peng Tay": {
+   "pid": "https://dblp.org/pid/45/3753",
+   "basis": "unique_exact_name",
+   "why": "orcid agrees with NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-1543-195X"
+     ],
+     "openalex": [
+      "A5046850399"
+     ],
+     "ntu_works": 189
+    }
+   ]
+  },
+  "Christopher H. T. Lee": {
+   "pid": "https://dblp.org/pid/187/3777",
+   "basis": "orcid_agrees_ntu_openalex",
+   "why": "only candidate whose ORCID agrees with an NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "detail": [
+      [
+       "https://dblp.org/pid/187/3777",
+       [
+        [
+         "0000-0001-5132-4126",
+         "A5100461247",
+         310
+        ]
+       ]
+      ]
+     ]
+    }
+   ]
+  },
+  "Gaoxi Xiao": {
+   "pid": "https://dblp.org/pid/78/3245",
+   "basis": "orcid_agrees_ntu_openalex",
+   "why": "only candidate whose ORCID agrees with an NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "detail": [
+      [
+       "https://dblp.org/pid/78/3245",
+       [
+        [
+         "0000-0002-4171-6799",
+         "A5005659262",
+         240
+        ]
+       ]
+      ]
+     ]
+    }
+   ]
+  },
+  "Kah Chan Teh": {
+   "pid": "https://dblp.org/pid/94/2651",
+   "basis": "unique_exact_name",
+   "why": "orcid agrees with NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-1973-2565"
+     ],
+     "openalex": [
+      "A5078754231"
+     ],
+     "ntu_works": 108
+    }
+   ]
+  },
+  "Kim-Hui Yap": {
+   "pid": "https://dblp.org/pid/49/1306",
+   "basis": "unique_exact_name",
+   "why": "orcid agrees with NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0003-1933-4986"
+     ],
+     "openalex": [
+      "A5022468480",
+      "A5114336255"
+     ],
+     "ntu_works": 85
+    }
+   ]
+  },
+  "Joseph S. Chang": {
+   "pid": "https://dblp.org/pid/93/4217",
+   "basis": "school_coauthors",
+   "why": "school_coauthors rule (>=5 records with decided NTU PIs)",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0003-0991-8339"
+     ],
+     "openalex": [
+      "A5023352317"
+     ],
+     "ntu_works": 84
+    }
+   ]
+  },
+  "Chien Chern Cheah": {
+   "pid": "https://dblp.org/pid/40/880",
+   "basis": "unique_exact_name",
+   "why": "orcid agrees with NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0003-3728-9277"
+     ],
+     "openalex": [
+      "A5080753188"
+     ],
+     "ntu_works": 87
+    }
+   ]
+  },
+  "Kum Fai Yuen": {
+   "pid": "https://dblp.org/pid/237/5199",
+   "basis": "unique_exact_name",
+   "why": "orcid agrees with NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-9199-6661"
+     ],
+     "openalex": [
+      "A5022255714"
+     ],
+     "ntu_works": 283
+    }
+   ]
+  },
+  "Chirn Chye Boon": {
+   "pid": "https://dblp.org/pid/24/8747",
+   "basis": "unique_exact_name",
+   "why": "orcid agrees with NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0003-0298-6232"
+     ],
+     "openalex": [
+      "A5033403894"
+     ],
+     "ntu_works": 95
+    }
+   ]
+  },
+  "Abdulkadir C. Yucel": {
+   "pid": "https://dblp.org/pid/156/1755",
+   "basis": "unique_exact_name",
+   "why": "orcid agrees with NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0001-9920-4043"
+     ],
+     "openalex": [
+      "A5039578731"
+     ],
+     "ntu_works": 85
+    }
+   ]
+  },
+  "Yuguang Fu": {
+   "pid": "https://dblp.org/pid/214/9298",
+   "basis": "unique_exact_name",
+   "why": "orcid agrees with NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0001-7125-0961"
+     ],
+     "openalex": [
+      "A5002684705",
+      "A5059972038",
+      "A5136319089",
+      "A5140719565"
+     ],
+     "ntu_works": 86
+    }
+   ]
+  },
+  "Juan-Pablo Ortega": {
+   "pid": "https://dblp.org/pid/146/2870",
+   "basis": "unique_exact_name",
+   "why": "orcid agrees with NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0002-5412-9622"
+     ],
+     "openalex": [
+      "A5072304172"
+     ],
+     "ntu_works": 42
+    }
+   ]
+  },
+  "Patricia J. Y. Wong": {
+   "pid": "https://dblp.org/pid/67/5033",
+   "basis": "unique_exact_name",
+   "why": "orcid agrees with NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "orcids": [
+      "0000-0001-8375-5553"
+     ],
+     "openalex": [
+      "A5034538676"
+     ],
+     "ntu_works": 55
+    }
+   ]
+  },
+  "Hen-Wei Huang": {
+   "pid": "https://dblp.org/pid/115/9608",
+   "basis": "orcid_agrees_ntu_openalex",
+   "why": "only candidate whose ORCID agrees with an NTU-affiliated OpenAlex author",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_ntu_openalex_author",
+     "detail": [
+      [
+       "https://dblp.org/pid/115/9608",
+       [
+        [
+         "0000-0003-1921-8897",
+         "A5029613558",
+         33
+        ]
+       ]
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "held": {
+  "Bing Li": {
+   "basis": "school_affiliation",
+   "why": "bound record has fewer than 10 records in 2016-2026"
+  },
+  "Geok See Ng": {
+   "basis": "school_affiliation",
+   "why": "bound record has fewer than 10 records in 2016-2026"
+  },
+  "Lei Wei": {
+   "basis": "none",
+   "why": "10 name candidates, 2 ORCID-agreeing"
+  },
+  "Lin Wang": {
+   "basis": "none",
+   "why": "118 name candidates, 4 ORCID-agreeing"
+  },
+  "Thanh-Binh Nguyen": {
+   "basis": "school_affiliation",
+   "why": "bound record has fewer than 10 records in 2016-2026"
+  },
+  "Yi Liu": {
+   "basis": "none",
+   "why": "153 name candidates, 11 ORCID-agreeing"
+  },
+  "Yuanjin Zheng": {
+   "basis": "none",
+   "why": "2 name candidates, 0 ORCID-agreeing"
+  },
+  "Bah-Hwee Gwee": {
+   "basis": "unique_exact_name",
+   "why": "name-only: no ORCID agreement, <10 owned-page titles"
+  },
+  "Wei Tech Ang": {
+   "basis": "unique_exact_name",
+   "why": "name-only: no ORCID agreement, <10 owned-page titles"
+  },
+  "Yee Hui Lee": {
+   "basis": "none",
+   "why": "2 name candidates, 0 ORCID-agreeing"
+  },
+  "Erry Gunawan": {
+   "basis": "unique_name",
+   "why": "name-only: no ORCID agreement, <10 owned-page titles"
+  },
+  "Chi Seng Pun": {
+   "basis": "school_coauthors",
+   "why": "DBLP person name is not a byline alias of the PI (R-PAP-44 name check)"
+  },
+  "Ariel Neufeld": {
+   "basis": "unique_exact_name",
+   "why": "name-only: no ORCID agreement, <10 owned-page titles"
+  },
+  "Cyrus Mostajeran": {
+   "basis": "unique_name",
+   "why": "name-only: no ORCID agreement, <10 owned-page titles"
+  },
+  "Anamitra Makur": {
+   "basis": "unique_name",
+   "why": "bound record has fewer than 10 records in 2016-2026"
+  },
+  "Sadat Reza": {
+   "basis": "none",
+   "why": "1 name candidates, 0 ORCID-agreeing"
+  }
+ }
+}
