@@ -17,4 +17,4 @@ def test_name_only_candidates_are_corroborated_or_held():
             assert not e.get('dblp'), n
         else:
             corr = e['dblp_identity_review']['corroboration']
-            assert any(c.get('kind') == 'dblp_works_with_school_authorship' and c['count'] >= 10 for c in corr), n
+            assert any(c.get('kind') == 'dblp_candidate_works_with_school_authorship' and c['count'] >= 10 and c['sample_titles'] for c in corr), n
