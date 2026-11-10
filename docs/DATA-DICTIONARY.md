@@ -167,6 +167,7 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 | `titleEnrichment.owned_dblp_pid` | string | no |  |  |  |
 | `titleEnrichment.owned_dblp_key` | string | no |  |  |  |
 | `titleEnrichment.quality_status` | any | no | Ordinary title quality recheck result after enrichment. | one of `passed`, `rejected` |  |
+| `byline_affiliation_review` | object | no | Reviewed derivation of the byline affiliation from a complete, source-bound PDF author block (reviewed/paper-source-review): status, source work and PDF hashes, reviewer. |  |  |
 | `sourceMetadataReviews` | array of object | no | Applied exact title or type projections on complete already eligible originals before quality/folding/R16; original work/eligible row/available variants retained in report.paperSourceReview. Type authority never edits names, dates or identities. |  |  |
 | `sourceMetadataReviews[]` | object | — |  |  |  |
 | `sourceMetadataReviews[].id` | string | yes |  |  |  |
