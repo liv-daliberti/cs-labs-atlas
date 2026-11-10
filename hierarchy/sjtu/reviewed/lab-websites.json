@@ -1647,19 +1647,17 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/dongyihong.html",
    "profile_sha256": "e9eb4d9b3e36b7c580b596bc3ff212889bcfa29bee3a2139d0dc82f33edbac19",
    "url": "https://scholar.google.com/citations?user=-bNMkykAAAAJ&hl=zh-CN",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (200, 'User-agent: *\\nDisallow: /search\\nDisallow: /index.html\\nDisallow: /scholar\\nDisallo'); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/dongyihong.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "the official profile links only an identity index (scholar.google.com), which is not a personal or lab homepage; no other site found",
+   "coverage": "none",
    "checks": [
     {
-     "source": "sweep_attempt",
-     "url": "https://scholar.google.com/citations?user=-bNMkykAAAAJ&hl=zh-CN",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "source": "official_profile_capture",
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/dongyihong.html",
+     "result": "only_identity_index_linked",
+     "at": "2026-11-10T17:00:00",
+     "source_sha256": "e9eb4d9b3e36b7c580b596bc3ff212889bcfa29bee3a2139d0dc82f33edbac19"
     }
    ]
   },
@@ -2957,21 +2955,31 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/linyun.html",
    "profile_sha256": "f7612360906108c07c6816ec81c281f2bb81430b88d4326833b6b0b9da8aca11",
    "url": "http://linyun.info",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (-1, \"ConnectionError(ProtocolError('Connection aborted.', ConnectionResetError(104, '\"); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/linyun.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official profile names the PI (live fetch under robots, 2026-11-10)",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "http://linyun.info",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/linyun.html",
+     "linked_url": "http://linyun.info",
+     "result": "listed",
+     "at": "2026-11-10T18:19:06",
+     "source_sha256": "f7612360906108c07c6816ec81c281f2bb81430b88d4326833b6b0b9da8aca11"
+    },
+    {
+     "source": "live_fetch",
+     "url": "http://linyun.info",
+     "result": "ok_names_pi",
+     "at": "2026-11-10T18:19:06",
+     "sha256": "d800724b6efcabfa2a21669d6906e105f50f88fd93620c67dddd1943add87e34"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "d800724b6efcabfa2a21669d6906e105f50f88fd93620c67dddd1943add87e34",
+   "verification_quote": "林云"
   },
   {
    "pi": "李生红",
@@ -3856,21 +3864,31 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/panhao.html",
    "profile_sha256": "d3501f44cd014d795fe8232890ea98278014cb65e2d2c82e8e95cc891698e34f",
    "url": "https://ppjhh.com",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (200, '# As a condition of accessing this website, you agree to abide by the following\\n'); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/panhao.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official profile names the PI (live fetch under robots, 2026-11-10)",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://ppjhh.com",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/panhao.html",
+     "linked_url": "https://ppjhh.com",
+     "result": "listed",
+     "at": "2026-11-10T18:19:14",
+     "source_sha256": "d3501f44cd014d795fe8232890ea98278014cb65e2d2c82e8e95cc891698e34f"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://ppjhh.com",
+     "result": "ok_names_pi",
+     "at": "2026-11-10T18:19:14",
+     "sha256": "3ce7fdb5432b54b2136f0e824b43934fdd5b6ea0010d7c97ec7ea3fbebc6fc6a"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "3ce7fdb5432b54b2136f0e824b43934fdd5b6ea0010d7c97ec7ea3fbebc6fc6a",
+   "verification_quote": "Hao Pan"
   },
   {
    "pi": "潘 理",
@@ -4107,19 +4125,17 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/shengbin.html",
    "profile_sha256": "a18eec8df9363071d6774a74c06e738037ee895292899920874045a619503bbc",
    "url": "https://www.researchgate.net/profile/Bin-Sheng-3",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (200, 'User-agent: Applebot-Extended\\nDisallow: /\\n\\nUser-agent: GoogleOther\\nUser-agent: G'); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/shengbin.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "the official profile links only an identity index (www.researchgate.net), which is not a personal or lab homepage; no other site found",
+   "coverage": "none",
    "checks": [
     {
-     "source": "sweep_attempt",
-     "url": "https://www.researchgate.net/profile/Bin-Sheng-3",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "source": "official_profile_capture",
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/shengbin.html",
+     "result": "only_identity_index_linked",
+     "at": "2026-11-10T17:00:00",
+     "source_sha256": "a18eec8df9363071d6774a74c06e738037ee895292899920874045a619503bbc"
     }
    ]
   },
@@ -4430,19 +4446,16 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangdequan.html",
    "profile_sha256": "1405d8c76acb37f4018aa1ea1815883e6e81335de0c9cd292d6e95c1fa96d4da",
    "url": "https://dequan.wang",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (200, '# Existing production crawl and content-use policy preserved.\\nUser-agent: *\\nCont'); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/wangdequan.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "access_reason",
+   "reason_code": "host_blocked_by_robots",
+   "reason": "robots.txt of the host disallows our user agent for the linked page; not fetched (checked 2026-11-10)",
+   "coverage": "none",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "robots_txt",
      "url": "https://dequan.wang",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "result": "disallow",
+     "at": "2026-11-10T17:00:00"
     }
    ]
   },
@@ -6432,19 +6445,16 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhouxuanhe.html",
    "profile_sha256": "f1eb08f6e13a2c7826998c27e6c662d030ddc7057318c698f571a650d5210feb",
    "url": "https://db.zhouxh.store",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (307, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/zhouxuanhe.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "access_reason",
+   "reason_code": "host_blocked_by_robots",
+   "reason": "robots.txt of the host disallows our user agent for the linked page; not fetched (checked 2026-11-10)",
+   "coverage": "none",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "robots_txt",
      "url": "https://db.zhouxh.store",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "result": "disallow",
+     "at": "2026-11-10T17:00:00"
     }
    ]
   },
