@@ -16,3 +16,10 @@ def test_other_refusals_are_not_per_path():
     assert not W.apache_path_denial(403, b'<title>403 Forbidden</title><p>Access denied by Cloudflare</p>')
     assert not W.apache_path_denial(429, APACHE)
     assert not W.apache_path_denial(200, APACHE)
+
+
+def test_school_hosts_ignores_a_rejudged_per_path_block(tmp_path, monkeypatch):
+    """school_hosts must read the block through school_web's re-judged set, not the raw `blocked` table."""
+    import pathlib
+    src = (pathlib.Path(__file__).resolve().parents[1] / 'tools' / 'school_hosts.py').read_text()
+    assert 'host in W._blocked' in src

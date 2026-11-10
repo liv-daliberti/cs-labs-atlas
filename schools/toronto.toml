@@ -20,7 +20,7 @@ ids_note = "OWNER 2026-11-10: scope is computing-related PIs of every unit incl.
 [web]
 domains = ["utoronto.ca", "toronto.edu"]
 email_domains = ["utoronto.ca", "toronto.edu"]
-wayback_only_suffixes = ["www.cs.toronto.edu", "medbio.utoronto.ca", "www.utsc.utoronto.ca", "www.mathematics.utoronto.ca", "www.statistics.utoronto.ca", "www.matter.toronto.edu", "www.nivdayan.net", "lmp.utoronto.ca"]
+wayback_only_suffixes = ["medbio.utoronto.ca", "www.utsc.utoronto.ca", "www.mathematics.utoronto.ca", "www.statistics.utoronto.ca", "www.matter.toronto.edu", "www.nivdayan.net", "lmp.utoronto.ca"]
 excluded_hosts = []
 
 [affiliation]
@@ -266,7 +266,7 @@ probe = "https://web.cs.toronto.edu/people/faculty-directory"
 
 [[hosts]]
 host = "www.cs.toronto.edu"
-use = "wayback-only"  # 2026-11-10: the probe now serves a challenge / HTTP 403 refusal (hosts.json); live pages already stored stay valid evidence
+use = "live"  # 2026-11-10: the earlier challenge probe was the host-wide block caused by one Apache directory-permission 403 (/~sam/); per-path 403 fix landed, probe now ok
 purpose = "Faculty listings, research groups, thesis evidence"
 probe = "https://www.cs.toronto.edu/~ashton/"
 

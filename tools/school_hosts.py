@@ -51,9 +51,9 @@ def main(key, refresh=False):
         robots = 'unreachable' if (st == -1 or st >= 500) else ('allowed' if ours and ai else ('disallowed-for-ai-agents' if ours else 'disallowed'))
         pr = 'skipped'
         blocked = c.execute('select why from blocked where host=?', (host,)).fetchone()
-        if blocked:
+        if blocked and host in W._blocked:   # a stored block that school_web.con() re-judged as a per-path Apache denial is no block (cs.toronto.edu, 2026-11-10)
             pr = 'challenge'
-        elif use == 'live' and probe and robots == 'allowed':
+        elif use == 'live' and probe and robots == 'allowed':   # also reached for a stored per-path-403 row
             res = W.live(c, probe, refresh=refresh)
             pr = 'disallowed' if res is None else ('challenge' if res[0] == 999 else ('ok' if res[0] == 200 else f'http {res[0]}'))
             if res is not None and res[0] == 310:  # an off-host redirect (a moved department site): say where, the charter then names the new host
