@@ -1,0 +1,77 @@
+{
+ "school": "ntu",
+ "recorded": "2026-11-10",
+ "by": "claude-ntu-1110",
+ "purpose": "reproduce the untracked derived native inputs of the first isolated NTU native (jobs 32178779 and earlier); nothing here is a paper admission",
+ "derived_files_sha256": {
+  "hierarchy/ntu/derived/collection.json.gz": "87e9faa55dba562709d7ac07c90c67de92012e91e8af26c1be64c67073488492",
+  "listings/ntu/derived/listings.json": "ff8adc66ac35d77fda89167f1f93f55b01a7832fb0c29b7cf2bc54a42f3d16ee",
+  "hierarchy/ntu/derived/census-faculty.json": "391713adaebaf1cd74528910f2352ff2c0cbd8e4dadf92e63899c8a878777e86 (empty-faculty scaffold)",
+  "hierarchy/ntu/derived/dblp-ids.json": "a3c2d3dc83ae8b02dcfe8800ec12a253535ef9c3cd4d6e78e06974998e11928a",
+  "hierarchy/ntu/derived/sweep-check.json": "e22c8cf09a6ca7c9a7e52e493bb3b4a34e01bcf56a2a9b33cf280e30b756b9e8",
+  "hierarchy/ntu/raw/openalex-sweep.sqlite": "75ba2aad6e9bd8859aeb159592625624639a15511724a40dd3eef04146211097 (job 32157905)",
+  "hierarchy/ntu/raw/dblp-dump-persons-school.json.gz": "0e3d02e3354113cd22253b10da10da08a4db93f5e7c536811085546870049792 (job 32178245)",
+  "hierarchy/ntu/raw/dblp-dump-pages-school.json.gz": "519f9f1cb0c41acd2e9f534b52133fc0e1fd376a8a0c4a63494ff28698e35967 (job 32178319)"
+ },
+ "steps": [
+  {
+   "step": 1,
+   "what": "sourceful collection (103 faculty nodes, 0 works) and listings (103 rows 2026) from the reviewed census-additions via the source-only proposal",
+   "script": "scratch/ntu-next-chain-1108/prepare_native_sources_v4.py",
+   "script_sha256": "5b28a5ff7571fb2dc3d3aa4d5f8d5c84ad9cb5a746cd2754bad7ae79398e711c",
+   "output": "scratch/ntu-next-chain-1108/native-input-proposal/{hierarchy/ntu/derived/collection.json.gz,listings/ntu/derived/listings.json}"
+  },
+  {
+   "step": 2,
+   "what": "merge the three same-person double cards (103 -> 100 faculty nodes and listing rows), also applied to census-additions and census-overrides-school",
+   "script": "scratch/ntu-admit-1110/dedupe.py",
+   "script_sha256": "fe282fb453689fb15c215d3881a58b9325761353265d47648d16306bb1bf4060"
+  },
+  {
+   "step": 3,
+   "what": "DBLP dump ids, persons and pages (local dump dblp-2026-09-01 only); sweep check",
+   "jobs": [
+    32178185,
+    32178245,
+    32178319,
+    32178340
+   ]
+  },
+  {
+   "step": 4,
+   "what": "identity rule review and application",
+   "scripts": {
+    "scratch/ntu-admit-1110/bind_review.py": "1f4b09617f6edd4b1b5bc9004ffff45d8917b3a941a0a8b4d8c73c31572e686d",
+    "scratch/ntu-admit-1110/apply_bindings.py": "d6217e7a2a73def55cebfc56d4ec889e891d2381fd8079709cf0141ed27bb978",
+    "scratch/ntu-admit-1110/hold_one.py": "68f8743437035746a72f5f4eb691cac3b25b060993dc5272edefe3812a36c34f"
+   }
+  }
+ ],
+ "raw_sweep_source": "full-body source job 32157905, manifest scratch/ntu-next-chain-1108/offline-source-prep-v1/FINAL-SOURCE-MANIFEST-v6.json",
+ "title_guard": {
+  "rule": "R-PAP-41",
+  "papers": "scratch/ntu-admit-1110/native-v2/package/ntu/lab_papers.jsonl.gz",
+  "dois_checked": 1504,
+  "holds": 1,
+  "cleared": [
+   {
+    "pi": "Long Cheng",
+    "doi": "10.48550/arxiv.2605.21987",
+    "decision": "cleared: genuine retitling between arXiv versions",
+    "evidence": [
+     {
+      "url": "https://arxiv.org/abs/2605.21987v1",
+      "sha256": "0d34062bf45d703ba62ffc32d6a6e8898e7df63165f2f9da3f2b539abfca5067",
+      "quote": "Generative Conversational Recommender System"
+     },
+     {
+      "url": "https://arxiv.org/abs/2605.21987v2",
+      "sha256": "d592e984db93fe9359b34f172c8e37ffa54c4f1d513872e638b97795cf7203ba",
+      "quote": "HGCRS: Hypergraph-Enhanced Generative Conversational Recommender System"
+     }
+    ],
+    "note": "same author list (Sixiao Zhang, Mingrui Liu, Cheng Long) on both versions; fetched 2026-11-10 from arxiv.org/abs, whose robots.txt names no AI agent"
+   }
+  ]
+ }
+}
