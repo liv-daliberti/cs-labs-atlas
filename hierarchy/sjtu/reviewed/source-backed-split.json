@@ -9,57 +9,50 @@
   "held": "rows flagged by the rules (uncorroborated anchors, books and chapters, non-SJTU affiliation, claim-held leaks); proposed or ingested holds, excluded from the kept counts"
  },
  "sealed_package": {
-  "package": "scratch/sjtu-coverage-1110/native33/package/sjtu",
-  "job_id": "32183331",
+  "package": "scratch/sjtu-coverage-1110/native34/package/sjtu",
+  "job_id": "32186593",
   "sealed": true,
-  "input_commit": "c64f4d0",
+  "input_commit": "d3cf8cf",
+  "runtime": "fix/sjtu-runtime-1110 0b9fc0c (4ca6712 + reviewed per-link student exclusions)",
   "package_sha256": {
-   "pis.json": "e2292b38cf98a9092aa1be1e9402422c3071303c32fff36f94b1f28983973804",
+   "pis.json": "5c2b97ed1721dc30ca446c34104d1e4f241d922691cecab67f0a55a967570271",
    "students.json": "1d7986aec3eb5d155133748702405e0e4a7ce9e8ce3aebd166efae064d323e50",
-   "lab_papers.jsonl.gz": "11403b142ba7fc809136063def3d696d8f218cd85a0a11f019fa3c8556b1f8fa",
-   "student_papers.jsonl.gz": "1b4d2c91b8c0271c30d311aa50d84e08638cc32690a5226a424ff2c306f85237",
-   "report.json": "2b2934f13aba392e05759045a7e7298d5a31a200febeed96c6d04c7f0b7f809c"
+   "lab_papers.jsonl.gz": "a79826bd6b5fc90a4a3e43a18edc44fdfba2774fc448ac1cf55ffbef6365cff8",
+   "student_papers.jsonl.gz": "5a8a2cc51c07250c48fa8d672ed305f9a4b94ac56d17c093bda9ad273996d8b4",
+   "report.json": "dc393263dee025e6368dfd3e2d262d2268a5190664a0f33457c2c71d33a23458"
   },
-  "package_rows": 5571,
-  "package_distinct_works": 5080,
+  "package_rows": 5678,
+  "package_distinct_works": 5180,
   "pis_with_papers": 106,
   "owned_dblp_persons": 42,
-  "student_links": 804,
-  "student_links_after_post_filter": 711,
-  "student_links_filtered": {
-   "failing_name_or_date": 19,
-   "unlabelled_name_plus_topic": 74
-  },
+  "student_links": 713,
+  "student_links_excluded_by_engine": 93,
   "student_precision_sample": {
    "n": 117,
    "correct": 110,
    "doubtful": 7,
    "incorrect": 0,
    "point_precision_doubtful_half": 0.9700854700854701,
-   "seeds": [
-    20261119,
-    "9 new links, fresh reviewer"
-   ],
-   "note": "round 2 (108, covers 702 links) plus 9 links new to this package"
+   "note": "sampled on the 711-link filtered set of native 33; native 34 carries the same exclusions in the package (713 links)"
   },
   "source_backed": {
-   "rows": 3532,
-   "distinct_works": 3326
+   "rows": 3637,
+   "distinct_works": 3425
   },
   "heuristic": {
    "rows": 1921,
    "distinct_works": 1842,
-   "distinct_works_not_source_backed": 1636
+   "distinct_works_not_source_backed": 1635
   },
   "held_proposed": {
-   "rows": 118
+   "rows": 120
   },
   "all_kept": {
-   "rows": 5453,
-   "distinct_works": 4962
+   "rows": 5558,
+   "distinct_works": 5060
   },
   "lab_coverage_dblp_pool": {
-   "found": 2325,
+   "found": 2436,
    "total": 2876
   }
  },
