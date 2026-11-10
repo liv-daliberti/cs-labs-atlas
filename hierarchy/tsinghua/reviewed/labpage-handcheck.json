@@ -55,6 +55,33 @@
    },
    "result": "small check of new rows only; not a labpage acceptance round",
    "verdict_file": "scratch/tsinghua-students-1110/handcheck2_students_verdicts.json"
+  },
+  {
+   "round": 3,
+   "date": "2026-11-10",
+   "scope": "labpage_audit discover+audit on a private overlay (local sources only; orcid fields stripped, live-first, no Wayback, no dblp.org); recover NOT run, 0 OpenAlex credits spent",
+   "pipeline": {
+    "labs": 207,
+    "sites_chosen": 14,
+    "new_vs_hand_crawl": 0,
+    "audited_pages": 10,
+    "proposed_student_additions": 32,
+    "proposed_paper_additions": 0,
+    "papers_not_yet_resolved": 360
+   },
+   "sample": {
+    "students": 12,
+    "seed": 11102,
+    "of": 32
+   },
+   "students": {
+    "membership_correct": 0,
+    "membership_wrong": 12,
+    "membership_doubtful": 0,
+    "pattern": "all 12 from coai.cs.tsinghua.edu.cn/hml (a personal page with no members list): publication-list co-authors read as members; the other 20 rows are the same page plus one incoming entrant (袁渊源); all 32 held"
+   },
+   "result": "FAILED: 12/12 wrong membership; the 32 proposed additions are not wired (labpage-additions.json is not written to reviewed/). Gate 6 stays open; the hand-collected rows (rounds 1-2) are unaffected",
+   "verdict_file": "scratch/tsinghua-students-1110/handcheck3_verdicts.json"
   }
  ]
 }
