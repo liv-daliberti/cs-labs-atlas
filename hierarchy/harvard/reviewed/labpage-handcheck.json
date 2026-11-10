@@ -1420,6 +1420,50 @@
     ]
    },
    "disclosure": "Every one of the 31 rows was read once (complete review). The 21 wired rows are the unseen rows that survived; no further unseen rows exist in this file. The 9 re-proposed rejections show the audit generator ignores hand_review rejections: wiring uses the curated file, never a regenerated one."
+  },
+  {
+   "round": 6,
+   "date": "2026-11-10",
+   "label": "independent round on 29 unread rows (Zitnik 22, Seigal 7) from live fetches: two fresh blind reviewers (separate agents), every row reviewed by both",
+   "additions_generated_at": "2026-11-10T09:27:43+00:00",
+   "students": {
+    "sampled": 29,
+    "seed": null,
+    "membership_errors": 0,
+    "doubtful_count": 4,
+    "role_or_year_errors": 0,
+    "result": "pass: 0 errors; 4 rows doubtful for at least one reviewer are held (Noori; Alexandr, Maraj, Meroni); 25 wired"
+   },
+   "papers": null,
+   "items": {
+    "students": [
+     {
+      "pi": "Marinka Zitnik",
+      "name": "Ayush Noori",
+      "doubtful_count": 1,
+      "reason": "held, see hand_review_20261110c"
+     },
+     {
+      "pi": "Anna Seigal",
+      "name": "Yulia Alexandr",
+      "doubtful_count": 1,
+      "reason": "held, see hand_review_20261110c"
+     },
+     {
+      "pi": "Anna Seigal",
+      "name": "Aida Maraj",
+      "doubtful_count": 1,
+      "reason": "held, see hand_review_20261110c"
+     },
+     {
+      "pi": "Anna Seigal",
+      "name": "Chiara Meroni",
+      "doubtful_count": 1,
+      "reason": "held, see hand_review_20261110c"
+     }
+    ]
+   },
+   "disclosure": "Reviewers saw only the page text and the claimed row, not any earlier verdict. The Zitnik page capture exists only in the private overlay store (not in main raw) until the capture merge is approved; the Seigal page is in main."
   }
  ]
 }
