@@ -766,7 +766,13 @@ def tsinghua_ee_text(h):
     return out
 
 
+def tsinghua_ee_any(h):
+    """Tsinghua EE faculty page, any archived template: embedded JSON (2025-09 on), else the rendered DOM, else the 2022-2025 plain-text template."""
+    return tsinghua_ee_embedded(h) or tsinghua_ee_rendered(h) or tsinghua_ee_text(h)
+
+
 FORMATS = {
+    'tsinghua_ee_any': (tsinghua_ee_any, re.compile(r'(?!)')),
     'tsinghua_ee_text': (tsinghua_ee_text, re.compile(r'图片列表.{0,3000}?(?:教\s*授|副教授)\s*[：:]', re.S)),
     'tsinghua_au_old_list': (tsinghua_au_old_list, re.compile(r'<table[^>]*uetable')),
     'tsinghua_insc_bands': (tsinghua_insc_bands, re.compile(r'(?!)')),

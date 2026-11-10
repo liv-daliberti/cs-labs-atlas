@@ -140,3 +140,9 @@ def test_au_old_list_names_and_titles_from_text_cells():
 def test_insc_bands_links_and_plain_names():
     rows = L.tsinghua_insc_bands(INSCB)
     assert [(r['name_listed'], r['titles'][0], bool(r['profile'])) for r in rows] == [('段海新', '教授', True), ('王继龙', '教授', True), ('王会', '副教授', True), ('李宗鹏', '副教授', False)]
+
+
+def test_ee_any_tries_embedded_then_rendered_then_text():
+    assert [r['name_listed'] for r in L.tsinghua_ee_any(EEE)] == ['陈宏伟', '罗毅', '熊兵']
+    assert [r['name_listed'] for r in L.tsinghua_ee_any(EER)] == ['陈宏伟', '罗毅', '甲乙']
+    assert [r['name_listed'] for r in L.tsinghua_ee_any(EET)][:2] == ['陈宏伟', '陈明华']
