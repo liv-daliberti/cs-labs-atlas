@@ -67,3 +67,18 @@ def test_slot_with_a_format_is_usable_when_english_title_lines_and_latin_names_c
     assert PF.slot_usable(Con(), 'u', {'format': 'tsinghua_cs_list'}, [], 200, [], 'x') == (True, None)
     assert not PF.slot_usable(Con(), 'u', {}, [], 200, [], 'x')[0]
     assert not PF.slot_usable(Con(), 'u', {'format': 'tsinghua_cs_list'}, [], 404, [], 'x')[0]
+
+
+CSOLD = '''<div class="box_detail"><h1 style="text-align: center;"><span>计算机科学与技术系在职教师名录</span></h1><p>（2019年12月更新，按拼音顺序）</p><h1><span>计算机软件研究所</span></h1><ul class=" list-paddingleft-2"><li><p>正高：&nbsp;<a href="/publish/cs/4616/2010/a.html">蔡懿慈</a>， <a href="/publish/cs/4616/2011/b.html">冯 铃</a></p></li><li><p>副高： <a href="/publish/cs/4616/2011/c.html">陈 渝</a></p></li></ul></div>'''
+IIISM = '''<h4 class="color_danger">教授系列</h4><div class="row"><div class="media"><div class="media-body"><strong><a href="http://iiis.tsinghua.edu.cn/zh/yao/" target="_blank">姚期智</a></strong><br> 院长，教授 <br> 算法分析，量子计算 <br></div></div></div>'''
+
+
+def test_cs_old_list_bands_names_and_institute():
+    fmt, rows = L.parse(CSOLD)
+    assert fmt == 'tsinghua_cs_old_list'
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('蔡懿慈', ['正高'], '计算机软件研究所'), ('冯铃', ['正高'], '计算机软件研究所'), ('陈渝', ['副高'], '计算机软件研究所')]
+
+
+def test_iiis_media_title_is_the_line_after_the_name():
+    fmt, rows = L.parse(IIISM)
+    assert fmt == 'tsinghua_iiis_media' and rows == [dict(name_listed='姚期智', titles=['院长，教授'], profile='http://iiis.tsinghua.edu.cn/zh/yao/', homepage=None, division='教授系列')]

@@ -593,7 +593,50 @@ def tsinghua_air_cards(h):
     return out
 
 
+def tsinghua_cs_old_list(h):
+    """Tsinghua CS faculty list 2011-2020 (/publish/cs/4797/index.html, 教职工名录): `div.box_detail` with an institute `<h1>` and `<li><p>` lines
+    `正高：<a>name</a>， <a>name</a>` / `副高：...`; the band is the title. The page's own first `<h1>` is the list title, not an institute."""
+    from bs4 import BeautifulSoup
+    box = BeautifulSoup(h, 'html.parser').select_one('div.box_detail')
+    out, division = [], None
+    for el in (box.find_all(['h1', 'li']) if box else []):
+        if el.name == 'h1':
+            t = clean(el.get_text(' ', strip=True))
+            division = None if '名录' in t else t
+            continue
+        p = el.find('p')
+        if p is None:
+            continue
+        m = re.match(r'\s*([^：:]{1,10})[：:]', p.get_text('', strip=False).replace('\xa0', ' '))
+        band = clean(m.group(1)) if m else None
+        for a in p.find_all('a', href=True):
+            name = clean(a.get_text(' ', strip=True)).replace(' ', '')
+            if name:
+                out.append(dict(name_listed=name, titles=[band] if band else [], profile=a['href'], homepage=None, division=division))
+    return out
+
+
+def tsinghua_iiis_media(h):
+    """Tsinghua IIIS full-time faculty list 2016-2024 (/list-324-1.html): `h4.color_danger` series heading, then `div.media-body` cards with
+    `<strong><a>name</a></strong><br> title <br> interests`; the title is the first text line after the name."""
+    from bs4 import BeautifulSoup
+    out, series = [], None
+    for el in BeautifulSoup(h, 'html.parser').select('h4.color_danger, div.media-body'):
+        if el.name == 'h4':
+            series = clean(el.get_text(' ', strip=True))
+            continue
+        a = el.select_one('strong a')
+        if a is None or not clean(a.get_text(' ', strip=True)):
+            continue
+        lines = [clean(t) for t in el.get_text('\n', strip=True).split('\n')]
+        title = lines[1] if len(lines) > 1 else None
+        out.append(dict(name_listed=clean(a.get_text(' ', strip=True)), titles=[title] if title else [], profile=a.get('href'), homepage=None, division=series))
+    return out
+
+
 FORMATS = {
+    'tsinghua_cs_old_list': (tsinghua_cs_old_list, re.compile(r'class="box_detail"[^<]*<h1[^>]*>.{0,200}在职教师名录', re.S)),
+    'tsinghua_iiis_media': (tsinghua_iiis_media, re.compile(r'class="color_danger"')),
     'vt_main': (lambda h: vt_directory(h, 'main'), re.compile(r'(?!)')),
     'vt_courtesy': (lambda h: vt_directory(h, 'courtesy'), re.compile(r'(?!)')),
     'vt_affiliate': (lambda h: vt_directory(h, 'affiliate'), re.compile(r'(?!)')),

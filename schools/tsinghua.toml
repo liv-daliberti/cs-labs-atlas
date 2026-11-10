@@ -83,6 +83,17 @@ url = "https://www.cs.tsinghua.edu.cn/szzk/jzgml.htm"
   format = "tsinghua_cs_list"
   title_filter = ''
   # Wayback CDX 2026-11-10: this URL holds 200 captures 2021-2026 only; 2016-2020 lived on the older /publish/cs/<id>/ site (ids unverified, no captures read yet).
+  [[departments.listings]]
+  slot = "CS publish-cs 4797 archive 2016-2020"
+  kind = "main"
+  url = "www.cs.tsinghua.edu.cn/publish/cs/4797/index.html"
+  from = "20160101"
+  to = "20201231"
+  prefix = false
+  match = ""
+  format = "tsinghua_cs_old_list"
+  title_filter = ''
+  # Old CS site 教职工名录 (CDX 2011-2020; samples 2016/2018/2020 parse 88/90/104 names; bands 正高/副高, no per-person rank).
 
 [[departments]]
 code = "IIIS"
@@ -112,6 +123,17 @@ url = "https://iiis.tsinghua.edu.cn/en/People.htm"
   format = "tsinghua_iiis_cards"
   title_filter = ''
   # CDX: rydw.htm captured 2025-2026 only; IIIS /zh/ site captures 2011-2022 need era discovery.
+  [[departments.listings]]
+  slot = "IIIS list-324 archive 2016-2024"
+  kind = "main"
+  url = "iiis.tsinghua.edu.cn/list-324-1.html"
+  from = "20160101"
+  to = "20241231"
+  prefix = false
+  match = ""
+  format = "tsinghua_iiis_media"
+  title_filter = ''
+  # IIIS 全职教师 list (CDX 2013-2022, 2024; samples 2016/2018/2020 parse 18/29/37 people with title line).
 
 [[departments]]
 code = "SW"
