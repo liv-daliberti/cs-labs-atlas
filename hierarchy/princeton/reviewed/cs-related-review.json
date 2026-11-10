@@ -28,7 +28,8 @@
   "tools/princeton_census.py does not read additions; tools/pi_hierarchy.py appends census/princeton-additions.json to census/princeton-faculty.json, and reads listings/princeton/listings.json for yearly listings.",
   "Live princeton.edu department pages (ece., eeb.) answered with a bot challenge (stored with error=bot-challenge, not retried); department lists come from Wayback captures.",
   "Flag cs_bar_met_via_noncomputing_venues: the person meets the 5-work bar only through venues of cs-venues.json that are not computing venues (Cell Systems, statistics or psychology journals).",
-  "missed-labs review 2026-11-09: 3 accepted (tools/missed_labs_candidates.py snapshot candidates + stored unit listings/catalog + thesis-advisor records); full pool in missed-labs-review.json"
+  "missed-labs review 2026-11-09: 3 accepted (tools/missed_labs_candidates.py snapshot candidates + stored unit listings/catalog + thesis-advisor records); full pool in missed-labs-review.json",
+  "stage-2 closure 2026-11-10: 6 candidates of the regenerated cs-related-candidates.json had no decision under their name form; each is the same person (OpenAlex author id) as an existing decision or a PI already in the census, recorded as census_alias or the same negative decision; fresh reviewer (seeded sample seed 1110 plus all borderline, 67 items) agreed on all but two (Sucholutsky reason corrected, Carmona held for owner)"
  ],
  "decisions": [
   {
@@ -8955,6 +8956,352 @@
      ]
     ]
    ]
+  },
+  {
+   "name": "Sergio Verdu",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5103184697"
+   ],
+   "cs_basis": {
+    "works": 37,
+    "dblp_works": 34,
+    "cs_share": 0.919,
+    "years": [
+     2016,
+     2019
+    ],
+    "openalex": "https://openalex.org/A5103184697",
+    "top_dblp_venues": [
+     "IEEE International Symposium on Information Theory (ISIT)",
+     "IEEE Transactions on Information Theory",
+     "Allerton Conference on Communication, Control, and Computing"
+    ]
+   },
+   "decision": "census_alias",
+   "census_name": "Sergio Verdú",
+   "reason": "the accepted person Sergio Verdú (decision qualifies, census addition) under another name form; same OpenAlex author id A5103184697",
+   "same_person_as": "Sergio Verdú",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5103184697 'Sergio Verdu': 37 Princeton works 2016-2026, 34 DBLP-indexed (91.9%), years 2016-2019"
+    },
+    {
+     "url": "https://dataspace.princeton.edu/oai/request?verb=ListRecords&resumptionToken=dim%2F%2F%2Fcom_88435_dsp01td96k251d%2F2200",
+     "sha256": "8d27290685181c96f6bb81768fb17806ffca9b3ddb2bf65fb9f52491c94fd6ce",
+     "quote": "<dim:field mdschema=\"dc\" element=\"contributor\" qualifier=\"advisor\">Cuff, Paul</dim:field> <dim:field mdschema=\"dc\" element=\"contributor\" qualifier=\"advisor\">Verdu, Sergio</dim:field> <dim:field mdschema=\"dc\" element=\"contributor\" qualifier=\"author\">Liu, Jingbo</dim:field>",
+     "observed": "2026-10-22",
+     "kind": "pi_basis:advises_phd"
+    },
+    {
+     "url": "https://web.archive.org/web/20160330172825id_/http://ee.princeton.edu/people/faculty",
+     "sha256": "34e87b528998669c5e669b857e095705569e922196f8d4860013f285e2144e57",
+     "quote": "Sergio Verdú Eugene Higgins Professor of Electrical Engineering",
+     "observed": "2016-03-30",
+     "kind": "dept_listing:Electrical and Computer Engineering"
+    }
+   ],
+   "original_decision": {
+    "name": "Sergio Verdú",
+    "decision": "qualifies",
+    "reason": "qualifies",
+    "summary": "On the ECE faculty lists 2016-2018 only; no later ECE list names him.",
+    "home_department": "Electrical and Computer Engineering",
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Li, Yuanzhi",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5101879892"
+   ],
+   "cs_basis": {
+    "works": 30,
+    "dblp_works": 27,
+    "cs_share": 0.9,
+    "years": [
+     2016,
+     2018
+    ],
+    "openalex": "https://openalex.org/A5101879892",
+    "top_dblp_venues": [
+     "unknown venue",
+     "neural information processing systems",
+     "Transactions of the Association for Computational Linguistics"
+    ]
+   },
+   "decision": "does_not_qualify",
+   "reason": "same person as Yuanzhi Li (same OpenAlex author id A5101879892): not_faculty_student",
+   "same_person_as": "Yuanzhi Li",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5101879892 'Li, Yuanzhi': 30 Princeton works 2016-2026, 27 DBLP-indexed (90.0%), years 2016-2018"
+    },
+    {
+     "url": "https://dataspace.princeton.edu/oai/request?verb=ListRecords&resumptionToken=dim%2F%2F%2Fcom_88435_dsp01td96k251d%2F2500",
+     "sha256": "c8c5559ced895e72241eab14ab3384b486705f9b4e0965eecb95e13647edb24f",
+     "quote": "<dim:field mdschema=\"dc\" element=\"contributor\" qualifier=\"advisor\">Arora, Sanjeev</dim:field> <dim:field mdschema=\"dc\" element=\"contributor\" qualifier=\"author\">Li, Yuanzhi</dim:field>",
+     "observed": "2026-10-22",
+     "kind": "dataspace_author_record",
+     "note": "DataSpace oai:dataspace.princeton.edu:88435/dsp014j03d2429 (2018, phd; Computer Science Department)"
+    },
+    {
+     "kind": "author_index",
+     "openalex": [
+      "A5101879892",
+      "A5100421589",
+      "A5150818703",
+      "A5100448724"
+     ],
+     "school_works": 37,
+     "cs_venue_works": 12,
+     "cs_venue_works_distinct": 12,
+     "source": "hierarchy/cs-related-tools/author_index.py over hierarchy/princeton/openalex-sweep.sqlite and hierarchy/cs-venues.json (Princeton-affiliated authorships 2016-2026)"
+    }
+   ],
+   "original_decision": {
+    "name": "Yuanzhi Li",
+    "decision": "does_not_qualify",
+    "reason": "not_faculty_student",
+    "summary": "CS PhD student (dissertation 2018).",
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Singla, Sahil",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5078010312"
+   ],
+   "cs_basis": {
+    "works": 28,
+    "dblp_works": 26,
+    "cs_share": 0.929,
+    "years": [
+     2018,
+     2023
+    ],
+    "openalex": "https://openalex.org/A5078010312",
+    "top_dblp_venues": [
+     "unknown venue",
+     "Annual Symposium on Foundations of Computer Science",
+     "ACM Conference on Economics and Computation (EC)"
+    ]
+   },
+   "decision": "does_not_qualify",
+   "reason": "same person as Sahil Singla (same OpenAlex author id A5078010312): not_faculty_postdoc",
+   "same_person_as": "Sahil Singla",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5078010312 'Singla, Sahil': 28 Princeton works 2016-2026, 26 DBLP-indexed (92.9%), years 2018-2023"
+    },
+    {
+     "url": "https://web.archive.org/web/20160406151830id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "c3e75acaffc01b4615519f1746c473727e81f58077261091b46dc3f712844078",
+     "absent": "Singla",
+     "observed": "2016-04-06",
+     "kind": "dept_listing:Computer Science",
+     "capture_copied_from": "claude-princeton-listings-20261022/captures/listings.sqlite"
+    },
+    {
+     "url": "https://web.archive.org/web/20190124175524id_/http://www.cs.princeton.edu/people/faculty",
+     "sha256": "db4fb093820cde24af5d7652e994c326bb9d2a426decea6ff901a838b8c6a517",
+     "absent": "Singla",
+     "observed": "2019-01-24",
+     "kind": "dept_listing:Computer Science",
+     "capture_copied_from": "claude-princeton-listings-20261022/captures/listings.sqlite"
+    }
+   ],
+   "original_decision": {
+    "name": "Sahil Singla",
+    "decision": "does_not_qualify",
+    "reason": "not_faculty_postdoc",
+    "summary": "Postdoctoral researcher (CS / IAS); on no Princeton faculty list 2016-2026.",
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "René Carmona",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5057846027"
+   ],
+   "cs_basis": {
+    "works": 67,
+    "dblp_works": 14,
+    "cs_share": 0.209,
+    "years": [
+     2016,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5057846027",
+    "top_dblp_venues": [
+     "unknown venue",
+     "Dynamic Games and Applications",
+     "Mathematics of Operations Research"
+    ]
+   },
+   "decision": "faculty_not_computing",
+   "reason": "ORFE professor with 8 PhD advisees (PI), but computing is a minority of the output (about 15% of works, mean-field-game ML and numerics; 14 of 67 school works DBLP-indexed = 20.9%, OR/probability venues); held as not accepted for the owner: the fresh reviewer leans accept at low confidence",
+   "same_person_as": "Rene Carmona",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5057846027 'René Carmona': 67 Princeton works 2016-2026, 14 DBLP-indexed (20.9%), years 2016-2026"
+    },
+    {
+     "url": "https://web.archive.org/web/20160313051353id_/http://orfe.princeton.edu:80/people/faculty",
+     "sha256": "f70252868ede4cc3ba2474f7ca9565d5f2ffbdf3fe6eb7063d212f54da81f716",
+     "quote": "Rene Carmona Paul M. Wythes '55 Professor of Engineering and",
+     "observed": "2016-03-13",
+     "kind": "dept_listing:Operations Research and Financial Engineering",
+     "capture_copied_from": "claude-princeton-listings-20261022/captures/listings.sqlite"
+    },
+    {
+     "url": "https://web.archive.org/web/20261008061958id_/https://www.math.princeton.edu/people/associated-faculty",
+     "sha256": "3a2102ece6701f343ecff35613054a060ec2811db7a35ca6b1c03eb17be2b3fe",
+     "quote": "Rene Carmona Professor",
+     "observed": "2026-10-08",
+     "kind": "dept_listing:Mathematics",
+     "capture_copied_from": "claude-princeton-listings-20261022/captures/listings.sqlite"
+    }
+   ],
+   "original_decision": {
+    "name": "Rene Carmona",
+    "decision": "does_not_qualify",
+    "reason": "not_cs_related",
+    "summary": "ORFE professor and PhD adviser: 8 author-index CS-venue hits, but 5 are chapters of one SIAM book (Lectures on BSDEs, 2016); 4 distinct CS-venue works (bar: 5).",
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "owner_review": true,
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Sucholutsky, Ilia",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5053200092"
+   ],
+   "cs_basis": {
+    "works": 37,
+    "dblp_works": 14,
+    "cs_share": 0.378,
+    "years": [
+     2022,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5053200092",
+    "top_dblp_venues": [
+     "unknown venue",
+     "Proceedings of the AAAI/ACM Conference on AI Ethics and Society",
+     "Conference on Cognitive Computational Neuroscience (CCN)"
+    ]
+   },
+   "decision": "does_not_qualify",
+   "reason": "not_faculty_postdoc: postdoctoral researcher in Griffiths' lab (alumni list), one senior thesis only (not a PI), on no Princeton faculty list; fresh reviewer 2026-11-10 corrected the earlier label not_cs_related",
+   "same_person_as": "Ilia Sucholutsky",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5053200092 'Sucholutsky, Ilia': 37 Princeton works 2016-2026, 14 DBLP-indexed (37.8%), years 2022-2026"
+    },
+    {
+     "url": "https://dataspace.princeton.edu/oai/request?verb=ListRecords&resumptionToken=dim%2F%2F%2Fcol_88435_dsp01mp48sc83w%2F1000",
+     "sha256": "a18a3c1a920722454bc69780810abf82db7fb086e74326e10aecf3b7cfd12cc6",
+     "quote": "<dim:field mdschema=\"dc\" element=\"contributor\" qualifier=\"advisor\">Vecchi, Gabriel A</dim:field> <dim:field mdschema=\"dc\" element=\"contributor\" qualifier=\"advisor\">Sucholutsky, Ilia</dim:field> <dim:field mdschema=\"dc\" element=\"contributor\" qualifier=\"author\">Liu, Grace</dim:field>",
+     "observed": "2026-10-22",
+     "kind": "dataspace_adviser_record",
+     "note": "DataSpace oai:dataspace.princeton.edu:88435/dsp015q47rs03z (2023, undergraduate; Computer Science, 1987-2024)"
+    },
+    {
+     "kind": "author_index",
+     "openalex": [
+      "A5053200092"
+     ],
+     "school_works": 37,
+     "cs_venue_works": 3,
+     "cs_venue_works_distinct": 3,
+     "source": "hierarchy/cs-related-tools/author_index.py over hierarchy/princeton/openalex-sweep.sqlite and hierarchy/cs-venues.json (Princeton-affiliated authorships 2016-2026)"
+    }
+   ],
+   "original_decision": {
+    "name": "Ilia Sucholutsky",
+    "decision": "does_not_qualify",
+    "reason": "not_cs_related",
+    "summary": "Postdoctoral researcher (one 2023 senior thesis), on no Princeton faculty list; 3 CS-venue works at Princeton (bar: 5).",
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Hanin, Boris",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5103247445"
+   ],
+   "cs_basis": {
+    "works": 18,
+    "dblp_works": 5,
+    "cs_share": 0.278,
+    "years": [
+     2020,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5103247445",
+    "top_dblp_venues": [
+     "unknown venue",
+     "Acta Numerica",
+     "SIAM Journal on Mathematics of Data Science"
+    ]
+   },
+   "decision": "census_alias",
+   "census_name": "Boris Hanin",
+   "reason": "the accepted person Boris Hanin (decision accepted, census addition) under another name form; same OpenAlex author id A5103247445",
+   "same_person_as": "Boris Hanin",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5103247445 'Hanin, Boris': 18 Princeton works 2016-2026, 5 DBLP-indexed (27.8%), years 2020-2026"
+    },
+    {
+     "url": "https://dataspace.princeton.edu/oai/request?verb=ListRecords&resumptionToken=dim%2F%2F%2Fcom_88435_dsp01td96k251d%2F5300",
+     "sha256": "edae074333f0aa37ad968c7f42f27d436a7e063dd9ef099a563d7b11a294716c",
+     "quote": "<dim:field mdschema=\"dc\" element=\"contributor\" qualifier=\"advisor\">Hanin, Boris</dim:field> <dim:field mdschema=\"dc\" element=\"contributor\" qualifier=\"author\">Jiang, Kaiqi</dim:field>"
+    },
+    {
+     "url": "https://web.archive.org/web/20200913235335id_/https://orfe.princeton.edu/people/faculty",
+     "sha256": "d280077332b22e494c915ebca67d51137e3c97fbe9b1addb2caf388b2cfded47",
+     "quote": "Boris Hanin Assistant Professor",
+     "observed": "2020-09-13",
+     "kind": "dept_listing:Operations Research and Financial Engineering"
+    }
+   ],
+   "original_decision": {
+    "name": "Boris Hanin",
+    "decision": "accepted",
+    "reason": "accepted",
+    "summary": "",
+    "home_department": "Operations Research and Financial Engineering",
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
   }
  ],
  "supplement": {

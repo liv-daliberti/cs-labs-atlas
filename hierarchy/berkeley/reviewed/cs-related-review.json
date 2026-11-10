@@ -7,10 +7,11 @@
  "tools": "hierarchy/berkeley/cs-related-tools/{mpcap.py,accepted.py,others.py,build.py,apply.py}",
  "caveat": "web.archive.org refused connections from this host on 2026-10-26; past-year evidence comes only from Wayback captures already stored by earlier sweeps (EECS lists) and live pages",
  "counts": {
-  "accepted": 77,
-  "faculty_no_pi_evidence": 22,
-  "not_faculty": 123,
-  "unresolved": 9
+  "accepted": 78,
+  "faculty_no_pi_evidence": 24,
+  "not_faculty": 138,
+  "unresolved": 9,
+  "census_alias": 3
  },
  "decisions": [
   {
@@ -4099,9 +4100,946 @@
      ]
     ]
    ]
+  },
+  {
+   "name": "Mahoney, Michael W.",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5033006662"
+   ],
+   "cs_basis": {
+    "works": 188,
+    "dblp_works": 122,
+    "cs_share": 0.649,
+    "years": [
+     2016,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5033006662",
+    "top_dblp_venues": [
+     "unknown venue",
+     "neural information processing systems",
+     "IEEE International Conference on Big Data (BigData)"
+    ]
+   },
+   "decision": "census_alias",
+   "census_name": "Michael W. Mahoney",
+   "reason": "the accepted person Michael W. Mahoney (decision accepted, census addition) under another name form; same OpenAlex author id A5033006662",
+   "same_person_as": "Michael W. Mahoney",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5033006662 'Mahoney, Michael W.': 188 Berkeley works 2016-2026, 122 DBLP-indexed (64.9%), years 2016-2026"
+    },
+    {
+     "url": "https://statistics.berkeley.edu/people/faculty",
+     "sha256": "7d6a612712d0cd44a44f5b7b402cf431d4c46317c0ccd46ad66a0b9ddee9d8fd",
+     "quote": "Michael Mahoney Adjunct Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2023.html",
+     "sha256": "3a29aa62cf4727623f6caab380f0b36a9376a6a9cc34031feee3cef4341b24e9",
+     "quote": "Geoffrey Negiar [advisor: Laurent El Ghaoui and Michael William Mahoney]"
+    }
+   ],
+   "original_decision": {
+    "name": "Michael W. Mahoney",
+    "decision": "accepted",
+    "reason": "Adjunct Professor, Statistics; PI: stated PhD advising",
+    "summary": null,
+    "home_department": "Statistics",
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Finn, Chelsea",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5005431772"
+   ],
+   "cs_basis": {
+    "works": 38,
+    "dblp_works": 31,
+    "cs_share": 0.816,
+    "years": [
+     2016,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5005431772",
+    "top_dblp_venues": [
+     "unknown venue",
+     "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings",
+     "Journal of Machine Learning Research"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Chelsea Finn (same OpenAlex author id A5005431772): EECS PhD student (dissertation 2018), then Stanford faculty.",
+   "same_person_as": "Chelsea Finn",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5005431772 'Finn, Chelsea': 38 Berkeley works 2016-2026, 31 DBLP-indexed (81.6%), years 2016-2026"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2018.html",
+     "sha256": "8260bfcbfbf38bb1e0e0139acf48bec908dd92a2f092601030236c22900f6f90",
+     "quote": "Chelsea Finn [advisor: Pieter Abbeel and Sergey Levine]"
+    }
+   ],
+   "original_decision": {
+    "name": "Chelsea Finn",
+    "decision": "not_faculty",
+    "reason": "EECS PhD student (dissertation 2018), then Stanford faculty.",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Pacchiano, Aldo",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5006761546"
+   ],
+   "cs_basis": {
+    "works": 39,
+    "dblp_works": 29,
+    "cs_share": 0.744,
+    "years": [
+     2017,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5006761546",
+    "top_dblp_venues": [
+     "unknown venue",
+     "International Conference on Artificial Intelligence and Statistics",
+     "International Conference on Machine Learning"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Aldo Pacchiano (same OpenAlex author id A5006761546): EECS PhD student (dissertation 2021).",
+   "same_person_as": "Aldo Pacchiano",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5006761546 'Pacchiano, Aldo': 39 Berkeley works 2016-2026, 29 DBLP-indexed (74.4%), years 2017-2026"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2021.html",
+     "sha256": "2caad3d53341a2642c668a46fae9acb1cad9a99f2c59b2170f4a3ff84229c30c",
+     "quote": "Aldo Pacchiano [advisor: Michael Jordan and Peter Bartlett]"
+    }
+   ],
+   "original_decision": {
+    "name": "Aldo Pacchiano",
+    "decision": "not_faculty",
+    "reason": "EECS PhD student (dissertation 2021).",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Simchowitz, Max",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5037154191"
+   ],
+   "cs_basis": {
+    "works": 33,
+    "dblp_works": 26,
+    "cs_share": 0.788,
+    "years": [
+     2016,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5037154191",
+    "top_dblp_venues": [
+     "unknown venue",
+     "Conference on Learning Theory",
+     "ACM SIGACT Symposium on Theory of Computing (STOC)"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Max Simchowitz (same OpenAlex author id A5037154191): EECS PhD student (dissertation 2021).",
+   "same_person_as": "Max Simchowitz",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5037154191 'Simchowitz, Max': 33 Berkeley works 2016-2026, 26 DBLP-indexed (78.8%), years 2016-2026"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2021.html",
+     "sha256": "2caad3d53341a2642c668a46fae9acb1cad9a99f2c59b2170f4a3ff84229c30c",
+     "quote": "Max Simchowitz [advisor: Michael Jordan and Benjamin Recht]"
+    }
+   ],
+   "original_decision": {
+    "name": "Max Simchowitz",
+    "decision": "not_faculty",
+    "reason": "EECS PhD student (dissertation 2021).",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Kumar, Aviral",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5102493293"
+   ],
+   "cs_basis": {
+    "works": 39,
+    "dblp_works": 26,
+    "cs_share": 0.667,
+    "years": [
+     2018,
+     2025
+    ],
+    "openalex": "https://openalex.org/A5102493293",
+    "top_dblp_venues": [
+     "unknown venue",
+     "International Conference on Machine Learning",
+     "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Aviral Kumar (same OpenAlex author id A5102493293): EECS PhD student (dissertation 2023).",
+   "same_person_as": "Aviral Kumar",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5102493293 'Kumar, Aviral': 39 Berkeley works 2016-2026, 26 DBLP-indexed (66.7%), years 2018-2025"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2023.html",
+     "sha256": "3a29aa62cf4727623f6caab380f0b36a9376a6a9cc34031feee3cef4341b24e9",
+     "quote": "Aviral Kumar [advisor: Sergey Levine]"
+    }
+   ],
+   "original_decision": {
+    "name": "Aviral Kumar",
+    "decision": "not_faculty",
+    "reason": "EECS PhD student (dissertation 2023).",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Brakensiek, Joshua",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5028220417"
+   ],
+   "cs_basis": {
+    "works": 39,
+    "dblp_works": 26,
+    "cs_share": 0.667,
+    "years": [
+     2022,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5028220417",
+    "top_dblp_venues": [
+     "unknown venue",
+     "IEEE Transactions on Information Theory",
+     "ACM Symposium on Theory of Computing (STOC)"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Joshua Brakensiek (same OpenAlex author id A5028220417): Postdoc (2022-2026); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "same_person_as": "Joshua Brakensiek",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5028220417 'Brakensiek, Joshua': 39 Berkeley works 2016-2026, 26 DBLP-indexed (66.7%), years 2022-2026"
+    },
+    {
+     "url": "https://api.openalex.org/authors/A5028220417",
+     "sha256": "64c784e2e1f1b4ed3e36811cfcc585730b510491bc839b162fd5dbf1ea89baf5",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022]"
+    }
+   ],
+   "original_decision": {
+    "name": "Joshua Brakensiek",
+    "decision": "not_faculty",
+    "reason": "Postdoc (2022-2026); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Lee, Kimin",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5033571780"
+   ],
+   "cs_basis": {
+    "works": 30,
+    "dblp_works": 25,
+    "cs_share": 0.833,
+    "years": [
+     2019,
+     2022
+    ],
+    "openalex": "https://openalex.org/A5033571780",
+    "top_dblp_venues": [
+     "unknown venue",
+     "neural information processing systems",
+     "Proceedings of the AAAI Conference on Artificial Intelligence"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Kimin Lee (same OpenAlex author id A5033571780): Postdoc (2019-2022); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "same_person_as": "Kimin Lee",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5033571780 'Lee, Kimin': 30 Berkeley works 2016-2026, 25 DBLP-indexed (83.3%), years 2019-2022"
+    },
+    {
+     "url": "https://api.openalex.org/authors/A5033571780",
+     "sha256": "94ff3cc6d4a657a0077a6ee41bdb535c3e3da9a48e8df4662dcb78ec53149a39",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2022,2021,2020,2019]"
+    }
+   ],
+   "original_decision": {
+    "name": "Kimin Lee",
+    "decision": "not_faculty",
+    "reason": "Postdoc (2019-2022); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Hendrycks, Dan",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5020400986"
+   ],
+   "cs_basis": {
+    "works": 31,
+    "dblp_works": 24,
+    "cs_share": 0.774,
+    "years": [
+     2018,
+     2025
+    ],
+    "openalex": "https://openalex.org/A5020400986",
+    "top_dblp_venues": [
+     "unknown venue",
+     "neural information processing systems",
+     "International Conference on Learning Representations"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Dan Hendrycks (same OpenAlex author id A5020400986): EECS PhD student (2018-2024); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "same_person_as": "Dan Hendrycks",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5020400986 'Hendrycks, Dan': 31 Berkeley works 2016-2026, 24 DBLP-indexed (77.4%), years 2018-2025"
+    },
+    {
+     "url": "https://api.openalex.org/authors/A5020400986",
+     "sha256": "9a5208db0b23511909510f2c8a577ff7d062c04aa0593adca826ad7eafb22a8d",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2025,2023,2022,2021,2020,2019,2018]"
+    }
+   ],
+   "original_decision": {
+    "name": "Dan Hendrycks",
+    "decision": "not_faculty",
+    "reason": "EECS PhD student (2018-2024); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Chan, David M.",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5104260047"
+   ],
+   "cs_basis": {
+    "works": 34,
+    "dblp_works": 16,
+    "cs_share": 0.471,
+    "years": [
+     2018,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5104260047",
+    "top_dblp_venues": [
+     "unknown venue",
+     "IEEE International Conference on Acoustics Speech and Signal Processing",
+     "Conference on Empirical Methods in Natural Language Processing (EMNLP)"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as David M. Chan (same OpenAlex author id A5104260047): EECS PhD student (dissertation 2024).",
+   "same_person_as": "David M. Chan",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5104260047 'Chan, David M.': 34 Berkeley works 2016-2026, 16 DBLP-indexed (47.1%), years 2018-2026"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2024.html",
+     "sha256": "997022bf081272f06b4536bb7990112b61db156a31ebd11831235e8493e57d8d",
+     "quote": "David Chan [advisor: John F. Canny]"
+    }
+   ],
+   "original_decision": {
+    "name": "David M. Chan",
+    "decision": "not_faculty",
+    "reason": "EECS PhD student (dissertation 2024).",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Grigas, Paul",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5020527873"
+   ],
+   "cs_basis": {
+    "works": 28,
+    "dblp_works": 15,
+    "cs_share": 0.536,
+    "years": [
+     2016,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5020527873",
+    "top_dblp_venues": [
+     "unknown venue",
+     "Management Science",
+     "Mathematics of Operations Research"
+    ]
+   },
+   "decision": "census_alias",
+   "census_name": "Paul Grigas",
+   "reason": "the accepted person Paul Grigas (decision accepted, census addition) under another name form; same OpenAlex author id A5020527873",
+   "same_person_as": "Paul Grigas",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5020527873 'Grigas, Paul': 28 Berkeley works 2016-2026, 15 DBLP-indexed (53.6%), years 2016-2026"
+    },
+    {
+     "url": "https://ieor.berkeley.edu/people/faculty/",
+     "sha256": "e1173fad40ee5eb086458a8b7df16d113a7021075dffa795dd33aff36a8d1321",
+     "quote": "Paul Grigas Associate Professor"
+    },
+    {
+     "url": "https://grigas.ieor.berkeley.edu/group/",
+     "sha256": "eaa05f738813cdc096aeac5b68c429d7532f903cdd5ffe32330e910ac57762fd",
+     "quote": "Heyuan Liu , Ph.D. 2022, now at Two Sigma Investments."
+    }
+   ],
+   "original_decision": {
+    "name": "Paul Grigas",
+    "decision": "accepted",
+    "reason": "Associate Professor, Industrial Engineering and Operations Research; PI: stated PhD advising",
+    "summary": null,
+    "home_department": "Industrial Engineering and Operations Research",
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Saha, Barna",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5110611660"
+   ],
+   "cs_basis": {
+    "works": 14,
+    "dblp_works": 13,
+    "cs_share": 0.929,
+    "years": [
+     2018,
+     2022
+    ],
+    "openalex": "https://openalex.org/A5110611660",
+    "top_dblp_venues": [
+     "unknown venue",
+     "Society for Industrial and Applied Mathematics eBooks",
+     "Annual Symposium on Foundations of Computer Science"
+    ]
+   },
+   "decision": "faculty_no_pi_evidence",
+   "reason": "same person as Barna Saha (same OpenAlex author id A5110611660): Former Berkeley (IEOR) tenured associate professor during the window, now at UC San Diego; no Berkeley PhD advising or Berkeley lab was captured. Her Berkeley dates were not captured (Wayback unreachable).",
+   "same_person_as": "Barna Saha",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5110611660 'Saha, Barna': 14 Berkeley works 2016-2026, 13 DBLP-indexed (92.9%), years 2018-2022"
+    },
+    {
+     "url": "https://barnasaha.net/",
+     "sha256": "25615aeb632ced0103641413dce6453280472b70b21d406326b6fd1a10679b2f",
+     "quote": "Previously, I was a tenured Associate Professor at the University of California Berkeley"
+    }
+   ],
+   "original_decision": {
+    "name": "Barna Saha",
+    "decision": "faculty_no_pi_evidence",
+    "reason": "Former Berkeley (IEOR) tenured associate professor during the window, now at UC San Diego; no Berkeley PhD advising or Berkeley lab was captured. Her Berkeley dates were not captured (Wayback unreachable).",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Zhang, Fred",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5103077529"
+   ],
+   "cs_basis": {
+    "works": 10,
+    "dblp_works": 9,
+    "cs_share": 0.9,
+    "years": [
+     2019,
+     2024
+    ],
+    "openalex": "https://openalex.org/A5103077529",
+    "top_dblp_venues": [
+     "unknown venue",
+     "ACM Transactions on Algorithms",
+     "ACM Symposium on Theory of Computing (STOC)"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Fred Zhang (same OpenAlex author id A5103077529): EECS PhD student (dissertation 2024).",
+   "same_person_as": "Fred Zhang",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5103077529 'Zhang, Fred': 10 Berkeley works 2016-2026, 9 DBLP-indexed (90.0%), years 2019-2024"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2024.html",
+     "sha256": "997022bf081272f06b4536bb7990112b61db156a31ebd11831235e8493e57d8d",
+     "quote": "Fred Zhang [advisor: Jelani Nelson]"
+    }
+   ],
+   "original_decision": {
+    "name": "Fred Zhang",
+    "decision": "not_faculty",
+    "reason": "EECS PhD student (dissertation 2024).",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Tibshirani, Ryan J.",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5076708141"
+   ],
+   "cs_basis": {
+    "works": 25,
+    "dblp_works": 9,
+    "cs_share": 0.36,
+    "years": [
+     2019,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5076708141",
+    "top_dblp_venues": [
+     "unknown venue",
+     "SIAM Journal on Mathematics of Data Science",
+     "PLoS Computational Biology"
+    ]
+   },
+   "decision": "census_alias",
+   "census_name": "Ryan J. Tibshirani",
+   "reason": "the accepted person Ryan J. Tibshirani (decision accepted, census addition) under another name form; same OpenAlex author id A5076708141",
+   "same_person_as": "Ryan J. Tibshirani",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5076708141 'Tibshirani, Ryan J.': 25 Berkeley works 2016-2026, 9 DBLP-indexed (36.0%), years 2019-2026"
+    },
+    {
+     "url": "https://statistics.berkeley.edu/people/faculty",
+     "sha256": "7d6a612712d0cd44a44f5b7b402cf431d4c46317c0ccd46ad66a0b9ddee9d8fd",
+     "quote": "Ryan Tibshirani Professor and Chair"
+    },
+    {
+     "url": "https://www.stat.berkeley.edu/~ryantibs/group.html",
+     "sha256": "fe27cd51d66c2d62dc2d3b9384d1836046a13cb0a33f1d10f37ddb68e549426b",
+     "quote": "Jeremy Goldwasser , Statistics Ph.D., UC Berkeley, 2026"
+    }
+   ],
+   "original_decision": {
+    "name": "Ryan J. Tibshirani",
+    "decision": "accepted",
+    "reason": "Professor and Chair, Statistics; PI: stated PhD advising; period 2022 to present",
+    "summary": null,
+    "home_department": "Statistics",
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Zhivotovskiy, Nikita",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5071419221"
+   ],
+   "cs_basis": {
+    "works": 22,
+    "dblp_works": 9,
+    "cs_share": 0.409,
+    "years": [
+     2022,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5071419221",
+    "top_dblp_venues": [
+     "unknown venue",
+     "Annual Symposium on Foundations of Computer Science"
+    ]
+   },
+   "decision": "faculty_no_pi_evidence",
+   "reason": "same person as Nikita Zhivotovskiy (same OpenAlex author id A5071419221): Statistics Assistant Professor (live list); his homepage capture was empty and no PhD advising or own lab was captured.",
+   "same_person_as": "Nikita Zhivotovskiy",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5071419221 'Zhivotovskiy, Nikita': 22 Berkeley works 2016-2026, 9 DBLP-indexed (40.9%), years 2022-2026"
+    },
+    {
+     "url": "https://statistics.berkeley.edu/people/faculty",
+     "sha256": "7d6a612712d0cd44a44f5b7b402cf431d4c46317c0ccd46ad66a0b9ddee9d8fd",
+     "quote": "Nikita Zhivotovskiy Assistant Professor"
+    }
+   ],
+   "original_decision": {
+    "name": "Nikita Zhivotovskiy",
+    "decision": "faculty_no_pi_evidence",
+    "reason": "Statistics Assistant Professor (live list); his homepage capture was empty and no PhD advising or own lab was captured.",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Scott, Dana S.",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5109213996"
+   ],
+   "cs_basis": {
+    "works": 14,
+    "dblp_works": 7,
+    "cs_share": 0.5,
+    "years": [
+     2016,
+     2023
+    ],
+    "openalex": "https://openalex.org/A5109213996",
+    "top_dblp_venues": [
+     "Lecture notes in computer science",
+     "The Review of Symbolic Logic",
+     "unknown venue"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Dana S. Scott (same OpenAlex author id A5109213996): Emeritus professor of CMU listed by Berkeley Mathematics as a visitor.",
+   "same_person_as": "Dana S. Scott",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5109213996 'Scott, Dana S.': 14 Berkeley works 2016-2026, 7 DBLP-indexed (50.0%), years 2016-2023"
+    },
+    {
+     "url": "https://math.berkeley.edu/people/faculty",
+     "sha256": "4610a69d0854660588158b6db7e96dfccd40464471f7052ec5cdeaa85b7aa737",
+     "quote": "Dana Scott Visitor Mathematical Logic"
+    }
+   ],
+   "original_decision": {
+    "name": "Dana S. Scott",
+    "decision": "not_faculty",
+    "reason": "Emeritus professor of CMU listed by Berkeley Mathematics as a visitor.",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Zhang, Qiuyi",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5091794009"
+   ],
+   "cs_basis": {
+    "works": 8,
+    "dblp_works": 7,
+    "cs_share": 0.875,
+    "years": [
+     2018,
+     2021
+    ],
+    "openalex": "https://openalex.org/A5091794009",
+    "top_dblp_venues": [
+     "unknown venue",
+     "Algorithms for Molecular Biology",
+     "ACM SIGACT Symposium on Theory of Computing (STOC)"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Qiuyi Zhang (same OpenAlex author id A5091794009): Graduate student (2018-2021); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "same_person_as": "Qiuyi Zhang",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5091794009 'Zhang, Qiuyi': 8 Berkeley works 2016-2026, 7 DBLP-indexed (87.5%), years 2018-2021"
+    },
+    {
+     "url": "https://api.openalex.org/authors/A5091794009",
+     "sha256": "0c41dd359ff9ca45a6e6d0615f7c8584e446c19ca950d4656c2ed22587bd7a30",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2021,2019,2018]"
+    }
+   ],
+   "original_decision": {
+    "name": "Qiuyi Zhang",
+    "decision": "not_faculty",
+    "reason": "Graduate student (2018-2021); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Yang, Kunhe",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5102886340"
+   ],
+   "cs_basis": {
+    "works": 9,
+    "dblp_works": 7,
+    "cs_share": 0.778,
+    "years": [
+     2022,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5102886340",
+    "top_dblp_venues": [
+     "unknown venue",
+     "ACM Conference on Economics and Computation (EC)",
+     "Society for Industrial and Applied Mathematics eBooks"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Kunhe Yang (same OpenAlex author id A5102886340): EECS PhD student (dissertation 2026).",
+   "same_person_as": "Kunhe Yang",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5102886340 'Yang, Kunhe': 9 Berkeley works 2016-2026, 7 DBLP-indexed (77.8%), years 2022-2026"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2026.html",
+     "sha256": "bdeee6237d34452f112c46a1c2785c807c887b9773d52cd122b672e1f62d2b21",
+     "quote": "Kunhe Yang [advisor: Nika Haghtalab]"
+    }
+   ],
+   "original_decision": {
+    "name": "Kunhe Yang",
+    "decision": "not_faculty",
+    "reason": "EECS PhD student (dissertation 2026).",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Singhal, Mihir",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5026000840"
+   ],
+   "cs_basis": {
+    "works": 10,
+    "dblp_works": 7,
+    "cs_share": 0.7,
+    "years": [
+     2024,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5026000840",
+    "top_dblp_venues": [
+     "unknown venue",
+     "Annual Symposium on Foundations of Computer Science",
+     "Society for Industrial and Applied Mathematics eBooks"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Mihir Singhal (same OpenAlex author id A5026000840): Graduate student (2024-2026); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "same_person_as": "Mihir Singhal",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5026000840 'Singhal, Mihir': 10 Berkeley works 2016-2026, 7 DBLP-indexed (70.0%), years 2024-2026"
+    },
+    {
+     "url": "https://api.openalex.org/authors/A5026000840",
+     "sha256": "6aa505aa286d451b8801ed757a6b2cd4c538c7c5937173e167d4fe806e09acc7",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024]"
+    }
+   ],
+   "original_decision": {
+    "name": "Mihir Singhal",
+    "decision": "not_faculty",
+    "reason": "Graduate student (2024-2026); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Gholami, Amir",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5114047203"
+   ],
+   "cs_basis": {
+    "works": 12,
+    "dblp_works": 6,
+    "cs_share": 0.5,
+    "years": [
+     2019,
+     2025
+    ],
+    "openalex": "https://openalex.org/A5114047203",
+    "top_dblp_venues": [
+     "unknown venue",
+     "Lecture notes in computer science",
+     "neural information processing systems"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Amir Gholami (same OpenAlex author id A5114047203): Second OpenAlex id of Amir Gholami (candidate 71): research scientist, not a professor.",
+   "same_person_as": "Amir Gholami",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5114047203 'Gholami, Amir': 12 Berkeley works 2016-2026, 6 DBLP-indexed (50.0%), years 2019-2025"
+    },
+    {
+     "url": "https://www.stat.berkeley.edu/~mmahoney/",
+     "sha256": "f541f0b65e35094995043847b2f4430dfe76d2c0fd555ab822e89ed19afb966f",
+     "quote": "and it has several nice quotes by Amir Gholami (who did the work, along with Aditi Krishnapriyan)"
+    }
+   ],
+   "original_decision": {
+    "name": "Amir Gholami",
+    "decision": "not_faculty",
+    "reason": "Second OpenAlex id of Amir Gholami (candidate 71): research scientist, not a professor.",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
+  },
+  {
+   "name": "Emmons, Scott",
+   "aliases": [],
+   "source": "openalex_rule",
+   "openalex": [
+    "https://openalex.org/A5051005226"
+   ],
+   "cs_basis": {
+    "works": 10,
+    "dblp_works": 6,
+    "cs_share": 0.6,
+    "years": [
+     2021,
+     2026
+    ],
+    "openalex": "https://openalex.org/A5051005226",
+    "top_dblp_venues": [
+     "unknown venue",
+     "Proceedings of the AAAI Conference on Artificial Intelligence"
+    ]
+   },
+   "decision": "not_faculty",
+   "reason": "same person as Scott Emmons (same OpenAlex author id A5051005226): EECS PhD student (dissertation 2025).",
+   "same_person_as": "Scott Emmons",
+   "evidence": [
+    {
+     "kind": "candidate_record",
+     "quote": "OpenAlex author A5051005226 'Emmons, Scott': 10 Berkeley works 2016-2026, 6 DBLP-indexed (60.0%), years 2021-2026"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2025.html",
+     "sha256": "3d7b12cff6dc1b6676f7c4d45370a1bcb145f94f7164f6179fb5118712eecaf0",
+     "quote": "Scott Emmons [advisor: Stuart J. Russell]"
+    }
+   ],
+   "original_decision": {
+    "name": "Scott Emmons",
+    "decision": "not_faculty",
+    "reason": "EECS PhD student (dissertation 2025).",
+    "summary": null,
+    "home_department": null,
+    "title_as_listed": null
+   },
+   "reviewed_stage2": "2026-11-10"
   }
  ],
  "notes": [
-  "missed-labs review 2026-11-09: 1 accepted (tools/missed_labs_candidates.py snapshot candidates + stored unit listings/catalog + thesis-advisor records); full pool in missed-labs-review.json"
+  "missed-labs review 2026-11-09: 1 accepted (tools/missed_labs_candidates.py snapshot candidates + stored unit listings/catalog + thesis-advisor records); full pool in missed-labs-review.json",
+  "stage-2 closure 2026-11-10: 20 candidates of the regenerated cs-related-candidates.json had no decision under their name form; each is the same person (OpenAlex author id) as an existing decision or a PI already in the census, recorded as census_alias or the same negative decision; fresh reviewer (seeded sample seed 1110 plus all borderline, 67 items) agreed on all but two (Sucholutsky reason corrected, Carmona held for owner)"
  ]
 }
