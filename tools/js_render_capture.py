@@ -25,9 +25,8 @@ import sys
 import time
 import urllib.parse
 import zlib
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 import school_web as W  # noqa: E402
 
 TOOL = 'js_render_capture/1'
