@@ -72,6 +72,20 @@
     }
    ],
    "remaining_work": "Obtain dated historical appointment evidence and inspect additional permitted publication/byline sources; do not extend appointment years or infer an absence of research output."
+  },
+  "students": {
+   "code": "lab_page_members_not_admitted",
+   "why": "His archived student page (2024) says he is not taking graduate students; it lists one current senior-thesis student and 13 alumni, of which 11 fall outside 2016-2026, one is not a student and one name is unresolved (audit reason all_missing_explained).",
+   "evidence": [
+    {
+     "url": "https://scholar.harvard.edu/mikesmith",
+     "sha256": "4641e9125d5978d19cbe3d7ce4f8335809d55e7c413660dcbdf369d8eb971082",
+     "quote": "mikesmith Skip to main content Main Menu Utility Menu Search HARVARD.",
+     "capture_url": "https://web.archive.org/web/20240922233834id_/https://scholar.harvard.edu/mikesmith",
+     "via": "lab-page audit capture"
+    }
+   ],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
   }
  },
  "Qianqian Wang": {
@@ -94,6 +108,20 @@
     }
    ],
    "remaining_work": "Obtain dated historical appointment evidence and inspect additional permitted publication/byline sources; do not extend appointment years or infer an absence of research output."
+  },
+  "students": {
+   "code": "lab_page_members_not_admitted",
+   "why": "New arrival (2026 listing); her homepage has no group section: the audit reads 68 names, all advisors, co-authors or award bylines (not_in_people_section), none a member.",
+   "evidence": [
+    {
+     "url": "https://qianqianwang68.github.io/",
+     "sha256": "3f02c834fdb39fadf581e3c5dea445a41f4182175a9296484b479dcfbae66938",
+     "quote": "Qianqian (Quinn) Wang Qianqian (Quinn) ? I go by Quinn these days. “Qianqian” is",
+     "capture_url": null,
+     "via": "lab-page audit capture"
+    }
+   ],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
   }
  },
  "Harry R. Lewis": {
@@ -181,8 +209,38 @@
    ]
   }
  },
- "Michael D. Mitzenmacher": {},
- "Radhika Nagpal": {},
+ "Michael D. Mitzenmacher": {
+  "students": {
+   "code": "lab_page_members_not_admitted",
+   "why": "His homepage lists only 'Current Students: Giorgos Zervas, Zhenming Liu, Justin Thaler', an old list (Zervas is a Boston University professor, hand-rejected 2026-11-09); no dated student roster for 2016-2026 is on the page.",
+   "evidence": [
+    {
+     "url": "https://www.eecs.harvard.edu/~michaelm/",
+     "sha256": "be09650227a7c172840c2bd7ebf1cdade371f4c0f33f562d2542f34bb65d489f",
+     "quote": "Current Students: Giorgos Zervas, Zhenming Liu, Justin Thaler",
+     "observed": "2026-11-10",
+     "via": "live fetch (robots honoured)"
+    }
+   ],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
+  }
+ },
+ "Radhika Nagpal": {
+  "students": {
+   "code": "lab_page_members_not_admitted",
+   "why": "Her personal site (radhikanagpal.org, live fetch returns a bot-challenge marker so read through the audit's archived capture) has no member roster: the audit reads 4 names and rejects all (2 not in a people section, 2 not students). She is listed at Harvard 2016-2018 only; later students are at Princeton.",
+   "evidence": [
+    {
+     "url": "https://www.radhikanagpal.org/",
+     "sha256": "aaded98004f1c4e0eeaa09a5bf3bd81ca91f09e2e4170ed934198b9067575812",
+     "quote": "Radhika Nagpal Radhika Nagpals Webpage Home Research Teaching Robots! Acti",
+     "capture_url": null,
+     "via": "lab-page audit capture"
+    }
+   ],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
+  }
+ },
  "Jelani Nelson": {
   "students": {
    "code": "sources_exhausted",
@@ -458,9 +516,54 @@
    ]
   }
  },
- "Isaac S. Kohane": {},
- "Marinka Zitnik": {},
- "Pranav Rajpurkar": {},
+ "Isaac S. Kohane": {
+  "students": {
+   "code": "lab_page_members_not_admitted",
+   "why": "The lab-page audit's site for this PI is avillach-lab.hms.harvard.edu, a shared DBMI people page of the Avillach lab; the audit rejects its names as shared_page_no_adviser (no entry names this PI as adviser). The DBMI page lists a 'Kohane Lab' entry without a members page.",
+   "evidence": [
+    {
+     "url": "https://avillach-lab.hms.harvard.edu/",
+     "sha256": "2e5202532b54a5595c82ba3a301d315e64d18949263dd4b50f9b6c8e94b3959f",
+     "quote": null,
+     "capture_url": null,
+     "via": "lab-page audit capture"
+    }
+   ],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
+  }
+ },
+ "Marinka Zitnik": {
+  "students": {
+   "code": "own_page_found_admission_pending",
+   "why": "Her own live members page (zitniklab.hms.harvard.edu/people/) lists PhD students (Kevin Li, Ada Fang, Yepeng Huang, Shvat Messica, Nic Fishman, Walker Rickord, Lukas Fesser, Amy Dong, Michael Sun, Robert Calef, Ayush Noori) and postdoctoral fellows; the lab-page audit had attached the shared Avillach page instead, so none of these rows exists yet. Admission needs the 20+20 hand round.",
+   "evidence": [
+    {
+     "url": "https://zitniklab.hms.harvard.edu/people/",
+     "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+     "quote": "Kevin Li PhD Student Harvard-MIT HST",
+     "observed": "2026-11-10",
+     "via": "live fetch (robots honoured)"
+    }
+   ],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
+  }
+ },
+ "Pranav Rajpurkar": {
+  "students": {
+   "code": "lab_page_members_not_admitted",
+   "why": "The lab-page audit's site for this PI is avillach-lab.hms.harvard.edu, a shared DBMI people page of the Avillach lab; the audit rejects its names as shared_page_no_adviser (no entry names this PI as adviser). This PI's own lab pages were not found (Rajpurkar's rajpurkarlab host returns a bot-challenge marker).",
+   "evidence": [
+    {
+     "url": "https://avillach-lab.hms.harvard.edu/",
+     "sha256": "2e5202532b54a5595c82ba3a301d315e64d18949263dd4b50f9b6c8e94b3959f",
+     "quote": null,
+     "capture_url": null,
+     "via": "lab-page audit capture"
+    }
+   ],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
+  }
+ },
  "Heng Li": {
   "students": {
    "code": "sources_exhausted",
@@ -549,5 +652,92 @@
    ]
   }
  },
- "Anna Seigal": {}
+ "Anna Seigal": {
+  "students": {
+   "code": "own_page_found_admission_pending",
+   "why": "Her live homepage lists group graduate students David Baron (2026-), Paula Esquerrà Giné (2026-), Álvaro Ribot (2023-), Kexin (Ada) Wang (2023-) and postdocs; the audit proposes 3 as genuinely missing additions that need the 20+20 hand round.",
+   "evidence": [
+    {
+     "url": "https://seigal.github.io/",
+     "sha256": "8d91e0d97ca71915e4e397686175d3189988c1c56dde20d24a2ece3b36c74619",
+     "quote": "Group Graduate Students: David Baron (2026-) Paula Esquerrà Giné (2026-)",
+     "observed": "2026-11-10",
+     "via": "live fetch (robots honoured)"
+    }
+   ],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
+  }
+ },
+ "Ryan P. Adams": {
+  "students": {
+   "code": "pi_moved_to_other_institution",
+   "why": "Listed in the Harvard CS directory 2016-2018 and now at Princeton: his current group page lists 'Current Graduate Students and Postdocs' at Princeton, not Harvard students; the former Harvard site is dead and no archived copy exists (audit: site_dead_no_wayback). No Harvard-era student roster is available.",
+   "evidence": [
+    {
+     "url": "https://www.cs.princeton.edu/~rpa/",
+     "sha256": "e323b2ebf0fb50206e0715b4aee4786680c81dd81a9f1216c2c8a208c73fa61d",
+     "quote": "Current Graduate Students and Postdocs Cyrill Boesch",
+     "observed": "2026-11-10",
+     "via": "live fetch (robots honoured)"
+    }
+   ],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
+  }
+ },
+ "Kianté Brantley": {
+  "students": {
+   "code": "no_student_roster_found",
+   "why": "Joined SEAS 2024-07-01; no personal or lab homepage exists (profile only; the guessed github.io page returns 404); the SEAS profile lists no students.",
+   "evidence": [],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
+  }
+ },
+ "Yilun Du": {
+  "students": {
+   "code": "no_student_roster_found",
+   "why": "New arrival: his live page (yilundu.github.io) states 'I am recruiting PhD students for the December 2026 application cycle through the Embodied Minds Lab' and lists no group members.",
+   "evidence": [
+    {
+     "url": "https://yilundu.github.io/",
+     "sha256": "ea3187510c226680b9fbbb16453671dd2e15a98ce513c3fa98689ac9d94fa91a",
+     "quote": "I am recruiting PhD students for the December 2026 application cycle",
+     "observed": "2026-11-10",
+     "via": "live fetch (robots honoured)"
+    }
+   ],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
+  }
+ },
+ "Paul Avillach": {
+  "students": {
+   "code": "lab_page_members_not_admitted",
+   "why": "The lab-page audit's site for this PI is avillach-lab.hms.harvard.edu, a shared DBMI people page of the Avillach lab; the audit rejects its names as shared_page_no_adviser (no entry names this PI as adviser).",
+   "evidence": [
+    {
+     "url": "https://avillach-lab.hms.harvard.edu/",
+     "sha256": "2e5202532b54a5595c82ba3a301d315e64d18949263dd4b50f9b6c8e94b3959f",
+     "quote": "Avillach Lab | Avillach Lab Skip to main content arrow_circle_down A",
+     "capture_url": null,
+     "via": "lab-page audit capture"
+    }
+   ],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
+  }
+ },
+ "Scott Duke Kominers": {
+  "students": {
+   "code": "no_student_roster_found",
+   "why": "HBS faculty (listed 2026); no lab or personal page was found by the audit (new_arrival_no_site_yet); the live guess scottkom.com is not reachable under robots.",
+   "evidence": [],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
+  }
+ },
+ "Sendhil Mullainathan": {
+  "students": {
+   "code": "pi_moved_to_other_institution",
+   "why": "Listed in the Harvard directory 2018 (Economics chair); the audit found no web presence (no_web_presence_found) and no Harvard student roster.",
+   "evidence": [],
+   "researched": "2026-11-10 few-students pass (live fetches with robots honoured; audit captures)"
+  }
+ }
 }
