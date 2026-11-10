@@ -759,6 +759,59 @@ def tsinghua_insc_bands(h):
     return out
 
 
+def tsinghua_me_zh(h):
+    """Tsinghua Mechanical Engineering 在职教师 list (szdw/zzjs.htm): `<a word="中级" title=NAME href=...>`; the `word` attribute is the same filter bucket on every row (checked: all 160 live rows say 中级), so it is never kept as a title: names only."""
+    from bs4 import BeautifulSoup
+    out = []
+    for a in BeautifulSoup(h, 'html.parser').select('a[word][title][href]'):
+        out.append(dict(name_listed=re.sub(r'[\s\u3000]+', '', a['title']), titles=[], profile=a['href'], homepage=None, division=None))
+    return out
+
+
+def tsinghua_me_en(h):
+    """Tsinghua Mechanical Engineering English faculty list (en/People/Registered_Faculty): `<h2 class=sz_tit>Professor</h2>` bands, then `li.ss a[title]` cards."""
+    from bs4 import BeautifulSoup
+    out, band = [], None
+    for el in BeautifulSoup(h, 'html.parser').select('h2.sz_tit, li.ss a[title][href]'):
+        if el.name == 'h2':
+            band = clean(el.get_text(' ', strip=True))
+        elif band:
+            out.append(dict(name_listed=clean(el['title']), titles=[band], profile=el['href'], homepage=None, division=None))
+    return out
+
+
+def tsinghua_math_bands(h):
+    """Tsinghua Mathematical Sciences faculty list (szdw1/js/ayjs.htm): `<div class="post">教授</div><dl class="deptList">` rank bands with `<dd><a>` name links."""
+    from bs4 import BeautifulSoup
+    out = []
+    for post in BeautifulSoup(h, 'html.parser').select('div.post'):
+        dl = post.find_next_sibling('dl')
+        if dl is None:
+            continue
+        band = re.sub(r'(?<=[\u4e00-\u9fff])\s+(?=[\u4e00-\u9fff])', '', clean(post.get_text(' ', strip=True)))
+        for a in dl.select('dd a'):
+            name = clean(a.get_text(' ', strip=True)).replace(' ', '')
+            if name:
+                out.append(dict(name_listed=name, titles=[band], profile=a.get('href'), homepage=None, division=None))
+    return out
+
+
+def tsinghua_bme_cards(h):
+    """Tsinghua Biomedical Engineering 在职教师 series page (ryqk/zzjs/jyxl.htm): `<h2>教研系列（…）</h2>` series heading, then `li a[title]` cards with `<p>NAME</p>`; the series is not a rank."""
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(h, 'html.parser')
+    h2 = soup.select_one('div.ny-right h2')
+    series = re.split(r'[（(]', clean(h2.get_text(' ', strip=True)))[0] if h2 else None
+    if not series:
+        return []
+    out = []
+    for a in soup.select('div.ny-right li a[title][href]'):
+        p = a.select_one('div.info p')
+        if p is not None:
+            out.append(dict(name_listed=clean(p.get_text(' ', strip=True)).replace(' ', ''), titles=[series], profile=a['href'], homepage=None, division=None))
+    return out
+
+
 def tsinghua_ee_text(h):
     """Tsinghua EE faculty page 2022-2025 as ARCHIVED: plain text after `图片列表`: institute heading (…研究所 / …中心), then `教 授：`, `副教授：`, `讲 师：` ... bands each followed by name tokens."""
     from bs4 import BeautifulSoup
@@ -944,6 +997,10 @@ FORMATS = {
     'tsinghua_ee_text': (tsinghua_ee_text, re.compile(r'图片列表.{0,3000}?(?:教\s*授|副教授)\s*[：:]', re.S)),
     'tsinghua_au_old_list': (tsinghua_au_old_list, re.compile(r'<table[^>]*uetable')),
     'tsinghua_insc_bands': (tsinghua_insc_bands, re.compile(r'(?!)')),
+    'tsinghua_me_zh': (tsinghua_me_zh, re.compile(r'(?!)')),
+    'tsinghua_me_en': (tsinghua_me_en, re.compile(r'(?!)')),
+    'tsinghua_math_bands': (tsinghua_math_bands, re.compile(r'(?!)')),
+    'tsinghua_bme_cards': (tsinghua_bme_cards, re.compile(r'(?!)')),
     'tsinghua_ee_embedded': (tsinghua_ee_embedded, re.compile(r'function topage_\d_\d\(keyword, yjly, szm\)')),
     'tsinghua_ee_rendered': (tsinghua_ee_rendered, re.compile(r'id="showdatainfo')),
     'tsinghua_sw_old_list': (tsinghua_sw_old_list, re.compile(r'id="s2_right_con"[^>]*>.{0,400}教师名录', re.S)),

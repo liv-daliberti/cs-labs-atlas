@@ -146,3 +146,29 @@ def test_ee_any_tries_embedded_then_rendered_then_text():
     assert [r['name_listed'] for r in L.tsinghua_ee_any(EEE)] == ['陈宏伟', '罗毅', '熊兵']
     assert [r['name_listed'] for r in L.tsinghua_ee_any(EER)] == ['陈宏伟', '罗毅', '甲乙']
     assert [r['name_listed'] for r in L.tsinghua_ee_any(EET)][:2] == ['陈宏伟', '陈明华']
+
+
+ME_EN = '<h2 class="sz_tit">Professor</h2><ul><li class="ss"><a href="../../info/1283/1913.htm" target="_blank" title="Zhipeng Cai"><div class="con"><p class="bt">Zhipeng Cai</p></div></a></li></ul><h2 class="sz_tit">Assistant Professor</h2><ul><li class="ss"><a href="../../info/1/2.htm" title="Ann Lee"><p class="bt">Ann Lee</p></a></li></ul>'
+ME_ZH = '<a word="中级" href="../info/1092/1531.htm" target="_blank" title="卢文秀">卢文秀</a> <a word="中级" href="../info/1098/1584.htm" title="赵　彤">赵　彤</a>'
+MATH = '<div class="post fwBold">副教授</div><dl class="deptList gp-flex"><dd><a href="../../info/1376/3001.htm">陈大广</a></dd><dd><a href="https://ymsc.tsinghua.edu.cn/info/1032/5361.htm">刁晗生</a></dd></dl><div class="post">教 授</div><dl><dd><a href="x.htm">张三</a></dd></dl>'
+BME = '<div class="ny-right"><div class="position"><div><h2> 教研系列（按姓氏音序横向排列）</h2></div></div><ul><li><a href="../../info/1118/1598.htm" title="丁长海"><div class="info"><p>丁长海</p></div></a></li></ul></div>'
+
+
+def test_me_en_bands_are_the_ranks():
+    rows = L.tsinghua_me_en(ME_EN)
+    assert [(r['name_listed'], r['titles']) for r in rows] == [('Zhipeng Cai', ['Professor']), ('Ann Lee', ['Assistant Professor'])]
+
+
+def test_me_zh_is_names_only_the_word_attribute_is_not_a_rank():
+    rows = L.tsinghua_me_zh(ME_ZH)
+    assert [(r['name_listed'], r['titles']) for r in rows] == [('卢文秀', []), ('赵彤', [])]
+
+
+def test_math_bands_join_split_cjk_and_follow_the_post_div():
+    rows = L.tsinghua_math_bands(MATH)
+    assert [(r['name_listed'], r['titles']) for r in rows] == [('陈大广', ['副教授']), ('刁晗生', ['副教授']), ('张三', ['教授'])]
+
+
+def test_bme_series_is_not_a_rank():
+    rows = L.tsinghua_bme_cards(BME)
+    assert [(r['name_listed'], r['titles']) for r in rows] == [('丁长海', ['教研系列'])]
