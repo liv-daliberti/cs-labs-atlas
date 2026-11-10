@@ -27,9 +27,11 @@
   "RI"
  ],
  "counts": {
-  "not_faculty_listed": 708,
-  "accepted": 49,
-  "pending_openalex": 3
+  "not_faculty_listed": 700,
+  "accepted": 51,
+  "research_or_other_rank": 2,
+  "pending_openalex": 5,
+  "faculty_not_computing": 2
  },
  "decisions": [
   {
@@ -3716,8 +3718,8 @@
    "name": "Guillermo Gallego",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BM, CBE, CHEM, CIVL, ECE, EMIA, IAS, IEDA, ISD, ISOM, LIFS, MAE, MATH, PHYS, RI) names them with a professor title",
+   "decision": "research_or_other_rank",
+   "reason": "2026-11-10 JS-render follow-up (ECE/IEDA/BM directories rendered by tools/js_render_capture.py, dom sha256 in the store): the rendered IEDA directory lists this person as Professor Emeritus (fresh reviewer), not a current ladder appointment",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/95/4750-1"
@@ -6864,8 +6866,8 @@
    "name": "Jing Chen",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BM, CBE, CHEM, CIVL, ECE, EMIA, IAS, IEDA, ISD, ISOM, LIFS, MAE, MATH, PHYS, RI) names them with a professor title",
+   "decision": "pending_openalex",
+   "reason": "2026-11-10 JS-render follow-up (ECE/IEDA/BM directories rendered by tools/js_render_capture.py, dom sha256 in the store): the rendered ECE directory lists Kevin Jing CHEN (Chair Professor); the DBLP candidate pid 27/4364-16 is a DJI/quadrotor-robotics profile and its link to the listed professor is unsupported (fresh reviewer); the listed professor has no DBLP candidate yet",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/27/4364-16"
@@ -6883,7 +6885,17 @@
      }
     ]
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "ECE",
+     "url": "https://ece.hkust.edu.hk/people_list",
+     "sha256": "92f89da4db8da335f8298ee89b24e29da2c3cfa10353de709e7dd5c27644e71a",
+     "observed": "20261110",
+     "quote": "Jing CHEN 陳 敬 Chair Professor",
+     "ladder": true,
+     "hand": true
+    }
+   ],
    "years_listed": [],
    "units_searched": [
     "BM",
@@ -10597,8 +10609,8 @@
    "name": "Mansun Chan",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BM, CBE, CHEM, CIVL, ECE, EMIA, IAS, IEDA, ISD, ISOM, LIFS, MAE, MATH, PHYS, RI) names them with a professor title",
+   "decision": "faculty_not_computing",
+   "reason": "2026-11-10 JS-render follow-up (ECE/IEDA/BM directories rendered by tools/js_render_capture.py, dom sha256 in the store): listed as Chair Professor in ECE; the research described (devices / nanowires and sensors) is not computing as object or method (fresh reviewer; borderline: DBLP records naming the school exist); not admitted as a PI",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/75/713"
@@ -10615,7 +10627,17 @@
      }
     ]
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "ECE",
+     "url": "https://ece.hkust.edu.hk/people_list",
+     "sha256": "92f89da4db8da335f8298ee89b24e29da2c3cfa10353de709e7dd5c27644e71a",
+     "observed": "20261110",
+     "quote": "Mansun CHAN 陳 文 新 Alex Wong Siu Wah Gigi Wong Fook Chi Professor",
+     "ladder": true,
+     "hand": true
+    }
+   ],
    "years_listed": [],
    "units_searched": [
     "BM",
@@ -16531,8 +16553,8 @@
    "name": "Wei Jiang",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BM, CBE, CHEM, CIVL, ECE, EMIA, IAS, IEDA, ISD, ISOM, LIFS, MAE, MATH, PHYS, RI) names them with a professor title",
+   "decision": "pending_openalex",
+   "reason": "2026-11-10 JS-render follow-up (ECE/IEDA/BM directories rendered by tools/js_render_capture.py, dom sha256 in the store): the rendered IEDA directory lists Wei JIANG (Associate Professor); the DBLP candidate 21/3839-19 (Yale; HKUST ECE; GWAS bioinformatics) is a same-name person (fresh reviewer); the listed IEDA professor has no DBLP candidate yet",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/21/3839-19"
@@ -16550,7 +16572,17 @@
      }
     ]
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "IEDA",
+     "url": "https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15",
+     "sha256": "93e8b0bff5360418714ffa591c3bbe38508130a250b04122844f0e3c1b9f0311",
+     "observed": "20261110",
+     "quote": "Wei JIANG Associate Professor",
+     "ladder": true,
+     "hand": true
+    }
+   ],
    "years_listed": [],
    "units_searched": [
     "BM",
@@ -16875,8 +16907,8 @@
    "name": "Weijia Zhang",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BM, CBE, CHEM, CIVL, ECE, EMIA, IAS, IEDA, ISD, ISOM, LIFS, MAE, MATH, PHYS, RI) names them with a professor title",
+   "decision": "pending_openalex",
+   "reason": "2026-11-10 JS-render follow-up (ECE/IEDA/BM directories rendered by tools/js_render_capture.py, dom sha256 in the store): the rendered ECE directory lists Weijia ZHANG (Assistant Professor); DBLP candidate 158/5387-3 (HKUST-GZ spatiotemporal/LLM works) is not tied to the ECE listing; identity undetermined (fresh reviewer)",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/158/5387-3"
@@ -16894,7 +16926,17 @@
      }
     ]
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "ECE",
+     "url": "https://ece.hkust.edu.hk/people_list",
+     "sha256": "92f89da4db8da335f8298ee89b24e29da2c3cfa10353de709e7dd5c27644e71a",
+     "observed": "20261110",
+     "quote": "Weijia ZHANG 張 薇 葭 Assistant Professor",
+     "ladder": true,
+     "hand": true
+    }
+   ],
    "years_listed": [],
    "units_searched": [
     "BM",
@@ -25867,8 +25909,8 @@
    "name": "Zhiyong Fan",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BM, CBE, CHEM, CIVL, ECE, EMIA, IAS, IEDA, ISD, ISOM, LIFS, MAE, MATH, PHYS, RI) names them with a professor title",
+   "decision": "faculty_not_computing",
+   "reason": "2026-11-10 JS-render follow-up (ECE/IEDA/BM directories rendered by tools/js_render_capture.py, dom sha256 in the store): listed as Chair Professor in ECE; the research described (devices / nanowires and sensors) is not computing as object or method (fresh reviewer; borderline: DBLP records naming the school exist); not admitted as a PI",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/119/4211"
@@ -25885,7 +25927,17 @@
      }
     ]
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "ECE",
+     "url": "https://ece.hkust.edu.hk/people_list",
+     "sha256": "92f89da4db8da335f8298ee89b24e29da2c3cfa10353de709e7dd5c27644e71a",
+     "observed": "20261110",
+     "quote": "Zhiyong FAN 范 智 勇 Chair Professor",
+     "ladder": true,
+     "hand": true
+    }
+   ],
    "years_listed": [],
    "units_searched": [
     "BM",
@@ -28069,15 +28121,25 @@
     "Xie, Yuan"
    ],
    "source": "openalex_rule",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BM, CBE, CHEM, CIVL, ECE, EMIA, IAS, IEDA, ISD, ISOM, LIFS, MAE, MATH, PHYS, RI) names them with a professor title",
+   "decision": "pending_openalex",
+   "reason": "2026-11-10 JS-render follow-up (ECE/IEDA/BM directories rendered by tools/js_render_capture.py, dom sha256 in the store): the rendered ECE directory lists Yuan XIE (Chair Professor); OpenAlex author A5100385336 has 44 school works (2023-2026, share .75, computer architecture and accelerators) but no DBLP person naming HKUST is in the persons file, so no source-bound DBLP identity exists yet; admit after an identity binding (title-only page route) is reviewed",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
     "evidence": []
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "ECE",
+     "url": "https://ece.hkust.edu.hk/people_list",
+     "sha256": "92f89da4db8da335f8298ee89b24e29da2c3cfa10353de709e7dd5c27644e71a",
+     "observed": "20261110",
+     "quote": "Yuan XIE 謝 源 Fang Professor",
+     "ladder": true,
+     "hand": true
+    }
+   ],
    "years_listed": [],
    "units_searched": [
     "BM",
@@ -32003,8 +32065,8 @@
     "Chung‐Yee Lee"
    ],
    "source": "openalex_rule",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BM, CBE, CHEM, CIVL, ECE, EMIA, IAS, IEDA, ISD, ISOM, LIFS, MAE, MATH, PHYS, RI) names them with a professor title",
+   "decision": "research_or_other_rank",
+   "reason": "2026-11-10 JS-render follow-up (ECE/IEDA/BM directories rendered by tools/js_render_capture.py, dom sha256 in the store): the rendered IEDA directory lists this person as Professor Emeritus (fresh reviewer), not a current ladder appointment",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -33547,8 +33609,8 @@
    "name": "Hao Liu [09/3214-26]",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_openalex",
-   "reason": "fresh-reviewer finding 2026-11-10: the stored EMIA listing names a person of this name as Assistant Professor with computing research areas; attribution to this DBLP identity rests on the DBLP url/notes and the email handle; needs a census addition (is_pi, ladder faculty) and identity binding before admission, not decided here",
+   "decision": "accepted",
+   "reason": "2026-11-10 EMIA listing: faculty (EMIA listing, Assistant Professor) with 198 DBLP records 2016-2026 naming the school; fresh reviewer judged the identity supported",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/09/3214-26"
@@ -33574,7 +33636,7 @@
      "url": "https://emia.hkust.edu.hk/people",
      "sha256": "f0a678a512ae94f44bdf9b320212af472bffc9f84aff606f15cc51ee36642cb4",
      "observed": "20261110",
-     "quote": "Hao LIU 劉浩 Assistant Professor liuh@ust.hk ... Research Area: Spatiotemporal Data Mining, Graph Learning, Reinforcement Learning",
+     "quote": "Hao LIU Hao LIU 劉浩 劉浩 Assistant Professor",
      "ladder": true
     }
    ],
@@ -34053,8 +34115,8 @@
     "Lei Thor Li"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_openalex",
-   "reason": "fresh-reviewer finding 2026-11-10: the stored EMIA listing names a person of this name as Assistant Professor with computing research areas; attribution to this DBLP identity rests on the DBLP url/notes and the email handle; needs a census addition (is_pi, ladder faculty) and identity binding before admission, not decided here",
+   "decision": "accepted",
+   "reason": "2026-11-10 EMIA listing: faculty (EMIA listing, Assistant Professor) with 72 DBLP records 2016-2026 naming the school; fresh reviewer judged the identity supported",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/13/7007-3"
@@ -34078,7 +34140,7 @@
      "url": "https://emia.hkust.edu.hk/people",
      "sha256": "f0a678a512ae94f44bdf9b320212af472bffc9f84aff606f15cc51ee36642cb4",
      "observed": "20261110",
-     "quote": "Lei LI 李雷 Assistant Professor thorli@ust.hk ... Research Area: Spatiotemporal Data Management, Route Planning in Dynamic Environment, Graph Data Management, Distributed Database Systems",
+     "quote": "Lei LI Lei LI 李雷 李雷 Assistant Professor",
      "ladder": true
     }
    ],
