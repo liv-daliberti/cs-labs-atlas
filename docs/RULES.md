@@ -365,6 +365,12 @@ holds, 2 corrupted and 8 retitles; Crossref's 4 markup-only differences pass). `
 `titles_match`, `title_conflict`, `held_rows`. It is an admission-review gate, not yet a build step: the build has no local arXiv/Crossref title store (the 1,289 arXiv and
 640 Crossref titles of the Oxford review were fetched into scratch), so a school's package is checked by running the tool on its `lab_papers.jsonl.gz`.
 
+### R-PAP-43 (2026-11-09, Claude on the owner's delegation; HKUST admission review) — artifact deposits, editor messages, bare front matter
+Dropped (`non_research_record`; tests `tests/test_hkust_rules_1109.py`, each on the real HKUST row): a Zenodo, Figshare or Dryad DOI whose title is 'Artifact for ...' / 'OSDI21 Artifact for ...'
+(`artifact_deposit`; a software artifact accompanying a paper, not the paper); an `editorial` whose title opens '(A) Message from the ...' (`editor_message`: 'A Message From the Editor-in-Chief', 'Message
+from the ... Co-Track Co-Chairs'); a book-chapter, editorial or other record whose whole title is Epilogue, Prologue, Foreword or Afterword (`front_matter`). Narrow on purpose: a longer title
+('Epilogue: Lessons ...'), a title only containing 'message' ('A Message-Passing Approach ...') and Zenodo preprints stay. HKUST round 2 had 4 such rows, excluded from its admissible count.
+
 ### R-PAP-37 (2026-11-05, owner task: Michigan student-paper gaps) — listing continuity
 Four Michigan `student_not_linked` findings of accuracy round r2 (Chen, Aksoy, Sattar, Wandke) were checked paper by paper. Two (Chen, Aksoy, both
 Gorodetsky's students) are real lab-paper gaps: Gorodetsky's only dated appointment evidence is the AERO unit listing of 2018-2020 (the later AERO

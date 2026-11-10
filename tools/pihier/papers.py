@@ -227,6 +227,10 @@ DELIVERABLE_TITLE = re.compile(r'(?i)(?:^|[\s:(\-\u2013])D\d{1,2}\.\d{1,2}(?:\.\
                                r'\b(?:final|interim|annual|progress|workshop|stakeholder engagement|case) reports?\b|^\s*report on\b|\bplenary\b.*\breport\b|'
                                r'\bresponse of\b.*\bto the\b|\bresponse to the\b.*\b(?:consultation|rfi|call for (?:evidence|views|input))|\bconsultation response\b|'
                                r'\bfocus group\b|^\s*preliminary release\b')
+# R-PAP-43 (2026-11-09, Claude on the owner's delegation; HKUST admission review): artifact deposits, editor messages, bare front matter.
+ARTIFACT_DEPOSIT_TITLE = re.compile(r'(?i)^\s*(?:[A-Z]{2,8}\s?\d{2,4}\s+)?artifacts?\s+(?:for|of)\b')
+EDITOR_MESSAGE_TITLE = re.compile(r'(?i)^\s*(?:a\s+)?message\s+from\s+the\b')
+BARE_FRONT_MATTER_TITLE = re.compile(r'(?i)^\s*(?:epilogue|prologue|foreword|afterword)\s*$')
 REPOSITORY_VENUE = re.compile(r'(?i)^\s*(?:zenodo|figshare|dryad)(?:\s*\([^)]*\))?\s*$')
 HIGHLIGHTS_SUMMARY_TITLE = re.compile(r'(?i)\bhighlights (?:from|of) the\b.*\b(?:conference|workshop|symposium|meeting|summit)\b|'
                                       r'^\s*(?:summary|report|overview) (?:of|on) the\b.*\b(?:workshop|conference|symposium|seminar|meeting|summit)\b|'
@@ -251,6 +255,12 @@ def non_research_record(r, pages=None):
         return 'editorial'
     if PRESENTATION_TITLE.search(t):
         return 'presentation_only'
+    if REPOSITORY_DOI.match(d) and ARTIFACT_DEPOSIT_TITLE.search(t):
+        return 'artifact_deposit'
+    if ty == 'editorial' and EDITOR_MESSAGE_TITLE.search(t):
+        return 'editor_message'
+    if ty in ('book-chapter', 'editorial', 'other') and BARE_FRONT_MATTER_TITLE.search(t):
+        return 'front_matter'
     if ABSTRACT_REPRINT_TITLE.search(t):
         return 'conference_abstract'
     if REPOSITORY_DOI.match(d) and not v.strip():
