@@ -1,0 +1,32 @@
+{
+ "school": "toronto",
+ "bar": "docs/LAB-PAGES.md, acceptance bar (2026-10-31)",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-11-10",
+   "label": "first and only round on the live-only lab-page audit of the expanded census (all 5 proposed students; 0 proposed papers)",
+   "additions_generated_at": "2026-11-10T12:21:13+00:00",
+   "students": {
+    "sampled": 5,
+    "seed": "complete enumeration",
+    "membership_errors": 4,
+    "doubtful_count": 0,
+    "role_or_year_errors": 0
+   },
+   "papers": null,
+   "items": {
+    "Kuldeep Meel / Ashwin Karthikeyan": "ok: \"Ashwin Karthikeyan PhD\" under PhD Students on the lab page",
+    "Anwar Hithnawi / Hossein Shafagh": "membership error: dropletchain.github.io/#team is a project team page; Shafagh is a research scientist at ETH Zurich",
+    "Anwar Hithnawi / Lukas Burkhalter": "membership error: PhD candidate at ETH Zurich (project collaborator)",
+    "Anwar Hithnawi / Simon Duquennoy": "membership error: research scientist at RISE SICS, Sweden",
+    "Anwar Hithnawi / Sylvia Ratnasamy": "membership error: UC Berkeley collaborator on the project page"
+   },
+   "membership_score": 4,
+   "role_year_errors": 0,
+   "paper_score": null,
+   "result": "students_fail",
+   "note": "Rule defect: a project-team page that is not the PI lab roster (other-institution members) passes LP-STU-01. No acceptance is recorded; no addition is wired. Complete enumeration, so no fresh sample exists for this rule version. A fixed rule needs a new draw; papers have no proposed rows to check."
+  }
+ ]
+}
