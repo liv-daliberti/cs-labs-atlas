@@ -8,7 +8,7 @@ import atlas_paths as P  # data paths (DATA_FILES)
 import school_config as _S  # the school charters (R-PAP-15's foreign-title exception)
 from .common import NOT_PAPERS, OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, excluded_school_only, ndoi, norm_title, related_gate, school_scope_work
 from .identity import in_blocked_cluster
-from .names import NICK, _nick_pairs, byline_name, full_pair, toks, Name
+from .names import NICK, _nick_pairs, byline_name, full_pair, name_toks, toks, Name
 from .periods import _year, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
 from . import identity, primary_affiliations, recovery_reviews, reviewed_claims, source_metadata, title_enrichment
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
@@ -733,6 +733,12 @@ def reviewed_cross_affiliation_holds(overrides):
     return result
 
 
+def page1_quote_names_pi(names, quotes):
+    """True when a page-1 quote carries the family name of one of the PI's names. Bilingual census names ('Yi R. FUNG 馮一人') end in the Chinese
+    part for toks(); the Latin reading is name_toks (HKUST, 2026-11-10: the page-1 tie never matched a bilingual name)."""
+    return any(name_toks(n_)[-1] in toks(' '.join(quotes)) for n_ in names if name_toks(n_))
+
+
 def school_basis(ctx, pi, w, a, ident, page1):
     """Why authorship `a` of `w` ties the PI to the school, as `via` (empty: no basis), and the page-1 tie used: the
     institution lineage or raw string; page 1 (R-PAP-10); a bare unit name (R-PAP-25); an advisee at the school on the
@@ -745,7 +751,7 @@ def school_basis(ctx, pi, w, a, ident, page1):
     via = _authorship_school_via(w, a, inst, aff, school=school)
     if page1 and not a.get('institutions') and not a.get('raw_affiliation_strings'):
         via = [f"page 1 ({page1['how']}): " + ' … '.join(page1['quotes'])]  # the paper's own first page ties the school to the PI
-    elif not via and tied.get(w['id']) and any(toks(n_)[-1] in toks(' '.join(tied[w['id']]['quotes'])) for n_ in p['names'] if toks(n_)):
+    elif not via and tied.get(w['id']) and page1_quote_names_pi(p['names'], tied[w['id']]['quotes']):
         # a sweep work whose OpenAlex record gives the PI no school (none, a garbled footnote string, or a co-author's
         # institution misassigned by position) while the paper's own first page, read by tools/pi_fulltext_affiliation.py,
         # ties the school to this PI by name (2026-10-29: Chi Jin, Karthik Narasimhan, Adam Perer); the primary

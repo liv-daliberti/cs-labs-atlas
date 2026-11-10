@@ -580,7 +580,7 @@ def hits(ctx):
                         if reviewed_claims.excluded(ctx, pi, w):
                             continue
                         if (pi, w['id']) in from_pw or aid in blocked[pi] or not nm[pi].match(raw) \
-                                or toks(pi)[-1] not in toks(' '.join(tied[w['id']].get('quotes') or [])):
+                                or name_toks(pi)[-1] not in toks(' '.join(tied[w['id']].get('quotes') or [])):
                             continue
                         cw_ = cwork(w); ident = identity_of(pi, w, a, cw_)
                         if ident and ident != 'advisee_coauthor':

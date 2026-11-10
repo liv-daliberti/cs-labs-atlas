@@ -88,3 +88,10 @@ def test_page1_tie_accepts_a_parenthesised_nickname_before_the_family_name():
     flat = 'Preprint Yiyang Fang1,5 Pei Fu2 Yi R. (May) Fung5 Mang Ye1 1 Wuhan University 5 The Hong Kong University of Science and Technology fangyiyang@whu.edu.cn Abstract'
     how, quotes = F.tie(flat, [('Yi', 'Fung')], aff)
     assert how == 'marker' and 'Fung5' in quotes[0] and 'Hong Kong University' in quotes[1]
+
+
+def test_page1_quote_matches_a_bilingual_census_name():
+    from pihier import papers
+    assert papers.page1_quote_names_pi(['Yi R. FUNG 馮一人'], ['Yi R. (May) Fung5 ', '5 The Hong Kong University of Science and Technology'])
+    assert papers.page1_quote_names_pi(['Jiasi SHEN 沈嘉思'], ['JIASI SHEN, The Hong Kong University of Science and Technology'])
+    assert not papers.page1_quote_names_pi(['Yi R. FUNG 馮一人'], ['Wei Wang, The Hong Kong University'])
