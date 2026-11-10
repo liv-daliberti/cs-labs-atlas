@@ -1873,7 +1873,7 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                 continue
             if SD.visiting(ctx_decisions(school), pi, nm):
                 best = dict(best, role='visiting', role_basis='reviewer')
-            why_ = (not_a_member_context(kit, school, nm, best) or page_lacks_pi(kit, school, p, best) or names_another_adviser(p, best)
+            why_ = (not_a_member_context(kit, school, nm, best) or page_lacks_pi(kit, school, p, best) or page_pi_elsewhere(kit, school, p, best) or names_another_adviser(p, best)
                     or repair_reason(kit, school, nm, dict(best, years=years), pi_start_year(p), p.get('pi')))
             if why_:  # a Stanford Profiles reader / program listing, or a name in a citation (Stanford round 1, 2026-11-01)
                 miss['reason_code'], miss['detail'] = why_
@@ -2255,6 +2255,40 @@ def names_another_adviser(p, best):
     fam = str(p.get('pi') or '').split()[-1:] or ['']
     if m and fam[0] and fold(fam[0]).lower() not in fold(m.group(1)).lower():
         return ('shared_page_no_adviser', 'the entry names another adviser: ' + m.group(1).strip()[:80])
+    return None
+
+
+def page_pi_elsewhere(kit, school, p, best):
+    """Toronto lab-page round 1 (2026-11-10): a project-team page that describes the PI herself as a researcher at ANOTHER institution
+    ('Anwar Hithnawi is a research scientist at the NetSys Lab at UC Berkeley') is not this school's lab roster; its members are collaborators.
+    The 150 characters after the PI's full name must name no school affiliation (the charter regex) and name another institution."""
+    try:
+        t = kit.lpev.text(school, best.get('capture_url') or best['sha256'])
+    except (KeyError, ValueError):
+        return None
+    return pi_elsewhere_reason(t, str(p.get('pi') or ''), school)
+
+
+OTHER_INST_RX = re.compile(r"\b(?:ETH|EPFL|MIT|Stanford|Berkeley|UC\s+[A-Z][a-z]+|Cambridge|Oxford|Carnegie Mellon|CMU|Cornell|Princeton|Harvard|Yale|Columbia|"
+                           r"University of [A-Z][a-z]+(?:\s+[A-Z][a-z]+)?|[A-Z][a-z]+ University|Institute of Technology|RISE|Google|Microsoft|Meta|IBM)\b", re.I)
+
+
+def pi_elsewhere_reason(text, pi, school):
+    if not text or not pi:
+        return None
+    fl = fold(text)
+    i = fl.lower().find(fold(pi).lower())
+    while i >= 0:
+        seg = fl[i + len(pi): i + len(pi) + 150]
+        if re.match(r"\s+(?:is|was)\s+(?:a|an|the)\b", seg):
+            try:
+                import school_config as SC
+                aff = SC.aff_rx(school)
+            except Exception:  # noqa: BLE001
+                aff = re.compile(r'toronto|vector institute', re.I)
+            if not aff.search(seg) and OTHER_INST_RX.search(seg):
+                return ('site_at_other_institution', 'the page describes the PI as a researcher at another institution: a project or collaborator page, not this school\'s lab roster')
+        i = fl.lower().find(fold(pi).lower(), i + 1)
     return None
 
 
