@@ -541,12 +541,13 @@
 "name": "Bin Yu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "affiliation units ['Math']: not listed under any pinyin-compatible name in the captured faculty directories (Math 数学科学系, Engineering Physics 工程物理系 incl. former-faculty page, Humanities 人文学院 师资名单, plus the earlier reliable directories and listing rows 2016-2026, incl. other-unit lists). NOT read reliably: Physics, Economics & Management, Public Management, IE (list pages are JavaScript-built; rendered DOMs held no usable name list). Method Text::Unidecode forms.",
 "units": [
 "Math"
 ],
-"dblp": "https://dblp.org/pid/27/116-15"
+"dblp": "https://dblp.org/pid/27/116-15",
+"evidence_kind": "unit_directories_read_name_absent"
 },
 {
 "name": "Bin Zhao",
@@ -563,8 +564,8 @@
 "name": "Bin Zhou",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (PI:Precision Instruments (精密仪器系)); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "research_or_other_rank",
+"reason": "research_track_unevidenced: plausible match to a directory row with a research-track title and no independent-PI evidence yet (owner ruling 2026-11-10).",
 "units": [
 "Precision Instruments"
 ],
@@ -698,8 +699,8 @@
 "name": "Bo Hou",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (PI:Precision Instruments (精密仪器系)); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 侯波 (capture:Precision); window records 20",
 "units": [
 "Precision Instruments"
 ],
@@ -1848,8 +1849,8 @@
 "name": "Chao Wang [188/7759-122]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (EN:Energy and Power Engineering (EN list), EN:Energy and Power Engineering (能源与动力工程系), PI:Precision Instruments (精密仪器系)); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 王超 (capture:Energy/capture:Precision); window records 9",
 "units": [
 "Precision Instruments"
 ],
@@ -1995,8 +1996,8 @@
 "name": "Chao Zhang [94/3019-31]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (ME:Aerospace / Engineering Mechanics (EN list), ME:Aerospace / Engineering Mechanics (航天航空学院), listing:CS); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 张超 (capture:Aerospace/listing:CS/listing:EE); window records 213",
 "units": [
 "EE"
 ],
@@ -3812,8 +3813,8 @@
 "name": "Dan Zhao",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:IIIS); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "research_or_other_rank",
+"reason": "research_track_unevidenced: plausible match to a directory row with a research-track title and no independent-PI evidence yet (owner ruling 2026-11-10).",
 "units": [
 "IIIS"
 ],
@@ -4546,8 +4547,8 @@
 "name": "Fang Yang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:EE); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 杨昉 (listing:EE); window records 176",
 "units": [
 "IIIS-or-SIST",
 "Shenzhen (excluded scope)"
@@ -5500,12 +5501,13 @@
 "name": "Haibo Li",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "affiliation units ['Math']: not listed under any pinyin-compatible name in the captured faculty directories (Math 数学科学系, Engineering Physics 工程物理系 incl. former-faculty page, Humanities 人文学院 师资名单, plus the earlier reliable directories and listing rows 2016-2026, incl. other-unit lists). NOT read reliably: Physics, Economics & Management, Public Management, IE (list pages are JavaScript-built; rendered DOMs held no usable name list). Method Text::Unidecode forms.",
 "units": [
 "Math"
 ],
-"dblp": "https://dblp.org/pid/20/3896-7"
+"dblp": "https://dblp.org/pid/20/3896-7",
+"evidence_kind": "unit_directories_read_name_absent"
 },
 {
 "name": "Hailin Hu",
@@ -5523,8 +5525,8 @@
 "name": "Hailong Yao",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:CS); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 姚海龙 (listing:CS); window records 57",
 "units": [
 "CS",
 "CS-like",
@@ -6590,8 +6592,8 @@
 "name": "Hao Zhang [55/2270-5]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:EE); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 张颢 (listing:EE); window records 21",
 "units": [
 "EE"
 ],
@@ -7551,8 +7553,8 @@
 "name": "Hongming Zhang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:EE); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 张洪明 (listing:EE); window records 10",
 "units": [
 "IIIS-or-SIST",
 "Shenzhen (excluded scope)"
@@ -8469,12 +8471,13 @@
 "name": "Ji Shi",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "affiliation units ['Math']: not listed under any pinyin-compatible name in the captured faculty directories (Math 数学科学系, Engineering Physics 工程物理系 incl. former-faculty page, Humanities 人文学院 师资名单, plus the earlier reliable directories and listing rows 2016-2026, incl. other-unit lists). NOT read reliably: Physics, Economics & Management, Public Management, IE (list pages are JavaScript-built; rendered DOMs held no usable name list). Method Text::Unidecode forms.",
 "units": [
 "Math"
 ],
-"dblp": "https://dblp.org/pid/203/6784-1"
+"dblp": "https://dblp.org/pid/203/6784-1",
+"evidence_kind": "unit_directories_read_name_absent"
 },
 {
 "name": "Ji Sun",
@@ -8870,8 +8873,8 @@
 "name": "Jia Zhang [80/2266-4]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:INSC); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "research_or_other_rank",
+"reason": "research_track_unevidenced: plausible match to a directory row with a research-track title and no independent-PI evidence yet (owner ruling 2026-11-10).",
 "units": [
 "CS",
 "CS-like",
@@ -9561,8 +9564,8 @@
 "name": "Jian Song",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:EE); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 宋健 (listing:EE); window records 375",
 "units": [
 "IIIS-or-SIST"
 ],
@@ -10266,8 +10269,8 @@
 "name": "Jianyang Zeng",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:IIIS); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 曾坚阳 (listing:IIIS); window records 40",
 "units": [
 "IIIS"
 ],
@@ -11283,8 +11286,8 @@
 "name": "Jihong Zhu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (PI:Precision Instruments (精密仪器系), listing:CS); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 朱纪洪 (capture:Precision/listing:CS); window records 111",
 "units": [
 "Precision Instruments"
 ],
@@ -13236,12 +13239,13 @@
 "name": "Kai Yao",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "affiliation units ['Math']: not listed under any pinyin-compatible name in the captured faculty directories (Math 数学科学系, Engineering Physics 工程物理系 incl. former-faculty page, Humanities 人文学院 师资名单, plus the earlier reliable directories and listing rows 2016-2026, incl. other-unit lists). NOT read reliably: Physics, Economics & Management, Public Management, IE (list pages are JavaScript-built; rendered DOMs held no usable name list). Method Text::Unidecode forms.",
 "units": [
 "Math"
 ],
-"dblp": "https://dblp.org/pid/55/6594-2"
+"dblp": "https://dblp.org/pid/55/6594-2",
+"evidence_kind": "unit_directories_read_name_absent"
 },
 {
 "name": "Kai Zhang",
@@ -14068,8 +14072,8 @@
 "name": "Lan Zhang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:SW); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "research_or_other_rank",
+"reason": "research_track_unevidenced: plausible match to a directory row with a research-track title and no independent-PI evidence yet (owner ruling 2026-11-10).",
 "units": [
 "IIIS-or-SIST"
 ],
@@ -14323,8 +14327,8 @@
 "name": "Lei Yang [50/2484-25]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:SW); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "research_or_other_rank",
+"reason": "research_track_unevidenced: plausible match to a directory row with a research-track title and no independent-PI evidence yet (owner ruling 2026-11-10).",
 "units": [
 "Network",
 "Software"
@@ -14567,8 +14571,8 @@
 "name": "Li Zhang [89/5992-23]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:EE, listing:SW, read:建筑学院); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 张利 (listing:EE); window records 57",
 "units": [
 "EE"
 ],
@@ -14578,8 +14582,8 @@
 "name": "Li Zhang [89/5992-46]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:EE, listing:SW, read:建筑学院); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 张利 (listing:EE); window records 7",
 "units": [
 "EE"
 ],
@@ -15315,8 +15319,8 @@
 "name": "Lu Fang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:EE); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 方璐 (listing:EE); window records 131",
 "units": [
 "EE",
 "IIIS-or-SIST"
@@ -17975,8 +17979,8 @@
 "name": "Qi Li [181/2688-2]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (EN:Electrical Engineering and Applied Electronics (电机系), listing:CS, listing:INSC); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 李琦 (capture:Electrical/listing:CS/listing:INSC); window records 400",
 "units": [
 "CS",
 "CS-like",
@@ -18000,8 +18004,8 @@
 "name": "Qi Li [181/2688-40]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (EN:Electrical Engineering and Applied Electronics (电机系), listing:CS, listing:INSC); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 李琦 (capture:Electrical/listing:CS/listing:INSC); window records 5",
 "units": [
 "Network"
 ],
@@ -19442,12 +19446,13 @@
 "name": "Rong Gao",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "affiliation units ['Math']: not listed under any pinyin-compatible name in the captured faculty directories (Math 数学科学系, Engineering Physics 工程物理系 incl. former-faculty page, Humanities 人文学院 师资名单, plus the earlier reliable directories and listing rows 2016-2026, incl. other-unit lists). NOT read reliably: Physics, Economics & Management, Public Management, IE (list pages are JavaScript-built; rendered DOMs held no usable name list). Method Text::Unidecode forms.",
 "units": [
 "Math"
 ],
-"dblp": "https://dblp.org/pid/79/518-3"
+"dblp": "https://dblp.org/pid/79/518-3",
+"evidence_kind": "unit_directories_read_name_absent"
 },
 {
 "name": "Rong Yu",
@@ -19475,8 +19480,8 @@
 "name": "Rong Zhang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (PI:Precision Instruments (精密仪器系)); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "research_or_other_rank",
+"reason": "research_track_unevidenced: plausible match to a directory row with a research-track title and no independent-PI evidence yet (owner ruling 2026-11-10).",
 "units": [
 "Precision Instruments"
 ],
@@ -21726,12 +21731,13 @@
 "name": "Stephen S.-T. Yau",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "affiliation units ['Math']: not listed under any pinyin-compatible name in the captured faculty directories (Math 数学科学系, Engineering Physics 工程物理系 incl. former-faculty page, Humanities 人文学院 师资名单, plus the earlier reliable directories and listing rows 2016-2026, incl. other-unit lists). NOT read reliably: Physics, Economics & Management, Public Management, IE (list pages are JavaScript-built; rendered DOMs held no usable name list). Method Text::Unidecode forms.",
 "units": [
 "Math"
 ],
-"dblp": "https://dblp.org/pid/y/StephenSTYau"
+"dblp": "https://dblp.org/pid/y/StephenSTYau",
+"evidence_kind": "unit_directories_read_name_absent"
 },
 {
 "name": "Syed Mudassir",
@@ -22239,12 +22245,13 @@
 "name": "Tianhao Wu [17/1976-6]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "affiliation units ['Math']: not listed under any pinyin-compatible name in the captured faculty directories (Math 数学科学系, Engineering Physics 工程物理系 incl. former-faculty page, Humanities 人文学院 师资名单, plus the earlier reliable directories and listing rows 2016-2026, incl. other-unit lists). NOT read reliably: Physics, Economics & Management, Public Management, IE (list pages are JavaScript-built; rendered DOMs held no usable name list). Method Text::Unidecode forms.",
 "units": [
 "Math"
 ],
-"dblp": "https://dblp.org/pid/17/1976-6"
+"dblp": "https://dblp.org/pid/17/1976-6",
+"evidence_kind": "unit_directories_read_name_absent"
 },
 {
 "name": "Tianhao Wu [17/1976-10]",
@@ -22742,12 +22749,13 @@
 "name": "Tong Liu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "affiliation units ['Math']: not listed under any pinyin-compatible name in the captured faculty directories (Math 数学科学系, Engineering Physics 工程物理系 incl. former-faculty page, Humanities 人文学院 师资名单, plus the earlier reliable directories and listing rows 2016-2026, incl. other-unit lists). NOT read reliably: Physics, Economics & Management, Public Management, IE (list pages are JavaScript-built; rendered DOMs held no usable name list). Method Text::Unidecode forms.",
 "units": [
 "Math"
 ],
-"dblp": "https://dblp.org/pid/36/5558-36"
+"dblp": "https://dblp.org/pid/36/5558-36",
+"evidence_kind": "unit_directories_read_name_absent"
 },
 {
 "name": "Tong Wang",
@@ -24465,8 +24473,8 @@
 "name": "Wenhui Wang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (PI:Precision Instruments (精密仪器系)); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 王文会 (capture:Precision); window records 15",
 "units": [
 "Precision Instruments"
 ],
@@ -24533,12 +24541,13 @@
 "name": "Wenli Yang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "affiliation units ['Math']: not listed under any pinyin-compatible name in the captured faculty directories (Math 数学科学系, Engineering Physics 工程物理系 incl. former-faculty page, Humanities 人文学院 师资名单, plus the earlier reliable directories and listing rows 2016-2026, incl. other-unit lists). NOT read reliably: Physics, Economics & Management, Public Management, IE (list pages are JavaScript-built; rendered DOMs held no usable name list). Method Text::Unidecode forms.",
 "units": [
 "Math"
 ],
-"dblp": "https://dblp.org/pid/49/5412-5"
+"dblp": "https://dblp.org/pid/49/5412-5",
+"evidence_kind": "unit_directories_read_name_absent"
 },
 {
 "name": "Wenpeng Zhang",
@@ -25963,8 +25972,8 @@
 "name": "Xiaolong Zheng [98/3341-2]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:SW); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "research_or_other_rank",
+"reason": "research_track_unevidenced: plausible match to a directory row with a research-track title and no independent-PI evidence yet (owner ruling 2026-11-10).",
 "units": [
 "Software"
 ],
@@ -26812,8 +26821,8 @@
 "name": "Xing Li",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:EE); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 李星 (listing:EE); window records 38",
 "units": [
 "EE"
 ],
@@ -27657,8 +27666,8 @@
 "name": "Xudong Zhang [58/6205-1]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:EE); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 张旭东 (listing:EE); window records 62",
 "units": [
 "EE"
 ],
@@ -27704,8 +27713,8 @@
 "name": "Xue Wang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (PI:Precision Instruments (精密仪器系)); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 王雪 (capture:Precision); window records 32",
 "units": [
 "Precision Instruments"
 ],
@@ -28866,8 +28875,8 @@
 "name": "Yang Yu [46/2181-11]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:IIIS); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 于洋 (listing:IIIS); window records 28",
 "units": [
 "IIIS"
 ],
@@ -28877,8 +28886,8 @@
 "name": "Yang Yuan",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:CS, listing:IIIS); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 袁洋 (listing:IIIS); window records 69",
 "units": [
 "IIIS"
 ],
@@ -32110,8 +32119,8 @@
 "name": "Yu Zhang [50/671-26]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:EE); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 张彧 (listing:EE); window records 27",
 "units": [
 "EE"
 ],
@@ -32561,12 +32570,13 @@
 "name": "Yuan Zhou [40/7018-7]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "affiliation units ['Math']: not listed under any pinyin-compatible name in the captured faculty directories (Math 数学科学系, Engineering Physics 工程物理系 incl. former-faculty page, Humanities 人文学院 师资名单, plus the earlier reliable directories and listing rows 2016-2026, incl. other-unit lists). NOT read reliably: Physics, Economics & Management, Public Management, IE (list pages are JavaScript-built; rendered DOMs held no usable name list). Method Text::Unidecode forms.",
 "units": [
 "Math"
 ],
-"dblp": "https://dblp.org/pid/40/7018-7"
+"dblp": "https://dblp.org/pid/40/7018-7",
+"evidence_kind": "unit_directories_read_name_absent"
 },
 {
 "name": "Yuandong Wang",
@@ -35217,12 +35227,13 @@
 "name": "Zhe Liu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "affiliation units ['Math']: not listed under any pinyin-compatible name in the captured faculty directories (Math 数学科学系, Engineering Physics 工程物理系 incl. former-faculty page, Humanities 人文学院 师资名单, plus the earlier reliable directories and listing rows 2016-2026, incl. other-unit lists). NOT read reliably: Physics, Economics & Management, Public Management, IE (list pages are JavaScript-built; rendered DOMs held no usable name list). Method Text::Unidecode forms.",
 "units": [
 "Math"
 ],
-"dblp": "https://dblp.org/pid/70/1220-27"
+"dblp": "https://dblp.org/pid/70/1220-27",
+"evidence_kind": "unit_directories_read_name_absent"
 },
 {
 "name": "Zhe Ma",
@@ -35787,12 +35798,13 @@
 "name": "Zhengyi Jiang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "affiliation units ['Math']: not listed under any pinyin-compatible name in the captured faculty directories (Math 数学科学系, Engineering Physics 工程物理系 incl. former-faculty page, Humanities 人文学院 师资名单, plus the earlier reliable directories and listing rows 2016-2026, incl. other-unit lists). NOT read reliably: Physics, Economics & Management, Public Management, IE (list pages are JavaScript-built; rendered DOMs held no usable name list). Method Text::Unidecode forms.",
 "units": [
 "Math"
 ],
-"dblp": "https://dblp.org/pid/206/7551-1"
+"dblp": "https://dblp.org/pid/206/7551-1",
+"evidence_kind": "unit_directories_read_name_absent"
 },
 {
 "name": "Zhengyu Chen",
@@ -36759,8 +36771,8 @@
 "name": "Zhilin Yang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (listing:IIIS); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "accepted",
+"reason": "accepted (fresh-reviewer batch 2026-11-10): the DBLP person is plausibly the unit-directory faculty member (unit agrees, ladder rank in the directory row), computing evidence from the Tsinghua DBLP records; census addition and department/listing coverage for the unit are follow-ups; identity not bound (R-PAP-44). Reviewer: DBLP unit vs directory 杨植麟 (listing:IIIS); window records 64",
 "units": [
 "IIIS"
 ],
@@ -36882,8 +36894,8 @@
 "name": "Zhiyong Chen",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched in captured directories (PI:Precision Instruments (精密仪器系)); unit agreement and identity unverified (pinyin never binds, R-PAP-44); needs new-PI/alias review.",
+"decision": "research_or_other_rank",
+"reason": "research_track_unevidenced: plausible match to a directory row with a research-track title and no independent-PI evidence yet (owner ruling 2026-11-10).",
 "units": [
 "Precision Instruments"
 ],
@@ -37792,12 +37804,13 @@
 "name": "Ziyu Zhao",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "affiliation units ['Math']: not listed under any pinyin-compatible name in the captured faculty directories (Math 数学科学系, Engineering Physics 工程物理系 incl. former-faculty page, Humanities 人文学院 师资名单, plus the earlier reliable directories and listing rows 2016-2026, incl. other-unit lists). NOT read reliably: Physics, Economics & Management, Public Management, IE (list pages are JavaScript-built; rendered DOMs held no usable name list). Method Text::Unidecode forms.",
 "units": [
 "Math"
 ],
-"dblp": "https://dblp.org/pid/157/9260-2"
+"dblp": "https://dblp.org/pid/157/9260-2",
+"evidence_kind": "unit_directories_read_name_absent"
 },
 {
 "name": "Ziyuan Liu",
