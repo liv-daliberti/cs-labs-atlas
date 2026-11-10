@@ -1687,7 +1687,7 @@ A proposed lab member (LP-STU-01): the labpage-evidence row shape plus pi, alumn
 | `rule` | string | yes | Rule. | always `LP-STU-01` |  |
 | `auto` | boolean | yes | Automatic. | always `true` |  |
 | `pi_first_year` | integer \| null | no | The PI's first year here. |  |  |
-| `role_basis` | string | no | Where the role comes from. entry_parenthetical: a role in a parenthesis after the name ('(PhD student)'); withheld_role_round_failed: the membership-only wiring withheld it (docs/LAB-PAGES.md); withheld_bio_degree_sentence: the role was read from a bio's degree sentence or a neighbour's cell (R-LAB-05). | one of `section_heading`, `entry`, `entry_parenthetical`, `reviewer`, `withheld_role_round_failed`, `withheld_bio_degree_sentence`, `none` |  |
+| `role_basis` | string | no | Where the role comes from. entry_parenthetical: a role in a parenthesis after the name ('(PhD student)'); withheld_role_round_failed: the membership-only wiring withheld it (docs/LAB-PAGES.md); withheld_bio_degree_sentence: the role was read from a bio's degree sentence or a neighbour's cell (R-LAB-05); withheld_hand_check_20261110: a hand check recorded the role as wrong and withheld it (hand_review role_withheld). | one of `section_heading`, `entry`, `entry_parenthetical`, `reviewer`, `withheld_role_round_failed`, `withheld_bio_degree_sentence`, `withheld_hand_check_20261110`, `none` |  |
 | `years_basis` | string | no | Where the years come from. withheld_role_round_failed: the membership-only wiring withheld them (docs/LAB-PAGES.md). | one of `stated_in_entry`, `section_year_heading`, `reviewer`, `withheld_role_round_failed`, `none` |  |
 
 ### labpage-additions: shape `paper`
