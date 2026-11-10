@@ -1,0 +1,40 @@
+{
+ "school": "tsinghua",
+ "kind": "students and website records, independent reviewers (fresh Sonnet subagents, not the author)",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-11-10",
+   "seed": 1110202611,
+   "sample": {
+    "students": 20,
+    "websites": 20,
+    "papers": 0
+   },
+   "students": {
+    "membership_correct": 20,
+    "membership_wrong": 0,
+    "membership_doubtful": 0,
+    "role_year_ok": 20,
+    "role_year_error": 0,
+    "quote_verbatim": 20,
+    "sha_match": 20,
+    "notes": "4 赵曦滨 rows are team-level attribution (page names 孙家广 advisor and 赵曦滨 academic leader; cohorts not per adviser); coordinator-approved, rows are noted for reversal."
+   },
+   "websites": {
+    "correct": 18,
+    "doubtful": 2,
+    "wrong": 0,
+    "official_link_yes": 12,
+    "official_link_no": 8,
+    "notes": "8 official_link=no rows are prior-ledger IIIS group pages and personal pages not linked from the profile (kept official_link_status not_recorded); 朱军 meta-refresh stub; 张长水 paper-list subpage."
+   },
+   "papers": "not applicable: no papers were added in this pass",
+   "result": "students sample passes the numeric bar (0 membership, 0 role/year errors in 20); NOT recorded as labpage acceptance: the labpage_audit discover/recover/audit pipeline was not run and no papers round exists, so gate 6 stays open",
+   "verdict_files": [
+    "scratch/tsinghua-students-1110/handcheck_students_verdicts.json",
+    "scratch/tsinghua-students-1110/handcheck_websites_verdicts.json"
+   ]
+  }
+ ]
+}
