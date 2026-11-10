@@ -45,6 +45,7 @@
  "fulltext-push/s2_bulk.py": "collector entry point or helper launched under python -I (no PYTHONPATH, no script directory on sys.path)",
  "fulltext-push/stanford_catalog.py": "collector entry point or helper launched under python -I (no PYTHONPATH, no script directory on sys.path)",
  "fulltext-push/unavailable_ledger.py": "collector entry point or helper launched under python -I (no PYTHONPATH, no script directory on sys.path)",
+ "fulltext-push/warm_copy_cache.py": "collector entry point launched under python -I (no script directory on sys.path), like add_works.py",
  "fulltext-push/yield_since.py": "collector entry point or helper launched under python -I (no PYTHONPATH, no script directory on sys.path)",
  "hierarchy/labpage-tools-cmu/build.py": "lab-page tool launched under python -I",
  "hierarchy/labpage-tools-cmu/capstore.py": "lab-page tool launched under python -I",
@@ -104,6 +105,7 @@
  "hierarchy/labpage-tools-stanford/stlp.py": "lab-page tool launched under python -I",
  "hierarchy/labpage-tools-stanford/verify.py": "lab-page tool launched under python -I",
  "listings/scripts/build.py": "listing script; imported by -I scripts or run standalone",
+ "listings/scripts/cc_fill.py": "listing script; imported by -I scripts or run standalone",
  "listings/scripts/discover.py": "listing script; imported by -I scripts or run standalone",
  "listings/scripts/filled.py": "listing script; imported by -I scripts or run standalone",
  "listings/scripts/make_profile_targets.py": "listing script; imported by -I scripts or run standalone",
@@ -181,6 +183,5 @@
  "vendor/princeton_tools/import_all_when_free.py": "vendored verbatim (tools/vendor_sync.py hashes it); reached through PYTHONPATH where possible, never edited",
  "vendor/princeton_tools/import_when_free.py": "vendored verbatim (tools/vendor_sync.py hashes it); reached through PYTHONPATH where possible, never edited",
  "vendor/princeton_tools/oar_index.py": "vendored verbatim (tools/vendor_sync.py hashes it); reached through PYTHONPATH where possible, never edited",
- "vendor/site_builder/build-cs-hierarchy.py": "vendored verbatim (tools/vendor_sync.py hashes it); reached through PYTHONPATH where possible, never edited",
- "fulltext-push/warm_copy_cache.py": "collector entry point launched under python -I (no script directory on sys.path), like add_works.py"
+ "vendor/site_builder/build-cs-hierarchy.py": "vendored verbatim (tools/vendor_sync.py hashes it); reached through PYTHONPATH where possible, never edited"
 }

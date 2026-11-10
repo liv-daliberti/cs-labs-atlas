@@ -11,6 +11,7 @@
 # Resumable: the cdx cache in the db and the state file make a re-run ask nothing twice. Exit 4 = Common Crawl robots refuse (nothing fetched).
 set -u
 school=$1; db=$2; shift 2
-. "$(cd "${SLURM_SUBMIT_DIR:-.}" && git rev-parse --show-toplevel)/paths.sh" || exit 1
-cd "$CS_ATLAS_CODE/listings/scripts" 2>/dev/null || cd "$(dirname "$0")"
-exec ${CS_ATLAS_PY} -I -u cc_fill.py "$school" --db "$db" --state "$db.cc-state.json" "$@"
+. "${CS_ATLAS_CODE:-/n/fs/resemble/homogenizing-science/code}/paths.sh" || exit 1
+. "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1
+cd "$CS_ATLAS_SNAPSHOT/listings/scripts" || exit 1
+${CS_ATLAS_PY} -I -u cc_fill.py "$school" --db "$db" --state "$db.cc-state.json" "$@"
