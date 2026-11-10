@@ -416,7 +416,18 @@
       "on": "2026-11-10"
     }
   },
-  "Kuldeep Meel": {},
+  "Kuldeep Meel": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His page's header gives his primary affiliation as the Georgia Institute of Technology with Toronto 'On leave', says \"Prior to moving to Toronto, I held NUS Presidential Young Professorship\" (https://www.cs.toronto.edu/~meel/, sha256 789622f13d0cf1f31c794ec1e7ee345bf09b089503a36d07923f4392228311ee), and lists a Students & Postdocs roster (\"Arijit Shaw (Fall 2021--Present)\" (https://www.cs.toronto.edu/~meel/, sha256 789622f13d0cf1f31c794ec1e7ee345bf09b089503a36d07923f4392228311ee)) whose graduates carry institution tags such as '@NUS' and '@IITK' while the current students carry none. The page does not state which listed students are at Toronto. Held as a mixed-institution roster.",
+      "sources_checked": [
+        "https://www.cs.toronto.edu/~meel/ (sha256 789622f13d0cf1f3, read live 2026-11-07): roster with NUS/IITK-tagged graduates and untagged current students; primary affiliation Georgia Tech, Toronto on leave",
+        "https://web.cs.toronto.edu/people/faculty-directory (sha256 ab4fff5fca74192a): official listing carrying the PI (\"Kuldeep Meel Associate Professor\")"
+      ],
+      "by": "claude-toronto-students-1110",
+      "on": "2026-11-10"
+    }
+  },
   "Colin Raffel": {
     "students": {
       "code": "sources_exhausted",
@@ -1199,6 +1210,67 @@
         "adviser-bearing student directories: none exist or are archived for this school (checked at stage 6)",
         "thesis repository: TSpace robots.txt names AI agents (checked 2026-11-07): never used in any form; theses reach us only through OpenAlex. Collect explicit supervisor statements only elsewhere."
       ]
+    }
+  },
+  "Varinia Bernales": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "The PI's own Matter Lab page has no roster section in its text (no list of members with roles or years); its news items name individuals only in passing (\"It was a pleasure having Makar in the Matter Lab as a visiting student during his master\" (https://bernales.org/, sha256 4e8c50b717fe6ba397b41612ab31389a9f6e3a3ca0a9b26d8213474c622c6fec) ... Makar Saviak, a visiting student whose period is not stated) and refer to members as a group (\"Former and current members of the Matter Lab and members Zapata Quantum got together at IEEE Quantum Week!\" (https://bernales.org/, sha256 4e8c50b717fe6ba397b41612ab31389a9f6e3a3ca0a9b26d8213474c622c6fec)). Her postdoc page is a job advertisement. No relation with a role and years can be taken from these news items (held); a separate members page was not found from the pages read.",
+      "sources_checked": [
+        "https://bernales.org/ (sha256 4e8c50b717fe6ba3, read live 2026-11-07): lab home page read in full: news items only, no roster section",
+        "https://bernales.org/positions/postdoc (sha256 e91c8ebfe13c58ec, read live 2026-11-10): postdoc advertisement, no member named",
+        "https://web.cs.toronto.edu/people/faculty-directory (sha256 ab4fff5fca74192a): official listing carrying the PI (\"Varinia Bernales Assistant Professor\")"
+      ],
+      "by": "claude-toronto-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Anwar Hithnawi": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "The people page of her lab lists members and alumni (\"Anwar Hithnawi Group Leader\" (https://pps-lab.com/people/, sha256 70d5d590aed7313137c5b512abecee275679d7d0fba25f0220879c90b1ef282d)) with roles but states no institution and no dates per entry, no entry can be tied to Toronto from the page itself. Held as a roster with no per-entry institution or years.",
+      "sources_checked": [
+        "https://pps-lab.com/people/ (sha256 70d5d590aed73131, read live 2026-11-10): group roster: roles only, no institution or years per entry",
+        "https://web.cs.toronto.edu/people/faculty-directory (sha256 ab4fff5fca74192a): official listing carrying the PI (\"Anwar Hithnawi Assistant Professor\")"
+      ],
+      "by": "claude-toronto-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Zhijing Jin": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "Her lab page lists members of a three-site lab ('a Toronto team at UofT and Vector Institute; a European team ... ; and a Global team') in one undifferentiated list with area labels only (\"Yongjin Yang (PhD)\" (https://zhijing-jin.com/home/, sha256 28fab94192e4e96d78f464c54415458bb87ff9ca4e75e6bc974dd7d3538d00c6)), so which entries are Toronto students is not stated. Held as a shared, multi-site roster; no entry names Toronto as its institution.",
+      "sources_checked": [
+        "https://zhijing-jin.com/home/ (sha256 28fab94192e4e96d, read live 2026-11-07): one mixed list of members of the Toronto, European and Global teams",
+        "https://web.cs.toronto.edu/people/faculty-directory (sha256 ab4fff5fca74192a): official listing carrying the PI (\"Zhijing Jin Assistant Professor\")"
+      ],
+      "by": "claude-toronto-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Thomas Ristenpart": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His group page lists current students and prior members (\"Sanketh Menda (PhD 2025 -> Amazon Web Services)\" (https://www.cs.toronto.edu/~ristenpart/group.html, sha256 672f03c4c9dc1afdef59e7ca1bbd44f65ac54b9efc741e16d1b59d4f4cc2ad72)) whose degrees span 2012-2025, with no institution stated for any entry. The page does not say which entries are Toronto students, so none is recorded. Held as a roster with no per-entry institution.",
+      "sources_checked": [
+        "https://www.cs.toronto.edu/~ristenpart/group.html (sha256 672f03c4c9dc1afd, read live 2026-11-10): roster spanning 2012-2025 with no institution stated per entry",
+        "https://web.cs.toronto.edu/people/faculty-directory (sha256 ab4fff5fca74192a): official listing carrying the PI (\"Thomas Ristenpart Professor\")"
+      ],
+      "by": "claude-toronto-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Ohad Shamir": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His Students page names its roster as another institution's: \"Current group members (Weizmann Institute)\" (https://www.cs.toronto.edu/~oshamir/Students.html, sha256 be515fc38afc2c8f9c5e6df2d9b69513d4da132df96471e169989a411a019ccd). No Toronto student is named.",
+      "sources_checked": [
+        "https://www.cs.toronto.edu/~oshamir/Students.html (sha256 be515fc38afc2c8f, read live 2026-11-10): roster headed Weizmann Institute: other-institution members",
+        "https://web.cs.toronto.edu/people/faculty-directory (sha256 ab4fff5fca74192a): official listing carrying the PI (\"Ohad Shamir Professor\")"
+      ],
+      "by": "claude-toronto-students-1110",
+      "on": "2026-11-10"
     }
   }
 }
