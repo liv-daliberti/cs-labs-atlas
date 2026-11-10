@@ -50,3 +50,18 @@ def test_R_PAP_44_listing_linked_page_still_needs_ten_titles_and_no_namesake():
     assert t.decide({f'k{i}' for i in range(9)}, people(), 'p1', False, page)[1] == 'fewer_than_10_exact_titles'
     ps = people({'p2': {'names': ['Bin Wang 0044'], 'keys': {'k1'}}})
     assert t.decide({f'k{i}' for i in range(10)}, ps, 'p1', False, page)[1] == 'namesake_shares_matched_titles'
+
+
+def test_R_PAP_44_person_name_must_equal_a_pi_alias():
+    ten = {f'k{i}' for i in range(10)}
+    ps = {'p1': {'names': ['Haibo Chen 0001'], 'keys': {f'k{i}' for i in range(12)}}}
+    assert t.decide(ten, ps, 'p1', True, None, ['Rong Chen']) == (False, 'person_name_not_pi_alias')
+    assert t.decide(ten, ps, 'p1', True, None, ['Haibo Chen'])[0]
+    assert t.decide(ten, ps, 'p1', True, None, ['Chen, Haibo'.replace(',', '')])[0]   # word order ignored
+    assert t.decide(ten, ps, 'p1', True)[0]   # no aliases passed: the old behavior
+
+
+def test_R_PAP_44_hyphenated_alias_matches():
+    ten = {f'k{i}' for i in range(10)}
+    ps = {'p1': {'names': ['Wei-Long Zheng'], 'keys': {f'k{i}' for i in range(12)}}}
+    assert t.decide(ten, ps, 'p1', True, None, ['Wei Long Zheng'])[0]
