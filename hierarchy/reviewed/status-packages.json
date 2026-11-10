@@ -83,10 +83,11 @@
    "next_step": "DISCLOSURE: only 52 of 207 PIs have an owned DBLP binding; 155 carry reviewed no_identity holds and have no attributed papers (7 thin title evidence, 52 unlinked candidates, 96 none found; reports/IDENTITY-DISCLOSURE-20261110.md). All anchored OpenAlex ids of the 52 are mixed (about 560 anchored rows need per-work evidence); outside_appointment 3,050 because pre-2021 listings are not captured (job 32180010 queued behind the Wayback cooldown). Frozen inputs of the next native must add reviewed/labpage-evidence.json and reviewed/lab-websites-sweep.json (student worker). Open: stage 1 pre-2021 listings, stage 2 review of 2,062 DBLP candidates (T132), stage 3 home departments (207 prepared in scratch/tsinghua-overlay-1110, placed at promotion), stages 6-9."
   },
   "harvard": {
-   "basis": "overlay trial package (not admitted); the frozen release counts are in the frozen_* columns",
-   "path": "worktrees/harvard-deepdive/hierarchy/harvard/tmp/overlay/hierarchy/harvard/derived",
+   "basis": "isolated native package built from the private overlay (owner Choice B, job 32183306, code 8c60a71), not admitted; main's raw and derived untouched (main derived sha256 identical before and after); byte-identical to the overlay run; the frozen release counts are in the frozen_* columns",
+   "path": "scratch/harvard-final-1110/package/harvard",
    "copies_counter": "scratch/downloads-1110/hierarchy/harvard/derived/copies.json",
-   "next_step": "Run the Wayback listing chain, periods stage 4, student hand-check, then land the overlay."
+   "disclosure": "3524 lab-paper rows / 3177 works, 274 lab-student rows (79 PIs, 75 with papers), 427 student-paper links; 94 lab-page student rows and 30 paper rows wired after blind independent reviews; gates 3, 6 and 7 still fail (stage 3 websites, stage 6 41 generated reasons awaiting an owner waiver decision, stage 7 one link); no copies, ids or ledger run on this package.",
+   "next_step": "Owner: stage-6 waiver decision; then ID preparation, copies/ledger on the package and release admission review."
   }
  },
  "carried": {
