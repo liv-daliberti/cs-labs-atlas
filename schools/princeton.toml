@@ -48,7 +48,7 @@ reason = "no OAI-PMH endpoint: /oai/request and /jspui/oai/request answer 404 (c
 # Hosts the princeton tools contact (stage 0, 2026-11-10). Derived from evidence: the raw capture stores (hierarchy/princeton/raw/*captures*.sqlite) and the full-text download ledger (stores/princeton/fulltext_assets.csv). The long tail of faculty personal sites is read per capture under school_web robots checks and is not enumerated here.
 [[hosts]]
 host = "web.archive.org"
-use = "live"
+use = "none"
 purpose = "Wayback id_ captures and CDX (411 captures in the princeton raw stores; listings, lab pages, theses)"
 probe = ""
 
@@ -138,14 +138,14 @@ probe = ""
 
 [[hosts]]
 host = "hal.science"
-use = "live"
-purpose = "Third-party source: 323 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+use = "none"
+purpose = "Third-party source: 323 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 302); must not be live]"
 probe = ""
 
 [[hosts]]
 host = "www.princeton.edu"
-use = "live"
-purpose = "School site: 67 captures in the raw stores (67 live, 0 via Wayback; 61 HTTP 200); 110 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+use = "wayback-only"
+purpose = "School site: 67 captures in the raw stores (67 live, 0 via Wayback; 61 HTTP 200); 110 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: live probe was a bot challenge; Wayback only]"
 probe = "https://www.princeton.edu/"
 
 [[hosts]]
@@ -156,8 +156,8 @@ probe = "https://pillowlab.princeton.edu/"
 
 [[hosts]]
 host = "ece.princeton.edu"
-use = "live"
-purpose = "School site: 68 captures in the raw stores (67 live, 1 via Wayback; 63 HTTP 200) (derived 2026-11-10 from evidence)"
+use = "wayback-only"
+purpose = "School site: 68 captures in the raw stores (67 live, 1 via Wayback; 63 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: live probe was a bot challenge; Wayback only]"
 probe = "https://ece.princeton.edu/"
 
 [[hosts]]
@@ -169,31 +169,31 @@ probe = "https://www.math.princeton.edu/"
 [[hosts]]
 host = "web.math.princeton.edu"
 use = "live"
-purpose = "School site: 28 captures in the raw stores (28 live, 0 via Wayback; 28 HTTP 200); 12 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
-probe = "https://web.math.princeton.edu/"
+purpose = "School site: 28 captures in the raw stores (28 live, 0 via Wayback; 28 HTTP 200); 12 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://web.math.princeton.edu/ only redirects off-host (http 301); robots allowed]"
+probe = ""
 
 [[hosts]]
 host = "orfe.princeton.edu"
-use = "live"
-purpose = "School site: 30 captures in the raw stores (21 live, 9 via Wayback; 26 HTTP 200) (derived 2026-11-10 from evidence)"
+use = "wayback-only"
+purpose = "School site: 30 captures in the raw stores (21 live, 9 via Wayback; 26 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: live probe was a bot challenge; Wayback only]"
 probe = "https://orfe.princeton.edu/"
 
 [[hosts]]
 host = "mae.princeton.edu"
-use = "live"
-purpose = "School site: 27 captures in the raw stores (16 live, 11 via Wayback; 22 HTTP 200) (derived 2026-11-10 from evidence)"
+use = "wayback-only"
+purpose = "School site: 27 captures in the raw stores (16 live, 11 via Wayback; 22 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: live probe was a bot challenge; Wayback only]"
 probe = "https://mae.princeton.edu/"
 
 [[hosts]]
 host = "ee.princeton.edu"
-use = "live"
-purpose = "School site: 27 captures in the raw stores (26 live, 1 via Wayback; 25 HTTP 200) (derived 2026-11-10 from evidence)"
+use = "wayback-only"
+purpose = "School site: 27 captures in the raw stores (26 live, 1 via Wayback; 25 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: live probe was a bot challenge; Wayback only]"
 probe = "https://ee.princeton.edu/"
 
 [[hosts]]
 host = "mracz.princeton.edu"
-use = "live"
-purpose = "School site: 21 captures in the raw stores (21 live, 0 via Wayback; 3 HTTP 200) (derived 2026-11-10 from evidence)"
+use = "none"
+purpose = "School site: 21 captures in the raw stores (21 live, 0 via Wayback; 3 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt unreachable (status -1); unusable]"
 probe = "https://mracz.princeton.edu/"
 
 [collector]
