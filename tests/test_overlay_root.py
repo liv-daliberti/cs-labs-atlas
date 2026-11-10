@@ -19,6 +19,7 @@ def tree(tmp_path):
     (main / 'hierarchy' / 'newu' / 'reviewed' / 'a.json').write_text('main-a')
     (main / 'hierarchy' / 'newu' / 'reviewed' / 'b.json').write_text('main-b')
     (main / 'census').mkdir()
+    (main / 'listings').mkdir()
     (main / 'hierarchy' / 'newu' / 'work').mkdir()
     (main / 'hierarchy' / 'newu' / 'work' / 'dblp-recover.sqlite').write_text('main-work')
     (main / 'hierarchy' / 'reviewed').mkdir()
@@ -104,3 +105,34 @@ def test_read_only_build_recovery_inputs_are_copied_without_sharing_mutable_work
         assert not (work / name).is_symlink()
         (work / name).write_bytes(b'isolated changed input')
         assert (original / name).read_bytes() == b'recovered source bytes'
+
+
+def test_private_copies_survive_a_rebuild_and_main_stays_unchanged(tmp_path):
+    main, wt = tree(tmp_path)
+    (main / 'listings' / 'newu' / 'derived').mkdir(parents=True)
+    (main / 'hierarchy' / 'newu' / 'derived' / 'pis.json').write_text('main-pis')
+    (main / 'hierarchy' / 'newu' / 'raw' / 'school-captures.sqlite').write_text('main-cap')
+    out = main / 'hierarchy' / 'newu' / 'tmp' / 'ov'
+    O.build('newu', out, worktree=wt, main=main, private=True)
+    for rel in ('hierarchy/newu/derived', 'hierarchy/newu/raw', 'listings/newu'):
+        assert (out / rel).is_dir() and not (out / rel).is_symlink()
+    (out / 'hierarchy' / 'newu' / 'derived' / 'pis.json').write_text('trial')
+    (out / 'listings' / 'newu' / 'raw' / 'captures.sqlite').write_text('27 captures')
+    (out / 'hierarchy' / 'newu' / 'raw' / 'school-captures.sqlite').write_text('grown')
+    O.build('newu', out, worktree=wt, main=main)   # a plain rebuild must not delete or relink them
+    assert (out / 'listings' / 'newu' / 'raw' / 'captures.sqlite').read_text() == '27 captures'
+    assert (out / 'hierarchy' / 'newu' / 'derived' / 'pis.json').read_text() == 'trial'
+    assert (out / 'hierarchy' / 'newu' / 'raw' / 'school-captures.sqlite').read_text() == 'grown'
+    assert (main / 'hierarchy' / 'newu' / 'derived' / 'pis.json').read_text() == 'main-pis'
+    assert O.verify(out) == []
+
+
+def test_verify_reports_a_change_to_main_derived_files(tmp_path):
+    main, wt = tree(tmp_path)
+    (main / 'hierarchy' / 'newu' / 'derived' / 'pis.json').write_text('before')
+    out = main / 'hierarchy' / 'newu' / 'tmp' / 'ov'
+    O.build('newu', out, worktree=wt, main=main, private=True)
+    assert O.main(['newu', '--out', str(out), '--verify']) == 0
+    (main / 'hierarchy' / 'newu' / 'derived' / 'pis.json').write_text('overwritten')
+    assert O.verify(out) == ['hierarchy/newu/derived/pis.json']
+    assert O.main(['newu', '--out', str(out), '--verify']) == 1

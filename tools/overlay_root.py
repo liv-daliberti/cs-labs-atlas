@@ -12,13 +12,16 @@ The overlay is a directory of symlinks that looks like the main code root, excep
     the old symlink. `atlas_paths.data()` resolves work files into it, and `data_w()` seeds a copy of main's file there when the file is first written
     (the marker .overlay.json at the overlay root names main). The three compressed recovery/publication inputs are copied
     at overlay creation so a read-only build retains them without first running a collector. Main's work files are never opened for writing;
-  - hierarchy/<school>/derived, raw and tmp are main's (build outputs stay where the release and the other tools read them);
+  - hierarchy/<school>/derived, raw and tmp are main's (build outputs stay where the release and the other tools read them) UNLESS `--private`: then derived,
+    the mutable raw stores and listings/<school> are real copies, a rebuild of the overlay PRESERVES them (never deletes a private copy), the overlay holds a
+    sha256 receipt of main's school derived files (main-derived.sha256.json) and `--verify` fails when main's files changed since;
   - everything else in the main root is a symlink to main.
 Run any tool against it with `CS_ATLAS_CODE=<out> bin/atlas <command>` (from the worktree). Nothing in main's tracked files is touched.
 
-  overlay_root.py <school> --out <dir> [--worktree <dir>]      (<dir> under hierarchy/<school>/tmp/, which git ignores; rebuilt if it exists)
+  overlay_root.py <school> --out <dir> [--worktree <dir>] [--private] [--verify]      (<dir> under hierarchy/<school>/tmp/, which git ignores; rebuilt if it exists)
 """
 import argparse
+import hashlib
 import json
 import shutil
 import subprocess
@@ -32,6 +35,72 @@ SCHOOL_REAL = ('reviewed', 'reports', 'work')   # work: real but empty (seeded o
 SEEDED_EMPTY = ('work',)
 WORK_READ_INPUTS = ('dblp-recovered.jsonl.gz', 'labpage-recovered.jsonl.gz', 'labpage-pubs.jsonl.gz')
 SHARED_REVIEWED = 'reviewed'   # hierarchy/reviewed/: shared reviewed files
+# Private copies (2026-11-09, Harvard incident: a builder run through the default symlinks overwrote main's derived files, and a later overlay
+# rebuild deleted a private captures store a running job was filling). `--private` makes these real copies; a rebuild PRESERVES them.
+MUTABLE_RAW = ('school-captures.sqlite', 'labpage-audit-captures.sqlite', 'labpage-audit-discovery.jsonl', 'pi-works.sqlite')
+COPY_LIMIT = 100 * 1024 * 1024   # raw files above this stay main's read-only symlinks (the OpenAlex sweep)
+RECEIPT = 'main-derived.sha256.json'
+
+
+def private_paths(school):
+    """Overlay-relative paths that hold private copies once `--private` made them."""
+    return [Path('hierarchy') / school / 'derived', Path('hierarchy') / school / 'raw', Path('listings') / school]
+
+
+def is_private(out, rel):
+    p = Path(out) / rel
+    return p.is_dir() and not p.is_symlink()
+
+
+def main_hashes(main, school):
+    """sha256 of every file in main's school derived and listings dirs (the files a builder run through a symlink would overwrite)."""
+    h = {}
+    for d in (Path(main) / 'hierarchy' / school / 'derived', Path(main) / 'listings' / school / 'derived'):
+        for f in sorted(d.rglob('*')) if d.is_dir() else []:
+            if f.is_file():
+                h[str(f.relative_to(main))] = hashlib.sha256(f.read_bytes()).hexdigest()
+    return h
+
+
+def make_private(out, school, main):
+    """Replace the overlay's derived / raw / listings-<school> symlinks by private copies (idempotent; an existing private dir is left alone)."""
+    out, main = Path(out), Path(main)
+    d = out / 'hierarchy' / school / 'derived'
+    if d.is_symlink():
+        d.unlink()
+        shutil.copytree(main / 'hierarchy' / school / 'derived', d)
+    r = out / 'hierarchy' / school / 'raw'
+    if r.is_symlink():
+        r.unlink()
+        r.mkdir()
+        for f in sorted((main / 'hierarchy' / school / 'raw').iterdir()):
+            if f.is_file() and f.name in MUTABLE_RAW and f.stat().st_size <= COPY_LIMIT:
+                shutil.copy2(f, r / f.name)
+            else:
+                link(r / f.name, f)
+    li = out / 'listings'
+    if li.is_symlink():
+        li.unlink()
+        li.mkdir()
+        for f in sorted((main / 'listings').iterdir()):
+            if f.name != school:
+                link(li / f.name, f)
+    sd = li / school
+    if not sd.exists():
+        sd.mkdir()
+        if (main / 'listings' / school / 'derived').is_dir():
+            shutil.copytree(main / 'listings' / school / 'derived', sd / 'derived')
+        (sd / 'raw').mkdir(exist_ok=True)
+
+
+def verify(out, school=None):
+    """Compare main's school derived files with the receipt written when the overlay was built. Returns the list of changed paths."""
+    out = Path(out)
+    meta = json.loads((out / '.overlay.json').read_text())
+    school = school or meta['school']
+    before = json.loads((out / RECEIPT).read_text())
+    now = main_hashes(meta['main'], school)
+    return sorted(k for k in set(before) | set(now) if before.get(k) != now.get(k))
 
 
 def tracked(worktree, rel):
@@ -65,13 +134,23 @@ def overlay_dir(d, src, worktree, rel_dir):
     return n
 
 
-def build(school, out, worktree=None, main=None):
+def build(school, out, worktree=None, main=None, private=False):
     main = Path(main or P.CODE).resolve()
     worktree = Path(worktree or Path(__file__).resolve().parents[1]).resolve()
     out = Path(out).absolute()
     if out == main or main in out.parents and not (main / 'hierarchy' / school / 'tmp') in out.parents:
         raise SystemExit(f'refused: {out} is inside the main checkout outside hierarchy/{school}/tmp/')
+    keep = {}
+    park = out.parent / (out.name + '.private-park')
     if out.exists():
+        # never delete a private copy (a running job may hold it): park it, rebuild, put it back
+        if park.exists():
+            raise SystemExit(f'refused: {park} exists (an earlier rebuild was interrupted); restore or remove it by hand')
+        for rel in private_paths(school):
+            if is_private(out, rel):
+                (park / rel).parent.mkdir(parents=True, exist_ok=True)
+                shutil.move(str(out / rel), str(park / rel))
+                keep[rel] = park / rel
         shutil.rmtree(out)
     out.mkdir(parents=True)
     for e in sorted(main.iterdir()):
@@ -103,6 +182,19 @@ def build(school, out, worktree=None, main=None):
             continue
         n_branch += overlay_dir(d, main / 'hierarchy' / school / part, worktree, f'hierarchy/{school}/{part}')
     (out / '.overlay.json').write_text(json.dumps(dict(main=str(main), school=school, worktree=str(worktree))))
+    if private or keep:
+        make_private(out, school, main)
+    for rel, src in keep.items():   # the preserved private copy replaces whatever the rebuild linked or copied
+        dst = out / rel
+        if dst.is_symlink():
+            dst.unlink()
+        elif dst.exists():
+            shutil.rmtree(dst)
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(src), str(dst))
+    if keep:
+        shutil.rmtree(park, ignore_errors=True)
+    (out / RECEIPT).write_text(json.dumps(main_hashes(main, school), indent=0, sort_keys=True))
     return out, n_branch + n_shared
 
 
@@ -111,8 +203,14 @@ def main(argv=None):
     ap.add_argument('school')
     ap.add_argument('--out', required=True)
     ap.add_argument('--worktree')
+    ap.add_argument('--private', action='store_true', help='private copies of derived / raw (mutable stores) / listings/<school>: builders and fetchers write there, never main')
+    ap.add_argument('--verify', action='store_true', help="compare main's school derived files with the receipt of the overlay build; exit 1 on any difference")
     a = ap.parse_args(argv)
-    out, n = build(a.school, a.out, a.worktree)
+    if a.verify:
+        changed = verify(a.out, a.school)
+        print('main derived files unchanged since the overlay was built' if not changed else 'MAIN CHANGED: ' + ', '.join(changed))
+        return 1 if changed else 0
+    out, n = build(a.school, a.out, a.worktree, private=a.private)
     print(f'overlay {out}: code from the worktree, {n} reviewed/report files from its branch')
     print(f'run: CS_ATLAS_CODE={out} bin/atlas <command>      (commit the files a writer changes in the worktree; main stays clean)')
     return 0
