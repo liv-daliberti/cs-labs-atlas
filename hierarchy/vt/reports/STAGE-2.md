@@ -1,6 +1,8 @@
 # Virginia Tech Stage 2: computing faculty census
 
-2026-11-10. **Open.** The source-bound Stage 2 ledger now has **98 open items**, down from 149: 228 of 325 computing-faculty candidates have preliminary decisions (111 supported professor/computing matches, 34 documented non-ladder roles, 69 student/alumni or other nonfaculty cases, and 14 below-DBLP-threshold faculty cases). The other 97 candidates and the 2016–2026 OpenAlex sweep check remain open. These decisions are provisional until the full affiliated-unit and paper-sweep review is reconciled. Stage 1 remains passed with zero open items. Nothing in this report admits a lab, PI, student, or paper package.
+2026-11-10 latest review. **Open: 28 candidate decisions.** The complete 2016–2026 OpenAlex sweep check has passed. The current candidate ledger contains 426 names and 398 preliminary decisions: 182 supported computing-faculty matches, 125 not listed as faculty, 59 research or other-rank roles, 24 faculty outside computing scope, and eight below the school-work threshold. The affiliated-unit historical capture job finished; 55 unit-years had only shell or insufficient faculty content, so absence from those pages is not treated as a negative role finding. Source-specific role reviews are in `reviewed/cs-related-review.json`, and the exact current gate is `reports/stage-2-gate.json`. Stage 1 and Stage 4 pass. Nothing here admits a lab, PI, student, or paper package.
+
+The sections below record earlier discovery and review steps. Their intermediate counts and job-status statements describe the time of those steps; use the latest paragraph and recorded gate for the current status.
 
 ## Dated CS census
 
