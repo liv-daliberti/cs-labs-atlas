@@ -3,8 +3,8 @@
  "reviewed": "2026-11-09",
  "by": "claude-toronto-admit-1109",
  "policy": "name-only (unique_name/unique_exact_name) bindings need >=10 exact titles on the PI owned page (R-PAP-44) or a Toronto-affiliated OpenAlex author carrying the same ORCID as the DBLP record (R-PAP-42); homepage_url/school_affiliation/school_coauthors bindings kept; no-ORCID-conflict check is left to the builder (R-PAP-42a)",
- "accepted": 60,
- "held": 16,
+ "accepted": 62,
+ "held": 14,
  "per_pi": {
   "Ashton Anderson": {
    "pid": "https://dblp.org/pid/21/8524",
@@ -589,10 +589,11 @@
   "Fan Long": {
    "pid": "https://dblp.org/pid/55/3921",
    "rule": "unique_exact_name",
-   "decision": "held",
+   "decision": "accepted",
    "corroboration": [],
    "owned_page_titles": 6,
-   "oa_orcid_check": "oa_match_no_orcid_compare"
+   "oa_orcid_check": "oa_match_no_orcid_compare",
+   "retest": "live_owned_page_titles_11"
   },
   "Chris Maddison": {
    "pid": "https://dblp.org/pid/139/1388",
@@ -837,10 +838,11 @@
   "Kirill Serkh": {
    "pid": "https://dblp.org/pid/132/5024",
    "rule": "unique_name",
-   "decision": "held",
+   "decision": "accepted",
    "corroboration": [],
    "owned_page_titles": 0,
-   "oa_orcid_check": "oa_match_no_orcid_compare"
+   "oa_orcid_check": "oa_match_no_orcid_compare",
+   "retest": "live_owned_page_titles_23"
   },
   "Nisarg Shah": {
    "pid": "https://dblp.org/pid/95/9508-1",
@@ -1114,5 +1116,99 @@
   "Arvind Gupta": "held: 12 candidates; the one exact record (g/ArvindGupta) has an SFU note and no Toronto URL or owned page; listing row is administrative; no owned page captured",
   "Peter Love": "held: physics department member (physics.utoronto.ca); exact DBLP record pid/04/3103 has 5 unrelated records; 4 candidates; no owned DBLP/ORCID link on captured pages",
   "Lisa Strug": "held (owner-directed): biomedical statistical geneticist; OpenAlex auto-proposal A5041161022 (101 works, biomedical venues) not bound; DBLP pid/404/2462 has one 2025 record"
+ },
+ "live_retest": {
+  "Colin Raffel": {
+   "titles": 0,
+   "pages": [
+    "https://colinraffel.com/"
+   ],
+   "decision": "held"
+  },
+  "Eitan Grinspun": {
+   "titles": 0,
+   "pages": [
+    "https://www.dgp.toronto.edu/~eitan/",
+    "https://www.dgp.toronto.edu/~eitan/index.php/publications/"
+   ],
+   "decision": "held"
+  },
+  "Murat Erdogdu": {
+   "titles": 7,
+   "pages": [
+    "https://www.cs.toronto.edu/~erdogdu/",
+    "https://www.cs.toronto.edu/~erdogdu/papers.html"
+   ],
+   "decision": "held"
+  },
+  "Yashar Ganjali": {
+   "titles": 1,
+   "pages": [
+    "https://www.cs.toronto.edu/~yganjali/",
+    "http://www.cs.toronto.edu/~yganjali/publications",
+    "http://www.cs.toronto.edu/~yganjali/publications/"
+   ],
+   "decision": "held"
+  },
+  "Fan Long": {
+   "titles": 11,
+   "pages": [
+    "https://www.cs.toronto.edu/~fanl/",
+    "https://www.cs.toronto.edu/~fanl/research.html"
+   ],
+   "decision": "accepted"
+  },
+  "Aleksandar Nikolov": {
+   "titles": 0,
+   "pages": [
+    "https://www.cs.toronto.edu/~anikolov/",
+    "https://www.cs.toronto.edu/~anikolov/research.html"
+   ],
+   "decision": "held"
+  },
+  "Thomas Ristenpart": {
+   "titles": 0,
+   "pages": [
+    "https://www.cs.toronto.edu/~ristenpart/",
+    "https://www.cs.toronto.edu/~ristenpart/research.html",
+    "https://www.cs.toronto.edu/~ristenpart/papers.html"
+   ],
+   "decision": "held"
+  },
+  "Xujie Si": {
+   "titles": 3,
+   "pages": [
+    "https://www.cs.toronto.edu/~six/",
+    "https://www.cs.toronto.edu/~six/pubs.html"
+   ],
+   "decision": "held"
+  },
+  "Nandita Vijaykumar": {
+   "titles": 0,
+   "pages": [
+    "https://www.cs.toronto.edu/~nandita/"
+   ],
+   "decision": "held"
+  },
+  "Kirill Serkh": {
+   "titles": 23,
+   "pages": [
+    "https://www.math.utoronto.ca/kserkh/index.html"
+   ],
+   "decision": "accepted"
+  }
+ },
+ "live_retest_not_done": {
+  "Aviad Levis": "robots refused/unavailable for the redirect target",
+  "Varinia Bernales": "robots refused/unavailable",
+  "Niv Dayan": "bot challenge at www.nivdayan.net (host not used)",
+  "Rahul G. Krishnan": "no official-listing homepage",
+  "Sam Toueg": "no official-listing homepage",
+  "Nathan Wiebe": "no official-listing homepage",
+  "Arvind Gupta": "no official-listing homepage"
+ },
+ "period_findings": {
+  "Thomas Ristenpart": "own page: \"Starting January 2026, I am at the University of Toronto and on leave from Cornell University\" (start 2026-01; cross-affiliation hold; binding stays held)",
+  "Xujie Si": "~six page says he will join McGill Jan 2021: no Toronto start statement"
  }
 }
