@@ -1,23 +1,23 @@
 {
  "school": "harvard",
- "decided_at": "2026-11-07",
+ "decided_at": "2026-11-10",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/harvard/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-07T21:51:08+00:00",
- "additions_sha256": "1c8f120bd0ecad5b75db8a16d53702692b7448858f4afc87f509a2ace20d97e8",
+ "additions_generated_at": "2026-11-10T05:30:28+00:00",
+ "additions_sha256": "f89d20164ceee759d2054065a5d70f58b050834257fedde93e83cf48e6eac11d",
  "students": {
   "accepted": true,
-  "round": 2,
-  "seed": 2026110721,
-  "sampled": 21,
+  "round": 4,
+  "seed": 20261111,
+  "sampled": 20,
   "membership_errors": 0,
   "doubtful_count": 0,
   "membership_score": 0.0,
   "role_or_year_errors": 0,
   "counts": {
-   "proposed": 21
+   "proposed": 48
   },
-  "reason": "Cache-only manual source review; rejected/held automatic suggestions removed, explicit role/date corrections; no admission-rule or parser change."
+  "reason": "Round 3 (all 48 rows) failed on role/year (6 degree-text roles); those roles are withheld; round 4 fresh 20 passes. Rows carry url, sha256 and verbatim quote; 9+0 held/rejected rows recorded in hand_review_20261109 and hand_review_20261110."
  },
  "papers": {
   "accepted": false,
