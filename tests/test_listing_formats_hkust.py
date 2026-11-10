@@ -190,3 +190,19 @@ def test_unit_profile_path_matches_a_name_token_in_a_short_unit_handle():
     assert A.unit_profile_path('https://ece.hkust.edu.hk/zilim', ['Zili Meng'])
     assert not A.unit_profile_path('https://ece.hkust.edu.hk/people_list', ['Zili Meng'])
     assert not A.unit_profile_path('https://ece.hkust.edu.hk/about/people/faculty/x/y', ['Zili Meng'])
+
+
+def test_institutional_front_page_and_research_portal_are_not_website_selections():
+    import lab_websites as L
+    assert L.selection_gaps('https://hkust.edu.hk')
+    assert L.selection_gaps('https://researchportal.hkust.edu.hk/en/activities/x/')
+    assert not L.selection_gaps('https://hkust.edu.hk/some/page')
+    assert not L.selection_gaps('https://braudt.people.ust.hk/')
+
+
+def test_institutional_only_candidates_become_a_no_eligible_homepage_reason(monkeypatch):
+    import lab_websites as L
+    monkeypatch.setattr(L, 'stored_captures', lambda school, urls: {})
+    doc = dict(labs=[dict(pi='A B', coverage='pending', evidence_gaps=['rejected_candidate_requires_search'], review_note='Selected URL was an institutional profile', checks=[])])
+    r = L.official_homepage_fallback('hkust', doc)['labs'][0]
+    assert r['coverage'] == 'reason' and r['reason_code'] == 'profile_only_no_homepage' and 'review_note' not in r

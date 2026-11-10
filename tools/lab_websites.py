@@ -21,6 +21,8 @@ FOUND_RESULTS = ('ok', 'ok_wayback', 'does_not_name_pi_kept_strong_source')
 WEBSITE_REASONS = ('lab_site', 'pi_homepage_only_no_lab_site')
 OFFICIAL_LINK_SOURCES = ('school_profile_link', 'department_listing_link', 'official_link_chain')
 RESEARCH_OUTPUT_PATH = re.compile(r'/(?:publications?|papers?|reports?)(?:/|\.|$)|/(?:news|blog)/[12][0-9]{3}(?:/|$)', re.I)
+INSTITUTIONAL_PROFILE_HOST = re.compile(r'(?:^|\.)(?:researchportal|facultyprofiles)\.[a-z0-9.-]*hk$', re.I)
+INSTITUTIONAL_ROOT = re.compile(r'^(?:www\.)?(?:hkust\.edu\.hk|ust\.hk|hkust-gz\.edu\.cn)$', re.I)
 IDENTITY_INDEX_HOST = re.compile(r'(?:^|\.)(?:orcid\.org|dblp\.org|openalex\.org|researchgate\.net|scholar\.google\.[a-z.]+)$', re.I)
 ABSENCE_REASONS = {
     'profile_only_no_homepage', 'no_web_presence_found', 'site_dead_no_wayback',
@@ -50,8 +52,10 @@ def selection_gaps(url):
     """Obvious non-homepage selections; personal/group people pages remain eligible."""
     parsed = urlsplit(url)
     gaps = []
-    if re.match(r'^profiles?\.', parsed.hostname or '') or IDENTITY_INDEX_HOST.search(parsed.hostname or ''):
+    if re.match(r'^profiles?\.', parsed.hostname or '') or IDENTITY_INDEX_HOST.search(parsed.hostname or '') or INSTITUTIONAL_PROFILE_HOST.search(parsed.hostname or ''):
         gaps.append('selected_url_is_profile_card')
+    if INSTITUTIONAL_ROOT.match(parsed.hostname or '') and not [x for x in parsed.path.split('/') if x]:
+        gaps.append('selected_url_is_profile_card')   # a university's own front page is not a person's or lab's website
     if RESEARCH_OUTPUT_PATH.search(parsed.path):
         gaps.append('selected_url_is_research_output')
     if re.search(r'\.(?:pdf|ps|docx?)$', parsed.path, re.I):
@@ -539,6 +543,13 @@ def official_homepage_fallback(school, doc):
                 r.update(coverage='reason', reason_code='host_blocked_by_robots', reason_type='access_blocked',
                          reason='The department listing links only the institutional faculty profile, which robots.txt disallows; the PI\'s own site is not linked from any stored official page (kept in website_note).',
                          reason_scope='Recorded search/access outcome; not proof no website exists or that an archive has no capture.')
+    for r in doc.get('labs', []):
+        if r.get('coverage') == 'pending' and 'rejected_candidate_requires_search' in (r.get('evidence_gaps') or []) and not r.get('url'):
+            # every discovered candidate was an institutional page (university front page, research portal): the search found no eligible homepage
+            r.update(coverage='reason', reason_code='profile_only_no_homepage', reason_type='no_eligible_website',
+                     reason="The only candidates the discovery found were institutional pages (a university front page or the research portal), which are never a person's or lab's website; no eligible homepage was established from the recorded checks.",
+                     reason_scope='Recorded search outcome; not proof no website exists.', evidence_gaps=[])
+            r.pop('review_note', None)
     return doc
 
 
