@@ -5425,20 +5425,10 @@
   ]
  },
  "Peter W. Lehn": {
-  "openalex": [
-   "https://openalex.org/A5029087161"
-  ],
+  "openalex": [],
   "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/toronto/cs-related-review.json, University of Toronto): A5029087161: candidate author id",
-  "openalex_evidence": [
-   {
-    "url": "https://api.openalex.org/works/W7161801005",
-    "sha256": "ef30233223ca22d4baf078eb8e886b08aa1bc7372f0f4b51e0b6b85fa7dbc731",
-    "quote": "Peter W. Lehn | University of Toronto,Department of Electrical and Computer Engineering,Toronto,Canada",
-    "observed": "2026-03-22",
-    "source": "OpenAlex sweep 2026-10-29 (hierarchy/toronto/openalex-sweep.sqlite)"
-   }
-  ],
-  "identity_hold": "2026-11-10: sole OpenAlex id has no ORCID, no DBLP person and no owned-page corroboration (mixed-id review); held, no works attached until corroborated."
+  "no_identity": true,
+  "why_no_identity": "Held 2026-11-10 (mixed-id review): sole OpenAlex id has no ORCID, no DBLP person and no owned-page corroboration."
  },
  "Margaret P. Chapman": {
   "openalex": [
@@ -6280,5 +6270,17 @@
    "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
    "evidence": []
   }
+ },
+ "Lisa Strug": {
+  "no_identity": true,
+  "why_no_identity": "Owner-directed hold 2026-11-09: biomedical statistical geneticist; computing is not the object or the method; the OpenAlex auto-anchor (A5041161022, biomedical venues) is not bound."
+ },
+ "Arvind Gupta": {
+  "no_identity": true,
+  "why_no_identity": "Held 2026-11-09/10: 12 DBLP candidates, the one exact record has an SFU note and no Toronto URL; the package papers (vertebral aneurysm rupture, parameter inference) are a namesake; listing row is administrative."
+ },
+ "Peter Love": {
+  "no_identity": true,
+  "why_no_identity": "Held 2026-11-09: physics department member; exact DBLP record has 5 unrelated records; no owned DBLP/ORCID link."
  }
 }
