@@ -499,6 +499,21 @@ def hkust_faculty_any(h):
     return []
 
 
+def zju_cs_zuzhi_names(h):
+    """Zhejiang College of Computer Science 教师名录 (csen/27003 and its institute sub-lists 27055-27063): `ul.zuzhi` holds one `<a title=name href=profile>` per
+    teacher; no rank or title is printed (names only), and the institute is the page's `span.titl`. Full-width and wide spaces inside a name are collapsed."""
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(h, 'html.parser')
+    inst = soup.select_one('span.titl')
+    division = clean(inst.get_text(' ', strip=True)) if inst else None
+    out = []
+    for a in soup.select('ul.zuzhi li a[href]'):
+        name = re.sub(r'[\s\u3000]+', '', a.get('title') or a.get_text())
+        if name:
+            out.append(dict(name_listed=name, titles=[], profile=a['href'], homepage=None, division=division))
+    return out
+
+
 def tsinghua_cs_list(h):
     """Tsinghua CS faculty list (jzgml.htm): institute <h4>, rank band <h3>, then <li> cards `<h2><a title=NAME>` + first <p> = title.
     Phone and e-mail <p>s are contact lines and are never kept."""
@@ -585,6 +600,7 @@ FORMATS = {
     'vt_adjunct': (lambda h: vt_directory(h, 'adjunct'), re.compile(r'(?!)')),
     'vt_emeritus': (lambda h: vt_directory(h, 'emeritus'), re.compile(r'(?!)')),
     'hkust_faculty_any': (hkust_faculty_any, re.compile(r'(?!)')),
+    'zju_cs_zuzhi_names': (zju_cs_zuzhi_names, re.compile(r'class="zuzhi"')),
     'tsinghua_cs_list': (tsinghua_cs_list, re.compile(r'class="people01-nr"')),
     'tsinghua_sw_names': (tsinghua_sw_names, re.compile(r'class="group-title"')),
     'tsinghua_iiis_cards': (tsinghua_iiis_cards, re.compile(r'class="ls16 flex"')),

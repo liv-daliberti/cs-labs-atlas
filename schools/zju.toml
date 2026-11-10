@@ -61,6 +61,7 @@ unit = "浙江大学软件学院"
 title_match = '' # Names-only candidate table; no faculty rank or PI status is supplied by this charter.
 coverage = "full" # every listed faculty member is a census candidate, not a completion claim
 url = "http://www.cst.zju.edu.cn/92741/list.htm"
+listing_gaps = {2016 = "no 200 Wayback capture of www.cst.zju.edu.cn/92741/list.htm (exact-URL CDX 2026-11-10); the Software College faculty-list URL before 2026 is unknown and needs a reviewed URL", 2017 = "no 200 Wayback capture of www.cst.zju.edu.cn/92741/list.htm (exact-URL CDX 2026-11-10); the Software College faculty-list URL before 2026 is unknown and needs a reviewed URL", 2018 = "no 200 Wayback capture of www.cst.zju.edu.cn/92741/list.htm (exact-URL CDX 2026-11-10); the Software College faculty-list URL before 2026 is unknown and needs a reviewed URL", 2019 = "no 200 Wayback capture of www.cst.zju.edu.cn/92741/list.htm (exact-URL CDX 2026-11-10); the Software College faculty-list URL before 2026 is unknown and needs a reviewed URL", 2020 = "no 200 Wayback capture of www.cst.zju.edu.cn/92741/list.htm (exact-URL CDX 2026-11-10); the Software College faculty-list URL before 2026 is unknown and needs a reviewed URL", 2021 = "no 200 Wayback capture of www.cst.zju.edu.cn/92741/list.htm (exact-URL CDX 2026-11-10); the Software College faculty-list URL before 2026 is unknown and needs a reviewed URL", 2022 = "no 200 Wayback capture of www.cst.zju.edu.cn/92741/list.htm (exact-URL CDX 2026-11-10); the Software College faculty-list URL before 2026 is unknown and needs a reviewed URL", 2023 = "no 200 Wayback capture of www.cst.zju.edu.cn/92741/list.htm (exact-URL CDX 2026-11-10); the Software College faculty-list URL before 2026 is unknown and needs a reviewed URL", 2024 = "no 200 Wayback capture of www.cst.zju.edu.cn/92741/list.htm (exact-URL CDX 2026-11-10); the Software College faculty-list URL before 2026 is unknown and needs a reviewed URL", 2025 = "no 200 Wayback capture of www.cst.zju.edu.cn/92741/list.htm (exact-URL CDX 2026-11-10); the Software College faculty-list URL before 2026 is unknown and needs a reviewed URL"}
   [[departments.listings]]
   slot = "CST current faculty-team table"
   kind = "main"
@@ -77,9 +78,109 @@ code = "CS_MAIN"
 name = "Main College of Computer Science"
 unit = "Main College of Computer Science"
 title_match = ''
-coverage = "affiliated" # owned computing-faculty pages link this college; no accessible faculty listing or complete census yet
+coverage = "affiliated" # owned computing-faculty pages link this college; names-only teacher directory (csen/27003 plus its institute sub-lists), archived from 2019-09; no rank is printed
 url = "http://www.cs.zju.edu.cn/"
-listings = []
+listing_gaps = {2016 = "no Wayback capture of the csen teacher directory before 2019-09 (exact-URL CDX 2026-11-10, 22 captures 2019-09..2026-10); the older site path is unknown", 2017 = "no Wayback capture of the csen teacher directory before 2019-09 (CDX 2026-11-10)", 2018 = "no Wayback capture of the csen teacher directory before 2019-09 (CDX 2026-11-10)"}
+  [[departments.listings]]
+  slot = "CS_MAIN 27003 teacher directory (first institute)"
+  kind = "main"
+  url = "www.cs.zju.edu.cn/csen/27003/list.htm"
+  from = "20190101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "zju_cs_zuzhi_names"
+  title_filter = ''
+  [[departments.listings]]
+  slot = "CS_MAIN 27055 AI institute"
+  kind = "main"
+  url = "www.cs.zju.edu.cn/csen/27055/list.htm"
+  from = "20190101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "zju_cs_zuzhi_names"
+  title_filter = ''
+  [[departments.listings]]
+  slot = "CS_MAIN 27056 software institute"
+  kind = "main"
+  url = "www.cs.zju.edu.cn/csen/27056/list.htm"
+  from = "20190101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "zju_cs_zuzhi_names"
+  title_filter = ''
+  [[departments.listings]]
+  slot = "CS_MAIN 27057 architecture and network institute"
+  kind = "main"
+  url = "www.cs.zju.edu.cn/csen/27057/list.htm"
+  from = "20190101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "zju_cs_zuzhi_names"
+  title_filter = ''
+  [[departments.listings]]
+  slot = "CS_MAIN 27058 industrial design institute"
+  kind = "main"
+  url = "www.cs.zju.edu.cn/csen/27058/list.htm"
+  from = "20190101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "zju_cs_zuzhi_names"
+  title_filter = ''
+  [[departments.listings]]
+  slot = "CS_MAIN 27059 CAD&CG laboratory"
+  kind = "main"
+  url = "www.cs.zju.edu.cn/csen/27059/list.htm"
+  from = "20190101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "zju_cs_zuzhi_names"
+  title_filter = ''
+  [[departments.listings]]
+  slot = "CS_MAIN 27060 experiment center"
+  kind = "main"
+  url = "www.cs.zju.edu.cn/csen/27060/list.htm"
+  from = "20190101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "zju_cs_zuzhi_names"
+  title_filter = ''
+  [[departments.listings]]
+  slot = "CS_MAIN 27061 administration"
+  kind = "main"
+  url = "www.cs.zju.edu.cn/csen/27061/list.htm"
+  from = "20190101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "zju_cs_zuzhi_names"
+  title_filter = ''
+  [[departments.listings]]
+  slot = "CS_MAIN 27062 basic teaching and continuing education"
+  kind = "main"
+  url = "www.cs.zju.edu.cn/csen/27062/list.htm"
+  from = "20190101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "zju_cs_zuzhi_names"
+  title_filter = ''
+  [[departments.listings]]
+  slot = "CS_MAIN 27063 application engineering center"
+  kind = "main"
+  url = "www.cs.zju.edu.cn/csen/27063/list.htm"
+  from = "20190101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "zju_cs_zuzhi_names"
+  title_filter = ''
 
 [[departments]]
 code = "CADCG"
