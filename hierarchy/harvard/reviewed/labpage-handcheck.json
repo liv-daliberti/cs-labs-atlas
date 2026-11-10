@@ -1334,6 +1334,92 @@
     ]
    },
    "disclosure": "All 48 proposed rows had been read in round 3 (a complete review, not a sample), so this draw adds no unseen rows; the acceptance rests on the complete round-3 review plus the role corrections, and no unseen row exists in this file (coordinator 2026-11-10: the 31 regenerated rows get their own 20+20 round with unseen rows)."
+  },
+  {
+   "round": 5,
+   "date": "2026-11-10",
+   "label": "COMPLETE hand review of the 31 regenerated rows nobody had read (all unseen), against stored page text",
+   "additions_generated_at": "2026-11-10T05:52:54+00:00",
+   "students": {
+    "sampled": 31,
+    "seed": null,
+    "membership_errors": 9,
+    "doubtful_count": 1,
+    "role_or_year_errors": 1,
+    "result": "the generator output fails on membership (9 of 31 are rows already hand-rejected on 2026-11-09 and re-proposed); the curated 21 kept rows have 0 membership errors"
+   },
+   "papers": null,
+   "items": {
+    "students": [
+     {
+      "pi": "Michael D. Mitzenmacher",
+      "name": "Giorgos Zervas",
+      "membership_errors": 1,
+      "reason": "BU professor on an old students list, not a Harvard member"
+     },
+     {
+      "pi": "Sitan Chen",
+      "name": "Prasad Raghavendra",
+      "membership_errors": 1,
+      "reason": "named as former postdoc adviser, not a member"
+     },
+     {
+      "pi": "Sitan Chen",
+      "name": "Jordan Cotler",
+      "membership_errors": 1,
+      "reason": "collaborator/co-adviser named in a co-advising clause, not a member"
+     },
+     {
+      "pi": "Sitan Chen",
+      "name": "Susanne Yelin",
+      "membership_errors": 1,
+      "reason": "collaborator/co-adviser named in a co-advising clause, not a member"
+     },
+     {
+      "pi": "Nils Gehlenborg",
+      "name": "Elizabeth (Hye-Jung) Chun",
+      "membership_errors": 1,
+      "reason": "research scientist / staff role, not a student or postdoc member"
+     },
+     {
+      "pi": "Nils Gehlenborg",
+      "name": "Shannon Ehmsen",
+      "membership_errors": 1,
+      "reason": "research scientist / staff role, not a student or postdoc member"
+     },
+     {
+      "pi": "Nils Gehlenborg",
+      "name": "Alexander Veit",
+      "membership_errors": 1,
+      "reason": "research scientist / staff role, not a student or postdoc member"
+     },
+     {
+      "pi": "Nils Gehlenborg",
+      "name": "Andy Schroeder",
+      "membership_errors": 1,
+      "reason": "research scientist / staff role, not a student or postdoc member"
+     },
+     {
+      "pi": "Nils Gehlenborg",
+      "name": "Suhas Rao",
+      "membership_errors": 1,
+      "reason": "research scientist / staff role, not a student or postdoc member"
+     },
+     {
+      "pi": "Sitan Chen",
+      "name": "Kevin Cong",
+      "doubtful_count": 1,
+      "reason": "listed under Former Group Members with an open-ended '2025-': current or former is ambiguous (doubtful, held)"
+     },
+     {
+      "pi": "Yiling Chen",
+      "name": "Siddarth Srinivasan",
+      "role_or_year_errors": 1,
+      "reason": "listed 'Postdoc Siddarth Srinivasan (2023.9 - current)': current, the generator's alumni flag was wrong; corrected"
+     }
+    ]
+   },
+   "disclosure": "Every one of the 31 rows was read once (complete review). The 21 wired rows are the unseen rows that survived; no further unseen rows exist in this file. The 9 re-proposed rejections show the audit generator ignores hand_review rejections: wiring uses the curated file, never a regenerated one."
   }
  ]
 }
