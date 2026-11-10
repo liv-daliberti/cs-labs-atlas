@@ -79,3 +79,12 @@ def test_long_comma_author_lists_are_bylines():
     assert A.byline_item('Xiaozhe Yao, Youhe Jiang , Ilia Badanin, Qinghao Hu,')
     assert A.byline_item('Jiarui Zhang *, Yuchen Yang*, Ran Yan , Zhiyu Mei, Liyuan Zhang,')
     assert not A.byline_item('Luyu Cheng (PhD 2021-2026), Ann Lee')
+
+
+def test_page1_tie_accepts_a_parenthesised_nickname_before_the_family_name():
+    import re
+    import pi_fulltext_affiliation as F
+    aff = re.compile(r'hong\s+kong\s+university\s+of\s+science\s+and\s+technology', re.I)
+    flat = 'Preprint Yiyang Fang1,5 Pei Fu2 Yi R. (May) Fung5 Mang Ye1 1 Wuhan University 5 The Hong Kong University of Science and Technology fangyiyang@whu.edu.cn Abstract'
+    how, quotes = F.tie(flat, [('Yi', 'Fung')], aff)
+    assert how == 'marker' and 'Fung5' in quotes[0] and 'Hong Kong University' in quotes[1]
