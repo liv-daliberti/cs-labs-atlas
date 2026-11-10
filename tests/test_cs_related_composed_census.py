@@ -30,3 +30,13 @@ def test_stage_gate_pis_of_accepts_a_bare_list_census(tmp_path, monkeypatch):
         (tmp_path / n).write_text(json.dumps(v))
     monkeypatch.setattr(G.P, 'data', lambda name, key=None, *a, **k: tmp_path / name)
     assert [x['name'] for x in G.pis_of('zju')] == ['A', 'C']
+
+
+def test_cs_related_candidates_school_pis_accepts_a_bare_list_census(tmp_path, monkeypatch):
+    import cs_related_candidates as K
+    (tmp_path / 'c.json').write_text(json.dumps([{'name': 'A B', 'is_pi': True}]))
+    (tmp_path / 'a.json').write_text(json.dumps([{'name': 'C D', 'is_pi': True, 'aliases': ['Cd']}]))
+    monkeypatch.setattr(K.P, 'data', lambda name, s=None, *a, **k: tmp_path / {'census-faculty.json': 'c.json', 'census-additions.json': 'a.json'}.get(name, 'none.json'))
+    import census_overrides as CO
+    monkeypatch.setattr(CO, 'onboarding', lambda s: True)
+    assert [p['pi'] for p in K.school_pis('zju')] == ['A B', 'C D']

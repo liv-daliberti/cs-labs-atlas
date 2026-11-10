@@ -110,7 +110,10 @@ def school_pis(s):
         return json.load(open(f))
     # an onboarding school: the census PIs WITHOUT the review's additions, never the built pis.json (which holds the previous review's additions, so a
     # second run of the review would drop the people it accepted the first time: UChicago friction 50)
-    cen = json.load(open(P.data('census-faculty.json', s))).get('faculty', [])
+    cen = json.load(open(P.data('census-faculty.json', s)))
+    cen = cen.get('faculty', []) if isinstance(cen, dict) else cen   # a composed first-native school keeps a bare list
+    adds = P.data('census-additions.json', s)
+    cen = [x for x in cen if isinstance(x, dict)] + (json.load(open(adds)) if adds.exists() else [])   # its additions are census PIs too
     return [dict(pi=x['name'], names=[x['name']] + list(x.get('aliases') or [])) for x in cen if x.get('is_pi') and not x.get('added')]
 
 
