@@ -49,6 +49,16 @@ def charter_config(school):
 _CFG = {}
 
 
+def slot_usable(con, cap, s, blocks, status, pis, school):
+    """usable() first; a charter slot that names its own `format` (Tsinghua: Chinese titles and Chinese names, which the English title
+    regexp and the Latin name matchers cannot see) is also usable when that format parses at least the floor of person entries."""
+    good, why = usable(blocks, status, pis, school)
+    if not good and status == 200 and getattr(_CFG.get(school), "CHARTER", False) and s.get("format"):
+        good, why2 = charter_usable(con, cap, s)
+        why = None if good else why2 or why
+    return good, why
+
+
 def charter_usable(con, cap, s, floor=5):
     """A charter school's capture must parse (tools/listing_formats.py) to at least `floor` person entries: Michigan's
     2023-2025 spring captures of the CSE list looked like 31 KB shells with title-like navigation lines (learned
@@ -236,7 +246,7 @@ def run_slot(school, s, con, pis, max_tries=2):
             for pri, u, r in picked:
                 cap = wb.fetch_capture(r["timestamp"], r["original"], u, s["dept"], con)
                 st, b = ensure_extracted(con, cap)
-                good, why = usable(b, st, pis, school)
+                good, why = slot_usable(con, cap, s, b, st, pis, school)
                 pages = {}
                 if good and getattr(_CFG.get(school), "CHARTER", False):
                     good, why = charter_usable(con, cap, s)

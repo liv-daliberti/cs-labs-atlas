@@ -34,3 +34,22 @@ def test_iiis_card_title_is_the_txt_line_not_the_interests():
 def test_au_card_name_only():
     fmt, rows = L.parse(AU)
     assert fmt == 'tsinghua_au_cards' and rows[0]['name_listed'] == '周东华' and rows[0]['titles'] == []
+
+
+def test_slot_with_a_format_is_usable_when_english_title_lines_and_latin_names_cannot_see_the_listing(monkeypatch):
+    """Tsinghua captures (Chinese names and titles) were all 'unusable' (0 English title lines, no Latin PI-name match) until a slot's own format counted."""
+    from pathlib import Path
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1] / 'listings' / 'scripts'))  # route-ok: tracked code, not data
+    import types
+    import plan_fetch as PF
+    html = CS.replace('</ul>', ''.join(f'<li><div class="text"><h2><a href="../info/1111/{i}.htm">甲{i}</a></h2><p>教授</p></div></li>' for i in range(6)) + '</ul>')
+    monkeypatch.setattr(PF.wb, 'body', lambda raw: raw)
+    monkeypatch.setitem(PF._CFG, 'x', types.SimpleNamespace(CHARTER=True))
+    monkeypatch.setattr(PF, 'usable', lambda blocks, status, pis, school: (False, 'no listing in the capture'))
+
+    class Con:
+        def execute(self, q, a):
+            return type('C', (), {'fetchone': lambda me: (html.encode(),)})()
+    assert PF.slot_usable(Con(), 'u', {'format': 'tsinghua_cs_list'}, [], 200, [], 'x') == (True, None)
+    assert not PF.slot_usable(Con(), 'u', {}, [], 200, [], 'x')[0]
+    assert not PF.slot_usable(Con(), 'u', {'format': 'tsinghua_cs_list'}, [], 404, [], 'x')[0]
