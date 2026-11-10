@@ -37,7 +37,7 @@ legacy_sweep = ""
 [census]
 computing_departments = ["CSE"]
 center_units = []
-home_units = { "Computer Science and Engineering" = 'computer science and engineering' }
+home_units = { "Computer Science and Engineering" = 'computer science and engineering', "Electronic and Computer Engineering" = 'electronic\s+(?:and|&)\s+computer\s+engineering', "Mathematics" = 'department\s+of\s+mathematics|\bmathematics\b', "Industrial Engineering and Decision Analytics" = 'industrial\s+engineering|decision\s+analytics|\bieda\b', "Information Systems, Business Statistics and Operations Management" = 'information\s+systems|business\s+statistics|operations\s+management|\bisom\b', "Mechanical and Aerospace Engineering" = 'mechanical\s+(?:and|&)\s+aerospace', "Physics" = 'department\s+of\s+physics|\bphysics\b', "Chemistry" = 'department\s+of\s+chemistry', "Life Science" = 'life\s+science', "Chemical and Biological Engineering" = 'chemical\s+(?:and|&)\s+biological', "Civil and Environmental Engineering" = 'civil\s+(?:and|&)\s+environmental', "Integrative Systems and Design" = 'integrative\s+systems\s+(?:and|&)\s+design', "Emerging Interdisciplinary Areas" = 'emerging\s+interdisciplinary' }
 rank_words = {}
 
 [sweep_check]
@@ -92,17 +92,111 @@ url = "https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview"
   format = "hkust_faculty_any"
   title_filter = ''
 
-# Discovery leads only; none of these units has been reviewed as complete.
+# All-units expansion (owner 2026-11-10): computing-related PIs in any department. Directory URLs read live 2026-11-10 with each host's robots.txt checked (none names ClaudeBot/anthropic-ai).
 [[affiliated_units]]
 code = "ECE"
 name = "Electronic and Computer Engineering"
-url = "https://ece.hkust.edu.hk/"
-listings = []
+url = "https://ece.hkust.edu.hk/people_list"
+listings = ["ece.hkust.edu.hk/people_list"]
+note = "official people_list (Drupal; names, titles and categories are embedded JSON). Regular faculty are category 37 (48 rows) and joint/concurrent faculty category 38 (9 rows, home often CSE: R-HOME-01 primary_unresolved until the page states it); adjunct, emeritus, research and staff categories are not PIs. Current only (proves 2026). robots allows /people_list"
+
 [[affiliated_units]]
 code = "MATH"
 name = "Mathematics"
-url = "https://www.math.hkust.edu.hk/"
+url = "https://www.math.hkust.edu.hk/people/"
+listings = ["www.math.hkust.edu.hk/people/"]
+note = "official people page; robots.txt 404 (no restriction). Current only"
+
+[[affiliated_units]]
+code = "IEDA"
+name = "Industrial Engineering and Decision Analytics"
+url = "https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15"
+listings = ["ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15"]
+note = "faculty link from the 2026-11-10 /eng/index.php menu (the root is a JS redirect to eng/index.php); robots.txt 404"
+
+[[affiliated_units]]
+code = "ISOM"
+name = "Information Systems, Business Statistics and Operations Management"
+url = "https://isom.hkust.edu.hk/"
 listings = []
+note = "host serves an untrusted TLS chain to automated clients (curl and python: unable to get local issuer certificate, 2026-11-10); no workaround attempted: Wayback-only, directory URL still to be found from archived captures"
+
+[[affiliated_units]]
+code = "MAE"
+name = "Mechanical and Aerospace Engineering"
+url = "https://mae.hkust.edu.hk/people"
+listings = []
+note = "robots.txt is User-agent star Disallow slash: Wayback-only (stop; no live read). Current faculty of MAE are also listed on the ECE people_list rows without a category (Shyy, Qiu, Sun, Kim, Lee, Wang: shared people pool, not an ECE appointment)"
+
+[[affiliated_units]]
+code = "PHYS"
+name = "Physics"
+url = "https://physics.hkust.edu.hk/people?type=Faculty"
+listings = ["physics.hkust.edu.hk/people?type=Faculty"]
+note = "robots allow; computational groups only by the share test"
+
+[[affiliated_units]]
+code = "LIFS"
+name = "Life Science"
+url = "https://life-sci.hkust.edu.hk/faculty-members/"
+listings = ["life-sci.hkust.edu.hk/faculty-members/"]
+note = "robots allow; computational biology only by the share test"
+
+[[affiliated_units]]
+code = "CHEM"
+name = "Chemistry"
+url = "https://chem.hkust.edu.hk/people"
+listings = ["chem.hkust.edu.hk/people"]
+note = "robots allow (Drupal default); computational chemistry only by the share test"
+
+[[affiliated_units]]
+code = "CBE"
+name = "Chemical and Biological Engineering"
+url = "https://cbe.hkust.edu.hk/faculty"
+listings = ["cbe.hkust.edu.hk/faculty"]
+note = "robots allow (Drupal default)"
+
+[[affiliated_units]]
+code = "CIVL"
+name = "Civil and Environmental Engineering"
+url = "https://ce.hkust.edu.hk/people_list"
+listings = ["ce.hkust.edu.hk/people_list"]
+note = "robots allow; computing as method only by the share test"
+
+[[affiliated_units]]
+code = "ISD"
+name = "Integrative Systems and Design"
+url = "https://isd.hkust.edu.hk/people/?role=faculty&area=all&tag=regular"
+listings = ["isd.hkust.edu.hk/people/?role=faculty&area=all&tag=regular"]
+note = "division of SENG; robots.txt 404"
+
+[[affiliated_units]]
+code = "EMIA"
+name = "Emerging Interdisciplinary Areas"
+url = "https://emia.hkust.edu.hk/people"
+listings = ["emia.hkust.edu.hk/people"]
+note = "division hosting the Hong Kong data-science / AI programmes (Hong Kong campus only; the Guangzhou Information and Systems Hubs are not counted, owner answer 2026-11-10 provisional); robots allow"
+
+[[affiliated_units]]
+code = "RI"
+name = "Cheng Kar-Shun Robotics Institute"
+url = "https://ri.hkust.edu.hk/people_list"
+listings = ["ri.hkust.edu.hk/people_list"]
+note = "INSTITUTE, not a lab: a person counts only with an HKUST appointment in a department; its list mixes members, staff and visitors; robots allow"
+
+[[affiliated_units]]
+code = "IAS"
+name = "Jockey Club Institute for Advanced Study"
+url = "https://ias.hkust.edu.hk/people"
+listings = ["ias.hkust.edu.hk/people"]
+note = "INSTITUTE: a person counts only with an HKUST faculty appointment on an official page; robots allow"
+
+[[affiliated_units]]
+code = "BM"
+name = "School of Business and Management (faculty guide)"
+url = "https://bm.hkust.edu.hk/faculty"
+listings = ["bm.hkust.edu.hk/faculty"]
+note = "school-wide guide used to place ISOM, Finance, Marketing, Management computing faculty while the ISOM host is Wayback-only; robots allow"
 
 [thesis]
 kind = "none"
@@ -133,3 +227,93 @@ host = "cse.hkust.edu.hk"
 use = "live"
 purpose = "Official CSE regular faculty directory and profiles; cached robots and HTTP200 directory captured on 2026-11-07."
 probe = "https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview"
+
+[[hosts]]
+host = "ece.hkust.edu.hk"
+use = "live"
+purpose = "Unit faculty directory; robots.txt read 2026-11-10 (allows the directory, no AI-agent rule)"
+probe = "https://ece.hkust.edu.hk/people_list"
+
+[[hosts]]
+host = "www.math.hkust.edu.hk"
+use = "live"
+purpose = "Unit faculty directory; robots.txt read 2026-11-10 (allows the directory, no AI-agent rule)"
+probe = "https://www.math.hkust.edu.hk/people/"
+
+[[hosts]]
+host = "ieda.hkust.edu.hk"
+use = "live"
+purpose = "Unit faculty directory; robots.txt read 2026-11-10 (allows the directory, no AI-agent rule)"
+probe = "https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15"
+
+[[hosts]]
+host = "physics.hkust.edu.hk"
+use = "live"
+purpose = "Unit faculty directory; robots.txt read 2026-11-10 (allows the directory, no AI-agent rule)"
+probe = "https://physics.hkust.edu.hk/people?type=Faculty"
+
+[[hosts]]
+host = "life-sci.hkust.edu.hk"
+use = "live"
+purpose = "Unit faculty directory; robots.txt read 2026-11-10 (allows the directory, no AI-agent rule)"
+probe = "https://life-sci.hkust.edu.hk/faculty-members/"
+
+[[hosts]]
+host = "chem.hkust.edu.hk"
+use = "live"
+purpose = "Unit faculty directory; robots.txt read 2026-11-10 (allows the directory, no AI-agent rule)"
+probe = "https://chem.hkust.edu.hk/people"
+
+[[hosts]]
+host = "cbe.hkust.edu.hk"
+use = "live"
+purpose = "Unit faculty directory; robots.txt read 2026-11-10 (allows the directory, no AI-agent rule)"
+probe = "https://cbe.hkust.edu.hk/faculty"
+
+[[hosts]]
+host = "ce.hkust.edu.hk"
+use = "live"
+purpose = "Unit faculty directory; robots.txt read 2026-11-10 (allows the directory, no AI-agent rule)"
+probe = "https://ce.hkust.edu.hk/people_list"
+
+[[hosts]]
+host = "isd.hkust.edu.hk"
+use = "live"
+purpose = "Unit faculty directory; robots.txt read 2026-11-10 (allows the directory, no AI-agent rule)"
+probe = "https://isd.hkust.edu.hk/people/?role=faculty&area=all&tag=regular"
+
+[[hosts]]
+host = "emia.hkust.edu.hk"
+use = "live"
+purpose = "Unit faculty directory; robots.txt read 2026-11-10 (allows the directory, no AI-agent rule)"
+probe = "https://emia.hkust.edu.hk/people"
+
+[[hosts]]
+host = "ri.hkust.edu.hk"
+use = "live"
+purpose = "Unit faculty directory; robots.txt read 2026-11-10 (allows the directory, no AI-agent rule)"
+probe = "https://ri.hkust.edu.hk/people_list"
+
+[[hosts]]
+host = "ias.hkust.edu.hk"
+use = "live"
+purpose = "Unit faculty directory; robots.txt read 2026-11-10 (allows the directory, no AI-agent rule)"
+probe = "https://ias.hkust.edu.hk/people"
+
+[[hosts]]
+host = "bm.hkust.edu.hk"
+use = "live"
+purpose = "Unit faculty directory; robots.txt read 2026-11-10 (allows the directory, no AI-agent rule)"
+probe = "https://bm.hkust.edu.hk/faculty"
+
+[[hosts]]
+host = "isom.hkust.edu.hk"
+use = "wayback-only"
+purpose = "robots disallow-all or untrusted TLS chain (2026-11-10): no live read"
+probe = "https://isom.hkust.edu.hk/"
+
+[[hosts]]
+host = "mae.hkust.edu.hk"
+use = "wayback-only"
+purpose = "robots disallow-all or untrusted TLS chain (2026-11-10): no live read"
+probe = "https://mae.hkust.edu.hk/people"
