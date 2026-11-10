@@ -6064,7 +6064,9 @@
    }
   ],
   "primary_stated": false,
-  "why_home_department": "Ladder faculty of Computer Science in the dated 2023 listing; later listed only as Status-Only (primary appointment at another university). Home is the last ladder unit, not the status-only affiliation (R-HOME-01: no stated primary elsewhere at Toronto)."
+  "why_home_department": "Ladder faculty of Computer Science in the dated 2023 listing; later listed only as Status-Only (primary appointment at another university). Home is the last ladder unit, not the status-only affiliation (R-HOME-01: no stated primary elsewhere at Toronto).",
+  "no_identity": true,
+  "why_no_identity": "R-PAP-44 hold kept visible (2026-11-10): name-only DBLP candidate https://dblp.org/pid/18/3810; only 0 of its works carry this name on a Toronto-affiliated authorship (needs 10) or the person name is not a PI alias; no ORCID or owned-page titles. The builder's unique-name dump rule must not bind it."
  },
  "Henry Yuen": {
   "home_department": "Computer Science",
@@ -6076,7 +6078,9 @@
    }
   ],
   "primary_stated": false,
-  "why_home_department": "Ladder faculty of Computer Science in the dated 2022 listing; later listed only as Status-Only (primary appointment at another university). Home is the last ladder unit, not the status-only affiliation (R-HOME-01: no stated primary elsewhere at Toronto)."
+  "why_home_department": "Ladder faculty of Computer Science in the dated 2022 listing; later listed only as Status-Only (primary appointment at another university). Home is the last ladder unit, not the status-only affiliation (R-HOME-01: no stated primary elsewhere at Toronto).",
+  "no_identity": true,
+  "why_no_identity": "R-PAP-44 hold kept visible (2026-11-10): name-only DBLP candidate https://dblp.org/pid/17/8909; only 5 of its works carry this name on a Toronto-affiliated authorship (needs 10) or the person name is not a PI alias; no ORCID or owned-page titles. The builder's unique-name dump rule must not bind it."
  },
  "Jeffrey S. Rosenthal": {
   "dblp": [
@@ -6293,5 +6297,385 @@
  "Peter Love": {
   "no_identity": true,
   "why_no_identity": "Held 2026-11-09: physics department member; exact DBLP record has 5 unrelated records; no owned DBLP/ORCID link."
+ },
+ "Murat Erdogdu": {
+  "no_identity": true,
+  "why_no_identity": "R-PAP-44 hold kept visible (2026-11-10): name-only DBLP candidate https://dblp.org/pid/139/1292; only 0 of its works carry this name on a Toronto-affiliated authorship (needs 10) or the person name is not a PI alias; no ORCID or owned-page titles. The builder's unique-name dump rule must not bind it."
+ },
+ "Yashar Ganjali": {
+  "dblp": [
+   "https://dblp.org/pid/36/3795"
+  ],
+  "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_name; 89 records; corroborated: 30 of its works carry this name on a Toronto-affiliated authorship in the OpenAlex sweep (R-PAP-42 alternative, per-PI check 2026-11-10).",
+  "dblp_identity_review": {
+   "school": "toronto",
+   "pi": "Yashar Ganjali",
+   "PID": "https://dblp.org/pid/36/3795",
+   "rule": "unique_name",
+   "tier": "unique_name",
+   "dump": "dblp-2026-09-01.xml.gz",
+   "dump_record_sha256": "b24ad084e9585fa1f21e6cc6505c0ffb5761dd66a7b12672df059eb3b7978132",
+   "dump_record_quote": "Yashar Ganjali",
+   "dump_record_url": "https://dblp.org/pid/36/3795",
+   "n_window": 38,
+   "dump_candidates": 1,
+   "official_listing_source": {
+    "url": "https://web.archive.org/web/20211123015849id_/https://web.cs.toronto.edu/people/faculty-directory",
+    "sha256": "bde0c65e7d9dc380938387d2a3357e573b475142874cd11accc277ea735a15f3",
+    "quote": "Yashar Ganjali Professor",
+    "observed": "20211123015849"
+   },
+   "reviewer": "claude-toronto-census-1110",
+   "reviewed": "2026-11-10",
+   "corroboration": [
+    {
+     "kind": "dblp_works_with_school_authorship",
+     "count": 30,
+     "source": "hierarchy/toronto/raw/openalex-sweep.sqlite"
+    }
+   ],
+   "status": "accepted_rule_bound"
+  },
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
+   "evidence": []
+  }
+ },
+ "Eitan Grinspun": {
+  "dblp": [
+   "https://dblp.org/pid/25/5353"
+  ],
+  "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_name; 139 records; corroborated: 25 of its works carry this name on a Toronto-affiliated authorship in the OpenAlex sweep (R-PAP-42 alternative, per-PI check 2026-11-10).",
+  "dblp_identity_review": {
+   "school": "toronto",
+   "pi": "Eitan Grinspun",
+   "PID": "https://dblp.org/pid/25/5353",
+   "rule": "unique_name",
+   "tier": "unique_name",
+   "dump": "dblp-2026-09-01.xml.gz",
+   "dump_record_sha256": "ba315a0398f6afbb3134ac9ef0256fb1323103fa171ce8753751d68cd2eeabfe",
+   "dump_record_quote": "Eitan Grinspun",
+   "dump_record_url": "https://dblp.org/pid/25/5353",
+   "n_window": 75,
+   "dump_candidates": 1,
+   "official_listing_source": {
+    "url": "https://web.archive.org/web/20211123015849id_/https://web.cs.toronto.edu/people/faculty-directory",
+    "sha256": "bde0c65e7d9dc380938387d2a3357e573b475142874cd11accc277ea735a15f3",
+    "quote": "Eitan Grinspun Professor, Associate Chair, Academic Recruiting and Strategic Partnerships",
+    "observed": "20211123015849"
+   },
+   "reviewer": "claude-toronto-census-1110",
+   "reviewed": "2026-11-10",
+   "corroboration": [
+    {
+     "kind": "dblp_works_with_school_authorship",
+     "count": 25,
+     "source": "hierarchy/toronto/raw/openalex-sweep.sqlite"
+    }
+   ],
+   "status": "accepted_rule_bound"
+  },
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
+   "evidence": []
+  }
+ },
+ "Rahul G. Krishnan": {
+  "dblp": [
+   "https://dblp.org/pid/172/0880"
+  ],
+  "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; 97 records; corroborated: 11 of its works carry this name on a Toronto-affiliated authorship in the OpenAlex sweep (R-PAP-42 alternative, per-PI check 2026-11-10).",
+  "dblp_identity_review": {
+   "school": "toronto",
+   "pi": "Rahul G. Krishnan",
+   "PID": "https://dblp.org/pid/172/0880",
+   "rule": "unique_exact_name",
+   "tier": "unique_exact_name",
+   "dump": "dblp-2026-09-01.xml.gz",
+   "dump_record_sha256": "3a0ed8805297fcd31b6922a7afc372b2804c7aa5349a4556ab53c56518e9355f",
+   "dump_record_quote": "Rahul G. Krishnan",
+   "dump_record_url": "https://dblp.org/pid/172/0880",
+   "n_window": 94,
+   "dump_candidates": 21,
+   "official_listing_source": {
+    "url": "https://web.archive.org/web/20211123015849id_/https://web.cs.toronto.edu/people/faculty-directory",
+    "sha256": "bde0c65e7d9dc380938387d2a3357e573b475142874cd11accc277ea735a15f3",
+    "quote": "Rahul G. Krishnan Assistant Professor",
+    "observed": "20211123015849"
+   },
+   "reviewer": "claude-toronto-census-1110",
+   "reviewed": "2026-11-10",
+   "corroboration": [
+    {
+     "kind": "dblp_works_with_school_authorship",
+     "count": 11,
+     "source": "hierarchy/toronto/raw/openalex-sweep.sqlite"
+    }
+   ],
+   "status": "accepted_rule_bound"
+  },
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
+   "evidence": []
+  }
+ },
+ "Aleksandar Nikolov": {
+  "dblp": [
+   "https://dblp.org/pid/24/7867"
+  ],
+  "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_name; 93 records; corroborated: 24 of its works carry this name on a Toronto-affiliated authorship in the OpenAlex sweep (R-PAP-42 alternative, per-PI check 2026-11-10).",
+  "dblp_identity_review": {
+   "school": "toronto",
+   "pi": "Aleksandar Nikolov",
+   "PID": "https://dblp.org/pid/24/7867",
+   "rule": "unique_name",
+   "tier": "unique_name",
+   "dump": "dblp-2026-09-01.xml.gz",
+   "dump_record_sha256": "943456d1fdf6e2f8809a73f9fc9ba9d9b5fa7e8f1c169860d84e336a3d1ab7a0",
+   "dump_record_quote": "Aleksandar Nikolov",
+   "dump_record_url": "https://dblp.org/pid/24/7867",
+   "n_window": 65,
+   "dump_candidates": 1,
+   "official_listing_source": {
+    "url": "https://web.archive.org/web/20211123015849id_/https://web.cs.toronto.edu/people/faculty-directory",
+    "sha256": "bde0c65e7d9dc380938387d2a3357e573b475142874cd11accc277ea735a15f3",
+    "quote": "Aleksandar Nikolov Associate Professor",
+    "observed": "20211123015849"
+   },
+   "reviewer": "claude-toronto-census-1110",
+   "reviewed": "2026-11-10",
+   "corroboration": [
+    {
+     "kind": "dblp_works_with_school_authorship",
+     "count": 24,
+     "source": "hierarchy/toronto/raw/openalex-sweep.sqlite"
+    }
+   ],
+   "status": "accepted_rule_bound"
+  },
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
+   "evidence": []
+  }
+ },
+ "Sam Toueg": {
+  "dblp": [
+   "https://dblp.org/pid/t/SamToueg"
+  ],
+  "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; 131 records; corroborated: 14 of its works carry this name on a Toronto-affiliated authorship in the OpenAlex sweep (R-PAP-42 alternative, per-PI check 2026-11-10).",
+  "dblp_identity_review": {
+   "school": "toronto",
+   "pi": "Sam Toueg",
+   "PID": "https://dblp.org/pid/t/SamToueg",
+   "rule": "unique_exact_name",
+   "tier": "unique_exact_name",
+   "dump": "dblp-2026-09-01.xml.gz",
+   "dump_record_sha256": "ea88a0d0f1c45d70bf48e1260141e6c269034fea70bcf179abc7c3b9976e297c",
+   "dump_record_quote": "Sam Toueg",
+   "dump_record_url": "https://dblp.org/pid/t/SamToueg",
+   "n_window": 30,
+   "dump_candidates": 2,
+   "official_listing_source": {
+    "url": "https://web.archive.org/web/20211123015849id_/https://web.cs.toronto.edu/people/faculty-directory",
+    "sha256": "bde0c65e7d9dc380938387d2a3357e573b475142874cd11accc277ea735a15f3",
+    "quote": "Sam Toueg Professor",
+    "observed": "20211123015849"
+   },
+   "reviewer": "claude-toronto-census-1110",
+   "reviewed": "2026-11-10",
+   "corroboration": [
+    {
+     "kind": "dblp_works_with_school_authorship",
+     "count": 14,
+     "source": "hierarchy/toronto/raw/openalex-sweep.sqlite"
+    }
+   ],
+   "status": "accepted_rule_bound"
+  },
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
+   "evidence": []
+  }
+ },
+ "Nandita Vijaykumar": {
+  "dblp": [
+   "https://dblp.org/pid/163/0027"
+  ],
+  "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; 94 records; corroborated: 32 of its works carry this name on a Toronto-affiliated authorship in the OpenAlex sweep (R-PAP-42 alternative, per-PI check 2026-11-10).",
+  "dblp_identity_review": {
+   "school": "toronto",
+   "pi": "Nandita Vijaykumar",
+   "PID": "https://dblp.org/pid/163/0027",
+   "rule": "unique_exact_name",
+   "tier": "unique_exact_name",
+   "dump": "dblp-2026-09-01.xml.gz",
+   "dump_record_sha256": "f804a00a481a0ccda5044a6c963da6ffac6b48e595931000d37dc41da213b334",
+   "dump_record_quote": "Nandita Vijaykumar",
+   "dump_record_url": "https://dblp.org/pid/163/0027",
+   "n_window": 93,
+   "dump_candidates": 3,
+   "official_listing_source": {
+    "url": "https://web.archive.org/web/20211123015849id_/https://web.cs.toronto.edu/people/faculty-directory",
+    "sha256": "bde0c65e7d9dc380938387d2a3357e573b475142874cd11accc277ea735a15f3",
+    "quote": "Nandita Vijaykumar Assistant Professor",
+    "observed": "20211123015849"
+   },
+   "reviewer": "claude-toronto-census-1110",
+   "reviewed": "2026-11-10",
+   "corroboration": [
+    {
+     "kind": "dblp_works_with_school_authorship",
+     "count": 32,
+     "source": "hierarchy/toronto/raw/openalex-sweep.sqlite"
+    }
+   ],
+   "status": "accepted_rule_bound"
+  },
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
+   "evidence": []
+  }
+ },
+ "Nathan Wiebe": {
+  "dblp": [
+   "https://dblp.org/pid/20/6168"
+  ],
+  "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_exact_name; 70 records; corroborated: 20 of its works carry this name on a Toronto-affiliated authorship in the OpenAlex sweep (R-PAP-42 alternative, per-PI check 2026-11-10).",
+  "dblp_identity_review": {
+   "school": "toronto",
+   "pi": "Nathan Wiebe",
+   "PID": "https://dblp.org/pid/20/6168",
+   "rule": "unique_exact_name",
+   "tier": "unique_exact_name",
+   "dump": "dblp-2026-09-01.xml.gz",
+   "dump_record_sha256": "5eab00038f6aab40af554d4126173d24f25ede38e347bd328567d31dc096e0db",
+   "dump_record_quote": "Nathan Wiebe",
+   "dump_record_url": "https://dblp.org/pid/20/6168",
+   "n_window": 58,
+   "dump_candidates": 2,
+   "official_listing_source": {
+    "url": "https://web.archive.org/web/20211123015849id_/https://web.cs.toronto.edu/people/faculty-directory",
+    "sha256": "bde0c65e7d9dc380938387d2a3357e573b475142874cd11accc277ea735a15f3",
+    "quote": "Nathan Wiebe Assistant Professor",
+    "observed": "20211123015849"
+   },
+   "reviewer": "claude-toronto-census-1110",
+   "reviewed": "2026-11-10",
+   "corroboration": [
+    {
+     "kind": "dblp_works_with_school_authorship",
+     "count": 20,
+     "source": "hierarchy/toronto/raw/openalex-sweep.sqlite"
+    }
+   ],
+   "status": "accepted_rule_bound"
+  },
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
+   "evidence": []
+  }
+ },
+ "Niv Dayan": {
+  "dblp": [
+   "https://dblp.org/pid/129/6927"
+  ],
+  "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_name; 46 records; corroborated: 17 of its works carry this name on a Toronto-affiliated authorship in the OpenAlex sweep (R-PAP-42 alternative, per-PI check 2026-11-10).",
+  "dblp_identity_review": {
+   "school": "toronto",
+   "pi": "Niv Dayan",
+   "PID": "https://dblp.org/pid/129/6927",
+   "rule": "unique_name",
+   "tier": "unique_name",
+   "dump": "dblp-2026-09-01.xml.gz",
+   "dump_record_sha256": "4bea8b21bbf92371bfffb65302d943fe65d7a45c9b22b640e9cabf413f75ac63",
+   "dump_record_quote": "Niv Dayan",
+   "dump_record_url": "https://dblp.org/pid/129/6927",
+   "n_window": 41,
+   "dump_candidates": 1,
+   "official_listing_source": {
+    "url": "https://web.archive.org/web/20230326164641id_/https://web.cs.toronto.edu/people/faculty-directory",
+    "sha256": "ca6cd775a0271f53bf3dbcd05933dd94ef0d8d51b8ddbe326c09408e50ce4857",
+    "quote": "Niv Dayan Assistant Professor",
+    "observed": "20230326164641"
+   },
+   "reviewer": "claude-toronto-census-1110",
+   "reviewed": "2026-11-10",
+   "corroboration": [
+    {
+     "kind": "dblp_works_with_school_authorship",
+     "count": 17,
+     "source": "hierarchy/toronto/raw/openalex-sweep.sqlite"
+    }
+   ],
+   "status": "accepted_rule_bound"
+  },
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
+   "evidence": []
+  }
+ },
+ "Xujie Si": {
+  "dblp": [
+   "https://dblp.org/pid/142/8449"
+  ],
+  "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule unique_name; 89 records; corroborated: 10 of its works carry this name on a Toronto-affiliated authorship in the OpenAlex sweep (R-PAP-42 alternative, per-PI check 2026-11-10).",
+  "dblp_identity_review": {
+   "school": "toronto",
+   "pi": "Xujie Si",
+   "PID": "https://dblp.org/pid/142/8449",
+   "rule": "unique_name",
+   "tier": "unique_name",
+   "dump": "dblp-2026-09-01.xml.gz",
+   "dump_record_sha256": "851ec1886989a4c09d4bff3d6d753d89ddcbb887ee829db62cf65f6f6f9274db",
+   "dump_record_quote": "Xujie Si",
+   "dump_record_url": "https://dblp.org/pid/142/8449",
+   "n_window": 86,
+   "dump_candidates": 1,
+   "official_listing_source": {
+    "url": "https://web.archive.org/web/20230326164641id_/https://web.cs.toronto.edu/people/faculty-directory",
+    "sha256": "ca6cd775a0271f53bf3dbcd05933dd94ef0d8d51b8ddbe326c09408e50ce4857",
+    "quote": "Xujie Si Assistant Professor",
+    "observed": "20230326164641"
+   },
+   "reviewer": "claude-toronto-census-1110",
+   "reviewed": "2026-11-10",
+   "corroboration": [
+    {
+     "kind": "dblp_works_with_school_authorship",
+     "count": 10,
+     "source": "hierarchy/toronto/raw/openalex-sweep.sqlite"
+    }
+   ],
+   "status": "accepted_rule_bound"
+  },
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
+   "evidence": []
+  }
+ },
+ "Aviad Levis": {
+  "no_identity": true,
+  "why_no_identity": "R-PAP-44 hold kept visible (2026-11-10): name-only DBLP candidate https://dblp.org/pid/161/2561; only 2 of its works carry this name on a Toronto-affiliated authorship (needs 10) or the person name is not a PI alias; no ORCID or owned-page titles. The builder's unique-name dump rule must not bind it."
+ },
+ "Colin Raffel": {
+  "no_identity": true,
+  "why_no_identity": "R-PAP-44 hold kept visible (2026-11-10): name-only DBLP candidate https://dblp.org/pid/149/0082; only 4 of its works carry this name on a Toronto-affiliated authorship (needs 10) or the person name is not a PI alias; no ORCID or owned-page titles. The builder's unique-name dump rule must not bind it."
+ },
+ "Varinia Bernales": {
+  "no_identity": true,
+  "why_no_identity": "R-PAP-44 hold kept visible (2026-11-10): name-only DBLP candidate https://dblp.org/pid/232/6009; only 2 of its works carry this name on a Toronto-affiliated authorship (needs 10) or the person name is not a PI alias; no ORCID or owned-page titles. The builder's unique-name dump rule must not bind it."
+ },
+ "Thomas Ristenpart": {
+  "no_identity": true,
+  "why_no_identity": "R-PAP-44 hold kept visible (2026-11-10): name-only DBLP candidate https://dblp.org/pid/26/3399; only 2 of its works carry this name on a Toronto-affiliated authorship (needs 10) or the person name is not a PI alias; no ORCID or owned-page titles. The builder's unique-name dump rule must not bind it."
  }
 }
