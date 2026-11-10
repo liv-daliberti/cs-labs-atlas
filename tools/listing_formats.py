@@ -802,6 +802,27 @@ def ntu_img_cards(h):
                 body = re.sub(r'^.*?Appointments:\s*', '', p.decode_contents(), flags=re.S)
                 titles = [clean(x) for x in re.split(r'<br\s*/?>', body, flags=re.I)]
         out.append(dict(name_listed=name, titles=[t for t in titles if t], profile=a.get('href'), homepage=None, division=None))
+def sjtu_cs_en_institutes(h):
+    """SJTU School of Computer Science English faculty list (cs.sjtu.edu.cn/en/Faculty.aspx, archived 2016-2024): one `p.tc` per institute, then
+    `div.Faculty` with `<h3>Rank:</h3>` followed by `<ul><li><a href=PeopleDetail.aspx?id=N>Family Given</a>` (pinyin, family name first). Commented-out
+    blocks are ignored (the parser drops comments). The rank heading is the listed title; the institute is the division; `(Joint)` stays on the name
+    as a title note. name_listed is 'Family, Given' for a two-token name."""
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for box in soup.select('div.Faculty'):
+        p_ = box.find_previous_sibling('p')
+        division = clean(p_.get_text(' ', strip=True)) if p_ else None
+        for h3 in box.find_all('h3'):
+            rank = clean(h3.get_text(' ', strip=True)).rstrip(':').strip()
+            ul = h3.find_next_sibling('ul')
+            for a in (ul.select('li a[href]') if ul else []):
+                raw = clean(a.get_text(' ', strip=True))
+                note = re.search(r'\((Joint)\)', raw)
+                name = re.sub(r'\s*\((?:Joint)\)', '', raw).strip()
+                toks_ = name.split()
+                listed = f'{toks_[0]}, {" ".join(toks_[1:])}' if len(toks_) >= 2 else name
+                out.append(dict(name_listed=listed, titles=[rank] + ([note.group(1)] if note else []), profile=a['href'], homepage=None, division=division))
     return out
 
 
@@ -823,6 +844,7 @@ FORMATS = {
     'vt_emeritus': (lambda h: vt_directory(h, 'emeritus'), re.compile(r'(?!)')),
     'hkust_faculty_any': (hkust_faculty_any, re.compile(r'(?!)')),
     'zju_cs_teacher_cards': (zju_cs_teacher_cards, re.compile(r'class="teacher-card"')),
+    'sjtu_cs_en_institutes': (sjtu_cs_en_institutes, re.compile(r'class="Faculty"')),
     'zju_cs_zuzhi_names': (zju_cs_zuzhi_names, re.compile(r'class="zuzhi"')),
     'tsinghua_cs_list': (tsinghua_cs_list, re.compile(r'class="people01-nr"')),
     'tsinghua_sw_names': (tsinghua_sw_names, re.compile(r'class="group-title"')),

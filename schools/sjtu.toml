@@ -75,6 +75,17 @@ url = "https://www.cs.sjtu.edu.cn/"
   match = ""
   format = ""
   title_filter = ''
+  [[departments.listings]]
+  # Archived English faculty list (Wayback id_ captures 2016-2024; CDX evidence scratch/sjtu-coverage-1110/cdx-evidence*.json)
+  slot = "CS faculty (English list)"
+  kind = "sub"
+  url = "cs.sjtu.edu.cn/en/Faculty.aspx"
+  from = "20160101"
+  to = "20241231"
+  prefix = false
+  match = ""
+  format = "sjtu_cs_en_institutes"
+  title_filter = ''
 
 # Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
 # Verbatim label:电子信息与电气工程学院; literal href:http://www.seiee.sjtu.edu.cn; observed2026-11-08T11:32:52.
