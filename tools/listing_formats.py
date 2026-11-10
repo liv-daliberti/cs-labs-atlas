@@ -806,7 +806,7 @@ def sjtu_cs_en_institutes(h):
     """SJTU School of Computer Science English faculty list (cs.sjtu.edu.cn/en/Faculty.aspx, archived 2016-2024): one `p.tc` per institute, then
     `div.Faculty` with `<h3>Rank:</h3>` followed by `<ul><li><a href=PeopleDetail.aspx?id=N>Family Given</a>` (pinyin, family name first). Commented-out
     blocks are ignored (the parser drops comments). The rank heading is the listed title; the institute is the division; `(Joint)` stays on the name
-    as a title note. name_listed is 'Family, Given' for a two-token name."""
+    as a title note. name_listed is the name as the page spells it ('Fu Yuxi': family name first)."""
     from bs4 import BeautifulSoup
     soup = BeautifulSoup(h, 'html.parser')
     out = []
@@ -821,7 +821,7 @@ def sjtu_cs_en_institutes(h):
                 note = re.search(r'\((Joint)\)', raw)
                 name = re.sub(r'\s*\((?:Joint)\)', '', raw).strip()
                 toks_ = name.split()
-                listed = f'{toks_[0]}, {" ".join(toks_[1:])}' if len(toks_) >= 2 else name
+                listed = name  # as the page spells it (family name first): the row quote must be a substring of the page text
                 out.append(dict(name_listed=listed, titles=[rank] + ([note.group(1)] if note else []), profile=a['href'], homepage=None, division=division))
     return out
 

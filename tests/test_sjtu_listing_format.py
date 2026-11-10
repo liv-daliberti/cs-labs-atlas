@@ -13,7 +13,7 @@ PAGE = """<div class="lh250"><p class="tc f14 fb red">Institute of Theoretical C
 
 def test_sjtu_cs_en_institutes_parse_and_register():
     rows = F.FORMATS['sjtu_cs_en_institutes'][0](PAGE)
-    assert [r['name_listed'] for r in rows] == ['Fu, Yuxi', 'Zhu, Qili', 'Dominik', 'Wang, Xinbing']
+    assert [r['name_listed'] for r in rows] == ['Fu Yuxi', 'Zhu Qili', 'Dominik', 'Wang Xinbing']
     assert rows[0]['titles'] == ['Professor'] and rows[0]['division'] == 'Institute of Theoretical Computer Science'
     assert rows[2]['titles'] == ['Assistant Professor']
     assert rows[3]['titles'] == ['Professor', 'Joint'] and rows[3]['division'].endswith('Distributed Computing')
@@ -22,4 +22,4 @@ def test_sjtu_cs_en_institutes_parse_and_register():
 
 def test_commented_out_people_are_not_listed():
     names = [r['name_listed'] for r in F.FORMATS['sjtu_cs_en_institutes'][0](PAGE)]
-    assert 'Deng, Xiaotie' not in names and 'Long, Huan' not in names
+    assert 'Deng Xiaotie' not in names and 'Long Huan' not in names
