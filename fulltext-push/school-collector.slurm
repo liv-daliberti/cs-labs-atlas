@@ -23,6 +23,13 @@ cd "$CS_ATLAS_FULLTEXT_PUSH"
 . "$CS_ATLAS_CODE/fulltext-push/loop_job.sh"
 refuse_if_downloads_stopped   # disk guard marker (2026-11-10)
 export WAYBACK_HOLD="${WAYBACK_HOLD:-1}"   # loops leave web.archive.org to the listing captures (collector_quality.wayback_held); WAYBACK_HOLD=0 to allow
+# 2026-11-10 (owner): schools not yet admitted (no hierarchy/<school>/derived/lab_papers.jsonl.gz) take their lab papers from a copy of the registered package kept in
+# scratch/downloads-1110/hierarchy-onboard/<school>/ (MANIFEST.txt has the source paths and sha256). The path is chosen at every (re)start, so the loop follows the live
+# hierarchy as soon as the school is admitted.
+ONBOARD="$CS_ATLAS_ROOT/scratch/downloads-1110/hierarchy-onboard"
+LIVE_H="$CS_ATLAS_CODE/hierarchy"   # not $CS_ATLAS_HIERARCHY: a loop resubmits itself with its environment, so an earlier override must not stick after admission
+if [ -e "$LIVE_H/$SCHOOL/derived/lab_papers.jsonl.gz" ]; then export CS_ATLAS_HIERARCHY="$LIVE_H"
+elif [ -e "$ONBOARD/$SCHOOL/derived/lab_papers.jsonl.gz" ]; then export CS_ATLAS_HIERARCHY="$ONBOARD"; fi
 RESTART_LOG="$CS_ATLAS_FT_LOGS/lab_first_loop-$SCHOOL.out"
 # channels: the charter's [collector].channels, else the default list below. The CHANNELS environment is IGNORED unless CHANNELS_FORCE=1: a loop resubmits
 # itself with its environment, so a CHANNELS set at the first submission pinned the list for ever and hid the charter (2026-11-10).

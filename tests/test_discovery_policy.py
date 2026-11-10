@@ -3,7 +3,7 @@ import tomllib
 from pathlib import Path
 
 CODE = Path(__file__).resolve().parents[1]
-LOOP_SCHOOLS = 'harvard jhu oxford uchicago washu cmu mit stanford berkeley princeton epfl gatech michigan'.split()
+LOOP_SCHOOLS = 'harvard jhu oxford uchicago washu cmu mit stanford berkeley princeton epfl gatech michigan toronto tsinghua sjtu'.split()
 NEED = {'oa_arxiv', 'openalex', 'proceedings', 'arxiv_title', 'dblp_ee', 's2', 'europepmc', 'pmc', 'figshare', 'labpages', 'pihomes'}
 
 
@@ -32,3 +32,10 @@ def test_openalex_reserve_is_configurable(monkeypatch):
     assert load().RESERVE == 4000
     monkeypatch.delenv('OA_RESERVE')
     assert load().RESERVE == 800
+
+
+def test_onboarding_loop_reads_the_package_copy_until_admission():
+    t = (CODE / 'fulltext-push' / 'school-collector.slurm').read_text()
+    assert 'hierarchy-onboard' in t and 'LIVE_H="$CS_ATLAS_CODE/hierarchy"' in t
+    # the live hierarchy wins as soon as the school has its own lab_papers file
+    assert t.index('if [ -e "$LIVE_H/$SCHOOL/derived/lab_papers.jsonl.gz" ]') < t.index('elif [ -e "$ONBOARD/')
