@@ -897,5 +897,38 @@
       "checked": "2026-11-10",
       "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
+  },
+  "Lei Li": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "The department listing links only the robots-disallowed institutional profile; the PI own site (https://sites.google.com/view/leili, a Google Site) is not statically readable for member lists and no stored official page names his students. Limit recorded: a JavaScript render of that page (tools/js_render_capture.py, owner rule 2026-11-10) has not been run.",
+      "sources_checked": [
+        "https://emia.hkust.edu.hk/people (sha256 in the stored live capture): listing row only, no group page",
+        "https://sites.google.com/view/leili (lab-page audit 2026-11-10: page chosen, no member list parsed)"
+      ],
+      "by": "claude-hkust-admit-1109",
+      "on": "2026-11-10"
+    }
+  },
+  "Hao Liu": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "No personal or group website is linked from the EMIA listing (facultyprofiles.hkust-gz.edu.hk is robots-disallowed) and none was found by the lab-page audit (5 checks); no student names are stated on any stored official page.",
+      "sources_checked": [
+        "https://emia.hkust.edu.hk/people: listing row only",
+        "lab-page audit 2026-11-10: no eligible website"
+      ],
+      "by": "claude-hkust-admit-1109",
+      "on": "2026-11-10"
+    },
+    "papers": {
+      "code": "appointment_years_unsourced",
+      "why": "The only dated listing is 2026 (EMIA directory), so earlier works under his DBLP person (pid 09/3214-26, 198 records 2016-2026 naming the school; HKUST-GZ, Baidu and SCUT notes) lie outside any proven appointment; the build admits none until the unit listing history proves earlier years (stage 4 limit).",
+      "sources_checked": [
+        "hierarchy census additions row: years_listed [2026]"
+      ],
+      "by": "claude-hkust-admit-1109",
+      "on": "2026-11-10"
+    }
   }
 }

@@ -12393,10 +12393,153 @@
    "evidence_gaps": [],
    "verified": true,
    "verification_quote": "jian feng cai s homepage jian feng cai professor department of mathematics hong kong unive"
+  },
+  {
+   "pi": "Lei Li",
+   "status": "none_found",
+   "reason_code": "host_blocked_by_robots",
+   "reason": "The department listing links only the institutional faculty profile, which robots.txt disallows; the PI's own site is not linked from any stored official page (kept in website_note).",
+   "audited_at": "2026-11-10T18:59:55+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://emia.hkust.edu.hk/people",
+     "at": "2026-11-10T18:59:25+00:00",
+     "result": "ok",
+     "sha256": "f0a678a512ae94f44bdf9b320212af472bffc9f84aff606f15cc51ee36642cb4"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://facultyprofiles.hkust-gz.edu.cn/faculty-personal-page/LI-Lei/thorli",
+     "at": "2026-11-10T18:59:29+00:00",
+     "result": "robots_disallowed"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/13/7007-3",
+     "at": "2026-11-10T18:59:29+00:00",
+     "result": "listed",
+     "urls": [
+      "https://sites.google.com/view/leili"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-1386-767X/person.json",
+     "at": "2026-11-10T18:59:29+00:00",
+     "result": "listed",
+     "sha256": "218a9ae0014dbe0269e4a57257b803dc86902e8df4a85293f7b7a91ce152a1e1",
+     "urls": [
+      "https://orcid.org/0000-0002-1386-767X",
+      "https://scholar.google.com/citations?user=BeFxHAIAAAAJ&hl=en",
+      "https://sites.google.com/view/leili"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-10T18:59:29+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://sites.google.com/view/leili",
+     "at": "2026-11-10T18:59:31+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "17e81eb0b784ef6bafab5b4c5d98191dc1723cb70370c3e034ca377ef48e5eff"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://sites.google.com/view/leili",
+     "at": "2026-11-10T18:59:55+00:00",
+     "result": "0 captures",
+     "frm": 2026
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed",
+    "school_profile:robots_disallowed",
+    "wayback_cdx:0 captures"
+   ],
+   "checked_at": "2026-11-10T18:59:55+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "no_pubs_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": [],
+   "website_note": {
+    "replaced_url": "https://sites.google.com/view/leili",
+    "replaced_sha256": "17e81eb0b784ef6bafab5b4c5d98191dc1723cb70370c3e034ca377ef48e5eff",
+    "replaced_kind": "pi_homepage",
+    "found_via": "dblp_person_url",
+    "people_page": "https://sites.google.com/view/leili",
+    "alumni_page": null,
+    "pubs_page": null,
+    "why": "no stored official page links this site; the only official profile (https://facultyprofiles.hkust-gz.edu.cn/faculty-personal-page/LI-Lei/thorli) is disallowed by its robots.txt"
+   },
+   "reason_type": "access_blocked",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
+  },
+  {
+   "pi": "Hao Liu",
+   "status": "none_found",
+   "reason_code": "new_arrival_no_site_yet",
+   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://emia.hkust.edu.hk/people: ok; school_profile https://facultyprofiles.hkust-gz.edu.cn/faculty-personal-page/LIU-Hao/liuh: robots_disallowed; dblp_person_url https://dblp.org/pid/09/3214-26: person_not_in_dump_extract.",
+   "audited_at": "2026-11-10T18:59:55+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://emia.hkust.edu.hk/people",
+     "at": "2026-11-10T18:59:55+00:00",
+     "result": "ok",
+     "sha256": "f0a678a512ae94f44bdf9b320212af472bffc9f84aff606f15cc51ee36642cb4"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://facultyprofiles.hkust-gz.edu.cn/faculty-personal-page/LIU-Hao/liuh",
+     "at": "2026-11-10T18:59:55+00:00",
+     "result": "robots_disallowed"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/09/3214-26",
+     "at": "2026-11-10T18:59:55+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-10T18:59:55+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-10T18:59:55+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok",
+    "school_profile:robots_disallowed"
+   ],
+   "checked_at": "2026-11-10T18:59:55+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "joined in 2026; no school lab site yet",
+   "reason_type": "access_blocked",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
   }
  ],
  "built_against": {
-  "pis_json_sha256": "615e4a1cef6543b7cd2952f54bba5835f404b508577c38def3088f44520f509e",
-  "note": "register rebuilt 2026-11-10 (lab_websites.py build --refresh-discovery) from the b15 audit; stamp added so the register post-dates the promoted b15 pis.json"
+  "pis_json_sha256": "5a89d07a2db87bcce50c4e6844044376c34bdd4723a2c7c2ea89b90d61337327",
+  "note": "register rebuilt 2026-11-10 (lab_websites.py build --refresh-discovery) from the b16 audit incl. Lei Li and Hao Liu; stamp so the register post-dates the promoted b16 pis.json"
  }
 }
