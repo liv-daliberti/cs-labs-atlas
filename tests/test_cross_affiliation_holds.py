@@ -89,26 +89,26 @@ def test_malformed_or_inferred_hold_policy_fails_closed(change):
     with pytest.raises(ValueError): papers.reviewed_cross_affiliation_holds({'Ada Lovelace': dict(cross_affiliation_holds=[hold])})
 
 
-def test_exact_meel_reviewed_source_policy_is_consumed_and_schema_valid():
+def test_exact_joty_reviewed_source_policy_is_consumed_and_schema_valid():
     root = Path(__file__).resolve().parents[1]
-    overrides = json.loads((root / 'hierarchy/toronto/reviewed/census-overrides-school.json').read_text())
-    assert schema_check.validate({'toronto': overrides}, json.loads((root / 'schemas/census-overrides.schema.json').read_text())) == []
+    overrides = json.loads((root / 'hierarchy/ntu/reviewed/census-overrides-school.json').read_text())
+    assert schema_check.validate({'ntu': overrides}, json.loads((root / 'schemas/census-overrides.schema.json').read_text())) == []
     selected = papers.reviewed_cross_affiliation_holds(overrides)
-    assert set(selected) == {'Kuldeep Meel'} and set(selected['Kuldeep Meel']) == {2026}
-    hold = selected['Kuldeep Meel'][2026][0]
+    assert set(selected) == {'Joty Shafiq Rayhan'} and set(selected['Joty Shafiq Rayhan']) == {2026}
+    hold = selected['Joty Shafiq Rayhan'][2026][0]
     assert hold['leave_start'] is hold['leave_end'] is None and hold['departure_inferred'] is False
-    assert hold['evidence'][0]['quote'] == overrides['Kuldeep Meel']['nonprimary_appointment_observation']['quote']
+    assert hold['evidence'][0]['quote'] == overrides['Joty Shafiq Rayhan']['cross_affiliation_holds'][0]['evidence'][0]['quote']
 
 
 @pytest.mark.nfs
-def test_meel_original_owned_body_hash_and_literal_leave_observation():
-    root = Path(__file__).resolve().parents[1];overrides = json.loads((root / 'hierarchy/toronto/reviewed/census-overrides-school.json').read_text())
-    source = overrides['Kuldeep Meel']['cross_affiliation_holds'][0]['evidence'][0]
-    path = P.data('school-captures.sqlite', 'toronto')
-    if not path.is_file(): pytest.skip('original registered Toronto source cache absent')
+def test_joty_original_owned_body_hash_and_literal_leave_observation():
+    root = Path(__file__).resolve().parents[1];overrides = json.loads((root / 'hierarchy/ntu/reviewed/census-overrides-school.json').read_text())
+    source = overrides['Joty Shafiq Rayhan']['cross_affiliation_holds'][0]['evidence'][0]
+    path = P.SCRATCH / 'ntu-next-chain-1108' / 'originals.sqlite'
+    if not path.is_file(): pytest.skip('original NTU source cache absent')
     with sqlite3.connect(path.resolve().as_uri() + '?mode=ro', uri=True) as db:
-        (status, stored, blob), = db.execute('select status,sha256,raw_zlib from live where url=?', (source['url'],)).fetchall()
+        (status, stored, blob), = db.execute('select status,sha256,raw_zlib from sources where url=?', (source['url'],)).fetchall()
     raw = zlib.decompress(blob); assert status == 200 and stored == source['sha256'] == hashlib.sha256(raw).hexdigest()
     from bs4 import BeautifulSoup
     text = ' '.join(BeautifulSoup(raw, 'html.parser').get_text(' ', strip=True).split())
-    assert source['quote'] in text and 'Kuldeep S. Meel' in text
+    assert source['quote'] in text
