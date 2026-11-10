@@ -25,6 +25,10 @@ SITES = (
     ('Dongyoon Lee', 'https://www3.cs.stonybrook.edu/~dongyoon/',
      'Before joining Stony Brook University, I worked as an assistant professor at Virginia Tech (2014-2019)',
      'Stony Brook University'),
+    ('Sharath Raghvendra', 'https://engr.ncsu.edu/people/skraghve/',
+     'Sharath Raghvendra SR Assoc Professor', 'NC State'),
+    ('Ali Vakilian', 'https://www.mit.edu/~vakilian/',
+     'Previously: Assistant Professor, CS at Virginia Tech', 'Rutgers Business School'),
 )
 
 
@@ -50,7 +54,7 @@ def main():
         doc['labs'].append(dict(
             pi=name, url=url, coverage='reason', kind='other_institution_site',
             reason_code='site_at_other_institution',
-            reason=(f'Current personal/group website identifies {institution} as the current institution. '
+            reason=(f'Current university or personal page identifies {institution} as the current institution. '
                     'The VT period remains historical; no current VT lab site is established by this page.'),
             checked_at=at, audited_at=at,
             checks=[dict(source='candidate_site', url=url, result='ok', at=at,
