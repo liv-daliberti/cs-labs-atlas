@@ -60,7 +60,7 @@ def test_loop_job_refuses_while_marker_exists(tmp_path):
     env = {'PATH': '/usr/bin:/bin', 'CS_ATLAS_FT_RAW': str(tmp_path), 'CS_ATLAS_CODE': str(tmp_path)}
     src = f'. {FT}/loop_job.sh; refuse_if_downloads_stopped; echo started'
     assert 'started' in run_bash(src, env).stdout
-    (tmp_path / 'downloads_stopped_for_disk').write_text('{}')
+    (tmp_path / 'downloads_stopped_by_disk_guard').write_text('{}')
     r = run_bash(src, env)
     assert r.returncode == 3 and 'started' not in r.stdout and 'refused' in r.stdout
 
@@ -71,9 +71,8 @@ def test_collector_scripts_check_the_marker():
     assert 'LOOP_RESUBMIT_IGNORE_STOP' in (FT / 'disk-guard.slurm').read_text()
 
 
-def test_lock_wait_retries_then_gives_up(tmp_path):
-    import sys
-    sys.path.insert(0, str(FT))
+def test_lock_wait_retries_then_gives_up(tmp_path, monkeypatch):
+    monkeypatch.syspath_prepend(str(FT))
     import lab_first_loop as L
     p = tmp_path / 'lock'
     a, b = open(p, 'a'), open(p, 'a')

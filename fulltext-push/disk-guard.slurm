@@ -1,6 +1,6 @@
 #!/bin/bash
 # Disk guard as a light, self-restarting Slurm job (2026-11-10): 1 CPU, 1 G; every 2 minutes `df -B1G` of the project share and, under 250 GB, touch
-# raw/downloads_stopped_for_disk + `scancel --name=<our download job names>` (all nodes). See disk_guard.py. Submit: atlas submit fulltext-push/disk-guard.slurm
+# raw/downloads_stopped_by_disk_guard + `scancel --name=<our download job names>` (all nodes). See disk_guard.py. Submit: atlas submit fulltext-push/disk-guard.slurm
 # Restarts itself like the loops (USR1 900 s before the limit, loop_job.sh); scancel stops it for good. It resubmits even while the marker exists.
 #SBATCH --job-name=disk-guard
 #SBATCH --partition=all

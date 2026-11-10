@@ -1,11 +1,11 @@
 """Disk guard for the full-text downloads (redesigned 2026-11-10; replaces the pkill version that watched the old share).
 
 Every INTERVAL seconds read the free space of the project share with `df -B1G` (never du). Below LIMIT_GB it
-  1. touches the stop marker raw/downloads_stopped_for_disk (the loops and their Slurm scripts refuse to start while it exists;
+  1. touches the stop marker raw/downloads_stopped_by_disk_guard (the loops and their Slurm scripts refuse to start while it exists;
      loop_job.sh also refuses to resubmit), and
   2. scancels our own download jobs by NAME (scancel --name=<n> -u $USER: reaches every node, unlike pkill on one host).
 A scancel is a deliberate stop: loop_job.sh does not resubmit on TERM. The guard keeps watching afterwards.
-The marker is cleared by hand once space is back:  rm "$CS_ATLAS_FT_RAW/downloads_stopped_for_disk"  (the guard never removes it).
+The marker is cleared by hand once space is back:  rm "$CS_ATLAS_FT_RAW/downloads_stopped_by_disk_guard"  (the guard never removes it).
 Limit 250 GB (env DISK_GUARD_LIMIT_GB): the share is 12 TB shared with every worker; the loops add a few GB an hour, a 2-minute check plus the
 time a job needs to die is minutes, but other workers' stores, catalog backups, SQLite copies and checkpoint restores can take 100+ GB at once,
 and a full share breaks every job on every node, so the stop must fire while that headroom still exists.
@@ -20,7 +20,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-MARKER_NAME = 'downloads_stopped_for_disk'
+MARKER_NAME = 'downloads_stopped_by_disk_guard'
 # our download jobs only: never another worker's jobs (Oxford, HKUST, ... run under their own names)
 DEFAULT_JOB_NAMES = ('school-fulltext', 'michigan-fulltext', 'fulltext-downloads', 'fulltext-retry-transient',
                      'etd-crawl', 'etd-uc-chain', 'etd-gatech-live', 'oai-repo')

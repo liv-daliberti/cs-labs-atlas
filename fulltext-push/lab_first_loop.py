@@ -163,7 +163,7 @@ def main():
     made = store_layout.ensure(out)
     if made:
         print(json.dumps(dict(at=F.now(), store_layout_created=made)), flush=True)
-    marker = F.P.FT_RAW / 'downloads_stopped_for_disk'  # disk guard (disk_guard.py): no loop starts while it exists
+    marker = F.P.FT_RAW / 'downloads_stopped_by_disk_guard'  # disk guard (disk_guard.py): no loop starts while it exists
     if marker.exists():
         print(json.dumps(dict(at=F.now(), exit='disk guard marker exists', marker=str(marker))), flush=True)
         return
