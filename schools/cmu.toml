@@ -52,6 +52,433 @@ relation_links = 'figshare\.com/articles/'
 enrich = "figshare"
 enrich_base = "https://api.figshare.com/v2"
 
+# Hosts the cmu tools contact (stage 0, 2026-11-10). Derived from evidence: the raw capture stores (hierarchy/cmu/raw/*captures*.sqlite) and the full-text download ledger (stores/cmu/fulltext_assets.csv). The long tail of faculty personal sites is read per capture under school_web robots checks and is not enumerated here.
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (1340 captures in the cmu raw stores; listings, lab pages, theses)"
+probe = ""
+
+[[hosts]]
+host = "api.openalex.org"
+use = "live"
+purpose = "OpenAlex API (snapshot first; the shared 10k/day key; 61 captures in the raw stores)"
+probe = ""
+
+[[hosts]]
+host = "dblp.org"
+use = "none"
+purpose = "DBLP: local dump only, never fetched (project rule)"
+probe = ""
+
+[[hosts]]
+host = "orcid.org"
+use = "none"
+purpose = "ORCID: never contacted (project rule); the raw stores hold 372 older captures from before the rule"
+probe = ""
+
+[[hosts]]
+host = "storage.googleapis.com"
+use = "live"
+purpose = "Third-party source: 16574 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "aclanthology.org"
+use = "live"
+purpose = "Third-party source: 4988 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "api.figshare.com"
+use = "live"
+purpose = "Third-party source: 4343 captures in the raw stores (4343 live, 0 via Wayback; 4340 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "papers.nips.cc"
+use = "live"
+purpose = "Third-party source: 2026 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "pmc-oa-opendata.s3.amazonaws.com"
+use = "live"
+purpose = "Third-party source: 1977 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "openaccess.thecvf.com"
+use = "live"
+purpose = "Third-party source: 1912 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "s3-eu-west-1.amazonaws.com"
+use = "live"
+purpose = "Third-party source: 1901 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "proceedings.mlr.press"
+use = "live"
+purpose = "Third-party source: 1847 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "reports-archive.adm.cs.cmu.edu"
+use = "live"
+purpose = "School site: 1656 captures in the raw stores (1656 live, 0 via Wayback; 1616 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://reports-archive.adm.cs.cmu.edu/"
+
+[[hosts]]
+host = "www.cs.cmu.edu"
+use = "live"
+purpose = "School site: 1080 captures in the raw stores (1078 live, 2 via Wayback; 866 HTTP 200); 575 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://www.cs.cmu.edu/"
+
+[[hosts]]
+host = "raw.githubusercontent.com"
+use = "live"
+purpose = "Third-party source: 1148 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "proceedings.iclr.cc"
+use = "live"
+purpose = "Third-party source: 1090 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "drops.dagstuhl.de"
+use = "live"
+purpose = "Third-party source: 659 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "ojs.aaai.org"
+use = "live"
+purpose = "Third-party source: 549 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "www.ri.cmu.edu"
+use = "live"
+purpose = "School site: 516 captures in the raw stores (501 live, 15 via Wayback; 453 HTTP 200); 2 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://www.ri.cmu.edu/"
+
+[[hosts]]
+host = "www.usenix.org"
+use = "live"
+purpose = "Third-party source: 467 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "www.csd.cs.cmu.edu"
+use = "live"
+purpose = "School site: 440 captures in the raw stores (434 live, 6 via Wayback; 329 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.csd.cs.cmu.edu/"
+
+[[hosts]]
+host = "proceedings.neurips.cc"
+use = "live"
+purpose = "Third-party source: 422 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "www.cmu.edu"
+use = "live"
+purpose = "School site: 373 captures in the raw stores (292 live, 81 via Wayback; 334 HTTP 200); 22 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://www.cmu.edu/"
+
+[[hosts]]
+host = "lti.cmu.edu"
+use = "live"
+purpose = "School site: 385 captures in the raw stores (376 live, 9 via Wayback; 378 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://lti.cmu.edu/"
+
+[[hosts]]
+host = "www.isca-archive.org"
+use = "live"
+purpose = "Third-party source: 382 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "csd.cmu.edu"
+use = "live"
+purpose = "School site: 374 captures in the raw stores (362 live, 12 via Wayback; 350 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://csd.cmu.edu/"
+
+[[hosts]]
+host = "www.ijcai.org"
+use = "live"
+purpose = "Third-party source: 349 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "www.ecva.net"
+use = "live"
+purpose = "Third-party source: 337 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "ml.cmu.edu"
+use = "live"
+purpose = "School site: 272 captures in the raw stores (271 live, 1 via Wayback; 265 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://ml.cmu.edu/"
+
+[[hosts]]
+host = "hcii.cmu.edu"
+use = "live"
+purpose = "School site: 225 captures in the raw stores (198 live, 27 via Wayback; 222 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://hcii.cmu.edu/"
+
+[[hosts]]
+host = "www.andrew.cmu.edu"
+use = "live"
+purpose = "School site: 141 captures in the raw stores (141 live, 0 via Wayback; 114 HTTP 200); 43 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://www.andrew.cmu.edu/"
+
+[[hosts]]
+host = "users.ece.cmu.edu"
+use = "live"
+purpose = "School site: 119 captures in the raw stores (119 live, 0 via Wayback; 97 HTTP 200); 45 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://users.ece.cmu.edu/"
+
+[[hosts]]
+host = "www.ece.cmu.edu"
+use = "live"
+purpose = "School site: 145 captures in the raw stores (106 live, 39 via Wayback; 138 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.ece.cmu.edu/"
+
+[[hosts]]
+host = "www.pdl.cmu.edu"
+use = "live"
+purpose = "School site: 98 captures in the raw stores (98 live, 0 via Wayback; 97 HTTP 200); 24 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://www.pdl.cmu.edu/"
+
+[[hosts]]
+host = "www.hcii.cmu.edu"
+use = "live"
+purpose = "School site: 105 captures in the raw stores (84 live, 21 via Wayback; 100 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.hcii.cmu.edu/"
+
+[[hosts]]
+host = "www.heinz.cmu.edu"
+use = "live"
+purpose = "School site: 102 captures in the raw stores (85 live, 17 via Wayback; 74 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.heinz.cmu.edu/"
+
+[[hosts]]
+host = "sc.cs.cmu.edu"
+use = "live"
+purpose = "School site: 101 captures in the raw stores (91 live, 10 via Wayback; 96 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://sc.cs.cmu.edu/"
+
+[[hosts]]
+host = "www.isri.cmu.edu"
+use = "live"
+purpose = "School site: 96 captures in the raw stores (78 live, 18 via Wayback; 36 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.isri.cmu.edu/"
+
+[[hosts]]
+host = "www.ml.cmu.edu"
+use = "live"
+purpose = "School site: 77 captures in the raw stores (40 live, 37 via Wayback; 58 HTTP 200); 1 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://www.ml.cmu.edu/"
+
+[[hosts]]
+host = "www.stat.cmu.edu"
+use = "live"
+purpose = "School site: 60 captures in the raw stores (59 live, 1 via Wayback; 54 HTTP 200); 6 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://www.stat.cmu.edu/"
+
+[[hosts]]
+host = "www.lti.cs.cmu.edu"
+use = "live"
+purpose = "School site: 59 captures in the raw stores (29 live, 30 via Wayback; 41 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.lti.cs.cmu.edu/"
+
+[[hosts]]
+host = "s3d.cmu.edu"
+use = "live"
+purpose = "School site: 57 captures in the raw stores (48 live, 9 via Wayback; 48 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://s3d.cmu.edu/"
+
+[[hosts]]
+host = "csd.cs.cmu.edu"
+use = "live"
+purpose = "School site: 56 captures in the raw stores (55 live, 1 via Wayback; 49 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://csd.cs.cmu.edu/"
+
+[[hosts]]
+host = "scholars.cmu.edu"
+use = "live"
+purpose = "School site: 50 captures in the raw stores (50 live, 0 via Wayback; 39 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://scholars.cmu.edu/"
+
+[[hosts]]
+host = "ece.cmu.edu"
+use = "live"
+purpose = "School site: 46 captures in the raw stores (40 live, 6 via Wayback; 46 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://ece.cmu.edu/"
+
+[[hosts]]
+host = "www.cnbc.cmu.edu"
+use = "live"
+purpose = "School site: 45 captures in the raw stores (45 live, 0 via Wayback; 19 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.cnbc.cmu.edu/"
+
+[[hosts]]
+host = "labs.bio.cmu.edu"
+use = "live"
+purpose = "School site: 35 captures in the raw stores (35 live, 0 via Wayback; 35 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://labs.bio.cmu.edu/"
+
+[[hosts]]
+host = "lti.cs.cmu.edu"
+use = "live"
+purpose = "School site: 34 captures in the raw stores (14 live, 20 via Wayback; 25 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://lti.cs.cmu.edu/"
+
+[[hosts]]
+host = "www.cbd.cmu.edu"
+use = "live"
+purpose = "School site: 34 captures in the raw stores (8 live, 26 via Wayback; 34 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.cbd.cmu.edu/"
+
+[[hosts]]
+host = "ri.cmu.edu"
+use = "live"
+purpose = "School site: 31 captures in the raw stores (21 live, 10 via Wayback; 22 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://ri.cmu.edu/"
+
+[[hosts]]
+host = "cbd.cmu.edu"
+use = "live"
+purpose = "School site: 30 captures in the raw stores (19 live, 11 via Wayback; 30 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://cbd.cmu.edu/"
+
+[[hosts]]
+host = "www.meche.engineering.cmu.edu"
+use = "live"
+purpose = "School site: 28 captures in the raw stores (18 live, 10 via Wayback; 22 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.meche.engineering.cmu.edu/"
+
+[[hosts]]
+host = "geometry.cs.cmu.edu"
+use = "live"
+purpose = "School site: 25 captures in the raw stores (25 live, 0 via Wayback; 6 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://geometry.cs.cmu.edu/"
+
+[[hosts]]
+host = "imaging.cs.cmu.edu"
+use = "live"
+purpose = "School site: 21 captures in the raw stores (21 live, 0 via Wayback; 20 HTTP 200); 4 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://imaging.cs.cmu.edu/"
+
+[[hosts]]
+host = "www.chem.cmu.edu"
+use = "live"
+purpose = "School site: 23 captures in the raw stores (23 live, 0 via Wayback; 23 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.chem.cmu.edu/"
+
+[[hosts]]
+host = "cups.cs.cmu.edu"
+use = "live"
+purpose = "School site: 22 captures in the raw stores (22 live, 0 via Wayback; 17 HTTP 200); 1 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://cups.cs.cmu.edu/"
+
+[[hosts]]
+host = "isri.cmu.edu"
+use = "live"
+purpose = "School site: 21 captures in the raw stores (17 live, 4 via Wayback; 16 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://isri.cmu.edu/"
+
+[[hosts]]
+host = "www.casos.cs.cmu.edu"
+use = "live"
+purpose = "School site: 20 captures in the raw stores (20 live, 0 via Wayback; 8 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.casos.cs.cmu.edu/"
+
+[[hosts]]
+host = "murphylab.web.cmu.edu"
+use = "live"
+purpose = "School site: 20 captures in the raw stores (20 live, 0 via Wayback; 9 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://murphylab.web.cmu.edu/"
+
+[[hosts]]
+host = "meche.engineering.cmu.edu"
+use = "live"
+purpose = "School site: 19 captures in the raw stores (13 live, 6 via Wayback; 18 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://meche.engineering.cmu.edu/"
+
+[[hosts]]
+host = "harp.ri.cmu.edu"
+use = "live"
+purpose = "School site: 19 captures in the raw stores (19 live, 0 via Wayback; 11 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://harp.ri.cmu.edu/"
+
+[[hosts]]
+host = "www.cheme.engineering.cmu.edu"
+use = "live"
+purpose = "School site: 18 captures in the raw stores (9 live, 9 via Wayback; 16 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.cheme.engineering.cmu.edu/"
+
+[[hosts]]
+host = "epdlab.heinz.cmu.edu"
+use = "live"
+purpose = "School site: 18 captures in the raw stores (18 live, 0 via Wayback; 3 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://epdlab.heinz.cmu.edu/"
+
+[[hosts]]
+host = "peex.heinz.cmu.edu"
+use = "live"
+purpose = "School site: 17 captures in the raw stores (17 live, 0 via Wayback; 5 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://peex.heinz.cmu.edu/"
+
+[[hosts]]
+host = "labs.ri.cmu.edu"
+use = "live"
+purpose = "School site: 17 captures in the raw stores (17 live, 0 via Wayback; 16 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://labs.ri.cmu.edu/"
+
+[[hosts]]
+host = "design.cmu.edu"
+use = "live"
+purpose = "School site: 16 captures in the raw stores (11 live, 5 via Wayback; 8 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://design.cmu.edu/"
+
+[[hosts]]
+host = "www.architecture.cmu.edu"
+use = "live"
+purpose = "School site: 16 captures in the raw stores (11 live, 5 via Wayback; 11 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.architecture.cmu.edu/"
+
+[[hosts]]
+host = "se-phd.s3d.cmu.edu"
+use = "live"
+purpose = "School site: 15 captures in the raw stores (12 live, 3 via Wayback; 15 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://se-phd.s3d.cmu.edu/"
+
+[[hosts]]
+host = "www-2.cs.cmu.edu"
+use = "live"
+purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 11 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www-2.cs.cmu.edu/"
+
+[[hosts]]
+host = "articulab.hcii.cs.cmu.edu"
+use = "live"
+purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 11 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://articulab.hcii.cs.cmu.edu/"
+
+[[hosts]]
+host = "cs.cmu.edu"
+use = "live"
+purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 15 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://cs.cmu.edu/"
+
 [collector]
 # 2026-11-10 (owner): discovery channels re-enabled for every loop. wayback_acm stays OFF (and WAYBACK_HOLD=1 in the loop scripts) while Wayback listing captures run; CORE stays paused.
 # Re-enable wayback_acm later: append "wayback_acm" here and set WAYBACK_HOLD=0 for the loops. OpenAlex spend is capped by OA_RESERVE=4000 (docs/CHANNELS.md).
