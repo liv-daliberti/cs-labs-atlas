@@ -479,8 +479,8 @@ def build_row(u, ctx):
                    copies_share=cj.get('local_share') if cj.get('local_share') is not None else '')
         if row['papers'] != '' and cj.get('lab_papers') != row['papers']:
             flags.append(f"copies base ({cj.get('lab_papers')}) differs from the headline distinct papers ({row['papers']})")
-    else:
-        row['copies_share'] = ''
+    elif ch is not None:
+        flags.append('copies not measured: no copies.json, no registered counter, not in the frozen release')
     lp = (ctx['loops'] or {}).get(key)
     if lp:
         row.update(loop_phase=lp.get('phase') or '', loop_rounds=lp.get('rounds') if lp.get('rounds') is not None else '',
