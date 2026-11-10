@@ -3,7 +3,7 @@
  "reviewed": "2026-11-10",
  "by": "claude-ntu-1110",
  "dump": "dblp-2026-09-01.xml.gz",
- "policy": "school_affiliation / homepage_url / school_coauthors rule bindings kept (Toronto precedent); name-only bindings (unique_name, unique_exact_name) need >=10 exact titles on the PI owned page (R-PAP-44) or an NTU-affiliated OpenAlex author carrying the same ORCID as the DBLP record (R-PAP-42); no-ORCID-conflict check is the builder (R-PAP-42a); dr.ntu.edu.sg is behind an AWS WAF human-verification challenge, so no profile was fetched live",
+ "policy": "school_affiliation / homepage_url / school_coauthors rule bindings kept (Toronto precedent); name-only bindings (unique_name, unique_exact_name) need >=10 exact titles on the PI owned page (R-PAP-44) or an NTU-affiliated OpenAlex author carrying the same ORCID as the DBLP record (R-PAP-42); no-ORCID-conflict check is the builder (R-PAP-42a); dr.ntu.edu.sg is behind an AWS WAF human-verification challenge, so no profile was fetched live; fresh-reviewer spot check of 40 EEE/SPMS/CEE bindings (seed 20261111): 0 wrong, 2 unsure (held), 38 ok",
  "accepted": {
   "Andy W. H. Khong": {
    "pid": "https://dblp.org/pid/66/1858",
@@ -69,12 +69,6 @@
      "ntu_works": 679
     }
    ]
-  },
-  "Cheng Chen": {
-   "pid": "https://dblp.org/pid/10/217-15",
-   "basis": "school_affiliation",
-   "why": "dblp record names NTU / owned homepage",
-   "corroboration": []
   },
   "Chip-Hong Chang": {
    "pid": "https://dblp.org/pid/95/137",
@@ -178,24 +172,6 @@
       "A5040820835"
      ],
      "ntu_works": 17
-    }
-   ]
-  },
-  "Jian Guo": {
-   "pid": "https://dblp.org/pid/96/2596-1",
-   "basis": "school_affiliation",
-   "why": "dblp record names NTU / owned homepage",
-   "corroboration": [
-    {
-     "kind": "orcid_agrees_with_ntu_openalex_author",
-     "orcids": [
-      "0000-0001-8847-6748"
-     ],
-     "openalex": [
-      "A5017263623",
-      "A5135343875"
-     ],
-     "ntu_works": 50
     }
    ]
   },
@@ -406,25 +382,6 @@
     }
    ]
   },
-  "Sunny Hei Wong": {
-   "pid": "https://dblp.org/pid/289/8628",
-   "basis": "school_affiliation",
-   "why": "dblp record names NTU / owned homepage",
-   "corroboration": [
-    {
-     "kind": "orcid_agrees_with_ntu_openalex_author",
-     "orcids": [
-      "0000-0002-3354-9310"
-     ],
-     "openalex": [
-      "A5033997612",
-      "A5109751410",
-      "A5139612248"
-     ],
-     "ntu_works": 119
-    }
-   ]
-  },
   "Sunwoo Lee": {
    "pid": "https://dblp.org/pid/56/7811-2",
    "basis": "school_affiliation",
@@ -442,12 +399,6 @@
      "ntu_works": 5
     }
    ]
-  },
-  "Tao Huang": {
-   "pid": "https://dblp.org/pid/34/808-15",
-   "basis": "school_affiliation",
-   "why": "dblp record names NTU / owned homepage",
-   "corroboration": []
   },
   "Tee Hiang Cheng": {
    "pid": "https://dblp.org/pid/c/TeeHiangCheng",
@@ -508,12 +459,6 @@
      "ntu_works": 87
     }
    ]
-  },
-  "Wei Huang": {
-   "pid": "https://dblp.org/pid/81/6685-13",
-   "basis": "school_affiliation",
-   "why": "dblp record names NTU / owned homepage",
-   "corroboration": []
   },
   "Woon-Seng Gan": {
    "pid": "https://dblp.org/pid/g/WoonSengGan",
@@ -684,28 +629,6 @@
     }
    ]
   },
-  "Christopher H. T. Lee": {
-   "pid": "https://dblp.org/pid/187/3777",
-   "basis": "orcid_agrees_ntu_openalex",
-   "why": "only candidate whose ORCID agrees with an NTU-affiliated OpenAlex author",
-   "corroboration": [
-    {
-     "kind": "orcid_agrees_with_ntu_openalex_author",
-     "detail": [
-      [
-       "https://dblp.org/pid/187/3777",
-       [
-        [
-         "0000-0001-5132-4126",
-         "A5100461247",
-         310
-        ]
-       ]
-      ]
-     ]
-    }
-   ]
-  },
   "Gaoxi Xiao": {
    "pid": "https://dblp.org/pid/78/3245",
    "basis": "orcid_agrees_ntu_openalex",
@@ -760,23 +683,6 @@
       "A5114336255"
      ],
      "ntu_works": 85
-    }
-   ]
-  },
-  "Joseph S. Chang": {
-   "pid": "https://dblp.org/pid/93/4217",
-   "basis": "school_coauthors",
-   "why": "school_coauthors rule (>=5 records with decided NTU PIs)",
-   "corroboration": [
-    {
-     "kind": "orcid_agrees_with_ntu_openalex_author",
-     "orcids": [
-      "0000-0003-0991-8339"
-     ],
-     "openalex": [
-      "A5023352317"
-     ],
-     "ntu_works": 84
     }
    ]
   },
@@ -989,6 +895,34 @@
   "Sadat Reza": {
    "basis": "none",
    "why": "1 name candidates, 0 ORCID-agreeing"
+  },
+  "Sunny Hei Wong": {
+   "basis": "school_affiliation",
+   "why": "scope: clinical and wet-lab (metagenomics, swallowing auscultation); computing is a setting"
+  },
+  "Christopher H. T. Lee": {
+   "basis": "orcid_agrees_ntu_openalex",
+   "why": "scope: motor drives and power electronics; computing is not the method"
+  },
+  "Joseph S. Chang": {
+   "basis": "school_coauthors",
+   "why": "scope: analog and mixed-signal circuits; AI latchup papers are a minor strand"
+  },
+  "Jian Guo": {
+   "basis": "school_affiliation",
+   "why": "identity risk: the DBLP cryptographer (Jian Guo 0001, NTU Mathematical Sciences) may be a namesake of the Medicine-list Jian Guo; the computing evidence belongs to that record"
+  },
+  "Tao Huang": {
+   "basis": "school_affiliation",
+   "why": "identity risk: DBLP Tao Huang 0015 (cryptanalysis, SPMS, last 2018) does not fit a Medicine-list assistant professor"
+  },
+  "Wei Huang": {
+   "basis": "school_affiliation",
+   "why": "fresh-reviewer spot check: DBLP Wei Huang 0013 (Nanchang University, UCSD, A*STAR; graph learning) is likely a namesake; no NTU tie"
+  },
+  "Cheng Chen": {
+   "basis": "school_affiliation",
+   "why": "fresh-reviewer spot check: DBLP Cheng Chen 0015 (ECNU theory group, NTU only as one note) may be a different person"
   }
  }
 }

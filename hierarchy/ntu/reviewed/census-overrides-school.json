@@ -5871,7 +5871,7 @@
     }
   },
   "Cheng Chen": {
-    "no_identity": false,
+    "no_identity": true,
     "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
@@ -5891,37 +5891,6 @@
         }
       ],
       "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
-    },
-    "dblp": [
-      "https://dblp.org/pid/10/217-15"
-    ],
-    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 32 records in 2016-2026.",
-    "dblp_identity_review": {
-      "school": "ntu",
-      "pi": "Cheng Chen",
-      "PID": "https://dblp.org/pid/10/217-15",
-      "rule": "school_affiliation",
-      "dump": "dblp-2026-09-01.xml.gz",
-      "dump_record_sha256": "dad5c9ebb35a646670e044a471a67532b6dc3fee7867634fa4ee7adb0ec593d2",
-      "dump_record_quote": "Nanyang Technological University (NTU), Singapore",
-      "dump_record_url": "https://dblp.org/pid/10/217-15",
-      "n_window": 32,
-      "official_listing_source": {
-        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
-        "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
-        "quote": "Cheng CHEN Associate Professor",
-        "observedAt": "20261110"
-      },
-      "reviewer": "claude-ntu-1110",
-      "reviewed": "2026-11-10",
-      "dump_affiliation_notes": [
-        "East China Normal University, China",
-        "Nanyang Technological University (NTU), Singapore",
-        "Shanghai Jiao Tong University, China"
-      ],
-      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
-      "corroboration": [],
-      "status": "accepted_rule_bound"
     }
   },
   "Chip-Hong Chang": {
@@ -6329,85 +6298,6 @@
             "A5040820835"
           ],
           "ntu_works": 17
-        }
-      ],
-      "status": "accepted_rule_bound"
-    }
-  },
-  "Jian Guo": {
-    "no_identity": false,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
-    "dblp_orcid_review": {
-      "allowed": [],
-      "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
-      "evidence": []
-    },
-    "collection_person_id": "ntu_fac_jian-guo",
-    "collection_person_source": {
-      "profile_url": null,
-      "sources": [
-        {
-          "url": "https://web.archive.org/web/20250423122256id_/https://www.ntu.edu.sg/medicine/our-people/faculty",
-          "sha256": "954c679eedbcb4942ceb05fcb95d708c0e300456ee1351a23951485dc7bd016c",
-          "quote": "Jian Guo Assistant Professor",
-          "observedAt": "20250423122256",
-          "kind": "named_individual_official_unit_listing_LKC_MEDICINE"
-        },
-        {
-          "url": "https://web.archive.org/web/20260214231800id_/https://www.ntu.edu.sg/medicine/our-people/faculty",
-          "sha256": "cee1ef71b3f94426f43efe046f5108d6c2015749de319c153f94eb797c6c021b",
-          "quote": "Jian Guo Assistant Professor",
-          "observedAt": "20260214231800",
-          "kind": "named_individual_official_unit_listing_LKC_MEDICINE"
-        },
-        {
-          "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
-          "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
-          "quote": "Jian Guo Assistant Professor",
-          "observedAt": "20261110",
-          "kind": "named_individual_official_unit_listing_LKC_MEDICINE"
-        }
-      ],
-      "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
-    },
-    "dblp": [
-      "https://dblp.org/pid/96/2596-1"
-    ],
-    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 110 records in 2016-2026.",
-    "dblp_identity_review": {
-      "school": "ntu",
-      "pi": "Jian Guo",
-      "PID": "https://dblp.org/pid/96/2596-1",
-      "rule": "school_affiliation",
-      "dump": "dblp-2026-09-01.xml.gz",
-      "dump_record_sha256": "6ef81bcfb3de00a28df9844802213d1aa24ed42948af62227aacea4fac29fb53",
-      "dump_record_quote": "Nanyang Technological University, Division of Mathematical Sciences, Singapore",
-      "dump_record_url": "https://dblp.org/pid/96/2596-1",
-      "n_window": 110,
-      "official_listing_source": {
-        "url": "https://web.archive.org/web/20250423122256id_/https://www.ntu.edu.sg/medicine/our-people/faculty",
-        "sha256": "954c679eedbcb4942ceb05fcb95d708c0e300456ee1351a23951485dc7bd016c",
-        "quote": "Jian Guo Assistant Professor",
-        "observedAt": "20250423122256"
-      },
-      "reviewer": "claude-ntu-1110",
-      "reviewed": "2026-11-10",
-      "dump_affiliation_notes": [
-        "Nanyang Technological University, Division of Mathematical Sciences, Singapore",
-        "Institute for Infocomm Research, Singapore"
-      ],
-      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
-      "corroboration": [
-        {
-          "kind": "orcid_agrees_with_ntu_openalex_author",
-          "orcids": [
-            "0000-0001-8847-6748"
-          ],
-          "openalex": [
-            "A5017263623",
-            "A5135343875"
-          ],
-          "ntu_works": 50
         }
       ],
       "status": "accepted_rule_bound"
@@ -7180,72 +7070,6 @@
       "status": "accepted_rule_bound"
     }
   },
-  "Sunny Hei Wong": {
-    "no_identity": false,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
-    "dblp_orcid_review": {
-      "allowed": [],
-      "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
-      "evidence": []
-    },
-    "collection_person_id": "ntu_fac_sunny-hei-wong",
-    "collection_person_source": {
-      "profile_url": null,
-      "sources": [
-        {
-          "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
-          "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
-          "quote": "Sunny WONG Associate Professor",
-          "observedAt": "20261110",
-          "kind": "named_individual_official_unit_listing_LKC_MEDICINE"
-        }
-      ],
-      "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
-    },
-    "dblp": [
-      "https://dblp.org/pid/289/8628"
-    ],
-    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 11 records in 2016-2026.",
-    "dblp_identity_review": {
-      "school": "ntu",
-      "pi": "Sunny Hei Wong",
-      "PID": "https://dblp.org/pid/289/8628",
-      "rule": "school_affiliation",
-      "dump": "dblp-2026-09-01.xml.gz",
-      "dump_record_sha256": "f69e1cfb24cee710607d9451403bf36b7866598606ec75adddf0af9f693eeeab",
-      "dump_record_quote": "Nanyang Technological University, School of Medicine, Singapore",
-      "dump_record_url": "https://dblp.org/pid/289/8628",
-      "n_window": 11,
-      "official_listing_source": {
-        "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
-        "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
-        "quote": "Sunny WONG Associate Professor",
-        "observedAt": "20261110"
-      },
-      "reviewer": "claude-ntu-1110",
-      "reviewed": "2026-11-10",
-      "dump_affiliation_notes": [
-        "Nanyang Technological University, School of Medicine, Singapore",
-        "Chinese University of Hong Kong, Department of Medicine and Therapeutics, Hong Kong"
-      ],
-      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
-      "corroboration": [
-        {
-          "kind": "orcid_agrees_with_ntu_openalex_author",
-          "orcids": [
-            "0000-0002-3354-9310"
-          ],
-          "openalex": [
-            "A5033997612",
-            "A5109751410",
-            "A5139612248"
-          ],
-          "ntu_works": 119
-        }
-      ],
-      "status": "accepted_rule_bound"
-    }
-  },
   "Sunwoo Lee": {
     "no_identity": false,
     "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
@@ -7310,58 +7134,6 @@
       "status": "accepted_rule_bound"
     }
   },
-  "Tao Huang": {
-    "no_identity": false,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
-    "dblp_orcid_review": {
-      "allowed": [],
-      "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
-      "evidence": []
-    },
-    "collection_person_id": "ntu_fac_tao-huang",
-    "collection_person_source": {
-      "profile_url": null,
-      "sources": [
-        {
-          "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
-          "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
-          "quote": "Tao HUANG Assistant Professor",
-          "observedAt": "20261110",
-          "kind": "named_individual_official_unit_listing_LKC_MEDICINE"
-        }
-      ],
-      "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
-    },
-    "dblp": [
-      "https://dblp.org/pid/34/808-15"
-    ],
-    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 11 records in 2016-2026.",
-    "dblp_identity_review": {
-      "school": "ntu",
-      "pi": "Tao Huang",
-      "PID": "https://dblp.org/pid/34/808-15",
-      "rule": "school_affiliation",
-      "dump": "dblp-2026-09-01.xml.gz",
-      "dump_record_sha256": "52084dcb445f3712b76fd1171802b098ebaa265fa47d9a1bddb907e9be7de406",
-      "dump_record_quote": "Nanyang Technological University, School of Physical and Mathematical Sciences, Singapore",
-      "dump_record_url": "https://dblp.org/pid/34/808-15",
-      "n_window": 11,
-      "official_listing_source": {
-        "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
-        "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
-        "quote": "Tao HUANG Assistant Professor",
-        "observedAt": "20261110"
-      },
-      "reviewer": "claude-ntu-1110",
-      "reviewed": "2026-11-10",
-      "dump_affiliation_notes": [
-        "Nanyang Technological University, School of Physical and Mathematical Sciences, Singapore"
-      ],
-      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
-      "corroboration": [],
-      "status": "accepted_rule_bound"
-    }
-  },
   "Tee Hiang Cheng": {
     "no_identity": false,
     "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
@@ -7412,29 +7184,6 @@
       "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
       "corroboration": [],
       "status": "accepted_rule_bound"
-    }
-  },
-  "Thanh-Binh Nguyen": {
-    "no_identity": true,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
-    "dblp_orcid_review": {
-      "allowed": [],
-      "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
-      "evidence": []
-    },
-    "collection_person_id": "ntu_fac_thanh-binh-nguyen",
-    "collection_person_source": {
-      "profile_url": null,
-      "sources": [
-        {
-          "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
-          "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
-          "quote": "Thanh Ngoc NGUYEN Nanyang Assistant Professor",
-          "observedAt": "20261110",
-          "kind": "named_individual_official_unit_listing_LKC_MEDICINE"
-        }
-      ],
-      "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
     }
   },
   "Thomas Peyrin": {
@@ -7631,7 +7380,7 @@
     }
   },
   "Wei Huang": {
-    "no_identity": false,
+    "no_identity": true,
     "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
     "dblp_orcid_review": {
       "allowed": [],
@@ -7651,38 +7400,6 @@
         }
       ],
       "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
-    },
-    "dblp": [
-      "https://dblp.org/pid/81/6685-13"
-    ],
-    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 104 records in 2016-2026.",
-    "dblp_identity_review": {
-      "school": "ntu",
-      "pi": "Wei Huang",
-      "PID": "https://dblp.org/pid/81/6685-13",
-      "rule": "school_affiliation",
-      "dump": "dblp-2026-09-01.xml.gz",
-      "dump_record_sha256": "29b3383ee328d263646c02290a527d6e966408e940e6f6df56f4d4ddc94404da",
-      "dump_record_quote": "Nanyang Technological University, Singapore",
-      "dump_record_url": "https://dblp.org/pid/81/6685-13",
-      "n_window": 104,
-      "official_listing_source": {
-        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
-        "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
-        "quote": "Wei HUANG Nanyang Assistant Professor",
-        "observedAt": "20261110"
-      },
-      "reviewer": "claude-ntu-1110",
-      "reviewed": "2026-11-10",
-      "dump_affiliation_notes": [
-        "Nanchang University, School of Information Engineering, China",
-        "University of California San Diego, CA, USA",
-        "Agency for Science Technology and Research, Singapore",
-        "Nanyang Technological University, Singapore"
-      ],
-      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
-      "corroboration": [],
-      "status": "accepted_rule_bound"
     }
   },
   "Woon-Seng Gan": {
@@ -7945,29 +7662,6 @@
         }
       ],
       "status": "accepted_rule_bound"
-    }
-  },
-  "Yi Liu": {
-    "no_identity": true,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
-    "dblp_orcid_review": {
-      "allowed": [],
-      "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
-      "evidence": []
-    },
-    "collection_person_id": "ntu_fac_yi-liu",
-    "collection_person_source": {
-      "profile_url": null,
-      "sources": [
-        {
-          "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
-          "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
-          "quote": "Yi LIU Assistant Professor",
-          "observedAt": "20261110",
-          "kind": "named_individual_official_unit_listing_LKC_MEDICINE"
-        }
-      ],
-      "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
     }
   },
   "Yi Tang": {
@@ -8325,79 +8019,6 @@
       "status": "accepted_rule_bound"
     }
   },
-  "Christopher H. T. Lee": {
-    "no_identity": false,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
-    "dblp_orcid_review": {
-      "allowed": [],
-      "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
-      "evidence": []
-    },
-    "collection_person_id": "ntu_fac_christopher-h-t-lee",
-    "collection_person_source": {
-      "profile_url": null,
-      "sources": [
-        {
-          "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
-          "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
-          "quote": "Christopher H. T. LEE Associate Professor",
-          "observedAt": "20261110",
-          "kind": "named_individual_official_unit_listing_EEE"
-        },
-        {
-          "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
-          "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
-          "quote": "Christopher LEE Associate Professor",
-          "observedAt": "20261110",
-          "kind": "named_individual_official_unit_listing_EEE"
-        }
-      ],
-      "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
-    },
-    "dblp": [
-      "https://dblp.org/pid/187/3777"
-    ],
-    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule orcid_agrees_ntu_openalex; only candidate whose ORCID agrees with an NTU-affiliated OpenAlex author; None records in 2016-2026.",
-    "dblp_identity_review": {
-      "school": "ntu",
-      "pi": "Christopher H. T. Lee",
-      "PID": "https://dblp.org/pid/187/3777",
-      "rule": "orcid_agrees_ntu_openalex",
-      "dump": "dblp-2026-09-01.xml.gz",
-      "dump_record_sha256": null,
-      "dump_record_quote": null,
-      "dump_record_url": "https://dblp.org/pid/187/3777",
-      "n_window": null,
-      "official_listing_source": {
-        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
-        "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
-        "quote": "Christopher H. T. LEE Associate Professor",
-        "observedAt": "20261110"
-      },
-      "reviewer": "claude-ntu-1110",
-      "reviewed": "2026-11-10",
-      "dump_affiliation_notes": null,
-      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
-      "corroboration": [
-        {
-          "kind": "orcid_agrees_with_ntu_openalex_author",
-          "detail": [
-            [
-              "https://dblp.org/pid/187/3777",
-              [
-                [
-                  "0000-0001-5132-4126",
-                  "A5100461247",
-                  310
-                ]
-              ]
-            ]
-          ]
-        }
-      ],
-      "status": "accepted_rule_bound"
-    }
-  },
   "Gaoxi Xiao": {
     "no_identity": false,
     "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
@@ -8610,74 +8231,6 @@
       "status": "accepted_rule_bound"
     }
   },
-  "Joseph S. Chang": {
-    "no_identity": false,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
-    "dblp_orcid_review": {
-      "allowed": [],
-      "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
-      "evidence": []
-    },
-    "collection_person_id": "ntu_fac_joseph-s-chang",
-    "collection_person_source": {
-      "profile_url": null,
-      "sources": [
-        {
-          "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
-          "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
-          "quote": "Joseph Sylvester CHANG Professor",
-          "observedAt": "20261110",
-          "kind": "named_individual_official_unit_listing_EEE"
-        },
-        {
-          "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
-          "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
-          "quote": "Joseph CHANG Professor",
-          "observedAt": "20261110",
-          "kind": "named_individual_official_unit_listing_EEE"
-        }
-      ],
-      "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
-    },
-    "dblp": [
-      "https://dblp.org/pid/93/4217"
-    ],
-    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_coauthors; school_coauthors rule (>=5 records with decided NTU PIs); 63 records in 2016-2026.",
-    "dblp_identity_review": {
-      "school": "ntu",
-      "pi": "Joseph S. Chang",
-      "PID": "https://dblp.org/pid/93/4217",
-      "rule": "school_coauthors",
-      "dump": "dblp-2026-09-01.xml.gz",
-      "dump_record_sha256": "99320133a7870e75d5522c6750c657c96ae95a72c14a99903f5a8e2d398f392c",
-      "dump_record_quote": "Joseph Sylvester Chang",
-      "dump_record_url": "https://dblp.org/pid/93/4217",
-      "n_window": 63,
-      "official_listing_source": {
-        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
-        "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
-        "quote": "Joseph Sylvester CHANG Professor",
-        "observedAt": "20261110"
-      },
-      "reviewer": "claude-ntu-1110",
-      "reviewed": "2026-11-10",
-      "dump_affiliation_notes": [],
-      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
-      "corroboration": [
-        {
-          "kind": "orcid_agrees_with_ntu_openalex_author",
-          "orcids": [
-            "0000-0003-0991-8339"
-          ],
-          "openalex": [
-            "A5023352317"
-          ],
-          "ntu_works": 84
-        }
-      ],
-      "status": "accepted_rule_bound"
-    }
-  },
   "Chien Chern Cheah": {
     "no_identity": false,
     "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
@@ -8798,29 +8351,6 @@
         }
       ],
       "status": "accepted_rule_bound"
-    }
-  },
-  "Wei Tech Ang": {
-    "no_identity": true,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
-    "dblp_orcid_review": {
-      "allowed": [],
-      "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
-      "evidence": []
-    },
-    "collection_person_id": "ntu_fac_wei-tech-ang",
-    "collection_person_source": {
-      "profile_url": null,
-      "sources": [
-        {
-          "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
-          "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
-          "quote": "ANG Wei Tech ​Associate Professor",
-          "observedAt": "20261110",
-          "kind": "named_individual_official_unit_listing_LKC_MEDICINE"
-        }
-      ],
-      "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
     }
   },
   "Yee Hui Lee": {
@@ -9337,29 +8867,6 @@
           "quote": "Anamitra MAKUR Associate Professor",
           "observedAt": "20261110",
           "kind": "named_individual_official_unit_listing_EEE"
-        }
-      ],
-      "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
-    }
-  },
-  "Sadat Reza": {
-    "no_identity": true,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
-    "dblp_orcid_review": {
-      "allowed": [],
-      "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
-      "evidence": []
-    },
-    "collection_person_id": "ntu_fac_sadat-reza",
-    "collection_person_source": {
-      "profile_url": null,
-      "sources": [
-        {
-          "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
-          "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
-          "quote": "Sadat REZA Associate Professor",
-          "observedAt": "20261110",
-          "kind": "named_individual_official_unit_listing_LKC_MEDICINE"
         }
       ],
       "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
