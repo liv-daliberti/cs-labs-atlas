@@ -48,8 +48,8 @@ reason = "no OAI-PMH endpoint on purl.stanford.edu or searchworks.stanford.edu (
 # Hosts the stanford tools contact (stage 0, 2026-11-10). Derived from evidence: the raw capture stores (hierarchy/stanford/raw/*captures*.sqlite) and the full-text download ledger (stores/stanford/fulltext_assets.csv). The long tail of faculty personal sites is read per capture under school_web robots checks and is not enumerated here.
 [[hosts]]
 host = "web.archive.org"
-use = "none"
-purpose = "Wayback id_ captures and CDX (859 captures in the stanford raw stores; listings, lab pages, theses)"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages) [stage 0 2026-11-10: probe skipped: https://web.archive.org/web/2020id_/https://www.stanford.edu/ answers http 302 (redirect to the nearest snapshot); entry otherwise as in the Michigan and Harvard charters]"
 probe = ""
 
 [[hosts]]
@@ -97,7 +97,7 @@ probe = "https://purl.stanford.edu/"
 [[hosts]]
 host = "web.stanford.edu"
 use = "live"
-purpose = "School site: 268 captures in the raw stores (268 live, 0 via Wayback; 192 HTTP 200); 193 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://web.stanford.edu/ only redirects off-host (http 301); robots allowed]"
+purpose = "School site: 268 captures in the raw stores (268 live, 0 via Wayback; 192 HTTP 200); 193 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://web.stanford.edu/ only redirects (http 301); robots allowed]"
 probe = ""
 
 [[hosts]]
@@ -108,9 +108,9 @@ probe = ""
 
 [[hosts]]
 host = "cs.stanford.edu"
-use = "none"
-purpose = "School site: 191 captures in the raw stores (191 live, 0 via Wayback; 78 HTTP 200); 33 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 301); must not be live]"
-probe = "https://cs.stanford.edu/"
+use = "live"
+purpose = "School site: 191 captures in the raw stores (191 live, 0 via Wayback; 78 HTTP 200); 33 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://cs.stanford.edu/ only redirects (http 301); robots allowed]"
+probe = ""
 
 [[hosts]]
 host = "www.cs.stanford.edu"
@@ -126,9 +126,9 @@ probe = "https://theory.stanford.edu/"
 
 [[hosts]]
 host = "stanford.edu"
-use = "none"
-purpose = "School site: 33 captures in the raw stores (33 live, 0 via Wayback; 30 HTTP 200); 51 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 308); must not be live]"
-probe = "https://stanford.edu/"
+use = "live"
+purpose = "School site: 33 captures in the raw stores (33 live, 0 via Wayback; 30 HTTP 200); 51 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://stanford.edu/ only redirects (http 301); robots allowed]"
+probe = ""
 
 [[hosts]]
 host = "graphics.stanford.edu"
