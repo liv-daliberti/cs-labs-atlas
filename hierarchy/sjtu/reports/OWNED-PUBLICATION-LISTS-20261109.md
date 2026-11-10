@@ -72,3 +72,11 @@ The seal refused (not sealed): one claim-held work (郁昱, a COVID epidemiology
 | Authorship lists no institution | 14 | Page-1 tie when an arXiv version exists |
 
 Coverage stays below the 0.90 gate by the exhaustive count (the gate's own measure judges true lab papers by hand, which would drop the 25 other-institution records and any pre-move work).
+
+## Mixed-id check (Tsinghua criterion) and heuristic re-sample (2026-11-10)
+
+Criterion re-implemented over the SJTU packages: an anchored OpenAlex author id that carries no source-backed (DBLP record or page-quoted list) work of its PI is a namesake id (R-PAP-06). For SJTU anchors are created from source-backed hits, so the criterion bites little: 4 ids (28-PID package) and 6 ids (pi-works package, 沈备军 2 ids, 沈为, 周煊赫, 邢朝平, 曹健, 傅洛伊) with 7 dependent rows; they are marked `mixed_openalex` in `census-overrides-school.json` and the 7 rows are held. The real risk is merged profiles that also carry genuine works; the per-work coauthor rule (3 or more co-publications) already holds those (150 rows in the pi-works package). In total 153 further hold decisions (2521) are ingested, each bound to the stored work blob (sweep year archive or the PI works cache).
+
+Heuristic stratum redrawn on the post-fix pi-works package (seed 20261117, 80 rows with DOIs from 2366): 80 of 80 confirmed against Crossref (61) or the arXiv API (19), PI name on the author list and matching title, 0 contradictions; Wilson 95% lower bound 95.4%. This is name-and-title metadata, not page-1 proof; affiliation is not re-checked for all rows.
+
+Counts in distinct works, pi-works package, after the holds: source-backed 2833, heuristic 2243 (2080 not source-backed), all kept 4913 before the 153 new holds. The v3 rebuild that would apply the holds and mixed ids was not run (52 minutes, seal refused once for the pi-works route); the machine-readable split is `hierarchy/sjtu/reviewed/source-backed-split.json`.
