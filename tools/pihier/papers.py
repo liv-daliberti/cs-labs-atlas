@@ -213,7 +213,7 @@ def short_piece(r, pages, bare=False):
 # summaries, CACM 'Research for Practice' columns, edited-volume records (a book-level DOI with no chapter suffix), and workshop or session
 # descriptions ('EE2: Workshop on ...' at ISSCC, 'VDS @ KDD 2022'). The owner's decision of the same day: conference abstracts are not papers.
 INTRODUCTION_TITLE = re.compile(r'(?i)^\s*(?:(?:session|special[- ]section|special[- ]issue|minitrack|track|mini[- ]symposium) introduction\b|introduction to the (?:session|minitrack|track)\b)')
-INTERVIEW_TITLE = re.compile(r'(?i)^\s*(?:an )?interview\s*(?::|with\b)')
+INTERVIEW_TITLE = re.compile(r'(?i)^\s*(?:an )?interview\s*(?::|with\b)|[:\u2013\u2014-]\s*an interview with\s+[A-Z]')   # 2026-11-10 (HKUST): 'Connecting minds and machines: an interview with Miguel Nicolelis'
 PRESENTATION_TITLE = re.compile(r'(?i)\((?:conference|invited|keynote|plenary) (?:presentation|talk)\)\s*$')
 ABSTRACT_REPRINT_TITLE = re.compile(r'(?i)\(abstract reprint\)\s*$')
 REPOSITORY_DOI = re.compile(r'(?i)^10\.(?:5281/zenodo|6084/m9\.figshare|5061/dryad)\b')   # not OSF (10.17605): those are preprints

@@ -26,3 +26,8 @@ def test_R_PAP_43_drops(r, why):
 ])
 def test_R_PAP_43_real_papers_stay(r):
     assert papers.non_research_record(r) is None
+
+
+def test_R_PAP_33_interview_suffix_titles_drop_and_real_titles_stay():
+    assert papers.non_research_record(row('Connecting minds and machines: an interview with Miguel Nicolelis', 'article', 'Journal', '10.1088/x.1')) == 'interview'
+    assert papers.non_research_record(row('Semi-structured interviews in HCI: a methods study of 30 designers', 'article', 'Journal', '10.1088/x.2')) is None

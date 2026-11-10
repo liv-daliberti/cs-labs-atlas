@@ -379,6 +379,8 @@ Dropped (`non_research_record`; tests `tests/test_hkust_rules_1109.py`, each on 
 from the ... Co-Track Co-Chairs'); a book-chapter, editorial or other record whose whole title is Epilogue, Prologue, Foreword or Afterword (`front_matter`). Narrow on purpose: a longer title
 ('Epilogue: Lessons ...'), a title only containing 'message' ('A Message-Passing Approach ...') and Zenodo preprints stay. HKUST round 2 had 4 such rows, excluded from its admissible count.
 
+**Extension 2026-11-10 (HKUST admission review): `interview` also drops a title that ends ': an interview with <Name>'** ('Decoding brain dynamics: an interview with Jose Principe on brain-computer interfaces'); tests `tests/test_hkust_rules_1109.py`.
+
 ### R-PAP-37 (2026-11-05, owner task: Michigan student-paper gaps) — listing continuity
 Four Michigan `student_not_linked` findings of accuracy round r2 (Chen, Aksoy, Sattar, Wandke) were checked paper by paper. Two (Chen, Aksoy, both
 Gorodetsky's students) are real lab-paper gaps: Gorodetsky's only dated appointment evidence is the AERO unit listing of 2018-2020 (the later AERO
