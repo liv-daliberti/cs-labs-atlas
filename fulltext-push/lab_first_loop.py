@@ -178,11 +178,14 @@ def main():
     job = os.environ.get('SLURM_JOB_ID')
     if os.environ.get('SLURM_ARRAY_JOB_ID'):
         job = f"{os.environ['SLURM_ARRAY_JOB_ID']}_{os.environ.get('SLURM_ARRAY_TASK_ID')}"
-    state(out, slurm_job=job, host=socket.gethostname(), pid=os.getpid(), python=PY, wrapper=WRAPPER, idle_rounds=0)
+    # 2026-11-10: the state said 'stopped' (the previous run's) for the whole startup scan; say what the loop is doing
+    state(out, slurm_job=job, host=socket.gethostname(), pid=os.getpid(), python=PY, wrapper=WRAPPER, idle_rounds=0, phase='starting', child_pid=None,
+          started=F.now(), stopped_at=None)
     rounds, idle = 0, 0
     while not STOP['flag']:
         rounds += 1
         before = max_attempt(out)
+        state(out, phase='scanning', rounds=rounds)   # catalog scan (which lab papers still lack a copy): minutes on a large store
         pri = read_priority(pri_path) if pri_path else None
         if pri:
             try:  # 2026-11-03: a timeout / 500 is asked again for the priority papers (priority_retry.py); never stops the loop

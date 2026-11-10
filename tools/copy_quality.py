@@ -3,15 +3,64 @@
 No network or store writes. XML must contain article text, not merely metadata or a
 PMC availability notice. PDF checks reject positive document-type evidence; they
 do not classify the underlying work. Results are cached only for unchanged files
-within this process, never by catalog status or pathname alone.
+(same path, size and mtime in nanoseconds), never by catalog status or pathname alone: in memory for this process
+and, when the caller passes the store, in <store>/.copy-quality-cache.jsonl (2026-11-10: every loop restart re-hashed and
+re-parsed every downloaded PDF - pdfinfo + pdftotext per work - and needed ~37 min before its first download; the cache makes a
+restart read file metadata only). A cache line that does not parse or does not match is ignored; the file is never trusted
+for a changed file. COPY_QUALITY_CACHE_DIR redirects the cache file (measurements in a throwaway directory).
 """
-import hashlib, re, sqlite3, subprocess
+import hashlib, json, os, re, sqlite3, subprocess
 from pathlib import Path
 
 from lxml import etree as ET
 
 PENDING = 'provider_link_only_review_pending'
 _CACHE = {}
+CACHE_NAME = '.copy-quality-cache.jsonl'
+_TRANSIENT = {'pdf_parse_unconfirmed', 'asset_parse_unconfirmed', 'asset_changed_during_check'}   # never persisted: a retry may succeed
+_PERSIST = {}   # cache file -> {key string: result}
+
+
+def _cache_file(store):
+    d = os.environ.get('COPY_QUALITY_CACHE_DIR') or store
+    return Path(d) / CACHE_NAME if d else None
+
+
+def _persist_key(path, st, kind):
+    return json.dumps([str(path), st.st_size, st.st_mtime_ns, kind])
+
+
+def _persist_get(store, key):
+    f = _cache_file(store)
+    if f is None:
+        return None
+    if f not in _PERSIST:
+        got = {}
+        try:
+            with open(f, encoding='utf-8') as fh:
+                for line in fh:
+                    try:
+                        d = json.loads(line)
+                        got[d['k']] = d['v']
+                    except (ValueError, KeyError, TypeError):
+                        continue   # a torn or foreign line
+        except OSError:
+            pass
+        _PERSIST[f] = got
+    v = _PERSIST[f].get(key)
+    return v if isinstance(v, dict) and 'ok' in v else None
+
+
+def _persist_put(store, key, result):
+    f = _cache_file(store)
+    if f is None or result.get('reason') in _TRANSIENT:
+        return
+    _PERSIST.setdefault(f, {})[key] = result
+    try:
+        with open(f, 'a', encoding='utf-8') as fh:   # one short line; O_APPEND, so a reader never sees a half-written key
+            fh.write(json.dumps(dict(k=key, v=result)) + '\n')
+    except OSError:
+        pass   # a read-only store: the in-process cache still works
 
 
 def _local(e):
@@ -68,7 +117,7 @@ def pdf_nonpaper_reason(frontmatter, metadata=''):
     return None
 
 
-def file_quality(path, kind):
+def file_quality(path, kind, store=None):
     """Check actual local bytes. No minimum PDF pagecount or length rejects short papers."""
     path = Path(path)
     if 'quarantine' in path.parts:
@@ -80,6 +129,10 @@ def file_quality(path, kind):
         return dict(ok=False, reason='asset_missing')
     if key in _CACHE:
         return _CACHE[key]
+    pkey = _persist_key(path.resolve(), st, kind) if store or os.environ.get('COPY_QUALITY_CACHE_DIR') else None
+    if pkey and (hit := _persist_get(store, pkey)) is not None:
+        _CACHE[key] = hit
+        return hit
     try:
         if kind == 'xml':
             data = path.read_bytes()
@@ -108,6 +161,8 @@ def file_quality(path, kind):
     except OSError:
         return dict(ok=False, reason='asset_changed_during_check')
     _CACHE[key] = result
+    if pkey:
+        _persist_put(store, pkey, result)
     return result
 
 
@@ -131,7 +186,7 @@ def catalog_copy(store, work, assets):
         path = Path(a['path']); path = path if path.is_absolute() else Path(store) / path
         if not path.resolve().is_relative_to(Path(store).resolve()):
             failures.append('asset_outside_store'); continue
-        q = file_quality(path, a['kind'])
+        q = file_quality(path, a['kind'], store)
         if q.get('ok') and (q['actual_sha256'] != a['sha256'] or q['actual_bytes'] != a.get('bytes')):
             q = dict(ok=False, reason='asset_integrity_mismatch')
         if q['ok']:
