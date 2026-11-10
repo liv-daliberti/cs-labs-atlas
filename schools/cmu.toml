@@ -55,8 +55,8 @@ enrich_base = "https://api.figshare.com/v2"
 # Hosts the cmu tools contact (stage 0, 2026-11-10). Derived from evidence: the raw capture stores (hierarchy/cmu/raw/*captures*.sqlite) and the full-text download ledger (stores/cmu/fulltext_assets.csv). The long tail of faculty personal sites is read per capture under school_web robots checks and is not enumerated here.
 [[hosts]]
 host = "web.archive.org"
-use = "none"
-purpose = "Wayback id_ captures and CDX (1340 captures in the cmu raw stores; listings, lab pages, theses)"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages) [stage 0 2026-11-10: probe skipped: https://web.archive.org/web/2020id_/https://www.cmu.edu/ answers http 302 (redirect to the nearest snapshot); entry otherwise as in the Michigan and Harvard charters]"
 probe = ""
 
 [[hosts]]
@@ -116,7 +116,7 @@ probe = ""
 [[hosts]]
 host = "s3-eu-west-1.amazonaws.com"
 use = "none"
-purpose = "Third-party source: 1901 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 403); must not be live]"
+purpose = "Third-party source: 1901 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: final robots.txt disallowed (HTTP 403); must not be live]"
 probe = ""
 
 [[hosts]]
@@ -211,8 +211,8 @@ probe = "https://csd.cmu.edu/"
 
 [[hosts]]
 host = "www.ijcai.org"
-use = "none"
-purpose = "Third-party source: 349 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 301); must not be live]"
+use = "live"
+purpose = "Third-party source: 349 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
 probe = ""
 
 [[hosts]]
@@ -242,7 +242,7 @@ probe = "https://www.andrew.cmu.edu/"
 [[hosts]]
 host = "users.ece.cmu.edu"
 use = "live"
-purpose = "School site: 119 captures in the raw stores (119 live, 0 via Wayback; 97 HTTP 200); 45 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://users.ece.cmu.edu/ only redirects off-host (http 302); robots allowed]"
+purpose = "School site: 119 captures in the raw stores (119 live, 0 via Wayback; 97 HTTP 200); 45 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://users.ece.cmu.edu/ only redirects (http 302); robots allowed]"
 probe = ""
 
 [[hosts]]
@@ -290,7 +290,7 @@ probe = "https://www.ml.cmu.edu/"
 [[hosts]]
 host = "www.stat.cmu.edu"
 use = "live"
-purpose = "School site: 60 captures in the raw stores (59 live, 1 via Wayback; 54 HTTP 200); 6 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://www.stat.cmu.edu/ only redirects off-host (http 301); robots allowed]"
+purpose = "School site: 60 captures in the raw stores (59 live, 1 via Wayback; 54 HTTP 200); 6 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://www.stat.cmu.edu/ only redirects (http 301); robots allowed]"
 probe = ""
 
 [[hosts]]
@@ -319,9 +319,9 @@ probe = "https://scholars.cmu.edu/"
 
 [[hosts]]
 host = "ece.cmu.edu"
-use = "none"
-purpose = "School site: 46 captures in the raw stores (40 live, 6 via Wayback; 46 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 301); must not be live]"
-probe = "https://ece.cmu.edu/"
+use = "live"
+purpose = "School site: 46 captures in the raw stores (40 live, 6 via Wayback; 46 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://ece.cmu.edu/ only redirects (http 301); robots allowed]"
+probe = ""
 
 [[hosts]]
 host = "www.cnbc.cmu.edu"
@@ -344,19 +344,19 @@ probe = "https://lti.cs.cmu.edu/"
 [[hosts]]
 host = "www.cbd.cmu.edu"
 use = "none"
-purpose = "School site: 34 captures in the raw stores (8 live, 26 via Wayback; 34 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 301); must not be live]"
+purpose = "School site: 34 captures in the raw stores (8 live, 26 via Wayback; 34 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: final robots.txt disallowed (HTTP 302); must not be live]"
 probe = "https://www.cbd.cmu.edu/"
 
 [[hosts]]
 host = "ri.cmu.edu"
-use = "none"
-purpose = "School site: 31 captures in the raw stores (21 live, 10 via Wayback; 22 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 301); must not be live]"
-probe = "https://ri.cmu.edu/"
+use = "live"
+purpose = "School site: 31 captures in the raw stores (21 live, 10 via Wayback; 22 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://ri.cmu.edu/ only redirects (http 301); robots allowed]"
+probe = ""
 
 [[hosts]]
 host = "cbd.cmu.edu"
 use = "none"
-purpose = "School site: 30 captures in the raw stores (19 live, 11 via Wayback; 30 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 301); must not be live]"
+purpose = "School site: 30 captures in the raw stores (19 live, 11 via Wayback; 30 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: final robots.txt disallowed (HTTP 302); must not be live]"
 probe = "https://cbd.cmu.edu/"
 
 [[hosts]]
@@ -380,7 +380,7 @@ probe = "https://imaging.cs.cmu.edu/"
 [[hosts]]
 host = "www.chem.cmu.edu"
 use = "live"
-purpose = "School site: 23 captures in the raw stores (23 live, 0 via Wayback; 23 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://www.chem.cmu.edu/ only redirects off-host (http 301); robots allowed]"
+purpose = "School site: 23 captures in the raw stores (23 live, 0 via Wayback; 23 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://www.chem.cmu.edu/ only redirects (http 301); robots allowed]"
 probe = ""
 
 [[hosts]]
@@ -391,15 +391,15 @@ probe = "https://cups.cs.cmu.edu/"
 
 [[hosts]]
 host = "isri.cmu.edu"
-use = "none"
-purpose = "School site: 21 captures in the raw stores (17 live, 4 via Wayback; 16 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 302); must not be live]"
-probe = "https://isri.cmu.edu/"
+use = "live"
+purpose = "School site: 21 captures in the raw stores (17 live, 4 via Wayback; 16 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://isri.cmu.edu/ only redirects (http 302); robots allowed]"
+probe = ""
 
 [[hosts]]
 host = "www.casos.cs.cmu.edu"
-use = "none"
-purpose = "School site: 20 captures in the raw stores (20 live, 0 via Wayback; 8 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 302); must not be live]"
-probe = "https://www.casos.cs.cmu.edu/"
+use = "live"
+purpose = "School site: 20 captures in the raw stores (20 live, 0 via Wayback; 8 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://www.casos.cs.cmu.edu/ only redirects (http 302); robots allowed]"
+probe = ""
 
 [[hosts]]
 host = "murphylab.web.cmu.edu"
@@ -416,13 +416,13 @@ probe = "https://meche.engineering.cmu.edu/"
 [[hosts]]
 host = "harp.ri.cmu.edu"
 use = "none"
-purpose = "School site: 19 captures in the raw stores (19 live, 0 via Wayback; 11 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 302); must not be live]"
+purpose = "School site: 19 captures in the raw stores (19 live, 0 via Wayback; 11 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: final robots.txt disallowed (HTTP 302); must not be live]"
 probe = "https://harp.ri.cmu.edu/"
 
 [[hosts]]
 host = "www.cheme.engineering.cmu.edu"
 use = "none"
-purpose = "School site: 18 captures in the raw stores (9 live, 9 via Wayback; 16 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 302); must not be live]"
+purpose = "School site: 18 captures in the raw stores (9 live, 9 via Wayback; 16 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: final robots.txt disallowed (HTTP 302); must not be live]"
 probe = "https://www.cheme.engineering.cmu.edu/"
 
 [[hosts]]
@@ -463,21 +463,21 @@ probe = "https://se-phd.s3d.cmu.edu/"
 
 [[hosts]]
 host = "www-2.cs.cmu.edu"
-use = "none"
-purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 11 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 302); must not be live]"
-probe = "https://www-2.cs.cmu.edu/"
+use = "live"
+purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 11 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://www-2.cs.cmu.edu/ only redirects (http 302); robots allowed]"
+probe = ""
 
 [[hosts]]
 host = "articulab.hcii.cs.cmu.edu"
 use = "none"
-purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 11 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 302); must not be live]"
+purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 11 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: final robots.txt disallowed (HTTP 302); must not be live]"
 probe = "https://articulab.hcii.cs.cmu.edu/"
 
 [[hosts]]
 host = "cs.cmu.edu"
-use = "none"
-purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 15 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 302); must not be live]"
-probe = "https://cs.cmu.edu/"
+use = "live"
+purpose = "School site: 15 captures in the raw stores (15 live, 0 via Wayback; 15 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://cs.cmu.edu/ only redirects (http 302); robots allowed]"
+probe = ""
 
 [collector]
 # 2026-11-10 (owner): discovery channels re-enabled for every loop. wayback_acm stays OFF (and WAYBACK_HOLD=1 in the loop scripts) while Wayback listing captures run; CORE stays paused.
