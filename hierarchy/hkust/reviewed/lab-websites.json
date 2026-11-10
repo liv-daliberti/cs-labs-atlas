@@ -225,9 +225,9 @@
     },
     {
       "pi": "Yike GUO 郭毅可",
-      "status": "pending",
-      "coverage": "pending",
-      "reason": "Website identity, content, access or official navigation remains under review.",
+      "status": "reviewed_no_website",
+      "coverage": "reason",
+      "reason": "The official CSE profile (read in full 2026-11-10) carries no personal-webpage or group link and the research-portal card is an institutional profile; no homepage or lab site is linked from any official page read.",
       "checks": [
         {
           "source": "recorded_candidate_check",
@@ -242,9 +242,19 @@
           "at": "2026-11-07T18:29:55",
           "result": "institutional_profile_card_not_lab_or_personal_homepage",
           "sha256": "d299c4f9669e4028fe7fa5f9fa3b072f7706619715a4f282e24de66033a86cd6"
+        },
+        {
+          "source": "school_profile_page",
+          "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/yikeguo",
+          "at": "2026-11-10T00:53:02",
+          "result": "no_website_link_on_profile",
+          "sha256": "abfe3af4e7ea59d6dab5bb321a5a32921b2806499445d4555e505a18983ebfe9"
         }
       ],
-      "evidence_gaps": []
+      "evidence_gaps": [],
+      "reason_code": "profile_only_no_homepage",
+      "reason_type": "search_no_eligible_site",
+      "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
     },
     {
       "pi": "Jiaya JIA 賈佳亞",
@@ -265,9 +275,17 @@
           "at": "2026-11-07T18:30:02",
           "result": "institutional_profile_card_not_lab_or_personal_homepage",
           "sha256": "328c8b3cf47cbe43494b0df6228e850aa15bafe0cd80136020d8f8816655e6c0"
+        },
+        {
+          "source": "school_profile_page",
+          "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/jia",
+          "at": "2026-11-10T00:52:50",
+          "result": "no_website_link_on_profile",
+          "sha256": "0437ada3e4b2342ae87dfb6df6dc63cd1c3c34e0fd6ef471a276d9404764b443"
         }
       ],
-      "evidence_gaps": []
+      "evidence_gaps": [],
+      "review_note": "The CSE profile links no website; jiaya.me answers robots.txt with an HTML page (not machine-readable), so it is not fetched; Wayback captures not yet checked (lab-page audit job 32180224)."
     },
     {
       "pi": "Bo LI 李波",
@@ -339,9 +357,17 @@
           "at": "2026-11-07",
           "result": "target_not_captured",
           "sha256": null
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://cse.hkust.edu.hk/~huamin/",
+          "at": "2026-11-10T00:53:09",
+          "result": "redirect_stub_to_www.huamin.org_tls_error",
+          "sha256": "f511d256ee7a293c04b0659d7885c0a9811e53402974e0efd4621852b26a5b9c"
         }
       ],
-      "evidence_gaps": []
+      "evidence_gaps": [],
+      "review_note": "The CSE homepage is a meta-refresh stub to http://www.huamin.org/index.htm, whose TLS certificate does not verify (robots fetch SSLError); Wayback captures not yet checked (lab-page audit job 32180224)."
     },
     {
       "pi": "Qian ZHANG 張黔",
@@ -1000,33 +1026,63 @@
     },
     {
       "pi": "Chi-Keung TANG 鄧智強",
-      "status": "pending",
-      "coverage": "pending",
-      "reason": "Website identity, content, access or official navigation remains under review.",
+      "status": "reviewed_cached_website",
+      "coverage": "website",
+      "reason": "Captured PI homepage used as the lab-page fallback.",
       "checks": [
         {
-          "source": "recorded_candidate_check",
-          "url": "https://cse.hkust.edu.hk/~cktang/",
-          "at": "2026-11-07T18:31:45",
-          "result": "target_identity_needs_manual_review; homepage_substance_needs_manual_review",
-          "sha256": "3595d5e0faaa4416fbda0fe9de2e91e5207cb29abadad8d3433701087793332f"
-        },
-        {
-          "source": "recorded_candidate_check",
-          "url": "https://researchportal.hkust.edu.hk/en/persons/chi-keung-tang/",
-          "at": "2026-11-07T18:31:42",
-          "result": "institutional_profile_card_not_lab_or_personal_homepage",
-          "sha256": "22c76a153ca1980f2a5bc59ecd92adb5b6a234b79cfc74bcd917d78eb005721b"
-        },
-        {
-          "source": "recorded_candidate_check",
+          "source": "official_link_chain",
           "url": "https://cse.hkust.edu.hk/~cktang/bio.html",
-          "at": "2026-11-07T20:32:08",
-          "result": "homepage_substance_needs_manual_review",
-          "sha256": "d128c28c4bb85e83df11facb9d3af85c8d26df8c9169f7212b6e4d71544ed360"
+          "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/cktang",
+          "at": "2026-11-10T00:51:12",
+          "result": "ok",
+          "source_sha256": "c826e0ad47c56226149714fac7a810397d0438cbd2a7d60589a8faf6a4801208",
+          "sha256": "d128c28c4bb85e83df11facb9d3af85c8d26df8c9169f7212b6e4d71544ed360",
+          "provenance_chain": [
+            {
+              "source_url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/cktang",
+              "source_sha256": "c826e0ad47c56226149714fac7a810397d0438cbd2a7d60589a8faf6a4801208",
+              "source_fetched_at": "2026-11-10T00:52:53",
+              "url": "https://cse.hkust.edu.hk/~cktang/",
+              "linked_url": "https://cse.hkust.edu.hk/~cktang/",
+              "href": "/~cktang/",
+              "attribute": "href",
+              "via": "literal_a_href",
+              "normalization": null
+            },
+            {
+              "source_url": "https://cse.hkust.edu.hk/~cktang/",
+              "source_sha256": "3595d5e0faaa4416fbda0fe9de2e91e5207cb29abadad8d3433701087793332f",
+              "source_fetched_at": "2026-11-10T00:50:23",
+              "url": "https://cse.hkust.edu.hk/~cktang/bio.html",
+              "linked_url": "https://cse.hkust.edu.hk/~cktang/bio.html",
+              "href": "bio.html",
+              "attribute": "href",
+              "via": "meta_refresh_target",
+              "normalization": null
+            }
+          ],
+          "manual_review": {
+            "by": "claude-hkust-students-1110",
+            "on": "2026-11-10",
+            "note": "The CSE profile links the personal page, which redirects (meta refresh) to bio.html; the page names the PI, his department and contact details and lists no member. Read in full 2026-11-10."
+          }
         }
       ],
-      "evidence_gaps": []
+      "evidence_gaps": [],
+      "url": "https://cse.hkust.edu.hk/~cktang/bio.html",
+      "kind": "pi_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "sha256": "d128c28c4bb85e83df11facb9d3af85c8d26df8c9169f7212b6e4d71544ed360",
+      "found_via": "official_link_chain",
+      "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/cktang",
+      "checked_at": "2026-11-10T00:51:12",
+      "official_link_status": "recorded",
+      "evidence": {
+        "url": "https://cse.hkust.edu.hk/~cktang/bio.html",
+        "sha256": "d128c28c4bb85e83df11facb9d3af85c8d26df8c9169f7212b6e4d71544ed360",
+        "observed": "2026-11-10T00:51:12"
+      }
     },
     {
       "pi": "Ke YI 易珂",
@@ -1625,9 +1681,17 @@
           "at": "2026-11-07T20:21:37",
           "result": "access_or_redirect_unresolved",
           "sha256": "8a156cf9adf4567739f6735da14f8a3df9923c11031430e21a24f2b4efd81f5a"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://cse.hkust.edu.hk/~danxu/",
+          "at": "2026-11-10T00:53:11",
+          "result": "redirect_stub_to_www.danxurgb.net",
+          "sha256": "da9eb23cdbc613fd34ee09bbcb5937827950b751445857c949489159357e7647"
         }
       ],
-      "evidence_gaps": []
+      "evidence_gaps": [],
+      "review_note": "The CSE homepage is a meta-refresh stub to www.danxurgb.net, which serves a bot challenge (blocked host, never retried); Wayback captures not yet checked (lab-page audit job 32180224)."
     },
     {
       "pi": "Hao CHEN 陳浩",
@@ -1675,22 +1739,65 @@
     },
     {
       "pi": "Long CHEN 陳隆",
-      "status": "pending",
-      "coverage": "pending",
-      "reason": "Independent homepage content is supported, but an official discovery link has not been reproduced. Keep this provenance gap open.",
+      "status": "reviewed_cached_website",
+      "coverage": "website",
+      "reason": "Captured lab/group website.",
       "checks": [
         {
-          "source": "recorded_candidate_check",
-          "url": "https://zjuchenlong.github.io/",
-          "at": "2026-11-07T20:21:37",
-          "result": "official_link_not_reproduced",
-          "sha256": "6e6da794b0c6629108850b3e89f7759d15c0c403218901e56e0da0cc8b28884f"
+          "source": "official_link_chain",
+          "url": "https://long-group.cse.ust.hk/",
+          "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/longchen",
+          "at": "2026-11-10T00:51:28",
+          "result": "ok",
+          "source_sha256": "875c75e7cd0be3ed0417ee7517349ad1120d5d1e1a9f859db77714a8e5c7ed8f",
+          "sha256": "87dd90a19ccc0434bfcb0c3c510a3554180da9b91b152f32d258bea2f504d490",
+          "provenance_chain": [
+            {
+              "source_url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/longchen",
+              "source_sha256": "875c75e7cd0be3ed0417ee7517349ad1120d5d1e1a9f859db77714a8e5c7ed8f",
+              "source_fetched_at": "2026-11-10T00:52:59",
+              "url": "https://cse.hkust.edu.hk/~longchen/",
+              "linked_url": "https://cse.hkust.edu.hk/~longchen/",
+              "href": "/~longchen/",
+              "attribute": "href",
+              "via": "literal_a_href",
+              "normalization": null
+            },
+            {
+              "source_url": "https://cse.hkust.edu.hk/~longchen/",
+              "source_sha256": "ec37f75269cf729cfe192b53545192c8e3a7a5088848348603e1cc5bf922debf",
+              "source_fetched_at": "2026-11-10T00:53:14",
+              "url": "https://long-group.cse.ust.hk/",
+              "linked_url": "https://long-group.cse.ust.hk/",
+              "href": "https://long-group.cse.ust.hk",
+              "attribute": "href",
+              "via": "literal_a_href",
+              "normalization": null
+            }
+          ],
+          "manual_review": {
+            "by": "claude-hkust-students-1110",
+            "on": "2026-11-10",
+            "note": "The CSE profile links the personal page, which names \"Group Homepage: long-group.cse.ust.hk\" (LONG Group); the PI page zjuchenlong.github.io/People/ lists the group members (students, visiting students, alumni) and was read in full."
+          }
         }
       ],
-      "evidence_gaps": [
-        "official_link_not_reproduced"
-      ],
-      "candidate_url": "https://zjuchenlong.github.io/"
+      "evidence_gaps": [],
+      "candidate_url": "https://zjuchenlong.github.io/",
+      "url": "https://long-group.cse.ust.hk/",
+      "kind": "lab_site",
+      "reason_code": "lab_site",
+      "sha256": "87dd90a19ccc0434bfcb0c3c510a3554180da9b91b152f32d258bea2f504d490",
+      "found_via": "official_link_chain",
+      "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/longchen",
+      "checked_at": "2026-11-10T00:51:28",
+      "official_link_status": "recorded",
+      "evidence": {
+        "url": "https://long-group.cse.ust.hk/",
+        "sha256": "87dd90a19ccc0434bfcb0c3c510a3554180da9b91b152f32d258bea2f504d490",
+        "observed": "2026-11-10T00:51:28"
+      },
+      "people_page": "https://zjuchenlong.github.io/People/"
     },
     {
       "pi": "Yi R. FUNG 馮一人",

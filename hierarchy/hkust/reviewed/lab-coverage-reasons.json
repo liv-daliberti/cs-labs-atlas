@@ -9,6 +9,17 @@
         "https://cse.hkust.edu.hk/admin/people/faculty/profile/horner (no start year)",
         "pub.orcid.org record 0000-0002-9795-5190 (employer HKUST, no dates)"
       ]
+    },
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His CSE homepage links interests, publications, a page on Lydia Ayers' music and puppets and course pages; no student or group member is named.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/faculty/horner/ (sha256 f07be6f99e16b2f3, read live 2026-11-07): homepage",
+        "https://cse.hkust.edu.hk/faculty/horner/subpage/lydia.html (sha256 d6c3a7ec1abfaede, read live 2026-11-10): linked subpage: music and puppets album list, no students",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/horner (sha256 342ab63b6bbcb15c, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
     }
   },
   "Wilfred Siu-Hung NG 吳兆鴻": {
@@ -20,6 +31,16 @@
         "native pis.json funnel (name_hits 153, school_affiliated 150, identity 23, outside_appointment 23)",
         "https://cse.hkust.edu.hk/admin/people/faculty/profile/wilfred (no start year)"
       ]
+    },
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His homepage (a Word-exported biography page) lists biography, research interests and experience; it names no student or group member.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/faculty/wilfred/content/main.htm (sha256 2d6bea0a8bab94f4, read live 2026-11-07): homepage read in full",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/wilfred (sha256 a7f83ff7254812a3, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
     }
   },
   "Yaonan JIN 金耀楠": {
@@ -31,6 +52,16 @@
         "https://cse.hkust.edu.hk/admin/people/faculty/profile/jinyaonan (sha256 735b820e...)",
         "DBLP pid 218/5430"
       ]
+    },
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His homepage states his own career (PhD Columbia 2023, previously at Huawei) and lists publications with no students; no group page.",
+      "sources_checked": [
+        "https://yj10027.github.io/ (sha256 d244b2d5a1a714a1, read live 2026-11-07): homepage read in full: no student list",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/jinyaonan (sha256 735b820e24a27e3a, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
     }
   },
   "Sehi L'YI 李世熙": {
@@ -43,6 +74,213 @@
         "DBLP pid 161/3076",
         "OpenAlex sweep of HKUST-credited works: no authorship under the bound identity"
       ]
+    },
+    "students": {
+      "code": "new_hire_2025_or_later",
+      "why": "His homepage states \"I'm currently looking to recruit PhD students\" (https://sehilyi.com/, sha256 56b9dca10a48eacc9a022f543e4ccd4730e985c2787f4f4d7acf76319a56264e); its only mentee list ('Previous Mentees') names Harvard and SNU interns of his earlier posts.",
+      "sources_checked": [
+        "https://sehilyi.com/ (sha256 56b9dca10a48eacc, read live 2026-11-07): homepage read in full",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/sehi (sha256 dc078316f20826d2, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Yike GUO 郭毅可": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "Administrative post, no research-group page: HKUST's CSE profile for Yike Guo lists no personal webpage or group site and describes him as appointed from Hong Kong Baptist University in 2022 (\"Prior to joining HKUST, Professor Guo was the Vice President (Research and Development) and the Dean of Graduate School at Hong Kong Baptist University since 2020\" (https://cse.hkust.edu.hk/admin/people/faculty/profile/yikeguo, sha256 abfe3af4e7ea59d6dab5bb321a5a32921b2806499445d4555e505a18983ebfe9)); the profile page was last updated 2022-12-01. No student of his is named in any allowed source checked.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/yikeguo (sha256 abfe3af4e7ea59d6, read live 2026-11-10): official CSE profile read in full: no personal-webpage link, no student or group member named",
+        "hkust dblp-bound identity and OpenAlex sweep: no student link candidate in hierarchy/hkust/derived/student_papers.jsonl.gz for this PI"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Jiaya JIA 賈佳亞": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "The CSE profile states \"40+ PhDs and scholars from this group are now active in academia and industry\" (https://cse.hkust.edu.hk/admin/people/faculty/profile/jia, sha256 0437ada3e4b2342ae87dfb6df6dc63cd1c3c34e0fd6ef471a276d9404764b443) but names none; there is no CSE personal page (the profile has no webpage link). His own site jiaya.me was not fetched because its robots.txt is not machine-readable (an HTML page): not used under the project's robots rule. He moved to HKUST in 2024 (same profile).",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/jia (sha256 0437ada3e4b2342a, read live 2026-11-10): official CSE profile read in full: no webpage link, no named student",
+        "jiaya.me: robots.txt answers with an HTML page (stored in hierarchy/hkust raw robots table), so the host is not fetched; Wayback captures are left to the lab-page audit job 32180224"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Bo LI 李波": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His CSE homepage's menu offers an Ongoing Projects and a Students item, but both are inside an HTML comment (not displayed) and the page lists no student; the department profile links only to this page. No student of his is named in the sources checked.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/~bli/ (sha256 5f09a57dfb5dae2d, read live 2026-11-09): homepage read in full (flat text 512 chars); the Students menu entry is commented out in the markup",
+        "https://cse.hkust.edu.hk/faculty/bli/ (sha256 5f09a57dfb5dae2d, read live 2026-11-07): older homepage copy: same menu, no student list",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/bli (sha256 bceb5b21ac8f750e, read live 2026-11-07): official CSE profile: no group or student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Huamin QU 屈華民": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His CSE homepage only redirects (a meta refresh) to http://www.huamin.org/index.htm, whose TLS certificate does not verify (SSLError in the stored robots check), so the real site cannot be read live; the CSE profile lists no students. Wayback captures of huamin.org are not yet checked (lab-page audit job 32180224).",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/~huamin/ (sha256 f511d256ee7a293c, read live 2026-11-10): homepage is a redirect stub to www.huamin.org",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/huamin (sha256 a9e3fdc40df4d362, read live 2026-11-10): official CSE profile: no student list",
+        "www.huamin.org: robots fetch failed with SSLError CERTIFICATE_VERIFY_FAILED (stored in the captures robots table)"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Dan XU 徐旦": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His CSE homepage is a redirect stub to https://www.danxurgb.net/, which serves a bot challenge (recorded in the captures blocked table 2026-11-07 and never retried); the CSE profile lists no students. Wayback captures are not yet checked (lab-page audit job 32180224).",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/~danxu/ (sha256 da9eb23cdbc613fd, read live 2026-11-10): homepage is a redirect stub to www.danxurgb.net",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/danxu (sha256 71285a177965a5ad, read live 2026-11-10): official CSE profile: no student list",
+        "www.danxurgb.net: bot challenge (blocked host, no retry, no workaround)"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Siu-Wing CHENG 鄭紹榮": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His CSE homepage lists research topics and publications (Frechet distance, meshing, manifold reconstruction) and names no student or group member; the profile links only to this page.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/faculty/scheng/ (sha256 3e6d09f5c61d4cf9, read live 2026-11-07): homepage read in full: publications only",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/scheng (sha256 cdbf27bf19337c24, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Cunsheng DING 丁存生": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His CSE homepage is a menu of short biography, research, services, teaching and contact pages and a special-issue notice; it names no student (\"Cunsheng DING, Ph.D. (Turku, supervised by Academy Professor Arto Salomaa )\" (https://cse.hkust.edu.hk/faculty/cding/, sha256 8e00941d4526e13335133faf67a8378b8082048bf5f9ae37baf5c65525dcb7b1) is his own advisor).",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/faculty/cding/ (sha256 8e00941d4526e133, read live 2026-11-07): homepage read in full: no student list",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/cding (sha256 057b522e2f6ad8f0, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Fangzhen LIN 林方真": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His homepage lists selected publications and research interests and names no current or former student; a recruiting notice for PhD students sits only inside an HTML comment (not displayed) and is not used.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/~flin/ (sha256 5ad7dbe557b79d88, read live 2026-11-07): homepage read in full (displayed text only)",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/flin (sha256 1731a2b7a122ae5d, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Long QUAN 權龍": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His web home page gives biography, office and contact details and a link to the Altizure company; it names no student or group member.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/~quan/ (sha256 f6c70a1e5d7751ed, read live 2026-11-07): homepage read in full",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/quan (sha256 ea765f11612367d4, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Nevin Lianwen ZHANG 張連文": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His faculty page is a frameset (flat text: 'This page uses frames, but your browser doesn't support them.') whose frames are not linked in the stored copy, and the CSE profile lists no student.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/faculty/lzhang/ (sha256 2bf295c34219e188, read live 2026-11-07): frameset page, no student content readable",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/lzhang (sha256 59c87a9d93a0be87, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Sunil ARYA 安雅信": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His homepage has only a biography and a publications page; no student or group member is named.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/faculty/arya/ (sha256 2bf67ee4a7298931, read live 2026-11-07): homepage read in full",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/arya (sha256 ec2d1ae9608d9933, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Brahim BENSAOU 彭卲邦": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His homepage biography says \"He has supervised many PhD and MPhil/MEng theses\" (https://cse.hkust.edu.hk/~csbb/, sha256 e541022ac8eb41ea8c3f37e770c13cb649d04ddecd248c7520528c34759b5e66) but names no student; the listed papers carry student coauthors only as bylines, which is not membership.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/~csbb/ (sha256 e541022ac8eb41ea, read live 2026-11-07): homepage read in full: no student list",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/csbb (sha256 f1420f10b5373ff6, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Chi-Keung TANG 鄧智強": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His CSE homepage redirects to bio.html, a bio-sketch menu (brief bio, CV, teaching, research, scholar, DBLP, projects) with office and contact lines; no student or group member is named.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/~cktang/ (sha256 3595d5e0faaa4416, read live 2026-11-10): redirect stub to bio.html",
+        "https://cse.hkust.edu.hk/~cktang/bio.html (sha256 d128c28c4bb85e83, read live 2026-11-10): read in full",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/cktang (sha256 c826e0ad47c56226, read live 2026-11-10): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Hao CHEN 陳浩": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His homepage lists news (congratulations to students by first name only), positions and publications but no named member list; the SmartX Lab site smartx.ust.hk redirects robots.txt to an HTML page that is not machine-readable, so the lab site is not fetched.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/~jhc/ (sha256 0c3ac9c57b4d2c99, read live 2026-11-07): homepage read in full: news mentions students by given name only",
+        "smartx.ust.hk: robots.txt redirects (301) to smartx.cse.ust.hk/robots.txt, which answers with an HTML page: not used",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/jhc (sha256 367fe36a69efb5b1, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Zihan ZHANG 張子函": {
+    "students": {
+      "code": "new_hire_2025_or_later",
+      "why": "His homepage states \"I am seeking students interested in machine learning theory\" (https://zsubfuncz.github.io/zihanzhang.github.io/, sha256 8ae2a437a1a1af19df280da609d13d72d43100c5979d1a172fe8f4b6dc51452b) and lists no student; the one 'Zihan Zhang (2027-Fall PhD)' on Dongdong She's page is a different, incoming student.",
+      "sources_checked": [
+        "https://zsubfuncz.github.io/zihanzhang.github.io/ (sha256 8ae2a437a1a1af19, read live 2026-11-07): homepage read in full",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/zihanz (sha256 bf89964e9bceb231, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
+    }
+  },
+  "Arpit NARECHANIA": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "His homepage says he directs the DataVisards research lab and lists his own PhD and awards, but names no current member in the stored copy.",
+      "sources_checked": [
+        "https://narechania.com/ (sha256 7c0839054c50f26c, read live 2026-11-07): homepage read in full",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/arpit (sha256 d89ae7b3495d976a, read live 2026-11-07): official CSE profile: no student list"
+      ],
+      "by": "claude-hkust-students-1110",
+      "on": "2026-11-10"
     }
   }
 }
