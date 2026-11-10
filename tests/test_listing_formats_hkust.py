@@ -156,3 +156,14 @@ def test_page1_quote_name_match_tolerates_letter_superscripts():
     from pihier import papers
     assert papers.page1_quote_names_pi(['Kun Xu 徐昆'], ['Kun Xua,b,c,∗ a Department of Mathematics, Hong Kong University of Science and Technology'])
     assert not papers.page1_quote_names_pi(['Kun Xu 徐昆'], ['Xuan Li a Department of Mathematics'])
+
+
+def test_robots_blocked_official_profile_becomes_an_access_reason_and_keeps_the_site(monkeypatch):
+    import lab_websites as L
+    checks = [dict(source='department_listing', url='https://u.example/people', result='ok', sha256='c' * 64, at='2026-11-10T00:00:00+00:00'),
+              dict(source='school_profile', url='https://f.example/profiles.php?profile=x', result='robots_disallowed', at='2026-11-10T00:00:00+00:00')]
+    doc = dict(labs=[dict(pi='A B', coverage='website', url='https://x.example/', sha256='a' * 64, kind='pi_homepage', found_via='dblp_person_url', checks=checks, official_link_status='not_recorded')])
+    monkeypatch.setattr(L, 'stored_captures', lambda school, urls: {})
+    r = L.official_homepage_fallback('hkust', doc)['labs'][0]
+    assert r['coverage'] == 'reason' and r['reason_code'] == 'host_blocked_by_robots' and 'url' not in r
+    assert r['website_note']['replaced_url'] == 'https://x.example/' and r['website_note']['replaced_sha256'] == 'a' * 64

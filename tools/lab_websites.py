@@ -526,6 +526,19 @@ def official_homepage_fallback(school, doc):
                 r['website_note'][k] = r.pop(k, None)
             r['reason'] = 'Captured PI homepage used as the lab-page fallback.'
             break
+        else:
+            blocked = next((c for c in r.get('checks') or [] if c.get('source') == 'school_profile' and c.get('result') == 'robots_disallowed' and c.get('url')), None)
+            if r.get('coverage') == 'website' and r.get('official_link_status') != 'recorded' and r.get('url') and blocked and listing:
+                # the department listing links only the institutional profile, whose robots.txt disallows reading it, and no stored official page links the personal site:
+                # record an access reason and keep the site (with its hash) in website_note; nothing is fetched against robots.txt.
+                r['website_note'] = dict(replaced_url=r['url'], replaced_sha256=r.get('sha256'), replaced_kind=r.get('kind'), found_via=r.get('found_via'),
+                                         people_page=r.pop('people_page', None), alumni_page=r.pop('alumni_page', None), pubs_page=r.pop('pubs_page', None),
+                                         why='no stored official page links this site; the only official profile (' + blocked['url'] + ') is disallowed by its robots.txt')
+                for k in ('url', 'kind', 'sha256', 'evidence', 'found_via', 'listed_on', 'official_link_status', 'official_link_evidence'):
+                    r.pop(k, None)
+                r.update(coverage='reason', reason_code='host_blocked_by_robots', reason_type='access_blocked',
+                         reason='The department listing links only the institutional faculty profile, which robots.txt disallows; the PI\'s own site is not linked from any stored official page (kept in website_note).',
+                         reason_scope='Recorded search/access outcome; not proof no website exists or that an archive has no capture.')
     return doc
 
 
