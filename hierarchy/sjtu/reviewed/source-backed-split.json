@@ -6,25 +6,27 @@
  "definitions": {
   "source_backed": "rows whose identity is a DBLP person-record DOI or title match, or a title quoted verbatim from the PI-named official profile or the official-profile-linked owned homepage (pi-publication-lists.json, page sha256 and quote per record); counted in distinct works (normalized title)",
   "heuristic": "rows credited through an OpenAlex author-id anchor and kept only because the byline shares 3 or more co-publications with the PI evidenced coauthors (coauthor-overlap rule); candidates, not source evidence, until a primary-source sample passes",
-  "held": "rows flagged by the rules (uncorroborated anchors, books and chapters, non-SJTU affiliation, claim-held leaks); proposed or ingested holds, excluded from the kept counts"
+  "held": "rows flagged by the rules (uncorroborated anchors, books and chapters, non-SJTU affiliation, claim-held leaks); proposed or ingested holds, excluded from the kept counts",
+  "reviewed_openalex_id": "rows credited through a reviewed OpenAlex author id (census override openalex) for the 8 PIs that passed the merge-risk screen; counted apart from source-backed"
  },
  "sealed_package": {
-  "package": "scratch/sjtu-coverage-1110/native34/package/sjtu",
-  "job_id": "32186593",
+  "package": "scratch/sjtu-coverage-1110/native35/package/sjtu",
+  "job_id": "32190223",
   "sealed": true,
-  "input_commit": "d3cf8cf",
-  "runtime": "fix/sjtu-runtime-1110 0b9fc0c (4ca6712 + reviewed per-link student exclusions)",
+  "input_commit": "ce99ee1",
+  "runtime": "fix/sjtu-runtime-1110 0b9fc0c",
   "package_sha256": {
-   "pis.json": "5c2b97ed1721dc30ca446c34104d1e4f241d922691cecab67f0a55a967570271",
+   "pis.json": "683135168b094f91ecbe6609f153547b6d1ad24d8a7aa26eec7fcc102e1bcbe9",
    "students.json": "1d7986aec3eb5d155133748702405e0e4a7ce9e8ce3aebd166efae064d323e50",
-   "lab_papers.jsonl.gz": "a79826bd6b5fc90a4a3e43a18edc44fdfba2774fc448ac1cf55ffbef6365cff8",
+   "lab_papers.jsonl.gz": "455ad0d46a26c0a51ea9965dbb6edaad3ffac9572c1a935de5893b3104e548aa",
    "student_papers.jsonl.gz": "5a8a2cc51c07250c48fa8d672ed305f9a4b94ac56d17c093bda9ad273996d8b4",
-   "report.json": "dc393263dee025e6368dfd3e2d262d2268a5190664a0f33457c2c71d33a23458"
+   "report.json": "c50a56db073cfa548f3b40409ef639cd853fe3de7e8f19a024070ff7b82c4c43"
   },
   "package_rows": 5678,
   "package_distinct_works": 5180,
   "pis_with_papers": 106,
   "owned_dblp_persons": 42,
+  "reviewed_openalex_id_pis": 8,
   "student_links": 713,
   "student_links_excluded_by_engine": 93,
   "student_precision_sample": {
@@ -32,17 +34,22 @@
    "correct": 110,
    "doubtful": 7,
    "incorrect": 0,
-   "point_precision_doubtful_half": 0.9700854700854701,
-   "note": "sampled on the 711-link filtered set of native 33; native 34 carries the same exclusions in the package (713 links)"
+   "point_precision_doubtful_half": 0.9700854700854701
   },
   "source_backed": {
-   "rows": 3637,
-   "distinct_works": 3425
+   "rows": 3406,
+   "distinct_works": 3223,
+   "definition": "DBLP person record or page-quoted owned list"
+  },
+  "reviewed_openalex_id": {
+   "rows": 353,
+   "distinct_works": 352,
+   "note": "8 PIs bound by a reviewed OpenAlex author id with a merge-risk screen; per-work evidence is the id, not a record"
   },
   "heuristic": {
-   "rows": 1921,
-   "distinct_works": 1842,
-   "distinct_works_not_source_backed": 1635
+   "rows": 1799,
+   "distinct_works": 1729,
+   "distinct_works_not_source_backed": 1525
   },
   "held_proposed": {
    "rows": 120
@@ -54,7 +61,8 @@
   "lab_coverage_dblp_pool": {
    "found": 2436,
    "total": 2876
-  }
+  },
+  "note_stage5": "main now marks 61 PIs reviewed no_identity; this package predates that mark and still carries their owned-list papers"
  },
  "registered_package": "sealed_package",
  "evidence": [
