@@ -138,8 +138,8 @@ def website_expected(key, website_doc):
     counts: 'Dan Klein' is the package's 'Daniel Klein'), except a PI the build excluded by review (report.json `excluded`: researched, not a PI of
     the school in the window; the package has no lab for them)."""
     rows = {r['pi'] for r in website_doc.get('labs', [])}
-    rep = read(P.data('report.json', key), {}) or {}
-    excluded = {e.get('pi') for e in rep.get('excluded') or [] if isinstance(e, dict)}
+    rep = read(P.data('report.json', key), {})
+    excluded = {e.get('pi') for e in (rep.get('excluded') if isinstance(rep, dict) else None) or [] if isinstance(e, dict)}
     out = []
     for x in pis_of(key):
         if x['name'] in excluded and x['name'] not in rows:
