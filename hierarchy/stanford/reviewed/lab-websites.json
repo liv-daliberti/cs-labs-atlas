@@ -41195,84 +41195,76 @@
   {
    "pi": "Greg Zaharchuk",
    "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://profiles.stanford.edu/greg-zaharchuk: ok; school_profile https://profiles.stanford.edu/greg-zaharchuk: ok; school_profile https://profiles.stanford.edu/intranet/greg-zaharchuk: http_303; school_profile https://profiles.stanford.edu/greg-zaharchuk?tab=bio: ok; 3 further dated checks retained.",
-   "audited_at": "2026-11-10T19:48:48+00:00",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The official Stanford profile (https://profiles.stanford.edu/greg-zaharchuk, read 2026-11-11) links only the Center for Advanced Functional Neuroimaging page (http://med.stanford.edu/cafn.html), a center page not selected as his own site; no personal or lab site of his own was established by the profile or the Wayback discovery pass. Recorded search outcome, not proof that no site exists.",
+   "audited_at": "2026-11-11T10:22:18+00:00",
    "checks": [
     {
      "source": "department_listing",
      "url": "https://profiles.stanford.edu/greg-zaharchuk",
-     "at": "2026-11-10T19:48:41+00:00",
+     "at": "2026-11-11T10:22:09+00:00",
      "result": "ok",
      "sha256": "fc2a82d7367f01186deac447c9036c373a2c424a15f4be4d911dac9133e07060"
     },
     {
      "source": "school_profile",
      "url": "https://profiles.stanford.edu/greg-zaharchuk",
-     "at": "2026-11-10T19:48:41+00:00",
+     "at": "2026-11-11T10:22:09+00:00",
      "result": "ok",
      "sha256": "fc2a82d7367f01186deac447c9036c373a2c424a15f4be4d911dac9133e07060"
     },
     {
      "source": "school_profile",
      "url": "https://profiles.stanford.edu/intranet/greg-zaharchuk",
-     "at": "2026-11-10T19:48:43+00:00",
-     "result": "http_303",
-     "sha256": "238694d4a959044766472941fa63a839c37c424a8f2b731bd771d2eb8d184747"
+     "at": "2026-11-11T10:22:18+00:00",
+     "result": "ok",
+     "sha256": "d69a00037e054496299360d97cf136924276935fede2165b12fff443d7501eb8"
     },
     {
      "source": "school_profile",
      "url": "https://profiles.stanford.edu/greg-zaharchuk?tab=bio",
-     "at": "2026-11-10T19:48:47+00:00",
+     "at": "2026-11-11T10:22:18+00:00",
      "result": "ok",
      "sha256": "e00f2224d17fb1ceb692d4f222db1c1dc7d7dafb5b586c80577f9bfbf66bdb7f"
     },
     {
      "source": "dblp_person_url",
      "url": "https://dblp.org/pid/125/4173",
-     "at": "2026-11-10T19:48:48+00:00",
+     "at": "2026-11-11T10:22:18+00:00",
      "result": "person_not_in_dump_extract"
     },
     {
      "source": "orcid_researcher_urls",
      "url": null,
-     "at": "2026-11-10T19:48:48+00:00",
+     "at": "2026-11-11T10:22:18+00:00",
      "result": "no_orcid"
     },
     {
      "source": "openalex_author",
      "url": "https://openalex.org/A5065577825",
-     "at": "2026-11-10T19:48:48+00:00",
+     "at": "2026-11-11T10:22:18+00:00",
      "result": "no_homepage_field_in_schema"
     },
     {
      "source": "pi_evidence_url",
      "url": "https://profiles.stanford.edu/greg-zaharchuk",
-     "at": "2026-11-10T19:48:48+00:00",
+     "at": "2026-11-11T10:22:18+00:00",
      "result": "listed"
-    },
-    {
-     "source": "wayback_pending",
-     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fprofiles.stanford.edu%2Fintranet%2Fgreg-zaharchuk&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
-     "at": "2026-11-10T19:48:48+00:00",
-     "result": "wayback_deferred"
     }
    ],
    "places_checked": [
     "dblp_person_url:person_not_in_dump_extract",
     "department_listing:ok",
     "pi_evidence_url:listed",
-    "school_profile:http_303",
-    "school_profile:ok",
-    "wayback_pending:wayback_deferred"
+    "school_profile:ok"
    ],
-   "checked_at": "2026-11-10T19:48:48+00:00",
+   "checked_at": "2026-11-11T10:22:18+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
    "coverage": "reason",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
-   "reason_type": "pending_archive",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists.",
    "evidence_gaps": []
   },
   {
@@ -41437,27 +41429,28 @@
   {
    "pi": "Robert Tibshirani",
    "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "audited_at": "2026-11-10T19:49:05+00:00",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The official profile (https://profiles.stanford.edu/robert-tibshirani, read 2026-11-11) links https://statistics.stanford.edu/~tibs/, which returned HTTP 404 live; the Wayback discovery pass (2026-11-11) established no usable site. Recorded access outcome, not proof that no site exists. A reviewer search found https://tibshirani.su.domains/ (his own homepage), which no official page links; recorded as a lead, not a selected website.",
+   "audited_at": "2026-11-11T10:22:23+00:00",
    "checks": [
     {
      "source": "department_listing",
      "url": "https://profiles.stanford.edu/robert-tibshirani",
-     "at": "2026-11-10T19:48:59+00:00",
+     "at": "2026-11-11T10:22:18+00:00",
      "result": "ok",
      "sha256": "4c997c192005fda3392627d09962a60f892b282bd0c5bd3550755f2ee70c3d17"
     },
     {
      "source": "school_profile",
      "url": "https://profiles.stanford.edu/robert-tibshirani",
-     "at": "2026-11-10T19:49:00+00:00",
+     "at": "2026-11-11T10:22:19+00:00",
      "result": "ok",
      "sha256": "4c997c192005fda3392627d09962a60f892b282bd0c5bd3550755f2ee70c3d17"
     },
     {
      "source": "school_profile_link",
      "url": "https://statistics.stanford.edu/~tibs/",
-     "at": "2026-11-10T19:49:00+00:00",
+     "at": "2026-11-11T10:22:19+00:00",
      "result": "listed",
      "anchor": "Personal Web Site",
      "on": "https://profiles.stanford.edu/robert-tibshirani"
@@ -41465,21 +41458,21 @@
     {
      "source": "school_profile",
      "url": "https://profiles.stanford.edu/intranet/robert-tibshirani",
-     "at": "2026-11-10T19:49:01+00:00",
-     "result": "http_303",
-     "sha256": "f6e032c21dcc2936a18f84825f1d8a84fca6c190b1620072e01b4920334129b9"
+     "at": "2026-11-11T10:22:20+00:00",
+     "result": "ok",
+     "sha256": "b8db90da763c22bab0cc7fe4c944d0c14cdf42ce8aaf2cd4878a4bdb27f1b9da"
     },
     {
      "source": "school_profile",
      "url": "https://profiles.stanford.edu/robert-tibshirani?tab=bio",
-     "at": "2026-11-10T19:49:05+00:00",
+     "at": "2026-11-11T10:22:20+00:00",
      "result": "ok",
      "sha256": "aff58c3201022b11031a06f07ca1435f37fab744cd6a2e5c9c7bdcbd0bb10dba"
     },
     {
      "source": "school_profile_link",
      "url": "https://statistics.stanford.edu/~tibs/",
-     "at": "2026-11-10T19:49:05+00:00",
+     "at": "2026-11-11T10:22:21+00:00",
      "result": "listed",
      "anchor": "Personal Web Site",
      "on": "https://profiles.stanford.edu/robert-tibshirani?tab=bio"
@@ -41487,72 +41480,56 @@
     {
      "source": "dblp_person_url",
      "url": "https://dblp.org/pid/t/RobertTibshirani",
-     "at": "2026-11-10T19:49:05+00:00",
+     "at": "2026-11-11T10:22:21+00:00",
      "result": "person_not_in_dump_extract"
     },
     {
      "source": "orcid_researcher_urls",
      "url": null,
-     "at": "2026-11-10T19:49:05+00:00",
+     "at": "2026-11-11T10:22:21+00:00",
      "result": "no_orcid"
     },
     {
      "source": "openalex_author",
      "url": "https://openalex.org/A5027340494",
-     "at": "2026-11-10T19:49:05+00:00",
+     "at": "2026-11-11T10:22:21+00:00",
      "result": "no_homepage_field_in_schema"
     },
     {
      "source": "pi_evidence_url",
      "url": "https://profiles.stanford.edu/robert-tibshirani",
-     "at": "2026-11-10T19:49:05+00:00",
+     "at": "2026-11-11T10:22:21+00:00",
      "result": "listed"
     },
     {
      "source": "candidate_site",
      "url": "https://statistics.stanford.edu/~tibs/",
-     "at": "2026-11-10T19:49:05+00:00",
-     "result": "http_403",
-     "via": "school_profile_link"
-    },
-    {
-     "source": "wayback_pending",
-     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fprofiles.stanford.edu%2Fintranet%2Frobert-tibshirani&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
-     "at": "2026-11-10T19:49:05+00:00",
-     "result": "wayback_deferred"
-    },
-    {
-     "source": "wayback_pending",
-     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fstatistics.stanford.edu%2F~tibs%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
-     "at": "2026-11-10T19:49:05+00:00",
-     "result": "wayback_deferred"
+     "at": "2026-11-11T10:22:23+00:00",
+     "result": "http_404",
+     "via": "school_profile_link",
+     "sha256": "e1c1d0c8ed5a495dc2a966aa07f486e1893f54057de615283abf6833e4c324e6"
     }
    ],
    "places_checked": [
-    "candidate_site:http_403",
+    "candidate_site:http_404",
     "dblp_person_url:person_not_in_dump_extract",
     "department_listing:ok",
     "pi_evidence_url:listed",
-    "school_profile:http_303",
     "school_profile:ok",
-    "school_profile_link:listed",
-    "wayback_pending:wayback_deferred"
+    "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-10T19:49:05+00:00",
+   "checked_at": "2026-11-11T10:22:23+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
    "coverage": "reason",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
-   "url": null,
-   "kind": null,
-   "sha256": null,
-   "evidence": null,
-   "found_via": null,
-   "listed_on": null,
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://profiles.stanford.edu/robert-tibshirani: ok; school_profile https://profiles.stanford.edu/robert-tibshirani: ok; school_profile_link https://statistics.stanford.edu/~tibs/: listed; school_profile https://profiles.stanford.edu/intranet/robert-tibshirani: http_303; 7 further dated checks retained.",
-   "reason_type": "pending_archive"
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists.",
+   "evidence_gaps": [],
+   "website_note": {
+    "replaced_url": "https://statistics.stanford.edu/~tibs/",
+    "why": "the official profile links this page but it returned HTTP 404 when read live on 2026-11-11; no archive capture was established by the 2026-11-11 Wayback discovery pass; kept as a lead, not a selected website; a reviewer found his current own homepage https://tibshirani.su.domains/ by search (not linked from any official page read), recorded as a lead only"
+   }
   },
   {
    "pi": "Irene Lo",
