@@ -17378,11 +17378,10 @@
 "name": "Ning Ge",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "not_faculty_listed",
-"reason": "affiliation units ['EE', 'IIIS-or-SIST']: not listed under any pinyin-compatible or Latin name in the captured faculty directories (listing rows 2016-2026 of CS/SW/IIIS/AU/EE/AIR/INSC; unit directories read: reliable name lists; and the 2026-11-10 unit captures: Mechanical/Vehicle/Aerospace/Engineering Mechanics, School of Integrated Circuits, Precision Instruments (rendered), Medicine tenure-track + Biomedical + Life, Energy/Civil/Hydraulic/EEA; incl. other-unit lists). NOT read: Medicine non-tenure series and cee/hydro/water/sbme/inet. Method Text::Unidecode forms (Chinese) and Latin lists directly; fresh-reviewed in batch samples.",
+"decision": "accepted",
+"reason": "accepted 2026-11-10 (recheck correction): the earlier pinyin table missed 葛宁; ladder title 教授 (2021) and 正高级 (2025) on the archived EE directory (通信研究所); DBLP person 09/2730-1 agrees by unit (Department of Electronic Engineering, BNRist), 257 records, 186 of them with computing/communication-method title keywords (e.g. DAC neuromorphic computing, neural-network equalization, UAV network optimization). Identity not bound (R-PAP-44): census addition carries a reviewed no_identity hold.",
 "units": [
-"EE",
-"IIIS-or-SIST"
+"EE"
 ],
 "dblp": "https://dblp.org/pid/09/2730-1",
 "evidence_kind": "unit_directories_read_name_absent"
@@ -18960,10 +18959,10 @@
 "name": "Qiang Song",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "not_faculty_listed",
-"reason": "affiliation units ['EE']: the captured faculty directories of ['EE'] (2016-2026 listing rows) list no person with a pinyin-compatible name; method: Text::Unidecode forms against the Chinese directory names, so a Latin name that differs from the pinyin of the Chinese name would be missed (hand review welcome).",
+"decision": "faculty_not_computing",
+"reason": "listed faculty (电机系 directory, 宋强: 副高职称教师, 2026) and the DBLP person agrees by unit (Department of Electrical Engineering), but not computing: power electronics and HVDC converters (modular multilevel converters, fault ride-through); 3 of 39 title-keyword hits are incidental. Computing-in-any-unit test not met. (Recheck correction: the earlier pinyin table missed 宋强.)",
 "units": [
-"EE"
+"Electrical Engineering and Applied Electronics (电机系)"
 ],
 "dblp": "https://dblp.org/pid/39/4333-2"
 },
@@ -19765,10 +19764,10 @@
 "name": "Rong Zeng",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "not_faculty_listed",
-"reason": "affiliation units ['EE']: the captured faculty directories of ['EE'] (2016-2026 listing rows) list no person with a pinyin-compatible name; method: Text::Unidecode forms against the Chinese directory names, so a Latin name that differs from the pinyin of the Chinese name would be missed (hand review welcome).",
+"decision": "faculty_not_computing",
+"reason": "listed faculty (电机系 directory, 曾嵘: 正高职称教师, 2026) and the DBLP person agrees by unit (Department of Electrical Engineering), but not computing: high-voltage DC breakers, sensors and discharge physics; 4 of 31 records are numerical simulation or load-forecasting (J. Comput. Phys. x3, one neural-network paper), judged incidental. Computing-in-any-unit test not met. (Recheck correction: the earlier pinyin table missed 曾嵘.)",
 "units": [
-"EE"
+"Electrical Engineering and Applied Electronics (电机系)"
 ],
 "dblp": "https://dblp.org/pid/15/5411-1"
 },
