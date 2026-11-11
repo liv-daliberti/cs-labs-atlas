@@ -27,13 +27,13 @@ def test_pi_own_site_hosts_are_live_by_owner_ruling():
         assert S.host_use('zju', h) == 'live'
 
 
-def test_cad_grant_is_extended_over_the_cad_hosts_and_stays_use_none_for_generic_tools():
+def test_cad_grant_is_extended_over_the_cad_hosts_http_origin_only():
     by = _by()
     for h in CAD_HOSTS:
-        assert by[h]['use'] == 'none', h
+        assert by[h]['use'] == 'live', h
         n = by[h]['note']
         assert 'Owner ruling 2026-11-11 (A)' in n and 'EXTENDED' in n and 'HTTP origin only' in n
-        assert S.host_use('zju', h) == 'none'
+        assert S.host_use('zju', h) == 'live' and 'no HTTPS' in n
 
 
 def test_person_zju_stays_off_limits():
