@@ -46,13 +46,17 @@
   "unproven_years": [
    2018
   ],
-  "why_unproven": "Searched 2026-11-10: the Wayback CDX for the PI's EECS faculty page and the unit listing pages was queried for each gap year (stage 4 gap search over 56 PIs, one request series per URL and year, raw output scratch gaps-32196424.out); no archived capture of those years names the PI with a ladder title (no 2018 EECS listing capture exists in the archive for the listing URLs the census used). Papers of those years stay outside the appointment (R-PAP-01)."
+  "why_unproven": "Searched 2026-11-10: the Wayback CDX for the PI's EECS faculty page and the unit listing pages was queried for each gap year (stage 4 gap search over 56 PIs, one request series per URL and year, raw output scratch gaps-32196424.out); no archived capture of those years names the PI with a ladder title (no 2018 EECS listing capture exists in the archive for the listing URLs the census used). Papers of those years stay outside the appointment (R-PAP-01).",
+  "no_identity": true,
+  "why_no_identity": "Reviewed 2026-11-11: the package's DBLP id (258/7123) was chosen by exact name only and attributes 0 papers; A web search names a different DBLP person page (b/EricABrewer, UC Berkeley affiliation note) but dblp.org refused the automated read (bot challenge), so it could not be verified or bound. He is a listed emeritus PI (2016-2026); no papers are attributed until a verified person page is read (owner question queued). OpenAlex does hold one thin profile, A5138047047 'Eric A. Brewer' (ORCID 0000-0003-0250-9268, one 2019 work, Berkeley EECS affiliation string); not bound because one work does not establish the person."
  },
  "Phillip Colella": {
   "unproven_years": [
    2018
   ],
-  "why_unproven": "Searched 2026-11-10: the Wayback CDX for the PI's EECS faculty page and the unit listing pages was queried for each gap year (stage 4 gap search over 56 PIs, one request series per URL and year, raw output scratch gaps-32196424.out); no archived capture of those years names the PI with a ladder title (no 2018 EECS listing capture exists in the archive for the listing URLs the census used). Papers of those years stay outside the appointment (R-PAP-01)."
+  "why_unproven": "Searched 2026-11-10: the Wayback CDX for the PI's EECS faculty page and the unit listing pages was queried for each gap year (stage 4 gap search over 56 PIs, one request series per URL and year, raw output scratch gaps-32196424.out); no archived capture of those years names the PI with a ladder title (no 2018 EECS listing capture exists in the archive for the listing URLs the census used). Papers of those years stay outside the appointment (R-PAP-01).",
+  "no_papers": true,
+  "why_no_papers": "Reviewed 2026-11-11: DBLP pid 11/4947 lists 45 titled records, but the build found no work tied to UC Berkeley by affiliation evidence (3 name hits at the school, none confirmed as his); emeritus PI listed 2016-2026, so no papers are attributed rather than guessed."
  },
  "James Demmel": {
   "unproven_years": [
@@ -446,5 +450,21 @@
    2018
   ],
   "why_unproven": "Searched 2026-11-10: the Wayback CDX for the PI's EECS faculty page and the unit listing pages was queried for each gap year (stage 4 gap search over 56 PIs, one request series per URL and year, raw output scratch gaps-32196424.out); no archived capture of those years names the PI with a ladder title (no 2018 EECS listing capture exists in the archive for the listing URLs the census used). Papers of those years stay outside the appointment (R-PAP-01)."
+ },
+ "Alice Agogino": {
+  "no_papers": true,
+  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5108365897), but all 63 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures)."
+ },
+ "Ian Holmes": {
+  "no_papers": true,
+  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5054625887), but all 31 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures)."
+ },
+ "Ming Gu": {
+  "no_papers": true,
+  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5103226688), but all 10 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures)."
+ },
+ "Jenna Burrell": {
+  "no_papers": true,
+  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5060940190), but all 13 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures)."
  }
 }

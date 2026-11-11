@@ -9320,5 +9320,104 @@
       "status": "accepted_rule_bound",
       "namesake_check": "fresh-reviewer check of the 13 bindings: 12 ok, 1 unsure (held); R-PAP-44 name check passed"
     }
+  },
+  "Kelly Ke Yiping": {
+    "no_identity": false,
+    "why_no_identity": "DBLP person binding reviewed by rule (identity only; ORCID allowed only as the official-profile ORCID).",
+    "dblp_orcid_review": {
+      "allowed": [
+        "0000-0001-9473-3202"
+      ],
+      "why": "Only the ORCID the official NTU research profile links, also carried by the bound DBLP record; no other DBLP ORCID is inherited.",
+      "evidence": [
+        {
+          "orcid": "0000-0001-9473-3202",
+          "url": "https://web.archive.org/web/20260421185530id_/https://dr.ntu.edu.sg/entities/person/Ke-Yiping-Kelly",
+          "sha256": "53178bf1e6d0fa15701100045e77362fae514d674485badfdc1a5bccb534fdd5",
+          "quote": "https://orcid.org/0000-0001-9473-3202"
+        }
+      ]
+    },
+    "collection_person_id": "ntu_fac_source_0229d5c4b2ed856c",
+    "collection_person_source": {
+      "profile_url": "https://dr.ntu.edu.sg/entities/person/Ke-Yiping-Kelly",
+      "sources": [
+        {
+          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+          "quote": "Assoc Prof Ke Yiping, Kelly",
+          "observedAt": "2026-11-07T17:47:31",
+          "kind": "named_individual_official_computing_faculty_card"
+        },
+        {
+          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+          "quote": "Appointments: Associate Professor, College of Computing & Data Science",
+          "observedAt": "2026-11-07T17:47:31"
+        }
+      ],
+      "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "dblp": [
+      "https://dblp.org/pid/07/3111"
+    ],
+    "why_dblp": "Local DBLP dump (never dblp.org) person record carrying the ORCID that the PI's official NTU profile links (Wayback capture of dr.ntu.edu.sg).",
+    "dblp_identity_review": {
+      "school": "ntu",
+      "pi": "Ke Yiping, Kelly",
+      "PID": "https://dblp.org/pid/07/3111",
+      "rule": "official_profile_orcid",
+      "dump": "dblp-2026-09-01.xml.gz",
+      "dump_record_url": "https://dblp.org/pid/07/3111",
+      "dump_affiliation_notes": [],
+      "official_listing_source": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+        "quote": "Assoc Prof Ke Yiping, Kelly",
+        "observedAt": "2026-11-07T17:47:31"
+      },
+      "reviewer": "claude-ntu-1110",
+      "reviewed": "2026-11-10",
+      "corroboration": [
+        {
+          "kind": "official_profile_orcid_equals_dblp_record_orcid",
+          "orcid": "0000-0001-9473-3202",
+          "profile_capture": "https://web.archive.org/web/20260421185530id_/https://dr.ntu.edu.sg/entities/person/Ke-Yiping-Kelly"
+        }
+      ],
+      "status": "accepted_rule_bound",
+      "namesake_check": "ORCID is on exactly one dump person record; DBLP names ['Yiping Ke']"
+    },
+    "why_name_variant": "2026-11-11: census spelling 'Kelly Ke Yiping' is the same listed person as the reviewed addition 'Ke Yiping, Kelly' (same dr.ntu.edu.sg profile URL, same 2021 SCSE and 2026 CCDS listings); the reviewed identity decision of 'Ke Yiping, Kelly' is carried to this spelling, nothing new is bound."
+  },
+  "Nicholas Vun Chan Hua": {
+    "no_identity": true,
+    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
+      "evidence": []
+    },
+    "collection_person_id": "ntu_fac_source_8bfafff4fb86f84a",
+    "collection_person_source": {
+      "profile_url": "https://dr.ntu.edu.sg/entities/person/Vun-Chan-Hua-Nicholas",
+      "sources": [
+        {
+          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+          "quote": "Assoc Prof Vun Chan Hua, Nicholas",
+          "observedAt": "2026-11-07T17:47:31",
+          "kind": "named_individual_official_computing_faculty_card"
+        },
+        {
+          "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+          "quote": "Appointments: Associate Dean (Postgraduate Coursework, Executive & Special Programs), College of Computing and Data Science Associate Professor, College of Computing & Data Science",
+          "observedAt": "2026-11-07T17:47:31"
+        }
+      ],
+      "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "why_name_variant": "2026-11-11: census spelling 'Nicholas Vun Chan Hua' is the same listed person as the reviewed addition 'Vun Chan Hua, Nicholas' (same dr.ntu.edu.sg profile URL, same 2021 SCSE and 2026 CCDS listings); the reviewed identity decision of 'Vun Chan Hua, Nicholas' is carried to this spelling, nothing new is bound."
   }
 }
