@@ -11,6 +11,20 @@
   "faculty_no_pi_evidence": 4,
   "unresolved": 1
  },
+ "mixed_author_exclusions": [
+  {
+   "author": "https://openalex.org/A5015798012",
+   "candidate_names": ["Daniel Thalmann", "Nadia Magnenat Thalmann"],
+   "reason": "This OpenAlex author candidate mixes the names of two distinct coauthors. Exclude this author ID from person-identity admission and duplicate-display-name coverage; the separately reviewed Daniel Thalmann candidate A5005709068 remains non-PI.",
+   "evidence": [
+    {
+     "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2017.00065/full",
+     "sha256": "96d1cd1e67b49aaa3032d36463cd8707c455b77ae7b7d32ba5462b72945dac3b",
+     "quote": "Nadia Magnenat Thalmann 1 * D T Daniel Thalmann 2"
+    }
+   ]
+  }
+ ],
  "decisions": [
   {
    "name": "David Atienza",

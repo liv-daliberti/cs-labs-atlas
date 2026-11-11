@@ -105,6 +105,28 @@ def sweep_gate(key):
            (['sweep check: status ' + str(sc.get('status'))] if sc.get('status') != 'pass' and not sc.get('failed') else [])
 
 
+def mixed_author_exclusions(cands, review):
+    """Exclude a reviewed mixed author ID from *identity* admission, never by display name alone."""
+    by_id = {c.get('author'): c for c in cands if c.get('author')}
+    decisions = review.get('decisions') or []
+    excluded, bad = set(), []
+    for row in review.get('mixed_author_exclusions') or []:
+        aid = row.get('author')
+        candidate = by_id.get(aid)
+        matches = [d for d in decisions if aid in (d.get('openalex') or [])]
+        evidence = row.get('evidence') or []
+        valid_evidence = bool(evidence) and all(e.get('url') and e.get('quote') and re.fullmatch(r'[0-9a-f]{64}', e.get('sha256') or '')
+                                                for e in evidence)
+        if (not candidate or len(matches) != 1 or matches[0].get('decision') not in ('not_faculty', 'faculty_no_pi_evidence',
+                                                                                     'faculty_not_computing', 'not_faculty_listed')
+                or set(row.get('candidate_names') or []) != set(candidate.get('names') or [])
+                or len(set(row.get('candidate_names') or [])) < 2 or not row.get('reason') or not valid_evidence):
+            bad.append(f'mixed-author exclusion {aid}: missing exact candidate IDs/names, terminal non-PI review or source evidence')
+        else:
+            excluded.add(aid)
+    return excluded, bad
+
+
 def g2(key):
     cands = read(P.data('cs-related-candidates.json', key))
     if cands is None:  # a missing file read as "no candidates" and passed the gate before the candidates step had run (UChicago friction 23)
@@ -115,9 +137,12 @@ def g2(key):
     # A display name is not an identity key. Separate DBLP PIDs with the same name
     # must be resolved before the stage can pass; a single name-keyed decision could
     # otherwise hide a second person (VT Dong Li / Lei Zhang / Xi Chen, 2026-11-10).
+    excluded, exclusion_bad = mixed_author_exclusions(cands, rev)
+    bad += exclusion_bad
     by_name = collections.defaultdict(list)
     for c in cands:
-        by_name[c['name']].append(c)
+        if c.get('author') not in excluded:
+            by_name[c['name']].append(c)
     bad += [f"{name}: {len(rows)} candidate identities share a display name; resolve source IDs before admission"
             for name, rows in by_name.items() if len(rows) > 1]
     bad += [f"{d['name']}: {d['decision']} ({d['reason'][:100]})" for d in dec.values()
