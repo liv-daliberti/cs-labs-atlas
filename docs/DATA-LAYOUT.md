@@ -108,6 +108,8 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `thesis-held-years-evidence.json` | reviewed | `hierarchy/{school}/thesis-held-years-evidence.json` | `hierarchy/{school}/reviewed/thesis-held-years-evidence.json` | 0/1 | <100MB |
 | `labpage-evidence.json` | reviewed | `hierarchy/{school}/labpage-evidence.json` | `hierarchy/{school}/reviewed/labpage-evidence.json` | 0/6 | <100MB |
 | `labpage-acceptance.json` | reviewed | `hierarchy/{school}/labpage-acceptance.json` | `hierarchy/{school}/reviewed/labpage-acceptance.json` | 1/1 | <10KB |
+| `student-recall-check.json` | reviewed | `hierarchy/{school}/student-recall-check.json` | `hierarchy/{school}/reviewed/student-recall-check.json` | 1/1 | <100KB |
+| `student-recall-captures.sqlite` | work | `hierarchy/{school}/student-recall-captures.sqlite` | `hierarchy/{school}/work/student-recall-captures.sqlite` | 1/1 | <20MB |
 | `extra-lab-pages.json` | reviewed | `hierarchy/{school}/extra-lab-pages.json` | `hierarchy/{school}/reviewed/extra-lab-pages.json` | - | <100MB |
 | `student-decisions.json` | reviewed | `hierarchy/{school}/student-decisions.json` | `hierarchy/{school}/reviewed/student-decisions.json` | - | <100MB |
 | `cv-evidence.json` | reviewed | `hierarchy/{school}/cv-evidence.json` | `hierarchy/{school}/reviewed/cv-evidence.json` | - | <100MB |

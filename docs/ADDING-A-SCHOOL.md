@@ -490,6 +490,12 @@ OpenAlex co-authorship is never on its own evidence of advising.
   at most 2 role/year errors (doubtful = half); a failed round means a rule fix, a re-run and a NEW sample of 20, and after 3
   failed rounds the work stops and is reported. Every round is recorded (`labpage-handcheck.json`, `LABPAGE-AUDIT.md`); the
   accepted one is `labpage-acceptance.json`. After any rule change, 10 students are re-sampled at every accepted school.
+- **Student-recall gate (PROPOSED, owner directive 2026-11-11; thresholds await the owner's go, `tools/student_recall.py`).** The rounds above measure
+  precision; recall is checked on a seeded, stratified sample of 30 PIs (recorded students 0 / 1-2 / 3+) drawn AFTER the last rebuild and bound to the sha256 of
+  `students.json` and `pis.json`: `student_recall.py draw <key>`, then for each sampled PI `capture` its member-list page and fill the names actually listed
+  (a fresh reviewer signs off), then `check <key>`. Items (thresholds are named constants in ONE place, `THRESHOLDS`): strict recall on readable PIs >= R1,
+  unverifiable share <= U, PIs with no student and no researched reason <= Z, estimated whole-school current-PhD recall >= R2 (unverifiable counts as 0).
+  Undated names outside a current-members section stay excluded (strict rule). `student_recall.py report <key>` prints the metrics for any school.
 
 - **v3 (2026-11-05).**
   - *Automated:* sources in order (thesis list with advisers, rosters, lab pages, directories, CVs), `adviser_directories`, `is_department_roster`, `in_own_space`, `visiting` role,

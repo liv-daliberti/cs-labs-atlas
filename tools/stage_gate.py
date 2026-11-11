@@ -22,6 +22,8 @@ wired into pi_hierarchy.py / chain_audit.py. Prints one JSON line per stage and 
               `no_papers` + `why_no_papers` (or `no_identity`), or lab-coverage-reasons has a `papers` reason (ROADMAP #43)
   0 charter   school_config check passes and every host of the charter is consistent (hosts.json)
   6 students  the lab-page students acceptance is accepted, and the chain audit's students and one_person checks are explained
+  6 also      student recall (tools/student_recall.py; thresholds R1/U/R2/Z in ONE place there): a seeded stratified hand-check record bound to the
+              build, strict recall on readable PIs, unverifiable share, PIs without students or a researched reason, estimated whole-school recall
   7 papers    the lab-page papers acceptance is accepted, and the chain audit's papers and links checks are explained
   8 texts     copies are measured (the 85% local share is a target reported as copy_target_met, not a gate), the chain audit's copies check is explained, and the ledger exists
   9 accuracy  accuracy/summary-<key>.json: lab precision >= .95, student-link precision >= .97, lab coverage >= .90, on the current build
@@ -326,7 +328,9 @@ def acceptance_gate(key, part):
 def g6(key):
     bad = acceptance_gate(key, 'students')
     b2, n = audit_open(key, ('students', 'one_person'))
-    return bad + b2, n
+    # student RECALL (owner 2026-11-11): the acceptance above measures precision; this asks whether the students are all there (tools/student_recall.py)
+    import student_recall as R
+    return bad + b2 + R.gate_items(key), dict(n, **R.gate_counts(key))
 
 
 def g7(key):

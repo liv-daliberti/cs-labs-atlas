@@ -284,6 +284,8 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('recovery-source-review.json', 'reviewed', 'hierarchy/{school}/recovery-source-review.json', 'hierarchy/{school}/reviewed/recovery-source-review.json'),
     ('labpage-additions.json', 'reviewed', 'hierarchy/{school}/labpage-additions.json', 'hierarchy/{school}/reviewed/labpage-additions.json'),
     ('labpage-acceptance.json', 'reviewed', 'hierarchy/{school}/labpage-acceptance.json', 'hierarchy/{school}/reviewed/labpage-acceptance.json'),
+    ('student-recall-check.json', 'reviewed', 'hierarchy/{school}/student-recall-check.json', 'hierarchy/{school}/reviewed/student-recall-check.json'),
+    ('student-recall-captures.sqlite', 'work', 'hierarchy/{school}/student-recall-captures.sqlite', 'hierarchy/{school}/work/student-recall-captures.sqlite'),
     ('lab-websites.json', 'reviewed', 'hierarchy/{school}/lab-websites.json', 'hierarchy/{school}/reviewed/lab-websites.json'),
     ('person-websites.json', 'reviewed', 'hierarchy/{school}/person-websites.json', 'hierarchy/{school}/reviewed/person-websites.json'),   # PI/student sites (2026-11-08)
     ('person-website-review.json', 'reviewed', 'hierarchy/{school}/person-website-review.json', 'hierarchy/{school}/reviewed/person-website-review.json'),   # hand review of unverified sites (2026-11-08)
