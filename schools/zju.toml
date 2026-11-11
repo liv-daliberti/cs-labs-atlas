@@ -294,7 +294,37 @@ note = "Cached Control Science professor card and navigation are source evidence
 host = "www.isee.zju.edu.cn"
 use = "none"
 probe = "http://www.isee.zju.edu.cn/jsss/list.htm"
-note = "Cached research-unit navigation only; individual faculty review and current content-acquisition gate remain open."
+note = "Cached research-unit navigation only; individual faculty review and current content-acquisition gate remain open. Owner authorization 2026-11-11: the HTTP-origin robots policy applies to this host (robots read at http://host/robots.txt, exact origin, honest UA, >= 3 s, one request per page, stop at any challenge); used only through tools/js_render_capture.py --http-origin or school_web.robots_ok(same_origin=True) to read college staff pages for home departments. Charter use stays none: no collector or listing tool reads this host."
+[[hosts]]
+host = "www.math.zju.edu.cn"
+use = "none"
+probe = "http://www.math.zju.edu.cn/"
+note = "Owner authorization 2026-11-11: the HTTP-origin robots policy applies to this host (robots read at http://host/robots.txt, exact origin, honest UA, >= 3 s, one request per page, stop at any challenge); used only through tools/js_render_capture.py --http-origin or school_web.robots_ok(same_origin=True) to read college staff pages for home departments. Charter use stays none: no collector or listing tool reads this host."
+[[hosts]]
+host = "www.cbeis.zju.edu.cn"
+use = "none"
+probe = "http://www.cbeis.zju.edu.cn/xyjs/list.htm"
+note = "Owner authorization 2026-11-11: the HTTP-origin robots policy applies to this host (robots read at http://host/robots.txt, exact origin, honest UA, >= 3 s, one request per page, stop at any challenge); used only through tools/js_render_capture.py --http-origin or school_web.robots_ok(same_origin=True) to read college staff pages for home departments. Charter use stays none: no collector or listing tool reads this host."
+[[hosts]]
+host = "zucc.zju.edu.cn"
+use = "none"
+probe = "http://zucc.zju.edu.cn/"
+note = "Owner authorization 2026-11-11: the HTTP-origin robots policy applies to this host (robots read at http://host/robots.txt, exact origin, honest UA, >= 3 s, one request per page, stop at any challenge); used only through tools/js_render_capture.py --http-origin or school_web.robots_ok(same_origin=True) to read college staff pages for home departments. Charter use stays none: no collector or listing tool reads this host."
+[[hosts]]
+host = "www.mtc.zju.edu.cn"
+use = "none"
+probe = "http://www.mtc.zju.edu.cn/"
+note = "Owner authorization 2026-11-11: the HTTP-origin robots policy applies to this host (robots read at http://host/robots.txt, exact origin, honest UA, >= 3 s, one request per page, stop at any challenge); used only through tools/js_render_capture.py --http-origin or school_web.robots_ok(same_origin=True) to read college staff pages for home departments. Charter use stays none: no collector or listing tool reads this host."
+[[hosts]]
+host = "www.psych.zju.edu.cn"
+use = "none"
+probe = "http://www.psych.zju.edu.cn/"
+note = "Owner authorization 2026-11-11: the HTTP-origin robots policy applies to this host (robots read at http://host/robots.txt, exact origin, honest UA, >= 3 s, one request per page, stop at any challenge); used only through tools/js_render_capture.py --http-origin or school_web.robots_ok(same_origin=True) to read college staff pages for home departments. Charter use stays none: no collector or listing tool reads this host."
+[[hosts]]
+host = "www.spa.zju.edu.cn"
+use = "none"
+probe = "http://www.spa.zju.edu.cn/"
+note = "Owner authorization 2026-11-11: the HTTP-origin robots policy applies to this host (robots read at http://host/robots.txt, exact origin, honest UA, >= 3 s, one request per page, stop at any challenge); used only through tools/js_render_capture.py --http-origin or school_web.robots_ok(same_origin=True) to read college staff pages for home departments. Charter use stays none: no collector or listing tool reads this host."
 [[hosts]]
 host = "nesc.zju.edu.cn"
 use = "none"
