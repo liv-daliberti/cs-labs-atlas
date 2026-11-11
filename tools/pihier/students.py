@@ -460,6 +460,9 @@ def add_corroborated(ctx):
         r['auto'] = True
         n['labpage_students_corroborated_wired'] += 1
         ctx.corroborated.append(dict(pi=s_['pi'], student=s_['name'], role=role_, role_basis=s_.get('role_basis'), years=s_['years'], works=works[:6], n_works=len(works)))
+    # a wired row can be the second spelling of a student the lab holds ('Christophe' beside 'Chris', R-STU-20 rule 4 compares names only): the reviewed
+    # same_person verdicts apply again, after the wiring (Stanford Gyurgyik, 2026-11-11)
+    n['student_records_merged'] += identity_review(ctx, stu)
     n['pis_with_students'] = sum(bool(stu[p['pi']]) for p in pis); n['students'] = len({x for v in stu.values() for x in v}); n['lab_student_pairs'] = sum(len(v) for v in stu.values())
 
 
