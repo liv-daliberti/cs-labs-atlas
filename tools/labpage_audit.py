@@ -697,20 +697,22 @@ class Kit:
     def _ai_allowed(self, url):
         import urllib.robotparser
         sp = urlsplit(url)
-        # the URL's own scheme first; a stored redirect (301..308) or an error row (timeout) is 'unknown', never a Disallow, and defers to the other scheme
+        # the URL's own scheme first. A usable own-scheme row decides. An own-scheme redirect or error row defers to a usable row of the other scheme
+        # when there is one (NTU: http://www robots 301 shadowed the https 200); alone it stays 'not permission'. No own-scheme row: the other scheme's newest row.
         other = 'https' if sp.scheme == 'http' else 'http'
-        bases = (f'{sp.scheme}://{sp.netloc}/robots.txt', f'{other}://{sp.netloc}/robots.txt')
+        own, oth = f'{sp.scheme}://{sp.netloc}/robots.txt', f'{other}://{sp.netloc}/robots.txt'
+        sel = 'SELECT status, content FROM captures WHERE url=? AND capture_url IS NULL '
+        clean = 'AND error IS NULL AND status NOT IN (301,302,303,307,308) '
         body, st, recorded = '', None, False
         for path in [str(self.store), self.lpcap.DBS[self.school]]:
             if not os.path.exists(path):
                 continue
             c = sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=60)
-            row = None
-            for base in bases:
-                row = c.execute('SELECT status, content FROM captures WHERE url=? AND capture_url IS NULL AND error IS NULL '
-                                'AND status NOT IN (301,302,303,307,308) ORDER BY id DESC LIMIT 1', (base,)).fetchone()
-                if row:
-                    break
+            row = c.execute(sel + clean + 'ORDER BY id DESC LIMIT 1', (own,)).fetchone()
+            if not row:
+                own_any = c.execute(sel + 'ORDER BY id DESC LIMIT 1', (own,)).fetchone()
+                row = (c.execute(sel + clean + 'ORDER BY id DESC LIMIT 1', (oth,)).fetchone() if own_any else None) or own_any \
+                    or c.execute(sel + 'ORDER BY id DESC LIMIT 1', (oth,)).fetchone()
             c.close()
             if row:
                 recorded = True
