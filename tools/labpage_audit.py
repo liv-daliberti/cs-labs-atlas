@@ -1508,6 +1508,7 @@ def entry_years_end_the_stay(years, basis, this_year=2026):
 
 
 PLACEMENT_RX = re.compile(r'@|\bnow\b|\b(?:Senior|Research|Postdoc\w*|Assistant|Associate)\s+(?:Scientist|Researcher|Professor|Engineer|Fellow)\b|\bCo-?Founder\b|\bLecturer\b', re.I)   # 'NTU PhD 2026 Senior Researcher @ Apple': a placement after the year is an alumnus
+AWARD_AFTER_YEAR = re.compile(r'(?:19|20)\d\d\s+(?:[\w&.-]+\s+){0,3}(?:scholarship|fellowship|award|prize|medal|honou?r|grant)', re.I)
 AWARD_WORDS = re.compile(r'scholarship|fellowship|award|prize|medal|honou?r|grant|\\u5956\\u5b66\\u91d1|\\u5956', re.I)
 
 
@@ -1541,7 +1542,7 @@ def entry_years(desc, head):
         return [a, int(b) if b and b[:2] in ('19', '20') else None], 'stated_in_entry'
     ys = [int(y) for y in re.findall(r'(?<!\d)(%s)(?!\d)' % YEAR_, seg)]
     if len(ys) == 1:
-        if AWARD_WORDS.search(seg):
+        if AWARD_AFTER_YEAR.search(seg) and not re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis", seg, re.I):
             return None, 'none'   # '(2025 OPPO Scholarship)' dates an award, not the stay (SJTU round 1); a range above is unaffected
         if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
             return [None, ys[0]], 'stated_in_entry'
@@ -2321,7 +2322,9 @@ def repair_reason(kit, school, name, best, start, pi=None):
         wide = t[max(0, k - 1500): k + 600]
         if COLLAB_LIST_HEAD.search(t[max(0, k - 1500): k]) and len({m.group(1) for m in OTHER_INST_ANY.finditer(wide)}) >= 2:
             return 'not_a_student', "a mixed-institution list of people the PI 'works with' (students labelled with other universities): collaborators, not members"
-        if FUTURE_START.search(t[k: k + 120]):
+        fs_seg = t[k + len(name or ''): k + len(name or '') + 45]
+        fs_m = FUTURE_START.search(fs_seg)
+        if fs_m and not re.search(r'[A-Z][a-z]+\s+[A-Z][a-z]+', fs_seg[:fs_m.start()]):   # the phrase belongs to this entry only when no other name sits between
             return 'not_a_student', 'an incoming student whose start is after the capture (admitted, Fall 2027): not yet a member'
         pre_bio = t[max(0, k - 140): k]
         tm = list(BIO_TRIGGER.finditer(pre_bio))
