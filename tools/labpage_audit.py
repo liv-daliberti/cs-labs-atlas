@@ -1530,6 +1530,9 @@ AWARD_AFTER_YEAR = re.compile(r'(?:19|20)\d\d\s+(?:[\w&.-]+\s+){0,3}(?:scholarsh
 AWARD_WORDS = re.compile(r'scholarship|fellowship|award|prize|medal|honou?r|grant|\\u5956\\u5b66\\u91d1|\\u5956', re.I)
 
 
+OPEN_MONTH_RX = re.compile(r'(?<![\d./])((?:19|20)\d\d)\s*[./]\s*(?:0?[1-9]|1[0-2])\s*(?:[-\u2013\u2014~\uff5e]\s*(?:\u81f3\u4eca|present|now|current)?|\u81f3\u4eca|to\s+(?:present|now))(?![\d./])', re.I)
+
+
 def entry_years(desc, head):
     """(years, basis) stated by the entry itself; never a neighbour's dates or a bio's degree dates.
       '(Postdoc, 2010-2014)' -> [2010, 2014]; '(PhD student, MIT ORC, 2022 -)' -> [2022, None] (an open range is a start);
@@ -1546,6 +1549,9 @@ def entry_years(desc, head):
     if dm:  # 'Defended on the 6th of January, 2012.' ends the stay (Michigan round 1: Bayraktar's alumni list)
         return [None, int(dm.group(1))], 'stated_in_entry'
     d = (desc or '')[:90]
+    om = OPEN_MONTH_RX.search(d)
+    if om:   # 'PhD, 2024.9-' / '2024.9至今': an open-ended start with a month is a start year, still current (SJTU round, 马超's list)
+        return [int(om.group(1)), None], 'stated_in_entry'
     m = re.match(r'^\W{0,3}\(([^()]{0,80})\)', d)
     seg = m.group(1) if m else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
     r = re.search(r'(%s)\s*(?:-|–|—|to|until)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
