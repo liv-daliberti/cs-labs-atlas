@@ -38,7 +38,6 @@ import unicodedata
 import zlib
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 
 # ---- THE THRESHOLDS: every number the gate uses lives here, and nowhere else (owner adjusts them) --------------------------------------------
