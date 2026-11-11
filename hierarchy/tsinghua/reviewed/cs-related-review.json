@@ -36,9 +36,10 @@
 "name": "Andrew Chi-Chih Yao",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "not_faculty_listed",
-"reason": "affiliation units ['CS']: the captured faculty directories of ['CS'] (2016-2026 listing rows) list no person with a pinyin-compatible name; method: Text::Unidecode forms against the Chinese directory names (a fresh review of a seeded sample of 60 found 0 wrong).",
+"decision": "accepted",
+"reason": "accepted 2026-11-10: IIIS directory rows list 姚期智 '院长，教授' (2016-2021, 2025) and the 2026 English list gives 'Andrew Chi-Chih Yao, Dean, Professor' (the exact Latin name of the DBLP person); the IAS list adds him as 'Adjunct Professor, Computer Science' (an extra IAS affiliation, not the basis here). DBLP y/AndrewChiChihYao (note: Tsinghua Institute for Theoretical Computer Science, i.e. the IIIS institute; 36 records 2016-2026) is that person by the exact name and unit; computing is the field. The earlier not_faculty_listed decision looked only for the unit CS and missed the IIIS row. Identity NOT bound (R-PAP-44).",
 "units": [
+"IIIS",
 "CS",
 "CS-like"
 ],
@@ -48,8 +49,8 @@
 "name": "Anyu Wang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "accepted",
+"reason": "accepted 2026-11-10 (borderline: the IAS faculty list labels him 'Member', an IAS-specific label, not a standard rank): his own homepage (owner-supplied text copy, no sha) reads 清华大学高等研究院研究员，博士生导师 (研究员 since 2024.12, 副研究员 2019.12-2024.12; CAS Institute of Information Engineering 助理研究员 2015-2019), i.e. a research-track title with 博士生导师 stated (research-track ruling 2026-11-10). The IAS 'Faculty' list (owner-supplied) names 'Anyu Wang | Member | Cryptology'. DBLP 116/4536 'Anyu Wang 0001' is that person: notes 'Tsinghua University, Institute for Advanced Study' and 'Chinese Academy of Sciences, Key Laboratory of Mathematics Mechanization', 76 records (66 in 2016-2026: 49 in 2024-2026 at CRYPTO/EUROCRYPT/ASIACRYPT/IACR ePrint with Xiaoyun Wang 0001), including Asiacrypt 2023 'Exploiting the Symmetry of Z^n: Randomization and the Automorphism Problem' (the homepage lists an Asiacrypt 2023 best paper). Computing passes at the threshold used so far (>=5 DBLP records with a Tsinghua note, cryptography/security venues: computing as object; fully homomorphic encryption and MPC). Identity NOT bound (R-PAP-44).",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -1962,8 +1963,8 @@
 "name": "Chao Yu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "excluded_scope",
+"reason": "[shenzhen_only_appointment] DBLP 36/6789-5 (Chao Yu 0005; note: Tsinghua University, Department of Electric Engineering, with the NICS-EFC lab page https://nicsefc.ee.tsinghua.edu.cn/people/ChaoYu as URL; 117 records 2017-2026 on multi-agent RL and robotics: Reward Randomization (ICLR 2021), VolleyBots, FlightBench). Public pages found by web search on 2026-11-11 (https://www.sigs.tsinghua.edu.cn/yc1_en/main.htm, https://thusigs-edi-lab.github.io/, https://zoeyuchao.github.io/) describe the same research line: Chao Yu, Ph.D. Dept. of Electronic Engineering Tsinghua 2023, postdoc 2023-2025, and since January 2026 Assistant Professor (Distinguished Research Fellow) at the Tsinghua Shenzhen International Graduate School (SIGS), running the Embodied Decision Intelligence Lab. SIGS is a Shenzhen-campus unit (the Shenzhen-only scope exclusion used elsewhere in this review); before 2026 the person was a doctoral student and postdoc, not faculty. Caveat: web sources also cite DBLP pid 36/6789-4 for a Chao Yu: the 0005 tie rests on the EE note, the NICS-EFC URL and the matching MARL titles. Closed as excluded_scope; a Beijing appointment would reopen it.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -15977,8 +15978,8 @@
 "name": "Mengyu Li",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "reverted: the unit directories read for this candidate (数学科学中心, 数学科学系) list navigation links, not personal names (fresh review of sample C); a real faculty directory capture is needed (Selenium tool or sub-pages).",
+"decision": "not_faculty_listed",
+"reason": "[postdoc_own_homepage] DBLP 47/1793-1 (Mengyu Li 0001; note: Tsinghua University, Department of Statistics and Data Science; 13 records 2022-2026) lists the personal homepage https://mengyu8042.github.io/ as its URL. That homepage (web search result, 2026-11-11) says she is a postdoctoral fellow at Tsinghua University advised by Prof. Jun S. Liu and received her Ph.D. in Statistics from Renmin University of China in 2025 (advisor Cheng Meng); Cheng Meng's group page lists her as a 2025 'Shuimu Scholar' (Tsinghua's postdoctoral program), Department of Statistics. A postdoctoral fellow is not a faculty member; the department site's own list was not read, so this is an evidence-based closure, not a claim about every Tsinghua page.",
 "units": [
 "Tsinghua (unit unstated)"
 ],
@@ -20356,10 +20357,10 @@
 "name": "Rujia Li",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "not_faculty_listed",
-"reason": "[proposal A, merged 2026-11-10] unit(s) resolved from local evidence: ['CS']; the captured faculty directories of those units (2016-2026 listing rows) list no person with a pinyin-compatible name (also checked against all 7 read directories ['AIR', 'AU', 'CS', 'EE', 'IIIS', 'INSC', 'SW']); method: Text::Unidecode forms against the Chinese directory names, Latin names compared as given.",
+"decision": "research_or_other_rank",
+"reason": "the owner-supplied IAS 'Faculty' list names 'Rujia Li | Associate Member | Cryptology': 'Associate Member' is an IAS-specific label, not a standard (ladder) rank, and no 博士生导师 or independent-PI evidence is stored for this person (research-track ruling 2026-11-10): research_or_other_rank (borderline). Identity: DBLP 246/5130-1 'Rujia Li 0001' (notes: Tsinghua Institute for Advanced Study and University of Birmingham), 39 records on blockchain consensus attacks and MPC at S&P/NDSS/USENIX Security/WWW with Sisi Duan (also on the IAS list); computing would pass (cryptography/security records). Identity NOT bound (R-PAP-44). This supersedes the earlier decision that read only CS directories.",
 "units": [
-"Tsinghua (unit unstated)"
+"IAS"
 ],
 "dblp": "https://dblp.org/pid/246/5130-1",
 "unit_evidence": {
@@ -29290,11 +29291,10 @@
 "name": "Yang Yu [46/2181-8]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "not_faculty_listed",
-"reason": "[unit_resolved_directories_read_homonym_elsewhere] (tier B, owner may decline) the person's own unit(s) ['CS', 'CS-like'] are read (listing rows 2016-2026 / 2026-11-10 unit captures) and list no pinyin-compatible name; the same-pinyin names found are in other units ['IIIS/IIIS-or-SIST'] and are not tied to this DBLP person (unit evidence: DBLP note / ORCID / OpenAlex strings).",
+"decision": "research_or_other_rank",
+"reason": "the owner-supplied IAS 'Faculty' list names 'Yang Yu | Associate Member | Cryptology': 'Associate Member' is an IAS-specific label, not a standard (ladder) rank, and no 博士生导师 or independent-PI evidence is stored for this person (research-track ruling 2026-11-10): research_or_other_rank (borderline). Identity: DBLP 46/2181-8 'Yang Yu 0008' (notes: Tsinghua CS dept; University of Rennes former; OpenAlex raw strings 'Institute for Advanced Study' on 8 of its works and BNRist on 9), 46 records, lattice-based signature cryptanalysis (Falcon) at EUROCRYPT/PKC/ASIACRYPT, co-authored with Anyu Wang 0001 (joc 2025); computing would pass (cryptography/security records). Identity NOT bound (R-PAP-44). This supersedes the earlier decision that read only CS directories.",
 "units": [
-"CS",
-"CS-like"
+"IAS"
 ],
 "dblp": "https://dblp.org/pid/46/2181-8"
 },
@@ -29720,10 +29720,10 @@
 "name": "Yi Chen",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "not_faculty_listed",
-"reason": "[proposal A, merged 2026-11-10] unit(s) resolved from local evidence: ['CS']; the captured faculty directories of those units (2016-2026 listing rows) list no person with a pinyin-compatible name (also checked against all 7 read directories ['AIR', 'AU', 'CS', 'EE', 'IIIS', 'INSC', 'SW']); method: Text::Unidecode forms against the Chinese directory names, Latin names compared as given.",
+"decision": "research_or_other_rank",
+"reason": "the owner-supplied IAS 'Faculty' list names 'Yi Chen | Associate Member | Cryptology': 'Associate Member' is an IAS-specific label, not a standard (ladder) rank, and no 博士生导师 or independent-PI evidence is stored for this person (research-track ruling 2026-11-10): research_or_other_rank (borderline). Identity: DBLP 49/6574-11 'Yi Chen 0011' (note: Tsinghua Institute for Advanced Study, non-former; Huazhong University of Science and Technology former), 17 records (13 cryptography records plus 4 older 2017-2019 image/activity-recognition records of the HUST-era Yi Chen 0011), hard-label cryptanalytic extraction of neural networks and differential-linear cryptanalysis at ASIACRYPT/IACR with Xiaoyang Dong, Hongbo Yu; computing would pass (cryptography/security records). Identity NOT bound (R-PAP-44). This supersedes the earlier decision that read only CS directories.",
 "units": [
-"Tsinghua (unit unstated)"
+"IAS"
 ],
 "dblp": "https://dblp.org/pid/49/6574-11",
 "unit_evidence": {
@@ -37074,8 +37074,8 @@
 "name": "Zhihao Yao",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "[phd_student_public_profiles] DBLP 154/8284-4 (Zhihao Yao 0004; note: Tsinghua University, Beijing; 43 records 2018-2026; HCI/robotics/generative-design work mostly with Haipeng Mi: InkBrush (CHI 2024), fluidic computation interfaces (UIST 2024 adjunct), Yousu robot (RO-MAN 2023)). The ACM SIGGRAPH Asia 2024 presenter bio of Zhihao Yao (3D designer/researcher/developer, B.Eng. Electronic Engineering Tsinghua) says he is pursuing a Ph.D. in Design at Tsinghua's Academy of Arts & Design, and the Tsinghua Future Laboratory lists a Zhihao Yao as a Ph.D. student (undated page). A doctoral student is not a faculty member. Evidence-based closure from public profiles (web search 2026-11-11); the Academy of Arts & Design faculty list was not read.",
 "units": [
 "Tsinghua (unit unstated)"
 ],

@@ -6501,6 +6501,38 @@
           "sha256": "4d15e32a06af29a7bd4fa5d434b789bf6d55ed346cc92489622dd952e570cd43"
         }
       ]
+    },
+    {
+      "pi": "王安宇",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "no_web_presence_found",
+      "reason": "Only an owner-supplied homepage text copy was seen; no URL or capture; not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-s2-focus-1110/final/owner-supplied-anyuwang-homepage.txt",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "152f6890dd77e423fc132d8cca0b703011806e89b84872b446b31b3ea10ed838"
+        }
+      ]
+    },
+    {
+      "pi": "姚期智",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "No separate homepage or lab site captured (directory rows only); not proof that none exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "1a3299601095bec25ca2615ac6e771beb57eacd56092eedd919fed8d0345200a"
+        }
+      ]
     }
   ]
 }
