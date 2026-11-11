@@ -6,7 +6,7 @@
   "counts": {
     "accepted": 182,
     "not_faculty_listed": 148,
-    "research_or_other_rank": 63,
+    "research_or_other_rank": 64,
     "faculty_not_computing": 24,
     "too_few_school_works": 8
   },
@@ -23590,6 +23590,69 @@
         "VT official faculty rosters 2016–2026"
       ],
       "provisional": "Reopen if the DBLP PID is shown to belong to another Jing Chen or a dated VT professor-rank appointment is found."
+    },
+    {
+      "name": "Charles E. Thornton",
+      "aliases": [
+        "Charles Thornton",
+        "Charlie Thornton",
+        "Charles Thornton III"
+      ],
+      "source": "openalex_rule",
+      "decision": "research_or_other_rank",
+      "reason": "Virginia Tech’s Buehrer lab identifies Charles Thornton as its 2023 ECE PhD student, with the same cognitive-radar thesis/publication topic as the OpenAlex candidate. His name is absent from the current official ECE and Wireless faculty listings. Public-payroll indexes list a later VT Research Assistant Professor title in 2023–2026; the VT census treats research professor ranks as non-ladder unless a separate ladder or own-group PI basis is documented. No such basis is established by these sources.",
+      "cs_basis": {
+        "openalex": [
+          "https://openalex.org/A5033205515"
+        ],
+        "oa_works": 30,
+        "oa_cs_share": 0.533,
+        "oa_years": [
+          2019,
+          2026
+        ]
+      },
+      "faculty_evidence": [
+        {
+          "unit": "VT public payroll index",
+          "url": "https://openpayrolls.com/employee/charles-thornton-11134",
+          "observed": "2026-11-10",
+          "quote": "Research Assistant Professor; 2023–2026",
+          "ladder": false,
+          "source_limit": "Secondary index of state payroll; university faculty roster does not list him."
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://buehrer.ece.vt.edu/Students.html",
+          "sha256": "3a643b7ec8cb7130745f487c0e68ee46dddc5819a5c457956b25d1a3ec35b77b",
+          "raw_path": "scratch/vt-followthrough-1110/stage2-role-sources/charles-thornton-lab.html",
+          "observed": "2026-11-10",
+          "quote": "Charles Thornton Ph.D. Student (2023) On the Value of Online Learning for Cognitive Radar Waveform Selection"
+        },
+        {
+          "url": "https://ece.vt.edu/people/faculty.html",
+          "sha256": "9d2190adde3f53158356d741d186292ebeed8c50e0e8070d2ba6a65f5b9ecd46",
+          "raw_path": "scratch/vt-followthrough-1110/stage2-role-sources/charles-thornton-ece.html",
+          "observed": "2026-11-10",
+          "quote": "Charles Thornton absent from named faculty list",
+          "source_limit": "Absence corroborates scope but cannot prove no appointment."
+        },
+        {
+          "url": "https://wireless.vt.edu/Directory/faculty.html",
+          "sha256": "6156dc9cde696be6d60594f1ba4fb6ca3c714b250ec6efa2210269cd6d76b0e1",
+          "raw_path": "scratch/vt-followthrough-1110/stage2-role-sources/charles-thornton-wireless.html",
+          "observed": "2026-11-10",
+          "quote": "Charles Thornton absent from named faculty list",
+          "source_limit": "Absence corroborates scope but cannot prove no appointment."
+        }
+      ],
+      "years_listed": [],
+      "units_searched": [
+        "Electrical and Computer Engineering",
+        "Wireless @ VT"
+      ],
+      "provisional": "Reopen and add to the census if an official VT source establishes a ladder professor title or an independently evidenced own-group PI basis during 2016–2026."
     }
   ]
 }
