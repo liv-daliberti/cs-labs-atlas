@@ -1470,7 +1470,7 @@ def entry_years(desc, head):
     d = (desc or '')[:90]
     m = re.match(r'^\W{0,3}\(([^()]{0,80})\)', d)
     seg = m.group(1) if m else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
-    r = re.search(r'(%s)\s*(?:-|–|—|to|until)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
+    r = re.search(r'(%s)\s*(?:-+|–|—|to|until)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
                   % (YEAR_, YEAR_), seg, re.I)
     if r:
         a, b = int(r.group(1)), r.group(2)
@@ -1520,6 +1520,8 @@ def entry_role(desc, head, role_of):
         if r and r != 'member':
             return r, 'entry'
     h = (head or '').split(' > ')[-1]
+    if re.search(r'\b(?:M\.?S\.?|master(?:s|\u2019s)?)\s*(?:/|and|&)\s*(?:Ph\.?D\.?|doctoral)\b', h, re.I):
+        return 'other', 'mixed_degree_section_heading'  # the roster does not say which student has which degree
     r = role_of(h)[0] if h else None
     if not r and head and ' > ' in head:
         r = role_of(head.split(' > ')[0])[0]
