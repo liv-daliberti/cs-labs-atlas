@@ -133,6 +133,21 @@ def known_homes(key):
             | set((S.field(cfg, 'census.home_units') or {}).keys()))
 
 
+def website_expected(key, website_doc):
+    """The names the website register must cover: every census PI, under the name the package carries (a census alias the register is keyed by
+    counts: 'Dan Klein' is the package's 'Daniel Klein'), except a PI the build excluded by review (report.json `excluded`: researched, not a PI of
+    the school in the window; the package has no lab for them)."""
+    rows = {r['pi'] for r in website_doc.get('labs', [])}
+    rep = read(P.data('report.json', key), {}) or {}
+    excluded = {e.get('pi') for e in rep.get('excluded') or [] if isinstance(e, dict)}
+    out = []
+    for x in pis_of(key):
+        if x['name'] in excluded and x['name'] not in rows:
+            continue
+        out.append(x['name'] if x['name'] in rows else next((a for a in x.get('aliases') or [] if a in rows), x['name']))
+    return out
+
+
 def g3(key):
     homes = {r['name']: r for r in read(P.data('home-departments-school.json', key), [])}
     bad = []
@@ -164,7 +179,7 @@ def g3(key):
     else:
         website_doc = {}
         bad.append(f'lab-page audit: register/audit missing (tools/lab_websites.py build {key}; docs/LAB-PAGES.md)')
-    bad += lab_websites.gate(website_doc, [p['name'] for p in pis_of(key)])
+    bad += lab_websites.gate(website_doc, website_expected(key, website_doc))
     return bad, dict(pis=len(pis_of(key)), homes=len(homes))
 
 
