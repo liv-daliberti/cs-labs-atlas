@@ -1,11 +1,8 @@
-import sys
-from pathlib import Path
 import hashlib
 import json
 import sqlite3
 import zlib
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import listing_formats as F
 import listing_rows as R
 
@@ -77,11 +74,11 @@ def test_utaustin_people_parser_handles_archived_drupal_cards():
 
 
 def test_utaustin_2018_catalog_checks_dated_cs_entries(tmp_path, monkeypatch):
-    monkeypatch.setattr(R.P, 'HIERARCHY', tmp_path / 'hierarchy')
-    monkeypatch.setattr(R.P, 'LISTINGS', tmp_path / 'listings')
+    monkeypatch.setattr(R.P, 'HIERARCHY', tmp_path / 'hierarchy')  # route-ok: isolated listing_rows fixture root
+    monkeypatch.setattr(R.P, 'LISTINGS', tmp_path / 'listings')  # route-ok: isolated listing_rows fixture root
     monkeypatch.setattr(R.S, 'get', lambda _key: {'census': {'rank_words': {}}})
-    reviewed = tmp_path / 'hierarchy' / 'utaustin' / 'reviewed'
-    raw = tmp_path / 'listings' / 'utaustin' / 'raw'
+    reviewed = tmp_path / 'hierarchy' / 'utaustin' / 'reviewed'  # route-ok: follows monkeypatched fixture root
+    raw = tmp_path / 'listings' / 'utaustin' / 'raw'  # route-ok: follows monkeypatched fixture root
     reviewed.mkdir(parents=True)
     raw.mkdir(parents=True)
     body = b'''<p>The following faculty list represents those appointed in the 2018 spring semester.</p>
