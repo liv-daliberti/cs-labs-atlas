@@ -1485,7 +1485,7 @@ def page_institution(kit, school, src):
         return host
     text = views.get('html') or views.get('raw') or ''
     ft = re.search(r'(?:©|&copy;|\bcopyright\b)[^<>\n]{0,40}?\b((?:University of [A-Z][\w-]+(?: [A-Z][\w-]+)?)|(?:[A-Z][\w-]+ University))\b', text[-600:], re.I)
-    if ft and not re.search(school_names_rx(school), ft.group(1)) and not re.search(dom, host):
+    if ft and not re.search(school_names_rx(school), ft.group(1)) and not re.search(school_names_rx(school), text[-600:]):
         return ft.group(1)   # a page whose own copyright footer names another university is that university's page (CMU round 7: Salakhutdinov's Toronto-era page)
     if re.search(school_names_rx(school), text):
         return None  # the school appears somewhere on the page: alumni placements and bios name other schools too
@@ -2245,7 +2245,7 @@ CITATION_CONTEXT = re.compile(r"\bpp\.\s*\d|\bPDF\s*\||\bView details for\b|\bPr
 
 ADMIN_DESC = re.compile(r"\b(?:Secretary|Administrative\s+(?:Assistant|Specialist|Associate|Staff)|Group\s+Administrator|Office\s+Manager|Executive\s+Assistant)\b", re.I)
 AFFILIATE_DESC = re.compile(r"^\W{0,3}(?:Research\s+|Senior\s+)?(?:Affiliate|Partner|Collaborator|Consulting\s+Professor|Adjunct)\b", re.I)
-PROF_TITLE_DESC = re.compile(r"^\W{0,3}(?:\(\s*)?(?:consulting|courtesy|adjunct|emeritus|clinical)\s+(?:associate\s+|assistant\s+|full\s+)?(?:professor|faculty|lecturer)\b|^\W{0,3}(?:Professor|Associate Professor|Assistant Professor)\b", re.I)
+PROF_TITLE_DESC = re.compile(r"^\W{0,3}(?:\(\s*)?(?:consulting|courtesy|adjunct|emeritus|clinical)\s+(?:associate\s+|assistant\s+|full\s+)?(?:professor|faculty|lecturer)\b|^\W{0,3}(?:Professor|Associate Professor|Assistant Professor)\b|^\W{0,3}Visiting\s+(?:Scientist|Researcher|Faculty|Professor)\b", re.I)
 BIO_TRIGGER = re.compile(r"(?:(?:kindly\s+)?hosted\s+by|worked\s+(?:closely\s+)?with|advised\s+by|advis[eo]rs?\s+(?:was|were|is|are)|mentored\s+by|supervised\s+by|collaborat\w+\s+with|together\s+with|studied\s+under|under\s+the\s+(?:guidance|supervision)\s+of)\s+", re.I)
 BIO_TAIL = re.compile(r"^(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)(?:\s+(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)){0,3}(?:\s*(?:,|and|&)\s+(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)(?:\s+(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)){0,3})*\s*,?\s*(?:and\s+)?$")
 OTHER_INST_ROLE = re.compile(r"\b(?:MS|M\.S\.|MSc|PhD|Ph\.D\.|BS|B\.S\.|Undergrad(?:uate)?|Master'?s?)\s+(?:Student|Candidate|Researcher)?\s*,?\s*(MIT|Harvard|Caltech|Cornell|Yale|Princeton|Columbia|Oxford|Cambridge|ETH|EPFL|NUS|Tsinghua|Stanford|Berkeley|CMU|UCLA|UCSD|Toronto|Waterloo|Michigan)\b")
@@ -2253,7 +2253,7 @@ OWN_INST_NAMES = {'michigan': {'MICHIGAN'}, 'stanford': {'STANFORD'}, 'mit': {'M
 FACULTY_HEAD = re.compile(r"\bVisiting\s+(?:Scientists?|Professors?|Faculty|Researchers?\s+at)\b|\bFaculty\b(?!.*student)|\bCollaborators?\b|\bLab\s+Affiliates?\b", re.I)
 NAME_NOISE = re.compile(r"\b(?:AWS|Firecracker|Maria\s+Curie|Marie\s+Curie|Sk[lł]odowska|Fulbright|Humboldt|Erasmus|Docker|Linux|GitHub|Kubernetes|PyTorch|TensorFlow|Citadel|Fellowship|Scholarship|Award|Prize|Grant|Foundation|Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist|Complaint|Policy|Privacy|Accessibility|Transfer|Network|Learning)\b", re.I)
 PAREN_TAIL = re.compile(r'\s*[(\uff08]([^()\uff08\uff09]{1,40})[)\uff09]\s*$')   # fullwidth brackets too (SJTU 2026-11-11: 'Qi Fan\uff08Master)')
-COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?taught|taught|co-?supervis\w*|jointly\s+\w+|joint(?:ly)?)\s*(?:with|w/|by|:)\s*$|\(\s*with\s+$|\bw/\s*$|\bwith\s+Prof\.?\s+$", re.I)
+COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?taught|taught|co-?supervis\w*|jointly\s+\w+|joint(?:ly)?)\s*(?:with|w/|by|:)\s*$|\(\s*with\s+$|\bw/\s*$|\bwith\s+Prof\.?\s+$|co-?advis[eo]rs?\s*:?\s*$", re.I)
 COLLAB_PROSE = re.compile(r"collaborat\w*\s+with\s+(?:the\s+|some\s+)?(?:\w+\s+){0,3}(?:students|researchers|postdocs)", re.I)
 CITE_INITIALS = re.compile(r"[A-Z][\w'\u00C0-\u017F-]+(?:\s[A-Z][\w'\u00C0-\u017F-]+)*,\s(?:[A-Z]\.\s?){1,3}(?:,|\.|\s)")
 OTHER_INST_LABEL = re.compile(r"^\s{1,3}((?:UC\s+[A-Z][a-z]+|UCL|UIUC|UCLA|UCSD|MIT|CMU|ETH(?:\s+Zurich)?|EPFL|NUS|NTU|HKUST|CUHK|KAIST|Caltech|Tsinghua|Peking|PKU|Stanford|Harvard|Oxford|Cambridge|Imperial|(?:The\s+)?University\s+of\s+[A-Z][A-Za-z]+(?:\s+[A-Z][a-z]+)?|[A-Z][a-z]+\s+University))(?=[\s,;)]|$)")
