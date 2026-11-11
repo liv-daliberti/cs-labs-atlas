@@ -167,6 +167,23 @@ def ustc_cs_cards(h):
     return out
 
 
+def uestc_college_teachers(h):
+    """UESTC college-specific faculty cards; one of PAGENUM's roster pages."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for card in soup.select('.ex_img > ul > li'):
+        link = card.select_one('h2 a[href]')
+        title = card.select_one('span > p')
+        if not link or not title:
+            continue
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        rank = ' '.join(title.get_text(' ', strip=True).split())
+        if name and rank:
+            out.append(dict(name_listed=name, titles=[rank], homepage=None,
+                            division=None, profile=link['href']))
+    return out
+
+
 def utaustin_cs_people(h):
     """UT Austin CS Drupal faculty/researcher cards, with the listed appointment title."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1383,6 +1400,7 @@ FORMATS = {
     'utaustin_cs_people': (utaustin_cs_people, re.compile(r'views-field-field-contact-faculty-title')),
     'utaustin_cs_faculty_legacy': (utaustin_cs_faculty_legacy, re.compile(r'class="prof-name"')),
     'ustc_cs_cards': (ustc_cs_cards, re.compile(r'class="col_news_list listcon"')),
+    'uestc_college_teachers': (uestc_college_teachers, re.compile(r'urltype=tsites\.CollegeTeacherList.*?class="ex_img"', re.S)),
     'ustc_cs_legacy_sidebar': (ustc_cs_legacy_sidebar, re.compile(r'(?!)')),
     'ntu_coe_cards': (ntu_coe_cards, re.compile(r'coe-about-leadership__card')),
     'ntu_profile_cards': (ntu_profile_cards, re.compile(r'ntu-profile-list')),
@@ -1471,7 +1489,8 @@ def is_paged(html):
     query_pager = bool(re.search(r'class="pager"|class="pagination"', html) and
                        re.search(r'(?:[?&]|&amp;)(?:page=(?:%2C|,)?[1-9]\d*|pg=(?:[2-9]|[1-9]\d+))', html))
     wp = re.search(r'<em class="all_pages">\s*(\d+)\s*</em>', html)
-    return query_pager or bool('class="wp_paging' in html and wp and int(wp.group(1)) > 1)
+    uestc = re.search(r'\bPAGENUM=([2-9]|[1-9]\d+)\b', html)
+    return query_pager or bool(uestc) or bool('class="wp_paging' in html and wp and int(wp.group(1)) > 1)
 
 
 def page_links(html, base_url):
@@ -1481,6 +1500,18 @@ def page_links(html, base_url):
     import urllib.parse
     base_url = re.sub(r'^(https?://[^/]+?):(?:80|443)(?=/|$)', r'\1', base_url)   # Wayback keeps ':80' in the original of old captures; its CDX does not match it
     base = urllib.parse.urlsplit(base_url)
+    # Visual SiteBuilder's college directory uses one-based PAGENUM; page 1
+    # is the base URL and its last-page link gives the required page count.
+    if 'urltype=tsites.CollegeTeacherList' in html:
+        paged = re.findall(r'href="([^\"]*\bPAGENUM=(\d+)[^\"]*)"', html)
+        pages = [(int(n), urllib.parse.urljoin(base_url, H.unescape(href))) for href, n in paged]
+        pages = [(n, url) for n, url in pages if urllib.parse.urlsplit(url).path == base.path
+                 and urllib.parse.urlsplit(url).netloc == base.netloc and n >= 2]
+        if pages:
+            template = pages[0][1]
+            last = max(n for n, _ in pages)
+            return {n - 1: re.sub(r'(?<=PAGENUM=)\d+', str(n), template, count=1)
+                    for n in range(2, last + 1)}
     found = {}
     for href in re.findall(r'href="([^"]*[?&;](?:page|pg)=(?:%2C|,)?\d+[^"]*)"', html):
         u = urllib.parse.urljoin(base_url, H.unescape(href))
