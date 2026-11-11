@@ -245,7 +245,13 @@ host = "www.cad.zju.edu.cn"
 use = "none"
 probe = "http://www.cad.zju.edu.cn/innovationteam"
 purpose = "Generic acquisition stays closed. A separate, root-approved exact-target Q grant may permit bounded owned HTTP source review only."
-note = "Host-wide use remains NONE, including HTTPS and unlisted paths. Root approved the separately sealed Q-only three-target HTTP pilot under grant SHA256 4c25a2fb4b7e9152c6e0c61f73ea2d7d9041bd584a458047620fea4faa9fbe0a and approval SHA256 bd60d6cf4a695cc1dd9c5b159ea2fff15fb8da6794a550beec69a8757f842f08. Job32150849 completed the three exact Lin identity/history/publication targets with original robots, shared >=3second spacing and no redirects/protocol changes/retries/fallbacks/API. That pilot is terminal; no further URL or renewed acquisition is authorized. Newly discovered students_en.html remains unrequested. This note grants no generic host permission and does not complete Stage0. See hierarchy/zju/reports/CAD-HTTP-TARGET-GRANT-20261108.md and CACHED-COMPUTING-EXPANSION-20261108.md."
+note = "Host-wide use remains NONE, including HTTPS and unlisted paths. Root approved the separately sealed Q-only three-target HTTP pilot under grant SHA256 4c25a2fb4b7e9152c6e0c61f73ea2d7d9041bd584a458047620fea4faa9fbe0a and approval SHA256 bd60d6cf4a695cc1dd9c5b159ea2fff15fb8da6794a550beec69a8757f842f08. Job32150849 completed the three exact Lin identity/history/publication targets with original robots, shared >=3second spacing and no redirects/protocol changes/retries/fallbacks/API. That pilot is terminal as a three-target pilot; the owner ruling of 2026-11-11 (below) extends the grant to the other CAD&CG lab pages. This note grants no generic host permission and does not complete Stage0. Owner ruling 2026-11-11 (A): the CAD&CG HTTP grant is EXTENDED from the three Lin targets of job 32150849 to the other CAD&CG lab and team pages under www.cad.zju.edu.cn (HTTP origin only: robots read at http://www.cad.zju.edu.cn/robots.txt, 2026-11-11 status 200: only /wp-admin/ disallowed, no AI-agent group; honest UA incl. Claude agent groups, >= 3.2 s per host, one request per page, no redirects followed, stop at any challenge or login, no Wayback, no API, no HTTPS). Charter use stays none for generic collectors and listing tools; only the ZJU lab-page discovery tool reads these pages, through the exact-origin policy. See hierarchy/zju/reports/CAD-HTTP-TARGET-GRANT-20261108.md and CACHED-COMPUTING-EXPANSION-20261108.md."
+[[hosts]]
+host = "cad.zju.edu.cn"
+use = "none"
+probe = "http://cad.zju.edu.cn/"
+note = "Owner ruling 2026-11-11 (A): the CAD&CG HTTP grant is EXTENDED from the three Lin targets of job 32150849 to the other CAD&CG lab and team pages under cad.zju.edu.cn (HTTP origin only: robots read at http://cad.zju.edu.cn/robots.txt, 2026-11-11 status 404: no rules, no AI-agent group; honest UA incl. Claude agent groups, >= 3.2 s per host, one request per page, no redirects followed, stop at any challenge or login, no Wayback, no API, no HTTPS). Charter use stays none for generic collectors and listing tools; only the ZJU lab-page discovery tool reads these pages, through the exact-origin policy."
+
 [[hosts]]
 host = "person.zju.edu.cn"
 use = "none"
@@ -266,9 +272,9 @@ note = "Existing exact HTTP-origin robots404+content200 captures support the sou
 # Existing owned-profile sources; no new acquisition permission is inferred from historical captures.
 [[hosts]]
 host = "cshen.github.io"
-use = "none"
+use = "live"
 probe = "https://cshen.github.io/"
-note = "Owned profile source is sealed. Keep new acquisition closed pending current origin review."
+note = "Owner ruling 2026-11-11: use=live for this PI own-site host (robots re-probed 2026-11-11 at https://cshen.github.io/robots.txt: 404, no rules; no AI-agent group; honest UA, >= 3.2 s per host, stop at any challenge or login, no Wayback). Used for the lab-page pass of that PI's own site only. Earlier note: Owned profile source is sealed. Keep new acquisition closed pending current origin review."
 [[hosts]]
 host = "kunzhou.net"
 use = "none"
@@ -281,9 +287,9 @@ probe = "http://www.ycwu.org"
 note = "Owned HTTP profile source is sealed; this does not grant HTTPS permission. Keep new acquisition closed."
 [[hosts]]
 host = "svbrdf.github.io"
-use = "none"
+use = "live"
 probe = "https://svbrdf.github.io/"
-note = "Owned profile source is sealed. Keep new acquisition closed pending current origin review."
+note = "Owner ruling 2026-11-11: use=live for this PI own-site host (robots re-probed 2026-11-11 at https://svbrdf.github.io/robots.txt: 404, no rules; no AI-agent group; honest UA, >= 3.2 s per host, stop at any challenge or login, no Wayback). Used for the lab-page pass of that PI's own site only. Earlier note: Owned profile source is sealed. Keep new acquisition closed pending current origin review."
 
 [[hosts]]
 host = "www.cse.zju.edu.cn"
@@ -326,25 +332,31 @@ use = "none"
 probe = "http://www.spa.zju.edu.cn/"
 note = "Owner authorization 2026-11-11: the HTTP-origin robots policy applies to this host (robots read at http://host/robots.txt, exact origin, honest UA, >= 3 s, one request per page, stop at any challenge); used only through tools/js_render_capture.py --http-origin or school_web.robots_ok(same_origin=True) to read college staff pages for home departments. Charter use stays none: no collector or listing tool reads this host."
 [[hosts]]
+host = "bohanzhuang.github.io"
+use = "live"
+probe = "https://bohanzhuang.github.io/"
+note = "Owner ruling 2026-11-11 (A): added only because robots allows it: https://bohanzhuang.github.io/robots.txt returned 200 on 2026-11-11 with only a Sitemap line (no Disallow, no AI-agent group). PI own site (Bohan Zhuang, ZJU); honest UA, >= 3.2 s per host, stop at any challenge or login, no Wayback."
+
+[[hosts]]
 host = "nesc.zju.edu.cn"
 use = "none"
 probe = "http://nesc.zju.edu.cn/"
 note = "Cached homepage explicitly references the retained static bundle. Group-level data preserve rendered/dormant distinctions; no new GET/API or individual adviser assignment."
 [[hosts]]
 host = "www.zyouyi.com"
-use = "none"
-probe = ""
-note = "Literal official CAD faculty link and retained owned-profile bytes support the reviewed source. No current acquisition gate reviewed."
+use = "live"
+probe = "https://www.zyouyi.com/"
+note = "Owner ruling 2026-11-11: use=live for this PI own-site host (robots re-probed 2026-11-11 at https://www.zyouyi.com/robots.txt: 404, no rules; no AI-agent group; honest UA, >= 3.2 s per host, stop at any challenge or login, no Wayback). Used for the lab-page pass of that PI's own site only. Earlier note: Literal official CAD faculty link and retained owned-profile bytes support the reviewed source. No current acquisition gate reviewed."
 [[hosts]]
 host = "xchen-cs.github.io"
-use = "none"
-probe = ""
-note = "Literal official CAD faculty link and retained owned-profile bytes support the reviewed source. No current acquisition gate reviewed."
+use = "live"
+probe = "https://xchen-cs.github.io/"
+note = "Owner ruling 2026-11-11: use=live for this PI own-site host (robots re-probed 2026-11-11 at https://xchen-cs.github.io/robots.txt: 404, no rules; no AI-agent group; honest UA, >= 3.2 s per host, stop at any challenge or login, no Wayback). Used for the lab-page pass of that PI's own site only. Earlier note: Literal official CAD faculty link and retained owned-profile bytes support the reviewed source. No current acquisition gate reviewed."
 [[hosts]]
 host = "zjuidg.org"
-use = "none"
-probe = ""
-note = "Cached source discovery only; no current acquisition permission, faculty admission or individual roster attribution."
+use = "live"
+probe = "https://zjuidg.org/"
+note = "Owner ruling 2026-11-11: use=live for this PI own-site host (robots re-probed 2026-11-11 at https://zjuidg.org/robots.txt: 404, no rules; no AI-agent group; honest UA, >= 3.2 s per host, stop at any challenge or login, no Wayback). Used for the lab-page pass of that PI's own site only. Earlier note: Cached source discovery only; no current acquisition permission, faculty admission or individual roster attribution."
 [[hosts]]
 host = "sensornet.cn"
 use = "none"
