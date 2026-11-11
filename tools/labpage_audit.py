@@ -1504,7 +1504,7 @@ def entry_years_end_the_stay(years, basis, this_year=2026):
     range that ended before this year. An open range ([a, None]) and a range ending this year stay current."""
     if basis != 'stated_in_entry' or not years or years[1] is None:
         return False
-    return years[0] is None and years[1] < this_year or years[0] is not None and years[1] < this_year
+    return years[0] is None and years[1] <= this_year or years[0] is not None and years[1] < this_year
 
 
 PLACEMENT_RX = re.compile(r'@|\bnow\b|\b(?:Senior|Research|Postdoc\w*|Assistant|Associate)\s+(?:Scientist|Researcher|Professor|Engineer|Fellow)\b|\bCo-?Founder\b|\bLecturer\b', re.I)   # 'NTU PhD 2026 Senior Researcher @ Apple': a placement after the year is an alumnus
@@ -1695,7 +1695,8 @@ def pm_candidates(kit, school, pi, plan, held):
                 x['years'], x['years_basis'] = yrs[fn], 'reviewer'
             else:
                 x['years'], x['years_basis'] = entry_years(x.get('desc'), x.get('head'))
-                if entry_years_end_the_stay(x['years'], x['years_basis']) or (x['years_basis'] == 'stated_in_entry' and x['years'] and x['years'][0] is None and x['years'][1] == 2026 and PLACEMENT_RX.search((x.get('desc') or '')[:140])):
+                if entry_years_end_the_stay(x['years'], x['years_basis']) and not (x['years'] == [None, 2026] and not PLACEMENT_RX.search((x.get('desc') or '')[:140])):
+                    # a degree year equal to this year in a current-student list is an expected graduation, not an end (SJTU rounds 2-3); a placement after it ('NTU PhD 2026 Senior Researcher @ Apple') is an alumnus
                     x['alumni'] = True  # '(PhD 2024, co-advised with ...)' on a current page: the entry itself says the stay ended (UChicago stage 6, round 1)
             x['role'], x['role_basis'] = entry_role(x.get('desc'), x.get('head'), kit.autom._role)
             if fn in roles_:
