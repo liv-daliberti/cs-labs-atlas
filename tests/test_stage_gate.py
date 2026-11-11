@@ -35,6 +35,14 @@ def test_gate0_needs_hosts_json_and_consistent_hosts(tree):
     assert G.evaluate('u', 0)['gate'] == 'pass'
 
 
+def test_stage1_empty_legacy_charter_is_unmeasured_not_pass(tree):
+    tree.cfg['status'] = 'released'
+    r = G.evaluate('u', 1)
+    assert r['gate'] == 'fail'
+    assert r['departments'] == 0
+    assert r['items'] == ['no Stage 1 departments in charter: faculty listing coverage is unmeasured']
+
+
 def test_gate8_local_share_and_ledger(tree):
     tree.put('copies.json', {'summary': {'lab_papers': 100, 'local': 80}})
     r = G.evaluate('u', 8)

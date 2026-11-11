@@ -90,14 +90,15 @@ def g0(key, root=None):
 
 def g1(key):
     cov = read(P.data('coverage.json', key), {}); lo, hi = S.get(key).get('window')
-    bad = []
-    for d in S.get(key).get('departments') or []:
+    departments = S.get(key).get('departments') or []
+    bad = [] if departments else ['no Stage 1 departments in charter: faculty listing coverage is unmeasured']
+    for d in departments:
         for y in range(lo, hi + 1):
             v = (cov.get(d['code']) or {}).get(str(y)) or {}
             gap = (d.get('listing_gaps') or {}).get(str(y))   # reviewed: searched, no archived listing (reason in the charter)
             if not any(s == 'ok' for s in v.values()) and not gap:
                 bad.append(f"{d['code']} {y}: " + ('; '.join(sorted(set(v.values()))) or 'never planned'))
-    return bad, dict(departments=len(S.get(key).get('departments') or []), reviewed_gap_years=sum(len(d.get('listing_gaps') or {}) for d in S.get(key).get('departments') or []))
+    return bad, dict(departments=len(departments), reviewed_gap_years=sum(len(d.get('listing_gaps') or {}) for d in departments))
 
 
 def sweep_gate(key):
