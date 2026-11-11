@@ -21,3 +21,18 @@ The source-preserving discovery pass recorded all 93 PIs. The offline audit exam
 The first accepted rebuild added those 139 rows: 149 distinct students, 153 lab-student pairs, and 26 of 93 PIs with students. The student audit found no duplicate-person or missed-link findings. Cliff Shaffer's own page explicitly calls its dated thesis authors “my students”; five 2019–2025 PhD/MS relations were then checked against the original captured bytes and added to `few-students-evidence.json`. The resulting second build has 154 distinct students, 158 lab-student pairs, and 27 of 93 PIs with students. Its 117 student-paper links and 962 PI-paper rows remain trial output and are not an admitted school package.
 
 Stage 6 remains open: 51 labs still lack students or an evidence-backed reason after the second build. The lab-page auditor selected unrelated VT visitor/alumni pages for some PIs, so those discovery records cannot support a no-student reason. The saved Sanghani directory is a scoped subset, not a full school adviser roster. We will not replace missing student evidence with boilerplate `sources_exhausted` claims.
+
+## Continued source review, 2026-11-10
+
+The following additions were verified against original saved page bytes (URL, SHA-256, and exact visible quotation) in `hierarchy/vt/raw/labpage-audit-captures.sqlite` and recorded in `reviewed/few-students-evidence.json`:
+
+- Kurt Luther: 11 dated current/alumni PhD lab members from his PI-directed VT page.
+- Debswapna Bhattacharya: two dated VT PhDs whose own pages explicitly name him as supervisor.
+- Alexey Onufriev: Charles Plate, identified as working in his lab by VT News; this supports membership, not an adviser claim.
+- Gang Wang: Chun Wang, a dated 2018 VT MS alumnus on Wang's historical student page.
+- Bert Huang: four explicit student-adviser records from official Sanghani profiles and graduation stories.
+- Na Meng: seven dated current graduate students on her PI-owned VT page; these support lab membership, not an adviser claim.
+- Godmar Back and Xun Jian: three and four dated thesis students, respectively, from their PI-owned VT pages.
+- Madhav Marathe, Ali Butt, and Jin-Hee Cho: one named doctoral student each from official VT CS highlights with an explicit chair or adviser statement.
+
+The latest isolated build has **93 PIs, 189 distinct students, 194 lab-student pairs, and 38 PIs with students**. The student audit reports zero duplicate-person findings; it also flags seven potential paper links for Qi Zhang against Qisheng Zhang bylines. The PI-owned tClab page lists Qi and Qisheng as separate people, so those links remain unadmitted pending an explicit reviewed exclusion in the paper-link audit. The 1,061 lab-paper rows and 180 student-paper links are trial output, not release counts. The latest lab-coverage ledger reports **40 unexplained labs** (plus 15 specific appointment/new-hire reasons). Stage 6 remains **fail** on those 40 gaps; no generic absence reason was added.
