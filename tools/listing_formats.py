@@ -273,6 +273,24 @@ def wse_entity(h):
     return out
 
 
+def jhu_cs_faculty_card(h):
+    """Johns Hopkins CS WordPress faculty cards in the stored 2016–2019 listings.
+
+    A card's h3 names the person and its h6, when present, gives the written appointment;
+    image alt text and research-group links are not faculty-list entries.
+    """
+    out = []
+    for p in re.split(r'<div\b[^>]*class="highlight-box faculty-member-card"[^>]*>', h)[1:]:
+        name = re.search(r'<h3\b[^>]*>(.*?)</h3>', p, re.S)
+        title = re.search(r'<h6\b[^>]*>(.*?)</h6>', p, re.S)
+        if not name:
+            continue
+        link = re.search(r'<a\b[^>]*href="([^"]+)"', name.group(1))
+        out.append(dict(name_listed=clean(name.group(1)), titles=_titles(title.group(1)) if title else [],
+                        homepage=H.unescape(link.group(1)) if link else None, division=None))
+    return out
+
+
 def wse_contact(h):
     """JHU Whiting contact blocks (CS secondary/research faculty): visible names and titles only.
 
@@ -1068,6 +1086,7 @@ FORMATS = {
     'seas_directory_d7': (seas_directory_d7, re.compile(r'field-name-field-primary-title')),
     'wse_entity': (wse_entity, re.compile(r'class="entity_list_item"')),
     'wse_contact': (wse_contact, re.compile(r'class="contact_block"')),
+    'jhu_cs_faculty_card': (jhu_cs_faculty_card, re.compile(r'class="highlight-box faculty-member-card"')),
     'wu_teaser': (wu_teaser, re.compile(r'class="faculty-directory__teaser"')),
     'isye_card': (isye_card, re.compile(r'class="w-100 px-0 pt-0 person-name"')),
 }
