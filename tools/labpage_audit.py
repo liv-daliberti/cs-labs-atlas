@@ -366,6 +366,9 @@ def publication_item(head, desc, quote):
     students were coauthors) is a paper coauthor, not a roster entry: the section is a publications heading, or the entry carries a quoted title followed by a venue."""
     if head and PUBLICATION_HEAD.search(head.split(' > ')[-1]) and not re.search(r'\b(?:students?|alumni|members?|team|people)\b', head, re.I):
         return True
+    q = quote or ''
+    if len(q) > 120 and len(re.findall(r'\b[A-Z]{3,}[A-Za-z]*\s+(?:19|20)\d\d\b', q)) >= 2:
+        return True   # several 'CRYPTO 2024' venue-year strings in one quote: a publication list read as a roster (CMU round 6, Jain: Ying Feng)
     return bool(CITATION_TAIL.search((desc or '')[:400]) or CITATION_TAIL.search((quote or '')[:400]))
 
 
@@ -464,6 +467,8 @@ def pi_start_year(p):
     for q in p.get('periods') or []:
         m = re.match(r'(\d{4})', str(q.get('start') or ''))
         if m:
+            if int(m.group(1)) <= WINDOW[0] and re.search(r'LOWER BOUND', q.get('note') or ''):
+                continue   # a lower bound at the window's floor is the first dated listing, not an arrival (CMU round 6: Grossmann, 2016-06-03, was read as a new lab)
             ys.append(int(m.group(1)))
     if ys:
         return min(ys)
@@ -1630,7 +1635,8 @@ def current_marker(x):
     """An explicit current marker in the entry's own text or its own section heading (not a parent heading)."""
     own_head = (x.get('head') or '').split(' > ')[-1]
     mixed = re.search(r'\b(former|past|previous|alumni|alumnae|graduated)\b', own_head, re.I)  # 'Current and Former Students'
-    return bool((CURRENT_HEAD.search(own_head) and not mixed) or CURRENT_ENTRY.search((x.get('desc') or '')[:160]) or current_page_url(x))
+    label = re.match(r'\s*(?:current|present)\s*:\s*(?!\W*(?:\w+\s+){0,2}(?:students?|members?|phd|ph\.d|postdocs?|people|team|group|researchers?|fellows?|undergrad\w*|interns?)\b)\S', own_head, re.I)   # 'Current: J.D. Harvard Law School' is an alumnus's job, not a current-members heading (CMU round 6, Tai-Sing Lee)
+    return bool((CURRENT_HEAD.search(own_head) and not mixed and not label) or CURRENT_ENTRY.search((x.get('desc') or '')[:160]) or current_page_url(x))
 
 
 CURRENT_URL = re.compile(r'/(?:current[-_](?:students?|members?|team|people|group)|(?:students?|members?|people)/current)(?:/|\.html?)?$', re.I)
@@ -2758,10 +2764,11 @@ def shared_people_pages(ctx, disc):
     return {k: n for k, n in c.items() if n >= 2}
 
 
-def assemble(kit, ctx, disc, verdicts=None, keep=None):
+def assemble(kit, ctx, disc, verdicts=None, keep=None, only=None):
+    """only: a list of PIs to audit (a chunk, `audit-chunk`); the shared-page map is always computed over every PI."""
     recs, stu_adds, pap_adds, rec_rows = [], [], [], []
     shared = shared_people_pages(ctx, disc)
-    for p in ctx['pis']:
+    for p in (ctx['pis'] if only is None else only):
         lab, plan = lab_record(kit, ctx, p, disc)
         pp_ = re.sub(r'^https?://(www\.)?', '', lab['urls'].get('people_page') or '').rstrip('/')
         if pp_ in shared and plan.get('notes', '').startswith('lab-page audit discovery'):
@@ -2934,6 +2941,33 @@ def onboarding(school):
         return school_config.get(school).get('status') == 'onboarding'
     except KeyError:
         return False
+
+
+def cmd_audit_chunk(school, i, n, out):
+    """Chunk i of n of the offline audit (the full run exceeds a 59 min Slurm job, CMU 2026-11-11): every n-th PI from i, -> <out>/chunk-<i>of<n>.json.
+    Resumable: an existing chunk file is kept. `audit-merge` assembles the chunks and writes the outputs exactly as `audit` does."""
+    f = Path(out) / f'chunk-{i}of{n}.json'
+    if f.exists():
+        return print('kept', f)
+    kit = Kit(school)
+    ctx = load_ctx(school, kit)
+    recs, stu_adds, pap_adds, _ = assemble(kit, ctx, read_discovery(school), recover_verdicts(school), only=ctx['pis'][i::n])
+    Path(out).mkdir(parents=True, exist_ok=True)
+    f.with_suffix('.tmp').write_text(json.dumps([recs, stu_adds, pap_adds], ensure_ascii=False))
+    os.replace(f.with_suffix('.tmp'), f)
+
+
+def cmd_audit_merge(school, n, out):
+    kit = Kit(school)
+    ctx = load_ctx(school, kit)
+    order = {p['pi']: k for k, p in enumerate(ctx['pis'])}
+    recs, stu_adds, pap_adds = [], [], []
+    for i in range(n):
+        r, s_, p_ = json.loads((Path(out) / f'chunk-{i}of{n}.json').read_text())
+        recs += r; stu_adds += s_; pap_adds += p_
+    recs.sort(key=lambda r: order[r['pi']])
+    assert len(recs) == len(order), (len(recs), len(order))
+    write_audit(school, recs, stu_adds, pap_adds)
 
 
 def cmd_audit(school):
@@ -3324,12 +3358,15 @@ def record_round(spec):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['discover', 'recover', 'audit', 'recover-audit', 'all', 'summary', 'sample', 'restamp', 'record'])
+    ap.add_argument('cmd', choices=['discover', 'recover', 'audit', 'audit-chunk', 'audit-merge', 'recover-audit', 'all', 'summary', 'sample', 'restamp', 'record'])
     ap.add_argument('--kind', choices=['students', 'papers'], default='students')
     ap.add_argument('--n', type=int, default=20)
     ap.add_argument('--seed', type=int, default=0)
     ap.add_argument('school', nargs='?')
     ap.add_argument('--pi', nargs='*')
+    ap.add_argument('--chunk', type=int, default=0)
+    ap.add_argument('--of', type=int, default=1)
+    ap.add_argument('--out', default=None)
     ap.add_argument('--redo', action='store_true')
     ap.add_argument('--live-first', action='store_true', help='Live discovery with cached-only Wayback; uncached archive requests remain pending')
     ap.add_argument('--redo-unrecorded', action='store_true', help='discover again every lab the 2026-10-22 pass did not record')
@@ -3348,6 +3385,10 @@ def main():
         cmd_recover_audit(a.school, a.title_credits)
     if a.cmd == 'audit':
         cmd_audit(a.school)
+    if a.cmd == 'audit-chunk':
+        cmd_audit_chunk(a.school, a.chunk, a.of, a.out)
+    if a.cmd == 'audit-merge':
+        cmd_audit_merge(a.school, a.of, a.out)
     if a.cmd == 'sample':
         cmd_sample(a.school, a.kind, a.n, a.seed)
     if a.cmd == 'summary':
