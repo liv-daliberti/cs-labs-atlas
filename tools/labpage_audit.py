@@ -1525,8 +1525,6 @@ def entry_years(desc, head):
     d = (desc or '')[:90]
     m = re.match(r'^\W{0,3}\(([^()]{0,80})\)', d)
     seg = m.group(1) if m else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
-    if AWARD_WORDS.search(seg):
-        return None, 'none'   # '(2025 OPPO Scholarship)' dates an award, not the stay (SJTU round 1: two roles read from scholarship years)
     r = re.search(r'(%s)\s*(?:-|–|—|to|until)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
                   % (YEAR_, YEAR_), seg, re.I)
     if r:
@@ -1539,6 +1537,8 @@ def entry_years(desc, head):
         return [a, int(b) if b and b[:2] in ('19', '20') else None], 'stated_in_entry'
     ys = [int(y) for y in re.findall(r'(?<!\d)(%s)(?!\d)' % YEAR_, seg)]
     if len(ys) == 1:
+        if AWARD_WORDS.search(seg):
+            return None, 'none'   # '(2025 OPPO Scholarship)' dates an award, not the stay (SJTU round 1); a range above is unaffected
         if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
             return [None, ys[0]], 'stated_in_entry'
         return [ys[0], ys[0]], 'stated_in_entry'
@@ -1565,6 +1565,9 @@ def entry_role(desc, head, role_of):
     if vis:
         return vis   # R-STU-17: 'visiting student from CUHK', '(visiting, CUHK)', a 'Visiting Students' heading: a member of this lab, role `visiting`
     d = (desc or '')[:60]
+    am = re.match(r'^\W{0,3}[A-Z][A-Za-z]{1,10}\s+(Ph\.?\s?D\.?|Postdoc)\s+(?:19|20)\d\d\b', d)
+    if am:
+        return ('phd' if am.group(1).lower().startswith('ph') else 'postdoc'), 'entry'   # 'NTU PhD 2025 Postdoc @ Oxford': the stated degree is the role here, the post after it a placement (NTU round 1)
     dm = re.match(r'^\W{0,3}(?:Ph\.?\s?D\.?|M\.?S\.?|B\.?S\.?)\s*[,(]?\s*(?:19|20)\d\d\b', d)
     if dm and re.search(r'ph\.?\s?d', dm.group(0), re.I):
         return 'phd', 'entry'   # 'Ph.D. 2025, Post Doc @ Univ. of Illinois': the degree is the role, the post after it is the placement (UChicago round 2)
@@ -2214,8 +2217,8 @@ BIO_TRIGGER = re.compile(r"(?:worked\s+(?:closely\s+)?with|advised\s+by|advis[eo
 BIO_TAIL = re.compile(r"^(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)(?:\s+(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)){0,3}(?:\s*(?:,|and|&)\s+(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)(?:\s+(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)){0,3})*\s*,?\s*(?:and\s+)?$")
 OTHER_INST_ROLE = re.compile(r"\b(?:MS|M\.S\.|MSc|PhD|Ph\.D\.|BS|B\.S\.|Undergrad(?:uate)?|Master'?s?)\s+(?:Student|Candidate|Researcher)?\s*,?\s*(MIT|Harvard|Caltech|Cornell|Yale|Princeton|Columbia|Oxford|Cambridge|ETH|EPFL|NUS|Tsinghua|Stanford|Berkeley|CMU|UCLA|UCSD|Toronto|Waterloo|Michigan)\b")
 OWN_INST_NAMES = {'michigan': {'MICHIGAN'}, 'stanford': {'STANFORD'}, 'mit': {'MIT'}, 'cmu': {'CMU'}, 'berkeley': {'BERKELEY'}, 'epfl': {'EPFL'}, 'princeton': {'PRINCETON'}}
-FACULTY_HEAD = re.compile(r"\bVisiting\s+(?:Scientists?|Professors?|Faculty|Researchers?\s+at)\b|\bFaculty\b(?!.*student)|\bCollaborators?\b", re.I)
-NAME_NOISE = re.compile(r"\b(?:Fellowship|Scholarship|Award|Prize|Grant|Foundation|Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist|Complaint|Policy|Privacy|Accessibility|Transfer|Network|Learning)\b", re.I)
+FACULTY_HEAD = re.compile(r"\bVisiting\s+(?:Scientists?|Professors?|Faculty|Researchers?\s+at)\b|\bFaculty\b(?!.*student)|\bCollaborators?\b|\bLab\s+Affiliates?\b", re.I)
+NAME_NOISE = re.compile(r"\b(?:AWS|Firecracker|Docker|Linux|GitHub|Kubernetes|PyTorch|TensorFlow|Citadel|Fellowship|Scholarship|Award|Prize|Grant|Foundation|Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist|Complaint|Policy|Privacy|Accessibility|Transfer|Network|Learning)\b", re.I)
 PAREN_TAIL = re.compile(r'\s*[(\uff08]([^()\uff08\uff09]{1,40})[)\uff09]\s*$')   # fullwidth brackets too (SJTU 2026-11-11: 'Qi Fan\uff08Master)')
 COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?taught|taught|co-?supervis\w*|jointly\s+\w+|joint(?:ly)?)\s*(?:with|w/|by|:)\s*$|\(\s*with\s+$|\bw/\s*$|\bwith\s+Prof\.?\s+$", re.I)
 COLLAB_PROSE = re.compile(r"collaborat\w*\s+with\s+(?:the\s+|some\s+)?(?:\w+\s+){0,3}(?:students|researchers|postdocs)", re.I)
