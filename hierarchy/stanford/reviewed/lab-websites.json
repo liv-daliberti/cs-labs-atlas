@@ -8916,7 +8916,8 @@
     "people_page": null,
     "alumni_page": null,
     "pubs_page": null,
-    "why": "no stored or live official page links this site (reviewed policy, reversible)"
+    "why": "no stored or live official page links this site (reviewed policy, reversible)",
+    "also_lead": "https://piech.dev (reported by a reviewer 2026-11-11 as probably his current own homepage; not linked from any official page read, not read by the crawler)"
    },
    "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
@@ -30178,8 +30179,8 @@
   },
   {
    "pi": "Eric Darve",
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
+   "status": "found",
+   "reason_code": "lab_site",
    "audited_at": "2026-10-31T11:24:07+00:00",
    "checks": [
     {
@@ -30272,6 +30273,24 @@
      "at": "2026-10-31T11:24:07+00:00",
      "result": "ok_wayback",
      "sha256": "50ae8cedf3388da652faa7051ea669869c70c255587849594b8d67f9385ce23c"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://ericdarve.github.io/dash_lab_website/",
+     "at": "2026-11-11T10:48:40+00:00",
+     "result": "ok",
+     "provenance": "stage3_profile_links_2026-11-11"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://ericdarve.github.io/dash_lab_website/",
+     "on": "https://profiles.stanford.edu/eric-darve",
+     "at": "2026-11-11T10:48:40+00:00",
+     "result": "listed",
+     "anchor": "DASH Lab",
+     "linked_url": "http://web.stanford.edu/people/darve",
+     "source_sha256": "52220778047568d9ed2759cfd425989c353f8c8a05a4f2d7d0c0507d17bcfe80",
+     "provenance": "stage3_profile_links_2026-11-11"
     }
    ],
    "places_checked": [
@@ -30287,18 +30306,38 @@
    "checked_at": "2026-10-31T11:24:07+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "url": null,
-   "kind": null,
-   "sha256": null,
-   "evidence": null,
-   "found_via": null,
-   "listed_on": null,
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "reason": "The only candidates the discovery found were institutional pages (a university front page or the research portal), which are never a person's or lab's website; no eligible homepage was established from the recorded checks.",
-   "reason_type": "no_eligible_website"
+   "url": "https://ericdarve.github.io/dash_lab_website/",
+   "kind": "lab_site",
+   "sha256": "9599ccbae7848fcb34ad6fb69d0d86c757dff8165789bc3d70bdac22fcdec591",
+   "evidence": {
+    "url": "https://ericdarve.github.io/dash_lab_website/",
+    "sha256": "9599ccbae7848fcb34ad6fb69d0d86c757dff8165789bc3d70bdac22fcdec591",
+    "quote": null
+   },
+   "found_via": "school_profile_link",
+   "listed_on": "https://profiles.stanford.edu/eric-darve",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://ericdarve.github.io/dash_lab_website/",
+     "on": "https://profiles.stanford.edu/eric-darve",
+     "at": "2026-11-11T10:48:40+00:00",
+     "result": "listed",
+     "anchor": "DASH Lab",
+     "linked_url": "http://web.stanford.edu/people/darve",
+     "source_sha256": "52220778047568d9ed2759cfd425989c353f8c8a05a4f2d7d0c0507d17bcfe80",
+     "provenance": "stage3_profile_links_2026-11-11"
+    }
+   ],
+   "prior_reason": {
+    "reason_code": "profile_only_no_homepage",
+    "reason": "The only candidates the discovery found were institutional pages (a university front page or the research portal), which are never a person's or lab's website; no eligible homepage was established from the recorded checks.",
+    "reason_type": "no_eligible_website"
+   },
+   "reason": "Website linked from the PI's official profile page (reached through the profile link's redirect) and read by the crawler; it names the PI."
   },
   {
    "pi": "Mirabela Rusu",
@@ -33720,9 +33759,8 @@
   },
   {
    "pi": "Melissa Valentine",
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "Official pages read (see checks) link no personal or lab website for this PI. A reviewer search found https://www.melissavalentine.co/; it is recorded as a lead only (not read by the crawler, not reached from an official page), so this row is not a finding that no site exists.",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
    "audited_at": "2026-10-31T11:32:39+00:00",
    "checks": [
     {
@@ -33811,6 +33849,24 @@
      "at": "2026-10-31T11:32:39+00:00",
      "result": "ok_wayback",
      "sha256": "980714edd352307e8198ba339130a1f6b89b2596e721374ed0baf5c80280b4cb"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.melissavalentine.co/",
+     "at": "2026-11-11T10:49:06+00:00",
+     "result": "ok",
+     "provenance": "stage3_profile_links_2026-11-10"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.melissavalentine.co/",
+     "on": "https://profiles.stanford.edu/melissa-valentine",
+     "at": "2026-11-11T10:49:06+00:00",
+     "result": "listed",
+     "anchor": "Faculty web site",
+     "linked_url": "https://www.melissavalentine.co/",
+     "source_sha256": "ffd3145f35863880acb738116b450a3c8f9e80e9f1bb0501a78a7cd60bbd3f71",
+     "provenance": "stage3_profile_links_2026-11-10"
     }
    ],
    "places_checked": [
@@ -33825,15 +33881,38 @@
    "checked_at": "2026-10-31T11:32:39+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "no_eligible_website",
-   "reason_scope": "Recorded search/access outcome; not proof that no website exists.",
-   "evidence_gaps": [],
-   "website_note": {
-    "replaced_url": "https://www.melissavalentine.co/",
-    "why": "found by a reviewer web search (2026-11-10/11); not read by the crawler and not linked from any official page read; kept as a lead, not a selected website"
-   }
+   "prior_reason": {
+    "reason_code": "profile_only_no_homepage",
+    "reason": "Official pages read (see checks) link no personal or lab website for this PI. A reviewer search found https://www.melissavalentine.co/; it is recorded as a lead only (not read by the crawler, not reached from an official page), so this row is not a finding that no site exists.",
+    "reason_type": "no_eligible_website"
+   },
+   "url": "https://www.melissavalentine.co/",
+   "kind": "pi_homepage",
+   "sha256": "ec0d7780c8b8b419f1d24d195185b76097dae498365d0a4613463a950172f522",
+   "evidence": {
+    "url": "https://www.melissavalentine.co/",
+    "sha256": "ec0d7780c8b8b419f1d24d195185b76097dae498365d0a4613463a950172f522",
+    "quote": null
+   },
+   "found_via": "school_profile_link",
+   "listed_on": "https://profiles.stanford.edu/melissa-valentine",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.melissavalentine.co/",
+     "on": "https://profiles.stanford.edu/melissa-valentine",
+     "at": "2026-11-11T10:49:06+00:00",
+     "result": "listed",
+     "anchor": "Faculty web site",
+     "linked_url": "https://www.melissavalentine.co/",
+     "source_sha256": "ffd3145f35863880acb738116b450a3c8f9e80e9f1bb0501a78a7cd60bbd3f71",
+     "provenance": "stage3_profile_links_2026-11-10"
+    }
+   ],
+   "reason": "Website linked from the PI's official profile page and read by the crawler; it names the PI."
   },
   {
    "pi": "Chris Chafe",
@@ -36887,8 +36966,8 @@
   },
   {
    "pi": "Brian A. Wandell",
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
    "audited_at": "2026-10-31T11:40:24+00:00",
    "checks": [
     {
@@ -37006,6 +37085,24 @@
      "at": "2026-10-31T11:40:24+00:00",
      "result": "ok_wayback",
      "sha256": "366042bd5bf3e2d86c0a41a5ad94f859e2eca4e38775d78af887033537d18a79"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://wandell.vista.su.domains/blog/",
+     "at": "2026-11-11T10:49:12+00:00",
+     "result": "ok",
+     "provenance": "stage3_profile_links_2026-11-10"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://wandell.vista.su.domains/blog/",
+     "on": "https://profiles.stanford.edu/brian-wandell",
+     "at": "2026-11-11T10:49:12+00:00",
+     "result": "listed",
+     "anchor": "Wandell Home Page",
+     "linked_url": "https://wandell.vista.su.domains/blog/",
+     "source_sha256": "dabbbc96df6f16a124de5ffcf812435fef1f09285beeefc3a9b33f45895f2143",
+     "provenance": "stage3_profile_links_2026-11-10"
     }
    ],
    "places_checked": [
@@ -37023,7 +37120,7 @@
    "checked_at": "2026-10-31T11:40:24+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "verification_quote": "brian a wandell brian a wandell stein family professor publications software teaching ta",
    "website_note": {
@@ -37036,16 +37133,36 @@
     "pubs_page": null,
     "why": "no stored or live official page links this site (reviewed policy, reversible)"
    },
-   "url": null,
-   "kind": null,
-   "sha256": null,
-   "evidence": null,
-   "found_via": null,
-   "listed_on": null,
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "reason": "The department listing (https://profiles.stanford.edu/brian-wandell, read 2026-10-31) links no personal or lab website for this PI and no profile page was read; the site a search found is kept in website_note and is not reached from any official page.",
-   "reason_type": "search_no_eligible_site"
+   "url": "https://wandell.vista.su.domains/blog/",
+   "kind": "pi_homepage",
+   "sha256": "bb95c3ed23c1907b69d52f92df3042e2b312c1073627d866788d3d0f39cf3986",
+   "evidence": {
+    "url": "https://wandell.vista.su.domains/blog/",
+    "sha256": "bb95c3ed23c1907b69d52f92df3042e2b312c1073627d866788d3d0f39cf3986",
+    "quote": null
+   },
+   "found_via": "school_profile_link",
+   "listed_on": "https://profiles.stanford.edu/brian-wandell",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://wandell.vista.su.domains/blog/",
+     "on": "https://profiles.stanford.edu/brian-wandell",
+     "at": "2026-11-11T10:49:12+00:00",
+     "result": "listed",
+     "anchor": "Wandell Home Page",
+     "linked_url": "https://wandell.vista.su.domains/blog/",
+     "source_sha256": "dabbbc96df6f16a124de5ffcf812435fef1f09285beeefc3a9b33f45895f2143",
+     "provenance": "stage3_profile_links_2026-11-10"
+    }
+   ],
+   "prior_reason": {
+    "reason_code": "profile_only_no_homepage",
+    "reason": "The department listing (https://profiles.stanford.edu/brian-wandell, read 2026-10-31) links no personal or lab website for this PI and no profile page was read; the site a search found is kept in website_note and is not reached from any official page.",
+    "reason_type": "search_no_eligible_site"
+   },
+   "reason": "Website linked from the PI's official profile page and read by the crawler; it names the PI."
   },
   {
    "pi": "Parag Mallick",
@@ -39140,9 +39257,8 @@
   },
   {
    "pi": "Victor R. Lee",
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The only candidates the discovery found were institutional pages (a university front page or the research portal), which are never a person's or lab's website; no eligible homepage was established from the recorded checks.",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
    "audited_at": "2026-10-31T11:44:44+00:00",
    "checks": [
     {
@@ -39232,6 +39348,24 @@
      "at": "2026-10-31T11:44:44+00:00",
      "result": "ok_wayback",
      "sha256": "1c35d753eec8c1b5c1598660e5942b1f77b28da707b20b476fc220d96a133750"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://victor-r-lee.com/",
+     "at": "2026-11-11T10:48:41+00:00",
+     "result": "ok",
+     "provenance": "stage3_profile_links_2026-11-11"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://victor-r-lee.com/",
+     "on": "https://profiles.stanford.edu/victorlee",
+     "at": "2026-11-11T10:48:41+00:00",
+     "result": "listed",
+     "anchor": "Personal Website",
+     "linked_url": "http://www.victor-r-lee.com",
+     "source_sha256": "0e6c57ab959de97d9a87da54d325c484df661e61e7d335648cacd09a9859a82d",
+     "provenance": "stage3_profile_links_2026-11-11"
     }
    ],
    "places_checked": [
@@ -39247,11 +39381,38 @@
    "checked_at": "2026-10-31T11:44:44+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "no_eligible_website",
-   "reason_scope": "Recorded search outcome; not proof no website exists.",
-   "evidence_gaps": []
+   "prior_reason": {
+    "reason_code": "profile_only_no_homepage",
+    "reason": "The only candidates the discovery found were institutional pages (a university front page or the research portal), which are never a person's or lab's website; no eligible homepage was established from the recorded checks.",
+    "reason_type": "no_eligible_website"
+   },
+   "url": "http://victor-r-lee.com/",
+   "kind": "pi_homepage",
+   "sha256": "980d2b5ad9e51085cb55e70f11ab0cfbaf1f956fe3ea1a11ce932eb1f6ac45fa",
+   "evidence": {
+    "url": "http://victor-r-lee.com/",
+    "sha256": "980d2b5ad9e51085cb55e70f11ab0cfbaf1f956fe3ea1a11ce932eb1f6ac45fa",
+    "quote": null
+   },
+   "found_via": "school_profile_link",
+   "listed_on": "https://profiles.stanford.edu/victorlee",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://victor-r-lee.com/",
+     "on": "https://profiles.stanford.edu/victorlee",
+     "at": "2026-11-11T10:48:41+00:00",
+     "result": "listed",
+     "anchor": "Personal Website",
+     "linked_url": "http://www.victor-r-lee.com",
+     "source_sha256": "0e6c57ab959de97d9a87da54d325c484df661e61e7d335648cacd09a9859a82d",
+     "provenance": "stage3_profile_links_2026-11-11"
+    }
+   ],
+   "reason": "Website linked from the PI's official profile page (reached through the profile link's redirect) and read by the crawler; it names the PI."
   },
   {
    "pi": "Todd Coleman",
@@ -41015,7 +41176,7 @@
    "pi": "Lei Xing",
    "status": "none_found",
    "reason_code": "host_blocked_by_robots",
-   "reason": "The official profile (https://profiles.stanford.edu/lei-xing) links http://xinglab.stanford.edu/ ('Xing Lab'), but the host refuses this crawler (robots_or_blocked); no Wayback use here. Recorded access outcome.",
+   "reason": "The official profile (https://profiles.stanford.edu/lei-xing) links http://xinglab.stanford.edu/ ('Xing Lab'). The crawler's robots reading of xinglab.stanford.edu refused the fetch, so the page was not read by the crawler and no site is selected. A fresh reviewer (2026-11-11) read the page by hand: it answers HTTP 200 and redirects to https://med.stanford.edu/xinglab (the Xing Laboratory, Lei Xing director), whose robots.txt allows it. Whether the crawler's reading of the xinglab.stanford.edu host should be revisited is an owner-queued question. Recorded access outcome, not proof that no site exists.",
    "audited_at": "2026-11-10T19:48:38+00:00",
    "checks": [
     {
@@ -41187,9 +41348,10 @@
    "evidence_gaps": [],
    "website_note": {
     "replaced_url": "http://xinglab.stanford.edu/",
-    "why": "official profile links this site but the crawler may not read it (robots_or_blocked); kept as a lead, not a selected website",
+    "why": "official profile links this site; the crawler's robots reading refused it; a reviewer read it by hand and found the Xing Laboratory at the redirected med.stanford.edu/xinglab; kept as a lead, not a selected website, pending the owner's robots-reading question",
     "anchor": "Xing Lab",
-    "profile": "https://profiles.stanford.edu/lei-xing"
+    "profile": "https://profiles.stanford.edu/lei-xing",
+    "reviewer_url": "https://med.stanford.edu/xinglab"
    }
   },
   {
@@ -41265,7 +41427,13 @@
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
    "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "website_note": {
+    "replaced_url": "http://med.stanford.edu/cafn.html",
+    "why": "the only site the official profile links is the Center for Advanced Functional Neuroimaging page, a multi-person center, judged by a reviewer not to be his own lab or personal site; a web search found no own site; kept as a lead, not a selected website",
+    "anchor": "Lab Site",
+    "profile": "https://profiles.stanford.edu/greg-zaharchuk"
+   }
   },
   {
    "pi": "Olivier Gevaert",
@@ -41528,7 +41696,8 @@
    "evidence_gaps": [],
    "website_note": {
     "replaced_url": "https://statistics.stanford.edu/~tibs/",
-    "why": "the official profile links this page but it returned HTTP 404 when read live on 2026-11-11; no archive capture was established by the 2026-11-11 Wayback discovery pass; kept as a lead, not a selected website; a reviewer found his current own homepage https://tibshirani.su.domains/ by search (not linked from any official page read), recorded as a lead only"
+    "why": "the official profile's 'Personal Web Site' link https://statistics.stanford.edu/~tibs/ returned HTTP 404 live on 2026-11-11 (web.stanford.edu/~tibs/ answers 403 per a reviewer); the Wayback discovery pass established no capture; a reviewer found his own current homepage https://tibshirani.su.domains/ (HTTP 200, names him) by search, but no official page read links it, so it is a lead only; not a selected website",
+    "reviewer_url": "https://tibshirani.su.domains/"
    }
   },
   {

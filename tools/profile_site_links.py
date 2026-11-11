@@ -123,7 +123,7 @@ def follow(c, u, domain, hops=2):
             break
         t = urljoin(u, loc)
         h = urlsplit(t).hostname or ''
-        if not (h == urlsplit(u).hostname or re.search(r'(?:^|\.)' + re.escape(domain) + r'$', h)) or LW.selection_gaps(t) or NOISE.search(h):
+        if not h or urlsplit(t).scheme not in ('http', 'https') or LW.selection_gaps(t) or NOISE.search(h):   # the first link is the official profile's own; a redirect to any host is read only through W.live (robots per target) and must still name the PI
             break
         u, res = t, W.live(c, t)
     return u, res
