@@ -1,6 +1,6 @@
 {
  "school": "sjtu",
- "audited_at": "2026-11-10",
+ "audited_at": "2026-11-11",
  "labs": [
   {
    "pi": "王韫博",
@@ -1285,25 +1285,35 @@
   },
   {
    "pi": "陈 全",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-11",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenquan.html",
    "profile_sha256": "337c5898544ea7925b9cc05c79c85225aa93b9539b355726bfabb81db9352d1b",
    "url": "https://www.cs.sjtu.edu.cn/~chen-quan/",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (302, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/chenquan.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official school profile names the PI (page title/heading \"Dr. Quan Chen's Home Page\"); fetched under the owner's 2026-11-11 reading that the cs.sjtu.edu.cn robots.txt (a 302 to the site home page, no robots rules, no Disallow) has no usable rules; honest project User-Agent, one request per page, >= 4 s between requests, no challenge",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://www.cs.sjtu.edu.cn/~chen-quan/",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenquan.html",
+     "linked_url": "https://www.cs.sjtu.edu.cn/~chen-quan/",
+     "result": "listed",
+     "at": "2026-11-11T03:11:11",
+     "source_sha256": "337c5898544ea7925b9cc05c79c85225aa93b9539b355726bfabb81db9352d1b"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://www.cs.sjtu.edu.cn/~chen-quan/",
+     "result": "ok",
+     "at": "2026-11-11T03:08:21",
+     "sha256": "0c8467d67b594946d395cb85909d083106658075ba29af9c8b65be39f65de546"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "0c8467d67b594946d395cb85909d083106658075ba29af9c8b65be39f65de546",
+   "verification_quote": "Dr. Quan Chen's Home Page"
   },
   {
    "pi": "陈 榕",
@@ -1750,25 +1760,35 @@
   },
   {
    "pi": "傅洛伊",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-11",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/fuluoyi.html",
    "profile_sha256": "7a9aa5c63d06f103822ad6287cdbf6852727125cf1863c0d0d106965204d81df",
    "url": "https://www.cs.sjtu.edu.cn/~fu-ly/index.html",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (302, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/fuluoyi.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official school profile names the PI (page title/heading 'Luoyi Fu'); fetched under the owner's 2026-11-11 reading that the cs.sjtu.edu.cn robots.txt (a 302 to the site home page, no robots rules, no Disallow) has no usable rules; honest project User-Agent, one request per page, >= 4 s between requests, no challenge",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://www.cs.sjtu.edu.cn/~fu-ly/index.html",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/fuluoyi.html",
+     "linked_url": "https://www.cs.sjtu.edu.cn/~fu-ly/index.html",
+     "result": "listed",
+     "at": "2026-11-11T03:11:22",
+     "source_sha256": "7a9aa5c63d06f103822ad6287cdbf6852727125cf1863c0d0d106965204d81df"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://www.cs.sjtu.edu.cn/~fu-ly/index.html",
+     "result": "ok",
+     "at": "2026-11-11T03:08:27",
+     "sha256": "e17acfa1e96ac00dd0c214248d5d12b39b66cf2bbbcee11a6745a64029bcde22"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "e17acfa1e96ac00dd0c214248d5d12b39b66cf2bbbcee11a6745a64029bcde22",
+   "verification_quote": "Luoyi Fu"
   },
   {
    "pi": "傅育熙",
@@ -2505,25 +2525,35 @@
   },
   {
    "pi": "金海明",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-11",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/jinhaiming.html",
    "profile_sha256": "b36dfc92aa0bc048b6e91b981048de2ff7e35804adb12eb78d89ab60affd3478",
    "url": "https://www.cs.sjtu.edu.cn/~jinhaiming/",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (302, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/jinhaiming.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official school profile names the PI (page title/heading 'Haiming Jin @ SJTU'); fetched under the owner's 2026-11-11 reading that the cs.sjtu.edu.cn robots.txt (a 302 to the site home page, no robots rules, no Disallow) has no usable rules; honest project User-Agent, one request per page, >= 4 s between requests, no challenge",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://www.cs.sjtu.edu.cn/~jinhaiming/",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/jinhaiming.html",
+     "linked_url": "https://www.cs.sjtu.edu.cn/~jinhaiming/",
+     "result": "listed",
+     "at": "2026-11-11T03:11:27",
+     "source_sha256": "b36dfc92aa0bc048b6e91b981048de2ff7e35804adb12eb78d89ab60affd3478"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://www.cs.sjtu.edu.cn/~jinhaiming/",
+     "result": "ok",
+     "at": "2026-11-11T03:08:38",
+     "sha256": "15fc6aa65257b11aed8e61622bd62ca8255d3f013ef0790ed81ee615561f52f8"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "15fc6aa65257b11aed8e61622bd62ca8255d3f013ef0790ed81ee615561f52f8",
+   "verification_quote": "Haiming Jin @ SJTU"
   },
   {
    "pi": "金耀辉",
@@ -2594,25 +2624,35 @@
   },
   {
    "pi": "孔令和",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-11",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/konglinghe.html",
    "profile_sha256": "a3ec972f660353eb017fe10ab909ce903cf72d0cb14a50eb39b37f30167e7e38",
    "url": "https://www.cs.sjtu.edu.cn/~linghe.kong/",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (302, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/konglinghe.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "lab_site",
+   "reason": "the page linked from the official school profile names the PI (page title/heading '孔令和 - 智能网络与可信计算实验室'); fetched under the owner's 2026-11-11 reading that the cs.sjtu.edu.cn robots.txt (a 302 to the site home page, no robots rules, no Disallow) has no usable rules; honest project User-Agent, one request per page, >= 4 s between requests, no challenge",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://www.cs.sjtu.edu.cn/~linghe.kong/",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/konglinghe.html",
+     "linked_url": "https://www.cs.sjtu.edu.cn/~linghe.kong/",
+     "result": "listed",
+     "at": "2026-11-11T03:11:38",
+     "source_sha256": "a3ec972f660353eb017fe10ab909ce903cf72d0cb14a50eb39b37f30167e7e38"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://www.cs.sjtu.edu.cn/~linghe.kong/",
+     "result": "ok",
+     "at": "2026-11-11T03:08:43",
+     "sha256": "24759260fb641fbb339da129def930501e141de48189ccb0d0e233ed04c92ecb"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "24759260fb641fbb339da129def930501e141de48189ccb0d0e233ed04c92ecb",
+   "verification_quote": "孔令和 - 智能网络与可信计算实验室"
   },
   {
    "pi": "李 阳",
@@ -2694,25 +2734,35 @@
   },
   {
    "pi": "冷静文",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-11",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/lengjingwen.html",
    "profile_sha256": "930abf4bdf78acceb9bd296aaeab4cb523f509e58e76936bb674950419eb2acc",
    "url": "https://cs.sjtu.edu.cn/~leng-jw/",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (302, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/lengjingwen.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official school profile names the PI (page title/heading \"Jingwen Leng's Homepage\"); fetched under the owner's 2026-11-11 reading that the cs.sjtu.edu.cn robots.txt (a 302 to the site home page, no robots rules, no Disallow) has no usable rules; honest project User-Agent, one request per page, >= 4 s between requests, no challenge",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://cs.sjtu.edu.cn/~leng-jw/",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/lengjingwen.html",
+     "linked_url": "https://cs.sjtu.edu.cn/~leng-jw/",
+     "result": "listed",
+     "at": "2026-11-11T03:11:44",
+     "source_sha256": "930abf4bdf78acceb9bd296aaeab4cb523f509e58e76936bb674950419eb2acc"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://cs.sjtu.edu.cn/~leng-jw/",
+     "result": "ok",
+     "at": "2026-11-11T03:08:55",
+     "sha256": "1fd3a7c403310c1f7f45fd30a7638b21bf251e072f3914c593011fed11a7977f"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "1fd3a7c403310c1f7f45fd30a7638b21bf251e072f3914c593011fed11a7977f",
+   "verification_quote": "Jingwen Leng's Homepage"
   },
   {
    "pi": "梁诗宇",
@@ -2772,25 +2822,35 @@
   },
   {
    "pi": "李 超",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-11",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/lichao.html",
    "profile_sha256": "220b50b1247b7a7ab2b43d1859410ca602016e6587d944b19e0e5c0164c07974",
    "url": "https://cs.sjtu.edu.cn/~lichao/",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (302, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/lichao.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official school profile names the PI (page title/heading 'Chao Li - Professor - SJTU'); fetched under the owner's 2026-11-11 reading that the cs.sjtu.edu.cn robots.txt (a 302 to the site home page, no robots rules, no Disallow) has no usable rules; honest project User-Agent, one request per page, >= 4 s between requests, no challenge",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://cs.sjtu.edu.cn/~lichao/",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/lichao.html",
+     "linked_url": "https://cs.sjtu.edu.cn/~lichao/",
+     "result": "listed",
+     "at": "2026-11-11T03:11:55",
+     "source_sha256": "220b50b1247b7a7ab2b43d1859410ca602016e6587d944b19e0e5c0164c07974"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://cs.sjtu.edu.cn/~lichao/",
+     "result": "ok",
+     "at": "2026-11-11T03:09:01",
+     "sha256": "e50347ae5390a959e3203a697888c87b1140f3e98fbc1a5e95030d70fc78d819"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "e50347ae5390a959e3203a697888c87b1140f3e98fbc1a5e95030d70fc78d819",
+   "verification_quote": "Chao Li - Professor - SJTU"
   },
   {
    "pi": "李承璋",
@@ -2910,25 +2970,35 @@
   },
   {
    "pi": "李 颉",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-11",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/lijie.html",
    "profile_sha256": "0da09e1aee76435280cce751ab6579861d33d13b62658a62cfaaff280c13370f",
    "url": "https://www.cs.sjtu.edu.cn/~lijie/",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (302, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/lijie.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official school profile names the PI (page title/heading 'Dr. Jie Li'); fetched under the owner's 2026-11-11 reading that the cs.sjtu.edu.cn robots.txt (a 302 to the site home page, no robots rules, no Disallow) has no usable rules; honest project User-Agent, one request per page, >= 4 s between requests, no challenge",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://www.cs.sjtu.edu.cn/~lijie/",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/lijie.html",
+     "linked_url": "https://www.cs.sjtu.edu.cn/~lijie/",
+     "result": "listed",
+     "at": "2026-11-11T03:12:00",
+     "source_sha256": "0da09e1aee76435280cce751ab6579861d33d13b62658a62cfaaff280c13370f"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://www.cs.sjtu.edu.cn/~lijie/",
+     "result": "ok",
+     "at": "2026-11-11T03:09:11",
+     "sha256": "1811498517fa2a8a69ad92ca83636cd9d684e1a8c28f28011e03b8367b2f4edf"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "1811498517fa2a8a69ad92ca83636cd9d684e1a8c28f28011e03b8367b2f4edf",
+   "verification_quote": "Dr. Jie Li"
   },
   {
    "pi": "李林森",
@@ -4411,19 +4481,36 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/tangfeilong.html",
    "profile_sha256": "0eb60b1edd093d850099bcaad956e37e012153d5dd48dc0236e8bb6207c03aa6",
    "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/tangfeilong.html",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (302, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/tangfeilong.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "absence_reviewed",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "the profile's own 个人主页 field points at the profile itself (https://www.cs.sjtu.edu.cn/jiaoshiml/tangfeilong.html); the only other link on it is a Google Scholar identity index; no own website recorded in the local DBLP extract (person not in the extract); a 2026-11-11 web search (Feilong Tang Shanghai Jiao Tong University professor homepage) returned only the school profile, other institutions' pages and a City University of Macau page. fetched under the owner's 2026-11-11 reading that the cs.sjtu.edu.cn robots.txt (a 302 to the site home page, no robots rules, no Disallow) has no usable rules; honest project User-Agent, one request per page, >= 4 s between requests, no challenge",
+   "coverage": "absence",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "live_fetch",
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/tangfeilong.html",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "result": "profile_homepage_field_is_the_profile_itself",
+     "at": "2026-11-11T03:09:17",
+     "sha256": "0eb60b1edd093d850099bcaad956e37e012153d5dd48dc0236e8bb6207c03aa6"
+    },
+    {
+     "source": "profile_external_links",
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/tangfeilong.html",
+     "result": "google_scholar_identity_index_only",
+     "at": "2026-11-11T03:09:17",
+     "sha256": "0eb60b1edd093d850099bcaad956e37e012153d5dd48dc0236e8bb6207c03aa6"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": null,
+     "result": "person_not_in_dump_extract",
+     "at": "2026-11-11T03:10:00"
+    },
+    {
+     "source": "web_search",
+     "url": null,
+     "result": "no_own_homepage_found",
+     "at": "2026-11-11T03:30:00"
     }
    ]
   },
@@ -4457,25 +4544,35 @@
   },
   {
    "pi": "涂仕奎",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-11",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/tushikui.html",
    "profile_sha256": "299a3652b2285098c5fcc764a8ae0166853ce1a8d160a16e116f7f9115af91f9",
    "url": "https://www.cs.sjtu.edu.cn/~tushikui/",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (302, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/tushikui.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official school profile names the PI (page title/heading \"Shikui Tu's Homepage @ Shanghai Jiao Tong University\"); fetched under the owner's 2026-11-11 reading that the cs.sjtu.edu.cn robots.txt (a 302 to the site home page, no robots rules, no Disallow) has no usable rules; honest project User-Agent, one request per page, >= 4 s between requests, no challenge",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://www.cs.sjtu.edu.cn/~tushikui/",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/tushikui.html",
+     "linked_url": "https://www.cs.sjtu.edu.cn/~tushikui/",
+     "result": "listed",
+     "at": "2026-11-11T03:12:11",
+     "source_sha256": "299a3652b2285098c5fcc764a8ae0166853ce1a8d160a16e116f7f9115af91f9"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://www.cs.sjtu.edu.cn/~tushikui/",
+     "result": "ok",
+     "at": "2026-11-11T03:09:31",
+     "sha256": "05f930e785026371ca7872671168bd2520e63a4971a7576d7d152ff80f17be98"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "05f930e785026371ca7872671168bd2520e63a4971a7576d7d152ff80f17be98",
+   "verification_quote": "Shikui Tu's Homepage @ Shanghai Jiao Tong University"
   },
   {
    "pi": "王德泉",
@@ -4841,25 +4938,35 @@
   },
   {
    "pi": "吴 帆",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-11",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/wufan.html",
    "profile_sha256": "ac0d7c794cc7ca49ea52d2e9613f0da6ab90f3ae9582f0a36d2b20eafabe02d1",
    "url": "https://www.cs.sjtu.edu.cn/~fwu/",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (302, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/wufan.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official school profile names the PI (page title/heading 'Dr. Fan Wu'); fetched under the owner's 2026-11-11 reading that the cs.sjtu.edu.cn robots.txt (a 302 to the site home page, no robots rules, no Disallow) has no usable rules; honest project User-Agent, one request per page, >= 4 s between requests, no challenge",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://www.cs.sjtu.edu.cn/~fwu/",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/wufan.html",
+     "linked_url": "https://www.cs.sjtu.edu.cn/~fwu/",
+     "result": "listed",
+     "at": "2026-11-11T03:12:17",
+     "source_sha256": "ac0d7c794cc7ca49ea52d2e9613f0da6ab90f3ae9582f0a36d2b20eafabe02d1"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://www.cs.sjtu.edu.cn/~fwu/",
+     "result": "ok",
+     "at": "2026-11-11T03:09:37",
+     "sha256": "98168dae6a4d6f3287782fb713361f230dd4ffe7c337d85bf3f31c336602be21"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "98168dae6a4d6f3287782fb713361f230dd4ffe7c337d85bf3f31c336602be21",
+   "verification_quote": "Dr. Fan Wu"
   },
   {
    "pi": "吴 刚",
@@ -6566,26 +6673,36 @@
   },
   {
    "pi": "朱燕民",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-11",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuyanmin.html",
    "profile_sha256": "b527c6cb12b832cc1df8baae118998448440d86c079dc2bf8fe555b56e2b0723",
-   "url": "http://www.cs.sjtu.edu.cn/~yzhu",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (302, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/zhuyanmin.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "url": "https://www.cs.sjtu.edu.cn/~yzhu/",
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official school profile names the PI (page title/heading 'Dr Yanmin Zhu, CSE @ Shanghai Jiao Tong University'); fetched under the owner's 2026-11-11 reading that the cs.sjtu.edu.cn robots.txt (a 302 to the site home page, no robots rules, no Disallow) has no usable rules; honest project User-Agent, one request per page, >= 4 s between requests, no challenge; the profile links http://www.cs.sjtu.edu.cn/~yzhu, which redirects (301, 302) to this https address; the capture is a frameset shell whose title names the PI and SJTU (inner frame pages not fetched)",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
-     "url": "http://www.cs.sjtu.edu.cn/~yzhu",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "source": "school_profile_link",
+     "url": "https://www.cs.sjtu.edu.cn/~yzhu/",
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuyanmin.html",
+     "linked_url": "http://www.cs.sjtu.edu.cn/~yzhu",
+     "result": "listed",
+     "at": "2026-11-11T03:12:29",
+     "source_sha256": "b527c6cb12b832cc1df8baae118998448440d86c079dc2bf8fe555b56e2b0723"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://www.cs.sjtu.edu.cn/~yzhu/",
+     "result": "ok",
+     "at": "2026-11-11T03:10:29",
+     "sha256": "cf83d1a92c5e258d470067ad3d3594a0ebc7c82f1843577282d909bf67d42899"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "cf83d1a92c5e258d470067ad3d3594a0ebc7c82f1843577282d909bf67d42899",
+   "verification_quote": "Dr Yanmin Zhu, CSE @ Shanghai Jiao Tong University"
   }
  ],
- "note": "2026-11-10: merged with the student worker 198-PI sweep (lab-websites-sweep.json) into the register format; 28 PIs stay pending (26 transport/robots holds, 2 pages that do not name the PI)"
+ "note": "2026-11-10: merged with the student worker 198-PI sweep (lab-websites-sweep.json) into the register format; 2026-11-11: the 11 cs.sjtu.edu.cn items read under the owner's 'no usable rules' reading of the redirecting robots.txt (10 websites, 1 reviewed absence)"
 }
