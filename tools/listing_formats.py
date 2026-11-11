@@ -291,6 +291,22 @@ def jhu_cs_faculty_card(h):
     return out
 
 
+def jhu_bme_faculty(h):
+    """BME's faculty directory cards; credentials are not part of person names."""
+    out = []
+    for card in re.split(r'<div\s+class="zn-faculty-profile\s*"[^>]*>', h)[1:]:
+        name = re.search(r'<div class="zn-name">(.*?)</div>', card, re.S)
+        title = re.search(r'<div class="zn-position">(.*?)</div>', card, re.S)
+        if not name:
+            continue
+        link = re.search(r'<a\b[^>]*href="([^"]+)"', name.group(1))
+        printed = clean(name.group(1))
+        person = re.sub(r'(?:,\s*(?:MD|MSE|MS|PhD|ScD|MPH))+$', '', printed, flags=re.I)
+        out.append(dict(name_listed=person, titles=_titles(title.group(1)) if title else [],
+                        homepage=H.unescape(link.group(1)) if link else None, division=None))
+    return out
+
+
 def wse_contact(h):
     """JHU Whiting contact blocks (CS secondary/research faculty): visible names and titles only.
 
@@ -1137,6 +1153,7 @@ FORMATS = {
     'wse_entity': (wse_entity, re.compile(r'class="entity_list_item"')),
     'wse_contact': (wse_contact, re.compile(r'class="contact_block"')),
     'jhu_cs_faculty_card': (jhu_cs_faculty_card, re.compile(r'class="highlight-box faculty-member-card"')),
+    'jhu_bme_faculty': (jhu_bme_faculty, re.compile(r'class="zn-faculty-profile\s*"')),
     'wu_teaser': (wu_teaser, re.compile(r'class="faculty-directory__teaser"')),
     'isye_card': (isye_card, re.compile(r'class="w-100 px-0 pt-0 person-name"')),
 }
@@ -1153,9 +1170,10 @@ def parse(h, fmt=None):
 
 
 def is_paged(html):
-    """A capture of one page of a paged directory (pager markers and a ?page=N link): it parses to a few people while the rest sit on pages
+    """A capture of one page of a paged directory (pager markers and a ?page=N or ?pg=N link): it parses to a few people while the rest sit on pages
     the archive may not hold (UChicago CS 2017: 5 of about 45). listing_rows.py reports it and plan_fetch.charter_usable rejects it."""
-    return bool(re.search(r'class="pager"|class="pagination"', html) and re.search(r'(?:[?&]|&amp;)page=(?:%2C|,)?[1-9]', html))
+    return bool(re.search(r'class="pager"|class="pagination"', html) and
+                re.search(r'(?:[?&]|&amp;)(?:page=(?:%2C|,)?[1-9]\d*|pg=(?:[2-9]|[1-9]\d+))', html))
 
 
 def page_links(html, base_url):
@@ -1166,18 +1184,23 @@ def page_links(html, base_url):
     base_url = re.sub(r'^(https?://[^/]+?):(?:80|443)(?=/|$)', r'\1', base_url)   # Wayback keeps ':80' in the original of old captures; its CDX does not match it
     base = urllib.parse.urlsplit(base_url)
     found = {}
-    for href in re.findall(r'href="([^"]*[?&;]page=(?:%2C|,)?\d+[^"]*)"', html):
+    for href in re.findall(r'href="([^"]*[?&;](?:page|pg)=(?:%2C|,)?\d+[^"]*)"', html):
         u = urllib.parse.urljoin(base_url, H.unescape(href))
         sp = urllib.parse.urlsplit(u)
         if sp.path.rstrip('/') != base.path.rstrip('/') or sp.netloc.lower().split(':')[0] != base.netloc.lower().split(':')[0]:
             continue
-        m = re.search(r'(?:^|&)page=(?:%2C|,)?(\d+)', sp.query)
-        if m and int(m.group(1)) >= 1:
-            found.setdefault(int(m.group(1)), u)
+        m = re.search(r'(?:^|&)(page|pg)=(?:%2C|,)?(\d+)', sp.query)
+        if m:
+            n = int(m.group(2)) - (1 if m.group(1) == 'pg' else 0)
+            if n >= 1:
+                found.setdefault(n, u)
     if not found:
         return {}
     tmpl = found[min(found)]
-    return {n: found.get(n) or re.sub(r'(^|[?&])page=((?:%2C|,)?)\d+', lambda m: f'{m.group(1)}page={m.group(2)}{n}', tmpl, count=1) for n in range(1, max(found) + 1)}
+    return {n: found.get(n) or re.sub(r'(^|[?&])(page|pg)=((?:%2C|,)?)\d+',
+                                      lambda m: f'{m.group(1)}{m.group(2)}={m.group(3)}{n + (m.group(2) == "pg")}',
+                                      tmpl, count=1)
+            for n in range(1, max(found) + 1)}
 
 
 def letter_links(html, base_url):
