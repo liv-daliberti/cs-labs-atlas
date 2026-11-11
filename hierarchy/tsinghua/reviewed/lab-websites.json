@@ -6421,6 +6421,38 @@
           "sha256": "7a16a3accad999c4f272ecbe910fc18593aa57bd4e3d0f7b5ab785cf1097a67d"
         }
       ]
+    },
+    {
+      "pi": "张超 [EE]",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "Directory rows only; no profile page or homepage was captured by this review; not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.archive.org/web/20241007222713id_/https://www.ee.tsinghua.edu.cn/ryqk/teacher/xxgdzyjs/js2.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "a6a907a12ef99524f9bc08e937bc12d7efa08c880affb8e829dd4bb0eb90340f"
+        }
+      ]
+    },
+    {
+      "pi": "王剑",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "Directory row and profile only; no homepage link captured; not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.ee.tsinghua.edu.cn/wangjian1/zh_CN/index.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "e4df348d68c68609d12299645e9d0591790361ab29a2eeaccfb18ff2a00dd15c"
+        }
+      ]
     }
   ]
 }
