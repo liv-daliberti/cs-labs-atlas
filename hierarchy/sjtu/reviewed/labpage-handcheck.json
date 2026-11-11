@@ -1,0 +1,61 @@
+{
+ "school": "sjtu",
+ "bar": "docs/LAB-PAGES.md acceptance bar; extended-round scaling (30 rows: membership <=1.5, role/year <=3)",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-11-11",
+   "seed": 111120261,
+   "sample": {
+    "students": 30,
+    "of": 34
+   },
+   "students": {
+    "membership_wrong": 1,
+    "membership_doubtful": 4,
+    "membership_errors": 3.0,
+    "role_year_errors": 3
+   },
+   "result": "FAILED on membership (3.0 > 1.5); patterns: PI own name parsed as member, other-university labelled students, award year read as stay, fullwidth-bracket roles",
+   "reviewer": "fresh Sonnet subagent, scratch/s6-1111/sjtu-sample-r1.txt",
+   "commit": "f402febf"
+  },
+  {
+   "round": 2,
+   "date": "2026-11-11",
+   "seed": 111120262,
+   "sample": {
+    "students": 29,
+    "of": 29
+   },
+   "students": {
+    "membership_wrong": 1,
+    "membership_doubtful": 6,
+    "membership_errors": 4.0,
+    "role_year_errors": 5
+   },
+   "result": "FAILED on membership; patterns: mixed-institution works-with lists, incoming students, graduation-year tag read as alumni, heading role bleed",
+   "reviewer": "fresh Sonnet subagent, scratch/s6-1111/sjtu-sample-r2.txt"
+  },
+  {
+   "round": 3,
+   "date": "2026-11-11",
+   "seed": 111120263,
+   "sample": {
+    "students": 25,
+    "of": 25
+   },
+   "additions_generated_at": "2026-11-11T16:56:31+00:00",
+   "additions_sha256": "d98fef5f83a5fd8f0399a687b9d6da15bb71d6dfc008a240dd31a36b4b158129",
+   "students": {
+    "membership_wrong": 0,
+    "membership_doubtful": 2,
+    "membership_errors": 1.0,
+    "role_year_errors": 1
+   },
+   "result": "PASSED (bar: membership <=1.5, role/year <=3 for a 30-row round; complete enumeration of 25 proposed rows, thin population: 25 rows from a handful of pages)",
+   "reviewer": "fresh Sonnet subagent, scratch/s6-1111/sjtu-sample-r3.txt",
+   "commit": "ff1730ec"
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "school": "ntu",
+ "kind": "students; fresh Sonnet reviewers, scratch/s6-1111/ntu-sample-r{1,2,3}.txt",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-11-11",
+   "seed": 111120271,
+   "sample": {
+    "students": 30,
+    "of": 74
+   },
+   "students": {
+    "membership_wrong": 3,
+    "membership_doubtful": 0,
+    "membership_errors": 3.0,
+    "role_year_errors": 4
+   },
+   "result": "FAILED; patterns: Lab Affiliate tags, software name as person, alumni table roles"
+  },
+  {
+   "round": 2,
+   "date": "2026-11-11",
+   "seed": 111120272,
+   "sample": {
+    "students": 30,
+    "of": 71
+   },
+   "students": {
+    "membership_wrong": 3,
+    "membership_doubtful": 1,
+    "membership_errors": 3.5,
+    "role_year_errors": 8
+   },
+   "result": "FAILED; patterns: NBS finance group affiliates, alumni flag on 2026 placements, Research Associates/Visiting Students sub-heading read as PhD"
+  },
+  {
+   "round": 3,
+   "date": "2026-11-11",
+   "seed": 111120273,
+   "sample": {
+    "students": 30
+   },
+   "students": {
+    "membership_wrong": 2,
+    "membership_doubtful": 0,
+    "membership_errors": 2.0,
+    "role_year_errors": 1
+   },
+   "result": "FAILED on membership (2.0 > 1.5); patterns: fellowship name read as person (Maria Curie), the PI own advisor named in a bio sentence (Aniket Kate); last allowed round, no acceptance"
+  }
+ ],
+ "note": "three failed rounds: work stops per docs/LAB-PAGES.md; additions not wired, no acceptance file"
+}
