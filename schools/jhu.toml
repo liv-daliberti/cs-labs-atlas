@@ -169,13 +169,14 @@ name = "Department of Applied Mathematics and Statistics"
 unit = "Whiting School of Engineering"
 title_match = '''Applied Mathematics'''
 coverage = "affiliated"
-# CDX 2026-11-06: engineering.jhu.edu/ams/people/ has 45 captures 2016-03..2025-11 (every half-year but 2018H2, 2019H1); the old host ams.jhu.edu has none.
+# Archived AMS /people/ pages link the actual /faculty/ roster. CDX found 44
+# faculty-roster captures spanning 2016–2025; sampled four eras parse 24–40 cards.
 listing_gaps = {2026 = "no archived capture after 2025-11 (engineering.jhu.edu is Wayback-only, bot challenge)"}
 url = "https://engineering.jhu.edu/ams/"
   [[departments.listings]]
   slot = "AMS faculty"
   kind = "main"
-  url = "engineering.jhu.edu/ams/people/"
+  url = "engineering.jhu.edu/ams/faculty"
   from = "20160101"
   to = "20261231"
 
