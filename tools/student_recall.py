@@ -419,6 +419,10 @@ def capture(key, pi, url, file=None, store=None, sleep=time.sleep):
     for h in charter_hosts:
         if h.get('use') == 'none' and h['host'].lower().removeprefix('www.') == bare:
             raise SystemExit(f'{host}: charter use=none; never fetched: record the PI as unverifiable (robots_disallowed)')
+    c.execute('create table if not exists blocked (host text primary key, at text, why text)')
+    row = c.execute('select why from blocked where host=?', (host,)).fetchone()
+    if row:   # a challenge, an access refusal or a robots refusal earlier (any process): the host is never fetched again; the PI is unverifiable
+        raise SystemExit(f'{host}: blocked since an earlier refusal or challenge ({row[0]}); never fetched again: record the PI as unverifiable')
     last = c.execute("select max(fetched_at) from live where url like ?", (f'%//{host}/%',)).fetchone()[0]
     if last:   # the stored time of a fetch of this host: keep the 3 s gap across invocations
         age = time.time() - time.mktime(time.strptime(last, '%Y-%m-%dT%H:%M:%S'))
@@ -426,8 +430,13 @@ def capture(key, pi, url, file=None, store=None, sleep=time.sleep):
             sleep(3 - age)
     res = W.live(c, url)
     if res is None:
+        c.execute('insert or ignore into blocked values (?,?,?)', (host, time.strftime('%Y-%m-%dT%H:%M:%S'), f'robots disallows or unreadable at {url}'))
+        c.commit()
         raise SystemExit(f'{url}: robots disallows it, robots is unreadable, or the host is blocked after a challenge: record the PI as unverifiable (robots_disallowed / bot_challenge)')
     status, sha, _ = res
+    if status in (401, 403, 429, 999):
+        c.execute('insert or ignore into blocked values (?,?,?)', (host, time.strftime('%Y-%m-%dT%H:%M:%S'), f'HTTP {status} at {url}'))
+        c.commit()
     if status != 200:
         raise SystemExit(f'{url}: status {status} ({"bot challenge: stop, never retry" if status == 999 else "not a readable page"}): record the PI as unverifiable')
     return dict(url=url, sha256=sha, status=status, fetched_at=c.execute('select fetched_at from live where url=?', (url,)).fetchone()[0], via='live')

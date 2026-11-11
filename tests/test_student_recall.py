@@ -251,3 +251,21 @@ def test_page_text_lines_keeps_block_breaks():
 def test_page_text_reads_attribute_names_of_a_data_file():
     assert 'ada lovelace' in R.page_text(b'<people><person name="Ada Lovelace" role="phd"/></people>')
     assert 'ada lovelace' not in R.page_text(b'<html><body><a title="Ada Lovelace">x</a></body></html>')
+
+
+def test_capture_never_refetches_a_host_after_challenge_or_robots_refusal(tree, monkeypatch):
+    import school_web as W
+    calls = []
+    c = sqlite3.connect(':memory:')
+    c.execute('create table live (url text primary key, fetched_at text, status int, sha256 text, content_type text, raw_zlib blob, text text)')
+    monkeypatch.setattr(W, 'live', lambda conn, url: calls.append(url) or (999, 'x', []))
+    with pytest.raises(SystemExit, match='challenge'):
+        R.capture('u', 'PI00', 'https://chal.example/a', store=c, sleep=lambda s: None)
+    with pytest.raises(SystemExit, match='blocked since an earlier'):   # a different URL on the same host, same run or a later process (the store persists)
+        R.capture('u', 'PI00', 'https://chal.example/b', store=c, sleep=lambda s: None)
+    monkeypatch.setattr(W, 'live', lambda conn, url: calls.append(url))   # robots refusal returns None
+    with pytest.raises(SystemExit, match='robots'):
+        R.capture('u', 'PI00', 'https://nor.example/a', store=c, sleep=lambda s: None)
+    with pytest.raises(SystemExit, match='blocked since an earlier'):
+        R.capture('u', 'PI00', 'https://nor.example/b', store=c, sleep=lambda s: None)
+    assert calls == ['https://chal.example/a', 'https://nor.example/a']
