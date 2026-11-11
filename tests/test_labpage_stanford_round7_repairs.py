@@ -35,3 +35,12 @@ def test_pipe_table_year_after_the_name_without_leading_pipe():
 
 def test_clinical_professor_title_is_faculty():
     assert L.PROF_TITLE_DESC.search('(Clinical Assistant Professor of Pediatrics)')
+
+
+def test_dissertation_list_entry_is_a_phd_with_a_degree_year():
+    d = '(2018, Stanford Linguistics; Cleo Condoravdi co-chair) Masoud Jasbi'
+    assert L.dissertation_entry_year(d) == 2018
+    assert L.entry_role(d, 'Postdocs', lambda t: ('postdoc', 'x')) == ('phd', 'entry')
+    assert L.entry_years(d, 'Postdocs') == ([None, 2018], 'stated_in_entry')
+    assert L.dissertation_entry_year('(2020, Stanford postdoc)') is None
+    assert L.dissertation_entry_year('(2010-2014, Postdoc)') is None

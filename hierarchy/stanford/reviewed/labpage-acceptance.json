@@ -1,20 +1,23 @@
 {
  "school": "stanford",
- "decided_at": "2026-11-02",
+ "decided_at": "2026-11-11",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/stanford/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-02T16:39:39+00:00",
- "additions_sha256": "4bbde1368debf1e9421f01e12d91d3f697b28e2f977a3d1334a4805541667ab1",
+ "additions_generated_at": "2026-11-11T20:03:11+00:00",
+ "additions_sha256": "bdb3efc724925fb37a6a5b5a9c439f718a241988a311619d1f0e2d6712e6b6ec",
  "students": {
-  "accepted": false,
-  "round": 7,
-  "round_limit_extended_by_owner": 7,
+  "accepted": true,
+  "round": 8,
+  "seed": 8011,
   "sample_size": 30,
-  "reason": "seven rounds failed (membership errors 8, 8, 4.5, 4.0, 2.5, 2.0 and 2.5 in round 7, a 30-row sample against a bar of <= 1.5). Round 7 (owner-authorised 2026-11-11, regenerated additions of 236 students, not landed): 1 wrong (Keith Morse, a Clinical Assistant Professor listed on a lab members page) and 3 doubtful (two dissertation-list entries under a 'Postdocs' heading, one truncated excerpt); the round-6 patterns (Contact-block administrators, pre-2016 footer pages) no longer appear. The owner's extension is exhausted; Stanford student additions are not wired and no further rounds run without the owner.",
+  "errors": 0,
+  "role_or_year_errors": 1,
+  "round_limit_extended_by_owner": 10,
+  "owner_ruling": "owner ruled 2026-11-11: up to 10 lab-page rounds per school (Stanford rounds 8-10)",
+  "note": "membership 0 of 30 (bar <= 1.5), role/year 1 (bar <= 3); rounds 1-7 failed (8, 8, 4.5, 4.0, 2.5, 2.0, 2.5)",
   "counts": {
-   "proposed": 370
-  },
-  "seed": 7011
+   "proposed": 231
+  }
  },
  "papers": {
   "accepted": true,
@@ -23,7 +26,7 @@
   "sampled": 20,
   "errors": 0.5,
   "counts": {
-   "proposed": 36
+   "proposed": 30
   },
   "note": "first paper sample at Stanford",
   "restamped_from": {
@@ -31,6 +34,11 @@
    "generated_at": "2026-11-02T05:39:46+00:00",
    "removed": 0,
    "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
+  },
+  "restamped_regeneration_20261111": {
+   "removed": 6,
+   "added_or_changed": 0,
+   "reason": "additions regenerated 2026-11-11 with the round-7/8 repairs and the recover store; the 30 paper rows are an unchanged subset of the 36 accepted rows (checked by pi, title, doi and full-row equality)"
   }
  },
  "round_limit_extended_by_owner": 5

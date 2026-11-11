@@ -1520,6 +1520,9 @@ def entry_years(desc, head):
     tm = re.match(r'^\s{0,3}\|?\s*[^|]{1,100}\|\s*((?:19|20)\d\d)\b', desc or '')
     if tm:  # '| Stanford Univ. Medical Center | 2004' (a 'Past Doctoral Students' table): the year ends the stay (Stanford round 3)
         return [None, int(tm.group(1))], 'stated_in_entry'
+    dy = dissertation_entry_year(desc)
+    if dy:
+        return [None, dy], 'stated_in_entry'
     dm = re.search(r'\b[Dd]efended\b[^.\[]{0,50}?\b((?:19|20)\d\d)\b', (desc or '')[:220])
     if dm:  # 'Defended on the 6th of January, 2012.' ends the stay (Michigan round 1: Bayraktar's alumni list)
         return [None, int(dm.group(1))], 'stated_in_entry'
@@ -1558,6 +1561,16 @@ PRIOR_DEGREE_ANY = re.compile(r"(?:\b(?:accelerated\s+\d\+\d\s+)?(?:bachelor|mas
 PRIOR_DEGREE = re.compile(r"^\W{0,3}\(?\s*(?:bachelor|master|undergraduate|b\.?\s?s\.?c?|m\.?\s?s\.?c?|mphil|b\.?eng|m\.?eng)['\u2019]?s?\s*(?:degree\s+)?(?:from|at)\b", re.I)
 
 
+DISS_ENTRY_RX = re.compile(r'^\W{0,3}\(\s*((?:19[89]|20[0-2])\d)\s*,\s*(?![^)]*(?:post-?doc|visit|ph\.?\s?d))[^)]*(?:University|Univ\.|Stanford|UMass|Linguistics|Computer Science|Philosophy|Psychology|Department|Dept)[^)]*\)', re.I)
+
+
+def dissertation_entry_year(desc):
+    """Stanford round 7: '(2018, Stanford Linguistics; Cleo Condoravdi co-chair)' in a PI's list of advised dissertations is the student's degree
+    year and department: a PhD whose stay ended that year, not a postdoc (Potts's list sat under a 'Postdocs' heading). None for any other entry."""
+    m = DISS_ENTRY_RX.match(desc or '')
+    return int(m.group(1)) if m else None
+
+
 def entry_role(desc, head, role_of):
     """(role, basis): the role the entry states right after the name ('(PhD student, ...)', ', Postdoc', 'MIT Undergraduate
     Student'), else the role its section heading names ('PhD Students', 'Post-doctoral Scholars'), else (None, 'none').
@@ -1565,6 +1578,8 @@ def entry_role(desc, head, role_of):
     vis = VIS.visiting_role(desc, head, role_of)
     if vis:
         return vis   # R-STU-17: 'visiting student from CUHK', '(visiting, CUHK)', a 'Visiting Students' heading: a member of this lab, role `visiting`
+    if dissertation_entry_year(desc):
+        return 'phd', 'entry'
     d = (desc or '')[:60]
     am = re.match(r'^\W{0,3}[A-Z][A-Za-z]{1,10}\s+(Ph\.?\s?D\.?|Postdoc)\s+(?:19|20)\d\d\b', d)
     if am:
@@ -3101,7 +3116,8 @@ def cmd_sample(school, kind, n, seed):
             except (KeyError, ValueError):
                 t = ''
             j = t.find(r['quote'])
-            ctx = t[max(0, j - 220): j + len(r['quote']) + 220] if j >= 0 else '(quote not found)'
+            e_ = j + len(r['quote'])   # the name ends the quote: centre the window there (Stanford round 7: a long quote pushed the name out of the 650 printed characters)
+            ctx = t[max(0, e_ - 450): e_ + 200] if j >= 0 else '(quote not found)'
             print(f"[{i}] {r['pi']} | {r['name']} | role={r.get('role')} ({r.get('role_basis')}) years={r.get('years')} "
                   f"({r.get('years_basis')}) alumni={r.get('alumni')} pi_from={r.get('pi_first_year')} | {src[:110]}")
             print('     CTX:', ctx.replace('\n', ' ')[:650])
