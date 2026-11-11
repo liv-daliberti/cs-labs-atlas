@@ -2448,6 +2448,15 @@ def pi_elsewhere_reason(text, pi, school):
     return None
 
 
+def pi_family_tokens(pi):
+    """Tokens that identify a PI's family name on a page. 'Raymond Chi-Wing WONG 黃智榮': the last token is the CJK name, which an English page never
+    holds (HKUST 2026-11-11: 64 rows of 11 PIs were rejected as 'the page never names the PI'), so the last Latin token counts too. A pure-CJK name keeps its last token."""
+    toks = str(pi or '').split()
+    latin = [t for t in toks if re.fullmatch(r"[A-Za-z][A-Za-z'.\-]+", t)]
+    out = toks[-1:] + latin[-1:]
+    return list(dict.fromkeys(out)) or ['']
+
+
 def page_lacks_pi(kit, school, p, best):
     """Stanford: a page that never names the PI is a department or program page (Journalism's students list under Hancock),
     not the lab's page. Other schools' lab pages legitimately omit the PI's name, so this applies to Stanford only."""
@@ -2457,8 +2466,8 @@ def page_lacks_pi(kit, school, p, best):
         t = kit.lpev.text(school, best.get('capture_url') or best['sha256'])
     except (KeyError, ValueError):
         return None
-    fam = str(p.get('pi') or '').split()[-1:] or ['']
-    return None if (not t or fold(fam[0]).lower() in fold(t).lower()) else ('shared_page_no_adviser', 'the page never names the PI: a department or program page')
+    fam = pi_family_tokens(p.get('pi'))
+    return None if (not t or any(fold(f).lower() in fold(t).lower() for f in fam)) else ('shared_page_no_adviser', 'the page never names the PI: a department or program page')
 
 
 def apply_template_reader(kit, school, src, x, cache):
