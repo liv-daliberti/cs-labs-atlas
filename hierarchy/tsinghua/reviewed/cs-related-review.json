@@ -4434,8 +4434,8 @@
 "name": "Fan Yang [29/3081-134]",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "matched a census PI by unit agreement and unique pinyin form, but the fresh review of the batch (25 sampled, 2 implausible and 4 unsure) found the rule too weak (other-institution affiliations, common names); held for hand review.",
+"decision": "not_faculty_listed",
+"reason": "[homepage_states_student] The person's own page linked from the DBLP record (https://storage.cs.tsinghua.edu.cn/~yf/, fetched 2026-11-10 with robots allowed, sha256 1ad0accc0626e55475eb544251f0958f67a47179cccdfe6b35b2d8ce20fcc08c) reads 'Fan Yang, Ph.D. Student, Storage Research Group, Department of Computer Science and Technology' and 'I am a 5th year PhD student': a student, not faculty.",
 "units": [
 "CS",
 "CS-like",
@@ -6839,10 +6839,11 @@
 "name": "Haohuan Fu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "accepted",
+"reason": "owner-supplied Earth System Full Time Faculty list (page 1/3, text copy): \"Haohuan Fu Professor Discipline:Atmospheric Sciences\"; DBLP person names Tsinghua Department/Center of Earth System Science (OpenAlex strings); computing basis: 256 DBLP records (209 in 2016-2026), 171 OpenAlex matched works (DBLP rule: every record is a computing venue/preprint; >=5). Identity NOT bound (R-PAP-44); Chinese name not printed, not guessed.",
 "units": [
-"Tsinghua (unit unstated)"
+"CS",
+"Other units"
 ],
 "dblp": "https://dblp.org/pid/71/3657"
 },
@@ -14250,10 +14251,10 @@
 "name": "Le Yu",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "accepted",
+"reason": "owner-supplied Earth System Full Time Faculty list (page 3/3, text copy): \"Le Yu Associate Professor Discipline:Ecology\"; DBLP person names Tsinghua Department/Center of Earth System Science (OpenAlex strings); computing basis: 59 DBLP records (50 in 2016-2026), 48 OpenAlex matched works (DBLP rule: every record is a computing venue/preprint; >=5). Identity NOT bound (R-PAP-44); Chinese name not printed, not guessed.",
 "units": [
-"Tsinghua (unit unstated)"
+"Other units"
 ],
 "dblp": "https://dblp.org/pid/23/7122-1"
 },
@@ -15393,10 +15394,10 @@
 "name": "Lixian Zhang",
 "aliases": [],
 "source": "dblp_affiliation",
-"decision": "pending_openalex",
-"reason": "unit ['Tsinghua (unit unstated)']: no captured faculty directory for these units, or the DBLP affiliation names only Tsinghua without a unit; faculty evidence not decidable.",
+"decision": "not_faculty_listed",
+"reason": "Earth System Full Time Faculty list (30 people, owner-supplied text, pages 1-3) has no pinyin-compatible row; none in any other captured list; DBLP lists a current non-Tsinghua affiliation ['National Supercomputing Center in Shenzhen, High Performance Computing Department, Shenzhen, China']; last Tsinghua unit-string year 2022. The Honorary/Lecturing Chair/Jointly Appointed/Postdoc/Administrative tabs were not read (jointly appointed list read earlier only partly).",
 "units": [
-"Tsinghua (unit unstated)"
+"Other units"
 ],
 "dblp": "https://dblp.org/pid/45/2915-2"
 },
