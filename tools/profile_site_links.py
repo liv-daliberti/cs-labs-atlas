@@ -27,7 +27,7 @@ KEYWORD = re.compile(r'web\s?site|home\s?page|personal|\blab\b|laborator|\bgroup
 GENERIC_HOSTS = re.compile(r'(?:^|\.)(?:stanford\.edu|stanfordhealthcare\.org|stanfordchildrens\.org|orcid\.org|doi\.org|google\.com|linkedin\.com|twitter\.com|x\.com|'
                            r'facebook\.com|youtube\.com|webofscience\.com|pubmed\.gov|nih\.gov|dblp\.org|openalex\.org|wikipedia\.org|instagram\.com|researchgate\.net)$', re.I)
 STANFORD_GENERIC_PATH = re.compile(r'^(?:www|visit|giving|profiles|cs|engineering|soe|med|ee|me|statistics|stanford)\.stanford\.edu$|^(?:www\.)?stanford\.edu$', re.I)
-NOISE = re.compile(r'(?:^|\.)(?:stvp\.stanford\.edu|dblp\.uni-trier\.de|semanticscholar\.org|ted\.com|awards\.acm\.org|acm\.org|scholar\.google\.com|profiles\.stanford\.edu|cap\.stanford\.edu)$', re.I)
+NOISE = re.compile(r'(?:^|\.)(?:stvp\.stanford\.edu|dblp\.uni-trier\.de|semanticscholar\.org|ted\.com|awards\.acm\.org|acm\.org|scholar\.google\.com|profiles\.stanford\.edu|cap\.stanford\.edu|explorecourses\.stanford\.edu|cognitiveatlas\.org)$', re.I)
 GENERIC_PROFILE_LINK = re.compile(r'/(?:people|profile|profiles|intranet|directory|faculty|search|about|news|events)(?:/|$|\?)', re.I)
 
 
@@ -95,7 +95,7 @@ def candidate_links(html, base, pi):
         if host.endswith('.stanford.edu') and STANFORD_GENERIC_PATH.match(host):
             # a path on a department host is a PI page only when it is a ~user page or names the PI
             generic_site = not (re.search(r'/~[^/]+', sp.path) or family(pi) in fold(sp.path))
-        if NOISE.search(host) or generic_site or GENERIC_PROFILE_LINK.search(sp.path) and host == urlsplit(base).hostname:
+        if NOISE.search(host) or re.search(r'/(?:people|faculty|directory|profile|undergraduate|graduate)(?:/|$)', sp.path) and host.endswith('.stanford.edu') or generic_site or GENERIC_PROFILE_LINK.search(sp.path) and host == urlsplit(base).hostname:
             continue
         if href.replace('&amp;', '&') in ext and ext[href.replace('&amp;', '&')].lower() not in ('cv', 'cv-url'):
             out.append((u, text or ext[href.replace('&amp;', '&')]))   # listed in the profile's own Links section (class Lab Site / Personal Site / Other)
