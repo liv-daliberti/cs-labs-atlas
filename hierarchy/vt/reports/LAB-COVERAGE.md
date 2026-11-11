@@ -1,13 +1,12 @@
 # vt: lab coverage (students, papers, reasons)
 
-Labs 93; with students 41; with papers 34; median papers per lab 0.
+Labs 93; with students 45; with papers 35; median papers per lab 0.
 
-Reasons for 0 students: {'open': 37, 'appointment_ended_early': 1, 'new_hire_2025_or_later': 14}. Reasons for 0 papers: {'open': 49, 'appointment_ended_early': 1, 'new_hire_2025_or_later': 9}.
+Reasons for 0 students: {'open': 33, 'appointment_ended_early': 1, 'new_hire_2025_or_later': 14}. Reasons for 0 papers: {'open': 48, 'appointment_ended_early': 1, 'new_hire_2025_or_later': 9}.
 
 | PI | dept | students | sources | papers | reason (students) | reason (papers) |
 |---|---|---|---|---|---|---|
 | Adrian Sandu | CS | 0 | - | 0 | open | open |
-| Aisling Kelliher | CS | 0 | - | 25 | open |  |
 | Alberto Cano | CS | 0 | - | 0 | new_hire_2025_or_later | new_hire_2025_or_later |
 | Ali Vakilian | CS | 0 | - | 0 | new_hire_2025_or_later | new_hire_2025_or_later |
 | Alla Rozovskaya | CS | 0 | - | 0 | appointment_ended_early | appointment_ended_early |
@@ -18,7 +17,7 @@ Reasons for 0 students: {'open': 37, 'appointment_ended_early': 1, 'new_hire_202
 | Brendan David-John | CS | 0 | - | 26 | open |  |
 | Cal Ribbens | CS | 0 | - | 0 | open | open |
 | Chandan Reddy | CS | 5 | lab page 5 | 0 |  | open |
-| Changhee Jung | CS | 0 | - | 0 | open | open |
+| Changhee Jung | CS | 1 | lab page 1 | 0 |  | open |
 | Chris Brown | CS | 0 | - | 0 | open | open |
 | Christine Julien | CS | 0 | - | 0 | new_hire_2025_or_later | new_hire_2025_or_later |
 | Christopher L. Barrett | CS | 0 | - | 0 | open | open |
@@ -26,7 +25,6 @@ Reasons for 0 students: {'open': 37, 'appointment_ended_early': 1, 'new_hire_202
 | David H Smith IV. | CS | 0 | - | 11 | new_hire_2025_or_later |  |
 | Dawei Zhou | CS | 0 | - | 0 | open | open |
 | Deborah Tatar | CS | 0 | - | 0 | open | open |
-| Denis Gracanin | CS | 0 | - | 0 | open | open |
 | Dennis Kafura | CS | 0 | - | 0 | open | open |
 | Dimitrios Nikolopoulos | CS | 0 | - | 30 | open |  |
 | Dongyoon Lee | CS | 0 | - | 0 | open | open |
@@ -74,7 +72,8 @@ Reasons for 0 students: {'open': 37, 'appointment_ended_early': 1, 'new_hire_202
 | Tu Vu | CS | 11 | lab page 11 | 0 |  | new_hire_2025_or_later |
 | Wu-chun Feng | CS | 0 | - | 0 | open | open |
 | Xun (Steve) Jian | CS | 4 | lab page 4 | 0 |  | open |
-| Yang Cao | CS | 0 | - | 0 | open | open |
+| Yang Cao | CS | 3 | lab page 3 | 0 |  | open |
+| Aisling Kelliher | CS | 5 | lab page 5 | 25 |  |  |
 | Alexey Onufriev | CS | 1 | lab page 1 | 66 |  |  |
 | Ali Butt | CS | 1 | lab page 1 | 78 |  |  |
 | Anuj Karpatne | CS | 2 | roster+co-author 2 | 43 |  |  |
@@ -86,6 +85,7 @@ Reasons for 0 students: {'open': 37, 'appointment_ended_early': 1, 'new_hire_202
 | Cliff Shaffer | CS | 5 | lab page 5 | 57 |  |  |
 | Daphne Yao | CS | 2 | roster+co-author 2 | 90 |  |  |
 | Debswapna Bhattacharya | CS | 2 | lab page 2 | 21 |  |  |
+| Denis Gracanin | CS | 4 | lab page 4 | 121 |  |  |
 | Hoda Eldardiry | CS | 2 | roster+co-author 2 | 60 |  |  |
 | Jiaming Cui | CS | 10 | lab page 10 | 12 |  |  |
 | Jin-Hee Cho | CS | 1 | lab page 1 | 81 |  |  |
