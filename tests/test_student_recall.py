@@ -230,10 +230,42 @@ def test_capture_live_stops_at_refusal_and_challenge(tree, monkeypatch):
         R.capture('u', 'PI00', 'https://x.example/a', store=c, sleep=lambda s: None)
 
 
-def test_thresholds_are_coherent():
-    t = R.THRESHOLDS
-    assert (t['R1'], t['U'], t['R2'], t['Z'], t['X']) == (0.90, 0.30, 0.60, 0.05, 0.20)
-    assert t['R2'] <= (1 - t['U']) * t['R1']   # unverifiable counts as 0 recall, so R2 is bounded by (1-U) x R1
+def test_ratchet_levels_are_coherent_and_fixed_bars_stay():
+    assert R.FIXED_BARS == dict(R1=0.90, Z=0.05, X=0.20)
+    assert [(l['U'], l['R2']) for l in R.RATCHET_LEVELS] == [(0.60, 0.35), (0.50, 0.40), (0.40, 0.50), (0.30, 0.60)]
+    for i, lv in enumerate(R.RATCHET_LEVELS):
+        assert lv['R2'] <= (1 - lv['U']) * R.FIXED_BARS['R1'] + 1e-9, f'level {i}: R2 above the (1-U) x R1 ceiling'
+        b = R.bars(i)
+        assert (b['R1'], b['Z'], b['X'], b['U'], b['R2']) == (0.90, 0.05, 0.20, lv['U'], lv['R2'])
+    us = [l['U'] for l in R.RATCHET_LEVELS]
+    r2 = [l['R2'] for l in R.RATCHET_LEVELS]
+    assert us == sorted(us, reverse=True) and r2 == sorted(r2)   # each level is tighter
+    assert R.RATCHET_LEVEL == 0 and R.THRESHOLDS == R.bars(0)
+
+
+def test_ratchet_text_names_level_bars_and_next(monkeypatch):
+    t = R.ratchet_text()
+    assert 'level 0 of 3' in t and 'U <= 60%' in t and 'R2 >= 0.35' in t and 'next level 1: U <= 50%, R2 >= 0.40' in t
+    monkeypatch.setattr(R, 'RATCHET_LEVEL', 3)
+    assert 'long-term target' in R.ratchet_text() and 'next level' not in R.ratchet_text()
+
+
+def test_level_change_changes_bars_not_the_record(tree, monkeypatch):
+    # the same recorded numbers pass at one level and fail at another: a level change only moves the bars
+    rec = R.draw('u', drawn_by='d')
+    listed = {r['pi']: [{'name': f'Gone {r["pi"]} {i}', 'role': 'phd', 'section': 'current'} for i in range(3)] for r in rec['sample'][:18]}
+    pages = {}
+    rec = fill(rec, pages, listed)   # 18 readable (all names missing: R1 0), 12 unverifiable (U .40)
+    (tree['dir'] / 'student-recall-check.json').write_text(json.dumps(rec))
+    make_store(tree, pages)
+    monkeypatch.setattr(R, 'captures_path', lambda key: tree['root'] / 'u' / 'cap.sqlite')
+    for lvl, u_fails in ((0, False), (1, False), (2, False), (3, True)):
+        monkeypatch.setattr(R, 'RATCHET_LEVEL', lvl)
+        msgs = R.gate_items('u')
+        assert any(x.startswith('recall U:') for x in msgs) == u_fails, lvl
+        assert any(x.startswith('recall R2:') and f'ratchet level {lvl} of 3' in x for x in msgs)
+    assert not any(x.startswith('recall record:') and 'build changed' in x for x in R.gate_items('u'))
+
 
 
 def test_capture_refuses_charter_use_none(tree, monkeypatch):

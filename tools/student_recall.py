@@ -42,14 +42,46 @@ from pathlib import Path
 import atlas_paths as P  # noqa: E402
 
 # ---- THE THRESHOLDS: every number the gate uses lives here, and nowhere else (owner adjusts them) --------------------------------------------
-THRESHOLDS = dict(
+# The U / R2 bars RATCHET (owner 2026-11-11 'do it'): the owner raises RATCHET_LEVEL by changing that ONE constant. Every level must satisfy
+# R2 <= (1-U) x R1 (unverifiable PIs count as recall 0, so R2 can never exceed that ceiling: .36, .45, .54, .63); a test checks it for every level.
+# A level change does not invalidate any record (a record binds to the build only): the bars change and `check` recomputes pass/fail from the recorded numbers.
+RATCHET_LEVELS = (
+    dict(U=0.60, R2=0.35),   # level 0 (today)
+    dict(U=0.50, R2=0.40),   # level 1
+    dict(U=0.40, R2=0.50),   # level 2
+    dict(U=0.30, R2=0.60),   # level 3: the long-term target (the owner may tighten further toward U .20 / R2 .70)
+)
+RATCHET_LEVEL = 0
+FIXED_BARS = dict(
     R1=0.90,   # strict recall on the READABLE sampled PIs (names listed on the page and placeable, found in students.json), stratum-weighted
-    U=0.30,    # (owner wants 0.20 after the first round of discovery fixes) max share of the sample that may be unverifiable (no member-list page, robots, challenge, login, unreachable ...)
-    R2=0.60,   # (owner wants 0.70 after the first round) estimated whole-school CURRENT PhD recall; unverifiable PIs count as recall 0. BOUNDED: R2 <= (1-U) x R1 = 0.63 at these values
     Z=0.05,    # max share of ALL PIs with no recorded student and no researched (non-boilerplate, >= 2 sources) reason
     X=0.20,    # max share of listed names the checker may exclude with a reason (guard against excluding the misses)
 )
-# Coherence: with unverifiable PIs at recall 0, R2 can never exceed (1-U) x R1, so R2 must stay below that ceiling (0.63 at U .30, R1 .90).
+# U = max share of the sample that may be unverifiable (no member-list page, robots, challenge, login, unreachable ...).
+# R2 = estimated whole-school CURRENT PhD recall; unverifiable PIs count as recall 0.
+
+
+def bars(level=None):
+    """The gate's numbers at a ratchet level (default RATCHET_LEVEL): R1, Z, X fixed; U and R2 from RATCHET_LEVELS."""
+    return dict(FIXED_BARS, **RATCHET_LEVELS[RATCHET_LEVEL if level is None else level])
+
+
+THRESHOLDS = bars()
+
+
+def ratchet_text(th=None):
+    """'level 0 of 3: U <= 60%, R2 >= 0.35; next level 1: U <= 50%, R2 >= 0.40' (the last level says it is the target)."""
+    lv = RATCHET_LEVEL
+    cur = RATCHET_LEVELS[lv]
+    out = f'ratchet level {lv} of {len(RATCHET_LEVELS) - 1}: U <= {cur["U"]:.0%}, R2 >= {cur["R2"]:.2f} (R2 <= (1-U) x R1 = {(1 - cur["U"]) * FIXED_BARS["R1"]:.2f})'
+    if lv + 1 < len(RATCHET_LEVELS):
+        nx = RATCHET_LEVELS[lv + 1]
+        out += f'; next level {lv + 1}: U <= {nx["U"]:.0%}, R2 >= {nx["R2"]:.2f}'
+    else:
+        out += '; this is the long-term target level'
+    return out
+
+
 SAMPLE_SIZE = 30                     # PIs per school
 STRATA = (('0', 0, 0), ('1-2', 1, 2), ('3+', 3, None))   # by number of recorded student rows: name, lo, hi
 CURRENT_FROM_YEAR = 2025             # a PhD row/name is CURRENT with a year >= this (the window ends 2026; the data were collected 2026-10/11)
@@ -654,7 +686,7 @@ def evaluate_record(key, rec, st=None, binds_now=None, conn=None, pis=None):
 # ---- (C) gate items ---------------------------------------------------------------------------------------------------------------------------
 def gate_items(key, th=None):
     """The stage-6 recall findings: [] when every item passes. Each message names the item, the number, the bar and what to do."""
-    th = dict(THRESHOLDS, **(th or {}))
+    th = dict(bars(), **(th or {}))
     items = []
     m = metrics(key)
     if m['zero_recorded_unreasoned_share'] is not None and m['zero_recorded_unreasoned_share'] > th['Z']:
@@ -675,12 +707,12 @@ def gate_items(key, th=None):
                      f'largest gaps {"; ".join(n["largest_gaps"]) or "none"}); add the missing members (member-list rounds), rebuild, draw a new sample')
     if n.get('unverifiable_share') is not None and n['unverifiable_share'] > th['U']:
         items.append(f'recall U: {n["unverifiable"]} of {n["sample"]} sampled PIs are unverifiable ({n["unverifiable_share"]:.0%} > {th["U"]:.0%}; {n["unverifiable_reasons"]}); '
-                     'find readable member lists for these labs (Wayback is allowed for lab pages only where the project rules say so) - unverifiable stays unverifiable')
+                     f'{ratchet_text()}; find readable member lists for these labs - unverifiable stays unverifiable')
     if n.get('r2_est_current_phd_recall') is None and n.get('readable') == 0 and n.get('sample'):
         items.append('recall R2: no readable PI in the sample, so whole-school current-PhD recall cannot be estimated')
     elif n.get('r2_est_current_phd_recall') is not None and n['r2_est_current_phd_recall'] < th['R2']:
         items.append(f'recall R2: estimated whole-school current-PhD recall {n["r2_est_current_phd_recall"]:.2f} < {th["R2"]:.2f} '
-                     f'(5th pct of a cluster bootstrap {n["r2_bootstrap_p5"]}; unverifiable PIs count as 0, so R2 is bounded by (1-U) x R1 = {(1 - th["U"]) * th["R1"]:.2f}; the owner wants U tightened toward 0.20 and R2 toward 0.70 after the first round of discovery fixes); raise recall on the strata with the gaps, or make more pages readable')
+                     f'(5th pct of a cluster bootstrap {n["r2_bootstrap_p5"]}; unverifiable PIs count as 0, so R2 is bounded by (1-U) x R1 = {(1 - th["U"]) * th["R1"]:.2f}; {ratchet_text()}); raise recall on the strata with the gaps, or make more pages readable')
     if n.get('excluded_share', 0) > th['X']:
         items.append(f'recall record: {n["names_excluded"]} of {n["names_listed"]} listed names were excluded by the checker ({n["excluded_share"]:.0%} > {th["X"]:.0%}); excluding is not a way to raise recall')
     return items
@@ -698,7 +730,7 @@ def gate_counts(key):
 # ---- report / CLI -----------------------------------------------------------------------------------------------------------------------------
 def would_fail(key, th=None):
     """{item: 'fail' | 'ok' | 'unmeasured'} as the gate stands today: items needing the hand record are 'unmeasured' while it is missing."""
-    th = dict(THRESHOLDS, **(th or {}))
+    th = dict(bars(), **(th or {}))
     m = metrics(key)
     res = {'Z': 'fail' if (m['zero_recorded_unreasoned_share'] or 0) > th['Z'] else 'ok'}
     rec = _read(P.data('student-recall-check.json', key))
