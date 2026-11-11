@@ -2943,10 +2943,10 @@ def onboarding(school):
         return False
 
 
-def cmd_audit_chunk(school, i, n, out):
+def cmd_audit_chunk(school, i, n, out, only_pi=None):
     """Chunk i of n of the offline audit (the full run exceeds a 59 min Slurm job, CMU 2026-11-11): every n-th PI from i, -> <out>/chunk-<i>of<n>.json.
     Resumable: an existing chunk file is kept. `audit-merge` assembles the chunks and writes the outputs exactly as `audit` does."""
-    f = Path(out) / f'chunk-{i}of{n}.json'
+    f = Path(out) / (f'chunk-pi-{re.sub(r"[^a-z0-9]+", "-", only_pi[0].lower())}.json' if only_pi else f'chunk-{i}of{n}.json')
     if f.exists():
         return print('kept', f)
     kit = Kit(school)
@@ -2959,7 +2959,7 @@ def cmd_audit_chunk(school, i, n, out):
     def _alarm(*_):
         raise TimeoutError('per-PI limit')
     recs, stu_adds, pap_adds, timeouts = [], [], [], []
-    for p in ctx['pis'][i::n]:
+    for p in ([q for q in ctx['pis'] if q['pi'] in only_pi] if only_pi else ctx['pis'][i::n]):
         t0 = time.time()
         if limit:
             signal.signal(signal.SIGALRM, _alarm); signal.alarm(limit)
@@ -2986,6 +2986,9 @@ def cmd_audit_merge(school, n, out):
         t_ = t_[0] if t_ else []
         recs += r; stu_adds += s_; pap_adds += p_; late += t_
     recs.sort(key=lambda r: order[r['pi']])
+    for f_ in sorted(Path(out).glob('chunk-pi-*.json')):   # single-PI re-runs of timed-out PIs
+        r, s_, p_, *_t = json.loads(f_.read_text())
+        recs += r; stu_adds += s_; pap_adds += p_; late = [x for x in late if x not in {q['pi'] for q in r}]
     assert not late, f'PIs that exceeded the per-PI limit (re-run them): {late}'
     assert len(recs) == len(order), (len(recs), len(order))
     write_audit(school, recs, stu_adds, pap_adds)
@@ -3407,7 +3410,7 @@ def main():
     if a.cmd == 'audit':
         cmd_audit(a.school)
     if a.cmd == 'audit-chunk':
-        cmd_audit_chunk(a.school, a.chunk, a.of, a.out)
+        cmd_audit_chunk(a.school, a.chunk, a.of, a.out, a.pi)
     if a.cmd == 'audit-merge':
         cmd_audit_merge(a.school, a.of, a.out)
     if a.cmd == 'sample':
