@@ -1,32 +1,23 @@
 {
  "school": "berkeley",
- "decided_at": "2026-10-31",
+ "decided_at": "2026-11-11",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/berkeley/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-02T23:54:41+00:00",
- "additions_sha256": "20761d3f374382e5151de9fcced7ef40c58807a8074c0e7a16e56b1ac76483e9",
+ "additions_generated_at": "2026-11-11T20:56:10+00:00",
+ "additions_sha256": "2c2eb45011ccda45a81d2726619d831bfb8b2d93b4112e3fd41b5245e5130ff2",
  "students": {
   "accepted": true,
-  "scope": "membership_only",
+  "round": 4,
+  "seed": 9011,
+  "sample_size": 30,
+  "errors": 0,
+  "role_or_year_errors": 2,
+  "role_doubtful": 1,
+  "round_limit_extended_by_owner": 10,
+  "owner_ruling": "owner ruled 2026-11-11: up to 10 lab-page rounds per school",
+  "note": "roles restored: membership 0 of 30 (bar <= 1.5), role/year 2 plus 1 doubtful = 2.5 (bar <= 3); replaces the membership-only scope of round 3 (roles were withheld after 3 role errors in 20)",
   "counts": {
-   "proposed": 324
-  },
-  "round": 3,
-  "seed": 3141,
-  "sampled": 20,
-  "membership_errors": 0,
-  "doubtful_count": 1,
-  "membership_score": 0.5,
-  "role_or_year_errors": 3,
-  "year_errors": 0,
-  "role_errors": 3,
-  "years_withheld": false,
-  "reason": "final round (3): membership passed (0 errors, 1 doubtful = 0.5; bar <= 1) but role errors were 3 (bar <= 2), all roles and none years; wired membership-only: roles withheld (null, role_basis withheld_role_round_failed), years kept",
-  "restamped_from": {
-   "sha256": "89c768073376bb1a292fc434ef80d01418ef512c5ea9b61ce44d3baa61543747",
-   "generated_at": "2026-11-02T15:51:14+00:00",
-   "removed": 50,
-   "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
+   "proposed": 316
   }
  },
  "papers": {
@@ -36,7 +27,7 @@
   "sampled": 20,
   "errors": 0,
   "counts": {
-   "proposed": 44
+   "proposed": 37
   },
   "note": "first paper sample at Berkeley",
   "restamped_from": {
@@ -44,6 +35,11 @@
    "generated_at": "2026-11-02T15:51:14+00:00",
    "removed": 0,
    "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
+  },
+  "restamped_regeneration_20261111": {
+   "removed": 7,
+   "added_or_changed": 0,
+   "reason": "additions regenerated 2026-11-11 with roles kept; the 37 paper rows are an unchanged subset of the 44 accepted rows (checked by pi, title and doi)"
   }
  }
 }
