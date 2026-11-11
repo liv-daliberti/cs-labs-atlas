@@ -6533,6 +6533,38 @@
           "sha256": "1a3299601095bec25ca2615ac6e771beb57eacd56092eedd919fed8d0345200a"
         }
       ]
+    },
+    {
+      "pi": "Yang Liu (Veronica)",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "Directory rows only; DBLP lists a homepage that was not captured by this project (no fetch); not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://web.archive.org/web/20250519041112id_/https://air.tsinghua.edu.cn/en/our_team/Research_Team.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "85187d8bc14a497811a9e70d93de4b3a29fe3d4146a63777d4ef128c49f0596a"
+        }
+      ]
+    },
+    {
+      "pi": "Xinyi Fu",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "no_web_presence_found",
+      "reason": "Only an owner-supplied profile text copy was seen; no capture; not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-s2-focus-1110/final/owner-supplied-xinyifu-futurelab-profile.txt",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "ed70aa9bf143535df099c50673d55cd2f244653ea1f8afc5dcdd55b07d72c47b"
+        }
+      ]
     }
   ]
 }
