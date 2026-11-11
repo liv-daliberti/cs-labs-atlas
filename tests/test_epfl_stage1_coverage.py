@@ -4,7 +4,7 @@ import zlib
 
 import pytest
 
-import epfl_stage1_coverage as C
+import listing_coverage_epfl as C
 
 
 def fixture():
