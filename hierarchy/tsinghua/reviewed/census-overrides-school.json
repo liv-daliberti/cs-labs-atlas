@@ -134,7 +134,11 @@
     "mixed_openalex": [
       "https://openalex.org/A5102020639"
     ],
-    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06)."
+    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06).",
+    "no_papers": true,
+    "why_no_papers": "Reviewed 2026-11-11 (rebuild 2026-11-11 with the bound DBLP person's full record, 65 titles): the reviewed appointment starts 2025-09 (owned page quote '2025/09 - I joined Tsinghua IIIS as a tenure-track Assistant Professor'); the build's funnel shows 56 school-affiliated name hits but 0 tied to the PI by the anchors and 0 in the appointment, and the person's DBLP records in 2025-26 (7) are not shown with a Tsinghua byline by any source the build holds. No paper is attributed; this records the build outcome, not that none exist. Revisit with page-1 or affiliation evidence for the 2025-26 works.",
+    "no_papers_reviewer": "claude-tsinghua-students-1111",
+    "no_papers_reviewed_on": "2026-11-11"
   },
   "李振华": {
     "aliases": [
@@ -2259,7 +2263,11 @@
       "independent_replay": "2026-11-09 separate code path: stored bytes re-hashed, 73 full-title verbatim credited matches on the complete-record sidecar"
     },
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-09"
+    "reviewed_on": "2026-11-09",
+    "no_papers": true,
+    "why_no_papers": "Reviewed 2026-11-11 (rebuild with the bound DBLP person's full record, 81 titles): the only dated Tsinghua appointment evidence is the 2026 official listing/profile (no earlier period); the 20 identity-confirmed works fall in 2017-2025 and are outside the appointment (funnel outside_appointment_2017..2025, R-PAP-01), none in 2026. DBLP's latest record of this person is 2022 and carries Microsoft/MIT affiliations as well as Tsinghua. No paper is attributed; revisit if an earlier Tsinghua appointment is evidenced.",
+    "no_papers_reviewer": "claude-tsinghua-students-1111",
+    "no_papers_reviewed_on": "2026-11-11"
   },
   "王斌": {
     "dblp": [
