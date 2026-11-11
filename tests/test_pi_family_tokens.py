@@ -24,11 +24,5 @@ def test_namesake_family_only_page_fails():
 
 
 
-def test_pinyin_signal_only_with_pypinyin_present(monkeypatch):
-    import sys
-    import types
-    fake = types.SimpleNamespace(lazy_pinyin=lambda s: ['zhang', 'ming', 'xing'])
-    monkeypatch.setitem(sys.modules, 'pypinyin', fake)
-    p = {'pi': '章明星', 'names': ['章明星']}
-    assert L.pi_full_name_on_page('Ming-Xing Zhang, associate professor', p)
-    assert not L.pi_full_name_on_page('Zhang Wei', p)
+def test_han_only_record_gets_no_pinyin_signal():
+    assert not L.pi_full_name_on_page('Ming-Xing Zhang, associate professor', {'pi': '章明星', 'names': ['章明星']})

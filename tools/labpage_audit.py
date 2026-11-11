@@ -2461,22 +2461,15 @@ _HAN = re.compile(r'[\u3400-\u9fff]')
 
 
 def pi_latin_given_family(p):
-    """[(family, given)] Latin readings of a PI's name, lower-cased: the record's own Latin names/aliases (e.g. 'Mingwei Xu' for the Han-keyed record) and, when the
-    environment already has pypinyin, the pinyin of a Han name (first syllable = family, the rest = given). Never installed here; without it only the aliases count."""
+    """[(family, given)] Latin readings of a PI's name, lower-cased: the record's own Latin names/aliases (e.g. 'Mingwei Xu' for the Han-keyed record) 
+    (registry data only; pinyin derivation is not used)."""
     out = []
     for n in list(p.get('names') or []) + [p.get('pi')]:
         n = str(n or '').strip()
         if not n:
             continue
         if _HAN.search(n):
-            try:
-                from pypinyin import lazy_pinyin  # noqa: PLC0415
-            except ImportError:
-                continue
-            syl = [x.lower() for x in lazy_pinyin(re.sub(r'\s+', '', n)) if x.isalpha()]
-            if len(syl) >= 2:
-                out.append((syl[0], ''.join(syl[1:])))
-            continue
+            continue   # registry data only: no pinyin derivation until the owner rules
         toks = [fold(t).lower() for t in re.findall(r"[A-Za-z][A-Za-z'\-]*", n)]
         if len(toks) >= 2:
             out += [(toks[-1], ''.join(toks[:-1]).replace('-', '')), (toks[0], ''.join(toks[1:]).replace('-', ''))]
