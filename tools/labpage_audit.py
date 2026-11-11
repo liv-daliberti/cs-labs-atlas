@@ -1696,6 +1696,8 @@ def pm_candidates(kit, school, pi, plan, held):
             orig = m_.group(2) if m_ else None
         sp = spans.get(src) or (spans.get(orig) or spans.get(orig.replace('http://', 'https://')) or spans.get('*')
                                 if is_cap and orig else None)
+        if re.search(r'\.pdf(?:$|[?#])', re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', src), re.I):
+            continue   # a PDF (a thesis linked from an alumni page) is not a people page; parsed as HTML a 13 MB one held the CMU audit for over an hour (Bigham)
         try:
             ext = kit.autom.extract(school, src, pi, held, span=sp)
         except (ValueError, KeyError) as e:
