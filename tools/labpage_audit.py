@@ -2316,7 +2316,7 @@ def repair_reason(kit, school, name, best, start, pi=None):
         tg = re.search(r'\bLab\s+(Affiliates?|Members?)\b', t[k + len(name or ''): k + len(name or '') + 220])
         if tg and tg.group(1).lower().startswith('affiliate'):
             return 'not_a_student', 'tagged Lab Affiliate (an outside affiliate of the group), not a lab member'
-        if re.search(r'(?:Master|Doctoral|MBA|Ph\.?D\.?)[^.]{0,45}\b(?:Cornell|Johnson\s+Graduate)', t[k + len(name or ''): k + len(name or '') + 110]) and 'CORNELL' not in own_names(school, OWN_INST):
+        if re.search(r'Class\s+of\s+\d{4}[^.]{0,90}\b(?:Cornell|Johnson\s+Graduate|Chicago\s+Booth)|\b(?:Master|Doctoral)\s+(?:Student|Candidate)\b[^.]{0,80}\b(?:Cornell|Johnson\s+Graduate)', t[k + len(name or ''): k + len(name or '') + 200]) and 'CORNELL' not in own_names(school, OWN_INST):
             return 'site_at_other_institution', 'the entry places the person in a degree programme at another institution (Cornell Johnson), an outside student of a joint lab'
         lm = OTHER_INST_LABEL.match(t[k + len(name or ''): k + len(name or '') + 40])
         if lm and best.get('role') != 'visiting' and not re.match(r'\s*[(\[]?(?:19|20)\d\d', t[k + len(name or '') + lm.end(): k + len(name or '') + lm.end() + 8]) and not (set(re.findall(r'[A-Za-z]{2,}', lm.group(1).upper())) & (own_names(school, OWN_INST) | own_names(school, OWN_INST_NAMES) | {'SJTU', 'JIAO', 'TONG'})):
