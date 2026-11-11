@@ -2961,7 +2961,7 @@ def withhold_heading_conflict(kit, school, r):
     if k < 0:
         return r
     m = list(HEADING_ROLE_RX.finditer(t[max(0, k - 1200): k]))
-    if m and not re.match(r'ph\.?\s?d', m[-1].group(1), re.I) and m[-1].group(1).lower() != 'alumni':
+    if m and re.match(r'(?:research\s+(?:associates|assistants|fellows)|visiting\s+students?|interns?)\b', m[-1].group(1), re.I):
         return dict(r, role=None, role_basis='withheld_heading_conflict')
     return r
 
