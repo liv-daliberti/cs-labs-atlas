@@ -1,0 +1,128 @@
+{
+ "kind": "fresh-reviewer sample of website absence rows (profile_only_no_homepage / no_web_presence_found), before the profile-link pass",
+ "seed": 20261110,
+ "sample_size": 20,
+ "reviewer": "fresh-sonnet-absence-princeton",
+ "verdicts": [
+  {
+   "pi": "Ruth Fong",
+   "verdict": "WRONG",
+   "linked_site": "https://www.cs.princeton.edu/~ruthfong",
+   "reason": "Captured CS profile has a 'Homepage' link href=/~ruthfong (cs.princeton.edu/~ruthfong); differs from website_note ruthfong.com."
+  },
+  {
+   "pi": "Margaret Martonosi",
+   "verdict": "WRONG",
+   "linked_site": "https://www.cs.princeton.edu/~mrm",
+   "reason": "Captured CS profile has 'Homepage' link href=/~mrm; website_note is mrm.scholar.princeton.edu (different host)."
+  },
+  {
+   "pi": "Leeat Yariv",
+   "verdict": "WRONG",
+   "linked_site": "http://lyariv.mycpanel.princeton.edu/",
+   "reason": "Captured economics people listing links http://lyariv.mycpanel.princeton.edu/ in Yariv's entry (beside her mailto); not the same as website_note leeatyariv.com (whose page links her PExL lab). No profile page in checks."
+  },
+  {
+   "pi": "H. Vincent Poor",
+   "verdict": "correct",
+   "linked_site": "",
+   "reason": "ece and ee profile captures and listing entries contain no personal/lab link (only CV, scholar, arxiv)."
+  },
+  {
+   "pi": "Yuxin Chen",
+   "verdict": "correct",
+   "linked_site": "",
+   "reason": "Only associated-faculty CS listing in checks; capture has no Yuxin Chen entry (only Danqi Chen), no link to any site."
+  },
+  {
+   "pi": "Samory Kpotufe",
+   "verdict": "correct",
+   "linked_site": "",
+   "reason": "Listing captures (CS associated, ORFE faculty) contain no Kpotufe entry or link; IAS/Columbia pages are candidate_site, not official Princeton profile."
+  },
+  {
+   "pi": "Jeff Thompson",
+   "verdict": "cannot_check",
+   "linked_site": "",
+   "reason": "Profile captures (ece/ee people/jeff-thompson) not found in stores; listings captured show no site link, but register itself records school_profile_link https://sites.google.com/site/thompsonlabq/home as 'listed', which could not be verified."
+  },
+  {
+   "pi": "Miklos Racz",
+   "verdict": "correct",
+   "linked_site": "",
+   "reason": "ORFE listing capture has no Racz entry/link; other captures are candidate/evidence pages, not Princeton profile."
+  },
+  {
+   "pi": "Nick Feamster",
+   "verdict": "correct",
+   "linked_site": "",
+   "reason": "CS faculty listing capture has no Feamster entry; no profile in checks."
+  },
+  {
+   "pi": "Amit Singer",
+   "verdict": "WRONG",
+   "linked_site": "http://www.math.princeton.edu/~amits/",
+   "reason": "Math directory/faculty listing (department_listing) has homepage link http://www.math.princeton.edu/~amits/ in his row; same site as website_note web.math.princeton.edu/~amits/. His profile page itself shows no link."
+  },
+  {
+   "pi": "Robert Vanderbei",
+   "verdict": "correct",
+   "linked_site": "",
+   "reason": "CS faculty listing has no Vanderbei entry; no profile in checks."
+  },
+  {
+   "pi": "Ioannis G. Kevrekidis",
+   "verdict": "correct",
+   "linked_site": "",
+   "reason": "Math associated-faculty listing has no Kevrekidis entry."
+  },
+  {
+   "pi": "Mark Zhandry",
+   "verdict": "correct",
+   "linked_site": "",
+   "reason": "CS faculty listing has no Zhandry entry; no profile in checks."
+  },
+  {
+   "pi": "Sergio Verdú",
+   "verdict": "correct",
+   "linked_site": "",
+   "reason": "EE faculty listing has no Verdu entry."
+  },
+  {
+   "pi": "Han Liu",
+   "verdict": "correct",
+   "linked_site": "",
+   "reason": "CS associated listing entry (ltliu) has only research-area links, no site."
+  },
+  {
+   "pi": "Assaf Naor",
+   "verdict": "correct",
+   "linked_site": "",
+   "reason": "Math listing homepage span is empty for Naor; profile captures contain no personal link."
+  },
+  {
+   "pi": "Yuri Pritykin",
+   "verdict": "WRONG",
+   "linked_site": "https://www.cs.princeton.edu/~pritykin",
+   "reason": "Captured CS profile has 'Homepage' link href=/~pritykin; website_note is pritykinlab.github.io (different)."
+  },
+  {
+   "pi": "Ruby Lee",
+   "verdict": "WRONG",
+   "linked_site": "http://palms.ee.princeton.edu/ (pages: /publications/author/Wang, /PALMSopen/..., /node/352)",
+   "reason": "ECE profile capture links several pages on palms.ee.princeton.edu (PALMS lab host = website_note) inside publication citations; no explicit 'Website' button. Borderline: links into lab site exist."
+  },
+  {
+   "pi": "Paul Cuff",
+   "verdict": "correct",
+   "linked_site": "",
+   "reason": "ee profile capture and listing entry contain only mailto and department links."
+  },
+  {
+   "pi": "Yoram Singer",
+   "verdict": "correct",
+   "linked_site": "",
+   "reason": "CS faculty listing has no Yoram Singer entry; no profile in checks."
+  }
+ ]
+}

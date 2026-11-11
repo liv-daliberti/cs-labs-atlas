@@ -9966,6 +9966,52 @@
      "kind": "dept_listing:Computer Science"
     }
    ]
+  },
+  "Robert Sedgewick": {
+   "periods": [
+    {
+     "id": "override_period_gaps_princeton_robert_sedgewick",
+     "start": "2016",
+     "end": null,
+     "asof": "2025-01-23",
+     "datePrecision": "year",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20160406151830id_/https://www.cs.princeton.edu/people/faculty",
+       "sha256": "c3e75acaffc01b4615519f1746c473727e81f58077261091b46dc3f712844078",
+       "quote": "Robert Sedgewick William O. Baker '39 Professor",
+       "observed": "2016-04-06",
+       "kind": "dept_listing"
+      },
+      {
+       "url": "https://web.archive.org/web/20180119091118id_/http://www.cs.princeton.edu:80/people/faculty?",
+       "sha256": "bb0b3037738e628f0d6377febcde521e41c787bc7e8eff3e6fbf962dabf19632",
+       "quote": "Robert Sedgewick (on leave) William O. Baker '39 Professor",
+       "observed": "2018-01-19",
+       "kind": "unit_page_capture"
+      },
+      {
+       "url": "https://web.archive.org/web/20250123195629id_/https://www.cs.princeton.edu/people/faculty",
+       "sha256": "f2b1a2bbad286f708756cbdc6f07ca7ebfab23cda6cb9c379b6ad5af79153c6c",
+       "quote": "Robert Sedgewick William O. Baker *39 Professor in Computer Science, Emeritus",
+       "observed": "2025-01-23",
+       "kind": "dept_listing"
+      }
+     ],
+     "note": "Bridged from dated evidence for every year 2016-2025: listings, and for the gap years [2018] dated Wayback captures naming the PI with a professor title (hierarchy/princeton/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+     "reviewed": "periods_school_gaps_20261030"
+    }
+   ],
+   "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
+  },
+  "Andrew Houck": {
+   "unproven_years": [
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "why_unproven": "Searched (tools/periods_school.py gaps, 2026-11-10, Wayback captures of his homepage and the unit listings per year): dated captures naming him with a professor title were found for 2021-2023 (hierarchy/princeton/gap-year-evidence.json) but none for 2020, so no period is bridged and the four listing-gap years are recorded as unproven, not proven (R-PAP-01)."
   }
  },
  "epfl": {
