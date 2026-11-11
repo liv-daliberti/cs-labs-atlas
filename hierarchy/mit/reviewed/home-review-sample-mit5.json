@@ -1,0 +1,47 @@
+{
+ "reviewer": "fresh-sonnet-subagent-5",
+ "verdicts": [
+  {
+   "item": "Peter Shor",
+   "verdict": "accept",
+   "reason": "Math dept faculty directory row states 'Professor of Applied Mathematics' for Shor; supports home Applied Mathematics (a Mathematics-department directory, so the unit is the Applied Math program of that department).",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "item": "Andreea Bobu",
+   "verdict": "accept",
+   "reason": "Listed as Assistant Professor, Faculty; Principal Investigator on the AeroAstro people page (department's own faculty roster); supports Aeronautics and Astronautics.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "item": "Rachit Nigam",
+   "verdict": "accept",
+   "reason": "Listed on the EECS faculty roster as Assistant Professor [CS, EE]; supports EECS (the roster itself is the tenure unit).",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "item": "Julie Shah",
+   "verdict": "accept",
+   "reason": "Own AeroAstro page: 'H.N. Slater Professor in Aeronautics and Astronautics'; names a single unit.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "item": "Brian Williams",
+   "verdict": "accept",
+   "reason": "The submitted quote names no department (research area only), so it is weak alone. But the same stored page (same sha, AeroAstro site) states verbatim 'Professor of Aeronautics and Astronautics, 2007-Present' under Positions Held at MIT; single-unit title, so listed_title fits R-HOME-01. Recommend replacing the quote with that sentence; the page also says his group is within CSAIL, a secondary affiliation, not a competing title.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "item": "Andrew Houck (Princeton g4 gap years)",
+   "verdict": "accept",
+   "reason": "Claim confirmed in hierarchy/princeton/tmp/s3-1110/.../reviewed/gap-year-evidence.json: dated Wayback captures with ladder title exist for 2021-02-25, 2022-02-11, 2023-01-28; none for 2020; listing years match. g4 passes: gaps 2020-2023 are all in unproven_years and why_unproven is set; not bridging is right (a listing proves its own year only, R-PAP-01, and 2020 stays open). Caveats: (1) that evidence file exists only in the tmp copy, not in code/hierarchy/princeton/reviewed or the worktree; (2) proven_years() reads derived deep-gap-evidence.json, so 2021-2023 would be more accurately recorded as proven years than unproven; current record is conservative, not wrong.",
+   "sha_match": null,
+   "quote_found": null
+  }
+ ]
+}

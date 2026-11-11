@@ -1,0 +1,29 @@
+{
+ "reviewer": "fresh-sonnet-subagent-3",
+ "verdicts": [
+  {
+   "school": "princeton",
+   "name": "Ewin Tang",
+   "verdict": "accept",
+   "reason": "gap-evidence status not_pi_in_window; Princeton profile and her homepage say she joined/assistant professor from Sept 2026; students list empty. No 2016-2026 PI period supported."
+  },
+  {
+   "school": "princeton",
+   "name": "Perry Cook",
+   "verdict": "accept",
+   "reason": "gap-evidence status not_pi_in_window; his 2021 CV shows CalArts faculty since Jan 2020; no students found. Caveat: the 'emeritus since 2010' wording is from the claim text; the CV quote I read shows Oregon address and CalArts faculty Jan 2020-present (the 2010 emeritus date not verified by me), and pre-2016 Princeton advisees are out of window anyway."
+  },
+  {
+   "school": "princeton",
+   "name": "Arash Adel",
+   "verdict": "reject",
+   "reason": "Exclusion ignores contrary stored evidence: gap-evidence.json has status 'pi' for him (soa.princeton.edu: 'Assistant Professor, Architecture; Director, ADR Laboratory'); census itself holds five dept_listing:Architecture captures 2023-09 to 2025-09 (rank faculty) contradicting 'no captured page evidences an Architecture appointment'; faculty-periods start 2023 (Princeton since 2023, quote from soa page); labpage-input/evidence list ADR Laboratory with 10 lab papers; thesis-evidence lists a lab roster (adelresearchgroup.org/team) with Ph.D. students Daniel Ruan and Jutang Gao, plus postdoc and others. An Architecture PI with a computational-design lab and PhD students is a legitimate PI; restore is_pi=true (CS-scope question is separate from PI status)."
+  },
+  {
+   "school": "cmu",
+   "name": "Alex Waibel",
+   "verdict": "accept",
+   "reason": "Same DBLP pid 08/2456 on both rows; 'Alexander Waibel' row is ladder, LTI/HCII, listings 2016-2026, is_pi true, advises_phd 2 (same basis as the duplicate). Neither row has openalex ids; DBLP identical. Only differences: duplicate carries a lab unit name/URL variant (afs/.../ahw/www vs ~ahw) and adviser_group_units ['cmu_unit_alex_waibel_group'] that the kept row lacks; nothing else lost. Check that downstream references to cmu_unit_alex_waibel_group resolve via the kept row (not verified)."
+  }
+ ]
+}

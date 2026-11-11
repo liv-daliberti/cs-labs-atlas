@@ -1,0 +1,166 @@
+{
+ "reviewer": "fresh-sonnet-subagent-2",
+ "seed": 20261110,
+ "verdicts": [
+  {
+   "school": "mit",
+   "name": "Ted Adelson",
+   "verdict": "accept",
+   "reason": "Page states Dept of Brain and Cognitive Science; CSAIL as member.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "mit",
+   "name": "D. Fox Harrell",
+   "verdict": "unclear",
+   "reason": "Quote names 'Comparative Media Studies Program and CSAIL' jointly; no primary statement (CSAIL is a lab, so CMS is plausible but not stated as primary).",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "mit",
+   "name": "John Leonard",
+   "verdict": "accept",
+   "reason": "Explicit 'MIT Department of Mechanical Engineering'; CSAIL 'also a member'.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "mit",
+   "name": "Tomaso Poggio",
+   "verdict": "accept",
+   "reason": "Professor in Dept of Brain & Cognitive Sciences; CSAIL member.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "mit",
+   "name": "Nicholas Roy",
+   "verdict": "accept",
+   "reason": "Professor of Aeronautics and Astronautics, member of CSAIL. (labpage capture sha matches; a second labpage-audit capture has a different sha, same text.)",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "mit",
+   "name": "Joshua Tenenbaum",
+   "verdict": "accept",
+   "reason": "Professor in Dept of Brain and Cognitive Sciences; PI at CSAIL.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "mit",
+   "name": "Michael Goemans",
+   "verdict": "accept",
+   "reason": "RSA Professor of Mathematics, Head of Dept of Mathematics; CSAIL group member.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "mit",
+   "name": "Alan Edelman",
+   "verdict": "accept",
+   "reason": "Personal page: Professor of Applied Mathematics, CSAIL listed separately.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "mit",
+   "name": "Tom Leighton",
+   "verdict": "accept",
+   "reason": "Professor of Applied Mathematics and member of CSAIL.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "mit",
+   "name": "Michael Sipser",
+   "verdict": "accept",
+   "reason": "Donner Professor of Mathematics.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "mit",
+   "name": "Jonathan Kelner",
+   "verdict": "accept",
+   "reason": "IDSS roster entry 'Professor Mathematics'.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "stanford",
+   "name": "J. Christian Gerdes",
+   "verdict": "accept",
+   "reason": "Professor of ME, by courtesy of AA.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "stanford",
+   "name": "Mike Cherry",
+   "verdict": "unclear",
+   "reason": "Quote (Professor (Research) of Genetics, Emeritus) found in the labpage-audit capture, but stored sha 4b7f107b... != evidence sha 9bf77ca4...; thesis captures of the same URL have other shas and lack the quote. Evidence hash cannot be bound.",
+   "sha_match": false,
+   "quote_found": true
+  },
+  {
+   "school": "berkeley",
+   "name": "Jack Gallant",
+   "verdict": "accept",
+   "reason": "Title: Professor of Neuroscience; Department: Neuroscience.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "berkeley",
+   "name": "Irene Chen",
+   "verdict": "accept",
+   "reason": "Computational Precision Health program with a joint appointment in EECS; page leads with CPH.",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "berkeley",
+   "name": "Jacob Steinhardt",
+   "verdict": "accept",
+   "reason": "Header 'Associate Professor, Department of Statistics'; EECS in bio. (Other captures of the URL have different shas without the quote; the matching one has it.)",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "cmu",
+   "name": "Maggie Henderson",
+   "verdict": "accept",
+   "reason": "Psychology dept page: Asst Prof of Psychology and Neuroscience Institute, Machine Learning (Affiliated).",
+   "sha_match": true,
+   "quote_found": true
+  },
+  {
+   "school": "cmu",
+   "name": "Ioannis Gkioulekas",
+   "verdict": "unclear",
+   "reason": "capture_not_found: neither the RI faculty Wayback URL/sha nor the csd.cmu.edu profile URL/sha exists in any cmu store.",
+   "sha_match": null,
+   "quote_found": null
+  },
+  {
+   "school": "cmu",
+   "name": "Haiyi Zhu",
+   "verdict": "unclear",
+   "reason": "capture_not_found for HCII roster (url/sha absent); RI wp-json capture has different sha but contains quote and shows RI title 'Courtesy Faculty', which hints RI is not primary, so unresolved is questionable.",
+   "sha_match": false,
+   "quote_found": null
+  },
+  {
+   "school": "cmu",
+   "name": "Yonatan Bisk",
+   "verdict": "unclear",
+   "reason": "LTI roster quote and sha verified, but it names only LTI membership; CSD profile capture sha/quote did not match; RI json shows 'Courtesy Faculty', department_override LTI. Home 'CSD' under unresolved is not supported by checked text.",
+   "sha_match": null,
+   "quote_found": true
+  }
+ ]
+}

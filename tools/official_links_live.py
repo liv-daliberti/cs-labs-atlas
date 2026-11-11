@@ -178,7 +178,7 @@ def main():
                 r.pop(k, None)
             r.pop('evidence_gaps', None)
             r.update(coverage='reason', reason_code=code, reason_type=rtype, reason=why,
-                     reason_scope='Recorded search/access outcome; not proof no website exists or that an archive has no capture.')
+                     reason_scope='Recorded search/access outcome; not proof no website exists or that an archive has no capture.', absence_verification='listing_or_profile_level_only; fresh-reviewer samples found some wrong (2026-11-10): run profile_links.py / the live bio-page pass')
             stats['absence'][code] += 1
         stats['absence'] = dict(stats['absence'])
     print(json.dumps(stats))
