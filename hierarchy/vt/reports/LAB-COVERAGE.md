@@ -1,8 +1,8 @@
 # vt: lab coverage (students, papers, reasons)
 
-Labs 93; with students 38; with papers 32; median papers per lab 0.
+Labs 93; with students 41; with papers 34; median papers per lab 0.
 
-Reasons for 0 students: {'open': 40, 'appointment_ended_early': 1, 'new_hire_2025_or_later': 14}. Reasons for 0 papers: {'open': 51, 'appointment_ended_early': 1, 'new_hire_2025_or_later': 9}.
+Reasons for 0 students: {'open': 37, 'appointment_ended_early': 1, 'new_hire_2025_or_later': 14}. Reasons for 0 papers: {'open': 49, 'appointment_ended_early': 1, 'new_hire_2025_or_later': 9}.
 
 | PI | dept | students | sources | papers | reason (students) | reason (papers) |
 |---|---|---|---|---|---|---|
@@ -53,7 +53,6 @@ Reasons for 0 students: {'open': 40, 'appointment_ended_early': 1, 'new_hire_202
 | Madhav Marathe | CS | 1 | lab page 1 | 0 |  | open |
 | Murat Kantarcioglu | CS | 0 | - | 0 | new_hire_2025_or_later | new_hire_2025_or_later |
 | Na Meng | CS | 7 | lab page 7 | 0 |  | open |
-| Naren Ramakrishnan | CS | 0 | - | 0 | open | open |
 | Nicholas F. Polys | CS | 0 | - | 0 | open | open |
 | Osman Balci | CS | 0 | - | 0 | open | open |
 | Palash Sashittal | CS | 0 | - | 10 | new_hire_2025_or_later |  |
@@ -62,7 +61,7 @@ Reasons for 0 students: {'open': 40, 'appointment_ended_early': 1, 'new_hire_202
 | R. Benjamin Knapp | CS | 0 | - | 0 | open | open |
 | Ryan P. McMahan | CS | 0 | - | 0 | new_hire_2025_or_later | new_hire_2025_or_later |
 | Sam H. Noh | CS | 0 | - | 0 | open | open |
-| Sang Won Lee | CS | 0 | - | 0 | open | open |
+| Sang Won Lee | CS | 9 | lab page 9 | 0 |  | open |
 | Sanmay Das | CS | 0 | - | 8 | new_hire_2025_or_later |  |
 | Scott McCrickard | CS | 0 | - | 0 | open | open |
 | Shaddi Hasan | CS | 0 | - | 0 | open | open |
@@ -73,7 +72,6 @@ Reasons for 0 students: {'open': 40, 'appointment_ended_early': 1, 'new_hire_202
 | Tanushree Mitra | CS | 0 | - | 0 | open | open |
 | Tijay Chung | CS | 0 | - | 0 | open | open |
 | Tu Vu | CS | 11 | lab page 11 | 0 |  | new_hire_2025_or_later |
-| Wenjing Lou | CS | 0 | - | 0 | open | open |
 | Wu-chun Feng | CS | 0 | - | 0 | open | open |
 | Xun (Steve) Jian | CS | 4 | lab page 4 | 0 |  | open |
 | Yang Cao | CS | 0 | - | 0 | open | open |
@@ -94,8 +92,10 @@ Reasons for 0 students: {'open': 40, 'appointment_ended_early': 1, 'new_hire_202
 | Lifu Huang | CS | 1 | roster+co-author 1 | 32 |  |  |
 | Matthew Hicks | CS | 9 | lab page 9 | 32 |  |  |
 | Muhammad Ali Gulzar | CS | 4 | lab page 4 | 30 |  |  |
+| Naren Ramakrishnan | CS | 2 | roster+co-author 2 | 2 |  |  |
 | Sumeet Khatri | CS | 2 | lab page 2 | 4 |  |  |
 | T. M. Murali | CS | 25 | roster+co-author 1, lab page 24 | 39 |  |  |
 | Thang Hoang | CS | 2 | lab page 2 | 17 |  |  |
+| Wenjing Lou | CS | 1 | lab page 1 | 182 |  |  |
 | Xuan Wang | CS | 4 | lab page 4 | 16 |  |  |
 | Yan Chen | CS | 5 | lab page 5 | 25 |  |  |
