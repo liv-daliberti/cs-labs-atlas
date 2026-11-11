@@ -2982,7 +2982,8 @@ def cmd_audit_merge(school, n, out):
     order = {p['pi']: k for k, p in enumerate(ctx['pis'])}
     recs, stu_adds, pap_adds, late = [], [], [], []
     for i in range(n):
-        r, s_, p_, t_ = json.loads((Path(out) / f'chunk-{i}of{n}.json').read_text())
+        r, s_, p_, *t_ = json.loads((Path(out) / f'chunk-{i}of{n}.json').read_text())   # chunks written before the per-PI limit have no timeouts list
+        t_ = t_[0] if t_ else []
         recs += r; stu_adds += s_; pap_adds += p_; late += t_
     recs.sort(key=lambda r: order[r['pi']])
     assert not late, f'PIs that exceeded the per-PI limit (re-run them): {late}'
