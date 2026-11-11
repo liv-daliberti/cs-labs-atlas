@@ -2464,18 +2464,22 @@ _HAN = re.compile(r'[\u3400-\u9fff]')
 
 def pi_latin_given_family(p):
     """[(family, given)] Latin readings of a PI's name, lower-cased: the record's own Latin names/aliases (e.g. 'Mingwei Xu' for the Han-keyed record) 
-    (registry data only; pinyin derivation is not used)."""
-    out = []
+    plus the pinyin of a Han name (tools/pinyin_signal, vendored pypinyin; first syllable = family, rest = given) after them."""
+    out, pinyin = [], []
     for n in list(p.get('names') or []) + [p.get('pi')]:
         n = str(n or '').strip()
         if not n:
             continue
         if _HAN.search(n):
-            continue   # registry data only: no pinyin derivation until the owner rules
+            import pinyin_signal  # noqa: PLC0415  (vendored pypinyin, owner ruling 2026-11-12; a signal only; registry Latin names come first in `out`)
+            syl = pinyin_signal.syllables(n)
+            if len(syl) >= 2:
+                pinyin.append((syl[0], ''.join(syl[1:])))
+            continue
         toks = [fold(t).lower() for t in re.findall(r"[A-Za-z][A-Za-z'\-]*", n)]
         if len(toks) >= 2:
             out += [(toks[-1], ''.join(toks[:-1]).replace('-', '')), (toks[0], ''.join(toks[1:]).replace('-', ''))]
-    return list(dict.fromkeys(out))
+    return list(dict.fromkeys(out + pinyin))
 
 
 def pi_full_name_on_page(text, p):
