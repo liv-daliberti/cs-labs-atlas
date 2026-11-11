@@ -2951,9 +2951,28 @@ def cmd_audit_chunk(school, i, n, out):
         return print('kept', f)
     kit = Kit(school)
     ctx = load_ctx(school, kit)
-    recs, stu_adds, pap_adds, _ = assemble(kit, ctx, read_discovery(school), recover_verdicts(school), only=ctx['pis'][i::n])
+    import signal
+    import time
+    disc, verdicts = read_discovery(school), recover_verdicts(school)
+    limit = int(os.environ.get('LABPAGE_PI_TIMEOUT', '0'))   # seconds per PI (0: none); a PI that exceeds it is listed in the chunk's `timeouts`, never silently dropped
+
+    def _alarm(*_):
+        raise TimeoutError('per-PI limit')
+    recs, stu_adds, pap_adds, timeouts = [], [], [], []
+    for p in ctx['pis'][i::n]:
+        t0 = time.time()
+        if limit:
+            signal.signal(signal.SIGALRM, _alarm); signal.alarm(limit)
+        try:
+            r, s_, p_, _ = assemble(kit, ctx, disc, verdicts, only=[p])
+            recs += r; stu_adds += s_; pap_adds += p_
+        except TimeoutError:
+            timeouts.append(p['pi'])
+        finally:
+            signal.alarm(0)
+        print(f"{p['pi']}: {time.time() - t0:.0f}s", flush=True)
     Path(out).mkdir(parents=True, exist_ok=True)
-    f.with_suffix('.tmp').write_text(json.dumps([recs, stu_adds, pap_adds], ensure_ascii=False))
+    f.with_suffix('.tmp').write_text(json.dumps([recs, stu_adds, pap_adds, timeouts], ensure_ascii=False))
     os.replace(f.with_suffix('.tmp'), f)
 
 
@@ -2961,11 +2980,12 @@ def cmd_audit_merge(school, n, out):
     kit = Kit(school)
     ctx = load_ctx(school, kit)
     order = {p['pi']: k for k, p in enumerate(ctx['pis'])}
-    recs, stu_adds, pap_adds = [], [], []
+    recs, stu_adds, pap_adds, late = [], [], [], []
     for i in range(n):
-        r, s_, p_ = json.loads((Path(out) / f'chunk-{i}of{n}.json').read_text())
-        recs += r; stu_adds += s_; pap_adds += p_
+        r, s_, p_, t_ = json.loads((Path(out) / f'chunk-{i}of{n}.json').read_text())
+        recs += r; stu_adds += s_; pap_adds += p_; late += t_
     recs.sort(key=lambda r: order[r['pi']])
+    assert not late, f'PIs that exceeded the per-PI limit (re-run them): {late}'
     assert len(recs) == len(order), (len(recs), len(order))
     write_audit(school, recs, stu_adds, pap_adds)
 
