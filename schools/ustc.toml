@@ -108,51 +108,55 @@ url = "https://cs.ustc.edu.cn/main.htm"
   slot = "CS professors (教授)"
   kind = "main"
   url = "cs.ustc.edu.cn/js_23235/list.htm"
-  from = "20160101"
+  from = "20210101"
   to = "20261231"
   format = "ustc_cs_cards"
   [[departments.listings]]
   slot = "CS specially appointed professors (特任教授)"
   kind = "main"
   url = "cs.ustc.edu.cn/trjs/list.htm"
-  from = "20160101"
+  from = "20210101"
   to = "20261231"
   format = "ustc_cs_cards"
   [[departments.listings]]
   slot = "CS specially appointed researchers (特任研究员)"
   kind = "research"
   url = "cs.ustc.edu.cn/tryjy_23237/list.htm"
-  from = "20160101"
+  from = "20210101"
   to = "20261231"
   format = "ustc_cs_cards"
+  min_entries = 1 # Rank-specific roster; a few real names can be the whole group.
   [[departments.listings]]
   slot = "CS associate professors (副教授)"
   kind = "main"
   url = "cs.ustc.edu.cn/fjs_23239/list.htm"
-  from = "20160101"
+  from = "20210101"
   to = "20261231"
   format = "ustc_cs_cards"
   [[departments.listings]]
   slot = "CS specially appointed associate researchers (特任副研究员)"
   kind = "research"
   url = "cs.ustc.edu.cn/trfyjy/list.htm"
-  from = "20160101"
+  from = "20210101"
   to = "20261231"
   format = "ustc_cs_cards"
+  min_entries = 1 # Rank-specific roster; a few real names can be the whole group.
   [[departments.listings]]
   slot = "CS lecturers (讲师)"
   kind = "lecturer"
   url = "cs.ustc.edu.cn/js_23242/list.htm"
-  from = "20160101"
+  from = "20210101"
   to = "20261231"
   format = "ustc_cs_cards"
+  min_entries = 1 # Rank-specific roster; a few real names can be the whole group.
   [[departments.listings]]
   slot = "CS adjunct professors and doctoral supervisors (兼职教授/博导)"
   kind = "courtesy"
   url = "cs.ustc.edu.cn/kzjs/list.htm"
-  from = "20160101"
+  from = "20201001"
   to = "20261231"
   format = "ustc_cs_cards"
+  min_entries = 1 # Rank-specific roster; a few real names can be the whole group.
 
 # --- other units searched for computing-related faculty (stage 2) ---
 [[affiliated_units]]

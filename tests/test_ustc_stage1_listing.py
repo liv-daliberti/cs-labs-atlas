@@ -1,4 +1,7 @@
 from tools import listing_formats as F
+import sqlite3
+import zlib
+import plan_fetch as PF
 
 
 def test_webplus_faculty_page_requires_every_pager_page():
@@ -38,3 +41,18 @@ def test_legacy_profile_sidebar_uses_rank_rosters_and_ignores_biography():
     rows = F.parse(html, 'ustc_cs_legacy_sidebar')[1]
     assert [(r['name_listed'], r['titles']) for r in rows] == [
         ('陈恩红', ['教授']), ('董兰芳', ['副教授'])]
+
+
+def test_rank_specific_small_roster_keeps_real_people_but_rejects_shell():
+    con = sqlite3.connect(':memory:')
+    con.execute('create table captures(capture_url text, raw_zlib blob)')
+    def put(body):
+        con.execute('delete from captures')
+        con.execute('insert into captures values (?,?)', ('capture', zlib.compress(body.encode())))
+    page = '<li class="col_title"><h2>特任研究员</h2></li><div class="col_news_list listcon"><ul>' + ''.join(
+        f'<li class="news"><div class="news_title"><a href="/person/{n}.htm">研究员{n}</a></div></li>' for n in range(3)) + '</ul></div>'
+    put(page)
+    assert not PF.charter_usable(con, 'capture', {'format': 'ustc_cs_cards'})[0]
+    assert PF.charter_usable(con, 'capture', {'format': 'ustc_cs_cards', 'min_entries': 1})[0]
+    put('<li class="col_title"><h2>特任研究员</h2></li><div class="col_news_list listcon"></div>')
+    assert not PF.charter_usable(con, 'capture', {'format': 'ustc_cs_cards', 'min_entries': 1})[0]

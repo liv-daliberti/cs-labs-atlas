@@ -230,6 +230,8 @@ def listing_slots(key):
             by[s['slot']] = dict(dept=d['code'], slot=s['slot'], kind=s.get('kind') or 'main', urls=[spec])
             if s.get('format'):
                 by[s['slot']]['format'] = s['format']   # plan_fetch reads s.get('format'); formats with no detector (hkust_faculty_table) need it
+            if s.get('min_entries') is not None:
+                by[s['slot']]['min_entries'] = s['min_entries']
             out.append(by[s['slot']])
     return out
 
