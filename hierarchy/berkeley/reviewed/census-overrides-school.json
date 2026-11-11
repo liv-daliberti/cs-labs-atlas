@@ -47,8 +47,8 @@
    2018
   ],
   "why_unproven": "Searched 2026-11-10: the Wayback CDX for the PI's EECS faculty page and the unit listing pages was queried for each gap year (stage 4 gap search over 56 PIs, one request series per URL and year, raw output scratch gaps-32196424.out); no archived capture of those years names the PI with a ladder title (no 2018 EECS listing capture exists in the archive for the listing URLs the census used). Papers of those years stay outside the appointment (R-PAP-01).",
-  "no_identity": true,
-  "why_no_identity": "Reviewed 2026-11-11: the package's DBLP id (258/7123) was chosen by exact name only and attributes 0 papers; A web search names a different DBLP person page (b/EricABrewer, UC Berkeley affiliation note) but dblp.org refused the automated read (bot challenge), so it could not be verified or bound. He is a listed emeritus PI (2016-2026); no papers are attributed until a verified person page is read (owner question queued). OpenAlex does hold one thin profile, A5138047047 'Eric A. Brewer' (ORCID 0000-0003-0250-9268, one 2019 work, Berkeley EECS affiliation string); not bound because one work does not establish the person."
+  "no_papers": true,
+  "why_no_papers": "Reviewed 2026-11-11: the identity is now anchored by ORCID and OpenAlex author A5138047047, but the stored OpenAlex works hold a single work for it and the built package's DBLP guess (258/7123) attributed 0 papers; no papers are attributed until a rebuild uses the bound identity and the verified DBLP pid. Emeritus PI listed 2016-2026."
  },
  "Phillip Colella": {
   "unproven_years": [
@@ -453,18 +453,18 @@
  },
  "Alice Agogino": {
   "no_papers": true,
-  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5108365897), but all 63 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures)."
+  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5108365897), but all 63 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures). Earlier-appointment evidence looked for: Search 2026-11-11 (standard web search; third-party/biographical pages, not saved as dated captures): Berkeley mechanical-engineering faculty since the mid-1980s (one encyclopedia source says 1984; a Blum Center profile says mid-1980s). None of it is a stored dated capture with a quote and sha256, so no period is admitted from it and no papers are attributed; a bounded capture of the official pages would allow a reviewed period (owner question queued)."
  },
  "Ian Holmes": {
   "no_papers": true,
-  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5054625887), but all 31 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures)."
+  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5054625887), but all 31 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures). Earlier-appointment evidence looked for: Search 2026-11-11 (third-party profile sites, no official Berkeley page found stating it): Berkeley assistant professor from 2004, associate 2010, full professor 2020. None of it is a stored dated capture with a quote and sha256, so no period is admitted from it and no papers are attributed; a bounded capture of the official pages would allow a reviewed period (owner question queued)."
  },
  "Ming Gu": {
   "no_papers": true,
-  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5103226688), but all 10 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures)."
+  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5103226688), but all 10 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures). Earlier-appointment evidence looked for: Search 2026-11-11 (Berkeley VC Research faculty profile and math department directory, read via search snippets): joined the Berkeley mathematics faculty July 2000 (Morrey assistant professor 1993-96, UCLA 1996-2000). None of it is a stored dated capture with a quote and sha256, so no period is admitted from it and no papers are attributed; a bounded capture of the official pages would allow a reviewed period (owner question queued)."
  },
  "Jenna Burrell": {
   "no_papers": true,
-  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5060940190), but all 13 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures)."
+  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5060940190), but all 13 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures). Earlier-appointment evidence looked for: Search 2026-11-11 (Berkeley I School announcement, snippets): associate professor at the I School before promotion to full professor in spring 2021; start date not found; 2021-22 leave at Data & Society. None of it is a stored dated capture with a quote and sha256, so no period is admitted from it and no papers are attributed; a bounded capture of the official pages would allow a reviewed period (owner question queued)."
  }
 }
