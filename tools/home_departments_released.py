@@ -62,7 +62,22 @@ def split_units(codes, aliases):
     return out
 
 
-def build(rows, centers, computing, overrides, aliases=None, staff_ranks=()):
+COURTESY = re.compile(r'courtesy|affiliated|adjunct|affiliate', re.I)
+
+
+def courtesy_units(x, units):
+    """Units whose own census sources all give a courtesy, affiliated or adjunct appointment (R-HOME-01: a courtesy appointment is not a home).
+    A unit is read from the sources whose kind or url names its code; a unit with no such source is never called courtesy."""
+    out = []
+    for u in units:
+        code = u.lower()
+        srcs = [s for s in x.get('sources') or [] if code in ((s.get('kind') or '') + ' ' + (s.get('url') or '')).lower() and (s.get('quote') or s.get('kind'))]
+        if srcs and all(COURTESY.search((s.get('kind') or '') + ' ' + (s.get('quote') or '')) for s in srcs):
+            out.append(u)
+    return out
+
+
+def build(rows, centers, computing, overrides, aliases=None, staff_ranks=(), courtesy=False):
     out, seen = [], set()
     for x in rows:
         if not x.get('is_pi') or x['name'] in seen:
@@ -72,6 +87,10 @@ def build(rows, centers, computing, overrides, aliases=None, staff_ranks=()):
         codes = split_units(raw, aliases or {})
         units = [c for c in codes if c not in centers]
         cent = [c for c in codes if c in centers]
+        courtesy_u = courtesy_units(x, units) if courtesy and len(units) >= 2 else []
+        if courtesy_u and len(courtesy_u) < len(units):   # every other unit is a real appointment: the courtesy units stay visible in `also`
+            cent = cent + courtesy_u
+            units = [u for u in units if u not in courtesy_u]
         b = x.get('pi_basis') or {}
         ev = dict(url=b.get('url'), sha256=b.get('sha256'), quote=b.get('quote'))
         row = dict(name=x['name'], home_department=None, also=cent, no_academic_department=False, status='hold', home_basis=None, evidence=ev, note='')
@@ -109,7 +128,7 @@ def main(key):
     centers = set(rules.get('centers') or [])
     computing = list(S.field(cfg, 'census.computing_departments') or [])
     rows = census_rows(_read(P.data('census-faculty.json', key), None)) + census_rows(_read(P.data('census-additions.json', key), []))
-    out = build(rows, centers, computing, decisions, rules.get('aliases') or {}, tuple(rules.get('staff_center_ranks') or ()))
+    out = build(rows, centers, computing, decisions, rules.get('aliases') or {}, tuple(rules.get('staff_center_ranks') or ()), bool(rules.get('drop_courtesy_units')))
     apply_reviewed_homes(out, decisions, lambda u: u)
     for r in out:
         r['school'] = key

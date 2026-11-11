@@ -130,7 +130,7 @@ def main(key, apply=False):
         changed = 0
         for x in rows:
             b = x.get('pi_basis') or {}
-            if not x.get('is_pi') or (b.get('url') and b.get('sha256') and b.get('quote') and x['name'] not in (hand_names(key).get('not_pi') or {})):
+            if (not x.get('is_pi') and x['name'] not in (hand_names(key).get('restore_pi') or {})) or (b.get('url') and x.get('is_pi') and b.get('sha256') and b.get('quote') and x['name'] not in (hand_names(key).get('not_pi') or {})):
                 continue
             if b.get('url') and b.get('quote') and not b.get('sha256'):
                 sha = capture_sha(key, b['url'], b['quote'])
@@ -148,6 +148,19 @@ def main(key, apply=False):
                 decisions.append(dict(name=x['name'], not_pi=nip))
                 changed += 1
                 continue
+            if x['name'] in (hand.get('restore_pi') or {}):   # a reviewed reversal of an earlier exclusion
+                x['is_pi'] = True
+                x.pop('not_pi_reason', None); x.pop('stage3_exclusion', None)
+                changed += 1
+            kd = (hand.get('basis_from_source_kind') or {}).get(x['name'])
+            if kd and not (b.get('url') and b.get('sha256') and b.get('quote')):
+                cands = [t for t in x.get('sources') or [] if kd in (t.get('kind') or '') and t.get('url') and t.get('sha256') and t.get('quote')]
+                if cands:
+                    t = max(cands, key=lambda q: str(q.get('observed') or ''))
+                    x['pi_basis'] = dict(b, url=t['url'], sha256=t['sha256'], quote=t['quote'], observed=t.get('observed'), basis_note=f'latest {kd} listing source (reviewed choice)')
+                    decisions.append(dict(name=x['name'], url=t['url'], sha256=t['sha256'], quote=t['quote'], via='source_kind'))
+                    changed += 1
+                    continue
             ex = (hand.get('explicit') or {}).get(x['name'])
             if ex:
                 sha, txt = capture_text_sha(key, ex['url'])

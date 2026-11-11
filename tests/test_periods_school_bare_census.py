@@ -1,9 +1,5 @@
 """periods_school reads a bare-list census and a school without rows.json (hand-composed released schools)."""
 import json
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import periods_school as PS  # noqa: E402
 import atlas_paths as P  # noqa: E402
 
