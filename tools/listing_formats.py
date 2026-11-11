@@ -35,6 +35,7 @@ formats
 """
 import html as H
 import re
+from bs4 import BeautifulSoup
 
 TAG = re.compile(r'<[^>]+>')
 
@@ -304,6 +305,31 @@ def jhu_bme_faculty(h):
         person = re.sub(r'(?:,\s*(?:MD|MSE|MS|PhD|ScD|MPH))+$', '', printed, flags=re.I)
         out.append(dict(name_listed=person, titles=_titles(title.group(1)) if title else [],
                         homepage=H.unescape(link.group(1)) if link else None, division=None))
+    return out
+
+
+def jhu_bme_complete_faculty(h):
+    """BME's older complete-faculty tables, including explicit appointment groups."""
+    soup = BeautifulSoup(h, 'html.parser')
+    main = soup.select_one('#main-content')
+    if not main or 'JHU BME complete faculty listing' not in main.get_text(' ', strip=True):
+        return []
+    out = []
+    for table in main.select('table.stripe'):
+        heading = table.find_previous('h2')
+        division = heading.get_text(' ', strip=True) if heading and heading in main.descendants else None
+        for tr in table.select('tr'):
+            cells = tr.select('td.people')
+            if len(cells) != 2:
+                continue
+            printed = ' '.join(cells[0].stripped_strings)
+            person = re.sub(r'(?:,\s*(?:MD|MSE|MS|PhD|ScD|MPH))+$', '', printed, flags=re.I)
+            title = ' '.join(cells[1].stripped_strings)
+            if len(person.split()) < 2 or not title:
+                continue
+            link = cells[0].find('a', href=True)
+            out.append(dict(name_listed=person, titles=[title],
+                            homepage=link['href'] if link else None, division=division))
     return out
 
 
@@ -1154,6 +1180,7 @@ FORMATS = {
     'wse_contact': (wse_contact, re.compile(r'class="contact_block"')),
     'jhu_cs_faculty_card': (jhu_cs_faculty_card, re.compile(r'class="highlight-box faculty-member-card"')),
     'jhu_bme_faculty': (jhu_bme_faculty, re.compile(r'class="zn-faculty-profile\s*"')),
+    'jhu_bme_complete_faculty': (jhu_bme_complete_faculty, re.compile(r'JHU BME complete faculty listing')),
     'wu_teaser': (wu_teaser, re.compile(r'class="faculty-directory__teaser"')),
     'isye_card': (isye_card, re.compile(r'class="w-100 px-0 pt-0 person-name"')),
 }

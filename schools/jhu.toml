@@ -187,11 +187,28 @@ unit = "Whiting School of Engineering and School of Medicine"
 title_match = '''Biomedical Engineering'''
 coverage = "affiliated"
 url = "https://bme.jhu.edu/"
+  # The archived 2016 homepage links /people/completefacultylist. The 2018
+  # homepage links its successor /people/complete-faculty/; both pages label
+  # appointment groups and carry full faculty tables.
+  [[departments.listings]]
+  slot = "BME faculty"
+  kind = "main"
+  url = "bme.jhu.edu/people/completefacultylist"
+  from = "20160101"
+  to = "20171231"
+  format = "jhu_bme_complete_faculty"
+  [[departments.listings]]
+  slot = "BME faculty"
+  kind = "main"
+  url = "www.bme.jhu.edu/people/complete-faculty/"
+  from = "20170101"
+  to = "20201231"
+  format = "jhu_bme_complete_faculty"
   [[departments.listings]]
   slot = "BME faculty"
   kind = "main"
   url = "bme.jhu.edu/people/faculty/"
-  from = "20160101"
+  from = "20200101"
   to = "20261231"
 
 # --- other units searched for computing-related faculty (stage 2); first guesses, added to when the OpenAlex rule names their people ---------
