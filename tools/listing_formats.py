@@ -45,6 +45,25 @@ def clean(s):
     return ' '.join(H.unescape(TAG.sub(' ', s)).split())
 
 
+def ustc_cs_cards(h):
+    """USTC CS rank pages: the heading is the appointment title, each news card is one person."""
+    soup = BeautifulSoup(h, 'html.parser')
+    heading = soup.select_one('li.col_title h2')
+    title = heading.get_text(' ', strip=True) if heading else ''
+    if not title:
+        return []
+    out = []
+    for card in soup.select('#wp_news_w6 li.news'):
+        link = card.select_one('.news_title a[href]')
+        if not link:
+            continue
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        if name:
+            out.append(dict(name_listed=name, titles=[title], homepage=None, division=None,
+                            profile=link['href']))
+    return out
+
+
 def eecs_table(h):
     out = []
     for m in re.finditer(r'<td valign="top">(.*?)</td>\s*</tr>', h, re.S | re.I):
@@ -1138,6 +1157,7 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
+    'ustc_cs_cards': (ustc_cs_cards, re.compile(r'id="wp_news_w6".{0,200}<ul class="news_list list2"', re.S)),
     'ntu_coe_cards': (ntu_coe_cards, re.compile(r'coe-about-leadership__card')),
     'ntu_profile_cards': (ntu_profile_cards, re.compile(r'ntu-profile-list')),
     'ntu_spms_table': (ntu_spms_table, re.compile(r"<strong[^>]*>[A-Z][A-Z' -]+, [A-Z]")),
@@ -1222,8 +1242,10 @@ def parse(h, fmt=None):
 def is_paged(html):
     """A capture of one page of a paged directory (pager markers and a ?page=N or ?pg=N link): it parses to a few people while the rest sit on pages
     the archive may not hold (UChicago CS 2017: 5 of about 45). listing_rows.py reports it and plan_fetch.charter_usable rejects it."""
-    return bool(re.search(r'class="pager"|class="pagination"', html) and
-                re.search(r'(?:[?&]|&amp;)(?:page=(?:%2C|,)?[1-9]\d*|pg=(?:[2-9]|[1-9]\d+))', html))
+    query_pager = bool(re.search(r'class="pager"|class="pagination"', html) and
+                       re.search(r'(?:[?&]|&amp;)(?:page=(?:%2C|,)?[1-9]\d*|pg=(?:[2-9]|[1-9]\d+))', html))
+    wp = re.search(r'<em class="all_pages">\s*(\d+)\s*</em>', html)
+    return query_pager or bool('class="wp_paging' in html and wp and int(wp.group(1)) > 1)
 
 
 def page_links(html, base_url):
@@ -1244,6 +1266,15 @@ def page_links(html, base_url):
             n = int(m.group(2)) - (1 if m.group(1) == 'pg' else 0)
             if n >= 1:
                 found.setdefault(n, u)
+    # Chinese university sites built with Webplus use /list2.htm, /list3.htm
+    # rather than a query parameter. The all_pages marker establishes the
+    # required count even when the pager elides middle links.
+    if 'class="wp_paging' in html and re.fullmatch(r'.*/list(?:\d+)?\.htm', base.path):
+        m = re.search(r'<em class="all_pages">\s*(\d+)\s*</em>', html)
+        if m and int(m.group(1)) > 1:
+            base_dir = base.path.rsplit('/', 1)[0]
+            return {n - 1: f'{base.scheme}://{base.netloc}{base_dir}/list{n}.htm'
+                    for n in range(2, int(m.group(1)) + 1)}
     if not found:
         return {}
     tmpl = found[min(found)]
