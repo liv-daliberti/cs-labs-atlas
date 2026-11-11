@@ -292,21 +292,55 @@ def stale_list(x, page_alumni):
 
 
 STAFF_RX = re.compile(r'\b(?:administrative|admin)\s+(?:associate|assistant|coordinator|manager)|\bexecutive assistant\b|\boffice manager\b|\b(?:program|student services|department) (?:coordinator|administrator|manager)\b', re.I)
+# Stanford round 7 (2026-11-11): the Contact block of a Stanford Profile lists the PI's administrators ('Contact Administrator Renee Quiroz',
+# 'Contact Admin. Support Melissa Cromosini', 'Alternate Contact Isabelle London'); the block's heading chain ends in 'Contact', and the
+# profile's degree line above it ('Ph.D., MIT, ... (2010)') had read it as a PhD-students section.
+CONTACT_HEAD_RX = re.compile(r'^\W*(?:alternate\s+|primary\s+)?contacts?\b', re.I)
+CONTACT_STAFF_RX = re.compile(r'\b(?:administrator|admin\.?\s+support|administrative(?:\s+support)?|alternate contact|assistant to)\s*$', re.I)
 FOOTER_YEAR_RX = re.compile(r'(?:©|\bcopyright\b|\blast (?:updated|modified)\b)\D{0,30}((?:19|20)\d\d)', re.I)
 
 
-def admin_staff_entry(head, desc, quote):  # head is accepted for symmetry with talk_item; the staff title in the entry decides
-    """Stanford round 6 (2026-11-02): an 'Administrative Associate' in the Contact block of a Stanford Profile (Jenny Lam) is staff, not a student of the lab."""
+PROSE_COLLAB_RX = re.compile(r'\b(?:worked|work|collaborated|collaborates?|collaborating|co-?authored)\s+(?:closely\s+)?with\s*$', re.I)
+CHAIR_AFTER_RX = re.compile(r'^\W{0,3}(?:co-?chairs?|chairs?|co-?advisors?|advisors?|committee|readers?)\b', re.I)
+
+
+def prose_nonmember(name, desc, quote):
+    """Stanford round 7: a name that is a faculty collaborator or committee chair, not a member. 'I also worked with Vahideh Manshadi' (Ashlagi) is
+    prose about a collaborator; 'Will Monroe (2018 ...; Lyn Frazier co-chair)' in a PI's dissertation list names the student's other chair."""
+    q = (quote or '').rstrip()
+    before = q[:-len(name)] if name and q.endswith(name) else ''
+    if PROSE_COLLAB_RX.search(before):
+        return 'a collaborator named in a sentence ("worked with ..."), not a member'
+    if CHAIR_AFTER_RX.search(desc or ''):
+        return 'named as a co-chair or adviser of a listed student, not a member'
+    return None
+
+
+def admin_staff_entry(head, desc, quote):
+    """Stanford rounds 6 and 7: an 'Administrative Associate' (Jenny Lam), or any name in the Contact block of a Stanford Profile (Pavone,
+    Demszky, Hinds, Wong: administrators and alternate contacts), is staff, not a student of the lab. The staff title in the entry decides, and
+    a student / PhD word in the entry itself keeps the name; a name under a heading that ends in 'Contact' is never read as an advisee."""
     t = f'{desc or ""} {quote or ""}'[:160]
-    return bool(STAFF_RX.search(t) and not re.search(r'\b(?:ph\.?d|student|postdoc|candidate|advisee)\b', t, re.I))
+    if re.search(r'\b(?:ph\.?d|student|postdoc|candidate|advisee)\b', t, re.I):
+        return False
+    last_head = (head or '').split(' > ')[-1] if ' > ' in (head or '') else (head or '')
+    if CONTACT_HEAD_RX.search(last_head):
+        return True
+    before = (quote or '').rsplit(' ', 2)[0] if quote else ''
+    return bool(STAFF_RX.search(t) or CONTACT_STAFF_RX.search(before))
 
 
 def stale_footer_year(text, capture_year=None):
-    """Stanford round 6 (open repair 2 of docs/LAB-PAGES.md): the newest year of a copyright / last-updated footer when it is before 2016,
-    else None. A page that says 'Copyright 2012' is an old page even when captured in 2024; its 'current' students are pre-window."""
+    """Stanford round 6 (open repair 2 of docs/LAB-PAGES.md) and round 7: the newest year of a copyright / last-updated footer when it is before 2016,
+    else None. A page that says 'Copyright 2012' is an old page even when captured in 2024; its 'current' students are pre-window. Round 7: a page
+    that also names any year from 2016 on is maintained (Kozyrakis's students page: footer 2008, entries to 2018), so the footer alone never decides."""
     ys = [int(m.group(1)) for m in FOOTER_YEAR_RX.finditer(text or '')]
     last = max(ys) if ys else None
-    return last if last and last < 2016 and (capture_year is None or capture_year >= last + 2) else None
+    if not last or last >= 2016 or (capture_year is not None and capture_year < last + 2):
+        return None
+    if any(int(y) >= 2016 for y in re.findall(r'(?<!\d)(20[12]\d)(?!\d)', text or '')):
+        return None
+    return last
 
 
 TALK_HEAD = re.compile(r'\b(?:invited talks?|keynotes?|talks?|awards?|honors?|service|news|outreach|organizer|new position)\b', re.I)
@@ -1479,7 +1513,7 @@ def entry_years(desc, head):
       '(Ph.D. in applied math 2014)' or 'PhD 2021' -> [None, 2014] (a degree year ends the stay); 'MIT Undergraduate Student, 2020'
       -> [2020, 2020]; a section heading that is only a year ('2019') -> that year, basis section_year_heading; else
       (None, 'none'): the build keeps undated students."""
-    tm = re.match(r'^\s{0,3}\|[^|]{1,100}\|\s*((?:19|20)\d\d)\b', desc or '')
+    tm = re.match(r'^\s{0,3}\|?\s*[^|]{1,100}\|\s*((?:19|20)\d\d)\b', desc or '')
     if tm:  # '| Stanford Univ. Medical Center | 2004' (a 'Past Doctoral Students' table): the year ends the stay (Stanford round 3)
         return [None, int(tm.group(1))], 'stated_in_entry'
     dm = re.search(r'\b[Dd]efended\b[^.\[]{0,50}?\b((?:19|20)\d\d)\b', (desc or '')[:220])
@@ -1584,7 +1618,8 @@ def current_page_url(x):
 
 
 NONPERSON_NAME = re.compile(r'\b(?:distinguished|invited|keynote)\s+(?:talk|lecture)\b|'
-                            r'^[A-Z0-9-]{2,}\s+(?:[Aa]rchitecture|[Rr]untime|[Pp]latform|[Ss]ystem)$')
+                            r'^[A-Z0-9-]{2,}\s+(?:[Aa]rchitecture|[Rr]untime|[Pp]latform|[Ss]ystem)$|'
+                            r"^[A-Za-z]+['\u2019]s\s+[A-Z]")   # a possessive title fragment ("Clifford's Geometric Algebra", Stanford round 7)
 NONMEMBER_SECTION = re.compile(r'\bstudent\s+(?:reports?|projects?)\b|\bprospective\b|\bjoin\s+(?:the|our)\s+team\b|'
                               r'\b(?:postdoc|postdoctoral|phd|student)\s+positions?\b|scholar profile|citation data', re.I)
 
@@ -1669,6 +1704,8 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'name_unresolved', 'site credit or footer'
             elif fn not in keep and admin_staff_entry(x.get('head'), x.get('desc'), x.get('quote')):
                 why, x['detail'] = 'not_a_student', 'administrative staff (a contact-block or staff entry), not a lab member'
+            elif fn not in keep and (pn := prose_nonmember(x['name'], x.get('desc'), x.get('quote'))):
+                why, x['detail'] = 'not_a_student', pn
             elif fn not in keep and (sy := page_stale_footer(kit, school, src, text_cache)):
                 why, x['detail'] = 'undated_cannot_place', f"the page's footer is dated {sy} (before 2016): an old page, its current list is pre-window"
             elif auto_plan and fn not in keep and (nonmember := nonmember_candidate(x.get('name'), x.get('head'))):
@@ -2167,7 +2204,7 @@ CITATION_CONTEXT = re.compile(r"\bpp\.\s*\d|\bPDF\s*\||\bView details for\b|\bPr
 
 ADMIN_DESC = re.compile(r"\b(?:Secretary|Administrative\s+(?:Assistant|Specialist|Associate|Staff)|Group\s+Administrator|Office\s+Manager|Executive\s+Assistant)\b", re.I)
 AFFILIATE_DESC = re.compile(r"^\W{0,3}(?:Research\s+|Senior\s+)?(?:Affiliate|Partner|Collaborator|Consulting\s+Professor|Adjunct)\b", re.I)
-PROF_TITLE_DESC = re.compile(r"^\W{0,3}(?:\(\s*)?(?:consulting|courtesy|adjunct|emeritus)\s+(?:associate\s+|assistant\s+|full\s+)?(?:professor|faculty|lecturer)\b|^\W{0,3}(?:Professor|Associate Professor|Assistant Professor)\b", re.I)
+PROF_TITLE_DESC = re.compile(r"^\W{0,3}(?:\(\s*)?(?:consulting|courtesy|adjunct|emeritus|clinical)\s+(?:associate\s+|assistant\s+|full\s+)?(?:professor|faculty|lecturer)\b|^\W{0,3}(?:Professor|Associate Professor|Assistant Professor)\b", re.I)
 BIO_TRIGGER = re.compile(r"(?:worked\s+(?:closely\s+)?with|advised\s+by|advis[eo]rs?\s+(?:was|were|is|are)|mentored\s+by|supervised\s+by|collaborat\w+\s+with|together\s+with|studied\s+under|under\s+the\s+(?:guidance|supervision)\s+of)\s+", re.I)
 BIO_TAIL = re.compile(r"^(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)(?:\s+(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)){0,3}(?:\s*(?:,|and|&)\s+(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)(?:\s+(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)){0,3})*\s*,?\s*(?:and\s+)?$")
 OTHER_INST_ROLE = re.compile(r"\b(?:MS|M\.S\.|MSc|PhD|Ph\.D\.|BS|B\.S\.|Undergrad(?:uate)?|Master'?s?)\s+(?:Student|Candidate|Researcher)?\s*,?\s*(MIT|Harvard|Caltech|Cornell|Yale|Princeton|Columbia|Oxford|Cambridge|ETH|EPFL|NUS|Tsinghua|Stanford|Berkeley|CMU|UCLA|UCSD|Toronto|Waterloo|Michigan)\b")
