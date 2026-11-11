@@ -2944,7 +2944,7 @@ def cmd_audit(school):
 DEGREE_SENTENCE = re.compile(r'\b(?:received|obtained|earned|holds|graduated with)\b[^.]{0,50}\b(?:B\.?\s?S\.?|M\.?\s?S\.?|Ph\.?\s?D\.?|Bachelor|Master|degree)', re.I)
 
 
-HEADING_ROLE_RX = re.compile(r"(Ph\.?\s?D\.?\s+Students?|Research\s+Associates|Research\s+Assistants|Visiting\s+Students?|Post-?docs?|Postdoctoral\s+\w+|Master\w*\s+Students?|Undergraduates?|Alumni|Research\s+Fellows|Interns?)", re.I)
+HEADING_ROLE_RX = re.compile(r"\b(Ph\.?\s?D\.?\s+Students?|Graduate\s+Students?|Doctoral\s+Students?|Research\s+Associates|Research\s+Assistants|Visiting\s+Students?|Post-?docs?|Postdoctoral\s+\w+|Master\w*\s+Students?|Undergraduates?|Alumni|Research\s+Fellows|Interns?)\b", re.I)
 
 
 def withhold_heading_conflict(kit, school, r):
