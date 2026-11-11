@@ -10,20 +10,20 @@ window = [2016, 2026]
 [ids]
 openalex = ["I165932596"]
 openalex_related = []
-openalex_excluded = []
+openalex_excluded = ["I4210150261", "I2802449453", "I4210130241", "I4389425422", "I4210146690", "I4210103786", "I4210126319", "I4210097409", "I4405278371"]
 ror = "https://ror.org/01tgyzw49"
-ids_note = "Local OpenAlex institutions snapshot checked 2026-11-11: I165932596 names National University of Singapore, SG, ROR 01tgyzw49. Lineage children include NUS Health System, Duke-NUS Medical School and NUS High School; owner lineage review remains open."
+ids_note = "Local OpenAlex institutions snapshot checked 2026-11-11: I165932596 names National University of Singapore, SG, ROR 01tgyzw49. Proposed exclusions are the health-system, hospital, clinical, Duke-NUS and high-school lineage nodes, which do not by themselves prove a primary-university faculty appointment. UMI MajuLab remains in the lineage, subject to individual PI evidence. Owner lineage review remains open."
 [web]
 domains = ["nus.edu.sg"]
 email_domains = ["nus.edu.sg", "comp.nus.edu.sg"]
 wayback_only_suffixes = []
 excluded_hosts = []
 [affiliation]
-regex = '\bnational\s+university\s+of\s+singapore\b|\bNUS\s*,?\s*Singapore\b|\b(?:[a-z0-9-]+\.)*nus\.edu\.sg\b'
+regex = '\bnational\s+university\s+of\s+singapore\b(?!\s+high\s+school\b)|\bNUS\s*,?\s*Singapore\b|\b(?:[a-z0-9-]+\.)*nus\.edu\.sg\b'
 loose = '\bnational\s+university\s+of\s+singapore\b|\bNUS\b|nus\.edu\.sg'
 own_units = ''
 must_match = ["National University of Singapore", "School of Computing, National University of Singapore", "NUS, Singapore", "person@comp.nus.edu.sg"]
-must_not_match = ["Nanyang Technological University", "Singapore Management University", "National Taiwan University", "NUS"]
+must_not_match = ["Nanyang Technological University", "Singapore Management University", "National Taiwan University", "NUS", "National University of Singapore High School of Mathematics and Science"]
 [dblp]
 affiliation_strings = ["National University of Singapore", "NUS, Singapore", "comp.nus.edu.sg"]
 legacy_sweep = ""

@@ -28,7 +28,7 @@ The following are the *proposed* charter rules. Confirm or revise them before de
 | School | Proposed boundary |
 | --- | --- |
 | USTC | Include the USTC primary institution; exclude the shared Collaborative Innovation Center of Advanced Microstructures, Suzhou Nano Science center and Deep Space Exploration Laboratory from automatic lineage admission. |
-| NUS | Include the NUS primary institution; hold NUS Health System, Duke-NUS Medical School and NUS High School out of automatic appointment inference until their relationship is decided. |
+| NUS | Include the NUS primary institution; exclude the health-system, hospital, clinical, Duke-NUS and high-school lineage nodes from automatic appointment inference. Keep UMI MajuLab in the lineage, with individual PI evidence still required. |
 | CUHK | Include Hong Kong CUHK; exclude CUHK Shenzhen from Hong Kong appointment inference. |
 | PKU | Include PKU and university-owned computing centers; exclude its affiliated high school and the HKUST Shenzhen Research Institute. Do not sweep hospitals as automatic PKU appointments. |
 | WHU | Exclude Duke Kunshan from automatic WHU appointment inference; treat Zhongnan and Renmin hospitals as related only, requiring explicit WHU raw affiliation. |
