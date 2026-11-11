@@ -2663,7 +2663,9 @@ STRICT_HEAD = re.compile(r'\b(students?|ph\.?\s?d|post-?docs?|post-?doctoral|alu
 HOMEPAGE_HEAD = re.compile(r'\b(students?|ph\.?\s?d|post-?docs?|post-?doctoral|advisees?|alumni|graduated|mentees|group members|'
                            r'lab members|research group|my group)\b', re.I)  # a homepage used as the people page: only these sections
 NOT_MEMBER_HEAD = re.compile(r'committee|publication|papers|thesis|theses|talks?|course|collaborat|co-?authors?|press|news|award|'
-                             r'service|editor|reviewer|program', re.I)
+                             r'service|editor|reviewer|program|\b[st]?pc\b|best[\w\s-]{0,24}paper', re.I)
+# Tsinghua 2026-11-11 (zhang han 14 rows, huang minlie 1): 'TPC member > <paper title>' matched STRICT_HEAD through 'member' and 'NLPCC 2020 (Best Student
+# Paper)' through 'student'; a technical-programme-committee list, a (S)PC heading or a best-paper heading is never a member list.
 
 
 def adapter_plan(kit, ctx, p, prior):
