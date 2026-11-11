@@ -703,8 +703,8 @@ class Kit:
             if not os.path.exists(path):
                 continue
             c = sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=60)
-            row = c.execute('SELECT status, content FROM captures WHERE url IN (?,?) AND capture_url IS NULL '
-                            'ORDER BY id DESC LIMIT 1', bases).fetchone()
+            row = c.execute('SELECT status, content FROM captures WHERE url IN (?,?) AND capture_url IS NULL AND error IS NULL '
+                            'ORDER BY id DESC LIMIT 1', bases)   # an error row (timeout) is 'unknown', never a Disallow.fetchone()
             c.close()
             if row:
                 recorded = True
@@ -802,6 +802,8 @@ def result_of(r):
     """A fetch result as a check result word."""
     if r.get('error') == 'robots-disallowed':
         return 'robots_disallowed'
+    if r.get('error') == 'robots-unknown':
+        return 'robots_unknown'
     if r.get('error') in ('bot-challenge', 'host-challenged-skip'):
         return 'bot_challenge'
     if r.get('error') == 'off-limits-host':

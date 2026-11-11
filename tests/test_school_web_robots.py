@@ -210,3 +210,30 @@ def test_robots_redirect_to_another_domain_stays_unreadable(tmp_path, monkeypatc
 def test_registered_domain():
     assert W.registered_domain('www.cs.stanford.edu') == 'stanford.edu'
     assert W.registered_domain('www.cs.ox.ac.uk') == 'ox.ac.uk'
+
+
+def test_transient_robots_timeout_is_retried_and_recorded_unknown_not_disallowed(tmp_path, monkeypatch):
+    import requests
+    from types import SimpleNamespace
+    monkeypatch.setattr(W, 'ROBOTS_RETRY_WAITS', (0, 0, 0))
+    monkeypatch.setattr(W.wb, 'db_path', W.wb.db_path)
+    monkeypatch.setattr(W, 'db_path', lambda key: tmp_path / 'c.sqlite')
+    calls = []
+
+    def get(url, **kw):
+        calls.append(url)
+        if len(calls) < 3:
+            raise requests.exceptions.Timeout('slow')
+        return SimpleNamespace(status_code=200, text='User-agent: *\nDisallow:\n', headers={})
+    monkeypatch.setattr(requests, 'get', get)
+    c = W.con('fixture')
+    st, body = W.robots_row(c, 'x.example.edu')
+    assert st == 200 and len(calls) == 3 and W.robots_decision(st, body, '/p')[:2] == (True, True)
+    # all attempts fail: status -1 (unknown), not cached, asked again next time
+    calls.clear()
+    monkeypatch.setattr(requests, 'get', lambda url, **kw: (_ for _ in ()).throw(requests.exceptions.Timeout('x')))
+    st, _ = W.robots_row(c, 'y.example.edu')
+    assert st == -1
+    monkeypatch.setattr(requests, 'get', lambda url, **kw: SimpleNamespace(status_code=404, text='', headers={}))
+    assert W.robots_row(c, 'y.example.edu')[0] == 404
+    c.close()

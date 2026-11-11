@@ -164,19 +164,46 @@ def shared_origin_slot(host, gap):
             fcntl.flock(handle, fcntl.LOCK_UN)
 
 
+ROBOTS_RETRY_WAITS = (5, 15, 40)   # seconds before attempts 2..4 at a robots.txt that timed out, failed to connect or answered 5xx/429
+
+
+def _robots_get(requests, url, waits=None):
+    """One robots.txt request with polite retries. A transient failure (timeout, connection error, 429, 5xx) is retried after the waits; if every attempt
+    fails the caller records status -1 ('unknown': unreachable) and the next run asks again (robots_row never caches a -1 row). It is never a Disallow:
+    robots_decision still refuses to authorize a fetch on it, but the audit must report 'robots_unknown', not 'robots_disallowed' (Nanyang, 2026-11-11:
+    two early timeouts stamped 129 listings robots_disallowed on an allow-all robots.txt)."""
+    waits = ROBOTS_RETRY_WAITS if waits is None else waits
+    last = None
+    for i in range(len(waits) + 1):
+        try:
+            r = requests.get(url, headers={'User-Agent': UA}, timeout=30, allow_redirects=False)
+            if r.status_code != 429 and r.status_code < 500:
+                return r
+            last = r
+        except Exception as e:  # noqa: BLE001
+            last, err = None, e
+        if i < len(waits):
+            time.sleep(waits[i])
+    if last is not None:
+        return last
+    raise err
+
+
 def robots_row(c, host, refresh=False, scheme='https', min_delay=0):
     """The host's robots.txt (stored in `robots`). scheme='http' reads http://host/robots.txt and stores it under the key 'http://host', apart from the HTTPS
     row: an explicitly approved exact-origin policy for a site that only serves http (ZJU, 2026-11-10); HTTPS permission is never inferred from it."""
     import requests
     key = host if scheme == 'https' else f'{scheme}://{host}'
     row = c.execute('select status, body from robots where host=?', (key,)).fetchone()
+    if row is not None and row[0] == -1:
+        row = None   # an unreachable robots.txt is 'unknown', not a decision: ask again
     if row is None or refresh:
         try:
             url = f'{scheme}://{host}/robots.txt'
             seen = {url}
             for hop in range(6):   # RFC 9309 2.3.1.2: follow at least five redirects
                 with shared_origin_slot(host, min_delay) if scheme == 'http' and min_delay else nullcontext():
-                    r = requests.get(url, headers={'User-Agent': UA}, timeout=30, allow_redirects=False)
+                    r = _robots_get(requests, url)
                 location = getattr(r, 'headers', {}).get('Location')
                 if scheme == 'http' and min_delay:  # the charter forbids following redirects
                     break

@@ -59,6 +59,7 @@ CHALLENGE_RX = re.compile(rb"(<title>\s*Just a moment|cf_chl_opt|cf-browser-veri
                           rb"Pardon Our Interruption|<title>\s*Access Denied\s*</title>|Verifying you are human)", re.I)
 
 _robots = {}
+_robots_unknown = set()
 _challenged = set()
 _sess = requests.Session()
 _sess.headers.update({"User-Agent": UA, "Accept": "text/html,application/xhtml+xml,application/json,*/*;q=0.8",
@@ -197,15 +198,26 @@ def robots_allowed(url, school):
         if row:
             st, body = row[0], (zlib.decompress(row[1]) if row[1] else b"")
         else:
-            _wait(sp.hostname or sp.netloc)
-            try:
-                r = _sess.get(base + "/robots.txt", timeout=TIMEOUT, allow_redirects=True)
-                st, body = r.status_code, r.content
-                _insert(con, base + "/robots.txt", r.url, None, st, body, r.headers.get("content-type"), None)
-            except Exception as e:
-                st, body = None, b""
-                _insert(con, base + "/robots.txt", None, None, None, None, None, repr(e)[:300])
+            st, body = None, b""
+            for waited in (0, 5, 15, 40):   # a transient timeout is retried (2026-11-11: two early timeouts stamped a whole school robots_disallowed)
+                if waited:
+                    time.sleep(waited)
+                _wait(sp.hostname or sp.netloc)
+                try:
+                    r = _sess.get(base + "/robots.txt", timeout=TIMEOUT, allow_redirects=True)
+                    st, body = r.status_code, r.content
+                    _insert(con, base + "/robots.txt", r.url, None, st, body, r.headers.get("content-type"), None)
+                    if st != 429 and st < 500:
+                        break
+                except Exception as e:
+                    st, body = None, b""
+                    _insert(con, base + "/robots.txt", None, None, None, None, None, repr(e)[:300])
+            if st is None or st == 429 or st >= 500:
+                con.close()
+                _robots_unknown.add(base)   # 'unknown', not Disallow: nothing is fetched on it, nothing is stamped disallowed, the next run asks again
+                return False
         con.close()
+        _robots_unknown.discard(base)
         txt = ""
         if st == 200:
             txt = body.decode("utf-8", "replace")
@@ -331,9 +343,11 @@ def fetch(school, url, force=False, check_robots=True, params=None, store_url=No
         con.close()
         return {"url": orig, "capture_url": cap, "status": None, "error": "host-challenged-skip", "content": b""}
     if check_robots and not cap and not host.endswith("archive.org") and not robots_allowed(url, school):
-        _insert(con, orig, None, cap, None, None, None, "robots-disallowed")
+        sp_ = urlsplit(url)
+        err = "robots-unknown" if f"{sp_.scheme}://{sp_.netloc}" in _robots_unknown else "robots-disallowed"
+        _insert(con, orig, None, cap, None, None, None, err)
         con.close()
-        return {"url": orig, "capture_url": cap, "status": None, "error": "robots-disallowed", "content": b""}
+        return {"url": orig, "capture_url": cap, "status": None, "error": err, "content": b""}
     try:
         for attempt in range(4):  # archive.org intermittently refuses connections: back off 15/45/90 s, then give up
             _wait(host)
