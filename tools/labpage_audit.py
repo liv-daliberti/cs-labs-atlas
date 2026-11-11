@@ -1578,6 +1578,9 @@ def entry_years(desc, head):
     if m and re.search(r'co-?advis|supervised', m.group(1), re.I):   # '(Co-Advised with Prof. X) (2020-, B.S. CS@ Y)': the dates sit in the next bracket (SJTU round 6)
         m2 = re.match(r'^\W{0,3}\([^()]{0,80}\)\s*\(([^()]{0,80})\)', d)
         m = m2 or m
+    cl = re.match(r'^\s*(?:,\s*[A-Z][\w.\'\u2019 -]+){2,}\s*\(((?:19|20)\d\d)\)', (desc or '')[:260])
+    if cl and not re.search(r'\b(?:alumni|former|graduated)\b', head or '', re.I):
+        return [int(cl.group(1)), None], 'stated_in_entry'   # 'Jiafeng Xu, Peiyu Chen, ... Yunkai Zheng (2020)': a cohort list, its one year is the entry year of each (SJTU round 6)
     ab = re.match(r'^\W{0,3}(?:\([^()]{0,100}\)\s*)+((?:19|20)\d\d)(?![\d./-])', d)
     if ab and not m_has_range(d) and not re.search(r'\b(?:alumni|former|graduated)\b', head or '', re.I):
         return [int(ab.group(1)), None], 'stated_in_entry'   # '(2024 Zhongyuan Scholarship) 2022': the bare year after award brackets is the cohort / entry year (SJTU round 6)
@@ -1653,12 +1656,18 @@ def entry_role(desc, head, role_of):
         pass   # 'Bachelor's from X, Hong Kong PhD Fellowship': the degree the person holds on arrival, not their role here (HKUST hand check 2026-11-10: 4 of 11 roles wrong); the section heading decides
     elif ROLE_NEAR.match(d):
         r = role_of(PRIOR_AT_RX.sub(' ', PRIOR_FROM_RX.sub(' ', PRIOR_DEGREE_ANY.sub(' ', d)))[:45])[0]   # 'Ph.D student, 2022/9/1 to present; B.S. from X': the degree after 'from' is prior education, never the role (HKUST Ling Shi roster)
+        if not r:   # the reader's vocabulary lacks 'Master Student' / 'PhD Student' after a Chinese given name (SJTU round 6, Jia Xiang)
+            fm = re.search(r"\b(master|m\.?s\.?|m\.?eng)['\u2019]?s?\s+students?\b|\b(ph\.?\s?d\.?|doctoral)\s+(?:student|candidate)\b|\bundergraduate\s+students?\b", PRIOR_AT_RX.sub(' ', PRIOR_FROM_RX.sub(' ', d))[:60], re.I)
+            if fm:
+                r = 'masters' if fm.group(1) else 'phd' if fm.group(2) else 'undergraduate'
         if r and r != 'member':
             return r, 'entry'
     h = (head or '').split(' > ')[-1]
     r = role_of(h)[0] if h else None
     if not r and head and ' > ' in head:
         r = role_of(head.split(' > ')[0])[0]
+    if r and r != 'member' and h and re.search(r'post-?doc\w*', h, re.I) and re.search(r'ph\.?\s?d|doctoral\s+student|graduate\s+student', h, re.I):
+        return None, 'none'   # a heading that mixes postdocs and PhD students states no role for its rows (NTU round 6: 'Current Post-doctorates and PhD students')
     if r and r != 'member':
         return r, 'section_heading'
     return None, 'none'
@@ -1715,6 +1724,9 @@ def nonmember_candidate(name, heading):
         return 'name_unresolved', 'a talk or technical noun phrase, not a full person name'
     if NONMEMBER_SECTION.search(heading or ''):
         return 'not_in_people_section', 'a report, recruiting or citation section, not a member roster'
+    h_ = (heading or '').split(' > ')[-1]
+    if re.search(r'\b(?:award|medal|prize|honou?rs?|recipient|scholarship|fellowship|thesis award)\b', h_, re.I) and not re.search(r'\b(?:students?|members?|people|team|alumni)\b', h_, re.I):
+        return 'not_in_people_section', 'an award / honour heading (a sentence about a recipient), not a member roster'   # NTU round 6: Zhaoxi Chen under 'NTU PhD Medal of Honour'
     return None
 
 def pm_candidates(kit, school, pi, plan, held):
@@ -1843,6 +1855,17 @@ def pm_candidates(kit, school, pi, plan, held):
                 why = 'not_in_people_section'
             x['why'] = why
             cands.append(x)
+    # the same person listed twice on a page (SJTU round 6/7): an incoming entry anywhere makes every entry of that person not a member yet; a person who is a current
+    # graduate student in one list is not also an alumnus-undergraduate of the same page (Haolan Zhang under 'Undergraduate Students')
+    inc_names = [x['name'] for x in cands if incoming_entry(x.get('desc'), x.get('quote'))]
+    cur_grad = [x for x in cands if x['role'] in ('phd', 'masters') and not x['alumni'] and not x['why']]
+    for x in cands:
+        if x['why'] or x['role'] == 'visiting':
+            continue
+        if inc_names and any(names.match_one(x['name'], n) for n in inc_names):
+            x['why'], x['detail'] = 'not_a_student', 'the same person is listed as an incoming student (a future year): not a member yet'
+        elif x['alumni'] and x['role'] == 'undergraduate' and any(c is not x and names.match_one(x['name'], c['name']) for c in cur_grad):
+            x['why'], x['detail'] = 'not_a_student', 'the same person is listed as a current graduate student on this page'
     start = plan.get('pi_start')
     page_alumni = {}
     for x in cands:
@@ -2042,6 +2065,19 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                 nm = nm_c
                 if role_c and (best.get('role') in (None, 'member', 'other', 'postdoc', 'phd') or (role_c == 'visiting' and best.get('role') != 'postdoc')):
                     best = dict(best, role=role_c, role_basis='entry_parenthetical')
+            if role_c in ('phd', 'masters') and best.get('role') == 'undergraduate' and best.get('alumni'):
+                # 'Haolan Zhang\uff08Ph.D, SJTU) 2023' under an 'Undergraduate Students' alumni heading: the bracket says he is now a graduate student here; the heading
+                # describes where he came from (SJTU round 6, \u9a6c\u53f6\u6db5's page)
+                best = dict(best, role=role_c, role_basis='entry_parenthetical', alumni=False)
+                if years:
+                    years = [years[1] or years[0], None]
+            if best.get('role') in (None, 'member'):
+                q_ = best.get('quote') or ''
+                j_ = q_.find(nm.split()[0]) if nm else -1
+                rm_ = re.search(r'\b(undergraduate|master|ph\.?\s?d|graduate)s?\s+students?\s+who\b[^.]{0,80}$', q_[:j_] if j_ > 0 else '', re.I)
+                if rm_:   # 'Undergraduate Students who have worked with me for more than 1 year Qian Cao Zhuoyan Chen': a lead-in sentence that names the role (SJTU round 6)
+                    k_ = rm_.group(1).lower()
+                    best = dict(best, role='undergraduate' if k_.startswith('under') else 'masters' if k_.startswith('master') else 'phd' if k_.startswith('ph') else 'phd', role_basis='entry')
             if SD.excluded(ctx_decisions(school), pi, nm):
                 miss['reason_code'], miss['detail'] = 'reviewer_excluded', 'decided not / unclear for this lab (student-decisions.json)'
                 continue
@@ -2324,6 +2360,10 @@ def clean_parenthetical_name(name):
     """('Linfeng Li (postdoc) (co-advisor)') -> ('Linfeng Li', 'postdoc'): trailing parentheticals are annotations, not the
     name; a role word in them is the entry's stated role (Michigan round 2)."""
     role, nm = None, name or ''
+    tl = re.search(r'\s+(post-?doctorate|post-?doc|postdoctoral(?:\s+fellow)?|research\s+(?:associate|assistant|fellow))\s*$', nm, re.I)
+    if tl and len(nm[:tl.start()].split()) >= 2:   # 'Zhai Chao Post-doctorate': the label glued to the name is the stated role, never a heading's phd (NTU round 6)
+        role = 'postdoc' if tl.group(1).lower().startswith('post') else 'other'
+        nm = nm[:tl.start()].strip()
     um = re.search(r'\s*[\uff08(]\s*(ph\.?\s?d|m\.?s\.?|b\.?s\.?|postdoc|master|undergrad\w*)\.?\s*$', nm, re.I)   # 'Haolan Zhang\uff08Ph.D': an unclosed bracket fragment (SJTU round 6, \u9a6c\u53f6\u6db5's page)
     if um and len(nm[:um.start()].split()) >= 2:
         for k, v in ROLE_PAREN:

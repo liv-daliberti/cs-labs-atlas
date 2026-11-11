@@ -62,3 +62,18 @@ def test_sjtu_round6_parse_items_from_the_stored_pages():
     assert L.entry_years('2019 ↝ 2020 Visit', None)[0] == [2019, 2020]
     assert L.entry_years('(2019-20 Visit)', None)[0] == [2019, 2020]
     assert L.entry_years('2019-20 Visit', None)[0] == [2019, 2020]
+
+
+def test_ntu_round6_and_sjtu_remaining_items():
+    ro = lambda t: ('phd' if re.search(r'ph\.?\s?d|doctoral', t, re.I) else 'postdoc' if re.search(r'post', t, re.I) else None, 'x')
+    # label glued to the name is the stated role
+    assert L.clean_parenthetical_name('Zhai Chao Post-doctorate') == ('Zhai Chao', 'postdoc')
+    # a mixed postdoc / PhD heading states no role
+    assert L.entry_role('', 'Current Post-doctorates and PhD students', ro) == (None, 'none')
+    assert L.entry_role('', 'PhD students', ro)[0] == 'phd'
+    # award / honour headings are not rosters
+    assert L.nonmember_candidate('Zhaoxi Chen', 'NTU PhD Medal of Honour')
+    assert L.nonmember_candidate('Zhaoxi Chen', 'CCDS Outstanding PhD Thesis Award')
+    assert not L.nonmember_candidate('Zhaoxi Chen', 'PhD Students')
+    # 'Master Student' after a Chinese given name when the reader does not know it
+    assert L.entry_role('(向嘉 Master Student, 2021-2024, Alibaba Cloud)', 'Alumni', lambda t: (None, None))[0] == 'masters'
