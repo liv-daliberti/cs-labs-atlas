@@ -1,0 +1,46 @@
+{
+ "kind": "fresh-reviewer samples of the CMU stage-3 website decisions made by tools/profile_links_live.py (adopted official-profile links, access reasons, reworded absence rows)",
+ "rounds": [
+  {
+   "seed": 20261111,
+   "packet": "review-packet-1.json",
+   "tally": {
+    "right": 14,
+    "wrong": 3,
+    "unverifiable": 3
+   },
+   "wrong": [
+    "Ben Titzer (listing-card link of a neighbour)",
+    "Eric Xing and Marijn Heule (profile links excluded as own pages)"
+   ],
+   "action": "fixed: per-person address required, own-page exclusion limited to the page itself; rerun"
+  },
+  {
+   "seed": 20261112,
+   "packet": "review-packet-2.json",
+   "tally": {
+    "right": 11,
+    "wrong": 2,
+    "doubtful": 1,
+    "unverifiable": 4
+   },
+   "wrong": [
+    "Vipul Goyal (area sites in text)",
+    "Vyas Sekar (personal link in free text)",
+    "Schwartz doubtful (centre site adopted)"
+   ],
+   "action": "fixed: absence wording scoped to labelled links, centre/research labels dropped, /~surname paths accepted; rerun"
+  },
+  {
+   "seed": 20261113,
+   "packet": "review-packet-3.json",
+   "tally": {
+    "right": 20,
+    "wrong": 0
+   },
+   "action": "accepted"
+  }
+ ],
+ "reviewer": "fresh general-purpose subagents (sonnet), live WebFetch of the official pages",
+ "unverifiable_cause": "RI people API returned 403 to the reviewer (rows excluded from round 3)"
+}
