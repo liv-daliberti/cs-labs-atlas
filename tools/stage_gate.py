@@ -22,6 +22,8 @@ wired into pi_hierarchy.py / chain_audit.py. Prints one JSON line per stage and 
               `no_papers` + `why_no_papers` (or `no_identity`), or lab-coverage-reasons has a `papers` reason (ROADMAP #43)
   0 charter   school_config check passes and every host of the charter is consistent (hosts.json)
   6 students  the lab-page students acceptance is accepted, and the chain audit's students and one_person checks are explained
+  5 also      per-PI lab-paper coverage (tools/pi_coverage.py, ONE ratchet constant RATCHET_LEVEL): gap share of PIs with neither lab papers nor a researched reason
+  6 also      per-PI student and student-link coverage (tools/pi_coverage.py, same ratchet)
   6 also      student recall (tools/student_recall.py; thresholds R1/U/R2/Z in ONE place there): a seeded stratified hand-check record bound to the
               build, strict recall on readable PIs, unverifiable share, PIs without students or a researched reason, estimated whole-school recall
   7 papers    the lab-page papers acceptance is accepted, and the chain audit's papers and links checks are explained
@@ -272,7 +274,9 @@ def g5(key):
             bad.append(f"{x['name']}: no DBLP id, ORCID or reviewed OpenAlex id")
     gaps = yield_gaps(key)   # an anchor that yields no papers is no anchor (ROADMAP #43)
     bad += [f"{name}: anchors yield 0 papers ({why})" for name, why in (gaps or [])]
-    return bad, dict(n, anchors_yield_checked=gaps is not None)
+    # PER-PI lab-paper coverage (owner 2026-11-12): evidence or a researched reason for each PI; the bar is pi_coverage.RATCHET_LEVEL
+    import pi_coverage as PC
+    return bad + PC.gate_items(key, 'papers'), dict(n, anchors_yield_checked=gaps is not None, **PC.gate_counts(key))
 
 
 def pi_reasons(key, name):
@@ -330,7 +334,9 @@ def g6(key):
     b2, n = audit_open(key, ('students', 'one_person'))
     # student RECALL (owner 2026-11-11): the acceptance above measures precision; this asks whether the students are all there (tools/student_recall.py)
     import student_recall as R
-    return bad + b2 + R.gate_items(key), dict(n, **R.gate_counts(key))
+    # PER-PI student and student-link coverage (owner 2026-11-12; bar: pi_coverage.RATCHET_LEVEL)
+    import pi_coverage as PC
+    return bad + b2 + R.gate_items(key) + PC.gate_items(key, 'students'), dict(n, **R.gate_counts(key), **PC.gate_counts(key))
 
 
 def g7(key):
