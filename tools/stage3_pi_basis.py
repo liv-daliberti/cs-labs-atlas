@@ -134,9 +134,24 @@ def main(key, apply=False):
                 continue
             if b.get('url') and b.get('quote') and not b.get('sha256'):
                 sha = capture_sha(key, b['url'], b['quote'])
+                via = 'capture'
+                if not sha:
+                    # Legacy censuses sometimes carry the exact basis quote as a
+                    # separately hashed listing source, while the original raw
+                    # capture database is no longer in the standard location.
+                    # Require an exact URL and whitespace-normalized quote match;
+                    # a nearby professor's title on a directory page is not a
+                    # basis for this person.
+                    exact = [s['sha256'] for s in x.get('sources') or []
+                             if s.get('url') == b['url'] and norm(s.get('quote')) == norm(b['quote'])
+                             and re.fullmatch(r'[0-9a-f]{64}', s.get('sha256') or '')]
+                    if len(set(exact)) == 1:
+                        sha = exact[0]
+                        via = 'exact_source'
                 if sha:
-                    x['pi_basis'] = dict(b, sha256=sha, basis_note='sha256 of the stored capture of the basis url that contains the quote (stage3_pi_basis.py)')
-                    decisions.append(dict(name=x['name'], url=b['url'], sha256=sha, quote=b['quote'], via='capture'))
+                    x['pi_basis'] = dict(b, sha256=sha, basis_note=('sha256 of the stored capture' if via == 'capture' else 'sha256 from the exact matching listed source')
+                                          + ' of the basis url and quote (stage3_pi_basis.py)')
+                    decisions.append(dict(name=x['name'], url=b['url'], sha256=sha, quote=b['quote'], via=via))
                     changed += 1
                     continue
             hand = hand_names(key)

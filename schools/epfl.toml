@@ -19,6 +19,33 @@ ids_note = "OpenAlex /institutions?filter=openalex_id 2026-10-29: display name a
 [web]
 domains = ["epfl.ch"]
 
+# Stage-0 routing for the institutional hosts used by the current faculty,
+# profile, and repository evidence. Historical ic.epfl.ch faculty pages are
+# read only from dated captures; the current IC directory is on www.epfl.ch.
+[[hosts]]
+host = "www.epfl.ch"
+use = "live"
+purpose = "current faculty directory and institutional pages"
+probe = "https://www.epfl.ch/schools/ic/about/faculty-members/"
+
+[[hosts]]
+host = "people.epfl.ch"
+use = "live"
+purpose = "faculty profiles and unit appointments"
+probe = "https://people.epfl.ch/daniel.thalmann?lang=en"
+
+[[hosts]]
+host = "infoscience.epfl.ch"
+use = "live"
+purpose = "institutional repository records and full texts"
+probe = "https://infoscience.epfl.ch/server/api/core/communities/search/top?page=0&size=1"
+
+[[hosts]]
+host = "ic.epfl.ch"
+use = "wayback-only"
+purpose = "historical IC faculty listings"
+probe = ""
+
 [affiliation]
 regex = '\bepfl\b|polytechnique\s+f[ée]d[ée]rale\s+de\s+lausanne|swiss\s+federal\s+institute\s+of\s+technology\s+(?:in\s+|at\s+)?lausanne|epfl\.ch'
 own_units = ''
