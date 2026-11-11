@@ -45,6 +45,23 @@ def clean(s):
     return ' '.join(H.unescape(TAG.sub(' ', s)).split())
 
 
+def cuhk_cse_faculty_table(h):
+    """CUHK CSE's faculty table: preserve the printed name, position and profile."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for tr in soup.select('table.foo-table tr'):
+        cells = tr.find_all('td', recursive=False)
+        if len(cells) < 6:
+            continue
+        name = ' '.join(cells[1].get_text(' ', strip=True).split())
+        title = ' '.join(cells[5].get_text(' ', strip=True).split())
+        profile = cells[1].select_one('a[href]')
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=None,
+                            division=None, profile=profile['href'] if profile else None))
+    return out
+
+
 def ustc_cs_cards(h):
     """USTC CS rank pages: the heading is the appointment title, each news card is one person."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1272,6 +1289,7 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
+    'cuhk_cse_faculty_table': (cuhk_cse_faculty_table, re.compile(r'class="[^"]*foo-table')),
     'purdue_cs_people': (purdue_cs_people, re.compile(r'class="people-item"')),
     'utaustin_cs_people': (utaustin_cs_people, re.compile(r'views-field-field-contact-faculty-title')),
     'utaustin_cs_faculty_legacy': (utaustin_cs_faculty_legacy, re.compile(r'class="prof-name"')),
