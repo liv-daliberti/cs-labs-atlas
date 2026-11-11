@@ -2317,7 +2317,7 @@ def repair_reason(kit, school, name, best, start, pi=None):
         if tg and tg.group(1).lower().startswith('affiliate'):
             return 'not_a_student', 'tagged Lab Affiliate (an outside affiliate of the group), not a lab member'
         lm = OTHER_INST_LABEL.match(t[k + len(name or ''): k + len(name or '') + 40])
-        if lm and best.get('role') != 'visiting' and not (set(re.findall(r'[A-Za-z]{2,}', lm.group(1).upper())) & (own_names(school, OWN_INST) | own_names(school, OWN_INST_NAMES) | {'SJTU', 'JIAO', 'TONG'})):
+        if lm and best.get('role') != 'visiting' and not re.match(r'\s*[(\[]?(?:19|20)\d\d', t[k + len(name or '') + lm.end(): k + len(name or '') + lm.end() + 8]) and not (set(re.findall(r'[A-Za-z]{2,}', lm.group(1).upper())) & (own_names(school, OWN_INST) | own_names(school, OWN_INST_NAMES) | {'SJTU', 'JIAO', 'TONG'})):
             return 'site_at_other_institution', f'the entry labels the person with {lm.group(1)} (a card list of the PI\'s collaborators and students elsewhere)'
         wide = t[max(0, k - 1500): k + 600]
         if COLLAB_LIST_HEAD.search(t[max(0, k - 1500): k]) and len({m.group(1) for m in OTHER_INST_ANY.finditer(wide)}) >= 2:
