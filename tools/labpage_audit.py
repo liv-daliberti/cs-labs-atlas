@@ -1533,7 +1533,7 @@ AWARD_WORDS = re.compile(r'scholarship|fellowship|award|prize|medal|honou?r|gran
 
 
 CURRENT_LIST_HEAD = re.compile(r'\b(?:current|present|active)\b|\u73b0\u5728|\u5728\u8bfb|\u5728\u6821', re.I)
-OPEN_MONTH_RX = re.compile(r'(?<![\d./])((?:19|20)\d\d)\s*[./]\s*(?:0?[1-9]|1[0-2])\s*(?:[-\u2013\u2014~\uff5e]\s*(?:\u81f3\u4eca|present|now|current)?|\u81f3\u4eca|to\s+(?:present|now))(?![\d./])', re.I)
+OPEN_MONTH_RX = re.compile(r'(?<![\d./])((?:19|20)\d\d)\s*[./]\s*(?:0?[1-9]|1[0-2])(?:\s*[./]\s*(?:0?[1-9]|[12]\d|3[01]))?\s*(?:[-\u2013\u2014~\uff5e]\s*(?:\u81f3\u4eca|present|now|current)?|\u81f3\u4eca|to\s+(?:present|now))(?![\d./])', re.I)
 
 
 def entry_years(desc, head):
@@ -1602,6 +1602,9 @@ def dissertation_entry_year(desc):
     return int(m.group(1)) if m else None
 
 
+PRIOR_FROM_RX = re.compile(r"\b(?:b\.?\s?s\.?c?|m\.?\s?s\.?c?|b\.?a\.?|b\.?eng|m\.?eng|m\.?phil|bachelor|master|undergraduate)['\u2019]?s?\s+(?:degree\s+)?from\b[^.;]{0,60}", re.I)
+
+
 def entry_role(desc, head, role_of):
     """(role, basis): the role the entry states right after the name ('(PhD student, ...)', ', Postdoc', 'MIT Undergraduate
     Student'), else the role its section heading names ('PhD Students', 'Post-doctoral Scholars'), else (None, 'none').
@@ -1623,7 +1626,7 @@ def entry_role(desc, head, role_of):
     if PRIOR_DEGREE.match(d):
         pass   # 'Bachelor's from X, Hong Kong PhD Fellowship': the degree the person holds on arrival, not their role here (HKUST hand check 2026-11-10: 4 of 11 roles wrong); the section heading decides
     elif ROLE_NEAR.match(d):
-        r = role_of(PRIOR_DEGREE_ANY.sub(' ', d)[:45])[0]
+        r = role_of(PRIOR_FROM_RX.sub(' ', PRIOR_DEGREE_ANY.sub(' ', d))[:45])[0]   # 'Ph.D student, 2022/9/1 to present; B.S. from X': the degree after 'from' is prior education, never the role (HKUST Ling Shi roster)
         if r and r != 'member':
             return r, 'entry'
     h = (head or '').split(' > ')[-1]

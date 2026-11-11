@@ -1,4 +1,5 @@
 """An open-ended 'PhD, 2024.9-' entry is a start year, still current (SJTU 马超 list, 2026-11-11)."""
+import re
 import labpage_audit as L
 
 
@@ -23,3 +24,11 @@ def test_bare_degree_year_in_a_current_list_is_an_entry_year():
     assert L.entry_years('Ph.D. 2023', 'Current and Former Students')[0] == [None, 2023]
     assert L.entry_years('Ph.D. 2023', None)[0] == [None, 2023]
     assert L.entry_years('Ph.D. 2019-2023', 'Current Students')[0] == [2019, 2023]
+
+
+def test_slash_date_open_start_and_prior_degree_after_from_is_not_the_role():
+    for d in ('Ph.D student, 2022/9/1 to present; B.S. from X', 'Ph.D student, 2022/9/1 - present. B.S. from X', 'Ph.D student 2022/9/1–'):
+        assert L.entry_years(d, None) == ([2022, None], 'stated_in_entry'), d
+    ro = lambda t: ('phd' if re.search(r'ph\.?\s?d', t, re.I) else 'undergraduate' if re.search(r'\bb\.?s\.?\b', t, re.I) else None, 'x')
+    assert L.entry_role('Ph.D student, 2022/9/1 to present; B.S. from Tsinghua University', 'Members', ro)[0] == 'phd'
+    assert L.entry_role('Ph.D student, 2022/9/1 to present', 'Members', ro)[0] == 'phd'
