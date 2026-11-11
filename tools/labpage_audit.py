@@ -2459,34 +2459,15 @@ def pi_family_tokens(pi):
     return list(dict.fromkeys(out)) or ['']
 
 
-_HAN = re.compile(r'[\u3400-\u9fff]')
-
-
 def pi_latin_given_family(p):
-    """[(family, given)] Latin readings of a PI's name, lower-cased: the record's own Latin names/aliases (e.g. 'Mingwei Xu' for the Han-keyed record) 
-    plus the pinyin of a Han name (tools/pinyin_signal, vendored pypinyin; first syllable = family, rest = given) after them."""
-    out, pinyin = [], []
-    for n in list(p.get('names') or []) + [p.get('pi')]:
-        n = str(n or '').strip()
-        if not n:
-            continue
-        if _HAN.search(n):
-            import pinyin_signal  # noqa: PLC0415  (vendored pypinyin, owner ruling 2026-11-12; a signal only; registry Latin names come first in `out`)
-            syl = pinyin_signal.syllables(n)
-            if len(syl) >= 2:
-                pinyin.append((syl[0], ''.join(syl[1:])))
-            continue
-        toks = [fold(t).lower() for t in re.findall(r"[A-Za-z][A-Za-z'\-]*", n)]
-        if len(toks) >= 2:
-            out += [(toks[-1], ''.join(toks[:-1]).replace('-', '')), (toks[0], ''.join(toks[1:]).replace('-', ''))]
-    return list(dict.fromkeys(out + pinyin))
+    import pi_name_signal as N
+    return N.readings(p.get('pi'), p.get('names'))
 
 
 def pi_full_name_on_page(text, p):
-    """A SIGNAL that a page is about the PI (never identity binding): both the family and the given part of one Latin/pinyin reading occur in the page text, in
-    either order and with the syllables of the given name joined or spaced. A family name alone (a namesake 'Zhang Wei' vs 'Zhuosheng Zhang') does not count."""
-    flat = re.sub(r"[\s'\-]+", '', fold(text).lower())
-    return any(f in flat and g in flat and len(g) >= 2 for f, g in pi_latin_given_family(p))
+    """A SIGNAL that a page is about the PI, never identity binding (tools/pi_name_signal.py; shared with lab_websites/person_fetch)."""
+    import pi_name_signal as N
+    return N.page_names_pi(text, p.get('pi'), p.get('names'))
 
 
 def page_lacks_pi(kit, school, p, best):

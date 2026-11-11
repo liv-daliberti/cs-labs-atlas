@@ -1,3 +1,5 @@
+import pytest
+
 import labpage_audit as L
 
 
@@ -25,6 +27,7 @@ def test_namesake_family_only_page_fails():
 
 
 def test_pinyin_signal_for_han_only_record_and_namesake_fails():
+    pytest.importorskip('pypinyin')
     p = {'pi': '章明星', 'names': ['章明星']}
     assert L.pi_full_name_on_page('Mingxing Zhang, associate professor', p)
     assert L.pi_full_name_on_page('Zhang Ming-Xing', p)
@@ -32,10 +35,27 @@ def test_pinyin_signal_for_han_only_record_and_namesake_fails():
     assert not L.pi_full_name_on_page('Ming Li and Xing Zhao', p)
 
 
-def test_vendored_pypinyin_loads_from_a_clean_interpreter():
-    import subprocess
-    import sys
-    code = ("import importlib.util as u; s = u.spec_from_file_location('ps', 'tools/pinyin_signal.py'); m = u.module_from_spec(s); s.loader.exec_module(m); "
-            "print(m.syllables('章明星'))")
-    r = subprocess.run([sys.executable, '-I', '-c', code], capture_output=True, text=True, cwd=str(__import__('pathlib').Path(__file__).resolve().parents[1]))
-    assert r.stdout.strip() == "['zhang', 'ming', 'xing']", r.stderr
+def test_pinyin_substrings_do_not_count():
+    pytest.importorskip('pypinyin')
+    p = {'pi': '李勇', 'names': ['李勇']}
+    assert not L.pi_full_name_on_page('Li and Yong are common syllables; Young Li lives in Lisbon', p)
+    assert L.pi_full_name_on_page('Dr. Yong Li, Tsinghua', p)
+
+
+def test_person_fetch_han_keyed_call_site():
+    import person_fetch as PF
+    body = b'<html><body><h1>Prof. Mingxing Zhang</h1></body></html>'
+    pytest.importorskip('pypinyin')
+    assert PF.names_person(body, '\u7ae0\u660e\u661f', ['\u7ae0\u660e\u661f'])[0]
+    assert PF.last_name_on_page(body, '\u7ae0\u660e\u661f', ['\u7ae0\u660e\u661f'])
+    ns = b'<html><body><h1>Wei Zhang, a namesake</h1></body></html>'
+    assert not PF.names_person(ns, '\u7ae0\u660e\u661f', ['\u7ae0\u660e\u661f'])[0]
+    assert not PF.last_name_on_page(ns, '\u7ae0\u660e\u661f', ['\u7ae0\u660e\u661f'])
+    alias = b'<html><body>Zhuosheng Zhang leads BCMI</body></html>'
+    assert PF.names_person(alias, '\u5f20\u5353\u5347', ['\u5f20\u5353\u5347', 'Zhuosheng Zhang'])[0]
+
+
+def test_latin_keyed_person_unchanged():
+    import person_fetch as PF
+    assert PF.names_person(b'<p>Jane Doe works here</p>', 'Jane Doe')[0]
+    assert not PF.names_person(b'<p>John Doe works here</p>', 'Jane Doe')[0]

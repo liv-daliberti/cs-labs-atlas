@@ -56,6 +56,7 @@ itself changes; `ecommon.use_extras()` appends the directory to the END of `sys.
 |---|---|---|
 | pipeline | requests | 45 files (collectors, census, channels, recovery tools), vendor/ |
 | | beautifulsoup4 (+ lxml parser) | 34 files (hierarchy tools, census), vendor/ |
+| | pypinyin (installed offline from the project-held wheel, owner 2026-11-12) | tools/labpage_audit.py: pinyin as a signal that a page names a Han-keyed PI, never identity evidence; tests skip without it |
 | | protego | the collector, lab_channels |
 | | rapidfuzz | fulltext-push/review_identity.py |
 | | pymupdf (`fitz`) | fulltext-push/local-reuse/identify.py |

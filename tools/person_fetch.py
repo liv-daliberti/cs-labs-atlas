@@ -35,11 +35,17 @@ def text_of(body):
     return ' '.join(re.sub(r'[^a-z0-9 ]+', ' ', ''.join(c for c in t if not unicodedata.combining(c)).lower()).split())
 
 
-def names_person(body, person):
-    """(True, quote) when the page text holds the person's first and last name; the quote is the text around the last name."""
+def names_person(body, person, names=None):
+    """(True, quote) when the page text holds the person's first and last name; the quote is the text around the last name. A Han-keyed person
+    (no Latin tokens) counts through pi_name_signal: the registry's Latin names `names`, then pinyin, family and given together."""
     t = text_of(body)
     toks = [w for w in re.sub(r'[^a-z ]+', ' ', text_of(person.encode())).split() if len(w) > 1]
     if len(toks) < 2:
+        import pi_name_signal as N
+        if N.HAN.search(person) or any(N.HAN.search(str(n)) for n in names or []):
+            if N.page_names_pi(t, person, names):
+                i = min((t.find(f) for f, _ in N.readings(person, names) if f in t), default=0)
+                return True, t[max(0, i - 60):i + 80]
         return False, None
     if toks[0] in t.split() and toks[-1] in t.split():
         i = t.find(toks[-1])
@@ -58,10 +64,13 @@ def plausible_owner(url, person):
 GENERIC = re.compile(r'feedback|post-a-job|machineshop|studentaffairs|life-design|/directory|/jobs?\b|careers|/news|/events?\b|/contact|login|/admissions', re.I)
 
 
-def last_name_on_page(body, person):
+def last_name_on_page(body, person, names=None):
     t = text_of(body).split()
     toks = [w for w in re.sub(r'[^a-z ]+', ' ', text_of(person.encode())).split() if len(w) > 1]
-    return bool(toks) and toks[-1] in t
+    if not toks:
+        import pi_name_signal as N
+        return N.page_names_pi(text_of(body), person, names)
+    return toks[-1] in t
 
 
 def registrable(host):

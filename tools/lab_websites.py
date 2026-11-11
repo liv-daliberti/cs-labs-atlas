@@ -590,6 +590,10 @@ def verify_websites(school, doc, near=None):
     mismatch (the page has no surname and the address has no name token, e.g. a student-affairs page) is dropped to `rejected_url` and the
     lab goes back to pending, so no unverified or wrong URL is shown as a lab's website."""
     from person_fetch import GENERIC, last_name_on_page, names_person, plausible_owner
+    try:
+        reg_names = {x['pi']: x.get('names') for x in json.loads(P.data('pis.json', school).read_text())}   # the registry's Latin names for Han-keyed PIs
+    except (OSError, ValueError, KeyError, TypeError):
+        reg_names = {}
     shared = {}
     for r in doc['labs']:
         if r.get('url'):
@@ -638,11 +642,11 @@ def verify_websites(school, doc, near=None):
         if body is None:
             r['verified'], r['unverified_reason'] = False, 'no stored capture of the page to check against'
             continue
-        r['verified'], quote = names_person(body, r['pi'])
+        r['verified'], quote = names_person(body, r['pi'], reg_names.get(r['pi']))
         if r['verified']:
             r['verification_quote'] = quote
             r.pop('unverified_reason', None)
-        elif (not last_name_on_page(body, r['pi']) and not plausible_owner(r['url'], r['pi'])
+        elif (not last_name_on_page(body, r['pi'], reg_names.get(r['pi'])) and not plausible_owner(r['url'], r['pi'])
               and (r.get('official_link_status') != 'recorded' or len(shared[normalized_link(r['url'])]) > 1 or GENERIC.search(r['url']))):
             r['rejected_url'] = r.pop('url')
             r['rejected_reason'] = (f"stored page does not name {r['pi']} (no surname on the page, none in the address) and the URL is "
@@ -654,7 +658,7 @@ def verify_websites(school, doc, near=None):
             r['evidence_gaps'] = list(r.get('evidence_gaps') or []) + ['website_rejected_page_does_not_name_pi']
             r['reason'] = r['rejected_reason'] + '; a new search is needed'
         else:
-            r['unverified_reason'] = 'stored page does not carry the PI full name' + (' (surname present)' if last_name_on_page(body, r['pi']) else ' (address names the PI)')
+            r['unverified_reason'] = 'stored page does not carry the PI full name' + (' (surname present)' if last_name_on_page(body, r['pi'], reg_names.get(r['pi'])) else ' (address names the PI)')
     return doc
 
 
