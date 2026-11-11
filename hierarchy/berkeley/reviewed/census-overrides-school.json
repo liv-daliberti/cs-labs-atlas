@@ -453,7 +453,27 @@
  },
  "Alice Agogino": {
   "no_papers": true,
-  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5108365897), but all 63 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures). Earlier-appointment evidence looked for: Search 2026-11-11 (standard web search; third-party/biographical pages, not saved as dated captures): Berkeley mechanical-engineering faculty since the mid-1980s (one encyclopedia source says 1984; a Blum Center profile says mid-1980s). None of it is a stored dated capture with a quote and sha256, so no period is admitted from it and no papers are attributed; a bounded capture of the official pages would allow a reviewed period (owner question queued). Live capture 2026-11-11 of best.berkeley.edu (lab) and me.berkeley.edu profile and the BEST biographical sketch (sha ae901247, 8040d997, eac8e97e): no page states her Berkeley appointment start (the sketch gives PhD 1984 and 1985-1992 awards only); a guessed Education-and-Employment page returned 404. No period admitted."
+  "why_no_papers": "Reviewed 2026-11-11: the identity is anchored (OpenAlex https://openalex.org/A5108365897), but all 63 identity-matched works fall outside the PI's only dated appointment (listing evidence starts 2026, one capture), so the build attributes no papers; earlier Berkeley listing years would need dated evidence (not found in the stored captures). Earlier-appointment evidence looked for: Search 2026-11-11 (standard web search; third-party/biographical pages, not saved as dated captures): Berkeley mechanical-engineering faculty since the mid-1980s (one encyclopedia source says 1984; a Blum Center profile says mid-1980s). None of it is a stored dated capture with a quote and sha256, so no period is admitted from it and no papers are attributed; a bounded capture of the official pages would allow a reviewed period (owner question queued). A reviewed period from 1984 now exists (owner-supplied personal CV; no official Berkeley page found stating it), but the built package was made with only the 2026 listing, so her 63 identity-matched works are still outside the appointment and attribute only after a package rebuild (drop this no_papers then).",
+  "periods": [
+   {
+    "id": "override_period_appointment_berkeley_alice_agogino",
+    "start": "1984-01-01",
+    "end": null,
+    "asof": "2026-11-11",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "owner-supplied-text:scratch/berkeley-admit-1110/owner-supplied-agogino-cv.txt",
+      "sha256": "825e0703574954e8b8b3ffc766c9815efb5e0daef99a77761fdd619ed040b789",
+      "quote": "Appointments at UC Berkeley (Mechanical Engineering): Assistant Professor 1984-1988; Associate Professor 1988-1992; Professor 1992-present",
+      "observed": "2026-11-11",
+      "kind": "owner_supplied_personal_cv"
+     }
+    ],
+    "note": "Source limits: Agogino's own CV pasted by the owner (text copy, no URL, sha is of the saved copy; not an official Berkeley page). The live capture of Berkeley ME and BEST-lab pages (2026-11-11) states no start year, so this rests on the personal CV alone; consistent with 'mid-1980s' in a 2015 Berkeley Blum Center profile (search snippet). Start is the first year of the ladder appointment, no end claimed.",
+    "reviewed": "berkeley_stage5_appointments_20261111"
+   }
+  ]
  },
  "Ian Holmes": {
   "no_papers": true,
@@ -521,9 +541,16 @@
       "quote": "I was a professor at the ISchool from 2007 until 2022.",
       "observed": "2026-11-11",
       "kind": "official_profile"
+     },
+     {
+      "url": "owner-supplied-text:scratch/berkeley-admit-1110/owner-supplied-burrell-cv.txt",
+      "sha256": "85701255b47d4a84abdc0e113349a5fb1819ee1e4bbfc3a2fe951f44c492f5bf",
+      "quote": "Full Professor, School of Information, UC-Berkeley, 2021 - 2022. Associate Professor, School of Information, UC-Berkeley, 2013 - 2021. Assistant Professor, School of Information, UC-Berkeley, 2007 - 2013.",
+      "observed": "2026-11-11",
+      "kind": "owner_supplied_personal_cv"
      }
     ],
-    "note": "Her I School profile states she was a professor there 2007-2022 (now listed adjunct); live fetch 2026-11-11, robots read first, raw bytes in hierarchy/berkeley/raw/appointment-captures-20261111.tar.gz. Year precision both ends. Her 2026 adjunct listing is a separate, non-ladder status.",
+    "note": "Her I School profile states she was a professor there 2007-2022 (now listed adjunct); live fetch 2026-11-11, robots read first, raw bytes in hierarchy/berkeley/raw/appointment-captures-20261111.tar.gz. Year precision both ends. Her 2026 adjunct listing is a separate, non-ladder status. End ambiguity: the official profile and her CV both print 2022, but the CV also lists Info 290 'Fall 2010 - present' and Data & Society 2021-2023 (leave versus departure not stated), and the school lists her as adjunct in 2026; the period is closed at 2022, the last year both sources evidence, with no extension claimed.",
     "reviewed": "berkeley_stage5_appointments_20261111"
    }
   ]
