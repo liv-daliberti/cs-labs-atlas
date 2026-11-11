@@ -111,26 +111,33 @@ title_match = '''教授|研究员|讲师|博士后|工程师|Professor|Lecturer'
 coverage = "full"
 url = "https://cs.whu.edu.cn/szdw/zrjs.htm"
   [[departments.listings]]
+  slot = "Legacy all-ranks faculty directory"
+  kind = "main"
+  url = "http://cs.whu.edu.cn/plus/list.php?tid=36"
+  from = "20160101"
+  to = "20181231"
+  format = "whu_cs_legacy"
+  [[departments.listings]]
   slot = "Full-time faculty"
   kind = "main"
   url = "cs.whu.edu.cn/szdw/zrjs.htm"
-  from = "20160101"
+  from = "20220101"
   to = "20261231"
   format = "whu_cs_zrjs"
   [[departments.listings]]
   slot = "High-level talents"
   kind = "main"
   url = "cs.whu.edu.cn/szdw/gccrc.htm"
-  from = "20160101"
+  from = "20220101"
   to = "20261231"
-  format = "whu_cs_zrjs"
+  format = "whu_cs_talents"
   [[departments.listings]]
   slot = "Emeritus"
   kind = "emeritus"
   url = "cs.whu.edu.cn/szdw/rxjs.htm"
-  from = "20160101"
+  from = "20220101"
   to = "20261231"
-  format = "whu_cs_zrjs"
+  format = "whu_cs_emeritus"
 
 # --- units searched for computing-related faculty (stage 2). Only computing labs count. ---------------------------------------------
 [[affiliated_units]]

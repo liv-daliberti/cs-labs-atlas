@@ -184,6 +184,70 @@ def uestc_college_teachers(h):
     return out
 
 
+def whu_cs_legacy(h):
+    """2016–2018 Wuhan CS directory: named records with one printed rank."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for row in soup.select('.j_name_num dd.j_name'):
+        link = row.select_one('.name a[href]')
+        rank = row.select_one('.job_name')
+        if not link or not rank:
+            continue
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        title = ' '.join(rank.get_text(' ', strip=True).split())
+        # The source also embeds empty templates and ambiguous composite
+        # ranks ("教授,副教授,讲师"); neither establishes one appointment.
+        if name and title in {'教授', '副教授', '讲师'}:
+            out.append(dict(name_listed=name, titles=[title], homepage=None,
+                            division=None, profile=link['href']))
+    return out
+
+
+def whu_cs_zrjs(h):
+    """2022+ Wuhan CS full-time faculty rows, excluding navigation and sex fields."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for row in soup.select('.teacher-list-item ul.li-xinxi li'):
+        link = row.select_one('.name a[href]')
+        rank = row.select_one('.zhichen')
+        if not link or not rank:
+            continue
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        title = ' '.join(rank.get_text(' ', strip=True).split())
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=None,
+                            division=None, profile=link['href']))
+    return out
+
+
+def whu_cs_talents(h):
+    """Wuhan CS high-level talents: named cards and their printed rank."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for card in soup.select('.talent-item li a[href]'):
+        name_el, rank = card.select_one('.title'), card.select_one('.technical')
+        if not name_el or not rank:
+            continue
+        name = ' '.join(name_el.get_text(' ', strip=True).split())
+        title = ' '.join(rank.get_text(' ', strip=True).split())
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=None,
+                            division=None, profile=card['href']))
+    return out
+
+
+def whu_cs_emeritus(h):
+    """Retired-faculty list; the page heading supplies the role category."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for link in soup.select('.teacher-list.honored .teacher-list-item li a'):
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        if name:
+            out.append(dict(name_listed=name, titles=['退休教师'], homepage=None,
+                            division=None, profile=None))
+    return out
+
+
 def utaustin_cs_people(h):
     """UT Austin CS Drupal faculty/researcher cards, with the listed appointment title."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1401,6 +1465,10 @@ FORMATS = {
     'utaustin_cs_faculty_legacy': (utaustin_cs_faculty_legacy, re.compile(r'class="prof-name"')),
     'ustc_cs_cards': (ustc_cs_cards, re.compile(r'class="col_news_list listcon"')),
     'uestc_college_teachers': (uestc_college_teachers, re.compile(r'urltype=tsites\.CollegeTeacherList.*?class="ex_img"', re.S)),
+    'whu_cs_legacy': (whu_cs_legacy, re.compile(r'class="j_name_num"')),
+    'whu_cs_zrjs': (whu_cs_zrjs, re.compile(r'class="teacher-list-item".*?class="li-xinxi"', re.S)),
+    'whu_cs_talents': (whu_cs_talents, re.compile(r'class="talent-item"')),
+    'whu_cs_emeritus': (whu_cs_emeritus, re.compile(r'class="teacher-list honored')),
     'ustc_cs_legacy_sidebar': (ustc_cs_legacy_sidebar, re.compile(r'(?!)')),
     'ntu_coe_cards': (ntu_coe_cards, re.compile(r'coe-about-leadership__card')),
     'ntu_profile_cards': (ntu_profile_cards, re.compile(r'ntu-profile-list')),
