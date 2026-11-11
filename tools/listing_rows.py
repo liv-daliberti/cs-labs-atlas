@@ -205,6 +205,49 @@ def catalog_listing_coverage(key):
     return out
 
 
+def washu_catalog_listing_coverage(key):
+    """Count only complete, source-checked faculty sections in dated WashU bulletins.
+
+    Academic editions establish a roster for their start year. They do not
+    establish an individual person's appointment dates or identity.
+    """
+    if key != 'washu':
+        return []
+    manifest = P.HIERARCHY / key / 'reviewed' / 'historical-source-review.json'
+    data = json.loads(manifest.read_text())
+    assert data['school'] == key
+    db = P.LISTINGS / key / 'raw' / 'catalog-captures.sqlite'
+    expected = {(year, dept) for year in range(2016, 2020) for dept in ('BME', 'CSE', 'ESE')}
+    found, out = set(), []
+    with sqlite3.connect(f'file:{db}?mode=ro', uri=True) as c:
+        for record in data['records']:
+            year = int(record['academic_edition'][:4])
+            dept = record['dept']
+            if (year, dept) not in expected:
+                continue
+            if (year, dept) in found or record['academic_edition'] != f'{year}-{str(year + 1)[-2:]}':
+                raise ValueError(f'duplicate or misdated WashU catalog section: {year} {dept}')
+            found.add((year, dept))
+            url, sha = record['source_url'], record['sha256']
+            saved = c.execute('select year,status,sha256,raw_zlib,content_type from captures where url=?', (url,)).fetchone()
+            if not saved or saved[:3] != (year, 200, sha) or saved[4] != 'application/pdf':
+                raise ValueError(f'WashU catalog source mismatch: {year} {dept}')
+            raw = zlib.decompress(saved[3])
+            if not raw.startswith(b'%PDF-') or hashlib.sha256(raw).hexdigest() != sha:
+                raise ValueError(f'WashU catalog hash mismatch: {year} {dept}')
+            with tempfile.NamedTemporaryFile(suffix='.pdf') as f:
+                f.write(raw); f.flush()
+                text = subprocess.run(['pdftotext', '-raw', f.name, '-'],
+                                      capture_output=True, check=True, text=True).stdout
+            quote = ' '.join(record['quote'].split())
+            if len(quote) < 1000 or not quote.startswith('Faculty Chair ') or quote not in ' '.join(text.split()):
+                raise ValueError(f'WashU faculty section absent or partial: {year} {dept}')
+            out.append((dept, year, f'official graduate bulletin {year}–{year + 1}', 'ok'))
+    if found != expected:
+        raise ValueError(f'WashU catalog sections missing: {sorted(expected - found)}')
+    return out
+
+
 def catalog_person_rows(key):
     """Import full-name graduate catalog role lists after catalog_listing_coverage verified the originals.
 
@@ -347,7 +390,7 @@ def main(key):
     rows.extend(live)
     n.update(live_counts)
     n['rows'] += len(live)
-    catalog_coverage = catalog_listing_coverage(key)
+    catalog_coverage = catalog_listing_coverage(key) + washu_catalog_listing_coverage(key)
     catalog_rows = catalog_person_rows(key)
     rows.extend(catalog_rows)
     n['catalog_rows'] += len(catalog_rows)
