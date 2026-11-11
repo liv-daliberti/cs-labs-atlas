@@ -396,6 +396,12 @@ def faculty_evidence(pages, names, teaching_title=''):
                 pt = PROF_T.search(seg)
                 if not pt or pt.start() > 60:
                     continue
+                # A flat directory can concatenate several people before the next
+                # professor title. "Imre Leader Dr Kaisey Mandel ... Professor"
+                # describes Mandel, not Leader; a named Dr/Prof before the rank
+                # starts a new entry even when the title is within 60 characters.
+                if re.search(r'\b(?:Dr|Prof)\.?\s+[A-Z][\w’\'-]+', seg[:pt.start()]):
+                    continue
                 q = flat[m.start():m.end() + pt.end()]
                 # the rank is read up to the title's own 'Professor': the 'of <unit>' tail can run on into a second
                 # appointment ('Associate Professor of Information, School of Information and Research Associate
