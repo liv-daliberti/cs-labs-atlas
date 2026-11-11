@@ -45,6 +45,63 @@ def clean(s):
     return ' '.join(H.unescape(TAG.sub(' ', s)).split())
 
 
+def nus_cs_legacy_tables(h):
+    """Old NUS CS faculty tables, excluding administrators and research assistants."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for table in soup.select('table'):
+        head = table.select_one('tr')
+        if not head or not re.search(r'\bName\s+Designation\b', head.get_text(' ', strip=True)):
+            continue
+        for tr in table.select('tr')[1:]:
+            cells = tr.find_all('td', recursive=False)
+            if len(cells) < 2:
+                continue
+            name = ' '.join(cells[0].get_text(' ', strip=True).split())
+            title = ' '.join(cells[1].get_text(' ', strip=True).split())
+            if not re.search(r'\b(?:Professor|Lecturer|Instructor)\b', title, re.I):
+                continue
+            link = cells[0].select_one('a[href]')
+            if name and title:
+                out.append(dict(name_listed=name, titles=[title], homepage=None,
+                                division=None, profile=link['href'] if link else None))
+    return out
+
+
+def nus_cs_inline_roster(h):
+    """NUS CS page's source-embedded faculty arrays; receipts quote the raw source code."""
+    out, seen = [], set()
+    for suffix in ('', '_research', '_teaching', '_adjunct', '_courtesy'):
+        block = re.search(r'\$scope\.allStaffs' + suffix + r'\s*=\s*\[(.*?)\n\s*\];', h, re.S)
+        if not block:
+            continue
+        body = block.group(1)
+        pat = re.compile(r'\{\s*name:\s*"(?P<name>(?:\\.|[^"\\])*)"\s*,\s*title:\s*"(?P<title>(?:\\.|[^"\\])*)"', re.S)
+        matches = list(pat.finditer(body))
+        for i, m in enumerate(matches):
+            name = H.unescape(m.group('name')).strip()
+            title = H.unescape(m.group('title')).strip()
+            if not name or not re.search(r'\b(?:Professor|Lecturer|Instructor)\b', title, re.I):
+                continue
+            segment = body[m.end():matches[i + 1].start() if i + 1 < len(matches) else len(body)]
+            dept = re.search(r'\bDept:\s*"([^"]+)"', segment)
+            if dept and dept.group(1) != '252':
+                continue
+            bio = re.search(r'\bBio:\s*"([^"\\]*)"', segment)
+            key = (name, title)
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(dict(name_listed=name, titles=[title], homepage=None,
+                            division=None, profile=bio.group(1) if bio else None,
+                            quote_raw=m.group(0)))
+    return out
+
+
+def nus_cs_any(h):
+    return nus_cs_inline_roster(h) if '$scope.allStaffs' in h else nus_cs_legacy_tables(h)
+
+
 def cuhk_cse_faculty_table(h):
     """CUHK CSE's faculty table: preserve the printed name, position and profile."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1318,6 +1375,7 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
+    'nus_cs_any': (nus_cs_any, re.compile(r'(?!)')),
     'cuhk_cse_any': (cuhk_cse_any, re.compile(r'(?!)')),
     'cuhk_erg_cse_directory': (cuhk_erg_cse_directory, re.compile(r'class="people-dept-wrap"')),
     'cuhk_cse_faculty_table': (cuhk_cse_faculty_table, re.compile(r'class="[^"]*foo-table')),

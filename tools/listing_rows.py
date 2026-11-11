@@ -66,7 +66,10 @@ def listing_rank(titles, dept_titles, kind=None, extra=None):
     return 'courtesy' if kind == 'courtesy' and rank == 'ladder' else rank
 
 
-def quote_of(flat, e):
+def quote_of(flat, e, raw=None):
+    if 'quote_raw' in e and raw is not None:
+        quote = e['quote_raw']
+        return quote if quote in raw and e['name_listed'] in quote and all(t in quote for t in e['titles']) else None
     if 'quote' in e:
         # A card-specific quote avoids an earlier navigation copy of the name.
         # Require the literal source string to include its stated role.
@@ -425,7 +428,7 @@ def main(key):
                 if slot in title_filters and not any(title_filters[slot].search(t) for t in e['titles']):
                     n['entries_outside_title_filter'] += 1
                     continue
-                q = quote_of(flat, e)
+                q = quote_of(flat, e, h)
                 if not q:
                     n['entries_without_quote'] += 1; continue
                 dt = [t for t in e['titles'] if tm.get(dept, re.compile('.')).search(t)]
