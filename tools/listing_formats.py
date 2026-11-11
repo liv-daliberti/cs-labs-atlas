@@ -84,6 +84,13 @@ def cuhk_erg_cse_directory(h):
     return out
 
 
+def cuhk_cse_any(h):
+    """One charter slot spans the Engineering directory and later CSE table eras."""
+    if 'people-dept-wrap' in h:
+        return cuhk_erg_cse_directory(h)
+    return cuhk_cse_faculty_table(h)
+
+
 def ustc_cs_cards(h):
     """USTC CS rank pages: the heading is the appointment title, each news card is one person."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1311,6 +1318,7 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
+    'cuhk_cse_any': (cuhk_cse_any, re.compile(r'(?!)')),
     'cuhk_erg_cse_directory': (cuhk_erg_cse_directory, re.compile(r'class="people-dept-wrap"')),
     'cuhk_cse_faculty_table': (cuhk_cse_faculty_table, re.compile(r'class="[^"]*foo-table')),
     'purdue_cs_people': (purdue_cs_people, re.compile(r'class="people-item"')),
