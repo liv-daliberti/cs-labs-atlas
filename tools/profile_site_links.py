@@ -21,11 +21,13 @@ import lab_websites as LW  # noqa: E402
 import school_web as W  # noqa: E402
 
 ANCHOR = re.compile(r'<a\b[^>]*?href\s*=\s*["\']([^"\'#][^"\']*)["\'][^>]*>(.*?)</a>', re.I | re.S)
+EXTLINK = re.compile(r'<li class="external-link"><a\b[^>]*?href="([^"]+)"[^>]*?class="([^"]*)"[^>]*>(.*?)</a>', re.I | re.S)   # profiles.stanford.edu 'Links' section
 TAG = re.compile(r'<[^>]+>')
 KEYWORD = re.compile(r'web\s?site|home\s?page|personal|\blab\b|laborator|\bgroup\b|\bmy\b|research (?:group|page)|\bcentre\b|\bcenter\b', re.I)
 GENERIC_HOSTS = re.compile(r'(?:^|\.)(?:stanford\.edu|stanfordhealthcare\.org|stanfordchildrens\.org|orcid\.org|doi\.org|google\.com|linkedin\.com|twitter\.com|x\.com|'
                            r'facebook\.com|youtube\.com|webofscience\.com|pubmed\.gov|nih\.gov|dblp\.org|openalex\.org|wikipedia\.org|instagram\.com|researchgate\.net)$', re.I)
 STANFORD_GENERIC_PATH = re.compile(r'^(?:www|visit|giving|profiles|cs|engineering|soe|med|ee|me|statistics|stanford)\.stanford\.edu$|^(?:www\.)?stanford\.edu$', re.I)
+NOISE = re.compile(r'(?:^|\.)(?:stvp\.stanford\.edu|dblp\.uni-trier\.de|semanticscholar\.org|ted\.com|awards\.acm\.org|acm\.org|scholar\.google\.com|profiles\.stanford\.edu|cap\.stanford\.edu)$', re.I)
 GENERIC_PROFILE_LINK = re.compile(r'/(?:people|profile|profiles|intranet|directory|faculty|search|about|news|events)(?:/|$|\?)', re.I)
 
 
@@ -79,6 +81,7 @@ def profile_pages(row, domain):
 
 def candidate_links(html, base, pi):
     out = []
+    ext = {h.replace('&amp;', '&'): c for h, c, _ in EXTLINK.findall(html or '')}
     for href, inner in ANCHOR.findall(html or ''):
         if href.startswith(('mailto:', 'tel:', 'javascript:')):
             continue
@@ -92,7 +95,10 @@ def candidate_links(html, base, pi):
         if host.endswith('.stanford.edu') and STANFORD_GENERIC_PATH.match(host):
             # a path on a department host is a PI page only when it is a ~user page or names the PI
             generic_site = not (re.search(r'/~[^/]+', sp.path) or family(pi) in fold(sp.path))
-        if generic_site or GENERIC_PROFILE_LINK.search(sp.path) and host == urlsplit(base).hostname:
+        if NOISE.search(host) or generic_site or GENERIC_PROFILE_LINK.search(sp.path) and host == urlsplit(base).hostname:
+            continue
+        if href.replace('&amp;', '&') in ext and ext[href.replace('&amp;', '&')].lower() not in ('cv', 'cv-url'):
+            out.append((u, text or ext[href.replace('&amp;', '&')]))   # listed in the profile's own Links section (class Lab Site / Personal Site / Other)
             continue
         if not (KEYWORD.search(text) or family(pi) in fold(host + ' ' + sp.path)):
             continue
@@ -100,10 +106,34 @@ def candidate_links(html, base, pi):
     return out
 
 
+def follow(c, u, domain, hops=2):
+    """W.live never follows a redirect (charter: the target must be policy-checked). Here a 3xx whose Location is on the same host or a *.<domain> host is
+    followed one hop at a time through W.live, which checks robots for each exact target. Returns (final_url, live-result) or (u, None-like result)."""
+    import json as _j
+    res = W.live(c, u)
+    for _ in range(hops):
+        if not res or not (300 <= res[0] < 400):
+            break
+        row = c.execute('select raw_zlib from live where url=?', (u,)).fetchone()
+        try:
+            loc = _j.loads(zlib.decompress(row[0])).get('location')
+        except Exception:  # noqa: BLE001
+            loc = None
+        if not loc:
+            break
+        t = urljoin(u, loc)
+        h = urlsplit(t).hostname or ''
+        if not (h == urlsplit(u).hostname or re.search(r'(?:^|\.)' + re.escape(domain) + r'$', h)) or LW.selection_gaps(t) or NOISE.search(h):
+            break
+        u, res = t, W.live(c, t)
+    return u, res
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('key'); ap.add_argument('--in', dest='inp', required=True); ap.add_argument('--out', required=True)
     ap.add_argument('--fetch', action='store_true', help='fetch live profile ?tab=bio pages and the linked sites (robots honoured, paced)')
+    ap.add_argument('--pending', action='store_true', help='also process pending_archive rows (live reads only; no Wayback)')
     ap.add_argument('--limit', type=int, default=0)
     a = ap.parse_args()
     import labpage_audit as L
@@ -114,7 +144,7 @@ def main():
     now = lambda: time.strftime('%Y-%m-%dT%H:%M:%S+00:00', time.gmtime())  # noqa: E731
     n = 0
     for r in doc['labs']:
-        if r.get('coverage') not in ('reason', 'pending') or r.get('reason_type') == 'pending_archive' or \
+        if r.get('coverage') not in ('reason', 'pending') or (r.get('reason_type') == 'pending_archive' and not a.pending) or \
                 any(str(x.get('provenance', '')).startswith('stage3_excluded') for x in r.get('checks') or []):
             continue   # (pending_archive rows wait for the Wayback job; PI-excluded rows have no profile of a PI)
         if a.limit and n >= a.limit:
@@ -147,12 +177,12 @@ def main():
             continue
         stats['with_link'] += 1
         chosen, blocked = None, None
-        for u, text, pu, sha in uniq[:4]:
+        for u, text, pu, sha in uniq[:8]:
             if LW.selection_gaps(u):
                 continue
             if not a.fetch:
                 continue
-            res = W.live(c, u)
+            u, res = follow(c, u, domain)
             if res is None:
                 blocked = blocked or (u, text, pu, sha, 'robots_or_blocked')
                 continue
@@ -162,7 +192,7 @@ def main():
                 continue
             if st != 200 or not body_sha:
                 continue
-            if family(r['pi']) not in fold(W.flat(blocks)) and family(r['pi']) not in fold(u):
+            if family(r['pi']) not in fold(W.flat(blocks)) and family(r['pi']) not in fold(u) and not (KEYWORD.search(text) or re.search(r'/~[^/]+', u) or text.startswith('http')):
                 stats['not_pi'] += 1
                 continue
             chosen = (u, text, pu, sha, body_sha)
