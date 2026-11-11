@@ -62,6 +62,28 @@ def cuhk_cse_faculty_table(h):
     return out
 
 
+def cuhk_erg_cse_directory(h):
+    """Engineering faculty index, restricted to its CSE department label."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for card in soup.select('.view-content .people-wrap'):
+        department = card.select_one('.people-dept-wrap')
+        name_el = card.select_one('.people-name-wrap')
+        title_el = card.select_one('.people-title-wrap')
+        if not department or not name_el or not title_el:
+            continue
+        dept = ' '.join(department.get_text(' ', strip=True).split())
+        if dept not in {'Computer Science and Engineering', 'Computer Science & Engineering'}:
+            continue
+        name = ' '.join(name_el.get_text(' ', strip=True).split())
+        title = ' '.join(title_el.get_text(' ', strip=True).split())
+        link = card.select_one('.people-website a[href]')
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=None,
+                            division=None, profile=link['href'] if link else None))
+    return out
+
+
 def ustc_cs_cards(h):
     """USTC CS rank pages: the heading is the appointment title, each news card is one person."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1289,6 +1311,7 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
+    'cuhk_erg_cse_directory': (cuhk_erg_cse_directory, re.compile(r'class="people-dept-wrap"')),
     'cuhk_cse_faculty_table': (cuhk_cse_faculty_table, re.compile(r'class="[^"]*foo-table')),
     'purdue_cs_people': (purdue_cs_people, re.compile(r'class="people-item"')),
     'utaustin_cs_people': (utaustin_cs_people, re.compile(r'views-field-field-contact-faculty-title')),
