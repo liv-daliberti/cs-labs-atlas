@@ -444,10 +444,7 @@ def capture(key, pi, url, file=None, store=None, sleep=time.sleep):
 
 def page_text(raw):
     """The visible text of a stored page, whitespace-collapsed, accent-folded and lower-cased (a name or quote must be a substring of it)."""
-    try:
-        s = raw.decode('utf-8')
-    except UnicodeDecodeError:
-        s = raw.decode('gb18030', 'replace')
+    s = decode_page(raw)
     s = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', s)
     if not re.search(r'(?i)<html|<body', s[:5000]):   # a data file (XML: names in attributes): the attribute values are its text
         s = re.sub(r'(?s)<[^>]+>', lambda m: ' ' + ' '.join(re.findall(r'="([^"]*)"', m.group(0))) + ' ', s)
@@ -455,12 +452,19 @@ def page_text(raw):
     return norm_text(s)
 
 
+def decode_page(raw):
+    """A stored page as text: UTF-16 (BOM) and UTF-8 first, then GB18030 (the Chinese schools' legacy pages)."""
+    if raw[:2] in (b'\xff\xfe', b'\xfe\xff'):
+        return raw.decode('utf-16', 'replace')
+    try:
+        return raw.decode('utf-8')
+    except UnicodeDecodeError:
+        return raw.decode('gb18030', 'replace')
+
+
 def page_text_lines(raw):
     """The visible text of a stored page with line breaks kept at block ends (for a checker to read), links dropped."""
-    try:
-        s = raw.decode('utf-8')
-    except UnicodeDecodeError:
-        s = raw.decode('gb18030', 'replace')
+    s = decode_page(raw)
     s = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', s)
     s = re.sub(r'(?i)</(p|div|li|tr|h\d|section|ul|table)>|<br\s*/?>', '\n', s)
     s = html.unescape(re.sub(r'(?s)<[^>]+>', ' ', s)).replace('\xa0', ' ')

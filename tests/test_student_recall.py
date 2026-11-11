@@ -279,3 +279,8 @@ def test_gitignore_whitelists_the_recall_record_for_every_school():
     for key in ('mit', 'stanford', 'anyschool'):
         r = subprocess.run(['git', 'check-ignore', '-q', f'hierarchy/{key}/reviewed/student-recall-check.json'], cwd=root)
         assert r.returncode == 1, f'{key}: the recall record is git-ignored'
+
+
+def test_page_text_reads_utf16_pages():
+    raw = '<html><body>Ada Lovelace</body></html>'.encode('utf-16')
+    assert 'ada lovelace' in R.page_text(raw) and 'Ada Lovelace' in R.page_text_lines(raw)
