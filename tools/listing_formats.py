@@ -107,7 +107,7 @@ def purdue_cs_people(h):
             out.append(dict(name_listed=name, titles=[role], homepage=None,
                             division=None, profile=link['href']))
     if not out:
-        for tr in soup.select('.main-content table.directory tr'):
+        for tr in soup.select('table.directory tr'):
             cells = tr.find_all('td', recursive=False)
             if len(cells) < 2:
                 continue
