@@ -227,3 +227,9 @@ def test_capture_live_stops_at_refusal_and_challenge(tree, monkeypatch):
     monkeypatch.setattr(W, 'live', lambda conn, url: (999, 'x', []))
     with pytest.raises(SystemExit, match='challenge'):
         R.capture('u', 'PI00', 'https://x.example/a', store=c, sleep=lambda s: None)
+
+
+def test_thresholds_are_coherent():
+    t = R.THRESHOLDS
+    assert (t['R1'], t['U'], t['R2'], t['Z'], t['X']) == (0.90, 0.30, 0.60, 0.05, 0.20)
+    assert t['R2'] <= (1 - t['U']) * t['R1']   # unverifiable counts as 0 recall, so R2 is bounded by (1-U) x R1

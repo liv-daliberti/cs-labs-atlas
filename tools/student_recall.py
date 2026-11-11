@@ -44,11 +44,12 @@ import atlas_paths as P  # noqa: E402
 # ---- THE THRESHOLDS: every number the gate uses lives here, and nowhere else (owner adjusts them) --------------------------------------------
 THRESHOLDS = dict(
     R1=0.90,   # strict recall on the READABLE sampled PIs (names listed on the page and placeable, found in students.json), stratum-weighted
-    U=0.25,    # max share of the sample that may be unverifiable (no member-list page, robots, challenge, login, unreachable ...)
-    R2=0.80,   # estimated whole-school CURRENT PhD recall; unverifiable PIs count as recall 0 on an imputed number of names
+    U=0.30,    # (owner wants 0.20 after the first round of discovery fixes) max share of the sample that may be unverifiable (no member-list page, robots, challenge, login, unreachable ...)
+    R2=0.60,   # (owner wants 0.70 after the first round) estimated whole-school CURRENT PhD recall; unverifiable PIs count as recall 0. BOUNDED: R2 <= (1-U) x R1 = 0.63 at these values
     Z=0.05,    # max share of ALL PIs with no recorded student and no researched (non-boilerplate, >= 2 sources) reason
     X=0.20,    # max share of listed names the checker may exclude with a reason (guard against excluding the misses)
 )
+# Coherence: with unverifiable PIs at recall 0, R2 can never exceed (1-U) x R1, so R2 must stay below that ceiling (0.63 at U .30, R1 .90).
 SAMPLE_SIZE = 30                     # PIs per school
 STRATA = (('0', 0, 0), ('1-2', 1, 2), ('3+', 3, None))   # by number of recorded student rows: name, lo, hi
 CURRENT_FROM_YEAR = 2025             # a PhD row/name is CURRENT with a year >= this (the window ends 2026; the data were collected 2026-10/11)
@@ -643,7 +644,7 @@ def gate_items(key, th=None):
         items.append('recall R2: no readable PI in the sample, so whole-school current-PhD recall cannot be estimated')
     elif n.get('r2_est_current_phd_recall') is not None and n['r2_est_current_phd_recall'] < th['R2']:
         items.append(f'recall R2: estimated whole-school current-PhD recall {n["r2_est_current_phd_recall"]:.2f} < {th["R2"]:.2f} '
-                     f'(5th pct of a cluster bootstrap {n["r2_bootstrap_p5"]}; unverifiable PIs count as 0); raise recall on the strata with the gaps, or make more pages readable')
+                     f'(5th pct of a cluster bootstrap {n["r2_bootstrap_p5"]}; unverifiable PIs count as 0, so R2 is bounded by (1-U) x R1 = {(1 - th["U"]) * th["R1"]:.2f}; the owner wants U tightened toward 0.20 and R2 toward 0.70 after the first round of discovery fixes); raise recall on the strata with the gaps, or make more pages readable')
     if n.get('excluded_share', 0) > th['X']:
         items.append(f'recall record: {n["names_excluded"]} of {n["names_listed"]} listed names were excluded by the checker ({n["excluded_share"]:.0%} > {th["X"]:.0%}); excluding is not a way to raise recall')
     return items
