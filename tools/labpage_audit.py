@@ -697,14 +697,20 @@ class Kit:
     def _ai_allowed(self, url):
         import urllib.robotparser
         sp = urlsplit(url)
-        bases = (f'http://{sp.netloc}/robots.txt', f'https://{sp.netloc}/robots.txt')
+        # the URL's own scheme first; a stored redirect (301..308) or an error row (timeout) is 'unknown', never a Disallow, and defers to the other scheme
+        other = 'https' if sp.scheme == 'http' else 'http'
+        bases = (f'{sp.scheme}://{sp.netloc}/robots.txt', f'{other}://{sp.netloc}/robots.txt')
         body, st, recorded = '', None, False
         for path in [str(self.store), self.lpcap.DBS[self.school]]:
             if not os.path.exists(path):
                 continue
             c = sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=60)
-            row = c.execute('SELECT status, content FROM captures WHERE url IN (?,?) AND capture_url IS NULL AND error IS NULL '
-                            'ORDER BY id DESC LIMIT 1', bases)   # an error row (timeout) is 'unknown', never a Disallow.fetchone()
+            row = None
+            for base in bases:
+                row = c.execute('SELECT status, content FROM captures WHERE url=? AND capture_url IS NULL AND error IS NULL '
+                                'AND status NOT IN (301,302,303,307,308) ORDER BY id DESC LIMIT 1', (base,)).fetchone()
+                if row:
+                    break
             c.close()
             if row:
                 recorded = True

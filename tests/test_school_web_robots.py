@@ -237,3 +237,24 @@ def test_transient_robots_timeout_is_retried_and_recorded_unknown_not_disallowed
     monkeypatch.setattr(requests, 'get', lambda url, **kw: SimpleNamespace(status_code=404, text='', headers={}))
     assert W.robots_row(c, 'y.example.edu')[0] == 404
     c.close()
+
+
+def test_audit_ai_allowed_uses_own_scheme_and_ignores_error_and_redirect_rows(tmp_path):
+    import sqlite3
+    import zlib
+    from types import SimpleNamespace
+    import labpage_audit as A
+    db = tmp_path / 's.sqlite'
+    c = sqlite3.connect(db)
+    c.execute('create table captures (id integer primary key, url text, capture_url text, status int, content blob, error text)')
+    rows = [('https://h.edu/robots.txt', 200, zlib.compress(b'User-agent: *\nDisallow: /private/\n'), None),
+            ('http://h.edu/robots.txt', 301, zlib.compress(b'moved'), None),
+            ('https://h.edu/robots.txt', None, None, 'Timeout()')]
+    for u, st, b, e in rows:
+        c.execute('insert into captures (url,capture_url,status,content,error) values (?,?,?,?,?)', (u, None, st, b, e))
+    c.commit()
+    c.close()
+    kit = SimpleNamespace(store=str(db), school='x', lpcap=SimpleNamespace(DBS={'x': str(db)}))
+    assert A.Kit._ai_allowed(kit, 'https://h.edu/faculty') is True
+    assert A.Kit._ai_allowed(kit, 'http://h.edu/faculty') is True
+    assert A.Kit._ai_allowed(kit, 'https://h.edu/private/x') is False
