@@ -265,7 +265,7 @@ def run_slot(school, s, con, pis, max_tries=2):
                 st, b = ensure_extracted(con, cap)
                 good, why = slot_usable(con, cap, s, b, st, pis, school)
                 pages = {}
-                if good and getattr(_CFG.get(school), "CHARTER", False):
+                if (good or (why or '').startswith('paged directory')) and getattr(_CFG.get(school), "CHARTER", False):
                     good, why = charter_usable(con, cap, s)
                     if not good and why and why.startswith("paged directory"):
                         # R3: a paged directory is one listing: fetch every page of the same half-year and keep the plan row only when all are archived
