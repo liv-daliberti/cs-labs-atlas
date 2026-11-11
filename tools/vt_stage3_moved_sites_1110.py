@@ -31,6 +31,21 @@ SITES = (
      'Previously: Assistant Professor, CS at Virginia Tech', 'Rutgers Business School'),
     ('Francisco Servant', 'https://fservant.github.io/',
      'Francisco was Assistant Professor at Virginia Tech', 'Universidad de Málaga'),
+    ('Tanushree Mitra', 'https://faculty.washington.edu/tmitra/',
+     'From August 2017 to 2020, I was an assistant professor in the Department of Computer Science at Virginia Tech.',
+     'the University of Washington'),
+    ('Aisling Kelliher', 'https://cinema.usc.edu/faculty/profile.cfm?id=62323',
+     'Aisling Kelliher, Ph.D. Associate Professor of Cinematic Arts', 'the University of Southern California'),
+    ('Alla Rozovskaya', 'https://www.cs.qc.cuny.edu/rozovskaya.html',
+     'Dr. Alla Rozovskaya Associate Professor', 'Queens College, CUNY'),
+    ('Anuj Karpatne', 'https://anujkarpatne.github.io/',
+     'Before coming to UF, I spent eight wonderful years at Virginia Tech as a faculty member in the Department of Computer Science from 2018 to 2026.',
+     'University of Florida'),
+    ('Ismini Lourentzou', 'https://isminoula.github.io/',
+     'I am an Assistant Professor at the University of Illinois Urbana-Champaign (UIUC)',
+     'University of Illinois Urbana-Champaign'),
+    ('Ha Rim Rho', 'https://eugeniarho.com/',
+     'Eugenia Ha Rim Rho', 'Emory University'),
 )
 
 

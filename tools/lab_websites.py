@@ -26,7 +26,7 @@ INSTITUTIONAL_ROOT = re.compile(r'^(?:www\.)?(?:hkust\.edu\.hk|ust\.hk|hkust-gz\
 IDENTITY_INDEX_HOST = re.compile(r'(?:^|\.)(?:orcid\.org|dblp\.org|openalex\.org|researchgate\.net|scholar\.google\.[a-z.]+)$', re.I)
 ABSENCE_REASONS = {
     'profile_only_no_homepage', 'no_web_presence_found', 'site_dead_no_wayback',
-    'host_blocked_by_robots', 'host_challenge_no_wayback', 'pi_left_school_site_moved',
+    'host_blocked_by_robots', 'host_access_blocked', 'host_challenge_no_wayback', 'pi_left_school_site_moved',
     'site_at_other_institution', 'new_arrival_no_site_yet', 'emeritus_or_admin_no_lab',
 }
 
@@ -131,7 +131,7 @@ def entry(rec):
             out['reason_type'] = 'other_institution'
         elif results & {'wayback_only_host', 'wayback_deferred', 'cooldown', 'http_429'}:
             out['reason_type'] = 'pending_archive'
-        elif results & {'robots_disallowed', 'bot_challenge', 'off_limits', 'http_403'}:
+        elif results & {'robots_disallowed', 'bot_challenge', 'off_limits', 'http_403', 'host_access_blocked'}:
             out['reason_type'] = 'access_blocked'
         elif code == 'site_dead_no_wayback':
             out['reason_type'] = 'site_unavailable'

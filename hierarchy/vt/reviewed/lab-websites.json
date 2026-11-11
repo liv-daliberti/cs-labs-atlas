@@ -1035,7 +1035,7 @@
     {
       "pi": "Xun (Steve) Jian",
       "url": "https://people.cs.vt.edu/xunj/PC/homepage.html",
-      "coverage": "website",
+      "coverage": "reason",
       "kind": "pi_homepage",
       "found_from": {
         "kind": "official_page",
@@ -1046,7 +1046,29 @@
       "fetched": false,
       "sha256": null,
       "names_person": null,
-      "other_urls": []
+      "other_urls": [],
+      "reason_code": "host_access_blocked",
+      "reason": "The official VT faculty profile links a PI site, but the linked host disallows this research crawler. A different candidate URL has not been promoted without an official link chain.",
+      "reason_type": "access_blocked",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://people.cs.vt.edu/xunj/PC/homepage.html",
+          "on": "https://website.cs.vt.edu/people/faculty/xun-jian.html",
+          "result": "listed",
+          "at": "2026-11-10",
+          "source_sha256": "9d86df00eb5117d61fd2f1702adda4c02be039f3822dae4cf16e9fcb17a02be3",
+          "literal_href": "https://people.cs.vt.edu/xunj/PC/homepage.html"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://people.cs.vt.edu/xunj/",
+          "result": "robots_disallowed",
+          "at": "2026-11-10"
+        }
+      ]
     },
     {
       "pi": "Christine Julien",
@@ -1254,7 +1276,7 @@
     },
     {
       "pi": "Huaicheng Li",
-      "url": "https://people.cs.vt.edu/~huaicheng/",
+      "url": "https://huaicheng.github.io/",
       "coverage": "website",
       "kind": "pi_homepage",
       "found_from": {
@@ -1264,10 +1286,48 @@
         "via": "codex website verification: literal_official_profile_link"
       },
       "fetched": true,
-      "sha256": "4f1ba16024425a8055a8f4aa2d23079439928f1b410baa3dfa8fa47ee344ce3a",
-      "names_person": false,
+      "sha256": "b92b144ccb495bcfb937a8ba67dc58bfdf2b2091523d94260cf7ad63368dafc4",
+      "names_person": true,
       "other_urls": [
         "https://huaicheng.github.io/"
+      ],
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "found_via": "official_link_chain",
+      "listed_on": "https://website.cs.vt.edu/people/faculty/huaicheng-li.html",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "official_link_chain",
+          "url": "https://huaicheng.github.io/",
+          "on": "https://website.cs.vt.edu/people/faculty/huaicheng-li.html",
+          "result": "listed",
+          "at": "2026-11-10",
+          "provenance_chain": [
+            {
+              "source_url": "https://website.cs.vt.edu/people/faculty/huaicheng-li.html",
+              "url": "https://people.cs.vt.edu/~huaicheng/",
+              "href": "https://people.cs.vt.edu/~huaicheng/",
+              "source_sha256": "81121ea565cf665bea5f1906781dc0935ce4564e650828ff88b40f322a5698bd",
+              "source_fetched_at": "2026-11-10T16:34:43"
+            },
+            {
+              "source_url": "https://people.cs.vt.edu/~huaicheng/",
+              "url": "https://huaicheng.github.io/",
+              "href": "https://huaicheng.github.io",
+              "source_sha256": "4f1ba16024425a8055a8f4aa2d23079439928f1b410baa3dfa8fa47ee344ce3a",
+              "source_fetched_at": "2026-11-10T17:13:04"
+            }
+          ]
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://huaicheng.github.io/",
+          "result": "ok",
+          "at": "2026-11-10",
+          "sha256": "b92b144ccb495bcfb937a8ba67dc58bfdf2b2091523d94260cf7ad63368dafc4",
+          "names_person": true
+        }
       ]
     },
     {
@@ -1356,7 +1416,7 @@
     {
       "pi": "Kurt Luther",
       "url": "https://people.cs.vt.edu/kluther/newlab/kurt-luther.html",
-      "coverage": "website",
+      "coverage": "reason",
       "kind": "lab_site",
       "found_from": {
         "kind": "independent_official_identity_review",
@@ -1370,7 +1430,29 @@
       "other_urls": [
         "https://crowd.cs.vt.edu/kurt-luther/"
       ],
-      "review_status": "strict_website_verified_2026-11-10"
+      "review_status": "strict_website_verified_2026-11-10",
+      "reason_code": "host_blocked_by_robots",
+      "reason": "The official VT faculty profile links a PI site, but the linked host disallows this research crawler. A different candidate URL has not been promoted without an official link chain.",
+      "reason_type": "access_blocked",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://crowd.cs.vt.edu/kurt-luther/",
+          "on": "https://website.cs.vt.edu/people/faculty/kurt-luther.html",
+          "result": "listed",
+          "at": "2026-11-10",
+          "source_sha256": "0c310e5f467f48971e86d8e724a6ac4b01144a2f3b188914b788bbcff5eafb50",
+          "literal_href": "https://crowd.cs.vt.edu/kurt-luther/"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://crowd.cs.vt.edu/kurt-luther/",
+          "result": "robots_disallowed",
+          "at": "2026-11-10"
+        }
+      ]
     },
     {
       "pi": "Atul Mantri",
@@ -3038,6 +3120,254 @@
           "at": "2026-11-10",
           "sha256": "e8b5586d7576753638ee137e92d966ef2f058a964c4e5db56b245e3967974420",
           "quote": "Francisco was Assistant Professor at Virginia Tech"
+        }
+      ]
+    },
+    {
+      "pi": "Tanushree Mitra",
+      "url": "https://faculty.washington.edu/tmitra/",
+      "coverage": "reason",
+      "kind": "other_institution_site",
+      "reason_code": "site_at_other_institution",
+      "reason": "Current university or personal page identifies the University of Washington as the current institution. The VT period remains historical; no current VT lab site is established by this page.",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "candidate_site",
+          "url": "https://faculty.washington.edu/tmitra/",
+          "result": "ok",
+          "at": "2026-11-10",
+          "sha256": "3b649f639d3bb94a480e103555e16d4c79c29da064278bea50c7ae76abd8d6ed",
+          "quote": "From August 2017 to 2020, I was an assistant professor in the Department of Computer Science at Virginia Tech."
+        }
+      ]
+    },
+    {
+      "pi": "Aisling Kelliher",
+      "url": "https://cinema.usc.edu/faculty/profile.cfm?id=62323",
+      "coverage": "reason",
+      "kind": "other_institution_site",
+      "reason_code": "site_at_other_institution",
+      "reason": "Current university or personal page identifies the University of Southern California as the current institution. The VT period remains historical; no current VT lab site is established by this page.",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "candidate_site",
+          "url": "https://cinema.usc.edu/faculty/profile.cfm?id=62323",
+          "result": "ok",
+          "at": "2026-11-10",
+          "sha256": "68f97b8dc08e45cdf17f317108c8ec491334fb1b316e1454f8951de25ca12b91",
+          "quote": "Aisling Kelliher, Ph.D. Associate Professor of Cinematic Arts"
+        }
+      ]
+    },
+    {
+      "pi": "Alla Rozovskaya",
+      "url": "https://www.cs.qc.cuny.edu/rozovskaya.html",
+      "coverage": "reason",
+      "kind": "other_institution_site",
+      "reason_code": "site_at_other_institution",
+      "reason": "Current university or personal page identifies Queens College, CUNY as the current institution. The VT period remains historical; no current VT lab site is established by this page.",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "candidate_site",
+          "url": "https://www.cs.qc.cuny.edu/rozovskaya.html",
+          "result": "ok",
+          "at": "2026-11-10",
+          "sha256": "f5f808e1bfd6df76e3166a4e27128aef27eea2dd5e931e28db85df8db653f0a8",
+          "quote": "Dr. Alla Rozovskaya Associate Professor"
+        }
+      ]
+    },
+    {
+      "pi": "Anuj Karpatne",
+      "url": "https://anujkarpatne.github.io/",
+      "coverage": "reason",
+      "kind": "other_institution_site",
+      "reason_code": "site_at_other_institution",
+      "reason": "Current university or personal page identifies University of Florida as the current institution. The VT period remains historical; no current VT lab site is established by this page.",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "candidate_site",
+          "url": "https://anujkarpatne.github.io/",
+          "result": "ok",
+          "at": "2026-11-10",
+          "sha256": "a30c01a12ee2bc031d57b8b2ec3e410d8ef5eeb39c72fc77e0f95559b50e984a",
+          "quote": "Before coming to UF, I spent eight wonderful years at Virginia Tech as a faculty member in the Department of Computer Science from 2018 to 2026."
+        }
+      ]
+    },
+    {
+      "pi": "Ismini Lourentzou",
+      "url": "https://isminoula.github.io/",
+      "coverage": "reason",
+      "kind": "other_institution_site",
+      "reason_code": "site_at_other_institution",
+      "reason": "Current university or personal page identifies University of Illinois Urbana-Champaign as the current institution. The VT period remains historical; no current VT lab site is established by this page.",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "candidate_site",
+          "url": "https://isminoula.github.io/",
+          "result": "ok",
+          "at": "2026-11-10",
+          "sha256": "c5896e8f8e018c5467783a07f67bf65977efafd0c8919c65e2c0cfa7314d58b0",
+          "quote": "I am an Assistant Professor at the University of Illinois Urbana-Champaign (UIUC)"
+        }
+      ]
+    },
+    {
+      "pi": "Ha Rim Rho",
+      "url": "https://eugeniarho.com/",
+      "coverage": "reason",
+      "kind": "other_institution_site",
+      "reason_code": "site_at_other_institution",
+      "reason": "Current university or personal page identifies Emory University as the current institution. The VT period remains historical; no current VT lab site is established by this page.",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "candidate_site",
+          "url": "https://eugeniarho.com/",
+          "result": "ok",
+          "at": "2026-11-10",
+          "sha256": "f132a3f71e6e05954541d5088a1467a7cd91267347db1625b4922c058cf78dc9",
+          "quote": "Eugenia Ha Rim Rho"
+        }
+      ]
+    },
+    {
+      "pi": "R. Benjamin Knapp",
+      "url": "https://news.vt.edu/articles/2026/01/eng-cs-knapp-conferred-emeritus-status.html",
+      "coverage": "reason",
+      "kind": "emeritus_notice",
+      "reason_code": "emeritus_or_admin_no_lab",
+      "reason": "Virginia Tech conferred professor emeritus status in December 2025. The captured institutional notice documents the historical PI and retirement; it does not establish a current personal or lab homepage.",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "official_page",
+          "url": "https://news.vt.edu/articles/2026/01/eng-cs-knapp-conferred-emeritus-status.html",
+          "result": "ok",
+          "at": "2026-11-10",
+          "sha256": "56a131e2bad3fc00e490abfccf01fa01b3810d72e0ae950ec1ca101bc2b2d027",
+          "quote": "professor emeritus"
+        }
+      ]
+    },
+    {
+      "pi": "Nicholas F. Polys",
+      "url": "https://people.cs.vt.edu/~npolys/",
+      "coverage": "reason",
+      "kind": "access_limited_personal_site",
+      "reason_code": "host_access_blocked",
+      "reason": "The official VT Advanced Research Computing profile confirms the person. The indexed VT personal homepage could not be captured because this crawler holds the host after an HTTP 403 elsewhere on it. This is an access outcome, not a finding that the homepage does not exist.",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "official_page",
+          "url": "https://arc.vt.edu/about/our-team/nicholas-polys.html",
+          "result": "ok",
+          "at": "2026-11-10",
+          "sha256": "f62b861c32d89d19aade76aa8173238eef1d561a87b478a8cbab481644f17c82",
+          "quote": "Nicholas F. Polys"
+        },
+        {
+          "source": "primary_search_index",
+          "url": "https://people.cs.vt.edu/~npolys/",
+          "result": "indexed_page",
+          "at": "2026-11-10",
+          "quote": "Nicholas F. Polys, Ph.D."
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://people.cs.vt.edu/~npolys/",
+          "result": "host_access_blocked",
+          "at": "2026-11-10"
+        }
+      ]
+    },
+    {
+      "pi": "Christopher L. Barrett",
+      "url": "https://engineering.virginia.edu/faculty/christopher-l-barrett",
+      "coverage": "reason",
+      "kind": "other_institution_profile",
+      "reason_code": "site_at_other_institution",
+      "reason": "The indexed official University of Virginia faculty page identifies the current UVA appointment. The primary host disallows this crawler; the index quote is retained as a lead, not a captured/verified lab website.",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "primary_search_index",
+          "url": "https://engineering.virginia.edu/faculty/christopher-l-barrett",
+          "result": "official_profile_indexed",
+          "at": "2026-11-10",
+          "quote": "Christopher L. Barrett is the inaugural Distinguished Professor in Biocomplexity, Executive Director of the Biocomplexity Institute, and Professor in the Department of Computer Science at the University of Virginia."
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://engineering.virginia.edu/faculty/christopher-l-barrett",
+          "result": "robots_disallowed",
+          "at": "2026-11-10"
+        }
+      ]
+    },
+    {
+      "pi": "Madhav Marathe",
+      "url": "https://engineering.virginia.edu/faculty/madhav-marathe",
+      "coverage": "reason",
+      "kind": "other_institution_profile",
+      "reason_code": "site_at_other_institution",
+      "reason": "The indexed official University of Virginia faculty page identifies the current UVA appointment. The primary host disallows this crawler; the index quote is retained as a lead, not a captured/verified lab website.",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "primary_search_index",
+          "url": "https://engineering.virginia.edu/faculty/madhav-marathe",
+          "result": "official_profile_indexed",
+          "at": "2026-11-10",
+          "quote": "Madhav Marathe is an endowed Distinguished Professor in Biocomplexity, Executive Director of the Biocomplexity Institute, and a tenured Professor of Computer Science at the University of Virginia."
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://engineering.virginia.edu/faculty/madhav-marathe",
+          "result": "robots_disallowed",
+          "at": "2026-11-10"
+        }
+      ]
+    },
+    {
+      "pi": "Anil Vullikanti",
+      "url": "https://engineering.virginia.edu/faculty/anil-vullikanti",
+      "coverage": "reason",
+      "kind": "other_institution_profile",
+      "reason_code": "site_at_other_institution",
+      "reason": "The indexed official University of Virginia faculty page identifies the current UVA appointment. The primary host disallows this crawler; the index quote is retained as a lead, not a captured/verified lab website.",
+      "checked_at": "2026-11-10",
+      "audited_at": "2026-11-10",
+      "checks": [
+        {
+          "source": "primary_search_index",
+          "url": "https://engineering.virginia.edu/faculty/anil-vullikanti",
+          "result": "official_profile_indexed",
+          "at": "2026-11-10",
+          "quote": "He was at Virginia Tech from 2005 to 2018 and is a Professor of Computer Science at the University of Virginia."
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://engineering.virginia.edu/faculty/anil-vullikanti",
+          "result": "robots_disallowed",
+          "at": "2026-11-10"
         }
       ]
     }
