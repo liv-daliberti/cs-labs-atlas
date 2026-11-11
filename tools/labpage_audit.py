@@ -1504,7 +1504,7 @@ def entry_years_end_the_stay(years, basis, this_year=2026):
     range that ended before this year. An open range ([a, None]) and a range ending this year stay current."""
     if basis != 'stated_in_entry' or not years or years[1] is None:
         return False
-    return years[0] is None and years[1] <= this_year or years[0] is not None and years[1] < this_year
+    return years[0] is None and years[1] < this_year or years[0] is not None and years[1] < this_year
 
 
 AWARD_WORDS = re.compile(r'scholarship|fellowship|award|prize|medal|honou?r|grant|\\u5956\\u5b66\\u91d1|\\u5956', re.I)
@@ -2221,6 +2221,9 @@ COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?taught|taught|
 COLLAB_PROSE = re.compile(r"collaborat\w*\s+with\s+(?:the\s+|some\s+)?(?:\w+\s+){0,3}(?:students|researchers|postdocs)", re.I)
 CITE_INITIALS = re.compile(r"[A-Z][\w'\u00C0-\u017F-]+(?:\s[A-Z][\w'\u00C0-\u017F-]+)*,\s(?:[A-Z]\.\s?){1,3}(?:,|\.|\s)")
 OTHER_INST_LABEL = re.compile(r"^\s{1,3}((?:UC\s+[A-Z][a-z]+|UCL|UIUC|UCLA|UCSD|MIT|CMU|ETH(?:\s+Zurich)?|EPFL|NUS|NTU|HKUST|CUHK|KAIST|Caltech|Tsinghua|Peking|PKU|Stanford|Harvard|Oxford|Cambridge|Imperial|(?:The\s+)?University\s+of\s+[A-Z][A-Za-z]+(?:\s+[A-Z][a-z]+)?|[A-Z][a-z]+\s+University))(?=[\s,;)]|$)")
+COLLAB_LIST_HEAD = re.compile(r"(?:Students|Collaborators?|People)\s+I\s+(?:Currently\s+)?(?:Work(?:ed)?|Collaborate)\s+with", re.I)
+OTHER_INST_ANY = re.compile(OTHER_INST_LABEL.pattern.replace(r'^\s{1,3}(', r'\s(', 1))
+FUTURE_START = re.compile(r"\b(?:incoming|will\s+join)\b|\b(?:Fall|Spring|Autumn)\s+202[7-9]\b|\b202[7-9]\s*(?:Fall|Spring|Autumn)\b", re.I)
 OTHER_INST_AT = re.compile(r"@\s*([A-Z][A-Za-z]{1,8})\b")
 OWN_INST = {'michigan': {'UM', 'UMICH', 'MICHIGAN', 'UMICHIGAN'}, 'stanford': {'STANFORD', 'SU'}, 'mit': {'MIT'},
             'cmu': {'CMU'}, 'berkeley': {'UCB', 'BERKELEY', 'UCBERKELEY'}, 'epfl': {'EPFL'}, 'princeton': {'PRINCETON'}}
@@ -2292,6 +2295,11 @@ def repair_reason(kit, school, name, best, start, pi=None):
         lm = OTHER_INST_LABEL.match(t[k + len(name or ''): k + len(name or '') + 40])
         if lm and best.get('role') != 'visiting' and not (set(re.findall(r'[A-Za-z]{2,}', lm.group(1).upper())) & (own_names(school, OWN_INST) | own_names(school, OWN_INST_NAMES) | {'SJTU', 'JIAO', 'TONG'})):
             return 'site_at_other_institution', f'the entry labels the person with {lm.group(1)} (a card list of the PI\'s collaborators and students elsewhere)'
+        wide = t[max(0, k - 1500): k + 600]
+        if COLLAB_LIST_HEAD.search(t[max(0, k - 1500): k]) and len({m.group(1) for m in OTHER_INST_ANY.finditer(wide)}) >= 2:
+            return 'not_a_student', "a mixed-institution list of people the PI 'works with' (students labelled with other universities): collaborators, not members"
+        if FUTURE_START.search(t[k: k + 120]):
+            return 'not_a_student', 'an incoming student whose start is after the capture (admitted, Fall 2027): not yet a member'
         pre_bio = t[max(0, k - 140): k]
         tm = list(BIO_TRIGGER.finditer(pre_bio))
         if tm and (not pre_bio[tm[-1].end():].strip() or BIO_TAIL.match(pre_bio[tm[-1].end():])) and len(re.findall(r'\b[a-z]{3,}\b', pre_bio[:tm[-1].start()])) >= 3:
