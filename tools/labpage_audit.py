@@ -2295,6 +2295,8 @@ def repair_reason(kit, school, name, best, start, pi=None):
         pic = re.sub(r'\s+', '', pi or '')
         if pic and re.match(r'\s*[(\uff08]\s*' + re.escape(pic) + r'\s*[)\uff09]', t[k + len(name or ''): k + len(name or '') + 30]):
             return 'not_a_student', "the PI's own name (the page title gives the PI's name with the Chinese form)"
+        if re.search(r'\bLab\s+Affiliates?\b', t[k + len(name or ''): k + len(name or '') + 110]) and not re.search(r'\bLab\s+Member\b', t[k + len(name or ''): k + len(name or '') + 110].split('Affiliate')[0]):
+            return 'not_a_student', 'tagged Lab Affiliate (an outside affiliate of the group), not a lab member'
         lm = OTHER_INST_LABEL.match(t[k + len(name or ''): k + len(name or '') + 40])
         if lm and best.get('role') != 'visiting' and not (set(re.findall(r'[A-Za-z]{2,}', lm.group(1).upper())) & (own_names(school, OWN_INST) | own_names(school, OWN_INST_NAMES) | {'SJTU', 'JIAO', 'TONG'})):
             return 'site_at_other_institution', f'the entry labels the person with {lm.group(1)} (a card list of the PI\'s collaborators and students elsewhere)'
