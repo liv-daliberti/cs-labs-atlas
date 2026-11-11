@@ -405,6 +405,28 @@ def cambridge_directory(h):
     return out
 
 
+def cambridge_academic_staff(h):
+    """The department's 2016–2020 academic-staff directory, not its all-person list."""
+    soup = BeautifulSoup(h, 'html.parser')
+    title = soup.title.get_text(' ', strip=True) if soup.title else ''
+    table = soup.select_one('table.directory')
+    if 'Academic staff' not in title or table is None:
+        return []
+    out = []
+    for tr in table.select('tr'):
+        cell = tr.select_one('td.name')
+        if cell is None:
+            continue
+        printed = cell.get_text(' ', strip=True)
+        person = re.sub(r',\s*(?:Prof(?:essor)?|Dr)\.?\s+', ', ', printed, flags=re.I)
+        if len(person.split()) < 2:
+            continue
+        link = cell.find('a', href=True)
+        out.append(dict(name_listed=person, titles=['Academic staff'],
+                        homepage=link['href'] if link else None, division='Academic staff'))
+    return out
+
+
 def cambridge_profile(h):
     """The department's own profile heading and explicit job titles, without biographical guesses."""
     name = re.search(r'<h1[^>]*class="campl-sub-title"[^>]*>(.*?)</h1>', h, re.S)
@@ -1159,6 +1181,7 @@ FORMATS = {
     'cambridge_profile': (cambridge_profile, re.compile(r'class="cst-job-titles')),
     'oxford_person_index': (oxford_person_index, re.compile(r'class="personIndex"')),
     'cambridge_directory': (cambridge_directory, re.compile(r'views-field-field-sd-classifications-ref')),
+    'cambridge_academic_staff': (cambridge_academic_staff, re.compile(r'<title>[^<]*Academic staff')),
     'epfl_ic_legacy': (epfl_ic_legacy, re.compile(r'class="g-span-1_4"')),
     'epfl_ic_contact': (epfl_ic_contact, re.compile(r'class="contact-list-row"')),
     'eecs_table': (eecs_table, re.compile(r'<b>Division:</b>', re.I)),
