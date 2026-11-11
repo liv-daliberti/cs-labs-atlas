@@ -1,0 +1,67 @@
+{
+  "school": "michigan",
+  "scope": "Exact DBLP PID exclusions from Stage 2 candidacy; no paper or student relation admitted",
+  "records": [
+    {
+      "source": "dblp_affiliation",
+      "source_id": "https://dblp.org/pid/88/2827-33",
+      "name": "Yan Chen",
+      "decision": "exclude_nonfaculty_michigan",
+      "reason": "The exact DBLP person links the same homepage as Virginia Tech's current faculty profile. That university lists this Yan Chen as an assistant professor and identifies a 2020 Michigan Ph.D.; the Michigan School of Information professor is a different person.",
+      "source_id_basis": {"homepage": "https://chensivan.github.io/"},
+      "evidence": {
+        "url": "https://website.cs.vt.edu/people/faculty/yan-chen.html",
+        "raw_path": "scratch/michigan-stage2-1111/identity-sources/yan-chen-vt.html",
+        "raw_sha256": "63a15f91777cf4006cc036b94fc1be24bcffc649ed6e7b7c6ff1a2bacbabb9cd",
+        "format": "html",
+        "quotes": [
+          "Yan Chen Assistant Professor",
+          "2020: Ph.D., information science, University of Michigan"
+        ]
+      },
+      "supporting_evidence": [
+        {
+          "url": "https://website.cs.vt.edu/research/Seminars/Yan-Chen.html",
+          "raw_path": "scratch/michigan-stage2-1111/identity-sources/yan-chen-vt-2023.html",
+          "raw_sha256": "0926413375ff5175c76a88191667bd4feb5c50e5c2e7ed2c28e1090bd988d17e",
+          "format": "html",
+          "quotes": [
+            "received his Ph.D. degree from the University of Michigan in 2020",
+            "two-year Postdoc training"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "dblp_affiliation",
+      "source_id": "https://dblp.org/pid/49/67-45",
+      "name": "Xiao Wang",
+      "decision": "exclude_nonfaculty_michigan",
+      "reason": "The exact DBLP person links the same homepage as Purdue's current statistics department head. Purdue's faculty page identifies Michigan as the location of this person's 2005 Ph.D.; it does not establish a Michigan faculty appointment in the study window.",
+      "source_id_basis": {"homepage": "https://www.stat.purdue.edu/~wangxiao/"},
+      "evidence": {
+        "url": "https://www.stat.purdue.edu/people/faculty/wangxiao.html",
+        "raw_path": "scratch/michigan-stage2-1111/identity-sources/xiao-wang-purdue.html",
+        "raw_sha256": "835a01acde9085e80775ce86edcfb42d9a82929511861d5e8b61a3c1fe2fbe10",
+        "format": "html",
+        "quotes": [
+          "Xiao Wang",
+          "Department Head, J.O. Berger and M.E. Bock Professor of Statistics",
+          "Ph.D., University of Michigan, Statistics, 2005"
+        ]
+      },
+      "supporting_evidence": [
+        {
+          "url": "https://www.stat.purdue.edu/~wangxiao/XiaoCV_25.pdf",
+          "raw_path": "scratch/michigan-stage2-1111/identity-sources/xiao-wang-purdue-cv.pdf",
+          "raw_sha256": "0a0d5e4c8354721fa33d7de6fb24a2f5023681850874f8dc345ceca9d6c02952",
+          "format": "pdf",
+          "quotes": [
+            "University of Michigan                                                   August 2000 - May 2005",
+            "Purdue University                                                             July 2017 - present"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -96,3 +96,25 @@ def test_reviewed_pid_exclusion_requires_saved_source_quote_and_hash(tmp_path, m
     path.write_text(json.dumps({'school': 'vt', 'records': [row]}))
     with pytest.raises(AssertionError):
         C.source_exclusions('vt')
+
+
+def test_michigan_pid_exclusion_binds_official_homepage_to_exact_dblp_record(tmp_path, monkeypatch):
+    body = b'<h1>Yan Chen</h1><p>Assistant Professor at Virginia Tech; 2020 Michigan Ph.D.</p><a href="https://personal.example/">Homepage</a>'
+    (tmp_path / 'source.html').write_bytes(body)
+    row = {'source': 'dblp_affiliation', 'source_id': 'https://dblp.org/pid/88/2827-33',
+           'name': 'Yan Chen', 'decision': 'exclude_nonfaculty_michigan',
+           'source_id_basis': {'homepage': 'https://personal.example/'},
+           'evidence': {'raw_path': 'source.html', 'raw_sha256': hashlib.sha256(body).hexdigest(),
+                        'format': 'html', 'quotes': ['Assistant Professor at Virginia Tech']}}
+    files = {'cs-related-source-exclusions.json': tmp_path / 'decisions.json',
+             'dblp-affiliated.json': tmp_path / 'dblp.json'}
+    files['cs-related-source-exclusions.json'].write_text(json.dumps({'school': 'michigan', 'records': [row]}))
+    files['dblp-affiliated.json'].write_text(json.dumps({'persons': [{'pid': row['source_id'], 'names': ['Yan Chen 0033'],
+                                                                     'urls': ['https://personal.example/']}]}))
+    monkeypatch.setattr(C.P, 'ROOT', tmp_path)
+    monkeypatch.setattr(C.P, 'data', lambda name, key=None, *a, **k: files[name])
+    assert C.source_exclusions('michigan') == {row['source_id']}
+    row['source_id_basis']['homepage'] = 'https://wrong.example/'
+    files['cs-related-source-exclusions.json'].write_text(json.dumps({'school': 'michigan', 'records': [row]}))
+    with pytest.raises(AssertionError):
+        C.source_exclusions('michigan')

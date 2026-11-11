@@ -99,7 +99,7 @@ def source_exclusions(key):
     from bs4 import BeautifulSoup
     out = set()
     for row in doc.get('records', []):
-        assert row['source'] == 'dblp_affiliation' and row['decision'] == 'exclude_nonfaculty_vt'
+        assert row['source'] == 'dblp_affiliation' and row['decision'] == f'exclude_nonfaculty_{key}'
         pid = row['source_id']
         assert pid.startswith('https://dblp.org/pid/') and pid not in out
         ev = row['evidence']
@@ -108,7 +108,8 @@ def source_exclusions(key):
         raw = path.read_bytes()
         assert hashlib.sha256(raw).hexdigest() == ev['raw_sha256']
         if ev['format'] == 'html':
-            body = ' '.join(BeautifulSoup(raw, 'html.parser').stripped_strings)
+            soup = BeautifulSoup(raw, 'html.parser')
+            body = ' '.join(soup.stripped_strings)
         elif ev['format'] == 'pdf':
             mode = ev.get('pdf_text_mode', 'layout')
             assert mode in ('layout', 'raw')
@@ -117,6 +118,29 @@ def source_exclusions(key):
             raise ValueError(f"unsupported source format: {ev['format']}")
         body = ' '.join(body.split())
         assert ev['quotes'] and all(q in body for q in ev['quotes'])
+        if key == 'michigan':
+            # A common name on an official profile does not bind it to one of
+            # several DBLP PIDs. Require the official page to link a homepage
+            # that the exact cached DBLP person record also carries.
+            homepage = row['source_id_basis']['homepage']
+            person = next(p for p in read(P.data('dblp-affiliated.json', key), {})['persons'] if p['pid'] == pid)
+            assert row['name'] == clean_dblp(person['names'][0])
+            norm = lambda url: url.rstrip('/')
+            assert ev['format'] == 'html' and norm(homepage) in {norm(u) for u in person['urls']}
+            assert norm(homepage) in {norm(a.get('href')) for a in soup.find_all('a', href=True)}
+            for extra in row.get('supporting_evidence') or []:
+                source_path = (P.ROOT / extra['raw_path']).resolve()
+                assert source_path.is_relative_to(P.ROOT.resolve())
+                source_raw = source_path.read_bytes()
+                assert hashlib.sha256(source_raw).hexdigest() == extra['raw_sha256']
+                if extra['format'] == 'pdf':
+                    source_text = subprocess.run(['pdftotext', '-layout', str(source_path), '-'],
+                                                 capture_output=True, text=True, check=True).stdout
+                elif extra['format'] == 'html':
+                    source_text = ' '.join(BeautifulSoup(source_raw, 'html.parser').stripped_strings)
+                else:
+                    raise ValueError(f"unsupported source format: {extra['format']}")
+                assert extra['quotes'] and all(q in source_text for q in extra['quotes'])
         out.add(pid)
     return out
 
