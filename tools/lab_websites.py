@@ -19,7 +19,9 @@ import atlas_paths as P
 
 FOUND_RESULTS = ('ok', 'ok_wayback', 'does_not_name_pi_kept_strong_source')
 WEBSITE_REASONS = ('lab_site', 'pi_homepage_only_no_lab_site')
-OFFICIAL_LINK_SOURCES = ('school_profile_link', 'department_listing_link', 'official_link_chain')
+OFFICIAL_LINK_SOURCES = ('school_profile_link', 'department_listing_link', 'official_link_chain', 'web_search_reviewed')
+# owner ruling 2026-11-11: a web-search-found personal or lab site counts as the lab page when the page itself names the PI at the school
+# (a distinctive tie): a `web_search_reviewed` check carries the live fetch (sha256, date), the verbatim name and school-tie quotes and the reviewer
 RESEARCH_OUTPUT_PATH = re.compile(r'/(?:publications?|papers?|reports?)(?:/|\.|$)|/(?:news|blog)/[12][0-9]{3}(?:/|$)', re.I)
 INSTITUTIONAL_PROFILE_HOST = re.compile(r'(?:^|\.)(?:researchportal|facultyprofiles)\.[a-z0-9.-]*hk$', re.I)
 INSTITUTIONAL_ROOT = re.compile(r'^(?:www\.)?(?:hkust\.edu\.hk|ust\.hk|hkust-gz\.edu\.cn)$', re.I)
@@ -64,6 +66,9 @@ def selection_gaps(url):
 
 
 def official_check(check, url):
+    if check.get('source') == 'web_search_reviewed':
+        return bool(check.get('url') == url and check.get('at') and re.fullmatch(r'[a-fA-F0-9]{64}', check.get('sha256') or '')
+                    and (check.get('tie_quote') or '').strip() and (check.get('name_quote') or '').strip() and check.get('reviewer'))
     if check.get('source') not in OFFICIAL_LINK_SOURCES or check.get('url') != url or not check.get('on'):
         return False
     if check['source'] != 'official_link_chain':
