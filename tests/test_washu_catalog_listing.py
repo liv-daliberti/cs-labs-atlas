@@ -10,10 +10,10 @@ import listing_rows as R
 
 
 def test_washu_catalog_coverage_requires_all_original_faculty_sections(tmp_path, monkeypatch):
-    monkeypatch.setattr(R.P, 'HIERARCHY', tmp_path / 'hierarchy')
+    monkeypatch.setattr(R.P, 'HIERARCHY', tmp_path / 'hierarchy')  # route-ok: legacy root fixture
     monkeypatch.setattr(R.P, 'LISTINGS', tmp_path / 'listings')
-    reviewed = tmp_path / 'hierarchy' / 'washu' / 'reviewed'
-    raw_dir = tmp_path / 'listings' / 'washu' / 'raw'
+    reviewed = tmp_path / 'hierarchy' / 'washu' / 'reviewed'  # route-ok: legacy root fixture
+    raw_dir = tmp_path / 'listings' / 'washu' / 'raw'  # route-ok: legacy root fixture
     reviewed.mkdir(parents=True)
     raw_dir.mkdir(parents=True)
     records = []
