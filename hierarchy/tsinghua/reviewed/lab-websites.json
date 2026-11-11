@@ -5897,17 +5897,35 @@
     },
     {
       "pi": "Haohuan Fu",
-      "status": "needs_review_no_profile_page",
-      "coverage": null,
-      "reason_code": "no_profile_fetched",
-      "reason": "owner text only"
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "no_web_presence_found",
+      "reason": "No profile page or personal homepage was captured for this person; the only source is the owner-supplied department list (text copy, no original-page sha). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-s2-focus-1110/units/owner-supplied-earth-system-full-time-p1.txt",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "2dc0a1a7a03dede282f97dee3ce79dcdaccb03dfbf861c8a545990e9145def4e"
+        }
+      ]
     },
     {
       "pi": "Le Yu",
-      "status": "needs_review_no_profile_page",
-      "coverage": null,
-      "reason_code": "no_profile_fetched",
-      "reason": "owner text only"
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "no_web_presence_found",
+      "reason": "No profile page or personal homepage was captured for this person; the only source is the owner-supplied department list (text copy, no original-page sha). Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-s2-focus-1110/units/owner-supplied-earth-system-full-time-p3.txt",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "03aee945804eed686fe337cf0c5fcab77ee5da6b3aa2d993a48bfad76e53aa42"
+        }
+      ]
     }
   ]
 }

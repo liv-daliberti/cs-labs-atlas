@@ -158,3 +158,74 @@ Fresh-reviewer samples (separate subagents, 40 each): first A 36 ok/1 obvious/3 
 | Yuqing Xie | 346/2254 | C | 10 | 2025 |
 | Zhenhua Xu | 126/7726-3 | C | 33 | - |
 | Zhenyu Huang | 57/3207 | C | 41 | - |
+
+
+## Second tier OIH-D-recent-strings (25 holds, landed with this note)
+The riskier tier: people with a department-level Tsinghua string since 2022 or a Tsinghua string in 2024+ but thin, student-sized records and no listed name. Full review of all 25: 24 ok / 0 wrong / 0 obvious senior faculty / 1 unsure (Zhen Chen [11/1266-1]). Resolve these first when evidence arrives; the reason names the blocker.
+A wider D-tier of 85 was rejected: a 40-name sample found 5 obvious senior faculty (Keqiang Li, Qiangfeng Cliff Zhang, Thomas Fang Zheng, Zhizhong Li, Sean Xin Xu), over the redo threshold.
+
+## Not held, still pending, ranked by likelihood of being faculty (highest first)
+These 60 unit-unstated or nav-reverted candidates keep a real decision pending (department-level evidence, sizeable records). Evidence that closes each: a captured faculty directory or official profile of the person's unit listing the name with a rank (then census addition), or a unit directory capture that does not list the name (then not_faculty_listed).
+
+| name | DBLP pid | likelihood (1-6) | DBLP records | records since 2023 | last Tsinghua string | strongest unit string |
+|---|---|---|---|---|---|---|
+| Shengbo Eben Li | 148/6962 | 6 | 338 | 177 | 2026 | College of AI , Tsinghua University; College of Artificial Intelligenc |
+| Kun Jiang | 03/4406-2 | 6 | 137 | 94 | 2026 | Department of Industrial Engineering, Tsinghua University, Beijing 100 |
+| Chao Yu | 36/6789-5 | 6 | 117 | 94 | 2026 | Department of Electronic Engineering , Tsinghua University; Department |
+| Jia Li [23/6950-11] | 23/6950-11 | 6 | 84 | 79 | 2026 | College of AI , Tsinghua University; College of AI , Tsinghua Universi |
+| Huan Wang | 70/6155-15 | 6 | 72 | 38 | 2026 | Department of Industrial Engineering , Tsinghua University , Beijing , |
+| Bo Cheng | 05/2700-3 | 6 | 71 | 18 | 2026 | School of Vehicle and Mobility, State Key Laboratory of Automotive Saf |
+| Dong Wang [40/3934-13] | 40/3934-13 | 5 | 257 | 58 | 2026 | Department of Computer Science and Technology, Tsinghua University, Ch |
+| Keqiang Li [49/8134-2] | 49/8134-2 | 5 | 242 | 108 | 2026 | Center for Intelligent Connected Vehicles and Transportation and the S |
+| Zijun Yao | 134/4025-2 | 5 | 83 | 73 | 2026 | Department of Computer Science and Technology , BNRist; KIRC , Institu |
+| Chi Chen | 21/1794-5 | 5 | 58 | 51 | 2026 | . Dept. of Comp. Sci. & Tech. , Institute for AI , Tsinghua University |
+| Chen Wang [82/4206-49] | 82/4206-49 | 5 | 57 | 46 | 2024 | Department of Computer Science and Technology, BNRist, Tsinghua Univer |
+| Yu-Hui Wen | 245/3506 | 5 | 44 | 35 | 2026 | BNRist, Department of Computer Science and Technology, Tsinghua Univer |
+| Zheng Yuan | 56/2877-2 | 4 | 50 | 28 | 2023 | Center for Statistical Science, Tsinghua University, Beijing, China; D |
+| Xiangyu Wang | 206/1506 | 4 | 39 | 26 | 2026 | School of Vehicle and Mobility, Tsinghua University, Beijing 100084, C |
+| Lipeng Zhu | 168/0918-2 | 4 | 36 | 22 | 2024 | Department of Electrical Engineeering , Tsinghua University , Beijing  |
+| Zhipeng Li | 92/1339-1 | 4 | 30 | 24 | 2025 | Department of Computer Science and Technology, Tsinghua University, Ch |
+| Yicheng Li | 422/5721 | 4 | 27 | 26 | 2025 | Center for Statistical Science , Department of Industrial Engineering  |
+| Zhe Zhao | 28/6429-5 | 4 | 27 | 16 | 2025 | Department of Biomedical Engineering, School of Medicine, Tsinghua Uni |
+| Wenjun Wang | 21/5941-5 | 4 | 25 | 13 | 2026 | School of Vehicle and Mobility, Tsinghua University, Beijing 100084, C |
+| Zehua Chen | 95/5771-5 | 4 | 24 | 18 | 2026 | Department of Computer Science & Technology , Institute for AI , BNRis |
+| Yiqi Wang | 178/8638-5 | 4 | 18 | 13 | 2026 | BNRist, Tsinghua University,School of Integrated Circuits,Beijing,Chin |
+| Bo Lin | 97/339-10 | 4 | 16 | 13 | 2025 | BNRist, Tsinghua University,Department of Automation,Beijing,China,100 |
+| Mengyu Li | 47/1793-1 | 4 | 13 | 12 | 2026 | Department of Statistics and Data Science, Tsinghua University; Depart |
+| Yun Liu [50/2482-33] | 50/2482-33 | 4 | 13 | 13 | 2026 | Department of Computer Science and Technology , Tsinghua University; S |
+| Xiang Chen | 64/3062-7 | 3 | 234 | 61 | - | Tsinghua University, Research Institute of Information Techn |
+| Yan Yan | 13/3953-1 | 3 | 216 | 73 | - | Xiamen University, Fujian Key Laboratory of Sensing and Comp |
+| Thomas Fang Zheng | 53/2843 | 3 | 210 | 21 | - | Tsinghua University, Center for Speech and Language Technolo |
+| Cheng Yang [49/1457-2] | 49/1457-2 | 3 | 203 | 134 | 2025 | Tsinghua University, State Key Laboratory of Intelligent Tec |
+| Xiang Li [40/1491-6] | 40/1491-6 | 3 | 141 | 35 | - | Tsinghua University, Department of Mathematics, Beijing, Chi |
+| Guangyi Chen | c/GuangyiChen-2 | 3 | 126 | 96 | - | Tsinghua University, Department of Automation, Beijing, Chin |
+| Jun Li [116/1011-82] | 116/1011-82 | 3 | 114 | 81 | - | Tsinghua University, State Key Laboratory of Automotive Safe |
+| Xiao-Lei Zhang | 03/5004-1 | 3 | 113 | 23 | - | Tsinghua University, Department of Electronic Engineering, B |
+| Xiao Yang | 57/3385-28 | 3 | 93 | 56 | - | Tsinghua University, Department of Computer Science and Tech |
+| Anyu Wang | 116/4536 | 3 | 76 | 56 | 2026 | Tsinghua University, Institute for Advanced Study, Beijing,  |
+| Sean Xin Xu | 69/3855 | 3 | 64 | 22 | - | Tsinghua University, School of Economics and Management, Bei |
+| Ning Chen | 56/1670-2 | 3 | 61 | 5 | 2023 | Dept. of Comp. Sci. and Tech., Institute for AI, BNRist Center, Tsingh |
+| Sheng Yu | 181/2830-2 | 3 | 57 | 16 | - | Tsinghua University, Center for Statistical Science / Depart |
+| Hao Wu [72/4250-60] | 72/4250-60 | 3 | 53 | 28 | - | Tsinghua University, Department of Mathematical Sciences, Be |
+| Liang Ma | 83/5831-1 | 3 | 53 | 11 | - | Tsinghua University, Department of Industrial Engineering, B |
+| Qing Wang [97/6505-3] | 97/6505-3 | 3 | 53 | 4 | 2023 | Department of Automation, Tsinghua University , Beijing, China; Depart |
+| Yan Wang [59/2227-105] | 59/2227-105 | 3 | 48 | 43 | 2026 | Tsinghua University, Institute for AI Industry Research, Bei |
+| Cheng Li [16/6465-9] | 16/6465-9 | 3 | 46 | 13 | - | Tsinghua University, Department of Physics, Beijing, China |
+| Xinyi Fu | 264/3646-3 | 3 | 43 | 37 | 2026 | Tsinghua University, Beijing, China |
+| Zhihao Yao | 154/8284-4 | 3 | 43 | 40 | 2026 | Tsinghua University, Beijing, China |
+| Yu-Xin Ren | 162/7779-2 | 3 | 27 | 6 | 2025 | Applied Mechanics Laboratory, Department of Engineering Mechanics, Tsi |
+| Qiangfeng Cliff Zhang | 81/11250 | 3 | 21 | 5 | 2026 | MOE Key Laboratory of Bioinformatics, Beijing Advanced Innovation Cent |
+| Ning Deng | 24/3592-8 | 3 | 19 | 6 | 2025 | School of Integrated Circuits, Beijing National Research Center for In |
+| Qian Li | 69/5902-40 | 3 | 12 | 5 | 2025 | School of Life Sciences , IDG/McGovern Institute for Brain Research ,  |
+| Yi Zhao [51/4138-24] | 51/4138-24 | 3 | 12 | 8 | 2025 | Department of Earth System Science, Tsinghua University, Beijing, Chin |
+| Jing Li | 181/2820-114 | 3 | 10 | 9 | 2026 | School of Economics and Management, Tsinghua University; School of Eco |
+| Hanyu Chen | 251/3282-1 | 3 | 9 | 9 | 2025 | Department of Mechanical Engineering, Tsinghua University, Beijing, 10 |
+| Jingwei Wang | 88/6860-2 | 3 | 7 | 6 | 2025 | Department of EE, BNRist, Tsinghua University, Beijing, China; Departm |
+| Jingyu Zhao | 39/9109-2 | 3 | 7 | 2 | 2026 | Department of Industrial Engineering, Tsinghua University, Beijing, Ch |
+| Ninghui Li | 230/9677-2 | 3 | 6 | 3 | 2024 | Department of Earth System Science, Ministry of Education Key Laborato |
+| Keqiang Li [49/8134-4] | 49/8134-4 | 3 | 5 | 5 | 2025 | School of Vehicle and Mobility, Tsinghua University, Beijing 100084, C |
+| Tianyi Hao | 192/2216-1 | 3 | 5 | 2 | 2025 | organization=PBC School of Finance , addressline=Tsinghua University , |
+| Wei Xiong | 33/4054-16 | 3 | 5 | 5 | 2024 | 1 Department of Earth System Science, Ministry of Education Key Labora |
+| Yun Ma [289/0218] | 289/0218 | 3 | 5 | 3 | 2025 | Department of Statistics and Data Science, Tsinghua University, Beijin |
+| Zhi Wang [95/6543-24] | 95/6543-24 | 3 | 5 | 5 | 2025 | School of Vehicle and Mobility, State Key Laboratory of Intelligent Gr |
+| Zhizhong Li | 42/4133-3 | 2 | 53 | 6 | - | Tsinghua University, Department of Industrial Engineering, B |
