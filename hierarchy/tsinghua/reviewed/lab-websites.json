@@ -6374,6 +6374,53 @@
           "sha256": "75a3603a4a327bb2b825f29e17fc6420694ed8c33a6706f41d032d574f52d6c8"
         }
       ]
+    },
+    {
+      "pi": "李琦",
+      "status": "reviewed_live_website",
+      "coverage": "website",
+      "url": "https://sites.google.com/site/qili2012",
+      "kind": "lab_or_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Homepage linked literally by the named official unit profile (captured 2026-11-10); one fetch recorded.",
+      "sha256": "0e9bbb170d02b4978e46f5b5598cc0211e7f70270bc263e5b745d2884e3d4ca4",
+      "checked_at": "2026-11-10T21:00:00",
+      "official_link_status": "recorded",
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.insc.tsinghua.edu.cn/info/1157/2851.htm",
+      "evidence": {
+        "url": "https://sites.google.com/site/qili2012",
+        "sha256": "0e9bbb170d02b4978e46f5b5598cc0211e7f70270bc263e5b745d2884e3d4ca4",
+        "quote": "https://sites.google.com/site/qili2012",
+        "observed": "2026-11-10T21:00:00"
+      },
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://sites.google.com/site/qili2012",
+          "on": "https://www.insc.tsinghua.edu.cn/info/1157/2851.htm",
+          "at": "2026-11-10T21:00:00",
+          "result": "ok",
+          "source_sha256": "fd22cc6afe08ed71a4eac9542d0f2ffa10ed6b8d168c853ff35de16f86ac40cc",
+          "sha256": "0e9bbb170d02b4978e46f5b5598cc0211e7f70270bc263e5b745d2884e3d4ca4"
+        }
+      ]
+    },
+    {
+      "pi": "朱小燕",
+      "status": "reviewed_absence",
+      "coverage": "none",
+      "reason_code": "pi_left_school_site_moved",
+      "reason": "Past faculty known only from dated department directory captures; no profile page or homepage was captured. Not proof that no site exists.",
+      "checks": [
+        {
+          "source": "school_profile_page",
+          "url": "https://www.cs.tsinghua.edu.cn/szzk/jzgml.htm",
+          "at": "2026-11-10T00:00:00",
+          "result": "ok",
+          "sha256": "7a16a3accad999c4f272ecbe910fc18593aa57bd4e3d0f7b5ab785cf1097a67d"
+        }
+      ]
     }
   ]
 }
