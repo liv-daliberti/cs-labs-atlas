@@ -1,6 +1,21 @@
 from stage_gate import mixed_author_exclusions
 
 
+def test_pending_source_coverage_keeps_stage_2_open(monkeypatch):
+    import stage_gate as G
+
+    monkeypatch.setattr(G.P, 'data', lambda name, school: name)
+    monkeypatch.setattr(G, 'read', lambda path, default=None: {
+        'cs-related-candidates.json': [{'name': 'Alex Example', 'author': 'A1'}],
+        'cs-related-review.json': {'decisions': [{'name': 'Alex Example', 'decision': 'pending_source_coverage',
+                                                 'reason': 'directory shell'}]},
+    }.get(path, default))
+    monkeypatch.setattr(G, 'sweep_gate', lambda school: [])
+    bad, counts = G.g2('example')
+    assert bad == ['Alex Example: pending_source_coverage (directory shell)']
+    assert counts['pending_source_coverage'] == 1
+
+
 def test_mixed_author_exclusion_requires_exact_id_names_and_non_pi_review():
     mixed = {'author': 'https://openalex.org/A1', 'name': 'Daniel Thalmann',
              'names': ['Daniel Thalmann', 'Nadia Magnenat Thalmann']}

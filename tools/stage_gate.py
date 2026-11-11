@@ -146,7 +146,7 @@ def g2(key):
     bad += [f"{name}: {len(rows)} candidate identities share a display name; resolve source IDs before admission"
             for name, rows in by_name.items() if len(rows) > 1]
     bad += [f"{d['name']}: {d['decision']} ({d['reason'][:100]})" for d in dec.values()
-            if d['decision'] in ('pending_openalex', 'pending_identity_collision')]
+            if d['decision'] in ('pending_openalex', 'pending_identity_collision', 'pending_source_coverage')]
     bad += sweep_gate(key)  # the OpenAlex sweep and the DBLP pulls feed the review (owner standard 2026-10-30)
     return bad, dict(candidates=len(cands), **collections.Counter(d['decision'] for d in dec.values()))
 

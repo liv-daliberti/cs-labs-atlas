@@ -37,9 +37,10 @@ review      faculty evidence: a 2016-2026 unit capture whose text has the candid
             ids of the ORCID with the most school works are kept (with ids that carry none).
             decision  accepted                 faculty evidence (ladder professor title) and computing evidence
                       faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school
-                      not_faculty_listed       no searched unit lists them as faculty in 2016-2026 and the DBLP record
-                                               names the school only as a past or student affiliation (or nothing else
-                                               shows a faculty appointment); `units_searched` says where we looked
+                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided
+                                               non-faculty record in the school charter)
+                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided
+                                               until the unit directories and pagination are reviewed for completeness
                       research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only
                       pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the
                                                OpenAlex sweep (an open coverage item until then)
@@ -609,7 +610,11 @@ def review(key):
         elif fac:
             d = 'research_or_other_rank'; why = 'listed by a searched unit only with a research, adjunct, clinical or emeritus title'
         else:
-            d = 'not_faculty_listed'; why = f'no 2016-2026 faculty listing of the searched units ({", ".join(searched)}) names them with a professor title'
+            # A missing match proves nothing when even one directory capture is a
+            # shell, a year is absent, or a paged listing is incomplete. The unit
+            # fetch checks URLs, not source completeness. Require an individual
+            # reviewed exclusion before treating absence as a negative decision.
+            d = 'pending_source_coverage'; why = f'no faculty evidence in the collected pages of {", ".join(searched)}; directory coverage and pagination require review before exclusion'
         n[d] += 1
         row = dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision=d, reason=why, cs_basis=comp,
                    faculty_evidence=sorted(fac, key=lambda e: e['observed'])[:3] + (sorted(fac, key=lambda e: e['observed'])[-1:] if len(fac) > 3 else []),
