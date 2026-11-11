@@ -377,6 +377,22 @@ def _counts_cached(key):
     return _CACHE[key]
 
 
+def ratchet_text(level=None):
+    """'level 0 of 3: gap share <= 100% lab papers, ...; next level 1: ...' (the last level says it is the target)."""
+    lv = RATCHET_LEVEL if level is None else level
+
+    def fmt(b):
+        return ', '.join(f'{d} <= {b[d]:.0%}' for d in b)
+    out = f'ratchet level {lv} of {len(RATCHET_LEVELS) - 1}: gap share {fmt(RATCHET_LEVELS[lv])}'
+    return out + (f'; next level {lv + 1}: {fmt(RATCHET_LEVELS[lv + 1])}' if lv + 1 < len(RATCHET_LEVELS) else '; this is the long-term target level')
+
+
+def stage_summary(key):
+    """One line: gap counts per dimension."""
+    c, n = _counts_cached(key)
+    return f'{key}: {n} PIs; gap ' + ', '.join(f'{d} {c[d]["gap"]}' for d, _ in DIMS) + ' (reason ' + ', '.join(f'{d} {c[d]["reason"]}' for d, _ in DIMS) + ')'
+
+
 def gate_items(key, part, level=None):
     """Gate findings of one part ('papers' for stage 5, 'students' for stage 6) at a ratchet level; [] without a built package."""
     if not _pis(key):
@@ -389,7 +405,7 @@ def gate_items(key, part, level=None):
         if n and gap / n > b[dim]:
             top = ', '.join(f'{k} {v}' for k, v in list(c[dim]['causes'].items())[:3])
             items.append(f'PI coverage {dim}: {gap} of {n} PIs ({gap / n:.0%}) have neither evidence nor a researched reason (> {b[dim]:.0%}; ratchet level '
-                         f'{RATCHET_LEVEL if level is None else level} of {len(RATCHET_LEVELS) - 1}); top causes: {top}. Ledger: pi_coverage.py report {key}')
+                         f'{RATCHET_LEVEL if level is None else level} of {len(RATCHET_LEVELS) - 1}); top causes: {top}. {ratchet_text(level)}; all dimensions: {stage_summary(key)}. Ledger: pi_coverage.py report {key}')
     return items
 
 
@@ -496,6 +512,8 @@ def main(argv=None):
                     rc = 1
             continue
         c, n = _counts_cached(k)
+        if not a.json:
+            print('STAGE SUMMARY ' + stage_summary(k) + '; ' + ratchet_text())
         print(json.dumps(dict(school=k, pis=n, **{d: {s: c[d][s] for s in ('present', 'reason', 'gap')} for d, _ in DIMS}), ensure_ascii=False) if a.json
               else f'{k}: {n} PIs ' + '; '.join(f'{d} present {c[d]["present"]} reason {c[d]["reason"]} gap {c[d]["gap"]}' for d, _ in DIMS))
     return rc
