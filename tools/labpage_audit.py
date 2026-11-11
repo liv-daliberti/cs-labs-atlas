@@ -1507,7 +1507,7 @@ def entry_years_end_the_stay(years, basis, this_year=2026):
     return years[0] is None and years[1] <= this_year or years[0] is not None and years[1] < this_year
 
 
-PLACEMENT_RX = re.compile(r'@|\bnow\b|\b(?:Senior|Research|Postdoc\w*|Assistant|Associate)\s+(?:Scientist|Researcher|Professor|Engineer|Fellow)\b|\bCo-?Founder\b|\bLecturer\b', re.I)   # 'NTU PhD 2026 Senior Researcher @ Apple': a placement after the year is an alumnus
+PLACEMENT_RX = re.compile(r'@|\bnow\b|\bWhere\s+now\b|(?:Ph\.?\s?D\.?|M\.?S\.?)\W{0,3}(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep)[a-z]*\.?\s+2026|\b(?:Senior|Research|Postdoc\w*|Assistant|Associate)\s+(?:Scientist|Researcher|Professor|Engineer|Fellow)\b|\bCo-?Founder\b|\bLecturer\b', re.I)   # 'NTU PhD 2026 Senior Researcher @ Apple': a placement after the year is an alumnus
 AWARD_AFTER_YEAR = re.compile(r'(?:19|20)\d\d\s+(?:[\w&.-]+\s+){0,3}(?:scholarship|fellowship|award|prize|medal|honou?r|grant)', re.I)
 AWARD_WORDS = re.compile(r'scholarship|fellowship|award|prize|medal|honou?r|grant|\\u5956\\u5b66\\u91d1|\\u5956', re.I)
 
@@ -1711,7 +1711,7 @@ def pm_candidates(kit, school, pi, plan, held):
                 x['years'], x['years_basis'] = yrs[fn], 'reviewer'
             else:
                 x['years'], x['years_basis'] = entry_years(x.get('desc'), x.get('head'))
-                if entry_years_end_the_stay(x['years'], x['years_basis']) and not (x['years'] == [None, 2026] and not PLACEMENT_RX.search((x.get('desc') or '')[:140])):
+                if entry_years_end_the_stay(x['years'], x['years_basis']) and not (x['years'] == [None, 2026] and not PLACEMENT_RX.search((x.get('desc') or '')[:260])):
                     # a degree year equal to this year in a current-student list is an expected graduation, not an end (SJTU rounds 2-3); a placement after it ('NTU PhD 2026 Senior Researcher @ Apple') is an alumnus
                     x['alumni'] = True  # '(PhD 2024, co-advised with ...)' on a current page: the entry itself says the stay ended (UChicago stage 6, round 1)
             x['role'], x['role_basis'] = entry_role(x.get('desc'), x.get('head'), kit.autom._role)
