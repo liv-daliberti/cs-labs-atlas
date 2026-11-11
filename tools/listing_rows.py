@@ -173,6 +173,9 @@ def catalog_listing_coverage(key):
     manifest = P.HIERARCHY / key / 'reviewed' / 'catalog-listing-sources.json'
     if not manifest.exists():
         return []
+    if key == 'utaustin':
+        _record, _entries = utaustin_catalog_entries()
+        return [('CS', 2018, 'official catalog spring 2018', 'ok')]
     data = json.loads(manifest.read_text())
     assert data['school'] == key
     db = P.LISTINGS / key / 'raw' / 'catalog-captures.sqlite'
@@ -203,6 +206,42 @@ def catalog_listing_coverage(key):
                 raise ValueError(f'catalog role line missing from saved original: {key} {year}')
             out.append(('CS', year, f'official catalog {year}–{year + 1}', 'ok'))
     return out
+
+
+def utaustin_catalog_entries():
+    """Validate the immutable UT catalog and its complete CS faculty entry set."""
+    key = 'utaustin'
+    manifest = P.HIERARCHY / key / 'reviewed' / 'catalog-listing-sources.json'
+    data = json.loads(manifest.read_text())
+    assert data['school'] == key and len(data['records']) == 1
+    record = data['records'][0]
+    assert record['source_type'] == 'official_UT_undergraduate_catalog'
+    assert record['start_year'] == 2018 and record['academic_year'] == '2018–2020'
+    db = P.LISTINGS / key / 'raw' / 'catalog-captures.sqlite'
+    with sqlite3.connect(f'file:{db}?mode=ro', uri=True) as c:
+        saved = c.execute('select year,status,sha256,raw_zlib,content_type from captures where url=?',
+                          (record['source_url'],)).fetchone()
+    if not saved or saved[:3] != (2018, 200, record['raw_sha256']) or 'html' not in (saved[4] or '').lower():
+        raise ValueError('UT Austin 2018 catalog source metadata mismatch')
+    raw = zlib.decompress(saved[3])
+    if hashlib.sha256(raw).hexdigest() != record['raw_sha256']:
+        raise ValueError('UT Austin 2018 catalog source hash mismatch')
+    soup = BeautifulSoup(raw, 'html.parser')
+    if 'The following faculty list represents those appointed in the 2018 spring semester.' not in soup.get_text(' ', strip=True):
+        raise ValueError('UT Austin catalog does not establish spring 2018 appointment date')
+    entries = []
+    for p in soup.select('p.faculty_entry'):
+        if not any(x.get_text(' ', strip=True) == 'Computer Science' for x in p.select('.faculty_dept')):
+            continue
+        name = p.select_one('.faculty_name')
+        title = p.select_one('.faculty_title')
+        if not name:
+            raise ValueError('UT Austin catalog has a CS faculty entry without a name')
+        entries.append((name.get_text(' ', strip=True), title.get_text(' ', strip=True) if title else ''))
+    digest = hashlib.sha256('\n'.join('\t'.join(x) for x in sorted(entries)).encode()).hexdigest()
+    if len(entries) != record['cs_entry_count'] or len(set(entries)) != len(entries) or digest != record['cs_entries_sha256']:
+        raise ValueError('UT Austin catalog CS faculty entry review mismatch')
+    return record, entries
 
 
 def washu_catalog_listing_coverage(key):
@@ -257,6 +296,16 @@ def catalog_person_rows(key):
     manifest = P.HIERARCHY / key / 'reviewed' / 'catalog-listing-sources.json'
     if not manifest.exists():
         return []
+    if key == 'utaustin':
+        record, entries = utaustin_catalog_entries()
+        rw = (S.get(key).get('census') or {}).get('rank_words') or {}
+        return [dict(name=name, name_listed=name, dept='CS', slot='official catalog spring 2018',
+                     kind='main', year=2018, half='spring', observed='2018 spring',
+                     titles=[title], dept_title=[title], rank=listing_rank([title], [title], 'main', rw),
+                     division=None, homepage=None, capture_url=record['source_url'],
+                     sha256=record['raw_sha256'], quote=f'{name}, {title}, Computer Science',
+                     source_kind='official_undergraduate_catalog', identity_status='full_name_as_printed_unmerged')
+                for name, title in entries if title]
     ranks = {'Professors': 'ladder', 'Associate Professors': 'ladder', 'Assistant Professors': 'ladder',
              'Emeriti Faculty': 'emeritus', 'Visiting Faculty': 'visiting', 'Research Professors': 'research',
              'Collegiate Associate Professors': 'teaching', 'Collegiate Assistant Professors': 'teaching',
