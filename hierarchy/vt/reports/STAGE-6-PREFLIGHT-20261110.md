@@ -1,0 +1,9 @@
+# Virginia Tech Stage 6 student preflight
+
+2026-11-10 isolated trial on `agent/vt-stage-work-1110`. Stages 2–5 pass; Stage 6 does not.
+
+`CS_ATLAS_CODE=$PWD PYTHONPATH=tools python tools/pi_hierarchy.py vt` built a preliminary 93-PI package from the reviewed census and local sweep. It has 532 PI-paper rows, 22 PIs with papers, and **zero student relations**. These papers are an unadmitted trial, not school-release counts. `student_audit.py vt` wrote the school-local audit and found zero duplicate-person or link issues, but there are no students to check. The live Stage 6 gate reports **75 of 93 labs without explained student coverage** and a missing lab-page student acceptance. Earlier “one_person” open status was the absent school-local audit file, not a duplicate-person finding.
+
+A limited `labpage_audit.py discover` pass checked Doug Bowman, Kirk Cameron, and Alexey Onufriev. Its subsequent `audit vt` found 16 listed people on the three checked pages: eight current and eight alumni. The automated comparison proposed six Kirk Cameron additions (Jon Bernard, Bo Li, Samuel Furman, Chandler Jearls, Nicolas Hardy, Zoe Smith); those are **unreviewed candidates** in the local `labpage-additions.json`, not admitted students. The audit classified five listings outside the period, two at a previous school, and three outside the people section. Robert Buehrer was not in the 93-PI provisional census, so his lab page was not part of this pilot.
+
+Next: discover and audit the remaining PI pages; inspect all proposed additions against dated lab/source captures and the PI's VT period; research each lab with no students using independent sources; run a fresh random 20-person hand check under `docs/LAB-PAGES.md`; record acceptance only if its error limits pass; rebuild and rerun the school-local student and Stage 6 gates. No acceptance was stamped in this preflight.
