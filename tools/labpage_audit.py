@@ -1507,6 +1507,7 @@ def entry_years_end_the_stay(years, basis, this_year=2026):
     return years[0] is None and years[1] < this_year or years[0] is not None and years[1] < this_year
 
 
+PLACEMENT_RX = re.compile(r'@|\bnow\b|\b(?:Senior|Research|Postdoc\w*|Assistant|Associate)\s+(?:Scientist|Researcher|Professor|Engineer|Fellow)\b|\bCo-?Founder\b|\bLecturer\b', re.I)   # 'NTU PhD 2026 Senior Researcher @ Apple': a placement after the year is an alumnus
 AWARD_WORDS = re.compile(r'scholarship|fellowship|award|prize|medal|honou?r|grant|\\u5956\\u5b66\\u91d1|\\u5956', re.I)
 
 
@@ -1694,7 +1695,7 @@ def pm_candidates(kit, school, pi, plan, held):
                 x['years'], x['years_basis'] = yrs[fn], 'reviewer'
             else:
                 x['years'], x['years_basis'] = entry_years(x.get('desc'), x.get('head'))
-                if entry_years_end_the_stay(x['years'], x['years_basis']):
+                if entry_years_end_the_stay(x['years'], x['years_basis']) or (x['years_basis'] == 'stated_in_entry' and x['years'] and x['years'][0] is None and x['years'][1] == 2026 and PLACEMENT_RX.search((x.get('desc') or '')[:140])):
                     x['alumni'] = True  # '(PhD 2024, co-advised with ...)' on a current page: the entry itself says the stay ended (UChicago stage 6, round 1)
             x['role'], x['role_basis'] = entry_role(x.get('desc'), x.get('head'), kit.autom._role)
             if fn in roles_:
@@ -2295,7 +2296,8 @@ def repair_reason(kit, school, name, best, start, pi=None):
         pic = re.sub(r'\s+', '', pi or '')
         if pic and re.match(r'\s*[(\uff08]\s*' + re.escape(pic) + r'\s*[)\uff09]', t[k + len(name or ''): k + len(name or '') + 30]):
             return 'not_a_student', "the PI's own name (the page title gives the PI's name with the Chinese form)"
-        if re.search(r'\bLab\s+Affiliates?\b', t[k + len(name or ''): k + len(name or '') + 110]) and not re.search(r'\bLab\s+Member\b', t[k + len(name or ''): k + len(name or '') + 110].split('Affiliate')[0]):
+        tg = re.search(r'\bLab\s+(Affiliates?|Members?)\b', t[k + len(name or ''): k + len(name or '') + 220])
+        if tg and tg.group(1).lower().startswith('affiliate'):
             return 'not_a_student', 'tagged Lab Affiliate (an outside affiliate of the group), not a lab member'
         lm = OTHER_INST_LABEL.match(t[k + len(name or ''): k + len(name or '') + 40])
         if lm and best.get('role') != 'visiting' and not (set(re.findall(r'[A-Za-z]{2,}', lm.group(1).upper())) & (own_names(school, OWN_INST) | own_names(school, OWN_INST_NAMES) | {'SJTU', 'JIAO', 'TONG'})):
