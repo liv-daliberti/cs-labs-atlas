@@ -53,7 +53,7 @@ def ustc_cs_cards(h):
     if not title:
         return []
     out = []
-    for card in soup.select('#wp_news_w6 li.news'):
+    for card in soup.select('.col_news_list.listcon li.news'):
         link = card.select_one('.news_title a[href]')
         if not link:
             continue
@@ -61,6 +61,28 @@ def ustc_cs_cards(h):
         if name:
             out.append(dict(name_listed=name, titles=[title], homepage=None, division=None,
                             profile=link['href']))
+    return out
+
+
+def ustc_cs_legacy_sidebar(h):
+    """The 2016–2020 CS site embeds dated rank rosters beside faculty profiles."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for heading in soup.select('a.gk'):
+        title = heading.get_text(' ', strip=True)
+        if title not in {'院士', '大师讲席', '教授', '副教授'}:
+            continue
+        table = heading.find_next('table')
+        if not table:
+            continue
+        for link in table.select('a[href]'):
+            href = link.get('href') or ''
+            if not re.search(r'(?:/page\.htm|\.html)$', href):
+                continue
+            name = ' '.join(link.get_text(' ', strip=True).split())
+            if name and '名单' not in name:
+                out.append(dict(name_listed=name, titles=[title], homepage=None, division=None,
+                                profile=href))
     return out
 
 
@@ -1157,7 +1179,8 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
-    'ustc_cs_cards': (ustc_cs_cards, re.compile(r'id="wp_news_w6".{0,200}<ul class="news_list list2"', re.S)),
+    'ustc_cs_cards': (ustc_cs_cards, re.compile(r'class="col_news_list listcon"')),
+    'ustc_cs_legacy_sidebar': (ustc_cs_legacy_sidebar, re.compile(r'(?!)')),
     'ntu_coe_cards': (ntu_coe_cards, re.compile(r'coe-about-leadership__card')),
     'ntu_profile_cards': (ntu_profile_cards, re.compile(r'ntu-profile-list')),
     'ntu_spms_table': (ntu_spms_table, re.compile(r"<strong[^>]*>[A-Z][A-Z' -]+, [A-Z]")),

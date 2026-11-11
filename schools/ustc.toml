@@ -87,9 +87,23 @@ profile_patterns = []
 code = "CS"
 name = "School of Computer Science and Technology (计算机科学与技术学院)"
 unit = "University of Science and Technology of China"
-title_match = '''计算机科学与技术学院|Computer Science'''
+title_match = '''教授|副教授|研究员|讲师|大师讲席|院士|计算机科学与技术学院|Computer Science'''
 coverage = "full"
 url = "https://cs.ustc.edu.cn/main.htm"
+  [[departments.listings]]
+  slot = "CS legacy faculty rank sidebar"
+  kind = "main"
+  url = "cs.ustc.edu.cn/szdw/ys/201006/t20100614_21994.html"
+  from = "20160101"
+  to = "20181231"
+  format = "ustc_cs_legacy_sidebar"
+  [[departments.listings]]
+  slot = "CS legacy faculty rank sidebar"
+  kind = "main"
+  url = "cs.ustc.edu.cn/2010/0614/c3052a23931/page.htm"
+  from = "20190101"
+  to = "20201231"
+  format = "ustc_cs_legacy_sidebar"
   [[departments.listings]]
   slot = "CS professors (教授)"
   kind = "main"
