@@ -1507,6 +1507,9 @@ def entry_years_end_the_stay(years, basis, this_year=2026):
     return years[0] is None and years[1] <= this_year or years[0] is not None and years[1] < this_year
 
 
+AWARD_WORDS = re.compile(r'scholarship|fellowship|award|prize|medal|honou?r|grant|\\u5956\\u5b66\\u91d1|\\u5956', re.I)
+
+
 def entry_years(desc, head):
     """(years, basis) stated by the entry itself; never a neighbour's dates or a bio's degree dates.
       '(Postdoc, 2010-2014)' -> [2010, 2014]; '(PhD student, MIT ORC, 2022 -)' -> [2022, None] (an open range is a start);
@@ -1522,6 +1525,8 @@ def entry_years(desc, head):
     d = (desc or '')[:90]
     m = re.match(r'^\W{0,3}\(([^()]{0,80})\)', d)
     seg = m.group(1) if m else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
+    if AWARD_WORDS.search(seg):
+        return None, 'none'   # '(2025 OPPO Scholarship)' dates an award, not the stay (SJTU round 1: two roles read from scholarship years)
     r = re.search(r'(%s)\s*(?:-|–|—|to|until)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
                   % (YEAR_, YEAR_), seg, re.I)
     if r:
@@ -2211,10 +2216,11 @@ OTHER_INST_ROLE = re.compile(r"\b(?:MS|M\.S\.|MSc|PhD|Ph\.D\.|BS|B\.S\.|Undergra
 OWN_INST_NAMES = {'michigan': {'MICHIGAN'}, 'stanford': {'STANFORD'}, 'mit': {'MIT'}, 'cmu': {'CMU'}, 'berkeley': {'BERKELEY'}, 'epfl': {'EPFL'}, 'princeton': {'PRINCETON'}}
 FACULTY_HEAD = re.compile(r"\bVisiting\s+(?:Scientists?|Professors?|Faculty|Researchers?\s+at)\b|\bFaculty\b(?!.*student)|\bCollaborators?\b", re.I)
 NAME_NOISE = re.compile(r"\b(?:Fellowship|Scholarship|Award|Prize|Grant|Foundation|Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist|Complaint|Policy|Privacy|Accessibility|Transfer|Network|Learning)\b", re.I)
-PAREN_TAIL = re.compile(r'\s*\(([^()]{1,40})\)\s*$')
+PAREN_TAIL = re.compile(r'\s*[(\uff08]([^()\uff08\uff09]{1,40})[)\uff09]\s*$')   # fullwidth brackets too (SJTU 2026-11-11: 'Qi Fan\uff08Master)')
 COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?taught|taught|co-?supervis\w*|jointly\s+\w+|joint(?:ly)?)\s*(?:with|w/|by|:)\s*$|\(\s*with\s+$|\bw/\s*$|\bwith\s+Prof\.?\s+$", re.I)
 COLLAB_PROSE = re.compile(r"collaborat\w*\s+with\s+(?:the\s+|some\s+)?(?:\w+\s+){0,3}(?:students|researchers|postdocs)", re.I)
 CITE_INITIALS = re.compile(r"[A-Z][\w'\u00C0-\u017F-]+(?:\s[A-Z][\w'\u00C0-\u017F-]+)*,\s(?:[A-Z]\.\s?){1,3}(?:,|\.|\s)")
+OTHER_INST_LABEL = re.compile(r"^\s{1,3}((?:UC\s+[A-Z][a-z]+|UCL|UIUC|UCLA|UCSD|MIT|CMU|ETH(?:\s+Zurich)?|EPFL|NUS|NTU|HKUST|CUHK|KAIST|Caltech|Tsinghua|Peking|PKU|Stanford|Harvard|Oxford|Cambridge|Imperial|(?:The\s+)?University\s+of\s+[A-Z][A-Za-z]+(?:\s+[A-Z][a-z]+)?|[A-Z][a-z]+\s+University))(?=[\s,;)]|$)")
 OTHER_INST_AT = re.compile(r"@\s*([A-Z][A-Za-z]{1,8})\b")
 OWN_INST = {'michigan': {'UM', 'UMICH', 'MICHIGAN', 'UMICHIGAN'}, 'stanford': {'STANFORD', 'SU'}, 'mit': {'MIT'},
             'cmu': {'CMU'}, 'berkeley': {'UCB', 'BERKELEY', 'UCBERKELEY'}, 'epfl': {'EPFL'}, 'princeton': {'PRINCETON'}}
@@ -2280,6 +2286,12 @@ def repair_reason(kit, school, name, best, start, pi=None):
     if j >= 0:
         k = t.find(name.split()[0], j) if name else j
         k = j if k < 0 else k
+        pic = re.sub(r'\s+', '', pi or '')
+        if pic and re.match(r'\s*[(\uff08]\s*' + re.escape(pic) + r'\s*[)\uff09]', t[k + len(name or ''): k + len(name or '') + 30]):
+            return 'not_a_student', "the PI's own name (the page title gives the PI's name with the Chinese form)"
+        lm = OTHER_INST_LABEL.match(t[k + len(name or ''): k + len(name or '') + 40])
+        if lm and best.get('role') != 'visiting' and not (set(re.findall(r'[A-Za-z]{2,}', lm.group(1).upper())) & (own_names(school, OWN_INST) | own_names(school, OWN_INST_NAMES) | {'SJTU', 'JIAO', 'TONG'})):
+            return 'site_at_other_institution', f'the entry labels the person with {lm.group(1)} (a card list of the PI\'s collaborators and students elsewhere)'
         pre_bio = t[max(0, k - 140): k]
         tm = list(BIO_TRIGGER.finditer(pre_bio))
         if tm and (not pre_bio[tm[-1].end():].strip() or BIO_TAIL.match(pre_bio[tm[-1].end():])) and len(re.findall(r'\b[a-z]{3,}\b', pre_bio[:tm[-1].start()])) >= 3:
