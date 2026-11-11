@@ -41,7 +41,7 @@ def candidates(row, domain, hosts):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('key'); ap.add_argument('--in', dest='inp', required=True); ap.add_argument('--out'); ap.add_argument('--dry', action='store_true'); ap.add_argument('--absence', action='store_true'); ap.add_argument('--hand')
+    ap.add_argument('key'); ap.add_argument('--in', dest='inp', required=True); ap.add_argument('--out'); ap.add_argument('--dry', action='store_true'); ap.add_argument('--absence', action='store_true'); ap.add_argument('--hand'); ap.add_argument('--adopt', action='store_true')
     a = ap.parse_args()
     import labpage_audit as L
     doc = json.loads(Path(a.inp).read_text())
@@ -81,6 +81,33 @@ def main():
                 r['official_link_evidence'] = [chk]
                 r['listed_on'] = u
                 stats['linked'] += 1
+                break
+    if a.adopt:   # a site an official profile links (school_profile_link 'listed') replaces a selected site no official page reaches, when its live page (robots honoured) names the PI
+        from person_fetch import names_person
+        stats['adopted'] = 0
+        for r in doc['labs']:
+            if r.get('official_link_status') == 'recorded' or r.get('coverage') not in ('website', 'pending') or not (r.get('url') or r.get('rejected_url')):
+                continue
+            old = r.get('url') or r.get('rejected_url')
+            for chk in [c for c in r.get('checks') or [] if c.get('source') == 'school_profile_link' and c.get('result') in ('listed', 'ok') and c.get('url') and c.get('on')]:
+                u = chk['url']
+                if LW.normalized_link(u) == LW.normalized_link(old) or any(x in urlsplit(u).netloc for x in ('mitcommlab', 'orcid.org', 'dblp.org', 'scholar.google', 'linkedin.com', 'twitter.com')):
+                    continue
+                res = W.live(c, u)
+                stats['fetched'] += 1
+                if not res or res[0] != 200:
+                    continue
+                ok, quote = names_person(W.live_html(c, u).encode(), r['pi'])
+                if not ok:
+                    continue
+                r['website_note'] = dict(replaced_url=old, replaced_sha256=r.get('sha256'), replaced_kind=r.get('kind'), found_via=r.get('found_via'),
+                                         why='the official profile links this site instead; its live page names the PI (reviewed policy, reversible)')
+                for k in ('rejected_url', 'rejected_reason', 'evidence_gaps', 'unverified_reason'):
+                    r.pop(k, None)
+                r.update(coverage='website', url=u, kind='pi_homepage', reason_code='pi_homepage_only_no_lab_site', found_via='school_profile_link', listed_on=chk['on'], sha256=res[1],
+                         evidence=dict(url=u, sha256=res[1], quote=quote, source='live_fetch_stage3'), official_link_status='recorded', official_link_evidence=[chk],
+                         verified=True, verification_quote=quote, reason='Captured PI homepage linked from the official profile.')
+                stats['adopted'] += 1
                 break
     if a.hand:   # reviewed decisions {pi: {reject_url, reason_code, reason}}: a selected page that is not a lab or home page becomes a recorded reason, the page kept in website_note
         hand = json.loads(Path(a.hand).read_text())
