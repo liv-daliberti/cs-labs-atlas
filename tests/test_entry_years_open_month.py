@@ -32,3 +32,16 @@ def test_slash_date_open_start_and_prior_degree_after_from_is_not_the_role():
     ro = lambda t: ('phd' if re.search(r'ph\.?\s?d', t, re.I) else 'undergraduate' if re.search(r'\bb\.?s\.?\b', t, re.I) else None, 'x')
     assert L.entry_role('Ph.D student, 2022/9/1 to present; B.S. from Tsinghua University', 'Members', ro)[0] == 'phd'
     assert L.entry_role('Ph.D student, 2022/9/1 to present', 'Members', ro)[0] == 'phd'
+
+
+def test_incoming_joint_institute_unclosed_bracket_and_bare_year_under_group_heading():
+    assert L.incoming_entry('incoming Ph.D. (Fall 2027)', '') and L.incoming_entry('(2027)', '') and L.incoming_entry('admitted for 2027', '')
+    assert not L.incoming_entry('Ph.D. student, 2024-', '')
+    assert L.joint_other_institute_entry('Co-supervised by Prof. Li, Shanghai AI Laboratory', '', 'sjtu')
+    assert L.joint_other_institute_entry('joint PhD with Shanghai Innovation Institute', '', 'sjtu')
+    assert not L.joint_other_institute_entry('Ph.D. student, 2023-', '', 'sjtu')
+    assert L.clean_parenthetical_name('Haolan Zhang（Ph.D') == ('Haolan Zhang', 'phd')
+    assert L.clean_parenthetical_name('Ann Lee (PhD') == ('Ann Lee', 'phd')
+    assert L.entry_years('(Ph.D./M.S. 2023)', 'Research Group Graduate Students')[0] == [2023, None]
+    assert L.entry_years('M.S. 2026', 'Research Group Graduate Students')[0] == [2026, None]
+    assert L.entry_years('Ph.D. 2023', 'Graduated Students')[0] == [None, 2023]

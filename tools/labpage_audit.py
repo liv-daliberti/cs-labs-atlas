@@ -316,6 +316,21 @@ def prose_nonmember(name, desc, quote):
     return None
 
 
+INCOMING_RX = re.compile(r"\bincoming\b|\badmitted\s+(?:for|to|in)\b|\bwill\s+(?:join|start|begin)\b[^.]{0,40}\b(?:fall\s+|spring\s+)?20(?:2[7-9]|3\d)\b|\b(?:fall|spring|autumn)\s+20(?:2[7-9]|3\d)\b|[(\uff08]\s*20(?:2[7-9]|3\d)\s*[)\uff09]", re.I)
+JOINT_OTHER_RX = re.compile(r"(?:co-?supervised\s+by|jointly?\s+(?:supervised|trained|training|program|with)|joint\s+(?:PhD|training|student))[^.;]{0,90}?\b(?:Laboratory|Institute|Academy)\b|\b(?:Shanghai\s+AI\s+Laborator\w*|Shanghai\s+Innovation\s+Institute|Shanghai\s+Artificial\s+Intelligence\s+Laborator\w*)\b", re.I)
+
+
+def incoming_entry(desc, quote):
+    """'incoming Ph.D. (Fall 2027)', 'admitted for 2027', 'will join in fall 2027': a future student is not a member yet (SJTU round 6: 3 wrong rows)."""
+    return bool(INCOMING_RX.search(f'{desc or ""}'[:140]) or INCOMING_RX.search((quote or '')[:140]))
+
+
+def joint_other_institute_entry(desc, quote, school):
+    """A joint or co-supervised entry with another institute ('Co-supervised by Prof. X (Shanghai AI Laboratory)'): not a member of this school's lab unless the page ties it to the PI's lab here (SJTU round 6: Zihan Guo)."""
+    m = JOINT_OTHER_RX.search(f'{desc or ""}'[:160])
+    return bool(m) and not re.search(school_names_rx(school), m.group(0))
+
+
 def admin_staff_entry(head, desc, quote):
     """Stanford rounds 6 and 7: an 'Administrative Associate' (Jenny Lam), or any name in the Contact block of a Stanford Profile (Pavone,
     Demszky, Hinds, Wong: administrators and alternate contacts), is staff, not a student of the lab. The staff title in the entry decides, and
@@ -1571,7 +1586,7 @@ def entry_years(desc, head):
     if len(ys) == 1:
         if AWARD_AFTER_YEAR.search(seg) and not re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis", seg, re.I):
             return None, 'none'   # '(2025 OPPO Scholarship)' dates an award, not the stay (SJTU round 1); a range above is unaffected
-        if head and CURRENT_LIST_HEAD.search(head.split(' > ')[-1]) and not re.search(r'\b(?:former|past|previous|alumni|alumnae|graduated)\b', head, re.I) \
+        if head and not re.search(r'\b(?:former|past|previous|alumni|alumnae|alumnus|graduated|graduates|class of|emeriti)\b', head, re.I) \
                 and re.fullmatch(r"\W*(?:ph\.?\s?d\.?|m\.?s\.?|b\.?s\.?)(?:\s*[/&,]\s*(?:ph\.?\s?d\.?|m\.?s\.?|b\.?s\.?))*\W*(?:19|20)\d\d\W*", seg, re.I):
             return [ys[0], None], 'stated_in_entry'   # '(Ph.D./M.S. 2023)' in a CURRENT list is the entry year, not an end year (SJTU round 5, 赵杰茹's page); real alumni there use YYYY-YYYY ranges
         if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
@@ -1766,6 +1781,10 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'site_at_other_institution', f"the page's header names {inst_[src]}, not this school"
             elif CREDIT_RX.search(x.get('quote') or '') or CREDIT_RX.search((x.get('desc') or '')[:60]):
                 why, x['detail'] = 'name_unresolved', 'site credit or footer'
+            elif fn not in keep and incoming_entry(x.get('desc'), x.get('quote')):
+                why, x['detail'] = 'not_a_student', 'an incoming / admitted-for-a-future-year entry is not a member yet'
+            elif fn not in keep and joint_other_institute_entry(x.get('desc'), x.get('quote'), school):
+                why, x['detail'] = 'not_a_student', 'a joint / co-supervised entry with another institute: not placed in this lab unless the page ties it to the PI'
             elif fn not in keep and admin_staff_entry(x.get('head'), x.get('desc'), x.get('quote')):
                 why, x['detail'] = 'not_a_student', 'administrative staff (a contact-block or staff entry), not a lab member'
             elif fn not in keep and (pn := prose_nonmember(x['name'], x.get('desc'), x.get('quote'))):
@@ -2294,6 +2313,12 @@ def clean_parenthetical_name(name):
     """('Linfeng Li (postdoc) (co-advisor)') -> ('Linfeng Li', 'postdoc'): trailing parentheticals are annotations, not the
     name; a role word in them is the entry's stated role (Michigan round 2)."""
     role, nm = None, name or ''
+    um = re.search(r'\s*[\uff08(]\s*(ph\.?\s?d|m\.?s\.?|b\.?s\.?|postdoc|master|undergrad\w*)\.?\s*$', nm, re.I)   # 'Haolan Zhang\uff08Ph.D': an unclosed bracket fragment (SJTU round 6, \u9a6c\u53f6\u6db5's page)
+    if um and len(nm[:um.start()].split()) >= 2:
+        for k, v in ROLE_PAREN:
+            if k in um.group(1).lower() and role is None:
+                role = v
+        nm = nm[:um.start()].strip()
     while True:
         m = PAREN_TAIL.search(nm)
         if not m or len(nm[:m.start()].split()) < 2:
