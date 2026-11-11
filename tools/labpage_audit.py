@@ -1507,6 +1507,8 @@ def entry_years_end_the_stay(years, basis, this_year=2026):
     return years[0] is None and years[1] <= this_year or years[0] is not None and years[1] < this_year
 
 
+NON_US_CLASS_SCHOOLS = {'ntu', 'sjtu', 'tsinghua', 'zju', 'nus'}   # 'Class of 2024' cohort lines on these schools' lab pages belong to US-college affiliates (NTU round 4: Will Cong's lab)
+ALUMNI_TABLE_ROW = re.compile(r'^\W{0,3}(?:NTU|[A-Z]{2,6})\s+(?:PhD|Ph\.D\.|Postdoc|RAP?)\s+(?:19|20)\d\d\b')   # 'NTU PhD 2026 Senior Researcher @ Apple': an alumni-table row
 PLACEMENT_RX = re.compile(r'@|\bnow\b|\bWhere\s+now\b|(?:Ph\.?\s?D\.?|M\.?S\.?)\W{0,3}(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep)[a-z]*\.?\s+2026|\b(?:Senior|Research|Postdoc\w*|Assistant|Associate)\s+(?:Scientist|Researcher|Professor|Engineer|Fellow)\b|\bCo-?Founder\b|\bLecturer\b', re.I)   # 'NTU PhD 2026 Senior Researcher @ Apple': a placement after the year is an alumnus
 AWARD_AFTER_YEAR = re.compile(r'(?:19|20)\d\d\s+(?:[\w&.-]+\s+){0,3}(?:scholarship|fellowship|award|prize|medal|honou?r|grant)', re.I)
 AWARD_WORDS = re.compile(r'scholarship|fellowship|award|prize|medal|honou?r|grant|\\u5956\\u5b66\\u91d1|\\u5956', re.I)
@@ -1711,6 +1713,8 @@ def pm_candidates(kit, school, pi, plan, held):
                 x['years'], x['years_basis'] = yrs[fn], 'reviewer'
             else:
                 x['years'], x['years_basis'] = entry_years(x.get('desc'), x.get('head'))
+                if ALUMNI_TABLE_ROW.match(x.get('desc') or ''):
+                    x['alumni'] = True
                 if entry_years_end_the_stay(x['years'], x['years_basis']) and not (x['years'] == [None, 2026] and not PLACEMENT_RX.search((x.get('desc') or '')[:260])):
                     # a degree year equal to this year in a current-student list is an expected graduation, not an end (SJTU rounds 2-3); a placement after it ('NTU PhD 2026 Senior Researcher @ Apple') is an alumnus
                     x['alumni'] = True  # '(PhD 2024, co-advised with ...)' on a current page: the entry itself says the stay ended (UChicago stage 6, round 1)
@@ -2231,7 +2235,7 @@ CITATION_CONTEXT = re.compile(r"\bpp\.\s*\d|\bPDF\s*\||\bView details for\b|\bPr
 ADMIN_DESC = re.compile(r"\b(?:Secretary|Administrative\s+(?:Assistant|Specialist|Associate|Staff)|Group\s+Administrator|Office\s+Manager|Executive\s+Assistant)\b", re.I)
 AFFILIATE_DESC = re.compile(r"^\W{0,3}(?:Research\s+|Senior\s+)?(?:Affiliate|Partner|Collaborator|Consulting\s+Professor|Adjunct)\b", re.I)
 PROF_TITLE_DESC = re.compile(r"^\W{0,3}(?:\(\s*)?(?:consulting|courtesy|adjunct|emeritus|clinical)\s+(?:associate\s+|assistant\s+|full\s+)?(?:professor|faculty|lecturer)\b|^\W{0,3}(?:Professor|Associate Professor|Assistant Professor)\b", re.I)
-BIO_TRIGGER = re.compile(r"(?:worked\s+(?:closely\s+)?with|advised\s+by|advis[eo]rs?\s+(?:was|were|is|are)|mentored\s+by|supervised\s+by|collaborat\w+\s+with|together\s+with|studied\s+under|under\s+the\s+(?:guidance|supervision)\s+of)\s+", re.I)
+BIO_TRIGGER = re.compile(r"(?:(?:kindly\s+)?hosted\s+by|worked\s+(?:closely\s+)?with|advised\s+by|advis[eo]rs?\s+(?:was|were|is|are)|mentored\s+by|supervised\s+by|collaborat\w+\s+with|together\s+with|studied\s+under|under\s+the\s+(?:guidance|supervision)\s+of)\s+", re.I)
 BIO_TAIL = re.compile(r"^(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)(?:\s+(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)){0,3}(?:\s*(?:,|and|&)\s+(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)(?:\s+(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)){0,3})*\s*,?\s*(?:and\s+)?$")
 OTHER_INST_ROLE = re.compile(r"\b(?:MS|M\.S\.|MSc|PhD|Ph\.D\.|BS|B\.S\.|Undergrad(?:uate)?|Master'?s?)\s+(?:Student|Candidate|Researcher)?\s*,?\s*(MIT|Harvard|Caltech|Cornell|Yale|Princeton|Columbia|Oxford|Cambridge|ETH|EPFL|NUS|Tsinghua|Stanford|Berkeley|CMU|UCLA|UCSD|Toronto|Waterloo|Michigan)\b")
 OWN_INST_NAMES = {'michigan': {'MICHIGAN'}, 'stanford': {'STANFORD'}, 'mit': {'MIT'}, 'cmu': {'CMU'}, 'berkeley': {'BERKELEY'}, 'epfl': {'EPFL'}, 'princeton': {'PRINCETON'}}
@@ -2318,6 +2322,8 @@ def repair_reason(kit, school, name, best, start, pi=None):
             return 'not_a_student', 'tagged Lab Affiliate (an outside affiliate of the group), not a lab member'
         if re.search(r'Class\s+of\s+\d{4}[^.]{0,90}\b(?:Cornell|Johnson\s+Graduate|Chicago\s+Booth)|\b(?:Master|Doctoral)\s+(?:Student|Candidate)\b[^.]{0,80}\b(?:Cornell|Johnson\s+Graduate)', t[k + len(name or ''): k + len(name or '') + 200]) and 'CORNELL' not in own_names(school, OWN_INST):
             return 'site_at_other_institution', 'the entry places the person in a degree programme at another institution (Cornell Johnson), an outside student of a joint lab'
+        if school in NON_US_CLASS_SCHOOLS and re.search(r'\bClass\s+of\s+(?:19|20)\d\d\b', t[k + len(name or ''): k + len(name or '') + 160]):
+            return 'site_at_other_institution', "a 'Class of YYYY' entry is a US-college cohort line (an outside affiliate of the joint lab), not a lab member of this school"
         lm = OTHER_INST_LABEL.match(t[k + len(name or ''): k + len(name or '') + 40])
         if lm and best.get('role') != 'visiting' and not re.match(r'\s*[(\[]?(?:19|20)\d\d', t[k + len(name or '') + lm.end(): k + len(name or '') + lm.end() + 8]) and not (set(re.findall(r'[A-Za-z]{2,}', lm.group(1).upper())) & (own_names(school, OWN_INST) | own_names(school, OWN_INST_NAMES) | {'SJTU', 'JIAO', 'TONG'})):
             return 'site_at_other_institution', f'the entry labels the person with {lm.group(1)} (a card list of the PI\'s collaborators and students elsewhere)'
