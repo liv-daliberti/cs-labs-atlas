@@ -13562,10 +13562,170 @@
    "reason_type": "access_blocked",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "evidence_gaps": []
+  },
+  {
+   "pi": "Kai Tang",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-11T01:56:10+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://www.mae.ust.hk/en/people/faculty",
+     "at": "2026-11-11T01:54:54+00:00",
+     "result": "ok_wayback",
+     "capture_url": "https://web.archive.org/web/20210120064403id_/https://www.mae.ust.hk/en/people/faculty",
+     "sha256": "64a39af75758e1e260f8f81b80040409f52163045f6e6e46ab3be8efee5a5a3e"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://www.mae.ust.hk/people/faculty.html?",
+     "at": "2026-11-11T01:54:54+00:00",
+     "result": "ok_wayback",
+     "capture_url": "https://web.archive.org/web/20180204200901id_/http://www.mae.ust.hk:80/people/faculty.html?",
+     "sha256": "576bace21d577dd0ccafaeed08573cc6a925f638394f96c1f2829aea4c2aacc2"
+    },
+    {
+     "source": "school_profile",
+     "url": "http://www.mae.ust.hk:80/people/faculty_details.html?uid=e235a722-b752-11e0-9e13-001cc47a7474",
+     "at": "2026-11-11T01:55:10+00:00",
+     "result": "ok_wayback",
+     "capture_url": "https://web.archive.org/web/20171108092555id_/http://www.mae.ust.hk:80/people/faculty_details.html?uid=e235a722-b752-11e0-9e13-001cc47a7474",
+     "sha256": "ca22b0cd9acc3d7c22b3e94c0ed1b3ecbeedd826a9e4f1b2eea7410b04957fed"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://mektang.people.ust.hk/",
+     "at": "2026-11-11T01:55:10+00:00",
+     "result": "listed",
+     "anchor": "Personal Homepage",
+     "on": "http://www.mae.ust.hk:80/people/faculty_details.html?uid=e235a722-b752-11e0-9e13-001cc47a7474"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/57/3315-1",
+     "at": "2026-11-11T01:55:10+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-5184-2086/person.json",
+     "at": "2026-11-11T01:55:10+00:00",
+     "result": "listed",
+     "sha256": "b94a9d7e65f328e2d1844ded143f68f896ebdc2d68eea117e8ae0e6d56949942",
+     "urls": [
+      "http://mektang.people.ust.hk",
+      "https://orcid.org/0000-0002-5184-2086"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-11T01:55:10+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://mektang.people.ust.hk/",
+     "at": "2026-11-11T01:55:14+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "8d20097a1ba98cc65e20b1debf7979b6a99e5ca13a38532fe6888a0a5f258490"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://mektang.people.ust.hk",
+     "at": "2026-11-11T01:55:17+00:00",
+     "result": "ok",
+     "via": "orcid_researcher_url",
+     "sha256": "8d20097a1ba98cc65e20b1debf7979b6a99e5ca13a38532fe6888a0a5f258490",
+     "final_url": "http://mektang.people.ust.hk/"
+    },
+    {
+     "source": "pubs_link",
+     "url": "http://mektang.people.ust.hk/public_files/publications.html",
+     "at": "2026-11-11T01:55:20+00:00",
+     "result": "ok",
+     "on": "http://mektang.people.ust.hk/",
+     "sha256": "0e616be5ae9b646564531ccf7ae38261e5c2fd92169080f88f0685ca95610a63"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "http://mektang.people.ust.hk/",
+     "at": "2026-11-11T01:55:24+00:00",
+     "result": "18 captures",
+     "frm": 2016
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20171109064359id_/http://mektang.people.ust.hk:80/",
+     "at": "2026-11-11T01:55:39+00:00",
+     "result": "ok_wayback",
+     "sha256": "b43690633e72d4e9c08c0a0f2a80c1943e25416d6b96c40e09364a11cef04c33"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20200221203059id_/http://mektang.people.ust.hk:80/",
+     "at": "2026-11-11T01:55:55+00:00",
+     "result": "ok_wayback",
+     "sha256": "36434ec79a15123932debeec13d2a9ba7eb11c0c319eb7c191f1270272e14340"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260320161320id_/https://mektang.people.ust.hk/",
+     "at": "2026-11-11T01:56:10+00:00",
+     "result": "ok_wayback",
+     "sha256": "47d1a23f9b1bcea2c9fe3268e53bfe41fa331e960ba27834863f62638e7076a2"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok_wayback",
+    "orcid_researcher_urls:listed",
+    "pubs_link:ok",
+    "school_profile:ok_wayback",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:18 captures"
+   ],
+   "checked_at": "2026-11-11T01:56:10+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "audited",
+   "url": "http://mektang.people.ust.hk/",
+   "kind": "pi_homepage",
+   "people_page": "http://mektang.people.ust.hk/",
+   "alumni_page": null,
+   "pubs_page": "http://mektang.people.ust.hk/public_files/publications.html",
+   "found_via": "school_profile_link",
+   "listed_on": "http://www.mae.ust.hk:80/people/faculty_details.html?uid=e235a722-b752-11e0-9e13-001cc47a7474",
+   "sha256": "8d20097a1ba98cc65e20b1debf7979b6a99e5ca13a38532fe6888a0a5f258490",
+   "evidence": {
+    "url": "http://mektang.people.ust.hk/",
+    "sha256": "8d20097a1ba98cc65e20b1debf7979b6a99e5ca13a38532fe6888a0a5f258490",
+    "quote": "Dr. Kai TANG, Solid Modeling, Feature Recognition, Motion Planningin Rob"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://mektang.people.ust.hk/",
+     "at": "2026-11-11T01:55:10+00:00",
+     "result": "listed",
+     "anchor": "Personal Homepage",
+     "on": "http://www.mae.ust.hk:80/people/faculty_details.html?uid=e235a722-b752-11e0-9e13-001cc47a7474"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "dr kai tang solid modeling feature recognition motion planningin robotics tang kai norm"
   }
  ],
  "built_against": {
-  "pis_json_sha256": "f1dae62de2ddd8efc391b625e44e016fd34004c9d2790ccf67415d2d98f6b233",
-  "note": "register rebuilt 2026-11-10 (lab_websites.py build --refresh-discovery) on the b19 package; stamp orders it after the promoted pis.json"
+  "pis_json_sha256": "d1c655b10922e022755e0874f369b11dea6f6d09de50096d113f58a3032a9864",
+  "note": "register rebuilt 2026-11-10 (lab_websites.py build --refresh-discovery) on the b20 package incl. Kai Tang; stamp orders it after the promoted pis.json"
  }
 }
