@@ -1548,6 +1548,10 @@ AWARD_WORDS = re.compile(r'scholarship|fellowship|award|prize|medal|honou?r|gran
 
 
 CURRENT_LIST_HEAD = re.compile(r'\b(?:current|present|active)\b|\u73b0\u5728|\u5728\u8bfb|\u5728\u6821', re.I)
+def m_has_range(d):
+    return bool(re.search(r'(?:19|20)\d\d\s*(?:-|\u2013|\u2014|to|\u219d|\u2192)\s*(?:19|20|\d\d)', d[:60]))
+
+
 OPEN_MONTH_RX = re.compile(r'(?<![\d./])((?:19|20)\d\d)\s*[./]\s*(?:0?[1-9]|1[0-2])(?:\s*[./]\s*(?:0?[1-9]|[12]\d|3[01]))?\s*(?:[-\u2013\u2014~\uff5e]\s*(?:\u81f3\u4eca|present|now|current)?|\u81f3\u4eca|to\s+(?:present|now))(?![\d./])', re.I)
 
 
@@ -1571,8 +1575,14 @@ def entry_years(desc, head):
     if om:   # 'PhD, 2024.9-' / '2024.9至今': an open-ended start with a month is a start year, still current (SJTU round, 马超's list)
         return [int(om.group(1)), None], 'stated_in_entry'
     m = re.match(r'^\W{0,3}\(([^()]{0,80})\)', d)
+    if m and re.search(r'co-?advis|supervised', m.group(1), re.I):   # '(Co-Advised with Prof. X) (2020-, B.S. CS@ Y)': the dates sit in the next bracket (SJTU round 6)
+        m2 = re.match(r'^\W{0,3}\([^()]{0,80}\)\s*\(([^()]{0,80})\)', d)
+        m = m2 or m
+    ab = re.match(r'^\W{0,3}(?:\([^()]{0,100}\)\s*)+((?:19|20)\d\d)(?![\d./-])', d)
+    if ab and not m_has_range(d) and not re.search(r'\b(?:alumni|former|graduated)\b', head or '', re.I):
+        return [int(ab.group(1)), None], 'stated_in_entry'   # '(2024 Zhongyuan Scholarship) 2022': the bare year after award brackets is the cohort / entry year (SJTU round 6)
     seg = m.group(1) if m else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
-    r = re.search(r'(%s)\s*(?:-|–|—|to|until)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
+    r = re.search(r'(%s)\s*(?:-|–|—|to|until|\u219d|\u21dd|\u2192|->)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
                   % (YEAR_, YEAR_), seg, re.I)
     if r:
         a, b = int(r.group(1)), r.group(2)
@@ -1598,7 +1608,7 @@ def entry_years(desc, head):
     return None, 'none'
 
 
-ROLE_NEAR = re.compile(r"^\W{0,3}[(,:–—-]?\s*(?:[A-Z][\w.&'-]*\s){0,2}?(?:visiting\s|joint\s|former\s|current\s|\d(?:st|nd|rd|th)[- ]year\s)?"
+ROLE_NEAR = re.compile(r"^\W{0,3}[(,:–—-]?\s*(?:[\u4e00-\u9fff]+\s*)?(?:[A-Z][\w.&'-]*\s){0,2}?(?:visiting\s|joint\s|former\s|current\s|\d(?:st|nd|rd|th)[- ]year\s)?"
                        r"(ph\.?\s?d|post-?doc|postdoctoral|master|m\.?s\.?\b|m\.?eng|meng|undergrad|b\.?s\.?e?\b|ug\b|urop|superurop|"
                        r"graduate|grad\b|doctoral|student|candidate|research|visiting|lab manager|engineer|scientist|staff|intern)", re.I)
 
@@ -1617,6 +1627,7 @@ def dissertation_entry_year(desc):
     return int(m.group(1)) if m else None
 
 
+PRIOR_AT_RX = re.compile(r"\b(?:b\.?\s?s\.?c?|m\.?\s?s\.?c?|b\.?a\.?)\b[^.;()]{0,20}@[^.;()]{0,40}", re.I)   # '(2020-, B.S. CS@ Jilin University)': the degree held on arrival
 PRIOR_FROM_RX = re.compile(r"\b(?:b\.?\s?s\.?c?|m\.?\s?s\.?c?|b\.?a\.?|b\.?eng|m\.?eng|m\.?phil|bachelor|master|undergraduate)['\u2019]?s?\s+(?:degree\s+)?from\b[^.;]{0,60}", re.I)
 
 
@@ -1641,7 +1652,7 @@ def entry_role(desc, head, role_of):
     if PRIOR_DEGREE.match(d):
         pass   # 'Bachelor's from X, Hong Kong PhD Fellowship': the degree the person holds on arrival, not their role here (HKUST hand check 2026-11-10: 4 of 11 roles wrong); the section heading decides
     elif ROLE_NEAR.match(d):
-        r = role_of(PRIOR_FROM_RX.sub(' ', PRIOR_DEGREE_ANY.sub(' ', d))[:45])[0]   # 'Ph.D student, 2022/9/1 to present; B.S. from X': the degree after 'from' is prior education, never the role (HKUST Ling Shi roster)
+        r = role_of(PRIOR_AT_RX.sub(' ', PRIOR_FROM_RX.sub(' ', PRIOR_DEGREE_ANY.sub(' ', d)))[:45])[0]   # 'Ph.D student, 2022/9/1 to present; B.S. from X': the degree after 'from' is prior education, never the role (HKUST Ling Shi roster)
         if r and r != 'member':
             return r, 'entry'
     h = (head or '').split(' > ')[-1]

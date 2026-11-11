@@ -45,3 +45,20 @@ def test_incoming_joint_institute_unclosed_bracket_and_bare_year_under_group_hea
     assert L.entry_years('(Ph.D./M.S. 2023)', 'Research Group Graduate Students')[0] == [2023, None]
     assert L.entry_years('M.S. 2026', 'Research Group Graduate Students')[0] == [2026, None]
     assert L.entry_years('Ph.D. 2023', 'Graduated Students')[0] == [None, 2023]
+
+
+def test_sjtu_round6_parse_items_from_the_stored_pages():
+    ro = lambda t: ('phd' if re.search(r'ph\.?\s?d', t, re.I) else 'masters' if re.search(r'master', t, re.I) else 'undergraduate' if re.search(r'\bb\.?s\.?\b|undergrad', t, re.I) else 'member', 'x')
+    # year after award brackets is the entry year (马叶涵's page)
+    assert L.entry_years('(2024 Zhongyuan Scholarship, 2025 Huawei Scholarship) 2022', 'Graduate Students')[0] == [2022, None]
+    assert L.entry_years('(2026 National Scholarship) 2024 Yiming Zhang', 'Graduate Students > 2025')[0] == [2024, None]
+    # dates in the bracket after a co-advised bracket (郑臻哲's page); the B.S. held on arrival is not the role
+    d = '(Co-Advised with Prof. Guihai Chen) (2020-, B.S. CS@ Shanghai Jiao Tong University)'
+    assert L.entry_years(d, 'Ph.D. students')[0] == [2020, None]
+    assert L.entry_role(d, 'Ph.D. students', ro)[0] == 'phd'
+    # a Chinese name token before the role (Jia Xiang on 陈国兴's page)
+    assert L.entry_role('(向嘉 Master Student, 2021-2024, Alibaba Cloud)', 'Alumni', ro)[0] == 'masters'
+    # visit ranges (ZJU 沈春华's visitors)
+    assert L.entry_years('2019 ↝ 2020 Visit', None)[0] == [2019, 2020]
+    assert L.entry_years('(2019-20 Visit)', None)[0] == [2019, 2020]
+    assert L.entry_years('2019-20 Visit', None)[0] == [2019, 2020]
