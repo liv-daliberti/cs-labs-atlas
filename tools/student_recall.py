@@ -21,6 +21,7 @@ usage: student_recall.py report <key> [--json]            metrics (A) and the ga
        student_recall.py draw <key> [--seed N] [--drawn-by NAME] [--force]    write the sample skeleton (B)
        student_recall.py capture <key> <pi> <url> [--file PATH]   store the member-list page of a sampled PI (polite single fetch: robots incl. the
                                                        Claude agent groups, >= 3 s, stops at a challenge; or --file with a page you already hold)
+       student_recall.py text <key> <url>                  print a stored capture as readable text lines (for the checker)
        student_recall.py check <key>                       recompute recall from the filled record, validate bindings and captures; exit 1 on a finding
 """
 import collections
@@ -408,7 +409,16 @@ def capture(key, pi, url, file=None, store=None, sleep=time.sleep):
         c.commit()
         return dict(url=url, sha256=sha, status=200, fetched_at=now, via='file')
     import school_web as W
+    import school_config as S
     host = re.sub(r'^https?://([^/]+).*', r'\1', url)
+    bare = host.lower().removeprefix('www.')
+    try:
+        charter_hosts = S.get(key).get('hosts') or []
+    except KeyError:
+        charter_hosts = []
+    for h in charter_hosts:
+        if h.get('use') == 'none' and h['host'].lower().removeprefix('www.') == bare:
+            raise SystemExit(f'{host}: charter use=none; never fetched: record the PI as unverifiable (robots_disallowed)')
     last = c.execute("select max(fetched_at) from live where url like ?", (f'%//{host}/%',)).fetchone()[0]
     if last:   # the stored time of a fetch of this host: keep the 3 s gap across invocations
         age = time.time() - time.mktime(time.strptime(last, '%Y-%m-%dT%H:%M:%S'))
@@ -430,8 +440,22 @@ def page_text(raw):
     except UnicodeDecodeError:
         s = raw.decode('gb18030', 'replace')
     s = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', s)
+    if not re.search(r'(?i)<html|<body', s[:5000]):   # a data file (XML: names in attributes): the attribute values are its text
+        s = re.sub(r'(?s)<[^>]+>', lambda m: ' ' + ' '.join(re.findall(r'="([^"]*)"', m.group(0))) + ' ', s)
     s = html.unescape(re.sub(r'(?s)<[^>]+>', ' ', s))
     return norm_text(s)
+
+
+def page_text_lines(raw):
+    """The visible text of a stored page with line breaks kept at block ends (for a checker to read), links dropped."""
+    try:
+        s = raw.decode('utf-8')
+    except UnicodeDecodeError:
+        s = raw.decode('gb18030', 'replace')
+    s = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', s)
+    s = re.sub(r'(?i)</(p|div|li|tr|h\d|section|ul|table)>|<br\s*/?>', '\n', s)
+    s = html.unescape(re.sub(r'(?s)<[^>]+>', ' ', s)).replace('\xa0', ' ')
+    return '\n'.join(' '.join(x.split()) for x in s.split('\n') if x.strip())
 
 
 def norm_text(s):
@@ -678,7 +702,7 @@ def would_fail(key, th=None):
 def main(argv=None):
     import argparse
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('cmd', choices=('report', 'draw', 'capture', 'check'))
+    ap.add_argument('cmd', choices=('report', 'draw', 'capture', 'check', 'text'))
     ap.add_argument('key')
     ap.add_argument('args', nargs='*')
     ap.add_argument('--seed'); ap.add_argument('--drawn-by', default=''); ap.add_argument('--force', action='store_true')
@@ -697,6 +721,17 @@ def main(argv=None):
         if len(a.args) != 2:
             ap.error('capture <key> <pi> <url>')
         print(json.dumps(capture(a.key, a.args[0], a.args[1], file=a.file)))
+        return 0
+    if a.cmd == 'text':
+        sp = stored_page(_store(captures_path(a.key)), a.args[0])
+        if not sp:
+            print('NOT STORED')
+            return 1
+        print(page_text_lines(sp['raw']))
+        import urllib.parse
+        print('--- LINKS')
+        for h, t in re.findall(r'(?is)<a\s[^>]*href=["\']([^"\'#][^"\']*)["\'][^>]*>(.*?)</a>', sp['raw'].decode('utf-8', 'replace'))[:150]:
+            print(' '.join(re.sub(r'<[^>]+>', ' ', t).split())[:50], '->', urllib.parse.urljoin(a.args[0], h))
         return 0
     rec = _read(P.data('student-recall-check.json', a.key))
     if not rec:

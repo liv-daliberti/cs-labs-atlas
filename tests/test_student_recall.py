@@ -233,3 +233,21 @@ def test_thresholds_are_coherent():
     t = R.THRESHOLDS
     assert (t['R1'], t['U'], t['R2'], t['Z'], t['X']) == (0.90, 0.30, 0.60, 0.05, 0.20)
     assert t['R2'] <= (1 - t['U']) * t['R1']   # unverifiable counts as 0 recall, so R2 is bounded by (1-U) x R1
+
+
+def test_capture_refuses_charter_use_none(tree, monkeypatch):
+    import school_config as S
+    monkeypatch.setattr(S, 'get', lambda key: {'hosts': [{'host': 'www.blocked.example', 'use': 'none'}]})
+    c = sqlite3.connect(':memory:')
+    c.execute('create table live (url text primary key, fetched_at text, status int, sha256 text, content_type text, raw_zlib blob, text text)')
+    with pytest.raises(SystemExit, match='use=none'):
+        R.capture('u', 'PI00', 'https://blocked.example/p', store=c, sleep=lambda s: None)
+
+
+def test_page_text_lines_keeps_block_breaks():
+    assert R.page_text_lines(b'<ul><li>A One</li><li>B Two</li></ul><script>x</script>') == 'A One\nB Two'
+
+
+def test_page_text_reads_attribute_names_of_a_data_file():
+    assert 'ada lovelace' in R.page_text(b'<people><person name="Ada Lovelace" role="phd"/></people>')
+    assert 'ada lovelace' not in R.page_text(b'<html><body><a title="Ada Lovelace">x</a></body></html>')
