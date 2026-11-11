@@ -41,10 +41,22 @@ DBLP_URL_SKIP = re.compile(r'orcid|wikidata|wikipedia|scholar\.google|twitter|li
                            r'genealogy\.|crossref|youtube|facebook', re.I)  # authority records and profiles are not homepages
 
 
+def census_faculty(key):
+    """The census rows: {'faculty': [...]} (census_build) or a bare list (a hand-composed released school)."""
+    d = json.loads((P.data('census-faculty.json', key)).read_text())
+    return d['faculty'] if isinstance(d, dict) else d
+
+
+def rows_of(key):
+    """listings/<key>/rows.json, or [] for a school without listing rows (MIT, Princeton, CMU, Stanford, Berkeley: hand-composed censuses)."""
+    f = P.data('rows.json', key)
+    return json.loads(f.read_text()) if f.exists() else []
+
+
 def targets(key):
-    census = json.loads((P.data('census-faculty.json', key)).read_text())['faculty']
+    census = census_faculty(key)
     add = json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []
-    rows = json.loads((P.data('rows.json', key)).read_text())
+    rows = rows_of(key)
     hp = collections.defaultdict(list)
     for r in rows:
         if r.get('homepage'):
@@ -173,7 +185,7 @@ def gaps(key, write=True):
     import cs_related_school as CR
     c = W.con(key); rx = S.aff_rx(key); out = {}
     add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
-    cen = {x['name']: x for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty']}
+    cen = {x['name']: x for x in census_faculty(key)}
     import stage_gate as SG
     for t in targets(key):
         x0 = cen.get(t['name']) or add.get(t['name']) or {}
@@ -222,7 +234,7 @@ def gaps(key, write=True):
     P.data_w('gap-year-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     if not write:
         return out
-    rows = json.loads((P.data('rows.json', key)).read_text())
+    rows = rows_of(key)
     sec, save = CO.open_section(key)
     for name, g in out.items():
         if not g['closed']:
@@ -353,8 +365,8 @@ def truncated(key, write=True):
     -> hierarchy/<key>/truncated-title-evidence.json"""
     import cs_related_school as CR
     c = W.con(key); rx = S.aff_rx(key); out = {}
-    rows = json.loads((P.data('rows.json', key)).read_text())
-    cen = {x['name']: x for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty']}
+    rows = rows_of(key)
+    cen = {x['name']: x for x in census_faculty(key)}
     add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
     tg = {t['name']: t for t in targets(key)}
     for name, years in sorted(truncated_years(rows).items()):
@@ -452,7 +464,7 @@ def deep(key, write=True):
     import cs_related_school as CR
     import stage_gate as SG
     c = W.con(key); rx = S.aff_rx(key); out = {}
-    cen = {x['name']: x for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty']}
+    cen = {x['name']: x for x in census_faculty(key)}
     add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
     homes = {r['name']: r.get('home_department') for r in json.loads((P.data('home-departments-school.json', key)).read_text())}
     supplied = json.loads((P.data('person-urls.json', key)).read_text()) if (P.data('person-urls.json', key)).exists() else {}
