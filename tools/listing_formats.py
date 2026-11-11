@@ -64,6 +64,23 @@ def ustc_cs_cards(h):
     return out
 
 
+def utaustin_cs_people(h):
+    """UT Austin CS Drupal faculty/researcher cards, with the listed appointment title."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for card in soup.select('.views-row'):
+        link = card.select_one('.views-field-title a[href^="/people/faculty-researchers/"]')
+        title = card.select_one('.views-field-field-contact-faculty-title .field-content')
+        if not link or not title:
+            continue
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        rank = ' '.join(title.get_text(' ', strip=True).split())
+        if name and rank:
+            out.append(dict(name_listed=name, titles=[rank], homepage=None,
+                            division=None, profile=link['href']))
+    return out
+
+
 def ustc_cs_legacy_sidebar(h):
     """The 2016–2020 CS site embeds dated rank rosters beside faculty profiles."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1179,6 +1196,7 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
+    'utaustin_cs_people': (utaustin_cs_people, re.compile(r'views-field-field-contact-faculty-title')),
     'ustc_cs_cards': (ustc_cs_cards, re.compile(r'class="col_news_list listcon"')),
     'ustc_cs_legacy_sidebar': (ustc_cs_legacy_sidebar, re.compile(r'(?!)')),
     'ntu_coe_cards': (ntu_coe_cards, re.compile(r'coe-about-leadership__card')),
