@@ -90,14 +90,19 @@ def main():
                 continue
             if (urlsplit(r['url']).hostname or '') not in hosts:
                 continue
-            res = W.live(c, r['url'])
+            fetched = r['url']
+            res = W.live(c, fetched)
             stats['fetched'] += 1
+            if res and 300 <= res[0] < 400 and fetched.startswith('http:'):   # the same page after the http -> https redirect (a redirect target is never followed blindly: https of the same host and path only)
+                fetched = 'https:' + fetched[5:]
+                res = W.live(c, fetched)
+                stats['fetched'] += 1
             if not res or res[0] != 200:
                 continue
-            ok, quote = names_person(W.live_html(c, r['url']).encode(), r['pi'])
+            ok, quote = names_person(W.live_html(c, fetched).encode(), r['pi'])
             if not ok:
                 continue
-            r['sha256'], r['evidence'] = res[1], dict(r.get('evidence') or {}, url=r['url'], sha256=res[1], quote=quote, source='live_fetch_stage3')
+            r['sha256'], r['evidence'] = res[1], dict(r.get('evidence') or {}, url=fetched, sha256=res[1], quote=quote, source='live_fetch_stage3')
             r['evidence_gaps'] = [g for g in r['evidence_gaps'] if g != 'page_capture_hash_missing']
             r['verified'], r['verification_quote'] = True, quote
             if not r['evidence_gaps']:
@@ -134,8 +139,9 @@ def main():
         hand = json.loads(Path(a.hand).read_text())
         for r in doc['labs']:
             h = hand.get(r['pi'])
-            if h and r.get('url') == h['reject_url']:
-                r['website_note'] = dict(replaced_url=r.pop('url'), replaced_sha256=r.pop('sha256', None), replaced_kind=r.pop('kind', None), why=h['why'])
+            if h and h['reject_url'] in (r.get('url'), r.get('rejected_url')):
+                r['website_note'] = dict(replaced_url=r.pop('url', None) or r.pop('rejected_url', None), replaced_sha256=r.pop('sha256', None), replaced_kind=r.pop('kind', None), why=h['why'])
+                r.pop('rejected_reason', None)
                 for k in ('evidence', 'found_via', 'listed_on', 'official_link_status', 'official_link_evidence', 'people_page', 'alumni_page', 'pubs_page', 'verified'):
                     r.pop(k, None)
                 r.pop('evidence_gaps', None)
