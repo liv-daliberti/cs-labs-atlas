@@ -234,20 +234,27 @@ def gaps(key, write=True):
     P.data_w('gap-year-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     if not write:
         return out
+    write_gaps(key, out)
+
+
+def write_gaps(key, out):
+    """Bridged periods for the PIs whose every gap year has a dated capture (the write half of gaps(); callable on a saved gap-year-evidence.json)."""
+    add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
+    cen = {x['name']: x for x in census_faculty(key)}
     rows = rows_of(key)
     sec, save = CO.open_section(key)
     for name, g in out.items():
         if not g['closed']:
             continue
         x = cen.get(name) or add.get(name) or {}
-        srcs = sorted([s_ for s_ in x.get('sources') or [] if s_.get('quote')], key=lambda s_: s_.get('observed') or '')
+        srcs = sorted([s_ for s_ in x.get('sources') or [] if s_.get('quote')], key=lambda s_: str(s_.get('observed') or ''))
         first, last = (srcs[0], srcs[-1]) if srcs else (None, None)
         iso = lambda d: (f'{d[:4]}-{d[4:6]}-{d[6:8]}' if d and re.fullmatch(r'\d{8}(?:\d{2}){0,3}', d) else d)  # contains() reads ISO dates only
-        evs = ([dict(url=first['url'], sha256=first['sha256'], quote=first['quote'], observed=iso(first.get('observed')), kind='dept_listing')] if first else []) + \
+        evs = ([dict(url=first['url'], sha256=first['sha256'], quote=first['quote'], observed=iso(str(first.get('observed') or '')), kind='dept_listing')] if first else []) + \
               [dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], observed=e['observed'], kind=e['kind']) for _, e in sorted(g['evidence'].items())] + \
-              ([dict(url=last['url'], sha256=last['sha256'], quote=last['quote'], observed=iso(last.get('observed')), kind='dept_listing')] if last and last is not first else [])
+              ([dict(url=last['url'], sha256=last['sha256'], quote=last['quote'], observed=iso(str(last.get('observed') or '')), kind='dept_listing')] if last and last is not first else [])
         sec.setdefault(name, {})['periods'] = [dict(id=f"override_period_gaps_{key}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}", start=str(g['listing_years'][0]),
-                                                    end=None, asof=iso(evs[-1].get('observed') or '')[:10] or None, datePrecision='year', evidence=evs,
+                                                    end=None, asof=iso(str(evs[-1].get('observed') or ''))[:10] or None, datePrecision='year', evidence=evs,
                                                     note=f"Bridged from dated evidence for every year {g['listing_years'][0]}-{g['listing_years'][-1]}: listings, and for the gap years "
                                                          f"{g['gap_years']} dated Wayback captures naming the PI with a professor title (hierarchy/{key}/gap-year-evidence.json). "
                                                          "Start is a lower bound (the first listing in the window); no end is claimed.",
