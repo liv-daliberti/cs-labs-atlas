@@ -92,6 +92,23 @@ def utaustin_cs_people(h):
     return out
 
 
+def purdue_cs_people(h):
+    """Purdue CS faculty cards with source-stated role and profile URL."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for card in soup.select('.people-item'):
+        link = card.select_one('.people-name a[href]')
+        title = card.select_one('.people-title')
+        if not link or not title:
+            continue
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        role = ' '.join(title.get_text(' ', strip=True).split())
+        if name and role:
+            out.append(dict(name_listed=name, titles=[role], homepage=None,
+                            division=None, profile=link['href']))
+    return out
+
+
 def utaustin_cs_faculty_legacy(h):
     """The older UT Austin CS /faculty directory exposes names, ranks and profile links."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1244,6 +1261,7 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
+    'purdue_cs_people': (purdue_cs_people, re.compile(r'class="people-item"')),
     'utaustin_cs_people': (utaustin_cs_people, re.compile(r'views-field-field-contact-faculty-title')),
     'utaustin_cs_faculty_legacy': (utaustin_cs_faculty_legacy, re.compile(r'class="prof-name"')),
     'ustc_cs_cards': (ustc_cs_cards, re.compile(r'class="col_news_list listcon"')),
