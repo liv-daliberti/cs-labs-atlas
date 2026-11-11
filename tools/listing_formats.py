@@ -68,7 +68,7 @@ def utaustin_cs_people(h):
     """UT Austin CS Drupal faculty/researcher cards, with the listed appointment title."""
     soup = BeautifulSoup(h, 'html.parser')
     out = []
-    for card in soup.select('.views-row'):
+    for card in soup.select('.views-row, .faculty-and-researchers'):
         link = card.select_one('.views-field-title a[href^="/people/faculty-researchers/"]')
         title = card.select_one('.views-field-field-contact-faculty-title .field-content')
         if not link or not title:
@@ -78,6 +78,54 @@ def utaustin_cs_people(h):
         if name and rank:
             out.append(dict(name_listed=name, titles=[rank], homepage=None,
                             division=None, profile=link['href']))
+    for card in soup.select('.node-facstaff-directory-page'):
+        link = card.select_one('.field-name-title a[href^="/people/faculty-researchers/"]')
+        title = card.select_one('.field-name-field-faculty-title .field-item, '
+                                '.field-name-field-contact-faculty-title .field-item')
+        if not link or not title:
+            continue
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        rank = ' '.join(title.get_text(' ', strip=True).split())
+        if name and rank:
+            out.append(dict(name_listed=name, titles=[rank], homepage=None,
+                            division=None, profile=link['href']))
+    return out
+
+
+def utaustin_cs_faculty_legacy(h):
+    """The older UT Austin CS /faculty directory exposes names, ranks and profile links."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for card in soup.select('.views-row'):
+        block = card.select_one('.views-field-nothing .field-content')
+        name_el = block.select_one('.prof-name') if block else None
+        profile = card.select_one('.views-field-view-user a[href^="/directory/"]')
+        fixed_title = card.select_one('.views-field-field-user-title .field-content')
+        if name_el is None and profile is None:
+            profile = card.select_one('.views-field-nothing strong a[href^="/directory/"]')
+            name_el = profile.parent if profile else None
+        elif name_el is not None:
+            profile = block.select_one('a[href^="/directory/"]')
+        if not name_el and not profile:
+            continue
+        name = ' '.join((name_el or profile).get_text(' ', strip=True).split())
+        if fixed_title:
+            title = ' '.join(fixed_title.get_text(' ', strip=True).split())
+        else:
+            title_parts = []
+            for node in name_el.next_siblings:
+                if getattr(node, 'name', None) == 'br' and title_parts:
+                    break
+                if getattr(node, 'name', None) != 'br':
+                    part = node.get_text(' ', strip=True) if hasattr(node, 'get_text') else str(node).strip()
+                    if part:
+                        title_parts.append(part)
+            title = ' '.join(' '.join(title_parts).split())
+        home = next((a.get('href') for a in card.select('a[href]')
+                     if a.get_text(' ', strip=True).lower() == 'homepage'), None)
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=home,
+                            division=None, profile=profile.get('href') if profile else None))
     return out
 
 
@@ -1197,6 +1245,7 @@ def ntu_entries_text(rows):
 
 FORMATS = {
     'utaustin_cs_people': (utaustin_cs_people, re.compile(r'views-field-field-contact-faculty-title')),
+    'utaustin_cs_faculty_legacy': (utaustin_cs_faculty_legacy, re.compile(r'class="prof-name"')),
     'ustc_cs_cards': (ustc_cs_cards, re.compile(r'class="col_news_list listcon"')),
     'ustc_cs_legacy_sidebar': (ustc_cs_legacy_sidebar, re.compile(r'(?!)')),
     'ntu_coe_cards': (ntu_coe_cards, re.compile(r'coe-about-leadership__card')),
