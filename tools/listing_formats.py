@@ -375,6 +375,54 @@ def cambridge_profile(h):
     return [dict(name_listed=nm, titles=titles, homepage=None, division=None)] if titles else []
 
 
+def epfl_ic_legacy(h):
+    """EPFL IC's 2016–2017 sectioned professor list (ic.epfl.ch/professors).
+
+    The cards omit personal job titles. Keep the page's section as the
+    appointment category, including courtesy, adjunct, scientist and honorary.
+    """
+    section_titles = {
+        'Professors': 'Professor',
+        'Professeurs': 'Professor',
+        'Courtesy Appointments': 'Courtesy Appointment',
+        'Senior Scientists': 'Senior Scientist',
+        "Maîtres d'enseignement et de recherche": "Maître d'enseignement et de recherche",
+        'External adjunct Professors': 'External adjunct Professor',
+        'Professeurs titulaires externes': 'Professeur titulaire externe',
+        'Honorary Professors': 'Honorary Professor',
+        'Professeurs honoraires': 'Professeur honoraire',
+    }
+    out = []
+    for section in re.split(r'<div\b[^>]*class="\s*htmlBox"[^>]*>', h)[1:]:
+        heading = re.search(r'<h2\b[^>]*>(.*?)</h2>', section, re.S)
+        category = clean(heading.group(1)) if heading else ''
+        title = section_titles.get(category)
+        if not title:
+            continue
+        for card in re.split(r'<div\s+class="g-span-1_4"[^>]*>', section)[1:]:
+            name = re.search(r'<h2\b[^>]*itemprop="name"[^>]*>(.*?)</h2>', card, re.S)
+            if not name:
+                continue
+            link = re.search(r'<a\b[^>]*href="([^"]+)"', name.group(1))
+            out.append(dict(name_listed=clean(name.group(1)), titles=[title],
+                            homepage=H.unescape(link.group(1)) if link else None, division=category))
+    return out
+
+
+def epfl_ic_contact(h):
+    """EPFL IC's 2019–2026 contact list with explicit per-person job titles."""
+    out = []
+    for card in re.split(r'<div\b[^>]*class="contact-list-row"[^>]*>', h)[1:]:
+        name = re.search(r'<a\b(?=[^>]*itemprop="name")[^>]*>(.*?)</a\s*>', card, re.S)
+        title = re.search(r'<p\b(?=[^>]*itemprop="jobTitle")[^>]*>(.*?)</p\s*>', card, re.S)
+        if not name:
+            continue
+        link = re.search(r'href="([^"]+)"', name.group(0))
+        out.append(dict(name_listed=clean(name.group(1)), titles=_titles(title.group(1)) if title else [],
+                        homepage=H.unescape(link.group(1)) if link else None, division=None))
+    return out
+
+
 def vt_directory(h, section):
     """VT CS cards in one named appointment section; ignore repeated navigation."""
     main = re.search(r'<main\b[^>]*>(.*?)</main>', h, re.S | re.I)
@@ -1069,6 +1117,8 @@ FORMATS = {
     'cambridge_profile': (cambridge_profile, re.compile(r'class="cst-job-titles')),
     'oxford_person_index': (oxford_person_index, re.compile(r'class="personIndex"')),
     'cambridge_directory': (cambridge_directory, re.compile(r'views-field-field-sd-classifications-ref')),
+    'epfl_ic_legacy': (epfl_ic_legacy, re.compile(r'class="g-span-1_4"')),
+    'epfl_ic_contact': (epfl_ic_contact, re.compile(r'class="contact-list-row"')),
     'eecs_table': (eecs_table, re.compile(r'<b>Division:</b>', re.I)),
     'eecs_wp': (eecs_wp, re.compile(r"class=['\"]eecs_person_wrapper['\"]")),
     'uc_cs_table': (uc_cs_table, re.compile(r'<tr class="(?:odd|even)[^"]*">.*?(?:Personal website|Research Interests)', re.S)),
