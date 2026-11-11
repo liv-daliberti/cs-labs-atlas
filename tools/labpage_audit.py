@@ -2236,7 +2236,7 @@ BIO_TAIL = re.compile(r"^(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'
 OTHER_INST_ROLE = re.compile(r"\b(?:MS|M\.S\.|MSc|PhD|Ph\.D\.|BS|B\.S\.|Undergrad(?:uate)?|Master'?s?)\s+(?:Student|Candidate|Researcher)?\s*,?\s*(MIT|Harvard|Caltech|Cornell|Yale|Princeton|Columbia|Oxford|Cambridge|ETH|EPFL|NUS|Tsinghua|Stanford|Berkeley|CMU|UCLA|UCSD|Toronto|Waterloo|Michigan)\b")
 OWN_INST_NAMES = {'michigan': {'MICHIGAN'}, 'stanford': {'STANFORD'}, 'mit': {'MIT'}, 'cmu': {'CMU'}, 'berkeley': {'BERKELEY'}, 'epfl': {'EPFL'}, 'princeton': {'PRINCETON'}}
 FACULTY_HEAD = re.compile(r"\bVisiting\s+(?:Scientists?|Professors?|Faculty|Researchers?\s+at)\b|\bFaculty\b(?!.*student)|\bCollaborators?\b|\bLab\s+Affiliates?\b", re.I)
-NAME_NOISE = re.compile(r"\b(?:AWS|Firecracker|Docker|Linux|GitHub|Kubernetes|PyTorch|TensorFlow|Citadel|Fellowship|Scholarship|Award|Prize|Grant|Foundation|Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist|Complaint|Policy|Privacy|Accessibility|Transfer|Network|Learning)\b", re.I)
+NAME_NOISE = re.compile(r"\b(?:AWS|Firecracker|Maria\s+Curie|Marie\s+Curie|Sk[lł]odowska|Fulbright|Humboldt|Erasmus|Docker|Linux|GitHub|Kubernetes|PyTorch|TensorFlow|Citadel|Fellowship|Scholarship|Award|Prize|Grant|Foundation|Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist|Complaint|Policy|Privacy|Accessibility|Transfer|Network|Learning)\b", re.I)
 PAREN_TAIL = re.compile(r'\s*[(\uff08]([^()\uff08\uff09]{1,40})[)\uff09]\s*$')   # fullwidth brackets too (SJTU 2026-11-11: 'Qi Fan\uff08Master)')
 COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?taught|taught|co-?supervis\w*|jointly\s+\w+|joint(?:ly)?)\s*(?:with|w/|by|:)\s*$|\(\s*with\s+$|\bw/\s*$|\bwith\s+Prof\.?\s+$", re.I)
 COLLAB_PROSE = re.compile(r"collaborat\w*\s+with\s+(?:the\s+|some\s+)?(?:\w+\s+){0,3}(?:students|researchers|postdocs)", re.I)
@@ -2316,6 +2316,8 @@ def repair_reason(kit, school, name, best, start, pi=None):
         tg = re.search(r'\bLab\s+(Affiliates?|Members?)\b', t[k + len(name or ''): k + len(name or '') + 220])
         if tg and tg.group(1).lower().startswith('affiliate'):
             return 'not_a_student', 'tagged Lab Affiliate (an outside affiliate of the group), not a lab member'
+        if re.search(r'(?:Master|Doctoral|MBA|Ph\.?D\.?)[^.]{0,45}\b(?:Cornell|Johnson\s+Graduate)', t[k + len(name or ''): k + len(name or '') + 110]) and 'CORNELL' not in own_names(school, OWN_INST):
+            return 'site_at_other_institution', 'the entry places the person in a degree programme at another institution (Cornell Johnson), an outside student of a joint lab'
         lm = OTHER_INST_LABEL.match(t[k + len(name or ''): k + len(name or '') + 40])
         if lm and best.get('role') != 'visiting' and not re.match(r'\s*[(\[]?(?:19|20)\d\d', t[k + len(name or '') + lm.end(): k + len(name or '') + lm.end() + 8]) and not (set(re.findall(r'[A-Za-z]{2,}', lm.group(1).upper())) & (own_names(school, OWN_INST) | own_names(school, OWN_INST_NAMES) | {'SJTU', 'JIAO', 'TONG'})):
             return 'site_at_other_institution', f'the entry labels the person with {lm.group(1)} (a card list of the PI\'s collaborators and students elsewhere)'
@@ -2328,7 +2330,7 @@ def repair_reason(kit, school, name, best, start, pi=None):
             return 'not_a_student', 'an incoming student whose start is after the capture (admitted, Fall 2027): not yet a member'
         pre_bio = t[max(0, k - 140): k]
         tm = list(BIO_TRIGGER.finditer(pre_bio))
-        if tm and (not pre_bio[tm[-1].end():].strip() or BIO_TAIL.match(pre_bio[tm[-1].end():])) and len(re.findall(r'\b[a-z]{3,}\b', pre_bio[:tm[-1].start()])) >= 3:
+        if tm and (not pre_bio[tm[-1].end():].strip() or re.fullmatch(r'(?:Prof\.?|Professor|Dr\.?)\s*', pre_bio[tm[-1].end():].strip() + ' ') or BIO_TAIL.match(pre_bio[tm[-1].end():])) and len(re.findall(r'\b[a-z]{3,}\b', pre_bio[:tm[-1].start()])) >= 3:
             return 'not_a_student', 'named in a bio sentence (worked with / advised by ...), not listed as a member'
         om = None if best.get('role') == 'visiting' else OTHER_INST_ROLE.search(t[k + len(name): k + len(name) + 40])   # a visiting student is a student elsewhere by definition (R-STU-17)
         if om and om.group(1).upper() not in own_names(school, OWN_INST_NAMES) and not re.search(r'(?:now|next|currently|then|→|->|\bat)\W{0,3}(?:a\s+|an\s+)?$', t[k + len(name): k + len(name) + om.start()][-40:], re.I):
@@ -2942,6 +2944,28 @@ def cmd_audit(school):
 DEGREE_SENTENCE = re.compile(r'\b(?:received|obtained|earned|holds|graduated with)\b[^.]{0,50}\b(?:B\.?\s?S\.?|M\.?\s?S\.?|Ph\.?\s?D\.?|Bachelor|Master|degree)', re.I)
 
 
+HEADING_ROLE_RX = re.compile(r"(Ph\.?\s?D\.?\s+Students?|Research\s+Associates|Research\s+Assistants|Visiting\s+Students?|Post-?docs?|Postdoctoral\s+\w+|Master\w*\s+Students?|Undergraduates?|Alumni|Research\s+Fellows|Interns?)", re.I)
+
+
+def withhold_heading_conflict(kit, school, r):
+    """A role read from a PhD section heading while the nearest role heading before the name is another one (a 'Research Associates / Visiting
+    Students' sub-heading inside the member list, NTU round 3): the role is withheld (a lab member of undetermined role)."""
+    if r.get('role') != 'phd' or r.get('role_basis') != 'section_heading':
+        return r
+    try:
+        t = kit.lpev.text(school, r.get('capture_url') or r['sha256'])
+    except (KeyError, ValueError):
+        return r
+    j = t.find(r.get('quote') or '')
+    k = t.find((r.get('name') or ' ').split()[0], j) if j >= 0 else -1
+    if k < 0:
+        return r
+    m = list(HEADING_ROLE_RX.finditer(t[max(0, k - 1200): k]))
+    if m and not re.match(r'ph\.?\s?d', m[-1].group(1), re.I) and m[-1].group(1).lower() != 'alumni':
+        return dict(r, role=None, role_basis='withheld_heading_conflict')
+    return r
+
+
 def withhold_bio_degree_role(r):
     """R-LAB-05 (Georgia Tech round 2): (a) in a page of member bios ('X received the B.S. ...') the role was read from the first degree sentence (a PhD student read as an
     undergraduate, a postdoc as a PhD): withheld (a lab member) unless the entry's own text says student, candidate or joined; (b) a degree suffix glued to the name by a
@@ -3012,6 +3036,7 @@ def write_audit(school, recs, stu_adds, pap_adds):
         for r in recs:
             f.write(json.dumps(r, ensure_ascii=False) + '\n')
     os.replace(str(out) + '.tmp', out)
+    kit_w = Kit(school)
     summ = school_summary(recs, stu_adds, pap_adds)
     prev_f = P.data('labpage-additions.json', school)
     prev = read(prev_f) if prev_f.exists() else {}
@@ -3019,7 +3044,7 @@ def write_audit(school, recs, stu_adds, pap_adds):
     adds = dict(school=school, generated_at=now(), tool='tools/labpage_audit.py', standard='docs/LAB-PAGES.md',
                 status='proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)',
                 rules={'LP-STU-01': RULE_TEXT['LP-STU-01'], 'LP-PAP-01': RULE_TEXT['LP-PAP-01']},
-                students=apply_hand_review([withhold_bio_degree_role(r) for r in withheld_if_membership_only(school, stu_adds)], decided), papers=pap_adds)
+                students=apply_hand_review([withhold_bio_degree_role(withhold_heading_conflict(kit_w, school, r)) for r in withheld_if_membership_only(school, stu_adds)], decided), papers=pap_adds)
     for k, v in (prev or {}).items():   # recorded hand reviews survive a regeneration
         if k.startswith('hand_review'):
             adds[k] = v
