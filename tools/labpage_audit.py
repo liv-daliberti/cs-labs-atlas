@@ -265,7 +265,7 @@ ALUMNI_RX = re.compile(r'\b(alumni|alumnae|alumnus|alumna|former|past|previous|a
 NEWS_LINE = re.compile(r'\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?\s+20[12]\d\s*[:\-–]', re.I)
 
 
-OTHER_INST = re.compile(r'(?:@|\bat\s+|,\s*|\(\s*)(?:the\s+)?(?:University of [A-Z][\w-]+|[A-Z][\w-]+ (?:University|Institute of Technology|College)|MIT|UCSB|UCLA|UCSD|Caltech|CMU|'
+OTHER_INST = re.compile(r'(?:@|\bat\s+|,\s*|\(\s*)(?:the\s+)?(?:University of [A-Z][\w-]+|(?:[A-Z][\w-]+ ){1,3}(?:University|Institute of Technology|College)|Universit[ée] [A-Z][\w-]+(?: [A-Z][\w-]+)?|MIT|UCSB|UCLA|UCSD|Caltech|CMU|'
                         r'Dartmouth|Virginia Tech|Purdue|Rice|Brown|Cornell|Yale|Harvard|Columbia|Duke|Emory|Vanderbilt|Northwestern|NYU|UIUC|Berkeley|Stanford|Penn State|Texas A&M|Ohio State|Wisconsin)\b')
 
 
@@ -280,7 +280,7 @@ def other_institution_entry(desc, quote, school):
     (Georgia Tech round 4: Celine Lin's Rice-era students). Georgia Tech itself, and the 'Next Move' destination after it, do not count: only text before 'Next Move' / an arrow is read."""
     t = re.split(r'next move|→|->|\bnow\b', f'{desc or ""} {quote or ""}', flags=re.I)[0]
     own = {'michigan': 'michigan', 'gatech': 'georgia', 'uchicago': 'chicago'}.get(school, school.lower())
-    return any(own not in m.group(0).lower() for m in OTHER_INST.finditer(t))
+    return any(own not in m.group(0).lower() and not re.search(school_names_rx(school), m.group(0)) for m in OTHER_INST.finditer(t))   # the school's own full name never counts (CMU: 'Carnegie Mellon University')
 
 
 def stale_list(x, page_alumni):
@@ -1484,6 +1484,9 @@ def page_institution(kit, school, src):
     if _HOST_INST.search(host) and not re.search(dom, host):
         return host
     text = views.get('html') or views.get('raw') or ''
+    ft = re.search(r'(?:©|&copy;|\bcopyright\b)[^<>\n]{0,40}?\b((?:University of [A-Z][\w-]+(?: [A-Z][\w-]+)?)|(?:[A-Z][\w-]+ University))\b', text[-600:], re.I)
+    if ft and not re.search(school_names_rx(school), ft.group(1)) and not re.search(dom, host):
+        return ft.group(1)   # a page whose own copyright footer names another university is that university's page (CMU round 7: Salakhutdinov's Toronto-era page)
     if re.search(school_names_rx(school), text):
         return None  # the school appears somewhere on the page: alumni placements and bios name other schools too
     m_ = re.search(r'<title[^>]*>(.*?)</title>', kit.lpcap.decode(row['content'][:30000]), re.I | re.S)
