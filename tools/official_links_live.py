@@ -41,7 +41,7 @@ def candidates(row, domain, hosts):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('key'); ap.add_argument('--in', dest='inp', required=True); ap.add_argument('--out'); ap.add_argument('--dry', action='store_true'); ap.add_argument('--absence', action='store_true'); ap.add_argument('--hand'); ap.add_argument('--adopt', action='store_true')
+    ap.add_argument('key'); ap.add_argument('--in', dest='inp', required=True); ap.add_argument('--out'); ap.add_argument('--dry', action='store_true'); ap.add_argument('--absence', action='store_true'); ap.add_argument('--hand'); ap.add_argument('--adopt', action='store_true'); ap.add_argument('--capture', action='store_true')
     a = ap.parse_args()
     import labpage_audit as L
     doc = json.loads(Path(a.inp).read_text())
@@ -82,6 +82,27 @@ def main():
                 r['listed_on'] = u
                 stats['linked'] += 1
                 break
+    if a.capture:   # a selected site with no capture hash: its live page (robots honoured, live hosts only) is captured; it must name the PI
+        from person_fetch import names_person
+        stats['captured'] = 0
+        for r in doc['labs']:
+            if 'page_capture_hash_missing' not in (r.get('evidence_gaps') or []) or not r.get('url'):
+                continue
+            if (urlsplit(r['url']).hostname or '') not in hosts:
+                continue
+            res = W.live(c, r['url'])
+            stats['fetched'] += 1
+            if not res or res[0] != 200:
+                continue
+            ok, quote = names_person(W.live_html(c, r['url']).encode(), r['pi'])
+            if not ok:
+                continue
+            r['sha256'], r['evidence'] = res[1], dict(r.get('evidence') or {}, url=r['url'], sha256=res[1], quote=quote, source='live_fetch_stage3')
+            r['evidence_gaps'] = [g for g in r['evidence_gaps'] if g != 'page_capture_hash_missing']
+            r['verified'], r['verification_quote'] = True, quote
+            if not r['evidence_gaps']:
+                r['coverage'] = 'website'
+            stats['captured'] += 1
     if a.adopt:   # a site an official profile links (school_profile_link 'listed') replaces a selected site no official page reaches, when its live page (robots honoured) names the PI
         from person_fetch import names_person
         stats['adopted'] = 0
