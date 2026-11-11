@@ -363,7 +363,7 @@ def cambridge_directory(h):
     out = []
     for row in re.findall(r'<tr\b[^>]*>(.*?)</tr>', h, re.S):
         name = re.search(r'<td[^>]*class="views-field views-field-title"[^>]*>(.*?)</td>', row, re.S)
-        role = re.search(r'<td[^>]*class="views-field views-field-field-sd-classifications-ref"[^>]*>(.*?)</td>', row, re.S)
+        role = re.search(r'<td[^>]*class="views-field views-field-(?:sd-classifications-ref|field-tax-singular)"[^>]*>(.*?)</td>', row, re.S)
         if not name or not role:
             continue
         link = re.search(r'<a[^>]*href="([^"]+)"', name.group(1))
