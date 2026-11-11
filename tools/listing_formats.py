@@ -106,6 +106,17 @@ def purdue_cs_people(h):
         if name and role:
             out.append(dict(name_listed=name, titles=[role], homepage=None,
                             division=None, profile=link['href']))
+    if not out:
+        for tr in soup.select('.main-content table.directory tr'):
+            cells = tr.find_all('td', recursive=False)
+            if len(cells) < 2:
+                continue
+            name = ' '.join(cells[0].get_text(' ', strip=True).split())
+            role = ' '.join(cells[1].get_text(' ', strip=True).split())
+            profile = tr.select_one('a[href*="/people/faculty/"]')
+            if name and role:
+                out.append(dict(name_listed=name, titles=[role], homepage=None,
+                                division=None, profile=profile['href'] if profile else None))
     return out
 
 
