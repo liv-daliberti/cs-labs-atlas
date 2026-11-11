@@ -724,7 +724,8 @@ def main(argv=None):
         return 0
     if a.cmd == 'draw':
         rec = draw(a.key, seed=a.seed, drawn_by=a.drawn_by, force=a.force)
-        print(f'{a.key}: drew {len(rec["sample"])} PIs (seed {rec["seed"]}, strata {rec["sizes"]} -> {rec["picked"]}); fill the entries, then check')
+        print(f'{a.key}: drew {len(rec["sample"])} PIs (seed {rec["seed"]}, strata {rec["sizes"]} -> {rec["picked"]}); fill the entries, then check. '
+              f'Commit {P.data("student-recall-check.json", a.key)} with git add (hierarchy/*/reviewed/student-recall-check.json is whitelisted in .gitignore; without it stages 3 and 5 fail the ignored-file trap)')
         return 0
     if a.cmd == 'capture':
         if len(a.args) != 2:

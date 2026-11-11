@@ -1,6 +1,7 @@
 """Student-recall gate (owner 2026-11-11): metrics, the seeded stratified draw, recall math, binding invalidation, capture validation, gate messages."""
 import hashlib
 import json
+from pathlib import Path
 import sqlite3
 import zlib
 
@@ -269,3 +270,12 @@ def test_capture_never_refetches_a_host_after_challenge_or_robots_refusal(tree, 
     with pytest.raises(SystemExit, match='blocked since an earlier'):
         R.capture('u', 'PI00', 'https://nor.example/b', store=c, sleep=lambda s: None)
     assert calls == ['https://chal.example/a', 'https://nor.example/a']
+
+
+def test_gitignore_whitelists_the_recall_record_for_every_school():
+    import subprocess
+    root = Path(__file__).resolve().parents[1]
+    assert '!hierarchy/*/reviewed/student-recall-check.json' in (root / '.gitignore').read_text().splitlines()
+    for key in ('mit', 'stanford', 'anyschool'):
+        r = subprocess.run(['git', 'check-ignore', '-q', f'hierarchy/{key}/reviewed/student-recall-check.json'], cwd=root)
+        assert r.returncode == 1, f'{key}: the recall record is git-ignored'
