@@ -273,7 +273,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('roster-evidence.json', 'reviewed', 'hierarchy/{school}/roster-evidence.json', 'hierarchy/{school}/reviewed/roster-evidence.json'),
     ('defense-adviser-evidence.json', 'reviewed', 'hierarchy/{school}/defense-adviser-evidence.json', 'hierarchy/{school}/reviewed/defense-adviser-evidence.json'),
     ('thesis-committee-chair-evidence.json', 'reviewed', 'hierarchy/{school}/thesis-committee-chair-evidence.json', 'hierarchy/{school}/reviewed/thesis-committee-chair-evidence.json'),   # R-STU-23 (2026-11-08)
-    ('directory-evidence.json', 'reviewed', 'hierarchy/{school}/directory-evidence.json', 'hierarchy/{school}/reviewed/directory-evidence.json'),   # 2026-11-11: department graduate directory / grad-alumni pages (Princeton)
+    ('department-directory-evidence.json', 'reviewed', 'hierarchy/{school}/department-directory-evidence.json', 'hierarchy/{school}/reviewed/department-directory-evidence.json'),   # 2026-11-11: department graduate-directory rows (Princeton), a researched student source
     ('thesis-held-years-evidence.json', 'reviewed', 'hierarchy/{school}/thesis-held-years-evidence.json', 'hierarchy/{school}/reviewed/thesis-held-years-evidence.json'),
     ('labpage-evidence.json', 'reviewed', 'hierarchy/{school}/labpage-evidence.json', 'hierarchy/{school}/reviewed/labpage-evidence.json'),
     ('extra-lab-pages.json', 'reviewed', 'hierarchy/{school}/extra-lab-pages.json', 'hierarchy/{school}/reviewed/extra-lab-pages.json'),

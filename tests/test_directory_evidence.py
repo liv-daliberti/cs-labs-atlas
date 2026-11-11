@@ -1,4 +1,4 @@
-"""Princeton directory evidence (2026-11-11): department graduate-directory rows enter the student build through directory-evidence.json."""
+"""Princeton directory evidence (2026-11-11): department graduate-directory rows enter the student build through department-directory-evidence.json."""
 import collections
 import json
 from pathlib import Path
@@ -8,12 +8,12 @@ from pihier.students import RESEARCHED_FILES, researched
 
 
 def test_directory_evidence_is_a_researched_source_and_a_registered_reviewed_file():
-    assert 'directory-evidence.json' in RESEARCHED_FILES
-    assert P.data('directory-evidence.json', 'princeton').name == 'directory-evidence.json'
+    assert 'department-directory-evidence.json' in RESEARCHED_FILES
+    assert P.data('department-directory-evidence.json', 'princeton').name == 'department-directory-evidence.json'
 
 
 def test_princeton_directory_rows_have_hash_quote_and_never_upgrade_the_role():
-    rows = json.load(open(Path(__file__).resolve().parents[1] / 'hierarchy/princeton/reviewed/directory-evidence.json'))
+    rows = json.load(open(Path(__file__).resolve().parents[1] / 'hierarchy/princeton/reviewed/department-directory-evidence.json'))
     seen = collections.Counter()
     for o in rows:
         for s in o['students']:
@@ -26,7 +26,7 @@ def test_princeton_directory_rows_have_hash_quote_and_never_upgrade_the_role():
 
 
 def test_a_role_less_directory_row_is_a_plain_student_relation(tmp_path):
-    f = P.data('directory-evidence.json', 'princeton', root=tmp_path)
+    f = P.data('department-directory-evidence.json', 'princeton', root=tmp_path)
     f.parent.mkdir(parents=True)
     f.write_text(json.dumps([dict(pi='Pat Barber', students=[dict(name='Ann Lee', years=None, url='https://www.cs.princeton.edu/people/grad', sha256='ab' * 32, quote='Ann Lee Graduate Student Advisers Pat Barber')])]))
     ctx = type('C', (), dict(here=tmp_path, school='princeton', pis=[{'pi': 'Pat Barber'}], ge={}, n=collections.Counter()))()
