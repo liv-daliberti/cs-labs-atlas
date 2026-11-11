@@ -1634,6 +1634,32 @@ PRIOR_AT_RX = re.compile(r"\b(?:b\.?\s?s\.?c?|m\.?\s?s\.?c?|b\.?a\.?)\b[^.;()]{0
 PRIOR_FROM_RX = re.compile(r"\b(?:b\.?\s?s\.?c?|m\.?\s?s\.?c?|b\.?a\.?|b\.?eng|m\.?eng|m\.?phil|bachelor|master|undergraduate)['\u2019]?s?\s+(?:degree\s+)?from\b[^.;]{0,60}", re.I)
 
 
+BIO_START_RX = re.compile(r'^\W{0,3}(?:received|obtained|earned|holds?|graduated|completed|got|has|had|is|was|will|joined|came|did|worked)\b', re.I)
+NONPHD_HEAD_RX = re.compile(r'\b(?:research\s+associates?|research\s+assistants?|visiting\s+(?:students?|scholars?|researchers?)|interns?|research\s+staff|research\s+fellows?)\b', re.I)
+
+
+def nearer_nonphd_heading(text, name, head):
+    """True when a non-PhD heading ('Research Associates/ Research Assistants / Visiting Students') stands between the PhD heading the extractor assigned and the name on the page text: the
+    extractor did not register it as a heading, so the names inherited the preceding PhD list (NTU round 6, Luu Anh Tuan's page; names may be written family-name first)."""
+    if not (text and name and head):
+        return False
+    h = head.split(' > ')[-1]
+    hp = text.find(h) if h else -1
+    if hp < 0:
+        return False
+    toks_ = name.split()
+    forms = [name, ' '.join(reversed(toks_))] if len(toks_) > 1 else [name]
+    pos = [k for k in (text.find(f, hp + len(h)) for f in forms) if k >= 0]
+    if not pos:
+        return False
+    if NONPHD_HEAD_RX.search(text[hp + len(h):min(pos)]):
+        return True
+    for m in NONPHD_HEAD_RX.finditer(text, hp + len(h)):   # also listed again right after a later non-PhD heading (the list is mixed: no role)
+        if any(text.find(f, m.end(), m.end() + 700) >= 0 for f in forms):
+            return True
+    return False
+
+
 def entry_role(desc, head, role_of):
     """(role, basis): the role the entry states right after the name ('(PhD student, ...)', ', Postdoc', 'MIT Undergraduate
     Student'), else the role its section heading names ('PhD Students', 'Post-doctoral Scholars'), else (None, 'none').
@@ -1652,7 +1678,9 @@ def entry_role(desc, head, role_of):
         return 'phd', 'entry'   # 'Ph.D. 2025, Post Doc @ Univ. of Illinois': the degree is the role, the post after it is the placement (UChicago round 2)
     if re.match(r'^\W{0,3}(?:(?:MPCS|MCAM|MSCAPP|MSc?|M\.S\.)\b|[^,]{1,25},\s*(?:MS|M\.S\.|MSc)\b)', d):
         return 'masters', 'entry'   # 'Noame Qin — MCAM, MS 2022' under an 'undergraduate & master's' heading: the entry's own degree is the role
-    if PRIOR_DEGREE.match(d):
+    if BIO_START_RX.match(d):
+        pass   # 'received her B.S. in ...': a bio sentence never sets the role (the case-insensitive ROLE_NEAR read 'received her' as two capitalised words) (NTU round 6, Rui Jiao)
+    elif PRIOR_DEGREE.match(d):
         pass   # 'Bachelor's from X, Hong Kong PhD Fellowship': the degree the person holds on arrival, not their role here (HKUST hand check 2026-11-10: 4 of 11 roles wrong); the section heading decides
     elif ROLE_NEAR.match(d):
         r = role_of(PRIOR_AT_RX.sub(' ', PRIOR_FROM_RX.sub(' ', PRIOR_DEGREE_ANY.sub(' ', d)))[:45])[0]   # 'Ph.D student, 2022/9/1 to present; B.S. from X': the degree after 'from' is prior education, never the role (HKUST Ling Shi roster)
@@ -1857,6 +1885,15 @@ def pm_candidates(kit, school, pi, plan, held):
             cands.append(x)
     # the same person listed twice on a page (SJTU round 6/7): an incoming entry anywhere makes every entry of that person not a member yet; a person who is a current
     # graduate student in one list is not also an alumnus-undergraduate of the same page (Haolan Zhang under 'Undergraduate Students')
+    for x in cands:
+        if x['role'] == 'phd' and x.get('role_basis') == 'section_heading' and not x['why']:
+            try:
+                if x['src'] not in text_cache:
+                    text_cache[x['src']] = kit.lpev.text(school, x['src'])
+                if nearer_nonphd_heading(text_cache[x['src']], x['name'], x.get('head')):
+                    x['role'], x['role_basis'] = None, 'withheld_heading_conflict'
+            except (KeyError, ValueError):
+                pass
     inc_names = [x['name'] for x in cands if incoming_entry(x.get('desc'), x.get('quote'))]
     cur_grad = [x for x in cands if x['role'] in ('phd', 'masters') and not x['alumni'] and not x['why']]
     for x in cands:

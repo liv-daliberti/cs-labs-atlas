@@ -77,3 +77,12 @@ def test_ntu_round6_and_sjtu_remaining_items():
     assert not L.nonmember_candidate('Zhaoxi Chen', 'PhD Students')
     # 'Master Student' after a Chinese given name when the reader does not know it
     assert L.entry_role('(向嘉 Master Student, 2021-2024, Alibaba Cloud)', 'Alumni', lambda t: (None, None))[0] == 'masters'
+
+
+def test_bio_sentence_never_sets_the_role_and_a_mixed_heading_list_withholds_it():
+    ro = lambda t: ('undergraduate' if re.search(r'\bb\.?s\.?\b', t, re.I) else 'phd' if re.search(r'ph\.?\s?d', t, re.I) else None, 'x')
+    assert L.entry_role('received her B.S. in Electronic Information Science from UESTC', 'Ph.D. Student > 2023 Intake', ro)[0] == 'phd'
+    txt = 'PhD Students Du Mingzhe Zhao Shiqian Le Duc Dong Research Associates/ Research Assistants / Visiting Students Do Duc Anh Zhao Shiqian Xu Huimin Alumni Zhang Siyue'
+    assert L.nearer_nonphd_heading(txt, 'Do Duc Anh', 'PhD Students')
+    assert L.nearer_nonphd_heading(txt, 'Zhao Shiqian', 'PhD Students')   # listed again right after the non-PhD heading
+    assert not L.nearer_nonphd_heading(txt, 'Du Mingzhe', 'PhD Students')
