@@ -18,6 +18,8 @@ usage (CLI)   school_web.py <key> cdx <url> [prefix]       list Wayback 200 capt
               school_web.py <key> robots <host>            print the stored robots decision
 """
 import hashlib, json, os, re, sys, time, urllib.parse, urllib.robotparser, zlib
+import fcntl
+from contextlib import contextmanager, nullcontext
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # python -I leaves the script's directory off sys.path (docs/CONTRIBUTING.md, Imports and sys.path)
@@ -140,7 +142,29 @@ def registered_domain(host):
     return '.'.join(parts[-2:])
 
 
-def robots_row(c, host, refresh=False, scheme='https'):
+@contextmanager
+def shared_origin_slot(host, gap):
+    """Share the exact collector's flock/stamp for a narrowly approved HTTP origin."""
+    stamp = P.RATE_STAMPS / 'hosts' / host
+    stamp.parent.mkdir(parents=True, exist_ok=True)
+    with stamp.open('a+') as handle:
+        fcntl.flock(handle, fcntl.LOCK_EX)
+        handle.seek(0)
+        try:
+            last = float(handle.read().strip() or 0)
+        except ValueError as exc:
+            raise ValueError('malformed shared host stamp') from exc
+        time.sleep(max(0, last + gap - time.time()))
+        started = time.time()
+        handle.seek(0); handle.truncate(); handle.write(str(started)); handle.flush()
+        try:
+            yield
+        finally:
+            time.sleep(max(0, started + gap - time.time()))
+            fcntl.flock(handle, fcntl.LOCK_UN)
+
+
+def robots_row(c, host, refresh=False, scheme='https', min_delay=0):
     """The host's robots.txt (stored in `robots`). scheme='http' reads http://host/robots.txt and stores it under the key 'http://host', apart from the HTTPS
     row: an explicitly approved exact-origin policy for a site that only serves http (ZJU, 2026-11-10); HTTPS permission is never inferred from it."""
     import requests
@@ -151,8 +175,11 @@ def robots_row(c, host, refresh=False, scheme='https'):
             url = f'{scheme}://{host}/robots.txt'
             seen = {url}
             for hop in range(6):   # RFC 9309 2.3.1.2: follow at least five redirects
-                r = requests.get(url, headers={'User-Agent': UA}, timeout=30, allow_redirects=False)
+                with shared_origin_slot(host, min_delay) if scheme == 'http' and min_delay else nullcontext():
+                    r = requests.get(url, headers={'User-Agent': UA}, timeout=30, allow_redirects=False)
                 location = getattr(r, 'headers', {}).get('Location')
+                if scheme == 'http' and min_delay:  # the charter forbids following redirects
+                    break
                 if r.status_code not in (301, 302, 303, 307, 308) or not location or hop == 5:
                     break
                 target = urllib.parse.urljoin(url, location)
@@ -194,11 +221,11 @@ def robots_decision(status, body, url='/'):
     return ours, ai, delay
 
 
-def robots_ok(c, url, same_origin=False):
+def robots_ok(c, url, same_origin=False, min_delay=0):
     """(allowed, crawl delay). same_origin=True reads robots at the URL's own scheme (an approved http-only origin); the default stays HTTPS."""
     parts = urllib.parse.urlsplit(url)
     host = parts.netloc
-    st, body = robots_row(c, host, scheme=parts.scheme if same_origin else 'https')
+    st, body = robots_row(c, host, scheme=parts.scheme, min_delay=min_delay) if same_origin else robots_row(c, host)
     ours, ai, delay = robots_decision(st, body, url)
     return ours and ai, delay
 
@@ -208,7 +235,7 @@ def block(c, host, why):
     c.execute('insert or replace into blocked values (?,?,?)', (host, time.strftime('%Y-%m-%dT%H:%M:%S'), why[:300])); c.commit()
 
 
-def live(c, url, refresh=False):
+def live(c, url, refresh=False, same_origin=False, min_delay=0):
     """A live page (robots honoured, per-host delay); returns (status, sha256, text blocks), or None when robots
     disallows it or the host is blocked (it served a challenge)."""
     import requests
@@ -217,14 +244,15 @@ def live(c, url, refresh=False):
     if row is None or refresh:
         if host in _blocked:
             return None
-        ok, delay = robots_ok(c, url)
+        ok, delay = robots_ok(c, url, same_origin=True, min_delay=min_delay) if same_origin else robots_ok(c, url)
         if not ok:
             return None
-        w = _last.get(host, 0) + max(delay, 1.0) - time.time()
+        w = _last.get(host, 0) + max(delay, min_delay, 1.0) - time.time()
         if w > 0:
             time.sleep(w)
         try:
-            r = requests.get(url, headers={'User-Agent': UA}, timeout=60, allow_redirects=False)
+            with shared_origin_slot(host, max(delay, min_delay)) if same_origin else nullcontext():
+                r = requests.get(url, headers={'User-Agent': UA}, timeout=60, allow_redirects=False)
             body, st, ct = r.content, r.status_code, r.headers.get('Content-Type')
             if 300 <= st < 400:
                 # Even a same-host redirect may enter a disallowed path. A reviewer

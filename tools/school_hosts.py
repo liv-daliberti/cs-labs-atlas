@@ -13,7 +13,7 @@ nothing about a Cloudflare challenge in front of it (cse/ece.engin.umich.edu), s
 
 usage: school_hosts.py <key> [--refresh]
 """
-import json, sys, time
+import json, sys, time, urllib.parse
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
@@ -39,6 +39,11 @@ def main(key, refresh=False):
     cfg = S.get(key); c = W.con(key); out = []
     for h in cfg.get('hosts') or []:
         host, use, probe = h['host'], h.get('use') or 'live', h.get('probe') or ''
+        http_origin = h.get('http_origin') is True
+        if http_origin:
+            parts = urllib.parse.urlsplit(probe)
+            if parts.scheme != 'http' or parts.netloc != host or not h.get('min_delay'):
+                raise ValueError(f'{host}: http_origin requires an exact HTTP probe and min_delay')
         if use == 'none' and host in NEVER_CONTACT:
             out.append(dict(host=host, use=use, purpose=h.get('purpose'), robots='not_fetched', robots_status=None, crawl_delay=None, probe=probe,
                             probe_result='skipped', blocked=None, consistent=True, problems=[],
@@ -46,7 +51,8 @@ def main(key, refresh=False):
                             checked_at=time.strftime('%Y-%m-%dT%H:%M:%S')))
             print(json.dumps(out[-1], ensure_ascii=False), flush=True)
             continue
-        st, body = W.robots_row(c, host, refresh=refresh)
+        st, body = (W.robots_row(c, host, refresh=refresh, scheme='http', min_delay=float(h['min_delay'])) if http_origin
+                    else W.robots_row(c, host, refresh=refresh))
         ours, ai, delay = W.robots_decision(st, body, probe or '/')
         robots = 'unreachable' if (st == -1 or st >= 500) else ('allowed' if ours and ai else ('disallowed-for-ai-agents' if ours else 'disallowed'))
         pr = 'skipped'
@@ -54,7 +60,8 @@ def main(key, refresh=False):
         if blocked and host in W._blocked:   # a stored block that school_web.con() re-judged as a per-path Apache denial is no block (cs.toronto.edu, 2026-11-10)
             pr = 'challenge'
         elif use == 'live' and probe and robots == 'allowed':   # also reached for a stored per-path-403 row
-            res = W.live(c, probe, refresh=refresh)
+            res = (W.live(c, probe, refresh=refresh, same_origin=True, min_delay=float(h['min_delay']))
+                   if http_origin else W.live(c, probe, refresh=refresh))
             pr = 'disallowed' if res is None else ('challenge' if res[0] == 999 else ('ok' if res[0] == 200 else f'http {res[0]}'))
             if res is not None and res[0] == 310:  # an off-host redirect (a moved department site): say where, the charter then names the new host
                 pr = 'http 310 ' + W.live_html(c, probe).replace('redirected off host to ', '->').strip()

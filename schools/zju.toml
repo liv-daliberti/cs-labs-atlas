@@ -244,12 +244,16 @@ note = "Frozen HTTPS robots404 plus faculty200 are historical source facts. New 
 host = "www.cad.zju.edu.cn"
 use = "live"
 probe = "http://www.cad.zju.edu.cn/innovationteam"
+http_origin = true
+min_delay = 3.2
 purpose = "Generic acquisition stays closed. A separate, root-approved exact-target Q grant may permit bounded owned HTTP source review only."
 note = "Until 2026-11-11 host-wide use was NONE, including HTTPS and unlisted paths. Root approved the separately sealed Q-only three-target HTTP pilot under grant SHA256 4c25a2fb4b7e9152c6e0c61f73ea2d7d9041bd584a458047620fea4faa9fbe0a and approval SHA256 bd60d6cf4a695cc1dd9c5b159ea2fff15fb8da6794a550beec69a8757f842f08. Job32150849 completed the three exact Lin identity/history/publication targets with original robots, shared >=3second spacing and no redirects/protocol changes/retries/fallbacks/API. That pilot is terminal as a three-target pilot; the owner ruling of 2026-11-11 (below) extends the grant to the other CAD&CG lab pages. This note grants no generic host permission and does not complete Stage0. Owner ruling 2026-11-11 (A): the CAD&CG HTTP grant is EXTENDED from the three Lin targets of job 32150849 to the other CAD&CG lab and team pages under www.cad.zju.edu.cn (HTTP origin only: robots read at http://www.cad.zju.edu.cn/robots.txt, 2026-11-11 status 200: only /wp-admin/ disallowed, no AI-agent group; honest UA incl. Claude agent groups, >= 3.2 s per host, one request per page, no redirects followed, stop at any challenge or login, no Wayback, no API, no HTTPS). Charter use is live ONLY so that the lab-page audit (which refuses use=none hosts) can read the lab and team pages; the fetch layer reads robots at the URL's own scheme, and the host serves no HTTPS (every https request fails to connect, none is inferred). The earlier ban on a host-wide collector, an API or other CAD sources (listing tools) stands; person.zju.edu.cn stays none. See hierarchy/zju/reports/CAD-HTTP-TARGET-GRANT-20261108.md and CACHED-COMPUTING-EXPANSION-20261108.md."
 [[hosts]]
 host = "cad.zju.edu.cn"
 use = "live"
 probe = "http://cad.zju.edu.cn/"
+http_origin = true
+min_delay = 3.2
 note = "Owner ruling 2026-11-11 (A): the CAD&CG HTTP grant is EXTENDED from the three Lin targets of job 32150849 to the other CAD&CG lab and team pages under cad.zju.edu.cn (HTTP origin only: robots read at http://cad.zju.edu.cn/robots.txt, 2026-11-11 status 404: no rules, no AI-agent group; honest UA incl. Claude agent groups, >= 3.2 s per host, one request per page, no redirects followed, stop at any challenge or login, no Wayback, no API, no HTTPS). Charter use is live ONLY so that the lab-page audit (which refuses use=none hosts) can read the lab and team pages; the fetch layer reads robots at the URL's own scheme, and the host serves no HTTPS (every https request fails to connect, none is inferred). The earlier ban on a host-wide collector, an API or other CAD sources (listing tools) stands; person.zju.edu.cn stays none."
 
 [[hosts]]
