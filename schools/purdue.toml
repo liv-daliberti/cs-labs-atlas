@@ -1,0 +1,237 @@
+# Purdue University, West Lafayette: top-25 push onboarding (coordinator brief scratch/top25-brief.md, 2026-11-07). Computing labs only; CS department full, other units through the CS-related-faculty rule.
+key = "purdue"
+name = "Purdue University, West Lafayette"
+short = "Purdue"
+site_uni = "purdue-university-west-lafayette"
+status = "onboarding"
+order = 17
+stage = 0
+started = "2026-11-07"
+window = [2016, 2026]
+
+[ids]
+# Stage-0 owner decisions pending (STAGE-0.md D1-D3): West Lafayette only; Purdue University in Indianapolis (a lineage child since the 2024 IUPUI split), Purdue Global, System, Northwest, Fort Wayne and IUPUI are not the school.
+openalex = ["I219193219"]
+openalex_related = []
+openalex_excluded = ["I2801333002", "I117015748", "I4210130184", "I4388446363", "I4405266487", "I55769427"]
+ror = "https://ror.org/02dqehb95"
+ids_note = "tools/oa_institutions.py search/lineage on the local OpenAlex institutions snapshot (no API credits), 2026-11-07: I219193219 'Purdue University West Lafayette' ROR 02dqehb95, lineage [I219193219]. Lineage children: Purdue University in Indianapolis I4388446363 (the post-2024 IUPUI split), Indiana Space Grant Consortium I2800392643, Illinois Indiana Sea Grant I2800461586. Parent: Purdue University System I2801333002. Related: Purdue Global I4405266487. Excluded as other institutions: Purdue Northwest I117015748, Purdue Fort Wayne I4210130184, IUPUI I55769427, IUPU Columbus I59900826, IUPU Fort Wayne I162817326. Whether to drop I4388446363 from the sweep (it is a lineage child, so the sweep takes it) is an owner decision."
+
+[web]
+domains = ["purdue.edu"]
+email_domains = ["purdue.edu"]
+wayback_only_suffixes = []
+excluded_hosts = []
+
+[affiliation]
+regex = '''(?<![-–])(?<![-–]\s)\bpurdue\s+univ(?:ersity(?!\s+(?:northwest|fort\s+wayne|global|calumet|in\s+indianapolis|indianapolis|system))|\.)|\b[\w-]+\.purdue\.edu\b|\bpurdue\.edu\b'''
+loose = '''purdue|west\s+lafayette|\bcerias\b'''
+own_units = '''\bbirck\s+nanotechnology\s+center\b|\bdiscovery\s+park\b|\bcerias\b|\bregenstrief\s+center\b'''
+must_match = [
+  "Purdue University, West Lafayette, IN, USA",
+  "Department of Computer Science, Purdue University",
+  "Purdue Univ., West Lafayette",
+  "School of Electrical and Computer Engineering, Purdue University, West Lafayette, Indiana",
+  "jdoe@purdue.edu",
+  "Elmore Family School of Electrical and Computer Engineering, Purdue University"
+]
+must_not_match = [
+  "Purdue University Northwest, Hammond, IN",
+  "Purdue University Fort Wayne",
+  "Purdue Global University",
+  "Indiana University-Purdue University Indianapolis",
+  "Indiana University - Purdue University Fort Wayne",
+  "Purdue University in Indianapolis",
+  "Indiana University, Bloomington, IN",
+  "jdoe@iupui.edu"
+]
+
+[dblp]
+affiliation_strings = ["Purdue University", "Purdue Univ."]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CS"]
+center_units = ["CERIAS", "BIRCK"]
+home_units = {"Computer Science" = 'computer\s+science', "Electrical and Computer Engineering" = 'electrical\s+(?:and|&)\s+computer\s+engineering', "Statistics" = 'statistics', "Computer and Information Technology" = 'computer\s+and\s+information\s+technology', "Industrial Engineering" = 'industrial\s+engineering'}
+rank_words = {teaching = '\\bprofessor\\s+of\\s+practice\\b|\\bclinical\\s+professor\\b|\\bteaching\\s+professor\\b|\\blecturer\\b', adjunct = '\\badjunct\\b|\\bvisiting\\b'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {CS = "Computer Science"}
+full_codes = ["CS"]
+
+[periods]
+school_regex = '''(?<![-–])(?<![-–]\s)\bpurdue\s+univ(?:ersity(?!\s+(?:northwest|fort\s+wayne|global|calumet|in\s+indianapolis|indianapolis|system))|\.)|\b[\w-]+\.purdue\.edu\b|\bpurdue\.edu\b'''
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CS"
+name = "Computer Science"
+unit = "Department of Computer Science, College of Science"
+title_match = 'computer\s+science'
+coverage = "full"
+url = "https://www.cs.purdue.edu/people/faculty/index.html"
+  [[departments.listings]]
+  slot = "main"
+  kind = "main"
+  url = "www.cs.purdue.edu/people/faculty/index.html"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = ""
+  title_filter = ''
+
+[[affiliated_units]]
+code = "ECE"
+name = "Elmore Family School of Electrical and Computer Engineering"
+url = "https://engineering.purdue.edu/ECE/People/Faculty"
+listings = ["engineering.purdue.edu/ECE/People/Faculty"]
+
+[[affiliated_units]]
+code = "STAT"
+name = "Statistics"
+url = "https://www.stat.purdue.edu/people/faculty/"
+listings = ["www.stat.purdue.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematics"
+url = "https://www.math.purdue.edu/people/faculty.html"
+listings = ["www.math.purdue.edu/people/faculty.html"]
+
+[[affiliated_units]]
+code = "IE"
+name = "Industrial Engineering"
+url = "https://engineering.purdue.edu/IE/people/ptFaculty"
+listings = ["engineering.purdue.edu/IE/people/ptFaculty"]
+
+[[affiliated_units]]
+code = "CIT"
+name = "Computer and Information Technology"
+url = "https://polytechnic.purdue.edu/academic-areas/acc/directory"
+listings = ["polytechnic.purdue.edu/departments/computer-and-information-technology/people", "polytechnic.purdue.edu/academic-areas/acc/directory"]
+note = "The current Applied and Creative Computing directory includes multiple campuses; later faculty review must keep only sourced West Lafayette appointments."
+
+[[affiliated_units]]
+code = "AAE"
+name = "Aeronautics and Astronautics"
+url = "https://engineering.purdue.edu/AAE/people/ptFaculty"
+listings = ["engineering.purdue.edu/AAE/people/ptFaculty"]
+
+[[affiliated_units]]
+code = "ME"
+name = "Mechanical Engineering"
+url = "https://engineering.purdue.edu/ME/People/ptFaculty"
+listings = ["engineering.purdue.edu/ME/People/ptFaculty"]
+
+[[affiliated_units]]
+code = "CERIAS"
+name = "CERIAS (centre)"
+url = "https://www.cerias.purdue.edu/site/people/faculty"
+listings = ["www.cerias.purdue.edu/site/people/faculty"]
+
+[[affiliated_units]]
+code = "BIRCK"
+name = "Birck Nanotechnology Center (centre)"
+url = "https://birck.research.purdue.edu/directory/"
+listings = ["www.purdue.edu/discoverypark/birck/people/index.php", "birck.research.purdue.edu/directory/"]
+
+[thesis]
+kind = "dspace"
+base_url = "https://hammer.purdue.edu/"
+endpoints = []
+robots = "unreachable"
+note = "Purdue repositories: HAMMER answered 202 and docs.lib.purdue.edu (e-Pubs) 200 to a plain robots.txt request on 2026-11-07; verify the endpoint before stage 8. Collect explicit supervisor statements only."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["thesis repository with explicit supervisor metadata", "dated official defence and graduation lists", "PI-owned lab member and alumni pages"]
+
+[labpages]
+skip_pages = []
+hints = ["https://www.cs.purdue.edu/research/", "https://www.cs.purdue.edu/people/faculty/index.html", "https://engineering.purdue.edu/ECE/Research"]
+
+[repository]
+name = "Purdue e-Pubs and HAMMER (through permitted repository metadata, OpenAlex and CORE)"
+pattern = 'docs\.lib\.purdue\.edu|hammer\.purdue\.edu|Purdue e-Pubs'
+
+[store]
+path = "stores/purdue"
+
+[[hosts]]
+host = "www.cs.purdue.edu"
+use = "wayback-only"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.cs.purdue.edu/people/faculty/index.html"
+
+[[hosts]]
+host = "docs.lib.purdue.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://docs.lib.purdue.edu/"
+
+[[hosts]]
+host = "hammer.purdue.edu"
+use = "wayback-only"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://hammer.purdue.edu/"
+
+[[hosts]]
+host = "engineering.purdue.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://engineering.purdue.edu/ECE/People/Faculty"
+
+[[hosts]]
+host = "www.stat.purdue.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.stat.purdue.edu/people/faculty/"
+
+[[hosts]]
+host = "www.math.purdue.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.math.purdue.edu/people/faculty.html"
+
+[[hosts]]
+host = "polytechnic.purdue.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://polytechnic.purdue.edu/academic-areas/acc/directory"
+
+[[hosts]]
+host = "www.cerias.purdue.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.cerias.purdue.edu/site/people/faculty"
+
+[[hosts]]
+host = "www.purdue.edu"
+use = "wayback-only"
+purpose = "Historical Birck directory moved to birck.research.purdue.edu"
+probe = "https://www.purdue.edu/discoverypark/birck/people/index.php"
+
+[[hosts]]
+host = "birck.research.purdue.edu"
+use = "live"
+purpose = "Current Birck resident faculty directory"
+probe = "https://birck.research.purdue.edu/directory/"

@@ -1,0 +1,104 @@
+key = "cuhk"
+name = "The Chinese University of Hong Kong"
+short = "CUHK"
+site_uni = ""
+status = "onboarding"
+order = 999
+stage = 0
+started = "2026-11-07"
+window = [2016, 2026]
+[ids]
+openalex = ["I177725633"]
+openalex_related = []
+openalex_excluded = ["I4210116924"]
+ror = "https://ror.org/00t33hh48"
+ids_note = "Local OpenAlex institutions snapshot checked 2026-11-11: I177725633 names The Chinese University of Hong Kong, HK, ROR 00t33hh48. Its lineage includes I4210116924 CUHK Shenzhen, a separately named campus; exclusion from Hong Kong appointment inference awaits owner review."
+[web]
+domains = ["cuhk.edu.hk"]
+email_domains = ["cuhk.edu.hk", "cse.cuhk.edu.hk"]
+wayback_only_suffixes = []
+excluded_hosts = ["cuhk.edu.cn"]
+[affiliation]
+regex = '\b(?:the\s+)?chinese\s+university\s+of\s+hong\s+kong\b(?!\s*[,(-]?\s*shenzhen\b)|\bCUHK\b(?!\s*[,(-]?\s*(?:SZ|Shenzhen)\b|\.edu\.cn)|\b(?:[a-z0-9-]+\.)*cuhk\.edu\.hk\b'
+excluded_regex = '\b(?:the\s+)?chinese\s+university\s+of\s+hong\s+kong\s*[,(-]?\s*shenzhen\b|\bCUHK\s*[,(-]?\s*(?:SZ|Shenzhen)\b'
+loose = '\bchinese\s+university\s+of\s+hong\s+kong\b|\bCUHK\b|cuhk\.edu\.hk'
+own_units = ''
+must_match = ["The Chinese University of Hong Kong", "Department of Computer Science and Engineering, CUHK", "person@cse.cuhk.edu.hk"]
+must_not_match = ["The Chinese University of Hong Kong, Shenzhen", "CUHK-Shenzhen", "CUHK (SZ)", "The University of Hong Kong", "Hong Kong Polytechnic University", "person@cuhk.edu.cn"]
+[dblp]
+affiliation_strings = ["Chinese University of Hong Kong", "CUHK", "cse.cuhk.edu.hk"]
+legacy_sweep = ""
+[census]
+computing_departments = ["CSE"]
+center_units = []
+home_units = {"Computer Science and Engineering" = 'Computer Science and Engineering', "Information Engineering" = 'Information Engineering', "Electronic Engineering" = 'Electronic Engineering'}
+rank_words = {}
+[sweep_check]
+exceptions = []
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+[site]
+depts = {CSE = "Computer Science and Engineering", IE = "Information Engineering", EE = "Electronic Engineering"}
+full_codes = ["CSE"]
+[periods]
+school_regex = '\bchinese\s+university\s+of\s+hong\s+kong\b|\bCUHK\b'
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+[[departments]]
+code = "CSE"
+name = "Department of Computer Science and Engineering"
+unit = "Faculty of Engineering"
+title_match = 'Professor|Lecturer|Computer Science and Engineering'
+coverage = "full"
+url = "https://www.cse.cuhk.edu.hk/people/faculty/"
+  [[departments.listings]]
+  slot = "CSE faculty"
+  kind = "main"
+  url = "www.cse.cuhk.edu.hk/people/faculty/"
+  from = "20160101"
+  to = "20261231"
+[[affiliated_units]]
+code = "IE"
+name = "Department of Information Engineering"
+url = "https://www.erg.cuhk.edu.hk/erg/FacultyMembers/"
+listings = ["www.erg.cuhk.edu.hk/erg/FacultyMembers/"]
+[[affiliated_units]]
+code = "EE"
+name = "Department of Electronic Engineering"
+url = "https://www.erg.cuhk.edu.hk/erg/FacultyMembers/"
+listings = ["www.erg.cuhk.edu.hk/erg/FacultyMembers/"]
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = "unreachable"
+note = "No thesis endpoint admitted yet; discovery remains open."
+[collector]
+channels = []
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = []
+[labpages]
+skip_pages = []
+hints = ["cse.cuhk.edu.hk"]
+[repository]
+name = "CUHK repository (not yet collected)"
+pattern = 'repository\.lib\.cuhk\.edu\.hk'
+[store]
+path = "/n/fs/resemble/homogenizing-science/stores/cuhk"
+[[hosts]]
+host = "www.cse.cuhk.edu.hk"
+use = "live"
+purpose = "Official CSE faculty directory"
+probe = "https://www.cse.cuhk.edu.hk/people/faculty/"
+[[hosts]]
+host = "www.erg.cuhk.edu.hk"
+use = "live"
+purpose = "Official engineering faculty directory including IE and EE"
+probe = "https://www.erg.cuhk.edu.hk/erg/FacultyMembers/"

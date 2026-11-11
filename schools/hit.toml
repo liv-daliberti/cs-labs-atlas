@@ -1,0 +1,170 @@
+# schools/hit.toml: charter for Harbin Institute of Technology (docs/ADDING-A-SCHOOL.md, stage 0). Top-25 push 2026-11-07 (GRAS 2025 CSE rank 24).
+# Facts in this file are decisions about where to look, not evidence. Chinese official pages are the primary source; quotes stay in the original script.
+
+key = "hit"
+name = "Harbin Institute of Technology"
+short = "HIT"
+site_uni = ""
+status = "onboarding"
+order = 17
+stage = 0
+started = "2026-11-07"
+window = [2016, 2026]
+
+[ids]
+# Owner decisions D1-D4 are PENDING (hierarchy/hit/STAGE-0.md); the values below are the recommendations, so the snapshot extension can start.
+openalex = ["I204983213"]
+openalex_related = []
+openalex_excluded = []
+ror = "https://ror.org/01yqg2h08"
+ids_note = "OpenAlex institutions table of the local snapshot (no API credits, 2026-11-07): I204983213 'Harbin Institute of Technology', ROR 01yqg2h08, CN, lineage [I204983213]. Only 3 State Key Laboratories are children (Robotics and Systems, Urban Water Resources, Advanced Welding). OpenAlex has NO separate institution for the Shenzhen (hitsz.edu.cn) or Weihai (hitwh.edu.cn) campuses: searches for them return nothing, so their papers carry I204983213; the regex therefore matches the Shenzhen and Weihai campuses by name (owner decision D2). Not the Harbin Engineering University, Harbin University of Science and Technology, Harbin Medical University (must_not_match)."
+
+[web]
+domains = ["hit.edu.cn", "hitsz.edu.cn", "hitwh.edu.cn"]
+email_domains = ["hit.edu.cn", "hitsz.edu.cn", "hitwh.edu.cn"]
+wayback_only_suffixes = []
+excluded_hosts = []
+
+[affiliation]
+regex = '''\bharbin\s+inst\w*\.?\s+of\s+tech\w*|哈尔滨工业大学|哈工大|\bhit\.edu\.cn\b|\bhitsz\.edu\.cn\b|\bhitwh\.edu\.cn\b|\bschool\s+of\s+computer\s+science\s+and\s+technology,?\s+harbin\s+inst'''
+loose = '''harbin\w*|哈尔滨|\bhit\b(?:\s+shenzhen)?|\bhitsz\b'''
+own_units = '''\bfaculty\s+of\s+computing\b|\bresearch\s+center\s+for\s+social\s+computing\s+and\s+information\s+retrieval\b|\bpeng\s+cheng\s+laboratory\b'''
+must_match = ["School of Computer Science and Technology, Harbin Institute of Technology, Harbin 150001, China", "Harbin Institute of Technology, Shenzhen, China", "Harbin Institute of Technology (Shenzhen)", "Harbin Institute of Technology at Weihai", "Faculty of Computing, Harbin Institute of Technology", "哈尔滨工业大学计算学部", "jdoe@hit.edu.cn", "jdoe@stu.hit.edu.cn", "Harbin Inst. of Technology, Harbin"]
+must_not_match = ["Harbin Engineering University", "Harbin University of Science and Technology", "Harbin Medical University", "Harbin Normal University", "Heilongjiang University, Harbin", "Northeast Forestry University, Harbin", "Holon Institute of Technology, Israel", "Shenzhen Institute of Advanced Technology", "jdoe@hrbeu.edu.cn"]
+
+[dblp]
+affiliation_strings = ["Harbin Institute of Technology"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CS", "SW"]
+center_units = []
+home_units = {}
+# Chinese titles; \\b is not used (CJK counts as a word character). 教授 professor (副教授 associate, 助理教授 assistant), 研究员 research-track, 讲师 lecturer.
+rank_words = {ladder = '教授', lecturer = '讲师|助教', research = '研究员', emeritus = '荣休|退休|名誉', adjunct = '兼职', visiting = '客座'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {"CS" = "School of Computer Science and Technology (Faculty of Computing)", "SW" = "School of Software"}
+full_codes = ["CS"]
+
+[periods]
+school_regex = ''
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CS"
+name = "School of Computer Science and Technology (计算机科学与技术学院)"
+unit = "Faculty of Computing, Harbin Institute of Technology"
+title_match = '教授|研究员|讲师'
+coverage = "full"
+url = "http://cs.hit.edu.cn/jsml/list.htm"
+  [[departments.listings]]
+  slot = "CS faculty"
+  kind = "main"
+  url = "cs.hit.edu.cn/jsml/list.htm"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+
+[[affiliated_units]]
+code = "SW"
+name = "School of Software (软件学院)"
+url = "http://software.hit.edu.cn/"
+listings = ["software.hit.edu.cn/"]
+
+[[affiliated_units]]
+code = "HOME"
+name = "HIT faculty homepage system (教师主页, covers Harbin and Shenzhen)"
+url = "https://homepage.hit.edu.cn/home-index"
+listings = ["homepage.hit.edu.cn/home-index"]
+
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = "unreachable"
+note = "HIT theses are on campus or CNKI/Wanfang (paywalled): not used. Reached only through OpenAlex metadata."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["lab member pages and PI homepages (live where robots allows, else Wayback)", "OpenAlex / CORE thesis metadata only (CNKI and Wanfang are paywalled; never used)"]
+
+[labpages]
+skip_pages = []
+hints = ["<lab>.hit.edu.cn", "homepage.hit.edu.cn/<name>", "ir.hit.edu.cn", "<name>.github.io"]
+
+[repository]
+name = "HIT institutional repository (never asked); reached through OpenAlex and CORE"
+pattern = '''thesis\.hit\.edu\.cn|Harbin Institute of Technology Library|cnki\.net'''
+
+[store]
+path = "/n/fs/resemble/homogenizing-science/stores/hit"
+
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages)"
+probe = "https://web.archive.org/web/20251205051935id_/https://cs.hit.edu.cn/jsml/list.htm"
+
+[[hosts]]
+host = "cs.hit.edu.cn"
+use = "live"
+purpose = "School of Computer Science and Technology faculty list (robots 404)"
+probe = "http://cs.hit.edu.cn/jsml/list.htm"
+
+[[hosts]]
+host = "www.hit.edu.cn"
+use = "live"
+purpose = "HIT main site (robots 404)"
+probe = "http://www.hit.edu.cn/11534/list.htm"
+
+[[hosts]]
+host = "software.hit.edu.cn"
+use = "live"
+purpose = "School of Software (robots 404)"
+probe = "http://software.hit.edu.cn/"
+
+[[hosts]]
+host = "homepage.hit.edu.cn"
+use = "live"
+purpose = "HIT faculty homepage system; robots: Baiduspider only"
+probe = "https://homepage.hit.edu.cn/home-index"
+
+[[hosts]]
+host = "www.hitsz.edu.cn"
+use = "live"
+purpose = "HIT Shenzhen campus main site (robots 404)"
+probe = "https://www.hitsz.edu.cn/"
+
+[[hosts]]
+host = "www.hitwh.edu.cn"
+use = "live"
+purpose = "HIT Weihai campus main site (robots 404)"
+probe = "https://www.hitwh.edu.cn/"
+
+[[hosts]]
+host = "api.openalex.org"
+use = "live"
+purpose = "OpenAlex (snapshot first; the shared 10k/day key)"
+
+[[hosts]]
+host = "api.ror.org"
+use = "none"
+purpose = "ROR lookup held: robots.txt returned 403 to the project client on 2026-11-11; local OpenAlex snapshot supplies the recorded ROR ID"

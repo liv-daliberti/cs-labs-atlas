@@ -1,0 +1,194 @@
+# schools/pku.toml: charter for Peking University (docs/ADDING-A-SCHOOL.md, stage 0). Top-25 push 2026-11-07 (GRAS 2025 CSE rank 14).
+# Facts in this file are decisions about where to look, not evidence. Chinese official pages are the primary source; quotes stay in the original script.
+
+key = "pku"
+name = "Peking University"
+short = "PKU"
+site_uni = ""
+status = "onboarding"
+order = 16
+stage = 0
+started = "2026-11-07"
+window = [2016, 2026]
+
+[ids]
+# Owner decisions D1-D5 are PENDING (hierarchy/pku/STAGE-0.md); the values below are the recommendations, so the snapshot extension can start.
+openalex = ["I20231570"]
+openalex_related = []
+openalex_excluded = ["I4405263327", "I4210096887"]
+ror = "https://ror.org/02v51f717"
+ids_note = "OpenAlex institutions table of the local snapshot (no API credits, 2026-11-07): I20231570 'Peking University', ROR 02v51f717, CN, lineage [I20231570]. Lineage children: Beijing Institute of Big Data Research I4210096250 (kept: computing), Center for Life Sciences I4210160507, Collaborative Innovation Center of Quantum Matter I4210127494, 9 State Key Laboratories (facility), The Affiliated High School of Peking University I4405263327 (excluded: a secondary school), HKUST Shenzhen Research Institute I4210096887 (excluded: an HKUST institute that OpenAlex mis-parents under PKU). Related hospitals (First, Third, People's, Sixth, Cancer, Stomatology, International, Shougang, Jishuitan, Shijitan) are left out: medical, reachable only through computing PIs whose strings match the regex. Peking Union Medical College is a different institution (must_not_match); Peking University Founder Technology College I4405280260 is a separate college (not swept)."
+
+[web]
+domains = ["pku.edu.cn"]
+email_domains = ["pku.edu.cn"]
+wayback_only_suffixes = []
+excluded_hosts = []
+
+[affiliation]
+regex = '''\bpeking\s+univ\w*\b(?!\s+founder)|北京大学|\bpku\.edu\.cn\b|\bbeijing\s+university(?!\s+of)|\bschool\s+of\s+computer\s+science,?\s+peking|\bwangxuan\s+institute\s+of\s+computer\s+technology'''
+loose = '''peking\w*|\bpku\b|北京大学|wangxuan'''
+own_units = '''\bwangxuan\s+institute\b|\bnational\s+engineering\s+research\s+center\s+for\s+software\s+engineering\b|\binstitute\s+for\s+artificial\s+intelligence\b|\bbeijing\s+institute\s+of\s+big\s+data\s+research\b|\bbibdr\b'''
+must_match = ["School of Computer Science, Peking University, Beijing 100871, China", "Wangxuan Institute of Computer Technology, Peking University", "Peking University, Beijing, China", "Peking University Shenzhen Graduate School", "School of Intelligence Science and Technology, Peking University", "Beijing Institute of Big Data Research, Peking University", "北京大学计算机学院", "jdoe@pku.edu.cn", "Key Laboratory of High Confidence Software Technologies (MOE), Peking University", "Beijing University, China"]
+must_not_match = ["Peking Union Medical College, Beijing", "Beijing University of Posts and Telecommunications", "Beijing University of Technology", "Beijing University of Chemical Technology", "Peking University Founder Group Corporation", "Tsinghua University, Beijing, China", "Capital Medical University, Beijing", "Beijing Institute of Technology", "jdoe@bupt.edu.cn"]
+
+[dblp]
+affiliation_strings = ["Peking University"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CS", "WICT", "SIST"]
+center_units = []
+home_units = {}
+# Chinese titles; \\b is not used (CJK counts as a word character). 教授 professor (副教授 associate, 助理教授 assistant), 研究员 research-track, 讲师 lecturer.
+rank_words = {ladder = '教授', lecturer = '讲师|助教', research = '研究员', emeritus = '荣休|退休|名誉', adjunct = '兼职', visiting = '客座'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {"CS" = "School of Computer Science", "WICT" = "Wangxuan Institute of Computer Technology", "SIST" = "School of Intelligence Science and Technology"}
+full_codes = ["CS", "WICT", "SIST"]
+
+[periods]
+school_regex = ''
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CS"
+name = "School of Computer Science (计算机学院)"
+unit = "Peking University"
+title_match = '教授|研究员|讲师'
+coverage = "full"
+url = "https://cs.pku.edu.cn/zxns/js.htm"
+  [[departments.listings]]
+  slot = "CS faculty"
+  kind = "main"
+  url = "cs.pku.edu.cn/zxns/js.htm"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+
+[[departments]]
+code = "WICT"
+name = "Wangxuan Institute of Computer Technology (王选计算机研究所)"
+unit = "Peking University"
+title_match = '教授|研究员|讲师'
+coverage = "affiliated"
+url = "https://www.icst.pku.edu.cn/"
+  [[departments.listings]]
+  slot = "WICT faculty"
+  kind = "main"
+  url = "www.icst.pku.edu.cn/"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+
+[[departments]]
+code = "SIST"
+name = "School of Intelligence Science and Technology (智能学院)"
+unit = "Peking University"
+title_match = '教授|研究员|讲师'
+coverage = "full"
+url = "https://sai.pku.edu.cn/szdw/zzjs.htm"
+  [[departments.listings]]
+  slot = "SIST faculty"
+  kind = "main"
+  url = "sai.pku.edu.cn/szdw/zzjs.htm"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+
+[[affiliated_units]]
+code = "EECS"
+name = "School of Electronics Engineering and Computer Science (信息科学技术学院)"
+url = "https://eecs.pku.edu.cn/szdw/jj.htm"
+listings = ["eecs.pku.edu.cn/szdw/jj.htm"]
+
+[[affiliated_units]]
+code = "SS"
+name = "School of Software and Microelectronics (软件与微电子学院)"
+url = "https://ss.pku.edu.cn/sztd/index.htm"
+listings = ["ss.pku.edu.cn/sztd/index.htm"]
+
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = "unreachable"
+note = "PKU theses are on campus or CNKI/Wanfang (paywalled): not used. Reached only through OpenAlex metadata."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["lab member pages and PI homepages (live where robots allows, else Wayback)", "OpenAlex / CORE thesis metadata only (CNKI and Wanfang are paywalled; never used)"]
+
+[labpages]
+skip_pages = []
+hints = ["<lab>.pku.edu.cn", "www.cis.pku.edu.cn/~<name>", "<name>.github.io", "wangxuan lab pages under www.icst.pku.edu.cn"]
+
+[repository]
+name = "PKU institutional repository (never asked); reached through OpenAlex and CORE"
+pattern = '''ir\.pku\.edu\.cn|Peking University Library|cnki\.net'''
+
+[store]
+path = "/n/fs/resemble/homogenizing-science/stores/pku"
+
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages)"
+probe = "https://web.archive.org/web/2020id_/https://cs.pku.edu.cn/zxns/js.htm"
+
+[[hosts]]
+host = "cs.pku.edu.cn"
+use = "live"
+purpose = "School of Computer Science faculty (robots 404)"
+probe = "https://cs.pku.edu.cn/zxns/js.htm"
+
+[[hosts]]
+host = "www.icst.pku.edu.cn"
+use = "live"
+purpose = "Wangxuan Institute (robots 404)"
+probe = "https://www.icst.pku.edu.cn/"
+
+[[hosts]]
+host = "sai.pku.edu.cn"
+use = "live"
+purpose = "School of Intelligence Science and Technology faculty (robots 404)"
+probe = "https://sai.pku.edu.cn/szdw/zzjs.htm"
+
+[[hosts]]
+host = "eecs.pku.edu.cn"
+use = "live"
+purpose = "School of EECS faculty, searched for computing faculty (robots 404)"
+probe = "https://eecs.pku.edu.cn/szdw/jj.htm"
+
+[[hosts]]
+host = "ss.pku.edu.cn"
+use = "live"
+purpose = "School of Software and Microelectronics (robots 404)"
+probe = "https://ss.pku.edu.cn/sztd/index.htm"
+
+[[hosts]]
+host = "api.openalex.org"
+use = "live"
+purpose = "OpenAlex (snapshot first; the shared 10k/day key)"
+
+[[hosts]]
+host = "api.ror.org"
+use = "none"
+purpose = "ROR lookup held: robots.txt returned 403 to the project client on 2026-11-11; local OpenAlex snapshot supplies the recorded ROR ID"

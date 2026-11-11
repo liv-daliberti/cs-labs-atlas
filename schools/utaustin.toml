@@ -1,0 +1,276 @@
+# The University of Texas at Austin: top-25 push onboarding (coordinator brief scratch/top25-brief.md, 2026-11-07). Computing labs only; CS department full, other units through the CS-related-faculty rule.
+key = "utaustin"
+name = "The University of Texas at Austin"
+short = "UT Austin"
+site_uni = "the-university-of-texas-at-austin"
+status = "onboarding"
+order = 16
+stage = 0
+started = "2026-11-07"
+window = [2016, 2026]
+
+[ids]
+# Stage-0 owner decisions pending (STAGE-0.md D1-D3): sweep every lineage child, PI rule filters; no related institutions.
+openalex = ["I86519309"]
+openalex_related = []
+openalex_excluded = []
+ror = "https://ror.org/00hj54h04"
+ids_note = "tools/oa_institutions.py search/lineage on the local OpenAlex institutions snapshot (no API credits), 2026-11-07: I86519309 'The University of Texas at Austin' ROR 00hj54h04, lineage [I86519309]. Lineage children include Texas Advanced Computing Center I4388891828, Applied Research Laboratories I4388482719, Bureau of Economic Geology I4403928371, UT Health Austin I4387930201, Dell Children's Medical Center I4210102018, McDonald Observatory I4405285093, NSF-Simons AI Institute for Cosmic Origins I4405256350, Marine Science Institute I4405282909, Lady Bird Johnson Wildflower Center I4405283265, Brackenridge Field Lab I4405284063 and others. Other UT System campuses (Dallas, Arlington, San Antonio, Houston, Southwestern, MD Anderson) are separate OpenAlex institutions and not swept."
+
+[web]
+domains = ["utexas.edu"]
+email_domains = ["utexas.edu"]
+wayback_only_suffixes = []
+excluded_hosts = []
+
+[affiliation]
+regex = '''\b(?:the\s+)?univ(?:ersity|\.)?\s+of\s+texas\s*(?:,|at|in|-|–)?\s*austin\b|\bUT[-\s]Austin\b|\butexas\.edu\b|\b[\w-]+\.utexas\.edu\b'''
+loose = '''austin|utexas\.edu|texas\s+advanced\s+computing|oden\s+institute'''
+own_units = '''\boden\s+institute\b|\btexas\s+advanced\s+computing\s+center\b|\bapplied\s+research\s+laboratories\b|\bmcdonald\s+observatory\b'''
+must_match = [
+  "The University of Texas at Austin, Austin, TX, USA",
+  "Department of Computer Science, University of Texas at Austin",
+  "Univ. of Texas at Austin",
+  "University of Texas, Austin",
+  "UT Austin",
+  "jdoe@cs.utexas.edu",
+  "Oden Institute for Computational Engineering and Sciences, The University of Texas at Austin"
+]
+must_not_match = [
+  "University of Texas at Dallas, Richardson, TX",
+  "University of Texas at San Antonio",
+  "University of Texas at Arlington",
+  "The University of Texas MD Anderson Cancer Center, Houston",
+  "UT Southwestern Medical Center, Dallas",
+  "Texas A&M University, College Station",
+  "Austin College, Sherman, TX",
+  "Austin Peay State University",
+  "University of Texas Rio Grande Valley",
+  "jdoe@utdallas.edu"
+]
+
+[dblp]
+affiliation_strings = ["University of Texas at Austin", "The University of Texas at Austin", "UT Austin", "University of Texas, Austin"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CS"]
+center_units = ["TACC", "ROBOTICS", "OKCAI"]
+home_units = {"Computer Science" = 'computer\s+science', "Electrical and Computer Engineering" = 'electrical\s+(?:and|&)\s+computer\s+engineering', "Oden Institute" = 'oden\s+institute|computational\s+(?:engineering|science)', "Statistics and Data Sciences" = 'statistics\s+and\s+data\s+sciences?', "Information" = 'school\s+of\s+information'}
+rank_words = {teaching = '\\bprofessor\\s+of\\s+instruction\\b|\\bsenior\\s+lecturer\\b|\\blecturer\\b', adjunct = '\\badjunct\\b|\\bprofessor\\s+of\\s+practice\\b'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {CS = "Computer Science"}
+full_codes = ["CS"]
+
+[periods]
+school_regex = '''\b(?:the\s+)?univ(?:ersity|\.)?\s+of\s+texas\s*(?:,|at|in|-|–)?\s*austin\b|\bUT[-\s]Austin\b|\butexas\.edu\b|\b[\w-]+\.utexas\.edu\b'''
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CS"
+name = "Computer Science"
+unit = "Department of Computer Science, College of Natural Sciences (Texas Computing)"
+title_match = 'computer\s+science'
+coverage = "full"
+url = "https://www.cs.utexas.edu/people"
+  [[departments.listings]]
+  slot = "main"
+  kind = "main"
+  url = "www.cs.utexas.edu/people"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = ""
+  title_filter = ''
+
+[[affiliated_units]]
+code = "ECE"
+name = "Electrical and Computer Engineering"
+url = "https://ece.utexas.edu/people/faculty"
+listings = ["ece.utexas.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "ODEN"
+name = "Oden Institute for Computational Engineering and Sciences"
+url = "https://oden.utexas.edu/people/faculty/"
+listings = ["oden.utexas.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "SDS"
+name = "Statistics and Data Sciences"
+url = "https://stat.utexas.edu/directory"
+listings = ["stat.utexas.edu/directory"]
+
+[[affiliated_units]]
+code = "INFO"
+name = "School of Information"
+url = "https://ischool.utexas.edu/people/faculty-staff-students/full-time-faculty"
+listings = ["ischool.utexas.edu/people/faculty-staff-students/full-time-faculty"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematics"
+url = "https://math.utexas.edu/people/faculty"
+listings = ["math.utexas.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "ME"
+name = "Mechanical Engineering"
+url = "https://me.utexas.edu/people/faculty"
+listings = ["me.utexas.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "ASE"
+name = "Aerospace Engineering and Engineering Mechanics"
+url = "https://ae.utexas.edu/people/faculty/"
+listings = ["ae.utexas.edu/people/faculty/"]
+
+[[affiliated_units]]
+code = "LING"
+name = "Linguistics"
+url = "https://liberalarts.utexas.edu/linguistics/faculty-and-staff/index.php"
+listings = ["liberalarts.utexas.edu/linguistics/faculty-and-staff/index.php"]
+
+[[affiliated_units]]
+code = "TACC"
+name = "Texas Advanced Computing Center (centre)"
+url = "https://tacc.utexas.edu/about/staff/"
+listings = []
+note = "TACC robots.txt disallows AI agents by name (2026-11-11); no direct or Wayback collection from this host. Seek UT faculty appointments on permitted department pages."
+
+[[affiliated_units]]
+code = "ROBOTICS"
+name = "Texas Robotics (centre)"
+url = "https://robotics.utexas.edu/people/"
+listings = ["robotics.utexas.edu/people"]
+
+[[affiliated_units]]
+code = "OKCAI"
+name = "Machine Learning Laboratory / AI centres (centre)"
+url = "https://ml.utexas.edu/people"
+listings = ["ml.utexas.edu/people"]
+
+[thesis]
+kind = "dspace"
+base_url = "https://repositories.lib.utexas.edu/"
+endpoints = []
+robots = "unreachable"
+note = "UT Libraries repository (Texas ScholarWorks / TDL) returned 403 to a plain robots.txt request on 2026-11-07; read through Wayback if allowed, else OpenAlex only. Collect explicit supervisor statements only."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["thesis repository with explicit supervisor metadata", "dated official defence and graduation lists", "PI-owned lab member and alumni pages"]
+
+[labpages]
+skip_pages = []
+hints = ["https://www.cs.utexas.edu/research", "https://www.cs.utexas.edu/people", "https://ece.utexas.edu/research"]
+
+[repository]
+name = "Texas ScholarWorks / UT Libraries repository (through Wayback, OpenAlex and CORE)"
+pattern = 'repositories\.lib\.utexas\.edu|Texas ScholarWorks'
+
+[store]
+path = "stores/utaustin"
+
+[[hosts]]
+host = "www.cs.utexas.edu"
+use = "wayback-only"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.cs.utexas.edu/people"
+
+[[hosts]]
+host = "repositories.lib.utexas.edu"
+use = "wayback-only"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://repositories.lib.utexas.edu/"
+
+[[hosts]]
+host = "ece.utexas.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://ece.utexas.edu/people/faculty"
+
+[[hosts]]
+host = "oden.utexas.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://oden.utexas.edu/people/faculty/"
+
+[[hosts]]
+host = "stat.utexas.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://stat.utexas.edu/directory"
+
+[[hosts]]
+host = "ischool.utexas.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://ischool.utexas.edu/people/faculty-staff-students/full-time-faculty"
+
+[[hosts]]
+host = "math.utexas.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://math.utexas.edu/people/faculty"
+
+[[hosts]]
+host = "me.utexas.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://me.utexas.edu/people/faculty"
+
+[[hosts]]
+host = "sites.utexas.edu"
+use = "live"
+purpose = "Permitted lab and group pages; ASE faculty directory moved to ae.utexas.edu"
+probe = "https://sites.utexas.edu/car/members/"
+
+[[hosts]]
+host = "ae.utexas.edu"
+use = "live"
+purpose = "Aerospace Engineering and Engineering Mechanics faculty directory"
+probe = "https://ae.utexas.edu/people/faculty/"
+
+[[hosts]]
+host = "liberalarts.utexas.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://liberalarts.utexas.edu/linguistics/faculty-and-staff/index.php"
+
+[[hosts]]
+host = "tacc.utexas.edu"
+use = "none"
+purpose = "No direct or archived collection: robots.txt disallows AI agents by name (2026-11-11)"
+probe = "https://tacc.utexas.edu/about/staff/"
+
+[[hosts]]
+host = "robotics.utexas.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://robotics.utexas.edu/people/"
+
+[[hosts]]
+host = "ml.utexas.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://ml.utexas.edu/people"

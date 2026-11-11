@@ -1,0 +1,274 @@
+# schools/<key>.toml: one school's charter (docs/ADDING-A-SCHOOL.md, stage 0). Copy this file to schools/<key>.toml,
+# fill every field, run `python tools/school_config.py --check <key>` and `python tools/school_hosts.py <key>`, then
+# commit it. Every stage tool reads the school from here; nothing else needs a school list (see the protocol's
+# "files that must learn a new school" for the few that still do).
+#
+# Facts in this file are decisions about where to look, not evidence: evidence (url + sha256 + verbatim quote) lives in
+# the captures and the stage outputs. Say how each identifier was verified in the *_note fields.
+
+key = "whu"                  # lower-case, [a-z0-9]+; the folder name everywhere (hierarchy/<key>, stores/<key>, schools/<key>)
+name = "Wuhan University"                 # full official name ("University of Michigan")
+short = "Wuhan University"                # display name ("Michigan")
+site_uni = ""             # the 300-university atlas id (SITE_DATA/universities/<site_uni>.json.gz), if any
+status = "onboarding"     # onboarding | released. Only released schools are in atlas_paths.SCHOOL_IDS (the build,
+                          # the release, the tree); flip it at stage 10, never earlier
+order = 15                 # display and build order (released schools are listed in this order)
+stage = 0                 # the last stage whose gate passed (hierarchy/<key>/STAGE-<n>.md)
+started = "2026-11-07"              # YYYY-MM-DD the onboarding started
+window = [2016, 2026]     # the study window (owner rule; do not change per school)
+
+[ids]
+# Owner decisions pending (hierarchy/whu/STAGE-0.md D1-D4). Brief rule (coordinator 2026-11-07): keep ONLY labs that do computing; a unit counts only through its computing faculty.
+openalex = ["I37461747"]
+# D2 (recommended): the two university hospitals are related, not swept as lineage; their authorships count only when the raw string names Wuhan University.
+openalex_related = ["I4210120234", "I4210140357"]   # Zhongnan Hospital, Renmin Hospital of Wuhan University
+# D1 (recommended): Duke Kunshan University sits in the OpenAlex lineage of Wuhan University (a Duke-WHU joint venture with its own faculty); exclude. Other same-name institutions are not WHU.
+openalex_excluded = ["I4210159968", "I196699116", "I43922553", "I4405280881"]   # Duke Kunshan; Wuhan Univ. of Technology; of Science and Technology; of Communication
+ror = "https://ror.org/033vjfk17"
+ids_note = """OpenAlex institutions table of the local snapshot (no API credits, checked 2026-11-07): I37461747 'Wuhan University', ROR 033vjfk17, CN, lineage [I37461747]. Lineage children: State Key Laboratory of
+Software Engineering I4391768271, State Key Laboratory of Virology I4391768268, State Key Laboratory of Water Resources and Hydropower Engineering Science I4391768013 (all facilities of the university, kept in
+the lineage) and Duke Kunshan University I4210159968 (excluded, D1). Related: Zhongnan Hospital I4210120234, Renmin Hospital I4210140357 (kept as related, D2); Hubei Zhongshan Hospital, Wuhan Asia Heart Hospital, Fifth
+Hospital in Wuhan and the Enshi central hospital are not affiliated units of the university and are left out. Different institutions with the same stem: Wuhan University of Technology I196699116, Wuhan University of Science and
+Technology I43922553, Wuhan University of Communication I4405280881 (excluded and in must_not_match). The filtered snapshot predates this charter; run snapshot-ext."""
+
+[web]
+domains = ["whu.edu.cn"]
+email_domains = ["whu.edu.cn", "cs.whu.edu.cn", "mail.whu.edu.cn", "sgg.whu.edu.cn", "lmars.whu.edu.cn", "liesmars.whu.edu.cn"]
+wayback_only_suffixes = []
+excluded_hosts = ["whut.edu.cn", "wust.edu.cn", "wtu.edu.cn", "wuc.edu.cn", "dukekunshan.edu.cn"]   # other Wuhan universities and Duke Kunshan
+
+[affiliation]
+# 'Wuhan University' / 'Wuhan Univ.' / 'Univ. Wuhan', the whu.edu.cn domain, and LIESMARS (the State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing, whose raw strings often omit the university).
+# Never 'Wuhan University of Technology / Science and Technology / Communication / Engineering / Business / Textile / Polytechnic' (other institutions) and never a bare 'Wuhan'.
+regex = '''\bwuhan\s+univ(?!ersity\s+of\s+(?:technology|science|communication|engineering|business|textile|light|polytechnic|foreign|commerce|bioengineering|city)|\.?\s+of\s+(?:technol|sci|commun|eng|bus|text))\w*\.?|\buniv\w*\.?\s+of\s+wuhan\b|\bwhu\.edu\.cn\b|\bliesmars\b|\bstate\s+key\s+lab\w*\s+of\s+information\s+engineering\s+in\s+surveying,?\s+mapping\s+(?:and|&)\s+remote\s+sensing\b'''
+own_units = '''\bliesmars\b|\bhubei\s+luojia\s+laboratory\b|\bluojia\s+lab\w*\b|\bnational\s+engineering\s+research\s+center\s+for\s+multimedia\s+software\b|\bstate\s+key\s+lab\w*\s+of\s+software\s+engineering\b'''
+loose = '''wuhan\s+univ\w*|\bwhu\b|luojia|liesmars|wuhan,?\s+(?:430072|china|hubei)'''
+must_match = [
+  "School of Computer Science, Wuhan University, Wuhan 430072, China",
+  "Wuhan University, Wuhan, China",
+  "Wuhan Univ., Wuhan, Hubei",
+  "School of Cyber Science and Engineering, Wuhan University",
+  "State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University",
+  "LIESMARS, Wuhan, China",
+  "jdoe@whu.edu.cn",
+  "Zhongnan Hospital of Wuhan University",
+  "Hubei Luojia Laboratory, Wuhan University",
+]
+must_not_match = [
+  "Wuhan University of Technology, Wuhan, China",
+  "Wuhan University of Science and Technology",
+  "Wuhan University of Communication",
+  "Wuhan Univ. of Technol., Wuhan",
+  "Wuhan University of Engineering Science",
+  "Huazhong University of Science and Technology, Wuhan, China",
+  "China University of Geosciences, Wuhan",
+  "Central China Normal University, Wuhan",
+  "Duke Kunshan University, Kunshan, China",
+  "Wuhan Textile University",
+  "jdoe@whut.edu.cn",
+  "Wuhan, China",
+]
+
+[dblp]
+affiliation_strings = ["Wuhan University", "Wuhan Univ", "School of Computer Science, Wuhan", "LIESMARS", "State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing", "Wuhan University, School of Computer Science"]
+legacy_sweep = ""
+
+[census]
+# Brief (coordinator 2026-11-07): the School of Computer Science first, then CS-related faculty of other units (Cyber Science and Engineering, LIESMARS / Remote Sensing and Information Engineering, Electronic Information, AI Institute, Information Management).
+computing_departments = ["CS"]
+center_units = ["AIINST"]    # the Institute of Artificial Intelligence is a university institute: members have a home school
+home_units = {"Computer Science" = '^(?:School of )?Computer Science$|^计算机学院$|^计算机科学系$|^软件工程系$|^智能科学系$', "Cyber Science and Engineering" = '^(?:School of )?Cyber Science and Engineering$|^国家网络安全学院$|^网络空间安全学院$', "Remote Sensing and Information Engineering" = '^(?:School of )?Remote Sensing and Information Engineering$|^遥感信息工程学院$', "Electronic Information" = '^(?:School of )?Electronic Information$|^电子信息学院$', "Information Management" = '^(?:School of )?Information Management$|^信息管理学院$', "Geodesy and Geomatics" = '^(?:School of )?Geodesy and Geomatics$|^测绘学院$', "Mathematics and Statistics" = '^(?:School of )?Mathematics and Statistics$|^数学与统计学院$', "Artificial Intelligence" = '^(?:Institute of )?Artificial Intelligence$|^人工智能研究院$'}
+rank_words = {teaching = '\b讲师\b|\bsenior\s+lecturer\b|\b教学型\b', adjunct = '\b兼职\b|\b客座\b|\bvisiting\s+professor\b', courtesy = '\b兼职教授\b'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {CS = "School of Computer Science"}
+full_codes = ["CS"]
+
+[periods]
+school_regex = '''(?i:wuhan\s+univ\w*|武汉大学|whu\b)'''
+profile_patterns = ["cs.whu.edu.cn/info/{all}"]
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+# --- departments ---------------------------------------------------------------------------------------------------------------------
+# The School of Computer Science (计算机学院, cs.whu.edu.cn) lists its full-time faculty on one page, szdw/zrjs.htm, grouped by department (计算机科学系, 软件工程系, 智能科学系, 公共课教学中心) and rank
+# (正高级 / 副高级 / 中级 / ...). Live, no robots.txt (404), no challenge (2026-11-07). The Chinese page is primary; /english/ lags. Historical eras of this URL are NOT yet discovered (Wayback is scarce:
+# stage 1 queues them; the school passes the gate through the documented partial-historical-coverage exception, live-first).
+[[departments]]
+code = "CS"
+name = "School of Computer Science (计算机学院)"
+unit = "School of Computer Science, Wuhan University"
+title_match = '''教授|研究员|讲师|博士后|工程师|Professor|Lecturer'''
+coverage = "full"
+url = "https://cs.whu.edu.cn/szdw/zrjs.htm"
+  [[departments.listings]]
+  slot = "Full-time faculty"
+  kind = "main"
+  url = "cs.whu.edu.cn/szdw/zrjs.htm"
+  from = "20160101"
+  to = "20261231"
+  format = "whu_cs_zrjs"
+  [[departments.listings]]
+  slot = "High-level talents"
+  kind = "main"
+  url = "cs.whu.edu.cn/szdw/gccrc.htm"
+  from = "20160101"
+  to = "20261231"
+  format = "whu_cs_zrjs"
+  [[departments.listings]]
+  slot = "Emeritus"
+  kind = "emeritus"
+  url = "cs.whu.edu.cn/szdw/rxjs.htm"
+  from = "20160101"
+  to = "20261231"
+  format = "whu_cs_zrjs"
+
+# --- units searched for computing-related faculty (stage 2). Only computing labs count. ---------------------------------------------
+[[affiliated_units]]
+code = "CYBER"
+name = "School of Cyber Science and Engineering (国家网络安全学院)"
+url = "https://cse.whu.edu.cn/"
+listings = ["cse.whu.edu.cn/szdw/zzjs.htm"]
+
+[[affiliated_units]]
+code = "RSGIS"
+name = "School of Remote Sensing and Information Engineering (遥感信息工程学院)"
+url = "https://rsgis.whu.edu.cn/"
+listings = ["rsgis.whu.edu.cn/szdw.htm"]
+
+[[affiliated_units]]
+code = "LIESMARS"
+name = "State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing (LIESMARS)"
+url = "https://liesmars.whu.edu.cn/"
+listings = ["liesmars.whu.edu.cn/"]
+
+[[affiliated_units]]
+code = "EIS"
+name = "School of Electronic Information (电子信息学院)"
+url = "https://eis.whu.edu.cn/"
+listings = ["eis.whu.edu.cn/"]
+
+[[affiliated_units]]
+code = "AIINST"
+name = "Institute of Artificial Intelligence (人工智能研究院)"
+url = "https://ai.whu.edu.cn/"
+listings = ["ai.whu.edu.cn/"]
+
+[[affiliated_units]]
+code = "SIM"
+name = "School of Information Management (信息管理学院)"
+url = "https://sim.whu.edu.cn/"
+listings = ["sim.whu.edu.cn/"]
+
+[[affiliated_units]]
+code = "MATHS"
+name = "School of Mathematics and Statistics (数学与统计学院)"
+url = "https://maths.whu.edu.cn/"
+listings = ["maths.whu.edu.cn/"]
+
+# --- students (later phase) -----------------------------------------------------------------------------------------------------------
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = "unreachable"
+note = "Wuhan University theses are held by CNKI (paywalled / login) and the library's Chinese thesis system; there is no open DSpace-style repository to crawl. Students phase is deferred by the brief."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["lab member pages and PI homepages (Chinese: 研究生 / 博士生 / 学生成员)", "OpenAlex / S2 thesis metadata", "school PhD graduation lists, if public"]
+
+[labpages]
+skip_pages = []
+hints = ["cs.whu.edu.cn/info/<id>/<id>.htm", "<name>.github.io", "sites.google.com/view/<lab>", "<lab>.whu.edu.cn", "github.com/<lab>"]
+
+[repository]
+name = "Wuhan University institutional repository (WHU IR / CNKI): reached through OpenAlex only; not crawled"
+pattern = '''ir\.lib\.whu\.edu\.cn|\bcnki\b|Wuhan University Library'''
+
+[store]
+path = "/n/fs/resemble/homogenizing-science/stores/whu"
+
+# --- hosts ---------------------------------------------------------------------------------------------------------------------------
+# robots.txt: no whu.edu.cn host names an AI agent. School hosts answer this project's honest User-Agent with HTTP 403 (www.whu.edu.cn answers 200), so they are wayback-only (owner: always allowed).
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages)"
+probe = "https://web.archive.org/web/2020id_/https://cs.whu.edu.cn/"
+
+[[hosts]]
+host = "cs.whu.edu.cn"
+use = "wayback-only"
+purpose = "School of Computer Science faculty lists (the project client gets HTTP 403 on every path incl. robots.txt, 2026-11-07: read through Wayback, owner rule)"
+probe = "https://cs.whu.edu.cn/szdw/zrjs.htm"
+
+[[hosts]]
+host = "cse.whu.edu.cn"
+use = "wayback-only"
+purpose = "School of Cyber Science and Engineering (the project client gets HTTP 403 on every path incl. robots.txt, 2026-11-07: read through Wayback, owner rule)"
+probe = "https://cse.whu.edu.cn/"
+
+[[hosts]]
+host = "rsgis.whu.edu.cn"
+use = "wayback-only"
+purpose = "School of Remote Sensing and Information Engineering (the project client gets HTTP 403 on every path incl. robots.txt, 2026-11-07: read through Wayback, owner rule)"
+probe = "https://rsgis.whu.edu.cn/"
+
+[[hosts]]
+host = "liesmars.whu.edu.cn"
+use = "wayback-only"
+purpose = "LIESMARS state key laboratory (the project client gets HTTP 403 on every path incl. robots.txt, 2026-11-07: read through Wayback, owner rule)"
+probe = "https://liesmars.whu.edu.cn/"
+
+[[hosts]]
+host = "eis.whu.edu.cn"
+use = "wayback-only"
+purpose = "School of Electronic Information (the project client gets HTTP 403 on every path incl. robots.txt, 2026-11-07: read through Wayback, owner rule)"
+probe = "https://eis.whu.edu.cn/"
+
+[[hosts]]
+host = "ai.whu.edu.cn"
+use = "wayback-only"
+purpose = "Institute of Artificial Intelligence (the project client gets HTTP 403 on every path incl. robots.txt, 2026-11-07: read through Wayback, owner rule)"
+probe = "https://ai.whu.edu.cn/"
+
+[[hosts]]
+host = "sim.whu.edu.cn"
+use = "wayback-only"
+purpose = "School of Information Management (the project client gets HTTP 403 on every path incl. robots.txt, 2026-11-07: read through Wayback, owner rule)"
+probe = "https://sim.whu.edu.cn/"
+
+[[hosts]]
+host = "maths.whu.edu.cn"
+use = "wayback-only"
+purpose = "School of Mathematics and Statistics (the project client gets HTTP 403 on every path incl. robots.txt, 2026-11-07: read through Wayback, owner rule)"
+probe = "https://maths.whu.edu.cn/"
+
+[[hosts]]
+host = "multimedia.whu.edu.cn"
+use = "wayback-only"
+purpose = "National Engineering Research Center for Multimedia Software (the project client gets HTTP 403 on every path incl. robots.txt, 2026-11-07: read through Wayback, owner rule)"
+probe = "https://multimedia.whu.edu.cn/"
+
+[[hosts]]
+host = "www.whu.edu.cn"
+use = "live"
+purpose = "University home, directories (robots.txt 404, no rules)"
+probe = "https://www.whu.edu.cn/"

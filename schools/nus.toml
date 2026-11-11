@@ -1,0 +1,103 @@
+key = "nus"
+name = "National University of Singapore"
+short = "NUS"
+site_uni = ""
+status = "onboarding"
+order = 999
+stage = 0
+started = "2026-11-07"
+window = [2016, 2026]
+[ids]
+openalex = ["I165932596"]
+openalex_related = []
+openalex_excluded = []
+ror = "https://ror.org/01tgyzw49"
+ids_note = "Local OpenAlex institutions snapshot checked 2026-11-11: I165932596 names National University of Singapore, SG, ROR 01tgyzw49. Lineage children include NUS Health System, Duke-NUS Medical School and NUS High School; owner lineage review remains open."
+[web]
+domains = ["nus.edu.sg"]
+email_domains = ["nus.edu.sg", "comp.nus.edu.sg"]
+wayback_only_suffixes = []
+excluded_hosts = []
+[affiliation]
+regex = '\bnational\s+university\s+of\s+singapore\b|\bNUS\s*,?\s*Singapore\b|\b(?:[a-z0-9-]+\.)*nus\.edu\.sg\b'
+loose = '\bnational\s+university\s+of\s+singapore\b|\bNUS\b|nus\.edu\.sg'
+own_units = ''
+must_match = ["National University of Singapore", "School of Computing, National University of Singapore", "NUS, Singapore", "person@comp.nus.edu.sg"]
+must_not_match = ["Nanyang Technological University", "Singapore Management University", "National Taiwan University", "NUS"]
+[dblp]
+affiliation_strings = ["National University of Singapore", "NUS, Singapore", "comp.nus.edu.sg"]
+legacy_sweep = ""
+[census]
+computing_departments = ["CS"]
+center_units = []
+home_units = {"Computer Science" = 'School of Computing|Department of Computer Science', "Information Systems and Analytics" = 'Department of Information Systems and Analytics', "Electrical and Computer Engineering" = 'Department of Electrical and Computer Engineering'}
+rank_words = {}
+[sweep_check]
+exceptions = []
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+[site]
+depts = {CS = "Department of Computer Science", DISA = "Department of Information Systems and Analytics", ECE = "Department of Electrical and Computer Engineering"}
+full_codes = ["CS"]
+[periods]
+school_regex = '\bnational\s+university\s+of\s+singapore\b|\bNUS\b'
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+[[departments]]
+code = "CS"
+name = "Department of Computer Science"
+unit = "School of Computing"
+title_match = 'Professor|Lecturer|Computer Science'
+coverage = "full"
+url = "https://www.comp.nus.edu.sg/cs/people/"
+  [[departments.listings]]
+  slot = "CS faculty"
+  kind = "main"
+  url = "www.comp.nus.edu.sg/cs/people/"
+  from = "20160101"
+  to = "20261231"
+[[affiliated_units]]
+code = "DISA"
+name = "Department of Information Systems and Analytics"
+url = "https://www.comp.nus.edu.sg/disa/people/"
+listings = ["www.comp.nus.edu.sg/disa/people/"]
+[[affiliated_units]]
+code = "ECE"
+name = "Department of Electrical and Computer Engineering"
+url = "https://cde.nus.edu.sg/ece/about-us/people/academic-staff/"
+listings = ["cde.nus.edu.sg/ece/about-us/people/academic-staff/"]
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = "unreachable"
+note = "No thesis endpoint admitted yet; discovery remains open."
+[collector]
+channels = []
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = []
+[labpages]
+skip_pages = []
+hints = ["comp.nus.edu.sg"]
+[repository]
+name = "NUS repository (not yet collected)"
+pattern = 'scholarbank\.nus\.edu\.sg'
+[store]
+path = "/n/fs/resemble/homogenizing-science/stores/nus"
+[[hosts]]
+host = "www.comp.nus.edu.sg"
+use = "live"
+purpose = "Official CS and DISA people directories"
+probe = "https://www.comp.nus.edu.sg/cs/people/"
+[[hosts]]
+host = "cde.nus.edu.sg"
+use = "wayback-only"
+purpose = "Official ECE staff directory; live host serves a challenge"
+probe = "https://cde.nus.edu.sg/ece/about-us/people/academic-staff/"

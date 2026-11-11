@@ -1,0 +1,219 @@
+# schools/seu.toml: Southeast University's charter (docs/ADDING-A-SCHOOL.md, v3 stage 0), filled 2026-11-07 for the owner's top-25 push.
+# Facts here are decisions about where to look, not evidence. Lineage / related / excluded ids are DRAFTS until the owner answers the stage-0 D-decisions
+# (hierarchy/seu/STAGE-0.md): nothing is swept or extended into the snapshot before that. Chinese official pages are the primary source; quotes stay in the original script,
+# pinyin and English names are recorded as aliases for identity matching. 'order' is provisional; the coordinator sets it at landing.
+
+key = "seu"
+name = "Southeast University"
+short = "SEU"
+site_uni = "southeast-university"
+status = "onboarding"
+order = 33
+stage = 0
+started = "2026-11-07"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I76569877"]
+openalex_related = []
+openalex_excluded = ["I4403386554"]
+ror = "https://ror.org/04ct4d772"
+ids_note = """OpenAlex institutions table of the 2026-10-14 snapshot (no API credits; checked 2026-11-07): I76569877 'Southeast University', ROR 04ct4d772, CN, education, lineage [I76569877]. Lineage children (facilities): State Key Laboratories of Mobile Communications I4391768199, Millimeter Waves I4391768253, Digital Medical Engineering I4387154005.
+Associated 'related': Zhongda Hospital I4210105806, Yixing People's Hospital, Nanjing Second Hospital, Southeast University Chengxian College I4403386554 (an independent college, draft-excluded), Collaborative Innovation Center of Suzhou Nano Science I4405255871. Name look-alikes (not SEU): Southeast University Bangladesh, South East European University, Southeastern University (Florida)."""
+
+[web]
+domains = ["seu.edu.cn"]
+email_domains = ["seu.edu.cn"]
+wayback_only_suffixes = []
+excluded_hosts = []
+
+[affiliation]
+# Matches English forms, the domains and the Chinese name (raw affiliation strings in OpenAlex are mostly English; Chinese appears on pages).
+regex = '''southeast\s+univ(?:ersity)?\b(?!\s+(?:bangladesh|of\s+bangladesh|chengxian|college|\(bd\))|,\s+dhaka)|seu\.edu\.cn|东南大学(?!成贤)'''
+own_units = '''\b(?:state\s+key\s+laboratory\s+of\s+(?:mobile\s+communications|millimeter\s+waves)|national\s+asic\s+system\s+engineering)\b'''
+loose = '''southeast\s+univ|seu\.edu\.cn|东南大学|\bnanjing\s+21(?:0096|1189)\b'''
+must_match = [
+  "School of Computer Science and Engineering, Southeast University, Nanjing 210096, China",
+  "Southeast University, Nanjing, China",
+  "Southeast Univ., Nanjing",
+  "jdoe@seu.edu.cn",
+  "东南大学计算机科学与工程学院",
+  "State Key Laboratory of Millimeter Waves, Southeast University"
+]
+must_not_match = [
+  "Southeast University Bangladesh, Dhaka",
+  "Southeast University, Dhaka, Bangladesh",
+  "South East European University, Tetovo",
+  "Southeastern University, Lakeland, Florida",
+  "Southeast Missouri State University",
+  "Southeast University Chengxian College, Nanjing",
+  "Nanjing University, Nanjing",
+  "Nanjing University of Science and Technology",
+  "jdoe@nju.edu.cn",
+  "东南大学成贤学院"
+]
+
+[dblp]
+affiliation_strings = ["Southeast University"]
+legacy_sweep = ""
+
+[rules]
+foreign_title_exception = false
+
+[census]
+computing_departments = ["CS"]
+center_units = []
+home_units = {"Computer Science and Engineering" = '计算机科学与工程学院|软件学院|人工智能学院|^School of Computer Science (?:and|&) Engineering', "Cyber Science and Engineering" = '网络空间安全学院|School of Cyber Science', "Automation" = '自动化学院|^School of Automation', "Information Science and Engineering" = '信息科学与工程学院|^School of Information Science (?:and|&) Engineering', "Intelligent Science and Engineering" = '智能科学与工程学院|School of Intelligent Science'}
+rank_words = {research = '研究员|副研究员|\bresearch\s+(?:fellow|professor|associate)', courtesy = '兼职|\bjoint\b', teaching = '教学|\bsenior\s+lecturer'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {CS = "School of Computer Science and Engineering"}
+full_codes = ["CS"]
+
+[periods]
+school_regex = ''
+profile_patterns = []
+
+# --- departments -----------------------------------------------------------------------------------------------
+[[departments]]
+code = "CS"
+name = "School of Computer Science and Engineering, School of Software, School of Artificial Intelligence (计算机科学与工程学院、软件学院、人工智能学院)"
+unit = "Southeast University"
+title_match = '''计算机科学与工程学院|计算机|Computer Science'''
+coverage = "full"
+url = "https://cs.seu.edu.cn/"
+  [[departments.listings]]
+  slot = "CS faculty by title (教师按职称)"
+  kind = "main"
+  url = "cs.seu.edu.cn/49355/list.htm"
+  from = "20160101"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "CS faculty by research direction (教师按研究方向)"
+  kind = "main"
+  url = "cs.seu.edu.cn/49356/list.htm"
+  from = "20160101"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "CS faculty by department (教师按系别)"
+  kind = "main"
+  url = "cs.seu.edu.cn/54820/list.htm"
+  from = "20160101"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "CS graduate supervisors (研究生导师)"
+  kind = "main"
+  url = "cs.seu.edu.cn/dsxx/list.htm"
+  from = "20160101"
+  to = "20261231"
+
+# --- other units searched for computing-related faculty (stage 2) ---
+[[affiliated_units]]
+code = "CYBER"
+name = "School of Cyber Science and Engineering (网络空间安全学院)"
+url = "https://cyber.seu.edu.cn/"
+listings = ["cyber.seu.edu.cn/"]
+
+[[affiliated_units]]
+code = "AUTO"
+name = "School of Automation (自动化学院)"
+url = "https://automation.seu.edu.cn/"
+listings = ["automation.seu.edu.cn/"]
+
+[[affiliated_units]]
+code = "RADIO"
+name = "School of Information Science and Engineering (信息科学与工程学院)"
+url = "https://radio.seu.edu.cn/"
+listings = ["radio.seu.edu.cn/"]
+
+[[affiliated_units]]
+code = "ISE"
+name = "School of Intelligent Science and Engineering (智能科学与工程学院)"
+url = "https://ise.seu.edu.cn/"
+listings = ["ise.seu.edu.cn/"]
+
+# --- students (phase after this push) ---
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = "unreachable"
+note = "No thesis repository chosen at stage 0; Chinese degree theses are mostly CNKI (paywalled, never used). Students follow the PI-and-paper phase."
+
+[students]
+rosters = []
+directories = []
+sources = ["lab member pages and PI homepages (live where robots allows, else Wayback)"]
+
+[labpages]
+hints = ["<lab>.seu.edu.cn", "cse.seu.edu.cn/~<name>/", "<name>.github.io", "personal homepages linked from the faculty list"]
+
+[collector]
+channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "labpages", "pihomes", "wayback_acm"]
+
+[repository]
+name = "SEU institutional repository (not chosen; never asked)"
+pattern = '''seu\.edu\.cn/.*(?:thesis|repository)'''
+
+[store]
+path = "/n/fs/resemble/homogenizing-science/stores/seu"
+
+# --- hosts (stage-0 gate: tools/school_hosts.py seu) ---
+[[hosts]]
+host = "cs.seu.edu.cn"
+use = "live"
+purpose = "School of Computer Science and Engineering (same site as cse.seu.edu.cn)"
+probe = "https://cs.seu.edu.cn/49355/list.htm"
+
+[[hosts]]
+host = "cse.seu.edu.cn"
+use = "live"
+purpose = "School of Computer Science and Engineering, alternate host"
+probe = "https://cse.seu.edu.cn/"
+
+[[hosts]]
+host = "cyber.seu.edu.cn"
+use = "live"
+purpose = "School of Cyber Science and Engineering"
+probe = "https://cyber.seu.edu.cn/"
+
+[[hosts]]
+host = "automation.seu.edu.cn"
+use = "live"
+purpose = "School of Automation"
+probe = "https://automation.seu.edu.cn/"
+
+[[hosts]]
+host = "radio.seu.edu.cn"
+use = "live"
+purpose = "School of Information Science and Engineering"
+probe = "https://radio.seu.edu.cn/"
+
+[[hosts]]
+host = "ise.seu.edu.cn"
+use = "live"
+purpose = "School of Intelligent Science and Engineering"
+probe = "https://ise.seu.edu.cn/"
+
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages)"
+probe = "https://web.archive.org/web/20240527072248id_/https://cs.seu.edu.cn/49355/list.htm"
+
+[[hosts]]
+host = "api.openalex.org"
+use = "live"
+purpose = "OpenAlex (local snapshot first; the shared 10k/day key needs coordinator approval)"
+
+[[hosts]]
+host = "api.ror.org"
+use = "none"
+purpose = "ROR lookup held: robots.txt returned 403 to the project client on 2026-11-11; local OpenAlex snapshot supplies the recorded ROR ID"

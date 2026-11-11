@@ -1,0 +1,220 @@
+# schools/ustc.toml: University of Science and Technology of China's charter (docs/ADDING-A-SCHOOL.md, v3 stage 0), filled 2026-11-07 for the owner's top-25 push.
+# Facts here are decisions about where to look, not evidence. Lineage / related / excluded ids are DRAFTS until the owner answers the stage-0 D-decisions
+# (hierarchy/ustc/STAGE-0.md): nothing is swept or extended into the snapshot before that. Chinese official pages are the primary source; quotes stay in the original script,
+# pinyin and English names are recorded as aliases for identity matching. 'order' is provisional; the coordinator sets it at landing.
+
+key = "ustc"
+name = "University of Science and Technology of China"
+short = "USTC"
+site_uni = "university-of-science-and-technology-of-china"
+status = "onboarding"
+order = 32
+stage = 0
+started = "2026-11-07"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I126520041"]
+openalex_related = []
+openalex_excluded = ["I4210140493", "I4405283751", "I4405255871"]
+ror = "https://ror.org/04c4dkn09"
+ids_note = """OpenAlex institutions table of the 2026-10-14 snapshot (no API credits; checked 2026-11-07): I126520041 'University of Science and Technology of China', ROR 04c4dkn09, CN, education, lineage [I126520041, I19820366]: the second id is the Chinese Academy of Sciences, USTC's PARENT, so the sweep filters on I126520041 alone
+(lineage = CAS would pull every CAS institute). Lineage children (facilities): Hefei National Center for Physical Sciences at the Nanoscale I4210103894, CAS Key Laboratory of Urban Pollutant Conversion I4210124140, Hefei Material Science and Technology Center I4210139613,
+National Synchrotron Radiation Laboratory I4210149848, State Key Labs of Nuclear Detection I4391767989 and Fire Science I4391768148, Collaborative Innovation Center of Advanced Microstructures I4210140493 (shared, draft-excluded).
+Associated 'related': Collaborative Innovation Center of Suzhou Nano Science I4405255871 and Deep Space Exploration Laboratory I4405283751 (draft-excluded). 'University of Science and Technology Beijing/Liaoning' are other institutions."""
+
+[web]
+domains = ["ustc.edu.cn"]
+email_domains = ["ustc.edu.cn", "mail.ustc.edu.cn"]
+wayback_only_suffixes = []
+excluded_hosts = []
+
+[affiliation]
+# Matches English forms, the domains and the Chinese name (raw affiliation strings in OpenAlex are mostly English; Chinese appears on pages).
+regex = '''univ(?:ersity|\.)?\s+of\s+science\s+(?:and|&)\s+technology\s+of\s+china|\bustc\b|ustc\.edu\.cn|中国科学技术大学|中国科大'''
+own_units = '''\b(?:institute\s+of\s+advanced\s+technology|hefei\s+national\s+laborator(?:y|ies)|national\s+synchrotron\s+radiation\s+laboratory)\b'''
+loose = '''science\s+and\s+technology\s+of\s+china|\bustc\b|ustc\.edu\.cn|中国科学技术大学|中国科大|\bhefei\s+230026\b'''
+must_match = [
+  "School of Computer Science and Technology, University of Science and Technology of China, Hefei, Anhui, China",
+  "USTC, Hefei 230026",
+  "Univ. of Science and Technology of China",
+  "jdoe@mail.ustc.edu.cn",
+  "中国科学技术大学计算机科学与技术学院",
+  "University of Science & Technology of China, Hefei"
+]
+must_not_match = [
+  "University of Science and Technology Beijing",
+  "University of Science and Technology Liaoning",
+  "Hong Kong University of Science and Technology",
+  "King Abdullah University of Science and Technology",
+  "Chinese Academy of Sciences, Beijing",
+  "Institute of Computing Technology, Chinese Academy of Sciences",
+  "University of Chinese Academy of Sciences",
+  "jdoe@ict.ac.cn",
+  "Huazhong University of Science and Technology, Wuhan"
+]
+
+[dblp]
+affiliation_strings = ["University of Science and Technology of China", "USTC"]
+legacy_sweep = ""
+
+[rules]
+foreign_title_exception = false
+
+[census]
+computing_departments = ["CS"]
+center_units = []
+home_units = {"Computer Science and Technology" = '计算机科学与技术学院|计算机学院|^School of Computer Science(?: and Technology)?', "Information Science and Technology" = '信息科学技术学院|^School of Information Science (?:and|&) Technology', "Software Engineering" = '软件学院|School of Software Engineering', "Cyber Science and Technology" = '网络空间安全学院|School of Cyber Science', "Data Science" = '大数据学院|School of Data Science'}
+rank_words = {research = '特任研究员|特任副研究员|研究员|副研究员|\bresearch\s+(?:fellow|professor|associate)', courtesy = '兼职|\bjoint\b', teaching = '特任教授|\bsenior\s+lecturer'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {CS = "School of Computer Science and Technology"}
+full_codes = ["CS"]
+
+[periods]
+school_regex = ''
+profile_patterns = []
+
+# --- departments -----------------------------------------------------------------------------------------------
+[[departments]]
+code = "CS"
+name = "School of Computer Science and Technology (计算机科学与技术学院)"
+unit = "University of Science and Technology of China"
+title_match = '''计算机科学与技术学院|Computer Science'''
+coverage = "full"
+url = "https://cs.ustc.edu.cn/main.htm"
+  [[departments.listings]]
+  slot = "CS professors (教授)"
+  kind = "main"
+  url = "cs.ustc.edu.cn/js_23235/list.htm"
+  from = "20160101"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "CS specially appointed professors (特任教授)"
+  kind = "main"
+  url = "cs.ustc.edu.cn/trjs/list.htm"
+  from = "20160101"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "CS specially appointed researchers (特任研究员)"
+  kind = "research"
+  url = "cs.ustc.edu.cn/tryjy_23237/list.htm"
+  from = "20160101"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "CS associate professors (副教授)"
+  kind = "main"
+  url = "cs.ustc.edu.cn/fjs_23239/list.htm"
+  from = "20160101"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "CS specially appointed associate researchers (特任副研究员)"
+  kind = "research"
+  url = "cs.ustc.edu.cn/trfyjy/list.htm"
+  from = "20160101"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "CS lecturers (讲师)"
+  kind = "lecturer"
+  url = "cs.ustc.edu.cn/js_23242/list.htm"
+  from = "20160101"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "CS adjunct professors and doctoral supervisors (兼职教授/博导)"
+  kind = "courtesy"
+  url = "cs.ustc.edu.cn/kzjs/list.htm"
+  from = "20160101"
+  to = "20261231"
+
+# --- other units searched for computing-related faculty (stage 2) ---
+[[affiliated_units]]
+code = "SIST"
+name = "School of Information Science and Technology (信息科学技术学院)"
+url = "https://sist.ustc.edu.cn/main.htm"
+listings = ["sist.ustc.edu.cn/"]
+
+[[affiliated_units]]
+code = "SSE"
+name = "School of Software Engineering (软件学院)"
+url = "https://sse.ustc.edu.cn/main.htm"
+listings = ["sse.ustc.edu.cn/"]
+
+[[affiliated_units]]
+code = "CYBER"
+name = "School of Cyber Science and Technology (网络空间安全学院)"
+url = "https://cybersec.ustc.edu.cn/main.htm"
+listings = ["cybersec.ustc.edu.cn/"]
+
+# --- students (phase after this push) ---
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = "unreachable"
+note = "No thesis repository chosen at stage 0; Chinese degree theses are mostly CNKI (paywalled, never used). Students follow the PI-and-paper phase."
+
+[students]
+rosters = []
+directories = []
+sources = ["lab member pages and PI homepages (live where robots allows, else Wayback)"]
+
+[labpages]
+hints = ["<lab>.ustc.edu.cn", "staff.ustc.edu.cn/~<name>/", "faculty.ustc.edu.cn", "<name>.github.io", "personal homepages linked from the faculty list"]
+
+[collector]
+channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "labpages", "pihomes", "wayback_acm"]
+
+[repository]
+name = "USTC institutional repository (not chosen; never asked)"
+pattern = '''ustc\.edu\.cn/.*(?:thesis|repository)'''
+
+[store]
+path = "/n/fs/resemble/homogenizing-science/stores/ustc"
+
+# --- hosts (stage-0 gate: tools/school_hosts.py ustc) ---
+[[hosts]]
+host = "cs.ustc.edu.cn"
+use = "live"
+purpose = "School of Computer Science and Technology (faculty by rank)"
+probe = "https://cs.ustc.edu.cn/js_23235/list.htm"
+
+[[hosts]]
+host = "sist.ustc.edu.cn"
+use = "live"
+purpose = "School of Information Science and Technology"
+probe = "https://sist.ustc.edu.cn/main.htm"
+
+[[hosts]]
+host = "sse.ustc.edu.cn"
+use = "live"
+purpose = "School of Software Engineering"
+probe = "https://sse.ustc.edu.cn/main.htm"
+
+[[hosts]]
+host = "cybersec.ustc.edu.cn"
+use = "live"
+purpose = "School of Cyber Science and Technology"
+probe = "https://cybersec.ustc.edu.cn/main.htm"
+
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages)"
+probe = "https://web.archive.org/web/20210116234428id_/http://cs.ustc.edu.cn/js_23235/list.htm"
+
+[[hosts]]
+host = "api.openalex.org"
+use = "live"
+purpose = "OpenAlex (local snapshot first; the shared 10k/day key needs coordinator approval)"
+
+[[hosts]]
+host = "api.ror.org"
+use = "none"
+purpose = "ROR lookup held: robots.txt returned 403 to the project client on 2026-11-11; local OpenAlex snapshot supplies the recorded ROR ID"
