@@ -2457,6 +2457,39 @@ def pi_family_tokens(pi):
     return list(dict.fromkeys(out)) or ['']
 
 
+_HAN = re.compile(r'[\u3400-\u9fff]')
+
+
+def pi_latin_given_family(p):
+    """[(family, given)] Latin readings of a PI's name, lower-cased: the record's own Latin names/aliases (e.g. 'Mingwei Xu' for the Han-keyed record) and, when the
+    environment already has pypinyin, the pinyin of a Han name (first syllable = family, the rest = given). Never installed here; without it only the aliases count."""
+    out = []
+    for n in list(p.get('names') or []) + [p.get('pi')]:
+        n = str(n or '').strip()
+        if not n:
+            continue
+        if _HAN.search(n):
+            try:
+                from pypinyin import lazy_pinyin  # noqa: PLC0415
+            except ImportError:
+                continue
+            syl = [x.lower() for x in lazy_pinyin(re.sub(r'\s+', '', n)) if x.isalpha()]
+            if len(syl) >= 2:
+                out.append((syl[0], ''.join(syl[1:])))
+            continue
+        toks = [fold(t).lower() for t in re.findall(r"[A-Za-z][A-Za-z'\-]*", n)]
+        if len(toks) >= 2:
+            out += [(toks[-1], ''.join(toks[:-1]).replace('-', '')), (toks[0], ''.join(toks[1:]).replace('-', ''))]
+    return list(dict.fromkeys(out))
+
+
+def pi_full_name_on_page(text, p):
+    """A SIGNAL that a page is about the PI (never identity binding): both the family and the given part of one Latin/pinyin reading occur in the page text, in
+    either order and with the syllables of the given name joined or spaced. A family name alone (a namesake 'Zhang Wei' vs 'Zhuosheng Zhang') does not count."""
+    flat = re.sub(r"[\s'\-]+", '', fold(text).lower())
+    return any(f in flat and g in flat and len(g) >= 2 for f, g in pi_latin_given_family(p))
+
+
 def page_lacks_pi(kit, school, p, best):
     """Stanford: a page that never names the PI is a department or program page (Journalism's students list under Hancock),
     not the lab's page. Other schools' lab pages legitimately omit the PI's name, so this applies to Stanford only."""
@@ -2467,7 +2500,7 @@ def page_lacks_pi(kit, school, p, best):
     except (KeyError, ValueError):
         return None
     fam = pi_family_tokens(p.get('pi'))
-    return None if (not t or any(fold(f).lower() in fold(t).lower() for f in fam)) else ('shared_page_no_adviser', 'the page never names the PI: a department or program page')
+    return None if (not t or any(fold(f).lower() in fold(t).lower() for f in fam) or pi_full_name_on_page(t, p)) else ('shared_page_no_adviser', 'the page never names the PI: a department or program page')
 
 
 def apply_template_reader(kit, school, src, x, cache):
