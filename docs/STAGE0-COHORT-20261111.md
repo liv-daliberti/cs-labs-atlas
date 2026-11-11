@@ -1,6 +1,6 @@
 # Stage 0 cohort review, 2026-11-11
 
-Scope: the 31 schools in `scratch/top25-goal-1107/stage0-4-current-1111.csv`. This report records a fresh automated gate run with `CS_ATLAS_SCHOOL_CONFIGS` pointing at the `agent/stage0-cohort-1111` worktree. It does not assert that the owner has approved the ten new schools' lineage decisions.
+Scope: the 31 schools in `scratch/top25-goal-1107/stage0-4-current-1111.csv`. This report records a fresh automated gate run with `CS_ATLAS_SCHOOL_CONFIGS` pointing at the `agent/stage0-cohort-1111` worktree. The owner approved all ten proposed lineage boundaries on 2026-11-11 in the Codex review reply. The exact approved proposals appear below.
 
 ## Automated gate
 
@@ -21,9 +21,9 @@ All 31 `stage_gate.g0` calls returned zero issues on 2026-11-11. Toronto's 17 ho
 
 The snapshot-work counts are available through the existing filtered snapshot's lineage reader. They do not establish that a reviewed school sweep or a faculty census has completed. Stages 1 onward remain independent.
 
-## Owner lineage decisions required by `docs/ADDING-A-SCHOOL.md`
+## Owner-approved lineage decisions
 
-The following are the *proposed* charter rules. Confirm or revise them before declaring manual Stage 0 complete or running a lineage sweep. The charter `ids_note` fields give the local OpenAlex institution record observations. The live ROR API was unavailable to the project client for some schools, so its relationships remain unverified independently.
+The following charter rules were approved by the owner on 2026-11-11. They apply to the school boundary for this Stage 0 charter. Individual faculty and paper admissions remain subject to later-stage evidence gates. The charter `ids_note` fields give the local OpenAlex institution record observations. The live ROR API was unavailable to the project client for some schools; local OpenAlex records supply the recorded ROR IDs. The Stage 0 gate did not independently verify ROR relationships.
 
 | School | Proposed boundary |
 | --- | --- |
