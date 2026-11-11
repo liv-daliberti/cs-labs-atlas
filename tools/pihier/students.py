@@ -533,7 +533,7 @@ def identity_review(ctx, stu):
         if x.get('scope') == 'cross_lab' or x.get('school') != school or x.get('verdict') != 'same_person' or x.get('pi') not in stu:
             continue
         S = stu[x['pi']]
-        find = lambda i: next((k for k, r in S.items() if k == i or i in (r.get('merged') or [])), None)
+        find = lambda i: next((k for k, r in S.items() if k == i or r.get('person') == i or i in (r.get('merged') or [])), None)   # a review may name the record's person id when the dict key is another id (Stanford Gyurgyik, 2026-11-11)
         a, b = find(x['a'][0]), find(x['b'][0])
         if not a or not b or a == b:
             continue
