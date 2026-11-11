@@ -48,7 +48,43 @@
     "role_year_errors": 1
    },
    "result": "FAILED on membership (2.0 > 1.5); patterns: fellowship name read as person (Maria Curie), the PI own advisor named in a bio sentence (Aniket Kate); last allowed round, no acceptance"
+  },
+  {
+   "round": 4,
+   "date": "2026-11-11",
+   "seed": 111120274,
+   "sample": {
+    "students": 30,
+    "of": 62
+   },
+   "students": {
+    "membership_wrong": 2,
+    "membership_doubtful": 1,
+    "membership_errors": 2.5,
+    "role_year_errors": 3
+   },
+   "result": "FAILED on membership; patterns: Will Cong finance-lab Class-of affiliates, a postdoc host named in a bio sentence (Ittay Eyal), alumni-table rows read as current"
+  },
+  {
+   "round": 5,
+   "date": "2026-11-11",
+   "seed": 111120275,
+   "sample": {
+    "students": 30,
+    "of": 59
+   },
+   "additions_generated_at": "2026-11-11T19:54:30+00:00",
+   "additions_sha256": "4028db4d9645c7e7403bc1224452321b2d839b277705bf0ef1f0f09dac475850",
+   "students": {
+    "membership_wrong": 0,
+    "membership_doubtful": 2,
+    "membership_errors": 1.0,
+    "role_year_errors": 0
+   },
+   "result": "PASSED (bar membership <=1.5, role/year <=3 for 30 rows); doubtful rows are PhD students starting Aug 2026",
+   "commit": "3ffcab03"
   }
  ],
- "note": "three failed rounds: work stops per docs/LAB-PAGES.md; additions not wired, no acceptance file"
+ "note": "rounds 1-3 failed; owner ruled 2026-11-11 up to 10 rounds; round 5 accepted",
+ "owner_ruling": "owner ruled 2026-11-11: up to 10 rounds per school (rounds 4-10 allowed, bar unchanged)"
 }
