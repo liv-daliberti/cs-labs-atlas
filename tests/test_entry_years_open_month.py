@@ -108,3 +108,14 @@ def test_tsinghua_round1_headings_card_labels_and_bylines():
     q = 'Weiyu Xie , Mingxing Zhang , Xia Liao , Kang Chen , Jinlei Jiang , Yongwei Wu The 29th ACM International Conf'
     assert L.publication_item('Ph.D Computer Science & Technology, 2017', '', q)
     assert not L.publication_item('Current Students', '', 'Current Students Ann Lee Ph.D')
+
+
+def test_han_member_cards():
+    t = ('Advisory Committee ... 博士生 （博士生信息持续更新中） 蔡冠宇 23级博士研究生 蔡冠宇，上海交通大学2023级直博生。 '
+         '硕士生 张钰浩 24级硕士研究生 张钰浩，现就读于上海交通大学。 '
+         '研究助理 陈天行 25级博士研究生 陈天行，深圳大学2021级本科生，香港大学计算机系2025级直博生。')
+    cards = L.han_member_cards(t)
+    by = {c['name']: c for c in cards}
+    assert by['蔡冠宇']['role'] == 'phd' and by['蔡冠宇']['year'] == 2023 and by['蔡冠宇']['member'] and not by['蔡冠宇']['alumni']
+    assert by['张钰浩']['role'] == 'masters' and by['张钰浩']['year'] == 2024
+    assert not by['陈天行']['member']   # a research assistant of another university

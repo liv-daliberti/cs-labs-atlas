@@ -1665,6 +1665,35 @@ def nearer_nonphd_heading(text, name, head):
 ROLE_WORDS_FALLBACK = re.compile(r"\b(master|m\.?\s?s\.?|m\.?eng|mphil)['\u2019]?s?\b(?:\s+students?|\s*[\u00b7\u2022|,:-]\s*(?:y\d|year)|\s+candidates?)|\b(ph\.?\s?d\.?|doctoral)(?:\s+students?|\s+candidates?|\s*[\u00b7\u2022|,:-]\s*(?:y\d|year))|\bundergraduate\s+students?\b|\bmaster\s*[\u00b7\u2022]|\bph\.?\s?d\.?\s*[\u00b7\u2022]", re.I)
 
 
+HAN_CARD_RX = re.compile(r"([\u4e00-\u9fff][\u4e00-\u9fff\u00b7]{1,3})\s*(\d{2})\u7ea7\s*(\u535a\u58eb\u7814\u7a76\u751f|\u7855\u58eb\u7814\u7a76\u751f|\u672c\u79d1\u751f|\u535a\u58eb\u540e|\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u7814\u7a76\u751f)")
+HAN_HEAD_RX = re.compile(r"(?<![\u4e00-\u9fff\u7ea7])(\u535a\u58eb\u540e|\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f|\u7814\u7a76\u52a9\u7406|\u6bd5\u4e1a\u751f|\u5df2\u6bd5\u4e1a|\u6821\u53cb|\u5f80\u5c4a)(?![\u4e00-\u9fff])")
+HAN_ROLE = {'\u535a\u58eb\u7814\u7a76\u751f': 'phd', '\u535a\u58eb\u751f': 'phd', '\u7855\u58eb\u7814\u7a76\u751f': 'masters', '\u7855\u58eb\u751f': 'masters', '\u672c\u79d1\u751f': 'undergraduate', '\u535a\u58eb\u540e': 'postdoc', '\u7814\u7a76\u751f': None}
+
+
+def han_member_cards(text, school_rx=r'\u4e0a\u6d77\u4ea4\u901a\u5927\u5b66|\u4ea4\u5927|\u6e05\u534e|\u6d59\u6c5f\u5927\u5b66|\u6d59\u5927'):
+    """Member cards of a Chinese lab page: 'NAME NN\u7ea7\u535a\u58eb\u7814\u7a76\u751f (\u4e0e\u67d0\u6559\u6388\u8054\u5408\u57f9\u517b) bio ...' under \u535a\u58eb\u751f / \u7855\u58eb\u751f / \u7814\u7a76\u52a9\u7406 / \u5df2\u6bd5\u4e1a headings (SJTU ScaleLab people.html; the same form on Tsinghua / ZJU /
+    SJTU pages). -> [dict(name, role, start year 20NN, alumni, head, quote, desc, member)]: the role is the label's (\u535a\u58eb->phd, \u7855\u58eb->masters, \u672c\u79d1->undergraduate, \u535a\u58eb\u540e->postdoc), the year is NN\u7ea7 (20NN), a \u6bd5\u4e1a / \u5df2\u6bd5\u4e1a / \u6821\u53cb heading marks alumni. A card
+    that never names the school in its own text (research assistants of other universities, \u8054\u5408\u57f9\u517b with another institute) is member=False: the page must tie it to the school."""
+    heads = [(m.start(), m.group(1)) for m in HAN_HEAD_RX.finditer(text or '')]
+    cards = list(HAN_CARD_RX.finditer(text or ''))
+    out = []
+    for k, m in enumerate(cards):
+        end = cards[k + 1].start() if k + 1 < len(cards) else m.end() + 240
+        body = text[m.end():min(end, m.end() + 240)]
+        hs = [h for pos, h in heads if pos < m.start()]
+        head = hs[-1] if hs else ''
+        alumni = head in ('\u6bd5\u4e1a\u751f', '\u5df2\u6bd5\u4e1a', '\u6821\u53cb', '\u5f80\u5c4a') or '\u5df2\u6bd5\u4e1a' in body[:12]
+        ra = head == '\u7814\u7a76\u52a9\u7406'
+        role = HAN_ROLE[m.group(3)] or None
+        ties = bool(re.search(school_rx, m.group(0) + body))
+        joint = '\u8054\u5408\u57f9\u517b' in (m.group(0) + body[:40])
+        other_inst = bool(re.search(r'(?:\u9999\u6e2f|\u5317\u4eac|\u590d\u65e6|\u6d59\u6c5f|\u5357\u4eac|\u4e2d\u79d1\u9662|\u5c0f\u9e4f|\u6df1\u5733|\u4e0a\u6d77\u4eba\u5de5\u667a\u80fd\u5b9e\u9a8c\u5ba4)[^\uff0c\u3002]{0,8}(?:\u5927\u5b66|\u5b9e\u9a8c\u5ba4|\u7814\u7a76\u9662)', body[:80]))
+        member = ties and not (ra and other_inst) and not (joint and other_inst)
+        out.append(dict(name=m.group(1), role=role, year=2000 + int(m.group(2)), alumni=alumni, head=head, member=member,
+                        quote=(head + ' ' + m.group(0)).strip(), desc=body[:100].strip(), ra=ra))
+    return out
+
+
 PERSON_HEAD_RX = re.compile(r"[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2}")
 
 
@@ -1817,6 +1846,19 @@ def pm_candidates(kit, school, pi, plan, held):
             if not is_cap:
                 unreadable.append((src, str(e)[:200]))
             continue
+        try:
+            row_, _v = kit.lpev.cap(school, src)
+            ptxt_ = kit.lpev.text(school, src)
+            hc_ = han_member_cards(ptxt_, school_names_rx(school) + r'|\u4ea4\u5927') if re.search(r'\d{2}\u7ea7', ptxt_ or '') else []
+        except (KeyError, ValueError):
+            hc_, row_ = [], None
+        have_ = {names.fold(e['name']) for e in ext}
+        ext = list(ext)
+        for c_ in hc_:
+            if names.fold(c_['name']) in have_:
+                continue
+            ext.append(dict(name=c_['name'], head=c_['head'], desc=c_['desc'], quote=c_['quote'], flags=[], role=c_['role'], alumni=c_['alumni'],
+                            capture_url=src if is_cap else None, sha256=(row_ or {}).get('sha256'), han_card=c_))
         for x in ext:
             fn = names.fold(x['name'])
             x['is_cap'] = is_cap
@@ -1840,6 +1882,12 @@ def pm_candidates(kit, school, pi, plan, held):
                     # a degree year equal to this year in a current-student list is an expected graduation, not an end (SJTU rounds 2-3); a placement after it ('NTU PhD 2026 Senior Researcher @ Apple') is an alumnus
                     x['alumni'] = True  # '(PhD 2024, co-advised with ...)' on a current page: the entry itself says the stay ended (UChicago stage 6, round 1)
             x['role'], x['role_basis'] = entry_role(x.get('desc'), x.get('head'), kit.autom._role)
+            if x.get('han_card'):   # a Han member card states role (label), entry year (NN\u7ea7) and alumni (heading) itself
+                hc = x['han_card']
+                x['role'], x['role_basis'] = (hc['role'], 'entry') if hc['role'] else (None, 'none')
+                x['years'], x['years_basis'] = ([hc['year'], None] if not hc['alumni'] else [hc['year'], None]), 'stated_in_entry'
+                x['alumni'] = hc['alumni']
+                x['single_token'] = False
             if x['role'] in (None, 'member') and x.get('name') and not x['alumni']:   # the label may follow the name on the page while the card's desc is empty ('ZL Zhuo Li Master \u00b7 Y3 ...'): Tsinghua round 1
                 try:
                     if src not in text_cache:
@@ -1865,6 +1913,8 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'site_at_other_institution', f"the page's header names {inst_[src]}, not this school"
             elif CREDIT_RX.search(x.get('quote') or '') or CREDIT_RX.search((x.get('desc') or '')[:60]):
                 why, x['detail'] = 'name_unresolved', 'site credit or footer'
+            elif x.get('han_card') and not x['han_card']['member']:
+                why, x['detail'] = 'not_a_student', 'a card that never names this school (a research assistant of another university, or a joint entry with another institute): the page must tie it to the school'
             elif fn not in keep and incoming_entry(x.get('desc'), x.get('quote')):
                 why, x['detail'] = 'not_a_student', 'an incoming / admitted-for-a-future-year entry is not a member yet'
             elif fn not in keep and joint_other_institute_entry(x.get('desc'), x.get('quote'), school):
