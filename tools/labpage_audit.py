@@ -1587,7 +1587,7 @@ def entry_years(desc, head):
     if ab and not m_has_range(d) and not re.search(r'\b(?:alumni|former|graduated)\b', head or '', re.I):
         return [int(ab.group(1)), None], 'stated_in_entry'   # '(2024 Zhongyuan Scholarship) 2022': the bare year after award brackets is the cohort / entry year (SJTU round 6)
     seg = m.group(1) if m else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
-    r = re.search(r'(%s)\s*(?:-|–|—|to|until|\u219d|\u21dd|\u2192|->)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
+    r = re.search(r'(%s)(?:\s*(?:spring|summer|fall|autumn|winter))?\s*(?:-|–|—|to|until|\u219d|\u21dd|\u2192|->)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
                   % (YEAR_, YEAR_), seg, re.I)
     if r:
         a, b = int(r.group(1)), r.group(2)
@@ -1712,6 +1712,8 @@ def entry_role(desc, head, role_of):
     vis = VIS.visiting_role(desc, head, role_of)
     if vis:
         return vis   # R-STU-17: 'visiting student from CUHK', '(visiting, CUHK)', a 'Visiting Students' heading: a member of this lab, role `visiting`
+    if re.search(r'\bvisiting\s+(?:intern|student|scholar\s+student)s?\b|\bvisitors?\b(?!\s+(?:professor|scientist|faculty))', (desc or '')[:80], re.I) and not re.search(r'\bvisiting\s+(?:professor|scientist|faculty|researcher)\b', (desc or '')[:80], re.I):
+        return 'visiting', 'entry'   # R-STU-17: a visiting intern / visitor / visiting student is a lab member with role visiting (HKUST re-audit)
     if dissertation_entry_year(desc):
         return 'phd', 'entry'
     d = (desc or '')[:60]
@@ -1802,6 +1804,9 @@ def nonmember_candidate(name, heading):
         return 'name_unresolved', 'a talk or technical noun phrase, not a full person name'
     if NONMEMBER_SECTION.search(heading or ''):
         return 'not_in_people_section', 'a report, recruiting or citation section, not a member roster'
+    h_ = (heading or '').split(' > ')[-1]
+    if re.match(r'^\s*(?:Ph\.?\s?D|M\.?\s?S|B\.?\s?S|B\.?\s?E|Bachelor|Master)\b[^|]{0,80},\s*(?:19|20)\d\d\s*$', h_, re.I) and not re.search(r'\b(?:students?|alumni|members?|team|people|group)\b', h_, re.I):
+        return 'not_in_people_section', 'an education line of a CV (a degree, field and year), not a member roster: the names under it are publication authors'   # Tsinghua round 2, madsys \u7ae0\u660e\u661f's page
     h_ = (heading or '').split(' > ')[-1]
     if re.search(r'\b(?:award|medal|prize|honou?rs?|recipient|scholarship|fellowship|thesis award)\b', h_, re.I) and not re.search(r'\b(?:students?|members?|people|team|alumni)\b', h_, re.I):
         return 'not_in_people_section', 'an award / honour heading (a sentence about a recipient), not a member roster'   # NTU round 6: Zhaoxi Chen under 'NTU PhD Medal of Honour'
@@ -1913,6 +1918,8 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'site_at_other_institution', f"the page's header names {inst_[src]}, not this school"
             elif CREDIT_RX.search(x.get('quote') or '') or CREDIT_RX.search((x.get('desc') or '')[:60]):
                 why, x['detail'] = 'name_unresolved', 'site credit or footer'
+            elif fn not in keep and any(names.match_one(x['name'], pn_) for pn_ in plan.get('pi_names') or ()):
+                why, x['detail'] = 'not_a_student', 'the PI himself or herself is never a row of the lab'
             elif x.get('han_card') and not x['han_card']['member']:
                 why, x['detail'] = 'not_a_student', 'a card that never names this school (a research assistant of another university, or a joint entry with another institute): the page must tie it to the school'
             elif fn not in keep and incoming_entry(x.get('desc'), x.get('quote')):
@@ -2112,7 +2119,7 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
     if lab['status'] == 'none_found' and lab['reason_code'] != 'pi_homepage_only_no_lab_site':
         sec.update(page_status='no_lab_page', reason_code='no_lab_page', reason='no lab page or homepage: nothing to audit')
         return sec, adds
-    cands, unreadable = pm_candidates(kit, school, pi, dict(plan, pi_start=pi_start_year(p), pi_end=pi_left_year(p)), held) if plan else ([], [])
+    cands, unreadable = pm_candidates(kit, school, pi, dict(plan, pi_start=pi_start_year(p), pi_end=pi_left_year(p), pi_names=[n for n in (p.get('names') or []) if len(n.split()) >= 2 or re.search(r'[\u4e00-\u9fff]{2,}', n)] + [pi]), held) if plan else ([], [])
     prior = ctx['prior'].get(pi) or {}
     ev_rows = list(prior.get('students') or [])
     sec['pages'] = sorted({c['src'] for c in cands} | {r.get('capture_url') or r['url'] for r in ev_rows})
@@ -2480,6 +2487,7 @@ def clean_parenthetical_name(name):
     """('Linfeng Li (postdoc) (co-advisor)') -> ('Linfeng Li', 'postdoc'): trailing parentheticals are annotations, not the
     name; a role word in them is the entry's stated role (Michigan round 2)."""
     role, nm = None, name or ''
+    nm = re.sub(r'^\s*[(\uff08]\s*co-?(?:supervis\w*|advis\w*)\s*[)\uff09]\s*', '', nm, flags=re.I)   # '(Co-supervision) Jiawen Zhang' (HKUST)
     tl = re.search(r'\s+(post-?doctorate|post-?doc|postdoctoral(?:\s+fellow)?|research\s+(?:associate|assistant|fellow))\s*$', nm, re.I)
     if tl and len(nm[:tl.start()].split()) >= 2:   # 'Zhai Chao Post-doctorate': the label glued to the name is the stated role, never a heading's phd (NTU round 6)
         role = 'postdoc' if tl.group(1).lower().startswith('post') else 'other'
@@ -2506,13 +2514,20 @@ def clean_parenthetical_name(name):
 _PI_NAMES = {}
 
 
+def pi_alias_map(school):
+    if school not in _PI_NAMES:
+        _PI_NAMES[school] = {r['pi']: [r['pi']] + [n for n in (r.get('names') or []) if n != r['pi']] for r in read(P.data('pis.json', school))}
+    return _PI_NAMES[school]
+
+
 def other_pis_on_page(school, pi, text, k=None):
     """How many OTHER PIs of the school are named in full on the page: a page that lists several faculty and then all of their
-    students (graphics.stanford.edu/people.html) is a shared page, not this PI's lab page (Stanford round 4)."""
-    if school not in _PI_NAMES:
-        _PI_NAMES[school] = [r['pi'] for r in read(P.data('pis.json', school))]
+    students (graphics.stanford.edu/people.html) is a shared page, not this PI's lab page (Stanford round 4). A Han-keyed PI is also counted by its Latin
+    names (pis.json `names`) because the page is often written in English (Tsinghua round 2: 冯建华's dbgroup page lists seven professors in Latin)."""
+    amap = pi_alias_map(school)
     t = fold(text if k is None else text[max(0, k - 900): k + 900]).lower()
-    return sum(1 for n in _PI_NAMES[school] if n != pi and len(n.split()) >= 2 and fold(n).lower() in t)
+    han = text if k is None else text[max(0, k - 900): k + 900]
+    return sum(1 for n, al in amap.items() if n != pi and any(((len(a.split()) >= 2 and fold(a).lower() in t) or (re.search(r'[\u4e00-\u9fff]{2,}', a) and a in han)) for a in al))
 
 
 def repair_reason(kit, school, name, best, start, pi=None):
@@ -2573,7 +2588,7 @@ def repair_reason(kit, school, name, best, start, pi=None):
             return 'site_at_other_institution', f'the entry places the person at {om.group(1)}'
         if COADVISER_BEFORE.search(t[max(0, k - 40): k]):
             return 'not_a_student', 'named as the co-adviser of another member (co-advised with / jointly supervised with)'
-        if pi and other_pis_on_page(school, pi, t, k) >= 6 and len(re.findall(r'co-?advis|jointly|\bw/|\(with ', t[max(0, k - 900): k + 900], re.I)) < 2 and fold(pi.split()[-1]).lower() not in fold(t[k: k + 120]).lower():
+        if pi and (other_pis_on_page(school, pi, t, k) >= 6 or (other_pis_on_page(school, pi, t, k) >= 3 and len(re.findall(r'\bProfessor\b', t)) >= 5)) and len(re.findall(r'co-?advis|jointly|\bw/|\(with ', t[max(0, k - 900): k + 900], re.I)) < 2 and not any(fold(al.split()[-1]).lower() in fold(t[k: k + 120]).lower() for al in pi_alias_map(school).get(pi, [pi])):
             return 'shared_page_no_adviser', 'a page that names several faculty and their students; the entry does not name this PI as adviser'
         if COLLAB_PROSE.search(t[max(0, k - 300): k]):
             return 'not_a_student', 'listed among collaborators ("collaborate with the PhD students ...")'

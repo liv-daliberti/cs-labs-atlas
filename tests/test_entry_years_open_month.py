@@ -119,3 +119,14 @@ def test_han_member_cards():
     assert by['蔡冠宇']['role'] == 'phd' and by['蔡冠宇']['year'] == 2023 and by['蔡冠宇']['member'] and not by['蔡冠宇']['alumni']
     assert by['张钰浩']['role'] == 'masters' and by['张钰浩']['year'] == 2024
     assert not by['陈天行']['member']   # a research assistant of another university
+
+
+def test_tsinghua_round2_and_hkust_reaudit_items():
+    assert L.nonmember_candidate('Guo Cheng', 'Ph.D Computer Science & Technology, 2017')
+    assert not L.nonmember_candidate('Ann Lee', 'Ph.D. Students')
+    assert L.entry_years('2025 Summer -', None)[0] == [2025, None]
+    assert L.entry_years('2025 Fall - ', None)[0] == [2025, None]
+    assert L.entry_years('PhD, 2021 - 2026', None)[0] == [2021, 2026]
+    assert L.clean_parenthetical_name('(Co-supervision) Jiawen Zhang')[0] == 'Jiawen Zhang'
+    assert L.entry_role('(Visiting intern, PhD student from Tsinghua University, Spring 2016)', 'Members', lambda t: (None, None))[0] == 'visiting'
+    assert L.entry_role('(Visiting professor, X University)', 'Members', lambda t: (None, None))[0] != 'visiting'
