@@ -86,3 +86,11 @@ def test_bio_sentence_never_sets_the_role_and_a_mixed_heading_list_withholds_it(
     assert L.nearer_nonphd_heading(txt, 'Do Duc Anh', 'PhD Students')
     assert L.nearer_nonphd_heading(txt, 'Zhao Shiqian', 'PhD Students')   # listed again right after the non-PhD heading
     assert not L.nearer_nonphd_heading(txt, 'Du Mingzhe', 'PhD Students')
+
+
+def test_to_start_future_month_is_incoming():
+    assert L.incoming_entry('(PhD, to start in September 2027)', '')
+    assert L.incoming_entry('PhD student to start September 2027', '')
+    assert L.incoming_entry('will join in Fall 2027', '')
+    assert not L.incoming_entry('(PhD, started September 2022)', '')
+    assert not L.incoming_entry('Ph.D. student, 2024-', '')

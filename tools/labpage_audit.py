@@ -316,7 +316,7 @@ def prose_nonmember(name, desc, quote):
     return None
 
 
-INCOMING_RX = re.compile(r"\bincoming\b|\badmitted\s+(?:for|to|in)\b|\bwill\s+(?:join|start|begin)\b[^.]{0,40}\b(?:fall\s+|spring\s+)?20(?:2[7-9]|3\d)\b|\b(?:fall|spring|autumn)\s+20(?:2[7-9]|3\d)\b|[(\uff08]\s*20(?:2[7-9]|3\d)\s*[)\uff09]", re.I)
+INCOMING_RX = re.compile(r"\bincoming\b|\badmitted\s+(?:for|to|in)\b|\bwill\s+(?:join|start|begin)\b[^.]{0,40}\b(?:fall\s+|spring\s+)?20(?:2[7-9]|3\d)\b|\b(?:fall|spring|autumn)\s+20(?:2[7-9]|3\d)\b|[(\uff08]\s*20(?:2[7-9]|3\d)\s*[)\uff09]|\b(?:to\s+)?(?:start|commence|begin|join)\w*\b[^.;)]{0,50}\b20(?:2[7-9]|3\d)\b", re.I)
 JOINT_OTHER_RX = re.compile(r"(?:co-?supervised\s+by|jointly?\s+(?:supervised|trained|training|program|with)|joint\s+(?:PhD|training|student))[^.;]{0,90}?\b(?:Laboratory|Institute|Academy)\b|\b(?:Shanghai\s+AI\s+Laborator\w*|Shanghai\s+Innovation\s+Institute|Shanghai\s+Artificial\s+Intelligence\s+Laborator\w*)\b", re.I)
 
 
@@ -1832,6 +1832,8 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'site_at_other_institution', f"the page's header names {inst_[src]}, not this school"
             elif CREDIT_RX.search(x.get('quote') or '') or CREDIT_RX.search((x.get('desc') or '')[:60]):
                 why, x['detail'] = 'name_unresolved', 'site credit or footer'
+            elif fn not in keep and x.get('role') == 'postdoc':
+                why, x['detail'] = 'not_a_student', 'a postdoc (a Post-doctoral heading or label) is not a student member of the lab'
             elif fn not in keep and incoming_entry(x.get('desc'), x.get('quote')):
                 why, x['detail'] = 'not_a_student', 'an incoming / admitted-for-a-future-year entry is not a member yet'
             elif fn not in keep and joint_other_institute_entry(x.get('desc'), x.get('quote'), school):
