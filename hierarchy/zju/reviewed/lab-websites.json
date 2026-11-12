@@ -1943,31 +1943,6 @@
       }
     },
     {
-      "pi": "陈华钧",
-      "status": "access_blocked",
-      "coverage": "pending_access",
-      "reason_code": "host_challenge_no_wayback",
-      "reason": "The only personal page linked for this PI is the official profile card https://person.zju.edu.cn/huajun on person.zju.edu.cn. On 2026-11-10 the host's robots.txt allowed the path, but the first card request (https://person.zju.edu.cn/renzhong) returned a human-verification page (请验证以继续访问) instead of a card, so the project stopped (owner rule: never solve or bypass a challenge) and made no further request to the host; no Wayback copy and no web search was used. This records the access barrier only, not a claim that no website exists. The verification page was observed on the card of another PI (https://person.zju.edu.cn/renzhong), the capture is host-level and shared, and NO request was made for this PI's own card.",
-      "audited_at": "2026-11-10T14:34:18",
-      "url": null,
-      "checks": [
-        {
-          "source": "school_profile_link",
-          "url": "https://person.zju.edu.cn/huajun",
-          "at": "2026-11-10T14:34:18",
-          "result": "challenge_human_verification",
-          "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-          "note": "host-level challenge capture of https://person.zju.edu.cn/renzhong"
-        }
-      ],
-      "evidence": {
-        "url": "https://person.zju.edu.cn/renzhong",
-        "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-        "quote": "温馨提示：请验证以继续访问。",
-        "observed": "2026-11-10T14:34:18"
-      }
-    },
-    {
       "pi": "陈岭",
       "status": "access_blocked",
       "coverage": "pending_access",
@@ -2143,31 +2118,6 @@
       }
     },
     {
-      "pi": "顾实",
-      "status": "access_blocked",
-      "coverage": "pending_access",
-      "reason_code": "host_challenge_no_wayback",
-      "reason": "The only personal page linked for this PI is the official profile card https://person.zju.edu.cn/gus on person.zju.edu.cn. On 2026-11-10 the host's robots.txt allowed the path, but the first card request (https://person.zju.edu.cn/renzhong) returned a human-verification page (请验证以继续访问) instead of a card, so the project stopped (owner rule: never solve or bypass a challenge) and made no further request to the host; no Wayback copy and no web search was used. This records the access barrier only, not a claim that no website exists. The verification page was observed on the card of another PI (https://person.zju.edu.cn/renzhong), the capture is host-level and shared, and NO request was made for this PI's own card.",
-      "audited_at": "2026-11-10T14:34:18",
-      "url": null,
-      "checks": [
-        {
-          "source": "school_profile_link",
-          "url": "https://person.zju.edu.cn/gus",
-          "at": "2026-11-10T14:34:18",
-          "result": "challenge_human_verification",
-          "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-          "note": "host-level challenge capture of https://person.zju.edu.cn/renzhong"
-        }
-      ],
-      "evidence": {
-        "url": "https://person.zju.edu.cn/renzhong",
-        "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-        "quote": "温馨提示：请验证以继续访问。",
-        "observed": "2026-11-10T14:34:18"
-      }
-    },
-    {
       "pi": "高云君",
       "status": "access_blocked",
       "coverage": "pending_access",
@@ -2216,44 +2166,6 @@
         "quote": "温馨提示：请验证以继续访问。",
         "observed": "2026-11-10T14:34:18"
       }
-    },
-    {
-      "pi": "何水兵",
-      "url": "https://shuibing9420.github.io/",
-      "kind": "lab_site",
-      "reason_code": "lab_site",
-      "coverage": "website",
-      "found_via": "web_search_reviewed",
-      "listed_on": null,
-      "sha256": "f4a79ed8db91f174fcf75536d9c89179d6b35fe5afa4b48631696567c34c8465",
-      "checked_at": "2026-11-11T20:39:46",
-      "official_link_status": "recorded",
-      "official_link_evidence": [
-        {
-          "source": "web_search_reviewed",
-          "url": "https://shuibing9420.github.io/",
-          "at": "2026-11-11T20:39:46+00:00",
-          "sha256": "f4a79ed8db91f174fcf75536d9c89179d6b35fe5afa4b48631696567c34c8465",
-          "name_quote": "Shuibing He Tenured Full Professor | Doctoral supervisor",
-          "tie_quote": "Full Professor in the College of Computer Science and Technology at Zhejiang University (ZJU)",
-          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
-          "result": "ok"
-        }
-      ],
-      "checks": [
-        {
-          "source": "web_search_reviewed",
-          "url": "https://shuibing9420.github.io/",
-          "at": "2026-11-11T20:39:46+00:00",
-          "sha256": "f4a79ed8db91f174fcf75536d9c89179d6b35fe5afa4b48631696567c34c8465",
-          "name_quote": "Shuibing He Tenured Full Professor | Doctoral supervisor",
-          "tie_quote": "Full Professor in the College of Computer Science and Technology at Zhejiang University (ZJU)",
-          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
-          "result": "ok"
-        }
-      ],
-      "evidence_gaps": [],
-      "resource_status": "web-search-found site; name and school-tie quotes machine-checked verbatim in the stored capture; Han key matched by pinyin only on 何水兵/邹强/魏成坤/陈明帅 (signal, not identity)"
     },
     {
       "pi": "何钦铭",
@@ -6604,6 +6516,160 @@
         }
       ],
       "reason_scope": "Recorded search outcome; not proof no website exists."
+    },
+    {
+      "pi": "顾实",
+      "url": "https://gushiapi.github.io",
+      "kind": "pi_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "81ba3cd07b3d8aa5d8419fe347d04370112b845c7d24bc39a72ed48f66cf32da",
+      "checked_at": "2026-11-12T10:15:41",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://gushiapi.github.io",
+          "at": "2026-11-12T10:15:41+00:00",
+          "sha256": "81ba3cd07b3d8aa5d8419fe347d04370112b845c7d24bc39a72ed48f66cf32da",
+          "name_quote": "Shi Gu (顾实) Tenured Associate Professor of Computer Science Zhejiang University",
+          "tie_quote": "I am now a tenured associate professor at the Zhejiang University, where I am leading the Brain and Intelligence group",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-12, review-result.json (registrations: ok)",
+          "result": "ok"
+        }
+      ],
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://gushiapi.github.io",
+          "at": "2026-11-12T10:15:41+00:00",
+          "sha256": "81ba3cd07b3d8aa5d8419fe347d04370112b845c7d24bc39a72ed48f66cf32da",
+          "name_quote": "Shi Gu (顾实) Tenured Associate Professor of Computer Science Zhejiang University",
+          "tie_quote": "I am now a tenured associate professor at the Zhejiang University, where I am leading the Brain and Intelligence group",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-12, review-result.json (registrations: ok)",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "resource_status": "web-search-found site; quotes machine-checked verbatim; Han key matched by pinyin plus ZJU affiliation (signal, not identity)"
+    },
+    {
+      "pi": "陈华钧",
+      "url": "https://zjunlp.github.io",
+      "kind": "lab_site",
+      "reason_code": "lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "f07ff4b23640ea9acf701bdd75310de001f565c352e7d61fa5c79b3770c7c0c2",
+      "checked_at": "2026-11-12T10:14:35",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://zjunlp.github.io",
+          "at": "2026-11-12T10:14:35+00:00",
+          "sha256": "f07ff4b23640ea9acf701bdd75310de001f565c352e7d61fa5c79b3770c7c0c2",
+          "name_quote": "Prof. Huajun Chen Full Professor, College of Computer Science and Technology, Zhejiang University",
+          "tie_quote": "A research group from Zhejiang University working on Knowledge Graph and Language Technologies",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-12, review-result.json (registrations: ok)",
+          "result": "ok"
+        }
+      ],
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://zjunlp.github.io",
+          "at": "2026-11-12T10:14:35+00:00",
+          "sha256": "f07ff4b23640ea9acf701bdd75310de001f565c352e7d61fa5c79b3770c7c0c2",
+          "name_quote": "Prof. Huajun Chen Full Professor, College of Computer Science and Technology, Zhejiang University",
+          "tie_quote": "A research group from Zhejiang University working on Knowledge Graph and Language Technologies",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-12, review-result.json (registrations: ok)",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "resource_status": "web-search-found site; quotes machine-checked verbatim; Han key matched by pinyin plus ZJU affiliation (signal, not identity)",
+      "note": "registered for the record; all rows held (shared lab roster); not counted"
+    },
+    {
+      "pi": "何水兵",
+      "url": "https://shuibing9420.github.io/",
+      "kind": "lab_site",
+      "reason_code": "lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "f4a79ed8db91f174fcf75536d9c89179d6b35fe5afa4b48631696567c34c8465",
+      "checked_at": "2026-11-11T20:39:46",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://shuibing9420.github.io/",
+          "at": "2026-11-11T20:39:46+00:00",
+          "sha256": "f4a79ed8db91f174fcf75536d9c89179d6b35fe5afa4b48631696567c34c8465",
+          "name_quote": "Shuibing He Tenured Full Professor | Doctoral supervisor",
+          "tie_quote": "Full Professor in the College of Computer Science and Technology at Zhejiang University (ZJU)",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
+        }
+      ],
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://shuibing9420.github.io/",
+          "at": "2026-11-11T20:39:46+00:00",
+          "sha256": "f4a79ed8db91f174fcf75536d9c89179d6b35fe5afa4b48631696567c34c8465",
+          "name_quote": "Shuibing He Tenured Full Professor | Doctoral supervisor",
+          "tie_quote": "Full Professor in the College of Computer Science and Technology at Zhejiang University (ZJU)",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "resource_status": "web-search-found site; name and school-tie quotes machine-checked verbatim in the stored capture; Han key matched by pinyin only on 何水兵/邹强/魏成坤/陈明帅 (signal, not identity)",
+      "people_page": "https://shuibing9420.github.io/Group/"
+    },
+    {
+      "pi": "李振源",
+      "url": "https://li-zhenyuan.github.io",
+      "kind": "pi_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "2db69c8a725dd6e5828da54b9c5cfc0040d3f38b3984cb676e1148c366e150bc",
+      "checked_at": "2026-11-12T10:09:31",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://li-zhenyuan.github.io",
+          "at": "2026-11-12T10:09:31+00:00",
+          "sha256": "2db69c8a725dd6e5828da54b9c5cfc0040d3f38b3984cb676e1148c366e150bc",
+          "name_quote": "Li Zhenyuan Zhejiang University Researcher at Zhejiang University, Ph.D. Advisor",
+          "tie_quote": "I am a Researcher at the School of Software Technology, Zhejiang University",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-12, review-lizy-registration.json",
+          "result": "ok"
+        }
+      ],
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://li-zhenyuan.github.io",
+          "at": "2026-11-12T10:09:31+00:00",
+          "sha256": "2db69c8a725dd6e5828da54b9c5cfc0040d3f38b3984cb676e1148c366e150bc",
+          "name_quote": "Li Zhenyuan Zhejiang University Researcher at Zhejiang University, Ph.D. Advisor",
+          "tie_quote": "I am a Researcher at the School of Software Technology, Zhejiang University",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-12, review-lizy-registration.json",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "resource_status": "web-search-found site; quotes machine-checked verbatim; Han key matched by pinyin plus the Software College faculty-team listing (signal, not identity)"
     }
   ],
   "complete": false,

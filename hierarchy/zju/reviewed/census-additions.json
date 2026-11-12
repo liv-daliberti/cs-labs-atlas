@@ -13679,5 +13679,84 @@
     "lab_units": [],
     "unverified_website": true,
     "appointment_note": "Current 2026 official listing only; no inferred start/end, past continuity or campus."
+  },
+  {
+    "name": "李振源",
+    "aliases": [
+      "Zhenyuan Li"
+    ],
+    "rank": "ladder",
+    "title_as_listed": "Researcher",
+    "departments": [
+      "CST"
+    ],
+    "years_listed": [
+      2026
+    ],
+    "is_pi": true,
+    "profile_url": "https://li-zhenyuan.github.io",
+    "dblp": [],
+    "sources": [
+      {
+        "url": "http://www.cst.zju.edu.cn/92741/list.htm",
+        "sha256": "59d74a1265a8a3a53c5fba722af91363f32c0ba280018228399c02b6a00fe50c",
+        "quote": "罗亚威 李振源 王皓波",
+        "kind": "unit_listing:CST",
+        "observed": "2026-11-08T02:53:50",
+        "observedAt": "2026-11-08T02:53:50"
+      },
+      {
+        "url": "https://li-zhenyuan.github.io",
+        "sha256": "2db69c8a725dd6e5828da54b9c5cfc0040d3f38b3984cb676e1148c366e150bc",
+        "quote": "I am a Researcher at the School of Software Technology, Zhejiang University",
+        "kind": "owned_profile_named_role",
+        "observed": "2026-11-12T10:09:31",
+        "observedAt": "2026-11-12T10:09:31"
+      }
+    ],
+    "pi_basis": {
+      "url": "http://www.cst.zju.edu.cn/92741/list.htm",
+      "sha256": "59d74a1265a8a3a53c5fba722af91363f32c0ba280018228399c02b6a00fe50c",
+      "quote": "罗亚威 李振源 王皓波",
+      "kind": "ladder_faculty",
+      "observed": "2026-11-08T02:53:50",
+      "observedAt": "2026-11-08T02:53:50",
+      "cs_related": {
+        "decision": "accepted",
+        "basis": "Computing is the object or method of research (owner scope: computing-related faculty in any unit); listed in the Software College faculty team.",
+        "evidence": [
+          {
+            "url": "https://li-zhenyuan.github.io",
+            "sha256": "2db69c8a725dd6e5828da54b9c5cfc0040d3f38b3984cb676e1148c366e150bc",
+            "quote": "My research focuses on system security",
+            "kind": "computing_object_or_method",
+            "observed": "2026-11-12T10:09:31",
+            "observedAt": "2026-11-12T10:09:31"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "url": "http://www.cst.zju.edu.cn/92741/list.htm",
+          "sha256": "59d74a1265a8a3a53c5fba722af91363f32c0ba280018228399c02b6a00fe50c",
+          "quote": "罗亚威 李振源 王皓波",
+          "kind": "unit_listing:CST",
+          "observed": "2026-11-08T02:53:50",
+          "observedAt": "2026-11-08T02:53:50"
+        },
+        {
+          "url": "https://li-zhenyuan.github.io",
+          "sha256": "2db69c8a725dd6e5828da54b9c5cfc0040d3f38b3984cb676e1148c366e150bc",
+          "quote": "I am a Researcher at the School of Software Technology, Zhejiang University",
+          "kind": "owned_profile_named_role",
+          "observed": "2026-11-12T10:09:31",
+          "observedAt": "2026-11-12T10:09:31"
+        }
+      ],
+      "note": "Named in the 2026 Software College faculty-team table and, on his own page, a Researcher at the School of Software Technology; no appointment start/end inferred."
+    },
+    "reviewed_by": "claude-zju-newpis-1112",
+    "reviewed_on": "2026-11-12",
+    "review_note": "New PI (absent from pis.json); roster capture from scratch/zju-collection-1108/http-captures.sqlite (original bytes, sha verified); identity not bound (R-PAP-44 pending)."
   }
 ]
