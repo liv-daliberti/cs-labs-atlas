@@ -35,12 +35,12 @@ def test_editorial_research_titles_stay():
 GKIOULEKAS = 'Reply to: The overwhelming role of ballistic photons in ultrasonically guided light through a scattering medium'
 
 
-def test_reply_to_letters_switch_default_off(monkeypatch):
+def test_reply_to_letters_switch_on(monkeypatch):
     r = row(GKIOULEKAS, typ='letter', venue='Nature Communications', byline=('A B',) * 8)
-    assert papers.REPLY_TO_LETTERS_DROP is False
-    assert papers.not_a_paper(r) is None
-    monkeypatch.setattr(papers, 'REPLY_TO_LETTERS_DROP', True)
+    assert papers.REPLY_TO_LETTERS_DROP is True   # owner 2026-11-12
     assert papers.not_a_paper(r) == 'commentary'
+    monkeypatch.setattr(papers, 'REPLY_TO_LETTERS_DROP', False)
+    assert papers.not_a_paper(r) is None
     assert papers.not_a_paper(row('Reply Prediction for Email Threads')) is None
 
 
@@ -59,16 +59,23 @@ FAMILY = [
 
 
 @pytest.mark.parametrize('title,typ,venue,doi', FAMILY)
-def test_abstract_family_switch_default_off(monkeypatch, title, typ, venue, doi):
+def test_abstract_family_switch_on(monkeypatch, title, typ, venue, doi):
     r = row(title, typ=typ, venue=venue, doi=doi)
-    assert papers.ABSTRACT_FAMILY_DROPS is False
+    assert papers.ABSTRACT_FAMILY_DROPS is True   # owner 2026-11-12: the narrow patterns
+    assert papers.not_a_paper(r) == 'meeting_abstract:genre'
+    monkeypatch.setattr(papers, 'ABSTRACT_FAMILY_DROPS', False)
     assert papers.not_a_paper(r) is None
-    monkeypatch.setattr(papers, 'ABSTRACT_FAMILY_DROPS', True)
+
+
+def test_supplement_item_doi_switch_stays_off(monkeypatch):
+    r = row('Lung ultrasound in interstitial disease', venue='CHEST Journal', doi='10.1016/j.chest.2023.07.2607')
+    assert papers.SUPPLEMENT_ITEM_DOI_DROPS is False
+    assert papers.not_a_paper(r) is None
+    monkeypatch.setattr(papers, 'SUPPLEMENT_ITEM_DOI_DROPS', True)
     assert papers.not_a_paper(r) == 'meeting_abstract:genre'
 
 
-def test_abstract_family_keeps_papers(monkeypatch):
-    monkeypatch.setattr(papers, 'ABSTRACT_FAMILY_DROPS', True)
+def test_abstract_family_keeps_papers():
     assert papers.not_a_paper(row('Mixed-integer programming for TSP', venue='Operations Research', doi='10.1287/opre.2020.0001')) is None
     assert papers.not_a_paper(row('Neural Machine Translation of Rare Words', typ='conference-paper', doi='10.18653/v1/P16-1162')) is None
     assert papers.not_a_paper(row('BERT', typ='article')) is None
