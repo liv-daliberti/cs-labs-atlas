@@ -550,17 +550,32 @@ def seu_department_faculty(h):
     """SEU's embedded teachers-by-department tables; exclude staff and lab admin tables."""
     soup = BeautifulSoup(h, 'html.parser')
     tables = soup.select('.desktop-view table') or soup.select('.wp_articlecontent table')[:3]
+    academic = {'计算机科学系', '计算机工程系', '影像科学与技术系'}
+    legacy = not tables
+    if legacy:
+        tables = [table for table in soup.select('table.table-name')
+                  if table.find_previous('h2') and clean(table.find_previous('h2').get_text(' ', strip=True)) in academic]
     out, seen = [], set()
     for table in tables:
-        for link in table.select('a[href]'):
-            name = ' '.join(link.get_text(' ', strip=True).split())
-            if not name or (name, link['href']) in seen:
+        heading = table.find_previous('h2')
+        division = clean(heading.get_text(' ', strip=True)) if heading else None
+        if division in {'学院机关', '计算中心'}:
+            continue
+        for cell in table.select('td'):
+            if cell.find('table'):
                 continue
-            seen.add((name, link['href']))
+            name = clean(cell.get_text(' ', strip=True))
+            link = cell.select_one('a[href]')
+            profile = link['href'] if link else None
+            if legacy and profile and profile.startswith('/'):
+                profile = 'http://cse.seu.edu.cn' + profile
+            if not name or (profile is not None and (name, profile) in seen):
+                continue
+            seen.add((name, profile))
             # The source certifies a teacher in one of the three academic
             # departments, but does not print a professor/lecturer rank.
             out.append(dict(name_listed=name, titles=['教师'], homepage=None,
-                            division=None, profile=link['href']))
+                            division=division if division in academic else None, profile=profile))
     return out
 
 
