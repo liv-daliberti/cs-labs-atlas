@@ -285,7 +285,7 @@ PROGRAM_TAIL_RX = re.compile(r"(?<=\w)\s+(?:Societal Computing|Human[- ]Computer
 
 
 LEADING_COADVISED_RX = re.compile(r"^\W{0,3}\(\s*co-?(?:advised|supervised)\b[^()]{0,80}\)\s*", re.I)
-HELD_PHD_RX = re.compile(r"^\W{0,3},?\s*(?:Ph\.?\s?D\.?|Doctorate)\s+(?:[A-Z][\w&.-]*\s+){0,3}(?:19|20)\d\d\b")
+HELD_PHD_RX = re.compile(r"^\W{0,3},?\s*\(?\s*(?:Ph\.?\s?D\.?|Doctorate)\s+(?:(?:[A-Z][\w&.-]*\s+){0,3}(?:19|20)\d\d\b|(?:from|at)\s)")
 
 
 def held_degree_under_postdoc_heading(desc, head):
@@ -321,7 +321,8 @@ def clean_entry_head(head):
     and the section never name an unrelated person (MIT Sanchez: the note sat on 5 rows)."""
     if not head:
         return head
-    segs = head.split(' > ')
+    allsegs = head.split(' > ')
+    segs = [g for g in allsegs if not ENTRY_HEAD_SEG_RX.match(g)] or allsegs   # (a previous alumnus entry read as a heading, also mid-chain: 'Han Su (PhD, 2012 - 2015, ...) > Master By Research:')
     while len(segs) > 1 and (ENTRY_HEAD_SEG_RX.match(segs[-1]) or (PERSON_HEAD_RX.fullmatch(segs[-1].strip()) and not ALUMNI_RX.search(segs[-1]))):
         segs.pop()   # (a bare person name after a role heading: the previous card's name, 'Postdocs: > Guanghan Meng')
     return ' > '.join(segs)
@@ -1930,6 +1931,8 @@ def entry_years(desc, head):
       '(Ph.D. in applied math 2014)' or 'PhD 2021' -> [None, 2014] (a degree year ends the stay); 'MIT Undergraduate Student, 2020'
       -> [2020, 2020]; a section heading that is only a year ('2019') -> that year, basis section_year_heading; else
       (None, 'none'): the build keeps undated students."""
+    desc = re.sub(r'\b((?:19|20)\d) (\d)\b', r'\1\2', desc or '')   # 'Sept 202 3 - Dece m ber 2025': a year and a month name split by the page's markup (HKUST Zhou's Yue Liu)
+    desc = re.sub(r'\b([A-Z][a-z]{2,5}) ([a-z]) ([a-z]{2,4})\b', r'\1\2\3', desc)
     if held_degree_under_postdoc_heading(desc, head):
         return None, 'none'
     em = re.match(r'^\W{0,3}\(\s*[-\u2013\u2014]\s*((?:19|20)\d\d)\b', desc or '')
@@ -2462,6 +2465,8 @@ def entry_role(desc, head, role_of):
         return 'visiting', 'entry'   # R-STU-17: a visiting intern / visitor / visiting student is a lab member with role visiting (HKUST re-audit)
     if dissertation_entry_year(desc):
         return 'phd', 'entry'
+    if re.match(r'^\W{0,3}\(?\s*post-?graduate\b', desc or '', re.I):
+        return 'other', 'entry'   # 'Tiancheng Zhao (postgraduate student, 2023-2024)' is not a PhD student (HKUST Shen)
     desc = LEADING_COADVISED_RX.sub('', desc or '', count=1)   # '(co-advised with Ras Bodik) (PhD 2021, Microsoft Research)': the co-adviser bracket is not the role bracket (Berkeley Cheung's Chenglong Wang)
     if held_degree_under_postdoc_heading(desc, head):
         r_ = (head or '').split(' > ')[0]

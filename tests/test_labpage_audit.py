@@ -1017,3 +1017,11 @@ def test_the_newest_capture_decides_and_an_older_capture_only_adds_former_member
     assert g2 == [rows[3]] and older2          # only on the old capture: kept as an older-only person (a former member at most)
     g3, older3 = A.deciding_rows([rows[2]], newest)
     assert g3 == [rows[2]] and not older3      # a prior-evidence row alone is untouched
+
+
+def test_hkust_review_fixes_split_markup_postgraduate_and_postdoc_phd_from():
+    ro = lambda t: (None, None)
+    assert A.entry_years('( MPhil , from Zhejiang University , Sept 202 3 - Dece m ber 2025 ) On Faithful', 'Master By Research:')[0] == [2023, 2025]
+    assert A.entry_role('(Ph.D from Univ. of Macao, Fall 2026)', 'Postdoctoral Scholar', ro) == ('postdoc', 'section_heading')
+    assert A.entry_role('(postgraduate student, 2023-2024)', 'Postgraduate Researchers', ro)[0] == 'other'
+    assert A.clean_entry_head('Han Su (PhD, 2012 - 2015, from Nanjing University) > Master By Research:') == 'Master By Research:'
