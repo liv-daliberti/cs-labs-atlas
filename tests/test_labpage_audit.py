@@ -870,3 +870,10 @@ def test_han_role_name_cells_read_the_aisl_layout():
     assert [c['name'] for c in cs][:2] == names[:2] and cs[-1]['name'] == '杜巨' and cs[-1]['alumni'] and cs[-1]['role'] is None
     assert [c for c in cs if c['name'] == '宋端霄'][0]['role'] == 'masters'
     assert not A.han_role_name_cells('博士研究生 王晦亦')
+
+
+def test_surname_given_cells_read_the_tomizuka_layout():
+    t = ' '.join(f'{a}, {b} Robotics Email | Homepage' for a, b in [('Qian', 'Qiyang'), ('Kobashi', 'Keita'), ('Chen', 'Yuxin'), ('Liang', 'Boyuan'), ('Viljoen', 'John')]) + ' Li, Wenjie (Jeff) Autonomous Driving Email | Homepage'
+    cs = A.surname_given_cells(t)
+    assert cs[0]['name'] == 'Qiyang Qian' and cs[-1]['name'] == 'Wenjie Li' and cs[0]['quote'] == 'Qian, Qiyang Robotics Email | Homepage'
+    assert not A.surname_given_cells('Qian, Qiyang Robotics Email | Homepage')

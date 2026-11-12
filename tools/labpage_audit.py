@@ -2075,6 +2075,22 @@ def han_role_name_cells(text):
     return out
 
 
+SURNAME_GIVEN_RX = re.compile(r"(?<![\w'])([A-Z][\w'\u2019-]+), ([A-Z][\w.'\u2019-]+(?: \([A-Za-z ]{2,20}\))?) ((?:[A-Z][A-Za-z-]+ ?){1,4}?) Email \| Homepage")
+
+
+def surname_given_cells(text):
+    """A student list whose cells read 'Surname, Given <research area> Email | Homepage' (Tomizuka's msc.berkeley.edu/people/students.html): the name is 'Given Surname' and the cell is its own
+    quote. At least five cells make a roster (the extractor read only 'Qian,' as the name)."""
+    cells = list(SURNAME_GIVEN_RX.finditer(text or ''))
+    if len(cells) < 5:
+        return []
+    out = []
+    for m in cells:
+        given = re.sub(r'\s*\([^)]*\)', '', m.group(2)).strip()
+        out.append(dict(name=f'{given} {m.group(1)}', role=None, year=None, alumni=False, head='Current Students', member=True, quote=m.group(0), desc=m.group(3), ra=False))
+    return out
+
+
 HAN_GLUED_RX = re.compile(r'(?<![\u4e00-\u9fff\u00b7])([\u4e00-\u9fff]{2,4})(\u535a\u58eb\u7814\u7a76\u751f|\u7855\u58eb\u7814\u7a76\u751f|\u535a\u58eb\u540e|\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f)(?=\s|$)')
 HAN_GLUED_ROLE = {'\u535a\u58eb\u7814\u7a76\u751f': 'phd', '\u535a\u58eb\u751f': 'phd', '\u7855\u58eb\u7814\u7a76\u751f': 'masters', '\u7855\u58eb\u751f': 'masters', '\u672c\u79d1\u751f': 'undergraduate', '\u535a\u58eb\u540e': 'postdoc'}
 
@@ -2274,6 +2290,8 @@ def pm_candidates(kit, school, pi, plan, held):
                 hc_ = han_glued_cells(ptxt_)
             if not hc_:
                 hc_ = han_role_name_cells(ptxt_)
+            if not hc_:
+                hc_ = surname_given_cells(ptxt_)
         except (KeyError, ValueError):
             hc_, row_ = [], None
         mcards_ = {}
