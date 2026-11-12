@@ -1,6 +1,6 @@
 {
  "school": "sjtu",
- "generated_at": "2026-11-11T16:56:31+00:00",
+ "generated_at": "2026-11-11T23:05:40+00:00",
  "tool": "tools/labpage_audit.py",
  "standard": "docs/LAB-PAGES.md",
  "status": "proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)",
@@ -11,7 +11,7 @@
  "students": [
   {
    "name": "Jia Xiang",
-   "role": null,
+   "role": "masters",
    "years": [
     2021,
     2024
@@ -25,13 +25,16 @@
    "rule": "LP-STU-01",
    "auto": true,
    "pi_first_year": 2021,
-   "role_basis": "none",
+   "role_basis": "entry",
    "years_basis": "stated_in_entry"
   },
   {
    "name": "Ruijie Fu",
    "role": "phd",
-   "years": null,
+   "years": [
+    2022,
+    null
+   ],
    "url": "https://jhc.sjtu.edu.cn/~yehanma/#publications",
    "sha256": "e12b42d205a163ce2a7f687f225e04ca6361d22dd3f4df22585dd0d089566649",
    "quote": "Graduate Students Ruijie Fu（PH.D.)",
@@ -42,12 +45,15 @@
    "auto": true,
    "pi_first_year": 2020,
    "role_basis": "entry_parenthetical",
-   "years_basis": "none"
+   "years_basis": "stated_in_entry"
   },
   {
    "name": "Jintao Chen",
    "role": "phd",
-   "years": null,
+   "years": [
+    2023,
+    null
+   ],
    "url": "https://jhc.sjtu.edu.cn/~yehanma/#publications",
    "sha256": "e12b42d205a163ce2a7f687f225e04ca6361d22dd3f4df22585dd0d089566649",
    "quote": "Jintao Chen（PH.D.) (2025 OPPO Scholarship) 2023 Haolan Zhang（PH.D",
@@ -58,12 +64,15 @@
    "auto": true,
    "pi_first_year": 2020,
    "role_basis": "entry_parenthetical",
-   "years_basis": "none"
+   "years_basis": "stated_in_entry"
   },
   {
    "name": "Qi Fan",
    "role": "masters",
-   "years": null,
+   "years": [
+    2024,
+    null
+   ],
    "url": "https://jhc.sjtu.edu.cn/~yehanma/#publications",
    "sha256": "e12b42d205a163ce2a7f687f225e04ca6361d22dd3f4df22585dd0d089566649",
    "quote": "2025 Qi Fan（Master)",
@@ -74,25 +83,25 @@
    "auto": true,
    "pi_first_year": 2020,
    "role_basis": "entry_parenthetical",
-   "years_basis": "none"
+   "years_basis": "stated_in_entry"
   },
   {
-   "name": "Haolan Zhang（Ph.D",
-   "role": "undergraduate",
+   "name": "Haolan Zhang",
+   "role": "phd",
    "years": [
     2023,
-    2023
+    null
    ],
    "url": "https://jhc.sjtu.edu.cn/~yehanma/#publications",
    "sha256": "e12b42d205a163ce2a7f687f225e04ca6361d22dd3f4df22585dd0d089566649",
    "quote": "Undergraduate Students Haolan Zhang（Ph.D",
    "note": "lab-page audit 2026-11-11; section: Undergraduate Students",
    "pi": "马叶涵",
-   "alumni": true,
+   "alumni": false,
    "rule": "LP-STU-01",
    "auto": true,
    "pi_first_year": 2020,
-   "role_basis": "section_heading",
+   "role_basis": "entry_parenthetical",
    "years_basis": "stated_in_entry"
   },
   {
@@ -176,6 +185,102 @@
    "years_basis": "none"
   },
   {
+   "name": "Yanbo Xu",
+   "role": "phd",
+   "years": null,
+   "url": "https://nsec.sjtu.edu.cn/~hjzhu/",
+   "sha256": "2bd5e20a0470db2eaad22f6590806337b5b7f487fcfcde16928882a5641b96ba",
+   "quote": "Yanbo Xu , 3rd year phd",
+   "note": "lab-page audit 2026-11-11; section: Current Students",
+   "pi": "朱浩瑾",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2009,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
+   "name": "Yujia Huo",
+   "role": "phd",
+   "years": null,
+   "url": "https://nsec.sjtu.edu.cn/~hjzhu/",
+   "sha256": "2bd5e20a0470db2eaad22f6590806337b5b7f487fcfcde16928882a5641b96ba",
+   "quote": "Yujia Huo , 2nd year phd",
+   "note": "lab-page audit 2026-11-11; section: Current Students",
+   "pi": "朱浩瑾",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2009,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
+   "name": "Fazhong Liu",
+   "role": "phd",
+   "years": null,
+   "url": "https://nsec.sjtu.edu.cn/~hjzhu/",
+   "sha256": "2bd5e20a0470db2eaad22f6590806337b5b7f487fcfcde16928882a5641b96ba",
+   "quote": "Fazhong Liu , 2nd year phd",
+   "note": "lab-page audit 2026-11-11; section: Current Students",
+   "pi": "朱浩瑾",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2009,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
+   "name": "Zhenyu Xu",
+   "role": "phd",
+   "years": null,
+   "url": "https://nsec.sjtu.edu.cn/~hjzhu/",
+   "sha256": "2bd5e20a0470db2eaad22f6590806337b5b7f487fcfcde16928882a5641b96ba",
+   "quote": "Zhenyu Xu , 1st year phd",
+   "note": "lab-page audit 2026-11-11; section: Current Students",
+   "pi": "朱浩瑾",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2009,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
+   "name": "Qian Cao",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://nsec.sjtu.edu.cn/~hjzhu/",
+   "sha256": "2bd5e20a0470db2eaad22f6590806337b5b7f487fcfcde16928882a5641b96ba",
+   "quote": "Current Students I am lucky to work with so many brilliant students, Please feel free to contact me if you are also interested in joining us Phd Students Yanbo Xu , 3rd year phd student, research topic: Vehicle security Yujia Huo , 2nd year phd student, research topic: Privacy compliance Fazhong Liu , 2nd year phd student, research topic: AI security Zhenyu Xu , 1st year phd student, research topic: AI security Master Students Wei Wang, 3st year Qibin Wang, 2st year Wei Teng, 2st year Tianyu Liu, 2st year Tianyi Yu, 1st year Yuhan Zhou, 1st year Undergraduate Students who have worked with me for more than 1 year Qian Cao",
+   "note": "lab-page audit 2026-11-11; section: Current Students",
+   "pi": "朱浩瑾",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2009,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
+   "name": "Zhuoyan Chen",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://nsec.sjtu.edu.cn/~hjzhu/",
+   "sha256": "2bd5e20a0470db2eaad22f6590806337b5b7f487fcfcde16928882a5641b96ba",
+   "quote": "Current Students I am lucky to work with so many brilliant students, Please feel free to contact me if you are also interested in joining us Phd Students Yanbo Xu , 3rd year phd student, research topic: Vehicle security Yujia Huo , 2nd year phd student, research topic: Privacy compliance Fazhong Liu , 2nd year phd student, research topic: AI security Zhenyu Xu , 1st year phd student, research topic: AI security Master Students Wei Wang, 3st year Qibin Wang, 2st year Wei Teng, 2st year Tianyu Liu, 2st year Tianyi Yu, 1st year Yuhan Zhou, 1st year Undergraduate Students who have worked with me for more than 1 year Qian Cao Zhuoyan Chen",
+   "note": "lab-page audit 2026-11-11; section: Current Students",
+   "pi": "朱浩瑾",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2009,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
    "name": "Rongxin Cheng",
    "role": "phd",
    "years": null,
@@ -224,11 +329,262 @@
    "years_basis": "none"
   },
   {
+   "name": "Zhi Han",
+   "role": null,
+   "years": null,
+   "url": "https://liyang.page/people/",
+   "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
+   "quote": "Research Agent Co-supervised by Prof. Weinan Zhang Zhi Han",
+   "note": "lab-page audit 2026-11-11; section: Ph.D. > Research",
+   "pi": "李 阳",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Junru Song",
+   "role": "phd",
+   "years": null,
+   "url": "https://liyang.page/people/",
+   "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
+   "quote": "Research Embodied AI Junru Song",
+   "note": "lab-page audit 2026-11-11; section: Ph.D. > Research",
+   "pi": "李 阳",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Wenhao Zhang",
+   "role": "phd",
+   "years": null,
+   "url": "https://liyang.page/people/",
+   "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
+   "quote": "Research Embodied AI Homepage ↗ Wenhao Zhang",
+   "note": "lab-page audit 2026-11-11; section: Ph.D. > Research",
+   "pi": "李 阳",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Jingjing Jiang",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://vision.sjtu.edu.cn/group.html",
+   "sha256": "7c120b3bbf2bfe61a69b2806764947a9ec35c4717ad07b3b16238bb6c8571191",
+   "quote": "Postdocs Dr. Jingjing Jiang",
+   "note": "lab-page audit 2026-11-11; section: Postdocs",
+   "pi": "马 超",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Wu Ran",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://vision.sjtu.edu.cn/group.html",
+   "sha256": "7c120b3bbf2bfe61a69b2806764947a9ec35c4717ad07b3b16238bb6c8571191",
+   "quote": "Postdocs Dr. Jingjing Jiang Dr. Wu Ran",
+   "note": "lab-page audit 2026-11-11; section: Postdocs",
+   "pi": "马 超",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Jinglei Zhang",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://vision.sjtu.edu.cn/group.html",
+   "sha256": "7c120b3bbf2bfe61a69b2806764947a9ec35c4717ad07b3b16238bb6c8571191",
+   "quote": "Jinglei Zhang (Phd",
+   "note": "lab-page audit 2026-11-11; section: Students > Han Yan (PhD, 2023.9-)",
+   "pi": "马 超",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Weijia Zhang",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://vision.sjtu.edu.cn/group.html",
+   "sha256": "7c120b3bbf2bfe61a69b2806764947a9ec35c4717ad07b3b16238bb6c8571191",
+   "quote": "Weijia Zhang (PhD",
+   "note": "lab-page audit 2026-11-11; section: Students > Han Yan (PhD, 2023.9-)",
+   "pi": "马 超",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuehao Liu",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://vision.sjtu.edu.cn/group.html",
+   "sha256": "7c120b3bbf2bfe61a69b2806764947a9ec35c4717ad07b3b16238bb6c8571191",
+   "quote": "Yuehao Liu (PhD",
+   "note": "lab-page audit 2026-11-11; section: Students > Han Yan (PhD, 2023.9-)",
+   "pi": "马 超",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xuanming Shang",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://vision.sjtu.edu.cn/group.html",
+   "sha256": "7c120b3bbf2bfe61a69b2806764947a9ec35c4717ad07b3b16238bb6c8571191",
+   "quote": "Xuanming Shang (PhD",
+   "note": "lab-page audit 2026-11-11; section: Students > Han Yan (PhD, 2023.9-)",
+   "pi": "马 超",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuxin Xu",
+   "role": "masters",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://vision.sjtu.edu.cn/group.html",
+   "sha256": "7c120b3bbf2bfe61a69b2806764947a9ec35c4717ad07b3b16238bb6c8571191",
+   "quote": "Yuxin Xu (MS",
+   "note": "lab-page audit 2026-11-11; section: Students > Han Yan (PhD, 2023.9-)",
+   "pi": "马 超",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Mingbo Dai",
+   "role": "masters",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://vision.sjtu.edu.cn/group.html",
+   "sha256": "7c120b3bbf2bfe61a69b2806764947a9ec35c4717ad07b3b16238bb6c8571191",
+   "quote": "Mingbo Dai (MS",
+   "note": "lab-page audit 2026-11-11; section: Students > Han Yan (PhD, 2023.9-)",
+   "pi": "马 超",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Bolun Zhang",
+   "role": "masters",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://vision.sjtu.edu.cn/group.html",
+   "sha256": "7c120b3bbf2bfe61a69b2806764947a9ec35c4717ad07b3b16238bb6c8571191",
+   "quote": "Bolun Zhang (MS",
+   "note": "lab-page audit 2026-11-11; section: Students > Han Yan (PhD, 2023.9-)",
+   "pi": "马 超",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Guangda Liu",
+   "role": "phd",
+   "years": [
+    2022,
+    null
+   ],
+   "url": "https://zjru.github.io/",
+   "sha256": "c6f291e1683a72a3ebba815cfa9801dfe4d90602aeb5a5d0fcb6260c623b8c94",
+   "quote": "Guangda Liu (Ph.D",
+   "note": "lab-page audit 2026-11-11; section: Graduate Students",
+   "pi": "赵杰茹",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chi Zhang",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://zjru.github.io/",
+   "sha256": "c6f291e1683a72a3ebba815cfa9801dfe4d90602aeb5a5d0fcb6260c623b8c94",
+   "quote": "Chi Zhang (Ph.D",
+   "note": "lab-page audit 2026-11-11; section: Graduate Students",
+   "pi": "赵杰茹",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
    "name": "Zhen Zhong",
    "role": "phd",
    "years": [
-    null,
-    2026
+    2026,
+    null
    ],
    "url": "https://zjru.github.io/",
    "sha256": "c6f291e1683a72a3ebba815cfa9801dfe4d90602aeb5a5d0fcb6260c623b8c94",
@@ -246,15 +602,15 @@
    "name": "Zhenyu Ning",
    "role": "masters",
    "years": [
-    null,
-    2024
+    2024,
+    null
    ],
    "url": "https://zjru.github.io/",
    "sha256": "c6f291e1683a72a3ebba815cfa9801dfe4d90602aeb5a5d0fcb6260c623b8c94",
    "quote": "Zhenyu Ning (M.S.",
    "note": "lab-page audit 2026-11-11; section: Graduate Students",
    "pi": "赵杰茹",
-   "alumni": true,
+   "alumni": false,
    "rule": "LP-STU-01",
    "auto": true,
    "pi_first_year": 2021,
@@ -265,15 +621,15 @@
    "name": "Chengwei Li",
    "role": "masters",
    "years": [
-    null,
-    2024
+    2024,
+    null
    ],
    "url": "https://zjru.github.io/",
    "sha256": "c6f291e1683a72a3ebba815cfa9801dfe4d90602aeb5a5d0fcb6260c623b8c94",
    "quote": "Chengwei Li (M.S.",
    "note": "lab-page audit 2026-11-11; section: Graduate Students",
    "pi": "赵杰茹",
-   "alumni": true,
+   "alumni": false,
    "rule": "LP-STU-01",
    "auto": true,
    "pi_first_year": 2021,
@@ -284,15 +640,15 @@
    "name": "Keyu Liu",
    "role": "masters",
    "years": [
-    null,
-    2025
+    2025,
+    null
    ],
    "url": "https://zjru.github.io/",
    "sha256": "c6f291e1683a72a3ebba815cfa9801dfe4d90602aeb5a5d0fcb6260c623b8c94",
    "quote": "Keyu Liu (M.S.",
    "note": "lab-page audit 2026-11-11; section: Graduate Students",
    "pi": "赵杰茹",
-   "alumni": true,
+   "alumni": false,
    "rule": "LP-STU-01",
    "auto": true,
    "pi_first_year": 2021,
@@ -303,15 +659,15 @@
    "name": "Xinzhou Zhang",
    "role": "masters",
    "years": [
-    null,
-    2025
+    2025,
+    null
    ],
    "url": "https://zjru.github.io/",
    "sha256": "c6f291e1683a72a3ebba815cfa9801dfe4d90602aeb5a5d0fcb6260c623b8c94",
    "quote": "Xinzhou Zhang (M.S.",
    "note": "lab-page audit 2026-11-11; section: Graduate Students",
    "pi": "赵杰茹",
-   "alumni": true,
+   "alumni": false,
    "rule": "LP-STU-01",
    "auto": true,
    "pi_first_year": 2021,
@@ -322,8 +678,8 @@
    "name": "Wenhao Chen",
    "role": "masters",
    "years": [
-    null,
-    2026
+    2026,
+    null
    ],
    "url": "https://zjru.github.io/",
    "sha256": "c6f291e1683a72a3ebba815cfa9801dfe4d90602aeb5a5d0fcb6260c623b8c94",
@@ -341,8 +697,8 @@
    "name": "Sucheng Ling",
    "role": "masters",
    "years": [
-    null,
-    2026
+    2026,
+    null
    ],
    "url": "https://zjru.github.io/",
    "sha256": "c6f291e1683a72a3ebba815cfa9801dfe4d90602aeb5a5d0fcb6260c623b8c94",
@@ -452,5 +808,6 @@
    "years_basis": "stated_in_entry"
   }
  ],
- "papers": []
+ "papers": [],
+ "union_note": "union (2026-11-11, rebuild worker): 45 rows of the reviewed round-8 tool output (generated_at 2026-11-11T23:05:40+00:00) + 0 earlier accepted rows of PIs the round-8 output does not cover (generated_at 2026-11-11T16:56:31+00:00); papers kept from the round-8 file"
 }

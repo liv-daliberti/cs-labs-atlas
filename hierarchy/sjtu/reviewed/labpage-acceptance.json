@@ -3,13 +3,14 @@
  "decided_at": "2026-11-11",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/sjtu/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-11T16:56:31+00:00",
- "additions_sha256": "d98fef5f83a5fd8f0399a687b9d6da15bb71d6dfc008a240dd31a36b4b158129",
+ "additions_generated_at": "2026-11-11T23:05:40+00:00",
+ "additions_sha256": "e0f79e94c89c55a07c1999c4330dfe04f2dcb3849aed62d87cd45afab9aa96d2",
  "students": {
   "accepted": true,
-  "round": 3,
+  "round": 8,
   "weak": true,
-  "note": "complete enumeration of 25 proposed students, 0 wrong, 2 doubtful (1.0 membership errors), 1 role/year error; round 3 after two failed rounds repaired in tools/labpage_audit.py; thin population, queued for owner review"
+  "round_limit_extended_by_owner": 10,
+  "note": "owner ruled 2026-11-11: up to 10 rounds. Round 8 (fresh reviewer, 30 sampled of 45 rows of the unfiltered tool output, joint-rules 9b4cf152 era): PASSED in the private overlay (membership 0.0 <= 1.5; role/year 1 wrong + 1 doubtful = 1.5 <= 3); not wired, not landed. The wired file is the union of those 45 rows and 0 earlier accepted rows (PIs not covered by round 8); the union file's sha is the one bound here."
  },
  "papers": {
   "accepted": false,

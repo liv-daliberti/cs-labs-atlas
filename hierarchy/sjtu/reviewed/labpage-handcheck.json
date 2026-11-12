@@ -56,6 +56,30 @@
    "result": "PASSED (bar: membership <=1.5, role/year <=3 for a 30-row round; complete enumeration of 25 proposed rows, thin population: 25 rows from a handful of pages)",
    "reviewer": "fresh Sonnet subagent, scratch/s6-1111/sjtu-sample-r3.txt",
    "commit": "ff1730ec"
+  },
+  {
+   "round": 8,
+   "date": "2026-11-11",
+   "label": "SJTU students round 8 (joint-rules 177d8d16, unfiltered additions, seed 1111823, 30 of 45, fresh reviewer; owner ruled 2026-11-11: up to 10 rounds)",
+   "additions_generated_at": "2026-11-11T23:05:40+00:00",
+   "students": {
+    "sampled": 30,
+    "of": 45,
+    "seed": 1111823,
+    "membership_wrong": 0,
+    "membership_doubtful": 0,
+    "membership_errors": 0.0,
+    "role_or_year_errors": 1.5,
+    "role_year_wrong": 1,
+    "role_year_doubtful": 1
+   },
+   "papers": null,
+   "items": {},
+   "membership_score": 0.0,
+   "role_year_errors": 1.5,
+   "paper_score": null,
+   "result": "PASSED in the private overlay (membership 0.0 <= 1.5; role/year 1 wrong + 1 doubtful = 1.5 <= 3); not wired, not landed",
+   "note": "Entry-year off-by-one on the 马叶涵 trailing-year list (Haolan Zhang 2023 vs 2024); card-style group role inferred (Wenhao Zhang). Rounds 4-7 (this branch): 4 membership 1.5/role-year n/a, 5 pass-membership 0.5 role-year fail 5.0, 6 membership fail 2.0, 7 pass on a hand-filtered file; scratch/sjtu-students-1111/round*-result.json"
   }
  ]
 }
