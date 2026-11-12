@@ -1001,3 +1001,19 @@ def test_section_cards_read_hunter_people_layout():
     assert cells['Marc-Andre Begin'] and cells['Marc-Andre Begin']['years'] == [None, 2022] and cells['Marc-Andre Begin']['alumni']
     assert cells['Sylvain Martel']['years'] == [1996, 1998] and cells['Jorge Cavazos']['role'] == 'undergraduate'
     assert A.section_card_cells(card('A Person', 'PhD Candidate')) == []
+
+
+def test_the_newest_capture_decides_and_an_older_capture_only_adds_former_members():
+    def row(name, url, cap=None, kept=False, is_cap=False, why=None, alumni=False):
+        return dict(name=name, url=url, capture_url=cap, kept=kept, is_cap=is_cap, why=why, alumni=alumni)
+    live = 'https://lab.example.edu/people'
+    old = 'https://web.archive.org/web/20220301000000id_/https://lab.example.edu/people'
+    rows = [row('A B', live, alumni=True), row('A B', live, cap=old, is_cap=True), row('A B', live, kept=True, cap='https://lab.example.edu/people'), row('C D', live, cap=old, is_cap=True)]
+    newest = A.newest_capture_per_page(rows)
+    assert newest == {'lab.example.edu/people': '99999999'}
+    g, older_only = A.deciding_rows([rows[0], rows[1], rows[2]], newest)
+    assert g == [rows[0]] and not older_only   # the live capture's alumni reading beats the 2022 capture and the prior-evidence row
+    g2, older2 = A.deciding_rows([rows[3]], newest)
+    assert g2 == [rows[3]] and older2          # only on the old capture: kept as an older-only person (a former member at most)
+    g3, older3 = A.deciding_rows([rows[2]], newest)
+    assert g3 == [rows[2]] and not older3      # a prior-evidence row alone is untouched

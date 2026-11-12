@@ -2970,6 +2970,31 @@ def src_recency(r):
     return '99999999' if not r.get('is_cap') and not m else (m.group(1) if m else '0')
 
 
+def page_key(r):
+    """The page a candidate row came from, without the Wayback prefix, scheme, www and :80."""
+    u = unwayback(r.get('capture_url') or r.get('url') or '')
+    return re.sub(r'^https?://(?:www\.)?', '', u).rstrip('/').lower()
+
+
+def newest_capture_per_page(rows):
+    """{page_key: newest src_recency} over the fresh (not prior-evidence) rows: the live capture, else the latest Wayback capture, of each page."""
+    out = {}
+    for r in rows:
+        if not r['kept']:
+            k = page_key(r)
+            out[k] = max(out.get(k, ''), src_recency(r))
+    return out
+
+
+def deciding_rows(g, newest):
+    """(rows, older_only) of one person's group. The rows read off the NEWEST capture of their page decide current vs alumni, role and years (an older capture, or a prior-evidence row whose capture
+    is older, never outranks a newer one: MIT Zhao's stale 2022 capture vs the 2026 one). When the person is on no newest capture, the group's own rows stand and older_only is True."""
+    fresh = [r for r in g if not r['kept'] and src_recency(r) == newest.get(page_key(r))]
+    if fresh:
+        return fresh, False
+    return g, any(not r['kept'] and src_recency(r) != newest.get(page_key(r)) for r in g)
+
+
 def group_people(names, rows):
     """Rows of one lab grouped by person (names.match_one within the lab; R-HIER-03: never across labs)."""
     groups = []
@@ -3024,7 +3049,9 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                          strict_removed=c.get('strict_removed')))
     drops = {(x.get('pi'), x.get('student')) for x in corrections(school) if x.get('action') == 'drop'}
     matched_build = set()
-    for g in group_people(names, rows):
+    newest = newest_capture_per_page(rows)
+    for g_all in group_people(names, rows):
+        g, older_only = deciding_rows(g_all, newest)   # the NEWEST capture of a page decides current / alumni / role / years; an older capture only adds a name the newest lacks, as a former member
         nm = g[0]['name']
         alln = [r['name'] for r in g] + [a for r in g for a in r.get('aliases') or []]
         hit = None
@@ -3041,9 +3068,15 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
             sec['matched_in_build'] += 1
             matched_build.add(next(i for i, (_, ns, _) in enumerate(bs) if hit[0] in ns))
             continue
-        kept = [r for r in g if r['kept']]
+        kept = [r for r in g_all if r['kept']]
         ok_ = sorted((r for r in g if not r['why']), key=src_recency, reverse=True)  # the live page, else the newest capture
-        best = next((r for r in g if r['kept']), None) or (ok_[0] if ok_ else g[0])
+        best = (ok_[0] if ok_ else g[0]) if not older_only else (next((r for r in g if r['kept']), None) or (ok_[0] if ok_ else g[0]))
+        if older_only and not best['kept'] and not best['why']:
+            # listed only on an OLDER capture of a page whose newest capture lacks the person: a former member, never current; without a stated end year there is no dated range to add
+            best = dict(best, alumni=True)
+            ye_ = best.get('years') or [None, None]
+            if not ye_[1] or (ye_[1] and not best.get('years_basis') == 'stated_in_entry'):
+                best = dict(best, why='undated_cannot_place', detail='listed as a member only on an older capture of the page; the newest capture does not list the person, and the entry states no end year to date the stay')
         if kept:
             slug = re.sub('[^a-z0-9]+', '-', fold(nm)).strip('-')
             rc = 'dropped_by_review' if any(x[0] == pi and str(x[1] or '').endswith(':' + slug) for x in drops) else 'evidence_not_in_build'
@@ -3051,11 +3084,13 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
             rc = 'genuinely_missing'
         else:
             rc = min((r['why'] for r in g), key=lambda w: STUDENT_REASON_ORDER.index(w) if w in STUDENT_REASON_ORDER else 99)
+        if older_only and rc == 'genuinely_missing' and best.get('why'):
+            rc = best['why']
         miss = dict(name=nm, role=best.get('role'), years=item['years'], quote=best.get('quote'), url=best.get('capture_url') or best['url'],
                     sha256=best['sha256'], reason_code=rc)
         if best.get('head'):
             miss['section'] = best['head']
-        det = next((r.get('detail') for r in g if r.get('detail')), None)
+        det = (best.get('detail') if older_only and best.get('why') else None) or next((r.get('detail') for r in g if r.get('detail')), None)
         if det:
             miss['detail'] = det
         if rc == 'undated_cannot_place' and any(r.get('strict_removed') for r in g):
