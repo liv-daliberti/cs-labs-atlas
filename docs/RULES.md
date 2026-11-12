@@ -752,6 +752,11 @@ id) is linked in another lab whose PI is on those works is `linked_in_coadviser_
 another lab is `same_name_record_linked_in_other_lab`, never merged (R-HIER-03). A name shared by 4+ school authors is
 resolved when exactly one of those author ids shares a school byline with another student of the lab written with a full
 given name (`resolved.by = labmate_coauthor`).
+**Extension 2026-11-12** (stage-7 trace of the legacy schools): three more reasons for a student whose every work with the PI is left out of the lab's papers. `with_pi_not_a_paper`: all
+are records `papers.not_a_paper` drops (Zenodo or software records, edited volumes, meeting abstracts by DOI; the title/venue/DOI/type rules, no page counts); `with_pi_before_window`: all are
+dated before 2016 by the PI's DBLP venue year (`venue_version_date`, R-PAP-26/38) though the OpenAlex deposit is later (a 2018 KiltHub copy of a 2012 USENIX paper); and a PI
+authorship whose raw affiliation names another institution (`names_other_inst`) without any resolved OpenAlex institution counts as elsewhere, so `with_pi_at_other_institution`
+covers a Harvard Society of Fellows byline. Mixed reasons fall back to `with_pi_outside_appointment`.
 
 ### R-AUD-09 (2026-10-29, owner) — student-only quotes are counted apart
 `tools/evidence_check.py` counts a relation whose only sourced evidence is a re-captured student-only quote (R-STU-08,

@@ -15,6 +15,10 @@ year before their recorded advising to three years after it. Then:
                          (pi-works.sqlite) does not tie the school to the PI (2026-10-29): written before the PI's
                          appointment, after it, or on leave elsewhere (Berg-Kirkpatrick at UCSD, Mankoff and Dey at UW,
                          Ghassemi at Toronto); the lab-paper rule (a) excludes it, a reason, not a gap
+  with_pi_not_a_paper    (2026-11-12) every such work is one the build's own not-a-paper rules drop (papers.not_a_paper: Zenodo
+                         repository or software records, edited volumes, meeting abstracts by DOI, R-PAP-18/19/33/40); a reason
+  with_pi_before_window  (2026-11-12) every such work is dated before the atlas window (2016) by its DBLP venue year though the
+                         OpenAlex deposit is 2016 or later (R-PAP-26/38: a 2018 KiltHub copy of a 2012 USENIX paper); a reason
   publishes_without_pi   school works in their years, none with this PI (other advisers, co-advised, other groups);
                          the census PIs on those bylines are listed
   linked_in_coadviser_lab  (R-D2, 2026-10-29) as publishes_without_pi, but the same student record (id or merged id) is linked
@@ -32,7 +36,9 @@ usage: link_diagnosis.py <school> ...
 """
 import collections, gzip, json, re, sqlite3, sys, unicodedata
 
-from pi_hierarchy import sweep_works, contains, same_year, NOT_PAPERS, TODAY, INST, AFF  # noqa: E402
+from pi_hierarchy import sweep_works, contains, same_year, NOT_PAPERS, TODAY, INST, AFF, WINDOW_START  # noqa: E402
+from pihier import papers as _papers  # noqa: E402
+from pihier.common import norm_title  # noqa: E402
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK; H = P.HIERARCHY   # tests point H at a flat fixture tree; hfile follows the layout for the live one
@@ -76,6 +82,28 @@ def name_key(s):
     return ' '.join(words(s))
 
 
+def dblp_venues(pi_rec):
+    """The PI's DBLP venue publications by normalized title -> (earliest year, key), as papers.venue_tables reads them from the
+    DBLP dump (not CoRR, ECCC, ePrint, theses, books); {} without the dump or a DBLP id."""
+    import html
+    from pihier import identity
+    out = {}
+    if not pi_rec.get('dblp'):
+        return out
+    dd = P.data('dblp-dump-persons.json.gz', root=HERE)
+    if identity.DUMP_PERSONS is None and dd.exists():
+        identity.DUMP_PERSONS = identity.read(dd)
+    persons = (identity.DUMP_PERSONS or {}).get('persons') or {}
+    for q in pi_rec.get('dblp') or []:
+        for r in (persons.get(q) or {}).get('pubs') or []:
+            if str(r.get('key') or '').startswith(('journals/corr/', 'journals/eccc/', 'journals/iacr/', 'phd/', 'books/', 'persons/')) or not r.get('year'):
+                continue
+            t = norm_title(html.unescape(r.get('title') or '').rstrip('.'))
+            if t and (t not in out or r['year'] < out[t][0]):
+                out[t] = (int(r['year']), r['key'])
+    return out
+
+
 def run(school):
     import chain_audit
     # Previous diagnoses explain links in the shared audit. Using that audit
@@ -106,6 +134,16 @@ def run(school):
                 for i in [r['person']] + list(r.get('merged') or []):
                     linked_labs[i].add(pi_)
                 linked_by_name[name_key(r['name'])].add(pi_)
+    venues = {}
+    def venue_date(w, pi_):
+        if pi_ not in venues:
+            venues[pi_] = dblp_venues(pis.get(pi_) or {})
+        return _papers.venue_version_date(w, venues[pi_])[0]
+    def build_not_a_paper(w):
+        """The build's own not-a-paper rules (R-PAP-18/19/33/40) on a sweep work; pages are not known here (title/venue/DOI/type rules only)."""
+        src = ((w.get('primary_location') or {}).get('source') or {}).get('display_name')
+        return bool(_papers.not_a_paper(dict(title=w.get('title'), venue=src, doi=w.get('doi'), type=w.get('type'),
+                                             byline=[a.get('raw_author_name') for a in w.get('authorships') or []])))
     fams = {words(x['student'])[-1] for x in open_items if words(x['student'])}
     inst, aff = 'https://openalex.org/' + INST[school], re.compile(AFF[school], re.I)
     pw = P.hfile(H, 'pi-works.sqlite', school)
@@ -115,7 +153,9 @@ def run(school):
         """'school' when the authorship names the school, 'elsewhere' when it names only other institutions, else 'none'."""
         if any(inst == i.get('id') or inst in (i.get('lineage') or []) for i in a.get('institutions') or []) or any(aff.search(z) for z in a.get('raw_affiliation_strings') or []):
             return 'school'
-        return 'elsewhere' if a.get('institutions') else 'none'
+        # 2026-11-12: a raw affiliation that names another institution counts as elsewhere even when OpenAlex resolved no institution
+        # (a Harvard Society of Fellows byline), by the build's own test (papers.names_other_inst)
+        return 'elsewhere' if a.get('institutions') or any(_papers.names_other_inst(z, school) for z in a.get('raw_affiliation_strings') or []) else 'none'
     # index the sweep's school-affiliated authorships by family name (only the families we need)
     idx = collections.defaultdict(list)
     for w in sweep_works(school):
@@ -133,7 +173,7 @@ def run(school):
                 continue
             if where(a) != 'school':  # R-D1 (2026-10-29): the student's own authorship lists the school, not merely some institution
                 continue
-            idx[ww[-1]].append(dict(work=w['id'], title=(w.get('title') or '')[:120], year=y, raw=raw, type=w.get('type'),
+            idx[ww[-1]].append(dict(work=w['id'], title=(w.get('title') or '')[:120], year=y, raw=raw, type=w.get('type'), w=w,
                                     date=w.get('publication_date') or str(y or ''), aid=(a.get('author') or {}).get('id'), coauthor_ids=ids_on,
                                     co_raw=[b.get('raw_author_name') or '' for b in auth if b is not a],
                                     pi_where=pi_where, tied=w['id'] in tied))
@@ -156,18 +196,23 @@ def run(school):
         with_pi = [c for c in cand_all if c['coauthor_ids'] & pi_ids.get(pi, set()) and c['work'] not in lab[pi]]
         authors = {c['aid'] for c in cand if c['aid']}
         def excluded(c):  # why the builder rightly left a work with the PI out of the lab's papers, or None
-            if c.get('type') in NOT_PAPERS or c.get('type') in ('conference-abstract',):
+            if c.get('type') in NOT_PAPERS or c.get('type') in ('conference-abstract',) or build_not_a_paper(c['w']):
                 return 'not_a_paper'
             if c['pi_where'].get(pi) == 'elsewhere' and not c['tied']:
                 return 'pi_affiliated_elsewhere'
             p = pis.get(pi) or {}
+            # R-PAP-26/38: dated before the window by the PI's DBLP venue year (the build drops it as dated_before_window)
+            if venue_date(c['w'], pi)[:4].isdigit() and int(venue_date(c['w'], pi)[:4]) < WINDOW_START <= int(c['year'] or 0):
+                return 'before_window'
             if any(contains(q.get('start'), q.get('end'), c['date'], q.get('asof') or TODAY) == 'supported' for q in p.get('periods') or []):
                 return None
             return None if any(l.get('year') == same_year(c['date']) for l in p.get('listings') or []) else 'outside_appointment'
+        why_ = {excluded(c) for c in with_pi}
         if mine:
             cat = 'link_missed'
-        elif with_pi and all(excluded(c) for c in with_pi):
-            cat = 'with_pi_at_other_institution' if any(excluded(c) == 'pi_affiliated_elsewhere' for c in with_pi) else 'with_pi_outside_appointment'
+        elif with_pi and all(why_):
+            cat = ('with_pi_at_other_institution' if 'pi_affiliated_elsewhere' in why_ else 'with_pi_not_a_paper' if why_ == {'not_a_paper'}
+                   else 'with_pi_before_window' if why_ == {'before_window'} else 'with_pi_outside_appointment')
         elif with_pi:
             cat = 'paper_not_lab_paper'
         elif not cand:

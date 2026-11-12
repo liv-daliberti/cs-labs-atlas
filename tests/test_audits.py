@@ -86,3 +86,52 @@ def test_R_AUD_08_link_diagnosis_counts_school_authorships_only(tmp_path, monkey
     assert out['students']['Ada Lovelace | p_qy']['category'] == 'publishes_without_pi'
     assert out['students']['Ada Lovelace | p_qy']['n_school_works'] == 2
     assert not LD.compatible('Po-Ta Chen', 'Po-Hsuan Chen') and LD.compatible('Qian Yu', 'Q. Yu')
+
+
+def _diag(tmp_path, monkeypatch, sweep, pi_extra=None, years=(2016, 2020)):
+    import gzip
+    import link_diagnosis as LD
+    H = tmp_path
+    (H / 'princeton').mkdir()
+    open_item = dict(pi='Ada Lovelace', student='Qian Yu', id='p_qy', years=list(years), roles=['phd'])
+    monkeypatch.setattr(chain_audit, 'audit', lambda *args, **kwargs: dict(checks=dict(links=dict(unexplained=[open_item]))))
+    (H / 'princeton' / 'pis.json').write_text(json.dumps([dict(pi='Ada Lovelace', reviewedOpenAlex=['A1'], periods=[], listings=[], **(pi_extra or {}))]))
+    (H / 'princeton' / 'students.json').write_text(json.dumps({'Ada Lovelace': [dict(person='p_qy', name='Qian Yu')]}))
+    for f in ('lab_papers', 'student_papers'):
+        with gzip.open(H / 'princeton' / f'{f}.jsonl.gz', 'wt'):
+            pass
+    monkeypatch.setattr(LD, 'H', H)
+    monkeypatch.setattr(LD, 'sweep_works', lambda s: iter(sweep))
+    LD.run('princeton')
+    return json.loads((H / 'princeton' / 'link-diagnosis.json').read_text())['students']['Ada Lovelace | p_qy']
+
+
+def _work(wid, year, typ, pi_aff, title='A paper', doi='10.1/x', **kw):
+    import link_diagnosis as LD
+    inst = 'https://openalex.org/' + LD.INST['princeton']
+    return dict(id=wid, publication_year=year, publication_date=f'{year}-06-01', type=typ, title=title, doi=doi, authorships=[
+        dict(raw_author_name='Qian Yu', author=dict(id='X1'), institutions=[dict(id=inst, lineage=[])]),
+        pi_aff], **kw)
+
+
+def test_stage7_with_pi_not_a_paper(tmp_path, monkeypatch):
+    LD_inst = 'https://openalex.org/' + __import__('link_diagnosis').INST['princeton']
+    pi = dict(raw_author_name='Ada Lovelace', author=dict(id='A1'), institutions=[dict(id=LD_inst, lineage=[])])
+    w = _work('W1', 2018, 'article', pi, title='Dataset for Analytical Engines', doi='10.5281/zenodo.123', primary_location=dict(source=dict(display_name='Zenodo')))
+    assert _diag(tmp_path, monkeypatch, [w])['category'] == 'with_pi_not_a_paper'
+
+
+def test_stage7_with_pi_before_window_by_venue_year(tmp_path, monkeypatch):
+    import link_diagnosis as LD
+    from pihier.common import norm_title
+    monkeypatch.setattr(LD, 'dblp_venues', lambda p: {norm_title('Notes on the Analytical Engine'): (2012, 'conf/x/Lovelace12')})
+    inst = 'https://openalex.org/' + LD.INST['princeton']
+    pi = dict(raw_author_name='Ada Lovelace', author=dict(id='A1'), institutions=[dict(id=inst, lineage=[])])
+    w = _work('W2', 2018, 'preprint', pi, title='Notes on the Analytical Engine')
+    assert _diag(tmp_path, monkeypatch, [w])['category'] == 'with_pi_before_window'
+
+
+def test_stage7_with_pi_other_institution_by_raw_affiliation(tmp_path, monkeypatch):
+    pi = dict(raw_author_name='Ada Lovelace', author=dict(id='A1'), institutions=[], raw_affiliation_strings=['Society of Fellows, Harvard University, Cambridge, MA'])
+    w = _work('W3', 2018, 'article', pi)
+    assert _diag(tmp_path, monkeypatch, [w])['category'] == 'with_pi_at_other_institution'

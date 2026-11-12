@@ -212,6 +212,8 @@ def audit(school, *, include_link_diagnosis=True, hierarchy=None):
                    'linked_in_coadviser_lab': "co-advised: linked in the other adviser's lab, whose PI is on their school works (OpenAlex sweep)",
                    'same_name_record_linked_in_other_lab': 'a same-name record in another lab is linked there with that PI (not merged across labs; review)',
                  'with_pi_outside_appointment': "co-wrote with the PI only outside the PI's evidenced appointment at the school, or only non-paper outputs (OpenAlex sweep)",
+                 'with_pi_not_a_paper': "co-wrote with the PI only on records the build's own rules drop as not papers (repository or software records, edited volumes, meeting abstracts) (OpenAlex sweep)",
+                 'with_pi_before_window': "co-wrote with the PI only on works dated before the 2016 window by their DBLP venue year (a later deposit of an older paper) (OpenAlex sweep)",
                  'with_pi_at_other_institution': "co-wrote with the PI only on works where the PI's own authorship names another institution (or outside the appointment, or non-papers) (OpenAlex sweep)"}
     thesis = by_pi(load(D / 'thesis-evidence.json', []))
     # Releasing a partial school must not discard its explicit reviewed gaps.

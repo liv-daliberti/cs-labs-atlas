@@ -18,7 +18,7 @@
    "description": "Students by category, plus ambiguous_resolved_by_<by>.",
    "type": "object",
    "patternProperties": {
-    "^(link_missed|paper_not_lab_paper|with_pi_outside_appointment|with_pi_at_other_institution|publishes_without_pi|linked_in_coadviser_lab|same_name_record_linked_in_other_lab|no_school_work|ambiguous_name)$": {
+    "^(link_missed|paper_not_lab_paper|with_pi_outside_appointment|with_pi_at_other_institution|with_pi_not_a_paper|with_pi_before_window|publishes_without_pi|linked_in_coadviser_lab|same_name_record_linked_in_other_lab|no_school_work|ambiguous_name)$": {
      "type": "integer",
      "minimum": 0
     },
@@ -96,6 +96,8 @@
       "paper_not_lab_paper",
       "with_pi_outside_appointment",
       "with_pi_at_other_institution",
+      "with_pi_not_a_paper",
+      "with_pi_before_window",
       "publishes_without_pi",
       "linked_in_coadviser_lab",
       "same_name_record_linked_in_other_lab",
