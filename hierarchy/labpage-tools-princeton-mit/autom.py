@@ -198,6 +198,7 @@ def namey(t):
     return True
 
 
+TITLE_LIST = re.compile(r"(?:current\s+)?(?:(?:ph\.?\s?d\.?|graduate|master'?s?|undergraduate)\s+)?(?:students?|members?|people|group)", re.I)
 INVERTED_NAME = re.compile(r"[A-Z][\w'’.-]+, [A-Z][\w'’.-]+(?: [A-Z][\w'’.-]*)?")
 BARE_ROLE_HEAD = re.compile(r"\W*(?:ph\.?\s?d\.?|postdoc(?:toral)?|masters?|m\.?s\.?|undergrad(?:uate)?|visiting|intern)\W*", re.I)
 EXTERNAL = re.compile(r"^\W{0,3}(at|@|in|with)\s+(?!princeton|mit\b|m\.i\.t|csail|eecs|the (?:lab|group))", re.I)
@@ -287,6 +288,7 @@ def markers(school, src):
     for x in soup(["script", "style", "noscript", "template"]):
         x.decompose()
     items = []
+    markers.title = lpcap.collapse(soup.title.get_text(" ")) if soup.title else ""
     seen_el = set()
     from bs4 import NavigableString, Tag
     for el in (soup.body or soup).descendants:
@@ -415,6 +417,9 @@ def extract(school, src, pi=None, held=(), span=None):
     inv = [n_ for n_ in nm if INVERTED_NAME.fullmatch(n_)]
     inverted_page = len(inv) >= 3 and 2 * len(inv) >= len(nm)
     head, head_pos = None, None
+    ttl = getattr(markers, "title", "") or ""
+    if mk and mk[0][2] == "name" and 0 < len(ttl) <= 40 and TITLE_LIST.fullmatch(ttl):
+        head, head_pos = ttl, 0   # no heading before the first member: the page's own title names the list (msc.berkeley.edu 'PhD Students')
     pi_names = [pi] if pi else []
     others = [p for p in school_pis(school) if p != pi]
     role_head = None

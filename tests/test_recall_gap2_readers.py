@@ -70,3 +70,10 @@ def test_own_student_role_exception_for_faculty_heading():
     assert L.OWN_STUDENT_ROLE_RX.search('EECS PhD student B.S.: University of Pittsburgh')
     assert L.OWN_STUDENT_ROLE_RX.search('ME PhD student')
     assert not L.OWN_STUDENT_ROLE_RX.search('Professor of EE, PhD Stanford')
+
+
+def test_page_title_names_the_list_when_no_heading_precedes_the_members(monkeypatch):
+    html = ('<html><head><title>PhD Students</title></head><body><table><tr><td>Qian, Qiyang</td><td>Robotics</td></tr><tr><td>Kobashi, Keita</td><td>Robotics</td></tr>'
+            '<tr><td>Viljoen, John</td><td>Robotics</td></tr></table></body></html>')
+    rows = _extract(monkeypatch, html)
+    assert [r['role'] for r in rows] == ['phd', 'phd', 'phd']
