@@ -41,9 +41,21 @@ def last_json(lines, key):
 
 def recent_attempts(store, hours=24):
     cut = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
-    db = sqlite3.connect(f'file:{store / "catalog.sqlite"}?mode=ro', uri=True, timeout=60)
-    db.execute('PRAGMA busy_timeout=60000')
-    hi = db.execute('SELECT MAX(id) FROM attempts').fetchone()[0] or 0
+    tmp = None
+    try:
+        db = sqlite3.connect(f'file:{store / "catalog.sqlite"}?mode=ro', uri=True, timeout=60)
+        db.execute('PRAGMA busy_timeout=60000')
+        hi = db.execute('SELECT MAX(id) FROM attempts').fetchone()[0] or 0
+    except sqlite3.OperationalError:
+        # a killed writer leaves a stale <db>-journal that a read-only handle cannot roll back ('attempt to write a readonly
+        # database'): read a private copy (db + journal) instead, the store itself is untouched
+        import shutil, tempfile
+        tmp = tempfile.mkdtemp(prefix='collstat-')
+        for suf in ('', '-journal', '-wal', '-shm'):
+            if (store / ('catalog.sqlite' + suf)).exists():
+                shutil.copy(store / ('catalog.sqlite' + suf), os.path.join(tmp, 'catalog.sqlite' + suf))
+        db = sqlite3.connect(os.path.join(tmp, 'catalog.sqlite'))
+        hi = db.execute('SELECT MAX(id) FROM attempts').fetchone()[0] or 0
     n, done = Counter(), False
     while hi > 0 and not done:
         rows = db.execute('SELECT observed_at, status, detail FROM attempts WHERE id > ? AND id <= ?', (hi - 5000, hi)).fetchall()
@@ -57,6 +69,9 @@ def recent_attempts(store, hours=24):
         hi -= 5000
         time.sleep(0.02)
     db.close()
+    if tmp:
+        import shutil
+        shutil.rmtree(tmp, ignore_errors=True)
     return n
 
 

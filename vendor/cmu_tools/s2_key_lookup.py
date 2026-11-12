@@ -162,8 +162,11 @@ def fetch(targets):
     s = requests.Session(); s.headers['x-api-key'] = os.environ['S2_API_KEY']; s.headers['User-Agent'] = UA
     cache = {}
     if CACHE.exists():
-        for line in CACHE.open():
-            r = json.loads(line); cache[r['id']] = r
+        for line in CACHE.open(errors='replace'):
+            try:
+                r = json.loads(line); cache[r['id']] = r
+            except (ValueError, KeyError, TypeError):
+                continue  # a torn or NUL-filled line (an NFS append gap, 2026-11-10 00:37Z, killed every s2 step since): skip it, never stop the step
     ids = list(dict.fromkeys(i for t in targets if (i := lookup_id(t)) and (i not in cache or cache[i].get('error'))))
     titles = [] if os.environ.get('S2_BATCH_ONLY') else \
         list(dict.fromkeys(t['title'] for t in targets if not lookup_id(t) and len(nt(t['title'] or '')) >= 20
