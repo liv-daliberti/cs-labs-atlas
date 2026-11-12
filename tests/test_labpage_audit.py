@@ -854,3 +854,10 @@ def test_department_and_term_entries_are_alumni_with_a_graduation_year():
     assert A.DEPT_DATE_ENTRY_RX.match(d)
     assert A.entry_years(d, 'Imaging Systems for Radiotherapeutics Group') == ([None, 2017], 'stated_in_entry')
     assert not A.DEPT_DATE_ENTRY_RX.match('(PhD student, Fall 2022)')
+
+
+def test_new3_regressions_news_bracket_and_school_key_case():
+    assert not A.news_item('Amir Shaikhha (Departmental lecturer, Jan 2019 - April 2021)')
+    assert A.news_item('Jan 2019 - April 2021: Alice and I received a grant')
+    import re
+    assert re.search(A.school_names_rx('oxford'), 'Oxford')

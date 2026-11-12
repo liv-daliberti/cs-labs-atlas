@@ -145,7 +145,7 @@ def school_names_rx(school):
         return SCHOOL_NAMES[school]
     import school_config
     sc = school_config.get(school)
-    base = re.escape(sc.get('name') or school) + '|' + re.escape(school)
+    base = re.escape(sc.get('name') or school) + '|(?i:\\b' + re.escape(school) + r'\b(?![\s,-]*(?:\(\s*)?(?:guang\s*zhou|gz)\b))'   # the school key, case-insensitive: a page that says 'Oxford' names the school the charter calls 'oxford' (a Guangzhou campus stays out)
     aff = (sc.get('affiliation') or {}).get('regex')
     # the charter's own affiliation regex (case-insensitive: 'HKUST', 'Hong Kong University of Science and Technology' without 'The', the host forms), so a page that names the school
     # is never read as another institution's ('Kong University' in 'Hong Kong University of Science and Technology', HKUST re-audit 2026-11-12: 362 names dropped)
@@ -539,7 +539,11 @@ def news_item(text):
     """A dated news sentence ('August 2025: Patrick Kastner and I just received a seed grant') names a collaborator, not a roster entry (Georgia Tech round 2)."""
     if re.search(r'\(\s*(?:TLE\s+)?(?:M\.?\s?Phil|Ph\.?\s?D|Master|Undergrad\w*|Postdoc\w*|RA|intern|visiting)\b', (text or '')[:160], re.I):
         return False   # 'Name (MPhil, from X, Sept 2023 - December 2025)': a roster entry with a dated stay, not a news line (HKUST Zhou's MPhil rows)
-    return bool(NEWS_LINE.search(text or ''))
+    m = NEWS_LINE.search(text or '')
+    if not m:
+        return False
+    before = (text or '')[:m.start()]
+    return before.count('(') <= before.count(')')   # a 'Oct 2016 - May 2020' inside an open bracket dates a roster entry's stay ('Amir Shaikhha (Departmental lecturer, Jan 2019 - April 2021)'), it is not a news line (Oxford regression)
 
 
 def moved_in_alumnus(start, ys, alumni, destination):
@@ -2540,7 +2544,7 @@ def pm_candidates(kit, school, pi, plan, held):
             try:
                 if x['src'] not in text_cache:
                     text_cache[x['src']] = kit.lpev.text(school, x['src'])
-                if other_pis_on_page(school, pi, text_cache[x['src']]) >= 1:
+                if other_pis_on_page(school, pi, text_cache[x['src']]) >= 2 and ALUMNI_HEAD_RX.search(x.get('head') or ''):
                     x['why'], x['detail'] = 'shared_page_no_adviser', 'a year-only entry on a page that names several PIs of the school: no per-row adviser, so not this PI\'s member (CMU round 9: dig.cmu.edu/team)'
                     continue
             except (KeyError, ValueError):
