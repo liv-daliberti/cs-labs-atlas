@@ -86,3 +86,13 @@ def test_colon_lead_collaborator_and_committee_lists_on_the_real_pages():
     assert not LA.collaborator_list_before(CHEN, 'Hongyi Li')
     assert LA.collaborator_list_before(KILINC, 'Adams Wei Yu') and LA.collaborator_list_before(KILINC, 'Lingqing Shen')
     assert not LA.collaborator_list_before(KILINC, 'Alex L. Wang') and not LA.collaborator_list_before(KILINC, 'Soroosh Shafieezadeh-Abadeh')
+
+
+def test_numbered_cell_with_middle_names_on_the_real_chung_capture():
+    """The real text of cse.ust.hk/~achung (sha16 cca1bc482a7c9b70): 'Dr. Ronald Wai King SO (...)' is the cell of the row 'Ronald So'; the earlier 'Mr. Wai King SO (An honors-track ...' is another entry."""
+    page = ("(... as Postdoctoral Scholar in 2014) 8. Dr. Ronald Wai King SO (Computer Science and Engineering, January 2017; He is currently working full-time as a Resident Physicist at the Princess Margaret Hospital, Hong Kong.) "
+            "15. Dr. Colin Siu Chung TSANG (Computer Science and Engineering, Summer 2023; He is currently with The Chinese University of Hong Kong) M.Phil. Students: "
+            "Mr. Wai King SO (An honors-track student in the Computer Engineering Program, Joined our MPhil program at UST in 2007, and joined out PhD program in 2009)")
+    assert LA.numbered_entry_quote('Ronald So', page).startswith('8. Dr. Ronald Wai King SO (Computer Science and Engineering, January 2017')
+    assert LA.numbered_entry_quote('Colin Tsang', page).endswith('The Chinese University of Hong Kong)')
+    assert LA.numbered_entry_quote('Wai King So', page) is None   # the honors-track entry has no department/term bracket: not merged

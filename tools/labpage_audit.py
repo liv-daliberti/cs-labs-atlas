@@ -590,13 +590,13 @@ def label_role(desc, head):
 
 def numbered_entry_quote(name, ptxt):
     """The whole numbered roster cell of `name` ('11. Dr. Yongxiang (Jason) HUANG (Computer Science and Engineering, Winter 2021; He is currently ...)') in the page text, else None:
-    the given names, an optional '(Nickname)', the family name, then the department/term bracket through its closing parenthesis. The quote must be the entry that evidences the
+    the given names, optional middle names ('Ronald Wai King SO') and '(Nickname)', the family name, then the department/term bracket through its closing parenthesis. The quote must be the entry that evidences the
     membership, never a paper-author or award line that happens to hold the name."""
     toks_ = [t for t in re.split(r'\s+', (name or '').strip()) if t]
     if len(toks_) < 2:
         return None
     given, fam = r'\s+'.join(re.escape(t) for t in toks_[:-1]), re.escape(toks_[-1])
-    rx = re.compile(r'(?:\d{1,3}\s*\.\s*)?(?:(?:Dr|Mr|Ms|Mrs|Miss)\s*\.\s*)?' + given + r'(?:\s*\([^()]{2,25}\))?\s+' + fam + r'\s*(\((?:[^()]|\([^()]*\))*\))', re.I)
+    rx = re.compile(r'(?<![\w.])(?:\d{1,3}\s*\.\s*)?(?:Dr|Mr|Ms|Mrs|Miss)\s*\.\s*' + given + r'(?:\s*\([^()]{2,25}\))?(?:\s+[A-Z][a-z\'\u2019-]+){0,3}(?:\s*\([^()]{2,25}\))?\s+' + fam + r'\s*(\((?:[^()]|\([^()]*\))*\))', re.I)
     t = re.sub(r'\s+', ' ', ptxt)
     for m in rx.finditer(t):
         if DEPT_DATE_ENTRY_RX.match(m.group(1)) and len(m.group(0)) <= 320:
