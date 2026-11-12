@@ -306,6 +306,30 @@ def leading_other_institution(desc, school):
     return None
 
 
+BRACKET_ROLE_RX = re.compile(r"^\W{0,3}\(\s*(master(?:'?s)?|m\.?s\.?c?|ph\.?\s?d\.?|post-?doc(?:toral)?s?|post-?doctors?|undergrad(?:uate)?)\s*\)", re.I)
+PUB_ITEM_HEAD_RX = re.compile(r"\b(?:books?|book chapters?|patents?|publications?|selected papers|papers|journal articles?|conference papers?|proceedings|talks?)\b", re.I)
+
+
+def role_if_none(desc, head):
+    """A role the entry or its heading states in words the role reader misses: '(Master)' / '(PhD)' right after the name (Tsinghua 王会's lists), a 'Postdoctor' / 'Postdoctors' label or heading."""
+    m = BRACKET_ROLE_RX.match(desc or '')
+    w = (m.group(1) if m else '').lower()
+    if not w:
+        pm = re.match(r'^\W{0,3}(post-?doctors?)\b', desc or '', re.I)
+        w = pm.group(1).lower() if pm else ''
+    if not w and re.search(r'(?:^|>\s*)post-?doctors?\b', head or '', re.I):
+        w = 'postdoc'
+    if not w:
+        return None
+    return 'masters' if w.startswith(('master', 'm.s', 'ms')) else 'phd' if w.startswith('ph') else 'postdoc' if w.startswith('post') else 'undergraduate'
+
+
+def pub_item_head(head):
+    """A candidate under a Book / Patent / Publications heading is a byline name, not a member (Tsinghua 任炬: 'Book/Book Chapter Yaoxue Zhang')."""
+    last = (head or '').split(' > ')[-1]
+    return bool(PUB_ITEM_HEAD_RX.search(last) and not re.search(r'student|member|people|advis|alumni|postdoc|group|team', last, re.I))
+
+
 def primary_adviser_other(desc, quote, pi):
     """'(PhD, started in 2025, primary advisor Prof. Guoming Tang )' on another professor's page: the entry names a different primary advisor / supervisor (no co- / joint wording), so the student is that
     professor's, not this PI's (HKUST Qiong Luo's DSA-program list)."""
@@ -1750,6 +1774,9 @@ def entry_years(desc, head):
     tm = re.match(r'^\s{0,3}\|?\s*[^|]{1,100}\|\s*((?:19|20)\d\d)\b', desc or '')
     if tm:  # '| Stanford Univ. Medical Center | 2004' (a 'Past Doctoral Students' table): the year ends the stay (Stanford round 3)
         return [None, int(tm.group(1))], 'stated_in_entry'
+    wy = re.match(r'^\W{0,3}\(\s*((?:19|20)\d\d)\s*,\s*w/\s', desc or '')
+    if wy:   # '(2022, w/ Ke Xu)': the year and the co-adviser note; the year is the graduation (end) year of a past-students list, never a start-end range (Tsinghua 李琦)
+        return [None, int(wy.group(1))], 'stated_in_entry'
     dy = dissertation_entry_year(desc)
     if dy:
         return [None, dy], 'stated_in_entry'
@@ -2240,6 +2267,8 @@ def pm_candidates(kit, school, pi, plan, held):
                     x['alumni'] = True  # '(PhD 2024, co-advised with ...)' on a current page: the entry itself says the stay ended (UChicago stage 6, round 1)
             x['role'], x['role_basis'] = entry_role(x.get('desc'), x.get('head'), kit.autom._role)
             lr_ = label_role(x.get('desc'), x.get('head'))
+            if x['role'] in (None, 'member') and not lr_ and not x.get('han_card'):
+                lr_ = role_if_none(x.get('desc'), x.get('head'))
             if not lr_ and re.match(r'^\W{0,3}Current position:', x.get('desc') or '') and x.get('name'):
                 try:   # the extractor cut the card's descriptor before the stay's own role line: read the page text after the name
                     if src not in text_cache:
@@ -2446,6 +2475,9 @@ def pm_candidates(kit, school, pi, plan, held):
         if fn not in keep and not ys and not x['alumni'] and stale_list(x, page_alumni):
             x['why'], x['detail'] = 'undated_cannot_place', ('R-LAB-02: the page lists dated alumni only up to ' + str(page_alumni.get(x.get('capture_url')))
                                                              + ', long before its capture: its undated current list is an old list')
+            continue
+        if fn not in keep and pub_item_head(x.get('head')):
+            x['why'], x['detail'] = 'not_a_student', 'listed under a book / patent / publications heading: a byline name, not a member'
             continue
         if fn not in keep and x.get('role') != 'visiting' and (lo_ := leading_other_institution(x.get('desc'), school)):
             x['why'], x['detail'] = 'site_at_other_institution', f"the entry's first clause places the person at {lo_}, and nothing ties them to this school"

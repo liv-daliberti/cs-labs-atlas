@@ -761,3 +761,13 @@ def test_cmu_round9_entry_rules():
     assert not A.leading_other_institution('(2017-2022. Former PhD Student. CPCB, CBD, CMU.)', 'cmu')
     assert not A.leading_other_institution('(PhD Student at Carnegie Mellon University)', 'cmu')
     assert A.YEAR_ONLY_ENTRY_RX.match('(2021)') and not A.YEAR_ONLY_ENTRY_RX.match('(PhD, 2021)')
+
+
+def test_tsinghua_defect_rules():
+    assert A.role_if_none('(Master) Chao Xu', 'Students') == 'masters'
+    assert A.role_if_none('(PhD) x', 'Students') == 'phd'
+    assert A.role_if_none('Postdoctor, March 2023~ Department of Electronic Engineering', 'Members') == 'postdoc'
+    assert A.role_if_none('', 'Members > Postdoctors') == 'postdoc'
+    assert A.role_if_none('(working closely on the project)', 'Students') is None
+    assert A.pub_item_head('Ju Ren, Ph.D. > Book/Book Chapter') and not A.pub_item_head('Ph.D. Students')
+    assert A.entry_years('(2022, w/ Ke Xu)', 'Past PhD Students:') == ([None, 2022], 'stated_in_entry')
