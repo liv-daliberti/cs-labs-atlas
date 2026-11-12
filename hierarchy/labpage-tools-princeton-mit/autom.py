@@ -198,6 +198,8 @@ def namey(t):
     return True
 
 
+INVERTED_NAME = re.compile(r"[A-Z][\w'’.-]+, [A-Z][\w'’.-]+(?: [A-Z][\w'’.-]*)?")
+BARE_ROLE_HEAD = re.compile(r"\W*(?:ph\.?\s?d\.?|postdoc(?:toral)?|masters?|m\.?s\.?|undergrad(?:uate)?|visiting|intern)\W*", re.I)
 EXTERNAL = re.compile(r"^\W{0,3}(at|@|in|with)\s+(?!princeton|mit\b|m\.i\.t|csail|eecs|the (?:lab|group))", re.I)
 NOWISH = re.compile(r"\b(now|currently|then|went on|moved to|next|later|joined|→|->|⇒)\b|→|->|⇒", re.I)
 
@@ -402,10 +404,16 @@ def extract(school, src, pi=None, held=(), span=None):
         i2, e2, kind2, s2 = mk[k + 1]
         if kind == "name" and kind2 == "head" and i2 - e <= 3 and len(s2) <= 45 and not re.search(r"(s|i|ae)\W*$", s2) and \
                 not (k + 2 < len(mk) and mk[k + 2][2] == "head") and \
-                (_role(s2)[0] or re.search(r"principal investigator|\bpi\b|director|mascot", s2, re.I)):
+                (_role(s2)[0] or re.search(r"principal investigator|\bpi\b|director|mascot", s2, re.I)) and \
+                not (getattr(markers, "levels", {}).get(i2, 7) <= 6 and BARE_ROLE_HEAD.fullmatch(s2)):
+            # an <h3>PhD</h3> after a co-mentor's link is the next SECTION, not the co-mentor's descriptor (MIT Podimata students.html)
             consumed.add(k + 1)
     mk = [m_ for k, m_ in enumerate(mk) if k not in consumed]
     rows = []
+    # a page that writes its members 'Surname, Given' (>= 3 such name markers and at least half of all name markers)
+    nm = [m_[3] for m_ in mk if m_[2] == "name"]
+    inv = [n_ for n_ in nm if INVERTED_NAME.fullmatch(n_)]
+    inverted_page = len(inv) >= 3 and 2 * len(inv) >= len(nm)
     head, head_pos = None, None
     pi_names = [pi] if pi else []
     others = [p for p in school_pis(school) if p != pi]
@@ -448,7 +456,11 @@ def extract(school, src, pi=None, held=(), span=None):
         if "(" in s and ")" not in s:  # "Kendall Olszowka (MAE" cut at a line break
             s = s.split("(")[0].rstrip()
             e = i + len(s)
-        if ", " in s:  # "Ben Silverman, Tracer"
+        if inverted_page and INVERTED_NAME.fullmatch(s):  # "Qian, Qiyang": a page that writes members 'Surname, Given' (Berkeley MSC students table)
+            sur, giv = s.split(", ", 1)
+            e = i + len(s)
+            s = f"{giv} {sur}"
+        elif ", " in s:  # "Ben Silverman, Tracer"
             s = s.split(", ")[0]
             e = i + len(s)
         md = re.match(r"^(?:Dr|Prof|Professor)\.?\s+", s)

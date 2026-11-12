@@ -429,7 +429,19 @@ def other_institution_entry(desc, quote, school):
     (Georgia Tech round 4: Celine Lin's Rice-era students). Georgia Tech itself, and the 'Next Move' destination after it, do not count: only text before 'Next Move' / an arrow is read."""
     t = re.split(r'next move|→|->|\bnow\b', f'{desc or ""} {quote or ""}', flags=re.I)[0]
     own = {'michigan': 'michigan', 'gatech': 'georgia', 'uchicago': 'chicago'}.get(school, school.lower())
-    return any(own not in m.group(0).lower() and not re.search(school_names_rx(school), m.group(0)) for m in OTHER_INST.finditer(t))   # the school's own full name never counts (CMU: 'Carnegie Mellon University')
+    return any(own not in m.group(0).lower() and not re.search(school_names_rx(school), m.group(0)) and not degree_origin(t, m.start())
+               for m in OTHER_INST.finditer(t))
+
+
+DEGREE_LINE_RX = re.compile(r"(?:\b(?:ph\.?\s?d|b\.?s|m\.?s|b\.?a|m\.?a|b\.?e|b\.?eng|m\.?eng|b\.?tech|m\.?tech|msc|bsc|bachelor|master|doctorate)\b\.?)[^,;()]{0,45}$", re.I)
+ROLE_WORD_RX = re.compile(r'\b(?:student|candidate|intern|visiting|visitor|post-?doc|postdoctoral|researcher|assistant|fellow|scholar)\b', re.I)
+
+
+def degree_origin(text, pos):
+    """The institution at `pos` sits on a bare degree line ('Ph.D Physics, University of Colorado Boulder (2024) B.S.'): where the degree came from, not where the person is. A role word
+    before it ('M.S. student, ECE@Rice') keeps it a location (Georgia Tech round 4); Houck's Princeton roster read every B.S. line as a previous school."""
+    before = text[max(0, pos - 60):pos]
+    return bool(DEGREE_LINE_RX.search(before)) and not ROLE_WORD_RX.search(before)   # the school's own full name never counts (CMU: 'Carnegie Mellon University')
 
 
 def stale_list(x, page_alumni):
@@ -2676,9 +2688,14 @@ CURRENT_ENTRY = re.compile(r'\b(current(ly)?\s+(a\s+)?(ph\.?\s?d|student|postdoc
                            r'class of 20(?:2[6-9]|3\d))', re.I)
 
 
+LINK_SEGMENT_RX = re.compile(r'\s*(?:https?://\S*|www\.\S*|(?:website|homepage|google scholar|personal (?:web)?site|email|cv|linkedin|github|twitter|\s)+)\s*$', re.I)
+OWN_STUDENT_ROLE_RX = re.compile(r'\b(?:ph\.?\s?d\.?|m\.?\s?eng\.?|m\.?s\.?|master\'?s?|bachelor\'?s?|undergraduate|graduate|doctoral)\s+(?:student|candidate)\b', re.I)
+
+
 def current_marker(x):
     """An explicit current marker in the entry's own text or its own section heading (not a parent heading)."""
-    own_head = (x.get('head') or '').split(' > ')[-1]
+    segs = [g for g in (x.get('head') or '').split(' > ') if not LINK_SEGMENT_RX.match(g)]   # a member's own link ('https://scholar...', 'Website Google Scholar') is no section heading
+    own_head = segs[-1] if segs else (x.get('head') or '').split(' > ')[-1]
     mixed = re.search(r'\b(former|past|previous|alumni|alumnae|graduated)\b', own_head, re.I)  # 'Current and Former Students'
     label = re.match(r'\s*(?:current|present)\s*:\s*(?!\W*(?:\w+\s+){0,2}(?:students?|members?|phd|ph\.d|postdocs?|people|team|group|researchers?|fellows?|undergrad\w*|interns?)\b)\S', own_head, re.I)   # 'Current: J.D. Harvard Law School' is an alumnus's job, not a current-members heading (CMU round 6, Tai-Sing Lee)
     return bool((CURRENT_HEAD.search(own_head) and not mixed and not label) or CURRENT_ENTRY.search((x.get('desc') or '')[:160]) or current_page_url(x))
@@ -3053,7 +3070,8 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'not_a_student', 'rotation student'
             elif re.search(r'\bfaculty\b|vice[- ]chancellor|\bdean\b|professors?\b', x.get('head') or '', re.I) and \
                     not ALUMNI_RX.search(x.get('head') or '') and \
-                    not re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I):   # a member whose own entry states a student role under the PI's title heading ('ZJU100 Young Professor') is a member (ZJU \u9648\u660e\u5e05)
+                    not re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I) and \
+                    not OWN_STUDENT_ROLE_RX.search((x.get('desc') or '')[:60]):   # a member whose own entry states a student role under the PI's title heading ('ZJU100 Young Professor') is a member (ZJU \u9648\u660e\u5e05)
                 why, x['detail'] = 'not_a_student', 'listed under a faculty heading'
             elif re.search(r'high[- ]school', (x.get('head') or '') + ' ' + (x.get('desc') or '')[:60], re.I):
                 why, x['detail'] = 'not_a_student', 'high-school outreach student'
