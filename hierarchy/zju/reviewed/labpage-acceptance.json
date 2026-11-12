@@ -3,11 +3,11 @@
   "decided_at": "2026-11-11",
   "bar": "docs/LAB-PAGES.md, acceptance bar",
   "additions_file": "hierarchy/zju/reviewed/labpage-additions.json",
-  "additions_generated_at": "2026-11-12T02:14:36+00:00",
-  "additions_sha256": "d96b0a444af9f61eaab04333c309959c78f3af8b522b0f5c24030c4c12389ed4",
+  "additions_generated_at": "2026-11-12T05:10:00+00:00",
+  "additions_sha256": "5b8fddfd8404025b76d484edceb6589c8ec1711906c8f0f4a26b07ea929be474",
   "students": {
     "accepted": true,
-    "round": 3,
+    "round": "sitefind2-census",
     "seed": 20261112,
     "sample_size": 30,
     "membership_errors": 0,
@@ -15,9 +15,9 @@
     "round_limit_extended_by_owner": 10,
     "owner_ruling": "owner ruled 2026-11-11: up to 10 lab-page rounds per school",
     "counts": {
-      "proposed": 73
+      "proposed": 106
     },
-    "note": "Round 3 on joint-rules b0416d0d (audit job 32214298): fresh reviewer, pure random 30 of the 73 unfiltered rows (Kai Bu 61, 陈明帅 9, 纪守领 3): membership 0 wrong / 0 doubtful = 0.0 (bar 1.5), role/year 0 wrong + 2 doubtful = 1.0 (bar 3; two 陈明帅 visitors, role None); census of the other 7 rows (陈明帅 4, 纪守领 3): 7/7 ok. Wired file = those 73 rows, unfiltered and unchanged (sha bound here). Kai Bu's ZJU faculty period from his own CV is in faculty-periods.json, wired in the same landing."
+    "note": "owner ruled 2026-11-11: up to 10 rounds. Wired file = 106 rows: the 73 rows wired earlier (Kai Bu 61, 陈明帅 9, 纪守领 3) + 33 rows of the site-find package (卢丽强 14, 李环 19; census of all 33 by a fresh reviewer, 33/33 ok; rows sha256 7584e87e...). Same pi/name/role/quote/url/sha256 as the reviewed rows, in the tool's additions format (years [start, null] for current students). Held: Yuxuan Yang (reader defect). Periods for 刘忠鑫 (2021-07), 卢丽强 (2022-06) and 李环 (2023-02, approximate, flagged) and 7 web_search_reviewed register entries (6 pinyin-only, flagged) are wired in the same landing. The sha bound here is the union file."
   },
   "papers": {
     "accepted": false,
