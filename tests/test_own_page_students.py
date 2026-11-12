@@ -108,3 +108,10 @@ def test_R_STU_22_committee_member_after_the_adviser_is_no_adviser_and_phd_beats
     assert not st('Jane Doe\nPh.D. at Georgia Tech. Adviser: Polo Chau Committee: Magnus Egerstedt, X (2019)')
     r = st('Jane Doe\nPh.D. and M.S. in ECE at Georgia Institute of Technology, advised by Magnus Egerstedt')
     assert r and r[0]['role'] == 'phd'
+
+
+def test_page_urls_skip_charter_closed_hosts(monkeypatch):
+    monkeypatch.setitem(O.CLOSED, 'x', {'dr.ntu.edu.sg', 'personal.ntu.edu.sg'})
+    p = dict(urls=['https://dr.ntu.edu.sg/entities/person/A-B', 'https://personal.ntu.edu.sg/~ab/', 'https://ab.github.io/', 'https://id.loc.gov/authorities/n1'])
+    assert O.page_urls(p, 'x') == ['https://ab.github.io/']
+    assert len(O.page_urls(p)) == 3 and 'https://id.loc.gov/authorities/n1' not in O.page_urls(p)

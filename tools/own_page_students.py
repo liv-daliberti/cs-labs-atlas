@@ -32,7 +32,7 @@ UA = 'Mozilla/5.0 (compatible; research-atlas-reader)'
 SKIP_HOSTS = re.compile(r'(^|\.)(dblp\.org|orcid\.org|scholar\.google\.|linkedin\.com|github\.com|twitter\.com|x\.com|facebook\.com|wikipedia\.org|wikidata\.org|'
                         r'researchgate\.net|semanticscholar\.org|dl\.acm\.org|ieeexplore\.ieee\.org|arxiv\.org|youtube\.com|mathgenealogy|genealogy\.math|academictree\.org|'
                         r'deepblue\.lib\.umich\.edu|news\.umich\.edu|record\.umich\.edu|doi\.org|openreview\.net|ui\.adsabs|loop\.frontiersin|publons|'
-                        r'zbmath|scopus\.com|mendeley|acm\.org|ieee\.org|springer\.com|sciencedirect\.com|jstor\.org|aminer|kaggle\.com|gitlab\.com|medium\.com)', re.I)
+                        r'id\.loc\.gov|zbmath|scopus\.com|mendeley|acm\.org|ieee\.org|springer\.com|sciencedirect\.com|jstor\.org|aminer|kaggle\.com|gitlab\.com|medium\.com)', re.I)
 
 
 def rd(p, default=None):
@@ -241,11 +241,25 @@ def s2_homepages(school):
     print(school, 'papers', len(dois), 's2 homepages', len(out))
 
 
-def page_urls(p):
+CLOSED = {}   # school -> hosts whose charter host_use is `none` (never contacted; hosts.json, written by school_hosts.py)
+
+
+def closed_hosts(school):
+    if school not in CLOSED:
+        try:
+            hs = json.load(open(P.data('hosts.json', school))).get('hosts') or []
+        except Exception:  # noqa: BLE001
+            hs = []
+        CLOSED[school] = {h['host'].lower() for h in hs if h.get('use') == 'none'}
+    return CLOSED[school]
+
+
+def page_urls(p, school=None):
     out = []
+    closed = closed_hosts(school) if school else set()
     for u in p['urls']:
         h = U.urlsplit(u).netloc.lower()
-        if u.startswith('http') and h and not SKIP_HOSTS.search(h) and u not in out:
+        if u.startswith('http') and h and not SKIP_HOSTS.search(h) and h not in closed and u not in out:
             out.append(u)
     return out
 
@@ -326,8 +340,8 @@ def get(url, rb):
 def fetch(school, shard=(0, 1), limit=None):
     rb = Robots()
     people = homepages([school])
-    todo = [(k, p) for k, p in sorted(people.items()) if page_urls(p)]
-    todo = [x for x in todo if zlib.crc32(U.urlsplit(page_urls(x[1])[0]).netloc.encode()) % shard[1] == shard[0]][:limit]   # a host belongs to one shard: its pacing holds
+    todo = [(k, p) for k, p in sorted(people.items()) if page_urls(p, school)]
+    todo = [x for x in todo if zlib.crc32(U.urlsplit(page_urls(x[1], school)[0]).netloc.encode()) % shard[1] == shard[0]][:limit]   # a host belongs to one shard: its pacing holds
     db = sqlite3.connect(OUT / f'captures-{school}.{shard[0]}.sqlite')
     db.execute('create table if not exists page (cand text, pi text, url text primary key, final text, status text, fetched text, raw_sha256 text, text_sha256 text, text text)')
     db.execute('create table if not exists done (cand text primary key, n integer)')
@@ -336,7 +350,7 @@ def fetch(school, shard=(0, 1), limit=None):
         ck = f'{pi}|{key}'
         if ck in done:
             continue
-        seen, queue = set(), page_urls(p)[:2]
+        seen, queue = set(), page_urls(p, school)[:2]
         n = 0
         while queue and n < 4:
             u = queue.pop(0)
