@@ -1910,7 +1910,7 @@ def pm_candidates(kit, school, pi, plan, held):
                 x['years'], x['years_basis'] = ([hc['year'], None] if not hc['alumni'] else [hc['year'], None]), 'stated_in_entry'
                 x['alumni'] = hc['alumni']
                 x['single_token'] = False
-            if x['role'] in (None, 'member') and x.get('name') and not x['alumni']:   # the label may follow the name on the page while the card's desc is empty ('ZL Zhuo Li Master \u00b7 Y3 ...'): Tsinghua round 1
+            if (x['role'] in (None, 'member') or (x.get('role_basis') == 'section_heading' and re.search(r'[\u00b7\u2022]\s*Y\d+\s*$', x.get('head') or ''))) and x.get('name') and not x['alumni']:   # (a chip-order card: the previous card's 'Ph.D. \u00b7 Y2' became the heading, the name's own label follows it) the label may follow the name on the page while the card's desc is empty ('ZL Zhuo Li Master \u00b7 Y3 ...'): Tsinghua round 1
                 try:
                     if src not in text_cache:
                         text_cache[src] = kit.lpev.text(school, src)
@@ -2605,7 +2605,7 @@ def repair_reason(kit, school, name, best, start, pi=None):
             return 'site_at_other_institution', f'the entry places the person at {om.group(1)}'
         if COADVISER_BEFORE.search(t[max(0, k - 40): k]):
             return 'not_a_student', 'named as the co-adviser of another member (co-advised with / jointly supervised with)'
-        if pi and (other_pis_on_page(school, pi, t, k) >= 6 or (other_pis_on_page(school, pi, t, k) >= 3 and len(re.findall(r'\bProfessor\b', t)) >= 5)) and len(re.findall(r'co-?advis|jointly|\bw/|\(with ', t[max(0, k - 900): k + 900], re.I)) < 2 and not any(fold(al.split()[-1]).lower() in fold(t[k: k + 120]).lower() for al in pi_alias_map(school).get(pi, [pi])):
+        if pi and (other_pis_on_page(school, pi, t, k) >= 6 or (other_pis_on_page(school, pi, t, k) >= 3 and len(re.findall(r'\bProfessor\b', t)) >= 5) or (other_pis_on_page(school, pi, t) >= 5 and len(re.findall(r'\bProfessor\b', t)) >= 5)) and len(re.findall(r'co-?advis|jointly|\bw/|\(with ', t[max(0, k - 900): k + 900], re.I)) < 2 and not any(fold(al.split()[-1]).lower() in fold(t[k: k + 120]).lower() for al in pi_alias_map(school).get(pi, [pi])):
             return 'shared_page_no_adviser', 'a page that names several faculty and their students; the entry does not name this PI as adviser'
         if COLLAB_PROSE.search(t[max(0, k - 300): k]):
             return 'not_a_student', 'listed among collaborators ("collaborate with the PhD students ...")'
