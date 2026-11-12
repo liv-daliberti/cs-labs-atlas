@@ -263,6 +263,11 @@ def test_audit_ai_allowed_uses_own_scheme_and_ignores_error_and_redirect_rows(tm
 SPA = '<!doctype html><html><head><title>Lab</title></head><body><div id="app"></div><script src="/app.js"></script></body></html>'
 
 
+def test_long_spa_shell_mentioning_a_cdn_or_a_research_challenge_is_no_rules():
+    body = SPA.replace('</body>', '<link href="https://cdnjs.cloudflare.com/x.css"><p>' + 'security challenges and Cloudflare, Akamai ' * 400 + '</p></body>')
+    assert W.robots_decision(200, body, '/people/')[:2] == (True, True)
+
+
 def test_html_spa_catch_all_robots_is_no_rules():
     # owner ruling 2026-11-12: a 200 HTML page with no robots lines is 'no rules'
     ours, ai, _ = W.robots_decision(200, SPA, '/people/')

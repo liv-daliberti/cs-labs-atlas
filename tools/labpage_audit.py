@@ -521,9 +521,10 @@ def pi_end_year(p):
 # Owner ruling 2026-11-12: a robots.txt that answers HTTP 200 with an HTML page holding no robots lines (an SPA catch-all) is 'no rules';
 # a service-error / challenge / login page (cloudflare, captcha, anubis, 'Request Error', 'Access Denied', ...) is still not permission.
 ROBOTS_LINE_RX = re.compile(r'^\s*(?:user-agent|disallow|allow|sitemap|crawl-delay)\s*:', re.I | re.M)
-ROBOTS_HTML_REFUSE_RX = re.compile(r'cloudflare|captcha|anubis|request\s+error|access\s+denied|challenge|just a moment|bot[- ]?(?:detection|check|protection)|'
-                                   r'traffic check|verify you are (?:a )?human|<title>[^<]{0,80}(?:log\s?in|sign\s?in|forbidden|unauthori[sz]ed|blocked|error)|type=["\']?password',
-                                   re.I)
+ROBOTS_HTML_REFUSE_RX = re.compile(r'cf[-_]chl|cf-browser-verification|just a moment|attention required|checking your browser|verify you are (?:a )?human|making sure you.re not a bot|'
+                                   r'techaro|anubis[-_.]|g-recaptcha|h-captcha|data-sitekey|bot[- ]?(?:detection|check|protection)|traffic check|type=["\']?password|'
+                                   r'<title>[^<]{0,80}(?:log\s?in|sign\s?in|forbidden|unauthori[sz]ed|blocked|error|denied|captcha|challenge|cloudflare|anubis)', re.I)
+ROBOTS_HTML_SHORT_RX = re.compile(r'cloudflare|captcha|anubis|request\s+error|access\s+denied|challenge', re.I)   # a short page (a service error / bot-check stub) saying so; a long SPA shell may mention a CDN or a research challenge
 
 
 def html_robots_is_no_rules(body):
@@ -531,7 +532,7 @@ def html_robots_is_no_rules(body):
     b = body or ''
     if '<html' not in b[:2000].lower() and '<!doctype html' not in b[:500].lower():
         return False
-    return not ROBOTS_LINE_RX.search(b) and not ROBOTS_HTML_REFUSE_RX.search(b[:60000])
+    return not ROBOTS_LINE_RX.search(b) and not ROBOTS_HTML_REFUSE_RX.search(b[:60000]) and not (len(b) < 12000 and ROBOTS_HTML_SHORT_RX.search(b))
 
 
 

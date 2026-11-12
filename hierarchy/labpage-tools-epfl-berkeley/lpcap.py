@@ -182,13 +182,15 @@ def _rule_match(pattern, path):
 
 
 _ROBOTS_LINE_RX = re.compile(r"^\s*(?:user-agent|disallow|allow|sitemap|crawl-delay)\s*:", re.I | re.M)
-_ROBOTS_HTML_REFUSE_RX = re.compile(r"cloudflare|captcha|anubis|request\s+error|access\s+denied|challenge|just a moment|bot[- ]?(?:detection|check|protection)|"
-                                    r"traffic check|verify you are (?:a )?human|<title>[^<]{0,80}(?:log\s?in|sign\s?in|forbidden|unauthori[sz]ed|blocked|error)|type=[\"']?password", re.I)
+_ROBOTS_HTML_REFUSE_RX = re.compile(r"cf[-_]chl|cf-browser-verification|just a moment|attention required|checking your browser|verify you are (?:a )?human|making sure you.re not a bot|"
+                                    r"techaro|anubis[-_.]|g-recaptcha|h-captcha|data-sitekey|bot[- ]?(?:detection|check|protection)|traffic check|type=[\"']?password|"
+                                    r"<title>[^<]{0,80}(?:log\s?in|sign\s?in|forbidden|unauthori[sz]ed|blocked|error|denied|captcha|challenge|cloudflare|anubis)", re.I)
+_ROBOTS_HTML_SHORT_RX = re.compile(r"cloudflare|captcha|anubis|request\s+error|access\s+denied|challenge", re.I)
 
 
 def html_robots_is_no_rules(txt):
     """Owner ruling 2026-11-12: a 200 robots.txt that is an HTML page with no robots lines and no challenge/error/login marker is 'no rules'."""
-    return not _ROBOTS_LINE_RX.search(txt) and not _ROBOTS_HTML_REFUSE_RX.search(txt[:60000])
+    return not _ROBOTS_LINE_RX.search(txt) and not _ROBOTS_HTML_REFUSE_RX.search(txt[:60000]) and not (len(txt) < 12000 and _ROBOTS_HTML_SHORT_RX.search(txt))
 
 
 def robots_final_elsewhere(final_url, netloc):
