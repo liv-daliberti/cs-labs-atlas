@@ -1744,11 +1744,17 @@
     "reviewer": "claude-tsinghua-bib-1109",
     "reviewed_on": "2026-11-09",
     "mixed_openalex": [
-      "https://openalex.org/A5027592563",
-      "https://openalex.org/A5100447195",
-      "https://openalex.org/A5100674347"
+      "https://openalex.org/A5100402120"
     ],
-    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06)."
+    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06).",
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W2775516195",
+        "sha256": "cdf06c285cc4a5114a5bfc447049400732c28cb84e6db5b6114f2e981d75f7cf",
+        "quote": "id ...100402120: 'Medical image based hemodynamic analysis' (Medicine); reviewer: namesake: Medical hemodynamics vs OS researcher; different field"
+      }
+    ],
+    "why": "2026-11-14 anchored-only row screen: per-id fresh-reviewer bad rate >= 50% of rows tied only through the id; R-PAP-06 (neither anchor nor block). DBLP-tied rows stay."
   },
   "刘永进": {
     "dblp": [
@@ -3671,9 +3677,23 @@
     "reviewer": "claude-tsinghua-bib-1109",
     "reviewed_on": "2026-11-09",
     "mixed_openalex": [
-      "https://openalex.org/A5100375792"
+      "https://openalex.org/A5100375832",
+      "https://openalex.org/A5115603646"
     ],
-    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06)."
+    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06).",
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W2986888765",
+        "sha256": "365de55b7c7c0e8728d2717e691d1c84bc65468e2315eb1110c49e47ed560cf3",
+        "quote": "id ...100375832: 'Combining Multilevel Features for Remote Sensing Image Scene Classification With Attention' (Engineering); reviewer: namesake: Remote-sensing image classification, flagged id; Tao Zhang PI does robotics/SLAM"
+      },
+      {
+        "url": "https://api.openalex.org/works/W4401693549",
+        "sha256": "6cef646acd851b4866fdc5ce7c45ab5a2a13d31c2a4b889172739a29bdb080ba",
+        "quote": "id ...115603646: 'Data resources catalog creation method across oil and gas industry chain' (Decision Sciences); reviewer: namesake: Oil/gas data catalog; flagged id, unrelated to PI's work"
+      }
+    ],
+    "why": "2026-11-14 anchored-only row screen: per-id fresh-reviewer bad rate >= 50% of rows tied only through the id; R-PAP-06 (neither anchor nor block). DBLP-tied rows stay."
   },
   "何潇": {
     "dblp": [
@@ -4027,17 +4047,47 @@
     "reviewer": "claude-tsinghua-bib-1109",
     "reviewed_on": "2026-11-09",
     "mixed_openalex": [
-      "https://openalex.org/A5073404846",
-      "https://openalex.org/A5077055393",
-      "https://openalex.org/A5100388033",
-      "https://openalex.org/A5100388053",
-      "https://openalex.org/A5100388295",
-      "https://openalex.org/A5100388365",
-      "https://openalex.org/A5100653787",
-      "https://openalex.org/A5100688166",
-      "https://openalex.org/A5133683544"
+      "https://openalex.org/A5037682194",
+      "https://openalex.org/A5073838165",
+      "https://openalex.org/A5100354631",
+      "https://openalex.org/A5100388342",
+      "https://openalex.org/A5100711543",
+      "https://openalex.org/A5100728379"
     ],
-    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06). Native 6 (2026-11-10): with pre-2021 listings new anchored ids appeared and a 50-row review showed namesake works (microscopy, building energy, pearl oyster, Alzheimer), so these ids are mixed too."
+    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06). Native 6 (2026-11-10): with pre-2021 listings new anchored ids appeared and a 50-row review showed namesake works (microscopy, building energy, pearl oyster, Alzheimer), so these ids are mixed too.",
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W2527459043",
+        "sha256": "280e38bd6edf25248efa2ebc71d4c2feef3ca78edafac4cb3fa8bd131952f76c",
+        "quote": "id ...037682194: 'Using big data from the web to train Chinese traffic word representation model in vector s' (Computer Science); reviewer: ok: Field, coauthors and Tsinghua byline consistent with known work"
+      },
+      {
+        "url": "https://api.openalex.org/works/W2953403204",
+        "sha256": "0b72af22909357a7138d34e3699c75567d83ca2f6fbcdcdeb66aea6b376ff98b",
+        "quote": "id ...073838165: 'Driver Identity Recognition Based on Curved Handprints on Steering Wheel' (None); reviewer: unclear: Driver identity recognition; transport fit but flagged id, common name"
+      },
+      {
+        "url": "https://api.openalex.org/works/W4368342906",
+        "sha256": "13bee5d55d4d6c2dd9382460795d847a559772dd54aae90d71faffda69238da6",
+        "quote": "id ...100354631: 'Heterogeneous multi-task smoking behavior recognition model combined with attention' (Computer Science); reviewer: namesake: Smoking recognition by Yang Zhang, flagged id; namesake"
+      },
+      {
+        "url": "https://api.openalex.org/works/W2524596732",
+        "sha256": "b7e133a6e757931b662d16e641c55d872a7a39ab3e073c20270292752bea1629",
+        "quote": "id ...100388342: 'Travel time prediction with immune genetic algorithm and support vector regression' (Engineering); reviewer: ok: Field and coauthors consistent with PI's known work; Tsinghua byline"
+      },
+      {
+        "url": "https://api.openalex.org/works/W2977257391",
+        "sha256": "9deb683a382855b122c96cf7c2483cb20a4717d058dad1ce1c94a4b2ab20aef4",
+        "quote": "id ...100711543: 'Errata for CICTP 2019: Transportation in China—Connecting the World' (None); reviewer: unclear: CICTP errata, flagged id, no topic; cannot tie to PI"
+      },
+      {
+        "url": "https://api.openalex.org/works/W4402509848",
+        "sha256": "9d76ab7db239e0daa0d2ebb5fa3bb84603e19cda3a9c92b157341d8b8565bfce",
+        "quote": "id ...100728379: 'Tuning Vision-Language Models With Multiple Prototypes Clustering' (Computer Science); reviewer: namesake: VLM tuning with Shi-Min Hu group; Yi Zhang namesake"
+      }
+    ],
+    "why": "2026-11-14 anchored-only row screen: per-id fresh-reviewer bad rate >= 50% of rows tied only through the id; R-PAP-06 (neither anchor nor block). DBLP-tied rows stay."
   },
   "李力": {
     "dblp": [
@@ -4249,14 +4299,41 @@
     "reviewer": "claude-tsinghua-bib-1109",
     "reviewed_on": "2026-11-09",
     "mixed_openalex": [
-      "https://openalex.org/A5055981994",
-      "https://openalex.org/A5066557235",
-      "https://openalex.org/A5100620306",
-      "https://openalex.org/A5101853761",
-      "https://openalex.org/A5130245186",
-      "https://openalex.org/A5141308819"
+      "https://openalex.org/A5057768736",
+      "https://openalex.org/A5100770462",
+      "https://openalex.org/A5100770464",
+      "https://openalex.org/A5103087953",
+      "https://openalex.org/A5111512943"
     ],
-    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06). Native 6 (2026-11-10): with pre-2021 listings new anchored ids appeared and a 50-row review showed namesake works (microscopy, building energy, pearl oyster, Alzheimer), so these ids are mixed too."
+    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06). Native 6 (2026-11-10): with pre-2021 listings new anchored ids appeared and a 50-row review showed namesake works (microscopy, building energy, pearl oyster, Alzheimer), so these ids are mixed too.",
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W3092516855",
+        "sha256": "4415594dde92d807081b3e6953a8f2ff80af4f7eb8fbc2870d2907cba9ee6d5e",
+        "quote": "id ...057768736: 'Bias in social interactions and emergence of extremism in complex social networks' (Physics and Astronomy); reviewer: namesake: NTU opinion-dynamics physics; different Jie Zhou"
+      },
+      {
+        "url": "https://api.openalex.org/works/W2950336186",
+        "sha256": "c89b562308032770061c02f2243ed501b47c43bb051a5d7f8be7a8178350fd92",
+        "quote": "id ...100770462: 'GEAR: Graph-based Evidence Aggregating and Reasoning for Fact Verification' (Social Sciences); reviewer: namesake: Fact verification NLP (Maosong Sun group); different Jie Zhou"
+      },
+      {
+        "url": "https://api.openalex.org/works/W2952179106",
+        "sha256": "5ba6563b7e3c2646318c4796105c0f7ced35cbb287dacaf9bfe63daa3456f7dc",
+        "quote": "id ...100770464: 'DocRED: A Large-Scale Document-Level Relation Extraction Dataset' (Computer Science); reviewer: namesake: DocRED NLP; Jie Zhou here is NLP/Tencent, not CV PI"
+      },
+      {
+        "url": "https://api.openalex.org/works/W3116942732",
+        "sha256": "2c5c9c57d69252641add9eac5f17633d0b5f34a9e0449ce0ca1e78e123c4e4f1",
+        "quote": "id ...103087953: 'Topology of Surfaces with Finite Willmore Energy' (Mathematics); reviewer: namesake: Pure math Willmore energy; PI is computer vision; flagged id"
+      },
+      {
+        "url": "https://api.openalex.org/works/W4404741315",
+        "sha256": "7680e296e3bff6f4c39a3192251cf79ce2f8a465a0b41d36f61a8e1966b96b6c",
+        "quote": "id ...111512943: 'Quantum State Transfer between Superconducting Cavities via Exchange-Free Interactions' (Computer Science); reviewer: namesake: Quantum physics PRL (Luyan Sun lab); different Jie Zhou"
+      }
+    ],
+    "why": "2026-11-14 anchored-only row screen: per-id fresh-reviewer bad rate >= 50% of rows tied only through the id; R-PAP-06 (neither anchor nor block). DBLP-tied rows stay."
   },
   "冯建华": {
     "no_identity": false,
@@ -5812,7 +5889,60 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: a name-compatible Tsinghua-affiliated DBLP person exists (40/1491-100, 40/1491-105, 40/1491-108) but no source tie (profile link, owned-page title list or reciprocal URL) was found on the official profile or its linked pages. Pinyin-name-only matches never bind (R-PAP-44). Held pending an owned bibliography source.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5100331032",
+      "https://openalex.org/A5100331052",
+      "https://openalex.org/A5100331094",
+      "https://openalex.org/A5100430474",
+      "https://openalex.org/A5100674281",
+      "https://openalex.org/A5100706630",
+      "https://openalex.org/A5101959718",
+      "https://openalex.org/A5107954261"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W3165872664",
+        "sha256": "1d9c19ef52786b30a35fc6b35f7492d937690c497e4aef6332d0a447f195d7c4",
+        "quote": "id ...100706630: 'Stretch‐driven microfluidic chip for nucleic acid detection' (Engineering); reviewer: Microfluidic nucleic acid chip, unrelated to robotics; microelectronics/biochip group"
+      },
+      {
+        "url": "https://api.openalex.org/works/W2990483919",
+        "sha256": "886aab2fd6a87a6493ea1ee062a5b3d1594378dba53ef4eb6b32561c256ecde5",
+        "quote": "id ...100331032: 'Multiple Bonding Between Group 3 Metals and Fe(CO)3−' (Chemistry); reviewer: Inorganic chemistry, unrelated to robotics"
+      },
+      {
+        "url": "https://api.openalex.org/works/W2955401528",
+        "sha256": "ea47ad219691148a865e3ca1ccd9778bbe240ab277cfd1793f4687cfc36ef8b1",
+        "quote": "id ...100331052: 'Spatial distribution study of a nitrogen plasma in an ion-filtered inductively coupled plasma used to grow GaN' (Physics and Astronomy); reviewer: GaN plasma physics, unrelated field"
+      },
+      {
+        "url": "https://api.openalex.org/works/W4413157430",
+        "sha256": "685abb5005d7f1c524fcdc8141889aea1514f144d9d348240e557d6be33801ab",
+        "quote": "id ...100331094: 'HSI-GPT: A General-Purpose Large Scene-Motion-Language Model for Human Scene Interaction' (Engineering); reviewer: Human-scene-motion language model with Shengjin Wang's group; under-flagged id"
+      },
+      {
+        "url": "https://api.openalex.org/works/W4386237643",
+        "sha256": "7749af905e18c979e5915b87363807f3f6a40e87b5c3aafb6f54c7ad3c21b13f",
+        "quote": "id ...100674281: 'Decoding Natural Images from EEG for Object Recognition' (Neuroscience); reviewer: EEG decoding with Xiaorong Gao BCI group; under-flagged id"
+      },
+      {
+        "url": "https://api.openalex.org/works/W4416748391",
+        "sha256": "c166801678a5509b35d1bd17d890675e6a609ba864ab3c756dcf7c8abfd3e088",
+        "quote": "id ...101959718: 'DRARL: Disengagement-Reason-Augmented Reinforcement Learning for Efficient Improvement of Autonomous Driving P' (None); reviewer: Autonomous driving RL, Diange Yang group; anchored only"
+      },
+      {
+        "url": "https://api.openalex.org/works/W4410985872",
+        "sha256": "f1aacbadd8cec3efc634095acbb4317d3edf06fd40fd4aa83363a5af37ca943c",
+        "quote": "id ...107954261: 'Low SPSL Transmit Beampattern Design for MIMO Radar via Lp-Norm Smoothing' (Engineering); reviewer: MIMO radar beampattern; unrelated field"
+      },
+      {
+        "url": "https://api.openalex.org/works/W3195947465",
+        "sha256": "68a8200f92fb0b290b066a2e85d77d7eddc74437847818c10d69d84c37807e57",
+        "quote": "id ...100430474: 'Align and Pool for EEG Headset Domain Adaptation (ALPHA) to Facilitate Dry Electrode Based SSVEP-BCI' (Neuroscience); reviewer: EEG SSVEP, Gao Xiaorong lab; unrelated field"
+      }
+    ],
+    "why_mixed_openalex": "2026-11-13 strict identity spot check (ts4; period-sprint overlay): the anchored OpenAlex ids of 李翔/Xiang Li hold other people's works (anchored-only rows read by a fresh reviewer: 27 namesake and 7 more namesake under flagged ids, 4 unclear, 9 ok of 47). Listed ids are mixed (R-PAP-06): they neither anchor nor block; every authorship under them needs per-work evidence (the 62+ DBLP-person-page works keep it). Evidence: one reviewed namesake work per id."
   },
   "黄高": {
     "no_identity": false,
