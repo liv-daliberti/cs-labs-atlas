@@ -16,6 +16,23 @@ import atlas_paths as P
 
 
 PAGES = {
+    'Brendan David-John': (
+        'https://bmdj-vt.github.io/people',
+        'c82cbb075cb14602ce3340ca39c656d73a46c1026ec55bfa1674aa01dead224e',
+        [
+            ('Gabriella Ramirez', 'phd', [2026, 2026], 'Gabriella ‘Nikki’ Ramirez Ph.D. Student'),
+            ('Anish Narkar', 'phd', [2026, 2026], 'Anish Narkar Ph.D. Student'),
+            ('Syed Ibrahim Mustafa Shah B.', 'phd', [2026, 2026], 'Syed Ibrahim Mustafa Shah B. Ph.D. Student'),
+            ('Maha Sajid', 'phd', [2026, 2026], 'Maha Sajid Ph.D. Student'),
+            ('Paul Maynard', 'phd', [2026, 2026], 'Paul Maynard Ph.D. Student'),
+            ('Andrew Jones', 'phd', [2026, 2026], 'Andrew Jones Ph.D. Student'),
+            ('Haris Amjad', 'phd', [2026, 2026], 'Haris Amjad Ph.D. Student'),
+            ('Miguel Lopez', 'phd', [2026, 2026], 'Miguel Lopez Ph.D. Student'),
+            ('Nick Gazzillo', 'masters', [2026, 2026], 'Nick Gazzillo Masters Student'),
+            ('Jan Michalak', 'masters', [2025, 2025], 'Jan Michalak CS Masters ‘25'),
+            ('Raghav Sethi', 'masters', [2024, 2024], 'Raghav Sethi Masters in CS ‘24'),
+        ],
+    ),
     'Chris Thomas': (
         'https://people.cs.vt.edu/chris/group/',
         '1213b7146a8ecd18ddb3a5f39373fff748b1e5cfefc8023e27d4185a68211798',
@@ -60,7 +77,12 @@ def main():
             tag.decompose()
         visible = ' '.join(soup.get_text(' ', strip=True).split())
         assert pi in visible
-        assert ('Group Md Atabuzzaman' if pi == 'Chris Thomas' else 'PhD students Arman Riasi') in visible
+        marker = {
+            'Brendan David-John': 'Principle Investigator Brendan David-John',
+            'Chris Thomas': 'Group Md Atabuzzaman',
+            'Thang Hoang': 'PhD students Arman Riasi',
+        }[pi]
+        assert marker in visible
         rec = by_pi.setdefault(pi, dict(pi=pi, students=[]))
         existing = {s['name'] for s in rec['students']}
         added[pi] = 0
