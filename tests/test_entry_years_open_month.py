@@ -174,3 +174,11 @@ def test_discovery_name_signal_for_a_han_keyed_pi():
     import pi_name_signal as N
     assert N.page_names_pi('Shuibing He, Zhejiang University, personal homepage', '何水兵', None)
     assert not N.page_names_pi('He lab at another university', '何水兵', None)   # a family-name-only page never counts
+
+
+def test_role_from_a_preceding_page_heading():
+    assert L.role_from_preceding_heading('Administrative Staff Ph.D Student roster updated: 2026-10-20 Qi Zhao') == 'phd'
+    assert L.role_from_preceding_heading("Master Student roster Ke Fan") == 'masters'
+    assert L.role_from_preceding_heading('博士生 蔡') == 'phd'
+    assert L.role_from_preceding_heading('Ph.D Student roster ... Alumni Ann Lee') is None   # an alumni heading after it
+    assert L.role_from_preceding_heading('no heading here') is None

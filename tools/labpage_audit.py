@@ -1704,6 +1704,22 @@ def han_card_item(c_, row_, names, held):
                 alumni=c_['alumni'], held=h_, held_kind=hk_, url=row_['url'], capture_url=row_.get('capture_url'), sha256=row_['sha256'], han_card=c_)
 
 
+ROLE_TEXT_HEAD_RX = re.compile(r"(?<![\w'])(ph\.?\s?d\.?|doctoral|master(?:'s)?|m\.?s\.?|undergraduate|bachelor)\s+students?\b|(\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f)", re.I)
+ROLE_TEXT_STOP_RX = re.compile(r"\b(?:alumni|alumnae|former|past|graduated|faculty|professors?|staff|postdocs?|post-?doctoral|researchers?|visitors?)\b|\u5df2\u6bd5\u4e1a|\u6bd5\u4e1a\u751f|\u6821\u53cb|\u6559\u5e08|\u6559\u6388", re.I)
+
+
+def role_from_preceding_heading(pre):
+    """The role of the nearest role heading ('Ph.D Student', 'Master Student', \u535a\u58eb\u751f, \u7855\u58eb\u751f) in the page text before a roster name, unless an alumni / faculty / staff heading comes after it (SJTU dmcv roster)."""
+    ms = list(ROLE_TEXT_HEAD_RX.finditer(pre or ''))
+    if not ms:
+        return None
+    m = ms[-1]
+    if ROLE_TEXT_STOP_RX.search(pre[m.end():]):
+        return None
+    k = (m.group(1) or m.group(2) or '').lower()
+    return 'phd' if k.startswith(('ph', 'doctor', '\u535a')) else 'masters' if k.startswith(('master', 'm', '\u7855')) else 'undergraduate'
+
+
 def han_member_cards(text, school_rx=r'\u4e0a\u6d77\u4ea4\u901a\u5927\u5b66|\u4ea4\u5927|\u6e05\u534e|\u6d59\u6c5f\u5927\u5b66|\u6d59\u5927'):
     """Member cards of a Chinese lab page: 'NAME NN\u7ea7\u535a\u58eb\u7814\u7a76\u751f (\u4e0e\u67d0\u6559\u6388\u8054\u5408\u57f9\u517b) bio ...' under \u535a\u58eb\u751f / \u7855\u58eb\u751f / \u7814\u7a76\u52a9\u7406 / \u5df2\u6bd5\u4e1a headings (SJTU ScaleLab people.html; the same form on Tsinghua / ZJU /
     SJTU pages). -> [dict(name, role, start year 20NN, alumni, head, quote, desc, member)]: the role is the label's (\u535a\u58eb->phd, \u7855\u58eb->masters, \u672c\u79d1->undergraduate, \u535a\u58eb\u540e->postdoc), the year is NN\u7ea7 (20NN), a \u6bd5\u4e1a / \u5df2\u6bd5\u4e1a / \u6821\u53cb heading marks alumni. A card
@@ -1952,6 +1968,18 @@ def pm_candidates(kit, school, pi, plan, held):
                     sn2 = re.match(r'^\s*(?:[\u4e00-\u9fff\u00b7]{2,4}\s*)?since\s+(?:(?:spring|summer|fall|autumn|winter)\s+)?((?:19|20)\d\d)\b', tl2, re.I)
                     if sn2:
                         x['years'], x['years_basis'] = [int(sn2.group(1)), None], 'stated_in_entry'
+                except (KeyError, ValueError):
+                    pass
+            if x['role'] in (None, 'member') and x.get('name') and not x['alumni']:   # the role heading sits in the page text before the roster while the extractor's heading chain lost it ('Ph.D Student roster updated: ... Ke Fan'): SJTU dmcv
+                try:
+                    if src not in text_cache:
+                        text_cache[src] = kit.lpev.text(school, src)
+                    pt3_ = text_cache[src]
+                    qj3 = pt3_.find(x['name'])
+                    if qj3 > 0:
+                        rh_ = role_from_preceding_heading(pt3_[max(0, qj3 - 2500):qj3])
+                        if rh_:
+                            x['role'], x['role_basis'] = rh_, 'section_heading'
                 except (KeyError, ValueError):
                     pass
             if fn in roles_:
