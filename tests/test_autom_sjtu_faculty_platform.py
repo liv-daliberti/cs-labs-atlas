@@ -62,3 +62,20 @@ def test_plausible_lone_han_name_under_student_heading():
     import importlib
     la = importlib.import_module('labpage_audit')
     assert la.plausible_under_student_heading('贠三木') and not la.plausible_under_student_heading('研究领域')
+
+
+def test_detail_page_cards_two_templates():
+    import importlib
+    la = importlib.import_module('labpage_audit')
+    t1 = ('上海交大研究生院主页平台管理系统 某教授--中文主页-- 甲乙丙 首页 科学研究 学生信息 个人主页 常用链接 学生信息 中文主页 - 学生信息 甲乙丙 发布时间：2020-05-11 所学专业： 电子与通信工程 '
+          '学历： 硕士研究生 状态： 毕业 入学日期： 2018-09-01 毕业日期： 2021-03-31 上一条： 丁戊 下一条： 己庚 沪ICP备05052060 版权所有©上海交通大学')
+    c1 = la.faculty_platform_detail_cell(t1)
+    assert (c1['name'], c1['role'], c1['years'], c1['alumni']) == ('甲乙丙', 'masters', [2018, 2021], True)
+    assert c1['quote'] in re.sub(r'\s+', ' ', t1) and c1['quote'].endswith('毕业日期： 2021-03-31')
+    t2 = ('某教授 教授 所在单位： 电子信息与电气工程学院 学生信息 当前位置: 中文主页 >> 学生信息 >> 辛壬癸 辛壬癸 点击次数： 所学专业： 计算机科学与技术 学历： 博士研究生 学位： 工学博士 '
+          '状态： 在校 入学日期： 2022-04-07 毕业日期： 2027-06-30 上一条： 子丑 沪ICP备05052060')
+    c2 = la.faculty_platform_detail_cell(t2)
+    assert (c2['name'], c2['role'], c2['alumni'], c2['years'][0]) == ('辛壬癸', 'phd', False, 2022) and c2['years'][1] >= 2026
+    assert c2['quote'].endswith('入学日期： 2022-04-07')   # the planned graduation date of a current student is not quoted as membership
+    assert la.faculty_platform_detail_cell('学生信息 研究领域 论文成果') is None
+    assert la.PLATFORM_DETAIL_RX.search('https://faculty.sjtu.edu.cn/x/zh_CN/xsxx/12/content/34.htm') and la.PLATFORM_LIST_RX.search('https://faculty.sjtu.edu.cn/x/zh_CN/xsxx/12/list/index.htm')

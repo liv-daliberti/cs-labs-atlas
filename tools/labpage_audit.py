@@ -1503,6 +1503,8 @@ def discover_lab(kit, school, p, ctx, full=True):
             pages.append(('people', s['url']))
         if chosen['people_page'] and kind_lab(chosen, kit):
             chosen['kind'] = 'lab_site'
+        if chosen['people_page'] and PLATFORM_LIST_RX.search(chosen['people_page']):
+            chosen['people_details'] = fetch_platform_details(kit, chosen['people_page'], add)
     # 6. Wayback history of the people and alumni pages (2016-2026, from the PI's first year at the school)
     wb = {}
     first = max(WINDOW[0], pi_start_year(p) or WINDOW[0])
@@ -2362,6 +2364,58 @@ HAN_TABLE_TYPE_RX = re.compile(r'^(?:\u76f4|\u666e|\u5de5|\u5728\u804c|\u7855\u5
 HAN_TABLE_YEAR_RX = re.compile(r'^(?:19[89]\d|20[0-2]\d)$')
 
 
+PLATFORM_LIST_RX = re.compile(r'^https?://faculty\.sjtu\.edu\.cn/[^/]+/(?:zh_CN|en)/xsxx/\d+/list/index\.htm$')
+PLATFORM_DETAIL_RX = re.compile(r'/xsxx/\d+/content/\d+\.htm$')
+HAN_DEGREE_ROLE = (('博士后', 'postdoc'), ('博士', 'phd'), ('硕士', 'masters'), ('本科', 'undergraduate'))
+
+
+def faculty_platform_detail_cell(text):
+    """One student's own page on the SJTU faculty-homepage platform (faculty.sjtu.edu.cn/<pi>/zh_CN/xsxx/<id>/content/<n>.htm): '学生信息 [>> Name] Name [发布时间/点击次数]
+    所学专业 ... 学历： 硕士研究生 ... 状态： 在校|毕业 入学日期： 2021-09-10 毕业日期： 2025-03-31'. Role from the 学历 field, status from 状态, years [registration year, graduation year]
+    (a current student: [registration year, capture year]; the planned graduation date of a current student is not a membership year). -> dict(name, role, years, alumni, quote, head, desc) or None."""
+    t = re.sub(r'\s+', ' ', text or '')
+    m = re.search(r'(?:学生信息|>>)\s+(?:>>\s+)?([\u4e00-\u9fff\u00b7]{2,5})(?:\s+\1)?\s+(?:发布时间[：:]\s*\S+\s+|点击次数[：:]\s*)?(?:所学专业[：:]|学历[：:])', t)
+    if not m:
+        return None
+    body = t[m.start(1):]
+    deg = re.search(r'学历[：:]\s*(\S+)', body)
+    st = re.search(r'状态[：:]\s*(\S+)', body)
+    reg = re.search(r'入学日期[：:]\s*((?:19|20)\d\d)-\d\d-\d\d', body)
+    grad = re.search(r'毕业日期[：:]\s*((?:19|20)\d\d)-\d\d-\d\d', body)
+    if not deg or not st or not (reg or grad):
+        return None
+    role = next((r_ for k_, r_ in HAN_DEGREE_ROLE if k_ in deg.group(1)), None)
+    alumni = st.group(1).startswith('毕业')
+    if not alumni and not re.match(r'在校|在读', st.group(1)):
+        return None
+    y0 = int(reg.group(1)) if reg else None
+    end = re.search(r'(毕业日期[：:]\s*(?:19|20)\d\d-\d\d-\d\d)', body) if alumni else re.search(r'(入学日期[：:]\s*(?:19|20)\d\d-\d\d-\d\d)', body)
+    quote = body[:end.end()] if end else None
+    if alumni:
+        years = [y0, int(grad.group(1)) if grad else None]
+    else:
+        years = [y0, datetime.date.today().year] if y0 else None
+    return dict(name=m.group(1), role=role, years=years, alumni=alumni, quote=quote, head='学生信息', desc=body[len(m.group(1)):][:160].strip())
+
+
+def fetch_platform_details(kit, list_url, add, cap=600):
+    """The detail pages (registration and graduation dates) linked from a faculty-platform Student Information list page: each is one student's own page on the PI's
+    homepage. Fetched through the kit (robots, >= 3 s per host). -> the urls fetched with status 200."""
+    r = kit.get(list_url)
+    links = []
+    for href, _txt in site_links(kit, r, link_base(r, list_url)):
+        href = href.split('#')[0]
+        if PLATFORM_DETAIL_RX.search(href) and href.startswith('http') and href not in links and urlsplit(href).hostname == urlsplit(list_url).hostname:
+            links.append(href)
+    ok = []
+    for u in links[:cap]:
+        rr = kit.get(u)
+        if rr.get('status') == 200 and rr.get('content'):
+            ok.append(u)
+    add('platform_details', list_url, f'{len(ok)} of {len(links)} detail pages fetched')
+    return ok
+
+
 def han_adviser_table_cells(text, pi_name):
     """A Han roster TABLE with the header '年级 姓名 类别 导师' (entry year | name | degree type | adviser [| tutor | topic]; Tsinghua 杨家海's nmgroup xsgl page): one row per student, the cohort year is
     the entry year (-> [year, None], still enrolled), the type cell gives the degree (博 phd, 硕 masters) and the ADVISER cell must name the PI (the co-supervision rule: a row naming
@@ -2700,6 +2754,15 @@ def pm_candidates(kit, school, pi, plan, held):
     auto_plan = bool(plan.get('strict')) or plan.get('notes', '').startswith('lab-page audit discovery')
     homepage_people = bool(plan.get('homepage_people'))
     coadv, inst_ = {}, {}
+    platform_detail_names = set()
+    for src_, _c in srcs:
+        if PLATFORM_DETAIL_RX.search(src_):
+            try:
+                c_ = faculty_platform_detail_cell(kit.lpev.text(school, src_))
+            except (KeyError, ValueError):
+                c_ = None
+            if c_ and c_['quote'] and c_['role']:
+                platform_detail_names.add(names.fold(c_['name']))
     for src, is_cap in srcs:
         spans = plan.get('span', {})
         orig = None
@@ -2716,6 +2779,15 @@ def pm_candidates(kit, school, pi, plan, held):
             if not is_cap:
                 unreadable.append((src, str(e)[:200]))
             continue
+        fp_cell = faculty_platform_detail_cell(kit.lpev.text(school, src)) if PLATFORM_DETAIL_RX.search(src) else None
+        if PLATFORM_DETAIL_RX.search(src):   # one student's own page: only its dated card counts, never the page's menu and neighbour links
+            ext = []
+            if fp_cell and fp_cell['quote'] and fp_cell['role'] and not any(names.match_one(fp_cell['name'], pn_) for pn_ in [pi]):
+                row_fp, _vfp = kit.lpev.cap(school, src)
+                ext = [dict(han_card_item(dict(name=fp_cell['name'], head=fp_cell['head'], desc=fp_cell['desc'], quote=fp_cell['quote'], role=None, alumni=fp_cell['alumni']), row_fp, names, held),
+                            han_card=None, flags=[], role='member', card_override=dict(role=fp_cell['role'], years=fp_cell['years'], alumni=fp_cell['alumni']))]
+        elif platform_detail_names:
+            ext = [e_ for e_ in ext if names.fold(e_['name']) not in platform_detail_names]   # the dated detail card replaces the undated list entry
         try:
             row_, _v = kit.lpev.cap(school, src)
             ptxt_ = kit.lpev.text(school, src)
@@ -4103,7 +4175,7 @@ def lab_record(kit, ctx, p, disc):
         ch = d['chosen']
         site, people, alumni, pubs = ch['lab_site'], ch.get('people_page'), ch.get('alumni_page'), ch.get('pubs_page')
         start = pi_start_year(p) or WINDOW[0]
-        srcs = [kit.src_of(u) for u in (people, alumni) if u]
+        srcs = [kit.src_of(u) for u in (people, alumni) if u] + [kit.src_of(u) for u in ch.get('people_details') or []]
         plan = dict(people=srcs, wb=[u for u in (people, alumni) if u], wb_caps=d.get('wayback') or {},
                     alumni_pages=[alumni, kit.src_of(alumni)] if alumni else [],
                     homepage_people=bool(people and people.rstrip('/') == site.rstrip('/')),
