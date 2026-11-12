@@ -4,8 +4,8 @@ wired into pi_hierarchy.py / chain_audit.py. Prints one JSON line per stage and 
   0 charter   schools/<key>.toml passes school_config.check; hierarchy/<key>/hosts.json (tools/school_hosts.py) has its gate true and
               lists every host of the charter; the OpenAlex snapshot holds the school's primary lineage id (main store or an
               ext-<key>.sqlite extension: tools/oa_snapshot.py filter|merge --ext <key>, docs/OPENALEX-SNAPSHOT.md)
-  1 sources   every department of the charter has an ok listing capture in every window year (listings/<key>/coverage.json);
-              a missing year must carry a plan reason and, to pass, a reviewed `listing_gaps` entry (year = reason) in the charter's department
+  1 sources   every department has a complete listing in every window year (listings/<key>/coverage.json);
+              documented archive gaps remain open; source-era category groups require every member slot
   2 census    every CS-related candidate has a decision other than pending_openalex (hierarchy/<key>/cs-related-review.json),
               and every candidate is in the review
   3 pis       every census PI (and addition) has a PI basis with url + sha256 + quote, and an accepted home department
@@ -112,8 +112,9 @@ def g1(key):
                     bad.append(f"{d['code']} {y}: " + '; '.join(
                         f'{name} missing ' + ', '.join(absent) for name, absent in missing))
                 continue
-            gap = (d.get('listing_gaps') or {}).get(str(y))   # reviewed: searched, no archived listing (reason in the charter)
-            if not any(s == 'ok' for s in v.values()) and not gap:
+            # Owner 2026-11-11: no waivers. A search/availability ledger
+            # explains missing evidence; it cannot substitute for the roster.
+            if not any(s == 'ok' for s in v.values()):
                 bad.append(f"{d['code']} {y}: " + ('; '.join(sorted(set(v.values()))) or 'never planned'))
     return bad, dict(departments=len(departments), reviewed_gap_years=sum(len(d.get('listing_gaps') or {}) for d in departments))
 

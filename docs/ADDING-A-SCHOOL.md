@@ -213,14 +213,14 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     `run_school.sh <key>` and `tools/listing_rows.py <key>`. `listing_rows.py` prints `paged_listing` for a capture that is one page of a paged
     directory (it passes the 5-people usability rule but is partial): look for the other pages with `discover_listings.py` (`...?page=1`), else record the
     year as partial in the stage report (UChicago CS 2017: 5 of about 45 people; pages 2+ are archived only from 2019).
-  - A department whose year has no archived listing at all passes the gate with a reviewed `listing_gaps = {2017 = "reason"}` in its charter table.
+  - **Owner rule, 2026-11-11: no Stage 1 waivers.** A department-year without a complete faculty roster stays open. A reviewed `listing_gaps = {2017 = "reason"}` records the source search and availability finding; it does not make the year pass. Preserve existing search notes while recovering the missing sources.
   - Listings that mix groups (Statistics' people page lists students and staff) are filtered in the format by the page's own group classes.
 - **Learned from Georgia Tech (2026-11-03):**
   - **Write the formats before the captures.** Fetch one capture per era (`discover_listings.py <key> <url>... --sample 2016,2020,2024 --out <dir>` saves them and prints each one's format, entry count and paging), write the era's format in `tools/listing_formats.py` with a fixture test, then run `run_school.sh`.
     A first run with no format stores every capture as `unusable` and needs `replan.py` and a second pass.
   - **Paged directories are the common case, not the exception.** Georgia Tech's Drupal 7 pages show 9 people and its Drupal 9 pages 12 per page; `plan_fetch` takes one capture per half-year, so such a year
     **is fetched page by page since R3** (`plan_fetch.fetch_pages`: every `?page=N` of the same half-year, nearest in time, recorded in `plan_pages` and merged by `listing_rows`); only a page that is not
-    archived in that half-year leaves a gap, which needs a reviewed `listing_gaps` entry. Check `is_paged` against the page's real pager markup.
+    archived in that half-year leaves an open gap. Record the search in `listing_gaps` and keep the year open until a complete source is recovered. Check `is_paged` against the page's real pager markup.
   - **Truncated titles:** a card layout may cut long titles with an ellipsis, which loses the word "Professor"; count them (`…` in titles) before stage 2.
   - The stage's `captures` step is done when `plan_fetch.py <key> --check` passes.
   - Stages 0 and 2 never use the API sweep for a snapshot school: stage 0 ends with the `snapshot-ext` pipeline, and `atlas stage-gate <key> 2 --run --submit --from-worktree` queues the DBLP pass, the sweep from the extension, the sweep check and the OpenAlex candidates (= `atlas pipeline onboard-data`).
@@ -244,7 +244,7 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
 
 - **v3 (2026-11-05).**
   - *Automated:* `discover_listings.py` (`--sample` saves one capture per era), formats with `is_paged`, paged and A-Z page fetching (`plan_fetch.fetch_pages`),
-    gzip bodies, `captures` step done = `plan_fetch.py --check`, a local step waits for queued steps, reviewed `listing_gaps`, `listing_rows` merging paged slots and
+    gzip bodies, `captures` step done = `plan_fetch.py --check`, a local step waits for queued steps, archive gaps staying open, source-era `listing_groups` requiring every faculty category, `listing_rows` merging paged slots and
     counting `paged_listing`, the Wayback shared clock and 429 cooldown.
   - *Manual:* the page formats (one fixture test per era), `listing_gaps` reasons, the check that truncated titles ("...") are counted before stage 2.
   - *Pitfalls:* sample one capture per era and write the formats FIRST, otherwise every capture is `unusable` and a replan costs a second pass [L-25]; a department site

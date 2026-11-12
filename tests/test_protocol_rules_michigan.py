@@ -61,11 +61,15 @@ def test_ladder_title_core():
     assert not C.faculty_evidence(pages, ['Mustafa Naseem'])[0]['ladder']
 
 
-def test_stage1_gate_accepts_a_reviewed_listing_gap(monkeypatch):
+def test_stage1_documented_archive_gap_stays_open_until_a_complete_source_exists(monkeypatch):
     import stage_gate as G
     cfg = {'window': [2016, 2017], 'departments': [{'code': 'D', 'listing_gaps': {'2016': 'no archived listing'}}]}
     monkeypatch.setattr(G.S, 'get', lambda k: cfg)
-    monkeypatch.setattr(G, 'read', lambda p, d=None: {'D': {'2017': {'a H1': 'ok'}, '2016': {'a H1': 'nocapture: x'}}})
-    assert G.g1('k')[0] == []
+    coverage = {'D': {'2017': {'a H1': 'ok'}, '2016': {'a H1': 'nocapture: x'}}}
+    monkeypatch.setattr(G, 'read', lambda p, d=None: coverage)
+    assert G.g1('k')[0] == ['D 2016: nocapture: x']
     cfg['departments'][0]['listing_gaps'] = {}
     assert G.g1('k')[0] == ['D 2016: nocapture: x']
+    cfg['departments'][0]['listing_gaps'] = {'2016': 'old search note retained'}
+    coverage['D']['2016']['a H1'] = 'ok'
+    assert G.g1('k')[0] == []
