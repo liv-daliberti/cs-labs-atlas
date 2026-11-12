@@ -82,6 +82,232 @@
    },
    "result": "FAILED: 12/12 wrong membership; the 32 proposed additions are not wired (labpage-additions.json is not written to reviewed/). Gate 6 stays open; the hand-collected rows (rounds 1-2) are unaffected",
    "verdict_file": "scratch/tsinghua-students-1110/handcheck3_verdicts.json"
+  },
+  {
+   "round": "redo-1",
+   "date": "2026-11-11",
+   "seed": 1111901,
+   "note": "owner ruled 2026-11-11: up to 10 rounds",
+   "tools": "joint-rules-1111 9b4cf152",
+   "additions_sha256": "be703fb02dc8af8217263fd6e8faa3ce6f2395b7353068418da2fd7225003a75",
+   "sample": {
+    "students": 30,
+    "of": 150
+   },
+   "reviewer": "fresh Sonnet subagent, page-context only",
+   "students": {
+    "membership_wrong": 3,
+    "membership_doubtful": 0,
+    "role_year_wrong": 11,
+    "role_year_doubtful": 5,
+    "failing_membership": [
+     "[2] 李勇 Honglin Zhang fi.ee.tsinghua.edu.cn/people/#faculty cc1065c1b72a2f1d",
+     "[15] 章明星 DongDong Deng madsys.cs.tsinghua.edu.cn/~zhangmx/ 92f0f0140f40be09",
+     "[30] 章明星 Weiyu Xie same page"
+    ],
+    "pattern": "membership: publication-list co-authors read as members (章明星 personal page) and a mis-segmented Master Students quote (李勇 page); role/year: role None where the page states Master/PhD (netsyslab 'Master · Y2', fi.ee 'Master Students' / 'Ph.D Students' headings)"
+   },
+   "result": "FAILED: membership 3.0 vs 1.5; role/year 13.5 vs 3 (additions not accepted)"
+  },
+  {
+   "round": "redo-2",
+   "date": "2026-11-11",
+   "seed": 1111902,
+   "note": "owner ruled 2026-11-11: up to 10 rounds",
+   "tools": "joint-rules-1111 5977aa7d",
+   "additions_sha256": "80d8a957a6ab5d657063c75ffcffbecfdfca29c483edc38b8e7716ae8bf16502",
+   "sample": {
+    "students": 30,
+    "of": 136
+   },
+   "reviewer": "fresh Sonnet subagent, page-context only; told postdocs are valid (R-STU-01)",
+   "students": {
+    "membership_wrong": 2,
+    "membership_doubtful": 0,
+    "role_year_wrong": 1,
+    "role_year_doubtful": 0,
+    "failing_membership": [
+     "[23] 冯建华 Zhiping Zeng dbgroup.cs.tsinghua.edu.cn/people.htm 3bc8df906fc51899 (shared database-group page, seven professors, no per-row adviser)",
+     "[27] 章明星 Guo Cheng madsys.cs.tsinghua.edu.cn/~zhangmx/ 92f0f0140f40be09 (publication first author, no roster)"
+    ]
+   },
+   "result": "FAILED: membership 2.0 vs 1.5; role/year 1.0 vs 3 pass"
+  },
+  {
+   "round": "redo-3",
+   "date": "2026-11-11",
+   "seed": 1111903,
+   "note": "owner ruled 2026-11-11: up to 10 rounds",
+   "tools": "joint-rules-1111 00bb48b8",
+   "additions_sha256": "e6dd0076df404eb3072763355163ee564044b5d179a9d56f7a552ac4cd4ec5ab",
+   "sample": {
+    "students": 30,
+    "of": 122
+   },
+   "reviewer": "fresh Sonnet subagent, page-context only; postdocs valid (R-STU-01)",
+   "students": {
+    "membership_wrong": 1,
+    "membership_doubtful": 10,
+    "role_year_wrong": 1,
+    "role_year_doubtful": 4,
+    "pattern": "all 11 membership flags are 李勇 fi.ee.tsinghua.edu.cn/people/#faculty rows (shared multi-faculty page, no per-row adviser; headings cut from the quote); the other 19 rows: membership 0, role/year 1 wrong ([9] 张晗 Hanyang Lin netsyslab: role phd, page says Master Y2, chip-order misread)",
+    "failing_rows": [
+     "[2] 李勇 Chenyang Shao fi.ee people cc1065c1b72a2f1d",
+     "[9] 张晗 Hanyang Lin netsyslab acb232272b1c3439"
+    ]
+   },
+   "result": "FAILED: membership 6.0 vs 1.5 (all from the owner-pending 李勇 shared page); role/year 3.0 vs 3 pass"
+  },
+  {
+   "round": "redo-4",
+   "date": "2026-11-11",
+   "seed": 1111904,
+   "note": "owner ruled 2026-11-11: up to 10 rounds",
+   "tools": "joint-rules-1111 851f68c2",
+   "additions_sha256": "166fddf473464ff01d79dcc49b0a84118fc71a5426ef9f50b23f69a4868b359f",
+   "sample": {
+    "students": 30,
+    "of": 75
+   },
+   "reviewer": "fresh Sonnet subagent, page-context only; postdocs valid",
+   "students": {
+    "membership_wrong": 2,
+    "membership_doubtful": 10,
+    "role_year_wrong": 2,
+    "role_year_doubtful": 0,
+    "failing_rows": [
+     "[1] 钱学海 Fangke Ye https://alchem.cs.tsinghua.edu.cn/people.html 309badaa9bd22b03 (Undergraduate Interns summer listing)",
+     "[3] 钱学海 Jinkun Lin https://alchem.cs.tsinghua.edu.cn/people.html 309badaa9bd22b03 (Undergraduate Interns summer listing)"
+    ],
+    "pattern": "2 wrong = summer 'Undergraduate Interns' entries read as members (role None); 10 doubtful = alumni/people rows on the 徐明伟 routing.netlab People page and one bcspl members row, flagged shared / no per-row adviser"
+   },
+   "result": "FAILED: membership 7.0 vs 1.5; role/year 2.0 vs 3 pass"
+  },
+  {
+   "round": "redo-5",
+   "date": "2026-11-11",
+   "seed": 1111905,
+   "note": "owner ruled 2026-11-11: up to 10 rounds",
+   "tools": "joint-rules-1111 95bace62",
+   "additions_sha256": "0e7576ee3b639bbafca1f7edfc729c5dbd1f327748d65607e4590a2e9b538124",
+   "sample": {
+    "students": 30,
+    "of": 82,
+    "by_pi": {
+     "徐明伟": 14,
+     "李国良": 12,
+     "张晗": 3,
+     "钱学海": 1
+    }
+   },
+   "reviewer": "fresh Sonnet subagent, page-context plus page-header notes; interns/visitors/postdocs valid (R-STU-01/R-STU-17)",
+   "students": {
+    "membership_wrong": 0,
+    "membership_doubtful": 0,
+    "role_year_wrong": 0,
+    "role_year_doubtful": 2,
+    "doubtful_rows": [
+     "[5] 徐明伟 Zhen Tang https://routing.netlab.tsinghua.edu.cn/tiki-index.php?page=People bdaaf385afd20ece (alumni entry '(YYYY)', start year unsupported)",
+     "[24] 徐明伟 Yuxuan Zhang https://routing.netlab.tsinghua.edu.cn/tiki-index.php?page=People bdaaf385afd20ece (alumni entry '(YYYY)', start year unsupported)"
+    ]
+   },
+   "result": "PASSED: membership 0.0 (bar 1.5); role/year 1.0 (bar 3). Acceptance file not written."
+  },
+  {
+   "round": "redo-6a",
+   "date": "2026-11-11",
+   "seed": 1111906,
+   "note": "owner ruled 2026-11-11: up to 10 rounds; pure random 30 = first 30 of random.sample(rows,82) with that seed",
+   "tools": "joint-rules-1111 95bace62",
+   "additions_sha256": "0e7576ee3b639bbafca1f7edfc729c5dbd1f327748d65607e4590a2e9b538124",
+   "sample": {
+    "students": 30,
+    "of": 82,
+    "by_pi": {
+     "徐明伟": 11,
+     "李国良": 8,
+     "张晗": 6,
+     "钱学海": 4,
+     "王昭诚": 1
+    }
+   },
+   "students": {
+    "membership_wrong": 0,
+    "membership_doubtful": 4,
+    "role_year_wrong": 0,
+    "role_year_doubtful": 2,
+    "pattern": "4 doubtful = 张晗 netsyslab rows whose quote does not show the PI (the reviewer was given no header note for that page); role/year doubtful = 2 钱学海 interns with role None"
+   },
+   "result": "FAILED on membership: 2.0 vs 1.5; role/year 1.0 vs 3 pass"
+  },
+  {
+   "round": "redo-6b",
+   "date": "2026-11-11",
+   "seed": "all 王昭诚 3 + all 钱学海 9 + 3 张晗 (seed 1111907)",
+   "tools": "joint-rules-1111 95bace62",
+   "additions_sha256": "0e7576ee3b639bbafca1f7edfc729c5dbd1f327748d65607e4590a2e9b538124",
+   "sample": {
+    "students": 15,
+    "of": 82,
+    "stratified": true
+   },
+   "students": {
+    "membership_wrong": 0,
+    "membership_doubtful": 3,
+    "role_year_wrong": 14,
+    "role_year_doubtful": 1,
+    "pattern": "membership doubtful = 3 张晗 netsyslab rows (PI not shown); role/year: 王昭诚 3 rows years None though 'Master Student, September YYYY~' states a start year (real defect); 钱学海 graduate students role None (earlier reviewers accepted None) and intern rows years None though 'summer YYYY' stated; 张晗 'Y3/Y1' relative year only"
+   },
+   "result": "FAILED role/year (14 of 15; bar scaled to 15 rows = 1.5)"
+  },
+  {
+   "date": "2026-11-11",
+   "tools": "joint-rules-1111 053f7fb4",
+   "additions_sha256": "7899d2c49345c95e6e013a0d74d062de84bd092377cd2c671b91c7ede27f54d9",
+   "note": "owner ruled 2026-11-11: up to 10 rounds; reviewer given each page's header note (netsyslab, alchem, bcspl, routing.netlab, ligl students page); role None correct when the page states none",
+   "round": "redo-7a",
+   "seed": 1111908,
+   "sample": {
+    "students": 30,
+    "of": 80,
+    "by_pi": {
+     "徐明伟": 9,
+     "李国良": 15,
+     "钱学海": 3,
+     "张晗": 2,
+     "王昭诚": 1
+    },
+    "draw": "first 30 of random.sample(rows,80)"
+   },
+   "students": {
+    "membership_wrong": 0,
+    "membership_doubtful": 0,
+    "role_year_wrong": 0,
+    "role_year_doubtful": 0,
+    "note": "reviewer accepted years None for 王昭诚 'Month YYYY~' (minor; tool still leaves years null there)"
+   },
+   "result": "PASSED: membership 0.0 (bar 1.5); role/year 0.0 (bar 3)"
+  },
+  {
+   "date": "2026-11-11",
+   "tools": "joint-rules-1111 053f7fb4",
+   "additions_sha256": "7899d2c49345c95e6e013a0d74d062de84bd092377cd2c671b91c7ede27f54d9",
+   "note": "owner ruled 2026-11-11: up to 10 rounds; reviewer given each page's header note (netsyslab, alchem, bcspl, routing.netlab, ligl students page); role None correct when the page states none",
+   "round": "redo-7b",
+   "seed": "all 王昭诚 3 + all 钱学海 7 + 3 张晗 (seed 1111909)",
+   "sample": {
+    "students": 13,
+    "of": 80,
+    "stratified": true
+   },
+   "students": {
+    "membership_wrong": 0,
+    "membership_doubtful": 1,
+    "role_year_wrong": 0,
+    "role_year_doubtful": 1,
+    "doubtful_row": "钱学海 Jingji Chen: listed under Graduate Students and as 'Undergraduate Interns ... summer 2018' on alchem people.html (309badaa9bd22b03)"
+   },
+   "result": "PASSED at the scaled bar (13 rows: membership 0.5 vs 0.65, role/year 0.5 vs 1.3)"
   }
  ]
 }
