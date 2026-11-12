@@ -364,6 +364,23 @@
     "doubtful_row": "王昭诚 Liyang Lu: postdoc role None (held, not wired)"
    },
    "result": "PASSED (membership 0.0 vs 1.5; role/year 1.0 vs 3); 30 rows wire-ready; 3 baseline 王昭诚 rows removal: 2 SIGS, 1 shifted quote"
+  },
+  {
+   "date": "2026-11-12",
+   "tools": "joint-rules-1111 380131a8",
+   "round": "final2-delta-census",
+   "additions_sha256": "fca6e8977d9413daf48246f2ab231a3553c94370c96711d34d92dba56a4f6eb4",
+   "sample": {
+    "students": 18,
+    "of": 18,
+    "census_of_delta": true
+   },
+   "students": {
+    "membership_score": 3.5,
+    "role_year_score": 1.5,
+    "rows_held": 4
+   },
+   "result": "wire set = 14 rows (sha 5ef849c3df1d): membership 0.0, role/year 0.5 after holding 4 reviewer-failed rows; reviewer given page-header notes"
   }
  ]
 }
