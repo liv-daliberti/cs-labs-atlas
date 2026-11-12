@@ -357,7 +357,13 @@ def primary_adviser_other(desc, quote, pi):
     professor's, not this PI's (HKUST Qiong Luo's DSA-program list)."""
     t = f'{desc or ""} {quote or ""}'
     m = re.search(r'(?<!co-)(?<!co )(?<!joint )(?<!second )\b(?:primary\s+|main\s+|principal\s+)?(?:advisor|adviser|supervisor)\b\s*(?:is|:)?\s*((?:Prof\.?|Professor|Dr\.?)?\s*[A-Z][^;)\]]{2,60})', t)
-    return bool(m) and fold(family(pi)) not in fold(m.group(1)) and not re.search(r'\bco-?(?:advis|supervis)|\bjoint', t, re.I)
+    if m:
+        return fold(family(pi)) not in fold(m.group(1)) and not re.search(r'\bco-?(?:advis|supervis)|\bjoint', t, re.I)
+    so = STUDENT_OF_RX.search(t)   # '(graduated in 2020, PhD Student of Prof. Jilong Wang)' under 'I also worked closely with the following students': the student of another professor (Tsinghua 王会)
+    return bool(so) and fold(family(pi)) not in fold(so.group(1)) and not re.search(r'\bco-?(?:advis|supervis)|\bjoint', t, re.I)
+
+
+STUDENT_OF_RX = re.compile(r'\b(?:ph\.?\s?d\.?|master\'?s?|m\.?s\.?|undergraduate|graduate)?\s*students?\s+of\s+((?:Prof\.?|Professor|Dr\.?)\s*[A-Z][^;)\]]{2,60})', re.I)
 
 
 def author_list_item(quote, ptxt):
@@ -1884,6 +1890,8 @@ def entry_years(desc, head):
             return ([ys[0], ys[0]] if re.search(r'\bFYP\b|final[- ]year', f'{head} {desc}', re.I) else [ys[0], None]), 'stated_in_entry'   # (an FYP advisee of that year is [Y, Y]) '(Ph.D./M.S. 2023)' in a CURRENT list is the entry year, not an end year (SJTU round 5, 赵杰茹's page); real alumni there use YYYY-YYYY ranges
         if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
             return [None, ys[0]], 'stated_in_entry'
+        if re.match(r'^\W{0,3}(?:[a-z]\W{1,3})?(?:master|bachelor|m\.?phil)s?\s+(?:19|20)\d\d\b', seg, re.I) and not (head and CURRENT_LIST_HEAD.search(head)):
+            return [None, ys[0]], 'stated_in_entry'   # 'Xuanyuan Lu o, Master 2022, Research interests: ...' on an alumni list ('Ms 2022' reads [None, 2022]): the degree year ends the stay (Tsinghua Li Jian)
         if SEMESTER_START_RX.search(seg) and not re.search(r'\b(?:intern|visit\w*|exchange|summer)\b', seg, re.I) and not (head and (ALUMNI_HEAD_RX.search(head) or past_range_head(head))):
             return [ys[0], None], 'stated_in_entry'   # '(2025 Fall)' under a current list is the semester the stay began (HKUST Wai Kin Wong)
         return [ys[0], ys[0]], 'stated_in_entry'

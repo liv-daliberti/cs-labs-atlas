@@ -944,3 +944,11 @@ def test_name_then_role_cards_and_nick_student_cells():
 def test_entry_role_skips_a_nickname_and_reads_mphil_students():
     from_toolkit = lambda s_: (None, None)
     assert A.entry_role(', Elaine (MPhil student working on software engineering and Generative AI)', 'Current Students', from_toolkit)[0] == 'masters'
+
+
+def test_a_degree_year_after_master_ends_the_stay_and_a_student_of_another_professor_is_not_ours():
+    assert A.entry_years('o, Master 2022, Research interests: Learning theory ( Tsinghua Excellent Master thesis)', 'Masters:')[0] == [None, 2022]
+    assert A.entry_years('(MIT Undergraduate Student, 2020)', 'People')[0] == [2020, 2020]
+    assert A.entry_years('Master 2023', 'Current Students')[0] == [2023, 2023]
+    assert A.primary_adviser_other('(graduated in 2020, PhD Student of Prof. Jilong Wang)', None, 'Hui Li')
+    assert not A.primary_adviser_other('(graduated in 2020, PhD Student of Prof. Hui Li)', None, 'Hui Li')
