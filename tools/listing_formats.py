@@ -1755,7 +1755,8 @@ def parse(h, fmt=None):
 def is_paged(html):
     """A capture of one page of a paged directory (pager markers and a ?page=N or ?pg=N link): it parses to a few people while the rest sit on pages
     the archive may not hold (UChicago CS 2017: 5 of about 45). listing_rows.py reports it and plan_fetch.charter_usable rejects it."""
-    query_pager = bool(re.search(r'class="pager"|class="pagination"', html) and
+    pager_marker = re.search(r'class=["\'][^"\']*\b(?:pager|pagination)\b', html) or re.search(r'>\s*Show More\s*<', html, re.I)
+    query_pager = bool(pager_marker and
                        re.search(r'(?:[?&]|&amp;)(?:page=(?:%2C|,)?[1-9]\d*|pg=(?:[2-9]|[1-9]\d+))', html))
     wp = re.search(r'<em class="all_pages">\s*(\d+)\s*</em>', html)
     uestc = re.search(r'\bPAGENUM=([2-9]|[1-9]\d+)\b', html)

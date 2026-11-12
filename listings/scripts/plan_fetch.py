@@ -123,6 +123,21 @@ def fetch_pages(con, s, cap, html, lo, hi, dept, min_entries=1):
         return got, missing
 
     got, missing = collect(listing_formats.page_links(html, original))
+    # A "Show More" listing names only its next page. Follow each saved
+    # page's pager until it ends; the first linked page is not the full roster.
+    while not missing:
+        links = {}
+        for page_url, page_cap, _ in list(got.values()):
+            raw = con.execute('select raw_zlib from captures where capture_url=?', (page_cap,)).fetchone()[0]
+            for number, url in listing_formats.page_links(wb.body(raw).decode('utf-8', 'replace'), page_url).items():
+                if number not in got:
+                    links[number] = url
+        if not links:
+            break
+        if len(got) + len(links) > 100:
+            raise RuntimeError('faculty pager exceeds 100 pages; manual source review required')
+        extra, missing = collect(links)
+        got.update(extra)
     if missing:  # `?page=N` pages are often unarchived where the A-Z letter pages are: the union of every linked letter is the whole directory
         letters = listing_formats.letter_links(html, original)
         if letters:
