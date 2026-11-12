@@ -94,8 +94,13 @@ HEADWORD = re.compile(r"\b(students?|post-?docs?|post-doctoral|postdoctoral|alum
                       r"\u5728\u8bfb|\u7814\u7a76\u751f|\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f|\u5df2\u6bd5\u4e1a|\u6bd5\u4e1a\u751f|\u6821\u53cb|\u73b0\u6709\u6210\u5458|\u73b0\u5f79|\u5728\u7ad9|\u8bfe\u9898\u7ec4\u6210\u5458|\u56e2\u961f\u6210\u5458|\u7814\u7a76\u52a9\u7406", re.I)   # Han section words (SJTU AI Security Lab: \u5728\u8bfb\u7814\u7a76\u751f / \u5df2\u6bd5\u4e1a)
 
 
+LONG_HEAD_RX = re.compile(r"(?::\s*$|\b(?:students?|alumni|members?|researchers?)\W*$)", re.I)
+
+
 def heady(txt):
-    if not txt or len(txt) > 50 or namey(txt):
+    if not txt or namey(txt) or not re.search(r"[A-Za-z0-9\u0080-\uffff]", txt):   # a lone comma or bracket between two links is punctuation, not a heading
+        return False
+    if len(txt) > 50 and not (len(txt) <= 60 and LONG_HEAD_RX.search(txt)):   # 'PhD (Doctor of Philosophy, or D.Phil. in the UK) Students:' (57) is a heading (HKUST Chung)
         return False
     if re.match(r"^(now|currently|formerly|previously|then|later)\b", txt, re.I) or re.search(r"\s(at|@)\s", txt):
         return False  # a later-job description, not a section heading
@@ -198,6 +203,19 @@ def _years(desc):
     return None
 
 
+def mid_sentence(el):
+    """An inline element (a link, a span) whose previous sibling is running text that stops in a lower-case word or a comma ('She joined <a>Imaging Systems for
+    Radiotherapeutics Group</a>, Stanford ...') is part of a sentence, never a section heading (HKUST Chung's alumni entries)."""
+    if el.name not in ("a", "span", "em", "u", "i", "b", "strong", "font"):
+        return False
+    prev = el.previous_sibling
+    from bs4 import NavigableString
+    if not isinstance(prev, NavigableString):
+        return False
+    before = lpcap.collapse(str(prev))
+    return len(before.split()) >= 2 and bool(re.search(r"[a-z,]$", before.strip()))
+
+
 def markers(school, src):
     """[(start, end, kind, text)] over the page's html text view, in order."""
     from bs4 import BeautifulSoup
@@ -230,7 +248,7 @@ def markers(school, src):
         txt = lpcap.collapse(el.get_text(" "))
         if not txt:
             continue
-        if re.fullmatch(r"h[1-6]", el.name) or (len(txt) <= 60 and heady(txt.rstrip(":")) and
+        if re.fullmatch(r"h[1-6]", el.name) or (len(txt) <= 60 and heady(txt.rstrip(":")) and not mid_sentence(el) and
                                                 el.name in ("strong", "b", "p", "dt", "th", "div", "span", "summary", "button",
                                                             "label", "u", "em", "li", "a", "td", "font")):
             if not namey(txt):

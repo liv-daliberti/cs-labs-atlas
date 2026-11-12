@@ -877,3 +877,46 @@ def test_surname_given_cells_read_the_tomizuka_layout():
     cs = A.surname_given_cells(t)
     assert cs[0]['name'] == 'Qiyang Qian' and cs[-1]['name'] == 'Wenjie Li' and cs[0]['quote'] == 'Qian, Qiyang Robotics Email | Homepage'
     assert not A.surname_given_cells('Qian, Qiyang Robotics Email | Homepage')
+
+
+def test_numbered_dept_entries_read_as_roster_members_not_bylines():
+    t = ('PhD (Doctor of Philosophy, or D.Phil. in the UK) Students: ' + ' '.join(
+        f'{i}. Dr. {n} (Computer Science and Engineering, {term}; He is currently with {w})' for i, (n, term, w) in enumerate([
+            ('Yongxiang (Jason) HUANG', 'Winter 2021', 'Tencent'), ('Yishuo ZHANG', 'Spring 2022', 'Huawei'), ('Rongzhao ZHANG', 'Spring 2022', 'Shanghai AI Laboratory'),
+            ('Siqi (Portia) BAO', 'Summer 2017', 'Baidu'), ('Tony Chi Wing MOK', 'Summer 2022', 'Alibaba')], 11)))
+    cells = A.numbered_dept_entry_cells(t)
+    assert [c['name'] for c in cells] == ['Yongxiang HUANG', 'Yishuo ZHANG', 'Rongzhao ZHANG', 'Siqi BAO', 'Tony Chi Wing MOK']
+    assert A.DEPT_DATE_ENTRY_RX.match(cells[0]['desc']) and A.dept_roster_head(t, cells[0]['pos'] + 5).startswith('PhD (Doctor')
+    assert not A.numbered_dept_entry_cells('1. Dr. A BC (Computer Science, Summer 2001)')
+
+
+def test_clean_roster_name_takes_the_surname_after_a_nickname_and_drops_titles():
+    assert A.clean_roster_name('Siqi', '(Portia) BAO (Computer Science and Engineering, Summer 2017; She is ...') == ('Siqi BAO', '(Computer Science and Engineering, Summer 2017; She is ...')
+    assert A.clean_roster_name('Ms. Han ZHANG', '(Computer Science and Engineering, Summer 2022)')[0] == 'Han ZHANG'
+    assert A.clean_roster_name('Colin Tsang', '(Portia) BAO (x)')[0] == 'Colin Tsang'
+
+
+def test_a_placement_at_a_lab_is_not_a_joint_entry_and_split_years_read():
+    assert not A.joint_other_institute_entry('(Computer Science and Engineering, Spring 2022; He is currently with Shanghai AI Laboratory)', None, 'hkust')
+    assert A.joint_other_institute_entry('(Co-supervised by Prof. X, Shanghai AI Laboratory)', None, 'hkust')
+    assert A.entry_years('(Computer Science and Engineering , Summer 20 14 )', 'M.Phil. Students:')[0] == [None, 2014]
+
+
+def test_a_link_inside_a_sentence_and_a_lone_comma_are_not_headings():
+    import os
+    import sys
+    from bs4 import BeautifulSoup
+    d = os.path.join(os.path.dirname(__file__), '..', 'hierarchy', 'labpage-tools-princeton-mit')
+    import importlib.util
+    sys.path.insert(0, d)
+    try:
+        spec = importlib.util.spec_from_file_location('autom_heads_test', os.path.join(d, 'autom.py'))
+        autom = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(autom)
+    finally:
+        sys.path.remove(d)
+    soup = BeautifulSoup('<li>She joined <a>Imaging Systems for Radiotherapeutics Group</a>, Stanford</li><h3>Alumni</h3><div><a>Students</a></div>', 'html.parser')
+    a1, h3, a2 = soup.find_all(['a', 'h3'])[0], soup.h3, soup.find_all('a')[1]
+    assert autom.mid_sentence(a1) and not autom.mid_sentence(a2)
+    assert not autom.heady(',') and autom.heady('Students')
+    assert autom.heady('PhD (Doctor of Philosophy, or D.Phil. in the UK) Students:') and not autom.heady('x ' * 28 + 'Students gather in the lab to talk')

@@ -283,6 +283,22 @@ def advised_by_other(desc, quote, pi):
 PROGRAM_TAIL_RX = re.compile(r"(?<=\w)\s+(?:Societal Computing|Human[- ]Computer Interaction|Software Engineering|Machine Learning|Computer Science|Language Technologies|Computational Biology|Privacy Engineering|Electrical (?:and|&) Computer Engineering|Robotics)$")
 
 
+TITLE_RX = re.compile(r'^(?:Dr|Mr|Ms|Mrs|Miss|Prof)\.?\s+(?=\S)', re.I)
+NICK_SURNAME_RX = re.compile(r"^\(([^()]{2,25})\)\s+([A-Z][A-Z'\u2019-]{1,20})(?=\s*(?:\(|$|[,;]))")
+
+
+def clean_roster_name(name, desc):
+    """(name, desc) of a numbered roster entry 'Dr. Siqi (Portia) BAO (Computer Science and Engineering, Summer 2017; ...)': the title goes, and a one-token given name whose descriptor opens
+    with '(Nickname) SURNAME' takes the surname ('Siqi BAO'), the descriptor then opens on the department bracket (HKUST Chung's alumni; 'Given (Nick) SURNAME' is a roster form)."""
+    n = TITLE_RX.sub('', name or '').strip()
+    d = desc or ''
+    if len(n.split()) == 1 and d:
+        m = NICK_SURNAME_RX.match(d.strip())
+        if m:
+            n, d = f'{n} {m.group(2)}', d.strip()[m.end():].strip()
+    return n, d
+
+
 def strip_program_label(name):
     """'Seungjoo Lee Societal Computing' (a card's program line glued to the name): the name without its program label, when at least two name tokens remain."""
     m = PROGRAM_TAIL_RX.search(name or '')
@@ -406,9 +422,15 @@ def incoming_entry(desc, quote):
     return bool(INCOMING_RX.search(f'{desc or ""}'[:140]) or INCOMING_RX.search((quote or '')[:140]))
 
 
+PLACEMENT_BEFORE_RX = re.compile(r'(?:currently|now|joined|working|works|moved|went|is|was)\s+(?:full-time\s+)?(?:as\s+[^.;()]{0,50}\s+)?(?:at|with|in|to)?\s*(?:the\s+)?$', re.I)
+
+
 def joint_other_institute_entry(desc, quote, school):
     """A joint or co-supervised entry with another institute ('Co-supervised by Prof. X (Shanghai AI Laboratory)'): not a member of this school's lab unless the page ties it to the PI's lab here (SJTU round 6: Zihan Guo)."""
-    m = JOINT_OTHER_RX.search(f'{desc or ""}'[:160])
+    d = f'{desc or ""}'[:160]
+    m = JOINT_OTHER_RX.search(d)
+    if m and PLACEMENT_BEFORE_RX.search(d[:m.start()]) and not re.search(r'co-?supervised|jointly?\b', m.group(0), re.I):
+        return False   # '(Computer Science and Engineering, Spring 2022; He is currently with Shanghai AI Laboratory)': a destination after the degree, not a joint entry (HKUST Chung)
     return bool(m) and not re.search(school_names_rx(school), m.group(0))
 
 
@@ -1777,7 +1799,7 @@ def past_range_head(head):
     return bool(m) and int(m.group(2)) < 2026
 
 
-DEPT_DATE_ENTRY_RX = re.compile(r'^\W{0,3}\(\s*(?=[A-Za-z ,&-]*\b(?:Science|Sciences|Engineering|Mathematics|Physics|Chemistry|Biology|Statistics|Economics|Management|Technology|Informatics|Systems|Studies|Department)\b)[A-Z][A-Za-z &-]{6,70},\s*(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?|Spring|Summer|Fall|Autumn|Winter)\s+((?:19|20)\d\d)\b')   # '(Computer Science and Engineering, Summer 2017; He is currently ...)': a department and the graduation term of an alumnus entry (HKUST Chung)
+DEPT_DATE_ENTRY_RX = re.compile(r'^\W{0,3}\(\s*(?=[A-Za-z ,&-]*\b(?:Science|Sciences|Engineering|Mathematics|Physics|Chemistry|Biology|Statistics|Economics|Management|Technology|Informatics|Systems|Studies|Department)\b)[A-Z][A-Za-z &-]{6,70},\s*(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?|Spring|Summer|Fall|Autumn|Winter)\s+((?:19|20)\s?\d\d)\b')   # '(Computer Science and Engineering, Summer 2017; He is currently ...)': a department and the graduation term of an alumnus entry (HKUST Chung)
 SEMESTER_START_RX = re.compile(r'\b(?:fall|spring|autumn|winter)\b', re.I)
 ALUMNI_HEAD_RX = re.compile(r'\b(?:former|past|previous|alumni|alumnae|alumnus|graduated|graduates|class of|emeriti)\b', re.I)
 
@@ -1788,6 +1810,7 @@ def entry_years(desc, head):
       '(Ph.D. in applied math 2014)' or 'PhD 2021' -> [None, 2014] (a degree year ends the stay); 'MIT Undergraduate Student, 2020'
       -> [2020, 2020]; a section heading that is only a year ('2019') -> that year, basis section_year_heading; else
       (None, 'none'): the build keeps undated students."""
+    desc = re.sub(r'((?:spring|summer|fall|autumn|winter|jan|feb|mar|apr|may|jun|jul|aug|sept?|oct|nov|dec)[a-z]*\.?\s+)(19|20) (\d\d)\b', r'\1\2\3', desc or '', flags=re.I)   # 'Summer 20 14' (a year split by the page's markup): HKUST Chung
     desc = re.split(r'[;,]?\s*following position\b', desc or '', maxsplit=1)[0]   # 'following position: since 2019 Researcher at Facebook' is where the person went, not when they were here (CMU round 9, Carbonneaux)
     tm = re.match(r'^\s{0,3}\|?\s*[^|]{1,100}\|\s*((?:19|20)\d\d)\b', desc or '')
     if tm:  # '| Stanford Univ. Medical Center | 2004' (a 'Past Doctoral Students' table): the year ends the stay (Stanford round 3)
@@ -2095,6 +2118,37 @@ HAN_GLUED_RX = re.compile(r'(?<![\u4e00-\u9fff\u00b7])([\u4e00-\u9fff]{2,4})(\u5
 HAN_GLUED_ROLE = {'\u535a\u58eb\u7814\u7a76\u751f': 'phd', '\u535a\u58eb\u751f': 'phd', '\u7855\u58eb\u7814\u7a76\u751f': 'masters', '\u7855\u58eb\u751f': 'masters', '\u672c\u79d1\u751f': 'undergraduate', '\u535a\u58eb\u540e': 'postdoc'}
 
 
+NUMBERED_DEPT_ENTRY_RX = re.compile(
+    r"(?<![\w])(?:\d{1,3}\s*\.\s*)?(?:Dr|Mr|Ms|Mrs|Miss)\s*\.\s*((?:[A-Z][a-z'\u2019-]+|[A-Z]\.)(?: (?:[A-Z][a-z'\u2019-]+|[A-Z]\.))*)(?: \(([A-Za-z -]{2,25})\))? ((?:[A-Z][a-z'\u2019-]+ )*[A-Z][A-Z'\u2019-]{1,20}) "
+    r"(\((?=[A-Za-z ,&.-]*\b(?:Science|Sciences|Engineering|Mathematics|Physics|Statistics|Technology|Informatics|Systems|Department)\b)[A-Z][A-Za-z &.-]{6,70},\s*(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|Spring|Summer|Fall|Autumn|Winter)[a-z]*\.?\s*(?:\d\s?){4}\b[^)]{0,160}\))")
+
+
+def numbered_dept_entry_cells(text):
+    """Numbered alumni entries 'Dr. Yongxiang (Jason) HUANG (Computer Science and Engineering, Winter 2021; He is currently ...)' (HKUST Chung's 'Graduated Students and Alumni'): name = the
+    given names then the capitalised family name with the nickname dropped; the cell is its own quote. At least four cells make a roster. -> [dict(name, desc, quote, pos)]"""
+    t = re.sub(r'\s+', ' ', text or '')
+    ms = list(NUMBERED_DEPT_ENTRY_RX.finditer(t))
+    if len(ms) < 4:
+        return []
+    out = []
+    for m in ms:
+        fam = m.group(3)
+        fam = ' '.join(w if not w.isupper() else w for w in fam.split())
+        out.append(dict(name=f'{m.group(1)} {fam}'.strip(), desc=m.group(4), quote=m.group(0).strip(), pos=m.start()))
+    return out
+
+
+DEPT_ROSTER_HEAD_RX = re.compile(r"((?:Ph\.?\s?D|M\.?\s?Phil|M\.?\s?Sc|M\.?\s?S|Master|Postdoctoral|Undergraduate)[A-Za-z .,()'-]{0,60}?(?:Students?|Researchers?|Fellows?|Alumni)\s*:)")
+
+
+def dept_roster_head(text, pos):
+    """The role heading ('PhD (Doctor of Philosophy, or D.Phil. in the UK) Students:') nearest before position pos of the whitespace-collapsed page text."""
+    last = None
+    for m in DEPT_ROSTER_HEAD_RX.finditer(text[:pos]):
+        last = m.group(1)
+    return last
+
+
 def han_glued_cells(text):
     """A team page whose roster cells are a Han name glued to its role word ('\u987e\u626c\u535a\u58eb\u751f \u534e\u52e4\u535a\u58eb\u751f ... \u9ad8\u5251\u5947\u535a\u58eb\u540e', SJTU cit.sjtu.edu.cn/team): at least three cells before an alumni heading
     ('\u5168\u90e8\u6bd5\u4e1a\u751f' / '\u6bd5\u4e1a\u751f' / '\u5f80\u5c4a' / '\u6821\u53cb'), each a current member with the cell's role and no year. Cells after an alumni heading are the school-less 'name role destination' form and are not read here."""
@@ -2315,6 +2369,16 @@ def pm_candidates(kit, school, pi, plan, held):
             mcards_ = {}
         have_ = {names.fold(e['name']) for e in ext}
         ext = list(ext)
+        try:   # numbered 'Dr. Given (Nick) FAMILY (Dept, Term YYYY; ...)' entries the DOM reader missed (a name element that is the whole entry): HKUST Chung
+            ptxt_d = re.sub(r'\s+', ' ', kit.lpev.text(school, src) or '')
+            row_d, _vd = kit.lpev.cap(school, src)
+            for c_ in (numbered_dept_entry_cells(ptxt_d) if row_d else []):
+                if any(DEPT_DATE_ENTRY_RX.match(e.get('desc') or '') and names.match_one(e['name'], c_['name']) for e in ext):
+                    continue
+                ext.append(dict(han_card_item(dict(name=c_['name'], head=dept_roster_head(ptxt_d, c_['pos']) or '', desc=c_['desc'], quote=c_['quote'], role=None, alumni=False), row_d, names, held),
+                                han_card=None, flags=[], role='member'))
+        except (KeyError, ValueError, TypeError):
+            pass
         for c_ in hc_:
             if names.fold(c_['name']) in have_:
                 continue
@@ -2323,6 +2387,7 @@ def pm_candidates(kit, school, pi, plan, held):
             ext.append(han_card_item(c_, row_, names, held))
         for x in ext:
             x['name'] = strip_program_label(x['name'])
+            x['name'], x['desc'] = clean_roster_name(x['name'], x.get('desc'))
             fn = names.fold(x['name'])
             x['is_cap'] = is_cap
             x['src'] = src
@@ -2488,7 +2553,7 @@ def pm_candidates(kit, school, pi, plan, held):
             elif auto_plan and not x.get('han_card') and not DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') and not (homepage_people and re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I) and not NOT_MEMBER_HEAD.search(x.get('head') or '')) and (not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') or
                                 NOT_MEMBER_HEAD.search(x.get('head') or '')):
                 why, x['detail'] = 'not_in_people_section', f"section '{(x.get('head') or '')[:60]}' is not a member list"
-            elif auto_plan and not x.get('han_card') and (not plausible(kit, x['name']) or re.match(r'^[A-Z]\.\s', x['name']) or
+            elif auto_plan and not x.get('han_card') and ((not plausible(kit, x['name']) and not (DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') and len(x['name'].split()) >= 2)) or re.match(r'^[A-Z]\.\s', x['name']) or
                                 all(t.isupper() and len(t) <= 4 for t in x['name'].split())):
                 why, x['detail'] = 'name_unresolved', 'not a plausible full person name (automatic plan)'
             elif fn in drop or any(names.match_one(x['name'], d) for d in plan.get('drop', [])):
@@ -2510,7 +2575,7 @@ def pm_candidates(kit, school, pi, plan, held):
             try:
                 if x['src'] not in text_cache:
                     text_cache[x['src']] = kit.lpev.text(school, x['src'])
-                if nearer_nonphd_heading(text_cache[x['src']], x['name'], x.get('head')):
+                if nearer_nonphd_heading(text_cache[x['src']], x['name'], x.get('head')) and not DEPT_DATE_ENTRY_RX.match(x.get('desc') or ''):
                     x['role'], x['role_basis'] = None, 'withheld_heading_conflict'
             except (KeyError, ValueError):
                 pass
