@@ -668,6 +668,8 @@ def test_apply_member_card_sets_role_years_and_an_own_quote():
     ('(Research intern, graduate student from HKUST, Summer 2024)', 'Past members', 'other'),
     ('(Research intern, undergraduate student from HKUST, Summer 2024)', 'Past members', 'undergraduate'),
     ('(UGVIS, 2024)', 'Undergraduate Researchers', 'visiting'),
+    ('(RA 2026, PhD@University of Cambridge)', 'Honorable Alumni', 'other'),
+    ('(UG Intern, 2019-2021)', 'Alumni', 'undergraduate'),
     ('(PGVIS, 2025)', 'Postgraduate Researchers', 'visiting'),
     ('(Computer Science and Engineering, 2022)', 'M.Phil. (Master of Philosophy) Students: > )', 'masters'),
     ('(PhD student, Fall 2021 - Fall 2025)', 'Past members', None),
@@ -714,3 +716,28 @@ def test_registered_people_page_is_honoured_by_discovery():
     assert not A.apply_registered_people_page(kit, ctx, 'P', 'https://other.org/', c2, [], add) and c2['people_page'] is None
     bad = SimpleNamespace(get=lambda u: dict(status=404, content=b'', capture_url=None, sha256=None))
     assert not A.apply_registered_people_page(bad, ctx, 'P', 'https://lab.github.io/', c2, [], add) and c2['people_page'] is None
+
+
+def test_a_bare_role_heading_right_before_a_name_is_that_names_role():
+    seg = 'Student roster updated: 2026-10-20 Ph.D Student Master Haoran Wang'
+    assert A.role_from_preceding_heading(seg[-30:]) == 'masters'
+
+
+def test_primary_adviser_elsewhere_and_co_supervision():
+    assert A.primary_adviser_other('(PhD, started in 2025, primary advisor Prof. Guoming Tang )', 'Jiyang Liu (PhD', 'Qiong LUO')
+    assert not A.primary_adviser_other('(PhD, started in 2024, co-advised by Prof. Xiaojuan Ma )', 'Gongyao Jiang (PhD', 'Qiong LUO')
+    assert not A.primary_adviser_other('(PhD, advisor Prof. Qiong Luo)', 'X (PhD', 'Qiong LUO')
+    assert not A.advised_by_other('(PhD, started in 2024, co-advised by Prof. Xiaojuan Ma )', 'Gongyao Jiang (PhD', 'Qiong LUO')
+    assert A.advised_by_other('(PhD, advised by Alexandre Jacquillat)', '', 'Someone Else')
+
+
+def test_author_lists_followed_by_a_title_are_not_rosters():
+    pt = 'Honorable Alumni 2025 Wei Fu, Jiaxuan Gao, Xujie Shen, Chen Zhu, Zhiyu Mei, “ AReaL: Large-Scale Asynchronous Reinforcement Learning ” arXiv 2025'
+    assert A.author_list_item('Wei Fu, Jiaxuan Gao, Xujie Shen, Chen Zhu, Zhiyu Mei,', pt)
+    pt2 = 'Current students Ada Lovelace, Alan Turing, Grace Hopper, Edsger Dijkstra Alumni Bob Jones (PhD 2020)'
+    assert not A.author_list_item('Ada Lovelace, Alan Turing, Grace Hopper, Edsger Dijkstra', pt2)
+
+
+def test_a_roster_entry_with_a_bracketed_descriptor_is_not_an_author_list():
+    assert not A.author_list_item('Youhe Jiang (RA 2026, PhD', 'Youhe Jiang (RA 2026, PhD@University of Cambridge) \u201c A Long Quoted Title Of A Paper \u201d')
+    assert A.author_list_item('Simon C. H. Yu, Wilbur C. K. Wong, and', 'Simon C. H. Yu, Wilbur C. K. Wong, and Albert Chung, \u201c A Long Title About Something \u201d Proceedings')

@@ -271,8 +271,29 @@ OTHER_INST = re.compile(r'(?:@|\bat\s+|,\s*|\(\s*)(?:the\s+)?(?:University of [A
 
 def advised_by_other(desc, quote, pi):
     """R-LAB-03 (Georgia Tech round 2): 'Shriya Karam (MIT ORC PhD, advised by Alexandre Jacquillat)' under 'Other students': the entry names its own adviser and the PI is not one of them."""
-    m = re.search(r'advised by\s+([^;)\]]{3,80})', f'{desc or ""} {quote or ""}', re.I)
+    m = re.search(r'(?<!co-)(?<!co )(?<!jointly )(?<!joint )advised by\s+([^;)\]]{3,80})', f'{desc or ""} {quote or ""}', re.I)   # 'co-advised by Prof. X' on this PI's page is a co-supervision tie: a member (HKUST re-audit ruling)
     return bool(m) and fold(family(pi)) not in fold(m.group(1))
+
+
+def primary_adviser_other(desc, quote, pi):
+    """'(PhD, started in 2025, primary advisor Prof. Guoming Tang )' on another professor's page: the entry names a different primary advisor / supervisor (no co- / joint wording), so the student is that
+    professor's, not this PI's (HKUST Qiong Luo's DSA-program list)."""
+    t = f'{desc or ""} {quote or ""}'
+    m = re.search(r'(?<!co-)(?<!co )(?<!joint )(?<!second )\b(?:primary\s+|main\s+|principal\s+)?(?:advisor|adviser|supervisor)\b\s*(?:is|:)?\s*((?:Prof\.?|Professor|Dr\.?)?\s*[A-Z][^;)\]]{2,60})', t)
+    return bool(m) and fold(family(pi)) not in fold(m.group(1)) and not re.search(r'\bco-?(?:advis|supervis)|\bjoint', t, re.I)
+
+
+def author_list_item(quote, ptxt):
+    """A run of comma-separated personal names ('Wei Fu, Jiaxuan Gao, Xujie Shen, ...', 'Simon C. H. Yu, Wilbur C. K. Wong, and') that is followed on the page by a quoted paper title or a venue is the byline of
+    a reference, not a roster (HKUST Chung, Yuan). Needs the page text to see what follows the run."""
+    q = (quote or '').strip()
+    pieces = [x.strip(' *') for x in re.split(r',|\band\b', q) if x.strip(' *')]
+    namey = [x for x in pieces if re.fullmatch(r"[A-Z][\w.'\u2019-]*(?:\s+[A-Z][\w.'\u2019-]*){0,3}", x)]
+    if len(pieces) < 3 or len(namey) < len(pieces) - 1 or ',' not in q or '(' in q:
+        return False
+    j = (ptxt or '').find(q)
+    after = (ptxt or '')[j + len(q): j + len(q) + 700] if j >= 0 else ''
+    return bool(re.search(r'[\u201c"][^\u201d"]{12,}[\u201d"]|\barXiv\b|\bProceedings\b|\bConference\b|\bJournal\b|\bet al\b|\(\s*(?:19|20)\d\d\s*\)', after[:600] + ' ' + q))
 
 
 def other_institution_entry(desc, quote, school):
@@ -382,7 +403,7 @@ def label_role(desc, head):
     d = (desc or '').strip()
     m = re.match(r'^\W{0,3}\(?\s*([^,()]{1,60})(?:,([^()]{0,70}))?', d)
     if m:
-        first, rest = m.group(1).strip(), (m.group(2) or '')
+        first, rest = re.sub(r'\s*(?:19|20)\d\d\b.*$', '', m.group(1).strip()), (m.group(2) or '')   # '(RA 2026, PhD@...)': a year after the label is not part of it
         if re.search(r'\bvisiting\b', first, re.I):
             return None   # R-STU-17 reads these
         if MPHIL_RX.search(first):
@@ -392,7 +413,7 @@ def label_role(desc, head):
         if re.fullmatch(r'(?:UG|PG)VIS', first):
             return 'visiting'   # HKUST 'UGVIS' / 'PGVIS': an undergraduate / postgraduate visiting student
         if re.search(r'\bintern(?:ship)?\b', first, re.I):
-            return 'undergraduate' if re.search(r'undergrad', first + ' ' + rest, re.I) else 'other'
+            return 'undergraduate' if re.search(r'undergrad|\bUG\b', first + ' ' + rest, re.I) else 'other'
         if re.fullmatch(r'(?:RA|research assistant|research associate|part-time research assistant)', first, re.I):
             return 'other'
     if re.match(r'^\W{0,3}Current position:', d):   # an alumni card 'Name Current position: X <dates> University Postdoctoral fellow in ...': the stay's own role follows the dates (HKUST uav Xin Zhou)
@@ -2155,6 +2176,14 @@ def pm_candidates(kit, school, pi, plan, held):
                     x['alumni'] = True  # '(PhD 2024, co-advised with ...)' on a current page: the entry itself says the stay ended (UChicago stage 6, round 1)
             x['role'], x['role_basis'] = entry_role(x.get('desc'), x.get('head'), kit.autom._role)
             lr_ = label_role(x.get('desc'), x.get('head'))
+            if not lr_ and re.match(r'^\W{0,3}Current position:', x.get('desc') or '') and x.get('name'):
+                try:   # the extractor cut the card's descriptor before the stay's own role line: read the page text after the name
+                    if src not in text_cache:
+                        text_cache[src] = kit.lpev.text(school, src)
+                    qk_ = text_cache[src].find(x['name'])
+                    lr_ = label_role(text_cache[src][qk_ + len(x['name']):qk_ + len(x['name']) + 400].strip(), x.get('head')) if qk_ >= 0 else None
+                except (KeyError, ValueError):
+                    pass
             if lr_ and not x.get('han_card'):
                 x['role'], x['role_basis'] = lr_, 'entry'
             if x.get('name') and not (x.get('quote') or '').startswith(x['name']):
@@ -2197,6 +2226,17 @@ def pm_candidates(kit, school, pi, plan, held):
                         x['years'], x['years_basis'] = [int(sn2.group(1)), None], 'stated_in_entry'
                 except (KeyError, ValueError):
                     pass
+            if x.get('role_basis') == 'section_heading' and x.get('name') and not x['alumni'] and x['role'] in ('phd', 'masters', 'undergraduate'):
+                try:   # a bare role heading right before the first name of its list ('Master Haoran Wang 王浩然 Since 2024 Fall') outranks the chain's earlier heading (SJTU dmcv)
+                    if src not in text_cache:
+                        text_cache[src] = kit.lpev.text(school, src)
+                    pt4_ = text_cache[src]
+                    qj4 = pt4_.find(x['name'])
+                    rh4_ = role_from_preceding_heading(pt4_[max(0, qj4 - 14):qj4 + len(x['name'])]) if qj4 > 0 else None
+                    if rh4_ and rh4_ != x['role']:
+                        x['role'] = rh4_
+                except (KeyError, ValueError):
+                    pass
             if x['role'] in (None, 'member') and x.get('name') and not x['alumni']:   # the role heading sits in the page text before the roster while the extractor's heading chain lost it ('Ph.D Student roster updated: ... Ke Fan'): SJTU dmcv
                 try:
                     if src not in text_cache:
@@ -2204,7 +2244,7 @@ def pm_candidates(kit, school, pi, plan, held):
                     pt3_ = text_cache[src]
                     qj3 = pt3_.find(x['name'])
                     if qj3 > 0:
-                        rh_ = role_from_preceding_heading(pt3_[max(0, qj3 - 2500):qj3])
+                        rh_ = role_from_preceding_heading(pt3_[max(0, qj3 - 2500):qj3 + len(x['name'])])   # the name itself closes the window: a bare 'Master' heading directly before the first name of its list reads (SJTU dmcv Haoran Wang)
                         if rh_:
                             x['role'], x['role_basis'] = rh_, 'section_heading'
                 except (KeyError, ValueError):
@@ -2342,6 +2382,17 @@ def pm_candidates(kit, school, pi, plan, held):
         if fn not in keep and not ys and not x['alumni'] and stale_list(x, page_alumni):
             x['why'], x['detail'] = 'undated_cannot_place', ('R-LAB-02: the page lists dated alumni only up to ' + str(page_alumni.get(x.get('capture_url')))
                                                              + ', long before its capture: its undated current list is an old list')
+            continue
+        if fn not in keep and primary_adviser_other(x.get('desc'), x.get('quote'), pi):
+            x['why'], x['detail'] = 'not_a_student', 'the entry names another professor as its primary advisor / supervisor (no co- / joint wording): that professor\'s student'
+            continue
+        if x.get('src') not in text_cache and ',' in (x.get('quote') or ''):
+            try:
+                text_cache[x['src']] = kit.lpev.text(school, x['src'])
+            except (KeyError, ValueError):
+                pass
+        if fn not in keep and author_list_item(x.get('quote'), text_cache.get(x.get('src')) or ''):
+            x['why'], x['detail'] = 'not_a_student', 'a run of personal names followed by a paper title or venue: a reference byline, not a roster'
             continue
         if fn not in keep and advised_by_other(x.get('desc'), x.get('quote'), pi):
             x['why'], x['detail'] = 'at_previous_school', 'R-LAB-03: the entry names its own adviser, and the PI is not one of them'
