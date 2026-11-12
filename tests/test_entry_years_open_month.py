@@ -151,3 +151,11 @@ def test_unlabelled_alumni_year_is_an_end_year():
     assert L.entry_years('(2020)', 'Alumni')[0] == [None, 2020]
     assert L.entry_years('(2020)', 'Alumni > Zili Meng')[0] == [None, 2020]
     assert L.entry_years('(2020)', 'Current Students')[0] == [2020, 2020]
+
+
+def test_month_year_open_start_and_season_year_stay():
+    assert L.entry_years('Master Student, September 2022~ Tsinghua Shenzhen', None)[0] == [2022, None]
+    assert L.entry_years('Postdoctor, March 2023~', None)[0] == [2023, None]
+    assert L.entry_years('(Tsinghua University), summer 2018', None)[0] == [2018, 2018]
+    assert L.entry_years('Summer 2018 intern', None)[0] == [2018, 2018]
+    assert L.entry_years('(2025 Summer -)', None)[0] == [2025, None]

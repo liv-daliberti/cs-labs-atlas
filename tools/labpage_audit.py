@@ -1573,6 +1573,12 @@ def entry_years(desc, head):
     if dm:  # 'Defended on the 6th of January, 2012.' ends the stay (Michigan round 1: Bayraktar's alumni list)
         return [None, int(dm.group(1))], 'stated_in_entry'
     d = (desc or '')[:90]
+    mo = re.search(r'\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+((?:19|20)\d\d)\s*[~\uff5e\u2013\u2014-]\s*(?:present|now|current)?(?![\d\w])', d, re.I)
+    if mo:   # 'Master Student, September 2022~': a stated open start (Tsinghua round 6, bcspl Members)
+        return [int(mo.group(1)), None], 'stated_in_entry'
+    ss = re.search(r'\b(?:spring|summer|fall|autumn|winter)\s+((?:19|20)\d\d)\b(?!\s*[-\u2013\u2014~])', d[:80], re.I)
+    if ss and len(re.findall(r'(?<!\d)(?:19|20)\d\d(?!\d)', d[:80])) == 1:
+        return [int(ss.group(1)), int(ss.group(1))], 'stated_in_entry'   # 'summer 2018' / 'Summer 2018 intern': a stay in that season
     om = OPEN_MONTH_RX.search(d)
     if om:   # 'PhD, 2024.9-' / '2024.9至今': an open-ended start with a month is a start year, still current (SJTU round, 马超's list)
         return [int(om.group(1)), None], 'stated_in_entry'
