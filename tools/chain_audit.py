@@ -118,9 +118,13 @@ def years_of(stu):
 def stated_student_start(stu):
     """An explicit start immediately following this student's name, never a roster capture year."""
     role = r"(?:ph\.?d\.?|doctoral|graduate|master'?s|undergraduate)(?:\s+(?:student|candidate))?"
+    # Member lists sometimes put an uppercase program code between the role
+    # and its dated range (for example, "PhD CSE 2025–present"). Keep the
+    # range requirement: a bare year can instead be a graduation year.
+    program = r'(?:\s+(?-i:[A-Z]{2,6}))?'
     patterns = [
-        rf'^\s*[,;:(]?\s*{role}\s*[,:(]?\s*(?:since|from|started|starting)\s+(20\d\d)\b',
-        rf'^\s*[,;:(]?\s*{role}\s*[,:(]?\s*(20\d\d)\s*[-–—]\s*(?:present|current|now|20\d\d|(?=[,)]))',
+        rf'^\s*[,;:(]?\s*{role}{program}\s*[,:(]?\s*(?:since|from|started|starting)\s+(20\d\d)\b',
+        rf'^\s*[,;:(]?\s*{role}{program}\s*[,:(]?\s*(20\d\d)\s*[-–—]\s*(?:present|current|now|20\d\d|(?=[,)]))',
         r'^\s*[,;:(]?\s*joined\s+(?:the\s+)?(?:lab|group)\s+(?:in\s+)?(20\d\d)\b',
     ]
     starts = []

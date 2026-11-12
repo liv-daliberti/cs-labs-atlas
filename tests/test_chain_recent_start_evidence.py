@@ -23,6 +23,12 @@ def test_explicit_dated_start_is_positive_evidence_and_older_start_stays_older()
     assert A.stated_student_start(student('Jane Doe PhD Student. John Smith PhD student since 2025')) is None
 
 
+def test_program_code_between_role_and_dated_range_is_not_a_graduation_year():
+    assert A.stated_student_start(student('Jane Doe PhD CSE 2025–present')) == 2025
+    assert A.stated_student_start(student('Jane Doe PhD IIP 2026–present')) == 2026
+    assert A.stated_student_start(student('Jane Doe PhD CSE 2026')) is None
+
+
 def test_chain_audit_keeps_unlinked_established_current_student_open(tmp_path, monkeypatch):
     school = tmp_path / 'princeton'
     school.mkdir()
