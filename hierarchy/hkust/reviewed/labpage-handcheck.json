@@ -1591,6 +1591,45 @@
      "result": "PASS; role wrong: Tiancheng Zhao (Shen) phd for a postgraduate student 2023-2024 (better other/null)"
     }
    ]
+  },
+  {
+   "round": 14,
+   "date": "2026-11-12",
+   "kind": "overlay hkust-new-1114, frozen snapshot joint 7e3f8fef, six accepted periods, audit job 32218423; delta 53 (35 alumni, 18 non-alumni); final package 44 rows",
+   "file_sha256": "8c30612bfc7e9395561f1ecf34110fe5e48676bb732b2a9d63db6f2d439de8f5",
+   "samples": [
+    {
+     "name": "non-alumni all 18",
+     "membership_wrong": 0,
+     "role_wrong": 2,
+     "role_doubtful": 1,
+     "result": "Yewen Li, Zhongyu Zhao (postdocs read phd), Tsaras doubtful: held"
+    },
+    {
+     "name": "alumni random 30 of 35 seed 20261116",
+     "membership_wrong": 3,
+     "role_wrong": 1,
+     "years_wrong": 0,
+     "result": "3 Ying-Ju Chen committee-list rows wrong: all 5 Chen rows held; Tiancheng Zhao role held"
+    },
+    {
+     "name": "remaining 4 alumni rows of the package (census complete)",
+     "membership_wrong": 0,
+     "role_wrong": 0,
+     "years_wrong": 0
+    }
+   ],
+   "holds": "9 rows, see wire-package-final2/exclusions.json"
+  },
+  {
+   "round": 15,
+   "date": "2026-11-12",
+   "kind": "census re-bound to final files",
+   "files": {
+    "hkust-student-rows.json (44)": "8c30612bfc7e9395561f1ecf34110fe5e48676bb732b2a9d63db6f2d439de8f5",
+    "ALT-...39-without-5-chung.json (39)": "376b87f8868ea6501e3318aaacb94c92ce8fb9a2fbb0d073f81ae26176d26e01"
+   },
+   "note": "Every row of the 44 read by a fresh reviewer (non-alumni 18 minus holds, alumni 30 sampled + 4 remaining). The 5 Chung rows (Siqi Bao, Ronald So, Pei Wang, Yongxiang Huang, Colin Tsang): their stored quotes in this file ARE their own numbered graduates-list entries (checked verbatim on the page sha256 cca1bc48..., e.g. \"Siqi (Portia) BAO (Computer Science and Engineer\" at 8. Dr. ... Summer 2017); the paper-line quote came from the older c9545fcd audit and my earlier report of it for this file was wrong. The 39-row ALT file is the coordinator hold variant."
   }
  ]
 }
