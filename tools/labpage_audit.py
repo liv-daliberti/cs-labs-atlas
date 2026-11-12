@@ -1736,6 +1736,56 @@ def han_card_item(c_, row_, names, held):
                 alumni=c_['alumni'], held=h_, held_kind=hk_, url=row_['url'], capture_url=row_.get('capture_url'), sha256=row_['sha256'], han_card=c_)
 
 
+def apply_member_card(x, c, role_of):
+    """Set a candidate from its own member-item card: role from the card's tag (else its category), years from its period, desc / head from
+    the card, and a quote that is the card's own verbatim text (name, tag, adviser, period) when the page text holds it."""
+    tag_desc = ' '.join(t for t in (c['tag'], c['advisor'], c['period']) if t)
+    x['desc'], x['head'], x['template'] = tag_desc, c['head'], 'member-item'
+    role, basis = entry_role(c['tag'], c['head'], role_of)
+    if role:
+        x['role'], x['role_basis'] = role, basis
+    if c['years']:
+        x['years'], x['years_basis'] = c['years'], 'stated_in_entry'
+    for q in (' '.join((c['name'], tag_desc)), ' '.join((c['name'], c['tag'], c['period'])), ' '.join((c['name'], c['tag']))):
+        q = re.sub(r'\s+', ' ', q).strip()
+        if q in c['ptxt']:
+            x['quote'], x['qkind'] = q, 'name+role'
+            break
+
+
+MEMBER_ITEM_RX = re.compile(r'<li\b[^>]*class="[^"]*\bmember-item\b[^"]*"[^>]*>(.*?)</li>', re.S | re.I)
+MEMBER_PERIOD_RX = re.compile(r'^((?:19|20)\d\d)\s*[-\u2013\u2014]\s*(now|present|current|(?:19|20)\d\d)?$', re.I)
+
+
+def member_item_cards(h):
+    """Cards of a page whose roster is <li class="member-item"> blocks (name span, role tag, '(w/ Prof. X)' adviser line, period span) under
+    <div class="member-category"> headings (Tsinghua 刘保君's members.html). Read from the DOM so that one card's role / adviser / period text is never
+    taken for the next name's heading or quote. -> [dict(name, tag, advisor, period, years, head)] ; years from 'YYYY - now' / 'YYYY - YYYY'."""
+    import html as _html
+
+    def clean(x):
+        return re.sub(r'\s+', ' ', _html.unescape(re.sub(r'<[^>]+>', ' ', x or ''))).strip()
+
+    def part(body, c):
+        m = re.search(r'class="[^"]*\b%s\b[^"]*"[^>]*>(.*?)</(?:span|div)>' % c, body, re.S | re.I)
+        return clean(m.group(1)) if m else ''
+    cards = []
+    cats = [(m.start(), clean(m.group(1))) for m in re.finditer(r'<div\b[^>]*class="[^"]*\bmember-category\b[^"]*"[^>]*>(.*?)</div>', h or '', re.S | re.I)]
+    for m in MEMBER_ITEM_RX.finditer(h or ''):
+        body = m.group(1)
+        name, tag, adv, per = part(body, 'member-name'), part(body, 'member-role-tag'), part(body, 'member-advisor'), part(body, 'member-period')
+        if not name:
+            continue
+        head = next((c for pos, c in reversed(cats) if pos < m.start()), None)
+        pm = MEMBER_PERIOD_RX.match(per or '')
+        years = None
+        if pm:
+            end = pm.group(2)
+            years = [int(pm.group(1)), None if not end or end.lower() in ('now', 'present', 'current') else int(end)]
+        cards.append(dict(name=name, tag=tag, advisor=adv, period=per, years=years, head=head))
+    return cards
+
+
 ROLE_TEXT_HEAD_RX = re.compile(
     r"(?<![\w'])(ph\.?\s?d\.?|doctoral|master(?:'s)?|m\.?s\.?|undergraduate|bachelor)\s+students?\b"
     r"|(\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f)"
@@ -1950,6 +2000,21 @@ def pm_candidates(kit, school, pi, plan, held):
             hc_ = han_member_cards(ptxt_, school_names_rx(school) + r'|\u4ea4\u5927') if re.search(r'\d{2}\u7ea7', ptxt_ or '') else []
         except (KeyError, ValueError):
             hc_, row_ = [], None
+        mcards_ = {}
+        try:   # a roster of <li class="member-item"> cards: each card's own tag / adviser / period (DOM), never the neighbour's
+            row_h, _v2 = kit.lpev.cap(school, src)
+            ch_ = row_h['content']
+            try:
+                ch_ = zlib.decompress(ch_)
+            except Exception:  # noqa: BLE001 - stored uncompressed
+                pass
+            h_ = ch_.decode('utf-8', 'ignore') if 'member-item' in ch_[:2000000].decode('utf-8', 'ignore') else ''
+            if h_:
+                ptxt_m = re.sub(r'\s+', ' ', kit.lpev.text(school, src) or '')
+                for c_ in member_item_cards(h_):
+                    mcards_[names.fold(c_['name'])] = dict(c_, ptxt=ptxt_m)
+        except (KeyError, ValueError, TypeError):
+            mcards_ = {}
         have_ = {names.fold(e['name']) for e in ext}
         ext = list(ext)
         for c_ in hc_:
@@ -2000,6 +2065,9 @@ def pm_candidates(kit, school, pi, plan, held):
                 x['years'], x['years_basis'] = ([hc['year'], None] if not hc['alumni'] else [hc['year'], None]), 'stated_in_entry'
                 x['alumni'] = hc['alumni']
                 x['single_token'] = False
+            mc_ = mcards_.get(fn)
+            if mc_:
+                apply_member_card(x, mc_, kit.autom._role)
             if (x['role'] in (None, 'member') or (x.get('role_basis') == 'section_heading' and re.search(r'[\u00b7\u2022]\s*Y\d+\s*$', x.get('head') or ''))) and x.get('name') and not x['alumni']:   # (a chip-order card: the previous card's 'Ph.D. \u00b7 Y2' became the heading, the name's own label follows it) the label may follow the name on the page while the card's desc is empty ('ZL Zhuo Li Master \u00b7 Y3 ...'): Tsinghua round 1
                 try:
                     if src not in text_cache:

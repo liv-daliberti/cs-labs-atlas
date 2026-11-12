@@ -633,3 +633,28 @@ def test_live_redirect_cannot_reach_a_wayback_only_host():
     assert sent == []
     assert A.transport_policy_denied(lambda h: 'none', 'blocked.edu')
     assert not A.transport_policy_denied(lambda h: 'live', 'allowed.edu')
+
+
+MEMBER_CARDS_HTML = '''<div class="member-category">Ph.D. Students</div><ul>
+<li class="member-item"><span class="member-avatar">ZJ</span><div class="member-body"><div class="member-head"><span class="member-name">Zhenglong Jin</span>
+<span class="member-role-tag phd">Ph.D.</span></div><div class="member-advisor">(w/ Prof. Ying Liu)</div><div class="member-footer"><span class="member-period">2023 – now</span></div></div></li>
+<li class="member-item"><span class="member-avatar">SL</span><div class="member-body"><div class="member-head"><span class="member-name">Shiming Liu</span>
+<span class="member-role-tag phd">Ph.D.</span></div><div class="member-advisor"></div><div class="member-footer"><span class="member-period">2021 – 2025</span></div></div></li></ul>
+<div class="member-category">Master Students</div><ul>
+<li class="member-item"><span class="member-avatar">JS</span><div class="member-body"><div class="member-head"><span class="member-name">Junzhe Sun</span>
+<span class="member-role-tag master">Master</span></div><div class="member-advisor"></div><div class="member-footer"><span class="member-period">2024 – now</span></div></div></li></ul>'''
+
+
+def test_member_item_cards_read_each_cards_own_tag_adviser_and_period():
+    cs = A.member_item_cards(MEMBER_CARDS_HTML)
+    assert [(c['name'], c['tag'], c['advisor'], c['years'], c['head']) for c in cs] == [
+        ('Zhenglong Jin', 'Ph.D.', '(w/ Prof. Ying Liu)', [2023, None], 'Ph.D. Students'),
+        ('Shiming Liu', 'Ph.D.', '', [2021, 2025], 'Ph.D. Students'),
+        ('Junzhe Sun', 'Master', '', [2024, None], 'Master Students')]
+
+
+def test_apply_member_card_sets_role_years_and_an_own_quote():
+    c = dict(A.member_item_cards(MEMBER_CARDS_HTML)[0], ptxt='ZJ Zhenglong Jin Ph.D. (w/ Prof. Ying Liu) 2023 – now SL Shiming Liu')
+    x = dict(name='Zhenglong Jin', desc='Ph.D. (w/ Prof. Ying Liu) 2023 – now SL', head='Ph.D. Students', quote='Zhenglong Jin Ph.D', years=None, role=None)
+    A.apply_member_card(x, c, lambda t: (None, None))
+    assert x['years'] == [2023, None] and x['quote'] == 'Zhenglong Jin Ph.D. (w/ Prof. Ying Liu) 2023 – now'
