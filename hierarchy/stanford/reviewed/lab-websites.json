@@ -30744,183 +30744,6 @@
    "reason": "Website linked from the PI's official profile page and read by the crawler; it names the PI."
   },
   {
-   "pi": "John M. Cioffi",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-10-31T11:23:44+00:00",
-   "checks": [
-    {
-     "source": "department_listing",
-     "url": "https://profiles.stanford.edu/john-cioffi",
-     "at": "2026-10-31T11:23:15+00:00",
-     "result": "ok",
-     "sha256": "4866a581be11b4ef46332a00afab2bc88ca8793a1f8afa841c9ac07c4c282ab9"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/40/1964",
-     "at": "2026-10-31T11:23:16+00:00",
-     "result": "listed",
-     "urls": [
-      "http://web.stanford.edu/group/cioffi/",
-      "https://www.internethalloffame.org/inductees/john-cioffi"
-     ]
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": "https://orcid.org/0000-0003-1353-8101/person.json",
-     "at": "2026-10-31T11:23:16+00:00",
-     "result": "no_urls",
-     "sha256": "e052557b5e079454310cbadd241f73ecf945c5f3dfed17f640503191a99c03f2"
-    },
-    {
-     "source": "openalex_author",
-     "url": "https://openalex.org/A5029146230",
-     "at": "2026-10-31T11:23:16+00:00",
-     "result": "no_homepage_field_in_schema"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://profiles.stanford.edu/john-cioffi",
-     "at": "2026-10-31T11:23:16+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://profiles.stanford.edu/john-cioffi",
-     "at": "2026-10-31T11:23:16+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://profiles.stanford.edu/john-cioffi",
-     "at": "2026-10-31T11:23:16+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "candidate_site",
-     "url": "http://web.stanford.edu/group/cioffi/",
-     "at": "2026-10-31T11:23:16+00:00",
-     "result": "ok",
-     "via": "dblp_person_url",
-     "sha256": "e158f914f1b08e5ac79633f094664a324378f9c189136ce60f33e89de8a8494c",
-     "final_url": "https://cioffi-group.stanford.edu/"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://www.internethalloffame.org/inductees/john-cioffi",
-     "at": "2026-10-31T11:23:20+00:00",
-     "result": "ok",
-     "via": "dblp_person_url",
-     "sha256": "8d5723d9d3da0bd15ba4cd403f3264705463ae0a85a6748042c2269564deaa39",
-     "final_url": "https://www.internethalloffame.org/inductee/john-cioffi/"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://profiles.stanford.edu/john-cioffi",
-     "at": "2026-10-31T11:23:21+00:00",
-     "result": "ok",
-     "via": "pi_evidence_url",
-     "sha256": "4866a581be11b4ef46332a00afab2bc88ca8793a1f8afa841c9ac07c4c282ab9"
-    },
-    {
-     "source": "pubs_link",
-     "url": "https://profiles.stanford.edu/john-cioffi?tab=publications",
-     "at": "2026-10-31T11:23:23+00:00",
-     "result": "ok",
-     "on": "https://profiles.stanford.edu/john-cioffi",
-     "sha256": "f0946452424c7754aae71b2adf0f7e58f4f9c89aa155e3b204e786b77b40dca9"
-    },
-    {
-     "source": "wayback_cdx",
-     "url": "https://profiles.stanford.edu/john-cioffi",
-     "at": "2026-10-31T11:23:24+00:00",
-     "result": "21 captures",
-     "frm": 2016
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20160312101012id_/https://profiles.stanford.edu/john-cioffi",
-     "at": "2026-10-31T11:23:31+00:00",
-     "result": "ok_wayback",
-     "sha256": "ccade2d7fc0232cbe4ba7dcc1cfe6d9354e1c00ad4ff6e8547d0ff65a661a19c"
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20230516180633id_/https://profiles.stanford.edu/john-cioffi",
-     "at": "2026-10-31T11:23:36+00:00",
-     "result": "ok_wayback",
-     "sha256": "d3f0b745d20e4a0a6862ed6d4649815d5d127da56af548feed3eb37176495b63"
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20260515205427id_/https://profiles.stanford.edu/john-cioffi",
-     "at": "2026-10-31T11:23:44+00:00",
-     "result": "ok_wayback",
-     "sha256": "f286b9e2346b450a5e84d78ef483f999f32504be33a957bcd1147d0c0f44c721"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "http://web.stanford.edu/group/cioffi/",
-     "on": "https://profiles.stanford.edu/john-cioffi",
-     "at": "2026-10-31T11:23:16+00:00",
-     "result": "listed",
-     "anchor": "My Stanford Group",
-     "linked_url": "http://web.stanford.edu/group/cioffi/",
-     "source_sha256": "4866a581be11b4ef46332a00afab2bc88ca8793a1f8afa841c9ac07c4c282ab9",
-     "source_capture_url": null,
-     "provenance": "recovered_from_cached_profile_html"
-    }
-   ],
-   "places_checked": [
-    "candidate_site:ok",
-    "dblp_person_url:listed",
-    "department_listing:ok",
-    "orcid_researcher_urls:no_urls",
-    "pi_evidence_url:listed",
-    "pubs_link:ok",
-    "wayback_capture:ok_wayback",
-    "wayback_cdx:21 captures"
-   ],
-   "checked_at": "2026-10-31T11:23:44+00:00",
-   "students_page_status": "pending_review",
-   "papers_page_status": "pending_review",
-   "url": "http://web.stanford.edu/group/cioffi/",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": "https://profiles.stanford.edu/john-cioffi",
-   "sha256": "e158f914f1b08e5ac79633f094664a324378f9c189136ce60f33e89de8a8494c",
-   "evidence": {
-    "url": "http://web.stanford.edu/group/cioffi/",
-    "sha256": "e158f914f1b08e5ac79633f094664a324378f9c189136ce60f33e89de8a8494c",
-    "quote": "John M. Cioffi | Home John M. Cioffi Hitachi Professor Emeritus of Enginee"
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "http://web.stanford.edu/group/cioffi/",
-     "on": "https://profiles.stanford.edu/john-cioffi",
-     "at": "2026-10-31T11:23:16+00:00",
-     "result": "listed",
-     "anchor": "My Stanford Group",
-     "linked_url": "http://web.stanford.edu/group/cioffi/",
-     "source_sha256": "4866a581be11b4ef46332a00afab2bc88ca8793a1f8afa841c9ac07c4c282ab9",
-     "source_capture_url": null,
-     "provenance": "recovered_from_cached_profile_html"
-    }
-   ],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "john m cioffi home john m cioffi hitachi professor emeritus of engineering recalled dep"
-  },
-  {
    "pi": "Eric Darve",
    "status": "found",
    "reason_code": "lab_site",
@@ -42924,6 +42747,201 @@
    ],
    "evidence_gaps": [],
    "hand_reviewed": true
+  },
+  {
+   "pi": "John M. Cioffi",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-10-31T11:23:44+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://profiles.stanford.edu/john-cioffi",
+     "at": "2026-10-31T11:23:15+00:00",
+     "result": "ok",
+     "sha256": "4866a581be11b4ef46332a00afab2bc88ca8793a1f8afa841c9ac07c4c282ab9"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/40/1964",
+     "at": "2026-10-31T11:23:16+00:00",
+     "result": "listed",
+     "urls": [
+      "http://web.stanford.edu/group/cioffi/",
+      "https://www.internethalloffame.org/inductees/john-cioffi"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-1353-8101/person.json",
+     "at": "2026-10-31T11:23:16+00:00",
+     "result": "no_urls",
+     "sha256": "e052557b5e079454310cbadd241f73ecf945c5f3dfed17f640503191a99c03f2"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5029146230",
+     "at": "2026-10-31T11:23:16+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://profiles.stanford.edu/john-cioffi",
+     "at": "2026-10-31T11:23:16+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://profiles.stanford.edu/john-cioffi",
+     "at": "2026-10-31T11:23:16+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://profiles.stanford.edu/john-cioffi",
+     "at": "2026-10-31T11:23:16+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://web.stanford.edu/group/cioffi/",
+     "at": "2026-10-31T11:23:16+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "e158f914f1b08e5ac79633f094664a324378f9c189136ce60f33e89de8a8494c",
+     "final_url": "https://cioffi-group.stanford.edu/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.internethalloffame.org/inductees/john-cioffi",
+     "at": "2026-10-31T11:23:20+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "8d5723d9d3da0bd15ba4cd403f3264705463ae0a85a6748042c2269564deaa39",
+     "final_url": "https://www.internethalloffame.org/inductee/john-cioffi/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://profiles.stanford.edu/john-cioffi",
+     "at": "2026-10-31T11:23:21+00:00",
+     "result": "ok",
+     "via": "pi_evidence_url",
+     "sha256": "4866a581be11b4ef46332a00afab2bc88ca8793a1f8afa841c9ac07c4c282ab9"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://profiles.stanford.edu/john-cioffi?tab=publications",
+     "at": "2026-10-31T11:23:23+00:00",
+     "result": "ok",
+     "on": "https://profiles.stanford.edu/john-cioffi",
+     "sha256": "f0946452424c7754aae71b2adf0f7e58f4f9c89aa155e3b204e786b77b40dca9"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://profiles.stanford.edu/john-cioffi",
+     "at": "2026-10-31T11:23:24+00:00",
+     "result": "21 captures",
+     "frm": 2016
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20160312101012id_/https://profiles.stanford.edu/john-cioffi",
+     "at": "2026-10-31T11:23:31+00:00",
+     "result": "ok_wayback",
+     "sha256": "ccade2d7fc0232cbe4ba7dcc1cfe6d9354e1c00ad4ff6e8547d0ff65a661a19c"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20230516180633id_/https://profiles.stanford.edu/john-cioffi",
+     "at": "2026-10-31T11:23:36+00:00",
+     "result": "ok_wayback",
+     "sha256": "d3f0b745d20e4a0a6862ed6d4649815d5d127da56af548feed3eb37176495b63"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260515205427id_/https://profiles.stanford.edu/john-cioffi",
+     "at": "2026-10-31T11:23:44+00:00",
+     "result": "ok_wayback",
+     "sha256": "f286b9e2346b450a5e84d78ef483f999f32504be33a957bcd1147d0c0f44c721"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://web.stanford.edu/group/cioffi/",
+     "on": "https://profiles.stanford.edu/john-cioffi",
+     "at": "2026-10-31T11:23:16+00:00",
+     "result": "listed",
+     "anchor": "My Stanford Group",
+     "linked_url": "http://web.stanford.edu/group/cioffi/",
+     "source_sha256": "4866a581be11b4ef46332a00afab2bc88ca8793a1f8afa841c9ac07c4c282ab9",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://cioffi-group.stanford.edu/mlc/group.html",
+     "at": "2026-11-12T16:37:56+00:00",
+     "sha256": "05aa2557968f01c8da566683a6be41ae56b145cd1c15be88eb33b19df4ed46df",
+     "result": "ok",
+     "name_quote": "Prof. John M. Cioffi Hitachi Professor Emeritus of Engineering",
+     "tie_quote": "Stanford MLC Lab [Cioffi Group]",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://cioffi-group.stanford.edu/mlc/group.html",
+     "at": "2026-11-12T16:37:56+00:00",
+     "sha256": "05aa2557968f01c8da566683a6be41ae56b145cd1c15be88eb33b19df4ed46df",
+     "result": "ok",
+     "name_quote": "Prof. John M. Cioffi Hitachi Professor Emeritus of Engineering",
+     "tie_quote": "Stanford MLC Lab [Cioffi Group]",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:21 captures"
+   ],
+   "checked_at": "2026-11-12T16:37:56+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "pending_review",
+   "url": "https://cioffi-group.stanford.edu/mlc/group.html",
+   "kind": "lab_site",
+   "people_page": "https://cioffi-group.stanford.edu/mlc/group.html",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "05aa2557968f01c8da566683a6be41ae56b145cd1c15be88eb33b19df4ed46df",
+   "evidence": {
+    "url": "https://cioffi-group.stanford.edu/mlc/group.html",
+    "sha256": "05aa2557968f01c8da566683a6be41ae56b145cd1c15be88eb33b19df4ed46df",
+    "quote": "Prof. John M. Cioffi Hitachi Professor Emeritus of Engineering"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://cioffi-group.stanford.edu/mlc/group.html",
+     "at": "2026-11-12T16:37:56+00:00",
+     "sha256": "05aa2557968f01c8da566683a6be41ae56b145cd1c15be88eb33b19df4ed46df",
+     "result": "ok",
+     "name_quote": "Prof. John M. Cioffi Hitachi Professor Emeritus of Engineering",
+     "tie_quote": "Stanford MLC Lab [Cioffi Group]",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "Prof. John M. Cioffi Hitachi Professor Emeritus of Engineering"
   }
  ]
 }
