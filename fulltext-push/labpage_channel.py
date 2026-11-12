@@ -292,7 +292,10 @@ def lab_evidence(school):
     p = F.P.data('labpage-evidence.json', school)
     if p.exists():
         return json.loads(p.read_text())
-    rep = json.loads((F.P.data('labpage-pubs-report.json', school)).read_text())
+    rp = F.P.data('labpage-pubs-report.json', school)
+    if not rp.exists():
+        return []   # a school whose lab pages were read only by the audit (ntu, zju, tsinghua): the channel continues from the audit jsonl and captures
+    rep = json.loads(rp.read_text())
     out = []
     for pi, x in (rep.get('pis') or {}).items():
         pages = [pg['url'] for pg in (x.get('pages') or []) if isinstance(pg, dict) and (pg.get('url') or '').startswith('http')]

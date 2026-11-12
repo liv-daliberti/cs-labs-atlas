@@ -21,3 +21,8 @@ def test_iter_captures_reads_the_audit_store(tmp_path, monkeypatch):
     c.commit(); c.close()
     monkeypatch.setattr(lc.F.P, 'data', lambda name, school=None, **k: tmp_path / ('none.sqlite' if name == 'labpage-captures.sqlite' else 'b.sqlite'))
     assert [r[0] for r in lc.iter_captures('x')] == ['https://a.edu/x']
+
+
+def test_lab_evidence_without_either_evidence_file_is_empty(tmp_path, monkeypatch):
+    monkeypatch.setattr(lc.F.P, 'data', lambda name, school=None, **k: tmp_path / name)
+    assert lc.lab_evidence('ntu') == []
