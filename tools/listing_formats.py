@@ -284,6 +284,41 @@ def princeton_cs_faculty(h):
     return out
 
 
+def mit_eecs_legacy_faculty(h):
+    """EECS Faculty & Advisors, 2016–2021 Drupal directory."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for row in soup.select('ul.faculty-list > li.views-row'):
+        name_field = row.select_one('.views-field-title .card-title')
+        link = name_field.select_one('a[href]') if name_field else None
+        title = row.select_one('.views-field-field-person-title')
+        if not name_field or not title:
+            continue
+        name = ' '.join(name_field.get_text(' ', strip=True).split())
+        rank = ' '.join(title.get_text(' ', strip=True).split())
+        if name and rank:
+            out.append(dict(name_listed=name, titles=[rank], homepage=None,
+                            division=None, profile=link['href'] if link else None))
+    return out
+
+
+def mit_eecs_faculty_cards(h):
+    """EECS faculty-only role page after the 2021 site redesign."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for card in soup.select('.facetwp-template .people-entry'):
+        link = card.select_one('h5 a[href]')
+        title = card.find('p', recursive=False)
+        if not link or not title:
+            continue
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        rank = ' '.join(title.get_text(' ', strip=True).split())
+        if name and rank:
+            out.append(dict(name_listed=name, titles=[rank], homepage=None,
+                            division=None, profile=link['href']))
+    return out
+
+
 def whu_cs_legacy(h):
     """2016–2018 Wuhan CS directory: named records with one printed rank."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1591,7 +1626,9 @@ FORMATS = {
     'whu_cs_emeritus': (whu_cs_emeritus, re.compile(r'class="teacher-list honored')),
     'seu_department_faculty': (seu_department_faculty, re.compile(r'<title>教师按系别</title>')),
     'hit_teacher_list': (hit_teacher_list, re.compile(r'id="wp_news_w6"')),
-    'princeton_cs_faculty': (princeton_cs_faculty, re.compile(r'class="people people-facstaff"')),
+    'princeton_cs_faculty': (princeton_cs_faculty, re.compile(r'class="people people-facstaff"|custom_card__container people')),
+    'mit_eecs_legacy_faculty': (mit_eecs_legacy_faculty, re.compile(r'class="faculty-list"')),
+    'mit_eecs_faculty_cards': (mit_eecs_faculty_cards, re.compile(r'class="facetwp-template"')),
     'ustc_cs_legacy_sidebar': (ustc_cs_legacy_sidebar, re.compile(r'(?!)')),
     'ntu_coe_cards': (ntu_coe_cards, re.compile(r'coe-about-leadership__card')),
     'ntu_profile_cards': (ntu_profile_cards, re.compile(r'ntu-profile-list')),

@@ -37,6 +37,34 @@ listing_continuity = true     # R-PAP-37, owner-approved 2026-11-06, 30-paper ha
 [census]
 computing_departments = ["EECS", "CSAIL"]   # listed_not_in_census.py; [] = every listed department
 
+[[departments]]
+code = "EECS"
+name = "Electrical Engineering and Computer Science"
+unit = "MIT School of Engineering"
+title_match = 'Professor|Lecturer|Instructor|Research Scientist'
+coverage = "full"
+url = "https://www.eecs.mit.edu/people/"
+  [[departments.listings]]
+  slot = "EECS Faculty and Advisors 2016–2021"
+  kind = "main"
+  url = "www.eecs.mit.edu/people/faculty-advisors"
+  from = "20160101"
+  to = "20211231"
+  format = "mit_eecs_legacy_faculty"
+  [[departments.listings]]
+  slot = "EECS faculty role 2021–2026"
+  kind = "main"
+  url = "www.eecs.mit.edu/role/faculty/"
+  from = "20211001"
+  to = "20261231"
+  format = "mit_eecs_faculty_cards"
+
+[[affiliated_units]]
+code = "CSAIL"
+name = "Computer Science and Artificial Intelligence Laboratory"
+url = "https://www.csail.mit.edu/"
+listings = ["www.csail.mit.edu/people"]
+
 [site]
 depts = {EECS = "Electrical Engineering and Computer Science"}
 
