@@ -276,6 +276,30 @@ def uestc_college_teachers(h):
     return out
 
 
+def hit_cs_current_table(h):
+    """HIT Faculty of Computing roster: only its explicitly headed CS school."""
+    soup = BeautifulSoup(h, 'html.parser')
+    heading = soup.find(string=lambda text: text and text.strip() == '计算机科学与技术学院')
+    table = heading.find_next('table') if heading else None
+    if table is None:
+        return []
+    out = []
+    group = None
+    for row in table.select('tr'):
+        cells = row.find_all('td', recursive=False)
+        if len(cells) == 1 and int(cells[0].get('colspan', 1)) > 1:
+            group = ' '.join(cells[0].get_text(' ', strip=True).split())
+            continue
+        for cell in cells:
+            if int(cell.get('colspan', 1)) > 1:
+                continue
+            name = ' '.join(cell.get_text(' ', strip=True).split())
+            if name:
+                out.append(dict(name_listed=name, titles=['教师'], homepage=None,
+                                division=group, profile=None))
+    return out
+
+
 def hit_teacher_list(h):
     """HIT's 2018 Webplus all-teacher directory, one page of its six-page list.
 
@@ -1649,6 +1673,7 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
+    'hit_cs_current_table': (hit_cs_current_table, re.compile(r'(?!)')),
     'berkeley_eecs_faculty': (berkeley_eecs_faculty, re.compile(r'(?!)')),
     'berkeley_eecs_directory': (berkeley_eecs_directory, re.compile(r'(?!)')),
     'mit_csail_pi': (mit_csail_pi, re.compile(r'(?!)')),
