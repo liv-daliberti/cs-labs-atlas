@@ -476,11 +476,16 @@ def collaborator_list_before(ptxt, name):
     return False
 
 
+INDUSTRY_VISITOR_RX = re.compile(r'(?i)\b(?:corporation|corp\.?|inc\.?|ltd\.?|gmbh|company|co\.,)\W+(?:[^,;]{0,30}[,;]\s*)?visiting\s+(?:scholar|researcher|scientist|engineer)\b')
+
+
 def prose_nonmember(name, desc, quote):
     """Stanford round 7: a name that is a faculty collaborator or committee chair, not a member. 'I also worked with Vahideh Manshadi' (Ashlagi) is
     prose about a collaborator; 'Will Monroe (2018 ...; Lyn Frazier co-chair)' in a PI's dissertation list names the student's other chair."""
     q = (quote or '').rstrip()
     before = q[:-len(name)] if name and q.endswith(name) else ''
+    if INDUSTRY_VISITOR_RX.search(f'{desc or ""} {q}'[:200]):
+        return 'an industry visiting scholar (a company is named with the visiting role), akin to the excluded visiting scientist, not a student member'   # Stanford Wetzstein, Sambongi (Olympus)
     if PROSE_COLLAB_RX.search(before):
         return 'a collaborator named in a sentence ("worked with ..."), not a member'
     if CHAIR_AFTER_RX.search(desc or ''):

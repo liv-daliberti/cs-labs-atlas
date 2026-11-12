@@ -114,3 +114,8 @@ def test_stanford_recall_entry_formats():
     assert LA.STRICT_HEAD.search('PhDs') and LA.STUDENT_HEAD.search('PhDs')
     assert LA.url_key('https://med.stanford.edu:443/gevaertlab/people.html') == LA.url_key('http://med.stanford.edu/gevaertlab/people.html')
     assert LA.plausible_under_student_heading('Favour Nerrise') and not LA.plausible_under_student_heading('Machine Learning')
+
+
+def test_industry_visiting_scholar_is_not_a_student_member():
+    assert LA.prose_nonmember('Masao Sambongi', ', Olympus Corporation, Visiting Scholar, 2015-2017', 'Masao Sambongi, Olympus Corporation, Visiting Scholar, 2015-2017')
+    assert not LA.prose_nonmember('Ann Lee', ', Visiting Student from CUHK, 2016', 'Ann Lee, Visiting Student from CUHK, 2016')
