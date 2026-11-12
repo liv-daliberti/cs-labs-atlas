@@ -101,3 +101,8 @@ def test_homepage_student_sections_named_doctoral_or_masters_are_member_lists():
     assert L.HOMEPAGE_HEAD.search("Former > Master's, undergraduate, and HS")
     assert not L.HOMEPAGE_HEAD.search('Selected projects')
     assert not L.HOMEPAGE_HEAD.search('Bio')
+
+
+def test_mban_class_year_is_an_end_year_in_entry_years():
+    yrs, basis = L.entry_years("(MBAn ‘22, then PhD student at MIT ORC)", 'MBAn advisees')[:2]
+    assert yrs == [None, 2022] and basis == 'stated_in_entry'

@@ -1962,6 +1962,9 @@ def entry_years(desc, head):
     cy = re.match(r'^\W{0,3}((?:19|20)\d\d)\s+(?:direct-entry\s+|regular\s+)?(?:ph\.?\s?d\.?|master(?:\u2019|\')?s?)\b[^.]{0,30}', desc or '', re.I)
     if cy:   # '2024 Direct-entry PhD Student' / '2021 Master's graduate' (name-first card pages): a cohort year is the start of a current student, the end of a graduate (ZJU 李环)
         return ([None, int(cy.group(1))] if re.search(r'\bgraduates?\b', cy.group(0), re.I) else [int(cy.group(1)), None]), 'stated_in_entry'
+    mb = re.match(r"^\W{0,3}\(\s*(?:MBAn|MBA|MFin|MSBA|S\.?\s?M\.?|M\.?\s?Eng\.?)\s*['\u2018\u2019](\d\d)\b", desc or '', re.I)
+    if mb:   # "(MBAn '22, then PhD student at MIT ORC)": a master's class year is the graduation (end) year (MIT Freund)
+        return [None, 2000 + int(mb.group(1))], 'stated_in_entry'
     dd = DEPT_DATE_ENTRY_RX.match(desc or '')
     if dd:
         return [None, int(dd.group(1))], 'stated_in_entry'
@@ -3083,7 +3086,8 @@ def pm_candidates(kit, school, pi, plan, held):
             elif re.search(r'high[- ]school', (x.get('head') or '') + ' ' + (x.get('desc') or '')[:60], re.I):
                 why, x['detail'] = 'not_a_student', 'high-school outreach student'
             elif auto_plan and not DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') and not (STUDENT_HEAD.search(x.get('head') or '') or
-                                    (not homepage_people and (x['under_people_heading'] or x.get('qkind') == 'name+role'))):
+                                    (not homepage_people and (x['under_people_heading'] or x.get('qkind') == 'name+role')) or
+                                    (BARE_DEGREE_LABEL_RX.match((x.get('desc') or '').strip()) and not NOT_MEMBER_HEAD.search(x.get('head') or ''))):   # 'Eli Brock EECS PhD' under a bare 'Group' heading (Sojoudi): the entry's own degree label is the member cue
                 why = 'not_in_people_section'  # on a homepage, names in the bio prose are collaborators and mentors
             elif auto_plan and plan.get('shared_page') and not re.search(r'\b' + re.escape(fold(family(pi))) + r'\b', fold((x.get('desc') or '')[:200])):
                 why, x['detail'] = 'shared_page_no_adviser', f"a people page shared by {plan['shared_page']} labs; the entry does not name this PI"
