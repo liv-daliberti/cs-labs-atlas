@@ -16,6 +16,19 @@ import atlas_paths as P
 
 
 PAGES = {
+    'Sam H. Noh': (
+        'https://next.cs.vt.edu/students/',
+        '7239665c56b54ce6619340e0b8a45dc972b66ccbe859cd3849d90585e88a5627',
+        [
+            ('Shean Kim', 'phd', [2026, 2026], 'Ph.D. Students Shean Kim'),
+            ('Inho Song', 'phd', [2026, 2026], 'Ph.D. Students Shean Kim Inho Song'),
+            ('Hangyul Kim', 'phd', [2026, 2026], 'Shean Kim Inho Song Hangyul Kim'),
+            ('Hyerim Lee', 'phd', [2026, 2026], 'Hangyul Kim Hyerim Lee'),
+            ('Junesoo Kang', 'phd', [2026, 2026], 'Hyerim Lee Junesoo Kang'),
+            ('Zhenyu Wang', 'masters', [2026, 2026], 'M.S. Students Zhenyu Wang'),
+            ('Connor O’Neal Burch', 'masters', [2026, 2026], 'M.S. Students Zhenyu Wang Connor O’Neal Burch'),
+        ],
+    ),
     'Brendan David-John': (
         'https://bmdj-vt.github.io/people',
         'c82cbb075cb14602ce3340ca39c656d73a46c1026ec55bfa1674aa01dead224e',
@@ -76,8 +89,21 @@ def main():
         for tag in soup(['script', 'style', 'noscript']):
             tag.decompose()
         visible = ' '.join(soup.get_text(' ', strip=True).split())
-        assert pi in visible
+        if pi == 'Sam H. Noh':
+            professor_url = 'https://next.cs.vt.edu/professor/'
+            professor_sha = 'cc6c66fd04098a345b923dd969bc4f2d5d84ae7ad4860f82333bd0e289c55e64'
+            professor = db.execute('select content from captures where url=? and status=200 and sha256=? limit 1',
+                                   (professor_url, professor_sha)).fetchone()
+            assert professor
+            professor_raw = zlib.decompress(professor[0])
+            assert hashlib.sha256(professor_raw).hexdigest() == professor_sha
+            professor_text = ' '.join(BeautifulSoup(professor_raw, 'html.parser').get_text(' ', strip=True).split())
+            assert 'Sam H. Noh' in professor_text and 'Virginia Tech' in professor_text
+            assert 'NECSST Lab' in visible
+        else:
+            assert pi in visible
         marker = {
+            'Sam H. Noh': 'Ph.D. Students Shean Kim',
             'Brendan David-John': 'Principle Investigator Brendan David-John',
             'Chris Thomas': 'Group Md Atabuzzaman',
             'Thang Hoang': 'PhD students Arman Riasi',
@@ -88,13 +114,19 @@ def main():
         added[pi] = 0
         for name, role, years, quote in rows:
             assert quote in visible, (pi, name)
+            note = ('Current roster on the PI-owned VT CS-hosted lab site; its professor page identifies Sam H. Noh with Virginia Tech. '
+                    'The professor biography retains older UNIST wording; individual student enrollment is not inferred from that biography.'
+                    if pi == 'Sam H. Noh' else
+                    'Name and role are in the PI-owned group roster; advising is not inferred.')
             if name in existing:
+                if pi == 'Sam H. Noh':
+                    next(s for s in rec['students'] if s['name'] == name)['note'] = note
                 continue
             rec['students'].append(dict(name=name, role=role, years=years,
                                         years_basis='current group roster' if years[-1] == 2026 else 'dated graduate entry',
                                         relationship='membership', source='pi_owned_group_roster',
                                         reviewed=True, auto=False, url=url, sha256=sha, quote=quote,
-                                        note='Name and role are in the PI-owned group roster; advising is not inferred.'))
+                                        note=note))
             added[pi] += 1
         if pi not in {r['pi'] for r in records}:
             records.append(rec)
