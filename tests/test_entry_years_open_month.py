@@ -168,3 +168,9 @@ def test_since_fyp_and_alumni_destination():
     # a Han roster word registers as a people heading and as a current marker
     assert L.STRICT_HEAD.search('在读研究生') and L.STRICT_HEAD.search('已毕业')
     assert L.current_marker({'head': '在读研究生'}) and not L.current_marker({'head': '已毕业'})
+
+
+def test_discovery_name_signal_for_a_han_keyed_pi():
+    import pi_name_signal as N
+    assert N.page_names_pi('Shuibing He, Zhejiang University, personal homepage', '何水兵', None)
+    assert not N.page_names_pi('He lab at another university', '何水兵', None)   # a family-name-only page never counts

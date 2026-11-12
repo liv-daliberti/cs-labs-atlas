@@ -1117,6 +1117,12 @@ def discover_lab(kit, school, p, ctx, full=True):
             except Exception:  # noqa: BLE001
                 txt = ''
         names_pi = bool(fam and fam in fold(txt))
+        if txt and not names_pi:   # a Han-keyed PI's Latin-only page: the shared name signal (registry Latin names + pinyin family AND given), never identity (owner: pypinyin allowed as a signal)
+            try:
+                import pi_name_signal as N_
+                names_pi = bool(N_.page_names_pi(txt, p['pi'], p.get('names')))
+            except Exception:  # noqa: BLE001
+                pass
         host = urlsplit(unwayback(r.get('final_url') or u)).hostname or ''
         strong = src in ('school_profile_link', 'dblp_person_url', 'orcid_researcher_url', 'earlier_homepage_find')
         add('candidate_site', u, res if (not txt or names_pi) else ('does_not_name_pi' + ('_kept_strong_source' if strong else '')),
