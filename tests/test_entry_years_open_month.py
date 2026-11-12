@@ -140,3 +140,8 @@ def test_han_card_item_has_every_key_an_extract_row_has():
     c = L.han_member_cards('博士生 蔡冠宇 23级博士研究生 蔡冠宇，上海交通大学。')[0]
     item = L.han_card_item(c, {'url': 'https://x/people.html', 'sha256': 'ab' * 32}, N, [])
     assert all(k in item for k in L.HAN_ITEM_KEYS) and item['url'] == 'https://x/people.html' and item['han_card']['member']
+
+
+def test_undergraduate_interns_heading_sets_the_role():
+    assert L.role_fallback('Undergraduate Interns') == 'undergraduate'
+    assert L.entry_role('', 'Undergraduate Interns', lambda t: (None, None)) == ('undergraduate', 'section_heading')

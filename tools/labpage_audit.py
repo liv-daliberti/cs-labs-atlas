@@ -1662,7 +1662,7 @@ def nearer_nonphd_heading(text, name, head):
     return False
 
 
-ROLE_WORDS_FALLBACK = re.compile(r"\b(master|m\.?\s?s\.?|m\.?eng|mphil)['\u2019]?s?\b(?:\s+students?|\s*[\u00b7\u2022|,:-]\s*(?:y\d|year)|\s+candidates?)|\b(ph\.?\s?d\.?|doctoral)(?:\s+students?|\s+candidates?|\s*[\u00b7\u2022|,:-]\s*(?:y\d|year))|\bundergraduate\s+students?\b|\bmaster\s*[\u00b7\u2022]|\bph\.?\s?d\.?\s*[\u00b7\u2022]", re.I)
+ROLE_WORDS_FALLBACK = re.compile(r"\b(master|m\.?\s?s\.?|m\.?eng|mphil)['\u2019]?s?\b(?:\s+students?|\s*[\u00b7\u2022|,:-]\s*(?:y\d|year)|\s+candidates?)|\b(ph\.?\s?d\.?|doctoral)(?:\s+students?|\s+candidates?|\s*[\u00b7\u2022|,:-]\s*(?:y\d|year))|\bundergraduate\s+(?:students?|interns?|researchers?|assistants?)\b|\bmaster\s*[\u00b7\u2022]|\bph\.?\s?d\.?\s*[\u00b7\u2022]", re.I)
 
 
 HAN_CARD_RX = re.compile(r"([\u4e00-\u9fff][\u4e00-\u9fff\u00b7]{1,3})\s*(\d{2})\u7ea7\s*(\u535a\u58eb\u7814\u7a76\u751f|\u7855\u58eb\u7814\u7a76\u751f|\u672c\u79d1\u751f|\u535a\u58eb\u540e|\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u7814\u7a76\u751f)")
@@ -2605,7 +2605,8 @@ def repair_reason(kit, school, name, best, start, pi=None):
             return 'site_at_other_institution', f'the entry places the person at {om.group(1)}'
         if COADVISER_BEFORE.search(t[max(0, k - 40): k]):
             return 'not_a_student', 'named as the co-adviser of another member (co-advised with / jointly supervised with)'
-        if pi and (other_pis_on_page(school, pi, t, k) >= 6 or (other_pis_on_page(school, pi, t, k) >= 3 and len(re.findall(r'\bProfessor\b', t)) >= 5) or (other_pis_on_page(school, pi, t) >= 5 and len(re.findall(r'\bProfessor\b', t)) >= 5)) and len(re.findall(r'co-?advis|jointly|\bw/|\(with ', t[max(0, k - 900): k + 900], re.I)) < 2 and not any(fold(al.split()[-1]).lower() in fold(t[k: k + 120]).lower() for al in pi_alias_map(school).get(pi, [pi])):
+        own_hdr = any(len(a_.split()) >= 2 and fold(a_).lower() in fold(t[:700]).lower() for a_ in pi_alias_map(school).get(pi, []))   # the page's own header names the PI (a 'Director Prof. X' line): his group's page, not a department page (Tsinghua round 4: routing.netlab)
+        if pi and (other_pis_on_page(school, pi, t, k) >= 6 or (not own_hdr and ((other_pis_on_page(school, pi, t, k) >= 3 and len(re.findall(r'\bProfessor\b', t)) >= 5) or (other_pis_on_page(school, pi, t) >= 5 and len(re.findall(r'\bProfessor\b', t)) >= 5)))) and len(re.findall(r'co-?advis|jointly|\bw/|\(with ', t[max(0, k - 900): k + 900], re.I)) < 2 and not any(fold(al.split()[-1]).lower() in fold(t[k: k + 120]).lower() for al in pi_alias_map(school).get(pi, [pi])):
             return 'shared_page_no_adviser', 'a page that names several faculty and their students; the entry does not name this PI as adviser'
         if COLLAB_PROSE.search(t[max(0, k - 300): k]):
             return 'not_a_student', 'listed among collaborators ("collaborate with the PhD students ...")'
