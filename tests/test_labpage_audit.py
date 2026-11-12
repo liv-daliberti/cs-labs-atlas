@@ -658,3 +658,43 @@ def test_apply_member_card_sets_role_years_and_an_own_quote():
     x = dict(name='Zhenglong Jin', desc='Ph.D. (w/ Prof. Ying Liu) 2023 – now SL', head='Ph.D. Students', quote='Zhenglong Jin Ph.D', years=None, role=None)
     A.apply_member_card(x, c, lambda t: (None, None))
     assert x['years'] == [2023, None] and x['quote'] == 'Zhenglong Jin Ph.D. (w/ Prof. Ying Liu) 2023 – now'
+
+
+@pytest.mark.parametrize('desc,head,role', [
+    ('(MPhil student, HKUST (GZ) RBM, co-supervised with Prof. Mingming Fan, Fall 2022 - Summer 2024, PhD @ ETH)', 'Past members', 'masters'),
+    ('(Exchange student, undergraduate from X, Fall 2018)', 'Past members', 'visiting'),
+    ('(Exchange, undergrad from Y, Summer 2016)', 'Past members', 'visiting'),
+    ('(RA, 2025-2026), now a PhD student in our group', 'Postgraduate Researchers', 'other'),
+    ('(Research intern, graduate student from HKUST, Summer 2024)', 'Past members', 'other'),
+    ('(Research intern, undergraduate student from HKUST, Summer 2024)', 'Past members', 'undergraduate'),
+    ('(UGVIS, 2024)', 'Undergraduate Researchers', 'visiting'),
+    ('(PGVIS, 2025)', 'Postgraduate Researchers', 'visiting'),
+    ('(Computer Science and Engineering, 2022)', 'M.Phil. (Master of Philosophy) Students: > )', 'masters'),
+    ('(PhD student, Fall 2021 - Fall 2025)', 'Past members', None),
+    ('(Visiting intern, graduate student from Harvard, Summer 2024)', 'Past members', None)])
+def test_label_role_first_label_decides(desc, head, role):
+    assert A.label_role(desc, head) == role
+
+
+def test_started_in_year_is_an_open_start_and_nested_brackets_keep_the_range():
+    assert A.entry_years('(PhD, started in 2025, primary advisor Prof. X )', 'Current graduate students :') == ([2025, None], 'stated_in_entry')
+    assert A.entry_years('(MPhil student, HKUST (GZ) RBM, co-supervised with Prof. Mingming Fan, Fall 2022 - Summer 2024, PhD @ ETH)', 'Past members')[0] == [2022, 2024]
+
+
+def test_citation_tail_and_quote_localisation():
+    assert A.citation_fragment_item('), San Francisco') and A.citation_fragment_item(') . DOI website . · Pei Wang')
+    assert not A.citation_fragment_item('Pei Wang (PhD student)')
+    x = dict(name='Chaobo Jia', desc='(UGVIS, 2024)', quote='Ivan (Yin Fung) Lok (UROP, 2025) Li Zhang (UROP, 2025) Chaobo Jia', qkind='heading..name')
+    A.localize_quote(x, 'Yuhua Zhao (UROP, 2024) Chaobo Jia (UGVIS, 2024) Sirui Xie (UGVIS, 2023)')
+    assert x['quote'] == 'Chaobo Jia (UGVIS, 2024)'
+
+
+def test_a_quoted_paper_title_in_the_entry_is_a_bibliography_line():
+    assert A.citation_fragment_item('Wei Fu, Jiaxuan Gao, Xujie Shen, “ AReaL: A Large-Scale Asynchronous RL System ”, 2025')
+    assert not A.citation_fragment_item('Wei Fu (PhD student, 2025)', '(PhD student, 2025)')
+
+
+def test_alumni_card_with_current_position_takes_the_stays_own_postdoc_role():
+    d = 'Current position: Chief scientist, Differential Robotics November 2024 - August 2025 The Hong Kong University of Science and Technology Postdoctoral fellow in Electronic and Computer Engineering Ph.D., Zhejiang University'
+    assert A.label_role(d, 'Alumni') == 'postdoc'
+    assert A.label_role('Current position: Postdoctoral fellow, HKUST Thesis title: X September 2021 - August 2025 HKUST Ph.D. in Robotics', 'Alumni') is None

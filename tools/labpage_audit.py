@@ -372,6 +372,64 @@ def byline_item(quote):
     return bool(q) and q.endswith(',') and (len(q.split()) <= 4 or q.count(',') >= 3)   # 'A, B , C, D,': a comma-separated author list (HKUST hand check 2026-11-10)
 
 
+MPHIL_RX = re.compile(r'\bm\.?\s?phil\b|\bmaster\s+by\s+research\b|\bMbR\b', re.I)
+
+
+def label_role(desc, head):
+    """The role an entry's own first label states ('(MPhil student, ...)', '(RA, 2025-2026)', '(Exchange student, undergrad)', '(Research intern, graduate student from X)',
+    '(UGVIS, 2024)'), which the roster's section heading must not outvote, else a nameless-role row under an 'M.Phil. Students' heading. None when the entry states no such label.
+    The first comma-separated label decides; a later 'graduate student' / 'undergraduate' qualifies an internship, it is not the role (HKUST re-audit 2026-11-12)."""
+    d = (desc or '').strip()
+    m = re.match(r'^\W{0,3}\(?\s*([^,()]{1,60})(?:,([^()]{0,70}))?', d)
+    if m:
+        first, rest = m.group(1).strip(), (m.group(2) or '')
+        if re.search(r'\bvisiting\b', first, re.I):
+            return None   # R-STU-17 reads these
+        if MPHIL_RX.search(first):
+            return 'masters'
+        if re.search(r'\bexchange\b', first, re.I):
+            return 'visiting'
+        if re.fullmatch(r'(?:UG|PG)VIS', first):
+            return 'visiting'   # HKUST 'UGVIS' / 'PGVIS': an undergraduate / postgraduate visiting student
+        if re.search(r'\bintern(?:ship)?\b', first, re.I):
+            return 'undergraduate' if re.search(r'undergrad', first + ' ' + rest, re.I) else 'other'
+        if re.fullmatch(r'(?:RA|research assistant|research associate|part-time research assistant)', first, re.I):
+            return 'other'
+    if re.match(r'^\W{0,3}Current position:', d):   # an alumni card 'Name Current position: X <dates> University Postdoctoral fellow in ...': the stay's own role follows the dates (HKUST uav Xin Zhou)
+        d2 = re.sub(r'^\W{0,3}Current position:.*?(?=(?:[A-Z][a-z]+\s+)?(?:19|20)\d\d\s*[-\u2013])', '', d, count=1, flags=re.S)
+        if d2 != d and re.search(r'^.{0,140}?\bpost-?doc(?:toral)?\b\s+(?:fellow|researcher|associate|scholar)', d2[:200], re.I | re.S):
+            return 'postdoc'
+    last = (head or '').split(' > ')
+    if any(re.search(r'\bm\.?\s?phil\b[^>]*\bstudents?\b|\bmaster\s+by\s+research\b', h, re.I) for h in last) and not re.search(r'\b(?:ph\.?\s?d|doctoral|postdoc)', ' '.join(last[-1:]), re.I):
+        return 'masters'
+    return None
+
+
+def localize_quote(x, ptxt):
+    """A candidate whose quote runs from a section heading or the previous entries ('Ivan (Yin Fung) Lok (UROP, 2025) Li Zhang ... Chaobo Jia') gets the entry's own text
+    'Name (descriptor)' when the page text holds it verbatim, so the quote names this person and no neighbour (HKUST re-audit: Chaobo Jia, Zeyu Xiong, Yichuan Li)."""
+    q = x.get('quote') or ''
+    name, desc = x.get('name') or '', re.sub(r'\s+', ' ', x.get('desc') or '').strip()
+    if not name or not desc or q.startswith(name) or not ptxt:
+        return
+    pt = re.sub(r'\s+', ' ', ptxt)
+    for n in (100, 70, 45, 28):
+        cut = desc[:n].rstrip()
+        if n < len(desc) and ' ' in cut:
+            cut = cut.rsplit(' ', 1)[0]
+        for cand in (name + ' ' + cut, name + cut):
+            if cand in pt and len(cand) > len(name) + 4:
+                x['quote'], x['qkind'] = cand, 'name+role'
+                return
+
+
+def citation_fragment_item(quote, desc=None):
+    """A candidate whose quote opens on a closing bracket ('), San Francisco', ') . DOI website . · Pei Wang') is the tail of a reference line (a conference place, a paper's author), not a roster entry."""
+    if re.match(r'^\s*[)\]]', quote or ''):
+        return True
+    return bool(re.search(r'[\u201c"][^\u201d"]{15,}[\u201d"]', (quote or '') + ' ' + (desc or '')))   # a quoted paper title in the entry: a bibliography line, not a roster entry
+
+
 PUBLICATION_HEAD = re.compile(r'\b(?:selected\s+)?(?:publications?|papers|preprints?|journal articles?|conference papers?|refereed)\b', re.I)
 CITATION_TAIL = re.compile(r'[\u201c"][^\u201d"]{12,}[\u201d"]\s*[.,]?\s*(?:in\b|to appear|proceedings|arxiv|ieee|acm|usenix|\w+ \d{4}|\()', re.I)
 
@@ -1611,16 +1669,22 @@ def entry_years(desc, head):
     dm = re.search(r'\b[Dd]efended\b[^.\[]{0,50}?\b((?:19|20)\d\d)\b', (desc or '')[:220])
     if dm:  # 'Defended on the 6th of January, 2012.' ends the stay (Michigan round 1: Bayraktar's alumni list)
         return [None, int(dm.group(1))], 'stated_in_entry'
-    d = (desc or '')[:90]
+    d, nested_ = (desc or '')[:90], False
+    if re.match(r'^\W{0,3}\([^()]{0,80}\([^()]{0,20}\)', d) and not re.search(r'\b(?:19|20)\d\d\b', re.match(r'^\W{0,3}\([^()]{0,80}\([^()]{0,20}\)', d).group(0)):
+        d, nested_ = (desc or '')[:200], True   # '(MPhil student, HKUST (GZ) RBM, co-supervised with Prof. X, Fall 2022 - Summer 2024)': a nested bracket must not cut the dates off (HKUST Ma)
     mo = re.search(r'\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+((?:19|20)\d\d)\s*[~\uff5e\u2013\u2014-]\s*(?:present|now|current)?(?![\d\w])', d, re.I)
     if mo:   # 'Master Student, September 2022~': a stated open start (Tsinghua round 6, bcspl Members)
         return [int(mo.group(1)), None], 'stated_in_entry'
-    ss = re.search(r'\b(?:spring|summer|fall|autumn|winter)\s+((?:19|20)\d\d)\b(?!\s*[-\u2013\u2014~])', d[:80], re.I)
-    if ss and not re.search(r'\bsince\b', d[:80], re.I) and len(re.findall(r'(?<!\d)(?:19|20)\d\d(?!\d)', d[:80])) == 1:
+    dw_ = d[:150] if nested_ else d[:80]
+    ss = re.search(r'\b(?:spring|summer|fall|autumn|winter)\s+((?:19|20)\d\d)\b(?!\s*[-\u2013\u2014~])', dw_, re.I)
+    if ss and not re.search(r'\bsince\b', dw_, re.I) and len(re.findall(r'(?<!\d)(?:19|20)\d\d(?!\d)', dw_)) == 1:
         return [int(ss.group(1)), int(ss.group(1))], 'stated_in_entry'   # 'summer 2018' / 'Summer 2018 intern': a stay in that season
     sn = re.search(r'\bsince\s+(?:(?:spring|summer|fall|autumn|winter)\s+)?((?:19|20)\d\d)(?:\s+(?:spring|summer|fall|autumn|winter))?\b', d, re.I)
     if sn:   # 'Since 2022 Fall' / 'Since Fall 2022': an open start (SJTU dmcv roster)
         return [int(sn.group(1)), None], 'stated_in_entry'
+    stm = re.search(r'\bstarted\s+(?:in\s+)?((?:19|20)\d\d)\b', d[:60], re.I)
+    if stm and not re.search(r'\b(?:graduated|defended|finished)\b', d[:90], re.I):
+        return [int(stm.group(1)), None], 'stated_in_entry'   # '(PhD, started in 2025)': a stated start, still current (HKUST Qiong Luo's DSA students were read as ended in 2025)
     om = OPEN_MONTH_RX.search(d)
     if om:   # 'PhD, 2024.9-' / '2024.9至今': an open-ended start with a month is a start year, still current (SJTU round, 马超's list)
         return [int(om.group(1)), None], 'stated_in_entry'
@@ -1634,7 +1698,7 @@ def entry_years(desc, head):
     ab = re.match(r'^\W{0,3}(?:\([^()]{0,100}\)\s*)+((?:19|20)\d\d)(?![\d./-])', d)
     if ab and not m_has_range(d) and not re.search(r'\b(?:alumni|former|graduated)\b', head or '', re.I):
         return [int(ab.group(1)), None], 'stated_in_entry'   # '(2024 Zhongyuan Scholarship) 2022': the bare year after award brackets is the cohort / entry year (SJTU round 6)
-    seg = m.group(1) if m else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
+    seg = m.group(1) if m else d[:150] if nested_ else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
     r = re.search(r'(%s)(?:\s*(?:spring|summer|fall|autumn|winter))?\s*(?:-|–|—|to|until|\u219d|\u21dd|\u2192|->)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
                   % (YEAR_, YEAR_), seg, re.I)
     if r:
@@ -2060,6 +2124,16 @@ def pm_candidates(kit, school, pi, plan, held):
                     # a degree year equal to this year in a current-student list is an expected graduation, not an end (SJTU rounds 2-3); a placement after it ('NTU PhD 2026 Senior Researcher @ Apple') is an alumnus
                     x['alumni'] = True  # '(PhD 2024, co-advised with ...)' on a current page: the entry itself says the stay ended (UChicago stage 6, round 1)
             x['role'], x['role_basis'] = entry_role(x.get('desc'), x.get('head'), kit.autom._role)
+            lr_ = label_role(x.get('desc'), x.get('head'))
+            if lr_ and not x.get('han_card'):
+                x['role'], x['role_basis'] = lr_, 'entry'
+            if x.get('name') and not (x.get('quote') or '').startswith(x['name']):
+                try:
+                    if src not in text_cache:
+                        text_cache[src] = kit.lpev.text(school, src)
+                    localize_quote(x, text_cache[src])
+                except (KeyError, ValueError):
+                    pass
             if x.get('han_card'):   # a Han member card states role (label), entry year (NN\u7ea7) and alumni (heading) itself
                 hc = x['han_card']
                 x['role'], x['role_basis'] = (hc['role'], 'entry') if hc['role'] else (None, 'none')
@@ -2250,6 +2324,9 @@ def pm_candidates(kit, school, pi, plan, held):
             continue
         if fn not in keep and publication_item(x.get('head'), x.get('desc'), x.get('quote')):
             x['why'], x['detail'] = 'not_a_student', 'the entry is inside a publication list (a paper coauthor), not a roster entry'
+            continue
+        if fn not in keep and citation_fragment_item(x.get('quote'), x.get('desc')):
+            x['why'], x['detail'] = 'not_a_student', 'the quote opens on a closing bracket: the tail of a reference line (a venue place, a paper author), not a roster entry'
             continue
         if fn not in keep and byline_item(x.get('quote')):
             x['why'], x['detail'] = 'not_a_student', 'the entry is an author byline (a name and a comma), not a roster entry'
