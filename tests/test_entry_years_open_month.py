@@ -159,3 +159,12 @@ def test_month_year_open_start_and_season_year_stay():
     assert L.entry_years('(Tsinghua University), summer 2018', None)[0] == [2018, 2018]
     assert L.entry_years('Summer 2018 intern', None)[0] == [2018, 2018]
     assert L.entry_years('(2025 Summer -)', None)[0] == [2025, None]
+
+
+def test_since_fyp_and_alumni_destination():
+    assert L.entry_years('Since 2022 Fall', None)[0] == [2022, None]
+    assert L.entry_years('Since Fall 2022 abc@sjtu.edu.cn', None)[0] == [2022, None]
+    assert L.entry_years('Name', 'Final Year Projects > FYP 2019')[0] == [2019, 2019]
+    # a Han roster word registers as a people heading and as a current marker
+    assert L.STRICT_HEAD.search('在读研究生') and L.STRICT_HEAD.search('已毕业')
+    assert L.current_marker({'head': '在读研究生'}) and not L.current_marker({'head': '已毕业'})

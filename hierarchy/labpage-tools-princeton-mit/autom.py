@@ -90,7 +90,8 @@ HEAD_RX = re.compile(r"^\s*((current|former|past|our|lab|group|research|graduate
 HEADWORD = re.compile(r"\b(students?|post-?docs?|post-doctoral|postdoctoral|alumni|alumnae|alums?|members?|people|team|staff|"
                       r"visitors?|graduated|former|current|undergrad\w*|ph\.?\s?d\.?|masters?|m\.?eng|researchers?|"
                       r"scientists?|engineers?|fellows?|interns?|advisees?|group|lab|collaborators?|faculty|affiliates?|"
-                      r"scholars?|associates?|visiting|thesis|urops?|graduates?|past|previous)\b", re.I)
+                      r"scholars?|associates?|visiting|thesis|urops?|graduates?|past|previous)\b|"
+                      r"\u5728\u8bfb|\u7814\u7a76\u751f|\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f|\u5df2\u6bd5\u4e1a|\u6bd5\u4e1a\u751f|\u6821\u53cb|\u73b0\u6709\u6210\u5458|\u73b0\u5f79|\u5728\u7ad9|\u8bfe\u9898\u7ec4\u6210\u5458|\u56e2\u961f\u6210\u5458|\u7814\u7a76\u52a9\u7406", re.I)   # Han section words (SJTU AI Security Lab: \u5728\u8bfb\u7814\u7a76\u751f / \u5df2\u6bd5\u4e1a)
 
 
 def heady(txt):
@@ -121,7 +122,7 @@ ROLE_RULES = [
 ]
 ROLE_RX = [(r, re.compile(p, re.I)) for r, p in ROLE_RULES]
 ALUMNI_RX = re.compile(r"\b(alumni|alumnae|alumnus|alumna|former|past|previous|alums?|graduates|graduated|completed|"
-                       r"emeriti|moved on|where are they now)\b", re.I)
+                       r"emeriti|moved on|where are they now)\b|\u5df2\u6bd5\u4e1a|\u6bd5\u4e1a\u751f|\u6821\u53cb|\u5f80\u5c4a", re.I)
 FACULTY_DESC = re.compile(r"^\W{0,3}((assistant|associate|full|adjunct|visiting|emeritus)?\s*professor|faculty|lecturer|"
                           r"principal investigator|director\b|pi\b)", re.I)
 

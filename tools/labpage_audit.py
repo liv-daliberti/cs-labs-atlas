@@ -1577,8 +1577,11 @@ def entry_years(desc, head):
     if mo:   # 'Master Student, September 2022~': a stated open start (Tsinghua round 6, bcspl Members)
         return [int(mo.group(1)), None], 'stated_in_entry'
     ss = re.search(r'\b(?:spring|summer|fall|autumn|winter)\s+((?:19|20)\d\d)\b(?!\s*[-\u2013\u2014~])', d[:80], re.I)
-    if ss and len(re.findall(r'(?<!\d)(?:19|20)\d\d(?!\d)', d[:80])) == 1:
+    if ss and not re.search(r'\bsince\b', d[:80], re.I) and len(re.findall(r'(?<!\d)(?:19|20)\d\d(?!\d)', d[:80])) == 1:
         return [int(ss.group(1)), int(ss.group(1))], 'stated_in_entry'   # 'summer 2018' / 'Summer 2018 intern': a stay in that season
+    sn = re.search(r'\bsince\s+(?:(?:spring|summer|fall|autumn|winter)\s+)?((?:19|20)\d\d)(?:\s+(?:spring|summer|fall|autumn|winter))?\b', d, re.I)
+    if sn:   # 'Since 2022 Fall' / 'Since Fall 2022': an open start (SJTU dmcv roster)
+        return [int(sn.group(1)), None], 'stated_in_entry'
     om = OPEN_MONTH_RX.search(d)
     if om:   # 'PhD, 2024.9-' / '2024.9至今': an open-ended start with a month is a start year, still current (SJTU round, 马超's list)
         return [int(om.group(1)), None], 'stated_in_entry'
@@ -1615,6 +1618,9 @@ def entry_years(desc, head):
         if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
             return [None, ys[0]], 'stated_in_entry'
         return [ys[0], ys[0]], 'stated_in_entry'
+    fy = re.search(r'\b(?:FYP|final[- ]year\s+projects?)\b\D{0,8}((?:19|20)\d\d)', head or '', re.I)
+    if fy:
+        return [int(fy.group(1)), int(fy.group(1))], 'section_year_heading'   # 'FYP 2019' heading: a final-year-project advisee of that year
     if head and re.fullmatch(r'\W*(%s)\W*' % YEAR_, head.split(' > ')[-1].strip()):
         y = int(re.search(YEAR_, head.split(' > ')[-1]).group(0))
         return [y, y], 'section_year_heading'
@@ -1788,7 +1794,7 @@ def paren_years(desc):
     return [None, ys[0]] if re.search(r'ph\.?\s?d|degree|graduat|class|m\.?s\.?|b\.?s|postdoc|alum|until|left', m.group(1), re.I) else [ys[0], ys[0]]
 
 
-CURRENT_HEAD = re.compile(r'\b(current|present)\b', re.I)
+CURRENT_HEAD = re.compile(r'\b(current|present)\b|\u5728\u8bfb|\u73b0\u6709\u6210\u5458|\u73b0\u5f79|\u5728\u7ad9|\u5728\u6821', re.I)
 CURRENT_ENTRY = re.compile(r'\b(current(ly)?\s+(a\s+)?(ph\.?\s?d|student|postdoc|member|graduate)|\d(st|nd|rd|th)[- ]year|candidate|'
                            r'is a (ph\.?\s?d|graduate|doctoral|master|post-?doc)|expected\s+(?:graduation\s+)?(?:19|20)\d\d|'
                            r'class of 20(?:2[6-9]|3\d))', re.I)
@@ -1930,6 +1936,18 @@ def pm_candidates(kit, school, pi, plan, held):
                         x['role'], x['role_basis'] = fr_, 'entry'
                 except (KeyError, ValueError):
                     pass
+            if not x['years'] and x.get('name') and not x['alumni']:   # 'Ke Fan \u6a0a\u73c2 Since 2022 Fall': the entry's own 'Since YYYY' follows the name on the page while the card's desc is empty (SJTU dmcv roster)
+                try:
+                    if src not in text_cache:
+                        text_cache[src] = kit.lpev.text(school, src)
+                    pt2_ = text_cache[src]
+                    qj2 = pt2_.find(x['name'])
+                    tl2 = pt2_[qj2 + len(x['name']):qj2 + len(x['name']) + 50] if qj2 >= 0 else ''
+                    sn2 = re.match(r'^\s*(?:[\u4e00-\u9fff\u00b7]{2,4}\s*)?since\s+(?:(?:spring|summer|fall|autumn|winter)\s+)?((?:19|20)\d\d)\b', tl2, re.I)
+                    if sn2:
+                        x['years'], x['years_basis'] = [int(sn2.group(1)), None], 'stated_in_entry'
+                except (KeyError, ValueError):
+                    pass
             if fn in roles_:
                 x['role'], x['role_basis'] = roles_[fn], 'reviewer'
             if SD.visiting(ctx_decisions(school), pi, x['name']):
@@ -1961,7 +1979,7 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = nonmember
             elif any(names.match_one(x['name'], c) for c in coadv[src]):
                 why, x['detail'] = 'not_a_student', 'named as a co-adviser (joint with / co-advised with)'
-            elif auto_plan and x['role'] != 'visiting' and (m_el := (ELSEWHERE_RX.search((x.get('desc') or '')[:220]) or DEGREE_AT_RX.search((x.get('desc') or '')[:120]))) and \
+            elif auto_plan and not x['alumni'] and x['role'] != 'visiting' and (m_el := (ELSEWHERE_RX.search((x.get('desc') or '')[:220]) or DEGREE_AT_RX.search((x.get('desc') or '')[:120]))) and \
                     not re.search(school_names_rx(school), m_el.group(1)):
                 why, x['detail'] = 'at_previous_school', f"the entry places the person at {m_el.group(1)}"
             elif re.search(r'\brotation', (x.get('head') or '') + ' ' + (x.get('desc') or '')[:60], re.I):
@@ -2066,7 +2084,7 @@ def pm_candidates(kit, school, pi, plan, held):
         if fn not in keep and advised_by_other(x.get('desc'), x.get('quote'), pi):
             x['why'], x['detail'] = 'at_previous_school', 'R-LAB-03: the entry names its own adviser, and the PI is not one of them'
             continue
-        if fn not in keep and other_institution_entry(x.get('desc'), x.get('quote'), school):
+        if fn not in keep and not x['alumni'] and other_institution_entry(x.get('desc'), x.get('quote'), school):   # on an alumni list a trailing 'Master Student, HKUST' is the DESTINATION after the lab, not where the person was (ZJU Kai Bu's list)
             x['why'], x['detail'] = 'at_previous_school', 'the entry places the person at another institution (\'@<University>\' or \'at <University>\' in the descriptor)'
             continue
         if fn not in keep and talk_item(x.get('head'), x.get('quote')):
@@ -2898,7 +2916,7 @@ INSTITUTION_LISTING = re.compile(r'^/(people|directory|alumni|students|our-peopl
 PEOPLE_PATH = re.compile(r'people|member|team|student|alumni|group|personnel|advisee|former|lab', re.I)
 PUBS_PATH = re.compile(r'publication|papers|pubs|bibliograph|/cv|vita|talks|thesis|teaching|course', re.I)
 STRICT_HEAD = re.compile(r'\b(students?|ph\.?\s?d|post-?docs?|post-?doctoral|alumni|alumnae|graduated|graduates|advisees?|members?|team|'
-                         r'people|researchers|visitors|undergrad\w*|masters?|interns?|doctoral|staff|former|current)\b', re.I)
+                         r'people|researchers|visitors|undergrad\w*|masters?|interns?|doctoral|staff|former|current)\b|\u5728\u8bfb|\u7814\u7a76\u751f|\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f|\u5df2\u6bd5\u4e1a|\u6bd5\u4e1a\u751f|\u6821\u53cb|\u73b0\u6709\u6210\u5458|\u73b0\u5f79|\u5728\u7ad9|\u6210\u5458|\u7814\u7a76\u52a9\u7406', re.I)
 HOMEPAGE_HEAD = re.compile(r'\b(students?|ph\.?\s?d|post-?docs?|post-?doctoral|advisees?|alumni|graduated|mentees|group members|'
                            r'lab members|research group|my group)\b', re.I)  # a homepage used as the people page: only these sections
 NOT_MEMBER_HEAD = re.compile(r'committee|publication|papers|thesis|theses|talks?|course|collaborat|co-?authors?|press|news|award|'
