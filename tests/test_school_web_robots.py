@@ -258,3 +258,57 @@ def test_audit_ai_allowed_uses_own_scheme_and_ignores_error_and_redirect_rows(tm
     assert A.Kit._ai_allowed(kit, 'https://h.edu/faculty') is True
     assert A.Kit._ai_allowed(kit, 'http://h.edu/faculty') is True
     assert A.Kit._ai_allowed(kit, 'https://h.edu/private/x') is False
+
+
+SPA = '<!doctype html><html><head><title>Lab</title></head><body><div id="app"></div><script src="/app.js"></script></body></html>'
+
+
+def test_html_spa_catch_all_robots_is_no_rules():
+    # owner ruling 2026-11-12: a 200 HTML page with no robots lines is 'no rules'
+    ours, ai, _ = W.robots_decision(200, SPA, '/people/')
+    assert ours and ai
+
+
+@pytest.mark.parametrize('body', ['<html><title>Request Error</title><body>The requested URL was rejected</body></html>',
+                                  '<html><body>Please complete the CAPTCHA</body></html>',
+                                  '<html><title>Just a moment...</title><body>cf_chl_opt cloudflare</body></html>',
+                                  '<html><title>Sign in</title><form><input type="password"></form></html>',
+                                  '<html><title>Anubis</title>checking</html>',
+                                  '<html><body>User-agent: *\nDisallow: /</body></html>'])
+def test_html_challenge_error_login_or_rules_robots_is_refused(body):
+    assert W.robots_decision(200, body, '/faculty')[0] is False
+
+
+def test_audit_ai_allowed_html_spa_allowed_challenge_5xx_403_refused(tmp_path):
+    import sqlite3
+    import zlib
+    from types import SimpleNamespace
+    import labpage_audit as A
+
+    def allowed(status, body):
+        db = tmp_path / f's{abs(hash((status, body)))}.sqlite'
+        c = sqlite3.connect(db)
+        c.execute('create table captures (id integer primary key, url text, capture_url text, status int, content blob, error text)')
+        c.execute('insert into captures (url,capture_url,status,content,error) values (?,?,?,?,?)',
+                  ('https://spa.edu/robots.txt', None, status, zlib.compress(body.encode()), None))
+        c.commit(); c.close()
+        kit = SimpleNamespace(store=str(db), school='x', lpcap=SimpleNamespace(DBS={'x': str(db)}))
+        return A.Kit._ai_allowed(kit, 'https://spa.edu/people/')
+    assert allowed(200, SPA) is True
+    assert allowed(200, '<html><title>Request Error</title></html>') is False
+    assert allowed(200, '<html>Cloudflare challenge</html>') is False
+    assert allowed(403, '') is False
+    assert allowed(503, SPA) is False
+    assert allowed(302, '') is False
+
+
+def test_lpcap_html_robots_helper_and_redirect_to_other_host():
+    import sys
+    import os
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'hierarchy', 'labpage-tools-princeton-mit'))
+    import importlib
+    L = importlib.import_module('lpcap')
+    assert L.html_robots_is_no_rules(SPA)
+    assert not L.html_robots_is_no_rules('<html>Access Denied</html>')
+    assert L.robots_final_elsewhere('https://login.example.org/x', 'lab.edu')
+    assert not L.robots_final_elsewhere('https://www.lab.edu/robots.txt', 'lab.edu')

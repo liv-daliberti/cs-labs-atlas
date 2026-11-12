@@ -181,20 +181,36 @@ def _rule_match(pattern, path):
     return re.match(rx, path) is not None
 
 
+_ROBOTS_LINE_RX = re.compile(r"^\s*(?:user-agent|disallow|allow|sitemap|crawl-delay)\s*:", re.I | re.M)
+_ROBOTS_HTML_REFUSE_RX = re.compile(r"cloudflare|captcha|anubis|request\s+error|access\s+denied|challenge|just a moment|bot[- ]?(?:detection|check|protection)|"
+                                    r"traffic check|verify you are (?:a )?human|<title>[^<]{0,80}(?:log\s?in|sign\s?in|forbidden|unauthori[sz]ed|blocked|error)|type=[\"']?password", re.I)
+
+
+def html_robots_is_no_rules(txt):
+    """Owner ruling 2026-11-12: a 200 robots.txt that is an HTML page with no robots lines and no challenge/error/login marker is 'no rules'."""
+    return not _ROBOTS_LINE_RX.search(txt) and not _ROBOTS_HTML_REFUSE_RX.search(txt[:60000])
+
+
+def robots_final_elsewhere(final_url, netloc):
+    """A robots.txt request that ended on another host (a redirect to a login/bot-check/other site) is not this host's rules."""
+    return bool(final_url) and urlsplit(final_url).netloc.lower().removeprefix("www.") != netloc.lower().removeprefix("www.")
+
+
 def robots_allowed(url, school):
     sp = urlsplit(url)
     base = f"{sp.scheme}://{sp.netloc}"
     if base not in _robots:
         con = connect(school)
-        row = con.execute("SELECT status, content FROM captures WHERE url=? AND capture_url IS NULL AND error IS NULL "
+        row = con.execute("SELECT status, content, final_url FROM captures WHERE url=? AND capture_url IS NULL AND error IS NULL "
                           "ORDER BY id DESC LIMIT 1", (base + "/robots.txt",)).fetchone()
+        row_final = None
         if row:
-            st, body = row[0], (zlib.decompress(row[1]) if row[1] else b"")
+            st, body, row_final = row[0], (zlib.decompress(row[1]) if row[1] else b""), row[2]
         else:
             _wait(sp.hostname or sp.netloc)
             try:
                 r = _sess.get(base + "/robots.txt", timeout=TIMEOUT, allow_redirects=True)
-                st, body = r.status_code, r.content
+                st, body, row_final = r.status_code, r.content, r.url
                 _insert(con, base + "/robots.txt", r.url, None, st, body, r.headers.get("content-type"), None)
             except Exception as e:
                 st, body = None, b""
@@ -203,8 +219,11 @@ def robots_allowed(url, school):
         txt = ""
         if st == 200:
             txt = body.decode("utf-8", "replace")
-            if "<html" in txt[:500].lower():
-                txt = ""
+            if "<html" in txt[:500].lower():   # owner 2026-11-12: an HTML page with no robots lines is 'no rules'; challenge/error/login pages and a redirect to another host stay refused
+                if html_robots_is_no_rules(txt) and not robots_final_elsewhere(row_final, sp.netloc):
+                    txt = ""
+                else:
+                    txt = "User-agent: *\nDisallow: /\n"
         elif st in (401, 403):
             txt = "User-agent: *\nDisallow: /\n"
         _robots[base] = _parse_robots(txt)

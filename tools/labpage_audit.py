@@ -518,6 +518,23 @@ def pi_end_year(p):
 # ---------------------------------------------------------------- the lab-page toolkit (fetch + parse), patched
 
 
+# Owner ruling 2026-11-12: a robots.txt that answers HTTP 200 with an HTML page holding no robots lines (an SPA catch-all) is 'no rules';
+# a service-error / challenge / login page (cloudflare, captcha, anubis, 'Request Error', 'Access Denied', ...) is still not permission.
+ROBOTS_LINE_RX = re.compile(r'^\s*(?:user-agent|disallow|allow|sitemap|crawl-delay)\s*:', re.I | re.M)
+ROBOTS_HTML_REFUSE_RX = re.compile(r'cloudflare|captcha|anubis|request\s+error|access\s+denied|challenge|just a moment|bot[- ]?(?:detection|check|protection)|'
+                                   r'traffic check|verify you are (?:a )?human|<title>[^<]{0,80}(?:log\s?in|sign\s?in|forbidden|unauthori[sz]ed|blocked|error)|type=["\']?password',
+                                   re.I)
+
+
+def html_robots_is_no_rules(body):
+    """True for a 200 robots.txt body that is an HTML page without any robots line and without challenge/error/login markers."""
+    b = body or ''
+    if '<html' not in b[:2000].lower() and '<!doctype html' not in b[:500].lower():
+        return False
+    return not ROBOTS_LINE_RX.search(b) and not ROBOTS_HTML_REFUSE_RX.search(b[:60000])
+
+
+
 def names_project_agents(robots_body):
     names = '|'.join(re.escape(agent) for agent in AI_AGENTS)
     return bool(re.search(r'^\s*user-agent\s*:\s*(?:' + names + r')\s*(?:#.*)?$', robots_body, re.I | re.M))
@@ -737,8 +754,10 @@ class Kit:
                 break
         if not recorded:
             return True  # caller's robots fetch has not occurred yet
+        if st == 200 and '<html' in body[:500].lower() and html_robots_is_no_rules(body):
+            return True  # an SPA catch-all page served at /robots.txt: no rules (owner 2026-11-12)
         if st != 200 or '<html' in body[:500].lower():
-            return st in (404, 410)  # redirects/errors/HTML are not usable permission
+            return st in (404, 410)  # redirects/errors/challenge HTML are not usable permission
         if os.environ.get('CS_ATLAS_LABPAGE_LIVE_ONLY') == '1' and names_project_agents(body):
             return False  # the top-25/source policy excludes hosts naming these agents entirely
         rp = urllib.robotparser.RobotFileParser()
@@ -3187,7 +3206,7 @@ def patch_mpcap(mpcap):
             return True
         body = zlib.decompress(row[1]).decode('utf-8', 'replace')
         if '<html' in body[:500].lower():
-            return True
+            return html_robots_is_no_rules(body)
         if os.environ.get('CS_ATLAS_LABPAGE_LIVE_ONLY') == '1' and names_project_agents(body):
             return False  # the top-25/source policy excludes hosts naming these agents entirely
         rp = urllib.robotparser.RobotFileParser()

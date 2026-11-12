@@ -234,13 +234,31 @@ def robots_row(c, host, refresh=False, scheme='https', min_delay=0):
     return row
 
 
+# Owner ruling 2026-11-12: a robots.txt that answers HTTP 200 with an HTML page holding no robots lines (an SPA catch-all) is 'no rules';
+# a service-error / challenge / login page (cloudflare, captcha, anubis, 'Request Error', 'Access Denied', ...) is still not permission.
+ROBOTS_LINE_RX = re.compile(r'^\s*(?:user-agent|disallow|allow|sitemap|crawl-delay)\s*:', re.I | re.M)
+ROBOTS_HTML_REFUSE_RX = re.compile(r'cloudflare|captcha|anubis|request\s+error|access\s+denied|challenge|just a moment|bot[- ]?(?:detection|check|protection)|'
+                                   r'traffic check|verify you are (?:a )?human|<title>[^<]{0,80}(?:log\s?in|sign\s?in|forbidden|unauthori[sz]ed|blocked|error)|type=["\']?password',
+                                   re.I)
+
+
+def html_robots_is_no_rules(body):
+    """True for a 200 robots.txt body that is an HTML page without any robots line and without challenge/error/login markers."""
+    b = body or ''
+    if '<html' not in b[:2000].lower():
+        return False
+    return not ROBOTS_LINE_RX.search(b) and not ROBOTS_HTML_REFUSE_RX.search(b[:60000])
+
+
+
 def robots_decision(status, body, url='/'):
     """(allowed for us, allowed for AI agents by name, crawl delay).
     Missing robots (404/410) has no rules; access refusals and outages never authorize a page request.
     """
-    if status not in (200, 404, 410) or (status == 200 and re.search(r'<html', (body or '')[:2000], re.I)):
+    is_html = status == 200 and re.search(r'<html', (body or '')[:2000], re.I)
+    if status not in (200, 404, 410) or (is_html and not html_robots_is_no_rules(body)):
         return False, False, 2.0
-    rp = urllib.robotparser.RobotFileParser(); rp.parse((body or '').splitlines() if status == 200 else [])
+    rp = urllib.robotparser.RobotFileParser(); rp.parse([] if is_html else (body or '').splitlines() if status == 200 else [])
     ours = rp.can_fetch(UA, url)
     ai = all(rp.can_fetch(a, url) for a in AI_AGENTS)
     # a Crawl-delay in a group that names one of Claude's agents (UChicago Linguistics: 'ClaudeBot ... Crawl-delay: 10') binds this project too
