@@ -213,3 +213,11 @@ def test_named_candidates_look_up_only_the_given_pairs():
     got = C.named_candidates('mit', [('Ila Fiete', 'Caitlin Lienkaemper'), ('Ila Fiete', 'Caitlin Lienkaemper'), ('Nobody', 'Jane Doe'), ('Ila Fiete', 'Madonna')], base=lambda n: data[n])
     assert [c['name'] for c in got] == ['Caitlin Lienkaemper']
     assert got[0]['window'] == [2019, 2026] and got[0]['n_students'] == 1 and got[0]['pinames']
+
+
+def test_overlap_tolerates_string_and_missing_years():
+    """2026-11-13 Stanford run crashed: a history year or window year was a string (str <= int)."""
+    assert O._ov(dict(start='2021', end='2024'), (2020, 2026))
+    assert O._ov(dict(start=2021, end=None), ('2020', '2026'))
+    assert not O._ov(dict(start='2010', end='2012'), (2020, 2026))
+    assert O._ov(dict(start='bad', end=None), (2020, 2026))

@@ -120,10 +120,18 @@ def position_role(pos):
     return None
 
 
+def _year(v, default):
+    """A profile year as an int: OpenReview gives ints, but a string ('2021') or a stray value occurs; unusable -> default."""
+    try:
+        return int(str(v).strip()[:4]) if v not in (None, '') else default
+    except ValueError:
+        return default
+
+
 def _ov(h, win):
-    s = h.get('start') or 0
-    e = h.get('end') or CAPTURE_YEAR
-    return s <= win[1] and e >= win[0]
+    s = _year(h.get('start'), 0)
+    e = _year(h.get('end'), CAPTURE_YEAR)
+    return s <= _year(win[1], CAPTURE_YEAR) and e >= _year(win[0], 0)
 
 
 # ---------------------------------------------------------------- validation
