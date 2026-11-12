@@ -920,3 +920,27 @@ def test_a_link_inside_a_sentence_and_a_lone_comma_are_not_headings():
     assert autom.mid_sentence(a1) and not autom.mid_sentence(a2)
     assert not autom.heady(',') and autom.heady('Students')
     assert autom.heady('PhD (Doctor of Philosophy, or D.Phil. in the UK) Students:') and not autom.heady('x ' * 28 + 'Students gather in the lab to talk')
+
+
+def test_thesis_entries_with_a_degree_bracket_are_alumni_with_the_thesis_year():
+    page = ('Graduated students PhD Ren Dongni Tony (PhD Computer Science and Engineering), "Next-Generation Video Streaming Networks," August 2014 (tonyren@cse.ust.hk) '
+            'He Suining Henry (PhD Computer Science and Engineering), "Enhancing Accuracy for Fingerprint-based Indoor Localization," August 2016 (sheaa@cse.ust.hk)')
+    d = '(PhD Computer Science and Engineering), "Enhancing Accuracy for Fingerprint-based Indoor Localiza'
+    assert A.DEGREE_BRACKET_ENTRY_RX.match(d) and A.DEGREE_BRACKET_ENTRY_RX.match(', Ricky (PhD 2004, HKU) Associate Professor')
+    assert A.thesis_entry_year(page, 'He Suining Henry', d) == 2016
+    assert A.thesis_entry_year(page, 'Nobody Here', d) is None
+    assert A.thesis_dated_entry(dict(desc=d, years=[None, 2016], years_basis='stated_in_entry')) and not A.thesis_dated_entry(dict(desc='Zhang Wei', years=[None, 2016], years_basis='stated_in_entry'))
+
+
+def test_name_then_role_cards_and_nick_student_cells():
+    t = 'Research Group Current Members Ruilin Zhang PhD Student Jiantong Hou (co-supervisor) PhD Student He Zhang PhD Student Jinrui Zhang Postdoc Former Group Members Xinyu Liu, PhD graduated in 2026.'
+    cs = A.name_then_role_cells(t)
+    assert [c['name'] for c in cs] == ['Ruilin Zhang', 'He Zhang', 'Jinrui Zhang'] and cs[2]['role_label'] == 'Postdoc'
+    assert not A.name_then_role_cells('Current Members Ruilin Zhang PhD Student He Zhang PhD Student')
+    t2 = 'Current Students Xiaohan Zhong, Elaine (MPhil student working on software engineering) Hau Ching Lo, Yoanna (MPhil student working on software engineering) Graduated Students'
+    assert [c['name'] for c in A.nick_student_cells(t2)][-1] == 'Hau Ching Lo' and len(A.nick_student_cells(t2)) == 2
+
+
+def test_entry_role_skips_a_nickname_and_reads_mphil_students():
+    from_toolkit = lambda s_: (None, None)
+    assert A.entry_role(', Elaine (MPhil student working on software engineering and Generative AI)', 'Current Students', from_toolkit)[0] == 'masters'

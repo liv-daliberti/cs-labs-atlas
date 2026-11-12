@@ -283,6 +283,7 @@ def advised_by_other(desc, quote, pi):
 PROGRAM_TAIL_RX = re.compile(r"(?<=\w)\s+(?:Societal Computing|Human[- ]Computer Interaction|Software Engineering|Machine Learning|Computer Science|Language Technologies|Computational Biology|Privacy Engineering|Electrical (?:and|&) Computer Engineering|Robotics)$")
 
 
+NICK_PREFIX_RX = re.compile(r"^\W{0,3},\s*[A-Z][\w'\u2019-]+(?: [A-Z][\w'\u2019-]+)?\s+(?=\()")
 TITLE_RX = re.compile(r'^(?:Dr|Mr|Ms|Mrs|Miss|Prof)\.?\s+(?=\S)', re.I)
 NICK_SURNAME_RX = re.compile(r"^\(([^()]{2,25})\)\s+([A-Z][A-Z'\u2019-]{1,20})(?=\s*(?:\(|$|[,;]))")
 
@@ -2118,6 +2119,64 @@ HAN_GLUED_RX = re.compile(r'(?<![\u4e00-\u9fff\u00b7])([\u4e00-\u9fff]{2,4})(\u5
 HAN_GLUED_ROLE = {'\u535a\u58eb\u7814\u7a76\u751f': 'phd', '\u535a\u58eb\u751f': 'phd', '\u7855\u58eb\u7814\u7a76\u751f': 'masters', '\u7855\u58eb\u751f': 'masters', '\u672c\u79d1\u751f': 'undergraduate', '\u535a\u58eb\u540e': 'postdoc'}
 
 
+DEGREE_BRACKET_ENTRY_RX = re.compile(r"^\W{0,3}(?:,\s*[A-Z][\w'\u2019-]+(?: [A-Z][\w'\u2019-]+)?\s*)?\(\(?\s*(?:Ph\.?\s?D|M\.?\s?Phil|M\.?\s?Sc|M\.?\s?S|MEng|M\.?\s?Eng|Master|Doctor)\b", re.I)   # 'Ren Dongni Tony (PhD Computer Science and Engineering), "Thesis title," August 2014 (email)': the degree bracket right after the name makes the quoted title a thesis, not a byline (HKUST Chan)
+NAME_ROLE_CELL_RX = re.compile(r"([A-Z][a-z'\u2019-]+(?: [A-Z][a-z'\u2019-]+){1,2})( \([^)]{2,30}\))? (PhD Students?|Ph\.?D\.? Students?|Master(?:'s)? Students?|MPhil Students?|Postdocs?|Postdoctoral (?:Researcher|Fellow)s?|Research Assistants?|Undergraduate Students?)(?=\s|$)")
+CURRENT_CELLS_HEAD_RX = re.compile(r"\b(Current (?:Group )?Members|Current Students|Members)\b")
+CELLS_END_RX = re.compile(r"\b(?:Former|Past|Previous|Alumni|Graduated)\b")
+
+
+def name_then_role_cells(text):
+    """A roster of cards 'Name PhD Student' (the role label AFTER the name; HKUST Hai Zhang's research-group.html: 'Ruilin Zhang PhD Student Jiantong Hou (co-supervisor) PhD Student ...') between a
+    'Current Members' heading and the next 'Former / Alumni' marker. At least three cells make a roster; a cell whose bracket says co-supervisor is left out. -> [dict(name, role_label, quote)]"""
+    t = re.sub(r'\s+', ' ', text or '')
+    h = CURRENT_CELLS_HEAD_RX.search(t)
+    if not h:
+        return []
+    end = CELLS_END_RX.search(t, h.end())
+    seg = t[h.end():end.start() if end else len(t)]
+    cells = [m for m in NAME_ROLE_CELL_RX.finditer(seg)]
+    if len(cells) < 3:
+        return []
+    return [dict(name=m.group(1), role_label=m.group(3), quote=m.group(0).strip()) for m in cells if not re.search(r'co-?supervis|co-?advis', m.group(2) or '', re.I)]
+
+
+NICK_STUDENT_RX = re.compile(r"((?:[A-Z][a-z'\u2019-]+ ){1,3}[A-Z][a-z'\u2019-]+), ([A-Z][a-z'\u2019-]+(?: [A-Z][a-z'\u2019-]+)?) (\((?:PhD|Ph\.D\.|MPhil|M\.Phil\.|MSc|Master|Postdoc|Undergraduate)\b[^()]{0,120}\))")
+
+
+def nick_student_cells(text):
+    """'Xiaohan Zhong, Elaine (MPhil student working on ...)' / 'Hau Ching Lo, Yoanna (MPhil student ...)': a roster whose entries read 'Given Family, Nickname (degree student ...)' (HKUST Cheung's
+    pg.html). At least two cells make a roster. -> [dict(name, desc, quote)]; desc keeps the ', Nickname (...)' form the DOM reader gives."""
+    t = re.sub(r'\s+', ' ', text or '')
+    ms = list(NICK_STUDENT_RX.finditer(t))
+    if len(ms) < 2:
+        return []
+    return [dict(name=m.group(1), desc=f', {m.group(2)} {m.group(3)}', quote=m.group(0)) for m in ms]
+
+
+THESIS_YEAR_RX = re.compile(r'["\u201d]\s*,?\s*(?:\([^()]{0,100}\)\s*,?\s*)?(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+)?((?:19|20)\d\d)\b')
+
+
+def thesis_entry_year(ptxt, name, desc):
+    """'Ren Dongni Tony (PhD Computer Science and Engineering), "Next-Generation Video Streaming Networks," August 2014 (tonyren@cse.ust.hk)': the month and year after the quoted thesis title is the
+    degree year. The extractor's descriptor is cut at 120 characters, so the page text after the name is read (up to the entry's closing e-mail bracket). None when the text does not show it."""
+    if not (ptxt and name and DEGREE_BRACKET_ENTRY_RX.match(desc or '')):
+        return None
+    t = re.sub(r'\s+', ' ', ptxt)
+    i = t.find(name + ' ' + re.sub(r'\s+', ' ', desc).strip()[:30])   # the occurrence whose own bracket is this degree (the same name may head a postdoc line earlier)
+    if i < 0:
+        return None
+    seg = t[i:i + 600]
+    e = re.search(r'\(\S+@\S+\)', seg)
+    seg = seg[:e.end()] if e else seg[:300]
+    m = THESIS_YEAR_RX.search(seg)
+    return int(m.group(1)) if m else None
+
+
+def thesis_dated_entry(x):
+    """A degree-bracket thesis entry whose degree year was read ('Name (MPhil CSE), "Title," August 2015'): its quote is a roster line, never a reference's byline or tail."""
+    return bool(DEGREE_BRACKET_ENTRY_RX.match(x.get('desc') or '') and x.get('years') and x.get('years_basis') == 'stated_in_entry')
+
+
 NUMBERED_DEPT_ENTRY_RX = re.compile(
     r"(?<![\w])(?:\d{1,3}\s*\.\s*)?(?:Dr|Mr|Ms|Mrs|Miss)\s*\.\s*((?:[A-Z][a-z'\u2019-]+|[A-Z]\.)(?: (?:[A-Z][a-z'\u2019-]+|[A-Z]\.))*)(?: \(([A-Za-z -]{2,25})\))? ((?:[A-Z][a-z'\u2019-]+ )*[A-Z][A-Z'\u2019-]{1,20}) "
     r"(\((?=[A-Za-z ,&.-]*\b(?:Science|Sciences|Engineering|Mathematics|Physics|Statistics|Technology|Informatics|Systems|Department)\b)[A-Z][A-Za-z &.-]{6,70},\s*(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|Spring|Summer|Fall|Autumn|Winter)[a-z]*\.?\s*(?:\d\s?){4}\b[^)]{0,160}\))")
@@ -2196,6 +2255,7 @@ def entry_role(desc, head, role_of):
         return 'visiting', 'entry'   # R-STU-17: a visiting intern / visitor / visiting student is a lab member with role visiting (HKUST re-audit)
     if dissertation_entry_year(desc):
         return 'phd', 'entry'
+    desc = NICK_PREFIX_RX.sub(' ', desc or '', count=1)   # 'Xiaohan Zhong, Elaine (MPhil student ...)': the nickname after the comma is not the entry's descriptor (HKUST Cheung)
     d = (desc or '')[:60]
     am = re.match(r'^\W{0,3}[A-Z][A-Za-z]{1,10}\s+(Ph\.?\s?D\.?|Postdoc)\s+(?:19|20)\d\d\b', d)
     if am:
@@ -2213,8 +2273,8 @@ def entry_role(desc, head, role_of):
         pass   # 'Bachelor's from X, Hong Kong PhD Fellowship': the degree the person holds on arrival, not their role here (HKUST hand check 2026-11-10: 4 of 11 roles wrong); the section heading decides
     elif ROLE_NEAR.match(d):
         r = role_of(PRIOR_AT_RX.sub(' ', PRIOR_FROM_RX.sub(' ', PRIOR_DEGREE_ANY.sub(' ', d)))[:45])[0]   # 'Ph.D student, 2022/9/1 to present; B.S. from X': the degree after 'from' is prior education, never the role (HKUST Ling Shi roster)
-        if not r:   # the reader's vocabulary lacks 'Master Student' / 'PhD Student' after a Chinese given name (SJTU round 6, Jia Xiang)
-            fm = re.search(r"\b(master|m\.?s\.?|m\.?eng)['\u2019]?s?\s+students?\b|\b(ph\.?\s?d\.?|doctoral)\s+(?:student|candidate)\b|\bundergraduate\s+students?\b", PRIOR_AT_RX.sub(' ', PRIOR_FROM_RX.sub(' ', d))[:60], re.I)
+        if not r or (r == 'other' and re.match(r"^\W{0,3}\(?\s*(?:m\.?\s?phil|master|ph\.?\s?d)\b", d, re.I)):   # ('(MPhil student working on software engineering ...)' read 'engineer' as other) the reader's vocabulary lacks 'Master Student' / 'PhD Student' after a Chinese given name (SJTU round 6, Jia Xiang)
+            fm = re.search(r"\b(master|m\.?s\.?|m\.?eng|m\.?\s?phil)['\u2019]?s?\s+students?\b|\b(ph\.?\s?d\.?|doctoral)\s+(?:student|candidate)\b|\bundergraduate\s+students?\b", PRIOR_AT_RX.sub(' ', PRIOR_FROM_RX.sub(' ', d))[:60], re.I)
             if fm:
                 r = 'masters' if fm.group(1) else 'phd' if fm.group(2) else 'undergraduate'
         if r and r != 'member':
@@ -2379,6 +2439,22 @@ def pm_candidates(kit, school, pi, plan, held):
                                 han_card=None, flags=[], role='member'))
         except (KeyError, ValueError, TypeError):
             pass
+        try:   # 'Given Family, Nick (MPhil student ...)' entries the DOM reader dropped: HKUST Cheung
+            for c_ in (nick_student_cells(ptxt_d) if row_d else []):
+                if any(set(names.fold(e['name']).split()) <= set(names.fold(c_['name']).split()) and len(e['name'].split()) >= 2 for e in ext):   # the DOM reader has the person (a regex name may carry the previous entry's tail: 'Prof Shuai Wang Xiaohan Zhong')
+                    continue
+                ext.append(dict(han_card_item(dict(name=c_['name'], head='Current Students', desc=c_['desc'], quote=c_['quote'], role=None, alumni=False), row_d, names, held),
+                                han_card=None, flags=[], role='member'))
+        except (KeyError, ValueError, TypeError):
+            pass
+        try:   # 'Name PhD Student' cards (role after the name) the DOM reader dropped: HKUST Hai Zhang
+            for c_ in (name_then_role_cells(ptxt_d) if row_d else []):
+                if any(names.fold(e['name']) == names.fold(c_['name']) for e in ext):
+                    continue
+                ext.append(dict(han_card_item(dict(name=c_['name'], head='Current Members', desc=c_['role_label'], quote=c_['quote'], role=None, alumni=False), row_d, names, held),
+                                han_card=None, flags=[], role='member'))
+        except (KeyError, ValueError, TypeError):
+            pass
         for c_ in hc_:
             if names.fold(c_['name']) in have_:
                 continue
@@ -2419,6 +2495,15 @@ def pm_candidates(kit, school, pi, plan, held):
                 x['years'], x['years_basis'] = entry_years(x.get('desc'), x.get('head'))
                 if ALUMNI_TABLE_ROW.match(x.get('desc') or ''):
                     x['alumni'] = True
+                if not x['years'] and DEGREE_BRACKET_ENTRY_RX.match(x.get('desc') or ''):
+                    try:
+                        if src not in text_cache:
+                            text_cache[src] = kit.lpev.text(school, src)
+                        ty_ = thesis_entry_year(text_cache[src], x['name'], x.get('desc'))
+                    except (KeyError, ValueError):
+                        ty_ = None
+                    if ty_:
+                        x['years'], x['years_basis'] = [None, ty_], 'stated_in_entry'
                 if entry_years_end_the_stay(x['years'], x['years_basis']) and not (x['years'] == [None, 2026] and not PLACEMENT_RX.search((x.get('desc') or '')[:260])):
                     # a degree year equal to this year in a current-student list is an expected graduation, not an end (SJTU rounds 2-3); a placement after it ('NTU PhD 2026 Senior Researcher @ Apple') is an alumnus
                     x['alumni'] = True  # '(PhD 2024, co-advised with ...)' on a current page: the entry itself says the stay ended (UChicago stage 6, round 1)
@@ -2546,14 +2631,14 @@ def pm_candidates(kit, school, pi, plan, held):
                 why = 'not_in_people_section'  # on a homepage, names in the bio prose are collaborators and mentors
             elif auto_plan and plan.get('shared_page') and not re.search(r'\b' + re.escape(fold(family(pi))) + r'\b', fold((x.get('desc') or '')[:200])):
                 why, x['detail'] = 'shared_page_no_adviser', f"a people page shared by {plan['shared_page']} labs; the entry does not name this PI"
-            elif auto_plan and not plan.get('shared_page') and (fold(family(pi)) in fold((x.get('desc') or '')[:160]) or
+            elif auto_plan and not plan.get('shared_page') and not DEGREE_BRACKET_ENTRY_RX.match(x.get('desc') or '') and (re.search(r'\b' + re.escape(fold(family(pi))) + r'\b', fold((x.get('desc') or '')[:160])) or
                                 re.search(r'[“"]|\b(proceedings|conference|journal|workshop|arxiv|ICASSP|Interspeech|ACL|EMNLP|NeurIPS|'
                                           r'ICML|CVPR|pp\.)\b', (x.get('desc') or '')[:160])):
                 why, x['detail'] = 'not_in_people_section', 'a byline or citation, not a member entry'
             elif auto_plan and not x.get('han_card') and not DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') and not (homepage_people and re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I) and not NOT_MEMBER_HEAD.search(x.get('head') or '')) and (not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') or
                                 NOT_MEMBER_HEAD.search(x.get('head') or '')):
                 why, x['detail'] = 'not_in_people_section', f"section '{(x.get('head') or '')[:60]}' is not a member list"
-            elif auto_plan and not x.get('han_card') and ((not plausible(kit, x['name']) and not (DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') and len(x['name'].split()) >= 2)) or re.match(r'^[A-Z]\.\s', x['name']) or
+            elif auto_plan and not x.get('han_card') and ((not plausible(kit, x['name']) and not ((DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') or DEGREE_BRACKET_ENTRY_RX.match(x.get('desc') or '')) and len(x['name'].split()) >= 2)) or re.match(r'^[A-Z]\.\s', x['name']) or
                                 all(t.isupper() and len(t) <= 4 for t in x['name'].split())):
                 why, x['detail'] = 'name_unresolved', 'not a plausible full person name (automatic plan)'
             elif fn in drop or any(names.match_one(x['name'], d) for d in plan.get('drop', [])):
@@ -2636,7 +2721,7 @@ def pm_candidates(kit, school, pi, plan, held):
         if fn not in keep and x.get('years') and x['years'][0] and x['years'][0] > 2026:
             x['why'], x['detail'] = 'not_a_student', f"the entry's start ({x['years'][0]}) is after the capture year: an incoming student, not a member yet"
             continue
-        if fn not in keep and pub_item_head(x.get('head')):
+        if fn not in keep and not thesis_dated_entry(x) and pub_item_head(x.get('head')):
             x['why'], x['detail'] = 'not_a_student', 'listed under a book / patent / publications heading: a byline name, not a member'
             continue
         if fn not in keep and x.get('role') != 'visiting' and (lo_ := leading_other_institution(x.get('desc'), school)):
@@ -2659,7 +2744,7 @@ def pm_candidates(kit, school, pi, plan, held):
                 text_cache[x['src']] = kit.lpev.text(school, x['src'])
             except (KeyError, ValueError):
                 pass
-        if fn not in keep and author_list_item(x.get('quote'), text_cache.get(x.get('src')) or ''):
+        if fn not in keep and not thesis_dated_entry(x) and author_list_item(x.get('quote'), text_cache.get(x.get('src')) or ''):
             x['why'], x['detail'] = 'not_a_student', 'a run of personal names followed by a paper title or venue: a reference byline, not a roster'
             continue
         if fn not in keep and advised_by_other(x.get('desc'), x.get('quote'), pi):
@@ -2671,13 +2756,13 @@ def pm_candidates(kit, school, pi, plan, held):
         if fn not in keep and talk_item(x.get('head'), x.get('quote')):
             x['why'], x['detail'] = 'not_a_student', 'the entry is a CV line (a talk, keynote or award), not a roster entry'
             continue
-        if fn not in keep and publication_item(x.get('head'), x.get('desc'), x.get('quote')):
+        if fn not in keep and not thesis_dated_entry(x) and publication_item(x.get('head'), x.get('desc'), x.get('quote')):
             x['why'], x['detail'] = 'not_a_student', 'the entry is inside a publication list (a paper coauthor), not a roster entry'
             continue
-        if fn not in keep and citation_fragment_item(x.get('quote'), x.get('desc')):
+        if fn not in keep and not thesis_dated_entry(x) and citation_fragment_item(x.get('quote'), x.get('desc')):
             x['why'], x['detail'] = 'not_a_student', 'the quote opens on a closing bracket: the tail of a reference line (a venue place, a paper author), not a roster entry'
             continue
-        if fn not in keep and byline_item(x.get('quote')):
+        if fn not in keep and not thesis_dated_entry(x) and byline_item(x.get('quote')):
             x['why'], x['detail'] = 'not_a_student', 'the entry is an author byline (a name and a comma), not a roster entry'
             continue
         if fn not in keep and news_item(x.get('quote') or x.get('desc') or ''):
@@ -2687,7 +2772,7 @@ def pm_candidates(kit, school, pi, plan, held):
             x['why'], x['detail'] = 'at_previous_school', (f"undated alumnus / entry naming a later position on the page of a PI who arrived in {start}: it may be an advisee of the previous institution, "
                                                            "so it cannot be placed at this school")
             continue
-        if start and start >= WINDOW[0] and last == start and fn not in keep:  # R-PAP-13's transition year, for people
+        if start and start >= WINDOW[0] and last == start and fn not in keep and not (ys and ys[0] == start and ys[1] is None and not x['alumni']):  # R-PAP-13's transition year, for people (an OPEN range from the arrival year, '(PhD student, since 2026)' under 'Current:', is a current member of this lab, not a dated stay: HKUST Zhou)
             x['why'], x['detail'] = 'at_previous_school', f"dated only to the PI's arrival year ({start}): cannot place at this school"
             continue
         if plan.get('min_last_year') and ys and ys[1] is not None and ys[1] < plan['min_last_year']:
