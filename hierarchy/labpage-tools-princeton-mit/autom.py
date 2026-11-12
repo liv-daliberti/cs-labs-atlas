@@ -237,6 +237,10 @@ def markers(school, src):
                 own = lpcap.collapse(str(el))
                 if own and heady(own.rstrip(":")):
                     items.append(("head", own, 8))
+                elif own and el.parent.name == "li" and namey(own):
+                    # "<li>Junhao Wang (王俊皓)<ul><li>Duration: 2021-present</li>...</ul></li>": a member whose own name is the li's
+                    # leading text and whose attributes are a nested list (lynnlilu.github.io/students: 21 entries read as 2)
+                    items.append(("name", own, 0))
             continue
         if id(el) in seen_el:
             continue
