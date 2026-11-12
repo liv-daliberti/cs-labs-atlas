@@ -88,6 +88,23 @@
     "excluded": 1
    },
    "result": "PASS: 33/33 ok; the 34th row (Yuxuan Yang) excluded as a reader defect"
+  },
+  {
+   "date": "2026-11-12",
+   "tools": "main f8ab3d01",
+   "round": "wire-asia-1113-newpis",
+   "additions_sha256": "c62a49deaa758f54fb27e9ff510c0274d6d37fc186679024320cdc27d2dee734",
+   "sample": {
+    "students": 32,
+    "of": 32,
+    "census_of_delta": true
+   },
+   "students": {
+    "membership_score": 0,
+    "role_year_score": 0,
+    "rows_held": 61
+   },
+   "result": "wire set = 32 rows: fresh-reviewer census (review-result.json, review-lili.json, review-lizy-rows.json), membership 0, role/year 0; 61 rows held with reasons"
   }
  ]
 }
