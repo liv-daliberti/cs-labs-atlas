@@ -1470,6 +1470,84 @@
    "paper_score": 0.5,
    "result": "pass",
    "note": "Students: complete enumeration of 18 proposed members on 3 distinct pages (Ying-Ju Chen 11, Lionel Parreaux 6, Hai Zhang 1); population below 20. Papers: the 21 proposals are unchanged since round 3."
+  },
+  {
+   "round": 6,
+   "date": "2026-11-12",
+   "label": "dated-alumni extractor, first pure random 30 of 60 (all dated-alumni rows incl. Shen's audit alumnus), fresh reviewer",
+   "students": {
+    "sampled": 30,
+    "seed": 20261112,
+    "membership_errors": 2,
+    "role_or_year_errors": 14,
+    "doubtful": 1
+   },
+   "note": "FAIL: roles taken from the section label (MPhil rows labelled phd), postdocs leaked in, Shen's alumnus Xin Zhou is a postdoc; extractor fixed (role from the degree in the entry, postdoc sections dropped, Xin Zhou removed)"
+  },
+  {
+   "round": 7,
+   "date": "2026-11-12",
+   "label": "dated-alumni extractor v2 (56 rows: Chan 25, Tsung 14, Wong 13, Murch 4), pure random 30, fresh reviewer",
+   "students": {
+    "sampled": 30,
+    "seed": 20261113,
+    "membership_errors": 0,
+    "role_or_year_errors": 0,
+    "doubtful": 0
+   },
+   "note": "PASS; under the owner ruling 2026-11-12 (accept dated alumni sections if right); rows go in as alumni=true with their dated years; scratch/hkust-students-1111/dated-alumni-sample30-v2.json"
+  },
+  {
+   "round": 8,
+   "date": "2026-11-12",
+   "label": "Ling Shi current-member roster on joint-rules 9d2aa5f4, 13 of 18 rows, fresh reviewer",
+   "students": {
+    "sampled": 13,
+    "seed": 20261112,
+    "membership_errors": 0,
+    "role_or_year_errors": 0,
+    "doubtful": 1
+   },
+   "note": "PASS (Fan Zhang namesake withheld); 17 rows in the package"
+  },
+  {
+   "round": 9,
+   "date": "2026-11-12",
+   "label": "audit delta rows on joint-rules 9b4cf152 (superseded): 8 membership errors counted postdocs as wrong",
+   "students": {
+    "sampled": 12,
+    "seed": 20261113,
+    "membership_errors": 0,
+    "role_or_year_errors": 0,
+    "doubtful": 0
+   },
+   "note": "SUPERSEDED. Postdocs on a lab page are members (R-STU-01, role postdoc kept); the true cause of failure at 9b4cf152 was the future-start admits (Zhou: Hurtado, Liu, Li, \"to start Sept 2027\"), fixed by the joint rule kept in 5977aa7d. Original scores of this round: membership 8, role 0, years 7 doubtful (postdocs miscounted)."
+  },
+  {
+   "round": 10,
+   "date": "2026-11-12",
+   "label": "audit delta on joint-rules 5977aa7d, all 14 non-alumni non-Ling-Shi changed rows (full population), fresh reviewer; postdocs valid members",
+   "students": {
+    "sampled": 14,
+    "seed": "all",
+    "membership_errors": 2,
+    "role_or_year_errors": 0,
+    "doubtful": 3
+   },
+   "note": "membership wrong 2 (Albert Chung: 'Pei Wang' a publication co-author, 'San Francisco' a conference location, both removed); role doubtful 1, years doubtful 2 (Yang Ouyang, Yunfan Lu: 'since 2026' read as end 2026). The other 12 rows are in rebuild-package/audit-delta-nonalumni-PASSING-12.json."
+  },
+  {
+   "round": 11,
+   "date": "2026-11-12",
+   "label": "audit-admitted alumni rows (47 delta rows, 15 sampled, seed 20261114) on 5977aa7d, fresh reviewer",
+   "students": {
+    "sampled": 15,
+    "seed": 20261114,
+    "membership_errors": 0,
+    "role_or_year_errors": 9,
+    "doubtful": 7
+   },
+   "note": "FAIL: visiting interns/visitors read as phd/other/undergraduate (4 role wrong), current members with open-ended ranges ('2025 Summer -') given an end year or listed as alumni (5 years wrong), '(Co-supervision)' name prefix kept, start year missing for '2021 - 2026'. These alumni rows are NOT in the package; joint worker must fix visiting role, open-ended ranges, co-supervision prefix."
   }
  ]
 }
