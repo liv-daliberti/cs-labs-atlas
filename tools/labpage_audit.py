@@ -382,6 +382,8 @@ def publication_item(head, desc, quote):
     if head and PUBLICATION_HEAD.search(head.split(' > ')[-1]) and not re.search(r'\b(?:students?|alumni|members?|team|people)\b', head, re.I):
         return True
     q = quote or ''
+    if re.match(r"^(?:[A-Z][\w.'\u2019-]+(?:\s+[A-Z][\w.'\u2019-]+){0,3}\s*,\s*){3,}[A-Z]", q.strip()) and not re.search(r'\b(?:students?|alumni|members?|team|people|group)\b', (head or '') + ' ' + q[:30], re.I):
+        return True   # 'Weiyu Xie , Mingxing Zhang , Xia Liao , ... Yongwei Wu The 29th ACM ...': an author list of a paper, not a roster (Tsinghua round 1, \u7ae0\u660e\u661f's page)
     if len(q) > 120 and len(re.findall(r'\b[A-Z]{3,}[A-Za-z]*\s+(?:19|20)\d\d\b', q)) >= 2:
         return True   # several 'CRYPTO 2024' venue-year strings in one quote: a publication list read as a roster (CMU round 6, Jain: Ying Feng)
     return bool(CITATION_TAIL.search((desc or '')[:400]) or CITATION_TAIL.search((quote or '')[:400]))
@@ -1660,6 +1662,20 @@ def nearer_nonphd_heading(text, name, head):
     return False
 
 
+ROLE_WORDS_FALLBACK = re.compile(r"\b(master|m\.?\s?s\.?|m\.?eng|mphil)['\u2019]?s?\b(?:\s+students?|\s*[\u00b7\u2022|,:-]\s*(?:y\d|year)|\s+candidates?)|\b(ph\.?\s?d\.?|doctoral)(?:\s+students?|\s+candidates?|\s*[\u00b7\u2022|,:-]\s*(?:y\d|year))|\bundergraduate\s+students?\b|\bmaster\s*[\u00b7\u2022]|\bph\.?\s?d\.?\s*[\u00b7\u2022]", re.I)
+
+
+PERSON_HEAD_RX = re.compile(r"[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2}")
+
+
+def role_fallback(text):
+    """'Master Students', 'Ph.D Students', 'Master \u00b7 Y2', 'PhD \u00b7 Y3' state the role though the toolkit's reader does not know them (Tsinghua round 1: the page states it, the tool left None)."""
+    m = ROLE_WORDS_FALLBACK.search((text or '')[:60])
+    if not m:
+        return None
+    return 'masters' if m.group(1) or re.search(r'^\W*master', m.group(0), re.I) else 'phd' if m.group(2) or re.search(r'ph\.?\s?d', m.group(0), re.I) else 'undergraduate'
+
+
 def entry_role(desc, head, role_of):
     """(role, basis): the role the entry states right after the name ('(PhD student, ...)', ', Postdoc', 'MIT Undergraduate
     Student'), else the role its section heading names ('PhD Students', 'Post-doctoral Scholars'), else (None, 'none').
@@ -1690,10 +1706,15 @@ def entry_role(desc, head, role_of):
                 r = 'masters' if fm.group(1) else 'phd' if fm.group(2) else 'undergraduate'
         if r and r != 'member':
             return r, 'entry'
+    fr = role_fallback(d) if re.match(r'^\W{0,3}(?:master|ph\.?\s?d)\b', d, re.I) else None
+    if fr:
+        return fr, 'entry'   # 'Master \u00b7 Y2', 'Ph.D. \u00b7 Y5 w/ Prof. X' right after the name
     h = (head or '').split(' > ')[-1]
-    r = role_of(h)[0] if h else None
+    r = role_of(h)[0] if h and not PERSON_HEAD_RX.fullmatch(h.strip()) else None   # a heading that is a person's name ('Zili Meng') is not a role ('Meng' read as M.Eng) (Tsinghua round 1: Zhen Tang)
     if not r and head and ' > ' in head:
-        r = role_of(head.split(' > ')[0])[0]
+        r = role_of(head.split(' > ')[0])[0] if not PERSON_HEAD_RX.fullmatch(head.split(' > ')[0].strip()) else None
+    if not r:
+        r = role_fallback(h) or (role_fallback(head.split(' > ')[0]) if head and ' > ' in head else None)
     if r and r != 'member' and h and re.search(r'post-?doc\w*', h, re.I) and re.search(r'ph\.?\s?d|doctoral\s+student|graduate\s+student', h, re.I):
         return None, 'none'   # a heading that mixes postdocs and PhD students states no role for its rows (NTU round 6: 'Current Post-doctorates and PhD students')
     if r and r != 'member':
@@ -1819,6 +1840,18 @@ def pm_candidates(kit, school, pi, plan, held):
                     # a degree year equal to this year in a current-student list is an expected graduation, not an end (SJTU rounds 2-3); a placement after it ('NTU PhD 2026 Senior Researcher @ Apple') is an alumnus
                     x['alumni'] = True  # '(PhD 2024, co-advised with ...)' on a current page: the entry itself says the stay ended (UChicago stage 6, round 1)
             x['role'], x['role_basis'] = entry_role(x.get('desc'), x.get('head'), kit.autom._role)
+            if x['role'] in (None, 'member') and x.get('name') and not x['alumni']:   # the label may follow the name on the page while the card's desc is empty ('ZL Zhuo Li Master \u00b7 Y3 ...'): Tsinghua round 1
+                try:
+                    if src not in text_cache:
+                        text_cache[src] = kit.lpev.text(school, src)
+                    pt_ = text_cache[src]
+                    qj = pt_.find(x['name'])
+                    tail_ = pt_[qj + len(x['name']):qj + len(x['name']) + 40].strip() if qj >= 0 else ''
+                    fr_ = role_fallback(tail_) if re.match(r'^\W{0,3}(?:master|ph\.?\s?d)\b', tail_, re.I) else None
+                    if fr_:
+                        x['role'], x['role_basis'] = fr_, 'entry'
+                except (KeyError, ValueError):
+                    pass
             if fn in roles_:
                 x['role'], x['role_basis'] = roles_[fn], 'reviewer'
             if SD.visiting(ctx_decisions(school), pi, x['name']):

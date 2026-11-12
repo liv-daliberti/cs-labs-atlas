@@ -94,3 +94,17 @@ def test_to_start_future_month_is_incoming():
     assert L.incoming_entry('will join in Fall 2027', '')
     assert not L.incoming_entry('(PhD, started September 2022)', '')
     assert not L.incoming_entry('Ph.D. student, 2024-', '')
+
+
+def test_tsinghua_round1_headings_card_labels_and_bylines():
+    ro = lambda t: (None, None)
+    assert L.entry_role('', 'Master Students', ro) == ('masters', 'section_heading')
+    assert L.entry_role('', 'Ph.D Students', ro) == ('phd', 'section_heading')
+    assert L.entry_role('Master · Y2 eBPF observability', 'Lab Members > Current Students (13 active)', ro) == ('masters', 'entry')
+    assert L.entry_role('Ph.D. · Y5 w/ Prof. X', 'Current Students', ro)[0] == 'phd'
+    # a heading that is a person's name is not a role ('Meng' read as M.Eng)
+    assert L.entry_role('(2020)', 'Alumni > Zili Meng', lambda t: ('masters', 'x') if 'Meng' in t else (None, None))[0] is None
+    # an author list followed by a title is a publication line, not a roster
+    q = 'Weiyu Xie , Mingxing Zhang , Xia Liao , Kang Chen , Jinlei Jiang , Yongwei Wu The 29th ACM International Conf'
+    assert L.publication_item('Ph.D Computer Science & Technology, 2017', '', q)
+    assert not L.publication_item('Current Students', '', 'Current Students Ann Lee Ph.D')
