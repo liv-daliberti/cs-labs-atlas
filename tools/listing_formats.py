@@ -248,6 +248,24 @@ def whu_cs_emeritus(h):
     return out
 
 
+def seu_department_faculty(h):
+    """SEU's embedded teachers-by-department tables; exclude staff and lab admin tables."""
+    soup = BeautifulSoup(h, 'html.parser')
+    tables = soup.select('.desktop-view table') or soup.select('.wp_articlecontent table')[:3]
+    out, seen = [], set()
+    for table in tables:
+        for link in table.select('a[href]'):
+            name = ' '.join(link.get_text(' ', strip=True).split())
+            if not name or (name, link['href']) in seen:
+                continue
+            seen.add((name, link['href']))
+            # The source certifies a teacher in one of the three academic
+            # departments, but does not print a professor/lecturer rank.
+            out.append(dict(name_listed=name, titles=['教师'], homepage=None,
+                            division=None, profile=link['href']))
+    return out
+
+
 def utaustin_cs_people(h):
     """UT Austin CS Drupal faculty/researcher cards, with the listed appointment title."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1469,6 +1487,7 @@ FORMATS = {
     'whu_cs_zrjs': (whu_cs_zrjs, re.compile(r'class="teacher-list-item".*?class="li-xinxi"', re.S)),
     'whu_cs_talents': (whu_cs_talents, re.compile(r'class="talent-item"')),
     'whu_cs_emeritus': (whu_cs_emeritus, re.compile(r'class="teacher-list honored')),
+    'seu_department_faculty': (seu_department_faculty, re.compile(r'<title>教师按系别</title>')),
     'ustc_cs_legacy_sidebar': (ustc_cs_legacy_sidebar, re.compile(r'(?!)')),
     'ntu_coe_cards': (ntu_coe_cards, re.compile(r'coe-about-leadership__card')),
     'ntu_profile_cards': (ntu_profile_cards, re.compile(r'ntu-profile-list')),
