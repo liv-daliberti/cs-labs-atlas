@@ -2506,6 +2506,9 @@ def pm_candidates(kit, school, pi, plan, held):
             x['why'], x['detail'] = 'undated_cannot_place', ('R-LAB-02: the page lists dated alumni only up to ' + str(page_alumni.get(x.get('capture_url')))
                                                              + ', long before its capture: its undated current list is an old list')
             continue
+        if fn not in keep and x.get('years') and x['years'][0] and x['years'][0] > 2026:
+            x['why'], x['detail'] = 'not_a_student', f"the entry's start ({x['years'][0]}) is after the capture year: an incoming student, not a member yet"
+            continue
         if fn not in keep and pub_item_head(x.get('head')):
             x['why'], x['detail'] = 'not_a_student', 'listed under a book / patent / publications heading: a byline name, not a member'
             continue

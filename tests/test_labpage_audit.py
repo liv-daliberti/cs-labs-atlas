@@ -784,3 +784,7 @@ def test_name_first_cards_and_cohort_years():
     assert A.entry_years('2023 Direct-entry PhD Student Co-supervised', 'Phd Students') == ([2023, None], 'stated_in_entry')
     assert A.entry_years('(B.S from UESTC, Ph.D started 2023)', 'Ph.D. Students')[0] == [2023, None]
     assert A.label_role('(Zhejiang University)', 'Under Graduate Students') == 'undergraduate'
+
+
+def test_future_start_year_is_an_incoming_student():
+    assert A.entry_years(', PhD student, from Shanghai Jiao Tong University, since 2027.', 'PhD Students')[0] == [2027, None]
