@@ -5986,5 +5986,41 @@
     "boundaryYearUncertain": true,
     "role": null,
     "review_note": "Literal SJTU start stated by the named official profile work history, observed 2026-11-07; no lab founding, adviser relation, promotion segmentation or paper attribution is inferred."
+  },
+  {
+    "id": "sjtu_sitefind2_1112_caojian",
+    "personId": null,
+    "name": "曹 健",
+    "school": "sjtu",
+    "unitIds": [],
+    "facultyStart": "2007",
+    "facultyEnd": null,
+    "facultyLastConfirmed": null,
+    "ongoingAsOf": "2026-11-12",
+    "labStart": null,
+    "labEnd": null,
+    "datePrecision": "year",
+    "endDatePrecision": null,
+    "evidence": [
+      {
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/caojian.html",
+        "sha256": "df66a833c8908242840507b19c4d924e00855df447e4f4db354d4099951271b0",
+        "observed": "2026-11-12T00:28:43",
+        "quote": "博士后出站后任副教授，教授（2007），长聘教授。",
+        "kind": "faculty_role_chronology"
+      },
+      {
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/caojian.html",
+        "sha256": "df66a833c8908242840507b19c4d924e00855df447e4f4db354d4099951271b0",
+        "observed": "2026-11-12T00:28:43",
+        "quote": "南京理工大学获得博士学位后进入上海交通大学从事博士后研究，出站后留校。",
+        "kind": "faculty_role_chronology"
+      }
+    ],
+    "facultyPeriodStatus": "supported_start",
+    "labPeriodStatus": "unresolved",
+    "boundaryYearUncertain": true,
+    "role": "长聘教授",
+    "review_note": "Professor 2007 at SJTU after a postdoc there and staying on (own official profile quotes); the true start is not later than 2007 (earlier associate-professor years not dated), so 2007 is a conservative bound that predates every roster window. Added by the rebuild worker so the arrival rule does not hold the lab-page rows."
   }
 ]

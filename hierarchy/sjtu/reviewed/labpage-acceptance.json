@@ -1,19 +1,22 @@
 {
- "school": "sjtu",
- "decided_at": "2026-11-11",
- "bar": "docs/LAB-PAGES.md, acceptance bar",
- "additions_file": "hierarchy/sjtu/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-12T01:56:32+00:00",
- "additions_sha256": "389b17bc4431792ef8252b78c9b53945ba307322c3d49df5ff3eb020c4fa3867",
- "students": {
-  "accepted": true,
-  "round": 8,
-  "weak": true,
-  "round_limit_extended_by_owner": 10,
-  "note": "owner ruled 2026-11-11: up to 10 rounds. Wired file = the 45 rows accepted in round 8 + 23 马利庄 rows (dmcv.sjtu.edu.cn, web_search_reviewed register entry; census of all 27 proposed rows in handcheck round ws1-1: membership 0, role/year scaled pass). Four rows are NOT wired for no SJTU tie (stu.ecnu.edu.cn emails only): Qi Zhao, Wenbin Liang, Yifan Cheng, Renhe Zhang. Known one-row leftover wired as the tool gives it: Haoran Wang role phd (page reads masters). The sha bound here is the union file (68 rows)."
- },
- "papers": {
-  "accepted": false,
-  "note": "stage 7 not attempted"
- }
+  "school": "sjtu",
+  "decided_at": "2026-11-11",
+  "bar": "docs/LAB-PAGES.md, acceptance bar",
+  "additions_file": "hierarchy/sjtu/reviewed/labpage-additions.json",
+  "additions_generated_at": "2026-11-12T04:40:00+00:00",
+  "additions_sha256": "2bd915f634d70167c3d45c7769a21063c9843c242209d253ef1c31d8333efe46",
+  "students": {
+    "accepted": true,
+    "round": 8,
+    "weak": true,
+    "round_limit_extended_by_owner": 10,
+    "note": "owner ruled 2026-11-11: up to 10 rounds. Wired file = 87 rows: the 45 rows accepted in round 8 + 23 马利庄 rows (handcheck round ws1-1) + 19 曹健 rows (census of all 19 by a fresh reviewer: membership 0, role/year 0, quotes verbatim 19; handcheck round caojian-census; the register entry for cit.sjtu.edu.cn is flagged weak-tie). Not wired: four ECNU-email-only 马利庄 rows (Qi Zhao, Wenbin Liang, Yifan Cheng, Renhe Zhang), 张拳石's 10 rows (stale page). 曹健's period (Professor 2007, not later than) is in faculty-periods.json. The sha bound here is the union file.",
+    "counts": {
+      "proposed": 87
+    }
+  },
+  "papers": {
+    "accepted": false,
+    "note": "stage 7 not attempted"
+  }
 }

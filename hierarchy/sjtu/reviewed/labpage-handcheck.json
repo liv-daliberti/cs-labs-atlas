@@ -101,6 +101,25 @@
    "result": "PASSED (complete enumeration of 27 rows from one page, thin population; bar 30 rows: membership <=1.5, role/year <=3). Patterns: bare Master sub-heading entry (Haoran Wang) read as phd; alumni \"PhD cohort YYYY\" read as end year. AISL: 0 rows (shared_page_no_adviser).",
    "reviewer": "fresh Sonnet subagent a6ed7b18694e812b3",
    "commit": "637b60b6"
+  },
+  {
+   "round": "caojian-census",
+   "date": "2026-11-12",
+   "kind": "census of all 19 曹健 rows",
+   "file_sha256": "e33c7b7b29df3328236046e979e27d9d08c17e51840e9ddf7bb012bab6931298",
+   "commit": "380131a8",
+   "reviewer": "fresh reviewer subagent (separate pass)",
+   "notes": "cit.sjtu.edu.cn/team is 曹健's lab team page: 13 PhD, 5 MSc, 1 postdoc current, then 114 alumni (not rows); roster undated; page newest news 2024-09 (freshness weak evidence); row sha256 792f9a31... is the tool's own page capture hash",
+   "students": {
+    "census": 19,
+    "membership_wrong": 0,
+    "membership_doubtful": 0,
+    "role_wrong": 0,
+    "year_wrong": 0,
+    "year_doubtful": 0,
+    "quotes_verbatim": 19
+   },
+   "result": "PASS: membership 0, role/year 0, quotes verbatim 19/19"
   }
  ]
 }

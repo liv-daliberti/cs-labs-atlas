@@ -1041,14 +1041,14 @@
   },
   {
    "pi": "曹 健",
-   "checked_at": "2026-11-10",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/caojian.html",
    "profile_sha256": "df66a833c8908242840507b19c4d924e00855df447e4f4db354d4099951271b0",
-   "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "checked_at": "2026-11-12T02:58:39+00:00",
+   "url": "https://cit.sjtu.edu.cn/",
+   "status": "reviewed_cached_website",
+   "reason_code": "lab_site",
+   "reason": "Site found by web search (2026-11-12, sitefind2); reviewed quotes in the web_search_reviewed check. tie weak: footer link list + @sjtu.edu.cn email (flagged)",
+   "coverage": "website",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/caojian.html",
@@ -1059,13 +1059,25 @@
    ],
    "checks": [
     {
-     "source": "official_profile_capture",
-     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/caojian.html",
-     "result": "no_personal_site_link_on_profile",
-     "at": "2026-11-10T00:00:00",
-     "source_sha256": "df66a833c8908242840507b19c4d924e00855df447e4f4db354d4099951271b0"
+     "source": "web_search_reviewed",
+     "url": "https://cit.sjtu.edu.cn/",
+     "at": "2026-11-12T02:58:39+00:00",
+     "sha256": "527401716891f0365e9cfb5e6d9217be0cdfd8f1713bb256fd89c79c74d818fe",
+     "name_quote": "实验室主任为曹健教授",
+     "tie_quote": "上海交通大学 电子信息与电气工程学院 上海交大计算机系",
+     "reviewer": "fresh reviewer subagent (separate pass, 2026-11-12)",
+     "result": "ok_flagged"
     }
-   ]
+   ],
+   "kind": "lab_site",
+   "found_via": "web_search_reviewed",
+   "sha256": "527401716891f0365e9cfb5e6d9217be0cdfd8f1713bb256fd89c79c74d818fe",
+   "people_page": "https://cit.sjtu.edu.cn/team",
+   "people_page_capture": {
+    "url": "https://cit.sjtu.edu.cn/team",
+    "sha256": "775412f1b4c04c994f3d7d7b374c256f99ae99ca3edf6eaf27f5d748715ff35b",
+    "at": "2026-11-12T02:58:39+00:00"
+   }
   },
   {
    "pi": "陈 博",
@@ -4158,14 +4170,14 @@
   },
   {
    "pi": "戚正伟",
-   "checked_at": "2026-11-10",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/qizhengwei.html",
    "profile_sha256": "225ded033d3d8f5c9227cc047f6a38c5c3726108064b1cdee78e5f885043f266",
-   "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "checked_at": "2026-11-12T02:58:39+00:00",
+   "url": "https://tcloud.sjtu.edu.cn/people/zhengwei/",
+   "status": "reviewed_cached_website",
+   "reason_code": "lab_site",
+   "reason": "Site found by web search (2026-11-12, sitefind2); reviewed quotes in the web_search_reviewed check. shared ISCS roster (flagged)",
+   "coverage": "website",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/qizhengwei.html",
@@ -4176,13 +4188,25 @@
    ],
    "checks": [
     {
-     "source": "official_profile_capture",
-     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/qizhengwei.html",
-     "result": "no_personal_site_link_on_profile",
-     "at": "2026-11-10T00:00:00",
-     "source_sha256": "225ded033d3d8f5c9227cc047f6a38c5c3726108064b1cdee78e5f885043f266"
+     "source": "web_search_reviewed",
+     "url": "https://tcloud.sjtu.edu.cn/people/zhengwei/",
+     "at": "2026-11-12T02:58:39+00:00",
+     "sha256": "61d229f55545bfb3439164969ccbed7a7e9ea1f8e547468d36f686ea711aec0b",
+     "name_quote": "Qi Zhengwei 戚正伟 Professor",
+     "tie_quote": "Zhengwei Qi is the Professor in SJTU ‘s School of Software",
+     "reviewer": "fresh reviewer subagent (separate pass, 2026-11-12)",
+     "result": "ok_flagged"
     }
-   ]
+   ],
+   "kind": "lab_site",
+   "found_via": "web_search_reviewed",
+   "sha256": "61d229f55545bfb3439164969ccbed7a7e9ea1f8e547468d36f686ea711aec0b",
+   "people_page": "https://tcloud.sjtu.edu.cn/people/",
+   "people_page_capture": {
+    "url": "https://tcloud.sjtu.edu.cn/people/",
+    "sha256": "500569c4976455304a399cc1d19da09f67973a50cc0cc3cde115c1920bc0b94d",
+    "at": "2026-11-12T02:58:39+00:00"
+   }
   },
   {
    "pi": "任庆生",
@@ -5683,14 +5707,14 @@
   },
   {
    "pi": "姚建国",
-   "checked_at": "2026-11-10",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/yaojianguo.html",
    "profile_sha256": "b941e92de5535ba091db02edcd211fc84d0f839ed8d13ac480ff995e03ff6f63",
-   "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "checked_at": "2026-11-12T02:58:39+00:00",
+   "url": "https://tcloud.sjtu.edu.cn/people/",
+   "status": "reviewed_cached_website",
+   "reason_code": "lab_site",
+   "reason": "Site found by web search (2026-11-12, sitefind2); reviewed quotes in the web_search_reviewed check. tie site-level (lab address footer) + email (flagged); shared ISCS roster",
+   "coverage": "website",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yaojianguo.html",
@@ -5701,13 +5725,25 @@
    ],
    "checks": [
     {
-     "source": "official_profile_capture",
-     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yaojianguo.html",
-     "result": "no_personal_site_link_on_profile",
-     "at": "2026-11-10T00:00:00",
-     "source_sha256": "b941e92de5535ba091db02edcd211fc84d0f839ed8d13ac480ff995e03ff6f63"
+     "source": "web_search_reviewed",
+     "url": "https://tcloud.sjtu.edu.cn/people/",
+     "at": "2026-11-12T02:58:39+00:00",
+     "sha256": "500569c4976455304a399cc1d19da09f67973a50cc0cc3cde115c1920bc0b94d",
+     "name_quote": "Yao Jianguo 姚建国 Professor",
+     "tie_quote": "软件大楼，上海交通大学，上海",
+     "reviewer": "fresh reviewer subagent (separate pass, 2026-11-12)",
+     "result": "ok_flagged"
     }
-   ]
+   ],
+   "kind": "lab_site",
+   "found_via": "web_search_reviewed",
+   "sha256": "500569c4976455304a399cc1d19da09f67973a50cc0cc3cde115c1920bc0b94d",
+   "people_page": "https://tcloud.sjtu.edu.cn/people/",
+   "people_page_capture": {
+    "url": "https://tcloud.sjtu.edu.cn/people/",
+    "sha256": "500569c4976455304a399cc1d19da09f67973a50cc0cc3cde115c1920bc0b94d",
+    "at": "2026-11-12T02:58:39+00:00"
+   }
   },
   {
    "pi": "叶南阳",
