@@ -219,6 +219,16 @@ def princeton_cs_faculty(h):
         if name and rank:
             out.append(dict(name_listed=name, titles=[rank], homepage=None,
                             division=None, profile=link['href'] if link else None))
+    for row in soup.select('.custom_card__container.people li.custom_card'):
+        link = row.select_one('h3.custom_card__heading a[href]')
+        title = row.select_one('.custom_card__snippet .position, .custom_card__snippet .title')
+        if not link or not title:
+            continue
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        rank = ' '.join(title.get_text(' ', strip=True).split())
+        if name and rank:
+            out.append(dict(name_listed=name, titles=[rank], homepage=None,
+                            division=None, profile=link['href']))
     return out
 
 
