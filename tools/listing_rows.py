@@ -404,6 +404,7 @@ def main(key):
             continue
         # a paged directory (R3, Georgia Tech friction 10) is one listing: the plan row's capture is page 0, plan_pages holds the other pages' captures
         pages = [r[0] for r in c.execute('select capture_url from plan_pages where slot=? and year=? and half=? order by page', (slot, year, half))] if has_pages else []
+        parsed_entries = 0
         for cap in [cap] + pages:
             raw, sha, txt, ts = c.execute('select raw_zlib, sha256, text, wayback_timestamp from captures where capture_url=?', (cap,)).fetchone()
             h = wb_body(raw).decode('utf-8', 'replace')  # gunzipped when Wayback served it gzip-encoded
@@ -415,6 +416,7 @@ def main(key):
             fmt, es = LF.parse(h, named[0] if named else None)
             if not es and named:
                 fmt, es = LF.parse(h)
+            parsed_entries += len(es)
             n[f'captures_{fmt}'] += 1
             if LF.is_paged(h) and es and not pages:
                 # a paged directory: this capture holds one page of several (UChicago CS 2017: 5 of ~45 people); the next pages may not be archived
@@ -436,6 +438,8 @@ def main(key):
                                  half=half, observed=obs, titles=e['titles'], dept_title=dt, rank=listing_rank(e['titles'], dt, kind_of.get(slot), rw), division=e.get('division'),
                                  homepage=e.get('homepage'), **({'profile': e['profile']} if e.get('profile') else {}), capture_url=cap, sha256=sha, quote=q))
                 n['rows'] += 1
+        if parsed_entries == 0:
+            cov[dept][year][f'{slot} {half}'] = 'unusable: capture parses zero faculty entries'
     if c:
         c.close()
     live, live_counts, live_coverage = live_listing_rows(key, cfg, rw, tm, title_filters, kind_of)

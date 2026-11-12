@@ -34,6 +34,7 @@ formats
                h3.faculty-directory__teaser-name, p.faculty-directory__teaser-title, the profile on engineering.washu.edu as the link (data-shortdept names the department)
 """
 import html as H
+import json
 import re
 from bs4 import BeautifulSoup
 
@@ -94,6 +95,45 @@ def berkeley_eecs_directory(h):
             out.append(dict(name_listed=name, titles=[status], homepage=None,
                             division=cells[5].get_text(' ', strip=True),
                             profile=link['href'] if link else None))
+    return out
+
+
+def mit_csail_pi(h):
+    """CSAIL PI roster: old JSON, Drupal cards, or complete Solr response."""
+    try:
+        data = json.loads(h)
+    except (ValueError, TypeError):
+        # The 2016–2017 Exhibit endpoint has one trailing comma after its last
+        # item. Preserve every field and remove only that final separator.
+        try:
+            data = json.loads(re.sub(r',\s*\]\s*}', ']}', h))
+        except (ValueError, TypeError):
+            data = None
+    if isinstance(data, dict):
+        if isinstance(data.get('items'), list):
+            return [dict(name_listed=x['label'], titles=[x['position']], homepage=None,
+                         division=None, profile=x.get('url'))
+                    for x in data['items'] if x.get('label') and x.get('position')]
+        response = data.get('response') or {}
+        docs = response.get('docs') or []
+        if response.get('numFound') != len(docs):
+            return []  # A truncated Solr page cannot establish full-year coverage.
+        return [dict(name_listed=' '.join(x['ss_title'].split()), titles=[x['ss_field_title']], homepage=None,
+                     division=x.get('ss_name'), profile=x.get('ss_url'))
+                for x in docs if x.get('ss_title') and x.get('ss_field_title')]
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for card in soup.select('div.info-block'):
+        link = card.select_one('h2.card-heading')
+        profile = link.find_parent('a', href=True) if link else None
+        title = card.select_one('.field--name-field-title')
+        if not link or not title:
+            continue
+        name = link.get_text(' ', strip=True)
+        role = title.get_text(' ', strip=True)
+        if name and role:
+            out.append(dict(name_listed=name, titles=[role], homepage=None,
+                            division=None, profile=profile['href'] if profile else None))
     return out
 
 
@@ -1611,6 +1651,7 @@ def ntu_entries_text(rows):
 FORMATS = {
     'berkeley_eecs_faculty': (berkeley_eecs_faculty, re.compile(r'(?!)')),
     'berkeley_eecs_directory': (berkeley_eecs_directory, re.compile(r'(?!)')),
+    'mit_csail_pi': (mit_csail_pi, re.compile(r'(?!)')),
     'nus_cs_any': (nus_cs_any, re.compile(r'(?!)')),
     'cuhk_cse_any': (cuhk_cse_any, re.compile(r'(?!)')),
     'cuhk_erg_cse_directory': (cuhk_erg_cse_directory, re.compile(r'class="people-dept-wrap"')),

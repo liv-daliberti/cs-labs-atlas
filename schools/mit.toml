@@ -67,19 +67,12 @@ title_match = 'Professor|Principal Investigator|Research Scientist'
 coverage = "full"
 url = "https://www.csail.mit.edu/"
   [[departments.listings]]
-  slot = "CSAIL principal investigators 2016–2017"
-  kind = "main"
-  url = "csail.mit.edu/csaildirectoryoutput/pi"
-  from = "20160101"
-  to = "20171231"
-  format = ""
-  [[departments.listings]]
-  slot = "CSAIL principal investigators 2017–2026"
+  slot = "CSAIL principal investigators"
   kind = "main"
   url = "csail.mit.edu/people?person%5B0%5D=role%3A299"
-  from = "20170101"
+  from = "20160101"
   to = "20261231"
-  format = ""
+  format = "mit_csail_pi"
 
 [site]
 depts = {EECS = "Electrical Engineering and Computer Science"}
