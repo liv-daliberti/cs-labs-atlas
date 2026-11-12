@@ -485,7 +485,9 @@ OpenAlex co-authorship is never on its own evidence of advising.
   few-student PIs first: `$CS_ATLAS_PY tools/selfdeclared_candidates.py <key>` (candidate names), then `sbatch tools/openreview_students.slurm <key>` (name search, >= 6 s
   spacing, cached, resumable in chunks of <= 55 min; `tools/openreview_students.py run <key> --dry-run` reads the cache only). Proposals:
   `scratch/openreview-students/proposals-<key>.json` (rows flagged `co_advised` / `common_name_pi`; `held` = second same-name profile or unspecified role, never wired).
-  Wire like lab-page additions: a fresh random 20-row hand check first. A stop (HTTP 429/401/403/challenge) ends the route for the UTC day; the host ruling is `docs/host-rulings.json`.
+  `role_unspecified` rows (a bare 'student' with no PhD/MS cue) stay held. One OpenReview job at a time: the 6 s spacing is a lock file (`scratch/openreview-students/last-request`) shared by
+  every run of the tool, but an older script that does not use it must not run alongside. A request URL containing `email=` is never sent (robots.txt `Disallow: /*?*email=`).
+  Wire like lab-page additions: a fresh random 20-row hand check (fresh reviewer) per school first. A stop (HTTP 429/401/403/challenge) ends the route for the UTC day; the host ruling is `docs/host-rulings.json`.
 - **Do:** record each relation with role, years and `url + sha256 + quote`.
 - **Gate:** the `students` and `one_person` checks are 100% or explained.
 - **Lab-page audit (v2.2) gate:** every found lab page, and every homepage used as the lab page, has its students section

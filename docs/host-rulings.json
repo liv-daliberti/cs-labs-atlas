@@ -7,14 +7,30 @@
    "scope": "profile search and profile read only (POST /login once, GET /profiles/search?term=<name>); no bulk export, no notes, no email fields kept",
    "min_delay_seconds": 6,
    "cache": "every response cached on local disk (chmod 600); a request is never repeated",
-   "stop_on": ["HTTP 429", "HTTP 401", "HTTP 403", "challenge/captcha/MFA/verification marker", "login without token"],
+   "stop_on": [
+    "HTTP 429",
+    "HTTP 401",
+    "HTTP 403",
+    "challenge/captcha/MFA/verification marker",
+    "login without token"
+   ],
    "on_stop": "stop for the day (state marker), no retry, no evasion, challenge URLs never opened",
    "credentials": "~/.config/cs-atlas/openreview.env only (OPENREVIEW_USERNAME, OPENREVIEW_PASSWORD); never printed, logged or committed",
    "account_note": "The account is currently the owner's personal account; a dedicated project account is recommended.",
    "rule": "R-STU-27",
    "ruling_date": "2026-11-13",
    "ruling": "Owner decision 2026-11-13 (repeated, confirmed 'go ahead, and lets please do it'): the OpenReview route is a standard part of the student search.",
-   "tool": "tools/openreview_students.py"
+   "tool": "tools/openreview_students.py",
+   "robots": {
+    "checked": "2026-11-13",
+    "url": "https://api2.openreview.net/robots.txt",
+    "bytes": 35,
+    "rules": "User-agent: *; Disallow: /*?*email=",
+    "disallow": "/*?*email=",
+    "ai_agent_rules": "none named",
+    "consequence": "the tool refuses any request URL containing email= (tools/openreview_students.guard_url); no email field is requested or kept"
+   },
+   "one_job_at_a_time": "Spacing is enforced across processes by the lock file scratch/openreview-students/last-request; a worker that does not use it (the 2026-11-13 Stage B script) must not run alongside a tool job: one OpenReview job at a time."
   }
  ]
 }

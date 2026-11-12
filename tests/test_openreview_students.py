@@ -189,3 +189,18 @@ def test_R_STU_27_is_documented_with_host_ruling():
     h = json.loads((root / 'docs/host-rulings.json').read_text())
     r = next(x for x in h['hosts'] if x['host'] == 'api2.openreview.net')
     assert r['host_use'] == 'bounded' and r['min_delay_seconds'] >= 6 and r['stop_on'] and r['ruling_date'] == '2026-11-13'
+
+
+def test_R_STU_27_a_url_containing_email_is_never_sent(tmp_path):
+    cl = client(tmp_path, [200, 200])
+    with pytest.raises(ValueError):
+        cl.search('x email=a')                       # the search term would put email= into the query string
+    with pytest.raises(ValueError):
+        O.guard_url('https://api2.openreview.net/profiles?email=a')
+    O.guard_url(O.BASE + '/profiles/search', {'term': 'Jane Doe', 'es': 'true'})
+    assert not [c for c in cl.session.calls if c[0] == 'get']
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1]
+    h = json.loads((root / 'docs/host-rulings.json').read_text())
+    r = next(x for x in h['hosts'] if x['host'] == 'api2.openreview.net')
+    assert r['robots']['disallow'] == '/*?*email=' and r['robots']['checked'] == '2026-11-13'

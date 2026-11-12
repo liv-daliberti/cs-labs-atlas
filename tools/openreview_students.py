@@ -217,6 +217,13 @@ def today():
     return datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d')
 
 
+def guard_url(url, params=None):
+    """Never send a URL containing 'email=' (api2.openreview.net/robots.txt, checked 2026-11-13: `User-agent: *` / `Disallow: /*?*email=`)."""
+    q = '&'.join(f'{k}={v}' for k, v in sorted((params or {}).items()))
+    if 'email=' in (str(url) + '?' + q).lower() or 'email%3d' in (str(url) + '?' + q).lower():
+        raise ValueError('refused: a request URL containing email= is never sent (robots.txt)')
+
+
 class Client:
     def __init__(self, cache, state=STATE, budget=100, session=None, dry=False, env_path=ENV, clock=time.time, sleep=time.sleep):
         self.cache, self.state, self.budget, self.dry = Path(cache), Path(state), budget, dry
@@ -269,6 +276,7 @@ class Client:
         if self.logged_in or self.dry:
             return
         env = load_env(self.env_path)
+        guard_url(BASE + '/login')
         self._gap()
         self.n += 1
         r = self._sess().post(BASE + '/login', json={'id': env['OPENREVIEW_USERNAME'], 'password': env['OPENREVIEW_PASSWORD']}, timeout=30)
@@ -291,9 +299,11 @@ class Client:
         self.login()
         if self.n >= self.budget:
             raise Stop('request budget reached')
+        params = {'term': term, 'es': 'true'}
+        guard_url(BASE + '/profiles/search', params)
         self._gap()
         self.n += 1
-        r = self._sess().get(BASE + '/profiles/search', params={'term': term, 'es': 'true'}, timeout=60)
+        r = self._sess().get(BASE + '/profiles/search', params=params, timeout=60)
         self._check(r, 'search')
         j = r.json()
         j['_term'] = term
