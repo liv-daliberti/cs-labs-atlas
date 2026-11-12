@@ -3404,135 +3404,6 @@
    "verification_quote": "charles zhang charles zhang professor director of cybersecurity laboratory department of"
   },
   {
-   "pi": "Nevin Lianwen ZHANG 張連文",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T07:15:42+00:00",
-   "checks": [
-    {
-     "source": "department_listing",
-     "url": "https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview",
-     "at": "2026-11-10T07:15:42+00:00",
-     "result": "ok",
-     "sha256": "5efbf6f3f3fae6e6106d263ff1accbc6a5efffb6461e4187dee26f5e1fdbe31d"
-    },
-    {
-     "source": "department_listing",
-     "url": "https://www.cse.ust.hk/admin/people/faculty/",
-     "at": "2026-11-10T07:15:42+00:00",
-     "result": "ok",
-     "sha256": "9540c99bdd0439c4c11d2ab77e9732c2fe0b78d2a23e7e2855a25c85dbfa8ae6"
-    },
-    {
-     "source": "school_profile",
-     "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/lzhang",
-     "at": "2026-11-10T07:15:42+00:00",
-     "result": "ok",
-     "sha256": "59c87a9d93a0be8778d02920e0b7aa356274605120805cf58d949ba978fe8796"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "https://cse.hkust.edu.hk/faculty/lzhang/",
-     "at": "2026-11-10T07:15:42+00:00",
-     "result": "listed",
-     "anchor": "Personal Webpage",
-     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/lzhang"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/z/NevinLianwenZhang",
-     "at": "2026-11-10T07:15:42+00:00",
-     "result": "listed",
-     "urls": [
-      "http://www.cse.ust.hk/~lzhang/",
-      "http://repository.ust.hk/ir/AuthorProfile/zhang-nevin-l"
-     ]
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": "https://orcid.org/0000-0002-4662-3217/person.json",
-     "at": "2026-11-10T07:15:42+00:00",
-     "result": "listed",
-     "sha256": "edf51c409e8263b7860a2bae7a7fdc9058bbbd6807a4962e430a3d42e9c296a2",
-     "urls": [
-      "http://www.cse.ust.hk/faculty/lzhang/",
-      "https://orcid.org/client/APP-33AWTQA1UKY94ARA"
-     ]
-    },
-    {
-     "source": "openalex_author",
-     "url": null,
-     "at": "2026-11-10T07:15:42+00:00",
-     "result": "no_homepage_field_in_schema"
-    },
-    {
-     "source": "candidate_site",
-     "url": "http://www.cse.ust.hk/~lzhang/",
-     "at": "2026-11-10T07:15:42+00:00",
-     "result": "does_not_name_pi_kept_strong_source",
-     "via": "dblp_person_url",
-     "sha256": "2bf295c34219e188519f7d01e062725ad88a46b3e00715f23221778639c9a7a5",
-     "final_url": "https://cse.hkust.edu.hk/~lzhang/"
-    },
-    {
-     "source": "candidate_site",
-     "url": "http://repository.ust.hk/ir/AuthorProfile/zhang-nevin-l",
-     "at": "2026-11-10T07:15:42+00:00",
-     "result": "robots_disallowed",
-     "via": "dblp_person_url"
-    }
-   ],
-   "places_checked": [
-    "candidate_site:does_not_name_pi_kept_strong_source",
-    "candidate_site:robots_disallowed",
-    "dblp_person_url:listed",
-    "department_listing:ok",
-    "orcid_researcher_urls:listed",
-    "school_profile:ok",
-    "school_profile_link:listed"
-   ],
-   "checked_at": "2026-11-10T07:15:42+00:00",
-   "students_page_status": "no_people_section",
-   "papers_page_status": "no_pubs_page",
-   "url": "https://cse.hkust.edu.hk/faculty/lzhang/",
-   "kind": "pi_homepage",
-   "found_via": "school_profile_link",
-   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/lzhang",
-   "sha256": "2bf295c34219e188519f7d01e062725ad88a46b3e00715f23221778639c9a7a5",
-   "evidence": {
-    "url": "https://cse.hkust.edu.hk/faculty/lzhang/",
-    "sha256": "2bf295c34219e188519f7d01e062725ad88a46b3e00715f23221778639c9a7a5",
-    "quote": null
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "https://cse.hkust.edu.hk/faculty/lzhang/",
-     "at": "2026-11-10T07:15:42+00:00",
-     "result": "listed",
-     "anchor": "Personal Webpage",
-     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/lzhang"
-    }
-   ],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "website_note": {
-    "replaced_url": "http://www.cse.ust.hk/~lzhang/",
-    "replaced_sha256": "2bf295c34219e188519f7d01e062725ad88a46b3e00715f23221778639c9a7a5",
-    "replaced_kind": "pi_homepage",
-    "found_via": "dblp_person_url",
-    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
-    "people_page": null,
-    "alumni_page": null,
-    "pubs_page": null
-   },
-   "verified": true,
-   "verification_quote": "nevin l zhang this page uses frames but your browser doesn t support them"
-  },
-  {
    "pi": "Sunil ARYA 安雅信",
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
@@ -4883,143 +4754,6 @@
    "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
   },
   {
-   "pi": "Hao CHEN 陳浩",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T07:16:05+00:00",
-   "checks": [
-    {
-     "source": "department_listing",
-     "url": "https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview",
-     "at": "2026-11-10T07:16:01+00:00",
-     "result": "ok",
-     "sha256": "5efbf6f3f3fae6e6106d263ff1accbc6a5efffb6461e4187dee26f5e1fdbe31d"
-    },
-    {
-     "source": "department_listing",
-     "url": "https://www.cse.ust.hk/admin/people/faculty/",
-     "at": "2026-11-10T07:16:02+00:00",
-     "result": "ok",
-     "sha256": "9540c99bdd0439c4c11d2ab77e9732c2fe0b78d2a23e7e2855a25c85dbfa8ae6"
-    },
-    {
-     "source": "school_profile",
-     "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/jhc",
-     "at": "2026-11-10T07:16:02+00:00",
-     "result": "ok",
-     "sha256": "367fe36a69efb5b1d1f277e73330d631d7d91c50017ec2974aca0748f3f9f6ea"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "https://cse.hkust.edu.hk/~jhc/",
-     "at": "2026-11-10T07:16:02+00:00",
-     "result": "listed",
-     "anchor": "Personal Webpage",
-     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/jhc"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/86/475-11",
-     "at": "2026-11-10T07:16:02+00:00",
-     "result": "listed",
-     "urls": [
-      "https://repository.hkust.edu.hk/ir/AuthorProfile/chen-hao",
-      "http://appsrv.cse.cuhk.edu.hk/~hchen/"
-     ]
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-10T07:16:02+00:00",
-     "result": "no_orcid"
-    },
-    {
-     "source": "openalex_author",
-     "url": null,
-     "at": "2026-11-10T07:16:02+00:00",
-     "result": "no_homepage_field_in_schema"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://cse.hkust.edu.hk/~jhc/",
-     "at": "2026-11-10T07:16:04+00:00",
-     "result": "does_not_name_pi_kept_strong_source",
-     "via": "school_profile_link",
-     "sha256": "0c3ac9c57b4d2c998672c7bdab8aa8eaf582b537cddd35adb980a7fd29767503"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://repository.hkust.edu.hk/ir/AuthorProfile/chen-hao",
-     "at": "2026-11-10T07:16:05+00:00",
-     "result": "robots_disallowed",
-     "via": "dblp_person_url"
-    },
-    {
-     "source": "candidate_site",
-     "url": "http://appsrv.cse.cuhk.edu.hk/~hchen/",
-     "at": "2026-11-10T07:16:05+00:00",
-     "result": "robots_disallowed",
-     "via": "dblp_person_url"
-    },
-    {
-     "source": "wayback_cdx",
-     "url": "https://cse.hkust.edu.hk/~jhc/",
-     "at": "2026-11-10T07:16:05+00:00",
-     "result": "0 captures",
-     "frm": 2021
-    },
-    {
-     "source": "wayback_pending",
-     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fcse.hkust.edu.hk%2F~jhc%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest&from=2021&to=2026",
-     "at": "2026-11-10T07:16:05+00:00",
-     "result": "wayback_deferred"
-    }
-   ],
-   "places_checked": [
-    "candidate_site:does_not_name_pi_kept_strong_source",
-    "candidate_site:robots_disallowed",
-    "dblp_person_url:listed",
-    "department_listing:ok",
-    "school_profile:ok",
-    "school_profile_link:listed",
-    "wayback_cdx:0 captures",
-    "wayback_pending:wayback_deferred"
-   ],
-   "checked_at": "2026-11-10T07:16:05+00:00",
-   "students_page_status": "audited",
-   "papers_page_status": "no_pubs_page",
-   "url": "https://cse.hkust.edu.hk/~jhc/",
-   "kind": "pi_homepage",
-   "people_page": "https://cse.hkust.edu.hk/~jhc/",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "school_profile_link",
-   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/jhc",
-   "sha256": "0c3ac9c57b4d2c998672c7bdab8aa8eaf582b537cddd35adb980a7fd29767503",
-   "evidence": {
-    "url": "https://cse.hkust.edu.hk/~jhc/",
-    "sha256": "0c3ac9c57b4d2c998672c7bdab8aa8eaf582b537cddd35adb980a7fd29767503",
-    "quote": null
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "https://cse.hkust.edu.hk/~jhc/",
-     "at": "2026-11-10T07:16:02+00:00",
-     "result": "listed",
-     "anchor": "Personal Webpage",
-     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/jhc"
-    }
-   ],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "hao chen dr hao chen assistant professor ieee senior member room 3524 via lifts 25 2"
-  },
-  {
    "pi": "Long CHEN 陳隆",
    "status": "found",
    "reason_code": "pi_homepage_only_no_lab_site",
@@ -5778,119 +5512,6 @@
    "evidence_gaps": [],
    "verified": true,
    "verification_quote": "home sehi l yi skip to content sehi l yi home publications work with me sehi l yi sehi ust h"
-  },
-  {
-   "pi": "Arpit NARECHANIA",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T07:16:11+00:00",
-   "checks": [
-    {
-     "source": "department_listing",
-     "url": "https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview",
-     "at": "2026-11-10T07:16:11+00:00",
-     "result": "ok",
-     "sha256": "5efbf6f3f3fae6e6106d263ff1accbc6a5efffb6461e4187dee26f5e1fdbe31d"
-    },
-    {
-     "source": "school_profile",
-     "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/arpit",
-     "at": "2026-11-10T07:16:11+00:00",
-     "result": "ok",
-     "sha256": "d89ae7b3495d976a7ee3eb41af8f6a0302057553c35304390973046b662d90c5"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "https://narechania.com/",
-     "at": "2026-11-10T07:16:11+00:00",
-     "result": "listed",
-     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/arpit"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "https://narechania.com/",
-     "at": "2026-11-10T07:16:11+00:00",
-     "result": "listed",
-     "anchor": "Personal Webpage",
-     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/arpit"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/170/6664",
-     "at": "2026-11-10T07:16:11+00:00",
-     "result": "listed",
-     "urls": [
-      "https://narechania.com/"
-     ]
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-10T07:16:11+00:00",
-     "result": "no_orcid"
-    },
-    {
-     "source": "openalex_author",
-     "url": null,
-     "at": "2026-11-10T07:16:11+00:00",
-     "result": "no_homepage_field_in_schema"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://narechania.com/",
-     "at": "2026-11-10T07:16:11+00:00",
-     "result": "ok",
-     "via": "school_profile_link",
-     "sha256": "7c0839054c50f26ca93a22fa363f37406bcb947759e59fb13301d6f450ef6d27"
-    }
-   ],
-   "places_checked": [
-    "candidate_site:ok",
-    "dblp_person_url:listed",
-    "department_listing:ok",
-    "school_profile:ok",
-    "school_profile_link:listed"
-   ],
-   "checked_at": "2026-11-10T07:16:11+00:00",
-   "students_page_status": "no_people_section",
-   "papers_page_status": "no_pubs_page",
-   "url": "https://narechania.com/",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "school_profile_link",
-   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/arpit",
-   "sha256": "7c0839054c50f26ca93a22fa363f37406bcb947759e59fb13301d6f450ef6d27",
-   "evidence": {
-    "url": "https://narechania.com/",
-    "sha256": "7c0839054c50f26ca93a22fa363f37406bcb947759e59fb13301d6f450ef6d27",
-    "quote": "Arpit Narechania | Assistant Professor at HKUST arpit@ust.hk · Rm 3552 Curri"
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "https://narechania.com/",
-     "at": "2026-11-10T07:16:11+00:00",
-     "result": "listed",
-     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/arpit"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "https://narechania.com/",
-     "at": "2026-11-10T07:16:11+00:00",
-     "result": "listed",
-     "anchor": "Personal Webpage",
-     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/arpit"
-    }
-   ],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "arpit narechania assistant professor at hkust arpit ust hk rm 3552 curriculum vitae ph"
   },
   {
    "pi": "Xiaomin OUYANG 歐陽小敏",
@@ -12070,66 +11691,6 @@
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
-   "pi": "Rob B.N. Scharff",
-   "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ri.hkust.edu.hk/people/rob-scharff: ok; school_profile https://ri.hkust.edu.hk/people/rob-scharff: ok; pi_evidence_url https://ri.hkust.edu.hk/people/rob-scharff: listed.",
-   "audited_at": "2026-11-10T19:55:31+00:00",
-   "checks": [
-    {
-     "source": "department_listing",
-     "url": "https://ri.hkust.edu.hk/people/rob-scharff",
-     "at": "2026-11-10T19:55:31+00:00",
-     "result": "ok",
-     "sha256": "f063d7d54a6f823bb71dfeee6496443c7740741bd5354ccba7ce9071a3354bdb"
-    },
-    {
-     "source": "school_profile",
-     "url": "https://ri.hkust.edu.hk/people/rob-scharff",
-     "at": "2026-11-10T19:55:31+00:00",
-     "result": "ok",
-     "sha256": "f063d7d54a6f823bb71dfeee6496443c7740741bd5354ccba7ce9071a3354bdb"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-10T19:55:31+00:00",
-     "result": "no_dblp_person"
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-10T19:55:31+00:00",
-     "result": "no_orcid"
-    },
-    {
-     "source": "openalex_author",
-     "url": null,
-     "at": "2026-11-10T19:55:31+00:00",
-     "result": "no_homepage_field_in_schema"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://ri.hkust.edu.hk/people/rob-scharff",
-     "at": "2026-11-10T19:55:31+00:00",
-     "result": "listed"
-    }
-   ],
-   "places_checked": [
-    "department_listing:ok",
-    "pi_evidence_url:listed",
-    "school_profile:ok"
-   ],
-   "checked_at": "2026-11-10T19:55:31+00:00",
-   "students_page_status": "no_lab_page",
-   "papers_page_status": "no_lab_page",
-   "coverage": "reason",
-   "upstream_audit_reason": "joined in 2026; no school lab site yet",
-   "reason_type": "search_no_eligible_site",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
-  },
-  {
    "pi": "Yunya Song",
    "status": "none_found",
    "reason_code": "new_arrival_no_site_yet",
@@ -12633,84 +12194,6 @@
    "places_checked": [
     "candidate_site:robots_disallowed",
     "dblp_person_url:no_homepage_url",
-    "department_listing:ok",
-    "orcid_researcher_urls:listed"
-   ],
-   "checked_at": "2026-11-10T19:55:34+00:00",
-   "students_page_status": "no_lab_page",
-   "papers_page_status": "no_lab_page",
-   "coverage": "reason",
-   "upstream_audit_reason": "joined in 2026; no school lab site yet",
-   "reason_type": "access_blocked",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
-  },
-  {
-   "pi": "Kwang-Ting Cheng",
-   "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://ece.hkust.edu.hk/people_list: ok; dblp_person_url https://dblp.org/pid/c/KwangTingCheng: listed; orcid_researcher_urls https://orcid.org/0000-0002-3885-4912/person.json: listed; candidate_site http://repository.ust.hk/ir/AuthorProfile/cheng-tim: robots_disallowed; 2 further dated checks retained.",
-   "audited_at": "2026-11-10T19:55:34+00:00",
-   "checks": [
-    {
-     "source": "department_listing",
-     "url": "https://ece.hkust.edu.hk/people_list",
-     "at": "2026-11-10T19:55:34+00:00",
-     "result": "ok",
-     "sha256": "23d651a549294ad46b39c66a523c57f8b2c3067bfd9e07dbf1a9729773215ced"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/c/KwangTingCheng",
-     "at": "2026-11-10T19:55:34+00:00",
-     "result": "listed",
-     "urls": [
-      "http://repository.ust.hk/ir/AuthorProfile/cheng-tim",
-      "http://www.ece.ucsb.edu/Faculty/Cheng/"
-     ]
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": "https://orcid.org/0000-0002-3885-4912/person.json",
-     "at": "2026-11-10T19:55:34+00:00",
-     "result": "listed",
-     "sha256": "dd27888a6e71288cf159a462864b458b516e58a7104668bb171cea4352556354",
-     "urls": [
-      "http://cadlab.ece.ucsb.edu/biblio",
-      "https://orcid.org/client/APP-33AWTQA1UKY94ARA"
-     ]
-    },
-    {
-     "source": "openalex_author",
-     "url": null,
-     "at": "2026-11-10T19:55:34+00:00",
-     "result": "no_homepage_field_in_schema"
-    },
-    {
-     "source": "candidate_site",
-     "url": "http://repository.ust.hk/ir/AuthorProfile/cheng-tim",
-     "at": "2026-11-10T19:55:34+00:00",
-     "result": "robots_disallowed",
-     "via": "dblp_person_url"
-    },
-    {
-     "source": "candidate_site",
-     "url": "http://www.ece.ucsb.edu/Faculty/Cheng/",
-     "at": "2026-11-10T19:55:34+00:00",
-     "result": "robots_disallowed",
-     "via": "dblp_person_url"
-    },
-    {
-     "source": "candidate_site",
-     "url": "http://cadlab.ece.ucsb.edu/biblio",
-     "at": "2026-11-10T19:55:34+00:00",
-     "result": "robots_disallowed",
-     "via": "orcid_researcher_url"
-    }
-   ],
-   "places_checked": [
-    "candidate_site:robots_disallowed",
-    "dblp_person_url:listed",
     "department_listing:ok",
     "orcid_researcher_urls:listed"
    ],
@@ -13757,6 +13240,724 @@
    "evidence_gaps": [],
    "verified": true,
    "verification_quote": "dr kai tang solid modeling feature recognition motion planningin robotics tang kai norm"
+  },
+  {
+   "pi": "Nevin Lianwen ZHANG 張連文",
+   "checked_at": "2026-11-10T07:15:42+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "ok",
+     "sha256": "5efbf6f3f3fae6e6106d263ff1accbc6a5efffb6461e4187dee26f5e1fdbe31d"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://www.cse.ust.hk/admin/people/faculty/",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "ok",
+     "sha256": "9540c99bdd0439c4c11d2ab77e9732c2fe0b78d2a23e7e2855a25c85dbfa8ae6"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/lzhang",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "ok",
+     "sha256": "59c87a9d93a0be8778d02920e0b7aa356274605120805cf58d949ba978fe8796"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/faculty/lzhang/",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/lzhang"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/z/NevinLianwenZhang",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.cse.ust.hk/~lzhang/",
+      "http://repository.ust.hk/ir/AuthorProfile/zhang-nevin-l"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-4662-3217/person.json",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "listed",
+     "sha256": "edf51c409e8263b7860a2bae7a7fdc9058bbbd6807a4962e430a3d42e9c296a2",
+     "urls": [
+      "http://www.cse.ust.hk/faculty/lzhang/",
+      "https://orcid.org/client/APP-33AWTQA1UKY94ARA"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cse.ust.hk/~lzhang/",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "dblp_person_url",
+     "sha256": "2bf295c34219e188519f7d01e062725ad88a46b3e00715f23221778639c9a7a5",
+     "final_url": "https://cse.hkust.edu.hk/~lzhang/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://repository.ust.hk/ir/AuthorProfile/zhang-nevin-l",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "robots_disallowed",
+     "via": "dblp_person_url"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://cse.hkust.edu.hk/faculty/lzhang/group.htm",
+     "at": "2026-11-12T10:15:00+00:00",
+     "sha256": "e509938e7af0aaac0ecfd8c963505e47977d2dd9483600fded86ce39ff58cd58",
+     "result": "ok",
+     "name_quote": "Supervisor: Nevin L. Zhang.",
+     "tie_quote": "https://cse.hkust.edu.hk/pg/ourgraduates/?s=nevin+l.+zhang",
+     "reviewer": "claude-hkust-newpis-1112"
+    }
+   ],
+   "chosen": {
+    "lab_site": "https://cse.hkust.edu.hk/faculty/lzhang/group.htm",
+    "people_page": "https://cse.hkust.edu.hk/faculty/lzhang/group.htm",
+    "alumni_page": null,
+    "pubs_page": null,
+    "kind": "lab_site",
+    "title": "Nevin Lianwen ZHANG 張連文",
+    "other_school": null,
+    "capture_url": null,
+    "sha256": "e509938e7af0aaac0ecfd8c963505e47977d2dd9483600fded86ce39ff58cd58",
+    "quote": null
+   },
+   "sites": [
+    {
+     "url": "https://cse.hkust.edu.hk/faculty/lzhang/group.htm",
+     "via": "web_search_reviewed",
+     "title": "Nevin Lianwen ZHANG 張連文",
+     "school_host": true,
+     "other_school": false
+    }
+   ],
+   "wayback": {
+    "https://cse.hkust.edu.hk/faculty/lzhang/group.htm": []
+   },
+   "robots": {
+    "repository.ust.hk": false
+   },
+   "had_prior_record": false,
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Lab site found by web search; the page names the PI and the school (web_search_reviewed).",
+   "students_page_status": "audited",
+   "papers_page_status": "audited",
+   "coverage": "website",
+   "evidence_gaps": [],
+   "url": "https://cse.hkust.edu.hk/faculty/lzhang/group.htm",
+   "kind": "lab_site",
+   "people_page": "https://cse.hkust.edu.hk/faculty/lzhang/group.htm",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "e509938e7af0aaac0ecfd8c963505e47977d2dd9483600fded86ce39ff58cd58",
+   "evidence": {
+    "url": "https://cse.hkust.edu.hk/faculty/lzhang/group.htm",
+    "sha256": "e509938e7af0aaac0ecfd8c963505e47977d2dd9483600fded86ce39ff58cd58",
+    "quote": "Current Members"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://cse.hkust.edu.hk/faculty/lzhang/group.htm",
+     "at": "2026-11-12T10:15:00+00:00",
+     "sha256": "e509938e7af0aaac0ecfd8c963505e47977d2dd9483600fded86ce39ff58cd58",
+     "result": "ok",
+     "name_quote": "Supervisor: Nevin L. Zhang.",
+     "tie_quote": "https://cse.hkust.edu.hk/pg/ourgraduates/?s=nevin+l.+zhang",
+     "reviewer": "claude-hkust-newpis-1112"
+    }
+   ],
+   "verified": true,
+   "verification_quote": "Current Members"
+  },
+  {
+   "pi": "Hao CHEN 陳浩",
+   "checked_at": "2026-11-10T07:16:05+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview",
+     "at": "2026-11-10T07:16:01+00:00",
+     "result": "ok",
+     "sha256": "5efbf6f3f3fae6e6106d263ff1accbc6a5efffb6461e4187dee26f5e1fdbe31d"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://www.cse.ust.hk/admin/people/faculty/",
+     "at": "2026-11-10T07:16:02+00:00",
+     "result": "ok",
+     "sha256": "9540c99bdd0439c4c11d2ab77e9732c2fe0b78d2a23e7e2855a25c85dbfa8ae6"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/jhc",
+     "at": "2026-11-10T07:16:02+00:00",
+     "result": "ok",
+     "sha256": "367fe36a69efb5b1d1f277e73330d631d7d91c50017ec2974aca0748f3f9f6ea"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/~jhc/",
+     "at": "2026-11-10T07:16:02+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/jhc"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/86/475-11",
+     "at": "2026-11-10T07:16:02+00:00",
+     "result": "listed",
+     "urls": [
+      "https://repository.hkust.edu.hk/ir/AuthorProfile/chen-hao",
+      "http://appsrv.cse.cuhk.edu.hk/~hchen/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-10T07:16:02+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-10T07:16:02+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://cse.hkust.edu.hk/~jhc/",
+     "at": "2026-11-10T07:16:04+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "school_profile_link",
+     "sha256": "0c3ac9c57b4d2c998672c7bdab8aa8eaf582b537cddd35adb980a7fd29767503"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://repository.hkust.edu.hk/ir/AuthorProfile/chen-hao",
+     "at": "2026-11-10T07:16:05+00:00",
+     "result": "robots_disallowed",
+     "via": "dblp_person_url"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://appsrv.cse.cuhk.edu.hk/~hchen/",
+     "at": "2026-11-10T07:16:05+00:00",
+     "result": "robots_disallowed",
+     "via": "dblp_person_url"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://cse.hkust.edu.hk/~jhc/",
+     "at": "2026-11-10T07:16:05+00:00",
+     "result": "0 captures",
+     "frm": 2021
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fcse.hkust.edu.hk%2F~jhc%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest&from=2021&to=2026",
+     "at": "2026-11-10T07:16:05+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://smartx.cse.ust.hk/members/",
+     "at": "2026-11-12T10:15:00+00:00",
+     "sha256": "3b5ce53c38e83241af1ae55dc4c482209fa5c2f7e786b8b11908ca87e9d5afff",
+     "result": "ok",
+     "name_quote": "Prof. Hao Chen is an Assistant Professor at the Department of CSE & CBE & LIFE",
+     "tie_quote": "The Hong Kong University of Science and Technology. He leads the SmartX Lab",
+     "reviewer": "claude-hkust-newpis-1112"
+    }
+   ],
+   "chosen": {
+    "lab_site": "https://smartx.cse.ust.hk/members/",
+    "people_page": "https://smartx.cse.ust.hk/members/",
+    "alumni_page": null,
+    "pubs_page": null,
+    "kind": "lab_site",
+    "title": "Hao CHEN 陳浩",
+    "other_school": null,
+    "capture_url": null,
+    "sha256": "3b5ce53c38e83241af1ae55dc4c482209fa5c2f7e786b8b11908ca87e9d5afff",
+    "quote": null
+   },
+   "sites": [
+    {
+     "url": "https://smartx.cse.ust.hk/members/",
+     "via": "web_search_reviewed",
+     "title": "Hao CHEN 陳浩",
+     "school_host": true,
+     "other_school": false
+    }
+   ],
+   "wayback": {
+    "https://smartx.cse.ust.hk/members/": []
+   },
+   "robots": {
+    "repository.hkust.edu.hk": false,
+    "appsrv.cse.cuhk.edu.hk": false
+   },
+   "had_prior_record": false,
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Lab site found by web search; the page names the PI and the school (web_search_reviewed).",
+   "students_page_status": "audited",
+   "papers_page_status": "audited",
+   "coverage": "website",
+   "evidence_gaps": [],
+   "url": "https://smartx.cse.ust.hk/members/",
+   "kind": "lab_site",
+   "people_page": "https://smartx.cse.ust.hk/members/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "3b5ce53c38e83241af1ae55dc4c482209fa5c2f7e786b8b11908ca87e9d5afff",
+   "evidence": {
+    "url": "https://smartx.cse.ust.hk/members/",
+    "sha256": "3b5ce53c38e83241af1ae55dc4c482209fa5c2f7e786b8b11908ca87e9d5afff",
+    "quote": "PhD Students"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://smartx.cse.ust.hk/members/",
+     "at": "2026-11-12T10:15:00+00:00",
+     "sha256": "3b5ce53c38e83241af1ae55dc4c482209fa5c2f7e786b8b11908ca87e9d5afff",
+     "result": "ok",
+     "name_quote": "Prof. Hao Chen is an Assistant Professor at the Department of CSE & CBE & LIFE",
+     "tie_quote": "The Hong Kong University of Science and Technology. He leads the SmartX Lab",
+     "reviewer": "claude-hkust-newpis-1112"
+    }
+   ],
+   "verified": true,
+   "verification_quote": "PhD Students"
+  },
+  {
+   "pi": "Arpit NARECHANIA",
+   "checked_at": "2026-11-10T07:16:11+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview",
+     "at": "2026-11-10T07:16:11+00:00",
+     "result": "ok",
+     "sha256": "5efbf6f3f3fae6e6106d263ff1accbc6a5efffb6461e4187dee26f5e1fdbe31d"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/arpit",
+     "at": "2026-11-10T07:16:11+00:00",
+     "result": "ok",
+     "sha256": "d89ae7b3495d976a7ee3eb41af8f6a0302057553c35304390973046b662d90c5"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://narechania.com/",
+     "at": "2026-11-10T07:16:11+00:00",
+     "result": "listed",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/arpit"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://narechania.com/",
+     "at": "2026-11-10T07:16:11+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/arpit"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/170/6664",
+     "at": "2026-11-10T07:16:11+00:00",
+     "result": "listed",
+     "urls": [
+      "https://narechania.com/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-10T07:16:11+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-10T07:16:11+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://narechania.com/",
+     "at": "2026-11-10T07:16:11+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "7c0839054c50f26ca93a22fa363f37406bcb947759e59fb13301d6f450ef6d27"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://datavisards.com/",
+     "at": "2026-11-12T10:15:00+00:00",
+     "sha256": "6cad20ae116d8fb5986a386d7eeff59a42881718a046f0bf6acfd418e414c374",
+     "result": "ok",
+     "name_quote": "directed by Dr. Arpit Narechania",
+     "tie_quote": "a young research lab at HKUST",
+     "reviewer": "claude-hkust-newpis-1112"
+    }
+   ],
+   "chosen": {
+    "lab_site": "https://datavisards.com/",
+    "people_page": "https://datavisards.com/people/",
+    "alumni_page": null,
+    "pubs_page": null,
+    "kind": "lab_site",
+    "title": "Arpit NARECHANIA",
+    "other_school": null,
+    "capture_url": null,
+    "sha256": "6cad20ae116d8fb5986a386d7eeff59a42881718a046f0bf6acfd418e414c374",
+    "quote": null
+   },
+   "sites": [
+    {
+     "url": "https://datavisards.com/",
+     "via": "web_search_reviewed",
+     "title": "Arpit NARECHANIA",
+     "school_host": false,
+     "other_school": false
+    }
+   ],
+   "wayback": {
+    "https://datavisards.com/people/": []
+   },
+   "robots": {},
+   "had_prior_record": false,
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Lab site found by web search; the page names the PI and the school (web_search_reviewed).",
+   "students_page_status": "audited",
+   "papers_page_status": "audited",
+   "coverage": "website",
+   "evidence_gaps": [],
+   "url": "https://datavisards.com/",
+   "kind": "lab_site",
+   "people_page": "https://datavisards.com/people/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "6cad20ae116d8fb5986a386d7eeff59a42881718a046f0bf6acfd418e414c374",
+   "evidence": {
+    "url": "https://datavisards.com/",
+    "sha256": "6cad20ae116d8fb5986a386d7eeff59a42881718a046f0bf6acfd418e414c374",
+    "quote": "We are DataVisards"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://datavisards.com/",
+     "at": "2026-11-12T10:15:00+00:00",
+     "sha256": "6cad20ae116d8fb5986a386d7eeff59a42881718a046f0bf6acfd418e414c374",
+     "result": "ok",
+     "name_quote": "directed by Dr. Arpit Narechania",
+     "tie_quote": "a young research lab at HKUST",
+     "reviewer": "claude-hkust-newpis-1112"
+    }
+   ],
+   "verified": true,
+   "verification_quote": "We are DataVisards"
+  },
+  {
+   "pi": "Rob B.N. Scharff",
+   "checked_at": "2026-11-10T19:55:31+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://ri.hkust.edu.hk/people/rob-scharff",
+     "at": "2026-11-10T19:55:31+00:00",
+     "result": "ok",
+     "sha256": "f063d7d54a6f823bb71dfeee6496443c7740741bd5354ccba7ce9071a3354bdb"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ri.hkust.edu.hk/people/rob-scharff",
+     "at": "2026-11-10T19:55:31+00:00",
+     "result": "ok",
+     "sha256": "f063d7d54a6f823bb71dfeee6496443c7740741bd5354ccba7ce9071a3354bdb"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": null,
+     "at": "2026-11-10T19:55:31+00:00",
+     "result": "no_dblp_person"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-10T19:55:31+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-10T19:55:31+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://ri.hkust.edu.hk/people/rob-scharff",
+     "at": "2026-11-10T19:55:31+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://softrobotics.hkust.edu.hk/about-our-lab/members/",
+     "at": "2026-11-12T10:15:00+00:00",
+     "sha256": "62651377bd60207fedcfcfdf197823fb8b86c8cf510b4ada36f25abe9ecd5f98",
+     "result": "ok",
+     "name_quote": "Principal Investigator (PI) Rob Scharff",
+     "tie_quote": "Assistant Professor Division of Integrative Systems and Design (ISD)",
+     "reviewer": "claude-hkust-newpis-1112"
+    }
+   ],
+   "chosen": {
+    "lab_site": "https://softrobotics.hkust.edu.hk/about-our-lab/members/",
+    "people_page": "https://softrobotics.hkust.edu.hk/about-our-lab/members/",
+    "alumni_page": null,
+    "pubs_page": null,
+    "kind": "lab_site",
+    "title": "Rob B.N. Scharff",
+    "other_school": null,
+    "capture_url": null,
+    "sha256": "62651377bd60207fedcfcfdf197823fb8b86c8cf510b4ada36f25abe9ecd5f98",
+    "quote": null
+   },
+   "sites": [
+    {
+     "url": "https://softrobotics.hkust.edu.hk/about-our-lab/members/",
+     "via": "web_search_reviewed",
+     "title": "Rob B.N. Scharff",
+     "school_host": true,
+     "other_school": false
+    }
+   ],
+   "wayback": {
+    "https://softrobotics.hkust.edu.hk/about-our-lab/members/": []
+   },
+   "robots": {},
+   "had_prior_record": false,
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Lab site found by web search; the page names the PI and the school (web_search_reviewed).",
+   "students_page_status": "audited",
+   "papers_page_status": "audited",
+   "coverage": "website",
+   "evidence_gaps": [],
+   "url": "https://softrobotics.hkust.edu.hk/about-our-lab/members/",
+   "kind": "lab_site",
+   "people_page": "https://softrobotics.hkust.edu.hk/about-our-lab/members/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "62651377bd60207fedcfcfdf197823fb8b86c8cf510b4ada36f25abe9ecd5f98",
+   "evidence": {
+    "url": "https://softrobotics.hkust.edu.hk/about-our-lab/members/",
+    "sha256": "62651377bd60207fedcfcfdf197823fb8b86c8cf510b4ada36f25abe9ecd5f98",
+    "quote": "PhD Student(s)"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://softrobotics.hkust.edu.hk/about-our-lab/members/",
+     "at": "2026-11-12T10:15:00+00:00",
+     "sha256": "62651377bd60207fedcfcfdf197823fb8b86c8cf510b4ada36f25abe9ecd5f98",
+     "result": "ok",
+     "name_quote": "Principal Investigator (PI) Rob Scharff",
+     "tie_quote": "Assistant Professor Division of Integrative Systems and Design (ISD)",
+     "reviewer": "claude-hkust-newpis-1112"
+    }
+   ],
+   "verified": true,
+   "verification_quote": "PhD Student(s)"
+  },
+  {
+   "pi": "Kwang-Ting Cheng",
+   "checked_at": "2026-11-10T07:15:42+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "ok",
+     "sha256": "5efbf6f3f3fae6e6106d263ff1accbc6a5efffb6461e4187dee26f5e1fdbe31d"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://www.cse.ust.hk/admin/people/faculty/",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "ok",
+     "sha256": "9540c99bdd0439c4c11d2ab77e9732c2fe0b78d2a23e7e2855a25c85dbfa8ae6"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/lzhang",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "ok",
+     "sha256": "59c87a9d93a0be8778d02920e0b7aa356274605120805cf58d949ba978fe8796"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/faculty/lzhang/",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/lzhang"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/z/NevinLianwenZhang",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.cse.ust.hk/~lzhang/",
+      "http://repository.ust.hk/ir/AuthorProfile/zhang-nevin-l"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-4662-3217/person.json",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "listed",
+     "sha256": "edf51c409e8263b7860a2bae7a7fdc9058bbbd6807a4962e430a3d42e9c296a2",
+     "urls": [
+      "http://www.cse.ust.hk/faculty/lzhang/",
+      "https://orcid.org/client/APP-33AWTQA1UKY94ARA"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cse.ust.hk/~lzhang/",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "dblp_person_url",
+     "sha256": "2bf295c34219e188519f7d01e062725ad88a46b3e00715f23221778639c9a7a5",
+     "final_url": "https://cse.hkust.edu.hk/~lzhang/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://repository.ust.hk/ir/AuthorProfile/zhang-nevin-l",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "robots_disallowed",
+     "via": "dblp_person_url"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://vsdl.hkust.edu.hk/team/",
+     "at": "2026-11-12T10:30:00+00:00",
+     "sha256": "d155d917956e66f4eac1003a3e4c7374c37824c920286312fc4cc7119aeae989",
+     "result": "ok",
+     "name_quote": "Kwang-Ting Cheng Chair Professor, Principal Investigator",
+     "tie_quote": "Vision and System Design Lab (page on the school host vsdl.hkust.edu.hk; PI ECE profile https://ece.hkust.edu.hk/timcheng sha abeee7fd4523a0fa... names him Chair Professor at HKUST)",
+     "reviewer": "claude-hkust-newpis-1112"
+    }
+   ],
+   "chosen": {
+    "lab_site": "https://vsdl.hkust.edu.hk/team/",
+    "people_page": "https://vsdl.hkust.edu.hk/team/",
+    "alumni_page": null,
+    "pubs_page": null,
+    "kind": "lab_site",
+    "title": "Nevin Lianwen ZHANG 張連文",
+    "other_school": null,
+    "capture_url": null,
+    "sha256": "d155d917956e66f4eac1003a3e4c7374c37824c920286312fc4cc7119aeae989",
+    "quote": null
+   },
+   "sites": [
+    {
+     "url": "https://cse.hkust.edu.hk/faculty/lzhang/group.htm",
+     "via": "web_search_reviewed",
+     "title": "Nevin Lianwen ZHANG 張連文",
+     "school_host": true,
+     "other_school": false
+    }
+   ],
+   "wayback": {
+    "https://cse.hkust.edu.hk/faculty/lzhang/group.htm": []
+   },
+   "robots": {
+    "repository.ust.hk": false
+   },
+   "had_prior_record": false,
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Lab site found by web search; the page names the PI and the school (web_search_reviewed).",
+   "students_page_status": "audited",
+   "papers_page_status": "audited",
+   "coverage": "website",
+   "evidence_gaps": [],
+   "url": "https://vsdl.hkust.edu.hk/team/",
+   "kind": "lab_site",
+   "people_page": "https://vsdl.hkust.edu.hk/team/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "d155d917956e66f4eac1003a3e4c7374c37824c920286312fc4cc7119aeae989",
+   "evidence": {
+    "url": "https://vsdl.hkust.edu.hk/team/",
+    "sha256": "d155d917956e66f4eac1003a3e4c7374c37824c920286312fc4cc7119aeae989",
+    "quote": "Former Members"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://vsdl.hkust.edu.hk/team/",
+     "at": "2026-11-12T10:30:00+00:00",
+     "sha256": "d155d917956e66f4eac1003a3e4c7374c37824c920286312fc4cc7119aeae989",
+     "result": "ok",
+     "name_quote": "Kwang-Ting Cheng Chair Professor, Principal Investigator",
+     "tie_quote": "Vision and System Design Lab (page on the school host vsdl.hkust.edu.hk; PI ECE profile https://ece.hkust.edu.hk/timcheng sha abeee7fd4523a0fa... names him Chair Professor at HKUST)",
+     "reviewer": "claude-hkust-newpis-1112"
+    }
+   ],
+   "verified": true,
+   "verification_quote": "Former Members"
   }
  ],
  "built_against": {
