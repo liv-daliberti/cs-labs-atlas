@@ -566,7 +566,46 @@
      "institution": "City University of New York"
     }
    }
-  ]
+  ],
+  "periods": [
+   {
+    "id": "vt_alla_rozovskaya_2015_2016",
+    "start": "2015",
+    "end": "2016",
+    "asof": "2016-11",
+    "datePrecision": "year",
+    "endPrecision": "year",
+    "evidence": [
+     {
+      "url": "https://www.undergradcatalog.registrar.vt.edu/1718/faculty.html",
+      "raw_path": "scratch/vt-followthrough-1110/identity-sources/stage5-final/alla-vt-catalog-1718.html",
+      "sha256": "8246ea3a45d8a0dcadfedf3b1a31552ff1674a6e1d54b13e2d8be1833ea44bb4",
+      "quote": "ROZOVSKAYA, Alla (2015), Asst. Prof of Computer Science.",
+      "observed": "2026-11-12",
+      "kind": "vt_faculty_catalog_start"
+     },
+     {
+      "url": "https://bov.vt.edu/assets/Minutes-November%206-7%2C%202016-78.pdf",
+      "raw_path": "scratch/vt-followthrough-1110/identity-sources/stage5-final/alla-vt-2016-board.pdf",
+      "sha256": "1a06c8b3b2d152adae7c30ed8e6270b74245f94ab6bcd315027089c12943e2db",
+      "quote": "Rozovskaya, Alla Assistant Professor 94,000 AY",
+      "observed": "2016-11",
+      "kind": "vt_board_faculty_record"
+     },
+     {
+      "url": "https://aclanthology.org/J17-4002.pdf",
+      "raw_path": "scratch/vt-followthrough-1110/identity-sources/stage5-final/alla-2017-acl.pdf",
+      "sha256": "2551ff039a237714f1842081240802b6d28a9f13972834b9a14531d2da0a57ec",
+      "quote": "Part of this work was done when the author was at Virginia Tech",
+      "observed": "2017",
+      "kind": "publisher_later_cuny_affiliation"
+     }
+    ],
+    "note": "VT catalog dates the faculty start to 2015; the November 2016 VT board document still lists her. A 2017 journal first page gives Queens College as her then affiliation and describes VT in the past. The 2017 VT catalog row is not used to extend this period.",
+    "reviewed": "stage5_source_audit_20261112"
+   }
+  ],
+  "why_periods": "Independent VT faculty records support 2015–2016; the 2017 publisher affiliation is Queens College, so 2017 VT catalog carryover alone does not admit a 2017 article."
  },
  "Francisco Servant": {
   "home_department": "Computer Science",
@@ -4397,7 +4436,38 @@
     "self_link": "https://dblp.org/pid/116/4679.html",
     "observed": "2026-11-10"
    }
-  ]
+  ],
+  "periods": [
+   {
+    "id": "vt_ali_vakilian_2025_2026",
+    "start": "2025-08",
+    "end": "2026",
+    "asof": "2026-11-12",
+    "datePrecision": "month",
+    "endPrecision": "year",
+    "evidence": [
+     {
+      "url": "https://www.mit.edu/~vakilian/",
+      "raw_path": "scratch/vt-followthrough-1110/identity-sources/stage5-final/ali-vakilian-homepage.html",
+      "sha256": "ec76fc2b303f97696c56e8f8a78e9d282fd1c03d6ea8ac0e4135ed0dc8769aa6",
+      "quote": "Aug 2025 Joined Virginia Tech as an Assistant Professor in the Department of Computer Science",
+      "observed": "2026-11-12",
+      "kind": "first_party_career_history"
+     },
+     {
+      "url": "https://www.research.vt.edu/impact-recognition/university-research-achievement-awards/research-achievement-excellence-celebration/2026.html",
+      "raw_path": "scratch/vt-followthrough-1110/identity-sources/stage5-final/ali-vakilian-vt-2026.html",
+      "sha256": "290fcd175b59c5cf84974c6e79435821ceeb38eaa5b87537c01b23c81aff4d32",
+      "quote": "Ali Vakilian, Assistant Professor of Computer Science, College of Engineering, NSF CAREER Award (2026)",
+      "observed": "2026-11-12",
+      "kind": "vt_2026_faculty_recognition"
+     }
+    ],
+    "note": "First-person history dates the VT appointment to August 2025; VT itself identifies him as an assistant professor in 2026. End year 2026 bounds the review to the observed VT period; no later work is presumed eligible.",
+    "reviewed": "stage5_source_audit_20261112"
+   }
+  ],
+  "why_periods": "The exact first-person August 2025 start and the official VT 2026 faculty record support a bounded VT period for testing 2026 paper authorships; each paper still needs a VT affiliation."
  },
  "Chris Brown": {
   "periods": [
