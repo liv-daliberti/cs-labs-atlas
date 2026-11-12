@@ -13,3 +13,20 @@ def test_book_review_type_is_not_a_paper():
             typ='book-review', venue='Science', byline=('Jon Peha',), doi='10.1126/science.aav6273')
     assert papers.not_a_paper(r) == 'book_review'
     assert papers.not_a_paper(dict(r, type='article', title='Robots and the future of work')) is None
+
+
+@pytest.mark.parametrize('title,typ', [
+    ('Custom Sub-Systems and Circuits for Deep Learning: Guest Editorial Overview', 'article'),
+    ('Artificial Intelligence–Based Copilots to Generate Causal Evidence', 'editorial')])
+def test_editorials_by_title_label_or_type(title, typ):
+    assert papers.not_a_paper(row(title, typ=typ)) == 'editorial'
+
+
+def test_editorial_type_switch(monkeypatch):
+    monkeypatch.setattr(papers, 'EDITORIAL_TYPE_DROPS', False)
+    assert papers.not_a_paper(row('Artificial Intelligence–Based Copilots to Generate Causal Evidence', typ='editorial')) is None
+    assert papers.not_a_paper(row('Circuits: Guest Editorial Overview')) == 'editorial'
+
+
+def test_editorial_research_titles_stay():
+    assert papers.not_a_paper(row('Decisions and bias in peer review: a field study of editors')) is None

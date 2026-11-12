@@ -111,6 +111,11 @@ BRACKETED_EDITORIAL_TITLE = re.compile(r'(?i)(?:\[' + _GUEST_EDITORIAL_LABEL + r
 ISSUE_EDITORIAL_TITLE = re.compile(r'(?is)^\s*[\w.&-]+,?\s+v(?:ol(?:ume)?)?\.?\s*\d+\b'
                                    r'.*?\bn(?:o)?\.?\s*\d+\b.*?\b(?:19|20)\d{2}\s+editorial\b'
                                    r'(?:\s+[a-z]+\d+)?\s*\.?\s*$')
+# R-PAP-40 (b) (2026-11-12, stage-9 genre rules): 'Custom Sub-Systems and Circuits for Deep Learning: Guest Editorial Overview' (the label comes last), and
+# OpenAlex type `editorial` (an NEJM AI editorial with a research-like title). EDITORIAL_TYPE_DROPS is the owner's switch: R-PAP-18 (2026-10-29) kept the
+# type alone, because research-like titles carry it; the stage-9 samples of CMU, Berkeley and Stanford read the typed records as not papers.
+GUEST_EDITORIAL_ANYWHERE = re.compile(r'(?i)\bguest[- ]editorial\b')
+EDITORIAL_TYPE_DROPS = True
 AWARD_TITLE = re.compile(r"^\d{4} .*\b(Award|Prize|Medal)\b|\b(Award|Prize|Medal)\b\s*(given to|:)\s*[A-Z][\w.'-]+( [A-Z][\w.'-]+){1,3}\s*$")
 AWARD_END = re.compile(r'\b(Award|Prize|Medal)\s*$')
 WORKSHOP_TITLE = re.compile(r'(?i)^(?:the )?(?:\d+(?:st|nd|rd|th) )?(?:international |joint )?workshop on\b|^tutorial\s*:|'
@@ -323,6 +328,8 @@ def not_a_paper(r, pages=None, bare=False):
         return 'dagstuhl_report'
     if re.search(r'(?i)oberwolfach', v) or d.startswith('10.4171/owr'):
         return 'oberwolfach_report'
+    if GUEST_EDITORIAL_ANYWHERE.search(t):
+        return 'editorial'
     if EDITORIAL_TITLE.search(t) or ISSUE_EDITORIAL_TITLE.search(t) or BRACKETED_EDITORIAL_TITLE.search(t):
         return 'editorial'
     if AWARD_TITLE.search(t) or (AWARD_END.search(t) and len(t.split()) <= 8):
@@ -351,6 +358,8 @@ def not_a_paper(r, pages=None, bare=False):
     nr = non_research_record(r, pages)   # R-PAP-33 (after the meeting-abstract tags below it keeps their finer names)
     if nr and nr != 'conference_abstract':
         return nr
+    if EDITORIAL_TYPE_DROPS and ty == 'editorial':   # R-PAP-40 (b), after the finer R-PAP-33 tags
+        return 'editorial'
     # R2: meeting abstracts (owner: abstracts are not papers)
     if ABSTRACT_VENUE.search(v):
         return 'meeting_abstract:venue'
