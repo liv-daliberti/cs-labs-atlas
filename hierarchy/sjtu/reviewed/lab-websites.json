@@ -3157,14 +3157,14 @@
   },
   {
    "pi": "刘功申",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-12T01:40:19+00:00",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/liugongshen.html",
    "profile_sha256": "8ad22a58bdfc8f8ec485d22ce01b95c0d2aee010e8e9ad64daff0f804d658d76",
-   "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "url": "https://sjtuaiseclab.github.io/",
+   "status": "reviewed_cached_website",
+   "reason_code": "lab_site",
+   "reason": "Lab site found by web search (2026-11-12); page names the PI and ties to SJTU (reviewed quotes in the web_search_reviewed check).",
+   "coverage": "website",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liugongshen.html",
@@ -3175,13 +3175,27 @@
    ],
    "checks": [
     {
-     "source": "official_profile_capture",
-     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liugongshen.html",
-     "result": "no_personal_site_link_on_profile",
-     "at": "2026-11-10T00:00:00",
-     "source_sha256": "8ad22a58bdfc8f8ec485d22ce01b95c0d2aee010e8e9ad64daff0f804d658d76"
+     "source": "web_search_reviewed",
+     "url": "https://sjtuaiseclab.github.io/",
+     "at": "2026-11-12T01:40:19+00:00",
+     "sha256": "ff48eaf58ad05f46734110e28ef3f7ff7d3bee6ed4c80ac61f58fd933d997b6c",
+     "name_quote": "刘功申 教授 人工智能安全, 自然语言处理",
+     "tie_quote": "上海交通大学人工智能安全实验室（AI Security Lab）现有教师6位",
+     "reviewer": "fresh reviewer subagent (separate pass, 2026-11-12)",
+     "result": "ok",
+     "quote_page_url": "https://sjtuaiseclab.github.io/",
+     "quote_page_sha256": "ff48eaf58ad05f46734110e28ef3f7ff7d3bee6ed4c80ac61f58fd933d997b6c"
     }
-   ]
+   ],
+   "kind": "lab_site",
+   "found_via": "web_search_reviewed",
+   "sha256": "ff48eaf58ad05f46734110e28ef3f7ff7d3bee6ed4c80ac61f58fd933d997b6c",
+   "people_page": "https://sjtuaiseclab.github.io/student/",
+   "people_page_capture": {
+    "url": "https://sjtuaiseclab.github.io/student/",
+    "sha256": "d6911def2052b711f78c5db0d02bf6ef321db0676ff1f6b811fa0c60ed441c67",
+    "at": "2026-11-12T01:51:50+00:00"
+   }
   },
   {
    "pi": "刘锦阳",
@@ -3805,14 +3819,14 @@
   },
   {
    "pi": "马利庄",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-11T20:38:49+00:00",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/malizhuang.html",
    "profile_sha256": "c56567e4de3c7724cf11f0930da3ac19916cf625b3e9bf1c3a5ffdc40cdabf26",
-   "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "url": "https://dmcv.sjtu.edu.cn/",
+   "status": "reviewed_cached_website",
+   "reason_code": "lab_site",
+   "reason": "Lab site found by web search (2026-11-12); page names the PI and ties to SJTU (reviewed quotes in the web_search_reviewed check).",
+   "coverage": "website",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/malizhuang.html",
@@ -3823,13 +3837,24 @@
    ],
    "checks": [
     {
-     "source": "official_profile_capture",
-     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/malizhuang.html",
-     "result": "no_personal_site_link_on_profile",
-     "at": "2026-11-10T00:00:00",
-     "source_sha256": "c56567e4de3c7724cf11f0930da3ac19916cf625b3e9bf1c3a5ffdc40cdabf26"
+     "source": "web_search_reviewed",
+     "url": "https://dmcv.sjtu.edu.cn/",
+     "at": "2026-11-11T20:38:49+00:00",
+     "sha256": "0cad5e38095a1740f96c8c08b9ecafc72b4d0f318375998ad8c5ecc650e3b6a5",
+     "name_quote": "Lizhuang Ma, distinguished professor of SJTU and ECNU, director of \"Digital Media and Computer Vision Laboratory\"",
+     "tie_quote": "Since 2002, he has been the distinguished professor in Shanghai Jiao Tong University.",
+     "reviewer": "fresh reviewer subagent (separate pass, 2026-11-12)",
+     "result": "ok",
+     "quote_page_url": "https://dmcv.sjtu.edu.cn/people/",
+     "quote_page_sha256": "bdc762e81f1a427a31d503770ad396421f5a854717b7a900710c846e1ca1a1be",
+     "refetched_at": "2026-11-12T01:46:11+00:00",
+     "refetch_sha256_home": "0cad5e38095a1740f96c8c08b9ecafc72b4d0f318375998ad8c5ecc650e3b6a5",
+     "refetch_sha256_people": "bdc762e81f1a427a31d503770ad396421f5a854717b7a900710c846e1ca1a1be"
     }
-   ]
+   ],
+   "kind": "lab_site",
+   "found_via": "web_search_reviewed",
+   "sha256": "0cad5e38095a1740f96c8c08b9ecafc72b4d0f318375998ad8c5ecc650e3b6a5"
   },
   {
    "pi": "马汝辉",
@@ -4718,14 +4743,14 @@
   },
   {
    "pi": "王士林",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-12T01:40:19+00:00",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangshilin.html",
    "profile_sha256": "416e3b11060638dec74e4db11ff62972c1740097337301d9f2aeedd7bb42dee6",
-   "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "url": "https://sjtuaiseclab.github.io/",
+   "status": "reviewed_cached_website",
+   "reason_code": "lab_site",
+   "reason": "Lab site found by web search (2026-11-12); page names the PI and ties to SJTU (reviewed quotes in the web_search_reviewed check).",
+   "coverage": "website",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangshilin.html",
@@ -4736,13 +4761,27 @@
    ],
    "checks": [
     {
-     "source": "official_profile_capture",
-     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangshilin.html",
-     "result": "no_personal_site_link_on_profile",
-     "at": "2026-11-10T00:00:00",
-     "source_sha256": "416e3b11060638dec74e4db11ff62972c1740097337301d9f2aeedd7bb42dee6"
+     "source": "web_search_reviewed",
+     "url": "https://sjtuaiseclab.github.io/",
+     "at": "2026-11-12T01:40:19+00:00",
+     "sha256": "ff48eaf58ad05f46734110e28ef3f7ff7d3bee6ed4c80ac61f58fd933d997b6c",
+     "name_quote": "王士林 教授 多媒体信息分析与处理",
+     "tie_quote": "上海交通大学人工智能安全实验室（AI Security Lab）现有教师6位",
+     "reviewer": "fresh reviewer subagent (separate pass, 2026-11-12)",
+     "result": "ok",
+     "quote_page_url": "https://sjtuaiseclab.github.io/",
+     "quote_page_sha256": "ff48eaf58ad05f46734110e28ef3f7ff7d3bee6ed4c80ac61f58fd933d997b6c"
     }
-   ]
+   ],
+   "kind": "lab_site",
+   "found_via": "web_search_reviewed",
+   "sha256": "ff48eaf58ad05f46734110e28ef3f7ff7d3bee6ed4c80ac61f58fd933d997b6c",
+   "people_page": "https://sjtuaiseclab.github.io/student/",
+   "people_page_capture": {
+    "url": "https://sjtuaiseclab.github.io/student/",
+    "sha256": "d6911def2052b711f78c5db0d02bf6ef321db0676ff1f6b811fa0c60ed441c67",
+    "at": "2026-11-12T01:51:50+00:00"
+   }
   },
   {
    "pi": "王 烁",
@@ -5905,14 +5944,14 @@
   },
   {
    "pi": "俞 勇",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-12T01:48:05+00:00",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyong.html",
    "profile_sha256": "2c4722da54f5e00c70d0e5ec0515a5441c83ca62dbecc83ae8a52edc12097199",
-   "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "url": "https://apex.sjtu.edu.cn/members",
+   "status": "reviewed_cached_website",
+   "reason_code": "lab_site",
+   "reason": "Lab site found by web search (2026-11-12); reviewed quotes in the web_search_reviewed check.",
+   "coverage": "website",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyong.html",
@@ -5923,13 +5962,19 @@
    ],
    "checks": [
     {
-     "source": "official_profile_capture",
-     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyong.html",
-     "result": "no_personal_site_link_on_profile",
-     "at": "2026-11-10T00:00:00",
-     "source_sha256": "2c4722da54f5e00c70d0e5ec0515a5441c83ca62dbecc83ae8a52edc12097199"
+     "source": "web_search_reviewed",
+     "url": "https://apex.sjtu.edu.cn/members",
+     "at": "2026-11-12T01:48:05+00:00",
+     "sha256": "5f071d695f8488688887c01ba96f4a2e362e7bb415e01512d74d6fbc561be5cf",
+     "name_quote": "Group Leader - Prof. Yong Yu",
+     "tie_quote": "He began to work in Shanghai Jiao Tong University in 1986.",
+     "reviewer": "fresh reviewer subagent (separate pass, 2026-11-12)",
+     "result": "ok"
     }
-   ]
+   ],
+   "kind": "lab_site",
+   "found_via": "web_search_reviewed",
+   "sha256": "5f071d695f8488688887c01ba96f4a2e362e7bb415e01512d74d6fbc561be5cf"
   },
   {
    "pi": "郁 昱",
