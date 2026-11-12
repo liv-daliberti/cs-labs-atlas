@@ -974,3 +974,16 @@ def test_mit_degree_abbreviations_are_roles_and_phd_postdoc_stays_split():
     assert A.phd_postdoc_split('(Ph.D. 2017)') is None
     assert A.clean_entry_head('Alumni > Yee Ling Gan (M.Eng. 2018)') == 'Alumni'
     assert A.clean_entry_head('Alumni > Publications') == 'Alumni > Publications' and A.clean_entry_head('Students') == 'Students'
+
+
+def test_berkeley_roles_a_held_degree_is_not_the_role_and_no_invented_years():
+    ro = lambda t: (None, None)
+    assert A.entry_role('M.S., UC Berkeley, Systems Engineering B.S., New York University, Computer Science', 'M.S., M.ENG., MBA Students', ro)[0] == 'masters'
+    assert A.entry_role(', PhD UIUC 2019 (now Assistant Professor, MIT)', 'Postdocs:', ro) == ('postdoc', 'section_heading')
+    assert A.entry_years(', PhD UIUC 2019 (now Assistant Professor, MIT)', 'Postdocs:') == (None, 'none')
+    assert A.entry_role('Doctor of Philosophy, Operations Research Center, MIT, 2020', 'Alumni', ro)[0] == 'phd'
+    assert A.entry_years('Doctor of Philosophy, Operations Research Center, MIT, 2020', 'Alumni')[0] == [None, 2020]
+    assert A.entry_years('(- 2024; Former Postdoc at Caltech; Assistant professor at UCLA)', 'Former Mentee')[0] == [None, 2024]
+    assert A.entry_years('MBA Haas School of Business, UC Berkeley, 2016 MPH School of Public Health', 'Alums')[0] == [None, 2016]
+    assert A.entry_role('(co-advised with Ras Bodik ) (PhD 2021, Microsoft Research)', 'Graduated students', ro)[0] == 'phd'
+    assert A.clean_entry_head('Postdocs: > Guanghan Meng') == 'Postdocs:'

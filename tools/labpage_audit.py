@@ -283,7 +283,16 @@ def advised_by_other(desc, quote, pi):
 PROGRAM_TAIL_RX = re.compile(r"(?<=\w)\s+(?:Societal Computing|Human[- ]Computer Interaction|Software Engineering|Machine Learning|Computer Science|Language Technologies|Computational Biology|Privacy Engineering|Electrical (?:and|&) Computer Engineering|Robotics)$")
 
 
-DEGREE_ABBR_RX = re.compile(r"^\W{0,3}\(?\s*(?:(S\.?\s?M\.?|M\.?\s?Eng\.?|Sc\.?\s?D\.?|S\.?\s?B\.?)(?:\s*/\s*(Ph\.?\s?D\.?))?)(?=[\s,;)./]|$)", re.I)
+LEADING_COADVISED_RX = re.compile(r"^\W{0,3}\(\s*co-?(?:advised|supervised)\b[^()]{0,80}\)\s*", re.I)
+HELD_PHD_RX = re.compile(r"^\W{0,3},?\s*(?:Ph\.?\s?D\.?|Doctorate)\s+(?:[A-Z][\w&.-]*\s+){0,3}(?:19|20)\d\d\b")
+
+
+def held_degree_under_postdoc_heading(desc, head):
+    """', PhD UIUC 2019 (now Assistant Professor, MIT)' under a 'Postdocs:' heading: the PhD is the degree the postdoc held when arriving; its year is not a stay here."""
+    return bool(HELD_PHD_RX.match(desc or '') and head and re.search(r'post-?\s?doc|visiting', head.split(' > ')[0], re.I))
+
+
+DEGREE_ABBR_RX = re.compile(r"^\W{0,3}\(?\s*(?:(S\.?\s?M\.?|M\.?\s?Eng\.?|Sc\.?\s?D\.?|S\.?\s?B\.?|M\.?\s?S\.?|MSc|MBA)(?:\s*/\s*(Ph\.?\s?D\.?))?)(?=[\s,;)./]|$)", re.I)
 
 
 def DEGREE_ABBR_ROLE(m):
@@ -312,8 +321,8 @@ def clean_entry_head(head):
     if not head:
         return head
     segs = head.split(' > ')
-    while len(segs) > 1 and ENTRY_HEAD_SEG_RX.match(segs[-1]):
-        segs.pop()
+    while len(segs) > 1 and (ENTRY_HEAD_SEG_RX.match(segs[-1]) or (PERSON_HEAD_RX.fullmatch(segs[-1].strip()) and not ALUMNI_RX.search(segs[-1]))):
+        segs.pop()   # (a bare person name after a role heading: the previous card's name, 'Postdocs: > Guanghan Meng')
     return ' > '.join(segs)
 
 
@@ -1851,6 +1860,11 @@ def entry_years(desc, head):
       '(Ph.D. in applied math 2014)' or 'PhD 2021' -> [None, 2014] (a degree year ends the stay); 'MIT Undergraduate Student, 2020'
       -> [2020, 2020]; a section heading that is only a year ('2019') -> that year, basis section_year_heading; else
       (None, 'none'): the build keeps undated students."""
+    if held_degree_under_postdoc_heading(desc, head):
+        return None, 'none'
+    em = re.match(r'^\W{0,3}\(\s*[-\u2013\u2014]\s*((?:19|20)\d\d)\b', desc or '')
+    if em:
+        return [None, int(em.group(1))], 'stated_in_entry'   # '(- 2024; Former Postdoc at Caltech)': an end-only range (Berkeley Song Mei's Leo Zhou)
     desc = re.sub(r'((?:spring|summer|fall|autumn|winter|jan|feb|mar|apr|may|jun|jul|aug|sept?|oct|nov|dec)[a-z]*\.?\s+)(19|20) (\d\d)\b', r'\1\2\3', desc or '', flags=re.I)   # 'Summer 20 14' (a year split by the page's markup): HKUST Chung
     desc = re.split(r'[;,]?\s*following position\b', desc or '', maxsplit=1)[0]   # 'following position: since 2019 Researcher at Facebook' is where the person went, not when they were here (CMU round 9, Carbonneaux)
     tm = re.match(r'^\s{0,3}\|?\s*[^|]{1,100}\|\s*((?:19|20)\d\d)\b', desc or '')
@@ -1922,7 +1936,7 @@ def entry_years(desc, head):
         if head and not re.search(r'\b(?:former|past|previous|alumni|alumnae|alumnus|graduated|graduates|class of|emeriti)\b', head, re.I) and not past_range_head(head) and _ENTRY_CTX['bare_year_entry'] \
                 and re.fullmatch(r"\W*(?:ph\.?\s?d\.?|m\.?s\.?|b\.?s\.?)(?:\s*[/&,]\s*(?:ph\.?\s?d\.?|m\.?s\.?|b\.?s\.?))*\W*(?:19|20)\d\d\W*", seg, re.I):
             return ([ys[0], ys[0]] if re.search(r'\bFYP\b|final[- ]year', f'{head} {desc}', re.I) else [ys[0], None]), 'stated_in_entry'   # (an FYP advisee of that year is [Y, Y]) '(Ph.D./M.S. 2023)' in a CURRENT list is the entry year, not an end year (SJTU round 5, 赵杰茹's page); real alumni there use YYYY-YYYY ranges
-        if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bs\.m\.|\bs\.?b\.|\bsc\.?d\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
+        if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bs\.m\.|\bs\.?b\.|\bsc\.?d\b|\bmba\b|\bmph\b|\bmpp\b|\bmpa\b|\bdoctor of philosophy|\bmaster of|\bbachelor of|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
             return [None, ys[0]], 'stated_in_entry'
         if re.match(r'^\W{0,3}(?:[a-z]\W{1,3})?(?:master|bachelor|m\.?phil)s?\s+(?:19|20)\d\d\b', seg, re.I) and not (head and CURRENT_LIST_HEAD.search(head)):
             return [None, ys[0]], 'stated_in_entry'   # 'Xuanyuan Lu o, Master 2022, Research interests: ...' on an alumni list ('Ms 2022' reads [None, 2022]): the degree year ends the stay (Tsinghua Li Jian)
@@ -2304,7 +2318,14 @@ def entry_role(desc, head, role_of):
         return 'visiting', 'entry'   # R-STU-17: a visiting intern / visitor / visiting student is a lab member with role visiting (HKUST re-audit)
     if dissertation_entry_year(desc):
         return 'phd', 'entry'
-    desc = NICK_PREFIX_RX.sub(' ', desc or '', count=1)   # 'Xiaohan Zhong, Elaine (MPhil student ...)': the nickname after the comma is not the entry's descriptor (HKUST Cheung)
+    desc = LEADING_COADVISED_RX.sub('', desc or '', count=1)   # '(co-advised with Ras Bodik) (PhD 2021, Microsoft Research)': the co-adviser bracket is not the role bracket (Berkeley Cheung's Chenglong Wang)
+    if held_degree_under_postdoc_heading(desc, head):
+        r_ = (head or '').split(' > ')[0]
+        return ('postdoc' if re.search(r'post-?\s?doc', r_, re.I) else 'visiting'), 'section_heading'   # 'Sixian You, PhD UIUC 2019 (now Assistant Professor, MIT)' under 'Postdocs:' : a degree the postdoc holds, not the role here (Berkeley Waller)
+    dp = re.match(r'^\W{0,3}(Doctor of Philosophy|Master of (?:Science|Engineering)|Master of Business)\b', desc, re.I)
+    if dp:
+        return ('phd' if dp.group(1).lower().startswith('doctor') else 'masters'), 'entry'   # 'Doctor of Philosophy, Operations Research Center, MIT, 2020' (Berkeley Chodrow): the degree the alumni entry names
+    desc = NICK_PREFIX_RX.sub(' ', desc, count=1)   # 'Xiaohan Zhong, Elaine (MPhil student ...)': the nickname after the comma is not the entry's descriptor (HKUST Cheung)
     d = (desc or '')[:60]
     am = re.match(r'^\W{0,3}[A-Z][A-Za-z]{1,10}\s+(Ph\.?\s?D\.?|Postdoc)\s+(?:19|20)\d\d\b', d)
     if am:
