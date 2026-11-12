@@ -27,3 +27,16 @@ The remaining sample rows have not been fully scored; this is a diagnostic
 hold, not a completed hand-check round. Repair the publication-page parser or
 source-specific extraction, rerun the audit, then draw **new** random samples
 for both kinds before any acceptance. Keep Stage 6 and Stage 7 open.
+
+After excluding the organization-name row, a new 20-student diagnostic sample
+(seed `20261114`) found Austin Kuo in Dan Williams's page news: the cited
+PhD-candidacy event was at UIUC, and the person is absent from the VT current
+members list. The reviewed decision now excludes that exact pre-VT row. The
+sample also labels Yueyan Gu `other` despite the source saying `MS`; role
+parsing needs review. The full captured phrase, “Yueyan Gu (MS, 2024 Fall),”
+supports a bounded direct `masters` row in `few-students-evidence.json` for
+Xuan Wang's VT period. This does not repair the extractor or approve its
+remaining candidates. No student acceptance was stamped from this sample.
+An isolated branch build then contained 10 students, 11 lab–student pairs,
+14 student–paper links and 6 complete PI chains; these are trial counts, not
+frozen release counts.
