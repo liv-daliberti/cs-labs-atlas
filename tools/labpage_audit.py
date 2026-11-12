@@ -1773,6 +1773,10 @@ def past_range_head(head):
     return bool(m) and int(m.group(2)) < 2026
 
 
+SEMESTER_START_RX = re.compile(r'\b(?:fall|spring|autumn|winter)\b', re.I)
+ALUMNI_HEAD_RX = re.compile(r'\b(?:former|past|previous|alumni|alumnae|alumnus|graduated|graduates|class of|emeriti)\b', re.I)
+
+
 def entry_years(desc, head):
     """(years, basis) stated by the entry itself; never a neighbour's dates or a bio's degree dates.
       '(Postdoc, 2010-2014)' -> [2010, 2014]; '(PhD student, MIT ORC, 2022 -)' -> [2022, None] (an open range is a start);
@@ -1804,6 +1808,8 @@ def entry_years(desc, head):
     dw_ = d[:150] if nested_ else d[:80]
     ss = re.search(r'\b(?:spring|summer|fall|autumn|winter)\s+((?:19|20)\d\d)\b(?!\s*[-\u2013\u2014~])', dw_, re.I)
     if ss and not re.search(r'\bsince\b', dw_, re.I) and len(re.findall(r'(?<!\d)(?:19|20)\d\d(?!\d)', dw_)) == 1:
+        if SEMESTER_START_RX.search(dw_) and not re.search(r'\b(?:intern|visit\w*|exchange|summer)\b', dw_, re.I) and not (head and (ALUMNI_HEAD_RX.search(head) or past_range_head(head))):
+            return [int(ss.group(1)), None], 'stated_in_entry'   # '(Postdoc, Fall 2022)' under a current list: a semester start, still here (HKUST Jinbin Hu)
         return [int(ss.group(1)), int(ss.group(1))], 'stated_in_entry'   # 'summer 2018' / 'Summer 2018 intern': a stay in that season
     sn = re.search(r'\bsince\s+(?:(?:spring|summer|fall|autumn|winter)\s+)?((?:19|20)\d\d)(?:\s+(?:spring|summer|fall|autumn|winter))?\b', d, re.I)
     if sn:   # 'Since 2022 Fall' / 'Since Fall 2022': an open start (SJTU dmcv roster)
@@ -1846,6 +1852,8 @@ def entry_years(desc, head):
             return ([ys[0], ys[0]] if re.search(r'\bFYP\b|final[- ]year', f'{head} {desc}', re.I) else [ys[0], None]), 'stated_in_entry'   # (an FYP advisee of that year is [Y, Y]) '(Ph.D./M.S. 2023)' in a CURRENT list is the entry year, not an end year (SJTU round 5, 赵杰茹's page); real alumni there use YYYY-YYYY ranges
         if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
             return [None, ys[0]], 'stated_in_entry'
+        if SEMESTER_START_RX.search(seg) and not re.search(r'\b(?:intern|visit\w*|exchange|summer)\b', seg, re.I) and not (head and (ALUMNI_HEAD_RX.search(head) or past_range_head(head))):
+            return [ys[0], None], 'stated_in_entry'   # '(2025 Fall)' under a current list is the semester the stay began (HKUST Wai Kin Wong)
         return [ys[0], ys[0]], 'stated_in_entry'
     fy = re.search(r'\b(?:FYP|final[- ]year\s+projects?)\b\D{0,8}((?:19|20)\d\d)', head or '', re.I)
     if fy:
@@ -2084,6 +2092,8 @@ def entry_role(desc, head, role_of):
     """(role, basis): the role the entry states right after the name ('(PhD student, ...)', ', Postdoc', 'MIT Undergraduate
     Student'), else the role its section heading names ('PhD Students', 'Post-doctoral Scholars'), else (None, 'none').
     A role word further into a bio ('received his B.S. ...', 'Ph.D. in Electrical Engineering from ...') never counts."""
+    if head:   # a prior-degree line that became a heading ('Bachelor and Master in SusTech', 'Master in UBC') is the previous entry's bio, not a role heading (HKUST Zhiyao Xie's students page)
+        head = ' > '.join(c for c in head.split(' > ') if not re.match(r"^\W{0,3}(?:bachelor|master|undergraduate|b\.?\s?s\.?c?|m\.?\s?s\.?c?)['\u2019]?s?(?:\s+and\s+(?:bachelor|master)['\u2019]?s?)?\s+(?:in|from|at)\b", c, re.I)) or None
     vis = VIS.visiting_role(desc, head, role_of)
     if vis:
         return vis   # R-STU-17: 'visiting student from CUHK', '(visiting, CUHK)', a 'Visiting Students' heading: a member of this lab, role `visiting`

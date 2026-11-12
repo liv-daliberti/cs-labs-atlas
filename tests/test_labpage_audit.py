@@ -833,3 +833,17 @@ def test_han_only_names_pass_the_quote_name_check():
         sys.path.remove(d)
     assert L.has_name('顾扬博士生', '顾扬') and not L.has_name('华勤博士生', '顾扬') and L.has_name('Ke Fan 樊柯', 'Ke Fan')
     assert not L.has_name('x', '顾')
+
+
+def test_a_semester_year_under_a_current_list_is_a_start_not_a_closed_stay():
+    assert A.entry_years('(PostDoc, Fall 2022)', 'Current Members')[0] == [2022, None]
+    assert A.entry_years('(2025 Fall)', 'Postdoc')[0] == [2025, None]
+    assert A.entry_years('(Summer 2024)', 'Current Members')[0] == [2024, 2024]
+    assert A.entry_years('(Visiting student, Fall 2023)', 'Past members')[0] == [2023, 2023]
+    assert A.entry_years('(Research intern, Fall 2023)', 'Current Members')[0] == [2023, 2023]
+
+
+def test_a_prior_degree_heading_does_not_set_the_role():
+    ro = lambda t: (None, None)
+    assert A.entry_role('', 'Students > Bachelor and Master in SusTech', ro)[0] is None
+    assert A.entry_role('', 'Students > Master in UBC', ro)[0] is None
