@@ -4717,7 +4717,42 @@
      "observed": "2026-11-10"
     }
    }
-  ]
+  ],
+  "periods": [
+   {
+    "id": "vt_atul_mantri_2023_cv",
+    "start": "2023-08",
+    "end": null,
+    "asof": "2026-11-10",
+    "datePrecision": "month",
+    "evidence": [
+     {
+      "url": "https://www.atulmantri.com/cv/",
+      "sha256": "d36eb27ebe86144b4b66224191fede916465979eac78e0c2c4591188675677c3",
+      "quote": "Aug '23 – Present Assistant Professor, Dept. of Computer Science, Virginia Tech",
+      "observed": "2026-11-10",
+      "kind": "first_party_cv"
+     },
+     {
+      "url": "https://web.archive.org/web/20251002193840id_/https://cs.vt.edu/people/faculty.html",
+      "sha256": "3f4421a0afed517869bfc547f952cfe29c00c917a62dc9ffeee28d67f64bcdc8",
+      "quote": "Atul Mantri , bio Assistant professor",
+      "observed": "2025-10-02",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://cs.vt.edu/people/faculty.html",
+      "sha256": "e3f508169f1ce818a27c3351d14a67a6b652c574feb4a62751510d3ec747203e",
+      "quote": "Atul Mantri , bio Assistant Professor",
+      "observed": "2026-11-07",
+      "kind": "dept_listing"
+     }
+    ],
+    "note": "The first-party CV dates the start to August 2023 and was current in August 2026; dated VT department rosters corroborate the appointment in 2025 and 2026. The month boundary keeps any earlier 2023 work unresolved.",
+    "reviewed": "stage5_source_audit_20261112"
+   }
+  ],
+  "why_periods": "The captured first-party CV explicitly dates the Virginia Tech assistant professorship to August 2023; 2025 and 2026 department listings independently confirm the later period. This corrects the 2025-only listing start without attributing any paper by identity alone."
  },
  "David H Smith IV.": {
   "orcid": [
