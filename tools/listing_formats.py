@@ -46,6 +46,105 @@ def clean(s):
     return ' '.join(H.unescape(TAG.sub(' ', s)).split())
 
 
+def stanford_cs_legacy(h):
+    """Unpaged CS directory tables: names and faculty categories, without contacts.
+
+    The section heading supplies a category, not an individual professor rank.
+    Some faculty have no link; their printed first-cell name still counts.
+    """
+    soup = BeautifulSoup(h, 'html.parser')
+    categories = {'Regular Faculty', 'Lecturers', 'Emeritus Faculty',
+                  'Courtesy Faculty', 'Adjunct Faculty', 'Visiting and Acting Faculty'}
+    out = []
+    for table in soup.select('table'):
+        heading = table.find_previous(['h1', 'h2', 'h3', 'h4'])
+        category = clean(heading.get_text(' ', strip=True)) if heading else ''
+        if category not in categories:
+            continue
+        for tr in table.select('tr'):
+            cells = tr.find_all('td', recursive=False)
+            if len(cells) != 4:
+                continue
+            name = clean(cells[0].get_text(' ', strip=True))
+            if not name:
+                continue
+            link = cells[0].select_one('a[href]')
+            out.append(dict(name_listed=name, titles=[], division=category,
+                            homepage=link['href'] if link else None))
+    return out
+
+
+def stanford_cs_cards(h):
+    """CS Faculty by Name: all faculty categories, with each card's written title."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for li in soup.select('li'):
+        name = li.select_one('.views-field-title h3')
+        title = li.select_one('.views-field-su-person-short-title .field-content')
+        if name is None or title is None:
+            continue
+        link = name.find_parent('a', href=True)
+        out.append(dict(name_listed=clean(name.get_text(' ', strip=True)),
+                        titles=[clean(title.get_text(' ', strip=True))],
+                        profile='https://www.cs.stanford.edu' + link['href'] if link and link['href'].startswith('/') else link['href'] if link else None,
+                        homepage=None, division=None))
+    for card in soup.select('.su-card__contents'):
+        name, title = card.select_one('h3 a[href]'), card.select_one('.su-person-short-title')
+        if name is not None and title is not None:
+            out.append(dict(name_listed=clean(name.get_text(' ', strip=True)),
+                            titles=[clean(title.get_text(' ', strip=True))],
+                            profile='https://www.cs.stanford.edu' + name['href'] if name['href'].startswith('/') else name['href'], homepage=None, division=None))
+    return out
+
+
+def stanford_ee_cards(h):
+    """EE directory cards; administrators alongside faculty are excluded."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for heading in soup.select('h3.description, h3.orglist__display-name'):
+        link, title = heading.select_one('a[href]'), heading.select_one('small')
+        if link is None or title is None:
+            continue
+        role = clean(title.get_text(' ', strip=True))
+        if not re.search(r'Professor|Faculty|Lecturer', role, re.I):
+            continue
+        out.append(dict(name_listed=clean(link.get_text(' ', strip=True)),
+                        titles=[role], profile=link['href'], homepage=None, division=None))
+    return out
+
+
+def stanford_ee_bulletin(h):
+    """Official EE Bulletin faculty paragraphs, including courtesy and emeriti.
+
+    Keep the full faculty paragraph as the quote so each printed rank is sourced
+    together with its names. Administrative committee paragraphs are excluded.
+    A name's asterisk denotes recall, not another person or an inferred rank.
+    """
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for p in soup.select('#facultytextcontainer > p'):
+        first = p.find('em')
+        if first is None:
+            continue
+        label = clean(first.get_text(' ', strip=True))
+        if not re.match(r'^(?:Emeriti|(?:Courtesy |Adjunct |Visiting )?(?:Associate |Assistant )?Professors?|Lecturers)\b', label):
+            continue
+        emeriti = label.startswith('Emeriti')
+        text = clean(p.get_text(' ', strip=True))[len(label):]
+        text = re.sub(r'\s*\(deceased[^)]*\)', '', text, flags=re.I)
+        text = re.sub(r'\(\s*\*Recalled to active duty\s*\)', '', text)
+        sections = re.split(r';\s*\(\s*(Associate Professors?|Professors,\s*Research)\s*\)\s*', text) if emeriti else [text]
+        for pos in range(0, len(sections), 2):
+            role = label if pos == 0 else sections[pos - 1]
+            for token in sections[pos].split(','):
+                name = token.strip(' *;():\u00a0')
+                if not name or len(name.split()) < 2:
+                    continue
+                out.append(dict(name_listed=name, titles=([label, role] if emeriti and role != label else [role]),
+                                homepage=None, division='Emeriti' if emeriti else None, quote_raw=str(p)))
+    return out
+
+
 def berkeley_eecs_faculty(h):
     """Berkeley EECS's old table and later unpaged media faculty lists."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1673,6 +1772,10 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
+    'stanford_cs_legacy': (stanford_cs_legacy, lambda h: 'Regular Faculty</h3>' in h and 'post_form_nam_last' in h),
+    'stanford_cs_cards': (stanford_cs_cards, lambda h: 'su-person-short-title' in h and 'Faculty by Name' in h),
+    'stanford_ee_cards': (stanford_ee_cards, lambda h: 'Electrical Engineering' in h and ('orglist__display-name' in h or 'class="description"' in h)),
+    'stanford_ee_bulletin': (stanford_ee_bulletin, lambda h: 'facultytextcontainer' in h and bool(re.search(r'<title>\s*Electrical Engineering\b', h))),
     'hit_cs_current_table': (hit_cs_current_table, re.compile(r'(?!)')),
     'berkeley_eecs_faculty': (berkeley_eecs_faculty, re.compile(r'(?!)')),
     'berkeley_eecs_directory': (berkeley_eecs_directory, re.compile(r'(?!)')),

@@ -46,6 +46,53 @@ repository = "Stanford Digital Repository / PURL (purl.stanford.edu)"
 reason = "no OAI-PMH endpoint on purl.stanford.edu or searchworks.stanford.edu (HTML 404 pages, 2026-11-04). The robots-listed sitemaps give PURL URLs only, no metadata, so a harvest would be one request per PURL over the whole repository: not a bulk interface. robots.txt has no rule for ClaudeBot/anthropic-ai."
 
 # Hosts the stanford tools contact (stage 0, 2026-11-10). Derived from evidence: the raw capture stores (hierarchy/stanford/raw/*captures*.sqlite) and the full-text download ledger (stores/stanford/fulltext_assets.csv). The long tail of faculty personal sites is read per capture under school_web robots checks and is not enumerated here.
+# The CS directory includes every printed faculty category. The EE Bulletin
+# supplies the earlier unpaged faculty roster; later department pages must have
+# every linked page before they count. Neither department has gap waivers.
+[[departments]]
+code = "CS"
+name = "Computer Science"
+unit = "Stanford University"
+title_match = 'Computer Science'
+coverage = "full"
+url = "https://www.cs.stanford.edu/people-cs/faculty-name"
+  [[departments.listings]]
+  slot = "CS faculty directory"
+  kind = "main"
+  url = "www.cs.stanford.edu/directory/faculty"
+  from = "20160101"
+  to = "20231231"
+  format = "stanford_cs_legacy"
+  [[departments.listings]]
+  slot = "CS faculty directory"
+  kind = "main"
+  url = "www.cs.stanford.edu/people-cs/faculty-name"
+  from = "20240101"
+  to = "20261231"
+  format = "stanford_cs_cards"
+
+[[departments]]
+code = "EE"
+name = "Electrical Engineering"
+unit = "Stanford University"
+title_match = 'Electrical Engineering'
+coverage = "full"
+url = "https://ee.stanford.edu/people/faculty"
+  [[departments.listings]]
+  slot = "EE official Bulletin faculty"
+  kind = "main"
+  url = "exploredegrees.stanford.edu/schoolofengineering/electricalengineering/"
+  from = "20160101"
+  to = "20211231"
+  format = "stanford_ee_bulletin"
+  [[departments.listings]]
+  slot = "EE faculty directory"
+  kind = "main"
+  url = "ee.stanford.edu/people/faculty"
+  from = "20220101"
+  to = "20261231"
+  format = "stanford_ee_cards"
+
 [[hosts]]
 host = "web.archive.org"
 use = "live"
