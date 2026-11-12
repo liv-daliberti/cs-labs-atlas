@@ -927,8 +927,15 @@ def link_base(row, url):
 
 def is_profile(url, dom):
     h = urlsplit(url or '').hostname or ''
-    return bool(re.search(dom, h) and (PROFILE_RX.search(urlsplit(url).path or '') or re.match(r'^profiles?\.', h))
-                and '~' not in (url or ''))
+    if not re.search(dom, h):
+        return False
+    if re.match(r'^profiles?\.', h):
+        return '~' not in (url or '')
+    m = re.search(dom, h)
+    before = [l for l in h[:m.start()].strip('.').split('.') if l]
+    if len(before) >= 2 and before[0] not in ('www', 'people', 'faculty', 'ihome', 'ee', 'cs'):   # a lab on a school sub-domain (nics.ee, hcsi.cs, fi.ee ...): its /people/<name>/ pages are the lab's, not a directory profile (Tsinghua site-finder, \u674e\u5b66\u6e05)
+        return False
+    return bool(PROFILE_RX.search(urlsplit(url).path or '') and '~' not in (url or ''))
 
 
 def site_links(kit, row, base):

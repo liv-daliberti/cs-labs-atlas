@@ -190,3 +190,11 @@ def test_bare_role_sub_heading_and_han_people_links():
     assert f('Ph.D Student roster x Master Thesis defended') == 'phd'   # 'Master' inside a sentence is not a heading
     assert L.PEOPLE_LINK.match('在读研究生') and L.PEOPLE_LINK.match('团队成员')
     assert not L.PEOPLE_LINK.match('成果发表')
+
+
+def test_a_lab_on_a_school_subdomain_is_not_a_directory_profile():
+    d = r'tsinghua\.edu\.cn'
+    assert not L.is_profile('https://nics.ee.tsinghua.edu.cn/people/Xueqing/', d)
+    assert not L.is_profile('https://hcsi.cs.tsinghua.edu.cn/people/Wang/', d)
+    assert L.is_profile('https://www.ee.tsinghua.edu.cn/people/zhang/', d)
+    assert L.is_profile('https://ee.tsinghua.edu.cn/people/li/', d)
