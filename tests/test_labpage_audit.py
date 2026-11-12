@@ -748,3 +748,16 @@ def test_han_glued_cells_read_name_plus_role_word_before_the_alumni_heading():
     cs = A.han_glued_cells(t)
     assert [(c['name'], c['role']) for c in cs] == [('顾扬', 'phd'), ('华勤', 'phd'), ('贾博涵', 'phd'), ('许圣林', 'masters'), ('高剑奇', 'postdoc')]
     assert not A.han_glued_cells('顾扬博士生 华勤博士生')   # fewer than three cells: not a roster
+
+
+def test_cmu_round9_entry_rules():
+    assert A.strip_program_label('Seungjoo Lee Societal Computing') == 'Seungjoo Lee'
+    assert A.strip_program_label('Riku Arakawa Human-Computer Interaction') == 'Riku Arakawa'
+    assert A.strip_program_label('Machine Learning') == 'Machine Learning'
+    assert A.entry_years('(PhD Student at Yale, with Zhong Shao); following position: since 2019 Researcher at Facebook', 'Former Group Members') == (None, 'none')
+    assert A.leading_other_institution('(PhD Student at Yale, with Zhong Shao); following position: since 2019 Researcher at Facebook', 'cmu') == 'Yale'
+    assert A.leading_other_institution('(Purdue) Summer 2021', 'cmu')
+    assert A.leading_other_institution('(2021-2022. Former master’s student. CVD, MBZUAI.)', 'cmu') == 'CVD, MBZUAI'
+    assert not A.leading_other_institution('(2017-2022. Former PhD Student. CPCB, CBD, CMU.)', 'cmu')
+    assert not A.leading_other_institution('(PhD Student at Carnegie Mellon University)', 'cmu')
+    assert A.YEAR_ONLY_ENTRY_RX.match('(2021)') and not A.YEAR_ONLY_ENTRY_RX.match('(PhD, 2021)')
