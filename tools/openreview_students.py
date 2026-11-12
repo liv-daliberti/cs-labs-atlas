@@ -195,14 +195,16 @@ def build_row(res, cand, term_sha, captured):
     nm = next((n for n in prof_names(p) if name_match(cand['name'], n)), cand['name'])
     start, end = h.get('start'), h.get('end')
     y0 = start or cand['window'][0]
-    years = [y0, end or CAPTURE_YEAR]
+    end_y = _year(end, None)
+    current = end_y is None or end_y >= CAPTURE_YEAR   # an end year in the capture year or later is an expected graduation: the student is current
+    years = [y0, CAPTURE_YEAR if current else end_y]
     rs, re_ = rel.get('start'), rel.get('end')
     quote = (f"OpenReview profile {pid}: history: {h.get('position')}, {inst.get('name')} ({inst.get('domain')}), {start or '?'}-{end or 'present'}; "
              f"relation: {rel.get('relation')}: {rel.get('name') or username_name(rel.get('username'))}"
              + (f" ({rs or '?'}-{re_ or 'present'})" if rs or re_ else ''))
     return dict(pi=cand['pi'], name=nm, role=res['role'], years=years, years_basis='openreview_history_dates' + ('' if end else '_open_end'),
                 url=f'https://openreview.net/profile?id={pid}', capture_url=f'https://openreview.net/profile?id={pid}',
-                sha256=term_sha, captured=captured, quote=quote, alumni=bool(end), rule=RULE, auto=True, source='self_declared_openreview',
+                sha256=term_sha, captured=captured, quote=quote, alumni=not current, rule=RULE, auto=True, source='self_declared_openreview',
                 evidence_kind='self_declared_openreview', profile_id=pid, flags=res['flags'],
                 note='The student\'s own OpenReview profile declares this adviser (one-directional relation); quote built from the history and relation fields. R-STU-27')
 

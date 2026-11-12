@@ -221,3 +221,12 @@ def test_overlap_tolerates_string_and_missing_years():
     assert O._ov(dict(start=2021, end=None), ('2020', '2026'))
     assert not O._ov(dict(start='2010', end='2012'), (2020, 2026))
     assert O._ov(dict(start='bad', end=None), (2020, 2026))
+
+
+def test_expected_graduation_year_is_a_current_student():
+    """A history end year in the capture year or later is an expected graduation (Berkeley Xutao Ma 2025-2030 was an alumnus): current, years end capped."""
+    for end, alumni, last in ((2030, False, 2026), (2026, False, 2026), (2023, True, 2023), (None, False, 2026)):
+        hist = [dict(position='PhD student', institution=dict(name='HKUST', domain='cse.ust.hk'), start=2021, end=end)]
+        r = val([prof(hist=hist)])
+        row = O.build_row(r, dict(pi='Ada Lovelace', name='Jane Doe', window=WIN), 'ab' * 32, '2026-11-13T00:00:00')
+        assert row['alumni'] is alumni and row['years'] == [2021, last]
