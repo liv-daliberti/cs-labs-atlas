@@ -26816,59 +26816,6 @@
    "unverified_reason": "stored page does not carry the PI full name (surname present)"
   },
   {
-   "pi": "Nikhil Srivastava",
-   "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://math.berkeley.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/30/2541: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-0768-9691/person.json: listed.",
-   "audited_at": "2026-11-11T03:20:34+00:00",
-   "checks": [
-    {
-     "source": "department_listing",
-     "url": "https://math.berkeley.edu/people/faculty",
-     "at": "2026-10-31T04:42:55+00:00",
-     "result": "ok",
-     "sha256": "9aa277e66f3f6a43f6ba6b39d0d8e748e29145f69c5002eaf40bef79ba407c48"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/30/2541",
-     "at": "2026-10-31T04:42:55+00:00",
-     "result": "no_homepage_url"
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": "https://orcid.org/0000-0003-0768-9691/person.json",
-     "at": "2026-10-31T04:42:55+00:00",
-     "result": "listed",
-     "sha256": "cebf6e11f7cd374ee822930bd78d7669dafcc7c33c777ccb5fd9d314e3a5d32e",
-     "urls": [
-      "https://orcid.org/0000-0003-0768-9691",
-      "https://scholar.google.com/citations?user=C3D7QA8AAAAJ&hl=en",
-      "https://www.researchgate.net/profile/Nikhil-Srivastava-6"
-     ]
-    },
-    {
-     "source": "openalex_author",
-     "url": "https://openalex.org/A5103113924",
-     "at": "2026-10-31T04:42:55+00:00",
-     "result": "no_homepage_field_in_schema"
-    }
-   ],
-   "places_checked": [
-    "dblp_person_url:no_homepage_url",
-    "department_listing:ok",
-    "orcid_researcher_urls:listed"
-   ],
-   "checked_at": "2026-10-31T04:42:55+00:00",
-   "students_page_status": "no_lab_page",
-   "papers_page_status": "no_lab_page",
-   "coverage": "reason",
-   "upstream_audit_reason": "joined in 2026; no school lab site yet",
-   "reason_type": "search_no_eligible_site",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
-  },
-  {
    "pi": "Bernhard Boser",
    "status": "none_found",
    "reason_code": "emeritus_or_admin_no_lab",
@@ -27643,131 +27590,6 @@
    "evidence_gaps": [],
    "verified": false,
    "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
-  },
-  {
-   "pi": "Ian Holmes",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-11T03:20:42+00:00",
-   "checks": [
-    {
-     "source": "department_listing",
-     "url": "https://bioeng.berkeley.edu/people",
-     "at": "2026-10-31T04:42:59+00:00",
-     "result": "ok",
-     "sha256": "924d348f25994521abb8f8fb8b77a3de73507f1bb0583da56ad90fcc4ca53605"
-    },
-    {
-     "source": "school_profile",
-     "url": "https://bioeng.berkeley.edu/person/ian-holmes",
-     "at": "2026-10-31T04:42:59+00:00",
-     "result": "ok",
-     "sha256": "872939f9e066880e73d560695dd205f4fa664a0b8f0a558a8557df1eefd054c2"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "https://biowiki.org/IanHolmes",
-     "at": "2026-10-31T04:42:59+00:00",
-     "result": "listed",
-     "anchor": "https://biowiki.org/IanHolmes",
-     "on": "https://bioeng.berkeley.edu/person/ian-holmes"
-    },
-    {
-     "source": "school_profile",
-     "url": "https://bioeng.berkeley.edu/people/ian-holmes",
-     "at": "2026-10-31T04:42:59+00:00",
-     "result": "ok",
-     "sha256": "36fbdf5aec74717badd5f010837a79ca23730eb328de67bdc0dfd5008c45294d"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "https://biowiki.org/IanHolmes",
-     "at": "2026-10-31T04:42:59+00:00",
-     "result": "listed",
-     "anchor": "https://biowiki.org/IanHolmes",
-     "on": "https://bioeng.berkeley.edu/people/ian-holmes"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-10-31T04:42:59+00:00",
-     "result": "no_dblp_person"
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": "https://orcid.org/0000-0001-7639-5369/person.json",
-     "at": "2026-10-31T04:42:59+00:00",
-     "result": "no_urls",
-     "sha256": "15633b484220fb92d7888923fb0730fde256a2abc96a5ccda7cbde68a2cfe0e3"
-    },
-    {
-     "source": "openalex_author",
-     "url": "https://openalex.org/A5054625887",
-     "at": "2026-10-31T04:42:59+00:00",
-     "result": "no_homepage_field_in_schema"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://bioeng.berkeley.edu/people/ian-holmes",
-     "at": "2026-10-31T04:42:59+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://biowiki.org/IanHolmes",
-     "at": "2026-10-31T04:43:19+00:00",
-     "result": "ok_wayback",
-     "via": "school_profile_link",
-     "capture_url": "https://web.archive.org/web/20160510162735id_/http://biowiki.org:80/IanHolmes",
-     "sha256": "db38e7159e04a8e31c22ea71a0a5a42cd86bd55bc028a653508f363e5752aa41",
-     "final_url": "https://web.archive.org/web/20160510162735id_/http://biowiki.org:80/IanHolmes"
-    }
-   ],
-   "places_checked": [
-    "candidate_site:ok_wayback",
-    "department_listing:ok",
-    "orcid_researcher_urls:no_urls",
-    "pi_evidence_url:listed",
-    "school_profile:ok",
-    "school_profile_link:listed"
-   ],
-   "checked_at": "2026-10-31T04:43:19+00:00",
-   "students_page_status": "no_people_section",
-   "papers_page_status": "no_pubs_page",
-   "url": "https://biowiki.org/IanHolmes",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "school_profile_link",
-   "listed_on": "https://bioeng.berkeley.edu/person/ian-holmes",
-   "sha256": "db38e7159e04a8e31c22ea71a0a5a42cd86bd55bc028a653508f363e5752aa41",
-   "evidence": {},
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "https://biowiki.org/IanHolmes",
-     "at": "2026-10-31T04:42:59+00:00",
-     "result": "listed",
-     "anchor": "https://biowiki.org/IanHolmes",
-     "on": "https://bioeng.berkeley.edu/person/ian-holmes"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "https://biowiki.org/IanHolmes",
-     "at": "2026-10-31T04:42:59+00:00",
-     "result": "listed",
-     "anchor": "https://biowiki.org/IanHolmes",
-     "on": "https://bioeng.berkeley.edu/people/ian-holmes"
-    }
-   ],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "ianholmes main biowiki home edit attach new site map help research teaching main jb"
   },
   {
    "pi": "Michelle Hoda Wilkerson",
@@ -30537,6 +30359,230 @@
    "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "evidence_gaps": []
+  },
+  {
+   "pi": "Nikhil Srivastava",
+   "status": "none_found",
+   "reason_code": "new_arrival_no_site_yet",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://math.berkeley.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/30/2541: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-0768-9691/person.json: listed.",
+   "audited_at": "2026-11-11T03:20:34+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://math.berkeley.edu/people/faculty",
+     "at": "2026-10-31T04:42:55+00:00",
+     "result": "ok",
+     "sha256": "9aa277e66f3f6a43f6ba6b39d0d8e748e29145f69c5002eaf40bef79ba407c48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/30/2541",
+     "at": "2026-10-31T04:42:55+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-0768-9691/person.json",
+     "at": "2026-10-31T04:42:55+00:00",
+     "result": "listed",
+     "sha256": "cebf6e11f7cd374ee822930bd78d7669dafcc7c33c777ccb5fd9d314e3a5d32e",
+     "urls": [
+      "https://orcid.org/0000-0003-0768-9691",
+      "https://scholar.google.com/citations?user=C3D7QA8AAAAJ&hl=en",
+      "https://www.researchgate.net/profile/Nikhil-Srivastava-6"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5103113924",
+     "at": "2026-10-31T04:42:55+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://math.berkeley.edu/~nikhil/",
+     "at": "2026-11-12T20:12:53+00:00",
+     "sha256": "12c6fe8e751869cab244782672c6a542360c47b70140bee88c521155367d2c83",
+     "result": "ok",
+     "name_quote": "Nikhil Srivastava Professor of Mathematics (1035 Evans Hall)",
+     "tie_quote": "Interim Associate Director, Simons Institute (204 Calvin Lab) UC Berkeley",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed"
+   ],
+   "checked_at": "2026-11-12T20:12:53+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "no_lab_page",
+   "coverage": "website",
+   "upstream_audit_reason": "joined in 2026; no school lab site yet",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": [],
+   "url": "https://math.berkeley.edu/~nikhil/",
+   "kind": "pi_homepage",
+   "people_page": "https://math.berkeley.edu/~nikhil/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "12c6fe8e751869cab244782672c6a542360c47b70140bee88c521155367d2c83",
+   "evidence": {
+    "url": "https://math.berkeley.edu/~nikhil/",
+    "sha256": "12c6fe8e751869cab244782672c6a542360c47b70140bee88c521155367d2c83",
+    "quote": "Nikhil Srivastava Professor of Mathematics (1035 Evans Hall)"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://math.berkeley.edu/~nikhil/",
+     "at": "2026-11-12T20:12:53+00:00",
+     "sha256": "12c6fe8e751869cab244782672c6a542360c47b70140bee88c521155367d2c83",
+     "result": "ok",
+     "name_quote": "Nikhil Srivastava Professor of Mathematics (1035 Evans Hall)",
+     "tie_quote": "Interim Associate Director, Simons Institute (204 Calvin Lab) UC Berkeley",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "verified": true,
+   "verification_quote": "Nikhil Srivastava Professor of Mathematics (1035 Evans Hall)"
+  },
+  {
+   "pi": "Ian Holmes",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-11T03:20:42+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://bioeng.berkeley.edu/people",
+     "at": "2026-10-31T04:42:59+00:00",
+     "result": "ok",
+     "sha256": "924d348f25994521abb8f8fb8b77a3de73507f1bb0583da56ad90fcc4ca53605"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://bioeng.berkeley.edu/person/ian-holmes",
+     "at": "2026-10-31T04:42:59+00:00",
+     "result": "ok",
+     "sha256": "872939f9e066880e73d560695dd205f4fa664a0b8f0a558a8557df1eefd054c2"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://biowiki.org/IanHolmes",
+     "at": "2026-10-31T04:42:59+00:00",
+     "result": "listed",
+     "anchor": "https://biowiki.org/IanHolmes",
+     "on": "https://bioeng.berkeley.edu/person/ian-holmes"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://bioeng.berkeley.edu/people/ian-holmes",
+     "at": "2026-10-31T04:42:59+00:00",
+     "result": "ok",
+     "sha256": "36fbdf5aec74717badd5f010837a79ca23730eb328de67bdc0dfd5008c45294d"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://biowiki.org/IanHolmes",
+     "at": "2026-10-31T04:42:59+00:00",
+     "result": "listed",
+     "anchor": "https://biowiki.org/IanHolmes",
+     "on": "https://bioeng.berkeley.edu/people/ian-holmes"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": null,
+     "at": "2026-10-31T04:42:59+00:00",
+     "result": "no_dblp_person"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0001-7639-5369/person.json",
+     "at": "2026-10-31T04:42:59+00:00",
+     "result": "no_urls",
+     "sha256": "15633b484220fb92d7888923fb0730fde256a2abc96a5ccda7cbde68a2cfe0e3"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5054625887",
+     "at": "2026-10-31T04:42:59+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://bioeng.berkeley.edu/people/ian-holmes",
+     "at": "2026-10-31T04:42:59+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://biowiki.org/IanHolmes",
+     "at": "2026-10-31T04:43:19+00:00",
+     "result": "ok_wayback",
+     "via": "school_profile_link",
+     "capture_url": "https://web.archive.org/web/20160510162735id_/http://biowiki.org:80/IanHolmes",
+     "sha256": "db38e7159e04a8e31c22ea71a0a5a42cd86bd55bc028a653508f363e5752aa41",
+     "final_url": "https://web.archive.org/web/20160510162735id_/http://biowiki.org:80/IanHolmes"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://ihh.github.io/member/",
+     "at": "2026-11-12T20:12:57+00:00",
+     "sha256": "23b9a8f53bd6682bd4db0c2ab59a30453719aab487a630be03033c3b42939219",
+     "result": "ok",
+     "name_quote": "Ian Holmes Professor, UC Berkeley",
+     "tie_quote": "Ian Holmes Professor, UC Berkeley",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok_wayback",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-12T20:12:57+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "no_pubs_page",
+   "url": "https://ihh.github.io/member/",
+   "kind": "pi_homepage",
+   "people_page": "https://ihh.github.io/member/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "23b9a8f53bd6682bd4db0c2ab59a30453719aab487a630be03033c3b42939219",
+   "evidence": {
+    "url": "https://ihh.github.io/member/",
+    "sha256": "23b9a8f53bd6682bd4db0c2ab59a30453719aab487a630be03033c3b42939219",
+    "quote": "Ian Holmes Professor, UC Berkeley"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://ihh.github.io/member/",
+     "at": "2026-11-12T20:12:57+00:00",
+     "sha256": "23b9a8f53bd6682bd4db0c2ab59a30453719aab487a630be03033c3b42939219",
+     "result": "ok",
+     "name_quote": "Ian Holmes Professor, UC Berkeley",
+     "tie_quote": "Ian Holmes Professor, UC Berkeley",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "Ian Holmes Professor, UC Berkeley"
   }
  ]
 }
