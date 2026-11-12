@@ -2012,7 +2012,7 @@ def entry_years(desc, head):
     if ab and not m_has_range(d) and not re.search(r'\b(?:alumni|former|graduated)\b', head or '', re.I):
         return [int(ab.group(1)), None], 'stated_in_entry'   # '(2024 Zhongyuan Scholarship) 2022': the bare year after award brackets is the cohort / entry year (SJTU round 6)
     seg = m.group(1) if m else d[:150] if nested_ else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
-    r = re.search(r'(%s)(?:\s*(?:spring|summer|fall|autumn|winter))?\s*(?:-(?!>)|–|—|to|until|\u219d|\u21dd)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
+    r = re.search(r'(%s)(?:\s*(?:spring|summer|fall|autumn|winter))?\s*(?:-+(?!>)|–|—|to|until|\u219d|\u21dd)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
                   % (YEAR_, YEAR_), seg, re.I)
     if r:
         a, b = int(r.group(1)), r.group(2)
@@ -2655,6 +2655,8 @@ def entry_role(desc, head, role_of):
     h = (head or '').split(' > ')[-1]
     if ENTRY_AS_HEAD_RX.match(h):
         return None, 'none'
+    if re.search(r'\b(?:M\.?S\.?|master(?:s|\u2019s)?)\s*(?:/|and|&)\s*(?:Ph\.?D\.?|doctoral)\b', h, re.I):
+        return None, 'mixed_degree_section_heading'  # the roster does not identify each student's degree
     r = role_of(h)[0] if h and not PERSON_HEAD_RX.fullmatch(h.strip()) else None   # a heading that is a person's name ('Zili Meng') is not a role ('Meng' read as M.Eng) (Tsinghua round 1: Zhen Tang)
     if not r and head and ' > ' in head:
         r = role_of(head.split(' > ')[0])[0] if not PERSON_HEAD_RX.fullmatch(head.split(' > ')[0].strip()) else None
