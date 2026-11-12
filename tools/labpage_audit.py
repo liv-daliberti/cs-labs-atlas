@@ -475,6 +475,8 @@ def label_role(desc, head):
         d2 = re.sub(r'^\W{0,3}Current position:.*?(?=(?:[A-Z][a-z]+\s+)?(?:19|20)\d\d\s*[-\u2013])', '', d, count=1, flags=re.S)
         if d2 != d and re.search(r'^.{0,140}?\bpost-?doc(?:toral)?\b\s+(?:fellow|researcher|associate|scholar)', d2[:200], re.I | re.S):
             return 'postdoc'
+    if re.search(r'(?:^|>\s*)under\s+graduate\b', head or '', re.I):
+        return 'undergraduate'   # 'Under Graduate Students' (two words)
     last = (head or '').split(' > ')
     if any(re.search(r'\bm\.?\s?phil\b[^>]*\bstudents?\b|\bmaster\s+by\s+research\b', h, re.I) for h in last) and not re.search(r'\b(?:ph\.?\s?d|doctoral|postdoc)', ' '.join(last[-1:]), re.I):
         return 'masters'
@@ -1774,6 +1776,9 @@ def entry_years(desc, head):
     tm = re.match(r'^\s{0,3}\|?\s*[^|]{1,100}\|\s*((?:19|20)\d\d)\b', desc or '')
     if tm:  # '| Stanford Univ. Medical Center | 2004' (a 'Past Doctoral Students' table): the year ends the stay (Stanford round 3)
         return [None, int(tm.group(1))], 'stated_in_entry'
+    cy = re.match(r'^\W{0,3}((?:19|20)\d\d)\s+(?:direct-entry\s+|regular\s+)?(?:ph\.?\s?d\.?|master(?:\u2019|\')?s?)\b[^.]{0,30}', desc or '', re.I)
+    if cy:   # '2024 Direct-entry PhD Student' / '2021 Master's graduate' (name-first card pages): a cohort year is the start of a current student, the end of a graduate (ZJU 李环)
+        return ([None, int(cy.group(1))] if re.search(r'\bgraduates?\b', cy.group(0), re.I) else [int(cy.group(1)), None]), 'stated_in_entry'
     wy = re.match(r'^\W{0,3}\(\s*((?:19|20)\d\d)\s*,\s*w/\s', desc or '')
     if wy:   # '(2022, w/ Ke Xu)': the year and the co-adviser note; the year is the graduation (end) year of a past-students list, never a start-end range (Tsinghua 李琦)
         return [None, int(wy.group(1))], 'stated_in_entry'
@@ -1796,7 +1801,7 @@ def entry_years(desc, head):
     sn = re.search(r'\bsince\s+(?:(?:spring|summer|fall|autumn|winter)\s+)?((?:19|20)\d\d)(?:\s+(?:spring|summer|fall|autumn|winter))?\b', d, re.I)
     if sn:   # 'Since 2022 Fall' / 'Since Fall 2022': an open start (SJTU dmcv roster)
         return [int(sn.group(1)), None], 'stated_in_entry'
-    stm = re.search(r'\bstarted\s+(?:in\s+)?((?:19|20)\d\d)\b', d[:60], re.I)
+    stm = re.search(r'\bstarted\s+(?:in\s+)?((?:19|20)\d\d)\b', (desc or '')[:130], re.I)
     if stm and not re.search(r'\b(?:graduated|defended|finished)\b', d[:90], re.I):
         return [int(stm.group(1)), None], 'stated_in_entry'   # '(PhD, started in 2025)': a stated start, still current (HKUST Qiong Luo's DSA students were read as ended in 2025)
     om = OPEN_MONTH_RX.search(d)
@@ -1925,11 +1930,32 @@ def apply_member_card(x, c, role_of):
         x['role'], x['role_basis'] = role, basis
     if c['years']:
         x['years'], x['years_basis'] = c['years'], 'stated_in_entry'
-    for q in (' '.join((c['name'], tag_desc)), ' '.join((c['name'], c['tag'], c['period'])), ' '.join((c['name'], c['tag']))):
+    if 'alumni' in c:
+        x['alumni'] = c['alumni']
+    for q in ((c['quote'],) if c.get('quote') else ()) + (' '.join((c['name'], tag_desc)), ' '.join((c['name'], c['tag'], c['period'])), ' '.join((c['name'], c['tag']))):
         q = re.sub(r'\s+', ' ', q).strip()
         if q in c['ptxt']:
             x['quote'], x['qkind'] = q, 'name+role'
             break
+
+
+NAME_FIRST_RX = re.compile(r"([A-Z][a-z'\u2019-]+(?: [A-Z][a-z'\u2019-]+){1,3}) ((?:19|20)\d\d) ((?:(?:Direct-entry|Regular) )?(?:PhD|Master\u2019s|Master's|Master)(?: Student| graduate)?)( Co-supervised)?(?=\s|$)")
+
+
+def name_first_cards(text):
+    """A roster written 'Name YYYY Label [Co-supervised]' (SJTU-style name-first lists, ZJU 李环's sudis-zju.github.io/en/people/): the year and label AFTER a name belong to that name; the same
+    string read as a heading would give the previous label to the next name. At least five cells before it counts as a roster. -> [dict(name, tag, advisor, period, years, head, quote, alumni)]."""
+    t = re.sub(r'\s+', ' ', text or '')
+    ms = list(NAME_FIRST_RX.finditer(t))
+    if len(ms) < 5:
+        return []
+    out = []
+    for m in ms:
+        grad = bool(re.search(r'graduate$', m.group(3)))
+        y = int(m.group(2))
+        out.append(dict(name=m.group(1), tag=m.group(3), advisor=(m.group(4) or '').strip(), period=m.group(2), years=([None, y] if grad else [y, None]), head=('Alumni' if grad else 'Students'),
+                        quote=m.group(0).strip(), alumni=grad))
+    return out
 
 
 MEMBER_ITEM_RX = re.compile(r'<li\b[^>]*class="[^"]*\bmember-item\b[^"]*"[^>]*>(.*?)</li>', re.S | re.I)
@@ -2219,6 +2245,10 @@ def pm_candidates(kit, school, pi, plan, held):
                 ptxt_m = re.sub(r'\s+', ' ', kit.lpev.text(school, src) or '')
                 for c_ in member_item_cards(h_):
                     mcards_[names.fold(c_['name'])] = dict(c_, ptxt=ptxt_m)
+            if not mcards_:
+                ptxt_n = re.sub(r'\s+', ' ', kit.lpev.text(school, src) or '')
+                for c_ in name_first_cards(ptxt_n):
+                    mcards_[names.fold(c_['name'])] = dict(c_, ptxt=ptxt_n)
         except (KeyError, ValueError, TypeError):
             mcards_ = {}
         have_ = {names.fold(e['name']) for e in ext}

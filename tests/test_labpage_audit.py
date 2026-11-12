@@ -771,3 +771,16 @@ def test_tsinghua_defect_rules():
     assert A.role_if_none('(working closely on the project)', 'Students') is None
     assert A.pub_item_head('Ju Ren, Ph.D. > Book/Book Chapter') and not A.pub_item_head('Ph.D. Students')
     assert A.entry_years('(2022, w/ Ke Xu)', 'Past PhD Students:') == ([None, 2022], 'stated_in_entry')
+
+
+def test_name_first_cards_and_cohort_years():
+    t = ('Yuxuan Yang 2024 Master’s Student Bowen Zeng 2024 Master’s Student Zonghao Chen 2025 Master’s Student Jianfeng Zhang 2025 Master’s Student Co-supervised '
+         'Zimo Liu 2026 Master’s Student Jun Zhang 2020 Direct-entry PhD graduate Co-supervised Yujia Ding 2021 Master’s graduate')
+    cs = {c['name']: c for c in A.name_first_cards(t)}
+    assert cs['Zonghao Chen']['years'] == [2025, None] and cs['Zimo Liu']['years'] == [2026, None] and not cs['Zimo Liu']['advisor']
+    assert cs['Jianfeng Zhang']['advisor'] == 'Co-supervised' and cs['Zonghao Chen']['quote'] == 'Zonghao Chen 2025 Master’s Student'
+    assert cs['Jun Zhang']['years'] == [None, 2020] and cs['Jun Zhang']['alumni'] and cs['Yujia Ding']['alumni']
+    assert not A.name_first_cards('Yuxuan Yang 2024 Master’s Student Bowen Zeng 2024 Master’s Student')
+    assert A.entry_years('2023 Direct-entry PhD Student Co-supervised', 'Phd Students') == ([2023, None], 'stated_in_entry')
+    assert A.entry_years('(B.S from UESTC, Ph.D started 2023)', 'Ph.D. Students')[0] == [2023, None]
+    assert A.label_role('(Zhejiang University)', 'Under Graduate Students') == 'undergraduate'
