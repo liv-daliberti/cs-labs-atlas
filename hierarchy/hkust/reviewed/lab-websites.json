@@ -12312,8 +12312,8 @@
   {
    "pi": "Wei You",
    "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15: ok; school_profile https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=34: ok.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "PI personal site found by web search; the page names the PI and the school (web_search_reviewed).",
    "audited_at": "2026-11-10T19:55:31+00:00",
    "checks": [
     {
@@ -12347,6 +12347,16 @@
      "url": null,
      "at": "2026-11-10T19:55:31+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://cnyouwei.github.io/",
+     "at": "2026-11-11T22:39:09+00:00",
+     "sha256": "2f5eafe8e0d97ade116d2f414e5307f8be1de00eef85be589d7fb3a60fe9e0bf",
+     "result": "ok",
+     "name_quote": "Wei You 尤为",
+     "tie_quote": "Assistant Professor Department of Industrial Engineering and Decision Analytics The Hong Kong University of Science and Technology",
+     "reviewer": "claude-hkust-new-1112"
     }
    ],
    "places_checked": [
@@ -12354,13 +12364,38 @@
     "school_profile:ok"
    ],
    "checked_at": "2026-11-10T19:55:31+00:00",
-   "students_page_status": "no_lab_page",
-   "papers_page_status": "no_lab_page",
-   "coverage": "reason",
-   "upstream_audit_reason": "joined in 2026; no school lab site yet",
-   "reason_type": "search_no_eligible_site",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "students_page_status": "audited",
+   "papers_page_status": "audited",
+   "coverage": "website",
+   "evidence_gaps": [],
+   "url": "https://cnyouwei.github.io/",
+   "kind": "pi_homepage",
+   "people_page": "https://cnyouwei.github.io/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "2f5eafe8e0d97ade116d2f414e5307f8be1de00eef85be589d7fb3a60fe9e0bf",
+   "evidence": {
+    "url": "https://cnyouwei.github.io/",
+    "sha256": "2f5eafe8e0d97ade116d2f414e5307f8be1de00eef85be589d7fb3a60fe9e0bf",
+    "quote": "Current Students"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://cnyouwei.github.io/",
+     "at": "2026-11-11T22:39:09+00:00",
+     "sha256": "2f5eafe8e0d97ade116d2f414e5307f8be1de00eef85be589d7fb3a60fe9e0bf",
+     "result": "ok",
+     "name_quote": "Wei You 尤为",
+     "tie_quote": "Assistant Professor Department of Industrial Engineering and Decision Analytics The Hong Kong University of Science and Technology",
+     "reviewer": "claude-hkust-new-1112"
+    }
+   ],
+   "verified": true,
+   "verification_quote": "wei you skip to content wei you home research talks teaching team about blog"
   },
   {
    "pi": "Khaled Ben Letaief",

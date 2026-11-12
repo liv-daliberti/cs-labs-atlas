@@ -1548,6 +1548,49 @@
     "doubtful": 7
    },
    "note": "FAIL: visiting interns/visitors read as phd/other/undergraduate (4 role wrong), current members with open-ended ranges ('2025 Summer -') given an end year or listed as alumni (5 years wrong), '(Co-supervision)' name prefix kept, start year missing for '2021 - 2026'. These alumni rows are NOT in the package; joint worker must fix visiting role, open-ended ranges, co-supervision prefix."
+  },
+  {
+   "round": 12,
+   "date": "2026-11-12",
+   "kind": "overlay hkust-new-1113, frozen snapshot joint 0b1eb92b, audit job 32215965; delta 66 rows (52 alumni, 14 non-alumni)",
+   "samples": [
+    {
+     "name": "non-alumni delta, all 14",
+     "sample_file_sha256_16": "9e70194b2e62541a",
+     "membership_wrong": 0,
+     "role_wrong": 1,
+     "years_wrong": 0,
+     "result": "PASS; role wrong: Dimitrios Tsaras (part-time PhD read undergraduate), held"
+    },
+    {
+     "name": "alumni delta random 30 of 52 seed 20261114",
+     "sample_file_sha256_16": "6bd04e7ff8513464",
+     "membership_wrong": 0,
+     "role_wrong": 0,
+     "years_wrong": 0,
+     "years_doubtful": 1,
+     "result": "PASS; alumni flag wrong on 3 current-section postdocs (Wai Kin Wong, Ruochen Zhou, Jinbin Hu)"
+    }
+   ],
+   "package_file_sha256": "2fe35a8d635061acb85c2c67625d38adb2c7e2e4b1ceab04fd0222ade7092c2a"
+  },
+  {
+   "round": 13,
+   "date": "2026-11-12",
+   "kind": "combined final package wire-package-final/hkust-student-rows.json (65 rows)",
+   "file_sha256": "e9cf8d9130b0d8160c1d73f25b080a483eb1c1c58d8a403ff8b07875b495c1b4",
+   "samples": [
+    {
+     "name": "pure random 30 of 65 seed 20261115",
+     "sample_file_sha256_16": "aeeb3ccd452cebf1",
+     "membership_wrong": 0,
+     "role_wrong": 1,
+     "years_wrong": 0,
+     "years_minor": 3,
+     "alumni_flag_wrong": 0,
+     "result": "PASS; role wrong: Tiancheng Zhao (Shen) phd for a postgraduate student 2023-2024 (better other/null)"
+    }
+   ]
   }
  ]
 }
