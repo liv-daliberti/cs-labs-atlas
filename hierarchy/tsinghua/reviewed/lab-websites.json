@@ -521,23 +521,6 @@
    }
   },
   {
-   "pi": "杨家海（校内兼职）",
-   "status": "reviewed_absence",
-   "coverage": "none",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official unit profile does not link a lab or home site that satisfies the register rules: a candidate https://nmgroup.tsinghua.edu.cn/yjs/index.htm was found (owned or cached, earlier review) but has no recorded official discovery link with a dated check, or is a publications page. Not proof that no site exists.",
-   "candidate_site_not_accepted": "https://nmgroup.tsinghua.edu.cn/yjs/index.htm",
-   "checks": [
-    {
-     "source": "school_profile_page",
-     "url": "https://www.cs.tsinghua.edu.cn/info/1126/3579.htm",
-     "at": "2026-11-10T00:00:00",
-     "result": "ok",
-     "sha256": "837b62249f9ea38e18647d86a2847747ecb6367ac8c599e38df842ecc8760772"
-    }
-   ]
-  },
-  {
    "pi": "赵曦滨",
    "status": "reviewed_absence",
    "coverage": "none",
@@ -2155,22 +2138,6 @@
      "at": "2026-11-10T00:00:00",
      "result": "ok",
      "sha256": "9a5dbcad67c30cf8ec07c187da2620d141e6932401882be0ee9f25ec68e13bae"
-    }
-   ]
-  },
-  {
-   "pi": "徐恪",
-   "status": "reviewed_absence",
-   "coverage": "none",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
-   "checks": [
-    {
-     "source": "school_profile_page",
-     "url": "https://www.cs.tsinghua.edu.cn/info/1126/7184.htm",
-     "at": "2026-11-10T00:00:00",
-     "result": "ok",
-     "sha256": "14ce55c50f5dbd9558125e6b81131fdc0cf70252b644a247f08aff4dcf8d3752"
     }
    ]
   },
@@ -6659,6 +6626,161 @@
      "at": "2026-11-10T00:00:00",
      "result": "ok",
      "sha256": "ed70aa9bf143535df099c50673d55cd2f244653ea1f8afc5dcdd55b07d72c47b"
+    }
+   ]
+  },
+  {
+   "pi": "徐恪",
+   "status": "reviewed_web_search_website",
+   "coverage": "website",
+   "url": "http://thucsnet.com/",
+   "kind": "pi_homepage",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Web-search-found personal/lab site; name and separate Tsinghua tie quotes verified verbatim against the stored capture by a fresh reviewer.",
+   "sha256": "c158bacac139b57d300e2715c34f725c2835d2eb30c1a87dd779776ffcd6b2a6",
+   "checked_at": "2026-11-12T15:40:00",
+   "found_via": "web_search_reviewed",
+   "evidence": {
+    "url": "http://thucsnet.com/",
+    "sha256": "c158bacac139b57d300e2715c34f725c2835d2eb30c1a87dd779776ffcd6b2a6",
+    "quote": "Prof. Ke XU ( 徐恪 教授 )",
+    "observed": "2026-11-12T15:40:00"
+   },
+   "checks": [
+    {
+     "source": "web_search_reviewed",
+     "url": "http://thucsnet.com/",
+     "at": "2026-11-12T15:40:00",
+     "result": "ok",
+     "sha256": "c158bacac139b57d300e2715c34f725c2835d2eb30c1a87dd779776ffcd6b2a6",
+     "name_quote": "Prof. Ke XU ( 徐恪 教授 )",
+     "tie_quote": "Department of Computer Science & Technology, Tsinghua University",
+     "reviewer": "fresh-subagent-review-2026-11-12-ae784d91"
+    }
+   ],
+   "people_page": "http://thucsnet.com/index.php/people/"
+  },
+  {
+   "pi": "王龙",
+   "status": "reviewed_web_search_website",
+   "coverage": "website",
+   "url": "https://longwang1.github.io/",
+   "kind": "pi_homepage",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Web-search-found personal/lab site; name and separate Tsinghua tie quotes verified verbatim against the stored capture by a fresh reviewer.",
+   "sha256": "c88c6c9dbc4500727c70c777c178660c57f5dfaf7e2937a757dc778b3539f30a",
+   "checked_at": "2026-11-12T15:40:00",
+   "found_via": "web_search_reviewed",
+   "evidence": {
+    "url": "https://longwang1.github.io/",
+    "sha256": "c88c6c9dbc4500727c70c777c178660c57f5dfaf7e2937a757dc778b3539f30a",
+    "quote": "Long Wang (王龙) Tenured Associate Professor",
+    "observed": "2026-11-12T15:40:00"
+   },
+   "checks": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://longwang1.github.io/",
+     "at": "2026-11-12T15:40:00",
+     "result": "ok",
+     "sha256": "c88c6c9dbc4500727c70c777c178660c57f5dfaf7e2937a757dc778b3539f30a",
+     "name_quote": "Long Wang (王龙) Tenured Associate Professor",
+     "tie_quote": "Institute for Network Sciences and Cyberspace Tsinghua University",
+     "reviewer": "fresh-subagent-review-2026-11-12-ae784d91"
+    }
+   ],
+   "people_page": "https://longwang1.github.io/students.html"
+  },
+  {
+   "pi": "刘卓涛",
+   "status": "reviewed_web_search_website",
+   "coverage": "website",
+   "url": "https://liuzhuotao.github.io/",
+   "kind": "pi_homepage",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Web-search-found personal/lab site; name and separate Tsinghua tie quotes verified verbatim against the stored capture by a fresh reviewer.",
+   "sha256": "fb1ed85e3bb68b7d7cb139b8056494cf2b7c313d581c8c77bccc985ca952295c",
+   "checked_at": "2026-11-12T15:40:00",
+   "found_via": "web_search_reviewed",
+   "evidence": {
+    "url": "https://liuzhuotao.github.io/",
+    "sha256": "fb1ed85e3bb68b7d7cb139b8056494cf2b7c313d581c8c77bccc985ca952295c",
+    "quote": "Zhuotao Liu Associate Professor",
+    "observed": "2026-11-12T15:40:00"
+   },
+   "checks": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://liuzhuotao.github.io/",
+     "at": "2026-11-12T15:40:00",
+     "result": "ok",
+     "sha256": "fb1ed85e3bb68b7d7cb139b8056494cf2b7c313d581c8c77bccc985ca952295c",
+     "name_quote": "Zhuotao Liu Associate Professor",
+     "tie_quote": "Since joining Tsinghua in 2021",
+     "reviewer": "fresh-subagent-review-2026-11-12-ae784d91"
+    }
+   ],
+   "people_page": "https://liuzhuotao.github.io/students/"
+  },
+  {
+   "pi": "李元杰",
+   "status": "reviewed_web_search_website",
+   "coverage": "website",
+   "url": "http://www.yuanjiel.com",
+   "kind": "pi_homepage",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Web-search-found personal/lab site; name and separate Tsinghua tie quotes verified verbatim against the stored capture by a fresh reviewer.",
+   "sha256": "98db23e17f4005ffbc8712d4ac85d0d0fe7b2a52d5c054c269caece027c12b89",
+   "checked_at": "2026-11-12T15:40:00",
+   "found_via": "web_search_reviewed",
+   "evidence": {
+    "url": "http://www.yuanjiel.com",
+    "sha256": "98db23e17f4005ffbc8712d4ac85d0d0fe7b2a52d5c054c269caece027c12b89",
+    "quote": "Yuanjie Li Associate Professor",
+    "observed": "2026-11-12T15:40:00"
+   },
+   "checks": [
+    {
+     "source": "web_search_reviewed",
+     "url": "http://www.yuanjiel.com",
+     "at": "2026-11-12T15:40:00",
+     "result": "ok",
+     "sha256": "98db23e17f4005ffbc8712d4ac85d0d0fe7b2a52d5c054c269caece027c12b89",
+     "name_quote": "Yuanjie Li Associate Professor",
+     "tie_quote": "I am an associate professor at the Institute for Network Sciences and Cyberspace , Tsinghua University",
+     "reviewer": "fresh-subagent-review-2026-11-12-ae784d91"
+    }
+   ]
+  },
+  {
+   "pi": "杨家海（校内兼职）",
+   "status": "reviewed_live_website",
+   "coverage": "website",
+   "url": "https://nmgroup.tsinghua.edu.cn/",
+   "kind": "lab_or_homepage",
+   "reason_code": "lab_site",
+   "reason": "Site linked literally by the named official INSC unit profile ('实验室主页： http://nmgroup.tsinghua.edu.cn'); live fetch recorded 2026-11-12. The profile's http link redirects (302) to https; the https root is registered.",
+   "sha256": "166f6cbb2f60adbc6e06669646d764c6d410e8f82e5a486c02ac69539b0df90b",
+   "checked_at": "2026-11-12T15:46:16",
+   "official_link_status": "recorded",
+   "found_via": "school_profile_link",
+   "listed_on": "https://www.insc.tsinghua.edu.cn/info/1157/2854.htm",
+   "people_page": "https://nmgroup.tsinghua.edu.cn/xsgl/index.htm",
+   "evidence": {
+    "url": "https://nmgroup.tsinghua.edu.cn/",
+    "sha256": "166f6cbb2f60adbc6e06669646d764c6d410e8f82e5a486c02ac69539b0df90b",
+    "quote": "http://nmgroup.tsinghua.edu.cn",
+    "observed": "2026-11-12T15:46:16"
+   },
+   "checks": [
+    {
+     "source": "school_profile_link",
+     "url": "https://nmgroup.tsinghua.edu.cn/",
+     "on": "https://www.insc.tsinghua.edu.cn/info/1157/2854.htm",
+     "at": "2026-11-12T15:46:16",
+     "result": "ok",
+     "source_sha256": "040c978ebc9da495300aef2b5fee989a87fb895c8c8331bba80d8decbee84ae5",
+     "sha256": "166f6cbb2f60adbc6e06669646d764c6d410e8f82e5a486c02ac69539b0df90b"
     }
    ]
   }
