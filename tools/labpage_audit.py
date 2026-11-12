@@ -2402,6 +2402,20 @@ def entry_role(desc, head, role_of):
         return ('phd' if dp.group(1).lower().startswith('doctor') else 'masters'), 'entry'   # 'Doctor of Philosophy, Operations Research Center, MIT, 2020' (Berkeley Chodrow): the degree the alumni entry names
     desc = NICK_PREFIX_RX.sub(' ', desc, count=1)   # 'Xiaohan Zhong, Elaine (MPhil student ...)': the nickname after the comma is not the entry's descriptor (HKUST Cheung)
     d = (desc or '')[:60]
+    # CMU round 10 (2026-11-12): a degree held is not the role. 'PhD Pre-Candidate  BS Civil Engineering: UMass' is a PhD student (the BS is his prior
+    # degree); 'is an IMB student pursuing M.S. in ...' is a master's student; an intern's own degree elsewhere ('PhD. in Educational Technology
+    # Student, University of Hong Kong' under 'Former Summer Interns > 2019') leaves the role to the heading.
+    if re.match(r'^\W{0,3}ph\.?\s?d\.?\s+(?:pre-?)?(?:candidate|student)\b', d, re.I):
+        return 'phd', 'entry'
+    pm_ = re.match(r'^\W{0,3}(?:is|was)\s+an?\s+(?:[\w-]+\s+){0,2}?(?:student|candidate)\s+pursuing\s+(?:an?\s+|the\s+)?(ph\.?\s?d|m\.?\s?s\.?c?|master|m\.?eng)\b', d, re.I)
+    if pm_:
+        return ('phd' if pm_.group(1).lower().startswith('ph') else 'masters'), 'entry'
+    if head and re.search(r'\binterns?\b', head, re.I) and re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?s|b\.?\s?s)\.?\s+in\b', d, re.I):
+        for part in reversed(head.split(' > ')):
+            hr = role_of(part)[0]
+            if hr and hr != 'member':
+                return hr, 'section_heading'
+        return None, 'none'
     am = re.match(r'^\W{0,3}[A-Z][A-Za-z]{1,10}\s+(Ph\.?\s?D\.?|Postdoc)\s+(?:19|20)\d\d\b', d)
     if am:
         return ('phd' if am.group(1).lower().startswith('ph') else 'postdoc'), 'entry'   # 'NTU PhD 2025 Postdoc @ Oxford': the stated degree is the role here, the post after it a placement (NTU round 1)

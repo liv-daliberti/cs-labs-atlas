@@ -32,3 +32,13 @@ def test_page_with_only_old_years_is_stale():
     assert LA.stale_footer_year(old, None) == 2008
     assert LA.stale_footer_year(old + ' Seminar 2019', None) is None
     assert LA.stale_footer_year('Students 2012', None) is None   # a single year is not enough
+
+
+def test_degree_held_is_not_the_role():
+    """CMU round 10: Esquivel (BS read as undergraduate), Jason Lee ('student pursuing M.S.' read as phd), Tingting Liu (an intern's PhD at HKU)."""
+    role_of = lambda s: (('intern' if 'ntern' in s else 'undergraduate' if 'BS' in s else 'member'), 0)
+    assert LA.entry_role('PhD Pre-Candidate BS Civil & Environmental Engineering: University of Massachusetts Amherst', 'Graduate Students', role_of)[0] == 'phd'
+    assert LA.entry_role('is an IMB student pursuing M.S. in Electrical and Computer Engineering. His interests', 'Graduate Students', role_of)[0] == 'masters'
+    assert LA.entry_role('PhD. in Educational Technology Student, University of Hong Kong and Assistant Professor, Hubei University',
+                         'Former Summer Interns > 2019', role_of) == ('intern', 'section_heading')
+    assert LA.entry_role('PhD. in Computer Science Student, Carnegie Mellon University', 'Graduate Students', lambda s: ('phd', 0))[0] == 'phd'
