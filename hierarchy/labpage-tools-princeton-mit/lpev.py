@@ -100,6 +100,9 @@ def has_name(quote, name):
     """Every token (2+ chars; any length for a one-token name) of the name occurs as a word in the quote."""
     q = fold(quote)
     toks = [t for t in name_tokens(name) if t]
+    if not toks:   # a Han-only name ('顾扬'): no Latin tokens; the complete string must occur in the quote (students are recorded by name string + quote + hash; pinyin never binds)
+        han = re.sub(r"[^\u4e00-\u9fff\u00b7]", "", name or "")
+        return len(han) >= 2 and han in (quote or "")
     return bool(toks) and all(re.search(r"(?<![a-z0-9])" + re.escape(t) + r"(?![a-z0-9])", q) for t in toks)
 
 

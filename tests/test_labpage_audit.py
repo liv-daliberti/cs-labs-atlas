@@ -817,3 +817,19 @@ def test_finished_within_four_years_ignores_a_stated_start_at_or_after_arrival()
 def test_a_dated_roster_entry_with_a_role_bracket_is_not_a_news_line():
     assert not A.news_item('Jimmy Kwun Hang Lau (MPhil, from the Chinese University of Hong Kong, Sept 2023 - December 2025)')
     assert A.news_item('August 2025: Patrick Kastner and I just received a seed grant')
+
+
+def test_han_only_names_pass_the_quote_name_check():
+    import importlib.util
+    import os
+    import sys
+    d = os.path.join(os.path.dirname(__file__), '..', 'hierarchy', 'labpage-tools-princeton-mit')
+    sys.path.insert(0, d)
+    try:
+        spec = importlib.util.spec_from_file_location('lpev_han_test', os.path.join(d, 'lpev.py'))
+        L = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(L)
+    finally:
+        sys.path.remove(d)
+    assert L.has_name('顾扬博士生', '顾扬') and not L.has_name('华勤博士生', '顾扬') and L.has_name('Ke Fan 樊柯', 'Ke Fan')
+    assert not L.has_name('x', '顾')
