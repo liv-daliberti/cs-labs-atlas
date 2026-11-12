@@ -293,7 +293,7 @@ def hit_cs_current_table(h):
         for cell in cells:
             if int(cell.get('colspan', 1)) > 1:
                 continue
-            name = ' '.join(cell.get_text(' ', strip=True).split())
+            name = ' '.join(cell.get_text('', strip=False).split())
             if name:
                 out.append(dict(name_listed=name, titles=['教师'], homepage=None,
                                 division=group, profile=None))
