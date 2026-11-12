@@ -3,7 +3,6 @@
 import hashlib
 import json
 import re
-from pathlib import Path
 
 from bs4 import BeautifulSoup
 
@@ -29,24 +28,24 @@ def main():
     html = raw.decode('utf-8')
     phd_html, masters_html = html.split('<B>MS (Thesis) graduates</B>', 1)
     for section, block in [('phd', phd_html.split('<B>PhD graduates</B>', 1)[1]), ('masters', masters_html)]:
-      for item in re.findall(r'<li>([^<\n]+)', block, flags=re.I):
-        quote = ' '.join(BeautifulSoup(item, 'html.parser').get_text(' ', strip=True).split())
-        match = re.fullmatch(r'(\d{4}): (.+?)(?: \(with .+?\))?', quote)
-        if not match:
-            # A pre-2016 entry has a trailing employer; no admitted row needs it.
-            assert quote.startswith('2014: Sathappan Muthiah, eBay'), quote
-            continue
-        year, name = int(match.group(1)), match.group(2)
-        if year < 2016 or name in existing:
-            continue
-        assert quote in visible
-        rec['students'].append(dict(
-            name=name, role=section, years=[year, year], years_basis='dated graduation on PI-owned VT advisee list',
-            relationship='advising', source='pi_owned_advisee_list', reviewed=True, auto=False,
-            url=URL, sha256=SHA, quote=quote,
-            note='PI explicitly identifies these as his students; the graduation year establishes the endpoint only.',
-        ))
-        added.append(name)
+        for item in re.findall(r'<li>([^<\n]+)', block, flags=re.I):
+            quote = ' '.join(BeautifulSoup(item, 'html.parser').get_text(' ', strip=True).split())
+            match = re.fullmatch(r'(\d{4}): (.+?)(?: \(with .+?\))?', quote)
+            if not match:
+                # A pre-2016 entry has a trailing employer; no admitted row needs it.
+                assert quote.startswith('2014: Sathappan Muthiah, eBay'), quote
+                continue
+            year, name = int(match.group(1)), match.group(2)
+            if year < 2016 or name in existing:
+                continue
+            assert quote in visible
+            rec['students'].append(dict(
+                name=name, role=section, years=[year, year], years_basis='dated graduation on PI-owned VT advisee list',
+                relationship='advising', source='pi_owned_advisee_list', reviewed=True, auto=False,
+                url=URL, sha256=SHA, quote=quote,
+                note='PI explicitly identifies these as his students; the graduation year establishes the endpoint only.',
+            ))
+            added.append(name)
     P.data_w('few-students-evidence.json', 'vt').write_text(json.dumps(records, ensure_ascii=False, indent=1) + '\n')
     print(json.dumps(dict(added=len(added), names=added)))
 
