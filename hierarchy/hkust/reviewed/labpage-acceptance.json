@@ -1,19 +1,21 @@
 {
   "school": "hkust",
-  "decided_at": "2026-11-11",
+  "decided_at": "2026-11-12",
   "bar": "docs/LAB-PAGES.md, acceptance bar",
   "additions_file": "hierarchy/hkust/reviewed/labpage-additions.json",
-  "additions_generated_at": "2026-11-12T05:30:00+00:00",
-  "additions_sha256": "ddae425ab6f847b68bc98f99c6f5454b944447a41d4c4ab1ef8563afdda616cd",
+  "additions_generated_at": "2026-11-13T00:20:00+00:00",
+  "additions_sha256": "2d3df2d23791c6d1bcff241410e837550e2aaa67d722d3481cd94bfb48efa15e",
   "students": {
     "accepted": true,
-    "round": 5,
+    "round": "wire-asia-1113-newpis",
     "weak": true,
     "round_limit_extended_by_owner": 10,
-    "note": "owner ruled 2026-11-11: up to 10 rounds; owner ruled 2026-11-12 on the dated alumni rows: 'accept if it is right'. Wired file = 211 rows: the 167 rows wired earlier + 44 rows of HKUST package 2 (rows sha256 8c30612b...; census re-bound to that file: non-alumni 18 all read, alumni random 30 + 4, membership 0 wrong among the package rows; handcheck rounds added from the overlay). Not wired (per-row holds): Tiancheng Zhao (role), Dimitrios Tsaras (role), Ying-Ju Chen's Xingyu Fu, Xinyue Fei, Hailun Zhang, Yunjie Wang, Rongying Chen (committee/letter-writer section read as students), Fengbin Tu's Yewen Li and Zhongyu Zhao (listed as postdocs). Six faculty periods (Chung 2001 with the existing 2023-08 return, Ying-Ju Chen 2014, Hai Zhang 2015, Zili Meng 2023, Jian-Feng Cai 2015, Fengbin Tu 2023-06) are wired in the same landing. The sha bound here is the union file.",
+    "note": "owner ruled 2026-11-11: up to 10 rounds. Wired file = 256 rows: the 211 earlier rows + 45 rows of package hkust-newpis-1112 (Zhang 12 dated, Narechania 8, Scharff 8, Cheng 17 dated). Held pending an owner ruling: the 58 undated current-member rows of 陈浩 39, Cheng 14, Zhang 5, plus 17 reviewer/rule holds (exclusions.json). Fresh reviewers af16dbf3/a9e1abeb: random 30 of the first 72 rows 0 membership / 0 role-year errors; all 31 Cheng rows 0/0 (rows hand-curated, auto false). Periods Scharff 2023, Cheng 2016, Narechania 2025 in the same landing. The sha bound here is the union file. Earlier note: owner ruled 2026-11-11: up to 10 rounds; owner ruled 2026-11-12 on the dated alumni rows: 'accept if it is right'. Wired file = 211 rows: the 167 rows wired earlier + 44 rows of HKUST package 2 (rows sha256 8c30612b...; census re-bound to that file: non-alumni 18 all read, alumni random 30 + 4, membership 0 wrong among the package rows; handcheck rounds added from the overlay). Not wired (per-row holds): Tiancheng Zhao (role), Dimitrios Tsaras (role), Ying-Ju Chen's Xingyu Fu, Xinyue Fei, Hailun Zhang, Yunjie Wang, Rongying Chen (committee/letter-writer section read as students), Fengbin Tu's Yewen Li and Zhongyu Zhao (listed as postdocs). Six faculty periods (Chung 2001 with the existing 2023-08 return, Ying-Ju Chen 2014, Hai Zhang 2015, Zili Meng 2023, Jian-Feng Cai 2015, Fengbin Tu 2023-06) are wired in the same landing. The sha bound here is the union file.",
     "counts": {
-      "proposed": 211
-    }
+      "proposed": 256
+    },
+    "membership_errors": 0,
+    "role_or_year_errors": 0
   },
   "papers": {
     "accepted": true,
