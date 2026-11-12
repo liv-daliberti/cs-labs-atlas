@@ -952,3 +952,11 @@ def test_a_degree_year_after_master_ends_the_stay_and_a_student_of_another_profe
     assert A.entry_years('Master 2023', 'Current Students')[0] == [2023, 2023]
     assert A.primary_adviser_other('(graduated in 2020, PhD Student of Prof. Jilong Wang)', None, 'Hui Li')
     assert not A.primary_adviser_other('(graduated in 2020, PhD Student of Prof. Hui Li)', None, 'Hui Li')
+
+
+def test_the_section_header_before_the_first_name_first_card_is_not_part_of_its_name():
+    t = ('Phd Students Yifan Wu 2021 Direct-entry PhD Student Co-supervised Lingxi Cui 2023 Direct-entry PhD Student Jiajun Pan 2024 Direct-entry PhD Student '
+         'Master Students Yuxuan Yang 2024 Master’s Student Bowen Zeng 2024 Master’s Student Alumni Jun Zhang 2020 Direct-entry PhD graduate Co-supervised')
+    cs = {c['name']: c for c in A.name_first_cards(t)}
+    assert 'Yuxuan Yang' in cs and cs['Yuxuan Yang']['years'] == [2024, None] and cs['Yuxuan Yang']['quote'].startswith('Yuxuan Yang')
+    assert 'Yifan Wu' in cs and cs['Jun Zhang']['years'] == [None, 2020]

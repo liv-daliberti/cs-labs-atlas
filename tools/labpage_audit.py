@@ -1997,6 +1997,9 @@ def apply_member_card(x, c, role_of):
 NAME_FIRST_RX = re.compile(r"([A-Z][a-z'\u2019-]+(?: [A-Z][a-z'\u2019-]+){1,3}) ((?:19|20)\d\d) ((?:(?:Direct-entry|Regular) )?(?:PhD|Master\u2019s|Master's|Master)(?: Student| graduate)?)( Co-supervised)?(?=\s|$)")
 
 
+CARD_HEAD_PREFIX_RX = re.compile(r'^(?:(?:Master|Masters|Phd|PhD|Doctoral|Undergraduate|Graduate|Alumni|Current|Former|Past|Students?|Members?|Team|Postdocs?|Principal|Investigators?)\s+)+')
+
+
 def name_first_cards(text):
     """A roster written 'Name YYYY Label [Co-supervised]' (SJTU-style name-first lists, ZJU 李环's sudis-zju.github.io/en/people/): the year and label AFTER a name belong to that name; the same
     string read as a heading would give the previous label to the next name. At least five cells before it counts as a roster. -> [dict(name, tag, advisor, period, years, head, quote, alumni)]."""
@@ -2008,8 +2011,12 @@ def name_first_cards(text):
     for m in ms:
         grad = bool(re.search(r'graduate$', m.group(3)))
         y = int(m.group(2))
-        out.append(dict(name=m.group(1), tag=m.group(3), advisor=(m.group(4) or '').strip(), period=m.group(2), years=([None, y] if grad else [y, None]), head=('Alumni' if grad else 'Students'),
-                        quote=m.group(0).strip(), alumni=grad))
+        pre = CARD_HEAD_PREFIX_RX.match(m.group(1))   # 'Master Students Yuxuan Yang 2024 ...': the section header just before the FIRST card of a section is not part of its name (ZJU 李环: that card lost its year)
+        nm_, quote_ = m.group(1), m.group(0).strip()
+        if pre and len(nm_[pre.end():].split()) >= 2:
+            nm_, quote_ = nm_[pre.end():], quote_[pre.end():]
+        out.append(dict(name=nm_, tag=m.group(3), advisor=(m.group(4) or '').strip(), period=m.group(2), years=([None, y] if grad else [y, None]), head=('Alumni' if grad else 'Students'),
+                        quote=quote_, alumni=grad))
     return out
 
 
