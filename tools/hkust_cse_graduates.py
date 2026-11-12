@@ -1,4 +1,4 @@
-"""HKUST CSE 'Graduate Placements' page as a dated student-adviser source (rule proposed R-STU-26, owner question queued 2026-11-13).
+"""HKUST CSE 'Graduate Placements' page as a dated student-adviser source (rule R-STU-26, owner question queued 2026-11-13).
 
 https://cse.hkust.edu.hk/pg/ourgraduates/ (the department's own page; robots.txt allows it) lists selected PhD graduates, one card each:
     <name> / <job> / <employer> / <place> / 'PhD <year>' / 'Supervised by <PI>[ and <PI>]'
@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pihier.names import Name  # noqa: E402
 
 WINDOW = (2016, 2026)
-RULE = 'R-STU-26 (proposed)'
+RULE = 'R-STU-26'
 CARD = re.compile(r'<a class="card news-card graduate-card".*?</a>', re.S)
 TITLE = re.compile(r'^(?:Dr|Prof|Professor)\.?\s+', re.I)
 
@@ -85,7 +85,7 @@ def evidence(raw_html, url, sha, pis):
             counts['rows'] += 1
         if not hit:
             counts['no_pi'] += 1
-    rows = [dict(pi=p, students=v, notes='HKUST CSE Graduate Placements page (tools/hkust_cse_graduates.py, proposed R-STU-26).') for p, v in sorted(by.items())]
+    rows = [dict(pi=p, students=v, notes='HKUST CSE Graduate Placements page (tools/hkust_cse_graduates.py, R-STU-26).') for p, v in sorted(by.items())]
     return rows, counts, skipped
 
 
