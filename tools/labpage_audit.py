@@ -283,6 +283,40 @@ def advised_by_other(desc, quote, pi):
 PROGRAM_TAIL_RX = re.compile(r"(?<=\w)\s+(?:Societal Computing|Human[- ]Computer Interaction|Software Engineering|Machine Learning|Computer Science|Language Technologies|Computational Biology|Privacy Engineering|Electrical (?:and|&) Computer Engineering|Robotics)$")
 
 
+DEGREE_ABBR_RX = re.compile(r"^\W{0,3}\(?\s*(?:(S\.?\s?M\.?|M\.?\s?Eng\.?|Sc\.?\s?D\.?|S\.?\s?B\.?)(?:\s*/\s*(Ph\.?\s?D\.?))?)(?=[\s,;)./]|$)", re.I)
+
+
+def DEGREE_ABBR_ROLE(m):
+    """The role of an MIT-style degree abbreviation opening an entry: S.M. and M.Eng. are master's degrees ('S.M./Ph.D.' is the doctoral programme, role phd), Sc.D. is a doctorate, S.B. a bachelor's."""
+    d = re.sub(r'[.\s]', '', m.group(1)).lower()
+    if m.group(2) or d == 'scd':
+        return 'phd'
+    return 'undergraduate' if d == 'sb' else 'masters'
+
+
+PHD_POSTDOC_RX = re.compile(r"\(\s*Ph\.?\s?D\.?\s*,?\s*((?:19|20)\d\d)\s*[,;]\s*Post-?\s?Doc(?:toral)?\.?\s*,?\s*((?:19|20)\d\d)\s*[-\u2013\u2014]\s*((?:19|20)\d\d)\s*\)", re.I)
+
+
+def phd_postdoc_split(desc):
+    """'(Ph.D. 2022, Post-Doc 2022-2023)': two stays, a PhD ending 2022 and a postdoc 2022-2023 -> ([None, 2022], [2022, 2023]); None for any other entry (MIT Sanchez: one merged PhD span was wrong)."""
+    m = PHD_POSTDOC_RX.match((desc or '').strip())
+    return ([None, int(m.group(1))], [int(m.group(2)), int(m.group(3))]) if m else None
+
+
+ENTRY_HEAD_SEG_RX = re.compile(r"^[A-Z][\w'.\u2019-]+(?:\s+[A-Z][\w'.\u2019-]+){1,3}\s*\((?:Ph\.?\s?D|S\.?\s?M|M\.?\s?Eng|S\.?\s?B|Sc\.?\s?D|Post-?\s?Doc|M\.?\s?S|B\.?\s?S)\b[^)]*\)\s*$")
+
+
+def clean_entry_head(head):
+    """A heading chain whose last segment is the PREVIOUS alumnus entry ('Alumni > Yee Ling Gan (M.Eng. 2018)': the extractor read an entry as a heading) without that segment, so the note
+    and the section never name an unrelated person (MIT Sanchez: the note sat on 5 rows)."""
+    if not head:
+        return head
+    segs = head.split(' > ')
+    while len(segs) > 1 and ENTRY_HEAD_SEG_RX.match(segs[-1]):
+        segs.pop()
+    return ' > '.join(segs)
+
+
 NICK_PREFIX_RX = re.compile(r"^\W{0,3},\s*[A-Z][\w'\u2019-]+(?: [A-Z][\w'\u2019-]+)?\s+(?=\()")
 TITLE_RX = re.compile(r'^(?:Dr|Mr|Ms|Mrs|Miss|Prof)\.?\s+(?=\S)', re.I)
 NICK_SURNAME_RX = re.compile(r"^\(([^()]{2,25})\)\s+([A-Z][A-Z'\u2019-]{1,20})(?=\s*(?:\(|$|[,;]))")
@@ -1888,7 +1922,7 @@ def entry_years(desc, head):
         if head and not re.search(r'\b(?:former|past|previous|alumni|alumnae|alumnus|graduated|graduates|class of|emeriti)\b', head, re.I) and not past_range_head(head) and _ENTRY_CTX['bare_year_entry'] \
                 and re.fullmatch(r"\W*(?:ph\.?\s?d\.?|m\.?s\.?|b\.?s\.?)(?:\s*[/&,]\s*(?:ph\.?\s?d\.?|m\.?s\.?|b\.?s\.?))*\W*(?:19|20)\d\d\W*", seg, re.I):
             return ([ys[0], ys[0]] if re.search(r'\bFYP\b|final[- ]year', f'{head} {desc}', re.I) else [ys[0], None]), 'stated_in_entry'   # (an FYP advisee of that year is [Y, Y]) '(Ph.D./M.S. 2023)' in a CURRENT list is the entry year, not an end year (SJTU round 5, 赵杰茹's page); real alumni there use YYYY-YYYY ranges
-        if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
+        if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bs\.m\.|\bs\.?b\.|\bsc\.?d\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
             return [None, ys[0]], 'stated_in_entry'
         if re.match(r'^\W{0,3}(?:[a-z]\W{1,3})?(?:master|bachelor|m\.?phil)s?\s+(?:19|20)\d\d\b', seg, re.I) and not (head and CURRENT_LIST_HEAD.search(head)):
             return [None, ys[0]], 'stated_in_entry'   # 'Xuanyuan Lu o, Master 2022, Research interests: ...' on an alumni list ('Ms 2022' reads [None, 2022]): the degree year ends the stay (Tsinghua Li Jian)
@@ -2275,6 +2309,9 @@ def entry_role(desc, head, role_of):
     am = re.match(r'^\W{0,3}[A-Z][A-Za-z]{1,10}\s+(Ph\.?\s?D\.?|Postdoc)\s+(?:19|20)\d\d\b', d)
     if am:
         return ('phd' if am.group(1).lower().startswith('ph') else 'postdoc'), 'entry'   # 'NTU PhD 2025 Postdoc @ Oxford': the stated degree is the role here, the post after it a placement (NTU round 1)
+    da = DEGREE_ABBR_RX.match(d)
+    if da:
+        return DEGREE_ABBR_ROLE(da), 'entry'   # '(S.M. 2016)', '(S.M./Ph.D.)', '(M.Eng. 2020)', '(Sc.D. 2019)': the degree the entry states is the programme (MIT Sanchez)
     dm = re.match(r'^\W{0,3}(?:Ph\.?\s?D\.?|M\.?S\.?|B\.?S\.?)\s*[,(]?\s*(?:19|20)\d\d\b', d)
     if dm and re.search(r'ph\.?\s?d', dm.group(0), re.I):
         return 'phd', 'entry'   # 'Ph.D. 2025, Post Doc @ Univ. of Illinois': the degree is the role, the post after it is the placement (UChicago round 2)
@@ -2479,6 +2516,7 @@ def pm_candidates(kit, school, pi, plan, held):
         for x in ext:
             x['name'] = strip_program_label(x['name'])
             x['name'], x['desc'] = clean_roster_name(x['name'], x.get('desc'))
+            x['head'] = clean_entry_head(x.get('head'))
             fn = names.fold(x['name'])
             x['is_cap'] = is_cap
             x['src'] = src
@@ -2523,6 +2561,11 @@ def pm_candidates(kit, school, pi, plan, held):
                     # a degree year equal to this year in a current-student list is an expected graduation, not an end (SJTU rounds 2-3); a placement after it ('NTU PhD 2026 Senior Researcher @ Apple') is an alumnus
                     x['alumni'] = True  # '(PhD 2024, co-advised with ...)' on a current page: the entry itself says the stay ended (UChicago stage 6, round 1)
             x['role'], x['role_basis'] = entry_role(x.get('desc'), x.get('head'), kit.autom._role)
+            ps_ = phd_postdoc_split(x.get('desc'))
+            if ps_:   # '(Ph.D. 2022, Post-Doc 2022-2023)': the PhD stay ends 2022; the postdoc stay is a second row of the same person
+                x['years'], x['years_basis'] = ps_[0], 'stated_in_entry'
+                x['role'], x['role_basis'] = 'phd', 'entry'
+                x['also'] = dict(role='postdoc', years=ps_[1])
             lr_ = label_role(x.get('desc'), x.get('head'))
             if x['role'] in (None, 'member') and not lr_ and not x.get('han_card'):
                 lr_ = role_if_none(x.get('desc'), x.get('head'))
@@ -2865,7 +2908,7 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                          capture_url=r.get('capture_url'), sha256=r['sha256'], kept=True,
                          alumni=bool(ALUMNI_RX.search(r.get('note') or '')), why=None, aliases=r.get('aliases') or []))
     for c in cands:
-        rows.append(dict(name=c['name'], role=c['role'], years=c['years'], quote=c['quote'], url=c['url'], capture_url=c.get('capture_url'),
+        rows.append(dict(name=c['name'], also=c.get('also'), role=c['role'], years=c['years'], quote=c['quote'], url=c['url'], capture_url=c.get('capture_url'),
                          sha256=c['sha256'], kept=False, alumni=c['alumni'], why=c['why'], head=c.get('head'), desc=c.get('desc'),
                          is_cap=c['is_cap'], detail=c.get('detail'), role_basis=c.get('role_basis'), years_basis=c.get('years_basis'),
                          strict_removed=c.get('strict_removed')))
@@ -2955,6 +2998,9 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                        role=best.get('role') if best.get('role') in ROLE_OK else None, role_basis=best.get('role_basis') or 'none',
                        years=years, years_basis=ybasis if years else 'none')
             adds.append(row)
+            if best.get('also'):
+                second = dict(row, role='postdoc', years=best['also']['years'])   # the postdoc stay keeps the row's bases (entry / stated_in_entry)
+                adds.append(second)
     sec['extra_in_build_not_on_page'] = len(bs) - len(matched_build)
     by = collections.Counter(m['reason_code'] for m in sec['missing_from_build'])
     if by.get('genuinely_missing'):

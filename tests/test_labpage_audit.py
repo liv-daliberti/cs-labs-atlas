@@ -960,3 +960,17 @@ def test_the_section_header_before_the_first_name_first_card_is_not_part_of_its_
     cs = {c['name']: c for c in A.name_first_cards(t)}
     assert 'Yuxuan Yang' in cs and cs['Yuxuan Yang']['years'] == [2024, None] and cs['Yuxuan Yang']['quote'].startswith('Yuxuan Yang')
     assert 'Yifan Wu' in cs and cs['Jun Zhang']['years'] == [None, 2020]
+
+
+def test_mit_degree_abbreviations_are_roles_and_phd_postdoc_stays_split():
+    ro = lambda t: (None, None)
+    assert A.entry_role('(S.M. 2016)', 'Alumni', ro)[0] == 'masters'
+    assert A.entry_role('(M.Eng. 2020)', 'Alumni', ro)[0] == 'masters'
+    assert A.entry_role('(S.M./Ph.D., co-advised with Joel Emer)', 'Students', ro)[0] == 'phd'
+    assert A.entry_role('(Sc.D. 2019)', 'Alumni', ro)[0] == 'phd'
+    assert A.entry_role('(S.B. 2018)', 'Alumni', ro)[0] == 'undergraduate'
+    assert A.entry_years('(S.M. 2016)', 'Alumni')[0] == [None, 2016]
+    assert A.phd_postdoc_split('(Ph.D. 2022, Post-Doc 2022-2023)') == ([None, 2022], [2022, 2023])
+    assert A.phd_postdoc_split('(Ph.D. 2017)') is None
+    assert A.clean_entry_head('Alumni > Yee Ling Gan (M.Eng. 2018)') == 'Alumni'
+    assert A.clean_entry_head('Alumni > Publications') == 'Alumni > Publications' and A.clean_entry_head('Students') == 'Students'
