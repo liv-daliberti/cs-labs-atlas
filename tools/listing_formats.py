@@ -1967,3 +1967,24 @@ def letter_links(html, base_url):
         if m and sp.netloc.lower() == base.netloc.lower() and not sp.query:
             out.setdefault(m.group(1).lower(), f'{sp.scheme}://{sp.netloc}{sp.path}')
     return out
+
+
+def whu_cs_rank_table(h):
+    """Wuhan CS's unpaged ASP roster: printed name and rank, no contact fields."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for row in soup.select('table tr'):
+        name_cell = row.select_one('td.w1')
+        rank_cell = row.select_one('td.w4')
+        link = name_cell.select_one('a[href]') if name_cell else None
+        if not link or not rank_cell or not re.search(r'(?:^|/)teacherinfo\.aspx\?id=\d+', link['href']):
+            continue
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        rank = ' '.join(rank_cell.get_text(' ', strip=True).split())
+        if name and rank:
+            out.append(dict(name_listed=name, titles=[rank], homepage=None,
+                            division=None, profile=link['href']))
+    return out
+
+
+FORMATS['whu_cs_rank_table'] = (whu_cs_rank_table, re.compile(r'(?!)'))

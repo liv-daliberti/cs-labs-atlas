@@ -78,7 +78,7 @@ legacy_sweep = ""
 computing_departments = ["CS"]
 center_units = ["AIINST"]    # the Institute of Artificial Intelligence is a university institute: members have a home school
 home_units = {"Computer Science" = '^(?:School of )?Computer Science$|^计算机学院$|^计算机科学系$|^软件工程系$|^智能科学系$', "Cyber Science and Engineering" = '^(?:School of )?Cyber Science and Engineering$|^国家网络安全学院$|^网络空间安全学院$', "Remote Sensing and Information Engineering" = '^(?:School of )?Remote Sensing and Information Engineering$|^遥感信息工程学院$', "Electronic Information" = '^(?:School of )?Electronic Information$|^电子信息学院$', "Information Management" = '^(?:School of )?Information Management$|^信息管理学院$', "Geodesy and Geomatics" = '^(?:School of )?Geodesy and Geomatics$|^测绘学院$', "Mathematics and Statistics" = '^(?:School of )?Mathematics and Statistics$|^数学与统计学院$', "Artificial Intelligence" = '^(?:Institute of )?Artificial Intelligence$|^人工智能研究院$'}
-rank_words = {teaching = '\b讲师\b|\bsenior\s+lecturer\b|\b教学型\b', adjunct = '\b兼职\b|\b客座\b|\bvisiting\s+professor\b', courtesy = '\b兼职教授\b'}
+rank_words = {lecturer = '助教', teaching = '\b讲师\b|\bsenior\s+lecturer\b|\b教学型\b', adjunct = '\b兼职\b|\b客座\b|\bvisiting\s+professor\b', courtesy = '\b兼职教授\b'}
 
 [sweep_check]
 exceptions = []
@@ -101,15 +101,21 @@ listing_continuity = false
 
 # --- departments ---------------------------------------------------------------------------------------------------------------------
 # The School of Computer Science (计算机学院, cs.whu.edu.cn) lists its full-time faculty on one page, szdw/zrjs.htm, grouped by department (计算机科学系, 软件工程系, 智能科学系, 公共课教学中心) and rank
-# (正高级 / 副高级 / 中级 / ...). Live, no robots.txt (404), no challenge (2026-11-07). The Chinese page is primary; /english/ lags. Historical eras of this URL are NOT yet discovered (Wayback is scarce:
-# stage 1 queues them; the school passes the gate through the documented partial-historical-coverage exception, live-first).
+# (正高级 / 副高级 / 中级 / ...). The Chinese page is primary; /english/ lags.
+# The 2020 ASP directory requires all four faculty rank categories below. Missing
+# historical roster years remain open; no availability exception completes them.
 [[departments]]
 code = "CS"
 name = "School of Computer Science (计算机学院)"
 unit = "School of Computer Science, Wuhan University"
-title_match = '''教授|研究员|讲师|博士后|工程师|Professor|Lecturer'''
+title_match = '''教授|研究员|讲师|助教|博士后|工程师|Professor|Lecturer'''
 coverage = "full"
 url = "https://cs.whu.edu.cn/szdw/zrjs.htm"
+  [[departments.listing_groups]]
+  name = "Complete ASP faculty rank set 2020"
+  from = "20200101"
+  to = "20201231"
+  slots = ["ASP professors 2020", "ASP associate professors 2020", "ASP lecturers 2020", "ASP assistant teachers 2020"]
   [[departments.listings]]
   slot = "Legacy all-ranks faculty directory"
   kind = "main"
@@ -117,6 +123,36 @@ url = "https://cs.whu.edu.cn/szdw/zrjs.htm"
   from = "20160101"
   to = "20181231"
   format = "whu_cs_legacy"
+  [[departments.listings]]
+  slot = "ASP professors 2020"
+  kind = "main"
+  url = "http://cs.whu.edu.cn/teacher.aspx?showtype=jobtitle&typename=教授"
+  from = "20200101"
+  to = "20201231"
+  format = "whu_cs_rank_table"
+  [[departments.listings]]
+  slot = "ASP associate professors 2020"
+  kind = "main"
+  url = "http://cs.whu.edu.cn/teacher.aspx?showtype=jobtitle&typename=副教授"
+  from = "20200101"
+  to = "20201231"
+  format = "whu_cs_rank_table"
+  [[departments.listings]]
+  slot = "ASP lecturers 2020"
+  kind = "main"
+  url = "http://cs.whu.edu.cn/teacher.aspx?showtype=jobtitle&typename=讲师"
+  from = "20200101"
+  to = "20201231"
+  format = "whu_cs_rank_table"
+  [[departments.listings]]
+  slot = "ASP assistant teachers 2020"
+  kind = "main"
+  url = "http://cs.whu.edu.cn/teacher.aspx?showtype=jobtitle&typename=助教"
+  from = "20200101"
+  to = "20201231"
+  format = "whu_cs_rank_table"
+  # One named instructor is the complete saved category, not an empty shell.
+  min_entries = 1
   [[departments.listings]]
   slot = "Full-time faculty"
   kind = "main"
