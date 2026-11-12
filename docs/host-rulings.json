@@ -1,0 +1,20 @@
+{
+ "about": "Host rulings that apply to every school (a per-school host is a [[hosts]] entry in schools/<key>.toml and its hosts.json). Owner rulings are dated.",
+ "hosts": [
+  {
+   "host": "api2.openreview.net",
+   "host_use": "bounded",
+   "scope": "profile search and profile read only (POST /login once, GET /profiles/search?term=<name>); no bulk export, no notes, no email fields kept",
+   "min_delay_seconds": 6,
+   "cache": "every response cached on local disk (chmod 600); a request is never repeated",
+   "stop_on": ["HTTP 429", "HTTP 401", "HTTP 403", "challenge/captcha/MFA/verification marker", "login without token"],
+   "on_stop": "stop for the day (state marker), no retry, no evasion, challenge URLs never opened",
+   "credentials": "~/.config/cs-atlas/openreview.env only (OPENREVIEW_USERNAME, OPENREVIEW_PASSWORD); never printed, logged or committed",
+   "account_note": "The account is currently the owner's personal account; a dedicated project account is recommended.",
+   "rule": "R-STU-27",
+   "ruling_date": "2026-11-13",
+   "ruling": "Owner decision 2026-11-13 (repeated, confirmed 'go ahead, and lets please do it'): the OpenReview route is a standard part of the student search.",
+   "tool": "tools/openreview_students.py"
+  }
+ ]
+}
