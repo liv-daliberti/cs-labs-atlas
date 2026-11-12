@@ -1,6 +1,8 @@
 """An onboarding school's reviewed census overrides live in its own file; the shared tracked file is never written for it."""
 import json
 
+import pytest
+
 import atlas_paths as P
 import census_overrides as CO
 
@@ -249,6 +251,13 @@ def test_defense_lists_name_the_chair_and_respect_the_appointment_window(monkeyp
 
 
 def test_cv_students_reads_an_advising_section_with_years_and_the_window():
+    import os
+    from pathlib import Path
+    here = Path(__file__).resolve().parents[1] / 'hierarchy' / 'labpage-tools-epfl-berkeley' / 'name_lexicon.json'
+    main = Path(__file__).resolve().parents[3] / 'code' / 'hierarchy' / 'labpage-tools-epfl-berkeley' / 'name_lexicon.json'
+    env = Path(os.environ.get('CS_ATLAS_CODE', '/nonexistent')) / 'hierarchy' / 'labpage-tools-epfl-berkeley' / 'name_lexicon.json'
+    if not any(p.exists() for p in (here, main, env)):   # documented skip: the lexicon is git-ignored data that only the main checkout holds
+        pytest.skip('hierarchy/labpage-tools-epfl-berkeley/name_lexicon.json (git-ignored data) is absent in this checkout and in the main checkout')
     CVS = by_path('cv_students')
     text = ("EDUCATION\nPhD MIT 2001\n\nPh.D. STUDENTS ADVISED\nAnn Lee (2019); Wei Zhang (2012); Maria Garcia (2022), John Smith (2024)\n\nTEACHING\nCS 101\n"
             "Current students\nEddie Gray, Flora Hart\n")

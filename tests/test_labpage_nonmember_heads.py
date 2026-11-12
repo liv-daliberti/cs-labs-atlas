@@ -1,8 +1,4 @@
 """Headings that look like member sections but are programme-committee or best-paper lists (Tsinghua 2026-11-11)."""
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import labpage_audit as LA  # noqa: E402
 
 
