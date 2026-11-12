@@ -564,11 +564,32 @@ def label_role(desc, head):
     return None
 
 
+def numbered_entry_quote(name, ptxt):
+    """The whole numbered roster cell of `name` ('11. Dr. Yongxiang (Jason) HUANG (Computer Science and Engineering, Winter 2021; He is currently ...)') in the page text, else None:
+    the given names, an optional '(Nickname)', the family name, then the department/term bracket through its closing parenthesis. The quote must be the entry that evidences the
+    membership, never a paper-author or award line that happens to hold the name."""
+    toks_ = [t for t in re.split(r'\s+', (name or '').strip()) if t]
+    if len(toks_) < 2:
+        return None
+    given, fam = r'\s+'.join(re.escape(t) for t in toks_[:-1]), re.escape(toks_[-1])
+    rx = re.compile(r'(?:\d{1,3}\s*\.\s*)?(?:(?:Dr|Mr|Ms|Mrs|Miss)\s*\.\s*)?' + given + r'(?:\s*\([^()]{2,25}\))?\s+' + fam + r'\s*(\((?:[^()]|\([^()]*\))*\))', re.I)
+    t = re.sub(r'\s+', ' ', ptxt)
+    for m in rx.finditer(t):
+        if DEPT_DATE_ENTRY_RX.match(m.group(1)) and len(m.group(0)) <= 320:
+            return m.group(0).strip()
+    return None
+
+
 def localize_quote(x, ptxt):
     """A candidate whose quote runs from a section heading or the previous entries ('Ivan (Yin Fung) Lok (UROP, 2025) Li Zhang ... Chaobo Jia') gets the entry's own text
     'Name (descriptor)' when the page text holds it verbatim, so the quote names this person and no neighbour (HKUST re-audit: Chaobo Jia, Zeyu Xiong, Yichuan Li)."""
     q = x.get('quote') or ''
     name, desc = x.get('name') or '', re.sub(r'\s+', ' ', x.get('desc') or '').strip()
+    if name and ptxt and not (q.startswith(name) and len(q) > 60 and q.rstrip().endswith((')', '.', ';'))):
+        cell = numbered_entry_quote(name, ptxt)   # 2026-11-12: a numbered 'Dr. Given (Nick) FAMILY (Dept, Term YYYY; ...)' entry is its own quote (HKUST Chung)
+        if cell:
+            x['quote'], x['qkind'] = cell, 'name+role'
+            return
     if not name or not desc or q.startswith(name) or not ptxt:
         return
     pt = re.sub(r'\s+', ' ', ptxt)
@@ -2501,7 +2522,9 @@ NONPERSON_NAME = re.compile(r'\b(?:distinguished|invited|keynote)\s+(?:talk|lect
                             r'^[A-Z0-9-]{2,}\s+(?:[Aa]rchitecture|[Rr]untime|[Pp]latform|[Ss]ystem)$|'
                             r"^[A-Za-z]+['\u2019]s\s+[A-Z]")   # a possessive title fragment ("Clifford's Geometric Algebra", Stanford round 7)
 NONMEMBER_SECTION = re.compile(r'\bstudent\s+(?:reports?|projects?)\b|\bprospective\b|\bjoin\s+(?:the|our)\s+team\b|'
-                              r'\b(?:postdoc|postdoctoral|phd|student)\s+positions?\b|scholar profile|citation data', re.I)
+                              r'\b(?:postdoc|postdoctoral|phd|student)\s+positions?\b|scholar profile|citation data|'
+                              r'\b(?:dissertation|thesis|phd|doctoral)\s+committees?\b|\b(?:foreign|external|overseas)\s+(?:advis[eo]rs?|examiners?|referees?)\b|'
+                              r'\b(?:letter|reference|recommendation)\s+(?:writers?|letters?)\b|\breferees?\b', re.I)   # 2026-11-12 (HKUST Ying-Ju Chen): committee / referee / letter-writer lists are not member lists
 
 
 # 2026-11-12 (Georgia Tech Ziani): a fellowship / award sentence naming the PI and his students is no byline

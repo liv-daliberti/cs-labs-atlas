@@ -49,3 +49,27 @@ def test_student_level_prize_heading_lists_students_and_award_heading_still_does
     assert not LA.nonmember_candidate('Yaorui Zhang', '2021 Neukom Undergraduate Research Prize Winner > 2021 Neukom Graduate Research Prize Winner')
     assert LA.nonmember_candidate('Zhaoxi Chen', 'CCDS Outstanding PhD Thesis Award')
     assert LA.AWARD_SENTENCE_RX.search('Guanghui Wang , Krishna Acharya , and Juba Ziani received the fellowship')
+
+
+PAGE = ('Graduated Students and Alumni PhD Students: 10. Dr. Ronald SO (Computer Science and Engineering, Spring 2020; He is a research fellow.) '
+        '11. Dr. Yongxiang (Jason) HUANG (Computer Science and Engineering, Winter 2021; He is currently working full-time as an R&D Engineer at Tencent, Shenzhen.) '
+        '12. Dr. Siqi (Portia) BAO (Computer Science and Engineering, Summer 2017; She is at Baidu.) '
+        'Selected publications: Siqi Bao, Pei Wang, Albert Chung. A paper title. In CVPR 2019. Best Paper Award: Siqi Bao.')
+
+
+def test_numbered_roster_cell_is_its_own_quote():
+    """HKUST Chung: the quote of a numbered graduates-list entry is that entry, not a paper-author or award line."""
+    x = dict(name='Siqi BAO', desc='(Computer Science and Engineering, Summer 2017; She is at Baidu.)', quote='Siqi Bao, Pei Wang, Albert Chung. A paper title. In CVPR 2019.')
+    LA.localize_quote(x, PAGE)
+    assert x['quote'] == '12. Dr. Siqi (Portia) BAO (Computer Science and Engineering, Summer 2017; She is at Baidu.)'
+    y = dict(name='Yongxiang HUANG', desc='', quote='Best Paper Award: Siqi Bao.')
+    LA.localize_quote(y, PAGE)
+    assert y['quote'].startswith('11. Dr. Yongxiang (Jason) HUANG (Computer Science and Engineering, Winter 2021') and y['quote'].endswith('Shenzhen.)')
+    assert LA.numbered_entry_quote('Colin Tsang', PAGE) is None
+
+
+def test_committee_referee_and_letter_writer_lists_are_not_member_lists():
+    for head in ('Dissertation Committee Members', 'Foreign Advisor', 'Letter Writers', 'External Examiners > Postdoc, Johns Hopkins University, USA', 'Referees'):
+        assert LA.nonmember_candidate('Hailun Zhang', head), head
+    for head in ('PhD Students', 'Alumni', 'Postdoc, Johns Hopkins University, USA'):
+        assert not LA.nonmember_candidate('Hailun Zhang', head), head
