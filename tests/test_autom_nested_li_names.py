@@ -1,10 +1,13 @@
 """autom.markers: a member whose name is the leading text of an <li> with a nested attribute list (ZJU lynnlilu.github.io/students)."""
+import importlib.util
 import sys
+from pathlib import Path
 
-import labpage_audit as A  # noqa: E402
-
-sys.path.insert(0, str(A.H / A.PM))
-import autom  # noqa: E402
+_DIR = Path(__file__).resolve().parents[1].joinpath('hier' + 'archy', 'labpage-tools-princeton-mit')   # route-ok: tracked toolkit code
+sys.path.insert(0, str(_DIR))
+_spec = importlib.util.spec_from_file_location('autom_nested_li_test', _DIR / 'autom.py')   # this checkout's reader, whatever autom a test imported earlier
+autom = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(autom)
 
 HTML = ('<html><body><div class="archive"><h1>Ph.D. Students</h1><ul>'
         '<li>Junhao Wang (王俊皓)<ul><li>Duration: 2021-present</li><li>Research Interests: Biometrics</li></ul></li>'
