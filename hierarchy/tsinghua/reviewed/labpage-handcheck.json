@@ -308,6 +308,62 @@
     "doubtful_row": "钱学海 Jingji Chen: listed under Graduate Students and as 'Undergraduate Interns ... summer 2018' on alchem people.html (309badaa9bd22b03)"
    },
    "result": "PASSED at the scaled bar (13 rows: membership 0.5 vs 0.65, role/year 0.5 vs 1.3)"
+  },
+  {
+   "date": "2026-11-11",
+   "tools": "joint-rules-1111 997c60ee",
+   "note": "fresh subagent reviewers given page-header notes; role None correct when page states none; (w/ Prof. X) co-advised rows on the PI own members page are members (owner R-STU-01 2026-11-12)",
+   "round": "final-6a",
+   "additions_sha256": "0e5bfeb6023660894ea4113ed313d6110beb2cde47b3521c752d91dac65f4683",
+   "seed": "1111911",
+   "sample": {
+    "students": 30,
+    "of": 122,
+    "stratified": false
+   },
+   "students": {
+    "membership_doubtful": 1,
+    "membership_wrong": 0,
+    "role_year_doubtful": 1,
+    "role_year_wrong": 0
+   },
+   "result": "PASSED (membership 0.5, role/year 0.5)"
+  },
+  {
+   "date": "2026-11-11",
+   "tools": "joint-rules-1111 997c60ee",
+   "note": "fresh subagent reviewers given page-header notes; role None correct when page states none; (w/ Prof. X) co-advised rows on the PI own members page are members (owner R-STU-01 2026-11-12)",
+   "round": "final-6b-census-new",
+   "additions_sha256": "0e5bfeb6023660894ea4113ed313d6110beb2cde47b3521c752d91dac65f4683",
+   "sample": {
+    "students": 45,
+    "of": 122,
+    "census_of_new_rows": true
+   },
+   "students": {
+    "membership_score": 7.0,
+    "role_year_score": 6.0
+   },
+   "result": "per-PI: 任炬 reject, 王会 and 李琦 fail (held), 刘保君/王童/王昭诚 admissible"
+  },
+  {
+   "date": "2026-11-11",
+   "tools": "joint-rules-1111 997c60ee",
+   "note": "fresh subagent reviewers given page-header notes; role None correct when page states none; (w/ Prof. X) co-advised rows on the PI own members page are members (owner R-STU-01 2026-11-12)",
+   "round": "final-census31",
+   "additions_sha256": "9e91397019b3d2e499321e3b48c7e26796aef15d25b43017513fed70c1e64166",
+   "sample": {
+    "students": 31,
+    "of": 31,
+    "census": true,
+    "wire_rows": 30
+   },
+   "students": {
+    "membership_score": 0.0,
+    "role_year_score": 1.0,
+    "doubtful_row": "王昭诚 Liyang Lu: postdoc role None (held, not wired)"
+   },
+   "result": "PASSED (membership 0.0 vs 1.5; role/year 1.0 vs 3); 30 rows wire-ready; 3 baseline 王昭诚 rows removal: 2 SIGS, 1 shifted quote"
   }
  ]
 }

@@ -1,19 +1,25 @@
 {
- "school": "tsinghua",
- "decided_at": "2026-11-11",
- "bar": "docs/LAB-PAGES.md, acceptance bar",
- "additions_file": "hierarchy/tsinghua/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-12T01:29:39+00:00",
- "additions_sha256": "7899d2c49345c95e6e013a0d74d062de84bd092377cd2c671b91c7ede27f54d9",
- "students": {
-  "accepted": true,
-  "round": 7,
-  "weak": true,
-  "round_limit_extended_by_owner": 10,
-  "note": "owner ruled 2026-11-11: up to 10 rounds; redo round 7a: pure random 30 of the 80 proposed rows, membership 0.0, role/year 0.0 (fresh reviewer with page-header notes), plus a stratified 13 (redo 7b); joint-rules 053f7fb4; the three PIs 李国良, 张晗, 王昭诚 rest on web-search register entries recorded as web_search_reviewed in lab-websites.json (verbatim-verified)"
- },
- "papers": {
-  "accepted": false,
-  "note": "stage 7 not attempted"
- }
+  "school": "tsinghua",
+  "decided_at": "2026-11-11",
+  "bar": "docs/LAB-PAGES.md, acceptance bar",
+  "additions_file": "hierarchy/tsinghua/reviewed/labpage-additions.json",
+  "additions_generated_at": "2026-11-12T03:16:52+00:00",
+  "additions_sha256": "bb3f05f0ae2366052e5ed6fe875b966eaf58d11cc3f813183d13ce973be5739d",
+  "students": {
+    "accepted": true,
+    "round": "final-census31",
+    "weak": true,
+    "round_limit_extended_by_owner": 10,
+    "note": "owner ruled 2026-11-11: up to 10 rounds. Wired file = 107 rows: the unfiltered tool output of 122 rows less 15 held as reader defects (任炬 1, 王会 8, 李琦 5, Liyang Lu 1); equals main's 80 rows less 3 王昭诚 rows removed by his corrected period 2009-04 plus 30 new rows (刘保君 18, 王童 6, 王昭诚 6). Final-round census of the 31 changed/new rows: membership 0.0, role/year 1.0 (fresh reviewer; handcheck rounds final-6a, final-6b-census-new, final-census31). Register entries for 刘保君 and 王童 (web_search_reviewed) and four faculty periods (刘保君 2022-12, 王昭诚 2009-04, 李琦 2014-09, 季向阳 2012-12) wired in the same landing.",
+    "seed": null,
+    "membership_errors": 0.0,
+    "role_or_year_errors": 1.0,
+    "counts": {
+      "proposed": 107
+    }
+  },
+  "papers": {
+    "accepted": false,
+    "note": "stage 7 not attempted"
+  }
 }

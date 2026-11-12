@@ -5069,17 +5069,31 @@
   },
   {
    "pi": "刘保君",
-   "status": "reviewed_absence",
-   "coverage": "none",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No separate homepage or lab site was captured for this person (directory row and official profile); not proof that no site exists.",
+   "status": "reviewed_web_search_website",
+   "coverage": "website",
+   "url": "http://www.liubaojun.org/",
+   "kind": "pi_homepage",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Web-search-found personal/lab site; name and separate Tsinghua tie quotes verified verbatim against the stored capture by a fresh reviewer.",
+   "sha256": "adcdff3b083e78031fc9b7d4bda0a8f5061315da34af82b49dc236d0cf5288d5",
+   "checked_at": "2026-11-11T12:00:00",
+   "found_via": "web_search_reviewed",
+   "evidence": {
+    "url": "http://www.liubaojun.org/",
+    "sha256": "adcdff3b083e78031fc9b7d4bda0a8f5061315da34af82b49dc236d0cf5288d5",
+    "quote": "Baojun Liu Associate Professor",
+    "observed": "2026-11-11T12:00:00"
+   },
    "checks": [
     {
-     "source": "school_profile_page",
-     "url": "https://www.insc.tsinghua.edu.cn/szdw_/zzjs.htm",
-     "at": "2026-11-10T00:00:00",
+     "source": "web_search_reviewed",
+     "url": "http://www.liubaojun.org/",
+     "at": "2026-11-11T12:00:00",
      "result": "ok",
-     "sha256": "d6b033fc78beb98c93c6e763cb51ec34b96826c0cffd9a784ac93e5cec16dcf7"
+     "sha256": "adcdff3b083e78031fc9b7d4bda0a8f5061315da34af82b49dc236d0cf5288d5",
+     "name_quote": "Baojun Liu Associate Professor",
+     "tie_quote": "Institute for Network Sciences and Cyberspace, Tsinghua University",
+     "reviewer": "fresh-subagent-review-2026-11-11"
     }
    ]
   },
@@ -5773,17 +5787,31 @@
   },
   {
    "pi": "王童",
-   "status": "reviewed_absence",
-   "coverage": "none",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The named official profile does not link a lab or personal site (links with a homepage label: none).",
+   "status": "reviewed_web_search_website",
+   "coverage": "website",
+   "url": "https://wanggroup.ai/people",
+   "kind": "lab_site",
+   "reason_code": "lab_site",
+   "reason": "Web-search-found lab site (Tong Wang Research Group, Biomedical Hall, Tsinghua); name and separate Tsinghua tie quotes verified verbatim against the stored capture; fresh reviewer to confirm.",
+   "sha256": "93af069d778bef5f77ba1ac6745bc62ac809cb66274e551b27a98f2a893c1a25",
+   "checked_at": "2026-11-12T03:03:49",
+   "found_via": "web_search_reviewed",
+   "evidence": {
+    "url": "https://wanggroup.ai/people",
+    "sha256": "93af069d778bef5f77ba1ac6745bc62ac809cb66274e551b27a98f2a893c1a25",
+    "quote": "Tong Wang Research Group",
+    "observed": "2026-11-12T03:03:49"
+   },
    "checks": [
     {
-     "source": "school_profile_page",
-     "url": "https://life.tsinghua.edu.cn/info/1034/6714.htm",
-     "at": "2026-11-10T00:00:00",
+     "source": "web_search_reviewed",
+     "url": "https://wanggroup.ai/people",
+     "at": "2026-11-12T03:03:49",
      "result": "ok",
-     "sha256": "84619de74c06e65ca6f72b83afbbc65bca0db6d72cbd9777dbeecd7b42b5aad1"
+     "sha256": "93af069d778bef5f77ba1ac6745bc62ac809cb66274e551b27a98f2a893c1a25",
+     "name_quote": "Tong Wang Research Group",
+     "tie_quote": "Biomedical Hall Tsinghua University, Haidian District, Beijing, China",
+     "reviewer": "fresh-subagent-review-2026-11-12"
     }
    ]
   },
