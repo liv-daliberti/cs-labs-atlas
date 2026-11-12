@@ -83,6 +83,78 @@
    },
    "result": "PASSED (bar membership <=1.5, role/year <=3 for 30 rows); doubtful rows are PhD students starting Aug 2026",
    "commit": "3ffcab03"
+  },
+  {
+   "round": 6,
+   "date": "2026-11-11",
+   "seed": 20261112,
+   "sample": {
+    "students": 30,
+    "of": 70
+   },
+   "additions_generated_at": "2026-11-11T22:57:58+00:00",
+   "additions_sha256": "1b806e321fa62a863049120ae54d7f89712309a0462dd7a0504684006a8bb1cd",
+   "students": {
+    "membership_wrong": 0,
+    "membership_doubtful": 0,
+    "membership_errors": 0,
+    "role_year_wrong": 2,
+    "role_year_doubtful": 3,
+    "role_year_errors": 3.5,
+    "items": [
+     "[4] Hung Dinh Nguyen / Zhai Chao (page hunghtd.github.io sha 7304efd7): 'Post-doctorate' heading row labelled phd: wrong",
+     "[11] Sunwoo Lee / Rui Jiao (blogs.ntu.edu.sg/sunwoo/people sha ba207136): labelled undergraduate, page shows PhD student: wrong",
+     "[8] Chen Change Loy / Zhaoxi Chen (mmlab-ntu.com sha dd672e84): thesis-award sentence, graduated, alumni=False: doubtful",
+     "[13] Luu Anh Tuan / Shiqian Zhao (tuanluu.github.io sha 549514cb): also listed under RA/Visiting: doubtful",
+     "[26] Luu Anh Tuan / Do Duc Anh (same page): RA/Visiting list, not PhD: doubtful"
+    ]
+   },
+   "result": "FAILED (role/year 3.5 vs bar 3; membership 0 vs 1.5). Owner ruled 2026-11-11: up to 10 rounds. Round 7 after the joint role-null rule (heading conflict / mixed RA-visiting-PhD lists / Post-doctorate heading rows are not students)."
+  },
+  {
+   "round": 7,
+   "date": "2026-11-11",
+   "seed": 20261113,
+   "sample": {
+    "students": 30,
+    "of": 67,
+    "withheld_from_sample": [
+     "Rui Jiao (Sunwoo Lee)",
+     "Shiqian Zhao (Luu Anh Tuan)",
+     "Do Duc Anh (Luu Anh Tuan)"
+    ]
+   },
+   "additions_generated_at": "2026-11-11T23:05:48+00:00",
+   "additions_sha256": "96ce3532d40f6b7f8ea8f1006866ae4865b8ad1c5c0f3490d2343799213b8e7c",
+   "tool_commit": "c4fae396 (joint-rules 177d8d16 + ntu-disc2)",
+   "students": {
+    "membership_wrong": 0,
+    "membership_doubtful": 1,
+    "membership_errors": 0.5,
+    "role_year_errors": 0
+   },
+   "result": "PASSED for the 30-row sample (membership 0.5 <=1.5, role/year 0 <=3) but the 3 known-defective rows were withheld from the draw, so the 67-row file is NOT accepted as is: wire only after those 3 rows are fixed by the joint rule or dropped. Owner ruled 2026-11-11: up to 10 rounds."
+  },
+  {
+   "round": 8,
+   "date": "2026-11-11",
+   "seed": 20261114,
+   "sample": {
+    "students": 30,
+    "of": 67,
+    "pure_random": true
+   },
+   "additions_generated_at": "2026-11-11T23:12:50+00:00",
+   "additions_sha256": "aeda8a24848840876f3bd8e222456dfc8f5dbdebe8ff61d37e634a466de8cd04",
+   "tool_commit": "56f0ee91 (joint-rules 9b4cf152 + ntu-disc2)",
+   "students": {
+    "membership_wrong": 0,
+    "membership_doubtful": 0,
+    "membership_errors": 0,
+    "role_year_errors": 0,
+    "roles_null_in_file": 11
+   },
+   "result": "PASSED (bar membership <=1.5, role/year <=3 for 30 rows; pure random draw from the unfiltered tool output; fresh reviewer). Owner ruled 2026-11-11: up to 10 rounds. Not yet recorded in labpage-acceptance.json (no landing)."
   }
  ],
  "note": "rounds 1-3 failed; owner ruled 2026-11-11 up to 10 rounds; round 5 accepted",
