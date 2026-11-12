@@ -198,3 +198,9 @@ def test_a_lab_on_a_school_subdomain_is_not_a_directory_profile():
     assert not L.is_profile('https://hcsi.cs.tsinghua.edu.cn/people/Wang/', d)
     assert L.is_profile('https://www.ee.tsinghua.edu.cn/people/zhang/', d)
     assert L.is_profile('https://ee.tsinghua.edu.cn/people/li/', d)
+
+
+def test_zju_roster_items():
+    assert L.ENTRY_AS_HEAD_RX.match('Weiya Xu Ph.D., NUS') and not L.ENTRY_AS_HEAD_RX.match('Ph.D. Students')
+    assert L.entry_role('', 'Alumni > Weiya Xu Ph.D., NUS', lambda t: ('phd', 'x')) == (None, 'none')   # the previous entry's degree is a destination, not this person's role
+    assert L.entry_role('', 'Ph.D. Students', lambda t: ('phd', 'x'))[0] == 'phd'

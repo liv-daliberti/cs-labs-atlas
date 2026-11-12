@@ -1766,6 +1766,9 @@ def role_fallback(text):
     return 'masters' if m.group(1) or re.search(r'^\W*master', m.group(0), re.I) else 'phd' if m.group(2) or re.search(r'ph\.?\s?d', m.group(0), re.I) else 'undergraduate'
 
 
+ENTRY_AS_HEAD_RX = re.compile(r"^[A-Z][\w'.-]+(?:\s+[A-Z][\w'.-]+){1,2}\s+(?:Ph\.?\s?D\.?|M\.?\s?S\.?|B\.?\s?S\.?|M\.?Eng)\b")   # 'Weiya Xu Ph.D., NUS' as a heading: the previous alumnus entry the extractor turned into one (ZJU \u7eaa\u5b88\u9886's NESA page)
+
+
 def entry_role(desc, head, role_of):
     """(role, basis): the role the entry states right after the name ('(PhD student, ...)', ', Postdoc', 'MIT Undergraduate
     Student'), else the role its section heading names ('PhD Students', 'Post-doctoral Scholars'), else (None, 'none').
@@ -1802,6 +1805,8 @@ def entry_role(desc, head, role_of):
     if fr:
         return fr, 'entry'   # 'Master \u00b7 Y2', 'Ph.D. \u00b7 Y5 w/ Prof. X' right after the name
     h = (head or '').split(' > ')[-1]
+    if ENTRY_AS_HEAD_RX.match(h):
+        return None, 'none'
     r = role_of(h)[0] if h and not PERSON_HEAD_RX.fullmatch(h.strip()) else None   # a heading that is a person's name ('Zili Meng') is not a role ('Meng' read as M.Eng) (Tsinghua round 1: Zhen Tang)
     if not r and head and ' > ' in head:
         r = role_of(head.split(' > ')[0])[0] if not PERSON_HEAD_RX.fullmatch(head.split(' > ')[0].strip()) else None
@@ -1935,6 +1940,17 @@ def pm_candidates(kit, school, pi, plan, held):
                                or src in plan.get('alumni_pages', ()) or (orig is not None and any(
                                    orig.replace('http://', 'https://').rstrip('/') == unwayback(a).replace('http://', 'https://').rstrip('/')
                                    for a in plan.get('alumni_pages', ()))))
+            if not x['alumni'] and ENTRY_AS_HEAD_RX.match((x.get('head') or '').split(' > ')[-1]):
+                try:
+                    if src not in text_cache:
+                        text_cache[src] = kit.lpev.text(school, src)
+                    has_alum_ = bool(re.search(r'\b(?:alumni|alumnae|graduated|former)\b', text_cache[src] or '', re.I))
+                except (KeyError, ValueError):
+                    has_alum_ = False
+            else:
+                has_alum_ = False
+            if has_alum_:
+                x['alumni'] = True   # a list whose entries read 'Name Ph.D., University' on a page with an Alumni section: the entries are alumni, their degree is the destination
             if not x['alumni'] and caps_heading_is_past(kit, school, src, x['name'], text_cache):
                 x['alumni'] = True  # an all-caps 'PAST ...' / 'FORMER ...' heading the extractor's section did not follow
             x['under_people_heading'] = bool(x['head'] and kit.autom.HEADWORD.search(x['head']))
@@ -2030,7 +2046,8 @@ def pm_candidates(kit, school, pi, plan, held):
             elif re.search(r'\brotation', (x.get('head') or '') + ' ' + (x.get('desc') or '')[:60], re.I):
                 why, x['detail'] = 'not_a_student', 'rotation student'
             elif re.search(r'\bfaculty\b|vice[- ]chancellor|\bdean\b|professors?\b', x.get('head') or '', re.I) and \
-                    not ALUMNI_RX.search(x.get('head') or ''):
+                    not ALUMNI_RX.search(x.get('head') or '') and \
+                    not re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I):   # a member whose own entry states a student role under the PI's title heading ('ZJU100 Young Professor') is a member (ZJU \u9648\u660e\u5e05)
                 why, x['detail'] = 'not_a_student', 'listed under a faculty heading'
             elif re.search(r'high[- ]school', (x.get('head') or '') + ' ' + (x.get('desc') or '')[:60], re.I):
                 why, x['detail'] = 'not_a_student', 'high-school outreach student'
@@ -2043,7 +2060,7 @@ def pm_candidates(kit, school, pi, plan, held):
                                 re.search(r'[“"]|\b(proceedings|conference|journal|workshop|arxiv|ICASSP|Interspeech|ACL|EMNLP|NeurIPS|'
                                           r'ICML|CVPR|pp\.)\b', (x.get('desc') or '')[:160])):
                 why, x['detail'] = 'not_in_people_section', 'a byline or citation, not a member entry'
-            elif auto_plan and not x.get('han_card') and (not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') or
+            elif auto_plan and not x.get('han_card') and not (homepage_people and re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I) and not NOT_MEMBER_HEAD.search(x.get('head') or '')) and (not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') or
                                 NOT_MEMBER_HEAD.search(x.get('head') or '')):
                 why, x['detail'] = 'not_in_people_section', f"section '{(x.get('head') or '')[:60]}' is not a member list"
             elif auto_plan and not x.get('han_card') and (not plausible(kit, x['name']) or re.match(r'^[A-Z]\.\s', x['name']) or
