@@ -30,3 +30,20 @@ def test_a_section_label_in_a_nested_li_is_not_a_name(monkeypatch):
     monkeypatch.setattr(autom.lpcap, 'decode', lambda c: c)
     _r, _t, mk = autom.markers('zju', 'https://example.org/')
     assert not [m for m in mk if m[2] == 'name']
+
+
+def test_cohort_year_item_splits_a_comma_list_of_names():
+    assert autom.cohort_year_item('2026: Junjie Cheng, Bingze Li, Wenxin Ruan') == ('2026', ['Junjie Cheng', 'Bingze Li', 'Wenxin Ruan'])
+    got = autom.cohort_year_item('2024: Yuqiao Gu (Ph.D. student, CJC 1st Author, 1 * Patent), Yi Jiang (ACNS 3rd Author)')
+    assert got == ('2024', ['Yuqiao Gu', 'Yi Jiang'])
+    assert autom.cohort_year_item('2023: Jiahui Wang -> Tencent, Mingxiang Shi -> CICO') == ('2023', ['Jiahui Wang', 'Mingxiang Shi'])
+    assert autom.cohort_year_item('2023: Deep Learning for Security: a survey of methods') is None   # a publication title is not a name list
+    assert autom.cohort_year_item('Junjie Cheng, Bingze Li') is None
+
+
+def test_cohort_year_li_emits_year_head_and_names(monkeypatch):
+    html = '<html><body><h1>Students</h1><ul><li><strong>2026</strong>: Junjie Cheng, Bingze Li</li></ul></body></html>'
+    monkeypatch.setattr(autom.lpev, 'cap', lambda school, src: ({'content': html, 'url': src}, {'html': 'Students 2026: Junjie Cheng, Bingze Li'}))
+    monkeypatch.setattr(autom.lpcap, 'decode', lambda c: c)
+    _r, _t, mk = autom.markers('zju', 'https://example.org/')
+    assert [(m[2], m[3]) for m in mk] == [('head', 'Students'), ('head', '2026'), ('name', 'Junjie Cheng'), ('name', 'Bingze Li')]

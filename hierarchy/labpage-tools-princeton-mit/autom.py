@@ -216,6 +216,33 @@ def mid_sentence(el):
     return len(before.split()) >= 2 and bool(re.search(r"[a-z,]$", before.strip()))
 
 
+def cohort_year_item(txt):
+    """('2026', [names]) for an entry 'YYYY: Name, Name (note), Name -> Employer'; None unless most comma-separated pieces are person names."""
+    m = re.match(r"^\s*((?:19|20)\d\d)\s*[:：]\s*(.+)$", txt)
+    if not m:
+        return None
+    pieces, depth, cur = [], 0, ""
+    for ch in m.group(2):
+        if ch in "([（":
+            depth += 1
+        elif ch in ")]）":
+            depth = max(0, depth - 1)
+        if ch in ",，;" and depth == 0:
+            pieces.append(cur)
+            cur = ""
+        else:
+            cur += ch
+    pieces.append(cur)
+    names_ = []
+    for pc in pieces:
+        pc = re.split(r"\s*(?:->|→|⇒|\()", pc)[0].strip(" ,;:|·•-–—*")
+        if pc and namey(pc):
+            names_.append(pc)
+    if not names_ or len(names_) * 10 < len([p_ for p_ in pieces if p_.strip()]) * 6:
+        return None
+    return m.group(1), names_
+
+
 def markers(school, src):
     """[(start, end, kind, text)] over the page's html text view, in order."""
     from bs4 import BeautifulSoup
@@ -260,6 +287,14 @@ def markers(school, src):
                 for d in el.find_all(True):
                     seen_el.add(id(d))
                 continue
+        if el.name == "li" and (cohort := cohort_year_item(txt)):
+            # "<li><strong>2026</strong>: Ann Lee, Bo Wu (award), Cy Xu</li>": a cohort-year label followed by a comma-separated list of names
+            # (li-zhenyuan.github.io Students): the year is a section label, each name a member marker
+            items.append(("head", cohort[0], 8))
+            items.extend(("name", n_, 0) for n_ in cohort[1])
+            for d in el.find_all(True):
+                seen_el.add(id(d))
+            continue
         if el.name in ("a", "strong", "b", "h1", "h2", "h3", "h4", "h5", "h6", "li", "td", "span", "p", "div", "figcaption", "dt", "dd",
                        "em", "i", "u", "font", "th", "label", "small", "caption", "article", "section"):
             if el.find(["div", "p", "li", "td", "table", "ul", "ol", "section", "article", "h1", "h2", "h3", "h4", "h5", "h6"]) is not None \
