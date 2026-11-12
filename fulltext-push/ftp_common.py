@@ -166,6 +166,20 @@ def fetch_oa_bodies(ids):
     return got
 
 
+def recover_journal(path):
+    """A writer killed mid-transaction (scancel, the 59-min restart) leaves <db>-journal; a read-only handle cannot roll it back and fails with
+    'attempt to write a readonly database' (2026-11-12: the gatech loop died on it). An ordinary read-write open rolls it back (SQLite does nothing
+    while a live writer holds its lock), so do that first. Nothing is deleted or rewritten otherwise."""
+    p = str(path)
+    if os.path.exists(p + '-journal'):
+        try:
+            c = sqlite3.connect(p, timeout=60)
+            c.execute('SELECT count(*) FROM sqlite_master').fetchone()
+            c.close()
+        except sqlite3.Error:
+            pass
+
+
 def read_retry(db, sql, args=(), tries=10):
     """fetchall() of one short read statement; 'database is locked' (a writer held the rollback-journal lock past the
     connection's busy timeout) is waited out, 30 s apart, instead of failing the whole step (2026-10-29: princeton oa_arxiv)."""
@@ -240,6 +254,7 @@ def catalog_state(school, with_urls=True):
     st, doi, title, local, urls = {}, {}, {}, set(), defaultdict(set)
     if not path.exists():
         return dict(status=st, doi=doi, title=title, local=local, urls=urls, alias={})
+    recover_journal(path)
     db = sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=120)
     alias = alias_map(db)   # ROADMAP #28: a sibling's rows and URLs belong to its canonical work
     for i, d, s, t in works_rows(db, 'id, doi, status, title'):
