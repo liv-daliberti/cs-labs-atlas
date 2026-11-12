@@ -1,26 +1,27 @@
 {
  "school": "mit",
- "decided_at": "2026-10-31",
+ "decided_at": "2026-11-12",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/mit/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-01T05:09:10+00:00",
- "additions_sha256": "e92f50d88cad3ffc2435e51652afbee74d2119536bcb3df43a2e2b027041356b",
+ "additions_generated_at": "2026-11-12T12:00:00+00:00",
+ "additions_sha256": "e0794a654c033396711d6a5ea34631612bf04f5012fec8658ee564ff19e7370c",
  "students": {
   "accepted": true,
-  "round": 3,
-  "seed": 3111,
-  "sampled": 20,
+  "round": "recall-gap-random30-r2",
+  "seed": 11125,
+  "sampled": 30,
   "membership_errors": 0,
-  "role_or_year_errors": 0,
+  "role_or_year_errors": 1,
   "counts": {
-   "proposed": 193
+   "proposed": 277
   },
   "restamped_from": {
    "sha256": "a3005671d5d2f8e9cb2dea36f807330556204c2fc0e6598fcf0ffe174cd1bf16",
    "generated_at": "2026-10-31T19:31:16+00:00",
    "removed": 0,
    "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
-  }
+  },
+  "note": "Wired file = 193 earlier rows + 84 rows (86 proposed, 2 already present) of MIT recall package 2 (delta of the audit on joint head 97a86097 against main students.json; fresh-reviewer pure random 30 of the 88-row delta, seed 11125: membership 0, role/year 1 (Valia Efthymiou, PhD heading read as postdoc)). Per-row holds, not wired: Valia Efthymiou and Nicolas Emmenegger (Chara Podimata's students page lists both under the PhD heading; the reader took the role from the Postdoc heading). Package rows sha256 e077e449...; the sha bound here is the union file."
  },
  "papers": {
   "accepted": true,

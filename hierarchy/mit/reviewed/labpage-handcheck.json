@@ -145,6 +145,34 @@
    "role_year_errors": 0,
    "paper_score": null,
    "result": "students_recheck_pass"
+  },
+  {
+   "round": "recall-gap-random30-r2",
+   "date": "2026-11-12",
+   "label": "fresh-reviewer pure random 30 (seed 11125) of the 88-row delta, joint head 97a86097",
+   "additions_file": "wire-package-mit2/mit-student-additions-delta87.json",
+   "additions_sha256": "e077e44910e99eb38b6e78d0db930da42281acfc8ded4bfba4fd1cbc885216a5",
+   "students": {
+    "sampled": 30,
+    "seed": 11125,
+    "membership_errors": 0,
+    "doubtful_count": 0,
+    "role_or_year_errors": 1
+   },
+   "papers": null,
+   "items": {
+    "role_wrong": [
+     "Valia Efthymiou (Podimata): PhD heading read as postdoc; held"
+    ]
+   },
+   "membership_score": 0,
+   "role_year_errors": 1,
+   "paper_score": null,
+   "result": "students_pass",
+   "reviewer": "independent fresh reviewer (Sonnet subagent)",
+   "review_file": "wire-package-mit2/census30-review.json",
+   "review_sha256": "70ccd5fb989d6746d6cc6179de9a9f32da6a8252a01807cf536cf213d75e6012",
+   "file_sha256": "e0794a654c033396711d6a5ea34631612bf04f5012fec8658ee564ff19e7370c"
   }
  ]
 }
