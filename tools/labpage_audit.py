@@ -293,7 +293,7 @@ def held_degree_under_postdoc_heading(desc, head):
     return bool(HELD_PHD_RX.match(desc or '') and head and re.search(r'post-?\s?doc|visiting', head.split(' > ')[0], re.I))
 
 
-DEGREE_ABBR_RX = re.compile(r"^\W{0,3}\(?\s*(?:(S\.?\s?M\.?|M\.?\s?Eng\.?|Sc\.?\s?D\.?|S\.?\s?B\.?|M\.?\s?S\.?|MSc|MBAn|MBA|MFin|MSBA)(?:\s*/\s*(Ph\.?\s?D\.?))?)(?=[\s,;)./]|$)", re.I)
+DEGREE_ABBR_RX = re.compile(r"^\W{0,3}\(?\s*(?:(S\.?\s?M\.?|M\.?\s?Eng\.?|Sc\.?\s?D\.?|S\.?\s?B\.?|M\.?\s?S\.?|MSc|MBAn|MBA|MFin|MSBA)(?:\s*/\s*(Ph\.?\s?D\.?))?)(?=[\s,;)./'\u2018\u2019]|$)", re.I)
 
 
 def DEGREE_ABBR_ROLE(m):
@@ -3095,7 +3095,7 @@ def pm_candidates(kit, school, pi, plan, held):
                                 re.search(r'[“"]|\b(proceedings|conference|journal|workshop|arxiv|ICASSP|Interspeech|ACL|EMNLP|NeurIPS|'
                                           r'ICML|CVPR|pp\.)\b', (x.get('desc') or '')[:160])):
                 why, x['detail'] = 'not_in_people_section', 'a byline or citation, not a member entry'
-            elif auto_plan and not x.get('han_card') and not DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') and not (homepage_people and (re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I) or OWN_STUDENT_ROLE_RX.search((x.get('desc') or '')[:60])) and not NOT_MEMBER_HEAD.search(x.get('head') or '')) and (not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') or
+            elif auto_plan and not x.get('han_card') and not DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') and not (homepage_people and (re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I) or OWN_STUDENT_ROLE_RX.search((x.get('desc') or '')[:60]) or BARE_DEGREE_LABEL_RX.match((x.get('desc') or '').strip())) and not NOT_MEMBER_HEAD.search(x.get('head') or '')) and ((not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') and not BARE_DEGREE_LABEL_RX.match((x.get('desc') or '').strip())) or
                                 NOT_MEMBER_HEAD.search(x.get('head') or '') and not (x.get('role') in ('masters', 'phd', 'undergraduate') and re.search(r'(?i)\b(?:under)?graduate\b', x.get('head') or ''))):   # a student-level prize chain ('2021 Neukom Undergraduate Research Prize Winner > Thesis: ...') lists the lab's students (Georgia Tech Bo Zhu)
                 why, x['detail'] = 'not_in_people_section', f"section '{(x.get('head') or '')[:60]}' is not a member list"
             elif auto_plan and not x.get('han_card') and not x.get('card_override') and ((not plausible(kit, x['name']) and not (x.get('under_people_heading') and x.get('role') in ('phd', 'masters', 'postdoc', 'undergraduate', 'visiting') and not plan.get('shared_page') and plausible_under_student_heading(x['name'])) and not ((DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') or DEGREE_BRACKET_ENTRY_RX.match(x.get('desc') or '')) and len(x['name'].split()) >= 2)) or re.match(r'^[A-Z]\.\s', x['name']) or

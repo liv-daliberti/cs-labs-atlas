@@ -106,3 +106,13 @@ def test_homepage_student_sections_named_doctoral_or_masters_are_member_lists():
 def test_mban_class_year_is_an_end_year_in_entry_years():
     yrs, basis = L.entry_years("(MBAn ‘22, then PhD student at MIT ORC)", 'MBAn advisees')[:2]
     assert yrs == [None, 2022] and basis == 'stated_in_entry'
+
+
+def test_degree_abbreviation_directly_before_an_apostrophe_year():
+    m = L.DEGREE_ABBR_RX.match("(MBAn'26, then Co-Founder of Opera)")
+    assert m and L.DEGREE_ABBR_ROLE(m) == 'masters'
+
+
+def test_bare_degree_label_cue_in_the_head_checks_is_wired():
+    src = Path(L.__file__).read_text()
+    assert src.count('BARE_DEGREE_LABEL_RX.match') >= 3
