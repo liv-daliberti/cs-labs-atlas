@@ -8,7 +8,7 @@ does. Relations are one-directional: the student declares the adviser. Flags: co
 is a named adviser), common_name_pi (the PI's name is a very common one), second_same_name_profile (another profile of the same name: HELD,
 never admitted), role_unspecified (generic 'student' with no PhD/MS cue and a bare 'Advisor' relation: HELD).
 
-Politeness (charter record docs/host-rulings.json, owner ruling 2026-11-13): profile search/read only; >= 6 s between requests across processes
+Politeness (charter record docs/host-rulings.json, owner ruling 2026-11-13): profile search/read only; >= 10 s between requests across processes
 (timestamp file under a lock); one session; a persistent response cache on local disk (chmod 600) so no request is ever repeated; the FIRST HTTP
 429, any 401/403, a challenge/captcha/MFA/verification marker, or a login without a token stops the run and writes a stop-for-the-day marker (no retry,
 no evasion, a challenge URL is never opened); a per-run request budget; --dry-run reads the cache only. Credentials come only from
@@ -37,7 +37,7 @@ import selfdeclared_candidates as C  # noqa: E402
 
 RULE = 'R-STU-27'
 BASE = 'https://api2.openreview.net'
-MIN_GAP = 6.0
+MIN_GAP = 10.0   # 2026-11-13: two HTTP 429s in a day at 6 s spacing
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory; robots.txt honoured)'
 ENV = Path(os.path.expanduser('~/.config/cs-atlas/openreview.env'))
 STATE = P.SCRATCH / 'openreview-students'

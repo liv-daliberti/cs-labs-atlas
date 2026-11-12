@@ -482,11 +482,12 @@ OpenAlex co-authorship is never on its own evidence of advising.
   repository excluded, a school needs a researched few-students pass over the remaining labs before stage 6 passes.
 
 - **OpenReview profiles (R-STU-27, standard step, owner 2026-11-13).** Run for every school and every PI after the lab-page and thesis routes, student-less and
-  few-student PIs first: `$CS_ATLAS_PY tools/selfdeclared_candidates.py <key>` (candidate names), then `sbatch tools/openreview_students.slurm <key>` (name search, >= 6 s
+  few-student PIs first: `$CS_ATLAS_PY tools/selfdeclared_candidates.py <key>` (candidate names), then `sbatch tools/openreview_students.slurm <key>` (name search, >= 10 s
   spacing, cached, resumable in chunks of <= 55 min; `tools/openreview_students.py run <key> --dry-run` reads the cache only). Proposals:
   `scratch/openreview-students/proposals-<key>.json` (rows flagged `co_advised` / `common_name_pi`; `held` = second same-name profile or unspecified role, never wired).
-  `role_unspecified` rows (a bare 'student' with no PhD/MS cue) stay held. One OpenReview job at a time: the 6 s spacing is a lock file (`scratch/openreview-students/last-request`) shared by
+  `role_unspecified` rows (a bare 'student' with no PhD/MS cue) stay held. One OpenReview job at a time: the 10 s spacing is a lock file (`scratch/openreview-students/last-request`) shared by
   every run of the tool, but an older script that does not use it must not run alongside. A request URL containing `email=` is never sent (robots.txt `Disallow: /*?*email=`).
+  Two 429s on 2026-11-13 (6 s spacing): spacing is 10 s, 100 requests per run/day-batch (`BUDGET`), and the first 429 writes a per-UTC-day marker that blocks every later run that day. A THIRD 429 means the account is rate-capped: stop, contact OpenReview and read the Terms; the owner decides whether to continue.
   Wire like lab-page additions: a fresh random 20-row hand check (fresh reviewer) per school first. A stop (HTTP 429/401/403/challenge) ends the route for the UTC day; the host ruling is `docs/host-rulings.json`.
 - **Do:** record each relation with role, years and `url + sha256 + quote`.
 - **Gate:** the `students` and `one_person` checks are 100% or explained.

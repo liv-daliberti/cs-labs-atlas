@@ -119,7 +119,7 @@ def test_R_STU_27_cache_means_no_request_is_repeated_and_spacing_holds(tmp_path)
     cl.search('Jane Doe')
     cl.search('John Roe')
     assert [c for c in cl.session.calls if c[0] == 'get'] == [('get', 'Jane Doe'), ('get', 'John Roe')]
-    assert cl.n == 3 and all(s >= 5.9 for s in cl.sleeps[1:]) and oct(O.term_file(tmp_path / 'c', 'Jane Doe').stat().st_mode)[-3:] == '600'
+    assert cl.n == 3 and all(s >= 9.9 for s in cl.sleeps[1:]) and oct(O.term_file(tmp_path / 'c', 'Jane Doe').stat().st_mode)[-3:] == '600'
 
 
 @pytest.mark.parametrize('code', [429, 401, 403])
@@ -188,7 +188,7 @@ def test_R_STU_27_is_documented_with_host_ruling():
     assert '### R-STU-27' in (root / 'docs/RULES.md').read_text()
     h = json.loads((root / 'docs/host-rulings.json').read_text())
     r = next(x for x in h['hosts'] if x['host'] == 'api2.openreview.net')
-    assert r['host_use'] == 'bounded' and r['min_delay_seconds'] >= 6 and r['stop_on'] and r['ruling_date'] == '2026-11-13'
+    assert r['host_use'] == 'bounded' and r['min_delay_seconds'] >= 10 and r['stop_on'] and r['ruling_date'] == '2026-11-13'
 
 
 def test_R_STU_27_a_url_containing_email_is_never_sent(tmp_path):

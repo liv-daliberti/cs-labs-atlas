@@ -5,7 +5,7 @@
    "host": "api2.openreview.net",
    "host_use": "bounded",
    "scope": "profile search and profile read only (POST /login once, GET /profiles/search?term=<name>); no bulk export, no notes, no email fields kept",
-   "min_delay_seconds": 6,
+   "min_delay_seconds": 10,
    "cache": "every response cached on local disk (chmod 600); a request is never repeated",
    "stop_on": [
     "HTTP 429",
@@ -30,7 +30,11 @@
     "ai_agent_rules": "none named",
     "consequence": "the tool refuses any request URL containing email= (tools/openreview_students.guard_url); no email field is requested or kept"
    },
-   "one_job_at_a_time": "Spacing is enforced across processes by the lock file scratch/openreview-students/last-request; a worker that does not use it (the 2026-11-13 Stage B script) must not run alongside a tool job: one OpenReview job at a time."
+   "one_job_at_a_time": "Spacing is enforced across processes by the lock file scratch/openreview-students/last-request; a worker that does not use it (the 2026-11-13 Stage B script) must not run alongside a tool job: one OpenReview job at a time.",
+   "request_budget_per_run": 100,
+   "rate_limit_history": "2026-11-13: HTTP 429 at ~20 req/min (pilot) and a SECOND 429 on the first search after a 32-minute idle (Stage B): the account/endpoint is throttled. Spacing raised 6 -> 10 s, budget 100 per run.",
+   "day_marker": "the first 429/401/403/challenge writes scratch/openreview-students/STOPPED-<UTC date>; every later run (Slurm or manual) that could make a request refuses to start that UTC day (dry-run is still allowed).",
+   "third_429": "A third HTTP 429 means the account is rate-capped: stop the route, contact OpenReview and read their Terms of Use before any further request; the owner decides."
   }
  ]
 }
