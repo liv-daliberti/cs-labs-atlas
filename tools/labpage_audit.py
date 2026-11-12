@@ -1946,6 +1946,21 @@ def han_member_cards(text, school_rx=r'\u4e0a\u6d77\u4ea4\u901a\u5927\u5b66|\u4e
     return out
 
 
+HAN_GLUED_RX = re.compile(r'(?<![\u4e00-\u9fff\u00b7])([\u4e00-\u9fff]{2,4})(\u535a\u58eb\u7814\u7a76\u751f|\u7855\u58eb\u7814\u7a76\u751f|\u535a\u58eb\u540e|\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f)(?=\s|$)')
+HAN_GLUED_ROLE = {'\u535a\u58eb\u7814\u7a76\u751f': 'phd', '\u535a\u58eb\u751f': 'phd', '\u7855\u58eb\u7814\u7a76\u751f': 'masters', '\u7855\u58eb\u751f': 'masters', '\u672c\u79d1\u751f': 'undergraduate', '\u535a\u58eb\u540e': 'postdoc'}
+
+
+def han_glued_cells(text):
+    """A team page whose roster cells are a Han name glued to its role word ('\u987e\u626c\u535a\u58eb\u751f \u534e\u52e4\u535a\u58eb\u751f ... \u9ad8\u5251\u5947\u535a\u58eb\u540e', SJTU cit.sjtu.edu.cn/team): at least three cells before an alumni heading
+    ('\u5168\u90e8\u6bd5\u4e1a\u751f' / '\u6bd5\u4e1a\u751f' / '\u5f80\u5c4a' / '\u6821\u53cb'), each a current member with the cell's role and no year. Cells after an alumni heading are the school-less 'name role destination' form and are not read here."""
+    t = text or ''
+    cut = re.search(r'\u5168\u90e8\u6bd5\u4e1a\u751f|\u5f80\u5c4a|\u6821\u53cb|(?<![\u4e00-\u9fff])\u6bd5\u4e1a\u751f', t)
+    cells = [m for m in HAN_GLUED_RX.finditer(t[:cut.start()] if cut else t)]
+    if len(cells) < 3:
+        return []
+    return [dict(name=m.group(1), role=HAN_GLUED_ROLE[m.group(2)], year=None, alumni=False, head='', member=True, quote=m.group(0), desc='', ra=False) for m in cells]
+
+
 PERSON_HEAD_RX = re.compile(r"[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2}")
 
 
@@ -2114,6 +2129,8 @@ def pm_candidates(kit, school, pi, plan, held):
             row_, _v = kit.lpev.cap(school, src)
             ptxt_ = kit.lpev.text(school, src)
             hc_ = han_member_cards(ptxt_, school_names_rx(school) + r'|\u4ea4\u5927') if re.search(r'\d{2}\u7ea7', ptxt_ or '') else []
+            if not hc_:
+                hc_ = han_glued_cells(ptxt_)
         except (KeyError, ValueError):
             hc_, row_ = [], None
         mcards_ = {}
@@ -2196,7 +2213,7 @@ def pm_candidates(kit, school, pi, plan, held):
             if x.get('han_card'):   # a Han member card states role (label), entry year (NN\u7ea7) and alumni (heading) itself
                 hc = x['han_card']
                 x['role'], x['role_basis'] = (hc['role'], 'entry') if hc['role'] else (None, 'none')
-                x['years'], x['years_basis'] = ([hc['year'], None] if not hc['alumni'] else [hc['year'], None]), 'stated_in_entry'
+                x['years'], x['years_basis'] = (None, 'none') if hc['year'] is None else ([hc['year'], None], 'stated_in_entry')
                 x['alumni'] = hc['alumni']
                 x['single_token'] = False
             mc_ = mcards_.get(fn)

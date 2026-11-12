@@ -741,3 +741,10 @@ def test_author_lists_followed_by_a_title_are_not_rosters():
 def test_a_roster_entry_with_a_bracketed_descriptor_is_not_an_author_list():
     assert not A.author_list_item('Youhe Jiang (RA 2026, PhD', 'Youhe Jiang (RA 2026, PhD@University of Cambridge) \u201c A Long Quoted Title Of A Paper \u201d')
     assert A.author_list_item('Simon C. H. Yu, Wilbur C. K. Wong, and', 'Simon C. H. Yu, Wilbur C. K. Wong, and Albert Chung, \u201c A Long Title About Something \u201d Proceedings')
+
+
+def test_han_glued_cells_read_name_plus_role_word_before_the_alumni_heading():
+    t = '顾扬博士生 华勤博士生 贾博涵博士生 许圣林硕士生 高剑奇博士后 全部毕业生 总计114个 汪毅 博士 华东计算所 李某某博士生'
+    cs = A.han_glued_cells(t)
+    assert [(c['name'], c['role']) for c in cs] == [('顾扬', 'phd'), ('华勤', 'phd'), ('贾博涵', 'phd'), ('许圣林', 'masters'), ('高剑奇', 'postdoc')]
+    assert not A.han_glued_cells('顾扬博士生 华勤博士生')   # fewer than three cells: not a roster
