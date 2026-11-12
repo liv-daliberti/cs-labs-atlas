@@ -8,7 +8,7 @@ from pathlib import Path
 import atlas_paths as P  # data paths (DATA_FILES)
 import provenance  # report.json -> provenance
 from .common import HERE, Ctx
-from . import census, identity, links, member_paper_reviews, papers, reviewed_claims, students
+from . import census, identity, links, member_paper_reviews, papers, preflight, reviewed_claims, students
 
 
 def atomic_json(path, value):
@@ -78,6 +78,7 @@ def write(ctx):
 
 
 def build(school):
+    preflight.check(school, root=HERE)   # a missing or stub input refuses here, by name
     out = P.data('pis.json', school, root=HERE).parent  # the package directory (derived)
     if os.environ.get('PI_HIERARCHY_OUT'):  # a trial build elsewhere (tests, rule measurements); the inputs stay where they are
         out = Path(os.environ['PI_HIERARCHY_OUT']) / school; out.mkdir(parents=True, exist_ok=True)
