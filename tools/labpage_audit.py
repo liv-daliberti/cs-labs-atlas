@@ -1773,6 +1773,7 @@ def past_range_head(head):
     return bool(m) and int(m.group(2)) < 2026
 
 
+DEPT_DATE_ENTRY_RX = re.compile(r'^\W{0,3}\(\s*(?=[A-Za-z ,&-]*\b(?:Science|Sciences|Engineering|Mathematics|Physics|Chemistry|Biology|Statistics|Economics|Management|Technology|Informatics|Systems|Studies|Department)\b)[A-Z][A-Za-z &-]{6,70},\s*(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?|Spring|Summer|Fall|Autumn|Winter)\s+((?:19|20)\d\d)\b')   # '(Computer Science and Engineering, Summer 2017; He is currently ...)': a department and the graduation term of an alumnus entry (HKUST Chung)
 SEMESTER_START_RX = re.compile(r'\b(?:fall|spring|autumn|winter)\b', re.I)
 ALUMNI_HEAD_RX = re.compile(r'\b(?:former|past|previous|alumni|alumnae|alumnus|graduated|graduates|class of|emeriti)\b', re.I)
 
@@ -1790,6 +1791,9 @@ def entry_years(desc, head):
     cy = re.match(r'^\W{0,3}((?:19|20)\d\d)\s+(?:direct-entry\s+|regular\s+)?(?:ph\.?\s?d\.?|master(?:\u2019|\')?s?)\b[^.]{0,30}', desc or '', re.I)
     if cy:   # '2024 Direct-entry PhD Student' / '2021 Master's graduate' (name-first card pages): a cohort year is the start of a current student, the end of a graduate (ZJU 李环)
         return ([None, int(cy.group(1))] if re.search(r'\bgraduates?\b', cy.group(0), re.I) else [int(cy.group(1)), None]), 'stated_in_entry'
+    dd = DEPT_DATE_ENTRY_RX.match(desc or '')
+    if dd:
+        return [None, int(dd.group(1))], 'stated_in_entry'
     wy = re.match(r'^\W{0,3}\(\s*((?:19|20)\d\d)\s*,\s*w/\s', desc or '')
     if wy:   # '(2022, w/ Ke Xu)': the year and the co-adviser note; the year is the graduation (end) year of a past-students list, never a start-end range (Tsinghua 李琦)
         return [None, int(wy.group(1))], 'stated_in_entry'
@@ -2431,7 +2435,7 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'not_a_student', 'listed under a faculty heading'
             elif re.search(r'high[- ]school', (x.get('head') or '') + ' ' + (x.get('desc') or '')[:60], re.I):
                 why, x['detail'] = 'not_a_student', 'high-school outreach student'
-            elif auto_plan and not (STUDENT_HEAD.search(x.get('head') or '') or
+            elif auto_plan and not DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') and not (STUDENT_HEAD.search(x.get('head') or '') or
                                     (not homepage_people and (x['under_people_heading'] or x.get('qkind') == 'name+role'))):
                 why = 'not_in_people_section'  # on a homepage, names in the bio prose are collaborators and mentors
             elif auto_plan and plan.get('shared_page') and not re.search(r'\b' + re.escape(fold(family(pi))) + r'\b', fold((x.get('desc') or '')[:200])):
@@ -2440,7 +2444,7 @@ def pm_candidates(kit, school, pi, plan, held):
                                 re.search(r'[“"]|\b(proceedings|conference|journal|workshop|arxiv|ICASSP|Interspeech|ACL|EMNLP|NeurIPS|'
                                           r'ICML|CVPR|pp\.)\b', (x.get('desc') or '')[:160])):
                 why, x['detail'] = 'not_in_people_section', 'a byline or citation, not a member entry'
-            elif auto_plan and not x.get('han_card') and not (homepage_people and re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I) and not NOT_MEMBER_HEAD.search(x.get('head') or '')) and (not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') or
+            elif auto_plan and not x.get('han_card') and not DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') and not (homepage_people and re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I) and not NOT_MEMBER_HEAD.search(x.get('head') or '')) and (not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') or
                                 NOT_MEMBER_HEAD.search(x.get('head') or '')):
                 why, x['detail'] = 'not_in_people_section', f"section '{(x.get('head') or '')[:60]}' is not a member list"
             elif auto_plan and not x.get('han_card') and (not plausible(kit, x['name']) or re.match(r'^[A-Z]\.\s', x['name']) or

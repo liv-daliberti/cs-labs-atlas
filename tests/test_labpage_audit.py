@@ -847,3 +847,10 @@ def test_a_prior_degree_heading_does_not_set_the_role():
     ro = lambda t: (None, None)
     assert A.entry_role('', 'Students > Bachelor and Master in SusTech', ro)[0] is None
     assert A.entry_role('', 'Students > Master in UBC', ro)[0] is None
+
+
+def test_department_and_term_entries_are_alumni_with_a_graduation_year():
+    d = '(Computer Science and Engineering, Summer 2017; She is currently working full-time as a researcher)'
+    assert A.DEPT_DATE_ENTRY_RX.match(d)
+    assert A.entry_years(d, 'Imaging Systems for Radiotherapeutics Group') == ([None, 2017], 'stated_in_entry')
+    assert not A.DEPT_DATE_ENTRY_RX.match('(PhD student, Fall 2022)')
