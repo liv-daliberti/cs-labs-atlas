@@ -788,3 +788,9 @@ def test_name_first_cards_and_cohort_years():
 
 def test_future_start_year_is_an_incoming_student():
     assert A.entry_years(', PhD student, from Shanghai Jiao Tong University, since 2027.', 'PhD Students')[0] == [2027, None]
+
+
+def test_month_year_dash_month_year_is_a_closed_range_not_an_open_start():
+    assert A.entry_years('(Postdoc, Oct 2016 - May 2020)', 'Alumni')[0] == [2016, 2020]
+    assert A.entry_years('(4th year CS, Oct 2018 - May 2019)', 'Alumni')[0] == [2018, 2019]
+    assert A.entry_years('Master Student, September 2022~', 'Members')[0] == [2022, None]
