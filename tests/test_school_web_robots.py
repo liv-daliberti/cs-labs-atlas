@@ -324,3 +324,34 @@ def test_lpcap_html_robots_helper_and_redirect_to_other_host(toolkit):
     assert not L.html_robots_is_no_rules('<html>Access Denied</html>')
     assert L.robots_final_elsewhere('https://login.example.org/x', 'lab.edu')
     assert not L.robots_final_elsewhere('https://www.lab.edu/robots.txt', 'lab.edu')
+
+
+@pytest.mark.parametrize('toolkit', ['labpage-tools-princeton-mit', 'labpage-tools-epfl-berkeley'])
+def test_robots_redirect_to_the_same_hosts_spa_page_is_followed_once_and_stored(toolkit):
+    import importlib.util
+    import os
+    import sys
+    from types import SimpleNamespace
+    d = os.path.join(os.path.dirname(__file__), '..', 'hierarchy', toolkit)
+    sys.path.insert(0, d)
+    try:
+        spec = importlib.util.spec_from_file_location('lpcap_r_' + toolkit.replace('-', '_'), os.path.join(d, 'lpcap.py'))
+        L = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(L)
+    finally:
+        sys.path.remove(d)
+    stored = []
+    L._wait = lambda host: None
+    L._insert = lambda con, url, final, cap, st, body, ctype, err: stored.append((url, final, st))
+
+    def sess(routes):
+        def get(url, **kw):
+            st, loc, body = routes[url]
+            return SimpleNamespace(status_code=st, headers={'Location': loc} if loc else {}, content=body, url=url)
+        return SimpleNamespace(get=get)
+    L._sess = sess({'https://cs.edu/robots.txt': (302, 'https://www.cs.edu/', b''), 'https://www.cs.edu/': (200, None, SPA.encode())})
+    assert L._follow_robots_redirect(None, 'https://cs.edu', 'cs.edu')[0] == 200 and stored == [('https://cs.edu/robots.txt', 'https://www.cs.edu/', 200)]
+    L._sess = sess({'https://cs.edu/robots.txt': (302, 'https://login.other.org/x', b'')})
+    assert L._follow_robots_redirect(None, 'https://cs.edu', 'cs.edu') is None
+    L._sess = sess({'https://cs.edu/robots.txt': (302, '/home', b''), 'https://cs.edu/home': (403, None, b'')})
+    assert L._follow_robots_redirect(None, 'https://cs.edu', 'cs.edu') is None

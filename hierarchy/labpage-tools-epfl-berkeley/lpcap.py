@@ -198,6 +198,30 @@ def robots_final_elsewhere(final_url, netloc):
     return bool(final_url) and urlsplit(final_url).netloc.lower().removeprefix("www.") != netloc.lower().removeprefix("www.")
 
 
+def _follow_robots_redirect(con, base, host):
+    """robots.txt answered 3xx: follow ONE hop when its Location is the same host's own page (cs.sjtu.edu.cn/robots.txt -> its home page, an SPA catch-all, owner
+    ruling 2026-11-12) and store the destination under the robots.txt URL, so a later reader sees a 200 HTML row it can judge for robots lines / challenge markers.
+    Any other destination (another host, a login or bot-check page) stays unresolved. -> (status, body, final_url) or None."""
+    from urllib.parse import urljoin
+    try:
+        _wait(host)
+        r1 = _sess.get(base + "/robots.txt", timeout=TIMEOUT, allow_redirects=False)
+        loc = r1.headers.get("Location") if r1.status_code in (301, 302, 303, 307, 308) else None
+        if not loc:
+            return None
+        tgt = urljoin(base + "/robots.txt", loc)
+        if urlsplit(tgt).netloc.lower().removeprefix("www.") != urlsplit(base).netloc.lower().removeprefix("www."):
+            return None
+        _wait(host)
+        r2 = _sess.get(tgt, timeout=TIMEOUT, allow_redirects=False)
+        if r2.status_code != 200:
+            return None
+        _insert(con, base + "/robots.txt", tgt, None, 200, r2.content, r2.headers.get("content-type"), None)
+        return 200, r2.content, tgt
+    except Exception:
+        return None
+
+
 def robots_allowed(url, school):
     sp = urlsplit(url)
     base = f"{sp.scheme}://{sp.netloc}"
@@ -217,6 +241,10 @@ def robots_allowed(url, school):
             except Exception as e:
                 st, body = None, b""
                 _insert(con, base + "/robots.txt", None, None, None, None, None, repr(e)[:300])
+        if st in (301, 302, 303, 307, 308):
+            fr_ = _follow_robots_redirect(con, base, sp.hostname or sp.netloc)
+            if fr_:
+                st, body, row_final = fr_
         con.close()
         txt = ""
         if st == 200:
