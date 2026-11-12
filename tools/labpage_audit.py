@@ -2058,6 +2058,23 @@ def han_member_cards(text, school_rx=r'\u4e0a\u6d77\u4ea4\u901a\u5927\u5b66|\u4e
     return out
 
 
+HAN_ROLE_NAME_RX = re.compile(r'(\u535a\u58eb\u7814\u7a76\u751f|\u7855\u58eb\u7814\u7a76\u751f|\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f|\u6bd5\u4e1a\u751f)\s+([\u4e00-\u9fff\u00b7]{2,4})(?=\s|$)')
+HAN_ROLE_WORDS = {'\u535a\u58eb\u7814\u7a76\u751f', '\u7855\u58eb\u7814\u7a76\u751f', '\u535a\u58eb\u751f', '\u7855\u58eb\u751f', '\u672c\u79d1\u751f', '\u6bd5\u4e1a\u751f', '\u5728\u8bfb\u7814\u7a76\u751f', '\u8fd1\u671f\u4e8b\u4ef6', '\u79d1\u7814\u6210\u679c', '\u8054\u7cfb\u6211\u4eec'}
+
+
+def han_role_name_cells(text):
+    """A team page whose cells read 'ROLE NAME' (role word first, AISL's sjtuaiseclab.github.io/student/): at least eight cells make a roster; the role word is the cell's role,
+    the graduate word marks an alumnus (no role). Names that are themselves role / section words are not names."""
+    cells = [m for m in HAN_ROLE_NAME_RX.finditer(text or '') if m.group(2) not in HAN_ROLE_WORDS]
+    if len(cells) < 8:
+        return []
+    out = []
+    for m in cells:
+        grad = m.group(1) == '\u6bd5\u4e1a\u751f'
+        out.append(dict(name=m.group(2), role=None if grad else HAN_GLUED_ROLE[m.group(1)], year=None, alumni=grad, head='\u6bd5\u4e1a\u751f' if grad else '\u5728\u8bfb\u7814\u7a76\u751f', member=True, quote=m.group(0), desc='', ra=False))
+    return out
+
+
 HAN_GLUED_RX = re.compile(r'(?<![\u4e00-\u9fff\u00b7])([\u4e00-\u9fff]{2,4})(\u535a\u58eb\u7814\u7a76\u751f|\u7855\u58eb\u7814\u7a76\u751f|\u535a\u58eb\u540e|\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f)(?=\s|$)')
 HAN_GLUED_ROLE = {'\u535a\u58eb\u7814\u7a76\u751f': 'phd', '\u535a\u58eb\u751f': 'phd', '\u7855\u58eb\u7814\u7a76\u751f': 'masters', '\u7855\u58eb\u751f': 'masters', '\u672c\u79d1\u751f': 'undergraduate', '\u535a\u58eb\u540e': 'postdoc'}
 
@@ -2255,6 +2272,8 @@ def pm_candidates(kit, school, pi, plan, held):
             hc_ = han_member_cards(ptxt_, school_names_rx(school) + r'|\u4ea4\u5927') if re.search(r'\d{2}\u7ea7', ptxt_ or '') else []
             if not hc_:
                 hc_ = han_glued_cells(ptxt_)
+            if not hc_:
+                hc_ = han_role_name_cells(ptxt_)
         except (KeyError, ValueError):
             hc_, row_ = [], None
         mcards_ = {}

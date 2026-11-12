@@ -861,3 +861,12 @@ def test_new3_regressions_news_bracket_and_school_key_case():
     assert A.news_item('Jan 2019 - April 2021: Alice and I received a grant')
     import re
     assert re.search(A.school_names_rx('oxford'), 'Oxford')
+
+
+def test_han_role_name_cells_read_the_aisl_layout():
+    names = ['王晦亦', '鞠天杰', '赵皋东', '程彭洲', '吴宗儒', '杨磊', '闫子赫', '陈博凡']
+    t = '在读研究生 博士研究生 ' + ' 博士研究生 '.join(names) + ' 硕士研究生 宋端霄 毕业生 杜巨 由 Hugo Blox Builder'
+    cs = A.han_role_name_cells(t)
+    assert [c['name'] for c in cs][:2] == names[:2] and cs[-1]['name'] == '杜巨' and cs[-1]['alumni'] and cs[-1]['role'] is None
+    assert [c for c in cs if c['name'] == '宋端霄'][0]['role'] == 'masters'
+    assert not A.han_role_name_cells('博士研究生 王晦亦')
