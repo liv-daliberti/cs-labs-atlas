@@ -19,3 +19,6 @@ Two different stores had the same name. Main's old file (sha e4a0692d..., 1,650,
 ## Rebuild verification from main (2026-11-12)
 Private overlay (tools/overlay_root.py --private, code = main 793d325f-era, outputs deleted first), Slurm 32224041 (2 CPUs, 40 G, 13:53 wall, 20.8 GB peak RSS): pis.json, students.json, lab_papers.jsonl.gz and student_papers.jsonl.gz are sha256-identical to main's derived (359 PIs, 8,059 lab papers, 1,523 student papers, 820 lab-student pairs; no lab-paper drop). report.json differs only in provenance (builtAt, overlay paths, code commit). The 563 MB sweep was not opened by this build (no preflight requirement for Tsinghua), but is pinned by sha above.
 Main's raw/school-captures.sqlite is an append-only store that a live collector (fetch.py) writes; it gained one live row at 10:08 on the day of the copy, so its sha moves (input_manifest.py reports it as a warning).
+
+## Owner rulings (2026-11-12)
+The canonical school-captures.sqlite choice (the 578-live stage-0 store) is kept; main's former file is the side copy raw/school-captures-main-20261110.sqlite (sha e4a0692d..., unchanged). The 120-byte census-faculty.json is correct (additions-backed). The two SJTU tutorial abstracts dropped by the genre rule are accepted (see hierarchy/sjtu/PROVENANCE.md).
