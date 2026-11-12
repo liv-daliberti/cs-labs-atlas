@@ -374,10 +374,6 @@ def not_a_paper(r, pages=None, bare=False):
         return 'editorial'
     if BARE_ACRONYM_VOLUME.search(t) and ty in ('conference-paper', 'proceedings', 'other', 'article', 'book-chapter'):
         return 'proceedings_volume'
-    if ABSTRACT_FAMILY_DROPS and (TUTORIAL_ABSTRACT_DOI.match(d) or POSTER_CODE_DOI.search(d)
-                                  or (SUPPLEMENT_ITEM_DOI_DROPS and SUPPLEMENT_ITEM_DOI.match(d))
-                                  or (all_caps_title(t) and ELSEVIER_DATED_DOI.match(d))):
-        return 'meeting_abstract:genre'
     if REPLY_TO_LETTERS_DROP and REPLY_TO_COLON_TITLE.search(t):
         return 'commentary'
     if PROCEEDINGS_VOLUME.search(t):
@@ -401,6 +397,10 @@ def not_a_paper(r, pages=None, bare=False):
         return 'meeting_abstract:title'
     if ERS_CONGRESS_DOI.match(d) or (NEUROM_DOI.match(d) and (ty == 'conference-abstract' or NEUROM_ABSTRACT_CODE.search(t))):
         return 'meeting_abstract:congress'
+    if ABSTRACT_FAMILY_DROPS and (TUTORIAL_ABSTRACT_DOI.match(d) or POSTER_CODE_DOI.search(d)
+                                  or (SUPPLEMENT_ITEM_DOI_DROPS and SUPPLEMENT_ITEM_DOI.match(d))
+                                  or (all_caps_title(t) and ELSEVIER_DATED_DOI.match(d))):
+        return 'meeting_abstract:genre'
     if ty == 'conference-abstract' and ABSTRACT_JOURNALS.search(v):
         return 'meeting_abstract:journal'
     if ty == 'conference-abstract' and nb == 1:
