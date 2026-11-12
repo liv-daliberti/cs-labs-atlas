@@ -304,12 +304,17 @@ def test_capture_never_refetches_a_host_after_challenge_or_robots_refusal(tree, 
     assert calls == ['https://chal.example/a', 'https://nor.example/a']
 
 
-def test_gitignore_whitelists_the_recall_record_for_every_school():
+def test_gitignore_whitelists_the_recall_record_for_every_school(tmp_path):
     import subprocess
     root = Path(__file__).resolve().parents[1]
-    assert '!hierarchy/*/reviewed/student-recall-check.json' in (root / '.gitignore').read_text().splitlines()
+    ignore = (root / '.gitignore').read_text()
+    assert '!hierarchy/*/reviewed/student-recall-check.json' in ignore.splitlines()
+    # Release tests run from a git archive, which has no .git directory. Check
+    # the repository's rules in an isolated git worktree instead.
+    (tmp_path / '.gitignore').write_text(ignore)
+    subprocess.run(['git', 'init', '-q', str(tmp_path)], check=True)
     for key in ('mit', 'stanford', 'anyschool'):
-        r = subprocess.run(['git', 'check-ignore', '-q', f'hierarchy/{key}/reviewed/student-recall-check.json'], cwd=root)
+        r = subprocess.run(['git', 'check-ignore', '-q', f'hierarchy/{key}/reviewed/student-recall-check.json'], cwd=tmp_path)
         assert r.returncode == 1, f'{key}: the recall record is git-ignored'
 
 
