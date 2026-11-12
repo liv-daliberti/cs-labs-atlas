@@ -1712,7 +1712,7 @@ def entry_role(desc, head, role_of):
     vis = VIS.visiting_role(desc, head, role_of)
     if vis:
         return vis   # R-STU-17: 'visiting student from CUHK', '(visiting, CUHK)', a 'Visiting Students' heading: a member of this lab, role `visiting`
-    if re.search(r'\bvisiting\s+(?:intern|student|scholar\s+student)s?\b|\bvisitors?\b(?!\s+(?:professor|scientist|faculty))', (desc or '')[:80], re.I) and not re.search(r'\bvisiting\s+(?:professor|scientist|faculty|researcher)\b', (desc or '')[:80], re.I):
+    if re.search(r'^\W{0,3}(?:visiting\s+intern|visiting\s+student\s+intern)\b', (desc or '')[:60], re.I):
         return 'visiting', 'entry'   # R-STU-17: a visiting intern / visitor / visiting student is a lab member with role visiting (HKUST re-audit)
     if dissertation_entry_year(desc):
         return 'phd', 'entry'

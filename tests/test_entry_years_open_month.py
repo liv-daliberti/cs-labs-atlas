@@ -128,5 +128,5 @@ def test_tsinghua_round2_and_hkust_reaudit_items():
     assert L.entry_years('2025 Fall - ', None)[0] == [2025, None]
     assert L.entry_years('PhD, 2021 - 2026', None)[0] == [2021, 2026]
     assert L.clean_parenthetical_name('(Co-supervision) Jiawen Zhang')[0] == 'Jiawen Zhang'
-    assert L.entry_role('(Visiting intern, PhD student from Tsinghua University, Spring 2016)', 'Members', lambda t: (None, None))[0] == 'visiting'
+    assert L.entry_role('Visiting intern, PhD student from Tsinghua University, Spring 2016', 'Members', lambda t: (None, None))[0] == 'visiting'
     assert L.entry_role('(Visiting professor, X University)', 'Members', lambda t: (None, None))[0] != 'visiting'
