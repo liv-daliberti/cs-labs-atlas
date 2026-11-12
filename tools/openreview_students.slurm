@@ -4,7 +4,7 @@
 # done. One chunk <= 55 min of work; the job exits 0 on budget/time end (re-submit) and 3 when the host stopped us (HTTP 429/401/403/challenge): then
 # do NOT re-submit the same UTC day. Only one such job at a time (the 6 s gap is shared through a lock file, but the owner's account is one account).
 # Check with `sbatch --test-only` first; submit with `atlas submit`.
-# usage: sbatch hierarchy/openreview-students.slurm hkust [sjtu ...]      (BUDGET=450 per school by default; ARGS="--all" adds PIs with >= 3 students)
+# usage: sbatch tools/openreview_students.slurm hkust [sjtu ...]      (BUDGET=450 per school by default; ARGS="--all" adds PIs with >= 3 students)
 #SBATCH --job-name=or-students
 #SBATCH --partition=mltheory
 #SBATCH --account=mltheory

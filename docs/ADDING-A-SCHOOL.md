@@ -482,7 +482,7 @@ OpenAlex co-authorship is never on its own evidence of advising.
   repository excluded, a school needs a researched few-students pass over the remaining labs before stage 6 passes.
 
 - **OpenReview profiles (R-STU-27, standard step, owner 2026-11-13).** Run for every school and every PI after the lab-page and thesis routes, student-less and
-  few-student PIs first: `$CS_ATLAS_PY tools/selfdeclared_candidates.py <key>` (candidate names), then `sbatch hierarchy/openreview-students.slurm <key>` (name search, >= 6 s
+  few-student PIs first: `$CS_ATLAS_PY tools/selfdeclared_candidates.py <key>` (candidate names), then `sbatch tools/openreview_students.slurm <key>` (name search, >= 6 s
   spacing, cached, resumable in chunks of <= 55 min; `tools/openreview_students.py run <key> --dry-run` reads the cache only). Proposals:
   `scratch/openreview-students/proposals-<key>.json` (rows flagged `co_advised` / `common_name_pi`; `held` = second same-name profile or unspecified role, never wired).
   Wire like lab-page additions: a fresh random 20-row hand check first. A stop (HTTP 429/401/403/challenge) ends the route for the UTC day; the host ruling is `docs/host-rulings.json`.
