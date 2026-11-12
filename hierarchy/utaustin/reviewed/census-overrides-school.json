@@ -517,5 +517,65 @@
       }
     ],
     "why_periods": "The 2018 listing gap is bridged by a dated official university-hosted homepage that explicitly names the PI, ladder rank, CS department, and UT Austin; the other calendar years have dated department listings."
+  },
+  "Brent Waters": {
+    "periods": [
+      {
+        "id": "override_period_utaustin_brent_waters_cv_20260610",
+        "start": "2008-09",
+        "end": null,
+        "asof": "2026-06-10",
+        "datePrecision": "month",
+        "reviewed": "codex_source_review_20261112",
+        "note": "The official UT Austin CV explicitly lists consecutive assistant, associate, and professor appointments from September 2008 through the CV's present; the archive observation limits confirmation to 2026-06-10. The 2018 transition is month-resolved; no later departure is claimed.",
+        "evidence": [
+          {
+            "url": "https://web.archive.org/web/20260610120023id_/https://www.cs.utexas.edu/~bwaters/cv/brent-cv.pdf",
+            "sha256": "12f102f7659d851c3907748ce17ee638220bc6b26d65adb193c8263b209e05db",
+            "quote": "BRENT WATERS",
+            "observedAt": "2026-06-10",
+            "kind": "official_cv_pdf"
+          },
+          {
+            "url": "https://web.archive.org/web/20260610120023id_/https://www.cs.utexas.edu/~bwaters/cv/brent-cv.pdf",
+            "sha256": "12f102f7659d851c3907748ce17ee638220bc6b26d65adb193c8263b209e05db",
+            "quote": "Professor, University of Texas at Austin, (9/2018 – present)\nAssociate Professor, University of Texas at Austin, (9/2013 – 8/2018)\nAssistant Professor, University of Texas at Austin, (9/2008 – 8/2013)",
+            "observedAt": "2026-06-10",
+            "kind": "official_cv_pdf_pdftotext_layout"
+          }
+        ]
+      }
+    ],
+    "why_periods": "The archived UT Austin-hosted CV names Brent Waters and gives continuous faculty ranks through the missing 2018 year; raw PDF SHA-256 and the pdftotext -layout extraction were independently checked."
+  },
+  "Etienne Vouga": {
+    "periods": [
+      {
+        "id": "override_period_gap_utaustin_etienne_vouga_20180606",
+        "start": "2016",
+        "end": null,
+        "asof": "2026-09-30",
+        "datePrecision": "year",
+        "reviewed": "codex_source_review_20261112",
+        "note": "The 2018 article is dated at publication and calls Vouga a UT Austin Computer Science assistant professor. Dated department listings cover 2016-2017 and 2019-2026; 2016 is the first observed listing year, not an asserted hiring date. No departure date is claimed.",
+        "evidence": [
+          {
+            "url": "https://web.archive.org/web/20190717223849id_/https://www.cs.utexas.edu/news/2018/professor-etienne-vouga-uses-complex-geometry-solve-real-world-problems",
+            "sha256": "e4523c35f63efa6fad06dc802f71ef61cca1f36ee58ef1be2b4b39a9fc9b04b2",
+            "quote": "Submitted by Julianne Hodges on Wed, 06/06/2018 - 3:51pm",
+            "observedAt": "2019-07-17",
+            "kind": "official_news_archive_publication_date"
+          },
+          {
+            "url": "https://web.archive.org/web/20190717223849id_/https://www.cs.utexas.edu/news/2018/professor-etienne-vouga-uses-complex-geometry-solve-real-world-problems",
+            "sha256": "e4523c35f63efa6fad06dc802f71ef61cca1f36ee58ef1be2b4b39a9fc9b04b2",
+            "quote": "Computer science assistant professor Etienne Vouga’s research in physical simulation and geometry processing",
+            "observedAt": "2019-07-17",
+            "kind": "official_news_archive_faculty_role"
+          }
+        ]
+      }
+    ],
+    "why_periods": "The dated 2018 official UT Austin CS article explicitly names Etienne Vouga and his assistant professor role; the 2016-2017 and 2019-2026 department listings cover the remaining observed years."
   }
 }
