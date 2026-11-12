@@ -42,3 +42,10 @@ def test_title_stripped_and_unknown_supervisor_skipped():
 def test_a_name_two_pis_share_is_dropped():
     rows, counts, skipped = run(card('F Z', 'PhD 2021', 'Wei WANG'))
     assert rows == [] and counts['ambiguous'] == 1 and skipped[0]['why'] == 'ambiguous'
+
+
+def test_R_STU_26_card_is_a_dated_pair_and_co_supervision_needs_the_pi_named():
+    rows, counts, _ = run(card('G H', 'PhD 2022', 'Qiang YANG and Huamin QU'))
+    assert [r['pi'] for r in rows] == ['Huamin QU 屈華民'] and rows[0]['students'][0]['years'] == [2022, 2022]
+    rows, counts, _ = run(card('I J', 'PhD 2022', 'Qiang YANG and Zed OTHER'))
+    assert rows == [] and counts['no_pi'] == 1
