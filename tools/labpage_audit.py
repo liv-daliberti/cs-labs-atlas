@@ -289,7 +289,7 @@ def author_list_item(quote, ptxt):
     q = (quote or '').strip()
     pieces = [x.strip(' *') for x in re.split(r',|\band\b', q) if x.strip(' *')]
     namey = [x for x in pieces if re.fullmatch(r"[A-Z][\w.'\u2019-]*(?:\s+[A-Z][\w.'\u2019-]*){0,3}", x)]
-    if len(pieces) < 3 or len(namey) < len(pieces) - 1 or ',' not in q or '(' in q:
+    if (len(pieces) < 3 and not re.search(r'(?:,|\band)\s*$', q)) or len(pieces) < 2 or len(namey) < len(pieces) - 1 or ',' not in q or '(' in q:
         return False
     j = (ptxt or '').find(q)
     after = (ptxt or '')[j + len(q): j + len(q) + 700] if j >= 0 else ''
