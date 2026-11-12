@@ -70,6 +70,47 @@ url = "https://www.cs.stanford.edu/people-cs/faculty-name"
   from = "20240101"
   to = "20261231"
   format = "stanford_cs_cards"
+  [[departments.listings]]
+  slot = "CS lecturers 2024-2026"
+  kind = "main"
+  url = "www.cs.stanford.edu/people-cs/lecturers"
+  from = "20240101"
+  to = "20261231"
+  format = "stanford_cs_cards"
+  [[departments.listings]]
+  slot = "CS emeritus faculty 2024-2026"
+  kind = "main"
+  url = "www.cs.stanford.edu/people-cs/emeritus-faculty"
+  from = "20240101"
+  to = "20261231"
+  format = "stanford_cs_cards"
+  [[departments.listings]]
+  slot = "CS courtesy faculty 2024-2026"
+  kind = "courtesy"
+  url = "www.cs.stanford.edu/people-cs/courtesy-faculty"
+  from = "20240101"
+  to = "20261231"
+  format = "stanford_cs_cards"
+  [[departments.listings]]
+  slot = "CS adjunct faculty 2024-2026"
+  kind = "main"
+  url = "www.cs.stanford.edu/people-cs/adjunct-faculty"
+  from = "20240101"
+  to = "20261231"
+  format = "stanford_cs_cards"
+  [[departments.listings]]
+  slot = "CS visiting and acting faculty 2024-2026"
+  kind = "main"
+  url = "www.cs.stanford.edu/people-cs/visiting-and-acting-faculty"
+  from = "20240101"
+  to = "20261231"
+  format = "stanford_cs_cards"
+  min_entries = 1
+  [[departments.listing_groups]]
+  name = "CS all faculty categories"
+  from = "20240101"
+  to = "20261231"
+  slots = ["CS faculty directory 2024-2026", "CS lecturers 2024-2026", "CS emeritus faculty 2024-2026", "CS courtesy faculty 2024-2026", "CS adjunct faculty 2024-2026", "CS visiting and acting faculty 2024-2026"]
 
 [[departments]]
 code = "EE"

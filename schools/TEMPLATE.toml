@@ -90,6 +90,14 @@ url = ""
   format = ""             # tools/listing_formats.py format name; empty = detect
   title_filter = ''       # optional regex: keep only rows with a matching title, after capture/page completeness checks (school-wide directory feeding one department)
 
+  # When faculty categories live on separate pages, require every category.
+  # During a group's era Stage 1 requires all its slots, rather than any one.
+  # [[departments.listing_groups]]
+  # name = "All faculty categories"
+  # from = "20240101"
+  # to = "20261231"
+  # slots = ["Regular faculty", "Lecturers", "Emeriti", "Courtesy faculty"]
+
 # Units outside the full-coverage departments where computing-related faculty are looked for (stage 2).
 [[affiliated_units]]
 code = ""

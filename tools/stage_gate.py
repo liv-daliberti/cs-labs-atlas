@@ -93,8 +93,25 @@ def g1(key):
     departments = S.get(key).get('departments') or []
     bad = [] if departments else ['no Stage 1 departments in charter: faculty listing coverage is unmeasured']
     for d in departments:
+        errors = S.listing_group_errors(d)
+        if errors:
+            bad.extend(errors)
+            continue
         for y in range(lo, hi + 1):
             v = (cov.get(d['code']) or {}).get(str(y)) or {}
+            groups = [g for g in d.get('listing_groups') or []
+                      if g['from'] <= f'{y}1231' and g['to'] >= f'{y}0101']
+            if groups:
+                missing = []
+                for group in groups:
+                    absent = [slot for slot in group['slots'] if not any(
+                        status == 'ok' and re.fullmatch(re.escape(slot) + r'(?: live)? H[12]', name)
+                        for name, status in v.items())]
+                    missing.append((group['name'], absent))
+                if all(absent for _, absent in missing):
+                    bad.append(f"{d['code']} {y}: " + '; '.join(
+                        f'{name} missing ' + ', '.join(absent) for name, absent in missing))
+                continue
             gap = (d.get('listing_gaps') or {}).get(str(y))   # reviewed: searched, no archived listing (reason in the charter)
             if not any(s == 'ok' for s in v.values()) and not gap:
                 bad.append(f"{d['code']} {y}: " + ('; '.join(sorted(set(v.values()))) or 'never planned'))

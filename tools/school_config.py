@@ -180,6 +180,8 @@ def check(key):
     for c in field(cfg, 'collector.channels', []) or []:
         if chans.is_dir() and not (chans / f'{c}.py').exists():
             out.append(f'{key}: collector.channels names {c!r}, which is not a module of fulltext-push/channels/')
+    for department in cfg.get('departments') or []:
+        out.extend(f'{key}: {error}' for error in listing_group_errors(department))
     if cfg.get('status') == 'onboarding':
         deps = cfg.get('departments') or []
         if not any(d.get('coverage') == 'full' for d in deps):
@@ -211,6 +213,27 @@ def host_use(key, host):
     if any(host == s_ or host.endswith('.' + s_) for s_ in field(get(key), 'web.wayback_only_suffixes', []) or []):
         return 'wayback-only'
     return 'live'
+
+
+def listing_group_errors(department):
+    """A category group must name real slots and a bounded source era."""
+    errors = []
+    slots = {s.get('slot') for s in department.get('listings') or []}
+    seen = set()
+    for group in department.get('listing_groups') or []:
+        name = group.get('name')
+        members = group.get('slots')
+        dates = [group.get('from'), group.get('to')]
+        if (not isinstance(name, str) or not name.strip() or name in seen
+                or not isinstance(members, list) or not members
+                or any(not isinstance(s, str) or s not in slots for s in members)
+                or len(set(members)) != len(members)
+                or any(not isinstance(d, str) or not re.fullmatch(r'\d{8}', d) for d in dates)
+                or dates[0] > dates[1]):
+            errors.append(f'{department.get("code")}: invalid listing group {name!r}')
+        if isinstance(name, str):
+            seen.add(name)
+    return errors
 
 
 def listing_slots(key):
