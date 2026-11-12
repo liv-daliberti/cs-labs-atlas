@@ -36,6 +36,21 @@ foreign_title_exception = false
 [census]
 computing_departments = ["Computer Science"]   # listed_not_in_census.py; [] = every listed department
 
+[[departments]]
+code = "CS"
+name = "Computer Science"
+unit = "School of Engineering and Applied Science"
+title_match = 'Professor|Lecturer|Research Scholar'
+coverage = "full"
+url = "https://www.cs.princeton.edu/people/faculty"
+  [[departments.listings]]
+  slot = "CS faculty"
+  kind = "main"
+  url = "www.cs.princeton.edu/people/faculty"
+  from = "20160101"
+  to = "20261231"
+  format = "princeton_cs_faculty"
+
 [site]
 depts = {}
 

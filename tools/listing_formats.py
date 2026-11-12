@@ -204,6 +204,24 @@ def hit_teacher_list(h):
     return out
 
 
+def princeton_cs_faculty(h):
+    """Princeton CS's unpaged faculty directory, preserving printed titles."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for row in soup.select('.people-facstaff .person'):
+        name_field = row.select_one('h2.person-name')
+        link = name_field.select_one('a[href]') if name_field else None
+        title = row.select_one('.person-title')
+        if not name_field or not title:
+            continue
+        name = ' '.join((link or name_field).get_text(' ', strip=True).split())
+        rank = ' '.join(title.get_text(' ', strip=True).split())
+        if name and rank:
+            out.append(dict(name_listed=name, titles=[rank], homepage=None,
+                            division=None, profile=link['href'] if link else None))
+    return out
+
+
 def whu_cs_legacy(h):
     """2016–2018 Wuhan CS directory: named records with one printed rank."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1509,6 +1527,7 @@ FORMATS = {
     'whu_cs_emeritus': (whu_cs_emeritus, re.compile(r'class="teacher-list honored')),
     'seu_department_faculty': (seu_department_faculty, re.compile(r'<title>教师按系别</title>')),
     'hit_teacher_list': (hit_teacher_list, re.compile(r'id="wp_news_w6"')),
+    'princeton_cs_faculty': (princeton_cs_faculty, re.compile(r'class="people people-facstaff"')),
     'ustc_cs_legacy_sidebar': (ustc_cs_legacy_sidebar, re.compile(r'(?!)')),
     'ntu_coe_cards': (ntu_coe_cards, re.compile(r'coe-about-leadership__card')),
     'ntu_profile_cards': (ntu_profile_cards, re.compile(r'ntu-profile-list')),
