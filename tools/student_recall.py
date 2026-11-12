@@ -225,16 +225,54 @@ def name_tokens(s):
     return t
 
 
+NICKNAMES = {'andy': 'andrew', 'zack': 'zachary', 'jackie': 'jacqueline', 'suzie': 'suzanne', 'mike': 'michael', 'bob': 'robert', 'bill': 'william', 'dave': 'david',
+             'tom': 'thomas', 'jim': 'james', 'joe': 'joseph', 'ben': 'benjamin', 'sam': 'samuel', 'nick': 'nicholas', 'matt': 'matthew', 'steve': 'steven', 'tony': 'anthony', 'phil': 'philip'}
+
+
+def _edit1(x, y):
+    """Levenshtein distance <= 1 (Forest / Forrest)."""
+    if abs(len(x) - len(y)) > 1 or x == y:
+        return x == y
+    if len(x) > len(y):
+        x, y = y, x
+    i = 0
+    while i < len(x) and x[i] == y[i]:
+        i += 1
+    return x[i:] == y[i + 1:] if len(x) < len(y) else x[i + 1:] == y[i + 1:]
+
+
+def _given_compat(a, b):
+    """Two given names of the same person: equal, an initial/short prefix (<= 2 letters), a prefix of >= 3 letters at least three letters shorter (Dan / Daniel, Chris / Christopher),
+    one edit apart at >= 5 letters (Forest / Forrest), or a common nickname (Andy / Andrew)."""
+    if a == b:
+        return True
+    s, l = sorted((a, b), key=len)
+    if l.startswith(s) and len(s) <= 2:
+        return True
+    if len(s) >= 3 and l.startswith(s) and len(l) - len(s) >= 3:
+        return True
+    if len(s) >= 5 and _edit1(s, l):
+        return True
+    return NICKNAMES.get(a) == b or NICKNAMES.get(b) == a
+
+
 def name_match(a, b):
-    """The same person under spelling variants: equal token sets; or equal last token and compatible first (equal, or one an initial/prefix of the
-    other); a name with no Latin letters (CJK) matches only by its whitespace-free form."""
+    """The same person under spelling variants: equal token sets; or equal last token and compatible first (equal, an initial, a longer-name prefix, one edit apart, a common nickname);
+    hyphen/space-insensitive equal given names (Jee-weon / Jeeweon); a shorter name whose tokens all occur in a longer one with the same last token (Ozge Akmandor / Ayten Ozge Akmandor);
+    a name with no Latin letters (CJK) matches only by its whitespace-free form."""
     ta, tb = name_tokens(a), name_tokens(b)
     if len(ta) < 2 or len(tb) < 2:
         ra, rb = re.sub(r'\s+', '', a or ''), re.sub(r'\s+', '', b or '')
         return bool(ra) and ra == rb and not (ta and tb)
     if set(ta) == set(tb):
         return True
-    return ta[-1] == tb[-1] and (ta[0] == tb[0] or ta[0].startswith(tb[0]) and len(tb[0]) <= 2 or tb[0].startswith(ta[0]) and len(ta[0]) <= 2)
+    if ta[-1] != tb[-1]:
+        ja, jb = ''.join(ta), ''.join(tb)
+        return ja == jb
+    if _given_compat(ta[0], tb[0]) or ''.join(ta[:-1]) == ''.join(tb[:-1]):
+        return True
+    short, long_ = sorted((ta, tb), key=len)
+    return len(short) >= 2 and set(short) <= set(long_)
 
 
 def recorded_names(rows):
