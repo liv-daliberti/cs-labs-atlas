@@ -2884,6 +2884,8 @@ def pm_candidates(kit, school, pi, plan, held):
                 x['role'], x['role_basis'] = co_['role'], 'entry'
                 x['years'], x['years_basis'] = (co_['years'], 'stated_in_entry') if co_['years'] else (None, 'none')
                 x['alumni'] = co_['alumni']
+                if re.fullmatch(r'[\u4e00-\u9fff\u00b7]{2,4}', x['name'] or ''):
+                    x['single_token'] = False   # a Han full name read from a structured cell (a table row, a card) is one token to the Latin parser, not a first name only
             mc_ = mcards_.get(fn)
             if mc_:
                 apply_member_card(x, mc_, kit.autom._role)
