@@ -452,6 +452,30 @@ PROSE_COLLAB_RX = re.compile(r'\b(?:worked|work|collaborated|collaborates?|colla
 CHAIR_AFTER_RX = re.compile(r'^\W{0,3}(?:co-?chairs?|chairs?|co-?advisors?|advisors?|committee|readers?)\b', re.I)
 
 
+# 2026-11-12 (HKUST Ying-Ju Chen; CMU Kilinc-Karzan): a lead sentence that ends in a colon and says the PI served on committees or collaborated with students ('Students for
+# whom I serve as the co-chair/ dissertation committee/ foreign advisor/ letter writer and others:', 'I have had wonderful opportunities to collaborate with the PhD students
+# (some current and some former):') makes the names after it a collaborator or committee list, until a lead that says the PI advises ends it.
+COLLABORATOR_LEAD_RX = re.compile(
+    r'[^.:]{0,200}?(?:\bserv(?:e|ed|es|ing)\s+as\s+(?:the\s+)?(?:co-?chair|committee|external|foreign|referee|letter)|'
+    r'\b(?:collaborat\w+|work(?:ed|s)?|co-?author\w*)\s+with\s+(?:the\s+|these\s+|many\s+)?(?:following\s+)?(?:\w+\s+){0,3}students?\b)[^:]{0,160}:')
+ADVISES_LEAD_RX = re.compile(r'(?i)\b(?:advis\w+|supervis\w+|my (?:current )?(?:phd )?students|mentor\w*)\b[^.]{0,80}:|\bpostdoctoral researchers\b')
+
+
+def collaborator_list_before(ptxt, name):
+    """True when `name`, as it stands in the page text, follows (within 2500 characters) a collaborator / committee lead sentence with no advising lead between them."""
+    t = re.sub(r'\s+', ' ', ptxt or '')
+    if not name or not t:
+        return False
+    for m in re.finditer(re.escape(name), t):
+        lead = None
+        for lm in COLLABORATOR_LEAD_RX.finditer(t[max(0, m.start() - 2500):m.start()]):
+            lead = lm
+        if lead and not ADVISES_LEAD_RX.search(t[max(0, m.start() - 2500) + lead.end():m.start()]):
+            return True
+        return False
+    return False
+
+
 def prose_nonmember(name, desc, quote):
     """Stanford round 7: a name that is a faculty collaborator or committee chair, not a member. 'I also worked with Vahideh Manshadi' (Ashlagi) is
     prose about a collaborator; 'Will Monroe (2018 ...; Lyn Frazier co-chair)' in a PI's dissertation list names the student's other chair."""
@@ -2830,6 +2854,8 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'not_a_student', 'administrative staff (a contact-block or staff entry), not a lab member'
             elif fn not in keep and (pn := prose_nonmember(x['name'], x.get('desc'), x.get('quote'))):
                 why, x['detail'] = 'not_a_student', pn
+            elif fn not in keep and auto_plan and collaborator_list_before(text_cache.get(src) if src in text_cache else _page_text(kit, school, src, text_cache), x['name']):
+                why, x['detail'] = 'not_in_people_section', 'a list of students the PI collaborated with or sat on committees for (a colon-ended lead sentence), not advisees'
             elif fn not in keep and (sy := page_stale_footer(kit, school, src, text_cache)):
                 why, x['detail'] = 'undated_cannot_place', f"the page's footer is dated {sy} (before 2016): an old page, its current list is pre-window"
             elif auto_plan and fn not in keep and (nonmember := nonmember_candidate(x.get('name'), x.get('head'), school)):
@@ -3394,6 +3420,15 @@ def recover_verdicts(school):
     c.close()
     return out
 
+
+
+def _page_text(kit, school, src, cache):
+    try:
+        if src not in cache:
+            cache[src] = kit.lpev.text(school, src)
+        return cache[src]
+    except (KeyError, ValueError):
+        return ''
 
 
 def page_stale_footer(kit, school, src, cache):

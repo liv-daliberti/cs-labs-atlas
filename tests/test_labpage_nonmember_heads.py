@@ -69,3 +69,20 @@ def test_committee_referee_and_letter_writer_lists_are_not_member_lists():
         assert LA.nonmember_candidate('Hailun Zhang', head), head
     for head in ('PhD Students', 'Alumni', 'Postdoc, Johns Hopkins University, USA'):
         assert not LA.nonmember_candidate('Hailun Zhang', head), head
+
+
+CHEN = ("Yuan Qiao  Master's from Peking Univ ( Nat'l Scholarship) Hongyi Li  Bachelor's from Tsinghua Univ Students for whom I serve as the co-chair/ dissertation committee/ "
+        "foreign advisor/ letter writer and others: At HKUST : Chang Dong (2022)  Assistant Professor, Durham University, UK Wentao Lu (2022)  Postdoc, Johns Hopkins University, USA "
+        "Hailun Zhang (2019)  Assistant Professor, CUHK Shenzhen Yunjie Wang (2017)  Assistant Professor, Renmin University")
+KILINC = ("Students I have been very fortunate to advise the following PhD students: Alex L. Wang , CMU CS 2022 Nam Ho-Nguyen , CMU Tepper OR 2019 In addition, I have had wonderful "
+          "opportunities to collaborate with the PhD students (some current and some former): Lingqing Shen , CMU Tepper ACO Adams Wei Yu , CMU ML 2019 "
+          "Postdoctoral Researchers I have been very fortunate to advise the following postdoctoral researchers: Soroosh Shafieezadeh-Abadeh , 2021-2023")
+
+
+def test_colon_lead_collaborator_and_committee_lists_on_the_real_pages():
+    """The real text of imchen.people.ust.hk (sha16 355f1b2c...) and Kilinc-Karzan's page: the lead sentence, not a heading, marks the list."""
+    for n in ('Hailun Zhang', 'Yunjie Wang', 'Wentao Lu'):
+        assert LA.collaborator_list_before(CHEN, n), n
+    assert not LA.collaborator_list_before(CHEN, 'Hongyi Li')
+    assert LA.collaborator_list_before(KILINC, 'Adams Wei Yu') and LA.collaborator_list_before(KILINC, 'Lingqing Shen')
+    assert not LA.collaborator_list_before(KILINC, 'Alex L. Wang') and not LA.collaborator_list_before(KILINC, 'Soroosh Shafieezadeh-Abadeh')
