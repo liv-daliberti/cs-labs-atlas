@@ -302,12 +302,19 @@ def test_audit_ai_allowed_html_spa_allowed_challenge_5xx_403_refused(tmp_path):
     assert allowed(302, '') is False
 
 
-def test_lpcap_html_robots_helper_and_redirect_to_other_host():
-    import sys
+@pytest.mark.parametrize('toolkit', ['labpage-tools-princeton-mit', 'labpage-tools-epfl-berkeley'])
+def test_lpcap_html_robots_helper_and_redirect_to_other_host(toolkit):
+    import importlib.util
     import os
-    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'hierarchy', 'labpage-tools-princeton-mit'))
-    import importlib
-    L = importlib.import_module('lpcap')
+    import sys
+    d = os.path.join(os.path.dirname(__file__), '..', 'hierarchy', toolkit)
+    sys.path.insert(0, d)
+    try:
+        spec = importlib.util.spec_from_file_location('lpcap_' + toolkit.replace('-', '_'), os.path.join(d, 'lpcap.py'))
+        L = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(L)
+    finally:
+        sys.path.remove(d)
     assert L.html_robots_is_no_rules(SPA)
     assert not L.html_robots_is_no_rules('<html>Access Denied</html>')
     assert L.robots_final_elsewhere('https://login.example.org/x', 'lab.edu')
