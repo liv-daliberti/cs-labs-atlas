@@ -311,6 +311,8 @@ def not_a_paper(r, pages=None, bare=False):
     # R1: repository records and paratext
     if ty == 'software':
         return 'software_record'
+    if ty == 'book-review':   # R-PAP-40 (a): a review of someone else's book is paratext, whatever the journal
+        return 'book_review'
     if SUPPLEMENT_TITLE.search(t) or d.startswith('10.17504/protocols.io'):
         return 'repository_supplement'
     if ERRATUM_TITLE.search(t):
