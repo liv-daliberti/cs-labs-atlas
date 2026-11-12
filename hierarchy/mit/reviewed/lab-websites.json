@@ -37156,80 +37156,6 @@
    "evidence_gaps": []
   },
   {
-   "pi": "Kamal Youcef-Toumi",
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The department listing (https://catalog.mit.edu/schools/engineering/mechanical-engineering/, read 2026-10-31) links no personal or lab website for this PI and no profile page was read; the site a search found is kept in website_note and is not reached from any official page.",
-   "audited_at": "2026-11-11T02:15:05+00:00",
-   "checks": [
-    {
-     "source": "department_listing",
-     "url": "https://catalog.mit.edu/schools/engineering/mechanical-engineering/",
-     "at": "2026-10-31T04:19:32+00:00",
-     "result": "ok",
-     "sha256": "6632d880ab9371af7799be91b51b37d983b863e76a91703da2e9816345588731"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/24/3978",
-     "at": "2026-10-31T04:19:32+00:00",
-     "result": "no_homepage_url"
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": "https://orcid.org/0000-0001-6755-1534/person.json",
-     "at": "2026-10-31T04:19:32+00:00",
-     "result": "no_urls",
-     "sha256": "837f3a70d083fd7921b4bf325812f3999686d52f9dd7ba8780f81dc1d606eb9e"
-    },
-    {
-     "source": "openalex_author",
-     "url": "https://openalex.org/A5086271665",
-     "at": "2026-10-31T04:19:32+00:00",
-     "result": "no_homepage_field_in_schema"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Roy+AND+%28Deb%29%29+OR+%28Breazeal+AND+%28Cynthia%29%29+OR+%28Gershenfeld+AND+%28Neil%29%29+OR+%28Fan+AND+%28Chuchu%29%29+OR+%28Minzer+AND+%28Dor%29%29+OR+%28Youcef+AND+Toumi+AND+%28Kamal%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
-     "at": "2026-10-31T04:19:32+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Roy+AND+%28Deb%29%29+OR+%28Breazeal+AND+%28Cynthia%29%29+OR+%28Gershenfeld+AND+%28Neil%29%29+OR+%28Fan+AND+%28Chuchu%29%29+OR+%28Minzer+AND+%28Dor%29%29+OR+%28Youcef+AND+Toumi+AND+%28Kamal%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
-     "at": "2026-10-31T04:19:32+00:00",
-     "result": "ok",
-     "via": "pi_evidence_url",
-     "sha256": "c7d33a397942c67e0c2bf46b6428262e910944ed7dffa575caa477eec0cf4885"
-    }
-   ],
-   "places_checked": [
-    "candidate_site:ok",
-    "dblp_person_url:no_homepage_url",
-    "department_listing:ok",
-    "orcid_researcher_urls:no_urls",
-    "pi_evidence_url:listed"
-   ],
-   "checked_at": "2026-10-31T04:19:32+00:00",
-   "students_page_status": "no_people_section",
-   "papers_page_status": "no_pubs_page",
-   "coverage": "reason",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "verification_quote": " and neil or fan and chuchu or minzer and dor or youcef and toumi and kamal and not dc relation orgunit electrical engineering and computer ",
-   "website_note": {
-    "replaced_url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Roy+AND+%28Deb%29%29+OR+%28Breazeal+AND+%28Cynthia%29%29+OR+%28Gershenfeld+AND+%28Neil%29%29+OR+%28Fan+AND+%28Chuchu%29%29+OR+%28Minzer+AND+%28Dor%29%29+OR+%28Youcef+AND+Toumi+AND+%28Kamal%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
-    "replaced_sha256": "c7d33a397942c67e0c2bf46b6428262e910944ed7dffa575caa477eec0cf4885",
-    "replaced_kind": "pi_homepage",
-    "found_via": "pi_evidence_url",
-    "people_page": null,
-    "alumni_page": null,
-    "pubs_page": null,
-    "why": "no stored or live official page links this site (reviewed policy, reversible)"
-   },
-   "reason_type": "search_no_eligible_site",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
-  },
-  {
    "pi": "Chuchu Fan",
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
@@ -38263,54 +38189,6 @@
    ],
    "verified": true,
    "verification_quote": "oup research people publications news contact people ruonan han professor mit eecs ruonan received his b s degree in microelectronics from f"
-  },
-  {
-   "pi": "Negin Golrezaei",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://catalog.mit.edu/schools/sloan-management/management/: ok; dblp_person_url https://dblp.org/pid/37/10099: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-9066-2304/person.json: no_urls.",
-   "audited_at": "2026-11-11T02:15:20+00:00",
-   "checks": [
-    {
-     "source": "department_listing",
-     "url": "https://catalog.mit.edu/schools/sloan-management/management/",
-     "at": "2026-10-31T04:19:43+00:00",
-     "result": "ok",
-     "sha256": "957a3e6f7f080e7080742b66fcc429a1bc173b04000223b5a0048b7182418998"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/37/10099",
-     "at": "2026-10-31T04:19:43+00:00",
-     "result": "no_homepage_url"
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": "https://orcid.org/0000-0001-9066-2304/person.json",
-     "at": "2026-10-31T04:19:43+00:00",
-     "result": "no_urls",
-     "sha256": "92daa334c59a6a8f44e9663d45c204da8d0c293ae86a278edaf33cd03a2c9b30"
-    },
-    {
-     "source": "openalex_author",
-     "url": "https://openalex.org/A5007061409",
-     "at": "2026-10-31T04:19:43+00:00",
-     "result": "no_homepage_field_in_schema"
-    }
-   ],
-   "places_checked": [
-    "dblp_person_url:no_homepage_url",
-    "department_listing:ok",
-    "orcid_researcher_urls:no_urls"
-   ],
-   "checked_at": "2026-10-31T04:19:43+00:00",
-   "students_page_status": "no_lab_page",
-   "papers_page_status": "no_lab_page",
-   "coverage": "reason",
-   "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
   },
   {
    "pi": "Justin Reich",
@@ -39992,83 +39870,6 @@
     "people_page": "https://www.mit.edu/~rakhlin/lab.html",
     "alumni_page": null,
     "pubs_page": "https://www.mit.edu/~rakhlin/publications.html",
-    "why": "no stored or live official page links this site (reviewed policy, reversible)"
-   },
-   "reason_type": "search_no_eligible_site",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
-  },
-  {
-   "pi": "Daniel Freund",
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The department listing (https://catalog.mit.edu/schools/sloan-management/management/, read 2026-10-31) links no personal or lab website for this PI and no profile page was read; the site a search found is kept in website_note and is not reached from any official page.",
-   "audited_at": "2026-11-11T02:15:27+00:00",
-   "checks": [
-    {
-     "source": "department_listing",
-     "url": "https://catalog.mit.edu/schools/sloan-management/management/",
-     "at": "2026-10-31T04:19:57+00:00",
-     "result": "ok",
-     "sha256": "957a3e6f7f080e7080742b66fcc429a1bc173b04000223b5a0048b7182418998"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/117/5041-1",
-     "at": "2026-10-31T04:19:57+00:00",
-     "result": "listed",
-     "urls": [
-      "https://mitsloan.mit.edu/faculty/directory/daniel-freund"
-     ]
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": "https://orcid.org/0000-0001-8039-9805/person.json",
-     "at": "2026-10-31T04:19:57+00:00",
-     "result": "no_urls",
-     "sha256": "c43601bb6ac24b6c660f1dfb2e07f8edda0b769310ec584218492dc5082e373f"
-    },
-    {
-     "source": "openalex_author",
-     "url": "https://openalex.org/A5002448904",
-     "at": "2026-10-31T04:19:57+00:00",
-     "result": "no_homepage_field_in_schema"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Slotine+AND+%28Jean+OR+Jacques%29%29+OR+%28Ignazio+AND+%28Catherine%29%29+OR+%28Sun+AND+%28Andy+OR+Xu%29%29+OR+%28Pritchard+AND+%28David%29%29+OR+%28Freund+AND+%28Daniel%29%29+OR+%28Freund+AND+%28Robert%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
-     "at": "2026-10-31T04:19:57+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Slotine+AND+%28Jean+OR+Jacques%29%29+OR+%28Ignazio+AND+%28Catherine%29%29+OR+%28Sun+AND+%28Andy+OR+Xu%29%29+OR+%28Pritchard+AND+%28David%29%29+OR+%28Freund+AND+%28Daniel%29%29+OR+%28Freund+AND+%28Robert%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
-     "at": "2026-10-31T04:19:57+00:00",
-     "result": "ok",
-     "via": "pi_evidence_url",
-     "sha256": "65cd9ffe2ef736d386af77844c8a161217829f35118039f90ad4a64f55649fe1"
-    }
-   ],
-   "places_checked": [
-    "candidate_site:ok",
-    "dblp_person_url:listed",
-    "department_listing:ok",
-    "orcid_researcher_urls:no_urls",
-    "pi_evidence_url:listed"
-   ],
-   "checked_at": "2026-10-31T04:19:57+00:00",
-   "students_page_status": "no_people_section",
-   "papers_page_status": "no_pubs_page",
-   "coverage": "reason",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "verification_quote": "d catherine or sun and andy or xu or pritchard and david or freund and daniel or freund and robert and not dc relation orgunit electrical en",
-   "website_note": {
-    "replaced_url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Slotine+AND+%28Jean+OR+Jacques%29%29+OR+%28Ignazio+AND+%28Catherine%29%29+OR+%28Sun+AND+%28Andy+OR+Xu%29%29+OR+%28Pritchard+AND+%28David%29%29+OR+%28Freund+AND+%28Daniel%29%29+OR+%28Freund+AND+%28Robert%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
-    "replaced_sha256": "65cd9ffe2ef736d386af77844c8a161217829f35118039f90ad4a64f55649fe1",
-    "replaced_kind": "pi_homepage",
-    "found_via": "pi_evidence_url",
-    "people_page": null,
-    "alumni_page": null,
-    "pubs_page": null,
     "why": "no stored or live official page links this site (reviewed policy, reversible)"
    },
    "reason_type": "search_no_eligible_site",
@@ -44854,109 +44655,6 @@
    "verification_quote": "p please take a look at this welcome video from professor o brien 2020 03 04 mit eecs visit days are this friday and saturday march 6 and 7 "
   },
   {
-   "pi": "Ila Fiete",
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The department profile (https://mcgovern.mit.edu/profile/ila-fiete/, read 2026-11-11) and the department listing link no personal or lab website for this PI; the site a search found is kept in website_note and is not reached from any official page.",
-   "audited_at": "2026-11-11T02:15:37+00:00",
-   "checks": [
-    {
-     "source": "department_listing",
-     "url": "https://catalog.mit.edu/schools/science/brain-cognitive-sciences/",
-     "at": "2026-11-11T02:04:59+00:00",
-     "result": "ok",
-     "sha256": "291e7e9a40eb23f4989bac2315537376a4322008329ce1b1655a13978d141e6d"
-    },
-    {
-     "source": "school_profile",
-     "url": "https://mcgovern.mit.edu/profile/ila-fiete/",
-     "at": "2026-11-11T02:04:59+00:00",
-     "result": "ok",
-     "sha256": "3dddbd287d0617d29a3be30891a731a50a0a16a051c8efbd716dd1f1e6859a39"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "http://fietelab.mit.edu/",
-     "at": "2026-11-11T02:04:59+00:00",
-     "result": "listed",
-     "anchor": "LAB WEBSITE",
-     "on": "https://mcgovern.mit.edu/profile/ila-fiete/"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/134/9695",
-     "at": "2026-11-11T02:04:59+00:00",
-     "result": "person_not_in_dump_extract"
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-11T02:04:59+00:00",
-     "result": "no_orcid"
-    },
-    {
-     "source": "openalex_author",
-     "url": "https://openalex.org/A5083541135",
-     "at": "2026-11-11T02:04:59+00:00",
-     "result": "no_homepage_field_in_schema"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://mcgovern.mit.edu/profile/ila-fiete/",
-     "at": "2026-11-11T02:04:59+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Lermusiaux+AND+%28Pierre%29%29+OR+%28Fiete+AND+%28Ila%29%29+OR+%28Lykouris+AND+%28Thodoris%29%29+OR+%28Orlin+AND+%28James%29%29+OR+%28Sinha+AND+%28Pawan%29%29+OR+%28DiCarlo+AND+%28James%29%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
-     "at": "2026-11-11T02:04:59+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "candidate_site",
-     "url": "http://fietelab.mit.edu/",
-     "at": "2026-11-11T02:05:00+00:00",
-     "result": "robots_disallowed",
-     "via": "school_profile_link"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Lermusiaux+AND+%28Pierre%29%29+OR+%28Fiete+AND+%28Ila%29%29+OR+%28Lykouris+AND+%28Thodoris%29%29+OR+%28Orlin+AND+%28James%29%29+OR+%28Sinha+AND+%28Pawan%29%29+OR+%28DiCarlo+AND+%28James%29%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
-     "at": "2026-11-11T02:05:01+00:00",
-     "result": "ok",
-     "via": "pi_evidence_url",
-     "sha256": "5af28bb6b1877330086c04a7dcc9a08e19c4b30486d7ac566210e41dc749b7a5"
-    }
-   ],
-   "places_checked": [
-    "candidate_site:ok",
-    "candidate_site:robots_disallowed",
-    "dblp_person_url:person_not_in_dump_extract",
-    "department_listing:ok",
-    "pi_evidence_url:listed",
-    "school_profile:ok",
-    "school_profile_link:listed"
-   ],
-   "checked_at": "2026-11-11T02:05:01+00:00",
-   "students_page_status": "no_people_section",
-   "papers_page_status": "no_pubs_page",
-   "coverage": "reason",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "verification_quote": " null query dc contributor advisor lermusiaux and pierre or fiete and ila or lykouris and thodoris or orlin and james or sinha and pawan or ",
-   "website_note": {
-    "replaced_url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Lermusiaux+AND+%28Pierre%29%29+OR+%28Fiete+AND+%28Ila%29%29+OR+%28Lykouris+AND+%28Thodoris%29%29+OR+%28Orlin+AND+%28James%29%29+OR+%28Sinha+AND+%28Pawan%29%29+OR+%28DiCarlo+AND+%28James%29%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
-    "replaced_sha256": "5af28bb6b1877330086c04a7dcc9a08e19c4b30486d7ac566210e41dc749b7a5",
-    "replaced_kind": "pi_homepage",
-    "found_via": "pi_evidence_url",
-    "people_page": null,
-    "alumni_page": null,
-    "pubs_page": null,
-    "why": "no stored or live official page links this site (reviewed policy, reversible)"
-   },
-   "reason_type": "search_no_eligible_site",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
-  },
-  {
    "pi": "Thodoris Lykouris",
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
@@ -45949,6 +45647,457 @@
    },
    "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
+  },
+  {
+   "pi": "Daniel Freund",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The department listing (https://catalog.mit.edu/schools/sloan-management/management/, read 2026-10-31) links no personal or lab website for this PI and no profile page was read; the site a search found is kept in website_note and is not reached from any official page.",
+   "audited_at": "2026-11-11T02:15:27+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://catalog.mit.edu/schools/sloan-management/management/",
+     "at": "2026-10-31T04:19:57+00:00",
+     "result": "ok",
+     "sha256": "957a3e6f7f080e7080742b66fcc429a1bc173b04000223b5a0048b7182418998"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/117/5041-1",
+     "at": "2026-10-31T04:19:57+00:00",
+     "result": "listed",
+     "urls": [
+      "https://mitsloan.mit.edu/faculty/directory/daniel-freund"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0001-8039-9805/person.json",
+     "at": "2026-10-31T04:19:57+00:00",
+     "result": "no_urls",
+     "sha256": "c43601bb6ac24b6c660f1dfb2e07f8edda0b769310ec584218492dc5082e373f"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5002448904",
+     "at": "2026-10-31T04:19:57+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Slotine+AND+%28Jean+OR+Jacques%29%29+OR+%28Ignazio+AND+%28Catherine%29%29+OR+%28Sun+AND+%28Andy+OR+Xu%29%29+OR+%28Pritchard+AND+%28David%29%29+OR+%28Freund+AND+%28Daniel%29%29+OR+%28Freund+AND+%28Robert%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+     "at": "2026-10-31T04:19:57+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Slotine+AND+%28Jean+OR+Jacques%29%29+OR+%28Ignazio+AND+%28Catherine%29%29+OR+%28Sun+AND+%28Andy+OR+Xu%29%29+OR+%28Pritchard+AND+%28David%29%29+OR+%28Freund+AND+%28Daniel%29%29+OR+%28Freund+AND+%28Robert%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+     "at": "2026-10-31T04:19:57+00:00",
+     "result": "ok",
+     "via": "pi_evidence_url",
+     "sha256": "65cd9ffe2ef736d386af77844c8a161217829f35118039f90ad4a64f55649fe1"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://mitmgmtfaculty.mit.edu/dfreund/students/",
+     "at": "2026-11-12T16:37:32+00:00",
+     "sha256": "be4d6b9ae292f7616dd1b46c5859d830924af6fcd39e79338a6c34b7432d595e",
+     "result": "ok",
+     "name_quote": "Daniel Freund - MIT Sloan Individual Faculty Site",
+     "tie_quote": "Daniel Freund - MIT Sloan Individual Faculty Site",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed"
+   ],
+   "checked_at": "2026-11-12T16:37:32+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "no_pubs_page",
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "verification_quote": "Daniel Freund - MIT Sloan Individual Faculty Site",
+   "website_note": {
+    "replaced_url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Slotine+AND+%28Jean+OR+Jacques%29%29+OR+%28Ignazio+AND+%28Catherine%29%29+OR+%28Sun+AND+%28Andy+OR+Xu%29%29+OR+%28Pritchard+AND+%28David%29%29+OR+%28Freund+AND+%28Daniel%29%29+OR+%28Freund+AND+%28Robert%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "replaced_sha256": "65cd9ffe2ef736d386af77844c8a161217829f35118039f90ad4a64f55649fe1",
+    "replaced_kind": "pi_homepage",
+    "found_via": "pi_evidence_url",
+    "people_page": null,
+    "alumni_page": null,
+    "pubs_page": null,
+    "why": "no stored or live official page links this site (reviewed policy, reversible)"
+   },
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "url": "https://mitmgmtfaculty.mit.edu/dfreund/students/",
+   "kind": "pi_homepage",
+   "people_page": "https://mitmgmtfaculty.mit.edu/dfreund/students/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "be4d6b9ae292f7616dd1b46c5859d830924af6fcd39e79338a6c34b7432d595e",
+   "evidence": {
+    "url": "https://mitmgmtfaculty.mit.edu/dfreund/students/",
+    "sha256": "be4d6b9ae292f7616dd1b46c5859d830924af6fcd39e79338a6c34b7432d595e",
+    "quote": "Daniel Freund - MIT Sloan Individual Faculty Site"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://mitmgmtfaculty.mit.edu/dfreund/students/",
+     "at": "2026-11-12T16:37:32+00:00",
+     "sha256": "be4d6b9ae292f7616dd1b46c5859d830924af6fcd39e79338a6c34b7432d595e",
+     "result": "ok",
+     "name_quote": "Daniel Freund - MIT Sloan Individual Faculty Site",
+     "tie_quote": "Daniel Freund - MIT Sloan Individual Faculty Site",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "verified": true
+  },
+  {
+   "pi": "Ila Fiete",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The department profile (https://mcgovern.mit.edu/profile/ila-fiete/, read 2026-11-11) and the department listing link no personal or lab website for this PI; the site a search found is kept in website_note and is not reached from any official page.",
+   "audited_at": "2026-11-11T02:15:37+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://catalog.mit.edu/schools/science/brain-cognitive-sciences/",
+     "at": "2026-11-11T02:04:59+00:00",
+     "result": "ok",
+     "sha256": "291e7e9a40eb23f4989bac2315537376a4322008329ce1b1655a13978d141e6d"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://mcgovern.mit.edu/profile/ila-fiete/",
+     "at": "2026-11-11T02:04:59+00:00",
+     "result": "ok",
+     "sha256": "3dddbd287d0617d29a3be30891a731a50a0a16a051c8efbd716dd1f1e6859a39"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://fietelab.mit.edu/",
+     "at": "2026-11-11T02:04:59+00:00",
+     "result": "listed",
+     "anchor": "LAB WEBSITE",
+     "on": "https://mcgovern.mit.edu/profile/ila-fiete/"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/134/9695",
+     "at": "2026-11-11T02:04:59+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-11T02:04:59+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5083541135",
+     "at": "2026-11-11T02:04:59+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://mcgovern.mit.edu/profile/ila-fiete/",
+     "at": "2026-11-11T02:04:59+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Lermusiaux+AND+%28Pierre%29%29+OR+%28Fiete+AND+%28Ila%29%29+OR+%28Lykouris+AND+%28Thodoris%29%29+OR+%28Orlin+AND+%28James%29%29+OR+%28Sinha+AND+%28Pawan%29%29+OR+%28DiCarlo+AND+%28James%29%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+     "at": "2026-11-11T02:04:59+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://fietelab.mit.edu/",
+     "at": "2026-11-11T02:05:00+00:00",
+     "result": "robots_disallowed",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Lermusiaux+AND+%28Pierre%29%29+OR+%28Fiete+AND+%28Ila%29%29+OR+%28Lykouris+AND+%28Thodoris%29%29+OR+%28Orlin+AND+%28James%29%29+OR+%28Sinha+AND+%28Pawan%29%29+OR+%28DiCarlo+AND+%28James%29%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+     "at": "2026-11-11T02:05:01+00:00",
+     "result": "ok",
+     "via": "pi_evidence_url",
+     "sha256": "5af28bb6b1877330086c04a7dcc9a08e19c4b30486d7ac566210e41dc749b7a5"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://fietelab.github.io/people/",
+     "at": "2026-11-12T16:37:36+00:00",
+     "sha256": "09ef063699e59d41e70d07b214af080ab0e62df5197e11ed951a7424f39d79a2",
+     "result": "ok",
+     "name_quote": "Principal Investigator Ila Fiete Principal Investigator",
+     "tie_quote": "The Fiete Lab MIT Department of Brain and Cognitive Sciences Building 46",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "candidate_site:robots_disallowed",
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok",
+    "pi_evidence_url:listed",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-12T16:37:36+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "no_pubs_page",
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "verification_quote": "Principal Investigator Ila Fiete Principal Investigator",
+   "website_note": {
+    "replaced_url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Lermusiaux+AND+%28Pierre%29%29+OR+%28Fiete+AND+%28Ila%29%29+OR+%28Lykouris+AND+%28Thodoris%29%29+OR+%28Orlin+AND+%28James%29%29+OR+%28Sinha+AND+%28Pawan%29%29+OR+%28DiCarlo+AND+%28James%29%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "replaced_sha256": "5af28bb6b1877330086c04a7dcc9a08e19c4b30486d7ac566210e41dc749b7a5",
+    "replaced_kind": "pi_homepage",
+    "found_via": "pi_evidence_url",
+    "people_page": null,
+    "alumni_page": null,
+    "pubs_page": null,
+    "why": "no stored or live official page links this site (reviewed policy, reversible)"
+   },
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "url": "https://fietelab.github.io/people/",
+   "kind": "lab_site",
+   "people_page": "https://fietelab.github.io/people/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "09ef063699e59d41e70d07b214af080ab0e62df5197e11ed951a7424f39d79a2",
+   "evidence": {
+    "url": "https://fietelab.github.io/people/",
+    "sha256": "09ef063699e59d41e70d07b214af080ab0e62df5197e11ed951a7424f39d79a2",
+    "quote": "Principal Investigator Ila Fiete Principal Investigator"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://fietelab.github.io/people/",
+     "at": "2026-11-12T16:37:36+00:00",
+     "sha256": "09ef063699e59d41e70d07b214af080ab0e62df5197e11ed951a7424f39d79a2",
+     "result": "ok",
+     "name_quote": "Principal Investigator Ila Fiete Principal Investigator",
+     "tie_quote": "The Fiete Lab MIT Department of Brain and Cognitive Sciences Building 46",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "verified": true
+  },
+  {
+   "pi": "Negin Golrezaei",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://catalog.mit.edu/schools/sloan-management/management/: ok; dblp_person_url https://dblp.org/pid/37/10099: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-9066-2304/person.json: no_urls.",
+   "audited_at": "2026-11-11T02:15:20+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://catalog.mit.edu/schools/sloan-management/management/",
+     "at": "2026-10-31T04:19:43+00:00",
+     "result": "ok",
+     "sha256": "957a3e6f7f080e7080742b66fcc429a1bc173b04000223b5a0048b7182418998"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/37/10099",
+     "at": "2026-10-31T04:19:43+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0001-9066-2304/person.json",
+     "at": "2026-10-31T04:19:43+00:00",
+     "result": "no_urls",
+     "sha256": "92daa334c59a6a8f44e9663d45c204da8d0c293ae86a278edaf33cd03a2c9b30"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5007061409",
+     "at": "2026-10-31T04:19:43+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.mit.edu/~golrezae/students.html",
+     "at": "2026-11-12T16:37:39+00:00",
+     "sha256": "73c638512fa818e2be86f7af4e680ff85424e6817aa9216b8caf55634a4c6fdf",
+     "result": "ok",
+     "name_quote": "Group | Negin Golrezaei Skip to content Negin Golrezaei Menu",
+     "tie_quote": "Negin Golrezaei · MIT Sloan School of Management",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls"
+   ],
+   "checked_at": "2026-11-12T16:37:39+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "no_lab_page",
+   "coverage": "website",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": [],
+   "url": "https://www.mit.edu/~golrezae/students.html",
+   "kind": "pi_homepage",
+   "people_page": "https://www.mit.edu/~golrezae/students.html",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "73c638512fa818e2be86f7af4e680ff85424e6817aa9216b8caf55634a4c6fdf",
+   "evidence": {
+    "url": "https://www.mit.edu/~golrezae/students.html",
+    "sha256": "73c638512fa818e2be86f7af4e680ff85424e6817aa9216b8caf55634a4c6fdf",
+    "quote": "Group | Negin Golrezaei Skip to content Negin Golrezaei Menu"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.mit.edu/~golrezae/students.html",
+     "at": "2026-11-12T16:37:39+00:00",
+     "sha256": "73c638512fa818e2be86f7af4e680ff85424e6817aa9216b8caf55634a4c6fdf",
+     "result": "ok",
+     "name_quote": "Group | Negin Golrezaei Skip to content Negin Golrezaei Menu",
+     "tie_quote": "Negin Golrezaei · MIT Sloan School of Management",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "verified": true,
+   "verification_quote": "Group | Negin Golrezaei Skip to content Negin Golrezaei Menu"
+  },
+  {
+   "pi": "Kamal Youcef-Toumi",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The department listing (https://catalog.mit.edu/schools/engineering/mechanical-engineering/, read 2026-10-31) links no personal or lab website for this PI and no profile page was read; the site a search found is kept in website_note and is not reached from any official page.",
+   "audited_at": "2026-11-11T02:15:05+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://catalog.mit.edu/schools/engineering/mechanical-engineering/",
+     "at": "2026-10-31T04:19:32+00:00",
+     "result": "ok",
+     "sha256": "6632d880ab9371af7799be91b51b37d983b863e76a91703da2e9816345588731"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/24/3978",
+     "at": "2026-10-31T04:19:32+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0001-6755-1534/person.json",
+     "at": "2026-10-31T04:19:32+00:00",
+     "result": "no_urls",
+     "sha256": "837f3a70d083fd7921b4bf325812f3999686d52f9dd7ba8780f81dc1d606eb9e"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5086271665",
+     "at": "2026-10-31T04:19:32+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Roy+AND+%28Deb%29%29+OR+%28Breazeal+AND+%28Cynthia%29%29+OR+%28Gershenfeld+AND+%28Neil%29%29+OR+%28Fan+AND+%28Chuchu%29%29+OR+%28Minzer+AND+%28Dor%29%29+OR+%28Youcef+AND+Toumi+AND+%28Kamal%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+     "at": "2026-10-31T04:19:32+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Roy+AND+%28Deb%29%29+OR+%28Breazeal+AND+%28Cynthia%29%29+OR+%28Gershenfeld+AND+%28Neil%29%29+OR+%28Fan+AND+%28Chuchu%29%29+OR+%28Minzer+AND+%28Dor%29%29+OR+%28Youcef+AND+Toumi+AND+%28Kamal%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+     "at": "2026-10-31T04:19:32+00:00",
+     "result": "ok",
+     "via": "pi_evidence_url",
+     "sha256": "c7d33a397942c67e0c2bf46b6428262e910944ed7dffa575caa477eec0cf4885"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://mechatronics.mit.edu/people/",
+     "at": "2026-11-12T16:37:42+00:00",
+     "sha256": "62a744af156ef5aa7faf8cea32d058b3ef0eddf7313bcfce1fc2d781e1f2f376",
+     "result": "ok",
+     "name_quote": "Prof. Kamal Youcef-Toumi Director of MITMRL",
+     "tie_quote": "MIT Mechatronics Research Lab Members Director Prof. Kamal Youcef-Toumi",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed"
+   ],
+   "checked_at": "2026-11-12T16:37:42+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "no_pubs_page",
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "verification_quote": "Prof. Kamal Youcef-Toumi Director of MITMRL",
+   "website_note": {
+    "replaced_url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Roy+AND+%28Deb%29%29+OR+%28Breazeal+AND+%28Cynthia%29%29+OR+%28Gershenfeld+AND+%28Neil%29%29+OR+%28Fan+AND+%28Chuchu%29%29+OR+%28Minzer+AND+%28Dor%29%29+OR+%28Youcef+AND+Toumi+AND+%28Kamal%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "replaced_sha256": "c7d33a397942c67e0c2bf46b6428262e910944ed7dffa575caa477eec0cf4885",
+    "replaced_kind": "pi_homepage",
+    "found_via": "pi_evidence_url",
+    "people_page": null,
+    "alumni_page": null,
+    "pubs_page": null,
+    "why": "no stored or live official page links this site (reviewed policy, reversible)"
+   },
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "url": "https://mechatronics.mit.edu/people/",
+   "kind": "pi_homepage",
+   "people_page": "https://mechatronics.mit.edu/people/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "62a744af156ef5aa7faf8cea32d058b3ef0eddf7313bcfce1fc2d781e1f2f376",
+   "evidence": {
+    "url": "https://mechatronics.mit.edu/people/",
+    "sha256": "62a744af156ef5aa7faf8cea32d058b3ef0eddf7313bcfce1fc2d781e1f2f376",
+    "quote": "Prof. Kamal Youcef-Toumi Director of MITMRL"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://mechatronics.mit.edu/people/",
+     "at": "2026-11-12T16:37:42+00:00",
+     "sha256": "62a744af156ef5aa7faf8cea32d058b3ef0eddf7313bcfce1fc2d781e1f2f376",
+     "result": "ok",
+     "name_quote": "Prof. Kamal Youcef-Toumi Director of MITMRL",
+     "tie_quote": "MIT Mechatronics Research Lab Members Director Prof. Kamal Youcef-Toumi",
+     "reviewer": "claude-legacy-recall-1112 (fresh reviewer, registrations-reviewed.json)"
+    }
+   ],
+   "verified": true
   }
  ]
 }
