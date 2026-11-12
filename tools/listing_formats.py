@@ -127,7 +127,7 @@ def stanford_ee_bulletin(h):
         if first is None:
             continue
         label = clean(first.get_text(' ', strip=True))
-        if not re.match(r'^(?:Emeriti|(?:Courtesy |Adjunct |Visiting )?(?:Associate |Assistant )?Professors?|Lecturers)\b', label):
+        if not re.match(r'^(?:Emeriti|(?:Courtesy |Adjunct |Visiting |Consulting )?(?:Associate |Assistant )?Professors?|Lecturers)\b', label):
             continue
         emeriti = label.startswith('Emeriti')
         text = clean(p.get_text(' ', strip=True))[len(label):]

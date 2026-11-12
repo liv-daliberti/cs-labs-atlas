@@ -47,10 +47,11 @@ def test_bulletin_rank_sections_and_emeriti_are_literal_source_quotes():
       <p><em>Emeriti: (Professors)</em> John Cioffi*, Hector Garcia-Molina (deceased November 25, 2019);
       (<em>Associate Professors</em>) John T. Gill III; (Professors, Research) Antony Fraser-Smith* (<em>*Recalled to active duty</em>)</p>
       <p><em>Professors:</em> Stephen P. Boyd, Dan Boneh</p>
-      <p><em>Visiting Associate Professor</em>: Youngcheol Chae</p></div>'''
+      <p><em>Visiting Associate Professor</em>: Youngcheol Chae</p>
+      <p><em>Consulting Professors:</em> Rick Bahr</p></div>'''
     rows = L.stanford_ee_bulletin(html)
     assert [r['name_listed'] for r in rows] == ['John Cioffi', 'Hector Garcia-Molina', 'John T. Gill III',
-                                             'Antony Fraser-Smith', 'Stephen P. Boyd', 'Dan Boneh', 'Youngcheol Chae']
+                                             'Antony Fraser-Smith', 'Stephen P. Boyd', 'Dan Boneh', 'Youngcheol Chae', 'Rick Bahr']
     assert rows[2]['titles'] == ['Emeriti: (Professors)', 'Associate Professors']
     assert rows[3]['titles'] == ['Emeriti: (Professors)', 'Professors, Research']
     assert all(quote_of('', row, html) for row in rows)

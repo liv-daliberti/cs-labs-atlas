@@ -35,6 +35,7 @@ foreign_title_exception = false
 
 [census]
 computing_departments = ["CS", "EE"]   # listed_not_in_census.py; [] = every listed department
+rank_words = {adjunct = '\bconsulting\s+(?:(?:associate|assistant)\s+)?professor'}
 
 [site]
 depts = {CS = "Computer Science", EE = "Electrical Engineering"}
