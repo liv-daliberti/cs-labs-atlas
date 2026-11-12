@@ -1,8 +1,4 @@
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-import listing_formats as LF
+from tools import listing_formats as LF
 
 
 def test_berkeley_directory_keeps_faculty_only():
