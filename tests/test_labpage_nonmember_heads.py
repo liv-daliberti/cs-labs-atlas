@@ -42,3 +42,10 @@ def test_degree_held_is_not_the_role():
     assert LA.entry_role('PhD. in Educational Technology Student, University of Hong Kong and Assistant Professor, Hubei University',
                          'Former Summer Interns > 2019', role_of) == ('intern', 'section_heading')
     assert LA.entry_role('PhD. in Computer Science Student, Carnegie Mellon University', 'Graduate Students', lambda s: ('phd', 0))[0] == 'phd'
+
+
+def test_student_level_prize_heading_lists_students_and_award_heading_still_does_not():
+    """Georgia Tech Bo Zhu: '2021 Neukom Graduate Research Prize Winner' names its recipients' level; NTU's thesis award heading stays out."""
+    assert not LA.nonmember_candidate('Yaorui Zhang', '2021 Neukom Undergraduate Research Prize Winner > 2021 Neukom Graduate Research Prize Winner')
+    assert LA.nonmember_candidate('Zhaoxi Chen', 'CCDS Outstanding PhD Thesis Award')
+    assert LA.AWARD_SENTENCE_RX.search('Guanghui Wang , Krishna Acharya , and Juba Ziani received the fellowship')

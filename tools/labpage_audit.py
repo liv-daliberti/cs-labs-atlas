@@ -2504,6 +2504,8 @@ NONMEMBER_SECTION = re.compile(r'\bstudent\s+(?:reports?|projects?)\b|\bprospect
                               r'\b(?:postdoc|postdoctoral|phd|student)\s+positions?\b|scholar profile|citation data', re.I)
 
 
+# 2026-11-12 (Georgia Tech Ziani): a fellowship / award sentence naming the PI and his students is no byline
+AWARD_SENTENCE_RX = re.compile(r'\b(?:fellowships?|fellows?|awarded|received|won|recipients?|winners?)\b', re.I)
 COLLABORATED_STUDENTS = re.compile(r'\bcollaborat\w*\s+with\s+(?:the\s+|these\s+|following\s+|my\s+)*(?:\w+\s+){0,3}students?\b', re.I)
 VISITORS_AT = re.compile(r'\bvisitors?\s*(?:@|at)\s+(.{2,60})$', re.I)
 
@@ -2524,7 +2526,7 @@ def nonmember_candidate(name, heading, school=None):
     if re.match(r'^\s*(?:Ph\.?\s?D|M\.?\s?S|B\.?\s?S|B\.?\s?E|Bachelor|Master)\b[^|]{0,80},\s*(?:19|20)\d\d\s*$', h_, re.I) and not re.search(r'\b(?:students?|alumni|members?|team|people|group)\b', h_, re.I):
         return 'not_in_people_section', 'an education line of a CV (a degree, field and year), not a member roster: the names under it are publication authors'   # Tsinghua round 2, madsys \u7ae0\u660e\u661f's page
     h_ = (heading or '').split(' > ')[-1]
-    if re.search(r'\b(?:award|medal|prize|honou?rs?|recipient|scholarship|fellowship|thesis award)\b', h_, re.I) and not re.search(r'\b(?:students?|members?|people|team|alumni)\b', h_, re.I):
+    if re.search(r'\b(?:award|medal|prize|honou?rs?|recipient|scholarship|fellowship|thesis award)\b', h_, re.I) and not re.search(r'\b(?:students?|members?|people|team|alumni|(?:under)?graduates?)\b', h_, re.I):   # 2026-11-12 (Georgia Tech Bo Zhu): '2021 Neukom Graduate Research Prize Winner' names a student level: its names are the lab's students
         return 'not_in_people_section', 'an award / honour heading (a sentence about a recipient), not a member roster'   # NTU round 6: Zhaoxi Chen under 'NTU PhD Medal of Honour'
     return None
 
@@ -2827,12 +2829,12 @@ def pm_candidates(kit, school, pi, plan, held):
                 why = 'not_in_people_section'  # on a homepage, names in the bio prose are collaborators and mentors
             elif auto_plan and plan.get('shared_page') and not re.search(r'\b' + re.escape(fold(family(pi))) + r'\b', fold((x.get('desc') or '')[:200])):
                 why, x['detail'] = 'shared_page_no_adviser', f"a people page shared by {plan['shared_page']} labs; the entry does not name this PI"
-            elif auto_plan and not plan.get('shared_page') and not DEGREE_BRACKET_ENTRY_RX.match(x.get('desc') or '') and (re.search(r'\b' + re.escape(fold(family(pi))) + r'\b', fold((x.get('desc') or '')[:160])) or
+            elif auto_plan and not plan.get('shared_page') and not DEGREE_BRACKET_ENTRY_RX.match(x.get('desc') or '') and not (AWARD_SENTENCE_RX.search((x.get('desc') or '')[:160]) or AWARD_SENTENCE_RX.search(x.get('head') or '')) and (re.search(r'\b' + re.escape(fold(family(pi))) + r'\b', fold((x.get('desc') or '')[:160])) or
                                 re.search(r'[“"]|\b(proceedings|conference|journal|workshop|arxiv|ICASSP|Interspeech|ACL|EMNLP|NeurIPS|'
                                           r'ICML|CVPR|pp\.)\b', (x.get('desc') or '')[:160])):
                 why, x['detail'] = 'not_in_people_section', 'a byline or citation, not a member entry'
             elif auto_plan and not x.get('han_card') and not DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') and not (homepage_people and re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I) and not NOT_MEMBER_HEAD.search(x.get('head') or '')) and (not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') or
-                                NOT_MEMBER_HEAD.search(x.get('head') or '')):
+                                NOT_MEMBER_HEAD.search(x.get('head') or '') and not (x.get('role') in ('masters', 'phd', 'undergraduate') and re.search(r'(?i)\b(?:under)?graduate\b', x.get('head') or ''))):   # a student-level prize chain ('2021 Neukom Undergraduate Research Prize Winner > Thesis: ...') lists the lab's students (Georgia Tech Bo Zhu)
                 why, x['detail'] = 'not_in_people_section', f"section '{(x.get('head') or '')[:60]}' is not a member list"
             elif auto_plan and not x.get('han_card') and not x.get('card_override') and ((not plausible(kit, x['name']) and not ((DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') or DEGREE_BRACKET_ENTRY_RX.match(x.get('desc') or '')) and len(x['name'].split()) >= 2)) or re.match(r'^[A-Z]\.\s', x['name']) or
                                 all(t.isupper() and len(t) <= 4 for t in x['name'].split())):
