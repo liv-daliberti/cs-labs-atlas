@@ -383,7 +383,7 @@
     ]
   },
   "陈国兴": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "All original identifier links remain inactive pending separate source-bound identity admission.",
@@ -392,7 +392,51 @@
     "aliases": [
       "Guoxing Chen"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own homepage, 14 cited titles; id 35 works with a single stray materials paper (2.9%); DBLP 05/1884 unsuffixed, titles matched 17. Filter the one phosphating-coating work.",
+      "evidence": [
+        {
+          "url": "https://donnod.github.io/",
+          "sha256": "ce4e6d54e816a9bb04a7029095f64eb282fd79731d1f00f2fea52ac3a2b01451",
+          "role": "site",
+          "date": "2026-11-07T18:38:10",
+          "name_quote": "on Service Team Guoxing Chen (陈国兴) Tenure-Track Associate Professor Schoo",
+          "school_tie_quote": "sociate Professor School of Computer Science Shanghai Jiao Tong University Office: SEIEE Building 3-525 Emai"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/05/1884"
+    ],
+    "openalex": [
+      "https://openalex.org/A5100725580"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5100725580",
+        "titles_on_page": 14,
+        "titles_cited_by_name": 14,
+        "cls": "cited",
+        "school_lineage_works": 14,
+        "names": {
+          "Guoxing Chen": 16
+        },
+        "contamination": {
+          "works": 35,
+          "matched": 16,
+          "school_window": 32,
+          "suspect": 1,
+          "suspect_frac": 0.029,
+          "outside_frac": 0.543
+        }
+      }
+    ]
   },
   "汪宇霆": {
     "no_identity": false,
@@ -777,7 +821,7 @@
     ]
   },
   "胡云聪": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "All original identifier links remain inactive pending separate source-bound identity admission.",
@@ -786,7 +830,51 @@
     "aliases": [
       "Yuncong Hu"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own homepage names 胡云聪 and SJTU; DBLP 241/9318 titles match; outside works are crypto.",
+      "evidence": [
+        {
+          "url": "https://huyuncong.com/",
+          "sha256": "f8097c0e02fc5b6d2ddfebd8e1a378878c9ca288278cc042824d36d3aad27c8b",
+          "role": "site",
+          "date": "2026-11-07T18:43:16",
+          "name_quote": "Service Contact CV Yuncong Hu(胡云聪) Associate Professor Shanghai Jiao Tong",
+          "school_tie_quote": "ntact CV Yuncong Hu(胡云聪) Associate Professor Shanghai Jiao Tong University About Hi! I am an associate profe"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/241/9318"
+    ],
+    "openalex": [
+      "https://openalex.org/A5075518078"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5075518078",
+        "titles_on_page": 10,
+        "titles_cited_by_name": 10,
+        "cls": "cited",
+        "school_lineage_works": 6,
+        "names": {
+          "Yuncong Hu": 12
+        },
+        "contamination": {
+          "works": 14,
+          "matched": 12,
+          "school_window": 6,
+          "suspect": 1,
+          "suspect_frac": 0.071,
+          "outside_frac": 0.143
+        }
+      }
+    ]
   },
   "马叶涵": {
     "no_identity": false,
@@ -905,7 +993,7 @@
     ]
   },
   "李希君": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "All original identifier links remain inactive pending separate source-bound identity admission.",
@@ -914,7 +1002,75 @@
     "aliases": [
       "Xijun Li"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own homepages and official page are fine, but the main OA id carries clearly foreign works (spacecraft fault diagnosis, distribution-grid planning, 2009 hyperspectral) at 8.6%, with weak school lineage (8). Keep the small clean id A5147963176 and DBLP 203/0784 (26 matches).",
+      "evidence": [
+        {
+          "url": "https://xijunlee.github.io/en.html",
+          "sha256": "34240c98fb572381287d9c6c51950c51cb86a5865c2de37f5f78b31e72b7b337",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " Academic Profile 中文 Xijun Li 李希君 Assistant Professor · Ph.D. Advisor Tea",
+          "school_tie_quote": "Shanghai Jiao Tong University · Xijun Li Skip to main content R"
+        },
+        {
+          "url": "https://xijunlee.github.io/archive-zh.html",
+          "sha256": "766856d628203051465768ab3b9bebf3ca9ea24eb5e7e0366cb45d482d9328c6",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " 上海交通大学 · 李希君 · 完整学术档案 跳至主要内容 中 EN 招生与实习 ↗ ← 返回主页 完整学",
+          "school_tie_quote": "上海交通大学 · 李希君 · 完整学术档案 跳至主要内容 中 EN 招生与实习 ↗ ← 返回主页"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/lixijun.html",
+          "sha256": "94167aeb7bb4405c3dee2e385269a34e1e599948425c0053dec80673f942945d",
+          "role": "profile",
+          "date": "2026-11-07T18:02:52",
+          "name_quote": " 李希君-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "李希君-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        },
+        {
+          "url": "https://xijunlee.github.io/",
+          "sha256": "d330e6e04509f75c88dc9f44b6876797e0ff144301c126280b3871fdeb75e287",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " 上海交通大学 · 李希君 跳至主要内容 研究方向 学术论文 项目与专利 学生培养 完整档案 ↗ Engl",
+          "school_tie_quote": "上海交通大学 · 李希君 跳至主要内容 研究方向 学术论文 项目与专利 学生培养 完整档案 ↗ E"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/203/0784"
+    ],
+    "openalex": [
+      "https://openalex.org/A5147963176"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5147963176",
+        "titles_on_page": 2,
+        "titles_cited_by_name": 2,
+        "cls": "cited",
+        "school_lineage_works": 2,
+        "names": {
+          "Xijun Li": 2
+        },
+        "contamination": {
+          "works": 2,
+          "matched": 2,
+          "school_window": 2,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.0
+        }
+      }
+    ]
   },
   "张倬胜": {
     "no_identity": false,
@@ -1149,7 +1305,7 @@
     }
   },
   "俞嘉地": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw identifier links remain inactive pending independent exact source-bound ownership review.",
@@ -1158,10 +1314,54 @@
     "aliases": [
       "Jiadi Yu"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own SJTU page; titles cited by name. Only a few strays (3/274, e.g. medical agents survey) in a large id with 91 cited matches; DBLP 85/3615 has SJTU CSE affiliation. Note the stray medicine survey.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/~jdyu",
+          "sha256": "c6b7f142400643f0529a0f9fc5c8fb335034ff8a1e83d9df2639867114abf980",
+          "role": "site",
+          "date": "2026-11-12T15:44:39",
+          "name_quote": "物智联提供解决方案——记上海交通大学计算机科学与工程系副教授俞嘉地\" . [Oct. 2022] 人民日报（客户端） ： \"上海交通大学针对智能无",
+          "school_tie_quote": "sor Dept. Computer Science and Engineering , Shanghai Jiao Tong University News Research Publications Teachi"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/85/3615"
+    ],
+    "openalex": [
+      "https://openalex.org/A5012589427"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5012589427",
+        "titles_on_page": 93,
+        "titles_cited_by_name": 91,
+        "cls": "cited",
+        "school_lineage_works": 96,
+        "names": {
+          "Jiadi Yu": 97
+        },
+        "contamination": {
+          "works": 274,
+          "matched": 97,
+          "school_window": 210,
+          "suspect": 3,
+          "suspect_frac": 0.011,
+          "outside_frac": 0.646
+        }
+      }
+    ]
   },
   "陶表帅": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw identifier links remain inactive pending independent exact source-bound ownership review.",
@@ -1170,7 +1370,51 @@
     "aliases": [
       "Biaoshuai Tao"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own homepage; 46 titles cited by name; one stray math 2014 work, suspect 1, tolerable.",
+      "evidence": [
+        {
+          "url": "https://jhc.sjtu.edu.cn/~bstao/",
+          "sha256": "8390ef21a391dedd7ec0bd959128e572b35632fdfee22b14b0d9bbeb4c6d0b35",
+          "role": "site",
+          "date": "2026-11-07T18:34:18",
+          "name_quote": " Biaoshuai Tao Biaoshuai Tao 陶表帅 Assistant Professor John Hopcroft Cente",
+          "school_tie_quote": "Computer Science School of Computer Science Shanghai Jiao Tong University Email: bstao[at]sjtu[dot]edu[dot]"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/117/4948"
+    ],
+    "openalex": [
+      "https://openalex.org/A5035538983"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5035538983",
+        "titles_on_page": 46,
+        "titles_cited_by_name": 46,
+        "cls": "cited",
+        "school_lineage_works": 57,
+        "names": {
+          "Biaoshuai Tao": 74
+        },
+        "contamination": {
+          "works": 84,
+          "matched": 74,
+          "school_window": 66,
+          "suspect": 1,
+          "suspect_frac": 0.012,
+          "outside_frac": 0.119
+        }
+      }
+    ]
   },
   "江 波": {
     "no_identity": false,
@@ -1365,7 +1609,7 @@
     }
   },
   "曹 健": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -1378,7 +1622,27 @@
       "https://openalex.org/A5100648774"
     ],
     "mixed_openalex_why": "2026-11-10 (claude-sjtu-admit-1109): anchored OpenAlex id carrying zero source-backed (DBLP record or page-quoted list) works of this PI in the native package; Chinese-name collision risk (R-PAP-06): each authorship needs per-work evidence. Criterion from the Tsinghua mixed-id fix.",
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "OA id (466 works) includes mandibular canal clinical, deep sub-micron STA and other namesake works; DBLP 50/2102-1 (suffixed, SJTU affiliation) kept.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/caojian.html",
+          "sha256": "df66a833c8908242840507b19c4d924e00855df447e4f4db354d4099951271b0",
+          "role": "profile",
+          "date": "2026-11-07T18:13:25",
+          "name_quote": " 曹健-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "曹健-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/50/2102-1"
+    ]
   },
   "陈 博": {
     "no_identity": false,
@@ -1550,7 +1814,7 @@
     "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (no_dblp_person_found), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
   },
   "陈黎兴": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -1559,7 +1823,59 @@
     "aliases": [
       "Lixing Chen"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own homepage; 60 titles cited by name; outside works consistent IoT/edge CS.",
+      "evidence": [
+        {
+          "url": "https://lx-chen-sjtu.github.io/publications/",
+          "sha256": "3ef7db9c5076950ffe7b063d077e5a3202aa3a3a65483d5d38b8595eea2e1b0b",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": "aching Portfolio Lixing Chen (陈黎兴) Associate Professor School of Computer",
+          "school_tie_quote": "Professor School of Computer Science Follow Shanghai Jiao Tong University Shanghai, China Website Email Goo"
+        },
+        {
+          "url": "https://lx-chen-sjtu.github.io/",
+          "sha256": "f7f607feaaaf33f9da4a969478e2b94e9d5d0824007ecb0cb218e80496f8c3af",
+          "role": "site",
+          "date": "2026-11-10",
+          "name_quote": "aching Portfolio Lixing Chen (陈黎兴) Associate Professor School of Computer",
+          "school_tie_quote": "Professor School of Computer Science Follow Shanghai Jiao Tong University Shanghai, China Website Email Goo"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/154/7371"
+    ],
+    "openalex": [
+      "https://openalex.org/A5085364987"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5085364987",
+        "titles_on_page": 60,
+        "titles_cited_by_name": 60,
+        "cls": "cited",
+        "school_lineage_works": 61,
+        "names": {
+          "Lixing Chen": 68
+        },
+        "contamination": {
+          "works": 69,
+          "matched": 61,
+          "school_window": 61,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.116
+        }
+      }
+    ]
   },
   "陈 全": {
     "no_identity": true,
@@ -1574,22 +1890,232 @@
     "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
   },
   "陈 榕": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official and IPADS pages; DBLP Rong Chen 0001 lists IPADS/Fudan; both contaminated OA ids already dropped.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenrong.html",
+          "sha256": "909fb68fced99a8240b453fe754009b69f6bf9e590a1c1ae8218db4786bbab7e",
+          "role": "profile",
+          "date": "2026-11-07T18:00:20",
+          "name_quote": " 陈榕-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "陈榕-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        },
+        {
+          "url": "https://ipads.sjtu.edu.cn/rong_chen",
+          "sha256": "a7b44b7b0dbb51b5afac0ba873bd658730b2735fd36c2c84d3752daa39e09c57",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " Rong Chen (陈榕) [IPADS] skip to content IPADS User Too",
+          "school_tie_quote": "陈榕) Professor at School of Computer Science, Shanghai Jiao Tong University Member of Institute of Parallel A"
+        },
+        {
+          "url": "https://ipads.sjtu.edu.cn/haibo_chen",
+          "sha256": "b47e9aac5dc9fcda2a64d29a070066fd93db505ca4a406f4dec9cb1ff3e78283",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": ". Mingcong Han, Weihang Shen, Rong Chen, and Haibo Chen. The 21th ACM SIGOPS Eu",
+          "school_tie_quote": "hed Professor at School of Computer Science, Shanghai Jiao Tong University Director of Domain-specific Opera"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/22/6904-1"
+    ]
   },
   "陈 谐": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own homepage fine, but Xie Chen is a very common name: A5101293966 has clearly foreign works (136Xe double beta decay, capacitive equipment, D-InSAR) and A5100329117 has UAV/hyperspectral/wildfire work at 10%; drop both. The other 9 speech/audio ids are SJTU-lineage and clean, though several are tiny fragments.",
+      "evidence": [
+        {
+          "url": "https://chenxie95.github.io/zh/publication",
+          "sha256": "cd30f8db7b9ffb452c91c784fc3a474a431b033fb89e5a55ec0b5a6e80f91638",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": "源项目 获奖信息 发表论文 下载简历 English/中文 陈谐 X-LANCE Lab @ SJTU 上海交通大学计算机学院 上海创智学院 中",
+          "school_tie_quote": "目 获奖信息 发表论文 下载简历 English/中文 陈谐 X-LANCE Lab @ SJTU 上海交通大学计算机学院 上海创智学院 中国 上海 Email ResearchGate"
+        }
+      ],
+      "tier": "A"
+    },
+    "openalex": [
+      "https://openalex.org/A5129734201",
+      "https://openalex.org/A5140830030",
+      "https://openalex.org/A5139771766",
+      "https://openalex.org/A5102205174",
+      "https://openalex.org/A5123146889",
+      "https://openalex.org/A5101070252",
+      "https://openalex.org/A5134808184",
+      "https://openalex.org/A5138240310"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5129734201",
+        "titles_on_page": 10,
+        "titles_cited_by_name": 10,
+        "cls": "cited",
+        "school_lineage_works": 10,
+        "names": {
+          "Xie Chen": 10
+        },
+        "contamination": {
+          "works": 12,
+          "matched": 10,
+          "school_window": 12,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.167
+        }
+      },
+      {
+        "id": "https://openalex.org/A5140830030",
+        "titles_on_page": 6,
+        "titles_cited_by_name": 6,
+        "cls": "cited",
+        "school_lineage_works": 6,
+        "names": {
+          "Xie Chen": 6
+        },
+        "contamination": {
+          "works": 6,
+          "matched": 6,
+          "school_window": 6,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.0
+        }
+      },
+      {
+        "id": "https://openalex.org/A5139771766",
+        "titles_on_page": 6,
+        "titles_cited_by_name": 6,
+        "cls": "cited",
+        "school_lineage_works": 12,
+        "names": {
+          "Xie Chen": 12
+        },
+        "contamination": {
+          "works": 13,
+          "matched": 12,
+          "school_window": 13,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.077
+        }
+      },
+      {
+        "id": "https://openalex.org/A5102205174",
+        "titles_on_page": 4,
+        "titles_cited_by_name": 4,
+        "cls": "cited",
+        "school_lineage_works": 4,
+        "names": {
+          "Xie Chen": 4
+        },
+        "contamination": {
+          "works": 4,
+          "matched": 4,
+          "school_window": 4,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.0
+        }
+      },
+      {
+        "id": "https://openalex.org/A5123146889",
+        "titles_on_page": 3,
+        "titles_cited_by_name": 3,
+        "cls": "cited",
+        "school_lineage_works": 3,
+        "names": {
+          "Xie Chen": 3
+        },
+        "contamination": {
+          "works": 4,
+          "matched": 3,
+          "school_window": 4,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.25
+        }
+      },
+      {
+        "id": "https://openalex.org/A5101070252",
+        "titles_on_page": 2,
+        "titles_cited_by_name": 2,
+        "cls": "cited",
+        "school_lineage_works": 3,
+        "names": {
+          "Chen Xie": 3
+        },
+        "contamination": {
+          "works": 4,
+          "matched": 3,
+          "school_window": 4,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.25
+        }
+      },
+      {
+        "id": "https://openalex.org/A5134808184",
+        "titles_on_page": 2,
+        "titles_cited_by_name": 2,
+        "cls": "cited",
+        "school_lineage_works": 1,
+        "names": {
+          "Xie Chen": 2
+        },
+        "contamination": {
+          "works": 2,
+          "matched": 2,
+          "school_window": 1,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.0
+        }
+      },
+      {
+        "id": "https://openalex.org/A5138240310",
+        "titles_on_page": 2,
+        "titles_cited_by_name": 2,
+        "cls": "cited",
+        "school_lineage_works": 1,
+        "names": {
+          "Xie Chen": 2
+        },
+        "contamination": {
+          "works": 8,
+          "matched": 2,
+          "school_window": 5,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.75
+        }
+      }
+    ]
   },
   "陈秀真": {
     "no_identity": true,
@@ -1681,7 +2207,7 @@
     }
   },
   "邓志杰": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -1690,7 +2216,70 @@
     "aliases": [
       "Zhijie Deng"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Main id has SARS-CoV-2 inhibitor and bitter-taste receptor (Nature) works from another Zhijie Deng; the two small ids (diffusion/agent works) and DBLP 209/4959 are consistent with the homepage.",
+      "evidence": [
+        {
+          "url": "https://thudzj.github.io/",
+          "sha256": "126262dd1c045a42a4115bf3f0e65a40b0d4d5004dad11fe637cccf792a9869f",
+          "role": "site",
+          "date": "2026-11-10",
+          "name_quote": " Deng's Homepage Zhijie Deng (邓志杰) Associate Professor, Ph.D. Advisor Sch",
+          "school_tie_quote": "puter Science & Qing Yuan Research Institute Shanghai Jiao Tong University Shanghai, China Office: 剑川路930号A栋"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/209/4959"
+    ],
+    "openalex": [
+      "https://openalex.org/A5121608364",
+      "https://openalex.org/A5114618233"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5121608364",
+        "titles_on_page": 4,
+        "titles_cited_by_name": 4,
+        "cls": "cited",
+        "school_lineage_works": 3,
+        "names": {
+          "Zhijie Deng": 5
+        },
+        "contamination": {
+          "works": 6,
+          "matched": 5,
+          "school_window": 6,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.167
+        }
+      },
+      {
+        "id": "https://openalex.org/A5114618233",
+        "titles_on_page": 2,
+        "titles_cited_by_name": 2,
+        "cls": "cited",
+        "school_lineage_works": 1,
+        "names": {
+          "Zhijie Deng": 2
+        },
+        "contamination": {
+          "works": 5,
+          "matched": 2,
+          "school_window": 3,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.6
+        }
+      }
+    ]
   },
   "丁 宁": {
     "no_identity": true,
@@ -1785,13 +2374,57 @@
     "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
   },
   "傅育熙": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own homepage (basics.sjtu.edu.cn/~yuxi) with 33 matched works; one sampled quote not verbatim but title found; outside works are logic/maths consistent; DBLP 27/6047 ok.",
+      "evidence": [
+        {
+          "url": "https://basics.sjtu.edu.cn/~yuxi/",
+          "sha256": "ea272eda9c5dd40b9be7794d92a3fe43d63e8485ac7905392ec4ceb76d515441",
+          "role": "site",
+          "date": "2026-11-12T15:45:04",
+          "name_quote": " Yuxi Fu Yuxi Fu I am a professor of the Departm",
+          "school_tie_quote": "ssor of the Department of Computer Science , Shanghai Jiao Tong University . I served as the chair of the Co"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/27/6047"
+    ],
+    "openalex": [
+      "https://openalex.org/A5101580261"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5101580261",
+        "titles_on_page": 33,
+        "titles_cited_by_name": 33,
+        "cls": "cited",
+        "school_lineage_works": 33,
+        "names": {
+          "Yuxi Fu": 33
+        },
+        "contamination": {
+          "works": 78,
+          "matched": 33,
+          "school_window": 16,
+          "suspect": 1,
+          "suspect_frac": 0.013,
+          "outside_frac": 0.577
+        }
+      }
+    ]
   },
   "高晓沨": {
     "no_identity": true,
@@ -1909,13 +2542,33 @@
     }
   },
   "顾尚定": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "PI own lab page names him with sjtu.edu.cn email; DBLP 268/8183 matches 12 titles; contaminated OA already dropped.",
+      "evidence": [
+        {
+          "url": "https://sail-research-lab.github.io/publication.html",
+          "sha256": "82afff133557b69b534c07db94cf8a16b40c17791ef60d40d889d3c3acbd55a1",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": "stigator: Prof. Shangding Gu (顾尚定) · shangding.gu@sjtu.edu.cn · GitHub · ",
+          "school_tie_quote": "Publications | SAIL Lab @ SJTU SAIL Lab Safe AI and Robot Learning Lab · Sh"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/268/8183"
+    ]
   },
   "韩 帅": {
     "no_identity": true,
@@ -1957,7 +2610,7 @@
     "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (no_dblp_person_found), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
   },
   "侯小凤": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -1966,10 +2619,62 @@
     "aliases": [
       "Xiaofeng Hou"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own official and personal pages; 6/6 titles found, cited by name. One stray relay-protection work (1/84) in the OA id is a negligible namesake trace; DBLP 184/8262 is unsuffixed and compatible.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/houxiaofeng.html",
+          "sha256": "41a98fbe97497caa13182fce36563d2f9216cad50d10879f73ec334c7012d559",
+          "role": "profile",
+          "date": "2026-11-07T18:08:56",
+          "name_quote": " 侯小凤-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "侯小凤-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        },
+        {
+          "url": "https://xfhelen.github.io/",
+          "sha256": "97628d8825c33c811e84dee702a60bc9ea9fd757685af751750dd8eedfaf659f",
+          "role": "site",
+          "date": "2026-11-10",
+          "name_quote": " Xiaofeng Hou 🔥 \"> Toggle navigation About (current) ",
+          "school_tie_quote": "ofessor in the School of Computer Science at Shanghai Jiao Tong University (SJTU). At SJTU, I’m also a membe"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/184/8262"
+    ],
+    "openalex": [
+      "https://openalex.org/A5073267234"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5073267234",
+        "titles_on_page": 16,
+        "titles_cited_by_name": 14,
+        "cls": "cited",
+        "school_lineage_works": 28,
+        "names": {
+          "Xiaofeng Hou": 29
+        },
+        "contamination": {
+          "works": 84,
+          "matched": 19,
+          "school_window": 75,
+          "suspect": 1,
+          "suspect_frac": 0.012,
+          "outside_frac": 0.774
+        }
+      }
+    ]
   },
   "化存卿": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -1978,16 +2683,81 @@
     "aliases": [
       "Cunqing Hua"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official profile, 21 cited titles; outside works (wireless bandit book chapters, networking) consistent; DBLP 29/5709 ok.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huacunqing.html",
+          "sha256": "39a1a5a0935383c4bfd258ae180ea70478f62f9b0807278ecff19285a3cce097",
+          "role": "profile",
+          "date": "2026-11-07T18:08:26",
+          "name_quote": " 化存卿-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "化存卿-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/29/5709"
+    ],
+    "openalex": [
+      "https://openalex.org/A5044004251"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5044004251",
+        "titles_on_page": 21,
+        "titles_cited_by_name": 21,
+        "cls": "cited",
+        "school_lineage_works": 21,
+        "names": {
+          "Cunqing Hua": 21
+        },
+        "contamination": {
+          "works": 156,
+          "matched": 21,
+          "school_window": 107,
+          "suspect": 5,
+          "suspect_frac": 0.032,
+          "outside_frac": 0.865
+        }
+      }
+    ]
   },
   "黄林鹏": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A-declared",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Declared: the PI's own official profile links DBLP Huang:Linpeng (name-keyed URL, no pid shown); no titles to check.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huanglinpeng.html",
+          "sha256": "352e472ee6644a4ea4b35b6591fdd0671cff733761d46f5cdfd2c322de17b670",
+          "role": "profile",
+          "date": "2026-11-07T18:13:35",
+          "name_quote": "黄林鹏-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学院概况 学院简",
+          "school_tie_quote": " 黄林鹏-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccoun",
+          "dblp_link_html": " <p>英文论文请参见DBLP：</p><p><a href=\"https://dblp.uni-trier.de/pers/hd/h/Huang:Linpeng\" _src=\"https://dblp.uni-trier.de/pers/h"
+        }
+      ],
+      "tier": "A-declared"
+    },
+    "dblp": [
+      "https://dblp.org/pid/93/4039"
+    ]
   },
   "黄 涛": {
     "no_identity": false,
@@ -2130,13 +2900,34 @@
     }
   },
   "胡 畔": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A-declared",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official SJTU profile names the PI and links dblp.org/pid/96/3740-1 in the bio text; DBLP Pan Hu 0001 lists SJTU and Oxford, matching his 2015-2019 Oxford DPhil.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/hupan.html",
+          "sha256": "73f7dc2198a9bcb1429253b092af7b485f77d1c342b8e486384ad1a040b7c974",
+          "role": "profile",
+          "date": "2026-11-07T18:03:28",
+          "name_quote": "胡畔-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学院概况 学院简介",
+          "school_tie_quote": " 胡畔-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccoun",
+          "dblp_link_html": "。欢迎对本人研究方向感兴趣的博士后、博士生、硕士生、实习生申请人（其中实习生仅限线下，不接受线上实习）在阅读至少一篇本人为第一或通讯作者的论文（https://dblp.org/pid/96/3740-1.html）后邮件取得联系，感兴趣的研究方向与本人没有明显交集的申请人及未阅读本"
+        }
+      ],
+      "tier": "A-declared"
+    },
+    "dblp": [
+      "https://dblp.org/pid/96/3740-1"
+    ]
   },
   "姜丽红": {
     "no_identity": true,
@@ -2205,16 +2996,65 @@
     "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
   },
   "李 阳": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own homepage and publications; titles cited by name; Yang Li is common and lineage is thin (4 works) but outside examples are one MAS/embodied-AI profile.",
+      "evidence": [
+        {
+          "url": "https://liyang.page/",
+          "sha256": "738ef8b60e754e410a240f13910090bf897692dd90dc4da2b8cb779a47781111",
+          "role": "site",
+          "date": "2026-11-10",
+          "name_quote": "hairs: 张伟楠 (Weinan Zhang) and 李阳 (Yang Li) , both from Shanghai Jiao Ton",
+          "school_tie_quote": "e Yang Li Tenure-Track Assistant Professor @ SJTU | Advisor @ Shanghai AI Lab | Multi-Agent Sy"
+        },
+        {
+          "url": "https://liyang.page/publications/",
+          "sha256": "ac4161dee2c3163e83a2ff2204e04d778a43ce3dcaf85c492c4237af6f43c287",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " publications | Yang Li Yang Li Toggle navigation about publica",
+          "school_tie_quote": null
+        }
+      ],
+      "tier": "A"
+    },
+    "openalex": [
+      "https://openalex.org/A5101457256"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5101457256",
+        "titles_on_page": 12,
+        "titles_cited_by_name": 12,
+        "cls": "cited",
+        "school_lineage_works": 4,
+        "names": {
+          "Yang Li": 28
+        },
+        "contamination": {
+          "works": 21,
+          "matched": 15,
+          "school_window": 3,
+          "suspect": 1,
+          "suspect_frac": 0.048,
+          "outside_frac": 0.286
+        }
+      }
+    ]
   },
   "赖奕甫": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -2223,7 +3063,59 @@
     "aliases": [
       "Yi-Fu Lai"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own Google Sites page and official page; titles cited; clean crypto-only OA id (6 lineage works); DBLP 273/4679 has 13 matches.",
+      "evidence": [
+        {
+          "url": "https://sites.google.com/view/yifulai/homepage?authuser=0",
+          "sha256": "c27c0892a5a8a988b1f73418bb91eceabc2ba788351ea86425cd2555368d7e9d",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " Yi-Fu Lai's Academia Webpage Search this site Emb",
+          "school_tie_quote": ". I am a tenure-track assistant professor at Shanghai Jiao Tong University. See Bio for more details. News:"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/laiyifu.html",
+          "sha256": "fa633af0ba8079ddf671e63f2cb21e60fe7fe07cbfd762c272697e4297b20d87",
+          "role": "profile",
+          "date": "2026-11-07T18:16:21",
+          "name_quote": " 赖奕甫-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "赖奕甫-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/273/4679"
+    ],
+    "openalex": [
+      "https://openalex.org/A5056731308"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5056731308",
+        "titles_on_page": 5,
+        "titles_cited_by_name": 5,
+        "cls": "cited",
+        "school_lineage_works": 6,
+        "names": {
+          "Yi-Fu Lai": 10
+        },
+        "contamination": {
+          "works": 8,
+          "matched": 5,
+          "school_window": 4,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.375
+        }
+      }
+    ]
   },
   "冷静文": {
     "no_identity": false,
@@ -2294,13 +3186,34 @@
     }
   },
   "梁晓峣": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A-declared",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official SJTU CS profile; page text contains the link dblp.org/pid/88/6436; Xiaoyao Liang pinyin-compatible, unsuffixed.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liangxiaoyao.html",
+          "sha256": "ee5206fea1aa1ae07d003ee6a3bdf240f12dea896f5680364ac3ec0b36d209ef",
+          "role": "profile",
+          "date": "2026-11-07T18:02:45",
+          "name_quote": "梁晓峣-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学院概况 学院简",
+          "school_tie_quote": " 梁晓峣-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccoun",
+          "dblp_link_html": " <div class=\"txt\"> <p>https://dblp.org/pid/88/6436.html</p> "
+        }
+      ],
+      "tier": "A-declared"
+    },
+    "dblp": [
+      "https://dblp.org/pid/88/6436"
+    ]
   },
   "李 超": {
     "no_identity": true,
@@ -2330,7 +3243,7 @@
     }
   },
   "李国强": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -2339,7 +3252,51 @@
     "aliases": [
       "Guoqiang Li"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official profile; kept id A5125680166 (1 stray dental paper of 21); contaminated A5100354142 already dropped; DBLP Guoqiang Li 0001 carries SJTU affiliations.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liguoqiang.html",
+          "sha256": "701f516171a177841bb085b00c5182fafb6567315a37e7fa42c23302a0c5ff00",
+          "role": "profile",
+          "date": "2026-11-07T18:14:33",
+          "name_quote": " 李国强-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "李国强-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/l/GuoqiangLi1"
+    ],
+    "openalex": [
+      "https://openalex.org/A5125680166"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5125680166",
+        "titles_on_page": 6,
+        "titles_cited_by_name": 6,
+        "cls": "cited",
+        "school_lineage_works": 7,
+        "names": {
+          "Guoqiang Li": 7
+        },
+        "contamination": {
+          "works": 21,
+          "matched": 7,
+          "school_window": 21,
+          "suspect": 1,
+          "suspect_frac": 0.048,
+          "outside_frac": 0.667
+        }
+      }
+    ]
   },
   "李建华": {
     "no_identity": true,
@@ -2423,13 +3380,33 @@
     "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
   },
   "刘锦阳": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "DBLP-only; the suffixed Jinyang Liu 0003 record lists Houston, UC Riverside and Peking, exactly matching his official-page career; 14 matches. Official page is own and lists his papers.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liujinyang.html",
+          "sha256": "bae9b625288684070d50938c45a66297729ba8f4c9c2b4e28417efbeace7cb18",
+          "role": "profile",
+          "date": "2026-11-07T18:09:10",
+          "name_quote": " 刘锦阳-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "刘锦阳-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/36/1731-3"
+    ]
   },
   "刘满华": {
     "no_identity": true,
@@ -2462,13 +3439,57 @@
     }
   },
   "刘生钟": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own publications page; 20 cited, 2 outside works are his own CS papers; DBLP 166/5424 ok (40 titles matched).",
+      "evidence": [
+        {
+          "url": "https://liushengzhong1023.github.io/publications/",
+          "sha256": "2c64623b90a8822c5dc02bf04e14fbf4f5b40d924f665ba9b10b233db3087a5f",
+          "role": "site",
+          "date": "2026-11-12T15:45:16",
+          "name_quote": " Publications - Shengzhong Liu Shengzhong Liu Publications Awards Expe",
+          "school_tie_quote": "ce Shengzhong Liu Associate Professor Follow Shanghai Jiao Tong University Email ResearchGate LinkedIn Githu"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/166/5424"
+    ],
+    "openalex": [
+      "https://openalex.org/A5026906011"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5026906011",
+        "titles_on_page": 20,
+        "titles_cited_by_name": 20,
+        "cls": "cited",
+        "school_lineage_works": 20,
+        "names": {
+          "Shengzhong Liu": 23
+        },
+        "contamination": {
+          "works": 25,
+          "matched": 23,
+          "school_window": 22,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.08
+        }
+      }
+    ]
   },
   "刘思学": {
     "no_identity": true,
@@ -2489,7 +3510,7 @@
     }
   },
   "刘笑宏": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -2498,7 +3519,56 @@
     "aliases": [
       "Xiaohong Liu"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own SJTU homepage and publications page, 115 cited titles. 5% stray works but examples (biomedical foundation models, bone age, image/video) are consistent with one medical-imaging researcher; no DBLP proposed.",
+      "evidence": [
+        {
+          "url": "https://jhc.sjtu.edu.cn/~xiaohongliu/",
+          "sha256": "738137201dc2db11688d721f31808e4ba3178fb20c1b04a536fe94df01568d8b",
+          "role": "site",
+          "date": "2026-11-10",
+          "name_quote": "rvision Teaching Xiaohong Liu 刘笑宏 上海市领军人才（海外） Associate Professor at SJTU",
+          "school_tie_quote": "g Liu 刘笑宏 上海市领军人才（海外） Associate Professor at SJTU, Full-time Supervisor at SII Follow Shanghai"
+        },
+        {
+          "url": "https://jhc.sjtu.edu.cn/~xiaohongliu/publications/",
+          "sha256": "d756a9f13da65a806bdc07bcd6f3e375e4913a57c02e5cbb3fe66bf4ad3cd519",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": "rvision Teaching Xiaohong Liu 刘笑宏 上海市领军人才（海外） Associate Professor at SJTU",
+          "school_tie_quote": "g Liu 刘笑宏 上海市领军人才（海外） Associate Professor at SJTU, Full-time Supervisor at SII Follow Shanghai"
+        }
+      ],
+      "tier": "A"
+    },
+    "openalex": [
+      "https://openalex.org/A5115593366"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5115593366",
+        "titles_on_page": 115,
+        "titles_cited_by_name": 115,
+        "cls": "cited",
+        "school_lineage_works": 138,
+        "names": {
+          "Xiaohong Liu": 144
+        },
+        "contamination": {
+          "works": 215,
+          "matched": 124,
+          "school_window": 181,
+          "suspect": 11,
+          "suspect_frac": 0.051,
+          "outside_frac": 0.423
+        }
+      }
+    ]
   },
   "刘 振": {
     "no_identity": false,
@@ -2658,16 +3728,76 @@
     "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
   },
   "罗欣剑": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Main id A5038626990 clean (11/11 matched, 27 names). Drop the 2-work fragment A5047158217 which includes a 2018 Psychology work (PipE 2). DBLP 146/1133 fine.",
+      "evidence": [
+        {
+          "url": "https://xinjianluo.github.io/",
+          "sha256": "0c903de94e0148ae63429fb7ac1a68686f29a73f80e6405133f5e77d57b65706",
+          "role": "site",
+          "date": "2026-11-10",
+          "name_quote": "h Selected Papers Xinjian Luo（罗欣剑） Associate Professor School of Computer",
+          "school_tie_quote": "sociate Professor School of Computer Science Shanghai Jiao Tong University 3-312 SEIEE Building 800 Dongchua"
+        },
+        {
+          "url": "https://xinjianluo.github.io/publications.html",
+          "sha256": "1cb0e9bbadde17b5b9a177e20f580bea5ad55eb305f7a372c519214d33ec3b01",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " Full Publications - Xinjian Luo Navigation Home Bio Latest News My Rese",
+          "school_tie_quote": null
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/luoxinjian.html",
+          "sha256": "d62d507b7baff5d2308ff3ea0941f0aa12cf33fc6c34ffee60d714eaedef3b54",
+          "role": "profile",
+          "date": "2026-11-07T18:11:22",
+          "name_quote": " 罗欣剑-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "罗欣剑-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/146/1133"
+    ],
+    "openalex": [
+      "https://openalex.org/A5038626990"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5038626990",
+        "titles_on_page": 10,
+        "titles_cited_by_name": 10,
+        "cls": "cited",
+        "school_lineage_works": 2,
+        "names": {
+          "Xinjian Luo": 27
+        },
+        "contamination": {
+          "works": 11,
+          "matched": 11,
+          "school_window": 1,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.0
+        }
+      }
+    ]
   },
   "骆 源": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -2676,7 +3806,67 @@
     "aliases": [
       "Yuan Luo"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official page; 8 titles credited. Gravitational-wave CNN and coding/storage items are consistent with the same SJTU Yuan Luo (ICPR papers with SJTU), though the id is large and outside_frac is high; no DBLP proposed.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/luoyuan.html",
+          "sha256": "36aa2cf7ade0377d59be40b0c180b662122f10b991fb996b105d426fc28937a6",
+          "role": "profile",
+          "date": "2026-11-07T18:11:58",
+          "name_quote": " 骆源-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "骆源-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "openalex": [
+      "https://openalex.org/A5101495751",
+      "https://openalex.org/A5017529139"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5101495751",
+        "titles_on_page": 11,
+        "titles_cited_by_name": 11,
+        "cls": "cited",
+        "school_lineage_works": 12,
+        "names": {
+          "Yuan Luo": 12
+        },
+        "contamination": {
+          "works": 135,
+          "matched": 12,
+          "school_window": 67,
+          "suspect": 4,
+          "suspect_frac": 0.03,
+          "outside_frac": 0.911
+        }
+      },
+      {
+        "id": "https://openalex.org/A5017529139",
+        "titles_on_page": 2,
+        "titles_cited_by_name": 2,
+        "cls": "cited",
+        "school_lineage_works": 2,
+        "names": {
+          "Yuan Luo": 2
+        },
+        "contamination": {
+          "works": 24,
+          "matched": 2,
+          "school_window": 20,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.917
+        }
+      }
+    ]
   },
   "吕宝粮": {
     "no_identity": false,
@@ -2772,7 +3962,7 @@
     }
   },
   "马利庄": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -2781,10 +3971,30 @@
     "aliases": [
       "Lizhuang Ma"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "OA id has 474 works including TCM clinical data mining and medicine works from a namesake; DBLP 10/4950 is the graphics PI and is kept.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/malizhuang.html",
+          "sha256": "c56567e4de3c7724cf11f0930da3ac19916cf625b3e9bf1c3a5ffdc40cdabf26",
+          "role": "profile",
+          "date": "2026-11-07T18:01:49",
+          "name_quote": " 马利庄-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "马利庄-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/10/4950"
+    ]
   },
   "马汝辉": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -2793,7 +4003,64 @@
     "aliases": [
       "Ruhui Ma"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (no_dblp_person_found), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (no_dblp_person_found), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official page, group site and publications; outside works are consistent CS cloud/federated learning.",
+      "evidence": [
+        {
+          "url": "https://aisig.sjtu.edu.cn/publications/",
+          "sha256": "5ee90e2758cd95f49ba44016e22aa0b13c8e05c01ffa969cc550b4f4dbb33898",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " Peiwen Jiang, Haitong Jiang, Ruhui Ma, and 2 more authors In Proceedings of t",
+          "school_tie_quote": null
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/maruhui.html",
+          "sha256": "7ef3a5b7d12e0a9137d0069e207884d2e48d53717b7c28a18ada0459169cda78",
+          "role": "profile",
+          "date": "2026-11-07T18:02:56",
+          "name_quote": " 马汝辉-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "马汝辉-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        },
+        {
+          "url": "https://aisig.sjtu.edu.cn/",
+          "sha256": "ac6af2f3b077259cb2dcd2bcb03a4aff39957e2c1800ace8328808f17666726b",
+          "role": "site",
+          "date": "2026-11-10",
+          "name_quote": "云计算 加入我们 云计算智能融合团队 上海交通大学计算机学院马汝辉老师团队 研究方向 云计算智能融合团队隶属于上海市可扩展计算与系统重点实验室，聚",
+          "school_tie_quote": "团队 新闻 论文 链接 代码托管 课程 离散数学 云计算 加入我们 云计算智能融合团队 上海交通大学计算机学院马汝辉老师团队 研究方向 云计算智能融合团队隶属于上海市可扩展计算与系统重点"
+        }
+      ],
+      "tier": "A"
+    },
+    "openalex": [
+      "https://openalex.org/A5036789442"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5036789442",
+        "titles_on_page": 17,
+        "titles_cited_by_name": 12,
+        "cls": "cited",
+        "school_lineage_works": 26,
+        "names": {
+          "Ruhui Ma": 26
+        },
+        "contamination": {
+          "works": 140,
+          "matched": 17,
+          "school_window": 116,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.879
+        }
+      }
+    ]
   },
   "穆 尧": {
     "no_identity": true,
@@ -2808,7 +4075,7 @@
     "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
   },
   "牛超越": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -2817,19 +4084,143 @@
     "aliases": [
       "Chaoyue Niu"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official page; 12 cited titles; no suspects, outside works are LLM/privacy/mobile sensing from the same SJTU group; DBLP 176/5779 matches 7 titles.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/niuchaoyue.html",
+          "sha256": "01e5347bca0e7222f512fd550b3e840c87e7d0d1e96c713ceb461a884f6924d6",
+          "role": "profile",
+          "date": "2026-11-07T18:11:26",
+          "name_quote": " 牛超越-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "牛超越-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/176/5779"
+    ],
+    "openalex": [
+      "https://openalex.org/A5103086027"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5103086027",
+        "titles_on_page": 12,
+        "titles_cited_by_name": 12,
+        "cls": "cited",
+        "school_lineage_works": 12,
+        "names": {
+          "Chaoyue Niu": 12
+        },
+        "contamination": {
+          "works": 54,
+          "matched": 12,
+          "school_window": 48,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.778
+        }
+      }
+    ]
   },
   "牛 力": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own SJTU page plus personal homepage (ustcnewly.com); 67 cited titles, no suspects, the DBLP Li Niu 0002 record lists SJTU/Rice/NTU/USTC consistent with his career and the official page links it. The contaminated id was dropped by the worker.",
+      "evidence": [
+        {
+          "url": "https://www.ustcnewly.com/research.html#composition",
+          "sha256": "087788e3b3674e102f1a7b38e96ef5110f01e2bf3cfd875e3c478b6157dbbb59",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": "1. Wenyan Cong, Jianfu Zhang, Li Niu, Liu Liu, Zhixin Ling, Weiyuan Li, Liqi",
+          "school_tie_quote": null
+        },
+        {
+          "url": "https://www.ustcnewly.com/publication.html",
+          "sha256": "a692cae2a59d89b0c4c4c8e00d8cf3238977ef819e3639b02d6990ba3d459bc6",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": "arked with are recommended. • Li Niu #, Wen Li#, Dong Xu, \"Exploiting Privil",
+          "school_tie_quote": null
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/niuli.html",
+          "sha256": "99c2d0e27779b8aaa5851232145f0516468bf5f8663573f170fcbbcfc54e3220",
+          "role": "profile",
+          "date": "2026-11-07T18:01:21",
+          "name_quote": " 牛力-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "牛力-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学",
+          "supplementary": true
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/02/3166-2"
+    ],
+    "openalex": [
+      "https://openalex.org/A5032618817",
+      "https://openalex.org/A5129673774"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5032618817",
+        "titles_on_page": 67,
+        "titles_cited_by_name": 67,
+        "cls": "cited",
+        "school_lineage_works": 79,
+        "names": {
+          "Li Niu": 89
+        },
+        "contamination": {
+          "works": 99,
+          "matched": 68,
+          "school_window": 76,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.313
+        }
+      },
+      {
+        "id": "https://openalex.org/A5129673774",
+        "titles_on_page": 3,
+        "titles_cited_by_name": 3,
+        "cls": "cited",
+        "school_lineage_works": 4,
+        "names": {
+          "Li Niu": 4
+        },
+        "contamination": {
+          "works": 5,
+          "matched": 3,
+          "school_window": 5,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.4
+        }
+      }
+    ]
   },
   "潘 昊": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -2838,10 +4229,30 @@
     "aliases": [
       "Hao Pan"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "OA id Hao Pan has clearly foreign works (cefepime/medicine, pediatrics, LiDAR physics, archaeology); very common name, drop it. DBLP 02/3812-3 (SJTU affiliation, 12 cited matches) is compatible.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/panhao.html",
+          "sha256": "d3501f44cd014d795fe8232890ea98278014cb65e2d2c82e8e95cc891698e34f",
+          "role": "profile",
+          "date": "2026-11-07T18:13:53",
+          "name_quote": " 潘昊-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "潘昊-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/02/3812-3"
+    ]
   },
   "潘 理": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -2850,7 +4261,48 @@
     "aliases": [
       "Li Pan"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (no_dblp_person_found), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (no_dblp_person_found), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official page; legal judgment prediction, access control and traffic works fit a cybersecurity/social computing PI. 20% suspect fraction is worth a flag but examples look like one person.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/panli.html",
+          "sha256": "306d47076617c81db2a03f67b354ceb31b00ad687cd1066e2a015cea8e24b8de",
+          "role": "profile",
+          "date": "2026-11-07T18:06:57",
+          "name_quote": " 潘理-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "潘理-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "openalex": [
+      "https://openalex.org/A5100620216"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5100620216",
+        "titles_on_page": 17,
+        "titles_cited_by_name": 17,
+        "cls": "cited",
+        "school_lineage_works": 17,
+        "names": {
+          "Li Pan": 17
+        },
+        "contamination": {
+          "works": 94,
+          "matched": 17,
+          "school_window": 61,
+          "suspect": 19,
+          "suspect_frac": 0.202,
+          "outside_frac": 0.819
+        }
+      }
+    ]
   },
   "潘 烨": {
     "no_identity": false,
@@ -2894,7 +4346,7 @@
     "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (no_dblp_person_found), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
   },
   "邱卫东": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -2903,7 +4355,48 @@
     "aliases": [
       "Weidong Qiu"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official page; 11 titles cited by name; sole outside example is an ASIA CCS 2013 front-matter item, plausible (conference chair).",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/qiuweidong.html",
+          "sha256": "b371b320e8ab3f8959f1e37b4d1700ae5e44849aa6a35b88eaa077e36032f6c4",
+          "role": "profile",
+          "date": "2026-11-07T18:06:12",
+          "name_quote": " 邱卫东-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "邱卫东-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "openalex": [
+      "https://openalex.org/A5088072972"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5088072972",
+        "titles_on_page": 11,
+        "titles_cited_by_name": 11,
+        "cls": "cited",
+        "school_lineage_works": 11,
+        "names": {
+          "Weidong Qiu": 11
+        },
+        "contamination": {
+          "works": 154,
+          "matched": 11,
+          "school_window": 113,
+          "suspect": 1,
+          "suspect_frac": 0.006,
+          "outside_frac": 0.929
+        }
+      }
+    ]
   },
   "戚正伟": {
     "no_identity": true,
@@ -3065,13 +4558,57 @@
     }
   },
   "宋卓然": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own homepage with SJTU tie, 49 cited titles, 52 lineage works, no suspects; one 2008 PSO item looks like a stray but is negligible. DBLP 220/4324 has 21 matches.",
+      "evidence": [
+        {
+          "url": "https://songzhuoran.github.io/",
+          "sha256": "c6abdb74c118f2e57d81f23552ab62c349f5ed544aecc9241c993f8045083dcb",
+          "role": "site",
+          "date": "2026-11-10",
+          "name_quote": "-C). [paper] [cite] 2021 [J3] 宋卓然 ，蒋力。深度神经网络专用架构与压缩技术演进。中国计算机学会通讯，2021年第3",
+          "school_tie_quote": "rtment of Computer Science and Engineering @ Shanghai Jiao Tong University Zhuoran Song Associate Professor"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/220/4324"
+    ],
+    "openalex": [
+      "https://openalex.org/A5067161373"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5067161373",
+        "titles_on_page": 49,
+        "titles_cited_by_name": 49,
+        "cls": "cited",
+        "school_lineage_works": 52,
+        "names": {
+          "Zhuoran Song": 52
+        },
+        "contamination": {
+          "works": 71,
+          "matched": 52,
+          "school_window": 70,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.268
+        }
+      }
+    ]
   },
   "孙士锋": {
     "no_identity": true,
@@ -3241,7 +4778,7 @@
     }
   },
   "王启圣": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -3250,7 +4787,86 @@
     "aliases": [
       "Qisheng Wang"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official profile and own site; both OA ids cited. A5100393529 has one stray gridshell paper (1/23): filter it. DBLP 90/746 matches 25 titles.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangqisheng.html",
+          "sha256": "37ca0698a0680fc3ca1a480b0ef38cc5f07da544f80ae5160d25e05031250591",
+          "role": "profile",
+          "date": "2026-11-07T18:04:12",
+          "name_quote": " 王启圣-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "王启圣-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        },
+        {
+          "url": "https://wangqs13.github.io/publications/",
+          "sha256": "e96a11041dd2a35673d2c9631806569401a93a7feb5c74ece1684c3a985e1de0",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": "sentations Teaching CV Coding 王启圣 王啓聖 王啟聖\"> Qisheng Wang 王启圣 王啓聖 王啟聖 Comp",
+          "school_tie_quote": null
+        },
+        {
+          "url": "https://wangqs13.github.io/",
+          "sha256": "e9eac32f45fd401f5a5fc78155bdf6e668a7804caa743f76a5f77ccea7198b61",
+          "role": "site",
+          "date": "2026-11-10",
+          "name_quote": "sentations Teaching CV Coding 王启圣 王啓聖 王啟聖\"> Qisheng Wang 王启圣 王啓聖 王啟聖 Comp",
+          "school_tie_quote": "r at the School of Computer Science (计算机学院), Shanghai Jiao Tong University (上海交通大学), China. From September 2"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/90/746"
+    ],
+    "openalex": [
+      "https://openalex.org/A5100393529",
+      "https://openalex.org/A5143625400"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5100393529",
+        "titles_on_page": 20,
+        "titles_cited_by_name": 20,
+        "cls": "cited",
+        "school_lineage_works": 15,
+        "names": {
+          "Qisheng Wang": 35
+        },
+        "contamination": {
+          "works": 23,
+          "matched": 21,
+          "school_window": 18,
+          "suspect": 1,
+          "suspect_frac": 0.043,
+          "outside_frac": 0.087
+        }
+      },
+      {
+        "id": "https://openalex.org/A5143625400",
+        "titles_on_page": 9,
+        "titles_cited_by_name": 9,
+        "cls": "cited",
+        "school_lineage_works": 19,
+        "names": {
+          "Qisheng Wang": 19
+        },
+        "contamination": {
+          "works": 10,
+          "matched": 10,
+          "school_window": 10,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.0
+        }
+      }
+    ]
   },
   "王士林": {
     "no_identity": true,
@@ -3358,13 +4974,130 @@
     }
   },
   "吴小宝": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official page plus own homepage; 8/8 titles cited. Main OA id has one foreign chemistry stray (1/62); the four small ids are clean ACL/LLM work; DBLP 249/8429 matches 44 titles.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wuxiaobao.html",
+          "sha256": "184c1c3ab1ecb47b5c5dcede88ee398e2b19de1836cf7c1750e37d43ab20e756",
+          "role": "profile",
+          "date": "2026-11-07T18:01:32",
+          "name_quote": " 吴小宝-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "吴小宝-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        },
+        {
+          "url": "https://bobxwu.github.io/publications/",
+          "sha256": "a6d279fd2663173b8d8b13d82a7dddcc30b1c6fc718d0b5f20763ee7d288adb9",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " Publications | Xiaobao Wu Xiaobao Wu Toggle navigation Home Bio P",
+          "school_tie_quote": null
+        },
+        {
+          "url": "https://bobxwu.github.io/",
+          "sha256": "c134ea3cf770f0bfcd8a6315a10524af26f6d052dfbfc7b2344bbc62f4c15f13",
+          "role": "site",
+          "date": "2026-11-10",
+          "name_quote": "e, and large language models. 吴小宝博士，上海交通大学计算机学院助理教授、博士生导师。 博士毕业于新加坡南洋理工大学",
+          "school_tie_quote": "istant Professor School of Computer Science, Shanghai Jiao Tong University 上海交通大学计算机学院 助理教授 Hi, I’m now an A"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/249/8429"
+    ],
+    "openalex": [
+      "https://openalex.org/A5011376608",
+      "https://openalex.org/A5139715013",
+      "https://openalex.org/A5140901371",
+      "https://openalex.org/A5136055070"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5011376608",
+        "titles_on_page": 39,
+        "titles_cited_by_name": 39,
+        "cls": "cited",
+        "school_lineage_works": 4,
+        "names": {
+          "Xiaobao Wu": 72
+        },
+        "contamination": {
+          "works": 62,
+          "matched": 52,
+          "school_window": 8,
+          "suspect": 1,
+          "suspect_frac": 0.016,
+          "outside_frac": 0.161
+        }
+      },
+      {
+        "id": "https://openalex.org/A5139715013",
+        "titles_on_page": 4,
+        "titles_cited_by_name": 4,
+        "cls": "cited",
+        "school_lineage_works": 4,
+        "names": {
+          "Xiaobao Wu": 4
+        },
+        "contamination": {
+          "works": 5,
+          "matched": 4,
+          "school_window": 5,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.2
+        }
+      },
+      {
+        "id": "https://openalex.org/A5140901371",
+        "titles_on_page": 2,
+        "titles_cited_by_name": 2,
+        "cls": "cited",
+        "school_lineage_works": 2,
+        "names": {
+          "Xiaobao Wu": 2
+        },
+        "contamination": {
+          "works": 4,
+          "matched": 2,
+          "school_window": 4,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.5
+        }
+      },
+      {
+        "id": "https://openalex.org/A5136055070",
+        "titles_on_page": 2,
+        "titles_cited_by_name": 2,
+        "cls": "cited",
+        "school_lineage_works": 2,
+        "names": {
+          "Xiaobao Wu": 2
+        },
+        "contamination": {
+          "works": 2,
+          "matched": 2,
+          "school_window": 2,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.0
+        }
+      }
+    ]
   },
   "吴亚东": {
     "no_identity": true,
@@ -3397,13 +5130,81 @@
     }
   },
   "夏虞斌": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Large id carries 2002-2010 digital printing, PLM/CAD and digital-city works (outside_frac .63) that a 2008+ PhD cannot have authored; namesake merge. Smaller id and DBLP 01/615 are consistent with the IPADS page.",
+      "evidence": [
+        {
+          "url": "https://ipads.sjtu.edu.cn/yubin_xia#publications",
+          "sha256": "02d6a2fb95066422235b8a512d499776a17bd1637b6f88ed3fbbe51590fe4e3c",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " Yubin Xia's Homepage (夏虞斌) [IPADS] skip to content IPADS User Too",
+          "school_tie_quote": "Me I am a professor in School of Software at Shanghai Jiao Tong University and a member of Institute of Para"
+        },
+        {
+          "url": "https://ipads.sjtu.edu.cn/yubin_xia",
+          "sha256": "05f34c516dc9408a4666ab5e87e9ecdb70fb84eb54c76b03108887486d422504",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " Yubin Xia's Homepage (夏虞斌) [IPADS] skip to content IPADS User Too",
+          "school_tie_quote": "Me I am a professor in School of Software at Shanghai Jiao Tong University and a member of Institute of Para"
+        },
+        {
+          "url": "https://ipads.sjtu.edu.cn/haibo_chen#selected_publications",
+          "sha256": "550003468669f0ea3cc5ad8b3e4770fc9bfe84d90a834370bd392c2a58e42a13",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": "da Sun, Tianjian Li, Dong Du, Yubin Xia, Haibo Chen. Proceedings of the 32nd AC",
+          "school_tie_quote": "hed Professor at School of Computer Science, Shanghai Jiao Tong University Director of Domain-specific Opera"
+        },
+        {
+          "url": "https://ipads.sjtu.edu.cn/haibo_chen",
+          "sha256": "b47e9aac5dc9fcda2a64d29a070066fd93db505ca4a406f4dec9cb1ff3e78283",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": "da Sun, Tianjian Li, Dong Du, Yubin Xia, Haibo Chen. Proceedings of the 32nd AC",
+          "school_tie_quote": "hed Professor at School of Computer Science, Shanghai Jiao Tong University Director of Domain-specific Opera"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/01/615"
+    ],
+    "openalex": [
+      "https://openalex.org/A5102686295"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5102686295",
+        "titles_on_page": 2,
+        "titles_cited_by_name": 2,
+        "cls": "cited",
+        "school_lineage_works": 6,
+        "names": {
+          "Yubin Xia": 6
+        },
+        "contamination": {
+          "works": 15,
+          "matched": 2,
+          "school_window": 15,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.867
+        }
+      }
+    ]
   },
   "邢朝平": {
     "no_identity": true,
@@ -3422,13 +5223,42 @@
     "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
   },
   "熊国钧": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official page links his own homepage whose publication list names him; DBLP 214/2134 matches 18 titles (12 cited). Unsuffixed pid is compatible with a 2024 PhD.",
+      "evidence": [
+        {
+          "url": "https://xionggj001.github.io/publication.html",
+          "sha256": "ed3dc5bbd9389c49aed064e2e98d73c8c97681202404e2b2c9f3e435207b69a2",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " Welcome to Guojun Xiong's Homepage Guojun Xiong Home Publicatio",
+          "school_tie_quote": null
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xiongguojun.html",
+          "sha256": "67d6fafdf2c6d8c1a298050df00b25dee9411ac40ba954ed2aa3d63a7b17a6e6",
+          "role": "profile",
+          "date": "2026-11-07T18:16:40",
+          "name_quote": " 熊国钧-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "熊国钧-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学",
+          "supplementary": true
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/214/2134"
+    ]
   },
   "薛栋梁": {
     "no_identity": true,
@@ -3440,7 +5270,7 @@
     }
   },
   "薛广涛": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -3449,7 +5279,51 @@
     "aliases": [
       "Guangtao Xue"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official profile links DBLP 79/1810; OA id has 33 own works, 4 suspect of 255 (1.6%); outside works plausible for him (mobile/EEG sensing). One sampled quote (Moire QR) not found verbatim but 32 others are.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xueguangtao.html",
+          "sha256": "05e3bf2bbc033a27a3a9aad401888686f15dffb0d2cf4075facd4ab6f16d8980",
+          "role": "profile",
+          "date": "2026-11-07T18:13:14",
+          "name_quote": " 薛广涛-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "薛广涛-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/79/1810"
+    ],
+    "openalex": [
+      "https://openalex.org/A5101490654"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5101490654",
+        "titles_on_page": 32,
+        "titles_cited_by_name": 32,
+        "cls": "cited",
+        "school_lineage_works": 32,
+        "names": {
+          "Guangtao Xue": 33
+        },
+        "contamination": {
+          "works": 255,
+          "matched": 33,
+          "school_window": 192,
+          "suspect": 4,
+          "suspect_frac": 0.016,
+          "outside_frac": 0.871
+        }
+      }
+    ]
   },
   "徐尔茨": {
     "no_identity": false,
@@ -3638,7 +5512,7 @@
     }
   },
   "杨旭波": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -3647,7 +5521,51 @@
     "aliases": [
       "Xubo Yang"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (no_dblp_person_found), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (no_dblp_person_found), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official page; titles cited by name. One clearly foreign work (ionosphere/atmosphere, 1/109) is a negligible stray; DBLP 04/3750 has SJTU affiliation.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yangxubo.html",
+          "sha256": "06b440bddf0dac8186f7588bb53dfbf3f3b444dea71228841da19afa90107cfe",
+          "role": "profile",
+          "date": "2026-11-07T18:03:17",
+          "name_quote": " 杨旭波-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "杨旭波-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/04/3750"
+    ],
+    "openalex": [
+      "https://openalex.org/A5010767009"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5010767009",
+        "titles_on_page": 26,
+        "titles_cited_by_name": 26,
+        "cls": "cited",
+        "school_lineage_works": 29,
+        "names": {
+          "Xubo Yang": 29
+        },
+        "contamination": {
+          "works": 109,
+          "matched": 29,
+          "school_window": 59,
+          "suspect": 2,
+          "suspect_frac": 0.018,
+          "outside_frac": 0.734
+        }
+      }
+    ]
   },
   "杨 旸": {
     "no_identity": true,
@@ -3746,7 +5664,7 @@
     "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (no_dblp_person_found), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
   },
   "叶南阳": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -3755,7 +5673,51 @@
     "aliases": [
       "Nanyang Ye"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Official profile; outside works are 2026 embodied-AI/driving by same person; DBLP 175/2581-1 (SJTU, Cambridge) matches.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yenanyang.html",
+          "sha256": "ad01ee9639d5c79e9c68d5e9becff60445b44559c362f08dc8934121ecee4131",
+          "role": "profile",
+          "date": "2026-11-07T18:16:44",
+          "name_quote": " 叶南阳-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "叶南阳-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/175/2581-1"
+    ],
+    "openalex": [
+      "https://openalex.org/A5077493772"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5077493772",
+        "titles_on_page": 22,
+        "titles_cited_by_name": 22,
+        "cls": "cited",
+        "school_lineage_works": 21,
+        "names": {
+          "Nanyang Ye": 24
+        },
+        "contamination": {
+          "works": 52,
+          "matched": 24,
+          "school_window": 46,
+          "suspect": 3,
+          "suspect_frac": 0.058,
+          "outside_frac": 0.538
+        }
+      }
+    ]
   },
   "应 凯": {
     "no_identity": false,
@@ -3835,13 +5797,62 @@
     ]
   },
   "尹 强": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
-    }
+    },
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own SJTU page and papers page; all 10 titles cited by name; outside works are same-field CS.",
+      "evidence": [
+        {
+          "url": "https://basics.sjtu.edu.cn/~qyin",
+          "sha256": "9040b8e6bfb9b823bf7b7777a529726db5650f23b129bc08acf1f60238945219",
+          "role": "site",
+          "date": "2026-11-12T15:45:20",
+          "name_quote": " Qiang Yin Qiang Yin I am an Associate Professor (",
+          "school_tie_quote": "am an Associate Professor (tenure-track) at Shanghai Jiao Tong University . I obtained a PhD degree from th"
+        },
+        {
+          "url": "https://basics.sjtu.edu.cn/~qyin/papers",
+          "sha256": "f8f1eac53a404d09cbce1b624f0a9bfdbf0746c031aff4d27b3d000b1db8bb04",
+          "role": "site",
+          "date": "2026-11-12T15:45:27",
+          "name_quote": "VLDB ), 2025. Zhengdong Wang, Qiang Yin § , and Longbin Lai The LDBC Financial ",
+          "school_tie_quote": null
+        }
+      ],
+      "tier": "A"
+    },
+    "openalex": [
+      "https://openalex.org/A5035018298"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5035018298",
+        "titles_on_page": 10,
+        "titles_cited_by_name": 10,
+        "cls": "cited",
+        "school_lineage_works": 9,
+        "names": {
+          "Qiang Yin": 11
+        },
+        "contamination": {
+          "works": 16,
+          "matched": 10,
+          "school_window": 9,
+          "suspect": 0,
+          "suspect_frac": 0.0,
+          "outside_frac": 0.375
+        }
+      }
+    ]
   },
   "易 冉": {
     "no_identity": true,
@@ -4509,7 +6520,7 @@
     ]
   },
   "郑伟龙": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -4518,10 +6529,70 @@
     "aliases": [
       "Wei-Long Zheng"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (fewer_than_10_exact_titles), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own homepage and official page; EEG/affective field consistent. A few CV off-topic outside works (4 suspect of 156) are minor; DBLP SJTU-affiliated.",
+      "evidence": [
+        {
+          "url": "https://weilongzheng.github.io/",
+          "sha256": "859b5255d9f41ecda108cbc148926a4af354acf338a7f602b358569845bd7db5",
+          "role": "site",
+          "date": "2026-11-10",
+          "name_quote": " Wei-Long Zheng Search Wei-Long Zheng Home News Publica",
+          "school_tie_quote": "-Long Zheng Associate Professor, PhD advisor Shanghai Jiao Tong University Biography Always looking for high"
+        },
+        {
+          "url": "https://weilongzheng.github.io/robots.txt",
+          "sha256": "a954ca2bd973deeda93945d6a95c6023c88ec2e6fa8151bbf62948dbf7008455",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " 404 Page not found | Wei-Long Zheng Search Wei-Long Zheng Home News Publica",
+          "school_tie_quote": null
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhengweilong.html",
+          "sha256": "fda9168a014603a523e2f832eca214f2cb1991d3cb82bc30fddb846a67fd8271",
+          "role": "profile",
+          "date": "2026-11-07T18:06:09",
+          "name_quote": " 郑伟龙-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "郑伟龙-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/150/4150"
+    ],
+    "openalex": [
+      "https://openalex.org/A5056335002"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5056335002",
+        "titles_on_page": 20,
+        "titles_cited_by_name": 17,
+        "cls": "cited",
+        "school_lineage_works": 31,
+        "names": {
+          "Wei‐Long Zheng": 33
+        },
+        "contamination": {
+          "works": 156,
+          "matched": 22,
+          "school_window": 123,
+          "suspect": 4,
+          "suspect_frac": 0.026,
+          "outside_frac": 0.859
+        }
+      }
+    ]
   },
   "郑臻哲": {
-    "no_identity": true,
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
@@ -4530,7 +6601,67 @@
     "aliases": [
       "Zhenzhe Zheng"
     ],
-    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json."
+    "why_no_identity": "2026-11-10 (claude-sjtu-admit-1109, stage 5, owner-directed): the PI's own page lists works but no second identity route qualifies: no ORCID agreement with a DBLP person, no DBLP person record with 10 or more exact titles and a name-compatible person in the local containers (accepted), and the OpenAlex author id failed the merge-risk screen or carries fewer than 10 page-listed titles. Identity held; this PI's papers are withheld until the owner approves a binding, not rejected. Owned list kept in pi-publication-lists.json; backlog row in scratch/sjtu-coverage-1110/stage5-backlog.json.",
+    "identity_resolution": {
+      "decision": "strict_identity_1112_tier_A",
+      "reviewed": "2026-11-12",
+      "reviewed_by": "claude-sjtu-identity-1112 (+3 fresh reviewers)",
+      "basis": "Own homepage, publications and official page; 64 titles cited by name.",
+      "evidence": [
+        {
+          "url": "https://zhengzhenzhe220.github.io/",
+          "sha256": "2e767f10396cf96de241e546fbc653643169e24ef14ff03e469c0b03ac4a507e",
+          "role": "site",
+          "date": "2026-11-10",
+          "name_quote": " Zhenzhe Zheng (郑臻哲） Zhenzhe Zheng Home Research Group Teac",
+          "school_tie_quote": "Ph.D. Advisor, School of Computer Science , Shanghai Jiao Tong University 3-509 SEIEE Building 800 Dongchua"
+        },
+        {
+          "url": "https://zhengzhenzhe220.github.io/publications.html",
+          "sha256": "d98cb74c5c9e898114d6c5be12abbb30c470d2ec6a6f0b34e3d83ef5ffac2694",
+          "role": "site",
+          "date": "stored capture 2026-11-07..11-12",
+          "name_quote": " Zhenzhe Zheng | Research Zhenzhe Zheng Home Research ",
+          "school_tie_quote": null
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhengzhenzhe.html",
+          "sha256": "ea7ffc72732f0cf73750c6dbffa5527f959efd05c8e96180ef435e33424641d2",
+          "role": "profile",
+          "date": "2026-11-07T18:11:40",
+          "name_quote": " 郑臻哲-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录",
+          "school_tie_quote": "郑臻哲-上海交通大学计算机学院（网络空间安全学院、密码学院） 使用jAccount登录 English 学"
+        }
+      ],
+      "tier": "A"
+    },
+    "dblp": [
+      "https://dblp.org/pid/132/8083-1"
+    ],
+    "openalex": [
+      "https://openalex.org/A5050396482"
+    ],
+    "why_openalex": ">=2 exact page-listed titles under the id, name credited, contamination screened (see openalex_detail)",
+    "openalex_evidence": [
+      {
+        "id": "https://openalex.org/A5050396482",
+        "titles_on_page": 64,
+        "titles_cited_by_name": 64,
+        "cls": "cited",
+        "school_lineage_works": 88,
+        "names": {
+          "Zhenzhe Zheng": 89
+        },
+        "contamination": {
+          "works": 143,
+          "matched": 69,
+          "school_window": 130,
+          "suspect": 1,
+          "suspect_frac": 0.007,
+          "outside_frac": 0.517
+        }
+      }
+    ]
   },
   "周煊赫": {
     "no_identity": false,
