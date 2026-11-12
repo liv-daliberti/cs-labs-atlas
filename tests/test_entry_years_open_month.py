@@ -182,3 +182,11 @@ def test_role_from_a_preceding_page_heading():
     assert L.role_from_preceding_heading('博士生 蔡') == 'phd'
     assert L.role_from_preceding_heading('Ph.D Student roster ... Alumni Ann Lee') is None   # an alumni heading after it
     assert L.role_from_preceding_heading('no heading here') is None
+
+
+def test_bare_role_sub_heading_and_han_people_links():
+    f = L.role_from_preceding_heading
+    assert f('Ph.D Student roster Qi Zhao Since 2021 Fall abc AT sjtu.edu.cn Master Haoran Wang 王浩然 Since 2023') == 'masters'
+    assert f('Ph.D Student roster x Master Thesis defended') == 'phd'   # 'Master' inside a sentence is not a heading
+    assert L.PEOPLE_LINK.match('在读研究生') and L.PEOPLE_LINK.match('团队成员')
+    assert not L.PEOPLE_LINK.match('成果发表')

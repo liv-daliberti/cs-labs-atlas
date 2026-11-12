@@ -857,7 +857,7 @@ SOCIAL = ('linkedin.com', 'twitter.com', 'x.com', 'facebook.com', 'instagram.com
 WEBWORD = re.compile(r'\b(web\s*sites?|websites?|home\s*pages?|homepages?|web\s*pages?|webpages?|personal pages?|personal sites?|lab|laboratory|'   # plural: Oxford CS 'Personal web pages with links'
                      r'group|research group|research site|visit)\b', re.I)
 PEOPLE_LINK = re.compile(r'^\W*((our|the|lab|group|current)\s+)?(people|members?|team|group members?|lab members?|students?|'
-                         r'personnel|researchers|group|lab|research group|who we are|advisees|phd students)\W*$', re.I)
+                         r'personnel|researchers|group|lab|research group|who we are|advisees|phd students|\u5728\u8bfb\u7814\u7a76\u751f|\u5728\u8bfb\u5b66\u751f|\u56e2\u961f\u6210\u5458|\u8bfe\u9898\u7ec4\u6210\u5458|\u5b9e\u9a8c\u5ba4\u6210\u5458|\u6210\u5458|\u5b66\u751f|\u7814\u7a76\u751f|\u4eba\u5458|\u56e2\u961f)\W*$', re.I)
 ALUMNI_LINK = re.compile(r'\b(alumni|alumnae|alums|former (members|students|group members|lab members)|past (members|students)|'
                          r'graduated students|previous members)\b', re.I)
 PUBS_LINK = re.compile(r'^\W*((selected|recent|all|full|research|our|lab|group)\s+)?(publications?|papers|bibliography|pubs|'
@@ -962,7 +962,7 @@ def classify_links(lks, site_url, domain_rx):
             out['alumni'].append(href)
         elif PUBS_LINK.match(t) or re.search(r'/(publications?|papers|pubs|bibliography)(\.html?|/)?$', path):
             out['pubs'].append(href)
-        elif PEOPLE_LINK.match(t) or re.search(r'/(people|members|team|group|students|lab-members|our-team|personnel)(\.html?|/)?$', path):
+        elif PEOPLE_LINK.match(t) or re.search(r'/(people|members|team|group|students?|lab-members|our-team|personnel)(\.html?|/)?$', path):
             out['people'].append(href)
     return {k: list(dict.fromkeys(v)) for k, v in out.items()}
 
@@ -1704,7 +1704,11 @@ def han_card_item(c_, row_, names, held):
                 alumni=c_['alumni'], held=h_, held_kind=hk_, url=row_['url'], capture_url=row_.get('capture_url'), sha256=row_['sha256'], han_card=c_)
 
 
-ROLE_TEXT_HEAD_RX = re.compile(r"(?<![\w'])(ph\.?\s?d\.?|doctoral|master(?:'s)?|m\.?s\.?|undergraduate|bachelor)\s+students?\b|(\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f)", re.I)
+ROLE_TEXT_HEAD_RX = re.compile(
+    r"(?<![\w'])(ph\.?\s?d\.?|doctoral|master(?:'s)?|m\.?s\.?|undergraduate|bachelor)\s+students?\b"
+    r"|(\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f)"
+    r"|(?<![\w'.-])(?P<bare>(?-i:Masters?|M\.S\.|MS|Ph\.?D|Undergraduates?))(?=(?-i:\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2}(?:\s|$)))(?!\s+(?:Thesis|Degree|Program|Student|Students|Research|Project|Candidate))",
+    re.I)
 ROLE_TEXT_STOP_RX = re.compile(r"\b(?:alumni|alumnae|former|past|graduated|faculty|professors?|staff|postdocs?|post-?doctoral|researchers?|visitors?)\b|\u5df2\u6bd5\u4e1a|\u6bd5\u4e1a\u751f|\u6821\u53cb|\u6559\u5e08|\u6559\u6388", re.I)
 
 
@@ -1716,7 +1720,7 @@ def role_from_preceding_heading(pre):
     m = ms[-1]
     if ROLE_TEXT_STOP_RX.search(pre[m.end():]):
         return None
-    k = (m.group(1) or m.group(2) or '').lower()
+    k = (m.group(1) or m.group(2) or m.group('bare') or '').lower()
     return 'phd' if k.startswith(('ph', 'doctor', '\u535a')) else 'masters' if k.startswith(('master', 'm', '\u7855')) else 'undergraduate'
 
 
