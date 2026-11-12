@@ -332,10 +332,30 @@ def cuhk_erg_cse_directory(h):
     return out
 
 
+def cuhk_cse_profile_cards(h):
+    """The complete 2018 CSE faculty page: one named card and position per person."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for card in soup.select('.facultyppl-container .people-list-item'):
+        name_el = card.select_one('h3')
+        title_el = card.select_one('.field-value.position')
+        if not name_el or not title_el:
+            continue
+        name = ' '.join(name_el.get_text(' ', strip=True).split())
+        title = ' '.join(title_el.get_text(' ', strip=True).split())
+        profile = name_el.find_parent('a', href=True)
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=None,
+                            division=None, profile=profile['href'] if profile else None))
+    return out
+
+
 def cuhk_cse_any(h):
-    """One charter slot spans the Engineering directory and later CSE table eras."""
+    """One charter slot spans the Engineering directory and CSE's historical layouts."""
     if 'people-dept-wrap' in h:
         return cuhk_erg_cse_directory(h)
+    if 'facultyppl-container' in h:
+        return cuhk_cse_profile_cards(h)
     return cuhk_cse_faculty_table(h)
 
 
@@ -1797,6 +1817,7 @@ FORMATS = {
     'mit_csail_pi': (mit_csail_pi, re.compile(r'(?!)')),
     'nus_cs_any': (nus_cs_any, re.compile(r'(?!)')),
     'cuhk_cse_any': (cuhk_cse_any, re.compile(r'(?!)')),
+    'cuhk_cse_profile_cards': (cuhk_cse_profile_cards, re.compile(r'class=["\'][^"\']*facultyppl-container')),
     'cuhk_erg_cse_directory': (cuhk_erg_cse_directory, re.compile(r'class="people-dept-wrap"')),
     'cuhk_cse_faculty_table': (cuhk_cse_faculty_table, re.compile(r'class="[^"]*foo-table')),
     'purdue_cs_people': (purdue_cs_people, re.compile(r'class="people-item"')),

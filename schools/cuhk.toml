@@ -52,7 +52,7 @@ name = "Department of Computer Science and Engineering"
 unit = "Faculty of Engineering"
 title_match = 'Professor|Lecturer|Computer Science and Engineering'
 coverage = "full"
-listing_gaps = {2018 = "Exact Wayback CDX review on 2026-11-11 found no 200 capture in 2018 for the official Engineering FacultyMembers directory (including case, slash and www7 variants), nor for the later CSE /people/faculty/ URL; the official 2017-18 CUHK Calendar names the CSE chair only, not the faculty roster. Historical 2018 roster membership is unverified."}
+listing_gaps = {}
 url = "https://www.cse.cuhk.edu.hk/people/faculty/"
   [[departments.listings]]
   slot = "CSE faculty"
@@ -60,6 +60,13 @@ url = "https://www.cse.cuhk.edu.hk/people/faculty/"
   url = "www.erg.cuhk.edu.hk/erg/FacultyMembers/"
   from = "20160101"
   to = "20201231"
+  format = "cuhk_cse_any"
+  [[departments.listings]]
+  slot = "CSE faculty"
+  kind = "main"
+  url = "www.cse.cuhk.edu.hk/en/people/faculty/by-profile"
+  from = "20180101"
+  to = "20181231"
   format = "cuhk_cse_any"
   [[departments.listings]]
   slot = "CSE faculty"
