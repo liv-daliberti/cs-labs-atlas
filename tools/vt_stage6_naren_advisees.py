@@ -12,7 +12,7 @@ import atlas_paths as P
 
 URL = 'https://people.cs.vt.edu/naren/bio.html'
 SHA = '671c31805097e74b45746f797dad7c76f2cafce6f5c0ae2c3db36f29b2faa638'
-CAPTURE = Path('/n/fs/resemble/homogenizing-science/code/scratch/vt-stage6-1112/naren-bio.html')
+CAPTURE = P.WORK / 'hierarchy/vt/reviewed/source-captures/naren-advisees-20261112.html'
 
 
 def main():
