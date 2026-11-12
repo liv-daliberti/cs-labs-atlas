@@ -1061,6 +1061,22 @@ def has_student_section(kit, row):
                           r'\badvisees\b|\bmy (students|group)\b|\bgroup members\b|\bpostdocs?\b', t, re.I))
 
 
+def apply_registered_people_page(kit, ctx, pi, site_url, chosen, pages, add):
+    """The lab-websites register's reviewed people_page for this PI, when it sits on the chosen site's host, is the people page whatever the site's own links say
+    (AISL sjtuaiseclab.github.io/student/ was never linked as 'people'); it must still fetch (robots, pacing) as a 200 page."""
+    reg = (ctx.get('registered') or {}).get(pi) or {}
+    pp = reg.get('people_page')
+    if not pp or chosen.get('people_page') == pp or urlsplit(pp).hostname != urlsplit(site_url).hostname:
+        return False
+    rr = kit.get(pp)
+    add('registered_people_page', pp, result_of(rr), on=site_url, capture_url=rr.get('capture_url'), sha256=rr.get('sha256'))
+    if rr.get('status') == 200 and rr.get('content'):
+        chosen['people_page'] = pp
+        pages.append(('people', pp))
+        return True
+    return False
+
+
 def discover_lab(kit, school, p, ctx, full=True):
     """Every place checked for one PI lab, the chosen pages and their captures (see the module docstring)."""
     cfg = SCHOOLS[school]
@@ -1092,6 +1108,10 @@ def discover_lab(kit, school, p, ctx, full=True):
             add('prior_labpage_pass_2026-10-22', pg.get('capture_url') or pg['url'],
                 'ok' if pg.get('status') == 200 else (pg.get('error') or f"http_{pg.get('status')}"), kind=pg.get('kind'),
                 sha256=pg.get('sha256'))
+    reg0_ = (ctx.get('registered') or {}).get(p['pi'])
+    if reg0_ and full:
+        add('lab_websites_register', reg0_['url'], 'registered')
+        cand(reg0_['url'], 'earlier_homepage_find')
     for u in ctx.get('seeds', {}).get(p['pi'], []):
         add('prior_labpage_pass', u, 'recorded_page')
         cand(u, 'earlier_homepage_find')
@@ -1261,6 +1281,7 @@ def discover_lab(kit, school, p, ctx, full=True):
         if pubs_site and not chosen['pubs_page']:
             chosen['pubs_page'] = pubs_site
             pages.append(('pubs', pubs_site))
+        apply_registered_people_page(kit, ctx, p['pi'], s['url'], chosen, pages, add)
         if not chosen['people_page'] and has_student_section(kit, s['row']):
             chosen['people_page'] = s['url']
             pages.append(('people', s['url']))
@@ -1421,6 +1442,15 @@ def load_ctx(school, kit=None, plan=True):
             ctx['seeds'][pi_] = [x['url'] for x in d_.get('pages') or [] if x.get('url')]
     hf = P.FT_RAW / f'pi-homepages-{school}.json'
     ctx['homepage_finds'] = read(hf) if hf.exists() else {}
+    ctx['registered'] = {}   # the lab-websites register's own reviewed lab site / people page per PI (a registered people_page is honoured by discovery)
+    rp_ = P.data('lab-websites.json', school)
+    if rp_.exists():
+        try:
+            for e_ in (read(rp_).get('labs') or []):
+                if e_.get('pi') and e_.get('url') and e_.get('coverage') == 'website':
+                    ctx['registered'][e_['pi']] = dict(url=e_['url'], people_page=e_.get('people_page'))
+        except (ValueError, AttributeError, OSError):
+            ctx['registered'] = {}
     ctx['dblp_persons'] = {}
     return ctx
 

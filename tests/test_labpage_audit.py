@@ -698,3 +698,19 @@ def test_alumni_card_with_current_position_takes_the_stays_own_postdoc_role():
     d = 'Current position: Chief scientist, Differential Robotics November 2024 - August 2025 The Hong Kong University of Science and Technology Postdoctoral fellow in Electronic and Computer Engineering Ph.D., Zhejiang University'
     assert A.label_role(d, 'Alumni') == 'postdoc'
     assert A.label_role('Current position: Postdoctoral fellow, HKUST Thesis title: X September 2021 - August 2025 HKUST Ph.D. in Robotics', 'Alumni') is None
+
+
+def test_registered_people_page_is_honoured_by_discovery():
+    from types import SimpleNamespace
+    checks, pages = [], []
+    kit = SimpleNamespace(get=lambda u: dict(status=200, content=b'x', capture_url=None, sha256='h'))
+    ctx = dict(registered={'P': dict(url='https://lab.github.io/', people_page='https://lab.github.io/student/')})
+    chosen = dict(lab_site='https://lab.github.io/', people_page=None)
+    add = lambda *a, **k: checks.append(a)
+    assert A.apply_registered_people_page(kit, ctx, 'P', 'https://lab.github.io/', chosen, pages, add)
+    assert chosen['people_page'] == 'https://lab.github.io/student/' and pages == [('people', 'https://lab.github.io/student/')]
+    # another host, an already-chosen page and a failed fetch change nothing
+    c2 = dict(people_page=None)
+    assert not A.apply_registered_people_page(kit, ctx, 'P', 'https://other.org/', c2, [], add) and c2['people_page'] is None
+    bad = SimpleNamespace(get=lambda u: dict(status=404, content=b'', capture_url=None, sha256=None))
+    assert not A.apply_registered_people_page(bad, ctx, 'P', 'https://lab.github.io/', c2, [], add) and c2['people_page'] is None
