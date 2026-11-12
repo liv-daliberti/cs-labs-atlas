@@ -1598,6 +1598,8 @@ def entry_years(desc, head):
             return [a, e_], 'stated_in_entry'
         return [a, int(b) if b and b[:2] in ('19', '20') else None], 'stated_in_entry'
     ys = [int(y) for y in re.findall(r'(?<!\d)(%s)(?!\d)' % YEAR_, seg)]
+    if len(ys) == 1 and head and re.search(r'\b(?:alumni|alumnae|alumnus|former|past|graduated|graduates)\b', head, re.I) and re.match(r'^\W{0,3}\(\s*(?:19|20)\d\d\s*\)', d):
+        return [None, ys[0]], 'stated_in_entry'   # an alumni entry '(2020)' with no label: the one year is the graduation year, not a start (Tsinghua round 5: 徐明伟's Zhen Tang)
     if len(ys) == 1:
         if AWARD_AFTER_YEAR.search(seg) and not re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis", seg, re.I):
             return None, 'none'   # '(2025 OPPO Scholarship)' dates an award, not the stay (SJTU round 1); a range above is unaffected

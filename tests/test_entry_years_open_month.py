@@ -145,3 +145,9 @@ def test_han_card_item_has_every_key_an_extract_row_has():
 def test_undergraduate_interns_heading_sets_the_role():
     assert L.role_fallback('Undergraduate Interns') == 'undergraduate'
     assert L.entry_role('', 'Undergraduate Interns', lambda t: (None, None)) == ('undergraduate', 'section_heading')
+
+
+def test_unlabelled_alumni_year_is_an_end_year():
+    assert L.entry_years('(2020)', 'Alumni')[0] == [None, 2020]
+    assert L.entry_years('(2020)', 'Alumni > Zili Meng')[0] == [None, 2020]
+    assert L.entry_years('(2020)', 'Current Students')[0] == [2020, 2020]
