@@ -39,3 +39,9 @@ def test_han_adviser_table_reads_year_name_type_and_requires_the_pi_as_adviser()
 def test_han_adviser_table_needs_its_header_and_a_han_pi_name():
     assert L.han_adviser_table_cells('2019 吴松云 直博 杨家海 网络空间安全', '杨家海') == []
     assert L.han_adviser_table_cells(TABLE, 'Jiahai Yang') == []
+
+
+def test_pi_family_tokens_drop_a_trailing_roster_qualifier():
+    assert L.pi_family_tokens('杨家海（校内兼职）') == ['杨家海']   # the nmgroup page names 杨家海, never the qualifier
+    assert L.pi_family_tokens('杨帆 [EE]') == ['杨帆']
+    assert L.pi_family_tokens('Raymond Chi-Wing WONG 黃智榮') == ['黃智榮', 'WONG']

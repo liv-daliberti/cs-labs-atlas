@@ -3805,7 +3805,7 @@ def url_key(u):
 def pi_family_tokens(pi):
     """Tokens that identify a PI's family name on a page. 'Raymond Chi-Wing WONG 黃智榮': the last token is the CJK name, which an English page never
     holds (HKUST 2026-11-11: 64 rows of 11 PIs were rejected as 'the page never names the PI'), so the last Latin token counts too. A pure-CJK name keeps its last token."""
-    toks = str(pi or '').split()
+    toks = re.sub(r'\s*[\uff08(\[][^\uff09)\]]*[\uff09)\]]\s*$', '', str(pi or '')).split()   # a trailing roster qualifier ('杨家海（校内兼职）', '杨帆 [EE]') is not part of the name a page holds
     latin = [t for t in toks if re.fullmatch(r"[A-Za-z][A-Za-z'.\-]+", t)]
     out = toks[-1:] + latin[-1:]
     return list(dict.fromkeys(out)) or ['']
