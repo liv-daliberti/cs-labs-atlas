@@ -1150,7 +1150,7 @@ ALUMNI_LINK = re.compile(r'\b(alumni|alumnae|alums|former (members|students|grou
                          r'graduated students|previous members)\b', re.I)
 PUBS_LINK = re.compile(r'^\W*((selected|recent|all|full|research|our|lab|group)\s+)?(publications?|papers|bibliography|pubs|'
                        r'publication list|list of publications)\W*$', re.I)
-STUDENT_HEAD = re.compile(r'\b(students?|advisees?|ph\.?\s?d|postdocs?|group members|lab members|current members|alumni|'
+STUDENT_HEAD = re.compile(r'\b(students?|advisees?|ph\.?\s?ds?|postdocs?|group members|lab members|current members|alumni|'
                           r'graduated|mentees|research group|post-?docs?|post-?doctoral|graduates?|undergrad\w*|members|team|people|'
                           r'researchers|visitors|former|current|doctoral|masters?|interns?|staff)\b', re.I)
 GENERIC_PAGE_RX = re.compile(r'/(undergraduate|graduate|admissions?|visit|apply|news|events?|students|academics|programs?|'
@@ -1810,6 +1810,22 @@ COADV_RX = re.compile(r'(?:joint(?:ly)?|co-?advised|co-?supervised|co-?mentored|
 _plaus = {}
 
 
+_ENGLISH = {}
+
+
+def plausible_under_student_heading(name):
+    """2026-11-12 (Stanford Pohl: 'Favour Nerrise'): two or more capitalised tokens whose family name is no English word read as a person under a student heading even when the given name is
+    not in the lexicon."""
+    if not re.fullmatch(r"[A-Z][a-z]+(?:[- ][A-Z][a-z]+)+", name or ''):
+        return False
+    if 'w' not in _ENGLISH:
+        try:
+            _ENGLISH['w'] = {w.strip() for w in open('/usr/share/dict/words', encoding='utf-8', errors='ignore') if w.strip().islower()}
+        except OSError:
+            _ENGLISH['w'] = None
+    return _ENGLISH['w'] is not None and re.split(r'[- ]', name)[-1].lower() not in _ENGLISH['w']
+
+
 def plausible(kit, name):
     """lpdom.plausible_person (hierarchy/labpage-tools-epfl-berkeley): the given name occurs in bylines or rosters."""
     if 'f' not in _plaus:
@@ -1925,7 +1941,10 @@ def entry_years(desc, head):
     dd = DEPT_DATE_ENTRY_RX.match(desc or '')
     if dd:
         return [None, int(dd.group(1))], 'stated_in_entry'
-    wy = re.match(r'^\W{0,3}\(\s*((?:19|20)\d\d)\s*,\s*w/\s', desc or '')
+    sy_ = re.match(r'(?i)^\W{0,3}\(\s*[^(),]{2,40},\s*(?:post-?doc\w*|ph\.?\s?d\.?|master\S*)(?:(?!started|since|from|joined|begin|enter)[^()]){0,30}?\b((?:19|20)\d\d)\s*\)', desc or '')
+    if sy_:   # '(BMI, Postdoctoral Scholar 2021)' in a lab-alumni list: the one year is the departure, not a start-end range (Stanford Shah)
+        return [None, int(sy_.group(1))], 'stated_in_entry'
+    wy = re.match(r'^\W{0,3}\(\s*((?:19|20)\d\d)\s*,\s*(?:w/\s|with\s|(?:co-?advised|co-?supervised|jointly)\s+with\s)', desc or '', re.I)   # '(2020, with Philip Levis)', '(2023, co-advised with Jose Blanchet)' (Stanford Winstein, Lexing Ying)
     if wy:   # '(2022, w/ Ke Xu)': the year and the co-adviser note; the year is the graduation (end) year of a past-students list, never a start-end range (Tsinghua 李琦)
         return [None, int(wy.group(1))], 'stated_in_entry'
     dy = dissertation_entry_year(desc)
@@ -2452,6 +2471,17 @@ def entry_role(desc, head, role_of):
     # Student, University of Hong Kong' under 'Former Summer Interns > 2019') leaves the role to the heading.
     if re.match(r'^\W{0,3}ph\.?\s?d\.?\s+(?:pre-?)?(?:candidate|student)\b', d, re.I):
         return 'phd', 'entry'
+    # Stanford recall (2026-11-12): '(BMI, Postdoctoral Scholar 2021)' is a postdoc; 'Statistics (PhD 2019)' is a PhD; 'MS student -> postgrad researcher in CS' is now a researcher
+    bm = re.match(r'^\W{0,3}\(\s*[^(),]{2,40},\s*([^()]{3,60})\)', d)
+    if bm and re.match(r'(?i)(?:post-?doc\w*|ph\.?\s?d\.?\s+(?:student|candidate)|master\S*\s+student)', bm.group(1)):
+        rb = role_of(bm.group(1))[0]
+        if rb and rb not in ('member', 'other'):
+            return rb, 'entry'
+    if re.match(r'(?i)^\W{0,3}[A-Z][A-Za-z &]{2,40}\(\s*ph\.?\s?d\.?\s+(?:19|20)\d\d\s*\)', d):
+        return 'phd', 'entry'
+    am_ = re.search(r'(?:->|\u2192)\s*([^()]{3,40})', d)
+    if am_ and re.search(r'(?i)\b(?:researcher|engineer|staff|scientist|programmer|analyst)\b', am_.group(1)) and not re.search(r'(?i)\b(?:student|candidate)\b', am_.group(1)):
+        return 'other', 'entry'   # the arrow names the present post: a postgraduate researcher is staff, not the master's student before it
     pm_ = re.match(r'^\W{0,3}(?:is|was)\s+an?\s+(?:[\w-]+\s+){0,2}?(?:student|candidate)\s+pursuing\s+(?:an?\s+|the\s+)?(ph\.?\s?d|m\.?\s?s\.?c?|master|m\.?eng)\b', d, re.I)
     if pm_:
         return ('phd' if pm_.group(1).lower().startswith('ph') else 'masters'), 'entry'
@@ -2885,7 +2915,7 @@ def pm_candidates(kit, school, pi, plan, held):
             elif auto_plan and not x.get('han_card') and not DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') and not (homepage_people and re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I) and not NOT_MEMBER_HEAD.search(x.get('head') or '')) and (not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') or
                                 NOT_MEMBER_HEAD.search(x.get('head') or '') and not (x.get('role') in ('masters', 'phd', 'undergraduate') and re.search(r'(?i)\b(?:under)?graduate\b', x.get('head') or ''))):   # a student-level prize chain ('2021 Neukom Undergraduate Research Prize Winner > Thesis: ...') lists the lab's students (Georgia Tech Bo Zhu)
                 why, x['detail'] = 'not_in_people_section', f"section '{(x.get('head') or '')[:60]}' is not a member list"
-            elif auto_plan and not x.get('han_card') and not x.get('card_override') and ((not plausible(kit, x['name']) and not ((DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') or DEGREE_BRACKET_ENTRY_RX.match(x.get('desc') or '')) and len(x['name'].split()) >= 2)) or re.match(r'^[A-Z]\.\s', x['name']) or
+            elif auto_plan and not x.get('han_card') and not x.get('card_override') and ((not plausible(kit, x['name']) and not (x.get('under_people_heading') and x.get('role') in ('phd', 'masters', 'postdoc', 'undergraduate', 'visiting') and not plan.get('shared_page') and plausible_under_student_heading(x['name'])) and not ((DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') or DEGREE_BRACKET_ENTRY_RX.match(x.get('desc') or '')) and len(x['name'].split()) >= 2)) or re.match(r'^[A-Z]\.\s', x['name']) or
                                 all(t.isupper() and len(t) <= 4 for t in x['name'].split())):
                 why, x['detail'] = 'name_unresolved', 'not a plausible full person name (automatic plan)'
             elif fn in drop or any(names.match_one(x['name'], d) for d in plan.get('drop', [])):
@@ -3689,6 +3719,12 @@ def pi_elsewhere_reason(text, pi, school):
     return None
 
 
+def url_key(u):
+    """A page address without scheme, 'www.' and a default port: 'https://med.stanford.edu:443/gevaertlab/people.html' and the same without ':443' are one page (Stanford Gevaert)."""
+    k = re.sub(r'^https?://(www\.)?', '', u or '')
+    return re.sub(r'^([^/]+?):(?:443|80)(?=/|$)', r'\1', k).rstrip('/')
+
+
 def pi_family_tokens(pi):
     """Tokens that identify a PI's family name on a page. 'Raymond Chi-Wing WONG 黃智榮': the last token is the CJK name, which an English page never
     holds (HKUST 2026-11-11: 64 rows of 11 PIs were rejected as 'the page never names the PI'), so the last Latin token counts too. A pure-CJK name keeps its last token."""
@@ -3719,6 +3755,8 @@ def page_lacks_pi(kit, school, p, best):
     except (KeyError, ValueError):
         return None
     fam = pi_family_tokens(p.get('pi'))
+    if any(len(f) >= 3 and fold(f).lower() in fold(re.sub(r'^https?://', '', (best.get('url') or best.get('capture_url') or ''))).lower() for f in fam):
+        return None   # the page's own address names the PI (noh-lab.stanford.edu, med.stanford.edu/gevaertlab): his lab's page, never a department page
     return None if (not t or any(fold(f).lower() in fold(t).lower() for f in fam) or pi_full_name_on_page(t, p)) else ('shared_page_no_adviser', 'the page never names the PI: a department or program page')
 
 
@@ -3878,9 +3916,9 @@ INSTITUTION_LISTING = re.compile(r'^/(people|directory|alumni|students|our-peopl
                                  r'postdocs?|all))?/?$', re.I)  # a department's own list (hcii.cmu.edu/people/alumni), not a lab's
 PEOPLE_PATH = re.compile(r'people|member|team|student|alumni|group|personnel|advisee|former|lab', re.I)
 PUBS_PATH = re.compile(r'publication|papers|pubs|bibliograph|/cv|vita|talks|thesis|teaching|course', re.I)
-STRICT_HEAD = re.compile(r'\b(students?|ph\.?\s?d|post-?docs?|post-?doctoral|alumni|alumnae|graduated|graduates|advisees?|members?|team|'
+STRICT_HEAD = re.compile(r'\b(students?|ph\.?\s?ds?|post-?docs?|post-?doctoral|alumni|alumnae|graduated|graduates|advisees?|members?|team|'
                          r'people|researchers|visitors|undergrad\w*|masters?|interns?|doctoral|staff|former|current)\b|\u5728\u8bfb|\u7814\u7a76\u751f|\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f|\u5df2\u6bd5\u4e1a|\u6bd5\u4e1a\u751f|\u6821\u53cb|\u73b0\u6709\u6210\u5458|\u73b0\u5f79|\u5728\u7ad9|\u6210\u5458|\u7814\u7a76\u52a9\u7406', re.I)
-HOMEPAGE_HEAD = re.compile(r'\b(students?|ph\.?\s?d|post-?docs?|post-?doctoral|advisees?|alumni|graduated|mentees|group members|'
+HOMEPAGE_HEAD = re.compile(r'\b(students?|ph\.?\s?ds?|post-?docs?|post-?doctoral|advisees?|alumni|graduated|mentees|group members|'
                            r'lab members|research group|my group)\b', re.I)  # a homepage used as the people page: only these sections
 NOT_MEMBER_HEAD = re.compile(r'committee|publication|papers|thesis|theses|talks?|course|collaborat|co-?authors?|press|news|award|'
                              r'service|editor|reviewer|program|\b[st]?pc\b|best[\w\s-]{0,24}paper', re.I)
@@ -4028,7 +4066,7 @@ def shared_people_pages(ctx, disc):
     for d in disc.values():
         u = (d.get('chosen') or {}).get('people_page')
         if u:
-            c[re.sub(r'^https?://(www\.)?', '', u).rstrip('/')] += 1
+            c[url_key(u)] += 1
     return {k: n for k, n in c.items() if n >= 2}
 
 
@@ -4038,7 +4076,7 @@ def assemble(kit, ctx, disc, verdicts=None, keep=None, only=None):
     shared = shared_people_pages(ctx, disc)
     for p in (ctx['pis'] if only is None else only):
         lab, plan = lab_record(kit, ctx, p, disc)
-        pp_ = re.sub(r'^https?://(www\.)?', '', lab['urls'].get('people_page') or '').rstrip('/')
+        pp_ = url_key(lab['urls'].get('people_page') or '')
         if pp_ in shared and plan.get('notes', '').startswith('lab-page audit discovery'):
             plan = dict(plan, shared_page=shared[pp_])
             lab['shared_people_page'] = shared[pp_]

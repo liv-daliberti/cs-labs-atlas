@@ -96,3 +96,21 @@ def test_numbered_cell_with_middle_names_on_the_real_chung_capture():
     assert LA.numbered_entry_quote('Ronald So', page).startswith('8. Dr. Ronald Wai King SO (Computer Science and Engineering, January 2017')
     assert LA.numbered_entry_quote('Colin Tsang', page).endswith('The Chinese University of Hong Kong)')
     assert LA.numbered_entry_quote('Wai King So', page) is None   # the honors-track entry has no department/term bracket: not merged
+
+
+def test_stanford_recall_entry_formats():
+    """Stanford recall 2026-11-12: each on the stored entry text (Ying/Lu, Winstein, Shah, Duchi, Bouland, Re's 'PhDs', Gevaert's :443, Pohl's Nerrise)."""
+    import sys
+    sys.path.insert(0, str(LA.HT / 'labpage-tools-princeton-mit'))
+    import autom
+    ro = autom._role
+    assert LA.entry_years('(2023, co-advised with Jose Blanchet)', 'Graduated PhD students')[0] == [None, 2023]
+    assert LA.entry_years('(2020, with Philip Levis)', 'Current > Doctoral')[0] == [None, 2020]
+    assert LA.entry_role('(BMI, Postdoctoral Scholar 2021)', 'Recent Lab Alumni', ro)[0] == 'postdoc'
+    assert LA.entry_years('(BMI, Postdoctoral Scholar 2021)', 'Recent Lab Alumni')[0] == [None, 2021]
+    assert LA.entry_role('Statistics (PhD 2019)', 'Alumni', ro)[0] == 'phd'
+    assert LA.entry_role('MS student -> postgrad researcher in CS (2023-5) and Physics (2025-present)', 'Alumni', ro)[0] == 'other'
+    assert LA.entry_role('MS student, 2023', 'Alumni', ro)[0] == 'masters'
+    assert LA.STRICT_HEAD.search('PhDs') and LA.STUDENT_HEAD.search('PhDs')
+    assert LA.url_key('https://med.stanford.edu:443/gevaertlab/people.html') == LA.url_key('http://med.stanford.edu/gevaertlab/people.html')
+    assert LA.plausible_under_student_heading('Favour Nerrise') and not LA.plausible_under_student_heading('Machine Learning')
