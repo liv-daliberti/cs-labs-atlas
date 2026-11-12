@@ -144,7 +144,12 @@ def school_names_rx(school):
     if school in SCHOOL_NAMES:
         return SCHOOL_NAMES[school]
     import school_config
-    return re.escape(school_config.get(school).get('name') or school) + '|' + re.escape(school)
+    sc = school_config.get(school)
+    base = re.escape(sc.get('name') or school) + '|' + re.escape(school)
+    aff = (sc.get('affiliation') or {}).get('regex')
+    # the charter's own affiliation regex (case-insensitive: 'HKUST', 'Hong Kong University of Science and Technology' without 'The', the host forms), so a page that names the school
+    # is never read as another institution's ('Kong University' in 'Hong Kong University of Science and Technology', HKUST re-audit 2026-11-12: 362 names dropped)
+    return ('(?i:' + aff + ')|' + base) if aff else base
 
 
 LEGACY_SCHOOLS = {'princeton', 'mit', 'cmu', 'epfl', 'berkeley', 'stanford', 'michigan'}   # the hand-table schools: their lab pages legitimately omit the PI's name
@@ -2471,7 +2476,7 @@ def pm_candidates(kit, school, pi, plan, held):
             continue
         fn = names.fold(x['name'])
         ys = x['years']
-        if start and start >= 2010 and x['role'] == 'phd' and ys and ys[1] and ys[1] <= start + 4 and fn not in keep:
+        if start and start >= 2010 and x['role'] == 'phd' and ys and ys[1] and ys[1] <= start + 4 and not (ys[0] and ys[0] >= start) and fn not in keep:   # a STATED start in or after the arrival year is a member (Zhou's 2021-2025 PhDs), only a bare finish year is 'begun before'
             x['why'], x['detail'] = 'at_previous_school', f"PhD finished {ys[1]}, within 4 years of the PI's arrival ({start}): begun before it"
             continue
         last = (ys[1] if ys[1] is not None else ys[0]) if ys else None

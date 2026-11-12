@@ -794,3 +794,21 @@ def test_month_year_dash_month_year_is_a_closed_range_not_an_open_start():
     assert A.entry_years('(Postdoc, Oct 2016 - May 2020)', 'Alumni')[0] == [2016, 2020]
     assert A.entry_years('(4th year CS, Oct 2018 - May 2019)', 'Alumni')[0] == [2018, 2019]
     assert A.entry_years('Master Student, September 2022~', 'Members')[0] == [2022, None]
+
+
+def test_school_names_rx_uses_the_charter_affiliation_regex():
+    import re
+    rx = A.school_names_rx("hkust")
+    for t in ('Hong Kong University of Science and Technology', 'The Hong Kong University of Science and Technology', 'HKUST', 'cse.hkust.edu.hk', 'Dept. of CSE, HKUST, Clear Water Bay'):
+        assert re.search(rx, t), t
+    for t in ('City University of Hong Kong', 'The Chinese University of Hong Kong', 'HKUST(GZ)', 'HKUST (Guangzhou)', 'University of Science and Technology of China'):
+        assert not re.search(rx, t), t
+    assert A.page_institution is not None
+
+
+def test_finished_within_four_years_ignores_a_stated_start_at_or_after_arrival():
+    # the rule itself lives in pm_candidates; its guard expression is exercised by the Zhou HKUST captures (see the OVERNIGHT-LOG entry)
+    ys, start = [2021, 2025], 2021
+    assert not (ys and ys[1] and ys[1] <= start + 4 and not (ys[0] and ys[0] >= start))
+    ys = [None, 2024]
+    assert ys[1] <= start + 4 and not (ys[0] and ys[0] >= start)
