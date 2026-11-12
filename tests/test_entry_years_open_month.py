@@ -212,3 +212,10 @@ def test_kai_bu_alumni_and_fyp_lists():
     assert L.entry_years(d, 'Alumni')[0] == [None, 2024]
     assert L.entry_years(', BS 2026. FYP advisee', 'Undergraduate FYP advisee')[0] == [2026, 2026]
     assert L.entry_role(', CS 2026. FYP advisee (Master Student, CUHK-Shenzhen )', 'Alumni', lambda t: (None, None))[0] == 'undergraduate'
+
+
+def test_a_bare_visitor_entry_is_role_visiting():
+    ro = lambda t: (None, None)
+    assert L.entry_role('Visitor', 'Researchers > ZJU100 Young Professor', ro)[0] == 'visiting'
+    assert L.entry_role('Visitor, University of X', 'Members', ro)[0] == 'visiting'
+    assert L.entry_role('Visiting professor of physics', 'People', ro)[0] != 'visiting'
