@@ -1822,6 +1822,8 @@ _ENGLISH = {}
 def plausible_under_student_heading(name):
     """2026-11-12 (Stanford Pohl: 'Favour Nerrise'): two or more capitalised tokens whose family name is no English word read as a person under a student heading even when the given name is
     not in the lexicon."""
+    if re.fullmatch(r"[\u4e00-\u9fff]{2,4}", name or ''):  # a lone Han personal name (SJTU faculty-platform lists): a common surname first
+        return not any(w in name for w in ('研究', '学生', '毕业', '在校', '信息', '成员', '首页', '教授', '导师'))
     if not re.fullmatch(r"[A-Z][a-z]+(?:[- ][A-Z][a-z]+)+", name or ''):
         return False
     if 'w' not in _ENGLISH:
@@ -2829,6 +2831,9 @@ def pm_candidates(kit, school, pi, plan, held):
             if x.get('han_card'):
                 x['under_people_heading'] = True   # \u535a\u58eb\u751f / \u7855\u58eb\u751f / \u672c\u79d1\u751f headings are people headings the Latin HEADWORD does not know
             x['single_token'] = len(names.parse(x['name'])['tokens']) < 2
+            if x['single_token'] and x.get('under_people_heading') and x.get('role') in ('phd', 'masters', 'postdoc', 'undergraduate', 'visiting') and plausible_under_student_heading(x['name']) \
+                    and re.fullmatch(r'[\u4e00-\u9fff]{2,4}', x['name'] or ''):
+                x['single_token'] = False   # a lone Han name listed under a student heading (SJTU faculty-platform lists) is a full name: Han names are one token to the Latin parser
             if fn in yrs:
                 x['years'], x['years_basis'] = yrs[fn], 'reviewer'
             else:
