@@ -36,6 +36,28 @@ foreign_title_exception = false
 [census]
 computing_departments = ["EECS"]   # listed_not_in_census.py; [] = every listed department
 
+[[departments]]
+code = "EECS"
+name = "Electrical Engineering and Computer Sciences"
+unit = "College of Engineering"
+title_match = 'Professor|Lecturer|Faculty'
+coverage = "full"
+url = "https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html"
+  [[departments.listings]]
+  slot = "EECS current faculty (all EECS)"
+  kind = "main"
+  url = "www2.eecs.berkeley.edu/Faculty/Lists/faculty.html"
+  from = "20160101"
+  to = "20261231"
+  format = "berkeley_eecs_faculty"
+  [[departments.listings]]
+  slot = "EECS faculty and staff directory 2018"
+  kind = "main"
+  url = "www2.eecs.berkeley.edu/Directories/directory-nostudents.html"
+  from = "20180101"
+  to = "20181231"
+  format = "berkeley_eecs_directory"
+
 [site]
 depts = {EECS = "Electrical Engineering and Computer Sciences"}
 

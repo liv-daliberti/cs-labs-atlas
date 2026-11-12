@@ -45,6 +45,58 @@ def clean(s):
     return ' '.join(H.unescape(TAG.sub(' ', s)).split())
 
 
+def berkeley_eecs_faculty(h):
+    """Berkeley EECS's old table and later unpaged media faculty lists."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for tr in soup.select('tr'):
+        link = tr.select_one('strong a[href*="/Faculty/Homepages/"]')
+        if not link:
+            continue
+        cell = link.find_parent('td')
+        if not cell:
+            continue
+        text = list(cell.stripped_strings)
+        if len(text) < 2 or text[0] != link.get_text(' ', strip=True):
+            continue
+        title = text[1]
+        if not re.search(r'Professor|Lecturer|Faculty', title, re.I):
+            continue
+        out.append(dict(name_listed=text[0], titles=[title], homepage=None,
+                        division=None, profile=link['href']))
+    for card in soup.select('div.media, div.cc-image-list__item'):
+        head = card.select_one('h3.media-heading a[href], div.cc-image-list__item__content h3 a[href]')
+        role = card.select_one('div.media-body p strong, div.cc-image-list__item__content p strong')
+        if not head or not role:
+            continue
+        name = head.get_text(' ', strip=True)
+        title = role.get_text(' ', strip=True)
+        if name and re.search(r'Professor|Lecturer|Faculty', title, re.I):
+            out.append(dict(name_listed=name, titles=[title], homepage=None,
+                            division=None, profile=head['href']))
+    return out
+
+
+def berkeley_eecs_directory(h):
+    """2018 unpaged EECS directory: retain only explicitly labelled faculty roles."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for tr in soup.select('table.eecs-static-table tbody tr'):
+        cells = tr.find_all('td', recursive=False)
+        if len(cells) != 7:
+            continue
+        status = cells[4].get_text(' ', strip=True)
+        if status not in ('Faculty', 'Lecturer', 'Professor in Residence'):
+            continue
+        name = cells[0].get_text(' ', strip=True)
+        link = cells[0].select_one('a[href]')
+        if name:
+            out.append(dict(name_listed=name, titles=[status], homepage=None,
+                            division=cells[5].get_text(' ', strip=True),
+                            profile=link['href'] if link else None))
+    return out
+
+
 def nus_cs_legacy_tables(h):
     """Old NUS CS faculty tables, excluding administrators and research assistants."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1522,6 +1574,8 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
+    'berkeley_eecs_faculty': (berkeley_eecs_faculty, re.compile(r'(?!)')),
+    'berkeley_eecs_directory': (berkeley_eecs_directory, re.compile(r'(?!)')),
     'nus_cs_any': (nus_cs_any, re.compile(r'(?!)')),
     'cuhk_cse_any': (cuhk_cse_any, re.compile(r'(?!)')),
     'cuhk_erg_cse_directory': (cuhk_erg_cse_directory, re.compile(r'class="people-dept-wrap"')),
