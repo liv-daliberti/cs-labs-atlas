@@ -1772,10 +1772,10 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
-    'stanford_cs_legacy': (stanford_cs_legacy, lambda h: 'Regular Faculty</h3>' in h and 'post_form_nam_last' in h),
-    'stanford_cs_cards': (stanford_cs_cards, lambda h: 'su-person-short-title' in h and 'Faculty by Name' in h),
-    'stanford_ee_cards': (stanford_ee_cards, lambda h: 'Electrical Engineering' in h and ('orglist__display-name' in h or 'class="description"' in h)),
-    'stanford_ee_bulletin': (stanford_ee_bulletin, lambda h: 'facultytextcontainer' in h and bool(re.search(r'<title>\s*Electrical Engineering\b', h))),
+    'stanford_cs_legacy': (stanford_cs_legacy, re.compile(r'(?s)Regular Faculty</h3>.*post_form_nam_last')),
+    'stanford_cs_cards': (stanford_cs_cards, re.compile(r'(?s)Faculty by Name.*su-person-short-title')),
+    'stanford_ee_cards': (stanford_ee_cards, re.compile(r'(?s)<title>[^<]*Electrical Engineering.*(?:orglist__display-name|class="description")')),
+    'stanford_ee_bulletin': (stanford_ee_bulletin, re.compile(r'(?s)<title>\s*Electrical Engineering\b.*facultytextcontainer')),
     'hit_cs_current_table': (hit_cs_current_table, re.compile(r'(?!)')),
     'berkeley_eecs_faculty': (berkeley_eecs_faculty, re.compile(r'(?!)')),
     'berkeley_eecs_directory': (berkeley_eecs_directory, re.compile(r'(?!)')),
