@@ -1432,25 +1432,41 @@
     },
     {
       "pi": "Kai Bu",
-      "status": "none_found",
-      "reason_code": "profile_only_no_homepage",
-      "reason": "The cached official ICSR/university profile card https://person.zju.edu.cn/en/kaibu (HTTP 200, 18837 bytes) carries no link to a personal or lab website. This records the profile-card check only; no web search was made, so it is not a claim that no site exists.",
-      "audited_at": "2026-11-07T18:20:29",
-      "checks": [
+      "url": "https://list.zju.edu.cn/kaibu/",
+      "kind": "pi_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "6034b446a14a91c1d41737321c4c9db98c1214a07693ab4b4aa295b823bff844",
+      "checked_at": "2026-11-11T20:39:43",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
         {
-          "source": "school_profile",
-          "url": "https://person.zju.edu.cn/en/kaibu",
-          "at": "2026-11-07T18:20:29",
-          "result": "ok_no_personal_site_link",
-          "sha256": "43d49e6665f948a0891c453aeef9bd35a1e43bbfc0dd2c7cac6c4ab138c7eaf4"
+          "source": "web_search_reviewed",
+          "url": "https://list.zju.edu.cn/kaibu/",
+          "at": "2026-11-11T20:39:43+00:00",
+          "sha256": "6034b446a14a91c1d41737321c4c9db98c1214a07693ab4b4aa295b823bff844",
+          "name_quote": "Kai Bu College of Computer Science and Technology",
+          "tie_quote": "Zhejiang University, Hangzhou, China Email: kaibu@zju.edu.cn",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
         }
       ],
-      "evidence": {
-        "url": "https://person.zju.edu.cn/en/kaibu",
-        "sha256": "43d49e6665f948a0891c453aeef9bd35a1e43bbfc0dd2c7cac6c4ab138c7eaf4",
-        "quote": "Kai Bu",
-        "observed": "2026-11-07T18:20:29"
-      }
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://list.zju.edu.cn/kaibu/",
+          "at": "2026-11-11T20:39:43+00:00",
+          "sha256": "6034b446a14a91c1d41737321c4c9db98c1214a07693ab4b4aa295b823bff844",
+          "name_quote": "Kai Bu College of Computer Science and Technology",
+          "tie_quote": "Zhejiang University, Hangzhou, China Email: kaibu@zju.edu.cn",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "resource_status": "web-search-found site; name and school-tie quotes machine-checked verbatim in the stored capture; Han key matched by pinyin only on 何水兵/邹强/魏成坤/陈明帅 (signal, not identity)"
     },
     {
       "pi": "Lei Wu",
@@ -1652,25 +1668,41 @@
     },
     {
       "pi": "Ziqi Yang",
-      "status": "none_found",
-      "reason_code": "profile_only_no_homepage",
-      "reason": "The cached official ICSR/university profile card https://person.zju.edu.cn/en/yangziqi (HTTP 200, 14295 bytes) carries no link to a personal or lab website. This records the profile-card check only; no web search was made, so it is not a claim that no site exists.",
-      "audited_at": "2026-11-07T18:21:08",
-      "checks": [
+      "url": "https://yziqi.github.io/",
+      "kind": "pi_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "89a2211ef87cc5e7b6eaef0749e50eeaa8cc1f6ab1fea8a321f412e0e3eb942f",
+      "checked_at": "2026-11-11T20:49:08",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
         {
-          "source": "school_profile",
-          "url": "https://person.zju.edu.cn/en/yangziqi",
-          "at": "2026-11-07T18:21:08",
-          "result": "ok_no_personal_site_link",
-          "sha256": "9cbbbda88903475997521643fcca6fa458f49a69cd9e9ba76249f09758f97f67"
+          "source": "web_search_reviewed",
+          "url": "https://yziqi.github.io/",
+          "at": "2026-11-11T20:49:08+00:00",
+          "sha256": "89a2211ef87cc5e7b6eaef0749e50eeaa8cc1f6ab1fea8a321f412e0e3eb942f",
+          "name_quote": "Ziqi Yang Assistant Professor School of Cyber Science and Technology",
+          "tie_quote": "College of Computer Science and Technology Zhejiang University Email: yangziqi at zju dot edu dot cn",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-12, packet2.json",
+          "result": "ok"
         }
       ],
-      "evidence": {
-        "url": "https://person.zju.edu.cn/en/yangziqi",
-        "sha256": "9cbbbda88903475997521643fcca6fa458f49a69cd9e9ba76249f09758f97f67",
-        "quote": "Ziqi Yang",
-        "observed": "2026-11-07T18:21:08"
-      }
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://yziqi.github.io/",
+          "at": "2026-11-11T20:49:08+00:00",
+          "sha256": "89a2211ef87cc5e7b6eaef0749e50eeaa8cc1f6ab1fea8a321f412e0e3eb942f",
+          "name_quote": "Ziqi Yang Assistant Professor School of Cyber Science and Technology",
+          "tie_quote": "College of Computer Science and Technology Zhejiang University Email: yangziqi at zju dot edu dot cn",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-12, packet2.json",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "resource_status": "web-search-found site; quotes machine-checked verbatim; match by exact Latin registry key"
     },
     {
       "pi": "Haoting Shen",
@@ -2187,28 +2219,41 @@
     },
     {
       "pi": "何水兵",
-      "status": "access_blocked",
-      "coverage": "pending_access",
-      "reason_code": "host_challenge_no_wayback",
-      "reason": "The only personal page linked for this PI is the official profile card https://person.zju.edu.cn/heshuibing on person.zju.edu.cn. On 2026-11-10 the host's robots.txt allowed the path, but the first card request (https://person.zju.edu.cn/renzhong) returned a human-verification page (请验证以继续访问) instead of a card, so the project stopped (owner rule: never solve or bypass a challenge) and made no further request to the host; no Wayback copy and no web search was used. This records the access barrier only, not a claim that no website exists. The verification page was observed on the card of another PI (https://person.zju.edu.cn/renzhong), the capture is host-level and shared, and NO request was made for this PI's own card.",
-      "audited_at": "2026-11-10T14:34:18",
-      "url": null,
-      "checks": [
+      "url": "https://shuibing9420.github.io/",
+      "kind": "lab_site",
+      "reason_code": "lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "f4a79ed8db91f174fcf75536d9c89179d6b35fe5afa4b48631696567c34c8465",
+      "checked_at": "2026-11-11T20:39:46",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
         {
-          "source": "school_profile_link",
-          "url": "https://person.zju.edu.cn/heshuibing",
-          "at": "2026-11-10T14:34:18",
-          "result": "challenge_human_verification",
-          "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-          "note": "host-level challenge capture of https://person.zju.edu.cn/renzhong"
+          "source": "web_search_reviewed",
+          "url": "https://shuibing9420.github.io/",
+          "at": "2026-11-11T20:39:46+00:00",
+          "sha256": "f4a79ed8db91f174fcf75536d9c89179d6b35fe5afa4b48631696567c34c8465",
+          "name_quote": "Shuibing He Tenured Full Professor | Doctoral supervisor",
+          "tie_quote": "Full Professor in the College of Computer Science and Technology at Zhejiang University (ZJU)",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
         }
       ],
-      "evidence": {
-        "url": "https://person.zju.edu.cn/renzhong",
-        "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-        "quote": "温馨提示：请验证以继续访问。",
-        "observed": "2026-11-10T14:34:18"
-      }
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://shuibing9420.github.io/",
+          "at": "2026-11-11T20:39:46+00:00",
+          "sha256": "f4a79ed8db91f174fcf75536d9c89179d6b35fe5afa4b48631696567c34c8465",
+          "name_quote": "Shuibing He Tenured Full Professor | Doctoral supervisor",
+          "tie_quote": "Full Professor in the College of Computer Science and Technology at Zhejiang University (ZJU)",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "resource_status": "web-search-found site; name and school-tie quotes machine-checked verbatim in the stored capture; Han key matched by pinyin only on 何水兵/邹强/魏成坤/陈明帅 (signal, not identity)"
     },
     {
       "pi": "何钦铭",
@@ -2337,53 +2382,79 @@
     },
     {
       "pi": "纪守领",
-      "status": "access_blocked",
-      "coverage": "pending_access",
-      "reason_code": "host_challenge_no_wayback",
-      "reason": "The only personal page linked for this PI is the official profile card https://person.zju.edu.cn/sji on person.zju.edu.cn. On 2026-11-10 the host's robots.txt allowed the path, but the first card request (https://person.zju.edu.cn/renzhong) returned a human-verification page (请验证以继续访问) instead of a card, so the project stopped (owner rule: never solve or bypass a challenge) and made no further request to the host; no Wayback copy and no web search was used. This records the access barrier only, not a claim that no website exists. The verification page was observed on the card of another PI (https://person.zju.edu.cn/renzhong), the capture is host-level and shared, and NO request was made for this PI's own card.",
-      "audited_at": "2026-11-10T14:34:18",
-      "url": null,
-      "checks": [
+      "url": "https://nesa.zju.edu.cn/webpage/crew/jsl.html",
+      "kind": "lab_site",
+      "reason_code": "lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "c0b456a59df4fdf168a5edebf5613386e881ea131eef9d1c9e8b2ca6bbe572ed",
+      "checked_at": "2026-11-11T20:38:13",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
         {
-          "source": "school_profile_link",
-          "url": "https://person.zju.edu.cn/sji",
-          "at": "2026-11-10T14:34:18",
-          "result": "challenge_human_verification",
-          "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-          "note": "host-level challenge capture of https://person.zju.edu.cn/renzhong"
+          "source": "web_search_reviewed",
+          "url": "https://nesa.zju.edu.cn/webpage/crew/jsl.html",
+          "at": "2026-11-11T20:38:13+00:00",
+          "sha256": "c0b456a59df4fdf168a5edebf5613386e881ea131eef9d1c9e8b2ca6bbe572ed",
+          "name_quote": "Shouling Ji 纪守领 Qiushi Distinguished Professor",
+          "tie_quote": "Shouling Ji is a Qiushi Distinguished Professor in the College of Computer Science and Technology at Zhejiang University",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
         }
       ],
-      "evidence": {
-        "url": "https://person.zju.edu.cn/renzhong",
-        "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-        "quote": "温馨提示：请验证以继续访问。",
-        "observed": "2026-11-10T14:34:18"
-      }
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://nesa.zju.edu.cn/webpage/crew/jsl.html",
+          "at": "2026-11-11T20:38:13+00:00",
+          "sha256": "c0b456a59df4fdf168a5edebf5613386e881ea131eef9d1c9e8b2ca6bbe572ed",
+          "name_quote": "Shouling Ji 纪守领 Qiushi Distinguished Professor",
+          "tie_quote": "Shouling Ji is a Qiushi Distinguished Professor in the College of Computer Science and Technology at Zhejiang University",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "resource_status": "web-search-found site; name and school-tie quotes machine-checked verbatim in the stored capture; Han key matched by pinyin only on 何水兵/邹强/魏成坤/陈明帅 (signal, not identity)"
     },
     {
       "pi": "刘健",
-      "status": "access_blocked",
-      "coverage": "pending_access",
-      "reason_code": "host_challenge_no_wayback",
-      "reason": "The only personal page linked for this PI is the official profile card https://person.zju.edu.cn/jianliu on person.zju.edu.cn. On 2026-11-10 the host's robots.txt allowed the path, but the first card request (https://person.zju.edu.cn/renzhong) returned a human-verification page (请验证以继续访问) instead of a card, so the project stopped (owner rule: never solve or bypass a challenge) and made no further request to the host; no Wayback copy and no web search was used. This records the access barrier only, not a claim that no website exists. The verification page was observed on the card of another PI (https://person.zju.edu.cn/renzhong), the capture is host-level and shared, and NO request was made for this PI's own card.",
-      "audited_at": "2026-11-10T14:34:18",
-      "url": null,
-      "checks": [
+      "url": "https://jianliu11.github.io/",
+      "kind": "pi_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "f89965edf2d967ec2fc2e07a8283d7f4c0ab8ec97845ffb32e291a3711320af4",
+      "checked_at": "2026-11-11T20:38:36",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
         {
-          "source": "school_profile_link",
-          "url": "https://person.zju.edu.cn/jianliu",
-          "at": "2026-11-10T14:34:18",
-          "result": "challenge_human_verification",
-          "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-          "note": "host-level challenge capture of https://person.zju.edu.cn/renzhong"
+          "source": "web_search_reviewed",
+          "url": "https://jianliu11.github.io/",
+          "at": "2026-11-11T20:38:36+00:00",
+          "sha256": "f89965edf2d967ec2fc2e07a8283d7f4c0ab8ec97845ffb32e291a3711320af4",
+          "name_quote": "Jian Liu (刘健) Tenured Associate Professor PhD Advisor",
+          "tie_quote": "I am a tenured Associate Professor in Computer Science at Zhejiang University",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
         }
       ],
-      "evidence": {
-        "url": "https://person.zju.edu.cn/renzhong",
-        "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-        "quote": "温馨提示：请验证以继续访问。",
-        "observed": "2026-11-10T14:34:18"
-      }
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://jianliu11.github.io/",
+          "at": "2026-11-11T20:38:36+00:00",
+          "sha256": "f89965edf2d967ec2fc2e07a8283d7f4c0ab8ec97845ffb32e291a3711320af4",
+          "name_quote": "Jian Liu (刘健) Tenured Associate Professor PhD Advisor",
+          "tie_quote": "I am a tenured Associate Professor in Computer Science at Zhejiang University",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "resource_status": "web-search-found site; name and school-tie quotes machine-checked verbatim in the stored capture; Han key matched by pinyin only on 何水兵/邹强/魏成坤/陈明帅 (signal, not identity)"
     },
     {
       "pi": "吕红兵",
@@ -3562,28 +3633,41 @@
     },
     {
       "pi": "陈明帅",
-      "status": "access_blocked",
-      "coverage": "pending_access",
-      "reason_code": "host_challenge_no_wayback",
-      "reason": "The only personal page linked for this PI is the official profile card https://person.zju.edu.cn/chenms on person.zju.edu.cn. On 2026-11-10 the host's robots.txt allowed the path, but the first card request (https://person.zju.edu.cn/renzhong) returned a human-verification page (请验证以继续访问) instead of a card, so the project stopped (owner rule: never solve or bypass a challenge) and made no further request to the host; no Wayback copy and no web search was used. This records the access barrier only, not a claim that no website exists. The verification page was observed on the card of another PI (https://person.zju.edu.cn/renzhong), the capture is host-level and shared, and NO request was made for this PI's own card.",
-      "audited_at": "2026-11-10T14:34:18",
-      "url": null,
-      "checks": [
+      "url": "https://fiction-zju.github.io/",
+      "kind": "lab_site",
+      "reason_code": "lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "15613eb431cb0d219774492a1ef2d6cb6d84ba94a9aebd28b21c77ca393274ee",
+      "checked_at": "2026-11-11T20:40:52",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
         {
-          "source": "school_profile_link",
-          "url": "https://person.zju.edu.cn/chenms",
-          "at": "2026-11-10T14:34:18",
-          "result": "challenge_human_verification",
-          "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-          "note": "host-level challenge capture of https://person.zju.edu.cn/renzhong"
+          "source": "web_search_reviewed",
+          "url": "https://fiction-zju.github.io/",
+          "at": "2026-11-11T20:40:52+00:00",
+          "sha256": "15613eb431cb0d219774492a1ef2d6cb6d84ba94a9aebd28b21c77ca393274ee",
+          "name_quote": "headed by Prof. Dr. Mingshuai Chen",
+          "tie_quote": "embedded in the College of Computer Science and Technology at Zhejiang University",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
         }
       ],
-      "evidence": {
-        "url": "https://person.zju.edu.cn/renzhong",
-        "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-        "quote": "温馨提示：请验证以继续访问。",
-        "observed": "2026-11-10T14:34:18"
-      }
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://fiction-zju.github.io/",
+          "at": "2026-11-11T20:40:52+00:00",
+          "sha256": "15613eb431cb0d219774492a1ef2d6cb6d84ba94a9aebd28b21c77ca393274ee",
+          "name_quote": "headed by Prof. Dr. Mingshuai Chen",
+          "tie_quote": "embedded in the College of Computer Science and Technology at Zhejiang University",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "resource_status": "web-search-found site; name and school-tie quotes machine-checked verbatim in the stored capture; Han key matched by pinyin only on 何水兵/邹强/魏成坤/陈明帅 (signal, not identity)"
     },
     {
       "pi": "陈林",
@@ -3787,53 +3871,82 @@
     },
     {
       "pi": "卢立",
-      "status": "access_blocked",
-      "coverage": "pending_access",
-      "reason_code": "host_challenge_no_wayback",
-      "reason": "The only personal page linked for this PI is the official profile card https://person.zju.edu.cn/lynnluli on person.zju.edu.cn. On 2026-11-10 the host's robots.txt allowed the path, but the first card request (https://person.zju.edu.cn/renzhong) returned a human-verification page (请验证以继续访问) instead of a card, so the project stopped (owner rule: never solve or bypass a challenge) and made no further request to the host; no Wayback copy and no web search was used. This records the access barrier only, not a claim that no website exists. The verification page was observed on the card of another PI (https://person.zju.edu.cn/renzhong), the capture is host-level and shared, and NO request was made for this PI's own card.",
-      "audited_at": "2026-11-10T14:34:18",
-      "url": null,
-      "checks": [
+      "url": "https://lynnlilu.github.io/",
+      "kind": "pi_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "83292695c2e7ccdd77a430557d6fc321dd5330b01ea73b3cbfc83cc61e24a8de",
+      "checked_at": "2026-11-11T20:49:09",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
         {
-          "source": "school_profile_link",
-          "url": "https://person.zju.edu.cn/lynnluli",
-          "at": "2026-11-10T14:34:18",
-          "result": "challenge_human_verification",
-          "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-          "note": "host-level challenge capture of https://person.zju.edu.cn/renzhong"
+          "source": "web_search_reviewed",
+          "url": "https://lynnlilu.github.io/",
+          "at": "2026-11-11T20:49:09+00:00",
+          "sha256": "83292695c2e7ccdd77a430557d6fc321dd5330b01ea73b3cbfc83cc61e24a8de",
+          "name_quote": "Dr. Li Lu(卢立)'s Homepage",
+          "tie_quote": "Li Lu (卢立) Research Professor Follow Hangzhou, Zhejiang, China Zhejiang University",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-12, packet2.json",
+          "result": "ok"
         }
       ],
-      "evidence": {
-        "url": "https://person.zju.edu.cn/renzhong",
-        "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-        "quote": "温馨提示：请验证以继续访问。",
-        "observed": "2026-11-10T14:34:18"
-      }
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://lynnlilu.github.io/",
+          "at": "2026-11-11T20:49:09+00:00",
+          "sha256": "83292695c2e7ccdd77a430557d6fc321dd5330b01ea73b3cbfc83cc61e24a8de",
+          "name_quote": "Dr. Li Lu(卢立)'s Homepage",
+          "tie_quote": "Li Lu (卢立) Research Professor Follow Hangzhou, Zhejiang, China Zhejiang University",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-12, packet2.json",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "resource_status": "web-search-found site; quotes machine-checked verbatim; Han characters on the page"
     },
     {
       "pi": "李晓白",
-      "status": "access_blocked",
-      "coverage": "pending_access",
-      "reason_code": "host_challenge_no_wayback",
-      "reason": "The only personal page linked for this PI is the official profile card https://person.zju.edu.cn/0022089 on person.zju.edu.cn. On 2026-11-10 the host's robots.txt allowed the path, but the first card request (https://person.zju.edu.cn/renzhong) returned a human-verification page (请验证以继续访问) instead of a card, so the project stopped (owner rule: never solve or bypass a challenge) and made no further request to the host; no Wayback copy and no web search was used. This records the access barrier only, not a claim that no website exists. The verification page was observed on the card of another PI (https://person.zju.edu.cn/renzhong), the capture is host-level and shared, and NO request was made for this PI's own card.",
-      "audited_at": "2026-11-10T14:34:18",
-      "url": null,
-      "checks": [
+      "url": "https://xiaobaili-uhai.github.io/",
+      "kind": "pi_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "05cdf5685846f748da9693b6c64dcbce538164e2935947ba3d4fd17afe9d9cb6",
+      "checked_at": "2026-11-11T21:12:38",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
         {
-          "source": "school_profile_link",
-          "url": "https://person.zju.edu.cn/0022089",
-          "at": "2026-11-10T14:34:18",
-          "result": "challenge_human_verification",
-          "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-          "note": "host-level challenge capture of https://person.zju.edu.cn/renzhong"
+          "source": "web_search_reviewed",
+          "url": "https://xiaobaili-uhai.github.io/",
+          "at": "2026-11-11T21:12:38+00:00",
+          "sha256": "05cdf5685846f748da9693b6c64dcbce538164e2935947ba3d4fd17afe9d9cb6",
+          "name_quote": "Dr. Xiaobai Li • ZJU100 Professor, State Key Laboratory of Blockchain and Data Security",
+          "tie_quote": "ZJU100 Professor, State Key Laboratory of Blockchain and Data Security, Zhejiang University, China",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-12, packet3.json",
+          "result": "ok"
         }
       ],
-      "evidence": {
-        "url": "https://person.zju.edu.cn/renzhong",
-        "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-        "quote": "温馨提示：请验证以继续访问。",
-        "observed": "2026-11-10T14:34:18"
-      }
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://xiaobaili-uhai.github.io/",
+          "at": "2026-11-11T21:12:38+00:00",
+          "sha256": "05cdf5685846f748da9693b6c64dcbce538164e2935947ba3d4fd17afe9d9cb6",
+          "name_quote": "Dr. Xiaobai Li • ZJU100 Professor, State Key Laboratory of Blockchain and Data Security",
+          "tie_quote": "ZJU100 Professor, State Key Laboratory of Blockchain and Data Security, Zhejiang University, China",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-12, packet3.json",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "flags": [
+        "name_match_pinyin_only"
+      ],
+      "resource_status": "web-search-found site; quotes machine-checked verbatim; pinyin-only name match (flagged); lists no members"
     },
     {
       "pi": "李松",
@@ -4112,28 +4225,44 @@
     },
     {
       "pi": "魏成坤",
-      "status": "access_blocked",
-      "coverage": "pending_access",
-      "reason_code": "host_challenge_no_wayback",
-      "reason": "The only personal page linked for this PI is the official profile card https://person.zju.edu.cn/weichengkun on person.zju.edu.cn. On 2026-11-10 the host's robots.txt allowed the path, but the first card request (https://person.zju.edu.cn/renzhong) returned a human-verification page (请验证以继续访问) instead of a card, so the project stopped (owner rule: never solve or bypass a challenge) and made no further request to the host; no Wayback copy and no web search was used. This records the access barrier only, not a claim that no website exists. The verification page was observed on the card of another PI (https://person.zju.edu.cn/renzhong), the capture is host-level and shared, and NO request was made for this PI's own card.",
-      "audited_at": "2026-11-10T14:34:18",
-      "url": null,
-      "checks": [
+      "url": "https://chengkunwei.github.io/en/",
+      "kind": "pi_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "7ed08e5c800c65159b396091bbe6c949d2626cd9d24b18aa63410c693d7b6db1",
+      "checked_at": "2026-11-11T20:40:56",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
         {
-          "source": "school_profile_link",
-          "url": "https://person.zju.edu.cn/weichengkun",
-          "at": "2026-11-10T14:34:18",
-          "result": "challenge_human_verification",
-          "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-          "note": "host-level challenge capture of https://person.zju.edu.cn/renzhong"
+          "source": "web_search_reviewed",
+          "url": "https://chengkunwei.github.io/en/",
+          "at": "2026-11-11T20:40:56+00:00",
+          "sha256": "7ed08e5c800c65159b396091bbe6c949d2626cd9d24b18aa63410c693d7b6db1",
+          "name_quote": "Chengkun Wei Researcher of Hundred-Person Program",
+          "tie_quote": "Researcher of Hundred-Person Program (百人计划研究员) Department of Computer Science Zhejiang University Email: weichengkun AT zju DOT edu DOT cn",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
         }
       ],
-      "evidence": {
-        "url": "https://person.zju.edu.cn/renzhong",
-        "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-        "quote": "温馨提示：请验证以继续访问。",
-        "observed": "2026-11-10T14:34:18"
-      }
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://chengkunwei.github.io/en/",
+          "at": "2026-11-11T20:40:56+00:00",
+          "sha256": "7ed08e5c800c65159b396091bbe6c949d2626cd9d24b18aa63410c693d7b6db1",
+          "name_quote": "Chengkun Wei Researcher of Hundred-Person Program",
+          "tie_quote": "Researcher of Hundred-Person Program (百人计划研究员) Department of Computer Science Zhejiang University Email: weichengkun AT zju DOT edu DOT cn",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "resource_status": "web-search-found site; name and school-tie quotes machine-checked verbatim in the stored capture; Han key matched by pinyin only on 何水兵/邹强/魏成坤/陈明帅 (signal, not identity); tie quote strengthened 2026-11-12 (title line + department + zju.edu.cn email); official CS listing 2026 also names the PI (cs.zju.edu.cn qyjscx page 14, sha 8a2aa15b...)",
+      "flags": [
+        "name_match_pinyin_only"
+      ]
     },
     {
       "pi": "许海涛",
@@ -4437,28 +4566,52 @@
     },
     {
       "pi": "邹强",
-      "status": "access_blocked",
-      "coverage": "pending_access",
-      "reason_code": "host_challenge_no_wayback",
-      "reason": "The only personal page linked for this PI is the official profile card https://person.zju.edu.cn/qiangzou on person.zju.edu.cn. On 2026-11-10 the host's robots.txt allowed the path, but the first card request (https://person.zju.edu.cn/renzhong) returned a human-verification page (请验证以继续访问) instead of a card, so the project stopped (owner rule: never solve or bypass a challenge) and made no further request to the host; no Wayback copy and no web search was used. This records the access barrier only, not a claim that no website exists. The verification page was observed on the card of another PI (https://person.zju.edu.cn/renzhong), the capture is host-level and shared, and NO request was made for this PI's own card.",
-      "audited_at": "2026-11-10T14:34:18",
-      "url": null,
-      "checks": [
+      "url": "https://qiang-zou.github.io/",
+      "kind": "lab_site",
+      "reason_code": "lab_site",
+      "coverage": "website",
+      "found_via": "web_search_reviewed",
+      "listed_on": null,
+      "sha256": "a9cab40f16a74ece383a4ee1ab9ed198bae8c00c886532885b3d7a658f58a056",
+      "checked_at": "2026-11-11T20:39:47",
+      "official_link_status": "recorded",
+      "official_link_evidence": [
         {
-          "source": "school_profile_link",
-          "url": "https://person.zju.edu.cn/qiangzou",
-          "at": "2026-11-10T14:34:18",
-          "result": "challenge_human_verification",
-          "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-          "note": "host-level challenge capture of https://person.zju.edu.cn/renzhong"
+          "source": "web_search_reviewed",
+          "url": "https://qiang-zou.github.io/",
+          "at": "2026-11-11T20:39:47+00:00",
+          "sha256": "a9cab40f16a74ece383a4ee1ab9ed198bae8c00c886532885b3d7a658f58a056",
+          "name_quote": "Qiang Zou Mechanical Engineer + Computer Scientist",
+          "tie_quote": "State Key Lab of CAD&CG and the College of Computer Science, Zhejiang University (ZJU)",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
         }
       ],
-      "evidence": {
-        "url": "https://person.zju.edu.cn/renzhong",
-        "sha256": "41e2aa838df29885d11ea29a73929abccdd033bcaa52d58d91f0bb0c86d49f6b",
-        "quote": "温馨提示：请验证以继续访问。",
-        "observed": "2026-11-10T14:34:18"
-      }
+      "checks": [
+        {
+          "source": "web_search_reviewed",
+          "url": "https://qiang-zou.github.io/",
+          "at": "2026-11-11T20:39:47+00:00",
+          "sha256": "a9cab40f16a74ece383a4ee1ab9ed198bae8c00c886532885b3d7a658f58a056",
+          "name_quote": "Qiang Zou Mechanical Engineer + Computer Scientist",
+          "tie_quote": "State Key Lab of CAD&CG and the College of Computer Science, Zhejiang University (ZJU)",
+          "reviewer": "fresh reviewer subagent (sonnet), 2026-11-11, packet.json",
+          "result": "ok"
+        }
+      ],
+      "evidence_gaps": [],
+      "resource_status": "web-search-found site; name and school-tie quotes machine-checked verbatim in the stored capture; Han key matched by pinyin only on 何水兵/邹强/魏成坤/陈明帅 (signal, not identity)",
+      "han_name_evidence": {
+        "url": "https://qiang-zou.github.io/about-chinese/",
+        "sha256": "d4fe93d12b8c935c5debf2b5bde2795f7e7afdde175107e1f4f9f007ce04ba68",
+        "at": "2026-11-11T21:12:11",
+        "quote": "邹强，浙江大学计算机学院研究员、博士生导师",
+        "note": "own Chinese-language page of the same site names the PI in Han characters with the school tie; upgrades the name match from pinyin-only (reviewer pass pending)",
+        "reviewer": "fresh reviewer subagent (sonnet), 2026-11-12, packet3.json: PASS, Han characters",
+        "name_quote": "个人简介 邹强，",
+        "tie_quote": "CAD&CG全国重点实验室主任助理，浙江大学图灵班项目主任"
+      },
+      "flags": []
     },
     {
       "pi": "郑乾",

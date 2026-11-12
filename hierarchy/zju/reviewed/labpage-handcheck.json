@@ -1,0 +1,78 @@
+{
+ "school": "zju",
+ "kind": "students and website records, independent reviewers (fresh Sonnet subagents, not the author)",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-11-12",
+   "seed": null,
+   "sample": {
+    "students": 18,
+    "websites": 9,
+    "papers": 0
+   },
+   "students": {
+    "membership_correct": 17,
+    "membership_wrong": 1,
+    "membership_doubtful": 0,
+    "role_year_ok": 14,
+    "role_year_doubtful": 1,
+    "role_year_error": 2,
+    "notes": "Sample = all 18 rows of the b0cee9c1 run (a pure random 30 exceeds the population). Wrong: Andreas Viklund (template-credit footer, Kai Bu page). Role errors: Boxin Wang and Xuwei Liu (NESA alumni, \"Ph.D., UIUC/Purdue\" is a later destination, coded phd; quotes also contaminated by neighbouring entries). Doubtful: Yimin Lu (MS 2026 and alumni BS 2026). Page-header notes given to the reviewer."
+   },
+   "websites": {
+    "correct": 9,
+    "doubtful": 0,
+    "wrong": 0,
+    "notes": "packet.json (7) and packet2.json (2); 4 pinyin-only name matches flagged."
+   }
+  },
+  {
+   "round": 2,
+   "date": "2026-11-12",
+   "seed": 1112,
+   "commit": "220bd954",
+   "sample": {
+    "students": 30,
+    "population": 65,
+    "websites": 0,
+    "papers": 0
+   },
+   "students": {
+    "membership_correct": 30,
+    "membership_wrong": 0,
+    "membership_doubtful": 0,
+    "role_year_ok": 22,
+    "role_year_doubtful": 1,
+    "role_year_error": 7,
+    "notes": "Pure random 30 of 65 (Kai Bu 53, 陈明帅 9, 纪守领 3; sample Kai Bu 24, 陈明帅 4, 纪守领 2), fresh Sonnet reviewer with page-header notes. All 7 errors are Kai Bu alumni undergraduates: \"BS YYYY\" (a graduation year) read as an open start with alumni false. Role/year rate 7/30 wrong (8 with the doubtful) exceeds the bar; membership 0."
+   }
+  },
+  {
+   "round": 3,
+   "date": "2026-11-12",
+   "seed": 20261112,
+   "commit": "b0416d0d",
+   "additions_sha256": "d96b0a444af9f61eaab04333c309959c78f3af8b522b0f5c24030c4c12389ed4",
+   "sample": {
+    "students": 37,
+    "population": 73,
+    "random30": 30,
+    "census": 7,
+    "websites": 0,
+    "papers": 0
+   },
+   "students": {
+    "membership_correct": 37,
+    "membership_wrong": 0,
+    "membership_doubtful": 0,
+    "role_year_ok": 35,
+    "role_year_doubtful": 2,
+    "role_year_error": 0,
+    "random30_membership_error_per_30": 0.0,
+    "random30_role_year_error_per_30": 1.0,
+    "notes": "Pure random 30 of 73 (Kai Bu 25, 陈明帅 5) plus census of the remaining 陈明帅 (4) and all 纪守领 (3) rows; fresh Sonnet reviewer with page-header notes. Doubtful: two 陈明帅 visitors (Farokhnia, Novozhilov) with role None. Bars: membership <=1.5, role/year <=3: PASS."
+   }
+  }
+ ]
+}

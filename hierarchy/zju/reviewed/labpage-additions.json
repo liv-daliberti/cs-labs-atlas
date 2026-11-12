@@ -1,0 +1,1365 @@
+{
+ "school": "zju",
+ "generated_at": "2026-11-12T02:14:36+00:00",
+ "tool": "tools/labpage_audit.py",
+ "standard": "docs/LAB-PAGES.md",
+ "status": "proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)",
+ "rules": {
+  "LP-STU-01": "A person listed on the PI's own lab page (people, members, alumni section; live page or a Wayback id_ capture), under a people heading, not the PI, not in a faculty/collaborator/staff section, not another PI of the school, whose stated years do not end before 2016 or before the PI's appointment at the school, and who is dated or listed as current on a 2016+ capture (undated alumni only when the lab has only ever been at this school) is a lab member: the same admission the 2026-10-22 lab-page rows had (labpage-evidence.json, R-STU-01 'researched advisees'), with url, sha256 and a verbatim quote naming the person.",
+  "LP-PAP-01": "A paper listed on the PI's own lab publications page whose resolved work carries the PI on the byline, falls in the PI's appointment (R-PAP-01) and whose PI authorship lists the school (or page 1 ties the school to the PI) is a lab paper with identity 'labpage_listing' (R-PAP-04: the lab's own publications page), exactly the rows tools/labpage_recover.py accepts into labpage-recovered.jsonl.gz."
+ },
+ "students": [
+  {
+   "name": "Yiting Hou",
+   "role": "masters",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yiting Hou, MS",
+   "note": "lab-page audit 2026-11-11; section: Students > Graduate",
+   "pi": "Kai Bu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yimin Lu",
+   "role": "masters",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yimin Lu, MS",
+   "note": "lab-page audit 2026-11-11; section: Students > Graduate",
+   "pi": "Kai Bu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tizhen Jiang",
+   "role": "masters",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Tizhen Jiang, MS",
+   "note": "lab-page audit 2026-11-11; section: Students > Graduate",
+   "pi": "Kai Bu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chengke Zhang",
+   "role": "masters",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Chengke Zhang, MS",
+   "note": "lab-page audit 2026-11-11; section: Students > Graduate",
+   "pi": "Kai Bu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yucheng Huang",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yucheng Huang, PhD",
+   "note": "lab-page audit 2026-11-11; section: Students > Graduate",
+   "pi": "Kai Bu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Wenjie Hou",
+   "role": "masters",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Wenjie Hou, MS",
+   "note": "lab-page audit 2026-11-11; section: Students > Graduate",
+   "pi": "Kai Bu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yunjie Chu",
+   "role": "phd",
+   "years": [
+    2022,
+    null
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yunjie Chu , PhD",
+   "note": "lab-page audit 2026-11-11; section: Students > Graduate",
+   "pi": "Kai Bu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xingzhi Zhang",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2026
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Xingzhi Zhang, BS",
+   "note": "lab-page audit 2026-11-11; section: Alumni",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xinyu Ma",
+   "role": "undergraduate",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Alumni Xingzhi Zhang, BS 2026. FYP advisee (PhD Student, HKUST ) HKPFS Awardee Yimin Lu, BS 2026. FYP advisee (Master Student, Zhejiang University ) Xinyu Ma",
+   "note": "lab-page audit 2026-11-11; section: Alumni",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yinuo Gao",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2026
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yinuo Gao, BS",
+   "note": "lab-page audit 2026-11-11; section: Alumni",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tengyu Long",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2026
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Tengyu Long, BS",
+   "note": "lab-page audit 2026-11-11; section: Alumni",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ming Ren",
+   "role": "masters",
+   "years": [
+    null,
+    2026
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Ming Ren, MS",
+   "note": "lab-page audit 2026-11-11; section: Alumni",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chenqi Dai",
+   "role": "masters",
+   "years": [
+    null,
+    2026
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Chenqi Dai, MS",
+   "note": "lab-page audit 2026-11-11; section: Alumni",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiaofei Hou",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Xiaofei Hou, BS",
+   "note": "lab-page audit 2026-11-11; section: Alumni",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuncheng Wang",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yuncheng Wang, BS",
+   "note": "lab-page audit 2026-11-11; section: Alumni",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ziming Liu",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Ziming Liu, BS",
+   "note": "lab-page audit 2026-11-11; section: Alumni",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yunyi Teng",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yunyi Teng, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2024-2025 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tianyi Fu",
+   "role": "masters",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Tianyi Fu , MS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2024-2025 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tinghao Xie",
+   "role": "masters",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Tinghao Xie , MS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2024-2025 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Hongping Zhang",
+   "role": "masters",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Hongping Zhang , MS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2024-2025 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jingfeng Hu",
+   "role": "masters",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Jingfeng Hu , MS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2024-2025 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yimin Zhang",
+   "role": "masters",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yimin Zhang , MS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2024-2025 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Fukang Wu",
+   "role": "masters",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Fukang Wu , MS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2024-2025 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiaochuan Cao",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2024
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Xiaochuan Cao, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2024-2025 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jie Wang",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2024
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Jie Wang, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2024-2025 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Leqi Chen",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2024
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Leqi Chen, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiaodi Zhao",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2024
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Xiaodi Zhao, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yizhi Wang",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2024
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yizhi Wang, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chenlu Miao",
+   "role": "masters",
+   "years": [
+    null,
+    2024
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Chenlu Miao , MS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jiongrui Huang",
+   "role": "masters",
+   "years": [
+    null,
+    2024
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Jiongrui Huang, MS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yaohui Zhang",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2023
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yaohui Zhang , BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yifan Qiao",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2023
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yifan Qiao, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tianxing Wu",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2023
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Tianxing Wu , BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yifei Pang",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2023
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yifei Pang , BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zikai Xu",
+   "role": "undergraduate",
+   "years": [
+    2021,
+    2022
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Qihui An, CS Undergraduate. 2023-2024 FYP advisee Leqi Chen, BS 2024. 2022-2023 SRTP advisee, FYP advisee (Master Student, Peking University ) Xiaodi Zhao, BS 2024. 2022-2023 SRTP advisee (Master Student, Zhejiang University ) Yizhi Wang, BS 2024. 2022-2023 SRTP advisee (Master Student, Zhejiang University ) Chenlu Miao , MS 2024 (Research Scientist, Intel Corporation ) Jiongrui Huang, MS 2024 (Software Engineer, Huawei ) Yaohui Zhang , BS 2023. FYP advisee (Master Student, Stanford University ) Yifan Qiao, BS 2023. FYP advisee (PhD Student, Zhejiang University ) Tianxing Wu , BS 2023. FYP advisee (Master Student, KTH ) Yifei Pang , BS 2023. FYP advisee (Master Student, CMU ; PhD Student, UNC Chapel Hill ) Junyi Meng, BS 2023. FYP advisee (Software Engineer, ByteDance ) Changkai Hong, BS 2023. FYP advisee (Software Engineer, Alibaba Group ) Zikai Xu",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Peiquan Zhang",
+   "role": "undergraduate",
+   "years": [
+    2021,
+    2022
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Qihui An, CS Undergraduate. 2023-2024 FYP advisee Leqi Chen, BS 2024. 2022-2023 SRTP advisee, FYP advisee (Master Student, Peking University ) Xiaodi Zhao, BS 2024. 2022-2023 SRTP advisee (Master Student, Zhejiang University ) Yizhi Wang, BS 2024. 2022-2023 SRTP advisee (Master Student, Zhejiang University ) Chenlu Miao , MS 2024 (Research Scientist, Intel Corporation ) Jiongrui Huang, MS 2024 (Software Engineer, Huawei ) Yaohui Zhang , BS 2023. FYP advisee (Master Student, Stanford University ) Yifan Qiao, BS 2023. FYP advisee (PhD Student, Zhejiang University ) Tianxing Wu , BS 2023. FYP advisee (Master Student, KTH ) Yifei Pang , BS 2023. FYP advisee (Master Student, CMU ; PhD Student, UNC Chapel Hill ) Junyi Meng, BS 2023. FYP advisee (Software Engineer, ByteDance ) Changkai Hong, BS 2023. FYP advisee (Software Engineer, Alibaba Group ) Zikai Xu, CS. 2021-2022 SRTP advisee (Master Student, Zhejiang University ) Peiquan Zhang",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ru Zhang",
+   "role": "undergraduate",
+   "years": [
+    2021,
+    2022
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Qihui An, CS Undergraduate. 2023-2024 FYP advisee Leqi Chen, BS 2024. 2022-2023 SRTP advisee, FYP advisee (Master Student, Peking University ) Xiaodi Zhao, BS 2024. 2022-2023 SRTP advisee (Master Student, Zhejiang University ) Yizhi Wang, BS 2024. 2022-2023 SRTP advisee (Master Student, Zhejiang University ) Chenlu Miao , MS 2024 (Research Scientist, Intel Corporation ) Jiongrui Huang, MS 2024 (Software Engineer, Huawei ) Yaohui Zhang , BS 2023. FYP advisee (Master Student, Stanford University ) Yifan Qiao, BS 2023. FYP advisee (PhD Student, Zhejiang University ) Tianxing Wu , BS 2023. FYP advisee (Master Student, KTH ) Yifei Pang , BS 2023. FYP advisee (Master Student, CMU ; PhD Student, UNC Chapel Hill ) Junyi Meng, BS 2023. FYP advisee (Software Engineer, ByteDance ) Changkai Hong, BS 2023. FYP advisee (Software Engineer, Alibaba Group ) Zikai Xu, CS. 2021-2022 SRTP advisee (Master Student, Zhejiang University ) Peiquan Zhang, CS. 2021-2022 SRTP advisee (Master Student, Zhejiang University ) Ru Zhang",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhen Jin",
+   "role": "masters",
+   "years": [
+    null,
+    2023
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Zhen Jin, MS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiaoyi Kong",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Xiaoyi Kong, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yilong Yang",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yilong Yang , BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Kehan Wang",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Kehan Wang, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Hanhan Wu",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Hanhan Wu, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuan Tian",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yuan Tian, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiaoyu Zhang",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Xiaoyu Zhang , BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Haoyu Hu",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Haoyu Hu , BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiang Li",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2021
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Xiang Li, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ruiqi Zhou",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2021
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Ruiqi Zhou , BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhenting Wang",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2021
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Zhenting Wang, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Linfeng Cheng",
+   "role": "masters",
+   "years": [
+    null,
+    2021
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Linfeng Cheng , MS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Miao Zhang",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2021
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Miao Zhang, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhihua Zeng",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2020
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Zhihua Zeng , BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yucong Li",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2020
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yucong Li , BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ningchao Wu",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2020
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Ningchao Wu, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tianxiang Luo",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2020
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Tianxiang Luo, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jinhong Li",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2019
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Jinhong Li, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Weinan Huang",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2019
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Weinan Huang, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yutian Yang",
+   "role": "masters",
+   "years": [
+    null,
+    2019
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yutian Yang, MS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zixuan Guo",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2018
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Zixuan Guo, BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yi Zheng",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2017
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Yi Zheng , BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Kaiwen Zhu",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2017
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Kaiwen Zhu , BS",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Minyu Weng",
+   "role": "undergraduate",
+   "years": [
+    2016,
+    2016
+   ],
+   "url": "https://list.zju.edu.cn/kaibu/group.html",
+   "sha256": "64365dac639a5bf661f7a0987d8a8914dae31f780f118d89c0a3e70dd9b405c1",
+   "quote": "Minyu Weng, BE 2016",
+   "note": "lab-page audit 2026-11-11; section: Qihui An, CS Undergraduate. 2023-2024 FYP advisee",
+   "pi": "Kai Bu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2013,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Dinghao Liu",
+   "role": "phd",
+   "years": null,
+   "url": "https://nesa.zju.edu.cn/webpage/people.html",
+   "sha256": "bde1cafd16fe495a54c2da493a8c102ca9d2376c0561528ea1a49f60d2f460cc",
+   "quote": "刘丁豪 Ph.D. Students Dinghao Liu",
+   "note": "lab-page audit 2026-11-11; section: 刘丁豪 Ph.D. Students",
+   "pi": "纪守领",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Jiacheng Xu",
+   "role": "phd",
+   "years": null,
+   "url": "https://nesa.zju.edu.cn/webpage/people.html",
+   "sha256": "bde1cafd16fe495a54c2da493a8c102ca9d2376c0561528ea1a49f60d2f460cc",
+   "quote": "许嘉诚 Ph.D. Students Jiacheng Xu",
+   "note": "lab-page audit 2026-11-11; section: 许嘉诚 Ph.D. Students",
+   "pi": "纪守领",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Han Bao",
+   "role": "phd",
+   "years": null,
+   "url": "https://nesa.zju.edu.cn/webpage/people.html",
+   "sha256": "bde1cafd16fe495a54c2da493a8c102ca9d2376c0561528ea1a49f60d2f460cc",
+   "quote": "包晗 Ph.D. Students Han Bao",
+   "note": "lab-page audit 2026-11-11; section: 包晗 Ph.D. Students",
+   "pi": "纪守领",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Soroush Farokhnia",
+   "role": null,
+   "years": null,
+   "url": "https://fiction-zju.github.io/",
+   "sha256": "15613eb431cb0d219774492a1ef2d6cb6d84ba94a9aebd28b21c77ca393274ee",
+   "quote": "Soroush Farokhnia Visit",
+   "note": "lab-page audit 2026-11-11; section: Researchers > ZJU100 Young Professor",
+   "pi": "陈明帅",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "none",
+   "years_basis": "none"
+  },
+  {
+   "name": "Vinicius Lima",
+   "role": "other",
+   "years": null,
+   "url": "https://fiction-zju.github.io/",
+   "sha256": "15613eb431cb0d219774492a1ef2d6cb6d84ba94a9aebd28b21c77ca393274ee",
+   "quote": "Vinicius Lima Intern",
+   "note": "lab-page audit 2026-11-11; section: Researchers > ZJU100 Young Professor",
+   "pi": "陈明帅",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
+   "name": "Bohan Ma",
+   "role": "phd",
+   "years": null,
+   "url": "https://fiction-zju.github.io/",
+   "sha256": "15613eb431cb0d219774492a1ef2d6cb6d84ba94a9aebd28b21c77ca393274ee",
+   "quote": "Bohan Ma Ph.D",
+   "note": "lab-page audit 2026-11-11; section: Researchers > ZJU100 Young Professor",
+   "pi": "陈明帅",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
+   "name": "Sergei Novozhilov",
+   "role": null,
+   "years": null,
+   "url": "https://fiction-zju.github.io/",
+   "sha256": "15613eb431cb0d219774492a1ef2d6cb6d84ba94a9aebd28b21c77ca393274ee",
+   "quote": "Sergei Novozhilov Visit",
+   "note": "lab-page audit 2026-11-11; section: Researchers > ZJU100 Young Professor",
+   "pi": "陈明帅",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "none",
+   "years_basis": "none"
+  },
+  {
+   "name": "Yutao Sun",
+   "role": "phd",
+   "years": null,
+   "url": "https://fiction-zju.github.io/",
+   "sha256": "15613eb431cb0d219774492a1ef2d6cb6d84ba94a9aebd28b21c77ca393274ee",
+   "quote": "Yutao Sun Ph.D",
+   "note": "lab-page audit 2026-11-11; section: Researchers > ZJU100 Young Professor",
+   "pi": "陈明帅",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
+   "name": "Zhongyi Wang",
+   "role": "phd",
+   "years": null,
+   "url": "https://fiction-zju.github.io/",
+   "sha256": "15613eb431cb0d219774492a1ef2d6cb6d84ba94a9aebd28b21c77ca393274ee",
+   "quote": "Zhongyi Wang Ph.D",
+   "note": "lab-page audit 2026-11-11; section: Researchers > ZJU100 Young Professor",
+   "pi": "陈明帅",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
+   "name": "Linyu Yang",
+   "role": "phd",
+   "years": null,
+   "url": "https://fiction-zju.github.io/",
+   "sha256": "15613eb431cb0d219774492a1ef2d6cb6d84ba94a9aebd28b21c77ca393274ee",
+   "quote": "Linyu Yang Ph.D",
+   "note": "lab-page audit 2026-11-11; section: Researchers > ZJU100 Young Professor",
+   "pi": "陈明帅",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
+   "name": "Mingqi Yang",
+   "role": "phd",
+   "years": null,
+   "url": "https://fiction-zju.github.io/",
+   "sha256": "15613eb431cb0d219774492a1ef2d6cb6d84ba94a9aebd28b21c77ca393274ee",
+   "quote": "Mingqi Yang Ph.D",
+   "note": "lab-page audit 2026-11-11; section: Researchers > ZJU100 Young Professor",
+   "pi": "陈明帅",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
+   "name": "Xiaqing Zhou",
+   "role": "phd",
+   "years": null,
+   "url": "https://fiction-zju.github.io/",
+   "sha256": "15613eb431cb0d219774492a1ef2d6cb6d84ba94a9aebd28b21c77ca393274ee",
+   "quote": "Xiaqing Zhou Ph.D",
+   "note": "lab-page audit 2026-11-11; section: Researchers > ZJU100 Young Professor",
+   "pi": "陈明帅",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none"
+  }
+ ],
+ "papers": []
+}
