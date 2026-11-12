@@ -1,6 +1,14 @@
 """An open-ended 'PhD, 2024.9-' entry is a start year, still current (SJTU 马超 list, 2026-11-11)."""
 import re
+import pytest
 import labpage_audit as L
+
+
+@pytest.fixture(autouse=True)
+def cjk_region_context():
+    L._ENTRY_CTX['bare_year_entry'] = True   # the Chinese-region schools' reading of a bare 'Ph.D. 2023' under a people heading
+    yield
+    L._ENTRY_CTX['bare_year_entry'] = False
 
 
 def test_open_ended_month_ranges_are_a_start_and_stay_current():
@@ -219,3 +227,15 @@ def test_a_bare_visitor_entry_is_role_visiting():
     assert L.entry_role('Visitor', 'Researchers > ZJU100 Young Professor', ro)[0] == 'visiting'
     assert L.entry_role('Visitor, University of X', 'Members', ro)[0] == 'visiting'
     assert L.entry_role('Visiting professor of physics', 'People', ro)[0] != 'visiting'
+
+
+def test_outside_the_chinese_region_a_bare_degree_year_is_an_end_year_and_months_ranges_keep_their_end():
+    L._ENTRY_CTX['bare_year_entry'] = False
+    assert L.entry_years('PhD 2022', 'Former students')[0] == [None, 2022]
+    assert L.entry_years('(PhD 2022)', 'Alumni')[0] == [None, 2022]
+    assert L.entry_years('MPCS, 2020 -> PhD NYU', 'Students')[0] != [2020, None]
+    assert L.entry_years('Oct 2016 - May 2020', None)[0] == [2016, 2020]
+    assert L.entry_years('Oct 2016 -', None)[0] == [2016, None]
+    ro = lambda t: ('postdoc', 'x') if 'ostdoc' in t else (None, None)
+    assert L.entry_role('', 'Current Postdocs', ro)[0] == 'postdoc'
+    assert L.entry_role('', 'Mechanical Engineering Postdoc', ro)[0] == 'postdoc'

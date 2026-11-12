@@ -275,6 +275,37 @@ def advised_by_other(desc, quote, pi):
     return bool(m) and fold(family(pi)) not in fold(m.group(1))
 
 
+PROGRAM_TAIL_RX = re.compile(r"(?<=\w)\s+(?:Societal Computing|Human[- ]Computer Interaction|Software Engineering|Machine Learning|Computer Science|Language Technologies|Computational Biology|Privacy Engineering|Electrical (?:and|&) Computer Engineering|Robotics)$")
+
+
+def strip_program_label(name):
+    """'Seungjoo Lee Societal Computing' (a card's program line glued to the name): the name without its program label, when at least two name tokens remain."""
+    m = PROGRAM_TAIL_RX.search(name or '')
+    return name[:m.start()].strip() if m and len((name[:m.start()]).split()) >= 2 else name
+
+
+YEAR_ONLY_ENTRY_RX = re.compile(r'^\W{0,3}\(?\s*(?:19|20)\d\d\s*\)?\W{0,3}$')
+AFFIL_TAIL_RX = re.compile(r'\.\s+((?:[A-Z][A-Za-z&-]{1,10})(?:,\s*[A-Z][A-Za-z&-]{1,10}){1,3})\.?\s*\)?\s*$')
+
+
+def leading_other_institution(desc, school):
+    """An entry whose FIRST clause places the person at another school ('(PhD Student at Yale, with Z. Shao); following position: ...', '(Purdue) Summer 2021',
+    '(2021-2022. Former master's student. CVD, MBZUAI.)') is not a member of this school's lab unless the entry also ties them to it (CMU round 9)."""
+    d = (desc or '')[:200]
+    if re.search(school_names_rx(school), d) or re.search(r'\bCMU\b|Carnegie', d):
+        return None
+    m = ELSEWHERE_RX.search(d[:90]) or DEGREE_AT_RX.search(d[:90])
+    if m and m.start() < 40:
+        return m.group(1)
+    m = OTHER_INST.search(d[:40])
+    if m and m.start() <= 3 and m.group(0).lstrip().startswith('('):
+        return m.group(0).strip(' (')
+    m = AFFIL_TAIL_RX.search(d)
+    if m and re.match(r'^\W{0,3}\((?:19|20)\d\d', d):
+        return m.group(1)
+    return None
+
+
 def primary_adviser_other(desc, quote, pi):
     """'(PhD, started in 2025, primary advisor Prof. Guoming Tang )' on another professor's page: the entry names a different primary advisor / supervisor (no co- / joint wording), so the student is that
     professor's, not this PI's (HKUST Qiong Luo's DSA-program list)."""
@@ -1693,10 +1724,14 @@ AWARD_WORDS = re.compile(r'scholarship|fellowship|award|prize|medal|honou?r|gran
 
 CURRENT_LIST_HEAD = re.compile(r'\b(?:current|present|active)\b|\u73b0\u5728|\u5728\u8bfb|\u5728\u6821', re.I)
 def m_has_range(d):
-    return bool(re.search(r'(?:19|20)\d\d\s*(?:-|\u2013|\u2014|to|\u219d|\u2192)\s*(?:19|20|\d\d)', d[:60]))
+    return bool(re.search(r'(?:19|20)\d\d\s*(?:-|\u2013|\u2014|to|\u219d)\s*(?:19|20|\d\d)', d[:60]))
 
 
 OPEN_MONTH_RX = re.compile(r'(?<![\d./])((?:19|20)\d\d)\s*[./]\s*(?:0?[1-9]|1[0-2])(?:\s*[./]\s*(?:0?[1-9]|[12]\d|3[01]))?\s*(?:[-\u2013\u2014~\uff5e]\s*(?:\u81f3\u4eca|present|now|current)?|\u81f3\u4eca|to\s+(?:present|now))(?![\d./])', re.I)
+
+
+_ENTRY_CTX = {'bare_year_entry': False}   # set per school by pm_candidates: a bare 'Ph.D. 2023' under a people heading is an entry year only at the Chinese-region schools whose current lists are written that way (SJTU/Tsinghua/ZJU/HKUST/NTU); elsewhere it is a degree (end) year
+CJK_REGION_SCHOOLS = {'sjtu', 'tsinghua', 'zju', 'hkust', 'ntu', 'cuhk', 'pku', 'fudan', 'ustc', 'nus', 'hit', 'seu', 'uestc'}
 
 
 def past_range_head(head):
@@ -1711,6 +1746,7 @@ def entry_years(desc, head):
       '(Ph.D. in applied math 2014)' or 'PhD 2021' -> [None, 2014] (a degree year ends the stay); 'MIT Undergraduate Student, 2020'
       -> [2020, 2020]; a section heading that is only a year ('2019') -> that year, basis section_year_heading; else
       (None, 'none'): the build keeps undated students."""
+    desc = re.split(r'[;,]?\s*following position\b', desc or '', maxsplit=1)[0]   # 'following position: since 2019 Researcher at Facebook' is where the person went, not when they were here (CMU round 9, Carbonneaux)
     tm = re.match(r'^\s{0,3}\|?\s*[^|]{1,100}\|\s*((?:19|20)\d\d)\b', desc or '')
     if tm:  # '| Stanford Univ. Medical Center | 2004' (a 'Past Doctoral Students' table): the year ends the stay (Stanford round 3)
         return [None, int(tm.group(1))], 'stated_in_entry'
@@ -1723,7 +1759,7 @@ def entry_years(desc, head):
     d, nested_ = (desc or '')[:90], False
     if re.match(r'^\W{0,3}\([^()]{0,80}\([^()]{0,20}\)', d) and not re.search(r'\b(?:19|20)\d\d\b', re.match(r'^\W{0,3}\([^()]{0,80}\([^()]{0,20}\)', d).group(0)):
         d, nested_ = (desc or '')[:200], True   # '(MPhil student, HKUST (GZ) RBM, co-supervised with Prof. X, Fall 2022 - Summer 2024)': a nested bracket must not cut the dates off (HKUST Ma)
-    mo = re.search(r'\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+((?:19|20)\d\d)\s*[~\uff5e\u2013\u2014-]\s*(?:present|now|current)?(?![\d\w])', d, re.I)
+    mo = re.search(r'\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+((?:19|20)\d\d)\s*[~\uff5e\u2013\u2014-]\s*(?:present|now|current)?(?![\d\w])(?!\s*(?:\d|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))', d, re.I)
     if mo:   # 'Master Student, September 2022~': a stated open start (Tsinghua round 6, bcspl Members)
         return [int(mo.group(1)), None], 'stated_in_entry'
     dw_ = d[:150] if nested_ else d[:80]
@@ -1750,7 +1786,7 @@ def entry_years(desc, head):
     if ab and not m_has_range(d) and not re.search(r'\b(?:alumni|former|graduated)\b', head or '', re.I):
         return [int(ab.group(1)), None], 'stated_in_entry'   # '(2024 Zhongyuan Scholarship) 2022': the bare year after award brackets is the cohort / entry year (SJTU round 6)
     seg = m.group(1) if m else d[:150] if nested_ else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
-    r = re.search(r'(%s)(?:\s*(?:spring|summer|fall|autumn|winter))?\s*(?:-|–|—|to|until|\u219d|\u21dd|\u2192|->)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
+    r = re.search(r'(%s)(?:\s*(?:spring|summer|fall|autumn|winter))?\s*(?:-(?!>)|–|—|to|until|\u219d|\u21dd)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
                   % (YEAR_, YEAR_), seg, re.I)
     if r:
         a, b = int(r.group(1)), r.group(2)
@@ -1766,7 +1802,7 @@ def entry_years(desc, head):
     if len(ys) == 1:
         if AWARD_AFTER_YEAR.search(seg) and not re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis", seg, re.I):
             return None, 'none'   # '(2025 OPPO Scholarship)' dates an award, not the stay (SJTU round 1); a range above is unaffected
-        if head and not re.search(r'\b(?:former|past|previous|alumni|alumnae|alumnus|graduated|graduates|class of|emeriti)\b', head, re.I) and not past_range_head(head) \
+        if head and not re.search(r'\b(?:former|past|previous|alumni|alumnae|alumnus|graduated|graduates|class of|emeriti)\b', head, re.I) and not past_range_head(head) and _ENTRY_CTX['bare_year_entry'] \
                 and re.fullmatch(r"\W*(?:ph\.?\s?d\.?|m\.?s\.?|b\.?s\.?)(?:\s*[/&,]\s*(?:ph\.?\s?d\.?|m\.?s\.?|b\.?s\.?))*\W*(?:19|20)\d\d\W*", seg, re.I):
             return ([ys[0], ys[0]] if re.search(r'\bFYP\b|final[- ]year', f'{head} {desc}', re.I) else [ys[0], None]), 'stated_in_entry'   # (an FYP advisee of that year is [Y, Y]) '(Ph.D./M.S. 2023)' in a CURRENT list is the entry year, not an end year (SJTU round 5, 赵杰茹's page); real alumni there use YYYY-YYYY ranges
         if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
@@ -1961,7 +1997,16 @@ def han_glued_cells(text):
     return [dict(name=m.group(1), role=HAN_GLUED_ROLE[m.group(2)], year=None, alumni=False, head='', member=True, quote=m.group(0), desc='', ra=False) for m in cells]
 
 
-PERSON_HEAD_RX = re.compile(r"[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2}")
+_ROLE_WORDS_IN_HEAD = re.compile(r"\b(?:students?|postdocs?|post-?doc\w*|researchers?|alumni|alumnae|members?|interns?|fellows?|staff|faculty|ph\.?\s?d|master\w*|undergrad\w*|visit\w*|assistants?|associates?|current|former|past|graduate|group|lab|team|people|engineers?|scientists?|advisees?|mentees?)\b", re.I)
+
+
+class _PersonHead:
+    @staticmethod
+    def fullmatch(h):
+        return bool(re.fullmatch(r"[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2}", h or '')) and not _ROLE_WORDS_IN_HEAD.search(h or '')
+
+
+PERSON_HEAD_RX = _PersonHead()
 
 
 def role_fallback(text):
@@ -2087,6 +2132,7 @@ def nonmember_candidate(name, heading):
     return None
 
 def pm_candidates(kit, school, pi, plan, held):
+    _ENTRY_CTX['bare_year_entry'] = school in CJK_REGION_SCHOOLS
     """Every name autom.extract proposes from a lab plan's pages (lpauto.rows_for's sources), with the disposition
     rows_for gives it (None: kept as an evidence row). plan keys: see lpauto.py."""
     import lpauto
@@ -2157,6 +2203,7 @@ def pm_candidates(kit, school, pi, plan, held):
                 continue
             ext.append(han_card_item(c_, row_, names, held))
         for x in ext:
+            x['name'] = strip_program_label(x['name'])
             fn = names.fold(x['name'])
             x['is_cap'] = is_cap
             x['src'] = src
@@ -2400,6 +2447,18 @@ def pm_candidates(kit, school, pi, plan, held):
             x['why'], x['detail'] = 'undated_cannot_place', ('R-LAB-02: the page lists dated alumni only up to ' + str(page_alumni.get(x.get('capture_url')))
                                                              + ', long before its capture: its undated current list is an old list')
             continue
+        if fn not in keep and x.get('role') != 'visiting' and (lo_ := leading_other_institution(x.get('desc'), school)):
+            x['why'], x['detail'] = 'site_at_other_institution', f"the entry's first clause places the person at {lo_}, and nothing ties them to this school"
+            continue
+        if fn not in keep and YEAR_ONLY_ENTRY_RX.match(x.get('desc') or '') and x.get('src'):
+            try:
+                if x['src'] not in text_cache:
+                    text_cache[x['src']] = kit.lpev.text(school, x['src'])
+                if other_pis_on_page(school, pi, text_cache[x['src']]) >= 1:
+                    x['why'], x['detail'] = 'shared_page_no_adviser', 'a year-only entry on a page that names several PIs of the school: no per-row adviser, so not this PI\'s member (CMU round 9: dig.cmu.edu/team)'
+                    continue
+            except (KeyError, ValueError):
+                pass
         if fn not in keep and primary_adviser_other(x.get('desc'), x.get('quote'), pi):
             x['why'], x['detail'] = 'not_a_student', 'the entry names another professor as its primary advisor / supervisor (no co- / joint wording): that professor\'s student'
             continue
@@ -2965,7 +3024,7 @@ def repair_reason(kit, school, name, best, start, pi=None):
         if COADVISER_BEFORE.search(t[max(0, k - 40): k]):
             return 'not_a_student', 'named as the co-adviser of another member (co-advised with / jointly supervised with)'
         own_hdr = any(len(a_.split()) >= 2 and fold(a_).lower() in fold(t[:700]).lower() for a_ in pi_alias_map(school).get(pi, []))   # the page's own header names the PI (a 'Director Prof. X' line): his group's page, not a department page (Tsinghua round 4: routing.netlab)
-        if pi and (other_pis_on_page(school, pi, t, k) >= 6 or (not own_hdr and ((other_pis_on_page(school, pi, t, k) >= 3 and len(re.findall(r'\bProfessor\b', t)) >= 5) or (other_pis_on_page(school, pi, t) >= 5 and len(re.findall(r'\bProfessor\b', t)) >= 5)))) and len(re.findall(r'co-?advis|jointly|\bw/|\(with ', t[max(0, k - 900): k + 900], re.I)) < 2 and not any(fold(al.split()[-1]).lower() in fold(t[k: k + 120]).lower() for al in pi_alias_map(school).get(pi, [pi])):
+        if pi and (other_pis_on_page(school, pi, t, k) >= 6 or (not own_hdr and re.search(r'[\u4e00-\u9fff]', pi) and ((other_pis_on_page(school, pi, t, k) >= 3 and len(re.findall(r'\bProfessor\b', t)) >= 5) or (other_pis_on_page(school, pi, t) >= 5 and len(re.findall(r'\bProfessor\b', t)) >= 5)))) and len(re.findall(r'co-?advis|jointly|\bw/|\(with ', t[max(0, k - 900): k + 900], re.I)) < 2 and not any(fold(al.split()[-1]).lower() in fold(t[k: k + 120]).lower() for al in pi_alias_map(school).get(pi, [pi])):
             return 'shared_page_no_adviser', 'a page that names several faculty and their students; the entry does not name this PI as adviser'
         if COLLAB_PROSE.search(t[max(0, k - 300): k]):
             return 'not_a_student', 'listed among collaborators ("collaborate with the PhD students ...")'
