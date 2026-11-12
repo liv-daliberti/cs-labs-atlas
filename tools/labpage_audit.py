@@ -1832,8 +1832,6 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'site_at_other_institution', f"the page's header names {inst_[src]}, not this school"
             elif CREDIT_RX.search(x.get('quote') or '') or CREDIT_RX.search((x.get('desc') or '')[:60]):
                 why, x['detail'] = 'name_unresolved', 'site credit or footer'
-            elif fn not in keep and x.get('role') == 'postdoc':
-                why, x['detail'] = 'not_a_student', 'a postdoc (a Post-doctoral heading or label) is not a student member of the lab'
             elif fn not in keep and incoming_entry(x.get('desc'), x.get('quote')):
                 why, x['detail'] = 'not_a_student', 'an incoming / admitted-for-a-future-year entry is not a member yet'
             elif fn not in keep and joint_other_institute_entry(x.get('desc'), x.get('quote'), school):
