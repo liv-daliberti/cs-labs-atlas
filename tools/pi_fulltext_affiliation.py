@@ -22,6 +22,7 @@ rule     page 1 ties the school to the PI (the same institutional pattern as pi_
                    school (mathematics papers: 'Jacob Fox∗' ... '∗ Stanford University, Stanford, CA.').
 usage: pi_fulltext_affiliation.py works <school> | pdf <school> [--workers 4] | retie <school>
 """
+import unicodedata
 import hashlib, json, os, re, sqlite3, subprocess, sys, tempfile, time, zlib
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -114,20 +115,64 @@ INSTITUTION = re.compile(r"universit|institute|college|école|ecole|eth z|inria|
                          r"facebook|amazon|ibm|nvidia|deepmind|openai|apple|adobe|intel\b|hospital|school of", re.I)
 
 
+FOOTNOTE_UNIT = re.compile(r'^(?:[A-Z][\w&.\-]*,?\s+){0,8}?(?:Department|Dept|School|Institute|Laborator|Center|Centre|University|College|Group|Lab)\b')
+COLLECTIVE_FOOTNOTE = re.compile(r'(?i)\b(?:all |the )?authors? (?:are|is) (?:with|associated with|affiliated with|at|from)\b')
+
+
+def norm_quotes(s):
+    """Curly and modifier apostrophes as the plain one ('Una-May O’Reilly' is the PI's name 'O'Reilly')."""
+    return re.sub(r"[\u2018\u2019\u02bc\u2032]", "'", s)
+
+
+def fold(s):
+    """ASCII fold of letters ('Atamtürk', precomposed or with a combining diaeresis, -> 'Atamturk'), so name forms (which toks() reduces
+    to ASCII) match accented bylines; every other character stays."""
+    out = []
+    for c in s:
+        if unicodedata.category(c) == 'Mn':
+            continue
+        d = unicodedata.normalize('NFKD', c)[:1] if ord(c) > 127 else c
+        out.append(d if d and d.isascii() and d.isalpha() else c)
+    return ''.join(out)
+
+
+def loose(word):
+    """A name as a pattern that tolerates the apostrophe or hyphen toks() drops ('oreilly' also reads O'Reilly, 'jones' Jones)."""
+    return r"['\-]?".join(re.escape(c) for c in word)
+
+
 def tie(flat, names, aff):
-    """(how, quotes) when page 1 ties the school to the PI, else (None, [])."""
-    head = flat[:re.search(r'\babstract\b', flat[:6000], re.I).start()] if re.search(r'\babstract\b', flat[:6000], re.I) else flat[:2500]
+    """(how, quotes) when page 1 ties the school to the PI, else (None, []). The author block is the text before 'Abstract'; when the
+    block names no school, the text after 'Abstract' is read too (2026-11-12: arXiv layouts that put the affiliations after the word:
+    'Samyukta Yagati UC Berkeley ... Abstract Raluca Ada Popa UC Berkeley'), and so are footnotes at the foot of page 1: a numbered
+    unit footnote ('1 Machine Learning Department, Carnegie Mellon University') and a collective one ('All authors are with the
+    Department of ..., University of California, Berkeley'; 'The authors are associated with the ... Department, Stanford
+    University'). The PI's own name must still stand in the author block, and the affiliation must name the school."""
+    flat = fold(norm_quotes(flat))
+    ab = re.search(r'\babstract\b', flat[:6000], re.I)
+    head = flat[:ab.start()] if ab else flat[:2500]
+    names = [(norm_quotes(f), norm_quotes(l)) for f, l in names]
+    r = _tie_in(head, flat, head, names, aff, True)
+    if r[0] is None and ab:
+        r = _tie_in(flat[:ab.end() + 2500], flat, head, names, aff, False)
+    return r
+
+
+def _tie_in(block, flat, head, names, aff, allow_single):
     for first, last in names:
         rx = re.compile(r'(?<![A-Za-z])' + re.escape(first[0]) + (re.escape(first[1:]) if len(first) > 1 else r'\.?') +
-                        r'[\w.\-]*(?:\s+[A-Z][\w.\-]*){0,2}(?:\s+\([A-Za-z.\- ]{1,20}\))?\s+' + re.escape(last) + r'(?:(?=[a-d](?:,[a-d])*[,\u2217*\u2020\s])|(?![a-z]))', re.I)
-        for m in rx.finditer(head):
-            tail = head[m.end():m.end() + 14]
+                        r'[\w.\-]*(?:\s+[A-Z][\w.\-]*){0,2}(?:\s+\([A-Za-z.\- ]{1,20}\))?\s+' + loose(last) + r'(?:(?=[a-d](?:,[a-d])*[,\u2217*\u2020\s])|(?![a-z]))', re.I)
+        for m in rx.finditer(block):
+            tail = block[m.end():m.end() + 14]
             mk = re.match(r'\s?([0-9,\s∗*†‡§¶♯]+)', tail)
+            if mk and not mk.group(1).strip(' ,'):
+                mk = None   # only whitespace after the name: no marker
             if mk:
                 for sym in [x for x in re.split(r'[,\s]+', mk.group(1)) if x]:
-                    for line in re.finditer(r'(?:^|\s)' + re.escape(sym) + r'\s?([^0-9∗*†‡§¶♯]{5,160})', head[m.end() + len(mk.group(0)):]):
-                        if aff.search(line.group(1)):
-                            return 'marker', [head[m.start():m.end() + len(mk.group(0))], line.group(0).strip()]
+                    for line in re.finditer(r'(?:^|\s)' + re.escape(sym) + r'\s?([^0-9∗*†‡§¶♯]{5,160})', block[m.end() + len(mk.group(0)):]):
+                        a_ = aff.search(line.group(1))
+                        if a_ and (allow_single or not re.search(r'(?i)equal|contribut|work (?:was )?done|intern', line.group(1)[:a_.start()])):
+                            return 'marker', [block[m.start():m.end() + len(mk.group(0))], line.group(0).strip()]
                     # (R8, 2026-10-29) a symbol marker's footnote at the foot of page 1, as mathematics papers place the
                     # affiliations ('Jacob Fox∗' ... '∗ Stanford University, Stanford, CA.'): the first footnote line after
                     # the author block that starts with the symbol and a capital letter, naming the school in its first 120
@@ -136,15 +181,30 @@ def tie(flat, names, aff):
                         fn = re.search(r'(?:^|\s)' + re.escape(sym) + r'\s?([A-Z][^∗*†‡§¶♯]{4,160})', flat[len(head):])
                         a_ = aff.search(fn.group(1)[:120]) if fn else None
                         if a_ and not re.search(r'(?i)equal|contribut|correspond|work (?:was )?done|intern', fn.group(1)[:a_.start()]):
-                            return 'footnote', [head[m.start():m.end() + len(mk.group(0))], fn.group(0).strip()]
-            near = head[m.end():m.end() + 160]
+                            return 'footnote', [block[m.start():m.end() + len(mk.group(0))], fn.group(0).strip()]
+                    elif sym.isdigit():   # 2026-11-12: the same for a numbered footnote beyond the head cut, when it opens with a unit or institution
+                        for fn in re.finditer(r'(?:^|\s)' + re.escape(sym) + r'\s?([A-Z][^∗*†‡§¶♯]{4,160})', flat[len(head):]):
+                            a_ = aff.search(fn.group(1)[:120])
+                            if a_ and FOOTNOTE_UNIT.match(fn.group(1)) and not re.search(r'(?i)equal|contribut|correspond|work (?:was )?done|intern', fn.group(1)[:a_.start()]):
+                                return 'footnote', [block[m.start():m.end() + len(mk.group(0))], fn.group(0).strip()]
+                    # a collective footnote with the marker ('1 The authors are associated with the ... Department, Stanford University')
+                    for cf in re.finditer(r'(?:^|\s)' + re.escape(sym) + r'\s?(?:The |All )?authors? (?:are|is) (?:with|associated with|affiliated with|at|from)\b([^{}]{0,220})', flat[len(head):], re.I):
+                        if aff.search(cf.group(1)):
+                            return 'footnote', [block[m.start():m.end() + len(mk.group(0))], cf.group(0).strip()]
+            near = block[m.end():m.end() + 160]
             a = aff.search(near)
+            if a and not allow_single and (a.start() > 40 or re.search(r'[.;:]\s', near[:a.start()])):
+                a = None   # after 'Abstract' the affiliation must follow the name closely, in the same sentence
             if a and not re.search(r'(?<![A-Za-z])[A-Z][a-z]+\s+[A-Z][a-z]+\s*[0-9∗*†‡]', near[:a.start()]):  # no other author's name in between
-                return 'near', [head[m.start():m.end() + a.end()]]
-            insts = {i.group(0).lower() for i in INSTITUTION.finditer(head)}
-            if aff.search(head) and len(insts) <= 1:
-                a2 = aff.search(head)
-                return 'single', [head[m.start():m.end()], head[max(0, a2.start() - 60):a2.end() + 20]]
+                return 'near', [block[m.start():m.end() + a.end()]]
+            insts = {i.group(0).lower() for i in INSTITUTION.finditer(block)}
+            if allow_single and aff.search(block) and len(insts) <= 1:
+                a2 = aff.search(block)
+                return 'single', [block[m.start():m.end()], block[max(0, a2.start() - 60):a2.end() + 20]]
+            if not mk:   # a footnote naming all the authors' unit, for a byline with no markers
+                for cf in COLLECTIVE_FOOTNOTE.finditer(flat):
+                    if aff.search(flat[cf.end():cf.end() + 220].split('{')[0]):
+                        return 'footnote', [block[m.start():m.end()], flat[cf.start():cf.end() + 200].split('{')[0].strip()]
     return None, []
 
 
@@ -272,9 +332,27 @@ def pdf(school, workers=4):
     print(json.dumps(dict(school=school, pages=n[0], school_named=n[1])))
 
 
+def retie_work(w, flat, aff, by_sur, nm, forms_of, toks, stored=None):
+    """Page-1 ties of every PI on the work's byline, one per (work, PI) (2026-11-12): {pi: {how, quotes}} for the PIs whose own name the
+    page ties to the school. `stored` (the row's current quote, when it already tied one PI) seeds the result."""
+    out = {}
+    for a in w.get('authorships') or []:
+        raw = a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or ''
+        t = toks(raw)
+        for pi in (by_sur.get(t[-1], set()) if len(t) >= 2 else set()):
+            if pi in out or not nm[pi].match(raw):
+                continue
+            how, quotes = tie(flat, forms_of[pi], aff)
+            if how:
+                out[pi] = dict(how=how, quotes=quotes)
+    return out
+
+
 def retie(school):
-    """Re-read the stored page-1 texts that named the school without a tie (status ok_untied) with the current tie() rule,
-    for every PI whose name is on the work's byline (no download: the text is in the pages table). R8, 2026-10-29."""
+    """Re-read the stored page-1 texts with the current tie() rule for every PI whose name is on the work's byline (no download: the text
+    is in the pages table), R8, 2026-10-29. Rows that named the school without a tie (status ok_untied) become ties; since 2026-11-12 each
+    work keeps one tie per PI: the first PI's tie is the row's quote and the other PIs' ties are its `also` list (the row already tied for
+    one PI gains the others'), which pihier.names.tie_for_pi applies per PI."""
     from pi_hierarchy import toks, given, Name
     c = db(school); aff = re.compile(AFF[school], re.I); pis = read(P.data('pis.json', school))
     forms_of, nm, by_sur = {}, {}, {}
@@ -283,27 +361,32 @@ def retie(school):
         nm[p['pi']] = Name(p['names'])
         for f, l in nm[p['pi']].forms:
             by_sur.setdefault(l, set()).add(p['pi'])
-    k = 0
-    for wid, txt in c.execute("select work, page1 from pages where status='ok_untied'").fetchall():
+    k = k2 = 0
+    for wid, txt, status, quote in c.execute("select work, page1, status, quote from pages where status='ok_untied' or school_named=1").fetchall():
         b = c.execute('select body from works where id=?', (wid,)).fetchone()
         if not b or not txt:
             continue
         w = json.loads(zlib.decompress(b[0])); flat = re.sub(r'\s+', ' ', zlib.decompress(txt).decode('utf-8', 'replace'))
-        for a in w.get('authorships') or []:
-            raw = a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or ''
-            t = toks(raw)
-            for pi in (by_sur.get(t[-1], set()) if len(t) >= 2 else set()):
-                if not nm[pi].match(raw):
-                    continue
-                how, quotes = tie(flat, forms_of[pi], aff)
-                if how:
-                    c.execute("update pages set status='ok', school_named=1, quote=? where work=?", (json.dumps(dict(how=how, quotes=quotes)), wid)); k += 1
-                    break
-            else:
+        ties = retie_work(w, flat, aff, by_sur, nm, forms_of, toks)
+        if status == 'ok_untied':
+            if not ties:
                 continue
-            break
+            first = next(iter(ties.values()))
+            q = dict(first, **({'also': list(ties.values())[1:]} if len(ties) > 1 else {}))
+            c.execute("update pages set status='ok', school_named=1, quote=? where work=?", (json.dumps(q), wid)); k += 1
+        else:   # a tied row: add the ties of other PIs (whose quotes name them) beside the stored one
+            try:
+                q = json.loads(quote or '{}')
+            except ValueError:
+                continue
+            have = [q] + list(q.get('also') or [])
+            from pihier.names import quotes_name_pi
+            add = [t for pi, t in ties.items() if not any(quotes_name_pi(next(p['names'] for p in pis if p['pi'] == pi), e.get('quotes') or []) for e in have)]
+            if add:
+                q['also'] = list(q.get('also') or []) + add
+                c.execute("update pages set quote=? where work=?", (json.dumps(q), wid)); k2 += 1
     c.commit()
-    print(json.dumps(dict(school=school, retied=k)))
+    print(json.dumps(dict(school=school, retied=k, other_pi_ties_added=k2)))
 
 
 if __name__ == '__main__':

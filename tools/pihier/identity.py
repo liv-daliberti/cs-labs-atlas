@@ -7,7 +7,7 @@ import collections, gzip, html, json, re, sqlite3, zlib
 
 import atlas_paths as P  # every path in one place
 from .common import DBLP, NOT_PAPERS, accepted_additions, ndoi, norm_title, read, school_scope_work, sweep_works
-from .names import Name, all_initials, byline_name, clean_person_name, full_pair, middle_conflict, name_conflict, name_toks, names_full_form, nosuffix, toks
+from .names import tie_for_pi, Name, all_initials, byline_name, clean_person_name, full_pair, middle_conflict, name_conflict, name_toks, names_full_form, nosuffix, toks
 from . import primary_affiliations, reviewed_claims
 from .students import (ADV_RX, RESEARCHED_FILES, advising_label, dspace_advisors, named_advisers, own_roster_entry,
                        relation_is_weak, relation_names_other_adviser, renamed_pis)
@@ -548,6 +548,7 @@ def hits(ctx):
         tied = {r[0]: dict(json.loads(r[1]), url=r[2], pdf_sha256=r[3]) for r in con.execute('select work, quote, url, pdf_sha256 from pages where school_named=1')}
         page_read = {r[0]: (r[1], r[2], r[3]) for r in con.execute('select work, status, page1, url from pages')}  # R3: every page-1 read
         in_sweep = {h[1]['id'] for h in hits}
+        pis_by_name = {p['pi']: p['names'] for p in pis}
         owner = collections.defaultdict(list)
         for p in pis:
             for a_ in set(anchored[p['pi']]) | reviewed_oa[p['pi']]:
@@ -566,7 +567,7 @@ def hits(ctx):
                     if aid in blocked[pi] or not nm[pi].match(raw):
                         continue
                     ident = 'reviewed_openalex_author_id' if aid in reviewed_oa[pi] else ('anchored_author_id' if anchored[pi][aid] >= 1 else 'advisee_anchored_author_id')
-                    hits.append((pi, w, a, cwork(w), ident, tied.get(w['id']))); from_pw.add((pi, w['id']))
+                    hits.append((pi, w, a, cwork(w), ident, tie_for_pi(tied.get(w['id']), pis_by_name[pi]) or tied.get(w['id']))); from_pw.add((pi, w['id']))
             # R8 (R-PAP-24, 2026-10-29, owner: accuracy sample): a work whose page 1 ties the school to the PI by name, at an
             # authorship with no institution, under an author id that is not (yet) anchored, is the PI's when the PI's own
             # DBLP person page (or another non-advisee identity) names it: Jacob Fox's JCTB 2025 paper
@@ -580,10 +581,10 @@ def hits(ctx):
                         if reviewed_claims.excluded(ctx, pi, w):
                             continue
                         if (pi, w['id']) in from_pw or aid in blocked[pi] or not nm[pi].match(raw) \
-                                or name_toks(pi)[-1] not in toks(' '.join(tied[w['id']].get('quotes') or [])):
+                                or not tie_for_pi(tied[w['id']], pis_by_name[pi]):
                             continue
                         cw_ = cwork(w); ident = identity_of(pi, w, a, cw_)
                         if ident and ident != 'advisee_coauthor':
-                            hits.append((pi, w, a, cw_, ident, tied[w['id']])); from_pw.add((pi, w['id'])); n['pi_work_page1_dblp_hits'] += 1
+                            hits.append((pi, w, a, cw_, ident, tie_for_pi(tied[w['id']], pis_by_name[pi]))); from_pw.add((pi, w['id'])); n['pi_work_page1_dblp_hits'] += 1
         n['pi_work_list_hits'] = len(hits) - k0
     ctx.hits, ctx.anchored, ctx.tied, ctx.from_pw, ctx.page_read = hits, anchored, tied, from_pw, page_read

@@ -68,6 +68,26 @@ def toks(s):
     return [t for t in re.sub(r"[^a-z\u3400-\u9fff\uf900-\ufaff\u3040-\u30ff\u1100-\u11ff\U00020000-\U000323af\- ]+", ' ', s.replace("'", '').replace('’', '').replace('‘', '').replace('`', '')).replace('-', ' ').split() if t]
 
 
+def quotes_name_pi(names, quotes):
+    """True when a page-1 quote carries the family name of one of the PI's names. Bilingual census names ('Yi R. FUNG 馮一人') end in the Chinese
+    part for toks(); the Latin reading is name_toks (HKUST, 2026-11-10: the page-1 tie never matched a bilingual name)."""
+    joined = ' '.join(quotes).lower()
+    return any(name_toks(n_)[-1] in toks(joined) or re.search(r'(?<![a-z])' + re.escape(name_toks(n_)[-1]) + r'(?:[a-d](?:,[a-d])*)?[,\u2217*\u2020\s]', joined)
+               for n_ in names if name_toks(n_))
+
+
+def tie_for_pi(entry, names):
+    """One page-1 tie row per (work, PI) (2026-11-12): the stored tie of a work (`entry`: how, quotes, url, pdf_sha256, and `also`: the ties
+    of the work's other PIs) as it applies to a PI with these names: the entry whose quotes name the PI, else None. A tie stored before
+    `also` existed has one quote set, so it applies as before to the PI it names."""
+    if not entry:
+        return None
+    for e in [entry] + list(entry.get('also') or []):
+        if quotes_name_pi(names, e.get('quotes') or []):
+            return dict({k: v for k, v in entry.items() if k != 'also'}, **{k: v for k, v in e.items()})
+    return None
+
+
 def name_toks(s):
     """Use a bilingual label's explicit full Latin reading, not its appended Chinese name as a Latin surname.
 
