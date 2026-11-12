@@ -3224,26 +3224,6 @@
       ]
     },
     {
-      "pi": "Ha Rim Rho",
-      "url": "https://eugeniarho.com/",
-      "coverage": "reason",
-      "kind": "other_institution_site",
-      "reason_code": "site_at_other_institution",
-      "reason": "Current university or personal page identifies Emory University as the current institution. The VT period remains historical; no current VT lab site is established by this page.",
-      "checked_at": "2026-11-10",
-      "audited_at": "2026-11-10",
-      "checks": [
-        {
-          "source": "candidate_site",
-          "url": "https://eugeniarho.com/",
-          "result": "ok",
-          "at": "2026-11-10",
-          "sha256": "f132a3f71e6e05954541d5088a1467a7cd91267347db1625b4922c058cf78dc9",
-          "quote": "Eugenia Ha Rim Rho"
-        }
-      ]
-    },
-    {
       "pi": "R. Benjamin Knapp",
       "url": "https://news.vt.edu/articles/2026/01/eng-cs-knapp-conferred-emeritus-status.html",
       "coverage": "reason",
@@ -3371,5 +3351,12 @@
         }
       ]
     }
-  ]
+  ],
+  "census_reconciliation": {
+    "basis": "current derived/pis.json; existing reviewed website evidence retained verbatim",
+    "pis_sha256": "d325192e9fda73ea80d25fd7c7589b069228c8f1ae045fdad3e939d0a003e230",
+    "removed_noncurrent_records": [
+      "Ha Rim Rho"
+    ]
+  }
 }
