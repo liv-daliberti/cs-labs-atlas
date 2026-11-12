@@ -462,19 +462,35 @@ def hand_evidence(key, c=None):
         return {}
     c = c or W.con(key)
     out = {}
+    texts_by_sha = {}  # a catalog PDF can support many reviewed names; extract it once per raw hash
     for e in ents:
         if not all(e.get(k) for k in ('name', 'unit', 'url', 'sha256', 'quote')):
             raise SystemExit(f"cs-related-hand.json: entry without name/unit/url/sha256/quote: {e.get('name')}")
-        texts = [r[0] for r in c.execute('select text from captures where sha256=?', (e['sha256'],))]
-        for url, raw in c.execute('select url, raw_zlib from live where sha256=?', (e['sha256'],)):
-            import zlib
-            texts.append(W.flat(W.extract.blocks(zlib.decompress(raw), 'text/html', url)))
-        try:   # a JavaScript-rendered page (tools/js_render_capture.py): the stored rendered DOM, matched by its dom_sha256
-            import zlib
-            for url, dz in c.execute('select url, dom_zlib from js_render where dom_sha256=?', (e['sha256'],)):
-                texts.append(W.flat(W.extract.blocks(zlib.decompress(dz), 'text/html', url)))
-        except Exception:   # the store has no js_render table
-            pass
+        if e['sha256'] not in texts_by_sha:
+            texts = [r[0] for r in c.execute('select text from captures where sha256=?', (e['sha256'],))]
+            for url, raw in c.execute('select url, raw_zlib from live where sha256=?', (e['sha256'],)):
+                import zlib
+                body = zlib.decompress(raw)
+                if body.startswith(b'%PDF-'):
+                    # Catalog faculty lists are PDF. The raw bytes and hash are in the same live receipt;
+                    # checking binary as HTML silently loses every literal professor-rank quote.
+                    import subprocess
+                    try:
+                        pdf = subprocess.run(['pdftotext', '-raw', '-', '-'], input=body, capture_output=True, timeout=120)
+                    except (FileNotFoundError, subprocess.TimeoutExpired):
+                        pdf = None
+                    if pdf is not None and pdf.returncode == 0:
+                        texts.append(pdf.stdout.decode('utf-8', 'replace'))
+                else:
+                    texts.append(W.flat(W.extract.blocks(body, 'text/html', url)))
+            try:   # a JavaScript-rendered page (tools/js_render_capture.py): the stored rendered DOM, matched by its dom_sha256
+                import zlib
+                for url, dz in c.execute('select url, dom_zlib from js_render where dom_sha256=?', (e['sha256'],)):
+                    texts.append(W.flat(W.extract.blocks(zlib.decompress(dz), 'text/html', url)))
+            except Exception:   # the store has no js_render table
+                pass
+            texts_by_sha[e['sha256']] = texts
+        texts = texts_by_sha[e['sha256']]
         if not any(' '.join(t.split()).find(' '.join(e['quote'].split())) >= 0 for t in texts if t):
             raise SystemExit(f"cs-related-hand.json: the quote of {e['name']} is not in the stored page {e['sha256'][:12]} (re-run `profile`)")
         out.setdefault(' '.join(toks(e['name'])), []).append(dict(unit=e['unit'], url=e['url'], sha256=e['sha256'], observed=e.get('observed') or '', quote=e['quote'],

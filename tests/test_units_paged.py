@@ -75,3 +75,34 @@ def test_paged_roster_captures_add_the_text_of_their_pages(monkeypatch):
     assert L.paged_flat(None, 'cap0', dict(timestamp='20200401000000', original='https://u.edu/people/phd'), 'u.edu/people/phd') == 'Page two student'
     monkeypatch.setattr(L.W, 'raw_html', lambda c, cap: '<ul><li>A B</li></ul>')
     assert L.paged_flat(None, 'cap0', dict(timestamp='20200401000000', original='https://u.edu/p'), 'u.edu/p') == ''
+
+
+def test_hand_evidence_verifies_pdf_quote_from_stored_raw_bytes(tmp_path, monkeypatch):
+    """A PDF faculty catalog must be extracted before a reviewed role quote can be admitted."""
+    import hashlib
+    import json
+    import sqlite3
+    import subprocess
+    import zlib
+
+    raw = b'%PDF-1.5\nsource bytes kept in the receipt'
+    sha = hashlib.sha256(raw).hexdigest()
+    con = sqlite3.connect(':memory:')
+    con.execute('create table captures(sha256 text, text text)')
+    con.execute('create table live(url text, raw_zlib blob, sha256 text)')
+    con.execute('insert into live values (?,?,?)', ('https://catalog.utexas.edu/faculty.pdf', zlib.compress(raw), sha))
+    f = tmp_path / 'hand.json'
+    monkeypatch.setattr(C.P, 'data', lambda name, key, **k: f)
+    calls = []
+
+    def pdf_text(argv, **kwargs):
+        calls.append((argv, kwargs['input']))
+        return subprocess.CompletedProcess(argv, 0, b'Undergraduate Catalog 2018-2020\nDanna Gurari, Assistant Professor\nSchool of Information')
+
+    monkeypatch.setattr(subprocess, 'run', pdf_text)
+    item = dict(name='Danna Gurari', unit='INFO', url='https://catalog.utexas.edu/faculty.pdf', sha256=sha,
+                observed='2018-09-18', quote='Danna Gurari, Assistant Professor', ladder=True)
+    f.write_text(json.dumps([item, dict(item, name='Danna Gurari', quote='Undergraduate Catalog 2018-2020')]))
+    got = C.hand_evidence('utaustin', con)
+    assert len(got['danna gurari']) == 2
+    assert calls == [(['pdftotext', '-raw', '-', '-'], raw)]  # one extraction for two quotes on one raw PDF
