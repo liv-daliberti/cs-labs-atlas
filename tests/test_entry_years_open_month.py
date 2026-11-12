@@ -204,3 +204,11 @@ def test_zju_roster_items():
     assert L.ENTRY_AS_HEAD_RX.match('Weiya Xu Ph.D., NUS') and not L.ENTRY_AS_HEAD_RX.match('Ph.D. Students')
     assert L.entry_role('', 'Alumni > Weiya Xu Ph.D., NUS', lambda t: ('phd', 'x')) == (None, 'none')   # the previous entry's degree is a destination, not this person's role
     assert L.entry_role('', 'Ph.D. Students', lambda t: ('phd', 'x'))[0] == 'phd'
+
+
+def test_kai_bu_alumni_and_fyp_lists():
+    d = ', BS 2024. FYP advisee (Master Student, HKUST )'
+    assert L.entry_years(d, 'Undergraduate. 2023-2024 FYP advisee')[0] == [None, 2024]    # a finished cohort heading: the degree year is the graduation year
+    assert L.entry_years(d, 'Alumni')[0] == [None, 2024]
+    assert L.entry_years(', BS 2026. FYP advisee', 'Undergraduate FYP advisee')[0] == [2026, 2026]
+    assert L.entry_role(', CS 2026. FYP advisee (Master Student, CUHK-Shenzhen )', 'Alumni', lambda t: (None, None))[0] == 'undergraduate'

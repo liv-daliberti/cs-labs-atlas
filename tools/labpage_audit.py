@@ -1570,6 +1570,12 @@ def m_has_range(d):
 OPEN_MONTH_RX = re.compile(r'(?<![\d./])((?:19|20)\d\d)\s*[./]\s*(?:0?[1-9]|1[0-2])(?:\s*[./]\s*(?:0?[1-9]|[12]\d|3[01]))?\s*(?:[-\u2013\u2014~\uff5e]\s*(?:\u81f3\u4eca|present|now|current)?|\u81f3\u4eca|to\s+(?:present|now))(?![\d./])', re.I)
 
 
+def past_range_head(head):
+    """A heading with a CLOSED year range that ended before this year ('Undergraduate. 2023-2024 FYP advisee'): its entries are a finished cohort, so a bare 'BS 2024' there is a graduation year (ZJU Kai Bu's alumni sub-lists)."""
+    m = re.search(r'((?:19|20)\d\d)\s*[-\u2013\u2014]\s*((?:19|20)\d\d)', head or '')
+    return bool(m) and int(m.group(2)) < 2026
+
+
 def entry_years(desc, head):
     """(years, basis) stated by the entry itself; never a neighbour's dates or a bio's degree dates.
       '(Postdoc, 2010-2014)' -> [2010, 2014]; '(PhD student, MIT ORC, 2022 -)' -> [2022, None] (an open range is a start);
@@ -1625,9 +1631,9 @@ def entry_years(desc, head):
     if len(ys) == 1:
         if AWARD_AFTER_YEAR.search(seg) and not re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis", seg, re.I):
             return None, 'none'   # '(2025 OPPO Scholarship)' dates an award, not the stay (SJTU round 1); a range above is unaffected
-        if head and not re.search(r'\b(?:former|past|previous|alumni|alumnae|alumnus|graduated|graduates|class of|emeriti)\b', head, re.I) \
+        if head and not re.search(r'\b(?:former|past|previous|alumni|alumnae|alumnus|graduated|graduates|class of|emeriti)\b', head, re.I) and not past_range_head(head) \
                 and re.fullmatch(r"\W*(?:ph\.?\s?d\.?|m\.?s\.?|b\.?s\.?)(?:\s*[/&,]\s*(?:ph\.?\s?d\.?|m\.?s\.?|b\.?s\.?))*\W*(?:19|20)\d\d\W*", seg, re.I):
-            return [ys[0], None], 'stated_in_entry'   # '(Ph.D./M.S. 2023)' in a CURRENT list is the entry year, not an end year (SJTU round 5, 赵杰茹's page); real alumni there use YYYY-YYYY ranges
+            return ([ys[0], ys[0]] if re.search(r'\bFYP\b|final[- ]year', f'{head} {desc}', re.I) else [ys[0], None]), 'stated_in_entry'   # (an FYP advisee of that year is [Y, Y]) '(Ph.D./M.S. 2023)' in a CURRENT list is the entry year, not an end year (SJTU round 5, 赵杰茹's page); real alumni there use YYYY-YYYY ranges
         if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
             return [None, ys[0]], 'stated_in_entry'
         return [ys[0], ys[0]], 'stated_in_entry'
@@ -1789,6 +1795,8 @@ def entry_role(desc, head, role_of):
         return 'phd', 'entry'   # 'Ph.D. 2025, Post Doc @ Univ. of Illinois': the degree is the role, the post after it is the placement (UChicago round 2)
     if re.match(r'^\W{0,3}(?:(?:MPCS|MCAM|MSCAPP|MSc?|M\.S\.)\b|[^,]{1,25},\s*(?:MS|M\.S\.|MSc)\b)', d):
         return 'masters', 'entry'   # 'Noame Qin — MCAM, MS 2022' under an 'undergraduate & master's' heading: the entry's own degree is the role
+    if re.search(r'\bFYP\s+advisee\b|\bSRTP\s+advisee\b|final[- ]year\s+project', d[:90], re.I) and not re.match(r'^\W{0,3}(?:ph\.?\s?d|master|m\.?s\b)', d, re.I):
+        return 'undergraduate', 'entry'   # 'BS 2024. FYP advisee': a final-year-project advisee is an undergraduate (ZJU Kai Bu)
     if BIO_START_RX.match(d):
         pass   # 'received her B.S. in ...': a bio sentence never sets the role (the case-insensitive ROLE_NEAR read 'received her' as two capitalised words) (NTU round 6, Rui Jiao)
     elif PRIOR_DEGREE.match(d):
