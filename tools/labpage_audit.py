@@ -2009,6 +2009,8 @@ def entry_years(desc, head):
     if len(ys) == 1:
         if AWARD_AFTER_YEAR.search(seg) and not re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis", seg, re.I):
             return None, 'none'   # '(2025 OPPO Scholarship)' dates an award, not the stay (SJTU round 1); a range above is unaffected
+        if re.search(r'(?i)\bjoined\s+(?:in\s+)?(?:%s)\b' % YEAR_, seg) and not re.search(r'\b(?:intern|visit\w*|exchange|summer)\b', seg, re.I):
+            return [ys[0], None], 'stated_in_entry'   # 'Joined 2025' (a start cue, whatever the heading: under 'Alumni' the page gives no end year): Tsinghua 刘卓涛's students page
         if head and not re.search(r'\b(?:former|past|previous|alumni|alumnae|alumnus|graduated|graduates|class of|emeriti)\b', head, re.I) and not past_range_head(head) and _ENTRY_CTX['bare_year_entry'] \
                 and re.fullmatch(r"\W*(?:ph\.?\s?d\.?|m\.?s\.?|b\.?s\.?)(?:\s*[/&,]\s*(?:ph\.?\s?d\.?|m\.?s\.?|b\.?s\.?))*\W*(?:19|20)\d\d\W*", seg, re.I):
             return ([ys[0], ys[0]] if re.search(r'\bFYP\b|final[- ]year', f'{head} {desc}', re.I) else [ys[0], None]), 'stated_in_entry'   # (an FYP advisee of that year is [Y, Y]) '(Ph.D./M.S. 2023)' in a CURRENT list is the entry year, not an end year (SJTU round 5, 赵杰茹's page); real alumni there use YYYY-YYYY ranges
@@ -2018,6 +2020,9 @@ def entry_years(desc, head):
             return [None, ys[0]], 'stated_in_entry'   # 'Xuanyuan Lu o, Master 2022, Research interests: ...' on an alumni list ('Ms 2022' reads [None, 2022]): the degree year ends the stay (Tsinghua Li Jian)
         if SEMESTER_START_RX.search(seg) and not re.search(r'\b(?:intern|visit\w*|exchange|summer)\b', seg, re.I) and not (head and (ALUMNI_HEAD_RX.search(head) or past_range_head(head))):
             return [ys[0], None], 'stated_in_entry'   # '(2025 Fall)' under a current list is the semester the stay began (HKUST Wai Kin Wong)
+        if head and not (ALUMNI_HEAD_RX.search(head) or past_range_head(head) or re.search(r'\b(?:former|past|previous|alumni|alumnae|alumnus|graduated|graduates|emeriti)\b', head, re.I)) \
+                and re.match(r'^\W{0,3}\(\s*(?:with\s+[^(),]{2,40}\s*,\s*)?(?:%s)\s*\)' % YEAR_, d, re.I) and not re.search(r'\b(?:intern|visit\w*|exchange|summer)\b', seg, re.I):
+            return [ys[0], None], 'stated_in_entry'   # 'Jinyao Zhang (2025)' / 'Minghao Tang (with Hewu Li , 2023)' under a current list: the one year is the entry year, not a one-year stay (Tsinghua 李元杰's students list)
         return [ys[0], ys[0]], 'stated_in_entry'
     fy = re.search(r'\b(?:FYP|final[- ]year\s+projects?)\b\D{0,8}((?:19|20)\d\d)', head or '', re.I)
     if fy:
@@ -2348,6 +2353,53 @@ def name_then_role_cells(text):
     if len(cells) < 3:
         return []
     return [dict(name=m.group(1), role_label=m.group(3), quote=m.group(0).strip()) for m in cells if not re.search(r'co-?supervis|co-?advis', m.group(2) or '', re.I)]
+
+
+HAN_TABLE_HEAD_RX = re.compile(r'\u5e74\u7ea7\s*\u59d3\s*\u540d\s*(?:\u7c7b\u522b|\u7c7b\u578b|\u57f9\u517b\u7c7b\u522b|\u5b66\u4f4d\u7c7b\u522b)\s*(?:\u5bfc\u5e08|\u6307\u5bfc\u6559\u5e08)')   # 年级 姓名 类别 导师
+HAN_TABLE_TYPE_RX = re.compile(r'^(?:\u76f4|\u666e|\u5de5|\u5728\u804c|\u7855\u535a\u8fde\u8bfb)?(\u535a|\u7855)\u58eb?(?:\u8fde\u8bfb)?(?:[-\uff0d\u2014][\u4e00-\u9fff]{0,6})?$')   # 直博 / 工博- / 普硕- 强军: degree (博 phd, 硕 masters) with an optional programme suffix
+HAN_TABLE_YEAR_RX = re.compile(r'^(?:19[89]\d|20[0-2]\d)$')
+
+
+def han_adviser_table_cells(text, pi_name):
+    """A Han roster TABLE with the header '年级 姓名 类别 导师' (entry year | name | degree type | adviser [| tutor | topic]; Tsinghua 杨家海's nmgroup xsgl page): one row per student, the cohort year is
+    the entry year (-> [year, None], still enrolled), the type cell gives the degree (博 phd, 硕 masters) and the ADVISER cell must name the PI (the co-supervision rule: a row naming
+    only another adviser is not this lab's; 辅导老师 / topic cells after the adviser are not advisers). No site name appears here: the header shape is the whole contract.
+    -> [dict(name, role, years, desc, quote, head)]; a row with a missing year, name or type, or whose adviser does not name the PI, is skipped."""
+    t = re.sub(r'\s+', ' ', text or '')
+    h = HAN_TABLE_HEAD_RX.search(t)
+    pi_han = re.sub(r'[\uff08(].*?[\uff09)]', '', pi_name or '').strip()
+    if not h or not re.fullmatch(r'[\u4e00-\u9fff\u00b7]{2,4}', pi_han):
+        return []
+    toks = t[h.end():].split(' ')
+    cut = next((i for i, w in enumerate(toks) if re.match(r'(?i)^(?:copyright|\u00a9|\u7248\u6743)', w)), len(toks))
+    toks = toks[:cut]
+    starts = [i for i, w in enumerate(toks) if HAN_TABLE_YEAR_RX.match(w) and i + 1 < len(toks) and re.match(r'^[\u4e00-\u9fff]', toks[i + 1])]
+    head_ = '\u5728\u8bfb' in t[max(0, h.start() - 80):h.start()]
+    out = []
+    for k, i in enumerate(starts):
+        row = toks[i:(starts[k + 1] - (1 if k + 1 < len(starts) and i + 1 < starts[k + 1] and re.fullmatch(r'\d{1,3}', toks[starts[k + 1] - 1]) else 0)) if k + 1 < len(starts) else len(toks)]
+        year, rest = int(row[0]), row[1:]
+        name_t = []
+        while rest and not HAN_TABLE_TYPE_RX.match(rest[0]) and len(name_t) < 4:
+            name_t.append(rest.pop(0))
+        if not rest or not name_t or not all(re.fullmatch(r'[\u4e00-\u9fff\u00b7]{1,4}', w) for w in name_t):
+            continue
+        name = ''.join(name_t)
+        if not re.fullmatch(r'[\u4e00-\u9fff\u00b7]{2,4}', name):
+            continue
+        typ = rest.pop(0)
+        if typ[-1] in '-\uff0d\u2014' and rest and re.fullmatch(r'[\u4e00-\u9fff]{1,6}', rest[0]):
+            typ += ' ' + rest.pop(0)
+        if not rest:
+            continue
+        advisers = [a for a in re.split(r'[\u3001\uff0c,/]', rest[0]) if a]
+        if pi_han not in advisers:
+            continue
+        m_ = HAN_TABLE_TYPE_RX.match(typ.split(' ')[0])
+        out.append(dict(name=name, role={'\u535a': 'phd', '\u7855': 'masters'}[m_.group(1)], years=[year, None], head='Current Students' if head_ else 'Students',
+                        desc=' '.join(row[:len(row) - len(rest) + 1]), quote=' '.join(row[:len(row) - len(rest) + 1])))
+    return out
+
 
 
 NICK_STUDENT_RX = re.compile(r"((?:[A-Z][a-z'\u2019-]+ ){1,3}[A-Z][a-z'\u2019-]+), ([A-Z][a-z'\u2019-]+(?: [A-Z][a-z'\u2019-]+)?) (\((?:PhD|Ph\.D\.|MPhil|M\.Phil\.|MSc|Master|Postdoc|Undergraduate)\b[^()]{0,120}\))")
@@ -2724,6 +2776,14 @@ def pm_candidates(kit, school, pi, plan, held):
                     continue
                 ext.append(dict(han_card_item(dict(name=c_['name'], head='Current Students', desc=c_['desc'], quote=c_['quote'], role=None, alumni=False), row_d, names, held),
                                 han_card=None, flags=[], role='member'))
+        except (KeyError, ValueError, TypeError):
+            pass
+        try:   # a Han roster table '年级 姓名 类别 导师' whose adviser cell names this PI (Tsinghua 杨家海's nmgroup xsgl page)
+            for c_ in (han_adviser_table_cells(ptxt_d, pi) if row_d else []):
+                if any(names.fold(e['name']) == names.fold(c_['name']) for e in ext):
+                    continue
+                ext.append(dict(han_card_item(dict(name=c_['name'], head=c_['head'], desc=c_['desc'], quote=c_['quote'], role=None, alumni=False), row_d, names, held),
+                                han_card=None, flags=[], role='member', card_override=dict(role=c_['role'], years=c_['years'], alumni=False)))
         except (KeyError, ValueError, TypeError):
             pass
         try:   # 'Name PhD Student' cards (role after the name) the DOM reader dropped: HKUST Hai Zhang

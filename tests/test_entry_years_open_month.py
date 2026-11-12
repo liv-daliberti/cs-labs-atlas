@@ -158,7 +158,7 @@ def test_undergraduate_interns_heading_sets_the_role():
 def test_unlabelled_alumni_year_is_an_end_year():
     assert L.entry_years('(2020)', 'Alumni')[0] == [None, 2020]
     assert L.entry_years('(2020)', 'Alumni > Zili Meng')[0] == [None, 2020]
-    assert L.entry_years('(2020)', 'Current Students')[0] == [2020, 2020]
+    assert L.entry_years('(2020)', 'Current Students')[0] == [2020, None]   # 2026-11-12: a lone year under a current list is a start, not a one-year stay (Tsinghua 李元杰)
 
 
 def test_month_year_open_start_and_season_year_stay():
