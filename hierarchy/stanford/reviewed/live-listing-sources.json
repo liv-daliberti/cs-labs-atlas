@@ -1,0 +1,30 @@
+{
+  "school": "stanford",
+  "sources": [
+    {
+      "dept": "EE",
+      "slot": "EE faculty directory",
+      "format": "stanford_ee_cards",
+      "complete": true,
+      "expected_entries": 149,
+      "pages": [
+        {
+          "url": "https://ee.stanford.edu/people/faculty?sort=asc&limit=60&type=all&areas=all",
+          "sha256": "e81eef137f015b6a5d2a27d3f0df196a18252850a700fd4041cf510a585ddba8",
+          "fetched_at": "2026-11-11T23:14:09"
+        },
+        {
+          "url": "https://ee.stanford.edu/people/faculty?sort=asc&limit=60&type=all&areas=all&page=1",
+          "sha256": "8594b52ee9781be4807d9329667b8386ddbbe23e9d58ebb268526be946874779",
+          "fetched_at": "2026-11-11T23:14:25"
+        },
+        {
+          "url": "https://ee.stanford.edu/people/faculty?sort=asc&limit=60&type=all&areas=all&page=2",
+          "sha256": "e598f296430778cbf69b4c635e3a5d7b804167e1c10484c25f528d261fde22bc",
+          "fetched_at": "2026-11-11T23:14:27"
+        }
+      ]
+    }
+  ],
+  "review_note": "All three live pages of the All faculty / All areas directory reviewed: 149 distinct printed names, including emeriti and courtesy appointments. Supports the actual 2026 fetch year only; no historical continuity or PI identity admission."
+}

@@ -106,7 +106,7 @@ def stanford_ee_cards(h):
         if link is None or title is None:
             continue
         role = clean(title.get_text(' ', strip=True))
-        if not re.search(r'Professor|Faculty|Lecturer', role, re.I):
+        if not re.search(r'Professor|Faculty|Lecturer|Emerit', role, re.I):
             continue
         out.append(dict(name_listed=clean(link.get_text(' ', strip=True)),
                         titles=[role], profile=link['href'], homepage=None, division=None))
@@ -1774,7 +1774,7 @@ def ntu_entries_text(rows):
 FORMATS = {
     'stanford_cs_legacy': (stanford_cs_legacy, re.compile(r'(?s)Regular Faculty</h3>.*post_form_nam_last')),
     'stanford_cs_cards': (stanford_cs_cards, re.compile(r'(?s)Faculty by Name.*su-person-short-title')),
-    'stanford_ee_cards': (stanford_ee_cards, re.compile(r'(?s)<title>[^<]*Electrical Engineering.*(?:orglist__display-name|class="description")')),
+    'stanford_ee_cards': (stanford_ee_cards, re.compile(r'(?s)<title>[^<]*Stanford (?:EE|Electrical Engineering).*?(?:orglist__display-name|class="description")')),
     'stanford_ee_bulletin': (stanford_ee_bulletin, re.compile(r'(?s)<title>\s*Electrical Engineering\b.*facultytextcontainer')),
     'hit_cs_current_table': (hit_cs_current_table, re.compile(r'(?!)')),
     'berkeley_eecs_faculty': (berkeley_eecs_faculty, re.compile(r'(?!)')),

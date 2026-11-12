@@ -34,9 +34,10 @@ def test_ee_directory_excludes_embedded_administrators_and_remains_paged():
     html = '''<h3 class="description"><a href="https://example.edu/a">Amin Arbabian</a><small>Associate Professor</small></h3>
       <h3 class="description">Marie Hamel<small>Administrator</small></h3>
       <h3 class="orglist__display-name"><a href="https://example.edu/b">Sara Achour</a><small>Assistant Professor</small></h3>
+      <h3 class="orglist__display-name"><a href="https://example.edu/c">John Cioffi</a><small>Emeritus</small></h3>
       <ul class="pager js-pager__items"><li><a href="?page=1">2</a></li></ul>'''
     rows = L.stanford_ee_cards(html)
-    assert [r['name_listed'] for r in rows] == ['Amin Arbabian', 'Sara Achour']
+    assert [r['name_listed'] for r in rows] == ['Amin Arbabian', 'Sara Achour', 'John Cioffi']
     assert L.is_paged(html)
 
 
