@@ -2539,9 +2539,14 @@ def entry_role(desc, head, role_of):
         r = role_fallback(h) or (role_fallback(head.split(' > ')[0]) if head and ' > ' in head else None)
     if r and r != 'member' and h and re.search(r'post-?doc\w*', h, re.I) and re.search(r'ph\.?\s?d|doctoral\s+student|graduate\s+student', h, re.I):
         return None, 'none'   # a heading that mixes postdocs and PhD students states no role for its rows (NTU round 6: 'Current Post-doctorates and PhD students')
+    if r == 'phd' and GENERIC_GRADUATE_HEAD.match(h):
+        return None, 'none'   # a bare 'Graduate Students' heading states no degree (Stanford Cioffi: master's and PhD students alike): role unknown, never inferred as phd
     if r and r != 'member':
         return r, 'section_heading'
     return None, 'none'
+
+
+GENERIC_GRADUATE_HEAD = re.compile(r'^\W*(?:current\s+|our\s+)?grad(?:uate)?\s+students?\W*$', re.I)
 
 
 def paren_years(desc):

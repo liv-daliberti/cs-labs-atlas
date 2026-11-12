@@ -119,3 +119,12 @@ def test_stanford_recall_entry_formats():
 def test_industry_visiting_scholar_is_not_a_student_member():
     assert LA.prose_nonmember('Masao Sambongi', ', Olympus Corporation, Visiting Scholar, 2015-2017', 'Masao Sambongi, Olympus Corporation, Visiting Scholar, 2015-2017')
     assert not LA.prose_nonmember('Ann Lee', ', Visiting Student from CUHK, 2016', 'Ann Lee, Visiting Student from CUHK, 2016')
+
+
+def test_generic_graduate_students_heading_states_no_degree():
+    """Stanford Cioffi: 'Graduate Students' with only emails: the role stays unknown; an explicit PhD heading still says phd."""
+    import sys
+    sys.path.insert(0, str(LA.HT / 'labpage-tools-princeton-mit'))
+    import autom
+    assert LA.entry_role('Muhammad Umer umer@stanford.edu', 'Graduate Students', autom._role) == (None, 'none')
+    assert LA.entry_role('Muhammad Umer umer@stanford.edu', 'PhD Students', autom._role)[0] == 'phd'
