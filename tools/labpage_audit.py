@@ -54,6 +54,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import census_overrides as CO  # noqa: E402
 import student_decisions as SD  # noqa: E402
+from pihier.common import AFF  # noqa: E402
 import visiting as VIS  # noqa: E402
 
 H = P.HIERARCHY
@@ -504,6 +505,9 @@ def stale_footer_year(text, capture_year=None):
     that also names any year from 2016 on is maintained (Kozyrakis's students page: footer 2008, entries to 2018), so the footer alone never decides."""
     ys = [int(m.group(1)) for m in FOOTER_YEAR_RX.finditer(text or '')]
     last = max(ys) if ys else None
+    if not ys:   # no footer: the newest year the page mentions anywhere (2026-11-12, CMU round 10: Brookes's students page, newest item 2008)
+        every = [int(y) for y in re.findall(r'(?<![\d.])((?:19|20)\d\d)(?![\d])', text or '')]
+        last = max(every) if len(every) >= 3 and max(every) < 2016 else None
     if not last or last >= 2016 or (capture_year is not None and capture_year < last + 2):
         return None
     if any(int(y) >= 2016 for y in re.findall(r'(?<!\d)(20[12]\d)(?!\d)', text or '')):
@@ -2486,13 +2490,23 @@ NONMEMBER_SECTION = re.compile(r'\bstudent\s+(?:reports?|projects?)\b|\bprospect
                               r'\b(?:postdoc|postdoctoral|phd|student)\s+positions?\b|scholar profile|citation data', re.I)
 
 
-def nonmember_candidate(name, heading):
-    """Reject obvious non-person titles and recruiting/report sections before admission."""
+COLLABORATED_STUDENTS = re.compile(r'\bcollaborat\w*\s+with\s+(?:the\s+|these\s+|following\s+|my\s+)*(?:\w+\s+){0,3}students?\b', re.I)
+VISITORS_AT = re.compile(r'\bvisitors?\s*(?:@|at)\s+(.{2,60})$', re.I)
+
+
+def nonmember_candidate(name, heading, school=None):
+    """Reject obvious non-person titles and recruiting/report sections before admission. `school` (2026-11-12) lets a 'My Visitors @ TUM'
+    heading, which names another institution and not the school, read as a visitor list of that institution."""
     if NONPERSON_NAME.search(name or ''):
         return 'name_unresolved', 'a talk or technical noun phrase, not a full person name'
     if NONMEMBER_SECTION.search(heading or ''):
         return 'not_in_people_section', 'a report, recruiting or citation section, not a member roster'
     h_ = (heading or '').split(' > ')[-1]
+    if COLLABORATED_STUDENTS.search(h_):
+        return 'not_in_people_section', "a list of students the PI collaborated with ('I collaborate with the PhD students'), not advisees"
+    vm = VISITORS_AT.search(h_)
+    if vm and not (school and school in AFF and re.search(AFF[school], vm.group(1), re.I)):
+        return 'not_in_people_section', f"a visitors list at another institution ('{h_}'), not this school's lab members"
     if re.match(r'^\s*(?:Ph\.?\s?D|M\.?\s?S|B\.?\s?S|B\.?\s?E|Bachelor|Master)\b[^|]{0,80},\s*(?:19|20)\d\d\s*$', h_, re.I) and not re.search(r'\b(?:students?|alumni|members?|team|people|group)\b', h_, re.I):
         return 'not_in_people_section', 'an education line of a CV (a degree, field and year), not a member roster: the names under it are publication authors'   # Tsinghua round 2, madsys \u7ae0\u660e\u661f's page
     h_ = (heading or '').split(' > ')[-1]
@@ -2779,7 +2793,7 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'not_a_student', pn
             elif fn not in keep and (sy := page_stale_footer(kit, school, src, text_cache)):
                 why, x['detail'] = 'undated_cannot_place', f"the page's footer is dated {sy} (before 2016): an old page, its current list is pre-window"
-            elif auto_plan and fn not in keep and (nonmember := nonmember_candidate(x.get('name'), x.get('head'))):
+            elif auto_plan and fn not in keep and (nonmember := nonmember_candidate(x.get('name'), x.get('head'), school)):
                 why, x['detail'] = nonmember
             elif any(names.match_one(x['name'], c) for c in coadv[src]):
                 why, x['detail'] = 'not_a_student', 'named as a co-adviser (joint with / co-advised with)'
