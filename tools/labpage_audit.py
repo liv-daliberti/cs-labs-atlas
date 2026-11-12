@@ -2395,7 +2395,7 @@ def faculty_platform_detail_cell(text):
         years = [y0, int(grad.group(1)) if grad else None]
     else:
         years = [y0, datetime.date.today().year] if y0 else None
-    return dict(name=m.group(1), role=role, years=years, alumni=alumni, quote=quote, head='学生信息', desc=body[len(m.group(1)):][:160].strip())
+    return dict(name=m.group(1), role=role, years=years, alumni=alumni, quote=quote, head=f'{deg.group(1)} {st.group(1)}', desc=body[len(m.group(1)):][:160].strip())   # the 学历 / 状态 values are the entry's own section label
 
 
 def fetch_platform_details(kit, list_url, add, cap=600):
