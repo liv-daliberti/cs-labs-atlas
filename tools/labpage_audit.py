@@ -537,6 +537,8 @@ def current_position_list(head):
 
 def news_item(text):
     """A dated news sentence ('August 2025: Patrick Kastner and I just received a seed grant') names a collaborator, not a roster entry (Georgia Tech round 2)."""
+    if re.search(r'\(\s*(?:TLE\s+)?(?:M\.?\s?Phil|Ph\.?\s?D|Master|Undergrad\w*|Postdoc\w*|RA|intern|visiting)\b', (text or '')[:160], re.I):
+        return False   # 'Name (MPhil, from X, Sept 2023 - December 2025)': a roster entry with a dated stay, not a news line (HKUST Zhou's MPhil rows)
     return bool(NEWS_LINE.search(text or ''))
 
 

@@ -812,3 +812,8 @@ def test_finished_within_four_years_ignores_a_stated_start_at_or_after_arrival()
     assert not (ys and ys[1] and ys[1] <= start + 4 and not (ys[0] and ys[0] >= start))
     ys = [None, 2024]
     assert ys[1] <= start + 4 and not (ys[0] and ys[0] >= start)
+
+
+def test_a_dated_roster_entry_with_a_role_bracket_is_not_a_news_line():
+    assert not A.news_item('Jimmy Kwun Hang Lau (MPhil, from the Chinese University of Hong Kong, Sept 2023 - December 2025)')
+    assert A.news_item('August 2025: Patrick Kastner and I just received a seed grant')
