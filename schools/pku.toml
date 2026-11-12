@@ -67,12 +67,22 @@ name = "School of Computer Science (计算机学院)"
 unit = "Peking University"
 title_match = '教授|研究员|讲师'
 coverage = "full"
-url = "https://cs.pku.edu.cn/zxns/js.htm"
+url = "https://cs.pku.edu.cn/szdw/jyxl/amz/ALL.htm"
+  # /zxns/js.htm is 招贤纳士 / 教师 (faculty recruitment), not a roster.
+  # These links were followed from saved 2020 and 2024 pages. Actual source
+  # coverage still requires parsed complete captures; no earlier year is inferred.
   [[departments.listings]]
-  slot = "CS faculty"
+  slot = "CS teaching and research faculty"
   kind = "main"
-  url = "cs.pku.edu.cn/zxns/js.htm"
-  from = "20160101"
+  url = "cs.pku.edu.cn/szdw1/jyxl.htm"
+  from = "20200101"
+  to = "20231231"
+  format = ""
+  [[departments.listings]]
+  slot = "CS teaching and research faculty"
+  kind = "main"
+  url = "cs.pku.edu.cn/szdw/jyxl/amz/ALL.htm"
+  from = "20230901"
   to = "20261231"
   format = ""
 
