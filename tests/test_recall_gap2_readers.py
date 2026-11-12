@@ -77,3 +77,27 @@ def test_page_title_names_the_list_when_no_heading_precedes_the_members(monkeypa
             '<tr><td>Viljoen, John</td><td>Robotics</td></tr></table></body></html>')
     rows = _extract(monkeypatch, html)
     assert [r['role'] for r in rows] == ['phd', 'phd', 'phd']
+
+
+def test_bare_department_degree_label_is_a_student_role_under_a_pi_titled_heading():
+    """Berkeley Sojoudi: 'Eli Brock EECS PhD' under 'Group Professor Somayeh Sojoudi, UC Berkeley' (2026-11-14)."""
+    for desc in ('EECS PhD', 'ME PhD', 'Statistics PhD George Ma EECS PhD'):
+        assert L.BARE_DEGREE_LABEL_RX.match(desc)
+    for desc in ('Professor PhD Stanford', 'Associate Professor of EE, PhD', 'Professor of EE, PhD Stanford', 'Dean of Engineering'):
+        assert not L.BARE_DEGREE_LABEL_RX.match(desc)
+
+
+def test_mban_entry_is_a_master_alumnus_with_a_class_year():
+    """MIT Freund: 'Name (MBAn '22, then PhD student at MIT ORC)' is a master's alumnus of 2022, not a current PhD student (2026-11-14)."""
+    for d, yr in (("(MBAn ‘22, then PhD student at MIT ORC)", 2022), ("(MBAn '25, then at National Grid)", 2025)):
+        m = L.DEGREE_ABBR_RX.match(d)
+        assert m and L.DEGREE_ABBR_ROLE(m) == 'masters'
+        assert L.paren_years(d) == [None, yr]
+
+
+def test_homepage_student_sections_named_doctoral_or_masters_are_member_lists():
+    """Stanford Winstein: a homepage with 'Current > Doctoral' and 'Former > Master's, undergraduate, and HS' lists lab members (2026-11-14)."""
+    assert L.HOMEPAGE_HEAD.search('Current > Doctoral')
+    assert L.HOMEPAGE_HEAD.search("Former > Master's, undergraduate, and HS")
+    assert not L.HOMEPAGE_HEAD.search('Selected projects')
+    assert not L.HOMEPAGE_HEAD.search('Bio')

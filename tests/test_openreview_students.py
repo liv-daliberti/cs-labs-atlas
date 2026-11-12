@@ -204,3 +204,12 @@ def test_R_STU_27_a_url_containing_email_is_never_sent(tmp_path):
     h = json.loads((root / 'docs/host-rulings.json').read_text())
     r = next(x for x in h['hosts'] if x['host'] == 'api2.openreview.net')
     assert r['robots']['disallow'] == '/*?*email=' and r['robots']['checked'] == '2026-11-13'
+
+
+def test_named_candidates_look_up_only_the_given_pairs():
+    """--names: specific recall-missing (PI, name) pairs become candidates; unknown PIs, one-token names and repeats are skipped (2026-11-14)."""
+    import selfdeclared_candidates as C
+    data = {'pis.json': [{'pi': 'Ila Fiete', 'names': ['Ila Fiete'], 'periods': [{'start': '2019-07', 'end': None}]}], 'students.json': {'Ila Fiete': [{'name': 'Ann Lee'}]}}
+    got = C.named_candidates('mit', [('Ila Fiete', 'Caitlin Lienkaemper'), ('Ila Fiete', 'Caitlin Lienkaemper'), ('Nobody', 'Jane Doe'), ('Ila Fiete', 'Madonna')], base=lambda n: data[n])
+    assert [c['name'] for c in got] == ['Caitlin Lienkaemper']
+    assert got[0]['window'] == [2019, 2026] and got[0]['n_students'] == 1 and got[0]['pinames']

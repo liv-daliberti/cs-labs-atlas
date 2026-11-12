@@ -15,7 +15,7 @@ no evasion, a challenge URL is never opened); a per-run request budget; --dry-ru
 ~/.config/cs-atlas/openreview.env (OPENREVIEW_USERNAME, OPENREVIEW_PASSWORD) and are never printed, logged or stored. The account is currently the
 owner's personal account; a dedicated project account is recommended.
 
-  openreview_students.py run <school> [--budget N] [--max-minutes M] [--dry-run] [--cache DIR] [--all]
+  openreview_students.py run <school> [--budget N] [--max-minutes M] [--dry-run] [--cache DIR] [--all] [--names FILE]
   openreview_students.py status
 Output: <scratch>/openreview-students/proposals-<school>.json (reviewed-additions shape of LP-STU-01: school, rules, students, papers, held).
 Cache and proposals hold private individuals' names (profiles may hold emails): local only, never committed.
@@ -362,13 +362,17 @@ def main(argv=None):
     r.add_argument('--dry-run', action='store_true', help='cache only, no request')
     r.add_argument('--cache', default=str(STATE / 'cache'))
     r.add_argument('--all', action='store_true')
+    r.add_argument('--names', help='JSON file of [{pi, name}]: look up only these specific names (recall-missing names found on a PI page) instead of the generated candidates')
     r.add_argument('--out')
     sub.add_parser('status')
     a = ap.parse_args(argv)
     if a.cmd == 'status':
         print('stopped today:', (STATE / f'STOPPED-{today()}').exists(), '| cached responses:', len(list((STATE / 'cache').glob('*.json'))) if (STATE / 'cache').exists() else 0)
         return 0
-    out = run(a.school, a.cache, a.budget, a.dry_run, a.max_minutes, a.all)
+    cands = None
+    if a.names:
+        cands = C.named_candidates(a.school, [(x['pi'], x['name']) for x in json.loads(Path(a.names).read_text())])
+    out = run(a.school, a.cache, a.budget, a.dry_run, a.max_minutes, a.all, cands=cands)
     path = Path(a.out) if a.out else STATE / f'proposals-{a.school}.json'
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, ensure_ascii=False, indent=1))

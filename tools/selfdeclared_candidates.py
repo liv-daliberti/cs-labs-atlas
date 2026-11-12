@@ -131,6 +131,28 @@ def generate(school, include_all=False, base=None):
     return out
 
 
+def named_candidates(school, pairs, base=None):
+    """Candidates for SPECIFIC (pi, name) pairs, e.g. recall-missing names found on a PI's own page: the same dict shape as `generate`
+    (score None, no feature gate: the name is already known to be listed by the PI's page). Pairs whose PI is unknown or whose name has fewer than
+    two Latin tokens are skipped; a name is looked up once per PI."""
+    rd = base or (lambda n: _read(P.data(n, school)))
+    by_pi = {p['pi']: p for p in rd('pis.json') or []}
+    stu = rd('students.json') or {}
+    out, seen = [], set()
+    for pi, name in pairs:
+        p = by_pi.get(pi)
+        nm = latin(name)
+        if not p or len(nm.split()) < 2 or (pi, key(nm)) in seen:
+            continue
+        pn = pi_latin_names(p)
+        if not pn:
+            continue
+        seen.add((pi, key(nm)))
+        out.append(dict(school=school, pi=pi, pinames=pn, window=list(pi_window(p)), name=nm, score=None, feat=None,
+                        n_students=len({key(x['name']) for x in stu.get(pi) or []}), years=[None, None]))
+    return out
+
+
 def _read(path):
     path = Path(path)
     if not path.exists():

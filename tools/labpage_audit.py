@@ -293,7 +293,7 @@ def held_degree_under_postdoc_heading(desc, head):
     return bool(HELD_PHD_RX.match(desc or '') and head and re.search(r'post-?\s?doc|visiting', head.split(' > ')[0], re.I))
 
 
-DEGREE_ABBR_RX = re.compile(r"^\W{0,3}\(?\s*(?:(S\.?\s?M\.?|M\.?\s?Eng\.?|Sc\.?\s?D\.?|S\.?\s?B\.?|M\.?\s?S\.?|MSc|MBA)(?:\s*/\s*(Ph\.?\s?D\.?))?)(?=[\s,;)./]|$)", re.I)
+DEGREE_ABBR_RX = re.compile(r"^\W{0,3}\(?\s*(?:(S\.?\s?M\.?|M\.?\s?Eng\.?|Sc\.?\s?D\.?|S\.?\s?B\.?|M\.?\s?S\.?|MSc|MBAn|MBA|MFin|MSBA)(?:\s*/\s*(Ph\.?\s?D\.?))?)(?=[\s,;)./]|$)", re.I)
 
 
 def DEGREE_ABBR_ROLE(m):
@@ -2675,11 +2675,13 @@ def paren_years(desc):
     if not m:
         return None
     ys = [int(y) for y in re.findall(r'(?<!\d)((?:19[89]|20[0-2])\d)(?!\d)', m.group(1))]
+    if not ys:   # a degree with an apostrophe year ("MBAn '22", "S.M. \u201921": MIT-style class years); only after a degree abbreviation, never a bare number
+        ys = [2000 + int(y) for y in re.findall(r"(?:ph\.?\s?d|s\.?m|m\.?\s?s|m\.?\s?eng|mban|mba|mfin|msba|s\.?b|b\.?\s?s)\.?\s*['\u2018\u2019](\d\d)(?!\d)", m.group(1), re.I)]
     if not ys:
         return None
     if len(ys) >= 2:
         return [min(ys), max(ys)]
-    return [None, ys[0]] if re.search(r'ph\.?\s?d|degree|graduat|class|m\.?s\.?|b\.?s|postdoc|alum|until|left', m.group(1), re.I) else [ys[0], ys[0]]
+    return [None, ys[0]] if re.search(r'ph\.?\s?d|degree|graduat|class|m\.?s\.?|mba|mfin|b\.?s|postdoc|alum|until|left', m.group(1), re.I) else [ys[0], ys[0]]
 
 
 CURRENT_HEAD = re.compile(r'\b(current|present)\b|\u5728\u8bfb|\u73b0\u6709\u6210\u5458|\u73b0\u5f79|\u5728\u7ad9|\u5728\u6821', re.I)
@@ -2690,6 +2692,10 @@ CURRENT_ENTRY = re.compile(r'\b(current(ly)?\s+(a\s+)?(ph\.?\s?d|student|postdoc
 
 LINK_SEGMENT_RX = re.compile(r'\s*(?:https?://\S*|www\.\S*|(?:website|homepage|google scholar|personal (?:web)?site|email|cv|linkedin|github|twitter|\s)+)\s*$', re.I)
 OWN_STUDENT_ROLE_RX = re.compile(r'\b(?:ph\.?\s?d\.?|m\.?\s?eng\.?|m\.?s\.?|master\'?s?|bachelor\'?s?|undergraduate|graduate|doctoral)\s+(?:student|candidate)\b', re.I)
+
+# A bare '<department> PhD' label as the whole degree cell ('Eli Brock EECS PhD', 'Hyunin Lee ME PhD': Berkeley Sojoudi's Group page lists students under a heading that names the PI,
+# 'Group Professor Somayeh Sojoudi, UC Berkeley'): at most two department tokens, never a title word, then the degree.
+BARE_DEGREE_LABEL_RX = re.compile(r'^\W{0,3}(?!(?:Professor|Prof|Faculty|Dean|Emeritus|Associate|Assistant|Adjunct|Visiting|Research|Senior)\b)(?:[A-Z][A-Za-z&/-]{1,12}\s+){0,2}(?:Ph\.?\s?D|M\.?\s?S|M\.?\s?Eng)\.?(?![A-Za-z])')
 
 
 def current_marker(x):
@@ -3071,7 +3077,8 @@ def pm_candidates(kit, school, pi, plan, held):
             elif re.search(r'\bfaculty\b|vice[- ]chancellor|\bdean\b|professors?\b', x.get('head') or '', re.I) and \
                     not ALUMNI_RX.search(x.get('head') or '') and \
                     not re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I) and \
-                    not OWN_STUDENT_ROLE_RX.search((x.get('desc') or '')[:60]):   # a member whose own entry states a student role under the PI's title heading ('ZJU100 Young Professor') is a member (ZJU \u9648\u660e\u5e05)
+                    not OWN_STUDENT_ROLE_RX.search((x.get('desc') or '')[:60]) and \
+                    not BARE_DEGREE_LABEL_RX.match((x.get('desc') or '').strip()):   # a member whose own entry states a student role under the PI's title heading ('ZJU100 Young Professor') is a member (ZJU \u9648\u660e\u5e05)
                 why, x['detail'] = 'not_a_student', 'listed under a faculty heading'
             elif re.search(r'high[- ]school', (x.get('head') or '') + ' ' + (x.get('desc') or '')[:60], re.I):
                 why, x['detail'] = 'not_a_student', 'high-school outreach student'
@@ -4091,7 +4098,7 @@ PUBS_PATH = re.compile(r'publication|papers|pubs|bibliograph|/cv|vita|talks|thes
 STRICT_HEAD = re.compile(r'\b(students?|ph\.?\s?ds?|post-?docs?|post-?doctoral|alumni|alumnae|graduated|graduates|advisees?|members?|team|'
                          r'people|researchers|visitors|undergrad\w*|masters?|interns?|doctoral|staff|former|current)\b|\u5728\u8bfb|\u7814\u7a76\u751f|\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f|\u5df2\u6bd5\u4e1a|\u6bd5\u4e1a\u751f|\u6821\u53cb|\u73b0\u6709\u6210\u5458|\u73b0\u5f79|\u5728\u7ad9|\u6210\u5458|\u7814\u7a76\u52a9\u7406', re.I)
 HOMEPAGE_HEAD = re.compile(r'\b(students?|ph\.?\s?ds?|post-?docs?|post-?doctoral|advisees?|alumni|graduated|mentees|group members|'
-                           r'lab members|research group|my group)\b', re.I)  # a homepage used as the people page: only these sections
+                           r'lab members|research group|my group|doctoral|master\'?s|undergraduates?)\b', re.I)  # a homepage used as the people page: only these sections
 NOT_MEMBER_HEAD = re.compile(r'committee|publication|papers|thesis|theses|talks?|course|collaborat|co-?authors?|press|news|award|'
                              r'service|editor|reviewer|program|\b[st]?pc\b|best[\w\s-]{0,24}paper', re.I)
 # Tsinghua 2026-11-11 (zhang han 14 rows, huang minlie 1): 'TPC member > <paper title>' matched STRICT_HEAD through 'member' and 'NLPCC 2020 (Best Student
