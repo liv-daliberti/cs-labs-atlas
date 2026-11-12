@@ -2183,6 +2183,77 @@ HAN_GLUED_ROLE = {'\u535a\u58eb\u7814\u7a76\u751f': 'phd', '\u535a\u58eb\u751f':
 
 
 DEGREE_BRACKET_ENTRY_RX = re.compile(r"^\W{0,3}(?:,\s*[A-Z][\w'\u2019-]+(?: [A-Z][\w'\u2019-]+)?\s*)?\(\(?\s*(?:Ph\.?\s?D|M\.?\s?Phil|M\.?\s?Sc|M\.?\s?S|MEng|M\.?\s?Eng|Master|Doctor)\b", re.I)   # 'Ren Dongni Tony (PhD Computer Science and Engineering), "Thesis title," August 2014 (email)': the degree bracket right after the name makes the quoted title a thesis, not a byline (HKUST Chan)
+CARD_NAME_TITLE_RX = re.compile(r"^(?:Prof\.?|Professor|Dr\.?)\s+|,\s*(?:Ph\.?D\.?|M\.?D\.?)\s*$", re.I)
+CARD_ROLE_RULES = (('postdoc', r"^post-?\s?doc"), ('phd', r"^ph\.?\s?d\.?\s+(?:candidate|student)|^doctoral"), ('masters', r"^masters?\s+student|^m\.?\s?eng\.?\s+student|^s\.?m\.?\s+student"),
+                   ('undergraduate', r"^urop|^undergraduate"), ('other', r"^research (?:affiliate|scientist|associate|assistant)|^visiting"))
+CARD_SKIP_RX = re.compile(r"^(?:collaborator|laboratory director|director|administrat|technical associate|emerita|sr\.?\s+research scientist)", re.I)
+
+
+def _yr(tok):
+    t = tok.strip("' ")
+    if len(t) == 2:
+        return 2000 + int(t) if int(t) < 50 else 1900 + int(t)
+    return int(t)
+
+
+def card_role_years(lines, alumni):
+    """(role, years) of an h3-card whose <p> lines read 'Postdoc 2025 / PhD 2025 / SM 2021' (current) or 'PhD 2022' / "Postdoc '12-'13" (alumni): the stay is the line naming the lab role; a bare degree
+    year on an alumni card is the end year, a 'SM 2021' line of a current PhD is an earlier degree (no years), an 'NN-NN' range is the stay. role None when no line names one."""
+    role, years = None, None
+    for ln in lines:
+        ln = ln.strip()
+        if not ln or CARD_SKIP_RX.match(ln):
+            if ln and CARD_SKIP_RX.match(ln):
+                return None, None
+            continue
+        for r_, rx in CARD_ROLE_RULES:
+            if re.match(rx, ln, re.I):
+                role = role or r_
+                m = re.search(r"((?:19|20)\d\d|'\d\d)\s*[-\u2013]\s*((?:19|20)\d\d|'\d\d)", ln)
+                if m and years is None:
+                    years = [_yr(m.group(1)), _yr(m.group(2))]
+                elif years is None:
+                    m = re.search(r"((?:19|20)\d\d|'\d\d)\b", ln)
+                    if m:
+                        years = [None, _yr(m.group(1))] if alumni else [_yr(m.group(1)), None]
+                break
+        else:
+            m = re.match(r"^(?:ph\.?\s?d\.?|doctorate)\s+((?:19|20)\d\d)\b", ln, re.I)
+            if m and role is None and alumni:
+                role, years = 'phd', [None, int(m.group(1))]
+    return role, years
+
+
+def section_card_cells(html):
+    """MIT Hunter's bioinstrumentation.mit.edu/people.html: <section><header><h3>Name</h3><p>role<br>degree year<br>placement</p></header></section> cards under <h2>/<h3> section headings with a
+    trailing period ('Alumni', 'Former Members.'). At least eight cards make a roster. -> [dict(name, lines, alumni, role, years, quote)]; cards naming a collaborator, director or staff role are left out."""
+    if not html or 'sectionDouble' not in html and '<h3' not in html:
+        return []
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(html, 'html.parser')
+    out, alumni = [], False
+    for el in soup.find_all(['h1', 'h2', 'section']):
+        if el.name in ('h1', 'h2'):
+            t = re.sub(r'\s+', ' ', el.get_text(' ')).strip(' .')
+            if ALUMNI_RX.search(t) and len(t) < 40:
+                alumni = True
+            continue
+        h3, pp = el.find('h3'), el.find('p')
+        if not h3 or not pp or el.find('section'):
+            continue
+        name = CARD_NAME_TITLE_RX.sub('', re.sub(r'\s+', ' ', h3.get_text(' ')).strip())
+        name = CARD_NAME_TITLE_RX.sub('', name)
+        if not re.fullmatch(r"[A-Z][\w'.\u2019-]+(?: [A-Z][\w'.\u2019-]+){1,3}", name):
+            continue
+        lines = [re.sub(r'\s+', ' ', x).strip() for x in pp.get_text('\n').split('\n')]
+        lines = [x for x in lines if x]
+        role, years = card_role_years(lines, alumni)
+        if role is None:
+            continue
+        out.append(dict(name=name, lines=lines, alumni=alumni, role=role, years=years, quote=' '.join([re.sub(r'\s+', ' ', h3.get_text(' ')).strip()] + lines)))
+    return out if len(out) >= 8 else []
+
+
 NAME_ROLE_CELL_RX = re.compile(r"([A-Z][a-z'\u2019-]+(?: [A-Z][a-z'\u2019-]+){1,2})( \([^)]{2,30}\))? (PhD Students?|Ph\.?D\.? Students?|Master(?:'s)? Students?|MPhil Students?|Postdocs?|Postdoctoral (?:Researcher|Fellow)s?|Research Assistants?|Undergraduate Students?)(?=\s|$)")
 CURRENT_CELLS_HEAD_RX = re.compile(r"\b(Current (?:Group )?Members|Current Students|Members)\b")
 CELLS_END_RX = re.compile(r"\b(?:Former|Past|Previous|Alumni|Graduated)\b")
@@ -2512,6 +2583,19 @@ def pm_candidates(kit, school, pi, plan, held):
                                 han_card=None, flags=[], role='member'))
         except (KeyError, ValueError, TypeError):
             pass
+        try:   # <section><h3>Name</h3><p>role<br>year</p></section> cards (MIT Hunter's people.html)
+            h_card = row_d.get('content') if row_d else None
+            try:
+                h_card = zlib.decompress(h_card)
+            except Exception:  # noqa: BLE001 - stored uncompressed
+                pass
+            for c_ in (section_card_cells(h_card.decode('utf-8', 'ignore')) if h_card else []):
+                if any(names.fold(e['name']) == names.fold(c_['name']) for e in ext):
+                    continue
+                ext.append(dict(han_card_item(dict(name=c_['name'], head='Alumni' if c_['alumni'] else 'Current Members', desc=' '.join(c_['lines']), quote=c_['quote'], role=None, alumni=c_['alumni']), row_d, names, held),
+                                han_card=None, flags=[], role='member', card_override=dict(role=c_['role'], years=c_['years'], alumni=c_['alumni'])))
+        except (KeyError, ValueError, TypeError):
+            pass
         try:   # 'Given Family, Nick (MPhil student ...)' entries the DOM reader dropped: HKUST Cheung
             for c_ in (nick_student_cells(ptxt_d) if row_d else []):
                 if any(set(names.fold(e['name']).split()) <= set(names.fold(c_['name']).split()) and len(e['name'].split()) >= 2 for e in ext):   # the DOM reader has the person (a regex name may carry the previous entry's tail: 'Prof Shuai Wang Xiaohan Zhong')
@@ -2613,6 +2697,11 @@ def pm_candidates(kit, school, pi, plan, held):
                 x['years'], x['years_basis'] = (None, 'none') if hc['year'] is None else ([hc['year'], None], 'stated_in_entry')
                 x['alumni'] = hc['alumni']
                 x['single_token'] = False
+            co_ = x.get('card_override')
+            if co_:   # a section card states role, stay and alumni itself
+                x['role'], x['role_basis'] = co_['role'], 'entry'
+                x['years'], x['years_basis'] = (co_['years'], 'stated_in_entry') if co_['years'] else (None, 'none')
+                x['alumni'] = co_['alumni']
             mc_ = mcards_.get(fn)
             if mc_:
                 apply_member_card(x, mc_, kit.autom._role)
@@ -2717,7 +2806,7 @@ def pm_candidates(kit, school, pi, plan, held):
             elif auto_plan and not x.get('han_card') and not DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') and not (homepage_people and re.match(r'^\W{0,3}(?:ph\.?\s?d|m\.?\s?sc?\b|master|bachelor|undergrad|visitor|intern|postdoc|research\s+(?:assistant|associate|engineer))', x.get('desc') or '', re.I) and not NOT_MEMBER_HEAD.search(x.get('head') or '')) and (not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') or
                                 NOT_MEMBER_HEAD.search(x.get('head') or '')):
                 why, x['detail'] = 'not_in_people_section', f"section '{(x.get('head') or '')[:60]}' is not a member list"
-            elif auto_plan and not x.get('han_card') and ((not plausible(kit, x['name']) and not ((DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') or DEGREE_BRACKET_ENTRY_RX.match(x.get('desc') or '')) and len(x['name'].split()) >= 2)) or re.match(r'^[A-Z]\.\s', x['name']) or
+            elif auto_plan and not x.get('han_card') and not x.get('card_override') and ((not plausible(kit, x['name']) and not ((DEPT_DATE_ENTRY_RX.match(x.get('desc') or '') or DEGREE_BRACKET_ENTRY_RX.match(x.get('desc') or '')) and len(x['name'].split()) >= 2)) or re.match(r'^[A-Z]\.\s', x['name']) or
                                 all(t.isupper() and len(t) <= 4 for t in x['name'].split())):
                 why, x['detail'] = 'name_unresolved', 'not a plausible full person name (automatic plan)'
             elif fn in drop or any(names.match_one(x['name'], d) for d in plan.get('drop', [])):

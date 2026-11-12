@@ -987,3 +987,17 @@ def test_berkeley_roles_a_held_degree_is_not_the_role_and_no_invented_years():
     assert A.entry_years('MBA Haas School of Business, UC Berkeley, 2016 MPH School of Public Health', 'Alums')[0] == [None, 2016]
     assert A.entry_role('(co-advised with Ras Bodik ) (PhD 2021, Microsoft Research)', 'Graduated students', ro)[0] == 'phd'
     assert A.clean_entry_head('Postdocs: > Guanghan Meng') == 'Postdocs:'
+
+
+def test_section_cards_read_hunter_people_layout():
+    def card(n, *lines):
+        return f'<div class="row"><section id="sectionDouble" class="2u"><header><h3><a href="x">{n}</a></h3><p>' + '<br>'.join(lines) + '</p></header></section></div>'
+    cur = ''.join(card(f'Student Number{i}', 'PhD Candidate', 'SM 2021') for i in range(5)) + card('Kristan Hilby', 'Postdoc 2025', 'PhD 2025', 'SM 2021') + card('Prof. Peter Hunter', 'Collaborator', 'Director Auckland')
+    alu = '<h2>Alumni</h2><h3>Former Members.</h3>' + card('Marc-Andre Begin, PhD', 'PhD 2022', 'Robotics Specialist Robotiq') + card('Prof. Sylvain Martel', "Postdoc '96-'98", 'Professor') + card('Jorge Cavazos', 'UROP 2024')
+    html = '<h1>People</h1>' + cur + alu
+    cells = {c['name']: c for c in A.section_card_cells(html)}
+    assert 'Peter Hunter' not in cells and cells['Kristan Hilby']['years'] == [2025, None] and not cells['Kristan Hilby']['alumni']
+    assert cells['Student Number1']['role'] == 'phd' and cells['Student Number1']['years'] is None
+    assert cells['Marc-Andre Begin'] and cells['Marc-Andre Begin']['years'] == [None, 2022] and cells['Marc-Andre Begin']['alumni']
+    assert cells['Sylvain Martel']['years'] == [1996, 1998] and cells['Jorge Cavazos']['role'] == 'undergraduate'
+    assert A.section_card_cells(card('A Person', 'PhD Candidate')) == []
