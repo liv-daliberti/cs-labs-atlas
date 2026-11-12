@@ -1,12 +1,8 @@
 """Build preflight: a missing or stub required input makes the build refuse, naming the file."""
-import os
-import sys
-
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'tools'))
-from pihier import preflight  # noqa: E402
-import atlas_paths as P  # noqa: E402
+from pihier import preflight
+import atlas_paths as P
 
 
 def _tree(tmp_path, census_bytes=5000, school='hkust'):
