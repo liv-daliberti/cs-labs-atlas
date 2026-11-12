@@ -113,9 +113,9 @@ ISSUE_EDITORIAL_TITLE = re.compile(r'(?is)^\s*[\w.&-]+,?\s+v(?:ol(?:ume)?)?\.?\s
                                    r'(?:\s+[a-z]+\d+)?\s*\.?\s*$')
 # R-PAP-40 (b) (2026-11-12, stage-9 genre rules): 'Custom Sub-Systems and Circuits for Deep Learning: Guest Editorial Overview' (the label comes last), and
 # OpenAlex type `editorial` (an NEJM AI editorial with a research-like title). EDITORIAL_TYPE_DROPS is the owner's switch: R-PAP-18 (2026-10-29) kept the
-# type alone, because research-like titles carry it; the stage-9 samples of CMU, Berkeley and Stanford read the typed records as not papers.
+# type alone, because research-like titles carry it (coordinator 2026-11-12: default OFF; the switch stays for the owner). ON drops about 437 lab-paper rows.
 GUEST_EDITORIAL_ANYWHERE = re.compile(r'(?i)\bguest[- ]editorial\b')
-EDITORIAL_TYPE_DROPS = True
+EDITORIAL_TYPE_DROPS = False
 # R-PAP-40 (c): 'Reply to: The overwhelming role of ballistic photons ...' (Nature Communications Matters Arising reply, typed letter). OWNER DECISION
 # PENDING, so the switch is OFF: a reply is the authors' own short research output but answers another paper.
 REPLY_TO_LETTERS_DROP = False

@@ -15,17 +15,17 @@ def test_book_review_type_is_not_a_paper():
     assert papers.not_a_paper(dict(r, type='article', title='Robots and the future of work')) is None
 
 
-@pytest.mark.parametrize('title,typ', [
-    ('Custom Sub-Systems and Circuits for Deep Learning: Guest Editorial Overview', 'article'),
-    ('Artificial Intelligence–Based Copilots to Generate Causal Evidence', 'editorial')])
-def test_editorials_by_title_label_or_type(title, typ):
-    assert papers.not_a_paper(row(title, typ=typ)) == 'editorial'
+def test_guest_editorial_label_anywhere_in_title():
+    t = 'Custom Sub-Systems and Circuits for Deep Learning: Guest Editorial Overview'
+    assert papers.not_a_paper(row(t)) == 'editorial'
 
 
-def test_editorial_type_switch(monkeypatch):
-    monkeypatch.setattr(papers, 'EDITORIAL_TYPE_DROPS', False)
-    assert papers.not_a_paper(row('Artificial Intelligence–Based Copilots to Generate Causal Evidence', typ='editorial')) is None
-    assert papers.not_a_paper(row('Circuits: Guest Editorial Overview')) == 'editorial'
+def test_editorial_type_switch_default_off(monkeypatch):
+    r = row('Artificial Intelligence–Based Copilots to Generate Causal Evidence', typ='editorial')
+    assert papers.EDITORIAL_TYPE_DROPS is False
+    assert papers.not_a_paper(r) is None   # R-PAP-18: the type alone is kept
+    monkeypatch.setattr(papers, 'EDITORIAL_TYPE_DROPS', True)
+    assert papers.not_a_paper(r) == 'editorial'
 
 
 def test_editorial_research_titles_stay():
