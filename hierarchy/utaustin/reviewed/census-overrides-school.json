@@ -441,14 +441,34 @@
     }
   },
   "Philipp Krähenbühl": {
-    "no_identity": true,
-    "why_no_identity": "2026-11-08:source-backed PI/student inputs only; bibliography ownership not yet independently admitted. No name-only DBLP join or ORCID inheritance.",
-    "dblp_orcid_review": {
-      "allowed": [],
-      "by": "Codex",
-      "reviewed_on": "2026-11-08",
-      "reason": "No source-reviewed ORCID ownership in this first roster batch."
-    }
+    "periods": [
+      {
+        "id": "override_period_gap_utaustin_philipp_kraehenbuhl_catalog_2018_20",
+        "start": "2017",
+        "end": null,
+        "asof": "2026-09-30",
+        "datePrecision": "year",
+        "reviewed": "codex_source_review_20261112",
+        "note": "The official 2018-2020 UT Austin catalog explicitly lists this Computer Science faculty member with ladder rank. Dated department listings cover the other observed years; the first listed year is only a lower bound, not an asserted hiring date. No departure date is claimed.",
+        "evidence": [
+          {
+            "url": "https://catalog.utexas.edu/pdf/2018-20-undergraduate.pdf",
+            "sha256": "06d27e95450499b1e91fa03fdeabb0a978ef41efc51327e9ca5b0e94d814a738",
+            "quote": "Undergraduate Catalog 2018-2020",
+            "observedAt": "2026-11-12",
+            "kind": "official_catalog_pdf_pdftotext_layout_edition"
+          },
+          {
+            "url": "https://catalog.utexas.edu/pdf/2018-20-undergraduate.pdf",
+            "sha256": "06d27e95450499b1e91fa03fdeabb0a978ef41efc51327e9ca5b0e94d814a738",
+            "quote": "Philipp Kraehenbuehl, Assistant Professor",
+            "observedAt": "2026-11-12",
+            "kind": "official_catalog_pdf_pdftotext_layout_faculty_role"
+          }
+        ]
+      }
+    ],
+    "why_periods": "Official UT Austin 2018-2020 faculty catalog gives the missing 2018 assistant professor role in Computer Science; dated department listings supply the other observed years."
   },
   "Christopher Rossbach": {
     "no_identity": true,
@@ -577,5 +597,35 @@
       }
     ],
     "why_periods": "The dated 2018 official UT Austin CS article explicitly names Etienne Vouga and his assistant professor role; the 2016-2017 and 2019-2026 department listings cover the remaining observed years."
+  },
+  "Dana Moshkovitz": {
+    "periods": [
+      {
+        "id": "override_period_gap_utaustin_dana_moshkovitz_catalog_2018_20",
+        "start": "2016",
+        "end": null,
+        "asof": "2026-09-30",
+        "datePrecision": "year",
+        "reviewed": "codex_source_review_20261112",
+        "note": "The official 2018-2020 UT Austin catalog explicitly lists this Computer Science faculty member with ladder rank. Dated department listings cover the other observed years; the first listed year is only a lower bound, not an asserted hiring date. No departure date is claimed. The catalog uses the longer name Dana Hadar Moshkovitz Aaronson; its Dana Hadar Moshkovitz stem, CS department and associate-professor rank are compatible with the census person. This is a faculty-period review only, not a paper or global identity redirect.",
+        "evidence": [
+          {
+            "url": "https://catalog.utexas.edu/pdf/2018-20-undergraduate.pdf",
+            "sha256": "06d27e95450499b1e91fa03fdeabb0a978ef41efc51327e9ca5b0e94d814a738",
+            "quote": "Undergraduate Catalog 2018-2020",
+            "observedAt": "2026-11-12",
+            "kind": "official_catalog_pdf_pdftotext_layout_edition"
+          },
+          {
+            "url": "https://catalog.utexas.edu/pdf/2018-20-undergraduate.pdf",
+            "sha256": "06d27e95450499b1e91fa03fdeabb0a978ef41efc51327e9ca5b0e94d814a738",
+            "quote": "Dana Hadar Moshkovitz Aaronson, Associate Professor",
+            "observedAt": "2026-11-12",
+            "kind": "official_catalog_pdf_pdftotext_layout_faculty_role"
+          }
+        ]
+      }
+    ],
+    "why_periods": "Official UT Austin 2018-2020 faculty catalog gives the missing 2018 associate professor role in Computer Science; dated department listings supply the other observed years."
   }
 }
