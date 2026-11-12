@@ -120,6 +120,23 @@ EDITORIAL_TYPE_DROPS = True
 # PENDING, so the switch is OFF: a reply is the authors' own short research output but answers another paper.
 REPLY_TO_LETTERS_DROP = False
 REPLY_TO_COLON_TITLE = re.compile(r'(?i)^\s*reply to\s*:')
+# R-PAP-40 (d) (2026-11-12): proceedings front matter. A bare workshop/conference acronym with a two-digit year is the volume's own title ("ADVM'21", "MM'21");
+# always dropped (`proceedings_volume`). The abstract/tutorial family below is a policy question (owner R2 pending since 2026-10-29), so its switch is OFF:
+# an ACL-anthology tutorial abstract (DOI `...-tutorials.N`), an all-caps title under an Elsevier dated DOI (Eur Neuropsychopharmacology congress abstracts; all-caps titles alone are not enough: Journal of Symbolic Logic prints them), a
+# supplement-style Elsevier DOI (`chest.YYYY.MM.NNNN`, four-digit item number) and a poster code in the DOI (`nzz041.p21-009-19`). Tag `meeting_abstract:genre`.
+BARE_ACRONYM_VOLUME = re.compile(r"^\s*[A-Z][A-Za-z0-9&-]{1,14}\s?['’]\s?\d{2}\s*$")
+ABSTRACT_FAMILY_DROPS = False
+TUTORIAL_ABSTRACT_DOI = re.compile(r'(?i)^10\.18653/v1/\d{4}\.[a-z0-9-]+-tutorials?\.\d+$')
+POSTER_CODE_DOI = re.compile(r'(?i)\.p\d{1,3}-\d{2,3}-\d{2}$')
+ELSEVIER_DATED_DOI = re.compile(r'(?i)^10\.1016/j\.[a-z0-9.]+\.\d{4}\.\d{2}\.\d{3,4}$')
+SUPPLEMENT_ITEM_DOI = re.compile(r'(?i)^10\.1016/j\.chest\.\d{4}\.\d{2}\.\d{4}$')
+
+
+def all_caps_title(t):
+    letters = [c for c in t if c.isalpha()]
+    return len(t.split()) >= 4 and len(letters) >= 20 and not any(c.islower() for c in letters)
+
+
 AWARD_TITLE = re.compile(r"^\d{4} .*\b(Award|Prize|Medal)\b|\b(Award|Prize|Medal)\b\s*(given to|:)\s*[A-Z][\w.'-]+( [A-Z][\w.'-]+){1,3}\s*$")
 AWARD_END = re.compile(r'\b(Award|Prize|Medal)\s*$')
 WORKSHOP_TITLE = re.compile(r'(?i)^(?:the )?(?:\d+(?:st|nd|rd|th) )?(?:international |joint )?workshop on\b|^tutorial\s*:|'
@@ -352,6 +369,11 @@ def not_a_paper(r, pages=None, bare=False):
         return 'commentary'
     if SPECIAL_ISSUE_TITLE.search(t):
         return 'editorial'
+    if BARE_ACRONYM_VOLUME.search(t) and ty in ('conference-paper', 'proceedings', 'other', 'article', 'book-chapter'):
+        return 'proceedings_volume'
+    if ABSTRACT_FAMILY_DROPS and (TUTORIAL_ABSTRACT_DOI.match(d) or POSTER_CODE_DOI.search(d) or SUPPLEMENT_ITEM_DOI.match(d)
+                                  or (all_caps_title(t) and ELSEVIER_DATED_DOI.match(d))):
+        return 'meeting_abstract:genre'
     if REPLY_TO_LETTERS_DROP and REPLY_TO_COLON_TITLE.search(t):
         return 'commentary'
     if PROCEEDINGS_VOLUME.search(t):

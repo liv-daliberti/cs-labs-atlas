@@ -42,3 +42,33 @@ def test_reply_to_letters_switch_default_off(monkeypatch):
     monkeypatch.setattr(papers, 'REPLY_TO_LETTERS_DROP', True)
     assert papers.not_a_paper(r) == 'commentary'
     assert papers.not_a_paper(row('Reply Prediction for Email Threads')) is None
+
+
+def test_bare_workshop_acronym_is_front_matter():
+    r = row("ADVM'21", typ='conference-paper', venue='ACM International Conference on Multimedia (ACM MM)', doi='10.1145/3474085.3478572')
+    assert papers.not_a_paper(r) == 'proceedings_volume'
+    for t in ("Attention is all you need", "BERT'21: a replication", 'SLAM', "Transformers'"):
+        assert papers.not_a_paper(row(t, typ='conference-paper')) is None
+
+
+FAMILY = [
+    ('Summarization of Dialogues and Conversations At Scale', 'conference-paper', None, '10.18653/v1/2023.eacl-tutorials.3'),
+    ('A Food Logging System for iOS with Natural Spoken Language Meal Descriptions (P21-009-19)', 'article', 'Current Developments in Nutrition', '10.1093/cdn/nzz041.p21-009-19'),
+    ('PLEURAL RETRACTION: A NEW LUNG ULTRASOUND FINDING OF INTERSTITIAL LUNG DISEASE?', 'article', 'CHEST Journal', '10.1016/j.chest.2023.07.2607'),
+    ('INSIGHTS INTO THE CONTRIBUTION OF RARE NONCODING VARIATION IN AUTISM SPECTRUM DISORDER', 'article', 'European Neuropsychopharmacology', '10.1016/j.euroneuro.2019.07.073')]
+
+
+@pytest.mark.parametrize('title,typ,venue,doi', FAMILY)
+def test_abstract_family_switch_default_off(monkeypatch, title, typ, venue, doi):
+    r = row(title, typ=typ, venue=venue, doi=doi)
+    assert papers.ABSTRACT_FAMILY_DROPS is False
+    assert papers.not_a_paper(r) is None
+    monkeypatch.setattr(papers, 'ABSTRACT_FAMILY_DROPS', True)
+    assert papers.not_a_paper(r) == 'meeting_abstract:genre'
+
+
+def test_abstract_family_keeps_papers(monkeypatch):
+    monkeypatch.setattr(papers, 'ABSTRACT_FAMILY_DROPS', True)
+    assert papers.not_a_paper(row('Mixed-integer programming for TSP', venue='Operations Research', doi='10.1287/opre.2020.0001')) is None
+    assert papers.not_a_paper(row('Neural Machine Translation of Rare Words', typ='conference-paper', doi='10.18653/v1/P16-1162')) is None
+    assert papers.not_a_paper(row('BERT', typ='article')) is None
