@@ -69,10 +69,17 @@ title_match = '教授|研究员|讲师'
 coverage = "full"
 url = "http://cs.hit.edu.cn/jsml/list.htm"
   [[departments.listings]]
-  slot = "CS faculty"
+  slot = "CS all teachers 2018-2019"
+  kind = "main"
+  url = "cs.hit.edu.cn/8554/list.htm"
+  from = "20171201"
+  to = "20190430"
+  format = "hit_teacher_list"
+  [[departments.listings]]
+  slot = "CS current faculty"
   kind = "main"
   url = "cs.hit.edu.cn/jsml/list.htm"
-  from = "20160101"
+  from = "20251201"
   to = "20261231"
   format = ""
 

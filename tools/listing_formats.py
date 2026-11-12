@@ -184,6 +184,26 @@ def uestc_college_teachers(h):
     return out
 
 
+def hit_teacher_list(h):
+    """HIT's 2018 Webplus all-teacher directory, one page of its six-page list.
+
+    The directory identifies people as teachers but does not print an
+    individual academic rank. Dates alongside names are article dates.
+    """
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for row in soup.select('#wp_news_w6 .wp_article_list_table tr'):
+        link = next((a for cell in row.find_all('td', recursive=False)
+                     if (a := cell.find('a', href=True, title=True, recursive=False))), None)
+        if not link:
+            continue
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        if name and name == link.get('title', '').strip():
+            out.append(dict(name_listed=name, titles=['教师'], homepage=None,
+                            division=None, profile=link['href']))
+    return out
+
+
 def whu_cs_legacy(h):
     """2016–2018 Wuhan CS directory: named records with one printed rank."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -1488,6 +1508,7 @@ FORMATS = {
     'whu_cs_talents': (whu_cs_talents, re.compile(r'class="talent-item"')),
     'whu_cs_emeritus': (whu_cs_emeritus, re.compile(r'class="teacher-list honored')),
     'seu_department_faculty': (seu_department_faculty, re.compile(r'<title>教师按系别</title>')),
+    'hit_teacher_list': (hit_teacher_list, re.compile(r'id="wp_news_w6"')),
     'ustc_cs_legacy_sidebar': (ustc_cs_legacy_sidebar, re.compile(r'(?!)')),
     'ntu_coe_cards': (ntu_coe_cards, re.compile(r'coe-about-leadership__card')),
     'ntu_profile_cards': (ntu_profile_cards, re.compile(r'ntu-profile-list')),
