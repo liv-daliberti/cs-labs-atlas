@@ -122,6 +122,7 @@
  "tests/test_determinism.py": "test that loads a specific checkout's module or builds a subprocess script (not a pythonpath case)",
  "tests/test_download_yield.py": "puts this worktree's fulltext-push and vendor code ahead of the main checkout's (atlas_paths prepends the main checkout's vendor dirs)",
  "tests/test_labpage_audit.py": "test that loads a specific checkout's module or builds a subprocess script (not a pythonpath case)",
+ "tests/test_autom_nested_li_names.py": "puts the labpage toolkit directory (hierarchy/labpage-tools-princeton-mit) on sys.path to import autom.markers, the real member reader (same as test_labpage_nonmember_heads.py)",
  "tests/test_labpage_nonmember_heads.py": "puts the labpage toolkit directory (hierarchy/labpage-tools-princeton-mit) on sys.path to import autom._role, the real role reader the audit passes to entry_role",
  "tests/test_priority_file.py": "reaches fulltext-push modules (as the other fulltext-push tests)",
  "tests/test_school_web_robots.py": "transient sys.path insert while loading a labpage toolkit's lpcap.py by file path (the toolkit directories are not on the pythonpath); removed in a finally block",

@@ -1,8 +1,9 @@
 """autom.markers: a member whose name is the leading text of an <li> with a nested attribute list (ZJU lynnlilu.github.io/students)."""
-import pathlib
 import sys
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / 'hierarchy' / 'labpage-tools-princeton-mit'))
+import labpage_audit as A  # noqa: E402
+
+sys.path.insert(0, str(A.H / A.PM))
 import autom  # noqa: E402
 
 HTML = ('<html><body><div class="archive"><h1>Ph.D. Students</h1><ul>'
