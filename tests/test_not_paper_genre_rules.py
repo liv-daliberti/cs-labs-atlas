@@ -30,3 +30,15 @@ def test_editorial_type_switch(monkeypatch):
 
 def test_editorial_research_titles_stay():
     assert papers.not_a_paper(row('Decisions and bias in peer review: a field study of editors')) is None
+
+
+GKIOULEKAS = 'Reply to: The overwhelming role of ballistic photons in ultrasonically guided light through a scattering medium'
+
+
+def test_reply_to_letters_switch_default_off(monkeypatch):
+    r = row(GKIOULEKAS, typ='letter', venue='Nature Communications', byline=('A B',) * 8)
+    assert papers.REPLY_TO_LETTERS_DROP is False
+    assert papers.not_a_paper(r) is None
+    monkeypatch.setattr(papers, 'REPLY_TO_LETTERS_DROP', True)
+    assert papers.not_a_paper(r) == 'commentary'
+    assert papers.not_a_paper(row('Reply Prediction for Email Threads')) is None

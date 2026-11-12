@@ -116,6 +116,10 @@ ISSUE_EDITORIAL_TITLE = re.compile(r'(?is)^\s*[\w.&-]+,?\s+v(?:ol(?:ume)?)?\.?\s
 # type alone, because research-like titles carry it; the stage-9 samples of CMU, Berkeley and Stanford read the typed records as not papers.
 GUEST_EDITORIAL_ANYWHERE = re.compile(r'(?i)\bguest[- ]editorial\b')
 EDITORIAL_TYPE_DROPS = True
+# R-PAP-40 (c): 'Reply to: The overwhelming role of ballistic photons ...' (Nature Communications Matters Arising reply, typed letter). OWNER DECISION
+# PENDING, so the switch is OFF: a reply is the authors' own short research output but answers another paper.
+REPLY_TO_LETTERS_DROP = False
+REPLY_TO_COLON_TITLE = re.compile(r'(?i)^\s*reply to\s*:')
 AWARD_TITLE = re.compile(r"^\d{4} .*\b(Award|Prize|Medal)\b|\b(Award|Prize|Medal)\b\s*(given to|:)\s*[A-Z][\w.'-]+( [A-Z][\w.'-]+){1,3}\s*$")
 AWARD_END = re.compile(r'\b(Award|Prize|Medal)\s*$')
 WORKSHOP_TITLE = re.compile(r'(?i)^(?:the )?(?:\d+(?:st|nd|rd|th) )?(?:international |joint )?workshop on\b|^tutorial\s*:|'
@@ -348,6 +352,8 @@ def not_a_paper(r, pages=None, bare=False):
         return 'commentary'
     if SPECIAL_ISSUE_TITLE.search(t):
         return 'editorial'
+    if REPLY_TO_LETTERS_DROP and REPLY_TO_COLON_TITLE.search(t):
+        return 'commentary'
     if PROCEEDINGS_VOLUME.search(t):
         return 'proceedings_volume'
     if SUPPLEMENT_NUMBER.search(t) and ty == 'article' and v.strip():
