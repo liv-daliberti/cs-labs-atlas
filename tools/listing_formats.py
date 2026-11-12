@@ -564,7 +564,7 @@ def seu_department_faculty(h):
         for cell in table.select('td'):
             if cell.find('table'):
                 continue
-            name = clean(cell.get_text(' ', strip=True))
+            name = clean(cell.get_text())
             link = cell.select_one('a[href]')
             profile = link['href'] if link else None
             if legacy and profile and profile.startswith('/'):

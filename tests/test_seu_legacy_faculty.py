@@ -18,7 +18,8 @@ def test_legacy_department_tables_exclude_offices_and_preserve_unlinked_names():
 def test_current_department_table_keeps_names_with_no_href_and_printed_role_notes():
     html = '''<div class="wp_articlecontent"><h2>计算机科学系</h2><table><tr>
       <td><a textvalue="曹玲玲">曹玲玲</a></td><td>狄 凯(博士后)</td><td>王帅</td><td>王帅</td><td></td>
+      <td><p><a href="https://example.edu/li">李幼平<span>(兼职)</span></a></p></td>
       </tr></table></div>'''
     rows = seu_department_faculty(html)
-    assert [r['name_listed'] for r in rows] == ['曹玲玲', '狄 凯(博士后)', '王帅', '王帅']
-    assert all(r['profile'] is None and r['titles'] == ['教师'] for r in rows)
+    assert [r['name_listed'] for r in rows] == ['曹玲玲', '狄 凯(博士后)', '王帅', '王帅', '李幼平(兼职)']
+    assert all(r['profile'] is None and r['titles'] == ['教师'] for r in rows[:4])
