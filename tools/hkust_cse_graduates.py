@@ -15,10 +15,8 @@ import argparse
 import html as H
 import json
 import re
-import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pihier.names import Name  # noqa: E402
 
 WINDOW = (2016, 2026)
