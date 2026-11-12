@@ -1670,6 +1670,20 @@ HAN_HEAD_RX = re.compile(r"(?<![\u4e00-\u9fff\u7ea7])(\u535a\u58eb\u540e|\u535a\
 HAN_ROLE = {'\u535a\u58eb\u7814\u7a76\u751f': 'phd', '\u535a\u58eb\u751f': 'phd', '\u7855\u58eb\u7814\u7a76\u751f': 'masters', '\u7855\u58eb\u751f': 'masters', '\u672c\u79d1\u751f': 'undergraduate', '\u535a\u58eb\u540e': 'postdoc', '\u7814\u7a76\u751f': None}
 
 
+HAN_ITEM_KEYS = ('name', 'role', 'years', 'head', 'desc', 'quote', 'qkind', 'flags', 'alumni', 'held', 'held_kind', 'url', 'capture_url', 'sha256')   # the keys the toolkit's extract() rows carry
+
+
+def han_item_dummy():
+    return None
+
+
+def han_card_item(c_, row_, names, held):
+    """A Han member card in the shape of an extract() row (every reader of the candidates, audit_students included, needs url, sha256, qkind, held ...)."""
+    h_, hk_ = names.match(c_['name'], list(held))
+    return dict(name=c_['name'], head=c_['head'], desc=c_['desc'], quote=c_['quote'], qkind='name+role', flags=[], role=c_['role'], years=None,
+                alumni=c_['alumni'], held=h_, held_kind=hk_, url=row_['url'], capture_url=row_.get('capture_url'), sha256=row_['sha256'], han_card=c_)
+
+
 def han_member_cards(text, school_rx=r'\u4e0a\u6d77\u4ea4\u901a\u5927\u5b66|\u4ea4\u5927|\u6e05\u534e|\u6d59\u6c5f\u5927\u5b66|\u6d59\u5927'):
     """Member cards of a Chinese lab page: 'NAME NN\u7ea7\u535a\u58eb\u7814\u7a76\u751f (\u4e0e\u67d0\u6559\u6388\u8054\u5408\u57f9\u517b) bio ...' under \u535a\u58eb\u751f / \u7855\u58eb\u751f / \u7814\u7a76\u52a9\u7406 / \u5df2\u6bd5\u4e1a headings (SJTU ScaleLab people.html; the same form on Tsinghua / ZJU /
     SJTU pages). -> [dict(name, role, start year 20NN, alumni, head, quote, desc, member)]: the role is the label's (\u535a\u58eb->phd, \u7855\u58eb->masters, \u672c\u79d1->undergraduate, \u535a\u58eb\u540e->postdoc), the year is NN\u7ea7 (20NN), a \u6bd5\u4e1a / \u5df2\u6bd5\u4e1a / \u6821\u53cb heading marks alumni. A card
@@ -1862,8 +1876,9 @@ def pm_candidates(kit, school, pi, plan, held):
         for c_ in hc_:
             if names.fold(c_['name']) in have_:
                 continue
-            ext.append(dict(name=c_['name'], head=c_['head'], desc=c_['desc'], quote=c_['quote'], flags=[], role=c_['role'], alumni=c_['alumni'],
-                            capture_url=src if is_cap else None, sha256=(row_ or {}).get('sha256'), han_card=c_))
+            if not row_:
+                continue
+            ext.append(han_card_item(c_, row_, names, held))
         for x in ext:
             fn = names.fold(x['name'])
             x['is_cap'] = is_cap
@@ -1876,6 +1891,8 @@ def pm_candidates(kit, school, pi, plan, held):
             if not x['alumni'] and caps_heading_is_past(kit, school, src, x['name'], text_cache):
                 x['alumni'] = True  # an all-caps 'PAST ...' / 'FORMER ...' heading the extractor's section did not follow
             x['under_people_heading'] = bool(x['head'] and kit.autom.HEADWORD.search(x['head']))
+            if x.get('han_card'):
+                x['under_people_heading'] = True   # \u535a\u58eb\u751f / \u7855\u58eb\u751f / \u672c\u79d1\u751f headings are people headings the Latin HEADWORD does not know
             x['single_token'] = len(names.parse(x['name'])['tokens']) < 2
             if fn in yrs:
                 x['years'], x['years_basis'] = yrs[fn], 'reviewer'
@@ -1955,10 +1972,10 @@ def pm_candidates(kit, school, pi, plan, held):
                                 re.search(r'[“"]|\b(proceedings|conference|journal|workshop|arxiv|ICASSP|Interspeech|ACL|EMNLP|NeurIPS|'
                                           r'ICML|CVPR|pp\.)\b', (x.get('desc') or '')[:160])):
                 why, x['detail'] = 'not_in_people_section', 'a byline or citation, not a member entry'
-            elif auto_plan and (not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') or
+            elif auto_plan and not x.get('han_card') and (not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') or
                                 NOT_MEMBER_HEAD.search(x.get('head') or '')):
                 why, x['detail'] = 'not_in_people_section', f"section '{(x.get('head') or '')[:60]}' is not a member list"
-            elif auto_plan and (not plausible(kit, x['name']) or re.match(r'^[A-Z]\.\s', x['name']) or
+            elif auto_plan and not x.get('han_card') and (not plausible(kit, x['name']) or re.match(r'^[A-Z]\.\s', x['name']) or
                                 all(t.isupper() and len(t) <= 4 for t in x['name'].split())):
                 why, x['detail'] = 'name_unresolved', 'not a plausible full person name (automatic plan)'
             elif fn in drop or any(names.match_one(x['name'], d) for d in plan.get('drop', [])):

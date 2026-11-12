@@ -130,3 +130,13 @@ def test_tsinghua_round2_and_hkust_reaudit_items():
     assert L.clean_parenthetical_name('(Co-supervision) Jiawen Zhang')[0] == 'Jiawen Zhang'
     assert L.entry_role('Visiting intern, PhD student from Tsinghua University, Spring 2016', 'Members', lambda t: (None, None))[0] == 'visiting'
     assert L.entry_role('(Visiting professor, X University)', 'Members', lambda t: (None, None))[0] != 'visiting'
+
+
+def test_han_card_item_has_every_key_an_extract_row_has():
+    class N:
+        @staticmethod
+        def match(name, held):
+            return None, None
+    c = L.han_member_cards('博士生 蔡冠宇 23级博士研究生 蔡冠宇，上海交通大学。')[0]
+    item = L.han_card_item(c, {'url': 'https://x/people.html', 'sha256': 'ab' * 32}, N, [])
+    assert all(k in item for k in L.HAN_ITEM_KEYS) and item['url'] == 'https://x/people.html' and item['han_card']['member']
