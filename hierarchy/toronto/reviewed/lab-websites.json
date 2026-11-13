@@ -3890,10 +3890,10 @@
   },
   {
    "pi": "Cosmin Munteanu",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; school_profile https://ischool.utoronto.ca/profile/cosmin-munteanu/: http_404; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fischool.utoronto.ca%2Fprofile%2Fcosmin-munteanu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
-   "audited_at": "2026-11-13T22:15:30+00:00",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-13T23:30:08.791505+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3933,25 +3933,60 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fischool.utoronto.ca%2Fprofile%2Fcosmin-munteanu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
-     "at": "2026-11-13T22:15:30+00:00",
-     "result": "wayback_deferred"
+     "at": "2026-11-13T23:30:08.791505+00:00",
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "sha256": "28efed6ac8076c59ec65f07f7d78d34f266e02a10909e13ca746568dda80339d",
+     "name_quote": "Cosmin Munteanu",
+     "tie_quote": "Technologies for Ageing Gracefully Lab , University of Toronto",
+     "reviewer": "codex-vt-stage89-1113",
+     "at": "2026-11-13T23:30:08.791505+00:00",
+     "url": "https://www.cs.toronto.edu/~mcosmin/",
+     "result": "listed"
     }
    ],
    "places_checked": [
     "department_listing:robots_disallowed",
     "school_profile:http_404",
-    "wayback_pending:wayback_deferred"
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:15:30+00:00",
-   "students_page_status": "no_lab_page",
-   "papers_page_status": "no_lab_page",
-   "coverage": "reason",
-   "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "checked_at": "2026-11-13T23:30:08.791505+00:00",
+   "students_page_status": "not_yet_audited",
+   "papers_page_status": "not_yet_audited",
+   "coverage": "website",
+   "url": "https://www.cs.toronto.edu/~mcosmin/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "28efed6ac8076c59ec65f07f7d78d34f266e02a10909e13ca746568dda80339d",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~mcosmin/",
+    "sha256": "28efed6ac8076c59ec65f07f7d78d34f266e02a10909e13ca746568dda80339d",
+    "quote": "Cosmin Munteanu Cosmin \r\n\t\tMunteanu Home Events Research Publications Students Service Teaching Contact Dr. Cosmin Munte"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "sha256": "28efed6ac8076c59ec65f07f7d78d34f266e02a10909e13ca746568dda80339d",
+     "name_quote": "Cosmin Munteanu",
+     "tie_quote": "Technologies for Ageing Gracefully Lab , University of Toronto",
+     "reviewer": "codex-vt-stage89-1113",
+     "at": "2026-11-13T23:30:08.791505+00:00",
+     "url": "https://www.cs.toronto.edu/~mcosmin/",
+     "result": "listed"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Cosmin Munteanu"
   },
   {
    "pi": "Fritz Roth",
@@ -7138,10 +7173,10 @@
   },
   {
    "pi": "Yu Sun",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; school_profile https://www.mie.utoronto.ca/mie/faculty/sun: http_301; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.mie.utoronto.ca%2Fmie%2Ffaculty%2Fsun&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
-   "audited_at": "2026-11-13T22:20:21+00:00",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-13T23:30:08.791505+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7181,25 +7216,60 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.mie.utoronto.ca%2Fmie%2Ffaculty%2Fsun&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
-     "at": "2026-11-13T22:20:21+00:00",
-     "result": "wayback_deferred"
+     "at": "2026-11-13T23:30:08.791505+00:00",
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "school_profile_link",
+     "on": "https://www.mie.utoronto.ca/faculty_staff/sun/",
+     "source_sha256": "6da64899fb35af17d5240dd0971adb53c1882e0d5ad4240335fcfa09565a7959",
+     "anchor": "Advanced Micro and Nanosystems Laboratory (AMNL)",
+     "href": "http://amnl.mie.utoronto.ca/",
+     "at": "2026-11-13T23:30:08.791505+00:00",
+     "url": "https://amnl.mie.utoronto.ca/",
+     "result": "listed"
     }
    ],
    "places_checked": [
     "department_listing:robots_disallowed",
     "school_profile:http_301",
-    "wayback_pending:wayback_deferred"
+    "school_profile_link:listed",
+    "wayback_reviewed:superseded_by_verified_live_site"
    ],
-   "checked_at": "2026-11-13T22:20:21+00:00",
-   "students_page_status": "no_lab_page",
-   "papers_page_status": "no_lab_page",
-   "coverage": "reason",
-   "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "checked_at": "2026-11-13T23:30:08.791505+00:00",
+   "students_page_status": "not_yet_audited",
+   "papers_page_status": "not_yet_audited",
+   "coverage": "website",
+   "url": "https://amnl.mie.utoronto.ca/",
+   "kind": "lab_site",
+   "people_page": "https://amnl.mie.utoronto.ca/index.php?page=people",
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://www.mie.utoronto.ca/faculty_staff/sun/",
+   "sha256": "3c1debd849b491a1d7ed43b4a832b401ac1be34a4a811155f9b15de38e1b695f",
+   "evidence": {
+    "url": "https://amnl.mie.utoronto.ca/",
+    "sha256": "3c1debd849b491a1d7ed43b4a832b401ac1be34a4a811155f9b15de38e1b695f",
+    "quote": "Advanced Micro and Nanosystems Lab (AMNL) The Advanced Micro and Nanosystems Laboratory (AMNL), founded in 2004, is affi"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "on": "https://www.mie.utoronto.ca/faculty_staff/sun/",
+     "source_sha256": "6da64899fb35af17d5240dd0971adb53c1882e0d5ad4240335fcfa09565a7959",
+     "anchor": "Advanced Micro and Nanosystems Laboratory (AMNL)",
+     "href": "http://amnl.mie.utoronto.ca/",
+     "at": "2026-11-13T23:30:08.791505+00:00",
+     "url": "https://amnl.mie.utoronto.ca/",
+     "result": "listed"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "official faculty profile links Advanced Micro and Nanosystems Laboratory"
   },
   {
    "pi": "William Yu",
@@ -7936,10 +8006,10 @@
   },
   {
    "pi": "Lisa Strug",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; school_profile https://www.statistics.utoronto.ca/people/directories/all-faculty/lisa-strug: wayback_only_host; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%2Flisa-strug&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
-   "audited_at": "2026-11-13T22:20:55+00:00",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-13T23:30:08.791505+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7978,25 +8048,65 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%2Flisa-strug&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
-     "at": "2026-11-13T22:20:55+00:00",
-     "result": "wayback_deferred"
+     "at": "2026-11-13T23:30:08.791505+00:00",
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "school_profile_link",
+     "on": "https://www.sickkids.ca/en/staff/s/lisa-strug/",
+     "source_sha256": "66b63af293f6e4c41930fd1573826e9e4d3ab96e1e9d14287829b86dcee5872c",
+     "anchor": "Strug Lab",
+     "href": "https://lab.research.sickkids.ca/strug/",
+     "at": "2026-11-13T23:30:08.791505+00:00",
+     "url": "https://lab.research.sickkids.ca/strug/",
+     "result": "listed"
     }
    ],
    "places_checked": [
     "department_listing:robots_disallowed",
     "school_profile:wayback_only_host",
-    "wayback_pending:wayback_deferred"
+    "school_profile_link:listed",
+    "wayback_reviewed:superseded_by_verified_live_site"
    ],
-   "checked_at": "2026-11-13T22:20:55+00:00",
-   "students_page_status": "no_lab_page",
-   "papers_page_status": "no_lab_page",
-   "coverage": "reason",
-   "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "checked_at": "2026-11-13T23:30:08.791505+00:00",
+   "students_page_status": "not_yet_audited",
+   "papers_page_status": "not_yet_audited",
+   "coverage": "website",
+   "url": "https://lab.research.sickkids.ca/strug/",
+   "kind": "lab_site",
+   "people_page": "https://lab.research.sickkids.ca/strug/team/",
+   "pubs_page": "https://lab.research.sickkids.ca/strug/publications/",
+   "found_via": "school_profile_link",
+   "listed_on": "https://www.sickkids.ca/en/staff/s/lisa-strug/",
+   "sha256": "8727dc59bcc6e41fbd43f9ef8311fff3898858af82a0269165afbc51a043f8eb",
+   "evidence": {
+    "url": "https://lab.research.sickkids.ca/strug/",
+    "sha256": "8727dc59bcc6e41fbd43f9ef8311fff3898858af82a0269165afbc51a043f8eb",
+    "quote": "Home - Strug Lab Skip to content Toggle Navigation Home Principal Investigator Team Research Staff Trainees TCAG Stage T"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "on": "https://www.sickkids.ca/en/staff/s/lisa-strug/",
+     "source_sha256": "66b63af293f6e4c41930fd1573826e9e4d3ab96e1e9d14287829b86dcee5872c",
+     "anchor": "Strug Lab",
+     "href": "https://lab.research.sickkids.ca/strug/",
+     "at": "2026-11-13T23:30:08.791505+00:00",
+     "url": "https://lab.research.sickkids.ca/strug/",
+     "result": "listed"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "PI page: Lisa Strug, PhD; Professor, University of Toronto",
+   "pi_verification_page": {
+    "url": "https://lab.research.sickkids.ca/strug/meet-the-scientist/",
+    "sha256": "7f8561c751f311c45626a0f7328cfbd3292081320a3b6ae09f0a3706bdb6d772",
+    "quote": "Lisa Strug, PhD; Professor, University of Toronto"
+   }
   },
   {
    "pi": "Bo Wang",
