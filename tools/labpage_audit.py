@@ -2804,6 +2804,8 @@ def entry_role(desc, head, role_of):
     if re.search(r'\b(?:M\.?S\.?|master(?:s|\u2019s)?)\s*(?:/|and|&)\s*(?:Ph\.?D\.?|doctoral)\b', h, re.I):
         return None, 'mixed_degree_section_heading'  # the roster does not identify each student's degree
     r = role_of(h)[0] if h and not PERSON_HEAD_RX.fullmatch(h.strip()) else None   # a heading that is a person's name ('Zili Meng') is not a role ('Meng' read as M.Eng) (Tsinghua round 1: Zhen Tang)
+    if not r and h and ' > ' in (head or '') and not PERSON_HEAD_RX.fullmatch(h.strip()):
+        r = role_fallback(h) or ('masters' if re.fullmatch(r"\W*(?:master|masters|master['\u2019]s|m\.?\s?sc?\.?)\W*", h, re.I) else None)   # the innermost heading wins: 'Phd > Master' is a master's list (SJTU 刘方鑫: the bare 'Master' is not in the toolkit's vocabulary, the chain's first heading 'Phd' was read)
     if not r and head and ' > ' in head:
         r = role_of(head.split(' > ')[0])[0] if not PERSON_HEAD_RX.fullmatch(head.split(' > ')[0].strip()) else None
     if not r:

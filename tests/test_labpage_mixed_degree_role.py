@@ -16,3 +16,11 @@ def test_combined_degree_heading_leaves_role_unresolved():
 def test_double_hyphen_alumni_year_range():
     assert entry_years('B.S., Computer Science, 2021--2022, BoolODE',
                        'Former undergraduate students') == ([2021, 2022], 'stated_in_entry')
+
+
+def test_innermost_bare_degree_heading_wins_over_outer_heading():
+    def role_of(text):
+        return ('phd', None) if 'phd' in (text or '').lower() else (None, None)
+
+    assert entry_role('Bowen Zhu (co-supervised, 2023-)', 'Phd > Master', role_of) == ('masters', 'section_heading')
+    assert entry_role('Runpei Cai (co-supervised, 2024-)', 'Phd', role_of) == ('phd', 'section_heading')
