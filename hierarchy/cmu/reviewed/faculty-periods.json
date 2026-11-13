@@ -1139,5 +1139,42 @@
   "conflictingStartYears": [],
   "addedBy": "claude-faculty-periods-20261021",
   "qualification": "Appointment year from the page's own statement naming the school; the earliest stated faculty year is kept. Faculty appointment evidence is separate from leadership of each named unit."
+ },
+ {
+  "id": "cmu_ws1115_hoe",
+  "personId": null,
+  "name": "James C. Hoe",
+  "school": "cmu",
+  "unitIds": [],
+  "facultyStart": null,
+  "facultyStartNotLaterThan": "2016",
+  "facultyEnd": null,
+  "labStart": null,
+  "labEnd": null,
+  "datePrecision": "year",
+  "endDatePrecision": null,
+  "ongoingAsOf": "2026-11-13",
+  "facultyLastConfirmed": "2026-09-08",
+  "facultyPeriodStatus": "supported_start_not_later_than",
+  "labPeriodStatus": "unresolved",
+  "addedBy": "wire-students-1115 (big rosters; reviewer ok, kinds 1-2: ECE directory captures 2016-04-02 and 2026-09-08)",
+  "reviewedOn": "2026-11-13",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20160402213820id_/http://www.ece.cmu.edu/directory/department/faculty/index.html",
+    "sha256": "7e2bb47ca965bb2706039c44e391159832e015275722957a54ef4843a91933da",
+    "quote": "Hoe , James C. Professor – ECE , CS ; Co-Director – CALCM",
+    "kind": "dept_listing:ECE",
+    "observedAt": "2016"
+   },
+   {
+    "url": "https://web.archive.org/web/20260908154128id_/https://www.ece.cmu.edu/directory/faculty.html",
+    "sha256": "0c8c9f849151fa1a436cd976c79a98275d9f97afc7b9743a394e5a47f9aa197b",
+    "quote": "James C. Hoe Professor Read full bio",
+    "kind": "dept_listing:ECE",
+    "observedAt": "2026"
+   }
+  ],
+  "reviewNote": "James C. Hoe is named on the ECE faculty directory in every dated capture stored for 2016-2026 (20 captures; earliest 2016-04-02, latest 2026-09-08): a lower bound on the faculty start (not later than 2016), never an arrival claim; kinds 1-2 (dated official department listings). pis.json has no period record for him (piBasis advises_phd only)."
  }
 ]
