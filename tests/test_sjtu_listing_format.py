@@ -51,8 +51,11 @@ def test_ajax_teacher_feed_lists_leaders_and_teachers_names_only():
 
 
 def test_ajax_feed_text_blocks_contain_every_listed_name():
-    import sys, os
-    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'listings', 'scripts'))
-    import extract
-    flat = ' '.join(t for _, t in extract.blocks(AJAX.encode('utf-8'), 'application/json'))
+    import importlib.util
+    import pathlib
+    path = pathlib.Path(__file__).resolve().parents[1] / 'listings' / 'scripts' / 'json_people.py'
+    spec = importlib.util.spec_from_file_location('json_people_under_test', path)
+    jp = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(jp)
+    flat = ' '.join(t for _, t in jp.blocks(AJAX.encode('utf-8')))
     assert all(r['name_listed'] in flat for r in F.FORMATS['sjtu_cs_ajax_teachers'][0](AJAX)) and '机器智能研究所' in flat
