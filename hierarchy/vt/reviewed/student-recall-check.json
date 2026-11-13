@@ -1,0 +1,690 @@
+{
+ "schema": 1,
+ "school": "vt",
+ "drawn_at": "2026-11-13T03:44:27Z",
+ "drawn_by": "codex-vt-stage6-r7-1112",
+ "seed": 3095213705,
+ "binds": {
+  "students.json": "7dd5e20e1a9bc7669f972557844765a2bc7d5cbb0f9aa2accf0ca5f7aa241228",
+  "pis.json": "77c316f823607864977d282b0b8fa1a131476329c7a08bad3c6494ab6d5edd29"
+ },
+ "current_from_year": 2025,
+ "sizes": {
+  "0": 12,
+  "1-2": 45,
+  "3+": 36
+ },
+ "picked": {
+  "0": 10,
+  "1-2": 10,
+  "3+": 10
+ },
+ "how": "tools/student_recall.py draw: seeded stratified sample by recorded student rows (0 / 1-2 / 3+); the checker fills `verdict`, `page` and `listed`",
+ "sample": [
+  {
+   "pi": "Ali Vakilian",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/ali-vakilian.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Alla Rozovskaya",
+   "stratum": "0",
+   "candidate_urls": [],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Christopher L. Barrett",
+   "stratum": "0",
+   "candidate_urls": [],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Dongyoon Lee",
+   "stratum": "0",
+   "candidate_urls": [],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Ing-Ray Chen",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://news.vt.edu/articles/2025/02/eng-cs-national-dialogue-pandemic-ethics/eng-cs-Ing-Ray-Chen-honored-with-emeritus-status.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Palash Sashittal",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://sashitt2.github.io/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://sashitt2.github.io/publications.html",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/palash-sashittal.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Peng Gao",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://people.cs.vt.edu/penggao/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://people.cs.vt.edu/penggao/publication.html",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/peng-gao.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "R. Benjamin Knapp",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://news.vt.edu/articles/2026/01/eng-cs-knapp-conferred-emeritus-status.html?_gl=1*b53zyy*_gcl_au*MTU1ODg1NjY0MS4xNzY0NjEzMzMzLjM3NDM0MjkzMC4xNzY0NjE0MTY0LjE3NjQ2MTQxNjQ.",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Shengwei An",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://www.vt.edu/visit.html",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://alumni.vt.edu",
+     "source": "audit lab_page.alumni_page"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/shengwei-an.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Steven Flammia",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/steven-flammia.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Atul Mantri",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://people.cs.vt.edu/ecochran/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/atul-mantri.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Chris Brown",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://chbrown13.github.io/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://chbrown13.github.io/publications.html",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://people.cs.vt.edu/minhyukko/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/chris-brown.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Edward Fox",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://sanghani.cs.vt.edu/people/students/adheesh-juvekar.html",
+     "source": "student row source"
+    },
+    {
+     "url": "https://news.vt.edu/articles/2025/04/eng-cs-edward-fox-gains-emeritus-status.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Eugenia Rho",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://eugeniarho.com/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://eugeniarho.com/#publications",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://hci.icat.vt.edu/news/congratulations-chci-students-and-their-advisors-who-received-vt.html",
+     "source": "student row source"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/eugenia-rho.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Francisco Servant",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://people.cs.vt.edu/~bhuang/BertHuangCV.pdf",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Ihudiya Finda Williams",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://reachlabcs.com",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://reachlabcs.com/?page_id=3548",
+     "source": "audit lab_page.alumni_page"
+    },
+    {
+     "url": "https://reachlabcs.com/?event_listing_type=papers",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://www.reachlabcs.com/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/ihudiya-finda-williams.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Jiaqi Leng",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://jiaqileng.github.io/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://jiaqileng.github.io/group/",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://jiaqileng.github.io/publications/",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/jiaqi-leng.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Madhav Marathe",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://people.cs.vt.edu/ribbens/d/highlights/2018Q2.html",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Tanushree Mitra",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://sanghani.cs.vt.edu/people/students/brian-keith.html",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Tijay Chung",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://taejoong.github.io/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://taejoong.github.io/#students",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://taejoong.github.io/#publications",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://weitongli.com/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/taejoong-chung.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Chandan Reddy",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://creddy.net/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://creddy.net/students.html",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://creddy.net/publications.html",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/chandan--reddy.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Eli Tilevich",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://people.cs.vt.edu/~tilevich/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://people.cs.vt.edu/~tilevich/#students",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://people.cs.vt.edu/~tilevich/#alumni",
+     "source": "audit lab_page.alumni_page"
+    },
+    {
+     "url": "https://people.cs.vt.edu/~tilevich/publications.htm",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://web.archive.org/web/20160105103418id_/http://people.cs.vt.edu:80/~tilevich/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20191019094055id_/http://people.cs.vt.edu:80/~tilevich/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20250915070242id_/https://people.cs.vt.edu/~tilevich/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/eli-tilevich.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Jiaming Cui",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://people.cs.vt.edu/jiamingcui/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://people.cs.vt.edu/jiamingcui/group.html",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://people.cs.vt.edu/jiamingcui/publications.html",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/jiaming-cui.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Kurt Luther",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://people.cs.vt.edu/kluther/newlab/index.html",
+     "source": "student row source"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/kurt-luther.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Matthew Hicks",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "http://forte-research.com/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "http://forte-research.com/team.html",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "http://forte-research.com/#publications",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/matthew-hicks.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Muhammad Ali Gulzar",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://people.cs.vt.edu/~gulzar/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://people.cs.vt.edu/~gulzar/students/",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://people.cs.vt.edu/~gulzar/publications/",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/muhammad-ali-gulzar.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Sam H. Noh",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://next.cs.vt.edu/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://next.cs.vt.edu/professor/",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://next.cs.vt.edu/alumni/",
+     "source": "audit lab_page.alumni_page"
+    },
+    {
+     "url": "https://next.cs.vt.edu/students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/sam-noh.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Sang Won Lee",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://echolab.cs.vt.edu/sangwonlee/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://echolab.cs.vt.edu/members/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/sang-won-lee.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Scott McCrickard",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://techonthetrail.net/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://research.cs.vt.edu/ns/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/scott-mccrickard.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Thang Hoang",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://thanghoang.github.io/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://thanghoang.github.io/#group",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://thanghoang.github.io/#publications",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://website.cs.vt.edu/people/faculty/thang-hoang.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  }
+ ],
+ "filled_by": "",
+ "signoff": {
+  "reviewer": "",
+  "date": "",
+  "note": "a fresh reviewer: not the drawer and not the filler"
+ }
+}
