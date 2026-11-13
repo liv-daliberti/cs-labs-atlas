@@ -2004,6 +2004,15 @@ SEMESTER_START_RX = re.compile(r'\b(?:fall|spring|autumn|winter)\b', re.I)
 ALUMNI_HEAD_RX = re.compile(r'\b(?:former|past|previous|alumni|alumnae|alumnus|graduated|graduates|class of|emeriti)\b', re.I)
 
 
+MERGED_SINCE_RX = re.compile(r'^(\W{0,3}since\s+(?:0?[1-9]|1[0-2])\s*/\s*(?:19|20)\d\d)\s+[A-Z][\w\'-]*\s+[A-Z][\w\'-]*\s+since\s+\d', re.U)
+
+
+def trim_merged_since_entry(desc):
+    """'since 08/2022 Xi YUAN since 08/2022': the next member's unlinked entry was read into this one's text; the entry keeps only its own 'since MM/YYYY'."""
+    m = MERGED_SINCE_RX.match(desc or '')
+    return m.group(1) if m else desc
+
+
 def entry_years(desc, head):
     """(years, basis) stated by the entry itself; never a neighbour's dates or a bio's degree dates.
       '(Postdoc, 2010-2014)' -> [2010, 2014]; '(PhD student, MIT ORC, 2022 -)' -> [2022, None] (an open range is a start);
@@ -3064,6 +3073,7 @@ def pm_candidates(kit, school, pi, plan, held):
         for x in ext:
             x['name'] = strip_program_label(x['name'])
             x['name'], x['desc'] = clean_roster_name(x['name'], x.get('desc'))
+            x['desc'] = trim_merged_since_entry(x['desc'])
             x['head'] = clean_entry_head(x.get('head'))
             fn = names.fold(x['name'])
             x['is_cap'] = is_cap

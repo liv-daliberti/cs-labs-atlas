@@ -1,6 +1,6 @@
 """NTU Long Cheng's team page: 'since MM/YYYY' entries (2026-11-14)."""
 
-from labpage_audit import entry_years, nearer_nonphd_heading
+from labpage_audit import entry_years, nearer_nonphd_heading, trim_merged_since_entry
 
 
 def test_since_month_year_is_an_open_start_and_a_merged_entry_reads_its_own_date():
@@ -17,3 +17,9 @@ def test_a_master_stage_entry_that_says_now_phd_does_not_withhold_the_phd_role()
     assert nearer_nonphd_heading(PAGE, 'Jane DOE', 'PhD students') is False
     other = PAGE.replace('Now: PhD student in our group', 'Now: Engineer at X')
     assert nearer_nonphd_heading(other, 'Jane DOE', 'PhD students') is True      # a mixed list still withholds
+
+
+def test_a_merged_since_entry_is_trimmed_to_its_own_date():
+    assert trim_merged_since_entry('since 08/2022 Xi YUAN since 08/2022') == 'since 08/2022'
+    assert trim_merged_since_entry('since 08/2022') == 'since 08/2022'
+    assert trim_merged_since_entry('PhD student, since 2022 Xi YUAN since 2023') == 'PhD student, since 2022 Xi YUAN since 2023'
