@@ -41,7 +41,7 @@ It refuses a released school: this command never writes released data. A step th
 usage: stage_gate.py <key> --traps   (every onboarding trap check, tools/onboarding_traps.py)
        stage_gate.py <key> [stage ...] [--run [--dry-run] [--submit] [--from-worktree] [--force] [--allow-shared]] [--json]
 """
-import collections, json, re, sys
+import collections, json, re, sys, unicodedata
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
@@ -59,9 +59,20 @@ def pis_of(key):
     cen = cen.get('faculty', []) if isinstance(cen, dict) else cen   # a composed first-native school keeps a bare list
     add = read(P.data('census-additions.json', key), [])
     by_name = {}
+    by_source = set()
     for x in cen + add:
         if x.get('is_pi'):
+            basis = x.get('pi_basis') or {}
+            source_key = None
+            if basis.get('sha256') and basis.get('quote'):
+                ascii_name = ''.join(c for c in unicodedata.normalize('NFKD', x['name']) if not unicodedata.combining(c))
+                source_key = (re.sub(r'\b[A-Z]\.\s*', '', ascii_name).casefold().strip(),
+                              basis['sha256'], basis['quote'])
+            if source_key is not None and source_key in by_source:
+                continue
             by_name.setdefault(x['name'], x)  # a later addition may already be in the dated census
+            if source_key is not None:
+                by_source.add(source_key)
     return list(by_name.values())
 
 

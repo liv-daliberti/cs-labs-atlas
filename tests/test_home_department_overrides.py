@@ -2,12 +2,23 @@ import copy
 
 import pytest
 
-from home_departments_school import NOT_HOME, apply_reviewed_homes
+from home_departments_school import NOT_HOME, apply_reviewed_homes, sourced_pi_key
 
 
 def test_status_only_professor_title_cannot_supply_an_academic_home():
     assert NOT_HOME.search('Professor, Status-Only York University')
     assert not NOT_HOME.search('Professor, Computer Science')
+
+
+def test_middle_initial_variant_needs_the_same_sourced_faculty_quote():
+    base = {'name': 'Brendan Frey', 'pi_basis': {'sha256': 'abc', 'quote': 'Brendan Frey Professor'}}
+    variant = {'name': 'Brendan J. Frey', 'pi_basis': dict(base['pi_basis'])}
+    assert sourced_pi_key(base) == sourced_pi_key(variant)
+    variant['pi_basis']['quote'] = 'Other professor'
+    assert sourced_pi_key(base) != sourced_pi_key(variant)
+    variant = {'name': 'Michael Grüninger', 'pi_basis': {'sha256': 'def', 'quote': 'Michael Gruninger Professor'}}
+    plain = {'name': 'Michael Gruninger', 'pi_basis': dict(variant['pi_basis'])}
+    assert sourced_pi_key(variant) == sourced_pi_key(plain)
 
 
 def test_sourced_home_correction_preserves_the_computing_appointment():

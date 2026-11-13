@@ -13,7 +13,7 @@ status    accepted when one unit results; hold when none does (written, never a 
    immediately before writing; only rows of this school are replaced)
 usage: home_departments_school.py <key> [--write-shared]
 """
-import collections, json, re, sys
+import collections, json, re, sys, unicodedata
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
@@ -22,6 +22,16 @@ import census_overrides as CO  # noqa: E402
 NOT_HOME = re.compile(r'courtesy|affiliate|adjunct|visiting|emerit|lecturer|research (?:scientist|investigator)|status-only', re.I)
 PROF = re.compile(r'\bprofessor\b', re.I)
 UNIT = re.compile(r'professor(?:\s*\([^)]*\))?(?: of [^,]+)?,\s*(.+)$', re.I)
+
+
+def sourced_pi_key(row):
+    """Match a middle-initial variant only when its faculty quote is identical."""
+    basis = row.get('pi_basis') or {}
+    if not (basis.get('sha256') and basis.get('quote')):
+        return None
+    ascii_name = ''.join(c for c in unicodedata.normalize('NFKD', row['name']) if not unicodedata.combining(c))
+    name = re.sub(r'\b[A-Z]\.\s*', '', ascii_name).casefold().split()
+    return (' '.join(name), basis['sha256'], basis['quote'])
 
 
 SCHOOL_LEVEL = re.compile(r'^(?:Medical School|School of|College of|Rackham)', re.I)
@@ -147,10 +157,11 @@ def main(key, write_shared=False):
                    status='accepted' if home else 'hold', evidence=ev, note=note or 'no professor title on any listing row')
         out.append(row); n[row['status']] += 1; n['home:' + str(home)] += 1
     census_pis = {x['name'] for x in census if x.get('is_pi')}
+    census_source_keys = {sourced_pi_key(x) for x in census if x.get('is_pi')}
     for x in adds:  # accepted CS-related faculty of other units: the unit whose faculty listing proves the appointment
         if not x.get('is_pi'):
             continue
-        if x['name'] in census_pis:
+        if x['name'] in census_pis or (sourced_pi_key(x) is not None and sourced_pi_key(x) in census_source_keys):
             continue  # the dated school census already supplied this person's home
         b = x.get('pi_basis') or {}
         code = (x.get('departments') or [None])[-1]
