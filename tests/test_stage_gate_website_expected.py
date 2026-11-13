@@ -10,3 +10,12 @@ def test_alias_and_review_exclusion(monkeypatch):
     doc = {'labs': [{'pi': 'Daniel Klein'}, {'pi': 'Ann Lee'}]}
     assert G.website_expected('x', doc) == ['Daniel Klein', 'Ann Lee']
     assert G.website_expected('x', {'labs': []}) == ['Dan Klein', 'Ann Lee']
+
+
+def test_pi_census_addition_already_in_dated_census_is_counted_once(monkeypatch):
+    census = {'faculty': [{'name': 'Fahiem Bacchus', 'is_pi': True, 'pi_basis': {'kind': 'ladder_faculty'}}]}
+    additions = [{'name': 'Fahiem Bacchus', 'is_pi': True, 'pi_basis': {'kind': 'ladder_faculty'}},
+                 {'name': 'New Faculty', 'is_pi': True}]
+    monkeypatch.setattr(G.P, 'data', lambda name, key: name)
+    monkeypatch.setattr(G, 'read', lambda name, default=None: census if name == 'census-faculty.json' else additions)
+    assert [p['name'] for p in G.pis_of('toronto')] == ['Fahiem Bacchus', 'New Faculty']

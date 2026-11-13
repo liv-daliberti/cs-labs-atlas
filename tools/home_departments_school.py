@@ -19,7 +19,7 @@ import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import census_overrides as CO  # noqa: E402
 
-NOT_HOME = re.compile(r'courtesy|affiliate|adjunct|visiting|emerit|lecturer|research (?:scientist|investigator)', re.I)
+NOT_HOME = re.compile(r'courtesy|affiliate|adjunct|visiting|emerit|lecturer|research (?:scientist|investigator)|status-only', re.I)
 PROF = re.compile(r'\bprofessor\b', re.I)
 UNIT = re.compile(r'professor(?:\s*\([^)]*\))?(?: of [^,]+)?,\s*(.+)$', re.I)
 
@@ -124,7 +124,7 @@ def main(key, write_shared=False):
             home = deps[code]['name']; ev = dict(url=r['capture_url'], sha256=r['sha256'], quote=r['quote'])
             note = f'professor title in the {code} listing (latest row)' + (f'; also listed by {", ".join(c for c in own if c != code)}' if len(own) > 1 else '')
         else:
-            prof = [(r, t) for r in rs for t in r['titles'] if PROF.search(t) and not re.search('courtesy|affiliate', t, re.I)]
+            prof = [(r, t) for r in rs for t in r['titles'] if PROF.search(t) and not re.search('courtesy|affiliate|status-only', t, re.I)]
             if prof:
                 r, t = prof[-1]
                 u, joint = clean_unit(unit_of(t))
@@ -146,9 +146,12 @@ def main(key, write_shared=False):
         row = dict(school=key, name=x['name'], home_department=home, also=list(dict.fromkeys(also)), no_academic_department=False,
                    status='accepted' if home else 'hold', evidence=ev, note=note or 'no professor title on any listing row')
         out.append(row); n[row['status']] += 1; n['home:' + str(home)] += 1
+    census_pis = {x['name'] for x in census if x.get('is_pi')}
     for x in adds:  # accepted CS-related faculty of other units: the unit whose faculty listing proves the appointment
         if not x.get('is_pi'):
             continue
+        if x['name'] in census_pis:
+            continue  # the dated school census already supplied this person's home
         b = x.get('pi_basis') or {}
         code = (x.get('departments') or [None])[-1]
         home = None if code in centers else norm(units.get(code, code))   # a center is never a home: hold until an academic school is evidenced

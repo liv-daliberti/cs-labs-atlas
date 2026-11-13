@@ -2,7 +2,12 @@ import copy
 
 import pytest
 
-from home_departments_school import apply_reviewed_homes
+from home_departments_school import NOT_HOME, apply_reviewed_homes
+
+
+def test_status_only_professor_title_cannot_supply_an_academic_home():
+    assert NOT_HOME.search('Professor, Status-Only York University')
+    assert not NOT_HOME.search('Professor, Computer Science')
 
 
 def test_sourced_home_correction_preserves_the_computing_appointment():
