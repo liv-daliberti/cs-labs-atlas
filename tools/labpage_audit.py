@@ -1297,7 +1297,9 @@ def classify_links(lks, site_url, domain_rx):
         if h == sh and seg and (urlsplit(href).path.strip('/').split('/') or [''])[0] != seg:
             continue  # a personal page on a department host (/~user/...): only links under the same first path segment
         segs = [x for x in sp.split('/') if x]
-        if h == sh and len(segs) >= 2 and not (urlsplit(href).path or '/').startswith('/' + '/'.join(segs[:2])):
+        if segs and re.search(r'\.html?$', segs[-1], re.I):
+            segs = segs[:-1] + ['']   # a site given as a page of its own directory (/~user/en.html): its siblings (/~user/student-en.html) are the site's own pages
+        if h == sh and len(segs) >= 2 and segs[1] and not (urlsplit(href).path or '/').startswith('/' + '/'.join(segs[:2])):
             continue  # a page two levels deep (/people/pattie/...): never the institution's own /people/ listing
         t = (txt or '').strip()
         path = urlsplit(href).path.lower()
