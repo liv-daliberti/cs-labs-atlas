@@ -1517,6 +1517,8 @@ def discover_lab(kit, school, p, ctx, full=True):
             chosen['kind'] = 'lab_site'
         if chosen['people_page'] and PLATFORM_LIST_RX.search(chosen['people_page']):
             chosen['people_details'] = fetch_platform_details(kit, chosen['people_page'], add)
+        if chosen.get('alumni_page'):
+            chosen['alumni_details'] = fetch_alumni_subpages(kit, chosen['alumni_page'], add)
     # 6. Wayback history of the people and alumni pages (2016-2026, from the PI's first year at the school)
     wb = {}
     first = max(WINDOW[0], pi_start_year(p) or WINDOW[0])
@@ -2411,6 +2413,33 @@ def faculty_platform_detail_cell(text):
     else:
         years = [y0, datetime.date.today().year] if y0 else None
     return dict(name=m.group(1), role=role, years=years, alumni=alumni, quote=quote, head=f'{deg.group(1)} {st.group(1)}', desc=body[len(m.group(1)):][:160].strip())   # the 学历 / 状态 values are the entry's own section label
+
+
+ALUMNI_SUBPAGE_PATH = re.compile(r'(?<![a-z])(?:alumni|alums|former|past|prev|previous)[^/]*?(?:\.html?|\.php|/)?$', re.I)
+
+
+def fetch_alumni_subpages(kit, alumni_url, add, cap=6):
+    """An alumni INDEX page lists nothing itself and links the real lists, one per role (Berkeley Tomizuka: alumni.html -> phd_alumni.html, masters_alumni.html,
+    prev_postdocs.html, prev_visitors.html, ..., each dated by semester). The same-host links whose text or file name says alumni / former / past / previous are fetched
+    through the kit (robots, >= 3 s per host) and read like the alumni page. -> the urls fetched with status 200 (at most `cap`)."""
+    r = kit.get(alumni_url)
+    if r.get('status') != 200 or not r.get('content'):
+        return []
+    host = urlsplit(alumni_url).hostname
+    links = []
+    for href, txt in site_links(kit, r, link_base(r, alumni_url)):
+        href = href.split('#')[0]
+        if not href.startswith('http') or social(href) or urlsplit(href).hostname != host or href.rstrip('/') == alumni_url.rstrip('/') or href in links:
+            continue
+        if ALUMNI_LINK.search(txt or '') or ALUMNI_SUBPAGE_PATH.search(urlsplit(href).path.lower().rsplit('/', 1)[-1]):
+            links.append(href)
+    ok = []
+    for u in links[:cap]:
+        rr = kit.get(u)
+        if rr.get('status') == 200 and rr.get('content'):
+            ok.append(u)
+    add('alumni_subpages', alumni_url, f'{len(ok)} of {len(links)} alumni sub-pages fetched')
+    return ok
 
 
 def fetch_platform_details(kit, list_url, add, cap=600):
@@ -4206,9 +4235,10 @@ def lab_record(kit, ctx, p, disc):
         ch = d['chosen']
         site, people, alumni, pubs = ch['lab_site'], ch.get('people_page'), ch.get('alumni_page'), ch.get('pubs_page')
         start = pi_start_year(p) or WINDOW[0]
-        srcs = [kit.src_of(u) for u in (people, alumni) if u] + [kit.src_of(u) for u in ch.get('people_details') or []]
+        subs = [kit.src_of(u) for u in ch.get('alumni_details') or []]
+        srcs = [kit.src_of(u) for u in (people, alumni) if u] + [kit.src_of(u) for u in ch.get('people_details') or []] + subs
         plan = dict(people=srcs, wb=[u for u in (people, alumni) if u], wb_caps=d.get('wayback') or {},
-                    alumni_pages=[alumni, kit.src_of(alumni)] if alumni else [],
+                    alumni_pages=([alumni, kit.src_of(alumni)] if alumni else []) + subs,
                     homepage_people=bool(people and people.rstrip('/') == site.rstrip('/')),
                     wb_from=max(WINDOW[0], start), min_last_year=max(WINDOW[0], start),
                     pubs=[dict(pubs_page=kit.src_of(pubs), spec={}, years=list(WINDOW))] if pubs else [],
