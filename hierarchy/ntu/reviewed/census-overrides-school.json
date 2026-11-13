@@ -910,7 +910,7 @@
     }
   },
   "Samantha Chan": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
     "dblp_orcid_review": {
       "allowed": [],
@@ -936,7 +936,20 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5002930487"
+    ],
+    "why_openalex": "2026-10-30 (reviewed): 2026-11-13 strict identity pass (NTU; scratch/zju-ntu-papers-1113): own-page title overlap (>=2 titles per id), school tie quote on the page, contamination screen, fresh reviewer verdict ok. Identity only; papers still pass appointment, affiliation and type gates.",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7153795879",
+        "sha256": "320af4ea1bbe7357f49d53183abc6e5a403fe88b097c0cf90e7b08a3ef409958",
+        "quote": "Samantha W. T. Chan | Nanyang Technological University, Singapore, Singapore and MIT Media Lab, Cambridge, Masschusetts, USA",
+        "observed": "2026-04-13",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/ntu/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Siu Lun Chau": {
     "no_identity": false,
@@ -3407,7 +3420,7 @@
     }
   },
   "Luu Anh Tuan": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
     "dblp_orcid_review": {
       "allowed": [],
@@ -3433,7 +3446,36 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5001659855",
+      "https://openalex.org/A5050386762",
+      "https://openalex.org/A5123004532"
+    ],
+    "why_openalex": "2026-10-30 (reviewed): 2026-11-13 strict identity pass (NTU; scratch/zju-ntu-papers-1113): own-page title overlap (>=2 titles per id), school tie quote on the page, contamination screen, fresh reviewer verdict ok. Identity only; papers still pass appointment, affiliation and type gates.",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4404088808",
+        "sha256": "874f63b873d0faaf95ade0be28fc893d1bf5cceacb65be21981fa5651ec14595",
+        "quote": "Luu Anh Tuan | Nanyang Technological University",
+        "observed": "2026-06-16",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/ntu/openalex-sweep.sqlite)"
+      },
+      {
+        "url": "https://api.openalex.org/works/W4414972115",
+        "sha256": "1600b735f37816615cde691d1cfd1ea68a7160e04cd665a3a90ed27dedcfad06",
+        "quote": "Anh Tuan Luu | Nanyang Technological University , Singapore;",
+        "observed": "2026-01-01",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/ntu/openalex-sweep.sqlite)"
+      },
+      {
+        "url": "https://api.openalex.org/works/W7124167913",
+        "sha256": "375c89536d0f3855f71fd91eea1cd603e787016284f90d2d836e1ab7beb4bc9b",
+        "quote": "Luu, Anh Tuan | NTU",
+        "observed": "2026-01-13",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/ntu/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Miao Chun Yan": {
     "no_identity": false,
