@@ -2421,6 +2421,57 @@ def faculty_platform_detail_cell(text):
     return dict(name=m.group(1), role=role, years=years, alumni=alumni, quote=quote, head=f'{deg.group(1)} {st.group(1)}', desc=body[len(m.group(1)):][:160].strip())   # the 学历 / 状态 values are the entry's own section label
 
 
+SEMESTER_HEAD_RX = re.compile(r'^(?:Spring|Summer|Fall|Winter|Autumn)\s+((?:19|20)\d\d)$')
+SURNAME_GIVEN_LINE_RX = re.compile(r"^([A-Z][\w'’.\-]+(?: [A-Z][\w'’.\-]+)*), ([A-Z][\w'’.\-]+(?: [\w'’.\-()]+)*)$")
+NOT_A_PERSON_LINE_RX = re.compile(r'Professor|Postdoc|University|Student|Researcher|Institute|\bUC\b|UCSF|Assistant|College')
+
+
+def semester_alumni_rows(html_bytes, role, url, sha, pi, window=WINDOW):
+    """An alumni list in blocks 'Fall 2018' (semester heading = the year the person left) / 'Last, First' / employer / 'Email | Homepage' (Berkeley Tomizuka's MSC lab:
+    phd_alumni.html, masters_alumni.html). One row per 'Last, First' line under a semester heading whose year is in the window: role from the page (`role`), years
+    [None, year], alumni, the quote is the verbatim run of page text from the name line to the next 'Email | Homepage'. Lines that name an institution or a job are not names.
+    -> [row] in the labpage-additions student shape (the caller records them as proposed, unreviewed)."""
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(html_bytes, 'lxml')
+    for x in soup(['script', 'style', 'noscript']):
+        x.decompose()
+    lines = [' '.join(x.split()) for x in soup.get_text('\n').split('\n')]
+    lines = [x for x in lines if x]
+    flat = ' '.join(lines)
+    out, year = [], None
+    for l in lines:
+        m = SEMESTER_HEAD_RX.match(l)
+        if m:
+            year = int(m.group(1))
+            continue
+        m = SURNAME_GIVEN_LINE_RX.match(l)
+        if not (m and year and window[0] <= year <= window[1]) or NOT_A_PERSON_LINE_RX.search(l):
+            continue
+        q = re.search(re.escape(l) + r'[^|]{0,80}?Email \| Homepage', flat)
+        if not q:
+            continue
+        given = re.sub(r'\s*\(.*?\)', '', m.group(2)).strip()
+        out.append(dict(name=f'{given} {m.group(1)}', role=role, years=[None, year], url=url, sha256=sha, quote=q.group(0), pi=pi, alumni=True, rule='LP-STU-01', auto=True,
+                        note=f'semester-dated alumni list (heading year {year}); lab-page audit semester-alumni reader', role_basis='page_file', years_basis='semester_heading'))
+    return out
+
+
+def cmd_semester_alumni(school, pi, pages, out):
+    """semester-alumni <school> --pi NAME --out FILE --pages URL:ROLE ...: fetch each page through the kit (robots, pacing, stored capture) and write the rows."""
+    kit = Kit(school)
+    rows = []
+    for spec in pages:
+        url, role = spec.rsplit(':', 1)
+        r = kit.get(url)
+        if r.get('status') != 200 or not r.get('content'):
+            print(f'{url}: not readable ({result_of(r)})')
+            continue
+        got = semester_alumni_rows(r['content'], role, url, r.get('sha256'), pi)
+        print(f'{url}: {len(got)} rows')
+        rows += got
+    Path(out).write_text(json.dumps(rows, indent=1, ensure_ascii=False))
+
+
 ALUMNI_SUBPAGE_PATH = re.compile(r'(?<![a-z])(?:alumni|alums|former|past|prev|previous)[^/]*?(?:\.html?|\.php|/)?$', re.I)
 
 
@@ -4909,7 +4960,7 @@ def record_round(spec):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['discover', 'recover', 'audit', 'audit-chunk', 'audit-merge', 'recover-audit', 'all', 'summary', 'sample', 'restamp', 'record'])
+    ap.add_argument('cmd', choices=['discover', 'recover', 'audit', 'audit-chunk', 'audit-merge', 'recover-audit', 'all', 'summary', 'sample', 'restamp', 'record', 'semester-alumni'])
     ap.add_argument('--kind', choices=['students', 'papers'], default='students')
     ap.add_argument('--n', type=int, default=20)
     ap.add_argument('--seed', type=int, default=0)
@@ -4918,6 +4969,7 @@ def main():
     ap.add_argument('--chunk', type=int, default=0)
     ap.add_argument('--of', type=int, default=1)
     ap.add_argument('--out', default=None)
+    ap.add_argument('--pages', nargs='*', default=[], help='semester-alumni: URL:ROLE pairs')
     ap.add_argument('--redo', action='store_true')
     ap.add_argument('--live-first', action='store_true', help='Live discovery with cached-only Wayback; uncached archive requests remain pending')
     ap.add_argument('--redo-unrecorded', action='store_true', help='discover again every lab the 2026-10-22 pass did not record')
@@ -4940,6 +4992,8 @@ def main():
         cmd_audit_chunk(a.school, a.chunk, a.of, a.out, a.pi)
     if a.cmd == 'audit-merge':
         cmd_audit_merge(a.school, a.of, a.out)
+    if a.cmd == 'semester-alumni':
+        cmd_semester_alumni(a.school, a.pi[0], a.pages, a.out)
     if a.cmd == 'sample':
         cmd_sample(a.school, a.kind, a.n, a.seed)
     if a.cmd == 'summary':

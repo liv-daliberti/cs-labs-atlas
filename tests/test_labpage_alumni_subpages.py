@@ -42,3 +42,12 @@ def test_registered_site_outranks_other_candidates():
     assert L.registered_site('https://iconlab.negarmehr.com/people', 'https://iconlab.negarmehr.com/people/')
     assert not L.registered_site('https://negarmehr.com/', 'https://iconlab.negarmehr.com/people/')
     assert not L.registered_site('https://negarmehr.com/', None)
+
+
+def test_semester_alumni_rows():
+    html = (b'<html><body><h1>PhD Alumni</h1><h3>Summer 2026</h3><p>Chang, Wei-Jer</p><p>Tesla</p><p>Email |</p><p>Homepage |</p>'
+            b'<h3>Fall 2018</h3><p>Lin, Hsien-Chung</p><p>Taiwan Space Agency</p><p>Email |</p><p>Homepage |</p><p>UC Riverside Professor</p><p>Email |</p><p>Homepage |</p>'
+            b'<h3>Spring 2012</h3><p>Old, Person</p><p>X</p><p>Email |</p><p>Homepage |</p></body></html>')
+    rows = L.semester_alumni_rows(html, 'phd', 'https://msc.example.edu/people/phd_alumni.html', 'a' * 64, 'Test Pi')
+    assert [(r['name'], r['years'], r['role']) for r in rows] == [('Wei-Jer Chang', [None, 2026], 'phd'), ('Hsien-Chung Lin', [None, 2018], 'phd')]
+    assert rows[0]['quote'] == 'Chang, Wei-Jer Tesla Email | Homepage'
