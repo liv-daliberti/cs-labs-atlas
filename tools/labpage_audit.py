@@ -1305,6 +1305,11 @@ def apply_registered_people_page(kit, ctx, pi, site_url, chosen, pages, add):
     return False
 
 
+def registered_site(url, reg_url):
+    """True when `url` is the website the lab-websites register recorded for the PI."""
+    return bool(reg_url and url.rstrip('/') == reg_url.rstrip('/'))
+
+
 def discover_lab(kit, school, p, ctx, full=True):
     """Every place checked for one PI lab, the chosen pages and their captures (see the module docstring)."""
     cfg = SCHOOLS[school]
@@ -1478,7 +1483,8 @@ def discover_lab(kit, school, p, ctx, full=True):
         m = re.search(r"\b([A-Z][\w'’-]+)(?:'s)? (?:research group|lab|laboratory|group)\b", x['title'] or '', re.I)
         return bool(named and m and fam_t not in fold(x['title']) and fold(m.group(1)) not in ('the', 'research', 'our', 'mit', 'ai', 'ml'))
     sites = [x for x in sites if not other_group(x)] or sites
-    rank = lambda s: (not s['school_host'], s['other_school'], not is_lab_site(s['title'], s['url']), not s['names_pi'],
+    reg_url = ((ctx.get('registered') or {}).get(p['pi']) or {}).get('url')   # the reviewed register's own website outranks every other candidate (Berkeley Mehr: iconlab.negarmehr.com/people/ over the bare negarmehr.com homepage)
+    rank = lambda s: (not registered_site(s['url'], reg_url), not s['school_host'], s['other_school'], not is_lab_site(s['title'], s['url']), not s['names_pi'],
                       len([x for x in urlsplit(s['url']).path.split('/') if x]), s['via'] != 'prior_labpage_pass')
     sites.sort(key=rank)
     chosen = dict(lab_site=None, people_page=None, alumni_page=None, pubs_page=None, kind=None, title=None)

@@ -36,3 +36,9 @@ def test_cap_and_no_sublinks(monkeypatch):
     assert len(ok) == 6
     ok, _kit, _ = _run(monkeypatch, [('https://msc.berkeley.edu/people/students.html', 'PhD Students')])
     assert ok == []
+
+
+def test_registered_site_outranks_other_candidates():
+    assert L.registered_site('https://iconlab.negarmehr.com/people', 'https://iconlab.negarmehr.com/people/')
+    assert not L.registered_site('https://negarmehr.com/', 'https://iconlab.negarmehr.com/people/')
+    assert not L.registered_site('https://negarmehr.com/', None)
