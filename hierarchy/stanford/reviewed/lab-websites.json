@@ -25845,179 +25845,6 @@
    "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
   },
   {
-   "pi": "Tsachy Weissman",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-10-31T11:12:51+00:00",
-   "checks": [
-    {
-     "source": "prior_labpage_pass",
-     "url": "https://web.stanford.edu/~tsachy/papers.html",
-     "at": "2026-10-31T11:12:18+00:00",
-     "result": "recorded_page"
-    },
-    {
-     "source": "department_listing",
-     "url": "https://ee.stanford.edu/people/faculty?page=5",
-     "at": "2026-10-31T11:12:19+00:00",
-     "result": "ok",
-     "sha256": "761651e64d427262b648f5744fd62dfeb3b5ad2b6b1df29d3bbf00f64ea5dddb"
-    },
-    {
-     "source": "school_profile",
-     "url": "http://web.stanford.edu/~tsachy/",
-     "at": "2026-10-31T11:12:21+00:00",
-     "result": "ok",
-     "sha256": "6c4cd0cfc3fed0ce28f652d3ec4c98d666cf853acec52c47180466ed4c2667e5"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "https://compression.stanford.edu/summer-internships-high-school-students",
-     "at": "2026-10-31T11:12:21+00:00",
-     "result": "listed",
-     "anchor": "Website",
-     "on": "http://web.stanford.edu/~tsachy/"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/34/2720",
-     "at": "2026-10-31T11:12:21+00:00",
-     "result": "listed",
-     "urls": [
-      "http://web.stanford.edu/~tsachy/"
-     ]
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": "https://orcid.org/0009-0008-1099-691X/person.json",
-     "at": "2026-10-31T11:12:22+00:00",
-     "result": "no_urls",
-     "sha256": "3b10cffa631db957e7df883926f78a8104b37a5b1febece26fe8d04c7fe4125c"
-    },
-    {
-     "source": "openalex_author",
-     "url": null,
-     "at": "2026-10-31T11:12:22+00:00",
-     "result": "no_homepage_field_in_schema"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://profiles.stanford.edu/itschak-weissman",
-     "at": "2026-10-31T11:12:22+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://web.stanford.edu/~tsachy/papers.html",
-     "at": "2026-10-31T11:12:22+00:00",
-     "result": "ok",
-     "via": "earlier_homepage_find",
-     "sha256": "0d978a914f47f7be756e013080385e7f0a9d5fe3ea49392071dffa8af7822577"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://compression.stanford.edu/summer-internships-high-school-students",
-     "at": "2026-10-31T11:12:33+00:00",
-     "result": "ok_wayback",
-     "via": "school_profile_link",
-     "capture_url": "https://web.archive.org/web/20210804004334id_/https://compression.stanford.edu/summer-internships-high-school-students",
-     "sha256": "2da84f056d1dff7630fb6f7ed0a4a3f05a83245516ddf74a984184a4a8f061c0",
-     "final_url": "https://web.archive.org/web/20210804004334id_/https://compression.stanford.edu/summer-internships-high-school-students"
-    },
-    {
-     "source": "candidate_site",
-     "url": "http://web.stanford.edu/~tsachy/",
-     "at": "2026-10-31T11:12:33+00:00",
-     "result": "ok",
-     "via": "dblp_person_url",
-     "sha256": "6c4cd0cfc3fed0ce28f652d3ec4c98d666cf853acec52c47180466ed4c2667e5"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://profiles.stanford.edu/itschak-weissman",
-     "at": "2026-10-31T11:12:35+00:00",
-     "result": "ok",
-     "via": "pi_evidence_url",
-     "sha256": "ec1b9216714fb164fb7d9ea873a171a6390481a40488f20f007793601436851a"
-    },
-    {
-     "source": "wayback_cdx",
-     "url": "https://compression.stanford.edu/summer-internships-high-school-students",
-     "at": "2026-10-31T11:12:42+00:00",
-     "result": "11 captures",
-     "frm": 2016
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20190819001104id_/https://compression.stanford.edu/summer-internships-high-school-students",
-     "at": "2026-10-31T11:12:46+00:00",
-     "result": "ok_wayback",
-     "sha256": "5cee4e801d172c12f2caf46ea8c23399b5d9e85e7e4529fb806491786c813e92"
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20201112004608id_/https://compression.stanford.edu/summer-internships-high-school-students",
-     "at": "2026-10-31T11:12:51+00:00",
-     "result": "ok_wayback",
-     "sha256": "8dc1ee21e53ce4d3d4906abea8d226918f2767a9e14e7a7f2008bb7da5f9afbc"
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20210804004334id_/https://compression.stanford.edu/summer-internships-high-school-students",
-     "at": "2026-10-31T11:12:51+00:00",
-     "result": "ok_wayback",
-     "sha256": "2da84f056d1dff7630fb6f7ed0a4a3f05a83245516ddf74a984184a4a8f061c0"
-    }
-   ],
-   "places_checked": [
-    "candidate_site:ok",
-    "candidate_site:ok_wayback",
-    "dblp_person_url:listed",
-    "department_listing:ok",
-    "orcid_researcher_urls:no_urls",
-    "pi_evidence_url:listed",
-    "prior_labpage_pass:recorded_page",
-    "school_profile:ok",
-    "school_profile_link:listed",
-    "wayback_capture:ok_wayback",
-    "wayback_cdx:11 captures"
-   ],
-   "checked_at": "2026-10-31T11:12:51+00:00",
-   "students_page_status": "audited",
-   "papers_page_status": "no_pubs_page",
-   "url": "https://compression.stanford.edu/summer-internships-high-school-students",
-   "kind": "pi_homepage",
-   "people_page": "https://compression.stanford.edu/summer-internships-high-school-students",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "school_profile_link",
-   "listed_on": "http://web.stanford.edu/~tsachy/",
-   "sha256": "2da84f056d1dff7630fb6f7ed0a4a3f05a83245516ddf74a984184a4a8f061c0",
-   "evidence": {
-    "url": "https://compression.stanford.edu/summer-internships-high-school-students",
-    "sha256": "2da84f056d1dff7630fb6f7ed0a4a3f05a83245516ddf74a984184a4a8f061c0",
-    "quote": "a great fictional mentor! Read more about Professor Tsachy Weissman's involvement in the program here . Two interns from 2019,",
-    "capture_url": "https://web.archive.org/web/20210804004334id_/https://compression.stanford.edu/summer-internships-high-school-students"
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "https://compression.stanford.edu/summer-internships-high-school-students",
-     "at": "2026-10-31T11:12:21+00:00",
-     "result": "listed",
-     "anchor": "Website",
-     "on": "http://web.stanford.edu/~tsachy/"
-    }
-   ],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "s a great fictional mentor read more about professor tsachy weissman s involvement in the program here two interns from 2019 aditi talati an"
-  },
-  {
    "pi": "Dora Demszky",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
@@ -42980,6 +42807,190 @@
    ],
    "verified": true,
    "verification_quote": "ontent start Jeremy Bailenson Founding Director Cyan DeVeaux Ph.D. Student Geraldine Fauville Affiliate Ariel"
+  },
+  {
+   "pi": "Tsachy Weissman",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-10-31T11:12:51+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass",
+     "url": "https://web.stanford.edu/~tsachy/papers.html",
+     "at": "2026-10-31T11:12:18+00:00",
+     "result": "recorded_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://ee.stanford.edu/people/faculty?page=5",
+     "at": "2026-10-31T11:12:19+00:00",
+     "result": "ok",
+     "sha256": "761651e64d427262b648f5744fd62dfeb3b5ad2b6b1df29d3bbf00f64ea5dddb"
+    },
+    {
+     "source": "school_profile",
+     "url": "http://web.stanford.edu/~tsachy/",
+     "at": "2026-10-31T11:12:21+00:00",
+     "result": "ok",
+     "sha256": "6c4cd0cfc3fed0ce28f652d3ec4c98d666cf853acec52c47180466ed4c2667e5"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://compression.stanford.edu/summer-internships-high-school-students",
+     "at": "2026-10-31T11:12:21+00:00",
+     "result": "listed",
+     "anchor": "Website",
+     "on": "http://web.stanford.edu/~tsachy/"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/34/2720",
+     "at": "2026-10-31T11:12:21+00:00",
+     "result": "listed",
+     "urls": [
+      "http://web.stanford.edu/~tsachy/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0009-0008-1099-691X/person.json",
+     "at": "2026-10-31T11:12:22+00:00",
+     "result": "no_urls",
+     "sha256": "3b10cffa631db957e7df883926f78a8104b37a5b1febece26fe8d04c7fe4125c"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-10-31T11:12:22+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://profiles.stanford.edu/itschak-weissman",
+     "at": "2026-10-31T11:12:22+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://web.stanford.edu/~tsachy/papers.html",
+     "at": "2026-10-31T11:12:22+00:00",
+     "result": "ok",
+     "via": "earlier_homepage_find",
+     "sha256": "0d978a914f47f7be756e013080385e7f0a9d5fe3ea49392071dffa8af7822577"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://compression.stanford.edu/summer-internships-high-school-students",
+     "at": "2026-10-31T11:12:33+00:00",
+     "result": "ok_wayback",
+     "via": "school_profile_link",
+     "capture_url": "https://web.archive.org/web/20210804004334id_/https://compression.stanford.edu/summer-internships-high-school-students",
+     "sha256": "2da84f056d1dff7630fb6f7ed0a4a3f05a83245516ddf74a984184a4a8f061c0",
+     "final_url": "https://web.archive.org/web/20210804004334id_/https://compression.stanford.edu/summer-internships-high-school-students"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://web.stanford.edu/~tsachy/",
+     "at": "2026-10-31T11:12:33+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "6c4cd0cfc3fed0ce28f652d3ec4c98d666cf853acec52c47180466ed4c2667e5"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://profiles.stanford.edu/itschak-weissman",
+     "at": "2026-10-31T11:12:35+00:00",
+     "result": "ok",
+     "via": "pi_evidence_url",
+     "sha256": "ec1b9216714fb164fb7d9ea873a171a6390481a40488f20f007793601436851a"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://compression.stanford.edu/summer-internships-high-school-students",
+     "at": "2026-10-31T11:12:42+00:00",
+     "result": "11 captures",
+     "frm": 2016
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20190819001104id_/https://compression.stanford.edu/summer-internships-high-school-students",
+     "at": "2026-10-31T11:12:46+00:00",
+     "result": "ok_wayback",
+     "sha256": "5cee4e801d172c12f2caf46ea8c23399b5d9e85e7e4529fb806491786c813e92"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20201112004608id_/https://compression.stanford.edu/summer-internships-high-school-students",
+     "at": "2026-10-31T11:12:51+00:00",
+     "result": "ok_wayback",
+     "sha256": "8dc1ee21e53ce4d3d4906abea8d226918f2767a9e14e7a7f2008bb7da5f9afbc"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20210804004334id_/https://compression.stanford.edu/summer-internships-high-school-students",
+     "at": "2026-10-31T11:12:51+00:00",
+     "result": "ok_wayback",
+     "sha256": "2da84f056d1dff7630fb6f7ed0a4a3f05a83245516ddf74a984184a4a8f061c0"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://web.stanford.edu/~tsachy/group.html",
+     "at": "2026-11-13T03:25:01+00:00",
+     "sha256": "575af3070faa56f3350cd0b7a29c603c7f5f415f5670acc22c5c360acd16e996",
+     "result": "ok",
+     "name_quote": "up Tsachy (Itschak) Weissman Home Teaching Biography Research Books Papers Patents Software Group Sponsored Pr",
+     "tie_quote": "ects Links IT-Forum Stanford Compression Forum The Informaticists Group Current Students PhD students: Aayush Rajesh Con",
+     "reviewer": "claude-wire-students-1115; coordinator ruling 2026-11-13: the heading 'Tsachy (Itschak) Weissman' on his own registered group page counts as the full name (fresh reviewer had flagged the parenthetical)"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "candidate_site:ok_wayback",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "prior_labpage_pass:recorded_page",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:11 captures"
+   ],
+   "checked_at": "2026-11-13T03:25:01+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "no_pubs_page",
+   "url": "https://web.stanford.edu/~tsachy/group.html",
+   "kind": "lab_site",
+   "people_page": "https://web.stanford.edu/~tsachy/group.html",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "575af3070faa56f3350cd0b7a29c603c7f5f415f5670acc22c5c360acd16e996",
+   "evidence": {
+    "url": "https://web.stanford.edu/~tsachy/group.html",
+    "sha256": "575af3070faa56f3350cd0b7a29c603c7f5f415f5670acc22c5c360acd16e996",
+    "quote": "up Tsachy (Itschak) Weissman Home Teaching Biography Research Books Papers Patents Software Group Sponsored Pr"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://web.stanford.edu/~tsachy/group.html",
+     "at": "2026-11-13T03:25:01+00:00",
+     "sha256": "575af3070faa56f3350cd0b7a29c603c7f5f415f5670acc22c5c360acd16e996",
+     "result": "ok",
+     "name_quote": "up Tsachy (Itschak) Weissman Home Teaching Biography Research Books Papers Patents Software Group Sponsored Pr",
+     "tie_quote": "ects Links IT-Forum Stanford Compression Forum The Informaticists Group Current Students PhD students: Aayush Rajesh Con",
+     "reviewer": "claude-wire-students-1115; coordinator ruling 2026-11-13: the heading 'Tsachy (Itschak) Weissman' on his own registered group page counts as the full name (fresh reviewer had flagged the parenthetical)"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "up Tsachy (Itschak) Weissman Home Teaching Biography Research Books Papers Patents Software Group Sponsored Pr"
   }
  ]
 }
