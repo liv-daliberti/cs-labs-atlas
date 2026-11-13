@@ -1326,8 +1326,10 @@ def apply_registered_people_page(kit, ctx, pi, site_url, chosen, pages, add):
     (AISL sjtuaiseclab.github.io/student/ was never linked as 'people'); it must still fetch (robots, pacing) as a 200 page."""
     reg = (ctx.get('registered') or {}).get(pi) or {}
     pp = reg.get('people_page')
-    if not pp or chosen.get('people_page') == pp or urlsplit(pp).hostname != urlsplit(site_url).hostname:
+    if not pp or chosen.get('people_page') == pp:
         return False
+    if urlsplit(pp).hostname != urlsplit(site_url).hostname and not (reg.get('url') and urlsplit(reg['url']).hostname == urlsplit(pp).hostname):
+        return False   # another host's page counts only when the register's own reviewed site sits on that host (纪幸辰: faculty platform registered, a lab site linked from the profile ranked first)
     rr = kit.get(pp)
     add('registered_people_page', pp, result_of(rr), on=site_url, capture_url=rr.get('capture_url'), sha256=rr.get('sha256'))
     if rr.get('status') == 200 and rr.get('content'):
@@ -2447,22 +2449,26 @@ def faculty_platform_detail_cell(text):
     所学专业 ... 学历： 硕士研究生 ... 状态： 在校|毕业 入学日期： 2021-09-10 毕业日期： 2025-03-31'. Role from the 学历 field, status from 状态, years [registration year, graduation year]
     (a current student: [registration year, capture year]; the planned graduation date of a current student is not a membership year). -> dict(name, role, years, alumni, quote, head, desc) or None."""
     t = re.sub(r'\s+', ' ', text or '')
-    m = re.search(r'(?:学生信息|>>)\s+(?:>>\s+)?([\u4e00-\u9fff\u00b7]{2,5})(?:\s+\1)?\s+(?:发布时间[：:]\s*\S+\s+|点击次数[：:]\s*)?(?:所学专业[：:]|学历[：:])', t)
+    m = re.search(r'(?:学生信息|>>)\s+(?:>>\s+)?([\u4e00-\u9fff\u00b7]{2,5})(?:\s+\1)?\s+(?:发布时间[：:]\s*\S+\s+)?(?:点击次数[：:]\s*)?(?:所学专业[：:]|学历[：:]|学位[：:])', t)
     if not m:
         return None
     body = t[m.start(1):]
-    deg = re.search(r'学历[：:]\s*(\S+)', body)
+    deg = re.search(r'学历[：:]\s*(\S+)', body) or re.search(r'学位[：:]\s*(\S+)', body)   # Tsinghua EE cards carry only 学位 (工学博士学位)
     st = re.search(r'状态[：:]\s*(\S+)', body)
     reg = re.search(r'入学日期[：:]\s*((?:19|20)\d\d)-\d\d-\d\d', body)
     grad = re.search(r'毕业日期[：:]\s*((?:19|20)\d\d)-\d\d-\d\d', body)
-    if not deg or not st or not (reg or grad):
+    if not deg or not st:
         return None
-    role = next((r_ for k_, r_ in HAN_DEGREE_ROLE if k_ in deg.group(1)), None)
     alumni = st.group(1).startswith('毕业')
     if not alumni and not re.match(r'在校|在读', st.group(1)):
         return None
+    if not (reg or grad) and alumni:
+        return None   # a graduate with no date cannot be placed in the window
+    role = next((r_ for k_, r_ in HAN_DEGREE_ROLE if k_ in deg.group(1)), None)
     y0 = int(reg.group(1)) if reg else None
     end = re.search(r'(毕业日期[：:]\s*(?:19|20)\d\d-\d\d-\d\d)', body) if alumni else re.search(r'(入学日期[：:]\s*(?:19|20)\d\d-\d\d-\d\d)', body)
+    if not end and not alumni:
+        end = re.search(r'状态[：:]\s*\S+', body)   # an undated current card (no 入学日期): the quote ends at its explicit 在校 marker, years stay null
     quote = body[:end.end()] if end else None
     if alumni:
         years = [y0, int(grad.group(1)) if grad else None]

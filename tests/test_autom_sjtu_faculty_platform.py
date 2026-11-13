@@ -77,5 +77,12 @@ def test_detail_page_cards_two_templates():
     c2 = la.faculty_platform_detail_cell(t2)
     assert (c2['name'], c2['role'], c2['alumni'], c2['years'][0]) == ('辛壬癸', 'phd', False, 2022) and c2['years'][1] >= 2026
     assert c2['quote'].endswith('入学日期： 2022-04-07')   # the planned graduation date of a current student is not quoted as membership
+    t3 = ('清华大学 某教授--中文主页-- 张甲乙 English 首页 学生信息 当前位置: 中文主页 >> 学生信息 张甲乙 发布时间：2021-11-01 点击次数： 学位： 工学博士学位 学位： 工学博士学位 '
+          '状态： 在校 状态： 在校 下一条：刘丙 通讯地址：北京市 版权所有©清华大学电子工程系')
+    c3 = la.faculty_platform_detail_cell(t3)   # Tsinghua EE card: 学位 only, no registration date: an undated CURRENT card (years null), role phd
+    assert (c3['name'], c3['role'], c3['years'], c3['alumni']) == ('张甲乙', 'phd', None, False)
+    assert c3['quote'] in re.sub(r'\s+', ' ', t3) and c3['quote'].endswith('状态： 在校')
+    t4 = t3.replace('状态： 在校 状态： 在校', '状态： 毕业 状态： 毕业')
+    assert la.faculty_platform_detail_cell(t4) is None   # an undated graduate cannot be placed in the window
     assert la.faculty_platform_detail_cell('学生信息 研究领域 论文成果') is None
     assert la.PLATFORM_DETAIL_RX.search('https://faculty.sjtu.edu.cn/x/zh_CN/xsxx/12/content/34.htm') and la.PLATFORM_LIST_RX.search('https://faculty.sjtu.edu.cn/x/zh_CN/xsxx/12/list/index.htm')
