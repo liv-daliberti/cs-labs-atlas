@@ -68,3 +68,10 @@ def test_round_draw_sizes_and_history(tmp_path):
     assert legacy['seed'] == 20261029 and 'sizes' not in legacy
     assert sum(x['stratum'] == 'uniform' for x in legacy['schools']['mit']['lab_precision']) == 25
     assert json.loads(Path(S.OUT).read_text())['seed'] == 20261029 and os.path.exists(ACC / 'verdicts.jsonl')
+
+
+def test_round_r3_top10_new_seed():
+    r3 = S.ROUNDS['r3']
+    assert r3['seed'] == 20261113 and r3['seed'] not in (S.SEED, S.ROUNDS['r2']['seed'])
+    assert (r3['uniform'], r3['stratum'], r3['cov'], r3['dir']) == (50, 5, 50, 'round-r3')
+    assert len(r3['schools']) == 10 and len(set(r3['schools'])) == 10

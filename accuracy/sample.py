@@ -45,7 +45,11 @@ SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
 ACC_DIR = _Path(__file__).resolve().parent
 LEGACY = dict(seed=SEED, uniform=25, stratum=5, cov=15, cands=40, schools=SCHOOLS, dir=None)
 ROUNDS = {'r2': dict(seed=20261102, uniform=50, stratum=5, cov=50, cands=200,
-                     schools=['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford', 'michigan'], dir='round-r2')}
+                     schools=['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford', 'michigan'], dir='round-r2'),
+          # r3 (2026-11-13, owner: close gate 9 for the top 10): a new seed, 50 uniform rows per measure, one draw per school AFTER the
+          # builds it binds to are promoted; its summaries are copied to accuracy/summary-<key>.json by the judge for tools/stage_gate.py
+          'r3': dict(seed=20261113, uniform=50, stratum=5, cov=50, cands=200,
+                     schools=['mit', 'princeton', 'hkust', 'berkeley', 'stanford', 'sjtu', 'cmu', 'tsinghua', 'zju', 'ntu'], dir='round-r3')}
 FILES = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 
 
