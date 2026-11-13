@@ -35,6 +35,36 @@
    "rate_limit_history": "2026-11-13: HTTP 429 at ~20 req/min (pilot) and a SECOND 429 on the first search after a 32-minute idle (Stage B): the account/endpoint is throttled. Spacing raised 6 -> 10 s, budget 100 per run.",
    "day_marker": "the first 429/401/403/challenge writes scratch/openreview-students/STOPPED-<UTC date>; every later run (Slurm or manual) that could make a request refuses to start that UTC day (dry-run is still allowed).",
    "third_429": "A third HTTP 429 means the account is rate-capped: stop the route, contact OpenReview and read their Terms of Use before any further request; the owner decides."
+  },
+  {
+   "host": "cse.hkust.edu.hk",
+   "host_use": "bounded",
+   "scope": "GET /pg/defenses/<season>/ (season index pages S/Summer/F 16-26) and the PhD event pages they link (/pg/defenses/<season>/<id>.html) only; MPhil events and every other path are not fetched by this route",
+   "min_delay_seconds": 3,
+   "cache": "every page stored once in the school's capture store (captures/hkust.sqlite, live table); a stored page is never fetched again",
+   "stop_on": [
+    "HTTP 401",
+    "HTTP 403",
+    "HTTP 429",
+    "challenge marker",
+    "10 failed pages"
+   ],
+   "on_stop": "the job exits 3, the host is recorded in the capture store's blocked table; no retry, no evasion, not re-submitted",
+   "rule": "R-STU-29",
+   "ruling_date": "2026-11-14",
+   "ruling": "Owner decision 2026-11-14 (relayed by the coordinator: 'yes'): the HKUST CSE qualifying/proposal/thesis event pages are dated student-supervisor evidence; one Slurm job, resumable, 3 s spacing, one host.",
+   "tool": "tools/hkust_cse_defences.py",
+   "robots": {
+    "checked": "2026-11-13T20:00:26Z",
+    "url": "https://cse.hkust.edu.hk/robots.txt",
+    "bytes": 72,
+    "sha256": "7c72243c1d03e825cd4ea49f65c84282c9d2f2d455e73294285836d2cc69f2de",
+    "rules": "User-agent: *; Disallow: /cgi-bin/, /trash/, /*/trash/",
+    "ai_agent_rules": "none named",
+    "consequence": "/pg/defenses/ is allowed for every agent name school_web checks"
+   },
+   "one_job_at_a_time": "one crawl job at a time (tools/hkust_defences.slurm)",
+   "not_chartered": "calendar.hkust.edu.hk: no thesis-examination category exists (categories are Seminar/Lecture/Talk, Other Format, ...), so there is no index; gs.sjtu.edu.cn/xwxk/: carries the degree rules only, no named notices. Neither host was chartered."
   }
  ]
 }
