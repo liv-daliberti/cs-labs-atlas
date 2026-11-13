@@ -363,7 +363,7 @@ def not_a_paper(r, pages=None, bare=False):
         return 'award_announcement'
     if WORKSHOP_TITLE.search(t) or (TUTORIAL_ON.search(t) and ty in ('conference-paper', 'conference-abstract')):
         return 'workshop_proposal'
-    if ty == 'conference-paper' and pages is not None and pages <= 2 and re.match(r'(?i)^[A-Z]{2,8}(?:[- ]\d{4})?\s+workshop on\b', t):
+    if ty == 'conference-paper' and (pages is None or pages <= 2) and re.match(r'(?i)^[A-Z]{2,8}(?:[- ]\d{4})?\s+workshop on\b', t):
         return 'workshop_proposal'
     if HIGHLIGHTS_TITLE.search(t):
         return 'highlights_column'

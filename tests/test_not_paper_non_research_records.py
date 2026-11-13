@@ -37,6 +37,7 @@ def test_R_PAP_46_short_acronym_workshop_announcement():
     r = row('KDD workshop on Evaluation and Trustworthiness of Generative AI Models',
             'conference-paper', 'KDD', doi='10.1145/3637528.3671481')
     assert papers.not_a_paper(r, pages=2) == 'workshop_proposal'
+    assert papers.not_a_paper(r) == 'workshop_proposal'  # OpenAlex has no page count for this record
     assert papers.not_a_paper(r, pages=10) is None
 
 
