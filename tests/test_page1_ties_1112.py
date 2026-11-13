@@ -65,3 +65,13 @@ def test_one_tie_per_pi():
     z = tie_for_pi(entry, ['James Zou'])
     assert z['quotes'][0].startswith('James Zou') and z['url'] == 'u'
     assert tie_for_pi(entry, ['Percy Liang']) is None
+
+
+def test_candidates_consider_every_pi_authorship():
+    """A later PI without an affiliation is a page-1 candidate even when an earlier PI on the byline lists an institution (Odysseus, Princeton)."""
+    def au(i, inst=(), raw=()):
+        return {'author': {'id': i}, 'institutions': list(inst), 'raw_affiliation_strings': list(raw)}
+    w = {'authorships': [au('A1', ['Princeton University'], ['Princeton Language and Intelligence']), au('A2'), au('A3')]}
+    assert F.unaffiliated_pi_authorship(w, {'A1', 'A2'})['author']['id'] == 'A2'
+    assert F.unaffiliated_pi_authorship(w, {'A1'}) is None
+    assert F.unaffiliated_pi_authorship({'authorships': [au('A2', raw=['x'])]}, {'A2'}) is None

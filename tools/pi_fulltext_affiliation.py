@@ -245,6 +245,14 @@ def dblp_pages(pis):
     return out
 
 
+def unaffiliated_pi_authorship(w, mine):
+    """The authorship of one of the school's PIs (author id in `mine`) that lists no institution and no raw affiliation string, or None.
+    Every PI authorship on the byline is considered, not just the first (2026-11-13, Princeton: Odysseus W7160129578 lists Danqi Chen with an
+    institution first, so Chi Jin's affiliation-less authorship was never page-1 read)."""
+    return next((x for x in w.get('authorships') or [] if (x.get('author') or {}).get('id') in mine
+                 and not x.get('institutions') and not x.get('raw_affiliation_strings')), None)
+
+
 def candidates(school):
     """Works of the school's PIs whose PI authorship lists no institution (needs page 1): (work, arXiv id or None, name forms,
     local catalog PDF or None). Two kinds: (a) a work of one of the PI's anchored or reviewed OpenAlex author ids; (b) (R8,
@@ -273,9 +281,9 @@ def candidates(school):
         w = json.loads(zlib.decompress(b))
         if w['id'] in done:
             continue
-        a = next((x for x in w.get('authorships') or [] if (x.get('author') or {}).get('id') in mine), None)
+        a = unaffiliated_pi_authorship(w, mine)
         forms = names_of.get((a.get('author') or {}).get('id')) if a else None
-        if a is None or a.get('institutions') or a.get('raw_affiliation_strings'):
+        if a is None:
             a = None  # (b) the PI's DBLP page names the work and the PI's own authorship lists no institution
             d = re.sub(r'^https?://(?:dx\.)?doi\.org/', '', w.get('doi') or '', flags=re.I).lower()
             for pi in dict.fromkeys(by_doi.get(d, []) + by_title.get(norm_title(w.get('title')), [])):
