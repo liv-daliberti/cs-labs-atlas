@@ -351,7 +351,7 @@ def markers(school, src):
             if el.find(["div", "p", "li", "td", "table", "ul", "ol", "section", "article", "h1", "h2", "h3", "h4", "h5", "h6"]) is not None \
                     and el.name in ("div", "li", "td", "section", "article", "p"):
                 continue
-            first = re.split(r"\s+[,|·•–—]\s+|\s+\(|,\s+(?=[A-Z])|\s+-\s+", txt)[0] if txt else ""
+            first = re.split(r"\s+[,|·•–—]\s+|\s+\(|,\s+(?=[A-Z]|(?:19|20)\d\d\b)|\s+-\s+", txt)[0] if txt else ""
             for c in (txt, first):
                 c = c.strip(" ,;:|·•-–—*")
                 if c and namey(c):

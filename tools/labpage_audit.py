@@ -3557,7 +3557,7 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                 continue
             if SD.visiting(ctx_decisions(school), pi, nm):
                 best = dict(best, role='visiting', role_basis='reviewer')
-            why_ = (not_a_member_context(kit, school, nm, best) or page_lacks_pi(kit, school, p, best) or page_pi_elsewhere(kit, school, p, best) or names_another_adviser(p, best)
+            why_ = (not_a_member_context(kit, school, nm, best) or page_lacks_pi(kit, school, p, best, (lab.get('urls') or {}).get('lab_site')) or page_pi_elsewhere(kit, school, p, best) or names_another_adviser(p, best)
                     or repair_reason(kit, school, nm, dict(best, years=years), pi_start_year(p), p.get('pi')))
             if why_:  # a Stanford Profiles reader / program listing, or a name in a citation (Stanford round 1, 2026-11-01)
                 miss['reason_code'], miss['detail'] = why_
@@ -4068,7 +4068,21 @@ def pi_full_name_on_page(text, p):
     return N.page_names_pi(text, p.get('pi'), p.get('names'))
 
 
-def page_lacks_pi(kit, school, p, best):
+def page_under_own_site(url, site, school):
+    """True when url lies under the PI's own site: the same host, and a site path that is not the root of a host of this school's domain
+    (a department server's '/' is every colleague's page; a personal github.io root or a /home/<pi>/ directory is one person's)."""
+    if not url or not site:
+        return False
+    a, b = urlsplit(unwayback(url)), urlsplit(unwayback(site))
+    if not a.hostname or a.hostname.lower().removeprefix('www.') != (b.hostname or '').lower().removeprefix('www.'):
+        return False
+    base = b.path.rsplit('/', 1)[0] + '/' if not b.path.endswith('/') else b.path
+    if base == '/' and re.search(SCHOOLS[school]['domain'], b.hostname or ''):
+        return False
+    return a.path.startswith(base)
+
+
+def page_lacks_pi(kit, school, p, best, site=None):
     """Stanford: a page that never names the PI is a department or program page (Journalism's students list under Hancock),
     not the lab's page. Other schools' lab pages legitimately omit the PI's name, so this applies to Stanford only."""
     if school in LEGACY_SCHOOLS and school not in ('stanford', 'berkeley'):
@@ -4077,6 +4091,8 @@ def page_lacks_pi(kit, school, p, best):
         t = kit.lpev.text(school, best.get('capture_url') or best['sha256'])
     except (KeyError, ValueError):
         return None
+    if page_under_own_site(best.get('url') or best.get('capture_url') or '', site, school):
+        return None   # a page under the PI's own homepage or lab site (rainoftime.github.io/html/students.html) is the PI's page whether or not it spells the name
     fam = pi_family_tokens(p.get('pi'))
     if any(len(f) >= 3 and fold(f).lower() in fold(re.sub(r'^https?://', '', (best.get('url') or best.get('capture_url') or ''))).lower() for f in fam):
         return None   # the page's own address names the PI (noh-lab.stanford.edu, med.stanford.edu/gevaertlab): his lab's page, never a department page
