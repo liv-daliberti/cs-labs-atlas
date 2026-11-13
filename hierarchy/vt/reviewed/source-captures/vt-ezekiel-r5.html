@@ -1,0 +1,241 @@
+<!-- vim: set ts=2 sw=2 et: -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Ezekiel Cochran</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="style.css" rel="stylesheet" type="text/css">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+<script src="jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="section-switch.js"></script>
+<span> <!-- Dog scripts -->
+  <script id="vertex-shader" type="x-shader/x-vertex">
+
+  attribute vec4 vPosition;
+  varying vec4 vPosition2;
+  attribute vec4 vColor;
+  varying vec4 fColor;
+
+  uniform mat4 rotationMatrix;
+  varying mat4 wagMatrix;
+  uniform float bigWagAngle; // represents the angle of the whole tail, not each point
+
+  void main()
+  {
+      // vPosition is what we get from the .js, and the homogenous coordinate gives us information
+      // about whether the point is in the tail, and how far up the tail it is
+      // vPosition2 is what we actually render, and what has the homogenous coordinate replaced back to 1.0
+      vPosition2 = vec4(vPosition[0], vPosition[1], vPosition[2], 1.0);
+      if (vPosition[3] == 0.0) { // point is in the body of dog
+          wagMatrix = mat4(1.0); // identity matrix
+      } else {
+
+          // Coordinates of our centroid (which gets translated to orgin)
+          // cx = 0
+          float cy = 0.2919880959497081;
+          float cz = 0.08370484856832476;
+
+          mat4 translationMatrix1 = mat4(1.0, 0.0, 0.0, 0.0,
+                                      0.0, 1.0, 0.0, 0.0,
+                                      0.0, 0.0, 1.0, 0.0,
+                                      0.0, -cy, -cz, 1.0);
+
+          mat4 translationMatrix2 = mat4(1.0, 0.0, 0.0, 0.0,
+                                      0.0, 1.0, 0.0, 0.0,
+                                      0.0, 0.0, 1.0, 0.0,
+                                      0.0, cy, cz, 1.0);
+
+          // these represent our axis with a normalized vector
+          // x = 0
+          float y = -0.5685538673156106;
+          float z = 0.8226460356438018;
+
+          float k = 1.1; // proportionality constant, determines how much wag angle depends on distance from butt
+          float wagAngle = bigWagAngle * k * vPosition[3]; // still need to connect this to the .js, and make it different for every point proportional to distance from butt
+
+          float c = cos(wagAngle);
+          float omc = 1.0 - c;
+          float s = sin(wagAngle);
+
+          mat4 wagRotationMatrix = mat4(c, -z*s, y*s, 0.0,
+                                  z*s, y*y*omc + c, y*z*omc, 0.0,
+                                  -y*s, y*z*omc, z*z*omc + c, 0.0,
+                                  0.0, 0.0, 0.0, 1.0);
+
+          wagMatrix = translationMatrix2 * wagRotationMatrix * translationMatrix1;
+
+      }
+
+      fColor = vColor;
+      gl_Position = rotationMatrix * wagMatrix * vPosition2;
+  }
+  </script>
+  <script id="fragment-shader" type="x-shader/x-fragment">
+  precision mediump float;
+  varying vec4 fColor;
+  void
+  main()
+  {
+      gl_FragColor = fColor;
+  }
+  </script>
+  <script type="text/javascript" src="./dog/lib/webgl-utils.js"></script>
+  <script type="text/javascript" src="./dog/lib/initShaders.js"></script>
+  <script type="text/javascript" src="./dog/lib/MV.js"></script>
+  <script type="text/javascript" src="./dog/dog.js"></script>
+  <script type="text/javascript" src="./dog/colors.js"></script>
+  <script type="text/javascript" src="./dog/object_points/dog_triangles_separated.js"></script>
+</span>
+
+</head>
+<body>
+<div class="header">
+  <h1>Ezekiel Cochran</h1>
+  <p>Quantum Computing Researcher</p>
+</div>
+
+<div class="navbar">
+  <a href="#home">Home</a>
+  <a href="#publications">Publications</a>
+  <!-- <a href="#projects">Projects</a> -->
+  <a href="./assets/ezekiel-cochran-cv.pdf">Curriculum Vitae</a>
+  <a href="study/" class="right">
+    Study Scripture
+  </a>
+  <a href="https://www.linkedin.com/in/ezekielcochran/" class="right">
+    <!-- <img src="images/linkedin.png" alt="LinkedIn" style="width:32px;height:32px;"> -->
+    LinkedIn
+  </a>
+</div>
+
+<div class="row">
+  <div class="side vertical-hidden">
+    <div id="dog-div" class="dog">
+      <canvas id="gl-canvas" style="position:absolute; transform: scale(1); transform-origin: top left;">
+        Oops ... Your browser doesn't support the HTML5 canvas element. Rufus will wait for you to get a better browser!
+      </canvas>
+    </div>
+  </div>
+  <div class="main">
+    <div id="home" class="content-region">
+      <div class="headshot"></div>
+      <h2>Hi, I'm Zeke!</h2>
+      <p>
+        I am a PhD student at Virginia Tech, advised by <a href="https://www.atulmantri.com">Atul Mantri</a>.
+        I am working on quantum computing, especially in the context of cryptography.
+      </p>
+      <h2 style="clear: left;">Current Focus</h2>
+      <p>
+        My research centers on the foundations of quantum cryptography,
+        especially primitives which can exist even in worlds where classical cryptography collapses:
+        some examples include pseudorandom unitaries, EFI pairs, and quantum commitments.
+        I am especially intersted in black hole radiation decoding (BHRD) as a computational problem,
+        which both relates tightly to the other primitives mentioned, and offers an escape to a physics paradox!
+        I believe the relationship between quantum cryptography and information scrambling in physics is a promising avenue towards new insights in both.
+      </p>
+      <h2>Undergraduate Work</h2>
+      <p>
+        My undergraduate degrees are in Mathematics and Computer Science from LeTourneau University, with a minor in Physics.
+        I did much to busy myself outside of class, including research, tutoring, various leadership roles, and even rugby.
+        I was able to publish a number theory paper in the Ramanujan Journal during my time as an undergraduate,
+        and learned to two step!
+      </p>
+      <h2>Contact</h2>
+      <p>
+        I am always happy to talk about my work, or to discuss opportunities for collaboration.
+        Feel free to contact me at
+        ecochran [at] vt [dot] edu.
+      </p>
+      <p class="vertical-hidden">And while you're here, Rufus is excited to keep you company!</p>
+    </div>
+    <div id="publications" class="content-region">
+      <h2>Publications</h2>
+      <p>
+        Cochran, E., Atul, M.<br>
+        Black Hole Radiation Decoding in the Haar Random Oracle Model.<br>
+        Preprint (2026).<br>
+        <a href="https://arxiv.org/abs/2610.07124">Arxiv</a>
+      </p>
+      <p>
+        Cochran, E., Dawsey, M.L., Harrell, E., Samuel, S.<br>
+        Bijections, generalizations, and other properties of sequentially congruent partitions.<br>
+        Ramanujan J 63, 527–551 (2024).<br>
+        <a href="https://link.springer.com/article/10.1007/s11139-023-00728-y">The Ramanujan Journal</a><br>
+        <a href="https://arxiv.org/abs/2208.04291">Arxiv</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p id="foot-quote-1" class="foot-quote">
+    "She is more precious than jewels, and nothing you desire can compare with her."
+  </p>
+  <p id="foot-quote-2" class="foot-quote">
+    "Princes persecute me without cause, but my heart stands in awe of your words."
+  </p>
+  <p id="foot-quote-3" class="foot-quote">
+    "More to be desired are they than gold, even much fine gold; sweeter also than honey and drippings of the honeycomb."
+  </p>
+  <p id="foot-quote-4" class="foot-quote">
+    "Righteous lips are the delight of a king, and he loves him who speaks what is right."
+  </p>
+  <p id="foot-quote-5" class="foot-quote">
+    "A good name is better than precious ointment, and the day of death than the day of birth."
+  </p>
+  <p id="foot-quote-6" class="foot-quote">
+    "Indeed, none who wait for you shall be put to shame; they shall be ashamed who are wantonly treacherous."
+  </p>
+  <p id="foot-quote-7" class="foot-quote">
+    "There's ditches on both sides of the road."
+    <!-- -Wayne Cochran (do not turn aside, either to the right or to the left) -->
+  </p>
+  <p id="foot-quote-8" class="foot-quote">
+    "For now we see in a mirror dimly, but then face to face."
+  </p>
+  <p id="foot-quote-9" class="foot-quote">
+    "Now I know in part; then I shall know fully, even as I have been fully known."
+  </p>
+  <p id="foot-quote-10" class="foot-quote">
+    "A good man is born to serve, not born to make money"
+    <!-- -Dry Creek Dewayne (MW podcast) -->
+  </p>
+  <p id="foot-quote-11" class="foot-quote">
+        "Be strong, and let your heart take courage, all you who wait for the <span class="small-caps">Lord</span>!"
+  </p>
+  <p id="foot-quote-12" class="foot-quote">
+        "Trust in the <span class="small-caps">Lord</span>, and do good; dwell in the land and befriend faithfulness."
+  </p>
+  <p id="foot-quote-13" class="foot-quote">
+        "Commit your way to the <span class="small-caps">Lord</span>; trust in him, and he will act."
+  </p>
+  <p id="foot-quote-14" class="foot-quote">
+        "He led them by a straight way till they reached a city to dwell in."
+  </p>
+  <p id="foot-quote-15" class="foot-quote">
+        "Then they cried to the <span class="small-caps">Lord</span> in their trouble, and he delivered them from their distress."
+  </p>
+  <p id="foot-quote-16" class="foot-quote">
+        "Humble yourselves, therefore, under the mighty hand of God so that at the proper time he may exalt you, casting all your anxieties on him, because he cares for you."
+  </p>
+  <p id="foot-quote-17" class="foot-quote">
+        "Once you were not a people, but now you are God's people; once you had not received mercy, but now you have received mercy."
+  </p>
+  <p id="foot-quote-18" class="foot-quote">
+        "My son, do not despise the <span class="small-caps">Lord</span>'s discipline or be weary of his reproof, for the <span class="small-caps">Lord</span> reproves him whom he loves, as a father the son in whom he delights."
+  </p>
+  <p id="foot-quote-19" class="foot-quote">
+        "My son, do not regard lightly the discipline of the Lord, nor be weary when reproved by him. For the Lord disciplines the one he loves, and chastises every son whom he receives."
+  </p>
+  <p id="foot-quote-20" class="foot-quote">
+        "For the moment all discipline seems painful rather than pleasant, but later it yields the peaceful fruit of righteousness to those who have been trained by it."
+  </p>
+  <p id="foot-quote-21" class="foot-quote">
+        "Therefore lift your drooping hands and strengthen your weak knees, and make straight paths for your feet, so that what is lame may not be put out of joint but rather be healed."
+  </p>
+</div>
+
+</body>
+</html>
