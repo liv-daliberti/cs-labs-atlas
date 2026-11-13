@@ -157,6 +157,12 @@ def bare_key(k):
     return re.sub(r'^https?://dblp\.org/rec/', '', str(k or ''))
 
 
+def page1_name_forms(names):
+    """Keep both a literal byline first name and its nickname expansion for page-one matching."""
+    return sorted({(first, t[-1]) for n in names for t in [toks(n)] if len(t) >= 2
+                   for first in (given(t[0]), t[0].lower())})
+
+
 _EE_CACHE = {}
 
 
@@ -176,6 +182,7 @@ def dump_ee(keys):
 
 
 def candidates(school, skip_have=True):
+    only_keys = {k.strip() for k in os.environ.get('DBLP_RECOVER_KEYS', '').split(',') if k.strip()}
     pis = read(P.data('pis.json', school))
     own = P.data('dblp_pubs.json.gz', school)
     legacy = {}
@@ -204,9 +211,11 @@ def candidates(school, skip_have=True):
             for q in rec.get('authors') or {}:
                 corr[q][norm_title((rec.get('title') or '').rstrip('.'))] = f'{m.group(1)}.{m.group(2)}'
     out = []
-    need_ee = [k for k, rec in pubs.items() if not rec.get('ee') and rec.get('year') and 2016 <= int(rec['year']) <= 2026 and 'journals/corr' not in k and Y0 <= int(rec['year']) <= Y1]
+    need_ee = [k for k, rec in pubs.items() if not rec.get('ee') and rec.get('year') and 2016 <= int(rec['year']) <= 2026 and 'journals/corr' not in k and Y0 <= int(rec['year']) <= Y1 and (not only_keys or any(bare_key(k).endswith('/' + key) for key in only_keys))]
     ee_of = dump_ee(need_ee) if need_ee and os.environ.get('DBLP_RECOVER_NO_EE') != '1' else {}
     for k, rec in pubs.items():
+        if only_keys and not any(bare_key(k).endswith('/' + key) for key in only_keys):
+            continue
         if not rec.get('ee') and bare_key(k) in ee_of:
             rec['ee'] = ee_of[bare_key(k)]
         y = rec.get('year')
@@ -244,6 +253,14 @@ def run(school, workers):
     if retry and since:
         done |= {(r[0], r[1]) for r in c.execute('select pi, dblp_key from tries where at >= ?', (since,))}
     todo = [x for x in candidates(school) if (x['pi'], x['dblp_key']) not in done]
+    only_keys = {k.strip() for k in os.environ.get('DBLP_RECOVER_KEYS', '').split(',') if k.strip()}
+    if only_keys:
+        todo = [x for x in todo if any(x['dblp_key'].endswith('/' + key) for key in only_keys)]
+    pdf_overrides = json.loads(os.environ.get('DBLP_RECOVER_PDF_OVERRIDES', '{}'))
+    for x in todo:
+        url = pdf_overrides.get(bare_key(x['dblp_key']))
+        if url:
+            x['ee'] = list(dict.fromkeys([*x['ee'], url]))
     print(json.dumps(dict(school=school, candidates=len(todo))), flush=True)
     wlock = threading.Lock(); acc = collections.Counter()
 
@@ -255,10 +272,13 @@ def run(school, workers):
 
     def one(x):
         read_pages = []
-        nm = Name(x['names']); names = sorted({(given(t[0]), t[-1]) for n in x['names'] for t in [toks(n)] if len(t) >= 2})
-        if x['doi'] and key:  # 1. OpenAlex by DOI
+        nm = Name(x['names']); names = page1_name_forms(x['names'])
+        if x['doi']:  # 1. OpenAlex by DOI; public singleton lookup also works without a key
             try:
-                r = requests.get(f"https://api.openalex.org/works/doi:{x['doi']}", params={'api_key': key, 'select': 'id,authorships,locations,primary_location'}, timeout=60)
+                params = {'select': 'id,authorships,locations,primary_location'}
+                if key:
+                    params['api_key'] = key
+                r = requests.get(f"https://api.openalex.org/works/doi:{x['doi']}", params=params, timeout=60)
                 w = r.json() if r.status_code == 200 else None
             except (requests.RequestException, ValueError):
                 w = None
@@ -312,7 +332,18 @@ def run(school, workers):
             if k % 200 == 0:
                 print(json.dumps(dict(school=school, done=k, **acc)), flush=True)
     # accepted rows -> jsonl
-    write_accepted(school, c)
+    only_keys_env = os.environ.pop('DBLP_RECOVER_KEYS', None)
+    no_ee_env = os.environ.get('DBLP_RECOVER_NO_EE')
+    os.environ['DBLP_RECOVER_NO_EE'] = '1'
+    try:
+        write_accepted(school, c)
+    finally:
+        if only_keys_env is not None:
+            os.environ['DBLP_RECOVER_KEYS'] = only_keys_env
+        if no_ee_env is None:
+            os.environ.pop('DBLP_RECOVER_NO_EE', None)
+        else:
+            os.environ['DBLP_RECOVER_NO_EE'] = no_ee_env
     print(json.dumps(dict(school=school, final=dict(acc), accepted_total=c.execute('select count(*) from tries where accepted=1').fetchone()[0])))
 
 

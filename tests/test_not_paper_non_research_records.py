@@ -41,6 +41,13 @@ def test_R_PAP_46_short_acronym_workshop_announcement():
     assert papers.not_a_paper(r, pages=10) is None
 
 
+def test_issue_welcome_is_editorial_not_research():
+    r = row('Welcome to AI Matters 9(3)', 'article', 'AI Matters',
+            ['Ziyu Yao', 'Anuj Karpatne'], '10.1145/3626487.3626488')
+    assert papers.not_a_paper(r) == 'editorial'
+    assert papers.not_a_paper(row('Welcome to robust machine learning', 'article', 'AI Matters')) is None
+
+
 @pytest.mark.parametrize('r', [
     row('Effective combination of pretrained models - KIT@IWSLT2022', 'conference-paper', 'IWSLT', doi='10.18653/v1/2022.iwslt-1.14'),
     row('Data Provenance Tracking for Concurrent Programs', 'article', None, doi=''),

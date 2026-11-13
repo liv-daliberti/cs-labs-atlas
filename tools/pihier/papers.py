@@ -98,6 +98,7 @@ SUPPLEMENT_TITLE = re.compile(r'(?i)^\s*(moesm\d+|additional file \d+|supplement
                               r'|\((?:[\w ]+ )?artifact\)\s*$|\bdata (?:&|and) materials\s*$')
 ERRATUM_TITLE = re.compile(r'(?i)^\s*(?:publisher|author)s?[’\']?\s+correction\b|^\s*correction(?: to)?\s*:|^\s*erratum\b|^\s*corrigendum\b')
 EDITORIAL_TITLE = re.compile(r"(?i)^\s*(guest[- ]editorial|(?:inaugural )?editorial\b|foreword\b|preface\b|from the (?:guest )?editors?\b|"
+                             r"welcome to [\w .&-]+\s+\d+\(\d+\)\s*$|"
                              r"(?:guest )?editors?['’]? (?:introduction|note|preface|message)|editor['’]?s? note|"
                              r"introduction to the (?:\w+ )?(?:special|focus|featured|themed) (?:issue|section)|"
                              r"message from the (?:general |program |conference )?(?:co-?)?chairs?|in this issue\b|letter from the editor)")

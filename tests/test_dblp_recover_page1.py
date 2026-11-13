@@ -22,6 +22,16 @@ def test_R_PAP_36_bare_key():
     assert D.bare_key('https://dblp.org/rec/conf/colt/FreundLW22') == D.bare_key('conf/colt/FreundLW22') == 'conf/colt/FreundLW22'
 
 
+def test_page1_matches_literal_short_first_name_at_vt():
+    import re
+    from pi_fulltext_affiliation import tie
+    from pi_hierarchy import AFF
+    text = 'Jiyune Jeon and Jongseok Kim, Sungkyunkwan University; Sam H. Noh, Virginia Tech; Euiseong Seo, Sungkyunkwan University'
+    how, quotes = tie(text, D.page1_name_forms(['Sam H. Noh', 'Sam Hyuk Noh']), re.compile(AFF['vt'], re.I))
+    assert how == 'near'
+    assert 'Sam H. Noh, Virginia Tech' in quotes[0]
+
+
 def test_R_PAP_36_requests_take_host_throttle_slots(monkeypatch):
     calls = []
 
