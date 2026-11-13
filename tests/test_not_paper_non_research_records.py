@@ -19,6 +19,7 @@ REAL = [  # (tag, row): the sample's failing rows
     ('dataset_record', row('PGE Models - PL0001 - Opal-RT format with Second-wise Net Load in MATLAB data format', 'article', None, doi='')),
     ('highlights_column', row('Big Data in Finance: Highlights from the Big Data in Finance Conference Hosted at the University of Michigan October 27-28, 2016', 'preprint', 'SSRN Electronic Journal', doi='10.2139/ssrn.3131226')),
     ('highlights_column', row('SECM 2017 Workshop Summary', 'conference-abstract', None, doi='10.1109/secm.2017.15')),
+    ('conference_report', row('ACM Creativity and Cognition Conference 2017', 'article', 'IEEE Multimedia', ['Aisling Kelliher'], '10.1109/mmul.2017.4031310')),
     ('column', row('Research for Practice: Technology for Underserved Communities; Personal Fabrication', 'article', 'publish.UP (University of Potsdam)', doi='10.1145/3080188')),
     ('edited_volume', row('xxAI - Beyond Explainable AI', 'conference-paper', 'Lecture notes in computer science', doi='10.1007/978-3-031-04083-2')),
     ('workshop_proposal', row('EE2: Workshop on circuits for social good', 'conference-paper', 'Digest of technical papers', doi='10.1109/isscc.2018.8310410')),
@@ -30,6 +31,13 @@ REAL = [  # (tag, row): the sample's failing rows
 @pytest.mark.parametrize('tag,r', REAL)
 def test_R_PAP_33_failing_rows_drop(tag, r):
     assert papers.not_a_paper(r) == tag
+
+
+def test_R_PAP_46_short_acronym_workshop_announcement():
+    r = row('KDD workshop on Evaluation and Trustworthiness of Generative AI Models',
+            'conference-paper', 'KDD', doi='10.1145/3637528.3671481')
+    assert papers.not_a_paper(r, pages=2) == 'workshop_proposal'
+    assert papers.not_a_paper(r, pages=10) is None
 
 
 @pytest.mark.parametrize('r', [
@@ -46,6 +54,7 @@ def test_R_PAP_33_failing_rows_drop(tag, r):
     row('A Monograph', 'book', 'Springer', doi='10.1007/978-3-031-04083-2'),
     row('Psychology preprint', 'preprint', None, doi='10.17605/osf.io/sedn6'),
     row('Report on the Reproducibility of Deep Learning Models', 'article', 'ICML', doi='10.1/z'),
+    row('ACM Creativity and Cognition Conference 2017: Research Findings', 'article', 'IEEE Multimedia', doi='10.1/research'),
     row('A workshop on the road: field notes', 'article', 'CSCW', doi='10.1/w')])
 def test_R_PAP_33_real_papers_stay(r):
     assert papers.not_a_paper(r) is None

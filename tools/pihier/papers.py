@@ -264,6 +264,7 @@ REPOSITORY_VENUE = re.compile(r'(?i)^\s*(?:zenodo|figshare|dryad)(?:\s*\([^)]*\)
 HIGHLIGHTS_SUMMARY_TITLE = re.compile(r'(?i)\bhighlights (?:from|of) the\b.*\b(?:conference|workshop|symposium|meeting|summit)\b|'
                                       r'^\s*(?:summary|report|overview) (?:of|on) the\b.*\b(?:workshop|conference|symposium|seminar|meeting|summit)\b|'
                                       r'^\s*(?:conference|workshop|symposium) (?:summary|report)\b')
+EVENT_RECAP_TITLE = re.compile(r'(?i)^(?:ACM|IEEE|USENIX|AAAI|SIAM)\s+.{4,100}\b(?:conference|symposium|workshop)\s+(?:19|20)\d{2}$')
 SUMMARY_SUFFIX = re.compile(r'(?i)\b(?:workshop|symposium|conference) (?:summary|report)\s*$')   # 'SECM 2017 Workshop Summary' (8 words or fewer: a long title is a paper)
 CONFERENCE_VOLUME_TITLE = re.compile(r'(?i)^\s*(?:the )?(?:\d+(?:st|nd|rd|th)\s+)?(?:annual |international |joint )?(?:conference|symposium|workshop)\s+on\b[^:]{0,110}?\s*(?:\([^)]{2,25}\)\s*)?(?:19|20)\d\d\.?\s*$')   # 'Conference on Health, Inference, and Learning (CHIL) 2022': a proceedings volume
 RESEARCH_FOR_PRACTICE = re.compile(r'(?i)^\s*research for practice\b')
@@ -302,6 +303,8 @@ def non_research_record(r, pages=None):
         return 'dataset_record'
     if HIGHLIGHTS_SUMMARY_TITLE.search(t) or (SUMMARY_SUFFIX.search(t) and len(t.split()) <= 8):
         return 'highlights_column'
+    if ty == 'article' and EVENT_RECAP_TITLE.fullmatch(t):
+        return 'conference_report'
     if RESEARCH_FOR_PRACTICE.search(t):
         return 'column'
     if CONFERENCE_VOLUME_TITLE.search(t):
@@ -359,6 +362,8 @@ def not_a_paper(r, pages=None, bare=False):
     if AWARD_TITLE.search(t) or (AWARD_END.search(t) and len(t.split()) <= 8):
         return 'award_announcement'
     if WORKSHOP_TITLE.search(t) or (TUTORIAL_ON.search(t) and ty in ('conference-paper', 'conference-abstract')):
+        return 'workshop_proposal'
+    if ty == 'conference-paper' and pages is not None and pages <= 2 and re.match(r'(?i)^[A-Z]{2,8}(?:[- ]\d{4})?\s+workshop on\b', t):
         return 'workshop_proposal'
     if HIGHLIGHTS_TITLE.search(t):
         return 'highlights_column'
