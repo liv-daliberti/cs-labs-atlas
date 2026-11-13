@@ -231,6 +231,61 @@
      }
     ]
    }
+  },
+  "papers": {
+   "Phillip Colella": {
+    "verdict": "explained",
+    "reason": "No lab paper is admissible for Berkeley: this is not a finding that he has no works. (1) No strict identity anchor: no ORCID, no OpenAlex id and no DBLP-to-OpenAlex binding is on record for him; the only link is a Wikidata item (Q7185650) reciprocal with DBLP 11/4947 and carrying a Berkeley employer statement imported from another Wikidata item, which is not an official page and ties neither id to the OpenAlex author records. (2) The page-1 evidence names Lawrence Berkeley National Laboratory: of the 7 readable arXiv works of 2015-2023 (1503.05969, 1506.02999, 1602.00747, 1702.08111, 1712.01978, 1804.10972, 2307.07931), none names UC Berkeley for him (1506.02999 gives no affiliation text; 1804.10972 names UC Berkeley only for co-author Lo). Per the stored capture of his EECS pubs page, it lists one title (a 1993 report), below the R-PAP-44 floor of 10 titles for a title-only DBLP binding. (3) The 3 OpenAlex works with a Berkeley affiliation string (W1219148653, W2586390949, W4409888305) have no arXiv copy or local PDF, and their publisher hosts are not on the R-PAP-36 list, so they are unread and unverified, not rejected. His home is LBNL (title Professor in Residence Emeritus in EECS). Reviewed 2026-11-13 (claude gate-closures-1113, deep dive scratch/berkeley-colella-1115/deep/package-deep.json); a new strict anchor or a readable copy naming UC Berkeley beside him would reopen it.",
+    "evidence": [
+     {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1503/1503.05969v1.pdf",
+      "sha256": "6d1c84fec5bfb43343d11f135b7cfaa189f74179f69cc7277b899de0c73814d9",
+      "sha256_of": "the arXiv v1 PDF (public bulk copy), page 1 read with pdftotext",
+      "quote": "Andrew Myers, Phillip Colella, and Brian Van Straalen Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA, 94720, USA",
+      "observed": "2026-11-13"
+     },
+     {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1702/1702.08111v1.pdf",
+      "sha256": "16c2cb64da4203d83b67021908f8f4aabf489d609120ade5942ef082ec190568",
+      "sha256_of": "the arXiv v1 PDF (public bulk copy), page 1 read with pdftotext",
+      "quote": "Chris Kavouklis, Phillip Colella ... Lawrence Berkeley National Laboratory",
+      "observed": "2026-11-13"
+     },
+     {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1712/1712.01978v1.pdf",
+      "sha256": "ee5b3ba7cbd61a4742056cecd32641f9c2d133f67b2b936916abcbb2e5d2d0ec",
+      "sha256_of": "the arXiv v1 PDF (public bulk copy), page 1 read with pdftotext",
+      "quote": "3 Applied Numerical Algorithms Group, Lawrence Berkeley National Laboratory, One Cyclotron",
+      "observed": "2026-11-13"
+     },
+     {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1804/1804.10972v1.pdf",
+      "sha256": "a36810e5f8f44c82f948f38e6e24ffc344cd26c2d6386c6291871058aeb488f0",
+      "sha256_of": "the arXiv v1 PDF (public bulk copy), page 1 read with pdftotext",
+      "quote": "† Lawrence Berkeley National Laboratory, Berkeley, CA 94720. Email: pcolella@lbl.gov",
+      "observed": "2026-11-13"
+     },
+     {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2307/2307.07931v1.pdf",
+      "sha256": "833543aff82d3ca674465f46c46410b44d25fcd2935ac4b0a5c0548c48197b7b",
+      "sha256_of": "the arXiv v1 PDF (public bulk copy), page 1 read with pdftotext",
+      "quote": "† Lawrence Berkeley National Laboratory, Berkeley, CA, USA",
+      "observed": "2026-11-13"
+     },
+     {
+      "url": "https://www.wikidata.org/wiki/Special:EntityData/Q7185650.json",
+      "sha256": "4a2c8f83556ada4dd8886f5670b29f6194aff583cae8649df4f22afb3104fa4d",
+      "quote": "P2456 DBLP 11/4947; P108 employer UC Berkeley (imported from Q48183); no ORCID (P496), no OpenAlex id (P10283)",
+      "observed": "2026-11-13"
+     },
+     {
+      "url": "https://cs.lbl.gov/?p=1847",
+      "sha256": "22536f054c7670b48a035f652f9ea3b8e8f789d26fb8b3df5f66439030ee572c",
+      "quote": "92 peer-reviewed papers published in journals and 59 papers published by conferences; \"a staff scientist at Lawrence Livermore National Laboratory and a UC Berkeley Mechanical Engineering Department professor\"; no EECS appointment, no author ids",
+      "observed": "2026-11-13"
+     }
+    ]
+   }
   }
  },
  "stanford": {
