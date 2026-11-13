@@ -56,13 +56,26 @@ def test_gate8_local_share_and_ledger(tree):
 
 
 def test_gate9_thresholds_and_stale_build(tree):
-    good = {'lab_precision_uniform': {'p': .96}, 'student_precision_uniform': {'p': 1.0}, 'lab_coverage': {'p': .9}, 'files': {'a': 1}, 'files_now': {'a': 1}}
+    (tree.root / 'u' / 'pis.json').write_text('[1]')
+    live = G.live_sha(tree.root / 'u' / 'pis.json')
+    good = {'lab_precision_uniform': {'p': .96}, 'student_precision_uniform': {'p': 1.0}, 'lab_coverage': {'p': .9}, 'files': {'pis.json': live}, 'files_now': {'pis.json': live}}
     (tree.root / 'acc' / 'summary-u.json').write_text(json.dumps(good))
     assert G.evaluate('u', 9)['gate'] == 'pass'
-    bad = dict(good, lab_precision_uniform={'p': .92}, files_now={'a': 2})
+    bad = dict(good, lab_precision_uniform={'p': .92}, files_now={'pis.json': 'x'})
     (tree.root / 'acc' / 'summary-u.json').write_text(json.dumps(bad))
     r = G.evaluate('u', 9)
     assert r['gate'] == 'fail' and r['open'] == 2
+
+
+def test_R_ACC_01_gate9_compares_the_summary_hashes_with_the_live_build(tree):
+    (tree.root / 'u' / 'pis.json').write_text('[1]')
+    live = G.live_sha(tree.root / 'u' / 'pis.json')
+    s = {'lab_precision_uniform': {'p': .96}, 'student_precision_uniform': {'p': 1.0}, 'lab_coverage': {'p': .9}, 'files': {'pis.json': live}, 'files_now': {'pis.json': live}}
+    (tree.root / 'acc' / 'summary-u.json').write_text(json.dumps(s))
+    assert G.evaluate('u', 9)['gate'] == 'pass'
+    (tree.root / 'u' / 'pis.json').write_text('[1, 2]')   # a rebuild after the draw; files == files_now (both stored at summarize time)
+    r = G.evaluate('u', 9)
+    assert r['gate'] == 'fail' and r['open'] == 1 and 'pis.json differ from the live files' in r['items'][0]
 
 
 def test_waiver_needs_a_reason_and_keeps_the_items(tree):

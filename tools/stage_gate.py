@@ -379,6 +379,19 @@ def g8(key):
     return bad, dict(lab_papers=n, local=loc, local_share=round(share, 3), copy_target=COPIES_TARGET, copy_target_met=share >= COPIES_TARGET)
 
 
+def live_sha(path):
+    """sha256 of a live build file, None when it is missing."""
+    import hashlib
+    p = Path(path)
+    if not p.is_file():
+        return None
+    h = hashlib.sha256()
+    with open(p, 'rb') as f:
+        for b in iter(lambda: f.read(1 << 22), b''):
+            h.update(b)
+    return h.hexdigest()
+
+
 def g9(key):
     d = read(ACCURACY_DIR / f'summary-{key}.json')
     if not d:
@@ -388,8 +401,13 @@ def g9(key):
         p = (d.get(k) or {}).get('p')
         if p is None or p < bar:
             bad.append(f'accuracy: {k} {p} < {bar}')
+    # R-ACC-01: the hashes the summary recorded at draw time must equal the LIVE build files (files_now is stored at summarize time
+    # and never moves, so comparing it with files could not see a rebuild after the draw)
     if d.get('files') and d.get('files') != d.get('files_now'):
         bad.append('accuracy: the build changed since the sample was drawn (files != files_now)')
+    stale = [f for f, h in (d.get('files') or {}).items() if live_sha(P.data(f, key)) != h]
+    if stale:
+        bad.append(f'accuracy: the build changed since the draw ({", ".join(sorted(stale))} differ from the live files); redraw (accuracy/sample.py --round r3 --school {key})')
     return bad, dict(n_verdicts=d.get('n_verdicts'))
 
 
