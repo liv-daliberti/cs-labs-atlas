@@ -2055,6 +2055,9 @@ def entry_years(desc, head):
         if SEMESTER_START_RX.search(dw_) and not re.search(r'\b(?:intern|visit\w*|exchange|summer)\b', dw_, re.I) and not (head and (ALUMNI_HEAD_RX.search(head) or past_range_head(head))):
             return [int(ss.group(1)), None], 'stated_in_entry'   # '(Postdoc, Fall 2022)' under a current list: a semester start, still here (HKUST Jinbin Hu)
         return [int(ss.group(1)), int(ss.group(1))], 'stated_in_entry'   # 'summer 2018' / 'Summer 2018 intern': a stay in that season
+    sm_ = re.match(r'^\W{0,3}since\s+(?:0?[1-9]|1[0-2])\s*/\s*((?:19|20)\d\d)\b', desc or '', re.I)
+    if sm_:   # 'since 08/2024' (NTU Long Cheng's team page): an open start; a merged entry ('since 08/2022 Xi YUAN since 08/2022') reads only its own first date
+        return [int(sm_.group(1)), None], 'stated_in_entry'
     sn = re.search(r'\bsince\s+(?:(?:spring|summer|fall|autumn|winter)\s+)?((?:19|20)\d\d)(?:\s+(?:spring|summer|fall|autumn|winter))?\b', d, re.I)
     if sn:   # 'Since 2022 Fall' / 'Since Fall 2022': an open start (SJTU dmcv roster)
         return [int(sn.group(1)), None], 'stated_in_entry'
@@ -2161,8 +2164,11 @@ def nearer_nonphd_heading(text, name, head):
     if NONPHD_HEAD_RX.search(text[hp + len(h):min(pos)]):
         return True
     for m in NONPHD_HEAD_RX.finditer(text, hp + len(h)):   # also listed again right after a later non-PhD heading (the list is mixed: no role)
-        if any(text.find(f, m.end(), m.end() + 700) >= 0 for f in forms):
-            return True
+        for f in forms:
+            k2 = text.find(f, m.end(), m.end() + 700)
+            # an alumni entry that says 'Now: PhD student in our group' is the same person's earlier stage (master's 2023-24, then the current PhD): the PhD heading gives the role
+            if k2 >= 0 and not re.match(r'\W{0,3}Now:\s*(?:a\s+)?(?:Ph\.?\s?D\.?|doctoral)\s+(?:student|candidate)', text[k2 + len(f):k2 + len(f) + 40], re.I):
+                return True
     return False
 
 
