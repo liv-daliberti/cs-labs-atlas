@@ -171,7 +171,7 @@ def test_a_missing_page_keeps_the_year_open_and_a_complete_set_closes_it(monkeyp
 
 
 def test_charter_slots_are_config_slots_with_the_same_urls():
-    path = ROOT / 'listings' / 'scripts' / 'config_cmu.py'
+    path = ROOT / 'listings' / 'scripts' / 'config_cmu.py'  # route-ok: code file, not data
     spec = importlib.util.spec_from_file_location('config_cmu_under_test', path)
     cfg = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(cfg)
