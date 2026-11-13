@@ -15,6 +15,8 @@ def test_name_only_candidates_are_corroborated_or_held():
         if e.get('no_identity'):
             assert e.get('why_no_identity'), n
             assert not e.get('dblp'), n
+        elif e.get('openalex') and e.get('dblp') == [] and e.get('why_dblp_superseded'):
+            continue   # strict reviewed OpenAlex id(s) only; the name-only DBLP route is explicitly off (2026-11-13)
         else:
             corr = e['dblp_identity_review']['corroboration']
             assert any(c.get('kind') == 'dblp_candidate_works_with_school_authorship' and c['count'] >= 10 and c['sample_titles'] for c in corr), n
