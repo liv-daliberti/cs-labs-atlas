@@ -14,7 +14,10 @@ import make_release
 import organize_tree
 
 SHA = 'a' * 64
-NOW = datetime.now(timezone.utc)
+def utc_now():
+    # This file runs near the end of the full suite. A timestamp captured at
+    # module import can be more than the ledger's five-minute tolerance old.
+    return datetime.now(timezone.utc)
 
 
 def iso(d):
@@ -44,7 +47,7 @@ def _school(tmp_path, fx, ledger=True, drop=(), checked_at=None, counted_at=None
         cop['summary']['counted_at'] = counted_at
     (d / 'copies.json').write_text(json.dumps(cop))
     if ledger:
-        _jsonl(d / 'unavailable.jsonl.gz', [dict(r, checked_at=checked_at or iso(NOW)) for r in fx['ledger'] if r['key'] not in drop])
+        _jsonl(d / 'unavailable.jsonl.gz', [dict(r, checked_at=checked_at or iso(utc_now())) for r in fx['ledger'] if r['key'] not in drop])
         (d / 'unavailable-summary.json').write_text(json.dumps(fx['ledger_summary']))
     return d
 
@@ -80,7 +83,7 @@ def test_attach_ledger_sets_the_fields(tmp_path, fixture_json):
 
 
 def test_gate_passes_when_covered(tmp_path, monkeypatch, fixture_json):
-    root = _school(tmp_path / 'r', fixture_json('unavailable-ledger.json'), counted_at=iso(NOW - timedelta(hours=1))).parent
+    root = _school(tmp_path / 'r', fixture_json('unavailable-ledger.json'), counted_at=iso(utc_now() - timedelta(hours=1))).parent
     rc, ev = _gate(tmp_path, monkeypatch, root)
     res = ev['schools']['princeton']
     assert rc == 0 and ev['ok'], ev['over_whitelist']
@@ -104,17 +107,17 @@ def test_gate_fails_without_a_ledger(tmp_path, monkeypatch, fixture_json):
 def test_gate_fails_on_a_stale_entry(tmp_path, monkeypatch, fixture_json):
     fx = fixture_json('unavailable-ledger.json')
     # checked before the package was rebuilt (lab_papers.jsonl.gz is newer)
-    root = _school(tmp_path / 'a', fx, checked_at=iso(NOW - timedelta(days=2))).parent
+    root = _school(tmp_path / 'a', fx, checked_at=iso(utc_now() - timedelta(days=2))).parent
     rc, ev = _gate(tmp_path, monkeypatch, root)
     assert rc == 1 and ev['schools']['princeton']['unavailable_stale']['n'] == 3
     # checked after the build, but before the copies were counted again
-    d = _school(tmp_path / 'b', fx, checked_at=iso(NOW - timedelta(hours=1)), counted_at=iso(NOW))
+    d = _school(tmp_path / 'b', fx, checked_at=iso(utc_now() - timedelta(hours=1)), counted_at=iso(utc_now()))
     t = time.time() - 3 * 3600
     os.utime(d / 'lab_papers.jsonl.gz', (t, t))
     rc, ev = _gate(tmp_path, monkeypatch, d.parent)
     assert rc == 1 and ev['schools']['princeton']['unavailable_stale']['n'] == 3
     # within the tolerance: not stale
-    d = _school(tmp_path / 'c', fx, checked_at=iso(NOW - timedelta(seconds=60)), counted_at=iso(NOW))
+    d = _school(tmp_path / 'c', fx, checked_at=iso(utc_now() - timedelta(seconds=60)), counted_at=iso(utc_now()))
     os.utime(d / 'lab_papers.jsonl.gz', (t, t))
     rc, ev = _gate(tmp_path, monkeypatch, d.parent)
     assert rc == 0 and ev['schools']['princeton']['unavailable_stale']['n'] == 0
