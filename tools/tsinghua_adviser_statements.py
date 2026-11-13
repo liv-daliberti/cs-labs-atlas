@@ -13,7 +13,7 @@ Profile page: `<year>年指导博士生|硕士生 <name> 获 ...` on a PI's own 
 
 Conditions (R-STU-30): quote verbatim in the page text, capture sha256 stored; the adviser is the exact full Han name of ONE PI (a name two PIs share is
 dropped; a PI name with a bracket tag `杨帆 [EE]` matches only a page of that department's site); the page's site belongs to the PI's department; a postdoc,
-a faculty member, a competition team and an unspecified 'graduate' are never rows; the year is the article / list year, not after the capture year (held); the PI
+a faculty member, a team clause (postdoc / undergraduates / developers listed with the student), a competition team and an unspecified 'graduate' are never rows; the year is the article / list year, not after the capture year (held); the PI
 needs a period record covering the year (pis.json `periods` or a faculty-periods file; none, or a year before its start or after its end: HELD).
 
 usage: tsinghua_adviser_statements.py evidence --captures DB [DB ...] --pis pis.json [--periods faculty-periods.json] [--pdf-url URL] [--out FILE] [--held FILE]
@@ -51,6 +51,7 @@ PATS = [
 ]
 PROFILE = re.compile(r'((?:19|20)\d\d)年指导(博士生|硕士生|博士研究生|硕士研究生)' + NAME + r'(?=获|荣获|入选|的|完成)')
 PDF_LINE = re.compile(r'^\s*((?:20)\d\d)\s+(\S+)\s+([一-鿿]{2,4})\s+([一-鿿]{2,4})\s+(\S.*?)(?:\s+(提名))?\s*$')
+TEAM = re.compile(r'博士后|本科生|研发人员|团队|参赛|成员|课题组全体')
 DATE = re.compile(r'((?:19|20)\d\d)[.\-](\d\d)[.\-](\d\d)')
 
 
@@ -116,6 +117,8 @@ def statements(text):
         for m in rx.finditer(text):
             g = m.groups()
             level, student, adv = (g[1], g[0], g[2]) if pat in ('B', 'E') else (g[0], g[1], g[2])
+            if TEAM.search(text[max(0, m.start() - 60):m.end()]) and pat != 'E':   # a team clause (postdoc, undergraduates, developers listed together) is not a per-student statement
+                continue
             if pat == 'E':   # the name is the last 3 (else 2) Han characters before 的博士学位论文 ('...2024届博士毕业生罗正雄的博士学位论文')
                 tail = student
                 student = tail[-3:] if plausible_name(tail[-3:]) else tail[-2:]

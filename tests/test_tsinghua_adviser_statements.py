@@ -110,3 +110,9 @@ def test_R_STU_30_profile_page_dated_by_the_stated_year_and_owned_by_one_pi():
     raw = page('刘奕群 清华大学教授 2018年指导博士生曾锦乐获Henry Granjon Award。')
     rows, held, _ = run(cap('https://www.cs.tsinghua.edu.cn/info/1106/1.htm', raw))
     assert students(rows)[('刘奕群', '曾锦乐')]['years'] == [2018, 2018]
+
+
+def test_R_STU_30_a_team_adviser_clause_is_not_a_per_student_statement():
+    raw = page('核心研发人员包括博士后廖晓坚、博士生曾少勋、本科生郭昊、硕士生朱博弘，指导教师为计算机系艾清遥教授。', date='2022.05.01')
+    rows, held, counts = run(cap(CS, raw))
+    assert rows == [] and counts['rows'] == 0
