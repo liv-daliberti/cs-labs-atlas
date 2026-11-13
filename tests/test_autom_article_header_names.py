@@ -20,7 +20,7 @@ GRID = ('<html><body><header class="site-header"><nav class="nav-primary"><a>Res
 
 def _markers(monkeypatch, html):
     text = ' '.join(re.sub(r'<[^>]+>', ' ', html).split())
-    monkeypatch.setattr(autom.lpev, 'cap', lambda school, src: ({'content': html, 'url': src}, {'html': text}))
+    monkeypatch.setattr(autom.lpev, 'cap', lambda school, src: ({'content': html, 'url': src, 'sha256': 'x'}, {'html': text}))
     monkeypatch.setattr(autom.lpcap, 'decode', lambda c: c)
     return autom.markers('berkeley', 'https://example.org/people')[2]
 
@@ -43,3 +43,11 @@ def test_a_long_bare_header_around_the_roster_keeps_its_members(monkeypatch):
     html = f'<html><body><nav id="mainNav"><a>Research</a></nav><header><div><h1>Students</h1>{people}{"<p>filler text </p>" * 150}</div></header></body></html>'
     mk = _markers(monkeypatch, html)
     assert [m[3] for m in mk if m[2] == 'name'][:3] == ['Ann Marie Lee', 'Bo Wen Zhang', 'Carlos Ruiz Diaz']
+
+
+def test_a_name_with_a_degree_suffix_does_not_end_the_alumni_section(monkeypatch):
+    html = ('<html><body><h2>Graduate Students (Alumni)</h2><div>Lindsay Graff, PhD</div><div>PhD Student @ CMU SALUS Lab</div>'
+            '<div>PhD Civil Engineering: Carnegie Mellon University</div><div>Zheyi Li</div><div>MS Researcher @ CMU SALUS Lab</div></body></html>')
+    _markers(monkeypatch, html)
+    rows = autom.extract('cmu', 'https://example.org/team', 'Katherine Flanigan', [])
+    assert [(r['name'], r['alumni']) for r in rows] == [('Lindsay Graff', True), ('Zheyi Li', True)]

@@ -38,3 +38,15 @@ def test_a_stay_range_after_the_name_is_not_a_news_line():
     assert not news_item('Yang Xu September 2024 - December 2025 M.Eng.')
     assert news_item('August 2025: Patrick Kastner and I just received a seed grant')
     assert news_item('August 2025 - I gave a talk with Ann Lee at X')
+
+
+def test_own_school_degree_entry_reads_the_hkust_line_after_current_position():
+    from labpage_audit import own_school_degree_entry
+    t = ('Muleilan Pei Current position: TBC Thesis title: Learning to drive September 2021 - August 2026 The Hong Kong University of Science and Technology '
+         'Ph.D. in Electronic and Computer Engineering September 2019 - August 2021 Harbin Institute of Technology M.Eng. in Control Science Research focus: Robot learning')
+    rx = r'Hong Kong University of Science and Technology|HKUST'
+    role, years, quote = own_school_degree_entry(t, 'Muleilan Pei', rx)
+    assert (role, years) == ('phd', [2021, 2026]) and quote.endswith('Ph.D') and quote in t
+    t2 = 'William Wu Current position: X September 2017 - August 2019 The Hong Kong University of Science and Technology M.Phil. in ECE'
+    assert own_school_degree_entry(t2, 'William Wu', rx)[:2] == ('masters', [2017, 2019])
+    assert own_school_degree_entry('Ann Lee Current position: X September 2017 - August 2019 Harbin Institute M.Eng.', 'Ann Lee', rx) is None

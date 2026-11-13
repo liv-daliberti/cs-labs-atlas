@@ -704,6 +704,33 @@ def current_position_list(head):
     return bool(head and re.match(r'\s*current position\b', head, re.I))
 
 
+MONTH_RX = r'(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?'
+DEGREE_BLOCK_RX = re.compile(r'(?P<m1>' + MONTH_RX + r')\s+(?P<y1>(?:19|20)\d\d)\s*[-\u2013\u2014]\s*(?:(?P<m2>' + MONTH_RX + r')\s+(?P<y2>(?:19|20)\d\d)|(?P<now>present|now))\s+(?P<inst>[^\n]{3,90}?)\s+'
+                             r'(?P<deg>Ph\.?\s?D\.?|M\.?\s?Phil\.?|MPhil|M\.?\s?Sc\.?|M\.?\s?Eng\.?|Master\b[^.]{0,30}|Doctor of Philosophy|B\.?\s?Eng\.?|B\.?\s?Sc\.?)\b', re.I)
+
+
+def own_school_degree_entry(text, name, school_rx, max_span=700):
+    """A roster entry that lists its stays as 'September 2021 - August 2026 <institution> <degree>' lines after the name (HKUST Shen's alumni: 'Current position' and 'Thesis title'
+    come first): the first such line at THIS school gives the degree (role) and the stay (years). -> (role, years, quote) or None. The quote is the page text from the name to the end of
+    that degree phrase (verbatim)."""
+    i = (text or '').find(name)
+    if i < 0:
+        return None
+    block = text[i:i + max_span]
+    nxt = re.search(r'\b(?:Research focus|Personal website)\b', block)
+    for m in DEGREE_BLOCK_RX.finditer(block):
+        if not re.search(school_rx, m.group('inst'), re.I):
+            continue
+        deg = m.group('deg').lower().replace('.', '').replace(' ', '')
+        role = 'phd' if deg.startswith(('phd', 'doctor')) else 'masters' if deg.startswith(('mphil', 'msc', 'meng', 'master')) else None
+        if not role:
+            return None
+        y1 = int(m.group('y1'))
+        y2 = None if m.group('now') else int(m.group('y2'))
+        return role, [y1, y2], block[:m.end()] if not nxt or nxt.start() > m.end() else block[:m.end()]
+    return None
+
+
 def news_item(text):
     """A dated news sentence ('August 2025: Patrick Kastner and I just received a seed grant') names a collaborator, not a roster entry (Georgia Tech round 2)."""
     if re.search(r'\(\s*(?:TLE\s+)?(?:M\.?\s?Phil|Ph\.?\s?D|Master|Undergrad\w*|Postdoc\w*|RA|intern|visiting)\b', (text or '')[:160], re.I):
@@ -3185,6 +3212,17 @@ def pm_candidates(kit, school, pi, plan, held):
                     # a degree year equal to this year in a current-student list is an expected graduation, not an end (SJTU rounds 2-3); a placement after it ('NTU PhD 2026 Senior Researcher @ Apple') is an alumnus
                     x['alumni'] = True  # '(PhD 2024, co-advised with ...)' on a current page: the entry itself says the stay ended (UChicago stage 6, round 1)
             x['role'], x['role_basis'] = entry_role(x.get('desc'), x.get('head'), kit.autom._role)
+            if x['role'] is None and not x['years'] and re.match(r'^\W{0,3}Current position\b', x.get('desc') or ''):   # HKUST Shen's alumni: the degree and dates sit on lines after 'Current position' / 'Thesis title'
+                try:
+                    if src not in text_cache:
+                        text_cache[src] = kit.lpev.text(school, src)
+                    de_ = own_school_degree_entry(text_cache[src], x['name'], school_names_rx(school))
+                except (KeyError, ValueError):
+                    de_ = None
+                if de_:
+                    x['role'], x['role_basis'] = de_[0], 'entry'
+                    x['years'], x['years_basis'] = de_[1], 'stated_in_entry'
+                    x['quote'] = de_[2]
             ps_ = phd_postdoc_split(x.get('desc'))
             if ps_:   # '(Ph.D. 2022, Post-Doc 2022-2023)': the PhD stay ends 2022; the postdoc stay is a second row of the same person
                 x['years'], x['years_basis'] = ps_[0], 'stated_in_entry'

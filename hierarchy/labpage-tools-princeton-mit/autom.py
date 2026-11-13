@@ -150,7 +150,7 @@ ROLE_RULES = [
     ("undergraduate", r"undergrad|\burops?\b|superurop|senior thesis|junior (?:paper|iw|independent)|independent work|\breu\b|"
                       r"\bb\.?s\.?e?\.?(?=[\s,)']|$)|\bs\.?b\.?(?=[\s,)']|$)|\bug\b|class of|bachelor|sophomore|freshman|"
                       r"\bjunior\b|\bsenior\b(?! (?:research|scientist|engineer|lecturer|software|staff))|\u672c\u79d1"),
-    ("masters", r"master'?s|\bm\.?\s?eng\b|\bs\.?m\.?(?=[\s,)']|$)|\bmse\b|\bm\.?s\.?(?=[\s,)']|$)|\bmsc\b|\bmpp\b|\bmba\b|"
+    ("masters", r"master'?s|\bmst\b|\bm\.?\s?eng\b|\bs\.?m\.?(?=[\s,)']|$)|\bmse\b|\bm\.?s\.?(?=[\s,)']|$)|\bmsc\b|\bmpp\b|\bmba\b|"
                 r"\bm\.?a\.? student|\u7855\u58eb"),
     ("phd", r"ph\.?\s?d|doctoral|graduate student|grad student|graduate researcher|doctorate|\bdphil\b|\bg[1-7]\b|\u535a\u58eb(?!\u540e)"),
     ("other", r"visit|research scientist|research engineer|engineer|\bstaff\b|programmer|research assistant|lab manager|"
@@ -436,6 +436,10 @@ def extract(school, src, pi=None, held=(), span=None):
             if lv >= 7 and _role(s)[0] and len(s) <= 40 and not re.search(r"(s|i|ae)\W*$", s) \
                     and not ALUMNI_RX.search(s) and not re.search(r"\b(current|present)\b", s, re.I):
                 continue  # a singular role label ("PhD Student") between cards is a descriptor, not a section
+            if re.fullmatch(r"[A-Z][\w'.-]+(?:\s+[A-Z][\w'.-]+){1,3},\s*(?:ph\.?d\.?|m\.?s\.?|m\.?eng\.?)", s, re.I) and not ALUMNI_RX.search(s):
+                continue  # 'Lindsay Graff, PhD': a member's name with a degree suffix, not a section: it must not end the Alumni section above it (CMU Flanigan)
+            if re.match(r"^(?:ph\.?d|m\.?s\.?e?|b\.?s\.?e?|b\.?e|m\.?eng|m\.?a|b\.?a|mba)\b[^:]{0,70}:", s, re.I) and len(s) <= 110 and not ALUMNI_RX.search(s):
+                continue  # 'PhD Civil Engineering: Carnegie Mellon University' is the previous entry's degree line, not a section: it must not end the Alumni section (CMU Flanigan's Zheyi Li)
             while stack and stack[-1][0] >= lv:
                 stack.pop()
             cur = bool(re.search(r"\b(current|present|active)\b", s, re.I))
