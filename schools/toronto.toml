@@ -81,8 +81,31 @@ name = "Computer Science"
 unit = "Department of Computer Science, Faculty of Arts & Science"
 title_match = 'computer science'
 coverage = "full"
-listing_gaps = {2016 = "CDX 2026-11-09: web.cs.toronto.edu/people/faculty-directory has no 200 capture before 2021-11; the older candidate www.cs.toronto.edu/dcs/people-faculty-combin.html serves one single-person page (Prof. Mathon) in every sampled year, not a directory", 2017 = "CDX 2026-11-09: web.cs.toronto.edu/people/faculty-directory has no 200 capture before 2021-11; the older candidate www.cs.toronto.edu/dcs/people-faculty-combin.html serves one single-person page (Prof. Mathon) in every sampled year, not a directory", 2018 = "CDX 2026-11-09: web.cs.toronto.edu/people/faculty-directory has no 200 capture before 2021-11; the older candidate www.cs.toronto.edu/dcs/people-faculty-combin.html serves one single-person page (Prof. Mathon) in every sampled year, not a directory", 2019 = "CDX 2026-11-09: web.cs.toronto.edu/people/faculty-directory has no 200 capture before 2021-11; the older candidate www.cs.toronto.edu/dcs/people-faculty-combin.html serves one single-person page (Prof. Mathon) in every sampled year, not a directory", 2020 = "CDX 2026-11-09: web.cs.toronto.edu/people/faculty-directory has no 200 capture before 2021-11; the older candidate www.cs.toronto.edu/dcs/people-faculty-combin.html serves one single-person page (Prof. Mathon) in every sampled year, not a directory"}
 url = "https://web.cs.toronto.edu/people/faculty-directory"
+  # The old DCS directory is a complete three-table faculty roster in 2016–2019.
+  # The replacement /contact-us page has all faculty sections in 2019–2020.
+  [[departments.listings]]
+  slot = "legacy_full"
+  kind = "main"
+  url = "web.cs.toronto.edu/people/faculty.htm"
+  from = "20160101"
+  to = "20191231"
+  prefix = false
+  match = ""
+  format = "toronto_legacy_faculty"
+  title_filter = ''
+
+  [[departments.listings]]
+  slot = "transition_full"
+  kind = "main"
+  url = "web.cs.toronto.edu/contact-us/faculty-directory"
+  from = "20190801"
+  to = "20211231"
+  prefix = false
+  match = ""
+  format = "toronto_full_directory"
+  title_filter = ''
+
   [[departments.listings]]
   slot = "main"
   kind = "main"

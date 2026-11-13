@@ -1235,6 +1235,84 @@ def toronto_directory(h, section):
     return out
 
 
+def toronto_legacy_faculty(h):
+    """The pre-2019 DCS faculty.htm tables: faculty, cross appointments, status-only.
+
+    The old page has no rank column. Preserve the section as the title instead of
+    inventing a professorial rank from a name in the directory.
+    """
+    from bs4 import BeautifulSoup
+    from urllib.parse import urljoin
+
+    out = []
+    sections = {
+        ('NAME', 'PHONE', 'EMAIL', 'OFFICE'): 'Faculty',
+        ('NAME', 'DEPARTMENT'): 'Cross-appointed Faculty',
+        ('NAME', 'AFFILIATION'): 'Status-only and Adjunct Faculty',
+    }
+    for table in BeautifulSoup(h, 'html.parser').find_all('table'):
+        rows = table.find_all('tr')
+        if not rows:
+            continue
+        header = tuple(clean(cell.get_text(' ', strip=True)).upper() for cell in rows[0].find_all(['td', 'th']))
+        section = sections.get(header)
+        if not section:
+            continue
+        for row in rows[1:]:
+            cells = row.find_all(['td', 'th'], recursive=False)
+            if not cells:
+                continue
+            name = clean(cells[0].get_text(' ', strip=True))
+            if not name or name.upper() == 'NAME':
+                continue
+            link = cells[0].find('a', href=True)
+            out.append(dict(name_listed=name, titles=[section],
+                            profile=urljoin('http://web.cs.toronto.edu/', link['href']) if link else None,
+                            homepage=None, division=None))
+    return out
+
+
+def toronto_full_directory(h):
+    """One complete 2019-2021 DCS directory page across all named sections."""
+    out, seen = [], set()
+    for section in ('researchstream', 'teachingstream', 'emeriti', 'crossappointed', 'statusonly', 'adjunct'):
+        for row in toronto_directory(h, section):
+            key = (row['name_listed'].casefold(), tuple(row['titles']))
+            if key not in seen:
+                out.append(row)
+                seen.add(key)
+    if out:
+        return out
+
+    # The 2019 Squarespace layout used h2 section headings and h3 person cards
+    # instead of the later tables. Keep the written rank immediately after each
+    # name, and retain its section so cross appointments are not lost.
+    from bs4 import BeautifulSoup
+    sections = {'Teaching Stream Faculty', 'Tenure Stream Faculty', 'Professors Emeriti',
+                'Cross-Appointed Faculty', 'Status-Only Faculty', 'Adjunct Faculty'}
+    section = None
+    for tag in BeautifulSoup(h, 'html.parser').find_all(['h2', 'h3']):
+        if tag.name == 'h2':
+            label = clean(tag.get_text(' ', strip=True))
+            section = label if label in sections else None
+            continue
+        if not section:
+            continue
+        name = clean(tag.get_text(' ', strip=True))
+        if not name:
+            continue
+        link = tag.find('a', href=True)
+        rank = clean(str(tag.next_sibling or ''))
+        titles = [rank, section] if rank and len(rank) < 100 else [section]
+        key = (name.casefold(), tuple(titles))
+        if key not in seen:
+            out.append(dict(name_listed=name, titles=titles,
+                            homepage=H.unescape(link['href']).strip() if link else None,
+                            division=None))
+            seen.add(key)
+    return out
+
+
 def hkust_faculty_table(h):
     """HKUST CSE text directory: named faculty rows, excluding contact cells.
 
@@ -1891,6 +1969,8 @@ FORMATS = {
     'tsinghua_au_cards': (tsinghua_au_cards, re.compile(r'class="list13 flex"|class="teacher-list"')),
     'tsinghua_air_cards': (tsinghua_air_cards, re.compile(r'class="yjtd_tit"')),
     'hkust_faculty_table': (hkust_faculty_table, re.compile(r'(?!)')),
+    'toronto_legacy_faculty': (toronto_legacy_faculty, re.compile(r'(?!)')),
+    'toronto_full_directory': (toronto_full_directory, re.compile(r'(?!)')),
     'toronto_research': (lambda h: toronto_directory(h, 'researchstream'), re.compile(r'(?!)')),
     'toronto_teaching': (lambda h: toronto_directory(h, 'teachingstream'), re.compile(r'(?!)')),
     'toronto_emeriti': (lambda h: toronto_directory(h, 'emeriti'), re.compile(r'(?!)')),
