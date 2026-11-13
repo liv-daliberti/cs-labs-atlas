@@ -2435,7 +2435,7 @@ HAN_TABLE_TYPE_RX = re.compile(r'^(?:\u76f4|\u666e|\u5de5|\u5728\u804c|\u7855\u5
 HAN_TABLE_YEAR_RX = re.compile(r'^(?:19[89]\d|20[0-2]\d)$')
 
 
-PLATFORM_LIST_RX = re.compile(r'^https?://faculty\.sjtu\.edu\.cn/[^/]+/(?:zh_CN|en)/xsxx/\d+/list/index\.htm$')
+PLATFORM_LIST_RX = re.compile(r'^https?://(?:faculty\.sjtu\.edu\.cn|web\.ee\.tsinghua\.edu\.cn)/[^/]+/(?:zh_CN|en)/xsxx/\d+/list/index\.htm$')
 PLATFORM_DETAIL_RX = re.compile(r'/xsxx/\d+/content/\d+\.htm$')
 HAN_DEGREE_ROLE = (('博士后', 'postdoc'), ('博士', 'phd'), ('硕士', 'masters'), ('本科', 'undergraduate'))
 
