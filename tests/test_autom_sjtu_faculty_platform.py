@@ -83,6 +83,9 @@ def test_detail_page_cards_two_templates():
     assert (c3['name'], c3['role'], c3['years'], c3['alumni']) == ('张甲乙', 'phd', None, False)
     assert c3['head'] == '博士研究生 在校'
     assert c3['quote'] in re.sub(r'\s+', ' ', t3) and c3['quote'].endswith('状态： 在校')
+    t5 = t3.replace('学位： 工学博士学位 学位： 工学博士学位', '所学专业： 信息与通信工程 学历： 研究生在读 学位： 博士学位')
+    c5 = la.faculty_platform_detail_cell(t5)   # 学历 '研究生在读' names no degree: the 学位 value gives the role
+    assert (c5['role'], c5['years'], c5['head']) == ('phd', None, '博士研究生 在校')
     t4 = t3.replace('状态： 在校 状态： 在校', '状态： 毕业 状态： 毕业')
     assert la.faculty_platform_detail_cell(t4) is None   # an undated graduate cannot be placed in the window
     assert la.faculty_platform_detail_cell('学生信息 研究领域 论文成果') is None

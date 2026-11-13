@@ -2465,7 +2465,10 @@ def faculty_platform_detail_cell(text):
     if not (reg or grad) and alumni:
         return None   # a graduate with no date cannot be placed in the window
     role = next((r_ for k_, r_ in HAN_DEGREE_ROLE if k_ in deg.group(1)), None)
-    head_label = deg.group(1) if re.search(r'学历[：:]', body) else {'phd': '博士研究生', 'masters': '硕士研究生', 'postdoc': '博士后', 'undergraduate': '本科生'}.get(role, deg.group(1))   # a 学位-only card ('工学博士学位'): the degree names the student level
+    xw = re.search(r'学位[：:]\s*(\S+)', body)
+    if role is None and xw:   # 学历： 研究生在读 names no degree: the 学位 value does (博士学位 -> phd)
+        role = next((r_ for k_, r_ in HAN_DEGREE_ROLE if k_ in xw.group(1)), None)
+    head_label = deg.group(1) if re.search(r'学历[：:]', body) and role and any(k_ in deg.group(1) for k_, _r in HAN_DEGREE_ROLE) else {'phd': '博士研究生', 'masters': '硕士研究生', 'postdoc': '博士后', 'undergraduate': '本科生'}.get(role, deg.group(1))   # a 学位-only card ('工学博士学位'): the degree names the student level
     y0 = int(reg.group(1)) if reg else None
     end = re.search(r'(毕业日期[：:]\s*(?:19|20)\d\d-\d\d-\d\d)', body) if alumni else re.search(r'(入学日期[：:]\s*(?:19|20)\d\d-\d\d-\d\d)', body)
     if not end and not alumni:
