@@ -2159,7 +2159,20 @@
     ],
     "why_home_department": "several units list this person with a professor title and no captured official page states which is primary (R-HOME-01); an institute (RI) is never the home",
     "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5040402090"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5040402090: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7123963632",
+        "sha256": "9c7610d90d2a54274112a396ba045a3f28931f6aa8f83255261c5c6ee7501178",
+        "quote": "Chen, Kani | Hong Kong University of Science and Technology",
+        "observed": "2026-01-06",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Kam Tim Woo": {
     "home_department": "Emerging Interdisciplinary Areas",
@@ -2180,7 +2193,20 @@
     ],
     "why_home_department": "several units list this person with a professor title and no captured official page states which is primary (R-HOME-01); an institute (RI) is never the home",
     "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Kam Tim Woo' by the homepage, school-affiliation, exact-name or co-author rules (12 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Kam Tim Woo' by the homepage, school-affiliation, exact-name or co-author rules (12 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5055809969"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5055809969: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4413319401",
+        "sha256": "d13c2672fb4a7c129bbae3cbb67be5e0ad49d4b9813f33adfbf8849e3f224cb4",
+        "quote": "Kam Tim Woo | The Hong Kong University of Science and Technology,Dept. of Electronic and Computer Engineering,Hong Kong",
+        "observed": "2025-07-17",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Jiheng Zhang": {
     "home_department": "Industrial Engineering and Decision Analytics",
@@ -2216,7 +2242,20 @@
       ],
       "candidates": 30,
       "source_file": "census-1110-overlay dblp-ids.json sha256 eab013245f01ee33a700"
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5004297494"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5004297494: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W1681209285",
+        "sha256": "0ec2040a404edc3f001c28f93dc03187c9b7e63f7c09b7acdb7181e08179685c",
+        "quote": "Jiheng Zhang | The Hong Kong University of Science and Technology, Hong Kong, China",
+        "observed": "2026-03-01",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Shenghui Song": {
     "home_department": "Electronic and Computer Engineering",
@@ -2314,7 +2353,20 @@
       ],
       "candidates": 1,
       "source_file": "census-1110-overlay dblp-ids.json sha256 eab013245f01ee33a700"
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5048627515"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5048627515: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4413963607",
+        "sha256": "a41903526bf787d7dea54a3878ad3d97e6c9ba1882634381333908b0de722af6",
+        "quote": "Fugee Tsung | Department of Industrial Engineering and Decision Analytics, Hong Kong University of Science and Technology, Hong Kong SAR, 999077, China",
+        "observed": "2026-03-01",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Zhiyao Xie": {
     "dblp": [
@@ -2336,15 +2388,54 @@
       "name_compatible": true,
       "page": "https://zhiyaoxie.com/publications/",
       "page_sha256": "07716709c7ebe9953d7690a243ada3c7122c7ff2b10f8eba140816f13f0df716"
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5075696558"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5075696558: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4416123713",
+        "sha256": "c39c05304f46fca5073620db12aeffd35c3481330a133170df0b49621c54d10b",
+        "quote": "Zhiyao Xie | The Hong Kong University of Science and Technology",
+        "observed": "2026-07-02",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Sirui Han": {
     "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5021255269"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5021255269: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4414588372",
+        "sha256": "df9d67f7f04ba3ce43f0cf3ec1944b472abd52a1574434fe92c9a1e34bd18d06",
+        "quote": "Sirui Han | Hong Kong University of Science and Technology",
+        "observed": "2026-01-01",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Wei Xue": {
     "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Wei Xue' by the homepage, school-affiliation, exact-name or co-author rules (24 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Wei Xue' by the homepage, school-affiliation, exact-name or co-author rules (24 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5100652844"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5100652844: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4404388920",
+        "sha256": "07783021a8e866cd7a1ea16c286eb48f494b74abe9217e17c126157c6f91352c",
+        "quote": "Wei Xue | Hong Kong University of Science and Technology (HKUST),China",
+        "observed": "2026-04-21",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Ying-Ju Chen": {
     "dblp": [
@@ -2366,7 +2457,20 @@
       "name_compatible": true,
       "page": "https://imchen.people.ust.hk/",
       "page_sha256": "355f1b2cc745e842b31872cd2e57772c810713b3c734232ba27ef8e9d974741f"
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5101811263"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5101811263: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7124422667",
+        "sha256": "377818cfecd528e510379da18e5a4dd33c17f472cc8d39ae4f8ac54da0bcc165",
+        "quote": "Ying‐Ju Chen | Department of Information Systems, Business Statistics and Operations Management The Hong Kong University of Science and Technology  Hong Kong Hong Kong",
+        "observed": "2026-01-15",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Fengbin Tu": {
     "dblp": [
@@ -2389,7 +2493,20 @@
       ],
       "candidates": 2,
       "source_file": "census-1110-overlay dblp-ids.json sha256 eab013245f01ee33a700"
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5038947607"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5038947607: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7133301734",
+        "sha256": "20e85d9c57bb83df3d5dbec358d519b06271d07e96c3640b6a1ee35cb347b605",
+        "quote": "Fengbin Tu | Hong Kong University of Science and Technology,Hong Kong,China",
+        "observed": "2026-02-15",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Yi-Kuen Lee": {
     "dblp": [
@@ -2421,7 +2538,20 @@
       "sha256": "06eba17b3b9444178e731b7629d1a4b85ef90b225f99a9d02745a066b59d9ef1",
       "quote": "ORCID 0000-0002-7473-4344",
       "observedAt": "2026-11-10"
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5063522793"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5063522793: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4415980203",
+        "sha256": "2a2980473cd5436d75cebc321c660f7ea854c4eff7cfd20a4dd171bd686eaabe",
+        "quote": "Yi‑Kuen Lee | Department of Mechanical and Aerospace Engineering, Hong Kong University of Science and Technology, Hong Kong SAR, China. meyklee@ust.hk",
+        "observed": "2026-06-10",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Jie Yuan": {
     "dblp": [
@@ -2444,7 +2574,20 @@
       ],
       "candidates": 19,
       "source_file": "census-1110-overlay dblp-ids.json sha256 eab013245f01ee33a700"
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5101779861"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5101779861: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7156000175",
+        "sha256": "8228390bcc15dc026e85f57f74b37453d77a20af1db652da7fa40e3ba2d9981b",
+        "quote": "Jie Yuan | The Hong Kong University of Science and Technology",
+        "observed": "2026-04-27",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Zili Meng": {
     "dblp": [
@@ -2467,11 +2610,37 @@
       ],
       "candidates": 3,
       "source_file": "census-1110-overlay dblp-ids.json sha256 eab013245f01ee33a700"
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5066915269"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5066915269: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7128615094",
+        "sha256": "54789b853594f759d262431eec1f29e4c8b0e52de9952af892987a05e912e8c6",
+        "quote": "Zili Meng | Department of Electronic and Computer Engineering, The Hong Kong University of Science and Technology, Sai Kung, Hong Kong",
+        "observed": "2026-01-01",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Lin Fu": {
     "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5055236645"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5055236645: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7115061702",
+        "sha256": "04d1d0db5a928f41f091771915d9106b5b120d6bc8e9b7ebc5696bd30acb072f",
+        "quote": "Lin Fu | Department of Mathematics, The Hong Kong University of Science and Technology, Hong Kong, China",
+        "observed": "2026-01-27",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Ling Pan": {
     "dblp": [
@@ -2493,12 +2662,23 @@
       "name_compatible": true,
       "page": "https://ling-pan.github.io/publications/",
       "page_sha256": "c44a3c0ecf48547e88c47f688f5cb4b7d4de5e11f4e2470b7380e6b611281010"
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5090888372"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5090888372: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7128808214",
+        "sha256": "d1ddb76ac578104b33a1697e33b5fb0074f52a5dab719dd1ab920c41aaed5428",
+        "quote": "Ling Pan | Hong Kong University of Science and Technology",
+        "observed": "2026-02-20",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Hai Zhang": {
-    "dblp": [
-      "https://dblp.org/pid/72/4420"
-    ],
+    "dblp": [],
     "why_dblp": "2026-11-10 (claude-hkust-admit-1109, T110; owner-approved targeted DBLP pass): R-PAP-44 amended: the PI's own page linked from the official unit listing (https://www.math.hkust.edu.hk/~haizhang, sha256 ce25b299e09c1dc6ab4d773f4097dc236638d7ad979475970d166df31e6c9f6b) credits 14 exact long titles of DBLP person https://dblp.org/pid/72/4420, all on that one person; 6 DBLP persons of this base name in the targeted extract, none owning a matched title; name check passed. Identifies the author only; school, appointment, type and edition stay independent build checks. Fresh-reviewer caveat (2026-11-10): the DBLP person record is conflated with a namesake (20 of 162 of its records are on the PI page); the binding is supported for the matched titles only, and every paper still needs its own school-affiliation evidence in the build.",
     "dblp_evidence": [
       {
@@ -2515,27 +2695,106 @@
       "name_compatible": true,
       "page": "https://www.math.hkust.edu.hk/~haizhang",
       "page_sha256": "ce25b299e09c1dc6ab4d773f4097dc236638d7ad979475970d166df31e6c9f6b"
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5100457335"
+    ],
+    "why_openalex": "2026-10-30 (reviewed): 2026-11-13 strict restriction (coordinator ruling): the DBLP person pid 72/4420 conflates an unrelated Hai Zhang (VIIRS aerosol / remote sensing records), so the DBLP route is switched off for this PI and identity rests on the reviewed OpenAlex id A5100457335 (applied mathematics, HKUST Mathematics bylines), whose works include the 14 titles credited on the PI's own page https://www.math.hkust.edu.hk/~haizhang (sha256 ce25b299e09c1dc6ab4d773f4097dc236638d7ad979475970d166df31e6c9f6b). Identity only; papers still pass appointment, affiliation and type gates.",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7128439809",
+        "sha256": "5e2cd24668ea740c1310e87d3e3906ebb2645fef40c4fb705b855be431d75086",
+        "quote": "Hai Zhang | Department of Mathematics, HKUST, Clear Water Bay, Kowloon, Hong Kong SAR, China",
+        "observed": "2026-01-01",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ],
+    "why_dblp_superseded": "2026-11-10 (claude-hkust-admit-1109, T110; owner-approved targeted DBLP pass): R-PAP-44 amended: the PI's own page linked from the official unit listing (https://www.math.hkust.edu.hk/~haizhang, sha256 ce25b299e09c1dc6ab4d773f4097dc236638d7ad979475970d166df31e6c9f6b) credits 14 exact long titles of DBLP person https://dblp.org/pid/72/4420, all on that one person; 6 DBLP persons of this base name in the targeted extract, none owning a matched title; name check passed. Identifies the author only; school, appointment, type and edition stay independent build checks. Fresh-reviewer caveat (2026-11-10): the DBLP person record is conflated with a namesake (20 of 162 of its records are on the PI page); the binding is supported for the matched titles only, and every paper still needs its own school-affiliation evidence in the build."
   },
   "Kar Yan Tam": {
     "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5090061579"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5090061579: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7140116437",
+        "sha256": "57c19b1044e5b4b81cdafb25445d953c4c676a15a6be163e459596b712eb549e",
+        "quote": "Kar Yan Tam | Department of Information Systems, Business Statistics and Operations Management, School of Business and Management, Hong Kong University of Science and Technology, Clear Water Bay, Kowloon, Hong Kong",
+        "observed": "2026-03-23",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Sen Li": {
     "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Sen Li' by the homepage, school-affiliation, exact-name or co-author rules (43 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Sen Li' by the homepage, school-affiliation, exact-name or co-author rules (43 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5100444240"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5100444240: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4415036324",
+        "sha256": "ae60d2f9d281ece42a74590eb571314e37c2ed118097d7e8ae893c2495bf081e",
+        "quote": "Sen Li | The Hong Kong University of Science and Technology",
+        "observed": "2026-08-01",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Xiangtong Qi": {
-    "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "no_identity": false,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5004212221"
+    ],
+    "why_openalex": "2026-10-30 (reviewed): 2026-11-12 strict identity pass (HKUST, PROPOSAL pending reviewer; scratch/hkust-toronto-papers-1113): the official HKUST profile https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=5 (sha256 11317b2c6c7ebd23a021a1955ae86bae3badae50926fee0be5a2570df94f0758) lists 7 exact long titles of this OpenAlex author id (e.g. 'Price competition, cost and demand disruptions and coordination of a supply chain with one manufacturer and two competing retailers'); the page is the unit's own faculty record. Identity only; papers still pass appointment, affiliation and type gates.",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7139008185",
+        "sha256": "dbf436af242d4238f35598e206a41bf2f5971f137da52244786e450ea8fd4d42",
+        "quote": "Xiangtong Qi | Department of Industrial Engineering and Decision Analytics The Hong Kong University of Science and Technology  Hong Kong SAR China",
+        "observed": "2026-03-20",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Jiashuo Jiang": {
-    "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "no_identity": false,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5004523527"
+    ],
+    "why_openalex": "2026-10-30 (reviewed): 2026-11-12 strict identity pass (HKUST, PROPOSAL pending reviewer; scratch/hkust-toronto-papers-1113): the official HKUST profile https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=43 (sha256 2595757ef422c8437d0853c1f5674cfbcdcc66df8c5ed74d256eeb09aa3b499f) lists 8 exact long titles of this OpenAlex author id (e.g. 'Achieving High Individual Service Levels Without Safety Stock? Optimal Rationing Policy of Pooled Resources'); the page is the unit's own faculty record. Identity only; papers still pass appointment, affiliation and type gates.",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4376166972",
+        "sha256": "76ffa06e1e12e6d0b35b6a99daf7802f2046f9964baefa3cedc959432310b72f",
+        "quote": "Jiashuo Jiang | Hong Kong University of Science and Technology, Sai Kung, Hong Kong",
+        "observed": "2026-01-01",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Yihan Zhang": {
     "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Yihan Zhang' by the homepage, school-affiliation, exact-name or co-author rules (45 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Yihan Zhang' by the homepage, school-affiliation, exact-name or co-author rules (45 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5100350074"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5100350074: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7131900762",
+        "sha256": "863dc9c4a227319127df52041ffbfcf82d231cdea30fb209aa87a4d925bc2b02",
+        "quote": "Yihan Zhang | Department of Electronic and Computer Engineering, The Hong Kong University of Science and Technology, Hong Kong, SAR, China",
+        "observed": "2026-01-01",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Eric Marberg": {
     "dblp": [
@@ -2557,7 +2816,20 @@
       "name_compatible": true,
       "page": "https://www.math.hkust.edu.hk/~emarberg",
       "page_sha256": "ac65a8c53a84c108e90b19a1a32de9c3ea267834a22ea13a02601158cefcba10"
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5066022731"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5066022731: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4320537803",
+        "sha256": "c7345c3ff44e8ac297a54e65a56006793506887be115ca8a81475eb995f8a1fa",
+        "quote": "Eric Marberg | Department of Mathematics, Hong Kong University of Science and Technology Clear Water Bay, Hong Kong, China",
+        "observed": "2026-06-18",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Anyi Rao": {
     "dblp": [
@@ -2580,23 +2852,88 @@
       ],
       "candidates": 67,
       "source_file": "census-1110-overlay dblp-ids.json sha256 eab013245f01ee33a700"
-    }
+    },
+    "openalex": [
+      "https://openalex.org/A5067715162"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5067715162: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W4416113753",
+        "sha256": "4ed91a7788b9302e16acb2607c8cf83881ffc4e1c411f249b599a4aab0192e2f",
+        "quote": "Anyi Rao | The Hong Kong University of Science and Technology",
+        "observed": "2026-05-05",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Rob B.N. Scharff": {
     "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5025298366"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5025298366: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7155203782",
+        "sha256": "4a2a8252698eaa3117f9c441b054603efa36ab9d434ff649e8bc68b1447aca94",
+        "quote": "Rob Bernardus Nicolaas Scharff | Division of Integrative Systems and Design The Hong Kong University of Science and Technology  Hong Kong China",
+        "observed": "2026-04-22",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Yunya Song": {
     "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5060246267"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5060246267: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7147159806",
+        "sha256": "b082c5ea123946d6e3e9d0891d05537725e7b60605b801e9f62cab91d7649b69",
+        "quote": "Song, Yunya | Hong Kong University of Science and Technology China",
+        "observed": "2026-03-30",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Ajay Joneja": {
-    "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "no_identity": false,
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. The census worker's binding-result.json lists this name as held_no_orcid_agreement: the DBLP person is a unique exact-name record, but no ORCID or school-affiliation note corroborates it; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5038853037"
+    ],
+    "why_openalex": "2026-10-30 (reviewed): 2026-11-12 strict identity pass (HKUST, PROPOSAL pending reviewer; scratch/hkust-toronto-papers-1113): the official HKUST profile https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=4 (sha256 9e98ac6cf31829e8374ad2dcfd586d11cf7709bfda3341f3b78f611f8bcf9fa4) lists 5 exact long titles of this OpenAlex author id (e.g. 'Optimal uniformly monotone partitioning of polygons with holes'); the page is the unit's own faculty record. Identity only; papers still pass appointment, affiliation and type gates.",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7203655500",
+        "sha256": "66fe79832a9040f7d6a568e3e1271cbb39896c45728c87fd0dbf764b073c7a13",
+        "quote": "Ajay Joneja | Division of Integrative Systems and Design, The Hong Kong University of Science and Technology, 999077, Hong Kong, China",
+        "observed": "2026-08-17",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Wei You": {
     "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Wei You' by the homepage, school-affiliation, exact-name or co-author rules (31 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, T110): hold, not a guess. tools/dblp_ids_school.py found no DBLP person for 'Wei You' by the homepage, school-affiliation, exact-name or co-author rules (31 same-name candidate records in the dump, none naming HKUST); no ORCID or reviewed OpenAlex id exists in the reviewed inputs. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "openalex": [
+      "https://openalex.org/A5077211309"
+    ],
+    "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/hkust/cs-related-review.json, The Hong Kong University of Science and Technology): A5077211309: candidate author id",
+    "openalex_evidence": [
+      {
+        "url": "https://api.openalex.org/works/W7133314133",
+        "sha256": "a5b20ab924cb85c3356531a95bb0f2e131c9e45be31deddcd70d4597b0229dcb",
+        "quote": "You, Wei | Department of Industrial Engineering and Decision Analytics , The Hong Kong University of Science and Technology , Hong Kong SAR , China,",
+        "observed": "2026-03-01",
+        "source": "OpenAlex sweep 2026-10-29 (hierarchy/hkust/openalex-sweep.sqlite)"
+      }
+    ]
   },
   "Wei Zhang": {
     "no_identity": true,
