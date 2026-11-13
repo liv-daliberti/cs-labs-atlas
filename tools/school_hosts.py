@@ -53,7 +53,7 @@ def main(key, refresh=False):
             continue
         st, body = (W.robots_row(c, host, refresh=refresh, scheme='http', min_delay=float(h['min_delay'])) if http_origin
                     else W.robots_row(c, host, refresh=refresh))
-        ours, ai, delay = W.robots_decision(st, body, probe or '/')
+        ours, ai, delay = W.robots_decision(st, body, probe or f'https://{host}/')
         robots = 'unreachable' if (st == -1 or st >= 500) else ('allowed' if ours and ai else ('disallowed-for-ai-agents' if ours else 'disallowed'))
         pr = 'skipped'
         blocked = c.execute('select why from blocked where host=?', (host,)).fetchone()

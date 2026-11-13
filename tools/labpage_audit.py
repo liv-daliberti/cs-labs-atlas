@@ -991,6 +991,8 @@ class Kit:
         lpcap.GAPS['web.archive.org'] = WAYBACK_GAP
         lpcap.GAPS['archive.org'] = WAYBACK_GAP
         lpcap.GAPS['api.openalex.org'] = max(lpcap.GAPS.get('api.openalex.org', 0), 1.05)
+        import school_web as SW
+        lpcap.NO_RULES_BY_RULING = set(SW.robots_ruled_hosts())
         orig = lpcap.robots_allowed
         self.robots_log = {}
 
@@ -1071,6 +1073,9 @@ class Kit:
                 break
         if not recorded:
             return True  # caller's robots fetch has not occurred yet
+        import school_web as SW
+        if SW.robots_ruled_no_rules(sp.hostname, st, body):
+            return True  # owner ruling 2026-11-14 (docs/host-rulings.json robots.override): this host's 405 / HTML error stub is 'no rules'
         if st == 200 and '<html' in body[:500].lower() and html_robots_is_no_rules(body):
             return True  # an SPA catch-all page served at /robots.txt: no rules (owner 2026-11-12)
         if st != 200 or '<html' in body[:500].lower():

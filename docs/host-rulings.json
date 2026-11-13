@@ -65,6 +65,88 @@
    },
    "one_job_at_a_time": "one crawl job at a time (tools/hkust_defences.slurm)",
    "not_chartered": "calendar.hkust.edu.hk: no thesis-examination category exists (categories are Seminar/Lecture/Talk, Other Format, ...), so there is no index; gs.sjtu.edu.cn/xwxk/: carries the degree rules only, no named notices. Neither host was chartered."
+  },
+  {
+   "host": "personal.ntu.edu.sg",
+   "scope": "faculty and lab member pages of NTU census PIs (personal.ntu.edu.sg/<user>/ and its member/people subpages)",
+   "robots": {
+    "checked": "2026-11-13T21:04:00Z",
+    "url": "https://personal.ntu.edu.sg/robots.txt",
+    "status": 200,
+    "bytes": 335,
+    "sha256": "5be11e001ed9ff5d23203bc44097b16094e571a31cdaf859a05a40c0c1a43b7f",
+    "rules": "HTML 'Request Error' page (ServiceNow@NTU error id), no robots line; re-read 21:06:53Z gave the same page with another error id (sha 4f70e8e5...)",
+    "ai_agent_rules": "none named",
+    "override": "no_rules_by_owner_ruling",
+    "consequence": "treated as no rules for this host only, by this record"
+   },
+   "first_content_fetch": "2026-11-13 ~21:25Z GET /anwitaman/ -> 200, 15538 B real PI homepage, no WAF page",
+   "host_use": "bounded",
+   "min_delay_seconds": 3,
+   "cache": "every page stored once in the school's capture store (private overlay copy); a stored page is never fetched again",
+   "stop_on": [
+    "WAF-style 'Request Error' page on a content page",
+    "challenge marker",
+    "HTTP 403",
+    "HTTP 429",
+    "a burst of 403/429",
+    "any block"
+   ],
+   "on_stop": "stop for that host and report; no retry, no change of headers/UA, no slow-walking, no proxy (a WAF refusal of our requests is a security control and out of bounds)",
+   "rule": "owner-exception-ntu-hosts",
+   "ruling_date": "2026-11-14",
+   "ruling": "Owner ruling 2026-11-14 (AskUserQuestion, relayed by the coordinator): finite exception for NTU's own people/research hosts limited to faculty and lab MEMBER pages. After the robots.txt answers below, owner: 'Rule the error responses as \"no rules\" ... Its no rules'.",
+   "conditions": "one fetcher, 3 s spacing per host, only pages of PIs in the NTU census (pis.json), student names/roles/dates only: no profile/ORCID/email/phone fields stored or used, emails stripped, shared-FS I/O light, no bot-challenge or WAF bypass, no proxies, periods kinds 1-3 only",
+   "tool": "tools/labpage_audit.py",
+   "code": "tools/school_web.robots_ruled_hosts / robots_ruled_no_rules; lpcap.NO_RULES_BY_RULING. Only a robots.override entry in this file relaxes anything, only for its host, and only for a 405 or a short 200 HTML page with no robots line; a real robots.txt, 403/429/5xx or a challenge is never overridden."
+  },
+  {
+   "host": "dr.ntu.edu.sg",
+   "scope": "the owner exception covers faculty and lab member pages only; DR-NTU pages are profile pages (/cris/rp/, /entities/person/), whose fields may not be stored, so the charter keeps use = none and nothing is fetched here",
+   "robots": {
+    "checked": "2026-11-13T21:04:01Z",
+    "url": "https://dr.ntu.edu.sg/robots.txt",
+    "status": 405,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rules": "HTTP 405, empty body",
+    "ai_agent_rules": "none named",
+    "override": "no_rules_by_owner_ruling",
+    "consequence": "treated as no rules for this host only, by this record"
+   },
+   "host_use": "bounded",
+   "min_delay_seconds": 3,
+   "cache": "every page stored once in the school's capture store (private overlay copy); a stored page is never fetched again",
+   "stop_on": [
+    "WAF-style 'Request Error' page on a content page",
+    "challenge marker",
+    "HTTP 403",
+    "HTTP 429",
+    "a burst of 403/429",
+    "any block"
+   ],
+   "on_stop": "stop for that host and report; no retry, no change of headers/UA, no slow-walking, no proxy (a WAF refusal of our requests is a security control and out of bounds)",
+   "rule": "owner-exception-ntu-hosts",
+   "ruling_date": "2026-11-14",
+   "ruling": "Owner ruling 2026-11-14 (AskUserQuestion, relayed by the coordinator): finite exception for NTU's own people/research hosts limited to faculty and lab MEMBER pages. After the robots.txt answers below, owner: 'Rule the error responses as \"no rules\" ... Its no rules'.",
+   "conditions": "one fetcher, 3 s spacing per host, only pages of PIs in the NTU census (pis.json), student names/roles/dates only: no profile/ORCID/email/phone fields stored or used, emails stripped, shared-FS I/O light, no bot-challenge or WAF bypass, no proxies, periods kinds 1-3 only",
+   "tool": "tools/labpage_audit.py",
+   "code": "tools/school_web.robots_ruled_hosts / robots_ruled_no_rules; lpcap.NO_RULES_BY_RULING. Only a robots.override entry in this file relaxes anything, only for its host, and only for a 405 or a short 200 HTML page with no robots line; a real robots.txt, 403/429/5xx or a challenge is never overridden."
+  },
+  {
+   "host": "research.ntu.edu.sg",
+   "scope": "none: the host does not resolve (NameResolutionError 2026-11-13T21:05Z); nothing to fetch",
+   "robots": {
+    "checked": "2026-11-13T21:05:04Z",
+    "url": "https://research.ntu.edu.sg/robots.txt",
+    "status": -1,
+    "rules": "DNS failure",
+    "ai_agent_rules": "none named",
+    "consequence": "unreachable; charter stays use = none"
+   },
+   "ruling_date": "2026-11-14",
+   "rule": "owner-exception-ntu-hosts",
+   "ruling": "Owner ruling 2026-11-14: nothing to do (host does not resolve)."
   }
  ]
 }

@@ -222,6 +222,9 @@ def _follow_robots_redirect(con, base, host):
         return None
 
 
+NO_RULES_BY_RULING = set()   # hosts the owner ruled 'no rules' (set by labpage_audit from school_web.robots_ruled_hosts)
+
+
 def robots_allowed(url, school):
     sp = urlsplit(url)
     base = f"{sp.scheme}://{sp.netloc}"
@@ -265,6 +268,7 @@ def robots_allowed(url, school):
         con.close()
         _robots_unknown.discard(base)
         txt = ""
+        stub = False
         if st == 200:
             txt = body.decode("utf-8", "replace")
             if "<html" in txt[:500].lower():   # owner 2026-11-12: an HTML page with no robots lines is 'no rules'; challenge/error/login pages and a redirect to another host stay refused
@@ -272,8 +276,11 @@ def robots_allowed(url, school):
                     txt = ""
                 else:
                     txt = "User-agent: *\nDisallow: /\n"
+                    stub = not _ROBOTS_LINE_RX.search(body.decode("utf-8", "replace"))
         elif st in (401, 403):
             txt = "User-agent: *\nDisallow: /\n"
+        if (sp.hostname or "").lower() in NO_RULES_BY_RULING and (st == 405 or stub) and not robots_final_elsewhere(row_final, sp.netloc):
+            txt = ""   # owner ruling 2026-11-14 (docs/host-rulings.json): this host's 405 / HTML error stub is 'no rules'; the caller fills the set
         _robots[base] = _parse_robots(txt)
     groups = _robots[base]
     chosen = [g for g in groups if any(a != "*" and a in UA_TOKEN for a in g[0])]

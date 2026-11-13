@@ -355,3 +355,18 @@ def test_robots_redirect_to_the_same_hosts_spa_page_is_followed_once_and_stored(
     assert L._follow_robots_redirect(None, 'https://cs.edu', 'cs.edu') is None
     L._sess = sess({'https://cs.edu/robots.txt': (302, '/home', b''), 'https://cs.edu/home': (403, None, b'')})
     assert L._follow_robots_redirect(None, 'https://cs.edu', 'cs.edu') is None
+
+
+def test_owner_ruling_reads_ntu_error_answers_as_no_rules_only_for_ruled_hosts():
+    """docs/host-rulings.json robots.override (owner 2026-11-14): a 405 or a short HTML error stub with no robots line is 'no rules' for the ruled host only."""
+    import school_web as W
+    stub = '<html><head><title>Request Error</title></head><body>Sorry, error id 1</body></html>'
+    assert 'personal.ntu.edu.sg' in W.robots_ruled_hosts() and 'dr.ntu.edu.sg' in W.robots_ruled_hosts()
+    assert 'research.ntu.edu.sg' not in W.robots_ruled_hosts()
+    assert W.robots_decision(200, stub, 'https://personal.ntu.edu.sg/x/')[:2] == (True, True)
+    assert W.robots_decision(405, '', 'https://dr.ntu.edu.sg/entities/')[:2] == (True, True)
+    assert W.robots_decision(200, stub, 'https://other.example.edu/x/')[:2] == (False, False)      # no blanket relaxation
+    assert W.robots_decision(405, '', 'https://other.example.edu/x/')[:2] == (False, False)
+    assert W.robots_decision(403, '', 'https://personal.ntu.edu.sg/x/')[:2] == (False, False)      # a refusal is never overridden
+    assert W.robots_decision(429, '', 'https://personal.ntu.edu.sg/x/')[:2] == (False, False)
+    assert W.robots_decision(200, 'User-agent: *\nDisallow: /x/\n', 'https://personal.ntu.edu.sg/x/')[:2] == (False, False)   # a real robots.txt is honoured

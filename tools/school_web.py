@@ -252,10 +252,35 @@ def html_robots_is_no_rules(body):
 
 
 
-def robots_decision(status, body, url='/'):
+def robots_ruled_hosts():
+    """Hosts whose robots.txt answer the owner ruled 'no rules' (docs/host-rulings.json entry with robots.override = 'no_rules_by_owner_ruling').
+    Only that record relaxes anything, and only for the host it names (NTU personal.ntu.edu.sg / dr.ntu.edu.sg, owner 2026-11-14)."""
+    try:
+        rows = json.loads((Path(__file__).resolve().parents[1] / 'docs' / 'host-rulings.json').read_text()).get('hosts') or []
+    except (OSError, ValueError):
+        return frozenset()
+    return frozenset(r['host'].lower() for r in rows if (r.get('robots') or {}).get('override') == 'no_rules_by_owner_ruling')
+
+
+def robots_ruled_no_rules(host, status, body):
+    """True when `host` has an owner ruling and its robots.txt answer carries no robots line: a 405, or a short 200 HTML page (the WAF-style 'Request Error' stub).
+    A real robots.txt (any robots line) is honoured; a 403/429/5xx or a challenge is not covered."""
+    if (host or '').lower().split(':')[0] not in robots_ruled_hosts():
+        return False
+    if status == 405:
+        return True
+    b = body or ''
+    return status == 200 and '<html' in b[:2000].lower() and len(b) < 12000 and not ROBOTS_LINE_RX.search(b)
+
+
+def robots_decision(status, body, url='/', host=None):
     """(allowed for us, allowed for AI agents by name, crawl delay).
     Missing robots (404/410) has no rules; access refusals and outages never authorize a page request.
+    A host with an owner ruling in docs/host-rulings.json (robots_ruled_no_rules) is read as 'no rules'.
     """
+    host = host or urllib.parse.urlsplit(url if '//' in url else '//' + url).hostname
+    if robots_ruled_no_rules(host, status, body):
+        status, body = 404, ''
     is_html = status == 200 and re.search(r'<html', (body or '')[:2000], re.I)
     if status not in (200, 404, 410) or (is_html and not html_robots_is_no_rules(body)):
         return False, False, 2.0

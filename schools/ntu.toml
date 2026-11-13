@@ -248,7 +248,7 @@ purpose = "Closed partial onboarding; cached originals only. Any exact finite ex
 [[hosts]]
 host = "dr.ntu.edu.sg"
 use = "none"
-purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+purpose = "Owner exception 2026-11-14 (docs/host-rulings.json) covers faculty and lab member pages only; DR-NTU pages are profile pages whose fields may not be stored, so nothing is fetched here. robots.txt (HTTP 405) is ruled 'no rules' for this host."
 
 [[hosts]]
 host = "epiclab-sg.github.io"
@@ -330,8 +330,9 @@ purpose = "Closed partial onboarding; cached originals only. Any exact finite ex
 
 [[hosts]]
 host = "personal.ntu.edu.sg"
-use = "none"
-purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+use = "live"
+probe = "https://personal.ntu.edu.sg/anwitaman/"
+purpose = "Owner exception 2026-11-14 (docs/host-rulings.json): faculty and lab MEMBER pages of census PIs only; robots.txt is an HTML error page, ruled 'no rules' by the owner for this host; 3 s spacing, one fetcher, no profile/ORCID/email/phone fields; a WAF page, challenge or 403/429 burst stops the host."
 
 [[hosts]]
 host = "pub.orcid.org"
