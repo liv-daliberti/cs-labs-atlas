@@ -711,6 +711,8 @@ def news_item(text):
     m = NEWS_LINE.search(text or '')
     if not m:
         return False
+    if (text or '')[m.end() - 1] != ':' and re.match(r'\s*(?:present\b|now\b|current\b|ongoing\b|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+(?:19|20)\d\d|(?:19|20)\d\d\b)', (text or '')[m.end():], re.I):
+        return False   # 'Zhe Tong September 2026 - Present B.Eng. ...' / 'Sept 2023 - Dec 2025': a stay range after the name, the member's own dates (HKUST Shen's current-members page)
     before = (text or '')[:m.start()]
     return before.count('(') <= before.count(')')   # a 'Oct 2016 - May 2020' inside an open bracket dates a roster entry's stay ('Amir Shaikhha (Departmental lecturer, Jan 2019 - April 2021)'), it is not a news line (Oxford regression)
 
@@ -1299,7 +1301,7 @@ def classify_links(lks, site_url, domain_rx):
         same = h == sh or (h.endswith('.' + sh.split('.', 1)[-1]) and re.search(domain_rx, h) and re.search(domain_rx, sh))
         if not same:
             continue
-        if h == sh and seg and (urlsplit(href).path.strip('/').split('/') or [''])[0] != seg:
+        if h == sh and seg and seg.lower() not in ('group', 'groups', 'people', 'team', 'lab', 'home', 'members', 'research') and (urlsplit(href).path.strip('/').split('/') or [''])[0] != seg:
             continue  # a personal page on a department host (/~user/...): only links under the same first path segment
         segs = [x for x in sp.split('/') if x]
         if segs and re.search(r'\.html?$', segs[-1], re.I):
@@ -1569,7 +1571,9 @@ def discover_lab(kit, school, p, ctx, full=True):
         b_ = link_base(s['row'], s['url'])
         lk = classify_links(site_links(kit, s['row'], b_), b_, dom)
         for k in ('people', 'alumni', 'pubs'):
-            for u in sorted(lk.get(k, []), key=lambda x: x.lower().endswith('.pdf'))[:2]:
+            # a '#content' skip-link variant is no page of its own, and a members / people / students path outranks a bare '/group/' (HKUST Shen: /current-members/ is the roster)
+            for u in sorted(dict.fromkeys(x_.split('#')[0] if x_.endswith('#content') else x_ for x_ in lk.get(k, [])),
+                            key=lambda x: (x.lower().endswith('.pdf'), k == 'people' and not re.search(r'/(?:current-)?(?:members?|people|students?|team)(?:[/.]|$)', urlsplit(x).path, re.I)))[:2]:
                 r = kit.get(u)
                 add(f'{k}_link', u, result_of(r), on=s['url'], capture_url=r.get('capture_url'), sha256=r.get('sha256'))
                 if r.get('status') == 200 and r.get('content') and not chosen[f'{k}_page' if k != 'people' else 'people_page']:
@@ -1586,12 +1590,16 @@ def discover_lab(kit, school, p, ctx, full=True):
             chosen['kind'] = 'lab_site'
         if chosen['people_page'] and PLATFORM_LIST_RX.search(chosen['people_page']):
             chosen['people_details'] = fetch_platform_details(kit, chosen['people_page'], add)
+        if chosen.get('alumni_page') and chosen.get('people_page') and chosen['alumni_page'].split('#')[0].rstrip('/') == chosen['people_page'].split('#')[0].rstrip('/'):
+            # a table-of-contents anchor ('#graduated_students') on the people page itself is no alumni page, and marking the whole page alumni made its current students alumni (CMU Hoe)
+            pages = [x_ for x_ in pages if not (x_[0] == 'alumni' and x_[1] == chosen['alumni_page'])]
+            chosen['alumni_page'] = None
         if not chosen.get('alumni_page') and chosen.get('people_page') and chosen['people_page'].rstrip('/') != s['url'].rstrip('/'):
             # the alumni list is linked from the PEOPLE page, not the site's home page (Berkeley Stuart: edg.berkeley.edu/people -> 'List of Alumni')
             pr_ = kit.get(chosen['people_page'])
             if pr_.get('status') == 200 and pr_.get('content'):
                 pb_ = link_base(pr_, chosen['people_page'])
-                for u in classify_links(site_links(kit, pr_, pb_), pb_, dom).get('alumni', [])[:2]:
+                for u in [x_ for x_ in classify_links(site_links(kit, pr_, pb_), pb_, dom).get('alumni', []) if x_.split('#')[0].rstrip('/') != chosen['people_page'].split('#')[0].rstrip('/')][:2]:
                     r = kit.get(u)
                     add('alumni_link', u, result_of(r), on=chosen['people_page'], capture_url=r.get('capture_url'), sha256=r.get('sha256'))
                     if r.get('status') == 200 and r.get('content'):
@@ -2077,6 +2085,10 @@ def entry_years(desc, head):
     em = re.match(r'^\W{0,3}\(\s*[-\u2013\u2014]\s*((?:19|20)\d\d)\b', desc or '')
     if em:
         return [None, int(em.group(1))], 'stated_in_entry'   # '(- 2024; Former Postdoc at Caltech)': an end-only range (Berkeley Song Mei's Leo Zhou)
+    sm = re.match(r"^\W{0,3}\(\s*started\s+(?:(?:fall|spring|summer|winter|autumn)\s+|[FSW]\s*['\u2018\u2019]?\s*)?((?:19|20)\d\d|['\u2018\u2019]\d\d)\s*\)", desc or '', re.I)
+    if sm:   # "(started F'2022)" / "(started Fall 2022)": an open start, the student is current (CMU Hoe's Current Students)
+        y_ = sm.group(1).lstrip("'\u2018\u2019")
+        return [int(y_) if len(y_) == 4 else 2000 + int(y_), None], 'stated_in_entry'
     desc = re.sub(r'((?:spring|summer|fall|autumn|winter|jan|feb|mar|apr|may|jun|jul|aug|sept?|oct|nov|dec)[a-z]*\.?\s+)(19|20) (\d\d)\b', r'\1\2\3', desc or '', flags=re.I)   # 'Summer 20 14' (a year split by the page's markup): HKUST Chung
     desc = re.split(r'[;,]?\s*following position\b', desc or '', maxsplit=1)[0]   # 'following position: since 2019 Researcher at Facebook' is where the person went, not when they were here (CMU round 9, Carbonneaux)
     tm = re.match(r'^\s{0,3}\|?\s*[^|]{1,100}\|\s*((?:19|20)\d\d)\b', desc or '')
@@ -4438,6 +4450,12 @@ def lab_record(kit, ctx, p, disc):
             plan['alumni_pages'] = list(plan.get('alumni_pages') or []) + new_al
             plan['wb'] = list(plan.get('wb') or []) + new_al
             plan['wb_caps'] = dict(plan.get('wb_caps') or {}, **{u: sc.get('wayback', {}).get(u, []) for u in new_al})
+        lab_host_ = (urlsplit(unwayback(prior.get('lab_site') or '')).hostname or '').lower().removeprefix('www.')
+        new_pp = [u for u in (sc.get('new_pages') or {}).get('people', [])
+                  if '#' not in u and kit.stored(u)[0] and (urlsplit(u).hostname or '').lower().removeprefix('www.') == lab_host_
+                  and u.rstrip('/') not in {unwayback(x).rstrip('/') for x in plan.get('people') or []}]
+        if new_pp:  # a people link of the recorded lab's own site the 2026-10-22 pass never read (HKUST Shen: the pass read /group/, the roster is /current-members/)
+            plan['people'] = list(plan.get('people') or []) + new_pp[:2]
         new_pubs = [u for u in (sc.get('new_pages') or {}).get('pubs', []) if kit.stored(u)[0]]
         if new_pubs and not any(isinstance(x, dict) and x.get('pubs_page') for x in plan.get('pubs') or []) and \
                 not any(isinstance(x, dict) and x.get('title') for x in plan.get('pubs') or []):
