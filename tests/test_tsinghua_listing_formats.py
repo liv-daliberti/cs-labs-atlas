@@ -180,3 +180,100 @@ DPI = '<ul><li> <a href="/houbo/zh_CN/index.htm"><div class="pics"></div><div cl
 def test_dpi_rendered_cards_keep_title_and_unit():
     rows = L.tsinghua_dpi_rendered(DPI)
     assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('侯波', ['副教授'], '导航技术工程中心'), ('杨军', ['副研究员'], None)]
+
+
+# ---- older site eras (stage 1 gate, 2026-11-14): excerpts of archived pages, rows from the real markup ----
+EEOLD = ('<div class="box_detail"><p><strong>信息光电子研究所</strong></p><p>院&nbsp;&nbsp; &nbsp;士： <a title="周炳琨" href="/x/1.html">周炳琨</a>&nbsp;&nbsp;</p>'
+         '<p>教 授： &nbsp;<a title="陈明华" href="/x/2.html">陈明华</a>&nbsp;&nbsp;|&nbsp; <a href="/x/3.html">宁存政</a></p>'
+         '<p>副教授： &nbsp;<a href="/x/4.html">陈宏伟</a>&nbsp;|&nbsp; <a href="/x/5.html">冯雪</a>&nbsp;|&nbsp; <a href="/x/6.html">尤&nbsp; 政</a></p></div>')
+
+
+def test_banded_text_rosters_keep_band_division_and_join_spaced_names():
+    rows = L.tsinghua_banded_text(EEOLD)
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [
+        ('周炳琨', ['院士'], '信息光电子研究所'), ('陈明华', ['教授'], '信息光电子研究所'), ('宁存政', ['教授'], '信息光电子研究所'),
+        ('陈宏伟', ['副教授'], '信息光电子研究所'), ('冯雪', ['副教授'], '信息光电子研究所'), ('尤政', ['副教授'], '信息光电子研究所')]
+
+
+MATHOLD = ('<div class="box_detail"><p>基础数学研究所</p><p>1999年更名并建立基础数学研究所。研究方向包括：数论与算术几何，量子代数。</p><p>本所在职教师30人， 其中教授16人。</p>'
+           '<p>教授：<a href="/a">步尚全</a>（1995年清华学术新人奖、2003年新世纪优秀人才）、邓邦明、Masood、<a href="/b">肖杰</a>（1999年国家杰出青年基金）、姚家燕。</p>'
+           '<p>副教授：陈大广、姚国武（2005年全国优秀博士论文)、张宇光。</p><p>讲师：艾颖华。</p></div>')
+
+
+def test_banded_text_ignores_prose_and_strips_award_parentheses():
+    rows = L.tsinghua_banded_text(MATHOLD)
+    assert [(r['name_listed'], r['titles'][0]) for r in rows] == [
+        ('步尚全', '教授'), ('邓邦明', '教授'), ('Masood', '教授'), ('肖杰', '教授'), ('姚家燕', '教授'),
+        ('陈大广', '副教授'), ('姚国武', '副教授'), ('张宇光', '副教授'), ('艾颖华', '讲师')]
+
+
+MEOLD = ('<div class="box_detail">摩擦学研究所<table><tr><td>正高级</td></tr><tr><td>长聘教授/首席研究员：</td><td>温诗铸</td><td>周&nbsp; 明</td></tr>'
+         '<tr><td>高级工程师/工程师、实验师/编辑</td><td>秦 力</td></tr><tr><td>所长：</td><td>陈大广</td></tr></table></div>')
+
+
+def test_banded_text_skips_engineer_and_director_bands():
+    rows = L.tsinghua_banded_text(MEOLD)
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('温诗铸', ['长聘教授/首席研究员'], '摩擦学研究所'), ('周明', ['长聘教授/首席研究员'], '摩擦学研究所')]
+    assert rows[1]['quote_name'] == '周 明' and 'quote_name' not in rows[0]
+
+
+def test_banded_text_unknown_label_is_not_a_rank_band():
+    rows = L.tsinghua_banded_text('<div class="box_detail"><p>教授：甲乙丙</p><p>学术带头人：吴建平</p><p>副教授：王会</p></div>')
+    assert [(r['name_listed'], r['titles'][0]) for r in rows] == [('甲乙丙', '教授'), ('王会', '副教授')]
+
+
+def test_me_column_letter_bucket_links():
+    rows = L.tsinghua_me_column('<div class="tea-text"><a word="C" href="../essay/89/461.html">蔡志鹏</a><a word="C" href="../essay/83/419.html">陈 恳</a></div>')
+    assert [(r['name_listed'], r['titles']) for r in rows] == [('蔡志鹏', []), ('陈恳', [])]
+    assert rows[1]['quote_name'] == '陈 恳'
+
+
+BMEP = ('<div class="content width1000 clearfix"><div class="cont_item "><h2>教研系列</h2><div><table><tr><td class="title">神经工程</td><td><ul>'
+        '<li><a href="Person?method=102&perId=55">高小榕 </a></li><li><a href="Person?method=102&perId=64"> 宋森 </a></li></ul></td></tr></table></div></div></div>')
+
+
+def test_bme_person_table_series_title_and_area_division():
+    rows = L.tsinghua_bme_person_table(BMEP)
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('高小榕', ['教研系列'], '神经工程'), ('宋森', ['教研系列'], '神经工程')]
+
+
+BMEM = ('<div class="content_li"><div class="title001"><h3> 神经工程</h3></div><div class="fl00"><ul><li><a href="../../../info/1356/3826.htm" target="_blank" title="高上凯">'
+        '<h5><font>高上凯</font></h5></a></li></ul></div></div>')
+
+
+def test_bme_med_area_cards():
+    rows = L.tsinghua_bme_med_areas(BMEM)
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('高上凯', ['教研系列'], '神经工程')]
+
+
+IIISP = ('<div class="list_team"><ul><li><div class="item"><div class="info"><div class="name"><a href="/zh/yao/">姚期智</a></div><div class="area">院长，教授</div>'
+         '<div class="area">算法</div></div></div></li></ul></div>')
+
+
+def test_iiis_people_cards_keep_first_area_line_as_title():
+    rows = L.tsinghua_iiis_people(IIISP)
+    assert [(r['name_listed'], r['titles']) for r in rows] == [('姚期智', ['院长，教授'])]
+
+
+AIRZ = ('<div class="yjtd_tit"><h1>教授、研究员</h1></div><div class="yjtd_nr"><ul><li><a href="../info/1046/1207.htm" title="张亚勤"><div class="yjtd_nwz">'
+        '<h2><b>张亚勤</b>院长/讲席教授</h2><p>清华大学讲席教授</p></div></a></li></ul></div>')
+
+
+def test_air_zh_cards_split_name_from_title():
+    rows = L.tsinghua_air_zh_cards(AIRZ)
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('张亚勤', ['院长/讲席教授'], '教授、研究员')]
+
+
+AUA = ('<div class="list-line" id="C"><div class="word f-left">C</div><div class="n-list f-left"><a href="../../info/1088/1507.htm"><div class="item">柴跃廷</div></a>'
+       '<a href="javascript:;"><div class="item">曹 丽</div></a></div></div>')
+
+
+def test_au_alpha_names_only_javascript_links_have_no_profile():
+    rows = L.tsinghua_au_alpha(AUA)
+    assert [(r['name_listed'], r['titles'], r['profile']) for r in rows] == [('柴跃廷', [], '../../info/1088/1507.htm'), ('曹丽', [], None)]
+    assert rows[1]['quote_name'] == '曹 丽'
+
+
+def test_banded_text_zhenggao_fugao_bands_with_sort_remark():
+    rows = L.tsinghua_banded_text('<div class="box_detail"><p>骨干教师</p><p><br/>正高（按姓氏拼音排序）：<br/>毕军、段海新<br/>副高（按姓氏拼音排序）：<br/>安长青、包丛笑</p></div>')
+    assert [(r['name_listed'], r['titles'][0]) for r in rows] == [('毕军', '正高'), ('段海新', '正高'), ('安长青', '副高'), ('包丛笑', '副高')]

@@ -135,6 +135,17 @@ listing_gaps = {2022 = "exact-URL CDX 2026-11-10: iiis.tsinghua.edu.cn/list-324-
   format = "tsinghua_iiis_media"
   title_filter = ''
   # IIIS 全职教师 list (CDX 2013-2022, 2024; samples 2016/2018/2020 parse 18/29/37 people with title line).
+  [[departments.listings]]
+  slot = "IIIS people archive 2022-2024"
+  kind = "main"
+  url = "iiis.tsinghua.edu.cn/people/"
+  from = "20220101"
+  to = "20241231"
+  prefix = false
+  match = ""
+  format = "tsinghua_iiis_people"
+  title_filter = ''
+  # IIIS people page (CDX 2026-11-14: iiis.tsinghua.edu.cn/people/ captured 2016-2025, one page, cards by series); replaces the list-324 error-page captures of 2022 and 2024.
 
 [[departments]]
 code = "SW"
@@ -206,6 +217,17 @@ listing_gaps = {2016 = "exact-URL CDX 2026-11-10: air.tsinghua.edu.cn/en/our_tea
   format = "tsinghua_air_cards"
   title_filter = ''
   # exact-URL CDX 2026-11-10: captures 2023-02 .. 2026-08 (5, 6, 6, 3 months in 2023-2026).
+  [[departments.listings]]
+  slot = "AIR yjtd archive 2022"
+  kind = "main"
+  url = "air.tsinghua.edu.cn/airtd/yjtd.htm"
+  from = "20220101"
+  to = "20221231"
+  prefix = false
+  match = ""
+  format = "tsinghua_air_zh_cards"
+  title_filter = '教授|研究员|Professor|Research'
+  # AIR Chinese 研究团队 page (CDX 2026-11-14: captured 2022-05 onwards; no AIR team page is archived before 2022).
 
 [[departments]]
 code = "AU"
@@ -258,6 +280,17 @@ listing_gaps = {2020 = "exact-URL CDX 2026-11-10: the old list /publish/au/1096/
   format = "tsinghua_au_old_list"
   title_filter = ''
   # Old AU site 在职教师 按研究所划分 (CDX 24 captures 2016-08..2019-10; samples 2016/2018 parse 75/73 rows).
+  [[departments.listings]]
+  slot = "AU aszmcz archive 2020"
+  kind = "main"
+  url = "www.au.tsinghua.edu.cn/szdw/jsdw1/aszmcz.htm"
+  from = "20200101"
+  to = "20201231"
+  prefix = false
+  match = ""
+  format = "tsinghua_au_alpha"
+  title_filter = ''
+  # AU faculty A-Z page (CDX 2026-11-14: szdw/jsdw1/aszmcz.htm captured 2020-10..2026; all letters on one page, names only).
 
 [[departments]]
 code = "EE"
@@ -288,6 +321,17 @@ listing_gaps = {2016 = "exact-URL CDX 2026-11-10: www.ee.tsinghua.edu.cn/ryqk/te
   format = "tsinghua_ee_any"
   title_filter = ''
   # archived raw HTML embeds the lists as JSON (qh_data); CDX 2021H2-2026H2.
+  [[departments.listings]]
+  slot = "EE publish-ee 3727 archive 2016-2020"
+  kind = "main"
+  url = "www.ee.tsinghua.edu.cn/publish/ee/3727/index.html"
+  from = "20160101"
+  to = "20201231"
+  prefix = false
+  match = ""
+  format = "tsinghua_banded_text"
+  title_filter = ''
+  # Old EE site 人员情况 > 在职教师 (CDX 2026-11-14: monthly captures 2012-2020; institute headings with 院士/教授/副教授/讲师 bands; 2016 sample parses 118 names).
 
 [[departments]]
 code = "INSC"
@@ -320,6 +364,29 @@ listing_gaps = {2016 = "exact-URL CDX 2026-11-10: www.insc.tsinghua.edu.cn/szdw_
   title_filter = ''
   # CDX 2022H2-2025H2; samples 2022/2024 parse 48/51 names under 教授/副教授 bands.
 # Discovery leads only; not admitted to the207-person census or child-only paper attribution.
+  [[departments.listings]]
+  slot = "INSC publish-wyy 10784 archive 2017-2020"
+  kind = "main"
+  url = "www.insc.tsinghua.edu.cn/publish/wyy/10784/index.html"
+  from = "20170101"
+  to = "20201231"
+  prefix = false
+  match = ""
+  format = "tsinghua_banded_text"
+  title_filter = ''
+  # Old INSC (网络研究院) site 在职教师 (CDX 2026-11-14: 2017-H2..2020-H1; rank bands).
+  [[departments.listings]]
+  slot = "INSC szdw zzjs archive 2021"
+  kind = "main"
+  url = "www.insc.tsinghua.edu.cn/szdw/zzjs.htm"
+  from = "20210101"
+  to = "20211231"
+  prefix = false
+  match = ""
+  format = "tsinghua_insc_bands"
+  title_filter = ''
+  # INSC new site 在职教师 before the szdw_ move (CDX 2026-11-14: captured 2021-11).
+
 [[departments]]
 code = "ME"
 name = "Department of Mechanical Engineering"
@@ -358,6 +425,28 @@ listing_gaps = {2016 = "exact-URL CDX 2026-11-10 (discover_listings, job 3219047
   match = ""
   format = "tsinghua_me_zh"
   title_filter = ''
+  [[departments.listings]]
+  slot = "ME publish-jxx 6138 archive 2016-2018"
+  kind = "main"
+  url = "www.me.tsinghua.edu.cn/publish/jxx/6138/index.html"
+  from = "20160101"
+  to = "20181231"
+  prefix = false
+  match = ""
+  format = "tsinghua_banded_text"
+  title_filter = ''
+  # Old ME site 师资队伍 (CDX 2026-11-14: captures 2012-2018-01; institute headings with rank bands; 2017 sample parses 166 rows, 160 names).
+  [[departments.listings]]
+  slot = "ME column 25_1 archive 2019-2020"
+  kind = "main"
+  url = "www.me.tsinghua.edu.cn/column/25_1.html"
+  from = "20190101"
+  to = "20201231"
+  prefix = false
+  match = ""
+  format = "tsinghua_me_column"
+  title_filter = ''
+  # ME interim site 2019-2020 在职教师 (CDX 2026-11-14: column/25_1.html captured 2019-05..2020-H1; 151 letter-bucket links, names only).
 
 [[departments]]
 code = "MATH"
@@ -377,6 +466,55 @@ listing_gaps = {2016 = "exact-URL CDX 2026-11-10 (discover_listings, job 3219047
   match = ""
   format = "tsinghua_math_bands"
   title_filter = ''
+  [[departments.listings]]
+  slot = "MATH publish-math 7009 archive 2016-2020"
+  kind = "main"
+  url = "www.math.tsinghua.edu.cn/publish/math/7009/index.html"
+  from = "20160101"
+  to = "20201231"
+  prefix = false
+  match = ""
+  format = "tsinghua_banded_text"
+  title_filter = ''
+  # Old math site 基础数学研究所 page (CDX 2026-11-14: 2016-2021H1); with 7010 and 7011 these are the three institutes' faculty lists; the 师资队伍 page 9383 is an empty template.
+  [[departments.listings]]
+  slot = "MATH publish-math 7010 archive 2016-2020"
+  kind = "main"
+  url = "www.math.tsinghua.edu.cn/publish/math/7010/index.html"
+  from = "20160101"
+  to = "20201231"
+  prefix = false
+  match = ""
+  format = "tsinghua_banded_text"
+  title_filter = ''
+  # Old math site 应用数学与概率统计研究所 page (CDX 2026-11-14: 2016-2020H1).
+  [[departments.listings]]
+  slot = "MATH publish-math 7011 archive 2016-2020"
+  kind = "main"
+  url = "www.math.tsinghua.edu.cn/publish/math/7011/index.html"
+  from = "20160101"
+  to = "20201231"
+  prefix = false
+  match = ""
+  format = "tsinghua_banded_text"
+  title_filter = ''
+  # Old math site 计算数学与运筹学研究所 page (CDX 2026-11-14: 2016-2020H2).
+  [[departments.listings]]
+  slot = "MATH jsml archive 2021-2025"
+  kind = "main"
+  url = "www.math.tsinghua.edu.cn/szdw1/jsml.htm"
+  from = "20210101"
+  to = "20251231"
+  prefix = false
+  match = ""
+  format = "tsinghua_banded_text"
+  title_filter = ''
+  # New math site 教师名录 (CDX 2026-11-14: szdw1/jsml.htm captured 2021-10..2025-09, www and bare host; one page, all institutes, rank bands).
+  [[departments.listing_groups]]
+  name = "MATH old institute pages"
+  from = "20160101"
+  to = "20201231"
+  slots = ["MATH publish-math 7009 archive 2016-2020", "MATH publish-math 7010 archive 2016-2020", "MATH publish-math 7011 archive 2016-2020"]
 
 [[departments]]
 code = "BME"
@@ -406,6 +544,70 @@ listing_gaps = {2016 = "exact-URL CDX 2026-11-10 (discover_listings, job 3219047
   match = ""
   format = "tsinghua_bme_cards"
   title_filter = ''
+  [[departments.listings]]
+  slot = "BME med Person 124 archive 2017-2020"
+  kind = "main"
+  url = "www.med.tsinghua.edu.cn/Person?method=101&param=124"
+  from = "20170101"
+  to = "20201231"
+  prefix = false
+  match = ""
+  format = "tsinghua_bme_person_table"
+  title_filter = ''
+  # School of Medicine site 师资队伍 > 生物医学工程系 (CDX 2026-11-14: 2017-03..2020-H1; 教研系列 table by research area; host med.tsinghua.edu.cn is not in hosts.json: archive only, never contacted).
+  [[departments.listings]]
+  slot = "BME med jyxl sjgc archive 2022-2024"
+  kind = "main"
+  url = "www.med.tsinghua.edu.cn/szdw/swyxgcx/jyxl/sjgc.htm"
+  from = "20220101"
+  to = "20241231"
+  prefix = false
+  match = ""
+  format = "tsinghua_bme_med_areas"
+  min_entries = 1
+  title_filter = ''
+  # School of Medicine 生物医学工程系 教研系列 research-area page (CDX 2026-11-14: captured 2022-2024).
+  [[departments.listings]]
+  slot = "BME med jyxl wnyxyzzgc archive 2022-2024"
+  kind = "main"
+  url = "www.med.tsinghua.edu.cn/szdw/swyxgcx/jyxl/wnyxyzzgc.htm"
+  from = "20220101"
+  to = "20241231"
+  prefix = false
+  match = ""
+  format = "tsinghua_bme_med_areas"
+  min_entries = 1
+  title_filter = ''
+  # School of Medicine 生物医学工程系 教研系列 research-area page (CDX 2026-11-14: captured 2022-2024).
+  [[departments.listings]]
+  slot = "BME med jyxl ylyq archive 2022-2024"
+  kind = "main"
+  url = "www.med.tsinghua.edu.cn/szdw/swyxgcx/jyxl/ylyq.htm"
+  from = "20220101"
+  to = "20241231"
+  prefix = false
+  match = ""
+  format = "tsinghua_bme_med_areas"
+  min_entries = 1
+  title_filter = ''
+  # School of Medicine 生物医学工程系 教研系列 research-area page (CDX 2026-11-14: captured 2022-2024).
+  [[departments.listings]]
+  slot = "BME med jyxl yxyx archive 2022-2024"
+  kind = "main"
+  url = "www.med.tsinghua.edu.cn/szdw/swyxgcx/jyxl/yxyx.htm"
+  from = "20220101"
+  to = "20241231"
+  prefix = false
+  match = ""
+  format = "tsinghua_bme_med_areas"
+  min_entries = 1
+  title_filter = ''
+  # School of Medicine 生物医学工程系 教研系列 research-area page (CDX 2026-11-14: captured 2022-2024).
+  [[departments.listing_groups]]
+  name = "BME med jyxl research-area pages"
+  from = "20220101"
+  to = "20241231"
+  slots = ["BME med jyxl sjgc archive 2022-2024", "BME med jyxl wnyxyzzgc archive 2022-2024", "BME med jyxl ylyq archive 2022-2024", "BME med jyxl yxyx archive 2022-2024"]
 
 [[departments]]
 code = "PI"
@@ -715,3 +917,15 @@ host = "faculty.dpi.tsinghua.edu.cn"
 use = "live"
 purpose = "robots.txt 404 (no rules, no AI-agent rules) on 2026-11-10; faculty list read by the Selenium render tool (one page, honest UA)."
 probe = "https://faculty.dpi.tsinghua.edu.cn/teacher.jsp?urltype=tree.TreeTempUrl&wbtreeid=1052"
+  [[departments.listings]]
+  slot = "PI publish-dpi 5135 archive 2016-2020"
+  kind = "main"
+  url = "www.dpi.tsinghua.edu.cn/publish/dpi/5135/index.html"
+  from = "20160101"
+  to = "20201231"
+  prefix = false
+  match = ""
+  format = "tsinghua_banded_text"
+  title_filter = ''
+  # Old Precision Instrument site 教职员工 (CDX 2026-11-14: 2016-2020-H1; many later captures are 90-byte JavaScript redirects to faculty.dpi.tsinghua.edu.cn and stay unusable).
+

@@ -1709,6 +1709,207 @@ def tsinghua_dpi_rendered(h):
     return out
 
 
+# ---- Tsinghua older site eras (stage 1, 2026-11-14): banded text rosters and a few card layouts -------------------------------------------------------
+_TS_RANK = (r'(?:[一-鿿]{0,8}(?:教授|研究员|院士|讲师|教师|工程师|实验师|编辑|正高级|副高级|正高|副高|中级|所长|副所长|教研系列|研究系列|实验员)'
+            r'[一-鿿/、]{0,16})')
+_TS_DIV = r'(?:[一-鿿]{2,20}(?:研究所|研究院|研究中心|中心|学院|系))'
+_TS_FACULTY_BAND = re.compile(r'教授|研究员|院士|讲师|教师|教研系列|研究系列|正高|副高|中级')
+_TS_NOT_FACULTY = re.compile(r'工程师|实验师|编辑|实验员|所长|博士后')
+_TS_STOP = {'教授', '副教授', '讲师', '研究员', '副研究员', '院士', '博士后', '其他', '其它', '暂无', '无', '正高级', '副高级', '中级'}
+
+
+def _ts_lines(fragment):
+    """Text lines of an HTML fragment: block tags and <br> break lines, every link end is a name separator (\\x01); entities and nbsp are plain spaces.
+    A label split over tags is joined back ('正 高 级' + '：', '中' + '级：', '设' + '计工程研究所')."""
+    h = re.sub(r'(?is)<(script|style)\b.*?</\1>|<!--.*?-->', '', fragment)
+    h = re.sub(r'(?i)</a>', '\x01', h)
+    h = re.sub(r'(?i)<br\s*/?>|</?(?:p|div|li|ul|tr|td|th|h\d|dd|dt|dl|table)\b[^>]*>', '\n', h)
+    h = H.unescape(TAG.sub('', h)).replace('\xa0', ' ').replace('\u3000', ' ')
+    h = re.sub(r'(教|院|副教|研|副研|讲|正高|副高)\s+(授|士|究\s*员|师|级)(?=\s*[：:])', lambda m: re.sub(r'\s+', '', m.group(0)), h)
+    h = re.sub(r'(正|副)\s*高\s*级', r'\1高级', h)
+    h = re.sub(r'(?<![\u4e00-\u9fff])中\s*级(?=\s*[：:]|\s*$)', '中级', h, flags=re.M)
+    lines = [ln for ln in h.split('\n') if ln.strip()]
+    out = []
+    i = 0
+    while i < len(lines):
+        ln = lines[i]
+        if out and re.fullmatch(r'\s*[：:]\s*', ln):
+            out[-1] = out[-1].rstrip() + '：'
+        elif i + 1 < len(lines) and len(ln.strip()) == 1:
+            cand = (ln.strip() + lines[i + 1].strip()).replace(' ', '')
+            if re.fullmatch(_TS_DIV, cand) or re.fullmatch(_TS_RANK + r'\s*[：:]?', cand):
+                out.append(ln.strip() + lines[i + 1].strip())
+                i += 1
+            else:
+                out.append(ln)
+        else:
+            out.append(ln)
+        i += 1
+    return out
+
+
+def _ts_names(text):
+    """(name, as printed) pairs in a run of text: separators are 、，; / | spaces and link ends; a one-character token pairs with the next one
+    ('周 明' -> 周明, printed '周 明', which is the quote the row needs)."""
+    for _ in range(3):
+        text = re.sub(r'[（(][^（）()]*[）)]', '', text)
+    toks = [t for t in re.split(r'[\x01|、,，;；/\s]+', text) if t]
+    out, i = [], 0
+    while i < len(toks):
+        t = shown = toks[i]
+        if re.fullmatch(r'[\u4e00-\u9fff]', t) and i + 1 < len(toks) and re.fullmatch(r'[\u4e00-\u9fff]', toks[i + 1]):
+            t, shown, i = t + toks[i + 1], t + ' ' + toks[i + 1], i + 1
+        i += 1
+        if t in _TS_STOP or re.search(r'教授|研究员|工程师|实验师|实验员|讲师|编辑|院士|所长|主任|书记|助理|博士后|教师', t):
+            continue
+        if re.fullmatch(r'[\u4e00-\u9fff·]{2,4}', t) or re.fullmatch(r'[A-Z][A-Za-z.\'-]{1,}', t):
+            out.append((t, shown))
+    return out
+
+
+def tsinghua_banded_text(h):
+    """Tsinghua department rosters written as rank-banded text (old /publish/<dept>/ sites 2016-2020, the VSB math jsml list): lines such as
+    `教授：A、B、C`, `副教授：...`, institute headings (`摩擦学研究所`) and rank headings (`正高级`). A name list counts only under a faculty band (教授, 研究员,
+    院士, 讲师, ...; 所长, 工程师, 实验师 and 博士后 bands are skipped) and a sentence (`。`) ends the band, so prose never yields names.
+    The band is the title, the institute heading the division."""
+    soup = BeautifulSoup(h, 'html.parser')
+    box = soup.select_one('div.box_detail') or soup.select_one('div.gp-article') or soup.body or soup
+    band = division = None
+    out = []
+
+    def emit(text):
+        if band and _TS_FACULTY_BAND.search(band) and not _TS_NOT_FACULTY.search(band):
+            for n, shown in _ts_names(text):
+                out.append(dict(name_listed=n, titles=[band], profile=None, homepage=None, division=division, **({'quote_name': shown} if shown != n else {})))
+    for line in _ts_lines(str(box)):
+        for _ in range(3):
+            line = re.sub(r'[（(][^（）()]*[）)]', '', line)   # remarks such as （按姓氏拼音排序） and award lists
+        if '。' in line:
+            if not re.match(r'\s*' + _TS_RANK + r'\s*[：:]', line):
+                band = None   # prose, not a name list
+                continue
+            line = line.replace('。', '')
+        line = line.strip()
+        if re.fullmatch(_TS_DIV, line.replace(' ', '')):
+            division = line.replace(' ', '')
+            band = None
+            continue
+        if re.fullmatch(_TS_RANK, line.replace(' ', '')) and not re.search(r'[：:]', line):
+            band = re.sub(r'\s+', '', line)
+            continue
+        for seg in re.split(r'(?<=[：:])', line):
+            if not seg.strip():
+                continue
+            if seg.rstrip()[-1:] not in '：:':
+                emit(seg)
+                continue
+            body = seg.rstrip()[:-1]
+            m = re.search(r'(' + _TS_RANK + r'|' + _TS_DIV + r')\s*$', body.replace('\u0001', ' '))
+            if m is None:
+                band = None   # an unknown label (学术带头人, 研究方向包括): its names are not a rank band
+                continue
+            emit(body[:len(body) - len(m.group(0))] if body.endswith(m.group(0)) else '')
+            label = re.sub(r'\s+', '', m.group(1))
+            if re.fullmatch(_TS_DIV, label) and not re.search(r'教授|研究员|院士|讲师', label):
+                division, band = label, None
+            else:
+                band = label
+    return out
+
+
+def tsinghua_me_column(h):
+    """Tsinghua Mechanical Engineering 在职教师 list 2019-2020 (me.tsinghua.edu.cn/column/25_1.html): `<a word="C" href="../essay/..">name</a>` letter-bucket
+    links, the same rows as tsinghua_me_zh without the title attribute; names only (spaced names such as '陈 恳' are joined)."""
+    out = []
+    for a in BeautifulSoup(h, 'html.parser').select('div.tea-text a[word][href]'):
+        shown = clean(a.get_text(' ', strip=True))
+        name = re.sub(r'[\s\u3000]+', '', shown)
+        if name:
+            out.append(dict(name_listed=name, titles=[], profile=a['href'], homepage=None, division=None, **({'quote_name': shown} if shown != name else {})))
+    return out
+
+
+def tsinghua_bme_person_table(h):
+    """Tsinghua School of Medicine site 2017-2020 (www.med.tsinghua.edu.cn/Person?method=101&param=124, 生物医学工程系): `div.cont_item` with an `<h2>` series
+    (教研系列, ...), then table rows `td.title` research area + `li a[href*=perId]` names. The series is the title, the area the division."""
+    out = []
+    for item in BeautifulSoup(h, 'html.parser').select('div.content div.cont_item'):
+        series = item.find('h2')
+        series = clean(series.get_text(' ', strip=True)) if series else None
+        for tr in item.select('tr'):
+            area = tr.select_one('td.title')
+            for a in tr.select('li a[href]'):
+                name = re.sub(r'[\s　]+', '', a.get_text('', strip=True))
+                if name:
+                    out.append(dict(name_listed=name, titles=[series] if series else [], profile=a['href'], homepage=None,
+                                    division=clean(area.get_text(' ', strip=True)) if area else None))
+    return out
+
+
+def tsinghua_bme_med_areas(h):
+    """Tsinghua School of Medicine 生物医学工程系 教研系列 sub-pages 2021-2024 (www.med.tsinghua.edu.cn/szdw/swyxgcx/jyxl/<area>.htm): `div.content_li`
+    with `div.title001 h3` research area, then `li a[title][href]` cards; the area is the division, the series (教研系列) the title."""
+    out = []
+    for box in BeautifulSoup(h, 'html.parser').select('div.content_li'):
+        area = box.select_one('div.title001 h3')
+        area = clean(area.get_text(' ', strip=True)) if area else None
+        for a in box.select('li a[title][href]'):
+            name = re.sub(r'[\s　]+', '', a['title'])
+            if name:
+                out.append(dict(name_listed=name, titles=['教研系列'], profile=a['href'], homepage=None, division=area))
+    return out
+
+
+def tsinghua_air_zh_cards(h):
+    """Tsinghua AIR Chinese team pages 2022- (air.tsinghua.edu.cn/airtd/yjtd.htm): `div.yjtd_tit h1` band, then `li` cards whose `<h2>` is `<b>name</b>` followed
+    by the title text (院长/讲席教授); the biography paragraph is not kept."""
+    out = []
+    for box in BeautifulSoup(h, 'html.parser').select('div.yjtd_tit'):
+        band = clean(box.get_text(' ', strip=True))
+        body = box.find_next_sibling('div', class_='yjtd_nr')
+        for li in (body.select('li') if body else []):
+            h2, a = li.select_one('h2'), li.select_one('a[href]')
+            b = h2.find('b') if h2 else None
+            if b is None or not clean(b.get_text(' ', strip=True)):
+                continue
+            name = re.sub(r'[\s\u3000]+', '', clean(b.get_text(' ', strip=True)))
+            title = clean(h2.get_text(' ', strip=True))[len(clean(b.get_text(' ', strip=True))):].strip()
+            out.append(dict(name_listed=name, titles=[title] if title else [], profile=a['href'] if a else None, homepage=None, division=band))
+    return out
+
+
+def tsinghua_au_alpha(h):
+    """Tsinghua Automation faculty A-Z page 2020- (szdw/jsdw1/aszmcz.htm, 按姓名首字母): `div.list-line div.n-list a div.item` names for every letter on one page,
+    no titles; links that are `javascript:;` have no profile."""
+    out = []
+    for a in BeautifulSoup(h, 'html.parser').select('div.list-line div.n-list a'):
+        item = a.select_one('div.item')
+        shown = clean(item.get_text(' ', strip=True)) if item else ''
+        name = re.sub(r'[\s\u3000]+', '', shown)
+        if name:
+            href = a.get('href')
+            out.append(dict(name_listed=name, titles=[], profile=None if not href or href.startswith('javascript') else href, homepage=None, division=None,
+                            **({'quote_name': shown} if shown != name else {})))
+    return out
+
+
+def tsinghua_iiis_people(h):
+    """Tsinghua IIIS people page 2016-2025 (iiis.tsinghua.edu.cn/people/, en/people/, zh/people/): a series heading (`教研系列`, ...) then `div.list_team li`
+    cards: `div.name a` and the first `div.area` line as the title (院长，教授)."""
+    out = []
+    for li in BeautifulSoup(h, 'html.parser').select('div.list_team li'):
+        a = li.select_one('div.name a')
+        if a is None:
+            continue
+        name = clean(a.get_text(' ', strip=True))
+        area = li.select_one('div.area')
+        head = li.find_parent('div', class_='list_team')
+        series = head.find_previous(class_=re.compile(r'\btitle\b|\btit\b')) if head is not None else None
+        out.append(dict(name_listed=name, titles=[clean(area.get_text(' ', strip=True))] if area else [], profile=a.get('href'), homepage=None,
+                        division=clean(series.get_text(' ', strip=True)) if series is not None else None))
+    return out
+
+
 def tsinghua_ee_text(h):
     """Tsinghua EE faculty page 2022-2025 as ARCHIVED: plain text after `图片列表`: institute heading (…研究所 / …中心), then `教 授：`, `副教授：`, `讲 师：` ... bands each followed by name tokens."""
     from bs4 import BeautifulSoup
@@ -1940,6 +2141,13 @@ FORMATS = {
     'ntu_medicine_table': (ntu_medicine_table, re.compile(r'Faculty and Joint Faculty')),
     'ntu_img_cards': (ntu_img_cards, re.compile(r'img-card--academic')),
     'tsinghua_ee_any': (tsinghua_ee_any, re.compile(r'(?!)')),
+    'tsinghua_banded_text': (tsinghua_banded_text, re.compile(r'(?!)')),
+    'tsinghua_me_column': (tsinghua_me_column, re.compile(r'(?!)')),
+    'tsinghua_bme_person_table': (tsinghua_bme_person_table, re.compile(r'(?!)')),
+    'tsinghua_bme_med_areas': (tsinghua_bme_med_areas, re.compile(r'(?!)')),
+    'tsinghua_iiis_people': (tsinghua_iiis_people, re.compile(r'(?!)')),
+    'tsinghua_au_alpha': (tsinghua_au_alpha, re.compile(r'(?!)')),
+    'tsinghua_air_zh_cards': (tsinghua_air_zh_cards, re.compile(r'(?!)')),
     'tsinghua_ee_text': (tsinghua_ee_text, re.compile(r'图片列表.{0,3000}?(?:教\s*授|副教授)\s*[：:]', re.S)),
     'tsinghua_au_old_list': (tsinghua_au_old_list, re.compile(r'<table[^>]*uetable')),
     'tsinghua_insc_bands': (tsinghua_insc_bands, re.compile(r'(?!)')),
