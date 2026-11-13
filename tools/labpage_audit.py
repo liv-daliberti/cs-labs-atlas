@@ -2086,6 +2086,8 @@ def entry_years(desc, head):
         return [int(fy.group(1)), int(fy.group(1))], 'section_year_heading'   # 'FYP 2019' heading: a final-year-project advisee of that year
     if head and re.fullmatch(r'\W*(%s)\W*' % YEAR_, head.split(' > ')[-1].strip()):
         y = int(re.search(YEAR_, head.split(' > ')[-1]).group(0))
+        if CURRENT_LIST_HEAD.search(' > '.join(head.split(' > ')[:-1])) and (y > 2026 or re.search(r'\bexpected\b', desc or '', re.I)):
+            return None, 'none'   # 'Current Students > 2027' with 'Expected completion' under each name: the year is the expected COMPLETION of a current student, not a start (MIT Bertsimas)
         return [y, y], 'section_year_heading'
     return None, 'none'
 

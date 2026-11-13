@@ -31,3 +31,12 @@ def test_princeton_a_b_degree_line_is_a_degree_origin_not_a_location():
     # Houck's roster gives each member's earlier degrees ('A.B. Physics, Dartmouth College (2022)'): where the degree came from, not where the person is (Princeton A.B. = bachelor of arts)
     assert not A.other_institution_entry('A.B. Physics, Dartmouth College (2022) Email', 'A.B. Physics, Dartmouth College (2022) Email', 'princeton')
     assert A.other_institution_entry('Graduate student, Physics@Dartmouth College, 2019 - 2022', '', 'princeton')
+
+
+def test_year_heading_under_current_students_is_an_expected_completion_not_a_start():
+    # dbertsim.mit.edu/students: 'Current Students > 2027' lists 'Jiayi Gu / Expected completion': read as [2027, 2027] it was dropped as an incoming student (15 current PhD students)
+    assert A.entry_years('Expected completion', 'Current Students > 2027') == (None, 'none')
+    assert A.entry_years('', 'Current Students > 2030') == (None, 'none')
+    # a year heading of a past list is still that year, and a current list's year heading at or before this year without 'expected' keeps its reading
+    assert A.entry_years('', 'Past Students > 2019') == ([2019, 2019], 'section_year_heading')
+    assert A.entry_years('', 'Members > 2019') == ([2019, 2019], 'section_year_heading')
