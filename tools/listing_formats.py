@@ -2031,3 +2031,260 @@ def whu_cs_rank_table(h):
 
 
 FORMATS['whu_cs_rank_table'] = (whu_cs_rank_table, re.compile(r'(?!)'))
+
+
+# ---- Carnegie Mellon School of Computer Science units (Stage 1, 2026-11-13): one reader per site era -----------------------------------------
+# CMU's seven SCS units changed platform two to four times between 2016 and 2026 (Drupal 7 views tables, ISR/MLD hand-built bio pages,
+# a WordPress 'Connections' directory, Fusion/Toolset cards, the 2022 Hugo-style filterable cards). Slots name the era's reader in
+# schools/cmu.toml; none of them auto-detects (the detector never matches), so a page is only read by the era that names it.
+_CMU_LEAD = re.compile(r'^(?:Dr|Prof|Professor)\.?\s+', re.I)
+
+
+def _cmu_t(node):
+    return ' '.join(node.get_text(' ', strip=True).split()) if node is not None else ''
+
+
+def _cmu_entry(name, titles, href=None, division=None):
+    name = _CMU_LEAD.sub('', ' '.join((name or '').split())).strip(' ,')
+    titles = [t for t in (' '.join(x.split()) for x in titles) if t]
+    return dict(name_listed=name, titles=titles, homepage=None, division=division, profile=href) if name else None
+
+
+def cmu_scs_views_table(h):
+    """CSD directory/faculty (Drupal 7 views table 2016-2023, people/faculty 2024-2026) and the all-people directory.
+    Name cells: 'Last' + 'First' cells (2016-2018), one 'Last, First' link (2019-2024), or the link followed by the title line (2026); the title cell
+    carries 'prof-title' or 'professional-title'. Office, phone and e-mail cells are never read."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for tr in soup.select('tbody tr'):
+        cells = {}
+        for td in tr.find_all('td', recursive=False):
+            for c in td.get('class') or []:
+                cells[c] = td
+        last = next((v for k, v in cells.items() if k.endswith('field-computed-last-name')), None)
+        first = next((v for k, v in cells.items() if k.endswith('field-computed-first-name')), None)
+        lone = next((v for k, v in cells.items() if k.endswith('views-field-field-first-name')), None)
+        title_cell = next((v for k, v in cells.items() if 'prof-title' in k or 'professional-title' in k), None)
+        name_cell = last or lone
+        if name_cell is None:
+            continue
+        link = name_cell.select_one('a[href]')
+        name = _cmu_t(link) if link else _cmu_t(name_cell)
+        printed = None
+        if first is not None:   # two cells: the page prints 'Last First' (no comma); the entry keeps 'Last, First'
+            printed = f'{name} {_cmu_t(first)}'
+            name = f'{name}, {_cmu_t(first)}'
+        if not name or name.lower().startswith('name'):
+            continue
+        titles = [_cmu_t(title_cell)] if title_cell is not None else []
+        if not titles and link is not None:
+            for sib in link.next_siblings:   # 2026: the link, <br>, the title, <br>, then office lines
+                text = ' '.join(str(sib).split()) if isinstance(sib, str) else ''
+                if text:
+                    titles = [text]
+                    break
+        e = _cmu_entry(name, titles, link['href'] if link else None)
+        if e:
+            if printed:
+                e['quote_name'] = ' '.join(printed.split())
+            out.append(e)
+    return out
+
+
+def cmu_lti_directory(h):
+    """LTI directory/all/154/N (Drupal 7 views grid 2016-2024): td.col-N, h2 name in a profile link, div.field-computed-prof-title."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for td in soup.select('td[class*="col-"]'):
+        h2 = td.select_one('h2')
+        title = td.select_one('.views-field-field-computed-prof-title')
+        if h2 is None or title is None:
+            continue
+        a = h2.find_parent('a', href=True)
+        e = _cmu_entry(_cmu_t(h2), [_cmu_t(title)], a['href'] if a else None)
+        if e:
+            out.append(e)
+    return out
+
+
+def cmu_filterable_cards(h, sections=None):
+    """Hugo-style filterable cards (LTI lti.cmu.edu/people/faculty 2024-, S3D faculty-index 2022-): div.filterable, h2 > a.name, optional h3 title.
+    `sections` limits the read to div.section-id ids (LTI: core-faculty-bios; its affiliated and adjunct sections are other slots' groups)."""
+    soup = BeautifulSoup(h, 'html.parser')
+    roots = [d for d in soup.select('div.section-id') if sections is None or d.get('id') in sections] or [soup]
+    out = []
+    for root in roots:
+        for card in root.select('div.filterable'):
+            h2 = card.select_one('h2')
+            if h2 is None:
+                continue
+            h3 = card.select_one('h3')
+            a = h2.select_one('a[href]')
+            e = _cmu_entry(_cmu_t(h2), [_cmu_t(h3)] if h3 is not None else [], a['href'] if a else None)
+            if e:
+                out.append(e)
+    return out
+
+
+def cmu_lti_cards(h):
+    return cmu_filterable_cards(h, {'core-faculty-bios'})
+
+
+def cmu_bio_h1_h2(h):
+    """ISR and MLD hand-built bio pages 2016-2017H1 (people/core-faculty.html): <h1>Name</h1><h2>Title</h2> per person after the page's own heading."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for h1 in soup.select('#mainContent h1, div.content h1'):
+        h2 = h1.find_next_sibling('h2')
+        nxt = h1.find_next_sibling(['h1', 'h2'])
+        if h2 is None or nxt is not h2:
+            continue
+        e = _cmu_entry(_cmu_t(h1), [_cmu_t(h2)])
+        if e:
+            out.append(e)
+    return out
+
+
+def cmu_bio_h2_h3(h):
+    """ISR and MLD bio pages and cards 2017H2-2026 (people/core-faculty.html): <h2>Name</h2> (a link on the card pages) followed by <h3>Title</h3>;
+    an <h2> without an <h3> right after it is page furniture."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for h2 in soup.select('h2'):
+        h3 = h2.find_next_sibling()
+        while h3 is not None and h3.name not in ('h2', 'h3', 'h1', 'h4') and h3.name in ('p', 'span') and not _cmu_t(h3):
+            h3 = h3.find_next_sibling()
+        if h3 is None or h3.name != 'h3' or h3.get('class') and 'collapsed' in h3['class']:
+            continue
+        a = h2.select_one('a[href]')
+        e = _cmu_entry(_cmu_t(h2), [_cmu_t(h3)], a['href'] if a else None)
+        if e:
+            out.append(e)
+    return out
+
+
+def cmu_ri_legacy(h):
+    """RI ri_people.html?fcode=N (2016): one table per person, name in a bold link, the title in the next row's <b>; contact rows are never read."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for font in soup.select('table font[style*="font-weight:bold"]'):
+        a = font.select_one('a[href]')
+        tr = font.find_parent('tr')
+        nxt = tr.find_next_sibling('tr') if tr is not None else None
+        b = nxt.find('b') if nxt is not None else None
+        if a is None or b is None:
+            continue
+        e = _cmu_entry(_cmu_t(a), [_cmu_t(b)], a['href'])
+        if e:
+            out.append(e)
+    return out
+
+
+def cmu_ri_cards(h):
+    """RI people/faculty (WordPress 2017-2026: a table, div.RIperson, then div.ri_person): <strong><a>Name</a></strong>, then the title line before the next <br>."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for strong in soup.select('strong'):
+        a = strong.find('a', href=True)
+        if a is None or not re.search(r'/ri-[a-z]+/', a['href']):
+            continue
+        title = ''
+        for sib in strong.next_siblings:
+            if isinstance(sib, str):
+                if sib.strip():
+                    title = ' '.join(sib.split())
+                    break
+            elif sib.name == 'br':
+                continue
+            else:
+                break
+        e = _cmu_entry(_cmu_t(a), [title], a['href'])
+        if e:
+            out.append(e)
+    return out
+
+
+def cmu_hcii_cards(h):
+    """HCII people/faculty: Drupal 7 cards 2016-2022H1 (li.t-card-listing--card, h3 link, pane-node-field-up2-job-title) and Drupal 9 teasers 2022H2-
+    (div.person-teaser, h2 link, h3.faculty-content-heading-position)."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for li in soup.select('li.t-card-listing--card'):
+        h3 = li.select_one('h3 a[href]')
+        t = li.select_one('.pane-node-field-up2-job-title')
+        if h3 is None:
+            continue
+        e = _cmu_entry(_cmu_t(h3), [_cmu_t(t)] if t is not None else [], h3['href'])
+        if e:
+            out.append(e)
+    for card in soup.select('div.person-teaser'):
+        a = card.select_one('h2 a[href]')
+        t = card.select_one('.faculty-content-heading-position')
+        if a is None:
+            continue
+        e = _cmu_entry(_cmu_t(a), [_cmu_t(t)] if t is not None else [], a['href'])
+        if e:
+            out.append(e)
+    return out
+
+
+def cmu_s3d_index(h):
+    """ISR/S3D people/faculty-index.html: <h1>Core Faculty</h1> / <h1>Affiliated Faculty</h1> sections of <h2>Dr. Name</h2> cards with no title line
+    (the section heading is the category; Post Docs and other sections are not faculty and are skipped)."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out, section = [], None
+    for el in soup.find_all(['h1', 'h2']):
+        if el.name == 'h1':
+            section = _cmu_t(el)
+            continue
+        if section not in ('Core Faculty', 'Affiliated Faculty'):
+            continue
+        a = el.select_one('a[href]')
+        e = _cmu_entry(_cmu_t(el), [], a['href'] if a else None, division=section)
+        if e:
+            out.append(e)
+    return out
+
+
+def cmu_cbd_connections(h):
+    """CBD directory/faculty/voting-faculty (WordPress Connections, 2016-2020): div.cn-entry, span.fn.n given + family name (kept given-first, as the page prints it), span.title."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for entry in soup.select('div.cn-entry'):
+        fn, family = entry.select_one('.fn'), entry.select_one('.family-name')
+        title = entry.select_one('span.title')
+        if fn is None or family is None:   # the .fn span prints given, additional (middle) and family names in order
+            continue
+        a = entry.select_one('.fn a[href]')
+        e = _cmu_entry(_cmu_t(fn), [_cmu_t(title)] if title is not None else [], a['href'] if a else None)
+        if e:
+            out.append(e)
+    return out
+
+
+def cmu_cbd_cards(h):
+    """CBD people/voting-faculty.html (2021-): a div per person, <h2>Name</h2>, then <p><strong>Title</strong><br>Carnegie Mellon University<br>unit</p>."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for h2 in soup.select('h2'):
+        strong = h2.find_next_sibling('p')
+        strong = strong.find('strong') if strong is not None else None
+        # the picture paragraph comes first on the card
+        p = h2.find_next_sibling('p')
+        while p is not None and p.find('strong') is None and p.find_next_sibling('p') is not None and p.find('img') is not None:
+            p = p.find_next_sibling('p')
+        strong = p.find('strong') if p is not None else None
+        if strong is None:
+            continue
+        a = h2.select_one('a[href]')
+        e = _cmu_entry(_cmu_t(h2), [_cmu_t(strong)], a['href'] if a else None)
+        if e:
+            out.append(e)
+    return out
+
+
+for _name, _fn in [('cmu_scs_views_table', cmu_scs_views_table), ('cmu_lti_directory', cmu_lti_directory), ('cmu_lti_cards', cmu_lti_cards),
+                   ('cmu_bio_h1_h2', cmu_bio_h1_h2), ('cmu_bio_h2_h3', cmu_bio_h2_h3), ('cmu_ri_legacy', cmu_ri_legacy), ('cmu_ri_cards', cmu_ri_cards),
+                   ('cmu_hcii_cards', cmu_hcii_cards), ('cmu_s3d_index', cmu_s3d_index), ('cmu_cbd_connections', cmu_cbd_connections),
+                   ('cmu_cbd_cards', cmu_cbd_cards)]:
+    FORMATS[_name] = (_fn, re.compile(r'(?!)'))

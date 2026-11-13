@@ -36,9 +36,399 @@ listing_continuity = true     # R-PAP-37, owner-approved 2026-11-06, 30-paper ha
 
 [census]
 computing_departments = []   # listed_not_in_census.py; [] = every listed department
+# home_units (gate 3 known_homes, 2026-11-13): the home-department labels of the released CMU census (hierarchy/cmu/derived/home-departments-school.json) are unit CODES;
+# the seven SCS units are also [[departments]] below, the other codes are units searched for CS-related faculty.
+home_units = {"CSD" = '^CSD$', "HCII" = '^HCII$', "RI" = '^RI$', "ECE" = '^ECE$', "CBD" = '^CBD$', "LTI" = '^LTI$', "S3D" = '^S3D$', "MLD" = '^MLD$', "Tepper" = '^Tepper$', "MechE" = '^MechE$', "Heinz" = '^Heinz$', "Mathematical Sciences" = '^Mathematical Sciences$', "CEE" = '^CEE$', "ChemE" = '^ChemE$', "EPP" = '^EPP$', "Psychology" = '^Psychology$', "Statistics & Data Science" = '^Statistics (?:&|and) Data Science$', "Philosophy" = '^Philosophy$', "Design" = '^Design$', "Architecture" = '^Architecture$', "Social and Decision Sciences" = '^Social and Decision Sciences$'}
 
 [site]
 depts = {CSD = "Computer Science Department", MLD = "Machine Learning Department", RI = "Robotics Institute", HCII = "Human–Computer Interaction Institute", LTI = "Language Technologies Institute", S3D = "Software and Societal Systems Department", CBD = "Computational Biology Department"}
+
+
+# ---- Stage 1 departments (2026-11-13, gate-1 worker): the seven School of Computer Science units. One [[departments.listings]] entry per URL era; entries that share a
+# slot name are one slot. Slot names are the names of listings/scripts/config_cmu.py (the plan rows in listings/cmu/raw/captures.sqlite are keyed by them), `format` names the
+# page reader of that era (tools/listing_formats.py, cmu_*; the era that holds the capture date names the reader). Paged directories are separate page slots, and a
+# [[departments.listing_groups]] entry says which slots make ONE complete roster for the years it covers (a year passes when any group that overlaps it has every slot
+# ok in some half-year of that year). No waivers: a year without a complete roster stays open (docs/ADDING-A-SCHOOL.md, owner rule 2026-11-11).
+# Not charter departments: the home-department gap-fill slots of config_cmu (ECE, MechE, Chemistry, Philosophy: home units of CS-related faculty, not CS-related units),
+# the SCS directory API, and the adjunct/affiliated/emeritus/teaching/visiting slots of the seven units (their plan rows are kept; they are not roster slots).
+[[departments]]
+code = "CSD"
+name = "Computer Science Department"
+unit = "Carnegie Mellon University School of Computer Science"
+title_match = 'Professor|Lecturer|Instructor|Scientist|Director'
+coverage = "full"
+url = "https://csd.cmu.edu/people/faculty"
+  [[departments.listings]]
+  slot = "CSD faculty"
+  kind = "main"
+  url = "csd.cs.cmu.edu/directory/faculty"
+  from = "20160101"
+  to = "20191231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD faculty"
+  kind = "main"
+  url = "csd.cmu.edu/directory/faculty"
+  from = "20190101"
+  to = "20231231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD faculty"
+  kind = "main"
+  url = "csd.cmu.edu/people/faculty"
+  from = "20230101"
+  to = "20261231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD faculty"
+  kind = "main"
+  url = "csd.cs.cmu.edu/people/faculty"
+  from = "20240101"
+  to = "20261231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD faculty, page 2 (2024+ pagination)"
+  kind = "main"
+  url = "csd.cmu.edu/people/faculty?page=1"
+  from = "20160101"
+  to = "20261231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD faculty, page 2 (2024+ pagination)"
+  kind = "main"
+  url = "csd.cs.cmu.edu/people/faculty?page=1"
+  from = "20160101"
+  to = "20261231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD faculty, page 3 (2024+ pagination)"
+  kind = "main"
+  url = "csd.cmu.edu/people/faculty?page=2"
+  from = "20160101"
+  to = "20261231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD faculty, page 3 (2024+ pagination)"
+  kind = "main"
+  url = "csd.cs.cmu.edu/people/faculty?page=2"
+  from = "20160101"
+  to = "20261231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD faculty, page 4 (2025+ pagination)"
+  kind = "main"
+  url = "csd.cmu.edu/people/faculty?page=3"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD faculty, page 4 (2025+ pagination)"
+  kind = "main"
+  url = "csd.cs.cmu.edu/people/faculty?page=3"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD faculty, page 5 (2025+ pagination)"
+  kind = "main"
+  url = "csd.cmu.edu/people/faculty?page=4"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD faculty, page 5 (2025+ pagination)"
+  kind = "main"
+  url = "csd.cs.cmu.edu/people/faculty?page=4"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD faculty, page 6 (2025+ pagination)"
+  kind = "main"
+  url = "csd.cmu.edu/people/faculty?page=5"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD faculty, page 6 (2025+ pagination)"
+  kind = "main"
+  url = "csd.cs.cmu.edu/people/faculty?page=5"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD directory (all people)"
+  kind = "sub"
+  url = "csd.cs.cmu.edu/directory/all"
+  from = "20160101"
+  to = "20191231"
+  format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "CSD directory (all people)"
+  kind = "sub"
+  url = "csd.cmu.edu/directory/all"
+  from = "20190101"
+  to = "20231231"
+  format = "cmu_scs_views_table"
+  [[departments.listing_groups]]
+  name = "CSD unpaged directory 2016-2023"
+  from = "20160101"
+  to = "20231231"
+  slots = ["CSD faculty"]
+  [[departments.listing_groups]]
+  name = "CSD directory 3 pages of 50, 2024-mid 2025"
+  from = "20240101"
+  to = "20250630"
+  slots = ["CSD faculty", "CSD faculty, page 2 (2024+ pagination)", "CSD faculty, page 3 (2024+ pagination)"]
+  [[departments.listing_groups]]
+  name = "CSD directory 6 pages of 25, mid 2025-2026"
+  from = "20250701"
+  to = "20261231"
+  slots = ["CSD faculty", "CSD faculty, page 2 (2024+ pagination)", "CSD faculty, page 3 (2024+ pagination)", "CSD faculty, page 4 (2025+ pagination)", "CSD faculty, page 5 (2025+ pagination)", "CSD faculty, page 6 (2025+ pagination)"]
+
+[[departments]]
+code = "MLD"
+name = "Machine Learning Department"
+unit = "Carnegie Mellon University School of Computer Science"
+title_match = 'Professor|Lecturer|Instructor|Scientist|Director'
+coverage = "full"
+url = "https://www.ml.cmu.edu/people/core-faculty.html"
+  [[departments.listings]]
+  slot = "MLD core faculty"
+  kind = "main"
+  url = "ml.cmu.edu/people/core-faculty.html"
+  from = "20160101"
+  to = "20170630"
+  format = "cmu_bio_h1_h2"
+  [[departments.listings]]
+  slot = "MLD core faculty"
+  kind = "main"
+  url = "ml.cmu.edu/people/core-faculty.html"
+  from = "20170701"
+  to = "20261231"
+  format = "cmu_bio_h2_h3"
+  [[departments.listing_groups]]
+  name = "MLD core faculty page"
+  from = "20160101"
+  to = "20261231"
+  slots = ["MLD core faculty"]
+
+[[departments]]
+code = "LTI"
+name = "Language Technologies Institute"
+unit = "Carnegie Mellon University School of Computer Science"
+title_match = 'Professor|Lecturer|Instructor|Scientist|Director'
+coverage = "full"
+url = "https://lti.cmu.edu/people/faculty/index.html"
+  [[departments.listings]]
+  slot = "LTI faculty"
+  kind = "main"
+  url = "lti.cs.cmu.edu/directory/all/154/1"
+  from = "20160101"
+  to = "20240630"
+  format = "cmu_lti_directory"
+  [[departments.listings]]
+  slot = "LTI faculty"
+  kind = "main"
+  url = "lti.cmu.edu/people/faculty/index.html"
+  from = "20240701"
+  to = "20261231"
+  format = "cmu_lti_cards"
+  [[departments.listings]]
+  slot = "LTI faculty"
+  kind = "main"
+  url = "lti.cs.cmu.edu/people/faculty"
+  from = "20240701"
+  to = "20261231"
+  format = "cmu_lti_cards"
+  [[departments.listings]]
+  slot = "LTI faculty, page 2"
+  kind = "main"
+  url = "lti.cs.cmu.edu/directory/all/154/1?page=1"
+  from = "20160101"
+  to = "20240630"
+  format = "cmu_lti_directory"
+  [[departments.listing_groups]]
+  name = "LTI directory 2 pages 2016-mid 2024"
+  from = "20160101"
+  to = "20240630"
+  slots = ["LTI faculty", "LTI faculty, page 2"]
+  [[departments.listing_groups]]
+  name = "LTI core faculty bios 2024-2026"
+  from = "20240701"
+  to = "20261231"
+  slots = ["LTI faculty"]
+
+[[departments]]
+code = "RI"
+name = "Robotics Institute"
+unit = "Carnegie Mellon University School of Computer Science"
+title_match = 'Professor|Lecturer|Instructor|Scientist|Director'
+coverage = "full"
+url = "https://www.ri.cmu.edu/people/faculty/"
+  [[departments.listings]]
+  slot = "RI faculty"
+  kind = "main"
+  url = "ri.cmu.edu/ri_people.html?fcode=1&menu_id=251&distype=detail&dis_type=detail&list_type=current&selected_letter=AZ"
+  from = "20160101"
+  to = "20161231"
+  format = "cmu_ri_legacy"
+  [[departments.listings]]
+  slot = "RI faculty"
+  kind = "main"
+  url = "ri.cmu.edu/people/faculty/"
+  from = "20170101"
+  to = "20261231"
+  format = "cmu_ri_cards"
+  [[departments.listings]]
+  slot = "RI faculty, page 2"
+  kind = "main"
+  url = "ri.cmu.edu/people/faculty/page/2/"
+  from = "20160101"
+  to = "20261231"
+  format = "cmu_ri_cards"
+  [[departments.listings]]
+  slot = "RI faculty, page 3"
+  kind = "main"
+  url = "ri.cmu.edu/people/faculty/page/3/"
+  from = "20160101"
+  to = "20261231"
+  format = "cmu_ri_cards"
+  [[departments.listing_groups]]
+  name = "RI one page 2016-2024"
+  from = "20160101"
+  to = "20241231"
+  slots = ["RI faculty"]
+  [[departments.listing_groups]]
+  name = "RI three pages of 30, 2025-2026"
+  from = "20250101"
+  to = "20261231"
+  slots = ["RI faculty", "RI faculty, page 2", "RI faculty, page 3"]
+
+[[departments]]
+code = "HCII"
+name = "Human-Computer Interaction Institute"
+unit = "Carnegie Mellon University School of Computer Science"
+title_match = 'Professor|Lecturer|Instructor|Scientist|Director'
+coverage = "full"
+url = "https://www.hcii.cmu.edu/people/faculty"
+  [[departments.listings]]
+  slot = "HCII faculty"
+  kind = "main"
+  url = "hcii.cmu.edu/people/faculty"
+  from = "20160101"
+  to = "20261231"
+  format = "cmu_hcii_cards"
+  [[departments.listings]]
+  slot = "HCII faculty, page 2 (2020-2022 pagination)"
+  kind = "main"
+  url = "hcii.cmu.edu/people/faculty?page=1"
+  from = "20200101"
+  to = "20220630"
+  format = "cmu_hcii_cards"
+  [[departments.listing_groups]]
+  name = "HCII one page 2016-2019"
+  from = "20160101"
+  to = "20191231"
+  slots = ["HCII faculty"]
+  [[departments.listing_groups]]
+  name = "HCII two pages 2020-mid 2022"
+  from = "20200101"
+  to = "20220630"
+  slots = ["HCII faculty", "HCII faculty, page 2 (2020-2022 pagination)"]
+  [[departments.listing_groups]]
+  name = "HCII one page mid 2022-2026"
+  from = "20220701"
+  to = "20261231"
+  slots = ["HCII faculty"]
+
+[[departments]]
+code = "S3D"
+name = "Software and Societal Systems Department"
+unit = "Carnegie Mellon University School of Computer Science"
+title_match = 'Professor|Lecturer|Instructor|Scientist|Director'
+coverage = "full"
+url = "https://s3d.cmu.edu/people/faculty-index.html"
+  [[departments.listings]]
+  slot = "S3D/ISR faculty index"
+  kind = "main"
+  url = "isri.cmu.edu/people/faculty-index.html"
+  from = "20160101"
+  to = "20221231"
+  format = "cmu_s3d_index"
+  [[departments.listings]]
+  slot = "S3D/ISR faculty index"
+  kind = "main"
+  url = "s3d.cmu.edu/people/faculty-index.html"
+  from = "20220101"
+  to = "20261231"
+  format = "cmu_s3d_index"
+  [[departments.listings]]
+  slot = "S3D/ISR core faculty"
+  kind = "main"
+  url = "isri.cmu.edu/people/core-faculty.html"
+  from = "20160101"
+  to = "20181231"
+  format = "cmu_bio_h1_h2"
+  [[departments.listings]]
+  slot = "S3D/ISR core faculty"
+  kind = "main"
+  url = "isri.cmu.edu/people/core-faculty.html"
+  from = "20190101"
+  to = "20261231"
+  format = "cmu_bio_h2_h3"
+  [[departments.listings]]
+  slot = "S3D/ISR core faculty"
+  kind = "main"
+  url = "s3d.cmu.edu/people/core-faculty.html"
+  from = "20190101"
+  to = "20261231"
+  format = "cmu_bio_h2_h3"
+  [[departments.listing_groups]]
+  name = "ISR/S3D faculty index"
+  from = "20160101"
+  to = "20261231"
+  slots = ["S3D/ISR faculty index"]
+  [[departments.listing_groups]]
+  name = "ISR core faculty page"
+  from = "20160101"
+  to = "20191231"
+  slots = ["S3D/ISR core faculty"]
+
+[[departments]]
+code = "CBD"
+name = "Computational Biology Department"
+unit = "Carnegie Mellon University School of Computer Science"
+title_match = 'Professor|Lecturer|Instructor|Scientist|Director'
+coverage = "full"
+url = "https://www.cmu.edu/cbd/people/voting-faculty.html"
+  [[departments.listings]]
+  slot = "CBD voting faculty"
+  kind = "main"
+  url = "www.cbd.cmu.edu/directory/faculty/voting-faculty/"
+  from = "20160101"
+  to = "20201231"
+  format = "cmu_cbd_connections"
+  [[departments.listings]]
+  slot = "CBD voting faculty"
+  kind = "main"
+  url = "cbd.cmu.edu/people/voting-faculty.html"
+  from = "20210101"
+  to = "20261231"
+  format = "cmu_cbd_cards"
+  [[departments.listings]]
+  slot = "CBD voting faculty"
+  kind = "main"
+  url = "www.cmu.edu/cbd/people/voting-faculty.html"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_cbd_cards"
+  [[departments.listing_groups]]
+  name = "CBD voting faculty"
+  from = "20160101"
+  to = "20261231"
+  slots = ["CBD voting faculty"]
+
 
 # Institutional-repository harvest (fulltext-push/oai_repo.py; verdicts in docs/CHANNELS.md, "Repository harvests", 2026-11-04)
 [oai_repo]

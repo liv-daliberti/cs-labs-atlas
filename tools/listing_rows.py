@@ -76,10 +76,11 @@ def quote_of(flat, e, raw=None):
         quote = ' '.join(e['quote'].split())
         return quote if (quote and quote in flat and e['name_listed'] in quote
                          and all(t in quote for t in e['titles'])) else None
-    i = flat.find(e['name_listed'])
+    shown = e.get('quote_name') or e['name_listed']  # a format whose page prints the name in another order than name_listed (CMU CSD 2016-2018: 'Acar Umut' in two cells) names the printed form
+    i = flat.find(shown)
     if i < 0:
         return None
-    end = i + len(e['name_listed'])
+    end = i + len(shown)
     for t in e['titles']:
         j = flat.find(t, end)
         if j >= 0 and j - end < 400:

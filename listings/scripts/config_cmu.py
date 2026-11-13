@@ -26,6 +26,19 @@ SLOTS = [
         ("csd.cmu.edu/people/faculty?page=2", *D),
         ("csd.cs.cmu.edu/people/faculty?page=2", *D),
     ]},
+    # pages 4-6 (2026-11-13, Stage 1): from mid 2025 the CSD directory lists 25 people per page, six pages (?page=0..5); the three slots above hold pages 2-3 only
+    {"dept": "CSD", "slot": "CSD faculty, page 4 (2025+ pagination)", "kind": "main", "urls": [
+        ("csd.cmu.edu/people/faculty?page=3", "20250101", "20261231"),
+        ("csd.cs.cmu.edu/people/faculty?page=3", "20250101", "20261231"),
+    ]},
+    {"dept": "CSD", "slot": "CSD faculty, page 5 (2025+ pagination)", "kind": "main", "urls": [
+        ("csd.cmu.edu/people/faculty?page=4", "20250101", "20261231"),
+        ("csd.cs.cmu.edu/people/faculty?page=4", "20250101", "20261231"),
+    ]},
+    {"dept": "CSD", "slot": "CSD faculty, page 6 (2025+ pagination)", "kind": "main", "urls": [
+        ("csd.cmu.edu/people/faculty?page=5", "20250101", "20261231"),
+        ("csd.cs.cmu.edu/people/faculty?page=5", "20250101", "20261231"),
+    ]},
     # gap fill (2018 only): CSD's all-people directory; only entries with a faculty title count
     {"dept": "CSD", "slot": "CSD directory (all people)", "kind": "sub", "strict_title": True, "years": [2018],
      "split_name_cells": True, "years_note": "used only to fill 2018, when no CSD faculty listing was captured",
@@ -95,6 +108,11 @@ SLOTS = [
     {"dept": "HCII", "slot": "HCII faculty", "kind": "main", "untitled_ok": "heading",
      "regions": [{"start": r"^h1:Faculty$"}], "urls": [
         ("hcii.cmu.edu/people/faculty", *D),
+    ]},
+    # page 2 (2026-11-13, Stage 1): from 2020 to mid 2022 the Drupal 7 faculty list is two pages ('1 of 2', ?page=1); page 1 alone holds 35 of about 44
+    {"dept": "HCII", "slot": "HCII faculty, page 2 (2020-2022 pagination)", "kind": "main", "untitled_ok": "heading",
+     "regions": [{"start": r"^h1:Faculty$"}], "urls": [
+        ("hcii.cmu.edu/people/faculty?page=1", "20200101", "20220630"),
     ]},
     {"dept": "HCII", "slot": "HCII affiliated faculty", "kind": "sub", "untitled_ok": "heading",
      "regions": [{"start": r"^h1:Affiliated Faculty$"}], "urls": [
