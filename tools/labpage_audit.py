@@ -433,7 +433,37 @@ def other_institution_entry(desc, quote, school):
                for m in OTHER_INST.finditer(t))
 
 
-DEGREE_LINE_RX = re.compile(r"(?:\b(?:ph\.?\s?d|b\.?s|m\.?s|b\.?a|m\.?a|b\.?e|b\.?eng|m\.?eng|b\.?tech|m\.?tech|msc|bsc|bachelor|master|doctorate)\b\.?)[^,;()]{0,45}$", re.I)
+FOREIGN_DEGREE_RX = re.compile(r'\bSc\.?\s?[MB]\b\.?|\bSc[MB]\b')   # Brown's master's / bachelor's labels (Harvard's Sc.B.): no other school of the study confers them
+FOREIGN_DEGREE_OWNERS = {'brown', 'harvard'}
+
+
+def foreign_degree_entry(desc, school):
+    """An alumni entry whose OWN degree label is one only another institution confers ('Sc.M. Computational Biology 2018 -> Ph.D. student, Brown University' on Ben Raphael's Princeton page,
+    Princeton acceptance round 4): the PI's lab at the previous institution. Only the text before an arrow / 'now' / 'next move' is read, so a destination never decides it."""
+    if school in FOREIGN_DEGREE_OWNERS:
+        return False
+    return bool(FOREIGN_DEGREE_RX.search(re.split(r'next move|→|->|\bnow\b', desc or '', flags=re.I)[0]))
+
+
+OTHER_INST_HEAD_RX = re.compile(
+    r"^(?:(?:former|previous|past|earlier|prior)\s+)?(?:(?:members?|students?|alumni|group|lab|team|people)\s+)?(?:at|from|@|in)?\s*(?:the\s+)?"
+    r"(?P<inst>University of [A-Z][\w-]+(?: [A-Z][\w-]+)?|(?:[A-Z][\w-]+ ){1,3}(?:University|Institute of Technology|College)|Brown|Harvard|Yale|Cornell|Columbia|Caltech|Rice|Purdue|Duke|Dartmouth|NYU|UCLA|UCSD|UCSB|UIUC)"
+    r"(?:\s*\([^)]*\))?(?:\s*[:,-]?\s*(?:former|previous|past)?\s*(?:members?|students?|alumni|group|lab|team|people))?\s*:?$", re.I)
+
+
+def other_institution_heading(head, school):
+    """True when the section heading chain places the list at ANOTHER institution ('Brown University alumni', 'At Brown: former students', 'Students at Rice University'): a PI who moved in the window
+    keeps the previous institution's students on the same page, and everything under such a heading is theirs (Princeton, PIs who moved in the window). A heading that names this school never counts."""
+    for seg in reversed([g.strip() for g in (head or '').split(' > ')]):   # the deepest heading that names an institution decides ('Brown > Princeton alumni' is Princeton's)
+        if re.search(school_names_rx(school), seg):
+            return False
+        m = OTHER_INST_HEAD_RX.match(seg)
+        if m:
+            return m.group('inst')
+    return False
+
+
+DEGREE_LINE_RX = re.compile(r"(?:\b(?:ph\.?\s?d|b\.?s|m\.?s|b\.?a|a\.?b|m\.?a|b\.?e|b\.?eng|m\.?eng|b\.?tech|m\.?tech|msc|bsc|bachelor|master|doctorate)\b\.?)[^,;()]{0,45}$", re.I)
 ROLE_WORD_RX = re.compile(r'\b(?:student|candidate|intern|visiting|visitor|post-?doc|postdoctoral|researcher|assistant|fellow|scholar)\b', re.I)
 
 
@@ -3300,6 +3330,12 @@ def pm_candidates(kit, school, pi, plan, held):
             continue
         if fn not in keep and not x['alumni'] and other_institution_entry(x.get('desc'), x.get('quote'), school):   # on an alumni list a trailing 'Master Student, HKUST' is the DESTINATION after the lab, not where the person was (ZJU Kai Bu's list)
             x['why'], x['detail'] = 'at_previous_school', 'the entry places the person at another institution (\'@<University>\' or \'at <University>\' in the descriptor)'
+            continue
+        if fn not in keep and x['alumni'] and foreign_degree_entry(x.get('desc'), school):
+            x['why'], x['detail'] = 'at_previous_school', "the entry's own degree label (Sc.M. / Sc.B.) is one this school does not confer: the PI's lab at a previous institution"
+            continue
+        if fn not in keep and (oh_ := other_institution_heading(x.get('head'), school)):
+            x['why'], x['detail'] = 'at_previous_school', f'the entry sits under a heading that places the list at {oh_}, not at this school (a PI who moved in the window keeps the previous institution\'s students on the page)'
             continue
         if fn not in keep and talk_item(x.get('head'), x.get('quote')):
             x['why'], x['detail'] = 'not_a_student', 'the entry is a CV line (a talk, keynote or award), not a roster entry'
