@@ -2283,6 +2283,37 @@ def cmu_cbd_cards(h):
     return out
 
 
+def _cmu_directory_feed(unit_rx):
+    """The SCS-wide directory feed behind www.cs.cmu.edu/directory (JSON {data: [{n, aff, titl[], dept[]}]}, archived 2025-2026): one reader per unit, counting a
+    record for the unit only when its own `dept` list names it (the record carries every department of a person; students and staff keep their `aff`)."""
+    rx = re.compile(unit_rx)
+
+    def read(h):
+        try:
+            data = json.loads(h)
+        except ValueError:
+            return []
+        records = data.get('data') if isinstance(data, dict) else data
+        out = []
+        for r in records if isinstance(records, list) else []:
+            if not isinstance(r, dict) or not isinstance(r.get('n'), str):
+                continue
+            depts = [' '.join(H.unescape(x).split()) for x in r.get('dept') or [] if isinstance(x, str)]
+            titles = [' '.join(H.unescape(x).split()) for x in r.get('titl') or [] if isinstance(x, str)]
+            if any(rx.search(d) for d in depts):
+                e = _cmu_entry(r['n'], titles, division=r.get('aff'))
+                if e:
+                    out.append(e)
+        return out
+    return read
+
+
+CMU_DIRECTORY_UNITS = {'csd': r'\bComputer Science Department\b', 'mld': r'\bMachine Learning Department\b', 'lti': r'\bLanguage Technologies Institute\b',
+                       'ri': r'^Robotics Institute$', 'hcii': r'\bHuman-Computer Interaction Institute\b',
+                       's3d': r'\b(?:Software and Societal Systems Department|Institute for Software Research)\b', 'cbd': r'\bComputational Biology Department\b'}
+for _unit, _rx in CMU_DIRECTORY_UNITS.items():
+    FORMATS[f'cmu_scs_directory_{_unit}'] = (_cmu_directory_feed(_rx), re.compile(r'(?!)'))
+
 for _name, _fn in [('cmu_scs_views_table', cmu_scs_views_table), ('cmu_lti_directory', cmu_lti_directory), ('cmu_lti_cards', cmu_lti_cards),
                    ('cmu_bio_h1_h2', cmu_bio_h1_h2), ('cmu_bio_h2_h3', cmu_bio_h2_h3), ('cmu_ri_legacy', cmu_ri_legacy), ('cmu_ri_cards', cmu_ri_cards),
                    ('cmu_hcii_cards', cmu_hcii_cards), ('cmu_s3d_index', cmu_s3d_index), ('cmu_cbd_connections', cmu_cbd_connections),

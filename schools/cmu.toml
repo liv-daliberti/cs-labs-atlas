@@ -58,6 +58,7 @@ unit = "Carnegie Mellon University School of Computer Science"
 title_match = 'Professor|Lecturer|Instructor|Scientist|Director'
 coverage = "full"
 url = "https://csd.cmu.edu/people/faculty"
+listing_gaps = {2018 = "no archived 200 capture of any CSD faculty roster URL in either half-year of 2018: exact-URL CDX queries of 2026-11-13 (www.csd.cs.cmu.edu /directory/faculty, /directory/faculty?order=field_computed_last_name&sort=asc, /people/faculty, /directory/all?page=1) return no 200 capture, and the legacy plan (listings/cmu/raw/captures.sqlite, CDX 2026-10-26) has nocapture for both halves of /directory/faculty; the only 2018 capture of the all-people directory is page 1 of /directory/all (2018-01-02, 20 people, paged), which is partial. The year stays open"}
   [[departments.listings]]
   slot = "CSD faculty"
   kind = "main"
@@ -170,6 +171,14 @@ url = "https://csd.cmu.edu/people/faculty"
   from = "20190101"
   to = "20231231"
   format = "cmu_scs_views_table"
+  [[departments.listings]]
+  slot = "SCS directory API (CSD entries)"
+  kind = "main"
+  url = "www.cs.cmu.edu/directory/api/v1/all.json"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_scs_directory_csd"
+  title_filter = 'Professor|Lecturer|Instructor|Scientist|Faculty'
   [[departments.listing_groups]]
   name = "CSD unpaged directory 2016-2023"
   from = "20160101"
@@ -185,6 +194,11 @@ url = "https://csd.cmu.edu/people/faculty"
   from = "20250701"
   to = "20261231"
   slots = ["CSD faculty", "CSD faculty, page 2 (2024+ pagination)", "CSD faculty, page 3 (2024+ pagination)", "CSD faculty, page 4 (2025+ pagination)", "CSD faculty, page 5 (2025+ pagination)", "CSD faculty, page 6 (2025+ pagination)"]
+  [[departments.listing_groups]]
+  name = "SCS directory feed 2025-2026"
+  from = "20250101"
+  to = "20261231"
+  slots = ["SCS directory API (CSD entries)"]
 
 [[departments]]
 code = "MLD"
@@ -207,11 +221,24 @@ url = "https://www.ml.cmu.edu/people/core-faculty.html"
   from = "20170701"
   to = "20261231"
   format = "cmu_bio_h2_h3"
+  [[departments.listings]]
+  slot = "SCS directory API (MLD entries)"
+  kind = "main"
+  url = "www.cs.cmu.edu/directory/api/v1/all.json"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_scs_directory_mld"
+  title_filter = 'Professor|Lecturer|Instructor|Scientist|Faculty'
   [[departments.listing_groups]]
   name = "MLD core faculty page"
   from = "20160101"
   to = "20261231"
   slots = ["MLD core faculty"]
+  [[departments.listing_groups]]
+  name = "SCS directory feed 2025-2026"
+  from = "20250101"
+  to = "20261231"
+  slots = ["SCS directory API (MLD entries)"]
 
 [[departments]]
 code = "LTI"
@@ -220,6 +247,7 @@ unit = "Carnegie Mellon University School of Computer Science"
 title_match = 'Professor|Lecturer|Instructor|Scientist|Director'
 coverage = "full"
 url = "https://lti.cmu.edu/people/faculty/index.html"
+listing_gaps = {2018 = "no archived 200 capture of the LTI faculty directory (lti.cs.cmu.edu/directory/all/154/1 and its page 2) in either half-year of 2018. Prior source reviews (tasks T236, T252, T253, T264, 2026-11-12): the all-status 2018 CDX holds a 302 for the LTI faculty URL that the archive resolves to the 2017-10-13 capture (a 2017 date, not 2018); the SCS /directory/isr page of 2018 lists ISR page-1 records only; no linked SCS or LTI directory URL holds a full 2018 roster; the undergraduate catalog is stale and excluded. The year stays open"}
   [[departments.listings]]
   slot = "LTI faculty"
   kind = "main"
@@ -248,6 +276,14 @@ url = "https://lti.cmu.edu/people/faculty/index.html"
   from = "20160101"
   to = "20240630"
   format = "cmu_lti_directory"
+  [[departments.listings]]
+  slot = "SCS directory API (LTI entries)"
+  kind = "main"
+  url = "www.cs.cmu.edu/directory/api/v1/all.json"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_scs_directory_lti"
+  title_filter = 'Professor|Lecturer|Instructor|Scientist|Faculty'
   [[departments.listing_groups]]
   name = "LTI directory 2 pages 2016-mid 2024"
   from = "20160101"
@@ -258,6 +294,11 @@ url = "https://lti.cmu.edu/people/faculty/index.html"
   from = "20240701"
   to = "20261231"
   slots = ["LTI faculty"]
+  [[departments.listing_groups]]
+  name = "SCS directory feed 2025-2026"
+  from = "20250101"
+  to = "20261231"
+  slots = ["SCS directory API (LTI entries)"]
 
 [[departments]]
 code = "RI"
@@ -294,6 +335,14 @@ url = "https://www.ri.cmu.edu/people/faculty/"
   from = "20160101"
   to = "20261231"
   format = "cmu_ri_cards"
+  [[departments.listings]]
+  slot = "SCS directory API (RI entries)"
+  kind = "main"
+  url = "www.cs.cmu.edu/directory/api/v1/all.json"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_scs_directory_ri"
+  title_filter = 'Professor|Lecturer|Instructor|Scientist|Faculty'
   [[departments.listing_groups]]
   name = "RI one page 2016-2024"
   from = "20160101"
@@ -304,6 +353,11 @@ url = "https://www.ri.cmu.edu/people/faculty/"
   from = "20250101"
   to = "20261231"
   slots = ["RI faculty", "RI faculty, page 2", "RI faculty, page 3"]
+  [[departments.listing_groups]]
+  name = "SCS directory feed 2025-2026"
+  from = "20250101"
+  to = "20261231"
+  slots = ["SCS directory API (RI entries)"]
 
 [[departments]]
 code = "HCII"
@@ -326,6 +380,14 @@ url = "https://www.hcii.cmu.edu/people/faculty"
   from = "20200101"
   to = "20220630"
   format = "cmu_hcii_cards"
+  [[departments.listings]]
+  slot = "SCS directory API (HCII entries)"
+  kind = "main"
+  url = "www.cs.cmu.edu/directory/api/v1/all.json"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_scs_directory_hcii"
+  title_filter = 'Professor|Lecturer|Instructor|Scientist|Faculty'
   [[departments.listing_groups]]
   name = "HCII one page 2016-2019"
   from = "20160101"
@@ -341,6 +403,11 @@ url = "https://www.hcii.cmu.edu/people/faculty"
   from = "20220701"
   to = "20261231"
   slots = ["HCII faculty"]
+  [[departments.listing_groups]]
+  name = "SCS directory feed 2025-2026"
+  from = "20250101"
+  to = "20261231"
+  slots = ["SCS directory API (HCII entries)"]
 
 [[departments]]
 code = "S3D"
@@ -384,6 +451,14 @@ url = "https://s3d.cmu.edu/people/faculty-index.html"
   from = "20190101"
   to = "20261231"
   format = "cmu_bio_h2_h3"
+  [[departments.listings]]
+  slot = "SCS directory API (S3D entries)"
+  kind = "main"
+  url = "www.cs.cmu.edu/directory/api/v1/all.json"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_scs_directory_s3d"
+  title_filter = 'Professor|Lecturer|Instructor|Scientist|Faculty'
   [[departments.listing_groups]]
   name = "ISR/S3D faculty index"
   from = "20160101"
@@ -394,6 +469,11 @@ url = "https://s3d.cmu.edu/people/faculty-index.html"
   from = "20160101"
   to = "20191231"
   slots = ["S3D/ISR core faculty"]
+  [[departments.listing_groups]]
+  name = "SCS directory feed 2025-2026"
+  from = "20250101"
+  to = "20261231"
+  slots = ["SCS directory API (S3D entries)"]
 
 [[departments]]
 code = "CBD"
@@ -423,11 +503,24 @@ url = "https://www.cmu.edu/cbd/people/voting-faculty.html"
   from = "20250101"
   to = "20261231"
   format = "cmu_cbd_cards"
+  [[departments.listings]]
+  slot = "SCS directory API (CBD entries)"
+  kind = "main"
+  url = "www.cs.cmu.edu/directory/api/v1/all.json"
+  from = "20250101"
+  to = "20261231"
+  format = "cmu_scs_directory_cbd"
+  title_filter = 'Professor|Lecturer|Instructor|Scientist|Faculty'
   [[departments.listing_groups]]
   name = "CBD voting faculty"
   from = "20160101"
   to = "20261231"
   slots = ["CBD voting faculty"]
+  [[departments.listing_groups]]
+  name = "SCS directory feed 2025-2026"
+  from = "20250101"
+  to = "20261231"
+  slots = ["SCS directory API (CBD entries)"]
 
 
 # Institutional-repository harvest (fulltext-push/oai_repo.py; verdicts in docs/CHANNELS.md, "Repository harvests", 2026-11-04)

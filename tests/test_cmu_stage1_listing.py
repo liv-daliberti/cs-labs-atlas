@@ -104,7 +104,20 @@ def test_cbd_connections_keep_the_middle_name_and_cards_read_the_bold_title():
 def test_cmu_readers_never_return_contact_lines_and_never_autodetect():
     for name in [n for n in F.FORMATS if n.startswith('cmu_')]:
         assert not F.FORMATS[name][1].search('<h2>Name</h2><h3>Professor</h3>')
-    assert len([n for n in F.FORMATS if n.startswith('cmu_')]) == 11
+    assert len([n for n in F.FORMATS if n.startswith('cmu_')]) == 18
+
+
+def test_scs_directory_feed_counts_a_record_only_for_the_unit_its_own_dept_list_names():
+    feed = ('{"data": [{"n": "Umut Acar", "aff": "Faculty", "titl": ["Professor"], "dept": ["Computer Science Department", "ECE: Electrical &amp; Computer Engineering"]},'
+            '{"n": "Byron Yu", "aff": "Faculty", "titl": ["Professor, ECE-BME"], "dept": ["Robotics Institute"]},'
+            '{"n": "Gina Student", "aff": "Student", "titl": ["Ph.D. Student"], "dept": ["Computer Science Department"]},'
+            '{"n": "Ziv Bar-Joseph", "aff": "Faculty", "titl": ["Professor"], "dept": ["Ray and Stephanie Lane Computational Biology Department"]},'
+            '{"sn": "NoName", "dept": ["Computer Science Department"]}]}')
+    assert [(e['name_listed'], e['titles'], e['division']) for e in read('cmu_scs_directory_csd', feed)] == [
+        ('Umut Acar', ['Professor'], 'Faculty'), ('Gina Student', ['Ph.D. Student'], 'Student')]   # the charter slot's title_filter drops the student
+    assert [e['name_listed'] for e in read('cmu_scs_directory_ri', feed)] == ['Byron Yu']
+    assert [e['name_listed'] for e in read('cmu_scs_directory_cbd', feed)] == ['Ziv Bar-Joseph']
+    assert read('cmu_scs_directory_csd', '<html>not json</html>') == []
 
 
 # ---- the charter ----------------------------------------------------------------------------------------------------
@@ -115,7 +128,8 @@ DEPTS = {d['code']: d for d in CFG['departments']}
 
 def test_seven_scs_units_are_full_coverage_departments():
     assert list(DEPTS) == ['CSD', 'MLD', 'LTI', 'RI', 'HCII', 'S3D', 'CBD']
-    assert all(d['coverage'] == 'full' and d.get('listing_groups') and not d.get('listing_gaps') for d in DEPTS.values())
+    assert all(d["coverage"] == "full" and d.get("listing_groups") for d in DEPTS.values())
+    assert {c for c, d in DEPTS.items() if d.get("listing_gaps")} == {"CSD", "LTI"} and all(list(DEPTS[c]["listing_gaps"]) == ["2018"] for c in ("CSD", "LTI"))
     assert S.check('cmu') == []
 
 
