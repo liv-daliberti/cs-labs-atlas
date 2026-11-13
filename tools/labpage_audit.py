@@ -1904,6 +1904,18 @@ INST_RX = re.compile(r"\b(?:University of [A-Z][\w-]+(?: [A-Z][\w-]+)?|[A-Z][\w-
 _HOST_INST = re.compile(r'(ethz\.ch|\.ac\.[a-z]{2}$|\.edu$|\.edu\.[a-z]{2}$|mpg\.de|inria\.fr|uni-[a-z]+\.de|tum\.de)')
 
 
+def school_abbreviation_at_marker(school, text):
+    """True when the text writes the school's charter abbreviation after an '@' ('Ph.D. Students @NTU&CUHK', 'Postdoc @ZJU') and never the
+    charter's excluded name (National Taiwan University for NTU). The charter's affiliation regex leaves the bare abbreviation out because it is
+    ambiguous elsewhere; after '@' in a members heading it is the lab's own affiliation marker."""
+    import school_config
+    aff = school_config.get(school).get('affiliation') or {}
+    loose, excl = aff.get('loose'), aff.get('excluded_regex')
+    if not loose or (excl and re.search(excl, text, re.I)):
+        return False
+    return bool(re.search(r'@\s*(?:' + loose + ')', text, re.I))
+
+
 def page_institution(kit, school, src):
     """Another institution, when a people page belongs to a lab elsewhere: its host is another university's, or the page
     never names this school while its title or first 400 characters name another institution (Onur Mutlu's SAFARI pages
@@ -1923,6 +1935,8 @@ def page_institution(kit, school, src):
         return ft.group(1)   # a page whose own copyright footer names another university is that university's page (CMU round 7: Salakhutdinov's Toronto-era page)
     if re.search(school_names_rx(school), text):
         return None  # the school appears somewhere on the page: alumni placements and bios name other schools too
+    if school_abbreviation_at_marker(school, text):
+        return None  # a heading 'Ph.D. Students @NTU&CUHK' names the school by its abbreviation (Cheng Yu's NTU page; the charter's full-name regex bars the bare abbreviation)
     m_ = re.search(r'<title[^>]*>(.*?)</title>', kit.lpcap.decode(row['content'][:30000]), re.I | re.S)
     head = ((m_.group(1) if m_ else '') + ' ' + text[:400])
     others = [m.group(0) for m in INST_RX.finditer(head)]
