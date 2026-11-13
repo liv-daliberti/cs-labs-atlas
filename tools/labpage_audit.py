@@ -2452,7 +2452,7 @@ def semester_alumni_rows(html_bytes, role, url, sha, pi, window=WINDOW):
             continue
         given = re.sub(r'\s*\(.*?\)', '', m.group(2)).strip()
         out.append(dict(name=f'{given} {m.group(1)}', role=role, years=[None, year], url=url, sha256=sha, quote=q.group(0), pi=pi, alumni=True, rule='LP-STU-01', auto=True,
-                        note=f'semester-dated alumni list (heading year {year}); lab-page audit semester-alumni reader', role_basis='page_file', years_basis='semester_heading'))
+                        note=f'semester-dated alumni list (heading year {year}); lab-page audit semester-alumni reader', role_basis='section_heading', years_basis='section_year_heading'))
     return out
 
 
