@@ -1931,6 +1931,8 @@ def page_institution(kit, school, src):
     dom = SCHOOLS[school]['domain']
     if _HOST_INST.search(host) and not re.search(dom, host):
         return host
+    if re.search(dom, host) and not re.match(r'^(?:www\.)?web\.archive\.org$', host):
+        return None   # a page on the school's own domain is the school's page, whatever institutions its student notes name (Yuan Yang's student-en.html lists 'afterwards: Shanghai University of Finance')
     text = views.get('html') or views.get('raw') or ''
     ft = re.search(r'(?:©|&copy;|\bcopyright\b)[^<>\n]{0,40}?\b((?:University of [A-Z][\w-]+(?: [A-Z][\w-]+)?)|(?:[A-Z][\w-]+ University))\b', text[-600:], re.I)
     if ft and not re.search(school_names_rx(school), ft.group(1)) and not re.search(school_names_rx(school), text[-600:]):
