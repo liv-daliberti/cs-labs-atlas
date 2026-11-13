@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Vakilian</title>
+    <meta name="description" content="Ali Vakilian — Assistant Professor, Department of Management Science and Information Systems, Rutgers Business School. Research on algorithms for massive data, learning-augmented algorithms, and algorithmic fairness.">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQSR63S61N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MQSR63S61N');
+      gtag('config', 'UA-53420758-1');
+      // Sticky navbar shrink effect + one-way besm-2 image hide
+      // Once the user scrolls down past the threshold, the besm-2.png
+      // image on the right of the nav is hidden permanently for the
+      // rest of the session — even if they scroll back to the very
+      // top, it does NOT come back. The .shrink class itself still
+      // toggles normally based on current scroll position.
+      window.addEventListener('scroll', function() {
+        var nav = document.querySelector('.nav-container');
+        if (!nav) return;
+        if (window.scrollY > 40) {
+          nav.classList.add('shrink');
+          nav.classList.add('nav-img-hidden');   // one-way; never removed
+        } else {
+          nav.classList.remove('shrink');
+          // intentionally NOT removing nav-img-hidden
+        }
+      });
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.4/css/academicons.min.css">
+	<link rel="stylesheet" href="css/academicons.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --color-text: #222;
+            --color-muted: #555;
+            --color-subtle: #777;
+            --color-accent: #1a4fa0;
+            --color-accent-bg: #eef4fb;
+            --color-venue: #557a95;        /* slate blue for conference/venue names */
+            --color-award: #8a5d0a;
+            --color-award-bg: #fdf6e3;
+            --color-border: #e3e3e3;
+            --color-border-soft: #eee;
+            --color-recog: #1565c0;        /* recognition labels — vibrant medium blue, distinct from the navy --color-accent used for links */
+            /* Publication-type tag colors */
+            --color-tag-C: #1a4fa0;        /* conference — navy */
+            --color-tag-J: #6b3a8f;        /* journal — purple */
+            --color-tag-M: #6b6b6b;        /* manuscript — grey */
+            --color-tag-S: #2a6b4a;        /* survey — forest green */
+            --color-tag-T: #1e7a3a;        /* thesis — brighter green */
+            --font-sans: 'Source Sans Pro', Arial, sans-serif;
+            --font-heading: 'Quicksand', sans-serif;
+            --max-width: 880px;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 25px 60px;          /* top padding now handled by nav + intro */
+            line-height: 1.55;
+            font-size: 17px;
+            background: #fff;
+        }
+        a { color: var(--color-accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        ul { padding-left: 22px; }
+        h1 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 32px;
+            margin: 0 0 6px 0;
+            line-height: 1.2;
+        }
+        h2 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 25px;               /* bumped up from 21px */
+            margin: 0 0 10px 0;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 4px;
+        }
+        h2 span.sc { font-variant: small-caps; letter-spacing: 0.5px; }
+        .container { margin-top: 28px; }
+
+        /* ===================================================================
+           Floating Navigation Bar
+           =================================================================== */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            /* break out of the body's 25px horizontal padding so the nav
+               visually spans the full width of the content column        */
+            /* margin: 0 -25px 0; */
+			margin: 0 -15px 0;
+            padding: 14px 25px;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: saturate(180%) blur(6px);
+            -webkit-backdrop-filter: saturate(180%) blur(6px);
+            border-bottom: 1px solid transparent;
+			border-radius: 14px;
+            transition: padding 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .nav-container.shrink {
+            padding: 8px 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            border-bottom-color: var(--color-border);
+        }
+        .nav-container ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .nav-container ul li { margin: 0; }
+        .nav-container ul li a {
+            display: inline-block;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.98em;
+            color: var(--color-accent);
+            padding: 6px 14px;
+            border-radius: 5px;
+            background: transparent;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .nav-container ul li a:hover {
+            background: var(--color-accent-bg);
+            text-decoration: none;
+        }
+        /* Rightmost nav ornament (logo/image). Absolutely positioned so
+           it doesn't shift the centered button group on desktop.
+           Hidden on mobile via the .desktop-only-module media query. */
+        .rightmost-item {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none; /* purely decorative; flip to auto if linked */
+            transition: opacity 0.35s ease, visibility 0s linear 0s;
+        }
+        .rightmost-item img {
+            display: block;
+            height: 25px;
+            width: 45px;
+        }
+        /* Once the user first scrolls down, the nav permanently carries
+           .nav-img-hidden — fade besm-2 out and keep it gone, even when
+           the user scrolls back up to the very top.                     */
+        .nav-container.nav-img-hidden .rightmost-item {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+        }
+        /* ===== Intro / header ===== */
+        .intro {
+            display: flex;
+            gap: 28px;
+            align-items: flex-start;
+            margin-top: 28px;
+        }
+        .intro .photo {
+            width: 175px;
+            flex-shrink: 0;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+        .intro .bio { flex: 1; min-width: 0; }
+        .role {
+            font-size: 17px;
+            margin: 4px 0 10px;
+            color: var(--color-text);
+        }
+        .role .prev { color: var(--color-subtle); font-size: 0.95em; }
+        .award-badge {
+            background: #e3f0fb;             /* very pale blue */
+            border-left: 3px solid #1565c0;  /* medium blue accent */
+            padding: 8px 12px;
+            border-radius: 2px;
+            font-size: 0.95em;
+            color: #163a5e;                  /* dark blue body text */
+            margin: 12px 0;
+            /* Hug the text — don't stretch full-width — but never spill
+               past the available column on narrow / phone viewports.    */
+            display: inline-block;
+            width: fit-content;
+            max-width: 100%;
+        }
+        .award-badge .label {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: #1565c0;                  /* matches --color-recog */
+        }
+        .award-badge a {
+            color: #1565c0;
+            font-weight: 600;
+        }
+        .award-badge a:hover {
+            color: #0d4a8f;
+        }
+        .edu-list {
+            list-style: none;
+            padding: 0;
+            margin: 14px 0 12px;
+        }
+        .edu-list li {
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 4px;
+        }
+        .edu-list li::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 10px;
+            width: 5px; height: 5px;
+            background: var(--color-accent);
+            border-radius: 50%;
+        }
+        .edu-list .advisor { color: var(--color-muted); font-size: 0.95em; }
+        .links-row {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            color: var(--color-muted);
+        }
+        .links-row a { color: var(--color-accent); }
+        .links-row .email {
+            font-family: var(--font-heading);
+            font-size: 0.95em;
+            color: var(--color-muted);
+        }
+        .links-row .email i { margin-right: 4px; }
+        /* ===== Section helpers ===== */
+        .confname, .venue {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: var(--color-venue);     /* slate blue — no longer black */
+        }
+        .manuscriptname {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            color: var(--color-muted);
+        }
+        .descriptname {
+            font-family: var(--font-heading);
+            color: var(--color-muted);
+            font-size: 0.95em;
+        }
+        .recog {
+            font-family: var(--font-heading);
+            font-weight: 700;          /* heavier than .award-inline pills */
+            color: #0c3d80;            /* darker than --color-recog (#1565c0) for higher contrast on plain background */
+        }
+        .award-inline {
+            display: inline-block;
+            padding: 1px 8px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.92em;
+            color: var(--color-recog);
+            background: #e3f0fb;            /* pale blue to match the .award-badge */
+            border-radius: 3px;
+        }
+        /* ===== Custom bullet lists ===== */
+        .custom-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 8px 0;
+        }
+        .custom-list li {
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 4px;
+        }
+        .custom-list li::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 10px;
+            width: 5px; height: 5px;
+            background: var(--color-accent);
+            border-radius: 50%;
+        }
+        /* ===== News ===== */
+        .news-list {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+        .news-list li {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 6px;
+            align-items: flex-start;
+        }
+        .news-list .date {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--color-accent);
+            width: 90px;
+            flex-shrink: 0;
+        }
+        /* ===== Upcoming-event news item ===== */
+        /* Warm amber accent — deliberately outside the page's blue/green
+           palette so the upcoming event reads as visually distinct.     */
+        .news-list li.upcoming {
+            background: #fff8e1;                /* very pale amber */
+            border-left: 3px solid #f59e0b;     /* amber accent */
+            border-radius: 3px;
+            padding: 8px 12px 8px 10px;
+            margin-left: -10px;                 /* keep date column aligned with other rows */
+        }
+        .upcoming-tag {
+            display: inline-block;
+            padding: 1px 8px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.78em;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #92400e;                     /* deep amber text */
+            background: #fde68a;                /* medium amber pill */
+            border-radius: 3px;
+            margin-right: 8px;
+            vertical-align: 1px;
+        }
+        /* ===== Publications ===== */
+        .pub-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .pub-list .year {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--color-subtle);
+            margin: 18px 0 10px;
+            border-bottom: 1px dashed var(--color-border);
+            padding-bottom: 3px;
+            letter-spacing: 1px;
+        }
+        .pub-list .pub {
+            margin-bottom: 16px;
+            padding-left: 14px;
+            border-left: 2px solid transparent;
+        }
+        .pub-list .pub:hover {
+            border-left-color: var(--color-accent);
+        }
+        .pub-list .pub .title {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        .pub-list .pub .title a { color: var(--color-text); }
+        .pub-list .pub .title a:hover { color: var(--color-accent); }
+        .pub-list .pub .authors { font-size: 0.97em; color: #333; }
+        .pub-list .pub .venue-line { margin-top: 2px; font-size: 0.95em; }
+        .pub-list .pub .links a {
+            font-size: 0.9em;
+            color: var(--color-accent);
+            margin-right: 6px;
+        }
+        /* ===== Publication-type tags ([C] [J] [M] [S]) ===== */
+        .pub-tag {
+            display: inline-block;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.88em;
+            letter-spacing: 0.3px;
+            margin-right: 6px;
+            vertical-align: baseline;
+        }
+        .pub-tag-C { color: var(--color-tag-C); }
+        .pub-tag-J { color: var(--color-tag-J); }
+        .pub-tag-M { color: var(--color-tag-M); }
+        .pub-tag-S { color: var(--color-tag-S); }
+        .pub-tag-T { color: var(--color-tag-T); }
+        /* ===== Talks ===== */
+        .talks-list { list-style: none; padding: 0; margin: 0; }
+        .talks-list > li { margin-bottom: 14px; }
+        .talks-list .talk-title {
+            font-weight: 600;
+            font-family: var(--font-heading);
+        }
+        .talks-list .venues { padding-left: 20px; margin: 4px 0 0; list-style: none; }
+        .talks-list .venues li {
+            font-size: 0.97em;
+            color: var(--color-muted);
+            margin-bottom: 2px;
+        }
+        .talks-list .venues li::before { content: "– "; color: var(--color-subtle); }
+        /* ===== Toggle (show more / less) ===== */
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .section-head h2 { flex: 1; }
+        .toggle {
+            font-size: 0.85em;
+            font-family: var(--font-heading);
+            color: var(--color-accent);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        .toggle:hover { text-decoration: underline; }
+        .service-list ul { margin-top: 4px; }
+        .service-list > li { margin-bottom: 10px; }
+        .service-list > li > b { font-family: var(--font-heading); }
+        .copyright {
+            font-size: 0.9em;
+            color: var(--color-subtle);
+            background: #fafafa;
+            border-left: 2px solid var(--color-border);
+            padding: 10px 14px;
+            border-radius: 2px;
+            margin: 0;
+        }
+        footer {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 1px solid var(--color-border-soft);
+            font-size: 0.9em;
+            color: var(--color-subtle);
+            text-align: center;
+        }
+        .to-top {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            display: none;
+            z-index: 10;
+            opacity: 0.75;
+            transition: opacity 0.15s;
+        }
+        .to-top:hover { opacity: 1; }
+        .to-top img { width: 36px; height: 36px; }
+        /* ===== Responsive ===== */
+        @media (max-width: 640px) {
+            body { font-size: 16px; padding: 0 16px 50px; }
+            h1 { font-size: 28px; }
+            h2 { font-size: 22px; }           /* bumped proportionally */
+            .nav-container {
+                /* margin: 0 -16px 0; */
+				margin: 0 -6px 0;
+                padding: 10px 10px;
+				top: 8px;
+				border-radius: 12px;
+            }
+            .nav-container.shrink { padding: 6px 10px; }
+            .nav-container ul { gap: 2px; }
+            .nav-container ul li a {
+                padding: 5px 9px;
+                font-size: 0.9em;
+            }
+            .desktop-only-module { display: none; }
+            .intro { flex-direction: column; align-items: center; text-align: center; gap: 18px; margin-top: 22px; }
+            .intro .photo { width: 150px; }
+            .edu-list li, .custom-list li { text-align: left; }
+            .news-list li { flex-direction: column; gap: 0; }
+            .news-list .date { width: auto; }
+            .links-row { justify-content: center; }
+        }
+    </style>
+</head>
+<body id="top">
+
+<!-- ===================================================================== -->
+<!-- Floating Navigation                                                   -->
+<!-- ===================================================================== -->
+<nav class="nav-container" aria-label="Primary">
+    <ul>
+        <li><a href="#news">News</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#service">Service</a></li>
+        <li><a href="#talks">Talks</a></li>
+    </ul>
+    <div class="rightmost-item desktop-only-module">
+        <img src="besm-2.png" alt="" height="25" width="45">
+    </div>
+</nav>
+
+<!-- ===================================================================== -->
+<!-- Intro                                                                 -->
+<!-- ===================================================================== -->
+<header class="intro">
+    <img class="photo" src="AVC.jpg" alt="Ali Vakilian">
+    <div class="bio">
+        <h1>Ali Vakilian</h1>
+        <p class="role">
+            Assistant Professor, <a href="https://www.business.rutgers.edu/faculty-research/management-science-information-systems">Department of Management Science and Information Systems</a>, <b>Rutgers Business School</b>.<br>
+            <span class="prev">Previously: Assistant Professor, CS at <a href="https://cs.vt.edu/">Virginia Tech</a>; Research Assistant Professor, <a href="https://ttic.edu/">TTIC</a>.</span>
+        </p>
+        <div class="award-badge">
+            <span class="label">NSF CAREER Award</span> &mdash; generously supporting my research <a href="https://www.nsf.gov/awardsearch/show-award?AWD_ID=2638918">[award info]</a>
+        </div>
+        <ul class="edu-list">
+            <li>
+                Ph.D., EECS at <b>MIT</b><br>
+                <span class="advisor">Advisors: <a href="https://erikdemaine.org/">Erik Demaine</a> and <a href="https://people.csail.mit.edu/indyk/">Piotr Indyk</a></span>
+            </li>
+            <li>
+                M.S., CS at <b>University of Illinois at Urbana&ndash;Champaign</b><br>
+                <span class="advisor">Advisor: <a href="https://chekuri.cs.illinois.edu/">Chandra Chekuri</a></span>
+            </li>
+            <li>B.S., CE at <b>Sharif University</b></li>
+        </ul>
+        <div class="links-row">
+            <a href="http://scholar.google.com/citations?user=uXZaVaAAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="ai ai-google-scholar-square ai-2x"></i></a>
+            <a href="https://dblp.org/pid/116/4679.html" target="_blank" aria-label="DBLP"><i class="ai ai-dblp-square ai-2x"></i></a>
+            <a href="Vakilian-CV.pdf" target="_blank" aria-label="CV"><i class="ai ai-cv-square ai-2x"></i></a>
+            <span class="email"><i class="fa-regular fa-envelope"></i> a.vakilian [at] rutgers [dot] edu</span>
+        </div>
+    </div>
+</header>
+<main>
+<!-- ===================================================================== -->
+<!-- Research                                                              -->
+<!-- ===================================================================== -->
+<section class="container" id="research">
+    <h2><span class="sc">Research Interests</span></h2>
+    <p>
+        <b>Algorithmic Foundations of Machine Learning and Data Science.</b> In particular:
+    </p>
+    <ul class="custom-list">
+        <li>Algorithms for Massive Data: <i>streaming, sketching, and sublinear-time algorithms</i></li>
+        <li>Algorithms & ML: <i>learning-augmented algorithms, randomized numerical linear algebra</i></li>
+        <li>Trustworthy ML: <i>algorithmic fairness, learning with strategic agents</i></li>
+    </ul>
+    <p>As well as <b>combinatorial optimization and approximation algorithms</b>.</p>
+</section>
+<!-- ===================================================================== -->
+<!-- News                                                                  -->
+<!-- ===================================================================== -->
+<section class="container" id="news">
+    <!--<h2><span class="sc">Recent News</span></h2> -->
+    <div class="section-head">
+        <h2><span class="sc">Recent News</span></h2>
+    </div>
+	<ul class="news-list">
+        <li class="upcoming">
+            <span class="date">Nov 2027</span>
+            <div>Selected for <b>AAAI New Faculty Highlights</b> Program (2027)</div>
+        </li>
+        <li>
+            <span class="date">Oct 2027</span>
+            <div>Invited talks at Theory Seminar Series at NYU, Johns Hopkins University, and Rutgers University.</div>
+        </li>
+        <li>
+            <span class="date">Sep 2026</span>
+            <div>Joined <b>Rutgers Business School</b> as an Assistant Professor in the <a href="https://www.business.rutgers.edu/faculty-research/management-science-information-systems">Department of Management Science and Information Systems</a>.</div>
+        </li>
+        <li>
+            <span class="date">Jun 2026</span>
+            <div>Invited talk at the <a href="https://dravy.ttic.edu/learning-augmented-colt26.html">Leveraging Data for Performance with Theoretical Guarantees</a> tutorial at <span class="confname"><a href="https://learningtheory.org/colt2026/">COLT 2026</a></span>.</div>
+        </li>
+        <li>
+            <span class="date">Jun 2026</span>
+			<div>Co-organizing the <a href="stoc26-workshop.html">Machine Learning for Algorithms</a> workshop at <span class="confname"><a href="https://acm-stoc.org/stoc2026/">STOC 2026</a></span>.</div>
+        </li>
+        <li>
+            <span class="date">Jun 2026</span>
+            <div>Invited talk at the <a href="https://learning-augmented-algorithms.github.io">Learning-augmented Algorithms: Theory and Applications (LATA)</a> workshop at <span class="confname"><a href="https://www.sigmetrics.org/sigmetrics2026/">SIGMETRICS 2026</a></span>.</div>
+        </li>
+        <li>
+			<span class="date">Apr 2026</span>
+			<div>Honored to receive an <a href="https://www.nsf.gov/awardsearch/show-award?AWD_ID=2542925"><span class="award-inline">NSF CAREER Award</span></a>. Grateful to the <span class="confname">National Science Foundation</span> for this support.</div>
+		</li>
+		<!--<li>
+            <span class="date">Feb 2026</span>
+            <div>Paper accepted to <span class="confname">STOC 2026</span>: <a href="https://arxiv.org/abs/2603.27795" target="_blank">An Optimal Algorithm for Stochastic Vertex Cover</a>.</div>
+        </li>
+        <li>
+            <span class="date">Jan 2026</span>
+            <div>Paper accepted to <span class="confname">AISTATS 2026</span>: <a href="https://arxiv.org/abs/2405.10378" target="_blank">A Polynomial-Time Approximation for Pairwise Fair <i>k</i>-Median Clustering</a>.</div>
+        </li>
+		<li>
+            <span class="date">Oct 2025</span>
+            <div>Paper accepted to <span class="confname">SODA 2026</span>: <a href="https://arxiv.org/abs/2510.11627" target="_blank">Sublinear Metric Steiner Forest via Maximal Independent Set</a>.</div>
+        </li> -->
+        <li>
+            <span class="date">Sep 2025</span>
+            <div>Released a preliminary survey,
+			<a href="https://vakiliana.github.io/alg-fair-cluster-repo/survey.html"><i>Fair Clustering: Concepts, Methods, and Algorithms</i></a>.
+			I also maintain the <a href="https://vakiliana.github.io/alg-fair-cluster-repo/">Algorithmic Fair Clustering Repository</a>. Feedback is welcome.</div>
+        </li>
+        <li>
+            <span class="date">Aug 2025</span>
+            <div>Co-organized the <a href="https://people.csail.mit.edu/joanne/WOLA25">Workshop on Local Algorithms (WOLA)</a>. (<a href="https://youtube.com/playlist?list=PLld86KiXBvQf6qiGAUWQcmcgnsikqigaC">videos</a>)</div>
+        </li>
+        <li>
+            <span class="date">Aug 2025</span>
+            <div>Joined <b>Virginia Tech</b> as an Assistant Professor in the <a href="https://website.cs.vt.edu"> Department of Computer Science</a>.</div>
+        </li>
+        <li>
+            <span class="date">May 2024</span>
+            <div>Long-term participant in the <a href="https://simons.berkeley.edu/programs/sublinear-algorithms">Sublinear Algorithms</a> program at the <span class="confname">Simons Institute at Berkeley</span>.</div>
+        </li>
+        <li>
+            <span class="date">May 2024</span>
+            <div>&ldquo;Learning-Based Graph Searching Problems&rdquo; received the 
+			<a href="https://virtual.aistats.org/virtual/2024/awards_detail"><span class="award-inline">Outstanding Student Paper Highlight Award</span></a> at <span class="confname">AISTATS 2024</span>.</div>
+        </li>
+    </ul>
+</section>
+<!-- ===================================================================== -->
+<!-- Teaching & Mentorship                                                 -->
+<!-- ===================================================================== -->
+<section class="container" id="teaching">
+    <h2><span class="sc">Teaching &amp; Mentorship</span></h2>
+    <ul>
+        <li style="margin-bottom: 10px;">
+            <b>Courses</b>
+            <ul>
+                <li><a href="" target="_blank">Algorithmic Machine Learning</a> (Rutgers, Fall 2026)</li>
+                <li><a href="courses/cs6104.html" target="_blank">CS 6104: Algorithms for Big Data</a> (Virginia Tech, Fall 2025)</li>
+                <li><a href="https://home.ttic.edu/~avrim/Toolkit23/" target="_blank">TTIC 31150 / CMSC 31150: Mathematical Toolkit</a> (TTIC / UChicago, Spring 2023)</li>
+            </ul>
+        </li>
+        <li style="margin-bottom: 10px;">
+            <b>Virginia Tech:</b>
+            <a href="https://rojinrezvan.github.io/">Rojin Rezvan</a> (Postdoc; Oct 2025 &ndash; )
+        </li>
+        <li style="margin-bottom: 10px;">
+            <b>Interns at TTIC:</b>
+            <a href="https://amirazarmehr.com/">Amir Azarmehr</a> (PhD at Northeastern; 2025),
+            <a href="https://mathrulestheworld.github.io/">Madhusudhan Pittu</a> (PhD at CMU; 2023),
+            <a href="https://people.cs.uchicago.edu/~etani/">Erasmo Tani</a> (PhD at UChicago; 2023)
+        </li>
+        <li style="margin-bottom: 10px;">
+            <b>Fatima Fellows</b> (<span class="descriptname">see the <a href="https://www.fatimafellowship.com/" style="font-weight:600">Fatima Fellow</a> program</span>):
+            S&#232;djro Hotegni (MS at African Institute for Mathematical Sciences&mdash;Rwanda; 2022)
+        </li>
+    </ul>
+</section>
+<!-- ===================================================================== -->
+<!-- Academic Service                                                      -->
+<!-- ===================================================================== -->
+<section class="container" id="service">
+    <div class="section-head">
+        <h2><span class="sc">Academic Service</span></h2>
+        <button class="toggle" id="serviceToggle" type="button">show more</button>
+    </div>
+    <div class="service-list" id="serviceBody">
+        <ul>
+            <li>
+                <b>Program Committee.</b>
+                <ul>
+                    <li>PC Member at
+                        <a href="https://approxconference.com/">APPROX 2026</a>,
+                        <a href="https://acm-stoc.org/stoc2026/">STOC 2026</a>,
+                        <a href="http://itcs-conf.org/">ITCS 2026</a>,
+                        <a href="https://www.siam.org/conferences-events/siam-conferences/acda25/">ACDA 2025</a>,
+                        <a href="https://eatcs.org/index.php/future-icalps">ICALP 2024</a>, and
+                        <a href="https://2022.sigmod.org/index.shtml">PODS 2022</a>
+                    </li>
+                    <li>Area Chair at
+                        <a href="https://neurips.cc/">NeurIPS 2026</a>,
+                        <a href="https://icml.cc/Conferences/2026">ICML 2026</a>,
+                        <a href="https://aistats.org/aistats2026/index.html">AISTATS 2026</a>,
+                        <a href="https://neurips.cc/">NeurIPS 2025</a>,
+                        <a href="https://aistats.org/aistats2025/index.html">AISTATS 2025</a>,
+                        <a href="https://aistats.org/aistats2024/index.html">AISTATS 2024</a>, and
+                        <a href="https://aistats.org/aistats2023/index.html">AISTATS 2023</a>
+                    </li>
+                    <li>Organizing Committee Member at
+                        <a href="https://www.siam.org/conferences-events/siam-conferences/acda27/">ACDA 2027</a>
+                    </li>
+                    <li class="service-more" hidden>
+                        Junior PC Member at
+                        <a href="https://ec25.sigecom.org/">EC 2025</a>,
+                        <a href="https://learningtheory.org/colt2024/">COLT 2024</a>,
+                        <a href="http://algorithmiclearningtheory.org/alt2023/">ALT 2023</a>, and
+                        <a href="http://algorithmiclearningtheory.org/alt2022/">ALT 2022</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <b>Workshop Co-organizer.</b>
+                <ul>
+                    <li>
+                        STOC&rsquo;26 Workshop on <a href="stoc26-workshop.html">&ldquo;Machine Learning for Algorithms&rdquo;</a>,
+                        <span class="manuscriptname">June 2026</span>.
+                    </li>
+                    <li>
+                        <a href="https://people.csail.mit.edu/joanne/WOLA25">Workshop on Local Algorithms (WOLA)</a>,
+                        <span class="manuscriptname">August 2025</span>.
+                        (<a href="https://youtube.com/playlist?list=PLld86KiXBvQf6qiGAUWQcmcgnsikqigaC">videos</a>)
+                    </li>
+                    <li>
+                        TTIC Workshop on <a href="https://samsonzhou.github.io/ttic-2024-workshop-learning-augmented.html">&ldquo;Learning-Augmented Algorithms&rdquo;</a>,
+                        <span class="manuscriptname">August 2024</span>.
+                    </li>
+                    <li class="service-more" hidden>
+                        SoCG&rsquo;23 Workshop on <a href="https://sites.google.com/view/sayan-bandyapadhyay/clustering-workshop">&ldquo;Recent Developments in Geometric Clustering&rdquo;</a>,
+                        <span class="manuscriptname">June 2023</span>.
+                    </li>
+                    <li class="service-more" hidden>
+                        <a href="https://theory.cs.northwestern.edu/quarterly-theory-workshop-2022-junior-theorists-workshop/">Chicago Junior Theorists Workshop</a>,
+                        <span class="manuscriptname">January 2023</span>.
+                    </li>
+                    <li>
+                        STOC&rsquo;20 Workshop on <a href="https://www.mit.edu/~vakilian/stoc-workshop.html">&ldquo;Algorithms with Predictions&rdquo;</a>,
+                        <span class="manuscriptname">June 2020</span>.
+                    </li>
+                    <li>
+                        TTIC Workshop on <a href="https://www.mit.edu/~vakilian/ttic-workshop.html">&ldquo;Learning-Based Algorithms&rdquo;</a>,
+                        <span class="manuscriptname">August 2019</span>.
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- ===================================================================== -->
+<!-- Publications                                                          -->
+<!-- ===================================================================== -->
+<section class="container" id="publications">
+    <div class="section-head">
+        <h2><span class="sc">Publications</span></h2>
+    </div>
+    <!--
+        Each <li class="pub"> is tagged with data-pub-type="C|J|M|S" (or omitted
+        for theses). On page load, JS counts totals per type, then walks the
+        list top-to-bottom (which is reverse-chronological) and assigns tag
+        numbers in forward chronological order — so "[C1]" is the earliest
+        conference paper and "[C{N}]" is the most recent. Likewise for
+        [J..], [M..], [S..]. Set SHOW_PUB_NUMBERS = false in the script
+        below to render plain "[C] / [J] / [M] / [S]" tags without numbers.
+    -->
+    <ol class="pub-list">
+        <li class="year">2027</li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="" target="_blank">Collective Tree Exploration with Predictions</a></div>
+            <div class="authors">Romain Cosson, Yichen Huang, Michael Mitzenmacher, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ITCS 2027</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="" target="_blank">New Results in Link Arrival Streaming Connectivity Augmentation</a></div>
+            <div class="authors">Sepideh Mahabadi, Vihan Shah, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ITCS 2027</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="" target="_blank">Stochastic Matchings and Maximality</a></div>
+            <div class="authors">Amir Azarmehr, Avrim Blum, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ITCS 2027</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2610.41666" target="_blank">A Better Lower Bound for Sublinear Metric Steiner Tree</a></div>
+            <div class="authors">Sepideh Mahabadi, Jakub Tarnawski, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ITCS 2027</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2602.06633" target="_blank">Graph-Based Nearest-Neighbor Search without the Spread</a></div>
+            <div class="authors">Jeff Giliberti, Sariel Har-Peled, Jonas Sauer, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ITCS 2027</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2610.40594" target="_blank">Approximating Minimum Spanning Trees in Metrics under Semi-Random Corruptions</a></div>
+            <div class="authors">Aditya Anand, Anupam Gupta, Rajesh Jayaram, Euiwoong Lee, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">SODA 2027</span></div>
+        </li>
+        <li class="year">2026</li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2610.19460" target="_blank">Learning-Augmented Streaming Algorithms for Approximating Boolean Max-CSPs</a></div>
+            <div class="authors">Yinhao Dong, Pan Peng, Ali Vakilian, Santhoshini Velusamy, Xiaoyang Xu.</div>
+            <div class="venue-line"><span class="venue">NeurIPS 2026</span></div>
+        </li>
+        <li class="pub" data-pub-type="M">
+            <div class="title"><a href="https://arxiv.org/abs/2611.04742" target="_blank">Approximation Algorithms for Multi-Criteria Network Design Problems</a></div>
+            <div class="authors">Mehrshad Taziki, Ali Vakilian.</div>
+            <div class="venue-line"><span class="manuscriptname">November 2026</span></div>
+        </li>
+        <li class="pub" data-pub-type="M">
+            <div class="title"><a href="https://arxiv.org/abs/2611.00461" target="_blank"><i>k</i>-Center under Weak and Strong Distance Oracles with an Application to Minimum Sum of Radii Clustering</a></div>
+            <div class="authors">Zachary Friggstad, Mahya Jamshidian, Ali Vakilian.</div>
+            <div class="venue-line"><span class="manuscriptname">October 2026</span></div>
+        </li>
+        <li class="pub" data-pub-type="M">
+            <div class="title"><a href="https://doi.org/10.7282/00000688" target="_blank">Tight Lower Bounds for Distributional Paging</a></div>
+            <div class="authors">Ali Vakilian.</div>
+            <div class="venue-line"><span class="manuscriptname">August 2026</span></div>
+        </li>        
+		<li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2608.28081" target="_blank">A Configuration-LP Framework for Connected <i>k</i>-Median Clustering</a></div>
+            <div class="authors">Kushagra Chatterjee, Rojin Rezvan, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">APPROX 2026</span></div>
+        </li>
+        <li class="pub" data-pub-type="M">
+            <div class="title"><a href="https://arxiv.org/abs/2605.15504" target="_blank">Learning with Conflicts of Interest</a></div>
+            <div class="authors">Nischal Aryal, Arash Termehchy, Ali Vakilian, Marianne Winslett.</div>
+            <div class="venue-line"><span class="manuscriptname">July 2026</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2603.27795" target="_blank">An Optimal Algorithm for Stochastic Vertex Cover</a></div>
+            <div class="authors">Jan van den Brand, Inge Li G&#248;rtz, Chirag Pabbaraju, Debmalya Panigrahi, Cliff Stein, Miltiadis Stouras, Ola Svensson, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">STOC 2026</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2405.10378" target="_blank">A Polynomial-Time Approximation for Pairwise Fair <i>k</i>-Median Clustering</a></div>
+            <div class="authors">Sayan Bandyapadhyay, Eden Chlamt&#225;&#269;, Zachary Friggstad, Mahya Jamshidian, Yury Makarychev, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">AISTATS 2026</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2510.11627" target="_blank">Sublinear Metric Steiner Forest via Maximal Independent Set</a></div>
+            <div class="authors">Sepideh Mahabadi, Mohammad Roghani, Jakub Tarnawski, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">SODA 2026</span></div>
+        </li>
+        <li class="year">2025</li>
+        <li class="pub" data-pub-type="S">
+            <div class="title">
+                <a href="https://www.mit.edu/~vakilian/alg_fair_cluster_survey.pdf" target="_blank">Fair Clustering: Concepts, Methods, and Algorithms</a>
+                <span class="links"><a href="https://vakiliana.github.io/alg-fair-cluster-repo/">[fair-clustering repository]</a></span>
+            </div>
+            <div class="authors">Ali Vakilian.</div>
+            <div class="venue-line"><span class="manuscriptname">September 2025</span> &middot; <i>preliminary version; feedback welcome.</i></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2507.12607" target="_blank">Max-Cut with Multiple Cardinality Constraints</a></div>
+            <div class="authors">Yury Makarychev, Madhusudhan Pittu, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">APPROX 2025</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2503.00712" target="_blank">Streaming Algorithms for Network Design</a></div>
+            <div class="authors">Chandra Chekuri, Rhea Jain, Sepideh Mahabadi, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">APPROX 2025</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2502.05511" target="_blank">New and Improved Bounds for Markov Paging</a></div>
+            <div class="authors">Chirag Pabbaraju, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ICALP 2025</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2504.20883" target="_blank">Guessing Efficiently for Constrained Subspace Approximation</a></div>
+            <div class="authors">Aditya Bhaskara, Sepideh Mahabadi, Madhusudhan Pittu, Ali Vakilian, David Woodruff.</div>
+            <div class="venue-line"><span class="venue">ICALP 2025</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2410.02513" target="_blank">Minimax Group Fairness in Strategic Classification</a></div>
+            <div class="authors">Emily Diana, Saeed Sharifi-Malvajerdi, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">SaTML 2025</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2412.09773" target="_blank">Learning-Augmented Streaming Algorithms for Approximating Max-Cut</a></div>
+            <div class="authors">Yinhao Dong, Pan Peng, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ITCS 2025</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2411.09059" target="_blank">Sublinear Metric Steiner Tree via Improved Bounds for Set Cover</a></div>
+            <div class="authors">Sepideh Mahabadi, Mohammad Roghani, Jakub Tarnawski, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ITCS 2025</span></div>
+        </li>
+        <li class="year">2024</li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2402.08758" target="_blank">Bayesian Strategic Classification</a></div>
+            <div class="authors">Lee Cohen, Saeed Sharifi-Malvajerdi, Kevin Stangl, Ali Vakilian, Juba Ziani.</div>
+            <div class="venue-line"><span class="venue">NeurIPS 2024</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2412.06063" target="_blank">On Socially Fair Low-Rank Approximation and Column Subset Selection</a></div>
+            <div class="authors">Zhao Song, Ali Vakilian, David Woodruff, Samson Zhou.</div>
+            <div class="venue-line"><span class="venue">NeurIPS 2024</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2402.10806" target="_blank">Streaming Algorithms for Connectivity Augmentation</a></div>
+            <div class="authors">Ce Jin, Michael Kapralov, Sepideh Mahabadi, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ICALP 2024</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title">
+                <a href="https://arxiv.org/abs/2402.17736" target="_blank">Learning-Based Algorithms for Graph Searching Problems</a>
+                <span class="links"><a href="https://github.com/ADePavia/graph_searching">[code]</a></span>
+            </div>
+            <div class="authors">Adela DePavia, Erasmo Tani, Ali Vakilian.</div>
+            <div class="venue-line">
+                <span class="venue">AISTATS 2024</span>;
+                selected for <span class="recog">Oral presentation</span> <!-- &middot; -->
+                <a href="https://virtual.aistats.org/virtual/2024/awards_detail"><span class="award-inline">Outstanding Student Paper Highlight Award</span></a>
+                <span class="descriptname">(7 of 547 accepted papers)</span>
+            </div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2403.10365" target="_blank">Scalable Algorithms for Individual Preference Stable Clustering</a></div>
+            <div class="authors">Ron Mosenzon, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">AISTATS 2024</span></div>
+        </li>
+        <li class="year">2023</li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2309.16840" target="_blank">Constant Approximation for Individual Preference Stable Clustering</a></div>
+            <div class="authors">Anders Aamand, Justin Chen, Allen Liu, Sandeep Silwal, Pattara Sukprasert, Ali Vakilian, Fred Zhang.</div>
+            <div class="venue-line"><span class="venue">NeurIPS 2023</span>; selected for <span class="recog">Spotlight presentation</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2312.07535" target="_blank">Improved Frequency Estimation Algorithms with and without Predictions</a></div>
+            <div class="authors">Anders Aamand, Justin Chen, Huy Nguyen, Sandeep Silwal, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">NeurIPS 2023</span>; selected for <span class="recog">Spotlight presentation</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2310.00175" target="_blank">Tight Bounds for Volumetric Spanners and Applications</a></div>
+            <div class="authors">Aditya Bhaskara, Sepideh Mahabadi, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">NeurIPS 2023</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2302.00213" target="_blank">Approximating Red-Blue Set Cover</a></div>
+            <div class="authors">Eden Chlamt&#225;&#269;, Yury Makarychev, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">APPROX 2023</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2301.13397" target="_blank">Sequential Strategic Screening</a></div>
+            <div class="authors">Lee Cohen, Saeed Sharifi-Malvajerdi, Kevin Stangl, Ali Vakilian, Juba Ziani.</div>
+            <div class="venue-line"><span class="venue">ICML 2023</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2306.06778" target="_blank">Approximation Algorithms for Fair Range Clustering</a></div>
+            <div class="authors">S&#232;djro Hotegni, Sepideh Mahabadi, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ICML 2023</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title">
+                <a href="https://arxiv.org/abs/2306.06611" target="_blank">Learning the Positions in CountSketch</a>
+                <span class="links"><a href="https://github.com/sliu2019/learned_sketch">[code]</a></span>
+            </div>
+            <div class="authors">Yi Li, Honghao Lin, Simin Liu, Ali Vakilian, David Woodruff.</div>
+            <div class="venue-line"><span class="venue">ICLR 2023</span>; selected as <span class="recog">Notable top-25% paper</span></div>
+        </li>
+        <li class="year">2022</li>
+        <li class="pub" data-pub-type="C">
+            <div class="title">
+                <a href="https://arxiv.org/abs/2207.03600" target="_blank">Individual Preference Stability for Clustering</a>
+                <span class="links"><a href="https://github.com/amazon-research/ip-stability-for-clustering">[code]</a></span>
+            </div>
+            <div class="authors">Saba Ahmadi, Pranjal Awasthi, Samir Khuller, Matth&auml;us Kleindessner, Jamie Morgenstern, Pattara Sukprasert, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ICML 2022</span>; selected for <span class="recog">Long presentation</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2204.12055" target="_blank">Faster Fundamental Graph Algorithms via Learned Predictions</a></div>
+            <div class="authors">Justin Chen, Sandeep Silwal, Ali Vakilian, Fred Zhang.</div>
+            <div class="venue-line"><span class="venue">ICML 2022</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2203.07513" target="_blank">Multi Stage Screening: Enforcing Fairness and Maximizing Efficiency in a Pre-Existing Pipeline</a></div>
+            <div class="authors">Avrim Blum, Kevin Stangl, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">FAccT 2022</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2202.01391" target="_blank">Fair Representation Clustering with Several Protected Classes</a></div>
+            <div class="authors">Zhen Dai, Yury Makarychev, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">FAccT 2022</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2106.14043" target="_blank">Improved Approximation Algorithms for Individually Fair Clustering</a></div>
+            <div class="authors">Ali Vakilian, Mustafa Yal&ccedil;&#x131;ner.</div>
+            <div class="venue-line"><span class="venue">AISTATS 2022</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2111.04804" target="_blank">Approximating Fair Clustering with Cascaded Norm Objectives</a></div>
+            <div class="authors">Eden Chlamt&#225;&#269;, Yury Makarychev, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">SODA 2022</span></div>
+        </li>
+        <li class="year">2021</li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2103.02512" target="_blank">Approximation Algorithms for Socially Fair Clustering</a></div>
+            <div class="authors">Yury Makarychev, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">COLT 2021</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="http://proceedings.mlr.press/v139/diakonikolas21a/diakonikolas21a.pdf" target="_blank">Learning Online Algorithms with Distributional Advice</a></div>
+            <div class="authors">Ilias Diakonikolas, Vasilis Kontonis, Christos Tzamos, Ali Vakilian, Nikos Zarifis.</div>
+            <div class="venue-line"><span class="venue">ICML 2021</span></div>
+        </li>
+        <li class="pub" data-pub-type="J">
+            <div class="title"><a href="http://arxiv.org/abs/1910.07616" target="_blank">Node-weighted Network Design in Planar and Minor-closed Families of Graphs</a></div>
+            <div class="authors">Chandra Chekuri, Alina Ene, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">Transactions on Algorithms (TALG) 2021</span> &middot;
+                <i>builds upon our <a href="publication/nw-pc-sndp-approx12.pdf"><span class="venue">ICALP 2012</span></a> paper; extends to element-connectivity requirements.</i>
+            </div>
+        </li>
+        <li class="year">2020</li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/2002.06742" target="_blank">Individual Fairness for <i>k</i>-Clustering</a></div>
+            <div class="authors">Sepideh Mahabadi, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ICML 2020</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/1910.14154" target="_blank">Improved Local Computation Algorithm for Set Cover via Sparsification</a></div>
+            <div class="authors">Christoph Grunau, Slobodan Mitrovi&cacute;, Ronitt Rubinfeld, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">SODA 2020</span></div>
+        </li>
+        <li class="pub" data-pub-type="M">
+            <div class="title"><a href="https://arxiv.org/pdf/1908.05198.pdf" target="_blank">(Learned) Frequency Estimation Algorithms under Zipfian Distribution</a></div>
+            <div class="authors">Anders Aamand, Piotr Indyk, Ali Vakilian.</div>
+            <div class="venue-line"><span class="manuscriptname">February 2020</span></div>
+        </li>
+        <li class="year">2019</li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/1910.13984" target="_blank">Learning-Based Low-Rank Approximations</a></div>
+            <div class="authors">Piotr Indyk, Ali Vakilian, Yang Yuan.</div>
+            <div class="venue-line"><span class="venue">NeurIPS 2019</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/1806.02771" target="_blank">Structural Rounding: Approximation Algorithms for Graphs Near an Algorithmically Tractable Class</a></div>
+            <div class="authors">Erik Demaine, Timothy Goodrich, Kyle Kloster, Brian Lavallee, Quanquan Liu, Blair Sullivan, Ali Vakilian, Andrew van der Poel.</div>
+            <div class="venue-line"><span class="venue">ESA 2019</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/1906.00339" target="_blank">Sample-Optimal Low-Rank Approximation of Distance Matrices</a></div>
+            <div class="authors">Piotr Indyk, Ali Vakilian, Tal Wagner, David Woodruff.</div>
+            <div class="venue-line"><span class="venue">COLT 2019</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/1902.03519" target="_blank">Scalable Fair Clustering</a></div>
+            <div class="authors">Arturs Backurs, Piotr Indyk, Krzysztof Onak, Baruch Schieber, Ali Vakilian, Tal Wagner.</div>
+            <div class="venue-line"><span class="venue">ICML 2019</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://dl.acm.org/citation.cfm?id=3319691" target="_blank">Tight Trade-offs for Maximum <i>k</i>-Coverage Problem in the General Streaming Model</a></div>
+            <div class="authors">Piotr Indyk, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">PODS 2019</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title">
+                <a href="https://openreview.net/pdf?id=r1lohoCqY7" target="_blank">Learning-Based Frequency Estimation Algorithms</a>
+                <span class="links">
+                    <a href="https://people.csail.mit.edu/cyhsu/learnedsketch/">[website]</a>
+                    <a href="https://github.com/chenyuhsu/learnedsketch">[code]</a>
+                    <a href="http://news.mit.edu/2019/mit-learnedsketch-machine-learning-separates-popular-data-elements-0403">[MIT News]</a>
+                    <a href="https://www.forbes.com/sites/charlestowersclark/2019/04/01/solving-the-britney-spears-problem-why-finding-trends-in-data-is-such-a-challenge/">[Forbes]</a>
+                </span>
+            </div>
+            <div class="authors">Chen-Yu Hsu, Piotr Indyk, Dina Katabi, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ICLR 2019</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/1902.08266" target="_blank">Local Computation Algorithms for Spanners</a></div>
+            <div class="authors">Merav Parter, Ronitt Rubinfeld, Ali Vakilian, Anak Yodpinyanee.</div>
+            <div class="venue-line"><span class="venue">ITCS 2019</span></div>
+        </li>
+        <li class="pub" data-pub-type="T">
+            <div class="title">
+                <a href="publication/phd_thesis.pdf" target="_blank">New Directions in Streaming Algorithms</a>
+                <span class="links"><a href="https://dspace.mit.edu/handle/1721.1/124119">[DSpace@MIT]</a></span>
+            </div>
+            <div class="authors">Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">Ph.D. Thesis</span>, MIT EECS</div>
+        </li>
+        <li class="year">2018</li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/1902.03534" target="_blank">Set Cover in Sub-linear Time</a></div>
+            <div class="authors">Piotr Indyk, Sepideh Mahabadi, Ronitt Rubinfeld, Ali Vakilian, Anak Yodpinyanee.</div>
+            <div class="venue-line"><span class="venue">SODA 2018</span></div>
+        </li>
+        <li class="pub" data-pub-type="M">
+            <div class="title">Approximation Algorithms for Nearly <i>H</i>-Minor-Free Graphs</div>
+            <div class="authors">Erik Demaine, Quanquan Liu, Ali Vakilian.</div>
+            <div class="venue-line"><span class="manuscriptname">November 2018</span></div>
+        </li>
+        <li class="pub" data-pub-type="J">
+            <div class="title"><a href="https://arxiv.org/abs/1503.05656" target="_blank">Cost-Effective Conceptual Design Using Taxonomies</a></div>
+            <div class="authors">Ali Vakilian, Yodsawalai Chodpathumwan, Arash Termehchy, Amir Nayyeri.</div>
+            <div class="venue-line"><span class="venue">VLDB Journal 2018</span></div>
+        </li>
+        <li class="year">2017</li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="http://drops.dagstuhl.de/opus/volltexte/2017/7561/pdf/LIPIcs-APPROX-RANDOM-2017-12.pdf" target="_blank">Fractional Set Cover in the Streaming Model</a></div>
+            <div class="authors">Piotr Indyk, Sepideh Mahabadi, Ronitt Rubinfeld, Jonathan Ullman, Ali Vakilian, Anak Yodpinyanee.</div>
+            <div class="venue-line"><span class="venue">APPROX 2017</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/1503.05656" target="_blank">Cost-Effective Conceptual Design Over Taxonomies</a></div>
+            <div class="authors">Ali Vakilian, Yodsawalai Chodpathumwan, Arash Termehchy, Amir Nayyeri.</div>
+            <div class="venue-line"><span class="venue">WebDB 2017</span></div>
+        </li>
+        <li class="year">2016</li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="https://arxiv.org/abs/1509.00118" target="_blank">Towards Tight Bounds for the Streaming Set Cover Problem</a></div>
+            <div class="authors">Sariel Har-Peled, Piotr Indyk, Sepideh Mahabadi, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">PODS 2016</span></div>
+        </li>
+        <li class="year">2015</li>
+        <li class="pub" data-pub-type="J">
+            <div class="title"><a href="publication/concept-annotation-sigmod14.pdf" target="_blank">Cost-Effective Database Design For Information Extraction Applications</a></div>
+            <div class="authors">Arash Termehchy, Ali Vakilian, Yodsawalai Chodpathumwan, Marianne Winslett.</div>
+            <div class="venue-line"><span class="venue">Transactions on Database Systems (TODS) 2015</span></div>
+        </li>
+        <li class="year">2014</li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="publication/set-cover-disc14.pdf" target="_blank">On Streaming and Communication Complexity of The Set Cover Problem</a></div>
+            <div class="authors">Erik Demaine, Piotr Indyk, Sepideh Mahabadi, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">DISC 2014</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="publication/concept-annotation-sigmod14.pdf" target="_blank">Which Concepts are Worth Extracting?</a></div>
+            <div class="authors">Arash Termehchy, Ali Vakilian, Yodsawalai Chodpathumwan, Marianne Winslett.</div>
+            <div class="venue-line"><span class="venue">SIGMOD 2014</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="publication/deg-bd-stoc14.pdf" target="_blank">Improved Approximation Algorithms for Degree-bounded Network Design Problems with Node Connectivity Requirements</a></div>
+            <div class="authors">Alina Ene, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">STOC 2014</span></div>
+        </li>
+        <li class="year">2013</li>
+        <li class="pub" data-pub-type="M">
+            <div class="title"><a href="http://arxiv.org/abs/1305.4308">Connected Domatic Packing in Node-capacitated Graphs</a></div>
+            <div class="authors">Alina Ene, Nitish Korula, Ali Vakilian.</div>
+            <div class="venue-line"><span class="manuscriptname">July 2013</span></div>
+        </li>
+        <li class="pub" data-pub-type="T">
+            <div class="title">
+                <a href="publication/ms_thesis.pdf" target="_blank">Node-Weighted Prize-Collecting Survivable Network Design Problems</a>
+                <span class="links"><a href="http://hdl.handle.net/2142/45452">[IDEALS@UIUC]</a></span>
+            </div>
+            <div class="authors">Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">M.S. Thesis</span>, UIUC CS</div>
+        </li>
+        <li class="year">2012</li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="publication/nw-pc-sndp-approx12.pdf" target="_blank">Prize-collecting Survivable Network Design in Node-weighted Graphs</a></div>
+            <div class="authors">Chandra Chekuri, Alina Ene, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">APPROX 2012</span></div>
+        </li>
+        <li class="pub" data-pub-type="C">
+            <div class="title"><a href="publication/nw-planar-sndp-icalp12.pdf" target="_blank">Node-weighted Network Design in Planar and Minor-closed Families of Graphs</a></div>
+            <div class="authors">Chandra Chekuri, Alina Ene, Ali Vakilian.</div>
+            <div class="venue-line"><span class="venue">ICALP 2012</span></div>
+        </li>
+    </ol>
+</section>
+<!-- ===================================================================== -->
+<!-- Talks                                                                 -->
+<!-- ===================================================================== -->
+<section class="container" id="talks">
+    <div class="section-head">
+        <h2><span class="sc">Talks</span></h2>
+        <button class="toggle" id="talkToggle" type="button">show older talks</button>
+    </div>
+    <ul class="talks-list">
+        <li>
+            <div class="talk-title">Streaming Algorithms for Connectivity Augmentation Problems</div>
+            <ul class="venues">
+                <li><span class="confname">Simons Institute at Berkeley</span>, Extroverted Sublinear Algorithms Workshop (6/20/24)</li>
+            </ul>
+        </li>
+        <li>
+            <div class="talk-title">Algorithms for Socially Fair Clustering: Min-Max Fairness to Cascaded Norms</div>
+            <ul class="venues">
+                <li><span class="confname">MIT</span>, A&amp;C Seminar (12/6/23)</li>
+                <li><span class="confname">UW Seattle</span>, Theory Seminar (11/13/23)</li>
+                <li><span class="confname">INFORMS</span> Annual Meeting (10/15/23)</li>
+                <li><span class="confname">UT Austin</span>, Theory Seminar (10/6/23)</li>
+                <li><span class="confname">Stanford</span>, Algorithmic Fairness Seminar (10/2/23)</li>
+            </ul>
+        </li>
+        <li>
+            <div class="talk-title">Learning-Augmented Algorithms for Massive Data</div>
+            <ul class="venues">
+                <li><span class="confname">INFORMS</span> Annual Meeting (10/18/23)</li>
+            </ul>
+        </li>
+        <li>
+            <div class="talk-title">Tight Bounds for Volumetric Spanners in All Norms</div>
+            <ul class="venues">
+                <li><span class="confname">Simons Institute at Berkeley</span>, Sketching and Algorithm Design Workshop (10/11/23)</li>
+            </ul>
+        </li>
+        <li>
+            <div class="talk-title">Individual Preference Stability for Clustering</div>
+            <ul class="venues">
+                <li><span class="confname">TRIPODS</span> Postdoc Workshop (8/22/23)</li>
+                <li>Research at <span class="confname">TTIC</span> (2/24/23)</li>
+            </ul>
+        </li>
+        <li>
+            <div class="talk-title">Graph Algorithms with Learned Duals</div>
+            <ul class="venues">
+                <li>&ldquo;Scheduling&rdquo; Seminar at <span class="confname">Schloss Dagstuhl</span> (2/9/23)</li>
+            </ul>
+        </li>
+        <!-- older talks -->
+        <li class="talk-older" hidden>
+            <div class="talk-title">Learning Online Algorithms with Distributional Advice</div>
+            <ul class="venues">
+                <li>Algorithms Under Uncertainty Workshop at FSTTCS&rsquo;22, <span class="confname">IIT Madras</span> (12/6/22)</li>
+            </ul>
+        </li>
+        <li class="talk-older" hidden>
+            <div class="talk-title">Algorithm Design in the Machine Learning Era</div>
+            <ul class="venues">
+                <li>Research at <span class="confname">TTIC</span> (5/13/22)</li>
+            </ul>
+        </li>
+        <li class="talk-older" hidden>
+            <div class="talk-title">Individually Fair Clustering</div>
+            <ul class="venues">
+                <li>IDEAL Workshop on Clustering, <span class="confname">Northwestern</span> (4/23/22)</li>
+            </ul>
+        </li>
+        <li class="talk-older" hidden>
+            <div class="talk-title">Algorithms for Socially Fair Clustering</div>
+            <ul class="venues">
+                <li><span class="confname">University of Wisconsin&mdash;Madison</span>, IFDS (6/10/21)</li>
+            </ul>
+        </li>
+        <li class="talk-older" hidden>
+            <div class="talk-title">Approximation Algorithms for Fair Clustering</div>
+            <ul class="venues">
+                <li><span class="confname">UCSD</span>, Theory Seminar (5/17/21)</li>
+                <li><span class="confname">UWaterloo</span>, Combinatorics &amp; Optimization (5/17/21)</li>
+                <li><span class="confname">MIT</span>, A&amp;C Seminar (5/10/21)</li>
+                <li><span class="confname">TOC4Fairness</span> Seminar (4/28/21)</li>
+                <li>Joint <span class="confname">Purdue</span> and <span class="confname">UMichigan</span> Theory Seminar (4/23/21)</li>
+                <li><span class="confname">UW Seattle</span>, Theory Seminar (4/20/21)</li>
+                <li><span class="confname">UIUC</span>, Theory Seminar (4/19/21)</li>
+                <li><span class="confname">Google Research</span> (4/15/21)</li>
+            </ul>
+        </li>
+        <li class="talk-older" hidden>
+            <div class="talk-title">Learning-based Algorithms For Massive Data</div>
+            <ul class="venues">
+                <li><span class="confname">INFORMS</span> Annual Meeting (10/10/20)</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+<!-- ===================================================================== -->
+<!-- Copyright                                                             -->
+<!-- ===================================================================== -->
+<section class="container" id="copyright">
+    <h2><span class="sc">Copyright Notice</span></h2>
+    <p class="copyright">
+        This material is presented to ensure timely dissemination of scholarly and technical work.
+        Copyright and all rights therein are retained by authors or by other copyright holders.
+        All persons copying this information are expected to adhere to the terms and constraints invoked by each author's copyright.
+        In most cases, these works may not be reposted without the explicit permission of the copyright holder.
+    </p>
+</section>
+</main>
+<a id="toTopBtn" href="#top" class="to-top" aria-label="Back to top">
+    <img src="top.png" alt="">
+</a>
+<footer>
+    <p>&copy; 2026 Ali Vakilian</p>
+</footer>
+<script>
+(function () {
+    // -----------------------------------------------------------------
+    // Publication-type tag generator
+    // -----------------------------------------------------------------
+    // Walks the publication list and prepends a coloured tag to each
+    // entry's title:
+    //
+    //   data-pub-type="C" -> [C]   (conference)
+    //   data-pub-type="J" -> [J]   (journal)
+    //   data-pub-type="M" -> [M]   (manuscript)
+    //   data-pub-type="S" -> [S]   (survey)
+    //   data-pub-type="T" -> [T]   (thesis)
+    //
+    // If SHOW_PUB_NUMBERS is true, a counter is appended inside each
+    // bracket in FORWARD chronological order (oldest = 1, newest = N):
+    //   [C1] = earliest conference paper, [C48] = most recent, ...
+    //   [T1] = M.S. thesis,                [T2] = Ph.D. thesis, ...
+    // The DOM itself is in reverse-chronological order, so we first
+    // tally totals, then decrement while walking top-to-bottom.
+    // Set SHOW_PUB_NUMBERS to false to render plain [C] / [J] / [M] /
+    // [S] / [T] tags without numbers.
+    // -----------------------------------------------------------------
+    const SHOW_PUB_NUMBERS = true;
+
+    var pubs    = document.querySelectorAll('.pub-list .pub[data-pub-type]');
+    var totals  = { C: 0, J: 0, M: 0, S: 0, T: 0 };
+    var seen    = { C: 0, J: 0, M: 0, S: 0, T: 0 };
+
+    // First pass: total per type
+    pubs.forEach(function (pub) {
+        var t = pub.getAttribute('data-pub-type');
+        if (t in totals) totals[t] += 1;
+    });
+
+    // Second pass: assign tag numbers in forward chronological order.
+    // The DOM lists newest first, so the n-th item we encounter of
+    // type t should be numbered (totals[t] - n + 1).
+    pubs.forEach(function (pub) {
+        var type = pub.getAttribute('data-pub-type');
+        if (!(type in totals)) return;
+        seen[type] += 1;
+        var num   = totals[type] - seen[type] + 1;
+        var label = SHOW_PUB_NUMBERS ? '[' + type + num + ']' : '[' + type + ']';
+        var tag   = document.createElement('span');
+        tag.className = 'pub-tag pub-tag-' + type;
+        tag.textContent = label;
+        var titleDiv = pub.querySelector('.title');
+        if (titleDiv) {
+            titleDiv.insertBefore(document.createTextNode(' '), titleDiv.firstChild);
+            titleDiv.insertBefore(tag, titleDiv.firstChild);
+        }
+    });
+
+    // -----------------------------------------------------------------
+    // Back-to-top button visibility
+    // -----------------------------------------------------------------
+    var btn = document.getElementById('toTopBtn');
+    if (btn) {
+        window.addEventListener('scroll', function () {
+            btn.style.display = window.scrollY > 200 ? 'block' : 'none';
+        });
+    }
+
+    // -----------------------------------------------------------------
+    // Generic toggle: button that flips [hidden] on a set of matching
+    // elements. Used for Service and Talks sections. The Publications
+    // "show earlier" toggle has been removed per request.
+    // -----------------------------------------------------------------
+    function attachToggle(btnId, selector, labelMore, labelLess) {
+        var btn = document.getElementById(btnId);
+        if (!btn) return;
+        var expanded = false;
+        btn.addEventListener('click', function () {
+            expanded = !expanded;
+            document.querySelectorAll(selector).forEach(function (el) {
+                el.hidden = !expanded;
+            });
+            btn.textContent = expanded ? labelLess : labelMore;
+        });
+    }
+    attachToggle('serviceToggle', '.service-more', 'show more',        'show less');
+    attachToggle('talkToggle',    '.talk-older',   'show older talks', 'hide older talks');
+})();
+</script>
+</body>
+</html>
