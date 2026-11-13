@@ -520,6 +520,10 @@ SMALLCAPS = re.compile(r'\b([A-Z]) ([A-Z]{2,})\b')
 
 
 def _host(url):
+    """The host a page belongs to; a Wayback capture belongs to the host of the page it archives (web.archive.org itself is not a lab)."""
+    m = re.match(r'https?://(?:web\.archive\.org|archive\.org)/web/\d+[a-z_]*/(?:https?://)?([^/:?#]+)', url or '', re.I)
+    if m:
+        return m.group(1).lower().removeprefix('www.')
     return re.sub(r'^https?://([^/:?#]+).*', r'\1', url or '').lower().removeprefix('www.')
 
 

@@ -361,3 +361,8 @@ def test_R_STU_28_names_on_any_captured_page_of_the_pi_same_host_only(tree):
     assert any('does not match the stored capture' in x for x in R.evaluate_record('u', rec, conn=conn)['findings'])
     r['extra_pages'] = [dict(url='https://lab.example/nope', sha256=sha)]
     assert any('not in the capture store' in x for x in R.evaluate_record('u', rec, conn=conn)['findings'])
+
+
+def test_R_STU_28_wayback_capture_belongs_to_the_archived_host():
+    assert R._host('https://web.archive.org/web/20261105id_/http://www.lab.example/people.html') == 'lab.example'
+    assert R._host('https://www.lab.example/x') == 'lab.example'
