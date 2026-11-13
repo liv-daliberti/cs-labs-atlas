@@ -158,6 +158,28 @@
     ],
     "reviewed": "2026-10-28"
    }
+  },
+  "links": {
+   "Una-May O'Reilly | Finnian Ellis Westenfelder | mit_thesis_author_118eb7e07e85c509bd92": {
+    "verdict": "explained",
+    "reason": "The student's only MIT-sweep work is the NAACL 2025 paper 'LLM-Supported Natural Language to Bash Translation' (W4411119257; Westenfelder, Hemberg, Moskal, O'Reilly, Chiricescu). It IS a lab paper, of Erik Hemberg (ALFA group, same CSAIL group; identity reviewed_openalex_author_id), and the student is tied to it through his own authorship. It has no row for O'Reilly because her authorship carries no institution or affiliation string in OpenAlex, so the only school basis is the first-page tie (marker: 'Una-May O'Reilly1' / '1 ALFA Group MIT-CSAIL', stored beside Hemberg's tie), and her only appointment evidence for 2025 is the R-PAP-37 listing-continuity period (2021-02-11 to 2026-12-31; listings only 2018-2021 and 2026). Under R-PAP-37 that period admits only a paper whose own byline names the school (direct_via), and a first-page tie is not direct, so the row is dropped as outside_appointment. The paper's date is year-granular (2025-01-01), so no same-year listing applies either. Identity, genre (conference-paper) and window are not the cause. Not fixed by a reviewed period: no dated 2025 statement of her appointment was found, and none is invented. The paper stays in the MIT package under Hemberg. Reviewed 2026-11-13 (claude gate-closures-1113); link-diagnosis category paper_not_lab_paper, pis_seen Erik Hemberg.",
+    "evidence": [
+     {
+      "url": "https://doi.org/10.18653/v1/2025.naacl-long.555",
+      "sha256": "b42543c03f46c72dac290f1937be26c8783d1173f399c76ba029878ff3f91e00",
+      "sha256_of": "the stored MIT pi-works record of W4411119257 (json.dumps sort_keys)",
+      "quote": "Una-May O’Reilly | institutions: [] | raw_affiliation_strings: []",
+      "observed": "2026-11-13"
+     },
+     {
+      "url": "https://doi.org/10.18653/v1/2025.naacl-long.555",
+      "sha256": "5d33e8232681c0fc429510248a96045313a377982ec2fb725e102be21079ba80",
+      "sha256_of": "the page-1 PDF read from the local full-text catalog copy (stored pi-works page row)",
+      "quote": "Una-May O'Reilly1 , ... 1 ALFA Group MIT-CSAIL,",
+      "observed": "2026-10-29"
+     }
+    ]
+   }
   }
  },
  "berkeley": {
