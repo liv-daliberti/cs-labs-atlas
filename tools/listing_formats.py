@@ -1689,7 +1689,7 @@ def sjtu_cs_en_institutes(h):
         p_ = box.find_previous_sibling('p')
         division = clean(p_.get_text(' ', strip=True)) if p_ else None
         for h3 in box.find_all('h3'):
-            rank = clean(h3.get_text(' ', strip=True)).rstrip(':').strip()
+            rank = clean(h3.get_text(' ', strip=True)).rstrip(':\uff1a').strip()  # the Chinese list ends its rank headings with a full-width colon
             ul = h3.find_next_sibling('ul')
             for a in (ul.select('li a[href]') if ul else []):
                 raw = clean(a.get_text(' ', strip=True))
@@ -1700,6 +1700,27 @@ def sjtu_cs_en_institutes(h):
                 out.append(dict(name_listed=listed, titles=[rank] + ([note.group(1)] if note else []), profile=a['href'], homepage=None, division=division))
     return out
 
+
+def sjtu_cs_ajax_teachers(h):
+    """SJTU School of Computer Science directory feed (cs.sjtu.edu.cn/active/ajax_teacher_list.html, 2025-): a JSON object whose `content` is HTML,
+    one `div.rc-item` per institute: `div.tit .name` is the institute, `div.dt p` the leaders ('所 长：' + linked name) and `div.name-list span a`
+    the other teachers. No rank is printed (names only, titles=[]; the leader labels are not kept). name_listed is the name as the page spells it
+    with wide spaces folded to one space, so it is a substring of the text listings/scripts/json_people.py renders for the same capture."""
+    import json
+    from bs4 import BeautifulSoup
+    try:
+        doc = json.loads(h)
+    except ValueError:
+        return []
+    out = []
+    for item in BeautifulSoup((doc.get('content') if isinstance(doc, dict) else '') or '', 'html.parser').select('div.rc-item'):
+        nm = item.select_one('div.tit .name')
+        division = clean(nm.get_text(' ', strip=True)) if nm else None
+        for a in item.select('div.dt a[href], div.name-list a[href]'):
+            name = clean(a.get_text(' ', strip=True))
+            if name:
+                out.append(dict(name_listed=name, titles=[], profile=a['href'], homepage=None, division=division))
+    return out
 
 HONORIFIC = re.compile(r'^(Emeritus Prof|Adj(?:unct)? (?:Assoc |Asst )?Prof|Assoc Prof|Asst Prof|Prof|Dr|Mr|Ms|Mrs)\.?\s+')
 HONOR_RANK = {'assoc prof': 'Associate Professor', 'asst prof': 'Assistant Professor', 'prof': 'Professor', 'emeritus prof': 'Emeritus Professor'}
@@ -1862,6 +1883,7 @@ FORMATS = {
     'hkust_faculty_any': (hkust_faculty_any, re.compile(r'(?!)')),
     'zju_cs_teacher_cards': (zju_cs_teacher_cards, re.compile(r'class="teacher-card"')),
     'sjtu_cs_en_institutes': (sjtu_cs_en_institutes, re.compile(r'class="Faculty"')),
+    'sjtu_cs_ajax_teachers': (sjtu_cs_ajax_teachers, re.compile(r'rc-item')),
     'zju_cs_zuzhi_names': (zju_cs_zuzhi_names, re.compile(r'class="zuzhi"')),
     'tsinghua_cs_list': (tsinghua_cs_list, re.compile(r'class="people01-nr"')),
     'tsinghua_sw_names': (tsinghua_sw_names, re.compile(r'class="group-title"')),

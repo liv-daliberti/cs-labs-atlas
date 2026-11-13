@@ -63,7 +63,7 @@ name = "计算机学院（网络空间安全学院、密码学院）"
 unit = "Shanghai Jiao Tong University"
 title_match = '计算机学院|Computer Science'
 coverage = "full"
-listing_gaps = {2022 = "no archived 200 capture of the English faculty list (cs.sjtu.edu.cn/en/Faculty.aspx) in either half-year (CDX probe 32187003: only the Chinese Faculty.aspx is archived, and its capture is a scripted shell with no names); 2021 and 2023 list the same institutes and stage 4 bridges 2022 from profile pages", 2025 = "the English list ends with the 2024 site; the 2025 directory is the script-rendered active/ajax_teacher_list.html and the cse/Faculty.aspx move, whose archived captures are shells without names (planned halves unusable); the current directory is the live capture of 2026-11-07", 2026 = "no archived listing capture with names in 2026; the live directory (https://www.cs.sjtu.edu.cn/jiaoshiml.html, 2026-11-07) is the reviewed current listing"}
+listing_gaps = {2022 = "no archived 200 capture of the English faculty list (cs.sjtu.edu.cn/en/Faculty.aspx) in either half-year (CDX probe 32187003). CORRECTION 2026-11-13: the archived Chinese list cs.sjtu.edu.cn/Faculty.aspx (captures 2022-01-25, 2022-05-28, 2022-09-26) is not a names-free shell: it carries the institute lists with ranks in the same div.Faculty markup, and parses (slot 'CS faculty (Chinese list)'), so 2022 has a roster", 2025 = "the English list ends with the 2024 site. CORRECTION 2026-11-13: the archived cs.sjtu.edu.cn/cse/Faculty.aspx capture of 2025-10-31 lists the institutes with ranks and parses (slot 'CS faculty (Chinese list)'); the 2025-09-28 capture of the script-rendered active/ajax_teacher_list.html is an empty body", 2026 = "no archived English listing in 2026. CORRECTION 2026-11-13: the archived directory feed active/ajax_teacher_list.html of 2026-09-16 (JSON, names by institute, no ranks) parses (slot 'CS faculty (Chinese directory feed)'); the 2026-04-20 and 2026-09-15 captures are empty bodies; the live directory (https://www.cs.sjtu.edu.cn/jiaoshiml.html, 2026-11-07) remains the reviewed current listing"}
 url = "https://www.cs.sjtu.edu.cn/"
   [[departments.listings]]
   # Original directory: https://www.cs.sjtu.edu.cn/jiaoshiml.html; SHA25649c8483109798f1b02dced810092e5e96d7ec5b27eb980078c45df342b36021c; observed2026-11-07T15:41:42; quote:"教师名录".
@@ -86,6 +86,39 @@ url = "https://www.cs.sjtu.edu.cn/"
   prefix = false
   match = ""
   format = "sjtu_cs_en_institutes"
+  title_filter = ''
+  [[departments.listings]]
+  # Archived Chinese faculty list 教师名录 (same div.Faculty markup as the English list, rank headings in Chinese); Faculty.aspx 2016-2024, then the cse/ move
+  # (Wayback id_ captures stored in listings/sjtu/raw/captures.sqlite: 2022-05-28 and 2025-10-31 hold the names)
+  slot = "CS faculty (Chinese list)"
+  kind = "sub"
+  url = "cs.sjtu.edu.cn/Faculty.aspx"
+  from = "20160101"
+  to = "20241231"
+  prefix = false
+  match = ""
+  format = "sjtu_cs_en_institutes"
+  title_filter = ''
+  [[departments.listings]]
+  slot = "CS faculty (Chinese list)"
+  kind = "sub"
+  url = "cs.sjtu.edu.cn/cse/Faculty.aspx"
+  from = "20250101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "sjtu_cs_en_institutes"
+  title_filter = ''
+  [[departments.listings]]
+  # 2025- directory feed behind jiaoshiml.html (JSON; the 2026-09-16 Wayback capture holds the names, the 2025-09-28 and 2026-04-20 ones are empty bodies)
+  slot = "CS faculty (Chinese directory feed)"
+  kind = "sub"
+  url = "cs.sjtu.edu.cn/active/ajax_teacher_list.html"
+  from = "20250101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "sjtu_cs_ajax_teachers"
   title_filter = ''
 
 # Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.

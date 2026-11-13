@@ -29,6 +29,22 @@ def _records(o, out):
             _records(v, out)
 
 
+def _rc_item_blocks(content):
+    """SJTU CS directory feed (cs.sjtu.edu.cn/active/ajax_teacher_list.html, 2025-): JSON {tab_html, content}; `content` holds one div.rc-item per institute
+    (name in div.tit .name; leaders in div.dt a; teachers in div.name-list a). One block for the institute, then one per person; no rank is printed."""
+    from bs4 import BeautifulSoup
+    out = []
+    for item in BeautifulSoup(content, "html.parser").select("div.rc-item"):
+        nm = item.select_one("div.tit .name")
+        if nm and nm.get_text(strip=True):
+            out.append(["b", " ".join(nm.get_text(" ").split())])
+        for a in item.select("div.dt a[href], div.name-list a[href]"):
+            name = " ".join(a.get_text(" ").split())
+            if name:
+                out.append(["b", name])
+    return out
+
+
 def blocks(body):
     txt = body.decode("utf-8", "replace")
     try:
@@ -38,6 +54,8 @@ def blocks(body):
             data = json.loads(re.sub(r",\s*([\]}])", r"\1", txt))
         except Exception:
             return []
+    if isinstance(data, dict) and isinstance(data.get("content"), str) and "rc-item" in data["content"]:
+        return _rc_item_blocks(data["content"])
     recs = []
     _records(data, recs)
     out = []

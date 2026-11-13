@@ -65,7 +65,7 @@ def slot_usable(con, cap, s, blocks, status, pis, school):
     """usable() first; a charter slot that names its own `format` (Tsinghua: Chinese titles and Chinese names, which the English title
     regexp and the Latin name matchers cannot see) is also usable when that format parses at least the floor of person entries."""
     good, why = usable(blocks, status, pis, school)
-    if not good and status == 200 and getattr(_CFG.get(school), "CHARTER", False) and s.get("format"):
+    if not good and status == 200 and s.get("format"):  # a config_<school>.py slot may name a format too (SJTU CS Chinese list, 2026-11-13)
         good, why2 = charter_usable(con, cap, s)
         why = None if good else why2 or why
     return good, why
