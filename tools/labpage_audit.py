@@ -711,7 +711,7 @@ def news_item(text):
     m = NEWS_LINE.search(text or '')
     if not m:
         return False
-    if (text or '')[m.end() - 1] != ':' and re.match(r'\s*(?:present\b|now\b|current\b|ongoing\b|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+(?:19|20)\d\d|(?:19|20)\d\d\b)', (text or '')[m.end():], re.I):
+    if (text or '')[m.end() - 1] != ':' and re.match(r'\s*(?:present\b|now\b|current\b|ongoing\b|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+(?:19|20)\d\d(?!\s*:)|(?:19|20)\d\d\b(?!\s*:))', (text or '')[m.end():], re.I):
         return False   # 'Zhe Tong September 2026 - Present B.Eng. ...' / 'Sept 2023 - Dec 2025': a stay range after the name, the member's own dates (HKUST Shen's current-members page)
     before = (text or '')[:m.start()]
     return before.count('(') <= before.count(')')   # a 'Oct 2016 - May 2020' inside an open bracket dates a roster entry's stay ('Amir Shaikhha (Departmental lecturer, Jan 2019 - April 2021)'), it is not a news line (Oxford regression)
