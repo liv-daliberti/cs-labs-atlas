@@ -105,6 +105,20 @@
     "reason": "Kept: Kitani's own January 2017 page lists 'Yubo 'Claire' Zhang (MS Civil)' as a current student; the RI record of an MSR with Hebert (2017-2019) is a later degree.",
     "reviewed": "2026-10-28"
    }
+  },
+  "links": {
+   "Artur W. Dubrawski | David Luo | ext:cmu:david-luo": {
+    "verdict": "explained",
+    "reason": "The only work of his with Dubrawski on the byline is the 2023 arXiv preprint 'Hierarchically Coherent Multivariate Mixture Networks' (W4376632353; Olivares, Luo, Challu, La Vattiata, Mergenthaler, Dubrawski), written with the Nixtla group (raw affiliation 'Lab Carnegie Mellon University Nixtla' for Olivares, Luo, Challu and Mergenthaler; La Vattiata has none); OpenAlex lists no institution for Dubrawski, and the page-1 pass read arXiv v1 (pi-works pages status ok_untied) whose first-page text carries no author block, so nothing ties Dubrawski to CMU on that paper and it is not a lab paper under R-PAP-10. Luo's recorded role is 'other', not a student. link-diagnosis category paper_not_lab_paper. Reviewed 2026-11-13 (claude gate7-links-1113).",
+    "evidence": [
+     {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2305/2305.07089v1.pdf",
+      "sha256": "9475472ebf236cf526991af6dca79cffeee397a59bf086b0e81ea72c6e733260",
+      "quote": "HINT: Hierarchical Mixture Networks For Coherent Probabilistic Forecasting\n\narXiv:2305.07089v1 [stat.ML] 11 May 2023\n\nAbstract",
+      "observed": "2026-10-22"
+     }
+    ]
+   }
   }
  },
  "mit": {
@@ -168,6 +182,33 @@
     ],
     "reviewed": "2026-10-28"
    }
+  },
+  "links": {
+   "Bernd Sturmfels | Madeleine Goertz | ext:berkeley:madeleine-goertz": {
+    "verdict": "explained",
+    "reason": "The student's only Berkeley-sweep work is the 2026 arXiv preprint 'The Logarithmic A-Discriminant' (W7222919436; Goertz, Sturmfels, Telen). OpenAlex lists no institution for Sturmfels on it, and page 1 of arXiv v1 (read by the PI-affiliation pass, pi-works pages status ok_absent) names no university anywhere, so no page-1 tie to Berkeley exists and the work is not a lab paper under R-PAP-10; the student's advising starts 2026, so no earlier work is expected. link-diagnosis category paper_not_lab_paper. Reviewed 2026-11-13 (claude gate7-links-1113).",
+    "evidence": [
+     {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2610/2610.29204v1.pdf",
+      "sha256": "1f6c9f2bfa0a1434a876e10c96e632499953991f3382f53d31ded37cbc3f0615",
+      "quote": "Madeleine Goertz, Bernd Sturmfels and Simon Telen\nDedicated to the memory of Martin Helmer",
+      "observed": "2026-10-26"
+     }
+    ]
+   },
+   "Rediet Abebe | Serena Lutong Wang | berkeley_stu_serena-lutong-wang": {
+    "verdict": "explained",
+    "reason": "The student's only work with Abebe on the byline is the 2023 PNAS article 'Reimagining the machine learning life cycle to improve educational outcomes of students' (W4321749684; Liu, Wang, Britton, Abebe). Abebe's own authorship there lists no institution and her raw affiliation string is 'Harvard Society of Fellows, Cambridge, MA 02138' (the other three authors are at UC Berkeley), so the paper was written at another institution by the PI (R-PAP-10 school authorship rule) and is rightly not a lab paper. The student's roster year is 2022; link-diagnosis category paper_not_lab_paper. Reviewed 2026-11-13 (claude gate7-links-1113).",
+    "evidence": [
+     {
+      "url": "https://openalex.org/W4321749684",
+      "sha256": "6b7ab884c9311aebb20ad2079060499b905451dc7861441188c8609d5ea622ad",
+      "sha256_of": "the stored Berkeley sweep record (json.dumps sort_keys)",
+      "quote": "Rediet Abebe | institutions: [] | raw_affiliation: Harvard Society of Fellows, Cambridge, MA 02138",
+      "observed": "2026-11-13"
+     }
+    ]
+   }
   }
  },
  "stanford": {
@@ -183,6 +224,34 @@
      "https://profiles.stanford.edu/liangyu-chen"
     ],
     "reviewed": "2026-10-28"
+   }
+  },
+  "links": {
+   "Melissa Valentine | Ryan Stice-Lusvardi | ext:stanford:ryan-stice-lusvardi": {
+    "verdict": "explained",
+    "reason": "The same person is two roster records (Ryan Stice-Lusvardi in Valentine's lab, Ryan Lusvardi in Hinds's; a merge across labs is not done, R-HIER-03). His only work that is a paper is the 2023 Organization Science article 'Legitimating Illegitimate Practices: How Data Analysts Compromised Their Standards to Promote Quantification' (W4318478228; Stice-Lusvardi, Hinds, Valentine): his own authorship names Stanford, but OpenAlex lists no institution for either Valentine's or Hinds's authorship, and the article is a closed INFORMS journal article with no arXiv version, so the page-1 pass has no source to read. The Stanford-affiliated records with the PIs (AOM 2022 meeting abstracts W4286665681, W4286665520) are conference abstracts, dropped as not papers (R-PAP-18/19). So no lab paper carries both names; link-diagnosis category paper_not_lab_paper. Reviewed 2026-11-13 (claude gate7-links-1113).",
+    "evidence": [
+     {
+      "url": "https://doi.org/10.1287/orsc.2022.1655",
+      "sha256": "7e6832039b2d92481ab412a92e28c772405ad6382447ef2fb4693b55d5d6a5c3",
+      "sha256_of": "the stored Stanford sweep record (json.dumps sort_keys)",
+      "quote": "Ryan Stice-Lusvardi | Department of Management Science and Engineering, Stanford University, Stanford, California 94305; Pamela J. Hinds | institutions: [] | raw_affiliation: none; Melissa Valentine | institutions: [] | raw_affiliation: none",
+      "observed": "2026-11-13"
+     }
+    ]
+   },
+   "Pamela Hinds | Ryan Lusvardi | ext:stanford:ryan-lusvardi": {
+    "verdict": "explained",
+    "reason": "The same person is two roster records (Ryan Stice-Lusvardi in Hinds's lab, Ryan Lusvardi in Valentine's; a merge across labs is not done, R-HIER-03). His only work that is a paper is the 2023 Organization Science article 'Legitimating Illegitimate Practices: How Data Analysts Compromised Their Standards to Promote Quantification' (W4318478228; Stice-Lusvardi, Hinds, Valentine): his own authorship names Stanford, but OpenAlex lists no institution for either Hinds's or Valentine's authorship, and the article is a closed INFORMS journal article with no arXiv version, so the page-1 pass has no source to read. The Stanford-affiliated records with the PIs (AOM 2022 meeting abstracts W4286665681, W4286665520) are conference abstracts, dropped as not papers (R-PAP-18/19). So no lab paper carries both names; link-diagnosis category paper_not_lab_paper. Reviewed 2026-11-13 (claude gate7-links-1113).",
+    "evidence": [
+     {
+      "url": "https://doi.org/10.1287/orsc.2022.1655",
+      "sha256": "7e6832039b2d92481ab412a92e28c772405ad6382447ef2fb4693b55d5d6a5c3",
+      "sha256_of": "the stored Stanford sweep record (json.dumps sort_keys)",
+      "quote": "Ryan Stice-Lusvardi | Department of Management Science and Engineering, Stanford University, Stanford, California 94305; Pamela J. Hinds | institutions: [] | raw_affiliation: none; Melissa Valentine | institutions: [] | raw_affiliation: none",
+      "observed": "2026-11-13"
+     }
+    ]
    }
   }
  },
@@ -257,6 +326,23 @@
       "sha256": "d11f10172f7adc7d495017c06e0c72bf5916dffd12138928550d13105837789f",
       "quote": "type: preprint | title: Mechanistic Interpretability of Antibody Language Models Using SAEs | authors: Haque, Rebonto; Turnbull, Oliver M.; Parsan, Anisha; Parsan, Nithin; Yang, John J.; Beukenhorst, Anna L.; Deane, Charlotte M.",
       "observed": "2025-12-05"
+     }
+    ]
+   }
+  }
+ },
+ "princeton": {
+  "links": {
+   "Manoel Horta Ribeiro | Marianne Aubin Le Quéré | ext:princeton:marianne-aubin-le-qu-r": {
+    "verdict": "explained",
+    "reason": "The postdoc's only work with this PI in the Princeton sweep is the CHI 2026 paper 'Bonsai: Intentional and Personalized Social Media Feeds' (W4415086977; El Malki, Aubin Le Quéré, Monroy-Hernandez, Horta Ribeiro). OpenAlex gives the PI authorship no institution and only the raw string 'Princeton, New York, New Jersey, USA' (a town and states, not an institution; the school pattern never accepts a bare town name), so the byline names Princeton University for two co-authors but not for the PI. The paper has no arXiv id the page-1 pass can read and the PI-affiliation pass skips an authorship that carries any raw string, so no page-1 tie exists. Not a lab paper under R-PAP-10 as the rule stands; an open page-1 copy that names Princeton beside Horta Ribeiro would admit it. link-diagnosis category paper_not_lab_paper. Reviewed 2026-11-13 (claude gate7-links-1113).",
+    "evidence": [
+     {
+      "url": "https://doi.org/10.1145/3772318.3791855",
+      "sha256": "0bfc74572dca6f23c3adb46ce53532a3a6299f174f08c254c9da95eb3a0471a0",
+      "sha256_of": "the stored Princeton sweep record (json.dumps sort_keys)",
+      "quote": "Manoel Horta Ribeiro | institutions: [] | raw_affiliation: Princeton, New York, New Jersey, USA",
+      "observed": "2026-11-13"
      }
     ]
    }
