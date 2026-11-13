@@ -81,6 +81,7 @@ def test_detail_page_cards_two_templates():
           '状态： 在校 状态： 在校 下一条：刘丙 通讯地址：北京市 版权所有©清华大学电子工程系')
     c3 = la.faculty_platform_detail_cell(t3)   # Tsinghua EE card: 学位 only, no registration date: an undated CURRENT card (years null), role phd
     assert (c3['name'], c3['role'], c3['years'], c3['alumni']) == ('张甲乙', 'phd', None, False)
+    assert c3['head'] == '博士研究生 在校'
     assert c3['quote'] in re.sub(r'\s+', ' ', t3) and c3['quote'].endswith('状态： 在校')
     t4 = t3.replace('状态： 在校 状态： 在校', '状态： 毕业 状态： 毕业')
     assert la.faculty_platform_detail_cell(t4) is None   # an undated graduate cannot be placed in the window

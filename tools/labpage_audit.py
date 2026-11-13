@@ -2465,6 +2465,7 @@ def faculty_platform_detail_cell(text):
     if not (reg or grad) and alumni:
         return None   # a graduate with no date cannot be placed in the window
     role = next((r_ for k_, r_ in HAN_DEGREE_ROLE if k_ in deg.group(1)), None)
+    head_label = deg.group(1) if re.search(r'学历[：:]', body) else {'phd': '博士研究生', 'masters': '硕士研究生', 'postdoc': '博士后', 'undergraduate': '本科生'}.get(role, deg.group(1))   # a 学位-only card ('工学博士学位'): the degree names the student level
     y0 = int(reg.group(1)) if reg else None
     end = re.search(r'(毕业日期[：:]\s*(?:19|20)\d\d-\d\d-\d\d)', body) if alumni else re.search(r'(入学日期[：:]\s*(?:19|20)\d\d-\d\d-\d\d)', body)
     if not end and not alumni:
@@ -2474,7 +2475,7 @@ def faculty_platform_detail_cell(text):
         years = [y0, int(grad.group(1)) if grad else None]
     else:
         years = [y0, datetime.date.today().year] if y0 else None
-    return dict(name=m.group(1), role=role, years=years, alumni=alumni, quote=quote, head=f'{deg.group(1)} {st.group(1)}', desc=body[len(m.group(1)):][:160].strip())   # the 学历 / 状态 values are the entry's own section label
+    return dict(name=m.group(1), role=role, years=years, alumni=alumni, quote=quote, head=f'{head_label} {st.group(1)}', desc=body[len(m.group(1)):][:160].strip())   # the 学历 / 状态 values are the entry's own section label
 
 
 SEMESTER_HEAD_RX = re.compile(r'^(?:Spring|Summer|Fall|Winter|Autumn)\s+((?:19|20)\d\d)$')
