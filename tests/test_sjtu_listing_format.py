@@ -53,7 +53,7 @@ def test_ajax_teacher_feed_lists_leaders_and_teachers_names_only():
 def test_ajax_feed_text_blocks_contain_every_listed_name():
     import importlib.util
     import pathlib
-    path = pathlib.Path(__file__).resolve().parents[1] / 'listings' / 'scripts' / 'json_people.py'
+    path = pathlib.Path(__file__).resolve().parents[1] / 'listings' / 'scripts' / 'json_people.py'  # route-ok: code file, not data
     spec = importlib.util.spec_from_file_location('json_people_under_test', path)
     jp = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(jp)
