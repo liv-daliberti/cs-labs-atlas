@@ -1328,8 +1328,8 @@ def apply_registered_people_page(kit, ctx, pi, site_url, chosen, pages, add):
     pp = reg.get('people_page')
     if not pp or chosen.get('people_page') == pp:
         return False
-    if urlsplit(pp).hostname != urlsplit(site_url).hostname and not (reg.get('url') and urlsplit(reg['url']).hostname == urlsplit(pp).hostname):
-        return False   # another host's page counts only when the register's own reviewed site sits on that host (纪幸辰: faculty platform registered, a lab site linked from the profile ranked first)
+    if urlsplit(pp).hostname != urlsplit(site_url).hostname and not (chosen.get('people_page') and reg.get('url') and urlsplit(reg['url']).hostname == urlsplit(pp).hostname):
+        return False   # another host's page replaces a people page the chosen site already linked, and only when the register's own reviewed site sits on that host (纪幸辰: faculty platform registered, a lab site linked from the profile ranked first)
     rr = kit.get(pp)
     add('registered_people_page', pp, result_of(rr), on=site_url, capture_url=rr.get('capture_url'), sha256=rr.get('sha256'))
     if rr.get('status') == 200 and rr.get('content'):

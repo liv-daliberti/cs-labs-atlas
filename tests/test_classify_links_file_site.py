@@ -1,7 +1,4 @@
-import sys
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'tools'))
-import labpage_audit as A  # noqa: E402
+import labpage_audit as A
 
 
 def test_site_page_file_keeps_sibling_student_page():
