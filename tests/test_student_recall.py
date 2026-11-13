@@ -152,7 +152,7 @@ def test_check_catches_fabricated_names_bad_sha_and_signoff(tree):
     conn = make_store(tree, pages)
     rec['sample'][-1]['listed'].append({'name': 'Invented Person', 'role': 'phd', 'section': 'current'})
     f = R.evaluate_record('u', rec, conn=conn)['findings']
-    assert any('not on the captured page' in x for x in f)
+    assert any('not on any captured page of the PI' in x for x in f)
     rec['sample'][-1]['page']['sha256'] = '0' * 64
     assert any('does not match the stored capture' in x for x in R.evaluate_record('u', rec, conn=conn)['findings'])
     rec['signoff'] = dict(reviewer='drawer', date='2026-11-11')
@@ -321,3 +321,43 @@ def test_gitignore_whitelists_the_recall_record_for_every_school(tmp_path):
 def test_page_text_reads_utf16_pages():
     raw = '<html><body>Ada Lovelace</body></html>'.encode('utf-16')
     assert 'ada lovelace' in R.page_text(raw) and 'Ada Lovelace' in R.page_text_lines(raw)
+
+
+def test_R_STU_28_names_on_any_captured_page_of_the_pi_same_host_only(tree):
+    """R-STU-28: a listed name may be on any captured page of the PI on the primary page's host; a name on no page, a page of another host,
+    a bad sha and an unstored page are findings; a single `page` dict still works; small-caps spacing is folded."""
+    rec = R.draw('u', drawn_by='drawer')
+    pi = rec['sample'][-1]['pi']
+    listed = {pi: [{'name': 'Real One', 'role': 'phd', 'section': 'current'}]}
+    pages = {}
+    rec = fill(rec, pages, listed)
+    r = next(x for x in rec['sample'] if x['pi'] == pi)
+    assert isinstance(r['page'], dict)   # the old single-page shape
+    alum = b'<html><body><h2>Alumni</h2><li>Old Student 2019</li><li>Jonathan S HEWCHUK</li></body></html>'
+    other = b'<html><body>Old Student</body></html>'
+    pages['https://lab.example/alumni'] = alum
+    pages['https://elsewhere.example/alumni'] = other
+    conn = make_store(tree, pages)
+    assert R.evaluate_record('u', rec, conn=conn)['findings'] == []   # unchanged with one page
+    r['listed'] = r['listed'] + [{'name': 'Old Student', 'role': 'phd', 'section': 'alumni', 'years': [2019]},
+                                {'name': 'Jonathan Shewchuk', 'role': 'phd', 'section': 'alumni', 'years': [2019]}]
+    f = R.evaluate_record('u', rec, conn=conn)['findings']
+    assert any('not on any captured page of the PI' in x for x in f)
+    sha = hashlib.sha256(alum).hexdigest()
+    r['extra_pages'] = [dict(url='https://lab.example/alumni', sha256=sha)]
+    assert R.evaluate_record('u', rec, conn=conn)['findings'] == []
+    r['page'] = [r['page'], dict(url='https://lab.example/alumni', sha256=sha)]   # the list form is the same
+    del r['extra_pages']
+    assert R.evaluate_record('u', rec, conn=conn)['findings'] == []
+    r['extra_pages'] = [dict(url='https://lab.example/alumni', sha256=sha)]   # tokens do not combine across pages
+    r['listed'] = r['listed'] + [{'name': 'Real Student', 'role': 'phd', 'section': 'current'}]
+    assert any('not on any captured page' in x for x in R.evaluate_record('u', rec, conn=conn)['findings'])
+    r['listed'] = r['listed'][:-1]
+    r['extra_pages'] = [dict(url='https://elsewhere.example/alumni', sha256=hashlib.sha256(other).hexdigest())]
+    r['listed'] = [x for x in r['listed'] if x['name'] != 'Jonathan Shewchuk']
+    f = R.evaluate_record('u', rec, conn=conn)['findings']
+    assert any('not on the host' in x for x in f)
+    r['extra_pages'] = [dict(url='https://lab.example/alumni', sha256='0' * 64)]
+    assert any('does not match the stored capture' in x for x in R.evaluate_record('u', rec, conn=conn)['findings'])
+    r['extra_pages'] = [dict(url='https://lab.example/nope', sha256=sha)]
+    assert any('not in the capture store' in x for x in R.evaluate_record('u', rec, conn=conn)['findings'])

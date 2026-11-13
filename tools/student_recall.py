@@ -14,6 +14,10 @@ and the chain audit's students check only asks that a PI has >= 1 student. This 
                    share of the sample <= U (a school cannot pass by having unreadable pages); PIs with no recorded student and no researched
                    reason <= Z of all PIs; estimated whole-school current-PhD recall (unverifiable PIs count as recall 0) >= R2.
 
+All pages of the PI (owner 2026-11-13, R-STU-28): a PI's `page` may be a list, or `page` plus `extra_pages` [{url, sha256}]: the listed names are looked up on
+ALL captured pages of that PI on the SAME host (people, students, alumni pages and sub-pages); a name on any one page counts, tokens never combine
+across pages, and a name on no captured page is still a finding. Small-caps spacing ('S HEWCHUK') is folded when matching.
+
 Strict rule kept (owner): a listed name counts only when it is DATED (a year in the window) or sits in a CURRENT-members section of the page; undated
 names elsewhere stay excluded and are reported as `undated_excluded`. Nothing here relabels: unverifiable stays unverifiable.
 
@@ -512,13 +516,33 @@ def capture(key, pi, url, file=None, store=None, sleep=time.sleep):
     return dict(url=url, sha256=sha, status=status, fetched_at=c.execute('select fetched_at from live where url=?', (url,)).fetchone()[0], via='live')
 
 
-def page_text(raw):
-    """The visible text of a stored page, whitespace-collapsed, accent-folded and lower-cased (a name or quote must be a substring of it)."""
+SMALLCAPS = re.compile(r'\b([A-Z]) ([A-Z]{2,})\b')
+
+
+def _host(url):
+    return re.sub(r'^https?://([^/:?#]+).*', r'\1', url or '').lower().removeprefix('www.')
+
+
+def record_pages(r):
+    """The captured pages of a readable sampled PI, primary first: `page` (a dict, or a list of dicts) then `extra_pages` (a list of dicts).
+    The first one carries the verbatim quote. Backward compatible: a single `page` dict gives a one-element list."""
+    pg = r.get('page')
+    out = [x for x in (pg if isinstance(pg, list) else [pg]) if isinstance(x, dict) and x]
+    out += [x if isinstance(x, dict) else {} for x in r.get('extra_pages') or []]
+    return out
+
+
+def page_text(raw, fold_smallcaps=False):
+    """The visible text of a stored page, whitespace-collapsed, accent-folded and lower-cased (a name or quote must be a substring of it).
+    fold_smallcaps: a small-caps surname that the page splits after its first letter ('S HEWCHUK') is ALSO available joined ('SHEWCHUK'); the
+    original spacing stays in the text, so quotes and names written either way match (R-STU-28)."""
     s = decode_page(raw)
     s = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', s)
     if not re.search(r'(?i)<html|<body', s[:5000]):   # a data file (XML: names in attributes): the attribute values are its text
         s = re.sub(r'(?s)<[^>]+>', lambda m: ' ' + ' '.join(re.findall(r'="([^"]*)"', m.group(0))) + ' ', s)
     s = html.unescape(re.sub(r'(?s)<[^>]+>', ' ', s))
+    if fold_smallcaps and SMALLCAPS.search(s):
+        s = s + ' ' + SMALLCAPS.sub(r'\1\2', s)
     return norm_text(s)
 
 
@@ -669,25 +693,38 @@ def evaluate_record(key, rec, st=None, binds_now=None, conn=None, pis=None):
                 fnd.append(f'{r["pi"]}: unverifiable needs a reason class from {sorted(UNVERIFIABLE_REASONS)}')
             per_pi[r['pi']] = collections.Counter()
             continue
-        pg = r.get('page') or {}
+        pgs = record_pages(r)
+        pg = pgs[0] if pgs else {}
         if not (pg.get('url') and re.fullmatch(r'[0-9a-f]{64}', pg.get('sha256') or '') and (pg.get('quote') or '').strip()):
             fnd.append(f'{r["pi"]}: readable needs page.url, page.sha256 (64 hex) and a verbatim page.quote')
         elif conn is None:
             fnd.append(f'{r["pi"]}: the capture store student-recall-captures.sqlite is missing (student_recall.py capture {key} "{r["pi"]}" <url>)')
         else:
-            sp = stored_page(conn, pg['url'])
-            if not sp:
-                fnd.append(f'{r["pi"]}: {pg["url"]} is not in the capture store')
-            elif sp['sha256'] != pg['sha256']:
-                fnd.append(f'{r["pi"]}: page.sha256 does not match the stored capture of {pg["url"]}')
-            else:
-                text = page_text(sp['raw'])
-                if norm_text(pg['quote']) not in text:
+            texts, bad = [], False
+            for i, q in enumerate(pgs):
+                if not (q.get('url') and re.fullmatch(r'[0-9a-f]{64}', q.get('sha256') or '')):
+                    fnd.append(f'{r["pi"]}: extra page {i} needs url and sha256 (64 hex)')
+                    bad = True
+                elif i and _host(q['url']) != _host(pg['url']):
+                    fnd.append(f'{r["pi"]}: extra page {q["url"]} is not on the host of the PI\'s page ({_host(pg["url"])}); another host cannot validate a name')
+                    bad = True
+                else:
+                    sp = stored_page(conn, q['url'])
+                    if not sp:
+                        fnd.append(f'{r["pi"]}: {q["url"]} is not in the capture store')
+                        bad = True
+                    elif sp['sha256'] != q['sha256']:
+                        fnd.append(f'{r["pi"]}: page.sha256 does not match the stored capture of {q["url"]}')
+                        bad = True
+                    else:
+                        texts.append(page_text(sp['raw'], fold_smallcaps=True))
+            if not bad:
+                if norm_text(pg['quote']) not in texts[0]:
                     fnd.append(f'{r["pi"]}: the quote is not on the captured page')
                 lost = [e.get('name') for e in r.get('listed') or [] if norm_text(e.get('name') or '').split() and
-                        not all(t in text for t in norm_text(re.sub(r'\([^)]*\)', ' ', e.get('name') or '')).split())]
+                        not any(all(t in text for t in norm_text(re.sub(r'\([^)]*\)', ' ', e.get('name') or '')).split()) for text in texts)]
                 if lost:
-                    fnd.append(f'{r["pi"]}: {len(lost)} listed name(s) are not on the captured page (e.g. {lost[0]!r})')
+                    fnd.append(f'{r["pi"]}: {len(lost)} listed name(s) are not on any captured page of the PI (e.g. {lost[0]!r})')
         for e in r.get('listed') or []:
             if e.get('section') not in SECTIONS:
                 fnd.append(f'{r["pi"]}: {e.get("name")!r}: section must be one of {SECTIONS}')
