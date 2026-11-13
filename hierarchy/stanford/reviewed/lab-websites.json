@@ -28624,148 +28624,6 @@
    "reason": "Website linked from the PI's official profile page and read by the crawler; it names the PI."
   },
   {
-   "pi": "Jeremy Bailenson",
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The only candidates the discovery found were institutional pages (a university front page or the research portal), which are never a person's or lab's website; no eligible homepage was established from the recorded checks.",
-   "audited_at": "2026-10-31T11:18:26+00:00",
-   "checks": [
-    {
-     "source": "prior_labpage_pass",
-     "url": "https://vhil.stanford.edu/publications/exhaustive-publication-list",
-     "at": "2026-10-31T11:17:59+00:00",
-     "result": "recorded_page"
-    },
-    {
-     "source": "department_listing",
-     "url": "https://profiles.stanford.edu/jeremy-bailenson",
-     "at": "2026-10-31T11:18:00+00:00",
-     "result": "ok",
-     "sha256": "c12e0211d46be2020ebd5e6e4bceeb4f7f39f7ea0e546404e11033e05a8856d3"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/80/467",
-     "at": "2026-10-31T11:18:01+00:00",
-     "result": "no_homepage_url"
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": "https://orcid.org/0000-0003-2813-3297/person.json",
-     "at": "2026-10-31T11:18:01+00:00",
-     "result": "no_urls",
-     "sha256": "6ac589a9a2f941e3e198ca96951a96065e85b1fad16bf883718f1be457631a8f"
-    },
-    {
-     "source": "openalex_author",
-     "url": "https://openalex.org/A5084294553",
-     "at": "2026-10-31T11:18:01+00:00",
-     "result": "no_homepage_field_in_schema"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://profiles.stanford.edu/jeremy-bailenson",
-     "at": "2026-10-31T11:18:01+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://profiles.stanford.edu/jeremy-bailenson",
-     "at": "2026-10-31T11:18:01+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://profiles.stanford.edu/jeremy-bailenson",
-     "at": "2026-10-31T11:18:01+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://profiles.stanford.edu/jeremy-bailenson",
-     "at": "2026-10-31T11:18:01+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "pi_evidence_url",
-     "url": "https://profiles.stanford.edu/jeremy-bailenson",
-     "at": "2026-10-31T11:18:01+00:00",
-     "result": "listed"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://vhil.stanford.edu/publications/exhaustive-publication-list",
-     "at": "2026-10-31T11:18:02+00:00",
-     "result": "ok",
-     "via": "earlier_homepage_find",
-     "sha256": "3402c24d8a6cf51bf097bd306154f07b2c84caceaefbf637e502b63fbe44a0d9"
-    },
-    {
-     "source": "candidate_site",
-     "url": "https://profiles.stanford.edu/jeremy-bailenson",
-     "at": "2026-10-31T11:18:02+00:00",
-     "result": "ok",
-     "via": "pi_evidence_url",
-     "sha256": "c12e0211d46be2020ebd5e6e4bceeb4f7f39f7ea0e546404e11033e05a8856d3"
-    },
-    {
-     "source": "pubs_link",
-     "url": "https://profiles.stanford.edu/jeremy-bailenson?tab=publications",
-     "at": "2026-10-31T11:18:03+00:00",
-     "result": "ok",
-     "on": "https://profiles.stanford.edu/jeremy-bailenson",
-     "sha256": "942f56370fe18512f31877acf628a2b2f36c3d3e112457a62063715bc0f00a4f"
-    },
-    {
-     "source": "wayback_cdx",
-     "url": "https://profiles.stanford.edu/jeremy-bailenson",
-     "at": "2026-10-31T11:18:12+00:00",
-     "result": "73 captures",
-     "frm": 2016
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20190818190830id_/https://profiles.stanford.edu/jeremy-bailenson",
-     "at": "2026-10-31T11:18:14+00:00",
-     "result": "ok_wayback",
-     "sha256": "3fba8bd6dc26776cabc2c3ffb99efaeb15502ebb31500050ec120bb4de932d60"
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20230603071919id_/https://profiles.stanford.edu/jeremy-bailenson",
-     "at": "2026-10-31T11:18:20+00:00",
-     "result": "ok_wayback",
-     "sha256": "8cc9ca05e1a359358aceb130014e6698ce50e522fb2ae592fabd1f31c649b998"
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20260928140758id_/https://profiles.stanford.edu/jeremy-bailenson",
-     "at": "2026-10-31T11:18:26+00:00",
-     "result": "ok_wayback",
-     "sha256": "aa97aa78e12917999c7bc1b28f7e759324d8389ebc03e518b56741a904e73820"
-    }
-   ],
-   "places_checked": [
-    "candidate_site:ok",
-    "dblp_person_url:no_homepage_url",
-    "department_listing:ok",
-    "orcid_researcher_urls:no_urls",
-    "pi_evidence_url:listed",
-    "prior_labpage_pass:recorded_page",
-    "pubs_link:ok",
-    "wayback_capture:ok_wayback",
-    "wayback_cdx:73 captures"
-   ],
-   "checked_at": "2026-10-31T11:18:26+00:00",
-   "students_page_status": "pending_review",
-   "papers_page_status": "pending_review",
-   "coverage": "reason",
-   "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "no_eligible_website",
-   "reason_scope": "Recorded search outcome; not proof no website exists.",
-   "evidence_gaps": []
-  },
-  {
    "pi": "Amin Saberi",
    "status": "found",
    "reason_code": "lab_site",
@@ -42942,6 +42800,186 @@
    "evidence_gaps": [],
    "verified": true,
    "verification_quote": "Prof. John M. Cioffi Hitachi Professor Emeritus of Engineering"
+  },
+  {
+   "pi": "Jeremy Bailenson",
+   "status": "found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The only candidates the discovery found were institutional pages (a university front page or the research portal), which are never a person's or lab's website; no eligible homepage was established from the recorded checks.",
+   "audited_at": "2026-10-31T11:18:26+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass",
+     "url": "https://vhil.stanford.edu/publications/exhaustive-publication-list",
+     "at": "2026-10-31T11:17:59+00:00",
+     "result": "recorded_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://profiles.stanford.edu/jeremy-bailenson",
+     "at": "2026-10-31T11:18:00+00:00",
+     "result": "ok",
+     "sha256": "c12e0211d46be2020ebd5e6e4bceeb4f7f39f7ea0e546404e11033e05a8856d3"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/80/467",
+     "at": "2026-10-31T11:18:01+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-2813-3297/person.json",
+     "at": "2026-10-31T11:18:01+00:00",
+     "result": "no_urls",
+     "sha256": "6ac589a9a2f941e3e198ca96951a96065e85b1fad16bf883718f1be457631a8f"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5084294553",
+     "at": "2026-10-31T11:18:01+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://profiles.stanford.edu/jeremy-bailenson",
+     "at": "2026-10-31T11:18:01+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://profiles.stanford.edu/jeremy-bailenson",
+     "at": "2026-10-31T11:18:01+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://profiles.stanford.edu/jeremy-bailenson",
+     "at": "2026-10-31T11:18:01+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://profiles.stanford.edu/jeremy-bailenson",
+     "at": "2026-10-31T11:18:01+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://profiles.stanford.edu/jeremy-bailenson",
+     "at": "2026-10-31T11:18:01+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://vhil.stanford.edu/publications/exhaustive-publication-list",
+     "at": "2026-10-31T11:18:02+00:00",
+     "result": "ok",
+     "via": "earlier_homepage_find",
+     "sha256": "3402c24d8a6cf51bf097bd306154f07b2c84caceaefbf637e502b63fbe44a0d9"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://profiles.stanford.edu/jeremy-bailenson",
+     "at": "2026-10-31T11:18:02+00:00",
+     "result": "ok",
+     "via": "pi_evidence_url",
+     "sha256": "c12e0211d46be2020ebd5e6e4bceeb4f7f39f7ea0e546404e11033e05a8856d3"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://profiles.stanford.edu/jeremy-bailenson?tab=publications",
+     "at": "2026-10-31T11:18:03+00:00",
+     "result": "ok",
+     "on": "https://profiles.stanford.edu/jeremy-bailenson",
+     "sha256": "942f56370fe18512f31877acf628a2b2f36c3d3e112457a62063715bc0f00a4f"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://profiles.stanford.edu/jeremy-bailenson",
+     "at": "2026-10-31T11:18:12+00:00",
+     "result": "73 captures",
+     "frm": 2016
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20190818190830id_/https://profiles.stanford.edu/jeremy-bailenson",
+     "at": "2026-10-31T11:18:14+00:00",
+     "result": "ok_wayback",
+     "sha256": "3fba8bd6dc26776cabc2c3ffb99efaeb15502ebb31500050ec120bb4de932d60"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20230603071919id_/https://profiles.stanford.edu/jeremy-bailenson",
+     "at": "2026-10-31T11:18:20+00:00",
+     "result": "ok_wayback",
+     "sha256": "8cc9ca05e1a359358aceb130014e6698ce50e522fb2ae592fabd1f31c649b998"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260928140758id_/https://profiles.stanford.edu/jeremy-bailenson",
+     "at": "2026-10-31T11:18:26+00:00",
+     "result": "ok_wayback",
+     "sha256": "aa97aa78e12917999c7bc1b28f7e759324d8389ebc03e518b56741a904e73820"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://vhil.stanford.edu/the-team",
+     "at": "2026-11-13T03:25:05+00:00",
+     "sha256": "a22269227fa16b93be38e5fba11d29468f49d01ef2fe4a70d743621ef80eb75d",
+     "result": "ok",
+     "name_quote": "ontent start Jeremy Bailenson Founding Director Cyan DeVeaux Ph.D. Student Geraldine Fauville Affiliate Ariel",
+     "tie_quote": "econdary navigation Stanford University Search this site Submit Search Menu Home About Us Projects Join Our Lab FAQs The",
+     "reviewer": "claude-wire-students-1115 (fresh reviewer a1e8e8fe0d090ff30 (fresh reviewer, 2026-11-13))"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "prior_labpage_pass:recorded_page",
+    "pubs_link:ok",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:73 captures"
+   ],
+   "checked_at": "2026-11-13T03:25:05+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "pending_review",
+   "coverage": "website",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "no_eligible_website",
+   "reason_scope": "Recorded search outcome; not proof no website exists.",
+   "evidence_gaps": [],
+   "url": "https://vhil.stanford.edu/the-team",
+   "kind": "lab_site",
+   "people_page": "https://vhil.stanford.edu/the-team",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "a22269227fa16b93be38e5fba11d29468f49d01ef2fe4a70d743621ef80eb75d",
+   "evidence": {
+    "url": "https://vhil.stanford.edu/the-team",
+    "sha256": "a22269227fa16b93be38e5fba11d29468f49d01ef2fe4a70d743621ef80eb75d",
+    "quote": "ontent start Jeremy Bailenson Founding Director Cyan DeVeaux Ph.D. Student Geraldine Fauville Affiliate Ariel"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://vhil.stanford.edu/the-team",
+     "at": "2026-11-13T03:25:05+00:00",
+     "sha256": "a22269227fa16b93be38e5fba11d29468f49d01ef2fe4a70d743621ef80eb75d",
+     "result": "ok",
+     "name_quote": "ontent start Jeremy Bailenson Founding Director Cyan DeVeaux Ph.D. Student Geraldine Fauville Affiliate Ariel",
+     "tie_quote": "econdary navigation Stanford University Search this site Submit Search Menu Home About Us Projects Join Our Lab FAQs The",
+     "reviewer": "claude-wire-students-1115 (fresh reviewer a1e8e8fe0d090ff30 (fresh reviewer, 2026-11-13))"
+    }
+   ],
+   "verified": true,
+   "verification_quote": "ontent start Jeremy Bailenson Founding Director Cyan DeVeaux Ph.D. Student Geraldine Fauville Affiliate Ariel"
   }
  ]
 }
