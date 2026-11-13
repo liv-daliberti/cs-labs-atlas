@@ -1486,6 +1486,14 @@ def discover_lab(kit, school, p, ctx, full=True):
         if recorded and src == 'prior_labpage_pass' and kit.stored(u)[0]:
             continue  # a prior URL without captured bytes still needs checking
         r = kit.get(u)
+        rt_ = meta_refresh_target(r, u, dom)
+        if rt_ and rt_.rstrip('/') != u.rstrip('/'):   # a one-line redirect homepage (CMU Hoe: www.ece.cmu.edu/~jhoe/ -> users.ece.cmu.edu/~jhoe/doku/doku.php): the target is the site
+            r2_ = kit.get(rt_)
+            add('meta_refresh_target', rt_, result_of(r2_), on=u, sha256=r2_.get('sha256'))
+            if r2_.get('status') == 200 and r2_.get('content'):
+                if any(x_['url'] == rt_ for x_ in sites):
+                    continue
+                u, r = rt_, r2_
         res = result_of(r)
         txt = ''
         if r.get('status') == 200 and r.get('content'):
@@ -1534,6 +1542,22 @@ def discover_lab(kit, school, p, ctx, full=True):
     pubs_site = None
     if sites and re.search(r'/(publications?|papers|pubs)(\.html?|/)?$', urlsplit(sites[0]['url']).path, re.I):
         root = [x for x in sites[1:] if urlsplit(x['url']).hostname == urlsplit(sites[0]['url']).hostname]
+        if not root and not recorded:   # no root candidate (Stanford Arbabian: only arbabianlab.stanford.edu/publications was linked): the host's own root page, when it names the PI, is the site
+            u0_ = urlsplit(sites[0]['url'])
+            ru_ = f'{u0_.scheme}://{u0_.hostname}/'
+            rr_ = kit.get(ru_)
+            rtxt_ = ''
+            if rr_.get('status') == 200 and rr_.get('content'):
+                try:
+                    rtxt_ = kit.lpcap.page_text(rr_['content'], rr_.get('content_type'))
+                except Exception:  # noqa: BLE001
+                    rtxt_ = ''
+            rnames_ = bool(fam and fam in fold(rtxt_))
+            add('site_root_of_pubs_page', ru_, result_of(rr_) if rnames_ else 'does_not_name_pi', on=sites[0]['url'], sha256=rr_.get('sha256'))
+            if rnames_:
+                rm_ = re.search(rb'<title[^>]*>(.*?)</title>', rr_['content'][:20000], re.I | re.S)
+                root = [dict(url=ru_, row=rr_, title=(kit.lpcap.collapse(kit.lpcap.decode(rm_.group(1))) if rm_ else ''), school_host=sites[0]['school_host'],
+                             other_school=sites[0]['other_school'], via='site_root_of_pubs_page', text=rtxt_, names_pi=True)]
         if root:  # the publications page was found first: the site is its host's homepage
             pubs_site = sites[0]['url']
             sites = root + [x for x in sites if x not in root]
@@ -1562,6 +1586,18 @@ def discover_lab(kit, school, p, ctx, full=True):
             chosen['kind'] = 'lab_site'
         if chosen['people_page'] and PLATFORM_LIST_RX.search(chosen['people_page']):
             chosen['people_details'] = fetch_platform_details(kit, chosen['people_page'], add)
+        if not chosen.get('alumni_page') and chosen.get('people_page') and chosen['people_page'].rstrip('/') != s['url'].rstrip('/'):
+            # the alumni list is linked from the PEOPLE page, not the site's home page (Berkeley Stuart: edg.berkeley.edu/people -> 'List of Alumni')
+            pr_ = kit.get(chosen['people_page'])
+            if pr_.get('status') == 200 and pr_.get('content'):
+                pb_ = link_base(pr_, chosen['people_page'])
+                for u in classify_links(site_links(kit, pr_, pb_), pb_, dom).get('alumni', [])[:2]:
+                    r = kit.get(u)
+                    add('alumni_link', u, result_of(r), on=chosen['people_page'], capture_url=r.get('capture_url'), sha256=r.get('sha256'))
+                    if r.get('status') == 200 and r.get('content'):
+                        chosen['alumni_page'] = u
+                        pages.append(('alumni', u))
+                        break
         if chosen.get('alumni_page'):
             chosen['alumni_details'] = fetch_alumni_subpages(kit, chosen['alumni_page'], add)
     # 6. Wayback history of the people and alumni pages (2016-2026, from the PI's first year at the school)
@@ -1584,6 +1620,21 @@ def discover_lab(kit, school, p, ctx, full=True):
     return dict(pi=p['pi'], checked_at=now(), checks=checks, chosen=chosen, sites=[dict(url=s['url'], via=s['via'], title=s['title'],
                 school_host=s['school_host'], other_school=s['other_school']) for s in sites], wayback=wb,
                 robots={h: ok for h, ok in kit.robots_log.items() if not ok})
+
+
+def meta_refresh_target(r, base, domain_rx):
+    """The absolute URL a page's <meta http-equiv=refresh content="0; URL=..."> sends to, when the page is only that redirect (under 600 bytes of text) and the
+    target host is on the school's domain; else None."""
+    if r.get('status') != 200 or not r.get('content') or len(r['content']) > 4000:
+        return None
+    raw = r['content'].decode('utf-8', 'ignore') if isinstance(r['content'], bytes) else str(r['content'])
+    m = re.search(r'<meta[^>]+http-equiv=["\']?refresh["\']?[^>]+content=["\']?\s*\d+\s*;\s*url=\s*([^"\'>\s]+)', raw, re.I)
+    if not m:
+        return None
+    from urllib.parse import urljoin
+    t = urljoin(base, m.group(1).strip())
+    h = urlsplit(t).hostname or ''
+    return t if t.startswith('http') and re.search(domain_rx, h) else None
 
 
 def kind_lab(chosen, kit):

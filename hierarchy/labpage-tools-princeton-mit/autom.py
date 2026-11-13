@@ -317,7 +317,10 @@ def markers(school, src):
                 continue
         if el.name in ("div", "ul", "ol", "td", "span", "dl", "p") and any(han_roster_children(d) for d in el.find_all(["div", "ul", "ol", "p", "td", "span", "dl"])):
             continue  # a wrapper around a roster of Han names ("在校（10） <div>names</div>"): its own text is no heading and no name
-        if el.name in ("nav", "header") or (el.get("class") and re.search(r"(^|[-_ ])(nav|navbar|menu|breadcrumb)", " ".join(el.get("class") or []), re.I)
+        # a <header> is site navigation unless it sits inside an <article> (that entry's title block: Genesis `entry-header` around each person's name) or the page's
+        # content sits inside it (a <main>/<article> in it, or more than 1500 characters of text: unclosed markup on edg.berkeley.edu/people, a bare <header> around the whole roster on zardini.mit.edu/people)
+        if (el.name == "nav" or (el.name == "header" and el.find_parent("article") is None and el.find(["main", "article"]) is None
+                                         and len(el.get_text(" ", strip=True)) <= 1500)) or (el.get("class") and re.search(r"(^|[-_ ])(nav|navbar|menu|breadcrumb)", " ".join(el.get("class") or []), re.I)
                                              and el.name in ("ul", "ol")):
             for d in el.find_all(True):  # navigation menus are not section headings or member lists
                 seen_el.add(id(d))
