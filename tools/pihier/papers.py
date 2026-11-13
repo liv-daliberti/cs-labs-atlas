@@ -851,6 +851,28 @@ def direct_via(via):
     return bool(via) and not via[0].startswith(('advisee', 'school unit', 'page 1', 'cross-affiliated'))
 
 
+def anchored_orcid_given_name_conflict(pi_record, authorship, identity_label):
+    """Hold an initial-only PI name match when the byline spells a different given name and its ORCID also disagrees.
+
+    An anchored OpenAlex id alone cannot resolve that contradiction. Stronger per-work identities (the PI's ORCID,
+    DBLP DOI/title or a reviewed publication page) are assessed by their own evidence.
+    """
+    if identity_label not in ('anchored_author_id', 'advisee_anchored_author_id'):
+        return False
+    author = authorship.get('author') or {}
+    observed = {str(o).rsplit('/', 1)[-1].upper() for o in
+                (author.get('observed_orcids') or []) + [author.get('orcid')] if o}
+    owned = {str(o).rsplit('/', 1)[-1].upper() for o in pi_record.get('orcid') or [] if o}
+    if not observed or not owned or not observed.isdisjoint(owned):
+        return False
+    raw = name_toks(authorship.get('raw_author_name') or author.get('display_name') or '')
+    if len(raw) < 3 or len(raw[0]) != 1 or len(raw[1]) < 2:
+        return False
+    return not any(name_toks(n)[:2] == raw[:2] or
+                   (len(name_toks(n)) >= 2 and raw[1] == name_toks(n)[0])
+                   for n in pi_record.get('names') or [pi_record['pi']])
+
+
 def rows_from_hits(ctx):
     """Lab-paper rows from the matched authorships: school basis, page 1 before the unaffiliated route (R-PAP-20),
     identity, venue-version dating (R-PAP-26), the appointment (R-PAP-01, R-PAP-13); a second OpenAlex record of one
@@ -890,6 +912,8 @@ def rows_from_hits(ctx):
         identity = None if aid in blocked[pi] else ident or (('anchored_author_id' if anchored[pi][aid] >= 1 else 'advisee_anchored_author_id') if aid and anchored[pi].get(aid) else None)
         if identity is None:
             n['hit_without_identity'] += 1; continue
+        if anchored_orcid_given_name_conflict(p, a, identity):
+            n['anchored_orcid_given_name_conflicts'] += 1; continue
         funnel[pi]['identity'] += 1
         date = w.get('publication_date') or str(w.get('publication_year') or '')
         # R9: a preprint or repository deposit is dated by its venue version on the PI's DBLP page

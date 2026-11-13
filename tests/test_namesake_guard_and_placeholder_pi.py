@@ -4,9 +4,20 @@ from pathlib import Path
 
 import pytest
 
-from pihier import identity, names
+from pihier import identity, names, papers
 
 HIER = Path(__file__).resolve().parents[1] / 'hierarchy'
+
+
+def test_R_PAP_45_anchored_orcid_conflict_with_unrecognized_given_name():
+    pi = dict(pi='Gang Wang', names=['Gang Wang'], orcid=['0000-0002-8910-8979'])
+    author = dict(raw_author_name='G. Alan Wang', author=dict(orcid='https://orcid.org/0000-0002-5026-881X'))
+    assert papers.anchored_orcid_given_name_conflict(pi, author, 'anchored_author_id')
+    assert not papers.anchored_orcid_given_name_conflict(pi, author, 'dblp_person_page_doi')
+    assert not papers.anchored_orcid_given_name_conflict(pi, dict(author, raw_author_name='Gang Wang'), 'anchored_author_id')
+    assert not papers.anchored_orcid_given_name_conflict(pi, dict(author, author=dict(orcid='https://orcid.org/0000-0002-8910-8979')), 'anchored_author_id')
+    alias = dict(pi='M. Frans Kaashoek', names=['M. Frans Kaashoek'], orcid=['0000-0000-0000-0001'])
+    assert not papers.anchored_orcid_given_name_conflict(alias, dict(raw_author_name='M. Frans Kaashoek', author=dict(orcid='0000-0000-0000-0002')), 'anchored_author_id')
 
 
 def test_R_PAP_35_middle_initials():
