@@ -2752,10 +2752,8 @@
   },
   {
    "pi": "Daniel Wigdor",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; dblp_person_url https://dblp.org/pid/w/DanielWigdor: listed; candidate_site http://www.dgp.toronto.edu/~dwigdor/: http_301; 1 further dated checks retained.",
-   "audited_at": "2026-11-13T22:14:46+00:00",
+   "status": "found",
+   "audited_at": "2026-11-13T23:44:49.187085+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2799,26 +2797,67 @@
      "sha256": "e30034bc1a086cd22933200e972763f3ccff50e98a762794207a9e6fe71fd1ab"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fwww.dgp.toronto.edu%2F~dwigdor%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:14:46+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://danielwigdor.com/",
+     "result": "listed",
+     "at": "2026-11-13T23:44:49.187085+00:00",
+     "sha256": "65c63eae01b902de32126161b113ef7368f82cab024be15645ac7968c3ebf28e",
+     "name_quote": "Daniel Wigdor",
+     "tie_quote": "Professor, University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
-    "candidate_site:http_301",
-    "dblp_person_url:listed",
     "department_listing:robots_disallowed",
-    "wayback_pending:wayback_deferred"
+    "department_listing:robots_disallowed",
+    "dblp_person_url:listed",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "candidate_site:http_301",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:14:46+00:00",
+   "checked_at": "2026-11-13T23:44:49.187085+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://danielwigdor.com/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "65c63eae01b902de32126161b113ef7368f82cab024be15645ac7968c3ebf28e",
+   "evidence": {
+    "url": "https://danielwigdor.com/",
+    "sha256": "65c63eae01b902de32126161b113ef7368f82cab024be15645ac7968c3ebf28e",
+    "quote": "Daniel Wigdor | CEO, AXL & Professor, University of Toronto Daniel Wigdor CEO, AXL & Professor, University of Toronto Ma"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://danielwigdor.com/",
+     "result": "listed",
+     "at": "2026-11-13T23:44:49.187085+00:00",
+     "sha256": "65c63eae01b902de32126161b113ef7368f82cab024be15645ac7968c3ebf28e",
+     "name_quote": "Daniel Wigdor",
+     "tie_quote": "Professor, University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Daniel Wigdor"
   },
   {
    "pi": "Richard Zemel",
@@ -3125,10 +3164,8 @@
   },
   {
    "pi": "Mark Fox",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; school_profile https://www.mie.utoronto.ca/mie/faculty/fox: http_301; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.mie.utoronto.ca%2Fmie%2Ffaculty%2Ffox&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
-   "audited_at": "2026-11-13T22:15:05+00:00",
+   "status": "found",
+   "audited_at": "2026-11-13T23:44:49.187085+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3168,25 +3205,67 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.mie.utoronto.ca%2Fmie%2Ffaculty%2Ffox&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:15:05+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://eil.mie.utoronto.ca/",
+     "result": "listed",
+     "at": "2026-11-13T23:44:49.187085+00:00",
+     "sha256": "f15b52d57d5688436882ab714e89ce1d6a567a542310db3aa99375f3f0948918",
+     "name_quote": "Mark S. Fox",
+     "tie_quote": "University of Toronto , Department of Mechanical and Industrial Engineering",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
     "department_listing:robots_disallowed",
+    "department_listing:robots_disallowed",
     "school_profile:http_301",
-    "wayback_pending:wayback_deferred"
+    "dblp_person_url:no_dblp_person",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:15:05+00:00",
+   "checked_at": "2026-11-13T23:44:49.187085+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://eil.mie.utoronto.ca/",
+   "kind": "lab_site",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "f15b52d57d5688436882ab714e89ce1d6a567a542310db3aa99375f3f0948918",
+   "evidence": {
+    "url": "https://eil.mie.utoronto.ca/",
+    "sha256": "f15b52d57d5688436882ab714e89ce1d6a567a542310db3aa99375f3f0948918",
+    "quote": "| Enterprise Integration Laboratory – EIL University of Toronto , Department of Mechanical and Industrial Engineering Se"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://eil.mie.utoronto.ca/",
+     "result": "listed",
+     "at": "2026-11-13T23:44:49.187085+00:00",
+     "sha256": "f15b52d57d5688436882ab714e89ce1d6a567a542310db3aa99375f3f0948918",
+     "name_quote": "Mark S. Fox",
+     "tie_quote": "University of Toronto , Department of Mechanical and Industrial Engineering",
+     "reviewer": "codex-vt-stage89-1113"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Mark S. Fox"
   },
   {
    "pi": "Brendan Frey",
@@ -3299,10 +3378,8 @@
   },
   {
    "pi": "Michael Gruninger",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; school_profile https://www.mie.utoronto.ca/mie/faculty/gruninger: http_301; dblp_person_url https://dblp.org/pid/29/4227: person_not_in_dump_extract; 1 further dated checks retained.",
-   "audited_at": "2026-11-13T22:15:10+00:00",
+   "status": "found",
+   "audited_at": "2026-11-13T23:44:49.187085+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3342,26 +3419,67 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.mie.utoronto.ca%2Fmie%2Ffaculty%2Fgruninger&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:15:10+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://stl.mie.utoronto.ca/",
+     "result": "listed",
+     "at": "2026-11-13T23:44:49.187085+00:00",
+     "sha256": "56eb88b517ea6d27d580ffd5b95716d68278ed736bed56db24c2fc8e4dd6358c",
+     "name_quote": "Michael Gruninger",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
-    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:robots_disallowed",
     "department_listing:robots_disallowed",
     "school_profile:http_301",
-    "wayback_pending:wayback_deferred"
+    "dblp_person_url:person_not_in_dump_extract",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:15:10+00:00",
+   "checked_at": "2026-11-13T23:44:49.187085+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://stl.mie.utoronto.ca/",
+   "kind": "lab_site",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "56eb88b517ea6d27d580ffd5b95716d68278ed736bed56db24c2fc8e4dd6358c",
+   "evidence": {
+    "url": "https://stl.mie.utoronto.ca/",
+    "sha256": "56eb88b517ea6d27d580ffd5b95716d68278ed736bed56db24c2fc8e4dd6358c",
+    "quote": "Semantic Technologies Laboratory (STL) close U of T Home QUERCUS ACORN Academic Units Contacts & Directory Accessibility"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://stl.mie.utoronto.ca/",
+     "result": "listed",
+     "at": "2026-11-13T23:44:49.187085+00:00",
+     "sha256": "56eb88b517ea6d27d580ffd5b95716d68278ed736bed56db24c2fc8e4dd6358c",
+     "name_quote": "Michael Gruninger",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Michael Gruninger"
   },
   {
    "pi": "Hans-Arno Jacobsen",
@@ -14880,10 +14998,8 @@
   },
   {
    "pi": "Nadia Caidi",
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://ischool.utoronto.ca/faculty-directory/: ok; school_profile https://ischool.utoronto.ca/faculty-profile/nadia-caidi/: ok; school_profile_link http://caidi.ischool.utoronto.ca/: listed; dblp_person_url https://dblp.org/pid/60/3416: no_homepage_url; 2 further dated checks retained.",
-   "audited_at": "2026-11-13T22:28:21+00:00",
+   "status": "found",
+   "audited_at": "2026-11-13T23:44:49.187085+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -14934,28 +15050,68 @@
      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fcaidi.ischool.utoronto.ca%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:28:21+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://caidi.ischool.utoronto.ca/",
+     "result": "listed",
+     "at": "2026-11-13T23:44:49.187085+00:00",
+     "sha256": "c837bcb76b1d598ae38c2c86148441edca79918f25a7e35634c44d733d7754a1",
+     "name_quote": "Nadia Caidi",
+     "tie_quote": "Faculty of Information, University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
-    "candidate_site:http_301",
-    "dblp_person_url:no_homepage_url",
     "department_listing:ok",
     "school_profile:ok",
     "school_profile_link:listed",
-    "wayback_pending:wayback_deferred"
+    "dblp_person_url:no_homepage_url",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "candidate_site:http_301",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:28:21+00:00",
+   "checked_at": "2026-11-13T23:44:49.187085+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://caidi.ischool.utoronto.ca/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "c837bcb76b1d598ae38c2c86148441edca79918f25a7e35634c44d733d7754a1",
+   "evidence": {
+    "url": "https://caidi.ischool.utoronto.ca/",
+    "sha256": "c837bcb76b1d598ae38c2c86148441edca79918f25a7e35634c44d733d7754a1",
+    "quote": "Prof. Nadia Caidi | Faculty of Information, University of Toronto Prof. Nadia Caidi Faculty of Information, University o"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://caidi.ischool.utoronto.ca/",
+     "result": "listed",
+     "at": "2026-11-13T23:44:49.187085+00:00",
+     "sha256": "c837bcb76b1d598ae38c2c86148441edca79918f25a7e35634c44d733d7754a1",
+     "name_quote": "Nadia Caidi",
+     "tie_quote": "Faculty of Information, University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Nadia Caidi"
   },
   {
    "pi": "Peter W. Lehn",
