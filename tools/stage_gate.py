@@ -155,7 +155,8 @@ def g2(key):
     if cands is None:  # a missing file read as "no candidates" and passed the gate before the candidates step had run (UChicago friction 23)
         return ['candidates: hierarchy/<key>/cs-related-candidates.json missing (tools/cs_related_school.py candidates <key>)'.replace('<key>', key)] + sweep_gate(key), {}
     rev = read(P.data('cs-related-review.json', key), {}) or {}
-    dec = {d['name']: d for d in rev.get('decisions', [])}
+    decisions = rev.get('decisions', [])
+    dec = {d['name']: d for d in decisions}
     bad = [f"{c['name']}: no decision" for c in cands if c['name'] not in dec and not any(a in dec for a in c.get('aliases') or [])]
     # A display name is not an identity key. Separate DBLP PIDs with the same name
     # must be resolved before the stage can pass; a single name-keyed decision could
@@ -166,12 +167,21 @@ def g2(key):
     for c in cands:
         if c.get('author') not in excluded:
             by_name[c['name']].append(c)
-    bad += [f"{name}: {len(rows)} candidate identities share a display name; resolve source IDs before admission"
-            for name, rows in by_name.items() if len(rows) > 1]
-    bad += [f"{d['name']}: {d['decision']} ({d['reason'][:100]})" for d in dec.values()
+    for name, rows in by_name.items():
+        if len(rows) < 2:
+            continue
+        source_ids = [c.get('dblp') or c.get('author') or tuple(c.get('openalex') or []) for c in rows]
+        reviewed = [d for d in decisions if d['name'] == name and d.get('source_id')]
+        covered = {d['source_id'] for d in reviewed if d['decision'] not in
+                   ('pending_openalex', 'pending_identity_collision', 'pending_source_coverage')
+                   and d['source_id'] in (d.get('cs_basis') or {}).get('dblp', []) + (d.get('cs_basis') or {}).get('openalex', [])}
+        if (len(set(source_ids)) != len(rows) or len(reviewed) != len(rows)
+                or len(covered) != len(rows) or set(source_ids) != covered):
+            bad.append(f"{name}: {len(rows)} candidate identities share a display name; resolve source IDs before admission")
+    bad += [f"{d['name']}: {d['decision']} ({d['reason'][:100]})" for d in decisions
             if d['decision'] in ('pending_openalex', 'pending_identity_collision', 'pending_source_coverage')]
     bad += sweep_gate(key)  # the OpenAlex sweep and the DBLP pulls feed the review (owner standard 2026-10-30)
-    return bad, dict(candidates=len(cands), **collections.Counter(d['decision'] for d in dec.values()))
+    return bad, dict(candidates=len(cands), **collections.Counter(d['decision'] for d in decisions))
 
 
 def known_homes(key):

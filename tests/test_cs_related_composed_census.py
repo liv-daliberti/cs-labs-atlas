@@ -80,6 +80,22 @@ def test_stage_two_does_not_merge_same_named_candidate_identities(tmp_path, monk
     assert any('2 candidate identities share a display name' in item for item in bad)
 
 
+def test_stage_two_accepts_separate_terminal_reviews_for_each_source_id(tmp_path, monkeypatch):
+    import stage_gate as G
+    candidates = [
+        {'name': 'Dong Li', 'source': 'dblp_affiliation', 'dblp': 'https://dblp.org/pid/1'},
+        {'name': 'Dong Li', 'source': 'dblp_affiliation', 'dblp': 'https://dblp.org/pid/2'},
+    ]
+    (tmp_path / 'cs-related-candidates.json').write_text(json.dumps(candidates))
+    (tmp_path / 'cs-related-review.json').write_text(json.dumps({'decisions': [
+        {'name': 'Dong Li', 'source_id': c['dblp'], 'decision': 'not_faculty_listed',
+         'reason': 'reviewed source identity', 'cs_basis': {'dblp': [c['dblp']]}}
+        for c in candidates]}))
+    monkeypatch.setattr(G.P, 'data', lambda name, key=None, *a, **k: tmp_path / name)
+    monkeypatch.setattr(G, 'sweep_gate', lambda key: [])
+    assert G.g2('sample')[0] == []
+
+
 def test_reviewed_pid_exclusion_requires_saved_source_quote_and_hash(tmp_path, monkeypatch):
     body = b'<html><body>Lei Zhang was a Ph.D. student in Computer Science.</body></html>'
     (tmp_path / 'source.html').write_bytes(body)
