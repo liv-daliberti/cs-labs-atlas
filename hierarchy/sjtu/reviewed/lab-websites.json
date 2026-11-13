@@ -6844,7 +6844,18 @@
      "result": "pending"
     }
    ],
-   "resource_status": "web-search-found; quotes machine-checked verbatim against stored live capture"
+   "resource_status": "web-search-found; quotes machine-checked verbatim against stored live capture",
+   "checks": [
+    {
+     "source": "school_profile_link",
+     "url": "https://thinklab.sjtu.edu.cn",
+     "on": "https://sai.sjtu.edu.cn/cn/facultydetails/zzjs/yanjunchi",
+     "linked_url": "https://thinklab.sjtu.edu.cn/",
+     "result": "listed",
+     "source_sha256": "b7941059af5ad17c16341b0a69a0d876c868515061020920013eca732defbdd6",
+     "at": "2026-11-12T10:11:44"
+    }
+   ]
   },
   {
    "pi": "谢伟迪",
@@ -6869,7 +6880,18 @@
      "result": "pending"
     }
    ],
-   "resource_status": "web-search-found; quotes machine-checked verbatim against stored live capture"
+   "resource_status": "web-search-found; quotes machine-checked verbatim against stored live capture",
+   "checks": [
+    {
+     "source": "school_profile_link",
+     "url": "https://weidixie.github.io",
+     "on": "https://sai.sjtu.edu.cn/cn/facultydetails/zzjs/xieweidi",
+     "linked_url": "https://weidixie.github.io",
+     "result": "listed",
+     "source_sha256": "8a807ef536c7eaa5db11aee75075c8277c0c19339f026e43d6e57cc4f66e34be",
+     "at": "2026-11-12T10:12:01"
+    }
+   ]
   },
   {
    "pi": "陈思衡",
@@ -6927,8 +6949,8 @@
      "sha256": "c04542b80bc87a0a9060c89b28dc2b55766a24ab72e1c21060896536abd25a04",
      "name_quote": "王新兵 教授 职称： 教授",
      "tie_quote": "上海交大研究生院主页平台管理系统 王新兵--中文主页",
-     "reviewer": "PENDING fresh reviewer",
-     "result": "pending"
+     "reviewer": "fresh reviewer subagent (sonnet) a704ff3d9750cc017, 2026-11-13: stored sha256 matches decompressed capture; name and tie quotes verbatim; own page; ties to SJTU",
+     "result": "ok"
     }
    ],
    "resource_status": "web-search-found; quotes machine-checked verbatim against stored live capture",
@@ -6937,7 +6959,19 @@
     "url": "https://faculty.sjtu.edu.cn/wangxinbing/zh_CN/xsxx/167456/list/index.htm",
     "sha256": "3f26e6b6c28f9d86a9f7249b0116dca54a374f38fdd1e4660e1ee3805db4dde1",
     "at": "2026-11-12T11:03:47"
-   }
+   },
+   "checks": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://faculty.sjtu.edu.cn/wangxinbing/zh_CN/index.htm",
+     "at": "2026-11-12T11:03:39",
+     "sha256": "c04542b80bc87a0a9060c89b28dc2b55766a24ab72e1c21060896536abd25a04",
+     "name_quote": "王新兵 教授 职称： 教授",
+     "tie_quote": "上海交大研究生院主页平台管理系统 王新兵--中文主页",
+     "reviewer": "fresh reviewer subagent (sonnet) a704ff3d9750cc017, 2026-11-13: stored sha256 matches decompressed capture; name and tie quotes verbatim; own page; ties to SJTU",
+     "result": "ok"
+    }
+   ]
   }
  ],
  "note": "2026-11-10: merged with the student worker 198-PI sweep (lab-websites-sweep.json) into the register format; 2026-11-11: the 11 cs.sjtu.edu.cn items read under the owner's 'no usable rules' reading of the redirecting robots.txt (10 websites, 1 reviewed absence)"

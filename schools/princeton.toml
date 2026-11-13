@@ -35,6 +35,7 @@ foreign_title_exception = false
 
 [census]
 computing_departments = ["Computer Science"]   # listed_not_in_census.py; [] = every listed department
+home_units = {"Electrical and Computer Engineering" = '^Electrical and Computer Engineering$', "Operations Research and Financial Engineering" = '^Operations Research and Financial Engineering$', "Mathematics" = '^Mathematics$', "Mechanical and Aerospace Engineering" = '^Mechanical and Aerospace Engineering$', "Psychology" = '^Psychology$', "Sociology" = '^Sociology$', "Molecular Biology" = '^Molecular Biology$', "Architecture" = '^Architecture$', "Music" = '^Music$', "Ecology and Evolutionary Biology" = '^Ecology and Evolutionary Biology$', "Economics" = '^Economics$', "Chemical and Biological Engineering" = '^Chemical and Biological Engineering$'}
 
 [[departments]]
 code = "CS"

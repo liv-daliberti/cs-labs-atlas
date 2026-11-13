@@ -36,6 +36,7 @@ listing_continuity = true     # R-PAP-37, owner-approved 2026-11-06, 30-paper ha
 
 [census]
 computing_departments = ["EECS", "CSAIL"]   # listed_not_in_census.py; [] = every listed department
+home_units = {"EECS" = '^EECS$', "CSAIL" = '^CSAIL$', "Sloan School of Management" = '^Sloan School of Management$', "Aeronautics and Astronautics" = '^Aeronautics and Astronautics$', "Media Arts and Sciences" = '^Media Arts and Sciences$', "Mechanical Engineering" = '^Mechanical Engineering$', "Brain and Cognitive Sciences" = '^Brain and Cognitive Sciences$', "Mathematics" = '^Mathematics$', "Civil and Environmental Engineering" = '^Civil and Environmental Engineering$', "Physics" = '^Physics$', "Chemical Engineering" = '^Chemical Engineering$', "Applied Mathematics" = '^Applied Mathematics$', "Comparative Media Studies/Writing" = '^Comparative Media Studies/Writing$', "Urban Studies and Planning" = '^Urban Studies and Planning$', "Comparative Media Studies" = '^Comparative Media Studies$', "Economics" = '^Economics$', "Architecture" = '^Architecture$', "Anthropology" = '^Anthropology$', "Materials Science and Engineering" = '^Materials Science and Engineering$'}
 
 [[departments]]
 code = "EECS"

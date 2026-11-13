@@ -31004,6 +31004,7 @@
   {
    "pi": "Daniel Sanchez Martin",
    "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
    "coverage": "website",
    "url": "https://people.csail.mit.edu/sanchez/",
    "people_page": "https://people.csail.mit.edu/sanchez/",
@@ -31056,8 +31057,22 @@
      "url": null,
      "at": "2026-11-10T19:19:55+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://people.csail.mit.edu/sanchez/",
+     "at": "2026-11-12T05:18:47+00:00",
+     "result": "ok",
+     "sha256": "17aaf6094a6710654601cec8f6ca799e706183a3332c52505185e767603ec7d3",
+     "name_quote": "Daniel Sanchez Professor, MIT EECS",
+     "tie_quote": "Before joining MIT in September 2012, I earned a Ph.D. in Electrical Engineering from Stanford University",
+     "reviewer": "independent fresh reviewer 2026-11-12 (Sonnet subagent; both entries ok; quotes verbatim in live and stored capture)",
+     "basis": "owner ruled 2026-11-11: web-search-found sites are accepted as lab pages when the page names the PI at the school",
+     "live_url": "https://people.csail.mit.edu/sanchez/",
+     "robots": "robots.txt read, allowed for the crawler UA and the ClaudeBot / anthropic-ai / Claude-Web / * groups; 3.2 s spacing; honest UA, no contact e-mail sent"
     }
-   ]
+   ],
+   "sha256": "17aaf6094a6710654601cec8f6ca799e706183a3332c52505185e767603ec7d3"
   },
   {
    "pi": "John Fisher",
@@ -40303,6 +40318,7 @@
   {
    "pi": "Yufei Zhao",
    "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
    "coverage": "website",
    "url": "https://yufeizhao.com/",
    "people_page": "https://yufeizhao.com/",
@@ -40356,8 +40372,22 @@
      "url": "https://openalex.org/A5021133458",
      "at": "2026-10-31T04:20:01+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://yufeizhao.com/",
+     "at": "2026-11-12T05:18:54+00:00",
+     "result": "ok",
+     "sha256": "4b98f2554e065f2330972bbf49fe490e9d86dae32eb529aff6b304d84f6ad652",
+     "name_quote": "Yufei Zhao | MIT Mathematics",
+     "tie_quote": "Associate Professor of Mathematics Department of Mathematics Massachusetts Institute of Technology",
+     "reviewer": "independent fresh reviewer 2026-11-12 (Sonnet subagent; both entries ok; quotes verbatim in live and stored capture)",
+     "basis": "owner ruled 2026-11-11: web-search-found sites are accepted as lab pages when the page names the PI at the school",
+     "live_url": "https://yufeizhao.com/",
+     "robots": "robots.txt read, allowed for the crawler UA and the ClaudeBot / anthropic-ai / Claude-Web / * groups; 3.2 s spacing; honest UA, no contact e-mail sent"
     }
-   ]
+   ],
+   "sha256": "4b98f2554e065f2330972bbf49fe490e9d86dae32eb529aff6b304d84f6ad652"
   },
   {
    "pi": "Nikolaos Trichakis",
@@ -41109,6 +41139,7 @@
   {
    "pi": "Ian W. Hunter",
    "status": "found",
+   "reason_code": "lab_site",
    "coverage": "website",
    "url": "https://bioinstrumentation.mit.edu/",
    "people_page": "https://bioinstrumentation.mit.edu/people.html",
@@ -41167,8 +41198,27 @@
      "url": "https://openalex.org/A5064497792",
      "at": "2026-10-31T04:20:32+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://bioinstrumentation.mit.edu/",
+     "at": "2026-11-12T06:01:10+00:00",
+     "result": "ok",
+     "sha256": "1e1313f2a16f5c621844e991db7d112db7bc77bffffffddaf79e5ee79ddda7c0",
+     "name_quote": "Professor Ian W. Hunter is the Hatsopoulos Professor of Mechanical Engineering and runs the BioInstrumentation Lab",
+     "tie_quote": "In 1994 Ian moved his lab to the Department of Mechanical Engineering at MIT.",
+     "reviewer": "independent fresh reviewer 2026-11-12 (Sonnet subagent; sha and both quotes verified live and stored)",
+     "basis": "owner ruled 2026-11-11: web-search-found sites are accepted as lab pages when the page names the PI at the school",
+     "live_url": "https://bioinstrumentation.mit.edu/",
+     "people_page_live": {
+      "url": "https://bioinstrumentation.mit.edu/people.html",
+      "sha256": "064114a0451ca0badfbe2bf85092458e9b26ebacd643599844d860d2b4f4ac69",
+      "at": "2026-11-12T06:00:52+00:00"
+     },
+     "robots": "robots.txt: 404 (none); live reads 3.2 s apart, honest UA, no contact e-mail"
     }
-   ]
+   ],
+   "sha256": "1e1313f2a16f5c621844e991db7d112db7bc77bffffffddaf79e5ee79ddda7c0"
   },
   {
    "pi": "Jaime Peraire",
