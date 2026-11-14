@@ -39,4 +39,8 @@ Raw captures: `hierarchy/toronto/raw/student-coverage-20261114/` (local data, ex
 | Daniel Roy | Ziyi Liu | phd | 2026 | [page](https://danroy.org/) |
 | David Lie | Kexin Li | masters | 2024 | [page](https://security.csl.toronto.edu/blog/2024/09/22/congrats-to-kexin-and-jiaqi-for-completing-their-masc-degrees-and-welcome-to-guozhen-and-xiao/) |
 
-Validation: all 30 names refer to baseline-zero PIs; all saved raw SHA-256 values and each quoted segment verified against captured page text. Private rebuild and final before/after verification pending.
+Validation: all 30 names refer to baseline-zero PIs; all saved raw SHA-256 values and each quoted segment verified against captured page text. Private native rebuild (job 32256055) passed the before/after check: 217 PIs unchanged; recorded-student coverage 59 → 89; PIs without students 158 → 128; lab–student pairs 757 → 787. All 757 existing records are retained exactly. Removed 16 obsolete no-student reason fields for newly covered PIs, preserving all other coverage notes. Raw hashes and quoted source segments rechecked against the saved pages.
+
+The Stage 6 gate remains failed with five pre-existing categories: missing lab-page acceptance; 30 unexplained lab-page student gaps (was 44); 113 zero-student PIs without researched reasons (was 141); missing recall sample; and 83 boilerplate reasons (was 97). Trap checks also report the pre-existing stale Stage 2 gate and remaining boilerplate reasons. No gate exceptions or acceptance decisions were changed.
+
+Normal rebuild effects: lab-paper rows 9328 → 9334; student–paper links 1457 → 1547; labs with student papers 55 → 78. New relationships participate in the existing advising/identity/link rules; no builder logic changed.
