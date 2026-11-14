@@ -542,6 +542,9 @@ def page_text(raw, fold_smallcaps=False):
     original spacing stays in the text, so quotes and names written either way match (R-STU-28)."""
     s = decode_page(raw)
     s = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', s)
+    # Inline spans can split a single visible name (for example J</span><span>onas).
+    # Adjacent spans introduce no visual word boundary, so keep their text joined.
+    s = re.sub(r'(?is)</span>\s*<span\b[^>]*>', '', s)
     if not re.search(r'(?i)<html|<body', s[:5000]):   # a data file (XML: names in attributes): the attribute values are its text
         s = re.sub(r'(?s)<[^>]+>', lambda m: ' ' + ' '.join(re.findall(r'="([^"]*)"', m.group(0))) + ' ', s)
     s = html.unescape(re.sub(r'(?s)<[^>]+>', ' ', s))

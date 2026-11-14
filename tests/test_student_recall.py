@@ -323,6 +323,11 @@ def test_page_text_reads_utf16_pages():
     assert 'ada lovelace' in R.page_text(raw) and 'Ada Lovelace' in R.page_text_lines(raw)
 
 
+def test_page_text_joins_adjacent_inline_spans_in_a_name():
+    raw = b'<html><body><span>J</span><span>onas Ballweg</span></body></html>'
+    assert 'jonas ballweg' in R.page_text(raw)
+
+
 def test_R_STU_28_names_on_any_captured_page_of_the_pi_same_host_only(tree):
     """R-STU-28: a listed name may be on any captured page of the PI on the primary page's host; a name on no page, a page of another host,
     a bad sha and an unstored page are findings; a single `page` dict still works; small-caps spacing is folded."""
