@@ -44,6 +44,7 @@ import zlib
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
+import school_config as S  # noqa: E402
 
 # ---- THE THRESHOLDS: every number the gate uses lives here, and nowhere else (owner adjusts them) --------------------------------------------
 # The U / R2 bars RATCHET (owner 2026-11-11 'do it'): the owner raises RATCHET_LEVEL by changing that ONE constant. Every level must satisfy
@@ -59,7 +60,7 @@ RATCHET_LEVEL = 0
 FIXED_BARS = dict(
     R1=0.90,   # strict recall on the READABLE sampled PIs (names listed on the page and placeable, found in students.json), stratum-weighted
     Z=0.05,    # max share of ALL PIs with no recorded student and no researched (non-boilerplate, >= 2 sources) reason
-    X=0.20,    # max share of listed names the checker may exclude with a reason (guard against excluding the misses)
+    X=0.20,    # max share excluded without same-line, captured proof of another school (guard against hiding misses)
 )
 # U = max share of the sample that may be unverifiable (no member-list page, robots, challenge, login, unreachable ...).
 # R2 = estimated whole-school CURRENT PhD recall; unverifiable PIs count as recall 0.
@@ -620,6 +621,35 @@ def entry_counts(rec_entry, rows):
     return c
 
 
+def verified_external_school(entry, pages, conn, key):
+    """Only a captured line naming this student and another school can exempt an exclusion from X."""
+    proof = entry.get('outside_school_evidence')
+    if entry.get('exclude') != 'outside_school' or not isinstance(proof, dict) or conn is None:
+        return False
+    url, sha, quote, school = (proof.get(k) or '' for k in ('url', 'sha256', 'quote', 'school'))
+    if not (url and re.fullmatch(r'[0-9a-f]{64}', sha) and quote and school and len(school.strip()) >= 2):
+        return False
+    own_names = [key]
+    try:
+        charter = S.get(key)
+        own_names += [charter.get('name', ''), charter.get('short', '')]
+        if S.aff_rx(key).search(school):
+            return False
+    except (OSError, ValueError, KeyError):
+        pass
+    if norm_text(school) in {norm_text(name) for name in own_names if name}:
+        return False
+    if not any(p.get('url') == url and p.get('sha256') == sha for p in pages):
+        return False
+    stored = stored_page(conn, url)
+    if not stored or stored['sha256'] != sha:
+        return False
+    name, q, institution = norm_text(entry.get('name') or ''), norm_text(quote), norm_text(school)
+    if not (name and name in q and institution in q):
+        return False
+    return any(norm_text(line) == q for line in page_text_lines(stored['raw']).splitlines())
+
+
 def _weights(sample_rows, sizes):
     """Per stratum h: N_h / n_h (all sampled) and N_h / n_h_readable."""
     n = collections.Counter(r['stratum'] for r in sample_rows)
@@ -687,7 +717,7 @@ def evaluate_record(key, rec, st=None, binds_now=None, conn=None, pis=None):
     sample = rec.get('sample') or []
     if len(sample) < min(SAMPLE_SIZE, len(pis)):
         fnd.append(f'sample: {len(sample)} PIs drawn, {min(SAMPLE_SIZE, len(pis))} needed')
-    per_pi, excl, listed = {}, 0, 0
+    per_pi, excl, listed, proven_external = {}, 0, 0, 0
     conn = conn if conn is not None else (_store(captures_path(key)) if Path(captures_path(key)).exists() else None)
     for r in sample:
         v = r.get('verdict')
@@ -737,6 +767,11 @@ def evaluate_record(key, rec, st=None, binds_now=None, conn=None, pis=None):
                 fnd.append(f'{r["pi"]}: {e.get("name")!r}: section must be one of {SECTIONS}')
             if e.get('exclude') and e['exclude'] not in EXCLUDE_REASONS:
                 fnd.append(f'{r["pi"]}: {e.get("name")!r}: exclude reason must be one of {EXCLUDE_REASONS}')
+            if 'outside_school_evidence' in e:
+                if not verified_external_school(e, pgs, conn, key):
+                    fnd.append(f'{r["pi"]}: {e.get("name")!r}: outside-school proof needs a captured, hash-matched line naming both the student and the other institution')
+                else:
+                    proven_external += 1
         c = entry_counts(r, st.get(r['pi'], []))
         per_pi[r['pi']] = c
         excl += c['excluded']
@@ -748,6 +783,8 @@ def evaluate_record(key, rec, st=None, binds_now=None, conn=None, pis=None):
     num.update(sample=len(sample), readable=len(readable), unverifiable=len(unv), unverifiable_share=round(len(unv) / len(sample), 3) if sample else None,
                unverifiable_reasons=dict(collections.Counter(r.get('unverifiable_reason') for r in unv)),
                names_listed=listed, names_excluded=excl, excluded_share=round(excl / listed, 3) if listed else 0.0,
+               proven_external_school=proven_external, x_counted_exclusions=excl - proven_external,
+               x_counted_share=round((excl - proven_external) / listed, 3) if listed else 0.0,
                undated_excluded=sum(c['undated_excluded'] for c in per_pi.values()), eligible_names=sum(c['L'] for c in per_pi.values()),
                recorded_names=sum(c['K'] for c in per_pi.values()), r1_strict_recall=round(r1, 3) if r1 is not None else None,
                r2_est_current_phd_recall=round(r2, 3) if r2 is not None else None,
@@ -795,8 +832,10 @@ def gate_items(key, th=None):
     elif n.get('r2_est_current_phd_recall') is not None and n['r2_est_current_phd_recall'] < th['R2']:
         items.append(f'recall R2: estimated whole-school current-PhD recall {n["r2_est_current_phd_recall"]:.2f} < {th["R2"]:.2f} '
                      f'(5th pct of a cluster bootstrap {n["r2_bootstrap_p5"]}; unverifiable PIs count as 0, so R2 is bounded by (1-U) x R1 = {(1 - th["U"]) * th["R1"]:.2f}; {ratchet_text()}); raise recall on the strata with the gaps, or make more pages readable')
-    if n.get('excluded_share', 0) > th['X']:
-        items.append(f'recall record: {n["names_excluded"]} of {n["names_listed"]} listed names were excluded by the checker ({n["excluded_share"]:.0%} > {th["X"]:.0%}); excluding is not a way to raise recall')
+    if n.get('x_counted_share', 0) > th['X']:
+        items.append(f'recall record: {n["x_counted_exclusions"]} of {n["names_listed"]} listed names were excluded by the checker without same-line captured proof of another school '
+                     f'({n["x_counted_share"]:.0%} > {th["X"]:.0%}; {n["proven_external_school"]} source-checked outside-school names remain visible in the raw '
+                     f'{n["names_excluded"]} exclusions); unsupported exclusions cannot raise recall')
     return items
 
 

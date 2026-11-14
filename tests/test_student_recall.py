@@ -175,6 +175,38 @@ def test_exclusions_are_capped_and_relabelling_is_visible(tree, monkeypatch):
     assert any(m.startswith('recall record: ') and 'excluded by the checker' in m for m in msgs)
 
 
+def test_captured_same_line_external_school_proof_keeps_x_cap(tree, monkeypatch):
+    rec = R.draw('u', drawn_by='drawer')
+    pages = {}
+    for r in rec['sample']:
+        url = f'https://lab.example/{r["pi"]}'
+        name = f'Visitor {r["pi"]}'
+        line = f'{name} UBC PhD student'
+        body = f'<html><h2>Current members</h2><p>{line}</p></html>'.encode()
+        sha = hashlib.sha256(body).hexdigest()
+        pages[url] = body
+        r.update(verdict='readable', page=dict(url=url, sha256=sha, quote='Current members'),
+                 listed=[dict(name=name, role='phd', section='current', exclude='outside_school',
+                              outside_school_evidence=dict(url=url, sha256=sha, quote=line, school='UBC'))])
+    rec.update(filled_by='checker', signoff=dict(reviewer='independent', date='2026-11-14'))
+    conn = make_store(tree, pages)
+    monkeypatch.setattr(R, 'captures_path', lambda key: tree['dir'] / 'cap.sqlite')
+    (tree['dir'] / 'student-recall-check.json').write_text(json.dumps(rec))
+    ev = R.evaluate_record('u', rec, conn=conn)
+    assert not ev['findings']
+    assert ev['numbers']['excluded_share'] == 1.0
+    assert ev['numbers']['proven_external_school'] == 30
+    assert ev['numbers']['x_counted_share'] == 0.0
+    assert not any('excluded without same-line' in x for x in R.gate_items('u'))
+
+    rec['sample'][0]['listed'][0]['outside_school_evidence']['quote'] = 'Current members'
+    ev = R.evaluate_record('u', rec, conn=conn)
+    assert any('outside-school proof needs' in x for x in ev['findings'])
+    assert ev['numbers']['x_counted_exclusions'] == 1
+    rec['sample'][0]['listed'][0].pop('outside_school_evidence')
+    assert R.evaluate_record('u', rec, conn=conn)['numbers']['x_counted_exclusions'] == 1
+
+
 def test_gate_messages_name_item_and_action(tree, monkeypatch):
     m = R.gate_items('u')
     assert any(x.startswith('recall Z:') and 'researched reason' in x for x in m)           # 20 zero-student PIs of 60
