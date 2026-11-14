@@ -170,25 +170,23 @@
  "Hamed Haddadi": {
   "students": {
    "code": "sources_exhausted",
-   "why": "No student of this PI in any allowed source checked (Professor of Human-Centred Systems).",
+   "why": "Oxford’s faculty profile and the PI-owned about page both recruit DPhil students for autumn 2027 entry, and neither names a current Oxford-enrolled advisee. This is a bounded finding from the checked public pages as of 2026-11-14, not a claim that no student exists elsewhere.",
    "sources_checked": [
-    "lab page: status none_found (pi_homepage_only_no_lab_site), site https://haddadi.github.io/about/; students section: no_people_section (no_people_section)",
-    "adviser-bearing student directories: none exist or are archived for this school (checked at stage 6)",
-    "Oxford Research Archive (ORA) DPhil/MSc thesis records read 2026-11-09 (1141 theses reached through OpenAlex dissertation records, parsed for the 'Supervisor' contributor; 114 PIs' students admitted from them): none names this PI as Supervisor (family name and initial). Coverage is limited to theses OpenAlex lists; repository authorship alone is never advising."
+    "https://www.cs.ox.ac.uk/people/hamed.haddadi/ (checked 2026-11-14): Oxford faculty biography explicitly says accepting new DPhil students to start autumn 2027, without naming advisees.",
+    "https://haddadi.github.io/about/ (checked 2026-11-14): PI-owned Oxford profile repeats autumn 2027 DPhil recruitment; no Oxford DPhil roster."
    ],
-   "reviewed": "2026-11-10 claude-oxford-apply-1109: lab-page line compared with labpage-audit.jsonl.gz for the PI; thesis line replaced (the charter note \"Pending host and endpoint verification\" was stale: the ORA crawl ran 2026-11-09)"
+   "reviewed": "2026-11-14 codex-oxford-students-1114: manually checked named institutional and PI-owned pages; bounded as of review date."
   }
  },
  "Shan Luo": {
   "students": {
    "code": "sources_exhausted",
-   "why": "No student of this PI in any allowed source checked (Associate Professor of Computer Science).",
+   "why": "The named PhD advisee Yongqiang Zhao says he is enrolled at King’s College London and has visited Oxford since October 2026. The Oxford faculty profile establishes Shan Luo’s Oxford appointment but names no Oxford-enrolled doctoral advisee. This checked London-registered student was excluded from Oxford student records as of 2026-11-14.",
    "sources_checked": [
-    "lab page: status none_found (new_arrival_no_site_yet), no site found; students section: no_lab_page (no_lab_page)",
-    "adviser-bearing student directories: none exist or are archived for this school (checked at stage 6)",
-    "Oxford Research Archive (ORA) DPhil/MSc thesis records read 2026-11-09 (1141 theses reached through OpenAlex dissertation records, parsed for the 'Supervisor' contributor; 114 PIs' students admitted from them): none names this PI as Supervisor (family name and initial). Coverage is limited to theses OpenAlex lists; repository authorship alone is never advising."
+    "https://rancho-zhao.github.io/ (checked 2026-11-14): first-person profile states King’s College London PhD registration, Shan Luo supervision, and Oxford visiting status since October 2026.",
+    "https://www.cs.ox.ac.uk/people/shan.luo/ (checked 2026-11-14): Oxford faculty profile; no Oxford-enrolled advisee named."
    ],
-   "reviewed": "2026-11-10 claude-oxford-apply-1109: lab-page line compared with labpage-audit.jsonl.gz for the PI; thesis line replaced (the charter note \"Pending host and endpoint verification\" was stale: the ORA crawl ran 2026-11-09)"
+   "reviewed": "2026-11-14 codex-oxford-students-1114: manually checked named institutional and PI-owned pages; bounded as of review date."
   }
  },
  "Misha Sra": {
@@ -333,6 +331,41 @@
     "Oxford Research Archive (ORA) DPhil/MSc thesis records read 2026-11-09 (1141 theses reached through OpenAlex dissertation records, parsed for the 'Supervisor' contributor; 114 PIs' students admitted from them): none names this PI as Supervisor (family name and initial). Coverage is limited to theses OpenAlex lists; repository authorship alone is never advising."
    ],
    "reviewed": "2026-11-10 claude-oxford-apply-1109: lab-page line compared with labpage-audit.jsonl.gz for the PI; thesis line replaced (the charter note \"Pending host and endpoint verification\" was stale: the ORA crawl ran 2026-11-09)"
+  }
+ },
+ "Thomas Pasquier": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "The PI-owned current lab roster labels all named PhD students UBC, and the same page recruits Oxford DPhil students for 2027 entry. The Oxford faculty profile establishes his current appointment. No Oxford-enrolled advisee is named on these checked pages as of 2026-11-14; UBC students were excluded.",
+   "sources_checked": [
+    "https://tfjmp.org/lab/ (checked 2026-11-14): Current members lists Soo Yee Lim and Xuechun Cao as UBC PhD students; Oxford DPhil opportunities are for 2027 entry.",
+    "https://www.cs.ox.ac.uk/people/thomas.pasquier/ (checked 2026-11-14): Oxford faculty profile for Thomas Pasquier; no Oxford doctoral advisee named."
+   ],
+   "reviewed": "2026-11-14 codex-oxford-students-1114: manually checked named institutional and PI-owned pages; bounded as of review date."
+  }
+ },
+ "Markus Brill": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "The PI-owned group roster explicitly labels both current PhD students as Warwick students, while its Oxford members are postdocs. The PI states he moved to Oxford in January 2026 and is recruiting DPhil applicants. No named Oxford-enrolled doctoral advisee appears on the checked group and recruitment pages as of 2026-11-14; Warwick students were excluded.",
+   "sources_checked": [
+    "https://markus-brill.de/group (checked 2026-11-14): Anton Baychkov and Tuva Bardal are explicitly PhD students at Warwick; Matthias Greger and Roberto-Rafael Maura-Rivero are postdocs at Oxford.",
+    "https://markus-brill.de/news.html (checked 2026-11-14): January 2026 Oxford move announcement.",
+    "https://markus-brill.de/join.html (checked 2026-11-14): invites future Oxford DPhil applications and thesis projects."
+   ],
+   "reviewed": "2026-11-14 codex-oxford-students-1114: manually checked named institutional and PI-owned pages; bounded as of review date."
+  }
+ },
+ "Mahmoud Abo Khamis": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Wadham announced his Oxford appointment beginning September 2026 and says his earlier PhD mentoring was of industry interns. The Oxford department profile names no doctoral advisees, and the department-wide theme roster does not link its students to him. No Oxford-enrolled advisee can be established from these checked sources as of 2026-11-14; the industry interns were excluded.",
+   "sources_checked": [
+    "https://www.wadham.ox.ac.uk/people/mahmoud-abo-khamis (checked 2026-11-14): September 2026 Oxford start, prior 2017-2026 industry role, and mentoring of PhD interns while in industry.",
+    "https://www.cs.ox.ac.uk/people/mahmoud.abokhamis/ (checked 2026-11-14): Oxford faculty profile does not name doctoral advisees.",
+    "https://www.cs.ox.ac.uk/research/dk/people.html (checked 2026-11-14): department-wide roster lists students without PI-student supervision links."
+   ],
+   "reviewed": "2026-11-14 codex-oxford-students-1114: manually checked named institutional and PI-owned pages; bounded as of review date."
   }
  }
 }
