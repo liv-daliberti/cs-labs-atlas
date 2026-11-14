@@ -175,7 +175,7 @@ def test_exclusions_are_capped_and_relabelling_is_visible(tree, monkeypatch):
     assert any(m.startswith('recall record: ') and 'excluded by the checker' in m for m in msgs)
 
 
-def test_captured_same_line_external_school_proof_keeps_x_cap(tree, monkeypatch):
+def test_R_STU_31_captured_same_line_external_school_proof_keeps_x_cap(tree, monkeypatch):
     rec = R.draw('u', drawn_by='drawer')
     pages = {}
     for r in rec['sample']:
