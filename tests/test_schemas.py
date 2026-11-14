@@ -114,3 +114,15 @@ def test_withheld_rows_validate_against_the_schema():
         out = LA.withhold_roles([row], years=years)
         errs = S.validate({'school': 'x', 'generated_at': 't', 'tool': 't', 'standard': 's', 'status': 'ok', 'rules': {}, 'students': out, 'papers': []}, sch)
         assert not [e for e in errs if 'role_basis' in str(e) or 'years_basis' in str(e)], errs
+
+
+def test_link_diagnosis_accepts_before_window_work():
+    """The writer labels a work by its earlier DBLP venue year even when OpenAlex dates it later."""
+    work = dict(oa='https://openalex.org/W1', year=2018, title='Earlier venue paper',
+                byline_name='Ada Lovelace', type='article', excluded='before_window',
+                pi_affiliation='school')
+    student = dict(pi='Ada Lovelace', student='Charles Babbage', id='p1', roles=['phd'],
+                   years=[2016, 2018], category='with_pi_before_window', works=[work],
+                   n_school_works=1, distinct_author_ids=1, pis_seen=[])
+    report = dict(summary={'with_pi_before_window': 1}, students={'Ada Lovelace | p1': student})
+    assert S.validate(report, schema('link-diagnosis')) == []

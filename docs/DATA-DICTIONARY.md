@@ -272,7 +272,7 @@ One open student.
 | `works[].title` | string | yes | Title (120 chars). |  |  |
 | `works[].byline_name` | string \| null | yes | Raw byline name. |  |  |
 | `works[].type` | string \| null | yes | Work type. |  |  |
-| `works[].excluded` | string \| null | yes | Why the build rightly left a with-PI work out. | one of `not_a_paper`, `pi_affiliated_elsewhere`, `outside_appointment`, `null` |  |
+| `works[].excluded` | string \| null | yes | Why the build rightly left a with-PI work out. | one of `not_a_paper`, `pi_affiliated_elsewhere`, `before_window`, `outside_appointment`, `null` |  |
 | `works[].pi_affiliation` | string \| null | yes | Where the PI's authorship sits. | one of `school`, `elsewhere`, `none`, `null` |  |
 | `n_school_works` | integer | yes | School works under the name in the years. | at least 0 |  |
 | `distinct_author_ids` | integer | yes | Distinct OpenAlex author ids among them. | at least 0 |  |
