@@ -1,0 +1,811 @@
+{
+ "schema": 1,
+ "school": "oxford",
+ "drawn_at": "2026-11-14T07:35:41Z",
+ "drawn_by": "codex-oxford-students-1114",
+ "seed": 2159464779,
+ "binds": {
+  "students.json": "2a9dc47fcf972676dbd18afd515423c952b4450b899d902ce174a732e78a6100",
+  "pis.json": "a5426af4c2c8a7d34b750fe318f0232656ea6c0d11ebca1c3e9063755c2545bb"
+ },
+ "current_from_year": 2025,
+ "sizes": {
+  "0": 15,
+  "1-2": 49,
+  "3+": 112
+ },
+ "picked": {
+  "0": 10,
+  "1-2": 10,
+  "3+": 10
+ },
+ "how": "tools/student_recall.py draw: seeded stratified sample by recorded student rows (0 / 1-2 / 3+); the checker fills `verdict`, `page` and `listed`",
+ "sample": [
+  {
+   "pi": "Christopher Pulte",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Christopher.Pulte/home.html",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Christopher.Pulte",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Gavin Lowe",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "http://www.cs.ox.ac.uk/gavin.lowe/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://web.archive.org/web/20160306214030id_/http://www.cs.ox.ac.uk:80/gavin.lowe/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20210117121745id_/http://www.cs.ox.ac.uk/gavin.lowe/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20250208135504id_/http://www.cs.ox.ac.uk/gavin.lowe/",
+     "source": "audit students.pages"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Hamed Haddadi",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://haddadi.github.io/about/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Hamed.Haddadi",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Manus Henry",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://eng.ox.ac.uk/people/manus-henry",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Markus Brill",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://markus-brill.de/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Markus.Brill",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Mike Spivey",
+   "stratum": "0",
+   "candidate_urls": [],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Misha Sra",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://sites.cs.ucsb.edu/~sra/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://sites.cs.ucsb.edu/~sra/#people",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Misha.Sra",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Shan Luo",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Shan.Luo",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Thomas Pasquier",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://tfjmp.org/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Thomas.Pasquier",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Vojtěch Forejt",
+   "stratum": "0",
+   "candidate_urls": [],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Alfonso Bueno-Orovio",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://soran-ghaderi.github.io/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/emma.mcmillian/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Alfonso.Bueno-Orovio",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Andrew D. Ker",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Andrew.Ker",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Daniele De Martini",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://ori.ox.ac.uk/labs/mobile-robotics-group/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://ori-mrg.github.io/people",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://kyuhwanyeon.github.io/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://efimiap.github.io/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://eng.ox.ac.uk/people/daniele-de-martini",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "David Kay",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.ox.ac.uk/people/david.kay/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/David.Kay",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Jakob N. Foerster",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://www.jakobfoerster.com/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:e304fc59-08dc-40fc-b36c-8f044dab5319",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:0cecf89f-ed93-4f6b-82f1-ef364f00e6e0",
+     "source": "student row source"
+    },
+    {
+     "url": "https://eng.ox.ac.uk/people/jakob-foerster",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Nicholas Lane",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:4ebc187e-bbe3-40a6-ae4c-b21337d48e23",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/vivek.kothari/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Sara Bernardini",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://www.sara-bernardini.com/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.sara-bernardini.com/publications-1",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/christian.hagemeier/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Sara.Bernardini",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Seth Flaxman",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://sethrf.com/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://sethrf.com/papers/",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://oxai4science.github.io/members.html",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:0ea06d1a-3c3c-4415-8cbb-3a096a39aa4f",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Timothy Denison",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://eng.ox.ac.uk/people/shuangyi-tong",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Wesley Armour",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://eng.ox.ac.uk/case-studies/seeing-inside-proteins",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Ana Namburete",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://oxford-omni-lab.github.io/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://oxford-omni-lab.github.io/people/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:5feb7d92-1eca-4f73-9d27-9face3608b5b",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:4cbbcb48-1764-4c96-b058-1485bc049704",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:d51eb9bc-b36e-476c-8a9f-a48a122a54d4",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Ana.Namburete",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Andreas Galanis",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "http://www.cs.ox.ac.uk/people/andreas.galanis/myindex.html",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:79fca438-c86f-4db1-ac80-f247783c0084",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:98eb5ca3-18f9-463f-aa6e-dfd4eaf74875",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/kuan.yang/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/paulina.smolarova/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/xandru.mifsud/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Andreas.Galanis",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Bernardo Cuenca Grau",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:29dfd4c3-dd5b-46e7-8414-58c3d5c11d24",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:18df85f7-1b7f-47fa-8ac5-08cfa0c9a438",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:474dbe20-b02c-4bb8-a9fc-d3d6e5b52b15",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:3a7e1f55-b03b-4ccf-9474-e8d035869c7f",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:e9a2c06d-79ce-4652-b561-91dd56acee4f",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:e111a446-5097-4e60-9961-e91d901b1269",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:2f6da419-5335-4f26-b454-abaa0dc69969",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/elle.yang/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Ingmar Posner",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://ori.ox.ac.uk/groups/a2i",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:1df5cc30-75fc-44ca-a8e7-3421d8903e3a",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:13cefafb-89e5-42dd-990e-822ecd9224ba",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:a18eeb06-ed54-47c0-a0f0-be992a609690",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:fc019c31-89ce-463f-b220-03bb81ed9af0",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:bc6cb8f8-8f4a-4ae1-a538-7f7a90b828d6",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:8117eaa9-7af4-4cb6-9706-32c30929d0c3",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:be1114e7-fdac-4850-8ade-39c3f60aeb18",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Jeremy Gibbons",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "http://www.cs.ox.ac.uk/jeremy.gibbons/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://web.archive.org/web/20160121213653id_/http://www.cs.ox.ac.uk:80/jeremy.gibbons/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20210414184456id_/http://www.cs.ox.ac.uk/jeremy.gibbons/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20260815102839id_/https://www.cs.ox.ac.uk/jeremy.gibbons/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:df5e4bcb-689d-4457-aefe-e4afbbb183e5",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/rolf.morel/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:9f973626-8981-4329-ab38-76ba2efe301f",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:b2222b14-3895-4c87-91f4-13a8d046febb",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Marina Jirotka",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:adab8615-0041-45b9-ab29-f2f54fa9181e",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:273087aa-8111-44d7-8496-1ce641319aa6",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/benjamin.hardin/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/jumana.baghabrah/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/sumaya.adan/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Marina.Jirotka",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Mark Cannon",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://markcannon.github.io/publications",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://markcannon.github.io/publications/#bib-j_103",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:a52222d4-dbc1-46a2-86f1-c9cfc80bb0bf",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:9b2e5caa-c39e-429c-b038-d3c53ccc0b8d",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:d490e8db-a59c-4c94-8d14-abca45ec4c71",
+     "source": "student row source"
+    },
+    {
+     "url": "https://eng.ox.ac.uk/people/mark-cannon",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Natalia Ares",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://www.st-annes.ox.ac.uk/cpt_people/ares-dr-natalia",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://web.archive.org/web/20211013131117id_/https://www.st-annes.ox.ac.uk/cpt_people/ares-dr-natalia/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://eng.ox.ac.uk/quantumdevicelab/about-us",
+     "source": "student row source"
+    },
+    {
+     "url": "https://eng.ox.ac.uk/people/natalia-ares",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Sadie Creese",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "http://www.cs.ox.ac.uk/sadie.creese/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://web.archive.org/web/20160310184049id_/http://www.cs.ox.ac.uk:80/sadie.creese/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20210302140243id_/http://www.cs.ox.ac.uk/sadie.creese/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20260614131000id_/https://www.cs.ox.ac.uk/sadie.creese/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://oatml.cs.ox.ac.uk/members/xander_davies/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/ahmed.salman/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/nora.alhelal/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/yara.alsiyat/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Susanna-Assunta Sansone",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://sansonegroup.eng.ox.ac.uk",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://sansonegroup.eng.ox.ac.uk/#people",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://sansonegroup.eng.ox.ac.uk/publications",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://web.archive.org/web/20190717071417id_/https://sansonegroup.eng.ox.ac.uk/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20221130150222id_/https://sansonegroup.eng.ox.ac.uk/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20260310180422id_/https://sansonegroup.eng.ox.ac.uk/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:3e4b8fd5-10db-47e3-8f25-37d66faee541",
+     "source": "student row source"
+    },
+    {
+     "url": "https://eng.ox.ac.uk/people/susanna-assunta-sansone",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  }
+ ],
+ "filled_by": "",
+ "signoff": {
+  "reviewer": "",
+  "date": "",
+  "note": "a fresh reviewer: not the drawer and not the filler"
+ }
+}
