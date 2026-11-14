@@ -211,6 +211,7 @@ def audit(school, *, include_link_diagnosis=True, hierarchy=None):
     # tools/link_diagnosis.py: each open student checked against the school's OpenAlex sweep
     diag = (load(D / 'link-diagnosis.json', {}) or {}).get('students', {}) if include_link_diagnosis else {}
     DIAG_REASON = {'no_school_work': 'no school-affiliated work under their name in their years (OpenAlex sweep)',
+                   'reviewed_exclusion': 'every matching lab-paper link was held in the reviewed student-link exclusions ledger',
                    'publishes_without_pi': 'publishes at the school in their years, never with this PI (OpenAlex sweep)',
                    'ambiguous_name': 'name matches 4+ distinct school authors in their years: cannot be told apart',
                    'linked_in_coadviser_lab': "co-advised: linked in the other adviser's lab, whose PI is on their school works (OpenAlex sweep)",

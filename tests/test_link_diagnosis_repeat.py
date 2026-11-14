@@ -6,6 +6,16 @@ import link_diagnosis as D
 import pytest
 
 
+def test_reviewed_exclusions_explain_only_fully_held_lab_matches():
+    mine = [{'work': 'https://openalex.org/W1'}, {'work': 'https://openalex.org/W2'}]
+    held = {('PI', 'Student', 'https://openalex.org/W1')}
+    assert not D.all_lab_matches_reviewed_out(mine, held, 'PI', 'Student')
+    held.add(('PI', 'Student', 'https://openalex.org/W2'))
+    assert D.all_lab_matches_reviewed_out(mine, held, 'PI', 'Student')
+    assert not D.all_lab_matches_reviewed_out(mine, held, 'Other PI', 'Student')
+    assert not D.all_lab_matches_reviewed_out([], held, 'PI', 'Student')
+
+
 def test_diagnosis_survives_repeated_audit_and_failed_refresh(tmp_path, monkeypatch):
     school = tmp_path / 'princeton'
     school.mkdir()

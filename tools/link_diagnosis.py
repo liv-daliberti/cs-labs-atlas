@@ -82,6 +82,11 @@ def name_key(s):
     return ' '.join(words(s))
 
 
+def all_lab_matches_reviewed_out(mine, excluded, pi, student):
+    """A held link explains a gap only when every matching lab paper was reviewed out."""
+    return bool(mine) and all((pi, student, c['work']) in excluded for c in mine)
+
+
 def dblp_venues(pi_rec):
     """The PI's DBLP venue publications by normalized title -> (earliest year, key), as papers.venue_tables reads them from the
     DBLP dump (not CoRR, ECCC, ePrint, theses, books); {} without the dump or a DBLP id."""
@@ -123,6 +128,13 @@ def run(school):
             if o:
                 lab[r['pi']].add(o)
     open_items = A['checks']['links']['unexplained']
+    exclusion_file = P.data('student-link-exclusions.json', school)
+    exclusions = set()
+    if exclusion_file.exists():
+        reviewed = json.loads(exclusion_file.read_text())
+        if reviewed.get('version') != 1 or reviewed.get('school') != school:
+            raise ValueError('student link exclusions must name this school and version 1')
+        exclusions = {(e['pi'], e['student'], e['oa']) for e in reviewed.get('exclusions') or []}
     # the labs where each student record (by id, merged ids included) and each name has a student-paper link (R-D2)
     stu_ = json.loads((P.hfile(H, 'students.json', school)).read_text())
     merged_of = {(pi_, r['person']): list(r.get('merged') or []) for pi_, rs in stu_.items() for r in rs}
@@ -209,7 +221,8 @@ def run(school):
             return None if any(l.get('year') == same_year(c['date']) for l in p.get('listings') or []) else 'outside_appointment'
         why_ = {excluded(c) for c in with_pi}
         if mine:
-            cat = 'link_missed'
+            cat = ('reviewed_exclusion' if all_lab_matches_reviewed_out(mine, exclusions, pi, x['student'])
+                   else 'link_missed')
         elif with_pi and all(why_):
             cat = ('with_pi_at_other_institution' if 'pi_affiliated_elsewhere' in why_ else 'with_pi_not_a_paper' if why_ == {'not_a_paper'}
                    else 'with_pi_before_window' if why_ == {'before_window'} else 'with_pi_outside_appointment')
