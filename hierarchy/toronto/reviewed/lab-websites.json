@@ -2541,8 +2541,8 @@
   {
    "pi": "Sam Toueg",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; dblp_person_url https://dblp.org/pid/t/SamToueg: listed; candidate_site http://www.cs.cornell.edu/Info/People/sam/sam.html: http_301; 1 further dated checks retained.",
+   "reason_code": "host_access_blocked",
+   "reason": "The PI-specific Toronto web route returns HTTP 403; the indexed Cornell page predates his Toronto appointment and is not selected as a Toronto homepage.",
    "audited_at": "2026-11-13T22:14:27+00:00",
    "checks": [
     {
@@ -2591,6 +2591,13 @@
      "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fwww.cs.cornell.edu%2FInfo%2FPeople%2Fsam%2Fsam.html&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:14:27+00:00",
      "result": "wayback_deferred"
+    },
+    {
+     "source": "toronto_pi_site",
+     "url": "https://www.cs.toronto.edu/~sam/",
+     "result": "http_403",
+     "at": "2026-11-14T00:07:58.268431+00:00",
+     "sha256": "a805687a50c1a68f84bf8bcb40804be145a2f274e0545615c45da8306fcafde5"
     }
    ],
    "places_checked": [
@@ -2599,14 +2606,15 @@
     "department_listing:robots_disallowed",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-13T22:14:27+00:00",
+   "checked_at": "2026-11-14T00:07:58.268431+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
    "coverage": "reason",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
+   "reason_type": "access_blocked",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": null
   },
   {
    "pi": "Khai Truong",
@@ -2857,7 +2865,9 @@
    ],
    "verified": true,
    "verified_by": "source_review_2026_11_13",
-   "verification_quote": "Daniel Wigdor"
+   "verification_quote": "Daniel Wigdor",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback."
   },
   {
    "pi": "Richard Zemel",
@@ -3033,9 +3043,9 @@
   },
   {
    "pi": "Chris Beck",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; school_profile https://www.mie.utoronto.ca/mie/faculty/beck: http_301; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.mie.utoronto.ca%2Fmie%2Ffaculty%2Fbeck&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
    "audited_at": "2026-11-13T22:14:59+00:00",
    "checks": [
     {
@@ -3076,10 +3086,21 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.mie.utoronto.ca%2Fmie%2Ffaculty%2Fbeck&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:14:59+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://tidel.mie.utoronto.ca/",
+     "result": "listed",
+     "at": "2026-11-14T00:05:50.086502+00:00",
+     "sha256": "a6ca712d5c877eb26364250425de23fb4902944106519a0101101409fb3ee4c4",
+     "name_quote": "Christopher Beck",
+     "tie_quote": "Toronto Intelligent Decision Engineering Laboratory",
+     "reviewer": "codex-vt-stage89-1113",
+     "on": "https://www.mie.utoronto.ca/faculty_staff/beck/"
     }
    ],
    "places_checked": [
@@ -3087,20 +3108,25 @@
     "school_profile:http_301",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-13T22:14:59+00:00",
+   "checked_at": "2026-11-14T00:05:50.086502+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://tidel.mie.utoronto.ca/",
+   "sha256": "a6ca712d5c877eb26364250425de23fb4902944106519a0101101409fb3ee4c4",
+   "found_via": "school_profile_link",
+   "verified": true,
+   "kind": "lab_site",
+   "official_link_status": "recorded"
   },
   {
    "pi": "Mark Chignell",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; school_profile https://www.mie.utoronto.ca/mie/faculty/chignell: http_301; dblp_person_url https://dblp.org/pid/08/2050: person_not_in_dump_extract; 1 further dated checks retained.",
+   "reason_code": "host_access_blocked",
+   "reason": "University of Toronto BioMC profile links Mark Chignell to the Interactive Media Lab, but the lab host did not resolve from this environment on either HTTP or HTTPS; archive CDX lookup timed out. The inaccessible lab URL is recorded without claiming a captured homepage.",
    "audited_at": "2026-11-13T22:15:02+00:00",
    "checks": [
     {
@@ -3145,6 +3171,27 @@
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.mie.utoronto.ca%2Fmie%2Ffaculty%2Fchignell&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:15:02+00:00",
      "result": "wayback_deferred"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://imedia.mie.utoronto.ca/",
+     "on": "https://biomc.mse.utoronto.ca/members/mark-chignell/",
+     "result": "listed",
+     "at": "2026-11-14T00:09:08.003666+00:00",
+     "sha256": "4b40799ebda3384f8a741be5f024fdbb7f986d679eec43b85968c452b348abf1",
+     "anchor": "Interactive Media Lab"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://imedia.mie.utoronto.ca/",
+     "result": "dns_unreachable",
+     "at": "2026-11-14T00:09:08.003666+00:00"
+    },
+    {
+     "source": "wayback_reviewed",
+     "url": "https://web.archive.org/cdx/search/cdx?url=imedia.mie.utoronto.ca%2F*&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal&collapse=urlkey",
+     "result": "read_timeout",
+     "at": "2026-11-14T00:09:08.003666+00:00"
     }
    ],
    "places_checked": [
@@ -3153,14 +3200,15 @@
     "school_profile:http_301",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-13T22:15:02+00:00",
+   "checked_at": "2026-11-14T00:09:08.003666+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
    "coverage": "reason",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
+   "reason_type": "access_blocked",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": null
   },
   {
    "pi": "Mark Fox",
@@ -3265,7 +3313,9 @@
    ],
    "verified": true,
    "verified_by": "source_review_2026_11_13",
-   "verification_quote": "Mark S. Fox"
+   "verification_quote": "Mark S. Fox",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website."
   },
   {
    "pi": "Brendan Frey",
@@ -3479,7 +3529,9 @@
    ],
    "verified": true,
    "verified_by": "source_review_2026_11_13",
-   "verification_quote": "Michael Gruninger"
+   "verification_quote": "Michael Gruninger",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website."
   },
   {
    "pi": "Hans-Arno Jacobsen",
@@ -3784,9 +3836,9 @@
   },
   {
    "pi": "Kelly Lyons",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; school_profile https://ischool.utoronto.ca/profile/kelly-lyons/: http_404; dblp_person_url https://dblp.org/pid/96/4108: person_not_in_dump_extract; 1 further dated checks retained.",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-13T22:15:26+00:00",
    "checks": [
     {
@@ -3827,10 +3879,20 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fischool.utoronto.ca%2Fprofile%2Fkelly-lyons%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:15:26+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "http://individual.utoronto.ca/klyons/",
+     "result": "listed",
+     "at": "2026-11-14T00:05:50.086502+00:00",
+     "sha256": "da0496f29e1c5b888fa40abf4f1a0eb82f85f28b2d3eca947a96afa33f5f7459",
+     "name_quote": "Kelly Lyons",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
@@ -3839,14 +3901,19 @@
     "school_profile:http_404",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-13T22:15:26+00:00",
+   "checked_at": "2026-11-14T00:05:50.086502+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "http://individual.utoronto.ca/klyons/",
+   "sha256": "da0496f29e1c5b888fa40abf4f1a0eb82f85f28b2d3eca947a96afa33f5f7459",
+   "found_via": "web_search_reviewed",
+   "verified": true,
+   "kind": "pi_homepage_only_no_lab_site",
+   "official_link_status": "recorded"
   },
   {
    "pi": "Alex Mihailidis",
@@ -4441,10 +4508,10 @@
   },
   {
    "pi": "Eric Yu",
-   "status": "none_found",
-   "reason_code": "emeritus_or_admin_no_lab",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; school_profile https://ischool.utoronto.ca/profile/eric-yu/: http_404; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fischool.utoronto.ca%2Fprofile%2Feric-yu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
-   "audited_at": "2026-11-13T22:15:42+00:00",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-13T23:57:18.673454+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4484,25 +4551,67 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fischool.utoronto.ca%2Fprofile%2Feric-yu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:15:42+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.toronto.edu/~eric/",
+     "result": "listed",
+     "at": "2026-11-13T23:57:18.673454+00:00",
+     "sha256": "c4804e1b51d2a2346388b239aa3275d0d199b5ad0a434c436fb5c03b01b92081",
+     "name_quote": "Eric Yu",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
     "department_listing:robots_disallowed",
+    "department_listing:robots_disallowed",
     "school_profile:http_404",
-    "wayback_pending:wayback_deferred"
+    "dblp_person_url:no_dblp_person",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:15:42+00:00",
+   "checked_at": "2026-11-13T23:57:18.673454+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "emeritus appointment, no lab site",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://www.cs.toronto.edu/~eric/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "c4804e1b51d2a2346388b239aa3275d0d199b5ad0a434c436fb5c03b01b92081",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~eric/",
+    "sha256": "c4804e1b51d2a2346388b239aa3275d0d199b5ad0a434c436fb5c03b01b92081",
+    "quote": "Professor Eric Yu - Home Page UofT Home ischool@Toronto Eric Yu Ph.D. Professor Research Interests Creating responsible "
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.toronto.edu/~eric/",
+     "result": "listed",
+     "at": "2026-11-13T23:57:18.673454+00:00",
+     "sha256": "c4804e1b51d2a2346388b239aa3275d0d199b5ad0a434c436fb5c03b01b92081",
+     "name_quote": "Eric Yu",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Eric Yu"
   },
   {
    "pi": "Zhaolei Zhang",
@@ -5466,10 +5575,10 @@
   },
   {
    "pi": "Scott Sanner",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; school_profile https://www.mie.utoronto.ca/mie/faculty/sanner: http_301; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.mie.utoronto.ca%2Fmie%2Ffaculty%2Fsanner&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
-   "audited_at": "2026-11-13T22:16:26+00:00",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-13T23:57:18.673454+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5509,25 +5618,67 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.mie.utoronto.ca%2Fmie%2Ffaculty%2Fsanner&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:16:26+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://d3m.mie.utoronto.ca/",
+     "on": "https://www.mie.utoronto.ca/faculty_staff/sanner/",
+     "source_sha256": "a0efe6ef85b27bb7c7b8f1b6f63247b817b5e1de4d5c3d03574e817638e7eeb0",
+     "anchor": "Data-Driven Decision Making Lab (D3M)",
+     "href": "http://d3m.mie.utoronto.ca/",
+     "at": "2026-11-13T23:57:18.673454+00:00",
+     "result": "listed"
     }
    ],
    "places_checked": [
     "department_listing:robots_disallowed",
+    "department_listing:robots_disallowed",
     "school_profile:http_301",
-    "wayback_pending:wayback_deferred"
+    "dblp_person_url:no_dblp_person",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-13T22:16:26+00:00",
+   "checked_at": "2026-11-13T23:57:18.673454+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://d3m.mie.utoronto.ca/",
+   "kind": "lab_site",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://www.mie.utoronto.ca/faculty_staff/sanner/",
+   "sha256": "cadb380dba484a1276a0da6f68dcd7a6a1c858575ff94038191fae0d054ca1db",
+   "evidence": {
+    "url": "https://d3m.mie.utoronto.ca/",
+    "sha256": "cadb380dba484a1276a0da6f68dcd7a6a1c858575ff94038191fae0d054ca1db",
+    "quote": "Data-Driven Decision Making Lab | Department of Mechanical and Industrial EngineeringData-Driven Decision Making Lab Dat"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://d3m.mie.utoronto.ca/",
+     "on": "https://www.mie.utoronto.ca/faculty_staff/sanner/",
+     "source_sha256": "a0efe6ef85b27bb7c7b8f1b6f63247b817b5e1de4d5c3d03574e817638e7eeb0",
+     "anchor": "Data-Driven Decision Making Lab (D3M)",
+     "href": "http://d3m.mie.utoronto.ca/",
+     "at": "2026-11-13T23:57:18.673454+00:00",
+     "result": "listed"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Scott Sanner"
   },
   {
    "pi": "Ishtiaque Ahmed",
@@ -7226,10 +7377,10 @@
   },
   {
    "pi": "Hannes Rӧst",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; school_profile https://www.moleculargenetics.utoronto.ca/faculty/2017/7/19/hannes-rost: http_301; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.moleculargenetics.utoronto.ca%2Ffaculty%2F2017%2F7%2F19%2Fhannes-rost&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
-   "audited_at": "2026-11-13T22:20:20+00:00",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-13T23:59:04.318113+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7269,25 +7420,67 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.moleculargenetics.utoronto.ca%2Ffaculty%2F2017%2F7%2F19%2Fhannes-rost&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:20:20+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "http://lab.roest.ch/",
+     "result": "listed",
+     "at": "2026-11-13T23:59:04.318113+00:00",
+     "sha256": "ece36c0ead56d307f01539c8f31cbc0992e8dc934494098eedc16aaa634d5509",
+     "name_quote": "Röst Lab",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
     "department_listing:robots_disallowed",
+    "department_listing:robots_disallowed",
     "school_profile:http_301",
-    "wayback_pending:wayback_deferred"
+    "dblp_person_url:no_dblp_person",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:20:20+00:00",
+   "checked_at": "2026-11-13T23:59:04.318113+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "http://lab.roest.ch/",
+   "kind": "lab_site",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "ece36c0ead56d307f01539c8f31cbc0992e8dc934494098eedc16aaa634d5509",
+   "evidence": {
+    "url": "http://lab.roest.ch/",
+    "sha256": "ece36c0ead56d307f01539c8f31cbc0992e8dc934494098eedc16aaa634d5509",
+    "quote": "Röst Lab Home Research Software Publications Lab Members Röst Lab Donnelly Centre, University of Toronto Welcome to the "
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "http://lab.roest.ch/",
+     "result": "listed",
+     "at": "2026-11-13T23:59:04.318113+00:00",
+     "sha256": "ece36c0ead56d307f01539c8f31cbc0992e8dc934494098eedc16aaa634d5509",
+     "name_quote": "Röst Lab",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Röst Lab"
   },
   {
    "pi": "Yu Sun",
@@ -7392,9 +7585,9 @@
   {
    "pi": "William Yu",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; school_profile https://www.math.toronto.edu/cms/people/faculty/yu-yun-william/: http_302; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.math.toronto.edu%2Fcms%2Fpeople%2Ffaculty%2Fyu-yun-william%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
-   "audited_at": "2026-11-13T22:20:25+00:00",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "PI-owned current biography places Yun William Yu at Carnegie Mellon University in Pittsburgh; no eligible Toronto lab/home page established for the historical Toronto appointment.",
+   "audited_at": "2026-11-13T23:59:04.318113+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7438,21 +7631,39 @@
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.math.toronto.edu%2Fcms%2Fpeople%2Ffaculty%2Fyu-yun-william%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:20:25+00:00",
      "result": "wayback_deferred"
+    },
+    {
+     "source": "current_pi_site",
+     "url": "https://yunwilliamyu.net/content/bio.html",
+     "result": "current_other_institution",
+     "at": "2026-11-13T23:59:04.318113+00:00",
+     "sha256": "9de06708b67c5afa03d939c3ef18bce1b5a9a8c39377f816773cf874cedd0a9f",
+     "quote": "Associate Professor in the Ray and Stephanie Lane Computational Biology Department in the Ken"
     }
    ],
    "places_checked": [
     "department_listing:robots_disallowed",
+    "department_listing:robots_disallowed",
     "school_profile:http_302",
-    "wayback_pending:wayback_deferred"
+    "dblp_person_url:no_dblp_person",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "wayback_pending:wayback_deferred",
+    "current_pi_site:current_other_institution"
    ],
-   "checked_at": "2026-11-13T22:20:25+00:00",
+   "checked_at": "2026-11-13T23:59:04.318113+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
    "coverage": "reason",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "reason_type": "other_institution",
+   "reason_scope": "Current other-institution site; does not claim no historical Toronto website existed.",
+   "evidence_gaps": [],
+   "other_institution_evidence": {
+    "url": "https://yunwilliamyu.net/content/bio.html",
+    "sha256": "9de06708b67c5afa03d939c3ef18bce1b5a9a8c39377f816773cf874cedd0a9f",
+    "quote": "Carnegie Mellon University"
+   }
   },
   {
    "pi": "Amir-massoud Farahmand",
@@ -8228,9 +8439,9 @@
   },
   {
    "pi": "Bo Wang",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://web.cs.toronto.edu/people/faculty-directory: robots_disallowed; department_listing https://web.cs.toronto.edu/contact-us/faculty-directory: robots_disallowed; school_profile https://www.lmp.utoronto.ca/faculty/bo-wang: wayback_only_host; dblp_person_url https://dblp.org/pid/72/6811-44: no_homepage_url; 1 further dated checks retained.",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-13T22:20:55+00:00",
    "checks": [
     {
@@ -8270,10 +8481,20 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.lmp.utoronto.ca%2Ffaculty%2Fbo-wang&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:20:55+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://bowang87.github.io/",
+     "result": "listed",
+     "at": "2026-11-14T00:07:58.268431+00:00",
+     "sha256": "c15468ba78d120ef82e688aea4f9dab964b883aa051f7895f0b3516b8792722e",
+     "name_quote": "Bo Wang",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
@@ -8282,14 +8503,19 @@
     "school_profile:wayback_only_host",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-13T22:20:55+00:00",
+   "checked_at": "2026-11-14T00:07:58.268431+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://bowang87.github.io/",
+   "sha256": "c15468ba78d120ef82e688aea4f9dab964b883aa051f7895f0b3516b8792722e",
+   "found_via": "web_search_reviewed",
+   "verified": true,
+   "kind": "pi_homepage_only_no_lab_site",
+   "official_link_status": "recorded"
   },
   {
    "pi": "Nathan Wiebe",
@@ -11766,10 +11992,10 @@
   },
   {
    "pi": "Jeffrey S. Rosenthal",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.statistics.utoronto.ca/people/directories/all-faculty?page=6: wayback_only_host; dblp_person_url https://dblp.org/pid/65/6625: no_homepage_url; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D6&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
-   "audited_at": "2026-11-13T22:24:11+00:00",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-14T00:00:28.352699+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11796,25 +12022,65 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D6&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:24:11+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://probability.ca/jeff/",
+     "result": "listed",
+     "at": "2026-11-14T00:00:28.352699+00:00",
+     "sha256": "3b74f0c53a5380a722d12f4b8a26ca4fe66b2f4b8416c9d3a8935838fea5387f",
+     "name_quote": "Jeffrey S. Rosenthal",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
-    "dblp_person_url:no_homepage_url",
     "department_listing:wayback_only_host",
-    "wayback_pending:wayback_deferred"
+    "dblp_person_url:no_homepage_url",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:24:11+00:00",
+   "checked_at": "2026-11-14T00:00:28.352699+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://probability.ca/jeff/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "3b74f0c53a5380a722d12f4b8a26ca4fe66b2f4b8416c9d3a8935838fea5387f",
+   "evidence": {
+    "url": "https://probability.ca/jeff/",
+    "sha256": "3b74f0c53a5380a722d12f4b8a26ca4fe66b2f4b8416c9d3a8935838fea5387f",
+    "quote": "Jeffrey Rosenthal's Home Page Jeffrey S. Rosenthal Professor of Statistics, University of Toronto Contact Information / "
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://probability.ca/jeff/",
+     "result": "listed",
+     "at": "2026-11-14T00:00:28.352699+00:00",
+     "sha256": "3b74f0c53a5380a722d12f4b8a26ca4fe66b2f4b8416c9d3a8935838fea5387f",
+     "name_quote": "Jeffrey S. Rosenthal",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Jeffrey S. Rosenthal"
   },
   {
    "pi": "Jianwen Zhu",
@@ -12044,10 +12310,10 @@
   },
   {
    "pi": "Linbo Wang",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.statistics.utoronto.ca/people/directories/all-faculty?page=8: wayback_only_host; department_listing https://www.utsc.utoronto.ca/cms/faculty: wayback_only_host; dblp_person_url https://dblp.org/pid/73/10697-3: no_homepage_url; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D8&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred; 1 further dated checks retained.",
-   "audited_at": "2026-11-13T22:24:19+00:00",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-14T00:00:28.352699+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12080,31 +12346,73 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D8&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:24:19+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.utsc.utoronto.ca%2Fcms%2Ffaculty&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:24:19+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://sites.google.com/site/linbowangpku/home",
+     "result": "listed",
+     "at": "2026-11-14T00:00:28.352699+00:00",
+     "sha256": "b794ad38935284bd17eaa6b8b2c09f8e60e6ca923e27b6f2d0de8012c16bc716",
+     "name_quote": "Linbo Wang",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
-    "dblp_person_url:no_homepage_url",
     "department_listing:wayback_only_host",
-    "wayback_pending:wayback_deferred"
+    "department_listing:wayback_only_host",
+    "dblp_person_url:no_homepage_url",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:24:19+00:00",
+   "checked_at": "2026-11-14T00:00:28.352699+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://sites.google.com/site/linbowangpku/home",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "b794ad38935284bd17eaa6b8b2c09f8e60e6ca923e27b6f2d0de8012c16bc716",
+   "evidence": {
+    "url": "https://sites.google.com/site/linbowangpku/home",
+    "sha256": "b794ad38935284bd17eaa6b8b2c09f8e60e6ca923e27b6f2d0de8012c16bc716",
+    "quote": "Linbo Wang Search this site Embedded Files Skip to main content Skip to navigation Linbo Wang HOME PUBLICATIONS TEACHING"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://sites.google.com/site/linbowangpku/home",
+     "result": "listed",
+     "at": "2026-11-14T00:00:28.352699+00:00",
+     "sha256": "b794ad38935284bd17eaa6b8b2c09f8e60e6ca923e27b6f2d0de8012c16bc716",
+     "name_quote": "Linbo Wang",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Linbo Wang"
   },
   {
    "pi": "Mariano P. Consens",
@@ -12203,8 +12511,8 @@
   {
    "pi": "Merve Bodur",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "PI-owned current homepage places Merve Bodur at the University of Edinburgh; no current Toronto lab or PI website was verified.",
    "audited_at": "2026-11-13T22:24:22+00:00",
    "checks": [
     {
@@ -12242,6 +12550,14 @@
      "result": "ok",
      "via": "dblp_person_url",
      "sha256": "166868efdf1d0eb022b3125173fe8725d0d3de56e30409c17e3c68e6baa5c0b6"
+    },
+    {
+     "source": "current_pi_site",
+     "url": "https://mervebodur.github.io/",
+     "result": "current_other_institution",
+     "at": "2026-11-14T00:06:31.291988+00:00",
+     "sha256": "166868efdf1d0eb022b3125173fe8725d0d3de56e30409c17e3c68e6baa5c0b6",
+     "quote": "The University of Edinburgh"
     }
    ],
    "places_checked": [
@@ -12249,29 +12565,24 @@
     "dblp_person_url:listed",
     "department_listing:ok"
    ],
-   "checked_at": "2026-11-13T22:24:22+00:00",
+   "checked_at": "2026-11-14T00:06:31.291988+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "https://mervebodur.github.io/",
-   "kind": "pi_homepage",
    "people_page": null,
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "dblp_person_url",
    "listed_on": null,
-   "sha256": "166868efdf1d0eb022b3125173fe8725d0d3de56e30409c17e3c68e6baa5c0b6",
    "evidence": {
     "url": "https://mervebodur.github.io/",
     "sha256": "166868efdf1d0eb022b3125173fe8725d0d3de56e30409c17e3c68e6baa5c0b6",
     "quote": "About me - Merve Bodur Merve Bodur CV Research Service Recognition Links Merve Bod"
    },
-   "official_link_status": "not_recorded",
    "official_link_evidence": [],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "about me merve bodur you are using an outdated browser please upgrade your browser to improve y"
+   "verification_quote": "about me merve bodur you are using an outdated browser please upgrade your browser to improve y",
+   "reason_type": "other_institution"
   },
   {
    "pi": "Mireille E. Broucke",
@@ -12363,10 +12674,10 @@
   },
   {
    "pi": "Parham Aarabi",
-   "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.ece.utoronto.ca/wp-json/wp/v2/people?per_page=100&page=2&_fields=title,link,class_list: ok; dblp_person_url https://dblp.org/pid/a/ParhamAarabi: listed; candidate_site http://www.ecf.toronto.edu/~parham/index2.html: http_404; wayback_pending https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fwww.ecf.toronto.edu%2F~parham%2Findex2.html&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
-   "audited_at": "2026-11-13T22:24:35+00:00",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-13T23:59:04.318113+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12405,26 +12716,66 @@
      "sha256": "80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fwww.ecf.toronto.edu%2F~parham%2Findex2.html&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:24:35+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "http://parham.ai/",
+     "result": "listed",
+     "at": "2026-11-13T23:59:04.318113+00:00",
+     "sha256": "818d92b724ca0317456ddc484ff5deba95405de0fb2f7704214e08b42623ec2a",
+     "name_quote": "Parham Aarabi",
+     "tie_quote": "Prof @ UofT",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
-    "candidate_site:http_404",
-    "dblp_person_url:listed",
     "department_listing:ok",
-    "wayback_pending:wayback_deferred"
+    "dblp_person_url:listed",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "candidate_site:http_404",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:24:35+00:00",
+   "checked_at": "2026-11-13T23:59:04.318113+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "http://parham.ai/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "818d92b724ca0317456ddc484ff5deba95405de0fb2f7704214e08b42623ec2a",
+   "evidence": {
+    "url": "http://parham.ai/",
+    "sha256": "818d92b724ca0317456ddc484ff5deba95405de0fb2f7704214e08b42623ec2a",
+    "quote": "Parham Aarabi Parham Aarabi Dad\n... Stanford EE Ph.D.\n... Twitter ... LinkedIn ... Founder @ PRE ... Prof @ UofT Applied"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "http://parham.ai/",
+     "result": "listed",
+     "at": "2026-11-13T23:59:04.318113+00:00",
+     "sha256": "818d92b724ca0317456ddc484ff5deba95405de0fb2f7704214e08b42623ec2a",
+     "name_quote": "Parham Aarabi",
+     "tie_quote": "Prof @ UofT",
+     "reviewer": "codex-vt-stage89-1113"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Parham Aarabi"
   },
   {
    "pi": "Rhonda N. McEwen",
@@ -12869,10 +13220,10 @@
   },
   {
    "pi": "Wei Yu",
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.ece.utoronto.ca/wp-json/wp/v2/people?per_page=100&page=1&_fields=title,link,class_list: ok; school_profile https://www.ece.utoronto.ca/people/yu-w/: ok; school_profile_link http://www.comm.utoronto.ca/~weiyu/: listed; dblp_person_url https://dblp.org/pid/82/2790-1: listed; 3 further dated checks retained.",
-   "audited_at": "2026-11-13T22:25:52+00:00",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-13T23:57:18.673454+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12933,35 +13284,75 @@
      "via": "dblp_person_url"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fwww.comm.utoronto.ca%2F~weiyu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:25:52+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.comm.toronto.edu/~weiyu/",
+     "result": "listed",
+     "at": "2026-11-13T23:57:18.673454+00:00",
+     "sha256": "c75ae6efd3eaa958b46c836583c952bd74da0953dc8b1b10f1582460c7cf459c",
+     "name_quote": "Wei Yu",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
-    "candidate_site:http_302",
-    "candidate_site:robots_disallowed",
-    "dblp_person_url:listed",
     "department_listing:ok",
     "school_profile:ok",
     "school_profile_link:listed",
-    "wayback_pending:wayback_deferred"
+    "dblp_person_url:listed",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "candidate_site:http_302",
+    "candidate_site:robots_disallowed",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:25:52+00:00",
+   "checked_at": "2026-11-13T23:57:18.673454+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://www.comm.toronto.edu/~weiyu/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "c75ae6efd3eaa958b46c836583c952bd74da0953dc8b1b10f1582460c7cf459c",
+   "evidence": {
+    "url": "https://www.comm.toronto.edu/~weiyu/",
+    "sha256": "c75ae6efd3eaa958b46c836583c952bd74da0953dc8b1b10f1582460c7cf459c",
+    "quote": "Wei Yu Wei Yu Electrical\r\n    and Computer Engineering Department University of Toronto Office:\r\n    Bahen Centre, Room "
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.comm.toronto.edu/~weiyu/",
+     "result": "listed",
+     "at": "2026-11-13T23:57:18.673454+00:00",
+     "sha256": "c75ae6efd3eaa958b46c836583c952bd74da0953dc8b1b10f1582460c7cf459c",
+     "name_quote": "Wei Yu",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Wei Yu"
   },
   {
    "pi": "Xiaofei Shi",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.statistics.utoronto.ca/people/directories/all-faculty?page=6: wayback_only_host; dblp_person_url https://dblp.org/pid/159/1022-4: no_homepage_url; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D6&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-13T22:25:52+00:00",
    "checks": [
     {
@@ -12989,10 +13380,20 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D6&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:25:52+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://xf-shi.github.io/",
+     "result": "listed",
+     "at": "2026-11-14T00:06:31.291988+00:00",
+     "sha256": "3b44482e31fad192c75b7ccc88b8c96ff0d03b0046e808dc3bd50f9067131ef3",
+     "name_quote": "Xiaofei Shi",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
@@ -13000,14 +13401,19 @@
     "department_listing:wayback_only_host",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-13T22:25:52+00:00",
+   "checked_at": "2026-11-14T00:06:31.291988+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://xf-shi.github.io/",
+   "sha256": "3b44482e31fad192c75b7ccc88b8c96ff0d03b0046e808dc3bd50f9067131ef3",
+   "found_via": "web_search_reviewed",
+   "verified": true,
+   "kind": "pi_homepage_only_no_lab_site",
+   "official_link_status": "recorded"
   },
   {
    "pi": "Xilin Liu",
@@ -13203,10 +13609,10 @@
   },
   {
    "pi": "Raviraj Adve",
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.ece.utoronto.ca/wp-json/wp/v2/people?per_page=100&page=2&_fields=title,link,class_list: ok; school_profile https://www.ece.utoronto.ca/people/adve-r/: ok; school_profile_link http://www.comm.utoronto.ca/~rsadve: listed; dblp_person_url https://dblp.org/pid/22/3660: no_homepage_url; 3 further dated checks retained.",
-   "audited_at": "2026-11-13T22:25:56+00:00",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-13T23:59:04.318113+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -13263,29 +13669,69 @@
      "sha256": "add4035964f9c9664ab11ea833c83663f7a100c6a4130cbca53f944e006cb0f0"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fwww.comm.utoronto.ca%2F~rsadve&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:25:56+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.comm.utoronto.ca/~rsadve/",
+     "result": "listed",
+     "at": "2026-11-13T23:59:04.318113+00:00",
+     "sha256": "e3a5d9c496bdb0caef06347e68d7f6ee8a8b6faab216e232d54c631a30dc427c",
+     "name_quote": "Raviraj Adve",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
-    "candidate_site:http_302",
-    "dblp_person_url:no_homepage_url",
     "department_listing:ok",
-    "pi_evidence_url:listed",
     "school_profile:ok",
     "school_profile_link:listed",
-    "wayback_pending:wayback_deferred"
+    "dblp_person_url:no_homepage_url",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "pi_evidence_url:listed",
+    "candidate_site:http_302",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:25:56+00:00",
+   "checked_at": "2026-11-13T23:59:04.318113+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://www.comm.utoronto.ca/~rsadve/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "e3a5d9c496bdb0caef06347e68d7f6ee8a8b6faab216e232d54c631a30dc427c",
+   "evidence": {
+    "url": "https://www.comm.utoronto.ca/~rsadve/",
+    "sha256": "e3a5d9c496bdb0caef06347e68d7f6ee8a8b6faab216e232d54c631a30dc427c",
+    "quote": "Prof. Raviraj Adve Professor Department of Electrical and\r\n  Computer Engineering University of Toronto E-mail address :"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.comm.utoronto.ca/~rsadve/",
+     "result": "listed",
+     "at": "2026-11-13T23:59:04.318113+00:00",
+     "sha256": "e3a5d9c496bdb0caef06347e68d7f6ee8a8b6faab216e232d54c631a30dc427c",
+     "name_quote": "Raviraj Adve",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Raviraj Adve"
   },
   {
    "pi": "Roman Genov",
@@ -13859,10 +14305,10 @@
   },
   {
    "pi": "Sebastian Jaimungal",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.statistics.utoronto.ca/people/directories/all-faculty?page=4: wayback_only_host; dblp_person_url https://dblp.org/pid/48/1593: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-0193-0993/person.json: no_urls; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D4&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
-   "audited_at": "2026-11-13T22:26:05+00:00",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-14T00:00:28.352699+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -13890,26 +14336,65 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D4&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:26:05+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://sebastian.statistics.utoronto.ca/",
+     "result": "listed",
+     "at": "2026-11-14T00:00:28.352699+00:00",
+     "sha256": "9fcf3b7de15c13f8946e17a31ff0c57be9b989118c5c00567e1a51d938f7202a",
+     "name_quote": "Sebastian Jaimungal",
+     "tie_quote": "Department of Statistical Sciences",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
-    "dblp_person_url:no_homepage_url",
     "department_listing:wayback_only_host",
+    "dblp_person_url:no_homepage_url",
     "orcid_researcher_urls:no_urls",
-    "wayback_pending:wayback_deferred"
+    "openalex_author:no_homepage_field_in_schema",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:26:05+00:00",
+   "checked_at": "2026-11-14T00:00:28.352699+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://sebastian.statistics.utoronto.ca/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "9fcf3b7de15c13f8946e17a31ff0c57be9b989118c5c00567e1a51d938f7202a",
+   "evidence": {
+    "url": "https://sebastian.statistics.utoronto.ca/",
+    "sha256": "9fcf3b7de15c13f8946e17a31ff0c57be9b989118c5c00567e1a51d938f7202a",
+    "quote": "Sebastian Jaimungal Skip to main content Sebastian Jaimungal Toggle navigation Home My Team Students & PostDocs Collabor"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://sebastian.statistics.utoronto.ca/",
+     "result": "listed",
+     "at": "2026-11-14T00:00:28.352699+00:00",
+     "sha256": "9fcf3b7de15c13f8946e17a31ff0c57be9b989118c5c00567e1a51d938f7202a",
+     "name_quote": "Sebastian Jaimungal",
+     "tie_quote": "Department of Statistical Sciences",
+     "reviewer": "codex-vt-stage89-1113"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Sebastian Jaimungal"
   },
   {
    "pi": "Beno Benhabib",
@@ -14005,10 +14490,10 @@
   },
   {
    "pi": "Silvana M. Pesenti",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.statistics.utoronto.ca/people/directories/all-faculty?page=5: wayback_only_host; dblp_person_url https://dblp.org/pid/232/6362: no_homepage_url; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D5&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
-   "audited_at": "2026-11-13T22:26:05+00:00",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-14T00:00:28.352699+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -14035,25 +14520,65 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D5&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:26:05+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://pesenti.utstat.utoronto.ca/",
+     "result": "listed",
+     "at": "2026-11-14T00:00:28.352699+00:00",
+     "sha256": "f84e88586e7f7c0b98a52d3698f8c7862d285b86593943edab47af7663d140e8",
+     "name_quote": "Silvana Pesenti",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
-    "dblp_person_url:no_homepage_url",
     "department_listing:wayback_only_host",
-    "wayback_pending:wayback_deferred"
+    "dblp_person_url:no_homepage_url",
+    "orcid_researcher_urls:no_orcid",
+    "openalex_author:no_homepage_field_in_schema",
+    "wayback_reviewed:superseded_by_verified_live_site",
+    "web_search_reviewed:listed"
    ],
-   "checked_at": "2026-11-13T22:26:05+00:00",
+   "checked_at": "2026-11-14T00:00:28.352699+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://pesenti.utstat.utoronto.ca/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "f84e88586e7f7c0b98a52d3698f8c7862d285b86593943edab47af7663d140e8",
+   "evidence": {
+    "url": "https://pesenti.utstat.utoronto.ca/",
+    "sha256": "f84e88586e7f7c0b98a52d3698f8c7862d285b86593943edab47af7663d140e8",
+    "quote": "Silvana Pesenti – Associate Professor Insurance Risk Management, University of Toronto Skip to content Silvana Pesenti A"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://pesenti.utstat.utoronto.ca/",
+     "result": "listed",
+     "at": "2026-11-14T00:00:28.352699+00:00",
+     "sha256": "f84e88586e7f7c0b98a52d3698f8c7862d285b86593943edab47af7663d140e8",
+     "name_quote": "Silvana Pesenti",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
+    }
+   ],
+   "verified": true,
+   "verified_by": "source_review_2026_11_13",
+   "verification_quote": "Silvana Pesenti"
   },
   {
    "pi": "John W. Simpson-Porco",
@@ -14423,9 +14948,9 @@
   },
   {
    "pi": "Samar Sabie",
-   "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://ischool.utoronto.ca/faculty-directory/: ok; school_profile https://ischool.utoronto.ca/faculty-profile/sabie-samar/: ok; school_profile_link https://samarsabie.com/: listed; dblp_person_url https://dblp.org/pid/183/5354: no_homepage_url; 2 further dated checks retained.",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-13T22:26:12+00:00",
    "checks": [
     {
@@ -14477,10 +15002,20 @@
      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fsamarsabie.com%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:26:12+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.samarsabie.com/about/",
+     "result": "listed",
+     "at": "2026-11-14T00:05:50.086502+00:00",
+     "sha256": "39c1a444a95fd3b11d2fee5fc5b24b9a7176d6125e80e3325fa089ee8c3b35b0",
+     "name_quote": "Samar Sabie",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
@@ -14491,14 +15026,19 @@
     "school_profile_link:listed",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-13T22:26:12+00:00",
+   "checked_at": "2026-11-14T00:05:50.086502+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://www.samarsabie.com/about/",
+   "sha256": "39c1a444a95fd3b11d2fee5fc5b24b9a7176d6125e80e3325fa089ee8c3b35b0",
+   "found_via": "web_search_reviewed",
+   "verified": true,
+   "kind": "pi_homepage_only_no_lab_site",
+   "official_link_status": "recorded"
   },
   {
    "pi": "Safwat Hassan",
@@ -14920,8 +15460,8 @@
   {
    "pi": "Aviv Shachak",
    "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://ischool.utoronto.ca/faculty-directory/: ok; school_profile https://ischool.utoronto.ca/faculty-profile/aviv-shachak/: ok; school_profile_link http://ihpme.utoronto.ca/faculty-profile/aviv-shachak: listed; dblp_person_url https://dblp.org/pid/73/1163: no_homepage_url; 2 further dated checks retained.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "Reviewed the current University of Toronto IHPME faculty profile; it lists academic/identity profiles but no PI or lab homepage.",
    "audited_at": "2026-11-13T22:28:11+00:00",
    "checks": [
     {
@@ -14977,6 +15517,14 @@
      "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fihpme.utoronto.ca%2Ffaculty-profile%2Faviv-shachak&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:28:11+00:00",
      "result": "wayback_deferred"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ihpme.utoronto.ca/faculty-profile/aviv-shachak/",
+     "result": "profile_only_no_homepage",
+     "at": "2026-11-14T00:07:58.268431+00:00",
+     "sha256": "c1c64eea7fdab9cdf095ab6516e8403c44f575c6f309381d853419c2698e54a3",
+     "quote": "Aviv Shachak"
     }
    ],
    "places_checked": [
@@ -14987,14 +15535,15 @@
     "school_profile_link:listed",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-13T22:28:11+00:00",
+   "checked_at": "2026-11-14T00:07:58.268431+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
    "coverage": "reason",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
-   "reason_type": "pending_archive",
+   "reason_type": "profile_only",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": null
   },
   {
    "pi": "Nadia Caidi",
@@ -15111,7 +15660,9 @@
    ],
    "verified": true,
    "verified_by": "source_review_2026_11_13",
-   "verification_quote": "Nadia Caidi"
+   "verification_quote": "Nadia Caidi",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback."
   },
   {
    "pi": "Peter W. Lehn",
@@ -15482,9 +16033,9 @@
   },
   {
    "pi": "Michael Evans",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.statistics.utoronto.ca/people/directories/all-faculty?page=2: wayback_only_host; department_listing https://www.utsc.utoronto.ca/cms/faculty: wayback_only_host; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D2&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.utsc.utoronto.ca%2Fcms%2Ffaculty&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-13T22:28:21+00:00",
    "checks": [
     {
@@ -15518,36 +16069,51 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D2&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:28:21+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.utsc.utoronto.ca%2Fcms%2Ffaculty&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:28:21+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://utstat.utoronto.ca/mikevans/openpage.html",
+     "result": "listed",
+     "at": "2026-11-14T00:06:31.291988+00:00",
+     "sha256": "d24e76bab32f14fc6de0f3b8a8bc65fbf9d9ad363c47d5a8ce4374457f516215",
+     "name_quote": "Michael Evans",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
     "department_listing:wayback_only_host",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-13T22:28:21+00:00",
+   "checked_at": "2026-11-14T00:06:31.291988+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://utstat.utoronto.ca/mikevans/openpage.html",
+   "sha256": "d24e76bab32f14fc6de0f3b8a8bc65fbf9d9ad363c47d5a8ce4374457f516215",
+   "found_via": "web_search_reviewed",
+   "verified": true,
+   "kind": "pi_homepage_only_no_lab_site",
+   "official_link_status": "recorded"
   },
   {
    "pi": "Hau-Tieng Wu",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.statistics.utoronto.ca/people/directories/all-faculty?page=7: wayback_only_host; dblp_person_url https://dblp.org/pid/37/9669: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-0253-3156/person.json: listed; candidate_site http://hautiengwu.wordpress.com/home/: http_301; 2 further dated checks retained.",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "PI-owned current homepage places Hau-Tieng Wu at New York University and dates the Toronto appointment through June 2017; current site belongs to the later institution.",
    "audited_at": "2026-11-13T22:28:33+00:00",
    "checks": [
     {
@@ -15598,6 +16164,14 @@
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D7&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:28:33+00:00",
      "result": "wayback_deferred"
+    },
+    {
+     "source": "current_pi_site",
+     "url": "https://hautiengwu.wordpress.com/home/",
+     "result": "current_other_institution",
+     "at": "2026-11-14T00:05:50.086502+00:00",
+     "sha256": "4b443eeaefe9685e62d00709a4e5e53d3751230c6626dea35c35a46fe87f820c",
+     "quote": "New York University"
     }
    ],
    "places_checked": [
@@ -15607,12 +16181,12 @@
     "orcid_researcher_urls:listed",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-13T22:28:33+00:00",
+   "checked_at": "2026-11-14T00:05:50.086502+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
    "coverage": "reason",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
+   "reason_type": "other_institution",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "evidence_gaps": []
   },
@@ -15855,9 +16429,9 @@
   },
   {
    "pi": "Jamie Stafford",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.statistics.utoronto.ca/people/directories/all-faculty?page=7: wayback_only_host; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D7&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-13T22:28:54+00:00",
    "checks": [
     {
@@ -15885,24 +16459,39 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
+     "source": "wayback_reviewed",
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.statistics.utoronto.ca%2Fpeople%2Fdirectories%2Fall-faculty%3Fpage%3D7&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-13T22:28:54+00:00",
-     "result": "wayback_deferred"
+     "result": "superseded_by_verified_live_site"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://utstat.toronto.edu/stafford/",
+     "result": "listed",
+     "at": "2026-11-14T00:06:31.291988+00:00",
+     "sha256": "9f1c6d688a3241ed15a1d098d4cb8972eca7c9ec902748bc3e8ead242c2f7cf9",
+     "name_quote": "Jamie Stafford",
+     "tie_quote": "University of Toronto",
+     "reviewer": "codex-vt-stage89-1113"
     }
    ],
    "places_checked": [
     "department_listing:wayback_only_host",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-13T22:28:54+00:00",
+   "checked_at": "2026-11-14T00:06:31.291988+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://utstat.toronto.edu/stafford/",
+   "sha256": "9f1c6d688a3241ed15a1d098d4cb8972eca7c9ec902748bc3e8ead242c2f7cf9",
+   "found_via": "web_search_reviewed",
+   "verified": true,
+   "kind": "pi_homepage_only_no_lab_site",
+   "official_link_status": "recorded"
   },
   {
    "pi": "Anthony N. Sinclair",
