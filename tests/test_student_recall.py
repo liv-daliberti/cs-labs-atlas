@@ -355,6 +355,25 @@ def test_page_text_reads_utf16_pages():
     assert 'ada lovelace' in R.page_text(raw) and 'Ada Lovelace' in R.page_text_lines(raw)
 
 
+def test_R_STU_32_captured_pdf_supervision_text_is_checked_against_original_bytes():
+    fitz = pytest.importorskip('fitz')
+    doc = fitz.open()
+    page = doc.new_page()
+    page.insert_text((72, 72), 'Doctoral Supervision')
+    page.insert_text((72, 90), 'Ada Lovelace (2025-)')
+    raw = doc.tobytes()
+    doc.close()
+    assert raw.startswith(b'%PDF-')
+    assert 'Doctoral Supervision' in R.page_text_lines(raw)
+    assert 'ada lovelace' in R.page_text(raw)
+    conn = sqlite3.connect(':memory:')
+    conn.execute('create table live (url text, fetched_at text, status int, sha256 text, content_type text, raw_zlib blob, text text)')
+    conn.execute('insert into live values (?,?,?,?,?,?,?)',
+                 ('https://lab.example/cv.pdf', '2026-11-14', 200, hashlib.sha256(raw).hexdigest(),
+                  'application/pdf', zlib.compress(raw), ''))
+    assert R.stored_page(conn, 'https://lab.example/cv.pdf')['sha256'] == hashlib.sha256(raw).hexdigest()
+
+
 def test_page_text_joins_adjacent_inline_spans_in_a_name():
     raw = b'<html><body><span>J</span><span>onas Ballweg</span></body></html>'
     assert 'jonas ballweg' in R.page_text(raw)

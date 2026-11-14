@@ -37,6 +37,7 @@ import random
 import re
 import sqlite3
 import statistics
+import subprocess
 import sys
 import time
 import unicodedata
@@ -541,7 +542,7 @@ def page_text(raw, fold_smallcaps=False):
     """The visible text of a stored page, whitespace-collapsed, accent-folded and lower-cased (a name or quote must be a substring of it).
     fold_smallcaps: a small-caps surname that the page splits after its first letter ('S HEWCHUK') is ALSO available joined ('SHEWCHUK'); the
     original spacing stays in the text, so quotes and names written either way match (R-STU-28)."""
-    s = decode_page(raw)
+    s = page_text_lines(raw) if raw.startswith(b'%PDF-') else decode_page(raw)
     s = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', s)
     # Inline spans can split a single visible name (for example J</span><span>onas).
     # Adjacent spans introduce no visual word boundary, so keep their text joined.
@@ -566,6 +567,13 @@ def decode_page(raw):
 
 def page_text_lines(raw):
     """The visible text of a stored page with line breaks kept at block ends (for a checker to read), links dropped."""
+    if raw.startswith(b'%PDF-'):
+        try:
+            extracted = subprocess.run(['pdftotext', '-layout', '-', '-'], input=raw, capture_output=True,
+                                       timeout=30, check=True).stdout.decode('utf-8', 'replace')
+        except (FileNotFoundError, subprocess.CalledProcessError, subprocess.TimeoutExpired):
+            return ''
+        return '\n'.join(' '.join(line.split()) for line in extracted.splitlines() if line.strip())
     s = decode_page(raw)
     s = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', s)
     s = re.sub(r'(?i)</(p|div|li|tr|h\d|section|ul|table)>|<br\s*/?>', '\n', s)
