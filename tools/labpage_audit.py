@@ -3656,6 +3656,8 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
             rc = min((r['why'] for r in g), key=lambda w: STUDENT_REASON_ORDER.index(w) if w in STUDENT_REASON_ORDER else 99)
         if older_only and rc == 'genuinely_missing' and best.get('why'):
             rc = best['why']
+        if rc == 'genuinely_missing' and best.get('role') == 'postdoc':
+            rc = 'not_a_student'
         miss = dict(name=nm, role=best.get('role'), years=item['years'], quote=best.get('quote'), url=best.get('capture_url') or best['url'],
                     sha256=best['sha256'], reason_code=rc)
         if best.get('head'):
@@ -3713,9 +3715,6 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                        role=best.get('role') if best.get('role') in ROLE_OK else None, role_basis=best.get('role_basis') or 'none',
                        years=years, years_basis=ybasis if years else 'none')
             adds.append(row)
-            if best.get('also'):
-                second = dict(row, role='postdoc', years=best['also']['years'])   # the postdoc stay keeps the row's bases (entry / stated_in_entry)
-                adds.append(second)
     sec['extra_in_build_not_on_page'] = len(bs) - len(matched_build)
     by = collections.Counter(m['reason_code'] for m in sec['missing_from_build'])
     if by.get('genuinely_missing'):
