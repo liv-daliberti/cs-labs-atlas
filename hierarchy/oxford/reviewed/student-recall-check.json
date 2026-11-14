@@ -1,12 +1,12 @@
 {
   "schema": 1,
   "school": "oxford",
-  "drawn_at": "2026-11-14T09:35:18Z",
-  "drawn_by": "codex-oxford-recall-batch5a-1114",
+  "drawn_at": "2026-11-14T16:12:00Z",
+  "drawn_by": "codex-oxford-independent-sampler-1114",
   "seed": 966474609,
   "binds": {
-    "students.json": "351fc92d8638b4bce88acf7a179796512bf9ecaba967e449fc0a427ab568adc5",
-    "pis.json": "4eddde7575ffca6760e774c73423694ea80a6a7806472f524ef66a1c8c58b45d"
+    "students.json": "40586e9dcfe22881a01e81e172220969851920a1d3618fb31b2f5803c0d19c37",
+    "pis.json": "e09c556e78612ae41ea7d223d17881a1b91e4e9435e4f92922bfa2077cdeb410"
   },
   "current_from_year": 2025,
   "sizes": {
@@ -170,36 +170,95 @@
           "name": "Anton Baychkov",
           "section": "current",
           "role": "phd",
-          "exclude": "outside_school"
+          "exclude": "outside_school",
+          "note": "PI group page explicitly labels this current PhD student as at Warwick, not Oxford."
         },
         {
           "name": "Tuva Bardal",
           "section": "current",
           "role": "phd",
-          "exclude": "outside_school"
+          "exclude": "outside_school",
+          "note": "PI group page explicitly labels this current PhD student as at Warwick, not Oxford."
         },
         {
           "name": "Ulrike Schmidt-Kraepelin",
           "section": "alumni",
-          "role": "phd"
+          "role": "phd",
+          "years": [
+            2018,
+            2022
+          ],
+          "exclude": "outside_school",
+          "note": "The PI group page dates this alumni PhD to 2018–2022. Oriel College states Markus Brill joined Oxford in January 2026, after TU Berlin and Warwick appointments: https://www.oriel.ox.ac.uk/people/markus-brill/."
         },
         {
           "name": "Niclas Boehmer",
           "section": "alumni",
-          "role": "phd"
+          "role": "phd",
+          "years": [
+            2019,
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "The PI group page dates this alumni PhD to 2019–2023. Oriel College states Markus Brill joined Oxford in January 2026, after TU Berlin and Warwick appointments: https://www.oriel.ox.ac.uk/people/markus-brill/."
         },
         {
           "name": "Jonas Israel",
           "section": "alumni",
-          "role": "phd"
+          "role": "phd",
+          "years": [
+            2019,
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "The PI group page dates this alumni PhD to 2019–2023. Oriel College states Markus Brill joined Oxford in January 2026, after TU Berlin and Warwick appointments: https://www.oriel.ox.ac.uk/people/markus-brill/."
         },
         {
           "name": "Jannik Peters",
           "section": "alumni",
-          "role": "phd"
+          "role": "phd",
+          "years": [
+            2021,
+            2024
+          ],
+          "exclude": "outside_school",
+          "note": "The PI group page dates this alumni PhD to 2021–2024. Oriel College states Markus Brill joined Oxford in January 2026, after TU Berlin and Warwick appointments: https://www.oriel.ox.ac.uk/people/markus-brill/."
+        },
+        {
+          "name": "Kai Wilker",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2018,
+            2019
+          ],
+          "exclude": "outside_school",
+          "note": "PI group page lists this former student assistant in 2018–2019, before Markus Brill joined Oxford in January 2026 (Oriel College profile)."
+        },
+        {
+          "name": "Dung Thuy Pham",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2019,
+            2021
+          ],
+          "exclude": "outside_school",
+          "note": "PI group page lists this former student assistant in 2019–2021, before Markus Brill joined Oxford in January 2026 (Oriel College profile)."
+        },
+        {
+          "name": "Levi Geiser",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2021,
+            2022
+          ],
+          "exclude": "outside_school",
+          "note": "PI group page lists this former student assistant in 2021–2022, before Markus Brill joined Oxford in January 2026 (Oriel College profile)."
         }
       ],
-      "notes": "PI group page explicitly labels current PhD students at Warwick, so neither is Oxford. Alumni are undated or pre-Oxford and cannot be attributed to Oxford from this page."
+      "notes": "PI group page has two current Warwick PhD students, four dated alumni PhD students and three dated former student assistants from pre-Oxford Berlin/Warwick years; each is source-marked outside Oxford. Current Oxford postdocs Matthias Greger and Roberto-Rafael Maura-Rivero and Oxford research assistant Rohit Vasishta (2025–2026) are omitted from this student-only recall because their listed roles are not students. Oxford appointment began January 2026 per https://www.oriel.ox.ac.uk/people/markus-brill/."
     },
     {
       "pi": "Mike Spivey",
@@ -249,30 +308,226 @@
       "listed": [
         {
           "name": "Soo Yee Lim",
-          "section": "current",
           "role": "phd",
-          "exclude": "outside_school"
+          "section": "current",
+          "years": [
+            2026
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member UBC; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
         },
         {
           "name": "Xuechun Cao",
-          "section": "current",
           "role": "phd",
-          "exclude": "outside_school"
+          "section": "current",
+          "years": [
+            2026
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member UBC; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
         },
         {
           "name": "Cathy Liu",
-          "section": "current",
           "role": "masters",
-          "exclude": "outside_school"
+          "section": "current",
+          "years": [
+            2026
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member UBC; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
         },
         {
           "name": "Robin Matheson",
-          "section": "current",
           "role": "masters",
-          "exclude": "outside_school"
+          "section": "current",
+          "years": [
+            2026
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member UBC; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Kai Komnenovic",
+          "role": "undergrad",
+          "section": "current",
+          "years": [
+            2026
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member UBC; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Haotian Tao",
+          "role": "undergrad",
+          "section": "current",
+          "years": [
+            2026
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member UBC; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Baoxiang Jiang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2025
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member Xi’an Jiaotong University visiting PhD; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Tristan Bilot",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2024
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member Université Paris-Saclay visiting PhD; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Wellison Raul Mariz Santos",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2024
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member UFPE visiting PhD; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Tanya Prasad",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2025
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member UBC MSc; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Nichole Boufford",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member UBC MSc; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Jinyuan Liang",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member UBC MSc; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Haley Li",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member UBC MSc; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Mayank Tiwary",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member UBC MSc; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Bogdan Stelea",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2021
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member Bristol MEng; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Josh Turner",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2021
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member Bristol MEng; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Chetankumar Mistry",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2020
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member Bristol MEng; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Xiaoxiao Wu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2020
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member Bristol MSc; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Yangyang Teng",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2019
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member Bristol MSc; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Lavanya Menon",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2026
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member UBC BSc; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Anastasiia Beheni",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2025
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member Ukrainian Catholic University visiting BSc; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
+        },
+        {
+          "name": "Ziying Shao",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2019
+          ],
+          "exclude": "outside_school",
+          "note": "The PI-owned lab page labels this member Bristol BSc; its Oxford section recruits for 2027 and does not list an Oxford enrolment."
         }
       ],
-      "notes": "PI-owned lab page explicitly labels all listed current student members UBC; Oxford recruitment starts 2027. Prior-school members excluded."
+      "notes": "Transcribed all six current UBC student members and sixteen dated past doctoral, masters and undergraduate students from the PI-owned lab page. Every student has an explicit other-school label on that page. Tristan Bilot is also listed as a current UBC postdoc, but appears once here as a dated prior visiting PhD student. Current UBC postdoc Tristan is not a current student entry. Oxford DPhil recruitment is explicitly for 2027; no Oxford student/member roster is shown."
     },
     {
       "pi": "Ursula Martin",
@@ -358,7 +613,8 @@
         {
           "name": "Xuran Cai",
           "section": "current",
-          "role": "student"
+          "role": "student",
+          "note": "Own profile confirms Oxford–Max Planck joint CS PhD 2025–present supervised by Amir Goharshady: https://louiscaixuran.github.io/."
         },
         {
           "name": "Zhuo Cai",
@@ -387,7 +643,8 @@
         {
           "name": "Pingjiang Li",
           "section": "current",
-          "role": "student"
+          "role": "student",
+          "note": "China Oxford Scholars 2025–26 profile identifies Pingjiang Li as an Oxford Computer Science DPhil student: https://chinaoxford.org/wp-content/uploads/2025/10/2025-CHINA-OXFORD-SCHOLARS-2.pdf."
         },
         {
           "name": "Richard Aimé Magambo",
@@ -417,9 +674,552 @@
           "name": "Danil Zashikhin",
           "section": "current",
           "role": "student"
+        },
+        {
+          "name": "Giovanna Kobus Conrado",
+          "section": "alumni",
+          "role": "phd",
+          "years": [
+            2021,
+            2025
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Giovanna Kobus Conrado as HKUST PhD graduate in 2021–2025; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "S Hitarth",
+          "section": "alumni",
+          "role": "phd",
+          "years": [
+            2021,
+            2025
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels S Hitarth as HKUST PhD graduate in 2021–2025; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Soroush Farokhnia",
+          "section": "alumni",
+          "role": "phd",
+          "years": [
+            2023,
+            2026
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Soroush Farokhnia as HKUST PhD graduate in 2023–2026; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Sergei Novozhilov",
+          "section": "alumni",
+          "role": "phd",
+          "years": [
+            2022,
+            2026
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Sergei Novozhilov as HKUST PhD graduate in 2022–2026; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Togzhan Barakbayeva",
+          "section": "alumni",
+          "role": "phd",
+          "years": [
+            2022,
+            2026
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Togzhan Barakbayeva as HKUST PhD graduate in 2022–2026; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Kerim Kochekov",
+          "section": "alumni",
+          "role": "phd",
+          "years": [
+            2022,
+            2026
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Kerim Kochekov as HKUST PhD graduate in 2022–2026; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Pavel Hudec",
+          "section": "alumni",
+          "role": "phd",
+          "years": [
+            2021,
+            2026
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Pavel Hudec as HKUST PhD graduate in 2021–2026; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Zhaorun Lin",
+          "section": "alumni",
+          "role": "masters",
+          "years": [
+            2023,
+            2025
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Zhaorun Lin as HKUST MPhil graduate in 2023–2025; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Tamzid Morshed Rubab",
+          "section": "alumni",
+          "role": "undergrad",
+          "years": [
+            2022,
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Tamzid Morshed Rubab as HKUST BSc/BEng thesis graduate in 2022–2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Jiayou He",
+          "section": "alumni",
+          "role": "undergrad",
+          "years": [
+            2023,
+            2024
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Jiayou He as HKUST BSc/BEng thesis graduate in 2023–2024; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Kha Nhat Long Nguyen",
+          "section": "alumni",
+          "role": "undergrad",
+          "years": [
+            2023,
+            2024
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Kha Nhat Long Nguyen as HKUST BSc/BEng thesis graduate in 2023–2024; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Tian Shu",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2024,
+            2026
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Tian Shu as HKUST intern in 2024–2026; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Dewan Saadman Hasan",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2024,
+            2025
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Dewan Saadman Hasan as HKUST intern in 2024–2025; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Abdul Rehman",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2024,
+            2025
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Abdul Rehman as HKUST intern in 2024–2025; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Yik Long Tse",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2024,
+            2025
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Yik Long Tse as HKUST intern in 2024–2025; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Hao Wu",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2024
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Hao Wu as CAS intern in 2024; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Tengshun Yang",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2024
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Tengshun Yang as CAS intern in 2024; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Guillermo Gómez",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2023,
+            2024
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Guillermo Gómez as Tecnun University of Navarra intern in 2023–2024; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Juan Pestano",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2023,
+            2024
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Juan Pestano as Tecnun University of Navarra intern in 2023–2024; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Ali Ansari",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Ali Ansari as HKUST undergraduate intern in 2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Kianoush Arshi",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Kianoush Arshi as HKUST undergraduate intern in 2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Mohammad Amin Aryan",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Mohammad Amin Aryan as HKUST undergraduate intern in 2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Mojan Bahadorinejad",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Mojan Bahadorinejad as HKUST undergraduate intern in 2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Tingting Duan",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Tingting Duan as HKUST undergraduate intern in 2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Amirali Ebrahimzadeh",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Amirali Ebrahimzadeh as HKUST undergraduate intern in 2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Karaneh Keypoor",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Karaneh Keypoor as HKUST undergraduate intern in 2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Rishabh Kumar",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Rishabh Kumar as HKUST undergraduate intern in 2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Mahdi Qaempanah",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Mahdi Qaempanah as HKUST undergraduate intern in 2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Abolfazl Soltani",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Abolfazl Soltani as HKUST undergraduate intern in 2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Pouria Fatemi",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2022,
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Pouria Fatemi as HKUST postgraduate intern in 2022–2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Shayan Chashm Jahan",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2022,
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Shayan Chashm Jahan as HKUST undergraduate intern in 2022–2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Mohammad Seyed Javadi",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2022,
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Mohammad Seyed Javadi as HKUST undergraduate intern in 2022–2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Harshit Motwani",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2021,
+            2023
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Harshit Motwani as HKUST postgraduate intern in 2021–2023; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Yun Chen Tsai",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2022
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Yun Chen Tsai as HKUST UROP intern in 2022; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Tien-chun Cheng",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2022
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Tien-chun Cheng as HKUST UROP intern in 2022; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Yi-feng Huang",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2022
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Yi-feng Huang as HKUST UROP intern in 2022; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Zherui Zhu",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2022
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Zherui Zhu as HKUST UROP intern in 2022; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Roodabeh Safavi",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2021,
+            2022
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Roodabeh Safavi as HKUST undergraduate intern in 2021–2022; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Sanzhar Bidaibek",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2021
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Sanzhar Bidaibek as HKUST UROP intern in 2021; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Zhiang Wu",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2021
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Zhiang Wu as HKUST UROP intern in 2021; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Ali Ahmadi",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2021
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Ali Ahmadi as HKUST undergraduate intern in 2021; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Majid Daliri",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2021
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Majid Daliri as HKUST undergraduate intern in 2021; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Mehrdad Karrabi",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2020,
+            2021
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Mehrdad Karrabi as ISTA undergraduate intern in 2020–2021; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Mohammad Mahdavi",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2020
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Mohammad Mahdavi as ISTA undergraduate intern in 2020; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Parsa Mirtaheri",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2020
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Parsa Mirtaheri as ISTA undergraduate intern in 2020; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Ali Asadi",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2019,
+            2020
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Ali Asadi as ISTA undergraduate intern in 2019–2020; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Kiarash Mohammadi",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2019,
+            2020
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Kiarash Mohammadi as ISTA undergraduate intern in 2019–2020; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Ehsan Goharshady",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2019
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Ehsan Goharshady as ISTA undergraduate intern in 2019; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Arash Pourdamghani",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2018,
+            2019
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Arash Pourdamghani as ISTA undergraduate intern in 2018–2019; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Ali Behrouz",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2018
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Ali Behrouz as ISTA undergraduate intern in 2018; no Oxford student enrolment is asserted."
+        },
+        {
+          "name": "Nastaran Okati",
+          "section": "alumni",
+          "role": "student",
+          "years": [
+            2017,
+            2018
+          ],
+          "exclude": "outside_school",
+          "note": "PI-owned ALPACAS alumni page explicitly labels Nastaran Okati as ISTA undergraduate intern in 2017–2018; no Oxford student enrolment is asserted."
         }
       ],
-      "notes": "PI-owned ALPACAS group current postgraduate list; portable group spans former HKUST and current Oxford context. Page does not state each individual Oxford enrollment, so current names require school-attribution review before admission. No alumni on this page. Seven named members verified as students of other institutions from linked profiles or HKUST lab list; excluded with per-row source notes. Remaining ambiguous names retain eligible status until school affiliation is resolved."
+      "notes": "PI-owned portable ALPACAS current postgraduate page and same-host alumni page transcribed. All distinct dated past student graduates and interns on the alumni page are listed; non-Oxford schools are explicit and marked outside_school per person. Current group spans Oxford, HKUST and other institutions. Seven current names have independent non-Oxford evidence; Xuran Cai and Pingjiang Li have affirmative Oxford doctoral evidence; other unexcluded current names remain eligible until school attribution is resolved. Multiple alumni names recur on the current page and are counted once.",
+      "extra_pages": [
+        {
+          "url": "https://amir.goharshady.com/group/alumni",
+          "sha256": "ce4e8141560b1f8883cf856a6bdca2e5578f2096be2cfa0aa06e0daf9d3027b7"
+        }
+      ]
     },
     {
       "pi": "Andrew D. Ker",
@@ -810,58 +1610,73 @@
           "name": "John McFarland",
           "section": "current",
           "role": "phd",
-          "exclude": "outside_school"
+          "exclude": "outside_school",
+          "note": "The PI-owned OSCAR team page explicitly says PhD Student @ NCSU, co-advised by Aydin Aysu (NCSU)."
         },
         {
           "name": "Debpratim Adak",
           "section": "alumni",
           "role": "phd",
-          "exclude": "outside_school"
+          "exclude": "outside_school",
+          "years": [
+            2025
+          ],
+          "note": "NC State dissertation identifies Debpratim Adak as an NC State Computer Engineering PhD with Amro Awad as co-chair: https://repository.lib.ncsu.edu/bitstreams/f7a23e8f-5e7e-466f-9791-c5fabc8d7585/download. OSCAR page dates him 2025, while the repository title page says 2026; affiliation remains NC State."
         },
         {
           "name": "Rahaf Abdullah",
           "section": "alumni",
           "role": "phd",
-          "exclude": "outside_school"
+          "exclude": "outside_school",
+          "years": [
+            2025
+          ],
+          "note": "Rahaf Abdullah’s own profile identifies her as an NC State PhD student co-advised by Amro Awad: https://rahafabdullah.github.io/. OSCAR portable page lists a 2025 graduation."
         },
         {
           "name": "Xijing Han",
           "section": "alumni",
           "role": "phd",
-          "exclude": "outside_school"
+          "exclude": "outside_school",
+          "note": "The OSCAR group page dates this alumnus before Amro Awad joined Oxford in May 2024; Oxford Engineering appointment source: https://eng.ox.ac.uk/news/new-departmental-lecturers-and-associate-professors. Earlier group was at NC State."
         },
         {
           "name": "Kazi Zubair",
           "section": "alumni",
           "role": "phd",
-          "exclude": "outside_school"
+          "exclude": "outside_school",
+          "note": "The OSCAR group page dates this alumnus before Amro Awad joined Oxford in May 2024; Oxford Engineering appointment source: https://eng.ox.ac.uk/news/new-departmental-lecturers-and-associate-professors. Earlier group was at NC State."
         },
         {
           "name": "Vamsee Reddy",
           "section": "alumni",
           "role": "phd",
-          "exclude": "outside_school"
+          "exclude": "outside_school",
+          "note": "The OSCAR group page dates this alumnus before Amro Awad joined Oxford in May 2024; Oxford Engineering appointment source: https://eng.ox.ac.uk/news/new-departmental-lecturers-and-associate-professors. Earlier group was at NC State."
         },
         {
           "name": "Mazen Alwadi",
           "section": "alumni",
           "role": "phd",
-          "exclude": "outside_school"
+          "exclude": "outside_school",
+          "note": "The OSCAR group page dates this alumnus before Amro Awad joined Oxford in May 2024; Oxford Engineering appointment source: https://eng.ox.ac.uk/news/new-departmental-lecturers-and-associate-professors. Earlier group was at NC State."
         },
         {
           "name": "Mao Ye",
           "section": "alumni",
           "role": "phd",
-          "exclude": "outside_school"
+          "exclude": "outside_school",
+          "note": "The OSCAR group page dates this alumnus before Amro Awad joined Oxford in May 2024; Oxford Engineering appointment source: https://eng.ox.ac.uk/news/new-departmental-lecturers-and-associate-professors. Earlier group was at NC State."
         },
         {
           "name": "Shubham Nema",
           "section": "alumni",
           "role": "masters",
-          "exclude": "outside_school"
+          "exclude": "outside_school",
+          "note": "The OSCAR group page dates this alumnus before Amro Awad joined Oxford in May 2024; Oxford Engineering appointment source: https://eng.ox.ac.uk/news/new-departmental-lecturers-and-associate-professors. Earlier group was at NC State."
         }
       ],
-      "notes": "PI-led Oxford OSCAR team page; John McFarland explicitly PhD @ NCSU. Seven alumni PhDs and an MSc on the portable group page lack Oxford affiliation and predate the 2025 Oxford listing; excluded as prior-school/uncertain attribution. Six current DPhil students on Oxford group page; Jason Miller and Alex Lozano explicitly co-supervised by Noa Zilberman."
+      "notes": "PI-led Oxford OSCAR team page: six current Oxford DPhil students; John McFarland is explicitly an NC State PhD. Seven PhD and one MSc alumni are outside Oxford: Debpratim Adak has an NC State dissertation, Rahaf Abdullah an NC State student profile, and the rest graduated before the PI joined Oxford in May 2024. Current and former postdocs, visiting scholars are omitted from the student-only recall."
     },
     {
       "pi": "Edith Elkind",
@@ -1142,12 +1957,12 @@
           "source": "audit students.pages"
         },
         {
-          "url": "https://ora.ox.ac.uk/objects/uuid:3e4b8fd5-10db-47e3-8f25-37d66faee541",
+          "url": "https://sansonegroup.eng.ox.ac.uk/",
           "source": "student row source"
         },
         {
-          "url": "https://eng.ox.ac.uk/people/susanna-assunta-sansone",
-          "source": "pis.json lab.url"
+          "url": "https://ora.ox.ac.uk/objects/uuid:3e4b8fd5-10db-47e3-8f25-37d66faee541",
+          "source": "student row source"
         }
       ],
       "verdict": "readable",
@@ -1293,6 +2108,10 @@
           "source": "audit lab_page.lab_site"
         },
         {
+          "url": "https://www.stats.ox.ac.uk/~teh/group.html",
+          "source": "student row source"
+        },
+        {
           "url": "https://ora.ox.ac.uk/objects/uuid:1df5cc30-75fc-44ca-a8e7-3421d8903e3a",
           "source": "student row source"
         },
@@ -1314,10 +2133,6 @@
         },
         {
           "url": "https://ora.ox.ac.uk/objects/uuid:160d9d9d-c0fe-4fbb-8296-e65cc45dcacd",
-          "source": "student row source"
-        },
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:72ab7d5a-c654-4aae-b47e-7c0095382239",
           "source": "student row source"
         }
       ],
@@ -1431,12 +2246,26 @@
           "section": "current",
           "role": "phd",
           "exclude": "outside_school"
+        },
+        {
+          "name": "Po-Hung Yeh",
+          "section": "current",
+          "role": "student",
+          "exclude": "outside_school",
+          "note": "PI page Singapore AIVP Ruqola Research Group labels Po-Hung Yeh a NTU student."
+        },
+        {
+          "name": "Zhi Zheng",
+          "section": "current",
+          "role": "student",
+          "exclude": "outside_school",
+          "note": "PI page Singapore AIVP Ruqola Research Group labels Zhi Zheng a NUS student."
         }
       ],
-      "notes": "PI-owned Oxford Statistics current group. DPhil members are Oxford; Bálint PhD (German co-supervisors), T. Duy NUS and Alexandre DeepMind-UCL lack Oxford enrollment and are excluded. Undated alumni section omitted from strict current recall."
+      "notes": "PI-owned Oxford Statistics current group. DPhil members are Oxford; Bálint PhD (German co-supervisors), T. Duy NUS and Alexandre DeepMind-UCL lack Oxford enrollment and are excluded. Undated alumni section omitted from strict current recall. Also transcribed Po-Hung Yeh (NTU student) and Zhi Zheng (NUS student) from the same current Singapore group, excluded individually; postdocs on that group page are omitted as nonstudents."
     }
   ],
-  "filled_by": "codex-oxford-sample-review-1114",
+  "filled_by": "codex-oxford-independent-sampler-1114",
   "signoff": {
     "reviewer": "",
     "date": "",
