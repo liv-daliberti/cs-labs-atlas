@@ -27,6 +27,47 @@
    "paper_score": null,
    "result": "students_fail",
    "note": "Rule defect: a project-team page that is not the PI lab roster (other-institution members) passes LP-STU-01. No acceptance is recorded; no addition is wired. Complete enumeration, so no fresh sample exists for this rule version. A fixed rule needs a new draw; papers have no proposed rows to check."
+  },
+  {
+   "round": 2,
+   "date": "2026-11-13",
+   "label": "fresh 20-row review of the 2026-11-13 Toronto lab-page student proposals",
+   "additions_generated_at": "2026-11-13T22:32:07+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 20261113,
+    "membership_errors": 0,
+    "doubtful_count": 0,
+    "role_or_year_errors": 3
+   },
+   "papers": null,
+   "items": {
+    "Sheila McIlraith / Toryn Klassen": "membership and stated role/year supported by captured PI-owned page",
+    "Michael Brudno / Ian Stedman": "membership and stated role/year supported by captured PI-owned page",
+    "Sanja Fidler / Zheng Wu": "role error: page says SJTU undergraduate in Toronto group; R-STU-17 records a student visiting from another institution as visiting",
+    "Alec Jacobson / Nicholas Sharp": "membership and stated role/year supported by captured PI-owned page",
+    "Gururaj Saileshwar / Louis Ryan Tan": "membership supported; Summer 2025 describes an award, so the proposal correctly leaves membership years unresolved",
+    "Michael Brudno / Nicole Sultanum": "membership and stated role/year supported by captured PI-owned page",
+    "Robert Soden / Kim Slater": "membership and stated role/year supported by captured PI-owned page",
+    "Sanja Fidler / Hirotaka Ishihara": "membership and stated role/year supported by captured PI-owned page",
+    "David Lindell / Sherwin Bahmani": "membership and stated role/year supported by captured PI-owned page",
+    "Sanja Fidler / Tom Lee": "year error: captured page says Sept 2011 to March 2016, but proposal extends through 2020",
+    "Michael Brudno / Michael Ho": "membership and stated role/year supported by captured PI-owned page",
+    "Alec Jacobson / Lawson Fulton": "membership and stated role/year supported by captured PI-owned page",
+    "Michael Brudno / Faye Feng": "membership and stated role/year supported by captured PI-owned page",
+    "David Lindell / Dorsa Molaverdikhani": "membership and stated role/year supported by captured PI-owned page",
+    "Sanja Fidler / Bowen Chen": "year error: captured page says Jan 2019 to Sept 2020, but proposal gives only 2019",
+    "David Lindell / Zixin Guo": "membership and stated role/year supported by captured PI-owned page",
+    "Fanny Chevalier / Claudia Chen": "membership and stated role/year supported by captured PI-owned page",
+    "Michael Brudno / Devin Singh": "membership and stated role/year supported by captured PI-owned page",
+    "Fanny Chevalier / Minfan Zhang": "membership and stated role/year supported by captured PI-owned page",
+    "Robert Soden / Nicole Gordon": "membership and stated role/year supported by captured PI-owned page"
+   },
+   "membership_score": 0,
+   "role_year_errors": 3,
+   "paper_score": null,
+   "result": "fail",
+   "note": "One visiting-role error and two clear year-range errors exceed the bar of two role/year errors. Keep all proposals unaccepted; fix extraction and draw a new seed for round 3."
   }
  ]
 }
