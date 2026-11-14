@@ -248,6 +248,11 @@ def link_students(ctx):
             continue
         done_ = set(); linked_by_collection = {}
         for sid, s in S.items():
+            # A postdoc may coauthor the PI's paper and have a dated lab
+            # membership record, but that does not make this a student link.
+            # Keep a separate recorded student role when one exists.
+            if 'postdoc' in (s.get('roles') or []) and not student_role_ok(s):
+                continue
             l = next((l for l in pls[sid] if r['work'] and l['work'] == r['work']), None)
             if l:
                 done_.add(sid); linked_by_collection[sid] = True

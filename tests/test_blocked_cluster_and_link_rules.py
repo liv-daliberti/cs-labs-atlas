@@ -69,7 +69,7 @@ def test_R_STU_19_B_the_pi_is_among_the_advisers():
 def test_R_STU_19_B_applies_to_the_within_lab_route():
     import inspect
     src = inspect.getsource(links.link_students)
-    assert src.count('student_role_ok(') == 2 and src.count('pi_is_adviser(') == 2   # full-name route and within-lab route
+    assert src.count('student_role_ok(') == 3 and src.count('pi_is_adviser(') == 2   # postdoc guard, full-name and within-lab routes
 
 
 def named(roles, quote, name):
