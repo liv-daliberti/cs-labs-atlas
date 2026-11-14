@@ -97,13 +97,14 @@
  "Mike Spivey": {
   "students": {
    "code": "sources_exhausted",
-   "why": "No student of this PI in any allowed source checked (Associate Professor).",
+   "why": "Oxford Computer Science names Jim Whitehead as Spivey’s Past Student, but Whitehead’s Oxford profile says he left in 2012, outside the 2016–2026 window. Spivey’s current department and Oriel profiles identify him as emeritus and name no in-window doctoral advisee. The bounded ORA thesis crawl has no matching Supervisor record. This remains an evidence-limited zero, not a claim that he never supervised students.",
    "sources_checked": [
-    "lab page: status none_found (no_web_presence_found), no site found; students section: no_lab_page (no_lab_page)",
-    "adviser-bearing student directories: none exist or are archived for this school (checked at stage 6)",
-    "Oxford Research Archive (ORA) DPhil/MSc thesis records read 2026-11-09 (1141 theses reached through OpenAlex dissertation records, parsed for the 'Supervisor' contributor; 114 PIs' students admitted from them): none names this PI as Supervisor (family name and initial). Coverage is limited to theses OpenAlex lists; repository authorship alone is never advising."
+    "https://www.cs.ox.ac.uk/people/michael.spivey/ (checked 2026-11-14; Past Student Jim Whitehead; no dated in-window doctoral student)",
+    "https://www.cs.ox.ac.uk/people/jim.whitehead/ (checked 2026-11-14; leaving date 1 October 2012)",
+    "https://www.oriel.ox.ac.uk/people/michael-spivey/ (checked 2026-11-14; Emeritus Fellow 2024; no named in-window doctoral advisee)",
+    "Oxford Research Archive 2026-11-09 crawl: 1141 DPhil/MSc theses found via local OpenAlex dissertation records; no Supervisor contributor matched Spivey, M. This is bounded by OpenAlex."
    ],
-   "reviewed": "2026-11-10 claude-oxford-apply-1109: lab-page line compared with labpage-audit.jsonl.gz for the PI; thesis line replaced (the charter note \"Pending host and endpoint verification\" was stale: the ORA crawl ran 2026-11-09)"
+   "reviewed": "2026-11-14 codex-oxford-students-1114: checked named past student and his departure date, current Oxford profiles, and bounded ORA supervisor search."
   }
  },
  "Jonathan Whiteley": {
@@ -223,18 +224,6 @@
    "reviewed": "2026-11-10 claude-oxford-apply-1109: lab-page line compared with labpage-audit.jsonl.gz for the PI; thesis line replaced (the charter note \"Pending host and endpoint verification\" was stale: the ORA crawl ran 2026-11-09)"
   }
  },
- "David William Murray": {
-  "students": {
-   "code": "sources_exhausted",
-   "why": "No student of this PI in any allowed source checked (Murray, David Professor).",
-   "sources_checked": [
-    "lab page: status none_found (host_blocked_by_robots), no site found; students section: no_lab_page (no_lab_page)",
-    "adviser-bearing student directories: none exist or are archived for this school (checked at stage 6)",
-    "Oxford Research Archive (ORA) DPhil/MSc thesis records read 2026-11-09 (1141 theses reached through OpenAlex dissertation records, parsed for the 'Supervisor' contributor; 114 PIs' students admitted from them): none names this PI as Supervisor (family name and initial). Coverage is limited to theses OpenAlex lists; repository authorship alone is never advising."
-   ],
-   "reviewed": "2026-11-10 claude-oxford-apply-1109: lab-page line compared with labpage-audit.jsonl.gz for the PI; thesis line replaced (the charter note \"Pending host and endpoint verification\" was stale: the ORA crawl ran 2026-11-09)"
-  }
- },
  "Gil McVean": {
   "students": {
    "code": "sources_exhausted",
@@ -319,18 +308,6 @@
    "reviewed": "2026-11-10 claude-oxford-apply-1109: lab-page line compared with labpage-audit.jsonl.gz for the PI; thesis line replaced (the charter note \"Pending host and endpoint verification\" was stale: the ORA crawl ran 2026-11-09)"
   }
  },
- "Manus Henry": {
-  "students": {
-   "code": "sources_exhausted",
-   "why": "No student of this PI in any allowed source checked (Henry, Manus Professor).",
-   "sources_checked": [
-    "lab page: status none_found (profile_only_no_homepage), no site found; students section: no_lab_page (no_lab_page)",
-    "adviser-bearing student directories: none exist or are archived for this school (checked at stage 6)",
-    "Oxford Research Archive (ORA) DPhil/MSc thesis records read 2026-11-09 (1141 theses reached through OpenAlex dissertation records, parsed for the 'Supervisor' contributor; 114 PIs' students admitted from them): none names this PI as Supervisor (family name and initial). Coverage is limited to theses OpenAlex lists; repository authorship alone is never advising."
-   ],
-   "reviewed": "2026-11-10 claude-oxford-apply-1109: lab-page line compared with labpage-audit.jsonl.gz for the PI; thesis line replaced (the charter note \"Pending host and endpoint verification\" was stale: the ORA crawl ran 2026-11-09)"
-  }
- },
  "Thomas Pasquier": {
   "students": {
    "code": "sources_exhausted",
@@ -386,6 +363,18 @@
     "https://www.cs.ox.ac.uk/research/verification/people.html (checked 2026-11-14): department research-theme roster lists students and Vojtěch separately, without an adviser relationship."
    ],
    "reviewed": "2026-11-14 codex-oxford-students-1114: manually checked named Oxford pages; bounded finding."
+  }
+ },
+ "Ursula Martin": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "The checked Oxford profiles identify Martin as emeritus in Oxford Mathematics and describe her 2014–2018 Oxford Computer Science fellowship, but name no doctoral advisee in the 2016–2026 window. The bounded ORA thesis crawl also found no Supervisor record for her; it covers only theses listed in the local OpenAlex extension. No zero-student claim is made beyond these checked sources.",
+   "sources_checked": [
+    "https://www.hsmt.ox.ac.uk/people/professor-ursula-martin (checked 2026-11-14; Oxford 2014–2018 fellowship and current affiliations; no named advisee)",
+    "https://www.wadham.ox.ac.uk/people/ursula-martin (checked 2026-11-14; Oxford college research biography; no named advisee)",
+    "Oxford Research Archive 2026-11-09 crawl: 1141 DPhil/MSc theses found via local OpenAlex dissertation records; no Supervisor contributor matched Martin, U. This is bounded by OpenAlex and is not proof of no students."
+   ],
+   "reviewed": "2026-11-14 codex-oxford-students-1114: checked two Oxford institutional biographies and bounded ORA supervisor search; Oxford Maths profile was robots-disallowed and not fetched."
   }
  }
 }

@@ -1,18 +1,18 @@
 {
  "schema": 1,
  "school": "oxford",
- "drawn_at": "2026-11-14T07:35:41Z",
+ "drawn_at": "2026-11-14T07:52:29Z",
  "drawn_by": "codex-oxford-students-1114",
- "seed": 2159464779,
+ "seed": 3397383704,
  "binds": {
-  "students.json": "2a9dc47fcf972676dbd18afd515423c952b4450b899d902ce174a732e78a6100",
-  "pis.json": "a5426af4c2c8a7d34b750fe318f0232656ea6c0d11ebca1c3e9063755c2545bb"
+  "students.json": "1530b1c80b208119bcd60457dea42089e9ee3d148551cc604f86eb4795aef42b",
+  "pis.json": "a38660f782d0477fed7903bf71760c4ceb128c1b88d95026c090aa0455ed1790"
  },
  "current_from_year": 2025,
  "sizes": {
-  "0": 15,
-  "1-2": 49,
-  "3+": 112
+  "0": 13,
+  "1-2": 50,
+  "3+": 113
  },
  "picked": {
   "0": 10,
@@ -21,6 +21,21 @@
  },
  "how": "tools/student_recall.py draw: seeded stratified sample by recorded student rows (0 / 1-2 / 3+); the checker fills `verdict`, `page` and `listed`",
  "sample": [
+  {
+   "pi": "Alessandra Cavarra",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Alessandra.Cavarra",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
   {
    "pi": "Christopher Pulte",
    "stratum": "0",
@@ -41,24 +56,16 @@
    "notes": ""
   },
   {
-   "pi": "Gavin Lowe",
+   "pi": "Gareth Tyson",
    "stratum": "0",
    "candidate_urls": [
     {
-     "url": "http://www.cs.ox.ac.uk/gavin.lowe/",
+     "url": "https://tysong.github.io/",
      "source": "audit lab_page.lab_site"
     },
     {
-     "url": "https://web.archive.org/web/20160306214030id_/http://www.cs.ox.ac.uk:80/gavin.lowe/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20210117121745id_/http://www.cs.ox.ac.uk/gavin.lowe/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20250208135504id_/http://www.cs.ox.ac.uk/gavin.lowe/",
-     "source": "audit students.pages"
+     "url": "https://www.cs.ox.ac.uk/people/Gareth.Tyson",
+     "source": "pis.json lab.url"
     }
    ],
    "verdict": null,
@@ -87,11 +94,11 @@
    "notes": ""
   },
   {
-   "pi": "Manus Henry",
+   "pi": "Mahmoud Abo Khamis",
    "stratum": "0",
    "candidate_urls": [
     {
-     "url": "https://eng.ox.ac.uk/people/manus-henry",
+     "url": "https://www.cs.ox.ac.uk/people/Mahmoud.AboKhamis",
      "source": "pis.json lab.url"
     }
    ],
@@ -131,29 +138,6 @@
    "notes": ""
   },
   {
-   "pi": "Misha Sra",
-   "stratum": "0",
-   "candidate_urls": [
-    {
-     "url": "https://sites.cs.ucsb.edu/~sra/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://sites.cs.ucsb.edu/~sra/#people",
-     "source": "audit lab_page.people_page"
-    },
-    {
-     "url": "https://www.cs.ox.ac.uk/people/Misha.Sra",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": null,
-   "unverifiable_reason": null,
-   "page": null,
-   "listed": [],
-   "notes": ""
-  },
-  {
    "pi": "Shan Luo",
    "stratum": "0",
    "candidate_urls": [
@@ -169,16 +153,12 @@
    "notes": ""
   },
   {
-   "pi": "Thomas Pasquier",
+   "pi": "Ursula Martin",
    "stratum": "0",
    "candidate_urls": [
     {
-     "url": "https://tfjmp.org/",
+     "url": "http://www.eecs.qmul.ac.uk/~uhmm/",
      "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://www.cs.ox.ac.uk/people/Thomas.Pasquier",
-     "source": "pis.json lab.url"
     }
    ],
    "verdict": null,
@@ -198,35 +178,16 @@
    "notes": ""
   },
   {
-   "pi": "Alfonso Bueno-Orovio",
+   "pi": "Bill Roscoe",
    "stratum": "1-2",
    "candidate_urls": [
     {
-     "url": "https://soran-ghaderi.github.io/",
+     "url": "https://ora.ox.ac.uk/objects/uuid:f75c782c-a168-49b3-bfed-e2715f027157",
      "source": "student row source"
     },
     {
-     "url": "https://www.cs.ox.ac.uk/people/emma.mcmillian/",
+     "url": "https://ora.ox.ac.uk/objects/uuid:91ef1741-f885-4ead-9cd9-83b7d6a4959b",
      "source": "student row source"
-    },
-    {
-     "url": "https://www.cs.ox.ac.uk/people/Alfonso.Bueno-Orovio",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": null,
-   "unverifiable_reason": null,
-   "page": null,
-   "listed": [],
-   "notes": ""
-  },
-  {
-   "pi": "Andrew D. Ker",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://www.cs.ox.ac.uk/people/Andrew.Ker",
-     "source": "pis.json lab.url"
     }
    ],
    "verdict": null,
@@ -267,15 +228,19 @@
    "notes": ""
   },
   {
-   "pi": "David Kay",
+   "pi": "Dominic O'Brien",
    "stratum": "1-2",
    "candidate_urls": [
     {
-     "url": "https://www.cs.ox.ac.uk/people/david.kay/",
+     "url": "https://ora.ox.ac.uk/objects/uuid:fd7229d8-7db9-4685-9d8c-40dea693215c",
      "source": "student row source"
     },
     {
-     "url": "https://www.cs.ox.ac.uk/people/David.Kay",
+     "url": "https://ora.ox.ac.uk/objects/uuid:2daf2937-c6df-486a-bad1-df281bc18d4c",
+     "source": "student row source"
+    },
+    {
+     "url": "https://eng.ox.ac.uk/people/dominic-obrien",
      "source": "pis.json lab.url"
     }
    ],
@@ -286,23 +251,23 @@
    "notes": ""
   },
   {
-   "pi": "Jakob N. Foerster",
+   "pi": "Elias Koutsoupias",
    "stratum": "1-2",
    "candidate_urls": [
     {
-     "url": "https://www.jakobfoerster.com/",
+     "url": "http://www.cs.ox.ac.uk/people/elias.koutsoupias/Personal/",
      "source": "audit lab_page.lab_site"
     },
     {
-     "url": "https://ora.ox.ac.uk/objects/uuid:e304fc59-08dc-40fc-b36c-8f044dab5319",
+     "url": "https://www.cs.ox.ac.uk/people/alexandros.hollender/",
      "source": "student row source"
     },
     {
-     "url": "https://ora.ox.ac.uk/objects/uuid:0cecf89f-ed93-4f6b-82f1-ef364f00e6e0",
+     "url": "https://www.cs.ox.ac.uk/people/matan.gilboa/",
      "source": "student row source"
     },
     {
-     "url": "https://eng.ox.ac.uk/people/jakob-foerster",
+     "url": "https://www.cs.ox.ac.uk/people/Elias.Koutsoupias",
      "source": "pis.json lab.url"
     }
    ],
@@ -313,15 +278,11 @@
    "notes": ""
   },
   {
-   "pi": "Nicholas Lane",
+   "pi": "Giulio Chiribella",
    "stratum": "1-2",
    "candidate_urls": [
     {
-     "url": "https://ora.ox.ac.uk/objects/uuid:4ebc187e-bbe3-40a6-ae4c-b21337d48e23",
-     "source": "student row source"
-    },
-    {
-     "url": "https://www.cs.ox.ac.uk/people/vivek.kothari/",
+     "url": "https://perimeterinstitute.ca/people/hler-kristjansson",
      "source": "student row source"
     }
    ],
@@ -332,50 +293,181 @@
    "notes": ""
   },
   {
-   "pi": "Sara Bernardini",
+   "pi": "Matt Kusner",
    "stratum": "1-2",
    "candidate_urls": [
     {
-     "url": "https://www.sara-bernardini.com/",
+     "url": "http://mkusner.github.io",
      "source": "audit lab_page.lab_site"
     },
     {
-     "url": "https://www.sara-bernardini.com/publications-1",
+     "url": "http://mkusner.github.io/alumni.html",
+     "source": "audit lab_page.alumni_page"
+    },
+    {
+     "url": "https://web.archive.org/web/20190103134911id_/http://mkusner.github.io:80/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20220121145542id_/https://mkusner.github.io/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20230410054111id_/https://mkusner.github.io/alumni.html",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20240227094920id_/http://mkusner.github.io/alumni.html",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20260203211331id_/http://mkusner.github.io/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://leuchine.github.io/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Matty Hoban",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://www.quantuminformatics-cdt.ac.uk/students/cohort-1/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Matty.Hoban",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Rahul Santhanam",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:6cff43e9-d4e1-44bf-95f3-899a5665d547",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/rohan.acharya/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Rahul.Santhanam",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Stephen Cameron",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.ox.ac.uk/people/victor.spirin/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Stephen Duncan",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:26e56997-1ce0-48a5-b143-f25995c339ef",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:03fea593-0006-4e1e-9633-dbc0166749ec",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Andrew Simpson",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:389973d5-9c96-4905-b412-2514578abf20",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:7ed3d153-ffa8-49db-94fd-44e9d7bf44f2",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:45afebaf-1804-4369-8e57-7c7a6b4edbe1",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Andrew.Simpson",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Dan Olteanu",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.ox.ac.uk/dan.olteanu/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "http://www.cs.ox.ac.uk/dan.olteanu/team.html",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "http://www.cs.ox.ac.uk/dan.olteanu/publications.html",
      "source": "audit lab_page.pubs_page"
     },
     {
-     "url": "https://www.cs.ox.ac.uk/people/christian.hagemeier/",
-     "source": "student row source"
+     "url": "https://web.archive.org/web/20160314092843id_/http://www.cs.ox.ac.uk:80/dan.olteanu/team.html",
+     "source": "audit students.pages"
     },
     {
-     "url": "https://www.cs.ox.ac.uk/people/Sara.Bernardini",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": null,
-   "unverifiable_reason": null,
-   "page": null,
-   "listed": [],
-   "notes": ""
-  },
-  {
-   "pi": "Seth Flaxman",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://sethrf.com/",
-     "source": "audit lab_page.lab_site"
+     "url": "https://web.archive.org/web/20180903211336id_/http://www.cs.ox.ac.uk/dan.olteanu/team.html",
+     "source": "audit students.pages"
     },
     {
-     "url": "https://sethrf.com/papers/",
-     "source": "audit lab_page.pubs_page"
+     "url": "https://web.archive.org/web/20210614060134id_/https://www.cs.ox.ac.uk/dan.olteanu/team.html",
+     "source": "audit students.pages"
     },
     {
-     "url": "https://oxai4science.github.io/members.html",
-     "source": "student row source"
-    },
-    {
-     "url": "https://ora.ox.ac.uk/objects/uuid:0ea06d1a-3c3c-4415-8cbb-3a096a39aa4f",
+     "url": "https://ora.ox.ac.uk/objects/uuid:860ebf12-9094-48a3-a2e8-d0a5cbd9cf1f",
      "source": "student row source"
     }
    ],
@@ -386,144 +478,28 @@
    "notes": ""
   },
   {
-   "pi": "Timothy Denison",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://eng.ox.ac.uk/people/shuangyi-tong",
-     "source": "student row source"
-    }
-   ],
-   "verdict": null,
-   "unverifiable_reason": null,
-   "page": null,
-   "listed": [],
-   "notes": ""
-  },
-  {
-   "pi": "Wesley Armour",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://eng.ox.ac.uk/case-studies/seeing-inside-proteins",
-     "source": "student row source"
-    }
-   ],
-   "verdict": null,
-   "unverifiable_reason": null,
-   "page": null,
-   "listed": [],
-   "notes": ""
-  },
-  {
-   "pi": "Ana Namburete",
+   "pi": "Geoff K. Nicholls",
    "stratum": "3+",
    "candidate_urls": [
     {
-     "url": "https://oxford-omni-lab.github.io/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://oxford-omni-lab.github.io/people/",
+     "url": "https://ora.ox.ac.uk/objects/uuid:16d74802-fe7e-4fad-b5c1-d912570c9ab1",
      "source": "student row source"
     },
     {
-     "url": "https://ora.ox.ac.uk/objects/uuid:5feb7d92-1eca-4f73-9d27-9face3608b5b",
+     "url": "https://ora.ox.ac.uk/objects/uuid:3cf78a54-90cf-485b-97be-40b25500c6ee",
      "source": "student row source"
     },
     {
-     "url": "https://ora.ox.ac.uk/objects/uuid:4cbbcb48-1764-4c96-b058-1485bc049704",
+     "url": "https://ora.ox.ac.uk/objects/uuid:b2f76b4f-3dbb-46db-b78a-50cf5e4177fd",
      "source": "student row source"
     },
     {
-     "url": "https://ora.ox.ac.uk/objects/uuid:d51eb9bc-b36e-476c-8a9f-a48a122a54d4",
+     "url": "https://ora.ox.ac.uk/objects/uuid:9bf632d3-2e1d-4fb8-9405-2e3c206e6531",
      "source": "student row source"
     },
     {
-     "url": "https://www.cs.ox.ac.uk/people/Ana.Namburete",
+     "url": "https://www.stats.ox.ac.uk/people/geoff-nicholls",
      "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": null,
-   "unverifiable_reason": null,
-   "page": null,
-   "listed": [],
-   "notes": ""
-  },
-  {
-   "pi": "Andreas Galanis",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "http://www.cs.ox.ac.uk/people/andreas.galanis/myindex.html",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://ora.ox.ac.uk/objects/uuid:79fca438-c86f-4db1-ac80-f247783c0084",
-     "source": "student row source"
-    },
-    {
-     "url": "https://ora.ox.ac.uk/objects/uuid:98eb5ca3-18f9-463f-aa6e-dfd4eaf74875",
-     "source": "student row source"
-    },
-    {
-     "url": "https://www.cs.ox.ac.uk/people/kuan.yang/",
-     "source": "student row source"
-    },
-    {
-     "url": "https://www.cs.ox.ac.uk/people/paulina.smolarova/",
-     "source": "student row source"
-    },
-    {
-     "url": "https://www.cs.ox.ac.uk/people/xandru.mifsud/",
-     "source": "student row source"
-    },
-    {
-     "url": "https://www.cs.ox.ac.uk/people/Andreas.Galanis",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": null,
-   "unverifiable_reason": null,
-   "page": null,
-   "listed": [],
-   "notes": ""
-  },
-  {
-   "pi": "Bernardo Cuenca Grau",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://ora.ox.ac.uk/objects/uuid:29dfd4c3-dd5b-46e7-8414-58c3d5c11d24",
-     "source": "student row source"
-    },
-    {
-     "url": "https://ora.ox.ac.uk/objects/uuid:18df85f7-1b7f-47fa-8ac5-08cfa0c9a438",
-     "source": "student row source"
-    },
-    {
-     "url": "https://ora.ox.ac.uk/objects/uuid:474dbe20-b02c-4bb8-a9fc-d3d6e5b52b15",
-     "source": "student row source"
-    },
-    {
-     "url": "https://ora.ox.ac.uk/objects/uuid:3a7e1f55-b03b-4ccf-9474-e8d035869c7f",
-     "source": "student row source"
-    },
-    {
-     "url": "https://ora.ox.ac.uk/objects/uuid:e9a2c06d-79ce-4652-b561-91dd56acee4f",
-     "source": "student row source"
-    },
-    {
-     "url": "https://ora.ox.ac.uk/objects/uuid:e111a446-5097-4e60-9961-e91d901b1269",
-     "source": "student row source"
-    },
-    {
-     "url": "https://ora.ox.ac.uk/objects/uuid:2f6da419-5335-4f26-b454-abaa0dc69969",
-     "source": "student row source"
-    },
-    {
-     "url": "https://www.cs.ox.ac.uk/people/elle.yang/",
-     "source": "student row source"
     }
    ],
    "verdict": null,
@@ -576,6 +552,37 @@
    "notes": ""
   },
   {
+   "pi": "Ivan Flechais",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:273087aa-8111-44d7-8496-1ce641319aa6",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/jessica.phelan/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/sarah.alromaih/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/yara.alsiyat/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Ivan.Flechais",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
    "pi": "Jeremy Gibbons",
    "stratum": "3+",
    "candidate_urls": [
@@ -619,31 +626,97 @@
    "notes": ""
   },
   {
-   "pi": "Marina Jirotka",
+   "pi": "Joss Wright",
    "stratum": "3+",
    "candidate_urls": [
     {
-     "url": "https://ora.ox.ac.uk/objects/uuid:adab8615-0041-45b9-ab29-f2f54fa9181e",
+     "url": "https://www.oii.ox.ac.uk/people/profiles/joss-wright/",
      "source": "student row source"
     },
     {
-     "url": "https://ora.ox.ac.uk/objects/uuid:273087aa-8111-44d7-8496-1ce641319aa6",
+     "url": "https://ora.ox.ac.uk/objects/uuid:f7752fec-2e48-467e-8793-cd2deb6fcc2e",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Maurice Fallon",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://ori.ox.ac.uk/ori-people/maurice-fallon/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:36d49605-784d-448c-8a2d-0a45784ae4a3",
      "source": "student row source"
     },
     {
-     "url": "https://www.cs.ox.ac.uk/people/benjamin.hardin/",
+     "url": "https://ora.ox.ac.uk/objects/uuid:c3967bc2-ef89-4dca-999e-ceccc43f4d44",
      "source": "student row source"
     },
     {
-     "url": "https://www.cs.ox.ac.uk/people/jumana.baghabrah/",
+     "url": "https://ora.ox.ac.uk/objects/uuid:0bea8bec-f756-49ce-9cf3-114a96896c78",
      "source": "student row source"
     },
     {
-     "url": "https://www.cs.ox.ac.uk/people/sumaya.adan/",
+     "url": "https://ora.ox.ac.uk/objects/uuid:cc933f71-fbac-41a4-8166-04eed1283d80",
      "source": "student row source"
     },
     {
-     "url": "https://www.cs.ox.ac.uk/people/Marina.Jirotka",
+     "url": "https://ora.ox.ac.uk/objects/uuid:f9bc48fe-ca68-4955-9445-de6a2a8605d2",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:9523f8f6-2b5e-4c66-bd54-94409cbd8f11",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:1b87f0e8-4d24-41cb-819f-9c7baf9dab56",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Paul Goldberg",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "http://www.cs.ox.ac.uk/people/paul.goldberg/index1.html",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://ora.ox.ac.uk/objects/uuid:d75096af-8cc9-4f3f-8411-28faab88c1e1",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/alexandros.hollender/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/giannis.tyrovolas/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/matan.gilboa/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/owen.green/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.ox.ac.uk/people/Paul.Goldberg",
      "source": "pis.json lab.url"
     }
    ],
@@ -654,144 +727,27 @@
    "notes": ""
   },
   {
-   "pi": "Mark Cannon",
+   "pi": "Perla Maiolino",
    "stratum": "3+",
    "candidate_urls": [
     {
-     "url": "https://markcannon.github.io/publications",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://markcannon.github.io/publications/#bib-j_103",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://ora.ox.ac.uk/objects/uuid:a52222d4-dbc1-46a2-86f1-c9cfc80bb0bf",
+     "url": "https://ora.ox.ac.uk/objects/uuid:7d374aba-38bf-41bb-b0f9-3747bc915aea",
      "source": "student row source"
     },
     {
-     "url": "https://ora.ox.ac.uk/objects/uuid:9b2e5caa-c39e-429c-b038-d3c53ccc0b8d",
+     "url": "https://ora.ox.ac.uk/objects/uuid:6659904b-dede-4e4d-863d-8ceb0dbaa2eb",
      "source": "student row source"
     },
     {
-     "url": "https://ora.ox.ac.uk/objects/uuid:d490e8db-a59c-4c94-8d14-abca45ec4c71",
+     "url": "https://ora.ox.ac.uk/objects/uuid:d3e26f1d-e18f-4ec9-9ece-1713cd693c18",
      "source": "student row source"
     },
     {
-     "url": "https://eng.ox.ac.uk/people/mark-cannon",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": null,
-   "unverifiable_reason": null,
-   "page": null,
-   "listed": [],
-   "notes": ""
-  },
-  {
-   "pi": "Natalia Ares",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://www.st-annes.ox.ac.uk/cpt_people/ares-dr-natalia",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://web.archive.org/web/20211013131117id_/https://www.st-annes.ox.ac.uk/cpt_people/ares-dr-natalia/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://eng.ox.ac.uk/quantumdevicelab/about-us",
+     "url": "https://ora.ox.ac.uk/objects/uuid:e8aac14e-ab01-4c2a-95da-9edf1ea2c671",
      "source": "student row source"
     },
     {
-     "url": "https://eng.ox.ac.uk/people/natalia-ares",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": null,
-   "unverifiable_reason": null,
-   "page": null,
-   "listed": [],
-   "notes": ""
-  },
-  {
-   "pi": "Sadie Creese",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "http://www.cs.ox.ac.uk/sadie.creese/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://web.archive.org/web/20160310184049id_/http://www.cs.ox.ac.uk:80/sadie.creese/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20210302140243id_/http://www.cs.ox.ac.uk/sadie.creese/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20260614131000id_/https://www.cs.ox.ac.uk/sadie.creese/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://oatml.cs.ox.ac.uk/members/xander_davies/",
-     "source": "student row source"
-    },
-    {
-     "url": "https://www.cs.ox.ac.uk/people/ahmed.salman/",
-     "source": "student row source"
-    },
-    {
-     "url": "https://www.cs.ox.ac.uk/people/nora.alhelal/",
-     "source": "student row source"
-    },
-    {
-     "url": "https://www.cs.ox.ac.uk/people/yara.alsiyat/",
-     "source": "student row source"
-    }
-   ],
-   "verdict": null,
-   "unverifiable_reason": null,
-   "page": null,
-   "listed": [],
-   "notes": ""
-  },
-  {
-   "pi": "Susanna-Assunta Sansone",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://sansonegroup.eng.ox.ac.uk",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://sansonegroup.eng.ox.ac.uk/#people",
-     "source": "audit lab_page.people_page"
-    },
-    {
-     "url": "https://sansonegroup.eng.ox.ac.uk/publications",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://web.archive.org/web/20190717071417id_/https://sansonegroup.eng.ox.ac.uk/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20221130150222id_/https://sansonegroup.eng.ox.ac.uk/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20260310180422id_/https://sansonegroup.eng.ox.ac.uk/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://ora.ox.ac.uk/objects/uuid:3e4b8fd5-10db-47e3-8f25-37d66faee541",
-     "source": "student row source"
-    },
-    {
-     "url": "https://eng.ox.ac.uk/people/susanna-assunta-sansone",
+     "url": "https://eng.ox.ac.uk/people/perla-maiolino",
      "source": "pis.json lab.url"
     }
    ],
