@@ -723,7 +723,10 @@ def src_repository(school, papers, oa, core, offline, n):
 
 def src_labpages(school, papers, n):
     import labpage_channel as lc
-    ev_ok = (F.P.data('labpage-evidence.json', school)).exists() or (F.P.data('labpage-pubs-report.json', school)).exists()
+    # Charter schools can have only the lab-page audit. lc.pi_pages already reads
+    # that audit, so requiring either legacy evidence file discarded real captures.
+    ev_ok = any(F.P.data(name, school).exists() for name in
+                ('labpage-evidence.json', 'labpage-pubs-report.json', 'labpage-audit.jsonl.gz'))
     cap = lc.captures_db(school)
     out = {}
     if not ev_ok or not cap.exists():

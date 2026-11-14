@@ -12,8 +12,31 @@ import evidence_check
 import lab_paper_copies
 import make_release
 import organize_tree
+import unavailable_ledger
 
 SHA = 'a' * 64
+
+
+def test_labpage_check_uses_audit_only_school(tmp_path, monkeypatch):
+    """A charter school's audit and capture store are valid lab-page inputs."""
+    import labpage_channel
+
+    (tmp_path / 'labpage-audit.jsonl.gz').write_bytes(b'audit')
+    capture = tmp_path / 'labpage-audit-captures.sqlite'
+    capture.write_bytes(b'captured')
+    monkeypatch.setattr(unavailable_ledger.F.P, 'data',
+                        lambda name, school=None: tmp_path / name)
+    monkeypatch.setattr(unavailable_ledger, 'RAW', tmp_path)
+    monkeypatch.setattr(labpage_channel, 'captures_db', lambda school: capture)
+    monkeypatch.setattr(labpage_channel, 'pi_pages', lambda school: ({}, {}))
+    monkeypatch.setattr(labpage_channel, 'iter_captures', lambda school: iter(()))
+    monkeypatch.setattr(labpage_channel, 'match_pages', lambda *args: ([], {}))
+    paper = {'key': 'W1', 'r': {'pis': ['P']}}
+    result = unavailable_ledger.src_labpages('vt', [paper], {})
+    assert result['W1']['result'] == 'none'
+    assert result['W1']['detail']['pages'] == 0
+
+
 def utc_now():
     # This file runs near the end of the full suite. A timestamp captured at
     # module import can be more than the ledger's five-minute tolerance old.
