@@ -1,12 +1,12 @@
 {
   "schema": 1,
   "school": "vt",
-  "drawn_at": "2026-11-14T01:16:05Z",
-  "drawn_by": "codex-vt-stage89-1113",
+  "drawn_at": "2026-11-14T03:31:54Z",
+  "drawn_by": "codex-vt10-toronto5-1113",
   "seed": 29943050,
   "binds": {
     "students.json": "970c02257b49c064f48d2c25d28ace82060c1861c165cdf46ccec1487c15b5ee",
-    "pis.json": "f80c167f2d4bd473ff6bce722850b36d3c8a9a93852364fb1b3d68fee975f933"
+    "pis.json": "f1350d5329007adf79a43ea5c028494f2c661dcbd1e6f3a87c421a70071c40aa"
   },
   "current_from_year": 2025,
   "sizes": {
@@ -25,6 +25,14 @@
       "pi": "Alberto Cano",
       "stratum": "0",
       "candidate_urls": [
+        {
+          "url": "https://www.vt.edu/visit.html",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://alumni.vt.edu",
+          "source": "audit lab_page.alumni_page"
+        },
         {
           "url": "https://website.cs.vt.edu/people/faculty/alberto-cano.html",
           "source": "pis.json lab.url"
@@ -86,6 +94,14 @@
       "stratum": "0",
       "candidate_urls": [
         {
+          "url": "https://sashitt2.github.io/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://sashitt2.github.io/publications.html",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
           "url": "https://website.cs.vt.edu/people/faculty/palash-sashittal.html",
           "source": "pis.json lab.url"
         }
@@ -100,6 +116,14 @@
       "pi": "Peng Gao",
       "stratum": "0",
       "candidate_urls": [
+        {
+          "url": "https://people.cs.vt.edu/penggao/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://people.cs.vt.edu/penggao/publication.html",
+          "source": "audit lab_page.pubs_page"
+        },
         {
           "url": "https://website.cs.vt.edu/people/faculty/peng-gao.html",
           "source": "pis.json lab.url"
@@ -116,6 +140,10 @@
       "stratum": "0",
       "candidate_urls": [
         {
+          "url": "https://ryanpmcmahan.com/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
           "url": "https://website.cs.vt.edu/people/faculty/ryan-p-mcmahan.html",
           "source": "pis.json lab.url"
         }
@@ -130,6 +158,14 @@
       "pi": "Shengwei An",
       "stratum": "0",
       "candidate_urls": [
+        {
+          "url": "https://www.vt.edu/visit.html",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://alumni.vt.edu",
+          "source": "audit lab_page.alumni_page"
+        },
         {
           "url": "https://website.cs.vt.edu/people/faculty/shengwei-an.html",
           "source": "pis.json lab.url"
@@ -201,10 +237,6 @@
         {
           "url": "https://website.cs.vt.edu/people/faculty/atul-mantri.html",
           "source": "pis.json lab.url"
-        },
-        {
-          "url": "https://www.atulmantri.com/advising/",
-          "source": "PI advising page; host blocked by robots/challenge"
         }
       ],
       "verdict": "unverifiable",
@@ -232,6 +264,14 @@
       "pi": "Eric Pauley",
       "stratum": "1-2",
       "candidate_urls": [
+        {
+          "url": "https://pauley.me/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://pauley.me/#publications",
+          "source": "audit lab_page.pubs_page"
+        },
         {
           "url": "https://muhamza.com/",
           "source": "student row source"
@@ -270,6 +310,18 @@
       "pi": "Ihudiya Finda Williams",
       "stratum": "1-2",
       "candidate_urls": [
+        {
+          "url": "https://reachlabcs.com",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://reachlabcs.com/?page_id=3548",
+          "source": "audit lab_page.alumni_page"
+        },
+        {
+          "url": "https://reachlabcs.com/?event_listing_type=papers",
+          "source": "audit lab_page.pubs_page"
+        },
         {
           "url": "https://www.reachlabcs.com/",
           "source": "student row source"
@@ -365,6 +417,18 @@
       "stratum": "1-2",
       "candidate_urls": [
         {
+          "url": "https://people.cs.vt.edu/~edwards/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://people.cs.vt.edu/~edwards/#publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://web.archive.org/web/20210427103106id_/https://people.cs.vt.edu/~edwards/",
+          "source": "audit students.pages"
+        },
+        {
           "url": "https://digitaled.cs.vt.edu/people/",
           "source": "student row source"
         },
@@ -397,8 +461,28 @@
       "stratum": "3+",
       "candidate_urls": [
         {
+          "url": "https://people.cs.vt.edu/~shaffer/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
           "url": "https://people.cs.vt.edu/~shaffer/students.html",
-          "source": "student row source"
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://people.cs.vt.edu/~shaffer/papers.html",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://web.archive.org/web/20160116071022id_/http://people.cs.vt.edu:80/~shaffer/students.html",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20210121024046id_/https://people.cs.vt.edu/~shaffer/students.html",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20260612020851id_/https://people.cs.vt.edu/~shaffer/students.html",
+          "source": "audit students.pages"
         },
         {
           "url": "https://digitaled.cs.vt.edu/people/",
@@ -697,6 +781,10 @@
       "stratum": "3+",
       "candidate_urls": [
         {
+          "url": "https://people.cs.vt.edu/~gracanin/home/Home.html",
+          "source": "audit lab_page.lab_site"
+        },
+        {
           "url": "https://people.cs.vt.edu/~gracanin/home/Advising.html",
           "source": "student row source"
         },
@@ -933,8 +1021,16 @@
       "stratum": "3+",
       "candidate_urls": [
         {
+          "url": "https://people.cs.vt.edu/jiamingcui/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
           "url": "https://people.cs.vt.edu/jiamingcui/group.html",
-          "source": "student row source"
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://people.cs.vt.edu/jiamingcui/publications.html",
+          "source": "audit lab_page.pubs_page"
         },
         {
           "url": "https://website.cs.vt.edu/people/faculty/jiaming-cui.html",
@@ -1233,8 +1329,12 @@
       "stratum": "3+",
       "candidate_urls": [
         {
+          "url": "https://people.cs.vt.edu/~heath/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
           "url": "https://people.cs.vt.edu/~heath/students/",
-          "source": "student row source"
+          "source": "audit lab_page.people_page"
         },
         {
           "url": "https://news.vt.edu/articles/2026/01/eng-cs-lenwood-heath-named-emeritus-professor.html?_gl=1*16tyzcy*_gcl_au*MTU1ODg1NjY0MS4xNzY0NjEzMzMzLjM3NDM0MjkzMC4xNzY0NjE0MTY0LjE3NjQ2MTQxNjQ.",
@@ -1602,6 +1702,10 @@
       "stratum": "3+",
       "candidate_urls": [
         {
+          "url": "https://research.cs.vt.edu/zhanglab/index.html",
+          "source": "audit lab_page.lab_site"
+        },
+        {
           "url": "https://people.cs.vt.edu/~bhuang/BertHuangCV.pdf",
           "source": "student row source"
         },
@@ -1856,23 +1960,31 @@
       "stratum": "3+",
       "candidate_urls": [
         {
-          "url": "https://sanghani.cs.vt.edu/people/students/amartya-dutta.html",
-          "source": "student row source"
+          "url": "https://bioinformatics.cs.vt.edu/~murali/",
+          "source": "audit lab_page.lab_site"
         },
         {
           "url": "https://bioinformatics.cs.vt.edu/~murali/group.html",
-          "source": "student row source"
+          "source": "audit lab_page.people_page"
         },
         {
-          "url": "https://web.archive.org/web/20190917015813id_/http://bioinformatics.cs.vt.edu:80/~murali/group.html",
-          "source": "student row source"
+          "url": "https://bioinformatics.cs.vt.edu/~murali/papers",
+          "source": "audit lab_page.pubs_page"
         },
         {
           "url": "https://web.archive.org/web/20161012212526id_/http://bioinformatics.cs.vt.edu:80/~murali/group.html",
-          "source": "student row source"
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20190917015813id_/http://bioinformatics.cs.vt.edu:80/~murali/group.html",
+          "source": "audit students.pages"
         },
         {
           "url": "https://web.archive.org/web/20240725163255id_/http://bioinformatics.cs.vt.edu/~murali/group.html",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://sanghani.cs.vt.edu/people/students/amartya-dutta.html",
           "source": "student row source"
         },
         {
@@ -2423,7 +2535,11 @@
       "candidate_urls": [
         {
           "url": "https://tuvllms.github.io",
-          "source": "student row source"
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://tuvllms.github.io/publications/",
+          "source": "audit lab_page.pubs_page"
         },
         {
           "url": "https://website.cs.vt.edu/people/faculty/tu-vu.html",
@@ -2596,6 +2712,10 @@
       "pi": "Wu-chun Feng",
       "stratum": "3+",
       "candidate_urls": [
+        {
+          "url": "https://people.cs.vt.edu/~feng/index.php",
+          "source": "audit lab_page.lab_site"
+        },
         {
           "url": "https://synergy.cs.vt.edu/people.php",
           "source": "student row source"
@@ -3027,10 +3147,10 @@
       "notes": "Complete current and dated PhD/MS/BS alumni sections; 21 listed names match the derived package."
     }
   ],
-  "filled_by": "codex-vt-stage89-1113",
+  "filled_by": "codex-vt10-toronto5-1113",
   "signoff": {
     "reviewer": "codex-vt-recall-independent-reviewer-1113",
     "date": "2026-11-14",
-    "note": "Independently verified that the same-seed picked PIs and all 30 filled sample rows are byte-for-byte equivalent as JSON to my prior signed review. The new students.json and pis.json bindings match both the VT worktree and main derived inputs. Prior captured-page and exclusion review therefore applies unchanged to this rebound record."
+    "note": "Independent Stage 6 review: the same 30 PIs, verdicts, captured page hashes, listed names, exclusions, and notes match my previously accepted VT sample. The regenerated candidate URLs add audit routes but do not alter the reviewed evidence. A read-only evaluator against main derived students.json, pis.json, and stored source captures confirmed the current bindings and found only the pending signoff before this signature."
   }
 }

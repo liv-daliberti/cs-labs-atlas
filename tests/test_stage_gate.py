@@ -281,6 +281,21 @@ def test_gate3_flags_a_build_older_than_the_reviewed_inputs(tree, monkeypatch):
     assert not any('stale build' in x for x in G.g3('u')[0])
 
 
+def test_gate3_accepts_a_bound_website_register_after_an_unchanged_pi_rebuild(tree, monkeypatch):
+    import os
+    import lab_websites
+    monkeypatch.setattr(G, 'pis_of', lambda key: [{'name': 'Ann', 'pi_basis': {'url': 'u', 'sha256': 's', 'quote': 'q'}}])
+    monkeypatch.setattr(lab_websites, 'gate', lambda *a, **kw: [])
+    tree.put('pis.json', [{'pi': 'Ann'}])
+    tree.put('lab-websites.json', {'pi_keys': ['Ann'], 'labs': [{'pi': 'Ann'}]})
+    reg = tree.root / 'u' / 'lab-websites.json'
+    pis = tree.root / 'u' / 'pis.json'
+    os.utime(reg, (100, 100)); os.utime(pis, (200, 200))
+    assert not any('website register' in x for x in G.g3('u')[0])
+    tree.put('lab-websites.json', {'pi_keys': ['Bo'], 'labs': [{'pi': 'Bo'}]})
+    assert any('website register PI keys differ' in x for x in G.g3('u')[0])
+
+
 def test_a_step_is_stale_when_its_input_is_newer_than_its_output(tree):
     """R12: the stage-7 build is not done when pi-works rewrote its input after pis.json was built."""
     import os

@@ -262,6 +262,8 @@ def audit(school, *, include_link_diagnosis=True, hierarchy=None):
                 reason = 'stated student/lab start 2025 or later: no time to publish yet'
             elif ys and not any(pyears.get(y) for y in range(min(ys) - 1, max(ys) + 4)):
                 reason = "no lab paper in the student's years"
+            elif roles and roles <= {'postdoc'}:
+                reason = 'postdoc is a lab member, not a student-paper advisee'
             elif roles and roles <= {'undergraduate', 'masters', 'visiting', 'intern'}:
                 reason = 'non-PhD advisee (' + '/'.join(sorted(roles)) + '): thesis-only is normal'
             dg = diag.get(f'{name} | {sid}') or {}

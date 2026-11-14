@@ -207,7 +207,7 @@ def build(school, refresh=False):
         recs = refresh_records(school, recs)
     labs = [entry(recs[p]) if p in recs else dict(pi=p, status='unaudited', coverage='pending',
             evidence_gaps=['audit_record_missing']) for p in pis]
-    return dict(school=school, tool='tools/lab_websites.py', source='labpage-audit.jsonl.gz',
+    return dict(school=school, tool='tools/lab_websites.py', source='labpage-audit.jsonl.gz', pi_keys=sorted(pis),
                 source_exists=audit.exists(), refreshed_from_cached_discovery=refresh, review_status='generated; student admissions require separate review', labs=labs)
 
 

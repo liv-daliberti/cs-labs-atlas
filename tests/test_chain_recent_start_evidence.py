@@ -47,3 +47,9 @@ def test_chain_audit_keeps_unlinked_established_current_student_open(tmp_path, m
     recent = links('Jane Doe PhD student since 2025')
     assert recent['n_unexplained'] == 0
     assert sum(recent['explained'].values()) == 1
+    postdoc = student('Jane Doe postdoctoral fellow 2024-2026')
+    postdoc['roles'] = ['postdoc']
+    (school / 'students.json').write_text(json.dumps({'Ada Lovelace': [postdoc]}))
+    audited = A.audit('princeton')['checks']['links']
+    assert audited['n_unexplained'] == 0
+    assert audited['explained']['postdoc is a lab member, not a student-paper advisee'] == 1

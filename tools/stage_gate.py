@@ -245,7 +245,10 @@ def g3(key):
     register = Path(P.data('lab-websites.json', key))
     if register.exists():
         website_doc = read(register, {})
-        if pis_f.exists() and register.stat().st_mtime + 1 < pis_f.stat().st_mtime:
+        if website_doc.get('pi_keys') is not None:
+            if website_doc['pi_keys'] != sorted(x['name'] for x in pis_of(key)):
+                bad.append('website register PI keys differ from pis.json (refresh lab_websites.py build)')
+        elif pis_f.exists() and register.stat().st_mtime + 1 < pis_f.stat().st_mtime:
             bad.append('website register is older than pis.json (refresh lab_websites.py build)')
     elif pis_f.exists() and Path(P.data('labpage-audit.jsonl.gz', key)).exists():
         website_doc = lab_websites.build(key)
