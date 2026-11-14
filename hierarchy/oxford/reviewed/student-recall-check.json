@@ -1,12 +1,12 @@
 {
   "schema": 1,
   "school": "oxford",
-  "drawn_at": "2026-11-14T09:26:46Z",
-  "drawn_by": "codex-oxford-recall-redraw-4-1114",
-  "seed": 3406727334,
+  "drawn_at": "2026-11-14T09:35:18Z",
+  "drawn_by": "codex-oxford-recall-batch5a-1114",
+  "seed": 966474609,
   "binds": {
-    "students.json": "7f15bfb7b7dc27c7de972bad5545c354b0bb4e40404eece4600eb893b7ce7277",
-    "pis.json": "efef330321ab58a1bc85cb578781e26233e54df4fe222c84639289516e220ce5"
+    "students.json": "351fc92d8638b4bce88acf7a179796512bf9ecaba967e449fc0a427ab568adc5",
+    "pis.json": "4eddde7575ffca6760e774c73423694ea80a6a7806472f524ef66a1c8c58b45d"
   },
   "current_from_year": 2025,
   "sizes": {
@@ -131,6 +131,21 @@
       "notes": "Prior lab-page audit (2026-11-10) found pi_homepage_only_no_lab_site/no_people_section; checked https://www.cs.ox.ac.uk/people/Hamed.Haddadi; https://haddadi.github.io/about/."
     },
     {
+      "pi": "Mahmoud Abo Khamis",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://www.cs.ox.ac.uk/people/Mahmoud.AboKhamis",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Prior Oxford lab-page audit and supplied PI profile/candidate URLs checked; no PI-specific member roster identified for the 2016-2026 Oxford appointment. Prior lab-page audit (2026-11-10): new_arrival_no_site_yet/no_lab_page. Sources checked: https://www.cs.ox.ac.uk/people/faculty.html; https://www.cs.ox.ac.uk/people/Mahmoud.AboKhamis; https://dblp.org/pid/144/7839."
+    },
+    {
       "pi": "Markus Brill",
       "stratum": "0",
       "candidate_urls": [
@@ -143,11 +158,48 @@
           "source": "pis.json lab.url"
         }
       ],
-      "verdict": "unverifiable",
-      "unverifiable_reason": "no_member_list_page",
-      "page": null,
-      "listed": [],
-      "notes": "PI homepage and official Oxford profile were searched; no member list with Oxford student names was found."
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://markus-brill.de/group.html",
+        "sha256": "5f6907fa50258f326f07a307c414d09382b3b2fedaa96d2671c36aad87e2adfd",
+        "quote": "Members Anton Baychkov"
+      },
+      "listed": [
+        {
+          "name": "Anton Baychkov",
+          "section": "current",
+          "role": "phd",
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Tuva Bardal",
+          "section": "current",
+          "role": "phd",
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Ulrike Schmidt-Kraepelin",
+          "section": "alumni",
+          "role": "phd"
+        },
+        {
+          "name": "Niclas Boehmer",
+          "section": "alumni",
+          "role": "phd"
+        },
+        {
+          "name": "Jonas Israel",
+          "section": "alumni",
+          "role": "phd"
+        },
+        {
+          "name": "Jannik Peters",
+          "section": "alumni",
+          "role": "phd"
+        }
+      ],
+      "notes": "PI group page explicitly labels current PhD students at Warwick, so neither is Oxford. Alumni are undated or pre-Oxford and cannot be attributed to Oxford from this page."
     },
     {
       "pi": "Mike Spivey",
@@ -158,29 +210,6 @@
       "page": null,
       "listed": [],
       "notes": "Prior Oxford lab-page audit and supplied PI profile/candidate URLs checked; no PI-specific member roster identified for the 2016-2026 Oxford appointment. Prior lab-page audit (2026-11-10): no_web_presence_found/no_lab_page. Sources checked: https://www.cs.ox.ac.uk/people/faculty.html; https://dblp.org/pid/s/JMichaelSpivey."
-    },
-    {
-      "pi": "Misha Sra",
-      "stratum": "0",
-      "candidate_urls": [
-        {
-          "url": "https://sites.cs.ucsb.edu/~sra/",
-          "source": "audit lab_page.lab_site"
-        },
-        {
-          "url": "https://sites.cs.ucsb.edu/~sra/#people",
-          "source": "audit lab_page.people_page"
-        },
-        {
-          "url": "https://www.cs.ox.ac.uk/people/Misha.Sra",
-          "source": "pis.json lab.url"
-        }
-      ],
-      "verdict": "unverifiable",
-      "unverifiable_reason": "no_member_list_page",
-      "page": null,
-      "listed": [],
-      "notes": "Oxford PI/engineering profiles and candidate lab sites checked; no PI-owned Oxford student member list found."
     },
     {
       "pi": "Shan Luo",
@@ -198,6 +227,54 @@
       "notes": "Prior Oxford lab-page audit and supplied PI profile/candidate URLs checked; no PI-specific member roster identified for the 2016-2026 Oxford appointment. Prior lab-page audit (2026-11-10): new_arrival_no_site_yet/no_lab_page. Sources checked: https://www.cs.ox.ac.uk/people/faculty.html; https://www.cs.ox.ac.uk/people/Shan.Luo."
     },
     {
+      "pi": "Thomas Pasquier",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://tfjmp.org/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://www.cs.ox.ac.uk/people/Thomas.Pasquier",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://tfjmp.org/lab/",
+        "sha256": "2547be1a4f9ef5c61a541c9e45bcd2175fc754d098ad2957494b95a16c825db4",
+        "quote": "Current members"
+      },
+      "listed": [
+        {
+          "name": "Soo Yee Lim",
+          "section": "current",
+          "role": "phd",
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Xuechun Cao",
+          "section": "current",
+          "role": "phd",
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Cathy Liu",
+          "section": "current",
+          "role": "masters",
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Robin Matheson",
+          "section": "current",
+          "role": "masters",
+          "exclude": "outside_school"
+        }
+      ],
+      "notes": "PI-owned lab page explicitly labels all listed current student members UBC; Oxford recruitment starts 2027. Prior-school members excluded."
+    },
+    {
       "pi": "Ursula Martin",
       "stratum": "0",
       "candidate_urls": [
@@ -213,14 +290,122 @@
       "notes": "Prior Oxford lab-page audit and supplied PI profile/candidate URLs checked; no PI-specific member roster identified for the 2016-2026 Oxford appointment. Prior lab-page audit (2026-11-10): site_at_other_institution/no_lab_page. Sources checked: https://www.cs.ox.ac.uk/people/faculty.html; https://dblp.org/pid/94/5444; https://orcid.org/0000-0002-1908-5927/person.json."
     },
     {
-      "pi": "Vojtěch Forejt",
-      "stratum": "0",
-      "candidate_urls": [],
-      "verdict": "unverifiable",
-      "unverifiable_reason": "no_member_list_page",
-      "page": null,
-      "listed": [],
-      "notes": "Prior Oxford lab-page audit and supplied PI profile/candidate URLs checked; no PI-specific member roster identified for the 2016-2026 Oxford appointment. Prior lab-page audit (2026-11-10): no_web_presence_found/no_lab_page. Sources checked: https://www.cs.ox.ac.uk/people/faculty.html; https://dblp.org/pid/01/2980."
+      "pi": "Amir Goharshady",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://amir.goharshady.com/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://amir.goharshady.com/group",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://amir.goharshady.com/group/alumni",
+          "source": "audit lab_page.alumni_page"
+        },
+        {
+          "url": "https://amir.goharshady.com/publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://web.archive.org/web/20240813013044id_/https://amir.goharshady.com/group",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20241108135051id_/https://amir.goharshady.com/group/alumni",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20250420212833id_/https://amir.goharshady.com/group",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20250910101620id_/https://amir.goharshady.com/group/alumni",
+          "source": "audit students.pages"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://amir.goharshady.com/group",
+        "sha256": "b2964dd9cb6cbbee1e44085a0c82fe28d1c0cbcf24e43c2ac7fc115baf5b1da9",
+        "quote": "Current Postgraduate Students:"
+      },
+      "listed": [
+        {
+          "name": "Mohammed Shawqi Aftab",
+          "section": "current",
+          "role": "student"
+        },
+        {
+          "name": "Alireza Zhian Akhavan",
+          "section": "current",
+          "role": "student"
+        },
+        {
+          "name": "Jonas Ballweg",
+          "section": "current",
+          "role": "student"
+        },
+        {
+          "name": "Xuran Cai",
+          "section": "current",
+          "role": "student"
+        },
+        {
+          "name": "Zhuo Cai",
+          "section": "current",
+          "role": "student"
+        },
+        {
+          "name": "Rodolfo Diana",
+          "section": "current",
+          "role": "student"
+        },
+        {
+          "name": "Hamza Hasan Ellahie",
+          "section": "current",
+          "role": "student"
+        },
+        {
+          "name": "Chun Kit Lam",
+          "section": "current",
+          "role": "student"
+        },
+        {
+          "name": "Pingjiang Li",
+          "section": "current",
+          "role": "student"
+        },
+        {
+          "name": "Richard Aimé Magambo",
+          "section": "current",
+          "role": "student"
+        },
+        {
+          "name": "Aminreza Najafinia",
+          "section": "current",
+          "role": "student"
+        },
+        {
+          "name": "Mohit Sharma",
+          "section": "current",
+          "role": "student"
+        },
+        {
+          "name": "Ahmed Zaher",
+          "section": "current",
+          "role": "student"
+        },
+        {
+          "name": "Danil Zashikhin",
+          "section": "current",
+          "role": "student"
+        }
+      ],
+      "notes": "PI-owned ALPACAS group current postgraduate list; portable group spans former HKUST and current Oxford context. Page does not state each individual Oxford enrollment, so current names require school-attribution review before admission. No alumni on this page."
     },
     {
       "pi": "Andrew D. Ker",
@@ -317,117 +502,15 @@
       "notes": "Official PI profile lists one Current Student with degree unspecified, five undated Past Students; past researcher omitted."
     },
     {
-      "pi": "Bill Roscoe",
+      "pi": "David Kay",
       "stratum": "1-2",
       "candidate_urls": [
         {
-          "url": "https://ora.ox.ac.uk/objects/uuid:f75c782c-a168-49b3-bfed-e2715f027157",
+          "url": "https://www.cs.ox.ac.uk/people/david.kay/",
           "source": "student row source"
         },
         {
-          "url": "https://ora.ox.ac.uk/objects/uuid:91ef1741-f885-4ead-9cd9-83b7d6a4959b",
-          "source": "student row source"
-        }
-      ],
-      "verdict": "unverifiable",
-      "unverifiable_reason": "no_member_list_page",
-      "page": null,
-      "listed": [],
-      "notes": "Only individual thesis records surfaced in candidate URLs; no dated PI-owned group member list or current student section in the prior lab-page audit. Prior lab-page audit (2026-11-10): no_web_presence_found/no_lab_page. Sources checked: https://www.cs.ox.ac.uk/people/faculty.html; https://dblp.org/pid/r/AWRoscoe; https://orcid.org/0000-0001-7557-3901/person.json."
-    },
-    {
-      "pi": "Georg Gottlob",
-      "stratum": "1-2",
-      "candidate_urls": [
-        {
-          "url": "http://www.dbai.tuwien.ac.at/staff/gottlob/",
-          "source": "audit lab_page.lab_site"
-        },
-        {
-          "url": "https://chai.berkeley.edu/people/carlo-attubato/",
-          "source": "student row source"
-        },
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:ce314fc1-4646-44e2-b03e-3f4944839c68",
-          "source": "student row source"
-        }
-      ],
-      "verdict": "readable",
-      "unverifiable_reason": null,
-      "page": {
-        "url": "https://www.cs.ox.ac.uk/people/georg.gottlob/",
-        "sha256": "bc5b88c13746eefe3175dde631bad16489859b9ba31e51b58387bf0ea22bae9f",
-        "quote": "Past Students"
-      },
-      "listed": [
-        {
-          "name": "Carlo Attubato",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Bruno Marnette",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Michael Morak",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Stefano Ortona",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Andrew Sellers",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Stefano Sferrazza",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Evgenij Thorstensen",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Cheng Wang",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Julia Wiedmann",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Lianlong Wu",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Nikola Yolov",
-          "section": "alumni",
-          "role": "student"
-        }
-      ],
-      "notes": "Official Oxford CS PI profile; all Past Students transcribed. No completion dates on this page, so past names remain undated excluded."
-    },
-    {
-      "pi": "Jonathan Whiteley",
-      "stratum": "1-2",
-      "candidate_urls": [
-        {
-          "url": "https://www.cs.ox.ac.uk/people/jonathan.whiteley/",
-          "source": "student row source"
-        },
-        {
-          "url": "https://www.cs.ox.ac.uk/people/Jonathan.Whiteley",
+          "url": "https://www.cs.ox.ac.uk/people/David.Kay",
           "source": "pis.json lab.url"
         }
       ],
@@ -435,147 +518,177 @@
       "unverifiable_reason": "no_member_list_page",
       "page": null,
       "listed": [],
-      "notes": "Official engineering/mathematical biology PI pages checked; no PI-specific current or dated student list found."
+      "notes": "Oxford profile/candidate pages do not expose PI-specific student roster."
     },
     {
-      "pi": "Nando de Freitas",
+      "pi": "Gil McVean",
       "stratum": "1-2",
       "candidate_urls": [
         {
-          "url": "https://ora.ox.ac.uk/objects/uuid:8e29b953-c2c7-4262-a2cb-77a5db8c2aa5",
-          "source": "student row source"
-        }
-      ],
-      "verdict": "readable",
-      "unverifiable_reason": null,
-      "page": {
-        "url": "https://www.cs.ox.ac.uk/people/nando.defreitas/",
-        "sha256": "c72dc1cfb9d67052b3805e7f162e274c2eae62e2fcf82b987838d84b7df71e6a",
-        "quote": "Past Students"
-      },
-      "listed": [
-        {
-          "name": "Yannis Assael",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Misha Denil",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Jakob Foerster",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Aurore Lyon",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Marcin Moczulski",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Brendan Shillingford",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Ziyu Wang",
-          "section": "alumni",
-          "role": "student"
-        }
-      ],
-      "notes": "Official Oxford profile records leaving date 5 April 2017 and seven undated past students; strict date rule excludes undated entries."
-    },
-    {
-      "pi": "Peter Jeavons",
-      "stratum": "1-2",
-      "candidate_urls": [
-        {
-          "url": "http://www.cs.ox.ac.uk/Peter.Jeavons",
-          "source": "audit lab_page.lab_site"
-        },
-        {
-          "url": "https://web.archive.org/web/20160716120534id_/http://www.cs.ox.ac.uk:80/peter.jeavons/",
-          "source": "audit students.pages"
-        },
-        {
-          "url": "https://web.archive.org/web/20210507165649id_/http://www.cs.ox.ac.uk/peter.jeavons/",
-          "source": "audit students.pages"
-        },
-        {
-          "url": "https://web.archive.org/web/20250620080330id_/http://www.cs.ox.ac.uk/peter.jeavons/",
-          "source": "audit students.pages"
-        },
-        {
-          "url": "https://cancerconnector.blogspot.com/2016/",
+          "url": "https://davieslab.github.io/people.html",
           "source": "student row source"
         },
         {
-          "url": "https://www.cs.ox.ac.uk/people/peter.jeavons/",
+          "url": "https://kvg.github.io/",
           "source": "student row source"
-        }
-      ],
-      "verdict": "readable",
-      "unverifiable_reason": null,
-      "page": {
-        "url": "https://www.cs.ox.ac.uk/people/peter.jeavons/",
-        "sha256": "cb6bdac094f2c31c833e99734d25c565580ea79559dafd05b149d0451bd6aea0",
-        "quote": "Past Students"
-      },
-      "listed": [
-        {
-          "name": "Artem Kaznatcheev",
-          "section": "alumni",
-          "role": "student"
         },
         {
-          "name": "Dan Nichol",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Justyna Petke",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "András Salamon",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Evgenij Thorstensen",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Lei Xu",
-          "section": "alumni",
-          "role": "student"
-        }
-      ],
-      "notes": "Official Oxford CS PI profile; all Past Students transcribed. No completion dates on the list, so undated excluded."
-    },
-    {
-      "pi": "Timothy Denison",
-      "stratum": "1-2",
-      "candidate_urls": [
-        {
-          "url": "https://eng.ox.ac.uk/people/shuangyi-tong",
-          "source": "student row source"
+          "url": "https://www.stats.ox.ac.uk/people/professor-gil-mcvean",
+          "source": "pis.json lab.url"
         }
       ],
       "verdict": "unverifiable",
       "unverifiable_reason": "no_member_list_page",
       "page": null,
       "listed": [],
-      "notes": "No PI-specific student member list with attributable names verified in the captured official page. General faculty/group material is insufficient for this sample."
+      "notes": "Official Oxford statistics profile has a Graduate Students heading but only generic Student 1 placeholder, no actual student names; candidate lab pages belong to other PIs."
+    },
+    {
+      "pi": "Jakob N. Foerster",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://www.jakobfoerster.com/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:e304fc59-08dc-40fc-b36c-8f044dab5319",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:0cecf89f-ed93-4f6b-82f1-ef364f00e6e0",
+          "source": "student row source"
+        },
+        {
+          "url": "https://eng.ox.ac.uk/people/jakob-foerster",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Oxford profile/candidate pages do not expose PI-specific student roster."
+    },
+    {
+      "pi": "Manus Henry",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://web.archive.org/web/20250122210333id_/https://ora.ox.ac.uk/objects/uuid:46e897f6-0341-46cd-a496-5b0c907524a6",
+          "source": "student row source"
+        },
+        {
+          "url": "https://eng.ox.ac.uk/people/manus-henry",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Oxford profile/candidate pages do not expose PI-specific student roster."
+    },
+    {
+      "pi": "Matt Kusner",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "http://mkusner.github.io",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "http://mkusner.github.io/alumni.html",
+          "source": "audit lab_page.alumni_page"
+        },
+        {
+          "url": "https://web.archive.org/web/20190103134911id_/http://mkusner.github.io:80/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20220121145542id_/https://mkusner.github.io/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20230410054111id_/https://mkusner.github.io/alumni.html",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20240227094920id_/http://mkusner.github.io/alumni.html",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20260203211331id_/http://mkusner.github.io/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://leuchine.github.io/",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://mkusner.github.io/",
+        "sha256": "c25fe7a81d34430fed7fca7fa35d06b845dd5861f0bac443abee142db3a06c27",
+        "quote": "Current graduate students"
+      },
+      "listed": [
+        {
+          "name": "Limor Gultchin",
+          "section": "other",
+          "role": "student"
+        },
+        {
+          "name": "Qi Liu",
+          "section": "other",
+          "role": "student"
+        },
+        {
+          "name": "Yuchen (Caroline) Zhu",
+          "section": "other",
+          "role": "student"
+        },
+        {
+          "name": "Jean Kaddour",
+          "section": "other",
+          "role": "student"
+        },
+        {
+          "name": "Qi Liu",
+          "section": "alumni",
+          "role": "student"
+        },
+        {
+          "name": "David Watson",
+          "section": "alumni",
+          "role": "student"
+        }
+      ],
+      "notes": "The present PI-owned page says he was previously at Oxford; its current students cannot be inferred to be current Oxford students and carry no dates. Undated names remain excluded by the strict date rule."
+    },
+    {
+      "pi": "Steve Collins",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:91b3cf0c-a94a-48dd-81b9-b52fe3f41980",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:1ca78608-cac4-41a0-8d1e-57fb31603103",
+          "source": "student row source"
+        },
+        {
+          "url": "https://eng.ox.ac.uk/people/steve-collins",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Oxford profile/candidate pages do not expose PI-specific student roster."
     },
     {
       "pi": "Vicente Grau",
@@ -617,50 +730,339 @@
       "notes": "Official IBME profile and Oxford Podium Institute team pages inspected; no PI-specific student member list found."
     },
     {
-      "pi": "Vincent Cheval",
-      "stratum": "1-2",
-      "candidate_urls": [
-        {
-          "url": "https://www.cs.ox.ac.uk/people/jessica.richards/",
-          "source": "student row source"
-        },
-        {
-          "url": "https://www.cs.ox.ac.uk/people/jiachen.qian/",
-          "source": "student row source"
-        },
-        {
-          "url": "https://www.cs.ox.ac.uk/people/Vincent.Cheval",
-          "source": "pis.json lab.url"
-        }
-      ],
-      "verdict": "unverifiable",
-      "unverifiable_reason": "robots_disallowed",
-      "page": null,
-      "listed": [],
-      "notes": "Prior lab-page audit (2026-11-10) found host_blocked_by_robots/no_lab_page; checked https://www.cs.ox.ac.uk/people/faculty.html; https://www.cs.ox.ac.uk/people/Vincent.Cheval; https://www.ox.ac.uk/admissions/graduate/courses/dphil-computer-science. Prior audit records blocked host; do not retry."
-    },
-    {
-      "pi": "Alex D. Scott",
+      "pi": "Amro Awad",
       "stratum": "3+",
       "candidate_urls": [
         {
-          "url": "http://people.maths.ox.ac.uk/scott/",
+          "url": "https://oscar-ox.com/",
           "source": "audit lab_page.lab_site"
         },
         {
-          "url": "https://ora.ox.ac.uk/objects/uuid:d5feb61c-a146-486d-821d-f3353e777f35",
+          "url": "https://oscar-ox.com/team.html",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://oscar-ox.com/publications.html",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://oscar-ox.com/team.html#director",
           "source": "student row source"
         },
         {
-          "url": "https://ora.ox.ac.uk/objects/uuid:970b5eb2-ad8c-45ba-b0d2-39cac2fffda6",
+          "url": "https://eng.ox.ac.uk/people/amro-awad",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://oscar-ox.com/team.html",
+        "sha256": "7e73a3205b7c6016c2d2f9ba3521a1a3e83fd3e919af9537fb00d710ee5df7ed",
+        "quote": "Current OSCAR Members"
+      },
+      "listed": [
+        {
+          "name": "Hakam Atassi",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "William Taylor",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Nureddin Kamadan",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Jason Miller",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Alex Lozano",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Lisa Thiergart",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "John McFarland",
+          "section": "current",
+          "role": "phd",
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Debpratim Adak",
+          "section": "alumni",
+          "role": "phd",
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Rahaf Abdullah",
+          "section": "alumni",
+          "role": "phd",
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Xijing Han",
+          "section": "alumni",
+          "role": "phd",
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Kazi Zubair",
+          "section": "alumni",
+          "role": "phd",
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Vamsee Reddy",
+          "section": "alumni",
+          "role": "phd",
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Mazen Alwadi",
+          "section": "alumni",
+          "role": "phd",
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Mao Ye",
+          "section": "alumni",
+          "role": "phd",
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Shubham Nema",
+          "section": "alumni",
+          "role": "masters",
+          "exclude": "outside_school"
+        }
+      ],
+      "notes": "PI-led Oxford OSCAR team page; John McFarland explicitly PhD @ NCSU. Seven alumni PhDs and an MSc on the portable group page lack Oxford affiliation and predate the 2025 Oxford listing; excluded as prior-school/uncertain attribution. Six current DPhil students on Oxford group page; Jason Miller and Alex Lozano explicitly co-supervised by Noa Zilberman."
+    },
+    {
+      "pi": "Edith Elkind",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://www.cs.ox.ac.uk/people/nicholas.teh/",
           "source": "student row source"
         },
         {
-          "url": "https://ora.ox.ac.uk/objects/uuid:20d85c21-c0ae-4a4c-9dec-af456d9eafd2",
+          "url": "https://ora.ox.ac.uk/objects/uuid:2efad134-b5e9-437e-8493-668272f48428",
           "source": "student row source"
         },
         {
-          "url": "https://ora.ox.ac.uk/objects/uuid:5a6f990e-4d1d-4a5f-9336-043f95c2c5e3",
+          "url": "https://sagemath.openbsd.amsterdam/edith/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:d75096af-8cc9-4f3f-8411-28faab88c1e1",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://www.cs.ox.ac.uk/people/edith.elkind/",
+        "sha256": "762cfcd23c9d1d7f6c431ea790f5365a2b6d7e0d4048a7d8716d03a811f29418",
+        "quote": "Past Students"
+      },
+      "listed": [
+        {
+          "name": "Jiarui Gan",
+          "section": "alumni",
+          "role": "student"
+        },
+        {
+          "name": "Dongge Han",
+          "section": "alumni",
+          "role": "student"
+        },
+        {
+          "name": "Ayumi Igarashi",
+          "section": "alumni",
+          "role": "student"
+        },
+        {
+          "name": "Sonja Kraiczy",
+          "section": "alumni",
+          "role": "student"
+        },
+        {
+          "name": "Dominik Peters",
+          "section": "alumni",
+          "role": "student"
+        }
+      ],
+      "notes": "Official Oxford PI profile lists five past students but no years; none enters current or dated recall."
+    },
+    {
+      "pi": "Graham Cormode",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "http://dimacs.rutgers.edu/~graham/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://www.cs.ox.ac.uk/people/graham.cormode/home.html",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://www.cs.ox.ac.uk/people/graham.cormode/home.html",
+        "sha256": "900b794a58e951f58f7b3ab504cd68bec5af889b0d5832dd5dfeee681043cb8c",
+        "quote": "Research group."
+      },
+      "listed": [
+        {
+          "name": "Ari Biswas",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Xuefeng Xu",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Barath Ashok",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Sam Maddock",
+          "section": "alumni",
+          "role": "phd"
+        },
+        {
+          "name": "Mary Scott",
+          "section": "alumni",
+          "role": "phd"
+        },
+        {
+          "name": "Charlie Dickens",
+          "section": "alumni",
+          "role": "phd"
+        },
+        {
+          "name": "Chris Hickey",
+          "section": "alumni",
+          "role": "phd"
+        },
+        {
+          "name": "Jacques Dark",
+          "section": "alumni",
+          "role": "phd"
+        },
+        {
+          "name": "Tejas Kulkarni",
+          "section": "alumni",
+          "role": "phd"
+        }
+      ],
+      "notes": "Official Oxford CS PI group page. Current PhD three; six alumni PhD undated, including some possibly from prior Warwick appointment; no date-based admission for alumni. Postdocs omitted."
+    },
+    {
+      "pi": "Helen Z. Margetts",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://www.oii.ox.ac.uk/people/profiles/helen-margetts/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:13731ac6-0265-43f9-a2f5-d7ff6bd7bc02",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://www.oii.ox.ac.uk/people/profiles/helen-margetts/",
+        "sha256": "fbd55970ca71746743963005b69e4a5195b4e45834ebe33ad84dfe691232bb6f",
+        "quote": "Teaching Current Students"
+      },
+      "listed": [
+        {
+          "name": "Mahsa Alimardani",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Kobi Hackenburg",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Chloe Chadwick",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Başak Bozkurt",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Cassidy Bereskin",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Nathan Davies",
+          "section": "current",
+          "role": "phd"
+        }
+      ],
+      "notes": "Official OII PI profile Teaching section; six current DPhil students. Alumni are undated and omitted from current recall."
+    },
+    {
+      "pi": "Irina Voiculescu",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:bcce0a2f-bf4f-43b1-930e-659732e95ade",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:0b1fa170-7234-406e-8592-bc7ee2f02c41",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:7084d0ed-e9d5-44fd-aa18-f05a540ac629",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.cs.ox.ac.uk/people/allison.clement/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.cs.ox.ac.uk/people/james.willoughby/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.cs.ox.ac.uk/people/julian.wyatt/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.cs.ox.ac.uk/people/junayed.naushad/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.cs.ox.ac.uk/people/khadijah.mohammed/",
           "source": "student row source"
         }
       ],
@@ -668,79 +1070,26 @@
       "unverifiable_reason": "no_member_list_page",
       "page": null,
       "listed": [],
-      "notes": "No PI-specific student member list with attributable names verified in the captured official page. General faculty/group material is insufficient for this sample."
+      "notes": "Oxford profile/candidate pages do not expose PI-specific student roster."
     },
     {
-      "pi": "Alex Rogers",
+      "pi": "Mihai Cucuringu",
       "stratum": "3+",
       "candidate_urls": [
         {
-          "url": "http://www.ecs.soton.ac.uk/people/acr",
-          "source": "audit lab_page.lab_site"
-        },
-        {
-          "url": "https://www.cs.ox.ac.uk/people/Alex.Rogers",
+          "url": "https://ora.ox.ac.uk/objects/uuid:24c81031-e078-4481-a677-e7a51b659bfc",
           "source": "student row source"
         },
         {
-          "url": "https://ora.ox.ac.uk/objects/uuid:c3967bc2-ef89-4dca-999e-ceccc43f4d44",
+          "url": "https://ora.ox.ac.uk/objects/uuid:83d5fc3c-574e-460d-8a7c-96c9e268115d",
           "source": "student row source"
         },
         {
-          "url": "https://ora.ox.ac.uk/objects/uuid:81e8efd4-efe0-4f45-893f-2b2ad79f10ad",
-          "source": "student row source"
-        }
-      ],
-      "verdict": "readable",
-      "unverifiable_reason": null,
-      "page": {
-        "url": "https://www.cs.ox.ac.uk/people/alex.rogers/",
-        "sha256": "ef3533fa4e224d988d39f5617e1e3c7c056ae1d063dae845ac87cee45d60f954",
-        "quote": "currently supervising Stephen Ellis"
-      },
-      "listed": [
-        {
-          "name": "Stephen Ellis",
-          "section": "current",
-          "role": "phd"
-        }
-      ],
-      "notes": "PI-owned Oxford CS page directly states currently supervising Stephen Ellis; 27 prior PhD students are unnamed."
-    },
-    {
-      "pi": "Andrew Zisserman",
-      "stratum": "3+",
-      "candidate_urls": [
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:c9d0e126-e44f-43d9-abcf-140d1a73e58d",
+          "url": "https://ora.ox.ac.uk/objects/uuid:3f7722db-df0f-41f7-93a9-455e397b2254",
           "source": "student row source"
         },
         {
-          "url": "https://ora.ox.ac.uk/objects/uuid:5fcfb784-7b61-49cd-9561-64b5ffa5807a",
-          "source": "student row source"
-        },
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:2be40fc7-ad34-4c37-9433-262b62cebd36",
-          "source": "student row source"
-        },
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:75b96d6d-0e0d-4a6b-aba2-a0e1fca31b0c",
-          "source": "student row source"
-        },
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:07d8cfb4-d23f-4316-8c4a-434e6fe77120",
-          "source": "student row source"
-        },
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:b258f86b-2d35-418c-9b2c-6830630d39b0",
-          "source": "student row source"
-        },
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:7f831837-5233-4338-8175-827e1dbd375a",
-          "source": "student row source"
-        },
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:76197047-6853-456a-85e3-f42b44601ef4",
+          "url": "https://ora.ox.ac.uk/objects/uuid:a21a027c-1ceb-4ee0-af72-f013cdf7780b",
           "source": "student row source"
         }
       ],
@@ -748,312 +1097,226 @@
       "unverifiable_reason": "no_member_list_page",
       "page": null,
       "listed": [],
-      "notes": "No PI-specific student member list with attributable names verified in the captured official page. General faculty/group material is insufficient for this sample."
+      "notes": "PI homepage now emphasizes UCLA role and Oxford historical teaching; group pages checked but no Oxford PI student list with current/dates found."
     },
     {
-      "pi": "Cas Cremers",
+      "pi": "Susanna-Assunta Sansone",
       "stratum": "3+",
       "candidate_urls": [
         {
-          "url": "https://infosec.exchange/@cascremers",
+          "url": "https://sansonegroup.eng.ox.ac.uk",
           "source": "audit lab_page.lab_site"
         },
         {
-          "url": "https://www.cs.ox.ac.uk/people/martin.dehnel-wild/",
+          "url": "https://sansonegroup.eng.ox.ac.uk/#people",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://sansonegroup.eng.ox.ac.uk/publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://web.archive.org/web/20190717071417id_/https://sansonegroup.eng.ox.ac.uk/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20221130150222id_/https://sansonegroup.eng.ox.ac.uk/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20260310180422id_/https://sansonegroup.eng.ox.ac.uk/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:3e4b8fd5-10db-47e3-8f25-37d66faee541",
           "source": "student row source"
         },
         {
-          "url": "https://www.cs.ox.ac.uk/people/nicholas.moore/",
+          "url": "https://eng.ox.ac.uk/people/susanna-assunta-sansone",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://sansonegroup.eng.ox.ac.uk/",
+        "sha256": "92541e4c445b374f00e5a697c75a04564a067c56fb5a09a5fad8759c8551e978",
+        "quote": "Alumni and students (from 2010)"
+      },
+      "listed": [
+        {
+          "name": "Graham Lee",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Terence Tan",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Hanida Abas Tomlinson",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Sophie Eisele",
+          "section": "current",
+          "role": "phd"
+        },
+        {
+          "name": "Dominique Batista",
+          "section": "alumni",
+          "role": "phd"
+        },
+        {
+          "name": "Christopher Osborne",
+          "section": "alumni",
+          "role": "phd"
+        },
+        {
+          "name": "Eamonn Maguire",
+          "section": "alumni",
+          "role": "phd"
+        },
+        {
+          "name": "Daniel Iyayi",
+          "section": "alumni",
+          "role": "phd"
+        },
+        {
+          "name": "Pavlos Georgiou",
+          "section": "alumni",
+          "role": "masters"
+        }
+      ],
+      "notes": "PI-owned Oxford Data Readiness group page. Current four doctoral labels; older alumni/and-students section undated and may include pre-Oxford work. Other roles omitted."
+    },
+    {
+      "pi": "Tom Rainforth",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:98de960f-f7eb-4437-8c37-174b82374b21",
           "source": "student row source"
         },
         {
-          "url": "https://www.cs.ox.ac.uk/people/kevin.milner/",
+          "url": "https://ora.ox.ac.uk/objects/uuid:72ab7d5a-c654-4aae-b47e-7c0095382239",
           "source": "student row source"
         },
         {
-          "url": "https://www.cs.ox.ac.uk/news/1450-full.html",
+          "url": "https://ora.ox.ac.uk/objects/uuid:9085b8f5-b856-460b-98db-ec2f39b7f9cd",
           "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:193658cd-12f3-4ab8-901b-c4cf8ccdd7a5",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:70e43a92-0d4f-469b-bb0e-5771853590f2",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.stats.ox.ac.uk/people/tom-rainforth",
+          "source": "pis.json lab.url"
         }
       ],
       "verdict": "unverifiable",
       "unverifiable_reason": "robots_disallowed",
       "page": null,
       "listed": [],
-      "notes": "Prior lab-page audit (2026-11-10) found pi_homepage_only_no_lab_site/no_people_section; checked https://www.cs.ox.ac.uk/people/faculty.html; http://www.cs.ox.ac.uk/people/Cas.Cremers; https://people.cispa.io/cas.cremers/. PI-owned CISPA past-members page is robots-disallowed to this agent; live capture attempt 2026-11-14 stopped before content."
+      "notes": "PI-owned robots.ox.ac.uk group member page disallowed by robots; no alternative direct PI member list captured."
     },
     {
-      "pi": "Joss Wright",
+      "pi": "Xiaowen Dong",
       "stratum": "3+",
       "candidate_urls": [
         {
-          "url": "https://www.oii.ox.ac.uk/people/profiles/joss-wright/",
+          "url": "https://ora.ox.ac.uk/objects/uuid:e8719915-d800-4cd3-8682-370530c8d281",
           "source": "student row source"
         },
         {
-          "url": "https://ora.ox.ac.uk/objects/uuid:f7752fec-2e48-467e-8793-cd2deb6fcc2e",
+          "url": "https://ora.ox.ac.uk/objects/uuid:c7043685-6e15-4271-84b1-9d731d3d935e",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:24c81031-e078-4481-a677-e7a51b659bfc",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:25d536f1-2a89-474f-ac1a-bf3bfa1adf2d",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:234dfec9-80e5-4d18-9760-07e256bf384a",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:d4cd9820-c6c6-4c9b-b8e1-01894e464c5e",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:f9ee7f31-d424-4cf9-86ce-e51879bc3e77",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:fedee90d-10a8-4333-9f76-ae08bb46594f",
           "source": "student row source"
         }
       ],
-      "verdict": "readable",
-      "unverifiable_reason": null,
-      "page": {
-        "url": "https://www.oii.ox.ac.uk/people/profiles/joss-wright/",
-        "sha256": "013e978a15c153557aadab927285f41d6196895df901c99615d1d7a2e6eff51d",
-        "quote": "Current Students"
-      },
-      "listed": [
-        {
-          "name": "John Gallacher",
-          "section": "current",
-          "role": "phd"
-        },
-        {
-          "name": "William Lugoloobi",
-          "section": "current",
-          "role": "phd"
-        },
-        {
-          "name": "Marlene Straub",
-          "section": "current",
-          "role": "phd"
-        },
-        {
-          "name": "Elijiah Lewien",
-          "section": "current",
-          "role": "phd"
-        },
-        {
-          "name": "Samantha Bradshaw",
-          "section": "alumni",
-          "role": "research_assistant"
-        },
-        {
-          "name": "Margie Cheesman",
-          "section": "alumni",
-          "role": "phd"
-        }
-      ],
-      "notes": "Teaching section names four current DPhil students; past students are undated. Samantha Bradshaw is identified as former research assistant."
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Oxford MLRG broad group list cannot attribute all students to PI."
     },
     {
-      "pi": "Mark van der Wilk",
+      "pi": "Yee Whye Teh",
       "stratum": "3+",
       "candidate_urls": [
         {
-          "url": "https://mvdw.uk",
+          "url": "http://www.stats.ox.ac.uk/~teh/",
           "source": "audit lab_page.lab_site"
         },
         {
-          "url": "https://mvdw.uk/people/",
+          "url": "https://ora.ox.ac.uk/objects/uuid:1df5cc30-75fc-44ca-a8e7-3421d8903e3a",
           "source": "student row source"
         },
         {
-          "url": "https://www.cs.ox.ac.uk/people/Mark.vanderWilk",
-          "source": "pis.json lab.url"
+          "url": "https://ora.ox.ac.uk/objects/uuid:90e07527-81d4-4d22-a2e3-66316c9f0d39",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:fd4b8e37-83d6-4cd6-b069-6745dd35fc51",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:d74655bf-8605-41c2-bbca-cc5d3b581557",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:98de960f-f7eb-4437-8c37-174b82374b21",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:160d9d9d-c0fe-4fbb-8296-e65cc45dcacd",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:72ab7d5a-c654-4aae-b47e-7c0095382239",
+          "source": "student row source"
         }
       ],
       "verdict": "readable",
       "unverifiable_reason": null,
       "page": {
-        "url": "https://mvdw.uk/people/",
-        "sha256": "c4f29c10c4aff44a332d73efd917a4a48cba0b53027030d106ec54027c3b4442",
-        "quote": "Research Group"
+        "url": "https://www.stats.ox.ac.uk/~teh/group.html",
+        "sha256": "db2f4aab684fe2e57dcc71b4ee60d4796657bf5b4888d95602f32b864f8d7e1d",
+        "quote": "Current Group"
       },
       "listed": [
         {
-          "name": "Becky Langdon",
-          "section": "current",
-          "role": "phd",
-          "years": [
-            2023
-          ]
-        },
-        {
-          "name": "Daniel Marks",
-          "section": "current",
-          "role": "phd",
-          "years": [
-            2025
-          ]
-        },
-        {
-          "name": "Edward Williams",
-          "section": "current",
-          "role": "phd",
-          "years": [
-            2025
-          ]
-        },
-        {
-          "name": "Florian Chen",
-          "section": "current",
-          "role": "phd",
-          "years": [
-            2026
-          ]
-        },
-        {
-          "name": "Jake Levi",
-          "section": "current",
-          "role": "phd",
-          "years": [
-            2022
-          ]
-        },
-        {
-          "name": "Jamie Reason",
-          "section": "current",
-          "role": "phd",
-          "years": [
-            2024
-          ]
-        },
-        {
-          "name": "Jussi Hakosalo",
-          "section": "current",
-          "role": "phd",
-          "years": [
-            2025
-          ]
-        },
-        {
-          "name": "Oran Nockels-Stewart",
-          "section": "current",
-          "role": "phd",
-          "years": [
-            2025
-          ]
-        },
-        {
-          "name": "Paul Francis",
-          "section": "current",
-          "role": "phd",
-          "years": [
-            2025
-          ]
-        },
-        {
-          "name": "Ruizi Yan",
-          "section": "current",
-          "role": "phd",
-          "years": [
-            2024
-          ]
-        },
-        {
-          "name": "Stefano Cortinovis",
-          "section": "current",
-          "role": "phd",
-          "years": [
-            2023
-          ]
-        },
-        {
-          "name": "Anish Dhir",
-          "section": "alumni",
-          "role": "phd",
-          "years": [
-            2026
-          ],
-          "exclude": "outside_school",
-          "exclude_evidence": {
-            "url": "https://anish144.github.io/",
-            "sha256": "036047ee701ea801f43a959ac461f76d08f4a585f4b79410731b2ea1a2517284",
-            "quote": "I did my PhD in Machine Learning at Imperial College London supervised by Mark van der Wilk , where I was also a visiting researcher at the University of Oxford."
-          }
-        },
-        {
-          "name": "Artem Artemev",
-          "section": "alumni",
-          "role": "phd",
-          "years": [
-            2025
-          ],
-          "exclude": "outside_school"
-        },
-        {
-          "name": "Jose Pablo Folch",
-          "section": "alumni",
-          "role": "phd",
-          "years": [
-            2024
-          ],
-          "exclude": "outside_school"
-        },
-        {
-          "name": "Ruby Sedgwick",
-          "section": "alumni",
-          "role": "phd",
-          "years": [
-            2025
-          ],
-          "exclude": "outside_school"
-        },
-        {
-          "name": "Seth Nabarro",
-          "section": "alumni",
-          "role": "phd",
-          "years": [
-            2026
-          ],
-          "exclude": "outside_school"
-        },
-        {
-          "name": "Tycho van der Ouderaa",
-          "section": "alumni",
-          "role": "phd",
-          "years": [
-            2025
-          ],
-          "exclude": "outside_school"
-        }
-      ],
-      "notes": "PI-owned Research Group page gives dates and PhD Candidate labels. Listed current co-supervised members retained; visitors and postdocs omitted. Some listed members have Imperial email addresses, so Oxford student affiliation needs independent review before recovery. Outside-school exclusions were independently checked against primary Imperial pages: Artem Artemev: https://sysml.doc.ic.ac.uk/event/seminar4/ (Imperial says he is its PhD student supervised by Mark); Jose Pablo Folch: https://wp.doc.ic.ac.uk/rmisener/research-group/completed/ (Imperial records 2020–2024 PhD co-supervised by Mark); Ruby Sedgwick: https://wp.doc.ic.ac.uk/rmisener/research-group/completed/ (Imperial records 2019–2023 PhD co-supervised by Mark); Seth Nabarro: https://www.imperial.ac.uk/computing/current-students/phd-info/facewall-phd-1st-year---cohort-2020--2021/ (Imperial first-year PhD cohort); Tycho van der Ouderaa: https://www.imperial.ac.uk/news/246734/docs-tycho-ouderaa-awarded-qualcomm-innovation/ (Imperial states he is its Computing PhD student). Anish Dhir is excluded as outside_school: his first-person page says his PhD was at Imperial College London supervised by Mark van der Wilk and his Oxford role was visiting researcher (https://anish144.github.io/; capture SHA256 036047ee701ea801f43a959ac461f76d08f4a585f4b79410731b2ea1a2517284; exact quote in listed entry)."
-    },
-    {
-      "pi": "Patrick Rebeschini",
-      "stratum": "3+",
-      "candidate_urls": [
-        {
-          "url": "http://www.stats.ox.ac.uk/~rebeschi/",
-          "source": "audit lab_page.lab_site"
-        },
-        {
-          "url": "https://web.archive.org/web/20230205201000id_/https://www.stats.ox.ac.uk/~rebeschi/",
-          "source": "audit students.pages"
-        },
-        {
-          "url": "https://web.archive.org/web/20231204165202id_/https://www.stats.ox.ac.uk/~rebeschi/",
-          "source": "audit students.pages"
-        },
-        {
-          "url": "https://web.archive.org/web/20250624223605id_/https://www.stats.ox.ac.uk/~rebeschi/",
-          "source": "audit students.pages"
-        },
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:6de94c6c-4c62-4549-8e3f-0d8abe3131a9",
-          "source": "student row source"
-        },
-        {
-          "url": "https://www.stats.ox.ac.uk/people/patrick-rebeschini",
-          "source": "pis.json lab.url"
-        }
-      ],
-      "verdict": "readable",
-      "unverifiable_reason": null,
-      "page": {
-        "url": "https://www.stats.ox.ac.uk/~rebeschi/",
-        "sha256": "26bf41c3b862c9fb2595eebe02fb8311f79f477c91777d692b95d6c1cb82828f",
-        "quote": "Doctoral students:"
-      },
-      "listed": [
-        {
-          "name": "Iskander Azangulov",
-          "section": "current",
-          "role": "phd"
-        },
-        {
-          "name": "Alex Buna",
+          "name": "Abbas Mammadov",
           "section": "current",
           "role": "phd"
         },
@@ -1063,467 +1326,103 @@
           "role": "phd"
         },
         {
-          "name": "Emma Finn",
+          "name": "Paul Francis",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Sam Howard",
+          "name": "Kevin Lam",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Ayub Kharel",
+          "name": "Adhi Saravanan",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Debolina Paul",
+          "name": "Charlotte Merchant",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Valentin Roth",
+          "name": "Aavash Subedi",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Alexander Savich",
-          "section": "current",
-          "role": "phd"
-        }
-      ],
-      "notes": "PI-owned Oxford Statistics group page; all doctoral students listed, including explicitly co-supervised students. Postdocs omitted."
-    },
-    {
-      "pi": "Phil Blunsom",
-      "stratum": "3+",
-      "candidate_urls": [
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:3aa07c40-0b0f-40b0-bbde-0bf47e2d3da3",
-          "source": "student row source"
-        },
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:c6a0de70-fbf5-4535-934a-1cdcb9d0b9f2",
-          "source": "student row source"
-        },
-        {
-          "url": "https://www.cs.ox.ac.uk/people/elle.yang/",
-          "source": "student row source"
-        }
-      ],
-      "verdict": "readable",
-      "unverifiable_reason": null,
-      "page": {
-        "url": "https://www.cs.ox.ac.uk/people/phil.blunsom/",
-        "sha256": "871cfd0d3fc23d9cff3d7852d893b017c06b412008b9bd8859a6dd85f353c8ef",
-        "quote": "Past Students"
-      },
-      "listed": [
-        {
-          "name": "Satwik Bhattamishra",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Jan Botha",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Jan Buys",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Gregory Dubbin",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Nal Kalchbrenner",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Kazuya Kawakami",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Tomas Kocisky",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Adhiguna Kuncoro",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Qi Liu",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Julie Makelberge",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Yishu Miao",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Andrew Trask",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Pengyu Wang",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Alex Wilson",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Elle Michelle Yang",
-          "section": "alumni",
-          "role": "student"
-        },
-        {
-          "name": "Lei Yu",
-          "section": "alumni",
-          "role": "student"
-        }
-      ],
-      "notes": "Official Oxford CS PI profile; all Past Students transcribed. PI left Oxford in 2024, and the list gives no student years."
-    },
-    {
-      "pi": "Reuben Binns",
-      "stratum": "3+",
-      "candidate_urls": [
-        {
-          "url": "https://someone.elses.computer/@RDBinns",
-          "source": "audit lab_page.lab_site"
-        },
-        {
-          "url": "https://oatml.cs.ox.ac.uk/members/matthew_kearney/",
-          "source": "student row source"
-        },
-        {
-          "url": "https://www.cs.ox.ac.uk/people/laura.csuka/",
-          "source": "student row source"
-        },
-        {
-          "url": "https://www.cs.ox.ac.uk/people/sruthi.viswanathan/",
-          "source": "student row source"
-        },
-        {
-          "url": "https://www.cs.ox.ac.uk/people/Reuben.Binns",
-          "source": "pis.json lab.url"
-        }
-      ],
-      "verdict": "readable",
-      "unverifiable_reason": null,
-      "page": {
-        "url": "https://www.cs.ox.ac.uk/people/reuben.binns/",
-        "sha256": "012547b5e7cdff2d03d4fa90d1acbcf6248e75e0aac01a1f5e1ad2cdd095847e",
-        "quote": "Current Students"
-      },
-      "listed": [
-        {
-          "name": "Laura Csuka",
-          "section": "current",
-          "role": "student"
-        },
-        {
-          "name": "Sruthi Viswanathan",
-          "section": "current",
-          "role": "student"
-        }
-      ],
-      "notes": "Official Oxford CS PI profile; both Current Students transcribed."
-    },
-    {
-      "pi": "Tingting Zhu",
-      "stratum": "3+",
-      "candidate_urls": [
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:5b9d25d5-2632-44ba-a15c-3eb6b1187193",
-          "source": "student row source"
-        },
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:f56514cd-10cb-4cad-a5e6-56804384985c",
-          "source": "student row source"
-        },
-        {
-          "url": "https://ora.ox.ac.uk/objects/uuid:61700595-db5f-46c3-95c0-160f72c1cbf5",
-          "source": "student row source"
-        },
-        {
-          "url": "https://eng.ox.ac.uk/people/tingting-zhu",
-          "source": "pis.json lab.url"
-        }
-      ],
-      "verdict": "readable",
-      "unverifiable_reason": null,
-      "page": {
-        "url": "https://eng.ox.ac.uk/ai4dh/team",
-        "sha256": "0eb2d0f2d264beca634597e9f2bac3fbc7d1ccd7170488bfe8da6b03503d6351",
-        "quote": "Group Members"
-      },
-      "listed": [
-        {
-          "name": "Thomas Taylor",
+          "name": "Peter Potaptchik",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Kevin Yuan",
+          "name": "Annie Qurat ul Ain",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Chenqi Li",
+          "name": "Leo Zhang",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Katarina Vukosavljevic",
+          "name": "Chris Williams",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Mingcheng Zhu",
+          "name": "Eleanor (Elle) Trollope",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Noura Aqeeli",
+          "name": "Juliusz Ziomek",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Zi Cai",
+          "name": "Qinyu Li",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Zhikang Chen",
+          "name": "Anya Sims",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Proshanto Chanda",
+          "name": "Eduard Oravkin",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Joy Lai",
+          "name": "Guneet Dhillon",
           "section": "current",
           "role": "phd"
         },
         {
-          "name": "Zihan Zhang",
-          "section": "current",
-          "role": "phd"
-        },
-        {
-          "name": "Luisa Kurth",
-          "section": "current",
-          "role": "phd"
-        },
-        {
-          "name": "Luke De Bretton",
-          "section": "current",
-          "role": "student"
-        },
-        {
-          "name": "David Oluigbo",
-          "section": "current",
-          "role": "masters"
-        },
-        {
-          "name": "Tomas Garriga Dicuzzo",
+          "name": "Bálint Mucsányi",
           "section": "current",
           "role": "phd",
           "exclude": "outside_school"
         },
         {
-          "name": "Baraa Al Jorf",
+          "name": "T. Duy Nguyen-Hien",
           "section": "current",
           "role": "phd",
           "exclude": "outside_school"
         },
         {
-          "name": "Anna Geist",
+          "name": "Alexandre Galashov",
           "section": "current",
-          "role": "masters",
+          "role": "phd",
           "exclude": "outside_school"
-        },
-        {
-          "name": "Jinning Liang",
-          "section": "current",
-          "role": "undergraduate",
-          "exclude": "rotation_or_highschool"
-        },
-        {
-          "name": "Yucong Cao",
-          "section": "current",
-          "role": "undergraduate",
-          "exclude": "rotation_or_highschool"
-        },
-        {
-          "name": "Daniel Kim",
-          "section": "current",
-          "role": "undergraduate",
-          "exclude": "rotation_or_highschool"
-        },
-        {
-          "name": "Henrique Aguiar",
-          "section": "alumni",
-          "role": "phd"
-        },
-        {
-          "name": "Zhiyao Luo",
-          "section": "alumni",
-          "role": "phd"
-        },
-        {
-          "name": "Ghadeer Ghosheh",
-          "section": "alumni",
-          "role": "phd"
-        },
-        {
-          "name": "Moritz Gögl",
-          "section": "alumni",
-          "role": "phd"
-        },
-        {
-          "name": "Alexey Youssef",
-          "section": "alumni",
-          "role": "phd"
-        },
-        {
-          "name": "Rasheed El-Bouri",
-          "section": "alumni",
-          "role": "phd"
-        },
-        {
-          "name": "Dani Kiyasseh",
-          "section": "alumni",
-          "role": "phd"
-        },
-        {
-          "name": "Matthew Chun",
-          "section": "alumni",
-          "role": "phd"
-        },
-        {
-          "name": "Yanting Shen",
-          "section": "alumni",
-          "role": "phd"
-        },
-        {
-          "name": "Farah Shamout",
-          "section": "alumni",
-          "role": "phd"
-        },
-        {
-          "name": "Joy Lai",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Mobing Cai",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Weiyao Tao",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Fabian Degen",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Zhaoqiu Chen",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Scott Bennett",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Rachel Chae",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Tijana Petrovic",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Saad Khan",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Adedamilola Tariuwa",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Dunja Matic",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Hongzhou Luan",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Katarina Vukosavljevic",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Tom Seinen",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Jennifer Bishop",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Lain Dunn",
-          "section": "alumni",
-          "role": "masters"
-        },
-        {
-          "name": "Fabian Falck",
-          "section": "alumni",
-          "role": "masters"
         }
       ],
-      "notes": "Official Oxford Engineering AI for Digital Health lab team. Current DPhil/CDT/Masters and alumni DPhil/MSc transcribed; visiting and undergraduate rows marked outside core scope. Alumni lack dates; Joy Lai and Katarina Vukosavljevic occur in both degree sections."
+      "notes": "PI-owned Oxford Statistics current group. DPhil members are Oxford; Bálint PhD (German co-supervisors), T. Duy NUS and Alexandre DeepMind-UCL lack Oxford enrollment and are excluded. Undated alumni section omitted from strict current recall."
     }
   ],
-  "filled_by": "codex-oxford-recall-sample-1114",
+  "filled_by": "codex-oxford-sample-review-1114",
   "signoff": {
     "reviewer": "",
     "date": "",
