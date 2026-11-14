@@ -18,19 +18,19 @@
   "copies.json": "7480cffdbb69c5c421db253a932a050187f938c37f206e8576c2ede510814111"
  },
  "lab_precision_uniform": {
+  "k": 48,
+  "n": 50,
+  "p": 0.96,
+  "lo": 0.8654,
+  "hi": 0.989,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
   "k": 49,
   "n": 50,
   "p": 0.98,
   "lo": 0.895,
   "hi": 0.9965,
-  "unclear": 0
- },
- "lab_precision_uniform_if_abstracts_count": {
-  "k": 50,
-  "n": 50,
-  "p": 1.0,
-  "lo": 0.9287,
-  "hi": 1.0,
   "unclear": 0
  },
  "lab_precision_strata": {
@@ -55,11 +55,11 @@
   }
  },
  "lab_precision_all40": {
-  "k": 59,
+  "k": 58,
   "n": 60,
-  "p": 0.9833,
-  "lo": 0.9114,
-  "hi": 0.9971,
+  "p": 0.9667,
+  "lo": 0.8864,
+  "hi": 0.9908,
   "unclear": 0
  },
  "student_precision_uniform": {
@@ -129,10 +129,18 @@
   "no_coauthored_paper": 0
  },
  "failures": {
-  "not_a_paper": 1,
+  "not_a_paper": 2,
   "missing_from_build": 1
  },
  "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Rebecca Eynon|None|https://openalex.org/W4383215910",
+   "failure_type": "not_a_paper",
+   "reason": "Springer labels the six-page item Commentary; this paratext is excluded by R-PAP-17 despite Oxford authorship.",
+   "policy": null
+  },
   {
    "sample": "lab_precision",
    "stratum": "uniform",
