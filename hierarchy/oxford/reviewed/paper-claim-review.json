@@ -203,6 +203,26 @@
      "qualification": "arXiv abstract page fetched 2026-11-09 (robots permit /abs); title is the source title of the DOI."
     }
    ]
+  },
+  {
+   "id": "oxford-20261114-Michael-Osborne-Maike-namesake",
+   "pi": "Michael A. Osborne",
+   "match": {
+    "oa": "https://openalex.org/W4414801078",
+    "doi": "10.48550/arxiv.2505.13196"
+   },
+   "decision": "reject",
+   "reviewed_by": "codex-oxford-stage9-1114",
+   "reviewed_at": "2026-11-14",
+   "why": "The arXiv source lists Maike Osborne as the author. Michael A. Osborne is a different Oxford PI; the OpenAlex anchored author ID cannot establish this PI-paper relation. Reject only this exact claim.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2505.13196",
+     "sha256": "8f6f9f18452decfbd1d2fb91dd1c4e965765c4de1424bca9933f48d6401a233b",
+     "quote": "Pranav Vaidhyanathan, Lucas Schorling, Natalia Ares, Maike Osborne",
+     "kind": "arxiv_abstract_page"
+    }
+   ]
   }
  ]
 }

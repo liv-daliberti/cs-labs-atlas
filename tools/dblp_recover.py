@@ -32,6 +32,7 @@ from pihier.papers import _authorship_school_via  # noqa: E402
 
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 OPEN_HOSTS = ('ceur-ws.org', 'aclanthology.org', 'proceedings.mlr.press', 'openaccess.thecvf.com', 'papers.nips.cc', 'proceedings.neurips.cc',
+              'bmva-archive.org.uk',
               'www.usenix.org', 'usenix.org', 'www.ijcai.org', 'ojs.aaai.org', 'openreview.net', 'www.isca-speech.org',
               'www.roboticsproceedings.org', 'roboticsproceedings.org', 'jmlr.org', 'www.jmlr.org', 'dl.acm.org/doi/pdf')
 _last = collections.defaultdict(float); _lock = threading.Lock(); _robots = {}

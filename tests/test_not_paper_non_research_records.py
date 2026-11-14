@@ -74,6 +74,35 @@ def test_R_PAP_33_conference_abstract_by_pages():
     assert papers.not_a_paper(r, pages=8) is None and papers.not_a_paper(r) is None
 
 
+def test_oxford_cardiovascular_research_poster_abstract_is_not_a_paper():
+    poster = row('P503 Inter-subject variability explains juxtaposed effects in pharmacological treatments',
+                 'conference-abstract', 'Cardiovascular Research',
+                 doi='10.1093/cvr/cvy060.360')
+    article = row('In silico predictions of drug-induced changes on cardiac contractility',
+                  'article', 'Cardiovascular Research', doi='10.1093/cvr/cvy060')
+    assert papers.not_a_paper(poster) == 'meeting_abstract:journal'
+    assert papers.not_a_paper(article) is None
+
+
+def test_publisher_removal_notice_is_not_original_research():
+    notice = row('Notice of Removal: A Hybrid Deep Learning Architecture for Privacy-Preserving Mobile Analytics',
+                 'article', 'IEEE Internet of Things Journal', doi='10.1109/jiot.2020.2967734')
+    paper = row('A Hybrid Deep Learning Architecture for Privacy-Preserving Mobile Analytics',
+                'article', 'IEEE Internet of Things Journal', doi='10.1109/jiot.2019.123')
+    assert papers.not_a_paper(notice) == 'removal_notice'
+    assert papers.not_a_paper(paper) is None
+
+
+def test_oxford_bcs_heart_supplement_abstract_is_not_a_paper():
+    abstract = row('69 The relationship between troponin level and mortality',
+                   'conference-abstract', 'Interventional Cardiology',
+                   doi='10.1136/heartjnl-2019-bcs.67')
+    ordinary = row('Clinical determinants of plasma cardiac biomarkers',
+                   'article', 'Heart', doi='10.1136/heartjnl-2019-314892')
+    assert papers.not_a_paper(abstract) == 'meeting_abstract:congress'
+    assert papers.not_a_paper(ordinary) is None
+
+
 def test_R_PAP_33_conference_volume_titles():
     assert papers.not_a_paper(row('Conference on Health, Inference, and Learning (CHIL) 2022', 'article', 'CHIL', doi='')) == 'proceedings_volume'
     assert papers.not_a_paper(row('Workshop on Internet Economics (WIE2016) Final Report.', 'article', 'x', doi='')) is not None

@@ -18,6 +18,12 @@ def test_R_PAP_36_neurips_and_colt_still_resolve():
     assert D.pdf_url('https://proceedings.mlr.press/v178/freund22a.html') == 'https://proceedings.mlr.press/v178/freund22a/freund22a.pdf'
 
 
+def test_R_PAP_36_bmva_archive_pdf_is_an_open_proceedings_source():
+    url = 'https://bmva-archive.org.uk/bmvc/2024/papers/Paper_563/paper.pdf'
+    assert 'bmva-archive.org.uk' in D.OPEN_HOSTS
+    assert D.pdf_url(url) == url
+
+
 def test_R_PAP_36_bare_key():
     assert D.bare_key('https://dblp.org/rec/conf/colt/FreundLW22') == D.bare_key('conf/colt/FreundLW22') == 'conf/colt/FreundLW22'
 

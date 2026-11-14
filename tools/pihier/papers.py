@@ -179,7 +179,7 @@ ABSTRACT_VENUE = re.compile(r'(?i)meeting abstracts|bulletin of the american phy
 ABSTRACT_DOI = re.compile(r'(?i)^10\.58530/|^10\.5194/(?:egusphere|epsc|wbf)|meetingabstract|supp(?:l)?[._\-]|supplement|\.am20\d\d|\.canevol|'
                           r'/ma20\d\d|^10\.1182/blood-20\d\d-')
 ABSTRACT_TITLE = re.compile(r'(?i)^\s*abstract\s+[A-Z]{0,4}[-\s]?\d+\s*[:.]')
-ABSTRACT_JOURNALS = re.compile(r'(?i)^(cancer research|circulation|blood|stroke|sleep|journal of clinical oncology|the journal of the acoustical society|'
+ABSTRACT_JOURNALS = re.compile(r'(?i)^(cancer research|cardiovascular research|circulation|blood|stroke|sleep|journal of clinical oncology|the journal of the acoustical society|'
                                r'biophysical journal|the journal of immunology|neuro-oncology|clinical cancer research|cancer immunology research|'
                                r'journal of the american society of nephrology|innovation in aging|arteriosclerosis|open forum infectious|'
                                r'genetics in medicine|schizophrenia bulletin|structural dynamics|academy of management proceedings|'
@@ -192,6 +192,7 @@ ABSTRACT_JOURNALS = re.compile(r'(?i)^(cancer research|circulation|blood|stroke|
 NEUROM_DOI = re.compile(r'(?i)^10\.1016/j\.neurom\.\d{4}\.\d{2}\.\d+$')
 NEUROM_ABSTRACT_CODE = re.compile(r'^\s*(?:[A-Z]{1,3}\d{2,4}\b(?:\s*/\s*#\d+)?\s|ID:\s*\d+\s)')   # 'PO222 / #1008 ', 'O025 ', 'ID: 324641 '
 ERS_CONGRESS_DOI = re.compile(r'(?i)^10\.1183/1\d*3003\.congress-\d{4}\.')
+BCS_CONGRESS_DOI = re.compile(r'(?i)^10\.1136/heartjnl-\d{4}-bcs\.\d+$')
 THESIS_REPOSITORY_DOI = re.compile(r'^10\.25740/')  # Stanford Digital Repository (purl.stanford.edu): theses, honors theses, capstones
 
 
@@ -350,6 +351,8 @@ def not_a_paper(r, pages=None, bare=False):
         return 'repository_supplement'
     if ERRATUM_TITLE.search(t):
         return 'erratum'
+    if re.match(r'(?i)^notice of removal\s*:', t):
+        return 'removal_notice'
     if '【Powered by NICT】' in t:
         return 'machine_translation'  # JST's machine-translated Japanese record of a paper (CMU, OpenPose)
     if re.search(r'(?i)dagstuhl (?:reports|manifestos)', v) or re.match(r'10\.4230/(?:dagrep|dagman)\b', d) or re.search(r'\(Dagstuhl Seminar \d+\)\s*$', t):
@@ -401,7 +404,7 @@ def not_a_paper(r, pages=None, bare=False):
         return 'meeting_abstract:doi'
     if ABSTRACT_TITLE.search(t):
         return 'meeting_abstract:title'
-    if ERS_CONGRESS_DOI.match(d) or (NEUROM_DOI.match(d) and (ty == 'conference-abstract' or NEUROM_ABSTRACT_CODE.search(t))):
+    if ERS_CONGRESS_DOI.match(d) or BCS_CONGRESS_DOI.match(d) or (NEUROM_DOI.match(d) and (ty == 'conference-abstract' or NEUROM_ABSTRACT_CODE.search(t))):
         return 'meeting_abstract:congress'
     if ABSTRACT_FAMILY_DROPS and (TUTORIAL_ABSTRACT_DOI.match(d) or POSTER_CODE_DOI.search(d)
                                   or (SUPPLEMENT_ITEM_DOI_DROPS and SUPPLEMENT_ITEM_DOI.match(d))

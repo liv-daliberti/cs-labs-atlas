@@ -935,5 +935,248 @@
         "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
       }
     ]
+  },
+  "Seth Flaxman": {
+    "not_papers": [
+      {
+        "doi": "10.1038/s44360-025-00005-w",
+        "oa": "https://openalex.org/W7124753021",
+        "why": "Oxford Stage 9 review, 2026-11-14: the publisher classifies this exact item as Comment, a four-page commentary rather than an original research paper. OpenAlex labels it article, so the reviewed DOI/OA exclusion applies only to this record.",
+        "evidence": [
+          {
+            "url": "https://www.nature.com/articles/s44360-025-00005-w",
+            "sha256": "8fd902ab15ec7035228c428fe8511214cac022a0e3401275b7ea09a6095d47eb",
+            "quote": "Comment Published: 19 January 2026 Artificial intelligence for public health can harness data for healthier populations",
+            "observed": "2026-11-14",
+            "source": "Nature Health publisher page, stored in missing-pi-captures.sqlite"
+          }
+        ]
+      }
+    ]
+  },
+  "Blanca Rodriguez": {
+    "not_papers": [
+      {
+        "doi": "10.1016/j.vascn.2017.09.113",
+        "oa": "https://openalex.org/W2769105929",
+        "why": "Stage 9 review 2026-11-14: Crossref records this exact Elsevier item as only pages 202-203 in JPTM volume 88; the same volume/part contains a neighboring item explicitly classified by its institution as a meeting abstract. This item is a two-page meeting abstract, not a full research paper. The classification is an inference from the issue context and exact short page range; remove only this DOI/OA record.",
+        "evidence": [
+          {
+            "url": "https://api.crossref.org/works/10.1016/j.vascn.2017.09.113",
+            "sha256": "4dbd5bdcb7eb88599836b496a1893c1e2203873a72b8af675248f0bbe26919ef",
+            "quote": "\"page\":\"202-203\"",
+            "observed": "2026-11-14",
+            "source": "Crossref publisher-deposited metadata"
+          },
+          {
+            "url": "https://kclpure.kcl.ac.uk/portal/en/publications/0121-computational-models-for-acute-and-chronic-doxorubicin-mitoc/",
+            "sha256": "e3c1d886bddb82a04000c64854f03d16b3223cf648f4481f241711cd6f5d5c52",
+            "quote": "Contribution to journal › Meeting abstract › peer-review",
+            "observed": "2026-11-14",
+            "source": "King’s College London institutional record of adjacent page in same JPTM volume"
+          }
+        ]
+      },
+      {
+        "doi": "10.1016/j.vascn.2017.09.114",
+        "oa": "https://openalex.org/W2768986014",
+        "why": "Oxford Stage 9 review 2026-11-14: publisher-deposited metadata gives this exact JPTM volume 88 record only page(s) 203, in the issue segment documented as meeting abstracts by institutional catalogues. This is an issue-context inference for a short conference abstract; remove only this DOI/OA record.",
+        "evidence": [
+          {
+            "url": "https://api.crossref.org/works/10.1016/j.vascn.2017.09.114",
+            "sha256": "cf8632f416ec36c87e4277e2128208ad701a63f94364c028d89f2c1c3a08afaf",
+            "quote": "\"page\":\"203\"",
+            "observed": "2026-11-14",
+            "source": "Crossref publisher-deposited metadata"
+          },
+          {
+            "url": "https://researchportal.tuni.fi/fi/publications/in-silico-modeling-of-human-ips-cardiomyocytes-effect-of-drugs-an/",
+            "quote": "Meeting Abstract",
+            "observed": "2026-11-14",
+            "source": "Tampere University institutional record of the same JPTM issue segment",
+            "sha256": "474e27f4313f09e04ededbc8e3f20472b697c477036f7a9da49c53df58a65eac"
+          }
+        ]
+      },
+      {
+        "doi": "10.1016/j.vascn.2017.09.134",
+        "oa": "https://openalex.org/W2769249227",
+        "why": "Oxford Stage 9 review 2026-11-14: publisher-deposited metadata gives this exact JPTM volume 88 record only page(s) 209, in the issue segment documented as meeting abstracts by institutional catalogues. This is an issue-context inference for a short conference abstract; remove only this DOI/OA record.",
+        "evidence": [
+          {
+            "url": "https://api.crossref.org/works/10.1016/j.vascn.2017.09.134",
+            "sha256": "3e706850d263d76626950cd9f740cd6cee2e963f64fe9270020baa04fa55132d",
+            "quote": "\"page\":\"209\"",
+            "observed": "2026-11-14",
+            "source": "Crossref publisher-deposited metadata"
+          },
+          {
+            "url": "https://researchportal.tuni.fi/fi/publications/in-silico-modeling-of-human-ips-cardiomyocytes-effect-of-drugs-an/",
+            "quote": "Meeting Abstract",
+            "observed": "2026-11-14",
+            "source": "Tampere University institutional record of the same JPTM issue segment",
+            "sha256": "474e27f4313f09e04ededbc8e3f20472b697c477036f7a9da49c53df58a65eac"
+          }
+        ]
+      },
+      {
+        "doi": "10.1016/j.vascn.2017.09.133",
+        "oa": "https://openalex.org/W2769862426",
+        "why": "Oxford Stage 9 review 2026-11-14: publisher-deposited metadata gives this exact JPTM volume 88 record only page(s) 208-209, in the issue segment documented as meeting abstracts by institutional catalogues. This is an issue-context inference for a short conference abstract; remove only this DOI/OA record.",
+        "evidence": [
+          {
+            "url": "https://api.crossref.org/works/10.1016/j.vascn.2017.09.133",
+            "sha256": "60226b81921c15e13007df128a664ef772db7d93885e9498953838b00f4d8852",
+            "quote": "\"page\":\"208-209\"",
+            "observed": "2026-11-14",
+            "source": "Crossref publisher-deposited metadata"
+          },
+          {
+            "url": "https://researchportal.tuni.fi/fi/publications/in-silico-modeling-of-human-ips-cardiomyocytes-effect-of-drugs-an/",
+            "quote": "Meeting Abstract",
+            "observed": "2026-11-14",
+            "source": "Tampere University institutional record of the same JPTM issue segment",
+            "sha256": "474e27f4313f09e04ededbc8e3f20472b697c477036f7a9da49c53df58a65eac"
+          }
+        ]
+      },
+      {
+        "doi": "10.1016/j.vascn.2017.09.236",
+        "oa": "https://openalex.org/W2770731949",
+        "why": "Oxford Stage 9 review 2026-11-14: publisher-deposited metadata gives this exact JPTM volume 88 record only page(s) 240-241, in the issue segment documented as meeting abstracts by institutional catalogues. This is an issue-context inference for a short conference abstract; remove only this DOI/OA record.",
+        "evidence": [
+          {
+            "url": "https://api.crossref.org/works/10.1016/j.vascn.2017.09.236",
+            "sha256": "907da0e8d928c9f03cf1034fa26279406296d93ab43e1b5a5690eed7a05f9c09",
+            "quote": "\"page\":\"240-241\"",
+            "observed": "2026-11-14",
+            "source": "Crossref publisher-deposited metadata"
+          },
+          {
+            "url": "https://researchportal.tuni.fi/fi/publications/in-silico-modeling-of-human-ips-cardiomyocytes-effect-of-drugs-an/",
+            "quote": "Meeting Abstract",
+            "observed": "2026-11-14",
+            "source": "Tampere University institutional record of this exact item",
+            "sha256": "474e27f4313f09e04ededbc8e3f20472b697c477036f7a9da49c53df58a65eac"
+          }
+        ]
+      }
+    ]
+  },
+  "David Gavaghan": {
+    "not_papers": [
+      {
+        "doi": "10.1016/j.vascn.2017.09.098",
+        "oa": "https://openalex.org/W2769232000",
+        "why": "Oxford Stage 9 review 2026-11-14: publisher-deposited metadata gives this record only page 198 in Journal of Pharmacological and Toxicological Methods volume 88; the same issue contains documented meeting abstracts. This is a one-page conference abstract rather than a full research paper. The classification is inferred from page extent and issue context; remove only this DOI/OA record.",
+        "evidence": [
+          {
+            "url": "https://api.crossref.org/works/10.1016/j.vascn.2017.09.098",
+            "sha256": "81b7887c3cdfbddc96b6470a3ef3df59993fc4215df0974db8992693e4e10604",
+            "quote": "\"page\":\"198\"",
+            "observed": "2026-11-14",
+            "source": "Crossref publisher-deposited metadata"
+          },
+          {
+            "url": "https://kclpure.kcl.ac.uk/portal/en/publications/0121-computational-models-for-acute-and-chronic-doxorubicin-mitoc/",
+            "sha256": "e3c1d886bddb82a04000c64854f03d16b3223cf648f4481f241711cd6f5d5c52",
+            "quote": "Contribution to journal › Meeting abstract › peer-review",
+            "observed": "2026-11-14",
+            "source": "King’s College London institutional record of adjacent page in same JPTM volume"
+          }
+        ]
+      },
+      {
+        "doi": "10.1016/j.vascn.2017.09.130",
+        "oa": "https://openalex.org/W2768231100",
+        "why": "Oxford Stage 9 review 2026-11-14: publisher-deposited metadata gives this exact JPTM volume 88 record only page(s) 207-208, in the issue segment documented as meeting abstracts by institutional catalogues. This is an issue-context inference for a short conference abstract; remove only this DOI/OA record.",
+        "evidence": [
+          {
+            "url": "https://api.crossref.org/works/10.1016/j.vascn.2017.09.130",
+            "sha256": "bccee7010dfd900b9dd305b710df734b463ee5ac7972eef9303ab56c71f66049",
+            "quote": "\"page\":\"207-208\"",
+            "observed": "2026-11-14",
+            "source": "Crossref publisher-deposited metadata"
+          },
+          {
+            "url": "https://researchportal.tuni.fi/fi/publications/in-silico-modeling-of-human-ips-cardiomyocytes-effect-of-drugs-an/",
+            "quote": "Meeting Abstract",
+            "observed": "2026-11-14",
+            "source": "Tampere University institutional record of the same JPTM issue segment",
+            "sha256": "474e27f4313f09e04ededbc8e3f20472b697c477036f7a9da49c53df58a65eac"
+          }
+        ]
+      },
+      {
+        "doi": "10.1016/j.vascn.2017.09.089",
+        "oa": "https://openalex.org/W2769543790",
+        "why": "Oxford Stage 9 review 2026-11-14: publisher-deposited metadata gives this exact JPTM volume 88 record only page(s) 195-196, in the issue segment documented as meeting abstracts by institutional catalogues. This is an issue-context inference for a short conference abstract; remove only this DOI/OA record.",
+        "evidence": [
+          {
+            "url": "https://api.crossref.org/works/10.1016/j.vascn.2017.09.089",
+            "sha256": "63023a6b9dde11b4e6be8efb65002e5498e05eed84437f6bdd503b5487be050a",
+            "quote": "\"page\":\"195-196\"",
+            "observed": "2026-11-14",
+            "source": "Crossref publisher-deposited metadata"
+          },
+          {
+            "url": "https://researchportal.tuni.fi/fi/publications/in-silico-modeling-of-human-ips-cardiomyocytes-effect-of-drugs-an/",
+            "quote": "Meeting Abstract",
+            "observed": "2026-11-14",
+            "source": "Tampere University institutional record of the same JPTM issue segment",
+            "sha256": "474e27f4313f09e04ededbc8e3f20472b697c477036f7a9da49c53df58a65eac"
+          }
+        ]
+      }
+    ]
+  },
+  "Tingting Zhu": {
+    "not_papers": [
+      {
+        "doi": "10.1093/bjs/znag018.219",
+        "oa": "https://openalex.org/W7141348794",
+        "why": "Oxford Stage 9 review 2026-11-14: the publisher classifies this SRS235 record as an abstract in BJS volume 113 Supplement 2, not a full research paper. Its DOI and OA ID are excluded exactly; ordinary BJS articles remain eligible.",
+        "evidence": [
+          {
+            "url": "https://api.crossref.org/works/10.1093/bjs/znag018.219",
+            "sha256": "c5cc6e1b80e2a8f9d4dd9b08a743cdc72333fd8da699b9ecd7401d0cfb9792af",
+            "quote": "SRS235 - Assessment and mitigation of subgroup underperformance in machine learning models for kidney transplant outcome prediction",
+            "observed": "2026-11-14",
+            "source": "publisher-deposited Crossref metadata, issue Supplement_2"
+          },
+          {
+            "url": "https://academic.oup.com/bjs/article/113/Supplement_2/znag018.219/8550939",
+            "quote": "BJS, Volume 113, Issue Supplement_2, March 2026; SRS235",
+            "observed": "2026-11-14",
+            "source": "publisher abstract page (search indexed; direct fetch restricted)"
+          }
+        ]
+      }
+    ]
+  },
+  "Alfonso Bueno-Orovio": {
+    "not_papers": [
+      {
+        "doi": "10.1016/j.vascn.2017.09.133",
+        "oa": "https://openalex.org/W2769862426",
+        "why": "Oxford Stage 9 review 2026-11-14: publisher-deposited metadata gives this exact JPTM volume 88 record only page(s) 208-209, in the issue segment documented as meeting abstracts by institutional catalogues. This is an issue-context inference for a short conference abstract; remove only this DOI/OA record.",
+        "evidence": [
+          {
+            "url": "https://api.crossref.org/works/10.1016/j.vascn.2017.09.133",
+            "sha256": "60226b81921c15e13007df128a664ef772db7d93885e9498953838b00f4d8852",
+            "quote": "\"page\":\"208-209\"",
+            "observed": "2026-11-14",
+            "source": "Crossref publisher-deposited metadata"
+          },
+          {
+            "url": "https://researchportal.tuni.fi/fi/publications/in-silico-modeling-of-human-ips-cardiomyocytes-effect-of-drugs-an/",
+            "quote": "Meeting Abstract",
+            "observed": "2026-11-14",
+            "source": "Tampere University institutional record of the same JPTM issue segment",
+            "sha256": "474e27f4313f09e04ededbc8e3f20472b697c477036f7a9da49c53df58a65eac"
+          }
+        ]
+      }
+    ]
   }
 }

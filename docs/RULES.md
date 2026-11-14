@@ -138,6 +138,7 @@ for candidate student links. Different-title reviewed merges retain their existi
 ### R-PAP-17 — not papers
 Datasets, paratext, peer reviews, errata, supplementary materials, grants, standards, retractions, reference entries
 and library guides are not papers (`NOT_PAPERS`).
+Publisher records titled `Notice of Removal: ...` are removal notices, not the research paper they name. Oxford's sampled IEEE Internet of Things Journal DOI `10.1109/jiot.2020.2967734` is dropped as `removal_notice`; an ordinary paper with the same subject remains eligible.
 
 ### R-PAP-18 (2026-10-29, owner: accuracy sample) — not papers: repository records and paratext (R1)
 Dropped from every lab (`not_a_paper`): OpenAlex type `software` (Zenodo, Figshare, Code Ocean records); supplement and
@@ -157,6 +158,9 @@ Per-pattern counts and ten samples each on the 2026-10-29 build: `docs/not-paper
 research-like titles). Report: `not_paper:<tag>`, samples in `notPaperSamples`.
 
 ### R-PAP-19 (2026-10-29, owner: accuracy sample) — meeting abstracts are not papers (R2)
+Dated Oxford Stage 9 review (2026-11-14): `Cardiovascular Research` joins the meeting-abstract journals for records typed `conference-abstract`. The sampled P503 item (DOI `10.1093/cvr/cvy060.360`) is in the publisher's 2018 supplement, page S122, “Abstracts > F. Poster Session III”; ordinary journal articles in that venue stay eligible. Test: `test_oxford_cardiovascular_research_poster_abstract_is_not_a_paper`.
+Dated Oxford Stage 9 review (2026-11-14): BMJ `Heart` British Cardiovascular Society supplement DOIs of the form `10.1136/heartjnl-YYYY-BCS.N` are meeting abstracts. Oxford's own repository labels the sampled `10.1136/heartjnl-2019-BCS.67` as subtype Abstract in volume 105 Supplement 6, page A69. Ordinary `Heart` research articles with other DOI forms remain eligible. Test: `test_oxford_bcs_heart_supplement_abstract_is_not_a_paper`.
+Dated Oxford Stage 9 review (2026-11-14): eight exact `Journal of Pharmacological and Toxicological Methods` volume 88 records with one or two pages are held in Oxford's reviewed `not_papers` list. [Tampere University's record](https://researchportal.tuni.fi/fi/publications/in-silico-modeling-of-human-ips-cardiomyocytes-effect-of-drugs-an/) explicitly calls DOI `10.1016/j.vascn.2017.09.236` a meeting abstract; publisher-deposited Crossref pages and that same issue segment support the other exact decisions. The latter classifications are issue-context inferences, recorded as such in the review file. Full research articles elsewhere in the journal remain eligible.
 Dropped (`meeting_abstract:<why>`): a meeting-abstract venue (AGU Fall Meeting Abstracts, Bulletin of the APS, APS
 Division/March Meeting Abstracts, ECS Meeting Abstracts, ISMRM proceedings, EGU General Assembly); a supplement or
 meeting DOI (`10.58530/` ISMRM, `10.5194/egusphere|epsc`, `suppl`/`supplement`, AACR `.am20xx`, ECS `/ma20xx`, ASH
@@ -319,7 +323,7 @@ ORCID 0000-0002-7339-8342 and the OpenAlex author A5113215889 that carries it (t
 ### R-PAP-36 (2026-11-05, owner: "yes", the DBLP page-1 extension of R8) — DBLP-listed works confirmed by page 1
 A work on the PI's own DBLP person page (the dump or a reviewed pid) that the build lacks, in a year inside a dated appointment (a period, or a listing year), where OpenAlex has no record
 or gives the PI no school, is added only when page 1 of the paper (arXiv v1 from the public GCS bulk copy, or an open PDF on a proceedings host: PMLR, NeurIPS, ACL, CVF, USENIX,
-IJCAI, AAAI, OpenReview, JMLR, CEUR-WS; robots.txt honoured, 3 s per host, 10 s at USENIX (its Crawl-delay)) names the school for the PI (`tie`). `tools/dblp_recover.py` (`candidates`, `dump_ee`, `pdf_url`): the candidates
+IJCAI, AAAI, OpenReview, JMLR, CEUR-WS, BMVA Archive; robots.txt honoured, 3 s per host, 10 s at USENIX (its Crawl-delay)) names the school for the PI (`tie`). `tools/dblp_recover.py` (`candidates`, `dump_ee`, `pdf_url`): the candidates
 are now the cached lists plus the PI's full DBLP person page from the dump (the cached lists lacked MIT's Mossel NeurIPS 2022 and Freund COLT 2022), `ee` for a record only the dump has
 comes from the dump XML, and the JMLR host was added (Shah JMLR 2025). IACR ePrint is not asked: eprint.iacr.org answers with a Cloudflare challenge and its robots.txt carries an AI policy against the PDFs, so Devadas's 2021 ePrint paper stays `dblp_unconfirmed`. A reviewed blocked cluster (R-PAP-32) also stops a recovered row. A record with no page-1 evidence is not added: it is kept in
 `dblp-recover.sqlite` with status `dblp_unconfirmed` and a reason (`no_open_page1_source`, `page1_fetch_failed`, `page1_read_school_not_named`) for later. The rows carry
