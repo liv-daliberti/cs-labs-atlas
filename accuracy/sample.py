@@ -70,7 +70,11 @@ ROUNDS = {'r2': dict(seed=20261102, uniform=50, stratum=5, cov=50, cands=200,
           # Keep the seed for direct key-by-key comparison; draw again only after
           # its copy ledger has been rebuilt. The package hashes must be new.
           'r8': dict(seed=2026111502, uniform=50, stratum=5, cov=50, cands=200,
-                     schools=['vt'], dir='round-r8')}
+                     schools=['vt'], dir='round-r8'),
+          # r9 measures the VT package after the three r8 false inclusions
+          # were removed and its copy and unavailable ledgers were rebuilt.
+          'r9': dict(seed=2026111502, uniform=50, stratum=5, cov=50, cands=200,
+                     schools=['vt'], dir='round-r9')}
 FILES = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 
 
