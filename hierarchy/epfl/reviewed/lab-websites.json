@@ -32374,9 +32374,9 @@
   },
   {
    "pi": "Dimitar Jetchev",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official people.epfl.ch profile (https://people.epfl.ch/dimitar.jetchev?lang=en) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows tan.epfl.ch only as 'Host Professor, Chair of Analytic Number Theory' (Prof. Michel's chair; the front does not name him, so it is not his lab site; reviewer note 2026-11-15)); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-10-31T11:54:35+00:00",
    "checks": [
     {
@@ -32484,25 +32484,6 @@
      "sha256": "c8db3ea97b80d19c30af1b7ee8a97493c7cc083b32367610ba6c93925a57173a"
     },
     {
-     "source": "school_profile",
-     "url": "https://people.epfl.ch/dimitar.jetchev?lang=en",
-     "at": "2026-11-15T02:53:55+00:00",
-     "result": "ok",
-     "sha256": "db5fe146780063b869508adad2d9461e7067bf0eb7a05647ff8307eca310c563"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "https://tan.epfl.ch",
-     "on": "https://people.epfl.ch/dimitar.jetchev?lang=en",
-     "at": "2026-11-15T02:53:55+00:00",
-     "result": "listed",
-     "anchor": "https://tan.epfl.ch",
-     "linked_url": "https://tan.epfl.ch",
-     "source_sha256": "db5fe146780063b869508adad2d9461e7067bf0eb7a05647ff8307eca310c563",
-     "source_capture_url": null,
-     "provenance": "live_profile_fetch_2026-11-15"
-    },
-    {
      "source": "candidate_site",
      "url": "https://tan.epfl.ch",
      "at": "2026-11-15T02:57:48+00:00",
@@ -32510,6 +32491,13 @@
      "sha256": "983a527a2205aed702b5c1183c348efc473584b541a4f26a780d14084403627c",
      "result": "does_not_name_pi_kept_strong_source",
      "final_url": "https://www.epfl.ch/labs/tan/"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://people.epfl.ch/dimitar.jetchev?lang=en",
+     "at": "2026-11-15T02:53:55+00:00",
+     "result": "ok",
+     "sha256": "db5fe146780063b869508adad2d9461e7067bf0eb7a05647ff8307eca310c563"
     }
    ],
    "places_checked": [
@@ -32521,41 +32509,18 @@
     "pi_evidence_url:listed",
     "school_profile:ok",
     "school_profile_link:listed",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:9 captures"
    ],
    "checked_at": "2026-11-15T02:53:55+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "coverage": "website",
-   "upstream_audit_reason": "the PI's own official profile links this site (fetched live 2026-11-15)",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "url": "https://tan.epfl.ch",
-   "kind": "lab_site",
-   "found_via": "school_profile_link",
-   "listed_on": "https://people.epfl.ch/dimitar.jetchev?lang=en",
-   "sha256": "983a527a2205aed702b5c1183c348efc473584b541a4f26a780d14084403627c",
-   "evidence": {
-    "url": "https://www.epfl.ch/labs/tan/",
-    "sha256": "983a527a2205aed702b5c1183c348efc473584b541a4f26a780d14084403627c",
-    "quote": "Skip to content About Education Research Innovation Schools Campus Search on the site Validate Show / hide the search form Search on the site Hide the search fo"
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "https://tan.epfl.ch",
-     "on": "https://people.epfl.ch/dimitar.jetchev?lang=en",
-     "at": "2026-11-15T02:53:55+00:00",
-     "result": "listed",
-     "anchor": "https://tan.epfl.ch",
-     "linked_url": "https://tan.epfl.ch",
-     "source_sha256": "db5fe146780063b869508adad2d9461e7067bf0eb7a05647ff8307eca310c563",
-     "source_capture_url": null,
-     "provenance": "live_profile_fetch_2026-11-15"
-    }
-   ],
-   "unverified_reason": "the front page does not carry the PI name; the PI's own official profile links it as the website of their lab position"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Andrei Popescu-Belis",

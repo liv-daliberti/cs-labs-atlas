@@ -240,7 +240,7 @@ DECISIONS = {
     'Pascal Fua': dict(kind=SITE, linked='https://cvlab.epfl.ch/', code='lab_site', target='https://www.epfl.ch/labs/cvlab/'),
     'Pierre Vandergheynst': dict(kind=SITE, linked='https://lts2.epfl.ch/', code='lab_site'),
     'Volkan Cevher': dict(kind=SITE, linked='https://lions.epfl.ch', code='lab_site', target='https://www.epfl.ch/labs/lions/'),
-    'Dimitar Jetchev': dict(kind=SITE, linked='https://tan.epfl.ch', code='lab_site', target='https://www.epfl.ch/labs/tan/'),
+    'Dimitar Jetchev': dict(kind=ABSENCE, code='profile_only_no_homepage', seen="tan.epfl.ch only as 'Host Professor, Chair of Analytic Number Theory' (Prof. Michel's chair; the front does not name him, so it is not his lab site; reviewer note 2026-11-15)"),
     'Kamiar Aminian': dict(kind=SITE, linked='http://lmam.epfl.ch', code='lab_site', target='https://www.epfl.ch/labs/lmam/'),
     'Matthieu Wyart': dict(kind=SITE, linked='https://pcsl.epfl.ch/', code='lab_site', target='https://www.epfl.ch/labs/pcsl/'),
     'Michel Bierlaire': dict(kind=SITE, linked='https://transp-or.epfl.ch/', code='lab_site', target='https://www.epfl.ch/labs/transp-or/'),
