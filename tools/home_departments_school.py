@@ -165,7 +165,10 @@ def main(key, write_shared=False):
             continue  # the dated school census already supplied this person's home
         b = x.get('pi_basis') or {}
         code = (x.get('departments') or [None])[-1]
-        home = None if code in centers else norm(units.get(code, code))   # a center is never a home: hold until an academic school is evidenced
+        # a center is never a home: hold until an academic school is evidenced; a code that names no charter unit or department is a listing
+        # host token ('jhu', 'profile'), not a home: hold too (JHU/UChicago/WashU 2026-11-15: 29 PIs were accepted with the host as their department)
+        unit_name = units.get(code) or (deps.get(code) or {}).get('name')
+        home = None if (code in centers or not unit_name) else norm(unit_name)
         also = [a_ for a_ in dict.fromkeys(norm(units.get(c_, c_)) for c_ in (x.get('departments') or [])[:-1]) if a_ and a_ != home]   # other units with ladder evidence (the ML Center)
         row = dict(school=key, name=x['name'], home_department=home, also=also, no_academic_department=False, status='accepted' if home else 'hold',
                    evidence=dict(url=b.get('url'), sha256=b.get('sha256'), quote=b.get('quote')), note=f'the {code} faculty listing (cs-related-review.json)')
