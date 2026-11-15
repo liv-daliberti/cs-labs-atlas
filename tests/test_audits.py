@@ -55,6 +55,24 @@ def test_R_AUD_01_the_seven_chain_checks(tmp_path, monkeypatch):
     assert all({'total', 'explained', 'unexplained'} <= set(c) for c in checks.values())
 
 
+def test_mphil_member_without_paper_has_non_phd_link_explanation(tmp_path):
+    import gzip
+
+    school = tmp_path / 'princeton'
+    school.mkdir()
+    (school / 'pis.json').write_text(json.dumps([{'pi': 'Ada Lovelace', 'piBasis': {'kind': 'own_lab'}}]))
+    (school / 'students.json').write_text(json.dumps({'Ada Lovelace': [
+        {'person': 'p_student', 'name': 'Student One', 'roles': ['mphil'], 'relations': []}
+    ]}))
+    with gzip.open(school / 'lab_papers.jsonl.gz', 'wt') as out:
+        out.write(json.dumps({'pi': 'Ada Lovelace', 'year': 2024, 'oa': 'W1'}) + '\n')
+
+    links = chain_audit.audit('princeton', hierarchy=tmp_path)['checks']['links']
+    assert links['total'] == 1
+    assert links['n_unexplained'] == 0
+    assert links['explained']['non-PhD advisee (mphil): thesis-only is normal'] == 1
+
+
 def test_R_AUD_08_link_diagnosis_counts_school_authorships_only(tmp_path, monkeypatch):
     import gzip
     import link_diagnosis as LD

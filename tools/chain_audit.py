@@ -265,7 +265,7 @@ def audit(school, *, include_link_diagnosis=True, hierarchy=None):
                 reason = "no lab paper in the student's years"
             elif roles and roles <= {'postdoc'}:
                 reason = 'postdoc is a lab member, not a student-paper advisee'
-            elif roles and roles <= {'undergraduate', 'masters', 'visiting', 'intern'}:
+            elif roles and roles <= {'undergraduate', 'masters', 'mphil', 'visiting', 'intern'}:
                 reason = 'non-PhD advisee (' + '/'.join(sorted(roles)) + '): thesis-only is normal'
             dg = diag.get(f'{name} | {sid}') or {}
             if not reason and dg.get('category') in DIAG_REASON:
