@@ -3341,13 +3341,6 @@
      "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
     },
     {
-     "source": "school_profile",
-     "url": "https://engineering.washu.edu/faculty/Ning-Zhang.html",
-     "at": "2026-11-07T20:43:02+00:00",
-     "result": "ok",
-     "sha256": "2948f7c5c28f2fdd9bcc168b83209cef1d7e6c398123eb8331193fe39f92f0e2"
-    },
-    {
      "source": "school_profile_link",
      "url": "https://n1ngz.github.io/",
      "at": "2026-11-07T20:43:02+00:00",
@@ -3472,6 +3465,45 @@
      "at": "2026-11-07T20:44:15+00:00",
      "result": "ok_wayback",
      "sha256": "2cf11817428dbb5bc81a72d538f9affadb22b38e95fc7d494f35c19be554d4f6"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Ning-Zhang.html",
+     "at": "2026-11-15T03:42:16+00:00",
+     "result": "ok",
+     "sha256": "2948f7c5c28f2fdd9bcc168b83209cef1d7e6c398123eb8331193fe39f92f0e2"
+    },
+    {
+     "source": "official_link_chain",
+     "url": "https://cybersecurity.seas.wustl.edu",
+     "on": "https://engineering.washu.edu/faculty/Ning-Zhang.html",
+     "at": "2026-11-15T03:42:16+00:00",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://n1ngz.github.io/",
+     "provenance_chain": [
+      {
+       "source_url": "https://engineering.washu.edu/faculty/Ning-Zhang.html",
+       "url": "https://n1ngz.github.io/",
+       "href": "https://n1ngz.github.io/",
+       "anchor": "Lab website",
+       "source_sha256": "2948f7c5c28f2fdd9bcc168b83209cef1d7e6c398123eb8331193fe39f92f0e2",
+       "source_fetched_at": "2026-11-15T03:42:16+00:00",
+       "source_capture_url": null,
+       "via": "literal_html_href"
+      },
+      {
+       "source_url": "https://n1ngz.github.io/",
+       "url": "https://cybersecurity.seas.wustl.edu",
+       "linked_url": "https://cybersecurity.seas.wustl.edu",
+       "href": "https://cybersecurity.seas.wustl.edu",
+       "anchor": "WUSTL",
+       "source_sha256": "f17e8b07e33784c458f032654a7dba516b471aca29542ef5d2dcd924f1097926",
+       "source_fetched_at": "2026-11-07T05:00:42+00:00",
+       "source_capture_url": null,
+       "via": "literal_html_href"
+      }
+     ],
+     "provenance": "live_profile_fetch_2026-11-15"
     }
    ],
    "places_checked": [
@@ -3479,6 +3511,7 @@
     "candidate_site:ok",
     "dblp_person_url:listed",
     "department_listing:ok",
+    "official_link_chain:listed_via_recorded_chain",
     "orcid_researcher_urls:listed",
     "people_link:ok",
     "pi_evidence_url:listed",
@@ -3488,24 +3521,57 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:23 captures"
    ],
-   "checked_at": "2026-11-07T20:44:15+00:00",
+   "checked_at": "2026-11-15T03:42:16+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://ningzhang.info/",
+   "url": "https://cybersecurity.seas.wustl.edu",
    "kind": "pi_homepage",
    "people_page": "https://cybersecurity.seas.wustl.edu/#studentAd",
    "alumni_page": null,
    "pubs_page": "https://cybersecurity.seas.wustl.edu/#publication",
-   "found_via": "dblp_person_url",
-   "listed_on": null,
+   "found_via": "official_link_chain",
+   "listed_on": "https://engineering.washu.edu/faculty/Ning-Zhang.html",
    "sha256": "2cf11817428dbb5bc81a72d538f9affadb22b38e95fc7d494f35c19be554d4f6",
    "evidence": {
-    "url": "http://ningzhang.info/",
+    "url": "https://cybersecurity.seas.wustl.edu",
     "sha256": "2cf11817428dbb5bc81a72d538f9affadb22b38e95fc7d494f35c19be554d4f6",
     "quote": "resiliency in IoT Analog attacks on CPS sensors News - Dr. Zhang delivered a keynote talk at the ArtSec, IEEE S&P 2027! [ Ta"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "official_link_chain",
+     "url": "https://cybersecurity.seas.wustl.edu",
+     "on": "https://engineering.washu.edu/faculty/Ning-Zhang.html",
+     "at": "2026-11-15T03:42:16+00:00",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://n1ngz.github.io/",
+     "provenance_chain": [
+      {
+       "source_url": "https://engineering.washu.edu/faculty/Ning-Zhang.html",
+       "url": "https://n1ngz.github.io/",
+       "href": "https://n1ngz.github.io/",
+       "anchor": "Lab website",
+       "source_sha256": "2948f7c5c28f2fdd9bcc168b83209cef1d7e6c398123eb8331193fe39f92f0e2",
+       "source_fetched_at": "2026-11-15T03:42:16+00:00",
+       "source_capture_url": null,
+       "via": "literal_html_href"
+      },
+      {
+       "source_url": "https://n1ngz.github.io/",
+       "url": "https://cybersecurity.seas.wustl.edu",
+       "linked_url": "https://cybersecurity.seas.wustl.edu",
+       "href": "https://cybersecurity.seas.wustl.edu",
+       "anchor": "WUSTL",
+       "source_sha256": "f17e8b07e33784c458f032654a7dba516b471aca29542ef5d2dcd924f1097926",
+       "source_fetched_at": "2026-11-07T05:00:42+00:00",
+       "source_capture_url": null,
+       "via": "literal_html_href"
+      }
+     ],
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
@@ -3695,9 +3761,9 @@
   },
   {
    "pi": "Jiaxin Huang",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official engineering.washu.edu profile (https://engineering.washu.edu/faculty/Jiaxin-Huang.html) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows a Google Scholar profile (an identity index, not a site) and a CV download only); no other source was read for this row. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-07T20:45:26+00:00",
    "checks": [
     {
@@ -3788,6 +3854,13 @@
      "at": "2026-11-07T20:45:26+00:00",
      "result": "ok_wayback",
      "sha256": "864726eb5b9f34b9fdba0d6e04c81352ae99a1c9ed26206cd8ebf69d55a59c67"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Jiaxin-Huang.html",
+     "at": "2026-11-15T03:42:13+00:00",
+     "result": "ok",
+     "sha256": "17b7abeba164debeec9a1c3905bdc77043f17c75774e2a82d86adac7d66ffc21"
     }
    ],
    "places_checked": [
@@ -3797,32 +3870,19 @@
     "orcid_researcher_urls:no_urls",
     "people_link:ok",
     "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:4 captures"
    ],
-   "checked_at": "2026-11-07T20:45:26+00:00",
+   "checked_at": "2026-11-15T03:42:13+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://teapot123.github.io",
-   "kind": "lab_site",
-   "people_page": "https://teapot123.github.io/group/",
-   "alumni_page": null,
-   "pubs_page": "https://teapot123.github.io/cv1/",
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "1e068aa79fd78d85f824ee58b4a760bc732fa1f34797de10d2e06a8da954187b",
-   "evidence": {
-    "url": "https://teapot123.github.io",
-    "sha256": "1e068aa79fd78d85f824ee58b4a760bc732fa1f34797de10d2e06a8da954187b",
-    "quote": "About Me - Jiaxin Huang Jiaxin Huang Publications Group Awards Teaching Jiaxin Huan"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "about me jiaxin huang you are using an outdated browser please upgrade your browser to improve y"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Umar Iqbal",
