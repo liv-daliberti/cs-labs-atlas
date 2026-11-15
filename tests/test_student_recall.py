@@ -422,3 +422,13 @@ def test_R_STU_28_names_on_any_captured_page_of_the_pi_same_host_only(tree):
 def test_R_STU_28_wayback_capture_belongs_to_the_archived_host():
     assert R._host('https://web.archive.org/web/20261105id_/http://www.lab.example/people.html') == 'lab.example'
     assert R._host('https://www.lab.example/x') == 'lab.example'
+
+
+@pytest.mark.parametrize('html', [
+    b'<html><body><h2>Current students</h2><!-- <p>Ryo Hidden, PhD Student</p> --><p>Ada Visible, PhD Student</p></body></html>',
+    b'<html><body><p>Ada Visible</p><!-- <p>Ryo Hidden</p>',
+])
+def test_recall_source_text_excludes_hidden_html_comments(html):
+    for text in (R.page_text(html), R.page_text_lines(html).casefold()):
+        assert 'ada visible' in text
+        assert 'ryo hidden' not in text
