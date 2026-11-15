@@ -61,7 +61,11 @@ ROUNDS = {'r2': dict(seed=20261102, uniform=50, stratum=5, cov=50, cands=200,
           # r5 was drawn before the corrected VT package's unavailable ledger finished.
           # Keep that trial immutable; r6 uses the same draw against the final ledger digest.
           'r6': dict(seed=20261115, uniform=50, stratum=5, cov=50, cands=200,
-                     schools=['vt'], dir='round-r6')}
+                     schools=['vt'], dir='round-r6'),
+          # r7 measures the clean VT rebuild after the signed fresh Stage 6
+          # student-roster additions. Earlier draws remain immutable history.
+          'r7': dict(seed=2026111502, uniform=50, stratum=5, cov=50, cands=200,
+                     schools=['vt'], dir='round-r7')}
 FILES = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 
 
