@@ -11,7 +11,7 @@ def test_new_onboarding_without_package_does_not_break_released_ledger(monkeypat
     (tmp_path / 'ready').mkdir()
     for name in ('copies.json', 'lab_papers.jsonl.gz'):
         (tmp_path / 'ready' / name).touch()
-    assert S.ledger_groups(['existing', 'partial']) == (['existing'], ['partial', 'ready'])
+    assert S.ledger_groups(['existing', 'partial']) == (['existing', 'ready'], ['partial'])
 
 
 def test_partial_copy_search_requires_documented_authorization(monkeypatch):

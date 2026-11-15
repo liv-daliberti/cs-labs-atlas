@@ -94,8 +94,8 @@ if has ledger; then
   # after the copies, before the audits and the evidence check (2026-10-30, docs/UNAVAILABLE.md, R-AUD-10): the
   # unavailability ledger, run with the collectors' interpreter; it also writes the reasons onto copies.json
   # (lab_paper_copies.attach_ledger). Onboarding schools (school charters) get their ledger before their first release.
-  # A deliberately partial release preserves unknown copy availability. Its
-  # charter must document the owner's authorization; attribution gates still run.
+  # Package-ready onboarding schools use the same online path. An explicitly
+  # authorized cached-only release remains the sole exception.
   groups=$($CS_ATLAS_PY -c 'import sys; sys.path.insert(0, __import__("os").environ["CS_ATLAS_TOOLS"]); import school_config as c; print("|".join(" ".join(g) for g in c.ledger_groups(sys.argv[1:])))' $SCHOOLS) || { echo "FAILED ledger: school selection"; exit 1; }
   online=${groups%%|*}; offline=${groups#*|}
   echo "== ledger $(date +%T) schools: ${online:-none}; offline: ${offline:-none}"
@@ -103,7 +103,7 @@ if has ledger; then
     nice -n10 $CS_ATLAS_COLLECTOR_PY -I -u "$CS_ATLAS_FULLTEXT_PUSH/unavailable_ledger.py" $online || { echo "FAILED ledger"; fail=1; }
   fi
   if [ -n "$offline" ]; then
-    nice -n10 $CS_ATLAS_COLLECTOR_PY -I -u "$CS_ATLAS_FULLTEXT_PUSH/unavailable_ledger.py" --offline $offline || { echo "FAILED ledger (partial/onboarding, offline)"; fail=1; }
+    nice -n10 $CS_ATLAS_COLLECTOR_PY -I -u "$CS_ATLAS_FULLTEXT_PUSH/unavailable_ledger.py" --offline $offline || { echo "FAILED ledger (authorized cached-only)"; fail=1; }
   fi
 fi
 if has reader; then
