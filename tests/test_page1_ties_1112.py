@@ -75,3 +75,22 @@ def test_candidates_consider_every_pi_authorship():
     assert F.unaffiliated_pi_authorship(w, {'A1', 'A2'})['author']['id'] == 'A2'
     assert F.unaffiliated_pi_authorship(w, {'A1'}) is None
     assert F.unaffiliated_pi_authorship({'authorships': [au('A2', raw=['x'])]}, {'A2'}) is None
+
+
+def test_numbered_unit_footnote_accepts_a_blank_line_after_the_marker():
+    # ICML 2024 Chen/Kwok: pdftotext places the affiliation marker on its own line.
+    page = ('Efficient Pareto Manifold Learning\nWeiyu Chen 1 James T. Kwok 1\n'
+            'Abstract We study multi-task learning.\n1\n\n'
+            'Department of Computer Science and Engineering, The Hong\n'
+            'Kong University of Science and Technology. Correspondence to Weiyu Chen.')
+    how, quotes = F.tie(page, [('james', 'kwok')], aff('hkust'))
+    assert how == 'footnote'
+    assert 'Hong\nKong University of Science and Technology' in quotes[1]
+
+
+def test_numbered_blank_line_footnote_does_not_borrow_the_next_authors_school():
+    page = ('A research paper James T. Kwok1 Other Author2\nAbstract A method.\n'
+            '1\n\nUniversity of Oxford.\n2\n\n'
+            'Hong Kong University of Science and Technology.')
+    assert F.tie(page, [('james', 'kwok')], aff('hkust'))[0] is None
+    assert F.tie(page, [('other', 'author')], aff('hkust'))[0] == 'footnote'

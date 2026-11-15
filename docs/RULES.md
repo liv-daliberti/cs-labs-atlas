@@ -894,3 +894,7 @@ The Stage 6 student recall X limit remains 20%. A listed name marked `outside_sc
 
 ### R-STU-32 (2026-11-14, Oxford Stage 6 source review) — read captured PDF supervision lists
 The student recall checker extracts text from a captured PI-owned PDF using `pdftotext`. It checks names and quotes against that extracted text while the capture's SHA-256 remains the hash of the original PDF bytes. An unreadable PDF contributes no names or quotes and cannot silently pass as a readable page. Test: `tests/test_student_recall.py::test_R_STU_32_captured_pdf_supervision_text_is_checked_against_original_bytes`.
+
+### R-PAP-47 (2026-11-15, build: HKUST accuracy review) — retained contact addresses
+
+When a raw authorship explicitly names another institution, an email address at the school does not by itself establish school affiliation. Preserve independent structured school affiliations and a literal named school or dual affiliation outside the contact address. This prevents an old university email on a Huazhong-affiliated authorship from creating an HKUST lab-paper claim. The correction applies to each authorship; another author's school evidence cannot fill the gap. Primary paper-specific affiliation evidence remains available under R-PAP-10.

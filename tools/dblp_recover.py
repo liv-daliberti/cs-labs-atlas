@@ -28,11 +28,12 @@ from pi_hierarchy import read, DBLP, INST, AFF, ndoi, norm_title, Name, toks, gi
 from pi_fulltext_affiliation import tie  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 from pihier.common import school_scope_work  # noqa: E402
+from pihier.names import name_toks  # noqa: E402
 from pihier.papers import _authorship_school_via  # noqa: E402
 
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 OPEN_HOSTS = ('ceur-ws.org', 'aclanthology.org', 'proceedings.mlr.press', 'openaccess.thecvf.com', 'papers.nips.cc', 'proceedings.neurips.cc',
-              'bmva-archive.org.uk',
+              'bmva-archive.org.uk', 'www.ieee-security.org', 'openproceedings.org',
               'www.usenix.org', 'usenix.org', 'www.ijcai.org', 'ojs.aaai.org', 'openreview.net', 'www.isca-speech.org',
               'www.roboticsproceedings.org', 'roboticsproceedings.org', 'jmlr.org', 'www.jmlr.org', 'dl.acm.org/doi/pdf')
 _last = collections.defaultdict(float); _lock = threading.Lock(); _robots = {}
@@ -160,7 +161,7 @@ def bare_key(k):
 
 def page1_name_forms(names):
     """Keep both a literal byline first name and its nickname expansion for page-one matching."""
-    return sorted({(first, t[-1]) for n in names for t in [toks(n)] if len(t) >= 2
+    return sorted({(first, t[-1]) for n in names for t in [name_toks(n)] if len(t) >= 2
                    for first in (given(t[0]), t[0].lower())})
 
 
