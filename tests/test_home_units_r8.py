@@ -33,3 +33,10 @@ def test_units_by_recency_puts_the_center_first_and_the_latest_academic_unit_las
     import cs_related_school as C
     lad = [dict(unit='ML', observed='20261103'), dict(unit='AE', observed='20180101'), dict(unit='BME', observed='20250117'), dict(unit='AE', observed='20240101')]
     assert C.units_by_recency(lad, {'ML'}) == ['ML', 'AE', 'BME'] and C.units_by_recency(lad, set()) == ['AE', 'BME', 'ML']
+
+
+def test_a_site_feedback_form_is_not_a_website_selection():
+    import lab_websites as W
+    assert 'selected_url_is_feedback_form' in W.selection_gaps('https://webdev.iac.gatech.edu/feedback?code=lmc')
+    assert 'selected_url_is_feedback_form' in W.selection_gaps('https://example.edu/people/feedback/')
+    assert 'selected_url_is_feedback_form' not in W.selection_gaps('https://www.cs.example.edu/~ann/')

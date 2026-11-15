@@ -62,6 +62,8 @@ def selection_gaps(url):
         gaps.append('selected_url_is_research_output')
     if re.search(r'\.(?:pdf|ps|docx?)$', parsed.path, re.I):
         gaps.append('selected_url_is_document')
+    if re.match(r'^(?:webdev|forms?|feedback|survey)\.', parsed.hostname or '', re.I) or re.search(r'/(?:feedback|contact-us|report-a-problem)(?:/|$)', parsed.path, re.I):
+        gaps.append('selected_url_is_feedback_form')   # 2026-11-15: GT Biggs was given webdev.iac.gatech.edu/feedback as her website
     return gaps
 
 
@@ -681,7 +683,8 @@ def gate(doc, expected_pis, require_official=True):
             for problem in selection_gaps(r['url']):
                 description = {'selected_url_is_profile_card': 'an institutional profile card or identity index',
                                'selected_url_is_research_output': 'a research-output page',
-                               'selected_url_is_document': 'a document, not a lab/home webpage'}[problem]
+                               'selected_url_is_document': 'a document, not a lab/home webpage',
+                               'selected_url_is_feedback_form': 'a site feedback or contact form, not a lab/home webpage'}[problem]
                 bad.append(f'{pi}: selected website is {description}')
             if not re.fullmatch(r'[a-fA-F0-9]{64}', r.get('sha256') or '') or not r.get('found_via'):
                 bad.append(f'{pi}: website capture hash or discovery provenance missing')

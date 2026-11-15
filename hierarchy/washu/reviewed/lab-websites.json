@@ -4698,59 +4698,6 @@
    "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "evidence_gaps": []
-  },
-  {
-   "pi": "Bruno Sinopoli",
-   "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://ese.washu.edu/faculty-research/directory.html: ok; department_listing https://ese.wustl.edu/faculty-research/directory.html: robots_disallowed; dblp_person_url https://dblp.org/pid/53/2290: no_homepage_url.",
-   "audited_at": "2026-11-15T01:50:41+00:00",
-   "checks": [
-    {
-     "source": "department_listing",
-     "url": "https://ese.washu.edu/faculty-research/directory.html",
-     "at": "2026-11-15T01:48:04+00:00",
-     "result": "ok",
-     "sha256": "72e66704090814d8254fb219fdad43a3f6bfcc46b6a1c058e80d4ddfc7034650"
-    },
-    {
-     "source": "department_listing",
-     "url": "https://ese.wustl.edu/faculty-research/directory.html",
-     "at": "2026-11-15T01:48:07+00:00",
-     "result": "robots_disallowed"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/53/2290",
-     "at": "2026-11-15T01:48:07+00:00",
-     "result": "no_homepage_url"
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-15T01:48:07+00:00",
-     "result": "no_orcid"
-    },
-    {
-     "source": "openalex_author",
-     "url": "https://openalex.org/A5006051783",
-     "at": "2026-11-15T01:48:07+00:00",
-     "result": "no_homepage_field_in_schema"
-    }
-   ],
-   "places_checked": [
-    "dblp_person_url:no_homepage_url",
-    "department_listing:ok",
-    "department_listing:robots_disallowed"
-   ],
-   "checked_at": "2026-11-15T01:48:07+00:00",
-   "students_page_status": "no_lab_page",
-   "papers_page_status": "no_lab_page",
-   "coverage": "reason",
-   "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "access_blocked",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
   }
  ]
 }
