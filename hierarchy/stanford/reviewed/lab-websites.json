@@ -12686,9 +12686,9 @@
   {
    "pi": "Amin Arbabian",
    "status": "found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-10-31T10:37:41+00:00",
+   "reason_code": "lab_site",
+   "reason": "Official Stanford profile links to the Arbabian Lab, whose people page names the PI and current members.",
+   "audited_at": "2026-11-15T07:53:09+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass",
@@ -12822,6 +12822,46 @@
      "at": "2026-10-31T10:37:41+00:00",
      "result": "ok_wayback",
      "sha256": "2c7261cf225f86741598f589df5ae22f55155cb268d80b60c07d8fbdabc194d0"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://arbabianlab.stanford.edu/",
+     "on": "https://profiles.stanford.edu/amin-arbabian",
+     "at": "2026-11-15T07:53:09+00:00",
+     "result": "listed",
+     "anchor": "Arbabian Lab at Stanford",
+     "sha256": "151d58ad079ae9abda7a5a27d6f001dc40ad1f77ffc0e482c012432e140e7d07"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://arbabianlab.stanford.edu/people",
+     "on": "https://arbabianlab.stanford.edu/",
+     "at": "2026-11-15T07:53:09+00:00",
+     "result": "ok",
+     "sha256": "e83bb1c0d1f79689bf2c20ce477bc1b35f9ccb425e280b0003052d68889bdd1e"
+    },
+    {
+     "source": "official_link_chain",
+     "url": "https://arbabianlab.stanford.edu/people",
+     "on": "https://profiles.stanford.edu/amin-arbabian",
+     "at": "2026-11-15T07:53:09+00:00",
+     "result": "verified",
+     "provenance_chain": [
+      {
+       "source_url": "https://profiles.stanford.edu/amin-arbabian",
+       "url": "https://arbabianlab.stanford.edu/",
+       "href": "https://arbabianlab.stanford.edu/",
+       "source_sha256": "151d58ad079ae9abda7a5a27d6f001dc40ad1f77ffc0e482c012432e140e7d07",
+       "source_fetched_at": "2026-11-15T07:53:09+00:00"
+      },
+      {
+       "source_url": "https://arbabianlab.stanford.edu/",
+       "url": "https://arbabianlab.stanford.edu/people",
+       "href": "/people",
+       "source_sha256": "e3b512e9566234b3720eba32086f0e062b49439063593fbc71d2e9e5b33abccc",
+       "source_fetched_at": "2026-11-15T07:53:09+00:00"
+      }
+     ]
     }
    ],
    "places_checked": [
@@ -12834,34 +12874,50 @@
     "school_profile:ok",
     "school_profile_link:listed",
     "wayback_capture:ok_wayback",
-    "wayback_cdx:13 captures"
+    "wayback_cdx:13 captures",
+    "official_link_chain:verified"
    ],
-   "checked_at": "2026-10-31T10:37:41+00:00",
+   "checked_at": "2026-11-15T07:53:09+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://web.stanford.edu/group/arbabian_group/cgi-bin/mediawiki/index.php/Main_Page",
-   "kind": "pi_homepage",
-   "found_via": "school_profile_link",
-   "listed_on": "https://arbabianlab.stanford.edu/",
-   "sha256": "e8e12bd5ad622b000e352c7253eaef0c7ff3bef45c95913c9a07f61dfe89a703",
+   "url": "https://arbabianlab.stanford.edu/people",
+   "kind": "lab_site",
+   "found_via": "official_link_chain",
+   "listed_on": "https://profiles.stanford.edu/amin-arbabian",
+   "sha256": "e83bb1c0d1f79689bf2c20ce477bc1b35f9ccb425e280b0003052d68889bdd1e",
    "evidence": {
-    "url": "https://web.stanford.edu/group/arbabian_group/cgi-bin/mediawiki/index.php/Main_Page",
-    "sha256": "e8e12bd5ad622b000e352c7253eaef0c7ff3bef45c95913c9a07f61dfe89a703",
-    "quote": null
+    "url": "https://arbabianlab.stanford.edu/people",
+    "sha256": "e83bb1c0d1f79689bf2c20ce477bc1b35f9ccb425e280b0003052d68889bdd1e",
+    "quote": "Principal Investigator: Professor Amin Arbabian"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
-     "source": "school_profile_link",
-     "url": "https://web.stanford.edu/group/arbabian_group/cgi-bin/mediawiki/index.php/Main_Page",
-     "at": "2026-10-31T10:37:14+00:00",
-     "result": "listed",
-     "anchor": "Arbabian Lab Wiki",
-     "on": "https://arbabianlab.stanford.edu/"
+     "source": "official_link_chain",
+     "url": "https://arbabianlab.stanford.edu/people",
+     "on": "https://profiles.stanford.edu/amin-arbabian",
+     "at": "2026-11-15T07:53:09+00:00",
+     "result": "verified",
+     "provenance_chain": [
+      {
+       "source_url": "https://profiles.stanford.edu/amin-arbabian",
+       "url": "https://arbabianlab.stanford.edu/",
+       "href": "https://arbabianlab.stanford.edu/",
+       "source_sha256": "151d58ad079ae9abda7a5a27d6f001dc40ad1f77ffc0e482c012432e140e7d07",
+       "source_fetched_at": "2026-11-15T07:53:09+00:00"
+      },
+      {
+       "source_url": "https://arbabianlab.stanford.edu/",
+       "url": "https://arbabianlab.stanford.edu/people",
+       "href": "/people",
+       "source_sha256": "e3b512e9566234b3720eba32086f0e062b49439063593fbc71d2e9e5b33abccc",
+       "source_fetched_at": "2026-11-15T07:53:09+00:00"
+      }
+     ]
     }
    ],
    "coverage": "website",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "upstream_audit_reason": "official Stanford profile and lab site identify the lab and its people page",
    "evidence_gaps": [],
    "website_note": {
     "replaced_url": "http://web.stanford.edu/~arbabian/",
@@ -12871,10 +12927,15 @@
     "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
     "people_page": null,
     "alumni_page": null,
-    "pubs_page": null
+    "pubs_page": null,
+    "replaced_selected_url": "https://web.stanford.edu/group/arbabian_group/cgi-bin/mediawiki/index.php/Main_Page",
+    "review_20261115": "The official Stanford profile links to this lab; the lab homepage links to its people page. Student rows require separate acceptance."
    },
-   "verified": false,
-   "unverified_reason": "stored page does not carry the PI full name (surname present)"
+   "verified": true,
+   "people_page": "https://arbabianlab.stanford.edu/people",
+   "verified_by": "hand_review",
+   "verification_quote": "Principal Investigator: Professor Amin Arbabian",
+   "verification_reason": "the lab people page names the PI and is reached from the official Stanford profile through the lab homepage"
   },
   {
    "pi": "Nicholas Bambos",
@@ -30970,10 +31031,10 @@
   },
   {
    "pi": "Daniel Bruce Ennis",
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The only candidates the discovery found were institutional pages (a university front page or the research portal), which are never a person's or lab's website; no eligible homepage was established from the recorded checks.",
-   "audited_at": "2026-10-31T11:25:24+00:00",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Stanford's official PI profile links to the CMR Group lab site, whose people page names Ennis as principal investigator and lists lab members.",
+   "audited_at": "2026-11-15T07:53:09+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -31082,6 +31143,41 @@
      "at": "2026-10-31T11:25:24+00:00",
      "result": "ok_wayback",
      "sha256": "26952df3f617480d0de8aecf48cdf2c4ba1b44e499d3c19a6133fbb3b21a079d"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://med.stanford.edu/cmrgroup.html",
+     "on": "https://profiles.stanford.edu/daniel-ennis",
+     "at": "2026-11-15T07:53:09+00:00",
+     "result": "listed",
+     "href": "http://med.stanford.edu/cmrgroup.html",
+     "final_url": "https://med.stanford.edu/cmrgroup.html",
+     "anchor": "CMR Group's Lab Page",
+     "sha256": "fa21bde66d3e9cec3e577474d36755c1b9d9b3e2a99cb547f826b94a46b22306"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://med.stanford.edu/cmrgroup.html",
+     "at": "2026-11-15T07:53:09+00:00",
+     "result": "ok",
+     "sha256": "f4723a24abdb59c451718e170830f87b75b880947c845f935a8fd7a455d0d034"
+    },
+    {
+     "source": "lab_site_link",
+     "url": "https://med.stanford.edu/cmrgroup/people.html",
+     "on": "https://med.stanford.edu/cmrgroup.html",
+     "at": "2026-11-15T07:53:09+00:00",
+     "result": "listed",
+     "href": "https://med.stanford.edu/cmrgroup/people.html",
+     "sha256": "f4723a24abdb59c451718e170830f87b75b880947c845f935a8fd7a455d0d034"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://med.stanford.edu/cmrgroup/people.html",
+     "on": "https://med.stanford.edu/cmrgroup.html",
+     "at": "2026-11-15T07:53:09+00:00",
+     "result": "ok",
+     "sha256": "f633a326338bd6fe62f606f003aefecdc788c1405f0af900864e6fe0ca36c665"
     }
    ],
    "places_checked": [
@@ -31093,16 +31189,49 @@
     "pi_evidence_url:listed",
     "pubs_link:ok",
     "wayback_capture:ok_wayback",
-    "wayback_cdx:42 captures"
+    "wayback_cdx:42 captures",
+    "school_profile_link:listed",
+    "lab_site_link:listed"
    ],
-   "checked_at": "2026-10-31T11:25:24+00:00",
+   "checked_at": "2026-11-15T07:53:09+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
-   "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "no_eligible_website",
-   "reason_scope": "Recorded search outcome; not proof no website exists.",
-   "evidence_gaps": []
+   "coverage": "website",
+   "upstream_audit_reason": "official Stanford PI profile links to the named CMR Group lab site",
+   "evidence_gaps": [],
+   "url": "https://med.stanford.edu/cmrgroup.html",
+   "people_page": "https://med.stanford.edu/cmrgroup/people.html",
+   "kind": "lab_site",
+   "found_via": "school_profile_link",
+   "listed_on": "https://profiles.stanford.edu/daniel-ennis",
+   "sha256": "f4723a24abdb59c451718e170830f87b75b880947c845f935a8fd7a455d0d034",
+   "evidence": {
+    "url": "https://med.stanford.edu/cmrgroup.html",
+    "sha256": "f4723a24abdb59c451718e170830f87b75b880947c845f935a8fd7a455d0d034",
+    "quote": "Daniel B. Ennis, PhD Professor in the Departments of Radiology and Bioengineering"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://med.stanford.edu/cmrgroup.html",
+     "on": "https://profiles.stanford.edu/daniel-ennis",
+     "at": "2026-11-15T07:53:09+00:00",
+     "result": "listed",
+     "href": "http://med.stanford.edu/cmrgroup.html",
+     "final_url": "https://med.stanford.edu/cmrgroup.html",
+     "anchor": "CMR Group's Lab Page",
+     "sha256": "fa21bde66d3e9cec3e577474d36755c1b9d9b3e2a99cb547f826b94a46b22306"
+    }
+   ],
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_quote": "Daniel B. Ennis, PhD",
+   "verification_reason": "the official Stanford profile names Daniel Bruce Ennis and links directly to the CMR Group site, which names Daniel B. Ennis as PI",
+   "website_note": {
+    "prior_reason": "profile_only_no_homepage",
+    "review_20261115": "The earlier search missed the CMR Group link on the official Stanford profile. Student rows require separate acceptance."
+   }
   },
   {
    "pi": "Jason Alan Fries",
