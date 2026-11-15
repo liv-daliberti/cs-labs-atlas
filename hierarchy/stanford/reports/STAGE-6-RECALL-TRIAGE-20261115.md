@@ -13,11 +13,12 @@ candidates. It must be reviewed row by row before integration. Its `status`
 is explicitly `proposed; not wired or accepted`.
 
 The bound [candidate triage](STAGE-6-RECALL-CANDIDATES-20261115.json) holds
-12 rows: five Arbabian visitors who are faculty/scientists, five Ennis
+13 rows: five Arbabian visitors who are faculty/scientists, five Ennis
 research scientists or a visiting scholar, one Ennis graduate dated before
-his sourced Stanford appointment, and a duplicate Joshuah Chen alumni row
-that conflicts with his current-page entry. The other 89 remain proposals
-pending the lab-page hand-check; this is not an acceptance verdict.
+his sourced Stanford appointment, a duplicate Joshuah Chen alumni row
+that conflicts with his current-page entry, and one externally affiliated
+graduate whose Stanford lab membership is unclear. The other 88 remain
+proposals pending acceptance; this is not a recall signoff.
 
 The primary pages confirm why a bulk import is unsafe:
 
@@ -45,3 +46,22 @@ verify role and appointment years against the stored capture, then generate a
 new lab-page additions set and run the required fresh hand-check before wiring
 it. Redraw the recall sample after rebuilding. The three Stanford student-count
 regression flags remain held until this evidence and Stage 6 pass.
+
+An isolated proposed `labpage-additions.json` was expanded from 260 to 348
+students with 88 unique new rows from the packet. Fresh round 9 (30 rows, seed 9011) failed:
+two Wetzstein alumni were explicitly visiting scholars, Jayna Huang and
+Michael Salerno had wrong degree roles, and two older rows had unusable stored
+captures. The failed round is recorded in `labpage-handcheck.json`; no new
+acceptance was recorded. The isolated proposal now has 340 students after
+removing all six Wetzstein visiting scholars and the two unverifiable older
+rows, correcting those degree roles, and withholding Shiwen Zhang's unstated
+degree role. Fresh round 10 (30 rows, seed 9012; sample SHA-256
+`3da193f0e057729e0ce985e7bbde490d4fa7247cc783561fc2c7f77d191c59c9`)
+met the numerical bar: zero false memberships, two doubtful source checks
+(score 1.0 of 1.5 allowed), and one unsupported degree role (1 of 3 allowed).
+The OpenReview sample item was verified against its persisted API response.
+The round is recorded in `labpage-handcheck.json`. Acceptance was not stamped:
+the two lab-page captures must be repaired and the role corrected before the
+exact additions bytes can be accepted. Round 10 is the current owner-authorized
+limit. The separate 30-PI recall draw still lacks an independent signoff and
+has R1 0.541, so Stage 6 remains open.
