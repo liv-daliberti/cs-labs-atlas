@@ -1,0 +1,184 @@
+{
+ "school": "oxford",
+ "date": "2026-11-15",
+ "seed": 20261113,
+ "n_verdicts": 186,
+ "files": {
+  "pis.json": "70df1b8afc8b8b1fe91ec1316f332d75de5d6a9a2f786bec88e0713eb90be6ed",
+  "students.json": "687cc3f30dd666552360e366d266e1ff6e4105da71e01720ed42692b857415a7",
+  "lab_papers.jsonl.gz": "234623ce212523cfd37def1d42c4803310a4d73ca9910f01fbfabcab8c06408a",
+  "student_papers.jsonl.gz": "bb2b03ee744edf0d6f6f3872458c5ddb0cd37729bca82fb9eba59f16640ccec1",
+  "copies.json": "67e810918ccf15f1994f1f530bbb9152b59201b417b390edd2c4ca174f8aeca5"
+ },
+ "files_now": {
+  "pis.json": "70df1b8afc8b8b1fe91ec1316f332d75de5d6a9a2f786bec88e0713eb90be6ed",
+  "students.json": "687cc3f30dd666552360e366d266e1ff6e4105da71e01720ed42692b857415a7",
+  "lab_papers.jsonl.gz": "234623ce212523cfd37def1d42c4803310a4d73ca9910f01fbfabcab8c06408a",
+  "student_papers.jsonl.gz": "bb2b03ee744edf0d6f6f3872458c5ddb0cd37729bca82fb9eba59f16640ccec1",
+  "copies.json": "67e810918ccf15f1994f1f530bbb9152b59201b417b390edd2c4ca174f8aeca5"
+ },
+ "lab_precision_uniform": {
+  "k": 48,
+  "n": 50,
+  "p": 0.96,
+  "lo": 0.8654,
+  "hi": 0.989,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 58,
+  "n": 60,
+  "p": 0.9667,
+  "lo": 0.8864,
+  "hi": 0.9908,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 47,
+  "n": 48,
+  "p": 0.9792,
+  "lo": 0.891,
+  "hi": 0.9963
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 48,
+  "not_lab_papers_absent": 2,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": {
+  "k": 11,
+  "n": 11,
+  "p": 1.0,
+  "lo": 0.7412,
+  "hi": 1.0
+ },
+ "student_coverage_items": {
+  "drawn": 11,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "not_a_paper": 2,
+  "missing_from_build": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Rebecca Eynon|None|https://openalex.org/W4383215910",
+   "failure_type": "not_a_paper",
+   "reason": "Springer labels the six-page item Commentary; this paratext is excluded by R-PAP-17 despite Oxford authorship.",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "David Wallom|None|https://openalex.org/W4410556582",
+   "failure_type": "not_a_paper",
+   "reason": "Copernicus labels this ICUC12 record an abstract; no full paper is supplied.",
+   "policy": "meeting_abstract"
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Michael Wooldridge|journals/ai/MichalakREWJ16",
+   "failure_type": "missing_from_build",
+   "reason": "Oxford-hosted journal PDF gives Artificial Intelligence volume 230 (2016), pages 14–50; this Oxford work is absent from the build.",
+   "policy": null
+  }
+ ],
+ "unclear": [],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 8919,
+  "n_student_papers": 3233,
+  "n_coverage_pool": 6487,
+  "n_student_candidates": 11
+ },
+ "round": {
+  "id": "r4",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 60,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 11
+  }
+ }
+}

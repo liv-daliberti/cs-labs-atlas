@@ -1,0 +1,30 @@
+{
+  "school": "oxford",
+  "kind": "copy_ledger_only_accuracy_rebind",
+  "checked_at_utc": "2026-11-15T08:36:44.563297+00:00",
+  "source_round": "r3",
+  "target_round": "r4",
+  "source_sample_sha256": "676bb360bad7f04ab3d25b69d7bcdcf78792fc78a22c9c1aa9d71776d43f0bbd",
+  "target_sample_sha256": "55eeaa6fd603c27a2d17a1569a2b6a3adbddefb5ca395b78c29d74aca7ed86d4",
+  "source_verdicts_sha256": "bea0b5bd3d9e69ea7a0bc374563bf21427b1c0db108c2cf3ed413248c29db812",
+  "target_verdicts_sha256": "bea0b5bd3d9e69ea7a0bc374563bf21427b1c0db108c2cf3ed413248c29db812",
+  "selection_payload_equal": true,
+  "judged_keys_cover_sample_exactly": true,
+  "judged_counts": {
+    "lab_precision": 60,
+    "student_precision": 65,
+    "lab_coverage": 50,
+    "student_coverage": 11
+  },
+  "unchanged_package_files": {
+    "pis.json": "70df1b8afc8b8b1fe91ec1316f332d75de5d6a9a2f786bec88e0713eb90be6ed",
+    "students.json": "687cc3f30dd666552360e366d266e1ff6e4105da71e01720ed42692b857415a7",
+    "lab_papers.jsonl.gz": "234623ce212523cfd37def1d42c4803310a4d73ca9910f01fbfabcab8c06408a",
+    "student_papers.jsonl.gz": "bb2b03ee744edf0d6f6f3872458c5ddb0cd37729bca82fb9eba59f16640ccec1"
+  },
+  "copies_json": {
+    "before": "574bebdc618744f77c68fb636b82dce596179c84c3008be0dcfb90fd9a3a7c1b",
+    "after": "67e810918ccf15f1994f1f530bbb9152b59201b417b390edd2c4ca174f8aeca5"
+  },
+  "reason": "The completed all-school CORE job changed only the copy availability ledger. The PI, student, lab-paper and student-paper files are byte-identical to the fully judged r3 draw; ordered selected items and all 186 verdict keys are identical. Accuracy verdicts concern paper attribution, student links and coverage, not copy availability. The original verdict bytes and judgment dates are preserved."
+}
