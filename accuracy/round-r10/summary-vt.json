@@ -2,7 +2,7 @@
  "school": "vt",
  "date": "2026-11-15",
  "seed": 2026111503,
- "n_verdicts": 79,
+ "n_verdicts": 105,
  "files": {
   "pis.json": "89fd30ec8da139c96eae95d04da5e726a14956d9a2667bdba122e7c198c69ca1",
   "students.json": "970c02257b49c064f48d2c25d28ace82060c1861c165cdf46ccec1487c15b5ee",
@@ -63,11 +63,11 @@
   "unclear": 1
  },
  "student_precision_uniform": {
-  "k": 24,
-  "n": 24,
-  "p": 1.0,
-  "lo": 0.862,
-  "hi": 1.0,
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
   "unclear": 0
  },
  "student_precision_strata": {
@@ -81,11 +81,11 @@
   }
  },
  "student_precision_all40": {
-  "k": 25,
-  "n": 25,
-  "p": 1.0,
-  "lo": 0.8668,
-  "hi": 1.0,
+  "k": 50,
+  "n": 51,
+  "p": 0.9804,
+  "lo": 0.897,
+  "hi": 0.9965,
   "unclear": 0
  },
  "lab_coverage": null,
@@ -101,7 +101,7 @@
   "no_coauthored_paper": 0
  },
  "failures": {
-  "not_a_paper": 1
+  "not_a_paper": 2
  },
  "incorrect": [
   {
@@ -110,6 +110,14 @@
    "item": "Kurt Luther|None|https://openalex.org/W3016579664",
    "failure_type": "not_a_paper",
    "reason": "The PI's Virginia Tech lab explicitly categorizes this AGU 2018 item as a poster; no full research paper is evidenced for the sampled OpenAlex record. The package mislabels it as an article.",
+   "policy": null
+  },
+  {
+   "sample": "student_precision",
+   "stratum": "uniform",
+   "item": "Liqing Zhang|ext:vt:sahar-heidari|https://openalex.org/W7167484113",
+   "failure_type": "not_a_paper",
+   "reason": "The indexed JAAD item is a single-page abstract on page AB346 of volume 95 issue 1S, not a full research paper; the sampled student-paper edge should not be in the build.",
    "policy": null
   }
  ],
@@ -137,7 +145,7 @@
   },
   "judged": {
    "lab_precision": 54,
-   "student_precision": 25,
+   "student_precision": 51,
    "lab_coverage": 0,
    "student_coverage": 0
   }
