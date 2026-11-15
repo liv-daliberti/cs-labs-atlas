@@ -927,6 +927,25 @@
      "via": "school_profile_link",
      "sha256": "bf4ccd3182d68c6a5256183490cb67e7e22b22a10ef7dc3bc41f32e3657f9ab5",
      "final_url": "https://nati.ttic.edu"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://cs.uchicago.edu/people/nathan-srebro/",
+     "at": "2026-11-15T03:42:12+00:00",
+     "result": "ok",
+     "sha256": "6262586c708b57396ade6b4cbb999b74e3939c374d7b0bce42b3e3c1cba3d800"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://ttic.uchicago.edu/~nati/",
+     "on": "https://cs.uchicago.edu/people/nathan-srebro/",
+     "at": "2026-11-15T03:42:12+00:00",
+     "result": "listed",
+     "anchor": "http://ttic.uchicago.edu/~nati/",
+     "linked_url": "http://ttic.uchicago.edu/~nati/",
+     "source_sha256": "6262586c708b57396ade6b4cbb999b74e3939c374d7b0bce42b3e3c1cba3d800",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
     }
    ],
    "places_checked": [
@@ -939,7 +958,7 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-07T21:19:56+00:00",
+   "checked_at": "2026-11-15T03:42:12+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
    "url": "http://ttic.uchicago.edu/~nati/",
@@ -948,7 +967,7 @@
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
+   "listed_on": "https://cs.uchicago.edu/people/nathan-srebro/",
    "sha256": "30dbc5edde24a92fb900626e2ed244bea38f7ac6fb90cfb3b28fcf0760f6cdfb",
    "evidence": {
     "url": "http://ttic.uchicago.edu/~nati/",
@@ -956,8 +975,21 @@
     "quote": "Nati Srebro Nathan Srebro Professor Toyota Technological Institute at C",
     "capture_url": "https://web.archive.org/web/20201204150630id_/https://ttic.uchicago.edu/~nati/"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://ttic.uchicago.edu/~nati/",
+     "on": "https://cs.uchicago.edu/people/nathan-srebro/",
+     "at": "2026-11-15T03:42:12+00:00",
+     "result": "listed",
+     "anchor": "http://ttic.uchicago.edu/~nati/",
+     "linked_url": "http://ttic.uchicago.edu/~nati/",
+     "source_sha256": "6262586c708b57396ade6b4cbb999b74e3939c374d7b0bce42b3e3c1cba3d800",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
@@ -6278,12 +6310,33 @@
      "url": null,
      "at": "2026-11-03T16:01:36+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://cs.uchicago.edu/people/yuxin-chen1/",
+     "at": "2026-11-15T03:42:33+00:00",
+     "result": "ok",
+     "sha256": "51c1994a047a1c6b4c604879a95fa3f51136ae36ae71129f7995a152004f17f3"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://yuxinchen.org/",
+     "on": "https://cs.uchicago.edu/people/yuxin-chen1/",
+     "at": "2026-11-15T03:42:33+00:00",
+     "result": "listed",
+     "anchor": "https://yuxinchen.org/",
+     "linked_url": "https://yuxinchen.org/",
+     "source_sha256": "51c1994a047a1c6b4c604879a95fa3f51136ae36ae71129f7995a152004f17f3",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
     }
    ],
    "places_checked": [
-    "department_listing:ok"
+    "department_listing:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-03T16:01:36+00:00",
+   "checked_at": "2026-11-15T03:42:33+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
    "url": "https://yuxinchen.org/",
@@ -6292,15 +6345,28 @@
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
+   "listed_on": "https://cs.uchicago.edu/people/yuxin-chen1/",
    "sha256": "7ad39b29137bbaf775cc0facfb10a80004a23ceebe055bc65d63d562275b1aa3",
    "evidence": {
     "url": "https://yuxinchen.org/",
     "sha256": "7ad39b29137bbaf775cc0facfb10a80004a23ceebe055bc65d63d562275b1aa3",
     "quote": "Yuxin Chen — Interactive Learning Systems Yuxin Chen Research People P"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://yuxinchen.org/",
+     "on": "https://cs.uchicago.edu/people/yuxin-chen1/",
+     "at": "2026-11-15T03:42:33+00:00",
+     "result": "listed",
+     "anchor": "https://yuxinchen.org/",
+     "linked_url": "https://yuxinchen.org/",
+     "source_sha256": "51c1994a047a1c6b4c604879a95fa3f51136ae36ae71129f7995a152004f17f3",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
@@ -7996,6 +8062,31 @@
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fai.stanford.edu%2F~zhiyuanli%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-07T21:29:29+00:00",
      "result": "wayback_deferred"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://zhiyuanli.ttic.edu/",
+     "at": "2026-11-07T21:29:29+00:00",
+     "result": "ok"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://www.ttic.edu/faculty/",
+     "at": "2026-11-15T03:44:50+00:00",
+     "result": "ok",
+     "sha256": "c77c3e60903c3e9cf728356b4a66d6fb75ec8789cf8b7fdccae6a160c1d2e43f"
+    },
+    {
+     "source": "department_listing_link",
+     "url": "https://zhiyuanli.ttic.edu/",
+     "on": "https://www.ttic.edu/faculty/",
+     "at": "2026-11-15T03:44:50+00:00",
+     "result": "listed",
+     "anchor": "https://zhiyuanli.ttic.edu/",
+     "linked_url": "https://zhiyuanli.ttic.edu/",
+     "source_sha256": "c77c3e60903c3e9cf728356b4a66d6fb75ec8789cf8b7fdccae6a160c1d2e43f",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
     }
    ],
    "places_checked": [
@@ -8003,6 +8094,7 @@
     "candidate_site:unreachable",
     "dblp_person_url:listed",
     "department_listing:ok",
+    "department_listing_link:listed",
     "orcid_researcher_urls:listed",
     "prior_labpage_pass_2026-10-22:recorded_lab_site",
     "prior_labpage_pass_2026-10-22:recorded_people_page",
@@ -8010,30 +8102,42 @@
     "school_profile_link:listed",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-07T21:29:29+00:00",
+   "checked_at": "2026-11-15T03:44:50+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "https://ai.stanford.edu/~zhiyuanli/",
+   "url": "https://zhiyuanli.ttic.edu/",
    "kind": "lab_site",
    "people_page": "https://zhiyuanli.ttic.edu/People/",
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "542f3c7cb9fb70572b0476f3b50ed16f0648e51a351b1a52cafd9cfc271775c6",
+   "found_via": "department_listing_link",
+   "listed_on": "https://www.ttic.edu/faculty/",
+   "sha256": "cfae8c08e08acf9ab3aff6e94977c164b4116db37533eb35e940602dcb20736c",
    "evidence": {
-    "url": "https://ai.stanford.edu/~zhiyuanli/",
-    "sha256": "542f3c7cb9fb70572b0476f3b50ed16f0648e51a351b1a52cafd9cfc271775c6",
-    "quote": "Zhiyuan Li Zhiyuan Li (李志远) I am a tenure-track assistant professor in",
-    "capture_url": "https://web.archive.org/web/20250726025003id_/https://ai.stanford.edu/~zhiyuanli/"
+    "url": "https://zhiyuanli.ttic.edu/",
+    "sha256": "cfae8c08e08acf9ab3aff6e94977c164b4116db37533eb35e940602dcb20736c",
+    "quote": "Zhiyuan Li (李志远) Toggle navigation About (current) Group Publications "
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "department_listing_link",
+     "url": "https://zhiyuanli.ttic.edu/",
+     "on": "https://www.ttic.edu/faculty/",
+     "at": "2026-11-15T03:44:50+00:00",
+     "result": "listed",
+     "anchor": "https://zhiyuanli.ttic.edu/",
+     "linked_url": "https://zhiyuanli.ttic.edu/",
+     "source_sha256": "c77c3e60903c3e9cf728356b4a66d6fb75ec8789cf8b7fdccae6a160c1d2e43f",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "zhiyuan li zhiyuan li i am a tenure track assistant professor in the toyota technologica"
+   "verification_quote": "zhiyuan li 李志远 toggle navigation about current group publications cv teachingservices"
   },
   {
    "pi": "Ari Holtzman",
@@ -8649,6 +8753,31 @@
      "result": "ok",
      "sha256": "2a6589b9ca262ef0f3848b036c9bd06b6117120672c12d48b38ae0e746283a2e",
      "capture_url": null
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://shiry.ttic.edu/",
+     "at": "2026-11-07T21:29:34+00:00",
+     "result": "ok"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://www.ttic.edu/faculty/",
+     "at": "2026-11-15T03:44:50+00:00",
+     "result": "ok",
+     "sha256": "c77c3e60903c3e9cf728356b4a66d6fb75ec8789cf8b7fdccae6a160c1d2e43f"
+    },
+    {
+     "source": "department_listing_link",
+     "url": "https://shiry.ttic.edu/",
+     "on": "https://www.ttic.edu/faculty/",
+     "at": "2026-11-15T03:44:50+00:00",
+     "result": "listed",
+     "anchor": "https://shiry.ttic.edu/",
+     "linked_url": "https://shiry.ttic.edu/",
+     "source_sha256": "c77c3e60903c3e9cf728356b4a66d6fb75ec8789cf8b7fdccae6a160c1d2e43f",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
     }
    ],
    "places_checked": [
@@ -8656,6 +8785,7 @@
     "candidate_site:ok",
     "dblp_person_url:no_homepage_url",
     "department_listing:ok",
+    "department_listing_link:listed",
     "people_link_not_used_by_prior_pass:ok",
     "prior_labpage_pass_2026-10-22:recorded_lab_site",
     "prior_labpage_pass_2026-10-22:recorded_people_page",
@@ -8664,30 +8794,42 @@
     "school_profile_link:listed",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-07T21:29:34+00:00",
+   "checked_at": "2026-11-15T03:44:50+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://people.eecs.berkeley.edu/~shiry/",
+   "url": "https://shiry.ttic.edu/",
    "kind": "pi_homepage",
    "people_page": "https://shiry.ttic.edu/",
    "alumni_page": null,
    "pubs_page": "https://shiry.ttic.edu/#publications",
-   "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "e25074b8edf0245bf0c11bb87fdd920ee41d390f091a90114aa62c54cb6e1d46",
+   "found_via": "department_listing_link",
+   "listed_on": "https://www.ttic.edu/faculty/",
+   "sha256": "2a6589b9ca262ef0f3848b036c9bd06b6117120672c12d48b38ae0e746283a2e",
    "evidence": {
-    "url": "https://people.eecs.berkeley.edu/~shiry/",
-    "sha256": "e25074b8edf0245bf0c11bb87fdd920ee41d390f091a90114aa62c54cb6e1d46",
-    "quote": "Shiry Ginosar - Homepage shiry at eecs dot berkeley dot edu Google Schola",
-    "capture_url": "https://web.archive.org/web/20240912163819id_/https://people.eecs.berkeley.edu/~shiry/"
+    "url": "https://shiry.ttic.edu/",
+    "sha256": "2a6589b9ca262ef0f3848b036c9bd06b6117120672c12d48b38ae0e746283a2e",
+    "quote": "Shiry Ginosar - Homepage --> --> Contact Info --> Mailing Address UCB "
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "department_listing_link",
+     "url": "https://shiry.ttic.edu/",
+     "on": "https://www.ttic.edu/faculty/",
+     "at": "2026-11-15T03:44:50+00:00",
+     "result": "listed",
+     "anchor": "https://shiry.ttic.edu/",
+     "linked_url": "https://shiry.ttic.edu/",
+     "source_sha256": "c77c3e60903c3e9cf728356b4a66d6fb75ec8789cf8b7fdccae6a160c1d2e43f",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "shiry ginosar homepage contact info mailing address ucb eecs mc 1776 387 soda hall ber"
+   "verification_quote": "shiry ginosar  homepage   contact info  mailing address ucb eecs mc 1776 387 so"
   },
   {
    "pi": "Frederic Koehler",
@@ -10562,6 +10704,212 @@
    "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "evidence_gaps": []
+  },
+  {
+   "pi": "Bradley Shapiro",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok; school_profile https://www.chicagobooth.edu/faculty/directory/s/bradley-shapiro: ok (fetched live 2026-11-15 with a rendered browser, robots honoured; it links only the SSRN author page).",
+   "audited_at": "2026-11-15T03:44:29+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://www.chicagobooth.edu/faculty/directory",
+     "at": "2026-11-15T01:48:21+00:00",
+     "result": "ok",
+     "sha256": "39448974c300740b4202733d1b6426cab87523d872781de7f5e5d4f35b248f19"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": null,
+     "at": "2026-11-15T01:48:21+00:00",
+     "result": "no_dblp_person"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-15T01:48:21+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5081090327",
+     "at": "2026-11-15T01:48:21+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://www.chicagobooth.edu/faculty/directory/s/bradley-shapiro",
+     "at": "2026-11-15T03:44:29+00:00",
+     "result": "ok",
+     "sha256": "08dd0afedb668848aed3ee787e9b21f7f5f18ef5a4efd76fe10737e0d0707576"
+    }
+   ],
+   "places_checked": [
+    "department_listing:ok",
+    "school_profile:ok"
+   ],
+   "checked_at": "2026-11-15T03:44:29+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Levi DeValve",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok; school_profile https://www.chicagobooth.edu/faculty/directory/d/levi-devalve: ok (fetched live 2026-11-15 with a rendered browser, robots honoured; it links only the SSRN author page).",
+   "audited_at": "2026-11-15T03:44:39+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://www.chicagobooth.edu/faculty/directory",
+     "at": "2026-11-15T01:48:21+00:00",
+     "result": "ok",
+     "sha256": "39448974c300740b4202733d1b6426cab87523d872781de7f5e5d4f35b248f19"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": null,
+     "at": "2026-11-15T01:48:21+00:00",
+     "result": "no_dblp_person"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-15T01:48:21+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5062454836",
+     "at": "2026-11-15T01:48:21+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://www.chicagobooth.edu/faculty/directory/d/levi-devalve",
+     "at": "2026-11-15T03:44:39+00:00",
+     "result": "ok",
+     "sha256": "9f31d0f732084b15ae3ae5c09e947f0b08a9c9cd543432efe1e0ad0a18b6c8df"
+    }
+   ],
+   "places_checked": [
+    "department_listing:ok",
+    "school_profile:ok"
+   ],
+   "checked_at": "2026-11-15T03:44:39+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Maximilian Muhn",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-15T03:44:34+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://www.chicagobooth.edu/faculty/directory",
+     "at": "2026-11-15T01:48:21+00:00",
+     "result": "ok",
+     "sha256": "39448974c300740b4202733d1b6426cab87523d872781de7f5e5d4f35b248f19"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": null,
+     "at": "2026-11-15T01:48:21+00:00",
+     "result": "no_dblp_person"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-15T01:48:21+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5065276465",
+     "at": "2026-11-15T01:48:21+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://www.chicagobooth.edu/faculty/directory/m/maximilian-muhn",
+     "at": "2026-11-15T03:44:34+00:00",
+     "result": "ok",
+     "sha256": "8012f337cc1159d8e7111bfea757eafad07cb6fd575812af57d2e4087cace10c"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://mmuhn.github.io/",
+     "at": "2026-11-15T03:46:18+00:00",
+     "result": "ok"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://mmuhn.github.io/",
+     "on": "https://www.chicagobooth.edu/faculty/directory/m/maximilian-muhn",
+     "at": "2026-11-15T03:44:34+00:00",
+     "result": "listed",
+     "anchor": "Personal Website",
+     "linked_url": "https://mmuhn.github.io/",
+     "source_sha256": "8012f337cc1159d8e7111bfea757eafad07cb6fd575812af57d2e4087cace10c",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "department_listing:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-15T03:46:18+00:00",
+   "students_page_status": "no_people_section",
+   "papers_page_status": "no_pubs_page",
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": [],
+   "url": "https://mmuhn.github.io/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://www.chicagobooth.edu/faculty/directory/m/maximilian-muhn",
+   "sha256": "be24101fb9b9aad9b1f811d8f135eb0e1c844a0121c8a7fdf4ab9fdac6b35456",
+   "evidence": {
+    "url": "https://mmuhn.github.io/",
+    "sha256": "be24101fb9b9aad9b1f811d8f135eb0e1c844a0121c8a7fdf4ab9fdac6b35456",
+    "quote": "Maximilian Muhn · Personal Web Page Maximilian Muhn Chicago Booth Abou"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://mmuhn.github.io/",
+     "on": "https://www.chicagobooth.edu/faculty/directory/m/maximilian-muhn",
+     "at": "2026-11-15T03:44:34+00:00",
+     "result": "listed",
+     "anchor": "Personal Website",
+     "linked_url": "https://mmuhn.github.io/",
+     "source_sha256": "8012f337cc1159d8e7111bfea757eafad07cb6fd575812af57d2e4087cace10c",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ],
+   "verified": true,
+   "verification_quote": "maximilian muhn  personal web page maximilian muhn chicago booth about research cv welcom"
   }
  ]
 }
