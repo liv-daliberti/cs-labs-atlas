@@ -345,3 +345,22 @@ def test_stored_listing_links_record_only_the_pi_named_card_and_skip_malformed_u
     assert doc['labs'][1]['official_link_status'] == 'not_recorded'   # another PI's card never certifies this row
     assert doc['labs'][2]['official_link_status'] == 'not_recorded'   # malformed registered URL is a data error first
     assert not SL.well_formed('http://http://https://x.github.io/') and SL.well_formed('https://x.github.io/a')
+
+
+def test_alias_attach_needs_exact_path_alias_host_and_the_pi_named():
+    import stored_listing_links as SL
+    al = [frozenset({'www.eecs.umich.edu', 'web.eecs.umich.edu'})]
+    page = '<html><body>Ada Example, professor. Research.</body></html>'
+    rows = [('http://web.eecs.umich.edu/~ada/', 'https://web.archive.org/web/2022id_/http://web.eecs.umich.edu/~ada/', '2026-01-01', 'b' * 64, page),
+            ('https://www.ics.uci.edu/~bob/', 'cap2', '2026-01-01', 'c' * 64, page.replace('Ada', 'Bob'))]
+
+    def row(pi, url):
+        return {'pi': pi, 'url': url, 'coverage': 'pending', 'evidence_gaps': ['page_capture_hash_missing']}
+    doc = {'labs': [row('Ada Example', 'http://www.eecs.umich.edu/~ada'), row('Bob Example', 'http://www.eecs.umich.edu/~bob/'),
+                    row('Cy Example', 'http://www.eecs.umich.edu/~ada/x')]}
+    found = SL.attach_aliased_captures(doc, rows, al)
+    assert list(found) == ['Ada Example']
+    ada = doc['labs'][0]
+    assert ada['sha256'] == 'b' * 64 and ada['coverage'] == 'website' and ada['evidence_gaps'] == [] and 'Example' in ada['evidence']['quote']
+    assert doc['labs'][1]['coverage'] == 'pending'   # the same path on another host (uci) is never an alias
+    assert doc['labs'][2]['coverage'] == 'pending'   # a longer path is not a prefix match

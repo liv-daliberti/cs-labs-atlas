@@ -1,0 +1,9 @@
+{
+ "school": "michigan",
+ "status": "APPROVED by the owner 2026-11-15 ('www.eecs = web.eecs = www-personal, EXACT path match only'); read by tools/stored_listing_links.py attach_aliased_captures",
+ "rule": "A registered website URL and a stored capture page_url are the same page only when the path (trailing slash ignored) and the query are equal and both hosts are in ONE alias set. No prefix, no fuzzy match; the stored page must also name the PI (given and family name). Only rows whose capture hash is missing are touched; no network, no archive.org fetch.",
+ "host_alias_sets": [
+  ["www.eecs.umich.edu", "web.eecs.umich.edu", "eecs.umich.edu", "www-personal.umich.edu"]
+ ],
+ "not_approved": "dept.stat.lsa.umich.edu = www.stat.lsa.umich.edu (Long Nguyen) was not in the owner's ruling; queued as a question"
+}

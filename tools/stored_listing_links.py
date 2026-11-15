@@ -13,6 +13,7 @@ import argparse
 import json
 import re
 import sqlite3
+import unicodedata
 import zlib
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -89,9 +90,73 @@ def scan(doc, caps):
     return found
 
 
+def alias_rule(school):
+    """The owner-approved host-alias sets of the school (reviewed/host-alias-rule.json), as a list of frozensets; none when the file is absent."""
+    path = P.data('host-alias-rule.json', school)
+    if not Path(path).exists():
+        return []
+    return [frozenset(h.lower() for h in group) for group in json.loads(Path(path).read_text()).get('host_alias_sets', [])]
+
+
+def canon(url, aliases):
+    """(alias-set id or host, path without trailing slash, query) so aliased hosts compare equal and nothing else does."""
+    p = urlsplit(url if '://' in (url or '') else 'http://' + (url or ''))
+    host = (p.hostname or '').lower()
+    group = next((i for i, g in enumerate(aliases) if host in g), None)
+    return (('alias', group) if group is not None else ('host', host)), p.path.rstrip('/'), p.query
+
+
+def attach_aliased_captures(doc, rows, aliases):
+    """rows: [(page_url, capture_url, fetched_at, sha256, html)] newest first. A website row missing its page capture hash gets one from a stored capture of the
+    exact same path under an alias host, when that page names the PI; the capture is recorded as evidence with the alias page it came from."""
+    from bs4 import BeautifulSoup
+    found = {}
+    for r in doc['labs']:
+        if 'page_capture_hash_missing' not in (r.get('evidence_gaps') or []) or not r.get('url') or not well_formed(r['url']):
+            continue
+        want = canon(r['url'], aliases)
+        if want[1] in ('', '/'):
+            continue
+        toks = re.findall(r'[a-z]+', unicodedata.normalize('NFKD', r['pi']).encode('ascii', 'ignore').decode().lower())
+        for page, cap, fetched, sha, html in rows:
+            if canon(page, aliases) != want:
+                continue
+            text = ' '.join(BeautifulSoup(html, 'html.parser').get_text(' ', strip=True).split())
+            low = text.lower()
+            if len(toks) < 2 or toks[0] not in low or toks[-1] not in low:
+                continue
+            i = low.find(toks[-1])
+            r['sha256'], r['capture_fetched_at'] = sha, fetched
+            r['evidence'] = dict(url=r['url'], sha256=sha, quote=text[max(0, i - 40):i + 80], capture_url=cap, source='stored_capture_alias', alias_page_url=page)
+            r['evidence_gaps'] = [g for g in r['evidence_gaps'] if g != 'page_capture_hash_missing']
+            if not r['evidence_gaps']:
+                r['coverage'] = 'website'
+            found[r['pi']] = dict(url=r['url'], alias_page=page, capture=cap, sha256=sha)
+            break
+    return found
+
+
+def stored_pages(school):
+    """[(page_url, capture_url, fetched_at, sha256, html)] newest first, every stored HTML 200 capture with a hash (for the alias attach)."""
+    con = sqlite3.connect(f"file:{P.data('school-captures.sqlite', school)}?mode=ro", uri=True)
+    out = []
+    for page, cap, fetched, sha, blob in con.execute(
+            "select page_url, capture_url, fetched_at, sha256, raw_zlib from captures where http_status=200 and raw_zlib is not null and sha256 is not null "
+            "and content_type like '%html%' order by wayback_timestamp desc"):
+        try:
+            out.append((page or '', cap, fetched, sha, zlib.decompress(blob).decode('utf-8', 'replace')))
+        except zlib.error:
+            continue
+    return out
+
+
 def run(school, src, out, report):
     doc = json.loads(Path(src).read_text())
-    found = scan(doc, listing_captures(school))
+    found = {}
+    aliases = alias_rule(school)
+    if aliases:
+        found.update({k: dict(v, how='alias_capture') for k, v in attach_aliased_captures(doc, stored_pages(school), aliases).items()})
+    found.update(scan(doc, listing_captures(school)))
     Path(out).write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n')
     if report:
         Path(report).write_text(json.dumps(found, indent=1, ensure_ascii=False) + '\n')
