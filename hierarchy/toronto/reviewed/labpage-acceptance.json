@@ -4,9 +4,9 @@
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/toronto/reviewed/labpage-additions.json",
  "additions_generated_at": "2026-11-15T19:32:36.349875+00:00",
- "additions_sha256": "0577198eb02e30730a3039d35c9c8db90fef407717aa751f8d3230c05b70d2d2",
+ "additions_sha256": "5188a1d6c991f5f23db5c3f714cdb2ba36bb4b6aa73cd96efee040717b8eb277",
  "students": {
-  "accepted": true,
+  "accepted": false,
   "scope": "full",
   "round": 6,
   "seed": 11152030,
@@ -18,7 +18,9 @@
   "counts": {
    "proposed": 194
   },
-  "reason": "Twenty individually checked PI-owned member entries; exact captured quotes, roles and years recorded in round 6."
+  "reason": "Independent source review found two confirmed wrong-school membership claims in round 6, exceeding the one-error limit; awaiting owner authorization for one fresh round after corrections.",
+  "independent_review": "hierarchy/toronto/reports/ROUND6-INDEPENDENT-REVIEW-20261115.json",
+  "confirmed_membership_errors": 2
  },
  "papers": {
   "accepted": true,
@@ -29,7 +31,13 @@
   "counts": {
    "proposed": 28
   },
-  "reason": "Twenty individually checked PI-owned publication listings, bylines, Toronto authorship and appointment evidence recorded in round 6."
+  "reason": "Twenty individually checked PI-owned publication listings, bylines, Toronto authorship and appointment evidence recorded in round 6.",
+  "restamped_from": {
+   "sha256": "0577198eb02e30730a3039d35c9c8db90fef407717aa751f8d3230c05b70d2d2",
+   "generated_at": "2026-11-15T19:32:36.349875+00:00",
+   "removed": 0,
+   "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
+  }
  },
  "round_limit_extended_by_owner": 6
 }
