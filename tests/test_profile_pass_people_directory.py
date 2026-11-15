@@ -32,3 +32,13 @@ def test_every_named_unit_is_a_charter_home_unit():
         assert E.unit_name(school, 'none') in homes
     for (school, inst) in E.INSTITUTES:
         assert E.unit_name(school, inst) in homes
+
+
+def test_register_decisions_use_supported_reason_codes_and_eligible_urls():
+    import lab_websites as LW
+    for pi, d in E.DECISIONS.items():
+        if d['kind'] == E.SITE:
+            assert d['code'] in LW.WEBSITE_REASONS, pi
+            assert not LW.selection_gaps(d['linked']), pi          # never a profile card, identity index, document or feedback form
+        else:
+            assert d['code'] in LW.ABSENCE_REASONS and d['seen'], pi

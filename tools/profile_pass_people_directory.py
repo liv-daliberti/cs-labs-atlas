@@ -6,6 +6,7 @@ websites. Both are read from the PI's own official profile page, fetched once.
 
   profile_pass_people_directory.py fetch  --names <json list> --out <json>   fetch (network: run on Slurm) and parse; the page is kept in captures/epfl.sqlite
   profile_pass_people_directory.py parse  --names <json list> --out <json>   parse the stored pages only (no network)
+  profile_pass_people_directory.py register --profiles <fetch out> --sites <sites outs> --src <register> --out <register>   write the DECISIONS rows below
   profile_pass_people_directory.py sites  --names <json {pi: url}> --out <json>   fetch each profile-linked website's front page once (https form of the linked URL;
                                                                  a redirect is recorded, never followed) and report status, sha256 and whether it names the PI
 
@@ -18,6 +19,7 @@ import json
 import re
 import unicodedata
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import school_web as W  # noqa: E402
 import stage_gate as G  # noqa: E402
@@ -217,14 +219,131 @@ def sites(pairs, out_path):
     Path(out_path).write_text(json.dumps(res, indent=1, ensure_ascii=False) + '\n')
 
 
+# --- website register (stage-3 gate, 2026-11-15) ---------------------------------------------------------------------------------------------------
+# Reviewed decisions, one per PI whose official profile was fetched live. 'site': the profile itself links the website (a lab position's own `Website:`
+# field or the PI's contact button), recorded as a school_profile_link; 'absence': the fetched profile links no lab or personal site. A PI whose profile
+# cannot be fetched, whose page names someone else, whose linked site is shared with another PI's lab, sits behind a robots refusal or at another
+# institution, or whose site is only an archive, is NOT in this table: the PI stays held.
+SITE = 'site'
+ABSENCE = 'absence'
+DECISIONS = {
+    'Alcherio Martinoli': dict(kind=SITE, linked='https://disal.epfl.ch/', code='lab_site', target='https://www.epfl.ch/labs/disal/'),
+    'Alexandre Alahi': dict(kind=SITE, linked='https://vita.epfl.ch/', code='lab_site', target='https://www.epfl.ch/labs/vita/'),
+    'Andrés Cristi': dict(kind=SITE, linked='https://sites.google.com/view/andres-cristi', code='pi_homepage_only_no_lab_site'),
+    'Bryan Ford': dict(kind=SITE, linked='http://bford.info/', code='pi_homepage_only_no_lab_site'),
+    'Damir Filipovic': dict(kind=SITE, linked='https://www.epfl.ch/labs/csf/', code='lab_site'),
+    'Devis Tuia': dict(kind=SITE, linked='https://www.epfl.ch/labs/eceo/', code='lab_site'),
+    'Giuseppe Carleo': dict(kind=SITE, linked='https://www.epfl.ch/labs/cqsl/', code='lab_site'),
+    'Ken Holstein': dict(kind=SITE, linked='https://www.thecoalalab.com/kenholstein', code='pi_homepage_only_no_lab_site'),
+    'Mario Paolone': dict(kind=SITE, linked='https://desl-pwrs.epfl.ch', code='lab_site', target='https://www.epfl.ch/labs/desl/'),
+    'Negar Kiyavash': dict(kind=SITE, linked='https://www.epfl.ch/labs/ban/', code='lab_site'),
+    'Pascal Fua': dict(kind=SITE, linked='https://cvlab.epfl.ch/', code='lab_site', target='https://www.epfl.ch/labs/cvlab/'),
+    'Pierre Vandergheynst': dict(kind=SITE, linked='https://lts2.epfl.ch/', code='lab_site'),
+    'Volkan Cevher': dict(kind=SITE, linked='https://lions.epfl.ch', code='lab_site', target='https://www.epfl.ch/labs/lions/'),
+    'Dimitar Jetchev': dict(kind=SITE, linked='https://tan.epfl.ch', code='lab_site', target='https://www.epfl.ch/labs/tan/'),
+    'Kamiar Aminian': dict(kind=SITE, linked='http://lmam.epfl.ch', code='lab_site', target='https://www.epfl.ch/labs/lmam/'),
+    'Matthieu Wyart': dict(kind=SITE, linked='https://pcsl.epfl.ch/', code='lab_site', target='https://www.epfl.ch/labs/pcsl/'),
+    'Michel Bierlaire': dict(kind=SITE, linked='https://transp-or.epfl.ch/', code='lab_site', target='https://www.epfl.ch/labs/transp-or/'),
+    'Sofia Olhede': dict(kind=SITE, linked='https://www.epfl.ch/labs/sds/', code='lab_site'),
+    'Anne-Florence Bitbol': dict(kind=SITE, linked='https://www.epfl.ch/labs/bitbol-lab/', code='lab_site'),
+    'Alessandro Chiesa': dict(kind=ABSENCE, code='profile_only_no_homepage', seen='the teaching sections ssc.epfl.ch and sin.epfl.ch only'),
+    'Tanja Käser': dict(kind=ABSENCE, code='profile_only_no_homepage', seen='the teaching sections ssc.epfl.ch and sin.epfl.ch and the EPFL PhD page only'),
+    'Nicolas Flammarion': dict(kind=ABSENCE, code='profile_only_no_homepage', seen='the teaching sections ssc.epfl.ch and sin.epfl.ch, the EDIC page and a Google Scholar profile (an identity index, not a site)'),
+    'Andrea Cavallaro': dict(kind=ABSENCE, code='profile_only_no_homepage', seen='the school page sti.epfl.ch only'),
+    'Marco Picasso': dict(kind=ABSENCE, code='profile_only_no_homepage', seen='the teaching section sma.epfl.ch only'),
+    'Eduardo Moraud': dict(kind=ABSENCE, code='profile_only_no_homepage', seen='the school pages sti.epfl.ch and sv.epfl.ch/education only'),
+    'Christian Enz': dict(kind=ABSENCE, code='profile_only_no_homepage', seen='nothing (no Website field, no contact link)'),
+    'Hannes Bleuler': dict(kind=ABSENCE, code='profile_only_no_homepage', seen='nothing (no Website field, no contact link)'),
+    'Pierre-André Farine': dict(kind=ABSENCE, code='profile_only_no_homepage', seen='nothing (no Website field, no contact link)'),
+    'Alfio Quarteroni': dict(kind=ABSENCE, code='site_at_other_institution', seen='only his page at Politecnico di Milano (mox.polimi.it)'),
+}
+STALE = ('url', 'kind', 'sha256', 'evidence', 'people_page', 'alumni_page', 'pubs_page', 'found_via', 'listed_on', 'verified', 'verified_by', 'verification_reason',
+         'verification_quote', 'unverified_reason', 'official_link_status', 'official_link_evidence', 'rejected_url', 'rejected_reason', 'review_note', 'website_note')
+SCOPE = 'Recorded search/access outcome; not proof no website exists or that an archive has no capture.'
+
+
+def utc_of(local):
+    """The live table stamps fetched_at in the node's local time (America/New_York); the registers keep UTC."""
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+    return datetime.fromisoformat(local).replace(tzinfo=ZoneInfo('America/New_York')).astimezone(ZoneInfo('UTC')).strftime('%Y-%m-%dT%H:%M:%S+00:00')
+
+
+def register(profiles_path, sites_paths, reg_in, reg_out):
+    prof = json.loads(Path(profiles_path).read_text())
+    fetched = {}
+    for sp in sites_paths:
+        for n, r in json.loads(Path(sp).read_text()).items():
+            fetched.setdefault(n, []).append(r)
+    doc = json.loads(Path(reg_in).read_text())
+    rows = {r['pi']: r for r in doc['labs']}
+    changed = []
+    for n, dec in DECISIONS.items():
+        p = prof[n]
+        assert p['status'] == 200 and p['names_pi'], n
+        r = rows.setdefault(n, dict(pi=n))
+        for k in STALE:
+            r.pop(k, None)
+        prof_at = utc_of(p['fetched_at'])
+        checks = [c for c in (r.get('checks') or []) if not (c.get('source') in ('school_profile', 'school_profile_link') and c.get('at') == prof_at)]
+        checks.append(dict(source='school_profile', url=p['url'], at=prof_at, result='ok', sha256=p['sha256']))
+        places = set(r.get('places_checked') or []) | {'school_profile:ok'}
+        if dec['kind'] == ABSENCE:
+            places.add('school_profile_link:none')
+            r.update(status='none_found', reason_code=dec['code'], coverage='reason', reason_type='profile_fetched_no_lab_link', reason_scope=SCOPE,
+                     reason=(f"The PI's official people.epfl.ch profile ({p['url']}) was fetched live on {prof_at[:10]} (robots honoured, no archive.org) and links no lab or personal "
+                             f"website (it shows {dec['seen']}); no other source was read in this pass. " + SCOPE),
+                     upstream_audit_reason='only the department profile exists; it links no homepage or lab site', evidence_gaps=[])
+            r.pop('rejected_reason', None)
+        else:
+            s = next(x for x in fetched[n] if x['status'] == 200 and (x['url'] == dec.get('target', dec['linked']) or x['url'] == re.sub(r'^http://', 'https://', dec['linked'])))
+            url = dec['linked']
+            anchor_ok = any(w.rstrip('/') == url.rstrip('/') for w in p['websites']) or any(c['href'].rstrip('/') == url.rstrip('/') for c in p['contact_links'])
+            assert anchor_ok, (n, url)
+            link = dict(source='school_profile_link', url=url, on=p['url'], at=prof_at, result='listed', anchor=url, linked_url=url,
+                        source_sha256=p['sha256'], source_capture_url=None, provenance='live_profile_fetch_2026-11-15')
+            cand = dict(source='candidate_site', url=url, at=utc_of(s['fetched_at']), via='school_profile_link', sha256=s['sha256'],
+                        result='ok' if s['names_pi'] else 'does_not_name_pi_kept_strong_source')
+            if s['url'] != url:
+                cand['final_url'] = s['url']
+            checks += [link, cand]
+            places |= {'school_profile_link:listed', 'candidate_site:' + cand['result']}
+            host = urlsplit(url).netloc
+            people = next((c['url'] for c in checks if c.get('result') == 'recorded_people_page'
+                           and (c['url'].startswith(s['url'].rstrip('/')) or (host != 'www.epfl.ch' and urlsplit(c['url']).netloc == host))), None)
+            r.update(status='found', reason_code=dec['code'], coverage='website', url=url, kind='lab_site' if dec['code'] == 'lab_site' else 'pi_homepage',
+                     found_via='school_profile_link', listed_on=p['url'], sha256=s['sha256'],
+                     evidence=dict(url=s['url'], sha256=s['sha256'], quote=s['quote']), official_link_status='recorded', official_link_evidence=[link],
+                     reason='Captured lab/group website.' if dec['code'] == 'lab_site' else "no lab site; the PI's own homepage is the lab page",
+                     upstream_audit_reason='the PI\'s own official profile links this site (fetched live 2026-11-15)', evidence_gaps=[])
+            if people:
+                r['people_page'] = people
+            if not s['names_pi']:
+                r['unverified_reason'] = 'the front page does not carry the PI name; the PI\'s own official profile links it as the website of their lab position'
+        r['checks'] = checks
+        r['places_checked'] = sorted(places)
+        r['checked_at'] = prof_at
+        r.setdefault('audited_at', prof_at)
+        r.setdefault('students_page_status', 'not_audited_in_this_pass')
+        r.setdefault('papers_page_status', 'not_audited_in_this_pass')
+        changed.append(n)
+    doc['labs'] = [rows[x['pi']] for x in doc['labs']] + [r for n, r in rows.items() if n not in {x['pi'] for x in doc['labs']}]
+    Path(reg_out).write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n')
+    print(len(changed), 'rows written')
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('cmd', choices=['fetch', 'parse', 'sites', 'homes', 'project-homes'])
+    ap.add_argument('cmd', choices=['fetch', 'parse', 'sites', 'homes', 'project-homes', 'register'])
     ap.add_argument('--names', help='fetch/parse/homes: a JSON list of PI names; sites: {PI: url}; project-homes: the reviewed overrides file')
+    ap.add_argument('--sites', nargs='*', default=[], help='register: the sites outputs')
+    ap.add_argument('--profiles', help='register: the fetch output')
     ap.add_argument('--src', help='project-homes: the home register to start from')
     ap.add_argument('--out', required=True)
     a = ap.parse_args()
-    if a.cmd == 'project-homes':
+    if a.cmd == 'register':
+        register(a.profiles, a.sites, a.src, a.out)
+    elif a.cmd == 'project-homes':
         project_homes(a.names, a.src, a.out)
     elif a.cmd == 'homes':
         homes(json.loads(Path(a.names).read_text()), a.out)
