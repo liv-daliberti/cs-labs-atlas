@@ -1,0 +1,802 @@
+{
+  "reviewer": "codex-toronto-recall-independent-1115",
+  "reviewed_at_utc": "2026-11-15T23:43:35.948339+00:00",
+  "scope": "Independent re-review of recorded round6 twenty Toronto student entries. Paper round not reviewed or changed. No new sample drawn.",
+  "bound_inputs": {
+    "labpage-handcheck.json": "6ab4fc1058f4483b5b116c07ab10f20d7abe7ba59c85ad68e2d4426c59e49160",
+    "labpage-additions.json": "0577198eb02e30730a3039d35c9c8db90fef407717aa751f8d3230c05b70d2d2",
+    "labpage-acceptance.json": "8cb182be9d02c39b0163cf3eb50853a3c05b9d2bf2569df2b5834e9068968906"
+  },
+  "sample_round": 6,
+  "sample_seed": 11152030,
+  "sampled": 20,
+  "exact_quote_and_sha_verified": 20,
+  "confirmed_membership_errors": 2,
+  "doubtful_school_context": 0,
+  "membership_score_with_doubt_half": 2,
+  "maximum_allowed_membership_score": 1,
+  "result": "fail: recorded zero-error student acceptance is not supported",
+  "items": [
+    {
+      "i": 1,
+      "pi": "Fanny Chevalier",
+      "name": "Jocelyn Shen",
+      "original_role": "other",
+      "original_years": [
+        2025,
+        2025
+      ],
+      "source": {
+        "url": "https://www.cs.toronto.edu/~fanny/",
+        "sha256": "fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403",
+        "quote": "Jocelyn Shen (MSR intern",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2025
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20250401113349id_/https://web.cs.toronto.edu/people/faculty-directory",
+          "sha256": "8fcb0023fa26cbb5a5508a1c6257297484a19ed6d4cf732f257bd5b04b2cf6e3",
+          "quote": "Fanny Chevalier Associate Professor",
+          "kind": "dept_listing:CS",
+          "year": 2025
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "wrong_school_membership",
+      "why": "The PI page specifies MSR intern 2025 and a Microsoft Research visit that spring. The student-owned linked source places the 2025 Microsoft internship in Seattle and her PhD at MIT. No captured Toronto lab visit or membership establishes that this Microsoft internship belongs to the Toronto lab."
+    },
+    {
+      "i": 2,
+      "pi": "Robert Soden",
+      "name": "Sophia Jit",
+      "original_role": "masters",
+      "original_years": [
+        2022,
+        2024
+      ],
+      "source": {
+        "url": "http://robertsoden.io/students/",
+        "sha256": "f2f926594393a6a6daf5f33ea29af9f82beec06a27951ad370cf182101c1fcea",
+        "quote": "Sophia Jit, Computer Science (2022–2024). Next: PhD, Computer Science, University of Toronto",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/f2f926594393a6a6daf5f33ea29af9f82beec06a27951ad370cf182101c1fcea.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2022,
+          2023,
+          2024
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20240409065456id_/https://web.cs.toronto.edu/people/faculty-directory",
+          "sha256": "8d31b8905224ee0dfb05c12957b35126da6baabe9dbc92f4423f561cdc11784a",
+          "quote": "Robert Soden Assistant Professor",
+          "kind": "dept_listing:CS",
+          "year": 2024
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 3,
+      "pi": "Michael Brudno",
+      "name": "Nicole Sultanum",
+      "original_role": "phd",
+      "original_years": [
+        2015,
+        2022
+      ],
+      "source": {
+        "url": "https://brudno.uhndata.io/team/",
+        "sha256": "bd11b8d3552bd9874678a97dcd8cc04ecb4aa1993a9ec7ba7284aac93851dee1",
+        "quote": "Nicole Sultanum (PhD",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/bd11b8d3552bd9874678a97dcd8cc04ecb4aa1993a9ec7ba7284aac93851dee1.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20220411192010id_/https://web.cs.toronto.edu/people/faculty-directory",
+          "sha256": "54b6ea88fce6f5660e959de432daa08c064913cb4422875515a0d5505b5449fa",
+          "quote": "Michael Brudno Professor",
+          "kind": "dept_listing:CS",
+          "year": 2022
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 4,
+      "pi": "Karan Singh",
+      "name": "Masha Shugrina",
+      "original_role": "phd",
+      "original_years": [
+        null,
+        2019
+      ],
+      "source": {
+        "url": "https://www.dgp.toronto.edu/~karan/student.htm",
+        "sha256": "ecba97bfe37f3896ea469159acc02fd5289c87e282982685d06886cc7d65870c",
+        "quote": "Masha Shugrina PhD",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/ecba97bfe37f3896ea469159acc02fd5289c87e282982685d06886cc7d65870c.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2019
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20191013221535id_/https://web.cs.toronto.edu/contact-us/faculty-directory/",
+          "sha256": "49bd36a49e1aef191c5d462fe94aafd1887ab988039b390d9b029489d5bcb7bd",
+          "quote": "Karan Singh Professor",
+          "kind": "dept_listing:CS",
+          "year": 2019
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 5,
+      "pi": "Fanny Chevalier",
+      "name": "Jianda Chen",
+      "original_role": "masters",
+      "original_years": [
+        2020,
+        2020
+      ],
+      "source": {
+        "url": "https://www.cs.toronto.edu/~fanny/",
+        "sha256": "fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403",
+        "quote": "Jianda Chen (MSc in Applied Computing 2020)",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2020
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20200306090344id_/https://web.cs.toronto.edu/contact-us/faculty-directory",
+          "sha256": "6a23ac96544c750ca365bcd113cf4d6952120b7496aafa6862b513dac7e6d4fc",
+          "quote": "Fanny Chevalier Assistant Professor",
+          "kind": "dept_listing:CS",
+          "year": 2020
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 6,
+      "pi": "David Lindell",
+      "name": "Roland Gao",
+      "original_role": "undergraduate",
+      "original_years": [
+        null,
+        2023
+      ],
+      "source": {
+        "url": "https://davidlindell.com/people/",
+        "sha256": "140e65791a424fa5326714be1f8b066cf444cece8cd51d4d01aec8aea0a73bbc",
+        "quote": "Roland Gao (2023), next stop: Meta",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/140e65791a424fa5326714be1f8b066cf444cece8cd51d4d01aec8aea0a73bbc.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2023
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20230326164641id_/https://web.cs.toronto.edu/people/faculty-directory",
+          "sha256": "ca6cd775a0271f53bf3dbcd05933dd94ef0d8d51b8ddbe326c09408e50ce4857",
+          "quote": "David Lindell Assistant Professor",
+          "kind": "dept_listing:CS",
+          "year": 2023
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 7,
+      "pi": "David Lindell",
+      "name": "Junhao (Harry) Wang",
+      "original_role": "undergraduate",
+      "original_years": [
+        2025,
+        2026
+      ],
+      "source": {
+        "url": "https://davidlindell.com/people/",
+        "sha256": "140e65791a424fa5326714be1f8b066cf444cece8cd51d4d01aec8aea0a73bbc",
+        "quote": "Junhao (Harry) Wang (2025-2026)",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/140e65791a424fa5326714be1f8b066cf444cece8cd51d4d01aec8aea0a73bbc.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2025,
+          2026
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20260401093943id_/https://web.cs.toronto.edu/people/faculty-directory",
+          "sha256": "edb96c2fa28694613fb64b2870d4d3db52c2b3a2e7a11345956be793e3ee2b7d",
+          "quote": "David Lindell Assistant Professor",
+          "kind": "dept_listing:CS",
+          "year": 2026
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 8,
+      "pi": "Fanny Chevalier",
+      "name": "Josh Holinaty",
+      "original_role": "masters",
+      "original_years": [
+        2021,
+        2021
+      ],
+      "source": {
+        "url": "https://www.cs.toronto.edu/~fanny/",
+        "sha256": "fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403",
+        "quote": "Josh Holinaty (MSc",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2021
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20210413225023id_/https://web.cs.toronto.edu/contact-us/faculty-directory",
+          "sha256": "10b41db7e1581f3a1281047cc877bd0e7be4549b85a79af4280ebda0eeb46b92",
+          "quote": "Fanny Chevalier Assistant Professor",
+          "kind": "dept_listing:CS",
+          "year": 2021
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 9,
+      "pi": "Xujie Si",
+      "name": "Haolin Ye",
+      "original_role": "undergraduate",
+      "original_years": null,
+      "source": {
+        "url": "https://www.cs.toronto.edu/~six/students.html",
+        "sha256": "5fcbbfc9410fbe712bbe28eeaa9e8da7ea8c67039f2276d1c95d79fd8c3dd594",
+        "quote": "Undergraduate Students Jingyu Hu Sarah Walker Haolin Ye (McGill)",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/5fcbbfc9410fbe712bbe28eeaa9e8da7ea8c67039f2276d1c95d79fd8c3dd594.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20260401093943id_/https://web.cs.toronto.edu/people/faculty-directory",
+          "sha256": "edb96c2fa28694613fb64b2870d4d3db52c2b3a2e7a11345956be793e3ee2b7d",
+          "quote": "Xujie Si Assistant Professor",
+          "kind": "dept_listing:CS",
+          "year": 2026
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported_undergraduate_membership; advising_not_supported",
+      "why": "The PI-owned current undergraduate roster and newly captured owned profile together establish work with this PI’s lab on2026 projects. Keep role undergraduate and relationship membership. The explicit incoming Toronto thesis master’s starts September2027, so it grants neither a2026 masters role nor2026 graduate advising. Foreign enrollment is not grounds to drop an independently supported lab member."
+    },
+    {
+      "i": 10,
+      "pi": "Fanny Chevalier",
+      "name": "Amira Chalbi",
+      "original_role": "phd",
+      "original_years": [
+        null,
+        2018
+      ],
+      "source": {
+        "url": "https://www.cs.toronto.edu/~fanny/",
+        "sha256": "fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403",
+        "quote": "Amira Chalbi (PhD",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2018
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20180404181720id_/http://web.cs.toronto.edu:80/people/faculty.htm",
+          "sha256": "937ad95b93075eae64af443bafcf7cb6e30fb52f01ce995dacf2cf73b8d1e172",
+          "quote": "Chevalier, Fanny",
+          "kind": "dept_listing:CS",
+          "year": 2018
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "wrong_school_membership",
+      "why": "The older PI-owned institutional supervision page explicitly places this 2014–2018 PhD at Université Lille 1. A Toronto PI appointment at completion cannot turn that Lille PhD into Toronto lab membership."
+    },
+    {
+      "i": 11,
+      "pi": "Michael Brudno",
+      "name": "Lily Jin",
+      "original_role": "postdoc",
+      "original_years": [
+        2015,
+        2016
+      ],
+      "source": {
+        "url": "https://brudno.uhndata.io/team/",
+        "sha256": "bd11b8d3552bd9874678a97dcd8cc04ecb4aa1993a9ec7ba7284aac93851dee1",
+        "quote": "Lily Jin (PDF 2015 – 2016)",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/bd11b8d3552bd9874678a97dcd8cc04ecb4aa1993a9ec7ba7284aac93851dee1.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2016
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20160404083008id_/http://web.cs.toronto.edu:80/people/faculty.htm",
+          "sha256": "7d78bbe151c1b740a4734fa5b17c4228155fa58d1a00d977c6fb671868e86b21",
+          "quote": "Brudno, Michael",
+          "kind": "dept_listing:CS",
+          "year": 2016
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 12,
+      "pi": "David Lindell",
+      "name": "Rishit Dagli",
+      "original_role": "undergraduate",
+      "original_years": [
+        null,
+        2023
+      ],
+      "source": {
+        "url": "https://davidlindell.com/people/",
+        "sha256": "140e65791a424fa5326714be1f8b066cf444cece8cd51d4d01aec8aea0a73bbc",
+        "quote": "Rishit Dagli (2023)",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/140e65791a424fa5326714be1f8b066cf444cece8cd51d4d01aec8aea0a73bbc.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2023
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20230326164641id_/https://web.cs.toronto.edu/people/faculty-directory",
+          "sha256": "ca6cd775a0271f53bf3dbcd05933dd94ef0d8d51b8ddbe326c09408e50ce4857",
+          "quote": "David Lindell Assistant Professor",
+          "kind": "dept_listing:CS",
+          "year": 2023
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 13,
+      "pi": "Alec Jacobson",
+      "name": "Lulu Wei",
+      "original_role": null,
+      "original_years": null,
+      "source": {
+        "url": "https://www.cs.toronto.edu/~jacobson/",
+        "sha256": "8022c96e715daa8dac81a185aa8aeabf2cca4287faea5065cc77e78cd4bae159",
+        "quote": "Current Students and Postdocs Yuta Noma Selena Ling Towaki Takikawa Lily Goli Chenxi Liu Lulu Wei",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/8022c96e715daa8dac81a185aa8aeabf2cca4287faea5065cc77e78cd4bae159.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20260401093943id_/https://web.cs.toronto.edu/people/faculty-directory",
+          "sha256": "edb96c2fa28694613fb64b2870d4d3db52c2b3a2e7a11345956be793e3ee2b7d",
+          "quote": "Alec Jacobson Associate Professor Associate Chair, Academic Recruiting",
+          "kind": "dept_listing:CS",
+          "year": 2026
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 14,
+      "pi": "Sanja Fidler",
+      "name": "Kevin Shen",
+      "original_role": null,
+      "original_years": [
+        2017,
+        2019
+      ],
+      "source": {
+        "url": "https://www.cs.utoronto.ca/~fidler/students.html",
+        "sha256": "a28568e79d8c016aa47610d1bf21b7b357ec4a21138760acad279c3146a5b670",
+        "quote": "Kevin Shen Graduated with MSc",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/a28568e79d8c016aa47610d1bf21b7b357ec4a21138760acad279c3146a5b670.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2017,
+          2018,
+          2019
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20191013221535id_/https://web.cs.toronto.edu/contact-us/faculty-directory/",
+          "sha256": "49bd36a49e1aef191c5d462fe94aafd1887ab988039b390d9b029489d5bcb7bd",
+          "quote": "Sanja Fidler Assistant Professor",
+          "kind": "dept_listing:CS",
+          "year": 2019
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 15,
+      "pi": "Nicolas Papernot",
+      "name": "Franziska Boenisch",
+      "original_role": "postdoc",
+      "original_years": [
+        2022,
+        2023
+      ],
+      "source": {
+        "url": "https://www.papernot.fr",
+        "sha256": "665db5cfec7dffa78d18502cf61a711b47950a35da5e5a6401a61247dc3a5ecf",
+        "quote": "Franziska Boenisch : Postdoctoral",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/665db5cfec7dffa78d18502cf61a711b47950a35da5e5a6401a61247dc3a5ecf.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2022,
+          2023
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20230326164641id_/https://web.cs.toronto.edu/people/faculty-directory",
+          "sha256": "ca6cd775a0271f53bf3dbcd05933dd94ef0d8d51b8ddbe326c09408e50ce4857",
+          "quote": "Nicolas Papernot Assistant Professor Electrical & Computer Engineering",
+          "kind": "dept_listing:CS",
+          "year": 2023
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 16,
+      "pi": "Nicolas Papernot",
+      "name": "Roy Rinberg",
+      "original_role": "other",
+      "original_years": [
+        2022,
+        2022
+      ],
+      "source": {
+        "url": "https://www.papernot.fr",
+        "sha256": "665db5cfec7dffa78d18502cf61a711b47950a35da5e5a6401a61247dc3a5ecf",
+        "quote": "Roy Rinberg : Research Intern",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/665db5cfec7dffa78d18502cf61a711b47950a35da5e5a6401a61247dc3a5ecf.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2022
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20220411192010id_/https://web.cs.toronto.edu/people/faculty-directory",
+          "sha256": "54b6ea88fce6f5660e959de432daa08c064913cb4422875515a0d5505b5449fa",
+          "quote": "Nicolas Papernot Assistant Professor Electrical & Computer Engineering",
+          "kind": "dept_listing:CS",
+          "year": 2022
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 17,
+      "pi": "José Zariffa",
+      "name": "RYNE HORN",
+      "original_role": "postdoc",
+      "original_years": null,
+      "source": {
+        "url": "https://www.neurorehab-systems.ca/personnel",
+        "sha256": "38305aa449bb5a4b487d6daf8aa654cf09fa2212f5a8425d40251553087fbdb2",
+        "quote": "RYNE HORN Post-Doctoral Researcher",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/38305aa449bb5a4b487d6daf8aa654cf09fa2212f5a8425d40251553087fbdb2.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2026
+        ],
+        "one_listing_evidence": {
+          "url": "https://www.ece.utoronto.ca/wp-json/wp/v2/people?per_page=100&page=1&_fields=title,link,class_list",
+          "sha256": "8db416d170db17131aa91d92a8179004cd906bb78d13ea0279178f6c79ab659a",
+          "quote": "Zariffa, José Professor",
+          "kind": "unit_listing:ECE",
+          "year": 2026
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 18,
+      "pi": "Robert Soden",
+      "name": "Bowen Zhang",
+      "original_role": "masters",
+      "original_years": [
+        2021,
+        2023
+      ],
+      "source": {
+        "url": "http://robertsoden.io/students/",
+        "sha256": "f2f926594393a6a6daf5f33ea29af9f82beec06a27951ad370cf182101c1fcea",
+        "quote": "Bowen Zhang, Computer Science (2021–2023). Next: Industry software development",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/f2f926594393a6a6daf5f33ea29af9f82beec06a27951ad370cf182101c1fcea.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2021,
+          2022,
+          2023
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20230326164641id_/https://web.cs.toronto.edu/people/faculty-directory",
+          "sha256": "ca6cd775a0271f53bf3dbcd05933dd94ef0d8d51b8ddbe326c09408e50ce4857",
+          "quote": "Robert Soden Assistant Professor",
+          "kind": "dept_listing:CS",
+          "year": 2023
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 19,
+      "pi": "Robert Soden",
+      "name": "Nicole Gordon",
+      "original_role": "undergraduate",
+      "original_years": [
+        2023,
+        2023
+      ],
+      "source": {
+        "url": "http://robertsoden.io/students/",
+        "sha256": "f2f926594393a6a6daf5f33ea29af9f82beec06a27951ad370cf182101c1fcea",
+        "quote": "Nicole Gordon, Sociology (2023). Next: MA, Toronto Metropolitan University",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/f2f926594393a6a6daf5f33ea29af9f82beec06a27951ad370cf182101c1fcea.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2023
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20230326164641id_/https://web.cs.toronto.edu/people/faculty-directory",
+          "sha256": "ca6cd775a0271f53bf3dbcd05933dd94ef0d8d51b8ddbe326c09408e50ce4857",
+          "quote": "Robert Soden Assistant Professor",
+          "kind": "dept_listing:CS",
+          "year": 2023
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    },
+    {
+      "i": 20,
+      "pi": "Sheila McIlraith",
+      "name": "Sheng Jia",
+      "original_role": null,
+      "original_years": null,
+      "source": {
+        "url": "https://www.cs.toronto.edu/~sheila/students/",
+        "sha256": "bf24af87ee9897a945d538e7ba98ace139de7b987f03f69f05b331e82248b6d2",
+        "quote": "Sheng Jia (with Jimmy Ba )",
+        "capture_store": "/n/fs/resemble/homogenizing-science/worktrees/toronto-hkust-resume-1115/hierarchy/toronto/tmp/resume-1115/hierarchy/toronto/raw/labpage-audit-captures.sqlite",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/bf24af87ee9897a945d538e7ba98ace139de7b987f03f69f05b331e82248b6d2.html"
+      },
+      "quote_verified": true,
+      "appointment": {
+        "relevant_listing_years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "one_listing_evidence": {
+          "url": "https://web.archive.org/web/20260401093943id_/https://web.cs.toronto.edu/people/faculty-directory",
+          "sha256": "edb96c2fa28694613fb64b2870d4d3db52c2b3a2e7a11345956be793e3ee2b7d",
+          "quote": "Sheila McIlraith Professor",
+          "kind": "dept_listing:CS",
+          "year": 2026
+        },
+        "caveat": "PI appointment is separate from student/lab institution and does not resolve wrong-school findings."
+      },
+      "judgment": "supported",
+      "why": "The captured PI-owned or associated roster places this named person under the stated current or dated alumni heading. Role and years agree with the entry; ambiguous mixed student/postdoc roles remain withheld. A Toronto appointment/listing exists in the relevant window."
+    }
+  ],
+  "supplemental_primary_evidence": [
+    {
+      "url": "https://www.cs.toronto.edu/~fchevali/fannydotnet/students.html",
+      "sha256": "0a1749b91b2e6bb18ed4420d30031aa47e5b1d94d3ca754c0a2c9fdc02208356",
+      "kind": "PI-owned institutional supervision list",
+      "quotes": [
+        "Amira Chalbi (2014-2018) — Ph.D. candidate at Université Lille 1, with Nicolas Roussel"
+      ],
+      "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/0a1749b91b2e6bb18ed4420d30031aa47e5b1d94d3ca754c0a2c9fdc02208356.html",
+      "verification": "Captured primary visible text."
+    },
+    {
+      "url": "https://jocelynshen.com/",
+      "sha256": "430e5539130a6237a36bdcdeface9621658cc6b5e60dbf715290f103865670d0",
+      "kind": "owned-profile HTML shell",
+      "quotes": [
+        "/assets/index-LeCmLI1F.js"
+      ],
+      "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/430e5539130a6237a36bdcdeface9621658cc6b5e60dbf715290f103865670d0.html",
+      "verification": "Exact static source bytes verified; JavaScript was never executed. The HTML shell only binds its declared asset URL."
+    },
+    {
+      "url": "https://jocelynshen.com/assets/index-LeCmLI1F.js",
+      "sha256": "3c264493c99a670a91d1bbc0240e779e7a4ccd7e776f208df9dd693c14093c3f",
+      "kind": "static source asset declared by owned-profile shell",
+      "quotes": [
+        "location:\"Seattle, WA\",date:\"2025\",title:\"Research Intern at Microsoft Research\"",
+        "location:\"Cambridge, MA\",date:\"2023 - 2026\",title:\"Started my PhD at MIT\""
+      ],
+      "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/3c264493c99a670a91d1bbc0240e779e7a4ccd7e776f208df9dd693c14093c3f.js",
+      "verification": "Exact static source bytes verified; JavaScript was never executed. The HTML shell only binds its declared asset URL."
+    },
+    {
+      "url": "https://haooolinye.github.io/",
+      "sha256": "d5ad038dfd4be0efe410573f745c6854cc703360fe3230c3ef333e103387ce90",
+      "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/d5ad038dfd4be0efe410573f745c6854cc703360fe3230c3ef333e103387ce90.html",
+      "quotes": [
+        "I have been working with Prof. Xujie Si",
+        "starting September 2027"
+      ],
+      "qualification": "The full captured clause identifies work with the named PI lab on ICLR/NeurIPS2026 projects; another clause specifies the future master’s start. This supplements the PI-owned roster, not a name-only identity merge."
+    }
+  ],
+  "recommended_holds": [
+    {
+      "pi": "Fanny Chevalier",
+      "name": "Jocelyn Shen",
+      "decision": "hold_wrong_school",
+      "why": "The PI page specifies MSR intern 2025 and a Microsoft Research visit that spring. The student-owned linked source places the 2025 Microsoft internship in Seattle and her PhD at MIT. No captured Toronto lab visit or membership establishes that this Microsoft internship belongs to the Toronto lab."
+    },
+    {
+      "pi": "Fanny Chevalier",
+      "name": "Chu Li",
+      "decision": "hold_wrong_school",
+      "why": "The same primary page explicitly lists Chu Li as MSR intern 2025 during the PI’s Microsoft Research visit; no specific Toronto lab visit or membership is established."
+    },
+    {
+      "pi": "Fanny Chevalier",
+      "name": "Amira Chalbi",
+      "decision": "hold_wrong_school",
+      "why": "The older PI-owned institutional supervision page explicitly places this 2014–2018 PhD at Université Lille 1. A Toronto PI appointment at completion cannot turn that Lille PhD into Toronto lab membership."
+    }
+  ],
+  "proposal_counts": {
+    "students_before": 194,
+    "students_recommended": 191,
+    "papers_unchanged": 28
+  },
+  "limits": [
+    "No school-wide acceptance, recall pass, release, or publication is claimed.",
+    "The corrected subset is not exhaustively re-reviewed: this review covered existing twenty student sample entries and same-pattern unsampled Chu Li.",
+    "Haolin undergraduate lab membership is supported; the future2027 masters role/advising remains outside this publication window."
+  ],
+  "revision": 2,
+  "revised_at_utc": "2026-11-15T23:46:02.134936+00:00",
+  "revision_reason": "A new live owned profile, newer than search-index text, establishes ongoing work with the named PI lab on2026 projects; retain Haolin undergraduate membership while explicitly withholding future2027 graduate advising.",
+  "relationship_typing_errors": 1,
+  "recommended_relation_changes": [
+    {
+      "pi": "Xujie Si",
+      "name": "Haolin Ye",
+      "role": "undergraduate",
+      "relationship": "membership",
+      "years": null,
+      "evidence": {
+        "url": "https://haooolinye.github.io/",
+        "sha256": "d5ad038dfd4be0efe410573f745c6854cc703360fe3230c3ef333e103387ce90",
+        "local_bytes": "/n/fs/resemble/homogenizing-science/scratch/toronto-hkust-resume-1115/toronto-independent-round6/sources/d5ad038dfd4be0efe410573f745c6854cc703360fe3230c3ef333e103387ce90.html",
+        "quotes": [
+          "I have been working with Prof. Xujie Si",
+          "starting September 2027"
+        ],
+        "qualification": "The full captured clause identifies work with the named PI lab on ICLR/NeurIPS2026 projects; another clause specifies the future master’s start. This supplements the PI-owned roster, not a name-only identity merge."
+      },
+      "why": "The PI-owned current undergraduate roster and newly captured owned profile together establish work with this PI’s lab on2026 projects. Keep role undergraduate and relationship membership. The explicit incoming Toronto thesis master’s starts September2027, so it grants neither a2026 masters role nor2026 graduate advising. Foreign enrollment is not grounds to drop an independently supported lab member."
+    }
+  ]
+}
