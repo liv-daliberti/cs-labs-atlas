@@ -168,6 +168,8 @@ def main(key, write_shared=False):
         # a center is never a home: hold until an academic school is evidenced; a code that names no charter unit or department is a listing
         # host token ('jhu', 'profile'), not a home: hold too (JHU/UChicago/WashU 2026-11-15: 29 PIs were accepted with the host as their department)
         unit_name = units.get(code) or (deps.get(code) or {}).get('name')
+        if not unit_name and isinstance(code, str) and code[:1].isupper() and not code.isupper() and any(k.startswith('unit_listing:') for k in (s_.get('kind', '') for s_ in x.get('sources') or [])):
+            unit_name = code   # UT Austin 2026-11-15: a catalog/department listing heading ('Mathematics', 'Psychology') is the unit's own name; a lower-case host token ('jhu') still is not
         home = None if (code in centers or not unit_name) else norm(unit_name)
         also = [a_ for a_ in dict.fromkeys(norm(units.get(c_, c_)) for c_ in (x.get('departments') or [])[:-1]) if a_ and a_ != home]   # other units with ladder evidence (the ML Center)
         row = dict(school=key, name=x['name'], home_department=home, also=also, no_academic_department=False, status='accepted' if home else 'hold',

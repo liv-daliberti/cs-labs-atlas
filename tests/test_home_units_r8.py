@@ -40,3 +40,22 @@ def test_a_site_feedback_form_is_not_a_website_selection():
     assert 'selected_url_is_feedback_form' in W.selection_gaps('https://webdev.iac.gatech.edu/feedback?code=lmc')
     assert 'selected_url_is_feedback_form' in W.selection_gaps('https://example.edu/people/feedback/')
     assert 'selected_url_is_feedback_form' not in W.selection_gaps('https://www.cs.example.edu/~ann/')
+
+
+def test_a_title_case_listing_heading_is_a_unit_name_but_a_host_token_is_not(tmp_path, monkeypatch):
+    """UT Austin 2026-11-15: an addition coded by its listing heading ('Mathematics') is homed there; a lower-case host token ('jhu') is still a hold."""
+    import json
+    import atlas_paths as P
+    import school_config as S
+    rows = [dict(name=n, is_pi=True, departments=[d], pi_basis=dict(url='u', sha256='s', quote='q'), sources=[dict(kind=f'unit_listing:{d}')]) for n, d in (('Ann', 'Mathematics'), ('Bo', 'jhu'))]
+    out = {}
+    monkeypatch.setattr(S, 'get', lambda key: dict(departments=[], affiliated_units=[], census=dict(home_units={}, center_units=[])))
+    monkeypatch.setattr(S, 'field', lambda cfg, path: cfg['census'].get(path.split('.')[-1]))
+    files = {'census-faculty.json': json.dumps(dict(faculty=[])), 'census-additions.json': json.dumps(rows), 'rows.json': '[]'}
+    monkeypatch.setattr(P, 'data', lambda name, key=None: type('F', (), {'read_text': lambda self: files[name], 'exists': lambda self: name in files})())
+    monkeypatch.setattr(P, 'data_w', lambda name, key=None: type('F', (), {'write_text': lambda self, t: out.update(rows=json.loads(t))})())
+    import census_overrides as CO
+    monkeypatch.setattr(CO, 'section', lambda key: {})
+    H.main('k')
+    got = {r['name']: r for r in out['rows']}
+    assert got['Ann']['status'] == 'accepted' and got['Ann']['home_department'] == 'Mathematics' and got['Bo']['status'] == 'hold'
