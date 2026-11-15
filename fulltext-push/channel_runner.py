@@ -59,7 +59,7 @@ def run_channel(school, name, miss, known, dry=False, log=True):
     """-> (rows written or, dry, would be written, Counter). miss: [(lab paper row, work id)] from plan_for."""
     import lab_channels as L
     if name in F.PAUSED_CHANNELS:
-        print(json.dumps(dict(at=F.now(), school=school, step=name, paused='CORE API paused 2026-11-04 pending a licence (docs/DECISIONS.md); nothing asked')), flush=True)
+        print(json.dumps(dict(at=F.now(), school=school, step=name, paused='channel paused by project policy; nothing asked')), flush=True)
         return [], Counter()
     mod = CH.load(name)
     t0 = time.time()

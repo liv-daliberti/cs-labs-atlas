@@ -33,10 +33,10 @@ KEYS = Path.home() / '.config/cs-atlas'
 SCRATCH = P.FT_LOGS
 
 
-# CORE API paused 2026-11-04 (owner/coordinator decision, docs/DECISIONS.md): core.ac.uk/terms section 3 asks for a licence before using the API in a
-# research project or a discovery system, and we have none. No CORE API call anywhere until it is lifted: channels `core` and `core_bulk` are refused by
-# the runner, and the ledger's CORE check reads its cache only. Candidates and copies already obtained are repository URLs and stay.
-CORE_PAUSED = True
+# The owner confirmed on 2026-11-15 that CORE API use is allowed for every school
+# in this project (docs/DECISIONS.md). The credential is loaded from the private
+# mode-600 config file by load_env(); never put it in source or job logs.
+CORE_PAUSED = False
 PAUSED_CHANNELS = ('core', 'core_bulk') if CORE_PAUSED else ()
 
 

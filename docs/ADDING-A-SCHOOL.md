@@ -577,9 +577,9 @@ OpenAlex co-authorship is never on its own evidence of advising.
 
 - **v3 (2026-11-05).**
   - *Automated:* `school-collector.slurm` (SCHOOL=<key>; channels from `[collector].channels`; restarts itself with `--signal=B:USR1@900` + `loop_job.sh`), `lab_paper_copies.py`, `unavailable_ledger.py`
-    (repository name and pattern from `[repository]`; reads `labpage-captures.sqlite` or the audit's `labpage-audit-captures.sqlite`), the release ledger offline for onboarding schools, **traps at the gate:**
+    (repository name and pattern from `[repository]`; reads `labpage-captures.sqlite` or the audit's `labpage-audit-captures.sqlite`), the release ledger online for package-ready onboarding schools, **traps at the gate:**
     collector scripts restart, a capture store exists.
-  - *Manual:* the access-review of `needs_access_review` copies, whitelist entries for `incomplete_check` while CORE is paused.
+  - *Manual:* the access-review of `needs_access_review` copies and review of any unanswered `incomplete_check` source checks.
   - *Pitfalls:* compute nodes lack `/usr/local/anaconda3` (use `CS_ATLAS_PY`) [L-58]; a collector without `loop_job` ends at its limit and stays down [L-78]; after `scancel` a catalog may have a hot journal: open it once for
     writing, never delete it (`docs/RUNBOOK.md`) [L-79]; the ledger step needs a 59-minute slice only.
   - **The 85% copy share is a target, not a gate** (owner 2026-11-05; Georgia Tech reached 42.1% against a ceiling of 53.3%): `stage_gate.g8` reports `copy_target_met` and fails only on unmeasured copies or a missing ledger [L-80].

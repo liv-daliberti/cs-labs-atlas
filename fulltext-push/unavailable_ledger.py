@@ -398,7 +398,7 @@ def src_core(papers, offline, n):
     fresh = lambda d: d in cache and not cache[d].get('error') and C.age_days(cache[d].get('at')) <= MAX_AGE
     todo = [d for d in dict.fromkeys(dois.values()) if not fresh(d) and '"' not in d and '\\' not in d]
     n['core_to_ask'] = len(todo)
-    if todo and not offline and not F.CORE_PAUSED:  # CORE API paused 2026-11-04 (ftp_common.CORE_PAUSED): cache only
+    if todo and not offline and not F.CORE_PAUSED:
         import requests
         F.load_env()
         s = requests.Session(); s.headers['Authorization'] = 'Bearer ' + os.environ['CORE_API_KEY']; s.headers['User-Agent'] = UA

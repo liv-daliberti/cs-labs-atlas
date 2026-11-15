@@ -254,15 +254,19 @@ def test_title_compatible_rejects_another_part_and_keeps_a_retitled_preprint(bul
     assert B.title_compatible('Interactive cryptographic proofs of quantumness using mid-circuit measurements', 'Interactive Proofs of Quantumness via Mid-Circuit Measurements')
 
 
-def test_core_api_is_paused_and_the_runner_asks_nothing(monkeypatch, capsys):
+def test_core_api_channels_are_enabled_for_every_school(monkeypatch):
     import ftp_common as F
-    assert F.CORE_PAUSED and set(F.PAUSED_CHANNELS) == {'core', 'core_bulk'}
-    ps, known = papers()
-    def boom(*a, **k):
-        raise AssertionError('a paused channel must not run')
-    monkeypatch.setattr(L, 'write', boom)
-    rows, n = R.run_channel('mit', 'core_bulk', [(r, w) for r, w in ROWS], known, dry=True)
-    assert rows == [] and 'paused' in capsys.readouterr().out
+    assert not F.CORE_PAUSED and not F.PAUSED_CHANNELS
+    calls = []
+    fake = types.SimpleNamespace(APPLIES=lambda school, paper: True,
+                                 discover=lambda school, papers, ctx: calls.append((school, len(papers))) or [])
+    monkeypatch.setattr(CH, 'load', lambda name: fake)
+    monkeypatch.setattr(L, 'write', lambda school, rows, step, dry=False: 0)
+    for school in ('mit', 'toronto'):
+        _, known = papers()
+        rows, _ = R.run_channel(school, 'core_bulk', [(r, w) for r, w in ROWS], known, dry=True, log=False)
+        assert rows == []
+    assert calls == [('mit', len(ROWS)), ('toronto', len(ROWS))]
 
 
 def test_sonar_asks_only_ids_named_by_known_urls_and_takes_unrestricted_pdfs():

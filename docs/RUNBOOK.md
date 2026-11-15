@@ -111,7 +111,7 @@ merges records (2026-11-04: Princeton's API held 7,804 works of 2026, the sweep 
    new, changed, dropped (merged ids: the same DOI under a fresh id, else `--lookups N` singleton lookups follow the redirect), new PI-credited works, pi-works rows.
 5. Scratch rebuild AFTER (`OUT=<scratch>/build-after`), then count `lab_papers.jsonl.gz` per school and read ten new lab papers (right PI, school, appointment).
 6. Copies: `add_works.py <school>` for each school, then Princeton's package through `vendor/princeton_tools/import_all_when_free.py`, then the channel run
-   (`fulltext-push/addworks-<date>.slurm`; CORE stays paused). The next release rebuilds from the refreshed stores.
+   (`fulltext-push/addworks-<date>.slurm`; CORE API use is enabled for every school under the 2026-11-15 owner decision). The next release rebuilds from the refreshed stores.
 First run 2026-11-05: 1,445 credits (2026 papers 809 incl. PI works, 2025 papers 570, counts and probes the rest), one UTC day; singleton lookups (merged-id redirects) cost 0 credits and run
 per school in parallel (`--years 2025+2026`: sbatch --export splits on commas). Ids the API no longer returns: DOI match or redirect = merged (dropped), 404 dropped, still alive but not credited = kept ("alive", 1-5% of a year).
 Slurm needs `SNAPSHOT_REPO=<worktree>,CS_ATLAS_SNAPSHOT_COMMIT=<sha>` in --export until the branch is landed. add_works reads live `lab_papers.jsonl.gz`, so before a release rebuild it runs on a scratch hierarchy root of symlinks
