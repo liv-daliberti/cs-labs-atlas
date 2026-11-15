@@ -326,3 +326,22 @@ def test_website_refresh_does_not_claim_students_were_audited():
     rec = record('pi_homepage_only_no_lab_site')
     rec['lab_page']['reason'] = 'PI homepage was audited for students and papers'
     assert 'audited' not in W.entry(rec)['reason']
+
+
+def test_stored_listing_links_record_only_the_pi_named_card_and_skip_malformed_urls():
+    import stored_listing_links as SL
+    html = ('<article><h3>Example, Ada</h3><a href="https://lab.example/">Website</a></article>'
+            '<article><h3>Other, Bob</h3><a href="https://other.example/">Website</a></article>')
+    caps = [('https://school.edu/people/', 'https://web.archive.org/web/20220101id_/https://school.edu/people/', '2026-01-01T00:00:00', 'a' * 64, '20220101', html)]
+
+    def row(pi, url):
+        return {'pi': pi, 'url': url, 'coverage': 'website', 'official_link_status': 'not_recorded'}
+    doc = {'labs': [row('Ada Example', 'http://lab.example'), row('Ada Example2', 'https://other.example/'),
+                    row('Bob Other', 'http://http://https://other.example/')]}
+    found = SL.scan(doc, caps)
+    assert list(found) == ['Ada Example']
+    ada = doc['labs'][0]
+    assert ada['official_link_status'] == 'recorded' and ada['official_link_evidence'][0]['source_sha256'] == 'a' * 64
+    assert doc['labs'][1]['official_link_status'] == 'not_recorded'   # another PI's card never certifies this row
+    assert doc['labs'][2]['official_link_status'] == 'not_recorded'   # malformed registered URL is a data error first
+    assert not SL.well_formed('http://http://https://x.github.io/') and SL.well_formed('https://x.github.io/a')
