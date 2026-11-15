@@ -543,6 +543,8 @@ def page_text(raw, fold_smallcaps=False):
     fold_smallcaps: a small-caps surname that the page splits after its first letter ('S HEWCHUK') is ALSO available joined ('SHEWCHUK'); the
     original spacing stays in the text, so quotes and names written either way match (R-STU-28)."""
     s = page_text_lines(raw) if raw.startswith(b'%PDF-') else decode_page(raw)
+    if not raw.startswith(b'%PDF-'):
+        s = re.sub(r'<!--.*?(?:-->|$)', ' ', s, flags=re.S)
     s = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', s)
     # Inline spans can split a single visible name (for example J</span><span>onas).
     # Adjacent spans introduce no visual word boundary, so keep their text joined.
@@ -575,6 +577,7 @@ def page_text_lines(raw):
             return ''
         return '\n'.join(' '.join(line.split()) for line in extracted.splitlines() if line.strip())
     s = decode_page(raw)
+    s = re.sub(r'<!--.*?(?:-->|$)', ' ', s, flags=re.S)
     s = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', s)
     s = re.sub(r'(?i)</(p|div|li|tr|h\d|section|ul|table)>|<br\s*/?>', '\n', s)
     s = html.unescape(re.sub(r'(?s)<[^>]+>', ' ', s)).replace('\xa0', ' ')
