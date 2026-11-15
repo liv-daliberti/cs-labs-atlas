@@ -2,7 +2,7 @@
  "school": "vt",
  "date": "2026-11-15",
  "seed": 2026111503,
- "n_verdicts": 39,
+ "n_verdicts": 54,
  "files": {
   "pis.json": "89fd30ec8da139c96eae95d04da5e726a14956d9a2667bdba122e7c198c69ca1",
   "students.json": "970c02257b49c064f48d2c25d28ace82060c1861c165cdf46ccec1487c15b5ee",
@@ -18,20 +18,20 @@
   "copies.json": "bbf61a7201da3f9ab6ead0c963f3f3022e02be51a641a67f7bf3ac9053f53310"
  },
  "lab_precision_uniform": {
-  "k": 34,
-  "n": 35,
-  "p": 0.9714,
-  "lo": 0.8547,
-  "hi": 0.9949,
-  "unclear": 0
+  "k": 48,
+  "n": 49,
+  "p": 0.9796,
+  "lo": 0.8931,
+  "hi": 0.9964,
+  "unclear": 1
  },
  "lab_precision_uniform_if_abstracts_count": {
-  "k": 34,
-  "n": 35,
-  "p": 0.9714,
-  "lo": 0.8547,
-  "hi": 0.9949,
-  "unclear": 0
+  "k": 48,
+  "n": 49,
+  "p": 0.9796,
+  "lo": 0.8931,
+  "hi": 0.9964,
+  "unclear": 1
  },
  "lab_precision_strata": {
   "advisee_unaffiliated": {
@@ -55,12 +55,12 @@
   }
  },
  "lab_precision_all40": {
-  "k": 38,
-  "n": 39,
-  "p": 0.9744,
-  "lo": 0.8682,
-  "hi": 0.9955,
-  "unclear": 0
+  "k": 52,
+  "n": 53,
+  "p": 0.9811,
+  "lo": 0.9006,
+  "hi": 0.9967,
+  "unclear": 1
  },
  "student_precision_uniform": {
   "unclear": 0
@@ -94,7 +94,13 @@
    "policy": null
   }
  ],
- "unclear": [],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Anuj Karpatne|None|https://openalex.org/W4403060972",
+   "reason": "The SPIE official program labels this as an invited paper, but the accessible source does not establish whether the indexed DOI represents a full proceedings paper or only a presentation abstract."
+  }
+ ],
  "screened": [],
  "population": {
   "n_lab_papers": 3610,
@@ -111,7 +117,7 @@
    "cands": 200
   },
   "judged": {
-   "lab_precision": 39,
+   "lab_precision": 54,
    "student_precision": 0,
    "lab_coverage": 0,
    "student_coverage": 0
