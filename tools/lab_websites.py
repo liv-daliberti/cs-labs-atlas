@@ -30,6 +30,7 @@ ABSENCE_REASONS = {
     'profile_only_no_homepage', 'no_web_presence_found', 'site_dead_no_wayback',
     'host_blocked_by_robots', 'host_access_blocked', 'host_challenge_no_wayback', 'pi_left_school_site_moved',
     'site_at_other_institution', 'new_arrival_no_site_yet', 'emeritus_or_admin_no_lab',
+    'site_retired_archive_redirect',   # 2026-11-15 (EPFL): the profile links a host whose robots.txt answers 302 to the school's own archive host; the host is retired, nothing is read from the archive
 }
 
 
@@ -140,7 +141,7 @@ def entry(rec):
             out['reason_type'] = 'pending_archive'
         elif results & {'robots_disallowed', 'bot_challenge', 'off_limits', 'http_403', 'host_access_blocked'}:
             out['reason_type'] = 'access_blocked'
-        elif code == 'site_dead_no_wayback':
+        elif code in ('site_dead_no_wayback', 'site_retired_archive_redirect'):
             out['reason_type'] = 'site_unavailable'
         else:
             out['reason_type'] = 'search_no_eligible_site'

@@ -26507,8 +26507,8 @@
   {
    "pi": "Catherine Dehollain",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "site_retired_archive_redirect",
+   "reason": "The PI's official people.epfl.ch profile (https://people.epfl.ch/catherine.dehollain?lang=en, fetched 2026-11-15) links http://rfic.epfl.ch; that host's robots.txt (https://rfic.epfl.ch/robots.txt) answered HTTP 302 to https://archiveweb.epfl.ch/rfic.epfl.ch/ on 2026-11-15 (observed, redirect not followed): the lab site is retired to EPFL's archive host. Nothing was fetched from archiveweb.epfl.ch. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-10-31T11:39:28+00:00",
    "checks": [
     {
@@ -26598,6 +26598,32 @@
      "at": "2026-10-31T11:39:28+00:00",
      "result": "ok_wayback",
      "sha256": "a654d04d5319ed3ca6c48be38dba415de342322fe5c6aaaf7a266688a4cfee5d"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://people.epfl.ch/catherine.dehollain?lang=en",
+     "at": "2026-11-15T02:53:07+00:00",
+     "result": "ok",
+     "sha256": "4b0520a3b53db079193c60afd6f231d92057a2edd170dbaa962581a9c6d894c4"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://rfic.epfl.ch",
+     "on": "https://people.epfl.ch/catherine.dehollain?lang=en",
+     "at": "2026-11-15T02:53:07+00:00",
+     "result": "listed",
+     "anchor": "http://rfic.epfl.ch",
+     "source_sha256": "4b0520a3b53db079193c60afd6f231d92057a2edd170dbaa962581a9c6d894c4",
+     "provenance": "live_profile_fetch_2026-11-15"
+    },
+    {
+     "source": "host_robots",
+     "url": "https://rfic.epfl.ch/robots.txt",
+     "at": "2026-11-15T17:37:48+00:00",
+     "result": "robots_redirect_to_archive",
+     "status": 302,
+     "location": "https://archiveweb.epfl.ch/rfic.epfl.ch/",
+     "response_sha256": "753e0dd54f28c4f7009b9c0b18a68aed175416bd8b7d134858264586eaac56f0"
     }
    ],
    "places_checked": [
@@ -26605,34 +26631,22 @@
     "dblp_person_url:listed",
     "department_listing:ok",
     "department_listing:ok_wayback",
+    "host_robots:redirect_to_archive",
     "orcid_researcher_urls:no_urls",
     "pi_evidence_url:listed",
+    "school_profile:ok",
+    "school_profile_link:listed",
     "wayback_capture:ok_wayback",
     "wayback_cdx:24 captures"
    ],
-   "checked_at": "2026-10-31T11:39:28+00:00",
+   "checked_at": "2026-11-15T17:37:48+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "https://people.epfl.ch/catherine.dehollain",
-   "kind": "pi_homepage",
-   "people_page": "https://people.epfl.ch/catherine.dehollain",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "ba05c8eed05e36251ca664411b7bd2dd31a06b986082ab344486c5c68d5178d3",
-   "evidence": {
-    "url": "https://people.epfl.ch/catherine.dehollain",
-    "sha256": "ba05c8eed05e36251ca664411b7bd2dd31a06b986082ab344486c5c68d5178d3",
-    "quote": "EPFL - Catherine Dehollain Online People Directory Show / hide the search form Search"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "the profile-linked lab host is retired (robots.txt redirects to the school archive host)",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "epfl catherine dehollain online people directory show hide the search form search for a person "
+   "reason_type": "site_unavailable",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Alexandre Schmid",
@@ -27957,8 +27971,8 @@
   {
    "pi": "János Pach",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "site_retired_archive_redirect",
+   "reason": "The PI's official people.epfl.ch profile (https://people.epfl.ch/janos.pach?lang=en, fetched 2026-11-15) links http://dcg.epfl.ch; that host's robots.txt (https://dcg.epfl.ch/robots.txt) answered HTTP 302 to https://archiveweb.epfl.ch/dcg.epfl.ch/ on 2026-11-15 (observed, redirect not followed): the lab site is retired to EPFL's archive host. Nothing was fetched from archiveweb.epfl.ch. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-10-31T11:43:03+00:00",
    "checks": [
     {
@@ -28007,39 +28021,53 @@
      "at": "2026-10-31T11:43:03+00:00",
      "result": "robots_disallowed",
      "on": "https://people.epfl.ch/janos.pach?lang=en"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://people.epfl.ch/janos.pach?lang=en",
+     "at": "2026-11-15T02:53:11+00:00",
+     "result": "ok",
+     "sha256": "acf1aa288553b1ac6670749052e5d799f90fecbf263733788877057face4c1d4"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://dcg.epfl.ch",
+     "on": "https://people.epfl.ch/janos.pach?lang=en",
+     "at": "2026-11-15T02:53:11+00:00",
+     "result": "listed",
+     "anchor": "http://dcg.epfl.ch",
+     "source_sha256": "acf1aa288553b1ac6670749052e5d799f90fecbf263733788877057face4c1d4",
+     "provenance": "live_profile_fetch_2026-11-15"
+    },
+    {
+     "source": "host_robots",
+     "url": "https://dcg.epfl.ch/robots.txt",
+     "at": "2026-11-15T17:37:53+00:00",
+     "result": "robots_redirect_to_archive",
+     "status": 302,
+     "location": "https://archiveweb.epfl.ch/dcg.epfl.ch/",
+     "response_sha256": "753e0dd54f28c4f7009b9c0b18a68aed175416bd8b7d134858264586eaac56f0"
     }
    ],
    "places_checked": [
     "candidate_site:ok",
     "dblp_person_url:no_homepage_url",
     "department_listing:ok",
+    "host_robots:redirect_to_archive",
     "orcid_researcher_urls:no_urls",
     "pi_evidence_url:listed",
-    "pubs_link:robots_disallowed"
+    "pubs_link:robots_disallowed",
+    "school_profile:ok",
+    "school_profile_link:listed"
    ],
-   "checked_at": "2026-10-31T11:43:03+00:00",
+   "checked_at": "2026-11-15T17:37:53+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "https://people.epfl.ch/janos.pach?lang=en",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "pi_evidence_url",
-   "listed_on": null,
-   "sha256": "0078c358944e0bba6393d61cd4a33123f1c753e8ec5aeb07f1da92ab938d23e4",
-   "evidence": {
-    "url": "https://people.epfl.ch/janos.pach?lang=en",
-    "sha256": "0078c358944e0bba6393d61cd4a33123f1c753e8ec5aeb07f1da92ab938d23e4",
-    "quote": "EPFL - János Pach Online People Directory Show / hide the search form Search"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "the profile-linked lab host is retired (robots.txt redirects to the school archive host)",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "epfl janos pach online people directory show hide the search form search for a person hide "
+   "reason_type": "site_unavailable",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Mohamed Bouri",
@@ -29862,8 +29890,8 @@
   {
    "pi": "Maher Kayal",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "site_retired_archive_redirect",
+   "reason": "The PI's official people.epfl.ch profile (https://people.epfl.ch/maher.kayal?lang=en, fetched 2026-11-15) links http://elab.epfl.ch/; that host's robots.txt (https://elab.epfl.ch/robots.txt) answered HTTP 302 to https://archiveweb.epfl.ch/elab.epfl.ch/ on 2026-11-15 (observed, redirect not followed): the lab site is retired to EPFL's archive host. Nothing was fetched from archiveweb.epfl.ch. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-10-31T11:48:14+00:00",
    "checks": [
     {
@@ -29941,6 +29969,32 @@
      "at": "2026-10-31T11:48:14+00:00",
      "result": "ok_wayback",
      "sha256": "0d011a8b1d9fb2b380f1049520ae7f295457ab140fb65d2d9b68c8dbfa4cdc93"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://people.epfl.ch/maher.kayal?lang=en",
+     "at": "2026-11-15T02:53:31+00:00",
+     "result": "ok",
+     "sha256": "76756ec352641943d3d8f0a22f67cb50e733c685a9f7dee6f9c0d7eeb8fa5aca"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://elab.epfl.ch/",
+     "on": "https://people.epfl.ch/maher.kayal?lang=en",
+     "at": "2026-11-15T02:53:31+00:00",
+     "result": "listed",
+     "anchor": "http://elab.epfl.ch/",
+     "source_sha256": "76756ec352641943d3d8f0a22f67cb50e733c685a9f7dee6f9c0d7eeb8fa5aca",
+     "provenance": "live_profile_fetch_2026-11-15"
+    },
+    {
+     "source": "host_robots",
+     "url": "https://elab.epfl.ch/robots.txt",
+     "at": "2026-11-15T17:37:44+00:00",
+     "result": "robots_redirect_to_archive",
+     "status": 302,
+     "location": "https://archiveweb.epfl.ch/elab.epfl.ch/",
+     "response_sha256": "753e0dd54f28c4f7009b9c0b18a68aed175416bd8b7d134858264586eaac56f0"
     }
    ],
    "places_checked": [
@@ -29948,34 +30002,22 @@
     "dblp_person_url:no_homepage_url",
     "department_listing:ok",
     "department_listing:ok_wayback",
+    "host_robots:redirect_to_archive",
     "orcid_researcher_urls:no_urls",
     "pi_evidence_url:listed",
+    "school_profile:ok",
+    "school_profile_link:listed",
     "wayback_capture:ok_wayback",
     "wayback_cdx:20 captures"
    ],
-   "checked_at": "2026-10-31T11:48:14+00:00",
+   "checked_at": "2026-11-15T17:37:44+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "https://people.epfl.ch/maher.kayal?lang=en",
-   "kind": "pi_homepage",
-   "people_page": "https://people.epfl.ch/maher.kayal?lang=en",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "pi_evidence_url",
-   "listed_on": null,
-   "sha256": "155be3984c00a6f1b2cbb4a1eb016a4982ae3efdd564f1685edb8835289926b9",
-   "evidence": {
-    "url": "https://people.epfl.ch/maher.kayal?lang=en",
-    "sha256": "155be3984c00a6f1b2cbb4a1eb016a4982ae3efdd564f1685edb8835289926b9",
-    "quote": "EPFL - Maher Kayal Online People Directory Show / hide the search form Search"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "the profile-linked lab host is retired (robots.txt redirects to the school archive host)",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "epfl maher kayal online people directory show hide the search form search for a person hide"
+   "reason_type": "site_unavailable",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Felix Schürmann",

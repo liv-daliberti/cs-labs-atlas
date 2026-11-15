@@ -332,16 +332,60 @@ def register(profiles_path, sites_paths, reg_in, reg_out):
     print(len(changed), 'rows written')
 
 
+# --- retired lab hosts (2026-11-15) -------------------------------------------------------------------------------------------------------------
+# The PI's fetched profile links a host (contact button) whose robots.txt answers a 302 to the school's own archive host (archiveweb.epfl.ch). Such a host is
+# retired: a dated absence row records the profile link, the observed 302 target and the date. Nothing is read from archiveweb.epfl.ch (no fetch, no robots).
+RETIRED = {'Maher Kayal': 'elab.epfl.ch', 'Catherine Dehollain': 'rfic.epfl.ch', 'J\u00e1nos Pach': 'dcg.epfl.ch'}
+RETIRED_CODE = 'site_retired_archive_redirect'
+
+
+def register_retired(profiles_path, probe_path, reg_in, reg_out):
+    """Rows for RETIRED. profiles: fetch output (status 200, the host among the page's contact links); probe: {PI: {url, status, location, at, sha256}} from the
+    live robots.txt request (redirects not followed)."""
+    prof = json.loads(Path(profiles_path).read_text())
+    probe = json.loads(Path(probe_path).read_text())
+    doc = json.loads(Path(reg_in).read_text())
+    rows = {r['pi']: r for r in doc['labs']}
+    for n, host in RETIRED.items():
+        p, q = prof[n], probe[n]
+        assert p['status'] == 200 and p['names_pi'], n
+        link = next(c['href'] for c in p['contact_links'] if urlsplit(c['href']).netloc == host)   # the profile's own link
+        assert q['status'] == 302 and urlsplit(q['location']).netloc == 'archiveweb.epfl.ch' and urlsplit(q['url']).netloc == host, n
+        r = rows.setdefault(n, dict(pi=n))
+        for k in STALE:
+            r.pop(k, None)
+        prof_at = utc_of(p['fetched_at'])
+        checks = [c for c in (r.get('checks') or []) if c.get('source') not in ('school_profile', 'school_profile_link', 'host_robots')]
+        checks += [dict(source='school_profile', url=p['url'], at=prof_at, result='ok', sha256=p['sha256']),
+                   dict(source='school_profile_link', url=link, on=p['url'], at=prof_at, result='listed', anchor=link, source_sha256=p['sha256'], provenance='live_profile_fetch_2026-11-15'),
+                   dict(source='host_robots', url=q['url'], at=q['at'], result='robots_redirect_to_archive', status=302, location=q['location'], response_sha256=q['sha256'])]
+        r.update(status='none_found', reason_code=RETIRED_CODE, coverage='reason', reason_type='site_unavailable', reason_scope=SCOPE,
+                 reason=(f"The PI's official people.epfl.ch profile ({p['url']}, fetched {prof_at[:10]}) links {link}; that host's robots.txt ({q['url']}) answered HTTP 302 to {q['location']} "
+                         f"on {q['at'][:10]} (observed, redirect not followed): the lab site is retired to EPFL's archive host. Nothing was fetched from archiveweb.epfl.ch. " + SCOPE),
+                 upstream_audit_reason='the profile-linked lab host is retired (robots.txt redirects to the school archive host)', evidence_gaps=[])
+        r['checks'] = checks
+        r['places_checked'] = sorted(set(r.get('places_checked') or []) | {'school_profile:ok', 'school_profile_link:listed', 'host_robots:redirect_to_archive'})
+        r['checked_at'] = q['at']
+        r.setdefault('audited_at', prof_at)
+        r.setdefault('students_page_status', 'not_audited_in_this_pass')
+        r.setdefault('papers_page_status', 'not_audited_in_this_pass')
+    doc['labs'] = [rows[x['pi']] for x in doc['labs']] + [r for n, r in rows.items() if n not in {x['pi'] for x in doc['labs']}]
+    Path(reg_out).write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n')
+    print(len(RETIRED), 'retired-host rows written')
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('cmd', choices=['fetch', 'parse', 'sites', 'homes', 'project-homes', 'register'])
+    ap.add_argument('cmd', choices=['fetch', 'parse', 'sites', 'homes', 'project-homes', 'register', 'retired'])
     ap.add_argument('--names', help='fetch/parse/homes: a JSON list of PI names; sites: {PI: url}; project-homes: the reviewed overrides file')
     ap.add_argument('--sites', nargs='*', default=[], help='register: the sites outputs')
     ap.add_argument('--profiles', help='register: the fetch output')
     ap.add_argument('--src', help='project-homes: the home register to start from')
     ap.add_argument('--out', required=True)
     a = ap.parse_args()
-    if a.cmd == 'register':
+    if a.cmd == 'retired':
+        register_retired(a.profiles, a.names, a.src, a.out)
+    elif a.cmd == 'register':
         register(a.profiles, a.sites, a.src, a.out)
     elif a.cmd == 'project-homes':
         project_homes(a.names, a.src, a.out)

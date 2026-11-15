@@ -308,6 +308,8 @@ access-limited outcomes. Registers older than the PI build must be refreshed.
 `site_unavailable`, `other_institution`, and `search_no_eligible_site`.
 `--enrich-official-links` recovers exact outgoing links from cached official
 profile HTML, preserving its hash and check date; it performs no requests.
+`site_retired_archive_redirect` (EPFL, 2026-11-15; reason_type `site_unavailable`): the PI's fetched profile links a host whose `robots.txt` answers
+a dated 302 to the school's own archive host (archiveweb.epfl.ch); the observed target is quoted, the archive is never fetched.
 Archive-dependent outcomes remain documented but incomplete, and fail stage 3.
 
 For bounded live-first discovery, pass `--live-first` to `labpage_audit.py discover`.

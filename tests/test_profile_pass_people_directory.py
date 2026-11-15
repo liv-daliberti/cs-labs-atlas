@@ -42,3 +42,30 @@ def test_register_decisions_use_supported_reason_codes_and_eligible_urls():
             assert not LW.selection_gaps(d['linked']), pi          # never a profile card, identity index, document or feedback form
         else:
             assert d['code'] in LW.ABSENCE_REASONS and d['seen'], pi
+
+
+def test_retired_hosts_have_a_registered_reason_and_dated_robots_redirect():
+    import json
+    import re
+    from pathlib import Path
+    import lab_websites as LW
+    assert E.RETIRED_CODE in LW.ABSENCE_REASONS
+    reg = {r['pi']: r for r in json.loads((Path(__file__).resolve().parents[1] / 'hierarchy/epfl/reviewed/lab-websites.json').read_text())['labs']}
+    for pi, host in E.RETIRED.items():
+        r = reg[pi]
+        assert r['reason_code'] == E.RETIRED_CODE and r['coverage'] == 'reason' and not r.get('url')
+        c = next(x for x in r['checks'] if x['source'] == 'host_robots')
+        assert host in c['url'] and c['status'] == 302 and c['location'].startswith('https://archiveweb.epfl.ch/') and c['at']
+        assert any(x['source'] == 'school_profile_link' and host in x['url'] and re.fullmatch(r'[0-9a-f]{64}', x['source_sha256']) for x in r['checks'])
+
+
+def test_every_tracked_epfl_home_decision_carries_url_hash_and_quote():
+    import json
+    import re
+    from pathlib import Path
+    ov = json.loads((Path(__file__).resolve().parents[1] / 'hierarchy/epfl/reviewed/census-overrides-school.json').read_text())
+    for pi, d in ov.items():
+        if 'home_department' in d:
+            assert d['home_department_evidence'], pi
+            for e in d['home_department_evidence']:
+                assert e['url'].startswith('https://people.epfl.ch/') and re.fullmatch(r'[0-9a-f]{64}', e['sha256']) and e['quote'], pi
