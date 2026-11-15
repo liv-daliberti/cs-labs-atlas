@@ -5,7 +5,7 @@ from pathlib import Path
 import lab_websites as LW
 import washu_profile_pass as WP
 
-REG = Path(__file__).resolve().parent.parent / 'hierarchy' / 'washu' / 'reviewed' / 'lab-websites.json'
+REG = Path(__file__).resolve().parent.parent / 'hierarchy' / 'washu' / 'reviewed' / 'lab-websites.json'  # route-ok: the tracked register of this checkout, not a data slot
 
 
 def rows():
