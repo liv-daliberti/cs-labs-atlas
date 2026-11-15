@@ -12,6 +12,13 @@ has 52 Amin Arbabian, 41 Daniel Bruce Ennis, and 8 Hariharan Subramonyam
 candidates. It must be reviewed row by row before integration. Its `status`
 is explicitly `proposed; not wired or accepted`.
 
+The bound [candidate triage](STAGE-6-RECALL-CANDIDATES-20261115.json) holds
+12 rows: five Arbabian visitors who are faculty/scientists, five Ennis
+research scientists or a visiting scholar, one Ennis graduate dated before
+his sourced Stanford appointment, and a duplicate Joshuah Chen alumni row
+that conflicts with his current-page entry. The other 89 remain proposals
+pending the lab-page hand-check; this is not an acceptance verdict.
+
 The primary pages confirm why a bulk import is unsafe:
 
 R-STU-17 counts visiting *students* as members of the lab. The `visitor`
