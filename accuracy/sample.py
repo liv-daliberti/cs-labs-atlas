@@ -53,7 +53,15 @@ ROUNDS = {'r2': dict(seed=20261102, uniform=50, stratum=5, cov=50, cands=200,
           # r4 is an Oxford copy-ledger-only rebind of its fully judged r3 draw. Keep the same seed and sizes so ordered item keys
           # must compare equal before any verdict is carried; the immutable r3 sample and its original verdicts remain history.
           'r4': dict(seed=20261113, uniform=50, stratum=5, cov=50, cands=200,
-                     schools=['oxford'], dir='round-r4')}
+                     schools=['oxford'], dir='round-r4'),
+          # VT's 2024 faculty-departure correction changes the native paper set. Its CORE-bound r3 draw is retained as
+          # history; r5 measures the corrected package and newly counted copy ledger with an independent seed.
+          'r5': dict(seed=20261115, uniform=50, stratum=5, cov=50, cands=200,
+                     schools=['vt'], dir='round-r5'),
+          # r5 was drawn before the corrected VT package's unavailable ledger finished.
+          # Keep that trial immutable; r6 uses the same draw against the final ledger digest.
+          'r6': dict(seed=20261115, uniform=50, stratum=5, cov=50, cands=200,
+                     schools=['vt'], dir='round-r6')}
 FILES = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 
 
