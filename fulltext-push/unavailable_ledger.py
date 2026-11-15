@@ -15,7 +15,7 @@ usage: unavailable_ledger.py <school> [<school> ...] [--max-age-days N] [--offli
   writes  hierarchy/<school>/unavailable.jsonl.gz and unavailable-summary.json, the new checks into the checks store,
           and the reason onto copies.json (lab_paper_copies.attach_ledger). Catalogs are never written.
 """
-import argparse, difflib, gzip, json, os, re, sqlite3, sys, time
+import argparse, difflib, gzip, json, os, re, sqlite3, sys, time, uuid
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -550,17 +550,23 @@ def src_dblp(by_school, offline, n):
         extra = [dict(key=f"{s}|{p['key']}", doi=p['r'].get('doi'), editions=[e.get('doi') for e in p['r'].get('editions') or [] if e.get('doi')],
                       title=p['r'].get('title'), year=p['r'].get('year'), byline=p['r'].get('byline'), pis=p['r'].get('pis'))
                  for s, ps in need.items() for p in ps]
-        tmp = RAW / 'ledger_dblp_scan.jsonl.gz'
-        dblp_ee.scan(extra, out=tmp, only_extra=True)
-        at = now()
-        per = defaultdict(list)
-        for l in gzip.open(tmp, 'rt'):
-            x = json.loads(l)
-            s, k = x['paper'].split('|', 1)
-            per[s].append(dict(x, paper=k))
-        for s, ps in need.items():
-            jdump(RAW / f'ledger_dblp_{s}.jsonl.gz', per.get(s, []))
-            (RAW / f'ledger_dblp_{s}.json').write_text(json.dumps(dict(at=at, dump=str(dblp_ee.DUMP), keys=[p['key'] for p in ps])))
+        # Different school jobs may scan the same DBLP dump concurrently. The
+        # scanner also creates a .part sibling, so both names must be unique.
+        tmp = RAW / f'ledger_dblp_scan_{uuid.uuid4().hex}.jsonl.gz'
+        try:
+            dblp_ee.scan(extra, out=tmp, only_extra=True)
+            at = now()
+            per = defaultdict(list)
+            for l in gzip.open(tmp, 'rt'):
+                x = json.loads(l)
+                s, k = x['paper'].split('|', 1)
+                per[s].append(dict(x, paper=k))
+            for s, ps in need.items():
+                jdump(RAW / f'ledger_dblp_{s}.jsonl.gz', per.get(s, []))
+                (RAW / f'ledger_dblp_{s}.json').write_text(json.dumps(dict(at=at, dump=str(dblp_ee.DUMP), keys=[p['key'] for p in ps])))
+        finally:
+            tmp.unlink(missing_ok=True)
+            tmp.with_suffix('.part').unlink(missing_ok=True)
     out = defaultdict(dict)
     for school, papers in by_school.items():
         side = RAW / f'ledger_dblp_{school}.json'
