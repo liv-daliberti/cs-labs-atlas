@@ -94,3 +94,22 @@ def test_R_PAP_36_retry_chain_does_not_ask_twice(monkeypatch, tmp_path):
     c.execute("insert into tries values ('p','k2','none',null,'dblp_unconfirmed',null,null,0,null,'2026-11-05T10:00:00Z')")
     src = open(D.__file__).read()
     assert "DBLP_RETRY_SINCE" in src and "where at >= ?" in src   # records tried since the chain started are done
+
+
+def test_bilingual_pi_label_uses_its_explicit_latin_byline_name():
+    from pi_fulltext_affiliation import tie
+    import school_config as S
+    for label, author in [('Sunil ARYA 安雅信', 'Sunil Arya'),
+                          ('Gary S. H. CHAN 陳雙幸', 'Gary Chan'),
+                          ('James Tin Yau KWOK 郭天佑', 'James Kwok')]:
+        text = author + ' Department of Computer Science, Hong Kong University of Science and Technology Abstract A research paper.'
+        assert tie(text, D.page1_name_forms([label]), S.aff_rx('hkust'))[0]
+    assert not tie('Different Author, Hong Kong University of Science and Technology Abstract A paper.',
+                   D.page1_name_forms(['Sunil ARYA 安雅信']), S.aff_rx('hkust'))[0]
+
+
+def test_primary_conference_pdfs_are_supported_without_author_site_allowlisting():
+    for url in ['https://www.ieee-security.org/TC/SP2017/papers/581.pdf',
+                'https://www.openproceedings.org/2025/conf/edbt/paper-19.pdf']:
+        assert any(host in url for host in D.OPEN_HOSTS)
+        assert D.pdf_url(url) == url

@@ -183,7 +183,7 @@ def _tie_in(block, flat, head, names, aff, allow_single):
                         if a_ and not re.search(r'(?i)equal|contribut|correspond|work (?:was )?done|intern', fn.group(1)[:a_.start()]):
                             return 'footnote', [block[m.start():m.end() + len(mk.group(0))], fn.group(0).strip()]
                     elif sym.isdigit():   # 2026-11-12: the same for a numbered footnote beyond the head cut, when it opens with a unit or institution
-                        for fn in re.finditer(r'(?:^|\s)' + re.escape(sym) + r'\s?([A-Z][^∗*†‡§¶♯]{4,160})', flat[len(head):]):
+                        for fn in re.finditer(r'(?:^|\s)' + re.escape(sym) + r'\s*([A-Z][^0-9∗*†‡§¶♯]{4,160})', flat[len(head):]):
                             a_ = aff.search(fn.group(1)[:120])
                             if a_ and FOOTNOTE_UNIT.match(fn.group(1)) and not re.search(r'(?i)equal|contribut|correspond|work (?:was )?done|intern', fn.group(1)[:a_.start()]):
                                 return 'footnote', [block[m.start():m.end() + len(mk.group(0))], fn.group(0).strip()]
