@@ -150,17 +150,18 @@ def stored_pages(school):
     return out
 
 
-def run(school, src, out, report):
+def run(school, src, out, report, alias_only=False):
     doc = json.loads(Path(src).read_text())
     found = {}
     aliases = alias_rule(school)
     if aliases:
         found.update({k: dict(v, how='alias_capture') for k, v in attach_aliased_captures(doc, stored_pages(school), aliases).items()})
-    found.update(scan(doc, listing_captures(school)))
+    if not alias_only:
+        found.update(scan(doc, listing_captures(school)))
     Path(out).write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n')
     if report:
         Path(report).write_text(json.dumps(found, indent=1, ensure_ascii=False) + '\n')
-    print(len(found), 'official links recorded from stored listing captures')
+    print(len(found), 'rows updated from stored captures (alias attach and official-link records)')
 
 
 def main():
@@ -169,8 +170,9 @@ def main():
     ap.add_argument('--src', required=True)
     ap.add_argument('--out', required=True)
     ap.add_argument('--report')
+    ap.add_argument('--alias-only', action='store_true', help='only attach alias-host captures; record no official links')
     a = ap.parse_args()
-    run(a.school, a.src, a.out, a.report)
+    run(a.school, a.src, a.out, a.report, a.alias_only)
 
 
 if __name__ == '__main__':

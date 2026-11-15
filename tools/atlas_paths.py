@@ -287,6 +287,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('student-recall-check.json', 'reviewed', 'hierarchy/{school}/student-recall-check.json', 'hierarchy/{school}/reviewed/student-recall-check.json'),
     ('student-recall-captures.sqlite', 'work', 'hierarchy/{school}/student-recall-captures.sqlite', 'hierarchy/{school}/work/student-recall-captures.sqlite'),
     ('lab-websites.json', 'reviewed', 'hierarchy/{school}/lab-websites.json', 'hierarchy/{school}/reviewed/lab-websites.json'),
+    ('host-alias-rule.json', 'reviewed', 'hierarchy/{school}/host-alias-rule.json', 'hierarchy/{school}/reviewed/host-alias-rule.json'),   # 2026-11-15: owner-approved exact-path host aliases for stored-capture attach (stored_listing_links.py)
     ('person-websites.json', 'reviewed', 'hierarchy/{school}/person-websites.json', 'hierarchy/{school}/reviewed/person-websites.json'),   # PI/student sites (2026-11-08)
     ('person-website-review.json', 'reviewed', 'hierarchy/{school}/person-website-review.json', 'hierarchy/{school}/reviewed/person-website-review.json'),   # hand review of unverified sites (2026-11-08)
     ('lab-websites-sweep.json', 'reviewed', 'hierarchy/{school}/lab-websites-sweep.json', 'hierarchy/{school}/reviewed/lab-websites-sweep.json'),   # live website sweep beside a promoted lab register (oxford, 2026-11-08)
