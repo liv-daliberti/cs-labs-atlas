@@ -703,9 +703,16 @@ def _authorship_school_via(work, authorship, inst, aff, school=None):
         return []
     if school_affiliation_explicitly_other_author(work, authorship, aff):
         return []
+    raw = authorship.get('raw_affiliation_strings') or []
+    # A contact address may outlive an appointment. It cannot override an
+    # explicitly named institution when the school occurs only in that address.
+    # Keep independent institution entries and non-contact school affiliations.
+    without_contacts = [re.sub(r'\b[\w.+-]+@[\w.-]+\b', ' ', value) for value in raw]
+    contact_only = (not any(aff.search(value) for value in without_contacts)
+                    and any(OTHER_INST.search(value) for value in without_contacts))
     return [i.get('display_name') for i in authorship.get('institutions') or []
             if inst == i.get('id') or inst in (i.get('lineage') or [])] \
-        + ['text: ' + raw for raw in authorship.get('raw_affiliation_strings') or [] if aff.search(raw)]
+        + ['text: ' + value for value in raw if not contact_only and aff.search(value)]
 
 
 def reviewed_byline_school(ctx, work):
