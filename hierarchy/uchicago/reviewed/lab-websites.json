@@ -7419,6 +7419,24 @@
      "url": null,
      "at": "2026-11-03T16:03:51+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://stat.uchicago.edu/people/profile/cong-ma/",
+     "at": "2026-11-15T02:03:39+00:00",
+     "result": "ok"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://congma1028.github.io/",
+     "on": "https://stat.uchicago.edu/people/profile/cong-ma/",
+     "at": "2026-11-15T02:03:39+00:00",
+     "result": "listed",
+     "anchor": "https://congma1028.github.io/",
+     "linked_url": "https://congma1028.github.io/",
+     "source_sha256": "fc48922b9d640734d6da33ee40d23e13d49a879aea50286397c86cb46d279a91",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
     }
    ],
    "places_checked": [
@@ -7433,15 +7451,28 @@
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
+   "listed_on": "https://stat.uchicago.edu/people/profile/cong-ma/",
    "sha256": "687f17b8ddad48ea188a139e565999ec30a53deeb441b970b0b3b83e9a800339",
    "evidence": {
     "url": "https://congma1028.github.io/",
     "sha256": "687f17b8ddad48ea188a139e565999ec30a53deeb441b970b0b3b83e9a800339",
     "quote": "Cong Ma Cong Ma Home Papers Papers by topics Group Teaching Tutoria"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://congma1028.github.io/",
+     "on": "https://stat.uchicago.edu/people/profile/cong-ma/",
+     "at": "2026-11-15T02:03:39+00:00",
+     "result": "listed",
+     "anchor": "https://congma1028.github.io/",
+     "linked_url": "https://congma1028.github.io/",
+     "source_sha256": "fc48922b9d640734d6da33ee40d23e13d49a879aea50286397c86cb46d279a91",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
