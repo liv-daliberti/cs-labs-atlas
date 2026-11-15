@@ -134,6 +134,8 @@ TUTORIAL_ABSTRACT_DOI = re.compile(r'(?i)^10\.18653/v1/\d{4}\.[a-z0-9-]+-tutoria
 POSTER_CODE_DOI = re.compile(r'(?i)\.p\d{1,3}-\d{2,3}-\d{2}$')
 ELSEVIER_DATED_DOI = re.compile(r'(?i)^10\.1016/j\.[a-z0-9.]+\.\d{4}\.\d{2}\.\d{3,4}$')
 SUPPLEMENT_ITEM_DOI = re.compile(r'(?i)^10\.1016/j\.chest\.\d{4}\.\d{2}\.\d{4}$')
+JAAD_2026_SUPPLEMENT_DOI = re.compile(r'(?i)^10\.1016/j\.jaad\.2026\.04\.\d{4}$')
+JAAD_ABSTRACT_NUMBER = re.compile(r'^\s*\d{5}\s+\S')
 
 
 def all_caps_title(t):
@@ -388,6 +390,11 @@ def not_a_paper(r, pages=None, bare=False):
     if PROCEEDINGS_VOLUME.search(t):
         return 'proceedings_volume'
     if SUPPLEMENT_NUMBER.search(t) and ty == 'article' and v.strip():
+        return 'supplement_abstract'
+    # JAAD volume 95 issue 1S lists five-digit abstract IDs on AB pages. OpenAlex types
+    # those one-page supplement records as articles; require both the issue DOI family
+    # and the printed abstract-number prefix so ordinary JAAD articles remain eligible.
+    if ty == 'article' and JAAD_2026_SUPPLEMENT_DOI.match(d) and JAAD_ABSTRACT_NUMBER.match(t):
         return 'supplement_abstract'
     sp = short_piece(r, pages, bare)
     if sp:

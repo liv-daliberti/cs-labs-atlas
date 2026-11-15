@@ -90,3 +90,13 @@ def test_R_PAP_27_supplement_abstract_keeps_chapters_and_papers():
     assert h.not_a_paper(row('5. Probabilistic driver modeling', typ='book-chapter', venue='De Gruyter eBooks')) is None
     assert h.not_a_paper(row('3D shape completion', venue='Journal X')) is None
     assert h.not_a_paper(row('19. Fibonacci-Heaps', venue='')) is None
+
+
+def test_jaad_2026_numbered_supplement_abstract():
+    title = '75872 Practice Patterns in Suspected Hyperandrogenism: A Survey of Dermatology Practitioners'
+    doi = '10.1016/j.jaad.2026.04.1381'
+    venue = 'Journal of the American Academy of Dermatology'
+    assert h.not_a_paper(row(title, venue=venue, doi=doi)) == 'supplement_abstract'
+    assert h.not_a_paper(row(title[6:], venue=venue, doi=doi)) is None
+    assert h.not_a_paper(row(title, venue=venue, doi='10.1016/j.jaad.2025.04.1381')) is None
+    assert h.not_a_paper(row(title, venue=venue, doi=doi, typ='book-chapter')) is None
