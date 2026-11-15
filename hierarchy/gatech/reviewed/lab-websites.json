@@ -1487,9 +1487,9 @@
   },
   {
    "pi": "Beki Grinter",
-   "status": "none_found",
+   "status": "found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason": "no lab site; the PI's own homepage is the lab page",
    "audited_at": "2026-11-05T21:07:19+00:00",
    "checks": [
     {
@@ -1561,6 +1561,37 @@
      "via": "dblp_person_url",
      "sha256": "c588f83703aaa2b6dc0c49bbaf6977151892220e3e02963f3d193c9d9fac2213",
      "final_url": "https://faculty.cc.gatech.edu/~beki/Beki.html"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ic.gatech.edu/people/beki-grinter",
+     "at": "2026-11-15T03:24:27+00:00",
+     "result": "ok",
+     "sha256": "e1bcf1157bb6b03ad8eec9552c375af05463809b95608d334de45f2c40b7c8ee"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.grinter.org",
+     "on": "https://ic.gatech.edu/people/beki-grinter",
+     "at": "2026-11-15T03:24:27+00:00",
+     "result": "listed",
+     "anchor": "http://www.grinter.org",
+     "linked_url": "http://www.grinter.org",
+     "source_sha256": "e1bcf1157bb6b03ad8eec9552c375af05463809b95608d334de45f2c40b7c8ee",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.grinter.org",
+     "at": "2026-11-15T03:43:45+00:00",
+     "via": "school_profile_link",
+     "sha256": "cc0eaef3252934191b1ccda35770cab9e1bde7f93f1c9bdfb7694156fac60d9e",
+     "result": "ok",
+     "final_url": "https://www.grinter.org/Welcome.html",
+     "redirect_chain": [
+      "https://www.grinter.org (meta refresh to Welcome.html)"
+     ]
     }
    ],
    "places_checked": [
@@ -1573,29 +1604,37 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-05T21:07:19+00:00",
+   "checked_at": "2026-11-15T03:24:27+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://www.cc.gatech.edu/~beki/Beki.html",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "c588f83703aaa2b6dc0c49bbaf6977151892220e3e02963f3d193c9d9fac2213",
-   "evidence": {
-    "url": "http://www.cc.gatech.edu/~beki/Beki.html",
-    "sha256": "c588f83703aaa2b6dc0c49bbaf6977151892220e3e02963f3d193c9d9fac2213",
-    "quote": "Beki Beki Grinter Professor Rebecca “Beki” Grinter is a Professor of Interact"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
    "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "upstream_audit_reason": "the PI's own official profile links this site (fetched live 2026-11-15)",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "beki beki grinter professor rebecca beki grinter is a professor of interactive computing i"
+   "url": "http://www.grinter.org",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://ic.gatech.edu/people/beki-grinter",
+   "sha256": "cc0eaef3252934191b1ccda35770cab9e1bde7f93f1c9bdfb7694156fac60d9e",
+   "evidence": {
+    "url": "https://www.grinter.org/Welcome.html",
+    "sha256": "cc0eaef3252934191b1ccda35770cab9e1bde7f93f1c9bdfb7694156fac60d9e",
+    "quote": "Welcome to Grinter’s on the Web Welcome to Grinter’s on the Web Welcome to the G"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.grinter.org",
+     "on": "https://ic.gatech.edu/people/beki-grinter",
+     "at": "2026-11-15T03:24:27+00:00",
+     "result": "listed",
+     "anchor": "http://www.grinter.org",
+     "linked_url": "http://www.grinter.org",
+     "source_sha256": "e1bcf1157bb6b03ad8eec9552c375af05463809b95608d334de45f2c40b7c8ee",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ]
   },
   {
    "pi": "Concettina Guerra",
@@ -1695,8 +1734,8 @@
   {
    "pi": "Mark Guzdial",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "site_at_other_institution",
+   "reason": "The PI's official profile (https://ic.gatech.edu/people/mark-guzdial) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows only his site guzdial.engin.umich.edu at the University of Michigan); no other source was read in this pass. An earlier audit had selected http://www.cc.gatech.edu/~guzdial/ (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-04T00:25:35+00:00",
    "checks": [
     {
@@ -1767,6 +1806,13 @@
      "on": "http://www.cc.gatech.edu/~guzdial/",
      "capture_url": "https://web.archive.org/web/20190111000903id_/http://home.cc.gatech.edu:80/csl/Papers",
      "sha256": "3c3e7134ac7a6f3a98167047bcdd37bd8fa3afa5957bf0632f22a7b5992848f1"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ic.gatech.edu/people/mark-guzdial",
+     "at": "2026-11-15T03:29:08+00:00",
+     "result": "ok",
+     "sha256": "4c63fe3e5a4491f3b6f7e22d00821569a36b54bb8fcb68f35c610303302ab359"
     }
    ],
    "places_checked": [
@@ -1774,32 +1820,18 @@
     "dblp_person_url:listed",
     "department_listing:ok_wayback",
     "orcid_researcher_urls:no_urls",
-    "pubs_link:ok_wayback"
+    "pubs_link:ok_wayback",
+    "school_profile:ok",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-04T00:25:35+00:00",
+   "checked_at": "2026-11-15T03:29:08+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "page_not_captured",
-   "url": "http://www.cc.gatech.edu/~guzdial/",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": "http://guzdial.cc.gatech.edu/papers/",
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "fb5fd786860da8647aac65eb1cb3f90dd08e856d066b7151f1f7c198151b60ea",
-   "evidence": {
-    "url": "http://www.cc.gatech.edu/~guzdial/",
-    "sha256": "fb5fd786860da8647aac65eb1cb3f90dd08e856d066b7151f1f7c198151b60ea",
-    "quote": "Mark Guzdial Mark Guzdial Director of Lead PI on Project \"Georgia Comput",
-    "capture_url": "https://web.archive.org/web/20161214150800id_/http://www.cc.gatech.edu/~guzdial/"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "mark guzdial mark guzdial director of lead pi on project georgia computes an nsf broa"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "James Hays",
@@ -6402,8 +6434,8 @@
   {
    "pi": "Mustaque Ahamad",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://www.scs.gatech.edu/people/mustaque-ahamad) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. An earlier audit had selected http://www.cc.gatech.edu/~mustaq/ (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T21:08:06+00:00",
    "checks": [
     {
@@ -6553,6 +6585,13 @@
      "at": "2026-11-05T21:08:06+00:00",
      "result": "ok_wayback",
      "sha256": "8cc6fd66ad34f36e1fc9573da8e21996a2a46b50567ceca103c01940cd4046c2"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://www.scs.gatech.edu/people/mustaque-ahamad",
+     "at": "2026-11-15T03:24:28+00:00",
+     "result": "ok",
+     "sha256": "f73cdc8d0d9ccbacc146e469f035eb8feb8b46e34c0e351255c644aead69d5ad"
     }
    ],
    "places_checked": [
@@ -6567,32 +6606,18 @@
     "pubs_link:ok",
     "school_profile:ok",
     "school_profile_link:listed",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:1 captures"
    ],
-   "checked_at": "2026-11-05T21:08:06+00:00",
+   "checked_at": "2026-11-15T03:24:28+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "url": "http://www.cc.gatech.edu/~mustaq/",
-   "kind": "pi_homepage",
-   "people_page": "https://faculty.cc.gatech.edu/~mustaq/#currgrad",
-   "alumni_page": "https://faculty.cc.gatech.edu/~mustaq/#former",
-   "pubs_page": "https://faculty.cc.gatech.edu/~mustaq/#publications",
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "8cc6fd66ad34f36e1fc9573da8e21996a2a46b50567ceca103c01940cd4046c2",
-   "evidence": {
-    "url": "http://www.cc.gatech.edu/~mustaq/",
-    "sha256": "8cc6fd66ad34f36e1fc9573da8e21996a2a46b50567ceca103c01940cd4046c2",
-    "quote": "Mustaque Ahamad's Home Page Mustaque Ahamad Professor College of Computing"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "mustaque ahamad s home page mustaque ahamad professor college of computing georgia instit"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Mostafa Ammar",
@@ -7439,9 +7464,9 @@
   },
   {
    "pi": "Shabbir Ahmed",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://www.isye.gatech.edu/users/shabbir-ahmed) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. An earlier audit had selected https://www2.isye.gatech.edu/~sahmed/ (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T21:08:34+00:00",
    "checks": [
     {
@@ -7547,6 +7572,13 @@
      "at": "2026-11-05T21:08:34+00:00",
      "result": "ok_wayback",
      "sha256": "7ba9e3663f8a182ff0aaaf5c3c21fdf163c4564a68681aa4620cabedadba2c8d"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://www.isye.gatech.edu/users/shabbir-ahmed",
+     "at": "2026-11-15T03:29:12+00:00",
+     "result": "ok",
+     "sha256": "cedb867f0f1ff9d4cac2b73297fac6b16dbe99a2e19a4cfa10dca93b023f7950"
     }
    ],
    "places_checked": [
@@ -7557,32 +7589,19 @@
     "orcid_researcher_urls:listed",
     "people_link:ok",
     "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:3 captures"
    ],
-   "checked_at": "2026-11-05T21:08:34+00:00",
+   "checked_at": "2026-11-15T03:29:12+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "url": "https://www2.isye.gatech.edu/~sahmed/",
-   "kind": "lab_site",
-   "people_page": "https://www2.isye.gatech.edu/~sahmed/group.html",
-   "alumni_page": null,
-   "pubs_page": "https://www2.isye.gatech.edu/~sahmed/publications.html",
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "7d9eafcf53adf99f6440621177dfa76124a59ab88adc3d7b5d1c2c53fc8bb71b",
-   "evidence": {
-    "url": "https://www2.isye.gatech.edu/~sahmed/",
-    "sha256": "7d9eafcf53adf99f6440621177dfa76124a59ab88adc3d7b5d1c2c53fc8bb71b",
-    "quote": "Shabbir Ahmed Home Publications Presentations Projects Group Teaching New"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "shabbir ahmed home publications presentations projects group teaching news links awards "
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Christos Alexopoulos",
@@ -12097,8 +12116,8 @@
   {
    "pi": "Hyesoon Kim",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://scs.gatech.edu/people/hyesoon-kim) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. An earlier audit had selected https://faculty.cc.gatech.edu/~hyesoon/ (found via orcid_researcher_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T21:08:35+00:00",
    "checks": [
     {
@@ -12153,6 +12172,13 @@
      "result": "does_not_name_pi_kept_strong_source",
      "via": "orcid_researcher_url",
      "sha256": "3e680c120b60c34a8e8aa124f83f18cf57f46911f7ac33651865822213aa86b5"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://scs.gatech.edu/people/hyesoon-kim",
+     "at": "2026-11-15T03:24:35+00:00",
+     "result": "ok",
+     "sha256": "72bb60d907456f80a56c3cf23c4ba040af86fdb9e03a4582131a6285bf6e396d"
     }
    ],
    "places_checked": [
@@ -12160,31 +12186,17 @@
     "dblp_person_url:no_homepage_url",
     "department_listing:ok",
     "orcid_researcher_urls:listed",
-    "school_profile:ok"
+    "school_profile:ok",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-05T21:08:35+00:00",
+   "checked_at": "2026-11-15T03:24:35+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "https://faculty.cc.gatech.edu/~hyesoon/",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "orcid_researcher_url",
-   "listed_on": null,
-   "sha256": "3e680c120b60c34a8e8aa124f83f18cf57f46911f7ac33651865822213aa86b5",
-   "evidence": {
-    "url": "https://faculty.cc.gatech.edu/~hyesoon/",
-    "sha256": "3e680c120b60c34a8e8aa124f83f18cf57f46911f7ac33651865822213aa86b5",
-    "quote": null
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": false,
-   "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Taesoo Kim",
@@ -14903,9 +14915,9 @@
   },
   {
    "pi": "Matthieu Ratoslav Bloch",
-   "status": "none_found",
+   "status": "found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason": "no lab site; the PI's own homepage is the lab page",
    "audited_at": "2026-11-05T20:53:58+00:00",
    "checks": [
     {
@@ -14969,6 +14981,38 @@
      "result": "ok",
      "on": "https://bloch.ece.gatech.edu/",
      "sha256": "efa040f5ea41b82a759f707ecdaf2ccf15d794343f82c9a27d05ec5a26e42b61"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.gatech.edu/directory/matthieu-ratoslav-bloch",
+     "at": "2026-11-15T03:24:42+00:00",
+     "result": "ok",
+     "sha256": "02f51b7243e6154716cc5fe562077e6d39939dc27d7bbf23a963be4f28ce6010"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://users.ece.gatech.edu/~mbloch",
+     "on": "https://ece.gatech.edu/directory/matthieu-ratoslav-bloch",
+     "at": "2026-11-15T03:24:42+00:00",
+     "result": "listed",
+     "anchor": "http://users.ece.gatech.edu/~mbloch",
+     "linked_url": "http://users.ece.gatech.edu/~mbloch",
+     "source_sha256": "02f51b7243e6154716cc5fe562077e6d39939dc27d7bbf23a963be4f28ce6010",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://users.ece.gatech.edu/~mbloch",
+     "at": "2026-11-15T03:43:42+00:00",
+     "via": "school_profile_link",
+     "sha256": "99d198520a1e24a0db884294f2f5b215b5d9d350ff40755997689c1a6aa3f5c9",
+     "result": "ok",
+     "final_url": "https://bloch.ece.gatech.edu",
+     "redirect_chain": [
+      "https://users.ece.gatech.edu/~mbloch 301 http://users.ece.gatech.edu/mbloch",
+      "https://users.ece.gatech.edu/mbloch 302 http://bloch.ece.gatech.edu"
+     ]
     }
    ],
    "places_checked": [
@@ -14976,31 +15020,41 @@
     "dblp_person_url:person_not_in_dump_extract",
     "department_listing:ok",
     "orcid_researcher_urls:listed",
-    "pubs_link:ok"
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-05T20:53:58+00:00",
+   "checked_at": "2026-11-15T03:24:42+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "audited",
-   "url": "https://bloch.ece.gatech.edu/",
+   "coverage": "website",
+   "upstream_audit_reason": "the PI's own official profile links this site (fetched live 2026-11-15)",
+   "evidence_gaps": [],
+   "url": "http://users.ece.gatech.edu/~mbloch",
    "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": "https://bloch.ece.gatech.edu/publications/",
-   "found_via": "orcid_researcher_url",
-   "listed_on": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.gatech.edu/directory/matthieu-ratoslav-bloch",
    "sha256": "99d198520a1e24a0db884294f2f5b215b5d9d350ff40755997689c1a6aa3f5c9",
    "evidence": {
-    "url": "https://bloch.ece.gatech.edu/",
+    "url": "https://bloch.ece.gatech.edu",
     "sha256": "99d198520a1e24a0db884294f2f5b215b5d9d350ff40755997689c1a6aa3f5c9",
-    "quote": "Matthieu R. Bloch Toggle navigation about (current) blog projects publication"
+    "quote": "Matthieu R. Bloch --> M \"> window.MathJax = { tex: { inlineMath: [['$', '$'], ['"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "matthieu r bloch m toggle navigation about current blog projects publications research teac"
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://users.ece.gatech.edu/~mbloch",
+     "on": "https://ece.gatech.edu/directory/matthieu-ratoslav-bloch",
+     "at": "2026-11-15T03:24:42+00:00",
+     "result": "listed",
+     "anchor": "http://users.ece.gatech.edu/~mbloch",
+     "linked_url": "http://users.ece.gatech.edu/~mbloch",
+     "source_sha256": "02f51b7243e6154716cc5fe562077e6d39939dc27d7bbf23a963be4f28ce6010",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ]
   },
   {
    "pi": "Douglas M Blough",
@@ -15175,8 +15229,8 @@
   {
    "pi": "Abhijit Chatterjee",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://ece.gatech.edu/directory/abhijit-chatterjee) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. An earlier audit had selected http://www.ece.gatech.edu/about/personnel/bio.php?id=21 (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T21:16:06+00:00",
    "checks": [
     {
@@ -15223,43 +15277,36 @@
      "capture_url": "https://web.archive.org/web/20100701101029id_/http://www.ece.gatech.edu/about/personnel/bio.php?id=21",
      "sha256": "cc51ed5227a1ba26e7bc03b0be26ab9edbc7e0f74eaafa6c3560f66715a72006",
      "final_url": "https://web.archive.org/web/20100701101029id_/http://www.ece.gatech.edu/about/personnel/bio.php?id=21"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.gatech.edu/directory/abhijit-chatterjee",
+     "at": "2026-11-15T03:24:51+00:00",
+     "result": "ok",
+     "sha256": "353da74f057ec0a04009bf5660974c25aab65f01ae544246df676aabbe0fecd6"
     }
    ],
    "places_checked": [
     "candidate_site:ok_wayback",
     "dblp_person_url:listed",
-    "department_listing:ok"
+    "department_listing:ok",
+    "school_profile:ok",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-05T21:16:06+00:00",
+   "checked_at": "2026-11-15T03:24:51+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://www.ece.gatech.edu/about/personnel/bio.php?id=21",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "cc51ed5227a1ba26e7bc03b0be26ab9edbc7e0f74eaafa6c3560f66715a72006",
-   "evidence": {
-    "url": "http://www.ece.gatech.edu/about/personnel/bio.php?id=21",
-    "sha256": "cc51ed5227a1ba26e7bc03b0be26ab9edbc7e0f74eaafa6c3560f66715a72006",
-    "quote": "Faculty Profile - Abhijit Chatterjee Jump to content , Georgia Institute of Technology , College",
-    "capture_url": "https://web.archive.org/web/20100701101029id_/http://www.ece.gatech.edu/about/personnel/bio.php?id=21"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "faculty profile abhijit chatterjee jump to content georgia institute of technology college of engineerin"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Edward J Coyle",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://ece.gatech.edu/directory/edward-j-coyle) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows only the contact page vip.gatech.edu/contact of the Vertically Integrated Projects program (not a lab or personal site)); no other source was read in this pass. An earlier audit had selected http://coyle.gatech.edu/index (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T20:54:09+00:00",
    "checks": [
     {
@@ -15306,32 +15353,30 @@
      "capture_url": "https://web.archive.org/web/20180316233611id_/http://coyle.gatech.edu:80/index",
      "sha256": "318265b897983c59bdc669168159ae14d988cb853318dc3196d019e4fadc9494",
      "final_url": "https://web.archive.org/web/20180316233611id_/http://coyle.gatech.edu:80/index"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.gatech.edu/directory/edward-j-coyle",
+     "at": "2026-11-15T03:24:55+00:00",
+     "result": "ok",
+     "sha256": "293b7c8c7060ba3578d8bb472112fbb4085d301af16b1c8394eaccc1fc9bec6c"
     }
    ],
    "places_checked": [
     "candidate_site:ok_wayback",
     "dblp_person_url:listed",
-    "department_listing:ok"
+    "department_listing:ok",
+    "school_profile:ok",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-05T20:54:09+00:00",
+   "checked_at": "2026-11-15T03:24:55+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://coyle.gatech.edu/index",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "318265b897983c59bdc669168159ae14d988cb853318dc3196d019e4fadc9494",
-   "evidence": {},
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "homepage dr edward j coyle ece georgia tech dr edward j coyle ece georgia tech home biography honors "
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Mark Andrew Davenport",
@@ -15750,8 +15795,8 @@
   {
    "pi": "Bonnie H Ferri",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://ece.gatech.edu/directory/bonnie-h-ferri) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. An earlier audit had selected https://www.ece.gatech.edu/faculty-staff-directory/bonnie-h-ferri (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T21:09:34+00:00",
    "checks": [
     {
@@ -15825,38 +15870,32 @@
      "at": "2026-11-05T21:09:34+00:00",
      "result": "ok_wayback",
      "sha256": "d25c05427b555ab6cd4cc476380c05abe6ec7d86b09e6136c4192f18250926eb"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.gatech.edu/directory/bonnie-h-ferri",
+     "at": "2026-11-15T03:25:07+00:00",
+     "result": "ok",
+     "sha256": "17de9c07b48e8fc0c9df4f821b9327613e9c700899b108f0b99e8d1b6accf4e0"
     }
    ],
    "places_checked": [
     "candidate_site:ok",
     "dblp_person_url:listed",
     "department_listing:ok",
+    "school_profile:ok",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:29 captures"
    ],
-   "checked_at": "2026-11-05T21:09:34+00:00",
+   "checked_at": "2026-11-15T03:25:07+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "https://www.ece.gatech.edu/faculty-staff-directory/bonnie-h-ferri",
-   "kind": "pi_homepage",
-   "people_page": "https://www.ece.gatech.edu/faculty-staff-directory/bonnie-h-ferri",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "53bcb44be1e020d44386bea6a58ba58c55cccc9a626bcca0246188ff2835a03f",
-   "evidence": {
-    "url": "https://www.ece.gatech.edu/faculty-staff-directory/bonnie-h-ferri",
-    "sha256": "53bcb44be1e020d44386bea6a58ba58c55cccc9a626bcca0246188ff2835a03f",
-    "quote": "Bonnie H Ferri Skip to main navigation Skip to main content MENU School of"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "bonnie h ferri skip to main navigation skip to main content menu school of electrical and"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Maysam Ghovanloo",
@@ -15995,9 +16034,9 @@
   },
   {
    "pi": "Jennifer Olson Hasler",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
    "audited_at": "2026-11-05T21:01:50+00:00",
    "checks": [
     {
@@ -16083,6 +16122,34 @@
      "at": "2026-11-05T21:01:50+00:00",
      "result": "ok_wayback",
      "sha256": "4f23e8b0f5d59021b0bc7b756f61cf32b0156ab3c4ae8376bc2a8fd37a35f528"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.gatech.edu/directory/jennifer-olson-hasler",
+     "at": "2026-11-15T03:25:13+00:00",
+     "result": "ok",
+     "sha256": "d87a3590d00050c6501fa316247c0563b4467523c48c94fa907123ebfccac077"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://hasler.ece.gatech.edu",
+     "on": "https://ece.gatech.edu/directory/jennifer-olson-hasler",
+     "at": "2026-11-15T03:25:13+00:00",
+     "result": "listed",
+     "anchor": "http://hasler.ece.gatech.edu",
+     "linked_url": "http://hasler.ece.gatech.edu",
+     "source_sha256": "d87a3590d00050c6501fa316247c0563b4467523c48c94fa907123ebfccac077",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://hasler.ece.gatech.edu",
+     "at": "2026-11-15T03:31:50+00:00",
+     "via": "school_profile_link",
+     "sha256": "cefefac9730c1d78cf6d879fdf4d7526536b4ba4041ad79baa934ae1404d4868",
+     "result": "ok",
+     "final_url": "https://hasler.ece.gatech.edu"
     }
    ],
    "places_checked": [
@@ -16091,32 +16158,42 @@
     "dblp_person_url:listed",
     "department_listing:ok",
     "orcid_researcher_urls:no_urls",
+    "school_profile:ok",
+    "school_profile_link:listed",
     "wayback_capture:ok_wayback",
     "wayback_cdx:7 captures"
    ],
-   "checked_at": "2026-11-05T21:01:50+00:00",
+   "checked_at": "2026-11-15T03:25:13+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://users.ece.gatech.edu/~phasler/",
-   "kind": "pi_homepage",
-   "people_page": "http://users.ece.gatech.edu/~phasler/",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
+   "coverage": "website",
+   "upstream_audit_reason": "the PI's own official profile links this site (fetched live 2026-11-15)",
+   "evidence_gaps": [],
+   "url": "http://hasler.ece.gatech.edu",
+   "kind": "lab_site",
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.gatech.edu/directory/jennifer-olson-hasler",
    "sha256": "cefefac9730c1d78cf6d879fdf4d7526536b4ba4041ad79baa934ae1404d4868",
    "evidence": {
-    "url": "http://users.ece.gatech.edu/~phasler/",
+    "url": "https://hasler.ece.gatech.edu",
     "sha256": "cefefac9730c1d78cf6d879fdf4d7526536b4ba4041ad79baa934ae1404d4868",
-    "quote": "> layout </a> on those tiles? </p> <P> 2021 <a href=\"http://hasler.ece.gatech.edu/AnalogNeuroToolsTechniques/\">Virtual</a> Tel"
+    "quote": "Integrated Computational Electronics (ICE) Laboratory Integrated Computational E"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": false,
-   "unverified_reason": "lab/home page that does not name the person in its text (title ''); stays hidden"
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://hasler.ece.gatech.edu",
+     "on": "https://ece.gatech.edu/directory/jennifer-olson-hasler",
+     "at": "2026-11-15T03:25:13+00:00",
+     "result": "listed",
+     "anchor": "http://hasler.ece.gatech.edu",
+     "linked_url": "http://hasler.ece.gatech.edu",
+     "source_sha256": "d87a3590d00050c6501fa316247c0563b4467523c48c94fa907123ebfccac077",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ]
   },
   {
    "pi": "Ayanna MacCalla Howard",
@@ -16656,9 +16733,9 @@
   },
   {
    "pi": "Sung Kyu Lim",
-   "status": "none_found",
+   "status": "found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason": "no lab site; the PI's own homepage is the lab page",
    "audited_at": "2026-11-05T20:54:55+00:00",
    "checks": [
     {
@@ -16705,37 +16782,79 @@
      "via": "dblp_person_url",
      "sha256": "e0ce1e111274da9aa6028969d18a06bc0d6b51b5eaa2512259ae6fec503e3de8",
      "final_url": "https://limsk.ece.gatech.edu/"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.gatech.edu/directory/sung-kyu-lim",
+     "at": "2026-11-15T03:25:26+00:00",
+     "result": "ok",
+     "sha256": "915a748e5034ac3b0f0e17d308deb37bd89c0c8afd348355257887b0e645c45f"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://users.ece.gatech.edu/~limsk",
+     "on": "https://ece.gatech.edu/directory/sung-kyu-lim",
+     "at": "2026-11-15T03:25:26+00:00",
+     "result": "listed",
+     "anchor": "http://users.ece.gatech.edu/~limsk",
+     "linked_url": "http://users.ece.gatech.edu/~limsk",
+     "source_sha256": "915a748e5034ac3b0f0e17d308deb37bd89c0c8afd348355257887b0e645c45f",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://users.ece.gatech.edu/~limsk",
+     "at": "2026-11-15T03:43:43+00:00",
+     "via": "school_profile_link",
+     "sha256": "e0ce1e111274da9aa6028969d18a06bc0d6b51b5eaa2512259ae6fec503e3de8",
+     "result": "ok",
+     "final_url": "https://limsk.ece.gatech.edu",
+     "redirect_chain": [
+      "https://users.ece.gatech.edu/~limsk 301 http://users.ece.gatech.edu/limsk",
+      "https://users.ece.gatech.edu/limsk 302 http://limsk.ece.gatech.edu"
+     ]
     }
    ],
    "places_checked": [
     "candidate_site:ok",
     "dblp_person_url:listed",
     "department_listing:ok",
-    "orcid_researcher_urls:no_urls"
+    "orcid_researcher_urls:no_urls",
+    "school_profile:ok",
+    "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-05T20:54:55+00:00",
+   "checked_at": "2026-11-15T03:25:26+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://users.ece.gatech.edu/limsk/",
+   "coverage": "website",
+   "upstream_audit_reason": "the PI's own official profile links this site (fetched live 2026-11-15)",
+   "evidence_gaps": [],
+   "url": "http://users.ece.gatech.edu/~limsk",
    "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.gatech.edu/directory/sung-kyu-lim",
    "sha256": "e0ce1e111274da9aa6028969d18a06bc0d6b51b5eaa2512259ae6fec503e3de8",
    "evidence": {
-    "url": "http://users.ece.gatech.edu/limsk/",
+    "url": "https://limsk.ece.gatech.edu",
     "sha256": "e0ce1e111274da9aa6028969d18a06bc0d6b51b5eaa2512259ae6fec503e3de8",
-    "quote": "Sung Kyu Lim's Homepage I moved to Los Angeles in August 2025 to join US"
+    "quote": "Sung Kyu Lim's Homepage I moved to Los Angeles in August 2025 to join USC. Pleas"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "sung kyu lim s homepage i moved to los angeles in august 2025 to join usc please contact "
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://users.ece.gatech.edu/~limsk",
+     "on": "https://ece.gatech.edu/directory/sung-kyu-lim",
+     "at": "2026-11-15T03:25:26+00:00",
+     "result": "listed",
+     "anchor": "http://users.ece.gatech.edu/~limsk",
+     "linked_url": "http://users.ece.gatech.edu/~limsk",
+     "source_sha256": "915a748e5034ac3b0f0e17d308deb37bd89c0c8afd348355257887b0e645c45f",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ]
   },
   {
    "pi": "Xiaoli Ma",
@@ -16921,8 +17040,8 @@
   {
    "pi": "Linda S Milor",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://ece.gatech.edu/directory/linda-s-milor) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. An earlier audit had selected http://www.ece.gatech.edu/about/personnel/bio.php?id=72 (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T21:16:57+00:00",
    "checks": [
     {
@@ -16970,44 +17089,37 @@
      "capture_url": "https://web.archive.org/web/20150910021443id_/http://www.ece.gatech.edu/about/personnel/bio.php?id=72",
      "sha256": "2b3ec71ae31481021994299fa189da33e8e9534777597c6e1f40c435b06bbc43",
      "final_url": "https://web.archive.org/web/20150910021443id_/http://www.ece.gatech.edu/about/personnel/bio.php?id=72"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.gatech.edu/directory/linda-s-milor",
+     "at": "2026-11-15T03:25:32+00:00",
+     "result": "ok",
+     "sha256": "048a2df8a03100abac96470834b253ce2888e68e445c0fde80dee037bbef64a7"
     }
    ],
    "places_checked": [
     "candidate_site:ok_wayback",
     "dblp_person_url:listed",
     "department_listing:ok",
-    "orcid_researcher_urls:no_urls"
+    "orcid_researcher_urls:no_urls",
+    "school_profile:ok",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-05T21:16:57+00:00",
+   "checked_at": "2026-11-15T03:25:32+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://www.ece.gatech.edu/about/personnel/bio.php?id=72",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "2b3ec71ae31481021994299fa189da33e8e9534777597c6e1f40c435b06bbc43",
-   "evidence": {
-    "url": "http://www.ece.gatech.edu/about/personnel/bio.php?id=72",
-    "sha256": "2b3ec71ae31481021994299fa189da33e8e9534777597c6e1f40c435b06bbc43",
-    "quote": "Faculty Profile - Linda S Milor Skip to content Jump to content , Georgia Institute of Tech",
-    "capture_url": "https://web.archive.org/web/20150910021443id_/http://www.ece.gatech.edu/about/personnel/bio.php?id=72"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "faculty profile linda s milor skip to content jump to content georgia institute of technology college of"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Vincent J Mooney",
-   "status": "none_found",
+   "status": "found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason": "no lab site; the PI's own homepage is the lab page",
    "audited_at": "2026-11-05T20:55:08+00:00",
    "checks": [
     {
@@ -17075,6 +17187,38 @@
      "result": "ok",
      "on": "http://mooney.gatech.edu",
      "sha256": "786168e33876bd79368518f3e7d12b03f7a867bdcc1258a96b5aee3ce14d0b8f"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.gatech.edu/directory/vincent-j-mooney",
+     "at": "2026-11-15T03:25:35+00:00",
+     "result": "ok",
+     "sha256": "ca0d6d2a0c9b967bf21bac09803de2a815dca918cdc8a7dace2d6cc409fe50bb"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://users.ece.gatech.edu/~mooney",
+     "on": "https://ece.gatech.edu/directory/vincent-j-mooney",
+     "at": "2026-11-15T03:25:35+00:00",
+     "result": "listed",
+     "anchor": "http://users.ece.gatech.edu/~mooney",
+     "linked_url": "http://users.ece.gatech.edu/~mooney",
+     "source_sha256": "ca0d6d2a0c9b967bf21bac09803de2a815dca918cdc8a7dace2d6cc409fe50bb",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://users.ece.gatech.edu/~mooney",
+     "at": "2026-11-15T03:43:43+00:00",
+     "via": "school_profile_link",
+     "sha256": "058e0b65a3b4d87e8fcdc7da5ead192f251f9a2a259d950c3d42295f7b7faa0c",
+     "result": "ok",
+     "final_url": "https://mooney.gatech.edu",
+     "redirect_chain": [
+      "https://users.ece.gatech.edu/~mooney 301 http://users.ece.gatech.edu/mooney",
+      "https://users.ece.gatech.edu/mooney 302 http://mooney.gatech.edu"
+     ]
     }
    ],
    "places_checked": [
@@ -17082,31 +17226,41 @@
     "dblp_person_url:listed",
     "department_listing:ok",
     "orcid_researcher_urls:listed",
-    "pubs_link:ok"
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-05T20:55:08+00:00",
+   "checked_at": "2026-11-15T03:25:35+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "audited",
-   "url": "http://mooney.gatech.edu",
+   "coverage": "website",
+   "upstream_audit_reason": "the PI's own official profile links this site (fetched live 2026-11-15)",
+   "evidence_gaps": [],
+   "url": "http://users.ece.gatech.edu/~mooney",
    "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": "https://mooney.gatech.edu/codesign/papers.html",
-   "found_via": "orcid_researcher_url",
-   "listed_on": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.gatech.edu/directory/vincent-j-mooney",
    "sha256": "058e0b65a3b4d87e8fcdc7da5ead192f251f9a2a259d950c3d42295f7b7faa0c",
    "evidence": {
-    "url": "http://mooney.gatech.edu",
+    "url": "https://mooney.gatech.edu",
     "sha256": "058e0b65a3b4d87e8fcdc7da5ead192f251f9a2a259d950c3d42295f7b7faa0c",
-    "quote": "Vincent John Mooney III Vincent John Mooney III Associate Professor School of E"
+    "quote": "Vincent John Mooney III Vincent John Mooney III Associate Professor School of El"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "vincent john mooney iii vincent john mooney iii associate professor school of electrical and "
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://users.ece.gatech.edu/~mooney",
+     "on": "https://ece.gatech.edu/directory/vincent-j-mooney",
+     "at": "2026-11-15T03:25:35+00:00",
+     "result": "listed",
+     "anchor": "http://users.ece.gatech.edu/~mooney",
+     "linked_url": "http://users.ece.gatech.edu/~mooney",
+     "source_sha256": "ca0d6d2a0c9b967bf21bac09803de2a815dca918cdc8a7dace2d6cc409fe50bb",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ]
   },
   {
    "pi": "Elliot Moore II.",
@@ -18261,9 +18415,9 @@
   },
   {
    "pi": "Patricio Antonio Vela",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "stored page does not name Patricio Antonio Vela (no surname on the page, none in the address) and the URL is not linked from an official page; a new search is needed",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://ece.gatech.edu/directory/patricio-antonio-vela) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-09T00:49:09+00:00",
    "checks": [
     {
@@ -18357,6 +18511,13 @@
      "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fivalab.gatech.edu%2Fpeople%2Findex.html&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest&from=2025&to=2026",
      "at": "2026-11-09T00:49:09+00:00",
      "result": "wayback_deferred"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.gatech.edu/directory/patricio-antonio-vela",
+     "at": "2026-11-15T03:25:54+00:00",
+     "result": "ok",
+     "sha256": "2777a39a00c7fc17e83c952bd388a39b6b33e1ec2994a86ffa9910d07c283f6d"
     }
    ],
    "places_checked": [
@@ -18368,25 +18529,24 @@
     "people_link:ok",
     "pubs_link:ok",
     "school_profile:ok",
+    "school_profile_link:none",
     "wayback_cdx:0 captures",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-09T00:49:09+00:00",
+   "checked_at": "2026-11-15T03:25:54+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "coverage": "pending",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": [
-    "website_rejected_page_does_not_name_pi"
-   ],
-   "rejected_url": "https://ivalab.gatech.edu",
-   "rejected_reason": "stored page does not name Patricio Antonio Vela (no surname on the page, none in the address) and the URL is not linked from an official page"
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
+   "evidence_gaps": [],
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Erik I Verriest",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://ece.gatech.edu/directory/erik-i-verriest) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. An earlier audit had selected http://users.ece.gatech.edu/~verriest/ (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T20:55:36+00:00",
    "checks": [
     {
@@ -18446,33 +18606,31 @@
      "capture_url": "https://web.archive.org/web/20010104015600id_/http://users.ece.gatech.edu:80/~verriest/",
      "sha256": "ae10f676ea0ebfdf23bf60462c1f99a1325ef5967ea0bce09a7388c3b8fd157c",
      "final_url": "https://web.archive.org/web/20010104015600id_/http://users.ece.gatech.edu:80/~verriest/"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.gatech.edu/directory/erik-i-verriest",
+     "at": "2026-11-15T03:26:00+00:00",
+     "result": "ok",
+     "sha256": "ffbb8041a0a6a25a1fcb4eb89d7e388133dd9940da6852d28ffa82fe45d21466"
     }
    ],
    "places_checked": [
     "candidate_site:ok_wayback",
     "dblp_person_url:listed",
     "department_listing:ok",
-    "orcid_researcher_urls:no_urls"
+    "orcid_researcher_urls:no_urls",
+    "school_profile:ok",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-05T20:55:36+00:00",
+   "checked_at": "2026-11-15T03:26:00+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://users.ece.gatech.edu/~verriest/",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "ae10f676ea0ebfdf23bf60462c1f99a1325ef5967ea0bce09a7388c3b8fd157c",
-   "evidence": {},
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "erik verriest professor erik verriest professor the school of electrical and computer"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Hua Wang",
@@ -25232,8 +25390,8 @@
   {
    "pi": "Frank Li",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://scp.cc.gatech.edu/people/frank-li) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows only a job advertisement and a newsletter sign-up of the School of Cybersecurity and Privacy); no other source was read in this pass. An earlier audit had selected https://frankli.ece.gatech.edu/ (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T20:56:39+00:00",
    "checks": [
     {
@@ -25286,6 +25444,13 @@
      "result": "ok",
      "via": "dblp_person_url",
      "sha256": "dee7482e140c168c2ad524894ed8822edefb2470f4b570e3dd6df343077e19ff"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://scp.cc.gatech.edu/people/frank-li",
+     "at": "2026-11-15T03:26:13+00:00",
+     "result": "ok",
+     "sha256": "c9b32c95454a8c9fb3b7ff75c611165812dee150c3404ce2e43268a4f26e0b00"
     }
    ],
    "places_checked": [
@@ -25293,31 +25458,17 @@
     "dblp_person_url:listed",
     "department_listing:ok",
     "orcid_researcher_urls:no_urls",
-    "school_profile:ok"
+    "school_profile:ok",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-05T20:56:39+00:00",
+   "checked_at": "2026-11-15T03:26:13+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "https://frankli.ece.gatech.edu/",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "dee7482e140c168c2ad524894ed8822edefb2470f4b570e3dd6df343077e19ff",
-   "evidence": {
-    "url": "https://frankli.ece.gatech.edu/",
-    "sha256": "dee7482e140c168c2ad524894ed8822edefb2470f4b570e3dd6df343077e19ff",
-    "quote": "Please follow this link ."
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": false,
-   "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Clio Andris",
@@ -26938,8 +27089,8 @@
   {
    "pi": "Cedric Pradalier",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "stored page does not name Cedric Pradalier (no surname on the page, none in the address) and the URL is not linked from an official page; a new search is needed",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://ece.gatech.edu/directory/cedric-pradalier) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-09T00:49:14+00:00",
    "checks": [
     {
@@ -27100,6 +27251,13 @@
      "at": "2026-11-09T00:49:14+00:00",
      "result": "ok_wayback",
      "sha256": "98553fda51d11b95a78dd3fe8e0cac2095079a1b6b653a566119814f7565a86b"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.gatech.edu/directory/cedric-pradalier",
+     "at": "2026-11-15T03:26:19+00:00",
+     "result": "ok",
+     "sha256": "7ce1c0bb77b3bd741f17d71d29f77089dc9637538e26dc95e20531b6e797f609"
     }
    ],
    "places_checked": [
@@ -27111,20 +27269,19 @@
     "department_listing:ok",
     "orcid_researcher_urls:listed",
     "school_profile:ok",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:24 captures",
     "wayback_cdx:259 captures"
    ],
-   "checked_at": "2026-11-09T00:49:14+00:00",
+   "checked_at": "2026-11-15T03:26:19+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "coverage": "pending",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [
-    "website_rejected_page_does_not_name_pi"
-   ],
-   "rejected_url": "http://lorraine.gatech.edu",
-   "rejected_reason": "stored page does not name Cedric Pradalier (no surname on the page, none in the address) and the URL is not linked from an official page"
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
+   "evidence_gaps": [],
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Spencer Bryngelson",
@@ -27918,9 +28075,9 @@
   },
   {
    "pi": "Arthur Delarue",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://www.isye.gatech.edu/users/arthur-delarue) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows only a Google Scholar profile (an identity index, not a site)); no other source was read in this pass. An earlier audit had selected https://adelarue.github.io (found via orcid_researcher_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T21:04:06+00:00",
    "checks": [
     {
@@ -27997,6 +28154,13 @@
      "at": "2026-11-05T21:04:06+00:00",
      "result": "ok_wayback",
      "sha256": "213710e15e9045af0259fbe843bc079313a55daa8b3a82b4675ebcb44e2fb8e5"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://www.isye.gatech.edu/users/arthur-delarue",
+     "at": "2026-11-15T03:26:22+00:00",
+     "result": "ok",
+     "sha256": "df913bf24fba0d51dbb7565cb1e3bcd2bfa3e7b7097ed708ab70c41a5dacd2c3"
     }
    ],
    "places_checked": [
@@ -28006,32 +28170,18 @@
     "orcid_researcher_urls:listed",
     "people_link:ok",
     "school_profile:ok",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:1 captures"
    ],
-   "checked_at": "2026-11-05T21:04:06+00:00",
+   "checked_at": "2026-11-15T03:26:22+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "https://adelarue.github.io",
-   "kind": "lab_site",
-   "people_page": "https://adelarue.github.io/people.html",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "orcid_researcher_url",
-   "listed_on": null,
-   "sha256": "768adb7aab8fac726729b7130a92f38cdbdfdc5cac2c48f5e1d64804ed880745",
-   "evidence": {
-    "url": "https://adelarue.github.io",
-    "sha256": "768adb7aab8fac726729b7130a92f38cdbdfdc5cac2c48f5e1d64804ed880745",
-    "quote": "Arthur Delarue Arthur Delarue Home Research People Teaching Press CV Arthu"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "arthur delarue arthur delarue home research people teaching press cv arthur delarue ass"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Juba Ziani",
@@ -30173,8 +30323,8 @@
   {
    "pi": "Fabian Monrose",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://ece.gatech.edu/directory/fabian-monrose) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. An earlier audit had selected https://fabianmonrose.github.io/ (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T21:19:35+00:00",
    "checks": [
     {
@@ -30280,6 +30430,13 @@
      "at": "2026-11-05T21:19:35+00:00",
      "result": "ok_wayback",
      "sha256": "6ffdf0483d5b3f323f0c04877fa8ebbb330256d346d85788077c4e432edff15d"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.gatech.edu/directory/fabian-monrose",
+     "at": "2026-11-15T03:26:26+00:00",
+     "result": "ok",
+     "sha256": "ce9a88b919955b67599cead8542838d2d25eb53b9f36ccf163a1c1b4d2179bcd"
     }
    ],
    "places_checked": [
@@ -30289,32 +30446,19 @@
     "department_listing:ok",
     "orcid_researcher_urls:listed",
     "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:11 captures"
    ],
-   "checked_at": "2026-11-05T21:19:35+00:00",
+   "checked_at": "2026-11-15T03:26:26+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "url": "https://fabianmonrose.github.io/",
-   "kind": "pi_homepage",
-   "people_page": "https://fabianmonrose.github.io/",
-   "alumni_page": null,
-   "pubs_page": "https://fabianmonrose.github.io/pubs.html#publications",
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "42595cefe0c8110a99bc10edc051349a575f68a5dd384d72748ed26af1291818",
-   "evidence": {
-    "url": "https://fabianmonrose.github.io/",
-    "sha256": "42595cefe0c8110a99bc10edc051349a575f68a5dd384d72748ed26af1291818",
-    "quote": "fabianmonrose.github.io Fabian Monrose I am the Julian T. Hightower Chair"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "fabianmonrose github io fabian monrose i am the julian t hightower chair professor in "
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Visvesh S Sathe",
@@ -31448,9 +31592,9 @@
   },
   {
    "pi": "Pan Li",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://ece.gatech.edu/directory/pan-li) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. An earlier audit had selected https://sites.google.com/view/panli-purdue/home (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T21:04:36+00:00",
    "checks": [
     {
@@ -31547,6 +31691,13 @@
      "at": "2026-11-05T21:04:36+00:00",
      "result": "ok_wayback",
      "sha256": "83321e7d825b76da5c3694ef0f6ec57e7196c3c6fda06dbc010dfcc879172daf"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.gatech.edu/directory/pan-li",
+     "at": "2026-11-15T03:26:29+00:00",
+     "result": "ok",
+     "sha256": "0b22cb3378c69e1b1f839b50c8d2afc00e6b582358cb1b9ae18ef8454081f426"
     }
    ],
    "places_checked": [
@@ -31556,32 +31707,19 @@
     "orcid_researcher_urls:no_urls",
     "people_link:ok",
     "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:5 captures"
    ],
-   "checked_at": "2026-11-05T21:04:36+00:00",
+   "checked_at": "2026-11-15T03:26:29+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "url": "https://sites.google.com/view/panli-purdue/home",
-   "kind": "lab_site",
-   "people_page": "https://sites.google.com/view/panli-purdue/group",
-   "alumni_page": null,
-   "pubs_page": "https://sites.google.com/view/panli-purdue/publications",
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "d385c4c912f2379644f63980f36a0a34ff17af4740d6bb5871033e0a8092a1d6",
-   "evidence": {
-    "url": "https://sites.google.com/view/panli-purdue/home",
-    "sha256": "d385c4c912f2379644f63980f36a0a34ff17af4740d6bb5871033e0a8092a1d6",
-    "quote": "Pan Li's webpage Search this site Embedded Files Skip to main cont"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "pan li s webpage search this site embedded files skip to main content skip to naviga"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Johannes Milz",
@@ -32459,9 +32597,9 @@
   },
   {
    "pi": "Yalong Yang",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://ic.gatech.edu/people/yalong-yang) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. An earlier audit had selected https://vis.yalongyang.com/ (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T21:20:07+00:00",
    "checks": [
     {
@@ -32577,6 +32715,13 @@
      "at": "2026-11-05T21:20:07+00:00",
      "result": "ok_wayback",
      "sha256": "5125e8b14c622b58027c092444d9c496530ee42bdf17d219bb6de2ab2c839912"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ic.gatech.edu/people/yalong-yang",
+     "at": "2026-11-15T03:26:29+00:00",
+     "result": "ok",
+     "sha256": "ba530d73b15bdba135d8a90583096e3adf2bf026dcc0bc5770420235d2ed4d95"
     }
    ],
    "places_checked": [
@@ -32587,38 +32732,24 @@
     "people_link:ok",
     "pubs_link:ok",
     "school_profile:ok",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:9 captures"
    ],
-   "checked_at": "2026-11-05T21:20:07+00:00",
+   "checked_at": "2026-11-15T03:26:29+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "url": "https://vis.yalongyang.com/",
-   "kind": "lab_site",
-   "people_page": "https://ivi.cc.gatech.edu/people.html",
-   "alumni_page": null,
-   "pubs_page": "https://ivi.cc.gatech.edu/publications.html",
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "623d38ddf3df11d79654cde76cf2705dc76a376e2123f4cdd6676f713ef63a36",
-   "evidence": {
-    "url": "https://vis.yalongyang.com/",
-    "sha256": "623d38ddf3df11d79654cde76cf2705dc76a376e2123f4cdd6676f713ef63a36",
-    "quote": "e a good match, please get in touch. Contact the PI (Yalong Yang) or any current Ph.D. student in the group. Ensure you incl"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "u re a good match please get in touch contact the pi yalong yang or any current ph d student in the group ensure you include your cv and a s"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Bo Zhu",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://ic.gatech.edu/people/bo-zhu) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. An earlier audit had selected https://faculty.cc.gatech.edu/~bozhu/ (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T20:58:36+00:00",
    "checks": [
     {
@@ -32717,6 +32848,13 @@
      "at": "2026-11-05T20:58:36+00:00",
      "result": "ok_wayback",
      "sha256": "8a60a0e15e23e2f9a462b04bddca0a323ad3439517628a5c68f5b2c035286fa8"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ic.gatech.edu/people/bo-zhu",
+     "at": "2026-11-15T03:26:34+00:00",
+     "result": "ok",
+     "sha256": "f883234731e9d65a7b0a9d4c932baa6f872723a8133aee28948bca7561ce5038"
     }
    ],
    "places_checked": [
@@ -32727,32 +32865,18 @@
     "people_link:ok",
     "pubs_link:ok",
     "school_profile:ok",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:3 captures"
    ],
-   "checked_at": "2026-11-05T20:58:36+00:00",
+   "checked_at": "2026-11-15T03:26:34+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "url": "https://faculty.cc.gatech.edu/~bozhu/",
-   "kind": "lab_site",
-   "people_page": "https://faculty.cc.gatech.edu/~bozhu/team.html",
-   "alumni_page": null,
-   "pubs_page": "https://faculty.cc.gatech.edu/~bozhu/index.html#publication",
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "1e91c3da71df3fad5a248b84068f67d4eb4b562ed9d4a7aa743c1e0d0de992a8",
-   "evidence": {
-    "url": "https://faculty.cc.gatech.edu/~bozhu/",
-    "sha256": "1e91c3da71df3fad5a248b84068f67d4eb4b562ed9d4a7aa743c1e0d0de992a8",
-    "quote": "BO ZHU@GT BO ZHU@GT Research Teaching Publications Team Media Soft"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "bo zhu gt bo zhu gt research teaching publications team media software bo zhu assoc"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Divya Mahajan",
@@ -34476,8 +34600,8 @@
   {
    "pi": "Cindy Kaiying Lin",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "fetched page is 'Georgia Tech Online: World of Learning Opportunities | GTPE', not this person's website; a new search is needed",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://ic.gatech.edu/people/cindy-kaiying-lin) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows only archived publisher pages of her publications); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-04T01:23:28+00:00",
    "checks": [
     {
@@ -34549,24 +34673,30 @@
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "f9693fb26951d2757498d10ba0d06b680977784b0a4e477c9983c84f02011e30"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ic.gatech.edu/people/cindy-kaiying-lin",
+     "at": "2026-11-15T03:26:37+00:00",
+     "result": "ok",
+     "sha256": "c0bbf4b116e2427c57dae44fe4330cfeb95c25270dce3f2ef45d0ee24257a158"
     }
    ],
    "places_checked": [
     "candidate_site:ok",
     "department_listing:ok",
     "school_profile:ok",
-    "school_profile_link:listed"
+    "school_profile_link:listed",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-04T01:23:28+00:00",
+   "checked_at": "2026-11-15T03:26:37+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "coverage": "pending",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [
-    "website_rejected_by_review"
-   ],
-   "rejected_url": "https://pe.gatech.edu/georgia-tech-online",
-   "rejected_reason": "fetched page is 'Georgia Tech Online: World of Learning Opportunities | GTPE', not this person's website"
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
+   "evidence_gaps": [],
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Michael Specter",
@@ -37710,9 +37840,9 @@
   },
   {
    "pi": "David W. Rosen",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "stored page does not name David W. Rosen (no surname on the page, none in the address) and the URL is also assigned to other PIs; a new search is needed",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://me.gatech.edu/faculty/rosen) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-09T00:49:17+00:00",
    "checks": [
     {
@@ -37772,6 +37902,13 @@
      "capture_url": "https://web.archive.org/web/20230114180123id_/https://2110.me.gatech.edu/machineshop",
      "sha256": "2b3289a54c97a5eaf46ef6e23156aac626efaa44f97b31f8815697c81a6cc2f5",
      "final_url": "https://web.archive.org/web/20230114180123id_/https://2110.me.gatech.edu/machineshop"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://me.gatech.edu/faculty/rosen",
+     "at": "2026-11-15T03:26:39+00:00",
+     "result": "ok",
+     "sha256": "c7b52e9c9442534bd86b915e9c63d4ac986ab3e5e9053b7ab4754f599c3b6684"
     }
    ],
    "places_checked": [
@@ -37780,18 +37917,17 @@
     "department_listing:ok",
     "orcid_researcher_urls:no_urls",
     "school_profile:ok",
-    "school_profile_link:listed"
+    "school_profile_link:listed",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-09T00:49:17+00:00",
+   "checked_at": "2026-11-15T03:26:39+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "coverage": "pending",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": [
-    "website_rejected_page_does_not_name_pi"
-   ],
-   "rejected_url": "https://2110.me.gatech.edu/machineshop",
-   "rejected_reason": "stored page does not name David W. Rosen (no surname on the page, none in the address) and the URL is also assigned to other PIs"
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
+   "evidence_gaps": [],
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Diana Hicks",
@@ -38406,8 +38542,8 @@
   {
    "pi": "Glaucio H. Paulino",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://ce.gatech.edu/directory/person/glaucio-h-paulino) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. An earlier audit had selected http://paulino.ce.gatech.edu/ (found via dblp_person_url); no official page links it, so it is not recorded as the lab website. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-05T21:11:18+00:00",
    "checks": [
     {
@@ -38453,36 +38589,30 @@
      "via": "dblp_person_url",
      "sha256": "f3b27223aa37ee71ca9238328d3f5ea1c5905c62a55ddc9bb0e08b1a9dad957d",
      "final_url": "https://paulino.ce.gatech.edu/"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ce.gatech.edu/directory/person/glaucio-h-paulino",
+     "at": "2026-11-15T03:29:20+00:00",
+     "result": "ok",
+     "sha256": "1b3ae2c79a1d95bce7ce21442dddcaf264560fdf78ee3b2fb32a287e769eda77"
     }
    ],
    "places_checked": [
     "candidate_site:ok",
     "dblp_person_url:listed",
-    "department_listing:ok"
+    "department_listing:ok",
+    "school_profile:ok",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-05T21:11:18+00:00",
+   "checked_at": "2026-11-15T03:29:20+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://paulino.ce.gatech.edu/",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "f3b27223aa37ee71ca9238328d3f5ea1c5905c62a55ddc9bb0e08b1a9dad957d",
-   "evidence": {
-    "url": "http://paulino.ce.gatech.edu/",
-    "sha256": "f3b27223aa37ee71ca9238328d3f5ea1c5905c62a55ddc9bb0e08b1a9dad957d",
-    "quote": "Dr. Glaucio Paulino"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "dr glaucio paulino"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Grigoriy Blekherman",
@@ -38766,8 +38896,8 @@
   {
    "pi": "Jay David Bolter",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "stored page does not name Jay David Bolter (no surname on the page, none in the address) and the URL is also assigned to other PIs; a new search is needed",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://lmc.gatech.edu/people/person/jay-bolter) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-09T00:49:19+00:00",
    "checks": [
     {
@@ -38878,6 +39008,13 @@
      "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fwww.gvu.gatech.edu%2F~jay.bolter%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-09T00:49:19+00:00",
      "result": "wayback_deferred"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://lmc.gatech.edu/people/person/jay-bolter",
+     "at": "2026-11-15T03:26:40+00:00",
+     "result": "ok",
+     "sha256": "6a68fa53d631ad714f4dad6d2645c5760c98b47ffd0015eb2e25b045de6cb892"
     }
    ],
    "places_checked": [
@@ -38889,18 +39026,17 @@
     "orcid_researcher_urls:listed",
     "school_profile:ok",
     "school_profile_link:listed",
+    "school_profile_link:none",
     "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-09T00:49:19+00:00",
+   "checked_at": "2026-11-15T03:26:40+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "coverage": "pending",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [
-    "website_rejected_page_does_not_name_pi"
-   ],
-   "rejected_url": "https://webdev.iac.gatech.edu/feedback?code=lmc",
-   "rejected_reason": "stored page does not name Jay David Bolter (no surname on the page, none in the address) and the URL is also assigned to other PIs"
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
+   "evidence_gaps": [],
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Jingfeng Yang",
@@ -39031,7 +39167,7 @@
    "pi": "Julie Linsey",
    "status": "found",
    "reason_code": "lab_site",
-   "reason": "stored page does not name Julie Linsey (no surname on the page, none in the address) and the URL is also assigned to other PIs; a new search is needed",
+   "reason": "Captured lab/group website.",
    "audited_at": "2026-11-09T00:49:22+00:00",
    "checks": [
     {
@@ -39107,6 +39243,33 @@
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "52de2860940cd5d4a5b2685db4e99ec5d63310000ad81b0f53caa77223e0ba57"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://me.gatech.edu/faculty/linsey",
+     "at": "2026-11-15T03:26:42+00:00",
+     "result": "ok",
+     "sha256": "f4684510886c63dad7bfe2703b85536bca4ac28a805c2e27d7a932eb9c9403fd"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://sites.google.com/site/idreemlaboratory/",
+     "on": "https://me.gatech.edu/faculty/linsey",
+     "at": "2026-11-15T03:26:42+00:00",
+     "result": "listed",
+     "anchor": "https://sites.google.com/site/idreemlaboratory/",
+     "linked_url": "https://sites.google.com/site/idreemlaboratory/",
+     "source_sha256": "f4684510886c63dad7bfe2703b85536bca4ac28a805c2e27d7a932eb9c9403fd",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://sites.google.com/site/idreemlaboratory/",
+     "at": "2026-11-15T03:43:45+00:00",
+     "via": "school_profile_link",
+     "sha256": "765e1e12e51267f6f9bd42dfd81816e6414f76bff736ff5393e9ad4983db393e",
+     "result": "ok"
     }
    ],
    "places_checked": [
@@ -39118,16 +39281,37 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-09T00:49:22+00:00",
+   "checked_at": "2026-11-15T03:26:42+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "coverage": "pending",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": [
-    "website_rejected_page_does_not_name_pi"
-   ],
-   "rejected_url": "https://2110.me.gatech.edu/machineshop",
-   "rejected_reason": "stored page does not name Julie Linsey (no surname on the page, none in the address) and the URL is also assigned to other PIs"
+   "coverage": "website",
+   "upstream_audit_reason": "the PI's own official profile links this site (fetched live 2026-11-15)",
+   "evidence_gaps": [],
+   "url": "https://sites.google.com/site/idreemlaboratory/",
+   "kind": "lab_site",
+   "found_via": "school_profile_link",
+   "listed_on": "https://me.gatech.edu/faculty/linsey",
+   "sha256": "765e1e12e51267f6f9bd42dfd81816e6414f76bff736ff5393e9ad4983db393e",
+   "evidence": {
+    "url": "https://sites.google.com/site/idreemlaboratory/",
+    "sha256": "765e1e12e51267f6f9bd42dfd81816e6414f76bff736ff5393e9ad4983db393e",
+    "quote": "window['ppConfig'] = {productName: '6b8ce7c01e3dacd3d2c7a8cd322ff979', deleteIsE"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://sites.google.com/site/idreemlaboratory/",
+     "on": "https://me.gatech.edu/faculty/linsey",
+     "at": "2026-11-15T03:26:42+00:00",
+     "result": "listed",
+     "anchor": "https://sites.google.com/site/idreemlaboratory/",
+     "linked_url": "https://sites.google.com/site/idreemlaboratory/",
+     "source_sha256": "f4684510886c63dad7bfe2703b85536bca4ac28a805c2e27d7a932eb9c9403fd",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ]
   },
   {
    "pi": "Kinsey Herrin",
@@ -39732,9 +39916,9 @@
   },
   {
    "pi": "Nader Sadegh",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "stored page does not name Nader Sadegh (no surname on the page, none in the address) and the URL is also assigned to other PIs; a new search is needed",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://me.gatech.edu/faculty/sadegh) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows only a US patent record); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-09T00:49:25+00:00",
    "checks": [
     {
@@ -39809,6 +39993,13 @@
      "capture_url": "https://web.archive.org/web/20230114180123id_/https://2110.me.gatech.edu/machineshop",
      "sha256": "2b3289a54c97a5eaf46ef6e23156aac626efaa44f97b31f8815697c81a6cc2f5",
      "final_url": "https://web.archive.org/web/20230114180123id_/https://2110.me.gatech.edu/machineshop"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://me.gatech.edu/faculty/sadegh",
+     "at": "2026-11-15T03:26:45+00:00",
+     "result": "ok",
+     "sha256": "c9546c5d4c978883fde89255d7e24f689024951ded3a097caa423ce37c9fff3a"
     }
    ],
    "places_checked": [
@@ -39817,18 +40008,17 @@
     "department_listing:ok",
     "orcid_researcher_urls:no_urls",
     "school_profile:ok",
-    "school_profile_link:listed"
+    "school_profile_link:listed",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-09T00:49:25+00:00",
+   "checked_at": "2026-11-15T03:26:45+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "coverage": "pending",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": [
-    "website_rejected_page_does_not_name_pi"
-   ],
-   "rejected_url": "https://2110.me.gatech.edu/machineshop",
-   "rejected_reason": "stored page does not name Nader Sadegh (no surname on the page, none in the address) and the URL is also assigned to other PIs"
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
+   "evidence_gaps": [],
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Nassim Parvin",
@@ -40069,9 +40259,9 @@
   },
   {
    "pi": "Roger Jianxin Jiao",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "stored page does not name Roger Jianxin Jiao (no surname on the page, none in the address) and the URL is also assigned to other PIs; a new search is needed",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://me.gatech.edu/faculty/jiao) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows only a Google Scholar profile (an identity index, not a site)); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-09T00:49:28+00:00",
    "checks": [
     {
@@ -40156,6 +40346,13 @@
      "at": "2026-11-09T00:49:28+00:00",
      "result": "robots_disallowed",
      "via": "dblp_person_url"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://me.gatech.edu/faculty/jiao",
+     "at": "2026-11-15T03:26:49+00:00",
+     "result": "ok",
+     "sha256": "9ac30d340100370406d848cb2a4caf67920f50c0d83c9186d9430bb990050ddf"
     }
    ],
    "places_checked": [
@@ -40165,18 +40362,17 @@
     "department_listing:ok",
     "orcid_researcher_urls:no_urls",
     "school_profile:ok",
-    "school_profile_link:listed"
+    "school_profile_link:listed",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-09T00:49:28+00:00",
+   "checked_at": "2026-11-15T03:26:49+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "coverage": "pending",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": [
-    "website_rejected_page_does_not_name_pi"
-   ],
-   "rejected_url": "https://2110.me.gatech.edu/machineshop",
-   "rejected_reason": "stored page does not name Roger Jianxin Jiao (no surname on the page, none in the address) and the URL is also assigned to other PIs"
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
+   "evidence_gaps": [],
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Wei Sun",
@@ -40817,9 +41013,9 @@
   },
   {
    "pi": "Ye-Hwa Chen",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "stored page does not name Ye-Hwa Chen (no surname on the page, none in the address) and the URL is also assigned to other PIs; a new search is needed",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official profile (https://me.gatech.edu/faculty/chen) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no website field or personal link)); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-09T00:49:31+00:00",
    "checks": [
     {
@@ -40897,6 +41093,13 @@
      "capture_url": "https://web.archive.org/web/20230114180123id_/https://2110.me.gatech.edu/machineshop",
      "sha256": "2b3289a54c97a5eaf46ef6e23156aac626efaa44f97b31f8815697c81a6cc2f5",
      "final_url": "https://web.archive.org/web/20230114180123id_/https://2110.me.gatech.edu/machineshop"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://me.gatech.edu/faculty/chen",
+     "at": "2026-11-15T03:26:52+00:00",
+     "result": "ok",
+     "sha256": "c19f90e843931f9ac5f56598c9b36405339d0dc9a5a37af678dc78fc3dd8c80e"
     }
    ],
    "places_checked": [
@@ -40905,18 +41108,17 @@
     "department_listing:ok",
     "orcid_researcher_urls:no_urls",
     "school_profile:ok",
-    "school_profile_link:listed"
+    "school_profile_link:listed",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-09T00:49:31+00:00",
+   "checked_at": "2026-11-15T03:26:52+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "coverage": "pending",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": [
-    "website_rejected_page_does_not_name_pi"
-   ],
-   "rejected_url": "https://2110.me.gatech.edu/machineshop",
-   "rejected_reason": "stored page does not name Ye-Hwa Chen (no surname on the page, none in the address) and the URL is also assigned to other PIs"
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
+   "evidence_gaps": [],
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Yongxin Chen",
