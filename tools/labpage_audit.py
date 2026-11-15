@@ -1229,7 +1229,7 @@ WEBWORD = re.compile(r'\b(web\s*sites?|websites?|home\s*pages?|homepages?|web\s*
 PEOPLE_LINK = re.compile(r'^\W*((our|the|lab|group|current)\s+)?(people|members?|team|group members?|lab members?|students?|'
                          r'personnel|researchers|group|lab|research group|who we are|advisees|phd students|\u5728\u8bfb\u7814\u7a76\u751f|\u5728\u8bfb\u5b66\u751f|\u56e2\u961f\u6210\u5458|\u8bfe\u9898\u7ec4\u6210\u5458|\u5b9e\u9a8c\u5ba4\u6210\u5458|\u6210\u5458|\u5b66\u751f|\u7814\u7a76\u751f|\u4eba\u5458|\u56e2\u961f)\W*$', re.I)
 ALUMNI_LINK = re.compile(r'\b(alumni|alumnae|alums|former (members|students|group members|lab members)|past (members|students)|'
-                         r'graduated students|previous members)\b', re.I)
+                         r'graduated students|previous (members|students|researchers|students/researchers))\b', re.I)
 PUBS_LINK = re.compile(r'^\W*((selected|recent|all|full|research|our|lab|group)\s+)?(publications?|papers|bibliography|pubs|'
                        r'publication list|list of publications)\W*$', re.I)
 STUDENT_HEAD = re.compile(r'\b(students?|advisees?|ph\.?\s?ds?|postdocs?|group members|lab members|current members|alumni|'
@@ -1621,8 +1621,9 @@ def discover_lab(kit, school, p, ctx, full=True):
             # a table-of-contents anchor ('#graduated_students') on the people page itself is no alumni page, and marking the whole page alumni made its current students alumni (CMU Hoe)
             pages = [x_ for x_ in pages if not (x_[0] == 'alumni' and x_[1] == chosen['alumni_page'])]
             chosen['alumni_page'] = None
-        if not chosen.get('alumni_page') and chosen.get('people_page') and chosen['people_page'].rstrip('/') != s['url'].rstrip('/'):
-            # the alumni list is linked from the PEOPLE page, not the site's home page (Berkeley Stuart: edg.berkeley.edu/people -> 'List of Alumni')
+        if not chosen.get('alumni_page') and chosen.get('people_page'):
+            # The alumni list may be linked from the PEOPLE page even when that page is also the selected site URL
+            # (Stanford Arbabian: /people -> /previous-students-researchers).
             pr_ = kit.get(chosen['people_page'])
             if pr_.get('status') == 200 and pr_.get('content'):
                 pb_ = link_base(pr_, chosen['people_page'])
