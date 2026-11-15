@@ -426,6 +426,20 @@ def test_unsigned_swings_file_does_not_approve(pf):
     assert AR.swings_verdict([], False, None)[0] and AR.swings_verdict([dict(kind='k')], True, None)[0]
 
 
+def test_carried_swings_file_rejects_changed_counts(pf):
+    flag = dict(school='mit', kind='school_count', count='lab_papers', before=10, after=30)
+    signed = pf / 'value-bound-swings.json'
+    fid = AR.swing_id(flag)
+    signed.write_text(json.dumps(dict(signed_by='owner', signed_at='2026-11-12', swings=[fid],
+                                      verified_flags=[dict(id=fid, **flag)])))
+    assert AR.swings_verdict([flag], swings_file=signed)[0]
+    changed = dict(flag, after=31)
+    ok, _, _, err = AR.swings_verdict([changed], swings_file=signed)
+    assert not ok and 'values changed' in err
+    signed.write_text(json.dumps(dict(signed_by='owner', signed_at='2026-11-12', swings=[fid], verified_flags=[])))
+    assert 'must match' in AR.swings_verdict([flag], swings_file=signed)[3]
+
+
 def test_preflight_fails_on_a_dirty_main_checkout_without_stopping_the_other_checks(pf, monkeypatch):
     real = AR.git
     monkeypatch.setattr(AR, 'git', lambda *a, cwd=None: type('R', (), {'returncode': 0, 'stdout': ' M tools/x.py\n' if a[0] == 'status' else 'main\n', 'stderr': ''})()

@@ -170,6 +170,29 @@ def swings_verdict(flags, allow_all=False, swings_file=None):
     approved, err = load_swings_file(swings_file)
     if err:
         return False, ids, ids, err
+    # A carried approval may include the exact flag objects it was checked
+    # against. An ID alone survives a changed before/after count, so refuse a
+    # value-bound approval when any of those objects has drifted.
+    payload = json.loads(Path(swings_file).read_text())
+    if 'verified_flags' in payload:
+        rows = payload['verified_flags']
+        if not isinstance(rows, list):
+            return False, ids, ids, 'verified_flags must be a list'
+        verified = {}
+        for row in rows:
+            if not isinstance(row, dict) or 'id' not in row:
+                return False, ids, ids, 'verified_flags must contain flag objects with an id'
+            flag = {k: v for k, v in row.items() if k != 'id'}
+            flag_id = str(row['id'])
+            if flag_id != swing_id(flag) or flag_id in verified:
+                return False, ids, ids, f'verified_flags has an invalid or duplicate id: {flag_id}'
+            verified[flag_id] = flag
+        if set(verified) != approved:
+            return False, ids, ids, 'verified_flags must match the signed swing IDs exactly'
+        current = {swing_id(flag): flag for flag in flags}
+        drifted = [i for i in ids if i in approved and verified[i] != current[i]]
+        if drifted:
+            return False, ids, ids, f'signed swing values changed: {", ".join(drifted[:5])}'
     missing = [i for i in ids if i not in approved]
     return not missing, ids, missing, None
 
