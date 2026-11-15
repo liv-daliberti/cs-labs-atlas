@@ -24,7 +24,7 @@ from urllib.parse import urlsplit
 import requests
 
 sys.path.insert(0, str(Path(__file__).parent))
-from pi_hierarchy import read, DBLP, INST, AFF, ndoi, norm_title, Name, toks, given  # noqa: E402
+from pi_hierarchy import read, DBLP, INST, AFF, ndoi, norm_title, Name, given  # noqa: E402
 from pi_fulltext_affiliation import tie  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 from pihier.common import school_scope_work  # noqa: E402
