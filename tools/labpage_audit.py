@@ -253,7 +253,7 @@ RECOVER_STATUS = {  # tools/labpage_recover.py row status -> paper reason
 }
 RECOVER_JUNK = {'thesis': 'not_a_paper', 'talk': 'not_a_paper', 'patent': 'not_a_paper', 'service_award_news': 'not_a_paper',
                 'filter_or_heading': 'parse_artifact', 'venue_only': 'parse_artifact', 'author_line': 'parse_artifact',
-                'fragment': 'parse_artifact', 'pi_not_in_hierarchy': 'parse_artifact'}
+                'fragment': 'parse_artifact', 'pi_not_in_hierarchy': 'parse_artifact', 'duplicate_listing': 'parse_artifact'}
 
 
 def paper_reason(status, junk_reason, year, pi_start):

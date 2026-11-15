@@ -561,7 +561,14 @@ def run(school, workers=6, title_credits=600, floor=4000, dry=False):
                 reason = 'fragment'
             status = 'junk' if reason else None
             if not reason and (pi, key) in seen:
-                n['duplicate_listing'] += 1; continue
+                # The audit addresses each page entry by audit_key. A duplicate title still
+                # needs a verdict or it appears as an unresolved paper after recovery.
+                n['duplicate_listing'] += 1
+                c.execute('insert or replace into rows values (?,?,?,?,?,?,?,?,?)',
+                          (pi, key + ':duplicate:' + str(r.get('audit_key') or hashlib.sha1(json.dumps(r, sort_keys=True).encode()).hexdigest()[:10]),
+                           t, int(r['year']), 'junk', 'duplicate_listing', json.dumps(flags),
+                           json.dumps(r, ensure_ascii=False), now()))
+                continue
             if not reason:
                 cite = [s for s in (norm_title(r.get('title')), norm_title(r.get('quote')), ct) if s]
                 hs = held_t[pi]
