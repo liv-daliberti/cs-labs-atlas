@@ -127,3 +127,45 @@ def test_quarantined_copy_is_robots_disallowed():
 
 def test_identity_unconfirmed_copy():
     assert code(paper(status='identity_unconfirmed')) == 'identity_unconfirmed'
+
+
+def test_identity_unconfirmed_copy_with_new_open_url_is_not_missing_from_catalog():
+    p = paper(status='identity_unconfirmed', school='princeton', checked_at='2026-11-14T00:00:00Z',
+              publisher='IEEE', venue='IEEE Transactions on Information Theory')
+    p['checks']['arxiv'] = dict(none('arxiv'), result='found', detail=dict(usable=['arXiv:1511.07829']))
+    reason, missing, new = U.decide(p)
+    assert reason == 'identity_unconfirmed'
+    assert new == ['arXiv:1511.07829']
+    summary = U.summarize(p, reason, missing, new)
+    assert 'downloaded catalog copy awaits identity review' in summary
+    assert 'Not in the full-text catalog' not in summary
+    assert 'were tried' not in summary
+
+
+def test_local_identity_hold_still_counts_as_catalog_present(tmp_path, monkeypatch):
+    import json
+    import sqlite3
+
+    school = tmp_path / 'princeton'
+    school.mkdir()
+    (school / 'copies.json').write_text(json.dumps({'papers': {
+        'w1': {'status': 'identity_unconfirmed', 'catalog': 'w1'},
+        'w2': {'status': 'not_in_catalog', 'catalog': 'w2'},
+    }}))
+    db = sqlite3.connect(school / 'catalog.sqlite')
+    db.execute('create table works(id text, doi text, status text, title text)')
+    db.execute('create table attempts(work_id text, url text, observed_at text, status text, detail text)')
+    db.execute('create table candidates(work_id text, url text)')
+    db.execute('insert into works values (?, ?, ?, ?)', ('w1', '10.1109/x.1', 'downloaded', 'Example paper title'))
+    db.commit()
+    db.close()
+    monkeypatch.setattr(U.F, 'FT', tmp_path)
+    monkeypatch.setattr(U.F.P, 'data', lambda name, key: school / name)
+    monkeypatch.setattr(U.F, 'lab_papers', lambda key: {
+        'w1': {'doi': '10.1109/x.1', 'title': 'Example paper title'},
+        'w2': {'doi': '10.1109/x.2', 'title': 'Another paper title'},
+    })
+
+    rows = U.load_school('princeton')
+    assert rows['w1']['catalog_present'] and rows['w1']['group'] == []
+    assert not rows['w2']['catalog_present']

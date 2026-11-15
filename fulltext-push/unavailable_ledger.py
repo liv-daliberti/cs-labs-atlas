@@ -173,6 +173,9 @@ def load_school(school):
     gid = defaultdict(set)
     for k, p in papers.items():
         g = ([p['cid']] if p['cid'] else []) + doi_ids.get(p['doi'], []) + t_ids.get(F.nt(p['r'].get('title')), [])
+        # A downloaded catalog row is left out of group (there is no pending
+        # attempt to inspect), but it still means the work is in the catalog.
+        p['catalog_present'] = any(i in st for i in g)
         p['group'] = [i for i in dict.fromkeys(g) if st.get(i) not in F.LOCAL]
         p['quarantined'] = any(st.get(i) == 'quarantined_robots_ai' for i in p['group'])  # quarantine_robots_ai.py (2026-10-31)
         for i in p['group']:
@@ -964,14 +967,16 @@ def decide(p):
             for u in d.get('usable') or d.get('urls') or d.get('files') or []:
                 found.append(u)
     new = [u for u in dict.fromkeys(found) if norm_found(u) not in known]
+    if p.get('status') == 'identity_unconfirmed':
+        # A copy is already downloaded. Its identity hold takes precedence
+        # over newly discovered alternative URLs, which remain in `new`.
+        return 'identity_unconfirmed', missing, new
     if p['untried']:
         return 'found_awaiting_download', missing, new
     if new:
         return ('found_awaiting_download' if p['in_catalog'] else 'found_not_in_catalog'), missing, new
     if p.get('quarantined'):  # a copy was taken from a path robots.txt disallows for an Anthropic crawler; quarantined
         return 'open_copy_robots_disallowed', missing, new
-    if p.get('status') == 'identity_unconfirmed':  # a copy is downloaded, but its identity is not confirmed (identity_rule.py)
-        return 'identity_unconfirmed', missing, new
     per_url = defaultdict(list)
     for a in p['attempts']:
         per_url[a['url']].append(a['cause'])
@@ -1033,8 +1038,9 @@ def summarize(p, code, missing, new):
                  f"; checked {(p['checked_at'] or '')[:10]}.")
     fnd = [LABEL[x] for x in p['applicable'] if (chk.get(x) or {}).get('result') == 'found']
     if fnd:  # every location these sources list was tried (else the code is found_awaiting_download)
-        s.append(('Locations listed by ' if code not in ('found_awaiting_download', 'found_not_in_catalog') else 'Open copy listed by ') + ', '.join(fnd) +
-                 (' were tried (attempts below).' if code not in ('found_awaiting_download', 'found_not_in_catalog') else '.'))
+        pending = bool(new) or code in ('found_awaiting_download', 'found_not_in_catalog')
+        s.append(('Open copy listed by ' if pending else 'Locations listed by ') + ', '.join(fnd) +
+                 ('.' if pending else ' were tried (attempts below).'))
     if missing:
         s.append('Not checked yet: ' + ', '.join(LABEL[x] for x in missing) + '.')
     if p['attempts']:
@@ -1043,6 +1049,8 @@ def summarize(p, code, missing, new):
             last[a['url']] = a
         ex = '; '.join(f"{host(a['url'])} {a['cause']}" for a in list(last.values())[-3:])
         s.append(f"{len(p['attempts'])} download attempt{'s' if len(p['attempts']) != 1 else ''} ({len(last)} URL{'s' if len(last) != 1 else ''}): {ex}.")
+    elif p['status'] == 'identity_unconfirmed':
+        s.append('The downloaded catalog copy awaits identity review.')
     elif p['in_catalog']:
         s.append('No download attempt (no candidate URL).')
     else:
@@ -1141,7 +1149,7 @@ def run(schools, max_age, offline, only=None, skip=()):
             pmc = p['checks'].get('pmc')
             if pmc and pmc['result'] != 'not_applicable':
                 p['applicable'].append('pmc')
-            p['in_catalog'] = bool(p['group'])
+            p['in_catalog'] = p.get('catalog_present', bool(p['group']))
             p['checked_at'] = at
             oad = (p['checks'].get('openalex') or {}).get('detail')
             oad = oad if isinstance(oad, dict) else {}
