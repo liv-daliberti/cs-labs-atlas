@@ -8,7 +8,7 @@ The following 20 proposals were held from the union:
 | --- | --- | --- |
 | 马叶涵 | Chenhui Xue, | Duplicate listing of Chenhui Xue, who also appears in the undergraduate alumni section. The retained row combines the two dated entries. |
 | 江 波 | Don Towsley | Text describes another academic, not a student. |
-| 傅洛伊 | Steiner Tree; Jiayu Pan | Research interest and publication text, not the PI's member list. |
+| 傅洛伊 | Steiner Tree; Jiayu Pan | The audit extracted a research topic as a person and extracted Jiayu Pan from a publication block. A separate captured PI student page explicitly lists Jiayu Pan, so a direct reviewed roster row now admits that person. |
 | 冷静文 | Ziwei He Yijia Diao; Weiming Hu Ziyu Huang; Jiawei Huang Xing Ma; Ding Zhou Yesheng Ma; Xinzhe Li Yadong Luo | Parser concatenated two names into one. |
 | 冷静文 | Zhanda Zhu; Ruofan Liang | Entry says University of Toronto; no clear SJTU membership for this PI. |
 | 刘方鑫 | Gongye Chen | Previously held by the accepted SJTU review. |
