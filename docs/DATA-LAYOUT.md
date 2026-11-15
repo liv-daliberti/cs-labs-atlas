@@ -182,6 +182,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `labpage-pubs-report.json` | derived | `hierarchy/{school}/labpage-pubs-report.json` | `hierarchy/{school}/derived/labpage-pubs-report.json` | - | <100MB |
 | `labpage-audit-summary-school.json` | derived | `hierarchy/{school}/labpage-audit-summary-school.json` | `hierarchy/{school}/derived/labpage-audit-summary-school.json` | - | <100MB |
 | `lab-websites.json` | reviewed | `hierarchy/{school}/lab-websites.json` | `hierarchy/{school}/reviewed/lab-websites.json` | - | <10MB |
+| `host-alias-rule.json` | reviewed | `hierarchy/{school}/host-alias-rule.json` | `hierarchy/{school}/reviewed/host-alias-rule.json` | - | <1MB |
 | `person-websites.json` | reviewed | `hierarchy/{school}/person-websites.json` | `hierarchy/{school}/reviewed/person-websites.json` | - | <10MB |
 | `person-website-review.json` | reviewed | `hierarchy/{school}/person-website-review.json` | `hierarchy/{school}/reviewed/person-website-review.json` | - | <10MB |
 | `lab-websites-sweep.json` | reviewed | `hierarchy/{school}/lab-websites-sweep.json` | `hierarchy/{school}/reviewed/lab-websites-sweep.json` | - | <10MB |
