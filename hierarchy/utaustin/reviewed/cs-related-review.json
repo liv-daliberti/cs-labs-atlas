@@ -22,9 +22,9 @@
   "SDS"
  ],
  "counts": {
-  "not_faculty_listed": 321,
+  "not_faculty_listed": 320,
   "accepted": 166,
-  "research_or_other_rank": 15,
+  "research_or_other_rank": 16,
   "pending_source_coverage": 2,
   "pending_identity_collision": 1,
   "faculty_not_computing": 1
@@ -8659,7 +8659,7 @@
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
     },
-    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
+    "share_flag": "OpenAlex computing share 0.122 (below the 0.20 threshold): accepted by the DBLP-record rule (16 records); owner to review"
    },
    "faculty_evidence": [
     {
@@ -32537,7 +32537,7 @@
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
     },
-    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
+    "share_flag": "OpenAlex computing share 0.05 and only 5 DBLP records: accepted by the DBLP rule; the share test fails or cannot confirm; owner to review"
    },
    "faculty_evidence": [
     {
@@ -43750,7 +43750,8 @@
       }
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    },
+    "share_flag": "OpenAlex computing share 0.213, barely above the 0.20 threshold (10 of 47 school works): owner to review"
    },
    "faculty_evidence": [
     {
@@ -45919,52 +45920,37 @@
     "Alejandro I de la Vega"
    ],
    "source": "openalex_rule",
-   "decision": "not_faculty_listed",
-   "reason": "no UT Austin faculty-rank appointment found: no compatible name among the professor, lecturer and instructor lines of the six official UT Austin undergraduate catalogs (2016-2018 to 2026-2028; 2016-2018 3574 lines; 2018-2020 3451 lines; 2020-2022 2880 lines; 2022-2024 3325 lines; 2024-2026 3427 lines; 2026-2028 3386 lines) and no ladder title in the stored unit listings (ASE 2020-2026 (7 captures), ECE 2016-2026 (11), INFO 2025-2026 (2), ME 2026 (1, partial), ODEN 2019-2021 (3; 2022/2024/2025 captures are script shells), OKCAI 2020-2026 (7), ROBOTICS 2016-2026 (11), SDS 2023-2026 (4, shells); none for MATH, LING (covered by the catalogs only))",
+   "decision": "research_or_other_rank",
+   "reason": "listed in the 2024-2026 and 2026-2028 official catalogs only as Research Assistant Professor, Department of Psychology (non-ladder research rank; PhD Colorado Boulder 2016)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
     "evidence": [
      {
-      "url": "https://catalog.utexas.edu/pdf/2016-18-undergraduate.pdf",
-      "sha256": "8be84d31310dd27e2ec405781a562f834355651dc2a4e7c0c8b9b362f88fabdd",
-      "source": "official UT Austin undergraduate catalog 2016-2018",
-      "quote": "absence: none of the 3574 professor/lecturer/instructor lines is compatible with \"Alejandro de la Vega\" (pdftotext -raw of the stored PDF)"
-     },
-     {
-      "url": "https://catalog.utexas.edu/pdf/2018-20-undergraduate.pdf",
-      "sha256": "06d27e95450499b1e91fa03fdeabb0a978ef41efc51327e9ca5b0e94d814a738",
-      "source": "official UT Austin undergraduate catalog 2018-2020",
-      "quote": "absence: none of the 3451 professor/lecturer/instructor lines is compatible with \"Alejandro de la Vega\" (pdftotext -raw of the stored PDF)"
-     },
-     {
-      "url": "https://catalog.utexas.edu/archive/2020-21/pdf/2020-22-undergraduate.pdf",
-      "sha256": "5fa93f1f6d7454c6691b03bcc2e249dfb3ee27258bcc37ff1fc7a97cc4af6f46",
-      "source": "official UT Austin undergraduate catalog 2020-2022",
-      "quote": "absence: none of the 2880 professor/lecturer/instructor lines is compatible with \"Alejandro de la Vega\" (pdftotext -raw of the stored PDF)"
-     },
-     {
-      "url": "https://catalog.utexas.edu/archive/2022-23/pdf/2022-24-undergraduate.pdf",
-      "sha256": "7924f182f0fdeacc51533f01f465d10cad9f0e586aeb9168f93c4b0a445a110d",
-      "source": "official UT Austin undergraduate catalog 2022-2024",
-      "quote": "absence: none of the 3325 professor/lecturer/instructor lines is compatible with \"Alejandro de la Vega\" (pdftotext -raw of the stored PDF)"
+      "url": "https://catalog.utexas.edu/pdf/2026-28-undergraduate.pdf",
+      "sha256": "8d1499b08ab654556027125496cfb060bb8bfe4800ef61fa389f76ec500c1a20",
+      "source": "official UT Austin undergraduate catalog 2026-2028",
+      "quote": "Alejandro Isaac De La vega, Research Assistant Professor"
      },
      {
       "url": "https://catalog.utexas.edu/archive/2024-25/pdf/2024-26-undergraduate.pdf",
       "sha256": "c78f3cda360b2a6bee895b49376de009eb80491fa6666fa4da826281011056fc",
       "source": "official UT Austin undergraduate catalog 2024-2026",
-      "quote": "absence: none of the 3427 professor/lecturer/instructor lines is compatible with \"Alejandro de la Vega\" (pdftotext -raw of the stored PDF)"
-     },
-     {
-      "url": "https://catalog.utexas.edu/pdf/2026-28-undergraduate.pdf",
-      "sha256": "8d1499b08ab654556027125496cfb060bb8bfe4800ef61fa389f76ec500c1a20",
-      "source": "official UT Austin undergraduate catalog 2026-2028",
-      "quote": "absence: none of the 3386 professor/lecturer/instructor lines is compatible with \"Alejandro de la Vega\" (pdftotext -raw of the stored PDF)"
+      "quote": "Alejandro Isaac De La vega, Research Assistant Professor"
      }
     ]
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "Psychology",
+     "url": "https://catalog.utexas.edu/pdf/2026-28-undergraduate.pdf",
+     "sha256": "8d1499b08ab654556027125496cfb060bb8bfe4800ef61fa389f76ec500c1a20",
+     "observed": "2026-08-31",
+     "quote": "Alejandro Isaac De La vega, Research Assistant Professor",
+     "ladder": false
+    }
+   ],
    "years_listed": [],
    "units_searched": [
     "ASE",
@@ -45978,9 +45964,7 @@
     "ROBOTICS",
     "SDS"
    ],
-   "profile_class": "oa_rule_not_listed",
-   "reviewed_by": "claude_utaustin_stage2_20261115",
-   "catalog_namesakes_set_aside": []
+   "reviewed_by": "claude_utaustin_stage2_20261115"
   },
   {
    "name": "Kolina S. Koltai",
@@ -46324,7 +46308,8 @@
       }
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    },
+    "share_flag": "OpenAlex computing share 0.207, barely above the 0.20 threshold (6 of 29 school works): owner to review"
    },
    "faculty_evidence": [
     {
@@ -48052,7 +48037,7 @@
    "dblp_ut_and_elsewhere_not_listed": 181,
    "dblp_ut_only_not_listed": 92,
    "dblp_other_institution_not_listed": 13,
-   "oa_rule_not_listed": 35
+   "oa_rule_not_listed": 34
   }
  }
 }
