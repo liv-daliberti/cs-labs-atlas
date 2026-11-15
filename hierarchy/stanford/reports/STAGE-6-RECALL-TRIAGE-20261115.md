@@ -60,8 +60,12 @@ degree role. Fresh round 10 (30 rows, seed 9012; sample SHA-256
 met the numerical bar: zero false memberships, two doubtful source checks
 (score 1.0 of 1.5 allowed), and one unsupported degree role (1 of 3 allowed).
 The OpenReview sample item was verified against its persisted API response.
-The round is recorded in `labpage-handcheck.json`. Acceptance was not stamped:
-the two lab-page captures must be repaired and the role corrected before the
-exact additions bytes can be accepted. Round 10 is the current owner-authorized
-limit. The separate 30-PI recall draw still lacks an independent signoff and
-has R1 0.541, so Stage 6 remains open.
+The two official lab pages were then recaptured into both the isolated and
+shared raw stores with their original SHA-256 hashes and exact sampled quotes.
+Sarah Hashash's unsupported postdoc role was withheld. The 30 sampled
+PI-name identities and their order remained identical after that role-only
+change. The original conservative error scores remain in the record, and the
+corrected 340-row additions file is now bound to the passing round 10 in
+`labpage-acceptance.json`. Round 10 is the current owner-authorized limit.
+The separate 30-PI recall draw still lacks independent signoff and has R1
+0.541, so Stage 6 remains open until a new build and recall review.
