@@ -21022,9 +21022,9 @@
   {
    "pi": "Daniel I. Rubenstein",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-11T02:17:40+00:00",
+   "reason_code": "host_access_blocked",
+   "reason": "The current official EEB profile links dir.princeton.edu as his Website. Direct checks of that personal site returned HTTP 403 or timed out, so its contents and any member page remain unverified; the linked Microsoft contact form is excluded.",
+   "audited_at": "2026-11-15T06:41:04+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -21096,49 +21096,41 @@
      "capture_url": "https://web.archive.org/web/20260331161055id_/https://forms.office.com/Pages/ResponsePage.aspx?id=FgH2LzF0XUK1rwd9d5G9pAkE8gpuhR1BruIBF_7r_lBUMkw3RE8zUEJNU09KVFJWRENLQzZIWDgwVy4u",
      "sha256": "14c2b09257e30473464f2a3a4e81c3a00b6f5e65752c381b9255fb01113d021e",
      "final_url": "https://web.archive.org/web/20260331161055id_/https://forms.office.com/Pages/ResponsePage.aspx?id=FgH2LzF0XUK1rwd9d5G9pAkE8gpuhR1BruIBF_7r_lBUMkw3RE8zUEJNU09KVFJWRENLQzZIWDgwVy4u"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://dir.princeton.edu/",
+     "at": "2026-11-15T06:41:04+00:00",
+     "result": "listed",
+     "anchor": "Website: dir.princeton.edu",
+     "on": "https://eeb.princeton.edu/people/daniel-rubenstein",
+     "note": "Observed on current official EEB profile through web retrieval; raw page fetch from this host returned HTTP 403."
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://dir.princeton.edu/",
+     "at": "2026-11-15T06:41:04+00:00",
+     "result": "http_403",
+     "note": "Direct HTTPS request from this host returned HTTP 403; separate web retrieval timed out."
     }
    ],
    "places_checked": [
     "candidate_site:does_not_name_pi_kept_strong_source",
+    "candidate_site:http_403",
     "department_listing:ok_wayback",
     "orcid_researcher_urls:listed",
     "pi_evidence_url:listed",
     "school_profile:ok_wayback",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-10-31T06:57:42+00:00",
-   "students_page_status": "no_people_section",
-   "papers_page_status": "no_pubs_page",
-   "url": "https://forms.office.com/Pages/ResponsePage.aspx?id=FgH2LzF0XUK1rwd9d5G9pAkE8gpuhR1BruIBF_7r_lBUMkw3RE8zUEJNU09KVFJWRENLQzZIWDgwVy4u",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "school_profile_link",
-   "listed_on": "https://eeb.princeton.edu/people/daniel-rubenstein",
-   "sha256": "14c2b09257e30473464f2a3a4e81c3a00b6f5e65752c381b9255fb01113d021e",
-   "evidence": {
-    "url": "https://forms.office.com/Pages/ResponsePage.aspx?id=FgH2LzF0XUK1rwd9d5G9pAkE8gpuhR1BruIBF_7r_lBUMkw3RE8zUEJNU09KVFJWRENLQzZIWDgwVy4u",
-    "sha256": "14c2b09257e30473464f2a3a4e81c3a00b6f5e65752c381b9255fb01113d021e",
-    "quote": null,
-    "capture_url": "https://web.archive.org/web/20260331161055id_/https://forms.office.com/Pages/ResponsePage.aspx?id=FgH2LzF0XUK1rwd9d5G9pAkE8gpuhR1BruIBF_7r_lBUMkw3RE8zUEJNU09KVFJWRENLQzZIWDgwVy4u"
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "https://forms.office.com/Pages/ResponsePage.aspx?id=FgH2LzF0XUK1rwd9d5G9pAkE8gpuhR1BruIBF_7r_lBUMkw3RE8zUEJNU09KVFJWRENLQzZIWDgwVy4u",
-     "at": "2026-10-31T06:57:41+00:00",
-     "result": "listed",
-     "anchor": "Website Contact Form",
-     "on": "https://eeb.princeton.edu/people/daniel-rubenstein"
-    }
-   ],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": false,
-   "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
+   "checked_at": "2026-11-15T06:41:04+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "reason",
+   "upstream_audit_reason": "emeritus appointment, no lab site",
+   "reason_type": "access_blocked",
+   "reason_scope": "Current access outcome; not proof that the personal website or an archive has no content.",
+   "evidence_gaps": []
   },
   {
    "pi": "Leeat Yariv",

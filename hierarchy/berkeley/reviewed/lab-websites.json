@@ -28744,10 +28744,10 @@
   },
   {
    "pi": "Irfan Siddiqi",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-11T03:20:55+00:00",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-10-31T04:43:26+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -28870,35 +28870,34 @@
     "school_profile_link:listed"
    ],
    "checked_at": "2026-10-31T04:43:26+00:00",
-   "students_page_status": "no_people_section",
-   "papers_page_status": "no_pubs_page",
-   "url": "https://forms.gle/9XBZ3gJ3d4cpC7As6",
-   "kind": "pi_homepage",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://aqt.lbl.gov/about-aqt/qnl/",
+   "kind": "lab_site",
    "people_page": null,
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "school_profile_link",
    "listed_on": "https://physics.berkeley.edu/people/faculty/irfan-siddiqi",
-   "sha256": "9193548d6a905a5a9260c6466dc971d61a5df493dabc0af42f34bd278fae1fba",
+   "sha256": "4c67c664583778f12a3a04239a7e0097d4e709416e75586558ac0a72086d00cb",
    "evidence": {
-    "url": "https://forms.gle/9XBZ3gJ3d4cpC7As6",
-    "sha256": "9193548d6a905a5a9260c6466dc971d61a5df493dabc0af42f34bd278fae1fba",
-    "quote": null,
-    "capture_url": "https://web.archive.org/web/20230506110200id_/https://forms.gle/9XBZ3gJ3d4cpC7As6"
+    "url": "https://aqt.lbl.gov/about-aqt/qnl/",
+    "sha256": "4c67c664583778f12a3a04239a7e0097d4e709416e75586558ac0a72086d00cb",
+    "quote": null
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
      "source": "school_profile_link",
-     "url": "https://forms.gle/9XBZ3gJ3d4cpC7As6",
+     "url": "https://aqt.lbl.gov/about-aqt/qnl/",
      "at": "2026-10-31T04:43:24+00:00",
      "result": "listed",
-     "anchor": "Website Change Form",
+     "anchor": "Quantum Nanoelectronics Laboratory",
      "on": "https://physics.berkeley.edu/people/faculty/irfan-siddiqi"
     }
    ],
    "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
    "verified": false,
    "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
