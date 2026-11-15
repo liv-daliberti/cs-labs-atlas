@@ -67,8 +67,9 @@ ROUNDS = {'r2': dict(seed=20261102, uniform=50, stratum=5, cov=50, cands=200,
           'r7': dict(seed=2026111502, uniform=50, stratum=5, cov=50, cands=200,
                      schools=['vt'], dir='round-r7'),
           # The corrected VT package excludes four false lab-paper rows found in r7.
-          # Draw again only after its copy ledger has been rebuilt.
-          'r8': dict(seed=2026111503, uniform=50, stratum=5, cov=50, cands=200,
+          # Keep the seed for direct key-by-key comparison; draw again only after
+          # its copy ledger has been rebuilt. The package hashes must be new.
+          'r8': dict(seed=2026111502, uniform=50, stratum=5, cov=50, cands=200,
                      schools=['vt'], dir='round-r8')}
 FILES = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 
