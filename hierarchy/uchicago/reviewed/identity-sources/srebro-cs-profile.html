@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="https://gmpg.org/xfn/11" rel="profile"/>
+
+<title>Nathan Srebro – Department of Computer Science</title>
+<meta content="max-image-preview:large" name="robots"/>
+<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+<link href="//use.typekit.net" rel="dns-prefetch"/>
+
+
+<style id="classic-theme-styles-inline-css" type="text/css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id="global-styles-inline-css" type="text/css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 12px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--huge: 50px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<link href="/wp-content/plugins/philament-addons/public/css/philament-public.css" id="philament-css" media="all" rel="stylesheet" type="text/css"/>
+<link href="/wp-content/plugins/svg-support/css/svgs-attachment.css" id="bodhi-svgs-attachment-css" media="all" rel="stylesheet" type="text/css"/>
+<link href="/wp-content/plugins/widget-options/assets/css/widget-options.css" id="widgetopts-styles-css" media="all" rel="stylesheet" type="text/css"/>
+<link href="/wp-includes/css/dashicons.min.css" id="dashicons-css" media="all" rel="stylesheet" type="text/css"/>
+<link href="https://use.typekit.net/kva6qps.css" id="typekit-font-css" media="all" rel="stylesheet" type="text/css"/>
+<link href="/wp-content/themes/csuc/build/frontend.css" id="philament-style-css" media="all" rel="stylesheet" type="text/css"/>
+
+<script id="bodhi-dompurify-library-js" src="/wp-content/plugins/svg-support/vendor/DOMPurify/DOMPurify.min.js" type="text/javascript"></script>
+<script id="jquery-core-js" src="/wp-includes/js/jquery/jquery.min.js" type="text/javascript"></script>
+<script id="jquery-migrate-js" src="/wp-includes/js/jquery/jquery-migrate.min.js" type="text/javascript"></script>
+<script id="philament-js" src="/wp-content/plugins/philament-addons/public/js/philament-public.js" type="text/javascript"></script>
+<script id="bodhi_svg_inline-js-extra" type="text/javascript">
+/* <![CDATA[ */
+var svgSettings = {"skipNested":""};
+/* ]]> */
+</script>
+<script id="bodhi_svg_inline-js" src="/wp-content/plugins/svg-support/js/min/svgs-inline-min.js" type="text/javascript"></script>
+<script id="bodhi_svg_inline-js-after" type="text/javascript">
+/* <![CDATA[ */
+cssTarget={"Bodhi":"img.style-svg","ForceInlineSVG":"style-svg"};ForceInlineSVGActive="false";frontSanitizationEnabled="on";
+/* ]]> */
+</script>
+
+<link href="/people/nathan-srebro/" rel="canonical"/>
+
+
+<!-- Stream WordPress user activity plugin v4.0.0 -->
+<meta content="Nathan Srebro - Department of Computer Science" property="og:title"/>
+<meta content="Next-gen computer science at UChicago" property="og:description"/>
+<meta content="/people/nathan-srebro/" property="og:url"/>
+<meta content="/wp-content/uploads/2018/09/Nathan_Srebro.jpg" property="og:image"/>
+<meta content="Department of Computer Science" property="og:site_name"/>
+<meta content="article" property="og:type"/>
+<meta content="Next-gen computer science at UChicago" name="description"/>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-FJZP0XWT17"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-FJZP0XWT17');</script><link href="/wp-content/uploads/2021/12/cropped-UChicagoShield_faviconArtboard-1-1-32x32.png" rel="icon" sizes="32x32"/>
+<link href="/wp-content/uploads/2021/12/cropped-UChicagoShield_faviconArtboard-1-1-192x192.png" rel="icon" sizes="192x192"/>
+<link href="/wp-content/uploads/2021/12/cropped-UChicagoShield_faviconArtboard-1-1-180x180.png" rel="apple-touch-icon"/>
+<meta content="/wp-content/uploads/2021/12/cropped-UChicagoShield_faviconArtboard-1-1-270x270.png" name="msapplication-TileImage"/>
+<style type="text/css">/** Mega Menu CSS: disabled **/</style>
+</head>
+<body class="wp-singular people-template-default single single-people postid-1440 wp-embed-responsive wp-theme-csuc mega-menu-primary no-js">
+<a class="skip-link show-for-sr" href="#main">Skip to content</a>
+<div class="site">
+<header class="site-header site-header--dark" is="site-header">
+<div class="site-header-wrap">
+<div class="site-header-inner">
+<div class="site-branding site-branding--light" role="banner">
+<a class="site-branding__link" href="/" rel="home">
+<picture>
+<source media="(min-width: 640px)" srcset="/wp-content/uploads/2024/01/UChicago_Computer-Science_Vertical_Color-RGB-1024x528.png">
+<source srcset="/wp-content/uploads/2024/01/UChicago_Computer-Science_Vertical_Color-RGB-1024x528.png">
+<img alt=" Logo" class="site-branding__image" itemprop="logo" src="/wp-content/uploads/2024/01/UChicago_Computer-Science_Vertical_Color-RGB-1024x528.png"/>
+</source></source></picture>
+</a>
+</div>
+<div class="site-branding site-branding--dark" role="banner">
+<a class="site-branding__link" href="/" rel="home">
+<picture>
+<source media="(min-width: 640px)" srcset="/wp-content/uploads/2024/01/UChicago_Computer-Science_Vertical_White-RGB-1024x528.png">
+<source srcset="/wp-content/uploads/2024/01/UChicago_Computer-Science_Vertical_White-RGB-1024x528.png">
+<img alt=" Logo" class="site-branding__image" itemprop="logo" src="/wp-content/uploads/2024/01/UChicago_Computer-Science_Vertical_White-RGB-1024x528.png"/>
+</source></source></picture>
+</a>
+</div>
+<nav aria-label="Main Navigation" class="main-navigation navigation-menu" id="site-navigation">
+<div class="mega-menu-wrap" id="mega-menu-wrap-primary"><div class="mega-menu-toggle"><div class="mega-toggle-blocks-left"></div><div class="mega-toggle-blocks-center"></div><div class="mega-toggle-blocks-right"><div class="mega-toggle-block mega-menu-toggle-animated-block mega-toggle-block-0" id="mega-toggle-block-0"><button aria-expanded="false" aria-label="Toggle Menu" class="mega-toggle-animated mega-toggle-animated-slider" type="button">
+<span class="mega-toggle-animated-box">
+<span class="mega-toggle-animated-inner"></span>
+</span>
+</button></div></div></div><ul class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js" data-breakpoint="768" data-document-click="collapse" data-effect="disabled" data-effect-mobile="disabled" data-effect-speed="200" data-effect-speed-mobile="0" data-event="hover" data-hover-intent-interval="100" data-hover-intent-timeout="300" data-mobile-direction="vertical" data-mobile-force-width="false" data-mobile-state="collapse_all" data-second-click="disabled" data-unbind="true" data-vertical-behaviour="standard" id="mega-menu-primary"><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-739" id="mega-menu-item-739"><a aria-expanded="false" class="mega-menu-link" href="/about/" tabindex="0">About<span aria-hidden="true" class="mega-indicator"></span></a>
+<ul class="mega-sub-menu" role="presentation">
+<li class="mega-menu-row" id="mega-menu-739-0">
+<ul class="mega-sub-menu" role="presentation" style="--columns:12">
+<li class="mega-menu-column mega-menu-columns-6-of-12" id="mega-menu-739-0-0" style="--columns:12; --span:6">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_menu_featured_page mega-menu-item-menu_featured_page-7" id="mega-menu-item-menu_featured_page-7">
+<div class="featured-page layout--vertical">
+<div class="featured-page__image-container image-">
+<a href="/about/"></a><img alt="" class="featured-page__image" height="179" src="/wp-content/uploads/2021/12/2537@2x-273x179.jpg" width="273"/> </div>
+<div class="featured-page__content">
+<h3 class="featured-page__title">
+<a href="/about/"></a>Why UChicago CS				</h3>
+<p class="featured-page__description">Defining and building the future of computer science, from theory to applications and from science to society.</p>
+</div>
+</div>
+</li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-6-of-12" id="mega-menu-739-0-1" style="--columns:12; --span:6">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_menu_featured_page mega-menu-item-menu_featured_page-8" id="mega-menu-item-menu_featured_page-8">
+<div class="featured-page layout--horizontal">
+<div class="featured-page__image-container image-large">
+<a href="/about/our-building/"></a><img alt="" class="featured-page__image" height="114" src="/wp-content/uploads/2021/12/2697@2x-114x114.jpg" width="114"/> </div>
+<div class="featured-page__content">
+<h3 class="featured-page__title">
+<a href="/about/our-building/"></a>Our Building				</h3>
+<p class="featured-page__description">A state-of-the-art research and teaching facility.</p>
+</div>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-756" id="mega-menu-item-756"><a class="mega-menu-link" href="/about/giving-collaboration/">Giving &amp; Collaboration</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-755" id="mega-menu-item-755"><a class="mega-menu-link" href="/about/job-openings/">Job Openings</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-4391" id="mega-menu-item-4391"><a class="mega-menu-link" href="/about/visiting-uchicago-cs/">Visiting UChicago CS</a></li> </ul>
+</li> </ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-738" id="mega-menu-item-738"><a aria-expanded="false" class="mega-menu-link" href="/research/" tabindex="0">Research<span aria-hidden="true" class="mega-indicator"></span></a>
+<ul class="mega-sub-menu" role="presentation">
+<li class="mega-menu-row" id="mega-menu-738-0">
+<ul class="mega-sub-menu" role="presentation" style="--columns:12">
+<li class="mega-menu-column mega-menu-columns-4-of-12" id="mega-menu-738-0-0" style="--columns:12; --span:4">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-7" id="mega-menu-item-menu_section_header-7">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+<a href="/research/"></a>Highlights			</h3>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-widget widget_menu_featured_page mega-menu-item-menu_featured_page-11" id="mega-menu-item-menu_featured_page-11">
+<div class="featured-page layout--horizontal">
+<div class="featured-page__image-container image-small">
+<a href="/research/quantum-computing/"></a><img alt="" class="featured-page__image" height="114" src="/wp-content/uploads/2021/09/MacroMultiModeCavity-114x114.jpg" width="114"/> </div>
+<div class="featured-page__content">
+<h3 class="featured-page__title">
+<a href="/research/quantum-computing/"></a>Quantum Computing				</h3>
+<p class="featured-page__description">The new paradigm of computing, harnessing quantum physics.</p>
+</div>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-widget widget_menu_featured_page mega-menu-item-menu_featured_page-12" id="mega-menu-item-menu_featured_page-12">
+<div class="featured-page layout--horizontal">
+<div class="featured-page__image-container image-small">
+<a href="/research/data-science/"></a><img alt="" class="featured-page__image" height="114" src="/wp-content/uploads/2021/12/P1180688@2x-114x114.jpg" width="114"/> </div>
+<div class="featured-page__content">
+<h3 class="featured-page__title">
+<a href="/research/data-science/"></a>Data Science				</h3>
+<p class="featured-page__description">Defining this emerging field by advancing foundations and applications.</p>
+</div>
+</div>
+</li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-4-of-12" id="mega-menu-738-0-1" style="--columns:12; --span:4">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-14" id="mega-menu-item-menu_section_header-14">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+<a href="/research/"></a>Research Areas			</h3>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-research mega-menu-item-760" id="mega-menu-item-760"><a class="mega-menu-link" href="/research/ai-machine-learning/">AI &amp; Machine Learning</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-research mega-menu-item-761" id="mega-menu-item-761"><a class="mega-menu-link" href="/research/computing-education/">Computing Education</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-research mega-menu-item-762" id="mega-menu-item-762"><a class="mega-menu-link" href="/research/data-databases/">Data &amp; Databases</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-research mega-menu-item-763" id="mega-menu-item-763"><a class="mega-menu-link" href="/research/human-computer-interaction/">Human Computer Interaction</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-research mega-menu-item-764" id="mega-menu-item-764"><a class="mega-menu-link" href="/research/scientific-high-performance-computing/">Scientific &amp; High Performance Computing</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-research mega-menu-item-765" id="mega-menu-item-765"><a class="mega-menu-link" href="/research/security-privacy/">Security &amp; Privacy</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-research mega-menu-item-766" id="mega-menu-item-766"><a class="mega-menu-link" href="/research/programming-languages/">Programming Languages</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-research mega-menu-item-767" id="mega-menu-item-767"><a class="mega-menu-link" href="/research/systems-architecture-networking/">Systems, Architecture &amp; Networking</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-research mega-menu-item-768" id="mega-menu-item-768"><a class="mega-menu-link" href="/research/theory/">Theory</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-research mega-menu-item-769" id="mega-menu-item-769"><a class="mega-menu-link" href="/research/visual-computing/">Visual Computing</a></li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-4-of-12" id="mega-menu-738-0-2" style="--columns:12; --span:4">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-10" id="mega-menu-item-menu_section_header-10">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+<a href="/research/labs-groups/"></a>Labs &amp; Groups			</h3>
+<p class="menu-section-header__description">Faculty-led research groups exploring research areas within computer science and its interdisciplinary applications.</p>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-9" id="mega-menu-item-menu_section_header-9">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+<a href="/partners/"></a>Partners			</h3>
+<p class="menu-section-header__description">Organizations from academia, industry, government, and the non-profit sector that collaborate with UChicago CS.</p>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-27" id="mega-menu-item-menu_section_header-27">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+<a href="/research/postdoctoral-researchers/"></a>Postdoctoral Researchers			</h3>
+<p class="menu-section-header__description">Opportunities for PhDs to work on world-class computer science research with faculty members.</p>
+</div>
+</li> </ul>
+</li> </ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-3471" id="mega-menu-item-3471"><a aria-expanded="false" class="mega-menu-link" href="/academics/" tabindex="0">Academics<span aria-hidden="true" class="mega-indicator"></span></a>
+<ul class="mega-sub-menu" role="presentation">
+<li class="mega-menu-row" id="mega-menu-3471-0">
+<ul class="mega-sub-menu" role="presentation" style="--columns:12">
+<li class="mega-menu-column mega-menu-columns-6-of-12" id="mega-menu-3471-0-0" style="--columns:12; --span:6">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-22" id="mega-menu-item-menu_section_header-22">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+<a href="/academics/undergraduate/"></a>Undergraduate			</h3>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-773" id="mega-menu-item-773"><a class="mega-menu-link" href="/academics/undergraduate/program-overview/">Undergraduate Program Overview</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-775" id="mega-menu-item-775"><a class="mega-menu-link" href="/academics/undergraduate/joint-bx-ms-programs/">Joint Bx/MS Programs</a></li><li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-21" id="mega-menu-item-menu_section_header-21">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+<a href="/academics/masters/"></a>Master's Programs			</h3>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-7498" id="mega-menu-item-7498"><a class="mega-menu-link" href="http://masters.cs.uchicago.edu/">Masters Program in Computer Science (MPCS)</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3795" id="mega-menu-item-3795"><a class="mega-menu-link" href="/academics/masters/capp/">Master’s in Computational Analysis and Public Policy (MSCAPP)</a></li><li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-20" id="mega-menu-item-menu_section_header-20">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+<a href="/academics/phd/"></a>PhD Programs			</h3>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3798" id="mega-menu-item-3798"><a class="mega-menu-link" href="/academics/phd/phd-program-overview/">PhD Program Overview</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-792" id="mega-menu-item-792"><a class="mega-menu-link" href="/academics/phd/joint-math-cs-phd/">Joint Math/CS PhD</a></li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-6-of-12" id="mega-menu-3471-0-1" style="--columns:12; --span:6">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-25" id="mega-menu-item-menu_section_header-25">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+				Resources			</h3>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3856" id="mega-menu-item-3856"><a class="mega-menu-link" href="/academics/admission/">Admission</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-4198" id="mega-menu-item-4198"><a class="mega-menu-link" href="/academics/courses/">Course Highlights</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-4410" id="mega-menu-item-4410"><a class="mega-menu-link" href="https://course-info.cs.uchicago.edu/">Course Catalog</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-8761" id="mega-menu-item-8761"><a class="mega-menu-link" href="/academics/cmsc-waitlist-info/">CMSC Waitlist Info</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-4854" id="mega-menu-item-4854"><a class="mega-menu-link" href="https://uchicago-cs.github.io/student-resource-guide/">Student Resource Guide</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-4003" id="mega-menu-item-4003"><a class="mega-menu-link" href="/academics/undergraduate/career-resources/">Jobs &amp; Career Resources</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-4004" id="mega-menu-item-4004"><a class="mega-menu-link" href="/academics/undergraduate/summer-research/">Summer Research</a></li><li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-24" id="mega-menu-item-menu_section_header-24">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+				Community			</h3>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-4001" id="mega-menu-item-4001"><a class="mega-menu-link" href="/academics/phd/graduate-student-leadership/">Graduate Student Leadership</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-4002" id="mega-menu-item-4002"><a class="mega-menu-link" href="/academics/undergraduate/student-organizations/">Student Organizations</a></li> </ul>
+</li> </ul>
+</li><li class="mega-menu-row" id="mega-menu-3471-1">
+<ul class="mega-sub-menu" role="presentation" style="--columns:12">
+<li class="mega-menu-column mega-menu-columns-3-of-12" id="mega-menu-3471-1-0" style="--columns:12; --span:3"></li> </ul>
+</li><li class="mega-menu-row" id="mega-menu-3471-2">
+<ul class="mega-sub-menu" role="presentation" style="--columns:12">
+<li class="mega-menu-column mega-menu-columns-3-of-12" id="mega-menu-3471-2-0" style="--columns:12; --span:3"></li> </ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-4133 current-menu-ancestor" id="mega-menu-item-4133"><a aria-expanded="false" class="mega-menu-link" href="/people/uchicago-faculty/full-time-faculty/" tabindex="0">People<span aria-hidden="true" class="mega-indicator"></span></a>
+<ul class="mega-sub-menu" role="presentation">
+<li class="mega-menu-row" id="mega-menu-4133-0">
+<ul class="mega-sub-menu" role="presentation" style="--columns:12">
+<li class="mega-menu-column mega-menu-columns-6-of-12" id="mega-menu-4133-0-0" style="--columns:12; --span:6">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-26" id="mega-menu-item-menu_section_header-26">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+<a href="/people/uchicago-faculty/full-time-faculty/"></a>Faculty			</h3>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-4334" id="mega-menu-item-4334"><a class="mega-menu-link" href="/people/uchicago-faculty/full-time-faculty/">Full-Time Faculty</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-4335" id="mega-menu-item-4335"><a class="mega-menu-link" href="/people/uchicago-faculty/mpcs-faculty/">MPCS Faculty</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-4336" id="mega-menu-item-4336"><a class="mega-menu-link" href="/people/affiliated-faculty/">Affiliated Faculty</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-4337" id="mega-menu-item-4337"><a class="mega-menu-link" href="/people/uchicago-faculty/emeritus-faculty/">Emeritus Faculty</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-4339" id="mega-menu-item-4339"><a class="mega-menu-link" href="/people/uchicago-faculty/all-faculty/">All Faculty</a></li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-6-of-12" id="mega-menu-4133-0-1" style="--columns:12; --span:6">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-1121" id="mega-menu-item-1121"><a class="mega-menu-link" href="/people/phds-post-docs/">PhDs &amp; Post-Docs</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-1129" id="mega-menu-item-1129"><a class="mega-menu-link" href="/people/staff/">Staff</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-4059" id="mega-menu-item-4059"><a class="mega-menu-link" href="/people/in-memoriam/">In Memoriam</a></li> </ul>
+</li> </ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-741" id="mega-menu-item-741"><a aria-expanded="false" class="mega-menu-link" href="/diversity/" tabindex="0">Diversity<span aria-hidden="true" class="mega-indicator"></span></a>
+<ul class="mega-sub-menu" role="presentation">
+<li class="mega-menu-row" id="mega-menu-741-0">
+<ul class="mega-sub-menu" role="presentation" style="--columns:12">
+<li class="mega-menu-column mega-menu-columns-6-of-12" id="mega-menu-741-0-0" style="--columns:12; --span:6">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_menu_featured_page mega-menu-item-menu_featured_page-9" id="mega-menu-item-menu_featured_page-9">
+<div class="featured-page layout--vertical">
+<div class="featured-page__image-container image-">
+<a href="/diversity/"></a><img alt="" class="featured-page__image" height="179" src="/wp-content/uploads/2022/02/student-trio-273x179.jpg" width="273"/> </div>
+<div class="featured-page__content">
+<h3 class="featured-page__title">
+<a href="/diversity/"></a>Diversity @ UChicago CS				</h3>
+<p class="featured-page__description">At UChicago CS, we welcome students of all backgrounds and identities.</p>
+</div>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3958" id="mega-menu-item-3958"><a class="mega-menu-link" href="/diversity/equity-diversity-and-inclusion-edi-committee/">EDI Committee</a></li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-6-of-12" id="mega-menu-741-0-1" style="--columns:12; --span:6">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_menu_featured_page mega-menu-item-menu_featured_page-10" id="mega-menu-item-menu_featured_page-10">
+<div class="featured-page layout--horizontal">
+<div class="featured-page__image-container image-large">
+<a href="/diversity/broadening-participation-in-computing-bpc-plan/"></a><img alt="" class="featured-page__image" height="114" src="/wp-content/uploads/2022/02/superpower7-114x114.jpeg" width="114"/> </div>
+<div class="featured-page__content">
+<h3 class="featured-page__title">
+<a href="/diversity/broadening-participation-in-computing-bpc-plan/"></a>Our BPC Plan				</h3>
+<p class="featured-page__description">Fostering an inclusive environment where students from all backgrounds can achieve their highest potential.</p>
+</div>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-758" id="mega-menu-item-758"><a class="mega-menu-link" href="/diversity/women-in-computing/">Women in Computing</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3519" id="mega-menu-item-3519"><a class="mega-menu-link" href="/diversity/grace-hopper-sponsorship/">Grace Hopper Celebration</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-3517" id="mega-menu-item-3517"><a class="mega-menu-link" href="/diversity/compileher/">compileHer</a></li> </ul>
+</li> </ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-743" id="mega-menu-item-743"><a aria-expanded="false" class="mega-menu-link" href="/news-events/" tabindex="0">News &amp; Events<span aria-hidden="true" class="mega-indicator"></span></a>
+<ul class="mega-sub-menu" role="presentation">
+<li class="mega-menu-row" id="mega-menu-743-0">
+<ul class="mega-sub-menu" role="presentation" style="--columns:12">
+<li class="mega-menu-column mega-menu-columns-4-of-12" id="mega-menu-743-0-0" style="--columns:12; --span:4">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-15" id="mega-menu-item-menu_section_header-15">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+<a href="/news-events/news/"></a>News			</h3>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-widget widget_menu_recent_posts mega-menu-item-menu_recent_posts-2" id="mega-menu-item-menu_recent_posts-2"> <div class="cards">
+<div class="card card--horizontal card--small">
+<div class="card__image-container">
+<picture>
+<source media="(min-width: 1024px)" srcset="/wp-content/uploads/2026/06/touch-114x114.png">
+<source srcset="/wp-content/uploads/2026/06/touch-114x114.png">
+<img alt="BloomBeacon touch" class="card__image" decoding="async" height="114" sizes="(max-width: 114px) 100vw, 114px" src="/wp-content/uploads/2026/06/touch-114x114.png" srcset="/wp-content/uploads/2026/06/touch-114x114.png 114w" width="114"/> </source></source></picture>
+</div>
+<div class="card__content">
+<h3 class="card__title">Flexible Displays, Flexible Lives: How BloomBeacon Reimagines Interaction</h3>
+</div>
+<a aria-label="Read more about Flexible Displays, Flexible Lives: How BloomBeacon Reimagines Interaction" class="card__url" href="/archived-content/" target="_self"></a>
+</div>
+<div class="card card--horizontal card--small">
+<div class="card__image-container">
+<picture>
+<source media="(min-width: 1024px)" srcset="/wp-content/uploads/2026/06/SciFM26-VC6_3545-Pano75-114x114.jpeg">
+<source srcset="/wp-content/uploads/2026/06/SciFM26-VC6_3545-Pano75-114x114.jpeg">
+<img alt="" class="card__image" decoding="async" height="114" sizes="(max-width: 114px) 100vw, 114px" src="/wp-content/uploads/2026/06/SciFM26-VC6_3545-Pano75-114x114.jpeg" srcset="/wp-content/uploads/2026/06/SciFM26-VC6_3545-Pano75-114x114.jpeg 114w" width="114"/> </source></source></picture>
+</div>
+<div class="card__content">
+<h3 class="card__title">SciFM 2026 at UChicago: Inside the Premier Gathering of AI, Foundation Models, and the Future of Scientific Discovery</h3>
+</div>
+<a aria-label="Read more about SciFM 2026 at UChicago: Inside the Premier Gathering of AI, Foundation Models, and the Future of Scientific Discovery" class="card__url" href="/archived-content/" target="_self"></a>
+</div>
+<div class="card card--horizontal card--small">
+<div class="card__image-container">
+<picture>
+<source media="(min-width: 1024px)" srcset="/wp-content/uploads/2026/05/Gemini_Generated_Image_xnbf6xxnbf6xxnbf-114x114.png">
+<source srcset="/wp-content/uploads/2026/05/Gemini_Generated_Image_xnbf6xxnbf6xxnbf-114x114.png">
+<img alt="Student using ChatGPT" class="card__image" decoding="async" height="114" sizes="(max-width: 114px) 100vw, 114px" src="/wp-content/uploads/2026/05/Gemini_Generated_Image_xnbf6xxnbf6xxnbf-114x114.png" srcset="/wp-content/uploads/2026/05/Gemini_Generated_Image_xnbf6xxnbf6xxnbf-114x114.png 114w" width="114"/> </source></source></picture>
+</div>
+<div class="card__content">
+<h3 class="card__title">Are Students Hiding Their AI Use? The Social Stigma Behind AI Use in the Classroom</h3>
+</div>
+<a aria-label="Read more about Are Students Hiding Their AI Use? The Social Stigma Behind AI Use in the Classroom" class="card__url" href="/archived-content/" target="_self"></a>
+</div>
+</div>
+</li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-4-of-12" id="mega-menu-743-0-1" style="--columns:12; --span:4">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-16" id="mega-menu-item-menu_section_header-16">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+<a href="/news-events/events/"></a>Events			</h3>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-widget widget_menu_recent_posts mega-menu-item-menu_recent_posts-3" id="mega-menu-item-menu_recent_posts-3">
+</li> </ul>
+</li><li class="mega-menu-column mega-menu-columns-4-of-12" id="mega-menu-743-0-2" style="--columns:12; --span:4">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_menu_section_header mega-menu-item-menu_section_header-17" id="mega-menu-item-menu_section_header-17">
+<div class="menu-section-header">
+<h3 class="menu-section-header__title">
+<a href="/news-events/video/"></a>Video			</h3>
+</div>
+</li><li class="mega-menu-item mega-menu-item-type-widget widget_menu_recent_posts mega-menu-item-menu_recent_posts-4" id="mega-menu-item-menu_recent_posts-4"> <div class="cards">
+<div class="card card--horizontal card--small">
+<div class="card__image-container">
+<picture>
+<source media="(min-width: 1024px)" srcset="/wp-content/uploads/2026/01/Screenshot-2026-01-08-at-12.09.34-PM-2-114x114.png">
+<source srcset="/wp-content/uploads/2026/01/Screenshot-2026-01-08-at-12.09.34-PM-2-114x114.png">
+<img alt="Tensormesh CEO Junchen Jiang" class="card__image" decoding="async" height="114" sizes="(max-width: 114px) 100vw, 114px" src="/wp-content/uploads/2026/01/Screenshot-2026-01-08-at-12.09.34-PM-2-114x114.png" srcset="/wp-content/uploads/2026/01/Screenshot-2026-01-08-at-12.09.34-PM-2-114x114.png 114w" width="114"/> </source></source></picture>
+</div>
+<div class="card__content">
+<h3 class="card__title">Building Tensormesh: A Conversation with the CEO (Junchen Jiang)</h3>
+</div>
+<a aria-label="Read more about Building Tensormesh: A Conversation with the CEO (Junchen Jiang)" class="card__url" href="/multimedia/building-tensormesh-a-conversation-with-the-ceo-junchen-jiang/" target="_self"></a>
+</div>
+<div class="card card--horizontal card--small">
+<div class="card__image-container">
+<picture>
+<source media="(min-width: 1024px)" srcset="/wp-content/uploads/2025/11/wetransfer_tedx-tfih-speaker-drips_2025-07-23_1445_TED-X-CHICAGO-2025-SPEAKER-HeatherZheng-114x114.png">
+<source srcset="/wp-content/uploads/2025/11/wetransfer_tedx-tfih-speaker-drips_2025-07-23_1445_TED-X-CHICAGO-2025-SPEAKER-HeatherZheng-114x114.png">
+<img alt="" class="card__image" decoding="async" height="114" sizes="(max-width: 114px) 100vw, 114px" src="/wp-content/uploads/2025/11/wetransfer_tedx-tfih-speaker-drips_2025-07-23_1445_TED-X-CHICAGO-2025-SPEAKER-HeatherZheng-114x114.png" srcset="/wp-content/uploads/2025/11/wetransfer_tedx-tfih-speaker-drips_2025-07-23_1445_TED-X-CHICAGO-2025-SPEAKER-HeatherZheng-114x114.png 114w, /wp-content/uploads/2025/11/wetransfer_tedx-tfih-speaker-drips_2025-07-23_1445_TED-X-CHICAGO-2025-SPEAKER-HeatherZheng.png 1080w" width="114"/> </source></source></picture>
+</div>
+<div class="card__content">
+<h3 class="card__title">How artists can protect their work from AI | Dr. Heather Zheng | TEDxChicago</h3>
+</div>
+<a aria-label="Read more about How artists can protect their work from AI | Dr. Heather Zheng | TEDxChicago" class="card__url" href="/multimedia/how-artists-can-protect-their-work-from-ai-dr-heather-zheng-tedxchicago/" target="_self"></a>
+</div>
+<div class="card card--horizontal card--small">
+<div class="card__image-container">
+<picture>
+<source media="(min-width: 1024px)" srcset="/wp-content/uploads/2025/10/Screenshot-2025-10-27-at-1.48.55 PM-114x114.png">
+<source srcset="/wp-content/uploads/2025/10/Screenshot-2025-10-27-at-1.48.55 PM-114x114.png">
+<img alt="Inside the Lab icon" class="card__image" decoding="async" height="114" sizes="(max-width: 114px) 100vw, 114px" src="/wp-content/uploads/2025/10/Screenshot-2025-10-27-at-1.48.55 PM-114x114.png" srcset="/wp-content/uploads/2025/10/Screenshot-2025-10-27-at-1.48.55 PM-114x114.png 114w" width="114"/> </source></source></picture>
+</div>
+<div class="card__content">
+<h3 class="card__title">Inside The Lab: How Can Robots Improve Our Lives?</h3>
+</div>
+<a aria-label="Read more about Inside The Lab: How Can Robots Improve Our Lives?" class="card__url" href="/multimedia/inside-the-lab-how-can-robots-improve-our-lives/" target="_self"></a>
+</div>
+</div>
+</li> </ul>
+</li> </ul>
+</li></ul>
+</li><li class="mega-menu-item-search mega-mobile-50 mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-744 menu-item-search mobile-50" id="mega-menu-item-744"> <button aria-expanded="false" aria-haspopup="true" class="mega-menu-link" tabindex="0">
+<svg aria-hidden="true" class="icon search" height="15" role="img" width="15">
+<use xlink:href="#search"></use>
+</svg>
+<span class="show-for-sr">Search Site</span>
+</button>
+<ul class="mega-sub-menu" role="presentation">
+<li class="mega-menu-row" id="mega-menu-744-0">
+<ul class="mega-sub-menu" role="presentation" style="--columns:12">
+<li class="mega-menu-column mega-menu-columns-12-of-12" id="mega-menu-744-0-0" style="--columns:12; --span:12">
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-widget widget_search mega-menu-item-search-6" id="mega-menu-item-search-6"><button class="search-form__btn-close">
+<svg aria-hidden="true" class="icon close" height="18" role="img" width="19">
+<title id="title-close-16792">
+				close			</title>
+<use xlink:href="#close"></use>
+</svg>
+</button>
+<form action="https://www.google.com/search" class="search-form" method="get">
+<label class="search-form__label" for="search-field-2049284390">
+		Search
+		<span class="show-for-sr">To search this site, enter a search term</span>
+</label>
+<div class="search-form__field-wrapper">
+<input aria-required="false" autocomplete="off" class="search-form__field" id="search-field-2049284390" name="q" placeholder="Enter Search Terms" type="text" value=""/>
+<button class="search-form__submit" id="search-submit" tabindex="-1" type="submit">
+<svg aria-hidden="true" class="icon arrow-right-large" height="20" role="img" width="11">
+<title id="title-arrow-right-large-6491">
+				arrow-right-large			</title>
+<use xlink:href="#arrow-right-large"></use>
+</svg>
+<span class="show-for-sr">Submit</span>
+</button>
+</div>
+<input name="as_sitesearch" type="hidden" value="cs.uchicago.edu"/></form>
+</li> </ul>
+</li> </ul>
+</li></ul>
+</li><li class="mega-mobile-50 mega-intranet mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-745 mobile-50 intranet" id="mega-menu-item-745"> <a aria-expanded="false" aria-haspopup="false" class="mega-menu-link" href="https://howto.cs.uchicago.edu/" rel="noopener noreferrer" tabindex="0" target="_blank">
+<svg aria-hidden="true" class="icon intranet" height="15" role="img" width="17">
+<use xlink:href="#intranet"></use>
+</svg>
+<span class="show-for-sr">Intranet</span>
+</a>
+<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-3984" id="mega-menu-item-3984"><a class="mega-menu-link" href="https://howto.cs.uchicago.edu/">Intranet</a></li></ul>
+</li></ul></div> </nav>
+</div>
+</div>
+</header>
+<main class="site-content" id="main">
+<header class="page-header page-header--people">
+<div class="page-hero" is="page-hero">
+<div class="page-hero__image-container">
+<img alt="" class="page-hero__image" decoding="async" height="175" sizes="(max-width: 175px) 100vw, 175px" src="/wp-content/uploads/2018/09/Nathan_Srebro.jpg" srcset="/wp-content/uploads/2018/09/Nathan_Srebro.jpg 175w, /wp-content/uploads/2018/09/Nathan_Srebro-114x114.jpg 114w" width="175"/> </div>
+</div>
+<div class="page-header__container container">
+<div class="grid">
+<div class="page-header__secondary">
+<div class="page-header__image-container rounded">
+<img alt="" class="page-header__image" decoding="async" height="175" sizes="(max-width: 175px) 100vw, 175px" src="/wp-content/uploads/2018/09/Nathan_Srebro.jpg" srcset="/wp-content/uploads/2018/09/Nathan_Srebro.jpg 175w, /wp-content/uploads/2018/09/Nathan_Srebro-114x114.jpg 114w" width="175"/> </div>
+</div>
+<div class="page-header__primary">
+<div class="page-header__kicker kicker">
+<span class="parent">People</span> </div>
+<h1 class="page-header__title">Nathan Srebro</h1>
+<div class="page-header__intro-text intro-text">
+<ul><li>Professor, Toyota Technological Institute</li><li>Professor, Part-Time, Department of Computer Science</li></ul> </div>
+</div>
+</div>
+</div>
+</header>
+<div class="page-content">
+<section class="section section--page-content" data-short-name="Overview" id="overview">
+<div class="container">
+<div class="grid">
+<aside class="sidebar widget-area">
+<div class="sidebar__inner">
+<div class="widget widget_anchor_menu"> <ul is="anchor-menu">
+</ul>
+</div> </div>
+</aside>
+<div class="primary-content">
+<div class="person-details">
+<div class="person-details__label">Contact Info</div>
+<div class="person-detail">
+<div class="person-detail__label">Email</div> <div class="person-detail__value"><a href="mailto:nati@ttic.edu">nati@ttic.edu</a></div> </div>
+<div class="person-detail">
+<div class="person-detail__label">Phone</div> <div class="person-detail__value">(773) 834-7493</div> </div>
+<div class="person-detail">
+<div class="person-detail__label">Office</div> <div class="person-detail__value">Toyota Technological Institute</div> </div>
+<div class="person-detail">
+<div class="person-detail__label">Website</div> <div class="person-detail__value"><a href="http://ttic.uchicago.edu/~nati/" target="_blank">http://ttic.uchicago.edu/~nati/</a></div> </div>
+</div>
+<div class="content-section content-section--research-areas">
+<h3 class="content-section__title">Research</h3>
+<div class="content-section-body">
+<div class="cards">
+<div class="card card--icon card--horizontal">
+<div class="card__image-container">
+<a href="/research/ai-machine-learning/">
+<img alt="" class="card__image" decoding="async" height="1" loading="lazy" src="/wp-content/uploads/2021/09/CS_ResearchAreas_AI-Machine-Learning.svg" width="1"/> </a>
+</div>
+<div class="card__content">
+<h3 class="card__title">
+<a href="/research/ai-machine-learning/">
+					AI &amp; Machine Learning				</a>
+</h3>
+<div class="card__teaser">Foundations and applications of computer algorithms making data-centric models, predictions, and decisions</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content-section content-section--labs-groups">
+<h3 class="content-section__title">Labs &amp; Groups</h3>
+<div class="content-section-body">
+<div class="lab-groups">
+<div class="lab-group">
+<h4 class="lab-group__name">
+<a href="http://theory.cs.uchicago.edu/" target="_blank">
+														Theoretical Computer Science Group															</a>
+</h4>
+<div class="lab-group__intro-text">The Theory group plays a fundamental role in connecting CS with physics, statistics, and other mathematical sciences.</div>
+</div>
+<div class="lab-group">
+<h4 class="lab-group__name">
+<a href="https://voices.uchicago.edu/machinelearning/" target="_blank">
+														Machine Learning Group															</a>
+</h4>
+<div class="lab-group__intro-text">Researchers at the University of Chicago and partner institutions studying the foundations and applications of machine learning and AI.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section &amp;="" class="section section--content-slider header-size-top bg-speckled-light-grey" data-short-name="News" data-slide-count="3" events="" id="news-events" is="content-slider">
+<div class="container">
+<header class="section-header">
+<h2 class="section-header__title">
+		News &amp; Events	</h2>
+<div class="section-header__controls">
+<button class="swiper-button swiper-button--prev swiper-button--small">
+<svg aria-hidden="true" class="icon slider-arrow-prev" height="20" role="img" width="16">
+<title id="title-slide-to-previous-slide-28040">
+				Slide to Previous Slide			</title>
+<use xlink:href="#slider-arrow-prev"></use>
+</svg>
+</button>
+<button class="swiper-button swiper-button--next swiper-button--small">
+<svg aria-hidden="true" class="icon slider-arrow-next" height="20" role="img" width="16">
+<title id="title-slide-to-next-slide-8106">
+				Slide to Next Slide			</title>
+<use xlink:href="#slider-arrow-next"></use>
+</svg>
+</button>
+</div>
+</header>
+<div class="section-body">
+<div class="swiper">
+<div class="swiper-wrapper">
+<div class="swiper-slide">
+<div class="card card--boxed">
+<div class="card__image-container">
+<picture>
+<source media="(min-width: 1024px)" srcset="/wp-content/uploads/2021/11/omar-montasser-240x216.jpeg">
+<source srcset="/wp-content/uploads/2021/11/omar-montasser-240x216.jpeg">
+<img alt="" class="card__image" decoding="async" height="216" loading="lazy" src="/wp-content/uploads/2021/11/omar-montasser-240x216.jpeg" width="240"/> </source></source></picture>
+</div>
+<div class="card__content">
+<div class="card__kicker kicker">
+		Past Event	</div>
+<h3 class="card__title">Omar Montasser (TTIC) – Transductive Robust Learning Guarantees</h3>
+<div class="card__date"><span class="date">Nov 17, 2021</span></div>
+</div>
+<a aria-label="Read more about Omar Montasser (TTIC) – Transductive Robust Learning Guarantees" class="card__url" href="/archived-content/" target="_self"></a>
+</div>
+</div>
+<div class="swiper-slide">
+<div class="card card--boxed">
+<div class="card__image-container">
+<picture>
+<source media="(min-width: 1024px)" srcset="/wp-content/uploads/2021/11/nati-305x216.jpeg">
+<source srcset="/wp-content/uploads/2021/11/nati-305x216.jpeg">
+<img alt="" class="card__image" decoding="async" height="216" loading="lazy" src="/wp-content/uploads/2021/11/nati-305x216.jpeg" width="305"/> </source></source></picture>
+</div>
+<div class="card__content">
+<div class="card__kicker kicker">
+		Past Event	</div>
+<h3 class="card__title">Nati Srebro – New Questions and Old Answers: Deep Learning, Interpolation Learning and Adversarial Robustness</h3>
+<div class="card__teaser">TTIC</div>
+<div class="card__date"><span class="date">Nov 12, 2021</span></div>
+</div>
+<a aria-label="Read more about Nati Srebro – New Questions and Old Answers: Deep Learning, Interpolation Learning and Adversarial Robustness" class="card__url" href="/archived-content/" target="_self"></a>
+</div>
+</div>
+<div class="swiper-slide">
+<div class="card card--boxed">
+<div class="card__image-container">
+<picture>
+<source media="(min-width: 1024px)" srcset="/wp-content/uploads/2021/10/wang-175x216.jpeg">
+<source srcset="/wp-content/uploads/2021/10/wang-175x216.jpeg">
+<img alt="" class="card__image" decoding="async" height="216" loading="lazy" src="/wp-content/uploads/2021/10/wang-175x216.jpeg" width="175"/> </source></source></picture>
+</div>
+<div class="card__content">
+<div class="card__kicker kicker">
+		Past Event	</div>
+<h3 class="card__title">Lingxiao Wang (TTIC) – Privacy-Preserving Machine Learning: Towards More Efficient and Effective Methods</h3>
+<div class="card__teaser">TTIC</div>
+<div class="card__date"><span class="date">Oct 29, 2021</span></div>
+</div>
+<a aria-label="Read more about Lingxiao Wang (TTIC) – Privacy-Preserving Machine Learning: Towards More Efficient and Effective Methods" class="card__url" href="/archived-content/" target="_self"></a>
+</div>
+</div>
+<div class="swiper-slide">
+<div class="card card--boxed">
+<div class="card__image-container">
+<picture>
+<source media="(min-width: 1024px)" srcset="/wp-content/uploads/2021/02/hanneke.jpg">
+<source srcset="/wp-content/uploads/2021/02/hanneke.jpg">
+<img alt="" class="card__image" decoding="async" height="183" loading="lazy" src="/wp-content/uploads/2021/02/hanneke.jpg" width="144"/> </source></source></picture>
+</div>
+<div class="card__content">
+<div class="card__kicker kicker">
+		Past Event	</div>
+<h3 class="card__title">Steve Hanneke (TTIC) – Machine Learning Theory Beyond Uniform Convergence</h3>
+<div class="card__date"><span class="date">Feb 15, 2021</span></div>
+</div>
+<a aria-label="Read more about Steve Hanneke (TTIC) – Machine Learning Theory Beyond Uniform Convergence" class="card__url" href="/archived-content/" target="_self"></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="section-footer">
+<div class="section-footer__controls">
+<button class="swiper-button swiper-button--prev swiper-button--small">
+<svg aria-hidden="true" class="icon slider-arrow-prev" height="20" role="img" width="16">
+<title id="title-slide-to-previous-slide-70623">
+				Slide to Previous Slide			</title>
+<use xlink:href="#slider-arrow-prev"></use>
+</svg>
+</button>
+<button class="swiper-button swiper-button--next swiper-button--small">
+<svg aria-hidden="true" class="icon slider-arrow-next" height="20" role="img" width="16">
+<title id="title-slide-to-next-slide-95304">
+				Slide to Next Slide			</title>
+<use xlink:href="#slider-arrow-next"></use>
+</svg>
+</button>
+</div>
+</footer>
+</div>
+</section>
+</div>
+</main>
+<footer class="site-footer">
+<div class="site-footer__grid">
+<div class="general-information col">
+<div class="affiliate-site-branding">
+</div>
+<div class="department-information">
+<div class="department-information__logo">
+<img alt="" class="affiliate-site-branding__image" decoding="async" height="1132" loading="lazy" sizes="auto, (max-width: 2196px) 100vw, 2196px" src="/wp-content/uploads/2024/01/UChicago_Computer-Science_Vertical_White-RGB.png" srcset="/wp-content/uploads/2024/01/UChicago_Computer-Science_Vertical_White-RGB.png 2196w, /wp-content/uploads/2024/01/UChicago_Computer-Science_Vertical_White-RGB-1024x528.png 1024w" width="2196"/> </div>
+<div class="department-information__content">John Crerar Library Building<br/>
+5730 South Ellis Avenue<br/>
+Chicago IL 60637<br/>
+Main: 773.702.6614<br/>
+For general inquiries: cswebmaster@cs.uchicago.edu<br/>
+For media relations: communications@cs.uchicago.edu</div>
+<div class="department-information__copyright">© 2026 Copyright University of Chicago</div>
+</div>
+</div>
+<nav aria-label="Footer Navigation" class="footer-navigation navigation-menu col" id="site-footer-navigation">
+<ul class="menu" id="footer-menu"><li class="bold menu-item menu-item-type-post_type menu-item-object-page menu-item-289" id="menu-item-289"><a href="/about/">About</a></li>
+<li class="bold menu-item menu-item-type-post_type menu-item-object-page menu-item-799" id="menu-item-799"><a href="/research/">Research</a></li>
+<li class="bold menu-item menu-item-type-post_type menu-item-object-page menu-item-4281" id="menu-item-4281"><a href="/academics/">Academics</a></li>
+<li class="bold menu-item menu-item-type-post_type menu-item-object-page menu-item-4267 current-menu-ancestor" id="menu-item-4267"><a href="/people/uchicago-faculty/full-time-faculty/">People</a></li>
+<li class="bold menu-item menu-item-type-post_type menu-item-object-page menu-item-291" id="menu-item-291"><a href="/news-events/">News &amp; Events</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-294" id="menu-item-294"><a href="/academics/admission/">Admission</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3857" id="menu-item-3857"><a href="/academics/undergraduate/student-organizations/">Student Organizations</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-800" id="menu-item-800"><a href="/contact/">Contact</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1136" id="menu-item-1136"><a href="https://www.uchicago.edu/non-discrimination" target="_blank">Non-Discrimination Statement</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1135" id="menu-item-1135"><a href="https://accessibility.uchicago.edu" target="_blank">Accessibility</a></li>
+</ul> </nav>
+<div class="site-footer__widgets col">
+<div class="widget gform_widget"><h3 class="widget__title">Get Updates</h3>
+
+
+
+<script id="wp-dom-ready-js" src="/wp-includes/js/dist/dom-ready.min.js" type="text/javascript"></script>
+<script id="wp-hooks-js" src="/wp-includes/js/dist/hooks.min.js" type="text/javascript"></script>
+<script id="wp-i18n-js" src="/wp-includes/js/dist/i18n.min.js" type="text/javascript"></script>
+<script id="wp-i18n-js-after" type="text/javascript">
+/* <![CDATA[ */
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+/* ]]> */
+</script>
+<script id="wp-a11y-js" src="/wp-includes/js/dist/a11y.min.js" type="text/javascript"></script>
+
+
+
+
+<script type="text/javascript"></script>
+
+
+
+</div><div class="widget widget_social_profiles"><h3 class="widget__title">Follow</h3> <ul class="social-icons">
+<li class="social-icon twitter">
+<a href="https://twitter.com/UChicagoCS" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="icon twitter" height="19" role="img" width="19">
+<title id="title-twitter-42242">
+				twitter			</title>
+<use xlink:href="#twitter"></use>
+</svg>
+<span class="show-for-sr">
+						Link to Twitter						</span>
+</a>
+</li>
+<li class="social-icon linkedin">
+<a href="https://www.linkedin.com/company/uchicagocs/" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="icon linkedin" height="19" role="img" width="19">
+<title id="title-linkedin-18922">
+				linkedin			</title>
+<use xlink:href="#linkedin"></use>
+</svg>
+<span class="show-for-sr">
+						Link to Linkedin						</span>
+</a>
+</li>
+<li class="social-icon youtube">
+<a href="https://www.youtube.com/channel/UCmY5ykiIYGp1KXxEdFaRQCw" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="icon youtube" height="19" role="img" width="19">
+<title id="title-youtube-10283">
+				youtube			</title>
+<use xlink:href="#youtube"></use>
+</svg>
+<span class="show-for-sr">
+						Link to Youtube						</span>
+</a>
+</li>
+</ul><!-- .social-icons -->
+</div> </div>
+</div>
+</footer>
+</div>
+
+
+
+
+
+<script id="philament-scripts-js" src="/wp-content/themes/csuc/build/frontend.js" type="text/javascript"></script>
+<script id="hoverIntent-js" src="/wp-includes/js/hoverIntent.min.js" type="text/javascript"></script>
+<script id="megamenu-js" src="/wp-content/plugins/megamenu/js/maxmegamenu.js" type="text/javascript"></script>
+
+
+
+
+
+
+<div class="svg-sprite-wrapper" style="height: 0; width: 0; overflow:hidden;"><svg xmlns="http://www.w3.org/2000/svg"><symbol id="arrow-down-large" style="enable-background:new 0 0 40.2 29.2" viewbox="0 0 40.2 29.2"><title>arrow-down-large</title><path d="M19.9 29.2c-.2 0-.5-.1-.6-.3L.1 1.4c-.2-.3-.2-.8.2-1 .3-.2.8-.2 1 .2l18.5 26.6L38.8.3c.2-.3.7-.4 1-.2.3.2.4.7.2 1L20.5 28.9c-.1.2-.4.3-.6.3z"></path></symbol><symbol id="arrow-left-large" viewbox="0 0 31 53"><title>arrow-left-large</title><path d="M30.753.342A1 1 0 0 0 29.44.17l-.1.076-29 25.375a1 1 0 0 0-.09 1.415l.09.09 29 25.375a1 1 0 0 0 1.407-1.417l-.09-.088L2.52 26.374 30.66 1.753a1 1 0 0 0 .17-1.312l-.076-.1Z"></path></symbol><symbol id="arrow-right-large-grey" viewbox="0 0 11.2 18.9"><title>arrow-right-large-grey</title><path d="M1 18.9c-.3 0-.5-.1-.7-.3-.4-.4-.3-1 .1-1.4l8.4-7.7L.3 1.7C-.1 1.3-.1.7.2.3c.4-.4 1-.4 1.4-.1l9.2 8.5c.2.2.3.5.3.7s-.1.5-.3.7l-9.2 8.5c-.1.2-.4.3-.6.3z" fill="#9C9C9C"></path></symbol><symbol id="arrow-right-large-yellow" viewbox="0 0 31 53"><title>arrow-right-large-yellow</title><path d="M.2.4c-.3.4-.2 1 .2 1.3l28.1 24.6L.3 51l-.1.1c-.3.4-.3.9 0 1.3.4.4 1 .5 1.4.1l29-25.4.1-.1c.4-.4.3-1-.1-1.4L1.7.2h-.1C1.1-.1.6 0 .2.4z" fill="#eaaa00"></path></symbol><symbol id="arrow-right-large" viewbox="0 0 11.2 18.9"><title>arrow-right-large</title><path d="M1 18.9c-.3 0-.5-.1-.7-.3-.4-.4-.3-1 .1-1.4l8.4-7.7L.3 1.7C-.1 1.3-.1.7.2.3c.4-.4 1-.4 1.4-.1l9.2 8.5c.2.2.3.5.3.7s-.1.5-.3.7l-9.2 8.5c-.1.2-.4.3-.6.3z"></path></symbol><symbol id="arrow-right-small" viewbox="0 0 4.8 8.5"><title>arrow-right-small</title><path d="M.8 8.5c-.2 0-.4-.1-.5-.2C0 8 0 7.5.3 7.2l2.8-3-2.8-3C0 .9 0 .4.3.1c.3-.3.8-.3 1.1 0l3.3 3.5c.3.3.3.7 0 1L1.3 8.3c-.2.1-.4.2-.5.2z"></path></symbol><symbol class="button-arrow" id="button-arrow" viewbox="0 0 10 10"><title>button-arrow</title><g fill-rule="evenodd"><path class="button-arrow__line" d="M0 5h12"></path><path class="button-arrow__tip" d="m1 1 4 4-4 4"></path></g></symbol><symbol id="close" viewbox="0 0 19.6 19.6"><title>close</title><path d="m10.8 9.8 8.5-8.5c.3-.3.3-.8 0-1.1s-.8-.3-1.1 0L9.8 8.7 1.3.2C1-.1.5-.1.2.2s-.3.8 0 1.1l8.5 8.5-8.5 8.5c-.3.3-.3.8 0 1.1.1.1.3.2.5.2s.4-.1.5-.2l8.5-8.5 8.5 8.5c.1.1.3.2.5.2s.4-.1.5-.2c.3-.3.3-.8 0-1.1l-8.4-8.5z"></path></symbol><symbol id="document" viewbox="0 0 36 42"><title>document</title><path d="M21.4-1a1 1 0 0 1 .117 1.994L21.401 1H1.818v40H34.08c.04 0 .077-.027.093-.063l.009-.039V12.886a1 1 0 0 1 1.993-.116l.007.116v28.012c0 1.108-.864 2.02-1.952 2.097l-.15.005H1.662a1.844 1.844 0 0 1-1.838-1.692l-.006-.152V.548c0-.808.619-1.47 1.408-1.541L1.366-1h20.035Z"></path><path d="M21.672-.475c-.41.174-.572.474-.639.818a2.02 2.02 0 0 0-.032.373L21 11.886c0 1.044.483 1.876 1.608 1.868l11.678-.088c1.312-.008 2.026-1.342.958-2.331L23.033-.111a2.2 2.2 0 0 0-.335-.265c-.297-.186-.623-.271-1.026-.1ZM23 2.599l9.686 9.08L23 11.75V2.6Z"></path></symbol><symbol id="facebook" viewbox="0 0 9 18"><title>facebook</title><path d="M6.406 3.237c.446 0 1.053.08 1.545.183a.461.461 0 0 0 .343-.068.417.417 0 0 0 .183-.298l.309-2.23a.447.447 0 0 0-.32-.48A9.39 9.39 0 0 0 5.89 0C3.156 0 1.83 1.304 1.83 4.004v1.178H.434A.434.434 0 0 0 0 5.617v2.288c0 .251.195.446.435.446H1.83v8.786c0 .24.195.434.435.434h2.86a.432.432 0 0 0 .423-.434V8.35H7.86a.446.446 0 0 0 .435-.412l.16-2.288a.439.439 0 0 0-.115-.331.409.409 0 0 0-.308-.138H5.548V4.176c0-.755.08-.938.858-.938Z" fill-rule="evenodd"></path></symbol><symbol id="facet-arrow-down-white" viewbox="0 0 11.5 8.2"><title>facet-arrow-down-white</title><path d="M5.8 8.2c-.2 0-.5-.1-.6-.3l-5-6.7C0 .9 0 .4.4.2c.3-.2.8-.2 1 .2l4.4 5.9L10.2.4c.2-.3.7-.4 1-.2.3.2.4.7.2 1l-5 6.7c-.2.2-.4.3-.6.3z" fill="#fff"></path></symbol><symbol id="facet-arrow-down" viewbox="0 0 11.5 8.2"><title>facet-arrow-down</title><path d="M5.8 8.2c-.2 0-.5-.1-.6-.3l-5-6.7C0 .9 0 .4.4.2c.3-.2.8-.2 1 .2l4.4 5.9L10.2.4c.2-.3.7-.4 1-.2.3.2.4.7.2 1l-5 6.7c-.2.2-.4.3-.6.3z"></path></symbol><symbol id="form_dropdown" viewbox="0 0 12 9"><title>Page 1</title><path d="M11 1 6 7.746 1 1" fill="none" fill-rule="evenodd" stroke="#00718E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></symbol><symbol id="fselect_dropdown_checked" viewbox="0 0 19 20"><title>Checked</title><g fill="none" fill-rule="evenodd" stroke-width="1.5"><path d="M.75 5.75h13.5v13.5H.75z" opacity=".4" stroke="#002B39"></path><path d="m4 10 4 4L18 1" stroke="#FFF" stroke-linecap="round"></path></g></symbol><symbol id="fselect_dropdown_unchecked" viewbox="0 0 15 15"><title>Checked</title><path d="M.75.75h13.5v13.5H.75z" fill="none" fill-rule="evenodd" opacity=".4" stroke="#002B39" stroke-width="1.5"></path></symbol><symbol id="icon-apple-t5" viewbox="0 0 56.693 56.693"><title>icon-apple-t5</title><title>background</title><path d="M-1-1h582v402H-1z" fill="none"></path><title>Layer 1</title><path d="M41.777 30.517c-.062-6.232 5.082-9.221 5.312-9.372-2.891-4.227-7.395-4.807-8.998-4.873-3.83-.389-7.477 2.256-9.42 2.256-1.939 0-4.941-2.199-8.117-2.143-4.178.062-8.029 2.43-10.179 6.17-4.339 7.527-1.11 18.682 3.118 24.791 2.067 2.986 4.532 6.346 7.766 6.223 3.117-.123 4.293-2.016 8.061-2.016s4.826 2.016 8.123 1.953c3.352-.061 5.477-3.043 7.527-6.041 2.373-3.469 3.35-6.828 3.408-6.998-.073-.034-6.534-2.509-6.601-9.95zm-6.195-18.288c1.715-2.082 2.877-4.975 2.561-7.855-2.475.1-5.471 1.645-7.248 3.725-1.592 1.846-2.984 4.785-2.611 7.613 2.761.214 5.577-1.405 7.298-3.483z" fill="#606060"></path></symbol><symbol id="icon-facebook-t5" viewbox="0 0 24 24"><title></title><path d="M16.75 9H13.5V7a1 1 0 0 1 1-1h2V3H14a4 4 0 0 0-4 4v2H8v3h2v9h3.5v-9H16Z" style="fill-opacity:.65"></path></symbol><symbol id="icon-google-t5" viewbox="0 0 128 128"><title>icon-google-t5</title><g clip-rule="evenodd" fill-rule="evenodd"><path d="M0 0h128v128H0z" fill="none"></path><path d="M27.585 64c0-4.157.69-8.143 1.923-11.881L7.938 35.648C3.734 44.183 1.366 53.801 1.366 64c0 10.191 2.366 19.802 6.563 28.332l21.558-16.503A37.86 37.86 0 0 1 27.585 64" fill="#FBBC05"></path><path d="M65.457 26.182c9.031 0 17.188 3.2 23.597 8.436L107.698 16C96.337 6.109 81.771 0 65.457 0 40.129 0 18.361 14.484 7.938 35.648l21.569 16.471a37.77 37.77 0 0 1 35.95-25.937" fill="#EA4335"></path><path d="M65.457 101.82a37.77 37.77 0 0 1-35.949-25.937L7.938 92.351c10.423 21.167 32.191 35.651 57.519 35.651 15.632 0 30.557-5.551 41.758-15.951L86.741 96.223c-5.777 3.639-13.052 5.597-21.284 5.597" fill="#34A853"></path><path d="M126.63 64c0-3.782-.583-7.855-1.457-11.636h-59.72v24.727h34.376c-1.719 8.431-6.397 14.912-13.092 19.13l20.474 15.828C118.977 101.129 126.63 84.861 126.63 64" fill="#4285F4"></path></g></symbol><symbol id="icon-office365-t5" viewbox="0 0 2075 2499.8"><title>icon-office365-t5</title><path d="M0 2016.6V496.8L1344.4 0 2075 233.7v2045.9l-730.6 220.3L0 2016.6l1344.4 161.8V409.2L467.6 613.8v1198.3z" fill="#eb3c00"></path></symbol><symbol id="icon-outlook-t5" viewbox="0 0 1024 1024"><title>icon-outlook-t5</title><title>background</title><path d="M-1-1h582v402H-1z" fill="none"></path><title>Layer 1</title><path clip-rule="evenodd" d="M644.88 764.42V492.7c19.329 13.255 37.371 25.627 55.413 37.996 16.194 11.101 18.919 11.045 35.633-.064 92.48-61.468 184.98-122.92 277.48-184.36 2.803-1.861 5.698-3.585 9.774-6.141.322 4.208.777 7.36.777 10.514.035 118.22.089 236.44-.007 354.66-.034 39.297-19.884 59.078-58.972 59.097-102.8.047-205.6.018-308.41.018l-11.691-.001zm.74-547.57h10.489c108.56 0 217.12-.009 325.68.01 19.41.004 34.427 11.871 40.529 30.528 2.68 8.197-.047 12.205-6.669 16.641-84.095 56.307-168.01 112.88-251.98 169.38-11.994 8.072-24.149 15.92-35.93 24.292-6.448 4.579-12.154 4.828-18.844.521-19.187-12.357-38.738-24.161-57.786-36.721-3.179-2.095-6.486-6.876-6.505-10.434-.337-63.505-.176-127.01-.094-190.52.005-.712.412-1.423 1.109-3.701zM596.72 1024C397.64 982.333 199.33 940.823.28 899.16v-13.094c-.001-252.51.076-505.03-.273-757.54-.016-10.461 2.793-14.09 13.038-16.049 159.15-30.403 318.22-61.241 477.31-91.971 35.081-6.777 70.167-13.528 106.37-20.507v1024zM438.04 511.02c-.402-41.613-6.094-80.035-26.656-114.85-16.6-28.107-39.024-49.44-71.278-58.626-62.755-17.872-122.84 11.521-152.41 75.036-18.947 40.696-22.994 83.874-19.337 128.08 3.169 38.303 14.261 73.688 38.958 103.96 49.093 60.169 138.44 60.569 188.18.776 32.939-39.589 41.886-86.711 42.538-134.37z" fill="#daa603" fill-rule="evenodd"></path><path clip-rule="evenodd" d="M232.92 511.94c-.085-29.653 3.91-58.359 20.699-83.795 15.494-23.472 39.016-33.061 64.938-26.578 20.146 5.038 32.316 19.265 40.427 37.222 13.847 30.658 16.247 63.273 12.056 95.936-2.325 18.11-7.45 36.464-14.808 53.175-9.507 21.596-27.783 33.954-52.195 34.493-24.572.542-41.658-12.202-53.632-32.584-14.129-24.051-17.552-50.585-17.485-77.869z" fill="#daa603" fill-rule="evenodd"></path></symbol><symbol id="icon-outlookcom-t5" viewbox="0 0 1024 1024"><title>icon-outlookcom-t5</title><title>background</title><path d="M-1-1h582v402H-1z" fill="none"></path><title>Layer 1</title><path clip-rule="evenodd" d="M644.88 764.42V492.7c19.329 13.255 37.371 25.627 55.413 37.996 16.194 11.101 18.919 11.045 35.633-.064 92.48-61.468 184.98-122.92 277.48-184.36 2.803-1.861 5.698-3.585 9.774-6.141.322 4.208.777 7.36.777 10.514.035 118.22.089 236.44-.007 354.66-.034 39.297-19.884 59.078-58.972 59.097-102.8.047-205.6.018-308.41.018l-11.691-.001zm.74-547.57h10.489c108.56 0 217.12-.009 325.68.01 19.41.004 34.427 11.871 40.529 30.528 2.68 8.197-.047 12.205-6.669 16.641-84.095 56.307-168.01 112.88-251.98 169.38-11.994 8.072-24.149 15.92-35.93 24.292-6.448 4.579-12.154 4.828-18.844.521-19.187-12.357-38.738-24.161-57.786-36.721-3.179-2.095-6.486-6.876-6.505-10.434-.337-63.505-.176-127.01-.094-190.52.005-.712.412-1.423 1.109-3.701zM596.72 1024C397.64 982.333 199.33 940.823.28 899.16v-13.094c-.001-252.51.076-505.03-.273-757.54-.016-10.461 2.793-14.09 13.038-16.049 159.15-30.403 318.22-61.241 477.31-91.971 35.081-6.777 70.167-13.528 106.37-20.507v1024zM438.04 511.02c-.402-41.613-6.094-80.035-26.656-114.85-16.6-28.107-39.024-49.44-71.278-58.626-62.755-17.872-122.84 11.521-152.41 75.036-18.947 40.696-22.994 83.874-19.337 128.08 3.169 38.303 14.261 73.688 38.958 103.96 49.093 60.169 138.44 60.569 188.18.776 32.939-39.589 41.886-86.711 42.538-134.37z" fill="#0072c6" fill-rule="evenodd"></path><path clip-rule="evenodd" d="M232.92 511.94c-.085-29.653 3.91-58.359 20.699-83.795 15.494-23.472 39.016-33.061 64.938-26.578 20.146 5.038 32.316 19.265 40.427 37.222 13.847 30.658 16.247 63.273 12.056 95.936-2.325 18.11-7.45 36.464-14.808 53.175-9.507 21.596-27.783 33.954-52.195 34.493-24.572.542-41.658-12.202-53.632-32.584-14.129-24.051-17.552-50.585-17.485-77.869z" fill="#0072c6" fill-rule="evenodd"></path></symbol><symbol id="icon-yahoo-t5" viewbox="0 0 1792 1792"><title>icon-yahoo-t5</title><title>background</title><path d="M-1-1h582v402H-1z" fill="none"></path><title>Layer 1</title><path d="m987 957 13 707q-62-11-105-11-41 0-105 11l13-707q-40-69-168.5-295.5T418 287 237 0q58 15 108 15 43 0 111-15 63 111 133.5 229.5t167 276.5T895 733q37-61 109.5-177.5t117.5-190 105-176T1334 0q54 14 107 14 56 0 114-14-28 39-60 88.5t-49.5 78.5-56.5 96-49 84q-146 248-353 610z" fill="#4a089f"></path></symbol><symbol id="internal-yellow" viewbox="0 0 22 15"><title>internal-yellow</title><path d="M13.519.294a1 1 0 0 1 1.414-.002l6.63 6.617.085.097a1 1 0 0 1-.11 1.343l-6.857 6.381-.097.08a1 1 0 0 1-1.316-.13l-.08-.098a1 1 0 0 1 .13-1.316l5.1-4.745H1.022a1 1 0 0 1-.116-1.993l.116-.007h17.32L13.52 1.708l-.083-.094a1 1 0 0 1 .082-1.32Z" fill="#DE7C01"></path></symbol><symbol id="internal" viewbox="0 0 22 15"><title>internal</title><path d="M13.519.294a1 1 0 0 1 1.414-.002l6.63 6.617.085.097a1 1 0 0 1-.11 1.343l-6.857 6.381-.097.08a1 1 0 0 1-1.316-.13l-.08-.098a1 1 0 0 1 .13-1.316l5.1-4.745H1.022a1 1 0 0 1-.116-1.993l.116-.007h17.32L13.52 1.708l-.083-.094a1 1 0 0 1 .082-1.32Z"></path></symbol><symbol id="intranet" style="enable-background:new 0 0 17.3 14.6" viewbox="0 0 17.3 14.6"><title>intranet</title><path d="M1.5 14.6v-1.1c0-.3.5-.8 1.5-1.2l.4-.2.4-.2c.1 0 .2-.1.2-.1l.5-.2c1-.3 1.6-.7 2-1 .3-.4.5-.8.5-1.4.1-.2 0-.4-.2-.7l-.1-.1c-.1-.2-.3-.5-.4-.9v-.2c0-.1-.1-.2-.1-.3s-.2-.1-.3-.1c-.1 0-.1-.1-.2-.3s-.1-.3-.1-.6c0-.2 0-.3.1-.4.1-.1.1-.2.1-.2l.1-.1-.2-.5v-.7c0-.5.2-1.1.6-1.7.5-.6 1.3-.9 2.4-.9 1.1 0 1.9.3 2.4.9.5.6.7 1.1.6 1.7l-.2 1.3c.2.1.3.3.3.6s-.1.5-.1.6-.1.2-.2.3c-.1 0-.1.1-.2.1s-.1.2-.1.3c-.1.4-.2.7-.4 1l-.1.1c-.2.3-.4.5-.4.7 0 .6.2 1.1.5 1.4.4.4 1 .7 1.9 1l.5.2c.1 0 .2.1.2.1l.4.2c1.3.5 1.9 1 1.9 1.4v1.1h1.5v-1.1c0-1.3-1-2-3-2.9l-.5-.2-.6-.2c-.1 0-.3-.1-.4-.1l-.3-.1c-.3-.2-.6-.3-.7-.4v-.1l.1-.1c.2-.3.4-.6.5-1l.1-.2.2-.1c.2-.2.3-.4.4-.7.2-.3.2-.7.3-1.2v-.3c0-.3-.1-.6-.2-.8v-.1l.1-.7c.1-1-.2-2-.9-2.8-.8-1-2-1.4-3.6-1.4S5.9.4 5.1 1.4c-.7.9-1 1.8-.9 2.7l.1.7V5v-.1c-.2.4-.2.7-.2 1.1v.1c0 .4.1.8.3 1.2l.1.1c.1.2.3.4.5.6.1.4.3.8.5 1.1l.1.2v.1c0 .1 0 .1-.1.1-.1.1-.4.3-.8.5l-.4.1-.8.3-.5.2c-2.1.8-3 1.6-3 2.9v1.1h1.5z"></path></symbol><symbol id="linkedin" viewbox="0 0 17 17"><title>linkedin</title><path d="M13.5 0h-10C1.6 0 0 1.6 0 3.5v9.9c0 2 1.6 3.5 3.5 3.5h9.9c2 0 3.5-1.6 3.5-3.5V3.5C17 1.6 15.4 0 13.5 0zM5.7 13.5H3.5V5.7h2.1v7.8zM4.6 4.8c-.7 0-1.2-.6-1.2-1.2S4 2.4 4.6 2.4s1.2.6 1.2 1.2-.5 1.2-1.2 1.2zm9.6 8.7H12v-4c0-2.4-2.8-2.2-2.8 0v4H7.1V5.7h2.1V7c1-1.8 5-2 5 1.8v4.7z"></path></symbol><symbol id="linkout" viewbox="0 0 26 24"><title>linkout</title><path d="M14.5.75a.75.75 0 0 1 .743.648l.007.102v4a.75.75 0 0 1-1.493.102L13.75 5.5V2.25H2.25v19.5h11.5V18.5a.75.75 0 0 1 .648-.743l.102-.007a.75.75 0 0 1 .743.648l.007.102v4a.75.75 0 0 1-.648.743l-.102.007h-13a.75.75 0 0 1-.743-.648L.75 22.5v-21a.75.75 0 0 1 .648-.743L1.5.75h13Z"></path><path d="M24.5 11.75a.75.75 0 0 1 .102 1.493l-.102.007h-18a.75.75 0 0 1-.102-1.493l.102-.007h18Z"></path><path d="M18.97 6.97a.75.75 0 0 1 .976-.073l.084.073 5 5a.75.75 0 0 1 .073.976l-.073.084-5 5a.75.75 0 0 1-1.133-.976l.073-.084 4.469-4.47-4.47-4.47a.75.75 0 0 1-.072-.976l.073-.084Z"></path></symbol><symbol id="pause" viewbox="0 0 12 15"><title>pause</title><path d="M2.364 2.23v10.54M9.636 2.23v10.54" fill="none" fill-rule="evenodd" opacity=".5" stroke="#9B9B9B" stroke-linecap="square" stroke-width="3"></path></symbol><symbol id="play" viewbox="0 0 207.1 239.2"><title>play</title><path d="m0 0 207.1 119.6L0 239.2V0z" fill="#9b9b9b" opacity=".5"></path></symbol><symbol id="presentation" viewbox="0 0 512 512"><title>presentation</title><path d="M501 28.2H266.4V11h-20.9v17.2H11v378.5h154.8l-51.7 82.7 17.5 11.7 59-94.3h131.1l59 94.2 17.5-11.7-51.7-82.6H501V28.2zm-19.8 357H31.9V48.6h449.3v336.6z"></path><path d="M221.6 107.8H71.5v219.3h150.1V107.8zm-20.9 197.8H92.3V128.2h108.4v177.4zm87.6-148.4h141.8v21.5H288.3zm0 99h141.8v21.5H288.3z"></path></symbol><symbol id="search-blue" viewbox="0 0 13.6 13.5"><title>search-blue</title><path d="M13.6 12.7 9.9 9.2c.8-1 1.3-2.2 1.3-3.6C11.2 2.5 8.7 0 5.6 0 2.5 0 0 2.5 0 5.6s2.5 5.6 5.6 5.6c1.4 0 2.6-.5 3.6-1.3l3.7 3.6.7-.8zm-8-2.5C3.1 10.2 1 8.1 1 5.6S3.1 1 5.6 1c2.5 0 4.6 2.1 4.6 4.6s-2 4.6-4.6 4.6z" fill="#00718E"></path></symbol><symbol id="search" viewbox="0 0 15 15"><title>search</title><path d="M6.111.87a5.856 5.856 0 0 1 5.862 5.85 5.82 5.82 0 0 1-1.214 3.567l3.482 3.393a.75.75 0 0 1-.962 1.146l-.085-.071-3.496-3.406a5.842 5.842 0 0 1-3.587 1.223A5.856 5.856 0 0 1 .25 6.721 5.856 5.856 0 0 1 6.111.869Zm0 1.5A4.356 4.356 0 0 0 1.75 6.72a4.356 4.356 0 0 0 4.361 4.352 4.356 4.356 0 0 0 4.362-4.351A4.356 4.356 0 0 0 6.11 2.369Z" fill-rule="evenodd"></path></symbol><symbol id="share" viewbox="0 0 52 52"><title>share</title><path d="m16.957 30.2 17.493 7.867m-.344-24.71-17.102 8.636m1.034 4.062c0 4.695-3.814 8.503-8.52 8.503S1 30.75 1 26.055s3.814-8.502 8.519-8.502 8.519 3.807 8.519 8.502ZM50.41 9.9c0 4.695-3.814 8.503-8.52 8.503s-8.518-3.808-8.518-8.503 3.814-8.502 8.519-8.502S50.41 5.205 50.41 9.9Zm0 32.31c0 4.695-3.814 8.503-8.52 8.503s-8.518-3.808-8.518-8.503 3.814-8.502 8.519-8.502 8.519 3.807 8.519 8.502Z" fill="none" fill-rule="evenodd" stroke="#000" stroke-width="1.5"></path></symbol><symbol id="slider-arrow-next" viewbox="0 0 11.2 18.9"><title>slider-arrow-next</title><path d="M1 18.9c-.3 0-.5-.1-.7-.3-.4-.4-.3-1 .1-1.4l8.4-7.7L.3 1.7C-.1 1.3-.1.7.2.3c.4-.4 1-.4 1.4-.1l9.2 8.5c.2.2.3.5.3.7s-.1.5-.3.7l-9.2 8.5c-.1.2-.4.3-.6.3z"></path></symbol><symbol id="slider-arrow-prev" viewbox="0 0 11.2 18.9"><title>slider-arrow-prev</title><path d="M10.2 18.9c-.2 0-.5-.1-.7-.3L.3 10.1C.1 10 0 9.7 0 9.5s.1-.5.3-.7L9.5.3c.4-.4 1-.3 1.4.1.4.4.3 1-.1 1.4L2.5 9.5l8.4 7.7c.4.4.4 1 .1 1.4-.2.2-.5.3-.8.3z"></path></symbol><symbol id="twitter" viewbox="0 0 18 14"><title>twitter</title><path d="M17.327 1.586c-.091 0-.72.264-.884.31.219-.255.72-1.03.72-1.358a.294.294 0 0 0-.292-.292c-.045 0-.1.018-.145.046-.62.337-1.213.601-1.905.747A3.737 3.737 0 0 0 12.25 0a3.69 3.69 0 0 0-3.683 3.682c0 .146.01.301.036.447A9.333 9.333 0 0 1 3.2 1.777C2.834 1.45 2.524 1.094 2.196.73A.286.286 0 0 0 1.95.62c-.1 0-.183.074-.228.147-.328.483-.501 1.267-.501 1.85 0 .847.291 1.677.838 2.333-.173-.055-.437-.228-.592-.228-.192 0-.356.137-.356.328 0 1.276.702 2.461 1.778 3.127-.082-.01-.155-.037-.237-.037a.29.29 0 0 0-.283.283c0 .036.01.064.018.1a3.673 3.673 0 0 0 2.662 2.452 6.486 6.486 0 0 1-3.418.966c-.274 0-.547-.046-.811-.046a.294.294 0 0 0-.292.292c0 .1.055.182.137.246.237.173.528.32.793.456A9.9 9.9 0 0 0 6.016 14c3.974 0 7.373-2.133 9.014-5.76.593-1.304.939-2.735.912-4.166v-.3c.62-.465 1.221-1.067 1.631-1.732a.315.315 0 0 0 .046-.164.294.294 0 0 0-.292-.292Z" fill-rule="evenodd"></path></symbol><symbol id="video" viewbox="0 0 37 32"><title>video</title><g fill="#828282"><path d="M7.5 0h-6C.631 0 0 .631 0 1.5v29c0 .869.631 1.5 1.5 1.5h34c.869 0 1.5-.631 1.5-1.5v-29c0-.869-.631-1.5-1.5-1.5h-28zM1 30.5v-29c0-.313.187-.5.5-.5H7v30H1.5c-.313 0-.5-.187-.5-.5zm7 .5V1h21v30H8zM36 1.5v29c0 .313-.187.5-.5.5H30V1h5.5c.313 0 .5.187.5.5z"></path><path d="M14.777 10.084a.502.502 0 0 0-.514-.025.502.502 0 0 0-.263.441v12a.5.5 0 0 0 .777.416l9-6a.501.501 0 0 0 0-.832l-9-6zM15 21.566V11.434l7.599 5.066L15 21.566zM5 8H3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zM3 5h2a.5.5 0 0 0 0-1H3a.5.5 0 0 0 0 1zm2 7H3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 4H3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 4H3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 4H3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 4H3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zM32 9h2a.5.5 0 0 0 0-1h-2a.5.5 0 0 0 0 1zm0-4h2a.5.5 0 0 0 0-1h-2a.5.5 0 0 0 0 1zm0 8h2a.5.5 0 0 0 0-1h-2a.5.5 0 0 0 0 1zm0 4h2a.5.5 0 0 0 0-1h-2a.5.5 0 0 0 0 1zm0 4h2a.5.5 0 0 0 0-1h-2a.5.5 0 0 0 0 1zm0 4h2a.5.5 0 0 0 0-1h-2a.5.5 0 0 0 0 1zm2 3h-2a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"></path></g></symbol><symbol id="youtube" viewbox="0 0 20 15"><title>youtube</title><path d="M7.668 10.3V4.12l4.98 3.09-4.98 3.09Zm11.101-8.048c-.22-.887-.87-1.585-1.695-1.822C15.58 0 9.584 0 9.584 0S3.59 0 2.096.43C1.271.667.621 1.365.401 2.252 0 3.858 0 7.21 0 7.21s0 3.352.4 4.959c.221.886.87 1.584 1.695 1.82 1.495.431 7.49.431 7.49.431s5.994 0 7.49-.43c.824-.237 1.474-.935 1.694-1.821.4-1.607.4-4.959.4-4.959s0-3.352-.4-4.958Z" fill-rule="evenodd"></path></symbol></svg></div>
+</body>
+</html>

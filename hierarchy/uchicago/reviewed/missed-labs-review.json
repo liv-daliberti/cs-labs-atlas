@@ -22,8 +22,8 @@
  "counts": {
   "already_decided": 197,
   "no_appointment_evidence": 125,
-  "not_faculty": 114,
-  "accepted": 7
+  "not_faculty": 116,
+  "accepted": 5
  },
  "per_source": {
   "oa": 396,
@@ -3222,17 +3222,15 @@
     2021,
     2023
    ],
-   "decision": "accepted",
-   "reason": "ladder professor title in a stored unit/profile capture; computing share test passed",
+   "decision": "not_faculty",
+   "reason": "the DSI profile is a Post-Doctoral Scholars page: the \"Assistant Professor\" line is the current affiliation at another institution, not a UChicago appointment (owner ruling 2026-11-15); earlier accept withdrawn",
    "evidence": [
     {
      "url": "https://datascience.uchicago.edu/people/sainyam-galhotra/",
-     "sha256": "45fdcf137de7cc79ded471b641b6f1dfd8981f163ec6e5c8ffcf64f203a7ccb1",
-     "observed": "20261108",
-     "dept": "profile",
-     "year": 2026,
-     "quote": "Sainyam Galhotra Assistant Professor",
-     "ladder": true
+     "sha256": "22365e860809533ab25d9f5e1de7f01c673360c83a59ee79a0c645ff749043dd",
+     "observed": "2026-11-15T03:42:59+00:00",
+     "quote": "People / Post-Doctoral Scholars Sainyam Galhotra Assistant Professor, Computer Science, Cornell University DSI Postdoctoral Scholar 2021-2022",
+     "context": "current affiliation as the page states it: Cornell University"
     }
    ]
   },
@@ -7579,17 +7577,15 @@
     2022,
     2025
    ],
-   "decision": "accepted",
-   "reason": "ladder professor title in a stored unit/profile capture; computing share test passed",
+   "decision": "not_faculty",
+   "reason": "the DSI profile is a Post-Doctoral Scholars page: the \"Assistant Professor\" line is the current affiliation at another institution, not a UChicago appointment (owner ruling 2026-11-15); earlier accept withdrawn",
    "evidence": [
     {
      "url": "https://datascience.uchicago.edu/people/patricia-chiril/",
-     "sha256": "f4d6166589350be2a16e3f1fe3ff39e9da8afcaf78b489a58d9429003f6dc0fd",
-     "observed": "20261108",
-     "dept": "profile",
-     "year": 2026,
-     "quote": "Patricia Chiril Assistant Professor",
-     "ladder": true
+     "sha256": "37aee5e683dc743a072cde8164f892b48ee319ae8ddb7240ece7cdf1be5489d6",
+     "observed": "2026-11-15T03:43:05+00:00",
+     "quote": "People / Post-Doctoral Scholars Patricia Chiril Assistant Professor, Télécom Paris (Institut Politechnique de Paris) Patricia Chiril joined DSI as a postdoctoral scholar in winter 2022",
+     "context": "current affiliation as the page states it: Télécom Paris"
     }
    ]
   },
