@@ -53,7 +53,11 @@ ROUNDS = {'r2': dict(seed=20261102, uniform=50, stratum=5, cov=50, cands=200,
           # r4 is an Oxford copy-ledger-only rebind of its fully judged r3 draw. Keep the same seed and sizes so ordered item keys
           # must compare equal before any verdict is carried; the immutable r3 sample and its original verdicts remain history.
           'r4': dict(seed=20261113, uniform=50, stratum=5, cov=50, cands=200,
-                     schools=['oxford'], dir='round-r4')}
+                     schools=['oxford'], dir='round-r4'),
+          # VT r10 binds the corrected package currently in derived data.
+          # Earlier VT rounds remain in their original branch as history.
+          'r10': dict(seed=2026111503, uniform=50, stratum=5, cov=50, cands=200,
+                      schools=['vt'], dir='round-r10')}
 FILES = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 
 

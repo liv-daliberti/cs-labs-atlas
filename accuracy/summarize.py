@@ -76,7 +76,7 @@ def one_school(school):
         d['round'] = dict(id=os.environ['ACCURACY_ROUND'], sizes=S.get('sizes'), judged={k: sum(r['sample'] == k for r in V) for k in
                           ('lab_precision', 'student_precision', 'lab_coverage', 'student_coverage')})
     ((rd or ACC) / f'summary-{school}.json').write_text(json.dumps(d, indent=1, ensure_ascii=False))
-    f = lambda x: f"{x['p']:.3f} [{x['lo']:.3f},{x['hi']:.3f}] k={x['k']} n={x['n']}" if x else '-'
+    f = lambda x: f"{x['p']:.3f} [{x['lo']:.3f},{x['hi']:.3f}] k={x['k']} n={x['n']}" if x and x.get('p') is not None else '-'
     print(school, '| lab', f(d['lab_precision_uniform']), '| stu', f(d['student_precision_uniform']), '| cov', f(d['lab_coverage']), '| scov', f(d['student_coverage']))
 
 
@@ -160,7 +160,7 @@ def main():
     (ACC / 'summary.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
     for g in SCHOOLS + ['pooled']:
         d = out['schools'].get(g) or out['pooled']
-        f = lambda x: f"{x['p']:.3f} [{x['lo']:.3f},{x['hi']:.3f}] n={x['n']}" if x else '-'
+        f = lambda x: f"{x['p']:.3f} [{x['lo']:.3f},{x['hi']:.3f}] n={x['n']}" if x and x.get('p') is not None else '-'
         print(g, '| lab', f(d['lab_precision_uniform']), '| stu', f(d['student_precision_uniform']), '| cov', f(d['lab_coverage']), '| scov', f(d['student_coverage']))
     print('weighted', out['pooled']['lab_precision_uniform_size_weighted'], out['pooled']['student_precision_uniform_size_weighted'])
 
