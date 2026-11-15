@@ -1,18 +1,18 @@
 {
  "schema": 1,
  "school": "stanford",
- "drawn_at": "2026-11-12T15:37:14Z",
- "drawn_by": "legacy-wave-1112",
- "seed": 20261112,
+ "drawn_at": "2026-11-15T12:46:13Z",
+ "drawn_by": "codex-stanford-recall-1115",
+ "seed": 2026111502,
  "binds": {
-  "students.json": "c6ba2366b207d83483f6e8480fea3c4422e34a8b62ed9b76dac82487b219c871",
-  "pis.json": "ede8943f3d6e47de35e55517010e91fe12bd86c1d780bd8a381cf8ba7e8f6d11"
+  "students.json": "f1810ed9643274d386bf2f83362fd94b321388af8bd059794eeb5c3d92615219",
+  "pis.json": "a76e6589328736fb600fb2683856e99f2330c6f830f1a46e90345786cff0125f"
  },
  "current_from_year": 2025,
  "sizes": {
   "0": 0,
-  "1-2": 25,
-  "3+": 214
+  "1-2": 23,
+  "3+": 216
  },
  "picked": {
   "0": 0,
@@ -22,39 +22,406 @@
  "how": "tools/student_recall.py draw: seeded stratified sample by recorded student rows (0 / 1-2 / 3+); the checker fills `verdict`, `page` and `listed`",
  "sample": [
   {
-   "pi": "Bernd Girod",
+   "pi": "Abbas El Gamal",
    "stratum": "1-2",
    "candidate_urls": [
     {
-     "url": "https://profiles.stanford.edu/bernd-girod",
+     "url": "https://ee.stanford.edu/celebrating-abbas-el-gamal",
      "source": "audit lab_page.lab_site"
     },
     {
-     "url": "https://profiles.stanford.edu/bernd-girod?tab=publications",
+     "url": "https://web.archive.org/web/20260919083002id_/https://ee.stanford.edu/celebrating-abbas-el-gamal",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20220302113416id_/https://profiles.stanford.edu/abbas-el-gamal",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20230206021817id_/https://profiles.stanford.edu/abbas-el-gamal",
+     "source": "student row source"
+    },
+    {
+     "url": "https://profiles.stanford.edu/abbas-el-gamal",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://isl.stanford.edu/~abbas/aegstudents.php",
+    "sha256": "aa1b76b6aca7370dfb07cb990c3bffe8a40b99d2d82bb2a05c844ba56aa8ce9c",
+    "quote": "Coordination of Distributed Energy Resources for Distribution Grid Reliability",
+    "fetched_at": "2026-11-12T21:55:53"
+   },
+   "listed": [
+    {
+     "name": "Anthony Degleris",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Thomas Navidi",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Cheuk Ting Li",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Hyeji Kim",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2016
+     ]
+    },
+    {
+     "name": "Kyle Anderson",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "Gowtham Kumar",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Gearoid O'Brien",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Han-i Su",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2013
+     ]
+    },
+    {
+     "name": "Bernd Bandemer",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2011
+     ]
+    },
+    {
+     "name": "Yeow-Khiang Chia",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2011
+     ]
+    },
+    {
+     "name": "Kunal Ghosh",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2010
+     ]
+    },
+    {
+     "name": "Keith Fife",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2009
+     ]
+    },
+    {
+     "name": "Mingjie Lin",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2009
+     ]
+    },
+    {
+     "name": "Ali Ozer Ercan",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2007
+     ]
+    },
+    {
+     "name": "Helmy Elthouky",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2007
+     ]
+    },
+    {
+     "name": "Hossein Kakavand",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2007
+     ]
+    },
+    {
+     "name": "Sam Kavusi",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2007
+     ]
+    },
+    {
+     "name": "James Mammen",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2006
+     ]
+    },
+    {
+     "name": "Khaled Salama",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2005
+     ]
+    },
+    {
+     "name": "Sina Zahedi",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2005
+     ]
+    },
+    {
+     "name": "Ting Chen",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2003
+     ]
+    },
+    {
+     "name": "Elif Uysal-Biyikoglu",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2003
+     ]
+    },
+    {
+     "name": "Suk-Hwan Lim",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2003
+     ]
+    },
+    {
+     "name": "Xinqiao Liu",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2002
+     ]
+    },
+    {
+     "name": "Hui Tian",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2001
+     ]
+    },
+    {
+     "name": "Stuart Kleinfelder",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2001
+     ]
+    },
+    {
+     "name": "David Yang",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1999
+     ]
+    },
+    {
+     "name": "Dana How",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1998
+     ]
+    },
+    {
+     "name": "Ivo Dobbelaere",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1995
+     ]
+    },
+    {
+     "name": "Boyd Fowler",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1995
+     ]
+    },
+    {
+     "name": "Arif Ziv",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1995
+     ]
+    },
+    {
+     "name": "Sanko Lan",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1994
+     ]
+    },
+    {
+     "name": "Lucius James Hwang",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1994
+     ]
+    },
+    {
+     "name": "Jack Kouloheris",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1993
+     ]
+    },
+    {
+     "name": "David Marple",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1986
+     ]
+    },
+    {
+     "name": "Alon Orlitsky",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1986
+     ]
+    },
+    {
+     "name": "King Fai Pang",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1985
+     ]
+    },
+    {
+     "name": "Jonathan Greene",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1983
+     ]
+    },
+    {
+     "name": "Max Costa",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1983
+     ]
+    },
+    {
+     "name": "Zahir Syed",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1981
+     ]
+    },
+    {
+     "name": "Chris Heegard",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1981
+     ]
+    },
+    {
+     "name": "Mohammad Aref",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1980
+     ]
+    }
+   ],
+   "notes": "Reused the previously captured member-list page and listed-name transcription from 2026-11-13T165540; new build bindings and completeness are recomputed by student_recall.py check. Fresh review 1115: the filler missed his own page. isl.stanford.edu/~abbas/ (his own home, stored audit capture) links Students = aegstudents.php, a 'Previous Students' list (42 names, each with a dissertation title; a year in parentheses at the end of the title for 2016 and earlier, none for Degleris/Navidi/Cheuk Ting Li). No current-students section. Role phd from the dissertation titles; section alumni; years only as the title states. Home page has no names; Biography/Projects not captured (no rosters). Not the profiles page."
+  },
+  {
+   "pi": "Andrew Ng",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "http://ai.stanford.edu/~ang/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "http://ai.stanford.edu/~ang/group.html",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "http://ai.stanford.edu/~ang/papers.html",
      "source": "audit lab_page.pubs_page"
     },
     {
-     "url": "https://web.archive.org/web/20160311232552id_/https://profiles.stanford.edu/bernd-girod",
+     "url": "https://web.archive.org/web/20130622135241id_/http://ai.stanford.edu/~ang/group.html",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20230331003244id_/https://profiles.stanford.edu/bernd-girod",
+     "url": "https://web.archive.org/web/20160120210405id_/http://ai.stanford.edu:80/~ang/group.html",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20260520141129id_/https://profiles.stanford.edu/bernd-girod",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20190820005113id_/https://profiles.stanford.edu/bernd-girod",
-     "source": "student row source"
+     "url": "https://profiles.stanford.edu/andrew-ng",
+     "source": "pis.json lab.url"
     }
    ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "list_not_current",
+   "verdict": null,
+   "unverifiable_reason": null,
    "page": null,
    "listed": [],
-   "notes": "Group page https://web.stanford.edu/~bgirod/People.html (captured, sha 8c3ac46e...) lists ~45 names with no dates, no current section and no role/section headings (the home page links it as 'Former PhD Students/Postdocs', but the captured page itself says only 'People'); names not listed. Profile page lists only Master's program advisees. Emeritus."
+   "notes": ""
   },
   {
    "pi": "Candace Thille",
@@ -85,110 +452,42 @@
      "source": "student row source"
     }
    ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
+   "verdict": null,
+   "unverifiable_reason": null,
    "page": null,
    "listed": [],
-   "notes": "Searched: Stanford profile (captured) has only a 'Stanford Advisees' dissertation-role block, no lab/personal member page found; GSE faculty page links no lab."
+   "notes": ""
   },
   {
-   "pi": "Hariharan Subramonyam",
+   "pi": "Fuhito Kojima",
    "stratum": "1-2",
    "candidate_urls": [
     {
-     "url": "https://profiles.stanford.edu/hariharan-subramonyam",
+     "url": "https://profiles.stanford.edu/fuhito-kojima",
      "source": "audit lab_page.lab_site"
     },
     {
-     "url": "https://profiles.stanford.edu/hariharan-subramonyam?tab=publications",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://web.archive.org/web/20211027135119id_/https://profiles.stanford.edu/hariharan-subramonyam",
+     "url": "https://web.archive.org/web/20190823064052id_/https://profiles.stanford.edu/fuhito-kojima",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20240804025120id_/https://profiles.stanford.edu/hariharan-subramonyam",
+     "url": "https://web.archive.org/web/20191214181644id_/https://profiles.stanford.edu/fuhito-kojima",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20260513225559id_/https://profiles.stanford.edu/hariharan-subramonyam",
+     "url": "https://web.archive.org/web/20200426171728id_/https://profiles.stanford.edu/fuhito-kojima",
      "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20200426164503id_/https://profiles.stanford.edu/fuhito-kojima",
+     "source": "student row source"
     }
    ],
-   "verdict": "readable",
+   "verdict": null,
    "unverifiable_reason": null,
-   "page": {
-    "url": "https://haridecoded.com/",
-    "sha256": "de65e05710f5cf53e7bba127b4c18ff3859ff8c6b8628b3b38ffefc4846741cd",
-    "quote": "Vincent Cavez",
-    "fetched_at": "2026-11-11T15:46:05"
-   },
-   "listed": [
-    {
-     "name": "Vincent Cavez",
-     "role": "postdoc",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "David Chuan-En Lin",
-     "role": "postdoc",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Zoe Kaputa",
-     "role": "phd",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Neha Rajagopalan",
-     "role": "phd",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Alberto Tono",
-     "role": "phd",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Anna Gutowska",
-     "role": "other",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Marielle Zheng",
-     "role": "other",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Oliver Huang",
-     "role": "other",
-     "section": "other",
-     "years": [],
-     "exclude": "outside_school"
-    },
-    {
-     "name": "Xinman (yoyo) Liu",
-     "role": "other",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Nidhi Parthasarathy",
-     "role": "other",
-     "section": "other",
-     "years": [],
-     "exclude": "rotation_or_highschool"
-    }
-   ],
-   "notes": "'ADVISING' section (Postdoc / PhD / Other Student Researchers) undated and not labelled current (page has 2026 news); section other under the strict rule. PhD students all co-advised. Nidhi Parthasarathy is at Lynbrook High School; Oliver Huang at University of Toronto."
+   "page": null,
+   "listed": [],
+   "notes": ""
   },
   {
    "pi": "Harikesh S. Nair",
@@ -207,630 +506,34 @@
      "source": "pis.json lab.url"
     }
    ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "Profile captured; personal website link gsb-faculty.stanford.edu/harikesh-nair redirects (301) to the GSB home page; no lab/member page found. Re-checked 2026-11-12 on reviewer's tip: the GSB CML faculty-researchers page (.../labs-initiatives/cml/faculty-researchers) now 301-redirects to the generic GSB labs-initiatives index (cml and cml/people also redirect or 404), so the lab roster is no longer served and cannot be captured; stays unverifiable."
-  },
-  {
-   "pi": "Irene Lo",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://sites.google.com/view/irene-lo",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://profiles.stanford.edu/irene-lo",
-     "source": "student row source"
-    }
-   ],
-   "verdict": "readable",
+   "verdict": null,
    "unverifiable_reason": null,
-   "page": {
-    "url": "https://sites.google.com/view/irene-lo",
-    "sha256": "e48c4a0cd8994ce732c3a6506fcb04c283e95143417b4367fd937e14fbcea074",
-    "quote": "Ivan-Aleksandar Mavrov",
-    "fetched_at": "2026-11-11T15:45:53"
-   },
-   "listed": [
-    {
-     "name": "Anushka Murthy",
-     "role": "phd",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Ivan-Aleksandar Mavrov",
-     "role": "phd",
-     "section": "other",
-     "years": []
-    }
-   ],
-   "notes": "Heading 'Ph.D. Students' under 'Students'; no 'current' wording and no per-name dates, only page footer 'Updated September 2026' (so section other under the strict rule; a reviewer may judge it current). Anushka Murthy co-advised with Ramesh Johari (Stanford). Former student Yuan Shi only in a news item, not listed."
-  },
-  {
-   "pi": "John L. Hennessy",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "http://www.stanford.edu/~hennessy/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://profiles.stanford.edu/john-hennessy",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
    "page": null,
    "listed": [],
-   "notes": "hennessy.stanford.edu captured: president-emeritus/Knight-Hennessy site with no student or member list."
+   "notes": ""
   },
   {
-   "pi": "John M. Cioffi",
+   "pi": "Jason Alan Fries",
    "stratum": "1-2",
    "candidate_urls": [
     {
-     "url": "https://profiles.stanford.edu/john-cioffi",
+     "url": "https://profiles.stanford.edu/jason-fries",
      "source": "audit lab_page.lab_site"
     },
     {
-     "url": "https://profiles.stanford.edu/john-cioffi?tab=publications",
+     "url": "https://profiles.stanford.edu/jason-fries?tab=publications",
      "source": "audit lab_page.pubs_page"
     },
     {
-     "url": "https://web.archive.org/web/20160312101012id_/https://profiles.stanford.edu/john-cioffi",
+     "url": "https://web.archive.org/web/20260419214848id_/https://profiles.stanford.edu/jason-fries",
      "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20230516180633id_/https://profiles.stanford.edu/john-cioffi",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20260515205427id_/https://profiles.stanford.edu/john-cioffi",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20220706214259id_/https://profiles.stanford.edu/john-cioffi",
-     "source": "student row source"
     }
    ],
-   "verdict": "readable",
+   "verdict": null,
    "unverifiable_reason": null,
-   "page": {
-    "url": "https://cioffi-group.stanford.edu/mlc/group.html",
-    "sha256": "05aa2557968f01c8da566683a6be41ae56b145cd1c15be88eb33b19df4ed46df",
-    "quote": "Abhiram Gorle",
-    "fetched_at": "2026-11-11T15:28:04"
-   },
-   "listed": [
-    {
-     "name": "Abhiram Gorle",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Jiwon Sung",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Muhammad Ahmed Mohsin",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Muhammad Umer",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Seungmin Choi",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "William L. Abbott",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Rajiv Agarwal",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Haleema Mehmood",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Avneesh Agrawal",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Carlos Aldana",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Naofal Al-Dhahir",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ghazi A Al-rawi",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "James T. Aslanis Jr.",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Philip S. Bednarz",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Harry V. Bims",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Mark H. Brady",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jungsub Byun",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Chiang-yu Chen",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ming-Yang Chen",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Won-Joon Choi",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jacky S. Chow",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Peter S. Chow",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Aakanksha Chowdhery",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Kok-wui Cheong",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Seong Taek Chung",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "COL Glen P. Dudevoir",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Amal Ekbal",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "John L. Fan",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Kevin D. Fisher",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jeannie Lee Fang",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Paul Fortier",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "George Ginis",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Minnie Ho",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Louise M. C. Hoo",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Chansoo Hwang",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Krista S. Jacobsen",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Sumanth Jagannathan",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "WoongJun Jang",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Sanjay Kasturia",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Joonsuk Kim",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Youngjae Kim",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ryoulhee Kwak",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "HyukJoon Kwon",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Joseph Paul Lauer",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Bin Lee",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Inkyu Lee",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jungwon Lee",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Wooyul Lee",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Achankeng Leke",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yun Liao",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Susan C. Lin",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Hui-Ling Lou",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Vinay Majjigi",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ardavan Maleki-Tehrani",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Moshe Malkin",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Cory S. Modlin",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Mehdi Mohseni",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Rohit Negi",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jisung Oh",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Peter Okrah",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Tosin Olatonbosun",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Borja Peleato",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Vahbod Pourahmad",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Greg Raleigh",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Wonjong Rhee",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Antonio Ruiz",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Atul Salvekar",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Nicholas P. Sands",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Kibeom Seong",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Kee-Bong Song",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Norman Swenson",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Haleh Tabrizi",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jose Tellado-Moudata-relo",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Dimitris-Alexandros Toumpakaris",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jerry C. Tu",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Paul Voois",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Rick Wesel",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Sarah Kate Wilson",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Zi-Ning Wu",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Shu-ping Yeh",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Daxiao Yu",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Wei Yu",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Steve Chaohuang Zeng",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Rui Zhang",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Robert Ziegler",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Thomas Nicholas Zogakis",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Hao Zou",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    }
-   ],
-   "notes": "Stanford MLC Lab group page: 'Current Members > Graduate Students' (5, role stated only as graduate students) and an undated Alumni table (names with employer; no years, role not stated so other). Not listed: visiting professors Taesoo Kwon, Iryna Barba, research affiliate Atul Salvekar (listed once as alumnus), former visiting professors. Emails on the page were not copied."
+   "page": null,
+   "listed": [],
+   "notes": ""
   },
   {
    "pi": "Juan Carlos Niebles",
@@ -841,38 +544,350 @@
      "source": "audit lab_page.lab_site"
     }
    ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
+   "verdict": null,
+   "unverifiable_reason": null,
    "page": null,
    "listed": [],
-   "notes": "Profile (captured) has no advisee block or links; niebles.net (captured) lists no students; shared SVL lab people page not tied to him (search found only a pre-2021 group page naming him as scientist)."
+   "notes": ""
   },
   {
-   "pi": "Mark Zhandry",
+   "pi": "Kenneth Salisbury",
    "stratum": "1-2",
    "candidate_urls": [
     {
-     "url": "https://profiles.stanford.edu/mark-zhandry",
+     "url": "http://jks-folks.stanford.edu/index.html",
      "source": "audit lab_page.lab_site"
     },
     {
-     "url": "https://profiles.stanford.edu/mark-zhandry?tab=publications",
+     "url": "http://jks-folks.stanford.edu/publications.html",
      "source": "audit lab_page.pubs_page"
     },
     {
-     "url": "https://web.archive.org/web/20260312112443id_/https://profiles.stanford.edu/mark-zhandry",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20260707144947id_/https://profiles.stanford.edu/mark-zhandry",
-     "source": "audit students.pages"
+     "url": "https://profiles.stanford.edu/6094",
+     "source": "pis.json lab.url"
     }
    ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "Profile captured (advisee roles only, no group page link); web search found no personal or group member page."
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "http://sr.stanford.edu",
+    "sha256": "48ee62e697233dabde457155b9e93419f7d0c096f4eeb25919974c66fd736d2b",
+    "quote": "Professors, PIs, and Clinical Collaborators",
+    "fetched_at": "2026-11-11T15:27:05"
+   },
+   "listed": [
+    {
+     "name": "Connor Yako",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Shenli Yuan",
+     "role": "phd",
+     "section": "other",
+     "years": []
+    },
+    {
+     "name": "Jerome Nowak",
+     "role": "phd",
+     "section": "other",
+     "years": []
+    },
+    {
+     "name": "Sandesh Manik",
+     "role": "masters",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Adam Leeper",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Brian Jo",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Mark Stauber",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Michael Yip",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Reuben Brewer",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Rob Wilson",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Baris Ungun",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jonas Forsslund",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Sonny Chan",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Qiao Zhao",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Morgan Quigley",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Dan Walker",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jeff Schlosser",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Eric Berger",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "David Camarillo",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Kevin Loewke",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Dan Morris",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Curt Salisbury",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Chris Sewell",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Sean Walker",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Keenan Wyrobek",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Cédric Schwab",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Kent Frankovich",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ben Wilson",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Roman Devengenzo",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Unnur Gretarsdottir",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Paul Nangeroni",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Josh Oechslin",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Kirk Phelps",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Lee Redden",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Brandon Stafford",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ashley Wellman",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Lauren Wessel",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Sue-Lynn Wu",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Tony Pratkanis",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Aubrey Shapero",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Sarah-Marie Chan",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Dillon McCoy",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Marie Feng",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Derek Gaw",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Josh Stern",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Yuka Teraguchi",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Doug Wilson",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Sara C. Schvartzman",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Remis Balaniuk",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Federico Barbagli",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    }
+   ],
+   "notes": "Reused the previously captured member-list page and listed-name transcription from 2026-11-13T172306; new build bindings and completeness are recomputed by student_recall.py check. Own lab site sr.stanford.edu (Salisbury Robotics Lab), reached by the 'click here' link on the stored candidate jks-folks.stanford.edu/index.html. Primary = People page on the home page (undated; Current/Former headings); extra pages are the Current Students (?page_id=9) and Former Students (?page_id=895) pages of the same site. Pages disagree on Shenli Yuan (root: graduated Ph.D.; page_id=9: Ph.D. candidate) and Jerome Nowak (root: under Former Students; page_id=9: current); listed as current per page_id=9. Skipped: Salisbury himself, Nicholas Blevins (clinical collaborator). Federico Barbagli (research fellow, consulting professor) listed as other. A spam sentence about crypto AML checks sits in the page nav and was ignored. No dates anywhere, so only the current-section names count. Fresh review: Shenli Yuan and Jerome Nowak re-tagged section other because the home-page menu (graduated/former) and page_id=9 (current) conflict and the pages cannot say which is current.",
+   "extra_pages": [
+    {
+     "url": "https://sr.stanford.edu/?page_id=9",
+     "sha256": "544e4e9226e62ac4ab13844c77fb29433f4ca49c67e7e0fda9b0885c7d03a737"
+    },
+    {
+     "url": "https://sr.stanford.edu/?page_id=895",
+     "sha256": "af6062869dc821e9db2ed30497087dc6e37d035f0b9e41e4f3b9dc2ecfec646b"
+    }
+   ]
   },
   {
    "pi": "Mendel Rosenblum",
@@ -903,11 +918,11 @@
      "source": "student row source"
     }
    ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
+   "verdict": null,
+   "unverifiable_reason": null,
    "page": null,
    "listed": [],
-   "notes": "Profile captured (advisee roles only); Platform Lab link not a member list of his; search found only genealogy sites (not own page)."
+   "notes": ""
   },
   {
    "pi": "Michael Saunders",
@@ -923,6 +938,10 @@
     },
     {
      "url": "https://web.archive.org/web/20220302220246id_/https://profiles.stanford.edu/michael-saunders",
+     "source": "student row source"
+    },
+    {
+     "url": "https://openreview.net/profile?id=~Ron_Estrin1",
      "source": "student row source"
     },
     {
@@ -1566,7 +1585,7 @@
      ]
     }
    ],
-   "notes": "Page is the Systems Optimization Laboratory (SOL, MS&E) students/alumni/visitors page (lab shared by Gill, Murray, Saunders, Wright); not Saunders-specific, so names are SOL students, not necessarily advised by Saunders. Alumni year headings (e.g. (2019) before a name) were attached to the names that follow them. Saunders personal page (saunders.people.stanford.edu) lists no students. Dates are PhD years. Current Students has one name."
+   "notes": "Reused the previously captured member-list page and listed-name transcription from HEAD; new build bindings and completeness are recomputed by student_recall.py check. Page is the Systems Optimization Laboratory (SOL, MS&E) students/alumni/visitors page (lab shared by Gill, Murray, Saunders, Wright); not Saunders-specific, so names are SOL students, not necessarily advised by Saunders. Alumni year headings (e.g. (2019) before a name) were attached to the names that follow them. Saunders personal page (saunders.people.stanford.edu) lists no students. Dates are PhD years. Current Students has one name."
   },
   {
    "pi": "Mike Cherry",
@@ -1594,7 +1613,7 @@
     "fetched_at": "2026-11-12T10:37:26"
    },
    "listed": [],
-   "notes": "People page lists only Cherry Lab staff (biocurators, data wranglers, software developers; marked no longer updated as of December 2025) and no students or postdocs at all; nothing to list. The lab is a genomic-database group (SGD, ENCODE)."
+   "notes": "Reused the previously captured member-list page and listed-name transcription from HEAD; new build bindings and completeness are recomputed by student_recall.py check. People page lists only Cherry Lab staff (biocurators, data wranglers, software developers; marked no longer updated as of December 2025) and no students or postdocs at all; nothing to list. The lab is a genomic-database group (SGD, ENCODE)."
   },
   {
    "pi": "Mohammad Akbarpour",
@@ -1609,26 +1628,45 @@
      "source": "student row source"
     }
    ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
+   "verdict": null,
+   "unverifiable_reason": null,
    "page": null,
    "listed": [],
-   "notes": "Personal page web.stanford.edu/~mohamwad/ (captured, sha256 1f9cc9a90f89978ee531c6393fb41b3fc3cfdef0562a33e15f36aa903fbd23da) has papers, teaching and CV only, no students list; GSB PhD students appear only as coauthors. profiles.stanford.edu has no member list. No lab page found among candidates."
+   "notes": ""
   },
   {
-   "pi": "Olivier Gevaert",
+   "pi": "Ryan Williams",
    "stratum": "1-2",
    "candidate_urls": [
     {
-     "url": "https://profiles.stanford.edu/olivier-gevaert",
-     "source": "student row source"
+     "url": "http://web.stanford.edu/~rrwill/",
+     "source": "audit lab_page.lab_site"
     }
    ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "robots_disallowed",
+   "verdict": null,
+   "unverifiable_reason": null,
    "page": null,
    "listed": [],
-   "notes": "Lab page gevaertlab.stanford.edu/people refused by the capture tool (robots disallows or unreadable); candidate profiles.stanford.edu page is a profile with no member list. Not captured."
+   "notes": ""
+  },
+  {
+   "pi": "Tijana Zrnic",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://profiles.stanford.edu/tijana-zrnic",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://profiles.stanford.edu/tijana-zrnic?tab=publications",
+     "source": "audit lab_page.pubs_page"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
   },
   {
    "pi": "Yoav Shoham",
@@ -1797,52 +1835,471 @@
      "years": []
     }
    ],
-   "notes": "Candidate robotics.stanford.edu/~shoham returned 301/404; found his personal site yoavshoham.net via search (he is emeritus). Page is an undated list of past PhD students; no current students."
+   "notes": "Reused the previously captured member-list page and listed-name transcription from HEAD; new build bindings and completeness are recomputed by student_recall.py check. Candidate robotics.stanford.edu/~shoham returned 301/404; found his personal site yoavshoham.net via search (he is emeritus). Page is an undated list of past PhD students; no current students."
   },
   {
-   "pi": "Andrea Goldsmith",
+   "pi": "Anshul Kundaje",
    "stratum": "3+",
    "candidate_urls": [
     {
-     "url": "http://www-ee.stanford.edu/~andrea/",
+     "url": "https://profiles.stanford.edu/anshul-kundaje",
      "source": "audit lab_page.lab_site"
     },
     {
-     "url": "https://web.archive.org/web/20191117222333id_/https://profiles.stanford.edu/andrea-goldsmith",
+     "url": "https://profiles.stanford.edu/anshul-kundaje?tab=publications",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://web.archive.org/web/20190716141257id_/https://profiles.stanford.edu/anshul-kundaje",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20230205072356id_/https://profiles.stanford.edu/anshul-kundaje",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20260717112807id_/https://profiles.stanford.edu/anshul-kundaje",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20220107013256id_/https://profiles.stanford.edu/anshul-kundaje",
      "source": "student row source"
     },
     {
-     "url": "https://wsl.stanford.edu/people/alumni",
+     "url": "https://web.archive.org/web/20210112190345id_/https://profiles.stanford.edu/anshul-kundaje",
      "source": "student row source"
     },
     {
-     "url": "https://web.archive.org/web/20160312101957id_/https://profiles.stanford.edu/andrea-goldsmith",
+     "url": "https://web.archive.org/web/20200206182314id_/https://profiles.stanford.edu/anshul-kundaje",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Daniel Schwartz",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "http://aaalab.stanford.edu/publications/index.html",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://web.archive.org/web/20190917225922id_/https://profiles.stanford.edu/daniel-schwartz",
      "source": "student row source"
     },
     {
-     "url": "https://web.archive.org/web/20170302005912id_/https://profiles.stanford.edu/andrea-goldsmith",
+     "url": "https://web.archive.org/web/20220119175505id_/https://profiles.stanford.edu/daniel-schwartz",
      "source": "student row source"
     },
     {
-     "url": "https://web.archive.org/web/20181204143340id_/https://profiles.stanford.edu/andrea-goldsmith",
-     "source": "student row source"
-    },
-    {
-     "url": "https://profiles.stanford.edu/andrea-goldsmith",
+     "url": "https://profiles.stanford.edu/daniel-schwartz",
      "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Doug James",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "http://graphics.stanford.edu/~djames",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://graphics.stanford.edu/~djames/group/",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://graphics.stanford.edu/~djames/publications/",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://web.archive.org/web/20171213014428id_/http://graphics.stanford.edu/~djames/group/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20220704083044id_/https://graphics.stanford.edu/~djames/group/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20260416074439id_/https://graphics.stanford.edu/~djames/group/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://profiles.stanford.edu/doug-james",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20210226184421id_/https://profiles.stanford.edu/doug-james",
+     "source": "student row source"
     }
    ],
    "verdict": "readable",
    "unverifiable_reason": null,
    "page": {
-    "url": "https://wsl.stanford.edu/people/alumni",
-    "sha256": "0233e750ee2f99cc0a2c38f51e39b6ddcfc9b789b1457f74e68df91040a2a365",
-    "quote": "Milind Rao 2019 Amazon",
-    "fetched_at": "2026-11-11T15:48:18"
+    "url": "https://graphics.stanford.edu/~djames/group/",
+    "sha256": "52aac572d9f32e9c38e80dd8bf1e28b7740198ea346d3827d0df94df5cb36062",
+    "quote": "Below are some current and past members of my research group that I have had the pleasure of working with over the years.",
+    "fetched_at": "2026-11-15T07:56:57"
    },
    "listed": [
     {
-     "name": "Milind Rao",
+     "name": "Jeff Li",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Zhehao Li",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Eito Murakami",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Daiki Nakajima",
+     "role": "masters",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Kangrui Xue",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Kiyohiro (George) Nakayama",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jiayi Eris Zhang",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Samuel Clarke",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "exclude": "co_advised_elsewhere",
+     "note": "Page says advised by Jiajun Wu."
+    },
+    {
+     "name": "Jonathan Pham",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Mark Rau",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Kelly Carson",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Maitri Marzi",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ante Qu",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Mengfan Zhang",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jui-hsien Wang",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jonathan Leaf",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Eston Schweickart",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Cornell."
+    },
+    {
+     "name": "Timothy Langlois",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Cornell."
+    },
+    {
+     "name": "Steven An",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Cornell."
+    },
+    {
+     "name": "Jeffrey Chadwick",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Cornell."
+    },
+    {
+     "name": "Changxi Zheng",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Cornell."
+    },
+    {
+     "name": "Cem Yuksel",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Cornell."
+    },
+    {
+     "name": "Jonathan Kaldor",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Cornell."
+    },
+    {
+     "name": "Theodore Kim",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Cornell."
+    },
+    {
+     "name": "Alec Rivers",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Cornell."
+    },
+    {
+     "name": "Jernej Barbic",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Carnegie Mellon."
+    },
+    {
+     "name": "Christopher Twigg",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Carnegie Mellon."
+    },
+    {
+     "name": "Robert Wang",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Carnegie Mellon."
+    },
+    {
+     "name": "Andrew Cove",
+     "role": "masters",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Carnegie Mellon."
+    },
+    {
+     "name": "Kayvon Fatahalian",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "note": "Page explicitly labels this historical group member Carnegie Mellon."
+    }
+   ],
+   "notes": "Captured PI-owned Stanford research group page. Transcribed five current and 25 past members. The past section is undated and remains ineligible for current recall; 14 Cornell/CMU historical members are explicitly marked outside school. Samuel Clarke is labeled advised by Jiajun Wu. Current Jeff Li is co-advised with Alison Marsden and retained."
+  },
+  {
+   "pi": "Greg Valiant",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "http://theory.stanford.edu/~valiant/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://theory.stanford.edu/~valiant/pap_link.html",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://web.archive.org/web/20190507170317id_/http://theory.stanford.edu:80/~valiant/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20240206033651id_/https://theory.stanford.edu/~valiant/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20220107013047id_/https://profiles.stanford.edu/gregory-valiant",
+     "source": "student row source"
+    },
+    {
+     "url": "https://profiles.stanford.edu/gregory-valiant",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20210306081456id_/https://profiles.stanford.edu/gregory-valiant",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20200109212936id_/https://profiles.stanford.edu/gregory-valiant",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://theory.stanford.edu/~valiant/",
+    "sha256": "b55039ab58a74c4a8d6c5dacad77c16d7a71783dd09bcacebd3dca4e823d9da6",
+    "quote": "I am extremely lucky to advise the following PhD students:",
+    "fetched_at": "2026-11-15T07:55:45"
+   },
+   "listed": [
+    {
+     "name": "Annie Marsden",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Steven Cao",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Chirag Pabbaraju",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Spencer Compton",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Aidan Perreault",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Shivam Garg",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Jay Mardia",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Mingda Qiao",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Neha Gupta",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Brian Axelrod",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Kai Sheng Tai",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2021
+     ]
+    },
+    {
+     "name": "Vatsal Sharan",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2020
+     ]
+    },
+    {
+     "name": "Weihao Kong",
      "role": "phd",
      "section": "alumni",
      "years": [
@@ -1850,1792 +2307,206 @@
      ]
     },
     {
-     "name": "Mainak Chowdhury",
+     "name": "Hongyang Zhang",
      "role": "phd",
      "section": "alumni",
      "years": [
-      2017
+      2019
      ]
-    },
-    {
-     "name": "Alon Kipnis",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2017
-     ]
-    },
-    {
-     "name": "Alexandros Manolakos",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2015
-     ]
-    },
-    {
-     "name": "Boon Sim Thian",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Chris Ng",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2007
-     ]
-    },
-    {
-     "name": "Lifang Li",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2000
-     ]
-    },
-    {
-     "name": "Mohamed Slim Alouini",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      1998
-     ]
-    },
-    {
-     "name": "Neelesh B. Mehta",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2001
-     ]
-    },
-    {
-     "name": "Nihar Jindal",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Nima Soltani",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Reza Mirghaderi",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Sachin Adlakha",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Shuguang Cui",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Sina Firouzabadi",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Sriram Vishwanath",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Stavros Toumpis",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2003
-     ]
-    },
-    {
-     "name": "Syed Ali Jafar",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2003
-     ]
-    },
-    {
-     "name": "Taesang Yoo",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2007
-     ]
-    },
-    {
-     "name": "Tim Holliday",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Xiangheng Liu",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2005
-     ]
-    },
-    {
-     "name": "Yao Xie",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2012
-     ]
-    },
-    {
-     "name": "Yifan Liang",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yuxin Chen",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2015
-     ]
-    },
-    {
-     "name": "Nariman Farsad",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Felipe Gomez Cuba",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yonathan Morin",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Bruno Sinopoli",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Deniz Gunduz",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ernest Kurniawan",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ernest Lo",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "F. Javier Lopez-Martinez",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ivana Maric",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jinhua Jiang",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jinyuan Chen",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Mahnoosh Alizadeh",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Marco Levorato",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Nan Liu",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Pulkit Grover",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ron Dabora",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Se Yong Park",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Stefano Rini",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yair Noam",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yue Zhao",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ai Bo",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Anna Scaglione",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Anteneh Atumo Gebremariam",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ashish Khisti",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Aylin Yener",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Chan-Byoung Chae",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Dalin Zhu",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Edmund Yeh",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Eduardo Martos-Naya",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Etsushi Yamazaki",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Fernando Rosas",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Hideo Ikeda",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Hyunjeong Kim",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Inaki Estella Aguerri",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Javier Rubio Lopez",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Joao Barros",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jose F. Paris",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Juan Jose Garcia Fernandez",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Juan M. Romero Jerez",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Kazuhide Kawabe",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Konstantinos Dimou",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Lili Zhang",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ming Lei",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Moonil Lee",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Neta Zuckerman",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Olga Munoz",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "SangHak Lee",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Sheng Zhou",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Shigeru Shimamoto",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Song Ho Moon",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "SooSung Hwang",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Tara Javidi",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Tobias Renk",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yeheskel BarNess",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yong-Ping Zhang",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yonina Eldar",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Young Hyoun Kwon",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yuejie Chi",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Hrishikesh Mandyam",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jeremy Kim",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Rajiv Agarwal",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Seong Taek Chung",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Nicole Grimwood",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Theo John Diamandis",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
     }
    ],
-   "notes": "Alumni page of the Wireless Systems Lab; the alumni page carries the names; the current-members page wsl.stanford.edu/people was captured too (sha d485a0c9) and lists only Goldsmith (Emerita) plus an Alumni link ; the current-members page wsl.stanford.edu/people was captured 2026-11-11 (sha256 d485a0c97d60d89e519743d1709ee9d510200a9a7fcbf3d2afde9fcf05e0ebcd) and lists only Goldsmith (Emerita) and a link to Alumni, no current students, so nothing current is missing. Former PhD students 22 (14 dated), postdocs 20, visitors 38, MS 6. Names were taken verbatim in the page order; Yuxin Chen and Yao Xie are listed by the page under former PhD students."
+   "notes": "Official Stanford faculty page captured 2026-11-15; explicitly labels current and former PhD advisees. Five current names and nine dated alumni transcribed, including coadvised students. Three dated alumni are absent from the built Greg Valiant rows (Jay Mardia, Weihao Kong, Hongyang Zhang); retain as recall gaps for source recovery."
   },
   {
-   "pi": "Caroline Trippel",
+   "pi": "Hariharan Subramonyam",
    "stratum": "3+",
    "candidate_urls": [
     {
-     "url": "https://profiles.stanford.edu/caroline-trippel",
+     "url": "https://profiles.stanford.edu/hariharan-subramonyam",
      "source": "audit lab_page.lab_site"
     },
     {
-     "url": "https://profiles.stanford.edu/caroline-trippel?tab=publications",
+     "url": "https://profiles.stanford.edu/hariharan-subramonyam?tab=publications",
      "source": "audit lab_page.pubs_page"
     },
     {
-     "url": "https://web.archive.org/web/20200709195857id_/https://profiles.stanford.edu/caroline-trippel",
+     "url": "https://web.archive.org/web/20211027135119id_/https://profiles.stanford.edu/hariharan-subramonyam",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20240414143104id_/https://profiles.stanford.edu/caroline-trippel",
+     "url": "https://web.archive.org/web/20240804025120id_/https://profiles.stanford.edu/hariharan-subramonyam",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20260415074017id_/https://profiles.stanford.edu/caroline-trippel",
-     "source": "audit students.pages"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://trippel-lab.stanford.edu",
-    "sha256": "05c10dfd6b85c6c2132826efe705a47c9e33ac8a3aa2ef3f59e6ff2ad81a6a13",
-    "quote": "Samantha Archer PhD Student",
-    "fetched_at": "2026-11-12T10:40:27"
-   },
-   "listed": [
-    {
-     "name": "Samantha Archer",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Rachel Cleaveland",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Saranyu Chattopadhyay",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Anna Eaton",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Yao Hsiao",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Daniel Mendoza",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Nicholas Mosier",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Yicheng Qian",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Ioanna Vavelidou",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Xiaofu (Kaia) Li",
-     "role": "undergraduate",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Ihyun Nam",
-     "role": "phd",
-     "section": "other",
-     "years": [],
-     "exclude": "rotation_or_highschool"
-    },
-    {
-     "name": "Sally Wang",
-     "role": "phd",
-     "section": "other",
-     "years": [],
-     "exclude": "rotation_or_highschool"
-    },
-    {
-     "name": "Nathan Sobotka",
-     "role": "phd",
-     "section": "other",
-     "years": [],
-     "exclude": "rotation_or_highschool"
-    }
-   ],
-   "notes": "Lab homepage People block, Advisees list; no section is labelled Current, but it is the live lab page (papers marked To appear 2026) and is treated as current. Rotation students (Autumn 2024) and Ihyun Nam (Rotating PhD Student) excluded as rotation. The page also shows a lorem-ipsum About text."
-  },
-  {
-   "pi": "Chris Re",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "http://hazyresearch.stanford.edu",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://hazyresearch.stanford.edu/people",
-     "source": "audit lab_page.people_page"
-    },
-    {
-     "url": "https://hazyresearch.stanford.edu/blog/2024-12-11-alumni-updates",
-     "source": "audit lab_page.alumni_page"
-    },
-    {
-     "url": "https://web.archive.org/web/20200307092412id_/http://hazyresearch.stanford.edu:80/people/",
+     "url": "https://web.archive.org/web/20260513225559id_/https://profiles.stanford.edu/hariharan-subramonyam",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20250115091139id_/https://hazyresearch.stanford.edu/blog/2024-12-11-alumni-updates",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20250219042820id_/https://hazyresearch.stanford.edu/people",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20251003100351id_/https://hazyresearch.stanford.edu/blog/2024-12-11-alumni-updates",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20261009111453id_/https://hazyresearch.stanford.edu/blog/2024-12-11-alumni-updates",
-     "source": "audit students.pages"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://hazyresearch.stanford.edu/people",
-    "sha256": "8d8ed283805bd8e407f3762f4c57e92176098c40717dc9867ef0bea750e5574a",
-    "quote": "Yasa Baig",
-    "fetched_at": "2026-11-11T15:45:44"
-   },
-   "listed": [
-    {
-     "name": "Yasa Baig",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Nasim Borazjanizadeh",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Francois Chaubard",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Catherine Deng",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Roberto Garcia",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Junmiao Hu",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Hermann Kumbong",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Jerry Liu",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Divya Nori",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Jon Saad-Falcon",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Stuart Sul",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Kelly Buchanan",
-     "role": "postdoc",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Michael Zhang",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Avanika Narayan",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Neel Guha",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Mayee Chen",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Owen Dugan",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Sabri Eyuboglu",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Eric Nguyen",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Dan Biderman",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ben Spector",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Simran Arora",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Michael Wornow",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Chris Fifty",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Gautam Machiraju",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Dan Fu",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Silas Alberti",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Kush Bhatia",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Armin Thomas",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Brandon Yang",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Karan Goel",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Tri Dao",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Albert Gu",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Beidi Chen",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Laurel Orr",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Arjun Desai",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Sarah Hooper",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Megan Leszczynski",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Khaled Saab",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Nimit Sohoni",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ines Chami",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    }
-   ],
-   "notes": "The People page has PhDs / Postdocs / Faculty / Recent Alumni headings but no literal word Current or date; PhDs and Postdocs sections are treated as the current group. Alumni roles are not stated on the page, so role other. Chris Re himself (listed under Faculty) is not included."
-  },
-  {
-   "pi": "Emma Brunskill",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://profiles.stanford.edu/emma-brunskill",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://profiles.stanford.edu/emma-brunskill?tab=publications",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://web.archive.org/web/20190309163428id_/https://profiles.stanford.edu/emma-brunskill",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20240503205452id_/https://profiles.stanford.edu/emma-brunskill/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20260414061750id_/https://profiles.stanford.edu/emma-brunskill",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20220121044015id_/https://profiles.stanford.edu/emma-brunskill",
-     "source": "student row source"
-    },
-    {
-     "url": "https://web.archive.org/web/20210126154519id_/https://profiles.stanford.edu/emma-brunskill",
+     "url": "https://haridecoded.com/",
      "source": "student row source"
     }
    ],
    "verdict": "readable",
    "unverifiable_reason": null,
    "page": {
-    "url": "https://cs.stanford.edu/people/ebrun/students.html",
-    "sha256": "236fa29eb49a365a5a1010f2a7de23c40b898fe9b30b51a05ac0ce9c1fdb0976",
-    "quote": "Current group members and long term collaborations include",
-    "fetched_at": "2026-11-12T10:39:04"
+    "url": "https://haridecoded.com/",
+    "sha256": "de65e05710f5cf53e7bba127b4c18ff3859ff8c6b8628b3b38ffefc4846741cd",
+    "quote": "Vincent Cavez",
+    "fetched_at": "2026-11-11T15:46:05"
    },
    "listed": [
     {
-     "name": "Justin Whitehouse",
+     "name": "Vincent Cavez",
      "role": "postdoc",
-     "section": "current",
+     "section": "other",
      "years": []
     },
     {
-     "name": "Zhaoqi Li",
+     "name": "David Chuan-En Lin",
      "role": "postdoc",
-     "section": "current",
+     "section": "other",
      "years": []
     },
     {
-     "name": "Ananya Bhattacharjee",
-     "role": "postdoc",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Joy He-Yueya",
+     "name": "Zoe Kaputa",
      "role": "phd",
-     "section": "current",
+     "section": "other",
      "years": []
     },
     {
-     "name": "Stephane Hatgiskessell",
+     "name": "Neha Rajagopalan",
      "role": "phd",
-     "section": "current",
+     "section": "other",
      "years": []
     },
     {
-     "name": "Ishani Karmarkar",
+     "name": "Alberto Tono",
      "role": "phd",
-     "section": "current",
-     "years": [],
-     "exclude": "co_advised_elsewhere"
-    },
-    {
-     "name": "Alex Nam",
-     "role": "phd",
-     "section": "current",
-     "years": [],
-     "exclude": "co_advised_elsewhere"
-    },
-    {
-     "name": "Matthew Jörke",
-     "role": "phd",
-     "section": "alumni",
+     "section": "other",
      "years": []
     },
     {
-     "name": "Aishwarya Mandyam",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Allen Nie",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jonathan Lee",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Sanath Kumar Krishnamurthy",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Scott Fleming",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Tong Mu",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Andrea Zanette",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Xinkun Nie",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ramtin Keramati",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yao Liu",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Christoph Dann",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Shayan Doroudi",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Zhaohan Daniel Guo",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Travis Mandel",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yun-En Liu",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ryan Louie",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ge Gao",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yash Chandak",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yannis Flet-Berliac",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Pierre-Luc Bacon",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Peyton Greenside",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jonathan Bragg",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Philip Thomas",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Mohammad Azar",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Christina Yuan",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Li Zhou",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Rika Antonova",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Joe Runde",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Dexter Lee",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Qi Guo",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jadon Gaethers",
+     "name": "Anna Gutowska",
      "role": "other",
-     "section": "alumni",
+     "section": "other",
+     "years": []
+    },
+    {
+     "name": "Marielle Zheng",
+     "role": "other",
+     "section": "other",
+     "years": []
+    },
+    {
+     "name": "Oliver Huang",
+     "role": "other",
+     "section": "other",
+     "years": [],
+     "exclude": "outside_school"
+    },
+    {
+     "name": "Xinman (yoyo) Liu",
+     "role": "other",
+     "section": "other",
+     "years": []
+    },
+    {
+     "name": "Nidhi Parthasarathy",
+     "role": "other",
+     "section": "other",
      "years": [],
      "exclude": "rotation_or_highschool"
-    },
-    {
-     "name": "Deonna Owens",
-     "role": "other",
-     "section": "alumni",
-     "years": [],
-     "exclude": "rotation_or_highschool"
-    },
-    {
-     "name": "Joseph Rollinson",
-     "role": "undergraduate",
-     "section": "alumni",
-     "years": []
     }
    ],
-   "notes": "Group page (students.html, linked as Group from the home page) states Current group members; alumni undated. Ishani Karmarkar and Alex Nam are marked with other advisors (Sidford/Vitercik; Demszky), excluded as co_advised_elsewhere. Interns Jadon Gaethers and Deonna Owens excluded as summer interns. The Alex Nam ugrad line is inside an HTML comment and is not counted. Page is an older-style site (CV dated June 2020) but states current members."
+   "notes": "Reused the previously captured member-list page and listed-name transcription from HEAD; new build bindings and completeness are recomputed by student_recall.py check. 'ADVISING' section (Postdoc / PhD / Other Student Researchers) undated and not labelled current (page has 2026 news); section other under the strict rule. PhD students all co-advised. Nidhi Parthasarathy is at Lynbrook High School; Oliver Huang at University of Toronto."
   },
   {
-   "pi": "Fei-Fei Li",
+   "pi": "John Ousterhout",
    "stratum": "3+",
    "candidate_urls": [
     {
-     "url": "http://vision.stanford.edu/feifeili/",
+     "url": "https://web.stanford.edu/~ouster",
      "source": "audit lab_page.lab_site"
     },
     {
-     "url": "https://profiles.stanford.edu/fei-fei-li",
+     "url": "https://web.archive.org/web/20210123015904id_/https://profiles.stanford.edu/john-ousterhout",
      "source": "student row source"
     },
     {
-     "url": "https://web.archive.org/web/20220118010002id_/https://profiles.stanford.edu/fei-fei-li",
+     "url": "https://web.archive.org/web/20220502162708id_/https://profiles.stanford.edu/john-ousterhout",
      "source": "student row source"
     },
     {
-     "url": "https://web.archive.org/web/20160314162326id_/https://profiles.stanford.edu/fei-fei-li",
-     "source": "student row source"
-    },
-    {
-     "url": "https://web.archive.org/web/20190309163306id_/https://profiles.stanford.edu/fei-fei-li",
-     "source": "student row source"
-    },
-    {
-     "url": "https://web.archive.org/web/20200109200003id_/https://profiles.stanford.edu/fei-fei-li",
-     "source": "student row source"
-    },
-    {
-     "url": "https://web.archive.org/web/20210112192528id_/https://profiles.stanford.edu/fei-fei-li/",
-     "source": "student row source"
+     "url": "https://profiles.stanford.edu/john-ousterhout",
+     "source": "pis.json lab.url"
     }
    ],
-   "verdict": "readable",
+   "verdict": null,
    "unverifiable_reason": null,
-   "page": {
-    "url": "https://cs.stanford.edu/groups/vision/people.html",
-    "sha256": "2ccf10128eee77d4c9b1debe163a8b1c4394831066bfed204fa233db1d3ebcae",
-    "quote": "Jim Fan (Ph.D. student)",
-    "fetched_at": "2026-11-12T10:41:18"
-   },
-   "listed": [
-    {
-     "name": "Shyamal Buch",
-     "role": "masters",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Zelun Luo",
-     "role": "masters",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Jim Fan",
-     "role": "phd",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Albert Haque",
-     "role": "phd",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "De-An Huang",
-     "role": "phd",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Justin Johnson",
-     "role": "phd",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Ranjay Krishna",
-     "role": "phd",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Damian Mrowca",
-     "role": "phd",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Serena Yeung",
-     "role": "phd",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Yuke Zhu",
-     "role": "phd",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Animesh Garg",
-     "role": "postdoc",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Guido Pusiol",
-     "role": "postdoc",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Yanan Sui",
-     "role": "postdoc",
-     "section": "other",
-     "years": []
-    },
-    {
-     "name": "Timnit Gebru",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2012,
-      2017
-     ]
-    },
-    {
-     "name": "Jon Krause",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2011,
-      2016
-     ]
-    },
-    {
-     "name": "Andrej Karpathy",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2011,
-      2016
-     ]
-    },
-    {
-     "name": "Vignesh Ramanathan",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2011,
-      2016
-     ]
-    },
-    {
-     "name": "Marius Cătălin Iordan",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2009,
-      2016
-     ]
-    },
-    {
-     "name": "Olga Russakovsky",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2010,
-      2015
-     ]
-    },
-    {
-     "name": "Kevin Tang",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2010,
-      2015
-     ]
-    },
-    {
-     "name": "Chris Baldassano",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2010,
-      2015
-     ]
-    },
-    {
-     "name": "Jia Deng",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2008,
-      2013
-     ]
-    },
-    {
-     "name": "Bangpeng Yao",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2008,
-      2013
-     ]
-    },
-    {
-     "name": "Jia Li",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2006,
-      2011
-     ]
-    },
-    {
-     "name": "Juan Carlos Niebles",
-     "role": "phd",
-     "section": "alumni",
-     "years": [
-      2005,
-      2010
-     ]
-    },
-    {
-     "name": "Alex Alahi",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": [
-      2013,
-      2017
-     ]
-    },
-    {
-     "name": "Cewu Lu",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": [
-      2015,
-      2016
-     ]
-    },
-    {
-     "name": "Joseph Lim",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": [
-      2015,
-      2016
-     ]
-    },
-    {
-     "name": "Lamberto Ballan",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": [
-      2014,
-      2016
-     ]
-    },
-    {
-     "name": "Michelle Greene",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": [
-      2013,
-      2015
-     ]
-    },
-    {
-     "name": "Alireza Fathi",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": [
-      2013,
-      2014
-     ]
-    },
-    {
-     "name": "Armand Joulin",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": [
-      2013,
-      2014
-     ]
-    }
-   ],
-   "notes": "Candidate vision.stanford.edu is blocked in the capture store (robots); used the older Stanford CS Vision Lab people page found by search (cs.stanford.edu/groups/vision/people.html), which is undated and appears to date from about 2017 (latest alumni 2017); it is stale for Li, so recall against current students will be low by construction. Current-looking members have no Current heading, so section other. Excluded: Fei-Fei Li, Juan Carlos Niebles as faculty (his PhD alumni row is listed). Barry Chai (Research Assistant) and the Niebles faculty row not listed."
-  },
-  {
-   "pi": "Hae Young Noh",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://profiles.stanford.edu/hae-young-noh",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://profiles.stanford.edu/hae-young-noh?tab=publications",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://web.archive.org/web/20200803141653id_/https://profiles.stanford.edu/hae-young-noh",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20230402065244id_/https://profiles.stanford.edu/hae-young-noh",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20260714075950id_/https://profiles.stanford.edu/hae-young-noh",
-     "source": "audit students.pages"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://noh-lab.stanford.edu/people",
-    "sha256": "2704b3d375a7fb76aa5f4b8ba17fedaffd04f73b453d3ae53f2655c8962a00e1",
-    "quote": "Adeola Bannis",
-    "fetched_at": "2026-11-11T15:32:42"
-   },
-   "listed": [
-    {
-     "name": "Adeola Bannis",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Amelie Bonde",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Jesse Codling",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Jingxiao Liu",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Sulagna Sarkar",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Ankit Shrivastava",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Yiwen Dong",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Matineh Eybpoosh",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Johnathon Fagert",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "George Lederman",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Mostafa Mirshekari",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Shijia Pan",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Susu Xu",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    }
-   ],
-   "notes": "Lab People page (Structures as Sensors Lab). Titles 'PhD Student' read as current; 'Ph.D. Alumni' and employer lines as alumni; alumni roles other than Dong not stated on page. No years on page."
-  },
-  {
-   "pi": "Jay McClelland",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://stanford.edu/~jlmcc/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://stanford.edu/~jlmcc/papers",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://web.archive.org/web/20220107013330id_/https://profiles.stanford.edu/jay-mcclelland",
-     "source": "student row source"
-    },
-    {
-     "url": "https://profiles.stanford.edu/jay-mcclelland",
-     "source": "student row source"
-    },
-    {
-     "url": "https://web.archive.org/web/20200109210943id_/https://profiles.stanford.edu/jay-mcclelland",
-     "source": "student row source"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "list_not_current",
    "page": null,
    "listed": [],
-   "notes": "Home page has no member list; PDP lab people page (web.stanford.edu/group/pdplab/people.html, captured sha 09cfd4e0...) lists students/postdocs/alumni with no dates and no current section; content is ~2014 era. Lab index www.stanford.edu/group/pdplab/ redirects (307)."
+   "notes": ""
   },
   {
-   "pi": "Keith Winstein",
+   "pi": "Lexing Ying",
    "stratum": "3+",
    "candidate_urls": [
     {
-     "url": "https://cs.stanford.edu/~keithw/",
+     "url": "https://web.stanford.edu/~lexing/",
      "source": "audit lab_page.lab_site"
     },
     {
-     "url": "https://web.archive.org/web/20160105154033id_/http://cs.stanford.edu:80/~keithw/",
+     "url": "https://web.archive.org/web/20211122033029id_/https://web.stanford.edu/~lexing/",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20221219035954id_/https://cs.stanford.edu/~keithw/",
+     "url": "https://web.archive.org/web/20261017023347id_/http://web.stanford.edu/~lexing/",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20260919131157id_/https://cs.stanford.edu/~keithw/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://profiles.stanford.edu/keith-winstein",
+     "url": "https://profiles.stanford.edu/lexing-ying",
      "source": "student row source"
     },
     {
-     "url": "https://web.archive.org/web/20210122221327id_/https://profiles.stanford.edu/keith-winstein",
+     "url": "https://web.archive.org/web/20220518093438id_/https://profiles.stanford.edu/lexing-ying",
      "source": "student row source"
     }
    ],
    "verdict": "readable",
    "unverifiable_reason": null,
    "page": {
-    "url": "https://cs.stanford.edu/~keithw/",
-    "sha256": "d19033ee975212fb1790dd6378f191b45a15f93ed4db6b3d92ff67179b3d2257",
-    "quote": "Akshay Srivatsan (with Dawson Engler)",
-    "fetched_at": "2026-11-11T15:47:55"
+    "url": "https://web.stanford.edu/~lexing/",
+    "sha256": "ad35476469dbf622334047e1a5581ca9cbbec4ec549d20b8d61a7e02900b497d",
+    "quote": "Students and postdocs",
+    "fetched_at": "2026-11-15T07:58:28"
    },
    "listed": [
     {
-     "name": "Akshay Srivatsan",
-     "role": "phd",
+     "name": "Haoxuan Chen",
+     "role": null,
      "section": "current",
      "years": []
     },
     {
-     "name": "Katherine Mohr",
-     "role": "phd",
+     "name": "Hongrui Chen",
+     "role": null,
      "section": "current",
      "years": []
     },
     {
-     "name": "Haibib Kerim",
-     "role": "masters",
+     "name": "Hongkang Ni",
+     "role": null,
      "section": "current",
      "years": []
     },
     {
-     "name": "Linfan Qian",
-     "role": "masters",
+     "name": "Nan Sheng",
+     "role": null,
      "section": "current",
      "years": []
     },
     {
-     "name": "Emma Sudo",
-     "role": "masters",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Zara Zong",
-     "role": "masters",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Jennifer Mori",
-     "role": "masters",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Gregory Li",
-     "role": "masters",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Yuhan Deng",
+     "name": "Ya-Chi Chu",
      "role": "phd",
      "section": "alumni",
      "years": [
@@ -3643,29 +2514,87 @@
      ]
     },
     {
-     "name": "Gina Yuan",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Francis Yan",
+     "name": "Rajat Dwaraknath",
      "role": "phd",
      "section": "alumni",
      "years": [
-      2020
+      2026
      ]
     },
     {
-     "name": "Colleen Josephson",
+     "name": "Yinuo Ren",
      "role": "phd",
      "section": "alumni",
      "years": [
-      2020
+      2026
      ]
     },
     {
-     "name": "Luke Hsiao",
+     "name": "Leah Reeder",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Xun Tang",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Milo Marsden",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Haoya Li",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Yiping Lu",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Zach Izzo",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Philip Etter",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Panagiotis Lolas",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Cindy Catherine Orozco Bohorquez",
      "role": "phd",
      "section": "alumni",
      "years": [
@@ -3673,7 +2602,7 @@
      ]
     },
     {
-     "name": "Riad S. Wahby",
+     "name": "Jordi Feliu Faba",
      "role": "phd",
      "section": "alumni",
      "years": [
@@ -3681,7 +2610,7 @@
      ]
     },
     {
-     "name": "Sadjad Fouladi",
+     "name": "Jing An",
      "role": "phd",
      "section": "alumni",
      "years": [
@@ -3689,925 +2618,273 @@
      ]
     },
     {
-     "name": "John Emmons",
+     "name": "Fei Liu",
      "role": "phd",
      "section": "alumni",
-     "years": []
+     "years": [
+      2018
+     ]
     },
     {
-     "name": "Greg Hill",
+     "name": "Victor Minden",
      "role": "phd",
      "section": "alumni",
-     "years": []
+     "years": [
+      2017
+     ]
     },
     {
-     "name": "Luna Chen",
-     "role": "masters",
+     "name": "Yingzhou Li",
+     "role": "phd",
      "section": "alumni",
-     "years": []
+     "years": [
+      2017
+     ]
     },
     {
-     "name": "Francis Chua",
-     "role": "masters",
+     "name": "Anil Damle",
+     "role": "phd",
      "section": "alumni",
-     "years": []
+     "years": [
+      2016
+     ]
     },
     {
-     "name": "Niam Shah",
-     "role": "masters",
+     "name": "Haizhao Yang",
+     "role": "phd",
      "section": "alumni",
-     "years": []
+     "years": [
+      2015
+     ]
     },
     {
-     "name": "Majd Nasra",
-     "role": "masters",
+     "name": "Paul Tsuji",
+     "role": "phd",
      "section": "alumni",
-     "years": []
+     "years": [
+      2012
+     ]
     },
     {
-     "name": "Victor Phisitkul",
-     "role": "masters",
+     "name": "Jack Poulson",
+     "role": "phd",
      "section": "alumni",
-     "years": []
+     "years": [
+      2012
+     ]
     },
     {
-     "name": "Kavita Kar",
-     "role": "masters",
+     "name": "Phillip Schmitz",
+     "role": "phd",
      "section": "alumni",
-     "years": []
+     "years": [
+      2010
+     ]
     },
     {
-     "name": "Sebastian Ingino",
-     "role": "masters",
+     "name": "Xun Tang",
+     "role": "postdoc",
      "section": "alumni",
-     "years": []
+     "years": [
+      2026
+     ]
     },
     {
-     "name": "Angela Montemayor",
-     "role": "masters",
+     "name": "Alice Cortinovis",
+     "role": "postdoc",
      "section": "alumni",
-     "years": []
+     "years": [
+      2024
+     ]
     },
     {
-     "name": "Yasmine Mitchell",
-     "role": "masters",
+     "name": "Chao Ma",
+     "role": "postdoc",
      "section": "alumni",
-     "years": []
+     "years": [
+      2023
+     ]
     },
     {
-     "name": "Pratyush Muthukumar",
-     "role": "masters",
+     "name": "Yuhua Zhu",
+     "role": "postdoc",
      "section": "alumni",
-     "years": []
+     "years": [
+      2022
+     ]
     },
     {
-     "name": "Sneha Shah",
-     "role": "masters",
+     "name": "Yuwei Fan",
+     "role": "postdoc",
      "section": "alumni",
-     "years": []
+     "years": [
+      2019
+     ]
     },
     {
-     "name": "Neha Kunjal",
-     "role": "masters",
+     "name": "Yuehaw Khoo",
+     "role": "postdoc",
      "section": "alumni",
-     "years": []
+     "years": [
+      2019
+     ]
     },
     {
-     "name": "Emily Marx",
-     "role": "masters",
+     "name": "Kenneth Ho",
+     "role": "postdoc",
      "section": "alumni",
-     "years": []
+     "years": [
+      2015
+     ]
     },
     {
-     "name": "Dan Iter",
-     "role": "masters",
+     "name": "Jack Poulson",
+     "role": "postdoc",
      "section": "alumni",
-     "years": []
+     "years": [
+      2014
+     ]
     },
     {
-     "name": "Jestin Ma",
-     "role": "masters",
+     "name": "Jingwei Hu",
+     "role": "postdoc",
      "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Henri Stern",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Emre Orbay",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Brennan Shacklett",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "William Zeng",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Katie Wu",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Charles Sheelam",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Kevin Song",
-     "role": "masters",
-     "section": "alumni",
-     "years": []
+     "years": [
+      2014
+     ]
     }
    ],
-   "notes": "Students section with Current/Former headings. 'Master's and undergraduate' and 'Master's, undergraduate, and HS' groups are mixed: role masters is a coarse label; HS students may be among the former group (not distinguishable). Some doctoral names are 'with' other advisers."
+   "notes": "PI-owned page captured 2026-11-15. Current section has four names under mixed Students and postdocs heading, so roles withheld here. Graduated PhD students and postdocs have explicit completion years; transcribed all. Xun Tang and Jack Poulson appear twice in different dated roles."
   },
   {
-   "pi": "Kilian M. Pohl",
+   "pi": "Renyuan Xu",
    "stratum": "3+",
    "candidate_urls": [
     {
-     "url": "https://profiles.stanford.edu/kilian-pohl",
+     "url": "https://renyuanxu.github.io/",
      "source": "audit lab_page.lab_site"
     },
     {
-     "url": "https://profiles.stanford.edu/kilian-pohl?tab=publications",
-     "source": "audit lab_page.pubs_page"
+     "url": "https://renyuanxu.github.io/#students",
+     "source": "audit lab_page.people_page"
     },
     {
-     "url": "https://web.archive.org/web/20201001053744id_/https://profiles.stanford.edu/kilian-pohl",
+     "url": "https://web.archive.org/web/20250115043335id_/https://renyuanxu.github.io/",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20231207173948id_/https://profiles.stanford.edu/kilian-pohl",
+     "url": "https://web.archive.org/web/20251108044323id_/https://renyuanxu.github.io/",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20260711053435id_/https://profiles.stanford.edu/kilian-pohl",
+     "url": "https://web.archive.org/web/20260514154333id_/https://renyuanxu.github.io/",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20220107013052id_/https://profiles.stanford.edu/kilian-pohl",
+     "url": "https://profiles.stanford.edu/renyuan-xu",
      "source": "student row source"
     }
    ],
    "verdict": "readable",
    "unverifiable_reason": null,
    "page": {
-    "url": "https://cnslab.stanford.edu/team",
-    "sha256": "6066220bfec8e3b7439ab1b99a35e99ebbc9bc3e1f3adaa169640913ee66dcab",
-    "quote": "Favour Nerrise",
-    "fetched_at": "2026-11-11T15:48:42"
+    "url": "https://renyuanxu.github.io/#students",
+    "sha256": "3b13bb0d000d478df9187876f20cf1ca20b34bcc789f2481ce317baa193c7bbb",
+    "fetched_at": "2026-11-13T13:20:44",
+    "quote": "Post-doc fellows and Ph.D. students"
    },
    "listed": [
     {
-     "name": "Philippa Davis",
-     "role": "visiting",
+     "name": "Ilyas Fatkhullin",
+     "role": "postdoc",
      "section": "current",
-     "years": []
+     "years": [
+      2026
+     ]
     },
     {
-     "name": "Favour Nerrise",
+     "name": "Yinbin Han",
      "role": "phd",
      "section": "current",
-     "years": []
+     "years": [
+      2021
+     ]
     },
     {
-     "name": "Kalin Salinas",
-     "role": "postdoc",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Sarah Sanderson",
+     "name": "Jingwei Ji",
      "role": "phd",
      "section": "current",
-     "years": []
+     "years": [
+      2021
+     ]
     },
     {
-     "name": "Yixin Wang",
+     "name": "Zhengqi Wu",
      "role": "phd",
      "section": "current",
-     "years": []
+     "years": [
+      2021,
+      2026
+     ],
+     "exclude": "outside_school"
     },
     {
-     "name": "Minhui Yu",
-     "role": "postdoc",
+     "name": "Puheng Li",
+     "role": "phd",
      "section": "current",
-     "years": []
+     "years": [
+      2025
+     ]
     },
     {
-     "name": "Hamza Boudali",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Richard Chen",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Valentine Chirokoff",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Mark Endo",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Mary Fetter",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Eric Frankel",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ibrahim Gulluk",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Naijing Guo",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Lars Hauptmann",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yu Hang Jiang",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Myeongkyun Kang",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Soopil Kim",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Edwin Pan",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Magda Paschali",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Spencer Siegel",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ayush Singla",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Emily Wesel",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Pankhuri Aggarwal",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Nibha Akireddy",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Megan Backus",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Bhargav Dindukurthi",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Navami Jain",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yueting Li",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Julian Quevedo",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Anthony Vento",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Anastasia V. Butskova",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Daniel Do",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Rain Juhl",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Severine Lannoy",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Meng-Jin Lin",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Mandy Lu",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Joseph Pagadora",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Itamar Terem",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Kevin Wang",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Rafi Ayub",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Soham Gadgil",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yuan Liu",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Zixuan Liu",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Rui Yan",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Chris Yoon",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jiequan Zhang",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Tuo Leng",
-     "role": "visiting",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jonathan Li",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Aditri Bhagirath",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Tomas Bosschieter",
+     "name": "Chenghan Xie",
      "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yiran Fan",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Felipe Godoy",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Camila Gonzalez",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Tulika Jha",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Binxu Li",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "J. Manasseh-Lewis",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yanis Miraoui",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Nolan Nichols",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jiahong Ouyang",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Robbie Fraser",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jiaqi Wu",
-     "role": "other",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Yong Zhang",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
+     "section": "current",
+     "years": [
+      2025
+     ]
     }
    ],
-   "notes": "CNS Lab Team page: Members (current), Collaborators (not listed), Alumni (undated). Listed: PhD students, postdocs, visiting students/scholars, 'Research Student' (role other). Staff, research assistants/associates/scientists, engineers, analysts, visiting professor not listed."
+   "notes": "Reused the previously captured member-list page and listed-name transcription from 2026-11-13T182008; new build bindings and completeness are recomputed by student_recall.py check. Own page renyuanxu.github.io (stored audit capture; the #students candidate has identical content). One section 'Post-doc fellows and Ph.D. students'. Zhengqi Wu is shown as 'USC (2021-2026)', i.e. at another institution, excluded outside_school (1 of 6). Coauthors in the paper lists are not listed. No alumni section on the page."
   },
   {
-   "pi": "Mark Musen",
+   "pi": "Ron Fedkiw",
    "stratum": "3+",
    "candidate_urls": [
     {
-     "url": "https://profiles.stanford.edu/mark-musen",
+     "url": "http://physbam.stanford.edu/~fedkiw/",
      "source": "audit lab_page.lab_site"
     },
     {
-     "url": "https://profiles.stanford.edu/mark-musen?tab=publications",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://web.archive.org/web/20190716141632id_/https://profiles.stanford.edu/mark-musen",
+     "url": "https://web.archive.org/web/20160111151932id_/http://physbam.stanford.edu/~fedkiw/",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20221205210250id_/https://profiles.stanford.edu/mark-musen",
+     "url": "https://web.archive.org/web/20210606152710id_/http://physbam.stanford.edu/~fedkiw/",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20260828183839id_/https://profiles.stanford.edu/mark-musen",
-     "source": "audit students.pages"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "list_not_current",
-   "page": null,
-   "listed": [],
-   "notes": "Musen Lab page on computationalmedicine.stanford.edu (sha e8f8a274...) lists only staff plus one postdoctoral scholar (Brian Donovan), undated (footer 2024), no student list; no lab site of his own found by search; profile lists advisees only. Treated as no dated or current member list."
-  },
-  {
-   "pi": "Michael Bernstein",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "http://hci.stanford.edu/msb/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://hci.stanford.edu/msb/publications/",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://web.archive.org/web/20160106001534id_/http://hci.stanford.edu:80/msb/",
+     "url": "https://web.archive.org/web/20250808081626id_/https://physbam.stanford.edu/~fedkiw/",
      "source": "audit students.pages"
     },
     {
-     "url": "https://web.archive.org/web/20210728174952id_/https://hci.stanford.edu/msb/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20260926172238id_/https://hci.stanford.edu/msb/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://profiles.stanford.edu/michael-bernstein",
+     "url": "https://web.archive.org/web/20220529124342id_/https://profiles.stanford.edu/ron-fedkiw",
      "source": "student row source"
     },
     {
-     "url": "https://web.archive.org/web/20220120215312id_/https://profiles.stanford.edu/michael-bernstein",
+     "url": "https://profiles.stanford.edu/ron-fedkiw",
      "source": "student row source"
     },
     {
-     "url": "https://web.archive.org/web/20210112043712id_/https://profiles.stanford.edu/michael-bernstein",
+     "url": "https://web.archive.org/web/20201026192522id_/https://profiles.stanford.edu/ron-fedkiw",
      "source": "student row source"
     }
    ],
-   "verdict": "readable",
+   "verdict": null,
    "unverifiable_reason": null,
-   "page": {
-    "url": "https://hci.stanford.edu/msb/",
-    "sha256": "0399f001a16b4a6707e5d75e3c4bd80123a09920d3294024745c1a121c63beb8",
-    "quote": "Beleicia Bullock",
-    "fetched_at": "2026-11-11T15:48:12"
-   },
-   "listed": [
-    {
-     "name": "Beleicia Bullock",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Catherine Mullings",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Carolyn Zou",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Dora Zhao",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Jordan Troutman",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Lindsay Popowski",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Omar Shaikh",
-     "role": "phd",
-     "section": "current",
-     "years": []
-    },
-    {
-     "name": "Michelle Lam",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Joon Sung Park",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Mitchell Gordon",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ranjay Krishna",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Geza Kovacs",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Niloufar Salehi",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Ethan Fast",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Justin Cheng",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Daniela Retelny Blum",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Joy Kim",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Chinmay Kulkarni",
-     "role": "phd",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Jonne Kamphorst",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Tiziano Piccardi",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Zivvy Epstein",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Farnaz Jahanbakhsh",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Chenyan Jia",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Joseph Seering",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Amy X. Zhang",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Mark Whiting",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    },
-    {
-     "name": "Nicolas Kokkalis",
-     "role": "postdoc",
-     "section": "alumni",
-     "years": []
-    }
-   ],
-   "notes": "Homepage sections 'Ph.D. students' (current, page carries 2026 items), empty 'Postdocs' (HTML-commented), 'Ph.D. alumni', 'Postdoc alumni'. Homepage http://hci.stanford.edu/msb/ 301s to https."
-  },
-  {
-   "pi": "Mike Genesereth",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://profiles.stanford.edu/michael-genesereth",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://profiles.stanford.edu/michael-genesereth?tab=publications",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://web.archive.org/web/20160312101855id_/https://profiles.stanford.edu/michael-genesereth",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20220707131341id_/https://profiles.stanford.edu/michael-genesereth",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20260715050439id_/https://profiles.stanford.edu/michael-genesereth",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20160305111333id_/http://logic.stanford.edu/people.html",
-     "source": "student row source"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "robots_disallowed",
    "page": null,
    "listed": [],
-   "notes": "Profile page (sha b0c14979...) lists no members; logic.stanford.edu/people is blocked by the capture tool (robots/challenge refusal), so the lab people page was never fetched."
-  },
-  {
-   "pi": "S Simon Wong",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://profiles.stanford.edu/s-simon-wong",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://profiles.stanford.edu/s-simon-wong?tab=publications",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://web.archive.org/web/20160312110941id_/https://profiles.stanford.edu/s-simon-wong",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20221004222027id_/https://profiles.stanford.edu/s-simon-wong",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20260519171126id_/https://profiles.stanford.edu/s-simon-wong",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20220516195539id_/https://profiles.stanford.edu/s-simon-wong",
-     "source": "student row source"
-    },
-    {
-     "url": "https://web.archive.org/web/20201021061000id_/https://profiles.stanford.edu/s-simon-wong",
-     "source": "student row source"
-    },
-    {
-     "url": "https://web.archive.org/web/20230128045553id_/https://profiles.stanford.edu/s-simon-wong",
-     "source": "student row source"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "Emeritus professor; Stanford profile only; web search found no group page listing students."
-  },
-  {
-   "pi": "Scott Linderman",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://profiles.stanford.edu/scott-linderman",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://profiles.stanford.edu/scott-linderman?tab=publications",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://web.archive.org/web/20190917142626id_/https://profiles.stanford.edu/scott-linderman",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20240222165617id_/https://profiles.stanford.edu/scott-linderman",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20260711201436id_/https://profiles.stanford.edu/scott-linderman",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20220216093727id_/https://profiles.stanford.edu/scott-linderman",
-     "source": "student row source"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "robots_disallowed",
-   "page": null,
-   "listed": [],
-   "notes": "Lab people page lindermanlab.com/people refused by the capture tool (robots); Wayback copy 404. Department profile (archived 2026-07) lists Stanford advisees but is not the lab member list."
+   "notes": ""
   },
   {
    "pi": "Stefan Wager",
@@ -4777,13 +3054,164 @@
      ]
     }
    ],
-   "notes": "Team page: unlabeled current list above 'Alumni' (dated 2026 entries). Munro and Li are co-advised with others (Wager also adviser)."
+   "notes": "Reused the previously captured member-list page and listed-name transcription from HEAD; new build bindings and completeness are recomputed by student_recall.py check. Team page: unlabeled current list above 'Alumni' (dated 2026 entries). Munro and Li are co-advised with others (Wager also adviser)."
+  },
+  {
+   "pi": "Stephen Montgomery",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "http://montgomerylab.stanford.edu",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "http://montgomerylab.stanford.edu:80/people.html",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "http://montgomerylab.stanford.edu:80/publications.html",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://web.archive.org/web/20160321173115id_/http://montgomerylab.stanford.edu:80/people.html",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20160927011409id_/http://montgomerylab.stanford.edu/people.html",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20171226192429id_/http://montgomerylab.stanford.edu:80/people.html",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://profiles.stanford.edu/stephen-montgomery",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20220124211155id_/https://profiles.stanford.edu/stephen-montgomery",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Tsachy Weissman",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://compression.stanford.edu/summer-internships-high-school-students",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://web.archive.org/web/20190819001104id_/https://compression.stanford.edu/summer-internships-high-school-students",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20201112004608id_/https://compression.stanford.edu/summer-internships-high-school-students",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20210804004334id_/https://compression.stanford.edu/summer-internships-high-school-students",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.stanford.edu/~tsachy/group.html",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Victor R. Lee",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://profiles.stanford.edu/victorlee",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://profiles.stanford.edu/victorlee?tab=publications",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://web.archive.org/web/20200502171029id_/https://profiles.stanford.edu/victorlee",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20230627092338id_/https://profiles.stanford.edu/victorlee",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20260713032204id_/https://profiles.stanford.edu/victorlee",
+     "source": "audit students.pages"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Virginia Williams",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://people.csail.mit.edu/virgi/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://people.csail.mit.edu/virgi/#students",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://people.csail.mit.edu/virgi/pubyear.html",
+     "source": "audit lab_page.pubs_page"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
+  },
+  {
+   "pi": "Yejin Choi",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://profiles.stanford.edu/yejin-choi?releaseVersion=11.5.3",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://web.archive.org/web/20260616222656id_/https://profiles.stanford.edu/yejin-choi?releaseVersion=11.5.3",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://profiles.stanford.edu/yejin-choi",
+     "source": "student row source"
+    }
+   ],
+   "verdict": null,
+   "unverifiable_reason": null,
+   "page": null,
+   "listed": [],
+   "notes": ""
   }
  ],
- "filled_by": "stanford-recall-checkers (three sonnet subagents), 2026-11-12, legacy-wave rebuild",
+ "filled_by": "codex-stanford-recall-1115 (partial source review; final sample pending)",
  "signoff": {
-  "reviewer": "fresh Sonnet reviewer af4e554c (not the drawer, not the fillers)",
-  "date": "2026-11-12",
-  "note": "Reviewer's own yes after re-reading entries 3 (Nair: page gone, stays unverifiable) and 15 (Goldsmith: current page captured, no students); covers the 10 entries it read (0,3,6,9,12,15,18,21,24,27); the other 20 were not reviewed."
+  "reviewer": "",
+  "date": "",
+  "note": "a fresh reviewer: not the drawer and not the filler"
  }
 }
