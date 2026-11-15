@@ -1,0 +1,7 @@
+# Guoqiang Li student roster, 2026-11-15
+
+The [SJTU faculty profile](https://www.cs.sjtu.edu.cn/jiaoshiml/liguoqiang.html) links the PI's [homepage](https://basics.sjtu.edu.cn/~liguoqiang), whose captured HTML links `students.htm`. The [PI-owned student roster](https://basics.sjtu.edu.cn/~liguoqiang/students.htm) was captured as raw HTML on 2026-11-15, SHA-256 `6f1a1dc4fe7d764b07187f051ba7179b796afa6f7f1cc7431ae8f1f1a63f23c6`. The homepage capture has SHA-256 `5b8a99e2b04184d87e7c7ddc22859043a35afc1dfd35168d61f1766ef37cb5ed` and contains `<a href="students.htm">`.
+
+The roster lists 27 current students: seven doctoral, nineteen master's (including those marked MEM), and one undergraduate. It also lists 52 doctoral or master's graduation entries dated 2016–2026. Three people appear twice for successive degrees or current study: Minyu Chen, Jingyang Li, and Lianyi Wu. Those are represented once each, with the later or current degree retained, yielding 76 distinct people. Earlier graduates before 2016 are excluded. The current entries have observation-year evidence only; no enrollment start year is inferred.
+
+Every reviewed row carries the captured URL, SHA-256, a page quote naming the student, the source section and a reviewer/date. The roster provides the PI relation directly; the doctoral and master's sections give the role. The separate 30-PI recall check should use this page if Guoqiang Li is sampled after the final build.
