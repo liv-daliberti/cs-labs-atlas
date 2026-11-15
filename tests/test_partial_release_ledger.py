@@ -1,6 +1,21 @@
+from pathlib import Path
+import tomllib
+
 import pytest
 
 import school_config as S
+
+
+def test_current_released_charters_use_online_ledgers():
+    schools = Path(__file__).resolve().parents[1] / 'schools'
+    released = []
+    for path in schools.glob('*.toml'):
+        with path.open('rb') as f:
+            charter = tomllib.load(f)
+        if charter.get('status') == 'released':
+            released.append(path.stem)
+            assert charter.get('release', {}).get('ledger_mode', 'online') == 'online', path.stem
+    assert released
 
 
 def test_new_onboarding_without_package_does_not_break_released_ledger(monkeypatch, tmp_path):
