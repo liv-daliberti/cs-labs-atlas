@@ -78,9 +78,17 @@ def reviewed_name_aliases(key):
     out = []
     for item in doc['rows']:
         a, b, ev = item['name_a'], item['name_b'], item['evidence']
-        assert a != b and toks(a)[-1] == toks(b)[-1]
+        assert a != b and (''.join(toks(a)[1:]) == ''.join(toks(b)[1:]) or toks(a)[-1] == toks(b)[-1])   # one family name; 'De Choudhury' / 'DeChoudhury' differ only by a space
         path = (P.ROOT / ev['raw_path']).resolve()
         assert path.is_relative_to(P.ROOT.resolve())
+        if ev.get('kind') == 'shared_dblp_pid':   # both spellings are one DBLP person: the pinned dump record carries the ORCID and the school affiliation
+            import gzip
+            rec = json.loads(gzip.decompress(path.read_bytes()))['persons'][ev['pid_url']]
+            core = {k: rec[k] for k in ('names', 'orcid', 'affiliations')}
+            assert hashlib.sha256(json.dumps(core, sort_keys=True).encode()).hexdigest() == ev['sha256']
+            assert ev['orcid'] in rec['orcid'] and ev['quote'] in ' | '.join(rec['affiliations'])
+            out.append((a, b))
+            continue
         raw = path.read_bytes()
         assert hashlib.sha256(raw).hexdigest() == ev['sha256']
         text = ' '.join(BeautifulSoup(raw, 'html.parser').stripped_strings)
