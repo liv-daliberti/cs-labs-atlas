@@ -2,7 +2,7 @@
  "school": "vt",
  "date": "2026-11-15",
  "seed": 2026111503,
- "n_verdicts": 8,
+ "n_verdicts": 9,
  "files": {
   "pis.json": "89fd30ec8da139c96eae95d04da5e726a14956d9a2667bdba122e7c198c69ca1",
   "students.json": "970c02257b49c064f48d2c25d28ace82060c1861c165cdf46ccec1487c15b5ee",
@@ -19,18 +19,18 @@
  },
  "lab_precision_uniform": {
   "k": 6,
-  "n": 6,
-  "p": 1.0,
-  "lo": 0.6097,
-  "hi": 1.0,
+  "n": 7,
+  "p": 0.8571,
+  "lo": 0.4869,
+  "hi": 0.9743,
   "unclear": 0
  },
  "lab_precision_uniform_if_abstracts_count": {
   "k": 6,
-  "n": 6,
-  "p": 1.0,
-  "lo": 0.6097,
-  "hi": 1.0,
+  "n": 7,
+  "p": 0.8571,
+  "lo": 0.4869,
+  "hi": 0.9743,
   "unclear": 0
  },
  "lab_precision_strata": {
@@ -56,10 +56,10 @@
  },
  "lab_precision_all40": {
   "k": 8,
-  "n": 8,
-  "p": 1.0,
-  "lo": 0.6756,
-  "hi": 1.0,
+  "n": 9,
+  "p": 0.8889,
+  "lo": 0.565,
+  "hi": 0.9801,
   "unclear": 0
  },
  "student_precision_uniform": {
@@ -81,8 +81,19 @@
   "drawn": 0,
   "no_coauthored_paper": 0
  },
- "failures": {},
- "incorrect": [],
+ "failures": {
+  "not_a_paper": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Kurt Luther|None|https://openalex.org/W3016579664",
+   "failure_type": "not_a_paper",
+   "reason": "The PI's Virginia Tech lab explicitly categorizes this AGU 2018 item as a poster; no full research paper is evidenced for the sampled OpenAlex record. The package mislabels it as an article.",
+   "policy": null
+  }
+ ],
  "unclear": [],
  "screened": [],
  "population": {
@@ -100,7 +111,7 @@
    "cands": 200
   },
   "judged": {
-   "lab_precision": 8,
+   "lab_precision": 9,
    "student_precision": 0,
    "lab_coverage": 0,
    "student_coverage": 0
