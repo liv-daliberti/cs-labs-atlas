@@ -1,0 +1,4225 @@
+{
+  "schema": 1,
+  "school": "hkust",
+  "drawn_at": "2026-11-16T00:33:31Z",
+  "drawn_by": "codex-hkust-final-recall-round3-1115",
+  "seed": 4148128067,
+  "binds": {
+    "students.json": "9a615006849ac1cfc2703e0c6f9ec166d61bc8410e179a1ca7bde01ea1f13953",
+    "pis.json": "6f74707e5b51ec2deb9c0b6d8c42d5c9335b3fec5b2dee448e84acc94cbb9fe5"
+  },
+  "current_from_year": 2025,
+  "sizes": {
+    "0": 35,
+    "1-2": 7,
+    "3+": 74
+  },
+  "picked": {
+    "0": 12,
+    "1-2": 7,
+    "3+": 11
+  },
+  "how": "tools/student_recall.py draw: seeded stratified sample by recorded student rows (0 / 1-2 / 3+); the checker fills `verdict`, `page` and `listed`",
+  "sample": [
+    {
+      "pi": "Bertram E. Shi",
+      "stratum": "0",
+      "candidate_urls": [],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "robots_disallowed",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: read exact cached source and retained search/access findings. ECEfaculty listing and DBLP37/5620 point to own ee.ust.hk/~eebert/, recordedrobotsdisallowed; no allowed member roster read."
+    },
+    {
+      "pi": "Chi-Ying Tsui",
+      "stratum": "0",
+      "candidate_urls": [],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: read exact cached source and retained search/access findings. Retained ECEfaculty listing source and DBLP26/1737 source search found no independently owned member-list URL; no coauthor/student inference from publications."
+    },
+    {
+      "pi": "Fangzhen LIN 林方真",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://cse.hkust.edu.hk/~flin/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/flin",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: read exact cached source and retained search/access findings. Read saved own cse.hkust.edu.hk/~flin/ and official profile sources: biography, research/teaching/publication context, no named member list. DBLP73/6980 has no additional homepage URL."
+    },
+    {
+      "pi": "Ke Wang",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://www.math.hkust.edu.hk/~kewang",
+          "source": "audit lab_page.lab_site"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: read exact cached source and retained search/access findings. Read own math.hkust.edu.hk/~kewang homepage, Research and Miscellaneous pages: biography/research/seminars/blog links, no student roster. mykewang.com and repository leads are recordedrobotsdisallowed; not bypassed."
+    },
+    {
+      "pi": "Ping Tan",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://ece.hkust.edu.hk/pingtan",
+          "source": "audit lab_page.lab_site"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: read exact cached source and retained search/access findings. Official ECEprofile is readable but has no named own member list. VNI people is a multiPIinstitution leadership/member directory (JiayaJia director, PingTan associate director), not an individually assigned PingTan lab roster; no departmental/institute names transferred."
+    },
+    {
+      "pi": "Shenghui Song",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://ece.hkust.edu.hk/eeshsong",
+          "source": "audit lab_page.lab_site"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "page_unreachable",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: same exact source pages reopened/read after new native; old seed/bindings never carried. Final draw483901673: reread same-hash exact captured pages and all named roster/source-check entries after native32308965. 2026-11-15 cached-source review: Official ECE profile 53d804ef... links eeshsong.home.ece.ust.hk; recorded source check fails TLS handshake. No member list read, no access workaround."
+    },
+    {
+      "pi": "Vincent K. N. Lau",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://ece.hkust.edu.hk/eeknlau",
+          "source": "audit lab_page.lab_site"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "page_unreachable",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: read exact cached source and retained search/access findings. Retained official ECEprofile96508720… links eeknlau.home.ece.ust.hk; exact own-host source search records TLSfailure and no readable member roster."
+    },
+    {
+      "pi": "Wai Ho Mow",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://ece.hkust.edu.hk/eewhmow",
+          "source": "audit lab_page.lab_site"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "robots_disallowed",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: read exact cached source and retained search/access findings. Official ECEprofilea54fc5cf… links own eewhmow.home.ece.ust.hk, whose candidate source is robotsdisallowed in retained website-register checks. Profile itself has no roster."
+    },
+    {
+      "pi": "Weichuan Yu",
+      "stratum": "0",
+      "candidate_urls": [],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "page_unreachable",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: read exact cached source and retained search/access findings. Retained official profile and own eeyu.home.ece.ust.hk search record TLSfailure; no readable member list. No access workaround or prior-institution transfer."
+    },
+    {
+      "pi": "Xiangtong Qi",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "http://ieemqi.people.ust.hk",
+          "source": "audit lab_page.lab_site"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: read exact cached source and retained search/access findings. Read saved own ieemqi.people.ust.hk homepage, Research.htm and bio.htm: courses, biography and research, no named member section."
+    },
+    {
+      "pi": "Yaonan JIN 金耀楠",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://yj10027.github.io/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/jinyaonan",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: read exact cached source and retained search/access findings. Read complete same-hash own yj10027.github.io career/publication page and official profile check: no named group/student list. Publication coauthors never treated as students."
+    },
+    {
+      "pi": "Zexiang Li",
+      "stratum": "0",
+      "candidate_urls": [],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "robots_disallowed",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: read exact cached source and retained search/access findings. Retained ECElisting and DBLP33/6795 source link own ece.ust.hk/ece.php/profile/facultydetail/eezxli; source request recordedrobotsdisallowed. No readable own member roster, no retry/bypass."
+    },
+    {
+      "pi": "Ajay Joneja",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "http://www.ieda.ust.hk/dfaculty/ajay",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/Summer24/ychengw-26-08-2024.html",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: same exact source pages reopened/read after new native; old seed/bindings never carried. Final draw483901673: reread same-hash exact captured pages and all named roster/source-check entries after native32308965. 2026-11-15 cached-source review: Read full saved CV at ieda.ust.hk/dfaculty/ajay/ and official profile-linked register (6a69eb90...): own education, positions, publications and teaching; no student/member section. Shared thesis defence evidence remains separate from a PI member roster."
+    },
+    {
+      "pi": "Dan XU 徐旦",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://cse.hkust.edu.hk/~danxu/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/ourgraduates/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/danxu",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "bot_challenge",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: same exact source pages reopened/read after new native; old seed/bindings never carried. Final draw483901673: reread same-hash exact captured pages and all named roster/source-check entries after native32308965. 2026-11-15 cached-source review: Rechecked stored challenge outcome at www.danxurgb.net/people.html (HTTP 999); old HKUST homepage is a meta-refresh, not a member list. Host remains blocked; no retry, archive or workaround."
+    },
+    {
+      "pi": "Jiheng Zhang",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "http://cryptofintechlabhk.net",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/F21/fhanab-09-11-2021.html",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: same exact source pages reopened/read after new native; old seed/bindings never carried. Final draw483901673: reread same-hash exact captured pages and all named roster/source-check entries after native32308965. 2026-11-15 cached-source review: Official Math profile 2d62d609... links math.hkust.edu.hk/~jiheng/ (70-byte redirect page, aaf59baf...) and generic cryptofintechlabhk.net landing page (ba8f76a1...), neither provides a PI-specific member list. Retained named thesis defence observation is separate."
+    },
+    {
+      "pi": "Mingxun ZHOU 周銘洵",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://wuwuz.github.io/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://wuwuz.github.io/#publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://wuwuz.github.io/#students",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/mingxunz",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://wuwuz.github.io/",
+        "sha256": "5a657764192a0517dc459eebb5d3bd86178af7d8620a02a4f710f2846b8caee1",
+        "quote": "Yijia Fang (PhD student, since 2026)",
+        "fetched_at": "2026-11-11T22:42:28"
+      },
+      "listed": [
+        {
+          "name": "Yijia Fang",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Yue Zhang",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2026
+          ]
+        }
+      ],
+      "notes": "Draw4148128067: same exact source pages reopened/read after new native; old seed/bindings never carried. Final draw483901673: reread same-hash exact captured pages and all named roster/source-check entries after native32308965. 2026-11-15: reread the complete same-hash saved current and alumni pages against this new seeded draw. Single-page site; Students section lists 2 current PhD students (new PI, joined HKUST 2026, PhD from CMU). No alumni section."
+    },
+    {
+      "pi": "Pascale Fung",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/F20/ejs-22-09-2020.html",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "robots_disallowed",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: same exact source pages reopened/read after new native; old seed/bindings never carried. Final draw483901673: reread same-hash exact captured pages and all named roster/source-check entries after native32308965. 2026-11-15 cached-source review: Official ECE profile 76a66a71... links pascale.home.ece.ust.hk; saved discovery records robots_disallowed for that host. Shared CSE thesis-defence notice does not substitute for a member-list page."
+    },
+    {
+      "pi": "Yiding Feng",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://www.ydfeng.us/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://www.ydfeng.us/yiding-feng-冯逸丁/publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://www.ydfeng.us/yiding-feng-冯逸丁/advising",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://www.ydfeng.us/yiding-feng-冯逸丁/advising",
+        "sha256": "a32e000967fe3dcbc566a6efe48004b6136b8aed82a6168a6b6f24a88212b92f",
+        "quote": "Advising PhD"
+      },
+      "listed": [
+        {
+          "name": "Sijin Chen",
+          "role": "phd",
+          "section": "other",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Zihan Luo",
+          "role": "phd",
+          "section": "other",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Liuhan Qian",
+          "role": "phd",
+          "section": "other",
+          "years": []
+        },
+        {
+          "name": "Tianshuo Zhang",
+          "role": "phd",
+          "section": "other",
+          "years": []
+        },
+        {
+          "name": "Chui Shan Lee",
+          "role": "postdoc",
+          "section": "other",
+          "years": []
+        }
+      ],
+      "notes": "Draw4148128067: same exact source pages reopened/read after new native; old seed/bindings never carried. Final draw483901673: reread same-hash exact captured pages and all named roster/source-check entries after native32308965. 2026-11-15 fresh sample: reread exact saved primary page(s), including current and alumni sections. The advising page has degree headings but no explicit current marker; only the two dated Fall-2026 names qualify under the strict rule. Other names remain undated excluded."
+    },
+    {
+      "pi": "Yike GUO 郭毅可",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://provost.hkust.edu.hk/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/Summer26/yliuom-15-06-2026.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/yikeguo",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: same exact source pages reopened/read after new native; old seed/bindings never carried. Final draw483901673: reread same-hash exact captured pages and all named roster/source-check entries after native32308965. 2026-11-15 cached-source review: Saved official CSE link and redirects lead to HKUST Provost administrative site (2e7aec6c...), with no lab roster; DBLP/ORCID lead is Imperial affiliation, not an HKUST student list. Exact retained discovery checks reviewed."
+    },
+    {
+      "pi": "Bo LI 李波",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "http://www.cse.ust.hk/~bli/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/ourgraduates/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/F16/yzhangbh-10-01-2017.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/Summer18/smaad-20-08-2018.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/F24/lyaoak-14-11-2024.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/F25/pyeac-05-01-2026.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/Summer26/ydengbi-28-07-2026.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/Summer26/bsunak-02-06-2026.html",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "js_not_renderable",
+      "page": null,
+      "listed": [],
+      "notes": "Draw4148128067: read exact cached source and retained search/access findings. Exact saved cse.ust.hk/~bli/ page is a shell with biography/courses/publications/activities anchors and script js/index.js; no named member list in capturedDOM. No allowed rendered member-page capture exists in the reviewed source packet; cannot infer completeness from papers or the shell."
+    },
+    {
+      "pi": "James Tin-Yau KWOK 郭天佑",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://cse.hkust.edu.hk/~jamesk/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/~jamesk/publication.html",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/ourgraduates/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/jamesk",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://cse.hkust.edu.hk/~jamesk/",
+        "sha256": "fc703f33821067ae3089f9f27cdbc340c245b069c8413bb8f87f14ddb427f55a",
+        "quote": "Current Students"
+      },
+      "listed": [
+        {
+          "name": "Philipp Blankenhagen",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Shuhao Chen",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Yunhao Gou",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Ruping Huang",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Yibo Yan",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Zaifei Yang",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Yuyan Zhou",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Ziyu Zhou",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Xilin Cao",
+          "role": "masters",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Kai Syun Hou",
+          "role": "masters",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Weiqing Xu",
+          "role": "masters",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Zhili Liu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Yanbin Wei",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Weiyu Chen",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Hansi Yang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Lifeng Shen",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Weisen Jiang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Han Shi",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2022
+          ]
+        },
+        {
+          "name": "Shuai Zheng",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2019
+          ]
+        },
+        {
+          "name": "Lu Hou",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2019
+          ]
+        },
+        {
+          "name": "Yaqing Wang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2019
+          ]
+        },
+        {
+          "name": "Quanming Yao",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2018
+          ]
+        },
+        {
+          "name": "Wei Bi",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2015
+          ]
+        },
+        {
+          "name": "Leon Wenliang Zhong",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2014
+          ]
+        },
+        {
+          "name": "Kai Zhang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2008
+          ]
+        },
+        {
+          "name": "Ivor Tsang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2007
+          ]
+        },
+        {
+          "name": "Ziyu Zhou",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Nai Chit Fung",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Jincheng Yu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Runsheng Yu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Lawrence Chan",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Minsam Kim",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2020
+          ]
+        },
+        {
+          "name": "Zachary William Wellmer",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2019
+          ]
+        },
+        {
+          "name": "Diwen Xu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2018
+          ]
+        },
+        {
+          "name": "Xiawei Guo",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2017
+          ]
+        },
+        {
+          "name": "Shuai Zheng",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2015
+          ]
+        },
+        {
+          "name": "Yihai Huang",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2015
+          ]
+        },
+        {
+          "name": "Pak-Ming Cheung",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2006
+          ]
+        },
+        {
+          "name": "Calvin Chu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2005
+          ]
+        },
+        {
+          "name": "Ivor Tsang",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2003
+          ]
+        }
+      ],
+      "notes": "Draw4148128067: independently reread exact captured raw source after second native32310243. Read all current and former entries; source award dates were not substituted for PhD completion dates."
+    },
+    {
+      "pi": "Jiasi SHEN 沈嘉思",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "http://shenjiasi.com/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "http://shenjiasi.com/group.html",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "http://shenjiasi.com/papers.html",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/F26/kkochekov-18-09-2026.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/F26/phudec-22-09-2026.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/Summer26/sliew-17-06-2026.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/S26/sfarokhnia-26-03-2026.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/sjs",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "http://shenjiasi.com/group.html",
+        "sha256": "c2434ce6c861723f720f9603db3e7aa9dda3794aceb4297601838f9dc3478ae2",
+        "quote": "Software Automation"
+      },
+      "listed": [
+        {
+          "name": "Shangyu Li",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Sizhe Zhong",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Juyong Jiang",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Huiri Tan",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Jialu Yang",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Jingyi Chen",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Zhaoyang Zhang",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Ahmed Zaher",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Kerim Kochekov",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Pavel Hudec",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Meibo Ren",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Tanapoom Sermchaiwong",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Yikun Wang",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Chenqi Liu",
+          "role": "masters",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Tanapoom Sermchaiwong",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Soroush Farokhnia",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Xuran Cai",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Zhaorun Lin",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Meibo Ren",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Kuo Chen",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2023,
+            2024
+          ]
+        },
+        {
+          "name": "Kuo Chen",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Yichuan Li",
+          "role": "visiting",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Jiaze Wang",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2024,
+            2025
+          ]
+        },
+        {
+          "name": "Siyu Chen",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2023,
+            2024
+          ]
+        },
+        {
+          "name": "Tiancheng Zhao",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2023,
+            2024
+          ]
+        },
+        {
+          "name": "Jiayi Qian",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Junping Wang",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Ivan (Yin Fung) Lok",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Li Zhang",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Puyang Zhang",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2024,
+            2025
+          ]
+        },
+        {
+          "name": "Xiaoyan Guo",
+          "role": "visiting",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Yikun Wang",
+          "role": "visiting",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Zhaoyang Zhang",
+          "role": "visiting",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Chenqi Liu",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Yuhua Zhao",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Chaobo Jia",
+          "role": "visiting",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Sirui Xie",
+          "role": "visiting",
+          "section": "alumni",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Jerry Wu",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2017,
+            2018
+          ],
+          "exclude": "outside_school"
+        },
+        {
+          "name": "Varun Mangalick",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2017,
+            2018
+          ],
+          "exclude": "outside_school"
+        }
+      ],
+      "notes": "Draw4148128067: same exact source pages reopened/read after new native; old seed/bindings never carried. Final default-seeded sample483901673, 2026-11-15: exact saved raw source reread after final native build. Active degree list is explicitly separated from Former Group Members. GZ-campus PhD and two MIT mentoring entries remain named outside-school exclusions; not transferred to HKUST."
+    },
+    {
+      "pi": "Kai Tang",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "http://mektang.people.ust.hk/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "http://mektang.people.ust.hk/public_files/publications.html",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://web.archive.org/web/20171109064359id_/http://mektang.people.ust.hk:80/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20200221203059id_/http://mektang.people.ust.hk:80/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20260320161320id_/https://mektang.people.ust.hk/",
+          "source": "audit students.pages"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "http://mektang.people.ust.hk/",
+        "sha256": "8d20097a1ba98cc65e20b1debf7979b6a99e5ca13a38532fe6888a0a5f258490",
+        "quote": "GRADUATE STUDENTS Current:"
+      },
+      "listed": [
+        {
+          "name": "Chen, Yuanzhi",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "exclude": "outside_school",
+          "exclusion_note": "Own current CV states HKUST(HongKong) faculty endedJune2024 and current GZ head sinceAug2022. Undated present roster is not placed in former HongKong lab; no same-line school-proof exemption claimed.",
+          "appointment_scope_evidence": {
+            "url": "http://mektang.people.ust.hk/",
+            "sha256": "8d20097a1ba98cc65e20b1debf7979b6a99e5ca13a38532fe6888a0a5f258490",
+            "quote": "professor and head of smart manufacturing thrust, hong kong university of science and technology (guangzhou), since aug. 2022. professor, dept. of mechanical and aerospace engineering, hong kong university of science and technology, july 2011 � june 2024",
+            "qualification": "Current global roster cannot be placed at former HongKong lab after exact June2024 faculty end; exclusion remains X-counted, no same-line other-school proof exemption."
+          }
+        },
+        {
+          "name": "Gao, Yang",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "exclude": "outside_school",
+          "exclusion_note": "Own current CV states HKUST(HongKong) faculty endedJune2024 and current GZ head sinceAug2022. Undated present roster is not placed in former HongKong lab; no same-line school-proof exemption claimed.",
+          "appointment_scope_evidence": {
+            "url": "http://mektang.people.ust.hk/",
+            "sha256": "8d20097a1ba98cc65e20b1debf7979b6a99e5ca13a38532fe6888a0a5f258490",
+            "quote": "professor and head of smart manufacturing thrust, hong kong university of science and technology (guangzhou), since aug. 2022. professor, dept. of mechanical and aerospace engineering, hong kong university of science and technology, july 2011 � june 2024",
+            "qualification": "Current global roster cannot be placed at former HongKong lab after exact June2024 faculty end; exclusion remains X-counted, no same-line other-school proof exemption."
+          }
+        },
+        {
+          "name": "Liu, Rui",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "exclude": "outside_school",
+          "exclusion_note": "Own current CV states HKUST(HongKong) faculty endedJune2024 and current GZ head sinceAug2022. Undated present roster is not placed in former HongKong lab; no same-line school-proof exemption claimed.",
+          "appointment_scope_evidence": {
+            "url": "http://mektang.people.ust.hk/",
+            "sha256": "8d20097a1ba98cc65e20b1debf7979b6a99e5ca13a38532fe6888a0a5f258490",
+            "quote": "professor and head of smart manufacturing thrust, hong kong university of science and technology (guangzhou), since aug. 2022. professor, dept. of mechanical and aerospace engineering, hong kong university of science and technology, july 2011 � june 2024",
+            "qualification": "Current global roster cannot be placed at former HongKong lab after exact June2024 faculty end; exclusion remains X-counted, no same-line other-school proof exemption."
+          }
+        },
+        {
+          "name": "Lin, Yehong",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "exclude": "outside_school",
+          "exclusion_note": "Own current CV states HKUST(HongKong) faculty endedJune2024 and current GZ head sinceAug2022. Undated present roster is not placed in former HongKong lab; no same-line school-proof exemption claimed.",
+          "appointment_scope_evidence": {
+            "url": "http://mektang.people.ust.hk/",
+            "sha256": "8d20097a1ba98cc65e20b1debf7979b6a99e5ca13a38532fe6888a0a5f258490",
+            "quote": "professor and head of smart manufacturing thrust, hong kong university of science and technology (guangzhou), since aug. 2022. professor, dept. of mechanical and aerospace engineering, hong kong university of science and technology, july 2011 � june 2024",
+            "qualification": "Current global roster cannot be placed at former HongKong lab after exact June2024 faculty end; exclusion remains X-counted, no same-line other-school proof exemption."
+          }
+        },
+        {
+          "name": "Liu, Yongquan",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "exclude": "outside_school",
+          "exclusion_note": "Own current CV states HKUST(HongKong) faculty endedJune2024 and current GZ head sinceAug2022. Undated present roster is not placed in former HongKong lab; no same-line school-proof exemption claimed.",
+          "appointment_scope_evidence": {
+            "url": "http://mektang.people.ust.hk/",
+            "sha256": "8d20097a1ba98cc65e20b1debf7979b6a99e5ca13a38532fe6888a0a5f258490",
+            "quote": "professor and head of smart manufacturing thrust, hong kong university of science and technology (guangzhou), since aug. 2022. professor, dept. of mechanical and aerospace engineering, hong kong university of science and technology, july 2011 � june 2024",
+            "qualification": "Current global roster cannot be placed at former HongKong lab after exact June2024 faculty end; exclusion remains X-counted, no same-line other-school proof exemption."
+          }
+        },
+        {
+          "name": "Li, Zherun",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "exclude": "outside_school",
+          "exclusion_note": "Own current CV states HKUST(HongKong) faculty endedJune2024 and current GZ head sinceAug2022. Undated present roster is not placed in former HongKong lab; no same-line school-proof exemption claimed.",
+          "appointment_scope_evidence": {
+            "url": "http://mektang.people.ust.hk/",
+            "sha256": "8d20097a1ba98cc65e20b1debf7979b6a99e5ca13a38532fe6888a0a5f258490",
+            "quote": "professor and head of smart manufacturing thrust, hong kong university of science and technology (guangzhou), since aug. 2022. professor, dept. of mechanical and aerospace engineering, hong kong university of science and technology, july 2011 � june 2024",
+            "qualification": "Current global roster cannot be placed at former HongKong lab after exact June2024 faculty end; exclusion remains X-counted, no same-line other-school proof exemption."
+          }
+        },
+        {
+          "name": "Zhou, Yiwen",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "exclude": "outside_school",
+          "exclusion_note": "Own current CV states HKUST(HongKong) faculty endedJune2024 and current GZ head sinceAug2022. Undated present roster is not placed in former HongKong lab; no same-line school-proof exemption claimed.",
+          "appointment_scope_evidence": {
+            "url": "http://mektang.people.ust.hk/",
+            "sha256": "8d20097a1ba98cc65e20b1debf7979b6a99e5ca13a38532fe6888a0a5f258490",
+            "quote": "professor and head of smart manufacturing thrust, hong kong university of science and technology (guangzhou), since aug. 2022. professor, dept. of mechanical and aerospace engineering, hong kong university of science and technology, july 2011 � june 2024",
+            "qualification": "Current global roster cannot be placed at former HongKong lab after exact June2024 faculty end; exclusion remains X-counted, no same-line other-school proof exemption."
+          }
+        },
+        {
+          "name": "JIA, Jinyuan",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "WANG, Nan",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "CHEN, Zhanqing",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "CHEN, Ming",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "HU, Pengcheng",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Quan, Lulin",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "XU, Ke",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Ni, Feng",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Dada, Oluwaseun John",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Zhang, Rong",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Jing, Bichen",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Lai, Yuen Hoo",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Chen, Li",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "CHEN, Lufeng",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "YAN, Qianhang",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "WANG, Jiarui",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Cai, Xin",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "LI, Yamin",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "LI, Zhaoyu",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "XIE, Fubao",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Kwing Fung, Wong",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "He, Dong",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Wang, Xiangyu",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Lau, Francis",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Deng, Xiaoke",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Hao, Jiancheng",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Bi, Danjie",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Wang, Yihe",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Zhang, Wenze",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Wang, Yichen",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "YEUNG, Brian",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "CHEN, Hao",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "CHEN, Kun",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "ZHOU, Zi",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "CHUNG, Man Fai",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "LAU, Tak Yu",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Ji, Guosheng",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Shing Chun YU",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Xu, Pengda",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Ding, Yuzhu",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        }
+      ],
+      "notes": "Draw4148128067: independently reread exact captured raw source after second native32310243. Same source explicitly states ProfessorHKUST(GZ) sinceAug2022 and HongKong ProfessorJuly2011–June2024. Named current roster retained as scope exclusions; undated graduates and their current job locations are preserved without inventing attendance years. Entire roster read."
+    },
+    {
+      "pi": "Qifeng CHEN 陳启峰",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://cqf.io/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://cqf.io/lab.html",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://cqf.io/publications.html",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/ourgraduates/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/cqf",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://cqf.io/lab.html",
+        "sha256": "452f1b847f50c5e73d35b7de5675c03b2e871472d6a01afa621e30220bb1067b",
+        "quote": "Students"
+      },
+      "listed": [
+        {
+          "name": "Jiaqi Tang",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Hanlin Wang",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Xuanhua He",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "I Chieh Chen",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Yue Ma",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Runyi Yu",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Zichen Liu",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Trung Kien Pham",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Nicholas Chan",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Yuen-Fui Lau",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Zhefan Rao",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Zhaoyang Liu",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Qingyan Bai",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Na Fan",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Guotao Meng",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Hongyu Liu",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Zian Qian",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Runtao Liu",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Zhili Chen",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Qiang Wen",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Tianjia Zhang",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Ka Leong Cheng",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Yueqi Xie",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Jiapeng Zhu",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Chao Zhao",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Jingye Chen",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Junming Chen",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Yingqing He",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Junhao Cai",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Jun Cen",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Maosheng Ye",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Liya Ji",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Chenyang Qi",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Jiaxin Xie",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Yazhou Xing",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Rongrong Gao",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Hao Ouyang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Zifan Shi",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Tengfei Wang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Yue Wu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Chenyang Lei",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2022
+          ]
+        },
+        {
+          "name": "Yisheng He",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2022
+          ]
+        },
+        {
+          "name": "Haoran Song",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Weihao Yuan",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2020
+          ]
+        },
+        {
+          "name": "Trung Kien Pham",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Yuen-Fui Lau",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Chan Ho Park",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Zhao-heng Yin",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Zhefan Rao",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Yuxiang He",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Hyukryul Yang",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2020
+          ]
+        },
+        {
+          "name": "Hao Ouyang",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2020
+          ]
+        },
+        {
+          "name": "Yuezhang Liu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Ching-Pui Wan",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Chang Dae Park",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Ji Hyeong Yoo",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Minsoo Khang",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2022
+          ]
+        },
+        {
+          "name": "Zian Qian",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2022
+          ]
+        },
+        {
+          "name": "Ka Ho Lee",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2022
+          ]
+        }
+      ],
+      "notes": "Draw4148128067: same exact source pages reopened/read after new native; old seed/bindings never carried. Final default-seeded sample483901673, 2026-11-15: exact saved raw source reread after final native build. Initial Students section is contrasted explicitly with Graduated PhD and Graduated MPhil. All former members remain listed, including undated graduates automatically excluded by strict dating."
+    },
+    {
+      "pi": "Shing-Chi CHEUNG 張成志",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://cse.hkust.edu.hk/~scc/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/~scc/pg.html",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/ourgraduates/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/S20/lweiae-09-03-2020.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/S26/lliubf-26-03-2026.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/Summer22/kschanak-15-06-2022.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/F25/mlick-27-10-2025.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/S26/cxubl-27-02-2026.html",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://cse.hkust.edu.hk/~scc/pg.html",
+        "sha256": "5d3d2a4c452e2934ca3b46c5968354e030d6b321b2472219114123420edc41ae",
+        "quote": "Current Students"
+      },
+      "listed": [
+        {
+          "name": "Meiziniu Li",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "source_quote": "Meiziniu Li (PhD student working on deep learning library testing)"
+        },
+        {
+          "name": "Tsz-On Li",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "source_quote": "Tsz-On Li (PhD student working on neural-symbolic test generation)"
+        },
+        {
+          "name": "Xiao Chen",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "source_quote": "Xiao Chen (PhD student working on neural-symbolic code analysis and test update)"
+        },
+        {
+          "name": "Xiaolei Li",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "source_quote": "Xiaolei Li (PhD student working on neural-symbolic fault detection for mobile apps)"
+        },
+        {
+          "name": "Songqiang Chen",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "source_quote": "Songqiang Chen (PhD student working on neural-symbolic software engineering)"
+        },
+        {
+          "name": "Weiqi Lu",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "source_quote": "Weiqi Lu (PhD student working on neural-symbolic fault detection for data visualization software)"
+        },
+        {
+          "name": "Dongze Li",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "source_quote": "Dongze Li (PhD student working on intelligent software engineering)"
+        },
+        {
+          "name": "Jingyi Chen",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "source_quote": "Jingyi Chen (PhD student) co-supervised with Prof Jiasi Shen"
+        },
+        {
+          "name": "Zongyi Lyu",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "source_quote": "Zongyi Lyu (PhD student) co-supervised with Prof Shuai Wang"
+        },
+        {
+          "name": "Xiaohan Zhong, Elaine",
+          "role": "masters",
+          "section": "current",
+          "years": [],
+          "source_quote": "Xiaohan Zhong, Elaine (MPhil student working on software engineering and Generative AI)"
+        },
+        {
+          "name": "Hau Ching Lo, Yoanna",
+          "role": "masters",
+          "section": "current",
+          "years": [],
+          "source_quote": "Hau Ching Lo, Yoanna (MPhil student working on software engineering and Generative AI)"
+        },
+        {
+          "name": "Lu Liu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2026
+          ],
+          "source_quote": "Lu Liu (PhD 2026) Thesis: Enhancing Smart Contract Security: Empirical Characterization, Fault Analysis, and Vulnerability Detection Huawei"
+        },
+        {
+          "name": "Congying Xu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2026
+          ],
+          "source_quote": "Congying Xu (PhD 2026) Thesis: Automated and Effective Metamorphic Testing: Relation Discovery, Deduction, and Generation"
+        },
+        {
+          "name": "Haoyang Ma",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2025
+          ],
+          "source_quote": "Haoyang Ma (PhD 2025) Thesis: Fault Characterization and Testing for Domain-Specific Compilers ByteDance"
+        },
+        {
+          "name": "Hengcheng Zhu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2025
+          ],
+          "source_quote": "Hengcheng Zhu (PhD 2025) Thesis: Towards Emulating Interactions for Effective Software Testing"
+        },
+        {
+          "name": "Jiarong Wu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2025
+          ],
+          "source_quote": "Jiarong Wu (PhD 2025) Thesis: Towards Bridging Human Requirements and Program Synthesis Huawei"
+        },
+        {
+          "name": "Wuqi Zhang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2024
+          ],
+          "source_quote": "Wuqi Zhang (PhD 2024) Thesis: Defect Detection for Smart Contracts and Blockchain Applications MegaETH"
+        },
+        {
+          "name": "Ka Wing Yoyo Yeung",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ],
+          "source_quote": "Ka Wing Yoyo Yeung (MPhil 2024) Thesis: Incorporating Domain-Specific Insights for Automated Test Generation"
+        },
+        {
+          "name": "Jialun Cao",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2024
+          ],
+          "source_quote": "Jialun Cao (PhD 2024) Thesis: Towards Automatic Testing and Fault Localization in Natural Language Processing Systems Research Assistant Professor, HKUST"
+        },
+        {
+          "name": "Jiajun Hu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2024
+          ],
+          "source_quote": "Jiajun Hu (PhD 2024) Thesis: Towards Automated Testing of WebViews in Android Applications Huawei (Hong Kong)"
+        },
+        {
+          "name": "Huaxun Huang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2023
+          ],
+          "source_quote": "Huaxun Huang (PhD 2023) Thesis: Towards Automatic Detection and Repair of Compatibility Issues in Android Apps Xiamen University"
+        },
+        {
+          "name": "Yongqiang Tian",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2023
+          ],
+          "source_quote": "Yongqiang Tian (Dual-PhD 2023) Thesis: Assessing the Reliability of Deep Learning Applications Monash University"
+        },
+        {
+          "name": "Ching Hang Mak, David",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2023
+          ],
+          "source_quote": "Ching Hang Mak, David (MPhil 2023) Thesis: Test Dependency Minimization for Java Programs PhD student, HKUST"
+        },
+        {
+          "name": "Yuqing Quan",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2023
+          ],
+          "source_quote": "Yuqing Quan (MPhil 2023) Thesis: Restation: Effective Identifying Dependencies between Restful APIs via Dynamic Analysis"
+        },
+        {
+          "name": "Hang Xu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2020
+          ],
+          "source_quote": "Hang Xu (MPhil 2020) Thesis: Coverage-Directed Differential Testing of EVM Implementations Tencent"
+        },
+        {
+          "name": "Lili Wei",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2020
+          ],
+          "source_quote": "Lili Wei (PhD 2020) Thesis: \r\n      Taming Fragmentation-Induced Compatibility Issues in Android Applications McGill University"
+        },
+        {
+          "name": "Mijung Kim",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2019
+          ],
+          "source_quote": "Mijung Kim (PhD 2019) Thesis: \r\n      Towards Practical Automated Software Testing UNIST"
+        },
+        {
+          "name": "Ming Wen",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2019
+          ],
+          "source_quote": "Ming Wen (PhD 2019) Thesis: \r\n      Utilizing Code Change Information for Better Automated Debugging Huazhong University of Science and Technology (HUST)"
+        },
+        {
+          "name": "King Sun Chan",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2018
+          ],
+          "source_quote": "King Sun Chan (MPhil 2018) Thesis: Assessing Relative Code Complexity Introduced by Optional Features to a Software Product Line"
+        },
+        {
+          "name": "Rongxin Wu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2017
+          ],
+          "source_quote": "Rongxin Wu (PhD 2017) Thesis: \r\n    Automated Techniques for Diagnosing Crashing Bugs Xiamen University"
+        },
+        {
+          "name": "Valerio Terragni",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2017
+          ],
+          "source_quote": "Valerio Terragni (PhD 2017) \r\n      Thesis: Towards Effective Regression Testing of Concurrent Programs University of Auckland"
+        },
+        {
+          "name": "Yepang Liu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2015
+          ],
+          "source_quote": "Yepang Liu (PhD 2015). Thesis: Automated Analysis of Energy Efficiency and Execution Performance for Mobile Applications Southern University of Science and Technology (SUSTech)"
+        },
+        {
+          "name": "Wanjun Chen, Melody",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2015
+          ],
+          "source_quote": "Wanjun Chen, Melody (MPhil 2015) Thesis: Automatic Spreadsheet Cell Clustering \r\n      and Smell Detection using Strong and Weak Features Goldman Sachs"
+        },
+        {
+          "name": "Yueqi Li",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2015
+          ],
+          "source_quote": "Yueqi Li (PhD 2015). Thesis: Scalable Symbolic Analysis of Large \r\n      Real World Programs Using API Abstraction and Execution Histories Entrepreneur"
+        },
+        {
+          "name": "Qiaona Hong",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2013
+          ],
+          "source_quote": "Qiaona Hong (MPhil 2013). Thesis: The Anatomy of Developer Social Networks Bank of America"
+        },
+        {
+          "name": "Tate Poon",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2012
+          ],
+          "source_quote": "Tate Poon (MPhil 2012).\r\nThesis: A Study of Eliminating Irrelevant Access Patterns for Fault\r\nLocalization in Concurrent Programs OGCIO"
+        },
+        {
+          "name": "Liping Gao",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2011
+          ],
+          "source_quote": "Liping Gao (MPhil 2011)\r\nThesis: Failure Proximity for Context-Aware Applications Sogou Tech"
+        },
+        {
+          "name": "Cham-ho Ting, Ivan",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2010
+          ],
+          "source_quote": "Cham-ho Ting, Ivan (MPhil 2010). Thesis: Testing Strategy in\r\nDiscovering Faults in Workflow"
+        },
+        {
+          "name": "Xinming Wang, Rubin",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2010
+          ],
+          "source_quote": "Xinming Wang, Rubin (PhD\r\n2010). Thesis: Automatic Localization of Code Omission Faults Lakala Finance"
+        },
+        {
+          "name": "Zhifeng Lai",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2010
+          ],
+          "source_quote": "Zhifeng Lai (PhD 2010). Thesis: Effective Detection of Atomic-Set Serializability Violation \r\n\tin Multithreaded Programs AIA"
+        },
+        {
+          "name": "Yueqi Li",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2010
+          ],
+          "source_quote": "Yueqi Li (MPhil 2010).\r\nThesis: Searching\r\nConfigurations to Reproduce Software Failures Entrepreneur"
+        },
+        {
+          "name": "Dongming Xu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2009
+          ],
+          "source_quote": "Dongming Xu (MPhil Computer\r\nScience and Technology 2009). Thesis: On the testing of the RFID\r\nsecurity"
+        },
+        {
+          "name": "Chunlin Zhu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2009
+          ],
+          "source_quote": "Chunlin Zhu (MPhil 2009).\r\nThesis: Classify and Rank Daikon Invariants on Embedded Systems CMB Capital International ( 招银国际 )"
+        },
+        {
+          "name": "Chang XU",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2008
+          ],
+          "source_quote": "Chang XU (PhD 2008). Thesis: Inconsistency Detection and Resolution for\r\nContext-Aware Pervasive Computing Professor, Department of Computer Science,\r\n\tNanjing University"
+        },
+        {
+          "name": "Tsz Hin NG, Sam",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2008
+          ],
+          "source_quote": "Tsz Hin NG, Sam (PhD 2008). Thesis: The Effects of Pre-deploying Design Patterns on\r\nSoftware Changes PCCW"
+        },
+        {
+          "name": "Mian Qin",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2008
+          ],
+          "source_quote": "Mian Qin (MPhil 2008).\r\nThesis: Wireless Sensor Network Fault Localization"
+        },
+        {
+          "name": "Yuet-Mei LO, Cindy",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2005
+          ],
+          "source_quote": "Yuet-Mei LO, Cindy (MPhil\r\n2005). Thesis:\r\nBusiness Process Atomicity Analysis Supporting Late Task Property\r\nBindings"
+        },
+        {
+          "name": "Yu-Ho YIU, Matt",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2005
+          ],
+          "source_quote": "Yu-Ho YIU, Matt (MSc 2005)\r\nProject: A\r\nFinancial Case Study of B2B System Integration HSBC"
+        },
+        {
+          "name": "Wing-Leung CHAN, Christina",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2004
+          ],
+          "source_quote": "Wing-Leung CHAN, Christina\r\n(MSc 2004)"
+        },
+        {
+          "name": "Sze-Chit HO, Cedric",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2004
+          ],
+          "source_quote": "Sze-Chit HO, Cedric (MPhil\r\n2004).\r\nThesis: A Framework for the Verification of Watermarking Protocols. Google, Mountain View, USA"
+        },
+        {
+          "name": "Chin-Ching TSOI, Lancelot",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2004
+          ],
+          "source_quote": "Chin-Ching TSOI, Lancelot\r\n(MSc 2004). Project: A Survey on Java Web\r\nServices Toolkits. Pacific Supernet"
+        },
+        {
+          "name": "Sze-Wan LEE, Yoki",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2003
+          ],
+          "source_quote": "Sze-Wan LEE, Yoki (MSc 2003).\r\nProject: A Case Study on Semantic Web Services Project Manager, PeopleSoft"
+        },
+        {
+          "name": "Kelvin LEUNG",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2002
+          ],
+          "source_quote": "Kelvin LEUNG (MSc 2002)"
+        },
+        {
+          "name": "Hanif CURREEM",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2002
+          ],
+          "source_quote": "Hanif CURREEM (MPhil 2002).\r\nThesis: Digital Copyright\r\nManagement. ABN AMRO"
+        },
+        {
+          "name": "Zhengdong Xu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2001
+          ],
+          "source_quote": "Zhengdong Xu (MPhil 2001).\r\nThesis: Testing of Distributed Multimedia\r\nSystems."
+        },
+        {
+          "name": "Ting-Pong IP, Vincent",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2000
+          ],
+          "source_quote": "Ting-Pong IP, Vincent (MSc\r\n2000) Cathay Pacific"
+        },
+        {
+          "name": "Ka-Cheong WONG",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2000
+          ],
+          "source_quote": "Ka-Cheong WONG (MPhil 2000).\r\nThesis: Digital Rights\r\nProtection Against Watermark Attacks. AsiaPacific.net"
+        },
+        {
+          "name": "Man-Yee CHAN",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            1999
+          ],
+          "source_quote": "Man-Yee CHAN (MPhil 1999).\r\nThesis: Extending White Box Testing\r\nto Database Applications."
+        },
+        {
+          "name": "Chi-Yung LAM",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            1999
+          ],
+          "source_quote": "Chi-Yung LAM (MPhil 1999). Thesis: Modeling and Analyzing\r\nWeb-Based Information Systems."
+        },
+        {
+          "name": "Kam-Fai LEUNG",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            1998
+          ],
+          "source_quote": "Kam-Fai LEUNG (MPhil 1998).\r\nThesis: A Framework for the\r\nFlexible Coupling of Groupware Widgets. Standard Chartered Bank"
+        },
+        {
+          "name": "Kwok-Hung CHEUNG, Herman",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            1998
+          ],
+          "source_quote": "Kwok-Hung CHEUNG, Herman (MPhil 1998). Thesis: Compositional\r\nAnalysis of Distributed Software Systems. Enterpreneur"
+        },
+        {
+          "name": "Kam-Keung WONG",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            1997
+          ],
+          "source_quote": "Kam-Keung WONG (MPhil 1997).\r\nThesis: Distributed Multimedia\r\nAuthoring using Software Structures."
+        },
+        {
+          "name": "Chun-Man LO",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            1996
+          ],
+          "source_quote": "Chun-Man LO (MPhil 1996)\r\nThesis: Verification of Dense Real-Time Distributed Systems by Using\r\nDiscrete-Time Methods."
+        }
+      ],
+      "notes": "Draw4148128067: same exact source pages reopened/read after new native; old seed/bindings never carried. Final default-seeded sample483901673, 2026-11-15: exact saved raw source reread after final native build. Every current and graduated student paragraph read. Alumni dates come only from degree field, not later employment. The 2005–06 postdoc entry predates the window."
+    },
+    {
+      "pi": "Wei You",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://cnyouwei.github.io/#team",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://cnyouwei.github.io/",
+        "sha256": "2f5eafe8e0d97ade116d2f414e5307f8be1de00eef85be589d7fb3a60fe9e0bf",
+        "quote": "Team Current Students"
+      },
+      "listed": [
+        {
+          "name": "Xinyu Liu",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Yueying Hu",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Qiaoqiao Wang",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Ke Lu",
+          "role": "masters",
+          "section": "current",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Zihao Wang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2019,
+            2023
+          ]
+        },
+        {
+          "name": "Yingxian Wu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2020,
+            2022
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Own entry explicitly MPhil at HKUST(GZ), co-advised with SisiJian."
+        }
+      ],
+      "notes": "Draw4148128067: independently reread exact captured raw source after second native32310243. All team entries read; own degree dates retained; following employment never used as role evidence."
+    },
+    {
+      "pi": "Xiaofang ZHOU 周曉方",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://sites.google.com/view/xiaofang-zhou",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://sites.google.com/view/xiaofang-zhou/home/research-research-students",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://sites.google.com/view/xiaofang-zhou/home/publications-home",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/ourgraduates/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/zxf",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://sites.google.com/view/xiaofang-zhou/home/research-research-students",
+        "sha256": "49b6f3d5d0748c56f0abfb849454d10646c736e45f123de6baa45d6f07ae3cc3",
+        "quote": "Current Research Students"
+      },
+      "listed": [
+        {
+          "name": "Jiawei Li",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Elton Chun Chai Li",
+          "role": "masters",
+          "section": "current",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Harry Jounghoon Kim",
+          "role": "masters",
+          "section": "current",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Zhenjun Huang",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Weijie Shi",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Zhoujin Tian",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Junle Chen",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Sherry Sau Lai Yip",
+          "role": "masters",
+          "section": "current",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Selena Song",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Yongqi Li",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Zhicheng Hu",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Nujibieke Shabuerjiang",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Kehao Miao",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "David Sheung Yuen Chan",
+          "role": "masters",
+          "section": "current",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Wei Chen",
+          "role": "phd",
+          "section": "current",
+          "years": [],
+          "exclude": "outside_school",
+          "exclusion_note": "Own entry explicitly based onGuangzhoucampus, principal supervisorYuxuanLiang."
+        },
+        {
+          "name": "Shiwen Wu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2022,
+            2026
+          ]
+        },
+        {
+          "name": "Yehong Xu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021,
+            2026
+          ]
+        },
+        {
+          "name": "Xi Zhao",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2022,
+            2026
+          ]
+        },
+        {
+          "name": "Jiawen Zhang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021,
+            2026
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Own completed student entry explicitly Guangzhoucampus with named principal supervisor."
+        },
+        {
+          "name": "Zhihan Luo",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021,
+            2026
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Own completed student entry explicitly Guangzhoucampus with named principal supervisor."
+        },
+        {
+          "name": "Zizhuo Xu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021,
+            2026
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Own completed student entry explicitly Guangzhoucampus with named principal supervisor."
+        },
+        {
+          "name": "J ipeng Zhang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021,
+            2025
+          ]
+        },
+        {
+          "name": "Yao Tian",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021,
+            2025
+          ]
+        },
+        {
+          "name": "Jing Zhao",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021,
+            2025
+          ]
+        },
+        {
+          "name": "Renjie Pi",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021,
+            2025
+          ]
+        },
+        {
+          "name": "Xinjie Zhou",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021,
+            2025
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Own completed student entry explicitly Guangzhoucampus with named principal supervisor."
+        },
+        {
+          "name": "Jianheng Tang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021,
+            2025
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Own completed student entry explicitly Guangzhoucampus with named principal supervisor."
+        },
+        {
+          "name": "Yue Cui",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021,
+            2025
+          ]
+        },
+        {
+          "name": "Boyu Ruan",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2017,
+            2021
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Before/in2021HKUSTarrival, with degree beginning beforearrival; not transferred from prior Queenslandlab toHKUST."
+        },
+        {
+          "name": "Meng x uan Zhang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2018,
+            2021
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Before/in2021HKUSTarrival, with degree beginning beforearrival; not transferred from prior Queenslandlab toHKUST."
+        },
+        {
+          "name": "Ruiyuan Zhang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2016,
+            2020
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Before/in2021HKUSTarrival, with degree beginning beforearrival; not transferred from prior Queenslandlab toHKUST."
+        },
+        {
+          "name": "Doris Dan He",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2016,
+            2019
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Before/in2021HKUSTarrival, with degree beginning beforearrival; not transferred from prior Queenslandlab toHKUST."
+        },
+        {
+          "name": "Pingfu Cao",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2016,
+            2019
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Before/in2021HKUSTarrival, with degree beginning beforearrival; not transferred from prior Queenslandlab toHKUST."
+        },
+        {
+          "name": "Bolong Zheng",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2014,
+            2017
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Before/in2021HKUSTarrival, with degree beginning beforearrival; not transferred from prior Queenslandlab toHKUST."
+        },
+        {
+          "name": "Douglas Alves Peixoto",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2015,
+            2018
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Before/in2021HKUSTarrival, with degree beginning beforearrival; not transferred from prior Queenslandlab toHKUST."
+        },
+        {
+          "name": "Lei Li",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2014,
+            2018
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Before/in2021HKUSTarrival, with degree beginning beforearrival; not transferred from prior Queenslandlab toHKUST."
+        },
+        {
+          "name": "Xingzhong Du",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2014,
+            2017
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Before/in2021HKUSTarrival, with degree beginning beforearrival; not transferred from prior Queenslandlab toHKUST."
+        },
+        {
+          "name": "Saeid Hosseini",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2012,
+            2017
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Before/in2021HKUSTarrival, with degree beginning beforearrival; not transferred from prior Queenslandlab toHKUST."
+        },
+        {
+          "name": "Wen Hua",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2011,
+            2015
+          ]
+        },
+        {
+          "name": "Haozhou Wang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2012,
+            2015
+          ]
+        },
+        {
+          "name": "Ada Han Su",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2012,
+            2015
+          ]
+        },
+        {
+          "name": "Dat T. Huynh",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2010,
+            2014
+          ]
+        },
+        {
+          "name": "Zhixu Li",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2009,
+            2013
+          ]
+        },
+        {
+          "name": "Felix Qing Xie",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2009,
+            2012
+          ]
+        },
+        {
+          "name": "Kexin Xie",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2008,
+            2012
+          ]
+        },
+        {
+          "name": "Shuo Shang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2009,
+            2012
+          ]
+        },
+        {
+          "name": "Jia Zhu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2006,
+            2012
+          ]
+        },
+        {
+          "name": "Kevin Kai Zheng",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2009,
+            2012
+          ]
+        },
+        {
+          "name": "Xiangmin Zhou",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2005,
+            2008
+          ]
+        },
+        {
+          "name": "Saeid Asadi",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2004,
+            2008
+          ]
+        },
+        {
+          "name": "Ke Deng",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2004,
+            2007
+          ]
+        },
+        {
+          "name": "Helen Zi Huang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2003,
+            2007
+          ]
+        },
+        {
+          "name": "Sai Sun",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2002,
+            2006
+          ]
+        },
+        {
+          "name": "Sham Prasher",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2001,
+            2005
+          ]
+        },
+        {
+          "name": "Kevin Kai Xu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2000,
+            2004
+          ]
+        },
+        {
+          "name": "Jimmy Kwun Hang Lau",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024,
+            2024
+          ]
+        },
+        {
+          "name": "Oscar Zhonghan Chen",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2023,
+            2025
+          ]
+        },
+        {
+          "name": "Yue Liu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2023,
+            2025
+          ]
+        },
+        {
+          "name": "Jian Yang",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Own entry explicitly Guangzhoucampus and principal supervisorZheyiWen."
+        },
+        {
+          "name": "Ziyi Liu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2019,
+            2021
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Pre/in2021arrival degree, begun before HKUSTappointment; prior-school context not transferred."
+        },
+        {
+          "name": "Xuanyi Zhang",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2019,
+            2021
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Pre/in2021arrival degree, begun before HKUSTappointment; prior-school context not transferred."
+        },
+        {
+          "name": "Runhui Wang",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2017,
+            2019
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Pre/in2021arrival degree, begun before HKUSTappointment; prior-school context not transferred."
+        },
+        {
+          "name": "Bingyu Yi",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2013,
+            2016
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Pre/in2021arrival degree, begun before HKUSTappointment; prior-school context not transferred."
+        },
+        {
+          "name": "Xin Li",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2011,
+            2014
+          ]
+        },
+        {
+          "name": "Jiping Wang",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2012,
+            2014
+          ]
+        },
+        {
+          "name": "Yiyue Gao",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2007,
+            2009
+          ]
+        },
+        {
+          "name": "Bill Zhang",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2004,
+            2006
+          ]
+        },
+        {
+          "name": "Callum McDonald",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2011
+          ]
+        },
+        {
+          "name": "Haozhou Wang",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2011
+          ]
+        },
+        {
+          "name": "Doug Cathepole",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2008
+          ]
+        },
+        {
+          "name": "Kexin Xie",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2008
+          ]
+        },
+        {
+          "name": "Ji Tao Gan",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2008
+          ]
+        },
+        {
+          "name": "Benjamin Cheviot",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2007
+          ]
+        },
+        {
+          "name": "Sittichai Thongnopparat",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2005
+          ]
+        },
+        {
+          "name": "Li Yang",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2004
+          ]
+        },
+        {
+          "name": "Yanqiu Richard Zhu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2004
+          ]
+        },
+        {
+          "name": "George Eng-Huan Pek",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2002
+          ]
+        },
+        {
+          "name": "David Horgan",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2004
+          ]
+        },
+        {
+          "name": "Wei Yuan Ong",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2004
+          ]
+        },
+        {
+          "name": "Lynn Teo",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2003,
+            2004
+          ]
+        },
+        {
+          "name": "Wissam (Sam) Hmud",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2003,
+            2004
+          ]
+        },
+        {
+          "name": "Christopher Lim",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2003
+          ]
+        },
+        {
+          "name": "Brendan Tse",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2002
+          ]
+        },
+        {
+          "name": "Alex Hai Luong",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2002
+          ]
+        },
+        {
+          "name": "Darko Javanovic",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2001
+          ]
+        },
+        {
+          "name": "Anecia Johnston",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2001
+          ]
+        },
+        {
+          "name": "Travis Fusae",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2001
+          ]
+        },
+        {
+          "name": "Dan Sketcher",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2001
+          ]
+        },
+        {
+          "name": "Keith Blair",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2000
+          ]
+        },
+        {
+          "name": "Luke Boyce",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2000
+          ]
+        },
+        {
+          "name": "Frank Penkava",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2000
+          ]
+        },
+        {
+          "name": "Jackson Carroll",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2000
+          ]
+        },
+        {
+          "name": "Joe Yates",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            1999
+          ]
+        },
+        {
+          "name": "Steve Broderick",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            1999
+          ]
+        }
+      ],
+      "notes": "Draw4148128067: independently reread exact captured raw source after second native32310243. Read entire current, completedPhD, completedMasters and otherresearchstudent sections. Prior-degree origins do not exclude new HKUSTstudents. Literal2027 ToStart prospects are retained separately as notyetmembers, not miscounted as2016–26members; GZ and pre2021Queensland contexts remain named exclusions.",
+      "not_yet_members": [
+        {
+          "name": "Erwin Hurtado",
+          "role": "phd",
+          "stated_start_year": 2027,
+          "section": "To start",
+          "source_status": "explicit future prospect; not a current/alumni member in2016–2026"
+        },
+        {
+          "name": "Yichao Liu",
+          "role": "phd",
+          "stated_start_year": 2027,
+          "section": "To start",
+          "source_status": "explicit future prospect; not a current/alumni member in2016–2026"
+        },
+        {
+          "name": "Ruicheng Li",
+          "role": "phd",
+          "stated_start_year": 2027,
+          "section": "To start",
+          "source_status": "explicit future prospect; not a current/alumni member in2016–2026"
+        }
+      ]
+    },
+    {
+      "pi": "Xiaomin OUYANG 歐陽小敏",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://xmouyang.github.io/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://xmouyang.github.io/Team/",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://xmouyang.github.io/publications/",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/pg/defenses/F25/rhuangbj-26-01-2026.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/xmouyang",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://xmouyang.github.io/Team/",
+        "sha256": "831adbbdde4b0a76855052a42541b9ee99e06b3ae69544f7cda1945bba37fc32",
+        "quote": "Postgraduate Students (Ph.D. and MPhil)"
+      },
+      "listed": [
+        {
+          "name": "Runxi Huang",
+          "role": "other",
+          "section": "current",
+          "years": [
+            2024
+          ],
+          "role_note": "Mixed PostgraduateStudents(PhDandMPhil) heading; own entry does not distinguish degree. Prior BS/MS education is not the HKUST degree role."
+        },
+        {
+          "name": "Yizhen Wang",
+          "role": "other",
+          "section": "current",
+          "years": [
+            2025
+          ],
+          "role_note": "Mixed PostgraduateStudents(PhDandMPhil) heading; own entry does not distinguish degree. Prior BS/MS education is not the HKUST degree role."
+        },
+        {
+          "name": "Liyu Zhang",
+          "role": "other",
+          "section": "current",
+          "years": [
+            2025
+          ],
+          "role_note": "Mixed PostgraduateStudents(PhDandMPhil) heading; own entry does not distinguish degree. Prior BS/MS education is not the HKUST degree role."
+        },
+        {
+          "name": "Yejia Liu",
+          "role": "other",
+          "section": "current",
+          "years": [
+            2025
+          ],
+          "role_note": "Mixed PostgraduateStudents(PhDandMPhil) heading; own entry does not distinguish degree. Prior BS/MS education is not the HKUST degree role."
+        },
+        {
+          "name": "Haoxian Liu",
+          "role": "other",
+          "section": "current",
+          "years": [
+            2025
+          ],
+          "role_note": "Mixed PostgraduateStudents(PhDandMPhil) heading; own entry does not distinguish degree. Prior BS/MS education is not the HKUST degree role."
+        },
+        {
+          "name": "Yuchen Wang",
+          "role": "other",
+          "section": "current",
+          "years": [
+            2025
+          ],
+          "role_note": "Mixed PostgraduateStudents(PhDandMPhil) heading; own entry does not distinguish degree. Prior BS/MS education is not the HKUST degree role."
+        },
+        {
+          "name": "Dehao Wang",
+          "role": "other",
+          "section": "current",
+          "years": [
+            2026
+          ],
+          "role_note": "Mixed PostgraduateStudents(PhDandMPhil) heading; own entry does not distinguish degree. Prior BS/MS education is not the HKUST degree role."
+        },
+        {
+          "name": "Kun Qian",
+          "role": "other",
+          "section": "current",
+          "years": [
+            2026
+          ],
+          "role_note": "Mixed PostgraduateStudents(PhDandMPhil) heading; own entry does not distinguish degree. Prior BS/MS education is not the HKUST degree role."
+        },
+        {
+          "name": "Alex Ding",
+          "role": "other",
+          "section": "current",
+          "years": [
+            2026
+          ],
+          "role_note": "Mixed PostgraduateStudents(PhDandMPhil) heading; own entry does not distinguish degree. Prior BS/MS education is not the HKUST degree role."
+        },
+        {
+          "name": "Bin Zhou",
+          "role": "other",
+          "section": "current",
+          "years": [
+            2026
+          ],
+          "role_note": "Mixed PostgraduateStudents(PhDandMPhil) heading; own entry does not distinguish degree. Prior BS/MS education is not the HKUST degree role."
+        },
+        {
+          "name": "Hengle Jiang",
+          "role": "undergrad",
+          "section": "current",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Larry Kwun Ho Liu",
+          "role": "undergrad",
+          "section": "current",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Yuchen Wang",
+          "role": "undergrad",
+          "section": "current",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Lanxuan Hong",
+          "role": "undergrad",
+          "section": "current",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Hongyu Chen",
+          "role": "undergrad",
+          "section": "current",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Jiajun Fu",
+          "role": "undergrad",
+          "section": "current",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Yolanda Lau",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2024
+          ],
+          "exclude": "co_advised_elsewhere",
+          "exclusion_note": "Own entry explicitly PhDStudentatUCL; PI serves secondarysupervisor, not an HKUST degree claim."
+        }
+      ],
+      "notes": "Draw4148128067: independently reread exact captured raw source after second native32310243. Entire group, undergraduate and co-advising sections read. Earlier BS/MS institutions are education history. Mixed graduate-degree roles withheld; named UCL PhD remains outside-school co-advising."
+    },
+    {
+      "pi": "Ying-Ju Chen",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://imchen.people.ust.hk/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://web.archive.org/web/20260223075232id_/http://imchen.people.ust.hk/",
+          "source": "audit students.pages"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://imchen.people.ust.hk/",
+        "sha256": "355f1b2cc745e842b31872cd2e57772c810713b3c734232ba27ef8e9d974741f",
+        "quote": "Students for whom I serve"
+      },
+      "listed": [
+        {
+          "name": "Zihao Chen",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Yushu Zeng",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Xinyue Fei",
+          "role": "postdoc",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Mina Iravani",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Xingyu Fu",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Yonghui Chen",
+          "role": "postdoc",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Ailing Xu",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Pin Gao",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Kanglin Chen",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Xiaoshuai Sophie Fan",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2020
+          ]
+        },
+        {
+          "name": "Haoyu Tony Liu",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2020
+          ]
+        },
+        {
+          "name": "Pi-Ying Nini Yen",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2020
+          ]
+        },
+        {
+          "name": "Xiaojin Becky Fu",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2020
+          ]
+        },
+        {
+          "name": "Hao Li",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2019
+          ]
+        },
+        {
+          "name": "Shihong Cloae Xiao",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2018
+          ]
+        },
+        {
+          "name": "Patrick Ho Tak Tsang",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2017
+          ]
+        },
+        {
+          "name": "Qiao-Chu Tony He",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2016
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Explicit AtUC Berkeley section, not HKUST."
+        },
+        {
+          "name": "Chen-Nan Liao",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2015
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Explicit AtUC Berkeley section, not HKUST."
+        },
+        {
+          "name": "Ling-Chieh Kung",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2012
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Explicit AtUC Berkeley section, not HKUST."
+        },
+        {
+          "name": "Wenbo Selina Cai",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2012
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Explicit AtUC Berkeley section, not HKUST."
+        },
+        {
+          "name": "Qingfa Zhang",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Haoyu Ma",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Tianzhuang Xu",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Tianshi Wang",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Fengxing Wei",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Xiyuan Mirana Yu",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Xun Shan",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Boer Ouyang",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Yifan Wu",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Zuzheng Dang",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Linqi Zhou",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Yuwei Liu",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Xinlong Zhao",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Yuan Qiao",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Hongyi Li",
+          "role": "other",
+          "section": "other",
+          "years": [],
+          "status_as_listed": "Current/Incoming mixed section; neither actual start date nor current vs incoming status resolved."
+        },
+        {
+          "name": "Jiachen Xu",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2026
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Pre-doctoral advisee entry explicitly names another institution; no HKUST enrollment/membership inferred from later PhD destination."
+        },
+        {
+          "name": "Siqi He",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2024
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Pre-doctoral advisee entry explicitly names another institution; no HKUST enrollment/membership inferred from later PhD destination."
+        },
+        {
+          "name": "Ya-Cheng Timmy Hsu",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2024
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Pre-doctoral advisee entry explicitly names another institution; no HKUST enrollment/membership inferred from later PhD destination."
+        },
+        {
+          "name": "Xiangyu Jin",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2023
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Pre-doctoral advisee entry explicitly names another institution; no HKUST enrollment/membership inferred from later PhD destination."
+        },
+        {
+          "name": "Dayu Wu",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2023
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Pre-doctoral advisee entry explicitly names another institution; no HKUST enrollment/membership inferred from later PhD destination."
+        },
+        {
+          "name": "Tong Xie",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2022
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Pre-doctoral advisee entry explicitly names another institution; no HKUST enrollment/membership inferred from later PhD destination."
+        },
+        {
+          "name": "Miao Yu",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2017
+          ],
+          "exclude": "outside_school",
+          "exclusion_note": "Pre-doctoral advisee entry explicitly names another institution; no HKUST enrollment/membership inferred from later PhD destination."
+        },
+        {
+          "name": "Yu Cai",
+          "role": "other",
+          "section": "alumni",
+          "years": [
+            2016
+          ]
+        }
+      ],
+      "notes": "Draw4148128067: independently reread exact captured raw source after second native32310243. Read entire own advising/student section. AtHKUST/AtUCBerkeley boundaries explicit. Current/Incoming names stay undated sectionother because current vs future membership is unresolved. Engineering/BusinessSchool labels do not establish PhD role; primary-collaborator wording does not imply degree advising. Pre-doctoral foreign-institution entries remain source-bound exclusions."
+    },
+    {
+      "pi": "Yiwen Wang",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://bmi.hkust.edu.hk/PI.html",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://bmi.hkust.edu.hk/PI.html",
+        "sha256": "e950781db68d0fa5c8cb84c309503b56a2a08e0c662a0408062924e3b3f5ac54",
+        "quote": "Computational Cognitive Engineering Lab",
+        "fetched_at": "2026-11-13T12:53:08"
+      },
+      "listed": [
+        {
+          "name": "Shenghui Wu",
+          "role": "postdoc",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Mingyi Wang",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Ziyi Wang",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Zixu Wang",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Song Kang",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Xingjian Li",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Cong Li",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Chongjin Yu",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Tianyi Hu",
+          "role": "masters",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Shangbo Du",
+          "role": "masters",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Xiang Shen",
+          "role": "other",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Cunle Qian",
+          "role": "other",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Xi Liu",
+          "role": "other",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Xiang Zhang",
+          "role": "other",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Shuhang Chen",
+          "role": "other",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Yifan Huang",
+          "role": "other",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Kun Zhang",
+          "role": "other",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Mingdong Li",
+          "role": "other",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Shicheng Qiu",
+          "role": "other",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Zhiwei Song",
+          "role": "other",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Jieyuan Tan",
+          "role": "other",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Jiayin Lin",
+          "role": "other",
+          "section": "alumni",
+          "years": []
+        }
+      ],
+      "notes": "Draw4148128067: same exact source pages reopened/read after new native; old seed/bindings never carried. Final draw483901673: reread complete exact saved roster and degree/graduation context. Own lab People page (postdoc, PhD, MPhil, Alumni). Alumni are undated and degree unspecified (role other); the tool excludes them automatically. Individual member pages (people/*.html) not fetched."
+    }
+  ],
+  "filled_by": "codex-hkust-final-recall-round3-1115",
+  "signoff": {
+    "reviewer": "codex-root-independent-hkust-1115",
+    "date": "2026-11-16",
+    "note": "Independent review of source-bound30-PI draw4148128067, all12 readable roster sections and18 retained negative source/access dispositions. Reviewed KaiTang HKUST departure/GZ move, XiaofangZhou prior-UQ/GZ/future entries, and YingJuChen mixed current/incoming section. Unknown roles/dates remain unknown. Treating all15 mixed entries eligible still yields R1 .902; exact source classifications retained."
+  }
+}
