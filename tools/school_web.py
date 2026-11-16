@@ -252,21 +252,40 @@ def html_robots_is_no_rules(body):
 
 
 
-def robots_ruled_hosts():
-    """Hosts whose robots.txt answer the owner ruled 'no rules' (docs/host-rulings.json entry with robots.override = 'no_rules_by_owner_ruling').
-    Only that record relaxes anything, and only for the host it names (NTU personal.ntu.edu.sg / dr.ntu.edu.sg, owner 2026-11-14)."""
+def _robots_no_rules_rulings():
+    """The owner-approved exceptions, including any exact path restrictions."""
     try:
         rows = json.loads((Path(__file__).resolve().parents[1] / 'docs' / 'host-rulings.json').read_text()).get('hosts') or []
     except (OSError, ValueError):
-        return frozenset()
-    return frozenset(r['host'].lower() for r in rows if (r.get('robots') or {}).get('override') == 'no_rules_by_owner_ruling')
+        return {}
+    return {r['host'].lower(): r for r in rows if (r.get('robots') or {}).get('override') == 'no_rules_by_owner_ruling'}
 
 
-def robots_ruled_no_rules(host, status, body):
-    """True when `host` has an owner ruling and its robots.txt answer carries no robots line: a 405, or a short 200 HTML page (the WAF-style 'Request Error' stub).
-    A real robots.txt (any robots line) is honoured; a 403/429/5xx or a challenge is not covered."""
-    if (host or '').lower().split(':')[0] not in robots_ruled_hosts():
+def robots_ruled_hosts():
+    """Unrestricted host rulings for callers that cannot enforce per-URL scope.
+
+    Scoped exceptions deliberately stay out of lpcap's host-wide override set.
+    """
+    return frozenset(host for host, r in _robots_no_rules_rulings().items() if not r.get('allowed_paths'))
+
+
+def robots_ruled_no_rules(host, status, body, url=None):
+    """Apply an owner robots exception only within its recorded URL scope.
+
+    A real robots.txt and HTTP access refusals or outages remain authoritative.
+    """
+    ruling = _robots_no_rules_rulings().get((host or '').lower().split(':')[0])
+    if ruling is None:
         return False
+    paths = ruling.get('allowed_paths')
+    if paths:
+        parts = urllib.parse.urlsplit(url or '')
+        if parts.query or parts.fragment or parts.path.casefold() not in {p.casefold() for p in paths}:
+            return False
+        # The finite faculty-list ruling covers the observed 200 error stub,
+        # never a new HTTP refusal or a challenge response.
+        if status != 200 or CHALLENGE.search(body or ''):
+            return False
     if status == 405:
         return True
     b = body or ''
@@ -279,7 +298,7 @@ def robots_decision(status, body, url='/', host=None):
     A host with an owner ruling in docs/host-rulings.json (robots_ruled_no_rules) is read as 'no rules'.
     """
     host = host or urllib.parse.urlsplit(url if '//' in url else '//' + url).hostname
-    if robots_ruled_no_rules(host, status, body):
+    if robots_ruled_no_rules(host, status, body, url=url):
         status, body = 404, ''
     is_html = status == 200 and re.search(r'<html', (body or '')[:2000], re.I)
     if status not in (200, 404, 410) or (is_html and not html_robots_is_no_rules(body)):
