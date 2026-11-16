@@ -1,40 +1,45 @@
 {
  "school": "hkust",
- "date": "2026-11-10",
- "seed": 20261029,
- "n_verdicts": 90,
+ "date": "2026-11-15",
+ "seed": 20261113,
+ "n_verdicts": 180,
  "files": {
-  "pis.json": "5a89d07a2db87bcce50c4e6844044376c34bdd4723a2c7c2ea89b90d61337327",
-  "students.json": "77c56d4efaf6563f2ea9de0f56e75f5def4cac30da9bed2cf5e9ffff7fe31cf9",
-  "lab_papers.jsonl.gz": "80973b47695b512a27653ac5ce090bf9f50890112be38c7002e04f106ca0f000",
-  "student_papers.jsonl.gz": "5bbcd2e8bb900cacbec4ade3fabc95e3af941dbd81f8e679042b102eb4d78839",
-  "copies.json": "aa4bd87eb4ee1698edd57b841692b34e063f406418afc74f8aa2062d62f94f90"
+  "pis.json": "6f74707e5b51ec2deb9c0b6d8c42d5c9335b3fec5b2dee448e84acc94cbb9fe5",
+  "students.json": "9a615006849ac1cfc2703e0c6f9ec166d61bc8410e179a1ca7bde01ea1f13953",
+  "lab_papers.jsonl.gz": "0d78efe6863bcaed4a8f9ec50ff4bd6da034bfd28503716dec0585f511609936",
+  "student_papers.jsonl.gz": "10a385a7629aa5d9cc8223b2c5e4343ee81b8587aff70aa4b3522468f2562204",
+  "copies.json": "7ad7b768199e624b2d4911d859d417c571c89dec6f0070032dbd8b4f8a2560da"
  },
  "files_now": {
-  "pis.json": "5a89d07a2db87bcce50c4e6844044376c34bdd4723a2c7c2ea89b90d61337327",
-  "students.json": "77c56d4efaf6563f2ea9de0f56e75f5def4cac30da9bed2cf5e9ffff7fe31cf9",
-  "lab_papers.jsonl.gz": "80973b47695b512a27653ac5ce090bf9f50890112be38c7002e04f106ca0f000",
-  "student_papers.jsonl.gz": "5bbcd2e8bb900cacbec4ade3fabc95e3af941dbd81f8e679042b102eb4d78839",
-  "copies.json": "aa4bd87eb4ee1698edd57b841692b34e063f406418afc74f8aa2062d62f94f90"
+  "pis.json": "6f74707e5b51ec2deb9c0b6d8c42d5c9335b3fec5b2dee448e84acc94cbb9fe5",
+  "students.json": "9a615006849ac1cfc2703e0c6f9ec166d61bc8410e179a1ca7bde01ea1f13953",
+  "lab_papers.jsonl.gz": "0d78efe6863bcaed4a8f9ec50ff4bd6da034bfd28503716dec0585f511609936",
+  "student_papers.jsonl.gz": "10a385a7629aa5d9cc8223b2c5e4343ee81b8587aff70aa4b3522468f2562204",
+  "copies.json": "7ad7b768199e624b2d4911d859d417c571c89dec6f0070032dbd8b4f8a2560da"
  },
  "lab_precision_uniform": {
-  "k": 24,
-  "n": 25,
-  "p": 0.96,
-  "lo": 0.8046,
-  "hi": 0.9929,
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
   "unclear": 0
  },
  "lab_precision_uniform_if_abstracts_count": {
-  "k": 24,
-  "n": 25,
-  "p": 0.96,
-  "lo": 0.8046,
-  "hi": 0.9929,
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
   "unclear": 0
  },
  "lab_precision_strata": {
   "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
    "unclear": 0
   },
   "listing": {
@@ -55,18 +60,18 @@
   }
  },
  "lab_precision_all40": {
-  "k": 34,
-  "n": 35,
-  "p": 0.9714,
-  "lo": 0.8547,
-  "hi": 0.9949,
+  "k": 64,
+  "n": 65,
+  "p": 0.9846,
+  "lo": 0.9179,
+  "hi": 0.9973,
   "unclear": 0
  },
  "student_precision_uniform": {
-  "k": 25,
-  "n": 25,
+  "k": 50,
+  "n": 50,
   "p": 1.0,
-  "lo": 0.8668,
+  "lo": 0.9287,
   "hi": 1.0,
   "unclear": 0
  },
@@ -97,25 +102,25 @@
   }
  },
  "student_precision_all40": {
-  "k": 40,
-  "n": 40,
+  "k": 65,
+  "n": 65,
   "p": 1.0,
-  "lo": 0.9124,
+  "lo": 0.9442,
   "hi": 1.0,
   "unclear": 0
  },
  "lab_coverage": {
-  "k": 11,
-  "n": 11,
-  "p": 1.0,
-  "lo": 0.7412,
-  "hi": 1.0
+  "k": 43,
+  "n": 45,
+  "p": 0.9556,
+  "lo": 0.8517,
+  "hi": 0.9877
  },
  "lab_coverage_items": {
-  "drawn": 15,
-  "true_lab_papers": 11,
-  "not_lab_papers_absent": 3,
-  "not_lab_papers_in_build": 1
+  "drawn": 50,
+  "true_lab_papers": 45,
+  "not_lab_papers_absent": 5,
+  "not_lab_papers_in_build": 0
  },
  "student_coverage": null,
  "student_coverage_items": {
@@ -124,32 +129,55 @@
  },
  "failures": {
   "not_a_paper": 1,
-  "not_at_school": 1
+  "missing_from_build": 2
  },
  "incorrect": [
   {
    "sample": "lab_precision",
    "stratum": "uniform",
-   "item": "Lionel PARREAUX|None|https://openalex.org/W7165867448",
+   "item": "Qiong LUO 羅瓊|None|https://openalex.org/W4385768287",
    "failure_type": "not_a_paper",
-   "reason": "[fresh reviewer, limits: Did not open Dagstuhl landing page; judged from title/DOI prefix/venue.] DOI 10.4230/artifacts.26720 is a Dagstuhl DROPS artifact record: an online web demonstration (software artifact companion), not a research paper. Authorship/HKUST ok.",
+   "reason": "The primary SIGMOD PDF is explicitly headed ADVICE TO MID-CAREER RESEARCHERS and presents career, advising and service guidance rather than a research paper. The editor's notes identify it as the career-advice column. This is a source-specific non-research column judgment under R-PAP-18/33; it does not treat editorial type alone as an exclusion. The author and dual Hong Kong/Guangzhou affiliations are genuine, but research-paper genre fails.",
+   "policy": "career_advice_column"
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Andrew B. HORNER 康立德|conf/icmc/ChanMCH18",
+   "failure_type": "missing_from_build",
+   "reason": "Exact ICMC2018 research paper names Hiu-Ting Chan, Ronald Mo, Chuck-Jee Chau and Andrew Horner; indexed primary paperp1 places all4at HKUST CSE. PI-owned publications list and institutional faculty profile independently list exact paper. Original Michigan PDF403 prevents a local primary-byte receipt; count as actual missing coverage, never exclude it merely because retrieval failed. Current final-panel identity and faculty/source context rechecked; native still absent. Earlier saved primary evidence remains unchanged, including explicit other-campus/other-person exclusions; no inaccessible source was used as an exclusion.",
    "policy": null
   },
   {
    "sample": "lab_coverage",
    "stratum": "dblp_person_page",
-   "item": "Qifeng CHEN 陳启峰|conf/interspeech/GermainCK19",
-   "failure_type": "not_at_school",
-   "reason": "[carried from the b15 draw: identical row key, same claim] [second-pass fresh reviewer; limits: Did not see the Interspeech 2019 camera-ready PDF itself (ISCA page shows no affiliations); v1 PDF not fetched. A camera-ready could in principle list HKUST, but the arXiv byline (Sep 2018, after Chen's HKUST start) says Intel Labs.] arXiv 1806.10522 v2 (14 Sep 2018) PDF page 1 footnote: 'Q. Chen and V. Koltun are with the Intelligent Systems Lab, Intel Labs, Santa Clara'; Germain at Stanford CCRMA (interned at Intel Labs). No HKUST mention. arXiv abs pages (v1, v2) carry no affiliations; the ISCA 2019 page lists authors only, no affiliations. The work was done at Intel Labs, so the paper's own byline does not support HKUST. The build link rests only on the PI's HKUST appointment year (2019 CSE listing 'Assistant Professor'), which is the dataset's fallback rule when no page-1 byline is available; no source here supports HKUST for this paper, so it is not a true HKUST lab paper.",
+   "item": "Jian-Feng Cai|journals/tbe/ZhanCGLCQ16",
+   "failure_type": "missing_from_build",
+   "reason": "The original coauthor project page explicitly maps Jian-Feng Cai to HKUST Mathematics and cites the journal edition as IEEE TBME63(9):1850–1861,2016. The final DBLP panel selects this2016 edition; it is a genuine lab research publication and is absent. PubMed26625404 records early online publication2015-11-25, explaining a likely native-window omission; retain this as a conservative missing2016 cited edition rather than removing it from the coverage denominator.",
    "policy": null
   }
  ],
  "unclear": [],
  "screened": [],
  "population": {
-  "n_lab_papers": 5415,
-  "n_student_papers": 3546,
-  "n_coverage_pool": 4310,
+  "n_lab_papers": 7800,
+  "n_student_papers": 7224,
+  "n_coverage_pool": 5452,
   "n_student_candidates": 0
+ },
+ "round": {
+  "id": "r3",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
  }
 }
