@@ -271,6 +271,12 @@ HIGHLIGHTS_SUMMARY_TITLE = re.compile(r'(?i)\bhighlights (?:from|of) the\b.*\b(?
 EVENT_RECAP_TITLE = re.compile(r'(?i)^(?:ACM|IEEE|USENIX|AAAI|SIAM)\s+.{4,100}\b(?:conference|symposium|workshop)\s+(?:19|20)\d{2}$')
 SUMMARY_SUFFIX = re.compile(r'(?i)\b(?:workshop|symposium|conference) (?:summary|report)\s*$')   # 'SECM 2017 Workshop Summary' (8 words or fewer: a long title is a paper)
 CONFERENCE_VOLUME_TITLE = re.compile(r'(?i)^\s*(?:the )?(?:\d+(?:st|nd|rd|th)\s+)?(?:annual |international |joint )?(?:conference|symposium|workshop)\s+on\b[^:]{0,110}?\s*(?:\([^)]{2,25}\)\s*)?(?:19|20)\d\d\.?\s*$')   # 'Conference on Health, Inference, and Learning (CHIL) 2022': a proceedings volume
+# An event's named Research Proceedings YEAR [location] is the whole abstract collection, even when a journal types
+# it as an article. Require the complete event/volume title; individual abstracts and papers discussing proceedings stay.
+EVENT_RESEARCH_PROCEEDINGS_TITLE = re.compile(
+    r"^\s*(?:(?:[A-ZÀ-ÖØ-Þ][\w’'&-]*|of|the|for|and|in|on)\s+){0,16}"
+    r'(?i:forum|conference|congress|symposium|workshop|meeting)\s+(?i:research\s+proceedings)\s+(?:19|20)\d{2}'
+    r"(?:\s*[:,–-]?\s+(?:[A-ZÀ-ÖØ-Þ][\w’'&-]*[,.]?\s*){1,8})?\.?\s*$")
 RESEARCH_FOR_PRACTICE = re.compile(r'(?i)^\s*research for practice\b')
 BOOK_LEVEL_DOI = re.compile(r'^10\.(?:1007|1002|1016|3233|1201|1142|1017)/97[89][\d-]+$')   # an ISBN-style DOI: the book itself, no chapter suffix
 SESSION_WORKSHOP_TITLE = re.compile(r'^\s*[A-Z]{1,4}\d{1,3}(?:\.\d+)?\s*:\s*(?i:workshop|tutorial|forum|panel|short course|special session|evening session)\b|'
@@ -311,7 +317,7 @@ def non_research_record(r, pages=None):
         return 'conference_report'
     if RESEARCH_FOR_PRACTICE.search(t):
         return 'column'
-    if CONFERENCE_VOLUME_TITLE.search(t):
+    if CONFERENCE_VOLUME_TITLE.search(t) or EVENT_RESEARCH_PROCEEDINGS_TITLE.fullmatch(t):
         return 'proceedings_volume'
     # an authored monograph OpenAlex types 'article' (no venue, at most three authors: Rojo and Bloch, The Principle of Least Action, Cambridge 2018) is a
     # book, which R-PAP-15 keeps; an edited volume is typed conference-paper/proceedings/editorial or lists its editors

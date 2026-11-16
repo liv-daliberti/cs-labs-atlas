@@ -9,6 +9,7 @@ import pytest
 import atlas_paths as P
 import pi_fulltext_affiliation as F
 import pi_hierarchy as h
+from pihier.papers import non_research_record
 
 WORK = Path(__file__).resolve().parents[1]
 
@@ -91,6 +92,30 @@ def test_R_PAP_19_cs_conference_abstracts_stay():
              venue='ACM Conference on Economics and Computation (EC)', doi='10.1145/3033274.3085126', byline=['A B', 'C D'],
              authorship=dict(position='last'))
     assert h.not_a_paper(r) is None
+
+
+@pytest.mark.parametrize('title', [
+    'Family Medicine Forum Research Proceedings 2016 Vancouver, BC',
+    'Family Medicine Forum Research Proceedings 2016: Vancouver, BC',
+    'International Science Congress Research Proceedings 2025',
+])
+def test_R_PAP_33_event_research_proceedings_are_aggregate_volumes(title):
+    # PMC5395372 contains separately titled/bylined abstracts S1-S108; the event title identifies their aggregate.
+    row = dict(title=title, type='article', venue='Canadian Family Physician', byline=['A B', 'C D'])
+    assert non_research_record(row) == 'proceedings_volume'
+    assert h.not_a_paper(row) == 'proceedings_volume'
+
+
+@pytest.mark.parametrize('title', [
+    'Prospective validation of an iOS app to evaluate tremor in patients with alcohol withdrawal syndrome',
+    'Findings from the Family Medicine Forum Research Proceedings 2016',
+    'Family Medicine Forum Research Proceedings 2016: a bibliometric analysis',
+    'Research proceedings and the reproducibility of clinical studies',
+])
+def test_R_PAP_33_individual_research_and_proceedings_analysis_stay(title):
+    row = dict(title=title, type='article', venue='Canadian Family Physician', byline=['A B', 'C D'])
+    assert non_research_record(row) is None
+    assert h.not_a_paper(row) is None
 
 
 # ---- R3 page 1 before the unaffiliated-advisee route (R-PAP-20) -------------------------------------------------
