@@ -38,7 +38,7 @@ legacy_sweep = ""
 computing_departments = ["CST"]
 center_units = ["CBSU", "BSU", "DH"]
 home_units = { "Computer Science and Technology" = 'computer science and technology' }
-rank_words = { ladder = '\b(?:reader|senior lecturer|university lecturer)\b' }
+rank_words = { ladder = '\b(?:prof|reader|university (?:senior )?lecturer)\b' }
 
 [sweep_check]
 exceptions = []

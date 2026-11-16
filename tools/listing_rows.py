@@ -54,6 +54,10 @@ def rank_of(titles, extra=None):
         if extra and extra.get(r):
             rx = f'(?:{rx})|(?:{extra[r]})'
         if re.search(rx, t, re.I):
+            # A charter can explicitly identify local ladder titles such as
+            # University Lecturer. Retain the earlier emeritus/visiting guards.
+            if r == 'lecturer' and extra and extra.get('ladder') and re.search(extra['ladder'], t, re.I):
+                continue
             return r
     return 'other'
 

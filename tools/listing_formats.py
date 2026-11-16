@@ -1091,8 +1091,14 @@ def cambridge_academic_staff(h):
         if len(person.split()) < 2:
             continue
         link = cell.find('a', href=True)
-        out.append(dict(name_listed=person, titles=['Academic staff'],
-                        homepage=link['href'] if link else None, division='Academic staff'))
+        # Keep the printed spelling for exact evidence lookup: removing Dr/Prof
+        # from the normalized name must not drop the whole historical row.
+        rank = re.search(r',\s*(Prof(?:essor)?)\.?\s+', printed, re.I)
+        entry = dict(name_listed=person, titles=[rank.group(1) if rank else 'Academic staff'],
+                     homepage=link['href'] if link else None, division='Academic staff')
+        if printed != person:
+            entry['quote_name'] = printed
+        out.append(entry)
     return out
 
 
