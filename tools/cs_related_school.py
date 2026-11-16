@@ -156,6 +156,36 @@ def source_exclusions(key):
     return out
 
 
+def source_excluded_openalex_ids(key, verified_pids):
+    """Only explicitly reviewed author IDs bound to an excluded PID by one ORCID.
+
+    Removing a DBLP student record must not revive that exact identity through
+    OpenAlex. A shared name alone cannot suppress an OpenAlex candidate, and a
+    mixed-ORCID author record cannot be excluded as one person's identity.
+    """
+    records = (read(P.data('cs-related-source-exclusions.json', key), {}) or {}).get('records') or []
+    rows = [r for r in records if r.get('openalex_identities')]
+    if not rows:
+        return set()
+    persons = {p['pid']: p for p in read(P.data('dblp-affiliated.json', key), {})['persons']}
+    with gzip.open(P.data('oa-author-stats.json.gz', key), 'rt') as f:
+        authors = json.load(f)['authors']
+    out = set()
+    for row in rows:
+        assert row['source_id'] in verified_pids, 'OpenAlex exclusion needs a source-verified DBLP exclusion'
+        person = persons[row['source_id']]
+        names = Name([row['name']] + [clean_dblp(n) for n in person['names']])
+        for binding in row['openalex_identities']:
+            author, orcid = binding['author'], binding['orcid']
+            assert re.fullmatch(r'https://openalex.org/A\d+', author), 'invalid reviewed OpenAlex author id'
+            assert orcid in person.get('orcid', []), 'OpenAlex exclusion ORCID does not match its DBLP PID'
+            stats = authors[author]
+            assert set(stats.get('orcids') or {}) == {orcid}, 'OpenAlex exclusion needs one matching ORCID, never a mixed identity'
+            assert any(names.match(n) for n in stats['raw']), 'OpenAlex exclusion name conflicts with the DBLP person'
+            out.add(author)
+    return out
+
+
 def candidates(key):
     census = census_rows(read(P.data('census-faculty.json', key)))
     cov = {d['code']: d.get('coverage') for d in S.get(key).get('departments') or []}
@@ -180,6 +210,7 @@ def candidates(key):
         out.append(dict(name=nm, aliases=[clean_dblp(n) for n in p['names'][1:]], source='dblp_affiliation', dblp=p['pid'], dblp_window=p['n_window'],
                         affiliations=[a['text'] for a in p['affiliations']], matched_by=p['matched_by']))
     assert seen_exclusions == excluded_pids, 'reviewed DBLP exclusion PID missing from affiliated source inventory'
+    excluded_openalex = source_excluded_openalex_ids(key, excluded_pids)
     # A source-checked ladder appointment is a candidate even when its DBLP record is sparse.
     # The later review still decides computing scope and never admits the role by itself.
     for e in read(P.data('cs-related-hand.json', key), []):
@@ -192,6 +223,8 @@ def candidates(key):
                         source_url=e.get('url'), source_sha256=e.get('sha256')))
     have = names + [Name([c['name']] + list(c.get('aliases') or [])) for c in out]
     for r in read(P.data('cs-related-candidates-openalex.json', key), []):  # (c)
+        if r['author'] in excluded_openalex:
+            continue
         if r.get('name_matches_pi') or any(N.match(n) for N in have for n in r['names'][:3]):
             continue
         nm = r['name'] if ',' not in r['name'] else ' '.join(reversed([x.strip() for x in r['name'].split(',', 1)]))

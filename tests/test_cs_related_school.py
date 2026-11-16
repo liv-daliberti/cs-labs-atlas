@@ -230,3 +230,80 @@ def test_historical_computing_identity_uses_appointment_start_not_biography_date
     assert decision['decision'] == 'accepted'
     assert decision['cs_basis']['openalex_share']['first_listing_year'] == 2010
     assert additions[0]['years_listed'] == []
+
+
+def openalex_exclusion_fixture(monkeypatch, tmp_path, *, source_orcid='0000-0001-0000-0001',
+                               author_orcids=('0000-0001-0000-0001',), author_name='Avery Scientist', linked=True):
+    import gzip
+    import json
+    pid, author = 'https://dblp.org/pid/avery/scientist', 'https://openalex.org/A100'
+    row = dict(name='Avery Scientist', source_id=pid)
+    if linked:
+        row['openalex_identities'] = [dict(author=author, orcid='0000-0001-0000-0001')]
+    docs = {
+        'cs-related-source-exclusions.json': {'records': [row]},
+        'dblp-affiliated.json': {'persons': [dict(pid=pid, names=['Avery Scientist'], orcid=[source_orcid])]},
+    }
+    for filename, obj in docs.items():
+        (tmp_path / filename).write_text(json.dumps(obj))
+    if linked:
+        with gzip.open(tmp_path / 'oa-author-stats.json.gz', 'wt') as f:
+            json.dump({'authors': {author: dict(raw={author_name: 10}, orcids={o: 10 for o in author_orcids})}}, f)
+    monkeypatch.setattr(C.P, 'data', lambda filename, key=None: tmp_path / filename)
+    return pid, author
+
+
+def test_exact_orcid_can_bind_reviewed_nonfaculty_openalex_identity(monkeypatch, tmp_path):
+    pid, author = openalex_exclusion_fixture(monkeypatch, tmp_path)
+    assert C.source_excluded_openalex_ids('cambridge', {pid}) == {author}
+
+
+def test_openalex_exclusion_requires_verified_source_pid(monkeypatch, tmp_path):
+    import pytest
+    openalex_exclusion_fixture(monkeypatch, tmp_path)
+    with pytest.raises(AssertionError, match='source-verified DBLP exclusion'):
+        C.source_excluded_openalex_ids('cambridge', set())
+
+
+def test_openalex_exclusion_cannot_borrow_another_dblp_orcid(monkeypatch, tmp_path):
+    import pytest
+    pid, _ = openalex_exclusion_fixture(monkeypatch, tmp_path, source_orcid='0000-0002-0000-0002')
+    with pytest.raises(AssertionError, match='does not match its DBLP PID'):
+        C.source_excluded_openalex_ids('cambridge', {pid})
+
+
+def test_mixed_openalex_author_cannot_be_excluded_as_one_student(monkeypatch, tmp_path):
+    import pytest
+    pid, _ = openalex_exclusion_fixture(monkeypatch, tmp_path,
+                                       author_orcids=('0000-0001-0000-0001', '0000-0002-0000-0002'))
+    with pytest.raises(AssertionError, match='never a mixed identity'):
+        C.source_excluded_openalex_ids('cambridge', {pid})
+
+
+def test_openalex_exclusion_rejects_conflicting_author_name(monkeypatch, tmp_path):
+    import pytest
+    pid, _ = openalex_exclusion_fixture(monkeypatch, tmp_path, author_name='Unrelated Person')
+    with pytest.raises(AssertionError, match='name conflicts'):
+        C.source_excluded_openalex_ids('cambridge', {pid})
+
+
+def test_dblp_only_exclusion_does_not_suppress_openalex_namesakes(monkeypatch, tmp_path):
+    pid, _ = openalex_exclusion_fixture(monkeypatch, tmp_path, linked=False)
+    assert C.source_excluded_openalex_ids('cambridge', {pid}) == set()
+
+
+def test_candidate_filter_preserves_an_unbound_openalex_namesake(monkeypatch, tmp_path):
+    import json
+    pid, author = openalex_exclusion_fixture(monkeypatch, tmp_path)
+    other = 'https://openalex.org/A200'
+    oa = [dict(author=a, name='Avery Scientist', names=['Avery Scientist'], works=10, dblp_works=8,
+               cs_share=0.8, years=[2020, 2026]) for a in (author, other)]
+    (tmp_path / 'cs-related-candidates-openalex.json').write_text(json.dumps(oa))
+    (tmp_path / 'census-faculty.json').write_text(json.dumps({'faculty': []}))
+    monkeypatch.setattr(C, 'source_exclusions', lambda key: {pid})
+    monkeypatch.setattr(C.P, 'data_w', lambda filename, key=None: tmp_path / filename)
+    monkeypatch.setattr(C.S, 'get', lambda key: {})
+    C.candidates('cambridge')
+    rows = json.loads((tmp_path / 'cs-related-candidates.json').read_text())
+    assert len(rows) == 1
+    assert rows[0]['openalex'] == [other]
