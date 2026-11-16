@@ -1,6 +1,34 @@
 # Adding a school: the standard protocol
 
-**Version 3.0, 2026-11-05.**
+**Version 3.1, 2026-11-16.**
+
+Before starting or resuming a school, run `bin/atlas doctor <key> --gates live
+--out-dir <report-directory>`. This read-only report combines the existing stage
+gates, rebuild freshness checks, and exact-ID reconciliation between the current
+paper package, measured local copies, website papers, and website reader index.
+Use `--site-dir <prepared-site>` to inspect a particular publication. The default
+`--gates recorded` is explicitly historical; missing reports mean unmeasured,
+not failed research. Website counts describe that checkout, not verified live
+deployment. With no school keys, the command inspects every charter.
+
+Lessons from Toronto, HKUST and Virginia Tech now affect restart behavior:
+`stage-gate --run` reuses a build, copy counter or availability ledger only when
+the existing rebuild dependency checker considers it fresh. An existing
+`pis.json` alone is insufficient. Changed reviewed inputs require rebuilding;
+changed catalogs or paper packages require recounting. The dependency checker
+uses modification/commit times; it is an operational aid, not an evidence or
+acceptance receipt. Follow the report's next actions in dependency order, and
+re-evaluate the affected gates before drawing an accuracy sample.
+
+Collection and public reading are separate measurements. A confirmed local
+copy may be linked at its source when hosting is not permitted. An interim
+school projection retains the previous frozen reader index, so its new papers
+can be displayed before their reader entries are available. Before handing off
+a school, inspect the doctor's per-paper gaps and refresh the school projection
+and frozen reader export together through `docs/PUBLISHING.md`. Preserve the
+`stored_copy` field in that handoff so the site can indicate that a linked
+paper has a local copy. A source-only candidate link does not imply a copy.
+
 - Version 1 was drafted from how Princeton, CMU, EPFL, MIT, Berkeley and Stanford were built.
 - Version 2 is version 1 corrected by its first run, on the University of Michigan, the seventh school (`hierarchy/michigan/STAGE-*.md`).
 - Version 2.1 adds what Michigan's stages 2–8 taught on 2026-10-30, marked **Learned from Michigan (2026-10-30)**:
