@@ -67,8 +67,15 @@ def load(p, default=None):
 
 
 def norm(s):
-    s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
-    return ' '.join(re.sub(r'[^a-z ]', ' ', s).split())
+    s = unicodedata.normalize('NFKD', str(s or '')).casefold()
+    s = ' '.join(''.join(c if c.isalpha() else ' ' for c in s
+                         if not unicodedata.combining(c)).split())
+    # Chinese PI labels may space the surname and given name. Never erase
+    # their letters: ASCII-only keys put every such PI in the same lab.
+    compact = s.replace(' ', '')
+    if compact and all('\u3400' <= c <= '\u4dbf' or '\u4e00' <= c <= '\u9fff' for c in compact):
+        return compact
+    return s
 
 
 def names_in(obj):
