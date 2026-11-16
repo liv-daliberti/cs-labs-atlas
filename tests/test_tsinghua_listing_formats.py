@@ -335,7 +335,7 @@ def test_insc_inline_titles_reset_band_and_include_plain_text_emeritus():
     from tools.listing_formats import parse
 
     html = '''<div id="vsb_content">
-      <p><strong>助理研究员：</strong></p><p><a href="a.htm">曹家浩</a></p>
+      <p><strong>助理研究员：</strong></p><p><a href="a.htm">曹 家浩</a></p>
       <p><strong>高等研究院：</strong><a href="b.htm">王小云</a>（院士）</p>
       <p><strong>计算机系教授：</strong><a href="c.htm">崔勇</a></p>
       <p><strong>荣休教师：</strong>李崇荣</p></div>
@@ -344,5 +344,8 @@ def test_insc_inline_titles_reset_band_and_include_plain_text_emeritus():
     assert [(r['name_listed'], r['titles']) for r in rows] == [
         ('曹家浩', ['助理研究员']), ('王小云', ['高等研究院']),
         ('崔勇', ['计算机系教授']), ('李崇荣', ['荣休教师'])]
+    from tools.listing_rows import quote_of
+    assert rows[0]['quote_name'] == '曹 家浩'
+    assert quote_of('助理研究员： 曹 家浩 高等研究院：王小云', rows[0]) == '曹 家浩'
 
 

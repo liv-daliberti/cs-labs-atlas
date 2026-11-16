@@ -1636,9 +1636,10 @@ def tsinghua_insc_bands(h):
             continue
         seen = set()
         for a in p.find_all('a', href=True):
-            name = clean(a.get_text(' ', strip=True)).replace(' ', '')
+            shown = clean(a.get_text(' ', strip=True))
+            name = shown.replace(' ', '')
             if name:
-                out.append(dict(name_listed=name, titles=[band], profile=a['href'], homepage=None, division=None)); seen.add(name)
+                out.append(dict(name_listed=name, quote_name=shown, titles=[band], profile=a['href'], homepage=None, division=None)); seen.add(name)
         rest = clean(' '.join(t for t in p.find_all(string=True) if t.find_parent('a') is None and t.find_parent('strong') is None).replace('\xa0', ' '))
         for tok in rest.split():
             if tok not in seen and re.fullmatch(r'[\u4e00-\u9fff]{2,4}', tok):
