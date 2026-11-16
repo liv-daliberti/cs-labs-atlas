@@ -225,7 +225,7 @@ robots = "unreviewed"
 note = "No thesis channel configured; not evidence of unavailable or absent theses."
 [collector]
 # 2026-11-10 (owner): full-text collection on for this school; same discovery list as the other loops. No wayback_acm (WAYBACK_HOLD=1) and no CORE. Its lab papers come from the registered package copied to scratch/downloads-1110/hierarchy-onboard (school-collector.slurm points the loop there until the school is admitted).
-channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "figshare", "labpages", "pihomes"]
+channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "core", "core_bulk", "europepmc", "pmc", "figshare", "labpages", "pihomes"]
 [students]
 directories = []
 adviser_directories = []

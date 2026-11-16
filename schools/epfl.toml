@@ -116,6 +116,6 @@ scopes = ["20.500.14299/7", "20.500.14299/3", "20.500.14299/11", "20.500.14299/1
 delay = 3
 
 [collector]
-# 2026-11-10 (owner): discovery channels re-enabled for every loop. wayback_acm stays OFF (and WAYBACK_HOLD=1 in the loop scripts) while Wayback listing captures run; CORE stays paused.
+# 2026-11-10 (owner): discovery channels re-enabled for every loop. wayback_acm stays OFF (and WAYBACK_HOLD=1 in the loop scripts) while Wayback listing captures run; CORE is allowed everywhere (DECISIONS 2026-11-15): core and core_bulk added to the list 2026-11-16.
 # Re-enable wayback_acm later: append "wayback_acm" here and set WAYBACK_HOLD=0 for the loops. OpenAlex spend is capped by OA_RESERVE=4000 (docs/CHANNELS.md).
-channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "figshare", "labpages", "pihomes"]
+channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "core", "core_bulk", "europepmc", "pmc", "figshare", "labpages", "pihomes"]
