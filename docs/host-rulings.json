@@ -151,7 +151,7 @@
   {
    "host": "www3.ntu.edu.sg",
    "host_use": "bounded",
-   "scope": "Historical NTU SCE/SCSE complete faculty lists at the exact allowed_paths only; archive capture and listing extraction, no profiles or contact fields.",
+   "scope": "Historical NTU SCE/SCSE complete faculty lists and explicitly registered member/people pages of NTU census PIs, at the exact allowed_paths only; no profiles or contact fields.",
    "allowed_paths": [
     "/SCE/moss_staffac.asp",
     "/SCE/moss_staffhes2014.asp",
@@ -162,7 +162,8 @@
     "/SCSE/moss_staffhes2014.asp",
     "/SCSE/moss_staffnds2014.asp",
     "/SCSE/moss_staffsis2014.asp",
-    "/SCSE/moss_staffvic2014.asp"
+    "/SCSE/moss_staffvic2014.asp",
+    "/computing/DMAL/Dante/member.html"
    ],
    "robots": {
     "checked": "2026-11-10T13:17:03",
@@ -187,7 +188,20 @@
    "rule": "owner-exception-ntu-historical-faculty",
    "ruling_date": "2026-11-15",
    "ruling": "Owner approved \"Allow finite faculty-list access\" in response to treating the www3 NTU robots HTML Request Error as no rules for these finite historical faculty-list URLs only, with normal pacing and stop-on-challenge; relayed by root coordinator.",
-   "tool": "tools/school_web.py robots_ruled_no_rules, with allowed_paths enforced; scoped rulings are excluded from lpcap host-wide overrides."
+   "tool": "tools/school_web.py robots_ruled_no_rules, with allowed_paths enforced; scoped rulings are excluded from lpcap host-wide overrides.",
+   "member_page_ruling": "Owner separately approved \"Allow census-PI member pages\" on 2026-11-15 under the same robots HTML error no-rules ruling. Only member/people pages of NTU census PIs; one fetcher, 3 s spacing, no profiles/contact, stop on challenge or access refusal. Other proven census-PI member paths must be registered explicitly before fetching.",
+   "member_page_basis": {
+    "url": "https://www3.ntu.edu.sg/computing/DMAL/Dante/member.html",
+    "purpose": "PI-specific current/postdoc/PhD Name | Advisor table for the NTU DANTe group; supplied by the NTU source reviewer",
+    "pis": [
+     "Gao Cong",
+     "Cheng Long",
+     "Siqiang Luo",
+     "Sourav Saha Bhowmick",
+     "Melanie Herschel",
+     "Qichen Wang"
+    ]
+   }
   }
  ]
 }
