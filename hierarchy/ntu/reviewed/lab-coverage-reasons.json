@@ -351,5 +351,55 @@
         "packet_sha256": "af774dd66d27f5b129ef6d5cf735bb1033c1f4fa601ad4951568f6b58f5fd78b"
       }
     }
+  },
+  "Themistoklis Gouleakis": {
+    "students": {
+      "code": "public_member_source_limited_after_targeted_checks",
+      "why": "The owned MIT-hosted page now identifies this NTU AssistantProfessor but its complete public content is a research/own-career/publication/teaching page, without a named research-member section or literal student/team/CV lead. The separately captured own official CCDS faculty card confirms the current role and priorpostdoc biography, also without namedmember evidence. An exact-name NTUstudents query yielded old foreigntraining contexts and a2022AthensBScsupervision lead when the pageplaces him outsideNTU; it supplies no localNTUmembership. These actual investigated sources leave NTUstudents/currentPhDcount unknown, not absent. No known permitted concrete currentNTUmember lead remains unread in this bounded check; unlocated student selfpages/labrosters may exist.",
+      "sources_checked": [
+        {
+          "url": "https://www.mit.edu/~tgoule/",
+          "sha256": "beab9b58c13e22ec32d56dd89cc1fec13d89f09d03d23512adf2e5061dd77114",
+          "status": 200,
+          "observed_at": "2026-11-15T21:04:23",
+          "quote": "I am an Assistant Professor in the College of Computing and Data Science at Nanyang Technological University .",
+          "result": "Completeownedpage and literalnav/linktargets read. Research, education/previousjobs, publications, ownteaching and awards; no namedmember/supervision list or currentteam/student/CVlink. MITPhDadviserRonittRubinfeld and priorUSC/NUSpostdocsupervisors are PI ownhistory; pubcoauthors notadvisees.",
+          "capture_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/hierarchy/ntu/work/student-recall-captures.sqlite"
+        },
+        {
+          "url": "https://web.archive.org/web/20260810082316id_/https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "5bb6dc487c95ea526c10c19338106d795d180a8515194dfbc47a01b73d2a85da",
+          "status": 200,
+          "observed_at": "2026-11-10T14:13:52",
+          "quote": "Asst Prof Themistoklis Gouleakis",
+          "result": "ExactownCCDScardread (notneighbor): AssistantProfessor appointment, ownpriorpostdoctoralexperience/currentresearch. No namedstudents/memberlist or ownhomepagepointer beyond institutionalprofileanchor inthiscard. Protecteddrprofilefieldsnotfetched.",
+          "capture_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/hierarchy/ntu/raw/school-captures.sqlite"
+        }
+      ],
+      "targeted_search": {
+        "queries": [
+          "\"Themistoklis Gouleakis\" students NTU"
+        ],
+        "actual_execution_and_results": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/zero-few-bounded-search-1116-valid.json",
+        "result_log_sha256": "36f36b2f649a8ba6c3815665ccb060d6a1e44fd1bcabb68050047a881384c36e",
+        "outcome": "No qualifying localNTUnamedadvisee primaryresult inthisboundedquery. Foreign2022AthensBScsupervision remains excluded fromNTU; sourceindexing notabsenceproof."
+      },
+      "access_limitations": [
+        "Institutional protectedprofilefields not fetched."
+      ],
+      "unknowns": [
+        "ActualNTUstudents/currentPhDcount remain unknown.",
+        "Other unlocated public member/student sources may exist."
+      ],
+      "reviewed_by": "codex-ntu-complete-1115",
+      "reviewed_on": "2026-11-16",
+      "independent_review_required": false,
+      "independent_review": {
+        "reviewer": "codex-sjtu-recall-1115",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/themis-individual-source-limits-independent-review.json",
+        "receipt_sha256": "686d03a0550c080ab89ac379f12f6a83a902382bce58756595c5c0bfeec228b4",
+        "packet_sha256": "ef77a12df33f0d964777d178e49987da9699e9711991cea42753cd24024c903b"
+      }
+    }
   }
 }
