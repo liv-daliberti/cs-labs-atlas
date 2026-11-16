@@ -4860,25 +4860,32 @@ def cmd_recover_audit(school, title_credits=600):
 
 
 def recorded_hand_review(existing):
-    """The hand_review_* lists of an existing additions file: {(pi, name): decision}. A 'rejected' or 'held' row must not be proposed again and a
-    'role_withheld' row keeps its null role (Harvard 2026-11-10: the generator re-proposed nine hand-rejected rows and restored six wrong roles)."""
+    """Persist reviewed student names or paper titles across regeneration.
+
+    Rejections and holds prevent re-proposal; role and relationship decisions
+    preserve the reviewed limit on what a source proves.
+    """
     out = {}
     for k, rows in (existing or {}).items():
         if k.startswith('hand_review') and isinstance(rows, list):
             for r in rows:
-                if isinstance(r, dict) and r.get('pi') and r.get('name') and r.get('decision') in ('rejected', 'held', 'role_withheld'):
-                    out[(r['pi'], r['name'])] = r['decision']
+                if isinstance(r, dict) and r.get('pi') and (r.get('name') or r.get('title')) and r.get('decision') in ('rejected', 'held', 'role_withheld', 'membership_only', 'alumni_membership_only'):
+                    out[(r['pi'], r.get('name') or r['title'])] = r['decision']
     return out
 
 
 def apply_hand_review(rows, decisions):
     kept = []
     for r in rows:
-        d = decisions.get((r.get('pi'), r.get('name')))
+        d = decisions.get((r.get('pi'), r.get('name') or r.get('title')))
         if d in ('rejected', 'held'):
             continue
         if d == 'role_withheld' and r.get('role'):
             r = dict(r, role=None, role_basis='withheld_hand_check_20261110')
+        if d == 'membership_only':
+            r = dict(r, relationship='membership')
+        if d == 'alumni_membership_only':
+            r = dict(r, relationship='membership', alumni=True, section='alumni')
         kept.append(r)
     return kept
 
@@ -4898,7 +4905,7 @@ def write_audit(school, recs, stu_adds, pap_adds):
     adds = dict(school=school, generated_at=now(), tool='tools/labpage_audit.py', standard='docs/LAB-PAGES.md',
                 status='proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)',
                 rules={'LP-STU-01': RULE_TEXT['LP-STU-01'], 'LP-PAP-01': RULE_TEXT['LP-PAP-01']},
-                students=apply_hand_review([withhold_bio_degree_role(withhold_heading_conflict(kit_w, school, r)) for r in withheld_if_membership_only(school, stu_adds)], decided), papers=pap_adds)
+                students=apply_hand_review([withhold_bio_degree_role(withhold_heading_conflict(kit_w, school, r)) for r in withheld_if_membership_only(school, stu_adds)], decided), papers=apply_hand_review(pap_adds, decided))
     for k, v in (prev or {}).items():   # recorded hand reviews survive a regeneration
         if k.startswith('hand_review'):
             adds[k] = v
