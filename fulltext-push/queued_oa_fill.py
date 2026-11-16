@@ -120,17 +120,23 @@ def check_backup(school, backup_dir, now=None):
     return b
 
 
-def check_no_writer(school):
-    """Refuse while another process holds the catalog write lock (a loop or tool is writing right now)."""
+def check_no_writer(school, wait=0):
+    """Refuse while another process holds the catalog write lock (a loop or tool is writing right now). The collector's lock is short
+    (one saved result), so with wait > 0 the probe is repeated every 2 s for up to `wait` seconds before refusing."""
     p = F.FT / school / '.catalog-write.lock'
     if not p.exists():
         return
     fd = os.open(str(p), os.O_RDWR)
+    end = time.monotonic() + wait
     try:
-        try:
-            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except BlockingIOError:
-            raise SystemExit(f'{school}: the catalog write lock is held right now (a loop write in progress); refusing to write')
+        while True:
+            try:
+                fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                break
+            except BlockingIOError:
+                if time.monotonic() >= end:
+                    raise SystemExit(f'{school}: the catalog write lock is held right now (a loop write in progress); refusing to write')
+                time.sleep(2)
         fcntl.flock(fd, fcntl.LOCK_UN)
     finally:
         os.close(fd)
@@ -143,11 +149,10 @@ def write_rows(school, rows, ev_dir=None):
     return L.write(school, rows, SOURCE, ev_dir=ev_dir)
 
 
-def run(schools, write=False, backup_dir=None, json_out=None, ev_dir=None, plan=None, bodies=None, bulk=None, log=True):
+def run(schools, write=False, backup_dir=None, json_out=None, ev_dir=None, plan=None, bodies=None, bulk=None, log=True, lock_wait=120):
     if write:
         for s in schools:
             check_backup(s, backup_dir)
-            check_no_writer(s)
     plan = plan if plan is not None else {s: queued(s) for s in schools}
     if bodies is None:
         bodies = snapshot_bodies(wanted_keys(plan))
@@ -156,7 +161,7 @@ def run(schools, write=False, backup_dir=None, json_out=None, ev_dir=None, plan=
         rows, n = build_rows(s, plan[s], bodies, bulk)
         added = 0
         if write and rows:
-            check_no_writer(s)
+            check_no_writer(s, lock_wait)
             added = write_rows(s, rows, ev_dir)
         n['written'] = added
         out[s] = dict(n)

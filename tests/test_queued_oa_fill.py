@@ -127,7 +127,7 @@ def test_write_refuses_while_the_catalog_lock_is_held(store, tmp_path):
     try:
         before = snapshot(store)
         with pytest.raises(SystemExit, match='write lock is held'):
-            Q.run(['t'], write=True, backup_dir=tmp_path, bodies=REC, log=False)
+            Q.run(['t'], write=True, backup_dir=tmp_path, bodies=REC, log=False, lock_wait=0)
         assert snapshot(store) == before
     finally:
         os.close(fd)
