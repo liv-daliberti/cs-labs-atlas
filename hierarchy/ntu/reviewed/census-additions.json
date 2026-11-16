@@ -9740,13 +9740,9 @@
   },
   {
     "name": "Xiao Fan Wang",
-    "aliases": [
-      "Xiaofan Wang"
-    ],
+    "aliases": [],
     "collection_person_id": "ntu_fac_xiao-fan-wang",
-    "dblp": [
-      "https://dblp.org/pid/w/XiaoFanWang"
-    ],
+    "dblp": [],
     "rank": "ladder",
     "title_as_listed": "Xiao Renshaw WANG Associate Professor",
     "departments": [
@@ -9764,27 +9760,82 @@
         "observed": "20261110"
       }
     ],
-    "is_pi": true,
+    "is_pi": false,
     "pi_basis": {
-      "kind": "ladder_faculty",
-      "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
-      "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
-      "quote": "Xiao Renshaw WANG Associate Professor",
-      "observed": "20261110",
-      "role": "professor title on the unit faculty listing",
-      "cs_related": {
-        "dblp": [
-          "https://dblp.org/pid/w/XiaoFanWang"
-        ],
-        "dblp_window": 98,
-        "openalex": [
-          "https://openalex.org/A5036203577"
-        ],
-        "share": 0.0
-      }
+      "kind": "revoked_source_identity_mismatch",
+      "evidence": {
+        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+        "sha256": "ec6d3806779c6a31ad0fdd7d5a67e4632e02d74040176c20ba276cc0f6276eb5",
+        "quote": "Xiao Renshaw WANG",
+        "role_quote": "Associate Professor, School of Physical & Mathematical Sciences",
+        "observed_at": "2026-11-15"
+      },
+      "reason": "The admitted candidate Xiao Fan Wang / Xiaofan Wang is not the person named by its faculty source: the original NTU card explicitly names Xiao Renshaw WANG. Neither shared NTU affiliation nor the unrelated DBLP name supplies an identity bridge. Revoke this candidate admission and PID binding; do not rename it to Xiao Renshaw Wang or transfer bibliography/member records. Actual Xiao Renshaw Wang requires a separate computing-scope admission supported by his own evidence."
     },
     "lab_units": [],
-    "added": "cs_related_review_20261110"
+    "added": "cs_related_review_20261110",
+    "prior_admission": {
+      "name": "Xiao Fan Wang",
+      "aliases": [
+        "Xiaofan Wang"
+      ],
+      "collection_person_id": "ntu_fac_xiao-fan-wang",
+      "dblp": [
+        "https://dblp.org/pid/w/XiaoFanWang"
+      ],
+      "rank": "ladder",
+      "title_as_listed": "Xiao Renshaw WANG Associate Professor",
+      "departments": [
+        "EEE"
+      ],
+      "years_listed": [
+        2026
+      ],
+      "sources": [
+        {
+          "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+          "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
+          "quote": "Xiao Renshaw WANG Associate Professor",
+          "kind": "unit_listing:EEE",
+          "observed": "20261110"
+        }
+      ],
+      "is_pi": true,
+      "pi_basis": {
+        "kind": "ladder_faculty",
+        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+        "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
+        "quote": "Xiao Renshaw WANG Associate Professor",
+        "observed": "20261110",
+        "role": "professor title on the unit faculty listing",
+        "cs_related": {
+          "dblp": [
+            "https://dblp.org/pid/w/XiaoFanWang"
+          ],
+          "dblp_window": 98,
+          "openalex": [
+            "https://openalex.org/A5036203577"
+          ],
+          "share": 0.0
+        }
+      },
+      "lab_units": [],
+      "added": "cs_related_review_20261110"
+    },
+    "admission_correction": {
+      "reviewed_by": "codex-ntu-gates19-1115",
+      "reviewed_on": "2026-11-15",
+      "independent_reviewer": "codex-sjtu-ntu-1115",
+      "status": "revoked_source_identity_mismatch",
+      "why": "The admitted candidate Xiao Fan Wang / Xiaofan Wang is not the person named by its faculty source: the original NTU card explicitly names Xiao Renshaw WANG. Neither shared NTU affiliation nor the unrelated DBLP name supplies an identity bridge. Revoke this candidate admission and PID binding; do not rename it to Xiao Renshaw Wang or transfer bibliography/member records. Actual Xiao Renshaw Wang requires a separate computing-scope admission supported by his own evidence.",
+      "source": {
+        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+        "sha256": "ec6d3806779c6a31ad0fdd7d5a67e4632e02d74040176c20ba276cc0f6276eb5",
+        "quote": "Xiao Renshaw WANG",
+        "role_quote": "Associate Professor, School of Physical & Mathematical Sciences",
+        "observed_at": "2026-11-15"
+      }
+    }
   },
   {
     "name": "Xudong Jiang",

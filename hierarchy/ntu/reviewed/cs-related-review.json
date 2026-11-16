@@ -22,10 +22,10 @@
     "WKWSCI"
   ],
   "counts": {
-    "not_faculty_listed": 1190,
+    "not_faculty_listed": 1191,
     "research_or_other_rank": 8,
     "excluded_scope": 8,
-    "accepted": 65,
+    "accepted": 64,
     "faculty_not_computing": 17
   },
   "decisions": [
@@ -31702,107 +31702,11 @@
         "Xiaofan Wang"
       ],
       "source": "dblp_affiliation",
-      "decision": "accepted",
-      "reason": "faculty (EEE listing, professor rank) with 98 DBLP records 2016-2026 naming the school",
-      "cs_basis": {
-        "dblp": [
-          "https://dblp.org/pid/w/XiaoFanWang"
-        ],
-        "dblp_window": 98,
-        "affiliation_notes": [
-          "Shanghai Jiao Tong University, Department of Automation, China",
-          "Nanyang Technological University, School of Electrical and Electronic Engineering, Singapore",
-          "University of Bristol, Department of Mechanical Engineering, UK",
-          "Nanjing University of Science and Technology of PLA, Department of Automatic Control, China"
-        ],
-        "evidence": [
-          {
-            "url": "https://dblp.org/pid/w/XiaoFanWang",
-            "source": "DBLP dump dblp-2026-09-01.xml.gz",
-            "quote": "Shanghai Jiao Tong University, Department of Automation, China"
-          }
-        ],
-        "openalex_share": {
-          "result": "not_computing",
-          "ids": [
-            "https://openalex.org/A5036203577"
-          ],
-          "school_works": 91,
-          "dblp_indexed": 0,
-          "share": 0.0,
-          "thresholds": {
-            "dblp_indexed": 5,
-            "share": 0.2,
-            "min_works_for_negative": 8
-          },
-          "namesake_orcids": false,
-          "excluded": [
-            {
-              "author": "https://openalex.org/A5100411473",
-              "why": "works end 2019, before the first listing (2026)",
-              "n": 6,
-              "raw": [
-                "Xiao Wang"
-              ]
-            }
-          ],
-          "authors": [
-            {
-              "author": "https://openalex.org/A5036203577",
-              "basis": "full name: Xiao Renshaw Wang",
-              "works": 91,
-              "dblp_indexed": 0,
-              "years": [
-                2017,
-                2026
-              ],
-              "names": [
-                "Xiao Renshaw Wang",
-                "X. Renshaw Wang",
-                "Wang, Xiao Renshaw"
-              ],
-              "orcids": [
-                "0000-0002-5503-9899"
-              ],
-              "venues": [
-                "ACS Nano",
-                "Nature Communications",
-                "Advanced Materials"
-              ],
-              "dblp_examples": [],
-              "other_examples": [
-                {
-                  "oa": "https://openalex.org/W2607374533",
-                  "year": 2017,
-                  "title": "Effect of oxygen adsorbability on the control of Li2O2 growth in Li-O2 batteries: Implications for cathode catalyst design",
-                  "venue": "Nano Energy"
-                },
-                {
-                  "oa": "https://openalex.org/W2608172790",
-                  "year": 2017,
-                  "title": "Multi‐Nonvolatile State Resistive Switching Arising from Ferroelectricity and Oxygen Vacancy Migration",
-                  "venue": "Advanced Materials"
-                }
-              ]
-            }
-          ],
-          "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-        },
-        "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
-      },
-      "faculty_evidence": [
-        {
-          "unit": "EEE",
-          "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
-          "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
-          "observed": "20261110",
-          "quote": "Xiao Renshaw Wang Associate Professor",
-          "ladder": true
-        }
-      ],
-      "years_listed": [
-        2026
-      ],
+      "decision": "not_faculty_listed",
+      "reason": "The admitted candidate Xiao Fan Wang / Xiaofan Wang is not the person named by its faculty source: the original NTU card explicitly names Xiao Renshaw WANG. Neither shared NTU affiliation nor the unrelated DBLP name supplies an identity bridge. Revoke this candidate admission and PID binding; do not rename it to Xiao Renshaw Wang or transfer bibliography/member records. Actual Xiao Renshaw Wang requires a separate computing-scope admission supported by his own evidence.",
+      "cs_basis": {},
+      "faculty_evidence": [],
+      "years_listed": [],
       "units_searched": [
         "ADM",
         "CEE",
@@ -31814,7 +31718,141 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "prior_decision": {
+        "name": "Xiao Fan Wang",
+        "aliases": [
+          "Xiaofan Wang"
+        ],
+        "source": "dblp_affiliation",
+        "decision": "accepted",
+        "reason": "faculty (EEE listing, professor rank) with 98 DBLP records 2016-2026 naming the school",
+        "cs_basis": {
+          "dblp": [
+            "https://dblp.org/pid/w/XiaoFanWang"
+          ],
+          "dblp_window": 98,
+          "affiliation_notes": [
+            "Shanghai Jiao Tong University, Department of Automation, China",
+            "Nanyang Technological University, School of Electrical and Electronic Engineering, Singapore",
+            "University of Bristol, Department of Mechanical Engineering, UK",
+            "Nanjing University of Science and Technology of PLA, Department of Automatic Control, China"
+          ],
+          "evidence": [
+            {
+              "url": "https://dblp.org/pid/w/XiaoFanWang",
+              "source": "DBLP dump dblp-2026-09-01.xml.gz",
+              "quote": "Shanghai Jiao Tong University, Department of Automation, China"
+            }
+          ],
+          "openalex_share": {
+            "result": "not_computing",
+            "ids": [
+              "https://openalex.org/A5036203577"
+            ],
+            "school_works": 91,
+            "dblp_indexed": 0,
+            "share": 0.0,
+            "thresholds": {
+              "dblp_indexed": 5,
+              "share": 0.2,
+              "min_works_for_negative": 8
+            },
+            "namesake_orcids": false,
+            "excluded": [
+              {
+                "author": "https://openalex.org/A5100411473",
+                "why": "works end 2019, before the first listing (2026)",
+                "n": 6,
+                "raw": [
+                  "Xiao Wang"
+                ]
+              }
+            ],
+            "authors": [
+              {
+                "author": "https://openalex.org/A5036203577",
+                "basis": "full name: Xiao Renshaw Wang",
+                "works": 91,
+                "dblp_indexed": 0,
+                "years": [
+                  2017,
+                  2026
+                ],
+                "names": [
+                  "Xiao Renshaw Wang",
+                  "X. Renshaw Wang",
+                  "Wang, Xiao Renshaw"
+                ],
+                "orcids": [
+                  "0000-0002-5503-9899"
+                ],
+                "venues": [
+                  "ACS Nano",
+                  "Nature Communications",
+                  "Advanced Materials"
+                ],
+                "dblp_examples": [],
+                "other_examples": [
+                  {
+                    "oa": "https://openalex.org/W2607374533",
+                    "year": 2017,
+                    "title": "Effect of oxygen adsorbability on the control of Li2O2 growth in Li-O2 batteries: Implications for cathode catalyst design",
+                    "venue": "Nano Energy"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2608172790",
+                    "year": 2017,
+                    "title": "Multi‐Nonvolatile State Resistive Switching Arising from Ferroelectricity and Oxygen Vacancy Migration",
+                    "venue": "Advanced Materials"
+                  }
+                ]
+              }
+            ],
+            "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+          },
+          "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
+        },
+        "faculty_evidence": [
+          {
+            "unit": "EEE",
+            "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+            "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
+            "observed": "20261110",
+            "quote": "Xiao Renshaw Wang Associate Professor",
+            "ladder": true
+          }
+        ],
+        "years_listed": [
+          2026
+        ],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      },
+      "review_correction": {
+        "reviewed_by": "codex-ntu-gates19-1115",
+        "reviewed_on": "2026-11-15",
+        "independent_reviewer": "codex-sjtu-ntu-1115",
+        "status": "revoked_source_identity_mismatch",
+        "why": "The admitted candidate Xiao Fan Wang / Xiaofan Wang is not the person named by its faculty source: the original NTU card explicitly names Xiao Renshaw WANG. Neither shared NTU affiliation nor the unrelated DBLP name supplies an identity bridge. Revoke this candidate admission and PID binding; do not rename it to Xiao Renshaw Wang or transfer bibliography/member records. Actual Xiao Renshaw Wang requires a separate computing-scope admission supported by his own evidence.",
+        "source": {
+          "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+          "sha256": "ec6d3806779c6a31ad0fdd7d5a67e4632e02d74040176c20ba276cc0f6276eb5",
+          "quote": "Xiao Renshaw WANG",
+          "role_quote": "Associate Professor, School of Physical & Mathematical Sciences",
+          "observed_at": "2026-11-15"
+        }
+      }
     },
     {
       "name": "Xiao Lu",

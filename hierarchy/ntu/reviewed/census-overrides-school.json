@@ -7572,62 +7572,88 @@
     }
   },
   "Xiao Fan Wang": {
-    "no_identity": false,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
+    "exclude": true,
+    "why": "The admitted candidate Xiao Fan Wang / Xiaofan Wang is not the person named by its faculty source: the original NTU card explicitly names Xiao Renshaw WANG. Neither shared NTU affiliation nor the unrelated DBLP name supplies an identity bridge. Revoke this candidate admission and PID binding; do not rename it to Xiao Renshaw Wang or transfer bibliography/member records. Actual Xiao Renshaw Wang requires a separate computing-scope admission supported by his own evidence.",
+    "no_identity": true,
+    "why_no_identity": "The admitted candidate Xiao Fan Wang / Xiaofan Wang is not the person named by its faculty source: the original NTU card explicitly names Xiao Renshaw WANG. Neither shared NTU affiliation nor the unrelated DBLP name supplies an identity bridge. Revoke this candidate admission and PID binding; do not rename it to Xiao Renshaw Wang or transfer bibliography/member records. Actual Xiao Renshaw Wang requires a separate computing-scope admission supported by his own evidence.",
+    "dblp": [],
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
+      "why": "No admitted identity for this excluded candidate.",
       "evidence": []
     },
-    "collection_person_id": "ntu_fac_xiao-fan-wang",
-    "collection_person_source": {
-      "profile_url": null,
-      "sources": [
-        {
+    "identity_correction": {
+      "reviewed_by": "codex-ntu-gates19-1115",
+      "reviewed_on": "2026-11-15",
+      "independent_reviewer": "codex-sjtu-ntu-1115",
+      "status": "revoked_source_identity_mismatch",
+      "why": "The admitted candidate Xiao Fan Wang / Xiaofan Wang is not the person named by its faculty source: the original NTU card explicitly names Xiao Renshaw WANG. Neither shared NTU affiliation nor the unrelated DBLP name supplies an identity bridge. Revoke this candidate admission and PID binding; do not rename it to Xiao Renshaw Wang or transfer bibliography/member records. Actual Xiao Renshaw Wang requires a separate computing-scope admission supported by his own evidence.",
+      "source": {
+        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+        "sha256": "ec6d3806779c6a31ad0fdd7d5a67e4632e02d74040176c20ba276cc0f6276eb5",
+        "quote": "Xiao Renshaw WANG",
+        "role_quote": "Associate Professor, School of Physical & Mathematical Sciences",
+        "observed_at": "2026-11-15"
+      }
+    },
+    "prior_review_receipt": {
+      "no_identity": false,
+      "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
+      "dblp_orcid_review": {
+        "allowed": [],
+        "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
+        "evidence": []
+      },
+      "collection_person_id": "ntu_fac_xiao-fan-wang",
+      "collection_person_source": {
+        "profile_url": null,
+        "sources": [
+          {
+            "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+            "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
+            "quote": "Xiao Renshaw WANG Associate Professor",
+            "observedAt": "20261110",
+            "kind": "named_individual_official_unit_listing_EEE"
+          }
+        ],
+        "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
+      },
+      "dblp": [
+        "https://dblp.org/pid/w/XiaoFanWang"
+      ],
+      "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 98 records in 2016-2026.",
+      "dblp_identity_review": {
+        "school": "ntu",
+        "pi": "Xiao Fan Wang",
+        "PID": "https://dblp.org/pid/w/XiaoFanWang",
+        "rule": "school_affiliation",
+        "dump": "dblp-2026-09-01.xml.gz",
+        "dump_record_sha256": "887ce3e4d3f6f42cf082c268fed732637fe68bff78d00d7786b2b89c8f77931d",
+        "dump_record_quote": "Nanyang Technological University, School of Electrical and Electronic Engineering, Singapore",
+        "dump_record_url": "https://dblp.org/pid/w/XiaoFanWang",
+        "n_window": 98,
+        "official_listing_source": {
           "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
           "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
           "quote": "Xiao Renshaw WANG Associate Professor",
-          "observedAt": "20261110",
-          "kind": "named_individual_official_unit_listing_EEE"
-        }
-      ],
-      "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
-    },
-    "dblp": [
-      "https://dblp.org/pid/w/XiaoFanWang"
-    ],
-    "why_dblp": "Local DBLP dump (never dblp.org) person record decided by rule school_affiliation; dblp record names NTU / owned homepage; 98 records in 2016-2026.",
-    "dblp_identity_review": {
-      "school": "ntu",
-      "pi": "Xiao Fan Wang",
-      "PID": "https://dblp.org/pid/w/XiaoFanWang",
-      "rule": "school_affiliation",
-      "dump": "dblp-2026-09-01.xml.gz",
-      "dump_record_sha256": "887ce3e4d3f6f42cf082c268fed732637fe68bff78d00d7786b2b89c8f77931d",
-      "dump_record_quote": "Nanyang Technological University, School of Electrical and Electronic Engineering, Singapore",
-      "dump_record_url": "https://dblp.org/pid/w/XiaoFanWang",
-      "n_window": 98,
-      "official_listing_source": {
-        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
-        "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
-        "quote": "Xiao Renshaw WANG Associate Professor",
-        "observedAt": "20261110"
+          "observedAt": "20261110"
+        },
+        "reviewer": "claude-ntu-1110",
+        "reviewed": "2026-11-10",
+        "dump_affiliation_notes": [
+          "Shanghai Jiao Tong University, Department of Automation, China",
+          "Nanyang Technological University, School of Electrical and Electronic Engineering, Singapore",
+          "University of Bristol, Department of Mechanical Engineering, UK",
+          "Nanjing University of Science and Technology of PLA, Department of Automatic Control, China",
+          "Southeast University, Department of Automation, Nanjing, China"
+        ],
+        "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
+        "corroboration": [],
+        "status": "accepted_rule_bound"
       },
-      "reviewer": "claude-ntu-1110",
-      "reviewed": "2026-11-10",
-      "dump_affiliation_notes": [
-        "Shanghai Jiao Tong University, Department of Automation, China",
-        "Nanyang Technological University, School of Electrical and Electronic Engineering, Singapore",
-        "University of Bristol, Department of Mechanical Engineering, UK",
-        "Nanjing University of Science and Technology of PLA, Department of Automatic Control, China",
-        "Southeast University, Department of Automation, Nanjing, China"
-      ],
-      "namesake_check": "rule requires no school-naming rival candidate; name-only bindings corroborated per R-PAP-44/R-PAP-42",
-      "corroboration": [],
-      "status": "accepted_rule_bound"
-    },
-    "no_papers": true,
-    "why_no_papers": "Reviewed 2026-11-11: the DBLP/ORCID anchor is a reviewed identity binding, but in the promoted native package (pis.json, 2026-11-10) it attributes no papers: 178 DBLP titles on the bound record; 260 OpenAlex name hits, 136 school-affiliated, 0 identity-matched; verifiedWorks 0, labPapers 0. No paper is attributed until a school-affiliated, in-period match exists; this is a recorded yield result, not a claim that the person has no papers."
+      "no_papers": true,
+      "why_no_papers": "Reviewed 2026-11-11: the DBLP/ORCID anchor is a reviewed identity binding, but in the promoted native package (pis.json, 2026-11-10) it attributes no papers: 178 DBLP titles on the bound record; 260 OpenAlex name hits, 136 school-affiliated, 0 identity-matched; verifiedWorks 0, labPapers 0. No paper is attributed until a school-affiliated, in-period match exists; this is a recorded yield result, not a claim that the person has no papers."
+    }
   },
   "Xudong Jiang": {
     "no_identity": false,
