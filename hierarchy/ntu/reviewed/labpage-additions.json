@@ -1,9 +1,9 @@
 {
  "school": "ntu",
- "generated_at": "2026-11-11T23:12:50+00:00",
+ "generated_at": "2026-11-16T03:00:32.771673+00:00",
  "tool": "tools/labpage_audit.py",
  "standard": "docs/LAB-PAGES.md",
- "status": "proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)",
+ "status": "source-reviewed students143 preserved; papers13 independently reviewed; normal native gates still apply",
  "rules": {
   "LP-STU-01": "A person listed on the PI's own lab page (people, members, alumni section; live page or a Wayback id_ capture), under a people heading, not the PI, not in a faculty/collaborator/staff section, not another PI of the school, whose stated years do not end before 2016 or before the PI's appointment at the school, and who is dated or listed as current on a 2016+ capture (undated alumni only when the lab has only ever been at this school) is a lab member: the same admission the 2026-10-22 lab-page rows had (labpage-evidence.json, R-STU-01 'researched advisees'), with url, sha256 and a verbatim quote naming the person.",
   "LP-PAP-01": "A paper listed on the PI's own lab publications page whose resolved work carries the PI on the byline, falls in the PI's appointment (R-PAP-01) and whose PI authorship lists the school (or page 1 ties the school to the PI) is a lab paper with identity 'labpage_listing' (R-PAP-04: the lab's own publications page), exactly the rows tools/labpage_recover.py accepts into labpage-recovered.jsonl.gz."
@@ -2523,6 +2523,804 @@
    "years_basis": "stated_in_entry"
   }
  ],
- "papers": [],
- "union_note": "union (2026-11-11, rebuild worker): 67 rows of the reviewed round-8 tool output (generated_at 2026-11-11T23:12:50+00:00) + 33 earlier accepted rows of PIs the round-8 output does not cover (generated_at 2026-11-11T19:54:30+00:00); papers kept from the round-8 file"
+ "papers": [
+  {
+   "pi": "Li Boyang",
+   "key": "labpage:4ab8e01cb023c2eeba843f0ebe2a217ed512f172",
+   "title": "Beyond Semantic Similarity: Appraisal-Guided Chain-of-Thought Reasoning and Retrieval for Multimodal Emotional Support Conversations",
+   "year": 2026,
+   "doi": "10.18653/v1/2026.findings-acl.844",
+   "venue": "Findings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL Findings)",
+   "byline": [
+    "Yuqi Chu",
+    "Lizi Liao",
+    "Jinggui Liang",
+    "Boyang Li",
+    "Richang Hong"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W7166874537",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Nanyang Technological University",
+     "text: Nanyang Technological University , Singapore"
+    ],
+    "institutions": [
+     "Nanyang Technological University"
+    ],
+    "raw_affiliations": [
+     "Nanyang Technological University , Singapore"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7166874537",
+     "authorships": [
+      {
+       "raw_author_name": "Yuqi Chu",
+       "author": {
+        "id": "https://openalex.org/A5102751955"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I16365422",
+         "display_name": "Hefei University of Technology",
+         "lineage": [
+          "https://openalex.org/I16365422"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Hefei University of Technology , Hefei , China"
+       ]
+      },
+      {
+       "raw_author_name": "Lizi Liao",
+       "author": {
+        "id": "https://openalex.org/A5081165986"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I79891267",
+         "display_name": "Singapore Management University",
+         "lineage": [
+          "https://openalex.org/I79891267"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Singapore Management University , Singapore"
+       ]
+      },
+      {
+       "raw_author_name": "Jinggui Liang",
+       "author": {
+        "id": "https://openalex.org/A5009825270"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I79891267",
+         "display_name": "Singapore Management University",
+         "lineage": [
+          "https://openalex.org/I79891267"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Singapore Management University , Singapore"
+       ]
+      },
+      {
+       "raw_author_name": "Boyang Li",
+       "author": {
+        "id": "https://openalex.org/A5139849164"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I172675005",
+         "display_name": "Nanyang Technological University",
+         "lineage": [
+          "https://openalex.org/I172675005"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Nanyang Technological University , Singapore"
+       ]
+      },
+      {
+       "raw_author_name": "Richang Hong",
+       "author": {
+        "id": "https://openalex.org/A5051332325"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I16365422",
+         "display_name": "Hefei University of Technology",
+         "lineage": [
+          "https://openalex.org/I16365422"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Hefei University of Technology , Hefei , China"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://boyangli.org/publications.html",
+     "capture_url": null,
+     "sha256": "2555a7a7cfaf7bc8d401c4f53d8856f5d4f1e434d787b29ed24dd1f3536a9f61",
+     "quote": "Beyond Semantic Similarity: Appraisal-Guided Chain-of-Thought Reasoning and Retrieval for Multimodal Emotional Support Conversations",
+     "listed_title": "Beyond Semantic Similarity: Appraisal-Guided Chain-of-Thought Reasoning and Retrieval for Multimodal Emotional Support Conversations",
+     "listed_year": 2026,
+     "quote_scope": "Literal bibliographic title only; complete original owned page remains in the cited hashed capture. Full source/PI authorship facts independently reviewed."
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "65a0c6c53c6cce0e"
+  },
+  {
+   "pi": "Li Boyang",
+   "key": "labpage:0641141804e6b1055721357b41f5e7871a5c8c92",
+   "title": "Injecting Knowledge from Social Science Journals to Improve Indonesian Cultural Understanding by LLMs",
+   "year": 2026,
+   "doi": "10.48550/arxiv.2601.12921",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2601.12921",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Boyang Li Nanyang Technological University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2601/2601.12921v1.pdf",
+    "pdf_sha256": "023868860e06a2bc2fd5cd063cd2bc64c41c46a0a9c042c760e4dbd1141a3382",
+    "step": "arxiv",
+    "match": "oai_title_in_citation",
+    "appointment": {
+     "listing": 2026
+    },
+    "arxiv": "2601.12921",
+    "labpage": {
+     "url": "https://boyangli.org/publications.html",
+     "capture_url": null,
+     "sha256": "2555a7a7cfaf7bc8d401c4f53d8856f5d4f1e434d787b29ed24dd1f3536a9f61",
+     "quote": "Injecting Knowledge from Social Science Journals to Improve Indonesian Cultural Understanding by LLMs",
+     "listed_title": "Adimulya Kartiyasa, Bao G",
+     "listed_year": 2026,
+     "quote_scope": "Literal bibliographic title only; complete original owned page remains in the cited hashed capture. Full source/PI authorship facts independently reviewed."
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "6490fac1a69594ae",
+   "listed_title": "Adimulya Kartiyasa, Bao G",
+   "title_basis": "arxiv_oai"
+  },
+  {
+   "pi": "Chen Change Loy",
+   "key": "labpage:fa2eba143bcaef32016cdbf6d72eb188bd4d2619",
+   "title": "VLANeXt: Recipes for Building Strong VLA Models",
+   "year": 2026,
+   "doi": "10.48550/arxiv.2602.18532",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2602.18532",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Chen Change Loy 1 5 ",
+     "1 S-Lab, Nanyang Technological University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2602/2602.18532v1.pdf",
+    "pdf_sha256": "5313b60e59bbcb9baa9d087b3b82d5cb64f52a6e9d819c558fd325713b240d4b",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2026
+    },
+    "arxiv": "2602.18532",
+    "labpage": {
+     "url": "https://www.mmlab-ntu.com/person/ccloy/publication_topic.html",
+     "capture_url": null,
+     "sha256": "fdbdd534d7f05ca00df2a31da1da7e2829ff8f094cc05c802279d15af9a9f04c",
+     "quote": "VLANeXt: Recipes for Building Strong VLA Models",
+     "listed_title": "VLANeXt: Recipes for Building Strong VLA Models X",
+     "listed_year": 2026,
+     "quote_scope": "Literal bibliographic title only; complete original owned page remains in the cited hashed capture. Full source/PI authorship facts independently reviewed."
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "6e07be9a8a510046",
+   "listed_title": "VLANeXt: Recipes for Building Strong VLA Models X",
+   "title_basis": "arxiv_oai",
+   "oai_title_as_observed": "VLANeXt Family: A Systematic Study of VLA Models from Core Recipes to Emerging Paradigms",
+   "title_version_correction": {
+    "why": "Bind display title to the actual independently read version1PDFsource and PI-owned citation; later OAI title retained as version metadata.",
+    "arxiv": "2602.18532v1",
+    "pdf_sha256": "5313b60e59bbcb9baa9d087b3b82d5cb64f52a6e9d819c558fd325713b240d4b",
+    "quote": "VLANeXt: Recipes for Building Strong VLA Models"
+   }
+  },
+  {
+   "pi": "Chen Change Loy",
+   "key": "labpage:b4f337e1beb68da95a177b4d15a3010a13069b6d",
+   "title": "Investigating Tradeoffs in Real-World Video Super-Resolution",
+   "year": 2021,
+   "doi": "10.48550/arxiv.2111.12704",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Chan, Kelvin C. K.",
+    "Zhou, Shangchen",
+    "Xu, Xiangyu",
+    "Loy, Chen Change"
+   ],
+   "arxiv": "2111.12704",
+   "evidence": {
+    "step": "sweep",
+    "match": "title_in_citation",
+    "oa": "https://openalex.org/W4226129823",
+    "appointment": {
+     "listing": 2021
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Nanyang Technological University",
+     "text: S-Lab , Nanyang Technological University"
+    ],
+    "institutions": [
+     "Nanyang Technological University"
+    ],
+    "raw_affiliations": [
+     "S-Lab , Nanyang Technological University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4226129823",
+     "authorships": [
+      {
+       "raw_author_name": "Chan, Kelvin C. K.",
+       "author": {
+        "id": "https://openalex.org/A5007227485"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I172675005",
+         "display_name": "Nanyang Technological University",
+         "lineage": [
+          "https://openalex.org/I172675005"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "S-Lab , Nanyang Technological University"
+       ]
+      },
+      {
+       "raw_author_name": "Zhou, Shangchen",
+       "author": {
+        "id": "https://openalex.org/A5023785888"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I172675005",
+         "display_name": "Nanyang Technological University",
+         "lineage": [
+          "https://openalex.org/I172675005"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "S-Lab , Nanyang Technological University"
+       ]
+      },
+      {
+       "raw_author_name": "Xu, Xiangyu",
+       "author": {
+        "id": "https://openalex.org/A5100729469"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I172675005",
+         "display_name": "Nanyang Technological University",
+         "lineage": [
+          "https://openalex.org/I172675005"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "S-Lab , Nanyang Technological University"
+       ]
+      },
+      {
+       "raw_author_name": "Loy, Chen Change",
+       "author": {
+        "id": "https://openalex.org/A5005626854"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I172675005",
+         "display_name": "Nanyang Technological University",
+         "lineage": [
+          "https://openalex.org/I172675005"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "S-Lab , Nanyang Technological University"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://www.mmlab-ntu.com/person/ccloy/publication_topic.html",
+     "capture_url": null,
+     "sha256": "fdbdd534d7f05ca00df2a31da1da7e2829ff8f094cc05c802279d15af9a9f04c",
+     "quote": "Investigating Trade-offs in Real-World Video Super-Resolution",
+     "listed_title": "Investigating Trade-offs in Real-World Video Super-Resolution K",
+     "listed_year": 2022,
+     "quote_scope": "Literal bibliographic title only; complete original owned page remains in the cited hashed capture. Full source/PI authorship facts independently reviewed."
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "1382b17c58385db0"
+  },
+  {
+   "pi": "Chen Change Loy",
+   "key": "labpage:cdf320aaa19e71d891cf8bad488f1cda7c30d8f0",
+   "title": "Playing for 3D Human Recovery",
+   "year": 2021,
+   "doi": "10.48550/arxiv.2110.07588",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2110.07588",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Chen Change Loy1 , ",
+     "1 S-Lab, Nanyang Technological University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2110/2110.07588v1.pdf",
+    "pdf_sha256": "16caf7d06d4fc60c4794e1b779158691febaac83ccbcf4210789f7392d9ff0fa",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2021
+    },
+    "arxiv": "2110.07588",
+    "labpage": {
+     "url": "https://www.mmlab-ntu.com/person/ccloy/publication_topic.html",
+     "capture_url": null,
+     "sha256": "fdbdd534d7f05ca00df2a31da1da7e2829ff8f094cc05c802279d15af9a9f04c",
+     "quote": "Playing for 3D Human Recovery",
+     "listed_title": "Playing for 3D Human Recovery Z",
+     "listed_year": 2024,
+     "quote_scope": "Literal bibliographic title only; complete original owned page remains in the cited hashed capture. Full source/PI authorship facts independently reviewed."
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "57a37c417cf64cb5",
+   "listed_title": "Playing for 3D Human Recovery Z",
+   "title_basis": "arxiv_oai"
+  },
+  {
+   "pi": "Chen Change Loy",
+   "key": "labpage:bb91d91c7b81e14548bfab8aa96b6dfcde543bfa",
+   "title": "3D Human Texture Estimation from a Single Image with Transformers",
+   "year": 2021,
+   "doi": null,
+   "venue": "Loy in Proceedings of IEEE/CVF International Conference on Computer Vision, 2021 (ICCV, Oral) [ PDF ] [ arXiv ] [ Project Page ]",
+   "byline": [],
+   "arxiv": null,
+   "evidence": {
+    "basis": "page1_open",
+    "how": "near",
+    "quotes": [
+     "Chen Change Loy S-Lab, Nanyang Technological University"
+    ],
+    "url": "https://openaccess.thecvf.com/content/ICCV2021/papers/Xu_3D_Human_Texture_Estimation_From_a_Single_Image_With_Transformers_ICCV_2021_paper.pdf",
+    "pdf_sha256": "07bac94ca8639c2c367ca15db62be62e28ee86b412f1cd8b58766f7db132034f",
+    "step": "proceedings",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2021
+    },
+    "labpage": {
+     "url": "https://www.mmlab-ntu.com/person/ccloy/publication_topic.html",
+     "capture_url": null,
+     "sha256": "fdbdd534d7f05ca00df2a31da1da7e2829ff8f094cc05c802279d15af9a9f04c",
+     "quote": "3D Human Texture Estimation from a Single Image with Transformers",
+     "listed_title": "3D Human Texture Estimation from a Single Image with Transformers X",
+     "listed_year": 2021,
+     "quote_scope": "Literal bibliographic title only; complete original owned page remains in the cited hashed capture. Full source/PI authorship facts independently reviewed."
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "de5c1179f054b878",
+   "title_as_parsed": "3D Human Texture Estimation from a Single Image with Transformers X",
+   "title_correction": {
+    "why": "Original publisher PDF page1 gives the exact title without the trailing author initial X; original parsed title and stable recovery key retained.",
+    "url": "https://openaccess.thecvf.com/content/ICCV2021/papers/Xu_3D_Human_Texture_Estimation_From_a_Single_Image_With_Transformers_ICCV_2021_paper.pdf",
+    "pdf_sha256": "07bac94ca8639c2c367ca15db62be62e28ee86b412f1cd8b58766f7db132034f",
+    "quote": "3D Human Texture Estimation from a Single Image with Transformers"
+   }
+  },
+  {
+   "pi": "Joty Shafiq Rayhan",
+   "key": "labpage:63a725fe401b55b4a6d4d8052be170bebbc47281",
+   "title": "DashboardQA: Benchmarking Multimodal Agents for Question Answering on Interactive Dashboards",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2508.17398",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2508.17398",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Shafiq Joty♢△ ♣ York University, Canada, ⋆ RBC, Canada, § Qatar Computing Research Institute (QCRI) ♢ Nanyang Technological University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2508/2508.17398v1.pdf",
+    "pdf_sha256": "4e2c69062b52eac1816670fb9ccac4484430461a557317f327fa522ba57fba8a",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "ntu_source_period_3"
+    },
+    "arxiv": "2508.17398",
+    "labpage": {
+     "url": "https://raihanjoty.github.io/papers.html",
+     "capture_url": null,
+     "sha256": "4d173d847e68fb08e2fbb66d7c813fb6c75da9d20fe5532153d2d198168a30f6",
+     "quote": "DashboardQA: Benchmarking Multimodal Agents for Question Answering on Interactive Dashboards",
+     "listed_title": "DashboardQA: Benchmarking Multimodal Agents for Question Answering on Interactive Dashboards",
+     "listed_year": 2026,
+     "quote_scope": "Literal bibliographic title only; complete original owned page remains in the cited hashed capture. Full source/PI authorship facts independently reviewed."
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "f4c9ccc4d7a72f2a",
+   "listed_title": "DashboardQA: Benchmarking Multimodal Agents for Question Answering on Interactive Dashboards",
+   "title_basis": "arxiv_oai"
+  },
+  {
+   "pi": "Joty Shafiq Rayhan",
+   "key": "labpage:d6e4bf6093c1e87fbfff1827e89a6adaa78b969e",
+   "title": "Text2Vis: A Challenging and Diverse Benchmark for Generating Multimodal Visualizations from Text",
+   "year": 2025,
+   "doi": "10.18653/v1/2025.emnlp-main.1622",
+   "venue": "Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+   "byline": [
+    "Mizanur Rahman",
+    "Md Tahmid Rahman Laskar",
+    "Shafiq Joty",
+    "Enamul Hoque"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "basis": "page1_open",
+    "how": "marker",
+    "quotes": [
+     "Shafiq Joty¶,#",
+     "¶ Salesforce AI Research, # Nanyang Technological University"
+    ],
+    "url": "https://aclanthology.org/2025.emnlp-main.1622.pdf",
+    "pdf_sha256": "3494a101a1f551a525382698ebdf8bc4ed8aa4f42c5596e2ed0998e7ca617afc",
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4416035396",
+    "appointment": {
+     "periodId": "ntu_source_period_3"
+    },
+    "labpage": {
+     "url": "https://raihanjoty.github.io/papers.html",
+     "capture_url": null,
+     "sha256": "4d173d847e68fb08e2fbb66d7c813fb6c75da9d20fe5532153d2d198168a30f6",
+     "quote": "Text2Vis: A Challenging and Diverse Benchmark for Generating Multimodal Visualizations from Text",
+     "listed_title": "Text2Vis: A Challenging and Diverse Benchmark for Generating Multimodal Visualizations from Text",
+     "listed_year": 2025,
+     "quote_scope": "Literal bibliographic title only; complete original owned page remains in the cited hashed capture. Full source/PI authorship facts independently reviewed."
+    },
+    "review_note": "Complete original extracted author line includes both ¶ and #; NTU is the # affiliation. Short automatic evidence quote had dropped#; full stored page1 read verifies it."
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "a91fa2fd4a3c8990"
+  },
+  {
+   "pi": "Joty Shafiq Rayhan",
+   "key": "labpage:c2d487462e80df933d3880bd5e33bd52104b1d1d",
+   "title": "A Survey of Frontiers in LLM Reasoning: Inference Scaling, Learning to Reason, and Agentic Systems",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2504.09037",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Ke, Zixuan",
+    "Jiao, Fangkai",
+    "Ming, Yifei",
+    "Nguyen, Xuan-Phi",
+    "Xu, Austin",
+    "Long, Do Xuan",
+    "Li, Minzhi",
+    "Qin, Chengwei",
+    "Wang, Peifeng",
+    "Savarese, Silvio",
+    "Xiong, Caiming",
+    "Joty, Shafiq"
+   ],
+   "arxiv": "2504.09037",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Shafiq Joty⋆,⋄ ⋆ ⋄ Salesforce AI Research Nanyang Technological University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2504/2504.09037v1.pdf",
+    "pdf_sha256": "89ddbabf1800e75b6e29381fa10032172d54a26f466fe96098b296edbbf81d90",
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4415154470",
+    "appointment": {
+     "periodId": "ntu_source_period_3"
+    },
+    "arxiv": "2504.09037",
+    "labpage": {
+     "url": "https://raihanjoty.github.io/papers.html",
+     "capture_url": null,
+     "sha256": "4d173d847e68fb08e2fbb66d7c813fb6c75da9d20fe5532153d2d198168a30f6",
+     "quote": "A Survey of Frontiers in LLM Reasoning: Inference Scaling, Learning to Reason, and Agentic Systems",
+     "listed_title": "A Survey of Frontiers in LLM Reasoning: Inference Scaling, Learning to Reason, and Agentic Systems",
+     "listed_year": 2025,
+     "quote_scope": "Literal bibliographic title only; complete original owned page remains in the cited hashed capture. Full source/PI authorship facts independently reviewed."
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "1d7e076c5a2e6054"
+  },
+  {
+   "pi": "Joty Shafiq Rayhan",
+   "key": "labpage:f7f52131cd8bde9fd41f8776edcef9f78719daae",
+   "title": "On Context Utilization in Summarization with Large Language Models",
+   "year": 2024,
+   "doi": "10.18653/v1/2024.acl-long.153",
+   "venue": "Annual Meeting of the Association for Computational Linguistics (ACL)",
+   "byline": [
+    "Mathieu Ravaut",
+    "Aixin Sun",
+    "Nancy Chen",
+    "Shafiq Joty"
+   ],
+   "arxiv": "2310.10570",
+   "evidence": {
+    "basis": "page1_open",
+    "how": "near",
+    "quotes": [
+     "Shafiq Joty1,3 1 Nanyang Technological University"
+    ],
+    "url": "https://aclanthology.org/2024.acl-long.153.pdf",
+    "pdf_sha256": "e1f139e13e34def68c88fc4de2ce4bb38abc4f877033a1336fff423e38c9229e",
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4402671958",
+    "appointment": {
+     "periodId": "ntu_source_period_3"
+    },
+    "labpage": {
+     "url": "https://raihanjoty.github.io/papers.html",
+     "capture_url": null,
+     "sha256": "4d173d847e68fb08e2fbb66d7c813fb6c75da9d20fe5532153d2d198168a30f6",
+     "quote": "On Context Utilization in Summarization with Large Language Models",
+     "listed_title": "On Context Utilization in Summarization with Large Language Models",
+     "listed_year": 2024,
+     "quote_scope": "Literal bibliographic title only; complete original owned page remains in the cited hashed capture. Full source/PI authorship facts independently reviewed."
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "b0a584e0c92ff8b5"
+  },
+  {
+   "pi": "Alvin Chan Guo Wei",
+   "key": "labpage:46fdd885795da372320d31418b4c0997f0b788f8",
+   "title": "Towards Understanding Modality Interaction in Multimodal Language Models via Partial Information Decomposition",
+   "year": 2026,
+   "doi": "10.48550/arxiv.2606.00959",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2606.00959",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Alvin Chan 2 3 4 ",
+     "2 College of Computing and Data Science, Nanyang Technological University, Singapore"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2606/2606.00959v1.pdf",
+    "pdf_sha256": "5c01c39454489db4920354289967482bb345339f635aae8a1634763e5edfdaa3",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "listing": 2026
+    },
+    "arxiv": "2606.00959",
+    "labpage": {
+     "url": "https://alvinchanlabntu.github.io/publications/",
+     "capture_url": null,
+     "sha256": "0b44593694ce3b649e23cb3ee8f52a8ccf6627a295651ac4c391c2b0212f8440",
+     "quote": "Towards Understanding Modality Interaction in Multimodal Language Models via Partial Information Decomposition",
+     "listed_title": "Towards Understanding Modality Interaction in Multimodal Language Models via Partial Information Decomposition",
+     "listed_year": 2026,
+     "quote_scope": "Literal bibliographic title only; complete original owned page remains in the cited hashed capture. Full source/PI authorship facts independently reviewed."
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "8e5bb294605af0f9",
+   "listed_title": "Towards Understanding Modality Interaction in Multimodal Language Models via Partial Information Decomposition",
+   "title_basis": "arxiv_oai"
+  },
+  {
+   "pi": "Alvin Chan Guo Wei",
+   "key": "labpage:1de3d092a8ddffc6303af7d9fab340df5d164afe",
+   "title": "Automated Creativity Evaluation of Language Models Across Open-Ended Tasks",
+   "year": 2026,
+   "doi": "10.48550/arxiv.2606.11762",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2606.11762",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Alvin Chan2,3,4,† 1 2 * ",
+     "3 Lee Kong Chian School of Medicine, Nanyang Technological University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2606/2606.11762v1.pdf",
+    "pdf_sha256": "bfc2fe531eb0872e2239216a90f2e496c7209242d7115fa99c89da9b6e003870",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "listing": 2026
+    },
+    "arxiv": "2606.11762",
+    "labpage": {
+     "url": "https://alvinchanlabntu.github.io/publications/",
+     "capture_url": null,
+     "sha256": "0b44593694ce3b649e23cb3ee8f52a8ccf6627a295651ac4c391c2b0212f8440",
+     "quote": "Automated Creativity Evaluation of Language Models Across Open-Ended Tasks",
+     "listed_title": "Automated Creativity Evaluation of Language Models Across Open-Ended Tasks",
+     "listed_year": 2026,
+     "quote_scope": "Literal bibliographic title only; complete original owned page remains in the cited hashed capture. Full source/PI authorship facts independently reviewed."
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "57844b70b664f973",
+   "listed_title": "Automated Creativity Evaluation of Language Models Across Open-Ended Tasks",
+   "title_basis": "arxiv_oai"
+  },
+  {
+   "pi": "Alvin Chan Guo Wei",
+   "key": "labpage:d4c2c67caf60cfa0d7b2c203f898fdf28b3d616f",
+   "title": "To Align or Not to Align: Strategic Multimodal Representation Alignment for Optimal Performance",
+   "year": 2026,
+   "doi": "10.1609/aaai.v40i25.39248",
+   "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+   "byline": [
+    "Wanlong Fang",
+    "Tianle Zhang",
+    "Alvin Chan"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W7138361932",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Nanyang Technological University",
+     "text: College of Computing and Data Science, Nanyang Technological University\nLee Kong Chian School of Medicine, Nanyang Technological University"
+    ],
+    "institutions": [
+     "Nanyang Technological University"
+    ],
+    "raw_affiliations": [
+     "College of Computing and Data Science, Nanyang Technological University\nLee Kong Chian School of Medicine, Nanyang Technological University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7138361932",
+     "authorships": [
+      {
+       "raw_author_name": "Wanlong Fang",
+       "author": {
+        "id": "https://openalex.org/A5113067511"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I172675005",
+         "display_name": "Nanyang Technological University",
+         "lineage": [
+          "https://openalex.org/I172675005"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Artificial Intelligence-X (AI-X) @ NTU, Interdisciplinary Graduate Programme, Nanyang Technological University\nCollege of Computing and Data Science, Nanyang Technological University"
+       ]
+      },
+      {
+       "raw_author_name": "Tianle Zhang",
+       "author": {
+        "id": "https://openalex.org/A5122531381"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I172675005",
+         "display_name": "Nanyang Technological University",
+         "lineage": [
+          "https://openalex.org/I172675005"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "College of Computing and Data Science, Nanyang Technological University"
+       ]
+      },
+      {
+       "raw_author_name": "Alvin Chan",
+       "author": {
+        "id": "https://openalex.org/A5137661838"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I172675005",
+         "display_name": "Nanyang Technological University",
+         "lineage": [
+          "https://openalex.org/I172675005"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "College of Computing and Data Science, Nanyang Technological University\nLee Kong Chian School of Medicine, Nanyang Technological University"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://alvinchanlabntu.github.io/publications/",
+     "capture_url": null,
+     "sha256": "0b44593694ce3b649e23cb3ee8f52a8ccf6627a295651ac4c391c2b0212f8440",
+     "quote": "To Align or Not to Align: Strategic Multimodal Representation Alignment for Optimal Performance",
+     "listed_title": "To Align or Not to Align: Strategic Multimodal Representation Alignment for Optimal Performance",
+     "listed_year": 2026,
+     "quote_scope": "Literal bibliographic title only; complete original owned page remains in the cited hashed capture. Full source/PI authorship facts independently reviewed."
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "0c19e55b61d50dcd"
+  }
+ ],
+ "union_note": "union (2026-11-11, rebuild worker): 67 rows of the reviewed round-8 tool output (generated_at 2026-11-11T23:12:50+00:00) + 33 earlier accepted rows of PIs the round-8 output does not cover (generated_at 2026-11-11T19:54:30+00:00); papers kept from the round-8 file",
+ "paper_source_holds": [
+  {
+   "pi": "Joty Shafiq Rayhan",
+   "key": "labpage:0525fee81e10b61298f3f141a351354d9d7dc2c1",
+   "title": "Discourse Processing and Its Applications in Text Mining",
+   "doi": "10.1109/icdm.2018.00014",
+   "reason": "PI-owned original publication page explicitly identifies this as Tutorial Abstracts; a tutorial presentation abstract is not promoted as a lab research paper. DOI/bibliography indexing does not override the primary type.",
+   "source": {
+    "url": "https://raihanjoty.github.io/papers.html",
+    "sha256": "4d173d847e68fb08e2fbb66d7c813fb6c75da9d20fe5532153d2d198168a30f6",
+    "quote": "In IEEE International Conference on Data Mining: Tutorial Abstracts ( ICDM'18 ) , pages 1-2, 2018."
+   },
+   "independent_reviewer": "codex-sjtu-ntu-1115",
+   "reviewed_on": "2026-11-15"
+  }
+ ]
 }

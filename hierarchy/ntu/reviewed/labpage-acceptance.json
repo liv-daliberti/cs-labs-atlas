@@ -1,10 +1,10 @@
 {
  "school": "ntu",
- "decided_at": "2026-11-11",
+ "decided_at": "2026-11-15",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/ntu/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-11T23:12:50+00:00",
- "additions_sha256": "0f276585f62faae9cf7303fb7b022f2d7089663bfa8d0792c943f87af21f7a24",
+ "additions_generated_at": "2026-11-16T03:00:32.771673+00:00",
+ "additions_sha256": "78fbb6244ffc25e5722bef78932b3d51ea59aad689e4aebe3ad1ad0d7fe90b13",
  "students": {
   "accepted": true,
   "round": "wire-students-1115-ntu-v2",
@@ -13,10 +13,28 @@
   "note": "owner ruled 2026-11-11: up to 10 rounds. Round 8 (fresh reviewer, 30 sampled of 67 rows of the unfiltered tool output, joint-rules 9b4cf152 era): PASSED (bar membership <=1.5, role/year <=3 for 30 rows; pure random draw from the unfiltered tool output; fresh reviewer). Owner ruled 2026-11-11: up to 10 rounds. Not yet recorded in labpage-accepta. The wired file is the union of those 67 rows and 33 earlier accepted rows (PIs not covered by round 8); the union file's sha is the one bound here. | wire-asia-1113 (2026-11-13): +37 rows: hand-registered newpis-ntu-1112 rows of Cambria, Lam, Ran Yan, Cheong, Dutta (63 minus 28 held: PI not named 21, host closed 6, Xulang Zhang reviewer_override; fresh reviewer ac461b6f 64 rows 0 membership/role errors, 1 year error dropped) and Wei Lu's 2 PhD current members (flag current_undated_live, years [2026, None]); Wei Lu's 4 postdoc rows and Lei Wei 11 + 6 rows (no reviewed period) held. Periods Wei Lu 2025-09, Ran Yan 2023-03, Cambria 2021, Lam 2021 in the same commit. The sha bound here is the union file (137 rows). | wire-students-1115 (2026-11-13): +1 tool rows (students-plus10 package, fresh reviewer: admit PASS), no periods wired. The sha bound here is the union file (138 rows). | wire-students-1115 (2026-11-13): +5 Long Cheng tool rows (ntu-v2) with the kind-3 period 2021; Liu Weichen 5 and Long Cheng's research engineer and visiting scholar held. The sha bound here is the union file (143 rows).",
   "counts": {
    "proposed": 143
+  },
+  "restamped_from": {
+   "sha256": "0f276585f62faae9cf7303fb7b022f2d7089663bfa8d0792c943f87af21f7a24",
+   "generated_at": "2026-11-11T23:12:50+00:00",
+   "removed": 0,
+   "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
   }
  },
  "papers": {
-  "accepted": false,
-  "note": "stage 7 not attempted"
+  "accepted": true,
+  "round": "paper-source-1115-ntu-r1",
+  "seed": 2026111541,
+  "sample_size": 13,
+  "counts": {
+   "proposed": 13
+  },
+  "note": "Review-page tool requested20and honestly drew all13available qualifyingpaper additions; actualsample13,0errors,scaledbar0.65. Fresh independent source review codex-sjtu-ntu-1115 read all13primarysource evidence; original14thtutorial held, two primarytitle/version corrections kept. Only bibliographic-title excerpts retained in publiclabpagequote; complete originalcaptures and originalfrozen13packet remain sourcebound. Normalnativeidentity,school,appointment,type andeditiondedup remain mandatory.",
+  "independent_review": {
+   "reviewer": "codex-sjtu-ntu-1115",
+   "date": "2026-11-15",
+   "receipt_sha256": "1a83df0e1e4f94272ce39d8c70d8840146096c19a789d981c22eeda2ddd3e938",
+   "packet_sha256": "6f5dbf5655e00a113fbb185086fc97569d3ff292a58e20cd9b91c5a34944e585"
+  }
  }
 }
