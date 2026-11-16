@@ -343,10 +343,19 @@ def md(out):
 
 def main(argv):
     schools = argv or SCHOOLS
+    unknown = [s for s in schools if s not in SCHOOLS and not CO.onboarding(s)]
+    if unknown:
+        raise SystemExit('unknown or unsupported school: ' + ', '.join(unknown))
     prev = {x['school']: x for x in (load(P.hfile(H, 'chain-audit.json'), {}) or {}).get('schools', [])}
     for s in schools:
         prev[s] = audit(s)
-    out = {'at': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'schools': [prev[s] for s in SCHOOLS if s in prev]}
+    output_schools = list(SCHOOLS)
+    if argv:
+        # Explicit onboarding audits belong in the export too. Preserve earlier
+        # valid onboarding rows when refreshing one school; the no-arg release
+        # audit retains its existing released-schools-only behavior.
+        output_schools += [s for s in prev if s not in output_schools and CO.onboarding(s)]
+    out = {'at': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'schools': [prev[s] for s in output_schools if s in prev]}
     P.hfile_w(H, 'chain-audit.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
     P.hfile_w(H, 'CHAIN-AUDIT.md').write_text(md(out))
     for s in out['schools']:
