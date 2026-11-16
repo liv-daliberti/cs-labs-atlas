@@ -55,6 +55,11 @@ hand        reviewed/cs-related-hand.json: faculty evidence from a person's own 
             [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> "<Name>" <unit> <url>` fetches the page (the live page where
             robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as
             faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. The share test still decides computing.
+research/teaching PIs: a source-checked research/teaching appointment can use an explicit
+            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,
+            with unit, role, observed and appointment_rank (research|teaching). Its group/advising
+            quote is checked against stored source bytes. Appointment evidence, computing scope,
+            and candidate identity remain separate requirements; the original rank is retained.
 usage: cs_related_school.py candidates|units|units-check|review|profile <key> [<Name> <unit> <url>]
 units-check exits 0 when units-done.json covers every unit URL of the charter (a unit added since the last `units` run, or no run, exits 1)
 """
@@ -461,9 +466,9 @@ def census_alias(census, names):
     return None
 
 
-def hand_evidence(key, c=None):
+def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
     """{normalised name: [evidence]} from reviewed/cs-related-hand.json, each entry verified: its sha256 is a stored capture (or live page) whose text holds the quote."""
-    ents = read(P.data('cs-related-hand.json', key), [])
+    ents = read(P.data('cs-related-hand.json', key), []) if entries is None else entries
     if not ents:
         return {}
     c = c or W.con(key)
@@ -471,7 +476,7 @@ def hand_evidence(key, c=None):
     texts_by_sha = {}  # a catalog PDF can support many reviewed names; extract it once per raw hash
     for e in ents:
         if not all(e.get(k) for k in ('name', 'unit', 'url', 'sha256', 'quote')):
-            raise SystemExit(f"cs-related-hand.json: entry without name/unit/url/sha256/quote: {e.get('name')}")
+            raise SystemExit(f"{label}: entry without name/unit/url/sha256/quote: {e.get('name')}")
         if e['sha256'] not in texts_by_sha:
             texts = [r[0] for r in c.execute('select text from captures where sha256=?', (e['sha256'],))]
             for url, raw in c.execute('select url, raw_zlib from live where sha256=?', (e['sha256'],)):
@@ -498,9 +503,23 @@ def hand_evidence(key, c=None):
             texts_by_sha[e['sha256']] = texts
         texts = texts_by_sha[e['sha256']]
         if not any(' '.join(t.split()).find(' '.join(e['quote'].split())) >= 0 for t in texts if t):
-            raise SystemExit(f"cs-related-hand.json: the quote of {e['name']} is not in the stored page {e['sha256'][:12]} (re-run `profile`)")
+            raise SystemExit(f"{label}: the quote of {e['name']} is not in the stored page {e['sha256'][:12]} (re-run `profile`)")
         out.setdefault(' '.join(toks(e['name'])), []).append(dict(unit=e['unit'], url=e['url'], sha256=e['sha256'], observed=e.get('observed') or '', quote=e['quote'],
                                                                    ladder=bool(e.get('ladder', True)), hand=True))
+    return out
+
+
+def reviewed_pi_basis(key):
+    """Source-checked own-group/advising reviews; never substitute for appointment evidence."""
+    entries = [e for e in read(P.data('pi-basis-evidence.json', key), [])
+               if e.get('kind') in ('own_group', 'advises_phd') and e.get('stage2_review') is True]
+    for e in entries:
+        if not e.get('pi') or not e.get('unit') or not e.get('role') or not e.get('observed') or e.get('appointment_rank') not in ('research', 'teaching'):
+            raise SystemExit('pi-basis-evidence.json: a stage-2 own-group/advising review needs pi, unit, role, observed and research/teaching appointment_rank')
+    hand_evidence(key, entries=[dict(e, name=e['pi'], ladder=False) for e in entries], label='pi-basis-evidence.json')
+    out = collections.defaultdict(list)
+    for e in entries:
+        out[' '.join(toks(e['pi']))].append(e)
     return out
 
 
@@ -562,6 +581,7 @@ def review(key):
     TEACHING = S.field(S.get(key), 'census.rank_words.teaching') or ''
     searched = sorted({p[0] for p in pages})
     hand = hand_evidence(key)
+    group_reviews = reviewed_pi_basis(key)
     dec, adds, n = [], [], collections.Counter()
     seen = set()
     by_display_name = collections.defaultdict(list)
@@ -618,8 +638,15 @@ def review(key):
         else:
             fac = faculty_evidence(pages, names, TEACHING) + hand.get(' '.join(toks(c['name'])), [])
         lad = [e for e in fac if e['ladder']]
+        group_basis = next((e for name in names for e in group_reviews.get(' '.join(toks(name)), [])
+                            if any(f['unit'] == e['unit'] and not f['ladder'] for f in fac)), None)
+        pi_fac = lad or ([f for f in fac if f['unit'] == group_basis['unit'] and not f['ladder']] if group_basis else [])
+        using_group = not lad and bool(pi_fac)
+        basis_label = 'reviewed own-group/advising evidence' if using_group else 'professor rank'
+        if using_group:
+            comp['pi_basis_review'] = {k: group_basis[k] for k in ('kind', 'url', 'sha256', 'quote', 'unit', 'appointment_rank')}
         sh = None
-        if SH and lad:
+        if SH and pi_fac:
             x = census.get(c['name']) or {}
             orcids = sorted(set(x.get('orcid') or []) | {o for p in recs for o in p.get('orcids') or []})
             if not orcids and (comp.get('dblp') or []):
@@ -629,30 +656,32 @@ def review(key):
             comp['openalex_share'] = sh
         settles = sh and (undecided or c['source'] == 'openalex_rule' or any(N.match(n) for n in SETTLE)
                           or (sh['result'] == 'too_few_school_works') or win < MIN_DBLP)
-        if sh and lad and not settles:  # a DBLP-decided acceptance stands; a failing share is recorded for the owner
+        if sh and pi_fac and not settles:  # a DBLP-decided acceptance stands; a failing share is recorded for the owner
             if sh['result'] == 'not_computing':
                 comp['share_flag'] = 'the computing-share test fails; the DBLP decision stands (owner to decide)'
             sh = None
-        if sh and lad:
+        if sh and pi_fac:
             why_s = f"{sh['dblp_indexed']} of {sh['school_works']} school works DBLP-indexed (share {sh['share']:.2f}; {len(sh['ids'])} OpenAlex author ids)"
             if sh['result'] == 'computing':
-                d = 'accepted'; why = f'faculty ({lad[0]["unit"]} listing, professor rank); computing-share test passes: ' + why_s
+                d = 'accepted'; why = f'faculty ({pi_fac[0]["unit"]} listing, {basis_label}); computing-share test passes: ' + why_s
             elif sh['result'] == 'not_computing':
-                d = 'faculty_not_computing'; why = f'faculty ({lad[0]["unit"]}); computing-share test fails: ' + why_s
+                d = 'faculty_not_computing'; why = f'faculty ({pi_fac[0]["unit"]}); computing-share test fails: ' + why_s
             elif undecided:
-                d = 'too_few_school_works'; why = f'faculty ({lad[0]["unit"]}); fewer than {SHARE_MIN_N} school works and no pass, no decided DBLP record: ' + why_s
+                d = 'too_few_school_works'; why = f'faculty ({pi_fac[0]["unit"]}); fewer than {SHARE_MIN_N} school works and no pass, no decided DBLP record: ' + why_s
             elif win >= MIN_DBLP:  # too few school works to measure: the decided DBLP record stands
-                d = 'accepted'; why = f'faculty ({lad[0]["unit"]} listing, professor rank) with {win} DBLP records 2016-2026; share test cannot measure (' + why_s + ')'
+                d = 'accepted'; why = f'faculty ({pi_fac[0]["unit"]} listing, {basis_label}) with {win} DBLP records 2016-2026; share test cannot measure (' + why_s + ')'
             else:
-                d = 'faculty_not_computing'; why = f'faculty ({lad[0]["unit"]}), {win} DBLP records 2016-2026 (< {MIN_DBLP}); share test cannot measure (' + why_s + ')'
+                d = 'faculty_not_computing'; why = f'faculty ({pi_fac[0]["unit"]}), {win} DBLP records 2016-2026 (< {MIN_DBLP}); share test cannot measure (' + why_s + ')'
         elif undecided:
             d, why = undecided
+        elif using_group and c['source'] == 'openalex_rule':
+            d = 'pending_openalex'; why = 'source-verified research/teaching PI basis; computing-share test pending school works'
         elif c['source'] == 'openalex_rule' and fac:
             d = 'research_or_other_rank'; why = 'listed by a searched unit only with a research, adjunct, clinical or emeritus title'
-        elif lad and win >= MIN_DBLP:
-            d = 'accepted'; why = f'faculty ({lad[0]["unit"]} listing, professor rank) with {win} DBLP records 2016-2026 naming the school'
-        elif lad:
-            d = 'faculty_not_computing'; why = f'faculty ({lad[0]["unit"]}), {win} DBLP records 2016-2026 (< {MIN_DBLP})'
+        elif pi_fac and win >= MIN_DBLP:
+            d = 'accepted'; why = f'faculty ({pi_fac[0]["unit"]} listing, {basis_label}) with {win} DBLP records 2016-2026 naming the school'
+        elif pi_fac:
+            d = 'faculty_not_computing'; why = f'faculty ({pi_fac[0]["unit"]}), {win} DBLP records 2016-2026 (< {MIN_DBLP})'
         elif fac:
             d = 'research_or_other_rank'; why = 'listed by a searched unit only with a research, adjunct, clinical or emeritus title'
         else:
@@ -669,13 +698,14 @@ def review(key):
             row['provisional'] = 'computing share pending the OpenAlex sweep (DBLP-indexed share of school works >= 20%)'
         dec.append(row)
         if d == 'accepted' and c['source'] != 'affiliated_department':
-            first, last = lad[0], sorted(lad, key=lambda e: e['observed'])[-1]
+            first, last = pi_fac[0], sorted(pi_fac, key=lambda e: e['observed'])[-1]
+            basis = group_basis if using_group else first
             adds.append(dict(name=c['name'], aliases=row['aliases'], collection_person_id=f'{key}_fac_' + re.sub(r'[^a-z0-9]+', '-', ' '.join(toks(c['name']))).strip('-'),
-                             dblp=comp['dblp'][:1], rank='ladder', title_as_listed=last['quote'], departments=units_by_recency(lad, CENTERS),
+                             dblp=comp['dblp'][:1], rank=group_basis['appointment_rank'] if using_group else 'ladder', title_as_listed=last['quote'], departments=units_by_recency(pi_fac, CENTERS),
                              years_listed=row['years_listed'], sources=[dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], kind=f"unit_listing:{e['unit']}",
-                                                                          observed=e['observed']) for e in sorted(lad, key=lambda e: e['observed'])],
-                             is_pi=True, pi_basis=dict(kind='ladder_faculty', url=first['url'], sha256=first['sha256'], quote=first['quote'], observed=first['observed'],
-                                                       role='professor title on the unit faculty listing', cs_related=dict(dblp=comp['dblp'], dblp_window=win, openalex=(comp.get('openalex_share') or {}).get('ids'),
+                                                                          observed=e['observed']) for e in sorted(pi_fac, key=lambda e: e['observed'])],
+                             is_pi=True, pi_basis=dict(kind=group_basis['kind'] if using_group else 'ladder_faculty', url=basis['url'], sha256=basis['sha256'], quote=basis['quote'], observed=basis['observed'],
+                                                       role=group_basis['role'] if using_group else 'professor title on the unit faculty listing', cs_related=dict(dblp=comp['dblp'], dblp_window=win, openalex=(comp.get('openalex_share') or {}).get('ids'),
                                                                                  share=(comp.get('openalex_share') or {}).get('share'))),
                              lab_units=[], added=f'cs_related_review_{TODAY.replace("-", "")}'))
     doc = dict(school=key, reviewed=TODAY, rule=__doc__.split('\nusage')[0], min_dblp=MIN_DBLP, share_test=dict(min_dblp_indexed=SHARE_MIN_CS, min_share=SHARE_MIN,
