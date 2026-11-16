@@ -103,16 +103,76 @@ def g0(key, root=None):
     return bad, dict(hosts=len((h or {}).get('hosts') or []), snapshot_works=n)
 
 
+def unit_founding_year(key, department, cfg):
+    """An owner-reviewed, captured official history can bound a unit's source window.
+
+    Missing or invalid proof never removes required years. This proves only when
+    the unit existed, not an individual's appointment or roster completeness.
+    """
+    if 'founded_year' not in department:
+        return None, []
+    import datetime
+    import hashlib
+    import sqlite3
+    import zlib
+    from urllib.parse import urlsplit
+    from bs4 import BeautifulSoup
+
+    year = department['founded_year']
+    evidence = department.get('founded_evidence') or {}
+    error = [f"{department['code']}: invalid founded_year evidence; full school window required"]
+    if not isinstance(evidence, dict):
+        return None, error
+    url, sha, quote = (evidence.get(k) for k in ('url', 'sha256', 'quote'))
+    if (type(year) is not int or not 1000 <= year <= cfg['window'][1]
+            or evidence.get('reviewed_by') != 'owner' or not evidence.get('owner_quote')
+            or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', str(evidence.get('reviewed_on', '')))
+            or not isinstance(url, str) or not isinstance(sha, str) or not isinstance(quote, str)
+            or not quote.strip() or str(year) not in quote or not re.fullmatch(r'[0-9a-f]{64}', sha)):
+        return None, error
+    try:
+        datetime.date.fromisoformat(evidence.get('reviewed_on', ''))
+        parsed = urlsplit(url)
+        host = parsed.hostname or ''
+        domains = (cfg.get('web') or {}).get('domains') or []
+        if (parsed.scheme not in ('http', 'https') or parsed.username or parsed.password
+                or not any(host == d or host.endswith('.' + d) for d in domains)):
+            return None, error
+        path = Path(P.data('school-captures.sqlite', key))
+        with sqlite3.connect(path.resolve().as_uri() + '?mode=ro', uri=True) as db:
+            row = db.execute('select status, sha256, raw_zlib from live where url=?', (url,)).fetchone()
+        if not row or row[0] != 200 or row[1] != sha or not row[2]:
+            return None, error
+        raw = zlib.decompress(row[2])
+        if hashlib.sha256(raw).hexdigest() != sha:
+            return None, error
+        soup = BeautifulSoup(raw, 'html.parser')
+        for node in soup(['script', 'style', 'template', 'noscript']):
+            node.decompose()
+        normalize = lambda value: ' '.join(value.split())
+        if normalize(quote) not in normalize(soup.get_text(' ', strip=True)):
+            return None, error
+    except (ValueError, TypeError, sqlite3.Error, zlib.error, OSError):
+        return None, error
+    return year, []
+
+
 def g1(key):
     cov = read(P.data('coverage.json', key), {}); lo, hi = S.get(key).get('window')
     departments = S.get(key).get('departments') or []
     bad = [] if departments else ['no Stage 1 departments in charter: faculty listing coverage is unmeasured']
+    founded, inapplicable = {}, []
     for d in departments:
+        year, founding_errors = unit_founding_year(key, d, S.get(key))
+        bad.extend(founding_errors)
+        if year is not None:
+            founded[d['code']] = year
+            inapplicable.extend(f"{d['code']} {y}" for y in range(lo, min(year, hi + 1)))
         errors = S.listing_group_errors(d)
         if errors:
             bad.extend(errors)
             continue
-        for y in range(lo, hi + 1):
+        for y in range(max(lo, year or lo), hi + 1):
             v = (cov.get(d['code']) or {}).get(str(y)) or {}
             groups = [g for g in d.get('listing_groups') or []
                       if g['from'] <= f'{y}1231' and g['to'] >= f'{y}0101']
@@ -131,7 +191,10 @@ def g1(key):
             # explains missing evidence; it cannot substitute for the roster.
             if not any(s == 'ok' for s in v.values()):
                 bad.append(f"{d['code']} {y}: " + ('; '.join(sorted(set(v.values()))) or 'never planned'))
-    return bad, dict(departments=len(departments), reviewed_gap_years=sum(len(d.get('listing_gaps') or {}) for d in departments))
+    counts = dict(departments=len(departments), reviewed_gap_years=sum(len(d.get('listing_gaps') or {}) for d in departments))
+    if founded:
+        counts.update(unit_founding_years=founded, pre_founding_years_not_applicable=inapplicable)
+    return bad, counts
 
 
 def sweep_gate(key):

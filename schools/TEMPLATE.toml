@@ -79,6 +79,12 @@ unit = ""                 # the parent unit ("Electrical Engineering and Compute
 title_match = ''          # regex: the title lines that are this department's appointment (rank is read from them)
 coverage = "full"
 url = ""
+  # Optional: an owner-reviewed official history can exclude pre-founding years
+  # from this unit's Stage 1 source window (R-SRC-01). The school window stays fixed.
+  # founded_year = 2020
+  # founded_evidence = {url = "https://school.edu/unit/history", sha256 = "...", quote = "Founded in 2020", reviewed_by = "owner", reviewed_on = "2026-11-16", owner_quote = "Review this unit from its founding"}
+  # Put these department fields BEFORE [[departments.listings]]. The original
+  # HTTP-200 history bytes must be in this school's school-captures.sqlite live table.
   [[departments.listings]]
   slot = ""               # unique name of the slot
   kind = "main"           # main | emeritus | adjunct | lecturer | courtesy | research | staff

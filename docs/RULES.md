@@ -9,6 +9,15 @@ one the owner delegated; "build" is a fix found while building.
 
 ## The hierarchy
 
+### R-SRC-01 (2026-11-16, owner) — a unit's founding bounds its source window
+A unit founded after the school window starts requires Stage 1 faculty listings from its founding year onward.
+The school window remains 2016–2026. Pre-founding unit-years are inapplicable, not waived; founding proves no PI
+appointment and excuses no missing roster in an active year. The charter records `founded_year` and `founded_evidence`
+with an official school-domain history URL, original captured SHA-256, literal visible quote naming the year, and
+the owner's review (`reviewed_by`, `reviewed_on`, `owner_quote`). Stage 1 verifies the saved HTTP-200 bytes and quote;
+missing or invalid proof keeps the entire school window required and fails the gate. Owner approved AIR's 2020–2026
+source window on 2026-11-16: “Review AIR from its 2020 founding (Recommended)”. AIR's 2020–2021 source gaps remain open.
+
 ### R-HIER-01 (2026-10-21, owner)
 School → department → PI lab → papers + students → student papers. Every census faculty member with `is_pi` gets one
 own lab (the PI and their advisees). A census lab unit is reused only when the collection unit has this PI as its single
