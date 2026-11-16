@@ -242,3 +242,18 @@ schools to oa_arxiv/europepmc/pmc. Policy now:
 - OpenAlex: `OA_RESERVE` (default 800; the loop and discovery scripts set 4000) is the `oa_refresh` floor: every list request stops once X-RateLimit-Remaining is under it, so
   discovery spends at most 6,000 of the shared 10,000 daily credits. Every request is in `raw/openalex_budget.jsonl`. S2 keeps its one-request-per-1.2-s clock.
 - One-off discovery jobs: `SCHOOL=<key> CHANNELS="..." atlas submit fulltext-push/school-channels.slurm` (run_steps.sh; per-channel locks serialize schools).
+
+## Rotating Wayback fetcher (2026-11-16, owner decision)
+One school at a time runs its download loop with `WAYBACK_HOLD=0`; every other loop keeps `WAYBACK_HOLD=1`. `fulltext-push/wayback_rotate.py`, run by the
+self-restarting Slurm job `fulltext-push/wayback-rotator.slurm` (job name `wayback-rotator`, 1 CPU, 1 G), gives the turns: about an hour of ACTIVE time each
+(minutes while web.archive.org cools down after a 429 do not count), schools ordered by their Wayback-only queue (all candidates on archive hosts, last attempt
+`source_paused` or none), largest first, each school once per round. The one-hour turns do not change the slot (`host_throttle`), the cooldowns, robots.txt or the
+charters. A turn is never granted while web.archive.org is cooling down, was used by someone else in the last 150 s, a live task claim or lease names
+wayback, or an unheld loop that is not the holder exists; a foreign fetcher appearing mid-turn makes the holder yield. Each turn changes only the two loops involved
+(scancel, then `loop_starter.submit` with `WAYBACK_HOLD` in the environment, which the loop's own self-resubmits carry). State and per-turn records (school, start, end,
+Wayback attempts and successes, 429 rows and 429 events): `fulltext-push/logs/wayback-rotation-state.json`, `fulltext-push/logs/wayback-rotation.jsonl`.
+- Start: `WAYBACK_ROTATE_ADOPT=gatech atlas submit fulltext-push/wayback-rotator.slurm` (ADOPT turns the loop that already runs unheld into the first turn).
+- Look: `wayback_rotate.py status` (state), `plan` (eligible schools and queues), the `Collector status` page (a held loop shows "wayback held").
+- STOP: `scancel -n wayback-rotator`. The holder is re-held (cancelled and resubmitted with `WAYBACK_HOLD=1`) before the job exits, and nothing is resubmitted.
+  After a hard kill run `wayback_rotate.py rehold` (it re-holds the recorded holder and any unheld loop).
+- A manual restart of a loop without `WAYBACK_HOLD` re-holds it silently; the rotator then sees no unheld loop and grants the next turn.

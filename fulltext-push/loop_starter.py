@@ -61,10 +61,14 @@ def ready(school, store, live, raw):
     return None
 
 
-def submit(school, channels, run=subprocess.run, code=None):
+SNAPSHOT_SLOTS = ('CS_ATLAS_TOOLS', 'CS_ATLAS_TESTS', 'CS_ATLAS_VENDOR', 'CS_ATLAS_SCHOOL_CONFIGS', 'CS_ATLAS_FULLTEXT_PUSH', 'CS_ATLAS_AI_WRITING')   # as loop_job.sh's _resubmit unsets them
+
+
+def submit(school, channels, run=subprocess.run, code=None, extra_env=None):
+    """extra_env (2026-11-16, wayback_rotate.py): variables the loop and its self-resubmits carry, e.g. WAYBACK_HOLD."""
     code = code or os.environ['CS_ATLAS_CODE']
-    env = {k: v for k, v in os.environ.items() if not k.startswith(('SLURM_', 'CS_ATLAS_SNAPSHOT', 'SNAPSHOT_REPO'))}   # a fresh submission of main's script, never this job's own snapshot
-    env.update(SCHOOL=school)
+    env = {k: v for k, v in os.environ.items() if not k.startswith(('SLURM_', 'CS_ATLAS_SNAPSHOT', 'SNAPSHOT_REPO')) and (extra_env is None or k not in SNAPSHOT_SLOTS)}   # a fresh submission of main's script, never this job's own snapshot
+    env.update(SCHOOL=school, **(extra_env or {}))
     if channels:
         env.update(CHANNELS=channels, CHANNELS_FORCE='1')
     atlas = [f'{code}/bin/atlas', 'submit']
