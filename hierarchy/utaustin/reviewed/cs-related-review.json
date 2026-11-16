@@ -22,11 +22,10 @@
   "SDS"
  ],
  "counts": {
-  "not_faculty_listed": 320,
+  "not_faculty_listed": 322,
   "accepted": 166,
   "research_or_other_rank": 16,
   "pending_source_coverage": 2,
-  "pending_identity_collision": 1,
   "faculty_not_computing": 1
  },
  "decisions": [
@@ -32413,23 +32412,69 @@
   },
   {
    "name": "Zheng Lu",
-   "aliases": [],
-   "source": "multiple_candidate_ids",
-   "decision": "pending_identity_collision",
-   "reason": "distinct candidate source records have the same display name; resolve each source identity before PI admission",
-   "candidate_sources": [
-    {
-     "source": "dblp_affiliation",
-     "dblp": "https://dblp.org/pid/15/2402-2",
-     "openalex": null
-    },
-    {
-     "source": "dblp_affiliation",
-     "dblp": "https://dblp.org/pid/15/2402-4",
-     "openalex": null
-    }
+   "aliases": [
+    "Zhen Lu"
    ],
-   "cs_basis": {},
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/15/2402-2",
+   "decision": "not_faculty_listed",
+   "reason": "this DBLP person (36 records 2016-2026) is at Nottingham Ningbo and City University of Hong Kong; the UT Austin CS note has no faculty entry in the catalogs or unit listings, so not a UT Austin faculty member (owner decision: not UT)",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/15/2402-2"
+    ],
+    "dblp_window": 36,
+    "affiliation_notes": [
+     "University of Nottingham Ningbo, Department of Computer Science, China",
+     "City University of Hong Kong, Department of Computer Science, Hong Kong",
+     "Microsoft Research Asia, Beijing, China",
+     "University of Texas at Austin, Department of Computer Science, TX, USA",
+     "National University of Singapore, School of Computing, Singapore"
+    ],
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/15/2402-2",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "quote": "University of Nottingham Ningbo, Department of Computer Science, China"
+     },
+     {
+      "url": "https://catalog.utexas.edu/pdf/2016-18-undergraduate.pdf",
+      "sha256": "8be84d31310dd27e2ec405781a562f834355651dc2a4e7c0c8b9b362f88fabdd",
+      "source": "official UT Austin undergraduate catalog 2016-2018",
+      "quote": "absence: no line of this catalog names Zheng Lu or Zhen Lu with a professor, lecturer or instructor rank (pdftotext -raw of the stored PDF; also none in the 59 stored unit captures)"
+     },
+     {
+      "url": "https://catalog.utexas.edu/pdf/2018-20-undergraduate.pdf",
+      "sha256": "06d27e95450499b1e91fa03fdeabb0a978ef41efc51327e9ca5b0e94d814a738",
+      "source": "official UT Austin undergraduate catalog 2018-2020",
+      "quote": "absence: no line of this catalog names Zheng Lu or Zhen Lu with a professor, lecturer or instructor rank (pdftotext -raw of the stored PDF; also none in the 59 stored unit captures)"
+     },
+     {
+      "url": "https://catalog.utexas.edu/archive/2020-21/pdf/2020-22-undergraduate.pdf",
+      "sha256": "5fa93f1f6d7454c6691b03bcc2e249dfb3ee27258bcc37ff1fc7a97cc4af6f46",
+      "source": "official UT Austin undergraduate catalog 2020-2022",
+      "quote": "absence: no line of this catalog names Zheng Lu or Zhen Lu with a professor, lecturer or instructor rank (pdftotext -raw of the stored PDF; also none in the 59 stored unit captures)"
+     },
+     {
+      "url": "https://catalog.utexas.edu/archive/2022-23/pdf/2022-24-undergraduate.pdf",
+      "sha256": "7924f182f0fdeacc51533f01f465d10cad9f0e586aeb9168f93c4b0a445a110d",
+      "source": "official UT Austin undergraduate catalog 2022-2024",
+      "quote": "absence: no line of this catalog names Zheng Lu or Zhen Lu with a professor, lecturer or instructor rank (pdftotext -raw of the stored PDF; also none in the 59 stored unit captures)"
+     },
+     {
+      "url": "https://catalog.utexas.edu/archive/2024-25/pdf/2024-26-undergraduate.pdf",
+      "sha256": "c78f3cda360b2a6bee895b49376de009eb80491fa6666fa4da826281011056fc",
+      "source": "official UT Austin undergraduate catalog 2024-2026",
+      "quote": "absence: no line of this catalog names Zheng Lu or Zhen Lu with a professor, lecturer or instructor rank (pdftotext -raw of the stored PDF; also none in the 59 stored unit captures)"
+     },
+     {
+      "url": "https://catalog.utexas.edu/pdf/2026-28-undergraduate.pdf",
+      "sha256": "8d1499b08ab654556027125496cfb060bb8bfe4800ef61fa389f76ec500c1a20",
+      "source": "official UT Austin undergraduate catalog 2026-2028",
+      "quote": "absence: no line of this catalog names Zheng Lu or Zhen Lu with a professor, lecturer or instructor rank (pdftotext -raw of the stored PDF; also none in the 59 stored unit captures)"
+     }
+    ]
+   },
    "faculty_evidence": [],
    "years_listed": [],
    "units_searched": [
@@ -32443,7 +32488,86 @@
     "OKCAI",
     "ROBOTICS",
     "SDS"
-   ]
+   ],
+   "reviewed_by": "claude_utaustin_stage2_20261116",
+   "owner_decision": "2026-11-16: decide each DBLP source id separately, no merge or alias"
+  },
+  {
+   "name": "Zheng Lu",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/15/2402-4",
+   "decision": "not_faculty_listed",
+   "reason": "this DBLP person (5 records 2016-2026; Cisco Systems and UT Austin ECE) has no faculty-rank entry in the six catalogs, the stored ECE listings (2016-2026) or other unit captures: UT ECE non-faculty / other rank (owner decision)",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/15/2402-4"
+    ],
+    "dblp_window": 5,
+    "affiliation_notes": [
+     "Cisco Systems, San Jose, CA, USA",
+     "University of Texas at Austin, Department of Electrical and Computer Engineering, TX, USA"
+    ],
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/15/2402-4",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "quote": "University of Texas at Austin, Department of Electrical and Computer Engineering, TX, USA"
+     },
+     {
+      "url": "https://catalog.utexas.edu/pdf/2016-18-undergraduate.pdf",
+      "sha256": "8be84d31310dd27e2ec405781a562f834355651dc2a4e7c0c8b9b362f88fabdd",
+      "source": "official UT Austin undergraduate catalog 2016-2018",
+      "quote": "absence: no line of this catalog names Zheng Lu or Zhen Lu with a professor, lecturer or instructor rank (pdftotext -raw of the stored PDF; also none in the 59 stored unit captures)"
+     },
+     {
+      "url": "https://catalog.utexas.edu/pdf/2018-20-undergraduate.pdf",
+      "sha256": "06d27e95450499b1e91fa03fdeabb0a978ef41efc51327e9ca5b0e94d814a738",
+      "source": "official UT Austin undergraduate catalog 2018-2020",
+      "quote": "absence: no line of this catalog names Zheng Lu or Zhen Lu with a professor, lecturer or instructor rank (pdftotext -raw of the stored PDF; also none in the 59 stored unit captures)"
+     },
+     {
+      "url": "https://catalog.utexas.edu/archive/2020-21/pdf/2020-22-undergraduate.pdf",
+      "sha256": "5fa93f1f6d7454c6691b03bcc2e249dfb3ee27258bcc37ff1fc7a97cc4af6f46",
+      "source": "official UT Austin undergraduate catalog 2020-2022",
+      "quote": "absence: no line of this catalog names Zheng Lu or Zhen Lu with a professor, lecturer or instructor rank (pdftotext -raw of the stored PDF; also none in the 59 stored unit captures)"
+     },
+     {
+      "url": "https://catalog.utexas.edu/archive/2022-23/pdf/2022-24-undergraduate.pdf",
+      "sha256": "7924f182f0fdeacc51533f01f465d10cad9f0e586aeb9168f93c4b0a445a110d",
+      "source": "official UT Austin undergraduate catalog 2022-2024",
+      "quote": "absence: no line of this catalog names Zheng Lu or Zhen Lu with a professor, lecturer or instructor rank (pdftotext -raw of the stored PDF; also none in the 59 stored unit captures)"
+     },
+     {
+      "url": "https://catalog.utexas.edu/archive/2024-25/pdf/2024-26-undergraduate.pdf",
+      "sha256": "c78f3cda360b2a6bee895b49376de009eb80491fa6666fa4da826281011056fc",
+      "source": "official UT Austin undergraduate catalog 2024-2026",
+      "quote": "absence: no line of this catalog names Zheng Lu or Zhen Lu with a professor, lecturer or instructor rank (pdftotext -raw of the stored PDF; also none in the 59 stored unit captures)"
+     },
+     {
+      "url": "https://catalog.utexas.edu/pdf/2026-28-undergraduate.pdf",
+      "sha256": "8d1499b08ab654556027125496cfb060bb8bfe4800ef61fa389f76ec500c1a20",
+      "source": "official UT Austin undergraduate catalog 2026-2028",
+      "quote": "absence: no line of this catalog names Zheng Lu or Zhen Lu with a professor, lecturer or instructor rank (pdftotext -raw of the stored PDF; also none in the 59 stored unit captures)"
+     }
+    ]
+   },
+   "faculty_evidence": [],
+   "years_listed": [],
+   "units_searched": [
+    "ASE",
+    "ECE",
+    "INFO",
+    "LING",
+    "MATH",
+    "ME",
+    "ODEN",
+    "OKCAI",
+    "ROBOTICS",
+    "SDS"
+   ],
+   "reviewed_by": "claude_utaustin_stage2_20261116",
+   "owner_decision": "2026-11-16: decide each DBLP source id separately, no merge or alias"
   },
   {
    "name": "Zheng Wang",
