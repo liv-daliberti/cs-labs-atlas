@@ -686,5 +686,44 @@
     "reviewed": "2026-11-14"
    }
   }
+ },
+ "ntu": {
+  "one_person": {
+   "Bo An | Wei Qiu = Qi Wei": {
+    "verdict": "explained",
+    "reason": "The PI-owned complete CV separately lists current doctoralstudent QiWei startingFall2024 and alumnusWeiQiu2019–Winter2023, nowTencentResearchScientist. WeiQiu independently identifies his completedNTUPhD/BoAn+Lanaadvisors and Dec2023defense/Tencenttransition on his ownpage. These are separately stated fullnames/cohorts/current-vs-alumni records, not an evidenced sharedidentity. The generic reordered-family/initial-prefix audit equates Qiu with Qi across Wei; retain both actualsourcenames/records and do not merge without identityproof.",
+    "evidence": [
+     {
+      "url": "https://personal.ntu.edu.sg/boan/CV-BOAN.pdf",
+      "status": 200,
+      "sha256": "49f223748713993cac6a5af6c493f2912d1381bb7b6e479f03f979287ce90cb8",
+      "observed_at": "2026-11-15T21:19:32",
+      "quotes": [
+       "Qi Wei (Fall 2024-), Nanyang Technological University",
+       "Wei Qiu (Fall 2019-Winter 2023), Nanyang Technological University. Now Research Scientist at Tencent."
+      ],
+      "context": "Complete CV StudentsSupervised/DoctoralStudents and separate Alumni sections; degree ofWeiQiu supplied separately byownselfproof, not guessed from genericAlumni heading."
+     },
+     {
+      "url": "https://qiuwei888.github.io//",
+      "status": 200,
+      "sha256": "871c72e028ab6056011ca69defba72cf7b5478897b4b267cfa15d30bb3c88cb6",
+      "observed_at": "2026-11-15T23:03:30",
+      "quote_parts": [
+       "Dec 5, 2023",
+       "Tencent",
+       "My PhD advisors are Bo An and Lana Obraztsova"
+      ],
+      "context": "ActualownedWeiQiuNTUPhD/Dec2023defense/currentTencent; no2024PhDarrival claimed for him."
+     }
+    ],
+    "independent_review": {
+     "reviewer": "codex-sjtu-ntu-1115",
+     "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/BO-WEI-QIU-QI-WEI-INDEPENDENT-REVIEW-20261116.json",
+     "receipt_sha256": "1d6b60cbed7ef78250fa075ea3d6af9f70251cbac372fb63dee3cf4a2f301b61",
+     "packet_sha256": "5c83506f2e7f33c311f85a8fc3acb6f36112b5a328716cdf9fad718bffe05970"
+    }
+   }
+  }
  }
 }
