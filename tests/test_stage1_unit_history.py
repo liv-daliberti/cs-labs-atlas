@@ -29,7 +29,7 @@ def history(tmp_path, monkeypatch):
     db.close()
 
 
-def test_captured_founding_bounds_only_unit_source_window(history):
+def test_R_SRC_01_captured_founding_bounds_only_unit_source_window(history):
     bad, counts = G.g1('u')
     assert bad == ['AIR 2020: never planned']
     assert counts['pre_founding_years_not_applicable'] == [f'AIR {y}' for y in range(2016, 2020)]
