@@ -516,26 +516,42 @@ def historical_appointment(key, entry):
     """Bind historical role evidence to the explicit period native builders read.
 
     Observing a biography today does not make its former appointment a current
-    listing. Both bounds must be stated by this source and independently present
+    listing. Research/teaching roles still need separately checked PI-basis evidence. Both bounds must be stated by this source and independently present
     in the reviewed census override; no interval is inferred from roster years.
     """
     bounds = entry.get('historical_appointment')
     if bounds is None:
         return None
     start, end = (bounds.get(k) for k in ('start', 'end')) if isinstance(bounds, dict) else (None, None)
-    if not all(isinstance(v, str) and re.fullmatch(r'\d{4}', v) for v in (start, end)):
-        raise SystemExit(f"{entry['name']}: historical appointment needs explicit start/end years")
-    if not (int(start) <= int(end) and int(start) <= 2026 and int(end) >= 2016):
+    if not all(isinstance(v, str) and re.fullmatch(r'\d{4}(?:-\d{2})?', v) for v in (start, end)) or len(start) != len(end):
+        raise SystemExit(f"{entry['name']}: historical appointment needs explicit start/end years or months of equal precision")
+    precision = 'year' if len(start) == 4 else 'month'
+    for label, value in (('start', start), ('end', end)):
+        try:
+            datetime.date.fromisoformat(value + ('-01-01' if precision == 'year' else '-01'))
+        except ValueError as exc:
+            raise SystemExit(f"{entry['name']}: historical appointment has an invalid {label} date") from exc
+    if not (start <= end and int(start[:4]) <= 2026 and int(end[:4]) >= 2016):
         raise SystemExit(f"{entry['name']}: historical appointment must overlap 2016–2026 in chronological order")
-    observed_year = (entry.get('observed') or '')[:4]
-    if not re.fullmatch(r'\d{4}', observed_year) or int(end) > int(observed_year):
+    observed = re.sub(r'[^0-9]', '', entry.get('observed') or '')
+    observed_year = observed[:4]
+    if not re.fullmatch(r'\d{4}', observed_year) or int(end[:4]) > int(observed_year):
         raise SystemExit(f"{entry['name']}: historical appointment cannot end after its source observation")
-    if not entry.get('ladder', True):
-        raise SystemExit(f"{entry['name']}: historical ladder appointment cannot supply a research/teaching PI basis")
-    if any(not re.search(r'(?<!\d)' + year + r'(?!\d)', entry['quote']) for year in (start, end)):
-        raise SystemExit(f"{entry['name']}: historical appointment bounds are absent from its source quote")
+    if precision == 'month' and (len(observed) < 6 or end.replace('-', '') > observed[:6]):
+        raise SystemExit(f"{entry['name']}: historical appointment cannot end after its source observation")
+    if not entry.get('ladder', True) and entry.get('appointment_rank') not in ('research', 'teaching'):
+        raise SystemExit(f"{entry['name']}: historical non-ladder appointment needs its research/teaching rank")
+    for label, value in (('start', start), ('end', end)):
+        literal = bounds.get(f'{label}_quote', value)
+        # A month may be transcribed from an explicit MM/YYYY source date.
+        # Matching only the year would authorize an invented month boundary.
+        normalized = literal
+        if isinstance(literal, str) and re.fullmatch(r'\d{2}/\d{4}', literal):
+            normalized = literal[3:] + '-' + literal[:2]
+        if not isinstance(literal, str) or normalized != value or not re.search(r'(?<!\d)' + re.escape(literal) + r'(?!\d)', entry['quote']):
+            raise SystemExit(f"{entry['name']}: historical appointment bounds are absent from its source quote")
     periods = (CO.section(key).get(entry['name']) or {}).get('periods') or []
-    if not any(p.get('start') == start and p.get('end') == end and p.get('datePrecision') == 'year'
+    if not any(p.get('start') == start and p.get('end') == end and p.get('datePrecision') == precision
                and any(all(ev.get(k) == entry[k] for k in ('url', 'sha256', 'quote')) for ev in p.get('evidence') or [])
                for p in periods):
         raise SystemExit(f"{entry['name']}: historical appointment lacks the matching source-bound reviewed census period")
@@ -876,7 +892,7 @@ def review(key):
             orcids = sorted(set(x.get('orcid') or []) | {o for p in recs for o in p.get('orcids') or []})
             if not orcids and (comp.get('dblp') or []):
                 orcids = sorted({o for p in dblp if p['pid'] in comp['dblp'] for o in p.get('orcids') or []})
-            fy = min([int((e.get('historical_appointment') or {}).get('start') or faculty_observed(e)[:4]) for e in fac]
+            fy = min([int(((e.get('historical_appointment') or {}).get('start') or faculty_observed(e))[:4]) for e in fac]
                      + ([min(x['years_listed'])] if x.get('years_listed') else []))
             sh = share_test(SH, names, orcids, fy, c.get('openalex') or [])
             comp['openalex_share'] = sh

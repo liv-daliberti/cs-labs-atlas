@@ -29,7 +29,7 @@ def test_qualified_role_is_not_mistaken_for_a_next_person_prefix():
 
 def research_review(monkeypatch, tmp_path, *, own=True, appointment=True, source='dblp_affiliation',
                     bad_quote=False, legacy=False, share_result=None, rank='research', kind='own_group', unit='CS',
-                    historical=None, period_review='matching'):
+                    historical=None, period_review='matching', period_text='2010-2021: Professor at University of Cambridge.'):
     import hashlib
     import json
     import sqlite3
@@ -38,7 +38,6 @@ def research_review(monkeypatch, tmp_path, *, own=True, appointment=True, source
     name = 'Avery Scientist'
     url = 'https://school.example/avery'
     title = 'Professor' if rank == 'ladder' else ('Research Professor' if rank == 'research' else 'Teaching Professor')
-    period_text = '2010-2021: Professor at University of Cambridge.'
     html = f'<h1>Avery Scientist</h1><p>{title}</p><p>{period_text}</p><p>I lead the Example Research Group.</p>'.encode()
     sha = hashlib.sha256(html).hexdigest()
     db = sqlite3.connect(':memory:')
@@ -75,7 +74,8 @@ def research_review(monkeypatch, tmp_path, *, own=True, appointment=True, source
     monkeypatch.setattr(C, 'units_current', lambda key: True)
     monkeypatch.setattr(C, 'unit_pages', lambda key: [])
     monkeypatch.setattr(C.W, 'con', lambda key: db)
-    periods = [dict(start='2010', end='2021', datePrecision='year', evidence=[dict(url=url, sha256=sha, quote=role['quote'])])]
+    periods = [dict(start=(historical or {}).get('start', '2010'), end=(historical or {}).get('end', '2021'),
+                    datePrecision='month' if len((historical or {}).get('start', '2010')) == 7 else 'year', evidence=[dict(url=url, sha256=sha, quote=role['quote'])])]
     if period_review == 'missing':
         periods = []
     elif period_review == 'different_bounds':
@@ -213,11 +213,52 @@ def test_historical_appointment_requires_explicit_year_boundaries(monkeypatch, t
         research_review(monkeypatch, tmp_path, own=False, rank='ladder', historical={'start': '2010', 'end': None})
 
 
-def test_historical_ladder_review_cannot_replace_research_pi_group_evidence(monkeypatch, tmp_path):
-    import pytest
-    with pytest.raises(SystemExit, match='cannot supply a research/teaching PI basis'):
-        research_review(monkeypatch, tmp_path, own=False, historical={'start': '2010', 'end': '2021'})
+def test_historical_research_appointment_does_not_replace_independent_pi_basis(monkeypatch, tmp_path):
+    decision, additions = research_review(monkeypatch, tmp_path, own=False,
+                                         historical={'start': '2010', 'end': '2021'})
+    assert decision['decision'] == 'research_or_other_rank'
+    assert additions == []
 
+
+def test_historical_research_pi_preserves_rank_and_does_not_create_current_listing(monkeypatch, tmp_path):
+    decision, additions = research_review(monkeypatch, tmp_path,
+                                         historical={'start': '2010', 'end': '2021'})
+    assert decision['decision'] == 'accepted'
+    assert additions[0]['rank'] == 'research'
+    assert additions[0]['pi_basis']['kind'] == 'own_group'
+    assert additions[0]['years_listed'] == decision['years_listed'] == []
+    assert additions[0]['sources'][0]['kind'] == 'historical_appointment:CS'
+
+
+def test_historical_months_bind_literal_dates_and_native_period(monkeypatch, tmp_path):
+    decision, additions = research_review(monkeypatch, tmp_path, share_result='computing',
+        historical={'start': '2016-01', 'end': '2018-09', 'start_quote': '01/2016', 'end_quote': '09/2018'},
+        period_text='01/2016 - 09/2018 Research Associate at University of Cambridge.')
+    assert decision['decision'] == 'accepted'
+    assert decision['cs_basis']['openalex_share']['first_listing_year'] == 2016
+    assert decision['years_listed'] == []
+    assert additions[0]['rank'] == 'research'
+
+
+def test_historical_month_cannot_be_invented_from_a_year(monkeypatch, tmp_path):
+    import pytest
+    with pytest.raises(SystemExit, match='bounds are absent from its source quote'):
+        research_review(monkeypatch, tmp_path,
+            historical={'start': '2010-01', 'end': '2021-09', 'start_quote': '2010', 'end_quote': '2021'})
+
+
+def test_historical_research_still_requires_matching_native_period(monkeypatch, tmp_path):
+    import pytest
+    with pytest.raises(SystemExit, match='matching source-bound reviewed census period'):
+        research_review(monkeypatch, tmp_path, historical={'start': '2010', 'end': '2021'},
+                        period_review='other_source')
+
+
+def test_historical_research_does_not_take_other_units_pi_basis(monkeypatch, tmp_path):
+    decision, additions = research_review(monkeypatch, tmp_path, unit='OTHER',
+                                         historical={'start': '2010', 'end': '2021'})
+    assert decision['decision'] == 'research_or_other_rank'
+    assert additions == []
 
 def test_current_professor_profile_still_proves_its_observation_year(monkeypatch, tmp_path):
     decision, additions = research_review(monkeypatch, tmp_path, own=False, rank='ladder')
@@ -432,3 +473,25 @@ def test_official_profile_keeps_existing_minimum_computing_output(monkeypatch, t
     assert decision['decision'] == 'faculty_not_computing'
     assert decision['cs_basis']['dblp'] == [pid]
     assert additions == []
+
+
+def test_historical_month_cannot_be_changed_from_the_literal_source_date(monkeypatch, tmp_path):
+    import pytest
+    with pytest.raises(SystemExit, match='bounds are absent from its source quote'):
+        research_review(monkeypatch, tmp_path,
+            historical={'start': '2016-02', 'end': '2018-09', 'start_quote': '01/2016', 'end_quote': '09/2018'},
+            period_text='01/2016 - 09/2018 Research Associate at University of Cambridge.')
+
+
+def test_historical_month_rejects_invalid_calendar_month(monkeypatch, tmp_path):
+    import pytest
+    with pytest.raises(SystemExit, match='invalid start date'):
+        research_review(monkeypatch, tmp_path,
+            historical={'start': '2016-13', 'end': '2018-09'})
+
+
+def test_historical_month_cannot_end_after_the_observation_month(monkeypatch, tmp_path):
+    import pytest
+    with pytest.raises(SystemExit, match='cannot end after its source observation'):
+        research_review(monkeypatch, tmp_path,
+            historical={'start': '2016-01', 'end': '2026-12'})
