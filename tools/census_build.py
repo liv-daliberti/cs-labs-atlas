@@ -108,6 +108,66 @@ def profile_key(url):
     return p.netloc.lower() + re.sub(r'/+', '/', p.path).rstrip('/')
 
 
+
+def reviewed_source_names(key, rows, doc):
+    """Canonicalize only exact reviewed source rows, including headings without a profile.
+
+    A row binding proves its original and parsed heading, not bibliographic identity
+    or employment continuity. A new observation of a reviewed spelling needs its
+    own source review instead of silently gaining the canonical identity.
+    """
+    bindings = doc.get('source_names') or []
+    if not bindings:
+        return rows
+    if doc.get('school') != key:
+        raise ValueError('source-name review school mismatch')
+    import listing_formats as LF
+    from listing_rows import quote_of
+    from school_web import body
+    def pointer(url):
+        return profile_key(url) or url or None
+    def row_key(url, sha, listed, profile, quote):
+        return (url, sha, listed, pointer(profile), quote)
+    mapping, spellings, canonical_names = {}, set(), set()
+    qualified_profiles = {profile_key(item.get('profile')) for item in doc.get('profile_names') or []} - {None}
+    db = P.data('listings-captures.sqlite', key)
+    with sqlite3.connect(db.resolve().as_uri() + '?mode=ro', uri=True) as c:
+        for item in bindings:
+            name = item.get('canonical_name')
+            if not isinstance(name, str) or not name.strip() or not item.get('evidence'):
+                raise ValueError('source-name review lacks canonical name or evidence')
+            canonical_names.add(name)
+            for ev in item['evidence']:
+                saved = c.execute('select http_status,sha256,raw_zlib,text from captures where capture_url=?', (ev['url'],)).fetchone()
+                if not saved or saved[0] != 200 or not saved[2] or saved[1] != ev['sha256'] or hashlib.sha256(zlib.decompress(saved[2])).hexdigest() != ev['sha256']:
+                    raise ValueError('source-name evidence hash mismatch: ' + ev['url'])
+                html = body(saved[2]).decode('utf-8', 'replace')
+                _, entries = LF.parse(html, ev['format'])
+                flat = ' '.join((saved[3] or '').split())
+                matches = [e for e in entries if e['name_listed'] == ev['name_listed']
+                           and pointer(e.get('profile')) == pointer(ev.get('profile'))
+                           and quote_of(flat, e, html) == ev['quote']]
+                if len(matches) != 1:
+                    raise ValueError('source-name heading mismatch: ' + ev['url'])
+                binding = row_key(ev['url'], ev['sha256'], ev['name_listed'], ev.get('profile'), ev['quote'])
+                if binding in mapping:
+                    raise ValueError('duplicate reviewed source-name row: ' + ev['url'])
+                mapping[binding] = name
+                spellings.add(ev['name_listed'])
+    out = []
+    for row in rows:
+        listed = row.get('name_listed', row['name'])
+        binding = row_key(row.get('capture_url'), row.get('sha256'), listed, row.get('profile'), row.get('quote'))
+        if binding in mapping:
+            name = mapping[binding]
+            forms = list(dict.fromkeys([row['name'], listed]))
+            row = dict(row, name=name, reviewed_profile_name=name, reviewed_name_forms=forms)
+        elif (listed in spellings or row['name'] in canonical_names) and profile_key(row.get('profile')) not in qualified_profiles:
+            raise ValueError('unreviewed source row for canonical faculty name: ' + listed)
+        out.append(row)
+    return out
+
+
 def reviewed_profile_names(key, rows):
     """Apply sourced profile-qualified names before ordinary name grouping.
 
@@ -115,6 +175,7 @@ def reviewed_profile_names(key, rows):
     name-only alias is introduced, and literal source spellings/quotes remain.
     """
     doc = read(P.data('census-name-aliases.json', key), {}) or {}
+    rows = reviewed_source_names(key, rows, doc)
     bindings = doc.get('profile_names') or []
     if not bindings:
         return rows
@@ -162,6 +223,11 @@ def reviewed_profile_names(key, rows):
     for row in rows:
         profile = profile_key(row.get('profile'))
         listed = row.get('name_listed', row['name'])
+        if row.get('reviewed_profile_name'):
+            if profile in mapping and mapping[profile][0] != row['reviewed_profile_name']:
+                raise ValueError('conflicting source-row and profile canonical names: ' + listed)
+            out.append(row)
+            continue
         if profile in mapping:
             name, spellings, forms = mapping[profile]
             if listed not in spellings:

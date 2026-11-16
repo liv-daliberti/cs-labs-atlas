@@ -1,80 +1,660 @@
 {
- "school": "ntu",
- "scope": "Source-profile-qualified canonical faculty names only, before census grouping; no DBLP/OpenAlex identity or appointment interval is admitted.",
- "reviewed_by": "codex-ntu-rosters-1115",
- "reviewed_on": "2026-11-15",
- "rows": [],
- "profile_names": [
-  {
-   "canonical_name": "Yi Li",
-   "profile": "https://dr.ntu.edu.sg/cris/rp/rp00572",
-   "listed_names": [
-    "Yi Li",
-    "Li Yi"
-   ],
-   "evidence": [
+  "school": "ntu",
+  "scope": "Exact source-profile and source-row canonical faculty names only, before census grouping; no new DBLP/OpenAlex identity, ORCID, paper or appointment interval is admitted.",
+  "reviewed_by": "codex-ntu-rosters-1115",
+  "reviewed_on": "2026-11-15",
+  "rows": [],
+  "profile_names": [
     {
-     "url": "https://web.archive.org/web/20240625225031id_/https://www.ntu.edu.sg/computing/our-people/faculty",
-     "sha256": "fd63c088a84dd3a1591ccffd69eddfcca70ca2ed0ebae6ae1852b48a7299eb87",
-     "format": "ntu_img_cards",
-     "name_listed": "Li Yi",
-     "quote": "Assoc Prof Li Yi [...] Appointments: Associate Professor, College of Computing & Data Science"
+      "canonical_name": "Yi Li",
+      "profile": "https://dr.ntu.edu.sg/cris/rp/rp00572",
+      "listed_names": [
+        "Yi Li",
+        "Li Yi"
+      ],
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20240625225031id_/https://www.ntu.edu.sg/computing/our-people/faculty",
+          "sha256": "fd63c088a84dd3a1591ccffd69eddfcca70ca2ed0ebae6ae1852b48a7299eb87",
+          "format": "ntu_img_cards",
+          "name_listed": "Li Yi",
+          "quote": "Assoc Prof Li Yi [...] Appointments: Associate Professor, College of Computing & Data Science"
+        },
+        {
+          "url": "https://web.archive.org/web/20210515230315id_/https://www.ntu.edu.sg/scse/about-us/our-people/faculty",
+          "sha256": "49f3c3f6c7a10d8579299e8e8027c14fb1bc7e2e610ef27acbe0c9b3ca126c24",
+          "format": "ntu_img_cards",
+          "name_listed": "Yi Li",
+          "quote": "Asst Prof Yi Li [...] Appointments: Assistant Professor, School of Computer Science and Engineering"
+        }
+      ],
+      "reason": "The 2021 Yi Li SCSE card and 2024 Li Yi CCDS card link the same legacy profile rp00572; preserve the existing Yi Li census key.",
+      "source_forms": [
+        "Yi Li",
+        "Li Yi"
+      ]
     },
     {
-     "url": "https://web.archive.org/web/20210515230315id_/https://www.ntu.edu.sg/scse/about-us/our-people/faculty",
-     "sha256": "49f3c3f6c7a10d8579299e8e8027c14fb1bc7e2e610ef27acbe0c9b3ca126c24",
-     "format": "ntu_img_cards",
-     "name_listed": "Yi Li",
-     "quote": "Asst Prof Yi Li [...] Appointments: Assistant Professor, School of Computer Science and Engineering"
-    }
-   ],
-   "reason": "The 2021 Yi Li SCSE card and 2024 Li Yi CCDS card link the same legacy profile rp00572; preserve the existing Yi Li census key.",
-   "source_forms": [
-    "Yi Li",
-    "Li Yi"
-   ]
-  },
-  {
-   "canonical_name": "Yi Li",
-   "profile": "https://dr.ntu.edu.sg/entities/person/Li-Yi",
-   "listed_names": [
-    "Li Yi"
-   ],
-   "evidence": [
+      "canonical_name": "Yi Li",
+      "profile": "https://dr.ntu.edu.sg/entities/person/Li-Yi",
+      "listed_names": [
+        "Li Yi"
+      ],
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20260606112748id_/https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "5bc1cb9e9c9e1f2f538048bb3526c2f6193b100a80a4d1f4f8bb024cab65c498",
+          "format": "ntu_img_cards",
+          "name_listed": "Li Yi",
+          "quote": "Assoc Prof Li Yi [...] Appointments: Associate Professor, College of Computing & Data Science"
+        }
+      ],
+      "reason": "CS/CCDS faculty card continuation: biography explicitly names Yi Li as CCDS Associate Professor and CCTF Associate Director, independently distinct from the simultaneous SPMS card. This qualified profile mapping is not a name-only alias.",
+      "source_forms": [
+        "Yi Li",
+        "Li Yi"
+      ]
+    },
     {
-     "url": "https://web.archive.org/web/20260606112748id_/https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
-     "sha256": "5bc1cb9e9c9e1f2f538048bb3526c2f6193b100a80a4d1f4f8bb024cab65c498",
-     "format": "ntu_img_cards",
-     "name_listed": "Li Yi",
-     "quote": "Assoc Prof Li Yi [...] Appointments: Associate Professor, College of Computing & Data Science"
+      "canonical_name": "Yi Li [SPMS]",
+      "profile": "https://dr.ntu.edu.sg/entities/person/yili",
+      "listed_names": [
+        "Li Yi"
+      ],
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20260606112748id_/https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "5bc1cb9e9c9e1f2f538048bb3526c2f6193b100a80a4d1f4f8bb024cab65c498",
+          "format": "ntu_img_cards",
+          "name_listed": "Li Yi",
+          "quote": "Assoc Prof Li Yi [...] Appointments: Associate Professor, School of Physical & Mathematical Sciences Associate Professor, College of Computing & Data Science"
+        }
+      ],
+      "reason": "Separate faculty card in the same 2025/2026 source as the CS/CCDS person, with a distinct profile and explicit SPMS plus CCDS appointments. Its biography says Yi Li joined the Division of Mathematical Sciences in August 2016; that biographical date is not adopted as a faculty period by this identity mapping.",
+      "source_forms": [
+        "Yi Li",
+        "Li Yi"
+      ]
     }
-   ],
-   "reason": "CS/CCDS faculty card continuation: biography explicitly names Yi Li as CCDS Associate Professor and CCTF Associate Director, independently distinct from the simultaneous SPMS card. This qualified profile mapping is not a name-only alias.",
-   "source_forms": [
-    "Yi Li",
-    "Li Yi"
-   ]
-  },
-  {
-   "canonical_name": "Yi Li [SPMS]",
-   "profile": "https://dr.ntu.edu.sg/entities/person/yili",
-   "listed_names": [
-    "Li Yi"
-   ],
-   "evidence": [
+  ],
+  "source_names": [
     {
-     "url": "https://web.archive.org/web/20260606112748id_/https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
-     "sha256": "5bc1cb9e9c9e1f2f538048bb3526c2f6193b100a80a4d1f4f8bb024cab65c498",
-     "format": "ntu_img_cards",
-     "name_listed": "Li Yi",
-     "quote": "Assoc Prof Li Yi [...] Appointments: Associate Professor, School of Physical & Mathematical Sciences Associate Professor, College of Computing & Data Science"
+      "canonical_name": "Wentong Cai",
+      "scope": "Only the exact saved faculty-card observations enumerated below; literal source names and quotes remain.",
+      "independent_review": {
+        "reviewer": "codex-sjtu-recall-1115",
+        "packet_sha256": "6ee84bc56c66566c91b7426c39b9381363d86dce3e5d7d3175b91326ba7b038e",
+        "receipt_sha256": "7f33d1aba6732950ef2401e85f6ecdce7c4b570bc377d80ebe822b6efb092ef7",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/historical-name-continuity-independent-review.json"
+      },
+      "identity_basis": {
+        "canonical_name": "Wentong Cai",
+        "basis": "exact_historical_owned_url_in_native_original_DBLP_person",
+        "evidence": {
+          "pid": "https://dblp.org/pid/83/3179",
+          "names": [
+            "Wentong Cai 0001"
+          ],
+          "urls": [
+            "https://www.ntu.edu.sg/home/aswtcai/"
+          ],
+          "sha256": "babe63d7b3dcf2e3dcd7cf8d49db94f4e1261c930d9661a4cb5adf2a4e3ac532",
+          "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/continuity-dblp-selected-originals/83_3179.xml",
+          "native_owners": [
+            "Wentong Cai"
+          ]
+        }
+      },
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20260606112748id_/https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "5bc1cb9e9c9e1f2f538048bb3526c2f6193b100a80a4d1f4f8bb024cab65c498",
+          "format": "ntu_img_cards",
+          "name_listed": "Wentong Cai",
+          "profile": "https://dr.ntu.edu.sg/entities/person/Wentong-Cai",
+          "quote": "Prof Wentong Cai [...] Appointments: Associate Dean (Faculty), College of Computing & Data Science Professor, College of Computing & Data Science"
+        },
+        {
+          "url": "https://web.archive.org/web/20260810082316id_/https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "5bb6dc487c95ea526c10c19338106d795d180a8515194dfbc47a01b73d2a85da",
+          "format": "ntu_img_cards",
+          "name_listed": "Wentong Cai",
+          "profile": "https://dr.ntu.edu.sg/entities/person/Wentong-Cai",
+          "quote": "Prof Wentong Cai [...] Appointments: Associate Dean (Faculty), College of Computing & Data Science Professor, College of Computing & Data Science"
+        },
+        {
+          "url": "https://web.archive.org/web/20240625225031id_/https://www.ntu.edu.sg/computing/our-people/faculty",
+          "sha256": "fd63c088a84dd3a1591ccffd69eddfcca70ca2ed0ebae6ae1852b48a7299eb87",
+          "format": "ntu_img_cards",
+          "name_listed": "Wentong Cai",
+          "profile": "https://dr.ntu.edu.sg/cris/rp/rp00964",
+          "quote": "Prof Wentong Cai [...] Appointments: Associate Dean (Faculty), College of Computing & Data Science Professor, College of Computing & Data Science"
+        },
+        {
+          "url": "https://web.archive.org/web/20250715202539id_/https://www.ntu.edu.sg/computing/our-people/faculty",
+          "sha256": "dc6e50272d891542c73971a65f85c53e4493b579e9c80f00941fb18b97eb4689",
+          "format": "ntu_img_cards",
+          "name_listed": "Wentong Cai",
+          "profile": "https://dr.ntu.edu.sg/entities/person/Wentong-Cai",
+          "quote": "Prof Wentong Cai [...] Appointments: Associate Dean (Faculty), College of Computing & Data Science Professor, College of Computing & Data Science"
+        },
+        {
+          "url": "https://web.archive.org/web/20160304155707id_/http://www3.ntu.edu.sg:80/SCE/moss_staffac.asp",
+          "sha256": "88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Cai Wentong",
+          "profile": "http://www.ntu.edu.sg/home/aswtcai/",
+          "quote": "Cai Wentong (Professor)"
+        },
+        {
+          "url": "https://web.archive.org/web/20160619211903id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "d092630cbbe784c8c35b286e793fb4c474bed4125f365c048008a2ec80f3efe9",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Cai Wentong",
+          "profile": "http://www.ntu.edu.sg/home/aswtcai/",
+          "quote": "Cai Wentong (Professor)"
+        },
+        {
+          "url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Cai Wentong",
+          "profile": "http://www.ntu.edu.sg/home/aswtcai/",
+          "quote": "Cai Wentong (Professor)"
+        },
+        {
+          "url": "https://web.archive.org/web/20180602075008id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "15f38099ef1f7d55dbbd900606e0543111d07160ce878f3e7d9a86c0d7edc2d0",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Cai Wentong",
+          "profile": "http://www.ntu.edu.sg/home/aswtcai/",
+          "quote": "Cai Wentong (Professor)"
+        },
+        {
+          "url": "https://web.archive.org/web/20190719123909id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "5b244f02dbf760c3711736bc4711c1980f81d568b5589a825378959c5d3b7f57",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Cai Wentong",
+          "profile": "http://www.ntu.edu.sg/home/aswtcai/",
+          "quote": "Cai Wentong (Professor)"
+        },
+        {
+          "url": "https://web.archive.org/web/20200623035947id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "0bfcc36fe78fcaa197c641fb6ebeabc9719edc7af770f4e76652005227a08907",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Cai Wentong",
+          "profile": "http://www.ntu.edu.sg/home/aswtcai/",
+          "quote": "Cai Wentong (Professor)"
+        }
+      ]
+    },
+    {
+      "canonical_name": "Wee Keong NG",
+      "scope": "Only the exact saved faculty-card observations enumerated below; literal source names and quotes remain.",
+      "independent_review": {
+        "reviewer": "codex-sjtu-recall-1115",
+        "packet_sha256": "6ee84bc56c66566c91b7426c39b9381363d86dce3e5d7d3175b91326ba7b038e",
+        "receipt_sha256": "7f33d1aba6732950ef2401e85f6ecdce7c4b570bc377d80ebe822b6efb092ef7",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/historical-name-continuity-independent-review.json"
+      },
+      "identity_basis": {
+        "canonical_name": "Wee Keong NG",
+        "basis": "exact_historical_owned_url_in_native_original_DBLP_person",
+        "evidence": {
+          "pid": "https://dblp.org/pid/n/WeeKeongNg",
+          "names": [
+            "Wee Keong Ng",
+            "Ng Wee Keong"
+          ],
+          "urls": [
+            "http://www.ntu.edu.sg/home/awkng/"
+          ],
+          "sha256": "a1b13ab52da9fd6447f0df45ab1774637466b27112751c0fb3f2e48be5847e3a",
+          "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/continuity-dblp-selected-originals/n_WeeKeongNg.xml",
+          "native_owners": [
+            "Wee Keong NG"
+          ]
+        }
+      },
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20240625225031id_/https://www.ntu.edu.sg/computing/our-people/faculty",
+          "sha256": "fd63c088a84dd3a1591ccffd69eddfcca70ca2ed0ebae6ae1852b48a7299eb87",
+          "format": "ntu_img_cards",
+          "name_listed": "Wee Keong NG",
+          "profile": "https://dr.ntu.edu.sg/cris/rp/rp01094",
+          "quote": "Assoc Prof Wee Keong NG [...] Appointments: Associate Professor, College of Computing & Data Science"
+        },
+        {
+          "url": "https://web.archive.org/web/20250715202539id_/https://www.ntu.edu.sg/computing/our-people/faculty",
+          "sha256": "dc6e50272d891542c73971a65f85c53e4493b579e9c80f00941fb18b97eb4689",
+          "format": "ntu_img_cards",
+          "name_listed": "Wee Keong NG",
+          "profile": "https://dr.ntu.edu.sg/entities/person/Wee-Keong-NG",
+          "quote": "Assoc Prof Wee Keong NG [...] Appointments: Associate Professor, College of Computing & Data Science"
+        },
+        {
+          "url": "https://web.archive.org/web/20160304155707id_/http://www3.ntu.edu.sg:80/SCE/moss_staffac.asp",
+          "sha256": "88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Ng Wee Keong",
+          "profile": "http://www.ntu.edu.sg/home/awkng/",
+          "quote": "Ng Wee Keong (Assoc Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20210515230315id_/https://www.ntu.edu.sg/scse/about-us/our-people/faculty",
+          "sha256": "49f3c3f6c7a10d8579299e8e8027c14fb1bc7e2e610ef27acbe0c9b3ca126c24",
+          "format": "ntu_img_cards",
+          "name_listed": "Wee Keong NG",
+          "profile": "https://dr.ntu.edu.sg//cris/rp/rp01094",
+          "quote": "Assoc Prof Wee Keong NG [...] Appointments: Associate Professor, School of Computer Science and Engineering"
+        },
+        {
+          "url": "https://web.archive.org/web/20160619211903id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "d092630cbbe784c8c35b286e793fb4c474bed4125f365c048008a2ec80f3efe9",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Ng Wee Keong",
+          "profile": "http://www.ntu.edu.sg/home/awkng/",
+          "quote": "Ng Wee Keong (Assoc Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Ng Wee Keong",
+          "profile": "http://www.ntu.edu.sg/home/awkng/",
+          "quote": "Ng Wee Keong (Assoc Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20180602075008id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "15f38099ef1f7d55dbbd900606e0543111d07160ce878f3e7d9a86c0d7edc2d0",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Ng Wee Keong",
+          "profile": "http://www.ntu.edu.sg/home/awkng/",
+          "quote": "Ng Wee Keong (Assoc Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20190719123909id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "5b244f02dbf760c3711736bc4711c1980f81d568b5589a825378959c5d3b7f57",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Ng Wee Keong",
+          "profile": "http://www.ntu.edu.sg/home/awkng/",
+          "quote": "Ng Wee Keong (Assoc Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20200623035947id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "0bfcc36fe78fcaa197c641fb6ebeabc9719edc7af770f4e76652005227a08907",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Ng Wee Keong",
+          "profile": "http://www.ntu.edu.sg/home/awkng/",
+          "quote": "Ng Wee Keong (Assoc Prof)"
+        }
+      ]
+    },
+    {
+      "canonical_name": "Sinno Jialin Pan",
+      "scope": "Only the exact saved faculty-card observations enumerated below; literal source names and quotes remain.",
+      "independent_review": {
+        "reviewer": "codex-sjtu-recall-1115",
+        "packet_sha256": "6ee84bc56c66566c91b7426c39b9381363d86dce3e5d7d3175b91326ba7b038e",
+        "receipt_sha256": "7f33d1aba6732950ef2401e85f6ecdce7c4b570bc377d80ebe822b6efb092ef7",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/historical-name-continuity-independent-review.json"
+      },
+      "identity_basis": {
+        "canonical_name": "Sinno Jialin Pan",
+        "basis": "exact_historical_owned_url_in_native_original_DBLP_person",
+        "evidence": {
+          "pid": "https://dblp.org/pid/80/5412",
+          "names": [
+            "Sinno Jialin Pan"
+          ],
+          "urls": [
+            "http://www.ntu.edu.sg/home/sinnopan/"
+          ],
+          "sha256": "35422c1f6cda702548b7c84ef89d98a490ec3960af17df2021ff266a807e854c",
+          "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/continuity-dblp-selected-originals/80_5412.xml",
+          "native_owners": [
+            "Sinno Jialin Pan"
+          ]
+        }
+      },
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20240625225031id_/https://www.ntu.edu.sg/computing/our-people/faculty",
+          "sha256": "fd63c088a84dd3a1591ccffd69eddfcca70ca2ed0ebae6ae1852b48a7299eb87",
+          "format": "ntu_img_cards",
+          "name_listed": "Pan, Sinno Jialin",
+          "profile": "https://dr.ntu.edu.sg/cris/rp/rp00122",
+          "quote": "Prof Pan, Sinno Jialin [...] Appointments: Professor, College of Computing & Data Science"
+        },
+        {
+          "url": "https://web.archive.org/web/20160304155707id_/http://www3.ntu.edu.sg:80/SCE/moss_staffac.asp",
+          "sha256": "88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Pan Jialin, Sinno",
+          "profile": "http://www.ntu.edu.sg/home/sinnopan/",
+          "quote": "Pan Jialin, Sinno (Asst Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20210515230315id_/https://www.ntu.edu.sg/scse/about-us/our-people/faculty",
+          "sha256": "49f3c3f6c7a10d8579299e8e8027c14fb1bc7e2e610ef27acbe0c9b3ca126c24",
+          "format": "ntu_img_cards",
+          "name_listed": "Pan, Sinno Jialin",
+          "profile": "https://dr.ntu.edu.sg//cris/rp/rp00122",
+          "quote": "Assoc Prof Pan, Sinno Jialin [...] Appointments: Associate Professor, School of Computer Science and Engineering"
+        },
+        {
+          "url": "https://web.archive.org/web/20160619211903id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "d092630cbbe784c8c35b286e793fb4c474bed4125f365c048008a2ec80f3efe9",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Pan Jialin, Sinno",
+          "profile": "http://www.ntu.edu.sg/home/sinnopan/",
+          "quote": "Pan Jialin, Sinno (Asst Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Pan Jialin, Sinno",
+          "profile": "http://www.ntu.edu.sg/home/sinnopan/",
+          "quote": "Pan Jialin, Sinno (Nanyang Asst Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20180602075008id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "15f38099ef1f7d55dbbd900606e0543111d07160ce878f3e7d9a86c0d7edc2d0",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Pan Jialin, Sinno",
+          "profile": "http://www.ntu.edu.sg/home/sinnopan/",
+          "quote": "Pan Jialin, Sinno (Nanyang Asst Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20190719123909id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "5b244f02dbf760c3711736bc4711c1980f81d568b5589a825378959c5d3b7f57",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Pan Jialin, Sinno",
+          "profile": "http://www.ntu.edu.sg/home/sinnopan/",
+          "quote": "Pan Jialin, Sinno (Nanyang Assoc Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20200623035947id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "0bfcc36fe78fcaa197c641fb6ebeabc9719edc7af770f4e76652005227a08907",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Pan Jialin, Sinno",
+          "profile": "http://www.ntu.edu.sg/home/sinnopan/",
+          "quote": "Pan Jialin, Sinno (Assoc Prof)"
+        }
+      ]
+    },
+    {
+      "canonical_name": "Alexei Sourin",
+      "scope": "Only the exact saved faculty-card observations enumerated below; literal source names and quotes remain.",
+      "independent_review": {
+        "reviewer": "codex-sjtu-recall-1115",
+        "packet_sha256": "6ee84bc56c66566c91b7426c39b9381363d86dce3e5d7d3175b91326ba7b038e",
+        "receipt_sha256": "7f33d1aba6732950ef2401e85f6ecdce7c4b570bc377d80ebe822b6efb092ef7",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/historical-name-continuity-independent-review.json"
+      },
+      "identity_basis": {
+        "canonical_name": "Alexei Sourin",
+        "basis": "exact_historical_owned_url_in_native_original_DBLP_person",
+        "evidence": {
+          "pid": "https://dblp.org/pid/15/3108",
+          "names": [
+            "Alexei Sourin"
+          ],
+          "urls": [
+            "http://www.ntu.edu.sg/home/assourin/"
+          ],
+          "sha256": "58b2ac7d2baefff38587dc2fc415b85baa146b3b8b8d78c9b2c69b3034b8a993",
+          "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/continuity-dblp-selected-originals/15_3108.xml",
+          "native_owners": [
+            "Alexei Sourin"
+          ]
+        }
+      },
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20260606112748id_/https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "5bc1cb9e9c9e1f2f538048bb3526c2f6193b100a80a4d1f4f8bb024cab65c498",
+          "format": "ntu_img_cards",
+          "name_listed": "Alexei Sourin",
+          "profile": "https://dr.ntu.edu.sg/entities/person/Alexei-Sourin",
+          "quote": "Assoc Prof Alexei Sourin [...] Appointments: Associate Professor, College of Computing & Data Science"
+        },
+        {
+          "url": "https://web.archive.org/web/20260810082316id_/https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+          "sha256": "5bb6dc487c95ea526c10c19338106d795d180a8515194dfbc47a01b73d2a85da",
+          "format": "ntu_img_cards",
+          "name_listed": "Alexei Sourin",
+          "profile": "https://dr.ntu.edu.sg/entities/person/Alexei-Sourin",
+          "quote": "Assoc Prof Alexei Sourin [...] Appointments: Associate Professor, College of Computing & Data Science"
+        },
+        {
+          "url": "https://web.archive.org/web/20240625225031id_/https://www.ntu.edu.sg/computing/our-people/faculty",
+          "sha256": "fd63c088a84dd3a1591ccffd69eddfcca70ca2ed0ebae6ae1852b48a7299eb87",
+          "format": "ntu_img_cards",
+          "name_listed": "Alexei Sourin",
+          "profile": "https://dr.ntu.edu.sg/cris/rp/rp00274",
+          "quote": "Assoc Prof Alexei Sourin [...] Appointments: Associate Professor, College of Computing & Data Science"
+        },
+        {
+          "url": "https://web.archive.org/web/20250715202539id_/https://www.ntu.edu.sg/computing/our-people/faculty",
+          "sha256": "dc6e50272d891542c73971a65f85c53e4493b579e9c80f00941fb18b97eb4689",
+          "format": "ntu_img_cards",
+          "name_listed": "Alexei Sourin",
+          "profile": "https://dr.ntu.edu.sg/entities/person/Alexei-Sourin",
+          "quote": "Assoc Prof Alexei Sourin [...] Appointments: Associate Professor, College of Computing & Data Science"
+        },
+        {
+          "url": "https://web.archive.org/web/20160304155707id_/http://www3.ntu.edu.sg:80/SCE/moss_staffac.asp",
+          "sha256": "88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Sourin Alexei",
+          "profile": "http://www.ntu.edu.sg/home/assourin/",
+          "quote": "Sourin Alexei (Assoc Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20210515230315id_/https://www.ntu.edu.sg/scse/about-us/our-people/faculty",
+          "sha256": "49f3c3f6c7a10d8579299e8e8027c14fb1bc7e2e610ef27acbe0c9b3ca126c24",
+          "format": "ntu_img_cards",
+          "name_listed": "Alexei Sourin",
+          "profile": "https://dr.ntu.edu.sg//cris/rp/rp00274",
+          "quote": "Assoc Prof Alexei Sourin [...] Appointments: Associate Professor, School of Computer Science and Engineering"
+        },
+        {
+          "url": "https://web.archive.org/web/20160619211903id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "d092630cbbe784c8c35b286e793fb4c474bed4125f365c048008a2ec80f3efe9",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Sourin Alexei",
+          "profile": "http://www.ntu.edu.sg/home/assourin/",
+          "quote": "Sourin Alexei (Assoc Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Sourin Alexei",
+          "profile": "http://www.ntu.edu.sg/home/assourin/",
+          "quote": "Sourin Alexei (Assoc Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20180602075008id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "15f38099ef1f7d55dbbd900606e0543111d07160ce878f3e7d9a86c0d7edc2d0",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Sourin Alexei",
+          "profile": "http://www.ntu.edu.sg/home/assourin/",
+          "quote": "Sourin Alexei (Assoc Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20190719123909id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "5b244f02dbf760c3711736bc4711c1980f81d568b5589a825378959c5d3b7f57",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Sourin Alexei",
+          "profile": "http://www.ntu.edu.sg/home/assourin/",
+          "quote": "Sourin Alexei (Assoc Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20200623035947id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "0bfcc36fe78fcaa197c641fb6ebeabc9719edc7af770f4e76652005227a08907",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Sourin Alexei",
+          "profile": "http://www.ntu.edu.sg/home/assourin/",
+          "quote": "Sourin Alexei (Assoc Prof)"
+        }
+      ]
+    },
+    {
+      "canonical_name": "Thambipillai Srikanthan",
+      "scope": "Only the exact saved faculty-card observations enumerated below; literal source names and quotes remain.",
+      "independent_review": {
+        "reviewer": "codex-sjtu-recall-1115",
+        "packet_sha256": "6ee84bc56c66566c91b7426c39b9381363d86dce3e5d7d3175b91326ba7b038e",
+        "receipt_sha256": "7f33d1aba6732950ef2401e85f6ecdce7c4b570bc377d80ebe822b6efb092ef7",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/historical-name-continuity-independent-review.json"
+      },
+      "identity_basis": {
+        "canonical_name": "Thambipillai Srikanthan",
+        "basis": "both_literal_names_are_explicit_aliases_in_native_original_DBLP_person",
+        "evidence": {
+          "pid": "https://dblp.org/pid/23/1694",
+          "names": [
+            "Thambipillai Srikanthan",
+            "Srikanthan Thambipillai"
+          ],
+          "sha256": "35e5b278f9a2a7335d200962ead3e20ce267fc0e3dc55b15a76827ad1ee529ed",
+          "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/continuity-dblp-selected-originals/23_1694.xml"
+        }
+      },
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20240625225031id_/https://www.ntu.edu.sg/computing/our-people/faculty",
+          "sha256": "fd63c088a84dd3a1591ccffd69eddfcca70ca2ed0ebae6ae1852b48a7299eb87",
+          "format": "ntu_img_cards",
+          "name_listed": "Thambipillai Srikanthan",
+          "profile": "https://dr.ntu.edu.sg/cris/rp/rp00841",
+          "quote": "Prof Thambipillai Srikanthan [...] Appointments: Executive Director, Cyber Security Research Centre @ NTU Professor, School of Computer Science and Engineering"
+        },
+        {
+          "url": "https://web.archive.org/web/20160304155707id_/http://www3.ntu.edu.sg:80/SCE/moss_staffac.asp",
+          "sha256": "88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Srikanthan Thambipillai",
+          "profile": null,
+          "quote": "Srikanthan Thambipillai (Professor)"
+        },
+        {
+          "url": "https://web.archive.org/web/20210515230315id_/https://www.ntu.edu.sg/scse/about-us/our-people/faculty",
+          "sha256": "49f3c3f6c7a10d8579299e8e8027c14fb1bc7e2e610ef27acbe0c9b3ca126c24",
+          "format": "ntu_img_cards",
+          "name_listed": "Thambipillai Srikanthan",
+          "profile": "https://dr.ntu.edu.sg//cris/rp/rp00841",
+          "quote": "Prof Thambipillai Srikanthan [...] Appointments: Executive Director, Cyber Security Research Centre @ NTU Professor, School of Computer Science and Engineering"
+        },
+        {
+          "url": "https://web.archive.org/web/20160619211903id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "d092630cbbe784c8c35b286e793fb4c474bed4125f365c048008a2ec80f3efe9",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Srikanthan Thambipillai",
+          "profile": null,
+          "quote": "Srikanthan Thambipillai (Professor)"
+        },
+        {
+          "url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Srikanthan Thambipillai",
+          "profile": null,
+          "quote": "Srikanthan Thambipillai (Professor)"
+        },
+        {
+          "url": "https://web.archive.org/web/20180602075008id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "15f38099ef1f7d55dbbd900606e0543111d07160ce878f3e7d9a86c0d7edc2d0",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Srikanthan Thambipillai",
+          "profile": null,
+          "quote": "Srikanthan Thambipillai (Professor)"
+        },
+        {
+          "url": "https://web.archive.org/web/20190719123909id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "5b244f02dbf760c3711736bc4711c1980f81d568b5589a825378959c5d3b7f57",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Srikanthan Thambipillai",
+          "profile": null,
+          "quote": "Srikanthan Thambipillai (Professor)"
+        },
+        {
+          "url": "https://web.archive.org/web/20200623035947id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "0bfcc36fe78fcaa197c641fb6ebeabc9719edc7af770f4e76652005227a08907",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Srikanthan Thambipillai",
+          "profile": null,
+          "quote": "Srikanthan Thambipillai (Professor)"
+        }
+      ]
+    },
+    {
+      "canonical_name": "Lana Obraztsova",
+      "scope": "Only the exact saved faculty-card observations enumerated below; literal source names and quotes remain.",
+      "independent_review": {
+        "reviewer": "codex-sjtu-recall-1115",
+        "packet_sha256": "6ee84bc56c66566c91b7426c39b9381363d86dce3e5d7d3175b91326ba7b038e",
+        "receipt_sha256": "7f33d1aba6732950ef2401e85f6ecdce7c4b570bc377d80ebe822b6efb092ef7",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/historical-name-continuity-independent-review.json"
+      },
+      "identity_basis": {
+        "canonical_name": "Lana Obraztsova",
+        "basis": "literal_parenthesized_nickname_and_same_current_official_card_expands_Svetlana",
+        "evidence": {
+          "name": "Lana Obraztsova",
+          "heading": "Asst Prof Lana Obraztsova",
+          "profile": "https://dr.ntu.edu.sg//cris/rp/rp00219",
+          "biography_excerpt": "Svetlana Obraztsova currently holds the post of an Assistant Professor at the School of Computer Science and Engineering of the Nanyang Technological ...",
+          "source_url": "https://web.archive.org/web/20210515230315id_/https://www.ntu.edu.sg/scse/about-us/our-people/faculty",
+          "sha256": "49f3c3f6c7a10d8579299e8e8027c14fb1bc7e2e610ef27acbe0c9b3ca126c24"
+        }
+      },
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20210515230315id_/https://www.ntu.edu.sg/scse/about-us/our-people/faculty",
+          "sha256": "49f3c3f6c7a10d8579299e8e8027c14fb1bc7e2e610ef27acbe0c9b3ca126c24",
+          "format": "ntu_img_cards",
+          "name_listed": "Lana Obraztsova",
+          "profile": "https://dr.ntu.edu.sg//cris/rp/rp00219",
+          "quote": "Asst Prof Lana Obraztsova [...] Appointments: Assistant Professor, School of Computer Science and Engineering"
+        },
+        {
+          "url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Svetlana (Lana) Obraztsova",
+          "profile": null,
+          "quote": "Svetlana (Lana) Obraztsova (Asst Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20180602075008id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "15f38099ef1f7d55dbbd900606e0543111d07160ce878f3e7d9a86c0d7edc2d0",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Svetlana (Lana) Obraztsova",
+          "profile": null,
+          "quote": "Svetlana (Lana) Obraztsova (Asst Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20190719123909id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "5b244f02dbf760c3711736bc4711c1980f81d568b5589a825378959c5d3b7f57",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Svetlana (Lana) Obraztsova",
+          "profile": null,
+          "quote": "Svetlana (Lana) Obraztsova (Asst Prof)"
+        },
+        {
+          "url": "https://web.archive.org/web/20200623035947id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "0bfcc36fe78fcaa197c641fb6ebeabc9719edc7af770f4e76652005227a08907",
+          "format": "ntu_moss_faculty",
+          "name_listed": "Svetlana (Lana) Obraztsova",
+          "profile": null,
+          "quote": "Svetlana (Lana) Obraztsova (Asst Prof)"
+        }
+      ]
     }
-   ],
-   "reason": "Separate faculty card in the same 2025/2026 source as the CS/CCDS person, with a distinct profile and explicit SPMS plus CCDS appointments. Its biography says Yi Li joined the Division of Mathematical Sciences in August 2016; that biographical date is not adopted as a faculty period by this identity mapping.",
-   "source_forms": [
-    "Yi Li",
-    "Li Yi"
-   ]
-  }
- ]
+  ]
 }
