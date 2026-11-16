@@ -25,6 +25,8 @@ wayback_only_suffixes = []
 excluded_hosts = ["sigs.tsinghua.edu.cn", "www.sigs.tsinghua.edu.cn", "tbsi.edu.cn", "www.tbsi.edu.cn", "sz.tsinghua.edu.cn"]
 
 [affiliation]
+# Literal excluded-campus evidence overrides broad parent IDs; independent Beijing affiliations remain eligible.
+excluded_regex = '\b(?:tsinghua|qinghua)\s+univ\w*\b\s*[,(-]\s*shenzhen\b|\bgraduate\s+school\s+(?:of|at|in)\s+shenzhen\s*[,]\s*(?:tsinghua|qinghua)\s+univ\w*\b|\btsinghua(?:[-\s]+berkeley)?\s+shenzhen\s+(?:international\s+graduate\s+school|institute)\b|清华大学深圳(?:国际)?研究生院'
 regex = '\btsinghua\s+univ\w*\b(?!\s*[,(-]\s*(?:shenzhen|深圳))|\bqinghua\s+univ\w*\b(?!\s*[,(-]\s*(?:shenzhen|深圳))|(?<!国立)清华大学(?!深圳)|(?<!sigs\.)(?<!sz\.)(?<!tbsi\.)\btsinghua\.edu\.cn\b'
 loose = 'tsinghua|qinghua|清华|\bbnrist\b'
 own_units = 'Department of Computer Science and Technology|School of Software|Institute for Interdisciplinary Information Sciences|Institute for AI Industry Research|Institute for Network Sciences and Cyberspace|Beijing National Research Center for Information Science and Technology|\bBNRist\b'
