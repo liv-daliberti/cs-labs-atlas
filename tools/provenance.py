@@ -68,7 +68,10 @@ def sha256(p):
 
 
 def _git(*a):
-    return subprocess.run(['git', '-C', str(P.WORK), *a], capture_output=True, text=True, check=True).stdout
+    # The snapshot helper takes code from SNAPSHOT_REPO; P.WORK may instead
+    # be a private data overlay whose symlink directories are not a checkout.
+    source = os.environ.get('SNAPSHOT_REPO') if os.environ.get('CS_ATLAS_SNAPSHOT_COMMIT') else None
+    return subprocess.run(['git', '-C', str(source or P.WORK), *a], capture_output=True, text=True, check=True).stdout
 
 
 def _mtime(p):
