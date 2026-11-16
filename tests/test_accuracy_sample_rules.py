@@ -109,6 +109,37 @@ def test_R_PAP_20_keeps_pages_without_affiliations_and_school_pages(cases):
     assert h.page1_elsewhere(None, None, 'berkeley') is None                                                   # unchecked: kept
 
 
+def test_R_PAP_20_numbered_author_affiliation_after_abstract():
+    # Primary page 1 of TFNP in the Random Oracle Model, arXiv:2611.05308v1: Pitassi's numbered affiliation is
+    # below both the abstract and the contents. No Toronto affiliation appears anywhere on that page.
+    page = ('TFNP in the Random Oracle Model\nNoah Fleming1\nToniann Pitassi6\n\nAbstract\n'
+            'We determine which major TFNP classes are hard in the random oracle model (ROM).\n'
+            'Table of Contents\n1 Introduction\n2\n6 Columbia University. tp2684@columbia.edu\n')
+    assert h.page1_elsewhere('ok_absent', page, 'toronto', author_names=['Toniann Pitassi']) == 'Columbia University'
+    assert h.page1_elsewhere('ok_absent', page, 'toronto') is None  # legacy callers supply no marker ownership
+    assert h.page1_elsewhere('ok_absent', page, 'toronto', author_names=['Noah Fleming']) is None
+    assert h.page1_elsewhere('ok_absent', page.replace('Columbia', 'Toronto'), 'toronto',
+                             author_names=['Toniann Pitassi']) is None
+    assert h.page1_elsewhere('ok_untied', page, 'toronto', author_names=['Toniann Pitassi']) is None
+
+
+@pytest.mark.parametrize('affiliation', ['University of Oxford', 'Department of Computing, Imperial College'])
+def test_R_PAP_20_numbered_footnotes_need_no_email(affiliation):
+    page = 'A paper\nJane Doe 12\nAbstract\nOur result.\n12 ' + affiliation + '\n'
+    assert h.page1_elsewhere('ok_absent', page, 'toronto', author_names=['Jane Doe']) == affiliation
+
+
+@pytest.mark.parametrize('tail', [
+    'We compare results from Columbia University and Google.',
+    '6 Results at Columbia University improve the estimate.',
+    '6 Columbia University researchers provided the benchmark.',
+    '7 Columbia University. author@columbia.edu',  # a different marker is not this author's affiliation
+])
+def test_R_PAP_20_institution_words_after_abstract_are_not_affiliations(tail):
+    page = 'A paper\nJane Doe6\nAbstract\n' + tail
+    assert h.page1_elsewhere('ok_absent', page, 'toronto', author_names=['Jane Doe']) is None
+
+
 # ---- R4 chapters without a venue fold by DOI prefix (R-PAP-21) ---------------------------------------------------
 
 def test_R_PAP_21_rubinstein_chapters_fold_into_the_book(cases):
