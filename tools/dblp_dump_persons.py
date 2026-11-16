@@ -26,6 +26,7 @@ import gzip, html, json, re
 from pi_hierarchy import toks  # noqa: E402
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
+import census_overrides as CO  # noqa: E402
 HERE = P.WORK
 DUMP = P.DBLP_DUMP_XML
 import sys  # noqa: E402
@@ -64,17 +65,44 @@ def records():
                 break
 
 
+def source_targets(school):
+    """Accepted PIs, including a school's core census before its first build.
+
+    Native outputs are optional here: they cannot be required to collect the
+    identity evidence that the first native build itself needs.
+    """
+    def read(name, default):
+        path = P.data(name, school)
+        return json.loads(path.read_text()) if path.exists() else default
+
+    def values(value):
+        return [value] if isinstance(value, str) else list(value or [])
+
+    census = read('census-faculty.json', {})
+    census = census.get('faculty', []) if isinstance(census, dict) else census
+    rows = read('pis.json', []) + [x for x in census if x.get('is_pi')]
+    rows += [x for x in read('census-additions.json', []) if x.get('is_pi', True)]
+    overrides = CO.section(school)
+    pids, names = set(), set()
+    for row in rows:
+        name = row.get('censusName') or row.get('name') or row.get('pi')
+        override = overrides.get(name) or {}
+        if override.get('exclude'):
+            continue
+        pids.update(q.rstrip('/') for q in values(row.get('dblp')) + values(row.get('dblpDropped')) + values(override.get('dblp'))
+                    if isinstance(q, str) and '/pid/' in q)
+        forms = values(row.get('names')) + [name]
+        forms += values(row.get('aliases')) + values(override.get('aliases'))
+        names.update(base(n) for n in forms if n and len(toks(n)) >= 2)
+    return pids, names
+
+
 def main():
     pids, names = set(), set()
     for s in SCHOOLS:
-        p_ = P.data('pis.json', s)
-        for p in json.loads(p_.read_text()) if p_.exists() else []:
-            pids |= {q.rstrip('/') for q in (p.get('dblp') or []) + (p.get('dblpDropped') or []) if '/pid/' in q}
-            names |= {' '.join(toks(n)) for n in p.get('names') or [] if len(toks(n)) >= 2}
-        a_ = P.data('census-additions.json', s)  # census additions not yet built into pis.json
-        for x in json.loads(a_.read_text()) if a_.exists() else []:
-            pids |= {q.rstrip('/') for q in ([x['dblp']] if isinstance(x.get('dblp'), str) else x.get('dblp') or []) if '/pid/' in q}
-            names |= {' '.join(toks(n)) for n in [x.get('name')] + list(x.get('aliases') or []) if n and len(toks(n)) >= 2}
+        school_pids, school_names = source_targets(s)
+        pids |= school_pids
+        names |= school_names
     want = {'homepages/' + q.split('/pid/', 1)[1] for q in pids}
     persons, by_name = {}, {}
     for typ, key, body in records():  # pass 1
