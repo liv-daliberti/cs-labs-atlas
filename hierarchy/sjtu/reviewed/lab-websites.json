@@ -1897,14 +1897,14 @@
   },
   {
    "pi": "高晓沨",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-16",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/gaoxiaofeng.html",
    "profile_sha256": "64b68611cc5e8834f09020c1f3d7bdab6b14a3cdbfc44ef70ce58a43e40635eb",
-   "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "url": "https://cs.sjtu.edu.cn/~gao-xf/Students/",
+   "status": "reviewed_cached_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Actual finite source supersedes prior unread member candidate and old false nohomepage claim.",
+   "coverage": "website",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/gaoxiaofeng.html",
@@ -1920,8 +1920,55 @@
      "result": "no_personal_site_link_on_profile",
      "at": "2026-11-10T00:00:00",
      "source_sha256": "64b68611cc5e8834f09020c1f3d7bdab6b14a3cdbfc44ef70ce58a43e40635eb"
+    },
+    {
+     "source": "owner_approved_finite_member_capture",
+     "url": "https://cs.sjtu.edu.cn/~gao-xf/Students/",
+     "result": "ok",
+     "at": "2026-11-16T01:18:05",
+     "sha256": "724e9dd91a43b85a9838f19e72f0a500275386cbe8753804515df0caac66d104"
     }
-   ]
+   ],
+   "kind": "pi_homepage",
+   "sha256": "724e9dd91a43b85a9838f19e72f0a500275386cbe8753804515df0caac66d104",
+   "people_page": "https://cs.sjtu.edu.cn/~gao-xf/Students/",
+   "resource_status": "Actual own76-name student page HTTP200 read under finite owner-approvedCSscope. Historical CurrentStudents sections preserved; no reliable currentasof, so literalstarts/closedintervals only, no2026extension.",
+   "historical_audit_rows": [
+    {
+     "superseded_on": "2026-11-16",
+     "reason": "Actual finite original body now read; old source/access observation retained.",
+     "record": {
+      "pi": "高晓沨",
+      "checked_at": "2026-11-10",
+      "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/gaoxiaofeng.html",
+      "profile_sha256": "64b68611cc5e8834f09020c1f3d7bdab6b14a3cdbfc44ef70ce58a43e40635eb",
+      "url": null,
+      "status": "none_found",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
+      "coverage": "none",
+      "ownership_sources": [
+       {
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/gaoxiaofeng.html",
+        "sha256": "64b68611cc5e8834f09020c1f3d7bdab6b14a3cdbfc44ef70ce58a43e40635eb",
+        "quote": "所在研究所：先进网络研究所 公众号二维码 小红书二维码 哔哩哔哩二维码 学院地址：上海市东川路800号 Email：sc",
+        "kind": "official_profile_without_site_field"
+       }
+      ],
+      "checks": [
+       {
+        "source": "official_profile_capture",
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/gaoxiaofeng.html",
+        "result": "no_personal_site_link_on_profile",
+        "at": "2026-11-10T00:00:00",
+        "source_sha256": "64b68611cc5e8834f09020c1f3d7bdab6b14a3cdbfc44ef70ce58a43e40635eb"
+       }
+      ]
+     }
+    }
+   ],
+   "independent_review_by": "codex-sjtu-ntu-1115",
+   "independent_review_report": "hierarchy/sjtu/reports/GAO-SOURCE-REPAIR-20261116.json"
   },
   {
    "pi": "高 岳",
@@ -2595,14 +2642,14 @@
   },
   {
    "pi": "姜丽红",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-16",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/jianglihong.html",
    "profile_sha256": "0f10bb612968beeb7458fbd80a44cdf61661b7252290894b92130ae95b606561",
-   "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "url": "https://ist.sjtu.edu.cn/membersjianglh",
+   "status": "reviewed_cached_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Normal freshrobots and exactindividualprofile succeed; do not retain false blocked/nohomepage reason. No collective-to-individual attribution inferred.",
+   "coverage": "website",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/jianglihong.html",
@@ -2618,8 +2665,55 @@
      "result": "no_personal_site_link_on_profile",
      "at": "2026-11-10T00:00:00",
      "source_sha256": "0f10bb612968beeb7458fbd80a44cdf61661b7252290894b92130ae95b606561"
+    },
+    {
+     "source": "normal_finite_member_capture",
+     "url": "https://ist.sjtu.edu.cn/membersjianglh",
+     "result": "ok",
+     "at": "2026-11-16T01:21:02",
+     "sha256": "c0451b845ee31086c115b2496dd88968dd2c17de937187434619004aa12b2f53"
     }
-   ]
+   ],
+   "kind": "pi_homepage",
+   "sha256": "c0451b845ee31086c115b2496dd88968dd2c17de937187434619004aa12b2f53",
+   "collective_people_page": "https://ist.sjtu.edu.cn/members",
+   "resource_status": "Actual individualPIprofile HTTP200 biography/publications only. Existing completeISTmembers page is multiPI collective without individualadvisor links, so no completePIroster inferred. Old syntheticblocked premise was not actualstopproof.",
+   "historical_audit_rows": [
+    {
+     "superseded_on": "2026-11-16",
+     "reason": "Actual finite original body now read; old source/access observation retained.",
+     "record": {
+      "pi": "姜丽红",
+      "checked_at": "2026-11-10",
+      "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/jianglihong.html",
+      "profile_sha256": "0f10bb612968beeb7458fbd80a44cdf61661b7252290894b92130ae95b606561",
+      "url": null,
+      "status": "none_found",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
+      "coverage": "none",
+      "ownership_sources": [
+       {
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/jianglihong.html",
+        "sha256": "0f10bb612968beeb7458fbd80a44cdf61661b7252290894b92130ae95b606561",
+        "quote": "所在研究所：空间智能软件研究所 公众号二维码 小红书二维码 哔哩哔哩二维码 学院地址：上海市东川路800号 Email：",
+        "kind": "official_profile_without_site_field"
+       }
+      ],
+      "checks": [
+       {
+        "source": "official_profile_capture",
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/jianglihong.html",
+        "result": "no_personal_site_link_on_profile",
+        "at": "2026-11-10T00:00:00",
+        "source_sha256": "0f10bb612968beeb7458fbd80a44cdf61661b7252290894b92130ae95b606561"
+       }
+      ]
+     }
+    }
+   ],
+   "independent_review_by": "codex-sjtu-ntu-1115",
+   "independent_review_report": "hierarchy/sjtu/reports/GAO-SOURCE-REPAIR-20261116.json"
   },
   {
    "pi": "蒋兴浩",
@@ -7143,13 +7237,13 @@
   },
   {
    "pi": "朱燕民",
-   "checked_at": "2026-11-11",
+   "checked_at": "2026-11-16",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuyanmin.html",
    "profile_sha256": "b527c6cb12b832cc1df8baae118998448440d86c079dc2bf8fe555b56e2b0723",
-   "url": "https://www.cs.sjtu.edu.cn/~yzhu/",
-   "status": "reviewed_live_website",
+   "url": "https://www.cs.sjtu.edu.cn/~yzhu/main_page.htm",
+   "status": "reviewed_cached_website",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "the page linked from the official school profile names the PI (page title/heading 'Dr Yanmin Zhu, CSE @ Shanghai Jiao Tong University'); fetched under the owner's 2026-11-11 reading that the cs.sjtu.edu.cn robots.txt (a 302 to the site home page, no robots rules, no Disallow) has no usable rules; honest project User-Agent, one request per page, >= 4 s between requests, no challenge; the profile links http://www.cs.sjtu.edu.cn/~yzhu, which redirects (301, 302) to this https address; the capture is a frameset shell whose title names the PI and SJTU (inner frame pages not fetched)",
+   "reason": "Finite exactframes nowactuallyread; previousframesunavailable limitation superseded. PIrecall remains unverifiable, not readableempty.",
    "coverage": "website",
    "checks": [
     {
@@ -7167,11 +7261,67 @@
      "result": "ok",
      "at": "2026-11-11T03:10:29",
      "sha256": "cf83d1a92c5e258d470067ad3d3594a0ebc7c82f1843577282d909bf67d42899"
+    },
+    {
+     "source": "owner_approved_finite_frame_capture",
+     "url": "https://www.cs.sjtu.edu.cn/~yzhu/left_frame_page.htm",
+     "result": "ok",
+     "at": "2026-11-16T01:18:15",
+     "sha256": "393579b68fe263312dca97c4afd47ed95e942f0dd34bc7eeaf20305bd5d44c28"
+    },
+    {
+     "source": "owner_approved_finite_frame_capture",
+     "url": "https://www.cs.sjtu.edu.cn/~yzhu/main_page.htm",
+     "result": "ok",
+     "at": "2026-11-16T01:18:19",
+     "sha256": "829a21a3a710e01456b565be9372ec8f21b707688aab925094c78fae5cde0259"
     }
    ],
    "found_via": "school_profile_link",
-   "sha256": "cf83d1a92c5e258d470067ad3d3594a0ebc7c82f1843577282d909bf67d42899",
-   "verification_quote": "Dr Yanmin Zhu, CSE @ Shanghai Jiao Tong University"
+   "sha256": "829a21a3a710e01456b565be9372ec8f21b707688aab925094c78fae5cde0259",
+   "verification_quote": "Dr Yanmin Zhu, CSE @ Shanghai Jiao Tong University",
+   "kind": "pi_homepage",
+   "resource_status": "Actual ownmain andleftframe originals HTTP200 under finite ownerapprovedCSscope. Fullnavigation has no namedstudent/member roster; recruitment andteaching are notmembershipproof. Rebindwebsite body to actualmainframeURL.",
+   "historical_audit_rows": [
+    {
+     "superseded_on": "2026-11-16",
+     "reason": "Actual finite original body now read; old source/access observation retained.",
+     "record": {
+      "pi": "朱燕民",
+      "checked_at": "2026-11-11",
+      "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuyanmin.html",
+      "profile_sha256": "b527c6cb12b832cc1df8baae118998448440d86c079dc2bf8fe555b56e2b0723",
+      "url": "https://www.cs.sjtu.edu.cn/~yzhu/",
+      "status": "reviewed_live_website",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "the page linked from the official school profile names the PI (page title/heading 'Dr Yanmin Zhu, CSE @ Shanghai Jiao Tong University'); fetched under the owner's 2026-11-11 reading that the cs.sjtu.edu.cn robots.txt (a 302 to the site home page, no robots rules, no Disallow) has no usable rules; honest project User-Agent, one request per page, >= 4 s between requests, no challenge; the profile links http://www.cs.sjtu.edu.cn/~yzhu, which redirects (301, 302) to this https address; the capture is a frameset shell whose title names the PI and SJTU (inner frame pages not fetched)",
+      "coverage": "website",
+      "checks": [
+       {
+        "source": "school_profile_link",
+        "url": "https://www.cs.sjtu.edu.cn/~yzhu/",
+        "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuyanmin.html",
+        "linked_url": "http://www.cs.sjtu.edu.cn/~yzhu",
+        "result": "listed",
+        "at": "2026-11-11T03:12:29",
+        "source_sha256": "b527c6cb12b832cc1df8baae118998448440d86c079dc2bf8fe555b56e2b0723"
+       },
+       {
+        "source": "live_fetch",
+        "url": "https://www.cs.sjtu.edu.cn/~yzhu/",
+        "result": "ok",
+        "at": "2026-11-11T03:10:29",
+        "sha256": "cf83d1a92c5e258d470067ad3d3594a0ebc7c82f1843577282d909bf67d42899"
+       }
+      ],
+      "found_via": "school_profile_link",
+      "sha256": "cf83d1a92c5e258d470067ad3d3594a0ebc7c82f1843577282d909bf67d42899",
+      "verification_quote": "Dr Yanmin Zhu, CSE @ Shanghai Jiao Tong University"
+     }
+    }
+   ],
+   "independent_review_by": "codex-sjtu-ntu-1115",
+   "independent_review_report": "hierarchy/sjtu/reports/GAO-SOURCE-REPAIR-20261116.json"
   },
   {
    "pi": "卢策吾",
