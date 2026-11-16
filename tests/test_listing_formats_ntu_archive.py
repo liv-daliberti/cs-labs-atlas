@@ -55,3 +55,26 @@ def test_ntu_namesake_cards_quote_their_own_titles_without_contact_fields():
         assert '@' not in quote and 'Research in algorithms' not in quote
     assert quote_of(flat, dict(rows[1], quote_parts=['Assoc Prof Li Yi', 'Invented appointment'])) is None
     assert quote_of(flat, dict(rows[1], quote_parts=['Assoc Prof Li Yi'])) is None
+
+
+def test_ntu_legacy_photo_rows_keep_literal_ranks_and_parenthesized_names():
+    from listing_rows import quote_of, rank_of
+    html = """<table><tr><td><img src="photo.jpg"></td><td>
+      <span class="parahead2"><a href="http://www.ntu.edu.sg/home/lana/">Svetlana (Lana) Obraztsova</a>
+      (Asst Prof)<br>PhD University<br>Email: <a href="mailto:private@example.edu">private@example.edu</a></span>
+      </td><td>Interests</td><td>Research</td></tr>
+      <tr><td><img src="adj.jpg"></td><td>Ang Kai Keng (Adjunct Asst Prof)<br>
+      <a href="mailto:private@example.edu">Email</a></td><td>Interests</td><td>Research</td></tr>
+      <tr><td>Navigation</td><td>Example Person (Professor)</td><td>x</td><td>y</td></tr></table>"""
+    _, rows = L.parse(html, 'ntu_moss_faculty')
+    assert len(rows) == 2
+    assert rows[0]['name_listed'] == 'Svetlana (Lana) Obraztsova'
+    assert rows[0]['titles'] == ['Asst Prof']
+    assert rows[0]['profile'] == 'http://www.ntu.edu.sg/home/lana/'
+    assert rows[1]['profile'] is None
+    assert rank_of(rows[0]['titles'], {'ladder': r'\b(?:Assoc|Asst)\s+Prof\b'}) == 'ladder'
+    assert rank_of(rows[1]['titles'], {'ladder': r'\b(?:Assoc|Asst)\s+Prof\b'}) == 'adjunct'
+    flat = ' '.join(__import__('bs4').BeautifulSoup(html, 'html.parser').get_text(' ', strip=True).split())
+    for row in rows:
+        assert quote_of(flat, row) == row['quote']
+        assert '@' not in str(row) and 'PhD University' not in str(row)

@@ -1937,6 +1937,33 @@ def tsinghua_ee_any(h):
     return tsinghua_ee_embedded(h) or tsinghua_ee_rendered(h) or tsinghua_ee_text(h)
 
 
+
+def ntu_moss_faculty(h):
+    """SCE/SCSE moss_staffac.asp: photo rows, then a literal name and parenthesized rank.
+
+    Keep only that heading and its linked faculty URL. Degrees, contact details and
+    research-interest cells are outside the roster evidence emitted here.
+    """
+    from bs4 import BeautifulSoup
+    out = []
+    heading = re.compile(r'^(.+?)\s+\(([^()]*(?:Prof(?:essor)?|Lecturer|Research (?:Fellow|Scientist))[^()]*)\)', re.I)
+    for tr in BeautifulSoup(h, 'html.parser').find_all('tr'):
+        cells = tr.find_all('td', recursive=False)
+        if len(cells) < 4 or cells[0].find('img') is None:
+            continue
+        cell = cells[1]
+        match = heading.match(clean(cell.get_text(' ', strip=True)))
+        if match is None:
+            continue
+        name, rank = match.groups()
+        link = next((a.get('href') for a in cell.find_all('a', href=True)
+                     if clean(a.get_text(' ', strip=True)) == name
+                     and re.match(r'https?://', a['href'], re.I)), None)
+        out.append(dict(name_listed=name, titles=[rank], profile=link, homepage=None,
+                        division=None, quote=match.group(0)))
+    return out
+
+
 def ntu_img_cards(h):
     """NTU SCSE 2021 faculty list (www.ntu.edu.sg/scse/about-us/our-people/faculty, Sitefinity img-card--academic): h3.img-card__title link (honorific + name,
     the DR-NTU profile), the Appointments paragraph (one title per line). The honorific is not part of the name; the e-mail and the biography teaser are dropped."""
@@ -2142,6 +2169,7 @@ FORMATS = {
     'ntu_profile_cards': (ntu_profile_cards, re.compile(r'ntu-profile-list')),
     'ntu_spms_table': (ntu_spms_table, re.compile(r"<strong[^>]*>[A-Z][A-Z' -]+, [A-Z]")),
     'ntu_medicine_table': (ntu_medicine_table, re.compile(r'Faculty and Joint Faculty')),
+    'ntu_moss_faculty': (ntu_moss_faculty, re.compile(r'(?!)')),
     'ntu_img_cards': (ntu_img_cards, re.compile(r'img-card--academic')),
     'tsinghua_ee_any': (tsinghua_ee_any, re.compile(r'(?!)')),
     'tsinghua_banded_text': (tsinghua_banded_text, re.compile(r'(?!)')),

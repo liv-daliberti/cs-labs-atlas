@@ -29,3 +29,16 @@ Private evidence root: `code/hierarchy/ntu/tmp/rosters-1115/`. Receipts are `mod
 The mapping is applied before census name grouping, validates original HTTP-200 captures, raw SHA-256 and the exact source-profile/name/title card, and introduces no unqualified Yi Li/Li Yi name alias. Original `name_listed` spellings and source quotes remain unchanged. A newly observed unreviewed profile for either ambiguous spelling stops the refresh. This is a faculty-source identity repair; it authorizes no bibliographic author ID, paper claim or appointment interval.
 
 The lightweight private census check yields 143 people and 120 PIs. CS/CCDS Yi Li retains `ntu_fac_yi-li` with listing years 2021, 2024, 2025 and 2026; SPMS Yi Li is separate as `ntu_fac_yi-li-spms` with listing years 2025 and 2026. The source mapping does not infer SPMS faculty time from the biography's 2016 sentence. Main's census has not been replaced by this validation run.
+
+
+Legacy SCE and SCSE faculty lists recovered on 2026-11-15
+
+The successful exact main-faculty index queried 2016–2025. SCE has one 2016 capture; SCSE has 28 captures from 2016-04-19 through 2021-04-16, covering both halves of every 2016–2020 year. That successful exact index has no 2022 or 2023 record. Body requests for 2018 onward remain pending after the shared archive guard stopped on a 429; the index alone does not establish roster coverage.
+
+Three complete, unpaged original HTTP200 faculty lists are saved in the private school raw store and historical-samples directory:
+
+- SCE 2016-03-04 15:57:07: 99 rows; SHA256 `88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644`.
+- SCSE 2016-06-19 21:19:03: 98 rows; SHA256 `d092630cbbe784c8c35b286e793fb4c474bed4125f365c048008a2ec80f3efe9`.
+- SCSE 2017-06-02 22:48:54: 104 rows; SHA256 `d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b`.
+
+The `ntu_moss_faculty` parser reads a photo row's name and parenthesized rank, retaining literal abbreviations and parenthesized personal names. It emits only that heading as the source quote and a name-linked HTTP faculty URL as metadata; degrees, contact links and research-interest cells are omitted. Every parsed name/rank quote is a verbatim substring of its original. The charter classifies literal `Assoc Prof` and `Asst Prof` titles as ladder, while adjunct, visiting, lecturer and research designations keep their normal exclusions. No appointment intervals or identity links are inferred from list dates. The newly recovered historical cohort still needs the normal census identity review before any native rebuild.
