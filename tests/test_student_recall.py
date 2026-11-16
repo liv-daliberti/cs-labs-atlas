@@ -209,6 +209,27 @@ def test_exclusions_are_capped_and_relabelling_is_visible(tree, monkeypatch):
     assert any(m.startswith('recall record: ') and 'excluded by the checker' in m for m in msgs)
 
 
+def test_R_STU_17_nonstudent_exclusion_keeps_capture_validation_and_x_count(tree):
+    rec = R.draw('u', drawn_by='drawer')
+    sampled_pi = rec['sample'][-1]['pi']
+    student = tree['st'][sampled_pi][0]['name']
+    pages = {}
+    rec = fill(rec, pages, {sampled_pi: [
+        dict(name=student, role='phd', section='current'),
+        dict(name='Visiting Scholar', role='unknown', section='current', exclude='not_a_student'),
+    ]})
+    conn = make_store(tree, pages)
+    ev = R.evaluate_record('u', rec, conn=conn)
+    assert ev['findings'] == []
+    n = ev['numbers']
+    assert n['eligible_names'] == n['recorded_names'] == 1
+    assert n['names_listed'] == 2 and n['names_excluded'] == 1
+    assert n['x_counted_exclusions'] == 1 and n['proven_external_school'] == 0
+    # Nonstudents still need to appear in the captured, hash-matched source.
+    rec['sample'][-1]['listed'][-1]['name'] = 'Fabricated Scholar'
+    assert any('not on any captured page' in f for f in R.evaluate_record('u', rec, conn=conn)['findings'])
+
+
 def test_R_STU_31_captured_same_line_external_school_proof_keeps_x_cap(tree, monkeypatch):
     rec = R.draw('u', drawn_by='drawer')
     pages = {}

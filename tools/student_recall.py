@@ -105,7 +105,9 @@ UNVERIFIABLE_REASONS = {
     'page_unreachable': 'the page does not load (dead host, 4xx/5xx)',
     'list_not_current': 'the page lists members but states no date and no current section',
 }
-EXCLUDE_REASONS = ('not_a_person', 'co_advised_elsewhere', 'rotation_or_highschool', 'outside_school', 'is_the_pi')
+# R-STU-17: visiting scholars, scientists and faculty without an individual
+# student cue are people, but are outside the student-membership population.
+EXCLUDE_REASONS = ('not_a_person', 'not_a_student', 'co_advised_elsewhere', 'rotation_or_highschool', 'outside_school', 'is_the_pi')
 SECTIONS = ('current', 'alumni', 'other')
 
 BOILERPLATE = 'No student of this PI in any allowed source checked'   # tools/onboarding_traps.BOILERPLATE (kept literal: no import cycle with stage_gate)
