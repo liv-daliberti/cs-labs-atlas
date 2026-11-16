@@ -32,6 +32,14 @@ Never carry a verdict forward just to avoid a fresh required review.
 
 ## Reusable commands
 
+Start with `bin/atlas closeout stages <school>`. This shows stages 0–10 with
+their current gate, prerequisites, concrete findings, and the next eligible
+stage/action. Student and paper work can proceed after identity is complete;
+accuracy waits for students, papers, and availability. `--json` produces the
+same board for automation. Run against the actual candidate data root so a
+stale canonical package cannot hide a candidate's progress. The board keeps
+formal research release and verified interim website publication distinct.
+
 Use the school's existing data overlay and committed code checkout. Set the
 existing `CS_ATLAS_CODE`, `CS_ATLAS_HIERARCHY`, and `CS_ATLAS_SCHOOL_CONFIGS` slots
 exactly as for its build. Claim the school task before running writes; keep the

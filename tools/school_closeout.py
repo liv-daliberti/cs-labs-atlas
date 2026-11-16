@@ -1,5 +1,6 @@
 """One reusable school closeout: repairs -> sealed inputs -> native job -> reviews.
 
+atlas closeout stages SCHOOL [--json]
 atlas closeout plan SCHOOL
 atlas closeout seal SCHOOL --run-dir DIR --repairs FILE
 atlas closeout submit SCHOOL --run-dir DIR
@@ -24,6 +25,19 @@ import atlas_paths as P
 
 CODE = Path(__file__).resolve().parents[1]
 GATES = (1, 2, 3, 4, 5, 7, 8)
+STAGES = {
+    0: ('Charter and access', (), 'Confirm charter, host policy and snapshot coverage.'),
+    1: ('Faculty sources', (0,), 'Finish the missing department/year source captures.'),
+    2: ('Faculty census', (1,), 'Resolve candidate identities and census decisions as one batch.'),
+    3: ('PI labs and websites', (2,), 'Complete PI basis, home departments and website evidence.'),
+    4: ('Appointment periods', (3,), 'Resolve dated appointment evidence and explicit gap decisions.'),
+    5: ('Publication identities', (4,), 'Resolve identity anchors and zero-yield publication cases.'),
+    6: ('Students and recall', (5,), 'Finish complete roster repairs, then the fixed independent recall review.'),
+    7: ('Papers and links', (5,), 'Resolve exact paper attribution and all unexplained student-paper links.'),
+    8: ('Copies and availability', (7,), 'Count current copies and finish the availability ledger.'),
+    9: ('Accuracy review', (6, 7, 8), 'Judge the final fixed accuracy sample on this same candidate.'),
+    10: ('Research release', tuple(range(10)), 'Freeze and integrate the reviewed research; prepare and verify publication.'),
+}
 OUTPUTS = {
     'build': ('pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'report.json', 'home-departments.json'),
     'copies': ('copies.json',),
@@ -77,6 +91,55 @@ def locked(directory):
 def code_commit():
     return os.environ.get('CS_ATLAS_SNAPSHOT_COMMIT') or subprocess.check_output(
         ['git', '-C', str(CODE), 'rev-parse', 'HEAD'], text=True).strip()
+
+
+def stage_board(school, evaluate=None):
+    """All current gates, explicit prerequisites, and one next eligible stage.
+
+    This evaluates the selected data root; it never substitutes recorded main
+    receipts for an isolated candidate, nor treats a planned action as a pass.
+    """
+    import stage_gate as G
+    evaluate = evaluate or G.evaluate
+    results = {}
+    for stage in STAGES:
+        try:
+            results[stage] = evaluate(school, str(stage))
+        except (OSError, ValueError, KeyError) as exc:
+            results[stage] = dict(gate='unmeasured', items=[str(exc)])
+    complete = {stage for stage, result in results.items() if result.get('gate') in ('pass', 'waived')}
+    rows = []
+    for stage, (label, requires, action) in STAGES.items():
+        result = results[stage]
+        waiting = [n for n in requires if n not in complete]
+        items = result.get('unwaived_items', result.get('items', []))
+        status = ('complete' if result.get('gate') == 'pass' else 'waived') if stage in complete else (
+            'waiting' if waiting else 'unmeasured' if result.get('gate') == 'unmeasured' else 'needs review' if stage in (6, 9) else 'needs work')
+        rows.append(dict(stage=stage, name=label, status=status, gate=result.get('gate'),
+                         blocked_by=waiting, findings=items, action=action,
+                         check=f'bin/atlas stage-gate {school} {stage} --json'))
+    eligible = [r for r in rows if r['stage'] not in complete and not r['blocked_by']]
+    return dict(school=school, data_root=str(P.CODE), hierarchy=str(P.HIERARCHY), code_commit=code_commit(),
+                stages=rows, next_stage=eligible[0]['stage'] if eligible else None,
+                native_ready=all(n in complete for n in GATES),
+                research_ready=all(n in complete for n in range(10)),
+                publication_note='Stage 10 is the formal research release. A separately verified interim website snapshot is a distinct milestone.')
+
+
+def render_stages(board):
+    lines = [f"{board['school']} — current stage advancement", f"Data: {board['data_root']}", '',
+             '| Stage | Work | State | Waiting for | Findings |', '|---:|---|---|---|---:|']
+    for row in board['stages']:
+        lines.append(f"| {row['stage']} | {row['name']} | {row['status']} | "
+                     + ', '.join(map(str, row['blocked_by'])) + f" | {len(row['findings'])} |")
+    if board['next_stage'] is not None:
+        row = board['stages'][board['next_stage']]
+        lines += ['', f"Next: stage {row['stage']} — {row['action']}", row['check']]
+        lines += ['- ' + finding for finding in row['findings'][:8]]
+    else:
+        lines += ['', 'All research stages pass on this data root.']
+    lines += ['', board['publication_note']]
+    return '\n'.join(lines)
 
 
 def input_specs(school):
@@ -307,13 +370,18 @@ def draw_once(school, directory, drawn_by):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['plan', 'seal', 'submit', 'worker', 'status', 'certify', 'draw'])
+    parser.add_argument('command', choices=['stages', 'plan', 'seal', 'submit', 'worker', 'status', 'certify', 'draw'])
     parser.add_argument('school')
     parser.add_argument('--run-dir', type=Path)
     parser.add_argument('--repairs', type=Path)
     parser.add_argument('--drawn-by', default=os.environ.get('ATLAS_SESSION', ''))
+    parser.add_argument('--json', action='store_true', help='Machine-readable stage advancement')
     args = parser.parse_args(argv)
     try:
+        if args.command == 'stages':
+            board = stage_board(args.school)
+            print(json.dumps(board, indent=2) if args.json else render_stages(board))
+            return 0
         if args.command == 'plan':
             print(json.dumps(dict(school=args.school, data_root=str(P.CODE), code_commit=code_commit(),
                                   phases=[dict(name=n, argv=a) for n, a in phases(args.school)], gates=GATES,
