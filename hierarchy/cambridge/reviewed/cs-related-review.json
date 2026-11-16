@@ -1,7 +1,7 @@
 {
  "school": "cambridge",
  "reviewed": "2026-11-16",
- "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided\n                                               non-faculty record in the school charter)\n                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided\n                                               until the unit directories and pagination are reviewed for completeness\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. The share test still decides computing.\nresearch/teaching PIs: a source-checked research/teaching appointment can use an explicit\n            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,\n            with unit, role, observed and appointment_rank (research|teaching). Its group/advising\n            quote is checked against stored source bytes. Appointment evidence, computing scope,\n            and candidate identity remain separate requirements. The appointment hand-review must\n            carry the same appointment_rank and unit; the original rank is retained.\nhistorical appointments: a hand review may carry historical_appointment={start,end}\n            with explicit year bounds stated in its quote and matching a source-bound\n            census override period. The biography observation date is preserved but\n            supplies no current listing year. Native builders use the reviewed period.\ndated officer listings: a hand review may carry dated_listing with the PDF's date\n            and literal date quote, physical page, active PROFESSORS/READERS heading,\n            full entry name, appointment year and column-definition quote. The saved\n            PDF bytes and exact URL are checked. It supplies that calendar year only;\n            retrieval is retained separately and no appointment interval is inferred.",
+ "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided\n                                               non-faculty record in the school charter)\n                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided\n                                               until the unit directories and pagination are reviewed for completeness\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. Computing uses the normal share test or the\n            existing minimum output of an evidenced, decided DBLP person; undecided namesake counts cannot supply that output.\nresearch/teaching PIs: a source-checked research/teaching appointment can use an explicit\n            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,\n            with unit, role, observed and appointment_rank (research|teaching). Its group/advising\n            quote is checked against stored source bytes. Appointment evidence, computing scope,\n            and candidate identity remain separate requirements. The appointment hand-review must\n            carry the same appointment_rank and unit; the original rank is retained.\nhistorical appointments: a hand review may carry historical_appointment={start,end}\n            with explicit year bounds stated in its quote and matching a source-bound\n            census override period. The biography observation date is preserved but\n            supplies no current listing year. Native builders use the reviewed period.\ndated officer listings: a hand review may carry dated_listing with the PDF's date\n            and literal date quote, physical page, active PROFESSORS/READERS heading,\n            full entry name, appointment year and column-definition quote. The saved\n            PDF bytes and exact URL are checked. It supplies that calendar year only;\n            retrieval is retained separately and no appointment interval is inferred.",
  "min_dblp": 5,
  "share_test": {
   "min_dblp_indexed": 5,
@@ -23,8 +23,8 @@
   "SOC"
  ],
  "counts": {
-  "pending_source_coverage": 380,
-  "accepted": 71,
+  "pending_source_coverage": 367,
+  "accepted": 84,
   "pending_identity_collision": 2
  },
  "decisions": [
@@ -859,8 +859,8 @@
    "name": "Alexei A. Lapkin",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (Chemical Engineering and Biotechnology listing, professor rank) with 15 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/200/1862"
@@ -875,10 +875,121 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5065798786"
+     ],
+     "school_works": 163,
+     "dblp_indexed": 15,
+     "share": 0.092,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5065798786",
+       "basis": "full name: Alexei A. Lapkin",
+       "works": 163,
+       "dblp_indexed": 15,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Alexei A. Lapkin",
+        "Alexei Lapkin",
+        "Alexei A Lapkin"
+       ],
+       "orcids": [
+        "0000-0001-7621-0889"
+       ],
+       "venues": [
+        "Chemical Engineering Journal",
+        "Reaction Chemistry & Engineering",
+        "Computers & Chemical Engineering"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2607266785",
+         "year": 2017,
+         "title": "A possible extension to the RInChI as a means of providing machine readable process data",
+         "venue": "Journal of Cheminformatics"
+        },
+        {
+         "oa": "https://openalex.org/W2788545772",
+         "year": 2018,
+         "title": "Efficient multiobjective optimization employing Gaussian processes, spectral sampling and a genetic algorithm",
+         "venue": "Journal of Global Optimization"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2293270884",
+         "year": 2016,
+         "title": "Microtomography-based numerical simulations of heat transfer and fluid flow through β -SiC open-cell foams for catalysis",
+         "venue": "Catalysis Today"
+        },
+        {
+         "oa": "https://openalex.org/W2305547835",
+         "year": 2016,
+         "title": "Feasibility of Using 2,3,3,3-Tetrafluoropropene (R1234yf) as a Solvent for Solid–Liquid Extraction of Biopharmaceuticals",
+         "venue": "ACS Sustainable Chemistry & Engineering"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "Chemical Engineering and Biotechnology",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Sustainable Reaction Engineering 2013 Alexei Alexandrovich Lapkin, W",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 15,
+      "heading": "PROFESSORS",
+      "entry_name": "Alexei Alexandrovich Lapkin",
+      "appointment_year": "2013",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "Chemical Engineering and Biotechnology",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Sustainable Reaction Engineering 2013 Alexei Alexandrovich Lapkin, W",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 17,
+      "heading": "PROFESSORS",
+      "entry_name": "Alexei Alexandrovich Lapkin",
+      "appointment_year": "2013",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -974,8 +1085,8 @@
    "name": "Andreas Bender",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (Chemistry listing, professor rank) with 60 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/01/990-2"
@@ -990,10 +1101,247 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5026643759",
+      "https://openalex.org/A5064224031",
+      "https://openalex.org/A5107885177",
+      "https://openalex.org/A5126595303"
+     ],
+     "school_works": 220,
+     "dblp_indexed": 55,
+     "share": 0.25,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [
+      {
+       "author": "https://openalex.org/A5052684092",
+       "why": "namesake: ORCID 0000-0001-5628-8611, not the busiest ORCID 0000-0002-6683-7546",
+       "n": 4
+      }
+     ],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5026643759",
+       "basis": "full name: Andreas Bender",
+       "works": 196,
+       "dblp_indexed": 53,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Andreas Bender",
+        "A. Bender",
+        "Bender, Andreas"
+       ],
+       "orcids": [
+        "0000-0002-6683-7546"
+       ],
+       "venues": [
+        "Journal of Chemical Information and Modeling",
+        "Journal of Cheminformatics",
+        "Chemical Research in Toxicology"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2296604042",
+         "year": 2016,
+         "title": "Using a Human Drug Network for generating novel hypotheses about drugs",
+         "venue": "Intelligent Data Analysis"
+        },
+        {
+         "oa": "https://openalex.org/W2489988882",
+         "year": 2016,
+         "title": "Data-Driven Derivation of an “Informer Compound Set” for Improved Selection of Active Compounds in High-Throughput Screening",
+         "venue": "Journal of Chemical Information and Modeling"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2227323909",
+         "year": 2016,
+         "title": "Cover Picture: How Consistent are Publicly Reported Cytotoxicity Data? Large‐Scale Statistical Analysis of the Concordance of Public Independent Cytot",
+         "venue": "ChemMedChem"
+        },
+        {
+         "oa": "https://openalex.org/W2273821489",
+         "year": 2016,
+         "title": "Analysis of Iterative Screening with Stepwise Compound Selection Based on Novartis In-house HTS Data",
+         "venue": "ACS Chemical Biology"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5126595303",
+       "basis": "full name: Andreas Bender",
+       "works": 12,
+       "dblp_indexed": 0,
+       "years": [
+        2026,
+        2026
+       ],
+       "names": [
+        "Andreas Bender"
+       ],
+       "orcids": [
+        "0000-0002-6683-7546"
+       ],
+       "venues": [
+        "Drug Discovery Today",
+        "Frontiers in Immunology",
+        "Nature Communications"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W7118349028",
+         "year": 2026,
+         "title": "Tumor heterogeneity assessment using single-cell RNA sequencing (scRNA-seq): applications in lung cancer for diagnosis and treatment",
+         "venue": "Frontiers in Immunology"
+        },
+        {
+         "oa": "https://openalex.org/W7128159852",
+         "year": 2026,
+         "title": "Counting cells can accurately predict small-molecule bioactivity benchmarks",
+         "venue": "Nature Communications"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5107885177",
+       "basis": "full name: Bender, Andreas",
+       "works": 9,
+       "dblp_indexed": 2,
+       "years": [
+        2016,
+        2024
+       ],
+       "names": [
+        "Bender, Andreas",
+        "Andreas Bender"
+       ],
+       "orcids": [],
+       "venues": [
+        "Bioinformatics",
+        "ACS Chemical Biology",
+        "BMC Neurology"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2749475934",
+         "year": 2017,
+         "title": "Orthologue chemical space and its influence on target prediction",
+         "venue": "Bioinformatics"
+        },
+        {
+         "oa": "https://openalex.org/W2889454530",
+         "year": 2018,
+         "title": "Understanding and predicting disease relationships through similarity fusion",
+         "venue": "Bioinformatics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2513906959",
+         "year": 2016,
+         "title": "Understanding Cytotoxicity and Cytostaticity in a High-Throughput Screening Collection",
+         "venue": "ACS Chemical Biology"
+        },
+        {
+         "oa": "https://openalex.org/W2599730453",
+         "year": 2017,
+         "title": "Concordance analysis of microarray studies identifies representative gene expression changes in Parkinson’s disease: a comparison of 33 human and anim",
+         "venue": "BMC Neurology"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5064224031",
+       "basis": "full name: Andreas Bender",
+       "works": 3,
+       "dblp_indexed": 0,
+       "years": [
+        2021,
+        2026
+       ],
+       "names": [
+        "Andreas Bender",
+        "A. Bender"
+       ],
+       "orcids": [],
+       "venues": [
+        "Polycyclic aromatic compounds",
+        "Toxicology Letters"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3204278449",
+         "year": 2021,
+         "title": "The impact of pooling animal histopathology control data on the statistical detection of treatment-related findings",
+         "venue": "Toxicology Letters"
+        },
+        {
+         "oa": "https://openalex.org/W7143381589",
+         "year": 2026,
+         "title": "Nano-TiO 2 Catalyst-Based Method Development to Synthesize Pyrano-Chromenes Targeting TFF3 in Breast Cancer",
+         "venue": "Polycyclic aromatic compounds"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "Chemistry",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Molecular Informatics 2016 Andreas Bender, K",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 20,
+      "heading": "READERS",
+      "entry_name": "Andreas Bender",
+      "appointment_year": "2016",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "Chemistry",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Molecular Informatics 2016 Andreas Bender, K",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 21,
+      "heading": "READERS",
+      "entry_name": "Andreas Bender",
+      "appointment_year": "2016",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -3519,8 +3867,8 @@
     "David A. Coomes"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (Plant Sciences listing, professor rank) with 30 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/119/6648"
@@ -3535,10 +3883,155 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5089619012",
+      "https://openalex.org/A5127817683"
+     ],
+     "school_works": 205,
+     "dblp_indexed": 19,
+     "share": 0.093,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5089619012",
+       "basis": "full name: David A. Coomes",
+       "works": 199,
+       "dblp_indexed": 19,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "David A. Coomes",
+        "David Coomes",
+        "David Anthony Coomes"
+       ],
+       "orcids": [
+        "0000-0002-8261-2582"
+       ],
+       "venues": [
+        "Global Change Biology",
+        "Remote Sensing",
+        "Science"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2417835980",
+         "year": 2016,
+         "title": "Individual Tree Species Classification From Airborne Multisensor Imagery Using Robust PCA",
+         "venue": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing"
+        },
+        {
+         "oa": "https://openalex.org/W2548704192",
+         "year": 2016,
+         "title": "Aboveground biomass estimation in tropical forests at single tree level with ALS data",
+         "venue": "IEEE International Geoscience and Remote Sensing Symposium (IGARSS)"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2150623992",
+         "year": 2016,
+         "title": "Modelling above-ground carbon dynamics using multi-temporal airborne lidar: insights from a Mediterranean woodland",
+         "venue": "Biogeosciences"
+        },
+        {
+         "oa": "https://openalex.org/W2296817888",
+         "year": 2016,
+         "title": "Biotic homogenization can decrease landscape-scale forest multifunctionality",
+         "venue": "Proceedings of the National Academy of Sciences"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5127817683",
+       "basis": "full name: Coomes, David",
+       "works": 6,
+       "dblp_indexed": 0,
+       "years": [
+        2018,
+        2026
+       ],
+       "names": [
+        "Coomes, David",
+        "David Coomes"
+       ],
+       "orcids": [],
+       "venues": [
+        "Environmental Research Letters"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W6948684552",
+         "year": 2018,
+         "title": "Data from: Riparian reserves help protect forest bird communities in oil palm dominated landscapes",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W6948293717",
+         "year": 2019,
+         "title": "Data from: The distribution of plants and seed dispersers in response to habitat fragmentation in an artificial island archipelago",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "Plant Sciences",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Forest Ecology and Conservation 2016 David Anthony Coomes, F",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 9,
+      "heading": "PROFESSORS",
+      "entry_name": "David Anthony Coomes",
+      "appointment_year": "2016",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "Plant Sciences",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Forest Ecology and Conservation 2016 David Anthony Coomes, F",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 9,
+      "heading": "PROFESSORS",
+      "entry_name": "David Anthony Coomes",
+      "appointment_year": "2016",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -3602,8 +4095,8 @@
     "D. K. Menon"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (Medicine listing, professor rank) with 27 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/155/3692"
@@ -3618,10 +4111,121 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Addenbrooke's Hospital, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5057778218"
+     ],
+     "school_works": 530,
+     "dblp_indexed": 18,
+     "share": 0.034,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5057778218",
+       "basis": "full name: David K. Menon",
+       "works": 530,
+       "dblp_indexed": 18,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "David K. Menon",
+        "David Menon",
+        "David K Menon"
+       ],
+       "orcids": [
+        "0000-0002-3228-9692"
+       ],
+       "venues": [
+        "Journal of Neurotrauma",
+        "Neurocritical Care",
+        "Critical Care"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2232938174",
+         "year": 2016,
+         "title": "Brain Connectivity Dissociates Responsiveness from Drug Exposure during Propofol-Induced Transitions of Consciousness",
+         "venue": "PLoS Computational Biology"
+        },
+        {
+         "oa": "https://openalex.org/W2301358467",
+         "year": 2016,
+         "title": "Efficient multi-scale 3D CNN with fully connected CRF for accurate brain lesion segmentation",
+         "venue": "Medical Image Analysis"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2259366194",
+         "year": 2016,
+         "title": "Predicting the outcome for individual patients with traumatic brain injury: a case-based review",
+         "venue": "British Journal of Neurosurgery"
+        },
+        {
+         "oa": "https://openalex.org/W2283718863",
+         "year": 2016,
+         "title": "Reliability and Validity of the Therapy Intensity Level Scale: Analysis of Clinimetric Properties of a Novel Approach to Assess Management of Intracra",
+         "venue": "Journal of Neurotrauma"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "Medicine",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Anaesthesia 2000 David Krishna Menon, Q",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 4,
+      "heading": "PROFESSORS",
+      "entry_name": "David Krishna Menon",
+      "appointment_year": "2000",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "Medicine",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Anaesthesia 2000 David Krishna Menon, Q",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 4,
+      "heading": "PROFESSORS",
+      "entry_name": "David Krishna Menon",
+      "appointment_year": "2000",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -5486,8 +6090,8 @@
    "name": "Geoffrey R. Grimmett",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DPMMS listing, professor rank) with 7 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/57/6710"
@@ -5502,10 +6106,102 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5089754758"
+     ],
+     "school_works": 48,
+     "dblp_indexed": 7,
+     "share": 0.146,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5089754758",
+       "basis": "full name: Geoffrey R. Grimmett",
+       "works": 48,
+       "dblp_indexed": 7,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Geoffrey R. Grimmett",
+        "Geoffrey Grimmett",
+        "Grimmett, Geoffrey R"
+       ],
+       "orcids": [
+        "0000-0001-7646-3368"
+       ],
+       "venues": [
+        "Cambridge University Press eBooks",
+        "Discrete Mathematics",
+        "Random Structures and Algorithms"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2242044044",
+         "year": 2017,
+         "title": "Self-Avoiding Walks and Amenability",
+         "venue": "The Electronic Journal of Combinatorics"
+        },
+        {
+         "oa": "https://openalex.org/W2963621301",
+         "year": 2017,
+         "title": "Self-Avoiding Walks and Amenability",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2245476854",
+         "year": 2016,
+         "title": "Critical Surface of the Hexagonal Polygon Model",
+         "venue": "Journal of Statistical Physics"
+        },
+        {
+         "oa": "https://openalex.org/W2247076637",
+         "year": 2016,
+         "title": "Influence in product spaces",
+         "venue": "Advances in Applied Probability"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "DPMMS",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Mathematical Statistics (1992) 1992 Geoffrey Richard Grimmett, DOW",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 11,
+      "heading": "PROFESSORS",
+      "entry_name": "Geoffrey Richard Grimmett",
+      "appointment_year": "1992",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -6617,8 +7313,8 @@
    "name": "Imre Leader",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DPMMS listing, professor rank) with 23 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/74/4463"
@@ -6633,10 +7329,117 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Department of Pure Mathematics and Mathematical Statistics, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5050380592"
+     ],
+     "school_works": 38,
+     "dblp_indexed": 21,
+     "share": 0.553,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5050380592",
+       "basis": "full name: Imre Leader",
+       "works": 38,
+       "dblp_indexed": 21,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Imre Leader",
+        "Leader, Imre"
+       ],
+       "orcids": [],
+       "venues": [
+        "The Electronic Journal of Combinatorics",
+        "European Journal of Combinatorics",
+        "Journal of Combinatorial Theory Series A"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2470542637",
+         "year": 2017,
+         "title": "Transitive Avoidance Games",
+         "venue": "The Electronic Journal of Combinatorics"
+        },
+        {
+         "oa": "https://openalex.org/W2584968584",
+         "year": 2017,
+         "title": "Decomposing the complete r-graph",
+         "venue": "Journal of Combinatorial Theory Series A"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2598488631",
+         "year": 2016,
+         "title": "Pairwise sums in colourings of the reals",
+         "venue": "Abhandlungen aus dem Mathematischen Seminar der Universität Hamburg"
+        },
+        {
+         "oa": "https://openalex.org/W2952232337",
+         "year": 2016,
+         "title": "Transitive Avoidance Games",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "DPMMS",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Pure Mathematics (2005) 2005 Imre Bennett Leader, T",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 14,
+      "heading": "PROFESSORS",
+      "entry_name": "Imre Bennett Leader",
+      "appointment_year": "2005",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "DPMMS",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Pure Mathematics (2005) 2005 Imre Bennett Leader, T",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 15,
+      "heading": "PROFESSORS",
+      "entry_name": "Imre Bennett Leader",
+      "appointment_year": "2005",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -9412,20 +10215,20 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5026238778",
-       "why": "works end 2018, before the first listing (2026)",
-       "n": 3,
-       "raw": [
-        "Malcolm Andrew Ferguson Smith"
-       ]
-      },
-      {
        "author": "https://openalex.org/A5103941487",
        "why": "works end 2019, before the first listing (2026)",
        "n": 6,
        "raw": [
         "M. C. Smith",
         "Malcolm Smith"
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5026238778",
+       "why": "works end 2018, before the first listing (2026)",
+       "n": 3,
+       "raw": [
+        "Malcolm Andrew Ferguson Smith"
        ]
       },
       {
@@ -11576,8 +12379,8 @@
     "Nikos Nikiforakis"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (PHYS listing, professor rank) with 15 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/130/0571"
@@ -11592,10 +12395,131 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Department of Physics, Cavendish Laboratory, United Kingdom"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5030047690"
+     ],
+     "school_works": 52,
+     "dblp_indexed": 7,
+     "share": 0.135,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5030047690",
+       "basis": "full name: Nikolaos Nikiforakis",
+       "works": 52,
+       "dblp_indexed": 7,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Nikolaos Nikiforakis",
+        "N. Nikiforakis",
+        "Nikos Nikiforakis"
+       ],
+       "orcids": [
+        "0000-0002-6694-2362"
+       ],
+       "venues": [
+        "Journal of Computational Physics",
+        "Journal of Applied Physics",
+        "Shock Waves"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2339608479",
+         "year": 2016,
+         "title": "A hybrid formulation for the numerical simulation of condensed phase explosives",
+         "venue": "Journal of Computational Physics"
+        },
+        {
+         "oa": "https://openalex.org/W2586571837",
+         "year": 2017,
+         "title": "Direct numerical simulation of particulate flows with an overset grid method",
+         "venue": "Journal of Computational Physics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2146781557",
+         "year": 2016,
+         "title": "Three‐dimensional cut‐cell modelling for high‐resolution atmospheric simulations",
+         "venue": "Quarterly Journal of the Royal Meteorological Society"
+        },
+        {
+         "oa": "https://openalex.org/W2277836751",
+         "year": 2016,
+         "title": "Simulating geometrically complex blast scenarios",
+         "venue": "Defence Technology"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "PHYS",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Computational Multiphysics 2016 Nikolaos Nikiforakis, SE",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 17,
+      "heading": "READERS",
+      "entry_name": "Nikolaos Nikiforakis",
+      "appointment_year": "2016",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "PHYS",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Computational Multiphysics 2016 Nikolaos Nikiforakis, SE",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 19,
+      "heading": "READERS",
+      "entry_name": "Nikolaos Nikiforakis",
+      "appointment_year": "2016",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "PHYS",
+     "url": "https://www.phy.cam.ac.uk/profile/prof-nikolaos-nikiforakis/",
+     "sha256": "505f810aba12a6248bff67e76e93d4eb9a7ce14a3a0a673733902b9e233086d0",
+     "observed": "20261116050044",
+     "quote": "Prof Nikolaos Nikiforakis Professor of Computational Multiphysics",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019,
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -12815,8 +13739,8 @@
    "name": "Richard Durbin",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (Genetics listing, professor rank) with 16 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/d/RichardDurbin"
@@ -12832,10 +13756,121 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Department of Genetics, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5082040351"
+     ],
+     "school_works": 146,
+     "dblp_indexed": 13,
+     "share": 0.089,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5082040351",
+       "basis": "full name: Richard Durbin",
+       "works": 146,
+       "dblp_indexed": 13,
+       "years": [
+        2018,
+        2026
+       ],
+       "names": [
+        "Richard Durbin",
+        "Durbin, Richard",
+        "R. Durbin"
+       ],
+       "orcids": [
+        "0000-0002-9130-1006"
+       ],
+       "venues": [
+        "Bioinformatics",
+        "Nature",
+        "Wellcome Open Research"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2808052219",
+         "year": 2018,
+         "title": "A graph-based approach to diploid genome assembly",
+         "venue": "Bioinformatics"
+        },
+        {
+         "oa": "https://openalex.org/W2950662571",
+         "year": 2018,
+         "title": "Crumble: reference free lossy compression of sequence quality values",
+         "venue": "Bioinformatics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2790240421",
+         "year": 2018,
+         "title": "Detecting archaic introgression without archaic reference genomes",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2801666179",
+         "year": 2018,
+         "title": "The first horse herders and the impact of early Bronze Age steppe expansions into Asia",
+         "venue": "Science"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "Genetics",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Al-Kindi 2017 Richard Michael Durbin, CHU",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 4,
+      "heading": "PROFESSORS",
+      "entry_name": "Richard Michael Durbin",
+      "appointment_year": "2017",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "Genetics",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Al-Kindi 2017 Richard Michael Durbin, CHU",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 4,
+      "heading": "PROFESSORS",
+      "entry_name": "Richard Michael Durbin",
+      "appointment_year": "2017",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -16847,8 +17882,8 @@
    "name": "Ying Jin",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (Architecture listing, professor rank) with 7 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/46/176-11"
@@ -16863,10 +17898,117 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Department of Architecture, Martin Centre for Architectural and Urban Studies, United Kingdom"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5044914203"
+     ],
+     "school_works": 34,
+     "dblp_indexed": 5,
+     "share": 0.147,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [
+      {
+       "author": "https://openalex.org/A5089312626",
+       "why": "namesake: ORCID 0000-0002-9388-5922, not the busiest ORCID 0000-0003-2683-6829",
+       "n": 3
+      }
+     ],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5044914203",
+       "basis": "full name: Ying Jin",
+       "works": 34,
+       "dblp_indexed": 5,
+       "years": [
+        2016,
+        2025
+       ],
+       "names": [
+        "Ying Jin",
+        "Jin, Ying"
+       ],
+       "orcids": [
+        "0000-0003-2683-6829"
+       ],
+       "venues": [
+        "Environment and Planning B Urban Analytics and City Science",
+        "Cities",
+        "Computers Environment and Urban Systems"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2767884480",
+         "year": 2017,
+         "title": "Big data and urban system model - Substitutes or complements? A case study of modelling commuting patterns in Beijing",
+         "venue": "Computers Environment and Urban Systems"
+        },
+        {
+         "oa": "https://openalex.org/W3109507857",
+         "year": 2020,
+         "title": "\"Reading\" cities with computer vision",
+         "venue": "ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems (SIGSPATIAL GIS)"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2579680140",
+         "year": 2016,
+         "title": "Trend-Breaking Influences of Built Form on Travel in UK Cities: Evidence from New Quantifications of Within- and Between-Built-Form Variations",
+         "venue": "Transportation Research Record Journal of the Transportation Research Board"
+        },
+        {
+         "oa": "https://openalex.org/W2581110785",
+         "year": 2017,
+         "title": "Environmental impacts of transformative land use and transport developments in the Greater Beijing Region: Insights from a new dynamic spatial equilib",
+         "venue": "Transportation Research Part D Transport and Environment"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "Architecture",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Architecture and Urbanism 2018 Ying Jin, R",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 18,
+      "heading": "READERS",
+      "entry_name": "Ying Jin",
+      "appointment_year": "2018",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "Architecture",
+     "url": "https://www.arct.cam.ac.uk/people/ying-jin",
+     "sha256": "a8b7ef0cd316b9ad1d47129572cbd6660952c5b1657c695fc0791cf1b35f1141",
+     "observed": "20261116050047",
+     "quote": "Professor Ying Jin Professor of Architecture and Urbanism",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2019,
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -17469,12 +18611,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (DAMTP listing, professor rank); computing-share test passes: 29 of 52 school works DBLP-indexed (share 0.56; 1 OpenAlex author ids)",
+   "reason": "faculty (DAMTP listing, professor rank) with 45 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/22/11468"
+    ],
+    "dblp_window": 45,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/22/11468",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "fb03478616ebd38b2a6c04995450288e360fb8716a3131768ec8b3e2f2ddf9f4",
+      "quote": "Hamza Fawzi"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -17578,12 +18729,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (DAMTP listing, professor rank); computing-share test passes: 28 of 67 school works DBLP-indexed (share 0.42; 1 OpenAlex author ids)",
+   "reason": "faculty (DAMTP listing, professor rank) with 51 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/55/2101"
+    ],
+    "dblp_window": 51,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/55/2101",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "bb49da4d17563a5b03be3406cb767c04c8d34d2b1c8e04730c19ac7fc0564084",
+      "quote": "Nilanjana Datta"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -17686,12 +18846,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 76 of 95 school works DBLP-indexed (share 0.80; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 140 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/42/153"
+    ],
+    "dblp_window": 140,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/42/153",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "2a3e76c4c70dcf5070394dc1d11bbea24e6c1663cbfb7a38af9b1c0ea2542573",
+      "quote": "Philip C. Woodland"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -17796,12 +18965,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 61 of 64 school works DBLP-indexed (share 0.95; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 100 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/72/6448"
+    ],
+    "dblp_window": 100,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/72/6448",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "df7427c299f0a5713bba0ee738d6fef7cac1a96da172b4053fb98fe98b3c9a93",
+      "quote": "Albert Guillén i Fàbregas"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -17906,12 +19084,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 51 of 86 school works DBLP-indexed (share 0.59; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 76 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/94/5182"
+    ],
+    "dblp_window": 76,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/94/5182",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "b548dee9969cb4792c2a07e28d70678769f54267934968e05481bdfafe50d781",
+      "quote": "Ioannis Lestas"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -18016,12 +19203,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 31 of 47 school works DBLP-indexed (share 0.66; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 60 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/166/9562"
+    ],
+    "dblp_window": 60,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/166/9562",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "e48cd3669a4f239ed6e82383b18eb78f7e9b25c4679e39f3852b4030501b50ba",
+      "quote": "Iman Tavakkolnia"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -18125,12 +19321,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 28 of 76 school works DBLP-indexed (share 0.37; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 61 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/62/3833"
+    ],
+    "dblp_window": 61,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/62/3833",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "95713af72e54c79f558c5974251ac814792502e8c6d5ec028e2eec81a492eb8b",
+      "quote": "Joan Lasenby"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -18235,12 +19440,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 27 of 53 school works DBLP-indexed (share 0.51; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 28 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/155/5112"
+    ],
+    "dblp_window": 28,
+    "dblp_basis": "school_coauthors",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/155/5112",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "dce2b32b2e370838fee0dd66f2a976e50b87c03d8bc08906718d3496355844a3",
+      "quote": "Michael J. Crisp"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -18344,12 +19558,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 14 of 54 school works DBLP-indexed (share 0.26; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 27 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/30/7812"
+    ],
+    "dblp_window": 27,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/30/7812",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "c02721157e9129fe951816106b0c3045a4b4d01ed384ffe8be5622a898b7f79d",
+      "quote": "Garth N. Wells"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -18492,12 +19715,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 12 of 53 school works DBLP-indexed (share 0.23; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 12 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/133/3747"
+    ],
+    "dblp_window": 12,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/133/3747",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "99eeae0a0d47c15c542dc75d55249def7c810f1317105e40db97fc43285404b3",
+      "quote": "Frank Tietze"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -18601,12 +19833,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 7 of 35 school works DBLP-indexed (share 0.20; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 19 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/56/10432"
+    ],
+    "dblp_window": 19,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/56/10432",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "10af2f4e4a0ed15ae69bca7b9b6ee6d20c104a9d9873bdac5560ed1874f639be",
+      "quote": "Guillaume Hennequin"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -18710,12 +19951,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 73 of 231 school works DBLP-indexed (share 0.32; 3 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 89 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/04/2047"
+    ],
+    "dblp_window": 89,
+    "dblp_basis": "school_coauthors",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/04/2047",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "4a93e2c401087de62cb4f9289aa3d0cf2f1e90fc651a9405f2c6a3441334e8fd",
+      "quote": "Richard V. Penty"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -18917,12 +20167,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 50 of 86 school works DBLP-indexed (share 0.58; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 53 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/160/3097"
+    ],
+    "dblp_window": 53,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/160/3097",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "659e6098ab5a4a313d62bb49964cad324f87e3a19a63c4f0d4702990d4b92b02",
+      "quote": "Xiaoxiang Na"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -19025,12 +20284,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 36 of 100 school works DBLP-indexed (share 0.36; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 48 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/148/8471"
+    ],
+    "dblp_window": 48,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/148/8471",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "e26af25c1a841e9be4133bbd078b156ab32f9142ba37415dbc8cfe4009a863aa",
+      "quote": "Seb J. Savory"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -19135,12 +20403,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 35 of 46 school works DBLP-indexed (share 0.76; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 81 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/g/ZoubinGhahramani"
+    ],
+    "dblp_window": 81,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/g/ZoubinGhahramani",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "64a32d37eb0833a0489b7e3ae3aa88cfa1cd7b8f9f00e6f19df246a2c790610b",
+      "quote": "Zoubin Ghahramani"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -19283,12 +20560,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 23 of 91 school works DBLP-indexed (share 0.25; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 42 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/159/4015"
+    ],
+    "dblp_window": 42,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/159/4015",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "9b3b75edd2031ffe63355018a5e2c7992a0b6aa8bfe9f7a5396fe6940bb8d70a",
+      "quote": "Qixiang Cheng"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -19393,12 +20679,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 9 of 21 school works DBLP-indexed (share 0.43; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 22 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/305/8515"
+    ],
+    "dblp_window": 22,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/305/8515",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "a8fd78a6b4e76a42938bf115d65875a776d8238346618011d4dec36c1fed00cc",
+      "quote": "Miri Zilka"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -19502,12 +20797,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 5 of 24 school works DBLP-indexed (share 0.21; 1 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 12 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/335/3492"
+    ],
+    "dblp_window": 12,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/335/3492",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "0a23c2f59b67ae16263683f45187f840e72107a27124200572805966f2e87594",
+      "quote": "Sebastian W. Pattinson"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -19612,12 +20916,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (CST listing, professor rank); computing-share test passes: 19 of 38 school works DBLP-indexed (share 0.50; 2 OpenAlex author ids)",
+   "reason": "faculty (CST listing, professor rank) with 86 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/207/7955"
+    ],
+    "dblp_window": 86,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/207/7955",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "ecb7ce8cbb9b9250963b6edfd9ba1d59e1e97bbabb96abded2454b158425c2a7",
+      "quote": "Umang Bhatt"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -19755,12 +21068,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (MMLL listing, professor rank); computing-share test passes: 19 of 25 school works DBLP-indexed (share 0.76; 1 OpenAlex author ids)",
+   "reason": "faculty (MMLL listing, professor rank) with 36 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/182/2001"
+    ],
+    "dblp_window": 36,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/182/2001",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "29b67ea56e68dd20e7e4c15c3127cc18eb111480a9780509d4dd0a4be4bfd368",
+      "quote": "Guy Emerson"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -19864,12 +21186,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (Genetics listing, professor rank); computing-share test passes: 11 of 29 school works DBLP-indexed (share 0.38; 1 OpenAlex author ids)",
+   "reason": "faculty (Genetics listing, professor rank) with 20 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/57/259"
+    ],
+    "dblp_window": 20,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/57/259",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "e978d92903b71fc98586341bd7d9fc543d91da7724ac64662039df7f3adef686",
+      "quote": "Gos Micklem"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -19974,12 +21305,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 17 of 74 school works DBLP-indexed (share 0.23; 3 OpenAlex author ids)",
+   "reason": "faculty (ENG listing, professor rank) with 80 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/60/11509"
+    ],
+    "dblp_window": 80,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/60/11509",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "805e4795f55862118d536a4bed8cbe739d5d745d841e27395c6bb458a19a5287",
+      "quote": "Stefan M. Goetz"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -21228,16 +22568,107 @@
     "I. Kontoyiannis"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 35 of 69 school works DBLP-indexed (share 0.51; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5044225058"
+     ],
+     "school_works": 69,
+     "dblp_indexed": 35,
+     "share": 0.507,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5044225058",
+       "basis": "candidate author id",
+       "works": 69,
+       "dblp_indexed": 35,
+       "years": [
+        2018,
+        2026
+       ],
+       "names": [
+        "Ioannis Kontoyiannis",
+        "Kontoyiannis, Ioannis",
+        "I. Kontoyiannis"
+       ],
+       "orcids": [
+        "0000-0001-7242-6375"
+       ],
+       "venues": [
+        "IEEE International Symposium on Information Theory (ISIT)",
+        "IEEE Transactions on Information Theory",
+        "IEEE Information Theory Workshop (ITW)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2885362480",
+         "year": 2018,
+         "title": "Sharp Gaussian Approximation Bounds for Linear Systems with $\\alpha$ -stable Noise",
+         "venue": "IEEE International Symposium on Information Theory (ISIT)"
+        },
+        {
+         "oa": "https://openalex.org/W2998168465",
+         "year": 2019,
+         "title": "The Lévy State Space Model",
+         "venue": "2018 52nd Asilomar Conference on Signals, Systems, and Computers"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2924369012",
+         "year": 2019,
+         "title": "Denoising line edge roughness measurement using hidden Markov models",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2767770556",
+         "year": 2020,
+         "title": "Geometric ergodicity in a weighted Sobolev space",
+         "venue": "The Annals of Probability"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Information and Communications 2018 Ioannis Kontoyiannis, DAR",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 10,
+      "heading": "PROFESSORS",
+      "entry_name": "Ioannis Kontoyiannis",
+      "appointment_year": "2018",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -21542,16 +22973,132 @@
     "I.H. White"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 26 of 103 school works DBLP-indexed (share 0.25; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5026880270"
+     ],
+     "school_works": 103,
+     "dblp_indexed": 26,
+     "share": 0.252,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [
+      {
+       "author": "https://openalex.org/A5058039205",
+       "why": "namesake: ORCID 0000-0002-6718-7661, not the busiest ORCID 0000-0002-7368-0305",
+       "n": 30
+      }
+     ],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5026880270",
+       "basis": "candidate author id",
+       "works": 103,
+       "dblp_indexed": 26,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Ian H. White",
+        "Ian White",
+        "I. H. White"
+       ],
+       "orcids": [
+        "0000-0002-7368-0305"
+       ],
+       "venues": [
+        "Journal of Lightwave Technology",
+        "Conference on Lasers and Electro-Optics",
+        "Optical Fiber Communication Conference"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2277113546",
+         "year": 2016,
+         "title": "Bandwidth Enhancement in Multimode Polymer Waveguides Using Waveguide Layout for Optical Printed Circuit Boards",
+         "venue": "Optical Fiber Communication Conference"
+        },
+        {
+         "oa": "https://openalex.org/W2326912529",
+         "year": 2016,
+         "title": "All-optical Mode-Group Division Multiplexing Over a Graded-Index Ring-Core Fiber with Single Radial Mode",
+         "venue": "Optical Fiber Communication Conference"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2270842630",
+         "year": 2016,
+         "title": "Pulse generation with ultra-superluminal pulse propagation in semiconductor heterostructures by superradiant-phase transition enhanced by transient co",
+         "venue": "Light Science & Applications"
+        },
+        {
+         "oa": "https://openalex.org/W2282775880",
+         "year": 2016,
+         "title": "Wireless Visible Light Communications Employing Feed-Forward Pre-Equalization and PAM-4 Modulation",
+         "venue": "Journal of Lightwave Technology"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Engineering, Van Eck 2001 Ian Hugh White, JE",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 8,
+      "heading": "PROFESSORS",
+      "entry_name": "Ian Hugh White",
+      "appointment_year": "2001",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Engineering, Van Eck 2001 Ian Hugh White, JE",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 8,
+      "heading": "PROFESSORS",
+      "entry_name": "Ian Hugh White",
+      "appointment_year": "2001",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -21970,16 +23517,126 @@
     "Schofield, Paul N."
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (Physiology, Development and Neuroscience listing, professor rank); computing-share test passes: 19 of 72 school works DBLP-indexed (share 0.26; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5059588755"
+     ],
+     "school_works": 72,
+     "dblp_indexed": 19,
+     "share": 0.264,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5059588755",
+       "basis": "candidate author id",
+       "works": 72,
+       "dblp_indexed": 19,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Paul N. Schofield",
+        "Paul N Schofield",
+        "Paul Schofield"
+       ],
+       "orcids": [
+        "0000-0002-5111-7263"
+       ],
+       "venues": [
+        "International Journal of Radiation Biology",
+        "Journal of Biomedical Semantics",
+        "Mammalian Genome"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2293058587",
+         "year": 2016,
+         "title": "Using AberOWL for fast and scalable reasoning over BioPortal ontologies",
+         "venue": "Journal of Biomedical Semantics"
+        },
+        {
+         "oa": "https://openalex.org/W2423530108",
+         "year": 2016,
+         "title": "DermO; an ontology for the description of dermatologic disease",
+         "venue": "Journal of Biomedical Semantics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2291373837",
+         "year": 2016,
+         "title": "Approaches to Investigating Complex Genetic Traits in a Large-Scale Inbred Mouse Aging Study",
+         "venue": "Veterinary Pathology"
+        },
+        {
+         "oa": "https://openalex.org/W2311973097",
+         "year": 2016,
+         "title": "The Vital Role of Pathology in Improving Reproducibility and Translational Relevance of Aging Studies in Rodents",
+         "venue": "Veterinary Pathology"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "Physiology, Development and Neuroscience",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Biomedical Informatics 2012 Paul Nicholas Schofield, R",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 17,
+      "heading": "READERS",
+      "entry_name": "Paul Nicholas Schofield",
+      "appointment_year": "2012",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "Physiology, Development and Neuroscience",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Biomedical Informatics 2012 Paul Nicholas Schofield, R",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 18,
+      "heading": "READERS",
+      "entry_name": "Paul Nicholas Schofield",
+      "appointment_year": "2012",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -23863,16 +25520,123 @@
     "Francis .J. Nolan"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (MMLL listing, professor rank); computing-share test passes: 5 of 18 school works DBLP-indexed (share 0.28; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5038260010"
+     ],
+     "school_works": 18,
+     "dblp_indexed": 5,
+     "share": 0.278,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5038260010",
+       "basis": "candidate author id",
+       "works": 18,
+       "dblp_indexed": 5,
+       "years": [
+        2017,
+        2025
+       ],
+       "names": [
+        "Francis Nolan",
+        "Francis .J. Nolan"
+       ],
+       "orcids": [],
+       "venues": [
+        "Laboratory Phonology Journal of the Association for Laboratory Phonology",
+        "The Journal of the Acoustical Society of America",
+        "Speech Communication"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2792441356",
+         "year": 2018,
+         "title": "The role of segments and prosody in the identification of a speaker’s dialect",
+         "venue": "Journal of Phonetics"
+        },
+        {
+         "oa": "https://openalex.org/W2972506416",
+         "year": 2019,
+         "title": "Articulation Rate as a Metric in Spoken Language Assessment",
+         "venue": "Interspeech (USB)"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2570153521",
+         "year": 2017,
+         "title": "Prosodic Marking of Narrow Focus in Seoul Korean",
+         "venue": "Laboratory Phonology Journal of the Association for Laboratory Phonology"
+        },
+        {
+         "oa": "https://openalex.org/W2988390291",
+         "year": 2019,
+         "title": "Do listeners rely on dynamic spectral properties in the recognition of high-pitched vowels?",
+         "venue": "The Journal of the Acoustical Society of America"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MMLL",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Phonetics 2004 Francis Joseph David Nolan, F",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 13,
+      "heading": "PROFESSORS",
+      "entry_name": "Francis Joseph David Nolan",
+      "appointment_year": "2004",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "MMLL",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Phonetics 2004 Francis Joseph David Nolan, F",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 14,
+      "heading": "PROFESSORS",
+      "entry_name": "Francis Joseph David Nolan",
+      "appointment_year": "2004",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
