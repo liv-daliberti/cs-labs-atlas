@@ -75,3 +75,27 @@ def test_a_full_tmp_falls_back_to_dev_shm(tmp_path):
     out = run(r, 'echo "$CS_ATLAS_SNAPSHOT"', {'SNAPSHOT_MIN_KB': '999999999999'})
     assert out.returncode == 0 and out.stdout.splitlines()[-1].startswith('/dev/shm/atlas-code-') and 'fallback' in out.stderr
     assert run(r, 'echo "$CS_ATLAS_SNAPSHOT"').stdout.splitlines()[-1].startswith(str(tmp_path))
+
+
+def test_provenance_checks_the_snapshot_source_not_data_overlay_links(tmp_path, monkeypatch):
+    import provenance
+    source = repo_with_code(tmp_path)
+    (source / 'tools' / 'pi_hierarchy.py').write_text('print("builder")\n')
+    git(source, 'add', 'tools/pi_hierarchy.py')
+    git(source, 'commit', '-qm', 'builder')
+    commit = git(source, 'rev-parse', 'HEAD')
+    overlay = tmp_path / 'private-data-overlay'
+    overlay.mkdir()
+    (overlay / '.git').symlink_to(source / '.git', target_is_directory=True)
+    (overlay / 'tools').symlink_to(source / 'tools', target_is_directory=True)
+    monkeypatch.setattr(provenance.P, 'WORK', overlay)
+    monkeypatch.setenv('CS_ATLAS_SNAPSHOT_COMMIT', commit)
+    monkeypatch.setenv('SNAPSHOT_REPO', str(source))
+    state = provenance.code_state()
+    assert state['commit'] == commit and state['snapshot'] is True
+    assert not state['dirty'] and state['dirty_paths'] == []
+    # A real uncommitted source edit is still a failure, with a bound diff.
+    (source / 'tools' / 'pi_hierarchy.py').write_text('print("uncommitted")\n')
+    state = provenance.code_state()
+    assert state['dirty'] and 'tools/pi_hierarchy.py' in state['dirty_paths']
+    assert len(state['diff_sha256']) == 64
