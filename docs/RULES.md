@@ -217,6 +217,11 @@ co-author ('Operations Research & Financial Engineering', Sircar), or any unit o
 collection units, units seen on the school's strings) with a school co-author ('Center for Information Technology
 Policy', Mittal with Bhagoji). `bare_unit_school`, `school_via_bare_unit`.
 
+Corporate affiliations are not university units (2026-11-16 source review). A company prefix in a joint company/university
+string must not train the unit corpus, and a company-only PI affiliation cannot qualify through an already learned unit
+or an unaffiliated-PI/advisee fallback. Independent explicit university or primary paper affiliation evidence remains valid;
+withholding an unsupported university attribution does not establish that the work was done exclusively elsewhere.
+
 ### R-PAP-26 (2026-10-29, owner: accuracy sample) — date by the venue version (R9)
 A preprint or repository deposit (type preprint, an arXiv DOI, or a repository as primary source) whose normalized title
 is a venue publication on the PI's DBLP person page (not CoRR, ECCC or IACR ePrint) is dated by that record's year, the
