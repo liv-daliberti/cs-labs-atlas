@@ -40,7 +40,7 @@ computing_departments = ["CST"]
 # https://www.medschl.cam.ac.uk/institutions, not multi-PI labs or cross-unit centres.
 # Their individual PI labs remain separate from these academic home units.
 center_units = ["DH"]
-home_units = { "Computer Science and Technology" = 'computer science and technology', "Genetics" = '\bgenetics\b', "Chemistry" = '\bchemistry\b', "Medicine" = '\b(?:department of )?medicine\b', "Psychiatry" = '\bpsychiatry\b' }
+home_units = { "Computer Science and Technology" = 'computer science and technology', "Genetics" = '\bgenetics\b', "Chemistry" = '\bchemistry\b', "Medicine" = '\b(?:department of )?medicine\b', "Psychiatry" = '\bpsychiatry\b', "Plant Sciences" = '\bplant sciences\b', "Architecture" = '\barchitecture\b', "Physiology, Development and Neuroscience" = '\bphysiology,? development,? and neuroscience\b', "Chemical Engineering and Biotechnology" = '\bchemical engineering and biotechnology\b' }
 rank_words = { ladder = '\b(?:prof|reader|university (?:senior )?lecturer)\b' }
 
 [sweep_check]
@@ -330,3 +330,9 @@ host = "aclanthology.org"
 use = "live"
 purpose = "Primary published NLP papers binding faculty identity by exact institutional email and DOI"
 probe = "https://aclanthology.org/2021.cl-1.3/"
+
+[[hosts]]
+host = "www.arct.cam.ac.uk"
+use = "live"
+purpose = "Official architecture faculty profiles and research methods"
+probe = "https://www.arct.cam.ac.uk/people/ying-jin"
