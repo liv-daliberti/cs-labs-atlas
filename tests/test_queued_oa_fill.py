@@ -59,13 +59,14 @@ def snapshot(s):
 
 
 def backup(tmp, school='t', age=0):
-    b = tmp / f'catalog-backup-{school}-20261116T000000Z.sqlite'
+    from datetime import datetime, timezone
+    stamp = datetime.fromtimestamp(time.time() - age, timezone.utc).strftime('%Y%m%dT%H%M%S')
+    b = tmp / f'catalog-backup-{school}-{stamp}Z.sqlite'
     db = sqlite3.connect(b)
     db.execute('CREATE TABLE works (id TEXT)')
     db.commit()
     db.close()
-    t = time.time() - age
-    os.utime(b, (t, t))
+    os.utime(b, (1, 1))   # cp -p keeps the source's old mtime: the name's stamp decides
     return b
 
 

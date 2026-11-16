@@ -102,14 +102,25 @@ def build_rows(school, plan_rows, bodies, bulk=None):
     return rows, n
 
 
+def backup_time(p):
+    """When the backup was taken: the UTC stamp in its name (catalog-backup-<school>-YYYYMMDDTHHMMSSZ.sqlite; `cp -p` keeps the source's old
+    mtime), else the file's mtime."""
+    import re
+    from datetime import datetime, timezone
+    m = re.search(r'-(\d{8}T\d{6})Z\.sqlite$', Path(p).name)
+    if m:
+        return datetime.strptime(m.group(1), '%Y%m%dT%H%M%S').replace(tzinfo=timezone.utc).timestamp()
+    return Path(p).stat().st_mtime
+
+
 def check_backup(school, backup_dir, now=None):
     """The newest catalog-backup-<school>-*.sqlite in backup_dir, or raise SystemExit: it must be fresh and a readable catalog."""
     now = now or time.time()
-    files = sorted(Path(backup_dir).glob(f'catalog-backup-{school}-*.sqlite'), key=lambda p: p.stat().st_mtime) if backup_dir else []
+    files = sorted(Path(backup_dir).glob(f'catalog-backup-{school}-*.sqlite'), key=lambda p: (backup_time(p), p.name)) if backup_dir else []
     if not files:
         raise SystemExit(f'{school}: no catalog-backup-{school}-*.sqlite in {backup_dir}; refusing to write')
     b = files[-1]
-    if now - b.stat().st_mtime > BACKUP_MAX_AGE:
+    if now - backup_time(b) > BACKUP_MAX_AGE:
         raise SystemExit(f'{school}: newest backup {b} is older than {BACKUP_MAX_AGE // 3600} h; refusing to write')
     try:
         db = sqlite3.connect(f'file:{b}?mode=ro', uri=True)
