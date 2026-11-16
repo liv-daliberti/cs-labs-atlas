@@ -413,6 +413,23 @@ def test_page_text_joins_adjacent_inline_spans_in_a_name():
     assert 'jonas ballweg' in R.page_text(raw)
 
 
+def test_page_text_preserves_names_split_by_inline_links_and_formatting():
+    raw = (b'<html><body><p><b>J<a href="photo.png">ulie McIntosh</a></b></p>'
+           b'<p><font><b>Theo Chalvatzi</b></font><font><b>s</b></font></p>'
+           b'<pre><font>V</font><font>ivek Dhande:</font></pre></body></html>')
+    text = R.page_text(raw)
+    assert all(name in text for name in ['julie mcintosh', 'theo chalvatzis', 'vivek dhande'])
+
+
+def test_page_text_inline_reading_keeps_blocks_apart_and_ignores_hidden_sources():
+    raw = (b'<html><body><p>J</p><p>ulie McIntosh</p>'
+           b'<a title="Ada Lovelace">visible</a><!-- Grace Hopper -->'
+           b'<script><b>Katherine Johnson</b></script></body></html>')
+    text = R.page_text(raw)
+    assert all(name not in text for name in
+               ['julie mcintosh', 'ada lovelace', 'grace hopper', 'katherine johnson'])
+
+
 def test_R_STU_28_names_on_any_captured_page_of_the_pi_same_host_only(tree):
     """R-STU-28: a listed name may be on any captured page of the PI on the primary page's host; a name on no page, a page of another host,
     a bad sha and an unstored page are findings; a single `page` dict still works; small-caps spacing is folded."""
