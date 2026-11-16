@@ -1,0 +1,162 @@
+{
+ "reviewer": "codex-sjtu-recall-1115",
+ "reviewed_on": "2026-11-15",
+ "result": "pass_narrow_three_hold_lifts",
+ "rule": "R-PAP-04 stated advisee of PI as coauthor",
+ "advisee_source": {
+  "url": "https://faculty.sjtu.edu.cn/panli/zh_CN/xsxx/128992/content/176239.htm",
+  "sha256": "c08d41f2ffae497991402264dcca670924f0e622fd71ff44d8fe76b4c32e9f36",
+  "quote": "KHOUANETHEVA PHOLSENA 发布时间：2020-05-11 所学专业： 信息与通信工程 学历： 博士研究生 状态： 毕业 入学日期： 2015-09-01 毕业日期： 2021-12-31",
+  "check": "Original bytes hash recomputed; complete student block and ownPanLi/SJTU context read."
+ },
+ "identity_and_period": "Reviewed censusoverride ownsA5100620216; explicitofficialfacultyperiodstarts2002, confirmed2026. Exact publicationdates2018/2019 insidefacultyandstudentdates. FullnameLiPan and fullstudentbyline passinitials guard; contactdataunused.",
+ "hash_note": "This review binds actual current pi-works.sqlite compressedbodyhashes below. Historicalhold evidenceblobhashesdiffer; not claimed tobe thesame bytes. Original relevant fullbyline/authorshipaffiliationfields inspected directly.",
+ "scope": "Lift only three explicit anchored_uncorroborated claims whose nocorroborationpremise is rebuttedby newly sourcechecked advisee. Native paper type,normalidentity,affiliation,appointment and namesake gates unchanged. No sourceblobsmodified byreviewer.",
+ "works": [
+  {
+   "id": "https://openalex.org/W2883385179",
+   "title": "Mode Decomposition Based Hybrid Model for Traffic Flow Prediction",
+   "year": 2018,
+   "doi": "https://doi.org/10.1109/dsc.2018.00083",
+   "current_stored_compressed_body_sha256": "7f70d31465aad292dcc796e1f3a0e44c4c32c26627b0f1d1d0ea64e7f77f0d6e",
+   "author_full_names": [
+    "Zhenpeng Zheng",
+    "Li Pan",
+    "Khouanetheva Pholsena"
+   ],
+   "pi_author_id": "https://openalex.org/A5100620216",
+   "literal_shared_affiliation": "School of Cyber Security, Shanghai Jiao Tong University, Shanghai",
+   "decision": "lift_only_exact_anchored_uncorroborated_hold"
+  },
+  {
+   "id": "https://openalex.org/W2883881406",
+   "title": "Traffic Status Evaluation Based on Possibilistic Fuzzy C-Means Clustering Algorithm",
+   "year": 2018,
+   "doi": "https://doi.org/10.1109/dsc.2018.00033",
+   "current_stored_compressed_body_sha256": "e9c17b1cffb60072ebe8dbe4149f2464808d0a058e350da162d967f9b127bc77",
+   "author_full_names": [
+    "Khouanetheva Pholsena",
+    "Li Pan"
+   ],
+   "pi_author_id": "https://openalex.org/A5100620216",
+   "literal_shared_affiliation": "School of Cyber Security, Shanghai Jiao Tong University, Shanghai",
+   "decision": "lift_only_exact_anchored_uncorroborated_hold"
+  },
+  {
+   "id": "https://openalex.org/W2994467100",
+   "title": "Multi-node Mode Decomposition Based Deep Learning Model for Road Section Traffic Prediction",
+   "year": 2019,
+   "doi": "https://doi.org/10.1109/dsc.2019.00020",
+   "current_stored_compressed_body_sha256": "d080fa4c1001a1488b2b6e7a415350f945bab542197baa387f95f809c1ef3295",
+   "author_full_names": [
+    "Khouanetheva Pholsena",
+    "Li Pan",
+    "Zhenpeng Zheng"
+   ],
+   "pi_author_id": "https://openalex.org/A5100620216",
+   "literal_shared_affiliation": "School of Cyber Security, Shanghai Jiao Tong University, Shanghai",
+   "decision": "lift_only_exact_anchored_uncorroborated_hold"
+  }
+ ],
+ "previous_hold_receipts": [
+  {
+   "id": "sjtu-20261109-ol1-W2883385179-c00e",
+   "pi": "潘 理",
+   "decision": "hold",
+   "match": {
+    "oa": "https://openalex.org/W2883385179"
+   },
+   "why": "Held by rule: OpenAlex author-id anchored row not listed on the PI DBLP person record and sharing no coauthor with 3 or more co-publications among the DBLP- or page-evidenced works of the PI (namesake risk, R-PAP-04/14). The rule only flags the row; the stored original record is the evidence on file. Not a finding that the research is invalid; held pending exact owned-work proof.",
+   "reviewed_by": "claude-sjtu-admit-1109",
+   "reviewed_at": "2026-11-09",
+   "flag_rule": "anchored_uncorroborated",
+   "evidence": [
+    {
+     "url": "https://openalex.org/W2883385179",
+     "sha256": "b827f2e4928fab036dc55ac1c73244353b439a3df1fe4fd5c76d04acf5021f37",
+     "quote": "Mode Decomposition Based Hybrid Model for Traffic Flow Prediction",
+     "kind": "original_local_indexed_work_scalar",
+     "source_field": "title",
+     "sha256_basis": "Exact original stored compressed work BLOB; not DOI landing or publisher HTTP",
+     "replay_archive_table": "works"
+    },
+    {
+     "url": "https://openalex.org/W2883385179",
+     "sha256": "b827f2e4928fab036dc55ac1c73244353b439a3df1fe4fd5c76d04acf5021f37",
+     "quote": "Li Pan",
+     "kind": "original_local_indexed_work_scalar",
+     "source_field": "authorships[1].raw_author_name",
+     "sha256_basis": "Exact original stored compressed work BLOB"
+    }
+   ]
+  },
+  {
+   "id": "sjtu-20261109-ol1-W2883881406-c00e",
+   "pi": "潘 理",
+   "decision": "hold",
+   "match": {
+    "oa": "https://openalex.org/W2883881406"
+   },
+   "why": "Held by rule: OpenAlex author-id anchored row not listed on the PI DBLP person record and sharing no coauthor with 3 or more co-publications among the DBLP- or page-evidenced works of the PI (namesake risk, R-PAP-04/14). The rule only flags the row; the stored original record is the evidence on file. Not a finding that the research is invalid; held pending exact owned-work proof.",
+   "reviewed_by": "claude-sjtu-admit-1109",
+   "reviewed_at": "2026-11-09",
+   "flag_rule": "anchored_uncorroborated",
+   "evidence": [
+    {
+     "url": "https://openalex.org/W2883881406",
+     "sha256": "12ec6681115e7ae35c426dbb09c3c31ef59ee15e5b61295c4418c27dae4e4a7c",
+     "quote": "Traffic Status Evaluation Based on Possibilistic Fuzzy C-Means Clustering Algorithm",
+     "kind": "original_local_indexed_work_scalar",
+     "source_field": "title",
+     "sha256_basis": "Exact original stored compressed work BLOB; not DOI landing or publisher HTTP",
+     "replay_archive_table": "works"
+    },
+    {
+     "url": "https://openalex.org/W2883881406",
+     "sha256": "12ec6681115e7ae35c426dbb09c3c31ef59ee15e5b61295c4418c27dae4e4a7c",
+     "quote": "Li Pan",
+     "kind": "original_local_indexed_work_scalar",
+     "source_field": "authorships[1].raw_author_name",
+     "sha256_basis": "Exact original stored compressed work BLOB"
+    }
+   ]
+  },
+  {
+   "id": "sjtu-20261109-ol1-W2994467100-c00e",
+   "pi": "潘 理",
+   "decision": "hold",
+   "match": {
+    "oa": "https://openalex.org/W2994467100"
+   },
+   "why": "Held by rule: OpenAlex author-id anchored row not listed on the PI DBLP person record and sharing no coauthor with 3 or more co-publications among the DBLP- or page-evidenced works of the PI (namesake risk, R-PAP-04/14). The rule only flags the row; the stored original record is the evidence on file. Not a finding that the research is invalid; held pending exact owned-work proof.",
+   "reviewed_by": "claude-sjtu-admit-1109",
+   "reviewed_at": "2026-11-09",
+   "flag_rule": "anchored_uncorroborated",
+   "evidence": [
+    {
+     "url": "https://openalex.org/W2994467100",
+     "sha256": "50e9e4d0ea99e6bb86a08c5947dde51da4b62853ee246cf00009b6ae0f3d621a",
+     "quote": "Multi-node Mode Decomposition Based Deep Learning Model for Road Section Traffic Prediction",
+     "kind": "original_local_indexed_work_scalar",
+     "source_field": "title",
+     "sha256_basis": "Exact original stored compressed work BLOB; not DOI landing or publisher HTTP",
+     "replay_archive_table": "works"
+    },
+    {
+     "url": "https://openalex.org/W2994467100",
+     "sha256": "50e9e4d0ea99e6bb86a08c5947dde51da4b62853ee246cf00009b6ae0f3d621a",
+     "quote": "Li Pan",
+     "kind": "original_local_indexed_work_scalar",
+     "source_field": "authorships[1].raw_author_name",
+     "sha256_basis": "Exact original stored compressed work BLOB"
+    }
+   ]
+  }
+ ],
+ "root_review": {
+  "reviewer": "codex-sjtu-ntu-1115",
+  "date": "2026-11-15",
+  "result": "pass",
+  "scope": "Remove exactly the three obsolete anchored_uncorroborated holds. Source-confirmed advisee on each full byline resolves their old no-corroboration premise. All normal native identity, appointment, affiliation, namesake and paper-type gates continue."
+ }
+}
