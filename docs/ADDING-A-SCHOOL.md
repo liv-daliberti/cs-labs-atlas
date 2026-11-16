@@ -2,6 +2,14 @@
 
 **Version 3.1, 2026-11-16.**
 
+For a school stuck in repair/rebuild/review loops, use the shared
+[`atlas closeout` workflow](SCHOOL-CLOSEOUT.md): complete one source-repair batch,
+seal its inputs, run one coherent native job that reports all prerequisite
+gate findings, and draw final reviews only after verified completion. Late
+mechanical failures resume from their checkpoint; a repeated draw command
+returns the original sample. This replaces school-specific readiness and draw
+scripts while retaining the existing evidence bars and independent reviews.
+
 Before starting or resuming a school, run `bin/atlas doctor <key> --gates live
 --out-dir <report-directory>`. This read-only report combines the existing stage
 gates, rebuild freshness checks, and exact-ID reconciliation between the current
