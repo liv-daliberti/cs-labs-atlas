@@ -116,5 +116,68 @@
         "scope": "Original faculty and owned local bibliography records checked independently; coordinator repeated targeted searches. No actual-student absence asserted."
       }
     }
+  },
+  "Li Penghui": {
+    "students": {
+      "code": "public_member_source_limited_after_targeted_checks",
+      "why": "The current owned faculty homepage and its literal Openings page identify NTU work and advertise a Spring/Fall2027 PhD position, plus postdoc/assistant/visitor openings, without naming enrolled members. The complete two pages contain self biography, research, publication authors and application information; coauthorship is not advising. The indexed own CV URL was investigated and returned a real404, so it cannot supply a roster. The exact-name targeted search returned namesake/own-degree context but no qualifying named advisee source. Student membership remains unknown, not absent; no current permitted concrete member/CV lead remains unread in this case.",
+      "sources_checked": [
+        {
+          "url": "https://peng-hui.github.io/index.html",
+          "sha256": "fb8abe35d088610244dcb1ff066b393bc41b91a429e9895e9982f0e2808056fe",
+          "status": 200,
+          "observed_at": "2026-11-15T22:13:25",
+          "quote": "I am looking for motivated students to work on broad security and privacy problems.",
+          "result": "Complete owned page read; own prior Columbia/CUHK career and publication authors do not establish NTUstudents; literal openings followed.",
+          "capture_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/hierarchy/ntu/work/student-recall-captures.sqlite"
+        },
+        {
+          "url": "https://peng-hui.github.io/openings.html",
+          "sha256": "2b9bfec743f9e00e11c6700a053238f84bc54c747e66a887c31fb0cd4769b468",
+          "status": 200,
+          "observed_at": "2026-11-15T23:38:40",
+          "quote": "We have openings for a Ph.D. student (Spring/Fall 2027), a postdoctoral researcher, research assistants, and visiting students.",
+          "result": "Complete linked recruitment page read; futurevacancies not actual enrollments.",
+          "capture_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/hierarchy/ntu/work/student-recall-captures.sqlite"
+        }
+      ],
+      "targeted_search": {
+        "queries": [
+          "\"Penghui Li\" NTU student PhD advisor"
+        ],
+        "result_log": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/four-source-limits-targeted-search.json",
+        "result_log_sha256": "c53cfe735c445a8803a9b393080c139f84be26511aef7a072979d3f2cc27d37c",
+        "outcome": "Primary results and own-page leads investigated as individually recorded. Search hits are leads only, not membership admissions or universal public-absence proof.",
+        "independent_bounded_search": {
+          "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/narrow-three-independent-bounded-search.json",
+          "sha256": "71fdff39c7b9461cb70dde37ec1df30a3fb67a753bb7feec240e3c6989fa30f0",
+          "actual_query_arguments_recorded": true,
+          "method": "Three exact bounded index queries; no source-host opens or blocked-host proxy; unrelated namesake and own-degree hits do not prove advisees."
+        }
+      },
+      "access_limitations": [
+        {
+          "url": "https://peng-hui.github.io/data/cv.pdf",
+          "status": 404,
+          "result": "Real HTTP404 captured by standard client; no content or membership inference; raw response retained."
+        },
+        "No protected profiles read; algebraic-geometry PenghuiLi namesake excluded."
+      ],
+      "held_observations": [],
+      "unknowns": [
+        "Actual students and current PhD count remain unknown.",
+        "An unlocated public member page or independent student selfpage may exist."
+      ],
+      "reviewed_by": "codex-ntu-complete-1115",
+      "reviewed_on": "2026-11-15",
+      "independent_review": {
+        "reviewer": "codex-sjtu-recall-1115",
+        "reviewed_on": "2026-11-16",
+        "receipt_sha256": "6fa94f1d0de84b291894486965adcad68ce0e92393fbb27627ad6d95d1e2666f",
+        "packet_sha256": "d342b8381e58fd2d59a52c302423ee7ce73429eda5f92597ae151784d7256c81",
+        "verdict": "PASS_SOURCE_SPECIFIC_RESEARCHED_LIMITATION",
+        "scope": "Only this PI-specific checked-source limitation approved; Samantha and Yeshwanth retain unresolved extra leads. No actual-student absence or exhaustive web claim."
+      }
+    }
   }
 }
