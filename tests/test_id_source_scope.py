@@ -171,6 +171,29 @@ def test_old_within_lab_review_shape_does_not_create_a_cross_lab_join(tmp_path):
     assert len(set(student_ids(result).values())) == 2
 
 
+def test_reviewed_id_survives_external_to_shared_native_person_refresh(tmp_path):
+    fx = fixture(quotes=False)
+    reg = tmp_path / 'registry.sqlite'
+    before = reviewed(tmp_path / 'external', reg, fx, [proof(fx)])
+    issued = set(student_ids(before).values())
+    for records in fx['example']['students'].values():
+        records[0]['person'] = 'example_native_student'
+    refreshed = reviewed(tmp_path / 'native', reg, fx, [proof(fx)])
+    assert set(student_ids(refreshed).values()) == issued
+    assert refreshed['report']['reviewed_cross_lab_identity_groups'] == 1
+    assert refreshed['report']['stats'].get('redirects_new', 0) == 0
+
+
+def test_native_person_refresh_still_requires_exact_roster_link(tmp_path):
+    fx = fixture(quotes=False)
+    for records in fx['example']['students'].values():
+        records[0]['person'] = 'example_native_student'
+    review = proof(fx)
+    review['evidence'][1]['sha256'] = 'f' * 64
+    with pytest.raises(ValueError, match='exact membership roster link'):
+        reviewed(tmp_path / 'native', tmp_path / 'registry.sqlite', fx, [review])
+
+
 def test_review_metadata_does_not_waive_multiple_issued_guard(tmp_path):
     fx = fixture(quotes=False); reg = tmp_path / 'registry.sqlite'; before = run(tmp_path / 'before', reg, fx)
     old = sorted(set(student_ids(before).values())); p = proof(fx)

@@ -718,7 +718,12 @@ def _repository_author_identity(review, data, ents, keys, hdir, nick):
 
 
 def reviewed_cross_lab_identities(data, ents, hdir, nick=None):
-    """An exact reviewed shared personal page adds a normal name+URL anchor, never a name-only/global join."""
+    """An exact reviewed shared personal page adds a normal name+URL anchor, never a name-only/global join.
+
+    A census refresh may give an external student a native collection record.
+    Keep the reviewed URL anchor for that already-shared native person too;
+    its exact roster links and the issued-ID conflict guard still apply.
+    """
     path = P.hfile(hdir, 'student-identity-review.json')
     if not path.exists():
         return []
@@ -735,9 +740,13 @@ def reviewed_cross_lab_identities(data, ents, hdir, nick=None):
         repository = review.get('identity_basis') == 'typed_repository_author'
         if review.get('verdict') != 'same_person' or (not repository and not url) or len(set(keys)) != len(keys) or len(keys) < 2 \
                 or len({k[2] for k in keys}) != len(keys) or len({k[3] for k in keys}) != 1 \
-                or not str(keys[0][3]).startswith('ext:') or any(k not in ents or k in seen for k in keys) \
+                or (repository and not str(keys[0][3]).startswith('ext:')) or any(k not in ents or k in seen for k in keys) \
                 or (not repository and not all(any(compatible(name, n, nick) for n in ents[k]['names']) for k in keys)):
             raise ValueError('invalid or conflicting cross-lab identity review: ' + str(review.get('canonical_name')))
+        if not str(keys[0][3]).startswith('ext:'):
+            shared = ('coll', f'{school}:{keys[0][3]}')
+            if not all(shared in ents[k]['anchors'] for k in keys):
+                raise ValueError('native cross-lab identity review lacks a shared collection anchor: ' + name)
         if repository:
             try:
                 anchor, source_proof = _repository_author_identity(review, data, ents, keys, hdir, nick)
