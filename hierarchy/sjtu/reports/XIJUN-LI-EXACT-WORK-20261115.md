@@ -1,0 +1,9 @@
+# Xijun Li exact-work identity review, 2026-11-15
+
+Remove only the temporary `anchored_uncorroborated` hold for OpenAlex W7213301248, DOI 10.1088/1742-6596/3314/1/012009, *From fault propagation to evidence-indexed event-level samples: A traceable benchmark for spacecraft compound Fault diagnosis*. The PI-owned publication and supervision evidence now corroborates this exact work's team under R-PAP-04; it does not activate the mixed author ID A5101955772 globally.
+
+The original source in the isolated `pi-works.sqlite` names eight authors: Renjun He, Qi Liu, Mingrui Yu, Yuanpeng Fang, Jianglei Zhu, Jie Zhang, Huan Chen and Xijun Li. Qi Liu, Mingrui Yu and Xijun Li each carry explicit Shanghai Jiao Tong University affiliations. The publisher's DOI page independently names the same eight authors and identifies a 2026 research paper, rather than a non-paper record.
+
+The PI-owned [full profile](https://xijunlee.github.io/archive.html), captured 2026-11-15 (SHA256 `cf375195754cb03faba32086d140de861256da15f5b60987dd36fa490081fd2a`; raw bytes retained in the private recall capture store), names precisely the same eight-author set on *Evidence-Constrained Agentic Workflow for Fault-Pair Localization in Controlled Spacecraft Simulations*, IEEE Access 2026, and marks Xijun Li as corresponding author. Its supervision section independently lists Qi Liu as PhD and Mingrui Yu as Master. The related compound-spacecraft-fault patent gives additional team/topic corroboration. The earlier subject-only suspicion that spacecraft fault diagnosis was foreign to this PI is therefore unsupported for this work.
+
+Review: codex-sjtu-ntu-1115; independent second source review: /root/ntu_complete (both original indexed byline and SHA-verified owned capture read; agrees with this one-work hold removal). Normal affiliation, appointment, byline, type and student-link guards remain authoritative. No broader author-ID merge, alias change or unsourced source repair is made.
