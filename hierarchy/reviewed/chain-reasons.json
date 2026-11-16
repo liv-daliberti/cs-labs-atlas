@@ -724,6 +724,35 @@
      "packet_sha256": "5c83506f2e7f33c311f85a8fc3acb6f36112b5a328716cdf9fad718bffe05970"
     }
    }
+  },
+  "links": {
+   "Chau Yuen | Hong Niu | ext:ntu:hong-niu": {
+    "status": "explained",
+    "reason": "Source-proven postdoc/research-fellow membership only, not a student-paper advising relation. The owned Chau roster explicitly says Postdoc; the ANCL record separately says ResearchFellow with Supervisor ProfYuenChau. Both accepted memberships are2026observations; no student role or advising episode is recorded. The loose diagnostic finds real2025coauthored papers, which do not create a missingstudent-paper link or prove a2025student episode. Preserve both literal staff labels and ordinary narrow/degree guards; do not force links, relabel PhD or infer an earlier attendance interval.",
+    "sources_checked": [
+     {
+      "url": "https://blogs.ntu.edu.sg/chau-yuen/research-staffs-and-students/",
+      "sha256": "b03834d07bde072412f0c98cfd0bd2ae839110792f8c87f8f8f9e09c3fd62460",
+      "quote": "Dr Hong Niu (Postdoc) 2024",
+      "observed_at": "2026-11-15T20:45:18",
+      "status": 200
+     },
+     {
+      "url": "https://www.ntu.edu.sg/ancl/our-people",
+      "sha256": "9c9d8a99717649f8ab5859e6ac23c4e3d969a714855ac465204d43793f862186",
+      "quote": "Dr Niu Hong Research Fellow",
+      "observed_at": "2026-11-15T22:13:26",
+      "status": 200
+     }
+    ],
+    "scope": "One exact source-backed chain explanation only; no newalias/merge, memberdegree, attendanceinterval or forcedpaper/link. Existing native memberidentity/nameorder untouched.",
+    "independent_review": {
+     "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/HONG-NIU-STAFF-LINK-INDEPENDENT-REVIEW-20261116.json",
+     "receipt_sha256": "7502f785d92cd35be46dfadecdf09fa454eb1767db0cd0b61b7eb1f4b6e1ceaf",
+     "packet_sha256": "a6440d1262d3b5ac3a6c27ea9bda167e85285f2355be274c97ccf9821c6babd4",
+     "reviewer": "codex-sjtu-ntu-1115"
+    }
+   }
   }
  }
 }
