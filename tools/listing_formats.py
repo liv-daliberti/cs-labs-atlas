@@ -1948,8 +1948,8 @@ def ntu_img_cards(h):
             continue
         name = re.sub(r'^(?:Emeritus Prof|Adj(?:unct)? (?:Assoc |Asst )?Prof|Assoc Prof|Asst Prof|Prof|Dr|Mr|Ms|Mrs)\s+', '', clean(a.get_text(' ')))
         titles = []
-        for p in card.select('.img-card__interests'):
-            if 'Appointments' in p.get_text():
+        for p in card.select('.img-card__interests, .img-card__desc'):
+            if 'Appointments:' in p.get_text():
                 body = re.sub(r'^.*?Appointments:\s*', '', p.decode_contents(), flags=re.S)
                 titles = [clean(x) for x in re.split(r'<br\s*/?>', body, flags=re.I)]
         out.append(dict(name_listed=name, titles=[t for t in titles if t], profile=a.get('href'), homepage=None, division=None))
