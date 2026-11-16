@@ -5,6 +5,7 @@ brings (hierarchy/<key>/collection.json.gz, the Berkeley/Stanford pattern).
 persons   listings/<key>/rows.json (tools/listing_rows.py): one person per name (rows merged across departments, slots
           and years when the given-name/family-name pair matches, nicknames included: pi_hierarchy.Name), plus the
           accepted CS-related candidates of other units (census/<key>-additions.json, merged by the builder itself).
+          Reviewed source-profile identities qualify ambiguous displayed names before name-based grouping.
 rank      per year, the best rank the year's rows give (ladder > research > teaching > lecturer > adjunct > visiting >
           courtesy > emeritus > other); `rank` is the latest year's
 PI        (protocol stage 3, owner rules 2026-10-21/22) in a department with coverage "full":
@@ -24,7 +25,7 @@ listings  listings/<key>/listings.json: one row per (person, department, year): 
 -> census/<key>-faculty.json, census/<key>-report.md, hierarchy/<key>/collection.json.gz, listings/<key>/listings.json
 usage: census_build.py <key>
 """
-import collections, datetime, gzip, hashlib, json, re, sys, unicodedata
+import collections, datetime, gzip, hashlib, json, re, sqlite3, sys, unicodedata, urllib.parse, zlib
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
@@ -99,6 +100,67 @@ def reviewed_name_aliases(key):
     return out
 
 
+def profile_key(url):
+    """Exact source profile identity, normalizing transport and repeated slashes only."""
+    p = urllib.parse.urlsplit(url or '')
+    if p.scheme not in ('http', 'https') or not p.netloc or p.query or p.fragment:
+        return None
+    return p.netloc.lower() + re.sub(r'/+', '/', p.path).rstrip('/')
+
+
+def reviewed_profile_names(key, rows):
+    """Apply sourced profile-qualified names before ordinary name grouping.
+
+    A known ambiguous spelling with a new profile fails closed for review. No
+    name-only alias is introduced, and literal source spellings/quotes remain.
+    """
+    doc = read(P.data('census-name-aliases.json', key), {}) or {}
+    bindings = doc.get('profile_names') or []
+    if not bindings:
+        return rows
+    if doc.get('school') != key:
+        raise ValueError('profile-name review school mismatch')
+    import listing_formats as LF
+    from listing_rows import quote_of
+    from school_web import body
+    mapping, reviewed_spellings = {}, set()
+    db = P.data('listings-captures.sqlite', key)
+    with sqlite3.connect(db.resolve().as_uri() + '?mode=ro', uri=True) as c:
+        for item in bindings:
+            profile = profile_key(item['profile'])
+            name = item['canonical_name']
+            spellings = item.get('listed_names') or []
+            if not profile or not name.strip() or not spellings or not item.get('evidence'):
+                raise ValueError('profile-name review lacks profile, name, spellings, or evidence')
+            if profile in mapping:
+                raise ValueError('duplicate reviewed source profile: ' + item['profile'])
+            for ev in item['evidence']:
+                saved = c.execute('select http_status,sha256,raw_zlib,text from captures where capture_url=?', (ev['url'],)).fetchone()
+                if not saved or saved[0] != 200 or not saved[2] or saved[1] != ev['sha256'] or hashlib.sha256(zlib.decompress(saved[2])).hexdigest() != ev['sha256']:
+                    raise ValueError('profile-name evidence hash mismatch: ' + ev['url'])
+                html = body(saved[2]).decode('utf-8', 'replace')
+                _, entries = LF.parse(html, ev['format'])
+                matches = [e for e in entries if profile_key(e.get('profile')) == profile and e['name_listed'] == ev['name_listed']]
+                flat = ' '.join((saved[3] or '').split())
+                if len(matches) != 1 or ev['name_listed'] not in spellings or quote_of(flat, matches[0], html) != ev['quote']:
+                    raise ValueError('profile-name source card mismatch: ' + ev['url'])
+            mapping[profile] = (name, set(spellings))
+            reviewed_spellings.update(spellings)
+    out = []
+    for row in rows:
+        profile = profile_key(row.get('profile'))
+        listed = row.get('name_listed', row['name'])
+        if profile in mapping:
+            name, spellings = mapping[profile]
+            if listed not in spellings:
+                raise ValueError('unreviewed spelling at reviewed profile: ' + listed)
+            row = dict(row, name=name, reviewed_profile_name=name)
+        elif listed in reviewed_spellings:
+            raise ValueError('unreviewed source profile for ambiguous faculty name: ' + listed)
+        out.append(row)
+    return out
+
+
 def given_compatible(a, b, fam):
     """Two given-name token lists of one family name in one school's faculty listings are one person when: the first
     given names are nickname-equal; one is a 3+ letter prefix of the other ('Raj' / 'Rajesh', 'Mack' / 'Mackillo',
@@ -128,14 +190,20 @@ def merge_people(rows, explicit_aliases=()):
         literal = literal_cjk_name(r['name'])
         if (len(t) < 2 and not literal) or TITLE_NAME.search(r['name']):
             continue
-        if literal:
+        identity = r.get('reviewed_profile_name')
+        if identity:
+            g = next((g for g in groups if g.get('reviewed_profile_name') == identity), None)
+        elif literal:
             profile = (r.get('profile') or r.get('homepage') or '').rstrip('/')
             g = next((g for g in by_fam[t[-1]] if profile and any(
                 (q.get('profile') or q.get('homepage') or '').rstrip('/') == profile for q in g['rows'])), None)
         else:
-            g = next((g for g in by_fam[t[-1]] if any(given_compatible(toks(n)[:-1], t[:-1], t[-1]) for n in g['names'])), None)
+            g = next((g for g in by_fam[t[-1]] if not g.get('reviewed_profile_name') and any(given_compatible(toks(n)[:-1], t[:-1], t[-1]) for n in g['names'])), None)
         if g is None:
-            g = dict(names=[], rows=[]); groups.append(g); by_fam[t[-1]].append(g)
+            g = dict(names=[], rows=[])
+            if identity:
+                g['reviewed_profile_name'] = identity
+            groups.append(g); by_fam[t[-1]].append(g)
         if r['name'] not in g['names']:
             g['names'].append(r['name'])
         g['rows'].append(r)
@@ -151,6 +219,8 @@ def merge_people(rows, explicit_aliases=()):
             for i, a in enumerate(gs):
                 ha = {home_key(r.get('homepage')) for r in a['rows']} - {None}
                 for b in gs[i + 1:]:
+                    if a.get('reviewed_profile_name') != b.get('reviewed_profile_name'):
+                        continue
                     if any(literal_cjk_name(n) for n in a['names'] + b['names']):
                         continue  # only source-profile identity joins opaque names, never a shared lab homepage
                     if ha & ({home_key(r.get('homepage')) for r in b['rows']} - {None}):
@@ -167,6 +237,8 @@ def merge_people(rows, explicit_aliases=()):
         assert a is not None and b is not None, f'reviewed alias not present in faculty rows: {name_a} / {name_b}'
         if a is b:
             continue
+        if a.get('reviewed_profile_name') != b.get('reviewed_profile_name'):
+            raise ValueError('name alias contradicts reviewed profile identities')
         a['names'] += [n for n in b['names'] if n not in a['names']]
         a['rows'] += b['rows']
         groups.remove(b)
@@ -192,7 +264,7 @@ def main(key):
                       dump=None)
         d0['orcid'] = sorted(set(d0.get('orcid') or []) | {o['orcid'] for o in h_.get('orcid') or []})
     census, people, listing_rows, n = [], [], [], collections.Counter()
-    groups = merge_people(rows, reviewed_name_aliases(key))
+    groups = merge_people(reviewed_profile_names(key, rows), reviewed_name_aliases(key))
     labels = [display_name(g['rows'], g['names']) for g in groups]
     duplicates = [name for name, count in collections.Counter(labels).items() if count > 1]
     if duplicates:

@@ -1,0 +1,68 @@
+{
+ "school": "ntu",
+ "scope": "Source-profile-qualified canonical faculty names only, before census grouping; no DBLP/OpenAlex identity or appointment interval is admitted.",
+ "reviewed_by": "codex-ntu-rosters-1115",
+ "reviewed_on": "2026-11-15",
+ "rows": [],
+ "profile_names": [
+  {
+   "canonical_name": "Yi Li",
+   "profile": "https://dr.ntu.edu.sg/cris/rp/rp00572",
+   "listed_names": [
+    "Yi Li",
+    "Li Yi"
+   ],
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20240625225031id_/https://www.ntu.edu.sg/computing/our-people/faculty",
+     "sha256": "fd63c088a84dd3a1591ccffd69eddfcca70ca2ed0ebae6ae1852b48a7299eb87",
+     "format": "ntu_img_cards",
+     "name_listed": "Li Yi",
+     "quote": "Assoc Prof Li Yi [...] Appointments: Associate Professor, College of Computing & Data Science"
+    },
+    {
+     "url": "https://web.archive.org/web/20210515230315id_/https://www.ntu.edu.sg/scse/about-us/our-people/faculty",
+     "sha256": "49f3c3f6c7a10d8579299e8e8027c14fb1bc7e2e610ef27acbe0c9b3ca126c24",
+     "format": "ntu_img_cards",
+     "name_listed": "Yi Li",
+     "quote": "Asst Prof Yi Li [...] Appointments: Assistant Professor, School of Computer Science and Engineering"
+    }
+   ],
+   "reason": "The 2021 Yi Li SCSE card and 2024 Li Yi CCDS card link the same legacy profile rp00572; preserve the existing Yi Li census key."
+  },
+  {
+   "canonical_name": "Yi Li",
+   "profile": "https://dr.ntu.edu.sg/entities/person/Li-Yi",
+   "listed_names": [
+    "Li Yi"
+   ],
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260606112748id_/https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+     "sha256": "5bc1cb9e9c9e1f2f538048bb3526c2f6193b100a80a4d1f4f8bb024cab65c498",
+     "format": "ntu_img_cards",
+     "name_listed": "Li Yi",
+     "quote": "Assoc Prof Li Yi [...] Appointments: Associate Professor, College of Computing & Data Science"
+    }
+   ],
+   "reason": "CS/CCDS faculty card continuation: biography explicitly names Yi Li as CCDS Associate Professor and CCTF Associate Director, independently distinct from the simultaneous SPMS card. This qualified profile mapping is not a name-only alias."
+  },
+  {
+   "canonical_name": "Yi Li [SPMS]",
+   "profile": "https://dr.ntu.edu.sg/entities/person/yili",
+   "listed_names": [
+    "Li Yi"
+   ],
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260606112748id_/https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+     "sha256": "5bc1cb9e9c9e1f2f538048bb3526c2f6193b100a80a4d1f4f8bb024cab65c498",
+     "format": "ntu_img_cards",
+     "name_listed": "Li Yi",
+     "quote": "Assoc Prof Li Yi [...] Appointments: Associate Professor, School of Physical & Mathematical Sciences Associate Professor, College of Computing & Data Science"
+    }
+   ],
+   "reason": "Separate faculty card in the same 2025/2026 source as the CS/CCDS person, with a distinct profile and explicit SPMS plus CCDS appointments. Its biography says Yi Li joined the Division of Mathematical Sciences in August 2016; that biographical date is not adopted as a faculty period by this identity mapping."
+  }
+ ]
+}

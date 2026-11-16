@@ -20,3 +20,12 @@ Private `listing_rows.py ntu` result: 503 listing rows, 144 distinct displayed n
 The owner separately approved finite historical faculty-list access at `www3.ntu.edu.sg`, treating its short robots HTML Request Error as no rules for the exact ten SCE/SCSE staff-list paths in `docs/host-rulings.json`. Other paths remain closed. Historical main-list collection is job **32310881**, scheduled after the existing shared archive cooldown, with normal pacing and stop-on-refusal/challenge.
 
 Private evidence root: `code/hierarchy/ntu/tmp/rosters-1115/`. Receipts are `modern-discovery.json` and `imported-modern-sources.json`; source originals are in `hierarchy/ntu/raw/school-captures.sqlite`, imported plan/originals in `listings/ntu/raw/captures.sqlite`, and generated rows/coverage in `listings/ntu/derived/`. `import_modern_samples.py` records the repeatable offline import and validates every card. Main's listing/census/student data remain unchanged pending review and integration.
+
+
+## Source-qualified faculty identity repair
+
+`hierarchy/ntu/reviewed/census-name-aliases.json` preserves the existing CS/CCDS canonical key **Yi Li** and assigns the distinct mathematical-sciences person **Yi Li [SPMS]**. The 2021 CS card links `dr.ntu.edu.sg//cris/rp/rp00572`; the 2024 card, now displayed as Li Yi, links the same legacy profile after normalizing its repeated slash. The CS/CCDS continuation links `/entities/person/Li-Yi`, while the simultaneous separate SPMS/CCDS card links `/entities/person/yili` and has its own SPMS appointments and biography. No profile page was fetched.
+
+The mapping is applied before census name grouping, validates original HTTP-200 captures, raw SHA-256 and the exact source-profile/name/title card, and introduces no unqualified Yi Li/Li Yi name alias. Original `name_listed` spellings and source quotes remain unchanged. A newly observed unreviewed profile for either ambiguous spelling stops the refresh. This is a faculty-source identity repair; it authorizes no bibliographic author ID, paper claim or appointment interval.
+
+The lightweight private census check yields 143 people and 120 PIs. CS/CCDS Yi Li retains `ntu_fac_yi-li` with listing years 2021, 2024, 2025 and 2026; SPMS Yi Li is separate as `ntu_fac_yi-li-spms` with listing years 2025 and 2026. The source mapping does not infer SPMS faculty time from the biography's 2016 sentence. Main's census has not been replaced by this validation run.
