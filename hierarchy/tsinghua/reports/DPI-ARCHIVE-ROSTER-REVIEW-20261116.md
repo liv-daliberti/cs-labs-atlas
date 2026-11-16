@@ -25,3 +25,9 @@ All six source bodies were rehashed and parsed; all named cards have unique writ
 Validation: 54 related listing, quote and stage-1 category-group tests passed, plus source-byte checks on every capture, scoped lint and the Tsinghua charter check. The new reader does not auto-detect unrelated pages. Tests retain staff titles as `other`, require a real profile link and an individual name/title, preserve spaced-name quote anchors, and exclude adjacent contact details.
 
 This records source coverage only. Historical profile identity, computing scope and appointment periods remain later-stage reviews. No gate exception, canonical package, release or website was changed. Source captures and acquisition receipts remain in `code/hierarchy/tsinghua/tmp/sources-1116/`; the two archive jobs are 32343560 and 32343684.
+
+## Normal pipeline replay
+
+The private normal listing importer produced 512 additional faculty-year rows, each with a literal captured quote and SHA256. Total school listing rows rose from 13,350 to 13,862. Stage 1 findings fell from 20 to 14, with zero waived items. The uncollected halves remain `pending`; neither an archive search nor an uncollected half substitutes for a roster. Raw card completeness checks found no omitted faculty card with a missing or placeholder link; one 2019 non-faculty card was intentionally excluded by the link guard. The other 13,350 prior person rows are unchanged.
+
+Replay root: `/n/fs/resemble/homogenizing-science/code/hierarchy/tsinghua/tmp/dpi-stage1-1116`. These rows have not been folded into the additions-backed faculty census or used to expand appointment intervals.
