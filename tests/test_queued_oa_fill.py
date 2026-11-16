@@ -141,3 +141,60 @@ def test_cli_is_dry_by_default(monkeypatch):
     assert seen['write'] is False and seen['schools'] == ['a', 'b']
     Q.main(['a', '--write', '--backup-dir', '/x'])
     assert seen['write'] is True
+
+
+def plan_file(store, tmp_path):
+    f = tmp_path / 'plan.json.gz'
+    Q.make_plan(['t'], f, plan={'t': Q.queued('t')}, bodies=REC, bulk=lambda w: ([], 0))
+    return f
+
+
+def test_plan_is_read_only_and_apply_writes_candidates_only(store, tmp_path):
+    before = snapshot(store)
+    f = plan_file(store, tmp_path)
+    assert snapshot(store) == before                       # the plan touches no catalog
+    backup(tmp_path)
+    done, skipped = Q.apply_plan(f, ['t'], tmp_path, lock_wait=0, ev_dir=tmp_path / 'ev', log=False)
+    assert done['t']['written'] == 1 and done['t']['integrity'] is True and skipped == []
+    after = snapshot(store)
+    assert after['works'] == before['works'] and after['attempts'] == before['attempts']
+    assert [(r[0], r[1]) for r in after['candidates'] if r not in before['candidates']] == [('t_oa_W1', 'https://repo.example.edu/files/a.pdf')]
+    again, _ = Q.apply_plan(f, ['t'], tmp_path, lock_wait=0, ev_dir=tmp_path / 'ev', log=False)   # the work has a candidate now
+    assert again['t']['still_wanted'] == 0 and again['t']['written'] == 0
+    assert snapshot(store) == after
+
+
+def test_apply_needs_a_fresh_backup(store, tmp_path):
+    f = plan_file(store, tmp_path)
+    with pytest.raises(SystemExit, match='no catalog-backup'):
+        Q.apply_plan(f, ['t'], tmp_path, log=False)
+
+
+def test_apply_skips_a_locked_school_and_retries_it(store, tmp_path):
+    f = plan_file(store, tmp_path)
+    backup(tmp_path)
+    before = snapshot(store)
+    fd = os.open(str(store / '.catalog-write.lock'), os.O_RDWR | os.O_CREAT, 0o664)
+    fcntl.flock(fd, fcntl.LOCK_EX)
+    try:
+        done, skipped = Q.apply_plan(f, ['t'], tmp_path, lock_wait=0, passes=2, ev_dir=tmp_path / 'ev', log=False)
+        assert done == {} and skipped == ['t'] and snapshot(store) == before
+    finally:
+        os.close(fd)
+    done, skipped = Q.apply_plan(f, ['t'], tmp_path, lock_wait=0, ev_dir=tmp_path / 'ev', log=False)
+    assert done['t']['written'] == 1
+
+
+def test_lock_wait_polls_until_the_lock_frees(store, tmp_path):
+    import threading
+    fd = os.open(str(store / '.catalog-write.lock'), os.O_RDWR | os.O_CREAT, 0o664)
+    fcntl.flock(fd, fcntl.LOCK_EX)
+    threading.Timer(0.6, lambda: os.close(fd)).start()   # closing releases the flock
+    t0 = time.monotonic()
+    Q.check_no_writer('t', wait=10, poll=0.1)
+    assert 0.4 < time.monotonic() - t0 < 5
+
+
+def test_apply_plan_needs_explicit_write(tmp_path):
+    with pytest.raises(SystemExit, match='--write'):
+        Q.main(['t', '--apply-plan', str(tmp_path / 'x.json.gz')])

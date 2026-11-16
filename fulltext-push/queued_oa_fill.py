@@ -15,6 +15,8 @@ Safety:
     under the catalog write lock); works, attempts, status and downloads are never touched. A rerun adds nothing (works that already
     have a candidate or an attempt are not planned).
 usage: queued_oa_fill.py <school>[,<school>...] [--json FILE] [--write --backup-dir DIR]
+       queued_oa_fill.py <schools> --plan-file PLAN.json.gz [--json COUNTS]      one read-only scan for all schools, rows saved
+       queued_oa_fill.py <schools> --apply-plan PLAN.json.gz --write --backup-dir DIR [--lock-wait 2700]   per school, wait for the lock
 """
 import argparse
 import collections
@@ -131,7 +133,7 @@ def check_backup(school, backup_dir, now=None):
     return b
 
 
-def check_no_writer(school, wait=0):
+def check_no_writer(school, wait=0, poll=2):
     """Refuse while another process holds the catalog write lock (a loop or tool is writing right now). The collector's lock is short
     (one saved result), so with wait > 0 the probe is repeated every 2 s for up to `wait` seconds before refusing."""
     p = F.FT / school / '.catalog-write.lock'
@@ -147,7 +149,7 @@ def check_no_writer(school, wait=0):
             except BlockingIOError:
                 if time.monotonic() >= end:
                     raise SystemExit(f'{school}: the catalog write lock is held right now (a loop write in progress); refusing to write')
-                time.sleep(2)
+                time.sleep(poll)
         fcntl.flock(fd, fcntl.LOCK_UN)
     finally:
         os.close(fd)
@@ -186,13 +188,96 @@ def run(schools, write=False, backup_dir=None, json_out=None, ev_dir=None, plan=
     return out
 
 
+def make_plan(schools, plan_file, json_out=None, plan=None, bodies=None, bulk=None):
+    """The read-only half: one snapshot scan for all schools; saves {school: {counts, rows}} to plan_file (gzip JSON). No catalog lock is
+    taken and nothing is written to a catalog."""
+    import gzip
+    plan = plan if plan is not None else {s: queued(s) for s in schools}
+    if bodies is None:
+        bodies = snapshot_bodies(wanted_keys(plan))
+    saved, counts = {}, {}
+    for s in schools:
+        rows, n = build_rows(s, plan[s], bodies, bulk)
+        saved[s] = dict(counts=dict(n), rows=rows)
+        counts[s] = dict(n)
+        print(json.dumps(dict(at=F.now(), school=s, step='queued_oa_plan', **n)), flush=True)
+    meta = dict(made_at=F.now(), schools=saved)
+    tmp = Path(str(plan_file) + '.part')
+    with gzip.open(tmp, 'wt') as f:
+        json.dump(meta, f)
+    os.replace(tmp, plan_file)
+    if json_out:
+        Path(json_out).write_text(json.dumps(counts, indent=1))
+    return counts
+
+
+def integrity_ok(school):
+    db = sqlite3.connect(f'file:{F.FT / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
+    try:
+        return db.execute('PRAGMA integrity_check').fetchone()[0] == 'ok'
+    finally:
+        db.close()
+
+
+def apply_plan(plan_file, schools, backup_dir, lock_wait=2700, poll=15, passes=2, json_out=None, ev_dir=None, log=True, check=integrity_ok):
+    """The write half: per school, in the given order, wait (polling every `poll` s, up to `lock_wait` s) for the catalog write lock to be
+    free, then write the planned rows that are still wanted (the work is still queued with no candidate and no attempt), INSERT OR IGNORE
+    candidates only, then integrity_check. A school whose lock never frees is skipped and retried in the next pass. A fresh backup named for
+    each school is required before anything is written."""
+    import gzip
+    with gzip.open(plan_file, 'rt') as f:
+        saved = json.load(f)['schools']
+    for s in schools:
+        check_backup(s, backup_dir)
+    done, todo = {}, list(schools)
+    for _pass in range(passes):
+        skipped = []
+        for s in todo:
+            try:
+                check_no_writer(s, lock_wait, poll)
+            except SystemExit as e:
+                print(json.dumps(dict(at=F.now(), school=s, step='queued_oa_apply', skipped=str(e))), flush=True)
+                skipped.append(s)
+                continue
+            check_backup(s, backup_dir)
+            still = {i for i, _ in queued(s)}
+            rows = [r for r in saved.get(s, {}).get('rows', []) if r['work_id'] in still]
+            added = write_rows(s, rows, ev_dir) if rows else 0
+            done[s] = dict(planned=len(saved.get(s, {}).get('rows', [])), still_wanted=len(rows), written=added, integrity=bool(check(s)))
+            print(json.dumps(dict(at=F.now(), school=s, step='queued_oa_apply', **done[s])), flush=True)
+            if log:
+                with open(F.P.FT_LOGS / 'channels.jsonl', 'a') as f:
+                    f.write(json.dumps(dict(at=F.now(), school=s, step='queued_oa_fill', missing_in_catalog=saved.get(s, {}).get('counts', {}).get('queued', 0),
+                                            applies=saved.get(s, {}).get('counts', {}).get('in_snapshot', 0), rows=len(rows),
+                                            works=len({r['work_id'] for r in rows}), candidates_added=added, results={})) + '\n')
+            if json_out:
+                Path(json_out).write_text(json.dumps(dict(done=done, skipped=skipped), indent=1))
+        todo = skipped
+        if not todo:
+            break
+    if json_out:
+        Path(json_out).write_text(json.dumps(dict(done=done, skipped=todo), indent=1))
+    return done, todo
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     ap.add_argument('schools')
     ap.add_argument('--write', action='store_true', help='write candidate rows (default: dry, counts only)')
     ap.add_argument('--backup-dir', help='directory with catalog-backup-<school>-*.sqlite (required with --write)')
     ap.add_argument('--json', help='write the per-school counts here')
+    ap.add_argument('--plan-file', help='read-only: scan once for all schools and save the candidate rows here (no catalog is touched)')
+    ap.add_argument('--apply-plan', help='write the rows of this plan file school by school (needs --write and --backup-dir)')
+    ap.add_argument('--lock-wait', type=int, default=2700, help='seconds to wait per school for the catalog write lock (apply-plan)')
     a = ap.parse_args(argv)
+    if a.plan_file:
+        make_plan(a.schools.split(','), a.plan_file, a.json)
+        return
+    if a.apply_plan:
+        if not a.write:
+            raise SystemExit('--apply-plan writes candidates: pass --write explicitly')
+        apply_plan(a.apply_plan, a.schools.split(','), a.backup_dir, lock_wait=a.lock_wait, json_out=a.json)
+        return
     run(a.schools.split(','), write=a.write, backup_dir=a.backup_dir, json_out=a.json)
 
 
