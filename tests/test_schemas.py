@@ -116,6 +116,24 @@ def test_withheld_rows_validate_against_the_schema():
         assert not [e for e in errs if 'role_basis' in str(e) or 'years_basis' in str(e)], errs
 
 
+def test_labpage_additions_preserve_manual_provenance():
+    """A manually reviewed row must not be relabeled automatic to pass validation."""
+    row = dict(name='A B', pi='P', role='phd', years=None, alumni=False,
+               url='https://example.edu/people', sha256='0' * 64,
+               quote='A B PhD Student', rule='LP-STU-01', auto=False)
+    doc = dict(school='harvard', generated_at='2026-11-15T19:00:00',
+               rules={}, students=[row], papers=[])
+    sch = schema('labpage-additions')
+    assert S.validate(doc, sch) == []
+    row['auto'] = True
+    assert S.validate(doc, sch) == []
+    row['auto'] = 'false'
+    assert any('.auto' in str(e) for e in S.validate(doc, sch))
+    row['auto'] = False
+    del row['quote']
+    assert any('quote' in str(e) for e in S.validate(doc, sch))
+
+
 def test_link_diagnosis_accepts_before_window_work():
     """The writer labels a work by its earlier DBLP venue year even when OpenAlex dates it later."""
     work = dict(oa='https://openalex.org/W1', year=2018, title='Earlier venue paper',
