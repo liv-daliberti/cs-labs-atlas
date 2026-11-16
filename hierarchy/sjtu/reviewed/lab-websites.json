@@ -1927,6 +1927,17 @@
      "result": "ok",
      "at": "2026-11-16T01:18:05",
      "sha256": "724e9dd91a43b85a9838f19e72f0a500275386cbe8753804515df0caac66d104"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://cs.sjtu.edu.cn/~gao-xf/Students/",
+     "result": "ok",
+     "at": "2026-11-16T01:18:05",
+     "sha256": "724e9dd91a43b85a9838f19e72f0a500275386cbe8753804515df0caac66d104",
+     "name_quote": "Xiaofeng Gao",
+     "tie_quote": "Shanghai JiaoTong University",
+     "reviewer": "codex-sjtu-ntu-1115",
+     "query_receipt_sha256": "82b77a28b9a8c199ddb61e545e891224b9a221ac1738c423ca7c2dea7ec52abd"
     }
    ],
    "kind": "pi_homepage",
@@ -1968,7 +1979,22 @@
     }
    ],
    "independent_review_by": "codex-sjtu-ntu-1115",
-   "independent_review_report": "hierarchy/sjtu/reports/GAO-SOURCE-REPAIR-20261116.json"
+   "independent_review_report": "hierarchy/sjtu/reports/GAO-SOURCE-REPAIR-20261116.json",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://cs.sjtu.edu.cn/~gao-xf/Students/",
+     "result": "ok",
+     "at": "2026-11-16T01:18:05",
+     "sha256": "724e9dd91a43b85a9838f19e72f0a500275386cbe8753804515df0caac66d104",
+     "name_quote": "Xiaofeng Gao",
+     "tie_quote": "Shanghai JiaoTong University",
+     "reviewer": "codex-sjtu-ntu-1115",
+     "query_receipt_sha256": "82b77a28b9a8c199ddb61e545e891224b9a221ac1738c423ca7c2dea7ec52abd"
+    }
+   ],
+   "found_via": "web_search_reviewed"
   },
   {
    "pi": "高 岳",
@@ -2672,6 +2698,16 @@
      "result": "ok",
      "at": "2026-11-16T01:21:02",
      "sha256": "c0451b845ee31086c115b2496dd88968dd2c17de937187434619004aa12b2f53"
+    },
+    {
+     "source": "department_listing_link",
+     "url": "https://ist.sjtu.edu.cn/membersjianglh",
+     "on": "https://ist.sjtu.edu.cn/members",
+     "result": "listed",
+     "at": "2026-11-15T01:05:00+00:00",
+     "source_sha256": "a5bebbbcce6ef2ad000a0dacdb15d8b67e94e7bea460a8a4c680e7304687689b",
+     "href": "/membersjianglh",
+     "anchor": "姜丽红"
     }
    ],
    "kind": "pi_homepage",
@@ -2713,7 +2749,21 @@
     }
    ],
    "independent_review_by": "codex-sjtu-ntu-1115",
-   "independent_review_report": "hierarchy/sjtu/reports/GAO-SOURCE-REPAIR-20261116.json"
+   "independent_review_report": "hierarchy/sjtu/reports/GAO-SOURCE-REPAIR-20261116.json",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "department_listing_link",
+     "url": "https://ist.sjtu.edu.cn/membersjianglh",
+     "on": "https://ist.sjtu.edu.cn/members",
+     "result": "listed",
+     "at": "2026-11-15T01:05:00+00:00",
+     "source_sha256": "a5bebbbcce6ef2ad000a0dacdb15d8b67e94e7bea460a8a4c680e7304687689b",
+     "href": "/membersjianglh",
+     "anchor": "姜丽红"
+    }
+   ],
+   "found_via": "department_listing_link"
   },
   {
    "pi": "蒋兴浩",
@@ -5149,7 +5199,8 @@
     }
    ],
    "independent_review_by": "codex-sjtu-ntu-1115",
-   "independent_review_report": "hierarchy/sjtu/reports/FINITE-WEBSITE-AUDIT-20261116.json"
+   "independent_review_report": "hierarchy/sjtu/reports/FINITE-WEBSITE-AUDIT-20261116.json",
+   "found_via": "web_search_reviewed"
   },
   {
    "pi": "王 铮",
@@ -6402,7 +6453,8 @@
     }
    ],
    "independent_review_by": "codex-sjtu-ntu-1115",
-   "independent_review_report": "hierarchy/sjtu/reports/FINITE-WEBSITE-AUDIT-20261116.json"
+   "independent_review_report": "hierarchy/sjtu/reports/FINITE-WEBSITE-AUDIT-20261116.json",
+   "found_via": "school_profile_link"
   },
   {
    "pi": "朱开元",
@@ -6913,6 +6965,16 @@
      "result": "ok_no_complete_roster",
      "at": "2026-11-16T00:14:46",
      "sha256": "807847f87f6d3c7aee29223dbde3fb10a3f7359b25d92fbbb876771c1f29cdb2"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://bcmi.sjtu.edu.cn/home/zhaohai/",
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohai.html",
+     "linked_url": "http://bcmi.sjtu.edu.cn/home/zhaohai",
+     "result": "listed",
+     "at": "2026-11-15T18:49:38+00:00",
+     "source_sha256": "244dbe2c39a038b9761daa1324aac0ebed01fff59983be2caba5e5a4ba6bf68c",
+     "provenance": "Literal official profile link; captured ordinary redirect canonicalization retained in website history."
     }
    ],
    "found_via": "school_profile_link",
@@ -6959,7 +7021,20 @@
     }
    ],
    "independent_review_by": "codex-sjtu-ntu-1115",
-   "independent_review_report": "hierarchy/sjtu/reports/FINITE-WEBSITE-AUDIT-20261116.json"
+   "independent_review_report": "hierarchy/sjtu/reports/FINITE-WEBSITE-AUDIT-20261116.json",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://bcmi.sjtu.edu.cn/home/zhaohai/",
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohai.html",
+     "linked_url": "http://bcmi.sjtu.edu.cn/home/zhaohai",
+     "result": "listed",
+     "at": "2026-11-15T18:49:38+00:00",
+     "source_sha256": "244dbe2c39a038b9761daa1324aac0ebed01fff59983be2caba5e5a4ba6bf68c",
+     "provenance": "Literal official profile link; captured ordinary redirect canonicalization retained in website history."
+    }
+   ]
   },
   {
    "pi": "赵杰茹",
@@ -7275,9 +7350,34 @@
      "result": "ok",
      "at": "2026-11-16T01:18:19",
      "sha256": "829a21a3a710e01456b565be9372ec8f21b707688aab925094c78fae5cde0259"
+    },
+    {
+     "source": "official_link_chain",
+     "url": "https://www.cs.sjtu.edu.cn/~yzhu/main_page.htm",
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuyanmin.html",
+     "at": "2026-11-15T18:50:26+00:00",
+     "result": "listed_via_recorded_chain",
+     "provenance_chain": [
+      {
+       "source_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuyanmin.html",
+       "url": "https://www.cs.sjtu.edu.cn/~yzhu/",
+       "href": "http://www.cs.sjtu.edu.cn/~yzhu",
+       "source_sha256": "b527c6cb12b832cc1df8baae118998448440d86c079dc2bf8fe555b56e2b0723",
+       "source_fetched_at": "2026-11-15T18:50:26+00:00",
+       "via": "literal_html_href_with_recorded_ordinary_redirect"
+      },
+      {
+       "source_url": "https://www.cs.sjtu.edu.cn/~yzhu/",
+       "url": "https://www.cs.sjtu.edu.cn/~yzhu/main_page.htm",
+       "href": "main_page.htm",
+       "source_sha256": "cf83d1a92c5e258d470067ad3d3594a0ebc7c82f1843577282d909bf67d42899",
+       "source_fetched_at": "2026-11-15T18:50:29+00:00",
+       "via": "literal_html_frame_src"
+      }
+     ]
     }
    ],
-   "found_via": "school_profile_link",
+   "found_via": "official_link_chain",
    "sha256": "829a21a3a710e01456b565be9372ec8f21b707688aab925094c78fae5cde0259",
    "verification_quote": "Dr Yanmin Zhu, CSE @ Shanghai Jiao Tong University",
    "kind": "pi_homepage",
@@ -7321,7 +7421,35 @@
     }
    ],
    "independent_review_by": "codex-sjtu-ntu-1115",
-   "independent_review_report": "hierarchy/sjtu/reports/GAO-SOURCE-REPAIR-20261116.json"
+   "independent_review_report": "hierarchy/sjtu/reports/GAO-SOURCE-REPAIR-20261116.json",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "official_link_chain",
+     "url": "https://www.cs.sjtu.edu.cn/~yzhu/main_page.htm",
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuyanmin.html",
+     "at": "2026-11-15T18:50:26+00:00",
+     "result": "listed_via_recorded_chain",
+     "provenance_chain": [
+      {
+       "source_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuyanmin.html",
+       "url": "https://www.cs.sjtu.edu.cn/~yzhu/",
+       "href": "http://www.cs.sjtu.edu.cn/~yzhu",
+       "source_sha256": "b527c6cb12b832cc1df8baae118998448440d86c079dc2bf8fe555b56e2b0723",
+       "source_fetched_at": "2026-11-15T18:50:26+00:00",
+       "via": "literal_html_href_with_recorded_ordinary_redirect"
+      },
+      {
+       "source_url": "https://www.cs.sjtu.edu.cn/~yzhu/",
+       "url": "https://www.cs.sjtu.edu.cn/~yzhu/main_page.htm",
+       "href": "main_page.htm",
+       "source_sha256": "cf83d1a92c5e258d470067ad3d3594a0ebc7c82f1843577282d909bf67d42899",
+       "source_fetched_at": "2026-11-15T18:50:29+00:00",
+       "via": "literal_html_frame_src"
+      }
+     ]
+    }
+   ]
   },
   {
    "pi": "卢策吾",

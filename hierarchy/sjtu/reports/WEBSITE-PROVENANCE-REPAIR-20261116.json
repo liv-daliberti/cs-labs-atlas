@@ -1,0 +1,298 @@
+{
+  "school": "sjtu",
+  "scope": "Six-entry audit provenance repair; no selected URL, capture hash or roster source-fact change. Included in new source226 native snapshot, not a rewrite of the historical source159 input manifest.",
+  "proposal": {
+    "status": "PROPOSED_NOT_APPLIED",
+    "old_sha256": "5b4ba4259807fed033967c5a2eac06338017d460882b6076ff23069ea742b3e5",
+    "new_sha256": "392ece2d6a927741ea3c3725b1ead173e804d9fe6d4b7d8a664f5ba2218ad1c8",
+    "path": "hierarchy/sjtu/reviewed/lab-websites.json",
+    "changes": [
+      {
+        "pi": "高晓沨",
+        "changed_keys": [
+          "checks",
+          "official_link_status",
+          "official_link_evidence",
+          "found_via"
+        ],
+        "selected_url": "https://cs.sjtu.edu.cn/~gao-xf/Students/",
+        "capture_sha256": "724e9dd91a43b85a9838f19e72f0a500275386cbe8753804515df0caac66d104"
+      },
+      {
+        "pi": "姜丽红",
+        "changed_keys": [
+          "checks",
+          "official_link_status",
+          "official_link_evidence",
+          "found_via"
+        ],
+        "selected_url": "https://ist.sjtu.edu.cn/membersjianglh",
+        "capture_sha256": "c0451b845ee31086c115b2496dd88968dd2c17de937187434619004aa12b2f53"
+      },
+      {
+        "pi": "汪哲东",
+        "changed_keys": [
+          "found_via"
+        ],
+        "selected_url": "https://wangz2019.github.io/",
+        "capture_sha256": "7943e5ab205ab302c1a75395d4c9780bad71b40b211cddb5a9ab46211abd8427"
+      },
+      {
+        "pi": "郁 昱",
+        "changed_keys": [
+          "found_via"
+        ],
+        "selected_url": "https://yuyu.hk/",
+        "capture_sha256": "1a6834edcf906cec20cc04968110aad20b977bc3d89854e730c8e574204308a1"
+      },
+      {
+        "pi": "赵 海",
+        "changed_keys": [
+          "checks",
+          "official_link_status",
+          "official_link_evidence"
+        ],
+        "selected_url": "https://bcmi.sjtu.edu.cn/home/zhaohai/",
+        "capture_sha256": "141eef59b78b1163f6664b787b6ffd3170477c116fc4c9d332f74fed90f6b48c"
+      },
+      {
+        "pi": "朱燕民",
+        "changed_keys": [
+          "checks",
+          "found_via",
+          "official_link_status",
+          "official_link_evidence"
+        ],
+        "selected_url": "https://www.cs.sjtu.edu.cn/~yzhu/main_page.htm",
+        "capture_sha256": "829a21a3a710e01456b565be9372ec8f21b707688aab925094c78fae5cde0259"
+      }
+    ],
+    "native_input_manifest": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/snapshot-source159-reviewed-inputs.json",
+    "note": "Original native manifest remains immutable. Only audit provenance fields change, no selected pages or roster facts."
+  },
+  "independent_review": {
+    "status": "PASS",
+    "reviewer": "codex-ntu-rosters-1115",
+    "reviewed_at": "2026-11-16T08:29:26.704432+00:00",
+    "scope": "Fresh independent metadata provenance review only; no source facts, selected URLs, student memberships, or faculty chronology admitted.",
+    "proposal": {
+      "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/g3-provenance-metadata-proposal.json",
+      "sha256": "392ece2d6a927741ea3c3725b1ead173e804d9fe6d4b7d8a664f5ba2218ad1c8"
+    },
+    "original_register": {
+      "path": "/n/fs/resemble/homogenizing-science/worktrees/sjtu-ntu-close-1115/hierarchy/sjtu/reviewed/lab-websites.json",
+      "sha256": "5b4ba4259807fed033967c5a2eac06338017d460882b6076ff23069ea742b3e5",
+      "unchanged_during_review": true
+    },
+    "proposal_helper": {
+      "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/repair-g3-provenance.py",
+      "sha256": "09f16e1209fe2465202551e95ce55134929c0dd5a76b028e9bbfab4bedc346c4",
+      "executed": false
+    },
+    "exact_changed_records": {
+      "高晓沨": [
+        "checks",
+        "found_via",
+        "official_link_evidence",
+        "official_link_status"
+      ],
+      "姜丽红": [
+        "checks",
+        "found_via",
+        "official_link_evidence",
+        "official_link_status"
+      ],
+      "汪哲东": [
+        "found_via"
+      ],
+      "郁 昱": [
+        "found_via"
+      ],
+      "赵 海": [
+        "checks",
+        "official_link_evidence",
+        "official_link_status"
+      ],
+      "朱燕民": [
+        "checks",
+        "found_via",
+        "official_link_evidence",
+        "official_link_status"
+      ]
+    },
+    "all_other_records_and_fields_equal": true,
+    "selected_urls_capture_hashes_and_source_facts_equal": true,
+    "source_originals": {
+      "724e9dd91a43b85a9838f19e72f0a500275386cbe8753804515df0caac66d104": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/work/student-recall-captures.sqlite",
+        "table": "live",
+        "url": "https://cs.sjtu.edu.cn/~gao-xf/Students/",
+        "fetched_at": "2026-11-16T01:18:05",
+        "status": 200,
+        "raw_bytes": 184074,
+        "raw_sha256_verified": true
+      },
+      "64b68611cc5e8834f09020c1f3d7bdab6b14a3cdbfc44ef70ce58a43e40635eb": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/raw/labpage-audit-captures.sqlite",
+        "table": "captures",
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/gaoxiaofeng.html",
+        "fetched_at": "2026-11-15T18:30:01+00:00",
+        "status": 200,
+        "raw_bytes": 27093,
+        "raw_sha256_verified": true
+      },
+      "c0451b845ee31086c115b2496dd88968dd2c17de937187434619004aa12b2f53": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/work/student-recall-captures.sqlite",
+        "table": "live",
+        "url": "https://ist.sjtu.edu.cn/membersjianglh",
+        "fetched_at": "2026-11-16T01:21:02",
+        "status": 200,
+        "raw_bytes": 11080,
+        "raw_sha256_verified": true
+      },
+      "0f10bb612968beeb7458fbd80a44cdf61661b7252290894b92130ae95b606561": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/raw/labpage-audit-captures.sqlite",
+        "table": "captures",
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/jianglihong.html",
+        "fetched_at": "2026-11-15T04:57:01+00:00",
+        "status": 200,
+        "raw_bytes": 27092,
+        "raw_sha256_verified": true
+      },
+      "7943e5ab205ab302c1a75395d4c9780bad71b40b211cddb5a9ab46211abd8427": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/work/student-recall-captures.sqlite",
+        "table": "live",
+        "url": "https://wangz2019.github.io/",
+        "fetched_at": "2026-11-16T00:40:40",
+        "status": 200,
+        "raw_bytes": 9034,
+        "raw_sha256_verified": true
+      },
+      "1fbdfe050c8b6ba8f497c43af60a072066bb9ff4ba3da2e5488e91da1e68eb8b": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/raw/labpage-audit-captures.sqlite",
+        "table": "captures",
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangzhedong.html",
+        "fetched_at": "2026-11-15T06:23:51+00:00",
+        "status": 200,
+        "raw_bytes": 27111,
+        "raw_sha256_verified": true
+      },
+      "1a6834edcf906cec20cc04968110aad20b977bc3d89854e730c8e574204308a1": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/work/student-recall-captures.sqlite",
+        "table": "live",
+        "url": "https://yuyu.hk/",
+        "fetched_at": "2026-11-15T23:47:53",
+        "status": 200,
+        "raw_bytes": 48458,
+        "raw_sha256_verified": true
+      },
+      "1275b0034642714109bd34210768f019ca12610af385862b4ba0cb989cb26ada": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/raw/labpage-audit-captures.sqlite",
+        "table": "captures",
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyu.html",
+        "fetched_at": "2026-11-15T18:47:53+00:00",
+        "status": 200,
+        "raw_bytes": 47135,
+        "raw_sha256_verified": true
+      },
+      "141eef59b78b1163f6664b787b6ffd3170477c116fc4c9d332f74fed90f6b48c": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/work/student-recall-captures.sqlite",
+        "table": "live",
+        "url": "https://bcmi.sjtu.edu.cn/home/zhaohai/",
+        "fetched_at": "2026-11-16T00:08:51",
+        "status": 200,
+        "raw_bytes": 90889,
+        "raw_sha256_verified": true
+      },
+      "244dbe2c39a038b9761daa1324aac0ebed01fff59983be2caba5e5a4ba6bf68c": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/raw/labpage-audit-captures.sqlite",
+        "table": "captures",
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohai.html",
+        "fetched_at": "2026-11-15T18:49:38+00:00",
+        "status": 200,
+        "raw_bytes": 31683,
+        "raw_sha256_verified": true
+      },
+      "829a21a3a710e01456b565be9372ec8f21b707688aab925094c78fae5cde0259": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/work/student-recall-captures.sqlite",
+        "table": "live",
+        "url": "https://www.cs.sjtu.edu.cn/~yzhu/main_page.htm",
+        "fetched_at": "2026-11-16T01:18:19",
+        "status": 200,
+        "raw_bytes": 7580,
+        "raw_sha256_verified": true
+      },
+      "b527c6cb12b832cc1df8baae118998448440d86c079dc2bf8fe555b56e2b0723": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/raw/labpage-audit-captures.sqlite",
+        "table": "captures",
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuyanmin.html",
+        "fetched_at": "2026-11-15T18:50:26+00:00",
+        "status": 200,
+        "raw_bytes": 97672,
+        "raw_sha256_verified": true
+      },
+      "a5bebbbcce6ef2ad000a0dacdb15d8b67e94e7bea460a8a4c680e7304687689b": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/raw/labpage-audit-captures.sqlite",
+        "table": "captures",
+        "url": "https://ist.sjtu.edu.cn/members",
+        "fetched_at": "2026-11-15T01:05:00+00:00",
+        "status": 200,
+        "raw_bytes": 44480,
+        "raw_sha256_verified": true
+      },
+      "cf83d1a92c5e258d470067ad3d3594a0ebc7c82f1843577282d909bf67d42899": {
+        "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/raw/labpage-audit-captures.sqlite",
+        "table": "captures",
+        "url": "https://www.cs.sjtu.edu.cn/~yzhu/",
+        "fetched_at": "2026-11-15T18:50:29+00:00",
+        "status": 200,
+        "raw_bytes": 566,
+        "raw_sha256_verified": true
+      }
+    },
+    "specific_findings": {
+      "高晓沨": "Actual captured Students page header names Xiaofeng Gao and Department of Computer Science and Engineering, Shanghai JiaoTong University. Query receipt is discovery only; original page supplies ownership.",
+      "姜丽红": "Actual IST department members page has literal /membersjianglh anchor 姜丽红 and resolves exactly to selected page.",
+      "汪哲东": "Existing web_search_reviewed evidence matches selected capture; actual page explicitly names Zhedong Wang, Assistant Professor, Shanghai Jiao Tong University (SJTU). Only found_via changes.",
+      "郁 昱": "Actual official profile contains literal http://yuyu.hk/; existing selected HTTPS capture explicitly names 郁昱 / Yu Yu and SJTU. Only found_via changes.",
+      "赵 海": "Actual official profile contains literal http://bcmi.sjtu.edu.cn/home/zhaohai; selected HTTPS/trailing-slash capture is independently stored and names Hai Zhao/SJTU. New metadata retains the literal link separately and existing capture history.",
+      "朱燕民": "Official profile literal http://www.cs.sjtu.edu.cn/~yzhu leads to already captured HTTPS parent; parent literal frame src main_page.htm resolves exactly to selected captured page, which names Yanmin Zhu/SJTU. Both original chain source hashes verified."
+    },
+    "full_gate": {
+      "function": "tools.lab_websites.gate",
+      "require_official": true,
+      "expected_pis": 203,
+      "register_records": 203,
+      "expected_pis_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-gates19-1115/hierarchy/sjtu/derived/pis.json",
+      "expected_pis_sha256": "b335694913d5f6dfcbbfaf52c5a66928ee2580dbdbb365c0760d9a1377fb0808",
+      "proposed_failures": [],
+      "old_failures": [
+        "高晓沨: website capture hash or discovery provenance missing",
+        "高晓沨: website official discovery link not recorded",
+        "姜丽红: website capture hash or discovery provenance missing",
+        "姜丽红: website official discovery link not recorded",
+        "汪哲东: website capture hash or discovery provenance missing",
+        "郁 昱: website capture hash or discovery provenance missing",
+        "赵 海: website official discovery link not recorded",
+        "朱燕民: website official discovery link not recorded"
+      ],
+      "gate_source_sha256": "191ae87c8b1f8b82ebe5534c2a7a2192bff85243321e82a6b195b48d5636b35d"
+    },
+    "holds": [],
+    "freeze_note": "Original source159 overlay and its manifest remain historical immutable evidence. Parent will apply approved metadata only to a NEW source226 overlay and full native build; this review does not assert post-application equality to the old 16-file freeze."
+  },
+  "query": {
+    "at": "2026-11-16",
+    "queries": [
+      {
+        "q": "\"Xiaofeng Gao\" \"cs.sjtu.edu.cn\" \"Students\""
+      }
+    ],
+    "primary_result_url": "https://www.cs.sjtu.edu.cn/~gao-xf/",
+    "result_name_quote": "Xiaofeng Gao",
+    "result_school_quote": "Shanghai Jiao Tong University",
+    "purpose": "Independent search of already captured Gao website ownership; actual Students bytes establish name and school. Search excerpts are discovery only."
+  },
+  "persisted_register_sha256": "27a2f36af75bba296cddda52fe60e6b832af53cb3ecff14d8ce723efea1cfd3f",
+  "formatting": "Persisted with existing one-space indentation; parsed JSON exactly equals independently reviewed proposal392ece2d6a927741ea3c3725b1ead173e804d9fe6d4b7d8a664f5ba2218ad1c8."
+}
