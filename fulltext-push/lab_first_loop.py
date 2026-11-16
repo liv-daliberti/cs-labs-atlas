@@ -18,6 +18,8 @@ release: the link-only papers (the site links an open copy confirmed at the sour
 round first asks again the priority papers' transient failures (priority_retry.py), then runs the collector on the lab-paper groups
 that contain one of those ids (phase priority_N), then the lab pass on the rest. Only the order changes: robots.txt, pacing, paused hosts, identity checks and catalog locks are the collector's, unchanged,
 and the file never holds a blocked paper (robots_disallow, challenge, login, paywall_only). The file is re-read every round.
+--full-first flag (2026-11-16, owner): if $CS_ATLAS_FT_RAW/<school>-full-first.flag exists at the start of a round, the full pass (phase main_first,
+the same --full-hours bound) runs before that round's lab pass and the flag is deleted when it starts.
 usage: lab_first_loop.py <school> [--full-hours H] [--recent-first Y] [--priority-file F]
 """
 import fcntl, json, os, signal, socket, sqlite3, subprocess, sys, time
@@ -75,6 +77,19 @@ def lab_work_ids(school, recent_first=None, priority=None):
         first = list(dict.fromkeys(first))
         return first, [i for i in dict.fromkeys(ids + later) if i not in set(first)]
     return list(dict.fromkeys(ids + later))
+
+
+def take_full_first_flag(school):
+    """Opt-in one-shot (2026-11-16): True, and the flag deleted, when $CS_ATLAS_FT_RAW/<school>-full-first.flag exists.
+    The round then runs the full phase before the lab pass; schools without the flag are unchanged."""
+    flag = F.P.FT_RAW / f'{school}-full-first.flag'
+    if not flag.exists():
+        return False
+    try:
+        flag.unlink()
+    except FileNotFoundError:
+        pass
+    return True
 
 
 def read_priority(path):
@@ -185,6 +200,8 @@ def main():
     while not STOP['flag']:
         rounds += 1
         before = max_attempt(out)
+        if take_full_first_flag(school):  # same collector, same --full-hours bound as the 'main' phase below
+            run(out, [], 'main_first', hours)
         state(out, phase='scanning', rounds=rounds)   # catalog scan (which lab papers still lack a copy): minutes on a large store
         pri = read_priority(pri_path) if pri_path else None
         if pri:
