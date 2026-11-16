@@ -61,6 +61,10 @@ research/teaching PIs: a source-checked research/teaching appointment can use an
             quote is checked against stored source bytes. Appointment evidence, computing scope,
             and candidate identity remain separate requirements. The appointment hand-review must
             carry the same appointment_rank and unit; the original rank is retained.
+historical appointments: a hand review may carry historical_appointment={start,end}
+            with explicit year bounds stated in its quote and matching a source-bound
+            census override period. The biography observation date is preserved but
+            supplies no current listing year. Native builders use the reviewed period.
 usage: cs_related_school.py candidates|units|units-check|review|profile <key> [<Name> <unit> <url>]
 units-check exits 0 when units-done.json covers every unit URL of the charter (a unit added since the last `units` run, or no run, exits 1)
 """
@@ -68,6 +72,7 @@ import collections, datetime, gzip, hashlib, json, re, subprocess, sys
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
+import census_overrides as CO  # noqa: E402
 import school_config as S  # noqa: E402
 import school_web as W  # noqa: E402
 from pi_hierarchy import Name, toks, nick_ok, nosuffix  # noqa: E402
@@ -467,6 +472,36 @@ def census_alias(census, names):
     return None
 
 
+def historical_appointment(key, entry):
+    """Bind historical role evidence to the explicit period native builders read.
+
+    Observing a biography today does not make its former appointment a current
+    listing. Both bounds must be stated by this source and independently present
+    in the reviewed census override; no interval is inferred from roster years.
+    """
+    bounds = entry.get('historical_appointment')
+    if bounds is None:
+        return None
+    start, end = (bounds.get(k) for k in ('start', 'end')) if isinstance(bounds, dict) else (None, None)
+    if not all(isinstance(v, str) and re.fullmatch(r'\d{4}', v) for v in (start, end)):
+        raise SystemExit(f"{entry['name']}: historical appointment needs explicit start/end years")
+    if not (int(start) <= int(end) and int(start) <= 2026 and int(end) >= 2016):
+        raise SystemExit(f"{entry['name']}: historical appointment must overlap 2016–2026 in chronological order")
+    observed_year = (entry.get('observed') or '')[:4]
+    if not re.fullmatch(r'\d{4}', observed_year) or int(end) > int(observed_year):
+        raise SystemExit(f"{entry['name']}: historical appointment cannot end after its source observation")
+    if not entry.get('ladder', True):
+        raise SystemExit(f"{entry['name']}: historical ladder appointment cannot supply a research/teaching PI basis")
+    if any(not re.search(r'(?<!\d)' + year + r'(?!\d)', entry['quote']) for year in (start, end)):
+        raise SystemExit(f"{entry['name']}: historical appointment bounds are absent from its source quote")
+    periods = (CO.section(key).get(entry['name']) or {}).get('periods') or []
+    if not any(p.get('start') == start and p.get('end') == end and p.get('datePrecision') == 'year'
+               and any(all(ev.get(k) == entry[k] for k in ('url', 'sha256', 'quote')) for ev in p.get('evidence') or [])
+               for p in periods):
+        raise SystemExit(f"{entry['name']}: historical appointment lacks the matching source-bound reviewed census period")
+    return dict(start=start, end=end)
+
+
 def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
     """{normalised name: [evidence]} from reviewed/cs-related-hand.json, each entry verified: its sha256 is a stored capture (or live page) whose text holds the quote."""
     ents = read(P.data('cs-related-hand.json', key), []) if entries is None else entries
@@ -505,9 +540,11 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
         texts = texts_by_sha[e['sha256']]
         if not any(' '.join(t.split()).find(' '.join(e['quote'].split())) >= 0 for t in texts if t):
             raise SystemExit(f"{label}: the quote of {e['name']} is not in the stored page {e['sha256'][:12]} (re-run `profile`)")
+        historical = historical_appointment(key, e)
         out.setdefault(' '.join(toks(e['name'])), []).append(dict(unit=e['unit'], url=e['url'], sha256=e['sha256'], observed=e.get('observed') or '', quote=e['quote'],
                                                                    ladder=bool(e.get('ladder', True)), hand=True,
-                                                                   **({'appointment_rank': e['appointment_rank']} if e.get('appointment_rank') else {})))
+                                                                   **({'appointment_rank': e['appointment_rank']} if e.get('appointment_rank') else {}),
+                                                                   **({'historical_appointment': historical} if historical else {})))
     return out
 
 
@@ -653,7 +690,8 @@ def review(key):
             orcids = sorted(set(x.get('orcid') or []) | {o for p in recs for o in p.get('orcids') or []})
             if not orcids and (comp.get('dblp') or []):
                 orcids = sorted({o for p in dblp if p['pid'] in comp['dblp'] for o in p.get('orcids') or []})
-            fy = min([int(e['observed'][:4]) for e in fac] + ([min(x['years_listed'])] if x.get('years_listed') else []))
+            fy = min([int((e.get('historical_appointment') or {}).get('start') or e['observed'][:4]) for e in fac]
+                     + ([min(x['years_listed'])] if x.get('years_listed') else []))
             sh = share_test(SH, names, orcids, fy, c.get('openalex') or [])
             comp['openalex_share'] = sh
         settles = sh and (undecided or c['source'] == 'openalex_rule' or any(N.match(n) for n in SETTLE)
@@ -695,7 +733,7 @@ def review(key):
         n[d] += 1
         row = dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision=d, reason=why, cs_basis=comp,
                    faculty_evidence=sorted(fac, key=lambda e: e['observed'])[:3] + (sorted(fac, key=lambda e: e['observed'])[-1:] if len(fac) > 3 else []),
-                   years_listed=sorted({int(e['observed'][:4]) for e in fac}), units_searched=searched)
+                   years_listed=sorted({int(e['observed'][:4]) for e in fac if not e.get('historical_appointment')}), units_searched=searched)
         if not SH:
             row['provisional'] = 'computing share pending the OpenAlex sweep (DBLP-indexed share of school works >= 20%)'
         dec.append(row)
@@ -704,10 +742,12 @@ def review(key):
             basis = group_basis if using_group else first
             adds.append(dict(name=c['name'], aliases=row['aliases'], collection_person_id=f'{key}_fac_' + re.sub(r'[^a-z0-9]+', '-', ' '.join(toks(c['name']))).strip('-'),
                              dblp=comp['dblp'][:1], rank=group_basis['appointment_rank'] if using_group else 'ladder', title_as_listed=last['quote'], departments=units_by_recency(pi_fac, CENTERS),
-                             years_listed=row['years_listed'], sources=[dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], kind=f"unit_listing:{e['unit']}",
+                             years_listed=row['years_listed'], sources=[dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], kind=f"{'historical_appointment' if e.get('historical_appointment') else 'unit_listing'}:{e['unit']}",
                                                                           observed=e['observed']) for e in sorted(pi_fac, key=lambda e: e['observed'])],
                              is_pi=True, pi_basis=dict(kind=group_basis['kind'] if using_group else 'ladder_faculty', url=basis['url'], sha256=basis['sha256'], quote=basis['quote'], observed=basis['observed'],
-                                                       role=group_basis['role'] if using_group else 'professor title on the unit faculty listing', cs_related=dict(dblp=comp['dblp'], dblp_window=win, openalex=(comp.get('openalex_share') or {}).get('ids'),
+                                                       role=group_basis['role'] if using_group else ('source-stated historical faculty appointment' if basis.get('historical_appointment') else 'professor title on the unit faculty listing'),
+                                                       **({'historical_appointment': basis['historical_appointment']} if basis.get('historical_appointment') else {}),
+                                                       cs_related=dict(dblp=comp['dblp'], dblp_window=win, openalex=(comp.get('openalex_share') or {}).get('ids'),
                                                                                  share=(comp.get('openalex_share') or {}).get('share'))),
                              lab_units=[], added=f'cs_related_review_{TODAY.replace("-", "")}'))
     doc = dict(school=key, reviewed=TODAY, rule=__doc__.split('\nusage')[0], min_dblp=MIN_DBLP, share_test=dict(min_dblp_indexed=SHARE_MIN_CS, min_share=SHARE_MIN,
