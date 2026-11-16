@@ -1,0 +1,69 @@
+{
+  "school": "sjtu",
+  "status": "SOURCE_REPAIR_APPROVED_NATIVE_REBUILD_REQUIRED",
+  "reviewed_at": "2026-11-16",
+  "prior_build_snapshot": "8e0a86611e52c1b62fcaa0d2b1364ef0b0df3e72",
+  "prior_native_job": 32319093,
+  "prior_postaudit_job": 32319097,
+  "source_proposal_sha256": "450ed6d20c9eb24a73db6969a59bd044b6784b4ee0a1cebf8af801f88126c4c4",
+  "review": {
+    "result": "PASS_66_SOURCE_QUALIFIED_MEMBERSHIP_EPISODES_ONLY",
+    "reviewer": "codex-sjtu-ntu-1115",
+    "reviewed_on": "2026-11-16",
+    "independent_of_both_fillers": true,
+    "proposal_sha256": "450ed6d20c9eb24a73db6969a59bd044b6784b4ee0a1cebf8af801f88126c4c4",
+    "rows": 66,
+    "counts": {
+      "严骏驰": 26,
+      "孙世轩": 3,
+      "郑臻哲": 17,
+      "马 超": 20
+    },
+    "sources": [
+      {
+        "url": "https://thinklab.sjtu.edu.cn",
+        "sha256": "919e6ebee5c62d02e6d6e905f4f3cf229d640d9c873e0293e8478a09586419d3",
+        "raw_sha_verified": true
+      },
+      {
+        "url": "https://shixuansun.github.io/people/",
+        "sha256": "9ebd198af959a64c76fd8e8087a3b55fba8fc9c855a2e7404f2a4afd12a7f4c6",
+        "raw_sha_verified": true
+      },
+      {
+        "url": "https://zhengzhenzhe220.github.io/groupmembers.html",
+        "sha256": "d83965de7dbcf9a0c00e1275f19f2de811c9ba24f281abd0af8898082dff8541",
+        "raw_sha_verified": true
+      },
+      {
+        "url": "https://vision.sjtu.edu.cn/group.html",
+        "sha256": "7c120b3bbf2bfe61a69b2806764947a9ec35c4717ad07b3b16238bb6c8571191",
+        "raw_sha_verified": true
+      }
+    ],
+    "checks": [
+      "All4 original HTTP200/rawSHA independently rechecked, every66 exactnormalizedquote present. Read complete ownmember/alumni/rolecontainers, notjustproposal; peer125originalsourcecheckreceipt retained.",
+      "Yan26 literalEnglish+Han ownindividualcards proveperson/degree/SJTUyears, no transliteration. Current2020/2021starts throughcapture2026; full-timePDs2026points; datedPhD/MSalumni exactranges;4alumni2019–openlabels2019pointONLY. DistinctPDYunZhang张赟 mustnot mergewithPhDYunhaoZhang张昀浩.",
+      "SunYushi literalMasters2022–2025; Jixian/Chiyu sourceRA2023–2025 withBachelorThesis givesundergraduate researchlabmembership, notfullundergraduatedegreeenrollment/award. Foreignnextdegreeplacements keptseparate.",
+      "Zheng10masterslisted underownCurrentGroupMembers/M.S.students withexplicitco-workingfromAdvancedNetworkLab: approveMEMBERSHIPonlyatliteral2019/2020points, no advising/current2026/graduatecompletion inference.7UGexplicitSJTUclassyearpoints2016–2019only, no facultyappointmentorpriorgraduatedegreeinference.",
+      "Ma20 ownPostdocs/Students/Alumni sourceboundaries verified.2Postdocs literalheading+ownDrnames2026pointonly; actualPhD/MSrangesretainmonths/CS/EEandcoadvisorcontext; closedalumni datesnotextended. AdditionalYangcoadvisersnotnewPIadmissions.",
+      "All66membershipselectors preserve original source role/degree/aliases and temporal qualifications. No authorID/ORCID/PIappointment inference or threshold change. Chen18alreadyrecorded, OASIS12collectiveattributionheld, Sun2027futurearrivalsheld."
+    ]
+  },
+  "added_membership_episodes": {
+    "严骏驰": 26,
+    "孙世轩": 3,
+    "郑臻哲": 17,
+    "马 超": 20
+  },
+  "roster_evidence_before_sha256": "883f90055c8ff7d0619982f2482a4d1b862e3d83ae3e30c6a52ad88b1bedd659",
+  "roster_evidence_after_sha256": "17c1a624935161765a478e6f60a96bca86e88cd5c60f034e951ef03e522fecf2",
+  "restrictions": [
+    "ChenGuoxing18arealreadyrecordedexactLatin/Hanpairedpersons; no readmission.",
+    "OASIS12collectivemembersheldforPI-specificadviserattribution; not XuErciadvisers.",
+    "FourSun2027plannedarrivalsnotactual2026members.",
+    "NamedMaadditionalcoadvisersYangPing/XiaokangYangpreservedasliteralcontext; no newPIadmission/identifierbinding.",
+    "ZhengoldMSyearlabelsandownco-workingwordingretainedforfreshscopejudgment; no2026extension."
+  ],
+  "protocol": "Preserve the failed original recall draw and all source comparisons. Do not claim a gate pass from these source admissions. A new native build and default recall draw are required before final signoff."
+}
