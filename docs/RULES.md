@@ -514,6 +514,8 @@ URL, one name the other's alias, a shared linked paper) and `tools/student_name_
 `hierarchy/reviewed/student-name-candidates.json`. Only a `same_person` verdict in `student-identity-review.json` merges them.
 2026-11-03: of the 30 queued pairs, 13 stay `same_person` (one source showing both spellings, the same thesis title, a DBLP alias record, or the same slot in two captures of one page) and 17 went back to the queue after the owner's strict re-check (same adviser, role and years is not enough); none was found to be two people.
 
+Implementation note (2026-11-16, SJTU recall): exact Han names match the same literal Han spelling inside a bilingual name. Different explicit Han names cannot match through a Latin prefix or a Latin-only alias: `Yun Zhang 张赟` (postdoc) and `Yunhao Zhang 张昀浩` (PhD) are different people. The recall check keeps its existing thresholds, source requirements and Latin-only rules; it infers no transliteration or new identity. Tests: `test_recall_literal_han_names_precede_latin_variants`, `test_recall_latin_alias_cannot_bypass_conflicting_han_name`.
+
 ### R-STU-17 (2026-11-04, owner) — the `visiting` student role
 A visiting PhD, master's or undergraduate student, a "visiting student researcher", or an exchange or visiting intern who is a student elsewhere, listed on
 a lab's own page (or in researched evidence), is a member of THAT lab in the capture year, role `visiting`; they are no longer dropped as "a student of

@@ -231,6 +231,18 @@ def name_tokens(s):
     return t
 
 
+def _han_name(s):
+    """Literal Han spelling in a name, including a bilingual parenthetical."""
+    han = []
+    for c in unicodedata.normalize('NFKC', s or ''):
+        label = unicodedata.name(c, '')
+        if label.startswith(('CJK UNIFIED IDEOGRAPH-', 'CJK COMPATIBILITY IDEOGRAPH-')):
+            han.append(c)
+        elif c.isalpha() and not label.startswith('LATIN '):
+            return ''  # do not compare only the shared Kanji portion of different Kana names
+    return ''.join(han)
+
+
 NICKNAMES = {'andy': 'andrew', 'zack': 'zachary', 'jackie': 'jacqueline', 'suzie': 'suzanne', 'mike': 'michael', 'bob': 'robert', 'bill': 'william', 'dave': 'david',
              'tom': 'thomas', 'jim': 'james', 'joe': 'joseph', 'ben': 'benjamin', 'sam': 'samuel', 'nick': 'nicholas', 'matt': 'matthew', 'steve': 'steven', 'tony': 'anthony', 'phil': 'philip'}
 
@@ -265,9 +277,14 @@ def _given_compat(a, b):
 def name_match(a, b):
     """The same person under spelling variants: equal token sets; or equal last token and compatible first (equal, an initial, a longer-name prefix, one edit apart, a common nickname);
     hyphen/space-insensitive equal given names (Jee-weon / Jeeweon); a shorter name whose tokens all occur in a longer one with the same last token (Ozge Akmandor / Ayten Ozge Akmandor);
-    a name with no Latin letters (CJK) matches only by its whitespace-free form."""
+    an explicit Han spelling must agree on both sides, including bilingual names. No transliteration is inferred."""
+    ha, hb = _han_name(a), _han_name(b)
+    if ha and hb and ha != hb:
+        return False
     ta, tb = name_tokens(a), name_tokens(b)
     if len(ta) < 2 or len(tb) < 2:
+        if ha and hb:
+            return ha == hb
         ra, rb = re.sub(r'\s+', '', a or ''), re.sub(r'\s+', '', b or '')
         return bool(ra) and ra == rb and not (ta and tb)
     if set(ta) == set(tb):
@@ -290,7 +307,15 @@ def recorded_names(rows):
 
 
 def is_recorded(name, rows):
-    return any(name_match(name, n) for n in recorded_names(rows))
+    han = _han_name(name)
+    for row in rows:
+        names = recorded_names([row])
+        explicit_han = {_han_name(n) for n in names} - {''}
+        if han and explicit_han and han not in explicit_han:
+            continue  # a Latin-only alias cannot bypass the person's conflicting explicit Han name
+        if any(name_match(name, n) for n in names):
+            return True
+    return False
 
 
 # ---- (A) metrics ------------------------------------------------------------------------------------------------------------------------------

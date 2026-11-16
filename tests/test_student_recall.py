@@ -41,6 +41,40 @@ def test_name_match_variants():
     assert R.name_match('Zhou Xiaofang', 'Xiaofang Zhou') and R.name_match('周晓方', '周 晓方') and not R.name_match('周晓方', '周晓芳')
 
 
+@pytest.mark.parametrize(('source', 'recorded', 'expected'), [
+    ('冯明泉', 'Mingquan Feng 冯明泉', True),
+    ('Mingquan Feng (冯明泉)', '冯 明泉', True),
+    ('张赟', 'Yunhao Zhang 张昀浩', False),
+    ('Yun Zhang 张赟', 'Yunhao Zhang 张昀浩', False),
+    ('Yun Zhang 张赟', 'Yun Zhang 张昀浩', False),
+    ('张赟', 'Yun Zhang', False),
+    ('John Zhang 张三', 'Michael Zhang 张三', False),
+    ('田中みずき', '田中さくら', False),
+])
+def test_recall_literal_han_names_precede_latin_variants(source, recorded, expected):
+    assert R.name_match(source, recorded) is expected
+    assert R.name_match(recorded, source) is expected
+
+
+def test_recall_latin_alias_cannot_bypass_conflicting_han_name():
+    recorded = dict(row('Yunhao Zhang 张昀浩'), aliases=['Yunhao Zhang'])
+    assert not R.is_recorded('Yun Zhang 张赟', [recorded])
+    assert not R.is_recorded('张赟', [recorded])
+    assert R.is_recorded('张昀浩', [recorded])
+    literal_alias = dict(row('Mingquan Feng'), aliases=['冯明泉'])
+    assert R.is_recorded('冯明泉', [literal_alias])
+
+
+def test_recall_counts_bilingual_match_without_crediting_different_han_person():
+    entries = dict(listed=[
+        dict(name='冯明泉', role='phd', section='current'),
+        dict(name='张赟', role='postdoc', section='current'),
+    ])
+    counts = R.entry_counts(entries, [row('Mingquan Feng 冯明泉'), row('Yunhao Zhang 张昀浩')])
+    assert counts['L'] == 2 and counts['K'] == 1
+    assert counts['Lc'] == 1 and counts['Kc'] == 1
+
+
 def test_metrics_counts_and_zero_reasons(tree):
     tree['put']('lab-coverage-reasons.json', {
         'PI00': {'students': {'code': 'sources_exhausted', 'why': 'No student of this PI in any allowed source checked.', 'sources_checked': ['a', 'b']}},
