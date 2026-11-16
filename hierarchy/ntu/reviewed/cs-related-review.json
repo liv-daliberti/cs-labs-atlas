@@ -22,11 +22,11 @@
     "WKWSCI"
   ],
   "counts": {
-    "not_faculty_listed": 1185,
+    "not_faculty_listed": 1184,
     "research_or_other_rank": 8,
-    "excluded_scope": 5,
-    "accepted": 81,
-    "faculty_not_computing": 11
+    "accepted": 88,
+    "faculty_not_computing": 11,
+    "excluded_scope": 5
   },
   "decisions": [
     {
@@ -20024,42 +20024,73 @@
     },
     {
       "name": "Loo Geok Pee",
-      "aliases": [
-        "L. G. Pee"
-      ],
-      "source": "dblp_affiliation",
-      "decision": "not_faculty_listed",
-      "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
-      "cs_basis": {
-        "dblp": [
-          "https://dblp.org/pid/39/4313"
-        ],
+      "aliases": [],
+      "canonical_pi": "Pee Loo Geok",
+      "source": "reviewed_primary_faculty_scope_correspondence",
+      "decision": "accepted",
+      "reason": "Independently reviewed own professor-rank WKW card and normal single-source computing decision; exact contextual name-order correspondence for source scope only. No bibliographic identity, alias, or student-derived PI activation.",
+      "source_correspondence_scope_only": true,
+      "author_identity_admission": false,
+      "primary_scope_cs_basis": {
+        "computing_scope_only": true,
         "dblp_window": 30,
-        "affiliation_notes": [
-          "Nanyang Technological University, Singapore"
+        "school_works": 35,
+        "dblp_indexed": 28,
+        "share": 0.8,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2
+        },
+        "normal_review_job": 32331369,
+        "identity_activation": false
+      },
+      "previous_decision_preserved": {
+        "name": "Loo Geok Pee",
+        "aliases": [
+          "L. G. Pee"
         ],
-        "evidence": [
-          {
-            "url": "https://dblp.org/pid/39/4313",
-            "source": "DBLP dump dblp-2026-09-01.xml.gz",
-            "quote": "Nanyang Technological University, Singapore"
-          }
+        "source": "dblp_affiliation",
+        "decision": "not_faculty_listed",
+        "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
+        "cs_basis": {
+          "dblp": [
+            "https://dblp.org/pid/39/4313"
+          ],
+          "dblp_window": 30,
+          "affiliation_notes": [
+            "Nanyang Technological University, Singapore"
+          ],
+          "evidence": [
+            {
+              "url": "https://dblp.org/pid/39/4313",
+              "source": "DBLP dump dblp-2026-09-01.xml.gz",
+              "quote": "Nanyang Technological University, Singapore"
+            }
+          ]
+        },
+        "faculty_evidence": [],
+        "years_listed": [],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
         ]
       },
-      "faculty_evidence": [],
-      "years_listed": [],
-      "units_searched": [
-        "ADM",
-        "CEE",
-        "EEE",
-        "HASS",
-        "LKC_MEDICINE",
-        "MAE",
-        "MSE",
-        "SBS",
-        "SPMS",
-        "WKWSCI"
-      ]
+      "independent_source_review": {
+        "packet": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/pee-one-source-scope-proposal.json",
+        "packet_sha256": "31f6e2029ca886545ed6808d532f4737d4a04a64a335b7c13356b750ff13a6c3",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/pee-scope-review1116/PEE-ONE-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "7b107a1a84d188065f92bc845fec67a76ab6dab8c415105589d5e363e0b0672f",
+        "reviewer": "codex-ntu-rosters-1115",
+        "scope": "Computing/source-name correspondence only, no author identity or global alias activation."
+      }
     },
     {
       "name": "Lu Bai",
@@ -57652,6 +57683,228 @@
         "normal_review_sha256": "0a53ef15d51dadebd07179d0eafe11d04acc14ae2a31fcd035a387de7f5c8e4b",
         "scope": "Actualnormalreview consumes qualifiedhomepagerule PID73entries; no ORCID/OAID/period admission. ThirtyfiveCoRRand38venueentries, not73uniquepapers."
       }
+    },
+    {
+      "name": "Alton Yeow-Kuan Chua",
+      "aliases": [],
+      "source": "reviewed_primary_faculty_scope_correspondence",
+      "decision": "accepted",
+      "reason": "Normal candidate computing-scope disposition is the independently approved source faculty scope under canonical_pi; this preserves candidate decision coverage without activating bibliographic identity, aliases, duplicate PI, author IDs, members, periods or works.",
+      "canonical_pi": "Alton Chua",
+      "source_correspondence_scope_only": true,
+      "author_identity_admission": false,
+      "primary_scope_cs_basis": {
+        "computing_scope_only": true,
+        "school_works": 77,
+        "dblp_indexed": 50,
+        "share": 0.649,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
+      },
+      "previous_source_qualified_review": {
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
+        "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
+        "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
+      },
+      "independent_source_review": {
+        "packet": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/six-normal-candidate-scope-decisions-without-identity-proposal.json",
+        "packet_sha256": "43d3c46533261be601e321b9b5fb439771144c1a24380d9f37c8597c5cab8109",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/SIX-CANDIDATE-SCOPE-COVERAGE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "39c5d18d7e8f88b60a4efeca7f77714b0af295a7305dfc77f67c363e92cbdb08",
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler"
+      }
+    },
+    {
+      "name": "Benjamin J. Li",
+      "aliases": [],
+      "source": "reviewed_primary_faculty_scope_correspondence",
+      "decision": "accepted",
+      "reason": "Normal candidate computing-scope disposition is the independently approved source faculty scope under canonical_pi; this preserves candidate decision coverage without activating bibliographic identity, aliases, duplicate PI, author IDs, members, periods or works.",
+      "canonical_pi": "Li Junting, Benjamin",
+      "source_correspondence_scope_only": true,
+      "author_identity_admission": false,
+      "primary_scope_cs_basis": {
+        "computing_scope_only": true,
+        "school_works": 54,
+        "dblp_indexed": 17,
+        "share": 0.315,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
+      },
+      "previous_source_qualified_review": {
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
+        "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
+        "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
+      },
+      "independent_source_review": {
+        "packet": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/six-normal-candidate-scope-decisions-without-identity-proposal.json",
+        "packet_sha256": "43d3c46533261be601e321b9b5fb439771144c1a24380d9f37c8597c5cab8109",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/SIX-CANDIDATE-SCOPE-COVERAGE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "39c5d18d7e8f88b60a4efeca7f77714b0af295a7305dfc77f67c363e92cbdb08",
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler"
+      }
+    },
+    {
+      "name": "Christopher S. G. Khoo",
+      "aliases": [],
+      "source": "reviewed_primary_faculty_scope_correspondence",
+      "decision": "accepted",
+      "reason": "Normal candidate computing-scope disposition is the independently approved source faculty scope under canonical_pi; this preserves candidate decision coverage without activating bibliographic identity, aliases, duplicate PI, author IDs, members, periods or works.",
+      "canonical_pi": "Khoo Soo Guan, Christopher",
+      "source_correspondence_scope_only": true,
+      "author_identity_admission": false,
+      "primary_scope_cs_basis": {
+        "computing_scope_only": true,
+        "school_works": 23,
+        "dblp_indexed": 5,
+        "share": 0.217,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
+      },
+      "previous_source_qualified_review": {
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
+        "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
+        "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
+      },
+      "independent_source_review": {
+        "packet": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/six-normal-candidate-scope-decisions-without-identity-proposal.json",
+        "packet_sha256": "43d3c46533261be601e321b9b5fb439771144c1a24380d9f37c8597c5cab8109",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/SIX-CANDIDATE-SCOPE-COVERAGE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "39c5d18d7e8f88b60a4efeca7f77714b0af295a7305dfc77f67c363e92cbdb08",
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler"
+      }
+    },
+    {
+      "name": "E. Y. K. Ng",
+      "aliases": [],
+      "source": "reviewed_primary_faculty_scope_correspondence",
+      "decision": "accepted",
+      "reason": "Normal candidate computing-scope disposition is the independently approved source faculty scope under canonical_pi; this preserves candidate decision coverage without activating bibliographic identity, aliases, duplicate PI, author IDs, members, periods or works.",
+      "canonical_pi": "Ng Yin Kwee, Eddie",
+      "source_correspondence_scope_only": true,
+      "author_identity_admission": false,
+      "primary_scope_cs_basis": {
+        "computing_scope_only": true,
+        "school_works": 207,
+        "dblp_indexed": 52,
+        "share": 0.251,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
+      },
+      "previous_source_qualified_review": {
+        "reviewer": "codex-ntu-rosters-1115",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/mae-seven-review1116/MAE-SEVEN-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "a6f8ff3c2e82488a37d3803d57e86b65739e15438a10b747c37a8c23652e65f7",
+        "proposal_sha256": "c9c8a08a0d4f40ebc03d493927c9f0c1c43413767fdc4b5fab0845cb26cdb368",
+        "payload_sha256": "d3312e25bd5e210f283747562bf9dd9c17405bf6c96f615127511ec54c854519"
+      },
+      "independent_source_review": {
+        "packet": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/six-normal-candidate-scope-decisions-without-identity-proposal.json",
+        "packet_sha256": "43d3c46533261be601e321b9b5fb439771144c1a24380d9f37c8597c5cab8109",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/SIX-CANDIDATE-SCOPE-COVERAGE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "39c5d18d7e8f88b60a4efeca7f77714b0af295a7305dfc77f67c363e92cbdb08",
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler"
+      }
+    },
+    {
+      "name": "Sei-Ching Joanna Sin",
+      "aliases": [],
+      "source": "reviewed_primary_faculty_scope_correspondence",
+      "decision": "accepted",
+      "reason": "Normal candidate computing-scope disposition is the independently approved source faculty scope under canonical_pi; this preserves candidate decision coverage without activating bibliographic identity, aliases, duplicate PI, author IDs, members, periods or works.",
+      "canonical_pi": "Joanna Sin Sei Ching",
+      "source_correspondence_scope_only": true,
+      "author_identity_admission": false,
+      "primary_scope_cs_basis": {
+        "computing_scope_only": true,
+        "school_works": 33,
+        "dblp_indexed": 23,
+        "share": 0.697,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
+      },
+      "previous_source_qualified_review": {
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
+        "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
+        "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
+      },
+      "independent_source_review": {
+        "packet": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/six-normal-candidate-scope-decisions-without-identity-proposal.json",
+        "packet_sha256": "43d3c46533261be601e321b9b5fb439771144c1a24380d9f37c8597c5cab8109",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/SIX-CANDIDATE-SCOPE-COVERAGE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "39c5d18d7e8f88b60a4efeca7f77714b0af295a7305dfc77f67c363e92cbdb08",
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler"
+      }
+    },
+    {
+      "name": "Yiyu Cai",
+      "aliases": [],
+      "source": "reviewed_primary_faculty_scope_correspondence",
+      "decision": "accepted",
+      "reason": "Normal candidate computing-scope disposition is the independently approved source faculty scope under canonical_pi; this preserves candidate decision coverage without activating bibliographic identity, aliases, duplicate PI, author IDs, members, periods or works.",
+      "canonical_pi": "Cai Yiyu",
+      "source_correspondence_scope_only": true,
+      "author_identity_admission": false,
+      "primary_scope_cs_basis": {
+        "computing_scope_only": true,
+        "school_works": 133,
+        "dblp_indexed": 36,
+        "share": 0.271,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
+      },
+      "previous_source_qualified_review": {
+        "reviewer": "codex-ntu-rosters-1115",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/mae-seven-review1116/MAE-SEVEN-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "a6f8ff3c2e82488a37d3803d57e86b65739e15438a10b747c37a8c23652e65f7",
+        "proposal_sha256": "c9c8a08a0d4f40ebc03d493927c9f0c1c43413767fdc4b5fab0845cb26cdb368",
+        "payload_sha256": "d3312e25bd5e210f283747562bf9dd9c17405bf6c96f615127511ec54c854519"
+      },
+      "independent_source_review": {
+        "packet": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/six-normal-candidate-scope-decisions-without-identity-proposal.json",
+        "packet_sha256": "43d3c46533261be601e321b9b5fb439771144c1a24380d9f37c8597c5cab8109",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/SIX-CANDIDATE-SCOPE-COVERAGE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "39c5d18d7e8f88b60a4efeca7f77714b0af295a7305dfc77f67c363e92cbdb08",
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler"
+      }
     }
   ],
   "supplemental_review_runs": [
@@ -57689,6 +57942,21 @@
       "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
       "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
       "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
+    },
+    {
+      "packet": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/six-normal-candidate-scope-decisions-without-identity-proposal.json",
+      "packet_sha256": "43d3c46533261be601e321b9b5fb439771144c1a24380d9f37c8597c5cab8109",
+      "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/SIX-CANDIDATE-SCOPE-COVERAGE-INDEPENDENT-REVIEW-20261116.json",
+      "receipt_sha256": "39c5d18d7e8f88b60a4efeca7f77714b0af295a7305dfc77f67c363e92cbdb08",
+      "reviewer": "codex-sjtu-ntu-1115 / root independent of filler"
+    },
+    {
+      "packet": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/pee-one-source-scope-proposal.json",
+      "packet_sha256": "31f6e2029ca886545ed6808d532f4737d4a04a64a335b7c13356b750ff13a6c3",
+      "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/pee-scope-review1116/PEE-ONE-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+      "receipt_sha256": "7b107a1a84d188065f92bc845fec67a76ab6dab8c415105589d5e363e0b0672f",
+      "reviewer": "codex-ntu-rosters-1115",
+      "scope": "Computing/source-name correspondence only, no author identity or global alias activation."
     }
   ]
 }
