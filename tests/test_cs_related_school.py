@@ -19,3 +19,9 @@ def test_explicit_professor_role_still_supplies_evidence():
     pages = [('DPMMS', 'source', 'sha', '20200809',
               'Po-Ling Loh Professor of Statistics')]
     assert C.faculty_evidence(pages, ['Po-Ling Loh'])[0]['quote'] == 'Po-Ling Loh Professor of Statistics'
+
+
+def test_qualified_role_is_not_mistaken_for_a_next_person_prefix():
+    pages = [('AE', 'source', 'sha', '20200809',
+              'Karen M Feigh Associate Professor Knight-419 View Full Profile')]
+    assert C.faculty_evidence(pages, ['Karen M. Feigh'])[0]['ladder']

@@ -431,7 +431,7 @@ def faculty_evidence(pages, names, teaching_title=''):
                 # "Dr Chao Li Professor Benedikt Loewe". Unlike "Professor of
                 # Mathematics", the title is immediately followed by a name.
                 after_title = seg[pt.end():]
-                if re.match(r'\s+[A-Z][\w’\'-]+\s+[A-Z][\w’\'-]+', after_title):
+                if pt.group(0).lower() == 'professor' and re.match(r'\s+[A-Z][\w’\'-]+\s+[A-Z][\w’\'-]+', after_title):
                     continue
                 q = flat[m.start():m.end() + pt.end()]
                 # the rank is read up to the title's own 'Professor': the 'of <unit>' tail can run on into a second
