@@ -24,7 +24,7 @@ def via(raw, own=False):
     ['Huazhong University of Science and Technology', 'gswwang@connect.ust.hk'],
     ['Microsoft Research, contact person@cse.hkust.edu.hk'],
 ])
-def test_contact_address_does_not_override_explicit_outside_institution(raw):
+def test_R_PAP_47_contact_address_does_not_override_explicit_outside_institution(raw):
     assert via(raw) == []
 
 
