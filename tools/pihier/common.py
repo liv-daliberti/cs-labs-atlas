@@ -95,7 +95,11 @@ def excluded_school_only(authorship, school):
         return False
     raws = authorship.get('raw_affiliation_strings') or []
     rx = gate[1] if gate else _S.aff_rx(school)
-    if any(rx.search(raw or '') for raw in raws):
+    # A broad school name inside an explicitly excluded campus is not
+    # independent primary evidence. Remove only the matched spans for this
+    # check; another primary occurrence in the same raw string still counts.
+    primary_raws = [re.sub(explicit, ' ', raw or '', flags=re.I) for raw in raws] if explicit else raws
+    if any(rx.search(raw or '') for raw in primary_raws):
         return False  # independent primary or dual raw evidence remains available
     if explicit and any(re.search(explicit, raw or '', re.I) for raw in raws):
         return True  # literal excluded-campus evidence outranks a derived primary ID
