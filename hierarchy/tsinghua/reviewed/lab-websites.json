@@ -948,34 +948,117 @@
   },
   {
    "pi": "王健楠",
-   "status": "reviewed_live_website",
+   "status": "reviewed_cached_website",
    "coverage": "website",
    "url": "https://dbgroup.cs.tsinghua.edu.cn/jnwang/",
-   "kind": "lab_or_homepage",
+   "kind": "pi_homepage",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Site linked literally by the named official unit profile (captured 2026-11-10); live fetch recorded; student worker sweep.",
+   "reason": "Captured personal homepage explicitly identifies Jiannan Wang as a tenured Tsinghua CS associate professor; named official profile literally links this same host/path. Homepage used as the lab-page fallback.",
    "sha256": "3d52cc1b0cfe56ab7031ec4e8056301f347be4595eed8e9b1f7784a7402a6afd",
-   "checked_at": "2026-11-10T00:55:08",
+   "checked_at": "2026-11-16T13:41:08",
    "official_link_status": "recorded",
    "found_via": "school_profile_link",
    "listed_on": "https://www.cs.tsinghua.edu.cn/info/1112/6905.htm",
    "evidence": {
     "url": "https://dbgroup.cs.tsinghua.edu.cn/jnwang/",
     "sha256": "3d52cc1b0cfe56ab7031ec4e8056301f347be4595eed8e9b1f7784a7402a6afd",
-    "quote": "https://dbgroup.cs.tsinghua.edu.cn/jnwang",
-    "observed": "2026-11-10T00:55:08"
+    "quote": "Jiannan Wang Associate Professor (Tenured) Department of Computer Science and Technology Tsinghua University",
+    "observed": "2026-11-16T13:41:08"
    },
    "checks": [
+    {
+     "source": "school_profile_page",
+     "url": "https://www.cs.tsinghua.edu.cn/info/1112/6905.htm",
+     "at": "2026-11-07T17:47:00",
+     "result": "ok",
+     "sha256": "23bce3ae4fcd8f5b5becad76891999c7b0b76713610f59113ba6e79059234fa3"
+    },
     {
      "source": "school_profile_link",
      "url": "https://dbgroup.cs.tsinghua.edu.cn/jnwang/",
      "on": "https://www.cs.tsinghua.edu.cn/info/1112/6905.htm",
-     "at": "2026-11-10T00:55:08",
-     "result": "ok",
+     "at": "2026-11-07T17:47:00",
+     "result": "listed",
+     "anchor": "https://dbgroup.cs.tsinghua.edu.cn/jnwang",
+     "linked_url": "https://dbgroup.cs.tsinghua.edu.cn/jnwang",
+     "href": "https://dbgroup.cs.tsinghua.edu.cn/jnwang",
      "source_sha256": "23bce3ae4fcd8f5b5becad76891999c7b0b76713610f59113ba6e79059234fa3",
-     "sha256": "3d52cc1b0cfe56ab7031ec4e8056301f347be4595eed8e9b1f7784a7402a6afd"
+     "provenance": "independently_read_literal_official_profile_href",
+     "normalization": "tools.lab_websites.normalized_link ignores scheme and trailing slash only; exact host/path/query retained.",
+     "redirect_receipts": [
+      {
+       "url": "https://dbgroup.cs.tsinghua.edu.cn/jnwang",
+       "at": "2026-11-16T13:06:33",
+       "status": 301,
+       "sha256": "f664caef2373c4e0e84e15fbaca35fdb3e0c2336109b5e4e34901232fd8351d0",
+       "location": "http://dbgroup.cs.tsinghua.edu.cn/jnwang/",
+       "sha256_kind": "repository_client_redirect_receipt",
+       "note": "The repository client stores requested_url/Location/status as a hashed JSON receipt for redirects; this SHA is not represented as an original HTTP200 page body."
+      },
+      {
+       "url": "http://dbgroup.cs.tsinghua.edu.cn/jnwang/",
+       "at": "2026-11-16T13:12:47",
+       "status": 302,
+       "sha256": "3195bf89f65c965b7d3abc2805b3e6e248353636f051af40ab019226fa2a2ad0",
+       "location": "https://dbgroup.cs.tsinghua.edu.cn/jnwang/",
+       "sha256_kind": "repository_client_redirect_receipt",
+       "note": "The repository client stores requested_url/Location/status as a hashed JSON receipt for redirects; this SHA is not represented as an original HTTP200 page body."
+      }
+     ]
+    },
+    {
+     "source": "independent_candidate_identity_check",
+     "url": "https://dbgroup.cs.tsinghua.edu.cn/jnwang/",
+     "at": "2026-11-16T13:41:08",
+     "result": "ok",
+     "sha256": "3d52cc1b0cfe56ab7031ec4e8056301f347be4595eed8e9b1f7784a7402a6afd",
+     "name_quote": "Jiannan Wang Associate Professor (Tenured) Department of Computer Science and Technology Tsinghua University"
     }
-   ]
+   ],
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://dbgroup.cs.tsinghua.edu.cn/jnwang/",
+     "on": "https://www.cs.tsinghua.edu.cn/info/1112/6905.htm",
+     "at": "2026-11-07T17:47:00",
+     "result": "listed",
+     "anchor": "https://dbgroup.cs.tsinghua.edu.cn/jnwang",
+     "linked_url": "https://dbgroup.cs.tsinghua.edu.cn/jnwang",
+     "href": "https://dbgroup.cs.tsinghua.edu.cn/jnwang",
+     "source_sha256": "23bce3ae4fcd8f5b5becad76891999c7b0b76713610f59113ba6e79059234fa3",
+     "provenance": "independently_read_literal_official_profile_href",
+     "normalization": "tools.lab_websites.normalized_link ignores scheme and trailing slash only; exact host/path/query retained.",
+     "redirect_receipts": [
+      {
+       "url": "https://dbgroup.cs.tsinghua.edu.cn/jnwang",
+       "at": "2026-11-16T13:06:33",
+       "status": 301,
+       "sha256": "f664caef2373c4e0e84e15fbaca35fdb3e0c2336109b5e4e34901232fd8351d0",
+       "location": "http://dbgroup.cs.tsinghua.edu.cn/jnwang/",
+       "sha256_kind": "repository_client_redirect_receipt",
+       "note": "The repository client stores requested_url/Location/status as a hashed JSON receipt for redirects; this SHA is not represented as an original HTTP200 page body."
+      },
+      {
+       "url": "http://dbgroup.cs.tsinghua.edu.cn/jnwang/",
+       "at": "2026-11-16T13:12:47",
+       "status": 302,
+       "sha256": "3195bf89f65c965b7d3abc2805b3e6e248353636f051af40ab019226fa2a2ad0",
+       "location": "https://dbgroup.cs.tsinghua.edu.cn/jnwang/",
+       "sha256_kind": "repository_client_redirect_receipt",
+       "note": "The repository client stores requested_url/Location/status as a hashed JSON receipt for redirects; this SHA is not represented as an original HTTP200 page body."
+      }
+     ]
+    }
+   ],
+   "verified": true,
+   "verified_by": "independent_source_review",
+   "verification_quote": "Jiannan Wang Associate Professor (Tenured) Department of Computer Science and Technology Tsinghua University",
+   "classification_review": {
+    "reviewer": "/root/recall_fill",
+    "reviewed_on": "2026-11-16",
+    "reason": "Literal named official-profile href plus original target self-identification at Tsinghua; redirect targets independently fetched under normal source policy."
+   },
+   "membership_scope_note": "Website identity/affiliation verified only. Mixed-institution advisee history does not establish Tsinghua student membership; school-scope holds remain separate."
   },
   {
    "pi": "何卓论",
