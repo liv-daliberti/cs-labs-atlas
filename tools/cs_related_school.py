@@ -82,6 +82,7 @@ import census_overrides as CO  # noqa: E402
 import school_config as S  # noqa: E402
 import school_web as W  # noqa: E402
 from pi_hierarchy import Name, toks, nick_ok, nosuffix  # noqa: E402
+from pihier.names import middle_conflict  # noqa: E402
 
 MIN_DBLP = 5
 SHARE_MIN_CS, SHARE_MIN, SHARE_MIN_N = 5, 0.20, 8
@@ -621,11 +622,16 @@ def dated_listing(entry, pdf):
         fail('rank heading is absent, inactive or mixed on the entry page')
     row = ' '.join(entry['quote'].split())
     name = proof.get('entry_name') or ''
+    # The register prints knighthood titles inside the literal name column.
+    # Remove only that leading title for identity comparison; the source quote
+    # and appointment-year binding below still require the entire literal name.
+    person_name = re.sub(r'^(?:Sir|Dame)\s+', '', name)
     year = str(proof.get('appointment_year') or '')
     if not row or row not in ' '.join(text.split()):
         fail('entry quote is not on its stated page')
-    if (len(toks(name)) < 2 or len(toks(name)[0]) < 2 or len(toks(name)[-1]) < 2
-            or name not in row or not Name([entry['name']]).match(name)):
+    if (len(toks(person_name)) < 2 or len(toks(person_name)[0]) < 2 or len(toks(person_name)[-1]) < 2
+            or name not in row or not Name([entry['name']]).match(person_name)
+            or middle_conflict([entry['name']], person_name)):
         fail('full entry name does not bind this candidate')
     if (not re.fullmatch(r'\d{4}', year) or int(year) >= date.year
             or not re.search(r'(?<!\d)' + year + r'\s+' + re.escape(name) + r'(?!\w)', row)):

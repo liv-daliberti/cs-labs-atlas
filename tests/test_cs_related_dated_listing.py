@@ -58,6 +58,27 @@ def test_active_reader_uses_its_own_rank_section():
         C.dated_listing(row, text)
 
 
+@pytest.mark.parametrize('title', ['Sir', 'Dame'])
+def test_literal_knighthood_title_preserves_source_and_binds_full_identity(title):
+    row = entry()
+    row['dated_listing']['entry_name'] = title + ' Avery James Scientist'
+    row['quote'] = row['quote'].replace('Avery James Scientist', row['dated_listing']['entry_name'])
+    text = PDF_TEXT.replace('Avery James Scientist', row['dated_listing']['entry_name'])
+    assert C.dated_listing(row, text) == row['dated_listing']
+    # A title does not relax the full-name or actual source-column requirements.
+    for bad_name in ['A. James Scientist', 'Riley James Scientist', 'Avery Riley Scientist']:
+        bad_row = entry()
+        bad_row['name'] = 'Avery J. Scientist'
+        bad_row['dated_listing']['entry_name'] = title + ' ' + bad_name
+        bad_row['quote'] = row['quote'].replace('Avery James Scientist', bad_name)
+        bad_text = text.replace('Avery James Scientist', bad_name)
+        with pytest.raises(SystemExit, match='full entry name'):
+            C.dated_listing(bad_row, bad_text)
+    row['dated_listing']['entry_name'] = 'Avery James Scientist'
+    with pytest.raises(SystemExit, match='appointment year'):
+        C.dated_listing(row, text)
+
+
 @pytest.mark.parametrize('change,reason', [
     ({'date': '2027-01-12'}, 'window'),
     ({'date': '2018-02-30'}, 'valid document'),
@@ -78,6 +99,13 @@ def test_invalid_or_unbound_historical_observations_stay_rejected(change, reason
     row = entry()
     row['dated_listing'].update(change)
     with pytest.raises(SystemExit, match=reason):
+        C.dated_listing(row, PDF_TEXT)
+
+
+def test_explicit_middle_name_conflict_rejects_an_untitled_officer():
+    row = entry()
+    row['name'] = 'Avery R. Scientist'
+    with pytest.raises(SystemExit, match='full entry name'):
         C.dated_listing(row, PDF_TEXT)
 
 
