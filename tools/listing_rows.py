@@ -11,7 +11,7 @@ row      name (given-first, as the page spells it), name_listed ('Last, First M.
          that name the department, by the charter's [[departments]].title_match), rank (classified from dept_title, else
          from every title: emeritus | courtesy | adjunct | visiting | lecturer | research | teaching | ladder | other),
          homepage, profile (the department's own profile page, when the listing links one instead of a homepage), capture_url, sha256 (of the capture body as stored), quote (the person's name through their last
-         title, a substring of the capture's whitespace-collapsed text; never the contact lines)
+         title, from the capture's whitespace-collapsed text; disjoint verbatim excerpts use [...] to omit contact lines)
 coverage listings/<key>/coverage.json: department x year -> slots with an ok capture, and the plan's reason for each
          half-year without one (nocapture | unusable | out_of_scope)
 usage: listing_rows.py <key>
@@ -67,6 +67,17 @@ def listing_rank(titles, dept_titles, kind=None, extra=None):
 
 
 def quote_of(flat, e, raw=None):
+    if 'quote_parts' in e:
+        parts = e['quote_parts']
+        if not isinstance(parts, list) or not parts or any(not isinstance(p, str) or not p.strip() for p in parts):
+            return None
+        parts = [' '.join(p.split()) for p in parts]
+        if (any(p not in flat for p in parts) or e['name_listed'] not in parts[0]
+                or any(not any(t in p for p in parts) for t in e['titles'])):
+            return None
+        # Name and title can be separated by contact details or a biography.
+        # Each excerpt is verbatim; an explicit omission never retains either.
+        return ' [...] '.join(parts)
     if 'quote_raw' in e and raw is not None:
         quote = e['quote_raw']
         return quote if quote in raw and e['name_listed'] in quote and all(t in quote for t in e['titles']) else None
