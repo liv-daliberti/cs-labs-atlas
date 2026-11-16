@@ -359,3 +359,76 @@ def test_hand_json_rejects_malformed_bytes_and_wrong_hash():
         json_hand(b'{"role":"Professor",}', 'Professor')
     with pytest.raises(SystemExit, match='source hash mismatch'):
         json_hand(b'{"role":"Professor"}', 'Professor', sha='0' * 64)
+
+
+def official_profile_review(monkeypatch, tmp_path, identity):
+    import hashlib
+    import json
+    import sqlite3
+    import zlib
+
+    name = 'Avery Scientist'
+    html = b'<h1>Avery Scientist</h1><p>Assistant Professor</p>'
+    sha = hashlib.sha256(html).hexdigest()
+    db = sqlite3.connect(':memory:')
+    db.execute('create table captures (sha256 text, text text)')
+    db.execute('create table live (url text, sha256 text, raw_zlib blob)')
+    db.execute('insert into live values (?,?,?)', ('https://school.example/avery', sha, zlib.compress(html)))
+    files = {
+        'cs-related-candidates.json': [dict(name=name, aliases=[], source='official_profile_ladder')],
+        # A busy namesake must not supply computing evidence to the faculty card.
+        'dblp-affiliated.json': {'persons': [dict(pid='https://dblp.org/pid/namesake', n_window=900,
+                                                affiliations=[{'text': 'University of Cambridge'}])]},
+        'dblp-ids.json': {name: identity},
+        'census-faculty.json': {'faculty': []},
+        'cs-related-hand.json': [dict(name=name, unit='CS', url='https://school.example/avery', sha256=sha,
+                                      quote='Avery Scientist Assistant Professor', observed='20261115', ladder=True)],
+    }
+    for filename, obj in files.items():
+        (tmp_path / filename).write_text(json.dumps(obj))
+    monkeypatch.setattr(C.P, 'data', lambda filename, key=None: tmp_path / filename)
+    monkeypatch.setattr(C.P, 'data_w', lambda filename, key=None: tmp_path / filename)
+    monkeypatch.setattr(C.S, 'get', lambda key: {'cs_related': {}, 'census': {}})
+    monkeypatch.setattr(C, 'units_current', lambda key: True)
+    monkeypatch.setattr(C, 'unit_pages', lambda key: [])
+    monkeypatch.setattr(C.W, 'con', lambda key: db)
+    monkeypatch.setattr(C, 'oa_stats', lambda key: {})
+    C.review('cambridge')
+    return (json.loads((tmp_path / 'cs-related-review.json').read_text())['decisions'][0],
+            json.loads((tmp_path / 'census-additions.json').read_text()))
+
+
+def test_official_ladder_profile_uses_evidenced_owned_dblp_person(monkeypatch, tmp_path):
+    pid = 'https://dblp.org/pid/owned'
+    decision, additions = official_profile_review(monkeypatch, tmp_path, dict(
+        pid=pid, basis='homepage_url', n_window=73, url=pid, dump='pinned.xml.gz', sha256='a' * 64,
+        quote='<url>https://school.example/avery</url>'))
+    assert decision['decision'] == 'accepted'
+    assert decision['cs_basis']['dblp'] == [pid]
+    assert decision['cs_basis']['dblp_window'] == 73
+    assert additions[0]['dblp'] == [pid]
+
+
+def test_official_profile_does_not_borrow_undecided_namesake_count(monkeypatch, tmp_path):
+    decision, additions = official_profile_review(monkeypatch, tmp_path, dict(
+        candidates=2, candidates_max_window=900))
+    assert decision['decision'] == 'faculty_not_computing'
+    assert decision['cs_basis']['dblp'] == []
+    assert additions == []
+
+
+def test_official_profile_rejects_unevidenced_pid(monkeypatch, tmp_path):
+    decision, additions = official_profile_review(monkeypatch, tmp_path, dict(
+        pid='https://dblp.org/pid/guessed', basis='homepage_url', n_window=900))
+    assert decision['decision'] == 'faculty_not_computing'
+    assert additions == []
+
+
+def test_official_profile_keeps_existing_minimum_computing_output(monkeypatch, tmp_path):
+    pid = 'https://dblp.org/pid/owned'
+    decision, additions = official_profile_review(monkeypatch, tmp_path, dict(
+        pid=pid, basis='homepage_url', n_window=C.MIN_DBLP - 1, url=pid, dump='pinned.xml.gz',
+        sha256='a' * 64, quote='<url>https://school.example/avery</url>'))
+    assert decision['decision'] == 'faculty_not_computing'
+    assert decision['cs_basis']['dblp'] == [pid]
+    assert additions == []

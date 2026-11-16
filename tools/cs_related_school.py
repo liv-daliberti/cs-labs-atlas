@@ -54,7 +54,8 @@ review      faculty evidence: a 2016-2026 unit capture whose text has the candid
 hand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):
             [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> "<Name>" <unit> <url>` fetches the page (the live page where
             robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as
-            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. The share test still decides computing.
+            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. Computing uses the normal share test or the
+            existing minimum output of an evidenced, decided DBLP person; undecided namesake counts cannot supply that output.
 research/teaching PIs: a source-checked research/teaching appointment can use an explicit
             pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,
             with unit, role, observed and appointment_rank (research|teaching). Its group/advising
@@ -746,8 +747,14 @@ def review(key):
         comp = dict(dblp=[p['pid'] for p in recs], dblp_window=win, affiliation_notes=[a['text'] for p in recs for a in p['affiliations']][:4],
                     evidence=[dict(url=p['pid'], source=f'DBLP dump {P.DBLP_DUMP_FILE}', quote=next((a['text'] for a in p['affiliations']), None)) for p in recs][:2])
         undecided = None
-        if c['source'] == 'affiliated_department':  # the person's own DBLP record, decided by tools/dblp_ids_school.py
-            di = ids.get(c['name'])
+        di = ids.get(c['name'])
+        # A source-checked individual faculty card can establish the same ladder
+        # appointment as a directory row. Its computing evidence must still be
+        # a decided, evidenced person record, never a namesake candidate count.
+        official_decided = (c['source'] == 'official_profile_ladder' and di and di.get('pid')
+                            and di.get('basis') in {'homepage_url', 'school_affiliation', 'school_coauthors', 'unique_name', 'unique_exact_name'}
+                            and all(di.get(k) for k in ('url', 'dump', 'sha256', 'quote')))
+        if c['source'] == 'affiliated_department' or official_decided:  # the person's own decided DBLP record
             if di and di.get('pid'):
                 win = di.get('n_window', 0)
                 comp = dict(dblp=[di['pid']], dblp_window=win, dblp_basis=di['basis'],
@@ -806,7 +813,8 @@ def review(key):
         elif c['source'] == 'openalex_rule' and fac:
             d = 'research_or_other_rank'; why = 'listed by a searched unit only with a research, adjunct, clinical or emeritus title'
         elif pi_fac and win >= MIN_DBLP:
-            d = 'accepted'; why = f'faculty ({pi_fac[0]["unit"]} listing, {basis_label}) with {win} DBLP records 2016-2026 naming the school'
+            record_basis = 'in the decided person record' if comp.get('dblp_basis') else 'naming the school'
+            d = 'accepted'; why = f'faculty ({pi_fac[0]["unit"]} listing, {basis_label}) with {win} DBLP records 2016-2026 {record_basis}'
         elif pi_fac:
             d = 'faculty_not_computing'; why = f'faculty ({pi_fac[0]["unit"]}), {win} DBLP records 2016-2026 (< {MIN_DBLP})'
         elif fac:
