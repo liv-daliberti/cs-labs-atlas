@@ -25,7 +25,7 @@
     "not_faculty_listed": 1192,
     "research_or_other_rank": 8,
     "excluded_scope": 8,
-    "accepted": 64,
+    "accepted": 65,
     "faculty_not_computing": 17
   },
   "decisions": [
@@ -56721,6 +56721,88 @@
         "normal_review_job": 32319927,
         "scope": "One independently source-reviewed normal computing-share acceptance; 2026 faculty observation only, no DBLP/OpenAlex/ORCID identity binding or arrival date. Public unit current-source inventory was refreshed; historical source limitations retained separately."
       }
+    },
+    {
+      "name": "Wanhua Li",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "faculty (EEE listing, professor rank) with 73 DBLP records 2016-2026; share test cannot measure (0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids))",
+      "cs_basis": {
+        "dblp": [
+          "https://dblp.org/pid/189/8563-1"
+        ],
+        "dblp_window": 73,
+        "dblp_basis": "homepage_url",
+        "evidence": [
+          {
+            "url": "https://dblp.org/pid/189/8563-1",
+            "source": "DBLP dump /n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/identity-source-discovery/hierarchy/ntu/raw/dblp-dump-persons-school.json.gz",
+            "sha256": "56c33e616adad156701e996c88cf7fa4b3678c5f081eeada473d9f25de8811db",
+            "quote": "<url>https://li-wanhua.github.io/</url>"
+          }
+        ],
+        "openalex_share": {
+          "result": "too_few_school_works",
+          "ids": [],
+          "school_works": 0,
+          "dblp_indexed": 0,
+          "share": 0.0,
+          "thresholds": {
+            "dblp_indexed": 5,
+            "share": 0.2,
+            "min_works_for_negative": 8
+          },
+          "namesake_orcids": false,
+          "excluded": [],
+          "authors": [],
+          "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+        }
+      },
+      "faculty_evidence": [
+        {
+          "unit": "EEE",
+          "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+          "sha256": "ec6d3806779c6a31ad0fdd7d5a67e4632e02d74040176c20ba276cc0f6276eb5",
+          "observed": "20261111",
+          "quote": "Wanhua Li Nanyang Assistant Professor",
+          "ladder": true
+        },
+        {
+          "unit": "EEE",
+          "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+          "sha256": "ec6d3806779c6a31ad0fdd7d5a67e4632e02d74040176c20ba276cc0f6276eb5",
+          "observed": "20261115",
+          "quote": "Wanhua LI Nanyang Assistant Professor",
+          "ladder": true,
+          "hand": true
+        }
+      ],
+      "years_listed": [
+        2026
+      ],
+      "units_searched": [
+        "ADM",
+        "CEE",
+        "EEE",
+        "HASS",
+        "LKC_MEDICINE",
+        "MAE",
+        "MSE",
+        "SBS",
+        "SPMS",
+        "WKWSCI"
+      ],
+      "independent_source_review": {
+        "source_packet": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/wanhua-owned-candidate-stage2-proposal.json",
+        "packet_sha256": "3fda3b8cf69f3f76aae8ba977442b8b4a99d78d970ad0cdfccafae4215cc91e1",
+        "independent_review": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/wanhua-independent-review1116.json",
+        "independent_review_sha256": "8348b0da32085cabab38ea36d321f18a275d50b4f4b7b0275d32405a1c45d7bf",
+        "normal_review_job": 32322730,
+        "normal_review_code": "edefaa8a",
+        "normal_review_sha256": "0a53ef15d51dadebd07179d0eafe11d04acc14ae2a31fcd035a387de7f5c8e4b",
+        "scope": "Actualnormalreview consumes qualifiedhomepagerule PID73entries; no ORCID/OAID/period admission. ThirtyfiveCoRRand38venueentries, not73uniquepapers."
+      }
     }
   ],
   "supplemental_review_runs": [
@@ -56729,6 +56811,18 @@
       "sha256": "ad27de9e4ebadd1005ca809b8f55f67d8bfdd76fd650f732f510ac91bcfe8c6f",
       "normal_review_job": 32319927,
       "scope": "One independently source-reviewed normal computing-share acceptance; 2026 faculty observation only, no DBLP/OpenAlex/ORCID identity binding or arrival date. Public unit current-source inventory was refreshed; historical source limitations retained separately."
+    }
+  ],
+  "additional_normal_source_reviews": [
+    {
+      "source_packet": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/wanhua-owned-candidate-stage2-proposal.json",
+      "packet_sha256": "3fda3b8cf69f3f76aae8ba977442b8b4a99d78d970ad0cdfccafae4215cc91e1",
+      "independent_review": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/wanhua-independent-review1116.json",
+      "independent_review_sha256": "8348b0da32085cabab38ea36d321f18a275d50b4f4b7b0275d32405a1c45d7bf",
+      "normal_review_job": 32322730,
+      "normal_review_code": "edefaa8a",
+      "normal_review_sha256": "0a53ef15d51dadebd07179d0eafe11d04acc14ae2a31fcd035a387de7f5c8e4b",
+      "scope": "Actualnormalreview consumes qualifiedhomepagerule PID73entries; no ORCID/OAID/period admission. ThirtyfiveCoRRand38venueentries, not73uniquepapers."
     }
   ]
 }

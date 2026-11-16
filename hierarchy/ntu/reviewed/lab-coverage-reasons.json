@@ -179,5 +179,177 @@
         "scope": "Only this PI-specific checked-source limitation approved; Samantha and Yeshwanth retain unresolved extra leads. No actual-student absence or exhaustive web claim."
       }
     }
+  },
+  "Samantha Chan": {
+    "students": {
+      "code": "public_member_source_limited_after_targeted_checks",
+      "why": "The owned homepage and recruitment page identify a new NTU lab and advertise Aug2026 admissions, without naming enrolled members. The complete owned CV names five mentored students from2018–21, before the explicit Jan2025 NTU faculty start; these do not establish local NTU membership. The separate Cognitive Interface lab host returned robots429 and was not contacted for content. This explains a limit of these investigated public sources, not an absence of actual students. The separately indexed Experience page has now also been captured and read completely: it supplies employment and earlier foreign mentorship context, without a named NTU member list. No known permitted concrete member/CV lead remains unread in this bounded investigation; unlocated sources may exist.",
+      "sources_checked": [
+        {
+          "url": "https://www.samanthachan.net/",
+          "sha256": "7a6205ce3f80f01d709166988055a052355bdd56a8dec8cf7549bf5cdf17f5e7",
+          "status": 200,
+          "observed_at": "2026-11-15T22:53:00",
+          "quote": "I’m building a research group at NTU!",
+          "result": "Complete own page read; current role/research/recruiting/own past education, no named NTU member/adviser list. Its literal recruitment link was followed.",
+          "capture_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/hierarchy/ntu/work/student-recall-captures.sqlite"
+        },
+        {
+          "url": "https://www.samanthachan.net/joinourlab/",
+          "sha256": "16bf15062074ed8faec1869a86d247888c68811ccda5529ec2e7a32cd41d01d5",
+          "status": 200,
+          "observed_at": "2026-11-15T23:38:43",
+          "quote": "Applications for PhD positions for August 2026 intakes are open!",
+          "result": "Complete recruitment page read, positions/applications, not enrolled-member evidence.",
+          "capture_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/hierarchy/ntu/work/student-recall-captures.sqlite"
+        },
+        {
+          "url": "https://www.samanthachan.net/uploads/Samantha_CV_web_jul2025.pdf",
+          "sha256": "67d84afcb45ff279b624e414bb3adbfd737b8c2c602c04b107d133924f2a4f7b",
+          "status": 200,
+          "observed_at": "2026-11-15T23:48:39",
+          "quote": "Assistant Professor, Nanyang Technological University Jan 2025 to Present",
+          "result": "All six PDF pages freshly extracted/read, including complete Students Mentored section. All5named mentorship episodes2018–21 predate NTUfaculty arrival; no local2025+ named member.",
+          "capture_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/hierarchy/ntu/work/student-recall-captures.sqlite"
+        },
+        {
+          "url": "https://www.samanthachan.net/experience/",
+          "sha256": "e844b8b3f5e3f3f0fdfacf3e85c27d15f04ef8db863cc1eff010729e70e5d84b",
+          "status": 200,
+          "observed_at": "2026-11-16T00:39:51",
+          "quote": "Human-Computer Interactions (HCI) and Artificial Intelligience (AI) for Human Cognitive Enhancement.",
+          "result": "Full Experience page read: education/employment/project history only. Unnamed students advised in NUS-HCI Jan–Sep2022 precede NTUfaculty2025. No named local NTUstudent or literal currentmember/people link in this page; own graduate advisers refer to AucklandPhD.",
+          "capture_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/hierarchy/ntu/work/student-recall-captures.sqlite"
+        }
+      ],
+      "targeted_search": {
+        "queries": [
+          "\"Samantha Chan\" NTU PhD students lab members"
+        ],
+        "result_log": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/four-source-limits-targeted-search.json",
+        "result_log_sha256": "c53cfe735c445a8803a9b393080c139f84be26511aef7a072979d3f2cc27d37c",
+        "outcome": "Primary results and own-page leads investigated as individually recorded. Search hits are leads only, not membership admissions or universal public-absence proof."
+      },
+      "access_limitations": [
+        {
+          "host": "www.cognitiveinterface.org",
+          "kind": "robots_refusal",
+          "http_status": 429,
+          "checked_at": "2026-11-15T21:38:29",
+          "result": "No content request, no retry, proxy or mirror; original robot/block rows retained privately."
+        },
+        "Institutional protected profile fields not consulted."
+      ],
+      "held_observations": [
+        {
+          "name": "Tamil Selvan",
+          "year": 2021,
+          "reason": "Dated before NTUfaculty start; foreign mentorship/current destinations do not establish local NTUlab membership."
+        },
+        {
+          "name": "Jovana Lazarevic",
+          "year": 2020,
+          "reason": "Dated before NTUfaculty start; foreign mentorship/current destinations do not establish local NTUlab membership."
+        },
+        {
+          "name": "Rebecca Matthews",
+          "year": 2019,
+          "reason": "Dated before NTUfaculty start; foreign mentorship/current destinations do not establish local NTUlab membership."
+        },
+        {
+          "name": "Shardul Sapkota",
+          "year": 2019,
+          "reason": "Dated before NTUfaculty start; foreign mentorship/current destinations do not establish local NTUlab membership."
+        },
+        {
+          "name": "Adrian Robertson",
+          "year": 2018,
+          "reason": "Dated before NTUfaculty start; foreign mentorship/current destinations do not establish local NTUlab membership."
+        }
+      ],
+      "unknowns": [
+        "Actual students and current PhD count remain unknown.",
+        "An unlocated public member page or independent student selfpage may exist."
+      ],
+      "reviewed_by": "codex-ntu-complete-1115",
+      "reviewed_on": "2026-11-16",
+      "independent_review_required": false,
+      "independent_targeted_search_receipt": {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/narrow-three-independent-bounded-search.json",
+        "sha256": "71fdff39c7b9461cb70dde37ec1df30a3fb67a753bb7feec240e3c6989fa30f0"
+      },
+      "additional_followup_by": "codex-ntu-complete-1115",
+      "independent_review": {
+        "reviewer": "codex-sjtu-recall-1115",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/samantha-yesh-followup-independent-review.json",
+        "receipt_sha256": "96e5d40193a536d6003dfe9ff7351c56c174f1a21b2f49bfb83684c26c0e56c3",
+        "packet_sha256": "af774dd66d27f5b129ef6d5cf735bb1033c1f4fa601ad4951568f6b58f5fd78b"
+      }
+    }
+  },
+  "Yeshwanth Cherapanamjeri": {
+    "students": {
+      "code": "public_member_source_limited_after_targeted_checks",
+      "why": "The current owned homepage identifies the NTU Nanyang Assistant Professorship and advertises future student/postdoc openings. Its linked current CV explicitly starts NTU employment in March2026, and its complete five pages contain education, employment, publications/talks, teaching and service without a named NTU member/adviser list. The exact-name targeted search returned his own prior Berkeley student context and no qualifying named advisee source. Actual students remain unknown; these checked records do not establish that none exist. The fresh independent search exposed an older indexed /docs/resume.pdf lead; its exact URL has now been captured as real HTTP404. That resolves this particular unread CV lead without establishing public absence. No known permitted concrete member/CV lead remains unread in this bounded investigation; unlocated sources may exist.",
+      "sources_checked": [
+        {
+          "url": "https://yeshwanth94.github.io/",
+          "sha256": "4d648595e06245c0626e3056044229fd600e6406e59f3438db0ac58e94c3b61d",
+          "status": 200,
+          "observed_at": "2026-11-15T22:53:01",
+          "quote": "I will soon have openings for students and postdocs interested in the theory and practice of machine learning.",
+          "result": "Complete own page and links checked; research/publication authors are not inferred advisees. Literal linked resume captured/read.",
+          "capture_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/hierarchy/ntu/work/student-recall-captures.sqlite"
+        },
+        {
+          "url": "https://yeshwanth94.github.io/assets/pdfs/resume.pdf",
+          "sha256": "0112c267eea1a9942775d424bc826f089a0556568798fff5040293e8586b9d10",
+          "status": 200,
+          "observed_at": "2026-11-15T23:38:41",
+          "quote": "Nanyang Technological University (March 2026 - Present) Nanyang Assistant Professor",
+          "result": "Full five-page original read; former graduate/undergraduate teaching and own PhD advisers are not NTU research advisees.",
+          "capture_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/hierarchy/ntu/work/student-recall-captures.sqlite"
+        },
+        {
+          "url": "https://yeshwanth94.github.io/docs/resume.pdf",
+          "sha256": "b620507312c5e97566a3c6cfaf99144fefc18a0da7d941401dfa0f5f58fb0368",
+          "status": 404,
+          "observed_at": "2026-11-16T00:39:50",
+          "quote": "The site configured at this address does not contain the requested file.",
+          "result": "Exact older indexed CV URL investigated by standard capture returned HTTP404 original, not a readable CV. Current literal assets/pdfs/resume.pdf was read in full separately. No retry or absence inference.",
+          "capture_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/hierarchy/ntu/work/student-recall-captures.sqlite"
+        }
+      ],
+      "targeted_search": {
+        "queries": [
+          "\"Yeshwanth Cherapanamjeri\" NTU students advising"
+        ],
+        "result_log": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/four-source-limits-targeted-search.json",
+        "result_log_sha256": "c53cfe735c445a8803a9b393080c139f84be26511aef7a072979d3f2cc27d37c",
+        "outcome": "Primary results and own-page leads investigated as individually recorded. Search hits are leads only, not membership admissions or universal public-absence proof."
+      },
+      "access_limitations": [
+        "No protected profile fields read."
+      ],
+      "held_observations": [],
+      "unknowns": [
+        "Actual students and current PhD count remain unknown.",
+        "An unlocated public member page or independent student selfpage may exist."
+      ],
+      "reviewed_by": "codex-ntu-complete-1115",
+      "reviewed_on": "2026-11-16",
+      "independent_review_required": false,
+      "independent_targeted_search_receipt": {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/narrow-three-independent-bounded-search.json",
+        "sha256": "71fdff39c7b9461cb70dde37ec1df30a3fb67a753bb7feec240e3c6989fa30f0"
+      },
+      "additional_followup_by": "codex-ntu-complete-1115",
+      "independent_review": {
+        "reviewer": "codex-sjtu-recall-1115",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/samantha-yesh-followup-independent-review.json",
+        "receipt_sha256": "96e5d40193a536d6003dfe9ff7351c56c174f1a21b2f49bfb83684c26c0e56c3",
+        "packet_sha256": "af774dd66d27f5b129ef6d5cf735bb1033c1f4fa601ad4951568f6b58f5fd78b"
+      }
+    }
   }
 }
