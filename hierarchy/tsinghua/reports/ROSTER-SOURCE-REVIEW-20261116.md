@@ -41,3 +41,9 @@ The previous census refresh was stopped by its duplicate-profile guard. Tsinghua
   "caveat": "Source review of two rosters; not a school-wide recall signoff or paper-acceptance decision."
 }
 ```
+
+## Additional institutional roster
+
+The linked English/Chinese student pages of Yang Yuan (the reviewed PI key `Yuan Yang`) add six dated graduate/alumni rows. Kangping Xu also has an explicit co-adviser statement for 姚期智 / Andrew Yao, yielding seven additional lab-student pairs. The English source is https://people.iiis.tsinghua.edu.cn/~yuanyang/student-en.html (SHA256 `0e5ee415cb4a06832c30a910ef5b8e9c2234aea2a9631781635cb6c4128473f6`); its Chinese counterpart is https://people.iiis.tsinghua.edu.cn/~yuanyang/student.html (SHA256 `2616c71b5415ddc7ca1c31f26392faeade77b7a67a9b01c1e4d0057fd48d90cb`). The homepage identifies the current Tsinghua IIIS associate professor at https://people.iiis.tsinghua.edu.cn/~yuanyang/index.html (SHA256 `5c2d286620e9b6581742abdf49339efa4555b94c2ea7879dcd670bf2c77d196f`).
+
+Jingqin Yang remains held: the personal roster states 2021 onward, whereas the official Structural Intelligence group page states 2024 onward. Chao Li is a postdoc and is excluded from this graduate-student delta. No other shared group members were assigned to either PI. Total reviewed delta: **79 lab-student pairs across four PIs**.
