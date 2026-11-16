@@ -1,7 +1,7 @@
 {
  "school": "cambridge",
  "reviewed": "2026-11-16",
- "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided\n                                               non-faculty record in the school charter)\n                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided\n                                               until the unit directories and pagination are reviewed for completeness\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. The share test still decides computing.\nresearch/teaching PIs: a source-checked research/teaching appointment can use an explicit\n            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,\n            with unit, role, observed and appointment_rank (research|teaching). Its group/advising\n            quote is checked against stored source bytes. Appointment evidence, computing scope,\n            and candidate identity remain separate requirements. The appointment hand-review must\n            carry the same appointment_rank and unit; the original rank is retained.\nhistorical appointments: a hand review may carry historical_appointment={start,end}\n            with explicit year bounds stated in its quote and matching a source-bound\n            census override period. The biography observation date is preserved but\n            supplies no current listing year. Native builders use the reviewed period.",
+ "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided\n                                               non-faculty record in the school charter)\n                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided\n                                               until the unit directories and pagination are reviewed for completeness\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. The share test still decides computing.\nresearch/teaching PIs: a source-checked research/teaching appointment can use an explicit\n            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,\n            with unit, role, observed and appointment_rank (research|teaching). Its group/advising\n            quote is checked against stored source bytes. Appointment evidence, computing scope,\n            and candidate identity remain separate requirements. The appointment hand-review must\n            carry the same appointment_rank and unit; the original rank is retained.\nhistorical appointments: a hand review may carry historical_appointment={start,end}\n            with explicit year bounds stated in its quote and matching a source-bound\n            census override period. The biography observation date is preserved but\n            supplies no current listing year. Native builders use the reviewed period.\ndated officer listings: a hand review may carry dated_listing with the PDF's date\n            and literal date quote, physical page, active PROFESSORS/READERS heading,\n            full entry name, appointment year and column-definition quote. The saved\n            PDF bytes and exact URL are checked. It supplies that calendar year only;\n            retrieval is retained separately and no appointment interval is inferred.",
  "min_dblp": 5,
  "share_test": {
   "min_dblp_indexed": 5,
@@ -23,8 +23,8 @@
   "SOC"
  ],
  "counts": {
-  "pending_source_coverage": 385,
-  "accepted": 66,
+  "pending_source_coverage": 380,
+  "accepted": 71,
   "pending_identity_collision": 2
  },
  "decisions": [
@@ -1096,8 +1096,8 @@
     "Andrew G. Thomason"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DPMMS listing, professor rank) with 5 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/69/2862"
@@ -1112,10 +1112,119 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Department of Pure Mathematics and Mathematical Statistics, United Kingdom"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5084708925"
+     ],
+     "school_works": 7,
+     "dblp_indexed": 5,
+     "share": 0.714,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5084708925",
+       "basis": "full name: Andrew Thomason",
+       "works": 7,
+       "dblp_indexed": 5,
+       "years": [
+        2016,
+        2022
+       ],
+       "names": [
+        "Andrew Thomason",
+        "Thomason, A"
+       ],
+       "orcids": [
+        "0000-0002-1805-4221"
+       ],
+       "venues": [
+        "Journal of Combinatorics",
+        "Random Structures and Algorithms",
+        "The Electronic Journal of Combinatorics"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W3101625811",
+         "year": 2016,
+         "title": "Simple Containers for Simple Hypergraphs",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W3105265682",
+         "year": 2016,
+         "title": "Online containers for hypergraphs, with applications to linear equations",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W4249177199",
+         "year": 2016,
+         "title": "A Paley-like graph in characteristic two",
+         "venue": "Journal of Combinatorics"
+        },
+        {
+         "oa": "https://openalex.org/W3015875678",
+         "year": 2020,
+         "title": "On Some Cycles in Wenger Graphs",
+         "venue": "Acta Mathematicae Applicatae Sinica English Series"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "DPMMS",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Combinatorial Mathematics 2004 Andrew Gordon Thomason, CL",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 6,
+      "heading": "PROFESSORS",
+      "entry_name": "Andrew Gordon Thomason",
+      "appointment_year": "2004",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "DPMMS",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Combinatorial Mathematics 2004 Andrew Gordon Thomason, CL",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 6,
+      "heading": "PROFESSORS",
+      "entry_name": "Andrew Gordon Thomason",
+      "appointment_year": "2004",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -1578,8 +1687,8 @@
    "name": "Athanassios S. Fokas",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DAMTP listing, professor rank) with 13 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/77/1654"
@@ -1594,10 +1703,121 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5007372240"
+     ],
+     "school_works": 108,
+     "dblp_indexed": 12,
+     "share": 0.111,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5007372240",
+       "basis": "full name: Athanassios S. Fokas",
+       "works": 108,
+       "dblp_indexed": 12,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Athanassios S. Fokas",
+        "A. S. Fokas",
+        "A.S. Fokas"
+       ],
+       "orcids": [
+        "0000-0002-5881-802X"
+       ],
+       "venues": [
+        "Cambridge University Press eBooks",
+        "Nonlinearity",
+        "Studies in Applied Mathematics"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2606484856",
+         "year": 2017,
+         "title": "Fractal analysis of tree paintings by Piet Mondrian (1872-1944)",
+         "venue": "International Journal of Arts and Technology"
+        },
+        {
+         "oa": "https://openalex.org/W2778551157",
+         "year": 2017,
+         "title": "EEG for Current With Two-Dimensional Support",
+         "venue": "IEEE Transactions on Biomedical Engineering"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W1571539429",
+         "year": 2016,
+         "title": "Evolution PDEs and augmented eigenfunctions. Finite interval",
+         "venue": "Advances in Differential Equations"
+        },
+        {
+         "oa": "https://openalex.org/W2203072101",
+         "year": 2016,
+         "title": "Dynamical complexity in the C.elegans neural network",
+         "venue": "The European Physical Journal Special Topics"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "DAMTP",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Nonlinear Mathematical Science (2000) 2002 Athanassios Spyridon Fokas, CLH",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 13,
+      "heading": "PROFESSORS",
+      "entry_name": "Athanassios Spyridon Fokas",
+      "appointment_year": "2002",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "DAMTP",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Nonlinear Mathematical Science (2000) 2002 Athanassios Spyridon Fokas, CLH",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 14,
+      "heading": "PROFESSORS",
+      "entry_name": "Athanassios Spyridon Fokas",
+      "appointment_year": "2002",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -1934,8 +2154,8 @@
    "name": "Campbell R. Middleton",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank) with 6 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/52/8415"
@@ -1950,10 +2170,155 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5110248654",
+      "https://openalex.org/A5139326666"
+     ],
+     "school_works": 57,
+     "dblp_indexed": 5,
+     "share": 0.088,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5110248654",
+       "basis": "full name: Campbell Middleton",
+       "works": 54,
+       "dblp_indexed": 5,
+       "years": [
+        2016,
+        2025
+       ],
+       "names": [
+        "Campbell Middleton",
+        "Campbell R. Middleton",
+        "C.R. Middleton"
+       ],
+       "orcids": [
+        "0000-0002-9672-0680"
+       ],
+       "venues": [
+        "ICE Publishing eBooks",
+        "Annual Conference of the International Group for Lean Construction",
+        "Proceedings of the Institution of Civil Engineers - Bridge Engineering"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2884308728",
+         "year": 2018,
+         "title": "Remote monitoring to predict bridge scour failure using Interferometric Synthetic Aperture Radar (InSAR) stacking techniques",
+         "venue": "International Journal of Applied Earth Observation and Geoinformation"
+        },
+        {
+         "oa": "https://openalex.org/W2885064546",
+         "year": 2018,
+         "title": "Detection of Structural Components in Point Clouds of Existing RC Bridges",
+         "venue": "Computer-Aided Civil and Infrastructure Engineering"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2274552335",
+         "year": 2016,
+         "title": "Assessing the potential value of bridge monitoring systems",
+         "venue": "Proceedings of the Institution of Civil Engineers - Bridge Engineering"
+        },
+        {
+         "oa": "https://openalex.org/W2395794887",
+         "year": 2016,
+         "title": "Design and Data Modelling of Fibre Optic Systems to Monitor Reinforced Concrete Structural Elements",
+         "venue": "ASCE Construction Research Congress (CRC)"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5139326666",
+       "basis": "full name: Campbell Middleton",
+       "works": 3,
+       "dblp_indexed": 0,
+       "years": [
+        2026,
+        2026
+       ],
+       "names": [
+        "Campbell Middleton"
+       ],
+       "orcids": [],
+       "venues": [
+        "Annual Conference of the International Group for Lean Construction",
+        "Proceedings of the ... ISARC"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W7165936564",
+         "year": 2026,
+         "title": "Mapping Digital Solutions for Productivity and Disruption Monitoring in Construction",
+         "venue": "Proceedings of the ... ISARC"
+        },
+        {
+         "oa": "https://openalex.org/W7203666073",
+         "year": 2026,
+         "title": "A minimal-data toolkit for diagnosing loss of flow resilience in interior fit-out work",
+         "venue": "Annual Conference of the International Group for Lean Construction"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Construction Engineering, Laing O’Rourke 2011 Campbell Ross Middleton, K",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 6,
+      "heading": "PROFESSORS",
+      "entry_name": "Campbell Ross Middleton",
+      "appointment_year": "2011",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Construction Engineering, Laing O’Rourke 2011 Campbell Ross Middleton, K",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 7,
+      "heading": "PROFESSORS",
+      "entry_name": "Campbell Ross Middleton",
+      "appointment_year": "2011",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -2065,6 +2430,42 @@
    "faculty_evidence": [
     {
      "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Machine Learning 2014 Carl Edward Rasmussen, DAR",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 11,
+      "heading": "PROFESSORS",
+      "entry_name": "Carl Edward Rasmussen",
+      "appointment_year": "2014",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Machine Learning 2014 Carl Edward Rasmussen, DAR",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 11,
+      "heading": "PROFESSORS",
+      "entry_name": "Carl Edward Rasmussen",
+      "appointment_year": "2014",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "ENG",
      "url": "https://www.eng.cam.ac.uk/profiles/cer54",
      "sha256": "93fa9c6b3f3e250deb007a9ee8d5084f7e28dff68658d88654349131fdefc0cb",
      "observed": "20261115220253",
@@ -2074,6 +2475,8 @@
     }
    ],
    "years_listed": [
+    2018,
+    2019,
     2026
    ],
    "units_searched": [
@@ -5246,8 +5649,8 @@
    "name": "Graham M. Treece",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank) with 8 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/04/5148"
@@ -5262,10 +5665,131 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5004753208"
+     ],
+     "school_works": 33,
+     "dblp_indexed": 6,
+     "share": 0.182,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5004753208",
+       "basis": "full name: Graham M. Treece",
+       "works": 33,
+       "dblp_indexed": 6,
+       "years": [
+        2016,
+        2025
+       ],
+       "names": [
+        "Graham M. Treece",
+        "Graham Treece",
+        "G.M. Treece"
+       ],
+       "orcids": [
+        "0000-0003-0047-6845"
+       ],
+       "venues": [
+        "Osteoarthritis and Cartilage",
+        "Osteoarthritis Imaging",
+        "IEEE Transactions on Image Processing"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2476975422",
+         "year": 2016,
+         "title": "The Bitonic Filter: Linear Filtering in an Edge-Preserving Morphological Framework",
+         "venue": "IEEE Transactions on Image Processing"
+        },
+        {
+         "oa": "https://openalex.org/W2528621788",
+         "year": 2017,
+         "title": "Refinement of clinical X-ray computed tomography (CT) scans containing metal implants",
+         "venue": "Computerized Medical Imaging and Graphics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2267307328",
+         "year": 2016,
+         "title": "The Effects on the Femoral Cortex of a 24 Month Treatment Compared to an 18 Month Treatment with Teriparatide: A Multi-Trial Retrospective Analysis",
+         "venue": "PLoS ONE"
+        },
+        {
+         "oa": "https://openalex.org/W2284406357",
+         "year": 2016,
+         "title": "Three-dimensional measurement of the hip joint space from clinical CT for the assessment and prediction of osteoarthritis",
+         "venue": "The Lancet"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Information Engineering 2016 Graham Michael Treece, Q",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 19,
+      "heading": "READERS",
+      "entry_name": "Graham Michael Treece",
+      "appointment_year": "2016",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Information Engineering 2016 Graham Michael Treece, Q",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 20,
+      "heading": "READERS",
+      "entry_name": "Graham Michael Treece",
+      "appointment_year": "2016",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/gmt11",
+     "sha256": "f7fa1e4eaa013f8572a277c79501173080e1d619f4fd7acbfdd8888fe5ff2757",
+     "observed": "20261115224702",
+     "quote": "Professor Graham Treece Profiles gmt11 Professor of Information Engineering",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019,
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -8888,20 +9412,20 @@
      "namesake_orcids": false,
      "excluded": [
       {
+       "author": "https://openalex.org/A5026238778",
+       "why": "works end 2018, before the first listing (2026)",
+       "n": 3,
+       "raw": [
+        "Malcolm Andrew Ferguson Smith"
+       ]
+      },
+      {
        "author": "https://openalex.org/A5103941487",
        "why": "works end 2019, before the first listing (2026)",
        "n": 6,
        "raw": [
         "M. C. Smith",
         "Malcolm Smith"
-       ]
-      },
-      {
-       "author": "https://openalex.org/A5026238778",
-       "why": "works end 2018, before the first listing (2026)",
-       "n": 3,
-       "raw": [
-        "Malcolm Andrew Ferguson Smith"
        ]
       },
       {
@@ -12939,6 +13463,42 @@
    "faculty_evidence": [
     {
      "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Information Engineering (2000) 2000 Roberto Cipolla, JE",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 10,
+      "heading": "PROFESSORS",
+      "entry_name": "Roberto Cipolla",
+      "appointment_year": "2000",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Information Engineering (2000) 2000 Roberto Cipolla, JE",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 10,
+      "heading": "PROFESSORS",
+      "entry_name": "Roberto Cipolla",
+      "appointment_year": "2000",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "ENG",
      "url": "https://www.eng.cam.ac.uk/profiles/rc10001",
      "sha256": "b063eec69640ec7dd76b23e630b713232e685f03ecbab2cc38043a2626330589",
      "observed": "20261115220403",
@@ -12948,6 +13508,8 @@
     }
    ],
    "years_listed": [
+    2018,
+    2019,
     2026
    ],
    "units_searched": [
@@ -14105,6 +14667,42 @@
    "faculty_evidence": [
     {
      "unit": "DAMTP",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Computational Neuroscience 2015 Stephen John Eglen, M",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 17,
+      "heading": "READERS",
+      "entry_name": "Stephen John Eglen",
+      "appointment_year": "2015",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "DAMTP",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Computational Neuroscience 2015 Stephen John Eglen, M",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 19,
+      "heading": "READERS",
+      "entry_name": "Stephen John Eglen",
+      "appointment_year": "2015",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "DAMTP",
      "url": "https://www.damtp.cam.ac.uk/person/sje30",
      "sha256": "8498ed2bb21f1c6245f03b6d0b08beda5ca2058a12ba3eab1f6bff0073f56e14",
      "observed": "20261115224630",
@@ -14114,6 +14712,8 @@
     }
    ],
    "years_listed": [
+    2018,
+    2019,
     2026
    ],
    "units_searched": [
@@ -17824,6 +18424,42 @@
    "faculty_evidence": [
     {
      "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Solid Mechanics, Hibbitt 2012 Garth Nathan Wells, JE",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 21,
+      "heading": "READERS",
+      "entry_name": "Garth Nathan Wells",
+      "appointment_year": "2012",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Solid Mechanics, Hibbitt 2018 Garth Nathan Wells, JE",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 16,
+      "heading": "PROFESSORS",
+      "entry_name": "Garth Nathan Wells",
+      "appointment_year": "2018",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "ENG",
      "url": "https://www.eng.cam.ac.uk/profiles/gnw20",
      "sha256": "ca1a8fa9e5c664ed45c7c9dc00050091b39de0ca3e31138d6a83ddaccb7248bd",
      "observed": "20261115220310",
@@ -17833,6 +18469,8 @@
     }
    ],
    "years_listed": [
+    2018,
+    2019,
     2026
    ],
    "units_searched": [
@@ -18577,6 +19215,42 @@
    "faculty_evidence": [
     {
      "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Information Engineering (2004) 2006 Zoubin Ghahramani, JN",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 10,
+      "heading": "PROFESSORS",
+      "entry_name": "Zoubin Ghahramani",
+      "appointment_year": "2006",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Information Engineering (2004) 2006 Zoubin Ghahramani, JN",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 10,
+      "heading": "PROFESSORS",
+      "entry_name": "Zoubin Ghahramani",
+      "appointment_year": "2006",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "ENG",
      "url": "https://www.eng.cam.ac.uk/profiles/zg201",
      "sha256": "6fecbf912480270108ad74fff97146743fdf6e4bbd368595213e0d2f7fc28b7e",
      "observed": "20261115220436",
@@ -18586,6 +19260,8 @@
     }
    ],
    "years_listed": [
+    2018,
+    2019,
     2026
    ],
    "units_searched": [
@@ -20062,16 +20738,107 @@
     "A.P. Caines"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (CST listing, reviewed own-group/advising evidence); computing-share test passes: 42 of 71 school works DBLP-indexed (share 0.59; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "pi_basis_review": {
+     "kind": "advises_phd",
+     "url": "https://web.archive.org/web/20260315081408id_/https://www.cl.cam.ac.uk/lists/phd/supervisor.html",
+     "sha256": "822627dac28b84fb4b3d335dfea63e195311e03c25ebf39d2658034e63dd7d4b",
+     "quote": "Dr A. P. Caines Hope Speirs (2021-10-01 – 2026-01-27)",
+     "unit": "CST",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5069029343"
+     ],
+     "school_works": 71,
+     "dblp_indexed": 42,
+     "share": 0.592,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5069029343",
+       "basis": "candidate author id",
+       "works": 71,
+       "dblp_indexed": 42,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Andrew Caines",
+        "Caines, Andrew",
+        "Andrew CAINES"
+       ],
+       "orcids": [
+        "0000-0001-9647-4902"
+       ],
+       "venues": [
+        "Workshop on Innovative Use of NLP for Building Educational Applications",
+        "Linköping electronic conference proceedings",
+        "Lecture notes in computer science"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2574196690",
+         "year": 2016,
+         "title": "Automated speech-unit delimitation in spoken learner English",
+         "venue": "International Conference on Computational Linguistics"
+        },
+        {
+         "oa": "https://openalex.org/W2576074149",
+         "year": 2016,
+         "title": "Crowdsourcing a Multi-lingual Speech Corpus: Recording, Transcription and Annotation of the CrowdIS Corpora",
+         "venue": "Language Resources and Evaluation Conference (LREC)"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2903241493",
+         "year": 2018,
+         "title": "Automatically identifying the function and intent of posts in underground forums",
+         "venue": "Crime Science"
+        },
+        {
+         "oa": "https://openalex.org/W2980252091",
+         "year": 2019,
+         "title": "The cross-linguistic performance of word segmentation models over time",
+         "venue": "Journal of Child Language"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "CST",
+     "url": "https://www.cst.cam.ac.uk/people/apc38",
+     "sha256": "d7212c8153c71e322bb7379a41b014ef0f86f5c4dd5e0f88f2c75bcce034f953",
+     "observed": "20261115215249",
+     "quote": "Dr Andrew Caines Senior Research Associate",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
