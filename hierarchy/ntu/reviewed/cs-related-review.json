@@ -22,11 +22,11 @@
     "WKWSCI"
   ],
   "counts": {
-    "not_faculty_listed": 1191,
+    "not_faculty_listed": 1185,
     "research_or_other_rank": 8,
     "excluded_scope": 8,
-    "accepted": 66,
-    "faculty_not_computing": 17
+    "accepted": 73,
+    "faculty_not_computing": 16
   },
   "decisions": [
     {
@@ -6345,33 +6345,38 @@
       "duplicate_of_existing_pi": "Dusit Niyato"
     },
     {
-      "name": "E. Y. K. Ng",
-      "aliases": [
-        "Eddie Y. K. Ng",
-        "Eddie-Yin-Kwee Ng",
-        "Eyk Ng"
-      ],
-      "source": "dblp_affiliation",
-      "decision": "not_faculty_listed",
-      "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
+      "name": "Ng Yin Kwee, Eddie",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownMAEregularprofessorcard and unchangednormalcomputing-share test passed. Admission isone2026PIobservation only; bibliographic IDs remain under explicitno_identity.",
       "cs_basis": {
-        "dblp": [
-          "https://dblp.org/pid/43/5976"
-        ],
-        "dblp_window": 65,
-        "affiliation_notes": [
-          "Nanyang Technological University, School of Mechanical and Aerospace Engineering, Singapore"
-        ],
-        "evidence": [
-          {
-            "url": "https://dblp.org/pid/43/5976",
-            "source": "DBLP dump dblp-2026-09-01.xml.gz",
-            "quote": "Nanyang Technological University, School of Mechanical and Aerospace Engineering, Singapore"
-          }
-        ]
+        "computing_scope_only": true,
+        "school_works": 207,
+        "dblp_indexed": 52,
+        "share": 0.251,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
-      "faculty_evidence": [],
-      "years_listed": [],
+      "faculty_evidence": [
+        {
+          "url": "https://www.ntu.edu.sg/mae/about-us/our-people/administrative-staff",
+          "sha256": "57ab0c4121272bc7694ed34dea78f35fbebb99d8975007d746b2dae31e559fe8",
+          "quote": "Ng Yin Kwee, Eddie Associate Professor",
+          "kind": "unit_listing:MAE",
+          "observed": "20261116",
+          "unit": "MAE",
+          "ladder": true
+        }
+      ],
+      "years_listed": [
+        2026
+      ],
       "units_searched": [
         "ADM",
         "CEE",
@@ -6383,7 +6388,55 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-ntu-rosters-1115",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/mae-seven-review1116/MAE-SEVEN-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "a6f8ff3c2e82488a37d3803d57e86b65739e15438a10b747c37a8c23652e65f7",
+        "proposal_sha256": "c9c8a08a0d4f40ebc03d493927c9f0c1c43413767fdc4b5fab0845cb26cdb368",
+        "payload_sha256": "d3312e25bd5e210f283747562bf9dd9c17405bf6c96f615127511ec54c854519"
+      },
+      "previous_decision_preserved": {
+        "name": "E. Y. K. Ng",
+        "aliases": [
+          "Eddie Y. K. Ng",
+          "Eddie-Yin-Kwee Ng",
+          "Eyk Ng"
+        ],
+        "source": "dblp_affiliation",
+        "decision": "not_faculty_listed",
+        "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
+        "cs_basis": {
+          "dblp": [
+            "https://dblp.org/pid/43/5976"
+          ],
+          "dblp_window": 65,
+          "affiliation_notes": [
+            "Nanyang Technological University, School of Mechanical and Aerospace Engineering, Singapore"
+          ],
+          "evidence": [
+            {
+              "url": "https://dblp.org/pid/43/5976",
+              "source": "DBLP dump dblp-2026-09-01.xml.gz",
+              "quote": "Nanyang Technological University, School of Mechanical and Aerospace Engineering, Singapore"
+            }
+          ]
+        },
+        "faculty_evidence": [],
+        "years_listed": [],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Edmund W. J. Lee",
@@ -41008,23 +41061,38 @@
       ]
     },
     {
-      "name": "Chun-Hsien Chen",
-      "aliases": [
-        "Chun‐Hsien Chen",
-        "Chen Chun-Hsien",
-        "Chun Hsien Chen"
-      ],
-      "source": "openalex_rule",
-      "decision": "not_faculty_listed",
-      "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
+      "name": "Chen Chun-Hsien",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownMAEregularprofessorcard and unchangednormalcomputing-share test passed. Admission isone2026PIobservation only; bibliographic IDs remain under explicitno_identity.",
       "cs_basis": {
-        "dblp": [],
-        "dblp_window": 0,
-        "affiliation_notes": [],
-        "evidence": []
+        "computing_scope_only": true,
+        "school_works": 191,
+        "dblp_indexed": 117,
+        "share": 0.613,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
-      "faculty_evidence": [],
-      "years_listed": [],
+      "faculty_evidence": [
+        {
+          "url": "https://www.ntu.edu.sg/mae/about-us/our-people/administrative-staff",
+          "sha256": "57ab0c4121272bc7694ed34dea78f35fbebb99d8975007d746b2dae31e559fe8",
+          "quote": "Chen Chun-Hsien Professor",
+          "kind": "unit_listing:MAE",
+          "observed": "20261116",
+          "unit": "MAE",
+          "ladder": true
+        }
+      ],
+      "years_listed": [
+        2026
+      ],
       "units_searched": [
         "ADM",
         "CEE",
@@ -41036,7 +41104,45 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-ntu-rosters-1115",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/mae-seven-review1116/MAE-SEVEN-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "a6f8ff3c2e82488a37d3803d57e86b65739e15438a10b747c37a8c23652e65f7",
+        "proposal_sha256": "c9c8a08a0d4f40ebc03d493927c9f0c1c43413767fdc4b5fab0845cb26cdb368",
+        "payload_sha256": "d3312e25bd5e210f283747562bf9dd9c17405bf6c96f615127511ec54c854519"
+      },
+      "previous_decision_preserved": {
+        "name": "Chun-Hsien Chen",
+        "aliases": [
+          "Chun‐Hsien Chen",
+          "Chen Chun-Hsien",
+          "Chun Hsien Chen"
+        ],
+        "source": "openalex_rule",
+        "decision": "not_faculty_listed",
+        "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
+        "cs_basis": {
+          "dblp": [],
+          "dblp_window": 0,
+          "affiliation_notes": [],
+          "evidence": []
+        },
+        "faculty_evidence": [],
+        "years_listed": [],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Christopher H. T. Lee",
@@ -42349,22 +42455,37 @@
     },
     {
       "name": "Sameer Alam",
-      "aliases": [
-        "Alam, Sameer",
-        "Sameer ALAM",
-        "S. Alam"
-      ],
-      "source": "openalex_rule",
-      "decision": "not_faculty_listed",
-      "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownMAEregularprofessorcard and unchangednormalcomputing-share test passed. Admission isone2026PIobservation only; bibliographic IDs remain under explicitno_identity.",
       "cs_basis": {
-        "dblp": [],
-        "dblp_window": 0,
-        "affiliation_notes": [],
-        "evidence": []
+        "computing_scope_only": true,
+        "school_works": 156,
+        "dblp_indexed": 60,
+        "share": 0.385,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
-      "faculty_evidence": [],
-      "years_listed": [],
+      "faculty_evidence": [
+        {
+          "url": "https://www.ntu.edu.sg/mae/about-us/our-people/administrative-staff",
+          "sha256": "57ab0c4121272bc7694ed34dea78f35fbebb99d8975007d746b2dae31e559fe8",
+          "quote": "Sameer Alam Associate Professor Director, Air Traffic Management Research Institute (ATMRI)",
+          "kind": "unit_listing:MAE",
+          "observed": "20261116",
+          "unit": "MAE",
+          "ladder": true
+        }
+      ],
+      "years_listed": [
+        2026
+      ],
       "units_searched": [
         "ADM",
         "CEE",
@@ -42376,7 +42497,45 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-ntu-rosters-1115",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/mae-seven-review1116/MAE-SEVEN-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "a6f8ff3c2e82488a37d3803d57e86b65739e15438a10b747c37a8c23652e65f7",
+        "proposal_sha256": "c9c8a08a0d4f40ebc03d493927c9f0c1c43413767fdc4b5fab0845cb26cdb368",
+        "payload_sha256": "d3312e25bd5e210f283747562bf9dd9c17405bf6c96f615127511ec54c854519"
+      },
+      "previous_decision_preserved": {
+        "name": "Sameer Alam",
+        "aliases": [
+          "Alam, Sameer",
+          "Sameer ALAM",
+          "S. Alam"
+        ],
+        "source": "openalex_rule",
+        "decision": "not_faculty_listed",
+        "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
+        "cs_basis": {
+          "dblp": [],
+          "dblp_window": 0,
+          "affiliation_notes": [],
+          "evidence": []
+        },
+        "faculty_evidence": [],
+        "years_listed": [],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Kum Fai Yuen",
@@ -42485,155 +42644,32 @@
       ]
     },
     {
-      "name": "Wei Tech Ang",
-      "aliases": [
-        "Ang, Wei Tech",
-        "Ang Wei Tech",
-        "Wei Tech ANG"
-      ],
-      "source": "openalex_rule",
-      "decision": "faculty_not_computing",
-      "reason": "held after a fresh-reviewer check of the Medicine and joint-list accepts (2026-11-10): rehabilitation robotics; name-only binding without corroboration. Evidence: faculty (LKC_MEDICINE listing, professor rank); computing-share test passes: 57 of 106 school works DBLP-indexed (share 0.54; 2 OpenAlex author ids)",
+      "name": "Ang Wei Tech",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownMAEregularprofessorcard and unchangednormalcomputing-share test passed. Admission isone2026PIobservation only; bibliographic IDs remain under explicitno_identity.",
       "cs_basis": {
-        "dblp": [],
-        "dblp_window": 0,
-        "affiliation_notes": [],
-        "evidence": [],
-        "openalex_share": {
-          "result": "computing",
-          "ids": [
-            "https://openalex.org/A5002794481",
-            "https://openalex.org/A5135322310"
-          ],
-          "school_works": 106,
-          "dblp_indexed": 57,
-          "share": 0.538,
-          "thresholds": {
-            "dblp_indexed": 5,
-            "share": 0.2,
-            "min_works_for_negative": 8
-          },
-          "namesake_orcids": false,
-          "excluded": [
-            {
-              "author": "https://openalex.org/A5064081257",
-              "why": "works end 2024, before the first listing (2026)",
-              "n": 3,
-              "raw": [
-                "Wei Jing Ang"
-              ]
-            },
-            {
-              "author": "https://openalex.org/A5057391799",
-              "why": "works end 2020, before the first listing (2026)",
-              "n": 3,
-              "raw": [
-                "Ang Wei Tech"
-              ]
-            },
-            {
-              "author": "https://openalex.org/A5023462468",
-              "why": "namesake: ORCID 0000-0003-2778-4936, not the busiest ORCID 0000-0002-5778-7719",
-              "n": 15
-            }
-          ],
-          "authors": [
-            {
-              "author": "https://openalex.org/A5002794481",
-              "basis": "candidate author id",
-              "works": 99,
-              "dblp_indexed": 57,
-              "years": [
-                2016,
-                2026
-              ],
-              "names": [
-                "Wei Tech Ang",
-                "Ang, Wei Tech",
-                "Ang Wei Tech"
-              ],
-              "orcids": [
-                "0000-0002-5778-7719"
-              ],
-              "venues": [
-                "International Conference on Rehabilitation Robotics",
-                "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
-                "International Convention on Rehabilitation Engineering and Assistive Technology (i-CREATe)"
-              ],
-              "dblp_examples": [
-                {
-                  "oa": "https://openalex.org/W2344336171",
-                  "year": 2016,
-                  "title": "A Quaternion Weighted Fourier Linear Combiner for Modeling Physiological Tremor",
-                  "venue": "IEEE Transactions on Biomedical Engineering"
-                },
-                {
-                  "oa": "https://openalex.org/W2413456086",
-                  "year": 2016,
-                  "title": "A fully automated robotic system for three-dimensional cell rotation",
-                  "venue": "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings"
-                }
-              ],
-              "other_examples": [
-                {
-                  "oa": "https://openalex.org/W2318456191",
-                  "year": 2016,
-                  "title": "Three-Dimensional Cell Rotation With Fluidic Flow-Controlled Cell Manipulating Device",
-                  "venue": "IEEE/ASME Transactions on Mechatronics"
-                },
-                {
-                  "oa": "https://openalex.org/W2406885724",
-                  "year": 2016,
-                  "title": "Ensemble framework based real-time respiratory motion prediction for adaptive radiotherapy applications",
-                  "venue": "Medical Engineering & Physics"
-                }
-              ]
-            },
-            {
-              "author": "https://openalex.org/A5135322310",
-              "basis": "full name: Wei Tech Ang",
-              "works": 7,
-              "dblp_indexed": 0,
-              "years": [
-                2026,
-                2026
-              ],
-              "names": [
-                "Wei Tech Ang"
-              ],
-              "orcids": [],
-              "venues": [
-                "Archives of Physical Medicine and Rehabilitation",
-                "2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and Biomechatronics (BioRob)",
-                "Scientific Reports"
-              ],
-              "dblp_examples": [],
-              "other_examples": [
-                {
-                  "oa": "https://openalex.org/W7160273355",
-                  "year": 2026,
-                  "title": "Precision Assessment of Lateral Pinch: Feasibility of a Sensor-aided Key Rig Device in Stroke",
-                  "venue": "Archives of Physical Medicine and Rehabilitation"
-                },
-                {
-                  "oa": "https://openalex.org/W7160326942",
-                  "year": 2026,
-                  "title": "Normative Grip and Pinch Strength Values in Multi-ethnic Asian Adults: A Singapore Perspective",
-                  "venue": "Archives of Physical Medicine and Rehabilitation"
-                }
-              ]
-            }
-          ],
-          "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-        }
+        "computing_scope_only": true,
+        "school_works": 106,
+        "dblp_indexed": 57,
+        "share": 0.538,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
       "faculty_evidence": [
         {
-          "unit": "LKC_MEDICINE",
-          "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
-          "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
-          "observed": "20261110",
-          "quote": "Ang Wei Tech Associate Professor",
+          "url": "https://www.ntu.edu.sg/mae/about-us/our-people/administrative-staff",
+          "sha256": "57ab0c4121272bc7694ed34dea78f35fbebb99d8975007d746b2dae31e559fe8",
+          "quote": "Ang Wei Tech Associate Professor Associate Chair (Research) Executive Director, Rehabilitation Research Institute of Singapore",
+          "kind": "unit_listing:MAE",
+          "observed": "20261116",
+          "unit": "MAE",
           "ladder": true
         }
       ],
@@ -42651,7 +42687,183 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-ntu-rosters-1115",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/mae-seven-review1116/MAE-SEVEN-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "a6f8ff3c2e82488a37d3803d57e86b65739e15438a10b747c37a8c23652e65f7",
+        "proposal_sha256": "c9c8a08a0d4f40ebc03d493927c9f0c1c43413767fdc4b5fab0845cb26cdb368",
+        "payload_sha256": "d3312e25bd5e210f283747562bf9dd9c17405bf6c96f615127511ec54c854519"
+      },
+      "previous_decision_preserved": {
+        "name": "Wei Tech Ang",
+        "aliases": [
+          "Ang, Wei Tech",
+          "Ang Wei Tech",
+          "Wei Tech ANG"
+        ],
+        "source": "openalex_rule",
+        "decision": "faculty_not_computing",
+        "reason": "held after a fresh-reviewer check of the Medicine and joint-list accepts (2026-11-10): rehabilitation robotics; name-only binding without corroboration. Evidence: faculty (LKC_MEDICINE listing, professor rank); computing-share test passes: 57 of 106 school works DBLP-indexed (share 0.54; 2 OpenAlex author ids)",
+        "cs_basis": {
+          "dblp": [],
+          "dblp_window": 0,
+          "affiliation_notes": [],
+          "evidence": [],
+          "openalex_share": {
+            "result": "computing",
+            "ids": [
+              "https://openalex.org/A5002794481",
+              "https://openalex.org/A5135322310"
+            ],
+            "school_works": 106,
+            "dblp_indexed": 57,
+            "share": 0.538,
+            "thresholds": {
+              "dblp_indexed": 5,
+              "share": 0.2,
+              "min_works_for_negative": 8
+            },
+            "namesake_orcids": false,
+            "excluded": [
+              {
+                "author": "https://openalex.org/A5064081257",
+                "why": "works end 2024, before the first listing (2026)",
+                "n": 3,
+                "raw": [
+                  "Wei Jing Ang"
+                ]
+              },
+              {
+                "author": "https://openalex.org/A5057391799",
+                "why": "works end 2020, before the first listing (2026)",
+                "n": 3,
+                "raw": [
+                  "Ang Wei Tech"
+                ]
+              },
+              {
+                "author": "https://openalex.org/A5023462468",
+                "why": "namesake: ORCID 0000-0003-2778-4936, not the busiest ORCID 0000-0002-5778-7719",
+                "n": 15
+              }
+            ],
+            "authors": [
+              {
+                "author": "https://openalex.org/A5002794481",
+                "basis": "candidate author id",
+                "works": 99,
+                "dblp_indexed": 57,
+                "years": [
+                  2016,
+                  2026
+                ],
+                "names": [
+                  "Wei Tech Ang",
+                  "Ang, Wei Tech",
+                  "Ang Wei Tech"
+                ],
+                "orcids": [
+                  "0000-0002-5778-7719"
+                ],
+                "venues": [
+                  "International Conference on Rehabilitation Robotics",
+                  "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+                  "International Convention on Rehabilitation Engineering and Assistive Technology (i-CREATe)"
+                ],
+                "dblp_examples": [
+                  {
+                    "oa": "https://openalex.org/W2344336171",
+                    "year": 2016,
+                    "title": "A Quaternion Weighted Fourier Linear Combiner for Modeling Physiological Tremor",
+                    "venue": "IEEE Transactions on Biomedical Engineering"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2413456086",
+                    "year": 2016,
+                    "title": "A fully automated robotic system for three-dimensional cell rotation",
+                    "venue": "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings"
+                  }
+                ],
+                "other_examples": [
+                  {
+                    "oa": "https://openalex.org/W2318456191",
+                    "year": 2016,
+                    "title": "Three-Dimensional Cell Rotation With Fluidic Flow-Controlled Cell Manipulating Device",
+                    "venue": "IEEE/ASME Transactions on Mechatronics"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2406885724",
+                    "year": 2016,
+                    "title": "Ensemble framework based real-time respiratory motion prediction for adaptive radiotherapy applications",
+                    "venue": "Medical Engineering & Physics"
+                  }
+                ]
+              },
+              {
+                "author": "https://openalex.org/A5135322310",
+                "basis": "full name: Wei Tech Ang",
+                "works": 7,
+                "dblp_indexed": 0,
+                "years": [
+                  2026,
+                  2026
+                ],
+                "names": [
+                  "Wei Tech Ang"
+                ],
+                "orcids": [],
+                "venues": [
+                  "Archives of Physical Medicine and Rehabilitation",
+                  "2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and Biomechatronics (BioRob)",
+                  "Scientific Reports"
+                ],
+                "dblp_examples": [],
+                "other_examples": [
+                  {
+                    "oa": "https://openalex.org/W7160273355",
+                    "year": 2026,
+                    "title": "Precision Assessment of Lateral Pinch: Feasibility of a Sensor-aided Key Rig Device in Stroke",
+                    "venue": "Archives of Physical Medicine and Rehabilitation"
+                  },
+                  {
+                    "oa": "https://openalex.org/W7160326942",
+                    "year": 2026,
+                    "title": "Normative Grip and Pinch Strength Values in Multi-ethnic Asian Adults: A Singapore Perspective",
+                    "venue": "Archives of Physical Medicine and Rehabilitation"
+                  }
+                ]
+              }
+            ],
+            "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+          }
+        },
+        "faculty_evidence": [
+          {
+            "unit": "LKC_MEDICINE",
+            "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
+            "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
+            "observed": "20261110",
+            "quote": "Ang Wei Tech Associate Professor",
+            "ladder": true
+          }
+        ],
+        "years_listed": [
+          2026
+        ],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Zhao Yang Dong",
@@ -42715,20 +42927,37 @@
     },
     {
       "name": "Mir Feroskhan",
-      "aliases": [
-        "Feroskhan, Mir"
-      ],
-      "source": "openalex_rule",
-      "decision": "not_faculty_listed",
-      "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownMAEregularprofessorcard and unchangednormalcomputing-share test passed. Admission isone2026PIobservation only; bibliographic IDs remain under explicitno_identity.",
       "cs_basis": {
-        "dblp": [],
-        "dblp_window": 0,
-        "affiliation_notes": [],
-        "evidence": []
+        "computing_scope_only": true,
+        "school_works": 96,
+        "dblp_indexed": 56,
+        "share": 0.583,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
-      "faculty_evidence": [],
-      "years_listed": [],
+      "faculty_evidence": [
+        {
+          "url": "https://www.ntu.edu.sg/mae/about-us/our-people/administrative-staff",
+          "sha256": "57ab0c4121272bc7694ed34dea78f35fbebb99d8975007d746b2dae31e559fe8",
+          "quote": "Mir Feroskhan Associate Professor Deputy Director, Air Traffic Management Research Institute (ATMRI)",
+          "kind": "unit_listing:MAE",
+          "observed": "20261116",
+          "unit": "MAE",
+          "ladder": true
+        }
+      ],
+      "years_listed": [
+        2026
+      ],
       "units_searched": [
         "ADM",
         "CEE",
@@ -42740,7 +42969,43 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-ntu-rosters-1115",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/mae-seven-review1116/MAE-SEVEN-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "a6f8ff3c2e82488a37d3803d57e86b65739e15438a10b747c37a8c23652e65f7",
+        "proposal_sha256": "c9c8a08a0d4f40ebc03d493927c9f0c1c43413767fdc4b5fab0845cb26cdb368",
+        "payload_sha256": "d3312e25bd5e210f283747562bf9dd9c17405bf6c96f615127511ec54c854519"
+      },
+      "previous_decision_preserved": {
+        "name": "Mir Feroskhan",
+        "aliases": [
+          "Feroskhan, Mir"
+        ],
+        "source": "openalex_rule",
+        "decision": "not_faculty_listed",
+        "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
+        "cs_basis": {
+          "dblp": [],
+          "dblp_window": 0,
+          "affiliation_notes": [],
+          "evidence": []
+        },
+        "faculty_evidence": [],
+        "years_listed": [],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Henghui Ding",
@@ -43042,22 +43307,37 @@
     },
     {
       "name": "Domenico Campolo",
-      "aliases": [
-        "Campolo, Domenico",
-        "D. Campolo",
-        "Domenico Camplo"
-      ],
-      "source": "openalex_rule",
-      "decision": "not_faculty_listed",
-      "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownMAEregularprofessorcard and unchangednormalcomputing-share test passed. Admission isone2026PIobservation only; bibliographic IDs remain under explicitno_identity.",
       "cs_basis": {
-        "dblp": [],
-        "dblp_window": 0,
-        "affiliation_notes": [],
-        "evidence": []
+        "computing_scope_only": true,
+        "school_works": 97,
+        "dblp_indexed": 49,
+        "share": 0.505,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
-      "faculty_evidence": [],
-      "years_listed": [],
+      "faculty_evidence": [
+        {
+          "url": "https://www.ntu.edu.sg/mae/about-us/our-people/administrative-staff",
+          "sha256": "57ab0c4121272bc7694ed34dea78f35fbebb99d8975007d746b2dae31e559fe8",
+          "quote": "Domenico Campolo Professor Co-Director, Rehabilitation Research Institute of Singapore (RRIS)",
+          "kind": "unit_listing:MAE",
+          "observed": "20261116",
+          "unit": "MAE",
+          "ladder": true
+        }
+      ],
+      "years_listed": [
+        2026
+      ],
       "units_searched": [
         "ADM",
         "CEE",
@@ -43069,7 +43349,45 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-ntu-rosters-1115",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/mae-seven-review1116/MAE-SEVEN-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "a6f8ff3c2e82488a37d3803d57e86b65739e15438a10b747c37a8c23652e65f7",
+        "proposal_sha256": "c9c8a08a0d4f40ebc03d493927c9f0c1c43413767fdc4b5fab0845cb26cdb368",
+        "payload_sha256": "d3312e25bd5e210f283747562bf9dd9c17405bf6c96f615127511ec54c854519"
+      },
+      "previous_decision_preserved": {
+        "name": "Domenico Campolo",
+        "aliases": [
+          "Campolo, Domenico",
+          "D. Campolo",
+          "Domenico Camplo"
+        ],
+        "source": "openalex_rule",
+        "decision": "not_faculty_listed",
+        "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
+        "cs_basis": {
+          "dblp": [],
+          "dblp_window": 0,
+          "affiliation_notes": [],
+          "evidence": []
+        },
+        "faculty_evidence": [],
+        "years_listed": [],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Xiangtai Li",
@@ -43724,23 +44042,38 @@
       ]
     },
     {
-      "name": "Yiyu Cai",
-      "aliases": [
-        "Cai, Yiyu",
-        "Yi-Yu Cai",
-        "YiYu Cai"
-      ],
-      "source": "openalex_rule",
-      "decision": "not_faculty_listed",
-      "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
+      "name": "Cai Yiyu",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownMAEregularprofessorcard and unchangednormalcomputing-share test passed. Admission isone2026PIobservation only; bibliographic IDs remain under explicitno_identity.",
       "cs_basis": {
-        "dblp": [],
-        "dblp_window": 0,
-        "affiliation_notes": [],
-        "evidence": []
+        "computing_scope_only": true,
+        "school_works": 133,
+        "dblp_indexed": 36,
+        "share": 0.271,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
-      "faculty_evidence": [],
-      "years_listed": [],
+      "faculty_evidence": [
+        {
+          "url": "https://www.ntu.edu.sg/mae/about-us/our-people/administrative-staff",
+          "sha256": "57ab0c4121272bc7694ed34dea78f35fbebb99d8975007d746b2dae31e559fe8",
+          "quote": "Cai Yiyu Associate Professor Deputy Director, Center for Augmented and Virtual Reality",
+          "kind": "unit_listing:MAE",
+          "observed": "20261116",
+          "unit": "MAE",
+          "ladder": true
+        }
+      ],
+      "years_listed": [
+        2026
+      ],
       "units_searched": [
         "ADM",
         "CEE",
@@ -43752,7 +44085,45 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-ntu-rosters-1115",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/mae-seven-review1116/MAE-SEVEN-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "a6f8ff3c2e82488a37d3803d57e86b65739e15438a10b747c37a8c23652e65f7",
+        "proposal_sha256": "c9c8a08a0d4f40ebc03d493927c9f0c1c43413767fdc4b5fab0845cb26cdb368",
+        "payload_sha256": "d3312e25bd5e210f283747562bf9dd9c17405bf6c96f615127511ec54c854519"
+      },
+      "previous_decision_preserved": {
+        "name": "Yiyu Cai",
+        "aliases": [
+          "Cai, Yiyu",
+          "Yi-Yu Cai",
+          "YiYu Cai"
+        ],
+        "source": "openalex_rule",
+        "decision": "not_faculty_listed",
+        "reason": "no 2016-2026 faculty listing of the searched units (ADM, CEE, EEE, HASS, LKC_MEDICINE, MAE, MSE, SBS, SPMS, WKWSCI) names them with a professor title",
+        "cs_basis": {
+          "dblp": [],
+          "dblp_window": 0,
+          "affiliation_notes": [],
+          "evidence": []
+        },
+        "faculty_evidence": [],
+        "years_listed": [],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Alok Prakash",
@@ -56877,6 +57248,15 @@
       "normal_review_code": "edefaa8a",
       "normal_review_sha256": "0a53ef15d51dadebd07179d0eafe11d04acc14ae2a31fcd035a387de7f5c8e4b",
       "scope": "Actualnormalreview consumes qualifiedhomepagerule PID73entries; no ORCID/OAID/period admission. ThirtyfiveCoRRand38venueentries, not73uniquepapers."
+    },
+    {
+      "scope": "Seven exactMAEprimaryregularfaculty2026only; all outside7globaldiagnosticacceptedrows unadmitted",
+      "normal_job": 32328966,
+      "reviewer": "codex-ntu-rosters-1115",
+      "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/mae-seven-review1116/MAE-SEVEN-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+      "receipt_sha256": "a6f8ff3c2e82488a37d3803d57e86b65739e15438a10b747c37a8c23652e65f7",
+      "proposal_sha256": "c9c8a08a0d4f40ebc03d493927c9f0c1c43413767fdc4b5fab0845cb26cdb368",
+      "payload_sha256": "d3312e25bd5e210f283747562bf9dd9c17405bf6c96f615127511ec54c854519"
     }
   ]
 }
