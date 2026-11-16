@@ -60,7 +60,10 @@ home_units = {"Computer Science" = '^CS$|computer\s+science', "Electrical and Co
 rank_words = {teaching = '\\bprofessor\\s+of\\s+instruction\\b|\\bsenior\\s+lecturer\\b|\\blecturer\\b', adjunct = '\\badjunct\\b|\\bprofessor\\s+of\\s+practice\\b'}
 
 [sweep_check]
-exceptions = []
+# Reviewed exception to tools/sweep_check.py (verify = "papers_normal" re-checks the cause on every run). Owner delegated the judgement 2026-11-16.
+exceptions = [
+  {test = "year_outlier", year = 2024, verify = "papers_normal", reason = "71,441 of the 83,373 works of 2024 are OpenAlex type dataset records, 70,172 of them from the source Texas Digital Library (University of Texas): datasets, which every reader drops (pi_hierarchy.NOT_PAPERS, R-PAP-17). The paper-only count of 2024 (11,388) is in line with the other years (median 11,506). Diagnosed 2026-11-12 (STAGE-2-20261112.md)."},
+]
 
 [cs_related]
 not_faculty = {}
