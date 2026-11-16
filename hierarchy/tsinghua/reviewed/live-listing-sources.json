@@ -1,1 +1,36 @@
-{"school": "tsinghua", "scope": "School of Software 教师名录 observed live in 2026 (www.thss.tsinghua.edu.cn is a charter live host; robots checked by school_web.live); no historical year is inferred.", "sources": [{"dept": "SW", "slot": "SW current2026reviewed source", "format": "tsinghua_sw_names", "complete": true, "expected_entries": 41, "pages": [{"url": "https://www.thss.tsinghua.edu.cn/szdw/jsml.htm", "sha256": "466e657ebafb3b0fa7830791d24942dd09314507ee71f370ea9fbc1f531d07c8"}]}]}
+{
+  "school": "tsinghua",
+  "scope": "Explicit reviewed live directories in their actual 2026 observation year; SW 41 and INSC 55 names. No historical year or PI appointment interval inferred.",
+  "sources": [
+    {
+      "dept": "SW",
+      "slot": "SW current2026reviewed source",
+      "format": "tsinghua_sw_names",
+      "complete": true,
+      "expected_entries": 41,
+      "pages": [
+        {
+          "url": "https://www.thss.tsinghua.edu.cn/szdw/jsml.htm",
+          "sha256": "466e657ebafb3b0fa7830791d24942dd09314507ee71f370ea9fbc1f531d07c8"
+        }
+      ]
+    },
+    {
+      "dept": "INSC",
+      "slot": "INSC current2026reviewed source",
+      "format": "tsinghua_insc_bands",
+      "complete": true,
+      "expected_entries": 55,
+      "reviewed_by": "codex-tsinghua-finish-1116",
+      "reviewed_on": "2026-11-16",
+      "review_note": "Full official single-page directory; all 55 names and written section titles checked. Includes cross-department and emeritus sections; no rank inferred from an academic-leader or institute label.",
+      "pages": [
+        {
+          "url": "https://www.insc.tsinghua.edu.cn/szdw_/jsml.htm",
+          "sha256": "0005a1694ed5782ec45177981e2dc8a906586df82bee4b5ca7f8cdd3c4c2451d",
+          "fetched_at": "2026-11-16T13:05:17"
+        }
+      ]
+    }
+  ]
+}

@@ -331,3 +331,18 @@ def test_au_alpha_names_only_javascript_links_have_no_profile():
 def test_banded_text_zhenggao_fugao_bands_with_sort_remark():
     rows = L.tsinghua_banded_text('<div class="box_detail"><p>骨干教师</p><p><br/>正高（按姓氏拼音排序）：<br/>毕军、段海新<br/>副高（按姓氏拼音排序）：<br/>安长青、包丛笑</p></div>')
     assert [(r['name_listed'], r['titles'][0]) for r in rows] == [('毕军', '正高'), ('段海新', '正高'), ('安长青', '副高'), ('包丛笑', '副高')]
+def test_insc_inline_titles_reset_band_and_include_plain_text_emeritus():
+    from tools.listing_formats import parse
+
+    html = '''<div id="vsb_content">
+      <p><strong>助理研究员：</strong></p><p><a href="a.htm">曹家浩</a></p>
+      <p><strong>高等研究院：</strong><a href="b.htm">王小云</a>（院士）</p>
+      <p><strong>计算机系教授：</strong><a href="c.htm">崔勇</a></p>
+      <p><strong>荣休教师：</strong>李崇荣</p></div>
+      <p><a href="/">清华大学</a></p>'''
+    rows = parse(html, 'tsinghua_insc_bands')[1]
+    assert [(r['name_listed'], r['titles']) for r in rows] == [
+        ('曹家浩', ['助理研究员']), ('王小云', ['高等研究院']),
+        ('崔勇', ['计算机系教授']), ('李崇荣', ['荣休教师'])]
+
+

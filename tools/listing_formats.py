@@ -1621,13 +1621,17 @@ def tsinghua_au_old_list(h):
 def tsinghua_insc_bands(h):
     """Tsinghua INSC faculty page (szdw_/zzjs.htm): `<p><strong>副教授：</strong></p>` band paragraphs, then paragraphs of name links (some names are plain text)."""
     from bs4 import BeautifulSoup
+    soup = BeautifulSoup(h, 'html.parser')
+    content = soup.select_one('#vsb_content') or soup
     out, band = [], None
-    for p in BeautifulSoup(h, 'html.parser').find_all('p'):
+    for p in content.find_all('p'):
         text = clean(p.get_text(' ', strip=True).replace('\xa0', ' '))
         st = p.find('strong')
-        if st is not None and re.fullmatch(r'[^：:]{1,12}[：:]', clean(st.get_text('', strip=True))) and not p.find('a'):
+        label = clean(st.get_text('', strip=True)) if st else ''
+        if st is not None and re.fullmatch(r'[^：:]{1,12}[：:]', label):
             band = clean(st.get_text('', strip=True)).rstrip('：:')
-            continue
+            if text == label:
+                continue
         if band is None or not text:
             continue
         seen = set()
@@ -1635,7 +1639,7 @@ def tsinghua_insc_bands(h):
             name = clean(a.get_text(' ', strip=True)).replace(' ', '')
             if name:
                 out.append(dict(name_listed=name, titles=[band], profile=a['href'], homepage=None, division=None)); seen.add(name)
-        rest = clean(' '.join(t for t in p.find_all(string=True) if t.find_parent('a') is None).replace('\xa0', ' '))
+        rest = clean(' '.join(t for t in p.find_all(string=True) if t.find_parent('a') is None and t.find_parent('strong') is None).replace('\xa0', ' '))
         for tok in rest.split():
             if tok not in seen and re.fullmatch(r'[\u4e00-\u9fff]{2,4}', tok):
                 out.append(dict(name_listed=tok, titles=[band], profile=None, homepage=None, division=None))
