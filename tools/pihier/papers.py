@@ -498,19 +498,44 @@ AFFILIATION_MARK = re.compile(r'univ|institut|college|polytechn|[ée]cole|labora
                               r'\beth\b|max planck|company|\S@\S|https?://|www\.|\.(?:com|ai|io|company|org)\b', re.I)
 
 
-def page1_elsewhere(status, text, school, title=None):
+def page1_elsewhere(status, text, school, title=None, author_names=()):
     """R3 (R-PAP-20, 2026-10-29, owner: accuracy sample): page 1 of the paper, read by tools/pi_fulltext_affiliation.py,
     names neither the school (not even loosely: 'Berkeley', 'CMU', 'Lausanne', 'CSAIL') nor ties it to anyone, while its
     author block names another institution, company, e-mail or web domain: the paper was done elsewhere (pi-0: every
     author on page 1 is Physical Intelligence's, 'physicalintelligence.company'). A page with no affiliations at all
-    says nothing and is kept."""
+    says nothing and is kept. Numbered author affiliations may be extracted after the abstract: require a supplied
+    byline name carrying the same marker and an institution-shaped footnote, not an institution mentioned in prose."""
     if status != 'ok_absent' or not text:
         return None
     flat = re.sub(r'\s+', ' ', text)
     if re.search(SCHOOL_LOOSE[school], flat, re.I):
         return None
     m = AFFILIATION_MARK.search(page1_head(text, title))
-    return m.group(0) if m else None
+    if m:
+        return m.group(0)
+    abstract = re.search(r'\babstract\b', text[:6000], re.I)
+    if not abstract:
+        return None
+    header = re.sub(r'\s+', ' ', text[:abstract.start()])
+    markers = set()
+    for name in author_names:
+        words = str(name or '').split()
+        if len(words) < 2:
+            continue
+        pattern = r'(?<!\w)' + r'\s+'.join(map(re.escape, words)) + r'\s*(\d{1,2})(?!\d)'
+        markers.update(re.findall(pattern, header, re.I))
+    if not markers:
+        return None
+    # Affiliation notes start with a proper institution name (possibly a department), followed by punctuation or
+    # a line ending. This deliberately excludes numbered narrative such as "6 Results at Columbia University ...".
+    word = r"(?:[A-ZÀ-ÖØ-Þ][\w’'&-]*|of|the|for|and|in)"
+    institution = (r'(?:' + word + r',?[ \t]+){0,10}'
+                   r'(?:University|Institute|Institution|College|Laboratory|Laboratories|Polytechnic|Academy)'
+                   r'(?:[ \t]+' + word + r'){0,10}(?=[.,;\n]|$)')
+    for note in re.finditer(r'(?m)^\s*(\d{1,2})[.)]?[ \t]+(' + institution + r')', text[abstract.end():]):
+        if note.group(1) in markers:
+            return note.group(2)
+    return None
 
 
 OTHER_INST = re.compile(r'univ|institut|college|polytechn|[ée]cole|laborator|\blabs?\b|\binc\b|corp|\bltd\b|gmbh|\bllc\b|hospital|academy|'
@@ -918,7 +943,9 @@ def rows_from_hits(ctx):
             # page read (no arXiv copy, no local PDF) the route stands and the row is tagged page1_unchecked
             st_, blob_, url_ = page_read.get(w['id']) or (None, None, None)
             txt_ = zlib.decompress(blob_).decode('utf-8', 'replace') if blob_ else None
-            elsewhere = page1_elsewhere(st_, txt_, school, w.get('title'))
+            byline_names = [name for au in w.get('authorships') or [] for name in
+                            (au.get('raw_author_name'), (au.get('author') or {}).get('display_name')) if name]
+            elsewhere = page1_elsewhere(st_, txt_, school, w.get('title'), byline_names)
             if elsewhere:
                 n['unaffiliated_page1_elsewhere'] += 1; funnel[pi]['page1_elsewhere'] += 1
                 if len(page1_samples) < 40:
