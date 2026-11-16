@@ -535,6 +535,39 @@ def historical_appointment(key, entry):
     return dict(start=start, end=end)
 
 
+def json_strings(value):
+    """Yield literal decoded string values without joining unrelated fields."""
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, dict):
+        for child in value.values():
+            yield from json_strings(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from json_strings(child)
+
+
+def json_pointer(value, pointer):
+    """Resolve an RFC 6901 pointer, rejecting invalid escapes and array indices."""
+    if not isinstance(pointer, str) or (pointer and not pointer.startswith('/')):
+        raise ValueError('invalid JSON pointer')
+    if not pointer:
+        return value
+    for token in pointer[1:].split('/'):
+        if re.search(r'~(?![01])', token):
+            raise ValueError('invalid JSON pointer escape')
+        token = token.replace('~1', '/').replace('~0', '~')
+        if isinstance(value, list):
+            if not re.fullmatch(r'0|[1-9][0-9]*', token):
+                raise ValueError('invalid JSON array index')
+            value = value[int(token)]
+        elif isinstance(value, dict):
+            value = value[token]
+        else:
+            raise ValueError('JSON pointer traverses a scalar')
+    return value
+
+
 def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
     """{normalised name: [evidence]} from reviewed/cs-related-hand.json, each entry verified: its sha256 is a stored capture (or live page) whose text holds the quote."""
     ents = read(P.data('cs-related-hand.json', key), []) if entries is None else entries
@@ -542,6 +575,7 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
         return {}
     c = c or W.con(key)
     out = {}
+    json_by_sha = {}
     texts_by_sha = {}  # a catalog PDF can support many reviewed names; extract it once per raw hash
     for e in ents:
         if not all(e.get(k) for k in ('name', 'unit', 'url', 'sha256', 'quote')):
@@ -551,7 +585,15 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
             for url, raw in c.execute('select url, raw_zlib from live where sha256=?', (e['sha256'],)):
                 import zlib
                 body = zlib.decompress(raw)
-                if body.startswith(b'%PDF-'):
+                if body.lstrip().startswith((b'{', b'[')):
+                    import hashlib
+                    if hashlib.sha256(body).hexdigest() != e['sha256']:
+                        raise SystemExit(f"{label}: JSON source hash mismatch for {e['name']}")
+                    try:
+                        json_by_sha[e['sha256']] = json.loads(body)
+                    except (ValueError, UnicodeError) as exc:
+                        raise SystemExit(f"{label}: invalid saved JSON for {e['name']}") from exc
+                elif body.startswith(b'%PDF-'):
                     # Catalog faculty lists are PDF. The raw bytes and hash are in the same live receipt;
                     # checking binary as HTML silently loses every literal professor-rank quote.
                     import subprocess
@@ -571,11 +613,23 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
                 pass
             texts_by_sha[e['sha256']] = texts
         texts = texts_by_sha[e['sha256']]
+        if e['sha256'] in json_by_sha:
+            # For JSON, validate original byte-bound values, never a derived capture's narration.
+            node = json_by_sha[e['sha256']]
+            if 'json_pointer' in e:
+                try:
+                    node = json_pointer(node, e['json_pointer'])
+                except (KeyError, IndexError, ValueError) as exc:
+                    raise SystemExit(f"{label}: invalid JSON pointer for {e['name']}") from exc
+            texts = list(json_strings(node))
+        elif 'json_pointer' in e:
+            raise SystemExit(f"{label}: JSON pointer needs saved JSON bytes for {e['name']}")
         if not any(' '.join(t.split()).find(' '.join(e['quote'].split())) >= 0 for t in texts if t):
             raise SystemExit(f"{label}: the quote of {e['name']} is not in the stored page {e['sha256'][:12]} (re-run `profile`)")
         historical = historical_appointment(key, e)
         out.setdefault(' '.join(toks(e['name'])), []).append(dict(unit=e['unit'], url=e['url'], sha256=e['sha256'], observed=e.get('observed') or '', quote=e['quote'],
                                                                    ladder=bool(e.get('ladder', True)), hand=True,
+                                                                   **({'json_pointer': e['json_pointer']} if 'json_pointer' in e else {}),
                                                                    **({'appointment_rank': e['appointment_rank']} if e.get('appointment_rank') else {}),
                                                                    **({'historical_appointment': historical} if historical else {})))
     return out

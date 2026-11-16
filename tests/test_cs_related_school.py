@@ -307,3 +307,55 @@ def test_candidate_filter_preserves_an_unbound_openalex_namesake(monkeypatch, tm
     rows = json.loads((tmp_path / 'cs-related-candidates.json').read_text())
     assert len(rows) == 1
     assert rows[0]['openalex'] == [other]
+
+
+def json_hand(body, quote, *, pointer=None, sha=None, capture_text=None):
+    import hashlib
+    import sqlite3
+    import zlib
+    db = sqlite3.connect(':memory:')
+    db.execute('create table captures (sha256 text, text text)')
+    db.execute('create table live (url text, sha256 text, raw_zlib blob)')
+    sha = sha or hashlib.sha256(body).hexdigest()
+    url = 'https://school.example/career.json'
+    db.execute('insert into live values (?,?,?)', (url, sha, zlib.compress(body)))
+    if capture_text:
+        db.execute('insert into captures values (?,?)', (sha, capture_text))
+    entry = dict(name='Avery Scientist', unit='CS', url=url, sha256=sha,
+                 quote=quote, observed='20261116')
+    if pointer is not None:
+        entry['json_pointer'] = pointer
+    return C.hand_evidence('example', db, entries=[entry])
+
+
+def test_hand_json_uses_literal_decoded_values():
+    result = json_hand(b'{"role":"Assistant Professor","bio":"Studies caf\\u00e9 networks"}',
+                       'Studies café networks', pointer='/bio')
+    assert result['avery scientist'][0]['json_pointer'] == '/bio'
+    assert json_hand(b'{"role":"Assistant Professor"}', 'Assistant Professor')
+
+
+def test_hand_json_does_not_join_fields_or_trust_projected_capture():
+    import pytest
+    with pytest.raises(SystemExit, match='the quote'):
+        json_hand(b'{"name":"Avery Scientist","role":"Assistant Professor"}',
+                  'Avery Scientist Assistant Professor',
+                  capture_text='Avery Scientist Assistant Professor')
+
+
+def test_hand_json_pointer_binds_quote_to_one_record():
+    import pytest
+    body = b'{"roles":[{"school":"Elsewhere","role":"Professor"},{"school":"Harvard","role":"Student"}]}'
+    assert json_hand(body, 'Professor', pointer='/roles/0/role')
+    for pointer in ('/roles/1/role', '/roles/2', '/roles/01', '/roles/~2', 'roles'):
+        with pytest.raises(SystemExit, match='the quote|invalid JSON pointer'):
+            json_hand(body, 'Professor', pointer=pointer)
+    assert C.json_pointer({'a/b': {'~key': 'value'}}, '/a~1b/~0key') == 'value'
+
+
+def test_hand_json_rejects_malformed_bytes_and_wrong_hash():
+    import pytest
+    with pytest.raises(SystemExit, match='invalid saved JSON'):
+        json_hand(b'{"role":"Professor",}', 'Professor')
+    with pytest.raises(SystemExit, match='source hash mismatch'):
+        json_hand(b'{"role":"Professor"}', 'Professor', sha='0' * 64)
