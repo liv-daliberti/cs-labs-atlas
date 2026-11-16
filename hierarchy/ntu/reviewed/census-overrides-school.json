@@ -1513,7 +1513,40 @@
       "status": "accepted_rule_bound"
     },
     "no_papers": true,
-    "why_no_papers": "Reviewed 2026-11-11: the DBLP/ORCID anchor is a reviewed identity binding, but in the promoted native package (pis.json, 2026-11-10) it attributes no papers: 31 DBLP titles on the bound record; verifiedWorks 0, labPapers 0. No paper is attributed until a school-affiliated, in-period match exists; this is a recorded yield result, not a claim that the person has no papers."
+    "why_no_papers": "Reviewed 2026-11-11: the DBLP/ORCID anchor is a reviewed identity binding, but in the promoted native package (pis.json, 2026-11-10) it attributes no papers: 31 DBLP titles on the bound record; verifiedWorks 0, labPapers 0. No paper is attributed until a school-affiliated, in-period match exists; this is a recorded yield result, not a claim that the person has no papers.",
+    "aliases": [
+      "Lin William Cong"
+    ],
+    "literal_self_name_reviews": [
+      {
+        "scope": "PIlocaladditionalnameonly; existingownedPIDunchanged,noOA/ORCID/period/newpaperactivation.",
+        "additional_names": [
+          "Lin William Cong"
+        ],
+        "evidence": [
+          {
+            "source": "OriginalmonthlyDBLPpersonalWWWfragment, not a liveHTTPresponse",
+            "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/identity-source-discovery/original-person-records/265_6373.xml",
+            "sha256": "5a33d122559e29aa29939b159ffce4c2d179480fd8e1bb08b96cb74fc66e86eb",
+            "quote": "<author>Will Cong</author>\n<author>Lin William Cong</author>\n<title>Home Page</title>",
+            "owned_homepage_url": "https://www.linwilliamcong.com/"
+          },
+          {
+            "source": "ActualownedhomepageHTTP200",
+            "url": "https://www.linwilliamcong.com/",
+            "sha256": "a8ea59b8ee888d81ec49e73dba7922760f3c6d8a42f11c1832ac4a481a212802",
+            "quote": "LIN WILLIAM CONG",
+            "identity_scope": "OwnedhomepagealreadyboundtothePI/ownedPID by previousnormalidentityreview; no new person or namesake merge."
+          }
+        ],
+        "independent_review": {
+          "reviewer": "codex-sjtu-ntu-1115",
+          "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/WILL-CONG-LITERAL-NAME-INDEPENDENT-REVIEW-20261116.json",
+          "receipt_sha256": "2f04bf62ef1bb5af18a00f19be30f5ef0f027b5abce2dd1541309e21144b3557",
+          "packet_sha256": "fbace8d1b5defab3838332ee7c97ad3835c9e058b7f952a606e4e3c11451f92f"
+        }
+      }
+    ]
   },
   "Rob Cornish": {
     "no_identity": true,
@@ -5093,7 +5126,48 @@
       "status": "accepted_rule_bound"
     },
     "no_papers": true,
-    "why_no_papers": "Reviewed 2026-11-11: the DBLP/ORCID anchor is a reviewed identity binding, but in the promoted native package (pis.json, 2026-11-10) it attributes no papers: 49 DBLP titles on the bound record; verifiedWorks 0, labPapers 0. No paper is attributed until a school-affiliated, in-period match exists; this is a recorded yield result, not a claim that the person has no papers."
+    "why_no_papers": "Reviewed 2026-11-11: the DBLP/ORCID anchor is a reviewed identity binding, but in the promoted native package (pis.json, 2026-11-10) it attributes no papers: 49 DBLP titles on the bound record; verifiedWorks 0, labPapers 0. No paper is attributed until a school-affiliated, in-period match exists; this is a recorded yield result, not a claim that the person has no papers.",
+    "aliases": [
+      "Dorde Zikelic",
+      "Đorđe Žikelić"
+    ],
+    "literal_self_name_reviews": [
+      {
+        "additional_names": [
+          "Đorđe Žikelić",
+          "Dorde Zikelic"
+        ],
+        "evidence": [
+          {
+            "source": "OriginalownedNTUteam page",
+            "url": "https://djordjezikelic.github.io/team/",
+            "sha256": "952cc9a0a689284030fa848567a9bf8c2e9790096be3165d0c8aa4b935799934",
+            "quote": "Djordje Zikelic (Đorđe Žikelić)"
+          },
+          {
+            "source": "OriginalownedcurrentPIhomepage",
+            "url": "https://djordjezikelic.github.io/",
+            "sha256": "4fb1795f9c264c250a0f7e479537b9b0479214f3e0ff83206d1d161d23313e6e",
+            "quote": "Djordje Zikelic (Đorđe Žikelić)"
+          },
+          {
+            "source": "OriginalmonthlyDBLPpersonalWWWfragment, notliveHTTP",
+            "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/identity-source-discovery/original-person-records/150_8968.xml",
+            "sha256": "97d3ac37636dc105527783b423a5d08522e1353d137b6b5807b20e29959f8e94",
+            "quote": "<author>Dorde Zikelic</author>\n<author>Djordje Zikelic</author>",
+            "literal_uname": "Đorđe Žikelić",
+            "scope": "OwnedPID150/8968 alreadyaccepted; explicitliteralvariants only. OldSMUaffiliation isnot NTUdateproof."
+          }
+        ],
+        "independent_review": {
+          "reviewer": "codex-sjtu-ntu-1115",
+          "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/DJORDJE-NAMES-PUBLICATIONS-INDEPENDENT-REVIEW-20261116.json",
+          "receipt_sha256": "d11b942edb38997ee5f69999f09f695f276def00bed7e69e0794930b2bcf9a2e",
+          "packet_sha256": "f35d3721039865698ad6fe379a9ade38d797ebdb270ca906fab9cd96a0174ed5",
+          "scope": "LiteralPIlocalnames/ownedcitationtitleanchors only; noAID/ORCID/period/forcedpaper."
+        }
+      }
+    ]
   },
   "Jordan Boyd-Graber Ying": {
     "no_identity": true,
@@ -11412,6 +11486,375 @@
         "normal_review_code": "edefaa8a",
         "normal_review_sha256": "0a53ef15d51dadebd07179d0eafe11d04acc14ae2a31fcd035a387de7f5c8e4b",
         "scope": "Actualnormalreview consumes qualifiedhomepagerule PID73entries; no ORCID/OAID/period admission. ThirtyfiveCoRRand38venueentries, not73uniquepapers."
+      }
+    }
+  },
+  "Xavier Bresson": {
+    "dblp": [
+      "https://dblp.org/pid/95/378"
+    ],
+    "no_identity": false,
+    "why_no_identity": "Source-qualified PI-to-DBLP binding independently reviewed against actual full normal rival inventory; no OAID or ORCID activated.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "This review admits only the source-owned bibliographic PID, not raw ORCIDs.",
+      "evidence": []
+    },
+    "dblp_identity_review": {
+      "rule": "unique_exact_name",
+      "pid": "https://dblp.org/pid/95/378",
+      "original_record": {
+        "pid": "https://dblp.org/pid/95/378",
+        "names": [
+          "Xavier Bresson"
+        ],
+        "sha256": "101eb3c0969935d8d47816ae62b0231089bdce1188be9487db2078e3d0fc56ab",
+        "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/identity-source-discovery/original-person-records/95_378.xml",
+        "urls": [],
+        "affiliations": [],
+        "disambiguation": false
+      },
+      "source_evidence": [
+        {
+          "kind": "ladder_faculty",
+          "url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "quote": "Xavier Bresson (Nanyang Assoc Prof)",
+          "observed": "20170602224854",
+          "role": "Nanyang Assoc Prof"
+        }
+      ],
+      "normal_candidate_inventory": {
+        "job": "32323866",
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/normal-dblp-candidates-1116/hierarchy/ntu/derived/dblp-ids.json",
+        "sha256": "fbb643a73ed65faad92c89fa3ba19f9f7f238b756e9d063d2cb090df6581e45d",
+        "scope": "Unmodified normal Name(given,family) full candidate scan. Query-only aliases in isolated clone are not main admissions. All other automatic decisions remain unactivated.",
+        "relevant_outputs": {
+          "Xavier Bresson": {
+            "pid": "https://dblp.org/pid/95/378",
+            "basis": "unique_exact_name",
+            "sha256": "101eb3c0969935d8d47816ae62b0231089bdce1188be9487db2078e3d0fc56ab",
+            "quote": "Xavier Bresson",
+            "candidates": 2,
+            "n_window": 62
+          },
+          "Deng Ruilong": {
+            "pid": "https://dblp.org/pid/92/7210",
+            "basis": "unique_exact_name",
+            "sha256": "9bdb2992e4188ac1bb3c93633ff8247a620f6f8dcc07c89ab0682a886446f271",
+            "quote": "Ruilong Deng",
+            "candidates": 3,
+            "n_window": 127
+          },
+          "Wei Ying": {
+            "pid": "https://dblp.org/pid/14/4899-1",
+            "basis": "school_affiliation",
+            "sha256": "040614bf1f28909a7f12dec60b81ef206339396eb615e3d095b4065360df7df3",
+            "quote": "Nanyang Technological University, China",
+            "candidates": 39,
+            "n_window": 116
+          },
+          "Shuhao Zhang": {
+            "pid": null,
+            "basis": "none",
+            "candidates": 29
+          }
+        }
+      },
+      "independent_review": {
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/xavier-identity-review1116/XAVIER-EXACT-NAME-FINAL-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "6136ee2b7db5c42b011ed5c5c3b423b16ead7d8c086ea0f33bfcbd8e397dfde1",
+        "proposal_sha256": "93823adb82285ceed638e50ffd3144b8dcc247023b0cd2c0a0aeb4143905841e",
+        "reviewer": "codex-ntu-rosters-1115"
+      }
+    }
+  },
+  "Deng Ruilong": {
+    "dblp": [
+      "https://dblp.org/pid/92/7210"
+    ],
+    "no_identity": false,
+    "why_no_identity": "Source-qualified PI-to-DBLP binding independently reviewed against actual full normal rival inventory; no OAID or ORCID activated.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "This review admits only the source-owned bibliographic PID, not raw ORCIDs.",
+      "evidence": []
+    },
+    "dblp_identity_review": {
+      "rule": "unique_exact_name",
+      "pid": "https://dblp.org/pid/92/7210",
+      "original_record": {
+        "pid": "https://dblp.org/pid/92/7210",
+        "names": [
+          "Ruilong Deng"
+        ],
+        "sha256": "9bdb2992e4188ac1bb3c93633ff8247a620f6f8dcc07c89ab0682a886446f271",
+        "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/identity-source-discovery/original-person-records/92_7210.xml",
+        "urls": [
+          "https://orcid.org/0000-0002-8158-150X",
+          "https://www.wikidata.org/entity/Q61832384",
+          "https://ieeexplore.ieee.org/author/37085461564"
+        ],
+        "affiliations": [],
+        "disambiguation": false
+      },
+      "source_evidence": [
+        {
+          "url": "https://eprints.whiterose.ac.uk/id/eprint/219419/1/FINAL%20VERSION.pdf",
+          "sha256": "7a2a81995dbc79e809fc905a6b1ad31e73bbc35292aaa9d922b6cdedaeae86f0",
+          "quote_parts": [
+            "Ruilong Deng (Senior Member, IEEE) received the B.Sc. and Ph.D. degrees both in Control Science and Engineering from Zhejiang University, Hangzhou, Zhejiang, China, in 2009 and 2014, respectively.",
+            "He was a Research Fellow with Nanyang Technological University, Singapore, from 2014 to 2015; an AITF Postdoctoral Fellow with the University of Alberta, Edmonton, AB, Canada, from 2015 to 2018; and an Assistant Professor with Nanyang Technological University, from 2018 to 2019."
+          ],
+          "context": "PhysicalPDFpage18 (printed17), entire own author bio visually read as separate lower-right column. Publication acceptedversion copyright2024, repository cites journal2025; no PDF template date inferred. Earlier RF and Alberta postdoc are not NTU faculty."
+        },
+        {
+          "kind": "ladder_faculty",
+          "url": "https://web.archive.org/web/20190719123909id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "5b244f02dbf760c3711736bc4711c1980f81d568b5589a825378959c5d3b7f57",
+          "quote": "Deng Ruilong (Asst Prof)",
+          "observed": "20190719123909",
+          "role": "Asst Prof"
+        }
+      ],
+      "normal_candidate_inventory": {
+        "job": "32323866",
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/normal-dblp-candidates-1116/hierarchy/ntu/derived/dblp-ids.json",
+        "sha256": "fbb643a73ed65faad92c89fa3ba19f9f7f238b756e9d063d2cb090df6581e45d",
+        "scope": "Unmodified normal Name(given,family) full candidate scan. Query-only aliases in isolated clone are not main admissions. All other automatic decisions remain unactivated.",
+        "relevant_outputs": {
+          "Xavier Bresson": {
+            "pid": "https://dblp.org/pid/95/378",
+            "basis": "unique_exact_name",
+            "sha256": "101eb3c0969935d8d47816ae62b0231089bdce1188be9487db2078e3d0fc56ab",
+            "quote": "Xavier Bresson",
+            "candidates": 2,
+            "n_window": 62
+          },
+          "Deng Ruilong": {
+            "pid": "https://dblp.org/pid/92/7210",
+            "basis": "unique_exact_name",
+            "sha256": "9bdb2992e4188ac1bb3c93633ff8247a620f6f8dcc07c89ab0682a886446f271",
+            "quote": "Ruilong Deng",
+            "candidates": 3,
+            "n_window": 127
+          },
+          "Wei Ying": {
+            "pid": "https://dblp.org/pid/14/4899-1",
+            "basis": "school_affiliation",
+            "sha256": "040614bf1f28909a7f12dec60b81ef206339396eb615e3d095b4065360df7df3",
+            "quote": "Nanyang Technological University, China",
+            "candidates": 39,
+            "n_window": 116
+          },
+          "Shuhao Zhang": {
+            "pid": null,
+            "basis": "none",
+            "candidates": 29
+          }
+        }
+      },
+      "independent_review": {
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/root-g7-three-review1116/ROOT-G7-THREE-FINAL-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "c581cb06c576545c88f771178aaf0803556ea98f329e19eac83a44a563b10c5e",
+        "proposal_sha256": "ba6bac6cc12d5e82ffe7957a9b7f4789c10e543a63dd64862386018357b333b6",
+        "reviewer": "codex-ntu-rosters-1115"
+      }
+    },
+    "aliases": [
+      "Ruilong Deng"
+    ]
+  },
+  "Wei Ying": {
+    "dblp": [
+      "https://dblp.org/pid/14/4899-1"
+    ],
+    "no_identity": false,
+    "why_no_identity": "Source-qualified PI-to-DBLP binding independently reviewed against actual full normal rival inventory; no OAID or ORCID activated.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "This review admits only the source-owned bibliographic PID, not raw ORCIDs.",
+      "evidence": []
+    },
+    "dblp_identity_review": {
+      "rule": "owned_homepage_direct_dblp_link_and_official_own_card",
+      "pid": "https://dblp.org/pid/14/4899-1",
+      "original_record": {
+        "pid": "https://dblp.org/pid/14/4899-1",
+        "names": [
+          "Ying Wei 0001"
+        ],
+        "sha256": "040614bf1f28909a7f12dec60b81ef206339396eb615e3d095b4065360df7df3",
+        "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/identity-source-discovery/original-person-records/14_4899-1.xml",
+        "urls": [
+          "https://wei-ying.net/",
+          "https://scholar.google.com/citations?user=5UpFdKsAAAAJ",
+          "https://orcid.org/0000-0003-1662-4443"
+        ],
+        "affiliations": [
+          "Nanyang Technological University, China",
+          "City University of Hong Kong, Department of Computer Science, Hong Kong",
+          "Tencent AI Lab, Guangdong, China"
+        ],
+        "disambiguation": false
+      },
+      "source_evidence": [
+        {
+          "url": "https://web.archive.org/web/20240625225031id_/https://www.ntu.edu.sg/computing/our-people/faculty",
+          "sha256": "fd63c088a84dd3a1591ccffd69eddfcca70ca2ed0ebae6ae1852b48a7299eb87",
+          "quote": "Ying Wei is an Assistant Professor at the School of Computer Science and Engineering, Nanyang Technological University since Sep 2023.",
+          "context": "Same own faculty card heading Asst Prof Wei Ying; literal English order Ying Wei in own biography. Captured2024-06-25, absent2025/26 owncards, no current-extension inferred.",
+          "raw_capture_store": "/n/fs/resemble/homogenizing-science/code/listings/ntu/raw/captures.sqlite"
+        },
+        {
+          "url": "https://wei-ying.net/",
+          "sha256": "5b7ded6462318eb50b745bad829a49769b62eacf43a9c310a91e02aab08dcde3",
+          "quote_parts": [
+            "Ying Wei (魏颖)",
+            "ZJU-100 Young Professor, College of Artificial Intelligence, Zhejiang University",
+            "Previously: Nanyang Assistant Professor, Nanyang Technological University"
+          ],
+          "literal_owned_dblp_href": "https://dblp.org/pid/14/4899-1",
+          "context": "Complete actual normalHTTP200 home read and rehashed; nowZhejiang/previousNTU, move date is not stated."
+        }
+      ],
+      "normal_candidate_inventory": {
+        "job": "32323866",
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/normal-dblp-candidates-1116/hierarchy/ntu/derived/dblp-ids.json",
+        "sha256": "fbb643a73ed65faad92c89fa3ba19f9f7f238b756e9d063d2cb090df6581e45d",
+        "scope": "Unmodified normal Name(given,family) full candidate scan. Query-only aliases in isolated clone are not main admissions. All other automatic decisions remain unactivated.",
+        "relevant_outputs": {
+          "Xavier Bresson": {
+            "pid": "https://dblp.org/pid/95/378",
+            "basis": "unique_exact_name",
+            "sha256": "101eb3c0969935d8d47816ae62b0231089bdce1188be9487db2078e3d0fc56ab",
+            "quote": "Xavier Bresson",
+            "candidates": 2,
+            "n_window": 62
+          },
+          "Deng Ruilong": {
+            "pid": "https://dblp.org/pid/92/7210",
+            "basis": "unique_exact_name",
+            "sha256": "9bdb2992e4188ac1bb3c93633ff8247a620f6f8dcc07c89ab0682a886446f271",
+            "quote": "Ruilong Deng",
+            "candidates": 3,
+            "n_window": 127
+          },
+          "Wei Ying": {
+            "pid": "https://dblp.org/pid/14/4899-1",
+            "basis": "school_affiliation",
+            "sha256": "040614bf1f28909a7f12dec60b81ef206339396eb615e3d095b4065360df7df3",
+            "quote": "Nanyang Technological University, China",
+            "candidates": 39,
+            "n_window": 116
+          },
+          "Shuhao Zhang": {
+            "pid": null,
+            "basis": "none",
+            "candidates": 29
+          }
+        }
+      },
+      "independent_review": {
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/root-g7-three-review1116/ROOT-G7-THREE-FINAL-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "c581cb06c576545c88f771178aaf0803556ea98f329e19eac83a44a563b10c5e",
+        "proposal_sha256": "ba6bac6cc12d5e82ffe7957a9b7f4789c10e543a63dd64862386018357b333b6",
+        "reviewer": "codex-ntu-rosters-1115"
+      }
+    },
+    "aliases": [
+      "Ying Wei"
+    ]
+  },
+  "Shuhao Zhang": {
+    "dblp": [
+      "https://dblp.org/pid/135/4657"
+    ],
+    "no_identity": false,
+    "why_no_identity": "Source-qualified PI-to-DBLP binding independently reviewed against actual full normal rival inventory; no OAID or ORCID activated.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "This review admits only the source-owned bibliographic PID, not raw ORCIDs.",
+      "evidence": []
+    },
+    "dblp_identity_review": {
+      "rule": "official_document_owned_homepage_matches_bibliographic_record",
+      "pid": "https://dblp.org/pid/135/4657",
+      "original_record": {
+        "pid": "https://dblp.org/pid/135/4657",
+        "names": [
+          "Shuhao Zhang 0001"
+        ],
+        "sha256": "103cc13c47de5bef54dbc1120134588aa070ea7fd6c0e5fdd070b17e054eb1dd",
+        "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/identity-source-discovery/original-person-records/135_4657.xml",
+        "urls": [
+          "https://shuhaozhangtony.github.io/",
+          "https://dl.acm.org/profile/83358774357",
+          "https://orcid.org/0000-0002-9927-6925",
+          "https://www.wikidata.org/entity/Q130832546"
+        ],
+        "affiliations": [
+          "Singapore University of Technology and Design, Singapore",
+          "Technische Universität Berlin, Berlin, Germany"
+        ],
+        "disambiguation": false
+      },
+      "source_evidence": [
+        {
+          "url": "https://www.ntu.edu.sg/docs/librariesprovider65/default-document-library/shanghai-jiao-tong-university367ae55a-eaf3-4aa6-810b-4f2bb3cf8bab.pdf",
+          "sha256": "ba561055145d8afd72cae56f1ec54ebb9946a28456ca4d9ba5aab4a45f21987c",
+          "quote_parts": [
+            "5. Accelerating Dynamic Graph Embedding on GPU",
+            "2 July 2024",
+            "Nanyang Technological University",
+            "Shuhao Zhang",
+            "https://shuhaozhangtony.github.io/"
+          ],
+          "context": "PhysicalPDFpage7 table visually read: NTU Home supervisor Shuhao Zhang/College of Computing and Data Science/own homepage; SJTU Partner supervisor Shixuan Sun in separate column. This is a named supervisor project document, not an enrolled student roster. Source-owned homepage equals literal WWW135/4657 URL. Direct homepage robots refused, no content or alternate-home fetch."
+        }
+      ],
+      "normal_candidate_inventory": {
+        "job": "32323866",
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/normal-dblp-candidates-1116/hierarchy/ntu/derived/dblp-ids.json",
+        "sha256": "fbb643a73ed65faad92c89fa3ba19f9f7f238b756e9d063d2cb090df6581e45d",
+        "scope": "Unmodified normal Name(given,family) full candidate scan. Query-only aliases in isolated clone are not main admissions. All other automatic decisions remain unactivated.",
+        "relevant_outputs": {
+          "Xavier Bresson": {
+            "pid": "https://dblp.org/pid/95/378",
+            "basis": "unique_exact_name",
+            "sha256": "101eb3c0969935d8d47816ae62b0231089bdce1188be9487db2078e3d0fc56ab",
+            "quote": "Xavier Bresson",
+            "candidates": 2,
+            "n_window": 62
+          },
+          "Deng Ruilong": {
+            "pid": "https://dblp.org/pid/92/7210",
+            "basis": "unique_exact_name",
+            "sha256": "9bdb2992e4188ac1bb3c93633ff8247a620f6f8dcc07c89ab0682a886446f271",
+            "quote": "Ruilong Deng",
+            "candidates": 3,
+            "n_window": 127
+          },
+          "Wei Ying": {
+            "pid": "https://dblp.org/pid/14/4899-1",
+            "basis": "school_affiliation",
+            "sha256": "040614bf1f28909a7f12dec60b81ef206339396eb615e3d095b4065360df7df3",
+            "quote": "Nanyang Technological University, China",
+            "candidates": 39,
+            "n_window": 116
+          },
+          "Shuhao Zhang": {
+            "pid": null,
+            "basis": "none",
+            "candidates": 29
+          }
+        }
+      },
+      "independent_review": {
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/root-g7-three-review1116/ROOT-G7-THREE-FINAL-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "c581cb06c576545c88f771178aaf0803556ea98f329e19eac83a44a563b10c5e",
+        "proposal_sha256": "ba6bac6cc12d5e82ffe7957a9b7f4789c10e543a63dd64862386018357b333b6",
+        "reviewer": "codex-ntu-rosters-1115"
       }
     }
   }
