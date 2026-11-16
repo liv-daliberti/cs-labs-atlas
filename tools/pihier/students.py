@@ -615,6 +615,12 @@ def corrections(ctx, stu):
 
     # Validate all applicable guards before any correction, and recheck immediately before use.
     for decision in corr:
+        if decision.get('school') == school and 'roles' in decision:
+            roles = decision['roles']
+            if (decision.get('action') != 'replace_sources' or 'expected_member_sha256' not in decision
+                    or not isinstance(roles, list) or not roles
+                    or any(not isinstance(role, str) or not role.strip() for role in roles)):
+                raise ValueError('student correction roles require guarded replace_sources and a nonempty role list')
         if 'expected_member_sha256' not in decision or decision.get('school') != school:
             continue
         group = stu.get(decision.get('pi')) or {}
@@ -637,6 +643,11 @@ def corrections(ctx, stu):
                 r.setdefault('merged', []).append(k); r['person'] = x['person']; S[x['person']] = S.pop(k)
         elif x['action'] == 'replace_sources':
             r['relations'] = [dict(type=x.get('type', 'researched_advising'), years=x['years'], role=x.get('role'), sources=x['sources'])]
+            # Correct an unsupported displayed degree as well as its evidence. The original
+            # accepted source remains immutable; an exact preimage guard demands renewed
+            # review if another genuine role or source is added to this member.
+            if 'roles' in x:
+                r['roles'] = list(dict.fromkeys(x['roles']))
         r.setdefault('corrections', []).append(dict(action=x['action'], reason=x['reason'], evidence=x.get('evidence')))
         n['student_corrections_' + x['action']] += 1
 

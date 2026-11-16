@@ -115,3 +115,30 @@ def test_rename_keeps_the_old_form_and_the_reviewed_extra_aliases(tmp_path):
     rec = stu['One PI']['ext:example:panagiotis-tigas']
     assert rec['name'] == 'Panagiotis Tigas' and rec['aliases'] == ['Tigkas Panagiotis', 'Panos Tigas']
     assert ctx.n['student_corrections_rename'] == 1
+
+
+def test_guarded_source_correction_removes_the_unsupported_displayed_degree(tmp_path):
+    row = member()
+    stu = {'One PI': {row['person']: copy.deepcopy(row)}}
+    source = dict(url='https://example.edu/profile', sha256='2' * 64,
+                  quote='Visiting researcher; doctorate awarded by another university.')
+    d = dict(decision(row), action='replace_sources', roles=['visiting'], role='visiting',
+             type='researched_membership', years=[2026], sources=[source])
+    apply(tmp_path, stu, [d])
+    corrected = stu['One PI'][row['person']]
+    assert corrected['roles'] == ['visiting']
+    assert corrected['relations'] == [dict(type='researched_membership', years=[2026],
+                                         role='visiting', sources=[source])]
+    assert row['roles'] == ['phd']
+
+
+@pytest.mark.parametrize('roles,guarded', [(['visiting'], False), ([], True), ('visiting', True), ([None], True)])
+def test_invalid_role_replacement_fails_before_any_mutation(tmp_path, roles, guarded):
+    row = member()
+    stu = {'One PI': {row['person']: copy.deepcopy(row)}}
+    d = dict(decision(row), action='replace_sources', roles=roles, years=[2026], sources=[])
+    if not guarded:
+        d.pop('expected_member_sha256')
+    with pytest.raises(ValueError, match='roles require guarded'):
+        apply(tmp_path, stu, [d])
+    assert stu['One PI'][row['person']] == row
