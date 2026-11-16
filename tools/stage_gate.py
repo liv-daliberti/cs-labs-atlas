@@ -58,10 +58,11 @@ def pis_of(key):
     cen = read(P.data('census-faculty.json', key), {})
     cen = cen.get('faculty', []) if isinstance(cen, dict) else cen   # a composed first-native school keeps a bare list
     add = read(P.data('census-additions.json', key), [])
+    overrides = CO.section(key)
     by_name = {}
     by_source = set()
     for x in cen + add:
-        if x.get('is_pi'):
+        if x.get('is_pi') and not (overrides.get(x['name']) or {}).get('exclude'):
             basis = x.get('pi_basis') or {}
             source_key = None
             if basis.get('sha256') and basis.get('quote'):
