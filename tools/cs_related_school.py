@@ -66,6 +66,11 @@ historical appointments: a hand review may carry historical_appointment={start,e
             with explicit year bounds stated in its quote and matching a source-bound
             census override period. The biography observation date is preserved but
             supplies no current listing year. Native builders use the reviewed period.
+dated officer listings: a hand review may carry dated_listing with the PDF's date
+            and literal date quote, physical page, active PROFESSORS/READERS heading,
+            full entry name, appointment year and column-definition quote. The saved
+            PDF bytes and exact URL are checked. It supplies that calendar year only;
+            retrieval is retained separately and no appointment interval is inferred.
 usage: cs_related_school.py candidates|units|units-check|review|profile <key> [<Name> <unit> <url>]
 units-check exits 0 when units-done.json covers every unit URL of the charter (a unit added since the last `units` run, or no run, exits 1)
 """
@@ -569,6 +574,77 @@ def json_pointer(value, pointer):
     return value
 
 
+def dated_listing(entry, pdf):
+    """A reviewed officer-table row proves its document's year, not retrieval year.
+
+    The date, appointment-column meaning, active rank heading and full name must
+    be literal evidence in the same saved PDF. Mixed-rank pages stay for review.
+    This supplies one listing year; it creates no appointment interval.
+    """
+    proof = entry.get('dated_listing')
+    if proof is None:
+        return None
+
+    def fail(reason):
+        raise SystemExit(f"{entry['name']}: dated listing {reason}")
+
+    if not isinstance(proof, dict) or entry.get('historical_appointment'):
+        fail('needs its own dated observation, not an appointment interval')
+    try:
+        if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', proof['date']):
+            raise ValueError('not an ISO calendar date')
+        date = datetime.date.fromisoformat(proof['date'])
+        retrieved = datetime.datetime.strptime(re.sub(r'\D', '', entry['observed'])[:8], '%Y%m%d').date()
+    except (KeyError, TypeError, ValueError):
+        fail('needs valid document and retrieval dates')
+    if not 2016 <= date.year <= 2026 or date > retrieved:
+        fail('date must be in the window and no later than retrieval')
+    flat = ' '.join((pdf or '').split())
+    quote = proof.get('date_quote') or ''
+    date_words = f'{date.day} {date.strftime("%B")} {date.year}'
+    if not quote or quote not in flat or not re.search(r'(?<!\d)' + re.escape(date_words) + r'(?!\d)', quote):
+        fail('date is not stated in the saved PDF')
+    meaning = ('The mention of a date before a name means that the person named entered in that year '
+               'into the office or appointment specified.')
+    if proof.get('appointment_column_quote') != meaning or meaning not in flat:
+        fail('appointment-column meaning is not source-bound')
+    pages = (pdf or '').split('\f')
+    page = proof.get('page')
+    if type(page) is not int or not 1 <= page <= len(pages):
+        fail('needs a valid physical PDF page number')
+    text = pages[page - 1]
+    headings = {m.group(1).upper() for m in re.finditer(
+        r'^\s*((?:(?:EMERITUS|HONORARY)\s+)?(?:PROFESSORS|READERS)|UNIVERSITY (?:SENIOR )?LECTURERS)'
+        r'(?:\s*\(continued\))?\s*$', text, re.M | re.I)}
+    heading = proof.get('heading')
+    if heading not in ('PROFESSORS', 'READERS') or headings != {heading}:
+        fail('rank heading is absent, inactive or mixed on the entry page')
+    row = ' '.join(entry['quote'].split())
+    name = proof.get('entry_name') or ''
+    year = str(proof.get('appointment_year') or '')
+    if not row or row not in ' '.join(text.split()):
+        fail('entry quote is not on its stated page')
+    if (len(toks(name)) < 2 or len(toks(name)[0]) < 2 or len(toks(name)[-1]) < 2
+            or name not in row or not Name([entry['name']]).match(name)):
+        fail('full entry name does not bind this candidate')
+    if (not re.fullmatch(r'\d{4}', year) or int(year) >= date.year
+            or not re.search(r'(?<!\d)' + year + r'\s+' + re.escape(name) + r'(?!\w)', row)):
+        fail('needs a source-stated appointment year before the observation year')
+    if not entry.get('ladder', True) or NOT_LADDER.search(row):
+        fail('does not establish an active ladder appointment')
+    return dict(proof)
+
+
+def faculty_observed(entry):
+    """Date of the faculty assertion, distinct from retrieval of an old document."""
+    dated = entry.get('dated_listing')
+    return dated['date'].replace('-', '') if dated else entry.get('observed') or ''
+
+
+def dated_source_fields(entry):
+    return dict(dated_listing=entry['dated_listing'], retrieved_at=entry['observed']) if entry.get('dated_listing') else {}
+
+
 def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
     """{normalised name: [evidence]} from reviewed/cs-related-hand.json, each entry verified: its sha256 is a stored capture (or live page) whose text holds the quote."""
     ents = read(P.data('cs-related-hand.json', key), []) if entries is None else entries
@@ -577,6 +653,7 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
     c = c or W.con(key)
     out = {}
     json_by_sha = {}
+    pdf_by_sha = {}
     texts_by_sha = {}  # a catalog PDF can support many reviewed names; extract it once per raw hash
     for e in ents:
         if not all(e.get(k) for k in ('name', 'unit', 'url', 'sha256', 'quote')):
@@ -587,7 +664,6 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
                 import zlib
                 body = zlib.decompress(raw)
                 if body.lstrip().startswith((b'{', b'[')):
-                    import hashlib
                     if hashlib.sha256(body).hexdigest() != e['sha256']:
                         raise SystemExit(f"{label}: JSON source hash mismatch for {e['name']}")
                     try:
@@ -603,7 +679,10 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
                     except (FileNotFoundError, subprocess.TimeoutExpired):
                         pdf = None
                     if pdf is not None and pdf.returncode == 0:
-                        texts.append(pdf.stdout.decode('utf-8', 'replace'))
+                        text = pdf.stdout.decode('utf-8', 'replace')
+                        texts.append(text)
+                        if hashlib.sha256(body).hexdigest() == e['sha256']:
+                            pdf_by_sha.setdefault(e['sha256'], {})[url] = text
                 else:
                     texts.append(W.flat(W.extract.blocks(body, 'text/html', url)))
             try:   # a JavaScript-rendered page (tools/js_render_capture.py): the stored rendered DOM, matched by its dom_sha256
@@ -628,10 +707,17 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
         if not any(' '.join(t.split()).find(' '.join(e['quote'].split())) >= 0 for t in texts if t):
             raise SystemExit(f"{label}: the quote of {e['name']} is not in the stored page {e['sha256'][:12]} (re-run `profile`)")
         historical = historical_appointment(key, e)
+        dated = None
+        if e.get('dated_listing') is not None:
+            raw = (pdf_by_sha.get(e['sha256']) or {}).get(e['url'])
+            if raw is None:
+                raise SystemExit(f"{e['name']}: dated listing needs hash-verified PDF bytes at its exact source URL")
+            dated = dated_listing(e, raw)
         out.setdefault(' '.join(toks(e['name'])), []).append(dict(unit=e['unit'], url=e['url'], sha256=e['sha256'], observed=e.get('observed') or '', quote=e['quote'],
                                                                    ladder=bool(e.get('ladder', True)), hand=True,
                                                                    **({'json_pointer': e['json_pointer']} if 'json_pointer' in e else {}),
                                                                    **({'appointment_rank': e['appointment_rank']} if e.get('appointment_rank') else {}),
+                                                                   **({'dated_listing': dated} if dated else {}),
                                                                    **({'historical_appointment': historical} if historical else {})))
     return out
 
@@ -688,7 +774,7 @@ def units_by_recency(lad, centers):
     other units by the date of their latest evidence, so `departments[-1]` is the most recent academic unit (Georgia Tech owner decision 2026-11-04: the ML Center is `also`, never the home)."""
     latest = {}
     for e in lad:
-        latest[e['unit']] = max(latest.get(e['unit'], ''), e['observed'])
+        latest[e['unit']] = max(latest.get(e['unit'], ''), faculty_observed(e))
     cen = [u for u in latest if u in centers]
     return cen + sorted((u for u in latest if u not in centers), key=lambda u: latest[u])
 
@@ -784,7 +870,7 @@ def review(key):
             orcids = sorted(set(x.get('orcid') or []) | {o for p in recs for o in p.get('orcids') or []})
             if not orcids and (comp.get('dblp') or []):
                 orcids = sorted({o for p in dblp if p['pid'] in comp['dblp'] for o in p.get('orcids') or []})
-            fy = min([int((e.get('historical_appointment') or {}).get('start') or e['observed'][:4]) for e in fac]
+            fy = min([int((e.get('historical_appointment') or {}).get('start') or faculty_observed(e)[:4]) for e in fac]
                      + ([min(x['years_listed'])] if x.get('years_listed') else []))
             sh = share_test(SH, names, orcids, fy, c.get('openalex') or [])
             comp['openalex_share'] = sh
@@ -827,20 +913,28 @@ def review(key):
             d = 'pending_source_coverage'; why = f'no faculty evidence in the collected pages of {", ".join(searched)}; directory coverage and pagination require review before exclusion'
         n[d] += 1
         row = dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision=d, reason=why, cs_basis=comp,
-                   faculty_evidence=sorted(fac, key=lambda e: e['observed'])[:3] + (sorted(fac, key=lambda e: e['observed'])[-1:] if len(fac) > 3 else []),
-                   years_listed=sorted({int(e['observed'][:4]) for e in fac if not e.get('historical_appointment')}), units_searched=searched)
+                   faculty_evidence=sorted(fac, key=faculty_observed)[:3] + (sorted(fac, key=faculty_observed)[-1:] if len(fac) > 3 else []),
+                   years_listed=sorted({int(faculty_observed(e)[:4]) for e in fac if not e.get('historical_appointment')}), units_searched=searched)
         if not SH:
             row['provisional'] = 'computing share pending the OpenAlex sweep (DBLP-indexed share of school works >= 20%)'
         dec.append(row)
         if d == 'accepted' and c['source'] != 'affiliated_department':
-            first, last = pi_fac[0], sorted(pi_fac, key=lambda e: e['observed'])[-1]
+            first, last = pi_fac[0], sorted(pi_fac, key=faculty_observed)[-1]
             basis = group_basis if using_group else first
+            basis_role = 'professor title on the unit faculty listing'
+            if using_group:
+                basis_role = group_basis['role']
+            elif basis.get('historical_appointment'):
+                basis_role = 'source-stated historical faculty appointment'
+            elif basis.get('dated_listing'):
+                basis_role = ('Reader' if basis['dated_listing']['heading'] == 'READERS' else 'Professor') + ' on the dated officer listing'
             adds.append(dict(name=c['name'], aliases=row['aliases'], collection_person_id=f'{key}_fac_' + re.sub(r'[^a-z0-9]+', '-', ' '.join(toks(c['name']))).strip('-'),
                              dblp=comp['dblp'][:1], rank=group_basis['appointment_rank'] if using_group else 'ladder', title_as_listed=last['quote'], departments=units_by_recency(pi_fac, CENTERS),
                              years_listed=row['years_listed'], sources=[dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], kind=f"{'historical_appointment' if e.get('historical_appointment') else 'unit_listing'}:{e['unit']}",
-                                                                          observed=e['observed']) for e in sorted(pi_fac, key=lambda e: e['observed'])],
-                             is_pi=True, pi_basis=dict(kind=group_basis['kind'] if using_group else 'ladder_faculty', url=basis['url'], sha256=basis['sha256'], quote=basis['quote'], observed=basis['observed'],
-                                                       role=group_basis['role'] if using_group else ('source-stated historical faculty appointment' if basis.get('historical_appointment') else 'professor title on the unit faculty listing'),
+                                                                          observed=faculty_observed(e), **dated_source_fields(e)) for e in sorted(pi_fac, key=faculty_observed)],
+                             is_pi=True, pi_basis=dict(kind=group_basis['kind'] if using_group else 'ladder_faculty', url=basis['url'], sha256=basis['sha256'], quote=basis['quote'], observed=faculty_observed(basis),
+                                                       role=basis_role,
+                                                       **dated_source_fields(basis),
                                                        **({'historical_appointment': basis['historical_appointment']} if basis.get('historical_appointment') else {}),
                                                        cs_related=dict(dblp=comp['dblp'], dblp_window=win, openalex=(comp.get('openalex_share') or {}).get('ids'),
                                                                                  share=(comp.get('openalex_share') or {}).get('share'))),
