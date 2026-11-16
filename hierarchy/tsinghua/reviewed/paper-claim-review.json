@@ -3051,6 +3051,40 @@
           "quote": "录 张晗 副教授 个人介绍 姓名：张晗 职称：副教授，博士生导师 邮箱： zhhan@tsinghua.edu.cn 个人主页： https:/"
         }
       ]
+    },
+    {
+      "id": "tsinghua-yi-zhang-ambiguous-imaging-W3164737459-20261116",
+      "pi": "张毅",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W3164737459",
+        "doi": "10.1016/j.cell.2021.04.029"
+      },
+      "why": "Unresolved attribution already identified in the 2026-11-13 accuracy review. The complete stored work names Yi Zhang in authorship 5, provider A5100388295 (provider-observed ORCID 0000-0003-1970-9397), with brain/cognitive-science and computational-photography affiliations. The reviewed PI is the intelligent-transportation professor 张毅; this work entered through a dynamically anchored author ID, with no independently reviewed author ID or primary same-person citation for this imaging authorship. Shared Latin name, department and institution do not independently resolve the identity. Hold only this PI/source claim until primary person/byline evidence resolves it. This is not a rejection of the paper or its valid attribution to other PIs, and no global author ID or ORCID is reassigned.",
+      "reviewed_by": "codex-tsinghua-finish-1116",
+      "reviewed_at": "2026-11-16",
+      "evidence": [
+        {
+          "url": "https://openalex.org/W3164737459",
+          "sha256": "33c4a547ba5e541118f3a5e5fdfb822e9b3985cb9d570532481912400a436f25",
+          "quote": "Yi Zhang",
+          "kind": "complete_stored_OpenAlex_work_projection_not_primary_PDF",
+          "source_page": {
+            "year": 2021,
+            "page": 39
+          },
+          "canonicalization": "json.dumps(work, ensure_ascii=False, sort_keys=True, separators=(comma,colon)), UTF-8",
+          "selector": "authorships[5].raw_author_name",
+          "author_id": "https://openalex.org/A5100388295",
+          "provider_observed_orcid": "https://orcid.org/0000-0003-1970-9397"
+        },
+        {
+          "url": "https://www.au.tsinghua.edu.cn/info/1076/3242.htm",
+          "sha256": "fe8b4eb3f8f874b99bae01a8abe6c75e378601f801b2dbe0493e8ebd7651e478",
+          "quote": "张毅 教授,博导 系统工程研究所 智能交通联合实验室 主任 智能车路协同与自动驾驶研究中心 主任 智能无人驾驶研究中心 主任 CAAI Fellow",
+          "kind": "reviewed_PI_identity_basis"
+        }
+      ]
     }
   ]
 }
