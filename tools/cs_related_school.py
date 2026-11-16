@@ -63,9 +63,10 @@ research/teaching PIs: a source-checked research/teaching appointment can use an
             and candidate identity remain separate requirements. The appointment hand-review must
             carry the same appointment_rank and unit; the original rank is retained.
 historical appointments: a hand review may carry historical_appointment={start,end}
-            with explicit year bounds stated in its quote and matching a source-bound
+            with explicit year or month bounds stated in its quote and matching a source-bound
             census override period. The biography observation date is preserved but
-            supplies no current listing year. Native builders use the reviewed period.
+            supplies no current listing year. Research/teaching ranks still require the
+            separate PI-basis review. Native builders use the reviewed period.
 dated officer listings: a hand review may carry dated_listing with the PDF's date
             and literal date quote, physical page, active PROFESSORS/READERS heading,
             full entry name, appointment year and column-definition quote. The saved
@@ -533,8 +534,9 @@ def historical_appointment(key, entry):
             raise SystemExit(f"{entry['name']}: historical appointment has an invalid {label} date") from exc
     if not (start <= end and int(start[:4]) <= 2026 and int(end[:4]) >= 2016):
         raise SystemExit(f"{entry['name']}: historical appointment must overlap 2016–2026 in chronological order")
-    observed = re.sub(r'[^0-9]', '', entry.get('observed') or '')
-    observed_year = observed[:4]
+    observed_source = entry.get('observed') or ''
+    observed = re.sub(r'[^0-9]', '', observed_source)
+    observed_year = observed_source[:4]
     if not re.fullmatch(r'\d{4}', observed_year) or int(end[:4]) > int(observed_year):
         raise SystemExit(f"{entry['name']}: historical appointment cannot end after its source observation")
     if precision == 'month' and (len(observed) < 6 or end.replace('-', '') > observed[:6]):
