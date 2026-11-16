@@ -1,6 +1,60 @@
 """Tsinghua listing formats (CS list, School of Software names, IIIS cards, Automation cards): real markup of the captured pages."""
 import listing_formats as L
 
+
+DPI_ARCHIVE = '''<div class="home home3"><div class="dl"><h6>导航类别</h6></div><div class="dr">
+<div class="third" id="光电工程研究所"><h5>光电工程研究所</h5><ul>
+<li><a href="/jgf-dpi.html"><img title="金国藩"></a><h6>金国藩</h6><p>中国工程院院士</p></li>
+<li><a href="/lifengli.html"><img title="李立峰"></a><h6>李立峰</h6><p>教授</p></li>
+<li><a href="/liyan.html"><img title="李岩"></a><h6>李 岩</h6><p>教授</p></li>
+<li><a href="/yanghd.html"><img title="杨怀栋"></a><h6>杨怀栋</h6><p>副研究员</p></li>
+</ul></div><div class="third" id="系机关"><h5>系机关</h5><ul>
+<li><a href="/staff.html"><img title="曾海明"></a><h6>曾海明</h6><p>科研办公室</p></li>
+</ul></div></div></div>'''
+
+
+def test_dpi_archive_keeps_each_cards_written_role_and_institute():
+    fmt, rows = L.parse(DPI_ARCHIVE, 'tsinghua_dpi_archive')
+    assert fmt == 'tsinghua_dpi_archive'
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [
+        ('金国藩', ['中国工程院院士'], '光电工程研究所'),
+        ('李立峰', ['教授'], '光电工程研究所'),
+        ('李岩', ['教授'], '光电工程研究所'),
+        ('杨怀栋', ['副研究员'], '光电工程研究所'),
+        ('曾海明', ['科研办公室'], '系机关'),
+    ]
+    assert rows[1]['profile'] == '/lifengli.html'
+    assert rows[2]['quote_name'] == '李 岩'
+    assert '导航类别' not in str(rows)
+
+
+def test_dpi_archive_staff_title_does_not_become_faculty():
+    from listing_rows import rank_of
+    rows = L.parse(DPI_ARCHIVE, 'tsinghua_dpi_archive')[1]
+    local_ranks = {'ladder': '教授'}
+    assert rank_of(rows[-1]['titles'], local_ranks) == 'other'
+    assert rank_of(rows[1]['titles'], local_ranks) == 'ladder'
+
+
+def test_dpi_archive_requires_a_name_role_and_real_profile_link():
+    malformed = '''<li><a href="javascript:;"><img title="王甲"></a><h6>王甲</h6><p>教授</p></li>
+    <li><a href="/x.html"><img title="李乙"></a><p>教授</p></li>
+    <li><a href="/y.html"><h6>张丙</h6></a></li>
+    <li><a href="/z.html"></a><h6>周丁</h6><p>private@example.org</p></li>'''
+    page = '<div class="home3"><div class="dr"><div class="third" id="所"><h5>所</h5><ul>' + malformed + '</ul></div></div></div>'
+    assert L.parse(page, 'tsinghua_dpi_archive')[1] == []
+
+
+def test_dpi_archive_quote_uses_its_own_title_without_adjacent_contact_text():
+    from listing_rows import quote_of
+    from bs4 import BeautifulSoup
+    page = DPI_ARCHIVE.replace('<p>副研究员</p>', '<p>副研究员</p><p>private@example.org</p>')
+    rows = L.parse(page, 'tsinghua_dpi_archive')[1]
+    flat = ' '.join(BeautifulSoup(page, 'html.parser').get_text(' ', strip=True).split())
+    assert quote_of(flat, rows[2]) == '李 岩 教授'
+    assert rows[3]['titles'] == ['副研究员']
+    assert 'private@example.org' not in str(rows)
+
 CS = '''<div class="people01-nr"><dl><dt><h4>计算机软件研究所</h4></dt><dd class="clear"><h3>正高</h3><ul class="clear">
 <li><div class="pic"><a href="../info/1111/3490.htm" title="冯建华"><img src="x.jpg" /></a></div><div class="text">
 <h2><a href="../info/1111/3490.htm" title="冯建华">冯建华</a></h2><p>教授</p><p>62789150</p><p>fengjh@tsinghua.edu.cn</p></div></li>

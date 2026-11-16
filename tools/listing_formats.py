@@ -1695,6 +1695,35 @@ def tsinghua_bme_cards(h):
     return out
 
 
+def tsinghua_dpi_archive(h):
+    """DPI's 2017–2025 portal: named cards grouped by institute, including explicitly labelled staff."""
+    out = []
+    for group in BeautifulSoup(h, 'html.parser').select('div.home3 div.dr div.third[id]'):
+        heading = group.find('h5', recursive=False)
+        if heading is None:
+            continue
+        division = clean(heading.get_text(' ', strip=True))
+        for card in group.select('ul > li'):
+            name = card.find('h6', recursive=False)
+            title = card.find('p', recursive=False)
+            profile = card.find('a', href=True, recursive=False)
+            if name is None or title is None or profile is None:
+                continue
+            shown = clean(name.get_text(' ', strip=True))
+            name = re.sub(r'[\s\u3000]+', '', shown)
+            if not re.fullmatch(r'[\u3400-\u4dbf\u4e00-\u9fff·]{2,5}', name):
+                continue
+            href = profile['href'].strip()
+            if not href or re.match(r'javascript:|mailto:|#', href, re.I):
+                continue
+            role = clean(title.get_text(' ', strip=True))
+            if not role or re.search(r'@|\d{5,}|电话|邮箱|\b(?:email|tel)\b', role, re.I):
+                continue
+            out.append(dict(name_listed=name, titles=[role], profile=href, homepage=None, division=division,
+                            **({'quote_name': shown} if shown != name else {})))
+    return out
+
+
 def tsinghua_dpi_rendered(h):
     """Tsinghua Precision Instruments faculty page (faculty.dpi.tsinghua.edu.cn/teacher.jsp?...wbtreeid=1052) AFTER JavaScript (tools/js_render_capture.py):
     `li > a[href] .info` cards with `<h3>NAME</h3>`, `<p>职称：TITLE</p>` and `<p>单位：UNIT</p>`. The raw HTML is a shell; the list is loaded by script."""
@@ -2188,6 +2217,7 @@ FORMATS = {
     'tsinghua_ee_text': (tsinghua_ee_text, re.compile(r'图片列表.{0,3000}?(?:教\s*授|副教授)\s*[：:]', re.S)),
     'tsinghua_au_old_list': (tsinghua_au_old_list, re.compile(r'<table[^>]*uetable')),
     'tsinghua_insc_bands': (tsinghua_insc_bands, re.compile(r'(?!)')),
+    'tsinghua_dpi_archive': (tsinghua_dpi_archive, re.compile(r'(?!)')),
     'tsinghua_dpi_rendered': (tsinghua_dpi_rendered, re.compile(r'(?!)')),
     'tsinghua_me_zh': (tsinghua_me_zh, re.compile(r'(?!)')),
     'tsinghua_me_en': (tsinghua_me_en, re.compile(r'(?!)')),
