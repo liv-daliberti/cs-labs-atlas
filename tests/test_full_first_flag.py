@@ -1,8 +1,4 @@
 """lab_first_loop.take_full_first_flag: an opt-in per-school one-shot, consumed on use."""
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'fulltext-push'))
 import ftp_common as F
 import lab_first_loop as L
 
