@@ -579,7 +579,17 @@ def step_done(key, st, run=None):
         return False
     # R12 (Georgia Tech friction 35): a step is stale when an input it reads was rewritten after its output (the build after pi-works)
     ins = [Path(P.data(n, key)) for n in st.get('newer_than') or [] if Path(P.data(n, key)).exists()]
-    return not ins or all(Path(P.data(n, key)).stat().st_mtime >= max(i.stat().st_mtime for i in ins) for n in st['done'])
+    if ins and not all(Path(P.data(n, key)).stat().st_mtime >= max(i.stat().st_mtime for i in ins) for n in st['done']):
+        return False
+    # Toronto/HKUST/VT: an existing pis.json or copies.json can belong to an
+    # older build. Use the rebuild's dependency registry, including all build
+    # outputs, reviewed inputs, catalog changes and committed builder code.
+    stage = {'build': 'build', 'copies': 'copies', 'ledger': 'ledger'}.get(st['name'])
+    expected = {'build': 'pis.json', 'copies': 'copies.json', 'ledger': 'unavailable-summary.json'}
+    if stage and expected[stage] in st['done']:
+        import stale_stages
+        return not stale_stages.check(stage, key)[0]
+    return True
 
 
 def onboarding_only(key):

@@ -104,6 +104,20 @@ Run every trap check at once with `atlas stage-gate <key> --traps`; each stage g
 | L-88 | any | The agent's own scratch work: a blanket decision or a count was taken before looking at rows (UC 62, 66; GT 18 first run flagged every candidate). | UC, GT | documented | protocol rule: read the proposals before `--write`; look at the new rows by PI before counting a jump |
 | L-89 | 8 | CORE paused: papers with no cached CORE answer stay `incomplete_check` and the evidence whitelist needs an entry (lower it when CORE resumes). | UC 74 | documented | `docs/evidence-whitelist.json` (`unavailable_incomplete`) |
 
+## Toronto, HKUST and Virginia Tech follow-up (2026-11-16)
+
+These lessons extend the original ledger; the counts below describe its original
+89 rows. `atlas doctor` provides one reusable, read-only diagnosis rather than a
+new school-specific progress script.
+
+| ID | Lesson and evidence | Implemented response |
+|---|---|---|
+| L-90 | Toronto's local-copy counter predates its current package. The stage runner previously skipped build/copies/ledger when a named output merely existed. L-70's pi-works-only check did not cover other reviewed inputs or catalog changes. | `stage_gate.step_done` now reuses `stale_stages.check` for these products, including the full build output set; regression tests cover stale resume and fresh reuse. |
+| L-91 | HKUST's registry still describes native b16 while its current derived package and gate receipts have moved on. Toronto has the same divergence. | The doctor names its actual package/counter paths, reads canonical `atlas_paths` data, labels recorded gates, and distinguishes missing measurements from zero. Do not use a hand-written registry count as a current build result. |
+| L-92 | VT's `reports/STAGE-6-7-LABPAGE-HOLD-20261112.md` records organization names, previous-institution news, and publication link text in failed samples. Re-running the same sample would hide parser defects. | Keep the existing general parser tests and fresh-sample/acceptance rules. Fix source-format errors in batches before the next random review; the doctor only diagnoses and never restamps a review. |
+| L-93 | The published interim school workflow intentionally preserves the November 7 reader allowlist. A newly displayed school can therefore have local files without matching reader entries. | Exact-ID publication reconciliation partitions local papers into hosted, source-linked, missing reader, or absent from the site; the JSON report lists each gap for the next freeze. Never admit files by title or copy a catalog directly to the public reader. |
+| L-94 | `reader_export.py` emits `stored_copy`, but the website importer retained only link location/basis. Local copies linked at source lacked an explicit visible indicator. | Preserve local-copy provenance separately from hosting/read location; retain `confirmed_copy` compatibility for existing reader indexes. Never infer a copy from a candidate-only source link. |
+
 ## Counts (2026-11-05, 89 lessons)
 | Status | Lessons |
 |---|---|
