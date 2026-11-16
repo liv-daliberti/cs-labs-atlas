@@ -125,7 +125,8 @@ def unit_founding_year(key, department, cfg):
         return None, error
     url, sha, quote = (evidence.get(k) for k in ('url', 'sha256', 'quote'))
     if (type(year) is not int or not 1000 <= year <= cfg['window'][1]
-            or evidence.get('reviewed_by') != 'owner' or not evidence.get('owner_quote')
+            or evidence.get('reviewed_by') != 'owner' or not isinstance(evidence.get('owner_quote'), str)
+            or not evidence['owner_quote'].strip()
             or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', str(evidence.get('reviewed_on', '')))
             or not isinstance(url, str) or not isinstance(sha, str) or not isinstance(quote, str)
             or not quote.strip() or str(year) not in quote or not re.fullmatch(r'[0-9a-f]{64}', sha)):

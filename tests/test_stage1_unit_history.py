@@ -47,7 +47,8 @@ def test_unconfigured_unit_retains_full_window(history):
 
 @pytest.mark.parametrize('change', [dict(sha256='0' * 64), dict(quote='Founded in 2020'),
                                    dict(reviewed_by='agent'), dict(reviewed_on='20261116'),
-                                   dict(owner_quote=''), dict(url='https://evil.edu/history')])
+                                   dict(owner_quote=''), dict(owner_quote='  '), dict(owner_quote={'not': 'a quote'}),
+                                   dict(url='https://evil.edu/history')])
 def test_invalid_review_never_removes_required_years(history, change):
     _, evidence, _ = history
     evidence.update(change)
