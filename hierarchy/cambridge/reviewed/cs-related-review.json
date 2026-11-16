@@ -23,8 +23,8 @@
   "SOC"
  ],
  "counts": {
-  "pending_source_coverage": 364,
-  "accepted": 86,
+  "pending_source_coverage": 362,
+  "accepted": 87,
   "pending_identity_collision": 2
  },
  "decisions": [
@@ -5479,49 +5479,6 @@
    ]
   },
   {
-   "name": "Francisco J. R. Ruiz",
-   "aliases": [
-    "Francisco Jesus Rodriguez Ruiz"
-   ],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/126/1794"
-    ],
-    "dblp_window": 52,
-    "affiliation_notes": [
-     "DeepMind",
-     "Columbia University, Department of Computer Science, NY, USA",
-     "University of Cambridge, Department of Engineering, UK",
-     "Charles III University of Madrid, Department of Signal Processing and Communications, Madrid, Spain"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/126/1794",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "DeepMind"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Francisco Vargas",
    "aliases": [],
    "source": "dblp_affiliation",
@@ -10174,20 +10131,20 @@
      "namesake_orcids": false,
      "excluded": [
       {
+       "author": "https://openalex.org/A5026238778",
+       "why": "works end 2018, before the first listing (2026)",
+       "n": 3,
+       "raw": [
+        "Malcolm Andrew Ferguson Smith"
+       ]
+      },
+      {
        "author": "https://openalex.org/A5103941487",
        "why": "works end 2019, before the first listing (2026)",
        "n": 6,
        "raw": [
         "M. C. Smith",
         "Malcolm Smith"
-       ]
-      },
-      {
-       "author": "https://openalex.org/A5026238778",
-       "why": "works end 2018, before the first listing (2026)",
-       "n": 3,
-       "raw": [
-        "Malcolm Andrew Ferguson Smith"
        ]
       },
       {
@@ -11003,8 +10960,8 @@
     "Matthias Joachim Ehrhardt"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DAMTP listing, reviewed own-group/advising evidence) with 62 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/116/7748"
@@ -11022,9 +10979,103 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Bath, Institute for Mathematical Innovation, UK"
      }
-    ]
+    ],
+    "pi_basis_review": {
+     "kind": "advises_phd",
+     "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/c7c3e16a-de42-4613-88db-e26c01380283/content",
+     "sha256": "91f49d6b80c47c0d5c0812bb93e0278bfd6f460dc397ad8ced8ce9fd2ab6af5a",
+     "quote": "my supervisors, Carola-Bibiane Schönlieb and Matthias Ehrhardt",
+     "unit": "DAMTP",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5078070589"
+     ],
+     "school_works": 11,
+     "dblp_indexed": 4,
+     "share": 0.364,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5078070589",
+       "basis": "full name: Matthias J. Ehrhardt",
+       "works": 11,
+       "dblp_indexed": 4,
+       "years": [
+        2016,
+        2024
+       ],
+       "names": [
+        "Matthias J. Ehrhardt",
+        "Matthias J Ehrhardt",
+        "M. J. Ehrhardt"
+       ],
+       "orcids": [
+        "0000-0001-8523-353X"
+       ],
+       "venues": [
+        "IEEE Transactions on Medical Imaging",
+        "Neuroinformatics",
+        "SIAM Journal on Optimization"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2336208919",
+         "year": 2016,
+         "title": "PET Reconstruction With an Anatomical MRI Prior Using Parallel Level Sets",
+         "venue": "IEEE Transactions on Medical Imaging"
+        },
+        {
+         "oa": "https://openalex.org/W2768793217",
+         "year": 2017,
+         "title": "NiftyPET: a High-throughput Software Platform for High Quantitative Accuracy and Precision PET Imaging and Analysis",
+         "venue": "Neuroinformatics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2765161009",
+         "year": 2016,
+         "title": "Uniform acquisition modelling across PET imaging systems: Unified scatter modelling",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2749551990",
+         "year": 2017,
+         "title": "Faster PET reconstruction with a stochastic primal-dual hybrid gradient method",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "DAMTP",
+     "url": "https://mehrhardt.github.io/data/202608_cv.pdf",
+     "sha256": "5755ea761b2a22deaeb58f3c19382b7c689ecbedc27f135126c23160d62c663b",
+     "observed": "20261116064101",
+     "quote": "01/2016 - 09/2018 Postdoctoral Research Associate, University of Cambridge, UK",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research",
+     "historical_appointment": {
+      "start": "2016-01",
+      "end": "2018-09"
+     }
+    }
+   ],
    "years_listed": [],
    "units_searched": [
     "BSU",
