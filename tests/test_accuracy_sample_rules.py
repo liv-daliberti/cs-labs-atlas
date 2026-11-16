@@ -211,6 +211,17 @@ def test_R_PAP_25_sircar_and_mittal():
     assert not h.bare_unit_school(['Computer Science'], set(), cs, anchored_ok=True, school_co=True)    # not the PI's unit
 
 
+@pytest.mark.parametrize('company', ['Uber ATG', 'Google Research', 'Microsoft Research', 'Example Corporation'])
+def test_R_PAP_25_company_coaffiliation_is_not_a_university_unit(company):
+    aff = re.compile(r'University of Toronto', re.I)
+    assert h.units_in(company + ', Department of Computer Science, University of Toronto', aff) == ['computer science']
+    learned = {h.norm_unit(company)}
+    assert not h.bare_unit_school([company], learned, learned, anchored_ok=True, school_co=False)
+    assert not h.bare_unit_school([company], learned, learned, anchored_ok=True, school_co=True)
+    # Reject re-entry through the unaffiliated-PI/advisee fallback too.
+    assert h.names_other_inst(company, 'toronto')
+
+
 # ---- R7 doubled roster tokens (R-STU-05) ------------------------------------------------------------------------
 
 def test_R_STU_05_doubled_tokens():

@@ -453,6 +453,10 @@ def norm_unit(s):
 PLACE = re.compile(r'^(?:[a-z]+ )?(?:nj|pa|ma|ca|ny|usa|united states|switzerland|lausanne|pittsburgh|cambridge|berkeley|stanford|princeton|'
                    r'\d{4,5}(?: \d{4})?|[a-z]{2} \d{5}|ch \d{4})$')
 
+COMPANY_AFFILIATION = re.compile(
+    r'\b(?:google|microsoft|meta|facebook|amazon|ibm|nvidia|openai|deepmind|anthropic|uber|apple|adobe|intel|'
+    r'samsung|huawei|tencent|baidu|incorporated|inc|corporation|corp|ltd|gmbh|llc)\b', re.I)
+
 
 def units_in(raw, aff):
     """The unit names in a raw affiliation string that names the school: its comma/semicolon parts before the school's
@@ -464,7 +468,7 @@ def units_in(raw, aff):
     out = []
     for part in re.split(r'[,;]', raw[:m.start()]):
         u = norm_unit(part)
-        if len(u.split()) >= 2 and not PLACE.match(u):
+        if len(u.split()) >= 2 and not PLACE.match(u) and not COMPANY_AFFILIATION.search(part):
             out.append(u)
     return out
 
@@ -546,7 +550,7 @@ def page1_elsewhere(status, text, school, title=None, author_names=()):
 
 OTHER_INST = re.compile(r'univ|institut|college|polytechn|[ée]cole|laborator|\blabs?\b|\binc\b|corp|\bltd\b|gmbh|\bllc\b|hospital|academy|'
                         r'cent(?:er|re)\b|google|microsoft|\bmeta\b|amazon|\bibm\b|nvidia|openai|deepmind|foundation|\bcnrs\b|\binria\b|'
-                        r'\beth\b|max planck|national|company', re.I)  # an affiliation string that names some institution, not a department
+                        r'\beth\b|max planck|national|company|' + COMPANY_AFFILIATION.pattern, re.I)  # an institution, not a department
 
 
 def names_other_inst(z, school):
@@ -586,6 +590,10 @@ def bare_unit_school(raws, own_units, school_units, anchored_ok, school_co):
     if not raws:
         return False
     for z in raws:
+        # Repeated joint company/university affiliations cannot turn the company into a university unit.
+        # Apply this even to an already learned unit, and even with a school co-author.
+        if COMPANY_AFFILIATION.search(z):
+            return False
         u = norm_unit(z)
         if generic_unit(z):
             if not (u in own_units and school_co):
