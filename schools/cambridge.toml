@@ -37,7 +37,7 @@ legacy_sweep = ""
 [census]
 computing_departments = ["CST"]
 center_units = ["CBSU", "BSU", "DH"]
-home_units = { "Computer Science and Technology" = 'computer science and technology', "Genetics" = '\bgenetics\b', "Chemistry" = '\bchemistry\b' }
+home_units = { "Computer Science and Technology" = 'computer science and technology', "Genetics" = '\bgenetics\b', "Chemistry" = '\bchemistry\b', "Medicine" = '\b(?:department of )?medicine\b' }
 rank_words = { ladder = '\b(?:prof|reader|university (?:senior )?lecturer)\b' }
 
 [sweep_check]
@@ -297,3 +297,9 @@ host = "api.repository.cam.ac.uk"
 use = "live"
 purpose = "Deposited thesis bytes with explicit doctoral supervision evidence"
 probe = "https://api.repository.cam.ac.uk/server/api/core/bitstreams/42c91506-c0ac-4e24-9e9a-a55a4119c1ec/content"
+
+[[hosts]]
+host = "www.medschl.cam.ac.uk"
+use = "live"
+purpose = "Official investigator appointment, research group and academic unit evidence"
+probe = "https://www.medschl.cam.ac.uk/people/chris-wallace"

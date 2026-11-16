@@ -23,8 +23,8 @@
   "SOC"
  ],
  "counts": {
-  "pending_source_coverage": 408,
-  "accepted": 61,
+  "pending_source_coverage": 402,
+  "accepted": 62,
   "pending_identity_collision": 2
  },
  "decisions": [
@@ -932,50 +932,6 @@
    ]
   },
   {
-   "name": "Amy X. Zhang",
-   "aliases": [
-    "Amy Xian Zhang",
-    "Amy Zhang"
-   ],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/133/8390"
-    ],
-    "dblp_window": 174,
-    "affiliation_notes": [
-     "University of Washington, Allen School of Computer Science and Engineering, Seattle, WA, USA",
-     "Stanford University, Palo Alto, CA, USA",
-     "Harvard University, Cambridge, MA, USA",
-     "Massachusetts Institute of Technology (MIT), CSAIL, Cambridge, MA, USA"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/133/8390",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Washington, Allen School of Computer Science and Engineering, Seattle, WA, USA"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Andi Zhang",
    "aliases": [],
    "source": "dblp_affiliation",
@@ -1483,45 +1439,6 @@
       "url": "https://dblp.org/pid/36/1661",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Department of Computer Science and Technology, UK"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Anthony Hu",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/220/5381-1"
-    ],
-    "dblp_window": 17,
-    "affiliation_notes": [
-     "Wayve, UK",
-     "University of Cambridge, UK"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/220/5381-1",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Wayve, UK"
      }
     ]
    },
@@ -2292,44 +2209,6 @@
    ]
   },
   {
-   "name": "Chao Ma",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/79/1552-19"
-    ],
-    "dblp_window": 34,
-    "affiliation_notes": [
-     "University of Cambridge, Department of Engineering, Cambridge, UK"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/79/1552-19",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Cambridge, Department of Engineering, Cambridge, UK"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Chao Zhang",
    "aliases": [],
    "source": "dblp_affiliation",
@@ -2453,8 +2332,8 @@
    "name": "Chris Wallace",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (BSU listing, reviewed own-group/advising evidence) with 12 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/05/1626-2"
@@ -2471,10 +2350,102 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Cambridge Institute for Medical Research, UK"
      }
-    ]
+    ],
+    "pi_basis_review": {
+     "kind": "own_group",
+     "url": "https://www.medschl.cam.ac.uk/people/chris-wallace",
+     "sha256": "44787afc8cec475dc581306b2fa0d9024a0a65a78c03e83dd3eac8be067b9aa8",
+     "quote": "My research group has three complementary aims. First, to develop the statistical tools needed to identify genetic associations with disease",
+     "unit": "BSU",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5006577577"
+     ],
+     "school_works": 102,
+     "dblp_indexed": 13,
+     "share": 0.127,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5006577577",
+       "basis": "full name: Chris Wallace",
+       "works": 102,
+       "dblp_indexed": 13,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Chris Wallace",
+        "Wallace, Chris",
+        "C Wallace"
+       ],
+       "orcids": [
+        "0000-0001-9755-1703"
+       ],
+       "venues": [
+        "Nature Communications",
+        "PLoS Genetics",
+        "The American Journal of Human Genetics"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2951646637",
+         "year": 2018,
+         "title": "simGWAS: a fast method for simulation of large scale case–control GWAS summary statistics",
+         "venue": "Bioinformatics"
+        },
+        {
+         "oa": "https://openalex.org/W3015746229",
+         "year": 2020,
+         "title": "Improving the coverage of credible sets in Bayesian genetic fine-mapping",
+         "venue": "PLoS Computational Biology"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2495494109",
+         "year": 2016,
+         "title": "Heterogeneity of cognitive decline in dementia: a failed attempt to take into account variable time-zero severity",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2531773523",
+         "year": 2016,
+         "title": "Regulatory T Cell Responses in Participants with Type 1 Diabetes after a Single Dose of Interleukin-2: A Non-Randomised, Open Label, Adaptive Dose-Fin",
+         "venue": "PLoS Medicine"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "BSU",
+     "url": "https://www.medschl.cam.ac.uk/people/chris-wallace",
+     "sha256": "44787afc8cec475dc581306b2fa0d9024a0a65a78c03e83dd3eac8be067b9aa8",
+     "observed": "20261115234820",
+     "quote": "Professor Chris Wallace (she/her) Principal investigator MRC Biostatistics Unit Department of Medicine Cambridge Institute for Therapeutic Immunology and Infectious Disease About Professor Chris Wallace I am a Wellcome Trust Senior Research Fellow at the University of Cambridge and joined the MRC Biostatistics Unit as an Honorary Group Leader in February 2016.",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -2758,48 +2729,6 @@
       "url": "https://dblp.org/pid/24/8298",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Royal Holloway University of London (RHUL), Department of Computer Science, London, UK"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Daniel A. Braun",
-   "aliases": [
-    "Daniel Alexander Braun"
-   ],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/34/6646"
-    ],
-    "dblp_window": 41,
-    "affiliation_notes": [
-     "Ulm University, Institute of Neural Information Processing, Germany",
-     "Max Planck Institute for Intelligent Systems, Tübingen, Germany",
-     "University of Cambridge, Department of Engineering"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/34/6646",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Ulm University, Institute of Neural Information Processing, Germany"
      }
     ]
    },
@@ -9031,20 +8960,20 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5026238778",
-       "why": "works end 2018, before the first listing (2026)",
-       "n": 3,
-       "raw": [
-        "Malcolm Andrew Ferguson Smith"
-       ]
-      },
-      {
        "author": "https://openalex.org/A5103941487",
        "why": "works end 2019, before the first listing (2026)",
        "n": 6,
        "raw": [
         "M. C. Smith",
         "Malcolm Smith"
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5026238778",
+       "why": "works end 2018, before the first listing (2026)",
+       "n": 3,
+       "raw": [
+        "Malcolm Andrew Ferguson Smith"
        ]
       },
       {
@@ -14467,46 +14396,6 @@
       "url": "https://dblp.org/pid/13/7447-2",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Michigan State University, Department of Electrical and Computer Engineering, MI, USA"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Sérgio Freire",
-   "aliases": [
-    "Sérgio Manuel Freire"
-   ],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/60/865-2"
-    ],
-    "dblp_window": 11,
-    "affiliation_notes": [
-     "European Commission, Joint Research Centre (JRC), Ispra, Italy"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/60/865-2",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "European Commission, Joint Research Centre (JRC), Ispra, Italy"
      }
     ]
    },
