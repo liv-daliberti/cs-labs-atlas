@@ -3279,6 +3279,32 @@
           "cursor": "snapshot:2026-10-14"
         }
       ]
+    },
+    {
+      "id": "tsinghua-qi-li-excluded-shenzhen-W2767632622-1116",
+      "pi": "李琦",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W2767632622",
+        "doi": "10.1145/3132847.3133039"
+      },
+      "why": "Hold this exact PI-paper claim: primary PDF marks Qi Li1 and affiliation1 is Graduate School of Shenzhen, Tsinghua University, outside the charter's reviewed Beijing source scope. Broad primary OpenAlex institutionI99065089, the same Latin name, and a title on a PI page cannot substitute for the explicit campus. This is not a global namesake rejection or an author-ID unmixing. The valid 李国良/Guoliang Li2 claim, marked Department of Computer Science, Tsinghua University, remains intact.",
+      "reviewed_by": "codex-independent-paper-review-1116",
+      "reviewed_at": "2026-11-16",
+      "evidence": [
+        {
+          "url": "https://dbgroup.cs.tsinghua.edu.cn/ligl/crowdsourcing/papers/sybil_defense_cikm.pdf",
+          "sha256": "a6945dea748073c8a3152ce7f25a083d8874d8275d1d17441adddaa16f6bc41c",
+          "quote": "Dong Yuan1,2 , Guoliang Li2 , Qi Li1 , Yudian Zheng3",
+          "kind": "primary_PDF_page1_byline"
+        },
+        {
+          "url": "https://dbgroup.cs.tsinghua.edu.cn/ligl/crowdsourcing/papers/sybil_defense_cikm.pdf",
+          "sha256": "a6945dea748073c8a3152ce7f25a083d8874d8275d1d17441adddaa16f6bc41c",
+          "quote": "School of Shenzhen, Tsinghua University",
+          "kind": "primary_PDF_page1_affiliation_marker1"
+        }
+      ]
     }
   ]
 }
