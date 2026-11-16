@@ -59,7 +59,8 @@ research/teaching PIs: a source-checked research/teaching appointment can use an
             pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,
             with unit, role, observed and appointment_rank (research|teaching). Its group/advising
             quote is checked against stored source bytes. Appointment evidence, computing scope,
-            and candidate identity remain separate requirements; the original rank is retained.
+            and candidate identity remain separate requirements. The appointment hand-review must
+            carry the same appointment_rank and unit; the original rank is retained.
 usage: cs_related_school.py candidates|units|units-check|review|profile <key> [<Name> <unit> <url>]
 units-check exits 0 when units-done.json covers every unit URL of the charter (a unit added since the last `units` run, or no run, exits 1)
 """
@@ -505,7 +506,8 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
         if not any(' '.join(t.split()).find(' '.join(e['quote'].split())) >= 0 for t in texts if t):
             raise SystemExit(f"{label}: the quote of {e['name']} is not in the stored page {e['sha256'][:12]} (re-run `profile`)")
         out.setdefault(' '.join(toks(e['name'])), []).append(dict(unit=e['unit'], url=e['url'], sha256=e['sha256'], observed=e.get('observed') or '', quote=e['quote'],
-                                                                   ladder=bool(e.get('ladder', True)), hand=True))
+                                                                   ladder=bool(e.get('ladder', True)), hand=True,
+                                                                   **({'appointment_rank': e['appointment_rank']} if e.get('appointment_rank') else {})))
     return out
 
 
@@ -639,8 +641,8 @@ def review(key):
             fac = faculty_evidence(pages, names, TEACHING) + hand.get(' '.join(toks(c['name'])), [])
         lad = [e for e in fac if e['ladder']]
         group_basis = next((e for name in names for e in group_reviews.get(' '.join(toks(name)), [])
-                            if any(f['unit'] == e['unit'] and not f['ladder'] for f in fac)), None)
-        pi_fac = lad or ([f for f in fac if f['unit'] == group_basis['unit'] and not f['ladder']] if group_basis else [])
+                            if any(f['unit'] == e['unit'] and not f['ladder'] and f.get('appointment_rank') == e['appointment_rank'] for f in fac)), None)
+        pi_fac = lad or ([f for f in fac if f['unit'] == group_basis['unit'] and not f['ladder'] and f.get('appointment_rank') == group_basis['appointment_rank']] if group_basis else [])
         using_group = not lad and bool(pi_fac)
         basis_label = 'reviewed own-group/advising evidence' if using_group else 'professor rank'
         if using_group:

@@ -44,7 +44,7 @@ def research_review(monkeypatch, tmp_path, *, own=True, appointment=True, source
     db.execute('create table live (url text, sha256 text, raw_zlib blob)')
     db.execute('insert into live values (?,?,?)', (url, sha, zlib.compress(html)))
     role = dict(name=name, unit='CS', url=url, sha256=sha, quote=f'Avery Scientist {title}',
-                observed='20261115', ladder=False)
+                observed='20261115', ladder=False, appointment_rank=rank)
     basis = dict(pi=name, kind=kind, stage2_review=True, unit=unit, url=url, sha256=sha,
                  quote='I lead the Example Research Group.', role=title,
                  observed='20261115', appointment_rank=rank)
