@@ -1,7 +1,7 @@
 {
  "school": "cambridge",
- "reviewed": "2026-11-15",
- "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided\n                                               non-faculty record in the school charter)\n                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided\n                                               until the unit directories and pagination are reviewed for completeness\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. The share test still decides computing.\nresearch/teaching PIs: a source-checked research/teaching appointment can use an explicit\n            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,\n            with unit, role, observed and appointment_rank (research|teaching). Its group/advising\n            quote is checked against stored source bytes. Appointment evidence, computing scope,\n            and candidate identity remain separate requirements. The appointment hand-review must\n            carry the same appointment_rank and unit; the original rank is retained.",
+ "reviewed": "2026-11-16",
+ "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided\n                                               non-faculty record in the school charter)\n                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided\n                                               until the unit directories and pagination are reviewed for completeness\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. The share test still decides computing.\nresearch/teaching PIs: a source-checked research/teaching appointment can use an explicit\n            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,\n            with unit, role, observed and appointment_rank (research|teaching). Its group/advising\n            quote is checked against stored source bytes. Appointment evidence, computing scope,\n            and candidate identity remain separate requirements. The appointment hand-review must\n            carry the same appointment_rank and unit; the original rank is retained.\nhistorical appointments: a hand review may carry historical_appointment={start,end}\n            with explicit year bounds stated in its quote and matching a source-bound\n            census override period. The biography observation date is preserved but\n            supplies no current listing year. Native builders use the reviewed period.",
  "min_dblp": 5,
  "share_test": {
   "min_dblp_indexed": 5,
@@ -23,8 +23,8 @@
   "SOC"
  ],
  "counts": {
-  "pending_source_coverage": 402,
-  "accepted": 62,
+  "pending_source_coverage": 391,
+  "accepted": 66,
   "pending_identity_collision": 2
  },
  "decisions": [
@@ -1618,8 +1618,8 @@
     "B. J. Sahakian"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (Psychiatry listing, professor rank) with 7 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/07/11389"
@@ -1634,10 +1634,93 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Department of Psychiatry, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5030827457"
+     ],
+     "school_works": 313,
+     "dblp_indexed": 6,
+     "share": 0.019,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5030827457",
+       "basis": "full name: Barbara J. Sahakian",
+       "works": 313,
+       "dblp_indexed": 6,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Barbara J. Sahakian",
+        "Barbara Sahakian",
+        "Barbara J Sahakian"
+       ],
+       "orcids": [
+        "0000-0001-7352-1745"
+       ],
+       "venues": [
+        "Psychological Medicine",
+        "European Neuropsychopharmacology",
+        "Cambridge University Press eBooks"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2771539978",
+         "year": 2017,
+         "title": "Spectral Diversity in Default Mode Network Connectivity Reflects Behavioral State",
+         "venue": "Journal of Cognitive Neuroscience"
+        },
+        {
+         "oa": "https://openalex.org/W2792434514",
+         "year": 2018,
+         "title": "Default Mode Network Engagement Beyond Self-Referential Internal Mentation",
+         "venue": "Brain Connectivity"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2003490971",
+         "year": 2016,
+         "title": "Evidence-based guidelines for treating bipolar disorder: Revised third edition recommendations from the British Association for Psychopharmacology",
+         "venue": "Journal of Psychopharmacology"
+        },
+        {
+         "oa": "https://openalex.org/W2235686152",
+         "year": 2016,
+         "title": "Predicting beneficial effects of atomoxetine and citalopram on response inhibition in P arkinson's disease with clinical and neuroimaging measures",
+         "venue": "Human Brain Mapping"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "Psychiatry",
+     "url": "https://www.psychiatry.cam.ac.uk/staff/professor-barbara-sahakian",
+     "sha256": "fc27172e44022cdab6a8d47a29ecf345e0d7671f83bade772a5042f0905fd94e",
+     "observed": "20261115224805",
+     "quote": "Professor Barbara J. Sahakian is Professor of Clinical Neuropsychology at the Department of Psychiatry, University of Cambridge.",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -3068,48 +3151,6 @@
    ]
   },
   {
-   "name": "David Duvenaud",
-   "aliases": [
-    "David Kristjanson Duvenaud"
-   ],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/86/9380"
-    ],
-    "dblp_window": 102,
-    "affiliation_notes": [
-     "University of Toronto, Department of Computer Science, Canada",
-     "Harvard University, School of Engineering and Applied Sciences, Cambridge, MA, USA",
-     "University of Cambridge, Department of Engineering, UK"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/86/9380",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Toronto, Department of Computer Science, Canada"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "David G. T. Barrett",
    "aliases": [
     "David Barrett"
@@ -3650,45 +3691,6 @@
    ]
   },
   {
-   "name": "Dongqi Cai",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/159/3886-1"
-    ],
-    "dblp_window": 39,
-    "affiliation_notes": [
-     "University of Cambridge, UK",
-     "Beijing University of Posts and Telecommunications (BUPT), State Key Laboratory of Networking and Switching Technology, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/159/3886-1",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Cambridge, UK"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Dorian Peters",
    "aliases": [],
    "source": "dblp_affiliation",
@@ -3944,8 +3946,8 @@
     "Ed Bullmore"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (Psychiatry listing, professor rank) with 17 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/98/5405"
@@ -3960,10 +3962,93 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Department of Psychiatry, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5041538919"
+     ],
+     "school_works": 322,
+     "dblp_indexed": 11,
+     "share": 0.034,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5041538919",
+       "basis": "full name: Edward T. Bullmore",
+       "works": 322,
+       "dblp_indexed": 11,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Edward T. Bullmore",
+        "Edward Bullmore",
+        "Edward T Bullmore"
+       ],
+       "orcids": [
+        "0000-0002-8955-8283"
+       ],
+       "venues": [
+        "Biological Psychiatry",
+        "Proceedings of the National Academy of Sciences",
+        "Nature Communications"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2513059967",
+         "year": 2016,
+         "title": "Quantitative evaluation of simulated functional brain networks in graph theoretical analysis",
+         "venue": "NeuroImage"
+        },
+        {
+         "oa": "https://openalex.org/W2514803758",
+         "year": 2016,
+         "title": "The Multilayer Connectome of Caenorhabditis elegans",
+         "venue": "PLoS Computational Biology"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2272661376",
+         "year": 2016,
+         "title": "Frontal networks in adults with autism spectrum disorder",
+         "venue": "Brain"
+        },
+        {
+         "oa": "https://openalex.org/W2280597823",
+         "year": 2016,
+         "title": "Meta-connectomics: human brain network and connectivity meta-analyses",
+         "venue": "Psychological Medicine"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "Psychiatry",
+     "url": "https://www.psychiatry.cam.ac.uk/staff/professor-edward-bullmore",
+     "sha256": "214d4720610e7d33598798057b5f83983ea1c87e8010935fcfadd7c814e97037",
+     "observed": "20261115224815",
+     "quote": "Professor Edward Bullmore Professor of Psychiatry etb23@cam.ac.uk",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -4126,45 +4211,6 @@
       "url": "https://dblp.org/pid/140/3465",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Eleanor Clifford",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/375/2443"
-    ],
-    "dblp_window": 5,
-    "affiliation_notes": [
-     "Imperial College London, Department of Electrical and Electronic Engineering, London, UK",
-     "University of Cambridge, UK"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/375/2443",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Imperial College London, Department of Electrical and Electronic Engineering, London, UK"
      }
     ]
    },
@@ -5415,47 +5461,6 @@
       "url": "https://dblp.org/pid/45/5968-10",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Cambridge, UK"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Hanchen Wang",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/242/5152-2"
-    ],
-    "dblp_window": 31,
-    "affiliation_notes": [
-     "Stanford University, Department of Computer Science, Palo Alto, CA, USA",
-     "Genentech, San Francisco, CA, USA",
-     "California Institute of Technology, Pasadena, USA",
-     "University of Cambridge, Department of Engineering, UK"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/242/5152-2",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Stanford University, Department of Computer Science, Palo Alto, CA, USA"
      }
     ]
    },
@@ -7599,44 +7604,6 @@
    ]
   },
   {
-   "name": "Jonathan Roberts",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/278/9312-4"
-    ],
-    "dblp_window": 14,
-    "affiliation_notes": [
-     "University of Cambridge, UK"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/278/9312-4",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Cambridge, UK"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Jonathan Williams",
    "aliases": [
     "Jonathan V. Williams"
@@ -8343,45 +8310,6 @@
       "url": "https://dblp.org/pid/51/5923-1",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Department of Applied Mathematics and Theoretical Physics, UK"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Leo Versteegen",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/309/6237"
-    ],
-    "dblp_window": 13,
-    "affiliation_notes": [
-     "London School of Economics and Poltical Science (LSE), London, UK",
-     "University of Cambridge, Centre for Mathematical Sciences, Cambridge, UK"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/309/6237",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "London School of Economics and Poltical Science (LSE), London, UK"
      }
     ]
    },
@@ -10736,49 +10664,6 @@
    ]
   },
   {
-   "name": "Naveen Raman",
-   "aliases": [
-    "Naveen Janaki Raman"
-   ],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/220/3385"
-    ],
-    "dblp_window": 27,
-    "affiliation_notes": [
-     "Carnegie Mellon University, Pittsburgh, PA, USA",
-     "University of Cambridge, UK",
-     "University of Maryland, College Park, MD, USA",
-     "Richard Montgomery High School, MD, USA"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/220/3385",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Carnegie Mellon University, Pittsburgh, PA, USA"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Neil A. Dodgson",
    "aliases": [
     "Neil Anthony Dodgson",
@@ -12605,8 +12490,8 @@
    "name": "Richard Jozsa",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DAMTP listing, professor rank) with 8 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/j/RichardJozsa"
@@ -12621,9 +12506,81 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5090379554"
+     ],
+     "school_works": 8,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5090379554",
+       "basis": "full name: Richard Jozsa",
+       "works": 8,
+       "dblp_indexed": 0,
+       "years": [
+        2019,
+        2024
+       ],
+       "names": [
+        "Richard Jozsa",
+        "R. Jozsa",
+        "Jozsa, R"
+       ],
+       "orcids": [
+        "0000-0001-5055-9513"
+       ],
+       "venues": [
+        "Proceedings of the Royal Society A Mathematical Physical and Engineering Sciences",
+        "Journal of Physics Communications",
+        "Physical Review Letters"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2805649731",
+         "year": 2019,
+         "title": "Quantum advantage of unitary Clifford circuits with magic state inputs",
+         "venue": "Proceedings of the Royal Society A Mathematical Physical and Engineering Sciences"
+        },
+        {
+         "oa": "https://openalex.org/W2809476337",
+         "year": 2019,
+         "title": "Implementing smooth functions of a Hermitian matrix on a quantum computer",
+         "venue": "Journal of Physics Communications"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "DAMTP",
+     "url": "https://www.damtp.cam.ac.uk/person/rj310",
+     "sha256": "910a42dde249d8025b40d2593263c31b66f388a1f1cc105f8ced240aeb0770e3",
+     "observed": "20261115224619",
+     "quote": "2010- 2021: Leigh Trapnell Professor of Quantum Physics, DAMTP.",
+     "ladder": true,
+     "hand": true,
+     "historical_appointment": {
+      "start": "2010",
+      "end": "2021"
+     }
+    }
+   ],
    "years_listed": [],
    "units_searched": [
     "BSU",
@@ -12688,8 +12645,8 @@
     "Rik N. A. Henson"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (CBSU listing, professor rank) with 13 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/04/4347"
@@ -12704,10 +12661,93 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5025647319"
+     ],
+     "school_works": 200,
+     "dblp_indexed": 14,
+     "share": 0.07,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5025647319",
+       "basis": "full name: Richard N. Henson",
+       "works": 200,
+       "dblp_indexed": 14,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Richard N. Henson",
+        "Richard Henson",
+        "Richard N Henson"
+       ],
+       "orcids": [
+        "0000-0002-0712-2639"
+       ],
+       "venues": [
+        "Journal of Neuroscience",
+        "Neurobiology of Aging",
+        "NeuroImage"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2339129891",
+         "year": 2016,
+         "title": "Functional connectivity and structural covariance between regions of interest can be measured more accurately using multivariate distance correlation",
+         "venue": "NeuroImage"
+        },
+        {
+         "oa": "https://openalex.org/W2605447125",
+         "year": 2017,
+         "title": "Assessing dynamic functional connectivity in heterogeneous samples",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2292820474",
+         "year": 2016,
+         "title": "Extrinsic and Intrinsic Brain Network Connectivity Maintains Cognition across the Lifespan Despite Accelerated Decay of Regional Brain Activation",
+         "venue": "Journal of Neuroscience"
+        },
+        {
+         "oa": "https://openalex.org/W2297659814",
+         "year": 2016,
+         "title": "Inducing amnesia through systemic suppression",
+         "venue": "Nature Communications"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "CBSU",
+     "url": "https://www.psychiatry.cam.ac.uk/staff/professor-richard-rik-henson",
+     "sha256": "42d2efb521154b8c6dce1cee1337baf3edaadd55d8d8e76053d6a8dbe055a0ab",
+     "observed": "20261115224825",
+     "quote": "Rik Henson is a Professor of Cognitive Neuroscience, with a special interest in the brain bases of memory, aging and dementia.",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",

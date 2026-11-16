@@ -36,8 +36,11 @@ legacy_sweep = ""
 
 [census]
 computing_departments = ["CST"]
-center_units = ["CBSU", "BSU", "DH"]
-home_units = { "Computer Science and Technology" = 'computer science and technology', "Genetics" = '\bgenetics\b', "Chemistry" = '\bchemistry\b', "Medicine" = '\b(?:department of )?medicine\b' }
+# BSU and CBU are constituent academic units listed alongside departments at
+# https://www.medschl.cam.ac.uk/institutions, not multi-PI labs or cross-unit centres.
+# Their individual PI labs remain separate from these academic home units.
+center_units = ["DH"]
+home_units = { "Computer Science and Technology" = 'computer science and technology', "Genetics" = '\bgenetics\b', "Chemistry" = '\bchemistry\b', "Medicine" = '\b(?:department of )?medicine\b', "Psychiatry" = '\bpsychiatry\b' }
 rank_words = { ladder = '\b(?:prof|reader|university (?:senior )?lecturer)\b' }
 
 [sweep_check]
@@ -303,3 +306,9 @@ host = "www.medschl.cam.ac.uk"
 use = "live"
 purpose = "Official investigator appointment, research group and academic unit evidence"
 probe = "https://www.medschl.cam.ac.uk/people/chris-wallace"
+
+[[hosts]]
+host = "www.psychiatry.cam.ac.uk"
+use = "live"
+purpose = "Official psychiatric and cognitive neuroscience faculty appointments and research groups"
+probe = "https://www.psychiatry.cam.ac.uk/staff/professor-barbara-sahakian"

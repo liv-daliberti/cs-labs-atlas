@@ -176,5 +176,45 @@
    }
   ],
   "why_home_department": "Both the named medical school profile and the exact DBLP-linked group page state Medicine and MRC Biostatistics Unit appointments. Neither identifies the primary one. Medicine is the reporting unit; both remain visible as primary_unresolved, and the institute centre is not treated as a department."
+ },
+ "Richard Jozsa": {
+  "periods": [
+   {
+    "id": "override_period_cambridge_jozsa_2010_2021",
+    "start": "2010",
+    "end": "2021",
+    "datePrecision": "year",
+    "endPrecision": "year",
+    "evidence": [
+     {
+      "url": "https://www.damtp.cam.ac.uk/person/rj310",
+      "sha256": "910a42dde249d8025b40d2593263c31b66f388a1f1cc105f8ced240aeb0770e3",
+      "quote": "2010- 2021: Leigh Trapnell Professor of Quantum Physics, DAMTP.",
+      "observed": "20261115224619",
+      "kind": "faculty_appointment_bounds"
+     }
+    ],
+    "reviewed": "codex-cambridge-1116"
+   }
+  ],
+  "why_periods": "The official DAMTP career record explicitly distinguishes a 2010–2021 professorship from emeritus status beginning in 2021. Source observation remains in 2026; it is not a 2026 appointment or roster entry. Only year precision is known; transition-year paper review remains required."
+ },
+ "Richard N. A. Henson": {
+  "home_department": "MRC Cognition and Brain Sciences Unit",
+  "home_department_evidence": [
+   {
+    "url": "https://www.psychiatry.cam.ac.uk/staff/professor-richard-rik-henson",
+    "sha256": "42d2efb521154b8c6dce1cee1337baf3edaadd55d8d8e76053d6a8dbe055a0ab",
+    "quote": "Professor of Cognitive Neuroscience Director, Cambridge Centre for Ageing and Neuroscience MRC Programme Leader, MRC Cognition & Brain Sciences Unit",
+    "observed": "2026-11-15T22:48:25"
+   },
+   {
+    "url": "https://www.medschl.cam.ac.uk/institutions",
+    "sha256": "a001dc53777dda3bffb0529f2687347c469aae84594418016453b72dafd7a424",
+    "quote": "MRC Biostatistics Unit (BSU) MRC Cognition and Brain Sciences Unit (CBU)",
+    "observed": "2026-11-16T00:05:37"
+   }
+  ],
+  "why_home_department": "The official faculty profile states the CBU Programme Leader appointment and gives CBU contact details. The School of Clinical Medicine lists CBU and BSU as independent constituent academic units alongside departments, rather than subordinate centres such as CITIID. These can be academic homes; they are not PI labs. No Psychiatry appointment is inferred merely from the profile host."
  }
 }
