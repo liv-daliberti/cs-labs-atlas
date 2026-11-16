@@ -75,3 +75,30 @@ def test_R_HOME_01_stated_primary_is_marked_and_secondary_units_kept():
                            home_department_evidence=_ev('Primary Teaching Area Applied Mathematics'))}
     row = apply_reviewed_homes(rows, ov, lambda h: h)[0]
     assert row['home_basis'] == 'primary_stated' and row['also'] == ['profile', 'Electrical Engineering']
+
+
+def test_charter_ladder_title_supplies_its_listing_department(monkeypatch, tmp_path):
+    import json
+    import atlas_paths as P
+    import census_overrides as CO
+    import home_departments_school as H
+
+    cfg = {'departments': [{'code': 'CST', 'name': 'Computer Science and Technology',
+                            'title_match': 'computer science'}], 'affiliated_units': [],
+           'census': {'rank_words': {'ladder': r'\b(?:reader|university (?:senior )?lecturer)\b'}}}
+    # A reader's own dated department listing is the source for the home.
+    row = {'name': 'Example Reader', 'titles': ['University Reader'], 'dept': 'CST',
+           'observed': '20260101', 'capture_url': 'https://school.example/cst',
+           'sha256': 'a' * 64, 'quote': 'Example Reader University Reader'}
+    person = {'name': row['name'], 'is_pi': True, 'aliases': [], 'pi_basis': {}}
+    for name, value in {'census-faculty.json': {'faculty': [person]}, 'rows.json': [row]}.items():
+        (tmp_path / name).write_text(json.dumps(value))
+    monkeypatch.setattr(H.S, 'get', lambda key: cfg)
+    monkeypatch.setattr(P, 'data', lambda name, key=None: tmp_path / name)
+    monkeypatch.setattr(P, 'data_w', lambda name, key=None: tmp_path / name)
+    monkeypatch.setattr(CO, 'section', lambda key: {})
+    H.main('cambridge')
+    result = json.loads((tmp_path / 'home-departments-school.json').read_text())
+    assert result[0]['status'] == 'accepted'
+    assert result[0]['home_department'] == 'Computer Science and Technology'
+    assert result[0]['evidence']['quote'] == row['quote']

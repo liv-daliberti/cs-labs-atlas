@@ -98,6 +98,12 @@ def apply_reviewed_homes(rows, overrides, normalize):
 
 def main(key, write_shared=False):
     cfg = S.get(key)
+    from listing_rows import rank_of
+    rank_words = S.field(cfg, 'census.rank_words') or {}
+
+    def faculty_title(title):
+        return bool(PROF.search(title)) or rank_of([title], rank_words) == 'ladder'
+
     deps = {d['code']: d for d in cfg.get('departments') or []}
     tm = {c: re.compile(d.get('title_match') or '.', re.I) for c, d in deps.items()}
     census = json.loads((P.data('census-faculty.json', key)).read_text())['faculty']
@@ -134,7 +140,7 @@ def main(key, write_shared=False):
             home = deps[code]['name']; ev = dict(url=r['capture_url'], sha256=r['sha256'], quote=r['quote'])
             note = f'professor title in the {code} listing (latest row)' + (f'; also listed by {", ".join(c for c in own if c != code)}' if len(own) > 1 else '')
         else:
-            prof = [(r, t) for r in rs for t in r['titles'] if PROF.search(t) and not re.search('courtesy|affiliate|status-only', t, re.I)]
+            prof = [(r, t) for r in rs for t in r['titles'] if faculty_title(t) and not re.search('courtesy|affiliate|status-only', t, re.I)]
             if prof:
                 r, t = prof[-1]
                 u, joint = clean_unit(unit_of(t))

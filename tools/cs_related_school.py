@@ -427,6 +427,12 @@ def faculty_evidence(pages, names, teaching_title=''):
                 # starts a new entry even when the title is within 60 characters.
                 if re.search(r'\b(?:Dr|Prof)\.?\s+[A-Z][\w’\'-]+', seg[:pt.start()]):
                     continue
+                # A prefixed title belongs to the next person, e.g.
+                # "Dr Chao Li Professor Benedikt Loewe". Unlike "Professor of
+                # Mathematics", the title is immediately followed by a name.
+                after_title = seg[pt.end():]
+                if re.match(r'\s+[A-Z][\w’\'-]+\s+[A-Z][\w’\'-]+', after_title):
+                    continue
                 q = flat[m.start():m.end() + pt.end()]
                 # the rank is read up to the title's own 'Professor': the 'of <unit>' tail can run on into a second
                 # appointment ('Associate Professor of Information, School of Information and Research Associate
