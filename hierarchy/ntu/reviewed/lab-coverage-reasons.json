@@ -2174,5 +2174,75 @@
         "packet_sha256": "7f77b0e8bd75be6c26f568984f9fffdb5f6fc14dd1c078b154cd5e55066f7b76"
       }
     }
+  },
+  "Vanessa Evers": {
+    "students": {
+      "code": "checked_roster_school_scope_and_access_limited",
+      "why": "The actual own CV gives NTU full professorship from August2019 alongside simultaneous Twente appointments, but its complete17-person PhD supervision list mixes pre2019 and institution-unspecified rows; it does not bind those students to NTU. The 26PhD count belongs explicitly to the foreign HMI group. Examination-committee names are not advisees. The actual2021 own NTU faculty card supplies role context but blank biography and only a protected DR identifier. The actual current CWI director biography distinguishes Twente professorship from NTU visiting-professor status; no departure date, continuing NTU ladder service or named NTU student is inferred. Own CV literal NISTH lead was stopped by the normal source-policy client before any page body and remains unread, without treating the composite failure as an actual Disallow/403 or absence. Three bounded actual NTU/advising queries found conference participation, foreign/current management biography, and unspecific/coauthor context rather than individual NTU membership. These checked source and campus-scope limits leave actual in-window NTU students/current PhD count unknown, not zero or exhaustively absent.",
+      "sources_checked": [
+        {
+          "url": "https://vanessaevers.wordpress.com/cv-2/",
+          "sha256": "61dcb6ca9a0ef8eacde13d11ce1f9e2d33e9e38be83247e2c03a2a6674bd6cdd",
+          "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/next-leads-and-terminal-hops1116/9-original.bin",
+          "status": 200,
+          "whole_phd_supervision_section_quote": "Ph.D. Supervision Thomas Beelen , 2020- Ella Velner , 2019- Camille Salaberry , 2019 – Kristen Neidlinger , 2018- Michiel de Jong , 2017- Bob Schadenberg , 2016- Zhongxia Housong, 2015- Cristina Zaga , 2014- No4 Jeabok Kim (2018) Automatic recognition of engagement and emotion in a group of children No5 Jered Vroon (2018) Responsive social positioning behaviour: for semi-autonomous telepresence robots Daniel Davison , 2014- No6 Roelof de Vries (2018) Theory-Based and Tailor-Made: Motivational Messages for Behavior Change Technology No3 Michiel Joosse (2017) Investigating positioning and gaze behaviors of social robots: people’s preferences, perceptions, and behaviors No2 Jorge Gallego Perez (2016) Robots to Make You Happy: Investigating the Effectiveness and Acceptance of Robots for Psychological Support No1 Daphne Karreman (2016) Beyond R2D2 – The design of nonverbal interaction behavior optimized for robot-specific morphologies Henriette Cramer (2010) People’s responses to autonomous and adaptive systems (Promotor Bob Wielinga) Marcel Heerink (2010) Assessing acceptance of assistive social robots by aging adults (Promotor Bob Wielinga)",
+          "scope": "Complete17 named supervision rows; source doesnotassign NTU as student campus. ConcurrentTwente HMI description explicitlyforeign26PhDcollective. No automatic degree, visit or host relationship."
+        },
+        {
+          "url": "https://web.archive.org/web/20210515230315id_/https://www.ntu.edu.sg/scse/about-us/our-people/faculty",
+          "sha256": "49f3c3f6c7a10d8579299e8e8027c14fb1bc7e2e610ef27acbe0c9b3ca126c24",
+          "raw_capture_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/hierarchy/ntu/raw/school-captures.sqlite",
+          "own_heading": "Prof Vanessa Evers",
+          "quote": "Appointments: Director, NTU Institute for Science and Technology for Humanity Professor, School of Computer Science and Engineering",
+          "scope": "Actualown2021facultycard; blankbio/soleprotectedDRidentifier. NoDRfetch."
+        },
+        {
+          "url": "https://www.cwi.nl/en/about/organization/director-and-management-team/",
+          "sha256": "99605697e8b74d62410cf334f78fd825bce9dd75ddbff9a60fc998abd9fdcd9c",
+          "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/g6-extra-seven-literal1116/6-original.bin",
+          "status": 200,
+          "quote": "Currently, Evers is a Full Professor and Chair of Human Media Interaction at the University of Twente’s Computer Science department. She is also the founder and scientific co-director of the university’s DesignLab. In addition, she serves on the Supervisory Board of Radboud University and is a visiting professor at Nanyang Technological University (NTU) in Singapore.",
+          "scope": "Separate currentforeignmanagementfaculty vs NTUvisitingrole; no namedstudents or departuredate."
+        }
+      ],
+      "access_limits": [
+        {
+          "url": "http://nisth.ntu.edu.sg/",
+          "actual_capture_receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/g6-root-and-eight-eleven1116/capture-receipts.json",
+          "raw_receipt_sha256": "d7f941b91a8b759e114e8ae55342a9c71e5243cf1bc14d6d3bc8c0ac36ffea61",
+          "result": "normal_source_policy_client_stopped_before_body",
+          "scope": "Wrapper composite robots/blocked message does not distinguish actual underlying policy state; do not claim actual403,Disallow,challenge,retiredhost or websiteabsence. ProtectedDR remains unrequested."
+        }
+      ],
+      "targeted_search": {
+        "queries": [
+          "\"Vanessa Evers\" \"NTU\" \"PhD\" \"supervised\"",
+          "\"Vanessa Evers\" \"Nanyang\" \"supervised by\"",
+          "\"Vanessa Evers\" \"NTU\" \"PhD student\" -site:linkedin.com -site:researchgate.net"
+        ],
+        "receipts": [
+          {
+            "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/root-g6-jacek-vanessa-bryan-marouane-followup2.json",
+            "sha256": "dde5039374b0c1d27ab457d956a307200cc2d9714929746357d5a511154eb23c"
+          },
+          {
+            "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/root-g6-jacek-vanessa-bryan-marouane-followup3.json",
+            "sha256": "118f9589048fe572d358951852b4acc6bdac059dc67008da739c21498e6a2b44"
+          }
+        ],
+        "scope": "Actual executedqueryresults, discoveryonly, not homepagefetch or full absenceproof."
+      },
+      "unknowns": [
+        "Institution and NTUhost of source-CV17 namedPhDrows, currentNTUstudentcount.",
+        "Uninspected NISTHcontents and any unlocated student-owned primary sources."
+      ],
+      "independent_review_required": false,
+      "independent_review": {
+        "reviewer": "codex-ntu-rosters-1115",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/vanessa-source-review1116/VANESSA-SCHOOL-SCOPE-SOURCE-LIMIT-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "7fc322d52050b721b4f0f2884adef0012c4fef1ff42bd8eed20fd9fbe377cfb3",
+        "packet_sha256": "b59b9bc4fbd26d157259094870003df693d2b01679c50e09e46c98126959ed1b"
+      }
+    }
   }
 }
