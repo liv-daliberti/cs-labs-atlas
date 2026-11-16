@@ -1,7 +1,7 @@
 {
  "school": "cambridge",
  "reviewed": "2026-11-15",
- "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided\n                                               non-faculty record in the school charter)\n                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided\n                                               until the unit directories and pagination are reviewed for completeness\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. The share test still decides computing.",
+ "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided\n                                               non-faculty record in the school charter)\n                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided\n                                               until the unit directories and pagination are reviewed for completeness\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. The share test still decides computing.\nresearch/teaching PIs: a source-checked research/teaching appointment can use an explicit\n            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,\n            with unit, role, observed and appointment_rank (research|teaching). Its group/advising\n            quote is checked against stored source bytes. Appointment evidence, computing scope,\n            and candidate identity remain separate requirements. The appointment hand-review must\n            carry the same appointment_rank and unit; the original rank is retained.",
  "min_dblp": 5,
  "share_test": {
   "min_dblp_indexed": 5,
@@ -23,8 +23,8 @@
   "SOC"
  ],
  "counts": {
-  "pending_source_coverage": 424,
-  "accepted": 45,
+  "pending_source_coverage": 408,
+  "accepted": 61,
   "pending_identity_collision": 2
  },
  "decisions": [
@@ -3553,8 +3553,8 @@
     "Dominic Orchard"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (CST listing, reviewed own-group/advising evidence) with 53 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/12/7603"
@@ -3571,10 +3571,100 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Kent"
      }
-    ]
+    ],
+    "pi_basis_review": {
+     "kind": "advises_phd",
+     "url": "https://web.archive.org/web/20260315081408id_/https://www.cl.cam.ac.uk/lists/phd/supervisor.html",
+     "sha256": "822627dac28b84fb4b3d335dfea63e195311e03c25ebf39d2658034e63dd7d4b",
+     "quote": "Dr D. A. Orchard Jonathan (Jay) Torry (2024-01-01 – active) Static Analysis for Climate Code",
+     "unit": "CST",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5064585229"
+     ],
+     "school_works": 28,
+     "dblp_indexed": 16,
+     "share": 0.571,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5064585229",
+       "basis": "full name: Dominic Orchard",
+       "works": 28,
+       "dblp_indexed": 16,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Dominic Orchard",
+        "Orchard, Dominic"
+       ],
+       "orcids": [
+        "0000-0002-7058-7842"
+       ],
+       "venues": [
+        "Lecture notes in computer science",
+        "Proceedings of the ACM on Programming Languages",
+        "Electronic Proceedings in Theoretical Computer Science"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2515656721",
+         "year": 2016,
+         "title": "Combining effects and coeffects via grading",
+         "venue": "ACM SIGPLAN International Conference on Functional Programming (ICFP)"
+        },
+        {
+         "oa": "https://openalex.org/W3022418280",
+         "year": 2016,
+         "title": "Combining effects and coeffects via grading",
+         "venue": "ACM SIGPLAN Notices"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2986454502",
+         "year": 2016,
+         "title": "Proceedings of the Ninth workshop on Programming Language Approaches to Concurrency- and Communication-cEntric Software",
+         "venue": "Electronic Proceedings in Theoretical Computer Science"
+        },
+        {
+         "oa": "https://openalex.org/W6910661702",
+         "year": 2016,
+         "title": "Proceedings of the Ninth workshop on Programming Language Approaches to Concurrency- and Communication-cEntric Software",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "CST",
+     "url": "https://www.cst.cam.ac.uk/people/dao29",
+     "sha256": "559a082fe4493c58c61400afc5d011698bf93df53dd6c3505a62349d6bc7b82e",
+     "observed": "20261115215331",
+     "quote": "Prof Dominic Orchard Research Professor",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -3963,8 +4053,8 @@
    "name": "Eiko Yoneki",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (CST listing, reviewed own-group/advising evidence) with 58 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/12/6940"
@@ -3979,10 +4069,101 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "pi_basis_review": {
+     "kind": "advises_phd",
+     "url": "https://web.archive.org/web/20260315081408id_/https://www.cl.cam.ac.uk/lists/phd/supervisor.html",
+     "sha256": "822627dac28b84fb4b3d335dfea63e195311e03c25ebf39d2658034e63dd7d4b",
+     "quote": "Dr E. Yoneki Valentin Dalibard (2012-10-01 – 2016-11-29)",
+     "unit": "CST",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5063536695"
+     ],
+     "school_works": 36,
+     "dblp_indexed": 27,
+     "share": 0.75,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5063536695",
+       "basis": "full name: Eiko Yoneki",
+       "works": 36,
+       "dblp_indexed": 27,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Eiko Yoneki",
+        "Yoneki, Eiko",
+        "E. Yoneki"
+       ],
+       "orcids": [
+        "0000-0002-5552-4536"
+       ],
+       "venues": [
+        "Future Generation Computer Systems",
+        "Computer Networks",
+        "International World Wide Web Conference (WWW)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2519611122",
+         "year": 2016,
+         "title": "Cyber-physical systems for Mobile Opportunistic Networking in Proximity (MNP)",
+         "venue": "Computer Networks"
+        },
+        {
+         "oa": "https://openalex.org/W2605101405",
+         "year": 2017,
+         "title": "BOAT",
+         "venue": "International World Wide Web Conference (WWW)"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2546130790",
+         "year": 2016,
+         "title": "Learning Runtime Parameters in Computer Systems with Delayed Experience Injection",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2557562227",
+         "year": 2016,
+         "title": "Tuning the Scheduling of Distributed Stochastic Gradient Descent with Bayesian Optimization",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "CST",
+     "url": "https://www.cst.cam.ac.uk/people/ey204",
+     "sha256": "f7c39aa83980398a3f2d9e64f55dd4c972a94f1560769599152ab325126d544a",
+     "observed": "20261115215401",
+     "quote": "Dr Eiko Yoneki Assistant Research Professor",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -4239,8 +4420,8 @@
    "name": "Florin Udrea",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank) with 20 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/02/8798"
@@ -4255,10 +4436,93 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5066534887"
+     ],
+     "school_works": 181,
+     "dblp_indexed": 17,
+     "share": 0.094,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5066534887",
+       "basis": "full name: Florin Udrea",
+       "works": 181,
+       "dblp_indexed": 17,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Florin Udrea",
+        "F. Udrea",
+        "F Udrea"
+       ],
+       "orcids": [
+        "0000-0002-7288-3370"
+       ],
+       "venues": [
+        "IEEE International Symposium on Power Semiconductor Devices and ICs/Proceedings of the International Symposium on Power Semiconductor Devices & ICs/Proceedings of the ... International Symposium on Power Semiconductor Devices & ICs/Proceedings of the ... International Symposium on Power Semiconductor Devices and ICs",
+        "IEEE Transactions on Electron Devices",
+        "IEEE Electron Device Letters"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2516594805",
+         "year": 2016,
+         "title": "Towards a Graphene-Based Low Intensity Photon Counting Photodetector",
+         "venue": "Sensors"
+        },
+        {
+         "oa": "https://openalex.org/W2537401580",
+         "year": 2016,
+         "title": "Development of plasmonic MEMS CMOS infrared sensors for occupancy detection",
+         "venue": "European Solid-State Device Research Conference"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2261256093",
+         "year": 2016,
+         "title": "Temperature-modulated graphene oxide resistive humidity sensor for indoor air quality monitoring",
+         "venue": "Nanoscale"
+        },
+        {
+         "oa": "https://openalex.org/W2278954055",
+         "year": 2016,
+         "title": "Mask-less deposition of Au–SnO 2 nanocomposites on CMOS MEMS platform for ethanol detection",
+         "venue": "Nanotechnology"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/fu10000",
+     "sha256": "111b4efce7cd8fa51c3a1abde83be462b2bda1fe1fe38bbebb5004147fd5bb17",
+     "observed": "20261115224659",
+     "quote": "Prof. Florin Udrea FREng Profiles fu10000 Professor of Semiconductor Engineering",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -4479,8 +4743,8 @@
    "name": "Fumiya Iida",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, reviewed own-group/advising evidence) with 178 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/i/FumiyaIida"
@@ -4497,10 +4761,101 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "pi_basis_review": {
+     "kind": "own_group",
+     "url": "https://www.eng.cam.ac.uk/news/meet-dr-fumiya-iida",
+     "sha256": "d203e8af1b1593ccfc5fec8e4546842d487ff5afbdf9419eef1fcac31049f19e",
+     "quote": "As head of the University of Cambridge’s Biologically Inspired Robotics Laboratory in the Department of Engineering",
+     "unit": "ENG",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5041874420"
+     ],
+     "school_works": 261,
+     "dblp_indexed": 159,
+     "share": 0.609,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5041874420",
+       "basis": "full name: Fumiya Iida",
+       "works": 261,
+       "dblp_indexed": 159,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Fumiya Iida",
+        "Iida, Fumiya",
+        "F. Iida"
+       ],
+       "orcids": [
+        "0000-0001-9246-7190"
+       ],
+       "venues": [
+        "IEEE International Conference on Soft Robotics (RoboSoft)",
+        "IOP Conference Series Materials Science and Engineering",
+        "Frontiers in Robotics and AI"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2488974584",
+         "year": 2016,
+         "title": "Biologically Inspired Robotics",
+         "venue": "Springer handbooks"
+        },
+        {
+         "oa": "https://openalex.org/W2497704645",
+         "year": 2016,
+         "title": "Simulation of forward hopping dynamics in robots and animals using a template with a circular foot and impulsive actuation",
+         "venue": "IEEE International Conference on Biomedical Robotics and Biomechatronics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2287828046",
+         "year": 2016,
+         "title": "Enhancement of finger motion range with compliant anthropomorphic joint design",
+         "venue": "Bioinspiration & Biomimetics"
+        },
+        {
+         "oa": "https://openalex.org/W2314189913",
+         "year": 2016,
+         "title": "Improving Efficiency for an Open-Loop-Controlled Locomotion With a Pulsed Actuation",
+         "venue": "IEEE/ASME Transactions on Mechatronics"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/fi224",
+     "sha256": "91853e14cc04013b650b558b246d9b28c41bafdb40ddee13f1d0edb805001c73",
+     "observed": "20261115220300",
+     "quote": "Professor Fumiya Iida Profiles fi224 Research Professor in Robotics",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -8355,8 +8710,8 @@
    "name": "Lucy J. Colwell",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (Chemistry listing, professor rank) with 19 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/13/10359"
@@ -8371,10 +8726,93 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Departmenf of Chemistry, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5046017741"
+     ],
+     "school_works": 47,
+     "dblp_indexed": 9,
+     "share": 0.191,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5046017741",
+       "basis": "full name: Lucy J. Colwell",
+       "works": 47,
+       "dblp_indexed": 9,
+       "years": [
+        2016,
+        2025
+       ],
+       "names": [
+        "Lucy J. Colwell",
+        "Lucy Colwell",
+        "Colwell, Lucy"
+       ],
+       "orcids": [
+        "0000-0003-3148-0337"
+       ],
+       "venues": [
+        "Proceedings of the National Academy of Sciences",
+        "Nature Biotechnology",
+        "Biophysical Journal"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2980681402",
+         "year": 2019,
+         "title": "Computational approaches to therapeutic antibody design: established methods and emerging trends",
+         "venue": "Briefings in Bioinformatics"
+        },
+        {
+         "oa": "https://openalex.org/W2995998725",
+         "year": 2019,
+         "title": "The Effect of Debiasing Protein–Ligand Binding Data on Generalization",
+         "venue": "Journal of Chemical Information and Modeling"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2342766640",
+         "year": 2016,
+         "title": "Inferring interaction partners from protein sequences",
+         "venue": "Proceedings of the National Academy of Sciences"
+        },
+        {
+         "oa": "https://openalex.org/W2553710452",
+         "year": 2016,
+         "title": "Predicting protein–ligand affinity with a random matrix framework",
+         "venue": "Proceedings of the National Academy of Sciences"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "Chemistry",
+     "url": "https://www.ch.cam.ac.uk/person/ljc37",
+     "sha256": "aca473201ee514cb04bc84c6cd735765d294b22bc11a6dafd5a3c1cecbe7232c",
+     "observed": "20261115224455",
+     "quote": "Dr Lucy Colwell University Associate Professor",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -8551,8 +8989,8 @@
    "name": "Malcolm C. Smith",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, reviewed own-group/advising evidence) with 13 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/11/6068"
@@ -8567,10 +9005,149 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "pi_basis_review": {
+     "kind": "own_group",
+     "url": "https://www.eng.cam.ac.uk/profiles/mcs1000",
+     "sha256": "aa6ddedb95a7e4b2dfb73c6ca0fb02daf6e6bd51d7e64ebf35d0b73dc54d33de",
+     "quote": "Prof. Malcolm Smith Profiles mcs1000 Research Professor Academic Division: Information Engineering Research group: Control (Head of Group)",
+     "unit": "ENG",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5009539927",
+      "https://openalex.org/A5017326359"
+     ],
+     "school_works": 115,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [
+      {
+       "author": "https://openalex.org/A5026238778",
+       "why": "works end 2018, before the first listing (2026)",
+       "n": 3,
+       "raw": [
+        "Malcolm Andrew Ferguson Smith"
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5103941487",
+       "why": "works end 2019, before the first listing (2026)",
+       "n": 6,
+       "raw": [
+        "M. C. Smith",
+        "Malcolm Smith"
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5101480228",
+       "why": "namesake: ORCID 0000-0002-0818-1227, not the busiest ORCID 0000-0001-9372-1381",
+       "n": 21
+      }
+     ],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5017326359",
+       "basis": "full name: Malcolm A. Ferguson-Smith",
+       "works": 109,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Malcolm A. Ferguson-Smith",
+        "Malcolm Andrew Ferguson-Smith",
+        "Malcolm Ferguson-Smith"
+       ],
+       "orcids": [
+        "0000-0001-9372-1381"
+       ],
+       "venues": [
+        "PLoS ONE",
+        "Cytogenetic and Genome Research",
+        "Scientific Reports"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2278881193",
+         "year": 2016,
+         "title": "Paternal sex allocation: how variable is the sperm sex ratio?",
+         "venue": "Journal of Zoology"
+        },
+        {
+         "oa": "https://openalex.org/W2298282677",
+         "year": 2016,
+         "title": "Extensive Chromosomal Reorganization in the Evolution of New World Muroid Rodents (Cricetidae, Sigmodontinae): Searching for Ancestral Phylogenetic Tr",
+         "venue": "PLoS ONE"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5009539927",
+       "basis": "full name: Malcolm Ferguson-Smith",
+       "works": 6,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Malcolm Ferguson-Smith"
+       ],
+       "orcids": [
+        "0000-0001-9372-1381"
+       ],
+       "venues": [
+        "Cytogenetic and Genome Research",
+        "Genes",
+        "PLoS ONE"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2462556983",
+         "year": 2016,
+         "title": "Evidence for Sex Chromosome Turnover in Proteid Salamanders",
+         "venue": "Cytogenetic and Genome Research"
+        },
+        {
+         "oa": "https://openalex.org/W2794243629",
+         "year": 2017,
+         "title": "Chromosome Painting in Tyrant Flycatchers Confirms a Set of Inversions Shared by Oscines and Suboscines (Aves, Passeriformes)",
+         "venue": "Cytogenetic and Genome Research"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/mcs1000",
+     "sha256": "aa6ddedb95a7e4b2dfb73c6ca0fb02daf6e6bd51d7e64ebf35d0b73dc54d33de",
+     "observed": "20261115220343",
+     "quote": "Prof. Malcolm Smith Profiles mcs1000 Research Professor",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -8871,8 +9448,8 @@
     "Mark John Francis Gales"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, reviewed own-group/advising evidence) with 238 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/74/4419"
@@ -8887,10 +9464,101 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "pi_basis_review": {
+     "kind": "advises_phd",
+     "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/42c91506-c0ac-4e24-9e9a-a55a4119c1ec/content",
+     "sha256": "77fd47ec07e276f6903c9339ab0e75482acac45cfe361dbc0e5b5c7c08b3f78d",
+     "quote": "I would like to thank my PhD supervisor, Professor Mark Gales.",
+     "unit": "ENG",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5050766679"
+     ],
+     "school_works": 165,
+     "dblp_indexed": 124,
+     "share": 0.752,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5050766679",
+       "basis": "full name: Mark Gales",
+       "works": 165,
+       "dblp_indexed": 124,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Mark Gales",
+        "Gales, Mark",
+        "Gales, Mark J. F."
+       ],
+       "orcids": [
+        "0000-0002-5311-8219"
+       ],
+       "venues": [
+        "Interspeech (USB)",
+        "IEEE International Conference on Acoustics Speech and Signal Processing",
+        "IEEE/ACM Transactions on Audio Speech and Language Processing"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2345190899",
+         "year": 2016,
+         "title": "Two Efficient Lattice Rescoring Methods Using Recurrent Neural Network Language Models",
+         "venue": "IEEE/ACM Transactions on Audio Speech and Language Processing"
+        },
+        {
+         "oa": "https://openalex.org/W2397381476",
+         "year": 2016,
+         "title": "Combining i-vector representation and structured neural networks for rapid adaptation",
+         "venue": "IEEE International Conference on Acoustics Speech and Signal Processing"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2902852070",
+         "year": 2018,
+         "title": "Prior Networks for Detection of Adversarial Attacks",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W4288102473",
+         "year": 2019,
+         "title": "Attention Forcing for Sequence-to-sequence Model Training",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/mjfg100",
+     "sha256": "5b4b2e904b5f0c73dbc89225626be20a3b0ec5f08962cbe6bf88585990078874",
+     "observed": "20261115220348",
+     "quote": "Prof. Mark Gales Profiles mjfg100 Research Professor in Information Engineering",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -9903,8 +10571,8 @@
    "name": "Máté Lengyel",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank) with 16 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/48/6327"
@@ -9919,10 +10587,93 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Department of Engineering, University of Cambridge, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5023602087"
+     ],
+     "school_works": 61,
+     "dblp_indexed": 7,
+     "share": 0.115,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5023602087",
+       "basis": "full name: Máté Lengyel",
+       "works": 61,
+       "dblp_indexed": 7,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Máté Lengyel",
+        "Lengyel, Máté",
+        "Mate Lengyel"
+       ],
+       "orcids": [
+        "0000-0001-7266-0049"
+       ],
+       "venues": [
+        "eLife",
+        "Neuron",
+        "Current Opinion in Neurobiology"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2549255013",
+         "year": 2016,
+         "title": "Efficient state-space modularization for planning: theory, behavioral and neural signatures",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2561212970",
+         "year": 2016,
+         "title": "The Hamiltonian Brain: Efficient Probabilistic Inference with Excitatory-Inhibitory Neural Circuit Dynamics",
+         "venue": "PLoS Computational Biology"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2255822949",
+         "year": 2016,
+         "title": "Goal-Directed Decision Making with Spiking Neurons",
+         "venue": "Journal of Neuroscience"
+        },
+        {
+         "oa": "https://openalex.org/W2259909269",
+         "year": 2016,
+         "title": "Active sensing in the categorization of visual patterns",
+         "venue": "eLife"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/ml468",
+     "sha256": "bf96411f3093e17c26f273a1f8a87834f506ba6e99959f28907a693f4b4de322",
+     "observed": "20261115224709",
+     "quote": "Professor Máté Lengyel Profiles ml468 Professor in Computational Neuroscience",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -10646,8 +11397,8 @@
     "John Clarkson"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank) with 20 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/79/4846"
@@ -10662,10 +11413,130 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5073659236",
+      "https://openalex.org/A5137107374"
+     ],
+     "school_works": 191,
+     "dblp_indexed": 18,
+     "share": 0.094,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5073659236",
+       "basis": "full name: P. John Clarkson",
+       "works": 184,
+       "dblp_indexed": 18,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "P. John Clarkson",
+        "John Clarkson",
+        "P. J. Clarkson"
+       ],
+       "orcids": [
+        "0000-0001-8018-7706"
+       ],
+       "venues": [
+        "Springer eBooks",
+        "Proceedings of the Design Society",
+        "Lecture notes in computer science"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2480531708",
+         "year": 2016,
+         "title": "Navigating the Workplace Environment as a Visually Impaired Person",
+         "venue": "Lecture notes in computer science"
+        },
+        {
+         "oa": "https://openalex.org/W2485449799",
+         "year": 2016,
+         "title": "An Inclusive Design Perspective on Automotive HMI Trends",
+         "venue": "Lecture notes in computer science"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2270603399",
+         "year": 2016,
+         "title": "Using positive images to manage resistance-to-care and combative behaviors in nursing home residents with dementia: A pilot study",
+         "venue": "Geriatric Nursing"
+        },
+        {
+         "oa": "https://openalex.org/W2283051106",
+         "year": 2016,
+         "title": "Differences in vision performance in different scenarios and implications for design",
+         "venue": "Applied Ergonomics"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5137107374",
+       "basis": "full name: P. John Clarkson",
+       "works": 7,
+       "dblp_indexed": 0,
+       "years": [
+        2026,
+        2026
+       ],
+       "names": [
+        "P. John Clarkson"
+       ],
+       "orcids": [
+        "0000-0001-8018-7706"
+       ],
+       "venues": [
+        "Proceedings of the Design Society",
+        "International Journal of Nursing Studies",
+        "Palliative Medicine"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W7135088883",
+         "year": 2026,
+         "title": "Risk Assessment Techniques and Risk Management Practices in Healthcare: A Comparative Survey of the United States and United Kingdom",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W7159969550",
+         "year": 2026,
+         "title": "Understanding end-of-life injectable medication patient safety origin incidents in the community: a mixed-methods analysis of national incident-report",
+         "venue": "International Journal of Nursing Studies"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/pjc10",
+     "sha256": "9fefebcc0c0f741e1bb297754cf878d19fdbe17985cf723d8dce9d1c720d582e",
+     "observed": "20261115224714",
+     "quote": "Prof. P John Clarkson CBE FREng Profiles pjc10 Professor of Engineering Design",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -13254,8 +14125,8 @@
    "name": "Stephen J. Eglen",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DAMTP listing, professor rank) with 6 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/64/6986"
@@ -13270,10 +14141,93 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Cambridge Computational Biology Institute, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5004633766"
+     ],
+     "school_works": 38,
+     "dblp_indexed": 5,
+     "share": 0.132,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5004633766",
+       "basis": "full name: Stephen J. Eglen",
+       "works": 38,
+       "dblp_indexed": 5,
+       "years": [
+        2016,
+        2025
+       ],
+       "names": [
+        "Stephen J. Eglen",
+        "Stephen J Eglen",
+        "Stephen Eglen"
+       ],
+       "orcids": [
+        "0000-0001-8607-8025"
+       ],
+       "venues": [
+        "PLoS Computational Biology",
+        "PLoS ONE",
+        "eLife"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2557994837",
+         "year": 2016,
+         "title": "Ten Simple Rules for Taking Advantage of Git and GitHub",
+         "venue": "PLoS Computational Biology"
+        },
+        {
+         "oa": "https://openalex.org/W2893064213",
+         "year": 2018,
+         "title": "meaRtools: An R package for the analysis of neuronal networks recorded on microelectrode arrays",
+         "venue": "PLoS Computational Biology"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2225473639",
+         "year": 2016,
+         "title": "Geniculo-Cortical Projection Diversity Revealed within the Mouse Visual Thalamus",
+         "venue": "PLoS ONE"
+        },
+        {
+         "oa": "https://openalex.org/W2293324340",
+         "year": 2016,
+         "title": "Characterization of Early Cortical Neural Network Development in Multiwell Microelectrode Array Plates",
+         "venue": "SLAS DISCOVERY"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "DAMTP",
+     "url": "https://www.damtp.cam.ac.uk/person/sje30",
+     "sha256": "8498ed2bb21f1c6245f03b6d0b08beda5ca2058a12ba3eab1f6bff0073f56e14",
+     "observed": "20261115224630",
+     "quote": "Professor Stephen John Eglen",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -14950,11 +15904,6 @@
     {
      "source": "dblp_affiliation",
      "dblp": "https://dblp.org/pid/40/1491-81",
-     "openalex": null
-    },
-    {
-     "source": "dblp_affiliation",
-     "dblp": "https://dblp.org/pid/40/1491-101",
      "openalex": null
     }
    ],
@@ -17437,107 +18386,9 @@
    ]
   },
   {
-   "name": "Ivan Vulić",
-   "aliases": [
-    "Vulić, Ivan",
-    "Vulic, Ivan",
-    "Ivan Vulic"
-   ],
-   "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Adrian Weller",
-   "aliases": [
-    "Weller, Adrian",
-    "Weller Adrian"
-   ],
-   "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Jatinder Singh",
-   "aliases": [
-    "Singh, Jatinder",
-    "J. Singh"
-   ],
-   "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Richard Penty",
-   "aliases": [
-    "Richard V. Penty",
-    "R. V. Penty",
-    "Richard V Penty"
-   ],
-   "source": "openalex_rule",
+   "aliases": [],
+   "source": "official_profile_ladder",
    "decision": "accepted",
    "reason": "faculty (ENG listing, professor rank); computing-share test passes: 73 of 231 school works DBLP-indexed (share 0.32; 3 OpenAlex author ids)",
    "cs_basis": {
@@ -17565,7 +18416,7 @@
      "authors": [
       {
        "author": "https://openalex.org/A5008627694",
-       "basis": "candidate author id",
+       "basis": "full name: Richard Penty",
        "works": 220,
        "dblp_indexed": 66,
        "years": [
@@ -17722,6 +18573,1543 @@
      "quote": "Prof. Richard Penty FREng Profiles rvp11 Professor",
      "ladder": true,
      "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Xiaoxiang Na",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 50 of 86 school works DBLP-indexed (share 0.58; 1 OpenAlex author ids)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5004861155"
+     ],
+     "school_works": 86,
+     "dblp_indexed": 50,
+     "share": 0.581,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5004861155",
+       "basis": "full name: Xiaoxiang Na",
+       "works": 86,
+       "dblp_indexed": 50,
+       "years": [
+        2017,
+        2026
+       ],
+       "names": [
+        "Xiaoxiang Na"
+       ],
+       "orcids": [
+        "0000-0002-6524-7122"
+       ],
+       "venues": [
+        "IEEE Transactions on Intelligent Vehicles",
+        "IEEE/CAA Journal of Automatica Sinica",
+        "Transportation Research Part D Transport and Environment"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2616258440",
+         "year": 2017,
+         "title": "Application of Open-Loop Stackelberg Equilibrium to Modeling a Driver's Interaction with Vehicle Active Steering Control in Obstacle Avoidance",
+         "venue": "IEEE Transactions on Human-Machine Systems"
+        },
+        {
+         "oa": "https://openalex.org/W2769912520",
+         "year": 2017,
+         "title": "Levenberg–Marquardt Backpropagation Training of Multilayer Neural Networks for State Estimation of a Safety-Critical Cyber-Physical System",
+         "venue": "IEEE Transactions on Industrial Informatics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2768397158",
+         "year": 2017,
+         "title": "Design of a variable steering ratio for steer-by-wire vehicle with a joystick",
+         "venue": "Advances in Mechanical Engineering"
+        },
+        {
+         "oa": "https://openalex.org/W2789272081",
+         "year": 2018,
+         "title": "Research on interactive steering control strategy between driver and AFS in different game equilibrium strategies and information patterns",
+         "venue": "Vehicle System Dynamics"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/xnhn2",
+     "sha256": "76da741ab0c9d1774bf961d51240dadb25143ab0af2f141beb5bd0556a3dbde1",
+     "observed": "20261115220434",
+     "quote": "Dr Xiaoxiang Na Profiles xnhn2 University Assistant Professor in Applied Mechanics",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Seb J. Savory",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 36 of 100 school works DBLP-indexed (share 0.36; 1 OpenAlex author ids)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5046855951"
+     ],
+     "school_works": 100,
+     "dblp_indexed": 36,
+     "share": 0.36,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5046855951",
+       "basis": "full name: Seb J. Savory",
+       "works": 100,
+       "dblp_indexed": 36,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Seb J. Savory",
+        "S. J. Savory",
+        "Seb Savory"
+       ],
+       "orcids": [
+        "0000-0002-6803-718X"
+       ],
+       "venues": [
+        "Optical Fiber Communication Conference",
+        "Journal of Lightwave Technology",
+        "IEEE Photonics Technology Letters"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2317830805",
+         "year": 2016,
+         "title": "Probabilistic Design of Nonlinear Optical Transmission Systems",
+         "venue": "Optical Fiber Communication Conference"
+        },
+        {
+         "oa": "https://openalex.org/W2464753157",
+         "year": 2016,
+         "title": "Network Equipment and Their Procurement Strategy for High Capacity Elastic Optical Networks",
+         "venue": "Journal of Optical Communications and Networking"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2170638585",
+         "year": 2016,
+         "title": "On the Impact of Optimal Modulation and FEC Overhead on Future Optical Networks",
+         "venue": "Journal of Lightwave Technology"
+        },
+        {
+         "oa": "https://openalex.org/W2267808596",
+         "year": 2016,
+         "title": "The Benefit of Split Nonlinearity Compensation for Single-Channel Optical Fiber Communications",
+         "venue": "IEEE Photonics Technology Letters"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/sjs1001",
+     "sha256": "1ad09a903f542a3bd9e04d90674c13c199e84e17f9d34ac8fbd2130049a8f955",
+     "observed": "20261115220417",
+     "quote": "Professor Seb Savory Profiles sjs1001 Professor of Optical Fibre Communication",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Zoubin Ghahramani",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 35 of 46 school works DBLP-indexed (share 0.76; 1 OpenAlex author ids)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5010820865"
+     ],
+     "school_works": 46,
+     "dblp_indexed": 35,
+     "share": 0.761,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5010820865",
+       "basis": "full name: Ghahramani, Zoubin",
+       "works": 46,
+       "dblp_indexed": 35,
+       "years": [
+        2016,
+        2025
+       ],
+       "names": [
+        "Ghahramani, Zoubin",
+        "Zoubin Ghahramani",
+        "Ghahramani, Z"
+       ],
+       "orcids": [
+        "0000-0002-7464-6475"
+       ],
+       "venues": [
+        "Proceedings of the AAAI Conference on Artificial Intelligence",
+        "Proceedings of the ACM on Programming Languages",
+        "Bioinformatics"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W215707797",
+         "year": 2016,
+         "title": "On Sparse Variational Methods and the Kullback-Leibler Divergence between Stochastic Processes",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2343809731",
+         "year": 2016,
+         "title": "Distributed Flexible Nonlinear Tensor Factorization",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2425086070",
+         "year": 2016,
+         "title": "The Mondrian Kernel",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2503523779",
+         "year": 2016,
+         "title": "A study of the effect of JPG compression on adversarial images",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/zg201",
+     "sha256": "6fecbf912480270108ad74fff97146743fdf6e4bbd368595213e0d2f7fc28b7e",
+     "observed": "20261115220436",
+     "quote": "Prof. Zoubin Ghahramani Profiles zg201 Professor of Information Engineering",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Qixiang Cheng",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 23 of 91 school works DBLP-indexed (share 0.25; 1 OpenAlex author ids)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5054716038"
+     ],
+     "school_works": 91,
+     "dblp_indexed": 23,
+     "share": 0.253,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5054716038",
+       "basis": "full name: Qixiang Cheng",
+       "works": 91,
+       "dblp_indexed": 23,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Qixiang Cheng",
+        "Q. Cheng",
+        "Q Cheng"
+       ],
+       "orcids": [
+        "0000-0001-8671-2102"
+       ],
+       "venues": [
+        "Optical Fiber Communication Conference",
+        "Journal of Lightwave Technology",
+        "Nature Communications"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2594484074",
+         "year": 2017,
+         "title": "Emulation of a 16×16 Optical Switch Using Cascaded 4×4 Dilated Hybrid MZI-SOA Optical Switches",
+         "venue": "Optical Fiber Communication Conference"
+        },
+        {
+         "oa": "https://openalex.org/W3006418295",
+         "year": 2020,
+         "title": "Silicon Photonics Codesign for Deep Learning",
+         "venue": "Proceedings of the IEEE"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2580483883",
+         "year": 2016,
+         "title": "Integrated optical switches and short pulse generation using a generic integration platform",
+         "venue": "IEEE Photonics Conference"
+        },
+        {
+         "oa": "https://openalex.org/W2607660863",
+         "year": 2017,
+         "title": "Interleaved single-carrier frequency-division multiplexing for optical interconnects",
+         "venue": "Optics Express"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/qc223",
+     "sha256": "b8c6bf6facb0bad7e6cb84c8282512381512b0741a0f9df65af189812ebca16a",
+     "observed": "20261115220358",
+     "quote": "Dr Qixiang Cheng Profiles qc223 University Associate Professor in Photonic Devices and Systems",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Miri Zilka",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 9 of 21 school works DBLP-indexed (share 0.43; 1 OpenAlex author ids)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5080823518"
+     ],
+     "school_works": 21,
+     "dblp_indexed": 9,
+     "share": 0.429,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5080823518",
+       "basis": "full name: Miri Zilka",
+       "works": 21,
+       "dblp_indexed": 9,
+       "years": [
+        2022,
+        2026
+       ],
+       "names": [
+        "Miri Zilka",
+        "Zilka, Miri"
+       ],
+       "orcids": [
+        "0000-0001-9640-8139"
+       ],
+       "venues": [
+        "Proceedings of the AAAI/ACM Conference on AI Ethics and Society",
+        "ACM Conference on Fairness, Accountability, and Transparency (FAccT)",
+        "ACM Journal on Responsible Computing"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W4226418932",
+         "year": 2022,
+         "title": "Racial Disparities in the Enforcement of Marijuana Violations in the US",
+         "venue": "Proceedings of the AAAI/ACM Conference on AI Ethics and Society"
+        },
+        {
+         "oa": "https://openalex.org/W4281799859",
+         "year": 2022,
+         "title": "Transparency, Governance and Regulation of Algorithmic Tools Deployed in the Criminal Justice System: a UK Case Study",
+         "venue": "Proceedings of the AAAI/ACM Conference on AI Ethics and Society"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W4288468428",
+         "year": 2022,
+         "title": "The UK Algorithmic Transparency Standard: A Qualitative Analysis of Police Perspectives",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W4297435206",
+         "year": 2022,
+         "title": "Can We Automate the Analysis of Online Child Sexual Exploitation Discourse?",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/mz477",
+     "sha256": "74043248f27aa68ce9175c91ed3a399825e6c5c534aaabfb4a577c3a6917ef45",
+     "observed": "20261115220353",
+     "quote": "Dr Miri Zilka Profiles mz477 University Assistant Professor in Responsible Machine Learning",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Sebastian W. Pattinson",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 5 of 24 school works DBLP-indexed (share 0.21; 1 OpenAlex author ids)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5026454775"
+     ],
+     "school_works": 24,
+     "dblp_indexed": 5,
+     "share": 0.208,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5026454775",
+       "basis": "full name: Sebastian W. Pattinson",
+       "works": 24,
+       "dblp_indexed": 5,
+       "years": [
+        2019,
+        2026
+       ],
+       "names": [
+        "Sebastian W. Pattinson",
+        "Sebastian Pattinson",
+        "S. Pattinson"
+       ],
+       "orcids": [
+        "0000-0002-7851-7718"
+       ],
+       "venues": [
+        "Advanced Functional Materials",
+        "Additive manufacturing",
+        "Nature Communications"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W4295733420",
+         "year": 2022,
+         "title": "Quantitative and Real‐Time Control of 3D Printing Material Flow Through Deep Learning",
+         "venue": "Advanced Intelligent Systems"
+        },
+        {
+         "oa": "https://openalex.org/W4367662619",
+         "year": 2023,
+         "title": "Towards Augmented Reality Guiding Systems: An Engineering Design of an Immersive System for Complex 3D Printing Repair Process",
+         "venue": "IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2952328294",
+         "year": 2019,
+         "title": "Additive Manufacturing of Biomechanically Tailored Meshes for Compliant Wearable and Implantable Devices",
+         "venue": "Advanced Functional Materials"
+        },
+        {
+         "oa": "https://openalex.org/W2965853536",
+         "year": 2019,
+         "title": "Additive Manufacturing: Additive Manufacturing of Biomechanically Tailored Meshes for Compliant Wearable and Implantable Devices (Adv. Funct. Mater. 3",
+         "venue": "Advanced Functional Materials"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/swp29",
+     "sha256": "331ca1d303149975fd5dd5011cb185d09314a9ba06f6a63467f27be10c922b83",
+     "observed": "20261115220424",
+     "quote": "Dr Sebastian Pattinson Profiles swp29 University Associate Professor in Manufacturing Engineering",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Umang Bhatt",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (CST listing, professor rank); computing-share test passes: 19 of 38 school works DBLP-indexed (share 0.50; 2 OpenAlex author ids)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5016469734",
+      "https://openalex.org/A5125538948"
+     ],
+     "school_works": 38,
+     "dblp_indexed": 19,
+     "share": 0.5,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5016469734",
+       "basis": "full name: Umang Bhatt",
+       "works": 35,
+       "dblp_indexed": 19,
+       "years": [
+        2020,
+        2026
+       ],
+       "names": [
+        "Umang Bhatt",
+        "Bhatt, Umang"
+       ],
+       "orcids": [
+        "0000-0002-4611-1668"
+       ],
+       "venues": [
+        "Proceedings of the AAAI Conference on Artificial Intelligence",
+        "Proceedings of the AAAI/ACM Conference on AI Ethics and Society",
+        "International Joint Conference on Artificial Intelligence"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2973193541",
+         "year": 2020,
+         "title": "Explainable machine learning in deployment",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W3021850758",
+         "year": 2020,
+         "title": "Evaluating and Aggregating Feature-based Model Explanations",
+         "venue": "International Joint Conference on Artificial Intelligence"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3041121541",
+         "year": 2020,
+         "title": "Machine Learning Explainability for External Stakeholders",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W3154771717",
+         "year": 2021,
+         "title": "δ-CLUE: Diverse Sets of Explanations for Uncertainty Estimates",
+         "venue": null
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5125538948",
+       "basis": "full name: Bhatt, Umang",
+       "works": 3,
+       "dblp_indexed": 0,
+       "years": [
+        2026,
+        2026
+       ],
+       "names": [
+        "Bhatt, Umang",
+        "Umang Bhatt"
+       ],
+       "orcids": [],
+       "venues": [
+        "Proceedings of the AAAI/ACM Conference on AI Ethics and Society"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W7128538268",
+         "year": 2026,
+         "title": "Belief Offloading in Human-AI Interaction",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W7135038310",
+         "year": 2026,
+         "title": "RCTs & Human Uplift Studies: Methodological Challenges and Practical Solutions for Frontier AI Evaluation",
+         "venue": "Proceedings of the AAAI/ACM Conference on AI Ethics and Society"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "CST",
+     "url": "https://www.cst.cam.ac.uk/people/usb20",
+     "sha256": "06c694b5bcda1de0eb05703bb5654bb925e1064a3013a2a5ed05c16aa758da08",
+     "observed": "20261115215647",
+     "quote": "Dr Umang Bhatt Assistant Professor in Trustworthy Artificial Intelligence Fellow and Director of Studies in Computer Science, King's College, Cambridge Themes Machine Learning and Artificial Intelligence",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Guy Emerson",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (MMLL listing, professor rank); computing-share test passes: 19 of 25 school works DBLP-indexed (share 0.76; 1 OpenAlex author ids)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5041079942"
+     ],
+     "school_works": 25,
+     "dblp_indexed": 19,
+     "share": 0.76,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5041079942",
+       "basis": "full name: Guy Emerson",
+       "works": 25,
+       "dblp_indexed": 19,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Guy Emerson",
+        "Emerson, Guy"
+       ],
+       "orcids": [
+        "0000-0002-3136-9682"
+       ],
+       "venues": [
+        "Annual Meeting of the Association for Computational Linguistics (ACL)",
+        "Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+        "Workshop on Representation Learning for NLP (RepL4NLP)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2460814443",
+         "year": 2016,
+         "title": "Functional Distributional Semantics",
+         "venue": "Workshop on Representation Learning for NLP (RepL4NLP)"
+        },
+        {
+         "oa": "https://openalex.org/W2572063200",
+         "year": 2016,
+         "title": "Resources for building applications with Dependency Minimal Recursion Semantics",
+         "venue": "Language Resources and Evaluation Conference (LREC)"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3033938264",
+         "year": 2020,
+         "title": "Linguists Who Use Probabilistic Models Love Them: Quantification in Functional Distributional Semantics",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W3175636134",
+         "year": 2020,
+         "title": "Multiple question fronting without relational constraints: An analysis of Russian as a basis for cross-linguistic modeling",
+         "venue": "Proceedings of the International Conference on Head-Driven Phrase Structure Grammar"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "MMLL",
+     "url": "https://www.cst.cam.ac.uk/people/gete2",
+     "sha256": "3e62048f4f9cf711480b732e395e63344efa005f64502fb94b9b891df2c947fa",
+     "observed": "20261115215412",
+     "quote": "Guy Emerson Assistant Research Professor Assistant Professor in NLP (Dept. Theoretical & Applied Linguistics) College Lecturer (Gonville & Caius College) Executive Director (Cambridge Language Sciences) I am a computational linguist. I develop models of human language, implement those models computa",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Gos Micklem",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (Genetics listing, professor rank); computing-share test passes: 11 of 29 school works DBLP-indexed (share 0.38; 1 OpenAlex author ids)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5048731023"
+     ],
+     "school_works": 29,
+     "dblp_indexed": 11,
+     "share": 0.379,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5048731023",
+       "basis": "full name: Gos Micklem",
+       "works": 29,
+       "dblp_indexed": 11,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Gos Micklem",
+        "Micklem, Gos",
+        "G. Micklem"
+       ],
+       "orcids": [
+        "0000-0002-6883-6168"
+       ],
+       "venues": [
+        "Scientific Reports",
+        "F1000Research",
+        "BMC Bioinformatics"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2606391781",
+         "year": 2017,
+         "title": "Empirical Bayes method for reducing false discovery rates of correlation matrices with block diagonal structure",
+         "venue": "BMC Bioinformatics"
+        },
+        {
+         "oa": "https://openalex.org/W2743074552",
+         "year": 2017,
+         "title": "ComplexViewer: visualization of curated macromolecular complexes",
+         "venue": "Bioinformatics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2563648099",
+         "year": 2016,
+         "title": "ThaleMine: A Warehouse for Arabidopsis Data Integration and Discovery",
+         "venue": "Plant and Cell Physiology"
+        },
+        {
+         "oa": "https://openalex.org/W2563800406",
+         "year": 2016,
+         "title": "Genomes of coral dinoflagellate symbionts highlight evolutionary adaptations conducive to a symbiotic lifestyle",
+         "venue": "Scientific Reports"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "Genetics",
+     "url": "https://www.gen.cam.ac.uk/people/gos-micklem",
+     "sha256": "05d44eb3efac7b5597c117c4119a8d0cc3a2a18d026342849c82e6716254e4bd",
+     "observed": "20261115231053",
+     "quote": "Professor Gos Micklem Professor of Computational and Molecular Biology",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Stefan M. Goetz",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 17 of 74 school works DBLP-indexed (share 0.23; 3 OpenAlex author ids)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5033945885",
+      "https://openalex.org/A5077822263",
+      "https://openalex.org/A5108854850"
+     ],
+     "school_works": 74,
+     "dblp_indexed": 17,
+     "share": 0.23,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5033945885",
+       "basis": "full name: Stefan M. Goetz",
+       "works": 63,
+       "dblp_indexed": 15,
+       "years": [
+        2020,
+        2026
+       ],
+       "names": [
+        "Stefan M. Goetz",
+        "Stefan Goetz",
+        "Stefan M Goetz"
+       ],
+       "orcids": [
+        "0000-0002-1944-0714"
+       ],
+       "venues": [
+        "Journal of Neural Engineering",
+        "IEEE Transactions on Power Electronics",
+        "Proceedings of the Annual Conference of the IEEE Industrial Electronics Society"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W3208711717",
+         "year": 2021,
+         "title": "A High-Frequency Pulsating DC-Link for Electric Vehicle Drives with Reduced Losses",
+         "venue": "Proceedings of the Annual Conference of the IEEE Industrial Electronics Society"
+        },
+        {
+         "oa": "https://openalex.org/W4310929470",
+         "year": 2022,
+         "title": "A Highly Compact Transformerless Universal Power-Flow and Quality Control as well as Soft Open Point Circuit",
+         "venue": "Proceedings of the Annual Conference of the IEEE Industrial Electronics Society"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3048478162",
+         "year": 2020,
+         "title": "Novel Low-Side/High-Side Gate Drive and Supply With Minimum Footprint, High Power Density, and Low Cost for Silicon and Wide-Bandgap Transistors",
+         "venue": "IEEE Transactions on Power Electronics"
+        },
+        {
+         "oa": "https://openalex.org/W3087994735",
+         "year": 2020,
+         "title": "Modular Multilevel Converter With Sensorless Diode-Clamped Balancing Through Level-Adjusted Phase-Shifted Modulation",
+         "venue": "IEEE Transactions on Power Electronics"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5108854850",
+       "basis": "full name: Stefan Goetz",
+       "works": 8,
+       "dblp_indexed": 2,
+       "years": [
+        2023,
+        2026
+       ],
+       "names": [
+        "Goetz, Stephan",
+        "Stephan M. Goetz",
+        "Stephan M Goetz"
+       ],
+       "orcids": [
+        "0000-0002-1944-0714"
+       ],
+       "venues": [
+        "IEEE Journal of Emerging and Selected Topics in Power Electronics",
+        "IEEE Transactions on Power Electronics"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W4405056516",
+         "year": 2024,
+         "title": "Patent-CR: A Dataset for Patent Claim Revision",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W4415097727",
+         "year": 2026,
+         "title": "Reasoning for Hierarchical Text Classification: The Case of Patents",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W4385516982",
+         "year": 2023,
+         "title": "Adaptive Optimization Charging Strategy for LCC Resonant Capacitor Charging Power Supply",
+         "venue": "IEEE Journal of Emerging and Selected Topics in Power Electronics"
+        },
+        {
+         "oa": "https://openalex.org/W7125637969",
+         "year": 2025,
+         "title": "Editorial: Special Issue on Modular Power-Electronics and Reconfigurable Circuits",
+         "venue": "IEEE Journal of Emerging and Selected Topics in Power Electronics"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5077822263",
+       "basis": "full name: Stefan M. Goetz",
+       "works": 3,
+       "dblp_indexed": 0,
+       "years": [
+        2021,
+        2026
+       ],
+       "names": [
+        "Stefan M. Goetz",
+        "Stefan Goetz"
+       ],
+       "orcids": [
+        "0000-0002-1944-0714"
+       ],
+       "venues": [
+        "IEEE Applied Power Electronics Conference and Exposition (APEC)",
+        "IEEE Transactions on Power Electronics",
+        "Journal of Alloys and Compounds"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3185010470",
+         "year": 2021,
+         "title": "A Highly-Efficient and Cost-Effective Reconfigurable IPT Topology for Constant-Current and Constant-Voltage Battery Charging",
+         "venue": "IEEE Applied Power Electronics Conference and Exposition (APEC)"
+        },
+        {
+         "oa": "https://openalex.org/W7131088962",
+         "year": 2026,
+         "title": "Self-Adjusting Feedforward Ripple Cancellation in a Hybrid GaN/Si Interleaved Inverter",
+         "venue": "IEEE Transactions on Power Electronics"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/smg84",
+     "sha256": "d4fdf557709983786cf1d33db18c0928997047bbf4d8634eb3f3eb8f6e18f94b",
+     "observed": "20261115220420",
+     "quote": "Dr Stephan Goetz Profiles smg84 University Associate Professor in Electrical Power Engineering",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Ivan Vulić",
+   "aliases": [
+    "Vulić, Ivan",
+    "Vulic, Ivan",
+    "Ivan Vulic"
+   ],
+   "source": "openalex_rule",
+   "decision": "pending_source_coverage",
+   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": []
+   },
+   "faculty_evidence": [],
+   "years_listed": [],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Adrian Weller",
+   "aliases": [
+    "Weller, Adrian",
+    "Weller Adrian"
+   ],
+   "source": "openalex_rule",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, reviewed own-group/advising evidence); computing-share test passes: 96 of 142 school works DBLP-indexed (share 0.68; 1 OpenAlex author ids)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "pi_basis_review": {
+     "kind": "advises_phd",
+     "url": "https://mlg.eng.cam.ac.uk/adrian/",
+     "sha256": "d6a115cb8f342463c22fc76df633f9951dbf92ed51f6e68c387119aaf95364b7",
+     "quote": "PhD Students Juyeon Heo Yanzhi Chen Isaac Reid Yichao Liang Herbie Bradley Shoaib Siddiqui Arik Reuter, co-supervised with Miguel Hernandez-Lobato and Bernhard Schölkopf at MPI-IS Tübingen Noah Broestl, co-supervised with Umang Bhatt",
+     "unit": "ENG",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5042278493"
+     ],
+     "school_works": 142,
+     "dblp_indexed": 96,
+     "share": 0.676,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5042278493",
+       "basis": "candidate author id",
+       "works": 142,
+       "dblp_indexed": 96,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Adrian Weller",
+        "Weller, Adrian",
+        "Weller Adrian"
+       ],
+       "orcids": [
+        "0000-0003-1915-7158"
+       ],
+       "venues": [
+        "Proceedings of the AAAI Conference on Artificial Intelligence",
+        "Proceedings of the AAAI/ACM Conference on AI Ethics and Society",
+        "International Joint Conference on Artificial Intelligence"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2411995537",
+         "year": 2016,
+         "title": "Tightness of LP Relaxations for Almost Balanced Models",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2472143053",
+         "year": 2016,
+         "title": "Uprooting and Rerooting Graphical Models",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2783173735",
+         "year": 2018,
+         "title": "The Geometry of Random Features",
+         "venue": "International Conference on Artificial Intelligence and Statistics"
+        },
+        {
+         "oa": "https://openalex.org/W2811494126",
+         "year": 2018,
+         "title": "A Unified Approach to Quantifying Algorithmic Unfairness",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/aw665",
+     "sha256": "eefacfa08c4847748deb2d01dc3bcbb1e98d2bf167d04fed373f54c69eb06a56",
+     "observed": "20261115220250",
+     "quote": "Prof. Adrian Weller Profiles aw665 Research Professor, Head of Safe and Ethical AI",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Jatinder Singh",
+   "aliases": [
+    "Singh, Jatinder",
+    "J. Singh"
+   ],
+   "source": "openalex_rule",
+   "decision": "accepted",
+   "reason": "faculty (CST listing, reviewed own-group/advising evidence); computing-share test passes: 74 of 107 school works DBLP-indexed (share 0.69; 2 OpenAlex author ids)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "pi_basis_review": {
+     "kind": "own_group",
+     "url": "https://www.cst.cam.ac.uk/people/js573",
+     "sha256": "cdaf43197ad5b6b516ce4312eac65ffc10c046a19755e4c6b3fabc638a43f4fb",
+     "quote": "I lead the Compliant and Accountable Systems research group",
+     "unit": "CST",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5082866143",
+      "https://openalex.org/A5127892681"
+     ],
+     "school_works": 107,
+     "dblp_indexed": 74,
+     "share": 0.692,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5082866143",
+       "basis": "candidate author id",
+       "works": 104,
+       "dblp_indexed": 72,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Jatinder Singh",
+        "Singh, Jatinder",
+        "J. Singh"
+       ],
+       "orcids": [
+        "0000-0002-5102-6564"
+       ],
+       "venues": [
+        "ACM Conference on Fairness, Accountability, and Transparency (FAccT)",
+        "CHI Conference on Human Factors in Computing Systems",
+        "Proceedings of the AAAI/ACM Conference on AI Ethics and Society"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W17836884",
+         "year": 2016,
+         "title": "Policy, legal and regulatory implications of a Europe-only cloud",
+         "venue": "International Journal of Law and Information Technology"
+        },
+        {
+         "oa": "https://openalex.org/W2335798143",
+         "year": 2016,
+         "title": "Information Flow Control with Minimal Tag Disclosure",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2300146116",
+         "year": 2016,
+         "title": "Twenty Legal Considerations for Clouds of Things",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2528300505",
+         "year": 2016,
+         "title": "Big ideas paper",
+         "venue": "International Middleware Conference"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5127892681",
+       "basis": "full name: Jatinder Singh",
+       "works": 3,
+       "dblp_indexed": 2,
+       "years": [
+        2026,
+        2026
+       ],
+       "names": [
+        "Jatinder Singh"
+       ],
+       "orcids": [
+        "0000-0002-5102-6564"
+       ],
+       "venues": [
+        "Proceedings of IASEAI Conference",
+        "CHI Conference on Human Factors in Computing Systems"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W7133349195",
+         "year": 2026,
+         "title": "Who Controls the Conversation? User Perspectives on Generative AI (LLM) System Prompts",
+         "venue": "CHI Conference on Human Factors in Computing Systems"
+        },
+        {
+         "oa": "https://openalex.org/W7158422109",
+         "year": 2026,
+         "title": "Who Does What? Archetypes of Roles Assigned to LLMs During Human-AI Decision-Making.",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W7133330346",
+         "year": 2026,
+         "title": "AI Safety Evaluations Need to Consider Cascading Effects",
+         "venue": "Proceedings of IASEAI Conference"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "CST",
+     "url": "https://www.cst.cam.ac.uk/people/js573",
+     "sha256": "cdaf43197ad5b6b516ce4312eac65ffc10c046a19755e4c6b3fabc638a43f4fb",
+     "observed": "20261115215453",
+     "quote": "Prof Jat Singh Research Professor",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
     }
    ],
    "years_listed": [
@@ -17955,114 +20343,6 @@
    ]
   },
   {
-   "name": "Xiaoxiang Na",
-   "aliases": [],
-   "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 50 of 86 school works DBLP-indexed (share 0.58; 1 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5004861155"
-     ],
-     "school_works": 86,
-     "dblp_indexed": 50,
-     "share": 0.581,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5004861155",
-       "basis": "candidate author id",
-       "works": 86,
-       "dblp_indexed": 50,
-       "years": [
-        2017,
-        2026
-       ],
-       "names": [
-        "Xiaoxiang Na"
-       ],
-       "orcids": [
-        "0000-0002-6524-7122"
-       ],
-       "venues": [
-        "IEEE Transactions on Intelligent Vehicles",
-        "IEEE/CAA Journal of Automatica Sinica",
-        "Transportation Research Part D Transport and Environment"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2616258440",
-         "year": 2017,
-         "title": "Application of Open-Loop Stackelberg Equilibrium to Modeling a Driver's Interaction with Vehicle Active Steering Control in Obstacle Avoidance",
-         "venue": "IEEE Transactions on Human-Machine Systems"
-        },
-        {
-         "oa": "https://openalex.org/W2769912520",
-         "year": 2017,
-         "title": "Levenberg–Marquardt Backpropagation Training of Multilayer Neural Networks for State Estimation of a Safety-Critical Cyber-Physical System",
-         "venue": "IEEE Transactions on Industrial Informatics"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2768397158",
-         "year": 2017,
-         "title": "Design of a variable steering ratio for steer-by-wire vehicle with a joystick",
-         "venue": "Advances in Mechanical Engineering"
-        },
-        {
-         "oa": "https://openalex.org/W2789272081",
-         "year": 2018,
-         "title": "Research on interactive steering control strategy between driver and AFS in different game equilibrium strategies and information patterns",
-         "venue": "Vehicle System Dynamics"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "ENG",
-     "url": "https://www.eng.cam.ac.uk/profiles/xnhn2",
-     "sha256": "76da741ab0c9d1774bf961d51240dadb25143ab0af2f141beb5bd0556a3dbde1",
-     "observed": "20261115220434",
-     "quote": "Dr Xiaoxiang Na Profiles xnhn2 University Assistant Professor in Applied Mechanics",
-     "ladder": true,
-     "hand": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Tiago Pimentel",
    "aliases": [
     "Pimentel, Tiago"
@@ -18191,16 +20471,106 @@
     "Sentance, Sue"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (CST listing, reviewed own-group/advising evidence); computing-share test passes: 40 of 50 school works DBLP-indexed (share 0.80; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "pi_basis_review": {
+     "kind": "advises_phd",
+     "url": "https://web.archive.org/web/20260315081408id_/https://www.cl.cam.ac.uk/lists/phd/supervisor.html",
+     "sha256": "822627dac28b84fb4b3d335dfea63e195311e03c25ebf39d2658034e63dd7d4b",
+     "quote": "Dr S. E. Sentance Laurence Gale (2022-10-01 – examined)",
+     "unit": "CST",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5076432347"
+     ],
+     "school_works": 50,
+     "dblp_indexed": 40,
+     "share": 0.8,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5076432347",
+       "basis": "candidate author id",
+       "works": 50,
+       "dblp_indexed": 40,
+       "years": [
+        2021,
+        2026
+       ],
+       "names": [
+        "Sue Sentance",
+        "Sentance, Sue"
+       ],
+       "orcids": [
+        "0000-0002-0259-7408"
+       ],
+       "venues": [
+        "ACM Conference on Innovation and Technology in Computer Science Education (ITiCSE)",
+        "International Journal of Computer Science Education in Schools",
+        "ACM Conference on International Computing Education Research (ICER)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W3211379870",
+         "year": 2021,
+         "title": "Teaching computing in school: is K-12 research reaching classroom practice?",
+         "venue": "Koli Calling International Conference on Computing Education Research"
+        },
+        {
+         "oa": "https://openalex.org/W4200262136",
+         "year": 2021,
+         "title": "Culturally-relevant and responsive pedagogy in computing: A Quick Scoping Review",
+         "venue": "International Journal of Computer Science Education in Schools"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W4414653463",
+         "year": 2025,
+         "title": "An Embodied Sense of Programming: An Anti-Ableist Framework for the Analysis of Learners’ Developing Senses of Programming",
+         "venue": "ACM Transactions on Computing Education"
+        },
+        {
+         "oa": "https://openalex.org/W4415241219",
+         "year": 2025,
+         "title": "An Investigation Into Secondary School Students' Debugging Behaviour in Python",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "CST",
+     "url": "https://www.cst.cam.ac.uk/people/ss2600",
+     "sha256": "5633a01c0857f60c2a25a2709c99dec8dfd33f88351ceb61ccd3f1d6b770ee90",
+     "observed": "20261115215636",
+     "quote": "Professor Sue Sentance OBE Research Professor",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -18280,234 +20650,6 @@
    ]
   },
   {
-   "name": "Seb J. Savory",
-   "aliases": [
-    "S. J. Savory",
-    "Seb Savory",
-    "S.J. Savory"
-   ],
-   "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 36 of 100 school works DBLP-indexed (share 0.36; 1 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5046855951"
-     ],
-     "school_works": 100,
-     "dblp_indexed": 36,
-     "share": 0.36,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5046855951",
-       "basis": "candidate author id",
-       "works": 100,
-       "dblp_indexed": 36,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Seb J. Savory",
-        "S. J. Savory",
-        "Seb Savory"
-       ],
-       "orcids": [
-        "0000-0002-6803-718X"
-       ],
-       "venues": [
-        "Optical Fiber Communication Conference",
-        "Journal of Lightwave Technology",
-        "IEEE Photonics Technology Letters"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2317830805",
-         "year": 2016,
-         "title": "Probabilistic Design of Nonlinear Optical Transmission Systems",
-         "venue": "Optical Fiber Communication Conference"
-        },
-        {
-         "oa": "https://openalex.org/W2464753157",
-         "year": 2016,
-         "title": "Network Equipment and Their Procurement Strategy for High Capacity Elastic Optical Networks",
-         "venue": "Journal of Optical Communications and Networking"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2170638585",
-         "year": 2016,
-         "title": "On the Impact of Optimal Modulation and FEC Overhead on Future Optical Networks",
-         "venue": "Journal of Lightwave Technology"
-        },
-        {
-         "oa": "https://openalex.org/W2267808596",
-         "year": 2016,
-         "title": "The Benefit of Split Nonlinearity Compensation for Single-Channel Optical Fiber Communications",
-         "venue": "IEEE Photonics Technology Letters"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "ENG",
-     "url": "https://www.eng.cam.ac.uk/profiles/sjs1001",
-     "sha256": "1ad09a903f542a3bd9e04d90674c13c199e84e17f9d34ac8fbd2130049a8f955",
-     "observed": "20261115220417",
-     "quote": "Professor Seb Savory Profiles sjs1001 Professor of Optical Fibre Communication",
-     "ladder": true,
-     "hand": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Zoubin Ghahramani",
-   "aliases": [
-    "Zoubin Ghahramani",
-    "Ghahramani, Z",
-    "Z. Ghahramani"
-   ],
-   "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 35 of 46 school works DBLP-indexed (share 0.76; 1 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5010820865"
-     ],
-     "school_works": 46,
-     "dblp_indexed": 35,
-     "share": 0.761,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5010820865",
-       "basis": "candidate author id",
-       "works": 46,
-       "dblp_indexed": 35,
-       "years": [
-        2016,
-        2025
-       ],
-       "names": [
-        "Ghahramani, Zoubin",
-        "Zoubin Ghahramani",
-        "Ghahramani, Z"
-       ],
-       "orcids": [
-        "0000-0002-7464-6475"
-       ],
-       "venues": [
-        "Proceedings of the AAAI Conference on Artificial Intelligence",
-        "Proceedings of the ACM on Programming Languages",
-        "Bioinformatics"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W215707797",
-         "year": 2016,
-         "title": "On Sparse Variational Methods and the Kullback-Leibler Divergence between Stochastic Processes",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W2343809731",
-         "year": 2016,
-         "title": "Distributed Flexible Nonlinear Tensor Factorization",
-         "venue": null
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2425086070",
-         "year": 2016,
-         "title": "The Mondrian Kernel",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W2503523779",
-         "year": 2016,
-         "title": "A study of the effect of JPG compression on adversarial images",
-         "venue": null
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "ENG",
-     "url": "https://www.eng.cam.ac.uk/profiles/zg201",
-     "sha256": "6fecbf912480270108ad74fff97146743fdf6e4bbd368595213e0d2f7fc28b7e",
-     "observed": "20261115220436",
-     "quote": "Prof. Zoubin Ghahramani Profiles zg201 Professor of Information Engineering",
-     "ladder": true,
-     "hand": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Thomas Bohné",
    "aliases": [
     "Thomas Bohne",
@@ -18515,16 +20657,107 @@
     "Bohné, Thomas"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, reviewed own-group/advising evidence); computing-share test passes: 35 of 60 school works DBLP-indexed (share 0.58; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "pi_basis_review": {
+     "kind": "own_group",
+     "url": "https://engage.ifm.eng.cam.ac.uk/project/thomas-bohne/",
+     "sha256": "325e210ff91f63e2333eef78c6bac2bd7d13fd2156ed0262821c1f4bcb133b64",
+     "quote": "Thomas is the founder and Head of the IfM’s Cyber-Human Lab",
+     "unit": "ENG",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5074627376"
+     ],
+     "school_works": 60,
+     "dblp_indexed": 35,
+     "share": 0.583,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5074627376",
+       "basis": "candidate author id",
+       "works": 60,
+       "dblp_indexed": 35,
+       "years": [
+        2017,
+        2026
+       ],
+       "names": [
+        "Thomas Bohné",
+        "Thomas Bohne",
+        "Thomas Marc Bohné"
+       ],
+       "orcids": [
+        "0000-0001-5986-8638"
+       ],
+       "venues": [
+        "IEEE International Symposium on Mixed and Augmented Reality Adjunct (ISMAR-Adjunct)",
+        "IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)",
+        "Computers & Graphics"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W3089759922",
+         "year": 2020,
+         "title": "Context-Aware Cyber-Physical Assistance Systems in Industrial Systems: A Human Activity Recognition Approach",
+         "venue": "IEEE International Conference on Human-Machine Systems (ICHMS)"
+        },
+        {
+         "oa": "https://openalex.org/W3118517972",
+         "year": 2020,
+         "title": "Cyber-Physical Operator Assistance Systems in Industry: Cross-Hierarchical Perspectives on Augmenting Human Abilities",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2772586960",
+         "year": 2017,
+         "title": "Individual and organizational inhibitors to the development of entrepreneurial competencies in universities",
+         "venue": "Research Policy"
+        },
+        {
+         "oa": "https://openalex.org/W3089074261",
+         "year": 2018,
+         "title": "Productivity and Learning Effects of Head-Mounted AR Displays on Human-Centered Work",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/tmb35",
+     "sha256": "57a10d7010e62f3987c8c9970befdb41eeab512f3939449a8b546001a084b944",
+     "observed": "20261115220429",
+     "quote": "Prof. Thomas Bohné Profiles tmb35 Research Professor in Strategic Technology &amp; Innovation Management",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -19042,120 +21275,6 @@
    ]
   },
   {
-   "name": "Qixiang Cheng",
-   "aliases": [
-    "Q. Cheng",
-    "Q Cheng",
-    "Cheng, Qixiang"
-   ],
-   "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 23 of 91 school works DBLP-indexed (share 0.25; 1 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5054716038"
-     ],
-     "school_works": 91,
-     "dblp_indexed": 23,
-     "share": 0.253,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5054716038",
-       "basis": "candidate author id",
-       "works": 91,
-       "dblp_indexed": 23,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Qixiang Cheng",
-        "Q. Cheng",
-        "Q Cheng"
-       ],
-       "orcids": [
-        "0000-0001-8671-2102"
-       ],
-       "venues": [
-        "Optical Fiber Communication Conference",
-        "Journal of Lightwave Technology",
-        "Nature Communications"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2594484074",
-         "year": 2017,
-         "title": "Emulation of a 16×16 Optical Switch Using Cascaded 4×4 Dilated Hybrid MZI-SOA Optical Switches",
-         "venue": "Optical Fiber Communication Conference"
-        },
-        {
-         "oa": "https://openalex.org/W3006418295",
-         "year": 2020,
-         "title": "Silicon Photonics Codesign for Deep Learning",
-         "venue": "Proceedings of the IEEE"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2580483883",
-         "year": 2016,
-         "title": "Integrated optical switches and short pulse generation using a generic integration platform",
-         "venue": "IEEE Photonics Conference"
-        },
-        {
-         "oa": "https://openalex.org/W2607660863",
-         "year": 2017,
-         "title": "Interleaved single-carrier frequency-division multiplexing for optical interconnects",
-         "venue": "Optics Express"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "ENG",
-     "url": "https://www.eng.cam.ac.uk/profiles/qc223",
-     "sha256": "b8c6bf6facb0bad7e6cb84c8282512381512b0741a0f9df65af189812ebca16a",
-     "observed": "20261115220358",
-     "quote": "Dr Qixiang Cheng Profiles qc223 University Associate Professor in Photonic Devices and Systems",
-     "ladder": true,
-     "hand": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Qiang Yang",
    "aliases": [],
    "source": "openalex_rule",
@@ -19427,262 +21546,6 @@
    ]
   },
   {
-   "name": "Guy Emerson",
-   "aliases": [
-    "Emerson, Guy"
-   ],
-   "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (MMLL listing, professor rank); computing-share test passes: 19 of 25 school works DBLP-indexed (share 0.76; 1 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5041079942"
-     ],
-     "school_works": 25,
-     "dblp_indexed": 19,
-     "share": 0.76,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5041079942",
-       "basis": "candidate author id",
-       "works": 25,
-       "dblp_indexed": 19,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Guy Emerson",
-        "Emerson, Guy"
-       ],
-       "orcids": [
-        "0000-0002-3136-9682"
-       ],
-       "venues": [
-        "Annual Meeting of the Association for Computational Linguistics (ACL)",
-        "Conference on Empirical Methods in Natural Language Processing (EMNLP)",
-        "Workshop on Representation Learning for NLP (RepL4NLP)"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2460814443",
-         "year": 2016,
-         "title": "Functional Distributional Semantics",
-         "venue": "Workshop on Representation Learning for NLP (RepL4NLP)"
-        },
-        {
-         "oa": "https://openalex.org/W2572063200",
-         "year": 2016,
-         "title": "Resources for building applications with Dependency Minimal Recursion Semantics",
-         "venue": "Language Resources and Evaluation Conference (LREC)"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W3033938264",
-         "year": 2020,
-         "title": "Linguists Who Use Probabilistic Models Love Them: Quantification in Functional Distributional Semantics",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W3175636134",
-         "year": 2020,
-         "title": "Multiple question fronting without relational constraints: An analysis of Russian as a basis for cross-linguistic modeling",
-         "venue": "Proceedings of the International Conference on Head-Driven Phrase Structure Grammar"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "MMLL",
-     "url": "https://www.cst.cam.ac.uk/people/gete2",
-     "sha256": "3e62048f4f9cf711480b732e395e63344efa005f64502fb94b9b891df2c947fa",
-     "observed": "20261115215412",
-     "quote": "Guy Emerson Assistant Research Professor Assistant Professor in NLP (Dept. Theoretical & Applied Linguistics) College Lecturer (Gonville & Caius College) Executive Director (Cambridge Language Sciences) I am a computational linguist. I develop models of human language, implement those models computa",
-     "ladder": true,
-     "hand": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Umang Bhatt",
-   "aliases": [
-    "Bhatt, Umang"
-   ],
-   "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (CST listing, professor rank); computing-share test passes: 19 of 38 school works DBLP-indexed (share 0.50; 2 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5016469734",
-      "https://openalex.org/A5125538948"
-     ],
-     "school_works": 38,
-     "dblp_indexed": 19,
-     "share": 0.5,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5016469734",
-       "basis": "candidate author id",
-       "works": 35,
-       "dblp_indexed": 19,
-       "years": [
-        2020,
-        2026
-       ],
-       "names": [
-        "Umang Bhatt",
-        "Bhatt, Umang"
-       ],
-       "orcids": [
-        "0000-0002-4611-1668"
-       ],
-       "venues": [
-        "Proceedings of the AAAI Conference on Artificial Intelligence",
-        "Proceedings of the AAAI/ACM Conference on AI Ethics and Society",
-        "International Joint Conference on Artificial Intelligence"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2973193541",
-         "year": 2020,
-         "title": "Explainable machine learning in deployment",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W3021850758",
-         "year": 2020,
-         "title": "Evaluating and Aggregating Feature-based Model Explanations",
-         "venue": "International Joint Conference on Artificial Intelligence"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W3041121541",
-         "year": 2020,
-         "title": "Machine Learning Explainability for External Stakeholders",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W3154771717",
-         "year": 2021,
-         "title": "δ-CLUE: Diverse Sets of Explanations for Uncertainty Estimates",
-         "venue": null
-        }
-       ]
-      },
-      {
-       "author": "https://openalex.org/A5125538948",
-       "basis": "full name: Bhatt, Umang",
-       "works": 3,
-       "dblp_indexed": 0,
-       "years": [
-        2026,
-        2026
-       ],
-       "names": [
-        "Bhatt, Umang",
-        "Umang Bhatt"
-       ],
-       "orcids": [],
-       "venues": [
-        "Proceedings of the AAAI/ACM Conference on AI Ethics and Society"
-       ],
-       "dblp_examples": [],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W7128538268",
-         "year": 2026,
-         "title": "Belief Offloading in Human-AI Interaction",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W7135038310",
-         "year": 2026,
-         "title": "RCTs & Human Uplift Studies: Methodological Challenges and Practical Solutions for Frontier AI Evaluation",
-         "venue": "Proceedings of the AAAI/ACM Conference on AI Ethics and Society"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "CST",
-     "url": "https://www.cst.cam.ac.uk/people/usb20",
-     "sha256": "06c694b5bcda1de0eb05703bb5654bb925e1064a3013a2a5ed05c16aa758da08",
-     "observed": "20261115215647",
-     "quote": "Dr Umang Bhatt Assistant Professor in Trustworthy Artificial Intelligence Fellow and Director of Studies in Computer Science, King's College, Cambridge Themes Machine Learning and Artificial Intelligence",
-     "ladder": true,
-     "hand": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Moshe Eliasof",
    "aliases": [
     "Moshe Eliasof"
@@ -19907,38 +21770,6 @@
    "aliases": [
     "S Scholtes",
     "Scholtes, Stefan"
-   ],
-   "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Stefan M. Goetz",
-   "aliases": [
-    "Stefan Goetz",
-    "Stefan M Goetz",
-    "Stephan M. Goetz"
    ],
    "source": "openalex_rule",
    "decision": "pending_source_coverage",
@@ -20338,37 +22169,6 @@
    "name": "Alan Thorne",
    "aliases": [
     "A. Thorne"
-   ],
-   "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Gos Micklem",
-   "aliases": [
-    "Micklem, Gos",
-    "G. Micklem"
    ],
    "source": "openalex_rule",
    "decision": "pending_source_coverage",
@@ -20965,117 +22765,6 @@
    },
    "faculty_evidence": [],
    "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Miri Zilka",
-   "aliases": [
-    "Zilka, Miri"
-   ],
-   "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 9 of 21 school works DBLP-indexed (share 0.43; 1 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5080823518"
-     ],
-     "school_works": 21,
-     "dblp_indexed": 9,
-     "share": 0.429,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5080823518",
-       "basis": "candidate author id",
-       "works": 21,
-       "dblp_indexed": 9,
-       "years": [
-        2022,
-        2026
-       ],
-       "names": [
-        "Miri Zilka",
-        "Zilka, Miri"
-       ],
-       "orcids": [
-        "0000-0001-9640-8139"
-       ],
-       "venues": [
-        "Proceedings of the AAAI/ACM Conference on AI Ethics and Society",
-        "ACM Conference on Fairness, Accountability, and Transparency (FAccT)",
-        "ACM Journal on Responsible Computing"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W4226418932",
-         "year": 2022,
-         "title": "Racial Disparities in the Enforcement of Marijuana Violations in the US",
-         "venue": "Proceedings of the AAAI/ACM Conference on AI Ethics and Society"
-        },
-        {
-         "oa": "https://openalex.org/W4281799859",
-         "year": 2022,
-         "title": "Transparency, Governance and Regulation of Algorithmic Tools Deployed in the Criminal Justice System: a UK Case Study",
-         "venue": "Proceedings of the AAAI/ACM Conference on AI Ethics and Society"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W4288468428",
-         "year": 2022,
-         "title": "The UK Algorithmic Transparency Standard: A Qualitative Analysis of Police Perspectives",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W4297435206",
-         "year": 2022,
-         "title": "Can We Automate the Analysis of Online Child Sexual Exploitation Discourse?",
-         "venue": null
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "ENG",
-     "url": "https://www.eng.cam.ac.uk/profiles/mz477",
-     "sha256": "74043248f27aa68ce9175c91ed3a399825e6c5c534aaabfb4a577c3a6917ef45",
-     "observed": "20261115220353",
-     "quote": "Dr Miri Zilka Profiles mz477 University Assistant Professor in Responsible Machine Learning",
-     "ladder": true,
-     "hand": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -21916,120 +23605,6 @@
    },
    "faculty_evidence": [],
    "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Sebastian W. Pattinson",
-   "aliases": [
-    "Sebastian Pattinson",
-    "S. Pattinson",
-    "Pattinson, Sebastian W."
-   ],
-   "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 5 of 24 school works DBLP-indexed (share 0.21; 1 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5026454775"
-     ],
-     "school_works": 24,
-     "dblp_indexed": 5,
-     "share": 0.208,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5026454775",
-       "basis": "candidate author id",
-       "works": 24,
-       "dblp_indexed": 5,
-       "years": [
-        2019,
-        2026
-       ],
-       "names": [
-        "Sebastian W. Pattinson",
-        "Sebastian Pattinson",
-        "S. Pattinson"
-       ],
-       "orcids": [
-        "0000-0002-7851-7718"
-       ],
-       "venues": [
-        "Advanced Functional Materials",
-        "Additive manufacturing",
-        "Nature Communications"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W4295733420",
-         "year": 2022,
-         "title": "Quantitative and Real‐Time Control of 3D Printing Material Flow Through Deep Learning",
-         "venue": "Advanced Intelligent Systems"
-        },
-        {
-         "oa": "https://openalex.org/W4367662619",
-         "year": 2023,
-         "title": "Towards Augmented Reality Guiding Systems: An Engineering Design of an Immersive System for Complex 3D Printing Repair Process",
-         "venue": "IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2952328294",
-         "year": 2019,
-         "title": "Additive Manufacturing of Biomechanically Tailored Meshes for Compliant Wearable and Implantable Devices",
-         "venue": "Advanced Functional Materials"
-        },
-        {
-         "oa": "https://openalex.org/W2965853536",
-         "year": 2019,
-         "title": "Additive Manufacturing: Additive Manufacturing of Biomechanically Tailored Meshes for Compliant Wearable and Implantable Devices (Adv. Funct. Mater. 3",
-         "venue": "Advanced Functional Materials"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "ENG",
-     "url": "https://www.eng.cam.ac.uk/profiles/swp29",
-     "sha256": "331ca1d303149975fd5dd5011cb185d09314a9ba06f6a63467f27be10c922b83",
-     "observed": "20261115220424",
-     "quote": "Dr Sebastian Pattinson Profiles swp29 University Associate Professor in Manufacturing Engineering",
-     "ladder": true,
-     "hand": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
    "units_searched": [
     "BSU",
     "CBSU",

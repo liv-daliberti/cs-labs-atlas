@@ -37,7 +37,7 @@ legacy_sweep = ""
 [census]
 computing_departments = ["CST"]
 center_units = ["CBSU", "BSU", "DH"]
-home_units = { "Computer Science and Technology" = 'computer science and technology' }
+home_units = { "Computer Science and Technology" = 'computer science and technology', "Genetics" = '\bgenetics\b', "Chemistry" = '\bchemistry\b' }
 rank_words = { ladder = '\b(?:prof|reader|university (?:senior )?lecturer)\b' }
 
 [sweep_check]
@@ -186,7 +186,7 @@ path = "stores/cambridge"
 
 [[hosts]]
 host = "www.cst.cam.ac.uk"
-use = "live"
+use = "wayback-only"
 purpose = "Faculty, research groups, students or thesis evidence; initial probe"
 probe = "https://www.cst.cam.ac.uk/people/directory"
 
@@ -267,3 +267,33 @@ host = "www.mmll.cam.ac.uk"
 use = "live"
 purpose = "Official linguistics faculty appointments, NLP lab leadership and source-stated supervision"
 probe = "https://www.mmll.cam.ac.uk/people/academic-staff"
+
+[[hosts]]
+host = "www.gen.cam.ac.uk"
+use = "live"
+purpose = "Official computational biology faculty appointment and home department"
+probe = "https://www.gen.cam.ac.uk/people/gos-micklem"
+
+[[hosts]]
+host = "www.ch.cam.ac.uk"
+use = "live"
+purpose = "Official computational chemistry faculty appointment and home department"
+probe = "https://www.ch.cam.ac.uk/person/ljc37"
+
+[[hosts]]
+host = "mlg.eng.cam.ac.uk"
+use = "live"
+purpose = "Research group membership and explicit doctoral supervision"
+probe = "https://mlg.eng.cam.ac.uk/adrian/"
+
+[[hosts]]
+host = "engage.ifm.eng.cam.ac.uk"
+use = "live"
+purpose = "Official research laboratory leadership evidence"
+probe = "https://engage.ifm.eng.cam.ac.uk/project/thomas-bohne/"
+
+[[hosts]]
+host = "api.repository.cam.ac.uk"
+use = "live"
+purpose = "Deposited thesis bytes with explicit doctoral supervision evidence"
+probe = "https://api.repository.cam.ac.uk/server/api/core/bitstreams/42c91506-c0ac-4e24-9e9a-a55a4119c1ec/content"
