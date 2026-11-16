@@ -23,8 +23,8 @@
   "SOC"
  ],
  "counts": {
-  "pending_source_coverage": 367,
-  "accepted": 84,
+  "pending_source_coverage": 364,
+  "accepted": 86,
   "pending_identity_collision": 2
  },
  "decisions": [
@@ -3642,47 +3642,6 @@
       "url": "https://dblp.org/pid/60/3109-3",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Faculty of Philosophy, UK"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "David A. Knowles",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/03/11107"
-    ],
-    "dblp_window": 28,
-    "affiliation_notes": [
-     "New York Genome Center, New York City, NY, USA",
-     "Columbia University, New York City, NY, USA",
-     "Stanford University, Department of Computer Science, Stanford, CA, USA",
-     "University of Cambridge, Department of Engineering , UK"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/03/11107",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "New York Genome Center, New York City, NY, USA"
      }
     ]
    },
@@ -16299,8 +16258,8 @@
     "W. T. Gowers"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DPMMS listing, professor rank) with 18 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/161/4074"
@@ -16315,10 +16274,120 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5046740352"
+     ],
+     "school_works": 32,
+     "dblp_indexed": 9,
+     "share": 0.281,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5046740352",
+       "basis": "full name: Timothy Gowers",
+       "works": 32,
+       "dblp_indexed": 9,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "W. T. Gowers",
+        "Timothy Gowers",
+        "Gowers, W. T."
+       ],
+       "orcids": [
+        "0000-0002-5168-0785"
+       ],
+       "venues": [
+        "Bulletin of the American Mathematical Society",
+        "Annals of Mathematics",
+        "Springer eBooks"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2413604966",
+         "year": 2016,
+         "title": "A Fully Automatic Theorem Prover with Human-Style Output",
+         "venue": "Journal of Automated Reasoning"
+        },
+        {
+         "oa": "https://openalex.org/W2563915850",
+         "year": 2016,
+         "title": "The Multiparty Communication Complexity of Interleaved Group Products",
+         "venue": "Annual Symposium on Foundations of Computer Science"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2519715328",
+         "year": 2016,
+         "title": "Probabilistic combinatorics and the recent work of Peter Keevash",
+         "venue": "Bulletin of the American Mathematical Society"
+        },
+        {
+         "oa": "https://openalex.org/W2963525781",
+         "year": 2016,
+         "title": "Generalizations of Fourier analysis, and how to apply them",
+         "venue": "Bulletin of the American Mathematical Society"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "DPMMS",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Mathematics, Rouse Ball 1998 Sir Timothy Gowers, T",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 11,
+      "heading": "PROFESSORS",
+      "entry_name": "Sir Timothy Gowers",
+      "appointment_year": "1998",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "DPMMS",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Mathematics, Rouse Ball 1998 Sir Timothy Gowers, T",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 12,
+      "heading": "PROFESSORS",
+      "entry_name": "Sir Timothy Gowers",
+      "appointment_year": "1998",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -21509,6 +21578,578 @@
    ]
   },
   {
+   "name": "Ian H. White",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank) with 47 DBLP records 2016-2026 in the decided person record",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/94/316"
+    ],
+    "dblp_window": 47,
+    "dblp_basis": "school_coauthors",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/94/316",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "24f24c4e395761b5b243c2c4f35f02d07617bd5cf3086e55c739a3174ac7ebbe",
+      "quote": "Ian H. White"
+     }
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5026880270"
+     ],
+     "school_works": 103,
+     "dblp_indexed": 26,
+     "share": 0.252,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [
+      {
+       "author": "https://openalex.org/A5058039205",
+       "why": "namesake: ORCID 0000-0002-6718-7661, not the busiest ORCID 0000-0002-7368-0305",
+       "n": 30
+      }
+     ],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5026880270",
+       "basis": "full name: Ian H. White",
+       "works": 103,
+       "dblp_indexed": 26,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Ian H. White",
+        "Ian White",
+        "I. H. White"
+       ],
+       "orcids": [
+        "0000-0002-7368-0305"
+       ],
+       "venues": [
+        "Journal of Lightwave Technology",
+        "Conference on Lasers and Electro-Optics",
+        "Optical Fiber Communication Conference"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2277113546",
+         "year": 2016,
+         "title": "Bandwidth Enhancement in Multimode Polymer Waveguides Using Waveguide Layout for Optical Printed Circuit Boards",
+         "venue": "Optical Fiber Communication Conference"
+        },
+        {
+         "oa": "https://openalex.org/W2326912529",
+         "year": 2016,
+         "title": "All-optical Mode-Group Division Multiplexing Over a Graded-Index Ring-Core Fiber with Single Radial Mode",
+         "venue": "Optical Fiber Communication Conference"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2270842630",
+         "year": 2016,
+         "title": "Pulse generation with ultra-superluminal pulse propagation in semiconductor heterostructures by superradiant-phase transition enhanced by transient co",
+         "venue": "Light Science & Applications"
+        },
+        {
+         "oa": "https://openalex.org/W2282775880",
+         "year": 2016,
+         "title": "Wireless Visible Light Communications Employing Feed-Forward Pre-Equalization and PAM-4 Modulation",
+         "venue": "Journal of Lightwave Technology"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Engineering, Van Eck 2001 Ian Hugh White, JE",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 8,
+      "heading": "PROFESSORS",
+      "entry_name": "Ian Hugh White",
+      "appointment_year": "2001",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Engineering, Van Eck 2001 Ian Hugh White, JE",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 8,
+      "heading": "PROFESSORS",
+      "entry_name": "Ian Hugh White",
+      "appointment_year": "2001",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Ioannis Kontoyiannis",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank) with 71 DBLP records 2016-2026 in the decided person record",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/74/5935"
+    ],
+    "dblp_window": 71,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/74/5935",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "12ee7f6f5bf561871bff58ddbec68d47337930937a39cf6752034f2dac4b2953",
+      "quote": "Ioannis Kontoyiannis"
+     }
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5044225058"
+     ],
+     "school_works": 69,
+     "dblp_indexed": 35,
+     "share": 0.507,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5044225058",
+       "basis": "full name: Ioannis Kontoyiannis",
+       "works": 69,
+       "dblp_indexed": 35,
+       "years": [
+        2018,
+        2026
+       ],
+       "names": [
+        "Ioannis Kontoyiannis",
+        "Kontoyiannis, Ioannis",
+        "I. Kontoyiannis"
+       ],
+       "orcids": [
+        "0000-0001-7242-6375"
+       ],
+       "venues": [
+        "IEEE International Symposium on Information Theory (ISIT)",
+        "IEEE Transactions on Information Theory",
+        "IEEE Information Theory Workshop (ITW)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2885362480",
+         "year": 2018,
+         "title": "Sharp Gaussian Approximation Bounds for Linear Systems with $\\alpha$ -stable Noise",
+         "venue": "IEEE International Symposium on Information Theory (ISIT)"
+        },
+        {
+         "oa": "https://openalex.org/W2998168465",
+         "year": 2019,
+         "title": "The Lévy State Space Model",
+         "venue": "2018 52nd Asilomar Conference on Signals, Systems, and Computers"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2924369012",
+         "year": 2019,
+         "title": "Denoising line edge roughness measurement using hidden Markov models",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2767770556",
+         "year": 2020,
+         "title": "Geometric ergodicity in a weighted Sobolev space",
+         "venue": "The Annals of Probability"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Information and Communications 2018 Ioannis Kontoyiannis, DAR",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 10,
+      "heading": "PROFESSORS",
+      "entry_name": "Ioannis Kontoyiannis",
+      "appointment_year": "2018",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2019
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Francis Nolan",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (MMLL listing, professor rank) with 6 DBLP records 2016-2026 in the decided person record",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/63/5080"
+    ],
+    "dblp_window": 6,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/63/5080",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "0618f224dd2362b0a004f6452de2e62e37eb1309cc7adaaf70d4963e0562e4a2",
+      "quote": "Francis Nolan"
+     }
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5038260010"
+     ],
+     "school_works": 18,
+     "dblp_indexed": 5,
+     "share": 0.278,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5038260010",
+       "basis": "full name: Francis Nolan",
+       "works": 18,
+       "dblp_indexed": 5,
+       "years": [
+        2017,
+        2025
+       ],
+       "names": [
+        "Francis Nolan",
+        "Francis .J. Nolan"
+       ],
+       "orcids": [],
+       "venues": [
+        "Laboratory Phonology Journal of the Association for Laboratory Phonology",
+        "The Journal of the Acoustical Society of America",
+        "Speech Communication"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2792441356",
+         "year": 2018,
+         "title": "The role of segments and prosody in the identification of a speaker’s dialect",
+         "venue": "Journal of Phonetics"
+        },
+        {
+         "oa": "https://openalex.org/W2972506416",
+         "year": 2019,
+         "title": "Articulation Rate as a Metric in Spoken Language Assessment",
+         "venue": "Interspeech (USB)"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2570153521",
+         "year": 2017,
+         "title": "Prosodic Marking of Narrow Focus in Seoul Korean",
+         "venue": "Laboratory Phonology Journal of the Association for Laboratory Phonology"
+        },
+        {
+         "oa": "https://openalex.org/W2988390291",
+         "year": 2019,
+         "title": "Do listeners rely on dynamic spectral properties in the recognition of high-pitched vowels?",
+         "venue": "The Journal of the Acoustical Society of America"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "MMLL",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Phonetics 2004 Francis Joseph David Nolan, F",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 13,
+      "heading": "PROFESSORS",
+      "entry_name": "Francis Joseph David Nolan",
+      "appointment_year": "2004",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "MMLL",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Phonetics 2004 Francis Joseph David Nolan, F",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 14,
+      "heading": "PROFESSORS",
+      "entry_name": "Francis Joseph David Nolan",
+      "appointment_year": "2004",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Paul N. Schofield",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (Physiology, Development and Neuroscience listing, professor rank) with 22 DBLP records 2016-2026 in the decided person record",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/41/6978"
+    ],
+    "dblp_window": 22,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/41/6978",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "1db95dd9958216052bf68063df09a9be69b8c1aebe082bcfb7b1923438a18703",
+      "quote": "Paul N. Schofield"
+     }
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5059588755"
+     ],
+     "school_works": 72,
+     "dblp_indexed": 19,
+     "share": 0.264,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5059588755",
+       "basis": "full name: Paul N. Schofield",
+       "works": 72,
+       "dblp_indexed": 19,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Paul N. Schofield",
+        "Paul N Schofield",
+        "Paul Schofield"
+       ],
+       "orcids": [
+        "0000-0002-5111-7263"
+       ],
+       "venues": [
+        "International Journal of Radiation Biology",
+        "Journal of Biomedical Semantics",
+        "Mammalian Genome"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2293058587",
+         "year": 2016,
+         "title": "Using AberOWL for fast and scalable reasoning over BioPortal ontologies",
+         "venue": "Journal of Biomedical Semantics"
+        },
+        {
+         "oa": "https://openalex.org/W2423530108",
+         "year": 2016,
+         "title": "DermO; an ontology for the description of dermatologic disease",
+         "venue": "Journal of Biomedical Semantics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2291373837",
+         "year": 2016,
+         "title": "Approaches to Investigating Complex Genetic Traits in a Large-Scale Inbred Mouse Aging Study",
+         "venue": "Veterinary Pathology"
+        },
+        {
+         "oa": "https://openalex.org/W2311973097",
+         "year": 2016,
+         "title": "The Vital Role of Pathology in Improving Reproducibility and Translational Relevance of Aging Studies in Rodents",
+         "venue": "Veterinary Pathology"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "Physiology, Development and Neuroscience",
+     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
+     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
+     "observed": "20261116023107",
+     "quote": "Biomedical Informatics 2012 Paul Nicholas Schofield, R",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2018-01-12",
+      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
+      "page": 17,
+      "heading": "READERS",
+      "entry_name": "Paul Nicholas Schofield",
+      "appointment_year": "2012",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    },
+    {
+     "unit": "Physiology, Development and Neuroscience",
+     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
+     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
+     "observed": "20261116031813",
+     "quote": "Biomedical Informatics 2012 Paul Nicholas Schofield, R",
+     "ladder": true,
+     "hand": true,
+     "dated_listing": {
+      "date": "2019-02-15",
+      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
+      "page": 18,
+      "heading": "READERS",
+      "entry_name": "Paul Nicholas Schofield",
+      "appointment_year": "2012",
+      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
+     }
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
    "name": "Ivan Vulić",
    "aliases": [
     "Vulić, Ivan",
@@ -22562,128 +23203,6 @@
    ]
   },
   {
-   "name": "Ioannis Kontoyiannis",
-   "aliases": [
-    "Kontoyiannis, Ioannis",
-    "I. Kontoyiannis"
-   ],
-   "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 35 of 69 school works DBLP-indexed (share 0.51; 1 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5044225058"
-     ],
-     "school_works": 69,
-     "dblp_indexed": 35,
-     "share": 0.507,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5044225058",
-       "basis": "candidate author id",
-       "works": 69,
-       "dblp_indexed": 35,
-       "years": [
-        2018,
-        2026
-       ],
-       "names": [
-        "Ioannis Kontoyiannis",
-        "Kontoyiannis, Ioannis",
-        "I. Kontoyiannis"
-       ],
-       "orcids": [
-        "0000-0001-7242-6375"
-       ],
-       "venues": [
-        "IEEE International Symposium on Information Theory (ISIT)",
-        "IEEE Transactions on Information Theory",
-        "IEEE Information Theory Workshop (ITW)"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2885362480",
-         "year": 2018,
-         "title": "Sharp Gaussian Approximation Bounds for Linear Systems with $\\alpha$ -stable Noise",
-         "venue": "IEEE International Symposium on Information Theory (ISIT)"
-        },
-        {
-         "oa": "https://openalex.org/W2998168465",
-         "year": 2019,
-         "title": "The Lévy State Space Model",
-         "venue": "2018 52nd Asilomar Conference on Signals, Systems, and Computers"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2924369012",
-         "year": 2019,
-         "title": "Denoising line edge roughness measurement using hidden Markov models",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W2767770556",
-         "year": 2020,
-         "title": "Geometric ergodicity in a weighted Sobolev space",
-         "venue": "The Annals of Probability"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "ENG",
-     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
-     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
-     "observed": "20261116031813",
-     "quote": "Information and Communications 2018 Ioannis Kontoyiannis, DAR",
-     "ladder": true,
-     "hand": true,
-     "dated_listing": {
-      "date": "2019-02-15",
-      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
-      "page": 10,
-      "heading": "PROFESSORS",
-      "entry_name": "Ioannis Kontoyiannis",
-      "appointment_year": "2018",
-      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
-     }
-    }
-   ],
-   "years_listed": [
-    2019
-   ],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Milica Gašić",
    "aliases": [
     "Milica Gasic",
@@ -22966,154 +23485,6 @@
    ]
   },
   {
-   "name": "Ian H. White",
-   "aliases": [
-    "Ian White",
-    "I. H. White",
-    "I.H. White"
-   ],
-   "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ENG listing, professor rank); computing-share test passes: 26 of 103 school works DBLP-indexed (share 0.25; 1 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5026880270"
-     ],
-     "school_works": 103,
-     "dblp_indexed": 26,
-     "share": 0.252,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [
-      {
-       "author": "https://openalex.org/A5058039205",
-       "why": "namesake: ORCID 0000-0002-6718-7661, not the busiest ORCID 0000-0002-7368-0305",
-       "n": 30
-      }
-     ],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5026880270",
-       "basis": "candidate author id",
-       "works": 103,
-       "dblp_indexed": 26,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Ian H. White",
-        "Ian White",
-        "I. H. White"
-       ],
-       "orcids": [
-        "0000-0002-7368-0305"
-       ],
-       "venues": [
-        "Journal of Lightwave Technology",
-        "Conference on Lasers and Electro-Optics",
-        "Optical Fiber Communication Conference"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2277113546",
-         "year": 2016,
-         "title": "Bandwidth Enhancement in Multimode Polymer Waveguides Using Waveguide Layout for Optical Printed Circuit Boards",
-         "venue": "Optical Fiber Communication Conference"
-        },
-        {
-         "oa": "https://openalex.org/W2326912529",
-         "year": 2016,
-         "title": "All-optical Mode-Group Division Multiplexing Over a Graded-Index Ring-Core Fiber with Single Radial Mode",
-         "venue": "Optical Fiber Communication Conference"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2270842630",
-         "year": 2016,
-         "title": "Pulse generation with ultra-superluminal pulse propagation in semiconductor heterostructures by superradiant-phase transition enhanced by transient co",
-         "venue": "Light Science & Applications"
-        },
-        {
-         "oa": "https://openalex.org/W2282775880",
-         "year": 2016,
-         "title": "Wireless Visible Light Communications Employing Feed-Forward Pre-Equalization and PAM-4 Modulation",
-         "venue": "Journal of Lightwave Technology"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "ENG",
-     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
-     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
-     "observed": "20261116023107",
-     "quote": "Engineering, Van Eck 2001 Ian Hugh White, JE",
-     "ladder": true,
-     "hand": true,
-     "dated_listing": {
-      "date": "2018-01-12",
-      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
-      "page": 8,
-      "heading": "PROFESSORS",
-      "entry_name": "Ian Hugh White",
-      "appointment_year": "2001",
-      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
-     }
-    },
-    {
-     "unit": "ENG",
-     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
-     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
-     "observed": "20261116031813",
-     "quote": "Engineering, Van Eck 2001 Ian Hugh White, JE",
-     "ladder": true,
-     "hand": true,
-     "dated_listing": {
-      "date": "2019-02-15",
-      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
-      "page": 8,
-      "heading": "PROFESSORS",
-      "entry_name": "Ian Hugh White",
-      "appointment_year": "2001",
-      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
-     }
-    }
-   ],
-   "years_listed": [
-    2018,
-    2019
-   ],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Samuel Albanie",
    "aliases": [
     "Albanie, Samuel",
@@ -23246,16 +23617,107 @@
     "de Silva, Lavindra"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, reviewed own-group/advising evidence); computing-share test passes: 24 of 38 school works DBLP-indexed (share 0.63; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "pi_basis_review": {
+     "kind": "advises_phd",
+     "url": "https://drf.eng.cam.ac.uk/people/percy-pei-hei-lam",
+     "sha256": "5534b26ac00c5a110626872d70a16c7b8dd0e6c21161c31e8f3c70cfadb1a7e2",
+     "quote": "Percy Lam is currently a PhD student at the EPSRC Centre for Doctoral Training in Future Infrastructure and Built Environment. His PhD research investigates on the construction and maintenance of a digital twin for motorway networks. His academic work is supervised by Dr. Lavindra de Silva",
+     "unit": "ENG",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5064876611"
+     ],
+     "school_works": 38,
+     "dblp_indexed": 24,
+     "share": 0.632,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5064876611",
+       "basis": "candidate author id",
+       "works": 38,
+       "dblp_indexed": 24,
+       "years": [
+        2018,
+        2026
+       ],
+       "names": [
+        "Lavindra de Silva",
+        "Lavindra De Silva",
+        "de Silva, Lavindra"
+       ],
+       "orcids": [
+        "0000-0002-7807-8006"
+       ],
+       "venues": [
+        "Studies in computational intelligence",
+        "Proceedings of the AAAI Conference on Artificial Intelligence",
+        "ACM/IEEE International Conference on Human-Robot Interaction (HRI)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2912661944",
+         "year": 2019,
+         "title": "HTN-like solutions for classical planning problems: An application to BDI agent systems",
+         "venue": "Theoretical Computer Science"
+        },
+        {
+         "oa": "https://openalex.org/W2964472129",
+         "year": 2019,
+         "title": "Prioritising Low Cost Digital Solutions Required by Manufacturing SMEs: A Shoestring Approach",
+         "venue": "Studies in computational intelligence"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2806062975",
+         "year": 2018,
+         "title": "Addendum to \"HTN Acting: A Formalism and an Algorithm\"",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W4285231056",
+         "year": 2022,
+         "title": "Digitalisation for SME Manufacturers: A Framework and a Low-Cost Approach",
+         "venue": "IFAC-PapersOnLine"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/lpd25",
+     "sha256": "779b159342c469d99eaaeb384f2177aba58cf44a5f641aa2b62667886e3e7fef",
+     "observed": "20261115220339",
+     "quote": "Prof. Lavindra de Silva PhD Profiles lpd25 Research Professor in Digital Roads",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -23495,148 +23957,6 @@
    },
    "faculty_evidence": [],
    "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Paul N. Schofield",
-   "aliases": [
-    "Paul N Schofield",
-    "Paul Schofield",
-    "Schofield, Paul N."
-   ],
-   "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (Physiology, Development and Neuroscience listing, professor rank); computing-share test passes: 19 of 72 school works DBLP-indexed (share 0.26; 1 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5059588755"
-     ],
-     "school_works": 72,
-     "dblp_indexed": 19,
-     "share": 0.264,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5059588755",
-       "basis": "candidate author id",
-       "works": 72,
-       "dblp_indexed": 19,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Paul N. Schofield",
-        "Paul N Schofield",
-        "Paul Schofield"
-       ],
-       "orcids": [
-        "0000-0002-5111-7263"
-       ],
-       "venues": [
-        "International Journal of Radiation Biology",
-        "Journal of Biomedical Semantics",
-        "Mammalian Genome"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2293058587",
-         "year": 2016,
-         "title": "Using AberOWL for fast and scalable reasoning over BioPortal ontologies",
-         "venue": "Journal of Biomedical Semantics"
-        },
-        {
-         "oa": "https://openalex.org/W2423530108",
-         "year": 2016,
-         "title": "DermO; an ontology for the description of dermatologic disease",
-         "venue": "Journal of Biomedical Semantics"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2291373837",
-         "year": 2016,
-         "title": "Approaches to Investigating Complex Genetic Traits in a Large-Scale Inbred Mouse Aging Study",
-         "venue": "Veterinary Pathology"
-        },
-        {
-         "oa": "https://openalex.org/W2311973097",
-         "year": 2016,
-         "title": "The Vital Role of Pathology in Improving Reproducibility and Translational Relevance of Aging Studies in Rodents",
-         "venue": "Veterinary Pathology"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "Physiology, Development and Neuroscience",
-     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
-     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
-     "observed": "20261116023107",
-     "quote": "Biomedical Informatics 2012 Paul Nicholas Schofield, R",
-     "ladder": true,
-     "hand": true,
-     "dated_listing": {
-      "date": "2018-01-12",
-      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
-      "page": 17,
-      "heading": "READERS",
-      "entry_name": "Paul Nicholas Schofield",
-      "appointment_year": "2012",
-      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
-     }
-    },
-    {
-     "unit": "Physiology, Development and Neuroscience",
-     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
-     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
-     "observed": "20261116031813",
-     "quote": "Biomedical Informatics 2012 Paul Nicholas Schofield, R",
-     "ladder": true,
-     "hand": true,
-     "dated_listing": {
-      "date": "2019-02-15",
-      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
-      "page": 18,
-      "heading": "READERS",
-      "entry_name": "Paul Nicholas Schofield",
-      "appointment_year": "2012",
-      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
-     }
-    }
-   ],
-   "years_listed": [
-    2018,
-    2019
-   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -25500,143 +25820,6 @@
    },
    "faculty_evidence": [],
    "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Francis Nolan",
-   "aliases": [
-    "Francis .J. Nolan"
-   ],
-   "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (MMLL listing, professor rank); computing-share test passes: 5 of 18 school works DBLP-indexed (share 0.28; 1 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5038260010"
-     ],
-     "school_works": 18,
-     "dblp_indexed": 5,
-     "share": 0.278,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5038260010",
-       "basis": "candidate author id",
-       "works": 18,
-       "dblp_indexed": 5,
-       "years": [
-        2017,
-        2025
-       ],
-       "names": [
-        "Francis Nolan",
-        "Francis .J. Nolan"
-       ],
-       "orcids": [],
-       "venues": [
-        "Laboratory Phonology Journal of the Association for Laboratory Phonology",
-        "The Journal of the Acoustical Society of America",
-        "Speech Communication"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2792441356",
-         "year": 2018,
-         "title": "The role of segments and prosody in the identification of a speaker’s dialect",
-         "venue": "Journal of Phonetics"
-        },
-        {
-         "oa": "https://openalex.org/W2972506416",
-         "year": 2019,
-         "title": "Articulation Rate as a Metric in Spoken Language Assessment",
-         "venue": "Interspeech (USB)"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2570153521",
-         "year": 2017,
-         "title": "Prosodic Marking of Narrow Focus in Seoul Korean",
-         "venue": "Laboratory Phonology Journal of the Association for Laboratory Phonology"
-        },
-        {
-         "oa": "https://openalex.org/W2988390291",
-         "year": 2019,
-         "title": "Do listeners rely on dynamic spectral properties in the recognition of high-pitched vowels?",
-         "venue": "The Journal of the Acoustical Society of America"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "MMLL",
-     "url": "https://www.admin.cam.ac.uk/reporter/2017-18/special/04/04_UniversityOfficers_PartI_2017-18.pdf",
-     "sha256": "bce8983e68fceaf6de1319e37d7114f1be0c586b5adbb20829b6ce2f2c79fca1",
-     "observed": "20261116023107",
-     "quote": "Phonetics 2004 Francis Joseph David Nolan, F",
-     "ladder": true,
-     "hand": true,
-     "dated_listing": {
-      "date": "2018-01-12",
-      "date_quote": "This issue of the Officers Number includes data received up to 12 January 2018.",
-      "page": 13,
-      "heading": "PROFESSORS",
-      "entry_name": "Francis Joseph David Nolan",
-      "appointment_year": "2004",
-      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
-     }
-    },
-    {
-     "unit": "MMLL",
-     "url": "https://www.admin.cam.ac.uk/reporter/2018-19/special/05/UniversityOfficersPt1-2019.pdf",
-     "sha256": "6c5e5c53e9848e23736ab619b1ba9e2e4d0c4743cbaf7f6e404a9984952d3f59",
-     "observed": "20261116031813",
-     "quote": "Phonetics 2004 Francis Joseph David Nolan, F",
-     "ladder": true,
-     "hand": true,
-     "dated_listing": {
-      "date": "2019-02-15",
-      "date_quote": "This issue of the Officers Number includes data received up to 15 February 2019.",
-      "page": 14,
-      "heading": "PROFESSORS",
-      "entry_name": "Francis Joseph David Nolan",
-      "appointment_year": "2004",
-      "appointment_column_quote": "The mention of a date before a name means that the person named entered in that year into the office or appointment specified."
-     }
-    }
-   ],
-   "years_listed": [
-    2018,
-    2019
-   ],
    "units_searched": [
     "BSU",
     "CBSU",
