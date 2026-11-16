@@ -121,6 +121,7 @@ def reviewed_profile_names(key, rows):
     if doc.get('school') != key:
         raise ValueError('profile-name review school mismatch')
     import listing_formats as LF
+    from bs4 import BeautifulSoup
     from listing_rows import quote_of
     from school_web import body
     mapping, reviewed_spellings = {}, set()
@@ -134,6 +135,10 @@ def reviewed_profile_names(key, rows):
                 raise ValueError('profile-name review lacks profile, name, spellings, or evidence')
             if profile in mapping:
                 raise ValueError('duplicate reviewed source profile: ' + item['profile'])
+            forms = item.get('source_forms') or list(spellings)
+            if any(not any(sorted(toks(f)) == sorted(toks(n)) for n in spellings) for f in forms):
+                raise ValueError('source form is not a reviewed name ordering')
+            seen_forms = set()
             for ev in item['evidence']:
                 saved = c.execute('select http_status,sha256,raw_zlib,text from captures where capture_url=?', (ev['url'],)).fetchone()
                 if not saved or saved[0] != 200 or not saved[2] or saved[1] != ev['sha256'] or hashlib.sha256(zlib.decompress(saved[2])).hexdigest() != ev['sha256']:
@@ -144,17 +149,24 @@ def reviewed_profile_names(key, rows):
                 flat = ' '.join((saved[3] or '').split())
                 if len(matches) != 1 or ev['name_listed'] not in spellings or quote_of(flat, matches[0], html) != ev['quote']:
                     raise ValueError('profile-name source card mismatch: ' + ev['url'])
-            mapping[profile] = (name, set(spellings))
+                cards = [card for card in BeautifulSoup(html, 'html.parser').select('.img-card--academic')
+                         if (a := card.select_one('.img-card__title a')) and profile_key(a.get('href')) == profile]
+                for card in cards:
+                    text = ' '.join(card.get_text(' ', strip=True).split())
+                    seen_forms.update(f for f in forms if f in text)
+            if set(forms) - seen_forms:
+                raise ValueError('source name form is absent from the reviewed profile card')
+            mapping[profile] = (name, set(spellings), forms)
             reviewed_spellings.update(spellings)
     out = []
     for row in rows:
         profile = profile_key(row.get('profile'))
         listed = row.get('name_listed', row['name'])
         if profile in mapping:
-            name, spellings = mapping[profile]
+            name, spellings, forms = mapping[profile]
             if listed not in spellings:
                 raise ValueError('unreviewed spelling at reviewed profile: ' + listed)
-            row = dict(row, name=name, reviewed_profile_name=name)
+            row = dict(row, name=name, reviewed_profile_name=name, reviewed_name_forms=list(forms))
         elif listed in reviewed_spellings:
             raise ValueError('unreviewed source profile for ambiguous faculty name: ' + listed)
         out.append(row)
@@ -327,7 +339,8 @@ def main(key):
         cid = f'{key}_fac_' + slug(name)
         homepage = next((r['homepage'] for r in reversed(rs) if r.get('homepage')), None)
         profile_url = homepage or next((r['profile'] for r in reversed(rs) if r.get('profile')), None)
-        census.append(dict(name=name, aliases=[a for a in g['names'] if a != name and not TITLE_NAME.search(a)], collection_person_id=cid, structure_name=name,
+        forms = list(dict.fromkeys(g['names'] + [f for r in rs for f in r.get('reviewed_name_forms') or []]))
+        census.append(dict(name=name, aliases=[a for a in forms if a != name and not TITLE_NAME.search(a)], collection_person_id=cid, structure_name=name,
                            profile_url=profile_url, dblp=[d_['pid']] if (d_ := dblp_ids.get(name) or {}).get('pid') else [],
                            dblp_basis=d_.get('basis'), dblp_evidence={k: d_[k] for k in ('url', 'dump', 'sha256', 'quote') if k in d_} or None,
                            orcid=list(d_.get('orcid') or []), rank=best[max(best)], title_as_listed='; '.join(latest['titles']),

@@ -81,3 +81,19 @@ def test_changed_original_or_wrong_source_card_cannot_authorize_mapping(profile_
         c.execute('update captures set raw_zlib=?', (zlib.compress(b'changed page'),))
     with pytest.raises(ValueError, match='hash mismatch'):
         C.reviewed_profile_names('ntu', rows)
+
+
+def test_qualified_primary_identity_keeps_source_forms_without_native_name_merge(profile_review):
+    from collections import Counter
+    from pihier.census import merge_census_rows
+    rows, _, _, _ = profile_review
+    mapped = C.reviewed_profile_names('ntu', rows)
+    assert mapped[-1]['name'] == 'Yi Li [SPMS]'
+    assert mapped[-1]['reviewed_name_forms'] == ['Li Yi']
+    # The same literal source name is a matching form, not a primary identity
+    # or permission to inherit the other person's bibliographic anchor.
+    native = [dict(name='Yi Li', aliases=['Li Yi'], is_pi=True, collection_person_id='cs', dblp=['cs-pid']),
+              dict(name='Yi Li [SPMS]', aliases=['Yi Li', 'Li Yi'], is_pi=True, collection_person_id='math', dblp=[])]
+    grouped, _ = merge_census_rows(native, {}, Counter())
+    assert len(grouped) == 2
+    assert grouped['Yi Li [SPMS]'][0]['dblp'] == []
