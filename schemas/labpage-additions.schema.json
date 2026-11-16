@@ -69,6 +69,22 @@
   "students",
   "papers"
  ],
+ "patternProperties": {
+  "^hand_review(?:_[0-9]{8}[a-z]?)?$": {
+   "description": "Preserved manual review decisions, including rejected and withheld proposals; these do not grant acceptance.",
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "pi": {"type": "string", "minLength": 1},
+     "name": {"type": "string", "minLength": 1},
+     "decision": {"type": "string", "minLength": 1},
+     "reason": {"type": "string", "minLength": 1}
+    },
+    "required": ["pi", "name", "decision", "reason"]
+   }
+  }
+ },
  "additionalProperties": false,
  "$defs": {
   "student": {

@@ -1667,6 +1667,12 @@ Proposed lab-page students and papers, each with url, sha256, verbatim quote and
 | `rules.LP-PAP-01` | string | no | Paper rule. |  |  |
 | `students` | array of `student` | yes | Proposed students. |  |  |
 | `papers` | array of `paper` | yes | Proposed papers. |  |  |
+| `<key ~ /^hand_review(?:_[0-9]{8}[a-z]?)?$/>` | array of object | — | Preserved manual review decisions, including rejected and withheld proposals; these do not grant acceptance. |  |  |
+| `<key ~ /^hand_review(?:_[0-9]{8}[a-z]?)?$/>[]` | object | — |  |  |  |
+| `<key ~ /^hand_review(?:_[0-9]{8}[a-z]?)?$/>[].pi` | string | yes |  | non-empty |  |
+| `<key ~ /^hand_review(?:_[0-9]{8}[a-z]?)?$/>[].name` | string | yes |  | non-empty |  |
+| `<key ~ /^hand_review(?:_[0-9]{8}[a-z]?)?$/>[].decision` | string | yes |  | non-empty |  |
+| `<key ~ /^hand_review(?:_[0-9]{8}[a-z]?)?$/>[].reason` | string | yes |  | non-empty |  |
 
 ### labpage-additions: shape `student`
 
@@ -2279,7 +2285,7 @@ Constraints:
 
 ## `hierarchy/student-identity-review.json`
 
-Verdicts on two records of one lab: one person (merged) or different people.
+Within-lab record verdicts and source-bound cross-lab person identity reviews. The ID builder validates the exact membership and primary-source proofs before joining.
 
 - schema: `schemas/student-identity-review.schema.json`
 - kind: reviewed (a decision file, tracked in git)
@@ -2294,13 +2300,20 @@ The file is an array of items.
 |---|---|---|---|---|---|
 | `[]` | object | — | A verdict. |  |  |
 | `[].school` | string | yes | School key. | pattern `^[a-z]+$` |  |
-| `[].pi` | string | yes | The lab. |  |  |
-| `[].a` | array of string | yes | [record id, name]. | at least 2 item(s) |  |
-| `[].b` | array of string | yes | [record id, name]. | at least 2 item(s) |  |
+| `[].pi` | string | no | The lab. |  |  |
+| `[].a` | array of string | no | [record id, name]. | at least 2 item(s) |  |
+| `[].b` | array of string | no | [record id, name]. | at least 2 item(s) |  |
 | `[].verdict` | string | yes | same_person merges the records; different_people only feeds the chain audit. | one of `same_person`, `different_people` | R-STU-04, R-AUD-03 |
 | `[].canonical_name` | string \| null | no | The merged record's name. |  |  |
 | `[].reason` | string | yes | Why. | non-empty |  |
 | `[].evidence` | array of `evidence` | no | Evidence items. |  |  |
+| `[].scope` | string | no | Absent for legacy within-lab reviews; cross_lab uses exact membership/source proofs. | one of `within_lab`, `cross_lab` |  |
+| `[].identity_url` | string | no | Shared primary personal page for a named cross-lab review. | non-empty |  |
+| `[].identity_basis` | string | no | Typed repository author certificates use their own exact source proof. | one of `typed_repository_author` |  |
+| `[].memberships` | array of object | no | Exact source-bound native membership keys; distinct labs are checked by atlas_ids. | at least 2 item(s) |  |
+| `[].memberships[]` | object | — |  |  |  |
+| `[].memberships[].pi` | string | yes |  | non-empty |  |
+| `[].memberships[].person` | string | yes |  | non-empty |  |
 
 ### student-identity-review: shape `evidence`
 

@@ -134,6 +134,18 @@ def test_labpage_additions_preserve_manual_provenance():
     assert any('quote' in str(e) for e in S.validate(doc, sch))
 
 
+def test_labpage_schema_preserves_rejection_and_withholding_audit_trail():
+    decision = dict(pi='P', name='A B', decision='held', reason='Source role is ambiguous.')
+    doc = dict(school='harvard', generated_at='2026-11-15T19:00:00', rules={},
+               students=[], papers=[], hand_review_20261115b=[decision])
+    sch = schema('labpage-additions')
+    assert S.validate(doc, sch) == []
+    del decision['reason']
+    assert S.validate(doc, sch)
+    doc['unexpected_metadata'] = []
+    assert any('unexpected_metadata' in str(e) for e in S.validate(doc, sch))
+
+
 def test_link_diagnosis_accepts_before_window_work():
     """The writer labels a work by its earlier DBLP venue year even when OpenAlex dates it later."""
     work = dict(oa='https://openalex.org/W1', year=2018, title='Earlier venue paper',
@@ -144,3 +156,34 @@ def test_link_diagnosis_accepts_before_window_work():
                    n_school_works=1, distinct_author_ids=1, pis_seen=[])
     report = dict(summary={'with_pi_before_window': 1}, students={'Ada Lovelace | p1': student})
     assert S.validate(report, schema('link-diagnosis')) == []
+
+
+def test_student_identity_schema_distinguishes_pairs_from_cross_lab_reviews():
+    sch = schema('student-identity-review')
+    pair = dict(school='example', pi='First PI', a=['a', 'A B'], b=['b', 'A B'],
+                verdict='same_person', reason='Reviewed same-lab aliases.')
+    cross = dict(school='example', scope='cross_lab', canonical_name='A B',
+                 verdict='same_person', reason='Both rosters link the same primary page.',
+                 identity_url='https://student.example/',
+                 memberships=[dict(pi='First PI', person='ext:example:a-b'),
+                              dict(pi='Second PI', person='ext:example:a-b')],
+                 evidence=[dict(url='https://student.example/', sha256='1' * 64, quote='A B')])
+    assert S.validate([pair, cross], sch) == []
+    del pair['pi']
+    assert S.validate([pair], sch)
+    del cross['memberships'][0]['person']
+    assert S.validate([cross], sch)
+
+
+def test_cross_lab_schema_requires_a_named_or_typed_identity_basis():
+    row = dict(school='example', scope='cross_lab', canonical_name='A B',
+               verdict='same_person', reason='Reviewed source-bound identity.',
+               memberships=[dict(pi='First PI', person='ext:example:a-b'),
+                            dict(pi='Second PI', person='ext:example:a-b')],
+               evidence=[dict(url='https://repository.example/item', sha256='1' * 64, quote='A B')])
+    sch = schema('student-identity-review')
+    assert S.validate([row], sch)
+    row['identity_basis'] = 'typed_repository_author'
+    assert S.validate([row], sch) == []
+    row['verdict'] = 'different_people'
+    assert S.validate([row], sch)

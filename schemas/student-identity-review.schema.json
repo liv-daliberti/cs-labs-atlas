@@ -1,7 +1,7 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "hierarchy/student-identity-review.json",
- "description": "Verdicts on two records of one lab: one person (merged) or different people.",
+ "description": "Within-lab record verdicts and source-bound cross-lab person identity reviews. The ID builder validates the exact membership and primary-source proofs before joining.",
  "x-file": "hierarchy/student-identity-review.json",
  "x-kind": "reviewed",
  "x-writer": "hand-reviewed (same-name research)",
@@ -72,15 +72,109 @@
     "items": {
      "$ref": "#/$defs/evidence"
     }
+   },
+   "scope": {
+    "description": "Absent for legacy within-lab reviews; cross_lab uses exact membership/source proofs.",
+    "type": "string",
+    "enum": [
+     "within_lab",
+     "cross_lab"
+    ]
+   },
+   "identity_url": {
+    "description": "Shared primary personal page for a named cross-lab review.",
+    "type": "string",
+    "minLength": 1
+   },
+   "identity_basis": {
+    "description": "Typed repository author certificates use their own exact source proof.",
+    "type": "string",
+    "enum": [
+     "typed_repository_author"
+    ]
+   },
+   "memberships": {
+    "description": "Exact source-bound native membership keys; distinct labs are checked by atlas_ids.",
+    "type": "array",
+    "minItems": 2,
+    "items": {
+     "type": "object",
+     "properties": {
+      "pi": {
+       "type": "string",
+       "minLength": 1
+      },
+      "person": {
+       "type": "string",
+       "minLength": 1
+      }
+     },
+     "required": [
+      "pi",
+      "person"
+     ]
+    }
    }
   },
   "required": [
    "school",
-   "pi",
-   "a",
-   "b",
    "verdict",
    "reason"
+  ],
+  "oneOf": [
+   {
+    "properties": {
+     "scope": {
+      "const": "within_lab"
+     }
+    },
+    "required": [
+     "pi",
+     "a",
+     "b"
+    ]
+   },
+   {
+    "properties": {
+     "scope": {
+      "const": "cross_lab"
+     },
+     "verdict": {
+      "const": "same_person"
+     },
+     "canonical_name": {
+      "type": "string",
+      "minLength": 1
+     },
+     "evidence": {
+      "type": "array",
+      "minItems": 1
+     }
+    },
+    "required": [
+     "scope",
+     "canonical_name",
+     "memberships",
+     "evidence"
+    ],
+    "anyOf": [
+     {
+      "required": [
+       "identity_url"
+      ]
+     },
+     {
+      "properties": {
+       "identity_basis": {
+        "const": "typed_repository_author"
+       }
+      },
+      "required": [
+       "identity_basis"
+      ]
+     }
+    ]
+   }
   ]
  },
  "$defs": {
