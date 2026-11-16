@@ -529,11 +529,11 @@ def hits(ctx):
                     continue
                 if cw is None:
                     cw = cwork(w) or ''
-                done.add(pi)
                 ident = identity_of(pi, w, a, cw)
                 if ident in (None, 'reviewed_openalex_author_id', 'advisee_coauthor') and author_id_name_conflict(pis_by_name[pi], raw):
                     n['author_id_full_given_name_conflicts'] += 1
                     continue
+                done.add(pi)
                 if (a.get('author') or {}).get('id') in mixed[pi]:
                     pass  # a mixed record never anchors
                 elif ident and ident != 'advisee_coauthor' and (a.get('author') or {}).get('id'):

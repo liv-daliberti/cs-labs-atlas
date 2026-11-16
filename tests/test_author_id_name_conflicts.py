@@ -95,3 +95,16 @@ def test_initial_alias_in_sweep_cannot_bypass_conflict_on_reviewed_provider_id(t
     identity.hits(ctx)
     assert not ctx.hits and not ctx.anchored['Guoliang Li']
     assert ctx.n['author_id_full_given_name_conflicts'] == 1
+
+
+@pytest.mark.usefixtures('layout')
+def test_conflicting_earlier_authorship_does_not_suppress_later_actual_pi_on_same_work(tmp_path, monkeypatch):
+    ctx = context(tmp_path, ['Guoliang Li', '李国良', 'G. Li'])
+    ctx.pis[0]['reviewedOpenAlex'] = [T.OA + 'A1', T.OA + 'A2']
+    work = T.work('W2', 'Both a conflicting name and the actual PI', 2021,
+                  [T.au('Guanghao Li', 'A1'), T.au('Guoliang Li', 'A2')])
+    monkeypatch.setattr(identity, 'sweep_works', lambda *args: iter([work]))
+    monkeypatch.setattr(identity, 'authorship_identity', lambda *args: 'reviewed_openalex_author_id')
+    identity.hits(ctx)
+    assert [(h[1]['id'], h[2]['raw_author_name']) for h in ctx.hits] == [(work['id'], 'Guoliang Li')]
+    assert ctx.n['author_id_full_given_name_conflicts'] == 1
