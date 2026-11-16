@@ -243,3 +243,15 @@ def test_submit_passes_the_hold_in_the_environment(tmp_path, monkeypatch):
         return SimpleNamespace(returncode=0, stdout='Submitted batch job 9', stderr='')
     assert L.submit('mit', '', run, str(tmp_path), extra_env={'WAYBACK_HOLD': '0'}) == '9'
     assert all(e['WAYBACK_HOLD'] == '0' and 'CS_ATLAS_TOOLS' not in e for e in seen)
+
+
+def test_foreign_check_ignores_the_rotator_itself_but_not_another_fetcher(tmp_path, monkeypatch):
+    c = W.Ctx.__new__(W.Ctx)
+    c.now = lambda: 1_800_000_000.0
+    monkeypatch.setattr(W.F.P, 'LEASES', tmp_path)
+    (tmp_path / 'queue.jsonl').write_text('')
+    rows = ['101 wayback-rotator\n102 school-fulltext\n']
+    c.run = lambda *a, **k: SimpleNamespace(stdout=rows[0], returncode=0)
+    assert c._foreign() is None
+    rows[0] += '103 wayback-listing-capture\n'
+    assert 'running job 103' in c._foreign()

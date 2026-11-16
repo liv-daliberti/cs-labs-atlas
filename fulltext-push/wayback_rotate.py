@@ -18,7 +18,7 @@ One tick every INTERVAL_S (>= 60 s), one `squeue` per tick:
     copy-quality cache and at least MIN_QUEUE works that wait for Wayback (all candidates on archive hosts, last attempt source_paused or none).
 Kill switch: `scancel <wayback-rotator job>` (SIGTERM) re-holds the holder before the script exits and does NOT resubmit. If the job is killed hard
 (node loss, SIGKILL), the holder stays unheld until `wayback_rotate.py rehold` (or the resubmitted rotator, which reads logs/wayback-rotation-state.json).
-usage: wayback_rotate.py run [--adopt SCHOOL] | once | plan | status | rehold     env WAYBACK_ROTATE_TURN_S (3600), _INTERVAL_S (60), _MIN_QUEUE (10)
+usage: wayback_rotate.py run [--adopt SCHOOL] | once | plan | status | rehold     env WAYBACK_ROTATE_TURN_S (3600), _INTERVAL_S (60), _MIN_QUEUE (5)
 """
 import json
 import os
@@ -36,13 +36,14 @@ import loop_starter as L  # noqa: E402
 HOST = 'web.archive.org'
 TURN_S = int(os.environ.get('WAYBACK_ROTATE_TURN_S', '3600'))
 INTERVAL_S = max(60, int(os.environ.get('WAYBACK_ROTATE_INTERVAL_S', '60')))
-MIN_QUEUE = int(os.environ.get('WAYBACK_ROTATE_MIN_QUEUE', '10'))
+MIN_QUEUE = int(os.environ.get('WAYBACK_ROTATE_MIN_QUEUE', '5'))
 MIN_FREE_GB = int(os.environ.get('WAYBACK_ROTATE_MIN_FREE_GB', '100'))
 QUIET_S = 150            # nobody else may have used web.archive.org this recently when a turn is granted (PROBE_HOLD is 120 s)
 CONFIRM_S = 1800         # a granted loop must be running unheld within 30 min or the grant is withdrawn
 QUEUE_CACHE_S = 600
 CHECK_FAILED = 'foreign-fetcher check failed'
 FOREIGN_JOB_WORDS = tuple(os.environ.get('WAYBACK_ROTATE_FOREIGN_JOBS', 'wayback listing-capture').split())
+ROTATOR_JOB = 'wayback-rotator'
 OWN_TITLE = 'Rotating single Wayback fetcher'
 ARCHIVE = "(c.url LIKE '%://web.archive.org/%' OR c.url LIKE '%://archive.org/%' OR c.url LIKE '%.archive.org/%')"
 QUEUE_SQL = f"""SELECT COUNT(*) FROM (SELECT c.work_id w FROM candidates c JOIN works x ON x.id = c.work_id
@@ -110,7 +111,7 @@ class Ctx:
                     return f'live lease {p.name}'
             r = self.run(['squeue', '-h', '-u', os.environ.get('USER', ''), '-t', 'RUNNING', '-o', '%i %j'], capture_output=True, text=True, timeout=60)
             for row in r.stdout.splitlines():
-                if any(w in row.lower() for w in FOREIGN_JOB_WORDS):
+                if row.split(' ', 1)[-1].strip() != ROTATOR_JOB and any(w in row.lower() for w in FOREIGN_JOB_WORDS):   # not ourselves
                     return f'running job {row}'
         except (OSError, ValueError, KeyError, subprocess.SubprocessError) as e:
             return f'{CHECK_FAILED} ({e}); not granting'
@@ -404,6 +405,11 @@ def main(argv):
     if cmd == 'once':
         print(tick(c, st, adopt))
         c.save(st)
+        return 0
+    mine = os.environ.get('SLURM_JOB_ID', '')   # a second rotator would be a second turn-giver: refuse to run beside one
+    r = c.run(['squeue', '-h', '-u', os.environ.get('USER', ''), '-n', ROTATOR_JOB, '-t', 'RUNNING', '-o', '%i'], capture_output=True, text=True, timeout=60)
+    if mine and (set(r.stdout.split()) - {mine}):
+        c.log(rotator='another wayback-rotator job is running; exiting', others=sorted(set(r.stdout.split()) - {mine}))
         return 0
     signal.signal(signal.SIGTERM, lambda *_: c.stop.update(flag='stop'))
     signal.signal(signal.SIGINT, lambda *_: c.stop.update(flag='stop'))
