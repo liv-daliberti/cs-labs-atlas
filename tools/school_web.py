@@ -35,6 +35,8 @@ CHALLENGE = re.compile(r'bot detection|traffic check|Please enable JavaScript to
                        r'checking your browser|are you a robot|access denied|<title>Just a moment\.\.\.</title>|'
                        r'challenges\.cloudflare\.com|cf_chl_opt|px-captcha|ddos-guard|'
                        r'<(?:iframe|frame)[^>]+_Incapsula_Resource|Incapsula incident ID|Request unsuccessful\. Incapsula|' 
+                       # A script can also serve an empty challenge shell; a readable page may embed the same resource.
+                       r'<script[^>]+_Incapsula_Resource[^>]*>\s*</script>\s*(?:</head>\s*)?<body[^>]*>\s*</body>|'
                        # Research citations can contain CAPTCHA; require an actual gate/widget context.
                        r'g-recaptcha|h-captcha|hcaptcha\.com|recaptcha/(?:api|enterprise)|'
                        r'captcha[-_](?:container|challenge|form|input)|'

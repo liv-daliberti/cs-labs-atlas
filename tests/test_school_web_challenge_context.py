@@ -11,6 +11,7 @@ import school_web as W
     '<title>Faculty publications</title><li>PhishDecloaker: Detecting CAPTCHA-cloaked Phishing Websites via Hybrid Vision-based Interactive Models (USENIX Security 2024).</li>',
     '<p>We study CAPTCHA security and privacy.</p>',
     '<h1>Faculty homepage</h1><script src="/_Incapsula_Resource?SWJIYLWA=abc" async></script>',
+    '<html><head><script src="/_Incapsula_Resource?SWJIYLWA=abc"></script></head><body><h1>Faculty homepage</h1><p>PhD students</p></body></html>',
 ])
 def test_research_mentions_are_not_challenges(body):
     assert not W.CHALLENGE.search(body)
@@ -27,6 +28,8 @@ def test_research_mentions_are_not_challenges(body):
     'Request unsuccessful. Incapsula incident ID: 123',
     'access denied',
     '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>',
+    '<html>\r\n<head>\r\n<META NAME="robots" CONTENT="noindex,nofollow">\r\n<script src="/_Incapsula_Resource?SWJIYLWA=abc">\r\n</script>\r\n<body>\r\n</body></html>',
+    '<html><head><script src="/_Incapsula_Resource?SWJIYLWA=abc"></script></head><body></body></html>',
 ])
 def test_real_gates_still_match(body):
     assert W.CHALLENGE.search(body)
@@ -36,6 +39,7 @@ def test_real_gates_still_match(body):
     (200, '<title>Faculty publications</title><p>Research on CAPTCHA-cloaked phishing.</p>', 200, False),
     (403, '<title>Faculty publications</title><p>Research on CAPTCHA-cloaked phishing.</p>', 403, True),
     (200, '<title>CAPTCHA verification</title>', 999, True),
+    (200, '<html><head><script src="/_Incapsula_Resource?SWJIYLWA=abc"></script></head><body></body></html>', 999, True),
 ])
 def test_transport_status_is_preserved(tmp_path, monkeypatch, status, body, classified, blocked):
     monkeypatch.setattr(W, 'db_path', lambda key: tmp_path / 'captures.sqlite')
