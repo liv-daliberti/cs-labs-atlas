@@ -1467,13 +1467,13 @@
   },
   {
    "pi": "陈游旻",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-16",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenyoumin.html",
    "profile_sha256": "622057823aa36c1324b7d6893f585222e1bd90b179f759d5addd615993d04df7",
    "url": "https://chenyoumin1993.github.io/",
-   "kind": "pi_homepage",
-   "status": "reviewed_live_website",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "kind": "lab_site",
+   "status": "reviewed_cached_website",
+   "reason_code": "lab_site",
    "reason_code_detail": "official_profile_link_page_names_pi",
    "coverage": "website",
    "found_via": "school_profile_link",
@@ -1501,8 +1501,69 @@
      "result": "listed",
      "at": "2026-11-10T00:00:00",
      "source_sha256": "622057823aa36c1324b7d6893f585222e1bd90b179f759d5addd615993d04df7"
+    },
+    {
+     "source": "official_link_chain",
+     "url": "https://chenyoumin1993.github.io/data.yml",
+     "on": "https://chenyoumin1993.github.io/",
+     "result": "ok",
+     "at": "2026-11-16T00:42:12",
+     "sha256": "31f9b727b0dbfd485e4b1325171c7d98f847218f2d2c6765dc0ecb2974850625",
+     "quote": "const response = await fetch('data.yml', { cache: 'no-store' });",
+     "name_quote": "Youmin Chen  陈游旻",
+     "tie_quote": "I lead the Storage, Operating, and AI Systems Research (**SOAR**) group,"
     }
-   ]
+   ],
+   "people_page": "https://chenyoumin1993.github.io/data.yml",
+   "resource_status": "Originalownhome explicitlyloadsdata.yml; actualSOARteamdataread:16actualstudentsand3future2027entries, sourceboundtoPIleadingSOAR.",
+   "reason": "Old homepage-only/no-lab classification contradicted by actual own SOARGroupMembers rendering and literal datafile.",
+   "historical_audit_rows": [
+    {
+     "superseded_on": "2026-11-16",
+     "reason": "Actual finite source review found more precise website/access outcome; earlier assertion retained as history.",
+     "record": {
+      "pi": "陈游旻",
+      "checked_at": "2026-11-10",
+      "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenyoumin.html",
+      "profile_sha256": "622057823aa36c1324b7d6893f585222e1bd90b179f759d5addd615993d04df7",
+      "url": "https://chenyoumin1993.github.io/",
+      "kind": "pi_homepage",
+      "status": "reviewed_live_website",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason_code_detail": "official_profile_link_page_names_pi",
+      "coverage": "website",
+      "found_via": "school_profile_link",
+      "sha256": "782fb2d6ded0d899c28cf7c69a8063a9ab65fbb5e5cd235cd1449fc6bda192f2",
+      "ownership_sources": [
+       {
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenyoumin.html",
+        "sha256": "622057823aa36c1324b7d6893f585222e1bd90b179f759d5addd615993d04df7",
+        "quote": "个人主页： https://chenyoumin1993.github.io/",
+        "kind": "official_owned_homepage_link"
+       },
+       {
+        "url": "https://chenyoumin1993.github.io/",
+        "sha256": "782fb2d6ded0d899c28cf7c69a8063a9ab65fbb5e5cd235cd1449fc6bda192f2",
+        "quote": "Youmin Chen's Homepage",
+        "kind": "owned_profile_names_pi"
+       }
+      ],
+      "checks": [
+       {
+        "source": "school_profile_link",
+        "url": "https://chenyoumin1993.github.io/",
+        "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenyoumin.html",
+        "linked_url": "https://chenyoumin1993.github.io/",
+        "result": "listed",
+        "at": "2026-11-10T00:00:00",
+        "source_sha256": "622057823aa36c1324b7d6893f585222e1bd90b179f759d5addd615993d04df7"
+       }
+      ]
+     }
+    }
+   ],
+   "independent_review_by": "codex-sjtu-ntu-1115",
+   "independent_review_report": "hierarchy/sjtu/reports/FINITE-WEBSITE-AUDIT-20261116.json"
   },
   {
    "pi": "陈玉泉",
@@ -2272,14 +2333,14 @@
   },
   {
    "pi": "黄林鹏",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-16",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/huanglinpeng.html",
    "profile_sha256": "352e472ee6644a4ea4b35b6591fdd0671cff733761d46f5cdfd2c322de17b670",
-   "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "url": "http://www.hlpsjtu.cn/",
+   "status": "access_reason",
+   "reason_code": "host_access_blocked",
+   "reason": "Oldno-personal-link check is factuallyfalse: sameoriginal352e profile explicitlynameswww.hlpsjtu.cn.",
+   "coverage": "reason",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huanglinpeng.html",
@@ -2295,8 +2356,61 @@
      "result": "no_personal_site_link_on_profile",
      "at": "2026-11-10T00:00:00",
      "source_sha256": "352e472ee6644a4ea4b35b6591fdd0671cff733761d46f5cdfd2c322de17b670"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.hlpsjtu.cn/",
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/huanglinpeng.html",
+     "result": "listed",
+     "at": "2026-11-16T06:12:29.367970+00:00",
+     "source_sha256": "352e472ee6644a4ea4b35b6591fdd0671cff733761d46f5cdfd2c322de17b670"
+    },
+    {
+     "source": "robots_transport",
+     "url": "https://www.hlpsjtu.cn/robots.txt",
+     "result": "tls_hostname_mismatch_no_content_request",
+     "at": "2026-11-15T23:49:07"
     }
-   ]
+   ],
+   "kind": "pi_homepage",
+   "sha256": null,
+   "resource_status": "Knownofficiallylinkedhomepage. ActualrobotsTLS hostname-mismatch beforebody; no currenthome/memberbodycaptured, no TLSbypass/retry. Notnohomepage.",
+   "historical_audit_rows": [
+    {
+     "superseded_on": "2026-11-16",
+     "reason": "Actual finite source review found more precise website/access outcome; earlier assertion retained as history.",
+     "record": {
+      "pi": "黄林鹏",
+      "checked_at": "2026-11-10",
+      "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/huanglinpeng.html",
+      "profile_sha256": "352e472ee6644a4ea4b35b6591fdd0671cff733761d46f5cdfd2c322de17b670",
+      "url": null,
+      "status": "none_found",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
+      "coverage": "none",
+      "ownership_sources": [
+       {
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huanglinpeng.html",
+        "sha256": "352e472ee6644a4ea4b35b6591fdd0671cff733761d46f5cdfd2c322de17b670",
+        "quote": "所在研究所：智能软件与系统研究所 个人主页： www.hlpsjtu.cn 个人简介 上海交通大学特聘教授， 博士生导师",
+        "kind": "official_profile_without_site_field"
+       }
+      ],
+      "checks": [
+       {
+        "source": "official_profile_capture",
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huanglinpeng.html",
+        "result": "no_personal_site_link_on_profile",
+        "at": "2026-11-10T00:00:00",
+        "source_sha256": "352e472ee6644a4ea4b35b6591fdd0671cff733761d46f5cdfd2c322de17b670"
+       }
+      ]
+     }
+    }
+   ],
+   "independent_review_by": "codex-sjtu-ntu-1115",
+   "independent_review_report": "hierarchy/sjtu/reports/FINITE-WEBSITE-AUDIT-20261116.json"
   },
   {
    "pi": "黄 涛",
@@ -4867,14 +4981,14 @@
   },
   {
    "pi": "汪哲东",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-16",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangzhedong.html",
    "profile_sha256": "1fbdfe050c8b6ba8f497c43af60a072066bb9ff4ba3da2e5488e91da1e68eb8b",
-   "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "url": "https://wangz2019.github.io/",
+   "status": "reviewed_cached_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "ActualsamePIhomebodyfound, so broad no-homepage status is false. OfficialHanprofile and explicitEnglishSJTUhome have identical distinctive institutionalcontactfield and matching computingunit context; contact not copied here.",
+   "coverage": "website",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangzhedong.html",
@@ -4890,8 +5004,58 @@
      "result": "no_personal_site_link_on_profile",
      "at": "2026-11-10T00:00:00",
      "source_sha256": "1fbdfe050c8b6ba8f497c43af60a072066bb9ff4ba3da2e5488e91da1e68eb8b"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://wangz2019.github.io/",
+     "result": "ok",
+     "at": "2026-11-16T00:40:40",
+     "sha256": "7943e5ab205ab302c1a75395d4c9780bad71b40b211cddb5a9ab46211abd8427",
+     "name_quote": "Zhedong Wang",
+     "tie_quote": "Assistant Professor, Shanghai Jiao Tong University (SJTU)",
+     "reviewer": "codex-sjtu-recall-1115",
+     "query_receipt_sha256": "93b857c527f73384a4618df905e7e7f1391b08408f2b01ffaf06a50d21a06b69"
     }
-   ]
+   ],
+   "kind": "pi_homepage",
+   "sha256": "7943e5ab205ab302c1a75395d4c9780bad71b40b211cddb5a9ab46211abd8427",
+   "resource_status": "ActualownedEnglishcryptographyhomepageandfull4pageCVread; no namedstudentroster. Currentwebsiteproof doesnotturnPIrecallreadable.",
+   "historical_audit_rows": [
+    {
+     "superseded_on": "2026-11-16",
+     "reason": "Actual finite source review found more precise website/access outcome; earlier assertion retained as history.",
+     "record": {
+      "pi": "汪哲东",
+      "checked_at": "2026-11-10",
+      "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangzhedong.html",
+      "profile_sha256": "1fbdfe050c8b6ba8f497c43af60a072066bb9ff4ba3da2e5488e91da1e68eb8b",
+      "url": null,
+      "status": "none_found",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
+      "coverage": "none",
+      "ownership_sources": [
+       {
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangzhedong.html",
+        "sha256": "1fbdfe050c8b6ba8f497c43af60a072066bb9ff4ba3da2e5488e91da1e68eb8b",
+        "quote": "所在研究所：信息安全与密码学研究所 公众号二维码 小红书二维码 哔哩哔哩二维码 学院地址：上海市东川路800号 Emai",
+        "kind": "official_profile_without_site_field"
+       }
+      ],
+      "checks": [
+       {
+        "source": "official_profile_capture",
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangzhedong.html",
+        "result": "no_personal_site_link_on_profile",
+        "at": "2026-11-10T00:00:00",
+        "source_sha256": "1fbdfe050c8b6ba8f497c43af60a072066bb9ff4ba3da2e5488e91da1e68eb8b"
+       }
+      ]
+     }
+    }
+   ],
+   "independent_review_by": "codex-sjtu-ntu-1115",
+   "independent_review_report": "hierarchy/sjtu/reports/FINITE-WEBSITE-AUDIT-20261116.json"
   },
   {
    "pi": "王 铮",
@@ -5435,14 +5599,14 @@
   },
   {
    "pi": "徐宁仪",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-16",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/xuningyi.html",
    "profile_sha256": "e8e1a6e1996a507a672da1426c5844fda3715e8c6ab943fbe5a0bde2d018e46e",
    "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "status": "access_reason",
+   "reason_code": "host_access_blocked",
+   "reason": "Newexactprimaryofficialprofilelead wasactuallyattempted/stopped, so broad no-public-homepage closure isunsupported. CurrentPDFstudentproof isindividualevidence, notaPIroster.",
+   "coverage": "reason",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xuningyi.html",
@@ -5458,8 +5622,60 @@
      "result": "no_personal_site_link_on_profile",
      "at": "2026-11-10T00:00:00",
      "source_sha256": "e8e1a6e1996a507a672da1426c5844fda3715e8c6ab943fbe5a0bde2d018e46e"
+    },
+    {
+     "source": "bounded_primary_index_search",
+     "url": "https://www.qingyuan.sjtu.edu.cn/a/Ningyi-Xu.html",
+     "result": "candidate_only_no_body",
+     "at": "2026-11-16T06:12:29.367970+00:00",
+     "query_receipt_sha256": "93b857c527f73384a4618df905e7e7f1391b08408f2b01ffaf06a50d21a06b69"
+    },
+    {
+     "source": "robots_transport",
+     "url": "https://www.qingyuan.sjtu.edu.cn/robots.txt",
+     "result": "tls_hostname_mismatch_no_body",
+     "at": "2026-11-16T00:40:06"
     }
-   ]
+   ],
+   "known_candidate_url": "https://www.qingyuan.sjtu.edu.cn/a/Ningyi-Xu.html",
+   "kind": "pi_profile_candidate",
+   "resource_status": "AdditionalofficialQingyuanprofileleadexistsbutactualrobotsTLS hostname-mismatch preventedbodycapture. Readablehome/memberpageunknown; no claimonlyCSEprofileexists.",
+   "historical_audit_rows": [
+    {
+     "superseded_on": "2026-11-16",
+     "reason": "Actual finite source review found more precise website/access outcome; earlier assertion retained as history.",
+     "record": {
+      "pi": "徐宁仪",
+      "checked_at": "2026-11-10",
+      "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/xuningyi.html",
+      "profile_sha256": "e8e1a6e1996a507a672da1426c5844fda3715e8c6ab943fbe5a0bde2d018e46e",
+      "url": null,
+      "status": "none_found",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
+      "coverage": "none",
+      "ownership_sources": [
+       {
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xuningyi.html",
+        "sha256": "e8e1a6e1996a507a672da1426c5844fda3715e8c6ab943fbe5a0bde2d018e46e",
+        "quote": "所在研究所：清源研究院 公众号二维码 小红书二维码 哔哩哔哩二维码 学院地址：上海市东川路800号 Email：scs@",
+        "kind": "official_profile_without_site_field"
+       }
+      ],
+      "checks": [
+       {
+        "source": "official_profile_capture",
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xuningyi.html",
+        "result": "no_personal_site_link_on_profile",
+        "at": "2026-11-10T00:00:00",
+        "source_sha256": "e8e1a6e1996a507a672da1426c5844fda3715e8c6ab943fbe5a0bde2d018e46e"
+       }
+      ]
+     }
+    }
+   ],
+   "independent_review_by": "codex-sjtu-ntu-1115",
+   "independent_review_report": "hierarchy/sjtu/reports/FINITE-WEBSITE-AUDIT-20261116.json"
   },
   {
    "pi": "许 强",
@@ -6014,14 +6230,14 @@
   },
   {
    "pi": "郁 昱",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-16",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyu.html",
    "profile_sha256": "1275b0034642714109bd34210768f019ca12610af385862b4ba0cb989cb26ada",
-   "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "url": "https://yuyu.hk/",
+   "status": "reviewed_cached_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Oldprofile-without-homepage claim contradicts itsown literal yuyu.hk field and actualcapturedcanonicalhome.",
+   "coverage": "website",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyu.html",
@@ -6037,8 +6253,62 @@
      "result": "no_personal_site_link_on_profile",
      "at": "2026-11-10T00:00:00",
      "source_sha256": "1275b0034642714109bd34210768f019ca12610af385862b4ba0cb989cb26ada"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://yuyu.hk/",
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyu.html",
+     "result": "listed",
+     "at": "2026-11-15T23:47:53",
+     "source_sha256": "1275b0034642714109bd34210768f019ca12610af385862b4ba0cb989cb26ada"
+    },
+    {
+     "source": "stored_capture",
+     "url": "https://yuyu.hk/",
+     "result": "ok",
+     "at": "2026-11-15T23:47:53",
+     "sha256": "1a6834edcf906cec20cc04968110aad20b977bc3d89854e730c8e574204308a1"
     }
-   ]
+   ],
+   "kind": "pi_homepage",
+   "sha256": "1a6834edcf906cec20cc04968110aad20b977bc3d89854e730c8e574204308a1",
+   "resource_status": "Officialownprofileliteralhomelead followedonlythroughactualcanonicalredirect; completeownhome200read, no completePIstudentroster.",
+   "historical_audit_rows": [
+    {
+     "superseded_on": "2026-11-16",
+     "reason": "Actual finite source review found more precise website/access outcome; earlier assertion retained as history.",
+     "record": {
+      "pi": "郁 昱",
+      "checked_at": "2026-11-10",
+      "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyu.html",
+      "profile_sha256": "1275b0034642714109bd34210768f019ca12610af385862b4ba0cb989cb26ada",
+      "url": null,
+      "status": "none_found",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
+      "coverage": "none",
+      "ownership_sources": [
+       {
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyu.html",
+        "sha256": "1275b0034642714109bd34210768f019ca12610af385862b4ba0cb989cb26ada",
+        "quote": "所在研究所：量子计算研究所（筹）,约翰·霍普克罗夫特计算机科学中心 个人主页： yuyu.hk 个人简介 郁昱，上海交通",
+        "kind": "official_profile_without_site_field"
+       }
+      ],
+      "checks": [
+       {
+        "source": "official_profile_capture",
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyu.html",
+        "result": "no_personal_site_link_on_profile",
+        "at": "2026-11-10T00:00:00",
+        "source_sha256": "1275b0034642714109bd34210768f019ca12610af385862b4ba0cb989cb26ada"
+       }
+      ]
+     }
+    }
+   ],
+   "independent_review_by": "codex-sjtu-ntu-1115",
+   "independent_review_report": "hierarchy/sjtu/reports/FINITE-WEBSITE-AUDIT-20261116.json"
   },
   {
    "pi": "朱开元",
@@ -6420,14 +6690,14 @@
   },
   {
    "pi": "张宇昊",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-16",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangyuhao.html",
    "profile_sha256": "afdfa763c883c8a0d69db2acfa1fcbaa9142abec37003a14eb3bd1d8479bc844",
-   "url": null,
-   "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
-   "coverage": "none",
+   "url": "https://www.zyhwtc.com/",
+   "status": "access_reason",
+   "reason_code": "host_access_blocked",
+   "reason": "Oldno-link claim contradicts literalwww.zyhwtc.com inoriginalafdfa profile.",
+   "coverage": "reason",
    "ownership_sources": [
     {
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangyuhao.html",
@@ -6443,18 +6713,79 @@
      "result": "no_personal_site_link_on_profile",
      "at": "2026-11-10T00:00:00",
      "source_sha256": "afdfa763c883c8a0d69db2acfa1fcbaa9142abec37003a14eb3bd1d8479bc844"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.zyhwtc.com/",
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangyuhao.html",
+     "result": "listed",
+     "at": "2026-11-16T06:12:29.367970+00:00",
+     "source_sha256": "afdfa763c883c8a0d69db2acfa1fcbaa9142abec37003a14eb3bd1d8479bc844"
+    },
+    {
+     "source": "prior_capture_receipt",
+     "url": "https://www.zyhwtc.com/robots.txt",
+     "result": "connection_refused_robots_unknown_no_body",
+     "at": "2026-11-15T16:24:11+00:00",
+     "receipt_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/codex-students0-1115/hierarchy/sjtu/raw/labpage-audit-captures.sqlite",
+     "receipt_ids": [
+      379,
+      380,
+      383,
+      385,
+      386
+     ]
     }
-   ]
+   ],
+   "kind": "pi_homepage",
+   "sha256": null,
+   "resource_status": "Knownhomepageexplicitlylinkedbyofficialprofile. Original4robotsconnectionrefusalsandfinalrobotsunknownfound; no body, no retry. Notnohomepage.",
+   "historical_audit_rows": [
+    {
+     "superseded_on": "2026-11-16",
+     "reason": "Actual finite source review found more precise website/access outcome; earlier assertion retained as history.",
+     "record": {
+      "pi": "张宇昊",
+      "checked_at": "2026-11-10",
+      "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangyuhao.html",
+      "profile_sha256": "afdfa763c883c8a0d69db2acfa1fcbaa9142abec37003a14eb3bd1d8479bc844",
+      "url": null,
+      "status": "none_found",
+      "reason_code": "profile_only_no_homepage",
+      "reason": "The official CS profile (captured, sha256 above) has no 个人主页/homepage field and no outbound personal or lab link; no general web search was run in this pass.",
+      "coverage": "none",
+      "ownership_sources": [
+       {
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangyuhao.html",
+        "sha256": "afdfa763c883c8a0d69db2acfa1fcbaa9142abec37003a14eb3bd1d8479bc844",
+        "quote": "所在研究所：理论计算机科学研究所,约翰·霍普克罗夫特计算机科学中心 个人主页： www.zyhwtc.com 个人简介 ",
+        "kind": "official_profile_without_site_field"
+       }
+      ],
+      "checks": [
+       {
+        "source": "official_profile_capture",
+        "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangyuhao.html",
+        "result": "no_personal_site_link_on_profile",
+        "at": "2026-11-10T00:00:00",
+        "source_sha256": "afdfa763c883c8a0d69db2acfa1fcbaa9142abec37003a14eb3bd1d8479bc844"
+       }
+      ]
+     }
+    }
+   ],
+   "independent_review_by": "codex-sjtu-ntu-1115",
+   "independent_review_report": "hierarchy/sjtu/reports/FINITE-WEBSITE-AUDIT-20261116.json"
   },
   {
    "pi": "赵 海",
-   "checked_at": "2026-11-10",
+   "checked_at": "2026-11-16",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohai.html",
    "profile_sha256": "244dbe2c39a038b9761daa1324aac0ebed01fff59983be2caba5e5a4ba6bf68c",
-   "url": "http://bcmi.sjtu.edu.cn/home/zhaohai",
-   "status": "reviewed_live_website",
+   "url": "https://bcmi.sjtu.edu.cn/home/zhaohai/",
+   "status": "reviewed_cached_website",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "the page linked from the official profile carries the pinyin reading of the PI name from the profile address (live fetch under robots, 2026-11-10)",
+   "reason": "OldURLHTTPnoslash isredirect, but itsclaimedbodySHA actuallybelongs tocanonicalHTTPSslashroot; bind theactualURL/body/date.",
    "coverage": "website",
    "checks": [
     {
@@ -6472,11 +6803,69 @@
      "result": "ok_names_pi_by_profile_slug",
      "at": "2026-11-10T18:00:00",
      "sha256": "141eef59b78b1163f6664b787b6ffd3170477c116fc4c9d332f74fed90f6b48c"
+    },
+    {
+     "source": "official_link_chain",
+     "url": "https://bcmi.sjtu.edu.cn/home/zhaohai/",
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohai.html",
+     "result": "ok",
+     "at": "2026-11-16T00:08:51",
+     "sha256": "141eef59b78b1163f6664b787b6ffd3170477c116fc4c9d332f74fed90f6b48c"
+    },
+    {
+     "source": "literal_child_capture",
+     "url": "https://bcmi.sjtu.edu.cn/home/zhaohai/News.html",
+     "on": "https://bcmi.sjtu.edu.cn/home/zhaohai/",
+     "result": "ok_no_complete_roster",
+     "at": "2026-11-16T00:14:46",
+     "sha256": "807847f87f6d3c7aee29223dbde3fb10a3f7359b25d92fbbb876771c1f29cdb2"
     }
    ],
    "found_via": "school_profile_link",
    "sha256": "141eef59b78b1163f6664b787b6ffd3170477c116fc4c9d332f74fed90f6b48c",
-   "verification_quote": "Hai Zhao"
+   "verification_quote": "Hai Zhao",
+   "kind": "pi_homepage",
+   "resource_status": "ActualcanonicalHTTPSslashroot200andliteralNewschildread. Publications/recruitmentandtwo2015cohortnewsmentions, nocompletePIroster. Individualselfproofsretainedseparately.",
+   "historical_audit_rows": [
+    {
+     "superseded_on": "2026-11-16",
+     "reason": "Actual finite source review found more precise website/access outcome; earlier assertion retained as history.",
+     "record": {
+      "pi": "赵 海",
+      "checked_at": "2026-11-10",
+      "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohai.html",
+      "profile_sha256": "244dbe2c39a038b9761daa1324aac0ebed01fff59983be2caba5e5a4ba6bf68c",
+      "url": "http://bcmi.sjtu.edu.cn/home/zhaohai",
+      "status": "reviewed_live_website",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "the page linked from the official profile carries the pinyin reading of the PI name from the profile address (live fetch under robots, 2026-11-10)",
+      "coverage": "website",
+      "checks": [
+       {
+        "source": "school_profile_link",
+        "url": "http://bcmi.sjtu.edu.cn/home/zhaohai",
+        "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohai.html",
+        "linked_url": "http://bcmi.sjtu.edu.cn/home/zhaohai",
+        "result": "listed",
+        "at": "2026-11-10T18:00:00",
+        "source_sha256": "244dbe2c39a038b9761daa1324aac0ebed01fff59983be2caba5e5a4ba6bf68c"
+       },
+       {
+        "source": "live_fetch",
+        "url": "http://bcmi.sjtu.edu.cn/home/zhaohai",
+        "result": "ok_names_pi_by_profile_slug",
+        "at": "2026-11-10T18:00:00",
+        "sha256": "141eef59b78b1163f6664b787b6ffd3170477c116fc4c9d332f74fed90f6b48c"
+       }
+      ],
+      "found_via": "school_profile_link",
+      "sha256": "141eef59b78b1163f6664b787b6ffd3170477c116fc4c9d332f74fed90f6b48c",
+      "verification_quote": "Hai Zhao"
+     }
+    }
+   ],
+   "independent_review_by": "codex-sjtu-ntu-1115",
+   "independent_review_report": "hierarchy/sjtu/reports/FINITE-WEBSITE-AUDIT-20261116.json"
   },
   {
    "pi": "赵杰茹",
