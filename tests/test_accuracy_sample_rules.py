@@ -222,6 +222,14 @@ def test_R_PAP_25_company_coaffiliation_is_not_a_university_unit(company):
     assert h.names_other_inst(company, 'toronto')
 
 
+def test_R_PAP_25_line_wrapped_intelligence_is_an_academic_unit():
+    unit = 'Center for Artificial Intel- ligence Research (CAiRE)'
+    aff = re.compile(r'The Hong Kong University of Science and Technology', re.I)
+    assert h.units_in(unit + ', The Hong Kong University of Science and Technology, Hong Kong', aff) == [h.norm_unit(unit)]
+    learned = {h.norm_unit(unit)}
+    assert h.bare_unit_school([unit], learned, learned, anchored_ok=True, school_co=False)
+
+
 # ---- R7 doubled roster tokens (R-STU-05) ------------------------------------------------------------------------
 
 def test_R_STU_05_doubled_tokens():

@@ -458,6 +458,11 @@ COMPANY_AFFILIATION = re.compile(
     r'samsung|huawei|tencent|baidu|incorporated|inc|corporation|corp|ltd|gmbh|llc)\b', re.I)
 
 
+def unwrapped_affiliation(raw):
+    """Join a word broken across a PDF line, e.g. 'Intel- ligence', before matching organization names."""
+    return re.sub(r'(?<=[A-Za-z])-\s+(?=[a-z])', '', raw or '')
+
+
 def units_in(raw, aff):
     """The unit names in a raw affiliation string that names the school: its comma/semicolon parts before the school's
     name, minus places and postal codes ('Center for Information Technology Policy, Princeton University, Princeton, NJ'
@@ -468,7 +473,7 @@ def units_in(raw, aff):
     out = []
     for part in re.split(r'[,;]', raw[:m.start()]):
         u = norm_unit(part)
-        if len(u.split()) >= 2 and not PLACE.match(u) and not COMPANY_AFFILIATION.search(part):
+        if len(u.split()) >= 2 and not PLACE.match(u) and not COMPANY_AFFILIATION.search(unwrapped_affiliation(part)):
             out.append(u)
     return out
 
@@ -554,6 +559,7 @@ OTHER_INST = re.compile(r'univ|institut|college|polytechn|[ée]cole|laborator|\b
 
 
 def names_other_inst(z, school):
+    z = unwrapped_affiliation(z)
     u = OWN_UNITS.get(school)
     return bool(OTHER_INST.search(u.sub(' ', z) if u else z))
 
@@ -592,7 +598,7 @@ def bare_unit_school(raws, own_units, school_units, anchored_ok, school_co):
     for z in raws:
         # Repeated joint company/university affiliations cannot turn the company into a university unit.
         # Apply this even to an already learned unit, and even with a school co-author.
-        if COMPANY_AFFILIATION.search(z):
+        if COMPANY_AFFILIATION.search(unwrapped_affiliation(z)):
             return False
         u = norm_unit(z)
         if generic_unit(z):
@@ -748,7 +754,7 @@ def _authorship_school_via(work, authorship, inst, aff, school=None):
     # Keep independent institution entries and non-contact school affiliations.
     without_contacts = [re.sub(r'\b[\w.+-]+@[\w.-]+\b', ' ', value) for value in raw]
     contact_only = (not any(aff.search(value) for value in without_contacts)
-                    and any(OTHER_INST.search(value) for value in without_contacts))
+                    and any(OTHER_INST.search(unwrapped_affiliation(value)) for value in without_contacts))
     return [i.get('display_name') for i in authorship.get('institutions') or []
             if inst == i.get('id') or inst in (i.get('lineage') or [])] \
         + ['text: ' + value for value in raw if not contact_only and aff.search(value)]
