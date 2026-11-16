@@ -91,3 +91,33 @@ def test_source_row_and_profile_reviews_must_agree(source_review):
     path.write_text(json.dumps(doc))
     with pytest.raises(ValueError, match='conflicting source-row and profile'):
         C.reviewed_profile_names('ntu', rows)
+
+
+def test_profileless_source_and_same_name_profiled_namesakes_stay_distinct(source_review):
+    rows, doc, path, db = source_review
+    canonical = 'Thambipillai Srikanthan'
+    math_profile = 'https://profiles.example/person/srikanthan-math'
+    with sqlite3.connect(db) as c:
+        url = rows[-1]['capture_url']
+        raw = zlib.decompress(c.execute('select raw_zlib from captures where capture_url=?', (url,)).fetchone()[0])
+        raw += f'''<div class="img-card--academic"><h3 class="img-card__title"><a href="{math_profile}">Prof {canonical}</a></h3>
+          <p class="img-card__desc">Appointments: Professor, Mathematics</p></div>'''.encode()
+        sha = hashlib.sha256(raw).hexdigest()
+        flat = ' '.join(BeautifulSoup(raw, 'html.parser').get_text(' ', strip=True).split())
+        c.execute('update captures set sha256=?,raw_zlib=?,text=? where capture_url=?', (sha, zlib.compress(raw), flat, url))
+    rows[-1]['sha256'] = sha
+    entries = L.parse(raw.decode(), 'ntu_img_cards')[1]
+    doc['source_names'][0]['evidence'] = doc['source_names'][0]['evidence'][:1]
+    doc['profile_names'] = []
+    for entry, identity in zip(entries, [canonical, canonical + ' [Mathematics]']):
+        quote = quote_of(flat, entry)
+        doc['profile_names'].append(dict(profile=entry['profile'], canonical_name=identity,
+                                         listed_names=[canonical], evidence=[dict(url=url, sha256=sha,
+                                         format='ntu_img_cards', name_listed=canonical, quote=quote)]))
+        if entry['profile'] == math_profile:
+            rows.append(dict(name=canonical, name_listed=canonical, observed='2026', profile=math_profile,
+                             capture_url=url, sha256=sha, quote=quote))
+    path.write_text(json.dumps(doc))
+    mapped = C.reviewed_profile_names('ntu', rows)
+    groups = C.merge_people(mapped)
+    assert {g['names'][0]: len(g['rows']) for g in groups} == {canonical: 2, canonical + ' [Mathematics]': 1}
