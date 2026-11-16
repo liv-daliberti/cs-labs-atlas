@@ -1,0 +1,117 @@
+{
+  "reviewer": "codex-sjtu-ntu-1115 / root; did not fill this recall record",
+  "reviewed_at": "2026-11-16",
+  "status": "INDEPENDENT_SOURCE_REVIEW_WITH_EXPLICIT_HOLDS",
+  "source_packet": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/recall-source220-1116/five-complete-source-censuses-before-comparison.json",
+  "source_packet_sha256": "488f2dc907e69f35690050fb8cc37255a6ef7cdbf67bdb765004f98da11ceef9",
+  "raw_census_immutable": true,
+  "threshold_changes": false,
+  "reviews": [
+    {
+      "pi": "李 阳",
+      "url": "https://liyang.page/people/",
+      "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
+      "literal_episodes": 13,
+      "raw_hash_and_all_quotes_verified": true
+    },
+    {
+      "pi": "沈 为",
+      "url": "https://shenwei1231.github.io/team/",
+      "sha256": "de77fe7603a44d093404fd22629460e30f84604810c5605303f25cf9cab347ac",
+      "literal_episodes": 20,
+      "raw_hash_and_all_quotes_verified": true
+    },
+    {
+      "pi": "吕宝粮",
+      "url": "https://bcmi.sjtu.edu.cn/member.html",
+      "sha256": "233e3261e0eed475bdb56aeaa7b74b0ef4b001e0c28baa018c6934ec095ec2c0",
+      "literal_episodes": 6,
+      "raw_hash_and_all_quotes_verified": true
+    },
+    {
+      "pi": "侯小凤",
+      "url": "https://xfhelen.github.io/mentoring/",
+      "sha256": "a4604edd7ca4a14e86e1f5aeabe1e94bd9335e07c3f5c77b462fe35c90c757a3",
+      "literal_episodes": 31,
+      "raw_hash_and_all_quotes_verified": true
+    },
+    {
+      "pi": "赵杰茹",
+      "url": "https://zjru.github.io/",
+      "sha256": "4e95214a947245c6ae1622a88ab385f4d5103209afc751d808e823cd2705ca06",
+      "literal_episodes": 25,
+      "raw_hash_and_all_quotes_verified": true
+    }
+  ],
+  "additional_primary_context": [
+    {
+      "url": "https://liyang.page/",
+      "sha256": "738ef8b60e754e410a240f13910090bf897692dd90dc4da2b8cb779a47781111",
+      "status": 200
+    },
+    {
+      "url": "https://xfhelen.github.io/",
+      "sha256": "97628d8825c33c811e84dee702a60bc9ea9fd757685af751750dd8eedfaf659f",
+      "status": 200
+    }
+  ],
+  "decisions": [
+    {
+      "pi": "李 阳",
+      "holds": [
+        "Zihan Guo",
+        "Xiaohan Mao",
+        "Chenyang Wan",
+        "Yue Xin",
+        "Chenxi Zeng"
+      ],
+      "decision": "School placement unresolved for these five. Retain their literal institute/foreign university cards. The own root explicitly describes parallel SJTU and Shanghai AI Laboratory teams; no campus inference from one group page. The bare Intern heading plus a foreign degree is not a visiting/exchange cue. Neither visiting nor neutral membership is authorized to bypass placement. Other eight explicit SJTU cards support current lab membership with their stated degree/Intern distinctions, not invented degree-class advising dates.",
+      "native_correction_required": "Remove/hold any current visiting admissions of Yue Xin and Chenxi Zeng unless independent literal appointment or local school evidence exists."
+    },
+    {
+      "pi": "沈 为",
+      "decision": "PASS 19 SJTU student/undergraduate/alumni episodes as literally listed, preserving cohort points and closed intervals. Kai Zhao remains literally Shanghai University and excluded outside school; no transfer to SJTU. No new admission implied by this review."
+    },
+    {
+      "pi": "吕宝粮",
+      "decision": "PASS six exact Bao-Liang Lu mentor entries as a directory current-members section distinct from the separate Alumni section. Keep source_currency_uncertain=true and no historical start inferred. Ping Guo and Ziyi Li are OTHER membership only: mixed Postdoctor and PhD heading cannot resolve either role. Cheng Fei, Hao-yi Hu, Shuai Luo and Le-dian Liu are graduate students of unspecified degree, no invented masters/PhD. If projected into native use capture-year current membership only, with literal mentor/heading context; footer 2013 is not a member date. No other faculty mentor entries transfer."
+    },
+    {
+      "pi": "侯小凤",
+      "decision": "Current 17 and post-2023 dated alumni mentoring support their literal roles and relationships in the SJTU group. Existing independently reviewed facultyStart2023 is the boundary; no faculty advising assigned before it. Preserve complete literal source periods. Current open intervals may produce start and current points, not invented intermediate attendance. Chang Liu August2024–December2026 remains a source-stated interval with a future end: no completed graduation/degree-award inference as of 2026-11-16.",
+      "holds": [
+        "Mingyu Liang",
+        "Luoyao Hao",
+        "Yu Qiu",
+        "Jinghang Yang",
+        "Xuehan Tang"
+      ],
+      "hold_reason": "Entire listed mentoring periods precede documented 2023 SJTU faculty appointment; actual campus/eligible faculty basis not established by this page.",
+      "boundary_cases": [
+        "Xinkai Wang 2021–2026",
+        "Jinyang Guo 2022–2026"
+      ],
+      "boundary_decision": "Only independently supported segment during 2023+ appointment can enter native; do not move their literal mentoring starts forward as though the source said so.",
+      "faculty_period_file_sha256": "6da7a37c10a8ecb4700a69baadf269922016accbbc35ab5aa66d824e8e0012e2",
+      "faculty_period_evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/houxiaofeng.html",
+          "sha256": "41a98fbe97497caa13182fce36563d2f9216cad50d10879f73ec334c7012d559",
+          "observed": "2026-11-07T18:08:56",
+          "observedAt": "2026-11-07T18:08:56",
+          "quote": "2023 - 至今，上海交通大学，助理研究员",
+          "kind": "faculty_role_chronology"
+        }
+      ]
+    },
+    {
+      "pi": "赵杰茹",
+      "decision": "PASS remaining 24 literal current/dated alumnus research-group episodes; preserve explicit visiting PhD Zeyu Xue as membership and no degree-adviser inference for that visitor. Literal endpoint/cohort distinctions remain.",
+      "holds": [
+        "Siyuan Yang"
+      ],
+      "hold_reason": "Own undergraduate alumnus line explicitly places B.S. at UIUC and M.S. at Columbia. Actual school placement/visiting research appointment unresolved; no SJTU degree or visiting inferred from that line."
+    }
+  ],
+  "signoff_limits": "This adjudicates source facts and safe native interpretation for these five pages. It does not sign the entire 30-PI record, approve missing rows or aliases, change native inputs, certify stage6 PASS or authorize a reroll."
+}

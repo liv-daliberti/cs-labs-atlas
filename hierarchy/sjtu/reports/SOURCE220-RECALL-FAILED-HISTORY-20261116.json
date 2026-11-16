@@ -1,0 +1,63 @@
+{
+  "status": "FAILED_SOURCE220_RECALL_HISTORY_PRESERVED_NOT_CANONICAL_GATE_PASS",
+  "native_job": "32327266",
+  "native_commit": "10b1fdbd728372ab522d35a6b32b4d7d0e8f2807",
+  "draw_job": "32328770",
+  "seed": 3478446429,
+  "binds": {
+    "students.json": "a42bbc2af23083c5169733ea539e5147aeac5363c1f3bc326afe80335b04eddc",
+    "pis.json": "f0c8642cb13e3cd62e674587ad3461ec1472cd74677923bd9455f08767791958"
+  },
+  "source_census": {
+    "sample": 30,
+    "literal_episodes": 272,
+    "readable": 11,
+    "unverifiable": 19
+  },
+  "after_independent_scope_diagnostic": {
+    "r1_strict_recall": 0.456,
+    "unverifiable_share": 0.633,
+    "r2_current_phd_recall": 0.434,
+    "x_counted_share": 0.022,
+    "status": "FAILED_R1_AND_UNVERIFIABLE_THRESHOLD; full30freshsignoffpending"
+  },
+  "immutable_original_artifacts": [
+    {
+      "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/recall-source220-1116/default30-complete-source-facts-before-comparison.json",
+      "sha256": "046fcb3553cbb72a69c4fe5ec9b4825797d1cd369e89d7fd414d6cf232befb95"
+    },
+    {
+      "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/recall-source220-1116/default30-complete-source-facts-pagequotes-corrected-before-valid-comparison.json",
+      "sha256": "f0d2679bfc0af793ec629c3181019e573d8d82515c18ab466d72b797f3729eec"
+    },
+    {
+      "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/recall-source220-1116/default30-complete-source-interpretation-reviewed-unsigned.json",
+      "sha256": "81e6b05acd0a6e15a16ef4c1e4885c94e9b5b63ad711ae5747b9c37e705872fc"
+    },
+    {
+      "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/recall-source220-1116/first-frozen-source-comparison.txt",
+      "sha256": "e6b03f4ab94a5c6f0edf10db2099e573ad0f40c00fefe764a508f07b0a49c17c"
+    },
+    {
+      "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/recall-source220-1116/first-pagequotes-corrected-source-comparison.txt",
+      "sha256": "617317712cca659cb56d07f6513db978b7e143b16562c4156a97d9965fad25b1"
+    },
+    {
+      "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/recall-source220-1116/first-independent-scope-overlay-comparison.txt",
+      "sha256": "53c082602e8c47e37ec7d1b82ae4692886dcea7d4ab4c7cabb76dbb36a68bd23"
+    },
+    {
+      "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/recall-source220-1116/source-interpretation-five-reviewed-overlay-history.json",
+      "sha256": "a9407e4bebc2b4cfedbe7e31dd7f8614c7c2d334917bdd7b36b3bc4f67446dd8"
+    },
+    {
+      "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/recall-source220-1116/peer-eight-zero-source-readings.json",
+      "sha256": "ecf4e4d280646cbd42ff4047699a493818575d4f6ea0b0a229973fc4dfda94bf"
+    },
+    {
+      "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/sjtu/tmp/recall-source220-1116/nine-individual-source-limit-readings-before-comparison.json",
+      "sha256": "85211ca2fd07cc8f2409f209c70aa6c90240a5002f6651c24591e7f7550517fe"
+    }
+  ],
+  "limits": "Original records and diagnostics remain in the private capture workspace unchanged. These data repairs require a new native build and then one new default sample; no reroll, threshold waiver, generated-output patch or stale canonical record is admitted."
+}
