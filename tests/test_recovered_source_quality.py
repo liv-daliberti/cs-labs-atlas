@@ -110,6 +110,26 @@ def test_unknown_alternate_never_becomes_article_from_a_default():
     assert 'type' not in x
 
 
+@pytest.mark.parametrize('key,expected', [('journals/corr/abs-2602-00669', 'preprint'),
+                                         ('journals/neco/KramerC24', 'article')])
+def test_exact_owned_corr_article_is_a_preprint_without_retyping_journal_articles(key, expected):
+    # Regression: the reviewed Iglesias manuscript is a CoRR e-print even
+    # though its native DBLP publication uses the same XML element as a journal.
+    title = 'Improving Neuropathological Reconstruction Fidelity via AI Slice Imputation.'
+    pid = 'https://dblp.org/pid/06/5946'
+    record = dict(key=key, type='article', title=title, year=2026,
+                  dois=['10.48550/arXiv.2602.00669'], authors=[['Juan Eugenio Iglesias', None]])
+    ctx = SimpleNamespace(n=Counter(), dblp_persons=dict(persons={pid: dict(pubs=[record])}), hits=[])
+    pi = dict(pi='Juan Eugenio Iglesias', dblp=[pid])
+    recovery = dict(dblp_key=key, title=title, year=2026, doi=record['dois'][0], venue='CoRR')
+    result = papers.recovered_source_metadata(ctx, pi, recovery, {}, 'dblp', strict=True)
+    assert result['type'] == expected
+    assert result['quality_views'] == [dict(type=expected, venue='CoRR')]
+    # A repository key cannot authorize an unrelated publication projection.
+    recovery['title'] = 'An unrelated paper'
+    assert papers.recovered_source_metadata(ctx, pi, recovery, {}, 'dblp', strict=True) is None
+
+
 def test_generic_journal_abbreviations_apply_only_to_quality_not_source_metadata():
     for short, canonical in [('Commun. ACM', 'Communications of the ACM'), ('IEEE Softw.', 'IEEE Software'),
                               ('IEEE Pervasive Comput.', 'IEEE Pervasive Computing')]:

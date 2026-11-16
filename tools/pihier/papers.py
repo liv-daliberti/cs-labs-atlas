@@ -1185,6 +1185,10 @@ def recovered_source_metadata(ctx, p, x, ev, kind, strict=False, binding=None):
         for reason in review:
             ctx.n['recovered_source_review:' + reason] += 1
         if typ and len(compatible) == len(pubs):
+            # DBLP serializes CoRR records as <article>; CoRR is an e-print
+            # repository, so that XML element does not establish journal publication.
+            if typ == 'article' and key.startswith('journals/corr/'):
+                typ = 'preprint'
             canonical = next((v for prefix, v in QUALITY_DBLP_STREAMS.items() if key.startswith(prefix)), None)
             evidence.append(dict(type=typ, venue=canonical or quality_venue(x.get('venue'))))
         else:

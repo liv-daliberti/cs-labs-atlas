@@ -136,6 +136,8 @@ complete target holds the source; a folded pointer alone cannot authorize a new 
 for candidate student links. Different-title reviewed merges retain their existing eligible-target handling.
 
 ### R-PAP-17 — not papers
+An exact owned DBLP CoRR recovery (`journals/corr/`) retains type `preprint` even though DBLP uses an `article` XML element. This format correction does not supply authorship, school affiliation or faculty time; the ordinary recovery gates still apply. Harvard's verified January2026 Iglesias manuscript `journals/corr/abs-2602-00669` triggered this correction (2026-11-16).
+
 Datasets, paratext, peer reviews, errata, supplementary materials, grants, standards, retractions, reference entries
 and library guides are not papers (`NOT_PAPERS`).
 Publisher records titled `Notice of Removal: ...` are removal notices, not the research paper they name. Oxford's sampled IEEE Internet of Things Journal DOI `10.1109/jiot.2020.2967734` is dropped as `removal_notice`; an ordinary paper with the same subject remains eligible.
