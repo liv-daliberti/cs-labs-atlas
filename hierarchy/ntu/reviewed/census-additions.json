@@ -8613,46 +8613,83 @@
   {
     "name": "Geok See Ng",
     "aliases": [],
-    "collection_person_id": "ntu_fac_geok-see-ng",
+    "collection_person_id": null,
     "dblp": [],
-    "rank": "ladder",
-    "title_as_listed": "Geok Ing NG Professor",
-    "departments": [
-      "EEE"
-    ],
-    "years_listed": [
-      2026
-    ],
-    "sources": [
-      {
+    "rank": "other",
+    "title_as_listed": null,
+    "departments": [],
+    "years_listed": [],
+    "sources": [],
+    "is_pi": false,
+    "pi_basis": {
+      "kind": "revoked_source_identity_mismatch",
+      "evidence": {
+        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+        "sha256": "ec6d3806779c6a31ad0fdd7d5a67e4632e02d74040176c20ba276cc0f6276eb5",
+        "quote": "Geok Ing NG",
+        "kind": "different_person_literal_faculty_card"
+      },
+      "reason": "The sole2026 faculty-source card explicitly names Geok Ing NG, a different EEE semiconductor researcher, not Geok See Ng. Revoke this unsupported2026admission and source-derived node; do not transfer author IDs, periods, members or works between the two people. The checked complete2016/17and2021/24/25/26 listing rows do not establish an in-window GeokSeeNg faculty role. Historical eligibility remains open if a genuine source is later found; no blanket person exclusion is imposed."
+    },
+    "lab_units": [],
+    "added": "cs_related_review_20261110",
+    "prior_admission": {
+      "name": "Geok See Ng",
+      "aliases": [],
+      "collection_person_id": "ntu_fac_geok-see-ng",
+      "dblp": [],
+      "rank": "ladder",
+      "title_as_listed": "Geok Ing NG Professor",
+      "departments": [
+        "EEE"
+      ],
+      "years_listed": [
+        2026
+      ],
+      "sources": [
+        {
+          "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+          "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
+          "quote": "Geok Ing NG Professor",
+          "kind": "unit_listing:EEE",
+          "observed": "20261110"
+        }
+      ],
+      "is_pi": true,
+      "pi_basis": {
+        "kind": "ladder_faculty",
         "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
         "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
         "quote": "Geok Ing NG Professor",
-        "kind": "unit_listing:EEE",
-        "observed": "20261110"
-      }
-    ],
-    "is_pi": true,
-    "pi_basis": {
-      "kind": "ladder_faculty",
-      "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
-      "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
-      "quote": "Geok Ing NG Professor",
-      "observed": "20261110",
-      "role": "professor title on the unit faculty listing",
-      "cs_related": {
-        "dblp": [
-          "https://dblp.org/pid/n/GeokSeeNg"
-        ],
-        "dblp_window": 8,
-        "openalex": [
-          "https://openalex.org/A5019848794"
-        ],
-        "share": 0.048
-      }
+        "observed": "20261110",
+        "role": "professor title on the unit faculty listing",
+        "cs_related": {
+          "dblp": [
+            "https://dblp.org/pid/n/GeokSeeNg"
+          ],
+          "dblp_window": 8,
+          "openalex": [
+            "https://openalex.org/A5019848794"
+          ],
+          "share": 0.048
+        }
+      },
+      "lab_units": [],
+      "added": "cs_related_review_20261110"
     },
-    "lab_units": [],
-    "added": "cs_related_review_20261110"
+    "admission_correction": {
+      "reviewed_by": "codex-ntu-gates19-1115",
+      "reviewed_on": "2026-11-15",
+      "independent_reviewer": "codex-sjtu-ntu-1115",
+      "status": "revoked_2026_source_identity_mismatch",
+      "why": "The sole2026 faculty-source card explicitly names Geok Ing NG, a different EEE semiconductor researcher, not Geok See Ng. Revoke this unsupported2026admission and source-derived node; do not transfer author IDs, periods, members or works between the two people. The checked complete2016/17and2021/24/25/26 listing rows do not establish an in-window GeokSeeNg faculty role. Historical eligibility remains open if a genuine source is later found; no blanket person exclusion is imposed.",
+      "source": {
+        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+        "sha256": "ec6d3806779c6a31ad0fdd7d5a67e4632e02d74040176c20ba276cc0f6276eb5",
+        "quote": "Geok Ing NG",
+        "kind": "different_person_literal_faculty_card"
+      }
+    }
   },
   {
     "name": "Guoqiang Hu",

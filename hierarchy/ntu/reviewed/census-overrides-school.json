@@ -6191,25 +6191,49 @@
   },
   "Geok See Ng": {
     "no_identity": true,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
+    "why_no_identity": "The sole2026 faculty-source card explicitly names Geok Ing NG, a different EEE semiconductor researcher, not Geok See Ng. Revoke this unsupported2026admission and source-derived node; do not transfer author IDs, periods, members or works between the two people. The checked complete2016/17and2021/24/25/26 listing rows do not establish an in-window GeokSeeNg faculty role. Historical eligibility remains open if a genuine source is later found; no blanket person exclusion is imposed.",
+    "dblp": [],
+    "collection_person_id": null,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
+      "why": "No admitted binding for this source-mismatched2026candidate; historical eligibility remains separate.",
       "evidence": []
     },
-    "collection_person_id": "ntu_fac_geok-see-ng",
-    "collection_person_source": {
-      "profile_url": null,
-      "sources": [
-        {
-          "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
-          "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
-          "quote": "Geok Ing NG Professor",
-          "observedAt": "20261110",
-          "kind": "named_individual_official_unit_listing_EEE"
-        }
-      ],
-      "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
+    "identity_correction": {
+      "reviewed_by": "codex-ntu-gates19-1115",
+      "reviewed_on": "2026-11-15",
+      "independent_reviewer": "codex-sjtu-ntu-1115",
+      "status": "revoked_2026_source_identity_mismatch",
+      "why": "The sole2026 faculty-source card explicitly names Geok Ing NG, a different EEE semiconductor researcher, not Geok See Ng. Revoke this unsupported2026admission and source-derived node; do not transfer author IDs, periods, members or works between the two people. The checked complete2016/17and2021/24/25/26 listing rows do not establish an in-window GeokSeeNg faculty role. Historical eligibility remains open if a genuine source is later found; no blanket person exclusion is imposed.",
+      "source": {
+        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+        "sha256": "ec6d3806779c6a31ad0fdd7d5a67e4632e02d74040176c20ba276cc0f6276eb5",
+        "quote": "Geok Ing NG",
+        "kind": "different_person_literal_faculty_card"
+      }
+    },
+    "prior_review_receipt": {
+      "no_identity": true,
+      "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
+      "dblp_orcid_review": {
+        "allowed": [],
+        "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
+        "evidence": []
+      },
+      "collection_person_id": "ntu_fac_geok-see-ng",
+      "collection_person_source": {
+        "profile_url": null,
+        "sources": [
+          {
+            "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+            "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
+            "quote": "Geok Ing NG Professor",
+            "observedAt": "20261110",
+            "kind": "named_individual_official_unit_listing_EEE"
+          }
+        ],
+        "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
+      }
     }
   },
   "Guoqiang Hu": {

@@ -22,10 +22,10 @@
     "WKWSCI"
   ],
   "counts": {
-    "not_faculty_listed": 1191,
+    "not_faculty_listed": 1192,
     "research_or_other_rank": 8,
     "excluded_scope": 8,
-    "accepted": 64,
+    "accepted": 63,
     "faculty_not_computing": 17
   },
   "decisions": [
@@ -7841,108 +7841,11 @@
       "name": "Geok See Ng",
       "aliases": [],
       "source": "dblp_affiliation",
-      "decision": "accepted",
-      "reason": "faculty (EEE listing, professor rank) with 8 DBLP records 2016-2026 naming the school",
-      "cs_basis": {
-        "dblp": [
-          "https://dblp.org/pid/n/GeokSeeNg"
-        ],
-        "dblp_window": 8,
-        "affiliation_notes": [
-          "Nanyang Technological University, Singapore"
-        ],
-        "evidence": [
-          {
-            "url": "https://dblp.org/pid/n/GeokSeeNg",
-            "source": "DBLP dump dblp-2026-09-01.xml.gz",
-            "quote": "Nanyang Technological University, Singapore"
-          }
-        ],
-        "openalex_share": {
-          "result": "not_computing",
-          "ids": [
-            "https://openalex.org/A5019848794"
-          ],
-          "school_works": 84,
-          "dblp_indexed": 4,
-          "share": 0.048,
-          "thresholds": {
-            "dblp_indexed": 5,
-            "share": 0.2,
-            "min_works_for_negative": 8
-          },
-          "namesake_orcids": false,
-          "excluded": [],
-          "authors": [
-            {
-              "author": "https://openalex.org/A5019848794",
-              "basis": "full name: Geok Ing Ng",
-              "works": 84,
-              "dblp_indexed": 4,
-              "years": [
-                2016,
-                2026
-              ],
-              "names": [
-                "Geok Ing Ng",
-                "G.I. Ng",
-                "Ng Geok Ing"
-              ],
-              "orcids": [
-                "0000-0002-9857-4189"
-              ],
-              "venues": [
-                "IEEE Electron Device Letters",
-                "Applied Physics Letters",
-                "physica status solidi (a)"
-              ],
-              "dblp_examples": [
-                {
-                  "oa": "https://openalex.org/W2519841865",
-                  "year": 2016,
-                  "title": "Role of two-dimensional electron gas (2DEG) in AlGaN/GaN high electron mobility transistor (HEMT) ON-state degradation",
-                  "venue": "Microelectronics Reliability"
-                },
-                {
-                  "oa": "https://openalex.org/W2991451521",
-                  "year": 2019,
-                  "title": "Low Voltage High-Energy α-Particle Detectors by GaN-on-GaN Schottky Diodes with Record-High Charge Collection Efficiency",
-                  "venue": "Sensors"
-                }
-              ],
-              "other_examples": [
-                {
-                  "oa": "https://openalex.org/W2295686217",
-                  "year": 2016,
-                  "title": "Temperature Dependent Characteristics of InAlN/GaN HEMTs for mm-Wave Applications",
-                  "venue": "Procedia Engineering"
-                },
-                {
-                  "oa": "https://openalex.org/W2307656426",
-                  "year": 2016,
-                  "title": "A Comprehensive Compact Model for GaN HEMTs, Including Quasi-Steady-State and Transient Trap-Charge Effects",
-                  "venue": "IEEE Transactions on Electron Devices"
-                }
-              ]
-            }
-          ],
-          "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-        },
-        "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
-      },
-      "faculty_evidence": [
-        {
-          "unit": "EEE",
-          "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
-          "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
-          "observed": "20261110",
-          "quote": "Geok Ing Ng Professor",
-          "ladder": true
-        }
-      ],
-      "years_listed": [
-        2026
-      ],
+      "decision": "not_faculty_listed",
+      "reason": "The sole2026 faculty-source card explicitly names Geok Ing NG, a different EEE semiconductor researcher, not Geok See Ng. Revoke this unsupported2026admission and source-derived node; do not transfer author IDs, periods, members or works between the two people. The checked complete2016/17and2021/24/25/26 listing rows do not establish an in-window GeokSeeNg faculty role. Historical eligibility remains open if a genuine source is later found; no blanket person exclusion is imposed.",
+      "cs_basis": {},
+      "faculty_evidence": [],
+      "years_listed": [],
       "units_searched": [
         "ADM",
         "CEE",
@@ -7954,7 +7857,139 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "prior_decision": {
+        "name": "Geok See Ng",
+        "aliases": [],
+        "source": "dblp_affiliation",
+        "decision": "accepted",
+        "reason": "faculty (EEE listing, professor rank) with 8 DBLP records 2016-2026 naming the school",
+        "cs_basis": {
+          "dblp": [
+            "https://dblp.org/pid/n/GeokSeeNg"
+          ],
+          "dblp_window": 8,
+          "affiliation_notes": [
+            "Nanyang Technological University, Singapore"
+          ],
+          "evidence": [
+            {
+              "url": "https://dblp.org/pid/n/GeokSeeNg",
+              "source": "DBLP dump dblp-2026-09-01.xml.gz",
+              "quote": "Nanyang Technological University, Singapore"
+            }
+          ],
+          "openalex_share": {
+            "result": "not_computing",
+            "ids": [
+              "https://openalex.org/A5019848794"
+            ],
+            "school_works": 84,
+            "dblp_indexed": 4,
+            "share": 0.048,
+            "thresholds": {
+              "dblp_indexed": 5,
+              "share": 0.2,
+              "min_works_for_negative": 8
+            },
+            "namesake_orcids": false,
+            "excluded": [],
+            "authors": [
+              {
+                "author": "https://openalex.org/A5019848794",
+                "basis": "full name: Geok Ing Ng",
+                "works": 84,
+                "dblp_indexed": 4,
+                "years": [
+                  2016,
+                  2026
+                ],
+                "names": [
+                  "Geok Ing Ng",
+                  "G.I. Ng",
+                  "Ng Geok Ing"
+                ],
+                "orcids": [
+                  "0000-0002-9857-4189"
+                ],
+                "venues": [
+                  "IEEE Electron Device Letters",
+                  "Applied Physics Letters",
+                  "physica status solidi (a)"
+                ],
+                "dblp_examples": [
+                  {
+                    "oa": "https://openalex.org/W2519841865",
+                    "year": 2016,
+                    "title": "Role of two-dimensional electron gas (2DEG) in AlGaN/GaN high electron mobility transistor (HEMT) ON-state degradation",
+                    "venue": "Microelectronics Reliability"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2991451521",
+                    "year": 2019,
+                    "title": "Low Voltage High-Energy α-Particle Detectors by GaN-on-GaN Schottky Diodes with Record-High Charge Collection Efficiency",
+                    "venue": "Sensors"
+                  }
+                ],
+                "other_examples": [
+                  {
+                    "oa": "https://openalex.org/W2295686217",
+                    "year": 2016,
+                    "title": "Temperature Dependent Characteristics of InAlN/GaN HEMTs for mm-Wave Applications",
+                    "venue": "Procedia Engineering"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2307656426",
+                    "year": 2016,
+                    "title": "A Comprehensive Compact Model for GaN HEMTs, Including Quasi-Steady-State and Transient Trap-Charge Effects",
+                    "venue": "IEEE Transactions on Electron Devices"
+                  }
+                ]
+              }
+            ],
+            "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+          },
+          "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
+        },
+        "faculty_evidence": [
+          {
+            "unit": "EEE",
+            "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+            "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
+            "observed": "20261110",
+            "quote": "Geok Ing Ng Professor",
+            "ladder": true
+          }
+        ],
+        "years_listed": [
+          2026
+        ],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      },
+      "review_correction": {
+        "reviewed_by": "codex-ntu-gates19-1115",
+        "reviewed_on": "2026-11-15",
+        "independent_reviewer": "codex-sjtu-ntu-1115",
+        "status": "revoked_2026_source_identity_mismatch",
+        "why": "The sole2026 faculty-source card explicitly names Geok Ing NG, a different EEE semiconductor researcher, not Geok See Ng. Revoke this unsupported2026admission and source-derived node; do not transfer author IDs, periods, members or works between the two people. The checked complete2016/17and2021/24/25/26 listing rows do not establish an in-window GeokSeeNg faculty role. Historical eligibility remains open if a genuine source is later found; no blanket person exclusion is imposed.",
+        "source": {
+          "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+          "sha256": "ec6d3806779c6a31ad0fdd7d5a67e4632e02d74040176c20ba276cc0f6276eb5",
+          "quote": "Geok Ing NG",
+          "kind": "different_person_literal_faculty_card"
+        }
+      }
     },
     {
       "name": "Gerald Seet",
