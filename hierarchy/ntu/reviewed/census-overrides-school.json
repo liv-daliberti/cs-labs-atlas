@@ -3743,8 +3743,8 @@
     }
   },
   "Ong Yew Soon": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "Exact source-owned original DBLP WWW record independently reviewed. No global authorID or new ORCID inheritance.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -3769,6 +3769,238 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "prior_identity_reviews": [
+      {
+        "before_source_owned_url_binding": {
+          "no_identity": true,
+          "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+          "dblp_orcid_review": {
+            "allowed": [],
+            "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
+            "evidence": []
+          },
+          "collection_person_id": "ntu_fac_source_0ce5668280dd0622",
+          "collection_person_source": {
+            "profile_url": "https://dr.ntu.edu.sg/entities/person/Ong-Yew-Soon",
+            "sources": [
+              {
+                "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+                "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+                "quote": "Prof Ong Yew Soon",
+                "observedAt": "2026-11-07T17:47:31",
+                "kind": "named_individual_official_computing_faculty_card"
+              },
+              {
+                "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+                "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+                "quote": "Appointments: Professor, College of Computing & Data Science Yidan Professor in Artificial Intelligence (AI) Professor, National Institute of Education Professor, School of Physical & Mathematical Sciences (Courtesy Appointment)",
+                "observedAt": "2026-11-07T17:47:31"
+              }
+            ],
+            "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+          }
+        }
+      }
+    ],
+    "dblp": [
+      "https://dblp.org/pid/64/4136"
+    ],
+    "dblp_owned_url_review": {
+      "PID": "https://dblp.org/pid/64/4136",
+      "rule": "owned_faculty_profile_uri_matches_original_dblp_www",
+      "literal_url_pairs": [
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asysong/",
+          "dblp_www": "http://www.ntu.edu.sg/home/asysong/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asysong/",
+          "dblp_www": "http://www.ntu.edu.sg/home/asysong/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asysong/",
+          "dblp_www": "http://www.ntu.edu.sg/home/asysong/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asysong/",
+          "dblp_www": "http://www.ntu.edu.sg/home/asysong/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asysong/",
+          "dblp_www": "http://www.ntu.edu.sg/home/asysong/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asysong/",
+          "dblp_www": "http://www.ntu.edu.sg/home/asysong/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        }
+      ],
+      "faculty_sources": [
+        {
+          "name": "Ong Yew Soon",
+          "name_listed": "Ong Yew Soon",
+          "dept": "CCDS",
+          "slot": "sce_moss_faculty_2016",
+          "kind": "main",
+          "year": 2016,
+          "half": "H1",
+          "observed": "20160304155707",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asysong/",
+          "capture_url": "https://web.archive.org/web/20160304155707id_/http://www3.ntu.edu.sg:80/SCE/moss_staffac.asp",
+          "sha256": "88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644",
+          "quote": "Ong Yew Soon (Professor)"
+        },
+        {
+          "name": "Ong Yew Soon",
+          "name_listed": "Ong Yew Soon",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2016,
+          "half": "H1",
+          "observed": "20160619211903",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asysong/",
+          "capture_url": "https://web.archive.org/web/20160619211903id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "d092630cbbe784c8c35b286e793fb4c474bed4125f365c048008a2ec80f3efe9",
+          "quote": "Ong Yew Soon (Professor)"
+        },
+        {
+          "name": "Ong Yew Soon",
+          "name_listed": "Ong Yew Soon",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2017,
+          "half": "H1",
+          "observed": "20170602224854",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asysong/",
+          "capture_url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "quote": "Ong Yew Soon (Professor)"
+        },
+        {
+          "name": "Ong Yew Soon",
+          "name_listed": "Ong Yew Soon",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2018,
+          "half": "H1",
+          "observed": "20180602075008",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asysong/",
+          "capture_url": "https://web.archive.org/web/20180602075008id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "15f38099ef1f7d55dbbd900606e0543111d07160ce878f3e7d9a86c0d7edc2d0",
+          "quote": "Ong Yew Soon (Professor)"
+        },
+        {
+          "name": "Ong Yew Soon",
+          "name_listed": "Ong Yew Soon",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2019,
+          "half": "H2",
+          "observed": "20190719123909",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asysong/",
+          "capture_url": "https://web.archive.org/web/20190719123909id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "5b244f02dbf760c3711736bc4711c1980f81d568b5589a825378959c5d3b7f57",
+          "quote": "Ong Yew Soon (Professor)"
+        },
+        {
+          "name": "Ong Yew Soon",
+          "name_listed": "Ong Yew Soon",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2020,
+          "half": "H1",
+          "observed": "20200623035947",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asysong/",
+          "capture_url": "https://web.archive.org/web/20200623035947id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "0bfcc36fe78fcaa197c641fb6ebeabc9719edc7af770f4e76652005227a08907",
+          "quote": "Ong Yew Soon (Professor)"
+        }
+      ],
+      "original_person_record": {
+        "pid": "https://dblp.org/pid/64/4136",
+        "names": [
+          "Yew-Soon Ong",
+          "Yew Soon Ong"
+        ],
+        "sha256": "80b7f5186ad243bc62bfebf674a8f9d8ebd4d2e7c1e8ce7391866d9bb810500f",
+        "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/continuity-dblp-selected-originals/64_4136.xml"
+      },
+      "reviewer": "codex-sjtu-ntu-1115",
+      "reviewed_on": "2026-11-16",
+      "receipt_sha256": "11f862ca591322052edd8503a6885c0a891324e6a470ab9b80089e76c3f06047",
+      "packet_sha256": "bf9e6254a101b3ac53fc23659f4a7b4dec2c713fcd55057424412366b6a6dcf7",
+      "scope": "PI-to-ownedDBLP-PID only; normal source/identity/school/appointment/type/dedup gates remain. No ORCID or OpenAlex authorID inheritance."
     }
   },
   "Pan Xingang": {
@@ -5433,8 +5665,8 @@
     }
   },
   "Zhang Jie": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "Exact source-owned original DBLP WWW record independently reviewed. No global authorID or new ORCID inheritance.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -5459,6 +5691,237 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+    },
+    "prior_identity_reviews": [
+      {
+        "before_source_owned_url_binding": {
+          "no_identity": true,
+          "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+          "dblp_orcid_review": {
+            "allowed": [],
+            "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
+            "evidence": []
+          },
+          "collection_person_id": "ntu_fac_source_16baf43b87a31d85",
+          "collection_person_source": {
+            "profile_url": "https://dr.ntu.edu.sg/entities/person/Zhang-Jie",
+            "sources": [
+              {
+                "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+                "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+                "quote": "Prof Zhang Jie",
+                "observedAt": "2026-11-07T17:47:31",
+                "kind": "named_individual_official_computing_faculty_card"
+              },
+              {
+                "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+                "sha256": "a01dd5b00a1d876b95c57360136a9c1404c85d0c38dacf19cf3d5ce94983f097",
+                "quote": "Appointments: Professor, College of Computing & Data Science",
+                "observedAt": "2026-11-07T17:47:31"
+              }
+            ],
+            "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
+          }
+        }
+      }
+    ],
+    "dblp": [
+      "https://dblp.org/pid/84/6889-2"
+    ],
+    "dblp_owned_url_review": {
+      "PID": "https://dblp.org/pid/84/6889-2",
+      "rule": "owned_faculty_profile_uri_matches_original_dblp_www",
+      "literal_url_pairs": [
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/zhangj/",
+          "dblp_www": "http://www.ntu.edu.sg/home/zhangj/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/zhangj/",
+          "dblp_www": "http://www.ntu.edu.sg/home/zhangj/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/zhangj/",
+          "dblp_www": "http://www.ntu.edu.sg/home/zhangj/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/zhangj/",
+          "dblp_www": "http://www.ntu.edu.sg/home/zhangj/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/zhangj/",
+          "dblp_www": "http://www.ntu.edu.sg/home/zhangj/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/zhangj/",
+          "dblp_www": "http://www.ntu.edu.sg/home/zhangj/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        }
+      ],
+      "faculty_sources": [
+        {
+          "name": "Zhang Jie",
+          "name_listed": "Zhang Jie",
+          "dept": "CCDS",
+          "slot": "sce_moss_faculty_2016",
+          "kind": "main",
+          "year": 2016,
+          "half": "H1",
+          "observed": "20160304155707",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/zhangj/",
+          "capture_url": "https://web.archive.org/web/20160304155707id_/http://www3.ntu.edu.sg:80/SCE/moss_staffac.asp",
+          "sha256": "88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644",
+          "quote": "Zhang Jie (Assoc Prof)"
+        },
+        {
+          "name": "Zhang Jie",
+          "name_listed": "Zhang Jie",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2016,
+          "half": "H1",
+          "observed": "20160619211903",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/zhangj/",
+          "capture_url": "https://web.archive.org/web/20160619211903id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "d092630cbbe784c8c35b286e793fb4c474bed4125f365c048008a2ec80f3efe9",
+          "quote": "Zhang Jie (Assoc Prof)"
+        },
+        {
+          "name": "Zhang Jie",
+          "name_listed": "Zhang Jie",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2017,
+          "half": "H1",
+          "observed": "20170602224854",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/zhangj/",
+          "capture_url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "quote": "Zhang Jie (Assoc Prof)"
+        },
+        {
+          "name": "Zhang Jie",
+          "name_listed": "Zhang Jie",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2018,
+          "half": "H1",
+          "observed": "20180602075008",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/zhangj/",
+          "capture_url": "https://web.archive.org/web/20180602075008id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "15f38099ef1f7d55dbbd900606e0543111d07160ce878f3e7d9a86c0d7edc2d0",
+          "quote": "Zhang Jie (Assoc Prof)"
+        },
+        {
+          "name": "Zhang Jie",
+          "name_listed": "Zhang Jie",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2019,
+          "half": "H2",
+          "observed": "20190719123909",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/zhangj/",
+          "capture_url": "https://web.archive.org/web/20190719123909id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "5b244f02dbf760c3711736bc4711c1980f81d568b5589a825378959c5d3b7f57",
+          "quote": "Zhang Jie (Assoc Prof)"
+        },
+        {
+          "name": "Zhang Jie",
+          "name_listed": "Zhang Jie",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2020,
+          "half": "H1",
+          "observed": "20200623035947",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/zhangj/",
+          "capture_url": "https://web.archive.org/web/20200623035947id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "0bfcc36fe78fcaa197c641fb6ebeabc9719edc7af770f4e76652005227a08907",
+          "quote": "Zhang Jie (Assoc Prof)"
+        }
+      ],
+      "original_person_record": {
+        "pid": "https://dblp.org/pid/84/6889-2",
+        "names": [
+          "Jie Zhang 0002"
+        ],
+        "sha256": "57d83e48d336769415cf601758c56e1575b23eac961e72d46339a10878e744b4",
+        "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/continuity-dblp-selected-originals/84_6889-2.xml"
+      },
+      "reviewer": "codex-sjtu-ntu-1115",
+      "reviewed_on": "2026-11-16",
+      "receipt_sha256": "11f862ca591322052edd8503a6885c0a891324e6a470ab9b80089e76c3f06047",
+      "packet_sha256": "bf9e6254a101b3ac53fc23659f4a7b4dec2c713fcd55057424412366b6a6dcf7",
+      "scope": "PI-to-ownedDBLP-PID only; normal source/identity/school/appointment/type/dedup gates remain. No ORCID or OpenAlex authorID inheritance."
     }
   },
   "Zhang Mengmi": {
@@ -9063,8 +9526,220 @@
       "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
       "evidence": []
     },
-    "no_identity": true,
-    "why_no_identity": "Reviewed hold: no DBLP binding by the standard tiers (5 candidates, none names the school); the person was a professor on the 2021 SCSE list, so the PI context stays, papers are withheld until an identity source is reviewed."
+    "no_identity": false,
+    "why_no_identity": "Exact source-owned original DBLP WWW record independently reviewed. No global authorID or new ORCID inheritance.",
+    "prior_identity_reviews": [
+      {
+        "before_source_owned_url_binding": {
+          "dblp_orcid_review": {
+            "allowed": [],
+            "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
+            "evidence": []
+          },
+          "no_identity": true,
+          "why_no_identity": "Reviewed hold: no DBLP binding by the standard tiers (5 candidates, none names the school); the person was a professor on the 2021 SCSE list, so the PI context stays, papers are withheld until an identity source is reviewed."
+        }
+      }
+    ],
+    "dblp": [
+      "https://dblp.org/pid/97/6922"
+    ],
+    "dblp_owned_url_review": {
+      "PID": "https://dblp.org/pid/97/6922",
+      "rule": "owned_faculty_profile_uri_matches_original_dblp_www",
+      "literal_url_pairs": [
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "dblp_www": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "dblp_www": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "dblp_www": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "dblp_www": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "dblp_www": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "dblp_www": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        }
+      ],
+      "faculty_sources": [
+        {
+          "name": "Goh Wooi Boon",
+          "name_listed": "Goh Wooi Boon",
+          "dept": "CCDS",
+          "slot": "sce_moss_faculty_2016",
+          "kind": "main",
+          "year": 2016,
+          "half": "H1",
+          "observed": "20160304155707",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "capture_url": "https://web.archive.org/web/20160304155707id_/http://www3.ntu.edu.sg:80/SCE/moss_staffac.asp",
+          "sha256": "88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644",
+          "quote": "Goh Wooi Boon (Assoc Prof)"
+        },
+        {
+          "name": "Goh Wooi Boon",
+          "name_listed": "Goh Wooi Boon",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2016,
+          "half": "H1",
+          "observed": "20160619211903",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "capture_url": "https://web.archive.org/web/20160619211903id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "d092630cbbe784c8c35b286e793fb4c474bed4125f365c048008a2ec80f3efe9",
+          "quote": "Goh Wooi Boon (Assoc Prof)"
+        },
+        {
+          "name": "Goh Wooi Boon",
+          "name_listed": "Goh Wooi Boon",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2017,
+          "half": "H1",
+          "observed": "20170602224854",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "capture_url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "quote": "Goh Wooi Boon (Assoc Prof)"
+        },
+        {
+          "name": "Goh Wooi Boon",
+          "name_listed": "Goh Wooi Boon",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2018,
+          "half": "H1",
+          "observed": "20180602075008",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "capture_url": "https://web.archive.org/web/20180602075008id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "15f38099ef1f7d55dbbd900606e0543111d07160ce878f3e7d9a86c0d7edc2d0",
+          "quote": "Goh Wooi Boon (Assoc Prof)"
+        },
+        {
+          "name": "Goh Wooi Boon",
+          "name_listed": "Goh Wooi Boon",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2019,
+          "half": "H2",
+          "observed": "20190719123909",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "capture_url": "https://web.archive.org/web/20190719123909id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "5b244f02dbf760c3711736bc4711c1980f81d568b5589a825378959c5d3b7f57",
+          "quote": "Goh Wooi Boon (Assoc Prof)"
+        },
+        {
+          "name": "Goh Wooi Boon",
+          "name_listed": "Goh Wooi Boon",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2020,
+          "half": "H1",
+          "observed": "20200623035947",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/aswbgoh/",
+          "capture_url": "https://web.archive.org/web/20200623035947id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "0bfcc36fe78fcaa197c641fb6ebeabc9719edc7af770f4e76652005227a08907",
+          "quote": "Goh Wooi Boon (Assoc Prof)"
+        }
+      ],
+      "original_person_record": {
+        "pid": "https://dblp.org/pid/97/6922",
+        "names": [
+          "Wooi-Boon Goh",
+          "Wooi Boon Goh"
+        ],
+        "sha256": "6f108bc75d7509d5d46ee5273265f722646c72b014d93edb693d2a29a5c269ac",
+        "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/continuity-dblp-selected-originals/97_6922.xml"
+      },
+      "reviewer": "codex-sjtu-ntu-1115",
+      "reviewed_on": "2026-11-16",
+      "receipt_sha256": "11f862ca591322052edd8503a6885c0a891324e6a470ab9b80089e76c3f06047",
+      "packet_sha256": "bf9e6254a101b3ac53fc23659f4a7b4dec2c713fcd55057424412366b6a6dcf7",
+      "scope": "PI-to-ownedDBLP-PID only; normal source/identity/school/appointment/type/dedup gates remain. No ORCID or OpenAlex authorID inheritance."
+    }
   },
   "Guan Cuntai": {
     "dblp_orcid_review": {
@@ -9573,5 +10248,641 @@
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
     },
     "why_name_variant": "2026-11-11: census spelling 'Nicholas Vun Chan Hua' is the same listed person as the reviewed addition 'Vun Chan Hua, Nicholas' (same dr.ntu.edu.sg profile URL, same 2021 SCSE and 2026 CCDS listings); the reviewed identity decision of 'Vun Chan Hua, Nicholas' is carried to this spelling, nothing new is bound."
+  },
+  "Cai Jianfei": {
+    "prior_identity_reviews": [
+      {
+        "before_source_owned_url_binding": {}
+      }
+    ],
+    "dblp": [
+      "https://dblp.org/pid/83/6096"
+    ],
+    "no_identity": false,
+    "why_no_identity": "Exact source-owned original DBLP WWW record independently reviewed. No global authorID or new ORCID inheritance.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "Unreviewed raw dump ORCIDs are not inherited; this review binds only the source-owned PID.",
+      "evidence": []
+    },
+    "dblp_owned_url_review": {
+      "PID": "https://dblp.org/pid/83/6096",
+      "rule": "owned_faculty_profile_uri_matches_original_dblp_www",
+      "literal_url_pairs": [
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asjfcai/",
+          "dblp_www": "https://www.ntu.edu.sg/home/asjfcai/",
+          "byte_exact": false,
+          "normalization": "HTTP_vs_HTTPS_transport_only"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asjfcai/",
+          "dblp_www": "https://www.ntu.edu.sg/home/asjfcai/",
+          "byte_exact": false,
+          "normalization": "HTTP_vs_HTTPS_transport_only"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asjfcai/",
+          "dblp_www": "https://www.ntu.edu.sg/home/asjfcai/",
+          "byte_exact": false,
+          "normalization": "HTTP_vs_HTTPS_transport_only"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asjfcai/",
+          "dblp_www": "https://www.ntu.edu.sg/home/asjfcai/",
+          "byte_exact": false,
+          "normalization": "HTTP_vs_HTTPS_transport_only"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asjfcai/",
+          "dblp_www": "https://www.ntu.edu.sg/home/asjfcai/",
+          "byte_exact": false,
+          "normalization": "HTTP_vs_HTTPS_transport_only"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asjfcai/",
+          "dblp_www": "https://www.ntu.edu.sg/home/asjfcai/",
+          "byte_exact": false,
+          "normalization": "HTTP_vs_HTTPS_transport_only"
+        }
+      ],
+      "faculty_sources": [
+        {
+          "name": "Cai Jianfei",
+          "name_listed": "Cai Jianfei",
+          "dept": "CCDS",
+          "slot": "sce_moss_faculty_2016",
+          "kind": "main",
+          "year": 2016,
+          "half": "H1",
+          "observed": "20160304155707",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asjfcai/",
+          "capture_url": "https://web.archive.org/web/20160304155707id_/http://www3.ntu.edu.sg:80/SCE/moss_staffac.asp",
+          "sha256": "88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644",
+          "quote": "Cai Jianfei (Assoc Prof)"
+        },
+        {
+          "name": "Cai Jianfei",
+          "name_listed": "Cai Jianfei",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2016,
+          "half": "H1",
+          "observed": "20160619211903",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asjfcai/",
+          "capture_url": "https://web.archive.org/web/20160619211903id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "d092630cbbe784c8c35b286e793fb4c474bed4125f365c048008a2ec80f3efe9",
+          "quote": "Cai Jianfei (Assoc Prof)"
+        },
+        {
+          "name": "Cai Jianfei",
+          "name_listed": "Cai Jianfei",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2017,
+          "half": "H1",
+          "observed": "20170602224854",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asjfcai/",
+          "capture_url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "quote": "Cai Jianfei (Assoc Prof)"
+        },
+        {
+          "name": "Cai Jianfei",
+          "name_listed": "Cai Jianfei",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2018,
+          "half": "H1",
+          "observed": "20180602075008",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asjfcai/",
+          "capture_url": "https://web.archive.org/web/20180602075008id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "15f38099ef1f7d55dbbd900606e0543111d07160ce878f3e7d9a86c0d7edc2d0",
+          "quote": "Cai Jianfei (Assoc Prof)"
+        },
+        {
+          "name": "Cai Jianfei",
+          "name_listed": "Cai Jianfei",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2019,
+          "half": "H2",
+          "observed": "20190719123909",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asjfcai/",
+          "capture_url": "https://web.archive.org/web/20190719123909id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "5b244f02dbf760c3711736bc4711c1980f81d568b5589a825378959c5d3b7f57",
+          "quote": "Cai Jianfei (Professor)"
+        },
+        {
+          "name": "Cai Jianfei",
+          "name_listed": "Cai Jianfei",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2020,
+          "half": "H1",
+          "observed": "20200623035947",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asjfcai/",
+          "capture_url": "https://web.archive.org/web/20200623035947id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "0bfcc36fe78fcaa197c641fb6ebeabc9719edc7af770f4e76652005227a08907",
+          "quote": "Cai Jianfei (Professor)"
+        }
+      ],
+      "original_person_record": {
+        "pid": "https://dblp.org/pid/83/6096",
+        "names": [
+          "Jianfei Cai 0001"
+        ],
+        "sha256": "ce6a3b8bf6fcb1523d287b2a5e2b41221ee8988d27ab7d414a3204f10aac0d49",
+        "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/continuity-dblp-selected-originals/83_6096.xml"
+      },
+      "reviewer": "codex-sjtu-ntu-1115",
+      "reviewed_on": "2026-11-16",
+      "receipt_sha256": "11f862ca591322052edd8503a6885c0a891324e6a470ab9b80089e76c3f06047",
+      "packet_sha256": "bf9e6254a101b3ac53fc23659f4a7b4dec2c713fcd55057424412366b6a6dcf7",
+      "scope": "PI-to-ownedDBLP-PID only; normal source/identity/school/appointment/type/dedup gates remain. No ORCID or OpenAlex authorID inheritance."
+    }
+  },
+  "Sun Chengzheng": {
+    "prior_identity_reviews": [
+      {
+        "before_source_owned_url_binding": {}
+      }
+    ],
+    "dblp": [
+      "https://dblp.org/pid/s/CZSun"
+    ],
+    "no_identity": false,
+    "why_no_identity": "Exact source-owned original DBLP WWW record independently reviewed. No global authorID or new ORCID inheritance.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "Unreviewed raw dump ORCIDs are not inherited; this review binds only the source-owned PID.",
+      "evidence": []
+    },
+    "dblp_owned_url_review": {
+      "PID": "https://dblp.org/pid/s/CZSun",
+      "rule": "owned_faculty_profile_uri_matches_original_dblp_www",
+      "literal_url_pairs": [
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/czsun/",
+          "dblp_www": "http://www.ntu.edu.sg/home/czsun/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/czsun/",
+          "dblp_www": "http://www.ntu.edu.sg/home/czsun/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/czsun/",
+          "dblp_www": "http://www.ntu.edu.sg/home/czsun/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/czsun/",
+          "dblp_www": "http://www.ntu.edu.sg/home/czsun/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/czsun/",
+          "dblp_www": "http://www.ntu.edu.sg/home/czsun/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/czsun/",
+          "dblp_www": "http://www.ntu.edu.sg/home/czsun/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        }
+      ],
+      "faculty_sources": [
+        {
+          "name": "Sun Chengzheng",
+          "name_listed": "Sun Chengzheng",
+          "dept": "CCDS",
+          "slot": "sce_moss_faculty_2016",
+          "kind": "main",
+          "year": 2016,
+          "half": "H1",
+          "observed": "20160304155707",
+          "titles": [
+            "Professor, OPE"
+          ],
+          "dept_title": [
+            "Professor, OPE"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/czsun/",
+          "capture_url": "https://web.archive.org/web/20160304155707id_/http://www3.ntu.edu.sg:80/SCE/moss_staffac.asp",
+          "sha256": "88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644",
+          "quote": "Sun Chengzheng (Professor, OPE)"
+        },
+        {
+          "name": "Sun Chengzheng",
+          "name_listed": "Sun Chengzheng",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2016,
+          "half": "H1",
+          "observed": "20160619211903",
+          "titles": [
+            "Professor, OPE"
+          ],
+          "dept_title": [
+            "Professor, OPE"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/czsun/",
+          "capture_url": "https://web.archive.org/web/20160619211903id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "d092630cbbe784c8c35b286e793fb4c474bed4125f365c048008a2ec80f3efe9",
+          "quote": "Sun Chengzheng (Professor, OPE)"
+        },
+        {
+          "name": "Sun Chengzheng",
+          "name_listed": "Sun Chengzheng",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2017,
+          "half": "H1",
+          "observed": "20170602224854",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/czsun/",
+          "capture_url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "quote": "Sun Chengzheng (Professor)"
+        },
+        {
+          "name": "Sun Chengzheng",
+          "name_listed": "Sun Chengzheng",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2018,
+          "half": "H1",
+          "observed": "20180602075008",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/czsun/",
+          "capture_url": "https://web.archive.org/web/20180602075008id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "15f38099ef1f7d55dbbd900606e0543111d07160ce878f3e7d9a86c0d7edc2d0",
+          "quote": "Sun Chengzheng (Professor)"
+        },
+        {
+          "name": "Sun Chengzheng",
+          "name_listed": "Sun Chengzheng",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2019,
+          "half": "H2",
+          "observed": "20190719123909",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/czsun/",
+          "capture_url": "https://web.archive.org/web/20190719123909id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "5b244f02dbf760c3711736bc4711c1980f81d568b5589a825378959c5d3b7f57",
+          "quote": "Sun Chengzheng (Professor)"
+        },
+        {
+          "name": "Sun Chengzheng",
+          "name_listed": "Sun Chengzheng",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2020,
+          "half": "H1",
+          "observed": "20200623035947",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/czsun/",
+          "capture_url": "https://web.archive.org/web/20200623035947id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "0bfcc36fe78fcaa197c641fb6ebeabc9719edc7af770f4e76652005227a08907",
+          "quote": "Sun Chengzheng (Professor)"
+        }
+      ],
+      "original_person_record": {
+        "pid": "https://dblp.org/pid/s/CZSun",
+        "names": [
+          "Chengzheng Sun"
+        ],
+        "sha256": "b23c12d226d27ba1ed8cb1e03fcd88f4e02751bf2f9662148300464b6ecca5c1",
+        "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/continuity-dblp-selected-originals/s_CZSun.xml"
+      },
+      "reviewer": "codex-sjtu-ntu-1115",
+      "reviewed_on": "2026-11-16",
+      "receipt_sha256": "11f862ca591322052edd8503a6885c0a891324e6a470ab9b80089e76c3f06047",
+      "packet_sha256": "bf9e6254a101b3ac53fc23659f4a7b4dec2c713fcd55057424412366b6a6dcf7",
+      "scope": "PI-to-ownedDBLP-PID only; normal source/identity/school/appointment/type/dedup gates remain. No ORCID or OpenAlex authorID inheritance."
+    }
+  },
+  "Tan Ah Hwee": {
+    "prior_identity_reviews": [
+      {
+        "before_source_owned_url_binding": {}
+      }
+    ],
+    "dblp": [
+      "https://dblp.org/pid/38/3641"
+    ],
+    "no_identity": false,
+    "why_no_identity": "Exact source-owned original DBLP WWW record independently reviewed. No global authorID or new ORCID inheritance.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "Unreviewed raw dump ORCIDs are not inherited; this review binds only the source-owned PID.",
+      "evidence": []
+    },
+    "dblp_owned_url_review": {
+      "PID": "https://dblp.org/pid/38/3641",
+      "rule": "owned_faculty_profile_uri_matches_original_dblp_www",
+      "literal_url_pairs": [
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asahtan/",
+          "dblp_www": "http://www.ntu.edu.sg/home/asahtan/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asahtan/",
+          "dblp_www": "http://www.ntu.edu.sg/home/asahtan/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asahtan/",
+          "dblp_www": "http://www.ntu.edu.sg/home/asahtan/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asahtan/",
+          "dblp_www": "http://www.ntu.edu.sg/home/asahtan/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asahtan/",
+          "dblp_www": "http://www.ntu.edu.sg/home/asahtan/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        },
+        {
+          "faculty_profile": "http://www.ntu.edu.sg/home/asahtan/",
+          "dblp_www": "http://www.ntu.edu.sg/home/asahtan/",
+          "byte_exact": true,
+          "normalization": "byte_exact"
+        }
+      ],
+      "faculty_sources": [
+        {
+          "name": "Tan Ah Hwee",
+          "name_listed": "Tan Ah Hwee",
+          "dept": "CCDS",
+          "slot": "sce_moss_faculty_2016",
+          "kind": "main",
+          "year": 2016,
+          "half": "H1",
+          "observed": "20160304155707",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asahtan/",
+          "capture_url": "https://web.archive.org/web/20160304155707id_/http://www3.ntu.edu.sg:80/SCE/moss_staffac.asp",
+          "sha256": "88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644",
+          "quote": "Tan Ah Hwee (Assoc Prof)"
+        },
+        {
+          "name": "Tan Ah Hwee",
+          "name_listed": "Tan Ah Hwee",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2016,
+          "half": "H1",
+          "observed": "20160619211903",
+          "titles": [
+            "Assoc Prof"
+          ],
+          "dept_title": [
+            "Assoc Prof"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asahtan/",
+          "capture_url": "https://web.archive.org/web/20160619211903id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "d092630cbbe784c8c35b286e793fb4c474bed4125f365c048008a2ec80f3efe9",
+          "quote": "Tan Ah Hwee (Assoc Prof)"
+        },
+        {
+          "name": "Tan Ah Hwee",
+          "name_listed": "Tan Ah Hwee",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2017,
+          "half": "H1",
+          "observed": "20170602224854",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asahtan/",
+          "capture_url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "quote": "Tan Ah Hwee (Professor)"
+        },
+        {
+          "name": "Tan Ah Hwee",
+          "name_listed": "Tan Ah Hwee",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2018,
+          "half": "H1",
+          "observed": "20180602075008",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asahtan/",
+          "capture_url": "https://web.archive.org/web/20180602075008id_/http://www3.ntu.edu.sg:80/SCSE/moss_staffac.asp",
+          "sha256": "15f38099ef1f7d55dbbd900606e0543111d07160ce878f3e7d9a86c0d7edc2d0",
+          "quote": "Tan Ah Hwee (Professor)"
+        },
+        {
+          "name": "Tan Ah Hwee",
+          "name_listed": "Tan Ah Hwee",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2019,
+          "half": "H2",
+          "observed": "20190719123909",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asahtan/",
+          "capture_url": "https://web.archive.org/web/20190719123909id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "5b244f02dbf760c3711736bc4711c1980f81d568b5589a825378959c5d3b7f57",
+          "quote": "Tan Ah Hwee (Professor)"
+        },
+        {
+          "name": "Tan Ah Hwee",
+          "name_listed": "Tan Ah Hwee",
+          "dept": "CCDS",
+          "slot": "scse_moss_faculty_2016_2020",
+          "kind": "main",
+          "year": 2020,
+          "half": "H1",
+          "observed": "20200623035947",
+          "titles": [
+            "Professor"
+          ],
+          "dept_title": [
+            "Professor"
+          ],
+          "rank": "ladder",
+          "division": null,
+          "homepage": null,
+          "profile": "http://www.ntu.edu.sg/home/asahtan/",
+          "capture_url": "https://web.archive.org/web/20200623035947id_/https://www3.ntu.edu.sg/SCSE/moss_staffac.asp",
+          "sha256": "0bfcc36fe78fcaa197c641fb6ebeabc9719edc7af770f4e76652005227a08907",
+          "quote": "Tan Ah Hwee (Professor)"
+        }
+      ],
+      "original_person_record": {
+        "pid": "https://dblp.org/pid/38/3641",
+        "names": [
+          "Ah-Hwee Tan"
+        ],
+        "sha256": "d69fad6de3f58c34c66cecfd94a5eda5093cb22d94b71873c0abe3416f32a4c6",
+        "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/rosters-1115/continuity-dblp-selected-originals/38_3641.xml"
+      },
+      "reviewer": "codex-sjtu-ntu-1115",
+      "reviewed_on": "2026-11-16",
+      "receipt_sha256": "11f862ca591322052edd8503a6885c0a891324e6a470ab9b80089e76c3f06047",
+      "packet_sha256": "bf9e6254a101b3ac53fc23659f4a7b4dec2c713fcd55057424412366b6a6dcf7",
+      "scope": "PI-to-ownedDBLP-PID only; normal source/identity/school/appointment/type/dedup gates remain. No ORCID or OpenAlex authorID inheritance."
+    }
   }
 }
