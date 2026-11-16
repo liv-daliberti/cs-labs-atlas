@@ -24,9 +24,9 @@
   "counts": {
     "not_faculty_listed": 1185,
     "research_or_other_rank": 8,
-    "excluded_scope": 8,
-    "accepted": 73,
-    "faculty_not_computing": 16
+    "excluded_scope": 5,
+    "accepted": 81,
+    "faculty_not_computing": 11
   },
   "decisions": [
     {
@@ -469,138 +469,36 @@
       ]
     },
     {
-      "name": "Alton Yeow-Kuan Chua",
-      "aliases": [
-        "Alton Y. K. Chua"
-      ],
-      "source": "dblp_affiliation",
-      "decision": "excluded_scope",
-      "reason": "R-HIER-05 (communication / media-psychology / information-behaviour research; WKWSCI): faculty (WKWSCI listing, professor rank) with 52 DBLP records 2016-2026 naming the school",
+      "name": "Alton Chua",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownprofessorheading/currentunitfacultyrow and unchangednormalcomputing-share test passed. Scope2026only, all bibliographic aliases andIDs withheld under explicitno_identity.",
       "cs_basis": {
-        "dblp": [
-          "https://dblp.org/pid/00/3451"
-        ],
-        "dblp_window": 52,
-        "affiliation_notes": [
-          "Nanyang Technological University, Wee Kim Wee School of Communication & Information, Singapore"
-        ],
-        "evidence": [
-          {
-            "url": "https://dblp.org/pid/00/3451",
-            "source": "DBLP dump dblp-2026-09-01.xml.gz",
-            "quote": "Nanyang Technological University, Wee Kim Wee School of Communication & Information, Singapore"
-          }
-        ],
-        "openalex_share": {
-          "result": "computing",
-          "ids": [
-            "https://openalex.org/A5046635370"
-          ],
-          "school_works": 77,
-          "dblp_indexed": 50,
-          "share": 0.649,
-          "thresholds": {
-            "dblp_indexed": 5,
-            "share": 0.2,
-            "min_works_for_negative": 8
-          },
-          "namesake_orcids": false,
-          "excluded": [],
-          "authors": [
-            {
-              "author": "https://openalex.org/A5046635370",
-              "basis": "full name: Alton Y.K. Chua",
-              "works": 77,
-              "dblp_indexed": 50,
-              "years": [
-                2016,
-                2026
-              ],
-              "names": [
-                "Alton Y.K. Chua",
-                "Alton Y. K. Chua",
-                "Alton Chua"
-              ],
-              "orcids": [
-                "0000-0002-5603-2453"
-              ],
-              "venues": [
-                "Proceedings of the Association for Information Science and Technology",
-                "Internet Research",
-                "Computers in Human Behavior"
-              ],
-              "dblp_examples": [
-                {
-                  "oa": "https://openalex.org/W2403929800",
-                  "year": 2016,
-                  "title": "Authentic versus fictitious online reviews: A textual analysis across luxury, budget, and mid-range hotels",
-                  "venue": "Journal of Information Science"
-                },
-                {
-                  "oa": "https://openalex.org/W2471947274",
-                  "year": 2016,
-                  "title": "The Retransmission of Rumor-related Tweets",
-                  "venue": null
-                }
-              ],
-              "other_examples": [
-                {
-                  "oa": "https://openalex.org/W2461210394",
-                  "year": 2016,
-                  "title": "The communication of intellectual capital: the “whys” and “whats”",
-                  "venue": "Journal of Intellectual Capital"
-                },
-                {
-                  "oa": "https://openalex.org/W2509782453",
-                  "year": 2016,
-                  "title": "Intention to trust and share health-related online rumors: Studying the role of risk propensity",
-                  "venue": "2016 SAI Computing Conference (SAI)"
-                }
-              ]
-            }
-          ],
-          "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-        }
+        "computing_scope_only": true,
+        "school_works": 77,
+        "dblp_indexed": 50,
+        "share": 0.649,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
       "faculty_evidence": [
         {
-          "unit": "WKWSCI",
-          "url": "https://web.archive.org/web/20220516205605id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "0352c4d904d9ef455595bcfda334986b6672e3e3af97083286357009e153c7f9",
-          "observed": "20220516205605",
-          "quote": "Alton Chua Associate Professor",
-          "ladder": true
-        },
-        {
-          "unit": "WKWSCI",
-          "url": "https://web.archive.org/web/20230127002954id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "510bddac7f9fa3d1d89dc4afafbfcffe8b543822c600837494cf96d37a6c2ceb",
-          "observed": "20230127002954",
-          "quote": "Alton Chua Associate Professor",
-          "ladder": true
-        },
-        {
-          "unit": "WKWSCI",
-          "url": "https://web.archive.org/web/20240304041209id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "eb4a483eba6faa24d24b93d507ccf27ce422e6d2aced27423c3ef385a40801db",
-          "observed": "20240304041209",
-          "quote": "Alton Chua Associate Professor",
-          "ladder": true
-        },
-        {
-          "unit": "WKWSCI",
           "url": "https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "916e5693ca868b8f5ee53419008002271578d4b79fcf6f3ef1e1cc55a213e0c6",
-          "observed": "20261110",
-          "quote": "Alton Chua Associate Professor",
+          "sha256": "89f4c563267633c122d6798f4d53f7871a53743baa499bcdf6e51e08d9efaa73",
+          "quote": "Assoc Prof Alton Chua Associate Professor",
+          "kind": "unit_listing:WKWSCI",
+          "observed": "20261115",
+          "unit": "WKWSCI",
           "ladder": true
         }
       ],
       "years_listed": [
-        2022,
-        2023,
-        2024,
-        2025,
         2026
       ],
       "units_searched": [
@@ -614,7 +512,162 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
+        "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
+        "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
+      },
+      "previous_decision_preserved": {
+        "name": "Alton Yeow-Kuan Chua",
+        "aliases": [
+          "Alton Y. K. Chua"
+        ],
+        "source": "dblp_affiliation",
+        "decision": "excluded_scope",
+        "reason": "R-HIER-05 (communication / media-psychology / information-behaviour research; WKWSCI): faculty (WKWSCI listing, professor rank) with 52 DBLP records 2016-2026 naming the school",
+        "cs_basis": {
+          "dblp": [
+            "https://dblp.org/pid/00/3451"
+          ],
+          "dblp_window": 52,
+          "affiliation_notes": [
+            "Nanyang Technological University, Wee Kim Wee School of Communication & Information, Singapore"
+          ],
+          "evidence": [
+            {
+              "url": "https://dblp.org/pid/00/3451",
+              "source": "DBLP dump dblp-2026-09-01.xml.gz",
+              "quote": "Nanyang Technological University, Wee Kim Wee School of Communication & Information, Singapore"
+            }
+          ],
+          "openalex_share": {
+            "result": "computing",
+            "ids": [
+              "https://openalex.org/A5046635370"
+            ],
+            "school_works": 77,
+            "dblp_indexed": 50,
+            "share": 0.649,
+            "thresholds": {
+              "dblp_indexed": 5,
+              "share": 0.2,
+              "min_works_for_negative": 8
+            },
+            "namesake_orcids": false,
+            "excluded": [],
+            "authors": [
+              {
+                "author": "https://openalex.org/A5046635370",
+                "basis": "full name: Alton Y.K. Chua",
+                "works": 77,
+                "dblp_indexed": 50,
+                "years": [
+                  2016,
+                  2026
+                ],
+                "names": [
+                  "Alton Y.K. Chua",
+                  "Alton Y. K. Chua",
+                  "Alton Chua"
+                ],
+                "orcids": [
+                  "0000-0002-5603-2453"
+                ],
+                "venues": [
+                  "Proceedings of the Association for Information Science and Technology",
+                  "Internet Research",
+                  "Computers in Human Behavior"
+                ],
+                "dblp_examples": [
+                  {
+                    "oa": "https://openalex.org/W2403929800",
+                    "year": 2016,
+                    "title": "Authentic versus fictitious online reviews: A textual analysis across luxury, budget, and mid-range hotels",
+                    "venue": "Journal of Information Science"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2471947274",
+                    "year": 2016,
+                    "title": "The Retransmission of Rumor-related Tweets",
+                    "venue": null
+                  }
+                ],
+                "other_examples": [
+                  {
+                    "oa": "https://openalex.org/W2461210394",
+                    "year": 2016,
+                    "title": "The communication of intellectual capital: the “whys” and “whats”",
+                    "venue": "Journal of Intellectual Capital"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2509782453",
+                    "year": 2016,
+                    "title": "Intention to trust and share health-related online rumors: Studying the role of risk propensity",
+                    "venue": "2016 SAI Computing Conference (SAI)"
+                  }
+                ]
+              }
+            ],
+            "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+          }
+        },
+        "faculty_evidence": [
+          {
+            "unit": "WKWSCI",
+            "url": "https://web.archive.org/web/20220516205605id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "0352c4d904d9ef455595bcfda334986b6672e3e3af97083286357009e153c7f9",
+            "observed": "20220516205605",
+            "quote": "Alton Chua Associate Professor",
+            "ladder": true
+          },
+          {
+            "unit": "WKWSCI",
+            "url": "https://web.archive.org/web/20230127002954id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "510bddac7f9fa3d1d89dc4afafbfcffe8b543822c600837494cf96d37a6c2ceb",
+            "observed": "20230127002954",
+            "quote": "Alton Chua Associate Professor",
+            "ladder": true
+          },
+          {
+            "unit": "WKWSCI",
+            "url": "https://web.archive.org/web/20240304041209id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "eb4a483eba6faa24d24b93d507ccf27ce422e6d2aced27423c3ef385a40801db",
+            "observed": "20240304041209",
+            "quote": "Alton Chua Associate Professor",
+            "ladder": true
+          },
+          {
+            "unit": "WKWSCI",
+            "url": "https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "916e5693ca868b8f5ee53419008002271578d4b79fcf6f3ef1e1cc55a213e0c6",
+            "observed": "20261110",
+            "quote": "Alton Chua Associate Professor",
+            "ladder": true
+          }
+        ],
+        "years_listed": [
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Amir Ebrahimi",
@@ -1471,106 +1524,32 @@
       ]
     },
     {
-      "name": "Benjamin J. Li",
-      "aliases": [
-        "Benjamin (Benjy) J. Li"
-      ],
-      "source": "dblp_affiliation",
-      "decision": "faculty_not_computing",
-      "reason": "held for scope review (information science / digital libraries; computing may be the object): faculty (WKWSCI listing, professor rank) with 17 DBLP records 2016-2026 naming the school",
+      "name": "Li Junting, Benjamin",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownprofessorheading/currentunitfacultyrow and unchangednormalcomputing-share test passed. Scope2026only, all bibliographic aliases andIDs withheld under explicitno_identity.",
       "cs_basis": {
-        "dblp": [
-          "https://dblp.org/pid/177/9959"
-        ],
-        "dblp_window": 17,
-        "affiliation_notes": [
-          "Nanyang Technological University Singapore"
-        ],
-        "evidence": [
-          {
-            "url": "https://dblp.org/pid/177/9959",
-            "source": "DBLP dump dblp-2026-09-01.xml.gz",
-            "quote": "Nanyang Technological University Singapore"
-          }
-        ],
-        "openalex_share": {
-          "result": "computing",
-          "ids": [
-            "https://openalex.org/A5066410739"
-          ],
-          "school_works": 54,
-          "dblp_indexed": 17,
-          "share": 0.315,
-          "thresholds": {
-            "dblp_indexed": 5,
-            "share": 0.2,
-            "min_works_for_negative": 8
-          },
-          "namesake_orcids": false,
-          "excluded": [],
-          "authors": [
-            {
-              "author": "https://openalex.org/A5066410739",
-              "basis": "full name: Benjamin J. Li",
-              "works": 54,
-              "dblp_indexed": 17,
-              "years": [
-                2017,
-                2026
-              ],
-              "names": [
-                "Benjamin J. Li",
-                "Benjamin Li",
-                "Benjamin Junting Li"
-              ],
-              "orcids": [
-                "0000-0002-9929-9123"
-              ],
-              "venues": [
-                "International Journal of Human-Computer Interaction",
-                "Behaviour and Information Technology",
-                "PRESENCE Virtual and Augmented Reality"
-              ],
-              "dblp_examples": [
-                {
-                  "oa": "https://openalex.org/W2804606480",
-                  "year": 2017,
-                  "title": "Exploring the Influence of Haptic and Olfactory Cues of a Virtual Donut on Satiation and Eating Behavior",
-                  "venue": "PRESENCE Virtual and Augmented Reality"
-                },
-                {
-                  "oa": "https://openalex.org/W2988512440",
-                  "year": 2019,
-                  "title": "Water Bodies: VR Interactive Narrative and Gameplay for Social Impact",
-                  "venue": "ACM SIGGRAPH International Conference on Virtual-Reality Continuum and its Applications in Industry (VRCAI)"
-                }
-              ],
-              "other_examples": [
-                {
-                  "oa": "https://openalex.org/W2903480118",
-                  "year": 2018,
-                  "title": "Oceans we make",
-                  "venue": null
-                },
-                {
-                  "oa": "https://openalex.org/W2912247536",
-                  "year": 2019,
-                  "title": "Effects of Message Completeness and Source Expertise in Online Health Discussion Boards",
-                  "venue": "International journal of communication"
-                }
-              ]
-            }
-          ],
-          "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-        }
+        "computing_scope_only": true,
+        "school_works": 54,
+        "dblp_indexed": 17,
+        "share": 0.315,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
       "faculty_evidence": [
         {
-          "unit": "WKWSCI",
           "url": "https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "916e5693ca868b8f5ee53419008002271578d4b79fcf6f3ef1e1cc55a213e0c6",
-          "observed": "20261110",
-          "quote": "Benjamin Li Junting Associate Professor",
+          "sha256": "89f4c563267633c122d6798f4d53f7871a53743baa499bcdf6e51e08d9efaa73",
+          "quote": "Assoc Prof Li Junting, Benjamin Assistant Chair, Undergraduate Studies",
+          "kind": "unit_listing:WKWSCI",
+          "observed": "20261115",
+          "unit": "WKWSCI",
           "ladder": true
         }
       ],
@@ -1588,7 +1567,134 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
+        "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
+        "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
+      },
+      "previous_decision_preserved": {
+        "name": "Benjamin J. Li",
+        "aliases": [
+          "Benjamin (Benjy) J. Li"
+        ],
+        "source": "dblp_affiliation",
+        "decision": "faculty_not_computing",
+        "reason": "held for scope review (information science / digital libraries; computing may be the object): faculty (WKWSCI listing, professor rank) with 17 DBLP records 2016-2026 naming the school",
+        "cs_basis": {
+          "dblp": [
+            "https://dblp.org/pid/177/9959"
+          ],
+          "dblp_window": 17,
+          "affiliation_notes": [
+            "Nanyang Technological University Singapore"
+          ],
+          "evidence": [
+            {
+              "url": "https://dblp.org/pid/177/9959",
+              "source": "DBLP dump dblp-2026-09-01.xml.gz",
+              "quote": "Nanyang Technological University Singapore"
+            }
+          ],
+          "openalex_share": {
+            "result": "computing",
+            "ids": [
+              "https://openalex.org/A5066410739"
+            ],
+            "school_works": 54,
+            "dblp_indexed": 17,
+            "share": 0.315,
+            "thresholds": {
+              "dblp_indexed": 5,
+              "share": 0.2,
+              "min_works_for_negative": 8
+            },
+            "namesake_orcids": false,
+            "excluded": [],
+            "authors": [
+              {
+                "author": "https://openalex.org/A5066410739",
+                "basis": "full name: Benjamin J. Li",
+                "works": 54,
+                "dblp_indexed": 17,
+                "years": [
+                  2017,
+                  2026
+                ],
+                "names": [
+                  "Benjamin J. Li",
+                  "Benjamin Li",
+                  "Benjamin Junting Li"
+                ],
+                "orcids": [
+                  "0000-0002-9929-9123"
+                ],
+                "venues": [
+                  "International Journal of Human-Computer Interaction",
+                  "Behaviour and Information Technology",
+                  "PRESENCE Virtual and Augmented Reality"
+                ],
+                "dblp_examples": [
+                  {
+                    "oa": "https://openalex.org/W2804606480",
+                    "year": 2017,
+                    "title": "Exploring the Influence of Haptic and Olfactory Cues of a Virtual Donut on Satiation and Eating Behavior",
+                    "venue": "PRESENCE Virtual and Augmented Reality"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2988512440",
+                    "year": 2019,
+                    "title": "Water Bodies: VR Interactive Narrative and Gameplay for Social Impact",
+                    "venue": "ACM SIGGRAPH International Conference on Virtual-Reality Continuum and its Applications in Industry (VRCAI)"
+                  }
+                ],
+                "other_examples": [
+                  {
+                    "oa": "https://openalex.org/W2903480118",
+                    "year": 2018,
+                    "title": "Oceans we make",
+                    "venue": null
+                  },
+                  {
+                    "oa": "https://openalex.org/W2912247536",
+                    "year": 2019,
+                    "title": "Effects of Message Completeness and Source Expertise in Online Health Discussion Boards",
+                    "venue": "International journal of communication"
+                  }
+                ]
+              }
+            ],
+            "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+          }
+        },
+        "faculty_evidence": [
+          {
+            "unit": "WKWSCI",
+            "url": "https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "916e5693ca868b8f5ee53419008002271578d4b79fcf6f3ef1e1cc55a213e0c6",
+            "observed": "20261110",
+            "quote": "Benjamin Li Junting Associate Professor",
+            "ladder": true
+          }
+        ],
+        "years_listed": [
+          2026
+        ],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Bernhard Schmidt",
@@ -4959,105 +5065,32 @@
       ]
     },
     {
-      "name": "Christopher S. G. Khoo",
+      "name": "Khoo Soo Guan, Christopher",
       "aliases": [],
-      "source": "dblp_affiliation",
-      "decision": "faculty_not_computing",
-      "reason": "held for scope review (information science / digital libraries; computing may be the object): faculty (WKWSCI listing, professor rank) with 7 DBLP records 2016-2026 naming the school",
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownprofessorheading/currentunitfacultyrow and unchangednormalcomputing-share test passed. Scope2026only, all bibliographic aliases andIDs withheld under explicitno_identity.",
       "cs_basis": {
-        "dblp": [
-          "https://dblp.org/pid/88/1561"
-        ],
-        "dblp_window": 7,
-        "affiliation_notes": [
-          "Nanyang Technological University, Singapore",
-          "Syracuse University, School of Information Studies, NY, USA"
-        ],
-        "evidence": [
-          {
-            "url": "https://dblp.org/pid/88/1561",
-            "source": "DBLP dump dblp-2026-09-01.xml.gz",
-            "quote": "Nanyang Technological University, Singapore"
-          }
-        ],
-        "openalex_share": {
-          "result": "computing",
-          "ids": [
-            "https://openalex.org/A5075257716"
-          ],
-          "school_works": 23,
+        "computing_scope_only": true,
+        "school_works": 23,
+        "dblp_indexed": 5,
+        "share": 0.217,
+        "thresholds": {
           "dblp_indexed": 5,
-          "share": 0.217,
-          "thresholds": {
-            "dblp_indexed": 5,
-            "share": 0.2,
-            "min_works_for_negative": 8
-          },
-          "namesake_orcids": false,
-          "excluded": [],
-          "authors": [
-            {
-              "author": "https://openalex.org/A5075257716",
-              "basis": "full name: Christopher S. G. Khoo",
-              "works": 23,
-              "dblp_indexed": 5,
-              "years": [
-                2016,
-                2026
-              ],
-              "names": [
-                "Christopher S. G. Khoo",
-                "Christopher SG Khoo",
-                "Christopher Soo Guan Khoo"
-              ],
-              "orcids": [
-                "0000-0002-8072-1072"
-              ],
-              "venues": [
-                "Springer eBooks",
-                "Journal of Medical Internet Research",
-                "Mathematics"
-              ],
-              "dblp_examples": [
-                {
-                  "oa": "https://openalex.org/W2606902231",
-                  "year": 2017,
-                  "title": "Lexicon-based sentiment analysis: Comparative evaluation of six sentiment lexicons",
-                  "venue": "Journal of Information Science"
-                },
-                {
-                  "oa": "https://openalex.org/W2979973333",
-                  "year": 2019,
-                  "title": "Characterizing Human Summarization Strategies for Text Reuse and Transformation in Literature Review Writing",
-                  "venue": "Scientometrics"
-                }
-              ],
-              "other_examples": [
-                {
-                  "oa": "https://openalex.org/W2470540563",
-                  "year": 2016,
-                  "title": "The Criteria People Use in Relevance Decisions on Health Information: An Analysis of User Eye Movements When Browsing a Health Discussion Forum",
-                  "venue": "Journal of Medical Internet Research"
-                },
-                {
-                  "oa": "https://openalex.org/W2779720102",
-                  "year": 2017,
-                  "title": "Automatic Classification of Users’ Health Information Need Context: Logistic Regression Analysis of Mouse-Click and Eye-Tracker Data",
-                  "venue": "Journal of Medical Internet Research"
-                }
-              ]
-            }
-          ],
-          "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-        }
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
       "faculty_evidence": [
         {
-          "unit": "WKWSCI",
           "url": "https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "916e5693ca868b8f5ee53419008002271578d4b79fcf6f3ef1e1cc55a213e0c6",
-          "observed": "20261110",
-          "quote": "Christopher Khoo Soo Guan Associate Professor",
+          "sha256": "89f4c563267633c122d6798f4d53f7871a53743baa499bcdf6e51e08d9efaa73",
+          "quote": "Assoc Prof Khoo Soo Guan, Christopher Associate Professor",
+          "kind": "unit_listing:WKWSCI",
+          "observed": "20261115",
+          "unit": "WKWSCI",
           "ladder": true
         }
       ],
@@ -5075,7 +5108,133 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
+        "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
+        "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
+      },
+      "previous_decision_preserved": {
+        "name": "Christopher S. G. Khoo",
+        "aliases": [],
+        "source": "dblp_affiliation",
+        "decision": "faculty_not_computing",
+        "reason": "held for scope review (information science / digital libraries; computing may be the object): faculty (WKWSCI listing, professor rank) with 7 DBLP records 2016-2026 naming the school",
+        "cs_basis": {
+          "dblp": [
+            "https://dblp.org/pid/88/1561"
+          ],
+          "dblp_window": 7,
+          "affiliation_notes": [
+            "Nanyang Technological University, Singapore",
+            "Syracuse University, School of Information Studies, NY, USA"
+          ],
+          "evidence": [
+            {
+              "url": "https://dblp.org/pid/88/1561",
+              "source": "DBLP dump dblp-2026-09-01.xml.gz",
+              "quote": "Nanyang Technological University, Singapore"
+            }
+          ],
+          "openalex_share": {
+            "result": "computing",
+            "ids": [
+              "https://openalex.org/A5075257716"
+            ],
+            "school_works": 23,
+            "dblp_indexed": 5,
+            "share": 0.217,
+            "thresholds": {
+              "dblp_indexed": 5,
+              "share": 0.2,
+              "min_works_for_negative": 8
+            },
+            "namesake_orcids": false,
+            "excluded": [],
+            "authors": [
+              {
+                "author": "https://openalex.org/A5075257716",
+                "basis": "full name: Christopher S. G. Khoo",
+                "works": 23,
+                "dblp_indexed": 5,
+                "years": [
+                  2016,
+                  2026
+                ],
+                "names": [
+                  "Christopher S. G. Khoo",
+                  "Christopher SG Khoo",
+                  "Christopher Soo Guan Khoo"
+                ],
+                "orcids": [
+                  "0000-0002-8072-1072"
+                ],
+                "venues": [
+                  "Springer eBooks",
+                  "Journal of Medical Internet Research",
+                  "Mathematics"
+                ],
+                "dblp_examples": [
+                  {
+                    "oa": "https://openalex.org/W2606902231",
+                    "year": 2017,
+                    "title": "Lexicon-based sentiment analysis: Comparative evaluation of six sentiment lexicons",
+                    "venue": "Journal of Information Science"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2979973333",
+                    "year": 2019,
+                    "title": "Characterizing Human Summarization Strategies for Text Reuse and Transformation in Literature Review Writing",
+                    "venue": "Scientometrics"
+                  }
+                ],
+                "other_examples": [
+                  {
+                    "oa": "https://openalex.org/W2470540563",
+                    "year": 2016,
+                    "title": "The Criteria People Use in Relevance Decisions on Health Information: An Analysis of User Eye Movements When Browsing a Health Discussion Forum",
+                    "venue": "Journal of Medical Internet Research"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2779720102",
+                    "year": 2017,
+                    "title": "Automatic Classification of Users’ Health Information Need Context: Logistic Regression Analysis of Mouse-Click and Eye-Tracker Data",
+                    "venue": "Journal of Medical Internet Research"
+                  }
+                ]
+              }
+            ],
+            "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+          }
+        },
+        "faculty_evidence": [
+          {
+            "unit": "WKWSCI",
+            "url": "https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "916e5693ca868b8f5ee53419008002271578d4b79fcf6f3ef1e1cc55a213e0c6",
+            "observed": "20261110",
+            "quote": "Christopher Khoo Soo Guan Associate Professor",
+            "ladder": true
+          }
+        ],
+        "years_listed": [
+          2026
+        ],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Chunyan Miao",
@@ -25323,107 +25482,32 @@
       ]
     },
     {
-      "name": "Sei-Ching Joanna Sin",
-      "aliases": [
-        "Joanna Sin"
-      ],
-      "source": "dblp_affiliation",
-      "decision": "faculty_not_computing",
-      "reason": "held for scope review (information science / digital libraries; computing may be the object): faculty (WKWSCI listing, professor rank) with 24 DBLP records 2016-2026 naming the school",
+      "name": "Joanna Sin Sei Ching",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownprofessorheading/currentunitfacultyrow and unchangednormalcomputing-share test passed. Scope2026only, all bibliographic aliases andIDs withheld under explicitno_identity.",
       "cs_basis": {
-        "dblp": [
-          "https://dblp.org/pid/68/9553"
-        ],
-        "dblp_window": 24,
-        "affiliation_notes": [
-          "Nanyang Technological University, Singapore",
-          "University of Wisconsin Madison: Madison, USA"
-        ],
-        "evidence": [
-          {
-            "url": "https://dblp.org/pid/68/9553",
-            "source": "DBLP dump dblp-2026-09-01.xml.gz",
-            "quote": "Nanyang Technological University, Singapore"
-          }
-        ],
-        "openalex_share": {
-          "result": "computing",
-          "ids": [
-            "https://openalex.org/A5014764547"
-          ],
-          "school_works": 33,
-          "dblp_indexed": 23,
-          "share": 0.697,
-          "thresholds": {
-            "dblp_indexed": 5,
-            "share": 0.2,
-            "min_works_for_negative": 8
-          },
-          "namesake_orcids": false,
-          "excluded": [],
-          "authors": [
-            {
-              "author": "https://openalex.org/A5014764547",
-              "basis": "full name: Sei-Ching Joanna Sin",
-              "works": 33,
-              "dblp_indexed": 23,
-              "years": [
-                2016,
-                2026
-              ],
-              "names": [
-                "Sei-Ching Joanna Sin",
-                "Sei‐Ching Joanna Sin",
-                "Sin, Sei-Ching Joanna"
-              ],
-              "orcids": [
-                "0000-0003-2432-4993"
-              ],
-              "venues": [
-                "Proceedings of the Association for Information Science and Technology",
-                "Lecture notes in computer science",
-                "Journal of Documentation"
-              ],
-              "dblp_examples": [
-                {
-                  "oa": "https://openalex.org/W2338942572",
-                  "year": 2016,
-                  "title": "Patterns of perceived public library outcomes in five countries",
-                  "venue": "Journal of Documentation"
-                },
-                {
-                  "oa": "https://openalex.org/W2488987723",
-                  "year": 2016,
-                  "title": "Altmetrics: an analysis of the state-of-the-art in measuring research impact on social media",
-                  "venue": "Scientometrics"
-                }
-              ],
-              "other_examples": [
-                {
-                  "oa": "https://openalex.org/W2738536212",
-                  "year": 2017,
-                  "title": "Displacement or complementarity? Assessing the relationship between social media and public library usage in the U.S., South Korea, and Singapore",
-                  "venue": "Library & Information Science Research"
-                },
-                {
-                  "oa": "https://openalex.org/W2899204363",
-                  "year": 2018,
-                  "title": "How Are We the Same or Different: Information Needs and Barriers of Domestic and International Students",
-                  "venue": "The Journal of Academic Librarianship"
-                }
-              ]
-            }
-          ],
-          "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-        }
+        "computing_scope_only": true,
+        "school_works": 33,
+        "dblp_indexed": 23,
+        "share": 0.697,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
       "faculty_evidence": [
         {
-          "unit": "WKWSCI",
           "url": "https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "916e5693ca868b8f5ee53419008002271578d4b79fcf6f3ef1e1cc55a213e0c6",
-          "observed": "20261110",
-          "quote": "Joanna Sin Sei Ching Associate Professor",
+          "sha256": "89f4c563267633c122d6798f4d53f7871a53743baa499bcdf6e51e08d9efaa73",
+          "quote": "Assoc Prof Joanna Sin Sei Ching Associate Chair, Graduate and Continuing Education",
+          "kind": "unit_listing:WKWSCI",
+          "observed": "20261115",
+          "unit": "WKWSCI",
           "ladder": true
         }
       ],
@@ -25441,7 +25525,135 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
+        "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
+        "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
+      },
+      "previous_decision_preserved": {
+        "name": "Sei-Ching Joanna Sin",
+        "aliases": [
+          "Joanna Sin"
+        ],
+        "source": "dblp_affiliation",
+        "decision": "faculty_not_computing",
+        "reason": "held for scope review (information science / digital libraries; computing may be the object): faculty (WKWSCI listing, professor rank) with 24 DBLP records 2016-2026 naming the school",
+        "cs_basis": {
+          "dblp": [
+            "https://dblp.org/pid/68/9553"
+          ],
+          "dblp_window": 24,
+          "affiliation_notes": [
+            "Nanyang Technological University, Singapore",
+            "University of Wisconsin Madison: Madison, USA"
+          ],
+          "evidence": [
+            {
+              "url": "https://dblp.org/pid/68/9553",
+              "source": "DBLP dump dblp-2026-09-01.xml.gz",
+              "quote": "Nanyang Technological University, Singapore"
+            }
+          ],
+          "openalex_share": {
+            "result": "computing",
+            "ids": [
+              "https://openalex.org/A5014764547"
+            ],
+            "school_works": 33,
+            "dblp_indexed": 23,
+            "share": 0.697,
+            "thresholds": {
+              "dblp_indexed": 5,
+              "share": 0.2,
+              "min_works_for_negative": 8
+            },
+            "namesake_orcids": false,
+            "excluded": [],
+            "authors": [
+              {
+                "author": "https://openalex.org/A5014764547",
+                "basis": "full name: Sei-Ching Joanna Sin",
+                "works": 33,
+                "dblp_indexed": 23,
+                "years": [
+                  2016,
+                  2026
+                ],
+                "names": [
+                  "Sei-Ching Joanna Sin",
+                  "Sei‐Ching Joanna Sin",
+                  "Sin, Sei-Ching Joanna"
+                ],
+                "orcids": [
+                  "0000-0003-2432-4993"
+                ],
+                "venues": [
+                  "Proceedings of the Association for Information Science and Technology",
+                  "Lecture notes in computer science",
+                  "Journal of Documentation"
+                ],
+                "dblp_examples": [
+                  {
+                    "oa": "https://openalex.org/W2338942572",
+                    "year": 2016,
+                    "title": "Patterns of perceived public library outcomes in five countries",
+                    "venue": "Journal of Documentation"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2488987723",
+                    "year": 2016,
+                    "title": "Altmetrics: an analysis of the state-of-the-art in measuring research impact on social media",
+                    "venue": "Scientometrics"
+                  }
+                ],
+                "other_examples": [
+                  {
+                    "oa": "https://openalex.org/W2738536212",
+                    "year": 2017,
+                    "title": "Displacement or complementarity? Assessing the relationship between social media and public library usage in the U.S., South Korea, and Singapore",
+                    "venue": "Library & Information Science Research"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2899204363",
+                    "year": 2018,
+                    "title": "How Are We the Same or Different: Information Needs and Barriers of Domestic and International Students",
+                    "venue": "The Journal of Academic Librarianship"
+                  }
+                ]
+              }
+            ],
+            "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+          }
+        },
+        "faculty_evidence": [
+          {
+            "unit": "WKWSCI",
+            "url": "https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "916e5693ca868b8f5ee53419008002271578d4b79fcf6f3ef1e1cc55a213e0c6",
+            "observed": "20261110",
+            "quote": "Joanna Sin Sei Ching Associate Professor",
+            "ladder": true
+          }
+        ],
+        "years_listed": [
+          2026
+        ],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Shafiq R. Joty",
@@ -48671,129 +48883,34 @@
     {
       "name": "Saifuddin Ahmed",
       "aliases": [],
-      "source": "openalex_rule",
-      "decision": "excluded_scope",
-      "reason": "R-HIER-05 (communication / media-psychology / information-behaviour research; WKWSCI): faculty (WKWSCI listing, professor rank); computing-share test passes: 14 of 66 school works DBLP-indexed (share 0.21; 1 OpenAlex author ids)",
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownprofessorheading/currentunitfacultyrow and unchangednormalcomputing-share test passed. Scope2026only, all bibliographic aliases andIDs withheld under explicitno_identity.",
       "cs_basis": {
-        "dblp": [],
-        "dblp_window": 0,
-        "affiliation_notes": [],
-        "evidence": [],
-        "openalex_share": {
-          "result": "computing",
-          "ids": [
-            "https://openalex.org/A5042133242"
-          ],
-          "school_works": 66,
-          "dblp_indexed": 14,
-          "share": 0.212,
-          "thresholds": {
-            "dblp_indexed": 5,
-            "share": 0.2,
-            "min_works_for_negative": 8
-          },
-          "namesake_orcids": false,
-          "excluded": [
-            {
-              "author": "https://openalex.org/A5001961428",
-              "why": "namesake: ORCID 0000-0002-9884-4580, not the busiest ORCID 0000-0001-6372-213X",
-              "n": 3
-            }
-          ],
-          "authors": [
-            {
-              "author": "https://openalex.org/A5042133242",
-              "basis": "candidate author id",
-              "works": 66,
-              "dblp_indexed": 14,
-              "years": [
-                2019,
-                2026
-              ],
-              "names": [
-                "Saifuddin Ahmed"
-              ],
-              "orcids": [
-                "0000-0001-6372-213X"
-              ],
-              "venues": [
-                "Journal of Broadcasting & Electronic Media",
-                "Asian Journal of Communication",
-                "New Media & Society"
-              ],
-              "dblp_examples": [
-                {
-                  "oa": "https://openalex.org/W2944528918",
-                  "year": 2019,
-                  "title": "The Internet and political (in)equality in the Arab world: A multi-country study of the relationship between Internet news use, press freedom, and pro",
-                  "venue": "New Media & Society"
-                },
-                {
-                  "oa": "https://openalex.org/W3089994210",
-                  "year": 2020,
-                  "title": "Who inadvertently shares deepfakes? Analyzing the role of political interest, cognitive ability, and social network size",
-                  "venue": "Telematics and Informatics"
-                }
-              ],
-              "other_examples": [
-                {
-                  "oa": "https://openalex.org/W2974887120",
-                  "year": 2019,
-                  "title": "The Roles of Different News Media Use and Press Freedom in Education Generated Participation Inequality: An Eight Country Comparative Analysis",
-                  "venue": "Journal of Broadcasting & Electronic Media"
-                },
-                {
-                  "oa": "https://openalex.org/W3008266800",
-                  "year": 2020,
-                  "title": "The Internet and Participation Inequality: A Multilevel Examination of 108 Countries",
-                  "venue": "International journal of communication"
-                }
-              ]
-            }
-          ],
-          "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-        }
+        "computing_scope_only": true,
+        "school_works": 66,
+        "dblp_indexed": 14,
+        "share": 0.212,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
       "faculty_evidence": [
         {
-          "unit": "WKWSCI",
-          "url": "https://web.archive.org/web/20210515102703id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "8f40d50955197ecf15ae5d7a1a7133275451fd75b898907751734368908997be",
-          "observed": "20210515102703",
-          "quote": "Saifuddin Ahmed Assistant Professor",
-          "ladder": true
-        },
-        {
-          "unit": "WKWSCI",
-          "url": "https://web.archive.org/web/20220516205605id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "0352c4d904d9ef455595bcfda334986b6672e3e3af97083286357009e153c7f9",
-          "observed": "20220516205605",
-          "quote": "Saifuddin Ahmed Assistant Professor",
-          "ladder": true
-        },
-        {
-          "unit": "WKWSCI",
-          "url": "https://web.archive.org/web/20230127002954id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "510bddac7f9fa3d1d89dc4afafbfcffe8b543822c600837494cf96d37a6c2ceb",
-          "observed": "20230127002954",
-          "quote": "Saifuddin Ahmed Assistant Professor",
-          "ladder": true
-        },
-        {
-          "unit": "WKWSCI",
           "url": "https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "916e5693ca868b8f5ee53419008002271578d4b79fcf6f3ef1e1cc55a213e0c6",
-          "observed": "20261110",
-          "quote": "Saifuddin Ahmed Associate Professor",
+          "sha256": "89f4c563267633c122d6798f4d53f7871a53743baa499bcdf6e51e08d9efaa73",
+          "quote": "Assoc Prof Saifuddin Ahmed Programme Director, Doctor of Philosophy & Masters by Research",
+          "kind": "unit_listing:WKWSCI",
+          "observed": "20261115",
+          "unit": "WKWSCI",
           "ladder": true
         }
       ],
       "years_listed": [
-        2021,
-        2022,
-        2023,
-        2024,
-        2025,
         2026
       ],
       "units_searched": [
@@ -48807,7 +48924,155 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
+        "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
+        "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
+      },
+      "previous_decision_preserved": {
+        "name": "Saifuddin Ahmed",
+        "aliases": [],
+        "source": "openalex_rule",
+        "decision": "excluded_scope",
+        "reason": "R-HIER-05 (communication / media-psychology / information-behaviour research; WKWSCI): faculty (WKWSCI listing, professor rank); computing-share test passes: 14 of 66 school works DBLP-indexed (share 0.21; 1 OpenAlex author ids)",
+        "cs_basis": {
+          "dblp": [],
+          "dblp_window": 0,
+          "affiliation_notes": [],
+          "evidence": [],
+          "openalex_share": {
+            "result": "computing",
+            "ids": [
+              "https://openalex.org/A5042133242"
+            ],
+            "school_works": 66,
+            "dblp_indexed": 14,
+            "share": 0.212,
+            "thresholds": {
+              "dblp_indexed": 5,
+              "share": 0.2,
+              "min_works_for_negative": 8
+            },
+            "namesake_orcids": false,
+            "excluded": [
+              {
+                "author": "https://openalex.org/A5001961428",
+                "why": "namesake: ORCID 0000-0002-9884-4580, not the busiest ORCID 0000-0001-6372-213X",
+                "n": 3
+              }
+            ],
+            "authors": [
+              {
+                "author": "https://openalex.org/A5042133242",
+                "basis": "candidate author id",
+                "works": 66,
+                "dblp_indexed": 14,
+                "years": [
+                  2019,
+                  2026
+                ],
+                "names": [
+                  "Saifuddin Ahmed"
+                ],
+                "orcids": [
+                  "0000-0001-6372-213X"
+                ],
+                "venues": [
+                  "Journal of Broadcasting & Electronic Media",
+                  "Asian Journal of Communication",
+                  "New Media & Society"
+                ],
+                "dblp_examples": [
+                  {
+                    "oa": "https://openalex.org/W2944528918",
+                    "year": 2019,
+                    "title": "The Internet and political (in)equality in the Arab world: A multi-country study of the relationship between Internet news use, press freedom, and pro",
+                    "venue": "New Media & Society"
+                  },
+                  {
+                    "oa": "https://openalex.org/W3089994210",
+                    "year": 2020,
+                    "title": "Who inadvertently shares deepfakes? Analyzing the role of political interest, cognitive ability, and social network size",
+                    "venue": "Telematics and Informatics"
+                  }
+                ],
+                "other_examples": [
+                  {
+                    "oa": "https://openalex.org/W2974887120",
+                    "year": 2019,
+                    "title": "The Roles of Different News Media Use and Press Freedom in Education Generated Participation Inequality: An Eight Country Comparative Analysis",
+                    "venue": "Journal of Broadcasting & Electronic Media"
+                  },
+                  {
+                    "oa": "https://openalex.org/W3008266800",
+                    "year": 2020,
+                    "title": "The Internet and Participation Inequality: A Multilevel Examination of 108 Countries",
+                    "venue": "International journal of communication"
+                  }
+                ]
+              }
+            ],
+            "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+          }
+        },
+        "faculty_evidence": [
+          {
+            "unit": "WKWSCI",
+            "url": "https://web.archive.org/web/20210515102703id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "8f40d50955197ecf15ae5d7a1a7133275451fd75b898907751734368908997be",
+            "observed": "20210515102703",
+            "quote": "Saifuddin Ahmed Assistant Professor",
+            "ladder": true
+          },
+          {
+            "unit": "WKWSCI",
+            "url": "https://web.archive.org/web/20220516205605id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "0352c4d904d9ef455595bcfda334986b6672e3e3af97083286357009e153c7f9",
+            "observed": "20220516205605",
+            "quote": "Saifuddin Ahmed Assistant Professor",
+            "ladder": true
+          },
+          {
+            "unit": "WKWSCI",
+            "url": "https://web.archive.org/web/20230127002954id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "510bddac7f9fa3d1d89dc4afafbfcffe8b543822c600837494cf96d37a6c2ceb",
+            "observed": "20230127002954",
+            "quote": "Saifuddin Ahmed Assistant Professor",
+            "ladder": true
+          },
+          {
+            "unit": "WKWSCI",
+            "url": "https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "916e5693ca868b8f5ee53419008002271578d4b79fcf6f3ef1e1cc55a213e0c6",
+            "observed": "20261110",
+            "quote": "Saifuddin Ahmed Associate Professor",
+            "ladder": true
+          }
+        ],
+        "years_listed": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Changhai Ou",
@@ -50022,124 +50287,36 @@
       ]
     },
     {
-      "name": "Younbo Jung",
-      "aliases": [
-        "Jung Younbo"
-      ],
-      "source": "openalex_rule",
-      "decision": "excluded_scope",
-      "reason": "R-HIER-05 (communication / media-psychology / information-behaviour research; WKWSCI): faculty (WKWSCI listing, professor rank); computing-share test passes: 8 of 12 school works DBLP-indexed (share 0.67; 1 OpenAlex author ids)",
+      "name": "Jung Younbo",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownprofessorheading/currentunitfacultyrow and unchangednormalcomputing-share test passed. Scope2026only, all bibliographic aliases andIDs withheld under explicitno_identity.",
       "cs_basis": {
-        "dblp": [],
-        "dblp_window": 0,
-        "affiliation_notes": [],
-        "evidence": [],
-        "openalex_share": {
-          "result": "computing",
-          "ids": [
-            "https://openalex.org/A5055886385"
-          ],
-          "school_works": 12,
-          "dblp_indexed": 8,
-          "share": 0.667,
-          "thresholds": {
-            "dblp_indexed": 5,
-            "share": 0.2,
-            "min_works_for_negative": 8
-          },
-          "namesake_orcids": false,
-          "excluded": [],
-          "authors": [
-            {
-              "author": "https://openalex.org/A5055886385",
-              "basis": "candidate author id",
-              "works": 12,
-              "dblp_indexed": 8,
-              "years": [
-                2016,
-                2026
-              ],
-              "names": [
-                "Younbo Jung",
-                "Jung Younbo"
-              ],
-              "orcids": [
-                "0000-0002-2588-4557"
-              ],
-              "venues": [
-                "Frontiers in Virtual Reality",
-                "Journal of Health Communication",
-                "Computers in Human Behavior"
-              ],
-              "dblp_examples": [
-                {
-                  "oa": "https://openalex.org/W2560357049",
-                  "year": 2016,
-                  "title": "Avatar face recognition and self-presence",
-                  "venue": "Computers in Human Behavior"
-                },
-                {
-                  "oa": "https://openalex.org/W2589775686",
-                  "year": 2017,
-                  "title": "Politician's Strategic Impression Management on Instagram",
-                  "venue": "Proceedings of the ... Annual Hawaii International Conference on System Sciences/Proceedings of the Annual Hawaii International Conference on System Sciences"
-                }
-              ],
-              "other_examples": [
-                {
-                  "oa": "https://openalex.org/W2509441610",
-                  "year": 2016,
-                  "title": "Effects of Exergaming and Message Framing in School Environments on Physical Activity Attitudes and Intentions of Children and Adolescents",
-                  "venue": "Journal of Health Communication"
-                },
-                {
-                  "oa": "https://openalex.org/W3024531251",
-                  "year": 2020,
-                  "title": "Exploring the Role of Language and Goal Attainment in Intergenerational Gameplay",
-                  "venue": "Journal of Intergenerational Relationships"
-                }
-              ]
-            }
-          ],
-          "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-        }
+        "computing_scope_only": true,
+        "school_works": 12,
+        "dblp_indexed": 8,
+        "share": 0.667,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
       "faculty_evidence": [
         {
-          "unit": "WKWSCI",
-          "url": "https://web.archive.org/web/20250320105354id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "a5b64e13671e18fbc8fe7a399de7c52a58a894cce75728f9bb8ae5deb0e13f77",
-          "observed": "20250320105354",
-          "quote": "Jung Younbo Associate Professor",
-          "ladder": true
-        },
-        {
-          "unit": "WKWSCI",
-          "url": "https://web.archive.org/web/20260121213107id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "e62b9b06229a514fa69e2a281c77b385326857e6409c581f6c4eb1b64aebfbe8",
-          "observed": "20260121213107",
-          "quote": "Jung Younbo Associate Professor",
-          "ladder": true
-        },
-        {
-          "unit": "WKWSCI",
           "url": "https://www.ntu.edu.sg/wkwsci/about-us/our-people",
-          "sha256": "916e5693ca868b8f5ee53419008002271578d4b79fcf6f3ef1e1cc55a213e0c6",
-          "observed": "20261110",
-          "quote": "Jung Younbo Associate Professor",
-          "ladder": true
-        },
-        {
-          "unit": "LKC_MEDICINE",
-          "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
-          "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
-          "observed": "20261110",
-          "quote": "Jung Younbo Associate Professor",
+          "sha256": "89f4c563267633c122d6798f4d53f7871a53743baa499bcdf6e51e08d9efaa73",
+          "quote": "Assoc Prof Jung Younbo Associate Professor",
+          "kind": "unit_listing:WKWSCI",
+          "observed": "20261115",
+          "unit": "WKWSCI",
           "ladder": true
         }
       ],
       "years_listed": [
-        2025,
         2026
       ],
       "units_searched": [
@@ -50153,7 +50330,148 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
+        "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
+        "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
+      },
+      "previous_decision_preserved": {
+        "name": "Younbo Jung",
+        "aliases": [
+          "Jung Younbo"
+        ],
+        "source": "openalex_rule",
+        "decision": "excluded_scope",
+        "reason": "R-HIER-05 (communication / media-psychology / information-behaviour research; WKWSCI): faculty (WKWSCI listing, professor rank); computing-share test passes: 8 of 12 school works DBLP-indexed (share 0.67; 1 OpenAlex author ids)",
+        "cs_basis": {
+          "dblp": [],
+          "dblp_window": 0,
+          "affiliation_notes": [],
+          "evidence": [],
+          "openalex_share": {
+            "result": "computing",
+            "ids": [
+              "https://openalex.org/A5055886385"
+            ],
+            "school_works": 12,
+            "dblp_indexed": 8,
+            "share": 0.667,
+            "thresholds": {
+              "dblp_indexed": 5,
+              "share": 0.2,
+              "min_works_for_negative": 8
+            },
+            "namesake_orcids": false,
+            "excluded": [],
+            "authors": [
+              {
+                "author": "https://openalex.org/A5055886385",
+                "basis": "candidate author id",
+                "works": 12,
+                "dblp_indexed": 8,
+                "years": [
+                  2016,
+                  2026
+                ],
+                "names": [
+                  "Younbo Jung",
+                  "Jung Younbo"
+                ],
+                "orcids": [
+                  "0000-0002-2588-4557"
+                ],
+                "venues": [
+                  "Frontiers in Virtual Reality",
+                  "Journal of Health Communication",
+                  "Computers in Human Behavior"
+                ],
+                "dblp_examples": [
+                  {
+                    "oa": "https://openalex.org/W2560357049",
+                    "year": 2016,
+                    "title": "Avatar face recognition and self-presence",
+                    "venue": "Computers in Human Behavior"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2589775686",
+                    "year": 2017,
+                    "title": "Politician's Strategic Impression Management on Instagram",
+                    "venue": "Proceedings of the ... Annual Hawaii International Conference on System Sciences/Proceedings of the Annual Hawaii International Conference on System Sciences"
+                  }
+                ],
+                "other_examples": [
+                  {
+                    "oa": "https://openalex.org/W2509441610",
+                    "year": 2016,
+                    "title": "Effects of Exergaming and Message Framing in School Environments on Physical Activity Attitudes and Intentions of Children and Adolescents",
+                    "venue": "Journal of Health Communication"
+                  },
+                  {
+                    "oa": "https://openalex.org/W3024531251",
+                    "year": 2020,
+                    "title": "Exploring the Role of Language and Goal Attainment in Intergenerational Gameplay",
+                    "venue": "Journal of Intergenerational Relationships"
+                  }
+                ]
+              }
+            ],
+            "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+          }
+        },
+        "faculty_evidence": [
+          {
+            "unit": "WKWSCI",
+            "url": "https://web.archive.org/web/20250320105354id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "a5b64e13671e18fbc8fe7a399de7c52a58a894cce75728f9bb8ae5deb0e13f77",
+            "observed": "20250320105354",
+            "quote": "Jung Younbo Associate Professor",
+            "ladder": true
+          },
+          {
+            "unit": "WKWSCI",
+            "url": "https://web.archive.org/web/20260121213107id_/https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "e62b9b06229a514fa69e2a281c77b385326857e6409c581f6c4eb1b64aebfbe8",
+            "observed": "20260121213107",
+            "quote": "Jung Younbo Associate Professor",
+            "ladder": true
+          },
+          {
+            "unit": "WKWSCI",
+            "url": "https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+            "sha256": "916e5693ca868b8f5ee53419008002271578d4b79fcf6f3ef1e1cc55a213e0c6",
+            "observed": "20261110",
+            "quote": "Jung Younbo Associate Professor",
+            "ladder": true
+          },
+          {
+            "unit": "LKC_MEDICINE",
+            "url": "https://www.ntu.edu.sg/medicine/our-people/faculty",
+            "sha256": "7487ca16cea5f15f5d9f62028d12ac3b8a3df574a401474cf3166f33b1df5128",
+            "observed": "20261110",
+            "quote": "Jung Younbo Associate Professor",
+            "ladder": true
+          }
+        ],
+        "years_listed": [
+          2025,
+          2026
+        ],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Luis Morgado Da Costa",
@@ -51173,104 +51491,31 @@
     },
     {
       "name": "Davide Benvenuti",
-      "aliases": [
-        "Benvenuti, Davide",
-        "D. Benvenuti"
-      ],
-      "source": "openalex_rule",
-      "decision": "faculty_not_computing",
-      "reason": "held: ADM design research; DBLP share does not show computing as object or method. faculty (ADM listing, professor rank); computing-share test passes: 6 of 12 school works DBLP-indexed (share 0.50; 1 OpenAlex author ids)",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownprofessorheading/currentunitfacultyrow and unchangednormalcomputing-share test passed. Scope2026only, all bibliographic aliases andIDs withheld under explicitno_identity.",
       "cs_basis": {
-        "dblp": [],
-        "dblp_window": 0,
-        "affiliation_notes": [],
-        "evidence": [],
-        "openalex_share": {
-          "result": "computing",
-          "ids": [
-            "https://openalex.org/A5102989751"
-          ],
-          "school_works": 12,
-          "dblp_indexed": 6,
-          "share": 0.5,
-          "thresholds": {
-            "dblp_indexed": 5,
-            "share": 0.2,
-            "min_works_for_negative": 8
-          },
-          "namesake_orcids": false,
-          "excluded": [],
-          "authors": [
-            {
-              "author": "https://openalex.org/A5102989751",
-              "basis": "candidate author id",
-              "works": 12,
-              "dblp_indexed": 6,
-              "years": [
-                2017,
-                2026
-              ],
-              "names": [
-                "Davide Benvenuti",
-                "Benvenuti, Davide",
-                "D. Benvenuti"
-              ],
-              "orcids": [
-                "0000-0003-0439-6666"
-              ],
-              "venues": [
-                "Computers & Graphics",
-                "Umanistica Digitale",
-                "Lecture notes in computer science"
-              ],
-              "dblp_examples": [
-                {
-                  "oa": "https://openalex.org/W2600710371",
-                  "year": 2017,
-                  "title": "Art-directed watercolor stylization of 3D animations in real-time",
-                  "venue": "Computers & Graphics"
-                },
-                {
-                  "oa": "https://openalex.org/W2709911338",
-                  "year": 2017,
-                  "title": "Edge- and substrate-based effects for watercolor stylization",
-                  "venue": null
-                }
-              ],
-              "other_examples": [
-                {
-                  "oa": "https://openalex.org/W2946536473",
-                  "year": 2018,
-                  "title": "Rendu stylisé d'animations 3D : une approche centrée utilisateur",
-                  "venue": null
-                },
-                {
-                  "oa": "https://openalex.org/W2998693266",
-                  "year": 2019,
-                  "title": "Animation of two-dimensional pictorial works into multipurpose three-dimensional object. The Atlas of the ships of the known world depicted in the 146",
-                  "venue": null
-                }
-              ]
-            }
-          ],
-          "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-        }
+        "computing_scope_only": true,
+        "school_works": 12,
+        "dblp_indexed": 6,
+        "share": 0.5,
+        "thresholds": {
+          "dblp_indexed": 5,
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
       "faculty_evidence": [
         {
-          "unit": "ADM",
-          "url": "https://web.archive.org/web/20260806141938id_/https://www.ntu.edu.sg/adm/about-us/our-people/faculty",
-          "sha256": "a857f2315685cdf23f606879fe8856d066c19fde1c706a1a9d87b437132731c5",
-          "observed": "20260806141938",
-          "quote": "Davide Benvenuti Associate Professor",
-          "ladder": true
-        },
-        {
-          "unit": "ADM",
           "url": "https://www.ntu.edu.sg/adm/about-us/our-people/faculty",
           "sha256": "b24d28a5bc8ab7a196021d5f277b500d9ccb164e2c8a206750182e761f3a31bb",
-          "observed": "20261110",
-          "quote": "Davide Benvenuti Associate Professor",
+          "quote": "Assoc Prof Davide Benvenuti Associate Professor",
+          "kind": "unit_listing:ADM",
+          "observed": "20261115",
+          "unit": "ADM",
           "ladder": true
         }
       ],
@@ -51288,7 +51533,133 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
+        "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
+        "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
+      },
+      "previous_decision_preserved": {
+        "name": "Davide Benvenuti",
+        "aliases": [
+          "Benvenuti, Davide",
+          "D. Benvenuti"
+        ],
+        "source": "openalex_rule",
+        "decision": "faculty_not_computing",
+        "reason": "held: ADM design research; DBLP share does not show computing as object or method. faculty (ADM listing, professor rank); computing-share test passes: 6 of 12 school works DBLP-indexed (share 0.50; 1 OpenAlex author ids)",
+        "cs_basis": {
+          "dblp": [],
+          "dblp_window": 0,
+          "affiliation_notes": [],
+          "evidence": [],
+          "openalex_share": {
+            "result": "computing",
+            "ids": [
+              "https://openalex.org/A5102989751"
+            ],
+            "school_works": 12,
+            "dblp_indexed": 6,
+            "share": 0.5,
+            "thresholds": {
+              "dblp_indexed": 5,
+              "share": 0.2,
+              "min_works_for_negative": 8
+            },
+            "namesake_orcids": false,
+            "excluded": [],
+            "authors": [
+              {
+                "author": "https://openalex.org/A5102989751",
+                "basis": "candidate author id",
+                "works": 12,
+                "dblp_indexed": 6,
+                "years": [
+                  2017,
+                  2026
+                ],
+                "names": [
+                  "Davide Benvenuti",
+                  "Benvenuti, Davide",
+                  "D. Benvenuti"
+                ],
+                "orcids": [
+                  "0000-0003-0439-6666"
+                ],
+                "venues": [
+                  "Computers & Graphics",
+                  "Umanistica Digitale",
+                  "Lecture notes in computer science"
+                ],
+                "dblp_examples": [
+                  {
+                    "oa": "https://openalex.org/W2600710371",
+                    "year": 2017,
+                    "title": "Art-directed watercolor stylization of 3D animations in real-time",
+                    "venue": "Computers & Graphics"
+                  },
+                  {
+                    "oa": "https://openalex.org/W2709911338",
+                    "year": 2017,
+                    "title": "Edge- and substrate-based effects for watercolor stylization",
+                    "venue": null
+                  }
+                ],
+                "other_examples": [
+                  {
+                    "oa": "https://openalex.org/W2946536473",
+                    "year": 2018,
+                    "title": "Rendu stylisé d'animations 3D : une approche centrée utilisateur",
+                    "venue": null
+                  },
+                  {
+                    "oa": "https://openalex.org/W2998693266",
+                    "year": 2019,
+                    "title": "Animation of two-dimensional pictorial works into multipurpose three-dimensional object. The Atlas of the ships of the known world depicted in the 146",
+                    "venue": null
+                  }
+                ]
+              }
+            ],
+            "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+          }
+        },
+        "faculty_evidence": [
+          {
+            "unit": "ADM",
+            "url": "https://web.archive.org/web/20260806141938id_/https://www.ntu.edu.sg/adm/about-us/our-people/faculty",
+            "sha256": "a857f2315685cdf23f606879fe8856d066c19fde1c706a1a9d87b437132731c5",
+            "observed": "20260806141938",
+            "quote": "Davide Benvenuti Associate Professor",
+            "ladder": true
+          },
+          {
+            "unit": "ADM",
+            "url": "https://www.ntu.edu.sg/adm/about-us/our-people/faculty",
+            "sha256": "b24d28a5bc8ab7a196021d5f277b500d9ccb164e2c8a206750182e761f3a31bb",
+            "observed": "20261110",
+            "quote": "Davide Benvenuti Associate Professor",
+            "ladder": true
+          }
+        ],
+        "years_listed": [
+          2026
+        ],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Xavier Bresson",
@@ -51826,106 +52197,32 @@
       ]
     },
     {
-      "name": "Peer Sathikh",
-      "aliases": [
-        "Peer Mohideen Sathikh",
-        "Peer M. Sathikh",
-        "Peer M Sathikh"
-      ],
-      "source": "openalex_rule",
-      "decision": "faculty_not_computing",
-      "reason": "held: ADM design research; DBLP share does not show computing as object or method. faculty (ADM listing, professor rank); computing-share test passes: 5 of 13 school works DBLP-indexed (share 0.39; 1 OpenAlex author ids)",
+      "name": "Peer Mohideen Sathikh",
+      "aliases": [],
+      "source": "official_profile_ladder",
+      "decision": "accepted",
+      "reason": "Exact primary ownprofessorheading/currentunitfacultyrow and unchangednormalcomputing-share test passed. Scope2026only, all bibliographic aliases andIDs withheld under explicitno_identity.",
       "cs_basis": {
-        "dblp": [],
-        "dblp_window": 0,
-        "affiliation_notes": [],
-        "evidence": [],
-        "openalex_share": {
-          "result": "computing",
-          "ids": [
-            "https://openalex.org/A5023305333"
-          ],
-          "school_works": 13,
+        "computing_scope_only": true,
+        "school_works": 13,
+        "dblp_indexed": 5,
+        "share": 0.385,
+        "thresholds": {
           "dblp_indexed": 5,
-          "share": 0.385,
-          "thresholds": {
-            "dblp_indexed": 5,
-            "share": 0.2,
-            "min_works_for_negative": 8
-          },
-          "namesake_orcids": false,
-          "excluded": [],
-          "authors": [
-            {
-              "author": "https://openalex.org/A5023305333",
-              "basis": "candidate author id",
-              "works": 13,
-              "dblp_indexed": 5,
-              "years": [
-                2019,
-                2025
-              ],
-              "names": [
-                "Peer Sathikh",
-                "Peer Mohideen Sathikh",
-                "Peer M. Sathikh"
-              ],
-              "orcids": [
-                "0000-0001-7194-3856"
-              ],
-              "venues": [
-                "Lecture notes in networks and systems",
-                "Transportation research procedia",
-                "AI & Society"
-              ],
-              "dblp_examples": [
-                {
-                  "oa": "https://openalex.org/W3170457672",
-                  "year": 2021,
-                  "title": "Eden in Iraq: a wastewater design project as bio-art—a confluence of nature and culture, design and ecology, in Southern Iraq marshes",
-                  "venue": "AI & Society"
-                },
-                {
-                  "oa": "https://openalex.org/W3188569548",
-                  "year": 2021,
-                  "title": "Achieving Trust in Future Human Interactions with Omnipresent AI: Some Postulates",
-                  "venue": "Lecture notes in networks and systems"
-                }
-              ],
-              "other_examples": [
-                {
-                  "oa": "https://openalex.org/W2989735056",
-                  "year": 2019,
-                  "title": "User-centred design of autonomous mobility for public transportation in Singapore",
-                  "venue": "Transportation research procedia"
-                },
-                {
-                  "oa": "https://openalex.org/W6893633609",
-                  "year": 2020,
-                  "title": "Let's Talk With an ATM: Applying Human Communication Theories to Human-machine Interaction",
-                  "venue": null
-                }
-              ]
-            }
-          ],
-          "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-        }
+          "share": 0.2,
+          "min_works_for_negative": 8
+        },
+        "normal_review_job": 32328966,
+        "identity_activation": false
       },
       "faculty_evidence": [
         {
-          "unit": "ADM",
-          "url": "https://web.archive.org/web/20260806141938id_/https://www.ntu.edu.sg/adm/about-us/our-people/faculty",
-          "sha256": "a857f2315685cdf23f606879fe8856d066c19fde1c706a1a9d87b437132731c5",
-          "observed": "20260806141938",
-          "quote": "Peer Mohideen Sathikh Associate Professor",
-          "ladder": true
-        },
-        {
-          "unit": "ADM",
           "url": "https://www.ntu.edu.sg/adm/about-us/our-people/faculty",
           "sha256": "b24d28a5bc8ab7a196021d5f277b500d9ccb164e2c8a206750182e761f3a31bb",
-          "observed": "20261110",
-          "quote": "Peer Mohideen Sathikh Associate Professor",
+          "quote": "Assoc Prof Peer Mohideen Sathikh Associate Professor",
+          "kind": "unit_listing:ADM",
+          "observed": "20261115",
+          "unit": "ADM",
           "ladder": true
         }
       ],
@@ -51943,7 +52240,134 @@
         "SBS",
         "SPMS",
         "WKWSCI"
-      ]
+      ],
+      "independent_review": {
+        "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
+        "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+        "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
+        "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
+        "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
+      },
+      "previous_decision_preserved": {
+        "name": "Peer Sathikh",
+        "aliases": [
+          "Peer Mohideen Sathikh",
+          "Peer M. Sathikh",
+          "Peer M Sathikh"
+        ],
+        "source": "openalex_rule",
+        "decision": "faculty_not_computing",
+        "reason": "held: ADM design research; DBLP share does not show computing as object or method. faculty (ADM listing, professor rank); computing-share test passes: 5 of 13 school works DBLP-indexed (share 0.39; 1 OpenAlex author ids)",
+        "cs_basis": {
+          "dblp": [],
+          "dblp_window": 0,
+          "affiliation_notes": [],
+          "evidence": [],
+          "openalex_share": {
+            "result": "computing",
+            "ids": [
+              "https://openalex.org/A5023305333"
+            ],
+            "school_works": 13,
+            "dblp_indexed": 5,
+            "share": 0.385,
+            "thresholds": {
+              "dblp_indexed": 5,
+              "share": 0.2,
+              "min_works_for_negative": 8
+            },
+            "namesake_orcids": false,
+            "excluded": [],
+            "authors": [
+              {
+                "author": "https://openalex.org/A5023305333",
+                "basis": "candidate author id",
+                "works": 13,
+                "dblp_indexed": 5,
+                "years": [
+                  2019,
+                  2025
+                ],
+                "names": [
+                  "Peer Sathikh",
+                  "Peer Mohideen Sathikh",
+                  "Peer M. Sathikh"
+                ],
+                "orcids": [
+                  "0000-0001-7194-3856"
+                ],
+                "venues": [
+                  "Lecture notes in networks and systems",
+                  "Transportation research procedia",
+                  "AI & Society"
+                ],
+                "dblp_examples": [
+                  {
+                    "oa": "https://openalex.org/W3170457672",
+                    "year": 2021,
+                    "title": "Eden in Iraq: a wastewater design project as bio-art—a confluence of nature and culture, design and ecology, in Southern Iraq marshes",
+                    "venue": "AI & Society"
+                  },
+                  {
+                    "oa": "https://openalex.org/W3188569548",
+                    "year": 2021,
+                    "title": "Achieving Trust in Future Human Interactions with Omnipresent AI: Some Postulates",
+                    "venue": "Lecture notes in networks and systems"
+                  }
+                ],
+                "other_examples": [
+                  {
+                    "oa": "https://openalex.org/W2989735056",
+                    "year": 2019,
+                    "title": "User-centred design of autonomous mobility for public transportation in Singapore",
+                    "venue": "Transportation research procedia"
+                  },
+                  {
+                    "oa": "https://openalex.org/W6893633609",
+                    "year": 2020,
+                    "title": "Let's Talk With an ATM: Applying Human Communication Theories to Human-machine Interaction",
+                    "venue": null
+                  }
+                ]
+              }
+            ],
+            "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+          }
+        },
+        "faculty_evidence": [
+          {
+            "unit": "ADM",
+            "url": "https://web.archive.org/web/20260806141938id_/https://www.ntu.edu.sg/adm/about-us/our-people/faculty",
+            "sha256": "a857f2315685cdf23f606879fe8856d066c19fde1c706a1a9d87b437132731c5",
+            "observed": "20260806141938",
+            "quote": "Peer Mohideen Sathikh Associate Professor",
+            "ladder": true
+          },
+          {
+            "unit": "ADM",
+            "url": "https://www.ntu.edu.sg/adm/about-us/our-people/faculty",
+            "sha256": "b24d28a5bc8ab7a196021d5f277b500d9ccb164e2c8a206750182e761f3a31bb",
+            "observed": "20261110",
+            "quote": "Peer Mohideen Sathikh Associate Professor",
+            "ladder": true
+          }
+        ],
+        "years_listed": [
+          2026
+        ],
+        "units_searched": [
+          "ADM",
+          "CEE",
+          "EEE",
+          "HASS",
+          "LKC_MEDICINE",
+          "MAE",
+          "MSE",
+          "SBS",
+          "SPMS",
+          "WKWSCI"
+        ]
+      }
     },
     {
       "name": "Zhongjian Wang",
@@ -57257,6 +57681,14 @@
       "receipt_sha256": "a6f8ff3c2e82488a37d3803d57e86b65739e15438a10b747c37a8c23652e65f7",
       "proposal_sha256": "c9c8a08a0d4f40ebc03d493927c9f0c1c43413767fdc4b5fab0845cb26cdb368",
       "payload_sha256": "d3312e25bd5e210f283747562bf9dd9c17405bf6c96f615127511ec54c854519"
+    },
+    {
+      "scope": "Eight exactWKWSCI/ADMprimaryregularfaculty2026only, IDs andaliases separatelyheld",
+      "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
+      "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
+      "receipt_sha256": "4364974d37f19b3c452bf57b7c3dff9f6dee4121b0051b26acf52ddffb55ca47",
+      "proposal_sha256": "4e240c5d2a974590fed37050cda9dbb13ac40de16ca901fddc56a01c36ae2e9a",
+      "payload_sha256": "992446d4c518003178ec2e61d3604a266dbdd6cda4fd1e8cc6bac6f6bf73b3b2"
     }
   ]
 }
