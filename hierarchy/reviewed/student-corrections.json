@@ -2833,5 +2833,170 @@
   ],
   "reviewer": "/root/mit_recall_independent",
   "reviewed": "2026-11-17"
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Marzyeh Ghassemi",
+  "student": "mit_roster_c679d5b6fa20be73",
+  "expected_member_sha256": "540d682b5250b008ec1fd7f56c127c8b3874b0a6ee394ff14b8c2089beafdf8c",
+  "roles": [
+   "visiting"
+  ],
+  "role": "visiting",
+  "type": "researched_membership",
+  "years": [
+   2021,
+   2023
+  ],
+  "sources": [
+   {
+    "url": "https://web.archive.org/web/20211204225627id_/https://healthyml.org/people/",
+    "sha256": "b730f45791e959f4199ea1e58d89135544d014afcc655e8edced9cc3fc09612a",
+    "quote": "Nathan Ng\nNathan is a PhD student at the University of Toronto visiting at MIT."
+   },
+   {
+    "url": "https://web.archive.org/web/20230814005456id_/https://healthyml.org/people/",
+    "sha256": "4652ae6c994b3ebc9ad36d07097ec82bc89a1c2459589240e9f5889e746f9f11",
+    "quote": "Nathan Ng\nNathan is a PhD student at the University of Toronto visiting at MIT."
+   }
+  ],
+  "reason": "The mixed historical alumni table labels a former PhD student but does not establish a MIT degree or Ghassemi doctoral advising. Separate2021/2023 originals explicitly identify a UniversityofTorontoPhD visitingMIT; retain only those proven MIT visiting memberships. No claim any degree was false or never occurred.",
+  "evidence": [
+   {
+    "url": "https://healthyml.org/people/",
+    "sha256": "b9edc7a2636ad6709045e893cd3761ec70d45022cab9e29f9b2de78a3b95f026",
+    "quote": "Name\nHealthy ML Position\nCurrent Position",
+    "kind": "actual_table_column_headers"
+   },
+   {
+    "url": "https://healthyml.org/people/",
+    "sha256": "b9edc7a2636ad6709045e893cd3761ec70d45022cab9e29f9b2de78a3b95f026",
+    "quote": "Nathan Ng\nPh.D. Student\nPostdoc at NYU",
+    "kind": "actual_named_healthyml_position_and_later_current_position"
+   }
+  ],
+  "negative_source_review": {
+   "literal_healthyml_position": "Ph.D. Student",
+   "literal_current_position": "Postdoc at NYU",
+   "current_position_is_not_a_ghassemi_lab_role": true,
+   "programme_or_job_statement_preserved_verbatim": true,
+   "earlier_msc_institution_unplaced": false,
+   "mit_phd_programme_explicitly_retained": false,
+   "no_false_or_never_degree_assertion": true,
+   "actual_table_header": "Name\nHealthy ML Position\nCurrent Position",
+   "pre_corrections_member_sha256": "540d682b5250b008ec1fd7f56c127c8b3874b0a6ee394ff14b8c2089beafdf8c",
+   "proof_of_independently_verified_mit_degree_in_assembled_relations": false,
+   "qualification": "No independently supported academic_advising/thesis relation is present in this exact assembled member. Any newly added genuine role/source must fail this guard and receive renewed review."
+  },
+  "source_observation_years_are_separate_not_continuous": true
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Marzyeh Ghassemi",
+  "student": "mit_roster_17c38a75b28588a8",
+  "expected_member_sha256": "dc6c766255c2f17747eca80105193906d2a5ee9c343642da002808a7596e8907",
+  "roles": [
+   "visiting"
+  ],
+  "role": "visiting",
+  "type": "researched_membership",
+  "years": [
+   2023
+  ],
+  "sources": [
+   {
+    "url": "https://web.archive.org/web/20230814005456id_/https://healthyml.org/people/",
+    "sha256": "4652ae6c994b3ebc9ad36d07097ec82bc89a1c2459589240e9f5889e746f9f11",
+    "quote": "Kimia Hamidieh\nKimia is a PhD student at University of Toronto and Vector Institute visiting MIT."
+   }
+  ],
+  "reason": "The alumni MSc label is literal, but the institution of that earlier MSc and Ghassemi doctoral advising are not established. The CurrentPosition cell explicitly says PhDatMIT; preserve that genuine programme statement in evidence. Separate2023 original establishes a UniversityofTorontoPhD visitingMIT, so retain only proven2023 visiting membership here; no denialofMITprogramme/degree.",
+  "evidence": [
+   {
+    "url": "https://healthyml.org/people/",
+    "sha256": "b9edc7a2636ad6709045e893cd3761ec70d45022cab9e29f9b2de78a3b95f026",
+    "quote": "Name\nHealthy ML Position\nCurrent Position",
+    "kind": "actual_table_column_headers"
+   },
+   {
+    "url": "https://healthyml.org/people/",
+    "sha256": "b9edc7a2636ad6709045e893cd3761ec70d45022cab9e29f9b2de78a3b95f026",
+    "quote": "Kimia Hamidieh\nMSc Student\nPhD at MIT",
+    "kind": "actual_named_healthyml_position_and_later_current_position"
+   }
+  ],
+  "negative_source_review": {
+   "literal_healthyml_position": "MSc Student",
+   "literal_current_position": "PhD at MIT",
+   "current_position_is_not_a_ghassemi_lab_role": true,
+   "programme_or_job_statement_preserved_verbatim": true,
+   "earlier_msc_institution_unplaced": true,
+   "mit_phd_programme_explicitly_retained": true,
+   "no_false_or_never_degree_assertion": true,
+   "actual_table_header": "Name\nHealthy ML Position\nCurrent Position",
+   "pre_corrections_member_sha256": "dc6c766255c2f17747eca80105193906d2a5ee9c343642da002808a7596e8907",
+   "proof_of_independently_verified_mit_degree_in_assembled_relations": false,
+   "qualification": "No independently supported academic_advising/thesis relation is present in this exact assembled member. Any newly added genuine role/source must fail this guard and receive renewed review."
+  },
+  "source_observation_years_are_separate_not_continuous": true
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Marzyeh Ghassemi",
+  "student": "mit_roster_8c4a9d2cbcb9b49d",
+  "expected_member_sha256": "8cfe34d4d3a89f3cd4ebe669d47af0847343cafa5b0dba448c89690824584c41",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2021,
+   2023
+  ],
+  "sources": [
+   {
+    "url": "https://web.archive.org/web/20211204225627id_/https://healthyml.org/people/",
+    "sha256": "b730f45791e959f4199ea1e58d89135544d014afcc655e8edced9cc3fc09612a",
+    "quote": "Taylor Killian\nTaylor is a third-year PhD student in the CS Department at the University of Toronto, affiliated with Vector Institute, MIT’s CSAIL and IMES."
+   },
+   {
+    "url": "https://web.archive.org/web/20230814005456id_/https://healthyml.org/people/",
+    "sha256": "4652ae6c994b3ebc9ad36d07097ec82bc89a1c2459589240e9f5889e746f9f11",
+    "quote": "Taylor Killian\nTaylor is a fourth-year PhD student in the CS Department at the University of Toronto, affiliated with Vector Institute, MIT’s CSAIL and IMES."
+   }
+  ],
+  "reason": "The old postdoc role was cut from CurrentPosition=PostdocResearchScientistatApple, not the HealthyML role. Separate2021/2023 originals explicitly identify a TorontoPhD affiliatedwithMITCSAIL/IMES; retain degree-unspecified graduate membership, not MITdoctoraladvising or Applepostdoc as this lab role.",
+  "evidence": [
+   {
+    "url": "https://healthyml.org/people/",
+    "sha256": "b9edc7a2636ad6709045e893cd3761ec70d45022cab9e29f9b2de78a3b95f026",
+    "quote": "Name\nHealthy ML Position\nCurrent Position",
+    "kind": "actual_table_column_headers"
+   },
+   {
+    "url": "https://healthyml.org/people/",
+    "sha256": "b9edc7a2636ad6709045e893cd3761ec70d45022cab9e29f9b2de78a3b95f026",
+    "quote": "Taylor Killian\nPh.D. Student\nPostdoc Research Scientist at Apple",
+    "kind": "actual_named_healthyml_position_and_later_current_position"
+   }
+  ],
+  "negative_source_review": {
+   "literal_healthyml_position": "Ph.D. Student",
+   "literal_current_position": "Postdoc Research Scientist at Apple",
+   "current_position_is_not_a_ghassemi_lab_role": true,
+   "programme_or_job_statement_preserved_verbatim": true,
+   "earlier_msc_institution_unplaced": false,
+   "mit_phd_programme_explicitly_retained": false,
+   "no_false_or_never_degree_assertion": true,
+   "actual_table_header": "Name\nHealthy ML Position\nCurrent Position",
+   "pre_corrections_member_sha256": "8cfe34d4d3a89f3cd4ebe669d47af0847343cafa5b0dba448c89690824584c41",
+   "proof_of_independently_verified_mit_degree_in_assembled_relations": false,
+   "qualification": "No independently supported academic_advising/thesis relation is present in this exact assembled member. Any newly added genuine role/source must fail this guard and receive renewed review."
+  },
+  "source_observation_years_are_separate_not_continuous": true
  }
 ]
