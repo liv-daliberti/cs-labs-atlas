@@ -1,0 +1,95 @@
+{
+  "status": "INDEPENDENT_FIXED30_SOURCE_REVIEW_COMPLETE_RECALL_BARS_PASS",
+  "reviewer": "codex-toronto-final-reviewer-1116",
+  "at": "2026-11-17T01:26:05.007291+00:00",
+  "unsigned": {
+    "path": "/n/fs/resemble/homogenizing-science/scratch/toronto-advance-1116/recall-review/worksheet-source-enriched-unsigned.json",
+    "sha256": "f472d02d121d4236dc91bbd1616e5bc2b6d143788c189ce292ece741ff2808a1"
+  },
+  "signed": {
+    "path": "/n/fs/resemble/homogenizing-science/scratch/toronto-advance-1116/independent-review/final-1116/worksheet-reviewed-signed-PASS.json",
+    "sha256": "6a04f2a8fbd1013f653e8ff45ed339e0424ae1e9a1e3dc702c5eb9515b840eab"
+  },
+  "original_draw": {
+    "path": "/n/fs/resemble/homogenizing-science/scratch/toronto-advance-1116/closeout-01/draw-original.json",
+    "sha256": "ee484dc37cdc9629d74f20ad046d45bb679c869d77283982de416a69dbc2fa32"
+  },
+  "prior_failed_review": {
+    "path": "/n/fs/resemble/homogenizing-science/scratch/toronto-advance-1116/independent-review/final-1116/final30-independent-review-FAILED-U.json",
+    "sha256": "5dc3122b82815e2b61a8728ac2abcc113bcc892abd77eb0d345282b2708c6dc4"
+  },
+  "independent_source_enrichment_approval": {
+    "path": "/n/fs/resemble/homogenizing-science/scratch/toronto-advance-1116/independent-review/final-1116/nandita-supplement-independent-approval.json",
+    "sha256": "5023330b953f43c20f484ca9a99d78d6ea993aa41720b59bacc665cc192362ba"
+  },
+  "binds": {
+    "students.json": "53a8dd81aaf84aeef8e3d96b69c1f6333466cc33b56dc258862cea55adb46cd2",
+    "pis.json": "53c35ab8d349db8e9cec4e0e24f7bb257e9b9c000aa1332a19cc7d9109768e21"
+  },
+  "seed": 237013357,
+  "one_changed_row": "Nandita Vijaykumar",
+  "unchanged_other_rows": 29,
+  "current_capture_store": "/n/fs/resemble/homogenizing-science/scratch/toronto-advance-1116/data/hierarchy/toronto/work/student-recall-captures.sqlite",
+  "record_findings": [],
+  "numbers": {
+    "sample": 30,
+    "readable": 12,
+    "unverifiable": 18,
+    "unverifiable_share": 0.6,
+    "unverifiable_reasons": {
+      "no_member_list_page": 10,
+      "list_not_current": 3,
+      "robots_disallowed": 5
+    },
+    "names_listed": 399,
+    "names_excluded": 9,
+    "excluded_share": 0.023,
+    "proven_external_school": 1,
+    "x_counted_exclusions": 8,
+    "x_counted_share": 0.02,
+    "undated_excluded": 217,
+    "eligible_names": 173,
+    "recorded_names": 171,
+    "r1_strict_recall": 0.988,
+    "r2_est_current_phd_recall": 0.755,
+    "r2_bootstrap_p5": 0.529,
+    "sizes": {
+      "0": 4,
+      "1-2": 40,
+      "3+": 172
+    },
+    "largest_gaps": [
+      "Richard Zemel (1 missing)",
+      "Nadia Caidi (1 missing)"
+    ]
+  },
+  "thresholds": {
+    "R1": 0.9,
+    "Z": 0.05,
+    "X": 0.2,
+    "U": 0.6,
+    "R2": 0.35
+  },
+  "zero_recorded_unreasoned": 2,
+  "zero_recorded_unreasoned_share": 0.009,
+  "bars_pass": {
+    "R1": true,
+    "U": true,
+    "R2": true,
+    "X": true,
+    "Z": true
+  },
+  "student_recall_bars_pass": true,
+  "source_cases_reviewed": 30,
+  "transcribed_names_checked": 399,
+  "known_coverage_gaps": [
+    "Nadia Caidi / Lisa Ndejuru",
+    "Richard Zemel / literal Jorn Jacobsen; no guessed identity merge"
+  ],
+  "limitations": [
+    "U is exactly allowed18/30, not full source availability.",
+    "Undated names remain unprojected and all8new nonstudent/highschool exclusions stay visible.",
+    "This certifies independent recall review; root must install exact signedbytes and run official fullStage6gate before accuracy/publication."
+  ],
+  "scientific_inputs_artifacts_seed_changed": false
+}
