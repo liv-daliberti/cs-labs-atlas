@@ -17,3 +17,10 @@ bin/atlas task done T012 --commit <hash>         # 4. finish with the commit; or
 - A stale claim (no heartbeat for its ttl) stops blocking; the next claimant takes it over. Keep the lease too (`bin/atlas lease acquire <name>`); the queue does not replace it.
 - Long-running work is a restartable Slurm job (explicit --mem/--time/--cpus, `sbatch --test-only` first). The job is the work; agents claim only the REVIEW step ("review T033 results") and heartbeat while the job runs.
 - Landing: `bin/atlas task land-lock acquire`, then `tools/agent_worktree.sh land <name>`, then `bin/atlas task land-lock release`. Without the lock the land warns (`git config atlas.landLock enforce` makes it refuse).
+
+## Store-sourced schools: record decisions, never edit their reviewed JSON
+A school whose charter says `[evidence] source = "store"` (check: `bin/atlas evidence-store flagged`; currently **michigan**) keeps its decisions in `<stores>/<school>/evidence.sqlite`; its `hierarchy/<school>/reviewed/*.json` files are only an export.
+- Write a decision with `bin/atlas evidence-store record <school> --layer <file.json> --record '<entry>' --source <url|file> --decided-by <your session> ...` (`find` first to see existing rows; `--supersede ID` to correct one), then `bin/atlas evidence-store sync <school>` and commit the regenerated JSON on your branch.
+- A direct edit of those JSON files is refused by the pre-commit hook (`evidence_store.py check --staged`), by `evidence_store.py check` and by `atlas doctor` (`evidence_view`). Do not bypass it; do not re-import a flagged school (it would erase recorded decisions).
+- The store is not in git; it is backed up daily to `archive/evidence-store-backups/` (restore: `bin/atlas evidence-store restore`).
+- Details, the shared-file slices and how a school is switched: `docs/EVIDENCE-STORE.md`.
