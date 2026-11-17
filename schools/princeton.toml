@@ -16,6 +16,14 @@ openalex_related = []
 ror = "https://ror.org/00hx57361"
 ids_note = "OpenAlex /institutions?filter=openalex_id 2026-10-29: display name and ROR as here"
 
+[evidence]
+# Where this school's reviewed decisions are written (docs/EVIDENCE-STORE.md): "store" = <stores>/princeton/evidence.sqlite is the source of truth, the reviewed JSON files
+# (its own and its rows in the shared files) are an export that the pre-commit hook, `evidence_store.py check` and atlas doctor keep honest.
+source = "store"   # since 2026-11-17 (R3b): the reference school, after Michigan
+shared = "store"
+# files a tool regenerates (student_recall.py: the 30-PI recall check and its dated copies) are audit samples, not decisions: they stay outside the store and the guard
+unmanaged = ["student-recall-check*.json"]
+
 [web]
 domains = ["princeton.edu"]
 

@@ -18,6 +18,7 @@ files (hierarchy/reviewed/) are split over the school stores by school; what nam
 import argparse
 import contextlib
 import copy
+import fnmatch
 import datetime
 import hashlib
 import json
@@ -462,6 +463,8 @@ def import_all(schools, dest=None, root=None, log=print):
             b = builder(s)
             rep = report['schools'][s] = dict(files=0, rows=0, whole_doc_files=0, verbatim_files=0, empty_files=0, other_files=other_files(school_dir(s, root)))
             for f in layer_files(school_dir(s, root)):
+                if source_of(s) == 'store' and is_unmanaged(s, f.name):
+                    continue
                 text, doc, err = read_layer(f)
                 rel = str(f.relative_to(root))
                 lid, rows = b.add_layer(f.name, 'school', text, doc, rel, error=err)
@@ -574,7 +577,7 @@ def compare(root, outroot, schools):
     """Per file: 'byte' (identical bytes), 'canonical' (same JSON, other formatting) or 'DIFF'. Counts and the lists of non-byte files."""
     res = dict(byte=0, canonical=[], diff=[], missing=[])
     root, outroot = Path(root), Path(outroot)
-    pairs = [(f, outroot / 'hierarchy' / s / 'reviewed' / f.name, s) for s in schools for f in layer_files(school_dir(s, root))]
+    pairs = [(f, outroot / 'hierarchy' / s / 'reviewed' / f.name, s) for s in schools for f in layer_files(school_dir(s, root)) if not (source_of(s) == 'store' and is_unmanaged(s, f.name))]
     pairs += [(f, outroot / 'hierarchy' / 'reviewed' / f.name, SHARED) for f in layer_files(shared_dir(root))]
     for src, dst, s in pairs:
         if not dst.exists():
@@ -616,6 +619,14 @@ def verify(schools, root=None, log=print):
 
 class SourceOfTruth(RuntimeError):
     """A write, an import or an edit that the school's [evidence] source = "store" flag does not allow."""
+
+
+def is_unmanaged(school, name):
+    try:
+        pats = S.evidence_unmanaged(school)
+    except KeyError:
+        return False
+    return any(fnmatch.fnmatch(name, p) for p in pats)
 
 
 def source_of(school):
@@ -836,11 +847,11 @@ def check_view(school, root=None, stores_dir=None, staged=None):
                            f'Other schools\' rows stay editable.')
     if staged is None:
         for f in layer_files(d):
-            if f.name not in text:
+            if f.name not in text and not is_unmanaged(school, f.name):
                 out.append(f'{school}/{f.name}: a reviewed file the store does not hold (the store is the source of truth; a new kind of reviewed file needs a layer added to the store by the coordinator): remove it')
     else:
         for rel in sorted(staged):
-            if rel.startswith(f'hierarchy/{school}/reviewed/') and rel.endswith('.json') and Path(rel).name not in text:
+            if rel.startswith(f'hierarchy/{school}/reviewed/') and rel.endswith('.json') and Path(rel).name not in text and not is_unmanaged(school, Path(rel).name):
                 out.append(f'{rel}: a reviewed file the {school} store does not hold (it is store-sourced); decisions go through `evidence_store.py record`')
     return out
 
@@ -1112,6 +1123,9 @@ def overlay(school, out, stores_dir, root=None, worktree=None, control=False):
             d.mkdir(parents=True)
             for name, text in rendered(school, stores_dir).items():
                 (d / name).write_text(text)
+            for f in layer_files(school_dir(school, root)):   # unmanaged files (tool-regenerated samples) are the root's own
+                if is_unmanaged(school, f.name):
+                    shutil.copyfile(f, d / f.name)
             if shared_of(school) == 'store':   # its slices of the shared files patched into the root's own copies
                 (Path(tmp) / 'hierarchy' / 'reviewed').mkdir(parents=True)
                 for f in layer_files(shared_dir(root)):   # the root's own shared files first (the unsliceable ones stay as they are), then the patched slices

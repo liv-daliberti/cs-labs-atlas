@@ -30,6 +30,7 @@ ids_note = ""             # how the ids and the lineage were verified (API call,
 # hierarchy/<key>/reviewed/ are the source. "store": <stores>/<key>/evidence.sqlite is; the JSON files are an export
 # (evidence_store.py sync) and a direct edit to them is refused by the pre-commit hook, `evidence_store.py check` and atlas doctor.
 source = "json"
+# unmanaged = []     # file-name patterns kept out of a store-sourced school's store and guard (tool-regenerated audit samples)
 # shared = "json"   # "store" (needs source = "store"): the school's rows in the shared reviewed files (hierarchy/reviewed/*.json) are sourced from its store as well
 
 [web]

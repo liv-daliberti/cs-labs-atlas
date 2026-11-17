@@ -101,6 +101,12 @@ def evidence_shared(key):
     return field(get(key), 'evidence.shared', 'json')
 
 
+def evidence_unmanaged(key):
+    """[evidence] unmanaged of a charter: fnmatch patterns of reviewed file names that a store-sourced school keeps OUT of its store and out of the guard
+    (files that a tool regenerates, e.g. the dated student-recall-check audit samples); they stay ordinary tracked/untracked files."""
+    return list(field(get(key), 'evidence.unmanaged', []))
+
+
 def inst_ids(key):
     return list(get(key)['ids']['openalex'])
 
@@ -166,6 +172,8 @@ def check(key):
         out.append(f'{key}: an id is both included and excluded')
     if field(cfg, 'evidence.source', 'json') not in EVIDENCE_SOURCES:
         out.append(f'{key}: evidence.source must be one of {EVIDENCE_SOURCES}')
+    if not isinstance(field(cfg, 'evidence.unmanaged', []), list):
+        out.append(f'{key}: evidence.unmanaged must be a list of file-name patterns')
     if field(cfg, 'evidence.shared', 'json') not in EVIDENCE_SOURCES:
         out.append(f'{key}: evidence.shared must be one of {EVIDENCE_SOURCES}')
     if field(cfg, 'evidence.shared', 'json') == 'store' and field(cfg, 'evidence.source', 'json') != 'store':

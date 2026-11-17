@@ -113,7 +113,16 @@ JSON-sourced and editable by hand; the shared files remain tracked in git.
   32393457 then 32393576 store-sourced incl. slices, 13-15 min): `pis.json`, `students.json`, `lab_papers.jsonl.gz`, `student_papers.jsonl.gz` byte-identical; `report.json` differs only in `builtAt`,
   echoed paths and the provenance hash of `home-departments.json` (another session edited that file in the main tree between the two builds; the store-sourced build read the newer bytes).
 
-### Record a decision (a worker, Michigan)
+### Princeton, the second store-sourced school (R3b, 2026-11-17)
+`schools/princeton.toml`: `source = "store"`, `shared = "store"`, `unmanaged = ["student-recall-check*.json"]`. `unmanaged` (`school_config.evidence_unmanaged`) lists file-name patterns a
+store-sourced school keeps out of its store and its guard: tool-regenerated audit samples (`student_recall.py` rewrites the recall check and its dated copies in the main tree; a
+guard on them would refuse every regeneration). Overlays copy them from the root. Princeton's store: 2,081 rows over 25 files (5 of them are git-ignored inputs in the main tree, `labpage-input.json`,
+`labpage-evidence.json`, `gap-input.json`, `few-students-input.json`, `cs-related-home-departments.json`: the store now keeps them, `sync` materialises them in a checkout, they are never committed)
+plus 79 rows in the shared slices (census-overrides 28, home-departments 43, student-name-candidates 3, student-identity-review 2, zero-paper-review 2, chain-reasons 1).
+Build pair (Slurm 32393765 control, 32393766 store-sourced, 3 min each): `pis.json`, `students.json`, `lab_papers.jsonl.gz`, `student_papers.jsonl.gz` byte-identical; `report.json` differs only in `builtAt` and `provenance.at`.
+Import reads the main tree's files; the first import also saw the dirty student-recall-check, which is why those files became `unmanaged`.
+
+### Record a decision (a worker, Michigan or Princeton)
 ```
 bin/atlas evidence-store find michigan --layer census-additions.json --key "Jane Doe"       # existing rows: id, container, seq, record
 bin/atlas evidence-store record michigan --layer census-additions.json \

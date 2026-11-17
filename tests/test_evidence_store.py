@@ -111,7 +111,8 @@ def flagged_aa(root, tmp_path, monkeypatch):
 
 def test_charter_flag_defaults_to_json_and_michigan_is_store():
     import school_config as S
-    assert S.evidence_source('princeton') == 'json'
+    assert S.evidence_source('cmu') == 'json'
+    assert S.evidence_source('princeton') == 'store' and S.evidence_shared('princeton') == 'store'
     assert S.evidence_source('michigan') == 'store'
     assert S.check('michigan') == []
 
@@ -246,3 +247,15 @@ def test_shared_slice_patch_is_byte_identical_and_touches_only_the_school(root, 
     assert E.check_view('aa', root, flagged_aa) == []
     with pytest.raises(E.SourceOfTruth, match='not store-sourced'):
         E.record('bb', 'student-corrections.json', {'school': 'bb'}, shared=True, source='s', decided_by='w', stores_dir=flagged_aa)
+
+
+def test_unmanaged_files_stay_outside_the_store_and_the_guard(root, tmp_path, monkeypatch):
+    monkeypatch.setattr(E, 'source_of', lambda s: 'store' if s == 'aa' else 'json')
+    monkeypatch.setattr(E.S, 'evidence_unmanaged', lambda s: ['hand.*', 'recall-*.json'] if s == 'aa' else [], raising=False)
+    put(root / 'hierarchy/aa/reviewed/recall-check.json', {'rows': [{'name': 'x'}]})
+    E.import_all(['aa', 'bb'], dest=tmp_path / 'st', root=root, log=lambda *_: None)
+    assert 'recall-check.json' not in E.rendered('aa', tmp_path / 'st') and 'hand.json' not in E.rendered('aa', tmp_path / 'st')
+    f = root / 'hierarchy/aa/reviewed/recall-check.json'
+    f.write_text('[]\n')   # a tool regenerates it: no complaint
+    assert E.check_view('aa', root, tmp_path / 'st') == []
+    assert E.is_unmanaged('aa', 'recall-check.json') and not E.is_unmanaged('aa', 'census-additions.json')
