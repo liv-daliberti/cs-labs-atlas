@@ -89,6 +89,7 @@ def compute(key):
     pis = {x['name']: {s: dict(state='done', reasons=[]) for s in ALL} for x in names.pis}
     school_items = {s: [] for s in ('2',) + STAGES}
     waived_school = {}
+    waived_chain, waived_cov = set(), set()   # (check) / (stage, dim): a gate exception that waives the school-level summary waives the per-PI items it summarises
 
     def put(pi, stage, state, why):
         rec = pis[pi]['census' if stage == '2' else stage]
@@ -108,7 +109,11 @@ def compute(key):
         waived = set(ev.get('waived_items') or [])
         for item in ev['items']:
             if st in STAGES and CHAIN_SUMMARY.match(item):
+                if item in waived:
+                    waived_chain.add(item.split(':')[0])
                 continue    # replaced below by the per-PI chain-audit items
+            if item.startswith(RATCHET_REASON + ' ') and item in waived:
+                waived_cov.add((st, item.split(':')[0].split(' ')[2]))
             who = names.of(item)
             if who and item in waived:
                 put(who, st, 'excluded_with_reason', f'waived by gate exception: {item}')
@@ -128,7 +133,8 @@ def compute(key):
                 who = names.of_norm(r.get('pi') or r.get('name'))
                 if who:
                     detail = '; '.join(f'{k}={v}' for k, v in r.items() if k not in ('pi', 'diagnosis_works') and v not in (None, ''))
-                    put(who, st, 'open', f'chain audit {check}: {detail[:200]}')
+                    put(who, st, 'excluded_with_reason' if check in waived_chain else 'open',
+                        ('waived by gate exception: ' if check in waived_chain else '') + f'chain audit {check}: {detail[:200]}')
                 else:
                     school_items[st].append(f'chain audit {check}: {str(r.get("key") or r)[:160]}')
     except Exception as exc:
@@ -142,7 +148,9 @@ def compute(key):
             continue
         for dim, st in (('lab', '5'), ('students', '6'), ('links', '6')):
             state = r.get(dim + '_state')
-            if state == 'gap':
+            if state == 'gap' and (st, dim) in waived_cov:
+                put(pi, st, 'excluded_with_reason', f'waived by gate exception: {RATCHET_REASON} {dim} gap ({r.get(dim + "_cause")})')
+            elif state == 'gap':
                 put(pi, st, 'open', f"{RATCHET_REASON} {dim}: neither evidence nor a researched reason ({r.get(dim + '_cause')})")
             elif state == 'reason':
                 put(pi, st, 'excluded_with_reason', f"{dim}: recorded reason ({str(r.get(dim + '_reason') or '')[:120]})")

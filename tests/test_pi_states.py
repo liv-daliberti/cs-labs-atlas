@@ -56,3 +56,17 @@ def test_release_findings_need_every_pi_and_school_item(monkeypatch):
     setup(monkeypatch, {'6': ['lab-page students acceptance: not accepted'], '3': ['A B: PI basis without url/sha256/quote']})
     bad = PS.release_findings('x')
     assert any('PI A B is open' in b for b in bad) and any('school item' in b and 'acceptance' in b for b in bad)
+
+
+def test_chain_audit_items_are_per_pi_and_follow_a_waiver_of_their_summary(monkeypatch):
+    import chain_audit
+    rows = {'links': dict(unexplained=[dict(key='A B | S | id', pi='A B'), dict(key='no-pi-row')])}
+    monkeypatch.setattr(chain_audit, 'audit', lambda key: dict(checks=rows))
+    setup(monkeypatch, {'7': ['links: 2 unexplained of 9']})
+    monkeypatch.setattr(chain_audit, 'audit', lambda key: dict(checks=rows))
+    r = PS.compute('x')
+    assert r['pis']['A B']['7']['state'] == 'open' and r['pis']['C D']['7']['state'] == 'done' and r['school_items']['7'] == ['chain audit links: no-pi-row']
+    setup(monkeypatch, {'7': ['links: 2 unexplained of 9']}, waived={'7': ['links: 2 unexplained of 9']})
+    monkeypatch.setattr(chain_audit, 'audit', lambda key: dict(checks=rows))
+    r = PS.compute('x')
+    assert r['pis']['A B']['7']['state'] == 'excluded_with_reason' and r['open_pis'] == []
