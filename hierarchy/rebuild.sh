@@ -9,7 +9,7 @@
 #   ledger      fulltext-push/unavailable_ledger.py (collector Python): why each lab paper without a local copy has none
 #               -> hierarchy/<school>/unavailable.jsonl.gz + unavailable-summary.json, reasons onto copies.json
 #               (docs/UNAVAILABLE.md); for $SCHOOLS plus every charter with status "onboarding"
-#   reader      tools/reader_export.py: host-or-link decision per confirmed copy by licence -> hierarchy/reader/ (released as reader/)
+#   reader      tools/reader_export.py: verified local copies plus independent library -> hierarchy/reader/ (released as reader/)
 #   audits      student audit, chain audit (open items), link diagnosis, chain audit
 #   evidence    tools/evidence_check.py: every claim carries its evidence -> hierarchy/EVIDENCE-CHECK.md; a failure holds the release
 #   tests       pytest tests/
@@ -107,10 +107,10 @@ if has ledger; then
   fi
 fi
 if has reader; then
-  # (2026-11-01, owner) which confirmed copies the site may host (licence allows redistribution) and a source link for the rest;
+  # (2026-11-17, owner) confirmed local papers open here; preserve actual licence metadata and the independent library;
   # reads the catalogs read-only -> hierarchy/reader/ (README.md there), copied into the release as reader/
   echo "== reader $(date +%T)"
-  $PY $CS_ATLAS_TOOLS/reader_export.py --site-local-papers "$CS_ATLAS_SITE/atlas/data/local-papers.json" || { echo "FAILED reader"; fail=1; }
+  $PY $CS_ATLAS_TOOLS/reader_export.py --site-local-papers "$CS_ATLAS_SITE/atlas/data/local-papers.json" --site-reader-objects "$CS_ATLAS_SITE/atlas/data/reader-objects.json" || { echo "FAILED reader"; fail=1; }
 fi
 if has audits; then
   echo "== student audit $(date +%T)"; $PY $CS_ATLAS_TOOLS/student_audit.py $CS_ATLAS_SCHOOLS > /dev/null || fail=1

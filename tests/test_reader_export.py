@@ -1,5 +1,5 @@
 """tools/reader_export.py: licence normalisation, the arXiv-licence lookup, never quarantined or pending, the link fallback order."""
-import hashlib, sqlite3, textwrap
+import gzip, hashlib, json, sqlite3, textwrap
 
 import pytest
 
@@ -37,10 +37,10 @@ def test_normalise_license(raw, want):
     assert R.normalise_license(raw) == want
 
 
-def test_host_set_is_exactly_the_redistributable_licences():
+def test_local_hosting_preserves_licence_metadata_without_requiring_one():
     assert R.HOST == {'cc-by', 'cc-by-sa', 'cc-by-nc', 'cc-by-nc-sa', 'cc-by-nd', 'cc-by-nc-nd', 'cc0', 'public-domain'}
     for lic in ('other-oa', 'tdm', 'arxiv-nonexclusive', None, 'implied-oa'):
-        assert R.decide((lic, 'asset') if lic else None, None, None)[0] == 'link'
+        assert R.decide((lic, 'asset') if lic else None, None, None)[0] == 'host'
     assert R.decide(('CC BY', 'asset'), None, None) == ('host', 'cc-by', 'asset')
 
 
@@ -60,7 +60,7 @@ def test_arxiv_licence_lookup_from_local_openalex_bodies():
     assert A.get('1111.1111') == ('cc-by', 'arxiv_openalex')
     assert A.get('2222.2222') == ('arxiv-nonexclusive', 'arxiv_default')    # seen with no licence = arXiv's non-exclusive licence
     assert A.get('3333.3333') == (None, 'arxiv_unknown')                    # not in any local record: unknown, so LINK
-    assert R.decide(None, '2222.2222', A)[0] == 'link' and R.decide(None, '1111.1111', A)[0] == 'host'
+    assert R.decide(None, '2222.2222', A)[0] == 'host' and R.decide(None, '1111.1111', A)[0] == 'host'
 
 
 def test_source_link_fallback_order():
@@ -127,13 +127,13 @@ def test_school_rows_decisions_and_exclusions(tmp_path, monkeypatch):
     assert (by['w_ccby']['decision'], by['w_ccby']['license'], by['w_ccby']['license_basis']) == ('host', 'cc-by', 'asset')
     assert by['w_ccby']['path'] == f'objects/{SHA(1)}.pdf' and by['w_ccby']['readable'] is True
     assert (by['w_arx_lic']['decision'], by['w_arx_lic']['license_basis']) == ('host', 'arxiv_openalex')
-    assert (by['w_arx_def']['decision'], by['w_arx_def']['license'], by['w_arx_def']['source_url']) == ('link', 'arxiv-nonexclusive', 'https://arxiv.org/abs/2222.2222')
-    assert by['w_arx_def']['path'] is None and by['w_arx_def']['readable'] is True              # linked papers are readable too
-    assert (by['w_repo']['decision'], by['w_repo']['source_kind']) == ('link', 'repository')    # repository landing page over the bare PDF url
+    assert (by['w_arx_def']['decision'], by['w_arx_def']['license'], by['w_arx_def']['source_url']) == ('host', 'arxiv-nonexclusive', 'https://arxiv.org/abs/2222.2222')
+    assert by['w_arx_def']['path'] == f'objects/{SHA(3)}.pdf' and by['w_arx_def']['readable'] is True              # linked papers are readable too
+    assert (by['w_repo']['decision'], by['w_repo']['source_kind']) == ('host', 'repository')    # repository landing page over the bare PDF url
     assert by['w_repo']['source_url'] == 'https://dspace.mit.edu/handle/1721/6'
-    assert (by['w_none']['decision'], by['w_none']['license'], by['w_none']['source_url'], by['w_none']['source_kind']) == ('link', None, 'https://pub.example.com/seven.pdf', 'publisher')
+    assert (by['w_none']['decision'], by['w_none']['license'], by['w_none']['source_url'], by['w_none']['source_kind']) == ('host', None, 'https://pub.example.com/seven.pdf', 'publisher')
     assert (by['w_cand']['decision'], by['w_cand']['license'], by['w_cand']['license_basis']) == ('host', 'cc-by-nc', 'candidate')
-    assert stats['host'] == 3 and stats['link'] == 3 and stats['not_readable'] == 2 and stats['lab_papers'] == 8
+    assert stats['host'] == 6 and stats['link'] == 0 and stats['not_readable'] == 2 and stats['lab_papers'] == 8
 
 
 def test_hosted_not_permitted_is_strict(tmp_path, monkeypatch):
@@ -145,7 +145,7 @@ def test_hosted_not_permitted_is_strict(tmp_path, monkeypatch):
     files = {s: dict(bytes=1000, path=f'papers/{s}.pdf') for s in hosted}
     rows = {r[0]: r for r in R.hosted_not_permitted(files, {'mit': chk})}
     assert SHA(1) not in rows                                       # cc-by: permitted
-    assert rows[SHA(3)][3] == 'license' and rows[SHA(3)][4] == 'arxiv-nonexclusive'
+    assert SHA(3) not in rows
     assert rows[SHA(5)][3] == 'no_confirmed_copy'                  # quarantined
     assert rows[SHA(99)][3] == 'not_in_stores'
 
@@ -164,7 +164,7 @@ def test_full_text_xml_copy_takes_its_file_from_the_asset_row(tmp_path):
     assert R.copy_for('w', w, a, [], R.ArxivLicenses(),store=tmp_path) is None
 
 
-def test_link_without_a_source_url_is_not_readable(tmp_path, monkeypatch):
+def test_verified_local_copy_does_not_require_a_source_link(tmp_path, monkeypatch):
     papers = make_store(tmp_path, monkeypatch)
     db = sqlite3.connect(tmp_path / 'stores' / 'mit' / 'catalog.sqlite')
     db.execute("update works set doi=null, download_url='ftp://nowhere/x.pdf' where id='w_none'")
@@ -172,7 +172,7 @@ def test_link_without_a_source_url_is_not_readable(tmp_path, monkeypatch):
     db.commit()
     papers[6]['doi'] = None
     recs, stats, _, _ = R.school_rows('mit', papers, R.ArxivLicenses())
-    assert 'w_none' not in {r['key'] for r in recs} and stats['link_without_source_url'] == 1
+    assert 'w_none' in {r['key'] for r in recs} and stats['link_without_source_url'] == 0
     assert all(r['source_url'] or r['decision'] == 'host' for r in recs)
 
 
@@ -265,7 +265,73 @@ def test_site_sync_lists_what_to_unpublish_and_upload(tmp_path, monkeypatch):
     out = tmp_path / 'o'
     summ = R.write_outputs({'mit': recs}, {'mit': stats}, notp, out, '2026-11-01T00:00:00Z', None, requests={'mit': reqs}, site_files=site)
     rows = {l.split('\t')[0]: l.split('\t') for l in (out / 'unpublish.tsv').read_text().splitlines()[1:]}
-    assert SHA(1) not in rows and rows[SHA(3)][3] == 'license' and rows[SHA(5)][3] == 'no_confirmed_copy' and rows[SHA(77)][3] == 'not_in_stores'
+    assert SHA(1) not in rows and SHA(3) not in rows and rows[SHA(5)][3] == 'no_confirmed_copy' and rows[SHA(77)][3] == 'not_in_stores'
     up = {l.split('\t')[0] for l in (out / 'upload.tsv').read_text().splitlines()[1:]}
     assert SHA(1) not in up and SHA(2) in up                       # w_arx_lic's cc-by arXiv copy is to be added, the kept one is already there
-    assert summ['site_sync']['unpublish'] == 3 and summ['site_sync']['keep'] == 1
+    assert summ['site_sync']['unpublish'] == 2 and summ['site_sync']['keep'] == 2
+
+
+def test_compact_site_admission_preserves_xml_and_rejects_disagreement(tmp_path):
+    index = tmp_path / 'local-papers.json'
+    objects = tmp_path / 'reader-objects.json'
+    sha = 'a' * 64
+    index.write_text(json.dumps(dict(schema=2, release='reader-one', records=[], works={})))
+    objects.write_text(json.dumps(dict(release='reader-one', files={sha: 512}, formats={sha: 'xml'})))
+    assert R.site_admission(index) == {sha: dict(bytes=512, path=f'papers/{sha}.xml')}
+    index.write_text(json.dumps(dict(release='reader-one', files={sha: dict(bytes=512, path=f'papers/{sha}.pdf')})))
+    with pytest.raises(ValueError, match='format mismatch'):
+        R.site_admission(index, objects)
+    objects.write_text(json.dumps(dict(release='reader-two', files={sha: 512})))
+    with pytest.raises(ValueError, match='release mismatch'):
+        R.site_admission(index, objects)
+    objects.unlink()
+    index.write_text(json.dumps(dict(schema=2, release='reader-one', records=[], works={})))
+    with pytest.raises(ValueError, match='requires reader-objects'):
+        R.site_admission(index)
+
+
+def test_independent_library_survives_formal_sync_without_lab_assignment(tmp_path):
+    sha = 'b' * 64
+    snapshot = tmp_path / 'snapshot'
+    (snapshot / 'evidence').mkdir(parents=True)
+    (snapshot / 'reader').mkdir()
+    document = dict(id='local:' + sha, title='Held paper', copy=dict(sha256=sha, bytes=512, format='xml'))
+    payload = gzip.compress(json.dumps(dict(schema=1, documents=[document], counts=dict(documents=1, bytes=512))).encode())
+    (snapshot / 'evidence/local-library.json.gz').write_bytes(payload)
+    (snapshot / 'local-papers.json').write_text(json.dumps(dict(release='reviewed-library', files={sha: dict(bytes=512, format='xml', path=f'papers/{sha}.xml')})))
+    (snapshot / 'reader/hosted-files.tsv').write_text(f'sha256\tbytes\tschool\tpath\n{sha}\t512\tsourcearchive\tobjects/{sha}.xml\n')
+    manifest = dict(kind='reader-admission-snapshot', release='reviewed-library', files={
+        name: dict(bytes=(snapshot / name).stat().st_size, sha256=hashlib.sha256((snapshot / name).read_bytes()).hexdigest())
+        for name in ['evidence/local-library.json.gz', 'local-papers.json', 'reader/hosted-files.tsv']})
+    (snapshot / 'MANIFEST.json').write_text(json.dumps(manifest))
+    digest = hashlib.sha256((snapshot / 'MANIFEST.json').read_bytes()).hexdigest()
+    library = R.independent_library(snapshot, digest)
+    out = tmp_path / 'out'
+    summary = R.write_outputs({}, {}, [(sha, 512, f'papers/{sha}.xml', 'not_in_stores', '', '', '', '')],
+        out, '2026-11-17', None, site_files={sha: dict(bytes=512, path=f'papers/{sha}.xml')}, library=library)
+    assert summary['site_sync']['unpublish'] == 0
+    assert summary['currently_hosted_not_permitted'] == 0
+    assert summary['hosted_files'] == 1 and summary['schools'] == {}
+    assert (out / 'local-library.json.gz').read_bytes() == payload
+    assert f'{sha}\t512\tsourcearchive\tobjects/{sha}.xml' in (out / 'hosted-files.tsv').read_text()
+    assert json.loads((out / 'library-admission.json').read_text())['no_lab_assignment'] is True
+    (snapshot / 'reader/hosted-files.tsv').write_text('changed')
+    with pytest.raises(ValueError, match='artifact changed'):
+        R.independent_library(snapshot, digest)
+    with pytest.raises(ValueError, match='manifest checksum'):
+        R.independent_library(snapshot, 'wrong')
+
+
+def test_public_library_cannot_be_silently_dropped_or_bound_to_another_reader(tmp_path):
+    data = tmp_path / 'atlas/data'
+    data.mkdir(parents=True)
+    index = data / 'local-papers.json'
+    index.write_text(json.dumps(dict(release='reader-one')))
+    (data / 'local-library.json.gz').write_bytes(b'held metadata')
+    with pytest.raises(ValueError, match='explicit reviewed admission'):
+        R.library_for_site(index)
+    (tmp_path / 'deployment').mkdir()
+    (tmp_path / 'deployment/reader-publication.json').write_text(json.dumps(
+        dict(reader='reader-two', snapshot='outputs/snapshot', manifestSha256='a' * 64)))
+    with pytest.raises(ValueError, match='differs from reader index'):
+        R.library_for_site(index)
