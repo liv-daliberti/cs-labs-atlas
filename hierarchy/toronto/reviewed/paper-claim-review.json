@@ -109,6 +109,185 @@
     "page": 87,
     "body_sha256": "07148e09e4fe4ee7e0ad4737836779313d6f7a8d67ee4ba400a7006bbbdf880b"
    }
+  },
+  {
+   "decision": "reject",
+   "reviewed_by": "/root/toronto_recall_a (source-only proposal; awaits independent final reviewer approval)",
+   "reviewed_at": "2026-11-17",
+   "id": "toronto-20261116-pitassi-2026-branch-cut-columbia",
+   "pi": "Toniann Pitassi",
+   "match": {
+    "oa": "https://openalex.org/W7163360868",
+    "doi": "10.4086/toc.2026.v022a002"
+   },
+   "why": "Reject only this exact 2026 journal PI-paper claim: the published author section gives Pitassi Columbia University and the biography dates her Toronto work through2021. No author has a Toronto publication affiliation. The 2021 CCC edition is separately identified and must remain subject to its own normal eligibility; this is not a title-wide exclusion or PI blacklist.",
+   "evidence": [
+    {
+     "url": "https://doi.org/10.4086/toc.2026.v022a002",
+     "sha256": "575b4ba891eba7638c57adec4a8a25411398a7702755b6896143c9b03d8bb241",
+     "quote": "Toniann Pitassi is a professor at Columbia University.",
+     "kind": "published_primary_pdf",
+     "path": "/n/fs/resemble/homogenizing-science/stores/epfl/objects/575b4ba891eba7638c57adec4a8a25411398a7702755b6896143c9b03d8bb241.pdf",
+     "location": "published PDF page38 biography; page36 author affiliation also Columbia University",
+     "qualification": "Actual published DOI-bound PDF bytes retained in institutional source store and independently rehashed/read. The primary URL is the DOI of the exact PDF, not a claim that the bytes were fetched anew from the publisher today."
+    }
+   ],
+   "proposal_status": "confirmed_lab_error_awaiting_approval"
+  },
+  {
+   "decision": "reject",
+   "reviewed_by": "/root/toronto_recall_a (source-only proposal; awaits independent final reviewer approval)",
+   "reviewed_at": "2026-11-17",
+   "id": "toronto-20261116-bo-wang-2025-jacc-meeting-abstract",
+   "pi": "Bo Wang",
+   "match": {
+    "oa": "https://openalex.org/W4408963342",
+    "doi": "10.1016/s0735-1097(25)02418-0"
+   },
+   "why": "R-PAP-19: exact publisher record is a meeting poster abstract in JACC85(12_Supplement),page1934; presentation1231-81 in the March31,2025 session. Raw OpenAlex article type and Toronto affiliation do not make this a full research paper. Exact selectors reject this PI-paper claim only.",
+   "evidence": [
+    {
+     "url": "https://www.jacc.org/doi/10.1016/S0735-1097%2825%2902418-0",
+     "sha256": "b2326a9bf827536eaa67ef753fbb63e4e7a614f44c9bd3b9f7cceeb38d70b091",
+     "quote": "Poster Contributions",
+     "kind": "publisher_primary_text_via_web_tool",
+     "path": "/n/fs/resemble/homogenizing-science/scratch/toronto-advance-1116/accuracy-review/lab/jacc-exact-publisher-web-source-capture.txt",
+     "additional_literal_quote": "Presentation Number: 1231-81",
+     "qualification": "SHA binds actual saved web-tool response containing the exact primary publisher source text, not raw HTTP HTML or PDF bytes. Direct web.open was cache miss; no raw publisher-body hash is fabricated."
+    }
+   ],
+   "proposal_status": "confirmed_lab_error_awaiting_approval"
+  },
+  {
+   "decision": "reject",
+   "reviewed_by": "/root/toronto_recall_a (source-only proposal; awaits independent final reviewer approval)",
+   "reviewed_at": "2026-11-17",
+   "id": "toronto-20261116-bo-wang-2021-jacc-meeting-abstract",
+   "pi": "Bo Wang",
+   "match": {
+    "oa": "https://openalex.org/W3159590798",
+    "doi": "10.1016/s0735-1097(21)03050-3"
+   },
+   "why": "Proposed same-cause R-PAP-19 extension: the actual coauthor-owned primary homepage lists this exact title and all eight named coauthors under Poster and Talk, dated ACC May15–17,2021, with volume77(18_Supplement_1),page1694–1694. Classification as a meeting abstract is an explicit author-page/one-page annual-meeting supplement context inference; the exact publisher page was not readable through web.open. Reviewer must adjudicate this extension independently before applying.",
+   "evidence": [
+    {
+     "url": "https://www.cs.utoronto.ca/~zeinabnvd/",
+     "sha256": "344c182bb664924b757525caff698997f205b6cb424635e1c5fa181cfcd1500d",
+     "quote": "Poster and Talk",
+     "kind": "coauthor_owned_primary_publication_list_via_web_tool",
+     "path": "/n/fs/resemble/homogenizing-science/scratch/toronto-advance-1116/accuracy-review/lab/jacc-2021-author-owned-web-capture.txt",
+     "additional_literal_quote": "77 (18\\_Supplement\\_1), 1694-1694.",
+     "qualification": "SHA binds actual saved web-tool response containing the actual author-owned page, not raw HTTP HTML. Exact title/all eight byline names/year/page match the current OA+DOI record. A Poster and Talk heading alone would not exclude a full conference paper; the one-page clinical annual-meeting supplement context supplies the classification inference."
+    }
+   ],
+   "proposal_status": "same_cause_extension_requires_independent_adjudication"
+  },
+  {
+   "id": "toronto-20261116-final-accuracy-W3120881549-cosmin-munteanu",
+   "pi": "Cosmin Munteanu",
+   "match": {
+    "oa": "https://openalex.org/W3120881549",
+    "doi": "10.1145/3397482.3450706"
+   },
+   "decision": "reject",
+   "reviewed_by": "codex-toronto-publish-1116; independent batch review receipt required before application",
+   "reviewed_at": "2026-11-16",
+   "why": "Exact coauthor-hosted manuscript identifies this as a half-day workshop proposal with organizers, planned format and outcomes. Under R-PAP-18 the proposal is not a lab research paper; the DOI and Toronto authorship remain preserved as source observations.",
+   "evidence": [
+    {
+     "url": "https://www.porcheron.uk/assets/pubs/2021/doyle2021cuiiui.pdf",
+     "sha256": "0a64b212410ceb7cd09cdbbae225f76813fd6effe11b7c94d132d251f47ba927",
+     "quote": "Our half-day multidisciplinary workshop",
+     "kind": "coauthor_hosted_primary_manuscript",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/toronto-advance-1116/accuracy-review/coverage/primary/cui-author-0a64b212410ceb7cd09cdbbae225f76813fd6effe11b7c94d132d251f47ba927.pdf"
+    }
+   ]
+  },
+  {
+   "id": "toronto-20261116-final-accuracy-W4387606040-robert-soden",
+   "pi": "Robert Soden",
+   "match": {
+    "oa": "https://openalex.org/W4387606040",
+    "doi": "10.1145/3584931.3611291"
+   },
+   "decision": "reject",
+   "reviewed_by": "codex-toronto-publish-1116; independent batch review receipt required before application",
+   "reviewed_at": "2026-11-16",
+   "why": "Read the actual seven-page primary manuscript: the abstract proposes a day-long hybrid CSCW workshop, followed by workshop organization and planned activities. Under R-PAP-18 this workshop proposal is not a lab research paper.",
+   "evidence": [
+    {
+     "url": "https://www.rashidujjaman.com/_files/ugd/e06496_5b68a0014ee1426cbd9c5d73c01b4ce7.pdf",
+     "sha256": "2f3dc038563f9c2acc514f3e14e36e2100b2ebcb9559e3ec841b267d438e271c",
+     "quote": "we propose a day-long hybrid workshop in CSCW",
+     "kind": "coauthor_hosted_primary_pdf",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/toronto-advance-1116/accuracy-review/coverage/primary/many-worlds-2f3dc038563f9c2acc514f3e14e36e2100b2ebcb9559e3ec841b267d438e271c.pdf"
+    }
+   ]
+  },
+  {
+   "id": "toronto-20261116-final-accuracy-W4387606040-ishtiaque-ahmed",
+   "pi": "Ishtiaque Ahmed",
+   "match": {
+    "oa": "https://openalex.org/W4387606040",
+    "doi": "10.1145/3584931.3611291"
+   },
+   "decision": "reject",
+   "reviewed_by": "codex-toronto-publish-1116; independent batch review receipt required before application",
+   "reviewed_at": "2026-11-16",
+   "why": "Read the actual seven-page primary manuscript: the abstract proposes a day-long hybrid CSCW workshop, followed by workshop organization and planned activities. Under R-PAP-18 this workshop proposal is not a lab research paper.",
+   "evidence": [
+    {
+     "url": "https://www.rashidujjaman.com/_files/ugd/e06496_5b68a0014ee1426cbd9c5d73c01b4ce7.pdf",
+     "sha256": "2f3dc038563f9c2acc514f3e14e36e2100b2ebcb9559e3ec841b267d438e271c",
+     "quote": "we propose a day-long hybrid workshop in CSCW",
+     "kind": "coauthor_hosted_primary_pdf",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/toronto-advance-1116/accuracy-review/coverage/primary/many-worlds-2f3dc038563f9c2acc514f3e14e36e2100b2ebcb9559e3ec841b267d438e271c.pdf"
+    }
+   ]
+  },
+  {
+   "id": "toronto-20261116-final-accuracy-W7167081017-eyal-de-lara",
+   "pi": "Eyal de Lara",
+   "match": {
+    "oa": "https://openalex.org/W7167081017",
+    "doi": "10.1109/percomworkshops68308.2026.11585420"
+   },
+   "decision": "hold",
+   "reviewed_by": "codex-toronto-publish-1116; independent batch review receipt required before application",
+   "reviewed_at": "2026-11-16",
+   "why": "The exact sampled two-page Artifact record is separate from the full PerCom research article. Its primary two-page text and genre remain unresolved after this source review. Hold this exact lab claim pending primary classification; this does not classify every artifact description or remove the separate full research article.",
+   "evidence": [
+    {
+     "url": "https://doi.org/10.1109/percomworkshops68308.2026.11585420",
+     "sha256": "097753192292c2b9b11ed79548922dbb7ce6fa294893fde1f80e82af0739f641",
+     "quote": "Artifact: Addressing Extra Voices and Background Noise in Continuous Speech Monitoring",
+     "kind": "original_cached_work_metadata",
+     "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/toronto/raw/pi-works.sqlite",
+     "qualification": "SHA-256 is of the exact decompressed original works.body bytes for W7167081017. Metadata establishes exact identity and published record but does not resolve primary genre."
+    }
+   ]
+  },
+  {
+   "id": "toronto-20261116-final-accuracy-W7167081017-alex-mariakakis",
+   "pi": "Alex Mariakakis",
+   "match": {
+    "oa": "https://openalex.org/W7167081017",
+    "doi": "10.1109/percomworkshops68308.2026.11585420"
+   },
+   "decision": "hold",
+   "reviewed_by": "codex-toronto-publish-1116; independent batch review receipt required before application",
+   "reviewed_at": "2026-11-16",
+   "why": "The exact sampled two-page Artifact record is separate from the full PerCom research article. Its primary two-page text and genre remain unresolved after this source review. Hold this exact lab claim pending primary classification; this does not classify every artifact description or remove the separate full research article.",
+   "evidence": [
+    {
+     "url": "https://doi.org/10.1109/percomworkshops68308.2026.11585420",
+     "sha256": "097753192292c2b9b11ed79548922dbb7ce6fa294893fde1f80e82af0739f641",
+     "quote": "Artifact: Addressing Extra Voices and Background Noise in Continuous Speech Monitoring",
+     "kind": "original_cached_work_metadata",
+     "raw_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/toronto/raw/pi-works.sqlite",
+     "qualification": "SHA-256 is of the exact decompressed original works.body bytes for W7167081017. Metadata establishes exact identity and published record but does not resolve primary genre."
+    }
+   ]
   }
  ]
 }
