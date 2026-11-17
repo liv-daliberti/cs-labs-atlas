@@ -485,6 +485,16 @@ def author_id_name_conflict(pi_names, raw):
     Retain compatible initials, joined given names, nicknames, family-first forms
     and an additional given name (Zhiwei Steven Wu / Steven Wu).
     """
+    # A provider sometimes joins an explicitly uppercase run of initials.
+    # It is compatible only when it spells *every* given-name initial of a
+    # known form. This removes a veto; the author ID still needs its anchor.
+    written = byline_name(raw)
+    rt = nosuffix(name_toks(written))
+    if len(rt) == 2 and re.fullmatch(r'[A-Z]{2,3}', written.split()[0]):
+        for name in pi_names:
+            nt = nosuffix(name_toks(name))
+            if len(nt) >= 3 and nt[-1] == rt[-1] and ''.join(t[0] for t in nt[:-1]) == rt[0]:
+                return False
     full = []
     for name in pi_names:
         t = nosuffix(name_toks(name))

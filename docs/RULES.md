@@ -90,6 +90,7 @@ nor blocks: each authorship under it needs per-work evidence.
 Two initials prove nothing ('M. Wang' is not Mengdi Wang, 'Y. L. Chen' is not Yuxin Chen): for the advisee-co-author
 identity, the PI or the advisee must be written with a full given name, unless the initials spell every given name of a
 PI with two or more ('M.T. Islam' is Md Tauhidul Islam). `all_initials`.
+The author-ID full-name conflict check preserves a compact uppercase run only when it spells every given-name initial of a known PI name form with the same family name (`HH Asada`, `JA Paradiso`). This removes a false full-name conflict; the initials still need the existing identity anchor and do not independently prove identity.
 
 ### R-PAP-08 (2026-10-29, build) — generational suffixes
 'John W. Fisher III' is John Fisher: a trailing Jr/Sr/II/III/IV is not the family name (`nosuffix`).

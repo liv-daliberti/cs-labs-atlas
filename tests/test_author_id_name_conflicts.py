@@ -25,6 +25,15 @@ from pihier import identity, names
     (['Song-Hai Zhang'], 'Zhang Songhai', False),
     (['G. Li'], 'Guanghao Li', False),
     (['李国良'], 'Guanghao Li', False),
+    (['H. Harry Asada', 'Harry Asada'], 'HH Asada', False),
+    (['Joseph A. Paradiso'], 'JA Paradiso', False),
+    (['Rosalind W. Picard'], 'Picard, RW', False),
+    (['Deb Roy'], 'DK ROY', True),
+    (['H. Harry Asada'], 'HJ Asada', True),
+    (['H. Harry Asada'], 'hh Asada', True),
+    (['Yang Li'], 'YU Li', True),
+    (['Yu Li'], 'YU Li', False),
+    (['Guoliang Li', 'G. Li'], 'Hu Li', True),
 ])
 def test_provider_id_full_given_name_conflict(forms, raw, conflict):
     assert identity.author_id_name_conflict(forms, raw) is conflict
@@ -65,6 +74,19 @@ def test_sweep_anchor_keeps_supported_extra_given_name(tmp_path, monkeypatch):
     monkeypatch.setattr(identity, 'authorship_identity', lambda ctx, pi, w, a, cw: 'dblp_person_page_doi' if w == seed else None)
     identity.hits(ctx)
     assert {h[1]['id'] for h in ctx.hits} == {seed['id'], other['id']}
+
+
+@pytest.mark.usefixtures('layout')
+def test_anchored_id_keeps_exact_compact_initials_but_rejects_other_initials(tmp_path, monkeypatch):
+    ctx = context(tmp_path, ['H. Harry Asada', 'Harry Asada'])
+    seed = T.work('W1', 'A source-anchored work', 2020, [T.au('Harry Asada', 'A1')])
+    compatible = T.work('W2', 'A compact-initial byline', 2021, [T.au('HH Asada', 'A1')])
+    conflicting = T.work('W3', 'Different compact initials under the same ID', 2021, [T.au('HJ Asada', 'A1')])
+    monkeypatch.setattr(identity, 'sweep_works', lambda *args: iter([seed, compatible, conflicting]))
+    monkeypatch.setattr(identity, 'authorship_identity', lambda ctx, pi, w, a, cw: 'dblp_person_page_doi' if w == seed else None)
+    identity.hits(ctx)
+    assert {h[1]['id'] for h in ctx.hits} == {seed['id'], compatible['id']}
+    assert ctx.n['author_id_full_given_name_conflicts'] == 1
 
 
 @pytest.mark.usefixtures('layout')
