@@ -172,6 +172,24 @@ listing_gaps = {}
   match = ""
   format = "zju_cs_zuzhi_names"
   title_filter = ''
+  # Complete-roster eras (2026-11-17, owner: do not hide partial years). The 2016-2019H1 PHP directory prints the whole college in one table; from 2019-07 the
+  # 教师名录 is split into the ten institute/centre lists (27003 first institute, 27055-27063), and a year is complete only when every one of them has a usable
+  # capture; from 2026 the live 27003 page is the whole-college directory.
+  [[departments.listing_groups]]
+  name = "old PHP whole-college teacher directory 2016-2019H1"
+  from = "20160101"
+  to = "20190630"
+  slots = ["CS_MAIN old PHP teacher directory (2016-2019)"]
+  [[departments.listing_groups]]
+  name = "ten institute and centre lists 2019H2-2025"
+  from = "20190701"
+  to = "20251231"
+  slots = ["CS_MAIN 27003 teacher directory (first institute)", "CS_MAIN 27055 AI institute", "CS_MAIN 27056 software institute", "CS_MAIN 27057 architecture and network institute", "CS_MAIN 27058 industrial design institute", "CS_MAIN 27059 CAD&CG laboratory", "CS_MAIN 27060 experiment center", "CS_MAIN 27061 administration", "CS_MAIN 27062 basic teaching and continuing education", "CS_MAIN 27063 application engineering center"]
+  [[departments.listing_groups]]
+  name = "27003 whole-college directory 2026"
+  from = "20260101"
+  to = "20261231"
+  slots = ["CS_MAIN 27003 teacher directory (first institute)"]
 
 [[affiliated_units]]
 code = "CST"
