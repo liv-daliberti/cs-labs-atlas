@@ -14,7 +14,9 @@ import json
 from pathlib import Path
 import re
 import sqlite3
-from urllib.parse import urlsplit
+from urllib.parse import urldefrag, urljoin, urlsplit
+
+from bs4 import BeautifulSoup
 import zlib
 
 import atlas_paths as P
@@ -119,6 +121,95 @@ def source_leads(pis, students, audit, docs):
         if declared or name.endswith('evidence.json') or name == 'student-decisions.json':
             visit(doc, declared_pages=declared)
     return leads
+
+
+MEMBER_LABEL = re.compile(
+    r'(?:(?:current|former|past|our|lab|group)\s+)*(?:students?|people|members?|team|group|alumni|advisees|collaborators)'
+    r'|学生(?:信息|名单)?|团队(?:成员)?|研究团队|课题组成员|毕业学生|已毕业学生|组内成员', re.I)
+
+
+MEMBER_PATH = re.compile(r'/(?:people|members|team|group|students?|alumni|advisees|collaborators|xsxx)(?:[./_-]|$)', re.I)
+
+
+def member_navigation(raw, base):
+    """Owned-path navigation leads only, never evidence of PI membership.
+
+    Stay in the existing site's account path. In particular, a shared faculty
+    directory profile or an institution's root is not an owned lab site.
+    """
+    if b'<a' not in raw.lower():
+        return []
+    origin = urlsplit(base)
+    parts = [part for part in origin.path.split('/') if part]
+    if parts and parts[0].lower() in ('jiaoshiml', 'faculty-directory', 'directory'):
+        return []
+    if not parts and re.search(r'\.(?:edu(?:\.[a-z]+)?|ac\.[a-z]+)$', origin.hostname or ''):
+        return []
+    scope = parts[:1]
+    if scope and scope[0].lower() in ('people', 'faculty', 'home', 'labs', 'groups', 'view', 'site', 'sites', 'users'):
+        scope = parts[:2]
+    # A root HTML file belongs to the personal host, not an account directory.
+    if len(parts) == 1 and re.search(r'\.[a-z0-9]+$', parts[0], re.I) and not parts[0].startswith('~'):
+        scope = []
+    prefix = '/' + '/'.join(scope) + '/' if scope else '/'
+    result = []
+    for anchor in BeautifulSoup(raw, 'html.parser').find_all('a', href=True):
+        target = urldefrag(urljoin(base, anchor['href']))[0]
+        dest = urlsplit(target)
+        if dest.scheme not in ('http', 'https') or dest.netloc != origin.netloc:
+            continue
+        if not dest.path.startswith(prefix) or target == urldefrag(base)[0]:
+            continue
+        label = anchor.get_text(' ', strip=True)
+        if MEMBER_LABEL.fullmatch(label) or MEMBER_PATH.search(dest.path):
+            result.append((target, label))
+    return sorted(set(result))
+
+
+def cached_inventory(path, leads, *, follow_members=True):
+    """Verify exact cached bytes and follow only already-cached member links.
+
+    One read transaction, one byte check/parse per URL, no requests or writes.
+    Refusal metadata is preserved; existing genuine bytes remain readable.
+    Each discovered URL retains its PI and parent URL/SHA for manual scope review.
+    """
+    expanded = {pi: set(urls) for pi, urls in leads.items()}
+    versions, blocked, discoveries = {}, {}, []
+    if not Path(path).exists():
+        return expanded, versions, blocked, discoveries
+    with contextlib.closing(sqlite3.connect(Path(path).resolve().as_uri() + '?mode=ro', uri=True)) as conn:
+        conn.execute('begin')
+        tables = {r[0] for r in conn.execute("select name from sqlite_master where type='table'")}
+        if 'blocked' in tables:
+            blocked = {host.lower().removeprefix('www.'): why for host, why in conn.execute('select host,why from blocked')}
+        if 'live' not in tables:
+            raise ValueError('Source cache has no live table: ' + str(path))
+        queue = collections.deque((pi, url) for pi in sorted(expanded) for url in sorted(expanded[pi]))
+        checked, links = set(), {}
+        while queue:
+            pi, url = queue.popleft()
+            if url not in checked:
+                checked.add(url)
+                row = conn.execute('select fetched_at,status,sha256,raw_zlib from live where url=?', (url,)).fetchone()
+                if row is not None:
+                    fetched, status, sha, compressed = row
+                    raw = zlib.decompress(compressed) if compressed is not None else None
+                    if raw is None or hashlib.sha256(raw).hexdigest() != sha:
+                        raise ValueError('Cached source bytes do not match their hash: ' + url)
+                    versions[url] = dict(sha256=sha, status=status, capture_year=str(fetched or '')[:4])
+                    links[url] = member_navigation(raw, url) if follow_members and status == 200 else []
+            for target, label in links.get(url, []):
+                if target in expanded[pi]:
+                    continue
+                # Never invent an acquisition or expand to an uncached target.
+                if not conn.execute('select 1 from live where url=?', (target,)).fetchone():
+                    continue
+                expanded[pi].add(target)
+                discoveries.append(dict(pi=pi, url=target, parent_url=url,
+                                        parent_sha256=versions[url]['sha256'], label=label))
+                queue.append((pi, target))
+    return expanded, versions, blocked, discoveries
+
 
 
 def cached_sources(path, urls, allow_missing_live=False):
@@ -402,6 +493,7 @@ def collect(school, previous=None):
     audit_stores = [P.data(name, school) for name in ('labpage-audit-captures.sqlite', 'labpage-captures.sqlite')]
     capture_stores += audit_stores
     try:
+        leads, _, _, discoveries = cached_inventory(P.data('student-recall-captures.sqlite', school), leads)
         versions, blocked = source_caches(capture_stores, {u for us in leads.values() for u in us},
                                          optional_live=capture_stores[1:2], audit_paths=audit_stores)
     except (sqlite3.Error, zlib.error) as exc:
@@ -414,6 +506,7 @@ def collect(school, previous=None):
     board['data_root'] = str(P.CODE)
     board['capture_store'] = str(capture_stores[0])
     board['capture_stores'] = [str(path) for path in capture_stores]
+    board['cached_member_navigation'] = discoveries
     return board
 
 

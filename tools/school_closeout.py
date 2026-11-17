@@ -183,6 +183,9 @@ def input_specs(school):
         if path.suffix == '.sqlite':
             for suffix in ('-journal', '-wal'):
                 paths[str(path) + suffix] = dict(content=False)
+    # Stage 3 supplies this evidence before the PI build. Capturing it again as
+    # an output must not permit changing it after the producer has been sealed.
+    paths[str(P.data('home-departments-school.json', school))] = dict(content=True)
     paths[str(P.SCHOOL_CONFIGS / (school + '.toml'))] = dict(content=True)
     return paths
 
@@ -272,6 +275,81 @@ def validate_seal(school, directory):
     if changed:
         raise ValueError('Inputs changed; finish one new repair batch, then seal a new run: ' + ', '.join(changed))
     return seal
+
+
+AUDIT_ONLY_PATHS = frozenset({
+    'tools/school_closeout.py', 'tools/link_diagnosis.py', 'tools/chain_audit.py',
+    'tests/test_closeout_audit_refresh.py', 'tests/test_link_diagnosis_repeat.py', 'docs/RUNBOOK.md',
+})
+
+
+def audit_control_tree(source):
+    """Keep producer/orchestration controls immutable while adding audit refresh/CLI code."""
+    import ast
+    tree = ast.parse(source)
+    tree.body = [node for node in tree.body
+                 if not (isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+                         and node.name in ('main', 'fork_audits', 'audit_control_tree'))
+                 and not (isinstance(node, ast.Assign)
+                          and any(isinstance(t, ast.Name) and t.id == 'AUDIT_ONLY_PATHS' for t in node.targets))]
+    return ast.dump(tree, include_attributes=False)
+
+
+def fork_audits(school, parent, directory, run=subprocess.run):
+    """Retain immutable native products only when every producer input/code byte is unchanged.
+
+    The new run records separate native/audit code pins. No review draw or verdict
+    carries forward; diagnosis, student audit and all prerequisites run again.
+    """
+    parent, directory = Path(parent).resolve(), Path(directory).resolve()
+    if directory.exists():
+        raise ValueError('New audit run directory already exists')
+    with locked(parent):
+        seal, state = read(parent / 'inputs.json'), read(parent / 'state.json')
+        if seal['school'] != school or seal['data_root'] != str(P.CODE) or seal['hierarchy'] != str(P.HIERARCHY):
+            raise ValueError('Parent school/data roots differ')
+        if state['status'] not in ('gate_failed', 'awaiting_completion') or state['phases'] != list(OUTPUTS):
+            raise ValueError('Parent native phases must have finished')
+        if (parent / 'draw-original.json').exists() or state.get('draw_fingerprint'):
+            raise ValueError('A review draw exists; do not refresh or rotate that review')
+        if changed_inputs(seal) or not set(input_specs(school)) <= set(seal['inputs']):
+            raise ValueError('Producer inputs changed or were not sealed; finish a new native build')
+        if fingerprint(P.SCHOOL_CONFIGS / (school + '.toml')) != seal['charter'] or resume_index(state) != len(OUTPUTS):
+            raise ValueError('Parent charter or native outputs changed')
+        code = read(P.data('report.json', school)).get('provenance', {}).get('code', {})
+        native_commit = (seal.get('audit_refresh') or {}).get('native_code_commit', seal['code_commit'])
+        if code.get('commit') != native_commit or code.get('snapshot') is not True or code.get('dirty') is not False:
+            raise ValueError('Parent native producer provenance is not clean and bound')
+        current = code_commit()
+        clean = run(['git', '-C', str(CODE), 'status', '--porcelain', '--untracked-files=normal'], capture_output=True, text=True, check=True)
+        delta = run(['git', '-C', str(CODE), 'diff', '--name-only', native_commit, current], capture_output=True, text=True, check=True)
+        paths = set(delta.stdout.splitlines())
+        if clean.stdout.strip() or not paths or not paths <= AUDIT_ONLY_PATHS:
+            raise ValueError('Changes extend beyond the explicit audit-only code allowlist, or checkout is dirty')
+        original_control = run(['git', '-C', str(CODE), 'show', native_commit + ':tools/school_closeout.py'], capture_output=True, text=True, check=True)
+        current_control = run(['git', '-C', str(CODE), 'show', current + ':tools/school_closeout.py'], capture_output=True, text=True, check=True)
+        if audit_control_tree(original_control.stdout) != audit_control_tree(current_control.stdout):
+            raise ValueError('Native producer/orchestration controls changed; finish a new native build')
+        job = str(state.get('job', ''))
+        if not job.isdigit():
+            raise ValueError('Parent exact producer job is absent')
+        result = run(['sacct', '-n', '-P', '-j', job, '--format=JobIDRaw,State,ExitCode'], capture_output=True, text=True, check=True)
+        exact = [r for line in result.stdout.splitlines() if len(r := line.split('|')) >= 3 and r[0] == job]
+        expected = ['FAILED', '1:0'] if state['status'] == 'gate_failed' else ['COMPLETED', '0:0']
+        if len(exact) != 1 or exact[0][1:3] != expected:
+            raise ValueError('Parent exact job has not reached its expected terminal state')
+        preserved = list(OUTPUTS)[:3]
+        names = {name for phase in preserved for name in OUTPUTS[phase]}
+        artifacts = {name: state['artifacts'][name] for name in names}
+        refreshed = dict(seal, code_commit=current, audit_refresh=dict(
+            parent=str(parent), parent_seal=fingerprint(parent / 'inputs.json'),
+            parent_state=fingerprint(parent / 'state.json'), native_code_commit=native_commit,
+            audit_code_commit=current, changed_code_paths=sorted(paths), retained_phases=preserved,
+            qualification='Inputs and native producer code unchanged; retain native provenance, rerun audits/gates, carry no review.'))
+        directory.mkdir(parents=True)
+        write(directory / 'inputs.json', refreshed)
+        write(directory / 'state.json', dict(status='sealed', phases=preserved, artifacts=artifacts, submissions=[]))
+    return refreshed
 
 
 def capture_outputs(school, phase):
@@ -412,7 +490,7 @@ def draw_once(school, directory, drawn_by):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['stages', 'plan', 'research', 'research-batch', 'seal', 'submit', 'worker', 'status', 'certify', 'draw'])
+    parser.add_argument('command', choices=['stages', 'plan', 'research', 'research-batch', 'seal', 'submit', 'worker', 'status', 'certify', 'draw', 'fork-audits'])
     parser.add_argument('school')
     parser.add_argument('--run-dir', type=Path)
     parser.add_argument('--repairs', type=Path)
@@ -422,6 +500,7 @@ def main(argv=None):
     parser.add_argument('--out', type=Path, help='Write the research board to this file; existing files are preserved')
     parser.add_argument('--reviews', type=Path, help='Explicit whole-source decisions with exact current case bindings and receipt hashes')
     parser.add_argument('--batch-size', type=int, default=20, help='Maximum distinct sources in a research batch')
+    parser.add_argument('--from-run', type=Path, help='Completed parent for a strictly audit-only refresh')
     args = parser.parse_args(argv)
     try:
         if args.reviews and args.command != 'research':
@@ -457,6 +536,10 @@ def main(argv=None):
             parser.error('--run-dir is required; seal also requires --repairs')
         if args.command == 'seal':
             result = seal_run(args.school, args.run_dir, args.repairs)
+        elif args.command == 'fork-audits':
+            if not args.from_run:
+                parser.error('fork-audits requires --from-run')
+            result = fork_audits(args.school, args.from_run, args.run_dir)
         else:
             with locked(args.run_dir):
                 if args.command == 'status':

@@ -291,6 +291,23 @@ drawer, in both `files` and `files_now`, and compares them with the live package
 Missing/partial bindings, non-finite probabilities and changed bytes fail the gate;
 the existing precision and coverage thresholds remain unchanged.
 
+If only an audit implementation needs correction after all native phases finish,
+use `bin/atlas closeout fork-audits sjtu --from-run <finished-run> --run-dir <new-run>`.
+This refuses changed/unsealed inputs, changed outputs or charters, dirty code,
+an existing review draw, a live producer, or code changes outside a small audit
+allowlist. It also compares the original closeout producer controls. The new seal
+retains the native producer's actual code pin and records the new audit pin;
+the original run stays intact. Submit the new run normally: diagnosis, student
+audit and all prerequisite gates run again, while build/copies/ledger are reused.
+Certify the exact successful job before the ordinary fixed independent sample.
+Builder or evidence changes still require a new native build.
+
+An exact, still-bound paper uncertainty hold explains why its candidate cannot
+provide a student-paper link. Link diagnosis records the hold decision IDs only
+when every otherwise unexplained candidate PI work is held. An unheld candidate
+or missing link to an admitted lab paper stays open. Holds never admit a paper,
+create a link, prove a student's publication identity, or carry a recall verdict.
+
 ## Housekeeping
 
 `tools/scratch.py clean` (dry run) / `--apply` removes scratch entries, old rebuild snapshots and old `.equiv/` reports older than 14

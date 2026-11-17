@@ -34,11 +34,12 @@ The first two are work to do; the others are reasons. Evidence: OpenAlex work id
 -> hierarchy/<school>/link-diagnosis.json {summary, students: {"<pi> | <student id>": {category, works, pis_seen}}}
 usage: link_diagnosis.py <school> ...
 """
-import collections, gzip, json, re, sqlite3, sys, unicodedata
+import collections, gzip, hashlib, json, re, sqlite3, sys, unicodedata
 
 from pi_hierarchy import sweep_works, contains, same_year, NOT_PAPERS, TODAY, INST, AFF, WINDOW_START  # noqa: E402
 from pihier import papers as _papers  # noqa: E402
 from pihier.common import norm_title  # noqa: E402
+from pihier import reviewed_claims  # noqa: E402
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK; H = P.HIERARCHY   # tests point H at a flat fixture tree; hfile follows the layout for the live one
@@ -87,6 +88,29 @@ def all_lab_matches_reviewed_out(mine, excluded, pi, student):
     return bool(mine) and all((pi, student, c['work']) in excluded for c in mine)
 
 
+def active_paper_holds(school, report, root):
+    """Use only exact holds applied by this build and still bound to its review input."""
+    applied = report.get('paperClaimReview') or {}
+    if not applied:
+        return []
+    raw = P.hfile(root, 'paper-claim-review.json', school).read_bytes()
+    if hashlib.sha256(raw).hexdigest() != applied.get('sha256'):
+        raise ValueError('Paper claim review differs from the native build')
+    source = json.loads(raw)
+    if source.get('school') != school or source.get('version') != 1:
+        raise ValueError('Paper claim review has a different school or schema')
+    decisions = {d['id']: d for d in source['decisions']}
+    holds = []
+    for d in applied.get('decisions') or []:
+        if d.get('decision') != 'hold' or d.get('outcome') not in ('held', 'held_before_identity'):
+            continue
+        original = decisions.get(d.get('id'))
+        if not original or any(d.get(k) != v for k, v in original.items()):
+            raise ValueError('Applied paper hold differs from its reviewed decision')
+        holds.append(original)
+    return holds
+
+
 def dblp_venues(pi_rec):
     """The PI's DBLP venue publications by normalized title -> (earliest year, key), as papers.venue_tables reads them from the
     DBLP dump (not CoRR, ECCC, ePrint, theses, books); {} without the dump or a DBLP id."""
@@ -115,6 +139,8 @@ def run(school):
     # as input erases those diagnoses on the next run. Recompute candidates
     # without them, preserving the old output until this run succeeds.
     A = chain_audit.audit(school, include_link_diagnosis=False, hierarchy=H)
+    holds = active_paper_holds(school, json.loads(P.hfile(H, 'report.json', school).read_text())
+                               if P.hfile(H, 'report.json', school).exists() else {}, H)
     pis = {p['pi']: p for p in json.loads((P.hfile(H, 'pis.json', school)).read_text())}
     pi_ids = {k: set(p.get('reviewedOpenAlex') or []) | set(p.get('oaAuthorIds') or []) for k, p in pis.items()}
     id_to_pi = collections.defaultdict(set)
@@ -208,6 +234,10 @@ def run(school):
         with_pi = [c for c in cand_all if c['coauthor_ids'] & pi_ids.get(pi, set()) and c['work'] not in lab[pi]]
         authors = {c['aid'] for c in cand if c['aid']}
         def excluded(c):  # why the builder rightly left a work with the PI out of the lab's papers, or None
+            held = [d for d in holds if d['pi'] == pi and reviewed_claims.matches(c['w'], d['match'])]
+            if held:
+                c['paper_hold_decisions'] = [d['id'] for d in held]
+                return 'reviewed_paper_hold'
             if c.get('type') in NOT_PAPERS or c.get('type') in ('conference-abstract',) or build_not_a_paper(c['w']):
                 return 'not_a_paper'
             if c['pi_where'].get(pi) == 'elsewhere' and not c['tied']:
@@ -224,7 +254,7 @@ def run(school):
             cat = ('reviewed_exclusion' if all_lab_matches_reviewed_out(mine, exclusions, pi, x['student'])
                    else 'link_missed')
         elif with_pi and all(why_):
-            cat = ('with_pi_at_other_institution' if 'pi_affiliated_elsewhere' in why_ else 'with_pi_not_a_paper' if why_ == {'not_a_paper'}
+            cat = ('reviewed_paper_hold' if 'reviewed_paper_hold' in why_ else 'with_pi_at_other_institution' if 'pi_affiliated_elsewhere' in why_ else 'with_pi_not_a_paper' if why_ == {'not_a_paper'}
                    else 'with_pi_before_window' if why_ == {'before_window'} else 'with_pi_outside_appointment')
         elif with_pi:
             cat = 'paper_not_lab_paper'
@@ -256,7 +286,8 @@ def run(school):
         ev = (mine or with_pi or cand)[:5]
         out[f"{pi} | {x.get('id')}"] = dict(pi=pi, student=x['student'], id=x.get('id'), roles=x.get('roles'), years=ys, category=cat,
                                             works=[dict(oa=c['work'], year=c['year'], title=c['title'], byline_name=c['raw'], type=c.get('type'), excluded=c.get('excluded'),
-                                                        pi_affiliation=c.get('pi_where', {}).get(pi)) for c in ev],
+                                                        pi_affiliation=c.get('pi_where', {}).get(pi),
+                                                        **({'paper_hold_decisions': c['paper_hold_decisions']} if c.get('paper_hold_decisions') else {})) for c in ev],
                                             n_school_works=len({c['work'] for c in cand}), distinct_author_ids=len(authors),
                                             pis_seen=[p for p, _ in seen.most_common(3)], **({'resolved': resolved} if resolved else {}))
         if resolved:

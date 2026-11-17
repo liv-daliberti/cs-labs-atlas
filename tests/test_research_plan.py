@@ -598,3 +598,93 @@ def test_absent_audit_cache_is_not_created_and_existing_unknown_schema_is_reject
         conn.execute('create table unrelated (value text)')
     with pytest.raises(ValueError, match='no captures table'):
         Q.cached_audit_sources(audit, {'https://lab.example/'})
+
+
+def member_cache(tmp_path, pages):
+    cache = tmp_path / 'member-captures.sqlite'
+    with sqlite3.connect(cache) as conn:
+        conn.execute('create table live (url text primary key, fetched_at text, status int, sha256 text, raw_zlib blob)')
+        conn.execute('create table blocked (host text, why text)')
+        for url, body in pages.items():
+            raw = body.encode()
+            conn.execute('insert into live values (?,?,?,?,?)',
+                         (url, '2026-11-16T12:00:00', 200, hashlib.sha256(raw).hexdigest(), zlib.compress(raw)))
+    return cache
+
+
+
+def test_cached_member_navigation_finds_full_owned_chain_without_acquisition(tmp_path):
+    home, team, alumni = ('https://ada.github.io/' + p for p in ('', 'team.html', 'alumni.html'))
+    cache = member_cache(tmp_path, {
+        home: '<a href="team.html">Team</a><a href="missing.html">Students</a>',
+        team: '<h1>Team</h1><a href="alumni.html#graduates">Alumni</a>',
+        alumni: '<a href="team.html">Team</a><p>Ada and Ben co-direct this group.</p>',
+    })
+    before = cache.read_bytes()
+    initial = {'Ada Alpha': {home}, 'Ben Beta': {home}}
+    leads, versions, blocked, links = Q.cached_inventory(cache, initial)
+    assert leads == {pi: {home, team, alumni} for pi in initial}
+    assert initial == {pi: {home} for pi in initial}
+    assert len(versions) == 3 and len(links) == 4 and blocked == {}
+    assert all(link['parent_sha256'] == versions[link['parent_url']]['sha256'] for link in links)
+    assert cache.read_bytes() == before
+    board = Q.plan('u', [dict(pi=pi) for pi in initial], {}, leads, versions, {}, 'policy', {}, {})
+    assert len(board['cases']) == 6
+    assert all(case['status'] == 'pending' for case in board['cases'])
+
+
+
+def test_cached_portal_index_is_discovered_from_detail_without_other_pi(tmp_path):
+    detail = 'https://faculty.example.edu/hupan/zh_CN/xsxx/585307/content/281840.htm'
+    index = 'https://faculty.example.edu/hupan/zh_CN/xsxx/585307/list/index.htm'
+    other = 'https://faculty.example.edu/another/zh_CN/xsxx/list/index.htm'
+    cache = member_cache(tmp_path, {
+        detail: '<a href="../list/index.htm">学生信息</a><a href="' + other + '">学生信息</a>',
+        index: '<a href="../content/281840.htm">倪朝旭</a>', other: '<p>Other PI roster</p>',
+    })
+    leads, versions, _, links = Q.cached_inventory(cache, {'Hu Pan': {detail}})
+    assert leads['Hu Pan'] == {detail, index}
+    assert set(versions) == {detail, index}
+    assert links == [dict(pi='Hu Pan', url=index, parent_url=detail,
+                          parent_sha256=versions[detail]['sha256'], label='学生信息')]
+
+
+
+def test_cached_links_never_leave_account_or_adopt_department_student_services(tmp_path):
+    own = 'https://cs.example.edu/~ada/index.html'
+    roster = 'https://cs.example.edu/~ada/students.html'
+    other = 'https://cs.example.edu/~ben/students.html'
+    service = 'https://cs.example.edu/students/'
+    profile = 'https://cs.example.edu/jiaoshiml/ada.html'
+    cache = member_cache(tmp_path, {
+        own: '<a href="students.html">People</a><a href="' + other + '">Students</a>'
+             '<a href="' + service + '">Students</a><a href="https://foreign.example/team">Team</a>',
+        profile: '<a href="' + service + '">学生信息</a>',
+        roster: '<p>Own roster</p>', other: '<p>Other PI</p>', service: '<p>Student services</p>',
+    })
+    leads, _, _, _ = Q.cached_inventory(cache, {'Ada': {own, profile}})
+    assert leads == {'Ada': {own, profile, roster}}
+    assert not Q.member_navigation(b'<a href="/students/">Students</a>', 'https://cs.example.edu/')
+
+
+
+def test_cached_discovery_preserves_refusal_and_verifies_followed_bytes(tmp_path):
+    home, team = 'https://refused.example/', 'https://refused.example/team.html'
+    cache = member_cache(tmp_path, {home: '<a href="team.html">Team</a>', team: '<p>Actual older roster</p>'})
+    with sqlite3.connect(cache) as conn:
+        conn.execute('insert into blocked values (?,?)', ('refused.example', 'persistent_refusal'))
+    leads, versions, blocked, _ = Q.cached_inventory(cache, {'Ada': {home}})
+    assert leads['Ada'] == {home, team} and versions[team]['status'] == 200
+    assert blocked == {'refused.example': 'persistent_refusal'}
+    with sqlite3.connect(cache) as conn:
+        conn.execute('update live set sha256=? where url=?', ('0'*64, team))
+    with pytest.raises(ValueError, match='bytes do not match'):
+        Q.cached_inventory(cache, {'Ada': {home}})
+
+
+
+def test_group_navigation_and_google_sites_account_scope():
+    raw = b'<a href="/view/ada/group">Group</a><a href="/view/ben/team">Team</a>'
+    assert Q.member_navigation(raw, 'https://sites.google.com/view/ada/home') == [
+        ('https://sites.google.com/view/ada/group', 'Group')]
+    assert Q.member_navigation(b'%PDF-1.7 binary source', 'https://ada.github.io/') == []

@@ -285,7 +285,11 @@ def test_changed_or_new_upstream_input_refuses_work_before_build(case, monkeypat
         upstream.write_text('old source population')
     specs = C.input_specs('u')
     assert str(upstream) in specs and specs[str(upstream)]['content']
-    assert all(str(case.data / output) not in specs for output in C.OUTPUTS['build'])
+    # Stage-3 home evidence is also captured as an artifact, but remains an
+    # immutable pre-build input; the PI builder does not write this evidence.
+    products = set(C.OUTPUTS['build']) - {'home-departments-school.json'}
+    assert all(str(case.data / output) not in specs for output in products)
+    assert str(case.data / 'home-departments-school.json') in specs
     case.seal['inputs'] = {path: dict(spec, fingerprint=C.fingerprint(path, spec['content']))
                            for path, spec in specs.items()}
     C.write(case.out / 'inputs.json', case.seal)
@@ -302,3 +306,18 @@ def test_native_outputs_use_registered_school_products():
         assert kind == 'derived' and '{school}' in flat
     assert 'home-departments-school.json' in C.OUTPUTS['build']
     assert 'home-departments.json' not in C.OUTPUTS['build']
+
+
+def test_stage_three_homes_are_frozen_before_build_and_recorded_as_artifacts(case):
+    home = case.data / 'home-departments-school.json'
+    shared = case.data / 'home-departments.json'
+    specs = C.input_specs('u')
+    assert specs[str(home)] == specs[str(shared)] == dict(content=True)
+    assert shared.name not in C.OUTPUTS['build']
+    home.write_text('[{"name":"PI","home_department":"CS"}]')
+    case.seal['inputs'][str(home)] = dict(content=True, fingerprint=C.fingerprint(home))
+    C.write(case.out / 'inputs.json', case.seal)
+    home.write_text('[{"name":"PI","home_department":"EE"}]')
+    with pytest.raises(ValueError, match='Inputs changed'):
+        C.worker('u', case.out, run=case.run, evaluate=passing)
+    assert case.calls == []

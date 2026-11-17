@@ -471,7 +471,11 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
 **Batch the source work before rebuilding (SJTU, 2026-11-16).** After the baseline
 PI build, run `bin/atlas closeout research <key> --out <scratch>/research.json`.
 This inventories known sources for every PI, including newly reviewed student
-sources before they reach a native package. Start with sparse labs; read whole
+sources before they reach a native package. It also follows owned-path member
+navigation to pages already present in the recall cache, retaining the parent
+URL and SHA in `cached_member_navigation`. This is an offline inventory expansion;
+shared pages still require separate PI-scope review, and every new case starts
+pending. It neither fetches missing links nor assigns members to a PI. Start with sparse labs; read whole
 current and dated-alumni sections, with individual School, role and date scope.
 Group identical source URLs for reading while keeping each PI's claims separate.
 Record whole-source review receipts on the board as described in
@@ -483,6 +487,14 @@ Refresh with `--previous <board> --out <new-board>` as leads or evidence change.
 Unchanged source work survives a rebuild; new source bytes, capture year, PI
 context or evidence policy reopen the affected work. The board is a known-source
 inventory, not proof that every possible web source has been found.
+
+Before the final native build, check the omission class across the whole known
+census. Include every current role heading, especially masters and undergraduate
+students, and individually named co-supervision. The source extractor filters
+some of these roles; its candidate list does not establish a complete roster.
+Read the full owned current and dated-alumni blocks, retain future or ambiguous
+School cases as explicit holds, and reuse unchanged source receipts. Complete
+this sweep before submitting the expensive build and fresh sample.
 
 Consolidate source corrections and holds into one reviewed batch before the
 expensive closeout chain. A research board can serve as `closeout seal --repairs`;
