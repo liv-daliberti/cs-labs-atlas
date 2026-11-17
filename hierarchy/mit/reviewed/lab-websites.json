@@ -17744,7 +17744,7 @@
    "pi": "Daniel Sanchez",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason": "PI-owned homepage contains Students, Alumni and Publications sections. No separate group website is required for this homepage fallback.",
    "audited_at": "2026-11-11T02:11:55+00:00",
    "checks": [
     {
@@ -17882,6 +17882,15 @@
      "via": "school_profile_link",
      "sha256": "5fa905fe94c874accc47c19ac58998e6794f0f56accb572ca2d7223e6a759154",
      "final_url": "https://www.csail.mit.edu/person/daniel-sanchez"
+    },
+    {
+     "source": "pi_level_closeout",
+     "url": "https://people.csail.mit.edu/sanchez/",
+     "at": "2026-11-17",
+     "result": "ok",
+     "sha256": "17aaf6094a6710654601cec8f6ca799e706183a3332c52505185e767603ec7d3",
+     "quote": "Students Alumni Publications",
+     "note": "Three literal section headings on the same captured page; full parsed per-entry audit is retained with the PI closeout."
     }
    ],
    "places_checked": [
@@ -17896,9 +17905,9 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-10-30T19:24:18+00:00",
+   "checked_at": "2026-11-17",
    "students_page_status": "audited",
-   "papers_page_status": "no_pubs_page",
+   "papers_page_status": "audited",
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "website_note": {
@@ -17911,15 +17920,17 @@
     "alumni_page": null,
     "pubs_page": null
    },
-   "url": "http://www.csail.mit.edu/user/2990",
+   "url": "https://people.csail.mit.edu/sanchez/",
    "kind": "pi_homepage",
    "found_via": "school_profile_link",
    "listed_on": "https://www.eecs.mit.edu/people/daniel-sanchez-martin/",
-   "sha256": "5fa905fe94c874accc47c19ac58998e6794f0f56accb572ca2d7223e6a759154",
+   "sha256": "17aaf6094a6710654601cec8f6ca799e706183a3332c52505185e767603ec7d3",
    "evidence": {
-    "url": "http://www.csail.mit.edu/user/2990",
-    "sha256": "5fa905fe94c874accc47c19ac58998e6794f0f56accb572ca2d7223e6a759154",
-    "quote": null
+    "url": "https://people.csail.mit.edu/sanchez/",
+    "sha256": "17aaf6094a6710654601cec8f6ca799e706183a3332c52505185e767603ec7d3",
+    "quote": "Daniel Sanchez Professor, MIT EECS",
+    "observed": "2026-11-17",
+    "kind": "own_homepage_statement"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -17933,7 +17944,35 @@
     }
    ],
    "verified": true,
-   "verification_quote": "daniel sanchez mit csail skip to main content for students for industry for members acc"
+   "verification_quote": "daniel sanchez mit csail skip to main content for students for industry for members acc",
+   "superseded_website_review": {
+    "url": "http://www.csail.mit.edu/user/2990",
+    "sha256": "5fa905fe94c874accc47c19ac58998e6794f0f56accb572ca2d7223e6a759154",
+    "evidence": {
+     "url": "http://www.csail.mit.edu/user/2990",
+     "sha256": "5fa905fe94c874accc47c19ac58998e6794f0f56accb572ca2d7223e6a759154",
+     "quote": null
+    },
+    "papers_page_status": "no_pubs_page",
+    "checked_at": "2026-10-30T19:24:18+00:00"
+   },
+   "people_page": "https://people.csail.mit.edu/sanchez/",
+   "alumni_page": "https://people.csail.mit.edu/sanchez/",
+   "pubs_page": "https://people.csail.mit.edu/sanchez/",
+   "publication_audit": {
+    "listed_entries": 75,
+    "explicit_2016_2026_entries": 52,
+    "undated_entries": 2,
+    "source": {
+     "url": "https://people.csail.mit.edu/sanchez/",
+     "sha256": "17aaf6094a6710654601cec8f6ca799e706183a3332c52505185e767603ec7d3",
+     "quote": "Daniel Sanchez Professor, MIT EECS",
+     "observed": "2026-11-17",
+     "kind": "own_homepage_statement"
+    },
+    "reviewed_at": "2026-11-17",
+    "report": "PI-CLOSEOUT-SANCHEZ-20261117.json"
+   }
   },
   {
    "pi": "Arvind Satyanarayan",

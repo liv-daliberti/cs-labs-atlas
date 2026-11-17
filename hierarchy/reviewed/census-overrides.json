@@ -4147,7 +4147,7 @@
    "is_pi": true,
    "why_pi": "Reviewed 2026-11-09 (missed-labs): DSpace@MIT advisor query (dc.contributor.advisor, issued 2016-2026) returns 10 doctoral theses naming Daniel Sanchez Martin (2017-2025; first: \"A hardware and software architecture for efficient datacenters\", 2017). The census row is an EECS ladder member (com",
    "no_identity": true,
-   "why_no_identity": "Duplicate census row of 'Daniel Sanchez' (same person: the EECS profile eecs.mit.edu/people/daniel-sanchez-martin/ is the profile URL of the 'Daniel Sanchez' row, which holds DBLP pid 222/6261 and the 60 lab papers); this row is listed 2020-2021 only. No separate identity is bound so papers are not attributed twice; reviewed 2026-11-11.",
+   "why_no_identity": "Duplicate census identity; canonical Daniel Sanchez holds the source-proven MIT DBLP PID 67/2030-3. The old reference to 222/6261 was wrong (Daniel Prado Sanchez). See canonical identity_review.",
    "periods": [
     {
      "id": "rg_sanchez_1_1112",
@@ -4164,6 +4164,36 @@
        "kind": "own_homepage_statement"
       }
      ]
+    }
+   ],
+   "exclude": true,
+   "canonical_pi": "Daniel Sanchez",
+   "why": "Duplicate independent census row of Daniel Sanchez, verified by the official EECS profile redirect and shared PI-owned MIT homepage. Keep this historical census spelling as an alias and review reference, not a second lab; this does not exclude the researcher from scope. Members and papers belong to the canonical Daniel Sanchez lab.",
+   "superseded_identity_hold": {
+    "why_no_identity": "Duplicate census row of 'Daniel Sanchez' (same person: the EECS profile eecs.mit.edu/people/daniel-sanchez-martin/ is the profile URL of the 'Daniel Sanchez' row, which holds DBLP pid 222/6261 and the 60 lab papers); this row is listed 2020-2021 only. No separate identity is bound so papers are not attributed twice; reviewed 2026-11-11.",
+    "reviewed_at": "2026-11-17"
+   },
+   "duplicate_evidence": [
+    {
+     "url": "https://people.csail.mit.edu/sanchez/",
+     "sha256": "17aaf6094a6710654601cec8f6ca799e706183a3332c52505185e767603ec7d3",
+     "quote": "Daniel Sanchez Professor, MIT EECS",
+     "observed": "2026-11-17",
+     "kind": "own_homepage_statement"
+    },
+    {
+     "url": "https://dblp.org/pid/67/2030-3",
+     "sha256": "2890f33f9d9b7d4fd889e16d3bbd6f826d2b70da69725a0827edf49b5ebe90db",
+     "quote": "<note type=\"affiliation\">MIT CSAIL, Cambridge, MA, USA</note>",
+     "source_file": "/n/fs/resemble/homogenizing-science/external/dblp-dump/dblp-2026-09-01.xml.gz",
+     "source_kind": "official_local_dblp_dump",
+     "homepage_quote": "<url>http://people.csail.mit.edu/sanchez/</url>"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/daniel-sanchez/",
+     "final_url": "https://www.eecs.mit.edu/people/daniel-sanchez-martin/",
+     "sha256": "c233a94c8169f4b420f4648e6e2097b2eaac0af50c4f89ae81f1bccc1f21c919",
+     "quote": "Daniel Sanchez"
     }
    ]
   },
@@ -5445,6 +5475,67 @@
    ],
    "orcid": [
     "0000-0002-6318-2978"
+   ]
+  },
+  "Daniel Sanchez": {
+   "aliases": [
+    "Daniel Sanchez Martin"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/67/2030-3"
+   ],
+   "identity_review": {
+    "reviewed_at": "2026-11-17",
+    "canonical_pi": "Daniel Sanchez",
+    "duplicate_census_name": "Daniel Sanchez Martin",
+    "why": "The canonical census profile redirects from /daniel-sanchez/ to /daniel-sanchez-martin/ and displays Daniel Sanchez. The PI-owned page names Daniel Sanchez, MIT EECS. Official local DBLP person 67/2030-3 names Daniel Sánchez 0003, MIT CSAIL, and this exact personal homepage. Census PID 222/6261 is Daniel Prado Sanchez and is not this PI. Preserve the real full surname form as an alias; the native name-conflict guard must reject the wrong PID.",
+    "evidence": [
+     {
+      "url": "https://people.csail.mit.edu/sanchez/",
+      "sha256": "17aaf6094a6710654601cec8f6ca799e706183a3332c52505185e767603ec7d3",
+      "quote": "Daniel Sanchez Professor, MIT EECS",
+      "observed": "2026-11-17",
+      "kind": "own_homepage_statement"
+     },
+     {
+      "url": "https://dblp.org/pid/67/2030-3",
+      "sha256": "2890f33f9d9b7d4fd889e16d3bbd6f826d2b70da69725a0827edf49b5ebe90db",
+      "quote": "<note type=\"affiliation\">MIT CSAIL, Cambridge, MA, USA</note>",
+      "source_file": "/n/fs/resemble/homogenizing-science/external/dblp-dump/dblp-2026-09-01.xml.gz",
+      "source_kind": "official_local_dblp_dump",
+      "homepage_quote": "<url>http://people.csail.mit.edu/sanchez/</url>"
+     },
+     {
+      "url": "https://www.eecs.mit.edu/people/daniel-sanchez/",
+      "final_url": "https://www.eecs.mit.edu/people/daniel-sanchez-martin/",
+      "sha256": "c233a94c8169f4b420f4648e6e2097b2eaac0af50c4f89ae81f1bccc1f21c919",
+      "quote": "Daniel Sanchez"
+     }
+    ]
+   },
+   "dblp_orcid_review": {
+    "allowed": [],
+    "why": "Identity binding uses the official MIT profile and exact homepage/affiliation in the retained DBLP source. No independent ORCID review was performed; preserve the literal DBLP ORCID in the raw source without inheriting it as a PI anchor.",
+    "evidence": []
+   },
+   "periods": [
+    {
+     "id": "sanchez_mit_201209_ongoing",
+     "start": "2012-09",
+     "end": null,
+     "asof": "2026-11-17",
+     "datePrecision": "month",
+     "evidence": [
+      {
+       "url": "https://people.csail.mit.edu/sanchez/",
+       "sha256": "17aaf6094a6710654601cec8f6ca799e706183a3332c52505185e767603ec7d3",
+       "quote": "Before joining MIT in September 2012, I earned a Ph.D. in Electrical Engineering from Stanford University",
+       "observed": "2026-11-17",
+       "kind": "own_homepage_statement"
+      }
+     ],
+     "note": "PI-owned explicit MIT appointment start; current MIT EECS professor heading on the same captured page. No historical rank inferred."
+    }
    ]
   }
  },

@@ -1,12 +1,45 @@
 {
  "Daniel Sanchez Martin": {
-  "students": {
-   "code": "sources_exhausted",
-   "why": "Duplicate census row of 'Daniel Sanchez' (same person; the EECS profile eecs.mit.edu/people/daniel-sanchez-martin/ is the profile URL of that row), listed 2020-2021 only. His students (26) and papers are attributed to the 'Daniel Sanchez' row; none is attributed twice.",
-   "sources_checked": [
-    "census row 'Daniel Sanchez' (profile_url daniel-sanchez-martin)",
-    "labpage audit: no lab page found for this row"
+  "review": {
+   "state": "duplicate_reference",
+   "canonical_pi": "Daniel Sanchez",
+   "reviewed_at": "2026-11-17",
+   "evidence": [
+    {
+     "url": "https://people.csail.mit.edu/sanchez/",
+     "sha256": "17aaf6094a6710654601cec8f6ca799e706183a3332c52505185e767603ec7d3",
+     "quote": "Daniel Sanchez Professor, MIT EECS",
+     "observed": "2026-11-17",
+     "kind": "own_homepage_statement"
+    },
+    {
+     "url": "https://dblp.org/pid/67/2030-3",
+     "sha256": "2890f33f9d9b7d4fd889e16d3bbd6f826d2b70da69725a0827edf49b5ebe90db",
+     "quote": "<note type=\"affiliation\">MIT CSAIL, Cambridge, MA, USA</note>",
+     "source_file": "/n/fs/resemble/homogenizing-science/external/dblp-dump/dblp-2026-09-01.xml.gz",
+     "source_kind": "official_local_dblp_dump",
+     "homepage_quote": "<url>http://people.csail.mit.edu/sanchez/</url>"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/daniel-sanchez/",
+     "final_url": "https://www.eecs.mit.edu/people/daniel-sanchez-martin/",
+     "sha256": "c233a94c8169f4b420f4648e6e2097b2eaac0af50c4f89ae81f1bccc1f21c919",
+     "quote": "Daniel Sanchez"
+    }
    ]
+  },
+  "students": {
+   "code": "duplicate_pi_reference",
+   "why": "Historical census row is a duplicate of Daniel Sanchez. Native build excludes only this independent row; source-supported canonical roster includes all distinct shadow-row people. Refer to the canonical lab count and evidence instead of counting this lab twice.",
+   "sources_checked": [
+    "https://people.csail.mit.edu/sanchez/",
+    "https://www.eecs.mit.edu/people/daniel-sanchez-martin/"
+   ]
+  },
+  "papers": {
+   "code": "duplicate_pi_reference",
+   "why": "The apparent zero-paper lab is a duplicate census row. Papers are counted under Daniel Sanchez; zero here is not a claim of no research output.",
+   "canonical_pi": "Daniel Sanchez"
   }
  },
  "Christopher Terman": {
@@ -81,6 +114,33 @@
    "website_status_interpretation": "none_found + pi_homepage_only_no_lab_site + coverage=website is valid per docs/LAB-PAGES.md; no website-register correction is needed.",
    "thesis_pdf_check": "The direct Sather original request returned HTTP 429, Retry-After 900. No immediate retry or alternate endpoint was used. Its current admission remains explicitly repository-adviser-metadata-backed; no PDF-only supervision claim is made.",
    "closeout_requires_native_projection": true
+  }
+ },
+ "Daniel Sanchez": {
+  "review": {
+   "state": "native_verification_pending",
+   "reviewed_at": "2026-11-17",
+   "reviewed_by": "codex-sanchez-close-1117"
+  },
+  "students": {
+   "code": "source_review_with_bounded_coverage",
+   "why": "Reconciled the complete PI-owned Students (8 rows) and Alumni (22 rows) lists. Cong Yan (SM 2015) and Webb Horn (MEng 2015) are outside 2016-2026; Nathan Beckmann postdoc 2015-2016 overlaps the window. Aleksandar Krastev appears as current SM/PhD and MEng 2023 alumnus: preserve one person and both episodes. Existing repository-supported Nathan A. Shwatal is retained even though absent from the owned page. Add current Xingran (Maggie) Du and postdoc Nosayba El-Sayed 2018. This is a public-source census, not a guarantee of unlisted lifetime advisees.",
+   "evidence": [
+    {
+     "url": "https://people.csail.mit.edu/sanchez/",
+     "sha256": "17aaf6094a6710654601cec8f6ca799e706183a3332c52505185e767603ec7d3",
+     "quote": "Daniel Sanchez Professor, MIT EECS",
+     "observed": "2026-11-17",
+     "kind": "own_homepage_statement"
+    }
+   ],
+   "sources_checked": [
+    "https://people.csail.mit.edu/sanchez/"
+   ]
+  },
+  "papers": {
+   "code": "publication_reconciliation_pending",
+   "why": "PI-owned homepage lists 75 entries, including 52 explicitly dated 2016-2026 and two undated. Two apparent gaps are title variants of already-counted papers. Two original PDFs and their bibliographies are retained for source-specific admission review; final native dispositions must be recorded before closeout."
   }
  }
 }
