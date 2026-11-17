@@ -100,9 +100,16 @@ Independent full-source acceptance: `scratch/tsinghua-z200-source-review-1117/AC
 SHA-256 `81d9797779ac11ea45bd0c9c8089f0359f510794b0542b56c9097dba7b3ee618`.
 The 80-PI collection used 138 requests; 25 PI cases remain held, and 504
 additional returned summaries await review. No query miss becomes a reason.
-The frozen reviewed batch projects Z=190; native retention remains to be
-verified through all five pipeline phases. The native recent-PhD proxy may
-count 2025 doctoral defenses; those points do not attest current enrollment.
+The completed core native build verified Z=190, below the requested 200:
+361 PIs, 1,214 distinct members, 1,258 PI/member pairs and 168 PIs with members.
+The prior Z was 245; no population, reason or threshold changed. Core receipt:
+`scratch/tsinghua-z200-1117/CORE-Z-METRICS.json`, SHA-256
+`ebac75ff49ff6be0d170aea34ecf5067d66f9a78384287c1e58e5ff9ec2f9fcf`.
+All-five-phase completion and independent payload comparisons are tracked in
+`scratch/tsinghua-z200-1117/native/state.json` and
+`scratch/tsinghua-z200-source-review-1117/NATIVE-COMPARISON.json`.
+The native recent-PhD proxy counts 24 new 2025 doctoral defenses; those points
+do not attest current 2026 enrollment.
 
 Current Stage 1 policy passes with usable sources for all 11 departments;
 the six missing historical original rosters remain coverage gaps, with none
