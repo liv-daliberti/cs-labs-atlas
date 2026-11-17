@@ -169,6 +169,9 @@ def input_specs(school):
     """
     from stale_stages import native_upstream_paths
     paths = {str(path): dict(content=True) for path in native_upstream_paths(school)}
+    # Source preflight consumes this derived inventory; it is not a builder
+    # output and must stay fixed through execution and review certification.
+    paths[str(P.data('hosts.json', school))] = dict(content=True)
     for name, kind, flat, _split in P.DATA_FILES:
         if kind not in ('raw', 'reviewed') or name == 'student-recall-check.json':
             continue

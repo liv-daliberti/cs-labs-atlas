@@ -276,7 +276,7 @@ def test_single_run_lock_prevents_two_writers(case):
 @pytest.mark.parametrize('name', ['census-faculty.json', 'census-faculty-hierarchy.json',
                                  'collection.json.gz', 'listings.json', 'coverage.json',
                                  'dblp-recovered.jsonl.gz', 'labpage-recovered.jsonl.gz',
-                                 'labpage-pubs.jsonl.gz'])
+                                 'labpage-pubs.jsonl.gz', 'hosts.json'])
 @pytest.mark.parametrize('initially_present', [True, False])
 def test_changed_or_new_upstream_input_refuses_work_before_build(case, monkeypatch, name, initially_present):
     monkeypatch.setattr(C.P, 'SITE_DATA', case.data / 'site')

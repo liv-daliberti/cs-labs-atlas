@@ -279,7 +279,9 @@ fresh sample, independent review and accuracy requirements.
 (charter, access and snapshot) and 1 (historical faculty sources) must pass, or
 carry an existing owner-authorized gate exception, before sealing or running the
 native chain. A worker that fails this preflight records `preflight_failed` and
-runs no native phases. Inspect `closeout stages`, finish the source repair batch,
+runs no native phases. The derived `hosts.json` inventory is sealed along with
+source inputs; changing it also invalidates execution and certification.
+Inspect `closeout stages`, finish the source repair batch,
 then seal a new run. Diagnostic research builds can still use the ordinary build
 tools; they do not become a certified closeout. Stage advancement preserves each
 gate's measured result but marks downstream stages as waiting until all their
