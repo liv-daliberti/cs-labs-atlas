@@ -258,6 +258,7 @@ Also dropped (`proceedings_volume`): a title opening 'Proceedings' that names a 
 ordinal or a year (whole volumes: SAT Race 2019, MOBICOM 2021); and (`supplement_abstract`) a journal-article record whose title
 opens with a number ('203. ...', '(338) ...': abstracts of Biological Psychiatry, Journal of Pain, Journal of Adolescent Health
 supplements). Book chapters and records with no venue keep their numbers.
+SLEEP's 2017 abstract supplement uses four-digit title codes without punctuation: require an article record, the exact SLEEP journal, DOI family `10.1093/sleepj/zsx050.<number>` and the leading four-digit abstract code together. An ordinary SLEEP DOI or title without that code is unaffected.
 
 ### R-PAP-28 (2026-11-02, owner: accuracy pass) — period boundaries and continuity
 Two causes behind Klasnja's missing 2020-2025 papers (Michigan; 12 school-affiliated papers a year). (a) A reviewed period

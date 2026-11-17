@@ -217,6 +217,8 @@ SPECIAL_ISSUE_TITLE = re.compile(r'(?i)^\s*(?:special (?:issue|topic|section|col
 # '(338) Automatic detection of ...': Biological Psychiatry, Journal of Pain, Journal of Adolescent Health)
 PROCEEDINGS_VOLUME = re.compile(r'(?i)^\s*proceedings\b[:\s]*(?:of\b)?.*(?:\b(?:19|20)\d\d\b|\b\d+(?:st|nd|rd|th)\b|workshop|conference|symposium|race|competition|think tank|annual)')
 SUPPLEMENT_NUMBER = re.compile(r'^\s*(?:\(\d{1,4}\)|\d{1,4}\.)\s+\S')
+SLEEP_2017_ABSTRACT_DOI = re.compile(r'^10\.1093/sleepj/zsx050\.\d+$')
+SLEEP_ABSTRACT_NUMBER = re.compile(r'^\s*\d{4}\s+\S')
 COLUMN_VENUE = re.compile(r'(?i)^(?:communications of the acm|ieee micro|computer|ieee computer|ieee security (?:&|and) privacy|ieee software|'
                           r'ieee pervasive computing|ieee internet computing|ieee design (?:&|and) test(?: of computers)?|ieee annals of the history of computing|'
                           r'acm queue|queue|xrds|ieee intelligent systems|ieee network|ieee communications magazine|ieee spectrum|'
@@ -399,6 +401,11 @@ def not_a_paper(r, pages=None, bare=False):
     if PROCEEDINGS_VOLUME.search(t):
         return 'proceedings_volume'
     if SUPPLEMENT_NUMBER.search(t) and ty == 'article' and v.strip():
+        return 'supplement_abstract'
+    # SLEEP's 2017 abstract supplement uses a four-digit program number without
+    # punctuation. Require that supplement's DOI family and journal as well.
+    if (ty == 'article' and v.strip().casefold() == 'sleep'
+            and SLEEP_2017_ABSTRACT_DOI.fullmatch(d) and SLEEP_ABSTRACT_NUMBER.match(t)):
         return 'supplement_abstract'
     # JAAD volume 95 issue 1S lists five-digit abstract IDs on AB pages. OpenAlex types
     # those one-page supplement records as articles; require both the issue DOI family

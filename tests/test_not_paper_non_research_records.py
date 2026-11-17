@@ -191,3 +191,15 @@ def test_explicit_abstract_reprint_is_not_the_full_research_paper():
     assert papers.not_a_paper(row(title, typ='article', venue='IJCAI')) == 'conference_abstract'
     assert papers.not_a_paper(row('Learning to Resolve Social Dilemmas: A Survey', typ='article', venue='JAIR')) is None
     assert papers.not_a_paper(row('Abstract Reprint Detection using Language Models', venue='ACL')) is None
+
+
+@pytest.mark.parametrize('title,doi', [
+    ('0182 INFLUENCE OF WEEKLY SLEEP REGULARITY ON SELF-REPORTED WELLBEING', '10.1093/sleepj/zsx050.181'),
+    ('0795 IMPORTANCE OF SLEEP DATA IN PREDICTING NEXT-DAY STRESS, HAPPINESS, AND HEALTH IN COLLEGE STUDENTS', '10.1093/sleepj/zsx050.794'),
+])
+def test_sleep_2017_numbered_abstract_supplement(title, doi):
+    assert papers.not_a_paper(row(title, venue='SLEEP', doi=doi)) == 'supplement_abstract'
+    assert papers.not_a_paper(row(title[5:], venue='SLEEP', doi=doi)) is None
+    assert papers.not_a_paper(row(title, venue='SLEEP', doi='10.1093/sleep/zsx050')) is None
+    assert papers.not_a_paper(row(title, venue='Journal X', doi=doi)) is None
+    assert papers.not_a_paper(row(title, typ='book-chapter', venue='SLEEP', doi=doi)) is None
