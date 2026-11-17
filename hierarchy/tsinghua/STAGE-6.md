@@ -80,3 +80,32 @@ The source-reviewed input arithmetic projects Z from 278 to 245 if all 33 new
 PI records survive the consolidated native build. Native validation is pending;
 this source review supplies no formal recall or accuracy verdict. Stage 1
 remains open until complete originals resolve the six historical source gaps.
+
+## Official thesis records: target of 200 unexplained zero-student labs
+
+The completed prior native candidate verified Z=245. This batch adds 55
+independently reviewed official thesis summaries for 55 distinct previously
+uncovered PIs: 29 doctoral and 26 master's defense-year membership points.
+All 52 earlier thesis episodes remain unchanged, now 107 total. Defense years
+are 2025 (42), 2024 (six), 2023 (two) and 2022 (five). No degree award, alumni
+status, attendance interval or present enrollment is inferred.
+
+Faculty support was checked against actual originals: seven same-year named
+faculty cards, 35 same-year bounded named role groups and 13 explicitly stated
+role/work intervals covering the defense date. No faculty period, alias,
+population, coverage threshold or researched no-students reason is changed.
+Same-name students stay scoped to their own PI and thesis source.
+
+Independent full-source acceptance: `scratch/tsinghua-z200-source-review-1117/ACCEPTED55-FINAL.json`,
+SHA-256 `81d9797779ac11ea45bd0c9c8089f0359f510794b0542b56c9097dba7b3ee618`.
+The 80-PI collection used 138 requests; 25 PI cases remain held, and 504
+additional returned summaries await review. No query miss becomes a reason.
+The frozen reviewed batch projects Z=190; native retention remains to be
+verified through all five pipeline phases. The native recent-PhD proxy may
+count 2025 doctoral defenses; those points do not attest current enrollment.
+
+Current Stage 1 policy passes with usable sources for all 11 departments;
+the six missing historical original rosters remain coverage gaps, with none
+recovered by this batch. Stage 6 remains open against its formal Z limit of 18
+and its fixed independent recall review. Stage 9 accuracy review is unfinished.
+This source review supplies neither formal review verdict nor release approval.
