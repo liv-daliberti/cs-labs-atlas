@@ -1,0 +1,112 @@
+{
+ "school": "mit",
+ "status": "preserved_failed_pre_repair_diagnostic_no_verdict_carry",
+ "accuracy_diagnostic": {
+  "school": "mit",
+  "status": "complete_diagnostic_accuracy_review_requires_repaired_candidate_new_draw",
+  "reviewer": "codex-mit-independent-accuracy-review-1117",
+  "completed_at": "2026-11-17T18:40:13.604319+00:00",
+  "sample_sha256": "6b20e96d707b30a29a9a335842123d930b1a021be3e6a87770efac4c9fcda2d7",
+  "verdicts_sha256": "e8f27c7351cd102453cdd51d4972b5d95495af0b020b80a7992caa2d41dbdd60",
+  "screened_sha256": "e37a06d853f37b4437500635b0eec7e00b7a9f2a0564ac13a61107c3312496a5",
+  "summary_sha256": "ddbe97c51a1f90424957e358bdc27a2282ecc534b16f0202c8ebd6d67aa3af2a",
+  "sample_files_unchanged": true,
+  "counts": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  },
+  "screened_master_level_candidates": 112,
+  "errors": [
+   {
+    "sample": "lab_precision",
+    "stratum": "uniform",
+    "item": "Samuel Madden|mit_778979de61fcce89c375|https://openalex.org/W2585556906",
+    "failure_type": "not_a_paper",
+    "reason": "Actual publisher PDF is a one-page single-author CIDR2017 gong-show abstract, not a research paper (R-PAP-27).",
+    "policy": null
+   },
+   {
+    "sample": "lab_precision",
+    "stratum": "advisee_unaffiliated",
+    "item": "Dirk Englund|None|https://openalex.org/W3016568604",
+    "failure_type": "not_a_paper",
+    "reason": "Original record identifies APS March Meeting 2019 abstract 2019APS..MARR29006B; meeting abstracts are excluded (R-PAP-19).",
+    "policy": null
+   },
+   {
+    "sample": "lab_coverage",
+    "stratum": "dblp_person_page",
+    "item": "Asu Ozdaglar|conf/icml/Xiao0LO24",
+    "failure_type": "missing_from_build",
+    "reason": "Published PMLR primary PDF maps Asuman Ozdaglar2 to 2 Massachusetts Institute of Technology. Original OA wrongly assigns every author UPenn. Eligible MIT research is absent.",
+    "policy": null
+   },
+   {
+    "sample": "lab_coverage",
+    "stratum": "dblp_person_page",
+    "item": "Vivienne Sze|conf/isscc/LimBS21",
+    "failure_type": "not_a_paper",
+    "reason": "Actual two-page ISSCC session overview lists Sze as Session Moderator and introduces nine separate papers; conference front matter, not research.",
+    "policy": null
+   }
+  ],
+  "unclear": [
+   {
+    "sample": "lab_coverage",
+    "item": "Ramesh Raskar|conf/amia/GharibiGVADKR22",
+    "reason": "DBLP indexes AMIA item but no original MIT metadata/fulltext found. OpenReview primary request returned403; host stopped. Cannot infer primary school or paper-versus-abstract classification."
+   }
+  ],
+  "metrics": {
+   "lab_precision_uniform": {
+    "k": 49,
+    "n": 50,
+    "p": 0.98,
+    "lo": 0.895,
+    "hi": 0.9965,
+    "unclear": 0
+   },
+   "student_precision_uniform": {
+    "k": 50,
+    "n": 50,
+    "p": 1.0,
+    "lo": 0.9287,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_coverage": {
+    "k": 45,
+    "n": 46,
+    "p": 0.9783,
+    "lo": 0.8866,
+    "hi": 0.9962
+   },
+   "student_coverage": {
+    "k": 48,
+    "n": 48,
+    "p": 1.0,
+    "lo": 0.9259,
+    "hi": 1.0
+   }
+  },
+  "repair_receipt": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/accuracy-review/repair-receipts.json",
+  "repair_receipt_sha256": "e93520b303387bef4480e68d814729158395f3fca37d3250c7d4b02255c40d35",
+  "not_final_signoff": true,
+  "no_canonical_summary_promoted": true,
+  "notes": [
+   "Read primary or original provider affiliation evidence; source-byte dossiers retained.",
+   "Original DSpace doctoral degree/adviser/author/year checked for first50confirmed candidates through index161.",
+   "All four sampled errors preserved despite numeric thresholds passing. Two additional matching-class errors recorded.",
+   "OpenReview403 retained; no retry or bypass."
+  ]
+ },
+ "files": {
+  "accuracy/round-r3/history/mit-before-repair-20261117/sample.json": "6b20e96d707b30a29a9a335842123d930b1a021be3e6a87770efac4c9fcda2d7",
+  "accuracy/round-r3/history/mit-before-repair-20261117/verdicts.jsonl": "e8f27c7351cd102453cdd51d4972b5d95495af0b020b80a7992caa2d41dbdd60",
+  "accuracy/round-r3/history/mit-before-repair-20261117/screened.jsonl": "e37a06d853f37b4437500635b0eec7e00b7a9f2a0564ac13a61107c3312496a5",
+  "accuracy/round-r3/history/mit-before-repair-20261117/summary.json": "ddbe97c51a1f90424957e358bdc27a2282ecc534b16f0202c8ebd6d67aa3af2a",
+  "hierarchy/mit/reviewed/student-recall-check.2026-11-17-diagnostic.json": "4d3f785478e0adeaff6679cbc0b8a1752ebbd313e12cfe7e8e0049dd27568581"
+ }
+}
