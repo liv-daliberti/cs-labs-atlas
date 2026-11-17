@@ -174,7 +174,7 @@ listing_gaps = {}
   title_filter = ''
   # English-site Faculty Directory (2026-11-17, gate 1 sets of 100): www.en.cs.zju.edu.cn lists the college's faculty by the five research institutes (pinyin names). 2020: one list per institute
   # (Wayback 2020-01..2020-08); 2023: the combined page faculty_lists (2023-12-09; the per-institute pages were not captured in 2023 except industrial design). It does NOT hold the four
-  # staff/teaching/engineering lists 27060-27063 (compared against the 2021 Chinese lists: those 69 names are absent from it), so these slots are an alternative group, not a full 2020/2023 roster.
+  # staff/teaching/engineering lists 27060-27063 (compared against the 2021 Chinese lists: those 69 names are absent from it), so these slots are coverage evidence for five institutes only and are in NO listing_group: gate 1 stays open for 2020 and 2023 (independent review 2026-11-17: an alternative group would be a quiet scope reduction).
   [[departments.listings]]
   slot = "CS_MAIN EN faculty directory AI institute (2020)"
   kind = "main"
@@ -254,16 +254,6 @@ listing_gaps = {}
   from = "20190701"
   to = "20251231"
   slots = ["CS_MAIN 27003 teacher directory (first institute)", "CS_MAIN 27055 AI institute", "CS_MAIN 27056 software institute", "CS_MAIN 27057 architecture and network institute", "CS_MAIN 27058 industrial design institute", "CS_MAIN 27059 CAD&CG laboratory", "CS_MAIN 27060 experiment center", "CS_MAIN 27061 administration", "CS_MAIN 27062 basic teaching and continuing education", "CS_MAIN 27063 application engineering center"]
-  [[departments.listing_groups]]
-  name = "English-site faculty directory, five research institutes, 2020 (not the four staff lists 27060-27063)"
-  from = "20200101"
-  to = "20201231"
-  slots = ["CS_MAIN EN faculty directory AI institute (2020)", "CS_MAIN EN faculty directory software institute (2020)", "CS_MAIN EN faculty directory architecture and network security institute (2020)", "CS_MAIN EN faculty directory industrial design institute (2020)", "CS_MAIN EN faculty directory CAD&CG laboratory (2020)"]
-  [[departments.listing_groups]]
-  name = "English-site faculty lists by research institute, 2023 (not the four staff lists 27060-27063)"
-  from = "20230101"
-  to = "20231231"
-  slots = ["CS_MAIN EN faculty lists by research institute (2023)"]
   [[departments.listing_groups]]
   name = "27003 whole-college directory 2026"
   from = "20260101"

@@ -143,7 +143,7 @@ def test_zju_cs_en_faculty_list_names_and_institute():
     assert F.FORMATS['zju_cs_en_faculty_list'][1].search(EN) and F.FORMATS['zju_cs_en_faculty_list'][0]('<html></html>') == []
 
 
-def test_zju_charter_english_directory_is_coverage_only_alternative_group():
+def test_zju_charter_english_directory_is_coverage_only_and_in_no_group():
     import pathlib
     import tomllib
     import school_config as S
@@ -152,7 +152,4 @@ def test_zju_charter_english_directory_is_coverage_only_alternative_group():
     assert S.listing_group_errors(dept) == []
     en = [s for s in dept['listings'] if s['slot'].startswith('CS_MAIN EN ')]
     assert len(en) == 6 and all(s.get('coverage_only') and s['format'] == 'zju_cs_en_faculty_list' for s in en)
-    groups = {g['name']: g for g in dept['listing_groups']}
-    two = [g for n, g in groups.items() if n.startswith('English-site')]
-    assert len(two) == 2 and all('not the four staff lists 27060-27063' in g['name'] for g in two)
-    assert {s for g in two for s in g['slots']} == {s['slot'] for s in en}
+    assert not any('English' in g['name'] for g in dept['listing_groups'])  # no group may let a partial source close gate 1
