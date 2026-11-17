@@ -69,3 +69,12 @@ def test_released_school_is_not_enforced(monkeypatch):
     import school_config as S
     monkeypatch.setattr(S, 'get', lambda key: dict(status='released'))
     assert SA.items('x', 3) == ([], {})
+
+
+def test_every_audit_class_has_a_registered_data_path():
+    """2026-11-17: g3 crashed with KeyError 'audit-homes.json is not in atlas_paths.DATA_FILES' for every school."""
+    import stage_audit as SA
+    for cls in SA.CLASSES:
+        if cls == 'excluded':
+            continue
+        assert SA.json_path('purdue', cls).name == f'audit-{cls}.json'

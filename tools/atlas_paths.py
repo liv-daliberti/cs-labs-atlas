@@ -295,6 +295,10 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('pi-publication-lists.json', 'reviewed', 'hierarchy/{school}/pi-publication-lists.json', 'hierarchy/{school}/reviewed/pi-publication-lists.json'),
     ('cs-related-review.json', 'reviewed', 'hierarchy/{school}/cs-related-review.json', 'hierarchy/{school}/reviewed/cs-related-review.json'),
     ('excluded-unresolved-audit.json', 'reviewed', 'hierarchy/{school}/excluded-unresolved-audit.json', 'hierarchy/{school}/reviewed/excluded-unresolved-audit.json'),
+    ('audit-homes.json', 'reviewed', 'hierarchy/{school}/audit-homes.json', 'hierarchy/{school}/reviewed/audit-homes.json'),   # stage_audit.py (V4c) 50-row audits
+    ('audit-websites.json', 'reviewed', 'hierarchy/{school}/audit-websites.json', 'hierarchy/{school}/reviewed/audit-websites.json'),   # stage_audit.py (V4c) 50-row audits
+    ('audit-identity.json', 'reviewed', 'hierarchy/{school}/audit-identity.json', 'hierarchy/{school}/reviewed/audit-identity.json'),   # stage_audit.py (V4c) 50-row audits
+    ('audit-students.json', 'reviewed', 'hierarchy/{school}/audit-students.json', 'hierarchy/{school}/reviewed/audit-students.json'),   # stage_audit.py (V4c) 50-row audits
     ('missing-pi-review.json', 'reviewed', 'hierarchy/{school}/missing-pi-review.json', 'hierarchy/{school}/reviewed/missing-pi-review.json'),
     ('openalex-identity-review.json', 'reviewed', 'hierarchy/{school}/openalex-identity-review.json', 'hierarchy/{school}/reviewed/openalex-identity-review.json'),
     ('census-overrides-school.json', 'reviewed', 'hierarchy/{school}/census-overrides-school.json', 'hierarchy/{school}/reviewed/census-overrides-school.json'),
