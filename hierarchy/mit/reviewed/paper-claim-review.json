@@ -35,6 +35,66 @@
           "quote": "\"dc.identifier.citation\" : [ {\n      \"value\" : \"Chen, Weixuan et al. \\\"Improving Sleep-Wake Schedule Using Sleep Behavior Visualization and a Bedtime Alarm.\\\"EAI Endorsed Transactions on Future Intelligent Educational Environments 16, 8 (December 2015): e2 © 2015 ICST\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]"
         }
       ]
+    },
+    {
+      "id": "mit-acs-programme-abstract-20261117",
+      "pi": "Regina Barzilay",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3189662251"
+      },
+      "why": "The actual one-page primary PDF identifies ACS symposium control2971032 as an oral presentation abstract, not a full research paper. Existing R-PAP19 excludes meeting programme abstracts; no raw provider rewrite or broad repository exclusion.",
+      "reviewed_by": "mit_accuracy_review; parent_source_byte_recheck",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://backoffice.biblio.ugent.be/download/8575584/8575585",
+          "sha256": "e9b0aad7fa73b9ae61edaaf0d09bd34c3785607b5f56c627e68ef3716eec3c9f",
+          "quote": "CONTROL ID:  2971032\nPRESENTATION TYPE:  Oral Preferred : Consider for Sci-Mix"
+        }
+      ]
+    },
+    {
+      "id": "mit-tree-reply-commentary-20261117",
+      "pi": "Sara Beery",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4409768868",
+        "doi": "10.1016/j.tree.2025.04.002"
+      },
+      "why": "The actual four-page primary manuscript explicitly replies to a letter about an earlier horizon scan. It develops policy recommendations without new research or a review; existing commentary/reply exclusion applies only to this exact bound record. Preserve the separate original horizon-scan paper and genuine research.",
+      "reviewed_by": "mit_accuracy_review; parent_source_byte_recheck",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:dbeb6817-3696-409d-9906-f637e1ddd5ad/files/rf4752j38g",
+          "sha256": "95486806db62e51f965e1912badd7e409a298eec823687f15dc565c8eca647d3",
+          "quote": "We acknowledge the valuable perspectives presented in the letter by \nMurray et al. [1] in response to our recent publication [2]."
+        }
+      ]
+    },
+    {
+      "id": "mit-desemweb-edited-volume-20261117",
+      "pi": "Tim Berners-Lee",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2895417930"
+      },
+      "why": "Official CEURVol2165 source identifies the complete edited DeSemWeb2018 proceedings. TimBerners-Lee is an editor; individual papers have their own authors. Existing R-PAP27 excludes whole edited proceedings while retaining genuine chapters and authored monographs. Provider concatenated WebProceedings title obscured that volume context.",
+      "reviewed_by": "mit_accuracy_review; parent_source_byte_recheck",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://ceur-ws.org/Vol-2165/",
+          "sha256": "fdd9765905e6c2753d85ba26b4c6410b9f0ade7246b5d1448b7509464c17f5aa",
+          "quote": "This volume is published and copyrighted by its editors."
+        },
+        {
+          "url": "https://ceur-ws.org/Vol-2165/",
+          "sha256": "fdd9765905e6c2753d85ba26b4c6410b9f0ade7246b5d1448b7509464c17f5aa",
+          "quote": "Edited by\nRuben Verborgh *\nTobias Kuhn **\nTim Berners-Lee ***"
+        }
+      ]
     }
   ]
 }
