@@ -33,6 +33,39 @@ def test_R_PAP_33_failing_rows_drop(tag, r):
     assert papers.not_a_paper(r) == tag
 
 
+@pytest.mark.parametrize('landing', [
+    'http://cidrdb.org/cidr2017/gongshow/abstracts/cidr2017_64.pdf',
+    'https://www.cidrdb.org/cidr2025/gongshow/abstracts/another.pdf',
+    'http://ui.adsabs.harvard.edu/abs/2019APS..MARR29006B/abstract',
+    'https://adsabs.harvard.edu/abs/2019APS..MARX15008C/abstract',
+])
+def test_R_PAP_19_abstract_source_paths_override_article_or_paper_type(landing):
+    r = dict(row('An ordinary research-like title', typ='article'), landing=landing)
+    assert papers.not_a_paper(r) == 'meeting_abstract:source'
+    r['type'] = 'conference-paper'
+    assert papers.not_a_paper(r) == 'meeting_abstract:source'
+
+
+@pytest.mark.parametrize('landing', [
+    'https://cidrdb.org/cidr2017/papers/p64.pdf',
+    'https://ui.adsabs.harvard.edu/abs/2019PhRvL.12345678A/abstract',
+    'https://example.org/cidr2017/gongshow/abstracts/paper.pdf',
+    'https://ui.adsabs.harvard.edu.example.org/abs/2019APS..MARR29006B/abstract',
+])
+def test_R_PAP_19_regular_papers_and_unrelated_hosts_stay(landing):
+    assert papers.not_a_paper(dict(row('A complete research paper'), landing=landing)) is None
+
+
+@pytest.mark.parametrize('title', [
+    'Session 9 Overview: ML Processors From Cloud to Edge',
+    'Session 1 overview: Plenary Session',
+])
+def test_R_PAP_33_numbered_session_overviews_are_introductions(title):
+    assert papers.not_a_paper(row(title, 'conference-paper')) == 'session_introduction'
+    assert papers.not_a_paper(row('Overview of a new processor architecture', 'conference-paper')) is None
+    assert papers.not_a_paper(row('Session 9: a new processor architecture', 'conference-paper')) is None
+
+
 def test_R_PAP_46_short_acronym_workshop_announcement():
     r = row('KDD workshop on Evaluation and Trustworthiness of Generative AI Models',
             'conference-paper', 'KDD', doi='10.1145/3637528.3671481')

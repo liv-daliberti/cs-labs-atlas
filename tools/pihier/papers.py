@@ -181,6 +181,8 @@ ABSTRACT_VENUE = re.compile(r'(?i)meeting abstracts|bulletin of the american phy
 ABSTRACT_DOI = re.compile(r'(?i)^10\.58530/|^10\.5194/(?:egusphere|epsc|wbf)|meetingabstract|supp(?:l)?[._\-]|supplement|\.am20\d\d|\.canevol|'
                           r'/ma20\d\d|^10\.1182/blood-20\d\d-')
 ABSTRACT_TITLE = re.compile(r'(?i)^\s*abstract\s+[A-Z]{0,4}[-\s]?\d+\s*[:.]')
+ABSTRACT_SOURCE = re.compile(r'(?i)^https?://(?:(?:www\.)?cidrdb\.org/[^?#]*/gongshow/abstracts/|'
+                             r'(?:ui\.)?adsabs\.harvard\.edu/abs/\d{4}APS\.\.)')
 ABSTRACT_JOURNALS = re.compile(r'(?i)^(cancer research|cardiovascular research|circulation|blood|stroke|sleep|journal of clinical oncology|the journal of the acoustical society|'
                                r'biophysical journal|the journal of immunology|neuro-oncology|clinical cancer research|cancer immunology research|'
                                r'journal of the american society of nephrology|innovation in aging|arteriosclerosis|open forum infectious|'
@@ -245,7 +247,8 @@ def short_piece(r, pages, bare=False):
 # editorials, SPIE '(Conference Presentation)' records, repository (Zenodo/Figshare/Dryad) and dataset records, conference highlights and
 # summaries, CACM 'Research for Practice' columns, edited-volume records (a book-level DOI with no chapter suffix), and workshop or session
 # descriptions ('EE2: Workshop on ...' at ISSCC, 'VDS @ KDD 2022'). The owner's decision of the same day: conference abstracts are not papers.
-INTRODUCTION_TITLE = re.compile(r'(?i)^\s*(?:(?:session|special[- ]section|special[- ]issue|minitrack|track|mini[- ]symposium) introduction\b|introduction to the (?:session|minitrack|track)\b)')
+INTRODUCTION_TITLE = re.compile(r'(?i)^\s*(?:(?:session|special[- ]section|special[- ]issue|minitrack|track|mini[- ]symposium) introduction\b|'
+                                 r'introduction to the (?:session|minitrack|track)\b|session\s+\d+\s+overview\s*:)')
 INTERVIEW_TITLE = re.compile(r'(?i)^\s*(?:an )?interview\s*(?::|with\b)|[:\u2013\u2014-]\s*an interview with\s+[A-Z]')   # 2026-11-10 (HKUST): 'Connecting minds and machines: an interview with Miguel Nicolelis'
 PRESENTATION_TITLE = re.compile(r'(?i)\((?:conference|invited|keynote|plenary) (?:presentation|talk)\)\s*$')
 ABSTRACT_REPRINT_TITLE = re.compile(r'(?i)\(abstract reprint\)\s*$')
@@ -413,6 +416,8 @@ def not_a_paper(r, pages=None, bare=False):
     # R2: meeting abstracts (owner: abstracts are not papers)
     if ABSTRACT_VENUE.search(v):
         return 'meeting_abstract:venue'
+    if ABSTRACT_SOURCE.match(str(r.get('landing') or '')):
+        return 'meeting_abstract:source'
     if ABSTRACT_DOI.search(d) and ty in ('conference-abstract', 'article', 'other', 'paratext'):
         return 'meeting_abstract:doi'
     if ABSTRACT_TITLE.search(t):
