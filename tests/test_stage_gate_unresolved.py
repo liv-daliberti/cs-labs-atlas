@@ -154,3 +154,8 @@ def test_gate1_roster_captured_outside_the_planner_is_reported_not_failed(monkey
     assert bad == [] and counts['roster_coverage']['D']['captured_outside_planner_years'] == [2016, 2017]
     (tmp_path / 'census-faculty.json').write_text(json.dumps({'faculty': []}))
     assert _g1(monkeypatch, tmp_path, {})[0] == ['D: no roster source in any window year (a department needs at least one)']
+
+
+def test_audit_file_is_a_registered_reviewed_data_file(tmp_path, monkeypatch):
+    import atlas_paths as AP
+    assert str(AP.data('excluded-unresolved-audit.json', 'zju')).endswith('hierarchy/zju/reviewed/excluded-unresolved-audit.json')
