@@ -78,6 +78,8 @@ def research_review(monkeypatch, tmp_path, *, own=True, appointment=True, source
     hand_rows = [role] if appointment else []
     if extra_candidate:
         candidates.append(dict(candidate, dblp='https://dblp.org/pid/another/scientist'))
+        if extra_candidate == 'unrelated':
+            candidates[-1]['name'] = 'Another Scientist'
         if extra_candidate in ('complete', 'shared_identity'):
             other = json.loads(json.dumps(role))
             other['candidate_review']['ids'] = ['https://dblp.org/pid/another/scientist']
@@ -433,6 +435,14 @@ def test_scope_disposition_binds_the_complete_openalex_candidate_ids(monkeypatch
     assert decision['source_id'] == 'https://openalex.org/A100'
     assert decision['cs_basis']['openalex'] == ['https://openalex.org/A100']
     assert additions == []
+
+
+def test_reviewed_exclusion_does_not_overwrite_resolver_state_for_later_candidates(monkeypatch, tmp_path):
+    import json
+    research_review(monkeypatch, tmp_path, own=False, extra_candidate='unrelated', candidate_review=candidate_disposition())
+    decisions = json.loads((tmp_path / 'cs-related-review.json').read_text())['decisions']
+    assert [(d['name'], d['decision']) for d in decisions] == [
+        ('Avery Scientist', 'excluded_scope'), ('Another Scientist', 'pending_source_coverage')]
 
 
 def test_historical_research_still_requires_matching_native_period(monkeypatch, tmp_path):

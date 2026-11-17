@@ -939,12 +939,12 @@ def review(key):
             e, proof = disposition['entry'], disposition['proof']
             if census_alias(census, names):
                 raise SystemExit(f"{c['name']}: candidate_review targets an existing core census identity; reconcile the core PI first")
-            ids = proof['ids']
-            comp = dict(dblp=ids, **({'dblp_window': c['dblp_window']} if 'dblp_window' in c else {})) if c['source'] == 'dblp_affiliation' else dict(openalex=ids)
+            review_ids = proof['ids']
+            comp = dict(dblp=review_ids, **({'dblp_window': c['dblp_window']} if 'dblp_window' in c else {})) if c['source'] == 'dblp_affiliation' else dict(openalex=review_ids)
             d = proof['decision']
             n[d] += 1
             dec.append(dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision=d,
-                            **({'source_id': ids[0]} if len(ids) == 1 else {'source_ids': ids}),
+                            **({'source_id': review_ids[0]} if len(review_ids) == 1 else {'source_ids': review_ids}),
                             reason=proof['why'], cs_basis=comp,
                             faculty_evidence=[dict(unit=e['unit'], ladder=bool(e.get('ladder')),
                                                    **({'appointment_rank': e['appointment_rank']} if e.get('appointment_rank') else {}),
