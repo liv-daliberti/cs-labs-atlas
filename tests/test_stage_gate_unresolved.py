@@ -158,7 +158,7 @@ def test_gate1_roster_captured_outside_the_planner_is_reported_not_failed(monkey
 
 def test_audit_file_is_a_registered_reviewed_data_file(tmp_path, monkeypatch):
     import atlas_paths as AP
-    assert str(AP.data('excluded-unresolved-audit.json', 'zju')).endswith('hierarchy/zju/reviewed/excluded-unresolved-audit.json')
+    assert str(AP.data('excluded-unresolved-audit.json', 'zju')).endswith('/zju/reviewed/excluded-unresolved-audit.json')
 
 
 def test_same_name_excluded_rows_are_all_audited():
