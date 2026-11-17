@@ -6,6 +6,8 @@
  "atlas_cli/__init__.py": "entry point outside tools/ that reaches tools/ and fulltext-push/",
  "fulltext-push/add_works.py": "collector entry point or helper launched under python -I (no PYTHONPATH, no script directory on sys.path)",
  "fulltext-push/addworks_guard.py": "collector entry point launched under python -I (no script directory on sys.path), like add_works.py",
+ "fulltext-push/pubmed_pmc.py": "collector entry point launched under python -I (no script directory on sys.path), like queued_oa_fill.py",
+ "fulltext-push/hdl_requeue.py": "collector entry point launched under python -I (no script directory on sys.path), like queued_oa_fill.py",
  "fulltext-push/queued_oa_fill.py": "collector entry point launched under python -I (no script directory on sys.path), like add_works.py",
  "fulltext-push/berkeley_catalog.py": "collector entry point or helper launched under python -I (no PYTHONPATH, no script directory on sys.path)",
  "fulltext-push/bulk_oa.py": "collector entry point or helper launched under python -I (no PYTHONPATH, no script directory on sys.path)",
