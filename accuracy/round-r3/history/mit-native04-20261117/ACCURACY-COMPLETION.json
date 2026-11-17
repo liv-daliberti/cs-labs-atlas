@@ -1,0 +1,135 @@
+{
+  "reviewer": "mit_accuracy_review",
+  "review_run": "native04",
+  "status": "complete_fixed_fresh_review_with_confirmed_errors; not a clean closeout",
+  "sample_sha256": "c7021402c675f4d713aecbfd0b5357108e1bd534c9a033511d190c868db03aca",
+  "sample_untouched": true,
+  "prior_verdicts_carried": false,
+  "source_originals_may_be_reused": true,
+  "counts": {
+    "lab_precision": 65,
+    "student_precision": 65,
+    "lab_coverage": 50,
+    "student_coverage": 50
+  },
+  "verdicts": {
+    "correct": 226,
+    "incorrect": 3,
+    "unclear": 1
+  },
+  "ordered_doctoral_screening": {
+    "confirmed": 50,
+    "non_doctoral_screened": 108,
+    "last_candidate_index": 157,
+    "saved_candidate_pool": 200
+  },
+  "metrics": {
+    "lab_precision_uniform": {
+      "k": 49,
+      "n": 50,
+      "p": 0.98,
+      "lo": 0.895,
+      "hi": 0.9965,
+      "unclear": 0
+    },
+    "student_precision_uniform": {
+      "k": 50,
+      "n": 50,
+      "p": 1.0,
+      "lo": 0.9287,
+      "hi": 1.0,
+      "unclear": 0
+    },
+    "lab_coverage": {
+      "k": 47,
+      "n": 47,
+      "p": 1.0,
+      "lo": 0.9244,
+      "hi": 1.0
+    },
+    "student_coverage": {
+      "k": 46,
+      "n": 47,
+      "p": 0.9787,
+      "lo": 0.8889,
+      "hi": 0.9962
+    }
+  },
+  "scientific_files": {
+    "pis.json": "268c9174e984878dbb27e929a7617d95ec19359d3eb41a7e830d8b6d719a9f72",
+    "students.json": "e36c9a8d0c7e2e9930e07e706bfb3a71a48f53fad6d4e00075be29ba9a71558d",
+    "lab_papers.jsonl.gz": "839096b5849d30dd1a4273f455f43fff86005f9a4e1eef4a4fe18c3f42b08d97",
+    "student_papers.jsonl.gz": "c326987a7e95003b0a21534786eab68f358573db947495c70a96c696051d0c61",
+    "copies.json": "5da8fc5da575b22cbf33651fbcb8163e8f3e099745b31428ddca33d51282fcc6"
+  },
+  "scientific_files_now": {
+    "pis.json": "268c9174e984878dbb27e929a7617d95ec19359d3eb41a7e830d8b6d719a9f72",
+    "students.json": "e36c9a8d0c7e2e9930e07e706bfb3a71a48f53fad6d4e00075be29ba9a71558d",
+    "lab_papers.jsonl.gz": "839096b5849d30dd1a4273f455f43fff86005f9a4e1eef4a4fe18c3f42b08d97",
+    "student_papers.jsonl.gz": "c326987a7e95003b0a21534786eab68f358573db947495c70a96c696051d0c61",
+    "copies.json": "5da8fc5da575b22cbf33651fbcb8163e8f3e099745b31428ddca33d51282fcc6"
+  },
+  "errors": [
+    {
+      "sample": "lab_precision",
+      "item": "Sara Beery|mit_oa_W4409768868|https://openalex.org/W4409768868",
+      "failure_type": "not_a_paper",
+      "reason": "Actual author manuscript is a reply to Murray et al. letter on their prior horizon scan; body develops that discussion, not a new research paper."
+    },
+    {
+      "sample": "lab_precision",
+      "item": "Regina Barzilay|None|https://openalex.org/W3189662251",
+      "failure_type": "not_a_paper",
+      "reason": "Actual one-page ACS symposium submission identifies CONTROL ID2971032, oral presentation and ABSTRACT BODY; it is a meeting programme abstract."
+    },
+    {
+      "sample": "student_coverage",
+      "item": "Pablo Parrilo|mit_thesis_author_ddc8ede3158f4fa6a09f",
+      "failure_type": "student_not_linked",
+      "reason": "Same unique2018 PhD thesis lists full catalog name Cifuentes Pardo, Diego Fernando and responsibility “by Diego Cifuentes.” Original2016/2017 papers name Diego Cifuentes and Parrilo at MIT LIDS; current student has zero links. Primary-supported short form is missing."
+    }
+  ],
+  "unclear": [
+    {
+      "item": "Ramesh Raskar|conf/amia/GharibiGVADKR22",
+      "reason": "PI-owned original DBLP establishes coauthorship but no accessible saved primary affiliation establishes MIT lab work. Previously captured OpenReview403 is respected; original source was not retried or bypassed."
+    }
+  ],
+  "metadata_notes": [
+    "Torralba Places original provider binds both JOV representative metadata and full arXiv1610.02055 research manuscript. Membership supported by directly bound full manuscript; representative metadata/version ambiguity retained, not an assertion that the exact JOV object is a full paper. Publisher DOI could not be read with web tool; no new genre correction proposed without primary proof.",
+    "GAN multi-author technical CS extended abstract retained under explicit R-PAP19 exception, with v1/v3 distinction preserved.",
+    "Student59 Japanese JST indexed record is the same Twan Koolen; language/publication genre is not declared a confirmed scientific error from provider title alone."
+  ],
+  "source_dossier_hashes": {
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/student-roster-original-captures.json": "05fb77216b933050e245f1f4734a7db099f5c4eaab74cc51b5f58adc668a33f1",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/supplemental-original-provider-records.json": "74985975ffc4acc59c89129e55920fee5e71c451a3cfa951ca11727ef6286206",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/student49-independent-owned-publication.json": "ae3760a3e805637b49cc913ed7e86cb68cf376fdcb5084bfa95e18a1cdc37dac",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/repair-receipts.json": "9aec6f011939d7ddc16dbd3a99101b1e21068e1ce8e04678e06d8da0e1ad7bf2",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/review-run.json": "294f7b2d591c8ff8bbcdf5db483521db31b273411260875ce847a77d3df2e0b4",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/exact-thesis-shortform-class-candidates.json": "00e738b778bfb4d8f7934e3eb43ec38605745d75a4640c1d04ccf26947e91280",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/negative-coauthorship-source-scan.json": "223580666fa9f8239dca6dccc3d473207d470d28a2106604b6b98f87a0c191c3",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/doctoral-coverage-first50.json": "13ca99ce86a533616184c542071144f6e01ec782fed3ccf6d9a86bddaad05424",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/naroa-original-source.json": "3a1d5deba8d9ec8c2ba4dac3d07465db2e4357ce891ee065526096e0b83aa1f4",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/EXACT-THESIS-SHORTFORM-CLASS-REVIEW.json": "6341068b62236c987e32e1da410a5f743c0e15ad3061284ed2a56bdb89282982",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/PREPARED-WORKFLOW.json": "085b09887a29545568fb3e152ac8786c432d61ec8746e47903ce19c8c87c15d4",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/aloni-negative-course-primary-research.json": "3e9972d6aaccfbe4dd660cdcffd9c6bd20033524507f04e1d8617960c8a73d7b",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/PAPER-REJECT-INDEPENDENT-REVIEW.json": "e6914d1a17ceea238f2646df48098911b804143d3d3b194bbfd7a1c285cc7d47",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/cifuentes-identity-and-coverage-receipt.json": "dfcf4ddb4b1fba046fb133a760b8d3068ecfd7e6edec89c5dbc5c6f18db460de",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/missing-original-sweep-works.json": "526f8a8583b041ada939adb92b847625ab74ef391ac4393eeb38c39686acb422",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/repair-receipts-in-progress.json": "0d60a3c0b075b669d6235370c2668a8d8a3fc20632725e08f6ff16b381df6c0c",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/additional-original-cache-responses.json": "c2508fe33b36c6b8dda65ba0ff2eff1a6777fa7e341a32e955c3e3b4e614be83",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/primary-first-two-pages.json": "b5effb5f8adb4d06cbb6e32f803f15a8cc13f8249ba98b054dd515b910c4b5fa",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/student-precision-original-thesis-items.json": "4692a8ede25836f7bc8eed946434635c6c4b01c4ec3c56fa8c2e1c1b424fb036",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/confirmed-doctoral-indices.json": "5f92b9e4b7ef5462d3ca68f7b7bc6bb9032026f903326d5e76a5a0e3072c90dc",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/original-evidence.json": "693b8baa555f403a7f9487cedba6d5209c5e86ba13c685884f0d680bc10a994e",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/doctoral-screening-evidence.json": "b728a0b61f5a38ea922185fcc8959355cf458bd13786729426c34b0c6c0ed498",
+    "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-04/accuracy-review/doctoral-primary-coauthorship.json": "b203cfeae0cc013fee7a2131a215a61c69e041209d6a6257fdbdf4f26cc84497"
+  },
+  "output_hashes": {
+    "/n/fs/resemble/homogenizing-science/worktrees/mit-gates-1117/accuracy/round-r3/sample-mit.json": "c7021402c675f4d713aecbfd0b5357108e1bd534c9a033511d190c868db03aca",
+    "/n/fs/resemble/homogenizing-science/worktrees/mit-gates-1117/accuracy/round-r3/verdicts-mit.jsonl": "cbcdda10222312506f84a9d98595d089877b51f69acb395f61db39b2fb7af918",
+    "/n/fs/resemble/homogenizing-science/worktrees/mit-gates-1117/accuracy/round-r3/screened-mit.jsonl": "ed78331c3594c95265ba9ae65a80423bcdcf54c399e4e59b5a222c05c5b27a2a",
+    "/n/fs/resemble/homogenizing-science/worktrees/mit-gates-1117/accuracy/round-r3/summary-mit.json": "1158c86d99c26ed9ffad623c496e49d734d739c0c0057df7b798d847ddd1be9a"
+  },
+  "actions": "Only worktree accuracy outputs and private scratch review receipts written. No scientific source/native/canonical changes. No blocked host retries or access-control bypasses."
+}
