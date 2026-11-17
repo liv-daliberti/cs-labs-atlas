@@ -25,7 +25,6 @@ Where it is written: a store-sourced school (charter [evidence] source = "store"
 and draw; not a reviewed-file layer, so export/check are untouched); every other school keeps hierarchy/<key>/reviewed/audit-<class>.json.
 """
 import argparse
-import collections
 import datetime
 import hashlib
 import json
