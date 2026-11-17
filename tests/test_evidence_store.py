@@ -2,7 +2,6 @@
 import json
 import sqlite3
 from contextlib import closing
-from pathlib import Path
 
 import pytest
 
@@ -179,8 +178,8 @@ def test_import_never_overwrites_a_store_sourced_store(root, flagged_aa, tmp_pat
 
 def test_overlay_of_a_store_sourced_school_takes_only_its_own_files_from_the_store(root, flagged_aa, tmp_path, monkeypatch):
     import overlay_root as O
-    monkeypatch.setattr(O, 'build', lambda school, out, **kw: [(Path(out) / 'hierarchy' / school / 'reviewed').mkdir(parents=True, exist_ok=True), (Path(out) / 'hierarchy' / 'reviewed').mkdir(parents=True, exist_ok=True)])
+    monkeypatch.setattr(O, 'build', lambda school, out, **kw: [d.mkdir(parents=True, exist_ok=True) for d in (E.school_dir(school, out), E.shared_dir(out))])
     E.record('aa', 'census-additions.json', {'name': 'New P'}, source='s', decided_by='w', stores_dir=flagged_aa)
     n = E.overlay('aa', tmp_path / 'ov', flagged_aa, root)
-    assert n > 0 and not list((tmp_path / 'ov' / 'hierarchy' / 'reviewed').glob('*.json'))
-    assert 'New P' in (tmp_path / 'ov' / 'hierarchy/aa/reviewed/census-additions.json').read_text()
+    assert n > 0 and not list(E.shared_dir(tmp_path / 'ov').glob('*.json'))
+    assert 'New P' in (E.school_dir('aa', tmp_path / 'ov') / 'census-additions.json').read_text()
