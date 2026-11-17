@@ -193,6 +193,10 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `labpage-handcheck.json` | reviewed | `hierarchy/{school}/labpage-handcheck.json` | `hierarchy/{school}/reviewed/labpage-handcheck.json` | - | <100MB |
 | `gate-exceptions.json` | reviewed | `hierarchy/{school}/gate-exceptions.json` | `hierarchy/{school}/reviewed/gate-exceptions.json` | - | <1MB |
 | `excluded-unresolved-audit.json` | reviewed | `hierarchy/{school}/excluded-unresolved-audit.json` | `hierarchy/{school}/reviewed/excluded-unresolved-audit.json` | - | <1MB |
+| `audit-homes.json` | reviewed | `hierarchy/{school}/audit-homes.json` | `hierarchy/{school}/reviewed/audit-homes.json` | - | <1MB |
+| `audit-websites.json` | reviewed | `hierarchy/{school}/audit-websites.json` | `hierarchy/{school}/reviewed/audit-websites.json` | - | <1MB |
+| `audit-identity.json` | reviewed | `hierarchy/{school}/audit-identity.json` | `hierarchy/{school}/reviewed/audit-identity.json` | - | <1MB |
+| `audit-students.json` | reviewed | `hierarchy/{school}/audit-students.json` | `hierarchy/{school}/reviewed/audit-students.json` | - | <1MB |
 | `labpage-departure-review.json` | reviewed | `hierarchy/labpage-departure-review.json` | `hierarchy/reviewed/labpage-departure-review.json` | - | <100MB |
 | `labpage-audit-summary.json` | derived | `hierarchy/labpage-audit-summary.json` | `hierarchy/derived/labpage-audit-summary.json` | - | <100MB |
 | `tobagi-review.json` | reviewed | `hierarchy/{school}/tobagi-review.json` | `hierarchy/{school}/reviewed/tobagi-review.json` | - | <100MB |
