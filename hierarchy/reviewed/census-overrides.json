@@ -3968,7 +3968,7 @@
   },
   "Christopher Terman": {
    "no_papers": true,
-   "why_no_papers": "2026-11-04 (reviewed): Senior Lecturer (teaching) listed 2016-2026 ('Christopher Terman Senior Lecturer' in 2016, 'Senior Lecturer (Emeritus)' in 2026). His DBLP person 159/3667 holds 4 records, none dated 2016 or later; his OpenAlex id A5039186317 ('Christopher J. Terman') holds 0 works 2016-2026 (API, 2026-11-04). No work in the window.",
+   "why_no_papers": "2026-11-17 PI-level review: zero attributed research papers in 2016-2026 in the selected native package and newer MIT candidate. Exact retained DBLP persons 159/3667 and 04/6988 have no record in the window; the retained OpenAlex author A5039186317 has zero results from 2016 onward (captured 2026-10-22). PI-owned homepage and CV list pre-window publications. This is a bounded corpus result, not proof of no output anywhere or after the retained snapshot.",
    "no_papers_evidence": [
     {
      "url": "https://web.archive.org/web/20160104094659id_/http://www.eecs.mit.edu/people/faculty-advisors",
@@ -3983,15 +3983,74 @@
      "quote": "Christopher Terman Senior Lecturer (Emeritus) , [CS]",
      "observed": "2026",
      "kind": "eecs_directory_2026"
+    },
+    {
+     "url": "https://api.openalex.org/works?filter=author.id%3AA5039186317%2Cfrom_publication_date%3A2016-01-01&per-page=200&cursor=%2A&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Cauthorships",
+     "sha256": "6603149cdaf497f951a7fd5eaedfa399a3230a0be4d1bf4d02efb4ab3b309eb6",
+     "quote": "\"count\": 0",
+     "observed": "2026-10-22",
+     "kind": "openalex_author_work_query"
+    },
+    {
+     "url": "https://people.csail.mit.edu/cjt/resume.html",
+     "sha256": "662ab751c3921497f3f6b0247554f5aaab26282f1396b9b860fe47eb86a2a8cd",
+     "quote": "Senior Lecturer Emeritus , Dept. of EECS (7/18 - present) Senior Lecturer , Dept. of EECS (4/97 - 6/18)",
+     "observed": "2026-11-17",
+     "kind": "own_homepage_statement"
     }
    ],
-   "unproven_years": [
-    2022,
-    2023,
-    2024,
-    2025
+   "unproven_years": [],
+   "why_unproven": "Resolved 2026-11-17 from the PI-owned CV: Senior Lecturer 1997-04 through 2018-06, then Senior Lecturer Emeritus from 2018-07 onward. Retain emeritus status explicitly; do not infer active faculty service.",
+   "periods": [
+    {
+     "id": "terman_senior_lecturer_199704_201806",
+     "start": "1997-04",
+     "end": "2018-06",
+     "datePrecision": "month",
+     "title": "Senior Lecturer",
+     "evidence": [
+      {
+       "url": "https://people.csail.mit.edu/cjt/resume.html",
+       "sha256": "662ab751c3921497f3f6b0247554f5aaab26282f1396b9b860fe47eb86a2a8cd",
+       "quote": "Senior Lecturer Emeritus , Dept. of EECS (7/18 - present) Senior Lecturer , Dept. of EECS (4/97 - 6/18)",
+       "observed": "2026-11-17",
+       "kind": "own_homepage_statement"
+      }
+     ],
+     "note": "Explicit PI-owned CV appointment; active lecturer period ends June 2018."
+    },
+    {
+     "id": "terman_emeritus_201807_ongoing",
+     "start": "2018-07",
+     "end": null,
+     "asof": "2026-11-17",
+     "datePrecision": "month",
+     "title": "Senior Lecturer Emeritus",
+     "evidence": [
+      {
+       "url": "https://people.csail.mit.edu/cjt/resume.html",
+       "sha256": "662ab751c3921497f3f6b0247554f5aaab26282f1396b9b860fe47eb86a2a8cd",
+       "quote": "Senior Lecturer Emeritus , Dept. of EECS (7/18 - present) Senior Lecturer , Dept. of EECS (4/97 - 6/18)",
+       "observed": "2026-11-17",
+       "kind": "own_homepage_statement"
+      }
+     ],
+     "note": "Explicit emeritus affiliation from July 2018 through the CV observation. This is not an assertion of an active research laboratory or a primary full-time appointment."
+    }
    ],
-   "why_unproven": "Searched 2026-11-11 (tools/periods_school.py gaps mit, scratch stage3-released-1110 gaps-mit-r1..r4 logs): for each gap year [2022, 2023, 2024, 2025] the Wayback CDX was queried for the PI's own page and the 5 unit pages/listing URLs tried (CSAIL/EECS profile, people listing, role/faculty and the CSAIL directory API); no archived 200 capture of those years names the PI with a ladder professor title, so the years prove nothing (R-PAP-01)."
+   "superseded_appointment_gap_review": {
+    "unproven_years": [
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "why_unproven": "Searched 2026-11-11 (tools/periods_school.py gaps mit, scratch stage3-released-1110 gaps-mit-r1..r4 logs): for each gap year [2022, 2023, 2024, 2025] the Wayback CDX was queried for the PI's own page and the 5 unit pages/listing URLs tried (CSAIL/EECS profile, people listing, role/faculty and the CSAIL directory API); no archived 200 capture of those years names the PI with a ladder professor title, so the years prove nothing (R-PAP-01)."
+   },
+   "aliases": [
+    "Christopher J. Terman",
+    "Chris Terman"
+   ]
   },
   "Michael Sipser": {
    "no_papers": true,

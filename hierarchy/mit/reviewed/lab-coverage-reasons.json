@@ -8,5 +8,79 @@
     "labpage audit: no lab page found for this row"
    ]
   }
+ },
+ "Christopher Terman": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Christopher Terman: the linked PI-owned homepage, full CV, EECS profile and CSAIL PI profile have no current-student or dated-alumni roster. The full retained 2016-2026 DSpace adviser query has one page (23 total results across the queried PIs) and exactly three records whose advisor field names Terman: Jonathan Terry (2016 MEng), Stephan Boyer (2016 MEng), and Zachary Sather (2017 MEng, repository lists Reza Nezafat and Christopher Terman). The public SuperUROP directory filtered by its exact Christopher Terman adviser term 593 returns zero results across all years on 2026-11-17. Preserve the three as repository-supported advising identities, not an exhaustive lifetime lab census. Course enrollment, classmates, all members of umbrella CSAIL, and thesis committee-chair signatures do not establish supervision. No public master roster or additional source-backed in-window student was found.",
+   "sources_checked": [
+    "https://people.csail.mit.edu/cjt/ (SHA-256 52ac8e40e26326e16d70bc6d7f21242d4e3946708523dc2ae12df00851c98d60): complete owned page and its CV/member navigation",
+    "https://people.csail.mit.edu/cjt/resume.html (SHA-256 662ab751c3921497f3f6b0247554f5aaab26282f1396b9b860fe47eb86a2a8cd): complete CV; dated lecturer/emeritus roles, publications, no advisee list",
+    "https://www.csail.mit.edu/person/chris-terman (SHA-256 75ceed1737c7eb1787c423c3d47dadca265eb92a8e9d659a14613d4a2c830b37): PI title and semi-retirement in 2018; no member roster",
+    "https://www.eecs.mit.edu/people/christopher-terman/ (SHA-256 1c81a1dd7ff2aa48525492349d5430b947174c6b7d9fb8162c6af7734edb7c87): school profile linking CSAIL page, no member roster",
+    "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28Terman+OR+Sipser+OR+Berners+OR+Goemans+OR+Sussman+OR+Cheng-Zhi+OR+%28Huang+AND+Anna%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.issued%2CASC (SHA-256 27609b2edac2a4a9d7fade188b94f2cdcdf6e69479cae9ed0d319634951bfb53): complete retained query page; metadata snapshot 2026-10-22",
+    "https://superurop.mit.edu/wp-json/scholars/v1/filter (read-only POST page=1, limit=100, filters[advisor][]=593; SHA-256 85709bf1d0bdc96963b5ed128bf08cf3dc07960246d0d314d54aa11f3c7ee095): 0 Results"
+   ],
+   "reviewed_at": "2026-11-17",
+   "evidence": [
+    {
+     "url": "https://people.csail.mit.edu/cjt/resume.html",
+     "sha256": "662ab751c3921497f3f6b0247554f5aaab26282f1396b9b860fe47eb86a2a8cd",
+     "quote": "Senior Lecturer Emeritus , Dept. of EECS (7/18 - present) Senior Lecturer , Dept. of EECS (4/97 - 6/18)",
+     "observed": "2026-11-17",
+     "kind": "own_homepage_statement"
+    },
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28Terman+OR+Sipser+OR+Berners+OR+Goemans+OR+Sussman+OR+Cheng-Zhi+OR+%28Huang+AND+Anna%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.issued%2CASC",
+     "sha256": "27609b2edac2a4a9d7fade188b94f2cdcdf6e69479cae9ed0d319634951bfb53",
+     "quote": "by Jonathan Terry."
+    },
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28Terman+OR+Sipser+OR+Berners+OR+Goemans+OR+Sussman+OR+Cheng-Zhi+OR+%28Huang+AND+Anna%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.issued%2CASC",
+     "sha256": "27609b2edac2a4a9d7fade188b94f2cdcdf6e69479cae9ed0d319634951bfb53",
+     "quote": "by Stephan Boyer."
+    },
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28Terman+OR+Sipser+OR+Berners+OR+Goemans+OR+Sussman+OR+Cheng-Zhi+OR+%28Huang+AND+Anna%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.issued%2CASC",
+     "sha256": "27609b2edac2a4a9d7fade188b94f2cdcdf6e69479cae9ed0d319634951bfb53",
+     "quote": "by Zachary Sather."
+    }
+   ]
+  },
+  "papers": {
+   "code": "no_attributed_paper_in_supported_scope",
+   "why": "2026-11-17 PI-level review: zero attributed research papers in 2016-2026 in the selected native package and newer MIT candidate. Exact retained DBLP persons 159/3667 and 04/6988 have no record in the window; the retained OpenAlex author A5039186317 has zero results from 2016 onward (captured 2026-10-22). PI-owned homepage and CV list pre-window publications. This is a bounded corpus result, not proof of no output anywhere or after the retained snapshot.",
+   "sources_checked": [
+    "Frozen DBLP 2026-09-01: exact person 159/3667, publication years 1983, 1999, 2000, 2015; exact person 04/6988, years 1997, 2006, 2008, 2009",
+    "https://api.openalex.org/works?filter=author.id%3AA5039186317%2Cfrom_publication_date%3A2016-01-01&per-page=200&cursor=%2A&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Cauthorships (SHA-256 6603149cdaf497f951a7fd5eaedfa399a3230a0be4d1bf4d02efb4ab3b309eb6): meta.count = 0",
+    "https://people.csail.mit.edu/cjt/ and https://people.csail.mit.edu/cjt/resume.html: selected and full owned publication lists contain no 2016-2026 entry"
+   ],
+   "reviewed_at": "2026-11-17",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/works?filter=author.id%3AA5039186317%2Cfrom_publication_date%3A2016-01-01&per-page=200&cursor=%2A&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Cauthorships",
+     "sha256": "6603149cdaf497f951a7fd5eaedfa399a3230a0be4d1bf4d02efb4ab3b309eb6",
+     "quote": "\"count\": 0",
+     "observed": "2026-10-22",
+     "kind": "openalex_author_work_query"
+    },
+    {
+     "url": "https://people.csail.mit.edu/cjt/resume.html",
+     "sha256": "662ab751c3921497f3f6b0247554f5aaab26282f1396b9b860fe47eb86a2a8cd",
+     "quote": "Senior Lecturer Emeritus , Dept. of EECS (7/18 - present) Senior Lecturer , Dept. of EECS (4/97 - 6/18)",
+     "observed": "2026-11-17",
+     "kind": "own_homepage_statement"
+    }
+   ]
+  },
+  "review": {
+   "state": "source_review_complete_with_documented_limits",
+   "reviewed_by": "codex-terman-close-1117",
+   "reviewed_at": "2026-11-17",
+   "scope": "Publicly evidenced PI-level completeness for the 2016-2026 atlas window; not exhaustive lifetime advising or publications.",
+   "website_status_interpretation": "none_found + pi_homepage_only_no_lab_site + coverage=website is valid per docs/LAB-PAGES.md; no website-register correction is needed.",
+   "thesis_pdf_check": "The direct Sather original request returned HTTP 429, Retry-After 900. No immediate retry or alternate endpoint was used. Its current admission remains explicitly repository-adviser-metadata-backed; no PDF-only supervision claim is made.",
+   "closeout_requires_native_projection": true
+  }
  }
 }
