@@ -297,6 +297,13 @@ def has_source_bytes(source):
     return bool(source.get('sha256') or any(row.get('sha256') for row in source.get('snapshots', [])))
 
 
+def has_readable_source(source):
+    """Saved redirects/errors are bytes, but not successful source responses."""
+    return any(row.get('sha256') and not row.get('capture_error')
+               and (row.get('status') == 200 or row.get('kind') == 'saved_source_file')
+               for row in [source] + list(source.get('snapshots', [])))
+
+
 def pi_context(pi):
     # Derived publication counters inside piBasis are not identity evidence.
     context = {k: pi.get(k) for k in ('pi', 'personIds', 'names', 'rank', 'title', 'departments', 'periods')}
@@ -461,12 +468,14 @@ def review_batch(board, limit=20):
         shared = {key: binding[key] for key in ('url', 'source', 'access_refusal')}
         # Empty leads are individual research tasks, not one shared source.
         key = digest(shared) if binding['url'] else case['id']
-        group = groups.setdefault(key, dict(shared, next_action=case['next_action'], cases=[]))
+        group = groups.setdefault(key, dict(shared, next_action=case['next_action'],
+                                           readable_saved_source=has_readable_source(binding['source']), cases=[]))
         group['cases'].append(copy.deepcopy(case))
-    priority = {'inspect_saved_source': 0, 'find_owned_roster': 1,
-                'recover_exact_source_or_research_lead': 2, 'respect_recorded_refusal': 3}
+    priority = {'inspect_saved_source': 0, 'find_owned_roster': 2,
+                'recover_exact_source_or_research_lead': 3, 'respect_recorded_refusal': 4}
     sources = sorted(groups.values(), key=lambda group: (
-        priority[group['next_action']], min(case['native_members'] for case in group['cases']),
+        priority[group['next_action']] + int(group['next_action'] == 'inspect_saved_source' and not group['readable_saved_source']),
+        min(case['native_members'] for case in group['cases']),
         -len(group['cases']), group['url'] or '', digest(group['source'])))
     selected = sources[:limit]
     return dict(school=board['school'], research=copy.deepcopy(board['research']),

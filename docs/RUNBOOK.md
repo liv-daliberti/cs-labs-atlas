@@ -213,6 +213,9 @@ The batch groups exact URL/source versions and carries each PI's complete case
 and binding separately. Saved sources for sparse labs come first. Missing leads
 remain individual tasks; a recorded refusal is never a request to retry that host.
 `capture_stores` names the existing registered stores; source bytes remain there.
+Successful saved responses precede saved redirect/error/challenge bodies, which
+remain visible as `readable_saved_source: false`; a cached response body alone
+does not establish readable roster evidence.
 
 For each completed case, retain its `id` and `binding` and explicitly fill:
 

@@ -229,6 +229,23 @@ def test_batch_keeps_unknown_leads_separate_and_prioritizes_saved_sparse_sources
             Q.review_batch(board, limit)
 
 
+def test_saved_redirect_bodies_do_not_displace_successful_sources_even_for_sparser_labs(research):
+    args, _, _ = research
+    args['pis'] += [dict(pi='Redirect Zero'), dict(pi='Challenge Zero')]
+    for pi, source in [('Redirect Zero', {'status': 302, 'sha256': 'b' * 64}),
+                       ('Challenge Zero', {'status': 200, 'sha256': 'c' * 64, 'capture_error': 'bot-challenge'})]:
+        url = 'https://lab.example/' + pi
+        args['leads'][pi] = {url}
+        args['versions'][url] = source
+    args['students'] = {p['pi']: [dict(name='Member')] for p in args['pis'][:2]}
+    batch = Q.review_batch(Q.plan(**args), limit=3)
+    assert batch['sources'][0]['readable_saved_source']
+    assert not any(group['readable_saved_source'] for group in batch['sources'][1:])
+    assert all(case['native_members'] == 1 for case in batch['sources'][0]['cases'])
+    assert Q.has_readable_source(dict(status=404, sha256='d' * 64,
+                                    snapshots=[dict(status=200, sha256='e' * 64)]))
+
+
 def test_review_cli_refreshes_bindings_and_never_overwrites_previous_work(research, tmp_path, monkeypatch, capsys):
     args, resolve, _ = research
     board = Q.plan(**args)
