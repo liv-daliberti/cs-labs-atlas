@@ -1,0 +1,149 @@
+{
+ "status": "FAIL",
+ "source_commit": "4ce439644756b8e67f220ed699be7015c1ccf759",
+ "hierarchy_producer": 32324246,
+ "completion_job": 32324523,
+ "seed": 352361735,
+ "draw_sha256": "2456b6454fbf2ef2897ffeca2506ba8d9429d1b944832f2bb0448d3117a31321",
+ "binds": {
+  "students.json": "cdd8a71fce25de41ef77af0f7fbf98d455b54e913feecd3d3c27dd7bcee39389",
+  "pis.json": "c2e595b0d709bedeb9f72c20a6c353b8d43481be89f2247a601f477ec667b7e1"
+ },
+ "worksheet_sha256": "3a9b329c3d4ebd7a5fcc98dd59ea68263d15086cc24e7ef260bb0d02df322e03",
+ "evaluation": {
+  "findings": [
+   "Aviv Shachak: extra page https://ischool.utoronto.ca/faculty-profile/aviv-shachak/ is not on the host of the PI's page (ihpme.utoronto.ca); another host cannot validate a name",
+   "Sorin P. Voinigescu: 3 listed name(s) are not on any captured page of the PI (e.g. 'Julie McIntosh')"
+  ],
+  "numbers": {
+   "sample": 30,
+   "readable": 15,
+   "unverifiable": 15,
+   "unverifiable_share": 0.5,
+   "unverifiable_reasons": {
+    "no_member_list_page": 9,
+    "list_not_current": 4,
+    "robots_disallowed": 1,
+    "page_unreachable": 1
+   },
+   "names_listed": 917,
+   "names_excluded": 62,
+   "excluded_share": 0.068,
+   "proven_external_school": 9,
+   "x_counted_exclusions": 53,
+   "x_counted_share": 0.058,
+   "undated_excluded": 322,
+   "eligible_names": 533,
+   "recorded_names": 94,
+   "r1_strict_recall": 0.184,
+   "r2_est_current_phd_recall": 0.669,
+   "r2_bootstrap_p5": 0.396,
+   "sizes": {
+    "0": 3,
+    "1-2": 44,
+    "3+": 169
+   },
+   "largest_gaps": [
+    "Roman Genov (285 missing)",
+    "Hugh H. T. Liu (49 missing)",
+    "Alison Olechowski (43 missing)"
+   ]
+  }
+ },
+ "independent_review": {
+  "status": "independent source review; current worksheet fails coverage",
+  "seed": 352361735,
+  "binds": {
+   "students.json": "cdd8a71fce25de41ef77af0f7fbf98d455b54e913feecd3d3c27dd7bcee39389",
+   "pis.json": "c2e595b0d709bedeb9f72c20a6c353b8d43481be89f2247a601f477ec667b7e1"
+  },
+  "counts": {
+   "actual_raw_quote_checks": 2065,
+   "listed_name_checks": 917,
+   "verified_raw_bodies": 44,
+   "fixed_pi_rows": 30
+  },
+  "source_text_findings": [
+   {
+    "pi": "Sorin P. Voinigescu",
+    "kind": "literal_inline_name_tokens",
+    "names": [
+     "Julie McIntosh",
+     "Theo Chalvatzis",
+     "Vivek Dhande"
+    ]
+   }
+  ],
+  "evaluation": {
+   "findings": [
+    "Aviv Shachak: extra page https://ischool.utoronto.ca/faculty-profile/aviv-shachak/ is not on the host of the PI's page (ihpme.utoronto.ca); another host cannot validate a name",
+    "Sorin P. Voinigescu: 3 listed name(s) are not on any captured page of the PI (e.g. 'Julie McIntosh')",
+    "signoff: a fresh reviewer must sign off (signoff.reviewer, signoff.date)"
+   ],
+   "numbers": {
+    "sample": 30,
+    "readable": 15,
+    "unverifiable": 15,
+    "unverifiable_share": 0.5,
+    "unverifiable_reasons": {
+     "no_member_list_page": 9,
+     "list_not_current": 4,
+     "robots_disallowed": 1,
+     "page_unreachable": 1
+    },
+    "names_listed": 917,
+    "names_excluded": 62,
+    "excluded_share": 0.068,
+    "proven_external_school": 9,
+    "x_counted_exclusions": 53,
+    "x_counted_share": 0.058,
+    "undated_excluded": 322,
+    "eligible_names": 533,
+    "recorded_names": 94,
+    "r1_strict_recall": 0.184,
+    "r2_est_current_phd_recall": 0.669,
+    "r2_bootstrap_p5": 0.396,
+    "sizes": {
+     "0": 3,
+     "1-2": 44,
+     "3+": 169
+    },
+    "largest_gaps": [
+     "Roman Genov (285 missing)",
+     "Hugh H. T. Liu (49 missing)",
+     "Alison Olechowski (43 missing)"
+    ]
+   }
+  },
+  "no_admissions_changed": true,
+  "no_redraw": true
+ },
+ "qualification_limits": "Reviewed fixed30 complete packets, actual raw source bindings/quotes and primary role/date/school contexts. FAILED: R1=.184 below .90 and unresolved explicit cross-host/inline-name findings. Sorin five project participants remain conservative uncertain eligibility; no admission asserted. Genov name-prefix conflict and28 source-form identity holds preserved. This signature records an honest failed review, not acceptance. Drawer/fillers are separate agents. No seed or native/model input change.",
+ "contributors": [
+  {
+   "assignment_id": "A",
+   "worker": "/root/toronto_recall",
+   "filled_by": "codex-agent-A-primary-source-reader-photo-fixed-1116",
+   "part": "/n/fs/resemble/homogenizing-science/scratch/toronto-recall-photo-fixed-1116/part-A/part-complete.json",
+   "sha256": "2e7220d071bee78e658eb75534d5fb061a5a7b0938f73b1e00e92706f8fabc8d"
+  },
+  {
+   "assignment_id": "B",
+   "worker": "/root/hkust_recall",
+   "filled_by": "/root/hkust_recall",
+   "part": "/n/fs/resemble/homogenizing-science/scratch/toronto-recall-photo-fixed-1116/part-B/part-complete.json",
+   "sha256": "1d95f7dd27892847934b5762fc0f2256ba36287b4155389d8f828fb86aab5a28"
+  },
+  {
+   "assignment_id": "C",
+   "worker": "/root/hkust_accuracy",
+   "filled_by": "/root/hkust_accuracy source review current acceptedtoronto-reviewed-1116 tools",
+   "part": "/n/fs/resemble/homogenizing-science/scratch/toronto-recall-photo-fixed-1116/part-C/part-complete.json",
+   "sha256": "4cced6767d7f59d92dca1ebeded478d838ae50284a13b6f2cfec03bea6a01a1f"
+  }
+ ],
+ "immutable_review_archive": "/n/fs/resemble/homogenizing-science/scratch/toronto-recall-photo-fixed-1116/worksheet-complete-signed-failed.json",
+ "source_only_repair_packets": "/n/fs/resemble/homogenizing-science/scratch/toronto-recall-photo-fixed-1116/next-repairs",
+ "no_redraw_of_this_build": true,
+ "no_automatic_round8": true
+}

@@ -754,5 +754,39 @@
     }
    }
   }
+ },
+ "toronto": {
+  "links": {
+   "Michael Brudno | Sergey Naumenko | ext:toronto:sergey-naumenko": {
+    "verdict": "explained",
+    "reason": "Existing R-STU-19 student-link scope: this finalized record has an explicit postdoctoral phase and degree-withheld membership, with no supported student-role cue for the student-link guard (student_role_ok=False). The builder intentionally keeps the genuine coauthored lab paper(s) without asserting a student-paper link for this record. This is not a claim of absent publications or a guessed doctoral degree; all source membership phases and coauthored lab papers are preserved.",
+    "evidence": [
+     {
+      "url": "https://brudno.uhndata.io/team/",
+      "sha256": "bd11b8d3552bd9874678a97dcd8cc04ecb4aa1993a9ec7ba7284aac93851dee1",
+      "quote": "Sergey Naumenko (PDF 2015 – 2017; Research Associate 2017 – 2019; then Research Associate at Havard)"
+     }
+    ],
+    "rule": "R-STU-19",
+    "reviewed_by": "codex-toronto-sjtu-finish-1116-root",
+    "reviewed_at": "2026-11-16",
+    "native_member_semantic_sha256": "2056e36026f97b63bb66325df9c103399bdc54408942c3101cc588d2aaf7b472",
+    "scope": "Only this exact PI/member student-link expectation; no native link, paper, role or year change",
+    "actual_coauthored_works_preserved": [
+     {
+      "oa": "https://openalex.org/W3161983551",
+      "year": 2021,
+      "title": "Child Neurology: RNA Sequencing for the Diagnosis of Lissencephaly",
+      "byline_name": "Sergey Naumenko",
+      "type": "article",
+      "excluded": null,
+      "pi_affiliation": "school"
+     }
+    ],
+    "no_claim_of_absent_publications": true,
+    "approval_sha256": "ffc8d0001e3c7c440e383d9148cb764107d54d95967e25f20253c99fb5974232",
+    "approval_path": "/n/fs/resemble/homogenizing-science/scratch/toronto-sjtu-finish-1116/toronto-g7-bounded-source-application-approval.json"
+   }
+  }
  }
 }

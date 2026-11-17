@@ -14720,10 +14720,10 @@
   },
   {
    "pi": "José Zariffa",
-   "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.ece.utoronto.ca/wp-json/wp/v2/people?per_page=100&page=1&_fields=title,link,class_list: ok; dblp_person_url https://dblp.org/pid/161/8898: no_homepage_url.",
-   "audited_at": "2026-11-13T22:26:05+00:00",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "PI-named Adaptive Neurorehabilitation Systems Lab personnel page verified by live capture 2026-11-15.",
+   "audited_at": "2026-11-15T18:57:45Z",
    "checks": [
     {
      "source": "department_listing",
@@ -14749,20 +14749,58 @@
      "url": "https://openalex.org/A5048203934",
      "at": "2026-11-13T22:26:05+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "live_lab_personnel",
+     "url": "https://www.neurorehab-systems.ca/personnel",
+     "at": "2026-11-15T18:57:45Z",
+     "result": "ok",
+     "sha256": "38305aa449bb5a4b487d6daf8aa654cf09fa2212f5a8425d40251553087fbdb2"
+    },
+    {
+     "source": "school_profile_link",
+     "on": "https://robotics.utoronto.ca/healthcare-robotics-hero-nserc-create-graduate-training/",
+     "source_sha256": "0b630022e0350d6ab9f87ca7962ccb99112889dd3ba2db12d584517a52b1da8c",
+     "anchor": "Adaptive Neurorehabilitation Systems Lab",
+     "href": "https://www.neurorehab-systems.ca/",
+     "at": "2026-11-15T19:02:16Z",
+     "url": "https://www.neurorehab-systems.ca/",
+     "result": "listed"
     }
    ],
    "places_checked": [
     "dblp_person_url:no_homepage_url",
-    "department_listing:ok"
+    "department_listing:ok",
+    "live_lab_personnel:ok"
    ],
-   "checked_at": "2026-11-13T22:26:05+00:00",
-   "students_page_status": "no_lab_page",
-   "papers_page_status": "no_lab_page",
-   "coverage": "reason",
-   "upstream_audit_reason": "joined in 2026; no school lab site yet",
-   "reason_type": "search_no_eligible_site",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "checked_at": "2026-11-15T18:57:45Z",
+   "students_page_status": "not_yet_audited",
+   "papers_page_status": "not_yet_audited",
+   "coverage": "website",
+   "url": "https://www.neurorehab-systems.ca/",
+   "people_page": "https://www.neurorehab-systems.ca/personnel",
+   "papers_page": "https://www.neurorehab-systems.ca/publications",
+   "sha256": "24e2a013e6879c9f25f5ca244d7b460c10bee5f05c39fae30c18c99ced0314d1",
+   "found_via": "school_profile_link",
+   "listed_on": "https://robotics.utoronto.ca/healthcare-robotics-hero-nserc-create-graduate-training/",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "on": "https://robotics.utoronto.ca/healthcare-robotics-hero-nserc-create-graduate-training/",
+     "source_sha256": "0b630022e0350d6ab9f87ca7962ccb99112889dd3ba2db12d584517a52b1da8c",
+     "anchor": "Adaptive Neurorehabilitation Systems Lab",
+     "href": "https://www.neurorehab-systems.ca/",
+     "at": "2026-11-15T19:02:16Z",
+     "url": "https://www.neurorehab-systems.ca/",
+     "result": "listed"
+    }
+   ],
+   "evidence": {
+    "url": "https://www.neurorehab-systems.ca/",
+    "sha256": "24e2a013e6879c9f25f5ca244d7b460c10bee5f05c39fae30c18c99ced0314d1",
+    "quote": "Adaptive Neurorehabilitation Systems Lab"
+   }
   },
   {
    "pi": "Greg A. Jamieson",
@@ -16914,7 +16952,6 @@
   "Vassos Hadzilacos",
   "Vaughn Betz",
   "Viliam Makis",
-  "Wei Wang",
   "Wei Yu",
   "William Yu",
   "Xiaofei Shi",

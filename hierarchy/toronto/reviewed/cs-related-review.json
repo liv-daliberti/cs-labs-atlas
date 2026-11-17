@@ -1,6 +1,6 @@
 {
  "school": "toronto",
- "reviewed": "2026-11-13",
+ "reviewed": "2026-11-14",
  "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       no searched unit lists them as faculty in 2016-2026 and the DBLP record\n                                               names the school only as a past or student affiliation (or nothing else\n                                               shows a faculty appointment); `units_searched` says where we looked\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. The share test still decides computing.",
  "min_dblp": 5,
  "share_test": {
@@ -24,9 +24,9 @@
   "VECTOR"
  ],
  "counts": {
-  "not_faculty_listed": 399,
+  "not_faculty_listed": 400,
   "research_or_other_rank": 17,
-  "accepted": 90,
+  "accepted": 89,
   "faculty_not_computing": 4,
   "census_alias": 1
  },
@@ -15184,116 +15184,163 @@
    "name": "Wei Wang",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "accepted",
-   "reason": "faculty (ECE listing, professor rank) with 144 DBLP records 2016-2026; share test cannot measure (0 of 7 school works DBLP-indexed (share 0.00; 1 OpenAlex author ids))",
+   "decision": "not_faculty_listed",
+   "reason": "Corrected 2026-11-14: the prior ECE API quote concatenated separate directory cards (“Wei Professor Profile” and “Wang, Belinda B. Associate Professor”), causing DBLP PID 35/7092-30 to be misidentified as a U of T faculty member. The official current directory lists Wang, Belinda B. as Associate Professor and Yu, Wei as Professor; iQua identifies the actual Wei Wang as a U of T ECE PhD graduate in August 2015 who became an HKUST Associate Professor, and his official HKUST profile says he joined HKUST in 2015 after receiving the Toronto PhD. No U of T faculty appointment in 2016–2026 is evidenced.",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/35/7092-30"
     ],
     "dblp_window": 144,
-    "affiliation_notes": [
-     "Hong Kong University of Science and Technology, Department of Computer Science and Engineering, Hong Kong",
-     "University of Toronto, Canada"
-    ],
     "evidence": [
      {
       "url": "https://dblp.org/pid/35/7092-30",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Hong Kong University of Science and Technology, Department of Computer Science and Engineering, Hong Kong"
+      "quote": "University of Toronto, Canada"
      }
-    ],
-    "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [
-      "https://openalex.org/A5100391843"
-     ],
-     "school_works": 7,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [
-      {
-       "author": "https://openalex.org/A5100392013",
-       "why": "works end 2019, before the first listing (2026)",
-       "n": 6,
-       "raw": [
-        "Wei Wang"
-       ]
-      }
-     ],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5100391843",
-       "basis": "full name: Wei Wang",
-       "works": 7,
-       "dblp_indexed": 0,
-       "years": [
-        2019,
-        2025
-       ],
-       "names": [
-        "Wei Wang"
-       ],
-       "orcids": [
-        "0000-0002-0336-506X"
-       ],
-       "venues": [
-        "PLoS ONE",
-        "BMJ Open",
-        "Journal of Psychosocial Rehabilitation and Mental Health"
-       ],
-       "dblp_examples": [],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2982007511",
-         "year": 2019,
-         "title": "Feasibility and outcomes of a multi-function mobile health approach for the schizophrenia spectrum: App4Independence (A4i)",
-         "venue": "PLoS ONE"
-        },
-        {
-         "oa": "https://openalex.org/W3111730106",
-         "year": 2020,
-         "title": "ED to EPI: protocol for a pragmatic randomised controlled trial of an SMS (text) messaging intervention to improve the transition from the emergency d",
-         "venue": "BMJ Open"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    ]
    },
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.utoronto.ca/wp-json/wp/v2/people?per_page=100&page=1&_fields=title,link,class_list",
-     "sha256": "8db416d170db17131aa91d92a8179004cd906bb78d13ea0279178f6c79ab659a",
-     "observed": "20261109",
-     "quote": "Wei Professor Profile Wang, Belinda B. Associate Professor",
-     "ladder": true
+     "url": "https://www.ece.utoronto.ca/faculty/faculty-directory/page/3/",
+     "sha256": "60414b6ff4d1dfa6ac5e47a502abc970cd2e4893c9c3cc1f39cec2f4f604e5af",
+     "observed": "20261114",
+     "quote": "Wang, Belinda B. Associate Professor; Yu, Wei Professor",
+     "ladder": false
+    },
+    {
+     "unit": "HKUST CSE",
+     "url": "https://cse.hkust.edu.hk/~weiwa/",
+     "sha256": "6e75e1a7128e642c7afc1fad7911e6512dba1ac10c35b0a7f5144c42608b91a4",
+     "observed": "20261114",
+     "quote": "I joined HKUST in 2015 after receiving the Ph.D. degree from the Department of Electrical and Computer Engineering, University of Toronto.",
+     "ladder": false
+    },
+    {
+     "unit": "iQua alumni",
+     "url": "https://iqua.ece.utoronto.ca/aboutus/alumni/",
+     "sha256": "891fb3bd78f5e468c5813785c5a5e78986feeaf77a31dab71b8e24bd1fedcf03",
+     "observed": "20261114",
+     "quote": "Wei Wang (Ph.D., August 2015) — Associate Professor (with tenure), Department of Computer Science and Engineering, Hong Kong University of Science and Technology, Hong Kong SAR",
+     "ladder": false
     }
    ],
-   "years_listed": [
-    2026
-   ],
+   "years_listed": [],
    "units_searched": [
-    "ECE",
-    "IHPME",
-    "INFO",
-    "MATH",
-    "MIE",
-    "PHYS",
-    "ROBOTICS",
-    "STAT",
-    "UTIAS",
-    "UTM",
-    "UTSC",
-    "VECTOR"
-   ]
+    "ECE"
+   ],
+   "previous_decision": {
+    "decision": "accepted",
+    "reason": "faculty (ECE listing, professor rank) with 144 DBLP records 2016-2026; share test cannot measure (0 of 7 school works DBLP-indexed (share 0.00; 1 OpenAlex author ids))",
+    "faculty_evidence": [
+     {
+      "unit": "ECE",
+      "url": "https://www.ece.utoronto.ca/wp-json/wp/v2/people?per_page=100&page=1&_fields=title,link,class_list",
+      "sha256": "8db416d170db17131aa91d92a8179004cd906bb78d13ea0279178f6c79ab659a",
+      "observed": "20261109",
+      "quote": "Wei Professor Profile Wang, Belinda B. Associate Professor",
+      "ladder": true
+     }
+    ],
+    "cs_basis": {
+     "dblp": [
+      "https://dblp.org/pid/35/7092-30"
+     ],
+     "dblp_window": 144,
+     "affiliation_notes": [
+      "Hong Kong University of Science and Technology, Department of Computer Science and Engineering, Hong Kong",
+      "University of Toronto, Canada"
+     ],
+     "evidence": [
+      {
+       "url": "https://dblp.org/pid/35/7092-30",
+       "source": "DBLP dump dblp-2026-09-01.xml.gz",
+       "quote": "Hong Kong University of Science and Technology, Department of Computer Science and Engineering, Hong Kong"
+      }
+     ],
+     "openalex_share": {
+      "result": "too_few_school_works",
+      "ids": [
+       "https://openalex.org/A5100391843"
+      ],
+      "school_works": 7,
+      "dblp_indexed": 0,
+      "share": 0.0,
+      "thresholds": {
+       "dblp_indexed": 5,
+       "share": 0.2,
+       "min_works_for_negative": 8
+      },
+      "namesake_orcids": false,
+      "excluded": [
+       {
+        "author": "https://openalex.org/A5100392013",
+        "why": "works end 2019, before the first listing (2026)",
+        "n": 6,
+        "raw": [
+         "Wei Wang"
+        ]
+       }
+      ],
+      "authors": [
+       {
+        "author": "https://openalex.org/A5100391843",
+        "basis": "full name: Wei Wang",
+        "works": 7,
+        "dblp_indexed": 0,
+        "years": [
+         2019,
+         2025
+        ],
+        "names": [
+         "Wei Wang"
+        ],
+        "orcids": [
+         "0000-0002-0336-506X"
+        ],
+        "venues": [
+         "PLoS ONE",
+         "BMJ Open",
+         "Journal of Psychosocial Rehabilitation and Mental Health"
+        ],
+        "dblp_examples": [],
+        "other_examples": [
+         {
+          "oa": "https://openalex.org/W2982007511",
+          "year": 2019,
+          "title": "Feasibility and outcomes of a multi-function mobile health approach for the schizophrenia spectrum: App4Independence (A4i)",
+          "venue": "PLoS ONE"
+         },
+         {
+          "oa": "https://openalex.org/W3111730106",
+          "year": 2020,
+          "title": "ED to EPI: protocol for a pragmatic randomised controlled trial of an SMS (text) messaging intervention to improve the transition from the emergency d",
+          "venue": "BMJ Open"
+         }
+        ]
+       }
+      ],
+      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+     }
+    },
+    "years_listed": [
+     2026
+    ],
+    "units_searched": [
+     "ECE",
+     "IHPME",
+     "INFO",
+     "MATH",
+     "MIE",
+     "PHYS",
+     "ROBOTICS",
+     "STAT",
+     "UTIAS",
+     "UTM",
+     "UTSC",
+     "VECTOR"
+    ]
+   }
   },
   {
    "name": "Wei Xu",

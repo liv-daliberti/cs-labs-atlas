@@ -1,0 +1,194 @@
+{
+ "status": "Source-backed G7 fix applied; required new coherent native and final recalls/accuracy still pending",
+ "proposal_sha256": "c1c7a3f3135403de0723dd7a4f9ea58680c5bbc4b15cf458e9e86e812ef1fdfc",
+ "approval_sha256": "ffc8d0001e3c7c440e383d9148cb764107d54d95967e25f20253c99fb5974232",
+ "approval": {
+  "approved_for_guarded_application": true,
+  "reviewer": "codex-toronto-sjtu-finish-1116-root",
+  "at": "2026-11-16T18:19:49.815623+00:00",
+  "proposal_path": "/n/fs/resemble/homogenizing-science/scratch/toronto-final-systematic-1116/g7-diagnosis-32343708/G7-BOUNDED-SOURCE-PROPOSAL.json",
+  "proposal_sha256": "c1c7a3f3135403de0723dd7a4f9ea58680c5bbc4b15cf458e9e86e812ef1fdfc",
+  "primary_review_receipt": "/n/fs/resemble/homogenizing-science/scratch/toronto-sjtu-finish-1116/toronto-steven-bader-primary-independent-review.json",
+  "primary_review_receipt_sha256": "41b81d79206b26376f4a5189f883d3e37b2397724109894eea541ffec3f5ecaa",
+  "independent_checks": [
+   "ActualrawPDF SHA/image/layout/normalpdftotext pagepayload",
+   "ActualSQLite publishedworkcompressedpreimage and ABSENTpages row",
+   "OriginalBrudno/BaderrawSHAs/rows/context",
+   "Exact2native-member preimages",
+   "Currentchainledgerpreimage"
+  ],
+  "member_checks": [
+   {
+    "key": "Michael Brudno | Sergey Naumenko | ext:toronto:sergey-naumenko",
+    "native_semantic_sha256": "2056e36026f97b63bb66325df9c103399bdc54408942c3101cc588d2aaf7b472",
+    "matched_json_recipe": [
+     {
+      "ensure_ascii": false,
+      "compact": true
+     }
+    ]
+   },
+   {
+    "key": "Gary Bader | Duncan Forster | ext:toronto:duncan-forster",
+    "native_semantic_sha256": "8fd7eee92fbf5a4d8fd4040031dc402ad35ee1845128e86567c2612f0f3473c9",
+    "matched_json_recipe": [
+     {
+      "ensure_ascii": true,
+      "compact": true
+     },
+     {
+      "ensure_ascii": false,
+      "compact": true
+     }
+    ]
+   }
+  ],
+  "authorized_mutations": [
+   "Insert one guardedactualpublishedW4401043079 R-PAP10 pagescache record fromtheexactprimaryPDF into privatepiworks",
+   "Add two exactsource-backed TorontoR-STU19 role-scope explanation records; fill reviewed_by withthisreviewer; preserveallother ledgerentries",
+   "Commit explicitreviewedsource/reportpaths and recordreproducible cachejournal; guardedcanonicalcachepropagationonlyforthissameapprovedrow"
+  ],
+  "conditions": [
+   "No fakepositiveclaimreviewaccept action",
+   "No preprintfiliationprojection, degreeinference, aliaswithoutsource, or threshold/codechange",
+   "No nativeoutputmanualedit; actualnewcoherentnative required beforefreshdefault30",
+   "Preservefailed32343708 andalloriginaloutputs/drawhistory",
+   "Exactrawcachepromotion support andschool-scopedsharedledger merge required beforecanonicalpromotion"
+  ],
+  "scientific_gate_claimed": false
+ },
+ "normal_R_PAP10_positive_firstpage": {
+  "work": "https://openalex.org/W4401043079",
+  "arxiv": null,
+  "url": "https://aclanthology.org/2024.clinicalnlp-1.60.pdf",
+  "status": "ok",
+  "pdf_sha256": "b4e5dfc352de8f45f7a07164448d4b7b7c131ee9798f592f1aba4d2516d1cff8",
+  "page1_text_sha256": "0900723b5318346bf31cf66952454044bcf9d18766afe41bc0355febd5e5f548",
+  "school_named": 1,
+  "quote": "{\"how\": \"marker\", \"quotes\": [\"Gary D. Bader1,4,5 \", \"1 University of Toronto\"]}",
+  "normal_rule": "R-PAP-10; unchanged pi_fulltext_affiliation.tie on actual published first-page bytes",
+  "normal_tie": {
+   "how": "marker",
+   "quotes": [
+    "Gary D. Bader1,4,5 ",
+    "1 University of Toronto"
+   ]
+  },
+  "pi_name_forms": [
+   [
+    "gary",
+    "bader"
+   ]
+  ],
+  "expected_prior_pages_row": null,
+  "expected_original_work_body_compressed_sha256": "763e048d892670ec580e431556b5e248895197f743d66cd3840e8eb52a505f7d",
+  "source_pdf": "/n/fs/resemble/homogenizing-science/scratch/toronto-final-systematic-1116/g7-diagnosis-32343708/steven-primary/b4e5dfc352de8f45f7a07164448d4b7b7c131ee9798f592f1aba4d2516d1cff8.pdf",
+  "positive_scope": "Exact published W4401043079 only; no preprint W4395444190 or any other title-based affiliation assertion"
+ },
+ "firstpage_row_installed": [
+  "https://openalex.org/W4401043079",
+  null,
+  "https://aclanthology.org/2024.clinicalnlp-1.60.pdf",
+  "ok",
+  "b4e5dfc352de8f45f7a07164448d4b7b7c131ee9798f592f1aba4d2516d1cff8",
+  1,
+  "{\"how\": \"marker\", \"quotes\": [\"Gary D. Bader1,4,5 \", \"1 University of Toronto\"]}",
+  "2026-11-16T18:20:27Z"
+ ],
+ "other_pages_rows_digest_unchanged": "e2ea4129d0bd186f737d113c328b0a51744899241942803725af835340d676b4",
+ "preprint_affiliation_not_projected": true,
+ "chain_reasons_before_sha256": "ae08123c37fc9ac1533234bd7a00e22580f585f3fd6a2768181370410532c6b8",
+ "chain_reasons_after_sha256": "496a5d70c50f4e2c959b47073cae3c7da3ba4a0ce61ada845b691ad348868fc4",
+ "chain_reason_updates": {
+  "Michael Brudno | Sergey Naumenko | ext:toronto:sergey-naumenko": {
+   "verdict": "explained",
+   "reason": "Existing R-STU-19 student-link scope: this finalized record has an explicit postdoctoral phase and degree-withheld membership, with no supported student-role cue for the student-link guard (student_role_ok=False). The builder intentionally keeps the genuine coauthored lab paper(s) without asserting a student-paper link for this record. This is not a claim of absent publications or a guessed doctoral degree; all source membership phases and coauthored lab papers are preserved.",
+   "evidence": [
+    {
+     "url": "https://brudno.uhndata.io/team/",
+     "sha256": "bd11b8d3552bd9874678a97dcd8cc04ecb4aa1993a9ec7ba7284aac93851dee1",
+     "quote": "Sergey Naumenko (PDF 2015 – 2017; Research Associate 2017 – 2019; then Research Associate at Havard)"
+    }
+   ],
+   "rule": "R-STU-19",
+   "reviewed_by": "codex-toronto-sjtu-finish-1116-root",
+   "reviewed_at": "2026-11-16",
+   "native_member_semantic_sha256": "2056e36026f97b63bb66325df9c103399bdc54408942c3101cc588d2aaf7b472",
+   "scope": "Only this exact PI/member student-link expectation; no native link, paper, role or year change",
+   "actual_coauthored_works_preserved": [
+    {
+     "oa": "https://openalex.org/W3161983551",
+     "year": 2021,
+     "title": "Child Neurology: RNA Sequencing for the Diagnosis of Lissencephaly",
+     "byline_name": "Sergey Naumenko",
+     "type": "article",
+     "excluded": null,
+     "pi_affiliation": "school"
+    }
+   ],
+   "no_claim_of_absent_publications": true,
+   "approval_sha256": "ffc8d0001e3c7c440e383d9148cb764107d54d95967e25f20253c99fb5974232",
+   "approval_path": "/n/fs/resemble/homogenizing-science/scratch/toronto-sjtu-finish-1116/toronto-g7-bounded-source-application-approval.json"
+  },
+  "Gary Bader | Duncan Forster | ext:toronto:duncan-forster": {
+   "verdict": "explained",
+   "reason": "Existing R-STU-19 student-link scope: this finalized record has an explicit postdoctoral phase and degree-withheld membership, with no supported student-role cue for the student-link guard (student_role_ok=False). The builder intentionally keeps the genuine coauthored lab paper(s) without asserting a student-paper link for this record. This is not a claim of absent publications or a guessed doctoral degree; all source membership phases and coauthored lab papers are preserved.",
+   "evidence": [
+    {
+     "url": "https://baderlab.org/Members",
+     "sha256": "9d69787c5f810bb5af493b2efc4cb90e4ca9412861829d8f52b339a2ee950d4e",
+     "quote": "Duncan Forster Co-supervised with Charles Boone July 2023 - Dec. 2024 Building a Unified Model of Cellular Function"
+    },
+    {
+     "url": "https://baderlab.org/Members",
+     "sha256": "9d69787c5f810bb5af493b2efc4cb90e4ca9412861829d8f52b339a2ee950d4e",
+     "quote": "Duncan Forster Molecular Genetics (co-supervised with Charlie Boone) Feb.2017-Jul.2023 Building a Unified Model of Cellular Function"
+    }
+   ],
+   "rule": "R-STU-19",
+   "reviewed_by": "codex-toronto-sjtu-finish-1116-root",
+   "reviewed_at": "2026-11-16",
+   "native_member_semantic_sha256": "8fd7eee92fbf5a4d8fd4040031dc402ad35ee1845128e86567c2612f0f3473c9",
+   "scope": "Only this exact PI/member student-link expectation; no native link, paper, role or year change",
+   "actual_coauthored_works_preserved": [
+    {
+     "oa": "https://openalex.org/W4300861664",
+     "year": 2022,
+     "title": "BIONIC: biological network integration using convolutions",
+     "byline_name": "Duncan T. Forster",
+     "type": "article",
+     "excluded": null,
+     "pi_affiliation": "school"
+    },
+    {
+     "oa": "https://openalex.org/W4411942090",
+     "year": 2025,
+     "title": "A global genetic interaction map of a human cell reveals conserved principles of genetic networks",
+     "byline_name": "Duncan Forster",
+     "type": "preprint",
+     "excluded": null,
+     "pi_affiliation": "school"
+    },
+    {
+     "oa": "https://openalex.org/W7155922522",
+     "year": 2026,
+     "title": "Global genetic interaction network of a human cell maps conserved principles and informs functional interpretation of ge",
+     "byline_name": "Duncan T. Forster",
+     "type": "article",
+     "excluded": null,
+     "pi_affiliation": "school"
+    }
+   ],
+   "no_claim_of_absent_publications": true,
+   "approval_sha256": "ffc8d0001e3c7c440e383d9148cb764107d54d95967e25f20253c99fb5974232",
+   "approval_path": "/n/fs/resemble/homogenizing-science/scratch/toronto-sjtu-finish-1116/toronto-g7-bounded-source-application-approval.json"
+  }
+ },
+ "all_non_Toronto_chain_reason_values_preserved": true,
+ "failed_job": "32343708",
+ "failed_job_state_preserved": "FAILED1:0",
+ "failed_artifact_archive": "/n/fs/resemble/homogenizing-science/scratch/toronto-final-systematic-1116/failed-native-32343708/FAILED-PHASE-ARCHIVE.json",
+ "source_primary_fact_sha256": "171b40cbd710a2967896b4dac4abaefb54e5d0a897998e4468bdde288e071827",
+ "required_new_native": true,
+ "no_native_output_or_degree_role_year_changes_during_application": true
+}
