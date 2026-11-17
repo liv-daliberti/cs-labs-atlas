@@ -2029,6 +2029,32 @@ def tsinghua_bme_person_table(h):
     return out
 
 
+_TS_BME_BANDS_BASE='https://www.med.tsinghua.edu.cn/szdw/swyxgcx.htm'
+_TS_BME_BANDS={'教研系列','教学系列','研究系列','实验技术系列'}
+def tsinghua_bme_med_bands(h):
+ soup=BeautifulSoup(h,'html.parser');containers=soup.select('section.n_shizi div.content_li div.fl00')
+ if not containers:raise ValueError('BME full faculty-series containers absent')
+ out=[];seen=set();profiles=set()
+ for box in containers:
+  heading=box.select_one('div.title002 h3')
+  if heading is None:raise ValueError('BME series container lacks heading')
+  band=' '.join(heading.get_text(' ',strip=True).split())
+  if band not in _TS_BME_BANDS or band in seen:raise ValueError('Unreviewed/repeated BME series: '+band)
+  seen.add(band)
+  for a in box.select('a[href]'):
+   name=' '.join(a.get_text(' ',strip=True).split());url=urljoin(_TS_BME_BANDS_BASE,a['href']);u=urlsplit(url)
+   if not name or u.scheme not in ('http','https') or u.hostname!='www.med.tsinghua.edu.cn' or not u.path.startswith('/info/'):
+    raise ValueError('BME person has no literal name or own individual profile')
+   if url in profiles:raise ValueError('BME person profile repeated; review source role explicitly')
+   profiles.add(url)
+   li=a.find_parent('li');area=li.find('h5',recursive=False) if li else None
+   division=' '.join(area.get_text(' ',strip=True).split()) if area else None
+   out.append(dict(name_listed=name,titles=[band],profile=url,homepage=None,division=division,quote_parts=[name,band]))
+ if seen!=_TS_BME_BANDS:raise ValueError('BME complete source lost a reviewed series container')
+ return out
+
+
+
 def tsinghua_bme_med_areas(h):
     """Tsinghua School of Medicine 生物医学工程系 教研系列 sub-pages 2021-2024 (www.med.tsinghua.edu.cn/szdw/swyxgcx/jyxl/<area>.htm): `div.content_li`
     with `div.title001 h3` research area, then `li a[title][href]` cards; the area is the division, the series (教研系列) the title."""
@@ -2358,6 +2384,7 @@ FORMATS = {
     'tsinghua_banded_text': (tsinghua_banded_text, re.compile(r'(?!)')),
     'tsinghua_me_column': (tsinghua_me_column, re.compile(r'(?!)')),
     'tsinghua_bme_person_table': (tsinghua_bme_person_table, re.compile(r'(?!)')),
+    'tsinghua_bme_med_bands': (tsinghua_bme_med_bands, re.compile(r'(?!)')),
     'tsinghua_bme_med_areas': (tsinghua_bme_med_areas, re.compile(r'(?!)')),
     'tsinghua_iiis_people': (tsinghua_iiis_people, re.compile(r'(?!)')),
     'tsinghua_au_alpha': (tsinghua_au_alpha, re.compile(r'(?!)')),

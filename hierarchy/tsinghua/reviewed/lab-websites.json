@@ -6665,22 +6665,6 @@
    ]
   },
   {
-   "pi": "姚期智",
-   "status": "reviewed_absence",
-   "coverage": "none",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No separate homepage or lab site captured (directory rows only); not proof that none exists.",
-   "checks": [
-    {
-     "source": "school_profile_page",
-     "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
-     "at": "2026-11-10T00:00:00",
-     "result": "ok",
-     "sha256": "1a3299601095bec25ca2615ac6e771beb57eacd56092eedd919fed8d0345200a"
-    }
-   ]
-  },
-  {
    "pi": "Yang Liu (Veronica)",
    "status": "reviewed_absence",
    "coverage": "none",
@@ -6993,7 +6977,6 @@
   "唐杰",
   "喻文健",
   "喻纯",
-  "姚期智",
   "姚海龙",
   "姚铮",
   "姜宇",
@@ -7237,5 +7220,16 @@
   "reviewed_on": "2026-11-16",
   "pis_sha256": "754b26fdc2fbaa2f4261b04fc6d34bedf14d3c0bbc1e22add3084f7a1bd1ffea",
   "scope": "All 362 current PI keys reconciled with the existing source-reviewed website/absence records. Original source-check dates and judgments preserved; this is not a new crawl. Wang Jianmin remains a reviewed profile-only absence."
+ },
+ "pi_key_alignment_20261117": {
+  "date": "2026-11-17",
+  "operation": "PI-key alignment after source-reviewed bilingual identity consolidation",
+  "canonical_target": "Andrew Chi-Chih Yao",
+  "removed_duplicate_key": "姚期智",
+  "light_census_sha256": "653307a7ddebd37431eba69940222a2c23020ba0b02d0b0505784c6ab33f0758",
+  "prior_register_sha256": "455712d2793ea8950276f5aea94ec9d8cc982fb64e7de9646b7f1b697d67cf25",
+  "retained_lab_objects_unchanged": 361,
+  "no_recrawl_or_scientific_judgment_change": true,
+  "source_review": "root plus independent toronto_final_reviewer"
  }
 }

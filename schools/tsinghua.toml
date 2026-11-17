@@ -625,6 +625,18 @@ listing_gaps = {2016 = "exact-URL CDX 2026-11-10 (discover_listings, job 3219047
   to = "20241231"
   slots = ["BME med jyxl sjgc archive 2022-2024", "BME med jyxl wnyxyzzgc archive 2022-2024", "BME med jyxl ylyq archive 2022-2024", "BME med jyxl yxyx archive 2022-2024"]
 
+[[departments.listings]]
+slot = "BME swyxgcx complete archive2021"
+kind = "main"
+url = "www.med.tsinghua.edu.cn/szdw/swyxgcx.htm"
+from = "20210101"
+to = "20211231"
+prefix = false
+match = ""
+format = "tsinghua_bme_med_bands"
+title_filter = "^(?:教研系列|教学系列|研究系列)$"
+
+
 [[departments]]
 code = "PI"
 name = "Department of Precision Instrument"

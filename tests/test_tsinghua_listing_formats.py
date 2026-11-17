@@ -97,6 +97,36 @@ def test_sw_english_rejects_unmatched_honor_or_changed_source_structure(replacem
         L.parse(SW_ENGLISH.replace(*replacement), 'tsinghua_sw_english_bands')
 
 
+BME_BANDS = '''<section class="n_shizi"><div class="content_li">
+<div class="fl00"><div class="title002"><h3>教研系列</h3></div><ul><li><h5>生物芯片</h5><a href="/info/1/a.htm">王甲</a></li></ul></div>
+<div class="fl00"><div class="title002"><h3>教学系列</h3></div><ul></ul></div>
+<div class="fl00"><div class="title002"><h3>研究系列</h3></div><ul><li><a href="/info/1/b.htm">李乙</a></li></ul></div>
+<div class="fl00"><div class="title002"><h3>实验技术系列</h3></div><ul><li><a href="/info/1/c.htm">张丙</a></li></ul></div>
+</div></section>'''
+
+
+def test_bme_series_never_become_invented_professor_ranks_or_area_names():
+    from bs4 import BeautifulSoup
+    from listing_rows import quote_of
+    rows = L.parse(BME_BANDS, 'tsinghua_bme_med_bands')[1]
+    assert [(r['name_listed'], r['titles']) for r in rows] == [
+        ('王甲', ['教研系列']), ('李乙', ['研究系列']), ('张丙', ['实验技术系列'])]
+    assert rows[0]['division'] == '生物芯片'
+    flat = ' '.join(BeautifulSoup(BME_BANDS, 'html.parser').get_text(' ', strip=True).split())
+    assert all(quote_of(flat, r) for r in rows)
+    assert '教授' not in str(rows)
+
+
+@pytest.mark.parametrize('replacement', [
+    ('/info/1/a.htm', 'https://foreign.example/info/1/a.htm'),
+    ('/info/1/b.htm', '/info/1/a.htm'),
+    ('<h3>实验技术系列</h3>', '<h3>其他</h3>'),
+    ('<h3>教学系列</h3>', '<h3>研究系列</h3>')])
+def test_bme_series_reject_unreviewed_role_or_ambiguous_profile(replacement):
+    with pytest.raises(ValueError):
+        L.parse(BME_BANDS.replace(*replacement), 'tsinghua_bme_med_bands')
+
+
 DPI_ARCHIVE = '''<div class="home home3"><div class="dl"><h6>导航类别</h6></div><div class="dr">
 <div class="third" id="光电工程研究所"><h5>光电工程研究所</h5><ul>
 <li><a href="/jgf-dpi.html"><img title="金国藩"></a><h6>金国藩</h6><p>中国工程院院士</p></li>
