@@ -1,7 +1,7 @@
 {
  "school": "cambridge",
- "reviewed": "2026-11-16",
- "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided\n                                               non-faculty record in the school charter)\n                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided\n                                               until the unit directories and pagination are reviewed for completeness\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. Computing uses the normal share test or the\n            existing minimum output of an evidenced, decided DBLP person; undecided namesake counts cannot supply that output.\nresearch/teaching PIs: a source-checked research/teaching appointment can use an explicit\n            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,\n            with unit, role, observed and appointment_rank (research|teaching). Its group/advising\n            quote is checked against stored source bytes. Appointment evidence, computing scope,\n            and candidate identity remain separate requirements. The appointment hand-review must\n            carry the same appointment_rank and unit; the original rank is retained.\nhistorical appointments: a hand review may carry historical_appointment={start,end}\n            with explicit year or month bounds stated in its quote and matching a source-bound\n            census override period. The biography observation date is preserved but\n            supplies no current listing year. Research/teaching ranks still require the\n            separate PI-basis review. Native builders use the reviewed period.\ndated officer listings: a hand review may carry dated_listing with the PDF's date\n            and literal date quote, physical page, active PROFESSORS/READERS heading,\n            full entry name, appointment year and column-definition quote. The saved\n            PDF bytes and exact URL are checked. It supplies that calendar year only;\n            retrieval is retained separately and no appointment interval is inferred.",
+ "reviewed": "2026-11-17",
+ "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided\n                                               non-faculty record in the school charter)\n                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided\n                                               until the unit directories and pagination are reviewed for completeness\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. Computing uses the normal share test or the\n            existing minimum output of an evidenced, decided DBLP person; undecided namesake counts cannot supply that output.\nresearch/teaching PIs: a source-checked research/teaching appointment can use an explicit\n            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,\n            with unit, role, observed and appointment_rank (research|teaching). Its group/advising\n            quote is checked against stored source bytes. Appointment evidence, computing scope,\n            and candidate identity remain separate requirements. The appointment hand-review must\n            carry the same appointment_rank and unit; the original rank is retained.\ncandidate dispositions: a hand review may carry candidate_review with source, complete ids,\n            decision, why, identity_note and source-bound identity_evidence. Only negative\n            rank/status decisions or excluded_scope (R-HIER-05, with separate scope_evidence)\n            are supported. Exact source IDs keep homonyms separate; these reviews never admit a PI.\nhistorical appointments: a hand review may carry historical_appointment={start,end}\n            with explicit year or month bounds stated in its quote and matching a source-bound\n            census override period. The biography observation date is preserved but\n            supplies no current listing year. Research/teaching ranks still require the\n            separate PI-basis review. Native builders use the reviewed period.\ndated officer listings: a hand review may carry dated_listing with the PDF's date\n            and literal date quote, physical page, active PROFESSORS/READERS heading,\n            full entry name, appointment year and column-definition quote. The saved\n            PDF bytes and exact URL are checked. It supplies that calendar year only;\n            retrieval is retained separately and no appointment interval is inferred.",
  "min_dblp": 5,
  "share_test": {
   "min_dblp_indexed": 5,
@@ -23,9 +23,10 @@
   "SOC"
  ],
  "counts": {
-  "pending_source_coverage": 325,
-  "accepted": 92,
-  "research_or_other_rank": 14,
+  "pending_source_coverage": 308,
+  "accepted": 98,
+  "research_or_other_rank": 20,
+  "excluded_scope": 4,
   "pending_identity_collision": 2
  },
  "decisions": [
@@ -429,8 +430,8 @@
     "Alexander Richardson"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/75/10952-1"
@@ -448,8 +449,20 @@
      }
     ]
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "CST",
+     "url": "https://www.cst.cam.ac.uk/people/alr48",
+     "sha256": "8e03b8900c78902354dd30e82c890e9bf86229262f2493fe8ff0d539f46bd09f",
+     "observed": "2026-11-15T22:45:24",
+     "quote": "Alex Richardson Affiliate",
+     "ladder": false,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -5235,46 +5248,6 @@
    ]
   },
   {
-   "name": "Fangyu Liu",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/84/11483-1"
-    ],
-    "dblp_window": 89,
-    "affiliation_notes": [
-     "University of Cambridge, Language Technology Lab, UK",
-     "University of Waterloo, ON, Canada",
-     "Beijing Normal University, Faculty of Geographical Science, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/84/11483-1",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Cambridge, Language Technology Lab, UK"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Felix A. Fischer",
    "aliases": [
     "Felix Fischer"
@@ -6454,8 +6427,8 @@
    "name": "Guangming Wang",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, reviewed own-group/advising evidence) with 101 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/85/2594-1"
@@ -6471,10 +6444,146 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "pi_basis_review": {
+     "kind": "advises_phd",
+     "url": "https://guangmingw.github.io/CV/Guangming.pdf",
+     "sha256": "563babbf2dd7a7dd758b387a47fe0205ee23244c9f33fc67a2d95594218fa599",
+     "quote": "University of Cambridge 2023 - Present Research Associate Cambridge, UK Line Managers: Prof. Ioannis Brilakis (2023-2025) and Prof. Brian Sheil (2025-present) • Contribute to and help shape technical directions across three EU Projects, BIM2TWIN, OMICRON, and AEGIR. • Lead and coordinate research on 3D perception, SLAM, and robotic systems. • Secure and contribute to funding proposals (EPSRC, EU, industry, etc). • Supervise PhD and MPhil students and support research team development.",
+     "unit": "ENG",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5100336735",
+      "https://openalex.org/A5124351661"
+     ],
+     "school_works": 25,
+     "dblp_indexed": 16,
+     "share": 0.64,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [
+      {
+       "author": "https://openalex.org/A5100336740",
+       "why": "namesake: ORCID 0000-0003-0516-3514, not the busiest ORCID 0000-0002-7675-543X",
+       "n": 6
+      },
+      {
+       "author": "https://openalex.org/A5100336726",
+       "why": "namesake: ORCID 0000-0001-7180-1559, not the busiest ORCID 0000-0002-7675-543X",
+       "n": 4
+      }
+     ],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5100336735",
+       "basis": "full name: Guangming Wang",
+       "works": 22,
+       "dblp_indexed": 16,
+       "years": [
+        2023,
+        2026
+       ],
+       "names": [
+        "Guangming Wang",
+        "Wang, Guangming"
+       ],
+       "orcids": [
+        "0000-0002-7675-543X"
+       ],
+       "venues": [
+        "IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings - IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings",
+        "China Automation Congress (CAC)",
+        "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W4401415299",
+         "year": 2024,
+         "title": "LHMap-loc: Cross-Modal Monocular Localization Using LiDAR Point Cloud Heat Map",
+         "venue": "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings"
+        },
+        {
+         "oa": "https://openalex.org/W4402726949",
+         "year": 2024,
+         "title": "3DSFLabelling: Boosting 3D Scene Flow Estimation by Pseudo Auto-Labelling",
+         "venue": "IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings - IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W4389217569",
+         "year": 2023,
+         "title": "DifFlow3D: Toward Robust Uncertainty-Aware Scene Flow Estimation with Diffusion Model",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W4392944208",
+         "year": 2023,
+         "title": "FlowDSnet: An End-to-End Scene Flow Based LiDAR De-Skewing Network",
+         "venue": "China Automation Congress (CAC)"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5124351661",
+       "basis": "full name: Guangming Wang",
+       "works": 3,
+       "dblp_indexed": 0,
+       "years": [
+        2026,
+        2026
+       ],
+       "names": [
+        "Guangming Wang",
+        "Wang, Guangming"
+       ],
+       "orcids": [],
+       "venues": [
+        "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings",
+        "The International Journal of Robotics Research"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W7131374069",
+         "year": 2026,
+         "title": "ActionReasoning: Robot Action Reasoning in 3D Space with LLM for Robotic Brick Stacking",
+         "venue": "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings"
+        },
+        {
+         "oa": "https://openalex.org/W7138854267",
+         "year": 2026,
+         "title": "Towards the Vision-Sound-Language-Action paradigm: The HEAR framework for sound-centric manipulation",
+         "venue": "The International Journal of Robotics Research"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://www.eng.cam.ac.uk/profiles/gw462",
+     "sha256": "144d86c46f98f210fdd58663fa27637c47f97f5daeaf84d003f627664c4a39f7",
+     "observed": "2026-11-15T22:47:04",
+     "quote": "Profiles gw462 Research Associate in Computer Vision for Infrastructure Academic Division: Civil Engineering Research group: Construction Engineering",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -6596,7 +6705,7 @@
    },
    "faculty_evidence": [
     {
-     "unit": "DAMTP",
+     "unit": "Computational Biology MPhil",
      "url": "https://ha.nnah.io/",
      "sha256": "abc4512b0f0fdd4f99850c4c823aa6d15bccdd0a1b353f6c43ae3f3b0119b19f",
      "observed": "2026-11-15T23:50:39",
@@ -7821,25 +7930,55 @@
    "name": "Jennifer Cobbe",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "excluded_scope",
+   "source_id": "https://dblp.org/pid/218/6371",
+   "reason": "R-HIER-05: the official Law research agenda and selected body concern critical legal analysis of power, political economy, informational capitalism, technology regulation and data governance. This is an actual Cambridge UniversityAssociateProfessor appointment, but the research object is law/information policy rather than a computing-method body. DBLP/FAccT/CHI/AIES indexing is not itself a scope admission.",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/218/6371"
     ],
-    "dblp_window": 29,
-    "affiliation_notes": [
-     "University of Cambridge, UK"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/218/6371",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Cambridge, UK"
-     }
-    ]
+    "dblp_window": 29
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "Law",
+     "ladder": true,
+     "url": "https://www.law.cam.ac.uk/people/jennifer-cobbe",
+     "sha256": "e7ce65533394ab1fb70a845ce3ed49f911651fb4cdb433d28a68a20081037b5d",
+     "quote": "University Associate Professor in Law and Technology",
+     "observed": "2026-11-16T23:14:47"
+    }
+   ],
+   "evidence": [
+    {
+     "url": "https://www.law.cam.ac.uk/people/jennifer-cobbe",
+     "sha256": "e7ce65533394ab1fb70a845ce3ed49f911651fb4cdb433d28a68a20081037b5d",
+     "quote": "The tensions of data sharing for human rights: A modern slavery case study",
+     "observed": "2026-11-16T23:14:47"
+    },
+    {
+     "url": "https://www.law.cam.ac.uk/people/jennifer-cobbe",
+     "sha256": "e7ce65533394ab1fb70a845ce3ed49f911651fb4cdb433d28a68a20081037b5d",
+     "quote": "Understanding accountability in algorithmic supply chains",
+     "observed": "2026-11-16T23:14:47"
+    },
+    {
+     "url": "https://www.law.cam.ac.uk/people/jennifer-cobbe",
+     "sha256": "e7ce65533394ab1fb70a845ce3ed49f911651fb4cdb433d28a68a20081037b5d",
+     "quote": "Understanding accountability in algorithmic supply chains",
+     "observed": "2026-11-16T23:14:47"
+    }
+   ],
+   "scope_evidence": {
+    "url": "https://www.law.cam.ac.uk/people/jennifer-cobbe",
+    "sha256": "e7ce65533394ab1fb70a845ce3ed49f911651fb4cdb433d28a68a20081037b5d",
+    "quote": "power, political economy, and the law around internet platforms and informational capitalism",
+    "observed": "2026-11-16T23:14:47"
+   },
+   "scope_rule": "R-HIER-05",
+   "identity_note": "Exact cached DBLPPID218/6371 names JenniferCobbe at Cambridge. At least three complete publication titles independently match the current official Law bibliography; the full-name individual profile and jc2106 institutional identity agree.",
+   "reviewed_by": "codex-cambridge-1115",
+   "reviewed_on": "2026-11-16",
    "years_listed": [],
    "units_searched": [
     "BSU",
@@ -9961,48 +10100,6 @@
    ]
   },
   {
-   "name": "Magnus O. Myreen",
-   "aliases": [
-    "Magnus Myreen",
-    "Magnus Oskar Myreen"
-   ],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/92/2955"
-    ],
-    "dblp_window": 60,
-    "affiliation_notes": [
-     "Chalmers University of Technology, Sweden",
-     "University of Cambridge, UK"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/92/2955",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Chalmers University of Technology, Sweden"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
    "name": "Malcolm C. Smith",
    "aliases": [],
    "source": "dblp_affiliation",
@@ -10656,7 +10753,7 @@
    },
    "faculty_evidence": [
     {
-     "unit": "CST",
+     "unit": "University of Cambridge",
      "url": "https://hairyballtheorem.com/",
      "sha256": "5d762180810b7c58df816105afce34ac7bbb9cf6ef4af5830bb4a177b78e0794",
      "observed": "2026-11-15T23:57:40",
@@ -13732,8 +13829,8 @@
    "name": "Richard Clayton",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/93/1539-1"
@@ -13750,8 +13847,21 @@
      }
     ]
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "CST",
+     "url": "https://www.cst.cam.ac.uk/people/rnc1",
+     "sha256": "5f0f8813b2b850b72dbfa13b1a6f6ae029e5ba0c6f94ab90e2d7837de14390f0",
+     "observed": "2026-11-15T21:56:26",
+     "quote": "Dr Richard Clayton Principal Research Associate",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -14796,8 +14906,8 @@
    "name": "Ross D. King",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (Chemical Engineering and Biotechnology listing, professor rank) with 48 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/k/RossDKing"
@@ -14814,10 +14924,92 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, Department of Chemical Engineering and Biotechnology, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5020822487"
+     ],
+     "school_works": 52,
+     "dblp_indexed": 20,
+     "share": 0.385,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5020822487",
+       "basis": "full name: Ross D. King",
+       "works": 52,
+       "dblp_indexed": 20,
+       "years": [
+        2020,
+        2026
+       ],
+       "names": [
+        "Ross D. King",
+        "Ross King",
+        "King, Ross D."
+       ],
+       "orcids": [
+        "0000-0001-7208-4387"
+       ],
+       "venues": [
+        "Lecture notes in computer science",
+        "Machine Learning",
+        "Journal of The Royal Society Interface"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W3035569934",
+         "year": 2020,
+         "title": "Generating Explainable and Effective Data Descriptors Using Relational Learning: Application to Cancer Biology",
+         "venue": "Lecture notes in computer science"
+        },
+        {
+         "oa": "https://openalex.org/W3046568645",
+         "year": 2020,
+         "title": "Predicting rice phenotypes with meta and multi-target learning",
+         "venue": "Machine Learning"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3094908526",
+         "year": 2020,
+         "title": "NERO: A Biomedical Named-entity (Recognition) Ontology with a Large, Annotated Corpus Reveals Meaningful Associations Through Text Embedding",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W3176996853",
+         "year": 2021,
+         "title": "In-Silico Modelling of Phenotypic Switching in Tumours: Investigating Potentials for Non-invasive Therapies",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "Chemical Engineering and Biotechnology",
+     "url": "https://www.ceb.cam.ac.uk/about/meet-our-academics/professor-ross-king/",
+     "sha256": "1d080c5fcb1d920a7cbe841243963409e05f7152d54acdbc3b5e00ea89f7069d",
+     "observed": "2026-11-16T22:32:05",
+     "quote": "Professor Ross King Professor of Science Automation Machine Intelligence research group leader",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -15037,26 +15229,43 @@
     "Seán S. ÓhÉigeartaigh"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "excluded_scope",
+   "source_id": "https://dblp.org/pid/148/7203",
+   "reason": "R-HIER-05: the official Cambridge research description centres on foresight, governance and geopolitical implications of advanced AI, international cooperation and policy advice. This digital-society/AI-governance body is outside computing methods even though36 records appear in DBLP.",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/148/7203"
     ],
-    "dblp_window": 36,
-    "affiliation_notes": [
-     "University of Cambridge, Centre for the Study of Existential Risk, UK",
-     "University of Oxford, Future of Humanity Institute, UK"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/148/7203",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Cambridge, Centre for the Study of Existential Risk, UK"
-     }
-    ]
+    "dblp_window": 36
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "CFI",
+     "ladder": false,
+     "url": "https://www.ith.cam.ac.uk/people/sean-o-heigeartaigh",
+     "sha256": "f815669aecb24c4f87a59db45354db4b1ae550ee1b995d2d4e11886bfc7b54d0",
+     "quote": "Seán Ó hÉigeartaigh Associate Director, Programme Director, CFI",
+     "observed": "2026-11-16T23:14:48"
+    }
+   ],
+   "evidence": [
+    {
+     "url": "https://www.ith.cam.ac.uk/people/sean-o-heigeartaigh",
+     "sha256": "f815669aecb24c4f87a59db45354db4b1ae550ee1b995d2d4e11886bfc7b54d0",
+     "quote": "Seán Ó hÉigeartaigh Associate Director, Programme Director, CFI",
+     "observed": "2026-11-16T23:14:48"
+    }
+   ],
+   "scope_evidence": {
+    "url": "https://www.cser.ac.uk/team/sean-o-heigeartaigh/",
+    "sha256": "bbc7b0f021aacd0c0b92997c8511cd28e21f8bfa1ca254f6a56801963f934475",
+    "quote": "foresight and governance of frontier AI, as well as the geopolitical implications of advanced AI",
+    "observed": "2026-11-16T00:08:06"
+   },
+   "scope_rule": "R-HIER-05",
+   "identity_note": "Exact DBLPPID148/7203 has the rare full name and CambridgeCSER/OxfordFHI affiliations. Independent official ITH and CSER profiles identify the same Cambridge programme leader and AI-governance field; the full-name institutional role supplies the identity anchor.",
+   "reviewed_by": "codex-cambridge-1115",
+   "reviewed_on": "2026-11-16",
    "years_listed": [],
    "units_searched": [
     "BSU",
@@ -16123,8 +16332,8 @@
    "name": "Tiago Azevedo",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/166/4977-1"
@@ -16142,8 +16351,21 @@
      }
     ]
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "CST",
+     "url": "https://tjiagom.github.io/",
+     "sha256": "0967c1b8cc7626151a3c4574fe7998e2f40761bd378ac754b4a7da4a67a58cd9",
+     "observed": "2026-11-16T00:11:21",
+     "quote": "Hi! I am Tiago Azevedo, a research associate at the Department of Computer Science and Technology, at the University of Cambridge, under the Sustaining Innovation Postdocs (SIPD) programme funded by Astex Pharmaceuticals.",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -17942,6 +18164,68 @@
     ]
    },
    "faculty_evidence": [],
+   "years_listed": [],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
+   "name": "Yu Wang",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "decision": "research_or_other_rank",
+   "source_id": "https://dblp.org/pid/02/5889-27",
+   "reason": "The independently identified speech researcher has a complete current career with formal Cambridge RA/SRA roles2015–2020 and later SJTU faculty. No independent Cambridge own-group or actual doctoral-advising basis is established. Preserve research rank under the ordinary rule; the other YuWang identity remains unresolved.",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/02/5889-27"
+    ],
+    "dblp_window": 148
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "ladder": false,
+     "appointment_rank": "research",
+     "url": "https://yuwangsjtu.github.io/",
+     "sha256": "0efba054a9c9d7c5a8f4faab0e330157d0e8b95bd176fcd27bd66f6e3e118ce0",
+     "quote": "Senior Research Associate working in the Machine Intelligence Laboratory, University of Cambridge",
+     "observed": "2026-11-16T22:42:02"
+    }
+   ],
+   "evidence": [
+    {
+     "url": "https://yuwangsjtu.github.io/",
+     "sha256": "0efba054a9c9d7c5a8f4faab0e330157d0e8b95bd176fcd27bd66f6e3e118ce0",
+     "quote": "EvolveBench: A Comprehensive Benchmark for Assessing Temporal Awareness in LLMs on Evolving Knowledge",
+     "observed": "2026-11-16T22:42:02"
+    },
+    {
+     "url": "https://yuwangsjtu.github.io/",
+     "sha256": "0efba054a9c9d7c5a8f4faab0e330157d0e8b95bd176fcd27bd66f6e3e118ce0",
+     "quote": "ReflecTool: Towards Reflection-Aware Tool-Augmented Clinical Agents",
+     "observed": "2026-11-16T22:42:02"
+    },
+    {
+     "url": "https://yuwangsjtu.github.io/",
+     "sha256": "0efba054a9c9d7c5a8f4faab0e330157d0e8b95bd176fcd27bd66f6e3e118ce0",
+     "quote": "Fine-tuning with Reserved Majority for Noise Reduction",
+     "observed": "2026-11-16T22:42:02"
+    }
+   ],
+   "identity_note": "At least three distinct complete publication titles on the current author-owned SJTU homepage independently match PID02/5889-27. Imperial speech PhD2015, CambridgeALTA/MATERIAL work and SJTU employment agree with this exact cached DBLPperson, not PID02/5889-60.",
+   "reviewed_by": "codex-cambridge-1115",
+   "reviewed_on": "2026-11-16",
    "years_listed": [],
    "units_searched": [
     "BSU",
@@ -22023,16 +22307,154 @@
     "Ivan Vulic"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (MMLL listing, reviewed own-group/advising evidence); computing-share test passes: 155 of 176 school works DBLP-indexed (share 0.88; 2 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "pi_basis_review": {
+     "kind": "advises_phd",
+     "url": "https://sites.google.com/site/ivanvulic/people",
+     "sha256": "da3369d010027a02562c563d5da5228fdacf0eae352ff93149cd5d9ea0804278",
+     "quote": "PhD Supervisor Current Paul Martin. University of Cambridge; 2024-current. (Co-supervision with Edoardo Maria Ponti)",
+     "unit": "MMLL",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5014866912",
+      "https://openalex.org/A5124607288"
+     ],
+     "school_works": 176,
+     "dblp_indexed": 155,
+     "share": 0.881,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [
+      {
+       "author": "https://openalex.org/A5094319437",
+       "why": "namesake: ORCID 0000-0002-3663-7252, not the busiest ORCID 0000-0002-5161-5422",
+       "n": 10
+      }
+     ],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5014866912",
+       "basis": "candidate author id",
+       "works": 170,
+       "dblp_indexed": 150,
+       "years": [
+        2016,
+        2025
+       ],
+       "names": [
+        "Ivan Vulić",
+        "Vulić, Ivan",
+        "Vulic, Ivan"
+       ],
+       "orcids": [
+        "0000-0002-5161-5422"
+       ],
+       "venues": [
+        "Annual Meeting of the Association for Computational Linguistics (ACL)",
+        "Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+        "Synthesis lectures on human language technologies"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2229725139",
+         "year": 2016,
+         "title": "Bilingual Distributed Word Representations from Document-Aligned Comparable Data",
+         "venue": "Journal of Artificial Intelligence Research"
+        },
+        {
+         "oa": "https://openalex.org/W2508069829",
+         "year": 2016,
+         "title": "On the Role of Seed Lexicons in Learning Bilingual Word Embeddings",
+         "venue": "Annual Meeting of the Association for Computational Linguistics (ACL)"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3087845381",
+         "year": 2017,
+         "title": "Word Vector Space Specialisation",
+         "venue": "Conference of the European Chapter of the Association for Computational Linguistics"
+        },
+        {
+         "oa": "https://openalex.org/W3089118967",
+         "year": 2017,
+         "title": "Cross-Lingual Word Representations: Induction and Evaluation",
+         "venue": "Empirical Methods in Natural Language Processing"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5124607288",
+       "basis": "full name: Vulić, Ivan",
+       "works": 6,
+       "dblp_indexed": 5,
+       "years": [
+        2020,
+        2026
+       ],
+       "names": [
+        "Vulić, Ivan",
+        "Ivan Vulić"
+       ],
+       "orcids": [],
+       "venues": [
+        "Annual Meeting of the Association for Computational Linguistics (ACL)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W3167903091",
+         "year": 2020,
+         "title": "A Closer Look at Few-Shot Crosslingual Transfer: The Choice of Shots Matters",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W7162788501",
+         "year": 2026,
+         "title": "Dial HEALTHDIAL for Advice: A Multilingual and Multi-Parallel Spoken Dialogue Dataset for Knowledge-Grounded Information Seeking",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W7128784064",
+         "year": 2026,
+         "title": "Artificial intelligence is creating a new global linguistic hierarchy",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MMLL",
+     "url": "https://www.chia.cam.ac.uk/team/ivan-vulic",
+     "sha256": "2e15495e531fa3f42d2bb48e47ec2da42449e3421a2de61fa3b7aa45d75144e8",
+     "observed": "2026-11-16T22:42:57",
+     "quote": "Ivan is also a Research Professor in the Language Technology Lab at the University of Cambridge, where he has been based since October 2015.",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -23201,16 +23623,106 @@
     "Cole, Jacqueline M"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (PHYS listing, reviewed own-group/advising evidence); computing-share test passes: 31 of 113 school works DBLP-indexed (share 0.27; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "pi_basis_review": {
+     "kind": "own_group",
+     "url": "https://www.ai4mat.phy.cam.ac.uk/profile/jmcole/",
+     "sha256": "26c05cd6c68b2f19bda4b5ba8ec7b99b5ab3c66e4b22aa0512a14c1fc32c8409",
+     "quote": "Jacqui Cole is a Professor of Materials Physics, University of Cambridge, where she leads a research group in AI for Materials.",
+     "unit": "PHYS",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5068607578"
+     ],
+     "school_works": 113,
+     "dblp_indexed": 31,
+     "share": 0.274,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5068607578",
+       "basis": "candidate author id",
+       "works": 113,
+       "dblp_indexed": 31,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Jacqueline M. Cole",
+        "Cole, Jacqueline M"
+       ],
+       "orcids": [
+        "0000-0002-1552-8743"
+       ],
+       "venues": [
+        "Journal of Chemical Information and Modeling",
+        "Scientific Data",
+        "The Journal of Physical Chemistry C"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2523785361",
+         "year": 2016,
+         "title": "ChemDataExtractor: A Toolkit for Automated Extraction of Chemical Information from the Scientific Literature",
+         "venue": "Journal of Chemical Information and Modeling"
+        },
+        {
+         "oa": "https://openalex.org/W2786250307",
+         "year": 2018,
+         "title": "Data-Driven Molecular Engineering of Solar-Powered Windows",
+         "venue": "Computing in Science & Engineering"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2314228992",
+         "year": 2016,
+         "title": "Molecular engineering of cyanine dyes to design a panchromatic response in co-sensitized dye-sensitized solar cells",
+         "venue": "Molecular Systems Design & Engineering"
+        },
+        {
+         "oa": "https://openalex.org/W2467601377",
+         "year": 2016,
+         "title": "Can nitro groups really anchor onto TiO 2 ? Case study of dye-to-TiO 2 adsorption using azo dyes with NO 2 substituents",
+         "venue": "Physical Chemistry Chemical Physics"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "PHYS",
+     "url": "https://www.phy.cam.ac.uk/profile/prof-jacqui-cole/",
+     "sha256": "5cb00a50ee66bfb1ef5723e1863e90f0f12cbaf6805bfdf30557a683368446c6",
+     "observed": "2026-11-16T22:32:06",
+     "quote": "Professor Jacqueline Cole is a Research Professor at the University of Cambridge, where she is Head of Molecular Engineering.",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -23263,16 +23775,107 @@
     "ADVAIT SARKAR"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (CST listing, reviewed own-group/advising evidence); computing-share test passes: 27 of 36 school works DBLP-indexed (share 0.75; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "pi_basis_review": {
+     "kind": "advises_phd",
+     "url": "https://advait.org/teaching",
+     "sha256": "29788a9a97057d22721b3ac0fca4ba7374d98aab78fc1673a06046be9409daff",
+     "quote": "Aaron Stockdill. Ph.D., University of Cambridge, 2017—2021 (co-advised1 with Mateja Jamnik). Automating representation change across domains for reasoning.",
+     "unit": "CST",
+     "appointment_rank": "teaching"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5025427198"
+     ],
+     "school_works": 36,
+     "dblp_indexed": 27,
+     "share": 0.75,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5025427198",
+       "basis": "candidate author id",
+       "works": 36,
+       "dblp_indexed": 27,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Advait Sarkar",
+        "Sarkar, Advait",
+        "ADVAIT SARKAR"
+       ],
+       "orcids": [
+        "0000-0002-5401-3478"
+       ],
+       "venues": [
+        "CHI Conference on Human Factors in Computing Systems",
+        "Proceedings/Proceedings -- IEEE Symposium on Visual Languages and Human-Centric Computing",
+        "Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2345488480",
+         "year": 2016,
+         "title": "Constructivist Design for Interactive Machine Learning",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2394501153",
+         "year": 2016,
+         "title": "Setwise Comparison",
+         "venue": "CHI Conference on Human Factors in Computing Systems"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2519883598",
+         "year": 2016,
+         "title": "Setwise Comparison: Consistent, Scalable, Continuum Labels for Machine Learning",
+         "venue": "Human Factors in Computing Systems"
+        },
+        {
+         "oa": "https://openalex.org/W4281390793",
+         "year": 2022,
+         "title": "Is explainable AI a race against model complexity?",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "CST",
+     "url": "https://advait.org/professional",
+     "sha256": "984a7621309d471e6823182ceef0627f0c3253aa2307248e67e38acd232bab33",
+     "observed": "2026-11-16T22:42:58",
+     "quote": "Affiliated lecturer, Department of Computer Science and Technology, University of Cambridge (2018—present)",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "teaching"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -23809,16 +24412,29 @@
     "Marwa M Mahmoud"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
     "evidence": []
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "CST",
+     "url": "https://www.gla.ac.uk/schools/computing/staff/marwamahmoud/",
+     "sha256": "c6bfbb961e9b8aaadd54a3f5244e966518122a566c28d5559d24750cabcdc9d4",
+     "observed": "2026-11-16T23:02:42",
+     "quote": "Marwa Mahmoud is a Senior Lecturer (Associate Professor) in Socially Intelligent Technologies in the School of Computing Science at University of Glasgow, and a Visiting Fellow in the Department of Computer Science and Technology at University of Cambridge, UK.",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -24348,16 +24964,29 @@
     "Jasmin Jahic"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
     "evidence": []
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "CST",
+     "url": "https://www.cst.cam.ac.uk/people/jj542",
+     "sha256": "e772b33219dc47c3e21cd86e0cae948e1035d1558df6f2be2ca13b47ee23c357",
+     "observed": "2026-11-15T21:54:43",
+     "quote": "Jasmin Jahic Research Associate",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -24802,15 +25431,108 @@
     "Conduit, Gareth"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (PHYS listing, reviewed own-group/advising evidence); computing-share test passes: 10 of 40 school works DBLP-indexed (share 0.25; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "pi_basis_review": {
+     "kind": "advises_phd",
+     "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/2a6f25c8-29dc-489c-bd6e-08e4c3a68ca3/content",
+     "sha256": "42309d8addeb616bc931f7e94298bae7d6147d31c51c56e5631caff41b29b122",
+     "quote": "Patrick Louis Taylor Supervisor: Dr Gareth Conduit Department of Physics University of Cambridge This thesis is submitted for the degree of Doctor of Philosophy Clare College December 2022",
+     "unit": "PHYS",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5034017311"
+     ],
+     "school_works": 40,
+     "dblp_indexed": 10,
+     "share": 0.25,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5034017311",
+       "basis": "candidate author id",
+       "works": 40,
+       "dblp_indexed": 10,
+       "years": [
+        2017,
+        2026
+       ],
+       "names": [
+        "Gareth J. Conduit",
+        "Gareth Conduit",
+        "G. J. Conduit"
+       ],
+       "orcids": [
+        "0000-0003-3807-6361"
+       ],
+       "venues": [
+        "Computational Materials Science",
+        "Data-Centric Engineering",
+        "Physical review. B./Physical review. B"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2913930293",
+         "year": 2019,
+         "title": "Imputation of Assay Bioactivity Data Using Deep Learning",
+         "venue": "Journal of Chemical Information and Modeling"
+        },
+        {
+         "oa": "https://openalex.org/W3009652674",
+         "year": 2020,
+         "title": "Predicting the state of charge and health of batteries using data-driven machine learning",
+         "venue": "Nature Machine Intelligence"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2736081149",
+         "year": 2017,
+         "title": "Quantum Order-by-Disorder in Strongly Correlated Metals",
+         "venue": "Annual Review of Condensed Matter Physics"
+        },
+        {
+         "oa": "https://openalex.org/W2962822610",
+         "year": 2017,
+         "title": "Probabilistic design of a molybdenum-base alloy using a neural network",
+         "venue": "Scripta Materialia"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "PHYS",
+     "url": "https://garethconduit.org/cv.pdf",
+     "sha256": "e5f0220cb534635c13be6b7bb924fc1ae3b3cf83fae635ccfec89cb478f27113",
+     "observed": "2026-11-16T22:42:02",
+     "quote": "2015–23 Royal Society University Research Fellow, University of Cambridge",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research",
+     "historical_appointment": {
+      "start": "2015",
+      "end": "2023"
+     }
+    }
+   ],
    "years_listed": [],
    "units_searched": [
     "BSU",
@@ -25294,15 +26016,42 @@
     "Neff, Gina"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "excluded_scope",
+   "source_id": "https://openalex.org/A5088074131",
+   "reason": "R-HIER-05 explicitly names GinaNeff among the excluded digital-society/information-policy scholars. The current official biography frames her body of work around effects of the digital information environment on workers, workplaces and everyday life. The8/11 DBLP-indexed share does not overturn this existing scope decision.",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "openalex": [
+     "https://openalex.org/A5088074131"
+    ]
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "Minderoo Centre for Technology & Democracy",
+     "ladder": false,
+     "url": "https://www.ai.cam.ac.uk/people/gina-neff/",
+     "sha256": "49904bda38da6a20d75215111d39de09bafefe8b3832483548d0ac13925ff77d",
+     "quote": "Gina Neff is the Executive Director of the Minderoo Centre for Technology & Democracy at the University of Cambridge.",
+     "observed": "2026-11-16T23:14:45"
+    }
+   ],
+   "evidence": [
+    {
+     "url": "https://www.ai.cam.ac.uk/people/gina-neff/",
+     "sha256": "49904bda38da6a20d75215111d39de09bafefe8b3832483548d0ac13925ff77d",
+     "quote": "Her books include Venture Labor (MIT Press 2012), Self-Tracking (MIT Press 2016) and Human-Centered Data Science (MIT Press 2022).",
+     "observed": "2026-11-16T23:14:45"
+    }
+   ],
+   "scope_evidence": {
+    "url": "https://www.ai.cam.ac.uk/people/gina-neff/",
+    "sha256": "49904bda38da6a20d75215111d39de09bafefe8b3832483548d0ac13925ff77d",
+    "quote": "the effects of the rapid expansion of our digital information environment on workers and workplaces",
+    "observed": "2026-11-16T23:14:45"
+   },
+   "scope_rule": "R-HIER-05",
+   "identity_note": "Exact OpenAlex candidate A5088074131 has the same full name, Cambridge Minderoo affiliation and scholarly persona as the official individual profile; the independently identified book titles and sociology biography agree.",
+   "reviewed_by": "codex-cambridge-1115",
+   "reviewed_on": "2026-11-16",
    "years_listed": [],
    "units_searched": [
     "BSU",
@@ -25419,15 +26168,48 @@
     "Whittlestone, Jess"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "excluded_scope",
+   "source_id": "https://openalex.org/A5076459519",
+   "reason": "R-HIER-05: the author describes a synthesis/policy research agenda on societal impacts of AI and a current AI-policy leadership role. This is a digital-society/AI-governance body, not computing-method research. Her real former Cambridge SeniorResearchFellow role and AI:FuturesandResponsibility group leadership are preserved without inventing current university employment.",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "openalex": [
+     "https://openalex.org/A5076459519"
+    ]
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "University of Cambridge",
+     "ladder": false,
+     "url": "https://jesswhittlestone.com/",
+     "sha256": "7e83f46a23e9e5c86ae28751ec7ec673266186714de21520c555dd95a77afe19",
+     "quote": "I was previously a Senior Research Fellow at the University of Cambridge",
+     "observed": "2026-11-16T23:14:47"
+    }
+   ],
+   "evidence": [
+    {
+     "url": "https://jesswhittlestone.com/",
+     "sha256": "7e83f46a23e9e5c86ae28751ec7ec673266186714de21520c555dd95a77afe19",
+     "quote": "Jess Whittlestone",
+     "observed": "2026-11-16T23:14:47"
+    },
+    {
+     "url": "https://jesswhittlestone.com/",
+     "sha256": "7e83f46a23e9e5c86ae28751ec7ec673266186714de21520c555dd95a77afe19",
+     "quote": "I was previously a Senior Research Fellow at the University of Cambridge",
+     "observed": "2026-11-16T23:14:47"
+    }
+   ],
+   "scope_evidence": {
+    "url": "https://jesswhittlestone.com/",
+    "sha256": "7e83f46a23e9e5c86ae28751ec7ec673266186714de21520c555dd95a77afe19",
+    "quote": "societal impacts of developments in artificial intelligence",
+    "observed": "2026-11-16T23:14:47"
+   },
+   "scope_rule": "R-HIER-05",
+   "identity_note": "The exact OpenAlex candidate A5076459519 has the same uncommon full name and Cambridge AI-policy research identity as the author-owned homepage; current think-tank and former Cambridge roles agree with the candidate scholarly body.",
+   "reviewed_by": "codex-cambridge-1115",
+   "reviewed_on": "2026-11-16",
    "years_listed": [],
    "units_searched": [
     "BSU",
