@@ -1529,5 +1529,49 @@
    }
   ],
   "why_periods": "Both month boundaries are explicit in the career CV. September2018 move to Bath is independently visible in the adjacent dated career entry. Research appointment and PhD co-supervision do not become ladder rank; no later Cambridge period or current listing year is inferred."
+ },
+ "Kate M. Knill": {
+  "periods": [
+   {
+    "id": "override_period_cambridge_knill_explicit15",
+    "start": "2012",
+    "end": null,
+    "asof": "2026-11-15",
+    "datePrecision": "year",
+    "role": "Cambridge research appointment: Senior Research Associate from2012; Principal Research Associate from2019; current Research Professor",
+    "evidence": [
+     {
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/341d9f72-b7e8-4947-96b3-17916a40c0c0/content",
+      "sha256": "183df75790c598ee7dd4906862683170c3b0f78d2ad5707f0a28ba704099bb16",
+      "quote": "She returned to Cambridge University Engineering Department as a Senior Research Associate in Spoken Language Processing (SLP) in 2012",
+      "observed": "2026-11-16T07:34:48",
+      "kind": "faculty_start",
+      "source_document_date": "2022-02-27",
+      "raw_format": "multipart/form-data containing application/pdf",
+      "raw_path": "code/hierarchy/cambridge/raw/source-evidence/183df75790c598ee7dd4906862683170c3b0f78d2ad5707f0a28ba704099bb16.multipart",
+      "pdf_part_sha256": "8e20790259cebc28e357ce3e97dd1df3fb3c1ef6d9a4cef74fd16e77a39b104f",
+      "pdf_part_path": "code/hierarchy/cambridge/raw/source-evidence/8e20790259cebc28e357ce3e97dd1df3fb3c1ef6d9a4cef74fd16e77a39b104f.pdf",
+      "pdf_text_mode": "raw"
+     },
+     {
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/341d9f72-b7e8-4947-96b3-17916a40c0c0/content",
+      "sha256": "183df75790c598ee7dd4906862683170c3b0f78d2ad5707f0a28ba704099bb16",
+      "quote": "Kate was appointed a Principal Research Associate in 2019",
+      "observed": "2026-11-16T07:34:48",
+      "kind": "appointment_promotion"
+     },
+     {
+      "url": "https://www.eng.cam.ac.uk/profiles/kmk1001",
+      "sha256": "cb643bdedd5583c14047929419449b5a77d84c47ebb4d8ddc268f097b8d5d406",
+      "quote": "Prof. Kate Knill Profiles kmk1001 Research Professor",
+      "observed": "2026-11-15T22:03:36",
+      "kind": "faculty_last_confirmed"
+     }
+    ],
+    "reviewed": "codex-cambridge-1116",
+    "note": "The dated27February2022accepted manuscript explicitly dates return as SRA to2012 and promotion toPRA to2019. The separate current official profile supplies the2026-11-15confirmation. Research rank is retained throughout; the current ResearchProfessor title is not assigned to2012. The repository HTTP body is a multipart upload envelope mislabeled application/pdf; exactly one PDF part was decoded with a MIME parser. Original container and PDF-part bytes/hashes are retained, and pdftotext-raw verifies the literal biography to avoid two-column interleaving."
+   }
+  ],
+  "why_periods": "Explicit2012return as CambridgeSRA, independent current official ResearchProfessor confirmation;2019PRA is a promotion, not a new hire. No roster-year start inference."
  }
 }

@@ -1401,5 +1401,53 @@
   "why_dblp": "The normal school-affiliation resolver selects this exact PID among3 candidates, with62in-window records. The independently named author CV matches51complete publication titles in this PID, including three individually retained2016–2018title/DOI records. The full-name dated DAMTP lecture and former group roster separately agree on the historical department and role. The Wuppertal MatthiasEhrhardt namesake is not merged. Identity does not extend the source-bound2016-01–2018-09Cambridge appointment.",
   "reviewed": "2026-11-16",
   "reviewed_by": "codex-cambridge-1116"
+ },
+ "Kate M. Knill": {
+  "dblp": [
+   "https://dblp.org/pid/06/9262"
+  ],
+  "orcid": [
+   "0000-0003-1292-2769"
+  ],
+  "aliases": [
+   "Katherine M. Knill"
+  ],
+  "identity_evidence": [
+   {
+    "url": "https://dblp.org/pid/06/9262",
+    "sha256": "fa90d991c338d15816fe6c4ac8148458af9fe17a1cc1225fa50aa12fcd95c9ec",
+    "quote": "Cambridge University, UK",
+    "dump": "dblp-2026-09-01.xml.gz",
+    "basis": "school_affiliation",
+    "candidate_count": 2,
+    "in_window": 93
+   },
+   {
+    "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/341d9f72-b7e8-4947-96b3-17916a40c0c0/content",
+    "sha256": "183df75790c598ee7dd4906862683170c3b0f78d2ad5707f0a28ba704099bb16",
+    "quote": "Increasing Context for Estimating Confidence Scores in Automatic Speech Recognition",
+    "pdf_part_sha256": "8e20790259cebc28e357ce3e97dd1df3fb3c1ef6d9a4cef74fd16e77a39b104f",
+    "matched_dois": [
+     "10.1109/taslp.2022.3161153"
+    ],
+    "basis": "Exact complete title on the deposited manuscript agrees with the exact DBLP record; byline Kate Knill and author biography Katherine M. Knill bind the two published full-name forms."
+   },
+   {
+    "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/341d9f72-b7e8-4947-96b3-17916a40c0c0/content",
+    "sha256": "183df75790c598ee7dd4906862683170c3b0f78d2ad5707f0a28ba704099bb16",
+    "quote": "Katherine M. Knill received a B.Eng.",
+    "pdf_part_sha256": "8e20790259cebc28e357ce3e97dd1df3fb3c1ef6d9a4cef74fd16e77a39b104f",
+    "basis": "Literal author-biography full name on the same manuscript that credits Kate Knill in its byline."
+   },
+   {
+    "url": "https://www.eng.cam.ac.uk/profiles/kmk1001",
+    "sha256": "cb643bdedd5583c14047929419449b5a77d84c47ebb4d8ddc268f097b8d5d406",
+    "quote": "Prof. Kate Knill Profiles kmk1001 Research Professor",
+    "observed": "2026-11-15T22:03:36"
+   }
+  ],
+  "why_dblp": "Normal Cambridge-affiliation resolver selects PID06/9262 amongtwo candidates, with93in-window records. Independently captured accepted manuscript binds its complete title/DOI, the KateKnill byline and KatherineM.Knill biography to the exact DBLP name forms; current official Engineering profile separately agrees. This anchors identity only; papers must still fall within the explicit research appointment.",
+  "reviewed": "2026-11-16",
+  "reviewed_by": "codex-cambridge-1116"
  }
 }
