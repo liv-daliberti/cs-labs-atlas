@@ -279,6 +279,7 @@ def _given_compat(a, b):
 def name_match(a, b):
     """The same person under spelling variants: equal token sets; or equal last token and compatible first (equal, an initial, a longer-name prefix, one edit apart, a common nickname);
     hyphen/space-insensitive equal given names (Jee-weon / Jeeweon); a shorter name whose tokens all occur in a longer one with the same last token (Ozge Akmandor / Ayten Ozge Akmandor);
+    identical literal mononyms match only other mononyms, never a partial full name;
     an explicit Han spelling must agree on both sides, including bilingual names. No transliteration is inferred."""
     ha, hb = _han_name(a), _han_name(b)
     if ha and hb and ha != hb:
@@ -287,6 +288,8 @@ def name_match(a, b):
     if len(ta) < 2 or len(tb) < 2:
         if ha and hb:
             return ha == hb
+        if len(ta) == len(tb) == 1 and len(ta[0]) > 1:
+            return ta == tb
         ra, rb = re.sub(r'\s+', '', a or ''), re.sub(r'\s+', '', b or '')
         return bool(ra) and ra == rb and not (ta and tb)
     if set(ta) == set(tb):

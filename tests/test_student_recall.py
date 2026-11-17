@@ -41,6 +41,16 @@ def test_name_match_variants():
     assert R.name_match('Zhou Xiaofang', 'Xiaofang Zhou') and R.name_match('周晓方', '周 晓方') and not R.name_match('周晓方', '周晓芳')
 
 
+def test_exact_literal_mononyms_do_not_become_partial_full_name_matches():
+    assert R.name_match('Utkarsh', 'Utkarsh')
+    assert R.name_match('UTKARSH', 'Utkarsh')
+    for source, recorded in [('Utkarsh', 'Utkarsh Sharma'), ('Utkarsh', 'U. Sharma'),
+                             ('Utkarsh', 'Utkarsh Singh'), ('Utkarsh', 'Utkarsha'),
+                             ('U', 'U'), ('', ''), ('张赟', 'Yun')]:
+        assert not R.name_match(source, recorded)
+        assert not R.name_match(recorded, source)
+
+
 @pytest.mark.parametrize(('source', 'recorded', 'expected'), [
     ('冯明泉', 'Mingquan Feng 冯明泉', True),
     ('Mingquan Feng (冯明泉)', '冯 明泉', True),
