@@ -119,3 +119,11 @@ delay = 3
 # 2026-11-10 (owner): discovery channels re-enabled for every loop. wayback_acm stays OFF (and WAYBACK_HOLD=1 in the loop scripts) while Wayback listing captures run; CORE is allowed everywhere (DECISIONS 2026-11-15): core and core_bulk added to the list 2026-11-16.
 # Re-enable wayback_acm later: append "wayback_acm" here and set WAYBACK_HOLD=0 for the loops. OpenAlex spend is capped by OA_RESERVE=4000 (docs/CHANNELS.md).
 channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "core", "core_bulk", "europepmc", "pmc", "figshare", "labpages", "pihomes"]
+
+[evidence]
+# Where this school's reviewed decisions are written (docs/EVIDENCE-STORE.md): "store" = <stores>/epfl/evidence.sqlite is the source of truth, the reviewed JSON files
+# (its own and its rows in the shared files) are an export that the pre-commit hook, `evidence_store.py check` and atlas doctor keep honest.
+source = "store"   # since 2026-11-17 (R3b method, after Michigan and Princeton)
+shared = "store"
+# files a tool regenerates are audit samples or tool captures, not decisions: they stay outside the store and the guard (student_recall.py: the 30-PI recall check and its dated copies)
+unmanaged = ["student-recall-check*.json", "relation-evidence.json"]
