@@ -39,6 +39,19 @@ extracted-text field does not discard saved HTML. Inspect the original bytes;
 a cached page is still pending whole-source review, never an accepted roster
 or a recall verdict. The JSON board lists `capture_stores` for locating them.
 
+Private school overlays must retain the archived listing source databases as
+well as `rows.json` and coverage summaries. The overlay helper snapshots the
+registered listing `.sqlite` stores through the backup API, including committed WAL data, and preserves the private
+copy on reuse. Select the actual reviewed candidate as the source root; an old
+summary cannot stand in for missing captured bytes.
+
+After a reviewed PI merge, reconcile the website register's PI keys and rekey
+explicitly owned roster entries before sealing. Preserve source-reviewed
+website objects and dates: older discovery/audit rows can contain superseded
+claims. Use the CLI's reviewed-entry preservation or a documented key-only
+reconciliation; calling the lower-level website generator alone is not a new
+source review. Aliases do not automatically reassign roster ownership.
+
 ## Reusable commands
 
 Start with `bin/atlas closeout stages <school>`. This shows stages 0–10 with

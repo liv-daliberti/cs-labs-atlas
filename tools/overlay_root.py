@@ -21,9 +21,11 @@ Run any tool against it with `CS_ATLAS_CODE=<out> bin/atlas <command>` (from the
   overlay_root.py <school> --out <dir> [--worktree <dir>] [--private] [--verify]      (<dir> under hierarchy/<school>/tmp/, which git ignores; rebuilt if it exists)
 """
 import argparse
+from contextlib import closing
 import hashlib
 import json
 import shutil
+import sqlite3
 import subprocess
 import sys
 from pathlib import Path
@@ -62,7 +64,18 @@ def main_hashes(main, school):
     return h
 
 
-def make_private(out, school, main):
+def copy_listing_source(src, dst):
+    """Snapshot a live archive database coherently, including committed WAL rows."""
+    src, dst = Path(src), Path(dst)
+    if src.suffix == '.sqlite':
+        with closing(sqlite3.connect(src.resolve().as_uri() + '?mode=ro', uri=True)) as source, \
+                closing(sqlite3.connect(dst)) as target:
+            source.backup(target)
+        return dst
+    return shutil.copy2(src, dst)
+
+
+def make_private(out, school, main, seed_listings=True):
     """Replace the overlay's derived / raw / listings-<school> symlinks by private copies (idempotent; an existing private dir is left alone)."""
     out, main = Path(out), Path(main)
     d = out / 'hierarchy' / school / 'derived'
@@ -90,7 +103,14 @@ def make_private(out, school, main):
         sd.mkdir()
         if (main / 'listings' / school / 'derived').is_dir():
             shutil.copytree(main / 'listings' / school / 'derived', sd / 'derived')
-        (sd / 'raw').mkdir(exist_ok=True)
+        raw = main / 'listings' / school / 'raw'
+        if seed_listings and raw.is_dir():
+            # Previously only summaries were copied, leaving the source store
+            # empty. Never share a writable capture DB with the source school.
+            shutil.copytree(raw, sd / 'raw', copy_function=copy_listing_source,
+                            ignore=shutil.ignore_patterns('*.sqlite-wal', '*.sqlite-shm', '*.sqlite-journal'))
+        else:
+            (sd / 'raw').mkdir(exist_ok=True)
 
 
 def verify(out, school=None):
@@ -183,7 +203,7 @@ def build(school, out, worktree=None, main=None, private=False):
         n_branch += overlay_dir(d, main / 'hierarchy' / school / part, worktree, f'hierarchy/{school}/{part}')
     (out / '.overlay.json').write_text(json.dumps(dict(main=str(main), school=school, worktree=str(worktree))))
     if private or keep:
-        make_private(out, school, main)
+        make_private(out, school, main, seed_listings=Path('listings') / school not in keep)
     for rel, src in keep.items():   # the preserved private copy replaces whatever the rebuild linked or copied
         dst = out / rel
         if dst.is_symlink():

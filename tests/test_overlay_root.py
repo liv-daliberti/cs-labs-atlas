@@ -1,5 +1,6 @@
 """ROADMAP #44 workaround: the overlay code root resolves a school's reviewed files to the worktree's branch copies and leaves main alone."""
 import subprocess
+import sqlite3
 
 import pytest
 
@@ -125,6 +126,42 @@ def test_private_copies_survive_a_rebuild_and_main_stays_unchanged(tmp_path):
     assert (out / 'hierarchy' / 'newu' / 'raw' / 'school-captures.sqlite').read_text() == 'grown'
     assert (main / 'hierarchy' / 'newu' / 'derived' / 'pis.json').read_text() == 'main-pis'
     assert O.verify(out) == []
+
+
+def test_private_listing_sources_include_committed_wal_and_remain_isolated(tmp_path, monkeypatch):
+    main, wt = tree(tmp_path)
+    raw = main / 'listings' / 'newu' / 'raw'
+    raw.mkdir(parents=True)
+    source = raw / 'captures.sqlite'
+    conn = sqlite3.connect(source)
+    try:
+        conn.execute('pragma journal_mode=wal')
+        conn.execute('pragma wal_autocheckpoint=0')
+        conn.execute('create table captures (body text)')
+        conn.execute('insert into captures values (?)', ('original archived roster',))
+        conn.commit()
+        assert source.with_name('captures.sqlite-wal').stat().st_size > 0
+        before = source.read_bytes()
+        out = tmp_path / 'overlay'
+        O.build('newu', out, worktree=wt, main=main, private=True)
+        copied = out / 'listings' / 'newu' / 'raw' / 'captures.sqlite'
+        assert not copied.is_symlink()
+        assert not list(copied.parent.glob('*.sqlite-wal'))
+        with sqlite3.connect(copied) as private:
+            assert private.execute('select body from captures').fetchall() == [('original archived roster',)]
+            private.execute('insert into captures values (?)', ('private new capture',))
+        assert conn.execute('select count(*) from captures').fetchone()[0] == 1
+        assert source.read_bytes() == before
+
+        def no_recopy(*args, **kwargs):
+            pytest.fail('Rebuilding a private overlay recopied its source archive store')
+
+        monkeypatch.setattr(O, 'copy_listing_source', no_recopy)
+        O.build('newu', out, worktree=wt, main=main, private=True)
+        with sqlite3.connect(copied) as private:
+            assert private.execute('select count(*) from captures').fetchone()[0] == 2
+    finally:
+        conn.close()
 
 
 def test_verify_reports_a_change_to_main_derived_files(tmp_path):
