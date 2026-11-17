@@ -54,7 +54,7 @@ legacy_sweep = ""
 computing_departments = ["CS"]
 center_units = ["CERIAS", "BIRCK"]
 home_units = {"Computer Science" = 'computer\s+science', "Electrical and Computer Engineering" = 'electrical\s+(?:and|&)\s+computer\s+engineering', "Statistics" = 'statistics', "Computer and Information Technology" = 'computer\s+and\s+information\s+technology', "Industrial Engineering" = 'industrial\s+engineering', "Economics" = 'economics'}
-rank_words = {teaching = '\bprofessor\s+of\s+practice\b|\bclinical\s+professor\b|\bteaching\s+professor\b|\blecturer\b', adjunct = '\badjunct\b|\bvisiting\b|\baffiliate\b'}
+rank_words = {adjunct = '\baffiliate\s+(?:assistant\s+|associate\s+)?professor\b'}
 
 [sweep_check]
 exceptions = []
