@@ -23,7 +23,8 @@ from bs4 import BeautifulSoup
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import listing_formats as LF  # noqa: E402
-from school_web import body as wb_body, extract as html_extract  # noqa: E402  (stored capture bytes, gunzipped)
+from school_web import body as wb_body, extract as html_extract, wb as _wb  # noqa: E402  (stored capture bytes, gunzipped)
+wb_text = _wb.text
 
 RANKS = [('emeritus', r'emerit'), ('courtesy', r'courtesy|\baffiliate\s+faculty'), ('adjunct', r'\badjunct\b|\badjoint\b'), ('visiting', r'\bvisiting\b'),
          ('lecturer', r'\blecturer\b|\binstructor\b'), ('research', r'\bresearch\s+(?:scientist|investigator|professor|fellow|faculty)|\bresearch\s+assistant\s+professor'),
@@ -423,7 +424,7 @@ def main(key):
         parsed_entries = 0
         for cap in [cap] + pages:
             raw, sha, txt, ts = c.execute('select raw_zlib, sha256, text, wayback_timestamp from captures where capture_url=?', (cap,)).fetchone()
-            h = wb_body(raw).decode('utf-8', 'replace')  # gunzipped when Wayback served it gzip-encoded
+            h = wb_text(wb_body(raw))  # gunzipped when Wayback served it gzip-encoded
             flat = ' '.join((txt or '').split())
             m = re.search(r'/web/(\d{14})id_/', cap); obs = m.group(1) if m else ts
             # one slot can have several URL eras with different page formats: the era that holds the capture date names the format; a named

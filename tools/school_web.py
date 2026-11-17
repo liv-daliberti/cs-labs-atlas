@@ -120,7 +120,7 @@ body = wb.body  # stored bytes, gunzipped when Wayback served them gzip-encoded
 
 def raw_html(c, cap):
     r = c.execute('select raw_zlib from captures where capture_url=?', (cap,)).fetchone()
-    return body(r[0]).decode('utf-8', 'replace') if r and r[0] else ''
+    return wb.text(body(r[0])) if r and r[0] else ''
 
 
 def repair_gzip(c):

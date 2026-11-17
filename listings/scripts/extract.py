@@ -92,6 +92,8 @@ def decode(raw, content_type=None):
         m = re.search(rb"<meta[^>]+charset=[\"']?([\w-]+)", raw[:4000], re.I)
         if m:
             cs = m.group(1).decode("ascii", "replace")
+    if cs and cs.lower().replace("_", "-") in ("gb2312", "gbk", "gb-2312"):
+        cs = "gb18030"  # the superset: a page declared GB2312 holds GBK characters (rare given-name characters) that a strict gb2312 decode rejects
     for c in ([cs] if cs else []) + ["utf-8"]:
         try:
             return raw.decode(c)

@@ -63,7 +63,7 @@ def cached_capture(c, row):
     status, sha, raw = saved
     if raw and (not sha or hashlib.sha256(zlib.decompress(raw)).hexdigest() != sha):
         raise DiscoveryPending('Cached sample hash does not match its receipt')
-    return cap, status, sha, W.body(raw).decode('utf-8', 'replace') if raw else ''
+    return cap, status, sha, W.wb.text(W.body(raw)) if raw else ''
 
 
 def half(ts):

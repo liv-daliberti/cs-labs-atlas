@@ -1406,9 +1406,81 @@ def zju_cs_zuzhi_names(h):
     division = clean(inst.get_text(' ', strip=True)) if inst else None
     out = []
     for a in soup.select('ul.zuzhi li a[href]'):
-        name = re.sub(r'[\s\u3000]+', '', a.get('title') or a.get_text())
+        printed = ' '.join((a.get('title') or a.get_text()).split())
+        name = re.sub(r'[\s\u3000]+', '', printed)
         if name:
-            out.append(dict(name_listed=name, titles=[], profile=a['href'], homepage=None, division=division))
+            out.append(dict(name_listed=name, quote_name=printed, titles=[], profile=a['href'], homepage=None, division=division))
+    return out
+
+
+def zju_cs_old_jiaoshiml(h):
+    """Zhejiang College of Computer Science 教师名录, the 2016-2019 PHP site (redir.php?cust=jiaoshiml&id=256, served GB2312): one `<table>` per institute,
+    its `<th>` is the institute and each teacher is `<td class="szdw"><div><a href=...object_id=N>name</a>`. Names only (no rank); full-width spaces collapsed."""
+    from bs4 import BeautifulSoup
+    out = []
+    for table in BeautifulSoup(h, 'html.parser').find_all('table'):
+        th = table.find('th')
+        division = clean(th.get_text(' ', strip=True)) if th else None
+        for a in table.select('td.szdw div a[href]'):
+            printed = ' '.join(a.get_text().split())
+            name = re.sub(r'[\s\u3000]+', '', printed)
+            if name:
+                out.append(dict(name_listed=name, quote_name=printed, titles=[], profile=a['href'], homepage=None, division=division))
+    return out
+
+
+def zju_cad_fixed_researchers(h):
+    """ZJU State Key Lab of CAD&CG 实验室固定研究人员 (www.cad.zju.edu.cn/Agencyteam/Innovationteam/130.html, 2016-2020): one table, the first cell of each row is
+    `name<full-width space>title` (a second line may add （院士）). The printed first cell is the quote; research direction and contact cells are never kept."""
+    from bs4 import BeautifulSoup
+    out = []
+    for tr in BeautifulSoup(h, 'html.parser').select('div.zhuwenn table tr'):
+        tds = tr.find_all('td')
+        if len(tds) < 2:
+            continue
+        printed = ' '.join(tds[0].get_text(' ', strip=True).replace('\xa0', ' ').split())
+        m = re.match(r'^(\S(?:[\S ]{0,6}?\S)?)\s*(副教授|教授|副研究员|研究员|助理教授|讲师|高级工程师|工程师|博士后|博士)(.*)$', printed)
+        if not m:
+            continue
+        name = re.sub(r'\s+', '', m.group(1))
+        if 1 < len(name) <= 4:
+            out.append(dict(name_listed=name, quote_name=printed.split(m.group(2))[0].strip() + ' ' + m.group(2), titles=[m.group(2)], profile=None, homepage=None,
+                            division='实验室固定研究人员'))
+    return out
+
+
+def zju_cad_fixed_researchers_2025(h):
+    """ZJU State Key Lab of CAD&CG 固定研究人员 on the 2025 WordPress/Elementor site (www.cad.zju.edu.cn/innovationteam): rank headings (`h2.elementor-heading-title`:
+    院士, 教授/长聘教授, 百人计划研究员, 副教授/长聘副教授, 特聘研究员、专职研究员) each followed by `|`-separated name paragraphs. A name's title is the heading above it;
+    the quote is the name plus that heading (an explicit omission between them)."""
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(h, 'html.parser')
+    out, heading, started = [], None, False
+    for el in soup.select('h2.elementor-heading-title, div.elementor-widget-text-editor p'):
+        text = ' '.join(el.get_text(' ', strip=True).split())
+        if el.name == 'h2':
+            if text == '院士':
+                started = True
+            if started:
+                heading = text
+            continue
+        if not started or heading is None or not re.fullmatch(r'[\u4e00-\u9fff]{2,4}', text):
+            continue
+        out.append(dict(name_listed=text, quote_parts=[text, heading], titles=[heading], profile=(el.find('a') or {}).get('href'), homepage=None,
+                        division='固定研究人员'))
+    return out
+
+
+def zju_cst_szdw_names(h):
+    """ZJU College of Software Technology 师资队伍 (www.cst.zju.edu.cn/szdw/list.htm, archived from 2024-01): one table in `div.wp_articlecontent`, one `<td><a title=name>` per
+    teacher, names only (no rank). Full-width spaces inside a name (伍　赛) are collapsed for name_listed and kept (normalised to one space) for the quote."""
+    from bs4 import BeautifulSoup
+    out = []
+    for a in BeautifulSoup(h, 'html.parser').select('div.wp_articlecontent table td a[href]'):
+        printed = ' '.join(a.get_text(' ', strip=True).split())
+        name = re.sub(r'[\s\u3000]+', '', printed)
+        if re.fullmatch(r'[\u4e00-\u9fff]{2,4}', name):
+            out.append(dict(name_listed=name, quote_name=printed, titles=[], profile=a['href'], homepage=None, division=None))
     return out
 
 
@@ -2243,6 +2315,10 @@ FORMATS = {
     'sjtu_cs_en_institutes': (sjtu_cs_en_institutes, re.compile(r'class="Faculty"')),
     'sjtu_cs_ajax_teachers': (sjtu_cs_ajax_teachers, re.compile(r'rc-item')),
     'zju_cs_zuzhi_names': (zju_cs_zuzhi_names, re.compile(r'class="zuzhi"')),
+    'zju_cs_old_jiaoshiml': (zju_cs_old_jiaoshiml, re.compile(r'class="szdw"')),
+    'zju_cad_fixed_researchers': (zju_cad_fixed_researchers, re.compile(r'class="zhuwenn"')),
+    'zju_cad_fixed_researchers_2025': (zju_cad_fixed_researchers_2025, re.compile(r'elementor-heading-title[^>]*>院士<')),
+    'zju_cst_szdw_names': (zju_cst_szdw_names, re.compile(r'class="wp_articlecontent"[^>]*>\s*<div[^>]*paging_content[^>]*>\s*<table')),
     'tsinghua_cs_list': (tsinghua_cs_list, re.compile(r'class="people01-nr"')),
     'tsinghua_sw_names': (tsinghua_sw_names, re.compile(r'class="group-title"')),
     'tsinghua_iiis_cards': (tsinghua_iiis_cards, re.compile(r'class="ls16 flex"')),

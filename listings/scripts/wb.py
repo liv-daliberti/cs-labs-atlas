@@ -222,6 +222,17 @@ def body(raw_zlib):
     return b
 
 
+def text(b):
+    """Page bytes -> str. UTF-8 unless the bytes are not valid UTF-8 and the page declares a GB charset (old ZJU CS PHP site, 2016-2019,
+    served GB2312 bytes): decoding those as UTF-8 'replace' destroys every name, so they are read as gb18030. Valid UTF-8 pages read as before."""
+    try:
+        return b.decode("utf-8")
+    except UnicodeDecodeError:
+        if re.search(rb'charset\s*=\s*["\']?(?:gb2312|gbk|gb18030)', b[:4000], re.I):
+            return b.decode("gb18030", "replace")
+        return b.decode("utf-8", "replace")
+
+
 def fetch_capture(ts, original, page_url, department, con, refresh=False):
     cap = f"https://web.archive.org/web/{ts}id_/{original}"
     row = con.execute("select http_status, sha256 from captures where capture_url=?", (cap,)).fetchone()

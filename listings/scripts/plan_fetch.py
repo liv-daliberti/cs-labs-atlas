@@ -77,7 +77,7 @@ def charter_usable(con, cap, s, floor=5):
     2026-10-29); they were gzip-encoded full lists read undecoded (learned 2026-10-30), so the bytes go through wb.body."""
     import listing_formats
     raw = con.execute("select raw_zlib from captures where capture_url=?", (cap,)).fetchone()[0]
-    html = wb.body(raw).decode("utf-8", "replace") if raw else ""
+    html = wb.text(wb.body(raw)) if raw else ""
     fmt, es = listing_formats.parse(html, s.get("format"))
     # A rank-specific page can legitimately list fewer than five faculty.
     # Require an explicit parser and charter limit; never lower the default
@@ -113,7 +113,7 @@ def fetch_pages(con, s, cap, html, lo, hi, dept, min_entries=1):
                 pc = wb.fetch_capture(r["timestamp"], r["original"], base, dept, con)
                 st, _ = ensure_extracted(con, pc)
                 raw = con.execute("select raw_zlib from captures where capture_url=?", (pc,)).fetchone()[0]
-                if st == 200 and raw and len(listing_formats.parse(wb.body(raw).decode("utf-8", "replace"), s.get("format"))[1]) >= min_entries:
+                if st == 200 and raw and len(listing_formats.parse(wb.text(wb.body(raw)), s.get("format"))[1]) >= min_entries:
                     ok = (u, pc, r["timestamp"])
                     break
             if ok:
@@ -129,7 +129,7 @@ def fetch_pages(con, s, cap, html, lo, hi, dept, min_entries=1):
         links = {}
         for page_url, page_cap, _ in list(got.values()):
             raw = con.execute('select raw_zlib from captures where capture_url=?', (page_cap,)).fetchone()[0]
-            for number, url in listing_formats.page_links(wb.body(raw).decode('utf-8', 'replace'), page_url).items():
+            for number, url in listing_formats.page_links(wb.text(wb.body(raw)), page_url).items():
                 if number not in got:
                     links[number] = url
         if not links:
@@ -284,7 +284,7 @@ def run_slot(school, s, con, pis, max_tries=2):
                     good, why = charter_usable(con, cap, s)
                     if not good and why and why.startswith("paged directory"):
                         # R3: a paged directory is one listing: fetch every page of the same half-year and keep the plan row only when all are archived
-                        html = wb.body(con.execute("select raw_zlib from captures where capture_url=?", (cap,)).fetchone()[0]).decode("utf-8", "replace")
+                        html = wb.text(wb.body(con.execute("select raw_zlib from captures where capture_url=?", (cap,)).fetchone()[0]))
                         pages, miss = fetch_pages(con, s, cap, html, lo, hi, s["dept"])
                         if not pages and not miss:
                             good, why = False, "paged directory: no page links found"
