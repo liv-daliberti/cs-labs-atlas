@@ -2,6 +2,8 @@
 import copy
 import hashlib
 import json
+import sqlite3
+import zlib
 from collections import Counter, defaultdict
 from pathlib import Path
 from types import SimpleNamespace
@@ -10,6 +12,7 @@ import pytest
 
 from dblp_dump_pages import page_count
 from pihier import papers
+import atlas_paths as P
 from pihier.common import ndoi, norm_title
 
 FIXTURE = Path(__file__).parent / 'fixtures/recovered-source-quality.json'
@@ -128,6 +131,51 @@ def test_exact_owned_corr_article_is_a_preprint_without_retyping_journal_article
     # A repository key cannot authorize an unrelated publication projection.
     recovery['title'] = 'An unrelated paper'
     assert papers.recovered_source_metadata(ctx, pi, recovery, {}, 'dblp', strict=True) is None
+
+
+@pytest.mark.parametrize('key,expected', [('reference/algo/Example26', 'reference-entry'),
+                                        ('books/Example26', 'book-chapter')])
+def test_exact_owned_reference_namespace_is_not_an_ordinary_book_chapter(key, expected):
+    case = next(c for c in cases() if c['label'] == 'english_chapter')
+    case['publication']['key'] = key
+    case['recovery']['dblp_key'] = key
+    ctx, pi = context(case)
+    result = papers.recovered_source_metadata(ctx, pi, case['recovery'], case['recovery']['evidence'], 'dblp', strict=True)
+    assert result['type'] == expected
+    case['recovery']['title'] = 'An unrelated chapter'
+    assert papers.recovered_source_metadata(ctx, pi, case['recovery'], case['recovery']['evidence'], 'dblp', strict=True) is None
+
+
+@pytest.mark.parametrize('fault,kept', [('none', False), ('doi', True), ('title', True),
+                                      ('id', True), ('other', True), ('supplementary-materials', True)])
+@pytest.mark.usefixtures('layout')
+def test_recovery_uses_only_exact_cached_erratum_genre_without_mutating_the_cache(tmp_path, fault, kept):
+    case = next(c for c in cases() if c['label'] == 'real_long_conference')
+    ctx, pi = context(case)
+    ctx.hits = []  # the ordinary identity stage correctly filtered the erratum
+    ctx.school, ctx.here = 'mit', tmp_path
+    raw = copy.deepcopy(case['raw']); raw['type'] = 'erratum'
+    if fault in ('other', 'supplementary-materials'):
+        raw['type'] = fault  # an unverified genre is not this fallback's authority
+    elif fault == 'doi':
+        raw['doi'] = 'https://doi.org/10.1/different'
+    elif fault == 'title':
+        raw['title'] = 'Another edition with a different title'
+    elif fault == 'id':
+        raw['id'] = 'https://openalex.org/W9999999999'
+    path = P.data_w('pi-works.sqlite', 'mit', root=tmp_path)
+    con = sqlite3.connect(path)
+    con.execute('create table works(id text primary key, body blob)')
+    con.execute('insert into works values (?,?)', (case['raw']['id'], zlib.compress(json.dumps(raw).encode())))
+    con.commit(); con.close()
+    before = hashlib.sha256(path.read_bytes()).hexdigest()
+    result, _ = evaluate(case, ctx, pi)
+    assert bool(result) is kept
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == before
+    if fault == 'none':
+        proof = ctx.recovered_source_quality[0]
+        assert proof['raw_same_edition_bound'] and proof['raw_metadata']['type'] == 'erratum'
+        assert proof['raw_cache_kind'] == 'pi_works_erratum' and len(proof['raw_cache_sha256']) == 64
 
 
 def test_generic_journal_abbreviations_apply_only_to_quality_not_source_metadata():

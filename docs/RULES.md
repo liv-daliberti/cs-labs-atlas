@@ -147,6 +147,7 @@ for candidate student links. Different-title reviewed merges retain their existi
 
 ### R-PAP-17 — not papers
 An exact owned DBLP CoRR recovery (`journals/corr/`) retains type `preprint` even though DBLP uses an `article` XML element. This format correction does not supply authorship, school affiliation or faculty time; the ordinary recovery gates still apply. Harvard's verified January2026 Iglesias manuscript `journals/corr/abs-2602-00669` triggered this correction (2026-11-16).
+An exact owned DBLP `reference/*` entry retains genre `reference-entry` when the XML uses the generic `incollection` format. This excludes encyclopedia entries under the existing rule below; ordinary book chapters with other keys keep their format and ordinary admission requirements.
 
 Datasets, paratext, peer reviews, errata, supplementary materials, grants, standards, retractions, reference entries
 and library guides are not papers (`NOT_PAPERS`).
@@ -156,7 +157,7 @@ Publisher records titled `Notice of Removal: ...` are removal notices, not the r
 Dropped from every lab (`not_a_paper`): OpenAlex type `software` (Zenodo, Figshare, Code Ocean records); supplement and
 artifact records by title (`MOESM1`, `Additional file 2 of ...`, `Supplement 1: ...`, `Artifact for ...`, `(Artifact)`,
 `Reproduction/Replication package`, `Code and data for ...`) and protocols.io protocols; errata (`Publisher/Author
-Correction`, `Correction to:`, `Erratum`, `Corrigendum`); JST machine translations (`【Powered by NICT】`); Dagstuhl
+Correction`, `Correction to:`, `Correction to ...`, `Corrections to ...`, `Erratum`, `Corrigendum`); JST machine translations (`【Powered by NICT】`); Dagstuhl
 Reports and Manifestos (venue, `10.4230/dagrep`, `10.4230/dagman`, a title ending `(Dagstuhl Seminar N)`); Oberwolfach
 Reports (venue, `10.4171/owr`); titles that open as an editorial, foreword, preface, guest editors' introduction,
 introduction to a special issue or section, message from the chairs, or 'in this issue'; award or prize announcements
@@ -165,11 +166,13 @@ proposals ('Workshop on ...', 'Tutorial: ...', 'Tutorial on ...' at a conference
 highlights columns (', No. 31'); tributes ('In memoriam', 'Obituary', 'In memory of ...' and 'A tribute to ...' at the
 start of the title, '<Name> (1927–2016)', and a title that is only a person's name: 'Derek Chiou'). The patterns are
 anchored: 'Puzzles in Memory of Solomon Golomb', 'Remembering the "when"', '...: A tutorial overview' and 'MedAL' stay.
+A recovery whose complete original was filtered out before identity matching can still read the exact cached `erratum` record as negative genre evidence. The existing OA/title/DOI binding must agree. This read-only fallback grants no identity, affiliation, date or positive publication authority, and does not treat unknown or supplementary-materials cache types as new vetoes.
 Per-pattern counts and ten samples each on the 2026-10-29 build: `archive/docs/not-paper-patterns-20261029.md`. One-page columns
 ('CACM community') are not caught (no page counts). OpenAlex type `editorial` alone is not dropped (127 such rows have
 research-like titles). Report: `not_paper:<tag>`, samples in `notPaperSamples`.
 
 ### R-PAP-19 (2026-10-29, owner: accuracy sample) — meeting abstracts are not papers (R2)
+Dated MIT fresh review (2026-11-17): original Lupus and JITC PDFs explicitly identify abstract supplements; the dedicated `lupus-YYYY-lupus21century.N` and `jitc-YYYY-sitcYYYY.N` BMJ DOI families identify their congress abstracts. Narrow Neurosurgery, AJG and ASAIO clinical-programme rules require the provider's `conference-abstract` type, the exact journal, the known programme DOI family and a leading programme code. Neurosurgery's title code must equal its DOI suffix. Publisher-deposited single-page supplement metadata supports these latter classifications as issue-context inferences, not claimed PDF reads. Ordinary research and a generic article type alone do not satisfy those rules.
 Dated MIT fresh review (2026-11-17): CIDR's own `/gongshow/abstracts/` source paths and ADS records with an `YYYYAPS..` meeting bibcode identify abstracts even when the provider calls them articles or conference papers. The original one-page CIDR "We Are Boring" PDF and two ADS APS records establish these source classes; ordinary CIDR papers and ADS journal-paper bibcodes remain eligible. Test: `test_R_PAP_19_abstract_source_paths_override_article_or_paper_type`.
 Dated Oxford Stage 9 review (2026-11-14): `Cardiovascular Research` joins the meeting-abstract journals for records typed `conference-abstract`. The sampled P503 item (DOI `10.1093/cvr/cvy060.360`) is in the publisher's 2018 supplement, page S122, “Abstracts > F. Poster Session III”; ordinary journal articles in that venue stay eligible. Test: `test_oxford_cardiovascular_research_poster_abstract_is_not_a_paper`.
 Dated Oxford Stage 9 review (2026-11-14): BMJ `Heart` British Cardiovascular Society supplement DOIs of the form `10.1136/heartjnl-YYYY-BCS.N` are meeting abstracts. Oxford's own repository labels the sampled `10.1136/heartjnl-2019-BCS.67` as subtype Abstract in volume 105 Supplement 6, page A69. Ordinary `Heart` research articles with other DOI forms remain eligible. Test: `test_oxford_bcs_heart_supplement_abstract_is_not_a_paper`.
@@ -369,6 +372,7 @@ names and they share no initial (`middle_conflict`, `NAME_ONLY_IDENTITY`; ORCID,
 contradiction alone settled every case in the packages; the count per school is `namesake_middle_name_conflicts` in `report.json`.
 
 ### R-PAP-33 (2026-11-05, owner: round-r2 pooled failures; abstracts decision) — more non-research records
+Dated MIT fresh review (2026-11-17): a complete event-acronym/year title ending exactly `Panel Sessions` is programme front matter; a `Cover Image, Volume N, Number N` notice is cover art. Research titles about panel sessions or cover-image retrieval remain eligible.
 Dated MIT fresh review (2026-11-17): a title beginning `Session N Overview:` identifies a numbered conference-session introduction. The complete two-page ISSCC Session 9 source labels Vivienne Sze the session moderator and summarizes separate papers; the Session 1 plenary overview has the same explicit title form. Ordinary research titles such as "Overview of a new processor architecture" remain eligible. Test: `test_R_PAP_33_numbered_session_overviews_are_introductions`.
 Dropped (`not_a_paper`, `non_research_record`; tests `tests/test_not_paper_non_research_records.py`, each on the real failing rows): a title that opens 'Session Introduction',
 'Special-section Introduction' or 'Introduction to the Minitrack/Session' (`session_introduction`); 'Interview:' / 'An interview with' (`interview`); OpenAlex type `editorial` in

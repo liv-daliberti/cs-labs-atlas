@@ -2,7 +2,7 @@
 unit names, an advisee at the school, an unaffiliated byline with an advisee), identity, the appointment, the recovered
 rows, namesakes, not-papers, books and editions.
 R-PAP-08 .. R-PAP-26 (see docs/RULES.md); R-PAP-01/02/03/13 come from periods, R-PAP-04 .. 07 from identity."""
-import collections, gzip, html, json, re, unicodedata, zlib
+import collections, gzip, hashlib, html, json, re, sqlite3, unicodedata, zlib
 
 import atlas_paths as P  # data paths (DATA_FILES)
 import school_config as _S  # the school charters (R-PAP-15's foreign-title exception)
@@ -96,7 +96,7 @@ SUPPLEMENT_TITLE = re.compile(r'(?i)^\s*(moesm\d+|additional file \d+|supplement
                               r'code and data for|data,? (?:materials,? )?and code for|data for (?:the )?paper|artifacts? (?:for|of)\b|'
                               r'reproduction package|replication (?:package|data|code)|research data for|source code for)'
                               r'|\((?:[\w ]+ )?artifact\)\s*$|\bdata (?:&|and) materials\s*$')
-ERRATUM_TITLE = re.compile(r'(?i)^\s*(?:publisher|author)s?[’\']?\s+correction\b|^\s*correction(?: to)?\s*:|^\s*erratum\b|^\s*corrigendum\b')
+ERRATUM_TITLE = re.compile(r'(?i)^\s*(?:publisher|author)s?[’\']?\s+correction\b|^\s*correction(?: to)?\s*:|^\s*corrections?\s+to\b|^\s*erratum\b|^\s*corrigendum\b')
 EDITORIAL_TITLE = re.compile(r"(?i)^\s*(guest[- ]editorial|(?:inaugural )?editorial\b|foreword\b|preface\b|from the (?:guest )?editors?\b|"
                              r"welcome to [\w .&-]+\s+\d+\(\d+\)\s*$|"
                              r"(?:guest )?editors?['’]? (?:introduction|note|preface|message)|editor['’]?s? note|"
@@ -197,7 +197,30 @@ NEUROM_DOI = re.compile(r'(?i)^10\.1016/j\.neurom\.\d{4}\.\d{2}\.\d+$')
 NEUROM_ABSTRACT_CODE = re.compile(r'^\s*(?:[A-Z]{1,3}\d{2,4}\b(?:\s*/\s*#\d+)?\s|ID:\s*\d+\s)')   # 'PO222 / #1008 ', 'O025 ', 'ID: 324641 '
 ERS_CONGRESS_DOI = re.compile(r'(?i)^10\.1183/1\d*3003\.congress-\d{4}\.')
 BCS_CONGRESS_DOI = re.compile(r'(?i)^10\.1136/heartjnl-\d{4}-bcs\.\d+$')
+BMJ_CLINICAL_CONGRESS_DOI = re.compile(r'^10\.1136/(?:lupus-\d{4}-lupus21century|jitc-\d{4}-sitc\d{4})\.\d+$')
+NEUROSURGERY_PROGRAM_DOI = re.compile(r'^10\.1227/neu\.\d+_(\d{3,5})$')
+AJG_PROGRAM_DOI = re.compile(r'^10\.14309/01\.ajg\.\d+\.[a-z0-9.]+$')
+ASAIO_PROGRAM_DOI = re.compile(r'^10\.1097/01\.mat\.\d+\.[a-z0-9.]+$')
 THESIS_REPOSITORY_DOI = re.compile(r'^10\.25740/')  # Stanford Digital Repository (purl.stanford.edu): theses, honors theses, capstones
+
+
+def clinical_program_abstract(title, typ, venue, doi):
+    """A clinical supplement program code corroborates the provider's abstract type.
+
+    Ordinary research in these journals and a generic article type alone are
+    insufficient. Neurosurgery's title code must equal its DOI program suffix.
+    """
+    if typ != 'conference-abstract':
+        return False
+    venue = ' '.join(venue.casefold().split())
+    if venue == 'neurosurgery':
+        code = re.match(r'^\s*(\d{3,5})\s+', title)
+        suffix = NEUROSURGERY_PROGRAM_DOI.fullmatch(doi)
+        return bool(code and suffix and code[1] == suffix[1])
+    if venue in {'american journal of gastroenterology', 'the american journal of gastroenterology'}:
+        return bool(AJG_PROGRAM_DOI.fullmatch(doi) and re.match(r'^\s*S\d{2,5}\s+', title))
+    return bool(venue == 'asaio journal' and ASAIO_PROGRAM_DOI.fullmatch(doi)
+                and re.match(r'^\s*\d{2,5}\s*:\s+', title))
 
 
 # ---- commentaries, columns and short invited abstracts (R-PAP-27; 2026-11-02, owner: accuracy pass) --------------------
@@ -294,6 +317,10 @@ def non_research_record(r, pages=None):
     t = str(r.get('title') or '').strip(); v = str(r.get('venue') or ''); d = ndoi(r.get('doi')); ty = r.get('type') or ''
     if INTRODUCTION_TITLE.search(t):
         return 'session_introduction'
+    if re.fullmatch(r'[A-Z]{2,8}\s*\d{4}\s+Panel\s+Sessions', t, re.I):
+        return 'session_introduction'
+    if re.match(r'^cover image,\s*volume\s+\d+,\s*number\s+\d+\b', t, re.I):
+        return 'cover_image'
     if INTERVIEW_TITLE.search(t):
         return 'interview'
     if ty == 'editorial' and re.match(r'(?i)acm ebooks', v.strip()):
@@ -429,7 +456,9 @@ def not_a_paper(r, pages=None, bare=False):
         return 'meeting_abstract:doi'
     if ABSTRACT_TITLE.search(t):
         return 'meeting_abstract:title'
-    if ERS_CONGRESS_DOI.match(d) or BCS_CONGRESS_DOI.match(d) or (NEUROM_DOI.match(d) and (ty == 'conference-abstract' or NEUROM_ABSTRACT_CODE.search(t))):
+    if (ERS_CONGRESS_DOI.match(d) or BCS_CONGRESS_DOI.match(d) or BMJ_CLINICAL_CONGRESS_DOI.fullmatch(d)
+            or clinical_program_abstract(t, ty, v, d)
+            or (NEUROM_DOI.match(d) and (ty == 'conference-abstract' or NEUROM_ABSTRACT_CODE.search(t)))):
         return 'meeting_abstract:congress'
     if ABSTRACT_FAMILY_DROPS and (TUTORIAL_ABSTRACT_DOI.match(d) or POSTER_CODE_DOI.search(d)
                                   or (SUPPLEMENT_ITEM_DOI_DROPS and SUPPLEMENT_ITEM_DOI.match(d))
@@ -1163,6 +1192,34 @@ def recovered_publication_binding(ctx, p, x, ev, kind):
     return dict(key=key, publications=pubs, compatible=compatible, names=names)
 
 
+def cached_recovery_erratum(ctx, oid):
+    """Read a known erratum excluded before identity hits; never infer positive eligibility.
+
+    Unknown or conflicting genres, including supplementary-materials records
+    that can mislabel full papers, are outside this fallback's authority.
+    """
+    if not oid or getattr(ctx, 'here', None) is None or not getattr(ctx, 'school', None):
+        return None
+    if not hasattr(ctx, '_cached_recovery_errata'):
+        ctx._cached_recovery_errata = {}
+    if oid not in ctx._cached_recovery_errata:
+        result = None
+        path = P.data('pi-works.sqlite', ctx.school, root=ctx.here)
+        if path.is_file():
+            con = sqlite3.connect(path.resolve().as_uri() + '?mode=ro', uri=True)
+            try:
+                row = con.execute('select body from works where id=?', (oid,)).fetchone()
+            finally:
+                con.close()
+            if row:
+                body = zlib.decompress(row[0])
+                work = json.loads(body)
+                if work.get('id') == oid and work.get('type') == 'erratum':
+                    result = (work, hashlib.sha256(body).hexdigest())
+        ctx._cached_recovery_errata[oid] = result
+    return ctx._cached_recovery_errata[oid]
+
+
 def recovered_source_metadata(ctx, p, x, ev, kind, strict=False, binding=None):
     """Type/quality evidence for an independently retained source, never an authorship or school admission waiver.
 
@@ -1201,6 +1258,8 @@ def recovered_source_metadata(ctx, p, x, ev, kind, strict=False, binding=None):
             # repository, so that XML element does not establish journal publication.
             if typ == 'article' and key.startswith('journals/corr/'):
                 typ = 'preprint'
+            elif typ == 'book-chapter' and key.startswith('reference/'):
+                typ = 'reference-entry'  # an encyclopedia entry, not an ordinary book chapter
             canonical = next((v for prefix, v in QUALITY_DBLP_STREAMS.items() if key.startswith(prefix)), None)
             evidence.append(dict(type=typ, venue=canonical or quality_venue(x.get('venue'))))
         else:
@@ -1213,6 +1272,11 @@ def recovered_source_metadata(ctx, p, x, ev, kind, strict=False, binding=None):
         if not hasattr(ctx, '_recovery_source_work_index'):
             ctx._recovery_source_work_index = {(pi, w['id']): w for pi, w, *_ in getattr(ctx, 'hits', [])}
         raw = ctx._recovery_source_work_index.get((p['pi'], oid))
+        if raw is None:
+            cached = cached_recovery_erratum(ctx, oid)
+            if cached:
+                raw, proof['raw_cache_sha256'] = cached
+                proof['raw_cache_kind'] = 'pi_works_erratum'
     raw_bound = bool(raw and raw.get('id') == oid and norm_title(raw.get('title')) == norm_title(x.get('title'))
                      and (not raw.get('doi') or not x.get('doi') or ndoi(raw.get('doi')) == ndoi(x.get('doi'))))
     proof['raw_same_edition_bound'] = raw_bound

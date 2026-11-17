@@ -203,3 +203,44 @@ def test_sleep_2017_numbered_abstract_supplement(title, doi):
     assert papers.not_a_paper(row(title, venue='SLEEP', doi='10.1093/sleep/zsx050')) is None
     assert papers.not_a_paper(row(title, venue='Journal X', doi=doi)) is None
     assert papers.not_a_paper(row(title, typ='book-chapter', venue='SLEEP', doi=doi)) is None
+
+
+@pytest.mark.parametrize('title,venue,doi', [
+    ('2038 Restoration of Proprioception Function', 'Neurosurgery', '10.1227/neu.0000000000003360_2038'),
+    ('S764 Applying Machine Learning to Large Databases', 'The American Journal of Gastroenterology', '10.14309/01.ajg.0000776588.94571.42'),
+    ('310: Toward real-time ultrasound-based monitoring', 'ASAIO Journal', '10.1097/01.mat.0001279064.00604.e8'),
+])
+def test_clinical_program_abstract_requires_corresponding_source_signals(title, venue, doi):
+    assert papers.not_a_paper(row(title, typ='conference-abstract', venue=venue, doi=doi)) == 'meeting_abstract:congress'
+    assert papers.not_a_paper(row(title, venue=venue, doi=doi)) is None
+    assert papers.not_a_paper(row(title, typ='conference-abstract', venue='Journal X', doi=doi)) is None
+    assert papers.not_a_paper(row(title, typ='conference-abstract', venue=venue, doi='10.1/research')) is None
+    assert papers.not_a_paper(row('A full study of neural interfaces', typ='conference-abstract', venue=venue, doi=doi)) is None
+
+
+def test_neurosurgery_program_number_must_equal_the_doi_suffix():
+    assert papers.not_a_paper(row('2039 Restoration of Proprioception Function', typ='conference-abstract',
+                                 venue='Neurosurgery', doi='10.1227/neu.0000000000003360_2038')) is None
+
+
+@pytest.mark.parametrize('doi', ['10.1136/lupus-2021-lupus21century.99', '10.1136/jitc-2022-sitc2022.0916'])
+def test_explicit_bmj_clinical_congress_doi_family(doi):
+    assert papers.not_a_paper(row('A congress programme item', doi=doi)) == 'meeting_abstract:congress'
+    assert papers.not_a_paper(row('A full clinical research study', doi='10.1136/lupus-2021-000123')) is None
+    assert papers.not_a_paper(row('A full clinical research study', doi='10.1136/jitc-2022-000123')) is None
+
+
+def test_programme_and_cover_notices_do_not_exclude_research_about_these_topics():
+    assert papers.not_a_paper(row('IMS2021 Panel Sessions', venue='IEEE Microwave Magazine')) == 'session_introduction'
+    assert papers.not_a_paper(row('Cover Image, Volume 40, Number 8, December 2023')) == 'cover_image'
+    assert papers.not_a_paper(row('Learning from Panel Sessions', venue='Journal X')) is None
+    assert papers.not_a_paper(row('IMS2021 Panel Sessions: A quantitative study', venue='Journal X')) is None
+    assert papers.not_a_paper(row('Cover Image Retrieval for Scientific Documents')) is None
+
+
+@pytest.mark.parametrize('title', ['Correction to Analyzing Learned Molecular Representations for Property Prediction',
+                                  'Corrections to "LOCUS: A Multi-Sensor Lidar-Centric Solution"'])
+def test_correction_notice_does_not_require_a_colon(title):
+    assert papers.not_a_paper(row(title)) == 'erratum'
+    assert papers.not_a_paper(row('Correction of selection bias in learned representations')) is None
+    assert papers.not_a_paper(row('Correcting errors in wireless signals')) is None
