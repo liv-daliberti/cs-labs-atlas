@@ -396,7 +396,7 @@ def oa_location_rows(work_id, body):
             url = pdf
         elif pdf and loc.get('is_oa') and (urlsplit(pdf).hostname or '') == 'link.springer.com' and '/content/pdf/' in pdf:
             url = pdf  # an open-access Springer article's own PDF (robots.txt still decides)
-        elif repo and land and s2k.ok_pdf(land) and cs.usable(land):
+        elif repo and land and s2k.ok_pdf(land) and cs.usable(land) and (urlsplit(land).hostname or '') != 'pubmed.ncbi.nlm.nih.gov':  # a PubMed page has no PDF link: fulltext-push/pubmed_pmc.py routes it to PMC
             url = land
         if url:
             rows.append(dict(work_id=work_id, url=url, landing_url=land or None, version=loc.get('version'), license=loc.get('license'),

@@ -228,6 +228,37 @@ def redirect_ok(origin, target):
     return origin in RESOLVERS and not PUBLISHER.search(target)
 
 
+HANDLE = 'hdl.handle.net'
+
+
+def seed_handle_robots(self, host):
+    """The repository host a Handle resolved to (owner 2026-11-17: follow hdl.handle.net only to the resolved repository host, and only where that
+    host's robots.txt allows the target): its robots.txt is read once, with redirects NOT followed. 200 -> its rules; 404 or any other 4xx that is not
+    401/403/429 (an error page such as dr.ntu.edu.sg's HTTP 405) -> no rules, as the owner ruled for NTU on 2026-11-14. A robots redirect, 401/403 (the
+    collector reads it as disallow-all), 429, 5xx or a network error is left to the collector's own robots code (paused host, retry later); a 429 keeps
+    its shared cooldown and nothing here works around it. The ClaudeBot / anthropic-ai groups apply through c.Protego (AI_AGENTS below)."""
+    if host in self.rules:
+        return
+    lock, key = self.get_lock(host)
+    with lock:
+        if host in self.rules or key in self.blocked:
+            return
+        self.pause(key, 3.0)
+        try:
+            r = self.session().get('https://' + host + '/robots.txt', timeout=(10, 25), allow_redirects=False)
+        except c.requests.RequestException:
+            return
+        if r.status_code == 200:
+            text = r.text
+        elif 400 <= r.status_code < 500 and r.status_code not in (401, 403, 429):
+            text = ''
+        else:
+            return
+        (self.out / 'sources').mkdir(parents=True, exist_ok=True)
+        (self.out / 'sources' / (host + '-robots.txt')).write_text(text)
+        self.rules[host] = c.Protego.parse(text)
+
+
 CHALLENGE_FINAL = 'HTTP 202 with an empty body (the site\'s bot challenge); the host is not asked again'
 
 
@@ -243,6 +274,8 @@ def _get_following(self, url, limit):
                 raise
             with self.guard:
                 self.allowed.add(target)
+            if origin == HANDLE:
+                seed_handle_robots(self, target)
     return _get(self, url, limit)
 
 
