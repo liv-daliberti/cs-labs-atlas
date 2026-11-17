@@ -198,3 +198,20 @@ def test_lock_wait_polls_until_the_lock_frees(store, tmp_path):
 def test_apply_plan_needs_explicit_write(tmp_path):
     with pytest.raises(SystemExit, match='--write'):
         Q.main(['t', '--apply-plan', str(tmp_path / 'x.json.gz')])
+
+
+def test_pmc_only_works_get_pmc_open_data_rows():
+    plan = [('t_p1', None), ('t_p2', None)]
+    pmc_loc = lambda n: dict(locations=[dict(pdf_url=None, landing_page_url=f'https://pmc.ncbi.nlm.nih.gov/articles/PMC{n}/', is_oa=True, source=dict(type='repository'))])  # noqa: E731
+    bodies = {('t', 't_p1'): pmc_loc(111), ('t', 't_p2'): pmc_loc(222)}
+    seen = {}
+
+    def fake(want):
+        seen.update(want)
+        return [dict(work_id='t_p1', url='https://bucket/PMC111.1/PMC111.1.pdf', landing_url=None, version=None, license=None, source='pmc_open_data', detail='111')]
+
+    rows, n = Q.build_rows('t', plan, bodies, bulk=lambda w: ([], 0), pmc_rows=fake)
+    assert seen == {'t_p1': {'111'}, 't_p2': {'222'}}
+    assert [r['work_id'] for r in rows] == ['t_p1'] and n['pmc_only'] == 2 and n['pmc_works'] == 1
+    rows, n = Q.build_rows('t', plan, bodies, bulk=lambda w: ([], 0))   # without the lookup they are only counted
+    assert rows == [] and n['pmc_only'] == 2

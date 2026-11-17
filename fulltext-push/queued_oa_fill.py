@@ -76,12 +76,26 @@ def snapshot_bodies(want):
     return bodies
 
 
-def build_rows(school, plan_rows, bodies, bulk=None):
-    """-> (candidate rows, Counter). bulk(want {work: arxiv id}) -> (rows, n_not_in_bulk); default ftp_common.bulk_rows."""
+def pmc_open_data_rows(want):
+    """{work: {pmcid digits}} -> PMC open-data candidate rows (ftp_common.pmc_rows: the bucket's PDF / JATS XML per PMCID, 1 s per listing;
+    no OpenAlex credits). A PMCID outside the bucket gives no row."""
+    import requests
+    s = requests.Session()
+    s.headers['User-Agent'] = F.UA
+    memo, rows = {}, []
+    for w, ids in want.items():
+        rows += F.pmc_rows(w, ids, memo, s)
+    return rows
+
+
+def build_rows(school, plan_rows, bodies, bulk=None, pmc_rows=None):
+    """-> (candidate rows, Counter). bulk(want {work: arxiv id}) -> (rows, n_not_in_bulk); default ftp_common.bulk_rows.
+    pmc_rows(want {work: {pmcid}}) -> rows for works whose open location is a PMC link and who have no other candidate (the 'pmc_only'
+    works, 2026-11-17); None = counted only."""
     bulk = bulk or (lambda want: F.bulk_rows(want, 'openalex_arxiv_bulk'))
     n = collections.Counter(queued=len(plan_rows))
     doi_of = dict(plan_rows)
-    arx, rows = {}, []
+    arx, rows, pmc_want = {}, [], {}
     for (sc, i), w in bodies.items():
         if sc != school:
             continue
@@ -93,11 +107,18 @@ def build_rows(school, plan_rows, bodies, bulk=None):
         rows += r
         n['loc_work'] += bool(r)
         n['pmc_only'] += bool(pmc and not r and not a)
+        if pmc and not r and not a:
+            pmc_want[i] = pmc
     arows, missing = bulk(arx) if arx else ([], 0)
     rows += arows
     n['arxiv_ids'] = len(arx)
     n['arxiv_rows'] = len(arows)
     n['arxiv_not_in_bulk'] = missing
+    if pmc_rows and pmc_want:
+        prows = pmc_rows(pmc_want)
+        n['pmc_rows'] = len(prows)
+        n['pmc_works'] = len({r['work_id'] for r in prows})
+        rows += prows
     rows = list({(r['work_id'], r['url']): r for r in rows}.values())
     n['rows'] = len(rows)
     n['works_with_candidate'] = len({r['work_id'] for r in rows})
@@ -188,7 +209,7 @@ def run(schools, write=False, backup_dir=None, json_out=None, ev_dir=None, plan=
     return out
 
 
-def make_plan(schools, plan_file, json_out=None, plan=None, bodies=None, bulk=None):
+def make_plan(schools, plan_file, json_out=None, plan=None, bodies=None, bulk=None, pmc_rows=None):
     """The read-only half: one snapshot scan for all schools; saves {school: {counts, rows}} to plan_file (gzip JSON). No catalog lock is
     taken and nothing is written to a catalog."""
     import gzip
@@ -197,7 +218,7 @@ def make_plan(schools, plan_file, json_out=None, plan=None, bodies=None, bulk=No
         bodies = snapshot_bodies(wanted_keys(plan))
     saved, counts = {}, {}
     for s in schools:
-        rows, n = build_rows(s, plan[s], bodies, bulk)
+        rows, n = build_rows(s, plan[s], bodies, bulk, pmc_rows)
         saved[s] = dict(counts=dict(n), rows=rows)
         counts[s] = dict(n)
         print(json.dumps(dict(at=F.now(), school=s, step='queued_oa_plan', **n)), flush=True)
@@ -271,7 +292,7 @@ def main(argv=None):
     ap.add_argument('--lock-wait', type=int, default=2700, help='seconds to wait per school for the catalog write lock (apply-plan)')
     a = ap.parse_args(argv)
     if a.plan_file:
-        make_plan(a.schools.split(','), a.plan_file, a.json)
+        make_plan(a.schools.split(','), a.plan_file, a.json, pmc_rows=pmc_open_data_rows)
         return
     if a.apply_plan:
         if not a.write:
