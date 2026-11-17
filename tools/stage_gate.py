@@ -594,6 +594,8 @@ def g10(key):
         bad.append('the newest release does not count this school')
     # Process v4 (owner decision 1, 2026-11-17): stages 3-7 are judged per PI (tools/pi_states.py) and never hold the school; the RELEASE stays
     # school-wide and needs every PI done or excluded with a reason, and no open school item (an acceptance, a sample statistic) of stages 2-7.
+    if S.get(key).get('status') == 'released':   # a released school was accepted under the rules of its time: its per-PI state is reported (pi_states.py), not re-judged
+        return bad, {}
     import pi_states as PS
     res = PS.compute(key)
     bad += PS.release_findings(key, res)

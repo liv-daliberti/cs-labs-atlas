@@ -70,3 +70,13 @@ def test_chain_audit_items_are_per_pi_and_follow_a_waiver_of_their_summary(monke
     monkeypatch.setattr(chain_audit, 'audit', lambda key: dict(checks=rows))
     r = PS.compute('x')
     assert r['pis']['A B']['7']['state'] == 'excluded_with_reason' and r['open_pis'] == []
+
+
+def test_gate10_judges_pis_of_onboarding_schools_only(monkeypatch):
+    import school_config as S
+    setup(monkeypatch, {'3': ['A B: PI basis without url/sha256/quote']})
+    monkeypatch.setattr(S, 'get', lambda key: dict(status='released'))
+    monkeypatch.setattr(SG, 'read', lambda p, default=None: {'counts': {'x': {}}})
+    assert SG.g10('x')[0] == []
+    monkeypatch.setattr(S, 'get', lambda key: dict(status='onboarding'))
+    assert any('PI A B is open' in b for b in SG.g10('x')[0])
