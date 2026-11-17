@@ -1018,5 +1018,154 @@
         "review_note": "Explicit named role in this PI-owned group roster. Capture observation proves current membership only; no attendance interval inferred."
       }
     ]
+  },
+  {
+    "pi": "黄民烈",
+    "students": [
+      {
+        "name": "Yuxian Gu",
+        "role": "phd",
+        "relationship": "membership",
+        "years": [
+          2026,
+          2026
+        ],
+        "years_basis": "explicit_graduation_year",
+        "alumni": true,
+        "membership_status": "alumnus",
+        "rule": "R-STU-22",
+        "source": "own_page",
+        "url": "https://t1101675.github.io/",
+        "captured": "2026-11-17T11:56:45",
+        "observed_at": "2026-11-17T11:56:45",
+        "sha256": "ccfa1a62217432af9e70eac52e0f60997635099d6069c121396722f5ed42ae03",
+        "raw_sha256": "fb08910eddfb6d91178e9f3baf341c626199c85187ab345f9ef5119121539432",
+        "quote": "I received a PhD in computer science from Tsinghua University, advised by Prof. Minlie Huang.",
+        "date_quote": "2021.9 - 2026.6: Ph.D., Department of Computer Science and Technology, Tsinghua University",
+        "section": "About me; Education",
+        "source_as_stated_education_interval": "2021.9 - 2026.6",
+        "admitted_year_scope": "Only explicit graduation endpoint year2026. No2021-2025membership or continuous interval is proposed. This is not capture-year dating of an alumnus.",
+        "native_eligible_coauthored_papers": 4,
+        "native_coauthor_receipt": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-formal-minlie-1117/NATIVE-COAUTHOR-EVIDENCE.json",
+        "pi_year_support": {
+          "year": 2026,
+          "basis": "Actual native PI census official professor listing observed2026; no reviewed historical appointment interval",
+          "piBasis": {
+            "url": "https://www.cs.tsinghua.edu.cn/info/1121/5620.htm",
+            "sha256": "655cd8ae5403a1e4e8f114e973c57b7bc3654c447dc920921b6c0bd82eeda360",
+            "quote": "姓名：黄民烈 职称：教授",
+            "observed": "2026-11-07T17:49:52",
+            "role": "教授",
+            "kind": "ladder_faculty",
+            "review_reason": "Regular professor rank in named official computing faculty directory"
+          }
+        },
+        "auto": false,
+        "prepared_by": "codex-tsinghua-air-formal-1117",
+        "independent_review": {
+          "decision": "accept",
+          "reviewer": "codex-tsinghua-student-review-formal-1117",
+          "rule": "R-STU-22",
+          "source_proposal_sha256": "d25a497e3fe22f1f97e4a565f3904344d4fa1fe3e4b3121184e9835622c489d7",
+          "row_id": "de7f24b2a8d9868cac451262d7425bc50d6f045842b63d2c03c9282bd01a2088",
+          "accepted": true,
+          "hash_normalization": "R-STU-22 sha256 uses exact extracted text hash; raw_sha256 retains actual HTML byte hash; original proposal bytes remain unchanged.",
+          "source_provenance_final_review": "R-STU-22 actual held CoAI full-name hyperlink to own homepage independently verified"
+        },
+        "row_id": "de7f24b2a8d9868cac451262d7425bc50d6f045842b63d2c03c9282bd01a2088",
+        "accepted": true,
+        "evidence_route": "R-STU-22_student_own_page",
+        "source_model": "Student-owned full-name school, degree/student role, explicit adviser cue and supported year",
+        "proposal_status": "accepted_after_independent_review",
+        "independent_source_review_sha256": "a808a83f7fa44bf915c0bec82885808a8b5e976e6766404c679f564d647a650a",
+        "independent_source_review_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-formal-student-provenance-1117/FINAL-STUDENT-DISCOVERY-REVIEW-V3.json",
+        "integrated_by": "codex-tsinghua-formal-1117"
+      }
+    ],
+    "source_batch": "tsinghua-formal-reviewed-v3-20261117-黄民烈",
+    "independent_source_review": {
+      "path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-formal-student-provenance-1117/FINAL-STUDENT-DISCOVERY-REVIEW-V3.json",
+      "sha256": "a808a83f7fa44bf915c0bec82885808a8b5e976e6766404c679f564d647a650a"
+    },
+    "scope_note": "Only the sealed accepted subset is integrated. Student-owned sources satisfy the stated discovery route and native coauthor threshold; PI-owned thesis-adviser awards retain only their written years and degree roles. No future membership, faculty arrival or continuous attendance interval is inferred."
+  },
+  {
+    "pi": "黄民烈",
+    "students": [
+      {
+        "name": "Jian Guan",
+        "role": "phd",
+        "relationship": "membership",
+        "years": [
+          2024,
+          2024
+        ],
+        "years_basis": "explicit_graduation_year",
+        "alumni": true,
+        "membership_status": "alumnus",
+        "rule": "R-STU-22",
+        "source": "own_page",
+        "url": "https://jianguanthu.github.io/",
+        "captured": "2026-11-17T11:56:45",
+        "observed_at": "2026-11-17T11:56:45",
+        "sha256": "01ae2a77708cfbca7f5e36e5a72649cdca688b4e80703e11e74399098621a6e3",
+        "raw_sha256": "1140f14dc05e146516e86b1f124f5d0d0918374f0819f3f90c05798ffcc8895d",
+        "quote": "I obtained my bachelor's (2015–2019) and Ph.D. (2019–2024) degrees from Tsinghua University, advised by Minlie Huang",
+        "date_quote": "Ph.D. (2019–2024) degrees from Tsinghua University",
+        "source_as_stated_PhD_interval": "2019–2024",
+        "homepage_discovery_hop": {
+          "source_url": "https://coai.cs.tsinghua.edu.cn/team",
+          "source_sha256": "b6be0723738d03c4e05273737bfdc117d80010dd85e9f9bd7fd2bdfea9643904",
+          "source_original_file": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-formal-minlie-endpoints-1117/originals/b6be0723738d03c4e05273737bfdc117d80010dd85e9f9bd7fd2bdfea9643904.html",
+          "source_original_observed_at": "2026-11-16T12:02:16",
+          "literal_full_name": "关健",
+          "literal_href": "https://jianguanthu.github.io/",
+          "literal_anchor_html": "<a href=\"https://jianguanthu.github.io/\" target=\"_blank\">\n<div class=\"item wow fadeInUp\" data-wow-delay=\"200ms\" style=\"visibility: visible; animation-delay: 200ms; animation-name: fadeInUp;\">\n<div class=\"thumb\"><img alt=\"Thumb\" src=\"https://coai.cs.tsinghua.edu.cn/storage/form/image/a7c79e1f-93e3-4081-9aa7-74bb732c788c.jpeg\" style=\"height: 280px;width: 280px\"/></div>\n<div class=\"info\"><span>关健</span><div class=\"contact\">2019年入学，研究方向为开放端文本生成</div></div>\n</div>\n</a>",
+          "literal_anchor_text": "关健 2019年入学，研究方向为开放端文本生成",
+          "target_profile_full_name": "Jian Guan 关 健",
+          "scope": "Permitted full-name own-lab homepage discovery hop and direct identity link only. Shared CoAI roster is not used to assign an adviser or attendance years."
+        },
+        "pi_year_point": {
+          "kind": "dated_rank_observation",
+          "year": 2024,
+          "capture_url": "https://web.archive.org/web/20240407185712id_/https://www.cs.tsinghua.edu.cn/szzk/jzgml.htm",
+          "http_status": 200,
+          "final_url": "https://web.archive.org/web/20240407185712id_/https://www.cs.tsinghua.edu.cn/szzk/jzgml.htm",
+          "raw_sha256": "b2c13fd02942eb4357335ee7f0056013ee58c5a81073391ada6be4a67e38ffe7",
+          "decoded_body_sha256": "1f2244cddcc902bafb1804fef1729423d9cc74ddf384c441c532e721986a8aba",
+          "raw_original_file": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-formal-minlie-endpoints-1117/originals/PI-POINT-2024-b2c13fd02942eb4357335ee7f0056013ee58c5a81073391ada6be4a67e38ffe7.html",
+          "content_encoding": "gzip",
+          "quote": "黄民烈 教授",
+          "scope": "Contemporaneous named PI rank point in this calendar year only; no hire date, arrival date, facultyStart or continuous appointment interval inferred."
+        },
+        "native_eligible_coauthored_papers": 17,
+        "scope_caveat": "Only explicit PhD graduation endpoint2024 is proposed.2019–2023 PhD years and2015–2019 undergraduate years remain held. Same-year PI rank is a dated observation, never a hiredate or continuous faculty interval. Current employer and2026livecapture do not date historicalmembership.",
+        "auto": false,
+        "prepared_by": "codex-tsinghua-air-formal-1117",
+        "native_coauthor_receipt": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-formal-minlie-endpoints-1117/NATIVE-ENDPOINT-COAUTHOR-EVIDENCE.json",
+        "row_id": "39a7dca128feb67146ca68e09777a5daa5dd62228a2539d432a93f4e09a930cc",
+        "accepted": true,
+        "evidence_route": "student_own_page_with_actual_held_lab_full_name_homepage_hop",
+        "independent_review": {
+          "reviewer": "codex-tsinghua-student-provenance-1117",
+          "source_proposal_sha256": "ae854780ffaba7e6abf4edb3b9f03272ad0123b1468d5aebab2115c65faa9350",
+          "row_id": "39a7dca128feb67146ca68e09777a5daa5dd62228a2539d432a93f4e09a930cc",
+          "accepted": true,
+          "decision": "accept",
+          "rule": "R-STU-22",
+          "qualification": "One explicitly evidenced calendar-year point only; no continuous student/faculty interval or facultyStart inference."
+        },
+        "independent_source_review_sha256": "858617e87bb8e64ecb8aab3bb5ce33b1bd6f46ef59fcf8aa7c426693d4e62eaf",
+        "independent_source_review_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-formal-student-provenance-1117/MINLIE-DISCRETE-ENDPOINT-INDEPENDENT-REVIEW.json",
+        "integrated_by": "codex-tsinghua-formal-1117",
+        "proposal_status": "accepted_after_independent_review"
+      }
+    ],
+    "source_batch": "tsinghua-formal-minlie-endpoint-20261117-Jian Guan",
+    "independent_source_review": {
+      "path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-formal-student-provenance-1117/MINLIE-DISCRETE-ENDPOINT-INDEPENDENT-REVIEW.json",
+      "sha256": "858617e87bb8e64ecb8aab3bb5ce33b1bd6f46ef59fcf8aa7c426693d4e62eaf"
+    },
+    "scope_note": "A single source-proven doctoral event or degree endpoint, supported by an actual same-year named faculty rank observation. No faculty arrival, continuous appointment, student attendance interval or defense-as-graduation inference."
   }
 ]
