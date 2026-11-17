@@ -1,9 +1,9 @@
 {
- "status": "ROOT_APPROVED_EFFECTIVE_BATCH_APPLIED_PENDING_PREFLIGHT_NEW_NATIVE",
+ "status": "ROOT_APPROVED_CORRECTED_V2_108_4_49_APPLIED_PENDING_FRESH_PREFLIGHT_NATIVE",
  "proposal": {
   "schema": 1,
   "kind": "effective_roster_only_source_proposal",
-  "status": "FROZEN_UNAPPLIED_AWAIT_EXACT_ROOT_APPROVAL_RECEIPT",
+  "status": "FROZEN_V2_UNAPPLIED_AWAIT_SUPERSEDING_ROOT_APPROVAL",
   "created_at_utc": "2026-11-17T19:32:19.602128+00:00",
   "immutable_baseline97": {
    "path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-release-papers-1117/whole-class-roster-research/WHOLE-CLASS-SOURCE-PROPOSAL-97.json",
@@ -1094,82 +1094,6 @@
     "existing_same_literal_name": false,
     "role_basis": "withheld_student_role_unspecified",
     "no_student_or_degree_claim": true
-   },
-   {
-    "pi": "李 阳",
-    "name": "Yue Xin",
-    "role": "visiting",
-    "years": [
-     2026
-    ],
-    "years_basis": "capture_year_membership_observation_only",
-    "relationship": "membership",
-    "source": {
-     "url": "https://liyang.page/people/",
-     "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
-     "quote": "Yue Xin\nBeihang University · Graduate student, Class of 2024",
-     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-release-papers-1117/whole-class-roster-research/originals/64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
-     "original_locator": {
-      "db": "/n/fs/resemble/homogenizing-science/scratch/sjtu-stage6-batch2-1117/candidate-overlay/hierarchy/sjtu/work/student-recall-captures.sqlite",
-      "table": "live",
-      "selector": {
-       "url": "https://liyang.page/people/",
-       "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7"
-      },
-      "status": 200,
-      "fetched_at": "2026-11-15T13:40:18"
-     },
-     "quote_verified": true
-    },
-    "observed_at": "2026-11-15T13:40:18",
-    "auto": false,
-    "status": "proposed_pending_root_originals_review",
-    "existing_same_literal_name": false,
-    "source_section_heading": "Intern",
-    "external_degree": {
-     "institution": "Beihang University",
-     "degree_role_as_stated": "Graduate student",
-     "programme_class_as_stated": "2024"
-    },
-    "no_sjtu_degree_claim": true
-   },
-   {
-    "pi": "李 阳",
-    "name": "Chenxi Zeng",
-    "role": "visiting",
-    "years": [
-     2026
-    ],
-    "years_basis": "capture_year_membership_observation_only",
-    "relationship": "membership",
-    "source": {
-     "url": "https://liyang.page/people/",
-     "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
-     "quote": "Chenxi Zeng\nJilin University · Undergraduate, Class of 2023",
-     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-release-papers-1117/whole-class-roster-research/originals/64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
-     "original_locator": {
-      "db": "/n/fs/resemble/homogenizing-science/scratch/sjtu-stage6-batch2-1117/candidate-overlay/hierarchy/sjtu/work/student-recall-captures.sqlite",
-      "table": "live",
-      "selector": {
-       "url": "https://liyang.page/people/",
-       "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7"
-      },
-      "status": 200,
-      "fetched_at": "2026-11-15T13:40:18"
-     },
-     "quote_verified": true
-    },
-    "observed_at": "2026-11-15T13:40:18",
-    "auto": false,
-    "status": "proposed_pending_root_originals_review",
-    "existing_same_literal_name": false,
-    "source_section_heading": "Intern",
-    "external_degree": {
-     "institution": "Jilin University",
-     "degree_role_as_stated": "Undergraduate",
-     "programme_class_as_stated": "2023"
-    },
-    "no_sjtu_degree_claim": true
    },
    {
     "pi": "李 阳",
@@ -5668,6 +5592,160 @@
     "status": "source_facts_pending_root_adjudication_no_application",
     "no_Han_English_identity_merge": true,
     "effective_disposition": "held; preserve sourcefacts withoutforcedrole/School/date/identity"
+   },
+   {
+    "pi": "李 阳",
+    "name": "Yue Xin",
+    "status": "held_school_placement_ambiguity",
+    "source": {
+     "url": "https://liyang.page/people/",
+     "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
+     "quote": "Yue Xin\nBeihang University · Graduate student, Class of 2024",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-release-papers-1117/whole-class-roster-research/originals/64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
+     "original_locator": {
+      "db": "/n/fs/resemble/homogenizing-science/scratch/sjtu-stage6-batch2-1117/candidate-overlay/hierarchy/sjtu/work/student-recall-captures.sqlite",
+      "table": "live",
+      "selector": {
+       "url": "https://liyang.page/people/",
+       "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7"
+      },
+      "status": 200,
+      "fetched_at": "2026-11-15T13:40:18"
+     },
+     "quote_verified": true
+    },
+    "source_role_as_stated": "Intern; external degree institution named literally",
+    "external_degree": {
+     "institution": "Beihang University",
+     "degree_role_as_stated": "Graduate student",
+     "programme_class_as_stated": "2024"
+    },
+    "proposed_observation_withdrawn": {
+     "pi": "李 阳",
+     "name": "Yue Xin",
+     "role": "visiting",
+     "years": [
+      2026
+     ],
+     "years_basis": "capture_year_membership_observation_only",
+     "relationship": "membership",
+     "source": {
+      "url": "https://liyang.page/people/",
+      "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
+      "quote": "Yue Xin\nBeihang University · Graduate student, Class of 2024",
+      "raw_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-release-papers-1117/whole-class-roster-research/originals/64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
+      "original_locator": {
+       "db": "/n/fs/resemble/homogenizing-science/scratch/sjtu-stage6-batch2-1117/candidate-overlay/hierarchy/sjtu/work/student-recall-captures.sqlite",
+       "table": "live",
+       "selector": {
+        "url": "https://liyang.page/people/",
+        "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7"
+       },
+       "status": 200,
+       "fetched_at": "2026-11-15T13:40:18"
+      },
+      "quote_verified": true
+     },
+     "observed_at": "2026-11-15T13:40:18",
+     "auto": false,
+     "status": "proposed_pending_root_originals_review",
+     "existing_same_literal_name": false,
+     "source_section_heading": "Intern",
+     "external_degree": {
+      "institution": "Beihang University",
+      "degree_role_as_stated": "Graduate student",
+      "programme_class_as_stated": "2024"
+     },
+     "no_sjtu_degree_claim": true
+    },
+    "owner_context": {
+     "url": "https://liyang.page/",
+     "sha256": "738ef8b60e754e410a240f13910090bf897692dd90dc4da2b8cb779a47781111",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-release-papers-1117/whole-class-roster-research/originals/738ef8b60e754e410a240f13910090bf897692dd90dc4da2b8cb779a47781111",
+     "quote": "My group at SJTU continuously welcomes highly motivated\nPh.D. students, research assistants, and interns\n, as well as undergraduate and master’s students interested in gaining research experience. In addition, our team at the\nPhysical Intelligence Center, Shanghai AI Laboratory\n, is continuously recruiting\nfull-time researchers, engineers, and interns"
+    },
+    "reason": "Root renewed full-source adjudication: the same own root explicitly describes parallel SJTU and Shanghai AI Laboratory teams, both recruiting interns. Bare Intern heading plus foreign-degree card does not independently place the named person at SJTU; neither visiting nor neutral SJTU membership is authorized. Preserve literal source facts and existing SOURCE220 exact guarded whole-record drop; no claim that the person is definitively outside SJTU.",
+    "prior_source_review": {
+     "path": "/n/fs/resemble/homogenizing-science/worktrees/sjtu-effective-source-1117/hierarchy/sjtu/reports/SOURCE220-FIVE-SOURCE-SCOPE-REVIEW-20261116.json",
+     "sha256": "bcff9e135dd62a0f2bcd555b9de5f7a72576446904cb517af6a718ca38a0a2d4"
+    }
+   },
+   {
+    "pi": "李 阳",
+    "name": "Chenxi Zeng",
+    "status": "held_school_placement_ambiguity",
+    "source": {
+     "url": "https://liyang.page/people/",
+     "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
+     "quote": "Chenxi Zeng\nJilin University · Undergraduate, Class of 2023",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-release-papers-1117/whole-class-roster-research/originals/64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
+     "original_locator": {
+      "db": "/n/fs/resemble/homogenizing-science/scratch/sjtu-stage6-batch2-1117/candidate-overlay/hierarchy/sjtu/work/student-recall-captures.sqlite",
+      "table": "live",
+      "selector": {
+       "url": "https://liyang.page/people/",
+       "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7"
+      },
+      "status": 200,
+      "fetched_at": "2026-11-15T13:40:18"
+     },
+     "quote_verified": true
+    },
+    "source_role_as_stated": "Intern; external degree institution named literally",
+    "external_degree": {
+     "institution": "Jilin University",
+     "degree_role_as_stated": "Undergraduate",
+     "programme_class_as_stated": "2023"
+    },
+    "proposed_observation_withdrawn": {
+     "pi": "李 阳",
+     "name": "Chenxi Zeng",
+     "role": "visiting",
+     "years": [
+      2026
+     ],
+     "years_basis": "capture_year_membership_observation_only",
+     "relationship": "membership",
+     "source": {
+      "url": "https://liyang.page/people/",
+      "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
+      "quote": "Chenxi Zeng\nJilin University · Undergraduate, Class of 2023",
+      "raw_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-release-papers-1117/whole-class-roster-research/originals/64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
+      "original_locator": {
+       "db": "/n/fs/resemble/homogenizing-science/scratch/sjtu-stage6-batch2-1117/candidate-overlay/hierarchy/sjtu/work/student-recall-captures.sqlite",
+       "table": "live",
+       "selector": {
+        "url": "https://liyang.page/people/",
+        "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7"
+       },
+       "status": 200,
+       "fetched_at": "2026-11-15T13:40:18"
+      },
+      "quote_verified": true
+     },
+     "observed_at": "2026-11-15T13:40:18",
+     "auto": false,
+     "status": "proposed_pending_root_originals_review",
+     "existing_same_literal_name": false,
+     "source_section_heading": "Intern",
+     "external_degree": {
+      "institution": "Jilin University",
+      "degree_role_as_stated": "Undergraduate",
+      "programme_class_as_stated": "2023"
+     },
+     "no_sjtu_degree_claim": true
+    },
+    "owner_context": {
+     "url": "https://liyang.page/",
+     "sha256": "738ef8b60e754e410a240f13910090bf897692dd90dc4da2b8cb779a47781111",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-release-papers-1117/whole-class-roster-research/originals/738ef8b60e754e410a240f13910090bf897692dd90dc4da2b8cb779a47781111",
+     "quote": "My group at SJTU continuously welcomes highly motivated\nPh.D. students, research assistants, and interns\n, as well as undergraduate and master’s students interested in gaining research experience. In addition, our team at the\nPhysical Intelligence Center, Shanghai AI Laboratory\n, is continuously recruiting\nfull-time researchers, engineers, and interns"
+    },
+    "reason": "Root renewed full-source adjudication: the same own root explicitly describes parallel SJTU and Shanghai AI Laboratory teams, both recruiting interns. Bare Intern heading plus foreign-degree card does not independently place the named person at SJTU; neither visiting nor neutral SJTU membership is authorized. Preserve literal source facts and existing SOURCE220 exact guarded whole-record drop; no claim that the person is definitively outside SJTU.",
+    "prior_source_review": {
+     "path": "/n/fs/resemble/homogenizing-science/worktrees/sjtu-effective-source-1117/hierarchy/sjtu/reports/SOURCE220-FIVE-SOURCE-SCOPE-REVIEW-20261116.json",
+     "sha256": "bcff9e135dd62a0f2bcd555b9de5f7a72576446904cb517af6a718ca38a0a2d4"
+    }
    }
   ],
   "resolved_prior_holds": [
@@ -5902,62 +5980,72 @@
    "Paper2_separate_v2": "No ordinary paperrecoveryinputchange untilrootpaperapproval+rosterapproval receipts are both bound."
   },
   "counts": {
-   "source_observations": 110,
-   "original97_observations_unchanged": 97,
+   "source_observations": 108,
+   "retained_from_original110_value_identical": 108,
+   "retained_baseline97_observations": 95,
+   "withdrawn_baseline97_observations": 2,
    "resolved_historical_coadviser_observations": 4,
    "additional_accepted_coadviser_observations": 9,
    "role_corrections": 4,
-   "holds": 47,
+   "holds": 49,
    "resolved_baseline_holds": 4,
    "preserved_comparator": 1
   },
   "future_application_boundary": "Onlynewisolatedworktree/privateoverlay, never3804producer/O. Existingapprovedearlierinputcorrections must be preserved. NoNative untilallrosterandfinitepaper/identitybatchapproved, requiredchecks complete, latestrootpolicyland included.",
   "scientific_inputs_mutated": 0,
-  "network_requests": 0
+  "network_requests": 0,
+  "revision_created_at_utc": "2026-11-17T19:48:56.593308+00:00",
+  "supersedes": {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-release-papers-1117/effective-source-proposal/EFFECTIVE-ROSTER-SOURCE-PROPOSAL.json",
+   "sha256": "d31c8d7d4d9f2df01bec292548167af83a84b4db521e288874ae70ec8a8887ae",
+   "reason": "Only two LiYang admissions withdrawn after renewed root reading of same original dual-team ownership context; no new bytes/evidence asserted.",
+   "withdrawn": [
+    {
+     "pi": "李 阳",
+     "name": "Yue Xin"
+    },
+    {
+     "pi": "李 阳",
+     "name": "Chenxi Zeng"
+    }
+   ]
+  }
  },
  "root_approval": {
-  "kind": "independent-root-effective-roster-source-approval",
+  "kind": "superseding-independent-root-effective-roster-approval",
   "reviewer": "root",
-  "reviewed_at": "2026-11-17T19:34:06.264925+00:00",
-  "proposal_sha256": "d31c8d7d4d9f2df01bec292548167af83a84b4db521e288874ae70ec8a8887ae",
-  "counts": {
-   "source_observations": 110,
-   "original97_observations_unchanged": 97,
-   "resolved_historical_coadviser_observations": 4,
-   "additional_accepted_coadviser_observations": 9,
-   "role_corrections": 4,
-   "holds": 47,
-   "resolved_baseline_holds": 4,
-   "preserved_comparator": 1
-  },
-  "approved_observations": 110,
+  "reviewed_at": "2026-11-17T19:49:51.514223+00:00",
+  "proposal_sha256": "fb6578afa0c01a9bf545bea97883ce833a3bcf086e7efcbe7a66c041a05b3526",
+  "supersedes_receipt_sha256": "8456e2ddcbcb25e3c6a0b9770ea9c319729e7149aa093f117f5fcfad0c1c4a5f",
+  "approved_observations": 108,
   "approved_role_corrections": 4,
-  "holds_retained": 47,
-  "preserved_comparator": "lead-17 existing dated2018 exactliteralbilingualidentity; do notproject current2026",
+  "holds_retained": 49,
+  "withdrawn_observations": [
+   {
+    "pi": "李 阳",
+    "name": "Chenxi Zeng"
+   },
+   {
+    "pi": "李 阳",
+    "name": "Yue Xin"
+   }
+  ],
+  "reason": "Root reread the exact same original LiYang owner page plus SOURCE220 prior review: explicitly parallel SJTU and Shanghai AI Laboratory teams both recruit interns. Bare Intern heading plus a foreign degree card does not locate these two people at SJTU. Earlier110 approval overreached this source context; no new source bytes are claimed.",
+  "source_sha256": "738ef8b60e754e410a240f13910090bf897692dd90dc4da2b8cb779a47781111",
+  "global_corrections_restored_sha256": "91cf14e81e18cfec84128e1111ef0d3de1d539342dec9c7fe9397bb5785185d6",
   "checks": [
-   "Independently rehashed all34 original source bodies and read ownership/role/date contexts",
-   "Original97 observations remain byte-for-byte JSON-value equal to independently reviewed baseline",
-   "Independently rehashed and parsed all114 active source originals and checked literalquotes",
-   "Read all13additional observations, exact typed completion/endpoints and current2026observations",
-   "Read actualHou/Chao/APEX/IPADS/ScaleLab/LinCoPhi/Wu and co-adviser sourcecontexts",
-   "ReadR-STU01/03/14/17/26 and actualresearched wiring; datedstudent-adviser relationships do not invent facultyemployment",
-   "Resolved4historicalSchooldegree co-adviser facts uniformly withChao9/IPADS3; nofacultyperiod changes"
+   "V2 observations exactly110minus2; allretained108JSONvalues unchanged",
+   "All4rolecorrections unchanged",
+   "Original47holds unchanged plusonly2specificSchool-placement holds",
+   "Branch globalcorrections restoredbyte-exact to84bed90c, all5SOURCE220holds preserved",
+   "Actualowneroriginal rehashed and literaldualteam context independentlyread",
+   "ExistingROOTindependent114rawquoteproof stillcoversallretained112activequotes"
   ],
-  "required_invariants": [
-   "NeutralLiWei3+YuhaoQuan remain degree-unknown membership",
-   "Lin23 remain membership only; no blanketindividualadvising",
-   "MuRA14 preserve typed RA and externaldegreeinstitution; no inventedSJTUPhD",
-   "VisitingMa2 preserve legitimatevisiting membership and remove phantomPhDadvising",
-   "ZhenpingShi is masters2020, neverPhD",
-   "Yang8abbreviatedidentities remain held; noinvented surnames",
-   "NoLatin/Han identity mergewithoutliteralbilingualbridge",
-   "No scientific dates or PIappointment backdating",
-   "All47 unresolved holds retain actualreason and originals"
-  ],
-  "authorization": "Apply exactreviewedsourcebatch and separatelyrootapproved2paperproposal ONLYin NEWmain-basedisolatedworktree/NEWprivateoverlay. Commitexplicitpaths, run requiredchecks onSlurm, then ordinary freshNative/certification. Preserve3804/O/currentfailedpanels unchanged.",
-  "native_reviews": "A NEW independent default30 recall draw and NEW Stage9accuracy draw must follow terminalcertification; no priorverdicts/signoffs carried."
+  "authorization": "Proceed with committedcorrected108/4/49 batch plusseparatelyapprovedpaper2v2 inNEWprivateoverlay. Runfreshpreflight/requiredchecks andordinaryNativeallprerequisitegates+terminalcertify, thenpointerhandoff. Do not draw/fillfreshreviewsyourself.",
+  "unchanged_invariants": "Allotherconstraints in priorrootapprovalremain; noSchool/faculty/programstart inference, noLatin-Han merge, noneutral/RA/visiting→PhD upgrade, old3804/O/reviews immutable.",
+  "prior_signoffs_carried": false
  },
- "root_approval_sha256": "8456e2ddcbcb25e3c6a0b9770ea9c319729e7149aa093f117f5fcfad0c1c4a5f",
+ "root_approval_sha256": "22650dabab2c9d1687789db233a06fed179daf769fdd43f52f490a803035ff1b",
  "paper_proposal_sha256": "edf514c99f4529204b80b670beb6ac8c1c3c1f695d0ec8ed5a558f316728f2b7",
  "paper_root_approval": {
   "kind": "independent-root-paper-recovery-source-approval",
@@ -6218,7 +6306,8 @@
      "quote_verified": true
     },
     "reviewed_by": "root",
-    "independent_review_sha256": "8456e2ddcbcb25e3c6a0b9770ea9c319729e7149aa093f117f5fcfad0c1c4a5f"
+    "independent_review_sha256": "22650dabab2c9d1687789db233a06fed179daf769fdd43f52f490a803035ff1b",
+    "source_proposal_sha256": "fb6578afa0c01a9bf545bea97883ce833a3bcf086e7efcbe7a66c041a05b3526"
    }
   },
   {
@@ -6270,7 +6359,8 @@
      "role_context_extent": "After Master Degree heading, before Bachelor Degree heading"
     },
     "reviewed_by": "root",
-    "independent_review_sha256": "8456e2ddcbcb25e3c6a0b9770ea9c319729e7149aa093f117f5fcfad0c1c4a5f"
+    "independent_review_sha256": "22650dabab2c9d1687789db233a06fed179daf769fdd43f52f490a803035ff1b",
+    "source_proposal_sha256": "fb6578afa0c01a9bf545bea97883ce833a3bcf086e7efcbe7a66c041a05b3526"
    }
   },
   {
@@ -6303,7 +6393,8 @@
      "quote_verified": true
     },
     "reviewed_by": "root",
-    "independent_review_sha256": "8456e2ddcbcb25e3c6a0b9770ea9c319729e7149aa093f117f5fcfad0c1c4a5f"
+    "independent_review_sha256": "22650dabab2c9d1687789db233a06fed179daf769fdd43f52f490a803035ff1b",
+    "source_proposal_sha256": "fb6578afa0c01a9bf545bea97883ce833a3bcf086e7efcbe7a66c041a05b3526"
    }
   },
   {
@@ -6336,129 +6427,44 @@
      "quote_verified": true
     },
     "reviewed_by": "root",
-    "independent_review_sha256": "8456e2ddcbcb25e3c6a0b9770ea9c319729e7149aa093f117f5fcfad0c1c4a5f"
+    "independent_review_sha256": "22650dabab2c9d1687789db233a06fed179daf769fdd43f52f490a803035ff1b",
+    "source_proposal_sha256": "fb6578afa0c01a9bf545bea97883ce833a3bcf086e7efcbe7a66c041a05b3526"
    }
   }
  ],
  "preservation": {
   "prior_roster_episodes": 1353,
-  "new_roster_episodes": 1463,
+  "new_roster_episodes": 1461,
   "prior_paper_recoveries": 4,
   "new_paper_recoveries": 2,
   "unchanged_paper_additions": 396,
   "unchanged_student_additions": 734,
   "corrected_existing_student_additions": 1,
-  "holds_retained": 47,
+  "holds_retained": 49,
   "faculty_period_changes": 0,
   "producer3804_mutations": 0,
   "no_final_verdicts_carried": true
  },
  "observed_guard_conflict_resolution": {
-  "status": "OBSERVED_PREIMAGE_GUARD_CONFLICT_RESOLVED_ONLY_FOR_EXACT_TWO_APPROVED_EXTERNAL_DEGREE_VISITORS",
-  "failed_preflight_job": "32392871",
-  "source_approval_sha256": "8456e2ddcbcb25e3c6a0b9770ea9c319729e7149aa093f117f5fcfad0c1c4a5f",
-  "superseded_decisions": [
-   {
-    "school": "sjtu",
-    "pi": "李 阳",
-    "student": "ext:sjtu:yue-xin",
-    "action": "drop",
-    "expected_member_sha256": "6e255b40173bccef468e1912029d2b9d78984c65f5a8596bd04a430e199cc057",
-    "reason": "Independent source review holds school placement. No visiting or neutral membership is inferred from a foreign degree or institute-only card; renew review if genuine new evidence changes this exact member.",
-    "evidence": [
-     {
-      "url": "https://liyang.page/people/",
-      "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
-      "review": "hierarchy/sjtu/reports/SOURCE220-FIVE-SOURCE-SCOPE-REVIEW-20261116.json",
-      "review_sha256": "bcff9e135dd62a0f2bcd555b9de5f7a72576446904cb517af6a718ca38a0a2d4",
-      "native_students_sha256": "a42bbc2af23083c5169733ea539e5147aeac5363c1f3bc326afe80335b04eddc"
-     }
-    ],
-    "reviewed_by": "codex-sjtu-ntu-1115",
-    "reviewed_on": "2026-11-16"
-   },
-   {
-    "school": "sjtu",
-    "pi": "李 阳",
-    "student": "ext:sjtu:chenxi-zeng",
-    "action": "drop",
-    "expected_member_sha256": "6b0ef08fc1771dbbe1d813e606f73a329c08fc1476ef89b0b5d59ece0fa97a31",
-    "reason": "Independent source review holds school placement. No visiting or neutral membership is inferred from a foreign degree or institute-only card; renew review if genuine new evidence changes this exact member.",
-    "evidence": [
-     {
-      "url": "https://liyang.page/people/",
-      "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
-      "review": "hierarchy/sjtu/reports/SOURCE220-FIVE-SOURCE-SCOPE-REVIEW-20261116.json",
-      "review_sha256": "bcff9e135dd62a0f2bcd555b9de5f7a72576446904cb517af6a718ca38a0a2d4",
-      "native_students_sha256": "a42bbc2af23083c5169733ea539e5147aeac5363c1f3bc326afe80335b04eddc"
-     }
-    ],
-    "reviewed_by": "codex-sjtu-ntu-1115",
-    "reviewed_on": "2026-11-16"
-   }
+  "status": "ATTEMPT_REJECTED_BY_RENEWED_ROOT_REVIEW_AND_FULLY_REVERTED",
+  "prior_attempt_receipt": "/n/fs/resemble/homogenizing-science/scratch/sjtu-release-papers-1117/effective-apply/SOURCE-CORRECTION-CONFLICT-RECEIPT.json",
+  "prior_attempt_receipt_sha256": "8d02bc7551ddeb69856f29f306b3e0e5b6cc811e367eae0ccfc287fcc1eb22d5",
+  "superseding_root_approval_sha256": "22650dabab2c9d1687789db233a06fed179daf769fdd43f52f490a803035ff1b",
+  "global_corrections_exactly_restored_sha256": "91cf14e81e18cfec84128e1111ef0d3de1d539342dec9c7fe9397bb5785185d6",
+  "all5_prior_school_placement_holds_stand": true,
+  "only2newLiYangRowsRemoved": true,
+  "no_new_source_bytes_claimed": true
+ },
+ "initial110_history": {
+  "proposal_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-release-papers-1117/effective-source-proposal/EFFECTIVE-ROSTER-SOURCE-PROPOSAL.json",
+  "proposal_sha256": "d31c8d7d4d9f2df01bec292548167af83a84b4db521e288874ae70ec8a8887ae",
+  "approval_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-release-papers-1117/effective-source-proposal/ROOT-EFFECTIVE-SOURCE-APPROVAL.json",
+  "approval_sha256": "8456e2ddcbcb25e3c6a0b9770ea9c319729e7149aa093f117f5fcfad0c1c4a5f",
+  "applied_commits": [
+   "d0ca4a16",
+   "84bed90c",
+   "bf86bbc5"
   ],
-  "before_sha256": "91cf14e81e18cfec84128e1111ef0d3de1d539342dec9c7fe9397bb5785185d6",
-  "after_sha256": "8382522839bf04a9562ce9272b5598f925e5c058e1d32d4e3a462a8a0ce311c6",
-  "reason": "Earlier drop decisions explicitly require renewed review on genuine source changes. Exact root-approved effective source packet independently renews these two as named Intern-section visiting memberships, retains Beihang/Jilin degree institutions, and makes no SJTU degree or advising claim. Supersede only obsolete whole-record drops; preserve all other school/PI corrections and all prior drop evidence in this receipt.",
-  "remaining_rows_unchanged": true,
-  "remaining_sjtu_holds": [
-   {
-    "school": "sjtu",
-    "pi": "李 阳",
-    "student": "ext:sjtu:xiaohan-mao",
-    "action": "drop",
-    "expected_member_sha256": "4a5b1037fbda197d17e4e8e2724f1b5cdf873a8d8bda9fcb9c127ee3642c55d1",
-    "reason": "Independent source review holds school placement. No visiting or neutral membership is inferred from a foreign degree or institute-only card; renew review if genuine new evidence changes this exact member.",
-    "evidence": [
-     {
-      "url": "https://liyang.page/people/",
-      "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
-      "review": "hierarchy/sjtu/reports/SOURCE220-FIVE-SOURCE-SCOPE-REVIEW-20261116.json",
-      "review_sha256": "bcff9e135dd62a0f2bcd555b9de5f7a72576446904cb517af6a718ca38a0a2d4",
-      "native_students_sha256": "a42bbc2af23083c5169733ea539e5147aeac5363c1f3bc326afe80335b04eddc"
-     }
-    ],
-    "reviewed_by": "codex-sjtu-ntu-1115",
-    "reviewed_on": "2026-11-16"
-   },
-   {
-    "school": "sjtu",
-    "pi": "李 阳",
-    "student": "ext:sjtu:chenyang-wan",
-    "action": "drop",
-    "expected_member_sha256": "09de8688ba70ac17cd03a39485e133aff2ff0cdedb75713dd1e271ec0f658b1d",
-    "reason": "Independent source review holds school placement. No visiting or neutral membership is inferred from a foreign degree or institute-only card; renew review if genuine new evidence changes this exact member.",
-    "evidence": [
-     {
-      "url": "https://liyang.page/people/",
-      "sha256": "64419705b6106c0e5fc7a47e178860bc06b1e6beb9da2d1e05927d5cc0aa03d7",
-      "review": "hierarchy/sjtu/reports/SOURCE220-FIVE-SOURCE-SCOPE-REVIEW-20261116.json",
-      "review_sha256": "bcff9e135dd62a0f2bcd555b9de5f7a72576446904cb517af6a718ca38a0a2d4",
-      "native_students_sha256": "a42bbc2af23083c5169733ea539e5147aeac5363c1f3bc326afe80335b04eddc"
-     }
-    ],
-    "reviewed_by": "codex-sjtu-ntu-1115",
-    "reviewed_on": "2026-11-16"
-   },
-   {
-    "school": "sjtu",
-    "pi": "赵杰茹",
-    "student": "ext:sjtu:siyuan-yang",
-    "action": "drop",
-    "expected_member_sha256": "2719d9b962269dc7017e2037a71d214bb5b766e4d46d5d057986bd0c6a29980e",
-    "reason": "Independent source review holds school placement. No visiting or neutral membership is inferred from a foreign degree or institute-only card; renew review if genuine new evidence changes this exact member.",
-    "evidence": [
-     {
-      "url": "https://zjru.github.io/",
-      "sha256": "4e95214a947245c6ae1622a88ab385f4d5103209afc751d808e823cd2705ca06",
-      "review": "hierarchy/sjtu/reports/SOURCE220-FIVE-SOURCE-SCOPE-REVIEW-20261116.json",
-      "review_sha256": "bcff9e135dd62a0f2bcd555b9de5f7a72576446904cb517af6a718ca38a0a2d4",
-      "native_students_sha256": "a42bbc2af23083c5169733ea539e5147aeac5363c1f3bc326afe80335b04eddc"
-     }
-    ],
-    "reviewed_by": "codex-sjtu-ntu-1115",
-    "reviewed_on": "2026-11-16"
-   }
-  ]
+  "superseded": true
  }
 }
