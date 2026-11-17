@@ -59,7 +59,8 @@ the root's own files the same way, so a build pair differs only in where the byt
 - Import of all 31 schools plus `_shared`: 523 reviewed JSON files (508 school, 15 shared), 91.3k rows, 60 MB in total, 0 files the
   converters cannot represent. Export of every file is byte-identical (`verify --all`, 34 s).
 - Michigan: 28 school files + 15 shared; round trip byte-identical; build outputs with regenerated inputs identical to the control
-  (see `OVERNIGHT-LOG.md` for the comparison table).
+  (Slurm 32392867 control vs 32392868 regenerated, 15 min, 8 GB each): `pis.json`, `students.json`, `lab_papers.jsonl.gz`,
+  `student_papers.jsonl.gz` byte-identical; `report.json` differs only in `builtAt` and the path of the reviewed file it echoes.
 - Weak projections (the record is intact, only the index is thin): 41k rows are plain `evidence` (lab pages, directories, websites),
   2.5k `other`, 2.5k `review_note` (legacy `pending_*`); 817 `evidence` and 677 `other` rows have no person key (whole-document rows).
 
