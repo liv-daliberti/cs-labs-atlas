@@ -62,6 +62,10 @@ research/teaching PIs: a source-checked research/teaching appointment can use an
             quote is checked against stored source bytes. Appointment evidence, computing scope,
             and candidate identity remain separate requirements. The appointment hand-review must
             carry the same appointment_rank and unit; the original rank is retained.
+candidate dispositions: a hand review may carry candidate_review with source, complete ids,
+            decision, why, identity_note and source-bound identity_evidence. Only negative
+            rank/status decisions or excluded_scope (R-HIER-05, with separate scope_evidence)
+            are supported. Exact source IDs keep homonyms separate; these reviews never admit a PI.
 historical appointments: a hand review may carry historical_appointment={start,end}
             with explicit year or month bounds stated in its quote and matching a source-bound
             census override period. The biography observation date is preserved but
@@ -75,7 +79,7 @@ dated officer listings: a hand review may carry dated_listing with the PDF's dat
 usage: cs_related_school.py candidates|units|units-check|review|profile <key> [<Name> <unit> <url>]
 units-check exits 0 when units-done.json covers every unit URL of the charter (a unit added since the last `units` run, or no run, exits 1)
 """
-import collections, datetime, gzip, hashlib, json, re, subprocess, sys
+import collections, datetime, gzip, hashlib, json, re, subprocess, sys, zlib
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
@@ -777,6 +781,88 @@ def reviewed_pi_basis(key):
     return out
 
 
+def candidate_identity(candidate):
+    """A discovery identity, never a display-name key."""
+    source = candidate.get('source')
+    ids = [candidate.get('dblp')] if source == 'dblp_affiliation' else candidate.get('openalex') if source == 'openalex_rule' else None
+    return (source, tuple(sorted(ids))) if ids and all(isinstance(i, str) and i for i in ids) else None
+
+
+def reviewed_candidate_dispositions(key, candidates, groups):
+    """Validate explicit negative reviews against one exact current candidate."""
+    out = {}
+    entries = [e for e in (read(P.data('cs-related-hand.json', key), []) or []) if e.get('candidate_review') is not None]
+    if not entries:
+        return out
+    db = W.con(key)
+
+    def fail(name, reason):
+        raise SystemExit(f'{name}: candidate_review {reason}')
+
+    def checked(entry, evidence):
+        if not isinstance(evidence, dict) or not all(isinstance(evidence.get(k), str) and evidence[k]
+                                                   for k in ('url', 'sha256', 'quote', 'observed')):
+            fail(entry['name'], 'needs complete saved source evidence')
+        url, sha = evidence['url'], evidence['sha256']
+        raw = db.execute('select status,raw_zlib from live where url=? and sha256=?', (url, sha)).fetchone()
+        if raw is None:
+            raw = db.execute('select http_status,raw_zlib from captures where capture_url=? and sha256=?', (url, sha)).fetchone()
+        if not raw or raw[0] != 200 or not raw[1] or hashlib.sha256(zlib.decompress(raw[1])).hexdigest() != sha:
+            fail(entry['name'], 'source URL, successful capture and raw hash must agree')
+        ev = {k: evidence[k] for k in ('url', 'sha256', 'quote', 'observed')}
+        hand_evidence(key, db, entries=[dict(name=entry['name'], unit=entry['unit'], ladder=False, **ev)],
+                      label='candidate_review evidence')
+        return ev
+
+    for entry in entries:
+        proof = entry.get('candidate_review')
+        if proof is None:
+            continue
+        name = entry['name']
+        if not isinstance(proof, dict) or proof.get('decision') not in ('excluded_scope', 'research_or_other_rank', 'not_faculty_listed'):
+            fail(name, 'supports only explicit negative scope, rank or status decisions')
+        ids, source = proof.get('ids'), proof.get('source')
+        if (source not in ('dblp_affiliation', 'openalex_rule') or not isinstance(ids, list) or not ids
+                or not all(isinstance(i, str) and i for i in ids) or len(set(ids)) != len(ids)):
+            fail(name, 'needs a source and unique complete candidate IDs')
+        selector = source, tuple(sorted(ids))
+        matches = [c for c in candidates if candidate_identity(c) == selector and toks(c['name']) == toks(name)]
+        if len(matches) != 1:
+            fail(name, 'must bind exactly one current candidate by name, source and complete IDs')
+        if selector in out:
+            fail(name, 'has duplicate or conflicting reviews for one source identity')
+        if not all(isinstance(proof.get(k), str) and proof[k].strip() for k in ('why', 'identity_note')):
+            fail(name, 'needs the decision and identity reasoning')
+        if (not isinstance(entry.get('reviewed_by'), str) or not entry['reviewed_by'].strip()
+                or not isinstance(entry.get('reviewed_on'), str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', entry['reviewed_on'])):
+            fail(name, 'needs an explicit reviewer and review date')
+        try:
+            datetime.date.fromisoformat(entry['reviewed_on'])
+        except ValueError:
+            fail(name, 'needs a valid review calendar date')
+        if proof['decision'] != 'excluded_scope':
+            if entry.get('ladder') is not False:
+                fail(name, 'cannot turn a ladder appointment into a negative rank/status decision')
+            if any(g['unit'] == entry['unit'] for g in groups.get(' '.join(toks(name)), [])):
+                fail(name, 'rank/status decision conflicts with independent PI-basis evidence')
+        elif proof.get('rule') != 'R-HIER-05':
+            fail(name, 'scope exclusion must name the existing R-HIER-05 rule')
+        role = checked(entry, entry)
+        identity = proof.get('identity_evidence')
+        if not isinstance(identity, list) or not identity:
+            fail(name, 'needs source-bound identity evidence')
+        identity = [checked(entry, ev) for ev in identity]
+        scope = checked(entry, entry.get('scope_evidence')) if proof['decision'] == 'excluded_scope' else None
+        out[selector] = dict(entry=entry, proof=proof, role=role, identity=identity, scope=scope)
+    for selector, review in out.items():
+        peers = [r for k, r in out.items() if k != selector and toks(r['entry']['name']) == toks(review['entry']['name'])]
+        own = {(e['url'], e['sha256'], e['quote']) for e in review['identity']}
+        shared = {(e['url'], e['sha256'], e['quote']) for r in peers for e in r['identity']}
+        if peers and not own - shared:
+            fail(review['entry']['name'], 'homonyms need identity evidence specific to each source ID')
+    return out
+
+
 def profile(key, name, unit, url):
     """Fetch one profile page and record faculty evidence for `name` in reviewed/cs-related-hand.json (see the module doc)."""
     c = W.con(key)
@@ -836,6 +922,7 @@ def review(key):
     searched = sorted({p[0] for p in pages})
     hand = hand_evidence(key)
     group_reviews = reviewed_pi_basis(key)
+    dispositions = reviewed_candidate_dispositions(key, cands, group_reviews)
     dec, adds, n = [], [], collections.Counter()
     seen = set()
     by_display_name = collections.defaultdict(list)
@@ -844,6 +931,24 @@ def review(key):
     for c in cands:
         names = [c['name']] + list(c.get('aliases') or [])
         name_key = ' '.join(toks(c['name']))
+        disposition = dispositions.get(candidate_identity(c))
+        if disposition:
+            e, proof = disposition['entry'], disposition['proof']
+            if census_alias(census, names):
+                raise SystemExit(f"{c['name']}: candidate_review targets an existing core census identity; reconcile the core PI first")
+            ids = proof['ids']
+            comp = dict(dblp=ids, **({'dblp_window': c['dblp_window']} if 'dblp_window' in c else {})) if c['source'] == 'dblp_affiliation' else dict(openalex=ids)
+            d = proof['decision']
+            n[d] += 1
+            dec.append(dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision=d,
+                            **({'source_id': ids[0]} if len(ids) == 1 else {'source_ids': ids}),
+                            reason=proof['why'], cs_basis=comp,
+                            faculty_evidence=[dict(unit=e['unit'], ladder=bool(e.get('ladder')), **disposition['role'])],
+                            evidence=disposition['identity'],
+                            **({'scope_evidence': disposition['scope'], 'scope_rule': proof['rule']} if disposition['scope'] else {}),
+                            identity_note=proof['identity_note'], reviewed_by=e['reviewed_by'], reviewed_on=e['reviewed_on'],
+                            years_listed=[], units_searched=searched))
+            continue
         if len(by_display_name[name_key]) > 1:
             if name_key not in seen:
                 collisions = by_display_name[name_key]

@@ -31,7 +31,8 @@ def test_qualified_role_is_not_mistaken_for_a_next_person_prefix():
 
 def research_review(monkeypatch, tmp_path, *, own=True, appointment=True, source='dblp_affiliation',
                     bad_quote=False, legacy=False, share_result=None, rank='research', kind='own_group', unit='CS',
-                    historical=None, period_review='matching', period_text='2010-2021: Professor at University of Cambridge.'):
+                    historical=None, period_review='matching', period_text='2010-2021: Professor at University of Cambridge.',
+                    candidate_review=None, scope_evidence='valid', extra_candidate=False):
     import hashlib
     import json
     import sqlite3
@@ -40,12 +41,13 @@ def research_review(monkeypatch, tmp_path, *, own=True, appointment=True, source
     name = 'Avery Scientist'
     url = 'https://school.example/avery'
     title = 'Professor' if rank == 'ladder' else ('Research Professor' if rank == 'research' else 'Teaching Professor')
-    html = f'<h1>Avery Scientist</h1><p>{title}</p><p>{period_text}</p><p>I lead the Example Research Group.</p>'.encode()
+    html = (f'<h1>Avery Scientist</h1><p>{title}</p><p>{period_text}</p><p>I lead the Example Research Group.</p>'
+            '<p>I study information policy and digital society.</p><p>First identity publication.</p><p>Second identity publication.</p>').encode()
     sha = hashlib.sha256(html).hexdigest()
     db = sqlite3.connect(':memory:')
-    db.execute('create table captures (sha256 text, text text)')
-    db.execute('create table live (url text, sha256 text, raw_zlib blob)')
-    db.execute('insert into live values (?,?,?)', (url, sha, zlib.compress(html)))
+    db.execute('create table captures (sha256 text, text text, capture_url text, http_status integer, raw_zlib blob)')
+    db.execute('create table live (url text, sha256 text, raw_zlib blob, status integer default 200)')
+    db.execute('insert into live (url,sha256,raw_zlib) values (?,?,?)', (url, sha, zlib.compress(html)))
     role = dict(name=name, unit='CS', url=url, sha256=sha, quote=f'Avery Scientist {title}',
                 observed='20261115', ladder=rank == 'ladder', appointment_rank=rank)
     if historical is not None:
@@ -60,12 +62,32 @@ def research_review(monkeypatch, tmp_path, *, own=True, appointment=True, source
     pid = 'https://dblp.org/pid/avery/scientist'
     candidate = dict(name=name, aliases=[], source=source, dblp=pid,
                      openalex=['https://openalex.org/A100'])
+    if candidate_review is not None:
+        role.update(reviewed_by='test reviewer', reviewed_on='2026-11-16', candidate_review=dict(candidate_review))
+        role['candidate_review'].setdefault('identity_evidence', [dict(url=url, sha256=sha,
+            observed='20261115', quote='First identity publication.')])
+        if scope_evidence != 'missing':
+            role['scope_evidence'] = dict(url=url if scope_evidence != 'bad_url' else 'https://other.example/avery',
+                sha256=sha if scope_evidence != 'bad_hash' else '0' * 64,
+                observed='20261115', quote='I study information policy and digital society.' if scope_evidence != 'bad_quote' else 'An absent claim.')
+        if scope_evidence == 'bad_status':
+            db.execute('update live set status=403')
+    candidates = [candidate]
+    hand_rows = [role] if appointment else []
+    if extra_candidate:
+        candidates.append(dict(candidate, dblp='https://dblp.org/pid/another/scientist'))
+        if extra_candidate in ('complete', 'shared_identity'):
+            other = json.loads(json.dumps(role))
+            other['candidate_review']['ids'] = ['https://dblp.org/pid/another/scientist']
+            if extra_candidate == 'complete':
+                other['candidate_review']['identity_evidence'][0]['quote'] = 'Second identity publication.'
+            hand_rows.append(other)
     files = {
-        'cs-related-candidates.json': [candidate],
+        'cs-related-candidates.json': candidates,
         'dblp-affiliated.json': {'persons': [dict(pid=pid, n_window=10,
                                                 affiliations=[{'text': 'University of Cambridge'}])]},
         'census-faculty.json': {'faculty': []},
-        'cs-related-hand.json': [role] if appointment else [],
+        'cs-related-hand.json': hand_rows,
         'pi-basis-evidence.json': [basis] if own else [],
     }
     for filename, obj in files.items():
@@ -316,6 +338,97 @@ def test_abbreviated_year_range_does_not_supply_an_independent_pi_basis(monkeypa
         historical={'start': '2015', 'end': '2023', 'end_quote': '2015–23'},
         period_text='2015–23 Royal Society University Research Fellow, University of Cambridge.')
     assert decision['decision'] == 'research_or_other_rank'
+    assert additions == []
+
+
+def candidate_disposition(decision='excluded_scope', **changes):
+    return dict(source='dblp_affiliation', ids=['https://dblp.org/pid/avery/scientist'],
+                decision=decision, rule='R-HIER-05', why='Reviewed body of work concerns information policy.',
+                identity_note='Independent publication and institutional identity reviewed.', **changes)
+
+
+def test_reviewed_scope_exclusion_keeps_faculty_and_scope_evidence_without_admission(monkeypatch, tmp_path):
+    decision, additions = research_review(monkeypatch, tmp_path, rank='ladder', own=False, share_result='computing',
+                                         candidate_review=candidate_disposition())
+    assert decision['decision'] == 'excluded_scope'
+    assert decision['source_id'] == 'https://dblp.org/pid/avery/scientist'
+    assert decision['faculty_evidence'][0]['ladder'] is True
+    assert decision['scope_rule'] == 'R-HIER-05'
+    assert decision['scope_evidence']['quote'] == 'I study information policy and digital society.'
+    assert decision['evidence'][0]['quote'] == 'First identity publication.'
+    assert additions == []
+
+
+@pytest.mark.parametrize('evidence', ['missing', 'bad_hash', 'bad_quote', 'bad_url', 'bad_status'])
+def test_scope_disposition_cannot_use_unverified_sources(monkeypatch, tmp_path, evidence):
+    with pytest.raises(SystemExit):
+        research_review(monkeypatch, tmp_path, candidate_review=candidate_disposition(), scope_evidence=evidence)
+
+
+@pytest.mark.parametrize('change', [
+    {'decision': 'accepted'}, {'rule': 'invented waiver'},
+    {'ids': ['https://dblp.org/pid/a/namesake']}, {'source': 'openalex_rule'},
+    {'ids': []}, {'ids': ['https://dblp.org/pid/avery/scientist'] * 2},
+    {'why': ''}, {'identity_note': ''}, {'identity_evidence': []},
+])
+def test_candidate_disposition_requires_existing_rule_exact_ids_and_review(monkeypatch, tmp_path, change):
+    proof = candidate_disposition()
+    proof.update(change)
+    with pytest.raises(SystemExit):
+        research_review(monkeypatch, tmp_path, candidate_review=proof)
+
+
+def test_candidate_rank_disposition_cannot_override_independent_pi_basis(monkeypatch, tmp_path):
+    with pytest.raises(SystemExit, match='conflicts with independent PI-basis'):
+        research_review(monkeypatch, tmp_path, candidate_review=candidate_disposition('research_or_other_rank'))
+
+
+def test_candidate_rank_disposition_cannot_demote_a_verified_ladder_role(monkeypatch, tmp_path):
+    with pytest.raises(SystemExit, match='cannot turn a ladder appointment'):
+        research_review(monkeypatch, tmp_path, rank='ladder', own=False,
+                        candidate_review=candidate_disposition('research_or_other_rank'))
+
+
+def test_exact_negative_identity_does_not_hide_an_unreviewed_homonym(monkeypatch, tmp_path):
+    import json
+    import stage_gate as G
+    _, additions = research_review(monkeypatch, tmp_path, own=False, extra_candidate=True,
+                                  candidate_review=candidate_disposition('research_or_other_rank'))
+    decisions = json.loads((tmp_path / 'cs-related-review.json').read_text())['decisions']
+    assert decisions[0]['decision'] == 'research_or_other_rank'
+    assert decisions[0]['cs_basis']['dblp'] == ['https://dblp.org/pid/avery/scientist']
+    assert decisions[1]['decision'] == 'pending_identity_collision'
+    monkeypatch.setattr(G, 'sweep_gate', lambda key: [])
+    assert any('share a display name' in error for error in G.g2('cambridge')[0])
+    assert additions == []
+
+
+def test_two_source_specific_negative_reviews_resolve_only_their_own_ids(monkeypatch, tmp_path):
+    import json
+    import stage_gate as G
+    _, additions = research_review(monkeypatch, tmp_path, own=False, extra_candidate='complete',
+                                  candidate_review=candidate_disposition('research_or_other_rank'))
+    decisions = json.loads((tmp_path / 'cs-related-review.json').read_text())['decisions']
+    assert [d['decision'] for d in decisions] == ['research_or_other_rank'] * 2
+    assert {d['source_id'] for d in decisions} == {'https://dblp.org/pid/avery/scientist', 'https://dblp.org/pid/another/scientist'}
+    assert all(d['cs_basis']['dblp'] == [d['source_id']] for d in decisions)
+    monkeypatch.setattr(G, 'sweep_gate', lambda key: [])
+    assert G.g2('cambridge')[0] == []
+    assert additions == []
+
+
+def test_homonyms_cannot_share_one_generic_identity_proof(monkeypatch, tmp_path):
+    with pytest.raises(SystemExit, match='homonyms need identity evidence specific'):
+        research_review(monkeypatch, tmp_path, own=False, extra_candidate='shared_identity',
+                        candidate_review=candidate_disposition('research_or_other_rank'))
+
+
+def test_scope_disposition_binds_the_complete_openalex_candidate_ids(monkeypatch, tmp_path):
+    proof = candidate_disposition()
+    proof.update(source='openalex_rule', ids=['https://openalex.org/A100'])
+    decision, additions = research_review(monkeypatch, tmp_path, source='openalex_rule', candidate_review=proof)
+    assert decision['source_id'] == 'https://openalex.org/A100'
+    assert decision['cs_basis']['openalex'] == ['https://openalex.org/A100']
     assert additions == []
 
 
