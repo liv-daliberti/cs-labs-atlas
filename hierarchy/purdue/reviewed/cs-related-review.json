@@ -40,8 +40,8 @@
   "STAT"
  ],
  "counts": {
-  "pending_source_coverage": 299,
-  "not_faculty_listed": 121,
+  "pending_source_coverage": 309,
+  "not_faculty_listed": 111,
   "census_alias": 2,
   "accepted": 219,
   "research_or_other_rank": 14,
@@ -17809,8 +17809,8 @@
    "name": "Jiahao Zhang",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 20, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 20, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "NOT decided absent: the named unit(s) MATH have no usable 2016-2017..2024-2026 directory coverage in the stored captures (missing years or script shells), so absence cannot be shown; needs the person's own official profile/directory page",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/123/4950-2"
@@ -17824,14 +17824,6 @@
       "url": "https://dblp.org/pid/123/4950-2",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Purdue University, Department of Mathematics, IN, USA"
-     },
-     {
-      "url": "https://web.archive.org/web/20260520032548id_/https://www.math.purdue.edu/people/",
-      "sha256": "934a76357d7ea1ece450db4526484ca780d80e111af7c05e31716b13dea30fee",
-      "first_capture_url": "https://web.archive.org/web/20160130224147id_/http://www.math.purdue.edu:80/people/faculty?",
-      "first_sha256": "c43900e08b76d70ad6fb3a158566cdf1d53cdd49f5bdfaf6a0e9d798de27ed53",
-      "source": "stored MATH unit-listing captures: 25 captures 2016-2026, shell years 2016,2019,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 25 stored MATH captures (name matcher plus family-name scan; latest capture 3723 characters)"
      }
     ]
    },
@@ -17867,12 +17859,13 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "dblp_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
+   "profile_class": "PENDING_unit_without_window_coverage",
+   "units_without_window_coverage": [
     "MATH"
    ],
-   "byline_affiliation_strings": null,
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "units_named_by_byline_or_dblp": [
+    "MATH"
+   ]
   },
   {
    "name": "Jiaming Xu",
@@ -20156,8 +20149,8 @@
    "name": "Jie Xu",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 20, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 20, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "independent review 2: a listing or appointment exists that the stored captures cannot settle (given-name order / MGMT and MATH 2022-26 partial, visiting/postdoc titles); needs the person's own profile",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/37/5126-33"
@@ -20173,14 +20166,6 @@
       "url": "https://dblp.org/pid/37/5126-33",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Chinese Academy of Sciences, Academy of Mathematics and Systems Science, Institute of Computational Mathematics and Scientific/Engineering Computing, Beijing, China"
-     },
-     {
-      "url": "https://web.archive.org/web/20260520032548id_/https://www.math.purdue.edu/people/",
-      "sha256": "934a76357d7ea1ece450db4526484ca780d80e111af7c05e31716b13dea30fee",
-      "first_capture_url": "https://web.archive.org/web/20160130224147id_/http://www.math.purdue.edu:80/people/faculty?",
-      "first_sha256": "c43900e08b76d70ad6fb3a158566cdf1d53cdd49f5bdfaf6a0e9d798de27ed53",
-      "source": "stored MATH unit-listing captures: 25 captures 2016-2026, shell years 2016,2019,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 25 stored MATH captures (name matcher plus family-name scan; latest capture 3723 characters)"
      }
     ]
    },
@@ -20216,12 +20201,7 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "dblp_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
-    "MATH"
-   ],
-   "byline_affiliation_strings": null,
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "profile_class": "PENDING_identity_unconfirmed"
   },
   {
    "name": "Jieqiong Zhao",
@@ -22374,8 +22354,8 @@
    "name": "Jun Yang",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 20, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 20, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "NOT decided absent: the named unit(s) MATH have no usable 2016-2017..2024-2026 directory coverage in the stored captures (missing years or script shells), so absence cannot be shown; needs the person's own official profile/directory page",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/181/2799-56"
@@ -22392,14 +22372,6 @@
       "url": "https://dblp.org/pid/181/2799-56",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Tongji University, Department of Computer Science and Technology, Shanghai, China"
-     },
-     {
-      "url": "https://web.archive.org/web/20260520032548id_/https://www.math.purdue.edu/people/",
-      "sha256": "934a76357d7ea1ece450db4526484ca780d80e111af7c05e31716b13dea30fee",
-      "first_capture_url": "https://web.archive.org/web/20160130224147id_/http://www.math.purdue.edu:80/people/faculty?",
-      "first_sha256": "c43900e08b76d70ad6fb3a158566cdf1d53cdd49f5bdfaf6a0e9d798de27ed53",
-      "source": "stored MATH unit-listing captures: 25 captures 2016-2026, shell years 2016,2019,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 25 stored MATH captures (name matcher plus family-name scan; latest capture 3723 characters)"
      }
     ]
    },
@@ -22435,12 +22407,13 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "dblp_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
+   "profile_class": "PENDING_unit_without_window_coverage",
+   "units_without_window_coverage": [
     "MATH"
    ],
-   "byline_affiliation_strings": null,
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "units_named_by_byline_or_dblp": [
+    "MATH"
+   ]
   },
   {
    "name": "Juncheng Li",
@@ -33912,8 +33885,8 @@
    "name": "Qing Cheng",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 20, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 20, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "independent review 2: a listing or appointment exists that the stored captures cannot settle (given-name order / MGMT and MATH 2022-26 partial, visiting/postdoc titles); needs the person's own profile",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/77/389-3"
@@ -33929,14 +33902,6 @@
       "url": "https://dblp.org/pid/77/389-3",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Tongji University, Department of Mathematics, Shanghai, China"
-     },
-     {
-      "url": "https://web.archive.org/web/20260520032548id_/https://www.math.purdue.edu/people/",
-      "sha256": "934a76357d7ea1ece450db4526484ca780d80e111af7c05e31716b13dea30fee",
-      "first_capture_url": "https://web.archive.org/web/20160130224147id_/http://www.math.purdue.edu:80/people/faculty?",
-      "first_sha256": "c43900e08b76d70ad6fb3a158566cdf1d53cdd49f5bdfaf6a0e9d798de27ed53",
-      "source": "stored MATH unit-listing captures: 25 captures 2016-2026, shell years 2016,2019,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 25 stored MATH captures (name matcher plus family-name scan; latest capture 3723 characters)"
      }
     ]
    },
@@ -33972,12 +33937,7 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "dblp_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
-    "MATH"
-   ],
-   "byline_affiliation_strings": null,
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "profile_class": "PENDING_identity_unconfirmed"
   },
   {
    "name": "Qinglin Meng",
@@ -34397,8 +34357,8 @@
    "name": "Raif M. Rustamov",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 20, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 20, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "NOT decided absent: the named unit(s) MATH have no usable 2016-2017..2024-2026 directory coverage in the stored captures (missing years or script shells), so absence cannot be shown; needs the person's own official profile/directory page",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/39/2892"
@@ -34414,14 +34374,6 @@
       "url": "https://dblp.org/pid/39/2892",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Stanford University, Computer Science Department"
-     },
-     {
-      "url": "https://web.archive.org/web/20260520032548id_/https://www.math.purdue.edu/people/",
-      "sha256": "934a76357d7ea1ece450db4526484ca780d80e111af7c05e31716b13dea30fee",
-      "first_capture_url": "https://web.archive.org/web/20160130224147id_/http://www.math.purdue.edu:80/people/faculty?",
-      "first_sha256": "c43900e08b76d70ad6fb3a158566cdf1d53cdd49f5bdfaf6a0e9d798de27ed53",
-      "source": "stored MATH unit-listing captures: 25 captures 2016-2026, shell years 2016,2019,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 25 stored MATH captures (name matcher plus family-name scan; latest capture 3723 characters)"
      }
     ]
    },
@@ -34457,12 +34409,13 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "dblp_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
+   "profile_class": "PENDING_unit_without_window_coverage",
+   "units_without_window_coverage": [
     "MATH"
    ],
-   "byline_affiliation_strings": null,
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "units_named_by_byline_or_dblp": [
+    "MATH"
+   ]
   },
   {
    "name": "Rajkumar Kubendran",
@@ -51686,8 +51639,8 @@
    "name": "Yingwei Wang",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 20, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 20, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "NOT decided absent: the named unit(s) MATH have no usable 2016-2017..2024-2026 directory coverage in the stored captures (missing years or script shells), so absence cannot be shown; needs the person's own official profile/directory page",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/01/2322-1"
@@ -51702,14 +51655,6 @@
       "url": "https://dblp.org/pid/01/2322-1",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Wisconsin Madison, WI, USA"
-     },
-     {
-      "url": "https://web.archive.org/web/20260520032548id_/https://www.math.purdue.edu/people/",
-      "sha256": "934a76357d7ea1ece450db4526484ca780d80e111af7c05e31716b13dea30fee",
-      "first_capture_url": "https://web.archive.org/web/20160130224147id_/http://www.math.purdue.edu:80/people/faculty?",
-      "first_sha256": "c43900e08b76d70ad6fb3a158566cdf1d53cdd49f5bdfaf6a0e9d798de27ed53",
-      "source": "stored MATH unit-listing captures: 25 captures 2016-2026, shell years 2016,2019,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 25 stored MATH captures (name matcher plus family-name scan; latest capture 3723 characters)"
      }
     ]
    },
@@ -51745,12 +51690,13 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "dblp_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
+   "profile_class": "PENDING_unit_without_window_coverage",
+   "units_without_window_coverage": [
     "MATH"
    ],
-   "byline_affiliation_strings": null,
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "units_named_by_byline_or_dblp": [
+    "MATH"
+   ]
   },
   {
    "name": "Yiran Chen",
@@ -52445,7 +52391,7 @@
    "aliases": [],
    "source": "dblp_affiliation",
    "decision": "pending_source_coverage",
-   "reason": "independent review 2: a listing or appointment exists that the stored captures cannot settle (given-name order / MGMT 2022-26 partial); needs the person's own profile",
+   "reason": "independent review 2: a listing or appointment exists that the stored captures cannot settle (given-name order / MGMT and MATH 2022-26 partial, visiting/postdoc titles); needs the person's own profile",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/64/5845-16"
@@ -52502,8 +52448,8 @@
    "name": "Yubo Wang",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 20, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 20, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "NOT decided absent: the named unit(s) MATH have no usable 2016-2017..2024-2026 directory coverage in the stored captures (missing years or script shells), so absence cannot be shown; needs the person's own official profile/directory page",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/55/4164-18"
@@ -52518,14 +52464,6 @@
       "url": "https://dblp.org/pid/55/4164-18",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Meta Platforms, Menlo Park, USA"
-     },
-     {
-      "url": "https://web.archive.org/web/20260520032548id_/https://www.math.purdue.edu/people/",
-      "sha256": "934a76357d7ea1ece450db4526484ca780d80e111af7c05e31716b13dea30fee",
-      "first_capture_url": "https://web.archive.org/web/20160130224147id_/http://www.math.purdue.edu:80/people/faculty?",
-      "first_sha256": "c43900e08b76d70ad6fb3a158566cdf1d53cdd49f5bdfaf6a0e9d798de27ed53",
-      "source": "stored MATH unit-listing captures: 25 captures 2016-2026, shell years 2016,2019,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 25 stored MATH captures (name matcher plus family-name scan; latest capture 3723 characters)"
      }
     ]
    },
@@ -52561,12 +52499,13 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "dblp_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
+   "profile_class": "PENDING_unit_without_window_coverage",
+   "units_without_window_coverage": [
     "MATH"
    ],
-   "byline_affiliation_strings": null,
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "units_named_by_byline_or_dblp": [
+    "MATH"
+   ]
   },
   {
    "name": "Yuchen Zhou",
@@ -58180,22 +58119,13 @@
     "He, Jiangpeng"
    ],
    "source": "openalex_rule",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 20, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 20, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "independent review 2: a listing or appointment exists that the stored captures cannot settle (given-name order / MGMT and MATH 2022-26 partial, visiting/postdoc titles); needs the person's own profile",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [
-     {
-      "url": "https://web.archive.org/web/20260414023718id_/https://engineering.purdue.edu/ECE/People/Faculty",
-      "sha256": "1d1f05ce5ab780cbde39a8bf167ebc5e7b2d0c17d19eef325a2d5806d8bcaa5f",
-      "first_capture_url": "https://web.archive.org/web/20161221205411id_/https://engineering.purdue.edu/ECE/People/Faculty",
-      "first_sha256": "d67be913015d87f52c63870f3cd65ae40b9d8cb591b7a1ab66cc3a1366bac599",
-      "source": "stored ECE unit-listing captures: 11 captures 2016-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 11 stored ECE captures (name matcher plus family-name scan; latest capture 22706 characters)"
-     }
-    ]
+    "evidence": []
    },
    "faculty_evidence": [],
    "years_listed": [],
@@ -58229,19 +58159,7 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "oa_byline_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
-    "ECE"
-   ],
-   "byline_affiliation_strings": {
-    "School of Electrical and Computer Engineering, Purdue University, West Lafayette, Indiana, USA": 8,
-    "Purdue University,School of Electrical and Computer Engineering,West Lafayette,Indiana,USA": 7,
-    "Purdue University, West Lafayette, IN, USA": 5,
-    "Purdue University": 3,
-    "Purdue University,West Lafayette,Indiana,U.S.A": 3,
-    "Purdue University,Elmore Family School of Electrical and Computer Engineering,West Lafayette,Indiana,U.S.A": 2
-   },
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "profile_class": "PENDING_identity_unconfirmed"
   },
   {
    "name": "Nicolo Michelusi",
@@ -65891,22 +65809,13 @@
     "Christian Bolivar Moya"
    ],
    "source": "openalex_rule",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 20, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 20, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "independent review 2: a listing or appointment exists that the stored captures cannot settle (given-name order / MGMT and MATH 2022-26 partial, visiting/postdoc titles); needs the person's own profile",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [
-     {
-      "url": "https://web.archive.org/web/20260520032548id_/https://www.math.purdue.edu/people/",
-      "sha256": "934a76357d7ea1ece450db4526484ca780d80e111af7c05e31716b13dea30fee",
-      "first_capture_url": "https://web.archive.org/web/20160130224147id_/http://www.math.purdue.edu:80/people/faculty?",
-      "first_sha256": "c43900e08b76d70ad6fb3a158566cdf1d53cdd49f5bdfaf6a0e9d798de27ed53",
-      "source": "stored MATH unit-listing captures: 25 captures 2016-2026, shell years 2016,2019,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 25 stored MATH captures (name matcher plus family-name scan; latest capture 3723 characters)"
-     }
-    ]
+    "evidence": []
    },
    "faculty_evidence": [],
    "years_listed": [],
@@ -65940,19 +65849,7 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "oa_byline_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
-    "MATH"
-   ],
-   "byline_affiliation_strings": {
-    "Purdue University": 6,
-    "Purdue University, 610 Purdue Mall, West Lafayette, IN 47907, United States": 5,
-    "Department of Mathematics, Purdue University, West Lafayette, IN 47906, USA": 3,
-    "Department of Mathematics, Purdue University, 610 Purdue Mall, West Lafayette, 47907, IN, USA": 3,
-    "Purdue University , Department of Mathematics , West Lafayette , 47906 , IN , USA": 2,
-    "Department of Mathematics, Purdue University, West Lafayette, 47907, IN, USA": 2
-   },
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "profile_class": "PENDING_identity_unconfirmed"
   },
   {
    "name": "Qifan Song",
@@ -76043,22 +75940,13 @@
     "Zhang, Zecheng"
    ],
    "source": "openalex_rule",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 20, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 20, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "independent review 2: a listing or appointment exists that the stored captures cannot settle (given-name order / MGMT and MATH 2022-26 partial, visiting/postdoc titles); needs the person's own profile",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [
-     {
-      "url": "https://web.archive.org/web/20260520032548id_/https://www.math.purdue.edu/people/",
-      "sha256": "934a76357d7ea1ece450db4526484ca780d80e111af7c05e31716b13dea30fee",
-      "first_capture_url": "https://web.archive.org/web/20160130224147id_/http://www.math.purdue.edu:80/people/faculty?",
-      "first_sha256": "c43900e08b76d70ad6fb3a158566cdf1d53cdd49f5bdfaf6a0e9d798de27ed53",
-      "source": "stored MATH unit-listing captures: 25 captures 2016-2026, shell years 2016,2019,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 25 stored MATH captures (name matcher plus family-name scan; latest capture 3723 characters)"
-     }
-    ]
+    "evidence": []
    },
    "faculty_evidence": [],
    "years_listed": [],
@@ -76092,19 +75980,7 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "oa_byline_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
-    "MATH"
-   ],
-   "byline_affiliation_strings": {
-    "Department of Mathematics, Purdue University, 610 Purdue Mall, West Lafayette, 47907, IN, USA": 4,
-    "Department of Mathematics, Purdue University, West Lafayette, IN 47906, USA": 2,
-    "Purdue University - Department of Mathematics": 2,
-    "Purdue University - Department of Mathematics, IN, United States": 2,
-    "Department of Mathematics , Purdue University , West Lafayette , IN 47906 , USA": 1,
-    "Department of Mathematics , Purdue University , West Lafayette 47906 , IN , USA": 1
-   },
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "profile_class": "PENDING_identity_unconfirmed"
   },
   {
    "name": "Haitong Li",
@@ -79301,7 +79177,7 @@
    "aliases": [],
    "source": "openalex_rule",
    "decision": "pending_source_coverage",
-   "reason": "independent review 2: a listing or appointment exists that the stored captures cannot settle (given-name order / MGMT 2022-26 partial); needs the person's own profile",
+   "reason": "independent review 2: a listing or appointment exists that the stored captures cannot settle (given-name order / MGMT and MATH 2022-26 partial, visiting/postdoc titles); needs the person's own profile",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -79704,13 +79580,13 @@
   "by": "claude_purdue_stage2_20261116",
   "classes": {
    "weak_dblp_no_unit_named": 213,
-   "dblp_named_unit_searched_not_listed": 89,
-   "PENDING_unit_without_window_coverage": 50,
+   "dblp_named_unit_searched_not_listed": 82,
+   "PENDING_unit_without_window_coverage": 55,
    "PENDING_rank_label_from_2025_26_capture_only": 6,
+   "PENDING_identity_unconfirmed": 8,
    "weak_oa_byline_other_campus_indianapolis": 2,
    "weak_listed_by_centre_without_rank": 2,
-   "PENDING_identity_unconfirmed": 3,
-   "oa_byline_named_unit_searched_not_listed": 32,
+   "oa_byline_named_unit_searched_not_listed": 29,
    "weak_oa_byline_named_unit_not_searched": 1,
    "weak_oa_rule_no_unit_in_bylines": 1,
    "PENDING_collision_per_id_unit_unknown": 21
