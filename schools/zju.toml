@@ -174,7 +174,7 @@ listing_gaps = {}
   title_filter = ''
   # Complete-roster eras (2026-11-17, owner: do not hide partial years). The 2016-2019H1 PHP directory prints the whole college in one table; from 2019-07 the
   # 教师名录 is split into the ten institute/centre lists (27003 first institute, 27055-27063), and a year is complete only when every one of them has a usable
-  # capture; from 2026 the live 27003 page is the whole-college directory.
+  # capture; from 2026 the live 27003 page is the whole-college directory. Known limit: the gate judges whole years, so 2019 passes on its H1 (old PHP directory) although 2019 H2 has only the 27003 list; 2021 and 2024 pass on mixed halves.
   [[departments.listing_groups]]
   name = "old PHP whole-college teacher directory 2016-2019H1"
   from = "20160101"
