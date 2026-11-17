@@ -136,10 +136,45 @@ def cached_sources(path, urls):
             if row is None:
                 continue
             fetched, status, sha, raw = row
+            if status != 200 and (raw is None or not sha):
+                # A saved failed request is a lead/refusal, not readable source
+                # bytes. It must not hide the other valid captures in a cache.
+                versions[url] = dict(status=status, capture_year=str(fetched or '')[:4])
+                continue
             if raw is None or hashlib.sha256(zlib.decompress(raw)).hexdigest() != sha:
                 raise ValueError('Cached source bytes do not match their hash: ' + url)
             versions[url] = dict(sha256=sha, status=status, capture_year=str(fetched or '')[:4])
     return versions, blocked
+
+
+def source_caches(paths, urls):
+    """Inventory existing registered caches once; retain conflicting versions.
+
+    Prefer the recall cache's exact binding when another cache has identical
+    metadata. File locations are inventory pointers, never scientific bindings.
+    Nothing is fetched, promoted to a verdict, or written back to either cache.
+    """
+    versions, blocked, seen = {}, collections.defaultdict(set), set()
+    for path in paths:
+        identity = Path(path).resolve()
+        if identity in seen:
+            continue
+        seen.add(identity)
+        incoming, refusals = cached_sources(path, urls)
+        for host, reason in refusals.items():
+            blocked[host].add(reason)
+        for url, source in incoming.items():
+            if url not in versions:
+                versions[url] = copy.deepcopy(source)
+                continue
+            current = versions[url]
+            primary = {k: v for k, v in current.items() if k != 'snapshots'}
+            if source == primary:
+                continue
+            snapshots = {digest(row): row for row in current.get('snapshots', [])}
+            snapshots[digest(source)] = dict(source)
+            current['snapshots'] = [snapshots[k] for k in sorted(snapshots)]
+    return versions, {host: '; '.join(sorted(reasons)) for host, reasons in blocked.items()}
 
 
 def saved_snapshots(docs, leads, versions):
@@ -175,12 +210,14 @@ def saved_snapshots(docs, leads, versions):
             visit(doc)
     result = copy.deepcopy(versions)
     for url, rows in snapshots.items():
-        result.setdefault(url, {})['snapshots'] = [rows[k] for k in sorted(rows)]
+        current = result.setdefault(url, {})
+        rows.update({digest(row): row for row in current.get('snapshots', [])})
+        current['snapshots'] = [rows[k] for k in sorted(rows)]
     return result
 
 
 def has_source_bytes(source):
-    return bool(source.get('sha256') or source.get('snapshots'))
+    return bool(source.get('sha256') or any(row.get('sha256') for row in source.get('snapshots', [])))
 
 
 def pi_context(pi):
@@ -275,9 +312,9 @@ def collect(school, previous=None):
     pis, students, audit = R._pis(school), R._students(school), R._audit(school)
     inputs, docs = reviewed_inputs(school)
     leads = source_leads(pis, students, audit, docs)
-    capture_store = P.data('student-recall-captures.sqlite', school)
+    capture_stores = [P.data(name, school) for name in ('student-recall-captures.sqlite', 'school-captures.sqlite')]
     try:
-        versions, blocked = cached_sources(capture_store, {u for us in leads.values() for u in us})
+        versions, blocked = source_caches(capture_stores, {u for us in leads.values() for u in us})
     except (sqlite3.Error, zlib.error) as exc:
         raise ValueError('Cannot read the source cache safely: ' + str(exc)) from exc
     versions = saved_snapshots(docs, leads, versions)
@@ -286,7 +323,8 @@ def collect(school, previous=None):
     board = plan(school, pis, students, leads, versions, blocked, policy,
                  context_index(docs, {p['pi'] for p in pis}), inputs, previous)
     board['data_root'] = str(P.CODE)
-    board['capture_store'] = str(capture_store)
+    board['capture_store'] = str(capture_stores[0])
+    board['capture_stores'] = [str(path) for path in capture_stores]
     return board
 
 

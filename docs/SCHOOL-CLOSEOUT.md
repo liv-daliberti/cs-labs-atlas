@@ -30,6 +30,15 @@ leads separately for the next batch. A genuine correctness error still stops
 closeout, preserves its failed reviews, and starts a new repaired candidate.
 Never carry a verdict forward just to avoid a fresh required review.
 
+Before collecting again, run `atlas closeout research SCHOOL --out BOARD.json`
+against the actual candidate overlay. The planner inventories both registered
+recall and school capture caches offline, rehashes original response bytes,
+and retains distinct versions and recorded access refusals. Existing readable
+captures become `inspect_saved_source` work rather than another fetch. An empty
+extracted-text field does not discard saved HTML. Inspect the original bytes;
+a cached page is still pending whole-source review, never an accepted roster
+or a recall verdict. The JSON board lists `capture_stores` for locating them.
+
 ## Reusable commands
 
 Start with `bin/atlas closeout stages <school>`. This shows stages 0–10 with

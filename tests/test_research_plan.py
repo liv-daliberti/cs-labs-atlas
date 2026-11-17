@@ -204,6 +204,78 @@ def test_cache_read_is_offline_and_hash_verified(tmp_path):
         Q.cached_sources(cache, {'https://lab.example/people'})
 
 
+def test_existing_school_cache_prevents_false_missing_source_and_keeps_reviews_pending(tmp_path, monkeypatch):
+    url = 'https://lab.example/people'
+    raw = b'<html>Complete lab roster, never read by a reviewer yet</html>'
+    school_cache = tmp_path / 'school-captures.sqlite'
+    with sqlite3.connect(school_cache) as conn:
+        conn.execute('create table live (url text, fetched_at text, status int, sha256 text, raw_zlib blob)')
+        conn.execute('insert into live values (?,?,?,?,?)',
+                     (url, '2026-11-17', 200, hashlib.sha256(raw).hexdigest(), zlib.compress(raw)))
+    before = school_cache.read_bytes()
+    monkeypatch.setattr(Q.S, 'get', lambda school: {'status': 'onboarding'})
+    monkeypatch.setattr(Q.R, '_pis', lambda school: [dict(pi='Ada Alpha', lab=dict(url=url))])
+    monkeypatch.setattr(Q.R, '_students', lambda school: {})
+    monkeypatch.setattr(Q.R, '_audit', lambda school: {})
+    monkeypatch.setattr(Q, 'reviewed_inputs', lambda school: ({}, {}))
+    monkeypatch.setattr(Q, 'POLICY_FILES', ())
+    monkeypatch.setattr(Q.P, 'data', lambda name, school: tmp_path / name)
+    board = Q.collect('u')
+    assert board['summary']['sources_with_bytes'] == 1
+    assert board['summary']['pending'] == 1
+    assert board['cases'][0]['next_action'] == 'inspect_saved_source'
+    assert board['cases'][0]['status'] == 'pending'
+    assert len(board['capture_stores']) == 2
+    assert school_cache.read_bytes() == before
+    assert not (tmp_path / 'student-recall-captures.sqlite').exists()
+
+
+def test_all_cache_versions_and_refusals_survive_without_path_binding(tmp_path, monkeypatch):
+    url = 'https://lab.example/people'
+    recall, school = tmp_path / 'recall.sqlite', tmp_path / 'school.sqlite'
+    snapshots = {recall: ({url: dict(sha256='a'*64, status=200, capture_year='2026')},
+                          {'lab.example': 'robots_disallowed'}),
+                 school: ({url: dict(sha256='b'*64, status=200, capture_year='2025')},
+                          {'lab.example': 'bot_challenge'})}
+    reads = []
+
+    def cached(path, urls):
+        reads.append(path)
+        return copy.deepcopy(snapshots[path])
+
+    monkeypatch.setattr(Q, 'cached_sources', cached)
+    versions, blocked = Q.source_caches([recall, school, recall], {url})
+    assert reads == [recall, school]
+    assert versions[url]['sha256'] == 'a'*64
+    assert versions[url]['snapshots'] == [dict(sha256='b'*64, status=200, capture_year='2025')]
+    assert blocked == {'lab.example': 'bot_challenge; robots_disallowed'}
+    # Adding a local evidence pointer cannot erase the earlier cached version.
+    raw = tmp_path / 'saved.html'
+    raw.write_bytes(b'preserved original')
+    docs = {'roster-evidence.json': [dict(url=url, source_capture=str(raw),
+             sha256=hashlib.sha256(raw.read_bytes()).hexdigest(), captured='2024')]}
+    merged = Q.saved_snapshots(docs, {'Ada Alpha': {url}}, versions)
+    assert len(merged[url]['snapshots']) == 2
+    assert versions[url]['snapshots'][0] in merged[url]['snapshots']
+
+
+def test_failed_request_without_bytes_is_not_readable_source(tmp_path):
+    cache = tmp_path / 'school.sqlite'
+    url = 'https://missing.example/people'
+    with sqlite3.connect(cache) as conn:
+        conn.execute('create table live (url text, fetched_at text, status int, sha256 text, raw_zlib blob)')
+        conn.execute('insert into live values (?,?,?,?,?)', (url, '2026-11-17', 404, None, None))
+    versions, _ = Q.source_caches([cache], {url})
+    assert versions[url] == dict(status=404, capture_year='2026')
+    assert not Q.has_source_bytes(versions[url])
+    assert not Q.has_source_bytes(dict(snapshots=[versions[url]]))
+    # Missing/tampered original bytes on an asserted successful response fail closed.
+    with sqlite3.connect(cache) as conn:
+        conn.execute('update live set status=200')
+    with pytest.raises(ValueError, match='bytes do not match'):
+        Q.source_caches([cache], {url})
+
+
 def test_reviewed_input_digest_ignores_formatting_and_recall_signoff(tmp_path, monkeypatch):
     roster, recall = tmp_path / 'roster-evidence.json', tmp_path / 'student-recall-check.json'
     roster.write_text('{"a": 1, "b": 2}')
