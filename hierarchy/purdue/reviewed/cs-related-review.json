@@ -40,11 +40,11 @@
   "STAT"
  ],
  "counts": {
-  "pending_source_coverage": 292,
-  "not_faculty_listed": 129,
+  "pending_source_coverage": 300,
+  "not_faculty_listed": 121,
   "census_alias": 2,
-  "accepted": 219,
-  "research_or_other_rank": 13,
+  "accepted": 218,
+  "research_or_other_rank": 14,
   "faculty_not_computing": 3
  },
  "decisions": [
@@ -13277,8 +13277,8 @@
     "Hejamadi Raghav Rao"
    ],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 10, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 10, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "NOT decided absent: the named unit(s) MGMT have no usable 2016-2017..2024-2026 directory coverage in the stored captures (missing years or script shells), so absence cannot be shown; needs the person's own official profile/directory page",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/r/HRaghavRao"
@@ -13294,14 +13294,6 @@
       "url": "https://dblp.org/pid/r/HRaghavRao",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Texas at San Antonio, College of Business, TX, USA"
-     },
-     {
-      "url": "https://web.archive.org/web/20260310060620id_/https://business.purdue.edu/faculty/",
-      "sha256": "02f41116923fe7ea278bfd086af24bf1e7ae9646466dcffff0f20a27d6c8c6f0",
-      "first_capture_url": "https://web.archive.org/web/20160108004507id_/http://www.krannert.purdue.edu:80/directory/",
-      "first_sha256": "046adcd27b40ec6e74214ba11175d0e8aedb3f0a40f6e9241d10e0a1363824c0",
-      "source": "stored MGMT unit-listing captures: 21 captures 2016-2026, shell years 2016,2017,2018,2019,2020,2021,2022,2023,2024,2025",
-      "quote": "absence: no entry compatible with the candidate name in any of the 21 stored MGMT captures (name matcher plus family-name scan; latest capture 7972 characters)"
      }
     ]
    },
@@ -13337,12 +13329,13 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "dblp_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
+   "profile_class": "PENDING_unit_without_window_coverage",
+   "units_without_window_coverage": [
     "MGMT"
    ],
-   "byline_affiliation_strings": null,
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "units_named_by_byline_or_dblp": [
+    "MGMT"
+   ]
   },
   {
    "name": "Hai Li",
@@ -42986,8 +42979,8 @@
    "name": "Tiantian Li",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 10, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 10, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "NOT decided absent: the named unit(s) ENE have no usable 2016-2017..2024-2026 directory coverage in the stored captures (missing years or script shells), so absence cannot be shown; needs the person's own official profile/directory page",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/69/10124-5"
@@ -43001,14 +42994,6 @@
       "url": "https://dblp.org/pid/69/10124-5",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Purdue University, School of Engineering Education, West Lafayette, IN, USA"
-     },
-     {
-      "url": "https://web.archive.org/web/20260214202423id_/https://engineering.purdue.edu/ENE/People",
-      "sha256": "72fdc371a2e1290c9edc42396720283ebf92e152195151ba6b97da4cc961aca3",
-      "first_capture_url": "https://web.archive.org/web/20170502101724id_/https://engineering.purdue.edu/ENE/People",
-      "first_sha256": "13b9f39c1aaba586779992d9f5e7bb20de9745578aa82372931e2588cbf106d5",
-      "source": "stored ENE unit-listing captures: 10 captures 2017-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 10 stored ENE captures (name matcher plus family-name scan; latest capture 19899 characters)"
      }
     ]
    },
@@ -43044,12 +43029,13 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "dblp_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
+   "profile_class": "PENDING_unit_without_window_coverage",
+   "units_without_window_coverage": [
     "ENE"
    ],
-   "byline_affiliation_strings": null,
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "units_named_by_byline_or_dblp": [
+    "ENE"
+   ]
   },
   {
    "name": "Tianyang Hu",
@@ -48608,8 +48594,8 @@
    "name": "Xuan Wang",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 10, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 10, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "NOT decided absent: the named unit(s) AAE have no usable 2016-2017..2024-2026 directory coverage in the stored captures (missing years or script shells), so absence cannot be shown; needs the person's own official profile/directory page",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/34/4799-13"
@@ -48625,14 +48611,6 @@
       "url": "https://dblp.org/pid/34/4799-13",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "George Mason University, Department of Electrical and Computer Engineering, Fairfax, VA 22030 USA"
-     },
-     {
-      "url": "https://web.archive.org/web/20260123084905id_/https://engineering.purdue.edu/AAE/people",
-      "sha256": "51f47d6a2b4a0ac36972f67329359eecb2b7175ac65db3ba15e096055a6e7b60",
-      "first_capture_url": "https://web.archive.org/web/20170129200957id_/https://engineering.purdue.edu/AAE/people",
-      "first_sha256": "51bb4182daf3ab5edc37f8d5286885b68aa324a19910cd47f359dab820f4b437",
-      "source": "stored AAE unit-listing captures: 10 captures 2017-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 10 stored AAE captures (name matcher plus family-name scan; latest capture 16578 characters)"
      }
     ]
    },
@@ -48668,12 +48646,13 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "dblp_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
+   "profile_class": "PENDING_unit_without_window_coverage",
+   "units_without_window_coverage": [
     "AAE"
    ],
-   "byline_affiliation_strings": null,
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "units_named_by_byline_or_dblp": [
+    "AAE"
+   ]
   },
   {
    "name": "Yan Gu",
@@ -50296,8 +50275,8 @@
    "name": "Yi Shen",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 10, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 10, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "NOT decided absent: the named unit(s) ENE have no usable 2016-2017..2024-2026 directory coverage in the stored captures (missing years or script shells), so absence cannot be shown; needs the person's own official profile/directory page",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/18/1762-6"
@@ -50314,14 +50293,6 @@
       "url": "https://dblp.org/pid/18/1762-6",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Virginia Tech, Blacksburg, VA, USA"
-     },
-     {
-      "url": "https://web.archive.org/web/20260214202423id_/https://engineering.purdue.edu/ENE/People",
-      "sha256": "72fdc371a2e1290c9edc42396720283ebf92e152195151ba6b97da4cc961aca3",
-      "first_capture_url": "https://web.archive.org/web/20170502101724id_/https://engineering.purdue.edu/ENE/People",
-      "first_sha256": "13b9f39c1aaba586779992d9f5e7bb20de9745578aa82372931e2588cbf106d5",
-      "source": "stored ENE unit-listing captures: 10 captures 2017-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 10 stored ENE captures (name matcher plus family-name scan; latest capture 19899 characters)"
      }
     ]
    },
@@ -50357,12 +50328,13 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "dblp_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
+   "profile_class": "PENDING_unit_without_window_coverage",
+   "units_without_window_coverage": [
     "ENE"
    ],
-   "byline_affiliation_strings": null,
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "units_named_by_byline_or_dblp": [
+    "ENE"
+   ]
   },
   {
    "name": "Yi Wu",
@@ -52472,8 +52444,8 @@
    "name": "Yuan Yuan",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 10, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 10, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "independent review 2: a listing or appointment exists that the stored captures cannot settle (given-name order / MGMT 2022-26 partial); needs the person's own profile",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/64/5845-16"
@@ -52489,14 +52461,6 @@
       "url": "https://dblp.org/pid/64/5845-16",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Purdue University, Krannert School of Management, West Lafayette, IN, USA"
-     },
-     {
-      "url": "https://web.archive.org/web/20260310060620id_/https://business.purdue.edu/faculty/",
-      "sha256": "02f41116923fe7ea278bfd086af24bf1e7ae9646466dcffff0f20a27d6c8c6f0",
-      "first_capture_url": "https://web.archive.org/web/20160108004507id_/http://www.krannert.purdue.edu:80/directory/",
-      "first_sha256": "046adcd27b40ec6e74214ba11175d0e8aedb3f0a40f6e9241d10e0a1363824c0",
-      "source": "stored MGMT unit-listing captures: 21 captures 2016-2026, shell years 2016,2017,2018,2019,2020,2021,2022,2023,2024,2025",
-      "quote": "absence: no entry compatible with the candidate name in any of the 21 stored MGMT captures (name matcher plus family-name scan; latest capture 7972 characters)"
      }
     ]
    },
@@ -52532,12 +52496,7 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "dblp_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
-    "MGMT"
-   ],
-   "byline_affiliation_strings": null,
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "profile_class": "PENDING_identity_unconfirmed"
   },
   {
    "name": "Yubo Wang",
@@ -67206,8 +67165,8 @@
     "Bradley S Duerstock"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (IE listing, professor rank); computing-share test passes: 16 of 35 school works DBLP-indexed (share 0.46; 1 OpenAlex author ids)",
+   "decision": "research_or_other_rank",
+   "reason": "every rank quote is Associate Professor of Engineering Practice / Professor of Practice (independent review 2 2026-11-17)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -72945,22 +72904,13 @@
     "Dina Verdin"
    ],
    "source": "openalex_rule",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 10, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 10, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "NOT decided absent: the named unit(s) ENE have no usable 2016-2017..2024-2026 directory coverage in the stored captures (missing years or script shells), so absence cannot be shown; needs the person's own official profile/directory page",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [
-     {
-      "url": "https://web.archive.org/web/20260214202423id_/https://engineering.purdue.edu/ENE/People",
-      "sha256": "72fdc371a2e1290c9edc42396720283ebf92e152195151ba6b97da4cc961aca3",
-      "first_capture_url": "https://web.archive.org/web/20170502101724id_/https://engineering.purdue.edu/ENE/People",
-      "first_sha256": "13b9f39c1aaba586779992d9f5e7bb20de9745578aa82372931e2588cbf106d5",
-      "source": "stored ENE unit-listing captures: 10 captures 2017-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 10 stored ENE captures (name matcher plus family-name scan; latest capture 19899 characters)"
-     }
-    ]
+    "evidence": []
    },
    "faculty_evidence": [],
    "years_listed": [],
@@ -72994,19 +72944,13 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "oa_byline_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
+   "profile_class": "PENDING_unit_without_window_coverage",
+   "units_without_window_coverage": [
     "ENE"
    ],
-   "byline_affiliation_strings": {
-    "Purdue University": 12,
-    "Purdue University, West Lafayette": 10,
-    "Purdue University-Main Campus, West Lafayette (College of Engineering)": 7,
-    "Purdue University, West Lafayette (College of Engineering)": 5,
-    "PURDUE UNIVERSITY": 5,
-    "School of Engineering Education, Purdue University, West Lafayette, IN, USA": 3
-   },
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "units_named_by_byline_or_dblp": [
+    "ENE"
+   ]
   },
   {
    "name": "John Springer",
@@ -74365,7 +74309,7 @@
    ],
    "source": "openalex_rule",
    "decision": "pending_source_coverage",
-   "reason": "NOT decided absent: the named unit(s) SOET have no usable 2016-2017..2024-2026 directory coverage in the stored captures (missing years or script shells), so absence cannot be shown; needs the person's own official profile/directory page",
+   "reason": "NOT decided absent: the named unit(s) ENE, SOET have no usable 2016-2017..2024-2026 directory coverage in the stored captures (missing years or script shells), so absence cannot be shown; needs the person's own official profile/directory page",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -74406,6 +74350,7 @@
    ],
    "profile_class": "PENDING_unit_without_window_coverage",
    "units_without_window_coverage": [
+    "ENE",
     "SOET"
    ],
    "units_named_by_byline_or_dblp": [
@@ -78533,22 +78478,13 @@
     "Wang, Alex L."
    ],
    "source": "openalex_rule",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 10, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 10, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "independent review 2: a listing or appointment exists that the stored captures cannot settle (given-name order / MGMT 2022-26 partial); needs the person's own profile",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [
-     {
-      "url": "https://web.archive.org/web/20260310060620id_/https://business.purdue.edu/faculty/",
-      "sha256": "02f41116923fe7ea278bfd086af24bf1e7ae9646466dcffff0f20a27d6c8c6f0",
-      "first_capture_url": "https://web.archive.org/web/20160108004507id_/http://www.krannert.purdue.edu:80/directory/",
-      "first_sha256": "046adcd27b40ec6e74214ba11175d0e8aedb3f0a40f6e9241d10e0a1363824c0",
-      "source": "stored MGMT unit-listing captures: 21 captures 2016-2026, shell years 2016,2017,2018,2019,2020,2021,2022,2023,2024,2025",
-      "quote": "absence: no entry compatible with the candidate name in any of the 21 stored MGMT captures (name matcher plus family-name scan; latest capture 7972 characters)"
-     }
-    ]
+    "evidence": []
    },
    "faculty_evidence": [],
    "years_listed": [],
@@ -78582,19 +78518,7 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "oa_byline_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
-    "MGMT"
-   ],
-   "byline_affiliation_strings": {
-    "Purdue University , Daniels School of Business ,": 4,
-    "Carnegie Mellon University, Pittsburgh, PA 15213 USA. Current address: Purdue University, West Lafayette, IN 47907 USA": 1,
-    "Purdue University. West Lafayette , IN , USA": 1,
-    "Purdue University, United States of America": 1,
-    "Purdue University, West Lafayette, IN, USA": 1,
-    "Centrum Wiskunde & Informatica, 1098 XG Amsterdam, Netherlands; and Purdue University, West Lafayette, Indiana 47907": 1
-   },
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "profile_class": "PENDING_identity_unconfirmed"
   },
   {
    "name": "Ann E. Rundell",
@@ -79271,22 +79195,13 @@
    "name": "S. Sivaranjani",
    "aliases": [],
    "source": "openalex_rule",
-   "decision": "not_faculty_listed",
-   "reason": "no professor-rank appointment found: no compatible name in the stored 2016-2026 listings of the searched Purdue units (AAE 10, ABE 11, AG 5, BIRCK 3, BME 11, CE 12, CERIAS 11, CHEM 9, CIT 2, CLA 8, ChE 11, EAPS 11, ECE 11, EDU 2, ENE 10, FNR 5, HHS 87, IE 11, LIB 11, MATH 25, ME 8, MGMT 21, MSE 11, NE 10, PHARM 2, PHYS 11, POLYOTHER 5, SOET 2, STAT 11; Computer Science from the 22 stage-1 CS directory captures, where the census holds every listed person)",
+   "decision": "pending_source_coverage",
+   "reason": "independent review 2: a listing or appointment exists that the stored captures cannot settle (given-name order / MGMT 2022-26 partial); needs the person's own profile",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": [
-     {
-      "url": "https://web.archive.org/web/20260120091530id_/https://engineering.purdue.edu/IE/people",
-      "sha256": "23583ad4df7a5a89078d27692e17d8074419c882fdbf004c1ddd7728db987382",
-      "first_capture_url": "https://web.archive.org/web/20160526002502id_/https://engineering.purdue.edu/IE/People",
-      "first_sha256": "5186d54380e3b991873bfa5c0b5de345961eed0cd9e4620d4fa1380069042d42",
-      "source": "stored IE unit-listing captures: 11 captures 2016-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 11 stored IE captures (name matcher plus family-name scan; latest capture 13727 characters)"
-     }
-    ]
+    "evidence": []
    },
    "faculty_evidence": [],
    "years_listed": [],
@@ -79320,19 +79235,7 @@
     "SOET",
     "STAT"
    ],
-   "profile_class": "oa_byline_named_unit_searched_not_listed",
-   "units_named_by_byline_or_dblp": [
-    "IE"
-   ],
-   "byline_affiliation_strings": {
-    "School of Industrial Engineering, Purdue University, West Lafayette, IN, USA": 2,
-    "School of Industrial Engineering at Purdue University, West Lafayette, IN, USA": 1,
-    "School of Industrial Engineering, Purdue University, West Lafayette, IN 47907, USA": 1,
-    "School of Industrial Engineering at Purdue University,West Lafayette,IN,USA,47907": 1,
-    "School of Industrial Engineering, Purdue University, West Lafayette, IN 47907, United States of America": 1,
-    "Edwardson School of Industrial Engineering, Purdue University, West Lafayette, IN, USA": 1
-   },
-   "reviewed_by": "claude_purdue_stage2_20261116"
+   "profile_class": "PENDING_identity_unconfirmed"
   },
   {
    "name": "Japneet Singh",
@@ -79696,13 +79599,13 @@
   "by": "claude_purdue_stage2_20261116",
   "classes": {
    "weak_dblp_no_unit_named": 213,
-   "dblp_named_unit_searched_not_listed": 94,
-   "PENDING_unit_without_window_coverage": 45,
+   "dblp_named_unit_searched_not_listed": 89,
+   "PENDING_unit_without_window_coverage": 50,
    "PENDING_rank_label_from_2025_26_capture_only": 6,
    "weak_oa_byline_other_campus_indianapolis": 2,
    "weak_listed_by_centre_without_rank": 2,
-   "oa_byline_named_unit_searched_not_listed": 35,
-   "PENDING_identity_unconfirmed": 1,
+   "PENDING_identity_unconfirmed": 4,
+   "oa_byline_named_unit_searched_not_listed": 32,
    "weak_oa_byline_named_unit_not_searched": 1,
    "weak_oa_rule_no_unit_in_bylines": 1,
    "PENDING_collision_per_id_unit_unknown": 21
