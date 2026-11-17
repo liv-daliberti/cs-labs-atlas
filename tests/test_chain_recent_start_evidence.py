@@ -53,3 +53,22 @@ def test_chain_audit_keeps_unlinked_established_current_student_open(tmp_path, m
     audited = A.audit('princeton')['checks']['links']
     assert audited['n_unexplained'] == 0
     assert audited['explained']['postdoc is a lab member, not a student-paper advisee'] == 1
+
+    # The link builder excludes the same postdoc-only record even when source
+    # imports retain synonymous or additional nonstudent membership labels.
+    postdoc['roles'] = ['postdoc', 'postdoctoral_researcher', 'member', 'Research Scientist']
+    postdoc['relations'][0]['role'] = 'postdoctoral_researcher'
+    (school / 'students.json').write_text(json.dumps({'Ada Lovelace': [postdoc]}))
+    audited = A.audit('princeton')['checks']['links']
+    assert audited['n_unexplained'] == 0
+    assert audited['explained']['postdoc is a lab member, not a student-paper advisee'] == 1
+
+    # An independently recorded student role still requires a student link or
+    # evidence explaining its absence, including student cues on member rows.
+    postdoc['roles'].append('phd')
+    (school / 'students.json').write_text(json.dumps({'Ada Lovelace': [postdoc]}))
+    assert A.audit('princeton')['checks']['links']['n_unexplained'] == 1
+    postdoc['roles'] = ['postdoc', 'member']
+    postdoc['relations'][0]['sources'][0]['quote'] = 'PhD Students Jane Doe PhD Student'
+    (school / 'students.json').write_text(json.dumps({'Ada Lovelace': [postdoc]}))
+    assert A.audit('princeton')['checks']['links']['n_unexplained'] == 1

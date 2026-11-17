@@ -26,6 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 import census_overrides as CO  # noqa: E402
 import lab_coverage as LC  # noqa: E402
+from pihier.links import student_role_ok  # noqa: E402
 HERE = P.WORK; H = P.HIERARCHY   # tests point H at a flat fixture tree; hfile follows the layout for the live one
 SCHOOLS = list(P.SCHOOL_IDS)  # the released schools (schools/<key>.toml); an onboarding school is named on the command line
 CHECKS = ['coverage', 'pi', 'students', 'papers', 'links', 'copies', 'one_person']
@@ -271,7 +272,7 @@ def audit(school, *, include_link_diagnosis=True, hierarchy=None):
                 reason = 'stated student/lab start 2025 or later: no time to publish yet'
             elif ys and not any(pyears.get(y) for y in range(min(ys) - 1, max(ys) + 4)):
                 reason = "no lab paper in the student's years"
-            elif roles and roles <= {'postdoc'}:
+            elif 'postdoc' in roles and not student_role_ok(s):
                 reason = 'postdoc is a lab member, not a student-paper advisee'
             elif roles and roles <= {'undergraduate', 'masters', 'mphil', 'visiting', 'intern'}:
                 reason = 'non-PhD advisee (' + '/'.join(sorted(roles)) + '): thesis-only is normal'
