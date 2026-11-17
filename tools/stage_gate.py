@@ -359,7 +359,9 @@ def g3(key):
         website_doc = {}
         bad.append(f'lab-page audit: register/audit missing (tools/lab_websites.py build {key}; docs/LAB-PAGES.md)')
     bad += lab_websites.gate(website_doc, website_expected(key, website_doc))
-    return bad, dict(pis=len(pis_of(key)), homes=len(homes))
+    import stage_audit as SA   # process v4: seeded 50-row independent audits of homes and websites (onboarding schools; fail closed)
+    audit_bad, audit_counts = SA.items(key, 3)
+    return bad + audit_bad, dict(pis=len(pis_of(key)), homes=len(homes), **audit_counts)
 
 
 def pi_years(x):
@@ -451,7 +453,9 @@ def g5(key):
     bad += [f"{name}: anchors yield 0 papers ({why})" for name, why in (gaps or [])]
     # PER-PI lab-paper coverage (owner 2026-11-12): evidence or a researched reason for each PI; the bar is pi_coverage.RATCHET_LEVEL
     import pi_coverage as PC
-    return bad + PC.gate_items(key, 'papers'), dict(n, anchors_yield_checked=gaps is not None, **PC.gate_counts(key))
+    import stage_audit as SA   # seeded 50-row independent audit of identity holds / no_identity (onboarding schools)
+    audit_bad, audit_counts = SA.items(key, 5)
+    return bad + PC.gate_items(key, 'papers') + audit_bad, dict(n, anchors_yield_checked=gaps is not None, **PC.gate_counts(key), **audit_counts)
 
 
 def pi_reasons(key, name):
@@ -512,7 +516,9 @@ def g6(key):
     import student_recall as R
     # PER-PI student and student-link coverage (owner 2026-11-12; bar: pi_coverage.RATCHET_LEVEL)
     import pi_coverage as PC
-    return bad + b2 + R.gate_items(key) + PC.gate_items(key, 'students'), dict(n, **R.gate_counts(key), **PC.gate_counts(key))
+    import stage_audit as SA   # seeded 50-row independent audit of admitted student rows (onboarding schools)
+    audit_bad, audit_counts = SA.items(key, 6)
+    return bad + b2 + R.gate_items(key) + PC.gate_items(key, 'students') + audit_bad, dict(n, **R.gate_counts(key), **PC.gate_counts(key), **audit_counts)
 
 
 def g7(key):

@@ -271,6 +271,10 @@ def test_gate5_accepts_a_reviewed_no_identity(tree, monkeypatch):
     assert G.evaluate('u', 5)['gate'] == 'fail'
     monkeypatch.setattr(G.CO, 'section', lambda key: {'Ann': {'no_identity': True, 'why_no_identity': 'searched'}})
     r = G.evaluate('u', 5)
+    assert r['gate'] == 'fail' and 'identity audit missing' in r['items'][0]   # process v4: the held identity needs the seeded 50-row independent audit (tests/test_stage_audit.py)
+    import stage_audit as SA
+    monkeypatch.setattr(SA, 'items', lambda key, stage: ([], {}))
+    r = G.evaluate('u', 5)
     assert r['gate'] == 'pass' and r['reviewed_no_identity'] == 1
 
 

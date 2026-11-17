@@ -29,16 +29,18 @@ import atlas_paths as P
 CODE = Path(__file__).resolve().parents[1]
 SOURCE_GATES = (0, 1)
 GATES = (0, 1, 2, 3, 4, 5, 7, 8)
+# Process v4 (owner decision 1, 2026-11-17): stages 3-8 are judged per PI (tools/pi_states.py), so none waits for another school-wide: each needs only a roster source (stage 1).
+# Stage 9 (accuracy sample on the built package) and 10 (release) stay school-wide.
 STAGES = {
     0: ('Charter and access', (), 'Confirm charter, host policy and snapshot coverage.'),
     1: ('Faculty sources', (0,), 'Finish the missing department/year source captures.'),
     2: ('Faculty census', (1,), 'Resolve candidate identities and census decisions as one batch.'),
-    3: ('PI labs and websites', (2,), 'Complete PI basis, home departments and website evidence.'),
-    4: ('Appointment periods', (3,), 'Resolve dated appointment evidence and explicit gap decisions.'),
-    5: ('Publication identities', (4,), 'Resolve identity anchors and zero-yield publication cases.'),
-    6: ('Students and recall', (5,), 'Finish complete roster repairs, then the fixed independent recall review.'),
-    7: ('Papers and links', (5,), 'Resolve exact paper attribution and all unexplained student-paper links.'),
-    8: ('Copies and availability', (7,), 'Count current copies and finish the availability ledger.'),
+    3: ('PI labs and websites', (1,), 'Complete PI basis, home departments and website evidence.'),
+    4: ('Appointment periods', (1,), 'Resolve dated appointment evidence and explicit gap decisions.'),
+    5: ('Publication identities', (1,), 'Resolve identity anchors and zero-yield publication cases.'),
+    6: ('Students and recall', (1,), 'Finish complete roster repairs, then the fixed independent recall review.'),
+    7: ('Papers and links', (1,), 'Resolve exact paper attribution and all unexplained student-paper links.'),
+    8: ('Copies and availability', (1,), 'Count current copies and finish the availability ledger.'),
     9: ('Accuracy review', (6, 7, 8), 'Judge the final fixed accuracy sample on this same candidate.'),
     10: ('Research release', tuple(range(10)), 'Freeze and integrate the reviewed research; prepare and verify publication.'),
 }

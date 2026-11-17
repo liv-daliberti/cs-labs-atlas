@@ -15,8 +15,8 @@ def test_student_and_paper_stages_can_progress_after_identity_without_hiding_acc
     assert board['stages'][7]['status'] == 'needs work'
     assert board['stages'][9]['status'] == 'waiting'
     assert board['stages'][8]['gate'] == 'pass'
-    assert board['stages'][8]['status'] == 'waiting'
-    assert board['stages'][9]['blocked_by'] == [6, 7, 8]
+    assert board['stages'][8]['status'] == 'complete'    # process v4: stages 3-8 are per PI and no longer wait for each other
+    assert board['stages'][9]['blocked_by'] == [6, 7]
     assert board['stages'][9]['findings'] == ['accuracy missing']
     assert not board['research_ready']
 

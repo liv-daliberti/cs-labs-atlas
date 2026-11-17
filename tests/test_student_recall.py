@@ -288,6 +288,8 @@ def test_stage6_gate_carries_the_recall_items(tree, monkeypatch):
     monkeypatch.setattr(G, 'traps_for', lambda key, stage: [])
     monkeypatch.setattr(G, 'acceptance_gate', lambda key, part: [])
     monkeypatch.setattr(G, 'audit_open', lambda key, checks: ([], {c: True for c in checks}))
+    import stage_audit as SA
+    monkeypatch.setattr(SA, 'items', lambda key, stage: ([], {}))   # the students audit has its own tests (tests/test_stage_audit.py)
     r = G.evaluate('u', 6)
     assert r['gate'] == 'fail' and any(x.startswith('recall record:') for x in r['items']) and 'recall_r1' in r
     monkeypatch.setattr(R, 'gate_items', lambda key, th=None: [])
