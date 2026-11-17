@@ -140,6 +140,31 @@ def make_plan(schools, out, limit=None, statuses=('needs_access_review', 'queued
     return saved
 
 
+def requeue_works(school, ids):
+    """needs_access_review -> queued for works that just gained a PMC candidate (review_access.py's requeue_untried: the collector asks a
+    candidate again only for a queued work). Under the catalog lock, one short transaction per 200 works; logged to
+    <store>/staged/pubmed-pmc-requeued.jsonl. Works that moved meanwhile are left alone."""
+    store = F.FT / school
+    ids = sorted(ids)
+    n = 0
+    db = sqlite3.connect(str(store / 'catalog.sqlite'), timeout=120)
+    db.execute('PRAGMA busy_timeout=120000')
+    (store / 'staged').mkdir(exist_ok=True)
+    try:
+        with (store / 'staged' / 'pubmed-pmc-requeued.jsonl').open('a') as lf:
+            for i in range(0, len(ids), 200):
+                part = ids[i:i + 200]
+                with F.catalog_lock(store):
+                    moved = [w for w in part if db.execute("UPDATE works SET status='queued' WHERE id=? AND status='needs_access_review'", (w,)).rowcount]
+                    db.commit()
+                for w in moved:
+                    lf.write(json.dumps(dict(work_id=w, old='needs_access_review', new='queued', at=F.now(), by='pubmed_pmc.py')) + '\n')
+                n += len(moved)
+    finally:
+        db.close()
+    return n
+
+
 def apply_plan(plan_file, schools, backup_dir, lock_wait=2700, ev_dir=None, check=None):
     """Per school: fresh backup (queued_oa_fill.check_backup), wait for the catalog write lock, INSERT OR IGNORE the planned rows whose work
     is still in a candidate-less-for-PMC non-local state, integrity_check. Works are not touched: the next collector pass asks the new
@@ -159,7 +184,8 @@ def apply_plan(plan_file, schools, backup_dir, lock_wait=2700, ev_dir=None, chec
         import lab_channels as L
         ev = ev_dir or F.FT / s / 'discovery' / f'claude-{s}-pubmed-pmc' / 'evidence'
         added = L.write(s, rows, 'pubmed_pmc', ev_dir=ev) if rows else 0
-        done[s] = dict(planned=len(saved.get(s, {}).get('rows', [])), still_wanted=len(rows), written=added, integrity=bool(check(s)))
+        requeued = requeue_works(s, {r['work_id'] for r in rows}) if added else 0
+        done[s] = dict(requeued=requeued, planned=len(saved.get(s, {}).get('rows', [])), still_wanted=len(rows), written=added, integrity=bool(check(s)))
         print(json.dumps(dict(at=F.now(), school=s, step='pubmed_pmc_apply', **done[s])), flush=True)
     return done
 

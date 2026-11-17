@@ -171,3 +171,13 @@ def test_a_pubmed_landing_location_is_no_candidate():
     assert rows == [] and pmc == set()
     rows, _ = F.oa_location_rows('w', dict(locations=[loc('https://repo.example.edu/handle/1/2')]))
     assert [r['url'] for r in rows] == ['https://repo.example.edu/handle/1/2']
+
+
+def test_requeue_works_moves_only_needs_access_review(tmp_path, monkeypatch):
+    monkeypatch.setattr(F, 'FT', tmp_path)
+    (tmp_path / 's').mkdir()
+    make(tmp_path / 's' / 'catalog.sqlite', [('a', None, 'needs_access_review'), ('b', None, 'queued'), ('c', None, 'downloaded')])
+    assert PM.requeue_works('s', {'a', 'b', 'c'}) == 1
+    db = sqlite3.connect(str(tmp_path / 's' / 'catalog.sqlite'))
+    assert dict(db.execute('SELECT id, status FROM works').fetchall()) == {'a': 'queued', 'b': 'queued', 'c': 'downloaded'}
+    assert json.loads((tmp_path / 's' / 'staged' / 'pubmed-pmc-requeued.jsonl').read_text())['work_id'] == 'a'
