@@ -159,3 +159,8 @@ def test_gate1_roster_captured_outside_the_planner_is_reported_not_failed(monkey
 def test_audit_file_is_a_registered_reviewed_data_file(tmp_path, monkeypatch):
     import atlas_paths as AP
     assert str(AP.data('excluded-unresolved-audit.json', 'zju')).endswith('hierarchy/zju/reviewed/excluded-unresolved-audit.json')
+
+
+def test_same_name_excluded_rows_are_all_audited():
+    rows = EA.excluded_rows([row('Xiang Li', source_id='d1'), row('Xiang Li', source_id='d2'), row('Solo')])
+    assert sorted(rows) == ['Solo', 'Xiang Li [d1]', 'Xiang Li [d2]']

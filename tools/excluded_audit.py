@@ -48,7 +48,14 @@ def fingerprint(row):
 
 
 def excluded_rows(decisions):
-    return {d['name']: d for d in decisions if d.get('decision') == EXCLUDED}
+    """Rows keyed by name; a name shared by several excluded rows (identity collisions) is keyed 'name [source_id]' (or '#n') so none is dropped."""
+    rows = [d for d in decisions if d.get('decision') == EXCLUDED]
+    count = collections.Counter(d['name'] for d in decisions)   # all decisions: a key must not change when a sibling row is fixed
+    out = {}
+    for i, d in enumerate(rows):
+        k = d['name'] if count[d['name']] == 1 else f"{d['name']} [{d.get('source_id') or '#' + str(i)}]"
+        out[k] = d
+    return out
 
 
 def row_errors(d):
