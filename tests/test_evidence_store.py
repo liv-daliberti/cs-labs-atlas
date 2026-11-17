@@ -216,3 +216,33 @@ def test_backup_loop_skips_a_recent_backup(root, flagged_aa, tmp_path, monkeypat
     E.backup_loop(flagged_aa, bk, every_h=24, once=True, log=out.append)
     E.backup_loop(flagged_aa, bk, every_h=24, once=True, log=out.append)
     assert len(E.backups_of('aa', bk)) == 1 and 'backed_up' in out[0] and out[1:] == []
+
+
+def test_shared_slice_patch_is_byte_identical_and_touches_only_the_school(root, flagged_aa, monkeypatch):
+    assert E.adopt_shared('aa', root, flagged_aa, log=lambda *_: None) == 2   # census-overrides (aa section: 1 person) + student-corrections (1 item)
+    monkeypatch.setattr(E, 'shared_of', lambda s: 'store' if s == 'aa' else 'json')
+    with pytest.raises(E.SourceOfTruth, match='already'):
+        E.adopt_shared('aa', root, flagged_aa, log=lambda *_: None)
+    assert E.check_view('aa', root, flagged_aa) == []
+    before = {f.name: f.read_bytes() for f in E.shared_dir(root).glob('*.json')}
+    assert E.sync_shared('aa', root, flagged_aa) == [] and {f.name: f.read_bytes() for f in E.shared_dir(root).glob('*.json')} == before
+    # another school's rows in the shared files stay editable: no complaint
+    sc = E.shared_dir(root) / 'student-corrections.json'
+    sc.write_text(sc.read_text().replace('"drop"', '"keep"'))
+    assert E.check_view('aa', root, flagged_aa) == []
+    # a direct edit of aa's own slice is reported
+    co = E.shared_dir(root) / 'census-overrides.json'
+    co.write_text(co.read_text().replace('"x"', '"y"'))
+    assert 'census-overrides.json' in ' '.join(E.check_view('aa', root, flagged_aa))
+    assert E.sync_shared('aa', root, flagged_aa) == ['census-overrides.json'] and E.check_view('aa', root, flagged_aa) == []
+    # recorded decisions land in aa's slice only, in place / after its last item
+    E.record('aa', 'student-corrections.json', {'school': 'aa', 'pi': 'R', 'student': 'u', 'action': 'drop'}, shared=True, source='s', decided_by='w', stores_dir=flagged_aa)
+    E.record('aa', 'census-overrides.json', {'aliases': ['N']}, shared=True, entry_key='aa', sub_key='New P', source='s', decided_by='w', stores_dir=flagged_aa)
+    assert len(E.check_view('aa', root, flagged_aa)) == 2
+    assert sorted(E.sync_shared('aa', root, flagged_aa)) == ['census-overrides.json', 'student-corrections.json']
+    items = json.loads(sc.read_text())
+    assert [(x['school'], x['student']) for x in items] == [('bb', 's'), ('aa', 't'), ('aa', 'u')] and items[0]['action'] == 'keep'   # bb's edit survives
+    assert json.loads(co.read_text())['aa']['New P'] == {'aliases': ['N']} and json.loads(co.read_text())['bb'] == {'Kim': {'is_pi': False}}
+    assert E.check_view('aa', root, flagged_aa) == []
+    with pytest.raises(E.SourceOfTruth, match='not store-sourced'):
+        E.record('bb', 'student-corrections.json', {'school': 'bb'}, shared=True, source='s', decided_by='w', stores_dir=flagged_aa)

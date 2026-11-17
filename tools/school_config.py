@@ -95,6 +95,12 @@ def evidence_source(key):
     return field(get(key), 'evidence.source', 'json')
 
 
+def evidence_shared(key):
+    """[evidence] shared of a charter: 'store' = the school's slices of the shared reviewed files (hierarchy/reviewed/*.json) are sourced from its evidence
+    store too (needs source = "store"); other schools' slices stay JSON-sourced."""
+    return field(get(key), 'evidence.shared', 'json')
+
+
 def inst_ids(key):
     return list(get(key)['ids']['openalex'])
 
@@ -160,6 +166,10 @@ def check(key):
         out.append(f'{key}: an id is both included and excluded')
     if field(cfg, 'evidence.source', 'json') not in EVIDENCE_SOURCES:
         out.append(f'{key}: evidence.source must be one of {EVIDENCE_SOURCES}')
+    if field(cfg, 'evidence.shared', 'json') not in EVIDENCE_SOURCES:
+        out.append(f'{key}: evidence.shared must be one of {EVIDENCE_SOURCES}')
+    if field(cfg, 'evidence.shared', 'json') == 'store' and field(cfg, 'evidence.source', 'json') != 'store':
+        out.append(f'{key}: evidence.shared = "store" needs evidence.source = "store"')
     try:
         rx = re.compile(field(cfg, 'affiliation.regex', ''), re.I)
         for s in field(cfg, 'affiliation.must_match', []):

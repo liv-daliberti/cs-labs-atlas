@@ -71,7 +71,7 @@ per school: nothing is ever switched for readers only (the store would go stale)
 - **The store** is `<stores>/michigan/evidence.sqlite` (imported 2026-11-17 from main's reviewed files). **The JSON view**:
   `hierarchy/michigan/reviewed/*.json` (28 files) is an export of it, tracked in git exactly as before, so every unchanged tool (pi_hierarchy,
   stage_gate, atlas doctor, the audits, the release export) keeps reading the same bytes. The shared files `hierarchy/reviewed/*.json` stay
-  JSON-sourced: Michigan's slices in them are only a snapshot (scope `shared`, not authoritative) until a later phase.
+  JSON-sourced in R3a (their Michigan slices were a snapshot); R3b below moves Michigan's slices into the store.
 - **Guard.** A direct edit of a store-sourced school's reviewed JSON is refused three ways: the pre-commit hook (`evidence_store.py check --staged`,
   compares the git-index bytes of staged `hierarchy/<school>/reviewed/*.json` with the store's rendering, also refusing deletions and files the
   store does not hold), `evidence_store.py check [school]` (worktree vs store, any time), and `atlas doctor` (`evidence_view` per school; a problem
@@ -93,6 +93,25 @@ has under 50 GB free. Its log: `fulltext-push/logs/evidence-backup-<jobid>.out`.
 **Restore:** `bin/atlas evidence-store restore <school> --from-file archive/evidence-store-backups/<stamp>/<school>-evidence.sqlite` verifies the SHA256SUMS line and
 `integrity_check`, refuses when the live store has more logged writes than the backup (`--force` overrides), keeps the live file as `evidence.sqlite.pre-restore-<stamp>`,
 and copies the backup in. Then `check <school>`; if the JSON view differs, `sync <school>` and commit it. Never restore by copying over the store while a `record` runs.
+
+### Shared files: a school's slice (R3b, 2026-11-17)
+`[evidence] shared = "store"` (needs `source = "store"`; default `"json"`) sources the school's rows in the shared reviewed files (`hierarchy/reviewed/*.json`:
+`census-overrides.json`, `student-corrections.json`, `home-departments.json`, `zero-paper-review.json`, ...) from its store. Other schools' rows in the same files stay
+JSON-sourced and editable by hand; the shared files remain tracked in git.
+- The store holds the slice as `scope = 'shared'` layers (one per shared file that is a list of items with a `school` field or a school-keyed map, also when the school has
+  0 rows today, so a first row can be recorded). `adopt-shared <school>` (once, before the flag is set; refused afterwards) snapshots the school's current rows from the shared files.
+- **Slice patch exporter** (`sync` writes it, `check`/hook/doctor compare it): the current shared file is parsed, only the school's rows are replaced, the file is written in
+  its own detected dump style, and content that did not change returns the original bytes (byte-identical). List files: the school's items are replaced in place by seq, new rows
+  go right after its last item; school-keyed maps: the school's section is rebuilt (new school key appended). Deleting a row is not supported (supersede it).
+- Record with `bin/atlas evidence-store record <school> --shared --layer student-corrections.json --record '{...}' --source ... --decided-by ...` (`find` the same way), then `sync <school>`
+  (rewrites the school's own files and its slices of the shared files) and commit. The hook now also looks at staged `hierarchy/reviewed/*.json`: only the flagged school's slice is
+  compared, so an edit to another school's rows is not refused. Shared files whose rows do not name a school per item (`issued-id-review-20261108.json`, `cs-venues.json`,
+  `status-packages.json`, ...) are not sliceable and stay JSON-sourced for everyone.
+- Overlay builds of a school with `shared = "store"` patch its slices into the root's own shared files.
+- **Result (2026-11-17, Michigan).** `adopt-shared`: 388 rows (census-overrides 90, home-departments 288, zero-paper-review 10; student-corrections, student-identity-review,
+  student-name-candidates, chain-reasons have 0 Michigan rows today). All 7 shared files patch back byte-identical (`check` clean, `sync` changes nothing). Build pair (Slurm 32393456 control,
+  32393457 then 32393576 store-sourced incl. slices, 13-15 min): `pis.json`, `students.json`, `lab_papers.jsonl.gz`, `student_papers.jsonl.gz` byte-identical; `report.json` differs only in `builtAt`,
+  echoed paths and the provenance hash of `home-departments.json` (another session edited that file in the main tree between the two builds; the store-sourced build read the newer bytes).
 
 ### Record a decision (a worker, Michigan)
 ```
@@ -118,7 +137,6 @@ Not supported yet: deleting a row (supersede it with the corrected record), addi
 4. To go back: set `source = "json"` (the JSON view is already the current state; the store file can be archived).
 
 ## Next phases (not done)
-1. Michigan's slices of the shared reviewed files (`census-overrides.json`, `student-corrections.json`, ...) move into the store with an export that
-   patches only that school's slice; then a reader may read the store directly (`census_overrides.section`, `pi_hierarchy` reviewed inputs).
+1. A reader may read the store directly (`census_overrides.section`, `pi_hierarchy` reviewed inputs) instead of the exported JSON view.
 2. Writers (stage tools, `excluded_audit.py`) call `record()` instead of editing files, school by school.
 3. Split rank/unit/period/identity facets into their own rows once the readers use claims rather than records.

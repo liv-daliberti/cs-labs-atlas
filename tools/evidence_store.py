@@ -379,6 +379,14 @@ def create(con):
     con.executescript(SQL.read_text())
 
 
+def insert_row(con, school, layer_id, layer_name, ci, seq, ek, sk, rec):
+    c = claim(layer_name, rec, ek, sk)
+    return con.execute('INSERT INTO evidence (school, layer_id, container, seq, entry_key, sub_key, person_key, claim_kind, facets, value, source_url, source_date, '
+                       'source_kind, decided_by, decided_at, reviewed_by, review_ref, supersedes, record) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                       (school, layer_id, ci, seq, ek, sk, c['person_key'], c['claim_kind'], c['facets'], c['value'], c['source_url'], c['source_date'], c['source_kind'],
+                        c['decided_by'], c['decided_at'], c['reviewed_by'], c['review_ref'], c['supersedes'], compact(rec))).lastrowid
+
+
 class Builder:
     """Collects one school's store in a local temp file, then copies it into place."""
 
@@ -409,11 +417,7 @@ class Builder:
         n = 0
         for ci, seq, ek, sk, rec in rows:
             sch = owner(ci, seq, ek, sk, rec) if owner else school
-            c = claim(name, rec, ek, sk)
-            self.con.execute('INSERT INTO evidence (school, layer_id, container, seq, entry_key, sub_key, person_key, claim_kind, facets, value, source_url, source_date, '
-                             'source_kind, decided_by, decided_at, reviewed_by, review_ref, supersedes, record) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-                             (sch, layer_id, ci, seq, ek, sk, c['person_key'], c['claim_kind'], c['facets'], c['value'], c['source_url'], c['source_date'], c['source_kind'],
-                              c['decided_by'], c['decided_at'], c['reviewed_by'], c['review_ref'], c['supersedes'], compact(rec)))
+            insert_row(self.con, sch, layer_id, name, ci, seq, ek, sk, rec)
             n += 1
         return n
 
@@ -657,6 +661,140 @@ def sync(school, root=None, stores_dir=None):
     return changed
 
 
+# ---------------------------------------------------------------- shared reviewed files: one school's slice (charter [evidence] shared = "store")
+
+
+def shared_of(school):
+    try:
+        return S.evidence_shared(school)
+    except KeyError:
+        return 'json'
+
+
+def slice_of(doc, owner, school):
+    """The school's rows of a shared document as cut() numbers them (container, seq, entry_key, sub_key, record); owner is 'list' or 'schoolmap'."""
+    skeleton, order, conts, rows = cut(doc, school_split=owner == 'schoolmap')
+    if owner == 'list':
+        return [r for r in rows if r[4].get('school') == school]
+    return [r for r in rows if r[2] == school]
+
+
+def patch_slice(text, owner, school, rows):
+    """The shared file `text` with only `school`'s slice replaced by `rows` (the store's rows, any order); every other byte-for-byte as is.
+    Unchanged content returns `text` itself. A list file: the school's items are replaced in place by seq, extra rows go after its last item, a surplus
+    item is dropped. A school-keyed map: the school's section is rebuilt from the rows (added at the end when new)."""
+    doc = parse(text)
+    rows = sorted(rows, key=lambda r: r[1])
+    if owner == 'list':
+        pos = [i for i, x in enumerate(doc) if isinstance(x, dict) and x.get('school') == school]
+        recs = [r[4] for r in rows]
+        new = list(doc)
+        for p, rec in zip(pos, recs):
+            new[p] = rec
+        extra = recs[len(pos):]
+        drop = set(pos[len(recs):])
+        at = (pos[-1] + 1) if pos else len(new)
+        new = new[:at] + extra + new[at:]
+        new = [x for i, x in enumerate(new) if i not in drop] if drop else new
+    else:
+        new = dict(doc)
+        if rows:
+            if any(r[3] is None for r in rows):
+                new[school] = rows[0][4]
+            else:
+                new[school] = {r[3]: r[4] for r in rows}
+    if compact(new) == compact(doc):
+        return text
+    return dumps(new, find_style(doc, text))
+
+
+def shared_layers(con):
+    """{name: (layer_id, owner kind 'list'|'schoolmap')} of the shared layers a store holds a slice of."""
+    out = {}
+    for lid, name, conts in con.execute("SELECT layer_id, name, containers FROM layer WHERE scope = 'shared'"):
+        kinds = json.loads(conts)
+        out[name] = (lid, 'schoolmap' if kinds and kinds[0]['kind'] == 'map2' else 'list')
+    return out
+
+
+def shared_texts(school, root=None, stores_dir=None, staged=None):
+    """{name: (current text or None, patched text)} for every shared file the school's store holds a slice of. `staged`: read the git index instead of the tree."""
+    root = code_root(root)
+    sp = store_path(school, stores_dir)
+    out = {}
+    with contextlib.closing(connect(sp)) as con:
+        for name, (lid, owner) in sorted(shared_layers(con).items()):
+            rel = str(Path('hierarchy') / 'reviewed' / name)
+            f = root / rel
+            cur = _staged(root, rel) if staged is not None else f.read_text() if f.exists() else None
+            if cur is None:
+                out[name] = (None, None)
+                continue
+            rows = [(ci, seq, ek, sk, json.loads(rec)) for ci, seq, ek, sk, rec in con.execute('SELECT container, seq, entry_key, sub_key, record FROM evidence WHERE layer_id = ?', (lid,))]
+            out[name] = (cur, patch_slice(cur, owner, school, rows))
+    return out
+
+
+def sync_shared(school, root=None, stores_dir=None):
+    """Rewrite the school's slice of each shared reviewed file in the root from its store (only files whose bytes change). Returns the changed names."""
+    changed = []
+    d = shared_dir(root)
+    for name, (cur, new) in shared_texts(school, root, stores_dir).items():
+        if cur is None or cur == new:
+            continue
+        tmp = d / (name + '.sync-tmp')
+        tmp.write_text(new)
+        os.replace(tmp, d / name)
+        changed.append(name)
+    return changed
+
+
+def adopt_shared(school, root=None, stores_dir=None, log=print):
+    """One-time (re-runnable until the charter flag is set) move of the school's slices of the shared files into its store: every shared file that is a list of
+    items with a `school` field or a school-keyed map gets a shared layer in the store, with the school's current rows (replacing an earlier snapshot)."""
+    if shared_of(school) == 'store':
+        raise SourceOfTruth(f'{school}: [evidence] shared = "store" already; its slices are recorded decisions, a re-adopt would erase them')
+    root = code_root(root)
+    known = set(school_ids(root))
+    sp = store_path(school, stores_dir)
+    if not sp.exists():
+        raise SourceOfTruth(f'{school}: no evidence store at {sp}')
+    with contextlib.closing(connect(sp)) as con:
+        create(con)
+        con.execute('BEGIN IMMEDIATE')
+        try:
+            own = {r[0] for r in con.execute("SELECT name FROM layer WHERE scope = 'school'")}
+            old = [r[0] for r in con.execute("SELECT layer_id FROM layer WHERE scope = 'shared'")]
+            for lid in old:
+                con.execute('DELETE FROM evidence WHERE layer_id = ?', (lid,))
+                con.execute('DELETE FROM layer WHERE layer_id = ?', (lid,))
+            tot = 0
+            for f in layer_files(shared_dir(root)):
+                text, doc, err = read_layer(f)
+                if err:
+                    continue
+                owner = shared_owner(f.name, doc, known)
+                if owner is None:
+                    continue
+                if f.name in own:
+                    raise SourceOfTruth(f'{school}: the school file {f.name} has the name of a shared file; the store keys layers by name')
+                skeleton, order, conts, rows = cut(doc, owner == 'schoolmap')
+                style = find_style(doc, text)
+                cur = con.execute('INSERT INTO layer (name, scope, skeleton, containers, key_order, style, sha256, nbytes, source_path, layout_text) VALUES (?,?,?,?,?,?,?,?,?,?)',
+                                  (f.name, 'shared', None if skeleton is None else compact(skeleton), compact(conts), None if order is None else compact(order),
+                                   None if style is None else compact(style), sha(text), len(text.encode()), str(f.relative_to(root)), text if style is None else None))
+                mine = slice_of(doc, owner, school)
+                for ci, seq, ek, sk, rec in mine:
+                    insert_row(con, school, cur.lastrowid, f.name, ci, seq, ek, sk, rec)
+                tot += len(mine)
+                log(f'  {f.name}: {len(mine)} {school} rows ({owner})')
+            con.execute('COMMIT')
+        except BaseException:
+            con.execute('ROLLBACK')
+            raise
+    return tot
+
+
 def _staged(root, rel):
     r = subprocess.run(['git', '-C', str(root), 'show', f':{rel}'], capture_output=True, text=True, timeout=60)
     return r.stdout if r.returncode == 0 else None
@@ -685,6 +823,17 @@ def check_view(school, root=None, stores_dir=None, staged=None):
         elif have != t:
             out.append(f'{rel}: differs from the {school} evidence store. {school} is store-sourced (schools/{school}.toml [evidence] source = "store"): '
                        f'do NOT edit the JSON. Record the decision with `evidence_store.py record {school} --layer {name} ...`, then `evidence_store.py sync {school}`.')
+    if shared_of(school) == 'store':
+        for name, (cur, new) in shared_texts(school, root, stores_dir, staged).items():
+            rel = f'hierarchy/reviewed/{name}'
+            if staged is not None and rel not in staged:
+                continue
+            if cur is None:
+                out.append(f'{rel}: missing; the {school} slice cannot be checked')
+            elif cur != new:
+                out.append(f'{rel}: the {school} slice differs from the {school} evidence store (schools/{school}.toml [evidence] shared = "store"): do NOT edit {school} rows '
+                           f'in the shared file. Record the decision with `evidence_store.py record {school} --layer {name} ...`, then `evidence_store.py sync {school}`. '
+                           f'Other schools\' rows stay editable.')
     if staged is None:
         for f in layer_files(d):
             if f.name not in text:
@@ -864,12 +1013,14 @@ def find(school, layer, key=None, text=None, stores_dir=None):
     return [r for r in rows if (key is None or key in (r[3], r[4]) or key == (claim(layer, r[5], r[3], r[4])['person_key'])) and (text is None or text in json.dumps(r[5], ensure_ascii=False))]
 
 
-def record(school, layer, rec, *, source, decided_by, reviewed_by=None, supersede=None, entry_key=None, sub_key=None, container=None, note=None, stores_dir=None):
+def record(school, layer, rec, *, source, decided_by, reviewed_by=None, supersede=None, entry_key=None, sub_key=None, container=None, note=None, stores_dir=None, shared=False):
     """Add (or supersede, `supersede` = the evidence id) one decision row of a store-sourced school. `rec` is the entry exactly as the reviewed file holds it
     (a list item, or the value of a map entry); `source` and `decided_by` are mandatory and logged in write_log. The claim columns are refreshed from the
     record, the layer hash follows the new rendering. Returns the evidence id. Raises SourceOfTruth for a school that is not store-sourced."""
     if source_of(school) != 'store':
         raise SourceOfTruth(f'{school} is not store-sourced (schools/{school}.toml [evidence] source = "store"): edit its reviewed JSON files instead')
+    if shared and shared_of(school) != 'store':
+        raise SourceOfTruth(f'{school}: its slices of the shared files are not store-sourced (schools/{school}.toml [evidence] shared = "store"); edit hierarchy/reviewed/{layer} instead')
     if not source or not decided_by:
         raise SourceOfTruth('a recorded decision needs --source and --decided-by')
     sp = store_path(school, stores_dir)
@@ -879,7 +1030,7 @@ def record(school, layer, rec, *, source, decided_by, reviewed_by=None, supersed
         create(con)   # idempotent: adds write_log to a phase-1 store
         con.execute('BEGIN IMMEDIATE')
         try:
-            lay = con.execute('SELECT layer_id, containers FROM layer WHERE name = ? AND scope = ?', (layer, 'school')).fetchone()
+            lay = con.execute('SELECT layer_id, containers FROM layer WHERE name = ? AND scope = ?', (layer, 'shared' if shared else 'school')).fetchone()
             if not lay:
                 raise SourceOfTruth(f'{school}: no layer {layer!r} in the store (names: {", ".join(r[0] for r in con.execute("SELECT name FROM layer WHERE scope = ? ORDER BY name", ("school",)))})')
             lid, conts = lay[0], json.loads(lay[1])
@@ -920,9 +1071,10 @@ def record(school, layer, rec, *, source, decided_by, reviewed_by=None, supersed
             con.execute('INSERT INTO write_log (evidence_id, action, at, decided_by, reviewed_by, source, note, old_record) VALUES (?,?,?,?,?,?,?,?)',
                         (eid, 'supersede' if supersede is not None else 'add', now(), decided_by, reviewed_by, source, note, old[5] if supersede is not None else None))
             # the layer hash follows the rendering, so check_view tells a store edit made by this API from any other
-            e = load_layers_con(con, sp)[layer]
-            text = render(e)
-            con.execute('UPDATE layer SET sha256 = ?, nbytes = ? WHERE layer_id = ?', (sha(text), len(text.encode()), lid))
+            if not shared:   # a shared file's slice has no whole-file hash: check_view compares the patched file itself
+                e = load_layers_con(con, sp)[layer]
+                text = render(e)
+                con.execute('UPDATE layer SET sha256 = ?, nbytes = ? WHERE layer_id = ?', (sha(text), len(text.encode()), lid))
             con.execute('COMMIT')
         except BaseException:
             con.execute('ROLLBACK')
@@ -960,6 +1112,13 @@ def overlay(school, out, stores_dir, root=None, worktree=None, control=False):
             d.mkdir(parents=True)
             for name, text in rendered(school, stores_dir).items():
                 (d / name).write_text(text)
+            if shared_of(school) == 'store':   # its slices of the shared files patched into the root's own copies
+                (Path(tmp) / 'hierarchy' / 'reviewed').mkdir(parents=True)
+                for f in layer_files(shared_dir(root)):   # the root's own shared files first (the unsliceable ones stay as they are), then the patched slices
+                    shutil.copyfile(f, Path(tmp) / 'hierarchy' / 'reviewed' / f.name)
+                for name, (cur, new) in shared_texts(school, root, stores_dir).items():
+                    if new is not None:
+                        (Path(tmp) / 'hierarchy' / 'reviewed' / name).write_text(new)
         else:
             export_files([store_path(s, stores_dir) for s in schools + [SHARED]], tmp)
         n = 0
@@ -1007,7 +1166,7 @@ def phase2(a, ap, root):
             if source_of(s) != 'store':
                 print(f'{s}: json-sourced (nothing to check)')
                 continue
-            if staged is not None and not any(x.startswith(f'hierarchy/{s}/reviewed/') for x in staged):
+            if staged is not None and not any(x.startswith(f'hierarchy/{s}/reviewed/') or (x.startswith('hierarchy/reviewed/') and shared_of(s) == 'store') for x in staged):
                 continue
             probs = check_view(s, root, a.store_dir, staged)
             bad += len(probs)
@@ -1021,7 +1180,12 @@ def phase2(a, ap, root):
             if source_of(s) != 'store':
                 ap.error(f'{s} is not store-sourced')
             ch = sync(s, root, a.store_dir)
-            print(f'{s}: {len(ch)} reviewed files rewritten from the store' + (': ' + ', '.join(ch) if ch else ''))
+            sh = sync_shared(s, root, a.store_dir) if shared_of(s) == 'store' else []
+            print(f'{s}: {len(ch)} reviewed files rewritten from the store' + (': ' + ', '.join(ch) if ch else '') + (f'; shared files patched (its slice only): {", ".join(sh) or "none changed"}' if shared_of(s) == 'store' else ''))
+            return 0
+        if a.cmd == 'adopt-shared':
+            n = adopt_shared(s, root, a.store_dir)
+            print(f'{s}: {n} rows of its slices of the shared files are now in its store; set [evidence] shared = "store" in the charter in the same commit once the build proof passes')
             return 0
         if not a.layer:
             ap.error('--layer')
@@ -1032,11 +1196,11 @@ def phase2(a, ap, root):
         text = a.record if a.record is not None else Path(a.record_file).read_text() if a.record_file else None
         if text is None:
             ap.error('--record or --record-file')
-        eid = record(s, a.layer, json.loads(text), source=a.source, decided_by=a.decided_by, reviewed_by=a.reviewed_by, supersede=a.supersede,
+        eid = record(s, a.layer, json.loads(text), shared=a.shared, source=a.source, decided_by=a.decided_by, reviewed_by=a.reviewed_by, supersede=a.supersede,
                      entry_key=a.entry_key, sub_key=a.sub_key, container=a.container, note=a.note, stores_dir=a.store_dir)
         print(f'{s}/{a.layer}: decision row {eid} {"superseded" if a.supersede is not None else "added"}')
         if not a.no_sync:
-            ch = sync(s, root, a.store_dir)
+            ch = sync(s, root, a.store_dir) + (sync_shared(s, root, a.store_dir) if a.shared and shared_of(s) == 'store' else [])
             print(f'JSON view rewritten under {school_dir(s, root)}: {", ".join(ch) or "nothing changed"}; commit it on your branch (hook: hierarchy/{s}/reviewed is a store export)')
         return 0
     except SourceOfTruth as e:
@@ -1046,7 +1210,7 @@ def phase2(a, ap, root):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('cmd', choices=['import', 'export', 'verify', 'overlay', 'coverage', 'flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore'])
+    ap.add_argument('cmd', choices=['import', 'export', 'verify', 'overlay', 'coverage', 'flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore', 'adopt-shared'])
     ap.add_argument('schools', nargs='*')
     ap.add_argument('--all', action='store_true')
     ap.add_argument('--store-dir', help='default $CS_ATLAS_EVIDENCE_DIR or the stores dir')
@@ -1067,6 +1231,7 @@ def main(argv=None):
     ap.add_argument('--decided-by')
     ap.add_argument('--reviewed-by')
     ap.add_argument('--note')
+    ap.add_argument('--shared', action='store_true', help='find/record: the layer is a shared reviewed file (hierarchy/reviewed/<name>); needs [evidence] shared = "store"')
     ap.add_argument('--no-sync', action='store_true', help='record: do not rewrite the JSON view afterwards')
     ap.add_argument('--staged', action='store_true', help='check: compare the git-index content of the staged reviewed files (pre-commit)')
     ap.add_argument('--backup-dir', help='backup/restore: default <archive>/evidence-store-backups')
@@ -1078,7 +1243,7 @@ def main(argv=None):
     ap.add_argument('--force', action='store_true', help='restore: even when the live store has more logged writes')
     a = ap.parse_args(argv)
     root = code_root(a.root)
-    if a.cmd in ('flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore'):
+    if a.cmd in ('flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore', 'adopt-shared'):
         # the JSON view is code: write and compare the checkout this tool runs from (your worktree), never the main checkout by accident
         return phase2(a, ap, Path(a.root) if a.root else Path(__file__).resolve().parents[1])
     schools = school_ids(root) if a.all else a.schools

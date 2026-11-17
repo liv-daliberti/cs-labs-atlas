@@ -23,7 +23,7 @@ fi
 
 "$PY" "$top/tools/secret_scan.py" --staged --repo "$top" >&2 || { echo "pre-commit: the secret scan found something; nothing was committed" >&2; exit 1; }
 
-if git diff --cached --name-only | grep -qE '^hierarchy/[^/]+/reviewed/.*\.json$'; then
+if git diff --cached --name-only | grep -qE "^hierarchy/([^/]+/)?reviewed/.*\.json$"; then
   CS_ATLAS_SCHOOL_CONFIGS="$top/schools" "$PY" "$top/tools/evidence_store.py" check --staged --root "$top" >&2 || {
     echo "pre-commit: a staged reviewed file of a store-sourced school differs from its evidence store; record the decision with tools/evidence_store.py record (docs/EVIDENCE-STORE.md); nothing was committed" >&2; exit 1; }
 fi

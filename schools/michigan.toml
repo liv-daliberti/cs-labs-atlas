@@ -31,6 +31,7 @@ excludes them. Michigan Medicine I4210114445 (ROR 01zcpa714) is 'related' both w
 # hierarchy/<key>/reviewed/ are the source. "store": <stores>/<key>/evidence.sqlite is; the JSON files are an export
 # (evidence_store.py sync) and a direct edit to them is refused by the pre-commit hook, `evidence_store.py check` and atlas doctor.
 source = "store"   # since 2026-11-17 (R3a): the first school whose evidence store is the source of truth
+shared = "store"    # since 2026-11-17 (R3b): its slices of the shared reviewed files (hierarchy/reviewed/*.json) come from the store too; other schools' rows stay JSON
 
 [web]
 domains = ["umich.edu"]
