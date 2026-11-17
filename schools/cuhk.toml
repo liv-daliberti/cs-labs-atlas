@@ -31,15 +31,18 @@ legacy_sweep = ""
 [census]
 computing_departments = ["CSE"]
 center_units = []
-home_units = {"Computer Science and Engineering" = 'Computer Science and Engineering', "Information Engineering" = 'Information Engineering', "Electronic Engineering" = 'Electronic Engineering'}
+home_units = {"Computer Science and Engineering" = 'Computer Science and Engineering', "Information Engineering" = 'Information Engineering', "Electronic Engineering" = 'Electronic Engineering', "Mechanical and Automation Engineering" = 'Mechanical and Automation Engineering', "Systems Engineering and Engineering Management" = 'Systems Engineering and Engineering Management', "Biomedical Engineering" = 'Biomedical Engineering'}
 rank_words = {}
 [sweep_check]
-exceptions = []
+# Reviewed exception to tools/sweep_check.py (verify = "papers_normal" re-checks the cause on every run). Diagnosed 2026-11-16 from the stored 2026 sweep pages.
+exceptions = [
+  {test = "year_outlier", year = 2026, verify = "papers_normal", reason = "16,501 of the 30,399 works of 2026 are OpenAlex type dataset records, 16,324 of them from the source CUHK Research Data Repository: datasets, which every reader drops (pi_hierarchy.NOT_PAPERS, R-PAP-17). The paper-only count of 2026 (13,220, a partial snapshot year) is below 3 x the median of the other years; papers_normal re-checks it each run."},
+]
 [cs_related]
 not_faculty = {}
 share_test_settles = []
 [site]
-depts = {CSE = "Computer Science and Engineering", IE = "Information Engineering", EE = "Electronic Engineering"}
+depts = {CSE = "Computer Science and Engineering", IE = "Information Engineering", EE = "Electronic Engineering", MAE = "Mechanical and Automation Engineering", SEEM = "Systems Engineering and Engineering Management", BME = "Biomedical Engineering"}
 full_codes = ["CSE"]
 [periods]
 school_regex = '\bchinese\s+university\s+of\s+hong\s+kong\b|\bCUHK\b'

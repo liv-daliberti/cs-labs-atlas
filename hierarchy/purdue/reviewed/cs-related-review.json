@@ -57311,9 +57311,9 @@
    "source": "dblp_affiliation",
    "dblp": "https://dblp.org/pid/89/5503-6",
    "openalex": null,
-   "decision": "pending_identity_collision",
-   "profile_class": "PENDING_collision_per_id_unit_unknown",
-   "reviewed_by": "claude_purdue_stage2_20261116",
+   "decision": "accepted",
+   "profile_class": "accepted_identity_bound_by_own_profile",
+   "reviewed_by": "claude_gate2_convert_20261117",
    "units_searched": [
     "AAE",
     "ABE",
@@ -57344,9 +57344,21 @@
     "SOET",
     "STAT"
    ],
-   "faculty_evidence": [],
-   "years_listed": [],
-   "reason": "distinct DBLP/OpenAlex identities share this display name and are NOT merged; this id has no named unit, so no stored source covers it: NOT decided absent | R2 audit 2026-11-17: the stored Purdue ECE faculty capture lists a Yi Ding, Assistant Professor of ECE (profile: PhD Chicago CS, joined Purdue ECE 2023); the link to this DBLP id rests on a public profile, not a stored page. Needs a stored profile capture binding the id before acceptance.",
+   "faculty_evidence": [
+    {
+     "unit": "Electrical and Computer Engineering",
+     "url": "https://engineering.purdue.edu/ECE/People/ptProfile?resource_id=285937",
+     "sha256": "2ae4468929df849a148bcc6ec64e2c1fe7edac02c6fc39f263f288f23690c7b1",
+     "observed": "2026-11-17",
+     "quote": "Yi Ding Assistant Professor of Electrical and Computer Engineering",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "reason": "faculty (Purdue ECE profile page: Assistant Professor of Electrical and Computer Engineering) with 44 DBLP records 2016-2026 on DBLP pid 89/5503-6; identity bound: the DBLP dump record of this pid names Purdue University West Lafayette and lists homepage https://y-ding.github.io/ and ORCID 0000-0003-2757-9182; the stored Purdue ECE profile names the same Webpage https://y-ding.github.io/ (PhD University of Chicago 2020, MIT postdoc 2023); the stored homepage names him Assistant Professor, Elmore Family School of ECE, BHEE 336. DBLP person page was served a bot challenge (not used); ORCID page not fetched (JavaScript record, no stored text). R2 audit failure fixed 2026-11-17.",
    "source_id": "https://dblp.org/pid/89/5503-6",
    "cs_basis": {
     "dblp": [
@@ -57355,238 +57367,24 @@
     "openalex": [],
     "evidence": [
      {
-      "url": "https://web.archive.org/web/20260308092526id_/https://engineering.purdue.edu/AAE/people/Faculty",
-      "sha256": "ac67801bd72e672af6691e3fddb30591fee44b4ffe09dce04a536485b21ab2a8",
-      "first_capture_url": "https://web.archive.org/web/20170129200957id_/https://engineering.purdue.edu/AAE/people",
-      "first_sha256": "51bb4182daf3ab5edc37f8d5286885b68aa324a19910cd47f359dab820f4b437",
-      "source": "stored AAE unit-listing captures: 20 captures 2017-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 20 stored AAE captures (name matcher plus family-name scan; latest capture 25142 characters)"
+      "url": "https://dblp.org/pid/89/5503-6",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz (hierarchy/purdue/derived/dblp-affiliated.json)",
+      "quote": "Purdue University, West Lafayette, IN, USA; url https://y-ding.github.io/; orcid 0000-0003-2757-9182"
      },
      {
-      "url": "https://web.archive.org/web/20260314194135id_/https://engineering.purdue.edu/ABE/people",
-      "sha256": "8d76282c413a6b257c841b8fa5b2b00033068da82cbd43325e646af8bf63874c",
-      "first_capture_url": "https://web.archive.org/web/20161101154144id_/https://engineering.purdue.edu/ABE/people",
-      "first_sha256": "e081f4f7f2ffc5af1e05d54bf5731b7d61a2ee66ddc05d13a95851a648ce228c",
-      "source": "stored ABE unit-listing captures: 11 captures 2016-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 11 stored ABE captures (name matcher plus family-name scan; latest capture 26169 characters)"
+      "url": "https://engineering.purdue.edu/ECE/People/ptProfile?resource_id=285937",
+      "sha256": "2ae4468929df849a148bcc6ec64e2c1fe7edac02c6fc39f263f288f23690c7b1",
+      "source": "live capture 2026-11-17 in captures store (robots honoured)",
+      "quote": "Webpage: https://y-ding.github.io/"
      },
      {
-      "url": "https://web.archive.org/web/20260101010742id_/https://ag.purdue.edu/directory/index.html",
-      "sha256": "7d08c6ab259aecc7602b5a84ddf2d202a33aee8b60a53fd996310c459d89f8f0",
-      "first_capture_url": "https://web.archive.org/web/20220516125434id_/https://ag.purdue.edu/directory/index.html",
-      "first_sha256": "a628b5ade2dc880abd055f1a67b626bb1423149c566bad3d3eca8d4a2aca77ca",
-      "source": "stored AG unit-listing captures: 5 captures 2022-2026, shell years 2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 5 stored AG captures (name matcher plus family-name scan; latest capture 4601 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260115151309id_/https://birck.research.purdue.edu/directory/",
-      "sha256": "c14d3d14da6e4b6e711cd978000b20ca6eb470935389c6ad94f91e5259a12ced",
-      "first_capture_url": "https://web.archive.org/web/20240227174330id_/https://birck.research.purdue.edu/directory/",
-      "first_sha256": "42f8ae2868f71898fa28a474d14e93e0f1b9b18a2ac3e8d04895b29c82c8911e",
-      "source": "stored BIRCK unit-listing captures: 3 captures 2024-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 3 stored BIRCK captures (name matcher plus family-name scan; latest capture 8545 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260212133523id_/https://engineering.purdue.edu/BME/People",
-      "sha256": "b751f21b2025964581fe9365d850bab8ea83b7320b576a596ce97c47ab772502",
-      "first_capture_url": "https://web.archive.org/web/20160413003458id_/https://engineering.purdue.edu/BME/People",
-      "first_sha256": "dafcaadb1079c429e36d0263a33afc22a3c29b2d4800178ee8f540c638cd8937",
-      "source": "stored BME unit-listing captures: 11 captures 2016-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 11 stored BME captures (name matcher plus family-name scan; latest capture 37740 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260219060255id_/https://engineering.purdue.edu/CCE/People",
-      "sha256": "66b8a1f6e2a81cdeedbd16cfa60b216649728fb5bbc21675c698552addbcb0b1",
-      "first_capture_url": "https://web.archive.org/web/20160817202540id_/https://engineering.purdue.edu/CE/People",
-      "first_sha256": "3806db0fba1149738691494ec6bf01aa211e3d7a25f66981fbc9cd6332f48119",
-      "source": "stored CE unit-listing captures: 12 captures 2016-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 12 stored CE captures (name matcher plus family-name scan; latest capture 18038 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260102211644id_/https://www.cerias.purdue.edu/site/people/faculty/",
-      "sha256": "7c6309f1b038057dcc8b3654f57e5fd036dfebc57f2e1f49111aeb2692cbc1f1",
-      "first_capture_url": "https://web.archive.org/web/20160215174104id_/http://www.cerias.purdue.edu:80/site/people/faculty/",
-      "first_sha256": "2f6bb2cdb9f4e06bb8d48a857d5faddd2d127c6800af1074788d02026a0e9aad",
-      "source": "stored CERIAS unit-listing captures: 11 captures 2016-2026, shell years 2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 11 stored CERIAS captures (name matcher plus family-name scan; latest capture 31944 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260416114028id_/https://www.chem.purdue.edu/people/",
-      "sha256": "5d829f72f1857c01d7d8d928a64da871040ac6a5170f50d4839c6df4356afa94",
-      "first_capture_url": "https://web.archive.org/web/20160422045636id_/https://www.chem.purdue.edu/people/",
-      "first_sha256": "e77b904ed3ba233de0596d294d7f00f6e2d0ff594c3552ff22b0ca35cd94e490",
-      "source": "stored CHEM unit-listing captures: 9 captures 2016-2026, shell years 2016,2019,2020,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 9 stored CHEM captures (name matcher plus family-name scan; latest capture 2511 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260107035638id_/https://polytechnic.purdue.edu/academic-areas/acc/directory",
-      "sha256": "9f098889dd3d7e7f639c2d161494fe64c2afeea44bef321269a48eb2e07cb87b",
-      "first_capture_url": "https://web.archive.org/web/20251016082457id_/https://polytechnic.purdue.edu/academic-areas/acc/directory",
-      "first_sha256": "209bb1673f0dfaf7debddeb169de9c29892b7af1210722df9dc141c7aec0ba83",
-      "source": "stored CIT unit-listing captures: 2 captures 2025-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 2 stored CIT captures (name matcher plus family-name scan; latest capture 15699 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260102113721id_/https://www.cla.purdue.edu/directory/index.html",
-      "sha256": "8560b01c7d05a2644bff3b7607dcb0ad62021dc7f2d8a62157fd1001680b6f52",
-      "first_capture_url": "https://web.archive.org/web/20190921003311id_/https://cla.purdue.edu/directory/index.html",
-      "first_sha256": "5b269074281fafad425ee813df8d2dce26c75f37fc44ae45da1c52f1af11c10b",
-      "source": "stored CLA unit-listing captures: 8 captures 2019-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 8 stored CLA captures (name matcher plus family-name scan; latest capture 158166 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260306154232id_/https://engineering.purdue.edu/ChE/people",
-      "sha256": "5e476a2f8f1797d48565ac43dab186cd7b26f7b9109430930508824b4a2a1841",
-      "first_capture_url": "https://web.archive.org/web/20160503043027id_/https://engineering.purdue.edu/ChE/people",
-      "first_sha256": "71edf1544430f42c451c5a4af7643447d2517ad2a62c81649166e46d08150472",
-      "source": "stored ChE unit-listing captures: 11 captures 2016-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 11 stored ChE captures (name matcher plus family-name scan; latest capture 15306 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260326161618id_/https://www.eaps.purdue.edu/people/",
-      "sha256": "22d962219d296733b458cb77f8ca17e5b45cfd9ef3e7f5607a8aed7bb0bb75aa",
-      "first_capture_url": "https://web.archive.org/web/20160120185002id_/http://www.eaps.purdue.edu:80/people/",
-      "first_sha256": "7ab021e6951248191b31c245c44c8d17a94cb6929ee0e44744e285cae9bac2f3",
-      "source": "stored EAPS unit-listing captures: 11 captures 2016-2026, shell years 2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 11 stored EAPS captures (name matcher plus family-name scan; latest capture 4068 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260414023718id_/https://engineering.purdue.edu/ECE/People/Faculty",
-      "sha256": "1d1f05ce5ab780cbde39a8bf167ebc5e7b2d0c17d19eef325a2d5806d8bcaa5f",
-      "first_capture_url": "https://web.archive.org/web/20161221205411id_/https://engineering.purdue.edu/ECE/People/Faculty",
-      "first_sha256": "d67be913015d87f52c63870f3cd65ae40b9d8cb591b7a1ab66cc3a1366bac599",
-      "source": "stored ECE unit-listing captures: 11 captures 2016-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 11 stored ECE captures (name matcher plus family-name scan; latest capture 22706 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260101040835id_/https://education.purdue.edu/about/directory/",
-      "sha256": "941b01c2077bbe45a9d0549f9760392ae7fdf4dc8769aded434715c8d15ce14b",
-      "first_capture_url": "https://web.archive.org/web/20251024143515id_/https://education.purdue.edu/about/directory/",
-      "first_sha256": "52293b5d32821402276b8cabffeea1104b381e0ca40c3c333563f75bca13b23d",
-      "source": "stored EDU unit-listing captures: 2 captures 2025-2026, shell years 2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 2 stored EDU captures (name matcher plus family-name scan; latest capture 8365 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260214202423id_/https://engineering.purdue.edu/ENE/People",
-      "sha256": "72fdc371a2e1290c9edc42396720283ebf92e152195151ba6b97da4cc961aca3",
-      "first_capture_url": "https://web.archive.org/web/20170502101724id_/https://engineering.purdue.edu/ENE/People",
-      "first_sha256": "13b9f39c1aaba586779992d9f5e7bb20de9745578aa82372931e2588cbf106d5",
-      "source": "stored ENE unit-listing captures: 20 captures 2017-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 20 stored ENE captures (name matcher plus family-name scan; latest capture 19899 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260307213501id_/https://ag.purdue.edu/department/fnr/about/world-class-faculty.html",
-      "sha256": "541d2a326ea32e7d65f3f49874526e5547c6d6a78d23e6280265ff555651710d",
-      "first_capture_url": "https://web.archive.org/web/20220516130652id_/https://ag.purdue.edu/department/fnr/about/world-class-faculty.html",
-      "first_sha256": "13b2ade2f9eb0259d540b5b021e66bb24496e2f7147c6db60bbaaef3a381d81c",
-      "source": "stored FNR unit-listing captures: 5 captures 2022-2026, shell years 2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 5 stored FNR captures (name matcher plus family-name scan; latest capture 15703 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20231205130221id_/https://hhs.purdue.edu/about-hhs/directory/?pg=10",
-      "sha256": "32f42a49a1eeb453d451a1cd8ee140989810124addcf35728c9c35c5d0e60df9",
-      "first_capture_url": "https://web.archive.org/web/20221006215341id_/https://hhs.purdue.edu/about-hhs/directory/",
-      "first_sha256": "6212c8e91bd967a0eb461a0bbb63ff57e4df638a7a587e8cdd5bfd37d7e0ff7f",
-      "source": "stored HHS unit-listing captures: 87 captures 2022-2023, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 87 stored HHS captures (name matcher plus family-name scan; latest capture 4669 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260120091530id_/https://engineering.purdue.edu/IE/people",
-      "sha256": "23583ad4df7a5a89078d27692e17d8074419c882fdbf004c1ddd7728db987382",
-      "first_capture_url": "https://web.archive.org/web/20160526002502id_/https://engineering.purdue.edu/IE/People",
-      "first_sha256": "5186d54380e3b991873bfa5c0b5de345961eed0cd9e4620d4fa1380069042d42",
-      "source": "stored IE unit-listing captures: 11 captures 2016-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 11 stored IE captures (name matcher plus family-name scan; latest capture 13727 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260211215253id_/https://lib.purdue.edu/directory/",
-      "sha256": "29799387450f22885d2a78066ccc8d81ad244fc4cb8029be2f8a948f85795c8f",
-      "first_capture_url": "https://web.archive.org/web/20160314135617id_/https://www.lib.purdue.edu/directory",
-      "first_sha256": "a314e34fcedd9a6c918c0de6f25ebc7c97b8d258bc97feda8b6d0b1bf9f63df5",
-      "source": "stored LIB unit-listing captures: 11 captures 2016-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 11 stored LIB captures (name matcher plus family-name scan; latest capture 29976 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260520032548id_/https://www.math.purdue.edu/people/",
-      "sha256": "934a76357d7ea1ece450db4526484ca780d80e111af7c05e31716b13dea30fee",
-      "first_capture_url": "https://web.archive.org/web/20160130224147id_/http://www.math.purdue.edu:80/people/faculty?",
-      "first_sha256": "c43900e08b76d70ad6fb3a158566cdf1d53cdd49f5bdfaf6a0e9d798de27ed53",
-      "source": "stored MATH unit-listing captures: 25 captures 2016-2026, shell years 2016,2019,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 25 stored MATH captures (name matcher plus family-name scan; latest capture 3723 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260124091019id_/https://engineering.purdue.edu/ME/People",
-      "sha256": "8256db78e0810649c3bf59fac536da896653f49a3619fc9d29c458f55c08ec52",
-      "first_capture_url": "https://web.archive.org/web/20190820013415id_/https://engineering.purdue.edu/ME/People",
-      "first_sha256": "4fa43463811e866ef01c1b09e43a9b2fa234813448818c2d2591ae2d6158a4a7",
-      "source": "stored ME unit-listing captures: 8 captures 2019-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 8 stored ME captures (name matcher plus family-name scan; latest capture 43906 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260310060620id_/https://business.purdue.edu/faculty/",
-      "sha256": "02f41116923fe7ea278bfd086af24bf1e7ae9646466dcffff0f20a27d6c8c6f0",
-      "first_capture_url": "https://web.archive.org/web/20160108004507id_/http://www.krannert.purdue.edu:80/directory/",
-      "first_sha256": "046adcd27b40ec6e74214ba11175d0e8aedb3f0a40f6e9241d10e0a1363824c0",
-      "source": "stored MGMT unit-listing captures: 21 captures 2016-2026, shell years 2016,2017,2018,2019,2020,2021,2022,2023,2024,2025",
-      "quote": "absence: no entry compatible with the candidate name in any of the 21 stored MGMT captures (name matcher plus family-name scan; latest capture 7972 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260131070437id_/https://engineering.purdue.edu/MSE/people",
-      "sha256": "3485e23a62b3364de1bc36fad89d5af467ab016a742b1c6d5367266442d2fdcc",
-      "first_capture_url": "https://web.archive.org/web/20160912164748id_/https://engineering.purdue.edu/MSE/people",
-      "first_sha256": "57d03e09fae2ea3a044cb22929c3617023b544f3e9b1b83fb7655ee4e7574c01",
-      "source": "stored MSE unit-listing captures: 11 captures 2016-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 11 stored MSE captures (name matcher plus family-name scan; latest capture 20516 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260110143926id_/https://engineering.purdue.edu/NE/people",
-      "sha256": "854ef3b01c6b3f3a83ce60a3ad4778bca7c21d252d7cb5edb226ab5b79e1c235",
-      "first_capture_url": "https://web.archive.org/web/20170502115730id_/https://engineering.purdue.edu/NE/people",
-      "first_sha256": "efc4b9d5a7404600b58d441d203b0a2363495442a8c754a7510cd1760a360955",
-      "source": "stored NE unit-listing captures: 10 captures 2017-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 10 stored NE captures (name matcher plus family-name scan; latest capture 6600 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260210191749id_/https://directory.pharmacy.purdue.edu/",
-      "sha256": "5733eb85fc659a95de549a9cdf5ca81cb24761844dc6a740817738dda14a627b",
-      "first_capture_url": "https://web.archive.org/web/20250414161458id_/https://directory.pharmacy.purdue.edu/",
-      "first_sha256": "5c555d98f355b4970ad9ae71e8420d3d7788b1b0c206a0f6c9eef04c8e9e16d0",
-      "source": "stored PHARM unit-listing captures: 2 captures 2025-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 2 stored PHARM captures (name matcher plus family-name scan; latest capture 48757 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260102204652id_/https://www.physics.purdue.edu/people/faculty/index.php",
-      "sha256": "ec25a6cba97979389246fafae9b6dc1b133a76873a2fb63e494c40c68b25d06c",
-      "first_capture_url": "https://web.archive.org/web/20160115093911id_/http://www.physics.purdue.edu:80/people/faculty/index.php",
-      "first_sha256": "01f83342d91bdfd8f13dd5e66d69d10878c1e8b0d8a40dbab242c5999ddb2051",
-      "source": "stored PHYS unit-listing captures: 11 captures 2016-2026, shell years 2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026",
-      "quote": "absence: no entry compatible with the candidate name in any of the 11 stored PHYS captures (name matcher plus family-name scan; latest capture 3093 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260130230324id_/https://polytechnic.purdue.edu/academic-areas/tli/directory",
-      "sha256": "c0d4a48418d9d006e57cd85c68fc790c091647db05db6085e4db0343ef7d2285",
-      "first_capture_url": "https://web.archive.org/web/20250730084041id_/https://polytechnic.purdue.edu/academic-areas/tli/directory",
-      "first_sha256": "86ae56eec5d40f17ba7fa423d7d7053755733a40cb851a2f12b02edacf74dd18",
-      "source": "stored POLYOTHER unit-listing captures: 5 captures 2025-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 5 stored POLYOTHER captures (name matcher plus family-name scan; latest capture 9296 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20260113084910id_/https://polytechnic.purdue.edu/academic-areas/soet/directory",
-      "sha256": "5325718a4427cbb49429937adeea779f3479a504e878b27e9c434dcf3d108c71",
-      "first_capture_url": "https://web.archive.org/web/20250730090105id_/https://polytechnic.purdue.edu/academic-areas/soet/directory",
-      "first_sha256": "13aabafe8caa0fbd7e1dc1a23522901a52b835cf1f002679606cc27e16dfa684",
-      "source": "stored SOET unit-listing captures: 2 captures 2025-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 2 stored SOET captures (name matcher plus family-name scan; latest capture 18739 characters)"
-     },
-     {
-      "url": "https://web.archive.org/web/20261105004200id_/https://www.stat.purdue.edu/people/faculty/",
-      "sha256": "bc0eb3a6a2b87600834e5b28e17ca27b4fa25ee07d091e2b77f7c54ddda62093",
-      "first_capture_url": "https://web.archive.org/web/20160118172247id_/http://www.stat.purdue.edu:80/people/faculty/",
-      "first_sha256": "a7ad77de1f3035e2adfa2e18218b4bf8c386189c19b163c0448743b97d2b9d26",
-      "source": "stored STAT unit-listing captures: 11 captures 2016-2026, shell years none",
-      "quote": "absence: no entry compatible with the candidate name in any of the 11 stored STAT captures (name matcher plus family-name scan; latest capture 11921 characters)"
+      "url": "https://y-ding.github.io/",
+      "sha256": "61439461a10bb66cf8e3769a7bd9b780159942e0684f5d587310c877ac776744",
+      "source": "live capture 2026-11-17 in captures store (robots honoured)",
+      "quote": "Yi Ding Assistant Professor Elmore Family School of Electrical and Computer Engineering"
      }
-    ]
+    ],
+    "dblp_window": 44
    },
    "converted_from": "pending_source_coverage",
    "converted_on": "2026-11-17",
