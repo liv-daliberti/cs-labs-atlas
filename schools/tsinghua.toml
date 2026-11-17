@@ -1038,3 +1038,9 @@ host = "ymsc.tsinghua.edu.cn"
 use = "live"
 probe = "https://ymsc.tsinghua.edu.cn/info/1031/3586.htm"
 purpose = "Preserved original faculty role/work-history evidence. Cached robots404/no rules and an actual HTTP200 profile were independently rehashed; this declaration makes no new request."
+
+[[hosts]]
+host = "www.med.tsinghua.edu.cn"
+use = "wayback-only"
+probe = "http://www.med.tsinghua.edu.cn:80/Person?method=101&param=124"
+purpose = "Preserved original April2020 faculty-series evidence only. Read the already captured archive original; this entry authorizes no live-origin probe or source request. Cached robots404/no rules is retained separately."

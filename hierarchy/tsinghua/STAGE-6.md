@@ -116,3 +116,43 @@ the six missing historical original rosters remain coverage gaps, with none
 recovered by this batch. Stage 6 remains open against its formal Z limit of 18
 and its fixed independent recall review. Stage 9 accuracy review is unfinished.
 This source review supplies neither formal review verdict nor release approval.
+
+## Official thesis records: target of 140 unexplained zero-student labs
+
+The completed prior native candidate verified Z=190. This batch adds 50
+independently reviewed official thesis summaries for 50 distinct previously
+uncovered PIs: 26 doctoral and 24 master's defense-year membership points.
+All 107 earlier thesis episodes remain unchanged, now 157 across 154 groups.
+Actual defense years are 2025 (44), 2024 (four), 2023 (one) and 2020 (one).
+Degree grants, alumni status, attendance intervals and current enrollment
+are not inferred.
+
+Original faculty support comprises 41 explicit unit/role work intervals,
+seven dated named-rank observations and two dated faculty-series listings.
+The two faculty-series observations retain individual rank as null; neither
+becomes a Professor title or an appointment interval. Literal bilingual
+identity links do not create global aliases or merge same-name people.
+All source-year, unit/campus and known-bound checks remain in force.
+
+Independent final acceptance: `scratch/tsinghua-z140-source-review-1117/ACCEPTED50-FINAL.json`,
+SHA-256 `f03f7b5566b0d5ede2f72f9d5ecca7b0b867a2a1d0ed389ed4740700c58647a2`.
+Two independent reviewers checked disjoint source batches and their exact
+preimages. Fifty retained PI gains would give Z=140; the target has no margin.
+Native retention and all five phases remain to be verified on frozen inputs.
+
+Collection stopped after 134 requests. All 529 returned metadata records
+are retained; 479 additional summaries remain pending. Thirty-two canonical
+source cases are held, and two IIIS discovery queries remain unassigned.
+Superseded held packets stay preserved beside their selected corrections.
+No query miss becomes a researched no-students reason.
+
+Nine newly used faculty-source origins are declared explicitly: eight with
+actual cached robots/probe evidence, and the former medical-school origin
+only for its captured 2020 archive. All 45 earlier host decisions and blocks
+remain unchanged. No population, eligibility, affiliation/campus scope,
+faculty-period or student-coverage threshold is changed.
+
+Formal Stage 6 remains open against its limit of 18 and the fixed independent
+recall review; Stage 9 accuracy review is unfinished. The six historical
+original-roster gaps remain unrecovered. No formal sample or release is
+provided by this source review.
