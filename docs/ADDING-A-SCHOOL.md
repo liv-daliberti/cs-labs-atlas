@@ -367,7 +367,7 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
 - **Learned from Michigan (2026-10-29):** a PI's home department comes from the same listing row that proves the appointment. No separate profile crawl is needed when the listing carries every title.
 - When a directory title leaves a cross-school faculty member's home ambiguous, a reviewed school-local `census-overrides-school.json` entry may provide `home_department`, `home_department_evidence` (a list of URL, SHA-256 and verbatim-quote items), and `why_home_department`. `home_departments_school.py` applies that sourced decision after inference, keeps the former unit in `also`, and refuses evidence without all three fields. The stage-3 charter-home check still applies.
 
-- **Stage 3 order (friction 26, 27, 29):** `census-refresh` -> `homes` -> `build` (pi_hierarchy: the lab-page audit reads `pis.json`) -> `labpage-discover` -> `labpage-audit`; submit with `atlas stage-gate <key> 3 --run --submit --from-worktree` while the charter is not on main.
+- **Stage 3 order (friction 26, 27, 29):** `census-refresh` -> `homes` -> `build` (pi_hierarchy: the lab-page audit reads `pis.json`) -> `labpage-discover` (an array of 8 shards, per PI) -> `labpage-discover-merge` -> `labpage-audit` (per PI; stage 6 starts with `labpage-history`, the Wayback history of the people and alumni pages, docs/LAB-PAGES.md); submit with `atlas stage-gate <key> 3 --run --submit --from-worktree` while the charter is not on main.
 
 - **v3 (2026-11-05).**
   - *Automated:* `census-refresh` -> `homes` -> `build` -> `labpage-discover` -> `labpage-audit` (stage-3 steps in that order), the stale-build check (a `pis.json` older than

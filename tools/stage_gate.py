@@ -637,8 +637,9 @@ def L(name, script, *args, done=(), shared=False, py='project'):
     return dict(name=name, kind='local', script=script, args=list(args), done=list(done), shared=shared, py=py)
 
 
-def Q(name, cmd, cpus=2, mem='16G', time='04:00:00', py='project', done=(), shared=False, check=None, check_py=None, newer_than=(), complete=None):
-    return dict(name=name, kind='slurm', cmd=cmd, cpus=cpus, mem=mem, time=time, py=py, done=list(done), shared=shared, check=check, check_py=check_py, newer_than=list(newer_than), complete=complete)
+def Q(name, cmd, cpus=2, mem='16G', time='04:00:00', py='project', done=(), shared=False, check=None, check_py=None, newer_than=(), complete=None, array=None):
+    """array=N: N Slurm array tasks of this school (`{task}` in cmd is the task index); a sharded step works on PI chunks (V4a)."""
+    return dict(name=name, kind='slurm', cmd=cmd, cpus=cpus, mem=mem, time=time, py=py, done=list(done), shared=shared, check=check, check_py=check_py, newer_than=list(newer_than), complete=complete, array=array)
 
 
 def H(name, todo):
@@ -666,8 +667,12 @@ STEPS = {
           L('homes', 'tools/home_departments_school.py', '{key}'),   # school-local file; always re-run (the census changed)
           L('homes-shared', 'tools/home_departments_school.py', '{key}', '--write-shared', shared=True),
           Q('build', 'PY $TOOLS/pi_hierarchy.py {school}', cpus=3, mem='40G', time='02:00:00', done=['pis.json']),   # the lab-page audit reads pis.json (Michigan built at stage 3: UChicago friction 27)
-          Q('labpage-discover', 'PY $TOOLS/labpage_audit.py discover {school}', time='12:00:00', done=['labpage-audit-discovery.jsonl'], complete='discovery_marker'),   # R3d: the file exists after the first PI; done = every pis.json PI has a record
-          Q('labpage-audit', 'PY $TOOLS/labpage_audit.py audit {school}', cpus=2, mem='16G', time='02:00:00', done=['labpage-audit.jsonl.gz']),   # discover alone writes labpage-audit-discovery.jsonl; the gate reads the audit's file (friction 29)
+          # V4a (2026-11-17): discovery is sharded over PIs (an array of 8; a PI belongs to the shard its name hashes to, so a rerun gives every open PI to the same shard)
+          # and per PI: a PI with a record is never redone, so a rerun after a time limit or a failed task does only the open PIs. The Wayback start-to-start slot and the
+          # per-host stamps live on shared storage, so the shards pace together. The Wayback history of the people/alumni pages is the students track's step (stage 6).
+          Q('labpage-discover', 'PY $TOOLS/labpage_audit.py discover {school} --shard {task} --of 8', time='08:00:00', done=['labpage-audit-discovery.jsonl'], complete='discovery_marker', array=8),   # R3d: done = every pis.json PI has a record (merged file or shard files)
+          Q('labpage-discover-merge', 'PY $TOOLS/labpage_audit.py discover-merge {school}', cpus=1, mem='8G', time='00:30:00', check=['tools/discovery_marker.py', '{key}', 'merged'], check_py='project'),
+          Q('labpage-audit', 'PY $TOOLS/labpage_audit.py audit {school}', cpus=2, mem='16G', time='02:00:00', done=['labpage-audit.jsonl.gz'], newer_than=['labpage-audit-discovery.jsonl']),   # a rerun after more PIs were discovered (the merge rewrote the file) audits again; discover alone writes labpage-audit-discovery.jsonl; the gate reads the audit's file (friction 29)
           H('pi-basis', 'research and teaching faculty need reviewed evidence of a group or advisees (pi-basis-evidence.json)')],
     '4': [Q('periods-fetch', 'PY $TOOLS/periods_school.py fetch {school}', cpus=1, mem='8G', time='08:00:00'),
           Q('periods-extract', 'PY $TOOLS/periods_school.py extract {school}', time='02:00:00'),
@@ -680,7 +685,10 @@ STEPS = {
           Q('homepage-links', 'PY $TOOLS/homepage_links_school.py {school}', time='04:00:00', done=['homepage-identity.json']),
           Q('dblp-dump-persons', 'PY $TOOLS/dblp_dump_persons.py {school}', mem='24G', time='01:00:00', done=['dblp-dump-persons-school.json.gz']),   # school-local: the shared file feeds release builds (friction 43)
           H('openalex-identity', 'first re-run tools/census_build.py <key> (it folds dblp-ids.json into the census; the gate reads the census), then write hierarchy/<key>/openalex-identity-review.json, then tools/oa_identity_school.py <key>; review namesakes and cross-school PIs')],
-    '6': [Q('labpage-links', 'PY $TOOLS/labpage_students_school.py links {school}', time='06:00:00', py='collector'),
+    '6': [Q('labpage-history', 'PY $TOOLS/labpage_audit.py history {school} --shard {task} --of 4', time='08:00:00', check=['tools/discovery_marker.py', '{key}', 'history'], check_py='project', array=4),   # V4a: the Wayback history of people/alumni pages, lazily, only for PIs with a real people page; through the shared Wayback slot
+          Q('labpage-history-merge', 'PY $TOOLS/labpage_audit.py history-merge {school}', cpus=1, mem='8G', time='00:30:00', check=['tools/discovery_marker.py', '{key}', 'history-merged'], check_py='project'),
+          Q('labpage-audit-history', 'PY $TOOLS/labpage_audit.py audit {school}', cpus=2, mem='16G', time='02:00:00', done=['labpage-audit.jsonl.gz'], newer_than=['labpage-audit-history.jsonl']),   # the audit again, now reading the history captures
+          Q('labpage-links', 'PY $TOOLS/labpage_students_school.py links {school}', time='06:00:00', py='collector'),
           Q('labpage-extract', 'PY $TOOLS/labpage_students_school.py extract {school}', time='04:00:00', py='collector'),
           Q('student-directories', 'PY $TOOLS/labpage_students_school.py directory {school}', time='06:00:00', py='collector'),
           H('rounds', 'the lab-page students rounds (docs/LAB-PAGES.md): a fresh sample of 20, its hand check (atlas review-page), a rule fix and a NEW sample on failure, three failed rounds stop the work; record them in labpage-handcheck.json')],
@@ -783,7 +791,7 @@ def run_stage(key, stage, dry=False, submit=False, force=False, allow_shared=Fal
             log.append(dict(step=n, result='queued' if submit and not dry else 'slurm (not submitted: pass --submit)', cmd=expand(st['cmd'], key)))
     if slurm and submit and not dry and status in ('complete', 'review', 'submitted'):
         import atlas_pipeline as AP
-        stages = [(s['name'], 'school', s['cmd'], s['py'], s['cpus'], s['mem'], s['time']) for s in slurm]
+        stages = [(s['name'], f"array:{s['array']}" if s.get('array') else 'school', s['cmd'], s['py'], s['cpus'], s['mem'], s['time']) for s in slurm]
         jobs = AP.submit(f'stage{stage}-{key}', [key], stages=stages, guard_preempt=True, repo=repo)
         log.append(dict(step='slurm', result='submitted', jobs=jobs))
         status = 'submitted'

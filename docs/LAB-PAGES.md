@@ -38,8 +38,23 @@ The tool is `tools/labpage_audit.py`; it runs on Slurm with `hierarchy/labpage-a
    - each candidate site (live, else the newest Wayback `id_` capture): it must name the PI; a profile page is never a
      site; a site at another institution is never this school's lab page;
    - on the chosen site, its people / members, alumni and publications links (same site; on a department host only under
-     the PI's own path), and up to three Wayback `id_` captures (first, middle, last; 2016-2026, from the PI's first year at
-     the school) of each people and alumni page;
+     the PI's own path). The Wayback history (one CDX lookup and up to three `id_` captures, first / middle / last,
+     2016-2026 from the PI's first year at the school, of each people and alumni page) is **not** requested here since V4a
+     (2026-11-17): it is the students track's step (`labpage_audit.py history`, stage 6), asked only for a PI whose discovery
+     found a people or alumni page (`history_pages` in its record) and read by the audit through `labpage-audit-history.jsonl`;
+   - **local sources first, first proof stops (V4a):** candidates are evaluated in the order reviewed rows (register, earlier
+     pass) -> stored evidence and earlier finds -> DBLP homepage fields -> ORCID researcher URLs -> school profile link, and the
+     search ends at the first candidate no later one could outrank (the register's own website, or a lab site on the school's
+     host that names the PI). The live ORCID record and the remaining candidates are then skipped, recorded as one dated
+     `later_sources_skipped` check; the school profile and its dated `school_profile_link` check (the official-link check the
+     gate needs) are always recorded. `--no-first-stop` and `--history-in-discover` restore the earlier behaviour;
+   - **per PI and sharded (V4a):** a PI with a record is done (a record is a site, or a reason with its checks, or a recorded
+     error); a rerun and every shard do only the open PIs, and one PI's failure never reruns or blocks another. Stage 3 runs
+     `discover --shard i --of 8` as a Slurm array (a PI belongs to the shard its name hashes to; shard files
+     `labpage-audit-discovery.shard-<i>of<n>.jsonl`, folded in by `discover-merge`); the shared Wayback slot
+     (`fulltext-push/host_throttle.py`) and the per-host stamps (`RATE_STAMPS`, NFS locks) are cluster-wide, so the shards pace
+     together. `audit` judges every PI that has a record while the others are open (a failed PI is listed in
+     `labpage-audit-errors.json` and stays open);
    - for labs the 2026-10-22 pass recorded: only other candidate sites (a missed lab site), and the alumni and publications
      links on the stored lab and people pages that pass never read.
 2. **Recover** (network; OpenAlex stops at 6,000 credits left for the day (the shared key allows 10,000 a day; the downloads agent uses the rest):

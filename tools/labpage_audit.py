@@ -45,6 +45,7 @@ import os
 import re
 import sqlite3
 import sys
+import time
 import unicodedata
 import zlib
 from pathlib import Path
@@ -1378,8 +1379,38 @@ def registered_site(url, reg_url):
     return bool(reg_url and url.rstrip('/') == reg_url.rstrip('/'))
 
 
-def discover_lab(kit, school, p, ctx, full=True):
-    """Every place checked for one PI lab, the chosen pages and their captures (see the module docstring)."""
+def history_captures(kit, p, pages, add):
+    """Wayback history of people and alumni pages: one CDX lookup per page and up to three spread captures (first, middle, last of 2016+ or the PI's first year).
+    -> {page url: [capture urls]}; every request goes through the shared start-to-start Wayback slot (Kit)."""
+    wb = {}
+    first = max(WINDOW[0], pi_start_year(p) or WINDOW[0])
+    for k, u in pages:
+        if k not in ('people', 'alumni'):
+            continue
+        rows = kit.cdx(u, frm=first, to=WINDOW[1])
+        add('wayback_cdx', u, f'{len(rows)} captures', frm=first)
+        caps = []
+        for ts in spread([r_[0] for r_ in rows], 3):
+            orig = next(r_[1] for r_ in rows if r_[0] == ts)
+            cu = kit.lpcap.wayback_id(ts, orig)
+            r = kit.fetch(cu, check_robots=False)
+            add('wayback_capture', cu, result_of(r), sha256=r.get('sha256'))
+            if r.get('status') == 200:
+                caps.append(cu)
+        wb[u] = caps
+    return wb
+
+
+# V4a (2026-11-17): the order in which a PI's candidate sites are evaluated, and the sources whose proof ends the search (docs/LAB-PAGES.md, 'Local sources first').
+# reviewed rows (the register, the earlier pass, its seeds) -> stored evidence and earlier finds -> DBLP dump homepage fields -> ORCID researcher URLs -> the school profile link;
+# the live ORCID record and the other candidates are asked only while no earlier source has proved a website.
+SOURCE_ORDER = ('prior_labpage_pass', 'earlier_homepage_find', 'pi_evidence_url', 'dblp_person_url', 'orcid_researcher_url', 'school_profile_link')
+
+
+def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True):
+    """Every place checked for one PI lab, the chosen pages and their captures (see the module docstring).
+    history: the Wayback history of the people and alumni pages (CDX lookup + 3 spread captures per page) is requested here only when True (the pre-V4a behaviour);
+    by default it is the students track's own step (`cmd_history`). first_stop: stop at the first source that proves the PI's website (SOURCE_ORDER)."""
     cfg = SCHOOLS[school]
     dom = cfg['domain']
     checks, cands = [], collections.OrderedDict()
@@ -1395,6 +1426,26 @@ def discover_lab(kit, school, p, ctx, full=True):
         if url and url.startswith('http') and not social(url) and not re.search(r'\.(pdf|jpg|png|docx?)$', url, re.I) \
                 and not is_profile(url, dom):
             cands.setdefault(url, source)
+
+    orcid_mark, orcid_deferred = 0, False
+
+    def orcid_step():
+        # the live ORCID record's researcher URLs (a cached fetch when the record was read before)
+        for o in (p.get('orcid') or [])[:2]:
+            u = f'https://orcid.org/{o}/person.json'
+            r = kit.fetch(u, headers={'Accept': 'application/json'})
+            urls = []
+            if r.get('status') == 200 and r.get('content'):
+                try:
+                    urls = sorted(set(re.findall(r'"(https?://[^"\s]+)"', json.dumps(json.loads(r['content']).get('publicGroupedResearcherUrls') or {}))))
+                except ValueError:
+                    pass
+            add('orcid_researcher_urls', u, (result_of(r) if r.get('status') != 200 else ('listed' if urls else 'no_urls')),
+                sha256=r.get('sha256'), urls=urls or None)
+            for x in urls:
+                cand(x, 'orcid_researcher_url')
+        if not p.get('orcid'):
+            add('orcid_researcher_urls', None, 'no_orcid')
 
     prior = ctx['prior'].get(p['pi'])
     profiles = []
@@ -1479,21 +1530,10 @@ def discover_lab(kit, school, p, ctx, full=True):
         if not p.get('dblp'):
             add('dblp_person_url', None, 'no_dblp_person')
         # 3. ORCID researcher URLs: the public record's person.json on orcid.org (pub.orcid.org's robots.txt disallows all)
-        for o in (p.get('orcid') or [])[:2]:
-            u = f'https://orcid.org/{o}/person.json'
-            r = kit.fetch(u, headers={'Accept': 'application/json'})
-            urls = []
-            if r.get('status') == 200 and r.get('content'):
-                try:
-                    urls = sorted(set(re.findall(r'"(https?://[^"\s]+)"', json.dumps(json.loads(r['content']).get('publicGroupedResearcherUrls') or {}))))
-                except ValueError:
-                    pass
-            add('orcid_researcher_urls', u, (result_of(r) if r.get('status') != 200 else ('listed' if urls else 'no_urls')),
-                sha256=r.get('sha256'), urls=urls or None)
-            for x in urls:
-                cand(x, 'orcid_researcher_url')
-        if not p.get('orcid'):
-            add('orcid_researcher_urls', None, 'no_orcid')
+        orcid_mark = len(cands)
+        orcid_deferred = bool(first_stop and (p.get('orcid') or []))
+        if not orcid_deferred:
+            orcid_step()
         add('openalex_author', (p.get('reviewedOpenAlex') or [None])[0], 'no_homepage_field_in_schema')
         # 4. earlier homepage finds and the PI's own evidence URLs that are homepages
         for u in ctx['homepage_finds'].get(p['pi'], []):
@@ -1511,9 +1551,13 @@ def discover_lab(kit, school, p, ctx, full=True):
     #    evaluated, to catch a missed lab site; its links and Wayback history are scanned by scan_prior)
     recorded = bool(prior and prior.get('lab_site') and not is_profile(prior['lab_site'], dom))
     sites = []
-    for u, src in list(cands.items())[:8]:
+    reg_url = ((ctx.get('registered') or {}).get(p['pi']) or {}).get('url')   # the reviewed register's own website outranks every other candidate (Berkeley Mehr: iconlab.negarmehr.com/people/ over the bare negarmehr.com homepage)
+
+    def eval_one(u, src):
+        """Evaluate one candidate site; True when it was kept AND proves the PI's website beyond what any later source could change."""
         if recorded and src == 'prior_labpage_pass' and kit.stored(u)[0]:
-            continue  # a prior URL without captured bytes still needs checking
+            return False  # a prior URL without captured bytes still needs checking
+        n0 = len(sites)
         r = kit.get(u)
         rt_ = meta_refresh_target(r, u, dom)
         if rt_ and rt_.rstrip('/') != u.rstrip('/'):   # a one-line redirect homepage (CMU Hoe: www.ece.cmu.edu/~jhoe/ -> users.ece.cmu.edu/~jhoe/doku/doku.php): the target is the site
@@ -1521,7 +1565,7 @@ def discover_lab(kit, school, p, ctx, full=True):
             add('meta_refresh_target', rt_, result_of(r2_), on=u, sha256=r2_.get('sha256'))
             if r2_.get('status') == 200 and r2_.get('content'):
                 if any(x_['url'] == rt_ for x_ in sites):
-                    continue
+                    return False
                 u, r = rt_, r2_
         res = result_of(r)
         txt = ''
@@ -1552,6 +1596,41 @@ def discover_lab(kit, school, p, ctx, full=True):
             other_edu = bool(re.search(r'\.edu$|\.ac\.[a-z]{2}$|university|\.edu\.[a-z]{2}$', host)) and not re.search(dom, host)
             sites.append(dict(url=u, row=r, title=title, school_host=bool(re.search(dom, host)), other_school=other_edu, via=src,
                               text=txt, names_pi=names_pi))
+        return len(sites) > n0 and proves(sites[-1])
+
+    def proves(sd):
+        """A site that no later candidate can outrank: the register's own website, or (no register entry) a lab site on the school's host that names the PI.
+        A publications page is never final (its host's root may outrank it), and a lab the earlier pass recorded keeps evaluating (other_candidates)."""
+        if recorded:
+            return False
+        if reg_url:
+            return registered_site(sd['url'], reg_url)
+        return bool(sd['school_host'] and not sd['other_school'] and sd['names_pi'] and is_lab_site(sd['title'], sd['url'])
+                    and not re.search(r'/(publications?|papers|pubs)(\.html?|/)?$', urlsplit(sd['url']).path, re.I))
+
+    items = list(cands.items())[:8]
+    done_urls, stopped = set(), None
+    for u, src in (sorted(items, key=lambda x: SOURCE_ORDER.index(x[1]) if x[1] in SOURCE_ORDER else len(SOURCE_ORDER)) if first_stop else items):
+        done_urls.add(u)
+        if eval_one(u, src) and first_stop:
+            stopped = sites[-1]
+            break
+    if first_stop and not stopped and orcid_deferred:   # no earlier source proved a website: now the live ORCID record
+        before = set(cands)
+        orcid_step()
+        new_ = [(u, c) for u, c in cands.items() if u not in before]
+        order = [(u, c) for u, c in cands.items() if u in before]
+        order = order[:orcid_mark] + new_ + order[orcid_mark:]   # ORCID URLs keep their pre-V4a position, so the first 8 are the same candidates
+        for u, src in sorted(order[:8], key=lambda x: SOURCE_ORDER.index(x[1]) if x[1] in SOURCE_ORDER else len(SOURCE_ORDER)):
+            if u in done_urls:
+                continue
+            done_urls.add(u)
+            if eval_one(u, src):
+                stopped = sites[-1]
+                break
+    if stopped:
+        skipped = [c for u, c in list(cands.items())[:8] if u not in done_urls] + (['orcid_researcher_url'] if orcid_deferred else [])
+        add('later_sources_skipped', stopped['url'], 'site_proven_by_' + stopped['via'], skipped=sorted(set(skipped)) or None)
     fam_t = fold(family(p['pi']))
     named = any(fam_t and fam_t in fold(x['title']) for x in sites)
 
@@ -1559,7 +1638,6 @@ def discover_lab(kit, school, p, ctx, full=True):
         m = re.search(r"\b([A-Z][\w'’-]+)(?:'s)? (?:research group|lab|laboratory|group)\b", x['title'] or '', re.I)
         return bool(named and m and fam_t not in fold(x['title']) and fold(m.group(1)) not in ('the', 'research', 'our', 'mit', 'ai', 'ml'))
     sites = [x for x in sites if not other_group(x)] or sites
-    reg_url = ((ctx.get('registered') or {}).get(p['pi']) or {}).get('url')   # the reviewed register's own website outranks every other candidate (Berkeley Mehr: iconlab.negarmehr.com/people/ over the bare negarmehr.com homepage)
     rank = lambda s: (not registered_site(s['url'], reg_url), not s['school_host'], s['other_school'], not is_lab_site(s['title'], s['url']), not s['names_pi'],
                       len([x for x in urlsplit(s['url']).path.split('/') if x]), s['via'] != 'prior_labpage_pass')
     sites.sort(key=rank)
@@ -1636,25 +1714,12 @@ def discover_lab(kit, school, p, ctx, full=True):
                         break
         if chosen.get('alumni_page'):
             chosen['alumni_details'] = fetch_alumni_subpages(kit, chosen['alumni_page'], add)
-    # 6. Wayback history of the people and alumni pages (2016-2026, from the PI's first year at the school)
-    wb = {}
-    first = max(WINDOW[0], pi_start_year(p) or WINDOW[0])
-    for k, u in pages:
-        if k not in ('people', 'alumni'):
-            continue
-        rows = kit.cdx(u, frm=first, to=WINDOW[1])
-        add('wayback_cdx', u, f'{len(rows)} captures', frm=first)
-        caps = []
-        for ts in spread([r_[0] for r_ in rows], 3):
-            orig = next(r_[1] for r_ in rows if r_[0] == ts)
-            cu = kit.lpcap.wayback_id(ts, orig)
-            r = kit.fetch(cu, check_robots=False)
-            add('wayback_capture', cu, result_of(r), sha256=r.get('sha256'))
-            if r.get('status') == 200:
-                caps.append(cu)
-        wb[u] = caps
+    # 6. Wayback history of the people and alumni pages (2016-2026, from the PI's first year at the school). Since V4a (owner 2026-11-17) the students track asks for it
+    #    (`labpage_audit.py history`), lazily and only for a PI with a people page; discovery keeps the page list so that step needs no second discovery.
+    hist_pages = [(k, u) for k, u in pages if k in ('people', 'alumni')]
+    wb = history_captures(kit, p, hist_pages, add) if history else {}
     return dict(pi=p['pi'], checked_at=now(), checks=checks, chosen=chosen, sites=[dict(url=s['url'], via=s['via'], title=s['title'],
-                school_host=s['school_host'], other_school=s['other_school']) for s in sites], wayback=wb,
+                school_host=s['school_host'], other_school=s['other_school']) for s in sites], wayback=wb, history_pages=hist_pages,
                 robots={h: ok for h, ok in kit.robots_log.items() if not ok})
 
 
@@ -1678,7 +1743,7 @@ def kind_lab(chosen, kit):
                 and re.search(r'/(people|members|team|group|lab-members|our-team)\b', urlsplit(chosen['people_page']).path, re.I))
 
 
-def scan_prior(kit, school, p, ctx):
+def scan_prior(kit, school, p, ctx, history=False):
     """Labs the 2026-10-22 pass recorded: alumni and publications links on the stored lab and people pages that the pass
     never captured; capture them (and up to three Wayback captures of each alumni page)."""
     ev = ctx['prior'].get(p['pi']) or {}
@@ -1706,25 +1771,17 @@ def scan_prior(kit, school, p, ctx):
                 if u.rstrip('/') in used or u in found[k]:
                     continue
                 found[k].append(u)
-    wb = {}
+    wb, hist_pages = {}, []
     for k, us in found.items():
         for u in us:
             r = kit.get(u)
             checks.append(dict(source=f'{k}_link_not_used_by_prior_pass', url=u, at=now(), result=result_of(r),
                                sha256=r.get('sha256'), capture_url=r.get('capture_url')))
             if k == 'alumni' and r.get('status') == 200:
-                first = max(WINDOW[0], pi_start_year(p) or WINDOW[0])
-                rows = kit.cdx(u, frm=first, to=WINDOW[1])
-                caps = []
-                for ts in spread([r_[0] for r_ in rows], 3):
-                    orig = next(r_[1] for r_ in rows if r_[0] == ts)
-                    cu = kit.lpcap.wayback_id(ts, orig)
-                    rr = kit.fetch(cu, check_robots=False)
-                    checks.append(dict(source='wayback_capture', url=cu, at=now(), result=result_of(rr), sha256=rr.get('sha256')))
-                    if rr.get('status') == 200:
-                        caps.append(cu)
-                wb[u] = caps
-    return dict(checks=checks, new_pages={k: v for k, v in found.items()}, wayback=wb)
+                hist_pages.append(('alumni', u))
+                if history:   # pre-V4a behaviour; otherwise the students track's `history` step asks for these
+                    wb.update(history_captures(kit, p, [('alumni', u)], lambda source, url, res, **kw: checks.append(dict(source=source, url=url, at=now(), result=res, **kw))))
+    return dict(checks=checks, new_pages={k: v for k, v in found.items()}, wayback=wb, history_pages=hist_pages)
 
 
 # ---------------------------------------------------------------- context
@@ -1834,14 +1891,43 @@ def discovery_path(school):
     return P.data('labpage-audit-discovery.jsonl', school)
 
 
-def read_discovery(school):
+def history_path(school):
+    return P.data('labpage-audit-history.jsonl', school)
+
+
+def read_jsonl_records(files):
+    """{pi: record}, the latest line per PI over the files in order; an unparsable line (a record cut off by a kill) is skipped."""
     out = {}
-    p = discovery_path(school)
-    if p.exists():
-        for line in open(p, encoding='utf-8'):
-            if line.strip():
-                r = json.loads(line)
-                out[r['pi']] = r  # the latest record per PI wins
+    for f in files:
+        with open(f, encoding='utf-8') as fh:
+            for line in fh:
+                if line.strip():
+                    try:
+                        r = json.loads(line)
+                        out[r['pi']] = r
+                    except (ValueError, KeyError, TypeError):
+                        continue
+    return out
+
+
+def read_history(school):
+    import discovery_marker
+    return read_jsonl_records(discovery_marker.record_files(school, 'labpage-audit-history.jsonl'))
+
+
+def read_discovery(school, history=True):
+    """The discovery record per PI (merged file and shard files; the latest record per PI wins). The Wayback history the students track requested
+    (`history`, labpage-audit-history.jsonl) is laid over each record's `wayback` map, so the audit finds the captures wherever they were requested."""
+    import discovery_marker
+    out = read_jsonl_records(discovery_marker.record_files(school))
+    if history:
+        for pi, h in read_history(school).items():
+            r = out.get(pi)
+            if r is None:
+                continue
+            r['wayback'] = dict(r.get('wayback') or {}, **(h.get('wayback') or {}))
+            if r.get('prior_scan') is not None:
+                r['prior_scan']['wayback'] = dict(r['prior_scan'].get('wayback') or {}, **(h.get('prior_wayback') or {}))
     return out
 
 
@@ -1902,16 +1988,27 @@ def unit_profile_path(url, names):
     return any(t in last for t in toks)
 
 
-def cmd_discover(school, only=None, redo=False, redo_unrecorded=False):
+def cmd_discover(school, only=None, redo=False, redo_unrecorded=False, shard=None, of=None, history=False, first_stop=True):
+    """Stage 3 lab-page discovery, one record per PI. Per PI and resumable: a PI with a record (merged file or any shard file) is skipped unless --redo, so a
+    rerun, a restarted shard and a time-limited job pick up only the open PIs; one PI's exception is recorded as that PI's record and the run goes on.
+    shard i of n (V4a): the PIs whose name hashes to i, written to labpage-audit-discovery.shard-<i>of<n>.jsonl (one writer per file; `discover-merge` folds them
+    in); the shared cluster-wide Wayback slot (fulltext-push/host_throttle.py) and the per-host stamps (atlas_paths RATE_STAMPS) pace every shard together.
+    history=True restores the pre-V4a Wayback history requests inside discovery; first_stop=False the pre-V4a evaluation of every candidate."""
     if SCHOOLS[school].get('read_only'):
         sys.exit(f'{school} is read-only here: audit it from its own lab-page outputs')
+    import discovery_marker
     kit = Kit(school)
     ctx = load_ctx(school, kit)
     load_dblp(ctx)
-    done = read_discovery(school)
-    out = open(discovery_path(school), 'a', encoding='utf-8')
+    done = discovery_marker.recorded(school)
+    sharded = shard is not None
+    target = Path(str(discovery_path(school))[:-len('.jsonl')] + f'.shard-{shard}of{of}.jsonl') if sharded else discovery_path(school)
+    out = open(target, 'a', encoding='utf-8')
+    t_start, n_done = time.time(), 0
     for p in ctx['pis']:
         if only and p['pi'] not in only:
+            continue
+        if sharded and discovery_marker.shard_of(p['pi'], of) != shard:
             continue
         rec_ = ctx['prior'].get(p['pi']) or {}
         unrec = not (rec_.get('lab_site') and not is_profile(rec_['lab_site'], SCHOOLS[school]['domain']))
@@ -1920,26 +2017,95 @@ def cmd_discover(school, only=None, redo=False, redo_unrecorded=False):
         kit.robots_log.clear()
         kit.deferred_archive_urls.clear()
         prior = ctx['prior'].get(p['pi'])
+        t0 = time.time()
         try:
-            rec = discover_lab(kit, school, p, ctx, full=True)
+            rec = discover_lab(kit, school, p, ctx, full=True, history=history, first_stop=first_stop)
             if prior:
-                rec['prior_scan'] = scan_prior(kit, school, p, ctx)
+                rec['prior_scan'] = scan_prior(kit, school, p, ctx, history=history)
         except Exception as e:  # noqa: BLE001 (one lab's failure is recorded and the run goes on; --redo retries it)
             rec = dict(pi=p['pi'], checked_at=now(), checks=[dict(source='discovery_error', url=None, at=now(), result=repr(e)[:300])],
                        chosen=dict(lab_site=None), sites=[], wayback={}, error=repr(e)[:300])
         rec['checks'].extend(dict(source='wayback_pending', url=u, at=now(), result='wayback_deferred')
                              for u in sorted(kit.deferred_archive_urls))
         rec['had_prior_record'] = bool(prior)
+        rec['seconds'] = round(time.time() - t0, 1)
         out.write(json.dumps(rec, ensure_ascii=False) + '\n')
         out.flush()
+        n_done += 1
         print(json.dumps(dict(pi=p['pi'], chosen=rec['chosen'].get('lab_site'), kind=rec['chosen'].get('kind'),
                               people=rec['chosen'].get('people_page'), pubs=rec['chosen'].get('pubs_page'),
-                              checks=len(rec['checks'])), ensure_ascii=False), flush=True)
+                              checks=len(rec['checks']), seconds=rec['seconds']), ensure_ascii=False), flush=True)
     out.close()
-    if not only:   # R3d: an explicit completion record; a run cut short (time limit, kill) leaves none and stage_gate keeps the step open
-        import discovery_marker
+    print(json.dumps(dict(school=school, shard=shard, of=of, pis_done=n_done, seconds=round(time.time() - t_start))), flush=True)
+    if not only and not sharded:   # R3d: an explicit completion record; a run cut short (time limit, kill) leaves none and stage_gate keeps the step open
         discovery_marker.write_marker(school, now())
 
+
+def merge_shards(school, stem='labpage-audit-discovery.jsonl'):
+    """Fold the shard files of a sharded run into the merged file (records not yet in it, or newer than its record of that PI), atomically, then drop the folded
+    shard files. Idempotent; the completion marker is written when every PI has a record. -> number of records added."""
+    import discovery_marker
+    files = discovery_marker.record_files(school, stem)
+    main = Path(P.data(stem, school))
+    shards = [f for f in files if f != main]
+    if not shards:
+        return 0
+    have = read_jsonl_records([main] if main.exists() else [])
+    merged = read_jsonl_records(files)
+    added = [pi for pi in merged if pi not in have or merged[pi] != have[pi]]
+    tmp = main.with_name(main.name + '.tmp')
+    with open(tmp, 'w', encoding='utf-8') as f:
+        for pi in list(dict.fromkeys(list(have) + list(merged))):
+            f.write(json.dumps(merged.get(pi) or have[pi], ensure_ascii=False) + '\n')
+    os.replace(tmp, main)
+    for f in shards:
+        f.unlink()
+    if stem == 'labpage-audit-discovery.jsonl':
+        discovery_marker.write_marker(school, now())
+    return len(added)
+
+
+def cmd_history(school, only=None, shard=None, of=None, redo=False):
+    """The students track's Wayback history (V4a, owner 2026-11-17): for each PI whose discovery found a real people page (or an alumni page the earlier pass never
+    read), one CDX lookup per people/alumni page and up to three spread captures. Written per PI to labpage-audit-history.jsonl (shards like `discover`); the audit
+    reads it through read_discovery. A PI with a record is skipped, so a rerun asks only for the open ones; a PI without a people page never costs a request."""
+    import discovery_marker
+    kit = Kit(school)
+    ctx = load_ctx(school, kit)
+    disc = read_discovery(school, history=False)
+    done = set(read_history(school)) if not redo else set()
+    sharded = shard is not None
+    target = Path(str(history_path(school))[:-len('.jsonl')] + f'.shard-{shard}of{of}.jsonl') if sharded else history_path(school)
+    out = open(target, 'a', encoding='utf-8')
+    n = 0
+    for p in ctx['pis']:
+        d = disc.get(p['pi'])
+        if not d or (only and p['pi'] not in only) or p['pi'] in done:
+            continue
+        if sharded and discovery_marker.shard_of(p['pi'], of) != shard:
+            continue
+        ps = d.get('prior_scan') or {}
+        pages = [tuple(x) for x in d.get('history_pages') or []]
+        if not pages and (d.get('chosen') or {}).get('lab_site') and not d.get('history_pages'):
+            ch = d['chosen']   # a record written before `history_pages` existed: its chosen people/alumni pages
+            pages = [(k, ch[f'{k}_page']) for k in ('people', 'alumni') if ch.get(f'{k}_page')]
+        pprior = [tuple(x) for x in ps.get('history_pages') or []]
+        if not pages and not pprior:
+            continue
+        checks = []
+        add = lambda source, url, res, **kw: checks.append(dict(source=source, url=url, at=now(), result=res, **{k: v for k, v in kw.items() if v}))   # noqa: E731
+        t0 = time.time()
+        try:
+            rec = dict(pi=p['pi'], at=now(), wayback=history_captures(kit, p, pages, add), prior_wayback=history_captures(kit, p, pprior, add), checks=checks)
+        except Exception as e:  # noqa: BLE001 (one PI's failure is that PI's record; the others go on, --redo retries it)
+            rec = dict(pi=p['pi'], at=now(), wayback={}, prior_wayback={}, checks=checks, error=repr(e)[:300])
+        rec['seconds'] = round(time.time() - t0, 1)
+        out.write(json.dumps(rec, ensure_ascii=False) + '\n')
+        out.flush()
+        n += 1
+        print(json.dumps(dict(pi=p['pi'], pages=len(pages) + len(pprior), seconds=rec['seconds'], error=rec.get('error'))), flush=True)
+    out.close()
+    print(json.dumps(dict(school=school, shard=shard, of=of, history_records=n)), flush=True)
 
 
 # ---------------------------------------------------------------- students
@@ -4794,8 +4960,28 @@ def cmd_audit(school):
     ctx = load_ctx(school, kit)
     disc = read_discovery(school)
     verdicts = recover_verdicts(school)
-    recs, stu_adds, pap_adds, _ = assemble(kit, ctx, disc, verdicts)
+    # per PI (V4a, owner 2026-11-17): the audit judges each PI that has its discovery record (or an earlier pass's record) while other PIs are still open; a PI
+    # without one has no audit record, so the website gate names it open instead of the whole school waiting; one PI's failure is recorded, never fatal to the others
+    todo = [p for p in ctx['pis'] if p['pi'] in disc or ctx['prior'].get(p['pi'])]
+    if len(todo) < len(ctx['pis']):
+        print(f'audit: {len(todo)} of {len(ctx["pis"])} PIs have discovery records; the others stay open', flush=True)
+    recs, stu_adds, pap_adds, errors = [], [], [], {}
+    for p in todo:
+        try:
+            r_, s_, p_, _ = assemble(kit, ctx, disc, verdicts, only=[p])
+        except Exception as e:  # noqa: BLE001
+            errors[p['pi']] = repr(e)[:300]
+            print(f"audit error for {p['pi']}: {errors[p['pi']]}", flush=True)
+            continue
+        recs += r_; stu_adds += s_; pap_adds += p_
     write_audit(school, recs, stu_adds, pap_adds)
+    ep = Path(P.data('labpage-audit-errors.json', school))
+    if errors:
+        ep.write_text(json.dumps(dict(at=now(), errors=errors), indent=1) + '\n', encoding='utf-8')
+    elif ep.exists():
+        ep.unlink()
+    if errors:
+        print(f'audit: {len(errors)} PI(s) failed and stay open: {sorted(errors)[:5]}', flush=True)
 
 
 DEGREE_SENTENCE = re.compile(r'\b(?:received|obtained|earned|holds|graduated with)\b[^.]{0,50}\b(?:B\.?\s?S\.?|M\.?\s?S\.?|Ph\.?\s?D\.?|Bachelor|Master|degree)', re.I)
@@ -5182,7 +5368,7 @@ def record_round(spec):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['discover', 'recover', 'audit', 'audit-chunk', 'audit-merge', 'recover-audit', 'all', 'summary', 'sample', 'restamp', 'record', 'semester-alumni'])
+    ap.add_argument('cmd', choices=['discover', 'discover-merge', 'history', 'history-merge', 'recover', 'audit', 'audit-chunk', 'audit-merge', 'recover-audit', 'all', 'summary', 'sample', 'restamp', 'record', 'semester-alumni'])
     ap.add_argument('--kind', choices=['students', 'papers'], default='students')
     ap.add_argument('--n', type=int, default=20)
     ap.add_argument('--seed', type=int, default=0)
@@ -5193,6 +5379,9 @@ def main():
     ap.add_argument('--out', default=None)
     ap.add_argument('--pages', nargs='*', default=[], help='semester-alumni: URL:ROLE pairs')
     ap.add_argument('--redo', action='store_true')
+    ap.add_argument('--shard', type=int, default=None, help='discover/history: shard i of --of n (PIs whose name hashes to i; shard file, merged by discover-merge)')
+    ap.add_argument('--history-in-discover', action='store_true', help='discover: also request the Wayback history (the pre-V4a behaviour)')
+    ap.add_argument('--no-first-stop', action='store_true', help='discover: evaluate every candidate site (the pre-V4a behaviour)')
     ap.add_argument('--live-first', action='store_true', help='Live discovery with cached-only Wayback; uncached archive requests remain pending')
     ap.add_argument('--redo-unrecorded', action='store_true', help='discover again every lab the 2026-10-22 pass did not record')
     ap.add_argument('--title-credits', type=int, default=600)
@@ -5203,7 +5392,14 @@ def main():
         import faulthandler
         faulthandler.dump_traceback_later(900, repeat=True)
     if a.cmd in ('discover', 'all'):
-        cmd_discover(a.school, a.pi, a.redo, a.redo_unrecorded)
+        cmd_discover(a.school, a.pi, a.redo, a.redo_unrecorded, shard=a.shard, of=a.of if a.shard is not None else None,
+                     history=a.history_in_discover, first_stop=not a.no_first_stop)
+    if a.cmd == 'discover-merge':
+        print(json.dumps(dict(school=a.school, records_added=merge_shards(a.school), open=len(__import__('discovery_marker').open_pis(a.school)))))
+    if a.cmd == 'history-merge':
+        print(json.dumps(dict(school=a.school, records_added=merge_shards(a.school, 'labpage-audit-history.jsonl'))))
+    if a.cmd == 'history':
+        cmd_history(a.school, a.pi, a.shard, a.of if a.shard is not None else None, a.redo)
     if a.cmd == 'recover':
         cmd_recover(a.school, a.title_credits)
     if a.cmd in ('recover-audit', 'all'):
