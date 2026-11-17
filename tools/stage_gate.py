@@ -161,6 +161,14 @@ def unit_founding_year(key, department, cfg):
     return year, []
 
 
+def census_listing_years(key, code, lo, hi):
+    """Years in the window in which census faculty rows say the department listed them (a roster captured outside the planner)."""
+    cen = read(P.data('census-faculty.json', key), {})
+    cen = cen.get('faculty', []) if isinstance(cen, dict) else cen
+    return sorted({y for x in cen for y in x.get('years_listed') or []
+                   if code in (x.get('listed_in') or x.get('departments') or []) and lo <= y <= hi})
+
+
 def g1(key):
     cov = read(P.data('coverage.json', key), {}); lo, hi = S.get(key).get('window')
     departments = S.get(key).get('departments') or []
@@ -197,7 +205,13 @@ def g1(key):
                 any_source = True
             else:
                 open_years.append(f"{y}: " + ('; '.join(sorted(set(v.values()))) or 'never planned'))
-        coverage_report[d['code']] = dict(partial_or_uncovered=open_years, has_roster_source=any_source)
+        outside = None
+        if not any_source:
+            # listings accepted by hand before the planner existed: the census rows still prove a roster source (reported, not failed)
+            outside = census_listing_years(key, d['code'], lo, hi)
+            any_source = bool(outside)
+        coverage_report[d['code']] = dict(partial_or_uncovered=open_years, has_roster_source=any_source,
+                                          **({'captured_outside_planner_years': outside} if outside else {}))
         if not any_source:
             bad.append(f"{d['code']}: no roster source in any window year (a department needs at least one)")
     counts = dict(departments=len(departments), reviewed_gap_years=sum(len(d.get('listing_gaps') or {}) for d in departments))

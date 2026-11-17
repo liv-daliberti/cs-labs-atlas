@@ -146,3 +146,11 @@ def test_gate1_partial_years_are_reported_not_blocking(monkeypatch, tmp_path):
 def test_gate1_fails_when_a_department_has_no_roster_source_at_all(monkeypatch, tmp_path):
     bad, _ = _g1(monkeypatch, tmp_path, {'D': {'2017': {'a H1': 'nocapture: x'}}})
     assert bad == ['D: no roster source in any window year (a department needs at least one)']
+
+
+def test_gate1_roster_captured_outside_the_planner_is_reported_not_failed(monkeypatch, tmp_path):
+    (tmp_path / 'census-faculty.json').write_text(json.dumps({'faculty': [{'name': 'A', 'listed_in': ['D'], 'years_listed': [2016, 2017]}]}))
+    bad, counts = _g1(monkeypatch, tmp_path, {})
+    assert bad == [] and counts['roster_coverage']['D']['captured_outside_planner_years'] == [2016, 2017]
+    (tmp_path / 'census-faculty.json').write_text(json.dumps({'faculty': []}))
+    assert _g1(monkeypatch, tmp_path, {})[0] == ['D: no roster source in any window year (a department needs at least one)']
