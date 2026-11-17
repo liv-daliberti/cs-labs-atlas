@@ -1,6 +1,6 @@
 {
   "school": "tsinghua",
-  "scope": "Explicit reviewed live directories in their actual 2026 observation year; SW 41 and INSC 55 names. No historical year or PI appointment interval inferred.",
+  "scope": "Explicit reviewed live directories in their actual 2026 observation year; SW 41 and INSC 55 names. No historical year or PI appointment interval inferred. PI:85faculty entries from the complete87-card actual2026JSON response;2engineers remain source facts, excluded by title filter.",
   "sources": [
     {
       "dept": "SW",
@@ -29,6 +29,20 @@
           "url": "https://www.insc.tsinghua.edu.cn/szdw_/jsml.htm",
           "sha256": "0005a1694ed5782ec45177981e2dc8a906586df82bee4b5ca7f8cdd3c4c2451d",
           "fetched_at": "2026-11-16T13:05:17"
+        }
+      ]
+    },
+    {
+      "dept": "PI",
+      "slot": "PI current2026reviewed source",
+      "format": "tsinghua_dpi_json",
+      "complete": true,
+      "expected_entries": 85,
+      "pages": [
+        {
+          "url": "https://faculty.dpi.tsinghua.edu.cn/system/resource/tsites/jmyq/advancesearch.jsp?collegeid=1069&disciplineid=0&enrollid=0&pageindex=1&pagesize=100000&rankid=0&degreeid=0&honorid=0&pinyin=&profilelen=100&teacherName=&searchDirection=&categoryid=1022&viewmode=8&viewid=1077542&siteOwner=2147142196&viewUniqueId=1077542&showlang=zh_CN&ispreview=false&basenum=0&ellipsis=...&alignright=false&productType=0&tutorType=",
+          "sha256": "b7a2e2d51262e068895e1c470db12ba9d27b38597bd696b01736616d3e5aed55",
+          "fetched_at": "2026-11-17T01:07:12"
         }
       ]
     }

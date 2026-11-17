@@ -37,6 +37,7 @@ import html as H
 import json
 import re
 from bs4 import BeautifulSoup
+from urllib.parse import urljoin, urlsplit
 
 TAG = re.compile(r'<[^>]+>')
 
@@ -1604,6 +1605,62 @@ def tsinghua_iiis_media(h):
     return out
 
 
+_TS_SW_EN_ROLES={
+ 'Guest Professor':'Guest Professor',
+ 'Distinguished Visiting Professors':'Distinguished Visiting Professor',
+ 'Visiting Professor':'Visiting Professor',
+ 'Professors':'Professor',
+ 'Associate Professors':'Associate Professor',
+ 'Assistant Professors':'Assistant Professor',
+}
+_TS_SW_EN_HONORS={'Academician of Chinese Acadamy of Engineering','NSFC Distinguished Young Scholars Program Recipients'}
+_TS_SW_EN_MAIN={'Professors','Associate Professors','Assistant Professors'}
+_TS_SW_EN_BASE='https://www.thss.tsinghua.edu.cn/publish/soften/3553/index.html'
+def _ts_sw_source_occurrences(h):
+ soup=BeautifulSoup(h,'html.parser');box=soup.select_one('div.box_detail')
+ if box is None or not box.find('h2') or clean(box.find('h2').get_text(' ',strip=True))!='Faculty':
+  raise ValueError('SW English source lacks the Faculty article container')
+ out=[];band=None;seen_bands=set()
+ for p in box.find_all('p',recursive=False):
+  strong=p.find('strong')
+  if strong:
+   band=clean(strong.get_text(' ',strip=True))
+   if band not in _TS_SW_EN_ROLES and band not in _TS_SW_EN_HONORS:raise ValueError('Unreviewed SW faculty band: '+band)
+   seen_bands.add(band)
+  for a in p.find_all('a',href=True):
+   shown=clean(a.get_text(' ',strip=True));name=shown.rstrip(',').strip()
+   if not name or band is None:raise ValueError('SW source has an unnamed or unbanded person')
+   link=urljoin(_TS_SW_EN_BASE,a['href']);u=urlsplit(link)
+   if u.scheme not in ('http','https'):raise ValueError('SW source profile is not a public web link')
+   # Only the literal siblings after this person's link can supply its qualifier.
+   tail=[]
+   for sibling in a.next_siblings:
+    if getattr(sibling,'find',None) and getattr(sibling,'name',None) and sibling.find('a'):break
+    if getattr(sibling,'name',None)=='a':break
+    tail.append(sibling.get_text(' ',strip=True) if getattr(sibling,'name',None) else str(sibling))
+   qualifier='on leave' if re.match(r'^\s*\(on leave\)',clean(' '.join(tail))) else None
+   out.append(dict(name_listed=name,quote_name=shown,source_band=band,profile=link,qualifier=qualifier,appointment_band=band in _TS_SW_EN_ROLES,main_rank_band=band in _TS_SW_EN_MAIN))
+ if not set(_TS_SW_EN_ROLES).issubset(seen_bands):raise ValueError('SW source lost a reviewed appointment band')
+ return out
+
+def tsinghua_sw_english_bands(h):
+ occurrences=_ts_sw_source_occurrences(h);by_profile={}
+ for p in occurrences:
+  if not p['appointment_band']:continue
+  key=p['profile'];role=_TS_SW_EN_ROLES[p['source_band']]
+  if key in by_profile:raise ValueError('SW source repeats an appointment profile; resolve its role explicitly')
+  titles=[role]+([p['qualifier']] if p['qualifier'] else [])
+  by_profile[key]=dict(name_listed=p['name_listed'],titles=titles,profile=key,homepage=None,division=p['source_band'],quote_parts=[p['quote_name'],p['source_band']]+([p['qualifier']] if p['qualifier'] else []))
+ # Every honorary occurrence must independently identify a real listed appointment.
+ # Same profile plus same cleaned name establishes source-local deduplication only.
+ for p in occurrences:
+  if p['appointment_band']:continue
+  existing=by_profile.get(p['profile'])
+  if existing is None or existing['name_listed']!=p['name_listed']:raise ValueError('SW honor lacks matching individual appointment/profile')
+ return list(by_profile.values())
+
+
+
 def tsinghua_sw_old_list(h):
     """Tsinghua School of Software list 2012-2020 (/publish/soft/3655/index.html, 教师名录): `div#s2_right_con` with `<p><strong>band</strong></p>` then a
     `<p>` of names, linked (`<a>`) or plain text separated by spaces. The band (院士, 杰青, 教授, 讲师/助理研究员/助理教授, ...) is the title; honour bands
@@ -1798,6 +1855,20 @@ def tsinghua_dpi_archive(h):
                 continue
             out.append(dict(name_listed=name, titles=[role], profile=href, homepage=None, division=division,
                             **({'quote_name': shown} if shown != name else {})))
+    return out
+
+
+def tsinghua_dpi_json(raw_text):
+    """Listing format; title eligibility remains in the charter's title_filter."""
+    # Use the existing source-extraction bootstrap; both paths share validation.
+    from school_web import extract
+    import json_people
+    extract.json_blocks(raw_text.encode())  # validate the same original JSON used for quotes
+    out = []
+    for _group, p in json_people.dpi_teacher_records(json.loads(raw_text)):
+        name, title, unit = (p[k].strip() for k in ('teacherName', 'prorank', 'unit'))
+        out.append(dict(name_listed=name, titles=[title], profile=p['url'], homepage=None, division=unit,
+                        quote_parts=[name, title]))
     return out
 
 
@@ -2295,6 +2366,7 @@ FORMATS = {
     'tsinghua_au_old_list': (tsinghua_au_old_list, re.compile(r'<table[^>]*uetable')),
     'tsinghua_insc_bands': (tsinghua_insc_bands, re.compile(r'(?!)')),
     'tsinghua_dpi_archive': (tsinghua_dpi_archive, re.compile(r'(?!)')),
+    'tsinghua_dpi_json': (tsinghua_dpi_json, re.compile(r'(?!)')),
     'tsinghua_dpi_rendered': (tsinghua_dpi_rendered, re.compile(r'(?!)')),
     'tsinghua_me_zh': (tsinghua_me_zh, re.compile(r'(?!)')),
     'tsinghua_me_en': (tsinghua_me_en, re.compile(r'(?!)')),
@@ -2302,6 +2374,7 @@ FORMATS = {
     'tsinghua_bme_cards': (tsinghua_bme_cards, re.compile(r'(?!)')),
     'tsinghua_ee_embedded': (tsinghua_ee_embedded, re.compile(r'function topage_\d_\d\(keyword, yjly, szm\)')),
     'tsinghua_ee_rendered': (tsinghua_ee_rendered, re.compile(r'id="showdatainfo')),
+    'tsinghua_sw_english_bands': (tsinghua_sw_english_bands, re.compile(r'(?!)')),
     'tsinghua_sw_old_list': (tsinghua_sw_old_list, re.compile(r'id="s2_right_con"[^>]*>.{0,400}教师名录', re.S)),
     'tsinghua_cs_old_list': (tsinghua_cs_old_list, re.compile(r'class="box_detail"[^<]*<h1[^>]*>.{0,200}在职教师名录', re.S)),
     'tsinghua_iiis_media': (tsinghua_iiis_media, re.compile(r'class="color_danger"')),

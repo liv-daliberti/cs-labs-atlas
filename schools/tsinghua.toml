@@ -190,6 +190,18 @@ listing_gaps = {2021 = "exact-URL CDX 2026-11-10: the old list /publish/soft/365
   title_filter = ''
   # Old School of Software 教师名录 (CDX 2012-2020, no 2014 capture; samples 2016/2018/2020 parse 72/63/60 rows, 65/55/54 distinct names; bands as titles, honour bands repeat people).
 
+[[departments.listings]]
+slot = "SW soften3553 archive2021"
+kind = "main"
+url = "www.thss.tsinghua.edu.cn/publish/soften/3553/index.html"
+from = "20210101"
+to = "20211231"
+prefix = false
+match = ""
+format = "tsinghua_sw_english_bands"
+title_filter = "^(?:Professor|Associate Professor|Assistant Professor)$"
+
+
 [[departments]]
 code = "AIR"
 name = "Institute for AI Industry Research"
@@ -635,6 +647,18 @@ listing_gaps = {2016 = "exact-URL CDX 2026-11-10 (discover_listings, job 3219131
   # Source-backed successor of the old publish/dpi/5135 JavaScript redirects.
   # Saved 2018, 2019, 2021, 2022, 2024 and 2025 captures contain complete institute-grouped cards.
   # Staff cards retain their written roles in the parser and are excluded by the faculty title filter.
+
+
+[[departments.listings]]
+slot = "PI current2026reviewed source"
+kind = "main"
+url = "faculty.dpi.tsinghua.edu.cn/system/resource/tsites/jmyq/advancesearch.jsp?collegeid=1069&disciplineid=0&enrollid=0&pageindex=1&pagesize=100000&rankid=0&degreeid=0&honorid=0&pinyin=&profilelen=100&teacherName=&searchDirection=&categoryid=1022&viewmode=8&viewid=1077542&siteOwner=2147142196&viewUniqueId=1077542&showlang=zh_CN&ispreview=false&basenum=0&ellipsis=...&alignright=false&productType=0&tutorType="
+from = "20260101"
+to = "20261231"
+prefix = false
+match = ""
+format = "tsinghua_dpi_json"
+title_filter = "教授|研究员|院士|讲师"
 
 
 [[affiliated_units]]

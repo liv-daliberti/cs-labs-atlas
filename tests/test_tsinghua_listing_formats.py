@@ -1,5 +1,100 @@
 """Tsinghua listing formats (CS list, School of Software names, IIIS cards, Automation cards): real markup of the captured pages."""
 import listing_formats as L
+import copy
+import json
+
+import pytest
+
+
+def dpi_json_fixture():
+    return dict(totalnum=2, totalpage=1, pageindex=1, teacherData=[
+        dict(collegeName='光电工程研究所', teacherlist=[
+            dict(teacherId=1, teacherName='李甲', name='李甲', prorank='教授', unit='光电工程研究所',
+                 url='https://faculty.dpi.tsinghua.edu.cn/lijia.html', email='private@example.org')]),
+        dict(collegeName='系机关', teacherlist=[
+            dict(teacherId=2, teacherName='王乙', prorank='工程师', unit='系机关',
+                 url='https://faculty.dpi.tsinghua.edu.cn/wangyi.html')])])
+
+
+def test_dpi_json_keeps_same_record_name_role_and_unit_without_contacts():
+    from school_web import extract
+    from listing_rows import quote_of
+    raw = json.dumps(dpi_json_fixture(), ensure_ascii=False)
+    _, rows = L.parse(raw, 'tsinghua_dpi_json')
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [
+        ('李甲', ['教授'], '光电工程研究所'), ('王乙', ['工程师'], '系机关')]
+    assert rows[0]['profile'] == 'https://faculty.dpi.tsinghua.edu.cn/lijia.html'
+    flat = ' '.join(' '.join(t for _, t in extract.blocks(raw.encode(), 'application/json', '')).split())
+    assert [quote_of(flat, r) for r in rows] == ['李甲 [...] 教授', '王乙 [...] 工程师']
+    assert 'private@example.org' not in flat + str(rows)
+    # Eligibility stays explicit in the charter; parsing cannot promote staff.
+    import re
+    assert sum(bool(re.search('教授|研究员|院士|讲师', r['titles'][0])) for r in rows) == 1
+
+
+@pytest.mark.parametrize('change', ['count', 'paged', 'duplicate', 'foreign', 'role', 'group', 'name', 'boolean'])
+def test_dpi_json_both_paths_reject_partial_or_ambiguous_source(change):
+    import json_people
+    doc = copy.deepcopy(dpi_json_fixture())
+    if change == 'count':
+        doc['totalnum'] = 3
+    elif change == 'paged':
+        doc['totalpage'] = 2
+    elif change == 'duplicate':
+        doc['teacherData'][1]['teacherlist'][0]['teacherId'] = 1
+    elif change == 'foreign':
+        doc['teacherData'][0]['teacherlist'][0]['url'] = 'https://foreign.example/person'
+    elif change == 'role':
+        del doc['teacherData'][0]['teacherlist'][0]['prorank']
+    elif change == 'group':
+        doc['teacherData'][1]['collegeName'] = '光电工程研究所'
+    elif change == 'name':
+        doc['teacherData'][0]['teacherlist'][0]['name'] = '别的人'
+    else:
+        doc['totalnum'] = True
+    raw = json.dumps(doc, ensure_ascii=False)
+    with pytest.raises(ValueError):
+        L.parse(raw, 'tsinghua_dpi_json')
+    with pytest.raises(ValueError):
+        json_people.blocks(raw.encode())
+
+
+SW_ENGLISH = '''<div class="box_detail"><h2>Faculty</h2>
+<p><strong>Academician of Chinese Acadamy of Engineering</strong></p><p><a href="/alpha.htm">Alpha One</a></p>
+<p><strong>Guest Professor</strong></p><p><a href="/guest.htm">Guest One</a></p>
+<p><strong>Distinguished Visiting Professors</strong></p><p><a href="/distinguished.htm">Distinguished One</a></p>
+<p><strong>Visiting Professor</strong></p><p><a href="/visiting.htm">Visitor One</a></p>
+<p><strong>Professors</strong></p><p><a href="/alpha.htm">Alpha One</a></p>
+<p><strong>Associate Professors</strong></p><p><a href="/beta.htm">Beta Two</a>(on leave)</p>
+<p><strong>Assistant Professors</strong></p><p><a href="/gamma.htm">Gamma Three</a></p>
+<p><strong>NSFC Distinguished Young Scholars Program Recipients</strong></p><p><a href="/beta.htm">Beta Two</a></p>
+</div>'''
+
+
+def test_sw_english_preserves_roles_leave_and_source_local_honor_deduplication():
+    from bs4 import BeautifulSoup
+    from listing_rows import quote_of
+    import re
+    rows = L.parse(SW_ENGLISH, 'tsinghua_sw_english_bands')[1]
+    assert len(rows) == 6
+    by = {r['name_listed']: r for r in rows}
+    assert by['Beta Two']['titles'] == ['Associate Professor', 'on leave']
+    assert by['Guest One']['titles'] == ['Guest Professor']
+    assert by['Distinguished One']['titles'] == ['Distinguished Visiting Professor']
+    flat = ' '.join(BeautifulSoup(SW_ENGLISH, 'html.parser').get_text(' ', strip=True).split())
+    assert all(quote_of(flat, r) for r in rows)
+    eligible = [r for r in rows if any(re.fullmatch('Professor|Associate Professor|Assistant Professor', t) for t in r['titles'])]
+    assert {r['name_listed'] for r in eligible} == {'Alpha One', 'Beta Two', 'Gamma Three'}
+    assert 'Academician' not in str([r['titles'] for r in rows])
+
+
+@pytest.mark.parametrize('replacement', [
+    ('/alpha.htm\">Alpha One</a></p>\n<p><strong>Guest', '/other.htm\">Alpha One</a></p>\n<p><strong>Guest'),
+    ('<h2>Faculty</h2>', '<h2>Research</h2>'),
+    ('<strong>Associate Professors</strong>', '<strong>Unknown Fellows</strong>')])
+def test_sw_english_rejects_unmatched_honor_or_changed_source_structure(replacement):
+    with pytest.raises(ValueError):
+        L.parse(SW_ENGLISH.replace(*replacement), 'tsinghua_sw_english_bands')
 
 
 DPI_ARCHIVE = '''<div class="home home3"><div class="dl"><h6>导航类别</h6></div><div class="dr">

@@ -1,0 +1,13 @@
+# Tsinghua reviewed source batch,2026-11-17
+
+This batch consolidates the independently source-identified Andrew Chi-Chih Yao / 姚期智 duplicate into one canonical PI, preserving both original source rows and unresolved historical years in BILINGUAL-PI-CONSOLIDATION-20261117.json. Kangping Xu is explicitly rekeyed; his original dated role/source facts are unchanged. Yang Liu (Veronica) and 刘洋 remain distinct. A light census/student pass measures361PIs and1069source memberships; this is not the final native package.
+
+The complete eligible Huang Longbo roster and explicit co-adviser episodes add or corroborate50source objects across five PI contexts. All702prior roster objects survive after the explicit Yao rekey. Nine unsupported/future/undated episodes remain held in the preserved source proposal. Three PI-specific researched reasons record absent published Tsinghua rosters on multiple owned sources, never zero students. Pan Hao's named MSRA collaborators remain explicitly scoped to his earlier Microsoft work.
+
+DPI: actual HTTPJSON SHA b7a2e2d51262e068895e1c470db12ba9d27b38597bd696b01736616d3e5aed55 contains87complete same-object teacher cards;85faculty survive the written-title filter and2engineers remain excluded source facts. Structural totals/unique IDs/one page and original source/normal quote paths are verified. Observation applies to2026H2 only.
+
+SW: archived20210928142649 raw SHA c55784ec59109519b2cadd146479c0e1e5c6fde6fd4542bc66137ee213b7fc41 contains55distinct appointment profiles and6same-name/same-profile honorary repeats. All55normal quotes verify.44regular faculty survive the exact rank filter;11guest/visiting entries remain source facts, with no ladder-rank inference. On-leave is preserved. Observation applies to2021H2 only.
+
+Root and an independent source reviewer rehashed/read the originals and reviewed the production parser paths. These are source approvals, not gate, recall or accuracy verdicts. Original stores/proposals and failed baseline are retained under scratch/tsinghua-publication-1117, scratch/tsinghua-recall-source-1117 and scratch/tsinghua-historical-sources-1117.
+
+Formal research is incomplete. Remaining historical source years: AIR2020/2021, INSC2016, BME2016/2021, PI2020/2023. Broader whole-school student recall and a fresh final accuracy review remain required. Use the standard listing replay and sealed closeout on the private candidate; do not inherit old verdicts or relabel an interim website publication as stage0–9 acceptance.
