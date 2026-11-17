@@ -11,8 +11,9 @@ What the catalogue and the loop actually read (from the code, not the docs):
 None of it reads the lab-page audit, the website register, the lab-page students or papers acceptance, the student recall, the chain audit or the
 copies/ledger (stages 3's website part, 6, 7 and 8's outputs). The catalogue is the INPUT of stage 8, so stage 8 can not be its precondition.
 
-The rule (school level, then per PI; `stage_gate.py <key> catalogue`):
-  school  gates 0, 1 and 2 pass (or are waived); pis.json and lab_papers.jsonl.gz exist and are NOT older than the inputs the build reads for
+The rule (school level, then per PI; `stage_gate.py <key> catalogue`). Process v4 (owner decision 1, 2026-11-17): the census is per person too, so gates 1 and 2
+no longer hold the school; a PI is held when a gate-2 finding names them (tools/pi_states.py attributes it):
+  school  gate 0 (charter, hosts, snapshot) passes (or is waived) and the bulk-pull sanity check (stage_gate.sweep_gate) passes; pis.json and lab_papers.jsonl.gz exist and are NOT older than the inputs the build reads for
           identity, appointment windows and papers (SETTLE_INPUTS). The stage-3 website/lab-page audit files and every student file are not in it.
   per PI  a settled appointment window (stage_gate.period_basis: a reviewed period, a contiguous run of listing years, or a reviewed unproven gap) AND
           an identity anchor (stage_gate.identity_basis: DBLP id, ORCID, reviewed OpenAlex id, or a reviewed no_identity). A PI without both is HELD:
@@ -32,7 +33,7 @@ from pathlib import Path
 import atlas_paths as P  # noqa: E402
 import stage_gate as SG  # noqa: E402
 
-GATES = ('0', '1', '2')
+GATES = ('0',)   # gates 1 and 2 are per person since process v4 (census findings that name a PI hold that PI only)
 # Data names the build reads for identity, appointment windows and papers. Deliberately absent: lab-websites.json, person-websites.json, labpage-*
 # (the stage-3 audit), students.json, student-*.json, labpage-acceptance.json, labpage-handcheck.json and the other stage 6-8 files.
 SETTLE_INPUTS = ('census-faculty.json', 'census-additions.json', 'cs-related-review.json', 'census-overrides-school.json', 'faculty-periods.json',
@@ -49,12 +50,13 @@ def _mtime(p):
 
 
 def school_blockers(key):
-    """Why the school as a whole cannot start: gates 0-2, a built package, a build newer than the identity/period/paper inputs."""
+    """Why the school as a whole cannot start: gate 0, the sweep check, a built package, a build newer than the identity/period/paper inputs."""
     out = []
     for g in GATES:
         r = SG.evaluate(key, g)
         if r['gate'] == 'fail':
             out.append(f"gate {g} fails ({r['open']} open): {(r['items'] or ['?'])[0][:140]}")
+    out += SG.sweep_gate(key)   # the OpenAlex sweep feeds every PI's papers: one school-wide technical check
     outs = {n: _mtime(P.data(n, key)) for n in OUTPUTS}
     missing = [n for n, t in outs.items() if t is None]
     if missing:
@@ -67,15 +69,28 @@ def school_blockers(key):
     return out
 
 
+def census_holds(key):
+    """{census PI name: [gate-2 findings that name them]}: an unresolved decision, a display-name collision, a pending review of THIS person."""
+    import pi_states as PS
+    names = PS.Names(key)
+    out = {}
+    for item in SG.evaluate(key, '2')['unwaived_items']:
+        who = names.of(item)
+        if who:
+            out.setdefault(who, []).append('census: ' + item.split(': ', 1)[1][:160])
+    return out
+
+
 def pi_status(key):
     """{census PI name or alias: dict(name, period, identity, reasons)}: the per-PI settled test. `reasons` empty = settled."""
+    holds = census_holds(key)
     per, ov, have = SG.periods_have(key)
     bad_iso = {n for n, _f, _v in SG.non_iso_periods(per)}
     out = {}
     for x in SG.pis_of(key):
         period = SG.period_basis(key, x, have, ov)
         ident = SG.identity_basis(x, ov.get(x['name']) or {})
-        reasons = []
+        reasons = list(holds.get(x['name'], []))
         if not period:
             reasons.append('appointment window not settled (no reviewed period, listing years not contiguous)')
         elif x['name'] in bad_iso:

@@ -1,4 +1,4 @@
-"""downloads_ready (R3c): the catalogue and loop need gates 0-2, a fresh build and, per PI, a settled window and identity; never the stage 3-8 audits."""
+"""downloads_ready (R3c): the catalogue and loop need gate 0, a fresh build and, per PI, a settled window and identity; never the stage 3-8 audits."""
 import gzip
 import json
 import os
@@ -54,7 +54,8 @@ def build(tmp_path, monkeypatch, gates='pass', newer=None):
     if newer:
         os.utime(d / newer, (2000, 2000))
     monkeypatch.setattr(DR.P, 'data', lambda n, k=None: d / n)
-    monkeypatch.setattr(DR.SG, 'evaluate', lambda key, g: dict(gate=gates, open=1, items=['x']))
+    monkeypatch.setattr(DR.SG, 'evaluate', lambda key, g: dict(gate=gates, open=1, items=['x'], unwaived_items=['x']))
+    monkeypatch.setattr(DR.SG, 'sweep_gate', lambda key: [])
     return d
 
 

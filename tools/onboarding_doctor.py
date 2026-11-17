@@ -146,6 +146,22 @@ def gate_reports(key, mode):
     return reports
 
 
+def pi_state_view(key, mode):
+    """Per-PI admission (process v4): the recorded hierarchy/<key>/reports/pi-states.json, or computed live with --gates live; None when off or never written."""
+    if mode == 'off':
+        return None
+    import pi_states as PS
+    try:
+        res = PS.compute(key) if mode == 'live' else PS.recorded(key)
+    except Exception as exc:   # a gate that cannot run is reported, never a pass
+        return dict(error=f'{type(exc).__name__}: {exc}')
+    if not res:
+        return None
+    return dict(at=res.get('at'), line=PS.summary_line(res), pis_total=res['pis_total'], downloadable=res['downloadable'], open_pis=res['open_pis'][:20],
+                n_open=len(res['open_pis']), counts=res['counts'], school_items=sum(len(v) for v in res['school_items'].values()),
+                release_ready=res['release_ready'])
+
+
 def evidence_view(key):
     """For a store-sourced school (charter [evidence] source = "store"): does the reviewed JSON view equal the evidence store's export? None for other schools."""
     import evidence_store as E
@@ -185,13 +201,17 @@ def school_report(key, site, reader, gates):
             stale[stage] = dict(stale=None, reason=str(exc))
     reports = gate_reports(key, gates)
     evidence = evidence_view(key)
-    first = next((g for g in reports if g['stage'] < 10 and g['gate'] not in ('pass', 'waived')), None)
+    pi_view = pi_state_view(key, gates)
+    # stages 3-7 are per PI (process v4): a failing gate there is shown in pi_states, it is not the school's first blocker
+    first = next((g for g in reports if g['stage'] < 10 and g['stage'] not in (3, 4, 5, 6, 7) and g['gate'] not in ('pass', 'waived')), None)
     actions = []
     if stale.get('build', {}).get('stale'):
         actions.append(f'Build from committed reviewed inputs: bin/atlas pipeline build-audit SCHOOLS={key} --from-worktree')
     if first:
         actions.append(f'Inspect stage {first["stage"]}: bin/atlas stage-gate {key} {first["stage"]} --json'
                        + (' (recorded evidence only; evaluate live before deciding)' if gates == 'recorded' else ''))
+    if pi_view and pi_view.get('n_open'):
+        actions.append(f"{pi_view['n_open']} of {pi_view['pis_total']} PIs are open ({pi_view['downloadable']} downloadable now): bin/atlas stage-gate {key} admission")
     if evidence and evidence['problems']:
         actions.append(f'The {key} JSON view differs from its evidence store ({len(evidence["problems"])} problems): bin/atlas evidence-store check {key}; '
                        f'if the store is right, bin/atlas evidence-store sync {key} and commit; never edit the reviewed JSON by hand')
@@ -204,7 +224,7 @@ def school_report(key, site, reader, gates):
         actions.append('Preserve stored_copy as storedCopy in the site importer and display local-copy provenance separately from read location.')
     return dict(school=key, package=str(package), copies=str(counter), website=str(website),
                 copies_counted_at=(copies or {}).get('summary', {}).get('counted_at'), counts=counts, gaps=gaps,
-                gates_basis=gates, gates=reports, evidence_view=evidence, stale=stale, next_actions=actions, errors=errors)
+                gates_basis=gates, gates=reports, pi_states=pi_view, evidence_view=evidence, stale=stale, next_actions=actions, errors=errors)
 
 
 def markdown(report):
@@ -221,6 +241,8 @@ def markdown(report):
                                         'local_paper_missing_from_site', 'local_missing_reader')]]) + ' |')
     for school in report['schools']:
         lines += ['', '## ' + school['school'], '']
+        if school.get('pi_states') and school['pi_states'].get('line'):
+            lines.append('- Per-PI admission (census/3/4/5/6/7 = done/excluded/open): ' + school['pi_states']['line'])
         lines += ['- ' + action for action in school['next_actions']]
         lines += ['- Unmeasured: ' + error for error in school['errors']]
     return '\n'.join(lines) + '\n'

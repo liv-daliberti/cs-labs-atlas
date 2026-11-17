@@ -40,8 +40,9 @@ ones here, heavy ones as one Slurm pipeline of afterok stages, `--submit`), skip
 at a failed step or a hand step and prints what to review, then evaluates the gate and writes hierarchy/<key>/reports/stage-<n>-gate.json.
 It refuses a released school: this command never writes released data. A step that writes a shared file runs only with `--allow-shared`.
 
-catalogue   (not a numbered stage) `stage_gate.py <key> catalogue [--record]`: may the school's download catalogue and loop start now? Gates 0-2 pass, the
-            build is fresh, and per PI a settled window + identity anchor; the other PIs are held, not the school (tools/downloads_ready.py; R3c 2026-11-17)
+catalogue   (not a numbered stage) `stage_gate.py <key> catalogue [--record]`: may the school's download catalogue and loop start now? Gate 0 and the sweep check pass,
+            the build is fresh, and per PI a clean census, a settled window and an identity anchor; the other PIs are held, not the school (tools/downloads_ready.py)
+admission   (not a numbered stage) `stage_gate.py <key> admission [--record]` = tools/pi_states.py: the per-PI state table of stages 3-7 (done / excluded_with_reason / open)
 
 usage: stage_gate.py <key> --traps   (every onboarding trap check, tools/onboarding_traps.py)
        stage_gate.py <key> [stage ...] [--run [--dry-run] [--submit] [--from-worktree] [--force] [--allow-shared]] [--json]
@@ -585,9 +586,15 @@ def g10(key):
     man = read(Path(P.RELEASES) / 'latest' / 'MANIFEST.json') or {}
     if key not in (man.get('counts') or {}):
         bad.append('the newest release does not count this school')
-    return bad, {}
+    # Process v4 (owner decision 1, 2026-11-17): stages 3-7 are judged per PI (tools/pi_states.py) and never hold the school; the RELEASE stays
+    # school-wide and needs every PI done or excluded with a reason, and no open school item (an acceptance, a sample statistic) of stages 2-7.
+    import pi_states as PS
+    res = PS.compute(key)
+    bad += PS.release_findings(key, res)
+    return bad, dict(pis=res['pis_total'], pis_open=len(res['open_pis']), pis_downloadable=res['downloadable'])
 
 
+PER_PI_STAGES = ('3', '4', '5', '6', '7')   # judged per PI (tools/pi_states.py); a failing gate here holds the PIs it names, not the school
 GATES = {'0': g0, '1': g1, '2': g2, '3': g3, '4': g4, '5': g5, '6': g6, '7': g7, '8': g8, '9': g9, '10': g10}
 
 
@@ -825,6 +832,9 @@ def main(argv=None):
     if a.stages == ['catalogue']:   # R3c: the downloads-ready check (tools/downloads_ready.py); never blocked by the stage 3-8 gates
         import downloads_ready as DR
         return DR.main([key] + (['--record'] if a.record else []) + (['--json'] if a.json else []))
+    if a.stages == ['admission']:   # process v4: the per-PI state table of stages 3-7 (tools/pi_states.py)
+        import pi_states as PS
+        return PS.main([key] + (['--write'] if a.record else []) + (['--json'] if a.json else []))
     stages = a.stages or list(GATES)
     bad_stage = [s for s in stages if s not in GATES]
     if bad_stage:
@@ -853,9 +863,14 @@ def main(argv=None):
             rep = Path(P.HIERARCHY) / key / 'reports'
             rep.mkdir(parents=True, exist_ok=True)
             (rep / f'stage-{st}-gate.json').write_text(json.dumps(dict(school=key, at=__import__('datetime').datetime.now(__import__('datetime').timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), run=ran, result=res), indent=1) + '\n')
-        if ran and (ran['status'] in ('review', 'failed', 'submitted') or res['gate'] == 'fail'):
+        if ran and (ran['status'] in ('review', 'failed', 'submitted') or (res['gate'] == 'fail' and st not in PER_PI_STAGES)):   # stages 3-7 never stop the chain: their open items are per PI
             print(f"stopped at stage {st}: {ran['status']}")
             break
+    if (a.run or a.record) and not a.dry_run and any(st in PER_PI_STAGES for st in stages):
+        import pi_states as PS   # the per-PI table is refreshed whenever a per-PI stage was evaluated and recorded
+        res = PS.compute(key)
+        PS.write(key, res)
+        print(PS.summary_line(res))
     if a.json:
         print(json.dumps(out))
     return 0 if ok else 1

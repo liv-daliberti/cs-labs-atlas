@@ -169,6 +169,8 @@ def test_gate10_needs_release_status_and_manifest(tree, monkeypatch):
     rel = tree.root / 'rel' / 'latest'
     rel.mkdir(parents=True)
     monkeypatch.setattr(P, 'RELEASES', tree.root / 'rel')
+    import pi_states as PS
+    monkeypatch.setattr(PS, 'compute', lambda key: dict(pis_total=0, open_pis=[], downloadable=0, pis={}, school_items={}, ratchet_items={}))   # per-PI part: tests/test_pi_states.py
     assert G.evaluate('u', 10)['open'] == 2
     tree.cfg['status'] = 'released'
     (rel / 'MANIFEST.json').write_text(json.dumps({'counts': {'u': {}}}))
