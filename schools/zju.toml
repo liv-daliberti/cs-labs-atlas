@@ -241,11 +241,65 @@ code = "CSE"
 name = "浙江大学控制科学与工程学院"
 url = "http://www.cse.zju.edu.cn/ys/list.htm"
 listings = [] # only Sun Youxian individually reviewed; no blanket computing-faculty admission
+  [[affiliated_units.slots]]
+  slot = "CSE 师资队伍 teacher list (2023-2025)"
+  kind = "main"
+  url = "www.cse.zju.edu.cn/39568/list.htm"
+  from = "20230101"
+  to = "20251231" # names-only table by institute, own college site, Wayback captures 2023-06..2025-02 (exact-URL CDX 2026-11-17)
+  prefix = false
+  match = ""
+  format = "zju_cse_teacher_list"
+  title_filter = ''
 [[affiliated_units]]
 code = "ISEE"
 name = "College of Information Science and Electronic Engineering"
 url = "http://www.isee.zju.edu.cn/jsss/list.htm"
 listings = [] # cached navigation identifies research units; faculty/rank/computing-scope review remains open
+  [[affiliated_units.slots]]
+  slot = "ISEE 师资队伍 paged table (2019)"
+  kind = "main"
+  url = "www.isee.zju.edu.cn/21034/list.htm"
+  from = "20190101"
+  to = "20191231" # 18-page ranked table (175 records) on the college's own site, Wayback captures 2019-05..2019-09 (exact-URL CDX 2026-11-17)
+  prefix = false
+  match = ""
+  format = "zju_isee_table"
+  title_filter = ''
+[[affiliated_units]]
+code = "EE"
+name = "College of Electrical Engineering"
+unit = "浙江大学电气工程学院"
+title_match = ''
+url = "http://ee.zju.edu.cn/index.php?s=/Index/teacher/catid/17.html"
+listings = [] # no URL-only listing: the dated slot below carries the archived rosters (owner task 2026-11-17: rosters of the other colleges the pending candidates name)
+  [[affiliated_units.slots]]
+  slot = "EE 教师队伍 (2018-2020)"
+  kind = "main"
+  url = "ee.zju.edu.cn/index.php?s=/Index/teacher/catid/17.html"
+  from = "20180101"
+  to = "20201231" # names-only list by institute, own college site, Wayback captures 2018-07..2020-05 (exact-URL CDX 2026-11-17)
+  prefix = false
+  match = ""
+  format = "zju_ee_teach_list"
+  title_filter = ''
+[[affiliated_units]]
+code = "MATH"
+name = "School of Mathematical Sciences"
+unit = "浙江大学数学科学学院"
+title_match = ''
+url = "http://www.math.zju.edu.cn/teachers.asp"
+listings = []
+  [[affiliated_units.slots]]
+  slot = "MATH teachers.asp (2016-2018)"
+  kind = "main"
+  url = "www.math.zju.edu.cn/teachers.asp"
+  from = "20160101"
+  to = "20181231" # names-only list by institute, own department site (ASP), Wayback captures 2016-01..2018-05 (exact-URL CDX 2026-11-17)
+  prefix = false
+  match = ""
+  format = "zju_math_teachers_asp"
+  title_filter = ''
 [[affiliated_units]]
 code = "NESC"
 name = "网络传感与控制研究组 (Group of Networked Sensing and Control)"

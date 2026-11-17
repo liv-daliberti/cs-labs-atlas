@@ -107,6 +107,10 @@ def fetch_pages(con, s, cap, html, lo, hi, dept, min_entries=1):
             if rows is None:
                 raise RuntimeError(f"CDX failed for {want}")
             rows = [r for r in rows if r["statuscode"] in ("200", "-") and lo <= r["timestamp"][:8] <= hi]
+            if not rows and want.endswith(".htm"):  # Webplus serves later pages of a paged list as .psp (ZJU ISEE list6.psp ...): same page, other extension
+                alt = want[:-4] + ".psp"
+                rows = wb.cdx({"url": alt, "from": lo, "to": hi, "output": "json", "fl": "timestamp,original,statuscode,digest", "limit": "200"}, con) or []
+                rows = [r for r in rows if r["statuscode"] in ("200", "-") and lo <= r["timestamp"][:8] <= hi]
             rows.sort(key=lambda r: abs(days(r["timestamp"]) - days(ts0)))
             ok = None
             for r in rows[:2]:

@@ -1485,6 +1485,88 @@ def zju_cst_szdw_names(h):
     return out
 
 
+def zju_isee_table(h):
+    """ZJU College of Information Science and Electronic Engineering 师资队伍 (www.isee.zju.edu.cn/21034/list*.htm, the 2018-2019 paged table, 10 rows a page): each row's
+    first cell is `<img alt=name>` plus the name, then rank, department (学系/研究所/院机关) and research cells. Rank '未填写' (not filled in) is no title; contact cells
+    (phone, e-mail, office) are never kept. Staff rows (院机关) are kept with their printed department as the division."""
+    from bs4 import BeautifulSoup
+    out = []
+    for tr in BeautifulSoup(h, 'html.parser').select('table tr'):
+        tds = tr.find_all('td', recursive=False)
+        if len(tds) < 4 or tds[0].find('img') is None:
+            continue
+        printed = ' '.join(tds[0].get_text(' ', strip=True).split())
+        name = re.sub(r'[\s\u3000]+', '', printed)
+        if not re.fullmatch(r'[\u4e00-\u9fff]{2,4}', name):
+            continue
+        rank = clean(tds[1].get_text(' ', strip=True))
+        out.append(dict(name_listed=name, quote_name=printed, titles=[] if rank in ('', '未填写') else [rank], profile=None, homepage=None,
+                        division=clean(tds[2].get_text(' ', strip=True)) or None))
+    return out
+
+
+def zju_ee_teach_list(h):
+    """ZJU College of Electrical Engineering 教师队伍 (ee.zju.edu.cn/index.php?s=/Index/teacher/catid/17.html, 2018-2020): `div.teach-title` institute headings, each
+    followed by `ul.teach-list` of `a.teach-wrap > h3` names (names only, no rank). The post-doctoral group (博士后) is not faculty and is skipped."""
+    from bs4 import BeautifulSoup
+    out = []
+    soup = BeautifulSoup(h, 'html.parser')
+    for it in soup.select('div.items div.introduce'):   # the 2018 template: name <h3>, department <dd>, printed title <dd> (the detail link is the last <dd>)
+        h3 = it.find('h3')
+        dds = [clean(d.get_text(' ', strip=True)) for d in it.find_all('dd') if not d.find('a')]
+        printed = ' '.join(h3.get_text(' ', strip=True).split()) if h3 else ''
+        m = re.match(r'^[A-Za-z\-. ]*\(?([\u4e00-\u9fff]{2,4})\)?$', printed)
+        name = re.sub(r'[\s\u3000]+', '', printed) if re.fullmatch(r'[\u4e00-\u9fff\s\u3000]{2,5}', printed) else (m.group(1) if m else '')
+        if name:
+            out.append(dict(name_listed=name, quote_name=printed, titles=dds[1:2], profile=None, homepage=None, division=dds[0] if dds else None))
+    if out:
+        return out
+    for ul in soup.select('ul.teach-list'):
+        title = ul.find_previous('div', class_='teach-title')
+        division = clean(title.get_text(' ', strip=True)) if title else None
+        if division and '博士后' in division:
+            continue
+        for a in ul.select('a.teach-wrap'):
+            h3 = a.find('h3')
+            printed = ' '.join((h3 or a).get_text(' ', strip=True).split())
+            name = re.sub(r'[\s\u3000]+', '', printed)
+            if re.fullmatch(r'[\u4e00-\u9fff]{2,4}', name):
+                out.append(dict(name_listed=name, quote_name=printed, titles=[], profile=a.get('href'), homepage=None, division=division))
+    return out
+
+
+def zju_math_teachers_asp(h):
+    """ZJU School of Mathematical Sciences 师资队伍 (www.math.zju.edu.cn/teachers.asp, ASP site 2016-2018, GB2312): a bold centred cell names the institute, the table after it holds
+    one `<a href=teacher_intro.asp?userid=N>name</a>` per teacher. Names only (no rank)."""
+    out = []
+    division = None
+    for m in re.finditer(r'font-weight:\s*bold">([^<]{2,30})</td>|<a href=teacher_intro\.asp\?userid=(\d+)[^>]*>([^<]+)</a>', h):
+        if m.group(1):
+            division = clean(m.group(1))
+            continue
+        printed = ' '.join(m.group(3).split())
+        name = re.sub(r'[\s\u3000]+', '', printed)
+        if re.fullmatch(r'[\u4e00-\u9fff]{2,4}', name):
+            out.append(dict(name_listed=name, quote_name=printed, titles=[], profile='teacher_intro.asp?userid=' + m.group(2), homepage=None, division=division))
+    return out
+
+
+def zju_cse_teacher_list(h):
+    """ZJU College of Control Science and Engineering 师资队伍 (www.cse.zju.edu.cn/39568/list.htm, 2023-2025): `h3.research-name` institute headings, then `li.teacher-item > a`
+    names (names only, no rank)."""
+    from bs4 import BeautifulSoup
+    out = []
+    for h3 in BeautifulSoup(h, 'html.parser').select('h3.research-name'):
+        division = clean(h3.get_text(' ', strip=True))
+        ul = h3.find_next('ul', class_='teacher-list')
+        for a in (ul.select('li.teacher-item a') if ul else []):
+            printed = ' '.join(a.get_text(' ', strip=True).split())
+            name = re.sub(r'[\s\u3000]+', '', printed)
+            if re.fullmatch(r'[\u4e00-\u9fff]{2,4}', name):
+                out.append(dict(name_listed=name, quote_name=printed, titles=[], profile=a.get('href'), homepage=None, division=division))
+    return out
+
+
 def tsinghua_cs_list(h):
     """Tsinghua CS faculty list (jzgml.htm): institute <h4>, rank band <h3>, then <li> cards `<h2><a title=NAME>` + first <p> = title.
     Phone and e-mail <p>s are contact lines and are never kept."""
@@ -2419,6 +2501,10 @@ FORMATS = {
     'zju_cad_fixed_researchers': (zju_cad_fixed_researchers, re.compile(r'class="zhuwenn"')),
     'zju_cad_fixed_researchers_2025': (zju_cad_fixed_researchers_2025, re.compile(r'elementor-heading-title[^>]*>院士<')),
     'zju_cst_szdw_names': (zju_cst_szdw_names, re.compile(r'class="wp_articlecontent"[^>]*>\s*<div[^>]*paging_content[^>]*>\s*<table')),
+    'zju_isee_table': (zju_isee_table, re.compile(r'class="zp"')),
+    'zju_ee_teach_list': (zju_ee_teach_list, re.compile(r'class="teach-list"|class="introduce"')),
+    'zju_math_teachers_asp': (zju_math_teachers_asp, re.compile(r'teacher_intro\.asp\?userid=')),
+    'zju_cse_teacher_list': (zju_cse_teacher_list, re.compile(r'class="research-name"')),
     'tsinghua_cs_list': (tsinghua_cs_list, re.compile(r'class="people01-nr"')),
     'tsinghua_sw_names': (tsinghua_sw_names, re.compile(r'class="group-title"')),
     'tsinghua_iiis_cards': (tsinghua_iiis_cards, re.compile(r'class="ls16 flex"')),

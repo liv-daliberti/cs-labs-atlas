@@ -89,7 +89,7 @@ def decode(raw, content_type=None):
         if m:
             cs = m.group(1)
     if not cs:
-        m = re.search(rb"<meta[^>]+charset=[\"']?([\w-]+)", raw[:4000], re.I)
+        m = re.search(rb"<meta[^>]+charset=[\"']?([\w-]+)", raw[:20000], re.I)
         if m:
             cs = m.group(1).decode("ascii", "replace")
     if cs and cs.lower().replace("_", "-") in ("gb2312", "gbk", "gb-2312"):

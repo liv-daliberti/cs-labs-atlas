@@ -228,7 +228,7 @@ def text(b):
     try:
         return b.decode("utf-8")
     except UnicodeDecodeError:
-        if re.search(rb'charset\s*=\s*["\']?(?:gb2312|gbk|gb18030)', b[:4000], re.I):
+        if re.search(rb'charset\s*=\s*["\']?(?:gb2312|gbk|gb18030)', b[:20000], re.I):  # 2026-11-17: the ZJU math ASP page declares its charset after ~5 KB of inline script
             return b.decode("gb18030", "replace")
         return b.decode("utf-8", "replace")
 

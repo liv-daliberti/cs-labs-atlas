@@ -77,3 +77,55 @@ def test_zju_cst_szdw_names_collapse_wide_space_keep_printed_quote():
     rows = F.FORMATS['zju_cst_szdw_names'][0](CST)
     assert [(r['name_listed'], r['quote_name']) for r in rows] == [('尹建伟', '尹建伟'), ('伍赛', '伍 赛')]
     assert F.FORMATS['zju_cst_szdw_names'][1].search(CST) and F.FORMATS['zju_cst_szdw_names'][0]('<html></html>') == []
+
+
+ISEE = """<table><tbody><tr><td width="15%"><img src="/a_s.jpg" alt="蔡云龙" class="zp"><div>蔡云龙
+ </div></td><td>副教授</td><td>信息与通信工程系</td><td>通信信号处理</td><td><p>邮箱：ylcai@zju.edu.cn</p></td></tr>
+<tr><td><img src="/b_s.jpg" alt="蔡超" class="zp"><div>蔡超</div></td><td>未填写</td><td>院机关</td><td>综合办公室</td><td>x</td></tr></tbody></table>"""
+
+
+def test_zju_isee_table_name_rank_division_no_contact():
+    rows = F.FORMATS['zju_isee_table'][0](ISEE)
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('蔡云龙', ['副教授'], '信息与通信工程系'), ('蔡超', [], '院机关')]
+    assert all('@' not in str(r) for r in rows)
+    assert F.FORMATS['zju_isee_table'][1].search(ISEE) and F.FORMATS['zju_isee_table'][0]('<html></html>') == []
+
+
+EE = """<div class="teach-title">学院教职工</div><div class="teach-title">电机及其控制研究所</div><ul class="teach-list"><li><a class="teach-wrap" href="https://person.zju.edu.cn/xcl"><h3>夏长亮</h3></a></li>
+<li><a class="teach-wrap" href="https://person.zju.edu.cn/a"><h3>黄 进</h3></a></li></ul><div class="teach-title">博士后</div><ul class="teach-list"><li><a class="teach-wrap" href="x"><h3>陈小元</h3></a></li></ul>"""
+
+
+def test_zju_ee_teach_list_institutes_skip_postdocs():
+    rows = F.FORMATS['zju_ee_teach_list'][0](EE)
+    assert [(r['name_listed'], r['division']) for r in rows] == [('夏长亮', '电机及其控制研究所'), ('黄进', '电机及其控制研究所')]
+    assert F.FORMATS['zju_ee_teach_list'][1].search(EE) and F.FORMATS['zju_ee_teach_list'][0]('<html></html>') == []
+
+
+MATH = """<td align=center valign=middle height=27 style="font-size: 16px; font-weight: bold">数学研究所</td><table><tr><td><a href=teacher_intro.asp?userid=35 target=_blank>蔡天新</a></td>
+<td><a href=teacher_intro.asp?userid=71 target=_blank>陈志国</a></td></tr></table><td style="font-weight: bold">应用数学研究所</td><a href=teacher_intro.asp?userid=9>王伟</a>"""
+
+
+def test_zju_math_teachers_asp_names_by_institute():
+    rows = F.FORMATS['zju_math_teachers_asp'][0](MATH)
+    assert [(r['name_listed'], r['division']) for r in rows] == [('蔡天新', '数学研究所'), ('陈志国', '数学研究所'), ('王伟', '应用数学研究所')]
+    assert F.FORMATS['zju_math_teachers_asp'][1].search(MATH) and F.FORMATS['zju_math_teachers_asp'][0]('<html></html>') == []
+
+
+CSE = """<h3 class="research-name">工业控制研究所</h3><ul class="teacher-list"><li class="teacher-item"><a href="/2022/0706/c72508a2660272/page.htm">柴利</a></li>
+<li class="teacher-item"><a href="/x">程鹏</a></li></ul><h3 class="research-name">智能感知与检测研究所</h3><ul class="teacher-list"><li class="teacher-item"><a href="/y">曹云琦</a></li></ul>"""
+
+
+def test_zju_cse_teacher_list_names_by_institute():
+    rows = F.FORMATS['zju_cse_teacher_list'][0](CSE)
+    assert [(r['name_listed'], r['division']) for r in rows] == [('柴利', '工业控制研究所'), ('程鹏', '工业控制研究所'), ('曹云琦', '智能感知与检测研究所')]
+    assert F.FORMATS['zju_cse_teacher_list'][1].search(CSE) and F.FORMATS['zju_cse_teacher_list'][0]('<html></html>') == []
+
+
+EE18 = """<div class="items"><div class="introduce"><h3>宋永华</h3><dd>电机工程学系</dd><dd>英国皇家工程院院士、教授、博士生导师</dd><dd><a href="/x">[查看详情]</a></dd></div></div>
+<div class="items"><div class="introduce"><h3>Pierre-Daniel Pfister (福义涛)</h3><dd>电机工程学系</dd><dd>副教授</dd><dd><a href="/y">[查看详情]</a></dd></div></div>"""
+
+
+def test_zju_ee_teach_list_2018_template_keeps_printed_title():
+    rows = F.FORMATS['zju_ee_teach_list'][0](EE18)
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('宋永华', ['英国皇家工程院院士、教授、博士生导师'], '电机工程学系'), ('福义涛', ['副教授'], '电机工程学系')]
+    assert F.FORMATS['zju_ee_teach_list'][1].search(EE18)
