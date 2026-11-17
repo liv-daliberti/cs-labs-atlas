@@ -77,11 +77,14 @@ def oa_work_id(school, r):
     return f"{school}_oa_{oa_short(r['oa'])}"
 
 
-def lab_papers(school):
-    """{paper key: row} (first row per key, as tools/lab_paper_copies.py) with 'pis' = every PI the paper is listed for."""
+def lab_papers(school, keep=None):
+    """{paper key: row} (first row per key, as tools/lab_paper_copies.py) with 'pis' = every PI the paper is listed for.
+    keep (R3c, add_works --early): a predicate over rows; a row it rejects is left out (a PI not yet settled)."""
     out, pis = {}, defaultdict(list)
     for line in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt'):
         r = json.loads(line)
+        if keep is not None and not keep(r):
+            continue
         k = r['work'] or r['oa']
         out.setdefault(k, r)
         if r['pi'] not in pis[k]:

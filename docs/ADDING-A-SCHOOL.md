@@ -623,6 +623,13 @@ OpenAlex co-authorship is never on its own evidence of advising.
     a recorded gate is not the truth: compare its time with the newest reviewed file before diagnosing a rule problem [L-71, L-83]; the lab-page additions must not shrink after wiring [L-60].
   - *Debt:* `build-audit` ending with the diagnosis and the student audit, naming a failed stage's log (ROADMAP #53) [L-74].
 
+## Downloads start early (R3c, owner 2026-11-17)
+The catalogue and the loop do not wait for the stage 3-8 gates. They read the built `lab_papers.jsonl.gz`, the census anchors, the appointment windows and the store; they never read the lab-page audit, website register, students or copies/ledger (stage 8's outputs are measured FROM the catalogue).
+- `bin/atlas stage-gate <key> catalogue [--record]` (`tools/downloads_ready.py`) passes when gates 0-2 pass, `pis.json`/`lab_papers.jsonl.gz` exist and are not older than the identity/period/paper inputs (`SETTLE_INPUTS`), and then decides PER PI: a settled window (reviewed period, contiguous listing years, reviewed unproven gap; the same-year-listing and no-papers-outside-the-window rules stay in the build) and an identity anchor (DBLP, ORCID, reviewed OpenAlex id, or a reviewed `no_identity`). A PI without both is held; its papers are not added yet.
+- `fulltext-push/add_works.py <key> --early` adds only the settled PIs' papers and records the held PIs and why in `hierarchy/<key>/reports/downloads-ready.json`. After stage 4/5 settle more PIs: rebuild (`pi_hierarchy.py`), run `add_works.py <key> --early` again (it adds only what the catalog lacks).
+- `loop_starter.py --early <key>` starts the loop (after `warm_copy_cache`) from that record; without `--early` nothing changes. Released schools are untouched.
+- Stage 8's gate is unchanged and still needs the full copies measurement; this only moves WHEN downloads begin.
+
 ## Stage 8: full texts
 - **Do:**
   - Create the store catalog (stage 0), then add the lab papers (`fulltext-push/add_works.py`).

@@ -5,7 +5,9 @@ For every school still waiting, every INTERVAL seconds: stores/<s>/.copy-quality
 of 2026-11-10: a cancelled loop still held it) -> `atlas submit --test-only`, refuse on "Preempts:", then submit school-collector.slurm with
 SCHOOL and CHANNELS in the environment. Each start is recorded in logs/loop-starter.json, so a restart of this job never starts a school twice.
 Exits 0 when every school is started. Local file reads only; no polling faster than INTERVAL (default 60 s).
-usage: loop_starter.py <school> [<school> ...]     env LOOP_STARTER_CHANNELS (default "oa_arxiv europepmc pmc"), LOOP_STARTER_INTERVAL_S
+--early (R3c, 2026-11-17): a school that is still onboarding may start from its downloads-ready record (tools/downloads_ready.py: gates 0-2, a fresh build,
+add_works --early run; its stage 3-8 gates may be open) instead of waiting for them. ready() then also needs that record. Without --early nothing changes.
+usage: loop_starter.py [--early] <school> [<school> ...]     env LOOP_STARTER_CHANNELS (default "oa_arxiv europepmc pmc"), LOOP_STARTER_INTERVAL_S
 """
 import fcntl
 import json
@@ -46,8 +48,13 @@ def loop_job_of(store):
         return ''
 
 
-def ready(school, store, live, raw):
-    """Why the school cannot start yet, or None."""
+def ready(school, store, live, raw, early=False):
+    """Why the school cannot start yet, or None. early: also require the school's recorded downloads-ready (add_works --early done)."""
+    if early:
+        import downloads_ready as DR
+        why = DR.start_blocker(school)
+        if why:
+            return why
     if not (Path(store) / '.copy-quality-warm.json').exists():
         return 'cache not warm'
     if (Path(raw) / MARKER).exists():
@@ -84,7 +91,7 @@ def submit(school, channels, run=subprocess.run, code=None, extra_env=None):
     return None
 
 
-def main(schools):
+def main(schools, early=False):
     state_file = F.P.FT_LOGS / 'loop-starter.json'
     channels = os.environ.get('LOOP_STARTER_CHANNELS', '')   # empty: the charter decides (school-collector.slurm ignores CHANNELS unless CHANNELS_FORCE=1)
     interval = int(os.environ.get('LOOP_STARTER_INTERVAL_S', '60'))
@@ -99,7 +106,7 @@ def main(schools):
             return 0
         live = live_jobs()
         for s in todo:
-            why = ready(s, F.FT / s, live, F.P.FT_RAW)
+            why = ready(s, F.FT / s, live, F.P.FT_RAW, early=early)
             if why:
                 continue
             job = submit(s, channels)
@@ -112,4 +119,4 @@ def main(schools):
 
 
 if __name__ == '__main__':
-    sys.exit(main(sys.argv[1:]))
+    sys.exit(main([a for a in sys.argv[1:] if a != '--early'], early='--early' in sys.argv))

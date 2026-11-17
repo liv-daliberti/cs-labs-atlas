@@ -40,6 +40,9 @@ ones here, heavy ones as one Slurm pipeline of afterok stages, `--submit`), skip
 at a failed step or a hand step and prints what to review, then evaluates the gate and writes hierarchy/<key>/reports/stage-<n>-gate.json.
 It refuses a released school: this command never writes released data. A step that writes a shared file runs only with `--allow-shared`.
 
+catalogue   (not a numbered stage) `stage_gate.py <key> catalogue [--record]`: may the school's download catalogue and loop start now? Gates 0-2 pass, the
+            build is fresh, and per PI a settled window + identity anchor; the other PIs are held, not the school (tools/downloads_ready.py; R3c 2026-11-17)
+
 usage: stage_gate.py <key> --traps   (every onboarding trap check, tools/onboarding_traps.py)
        stage_gate.py <key> [stage ...] [--run [--dry-run] [--submit] [--from-worktree] [--force] [--allow-shared]] [--json]
 """
@@ -381,41 +384,66 @@ def proven_years(key, name):
     return {int(y) for y in ((d.get(name) or {}).get('evidence') or {})}
 
 
-def g4(key):
+def period_basis(key, x, have, ov):
+    """How a PI's appointment window is settled (stage 4's per-PI rule), or None: 'period' (a reviewed period), 'gap_reviewed_unproven',
+    'contiguous_listings' (a same-year listing proves each year from the first to the last listed year)."""
+    if x['name'] in have:
+        return 'period'
+    ys = sorted(set(x.get('years_listed') or []))
+    o = ov.get(x['name']) or {}
+    gaps = [y for y in span_gaps(x) if y not in proven_years(key, x['name'])]   # years a dated capture proves count as listed
+    if ys and gaps and o.get('unproven_years') and o.get('why_unproven') and set(gaps) <= set(o['unproven_years']):
+        return 'gap_reviewed_unproven'   # searched, no dated evidence: those years prove nothing (R-PAP-01)
+    if ys and not gaps:
+        return 'contiguous_listings'
+    return None
+
+
+def periods_have(key):
+    """Names with a reviewed period (faculty-periods file or a census-overrides `periods`), and the overrides section."""
     per = read(P.data('faculty-periods.json', key), [])
     ov = CO.section(key)
-    have = {p['name'] for p in per} | {k for k, v in ov.items() if isinstance(v, dict) and v.get('periods')}
+    return per, ov, {p['name'] for p in per} | {k for k, v in ov.items() if isinstance(v, dict) and v.get('periods')}
+
+
+def non_iso_periods(per):
+    """(name, field, value) of every reviewed period date that is not ISO (pi_hierarchy.contains() reads it as unresolved)."""
+    return [(p['name'], f, p.get(f)) for p in per for f in ('facultyStart', 'facultyEnd', 'labStart', 'labEnd')
+            if p.get(f) is not None and not ISO.match(str(p.get(f)))]
+
+
+def g4(key):
+    per, ov, have = periods_have(key)
     bad, n = [], collections.Counter()
     for x in pis_of(key):
-        if x['name'] in have:
-            n['period'] += 1; continue
-        ys = sorted(set(x.get('years_listed') or []))
-        o = ov.get(x['name']) or {}
-        gaps = [y for y in span_gaps(x) if y not in proven_years(key, x['name'])]   # years a dated capture proves count as listed
-        if ys and gaps and o.get('unproven_years') and o.get('why_unproven') and set(gaps) <= set(o['unproven_years']):
-            n['gap_reviewed_unproven'] += 1; continue  # searched, no dated evidence: those years prove nothing (R-PAP-01)
-        if ys and not gaps:
-            n['contiguous_listings'] += 1; continue
-        bad.append(f"{x['name']}: no period, listing years {ys}")
-    for p in per:
-        for f in ('facultyStart', 'facultyEnd', 'labStart', 'labEnd'):
-            v = p.get(f)
-            if v is not None and not ISO.match(str(v)):
-                bad.append(f"{p['name']}: {f} {v!r} is not an ISO date (2026-10-29), so pi_hierarchy.contains() reads it as unresolved")
+        b = period_basis(key, x, have, ov)
+        if b:
+            n[b] += 1
+            continue
+        bad.append(f"{x['name']}: no period, listing years {sorted(set(x.get('years_listed') or []))}")
+    for name, f, v in non_iso_periods(per):
+        bad.append(f"{name}: {f} {v!r} is not an ISO date (2026-10-29), so pi_hierarchy.contains() reads it as unresolved")
     return bad, dict(n)
+
+
+def identity_basis(x, o):
+    """The PI's identity anchor (stage 5's per-PI rule), or None: 'dblp+orcid+openalex' (those present) or 'reviewed_no_identity'."""
+    a = [k for k, v in (('dblp', x.get('dblp') or o.get('dblp')), ('orcid', x.get('orcid') or o.get('orcid')),
+                        ('openalex', x.get('openalex') or o.get('openalex'))) if v]
+    if a:
+        return '+'.join(a)
+    if o.get('no_identity') and o.get('why_no_identity'):   # reviewed: searched ORCID, homepage and CV, nothing attributable; no papers are attributed
+        return 'reviewed_no_identity'
+    return None
 
 
 def g5(key):
     ov = CO.section(key)
     bad, n = [], collections.Counter()
     for x in pis_of(key):
-        o = ov.get(x['name']) or {}
-        a = [k for k, v in (('dblp', x.get('dblp') or o.get('dblp')), ('orcid', x.get('orcid') or o.get('orcid')),
-                            ('openalex', x.get('openalex') or o.get('openalex'))) if v]
-        if a:
-            n['+'.join(a)] += 1
-        elif o.get('no_identity') and o.get('why_no_identity'):   # reviewed: searched ORCID, homepage and CV, nothing attributable; no papers are attributed
-            n['reviewed_no_identity'] += 1
+        b = identity_basis(x, ov.get(x['name']) or {})
+        if b:
+            n[b] += 1
         else:
             bad.append(f"{x['name']}: no DBLP id, ORCID or reviewed OpenAlex id")
     gaps = yield_gaps(key)   # an anchor that yields no papers is no anchor (ROADMAP #43)
@@ -782,6 +810,9 @@ def main(argv=None):
             print(f)
         print(f'{key}: {len(found)} trap finding(s)')
         return 1 if found else 0
+    if a.stages == ['catalogue']:   # R3c: the downloads-ready check (tools/downloads_ready.py); never blocked by the stage 3-8 gates
+        import downloads_ready as DR
+        return DR.main([key] + (['--record'] if a.record else []) + (['--json'] if a.json else []))
     stages = a.stages or list(GATES)
     bad_stage = [s for s in stages if s not in GATES]
     if bad_stage:
