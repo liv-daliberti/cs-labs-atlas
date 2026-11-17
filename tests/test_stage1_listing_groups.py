@@ -17,8 +17,9 @@ def listing_group(tmp_path, monkeypatch):
 
     def evaluate():
         (tmp_path / 'coverage.json').write_text(json.dumps(coverage))
-        return G.g1('u')[0]
+        return G.g1_years('u')
 
+    evaluate.bad = lambda: G.g1('u')[0]
     return config, department, coverage, evaluate
 
 
@@ -50,4 +51,5 @@ def test_complete_live_category_can_fill_its_actual_year(listing_group):
 def test_invalid_group_fails_closed(listing_group, change):
     _, department, _, evaluate = listing_group
     department['listing_groups'][0].update(change)
-    assert evaluate() == ["CS: invalid listing group 'All categories'"]
+    evaluate()
+    assert evaluate.bad() == ["CS: invalid listing group 'All categories'"]

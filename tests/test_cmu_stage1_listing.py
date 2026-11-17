@@ -162,12 +162,12 @@ def test_a_missing_page_keeps_the_year_open_and_a_complete_set_closes_it(monkeyp
         cov.setdefault(code, {str(y): {f'{DEPTS[code]["listing_groups"][0]["slots"][0]} H1': 'ok'} for y in range(2016, 2027)})
     monkeypatch.setattr(G.P, 'data', lambda name, key: tmp_path / name)
     (tmp_path / 'coverage.json').write_text(json.dumps(cov))
-    items = G.g1('cmu')[0]
+    items = G.g1_years('cmu')
     assert any(i.startswith('HCII 2020: ') and 'page 2' in i for i in items)   # page 1 alone is 35 of about 44 people
     assert not any(i.startswith('HCII 2016') or i.startswith('HCII 2023') for i in items)
     cov['HCII']['2020']['HCII faculty, page 2 (2020-2022 pagination) H2'] = 'ok'
     (tmp_path / 'coverage.json').write_text(json.dumps(cov))
-    assert not any(i.startswith('HCII 2020') for i in G.g1('cmu')[0])
+    assert not any(i.startswith('HCII 2020') for i in G.g1_years('cmu'))
 
 
 def test_charter_slots_are_config_slots_with_the_same_urls():

@@ -31,7 +31,7 @@ def history(tmp_path, monkeypatch):
 
 def test_R_SRC_01_captured_founding_bounds_only_unit_source_window(history):
     bad, counts = G.g1('u')
-    assert bad == ['AIR 2020: never planned']
+    assert bad == [] and G.g1_years('u') == ['AIR 2020: never planned']
     assert counts['pre_founding_years_not_applicable'] == [f'AIR {y}' for y in range(2016, 2020)]
     assert counts['unit_founding_years'] == {'AIR': 2020}
     assert G.S.get('u')['window'] == [2016, 2021]
@@ -41,8 +41,8 @@ def test_unconfigured_unit_retains_full_window(history):
     department, _, _ = history
     department.pop('founded_year')
     bad, counts = G.g1('u')
-    assert bad == [f'AIR {y}: never planned' for y in range(2016, 2021)]
-    assert counts == dict(departments=1, reviewed_gap_years=0)
+    assert bad == [] and G.g1_years('u') == [f'AIR {y}: never planned' for y in range(2016, 2021)]
+    assert counts['departments'] == 1 and counts['roster_years_open'] == 5
 
 
 @pytest.mark.parametrize('change', [dict(sha256='0' * 64), dict(quote='Founded in 2020'),
@@ -54,7 +54,7 @@ def test_invalid_review_never_removes_required_years(history, change):
     evidence.update(change)
     bad, counts = G.g1('u')
     assert 'invalid founded_year evidence' in bad[0]
-    assert bad[1:] == [f'AIR {y}: never planned' for y in range(2016, 2021)]
+    assert len(bad) == 1 and G.g1_years('u') == [f'AIR {y}: never planned' for y in range(2016, 2021)]
     assert 'unit_founding_years' not in counts
 
 
@@ -62,7 +62,7 @@ def test_invalid_review_never_removes_required_years(history, change):
 def test_wrong_year_cannot_limit_window(history, year):
     department, _, _ = history
     department['founded_year'] = year
-    assert len(G.g1('u')[0]) == 6
+    assert len(G.g1_years('u')) == 5 and len(G.g1('u')[0]) == 1
 
 
 @pytest.mark.parametrize('mutation', ['delete from live', 'update live set status=404',
@@ -72,7 +72,7 @@ def test_missing_or_corrupt_original_capture_fails_closed(history, mutation):
     _, _, db = history
     db.execute(mutation)
     db.commit()
-    assert len(G.g1('u')[0]) == 6
+    assert len(G.g1_years('u')) == 5 and len(G.g1('u')[0]) == 1
 
 
 def test_hidden_script_is_not_founding_proof(history):
@@ -81,4 +81,4 @@ def test_hidden_script_is_not_founding_proof(history):
     evidence.update(sha256=hashlib.sha256(raw).hexdigest(), quote='Founded in 2020')
     db.execute('update live set sha256=?,raw_zlib=?', (evidence['sha256'], zlib.compress(raw)))
     db.commit()
-    assert len(G.g1('u')[0]) == 6
+    assert len(G.g1_years('u')) == 5 and len(G.g1('u')[0]) == 1

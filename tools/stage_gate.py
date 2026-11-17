@@ -4,10 +4,12 @@ wired into pi_hierarchy.py / chain_audit.py. Prints one JSON line per stage and 
   0 charter   schools/<key>.toml passes school_config.check; hierarchy/<key>/hosts.json (tools/school_hosts.py) has its gate true and
               lists every host of the charter; the OpenAlex snapshot holds the school's primary lineage id (main store or an
               ext-<key>.sqlite extension: tools/oa_snapshot.py filter|merge --ext <key>, docs/OPENALEX-SNAPSHOT.md)
-  1 sources   every department has a complete listing in every window year (listings/<key>/coverage.json);
-              documented archive gaps remain open; source-era category groups require every member slot
-  2 census    every CS-related candidate has a decision other than pending_openalex (hierarchy/<key>/cs-related-review.json),
-              and every candidate is in the review
+  1 sources   every department has at least one roster source; year coverage (partial/uncovered years per department, listings/<key>/
+              coverage.json) is REPORTED as roster_coverage and no longer blocks (owner 2026-11-17)
+  2 census    every CS-related candidate has a decision other than pending_* (hierarchy/<key>/cs-related-review.json), and every
+              candidate is in the review. An unresolved candidate is `excluded_unresolved` (reason, reason_code, sources_tried; never a proven
+              absence) and an independent audit of a seeded sample (tools/excluded_audit.py, reviewed/excluded-unresolved-audit.json) must
+              pass and not be stale (owner 2026-11-17); exclusion counts by reason are reported
   3 pis       every census PI (and addition) has a PI basis with url + sha256 + quote, and an accepted home department
               (hierarchy/<key>/home-departments.json)
   4 periods   every PI has a reviewed period (periods/<key>-faculty-periods.json, census-overrides periods) or listing years
@@ -47,6 +49,7 @@ from pathlib import Path
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import census_overrides as CO  # noqa: E402
+import excluded_audit as EA  # noqa: E402
 
 
 def read(p, default=None):
@@ -162,7 +165,7 @@ def g1(key):
     cov = read(P.data('coverage.json', key), {}); lo, hi = S.get(key).get('window')
     departments = S.get(key).get('departments') or []
     bad = [] if departments else ['no Stage 1 departments in charter: faculty listing coverage is unmeasured']
-    founded, inapplicable = {}, []
+    founded, inapplicable, coverage_report = {}, [], {}
     for d in departments:
         year, founding_errors = unit_founding_year(key, d, S.get(key))
         bad.extend(founding_errors)
@@ -173,6 +176,7 @@ def g1(key):
         if errors:
             bad.extend(errors)
             continue
+        open_years, any_source = [], False
         for y in range(max(lo, year or lo), hi + 1):
             v = (cov.get(d['code']) or {}).get(str(y)) or {}
             groups = [g for g in d.get('listing_groups') or []
@@ -184,18 +188,30 @@ def g1(key):
                         status == 'ok' and re.fullmatch(re.escape(slot) + r'(?: live)? H[12]', name)
                         for name, status in v.items())]
                     missing.append((group['name'], absent))
+                any_source |= any(len(absent) < len(group['slots']) for group, (_, absent) in zip(groups, missing))
                 if all(absent for _, absent in missing):
-                    bad.append(f"{d['code']} {y}: " + '; '.join(
-                        f'{name} missing ' + ', '.join(absent) for name, absent in missing))
+                    open_years.append(f"{y}: " + '; '.join(f'{name} missing ' + ', '.join(absent) for name, absent in missing))
                 continue
-            # Owner 2026-11-11: no waivers. A search/availability ledger
-            # explains missing evidence; it cannot substitute for the roster.
-            if not any(s == 'ok' for s in v.values()):
-                bad.append(f"{d['code']} {y}: " + ('; '.join(sorted(set(v.values()))) or 'never planned'))
+            # A search/availability ledger explains missing evidence; it cannot substitute for the roster.
+            if any(s == 'ok' for s in v.values()):
+                any_source = True
+            else:
+                open_years.append(f"{y}: " + ('; '.join(sorted(set(v.values()))) or 'never planned'))
+        coverage_report[d['code']] = dict(partial_or_uncovered=open_years, has_roster_source=any_source)
+        if not any_source:
+            bad.append(f"{d['code']}: no roster source in any window year (a department needs at least one)")
     counts = dict(departments=len(departments), reviewed_gap_years=sum(len(d.get('listing_gaps') or {}) for d in departments))
+    # Owner ruling 2026-11-17: roster year coverage is a reported metric, not a gate; only a department with NO roster source at all blocks.
+    counts['roster_coverage'] = coverage_report
+    counts['roster_years_open'] = sum(len(v['partial_or_uncovered']) for v in coverage_report.values())
     if founded:
         counts.update(unit_founding_years=founded, pre_founding_years_not_applicable=inapplicable)
     return bad, counts
+
+
+def g1_years(key):
+    """The reported (non-blocking) roster-year findings of Stage 1 as 'CODE year: why' strings."""
+    return [f'{code} {item}' for code, v in g1(key)[1]['roster_coverage'].items() for item in v['partial_or_uncovered']]
 
 
 def sweep_gate(key):
@@ -253,14 +269,19 @@ def g2(key):
         reviewed = [d for d in decisions if d['name'] == name and d.get('source_id')]
         covered = {d['source_id'] for d in reviewed if d['decision'] not in
                    ('pending_openalex', 'pending_identity_collision', 'pending_source_coverage')
-                   and d['source_id'] in (d.get('cs_basis') or {}).get('dblp', []) + (d.get('cs_basis') or {}).get('openalex', [])}
+                   and (d['source_id'] in (d.get('cs_basis') or {}).get('dblp', []) + (d.get('cs_basis') or {}).get('openalex', [])
+                        # an unresolved identity is excluded per source id, with its reason (owner ruling 2026-11-17)
+                        or (d['decision'] == 'excluded_unresolved' and not EA.row_errors(d)))}
         if (len(set(source_ids)) != len(rows) or len(reviewed) != len(rows)
                 or len(covered) != len(rows) or set(source_ids) != covered):
             bad.append(f"{name}: {len(rows)} candidate identities share a display name; resolve source IDs before admission")
     bad += [f"{d['name']}: {d['decision']} ({d['reason'][:100]})" for d in decisions
             if d['decision'] in ('pending_openalex', 'pending_identity_collision', 'pending_source_coverage')]
+    # Owner ruling 2026-11-17: unresolved candidates are excluded (class, reason, sources tried) and audited by sample, not blocking.
+    audit_bad, audit_counts = EA.findings(key, decisions)
+    bad += audit_bad
     bad += sweep_gate(key)  # the OpenAlex sweep and the DBLP pulls feed the review (owner standard 2026-10-30)
-    return bad, dict(candidates=len(cands), **collections.Counter(d['decision'] for d in decisions))
+    return bad, {**dict(candidates=len(cands)), **collections.Counter(d['decision'] for d in decisions), **audit_counts}
 
 
 def known_homes(key):

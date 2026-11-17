@@ -18,6 +18,7 @@ section by the coordinator.
 | 2026-10-29 | Michigan is the 7th school, added by the standard staged protocol | `docs/ADDING-A-SCHOOL.md`; `schools/michigan.toml` |
 | 2026-10-29 | Stale listings after an evidenced move are not appointments (a reviewed `faculty_end_moved` period closes the appointment) | `docs/RULES.md` R-PAP-03 |
 | 2026-10-30 | Every uncopied lab paper gets an evidence-backed reason; the development history is public on `cs-labs-atlas` | `docs/UNAVAILABLE.md`; `docs/CONTRIBUTING.md` |
+| 2026-11-17 | Gates check correctness, not completeness: unresolved census candidates are `excluded_unresolved` (reason, sources tried; never a proven absence) and audited by a seeded sample (50 per school, independent reviewer, pass at <=2 fixed failures, fail closed if missing or stale); Stage 1 roster year coverage is a reported metric and blocks only a department with no roster source at all | `docs/ADDING-A-SCHOOL.md` stages 1-2; `tools/stage_gate.py`; `tools/excluded_audit.py` |
 
 ## Lab pages (owner and coordinator)
 | date | decision | where it lives |
