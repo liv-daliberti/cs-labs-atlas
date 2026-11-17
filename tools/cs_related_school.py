@@ -88,6 +88,11 @@ from pihier.names import middle_conflict  # noqa: E402
 MIN_DBLP = 5
 SHARE_MIN_CS, SHARE_MIN, SHARE_MIN_N = 5, 0.20, 8
 TODAY = datetime.date.today().isoformat()
+ENGLISH_MONTHS = {name: month for month, name in enumerate((
+    'january', 'february', 'march', 'april', 'may', 'june',
+    'july', 'august', 'september', 'october', 'november', 'december'), 1)}
+ENGLISH_MONTHS.update({name[:3]: month for name, month in list(ENGLISH_MONTHS.items())})
+ENGLISH_MONTHS['sept'] = 9
 PROF_T = re.compile(r'\b(?:(?:Assistant|Associate|Full|Collegiate|University|Distinguished|Arthur F\. Thurnau)\s+)?Professor\b(?:\s+of\s+[A-Z][\w&,\- ]{2,80})?', re.I)
 NOT_LADDER = re.compile(r'emerit|adjunct|status[- ]only|teaching[- ]stream|cross[- ]appointed|visiting|research\s+(?:assistant\s+|associate\s+)?professor|clinical|courtesy|professor\s+of\s+(?:the\s+)?practice|lecturer|postdoc', re.I)
 
@@ -545,12 +550,17 @@ def historical_appointment(key, entry):
         raise SystemExit(f"{entry['name']}: historical non-ladder appointment needs its research/teaching rank")
     for label, value in (('start', start), ('end', end)):
         literal = bounds.get(f'{label}_quote', value)
-        # A month may be transcribed from an explicit MM/YYYY source date.
+        # Transcribe explicit numeric or English month/year source dates.
         # Matching only the year would authorize an invented month boundary.
         normalized = literal
         if isinstance(literal, str) and re.fullmatch(r'\d{2}/\d{4}', literal):
             normalized = literal[3:] + '-' + literal[:2]
-        if not isinstance(literal, str) or normalized != value or not re.search(r'(?<!\d)' + re.escape(literal) + r'(?!\d)', entry['quote']):
+        named_month = re.fullmatch(r'([A-Za-z]+)\.?\s+(\d{4})', literal) if isinstance(literal, str) else None
+        if named_month and named_month[1].lower() in ENGLISH_MONTHS:
+            normalized = f'{named_month[2]}-{ENGLISH_MONTHS[named_month[1].lower()]:02d}'
+        boundary = r'\w' if named_month else r'\d'
+        if (not isinstance(literal, str) or normalized != value
+                or not re.search(r'(?<!' + boundary + ')' + re.escape(literal) + r'(?!' + boundary + ')', entry['quote'])):
             raise SystemExit(f"{entry['name']}: historical appointment bounds are absent from its source quote")
     periods = (CO.section(key).get(entry['name']) or {}).get('periods') or []
     if not any(p.get('start') == start and p.get('end') == end and p.get('datePrecision') == precision

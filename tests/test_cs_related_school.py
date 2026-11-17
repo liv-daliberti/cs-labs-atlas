@@ -1,3 +1,5 @@
+import pytest
+
 import cs_related_school as C
 
 
@@ -245,6 +247,36 @@ def test_historical_month_cannot_be_invented_from_a_year(monkeypatch, tmp_path):
     with pytest.raises(SystemExit, match='bounds are absent from its source quote'):
         research_review(monkeypatch, tmp_path,
             historical={'start': '2010-01', 'end': '2021-09', 'start_quote': '2010', 'end_quote': '2021'})
+
+
+@pytest.mark.parametrize('start_text,end_text', [
+    ('June 2021', 'September 2024'),
+    ('Jun 2021', 'Sept 2024'),
+    ('Jun. 2021', 'Sep. 2024'),
+    ('JUNE 2021', 'SEPTEMBER 2024'),
+])
+def test_named_months_preserve_explicit_historical_boundaries(monkeypatch, tmp_path, start_text, end_text):
+    decision, additions = research_review(monkeypatch, tmp_path, own=False, rank='ladder',
+        historical={'start': '2021-06', 'end': '2024-09', 'start_quote': start_text, 'end_quote': end_text},
+        period_text=f'{start_text} – {end_text}: Assistant Professor at University of Cambridge.')
+    assert decision['decision'] == 'accepted'
+    assert decision['years_listed'] == additions[0]['years_listed'] == []
+    assert additions[0]['pi_basis']['historical_appointment'] == {'start': '2021-06', 'end': '2024-09'}
+
+
+@pytest.mark.parametrize('literal', ['Juniper 2021', 'Juneish 2021', 'Jun 2020'])
+def test_named_months_cannot_rewrite_a_different_or_invalid_source_date(monkeypatch, tmp_path, literal):
+    with pytest.raises(SystemExit, match='bounds are absent from its source quote'):
+        research_review(monkeypatch, tmp_path, own=False, rank='ladder',
+            historical={'start': '2021-06', 'end': '2024-09', 'start_quote': literal, 'end_quote': 'Sept 2024'},
+            period_text=f'{literal} – Sept 2024: Assistant Professor at University of Cambridge.')
+
+
+def test_named_month_literal_cannot_be_cut_out_of_another_word(monkeypatch, tmp_path):
+    with pytest.raises(SystemExit, match='bounds are absent from its source quote'):
+        research_review(monkeypatch, tmp_path, own=False, rank='ladder',
+            historical={'start': '2021-06', 'end': '2024-09', 'start_quote': 'June 2021', 'end_quote': 'Sept 2024'},
+            period_text='NotJune 2021 – Sept 2024: Assistant Professor at University of Cambridge.')
 
 
 def test_historical_research_still_requires_matching_native_period(monkeypatch, tmp_path):
