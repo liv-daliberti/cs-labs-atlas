@@ -78,6 +78,10 @@ per school: nothing is ever switched for readers only (the store would go stale)
   becomes a next action). `import` refuses to overwrite an existing store of a flagged school (it would erase recorded decisions).
 - **Gate.** `stage_gate.py` and `atlas doctor` keep reading the JSON view; the doctor adds `evidence_view` (view == store).
 
+**Result (2026-11-17).** Fresh import of Michigan into the real location: 7,079 school rows + 1,475 `_shared` rows; `check` = view matches
+(28 files, byte-identical to main). Build pair from overlay roots (Slurm 32393134 control, 32393135 store-sourced, 14 min each): `pis.json`,
+`students.json`, `lab_papers.jsonl.gz`, `student_papers.jsonl.gz` byte-identical; `report.json` differs only in `builtAt` and echoed paths.
+
 ### Record a decision (a worker, Michigan)
 ```
 bin/atlas evidence-store find michigan --layer census-additions.json --key "Jane Doe"       # existing rows: id, container, seq, record
