@@ -24,3 +24,6 @@ A school whose charter says `[evidence] source = "store"` (check: `bin/atlas evi
 - A direct edit of those JSON files is refused by the pre-commit hook (`evidence_store.py check --staged`), by `evidence_store.py check` and by `atlas doctor` (`evidence_view`). Do not bypass it; do not re-import a flagged school (it would erase recorded decisions).
 - The store is not in git; it is backed up daily to `archive/evidence-store-backups/` (restore: `bin/atlas evidence-store restore`).
 - Details, the shared-file slices and how a school is switched: `docs/EVIDENCE-STORE.md`.
+
+## Coordination log and owner questions (one place)
+Do not create another log. The coordination log is `scratch/top25-goal-1107/OVERNIGHT-LOG.md` (append one UTC-stamped line per event under your own heading; never rewrite it) and the questions for the owner are `scratch/top25-goal-1107/OVERNIGHT-QUESTIONS.md` (one block per question, with your recommendation). Both sit next to the queue's task ids in what you write: name your task id (`T012`, `R3d`). A move to `leases/coord/` with `atlas note`/`atlas ask` is proposed in `docs/PROCESS-V4-PROPOSAL.md` (3.8); until the owner approves it, these two files are the only ones.
