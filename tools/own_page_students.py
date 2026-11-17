@@ -186,7 +186,7 @@ def hop(school):
             h = zlib.decompress(blob).decode('utf8', 'replace')
         except Exception:  # noqa: BLE001
             continue
-        for href, label in LINKS.findall(h):
+        for href, label in LINKS.findall(content_html(h)):
             k = ' '.join(toks(html.unescape(re.sub(r'<[^>]+>', ' ', label))))
             if k not in want:
                 continue
@@ -312,8 +312,15 @@ LINKS = re.compile(r'<a\b[^>]*?href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', re.S | 
 MORE = re.compile(r'\b(cv|curriculum vitae|vita|about|bio|biography|people|students?|members?|team|group|home)\b', re.I)
 
 
-def html_text(h):
+def content_html(h):
+    """Remove comments and non-content blocks before reading text or links."""
+    h = re.sub(r'(?s)<!--.*?(?:-->|$)', ' ', h)
     h = re.sub(r'(?is)<(script|style|noscript|svg)\b.*?</\1>', ' ', h)
+    return h
+
+
+def html_text(h):
+    h = content_html(h)
     h = re.sub(r'(?i)<br\s*/?>|</(p|div|li|tr|h\d|ul|ol|section|article|table|dd|dt)>', '\n', h)
     h = html.unescape(re.sub(r'<[^>]+>', ' ', h))
     return '\n'.join(re.sub(r'[ \t\xa0]+', ' ', ln).strip() for ln in h.split('\n') if ln.strip())
@@ -364,7 +371,7 @@ def fetch(school, shard=(0, 1), limit=None):
                         hashlib.sha256(txt.encode()).hexdigest() if txt else None, txt))
             if r['status'] == 200 and n <= 2:   # a CV / about / people link on the same host
                 host = U.urlsplit(r.get('final') or u).netloc
-                for href, label in LINKS.findall(r['html']):
+                for href, label in LINKS.findall(content_html(r['html'])):
                     lab = re.sub(r'<[^>]+>', ' ', label)
                     full = U.urljoin(r.get('final') or u, href.split('#')[0])
                     if (U.urlsplit(full).netloc == host and full.startswith('http') and MORE.search(lab) and not re.search(r'\.(pdf|docx?|zip|png|jpe?g)$', full, re.I)

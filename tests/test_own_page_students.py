@@ -1,5 +1,8 @@
 """R-STU-22: a student's own page names the PI as adviser (tools/own_page_students.py `statements`)."""
 import re
+import json
+import sqlite3
+import zlib
 
 import own_page_students as O
 
@@ -115,3 +118,34 @@ def test_page_urls_skip_charter_closed_hosts(monkeypatch):
     p = dict(urls=['https://dr.ntu.edu.sg/entities/person/A-B', 'https://personal.ntu.edu.sg/~ab/', 'https://ab.github.io/', 'https://id.loc.gov/authorities/n1'])
     assert O.page_urls(p, 'x') == ['https://ab.github.io/']
     assert len(O.page_urls(p)) == 3 and 'https://id.loc.gov/authorities/n1' not in O.page_urls(p)
+
+
+def test_html_text_excludes_commented_adviser_statements_and_keeps_visible_text():
+    text = O.html_text('Jane Doe<p>Research</p><!-- <p>PhD student at Georgia Tech, advised by Magnus Egerstedt.</p> --><p>Publications</p>')
+    assert 'Jane Doe' in text and 'Publications' in text
+    assert 'advised' not in text and not st(text)
+    assert 'advised' not in O.html_text('Jane Doe<!-- PhD student at Georgia Tech, advised by Magnus Egerstedt.')
+
+
+def test_hop_excludes_commented_and_script_links_but_keeps_live_nested_name(tmp_path, monkeypatch):
+    monkeypatch.setattr(O, 'OUT', tmp_path)
+    (tmp_path / 'candidates-example.json').write_text(json.dumps({'rows': [{'key': 'jane doe'}]}))
+    capture = tmp_path / 'captures.sqlite'
+    monkeypatch.setattr(O.P, 'data', lambda *args: capture)
+    html = '''<!-- <a href="https://old.example/">Jane Doe</a> -->
+        <script>const old = '<a href="https://script.example/">Jane Doe</a>';</script>
+        <a href="https://student.example/"><b>Jane</b> Doe</a>'''
+    with sqlite3.connect(capture) as db:
+        db.execute('create table captures (url text, content_type text, content blob, status integer)')
+        db.execute('insert into captures values (?, ?, ?, ?)', ('https://lab.example/', 'text/html', zlib.compress(html.encode()), 200))
+    O.hop('example')
+    assert json.loads((tmp_path / 'hop-example.json').read_text()) == {'jane doe': ['https://student.example/']}
+
+
+def test_navigation_links_exclude_comments_and_non_content_blocks():
+    html = '''<!-- <a href="old.html">CV</a> -->
+        <style>"<a href='style.html'>About</a>"</style>
+        <noscript><a href="noscript.html">People</a></noscript>
+        <svg><a href="svg.html">Team</a></svg>
+        <a href="bio.html">Biography</a>'''
+    assert O.LINKS.findall(O.content_html(html)) == [('bio.html', 'Biography')]
