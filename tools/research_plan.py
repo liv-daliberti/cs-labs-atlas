@@ -119,7 +119,7 @@ def source_leads(pis, students, audit, docs):
     return leads
 
 
-def cached_sources(path, urls):
+def cached_sources(path, urls, allow_missing_live=False):
     """Read each exact URL once; verify actual bytes, preserving refusal facts."""
     versions, blocked = {}, {}
     if not Path(path).exists():
@@ -130,6 +130,10 @@ def cached_sources(path, urls):
         if 'blocked' in tables:
             blocked = {host.lower().removeprefix('www.'): why for host, why in conn.execute('select host,why from blocked')}
         if 'live' not in tables:
+            if allow_missing_live:
+                # Historical school collectors can create this database before
+                # the live-page collector initializes its own tables.
+                return versions, blocked
             raise ValueError('Source cache has no live table: ' + str(path))
         for url in sorted(urls):
             row = conn.execute('select fetched_at,status,sha256,raw_zlib from live where url=?', (url,)).fetchone()
@@ -147,7 +151,7 @@ def cached_sources(path, urls):
     return versions, blocked
 
 
-def source_caches(paths, urls):
+def source_caches(paths, urls, optional_live=()):
     """Inventory existing registered caches once; retain conflicting versions.
 
     Prefer the recall cache's exact binding when another cache has identical
@@ -155,12 +159,16 @@ def source_caches(paths, urls):
     Nothing is fetched, promoted to a verdict, or written back to either cache.
     """
     versions, blocked, seen = {}, collections.defaultdict(set), set()
+    optional_live = {Path(path).resolve() for path in optional_live}
     for path in paths:
         identity = Path(path).resolve()
         if identity in seen:
             continue
         seen.add(identity)
-        incoming, refusals = cached_sources(path, urls)
+        if identity in optional_live:
+            incoming, refusals = cached_sources(path, urls, allow_missing_live=True)
+        else:
+            incoming, refusals = cached_sources(path, urls)
         for host, reason in refusals.items():
             blocked[host].add(reason)
         for url, source in incoming.items():
@@ -314,7 +322,8 @@ def collect(school, previous=None):
     leads = source_leads(pis, students, audit, docs)
     capture_stores = [P.data(name, school) for name in ('student-recall-captures.sqlite', 'school-captures.sqlite')]
     try:
-        versions, blocked = source_caches(capture_stores, {u for us in leads.values() for u in us})
+        versions, blocked = source_caches(capture_stores, {u for us in leads.values() for u in us},
+                                         optional_live=capture_stores[1:])
     except (sqlite3.Error, zlib.error) as exc:
         raise ValueError('Cannot read the source cache safely: ' + str(exc)) from exc
     versions = saved_snapshots(docs, leads, versions)

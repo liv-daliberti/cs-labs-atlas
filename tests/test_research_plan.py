@@ -276,6 +276,26 @@ def test_failed_request_without_bytes_is_not_readable_source(tmp_path):
         Q.source_caches([cache], {url})
 
 
+def test_archive_only_optional_school_cache_preserves_recall_source_and_refusals(tmp_path):
+    recall, school = tmp_path / 'recall.sqlite', tmp_path / 'school.sqlite'
+    url, raw = 'https://lab.example/people', b'Original saved roster'
+    with sqlite3.connect(recall) as conn:
+        conn.execute('create table live (url text, fetched_at text, status int, sha256 text, raw_zlib blob)')
+        conn.execute('insert into live values (?,?,?,?,?)',
+                     (url, '2026-11-17', 200, hashlib.sha256(raw).hexdigest(), zlib.compress(raw)))
+    with sqlite3.connect(school) as conn:
+        conn.execute('create table pages (url text)')
+        conn.execute('create table blocked (host text, why text)')
+        conn.execute('insert into blocked values (?,?)', ('blocked.example', 'robots_disallowed'))
+    before = {p: p.read_bytes() for p in (recall, school)}
+    versions, blocked = Q.source_caches([recall, school], {url}, optional_live=[school])
+    assert versions[url]['sha256'] == hashlib.sha256(raw).hexdigest()
+    assert blocked == {'blocked.example': 'robots_disallowed'}
+    assert {p: p.read_bytes() for p in (recall, school)} == before
+    with pytest.raises(ValueError, match='no live table'):
+        Q.cached_sources(school, {url})  # Required recall caches still fail closed.
+
+
 def test_reviewed_input_digest_ignores_formatting_and_recall_signoff(tmp_path, monkeypatch):
     roster, recall = tmp_path / 'roster-evidence.json', tmp_path / 'student-recall-check.json'
     roster.write_text('{"a": 1, "b": 2}')
