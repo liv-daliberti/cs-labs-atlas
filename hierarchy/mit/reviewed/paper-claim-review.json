@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "school": "mit",
+  "decisions": [
+    {
+      "id": "mit-picard-2015-primary-date-20261117",
+      "pi": "Rosalind Picard",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2334888560",
+        "doi": "10.4108/eai.14-10-2015.2261715"
+      },
+      "why": "Exact primary repository title and DOI identify the published work as December2015, before the2016 atlas window. DBLP recovered this same DOI as2016. Reject only this source-bound prewindow work; preserve original provider/DBLP metadata and other genuine in-window papers. This is a dated eligibility decision, not a claim that the paper is an abstract or not research.",
+      "reviewed_by": "codex-mit-independent-source-review-20261117",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://dspace.mit.edu/server/api/core/items/ee40466d-23ef-43af-8c74-6c1a16771029",
+          "sha256": "c32af09b5a713635506ff3fda85479002f86ae0af82c3fb238e9d877b48dbaa7",
+          "quote": "\"dc.date.issued\" : [ {\n      \"value\" : \"2015-12\",\n      \"language\" : null,\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]"
+        },
+        {
+          "url": "https://dspace.mit.edu/server/api/core/items/ee40466d-23ef-43af-8c74-6c1a16771029",
+          "sha256": "c32af09b5a713635506ff3fda85479002f86ae0af82c3fb238e9d877b48dbaa7",
+          "quote": "\"dc.relation.isversionof\" : [ {\n      \"value\" : \"https://doi.org/10.4108/eai.14-10-2015.2261715\",\n      \"language\" : null,\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]"
+        },
+        {
+          "url": "https://dspace.mit.edu/server/api/core/items/ee40466d-23ef-43af-8c74-6c1a16771029",
+          "sha256": "c32af09b5a713635506ff3fda85479002f86ae0af82c3fb238e9d877b48dbaa7",
+          "quote": "\"dc.title\" : [ {\n      \"value\" : \"Improving Sleep-Wake Schedule Using Sleep Behavior Visualization and a Bedtime Alarm\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]"
+        },
+        {
+          "url": "https://dspace.mit.edu/server/api/core/items/ee40466d-23ef-43af-8c74-6c1a16771029",
+          "sha256": "c32af09b5a713635506ff3fda85479002f86ae0af82c3fb238e9d877b48dbaa7",
+          "quote": "\"dc.identifier.citation\" : [ {\n      \"value\" : \"Chen, Weixuan et al. \\\"Improving Sleep-Wake Schedule Using Sleep Behavior Visualization and a Bedtime Alarm.\\\"EAI Endorsed Transactions on Future Intelligent Educational Environments 16, 8 (December 2015): e2 © 2015 ICST\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]"
+        }
+      ]
+    }
+  ]
+}
