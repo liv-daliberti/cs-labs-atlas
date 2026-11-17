@@ -9,7 +9,7 @@ openalex_excluded), or an authorship by one of our people (oaAuthorIds + reviewe
 with DOI prefix 10.17989 (ENCODE records) are dropped. Kept authors: our people and authors affiliated with a charter
 institution. Institutions: all (0.2 GB).
 
-Extension for a school added after the snapshot was built (docs/ADDING-A-SCHOOL.md stage 0; the filtered snapshot only knows the
+Extension for a school added after the snapshot was built (docs/SCHOOL-PROCESS.md stage 0; the filtered snapshot only knows the
 charters that existed when it was filtered): `filter ... --ext <key>` keeps only that school's ids (and its PIs' author ids, when its
 pis.json exists), `merge --ext <key>` writes OA_SNAPSHOT/<date>/ext-<key>.sqlite NEXT TO the main store (which is never touched, so
 readers of released schools are unaffected), and the reader below consults every ext-*.sqlite after the main store. The next quarterly

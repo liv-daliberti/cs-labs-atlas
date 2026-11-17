@@ -164,7 +164,7 @@ proposals ('Workshop on ...', 'Tutorial: ...', 'Tutorial on ...' at a conference
 highlights columns (', No. 31'); tributes ('In memoriam', 'Obituary', 'In memory of ...' and 'A tribute to ...' at the
 start of the title, '<Name> (1927–2016)', and a title that is only a person's name: 'Derek Chiou'). The patterns are
 anchored: 'Puzzles in Memory of Solomon Golomb', 'Remembering the "when"', '...: A tutorial overview' and 'MedAL' stay.
-Per-pattern counts and ten samples each on the 2026-10-29 build: `docs/not-paper-patterns-20261029.md`. One-page columns
+Per-pattern counts and ten samples each on the 2026-10-29 build: `archive/docs/not-paper-patterns-20261029.md`. One-page columns
 ('CACM community') are not caught (no page counts). OpenAlex type `editorial` alone is not dropped (127 such rows have
 research-like titles). Report: `not_paper:<tag>`, samples in `notPaperSamples`.
 
@@ -726,7 +726,7 @@ Version 1 holds nonempty edition groups: persisted edition pointers alone cannot
 `reviewed_exact_member_paper` carries `workReview.identity_scope=exact_work` and the original candidate. It admits no
 paper/member, changes no source/date/alias, and cannot lend an OpenAlex/person anchor through either AtlasIDs byline
 bridge path. Both pre-ID and post-ID invariance are checked before publication. Existing global joins require separate
-review; full registry-copy comparisons precede enabling actual inputs. Contract: `docs/MEMBER-PAPER-REVIEWS.md`.
+review; full registry-copy comparisons precede enabling actual inputs. Contract: `docs/REVIEWS.md` section 4.
 Tests: `tests/test_member_paper_reviews.py`, `tests/test_member_paper_ids.py`.
 
 ## Audits

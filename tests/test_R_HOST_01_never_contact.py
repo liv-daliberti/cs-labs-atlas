@@ -5,7 +5,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_R_HOST_01_never_contact_is_documented():
-    guide = (ROOT / 'docs/ADDING-A-SCHOOL.md').read_text()
+    guide = (ROOT / 'docs/SCHOOL-PROCESS.md').read_text()
     rules = (ROOT / 'docs/RULES.md').read_text()
     assert 'NEVER_CONTACT' in guide and 'not_fetched' in guide
     for host in ('dblp.org', 'orcid.org', 'web.archive.org'):

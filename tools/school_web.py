@@ -9,7 +9,7 @@ Generalized 2026-10-29 from Stanford's st_web.py (claude-stanford-20261027/tools
   RobotFileParser.parse; a disallowed URL is never fetched; at least max(2 s, Crawl-delay) between requests to a host;
   a page that reads as a bot challenge is recorded with status 999 and the host is blocked for the rest of the run
   (table live; table robots; table blocked).
-- Robots policy (docs/ADDING-A-SCHOOL.md stage 0): a robots.txt that disallows AI agents by name (ClaudeBot,
+- Robots policy (docs/SCHOOL-PROCESS.md stage 0): a robots.txt that disallows AI agents by name (ClaudeBot,
   anthropic-ai, Claude-Web) is honoured for this project's agents too, whatever User-Agent string is sent:
   robots_ok() checks those names as well as our own UA and '*'.
 

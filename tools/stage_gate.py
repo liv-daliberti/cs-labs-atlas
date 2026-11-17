@@ -1,4 +1,4 @@
-"""Check a protocol school's stage gates (docs/ADDING-A-SCHOOL.md) from the files the stages wrote, before the school is
+"""Check a protocol school's stage gates (docs/SCHOOL-PROCESS.md) from the files the stages wrote, before the school is
 wired into pi_hierarchy.py / chain_audit.py. Prints one JSON line per stage and the items that fail.
 
   0 charter   schools/<key>.toml passes school_config.check; hierarchy/<key>/hosts.json (tools/school_hosts.py) has its gate true and

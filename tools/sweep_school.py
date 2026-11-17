@@ -39,7 +39,7 @@ def env_file(p):
 
 def commands(key, snapshot=False):
     """The two steps, as (argv, extra env). With `snapshot` the first is tools/sweep_from_snapshot.py (no API credits; a school's own
-    snapshot extension, ADDING-A-SCHOOL stage 0) instead of the API sweep."""
+    snapshot extension, SCHOOL-PROCESS stage 0) instead of the API sweep."""
     first = (['nice', '-n', '10', str(P.PY), '-u', str(TOOLS / 'sweep_from_snapshot.py'), key, '--replace'], {}) if snapshot else None
     return [first or (['nice', '-n', '10', str(P.PY), '-I', '-u', str(TOOLS / 'oa_sweep.py'), key], {}),
             (['nice', '-n', '10', str(P.PY), '-u', str(TOOLS / 'sweep_check.py'), key], {})]

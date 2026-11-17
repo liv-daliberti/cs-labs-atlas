@@ -1,5 +1,5 @@
 """Cross-school identity check (Georgia Tech stage 5 follow-up): a PI who is also a PI at another atlas school must carry the same DBLP id, ORCID or reviewed OpenAlex id in both
-schools' identity records (docs/ADDING-A-SCHOOL.md, stage 5; the atlas ids join people by shared anchors, so a person with disjoint anchors in two schools becomes two people).
+schools' identity records (docs/SCHOOL-PROCESS.md, stage 5; the atlas ids join people by shared anchors, so a person with disjoint anchors in two schools becomes two people).
 
 Same person candidates: the same family name and first given name (spelled out), no conflicting middle initial, across the PI names and aliases of every other school (their
 hierarchy/<school>/pis.json) and the onboarding school's census + reviewed overrides. Per pair:

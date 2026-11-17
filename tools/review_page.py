@@ -108,7 +108,7 @@ def accuracy_files(school, rnd=None):
 
 
 def accuracy_sets(school, samples=('lab_precision', 'student_precision', 'lab_coverage'), sample_file=None, lab=None, stu=None, rnd=None):
-    """One review set per accuracy sample (docs/ADDING-A-SCHOOL.md stage 9). Rows come from the package files by the draw's row index."""
+    """One review set per accuracy sample (docs/SCHOOL-PROCESS.md stage 9). Rows come from the package files by the draw's row index."""
     sf = Path(sample_file) if sample_file else accuracy_files(school, rnd)[0]
     S = json.loads(sf.read_text(encoding='utf-8'))['schools'][school]
     sets = {}

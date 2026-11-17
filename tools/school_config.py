@@ -38,7 +38,7 @@ def get(key):
     if key not in _cache:
         p = _path(key)
         if not p.exists():
-            raise KeyError(f'no charter schools/{key}.toml (copy schools/TEMPLATE.toml; docs/ADDING-A-SCHOOL.md stage 0)')
+            raise KeyError(f'no charter schools/{key}.toml (copy schools/TEMPLATE.toml; docs/SCHOOL-PROCESS.md stage 0)')
         with open(p, 'rb') as f:
             _cache[key] = _toml.load(f)
     return _cache[key]

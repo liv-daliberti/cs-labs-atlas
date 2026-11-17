@@ -1,6 +1,6 @@
 # Agent instructions (Claude and Codex read this first)
 
-Project rules live in `docs/CONTRIBUTING.md` (branches, landing, reports), `docs/RULES.md` (scope) and `docs/ADDING-A-SCHOOL.md` (onboarding).
+Project rules live in `docs/CONTRIBUTING.md` (branches, landing, reports), `docs/RULES.md` (scope) and `docs/SCHOOL-PROCESS.md` (onboarding).
 Paths come from `paths.sh` / `tools/atlas_paths.py` only. Never push. Stage explicit paths. Never print keys from `~/.config/cs-atlas`.
 
 ## Before any work: the shared work queue

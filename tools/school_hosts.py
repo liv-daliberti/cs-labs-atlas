@@ -1,4 +1,4 @@
-"""Stage-0 gate for a school's hosts (docs/ADDING-A-SCHOOL.md): every host named in schools/<key>.toml [[hosts]] is
+"""Stage-0 gate for a school's hosts (docs/SCHOOL-PROCESS.md): every host named in schools/<key>.toml [[hosts]] is
 checked against its robots.txt (requests with a timeout, stored in captures/<key>.sqlite table robots) and, when the
 charter says use = "live", probed once with its `probe` URL through school_web.live(), which records a bot challenge
 and blocks the host. The verdict per host goes to hierarchy/<key>/hosts.json.

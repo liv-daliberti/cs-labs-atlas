@@ -70,7 +70,7 @@ PIPELINES = {
         ('restamp', 'once', 'PY $TOOLS/labpage_audit.py restamp {schools}', 'project', 1, '8G', '00:30:00'),
         ('summary', 'once', 'PY $TOOLS/labpage_audit.py summary', 'project', 1, '8G', '00:30:00'),
     ],
-    # a school being onboarded (docs/ADDING-A-SCHOOL.md stage 2): SCHOOLS="<key>". The sweep comes from the school's snapshot extension (stage 0), so the
+    # a school being onboarded (docs/SCHOOL-PROCESS.md stage 2): SCHOOLS="<key>". The sweep comes from the school's snapshot extension (stage 0), so the
     # extension merge must have finished; the DBLP pass and the OpenAlex candidate rule need no API credit.
     'onboard-data': [
         ('dblp', 'school', 'PY $TOOLS/dblp_affiliated.py {school} --pubs', 'project', 2, '16G', '03:00:00'),

@@ -1,4 +1,4 @@
-"""The known onboarding traps as checks (docs/ONBOARDING-LESSONS.md): each was hit by Michigan, UChicago or Georgia Tech and cost hours, and each
+"""The known onboarding traps as checks (docs/LESSONS-CHECKLIST.md): each was hit by Michigan, UChicago or Georgia Tech and cost hours, and each
 is cheap to detect before the stage that needs it. `stage_gate.py` adds `STAGE_TRAPS[n]` to the gate of stage n, and
 `stage_gate.py <key> --traps` prints every check at once. A check returns a list of findings (empty = clear); none writes anything.
 

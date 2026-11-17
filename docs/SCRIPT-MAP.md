@@ -10,9 +10,62 @@ the per-school scripts of `fulltext-push/`.
 
 **389 scripts:** 116 deferred, 4 folded, 4 kept, 265 retired.
 
+
+<!-- generated:begin (tools/gen_script_map.py) -->
+## Live commands (generated)
+
+`bin/atlas <command>` (`atlas_cli/__init__.py` COMMANDS; 42 commands). Regenerate: `atlas run tools/gen_script_map.py`.
+
+| command | runs | what it does |
+|---|---|---|
+| `atlas answer` \| `tools/coord.py answer` (py) \| record the owner answer: atlas answer Q-0007 "..." |
+| `atlas ask` \| `tools/coord.py ask` (py) \| owner questions (leases/coord/QUESTIONS.md): atlas ask --school S --rec "..." "question" \| atlas ask --list [--open] [--school S] |
+| `atlas audit` \| `tools/chain_audit.py` (py) \| the chain audit |
+| `atlas build` \| `tools/pi_hierarchy.py` (each) \| build packages: atlas build <school> [...] |
+| `atlas charters` \| `tools/school_config.py --check` (py) \| validate every school charter (schools/*.toml) |
+| `atlas closeout` \| `tools/school_closeout.py` (py) \| source research checkpoints, stage advancement and resumable closeout: atlas closeout research|stages|plan|seal|submit|status|certify|draw <school> [--run-dir DIR] |
+| `atlas collect` \| `fulltext-push/lab_first_loop.py` (special) \| the lab-first download loop: atlas collect <school> [...] |
+| `atlas coord` \| `tools/coord.py coord` (py) \| atlas coord sync-legacy (copy stray lines of the frozen old log into LOG.md) \| cutover \| import-questions |
+| `atlas copies` \| `tools/lab_paper_copies.py` (py) \| copies.json from the stores: atlas copies <school> [...] |
+| `atlas decide` \| `tools/coord.py decide` (py) \| owner decision to leases/coord/DECISIONS.md: atlas decide "..." [--ref ...] |
+| `atlas doctor` \| `tools/onboarding_doctor.py` (py) \| read-only onboarding freshness, next actions and website/local-copy gaps: atlas doctor [school ...] [--gates live|recorded|off] [--site-dir DIR] [--out-dir DIR] |
+| `atlas evidence` \| `tools/evidence_check.py` (py) \| the build-time evidence check |
+| `atlas evidence-store` \| `tools/evidence_store.py` (py) \| per-school evidence store: atlas evidence-store record|find|sync|check|import|export|verify <school> (docs/EVIDENCE-STORE.md) |
+| `atlas export` \| `tools/export_release.py` (py) \| the GitHub export: atlas export <repo dir> [--skip-atlas] |
+| `atlas ids` \| `tools/atlas_ids.py` (py) \| stable atlas ids into the packages |
+| `atlas lease` \| `tools/agent_lease.py` (py) \| one lease per agent: atlas lease acquire|renew|release|status|check <name> |
+| `atlas ledger` \| `fulltext-push/unavailable_ledger.py` (py) \| the unavailability ledger: atlas ledger <school> [...] |
+| `atlas lint` \| `ruff` (special) \| ruff check (pyproject.toml config): atlas lint [--fix] |
+| `atlas make-release` \| `tools/make_release.py` (py) \| cut just the release (refuses on uncommitted code or failed stages) |
+| `atlas new-school` \| `tools/new_school.py` (py) \| stage 0 of a new school in one command: atlas new-school <key> --name "University of X" [--dry-run] |
+| `atlas note` \| `tools/coord.py note` (py) \| one UTC line to leases/coord/LOG.md: atlas note "..." [--task T] [--school S] |
+| `atlas overlay-root` \| `tools/overlay_root.py` (py) \| an overlay code root so a worktree run reads the branch's reviewed files (ROADMAP #44): atlas overlay-root <school> --out hierarchy/<school>/tmp/overlay |
+| `atlas parallel` \| `hierarchy/submit-parallel.sh` (sh) \| per-school Slurm arrays + a merge job: atlas parallel equivalence OLD=<commit> REPORT=<dir> \| atlas parallel rebuild |
+| `atlas paths` \| `tools/atlas_paths.py` (py) \| every path, or one: atlas paths [NAME] |
+| `atlas pipeline` \| `tools/atlas_pipeline.py` (py) \| the mechanical chains as Slurm pipelines: atlas pipeline copies|labpage|reader [SCHOOLS="a b"] [--test-only] [--wait] \| --list \| status |
+| `atlas rebuild` \| `hierarchy/rebuild.sh` (sh) \| the full rebuild (STAGES=..., SCHOOLS=... in the environment) |
+| `atlas regression` \| `tools/build_regression.py` (py) \| build regression: snapshot \| check --before <counts.json> |
+| `atlas release` \| `tools/atlas_release.py` (py) \| the whole release chain, stopping at the first failure: atlas release [--dry-run] [--yes-push] [--yes-hf] [--resume] [--from STEP] [--wait: run as a Slurm job and block, one sacct call per 120 s] |
+| `atlas relocate` \| `tools/relocate_project.py` (py) \| the project move (dry run by default) |
+| `atlas run` \| `` (special) \| any script of this checkout on the project interpreter: atlas run tools/x.py [...] |
+| `atlas scan` \| `tools/secret_scan.py` (py) \| secret scan: atlas scan --staged \| atlas scan <paths> |
+| `atlas stage-audit` \| `tools/stage_audit.py` (py) \| the one seeded 50-row independent audit and reviewer template for stages 2, 3, 5, 6: atlas stage-audit draw|review-page|record|show <school> [class] |
+| `atlas stage-gate` \| `tools/stage_gate.py` (py) \| a protocol school's stage gates 0-10: atlas stage-gate <school> [stage ...] [--run [--submit] [--dry-run]] [--traps] [--record] (--run does the stage up to its first review step) |
+| `atlas stale` \| `tools/stale_stages.py` (py) \| which rebuild stages are stale: atlas stale [school ...] [--json \| --stages]; STAGES=auto hierarchy/rebuild.sh runs only those |
+| `atlas status` \| `tools/status_table.py` (py) \| the generated status table (read-only; hierarchy/derived/STATUS-TABLE.csv/.json/.md): atlas status [--gates live|recorded|off] [--top N] [--out-dir D] [--write-legacy] |
+| `atlas submit` \| `sbatch` (special) \| sbatch with the code pinned: atlas submit [--from-worktree] [sbatch options] script.slurm (CS_ATLAS_SNAPSHOT_COMMIT = main's HEAD now; --from-worktree: this worktree's committed HEAD) |
+| `atlas sweep` \| `tools/sweep_school.py` (py) \| a school's OpenAlex sweep + sweep check: atlas sweep <school> [--daily] [--print] |
+| `atlas task` \| `tools/work_queue.py` (py) \| the shared work queue: atlas task list \| add \| claim ID \| heartbeat ID \| done ID --commit C \| block \| release \| show \| land-lock acquire|release (claim BEFORE any work) |
+| `atlas test` \| `pytest` (special) \| the test suite: atlas test [pytest args]; --ci skips tests needing NFS data |
+| `atlas tree` \| `tools/organize_tree.py` (py) \| the organized school/lab/paper tree from a release |
+| `atlas validate` \| `tools/validate.py` (py) \| data files against schemas/: atlas validate [school ...] [--shared --reviewed --tree --export] |
+| `atlas vendor` \| `tools/vendor_sync.py` (py) \| vendored code: atlas vendor check|sync|list |
+
+<!-- generated:end -->
+
 ## How a school is added now
 
-A school is a charter, `schools/<key>.toml`, and the stage tools take the key (`docs/ADDING-A-SCHOOL.md`); `atlas stage-gate <key>`
+A school is a charter, `schools/<key>.toml`, and the stage tools take the key (`docs/SCHOOL-PROCESS.md`); `atlas stage-gate <key>`
 checks each stage. Nothing in this map is needed for it:
 - the one-off research tools of the six pre-protocol schools (gap, few-students, thesis, period, CS-related, home-department, chain
   research) produced reviewed inputs that stay where they are (`hierarchy/<school>/*.json`, `census/`, `periods/`); their code

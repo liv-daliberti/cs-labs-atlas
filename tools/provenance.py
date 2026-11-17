@@ -9,7 +9,7 @@ report.json -> provenance, and required by tools/make_release.py.
   dblp_dump         DBLP's monthly dump: file, date, md5 (the .md5 file DBLP publishes next to it)
   dblp_persons      hierarchy/dblp-dump-persons.json.gz: modified, bytes, sha256, the dump it was read from
   pi_works          hierarchy/<school>/pi-works.sqlite: modified, bytes, sha256, works, page-1 reads and the last read
-  reviewed_inputs   every tracked JSON/CSV input (docs/REVIEWED-INPUTS.md): path -> sha256
+  reviewed_inputs   every tracked JSON/CSV input (docs/REVIEWS.md): path -> sha256
   inputs            the untracked inputs of this school the build reads (census, collection, listings, researched
                     evidence, recoveries): path -> {bytes, modified, sha256}
 

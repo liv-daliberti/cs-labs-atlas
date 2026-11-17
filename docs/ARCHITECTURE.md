@@ -62,7 +62,7 @@ SIGTERM-clean, idle backoff, and a generated status page `hierarchy/COLLECTORS-S
 
 ## Schools are mechanical
 
-A school is a charter plus `atlas stage-gate <key>` runs through the ten stages of docs/ADDING-A-SCHOOL.md; the stage tools
+A school is a charter plus `atlas stage-gate <key>` runs through the ten stages of docs/SCHOOL-PROCESS.md; the stage tools
 (`tools/*_school.py`, `sweep_school.py`, `census_build.py`) take the key. The one-school scripts of the first six schools are
 in `archive/` (docs/SCRIPT-MAP.md).
 

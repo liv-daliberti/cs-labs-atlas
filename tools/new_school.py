@@ -1,4 +1,4 @@
-"""`atlas new-school <key> --name "University of X"` (ROADMAP #19): stage 0 of docs/ADDING-A-SCHOOL.md as one command.
+"""`atlas new-school <key> --name "University of X"` (ROADMAP #19): stage 0 of docs/SCHOOL-PROCESS.md as one command.
 
 Makes, for a school that does not exist yet (it refuses when any of them does):
   schools/<key>.toml          the charter, from schools/TEMPLATE.toml with key, name, short, order, started and status = "onboarding"
@@ -46,9 +46,9 @@ CREATE INDEX IF NOT EXISTS works_slim ON works(id, status, doi, title, year, ide
 '''
 
 
-BEFORE_YOU_START = '''Before you start (docs/ADDING-A-SCHOOL.md, "Before you start"):
+BEFORE_YOU_START = '''Before you start (docs/SCHOOL-PROCESS.md, "Before you start"):
   1. work in your own worktree: tools/agent_worktree.sh new <key>; run `bin/atlas ...` there, and `atlas submit --from-worktree` for unlanded code;
-  2. read docs/ONBOARDING-LESSONS.md (every trap earlier schools hit, with its status) and docs/RULES.md;
+  2. read docs/LESSONS-CHECKLIST.md (every trap earlier schools hit, with its status) and docs/RULES.md;
   3. fill the whole charter now, not stage by stage: affiliation regex + cases, [repository] name and pattern, [dblp] strings, [thesis], [collector],
      every [[hosts]] entry, and decide D-rules about related/excluded institutions BEFORE the first sweep;
   4. check the OpenAlex key's credits (10k/day, shared) and that the filtered snapshot can be extended (atlas pipeline snapshot-ext);
@@ -123,7 +123,7 @@ def main(argv=None):
     make_store(stores, a.key, now)
     (hier / 'reports' / 'new-school.json').write_text(json.dumps(dict(school=a.key, name=a.name, at=now, charter=str(charter), store=str(stores), stage=0), indent=1) + '\n')
     probs = S.check(a.key) if schools.resolve() == Path(P.SCHOOL_CONFIGS).resolve() else []
-    print(f'made {a.key}. Stage 0 is open: fill {charter.name} (TEMPLATE.toml documents every field), then `atlas charters`, and run the stage with `atlas stage-gate {a.key} 0 --run` (docs/ADDING-A-SCHOOL.md: each stage runs to its first review step).')
+    print(f'made {a.key}. Stage 0 is open: fill {charter.name} (TEMPLATE.toml documents every field), then `atlas charters`, and run the stage with `atlas stage-gate {a.key} 0 --run` (docs/SCHOOL-PROCESS.md: each stage runs to its first review step).')
     for p in probs:
         print('  to do: ' + p)
     print(BEFORE_YOU_START.replace('<key>', a.key))

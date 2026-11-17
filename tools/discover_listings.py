@@ -1,4 +1,4 @@
-"""Stage 1 discovery in one command: which candidate listing URLs have Wayback captures in which half-years (ADDING-A-SCHOOL stage 1).
+"""Stage 1 discovery in one command: which candidate listing URLs have Wayback captures in which half-years (SCHOOL-PROCESS stage 1).
 
 `school_web.py <key> cdx <url>` prints one line per monthly capture, so finding a department's URL eras meant reading hundreds of lines per
 URL. This prints one line per URL: the 200-capture count and the half-years of 2016-2026 that have one, and the gap list, so the eras of a

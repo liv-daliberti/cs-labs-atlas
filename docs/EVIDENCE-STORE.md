@@ -1,7 +1,7 @@
 # Evidence store (phase 1 of the backend refactor, 2026-11-17)
 
 One SQLite file per school holds every per-person decision with its source, replacing over time the scattered reviewed-JSON
-layers (`docs/REVIEWED-INPUTS.md`). Phase 1 was a **lossless import and an exporter**: no builder reads the store, no output
+layers (`docs/REVIEWS.md`). Phase 1 was a **lossless import and an exporter**: no builder reads the store, no output
 changes. Phase 2 (below) makes it the source of truth for one school. Owner rule: container formats, not many small files (hence SQLite, not a JSON file per decision).
 
 ## Files
