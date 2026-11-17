@@ -4,7 +4,7 @@
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/sjtu/reviewed/labpage-additions.json",
  "additions_generated_at": "2026-11-15T19:29:04+00:00",
- "additions_sha256": "d5587f149902d8b5f9acd403d1fd7a3e2c9941405d660478af38f2e278002013",
+ "additions_sha256": "6505e1a09d94b8cb5e18e0541c458138f34640ca4fc5d6fa9b1e4067dd94b5ff",
  "students": {
   "accepted": true,
   "round": "sjtu-20261115-union-paper-recovery",
@@ -14,7 +14,7 @@
   "membership_errors": 0,
   "role_or_year_errors": 0,
   "counts": {
-   "proposed": 758
+   "proposed": 735
   },
   "note": "Union of previously accepted 688 students and 70 reviewed new names; 20 malformed/unsupported rows held; separate 20-new-row check."
  },
@@ -28,5 +28,20 @@
    "proposed": 396
   },
   "note": "Recovered 396 papers, 20 random byline/affiliation/listing checks; PI listing edition year used for 57 differences."
- }
+ },
+ "source_review_corrections": [
+  {
+   "reviewed_by": "codex-sjtu-release-papers-root-independent-1117",
+   "reviewed_on": "2026-11-17",
+   "prior_additions_sha256": "d5587f149902d8b5f9acd403d1fd7a3e2c9941405d660478af38f2e278002013",
+   "prior_accepted_students": 758,
+   "remaining_students": 735,
+   "removed": 23,
+   "admitted_new_students_from_additions": 0,
+   "unchanged_paper_rows": 396,
+   "reason": "Same accepted-source students are narrowed by exact23 source-scope holds; all remaining735 student rows and all396 paper rows are value-identical. New independently reviewed roster facts are separate roster-evidence.json inputs. No prior recall result/signoff is adopted.",
+   "proposal_sha256": "7c73e297b1b4a12a2c0f19a3e79f926dbc2e53209a45b9221e74159993849945",
+   "independent_review_sha256": "3bbbfa2b4449fe6e800a3b0e7e3fd0af30db0e7209f822aaa3cc948ac847c50c"
+  }
+ ]
 }

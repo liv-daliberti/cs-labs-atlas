@@ -255,8 +255,8 @@ purpose = "Acquisition disabled in this partial charter pending scoped host/line
 
 [[hosts]]
 host = "cs.sjtu.edu.cn"
-use = "live"
-purpose = "Owner ruling 2026-11-12 (relayed by the coordinator): reading cs.sjtu.edu.cn profile pages is allowed; its robots.txt 302s to the home page and holds no Disallow. Robots first, honest UA and >= 3.2 s per host unchanged. Additional owner approval 2026-11-16: finite Gao Xiaofeng Students and Zhu Yanmin left/main-frame batch, at most four literal member children, private evidence, one fetcher, real rules/refusal/challenge/rate stops. Completed three initial pages and zero children; scope and original hashes are in hierarchy/sjtu/reports/FINITE-CS-MEMBER-CAPTURE-20261116.json. This does not authorize general member-page crawling."
+use = "none"
+purpose = "Owner ruling 2026-11-12 (relayed by the coordinator): reading cs.sjtu.edu.cn profile pages is allowed; its robots.txt 302s to the home page and holds no Disallow. Robots first, honest UA and >= 3.2 s per host unchanged. Additional owner approval 2026-11-16: finite Gao Xiaofeng Students and Zhu Yanmin left/main-frame batch, at most four literal member children, private evidence, one fetcher, real rules/refusal/challenge/rate stops. Completed three initial pages and zero children; scope and original hashes are in hierarchy/sjtu/reports/FINITE-CS-MEMBER-CAPTURE-20261116.json. This does not authorize general member-page crawling. Current 2026-11-17 cached-policy correction: robots HTTP302 is classified disallowed by the ordinary current policy checker; use=none and no new contact. Retain the existing genuine historical captures as evidence; this does not authorize refetching."
 
 [[hosts]]
 host = "gc.sjtu.edu.cn"
@@ -270,8 +270,9 @@ purpose = "Acquisition disabled in this partial charter pending scoped host/line
 
 [[hosts]]
 host = "guxd.github.io"
-use = "none"
-purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+use = "live"
+probe = "https://guxd.github.io/"
+purpose = "Official named SJTU faculty profile declares this personal homepage. Scoped academic metadata and own member navigation only; robots and stage-0 probe must pass. Manual host-use review 2026-11-17; no institution-lineage change or fulltext permission."
 
 [[hosts]]
 host = "icisee.sjtu.edu.cn"
@@ -315,8 +316,8 @@ purpose = "Acquisition disabled in this partial charter pending scoped host/line
 
 [[hosts]]
 host = "www.cs.sjtu.edu.cn"
-use = "live"
-purpose = "Owner ruling 2026-11-12 (relayed by the coordinator): reading cs.sjtu.edu.cn profile pages is allowed; its robots.txt 302s to the home page and holds no Disallow. Robots first, honest UA and >= 3.2 s per host unchanged. Additional owner approval 2026-11-16: finite Gao Xiaofeng Students and Zhu Yanmin left/main-frame batch, at most four literal member children, private evidence, one fetcher, real rules/refusal/challenge/rate stops. Completed three initial pages and zero children; scope and original hashes are in hierarchy/sjtu/reports/FINITE-CS-MEMBER-CAPTURE-20261116.json. This does not authorize general member-page crawling."
+use = "none"
+purpose = "Owner ruling 2026-11-12 (relayed by the coordinator): reading cs.sjtu.edu.cn profile pages is allowed; its robots.txt 302s to the home page and holds no Disallow. Robots first, honest UA and >= 3.2 s per host unchanged. Additional owner approval 2026-11-16: finite Gao Xiaofeng Students and Zhu Yanmin left/main-frame batch, at most four literal member children, private evidence, one fetcher, real rules/refusal/challenge/rate stops. Completed three initial pages and zero children; scope and original hashes are in hierarchy/sjtu/reports/FINITE-CS-MEMBER-CAPTURE-20261116.json. This does not authorize general member-page crawling. Current 2026-11-17 cached-policy correction: robots HTTP302 is classified disallowed by the ordinary current policy checker; use=none and no new contact. Retain the existing genuine historical captures as evidence; this does not authorize refetching."
 
 [[hosts]]
 host = "www.math.sjtu.edu.cn"
@@ -340,8 +341,9 @@ purpose = "Acquisition disabled in this partial charter pending scoped host/line
 
 [[hosts]]
 host = "yulunzhang.com"
-use = "none"
-purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+use = "live"
+probe = "https://yulunzhang.com/"
+purpose = "Official named SJTU faculty profile declares this personal homepage. Scoped academic metadata and own member navigation only; robots and stage-0 probe must pass. Manual host-use review 2026-11-17; no institution-lineage change or fulltext permission."
 
 [[hosts]]
 host = "api.openalex.org"

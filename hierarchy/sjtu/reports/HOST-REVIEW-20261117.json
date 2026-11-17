@@ -1,0 +1,74 @@
+{
+  "scope": "Two declared personal hosts only; no CS/ppjhh requests, redirects not followed",
+  "results": [
+    {
+      "host": "guxd.github.io",
+      "pi": "顾小东",
+      "url": "https://guxd.github.io/",
+      "official_profile_sha256": "9a904a74355f37c2543b99a6ff91938eff72453faa33a4492814e0d065f33da6",
+      "robots_status": 404,
+      "robots_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots_allowed": true,
+      "crawl_delay": 2.0,
+      "robots_body": "",
+      "probe_result": [
+        200,
+        "7370647b95afe2e4f6383486a8c22240d7be09966bee62008cf3824efd447459"
+      ],
+      "capture": {
+        "url": "https://guxd.github.io/",
+        "fetched_at": "2026-11-17T00:44:15",
+        "status": 200,
+        "sha256": "7370647b95afe2e4f6383486a8c22240d7be09966bee62008cf3824efd447459",
+        "content_type": "text/html; charset=utf-8"
+      },
+      "blocked": null
+    },
+    {
+      "host": "yulunzhang.com",
+      "pi": "张宇伦",
+      "url": "https://yulunzhang.com/",
+      "official_profile_sha256": "bd7cfb5a60a8719d2fd8fd826fd9a73b3a744464dd00ecb81e46041186dd574a",
+      "robots_status": 200,
+      "robots_body_sha256": "3c70920fc37523fab28b6c15bcdafc382a0454f14bf2da6c16ebcb692c8cb3d1",
+      "robots_allowed": true,
+      "crawl_delay": 2.0,
+      "robots_body": "User-agent: *\nDisallow:\n\nSitemap: http://localhost:4000/sitemap.xml\n",
+      "probe_result": [
+        200,
+        "6b12cf0d0e94bab3342e2fa3173763a082a04b73e540303ea3fecbe7c511bbbb"
+      ],
+      "capture": {
+        "url": "https://yulunzhang.com/",
+        "fetched_at": "2026-11-17T00:44:16",
+        "status": 200,
+        "sha256": "6b12cf0d0e94bab3342e2fa3173763a082a04b73e540303ea3fecbe7c511bbbb",
+        "content_type": "text/html; charset=utf-8"
+      },
+      "blocked": null
+    }
+  ],
+  "status": "manual_host_scope_review_complete",
+  "reviewed_by": "codex-sjtu-stage6-streamlined-1116-root",
+  "reviewed_on": "2026-11-17",
+  "decision": "live academic metadata and PI-owned member navigation on two declared hosts",
+  "scientific_scope": "Official named faculty profiles declare these exact homepages. Actual homepages explicitly identify the same PI and SJTU computing role; no institution lineage or fulltext permission change. Actual robots allowed (Gu404;Zhang200emptyDisallow); plain probes200, no block/challenge. Gu current/alumni roster read in full, Zhang group page read in full; degree starts, undergraduate cohorts, internships and award dates are distinct.",
+  "group_capture": {
+    "url": "https://yulunzhang.com/group/",
+    "fetched_at": "2026-11-17T00:46:57",
+    "status": 200,
+    "sha256": "a3254d86ecdd14224a630083af90a0095a6db734be18fb04113f7dee0cfceb21",
+    "content_type": "text/html; charset=utf-8"
+  },
+  "initial_submission_failure": "32370471 stopped at charter snapshot assertion before requests; corrected --from-worktree job32370474 read only two scoped hosts. No refusal retried.",
+  "jobs": [
+    "32370474",
+    "32370600"
+  ],
+  "old_signed_failed_review_sha256": "32357e757a35ab3e1fed20e84d6ab519f49994cb40d8d80f28aeb080acdc9ce5",
+  "preserved": [
+    "Old candidate inputs/source cache and signed review unchanged",
+    "No new request to refused CS namespace or robots-disallowed ppjhh",
+    "No aliases/redirects/archive proxies requested"
+  ]
+}
