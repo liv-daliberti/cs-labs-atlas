@@ -1946,5 +1946,39 @@
    "on": "2026-11-16",
    "method": "Exact preserved primary bytes and literal quotes verified; selected DOM/JS and independently re-extracted PDF role/date boundaries reviewed. Fixed diagnostic20 seed2026111604. Manual source curation; no automatic extraction round."
   }
+ },
+ {
+  "school": "tsinghua",
+  "pi": "李国良",
+  "student": "ext:tsinghua:yunyan-guo",
+  "action": "replace_sources",
+  "expected_member_sha256": "b345c1aaeed616bd1a0f2e9f15035541d6680efcf9989536765f938b28527af3",
+  "type": "researched_membership",
+  "role": "postdoc",
+  "roles": [
+   "postdoc"
+  ],
+  "years": [
+   2021,
+   2026
+  ],
+  "sources": [
+   {
+    "url": "https://dbgroup.cs.tsinghua.edu.cn/ligl/students.html",
+    "sha256": "bc7e60d825a156f21de4668dfc07301b2a40daf093921e82e987df9e524cb3f9",
+    "quote": "YunYan Guo Ph.D. @ Harbin Institute of Technology, China postdoc (2021 - current)"
+   }
+  ],
+  "reason": "The original automatic PhD label was cut from a doctorate explicitly at Harbin Institute of Technology. The same complete source card calls the local role postdoc (2021-current). Preserve Tsinghua lab membership; replace only that unsupported local-degree claim and miscut evidence under an exact preimage guard.",
+  "evidence": [
+   {
+    "url": "https://dbgroup.cs.tsinghua.edu.cn/ligl/students.html",
+    "sha256": "bc7e60d825a156f21de4668dfc07301b2a40daf093921e82e987df9e524cb3f9",
+    "quote": "YunYan Guo Ph.D. @ Harbin Institute of Technology, China postdoc (2021 - current)",
+    "observedAt": "2026-11-12T02:49:16+00:00"
+   }
+  ],
+  "review_status": "independently_source_approved",
+  "source_independent_review_sha256": "bb36fddcc5d6198f1695c1cb55098ce7f108f90eaa3b2c52839275228cd5d57b"
  }
 ]
