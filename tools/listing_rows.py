@@ -116,7 +116,7 @@ def live_listing_rows(key, cfg, rw, tm, title_filters, kind_of):
     if not manifest.exists():
         return rows, n, coverage
     sources = json.loads(manifest.read_text())['sources']
-    slots = {(d['code'], s['slot']) for d in cfg.get('departments') or [] for s in d.get('listings') or []}
+    slots = {(d['code'], s['slot']) for d in S.listing_units(cfg) for s in d.get('listings') or []}
     db = P.data('school-captures.sqlite', key)
     with sqlite3.connect(f'file:{db}?mode=ro', uri=True) as c:
         for source in sources:
@@ -404,9 +404,9 @@ def vt_paired_directory_rows(key):
 def main(key):
     cfg = S.get(key)
     rw = (cfg.get('census') or {}).get('rank_words') or {}
-    tm = {d['code']: re.compile(d.get('title_match') or r'.', re.I) for d in cfg.get('departments') or []}
-    eras = [(s['slot'], s.get('from') or '0', s.get('to') or '9', s.get('format')) for d in cfg.get('departments') or [] for s in d.get('listings') or []]
-    title_filters = {s['slot']: re.compile(s['title_filter'], re.I) for d in cfg.get('departments') or [] for s in d.get('listings') or [] if s.get('title_filter')}
+    tm = {d['code']: re.compile(d.get('title_match') or r'.', re.I) for d in S.listing_units(cfg)}
+    eras = [(s['slot'], s.get('from') or '0', s.get('to') or '9', s.get('format')) for d in S.listing_units(cfg) for s in d.get('listings') or []]
+    title_filters = {s['slot']: re.compile(s['title_filter'], re.I) for d in S.listing_units(cfg) for s in d.get('listings') or [] if s.get('title_filter')}
     kind_of = {s['slot']: s['kind'] for s in S.listing_slots(key)}
     db = P.data('listings-captures.sqlite', key)
     c = sqlite3.connect(f'file:{db}?mode=ro', uri=True) if db.exists() else None

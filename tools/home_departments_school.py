@@ -104,7 +104,7 @@ def main(key, write_shared=False):
     def faculty_title(title):
         return bool(PROF.search(title)) or rank_of([title], rank_words) == 'ladder'
 
-    deps = {d['code']: d for d in cfg.get('departments') or []}
+    deps = {d['code']: d for d in S.listing_units(cfg)}
     tm = {c: re.compile(d.get('title_match') or '.', re.I) for c, d in deps.items()}
     census = json.loads((P.data('census-faculty.json', key)).read_text())['faculty']
     adds = json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []

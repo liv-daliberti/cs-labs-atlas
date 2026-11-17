@@ -195,7 +195,7 @@ def check(key):
         if not cfg.get('hosts'):
             out.append(f'{key}: no [[hosts]] (stage 0 checks every host against robots.txt)')
         dept_of = {}
-        for d in deps:
+        for d in listing_units(cfg):
             for s in d.get('listings') or []:
                 if dept_of.setdefault(s.get('slot'), d.get('code')) != d.get('code'):
                     out.append(f'{key}: listing slot {s.get("slot")!r} is in two departments')
@@ -236,11 +236,24 @@ def listing_group_errors(department):
     return errors
 
 
+def listing_units(cfg):
+    """Every unit that has dated listing slots: the departments, plus each [[affiliated_units]] entry that carries
+    [[affiliated_units.slots]] (an affiliated unit with archived rosters, e.g. a state key laboratory or a college whose roster
+    is names-only). A unit's slots are read like a department's, but its class stays "affiliated": it is not a Stage 1 department
+    (stage_gate.g1 reads only [[departments]]), its people are candidates for the CS-related review, and the absence of a person
+    claims only the years its archived rosters cover."""
+    units = list(cfg.get('departments') or [])
+    for u in cfg.get('affiliated_units') or []:
+        if u.get('slots'):
+            units.append(dict(u, coverage='affiliated', listings=u['slots']))
+    return units
+
+
 def listing_slots(key):
     """The charter's listing slots in the listings pipeline's shape (listings/scripts/plan_fetch.py SLOTS). Entries
     with the same slot name are one slot with several URL eras (a site move), tried in the order listed."""
     out, by = [], {}
-    for d in get(key).get('departments') or []:
+    for d in listing_units(get(key)):
         for s in d.get('listings') or []:
             opt = {}
             if s.get('prefix'):

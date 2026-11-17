@@ -205,7 +205,7 @@ def source_excluded_openalex_ids(key, verified_pids):
 
 def candidates(key):
     census = census_rows(read(P.data('census-faculty.json', key)))
-    cov = {d['code']: d.get('coverage') for d in S.get(key).get('departments') or []}
+    cov = {d['code']: d.get('coverage') for d in S.listing_units(S.get(key))}
     out = []
     for x in census:  # (a) ladder in an affiliated department, never ladder in a full-coverage one
         dep_rank = {((s_.get('kind') or '').split(':')[-1], s_.get('rank')) for s_ in x.get('sources') or []}

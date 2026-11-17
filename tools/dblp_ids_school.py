@@ -48,7 +48,7 @@ def main(key):
     xh = [d.lower() for d in (cfg.get('web') or {}).get('excluded_hosts') or []]
     census = json.loads((P.data('census-faculty.json', key)).read_text())['faculty']
     adds = json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []
-    cov = {d['code']: d.get('coverage') for d in cfg.get('departments') or []}
+    cov = {d['code']: d.get('coverage') for d in S.listing_units(cfg)}
     # the PIs, plus the ladder faculty of affiliated departments (their CS-related review needs their DBLP output)
     pis = select_pis(census + adds, cov)
     def nurl(u):

@@ -328,7 +328,7 @@ def merge_people(rows, explicit_aliases=()):
 
 def main(key):
     cfg = S.get(key); lo, hi = cfg.get('window') or [2016, 2026]
-    coverage = {d['code']: d.get('coverage') or 'full' for d in cfg.get('departments') or []}
+    coverage = {d['code']: d.get('coverage') or 'full' for d in S.listing_units(cfg)}
     rows = read(P.data('rows.json', key), [])
     review = {r['name']: r for r in read(P.data('cs-related-review.json', key), {}).get('decisions', [])} \
         if isinstance(read(P.data('cs-related-review.json', key), {}), dict) else {}
