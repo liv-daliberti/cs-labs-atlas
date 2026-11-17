@@ -11,8 +11,7 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import atlas_paths as P  # noqa: E402
+import atlas_paths as P
 
 RECORDS = 'labpage-audit-discovery.jsonl'
 MARKER = 'labpage-audit-discovery.done.json'
