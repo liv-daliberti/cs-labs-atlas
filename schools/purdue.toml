@@ -276,7 +276,8 @@ robots = "unreachable"
 note = "Purdue repositories: HAMMER answered 202 and docs.lib.purdue.edu (e-Pubs) 200 to a plain robots.txt request on 2026-11-07; verify the endpoint before stage 8. Collect explicit supervisor statements only."
 
 [collector]
-channels = ["oa_arxiv", "openalex", "s2", "labpages"]
+# 2026-11-17 (owner): CORE is allowed everywhere (DECISIONS 2026-11-15); core, core_bulk, europepmc and pmc added like the other loop charters. No wayback.
+channels = ["oa_arxiv", "openalex", "s2", "core", "core_bulk", "europepmc", "pmc", "labpages"]
 
 [students]
 directories = []
