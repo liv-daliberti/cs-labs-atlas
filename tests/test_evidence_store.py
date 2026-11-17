@@ -111,7 +111,7 @@ def flagged_aa(root, tmp_path, monkeypatch):
 
 def test_charter_flag_defaults_to_json_and_michigan_is_store():
     import school_config as S
-    assert S.evidence_source('cmu') == 'json'
+    assert S.evidence_source('oxford') == 'json'   # a school still on the JSON files
     assert S.evidence_source('princeton') == 'store' and S.evidence_shared('princeton') == 'store'
     assert S.evidence_source('michigan') == 'store'
     assert S.check('michigan') == []
