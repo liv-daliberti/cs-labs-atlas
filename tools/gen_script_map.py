@@ -10,7 +10,6 @@ import sys
 from pathlib import Path
 
 CODE = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(CODE))
 MAP = CODE / 'docs' / 'SCRIPT-MAP.md'
 BEGIN, END = '<!-- generated:begin (tools/gen_script_map.py) -->', '<!-- generated:end -->'
 DEFAULT_INV = CODE.parent / 'scratch' / 'refactor-1117' / 'inventory.json'
