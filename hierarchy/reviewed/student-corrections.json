@@ -2245,5 +2245,485 @@
    "reviewer": "/root/mit_recall_independent",
    "receipt_sha256": "29961df10f36c6c3c67ff468cd47c9f0a3612979ec87abe79e37c96abe8053f1"
   }
+ },
+ {
+  "school": "mit",
+  "pi": "Peter Szolovits",
+  "student": "mit_thesis_author_0aab898c2cefe251d12d",
+  "action": "rename",
+  "name": "Tristan Naumann",
+  "aliases": [
+   "Naumann, Tristan Josef"
+  ],
+  "reason": "The PI-owned literal thesis link identifies this exact primary thesis UUID/handle, author, adviser, title and year. Retain the existing person and canonical name; append only the source-explicit name form. Bulk response URLs identify actual captures; individual item URLs are identifiers only.",
+  "evidence": [
+   {
+    "url": "https://people.csail.mit.edu/psz/web/students.html",
+    "sha256": "57b49ca9cb30eeec647e382bfbe4e4202a8aaa78a2c3ebdef4774458c2f426bd",
+    "quote": "Naumann, Tristan Josef. “ Leveraging Text Representations for Clinical Predictive Tasks .”\nPhD Thesis, EECS, MIT, Cambridge, MA, June 2018.\nReaders: Guttag, John and Rumshisky, Anna."
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "sha256": "649c1c09e230f5063b4316a2c9b6ccacf3b87f66e3244ea8cd3fcb26d04d8e95",
+    "quote": "\"uuid\" : \"8697d79b-8e77-440f-b7f3-3656d43fa4b9\"",
+    "field": "item_uuid",
+    "source_item_uuid": "8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "source_item_handle": "1721.1/118090"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "sha256": "649c1c09e230f5063b4316a2c9b6ccacf3b87f66e3244ea8cd3fcb26d04d8e95",
+    "quote": "\"handle\" : \"1721.1/118090\"",
+    "field": "item_handle",
+    "source_item_uuid": "8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "source_item_handle": "1721.1/118090"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "sha256": "649c1c09e230f5063b4316a2c9b6ccacf3b87f66e3244ea8cd3fcb26d04d8e95",
+    "quote": "\"dc.contributor.author\" : [ {\n      \"value\" : \"Naumann, Tristan\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : 0,\n      \"place\" : 0\n    } ]",
+    "field": "author",
+    "source_item_uuid": "8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "source_item_handle": "1721.1/118090"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "sha256": "649c1c09e230f5063b4316a2c9b6ccacf3b87f66e3244ea8cd3fcb26d04d8e95",
+    "quote": "\"dc.contributor.advisor\" : [ {\n      \"value\" : \"Peter Szolovits.\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]",
+    "field": "adviser",
+    "source_item_uuid": "8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "source_item_handle": "1721.1/118090"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "sha256": "649c1c09e230f5063b4316a2c9b6ccacf3b87f66e3244ea8cd3fcb26d04d8e95",
+    "quote": "\"dc.title\" : [ {\n      \"value\" : \"Leveraging text representations for clinical predictive tasks\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]",
+    "field": "title",
+    "source_item_uuid": "8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "source_item_handle": "1721.1/118090"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "sha256": "649c1c09e230f5063b4316a2c9b6ccacf3b87f66e3244ea8cd3fcb26d04d8e95",
+    "quote": "\"dc.date.issued\" : [ {\n      \"value\" : \"2018\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]",
+    "field": "issued",
+    "source_item_uuid": "8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "source_item_handle": "1721.1/118090"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "sha256": "649c1c09e230f5063b4316a2c9b6ccacf3b87f66e3244ea8cd3fcb26d04d8e95",
+    "quote": "\"dc.description.degree\" : [ {\n      \"value\" : \"Ph.D.\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]",
+    "field": "degree",
+    "source_item_uuid": "8697d79b-8e77-440f-b7f3-3656d43fa4b9",
+    "source_item_handle": "1721.1/118090"
+   }
+  ],
+  "reviewed_by": "codex-mit-gates-1117",
+  "reviewed_on": "2026-11-17",
+  "independent_review": {
+   "reviewer": "/root/mit_recall_independent",
+   "receipt_sha256": "8cfed558df6e2509ca6952cda4e0cc8ce0f45b624162ad7a29673b9676100b77"
+  }
+ },
+ {
+  "school": "mit",
+  "pi": "Peter Szolovits",
+  "student": "mit_thesis_author_b8da9bb538b01a1a8636",
+  "action": "rename",
+  "name": "William Boag",
+  "aliases": [
+   "Boag, William G"
+  ],
+  "reason": "The PI-owned literal thesis link identifies this exact primary thesis UUID/handle, author, adviser, title and year. Retain the existing person and canonical name; append only the source-explicit name form. Bulk response URLs identify actual captures; individual item URLs are identifiers only.",
+  "evidence": [
+   {
+    "url": "https://people.csail.mit.edu/psz/web/students.html",
+    "sha256": "57b49ca9cb30eeec647e382bfbe4e4202a8aaa78a2c3ebdef4774458c2f426bd",
+    "quote": "Boag, William G. “Evidence-based AI Ethics.”\nPhD Thesis, EECS, MIT, Cambridge, MA, May 2022.\nReaders: Weitzner, Daniel and Ghassemi, Marzyeh and D'Ignazio, Catherine."
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "sha256": "d165daa4d64e20b8510daa390c966aa5b3936a06313e03711b427d712fade48a",
+    "quote": "\"uuid\" : \"4fc8619f-8d1b-49e0-a59d-efbec3075f6a\"",
+    "field": "item_uuid",
+    "source_item_uuid": "4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "source_item_handle": "1721.1/144715"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "sha256": "d165daa4d64e20b8510daa390c966aa5b3936a06313e03711b427d712fade48a",
+    "quote": "\"handle\" : \"1721.1/144715\"",
+    "field": "item_handle",
+    "source_item_uuid": "4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "source_item_handle": "1721.1/144715"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "sha256": "d165daa4d64e20b8510daa390c966aa5b3936a06313e03711b427d712fade48a",
+    "quote": "\"dc.contributor.author\" : [ {\n      \"value\" : \"Boag, William\",\n      \"language\" : null,\n      \"authority\" : null,\n      \"confidence\" : 500,\n      \"place\" : 0\n    } ]",
+    "field": "author",
+    "source_item_uuid": "4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "source_item_handle": "1721.1/144715"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "sha256": "d165daa4d64e20b8510daa390c966aa5b3936a06313e03711b427d712fade48a",
+    "quote": "\"dc.contributor.advisor\" : [ {\n      \"value\" : \"Szolovits, Peter\",\n      \"language\" : null,\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]",
+    "field": "adviser",
+    "source_item_uuid": "4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "source_item_handle": "1721.1/144715"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "sha256": "d165daa4d64e20b8510daa390c966aa5b3936a06313e03711b427d712fade48a",
+    "quote": "\"dc.title\" : [ {\n      \"value\" : \"Evidence-based AI Ethics\",\n      \"language\" : null,\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]",
+    "field": "title",
+    "source_item_uuid": "4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "source_item_handle": "1721.1/144715"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "sha256": "d165daa4d64e20b8510daa390c966aa5b3936a06313e03711b427d712fade48a",
+    "quote": "\"dc.date.issued\" : [ {\n      \"value\" : \"2022-05\",\n      \"language\" : null,\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]",
+    "field": "issued",
+    "source_item_uuid": "4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "source_item_handle": "1721.1/144715"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "sha256": "d165daa4d64e20b8510daa390c966aa5b3936a06313e03711b427d712fade48a",
+    "quote": "\"dc.description.degree\" : [ {\n      \"value\" : \"Ph.D.\",\n      \"language\" : null,\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]",
+    "field": "degree",
+    "source_item_uuid": "4fc8619f-8d1b-49e0-a59d-efbec3075f6a",
+    "source_item_handle": "1721.1/144715"
+   }
+  ],
+  "reviewed_by": "codex-mit-gates-1117",
+  "reviewed_on": "2026-11-17",
+  "independent_review": {
+   "reviewer": "/root/mit_recall_independent",
+   "receipt_sha256": "8cfed558df6e2509ca6952cda4e0cc8ce0f45b624162ad7a29673b9676100b77"
+  }
+ },
+ {
+  "school": "mit",
+  "pi": "Peter Szolovits",
+  "student": "mit_thesis_author_d764e50493ec0a14232a",
+  "action": "rename",
+  "name": "Divya P Pillai",
+  "aliases": [
+   "Pillai, Divya"
+  ],
+  "reason": "The PI-owned literal thesis link identifies this exact primary thesis UUID/handle, author, adviser, title and year. Retain the existing person and canonical name; append only the source-explicit name form. Bulk response URLs identify actual captures; individual item URLs are identifiers only.",
+  "evidence": [
+   {
+    "url": "https://people.csail.mit.edu/psz/web/students.html",
+    "sha256": "57b49ca9cb30eeec647e382bfbe4e4202a8aaa78a2c3ebdef4774458c2f426bd",
+    "quote": "Pillai, Divya. “ Clinical Trend Discovery and Analysis of Taiwanese Health Insurance Claims Data .”\nMaster's Thesis, EECS, MIT, Cambridge, MA, May 2016."
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"uuid\" : \"2611504f-afc3-4f34-aeac-df663be76356\"",
+    "field": "item_uuid",
+    "source_item_uuid": "2611504f-afc3-4f34-aeac-df663be76356",
+    "source_item_handle": "1721.1/105967"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"handle\" : \"1721.1/105967\"",
+    "field": "item_handle",
+    "source_item_uuid": "2611504f-afc3-4f34-aeac-df663be76356",
+    "source_item_handle": "1721.1/105967"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"dc.contributor.author\" : [ {\n                  \"value\" : \"Pillai, Divya P\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : 500,\n                  \"place\" : 0\n                } ]",
+    "field": "author",
+    "source_item_uuid": "2611504f-afc3-4f34-aeac-df663be76356",
+    "source_item_handle": "1721.1/105967"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"dc.contributor.advisor\" : [ {\n                  \"value\" : \"Peter Szolovits.\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "field": "adviser",
+    "source_item_uuid": "2611504f-afc3-4f34-aeac-df663be76356",
+    "source_item_handle": "1721.1/105967"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"dc.title\" : [ {\n                  \"value\" : \"Clinical trend discovery and analysis of Taiwanese health insurance claims data\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "field": "title",
+    "source_item_uuid": "2611504f-afc3-4f34-aeac-df663be76356",
+    "source_item_handle": "1721.1/105967"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"dc.date.issued\" : [ {\n                  \"value\" : \"2016\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "field": "issued",
+    "source_item_uuid": "2611504f-afc3-4f34-aeac-df663be76356",
+    "source_item_handle": "1721.1/105967"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"dc.description.degree\" : [ {\n                  \"value\" : \"M.Eng.\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "field": "degree",
+    "source_item_uuid": "2611504f-afc3-4f34-aeac-df663be76356",
+    "source_item_handle": "1721.1/105967"
+   }
+  ],
+  "reviewed_by": "codex-mit-gates-1117",
+  "reviewed_on": "2026-11-17",
+  "independent_review": {
+   "reviewer": "/root/mit_recall_independent",
+   "receipt_sha256": "8cfed558df6e2509ca6952cda4e0cc8ce0f45b624162ad7a29673b9676100b77"
+  }
+ },
+ {
+  "school": "mit",
+  "pi": "Peter Szolovits",
+  "student": "mit_thesis_author_287d6542b33a3e313fbb",
+  "action": "rename",
+  "name": "Tejas G Sundaresan",
+  "aliases": [
+   "Sundaresan, Tejas"
+  ],
+  "reason": "The PI-owned literal thesis link identifies this exact primary thesis UUID/handle, author, adviser, title and year. Retain the existing person and canonical name; append only the source-explicit name form. Bulk response URLs identify actual captures; individual item URLs are identifiers only.",
+  "evidence": [
+   {
+    "url": "https://people.csail.mit.edu/psz/web/students.html",
+    "sha256": "57b49ca9cb30eeec647e382bfbe4e4202a8aaa78a2c3ebdef4774458c2f426bd",
+    "quote": "Sundaresan, Tejas. “ Sequential Modeling for Mortality Prediction in the ICU .”\nMaster's Thesis, EECS, MIT, Cambridge, MA, June 2017."
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"uuid\" : \"6f405f78-20ca-4621-a05b-0959f38a4c8d\"",
+    "field": "item_uuid",
+    "source_item_uuid": "6f405f78-20ca-4621-a05b-0959f38a4c8d",
+    "source_item_handle": "1721.1/113105"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"handle\" : \"1721.1/113105\"",
+    "field": "item_handle",
+    "source_item_uuid": "6f405f78-20ca-4621-a05b-0959f38a4c8d",
+    "source_item_handle": "1721.1/113105"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"dc.contributor.author\" : [ {\n                  \"value\" : \"Sundaresan, Tejas G\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "field": "author",
+    "source_item_uuid": "6f405f78-20ca-4621-a05b-0959f38a4c8d",
+    "source_item_handle": "1721.1/113105"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"dc.contributor.advisor\" : [ {\n                  \"value\" : \"Peter Szolovits.\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "field": "adviser",
+    "source_item_uuid": "6f405f78-20ca-4621-a05b-0959f38a4c8d",
+    "source_item_handle": "1721.1/113105"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"dc.title\" : [ {\n                  \"value\" : \"Sequential modeling for mortality prediction in the ICU\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "field": "title",
+    "source_item_uuid": "6f405f78-20ca-4621-a05b-0959f38a4c8d",
+    "source_item_handle": "1721.1/113105"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"dc.date.issued\" : [ {\n                  \"value\" : \"2017\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "field": "issued",
+    "source_item_uuid": "6f405f78-20ca-4621-a05b-0959f38a4c8d",
+    "source_item_handle": "1721.1/113105"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%2800cbde1e-fd7d-412f-8b2d-60707010147e%20OR%2001621aeb-f547-4483-9859-fdd7bfd50497%20OR%2003e577dc-ce4d-4c6d-be8a-604480017f73%20OR%200b8efc70-9612-4cdb-bd15-96be0e1322dd%20OR%2017120ffb-3280-48a9-b4e9-aeeca172bfa3%20OR%2021be733b-8c7b-45cc-8428-cbd644027a79%20OR%202611504f-afc3-4f34-aeac-df663be76356%20OR%2029e63405-7dd4-4212-9f00-7c2ade65bbb1%20OR%202c9274fd-5b0d-4eea-aecb-0d80ec6a2ed5%20OR%202e2eec81-382b-499a-8480-d817a896f40d%20OR%2032d1ff18-0c9c-4dd9-be54-a6bbe6e2c0d2%20OR%20359e1b0b-226b-4dd4-8c62-1f6d0b53e229%20OR%2041d47b18-5500-4e04-8d5f-a7156a51dec3%20OR%20496707f9-f6d0-4a1d-92e5-f71386a73852%20OR%204d30c21e-0fee-440b-8676-3c4cd5ffa3ba%20OR%204e9157ad-20c9-4450-94ff-0f304d10c182%20OR%2052749941-1088-4aff-a6ac-3904c020e4e8%20OR%2053013968-7670-492d-8bab-d9012e03887f%20OR%20637733a1-c41c-4814-a009-594d4cddaae3%20OR%206c4dd951-9413-4808-92a5-3a0a7ccdf749%20OR%206d4fa52c-5a1d-4f57-a4fc-098cb40d34c8%20OR%206f405f78-20ca-4621-a05b-0959f38a4c8d%20OR%20735c8bdd-5322-4cd3-a0cb-de7b056d3988%20OR%207862a4f0-f13f-48b2-8ce1-9c13f4def94b%20OR%207a3dec73-e188-45db-9830-cf2749ac69a0%20OR%2087a2ba0e-678a-4da8-a2d8-2c2835b10b3a%20OR%20881e1c31-e70c-4b6c-8083-ff2499d104ed%20OR%2089331c37-2d95-4bb4-bd44-05e93b94739d%20OR%208a79147e-c814-44a6-99e9-9bb02666dd28%20OR%208b3fecb5-6f8d-4693-be8d-0478772524bf%20OR%209350e8fa-3731-4a5e-8055-5000fec9e808%20OR%2094234afd-8214-4f4d-934f-bb2af5100077%20OR%2094282e11-ef3f-44eb-8ca4-61f3b94dec42%20OR%2097b51307-c9d2-4144-839a-a2095704da04%20OR%2099b370d1-4317-46d1-8f9b-b7676ad7c0ab%20OR%209f7c394b-100f-400a-9298-cfc72ed98cb5%20OR%20a2a5d0b4-cb7b-4e67-bc3f-7a44612bc3c4%20OR%20a472800e-5271-4b27-9187-236985475d8c%20OR%20af80450d-9fae-4823-9d8a-43af68e9c0d4%20OR%20bcf0a757-ca2d-4209-928d-70cbcda9b88f%20OR%20c34cf9e0-7bf6-4f25-bcb4-94993fcd76a1%20OR%20c560c681-893d-40a1-9394-5de6b2cab533%20OR%20ced0f9a7-4725-439e-87bb-feb0378e2c84%20OR%20d7cd73ef-5769-409d-897c-b3e1081d359c%20OR%20db35a244-ae46-4a2a-bdb1-e902b6e5ec2c%20OR%20eaf566d5-937f-49a5-9841-a130c92190f0%20OR%20ec8766f0-1bc7-4844-8a3a-eeb44d7ad87c%20OR%20f2b3303b-9c6b-4aae-b535-a3c7de30dbbf%20OR%20fa3753bd-c93c-4d35-b75b-4d8b9e965f47%20OR%20fe765cd3-6a65-43b7-9ae4-ff4f1ffe1aa5%29",
+    "sha256": "97a7b004223f88ad41224d82ebeaf4035fb9643b011add33ad29921b70680cf7",
+    "quote": "\"dc.description.degree\" : [ {\n                  \"value\" : \"M.Eng.\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "field": "degree",
+    "source_item_uuid": "6f405f78-20ca-4621-a05b-0959f38a4c8d",
+    "source_item_handle": "1721.1/113105"
+   }
+  ],
+  "reviewed_by": "codex-mit-gates-1117",
+  "reviewed_on": "2026-11-17",
+  "independent_review": {
+   "reviewer": "/root/mit_recall_independent",
+   "receipt_sha256": "8cfed558df6e2509ca6952cda4e0cc8ce0f45b624162ad7a29673b9676100b77"
+  }
+ },
+ {
+  "school": "mit",
+  "pi": "Peter Szolovits",
+  "student": "mit_thesis_author_78bf6316ce7d566ba6ab",
+  "action": "rename",
+  "name": "Uma M. Girkar",
+  "aliases": [
+   "Girkar, Uma"
+  ],
+  "reason": "The PI-owned literal thesis link identifies this exact primary thesis UUID/handle, author, adviser, title and year. Retain the existing person and canonical name; append only the source-explicit name form. Bulk response URLs identify actual captures; individual item URLs are identifiers only.",
+  "evidence": [
+   {
+    "url": "https://people.csail.mit.edu/psz/web/students.html",
+    "sha256": "57b49ca9cb30eeec647e382bfbe4e4202a8aaa78a2c3ebdef4774458c2f426bd",
+    "quote": "Girkar, Uma. “ Predicting blood pressure response to fluid bolus therapy in the ICU using attention-based stacked neural networks for clinical interpretability .”\nMaster's Thesis, EECS, MIT, Cambridge, MA, February 2019."
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%280c1c7d30-ebc3-4524-9975-7b29c50b4158%20OR%200d723859-7e6d-4efe-895d-ac57bdfae12a%20OR%201289e366-7ad5-4024-94dd-f961f6e114a4%20OR%2013ab5501-8231-4953-b5f9-2e98937b9b8e%20OR%201b85ca53-ad79-4de3-ade5-2050b2c0b602%20OR%20213396c5-4de6-4f6b-bebe-94bfad4faace%20OR%2023a49aa4-c2b0-4c8c-8ccf-fbd1a603e840%20OR%2023f56d76-4133-484f-925a-a70cce278733%20OR%2027b67f26-d697-456d-abfc-891ec582c6f3%20OR%2029c40057-7396-4814-ba14-6f1e79a3fd25%20OR%203467005a-eb51-4a6b-94a7-dbfee5395d1b%20OR%2034c22b02-f587-4267-85b2-9cb839b66525%20OR%203f062d63-b35d-46fe-a526-99e5f1b68a34%20OR%2041177e23-e715-49c9-9188-736c0d0f0c3b%20OR%2041a31ef3-dcbd-4c56-bd4e-29e673674c86%20OR%20528eb112-76ff-471e-948b-f941d41b4ede%20OR%2056f4a2f1-01aa-4260-bf12-ee015ce0e068%20OR%205d6ef22e-2427-4931-9e19-9ba8f2e4c122%20OR%2063798917-9343-469d-9486-c71a1cda2d85%20OR%2063a0bd0d-d405-4121-a803-ec338caaa6bb%20OR%206c6fb389-0cd8-47f7-a005-f88c61aafa05%20OR%2080c38890-d5a9-45a8-ad1f-811434452048%20OR%208234bbae-98e1-4183-bbc7-789283e0ea11%20OR%208f67ea62-abbb-4e62-9d41-3c4fe38c3bab%20OR%20913c3311-e42b-4e8e-9ea6-2344b63a4f70%20OR%20957a9cad-355f-4924-b417-f3caf18ea444%20OR%20978d81ea-3233-4742-9361-84c4ffd60668%20OR%2097b7dffd-781e-4145-bebf-1eb7977ec655%20OR%209f73cf67-657c-42ec-a8ac-5c4cdcd52628%20OR%20a75bbfdc-6a5e-4d08-b5d3-48b3ff72fb5e%20OR%20adb16812-dc69-4de4-8ffa-411736b457ec%20OR%20affee1ad-90f2-4dec-b18d-2935546b5063%20OR%20b5bb04e3-a48a-47eb-93eb-19bbc65be916%20OR%20c062e399-96f0-4dde-9944-5ad41b697859%20OR%20c38cb627-ed36-4c7c-8a5a-93d461b737ad%20OR%20c43e6be1-b382-47cd-9f7a-46af09ec8845%20OR%20cbe4f8c6-c720-4c3e-bbff-a49637c46193%20OR%20ccc1f043-08f7-442a-abbb-f23c0eb0c4b0%20OR%20d0d77a65-fb99-4edb-b2b7-8e0ea13179bd%20OR%20d0db9515-a44f-4fb1-b4cf-394c44790200%20OR%20d592ba8a-241f-4e48-baba-11caafd9f022%20OR%20daee5a31-e5d4-4ad1-9ab3-2d2a57c46912%20OR%20dbda91a8-2536-4312-9943-aaaac45ca698%20OR%20e30c9369-d73f-4a81-8802-b4788ac9e097%20OR%20e8350596-f865-4ef2-b62c-c544fce3a445%20OR%20ef006f2b-b4f0-407e-98bb-1d9349f3145d%20OR%20f0486205-e124-471b-812e-ef67586d6418%20OR%20f19f1e09-9d93-4442-8f97-7edbef6c4be3%20OR%20f5025d8b-b0dd-4e87-9b84-31a96e6c1201%20OR%20f875c716-76a0-4c37-a06e-3dc7c6fd2919%29",
+    "sha256": "e027d4f3d60e34cfb79b9523068bae0ca9a6422514f8e975fd60e634787d3129",
+    "quote": "\"uuid\" : \"41177e23-e715-49c9-9188-736c0d0f0c3b\"",
+    "field": "item_uuid",
+    "source_item_uuid": "41177e23-e715-49c9-9188-736c0d0f0c3b",
+    "source_item_handle": "1721.1/121673"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%280c1c7d30-ebc3-4524-9975-7b29c50b4158%20OR%200d723859-7e6d-4efe-895d-ac57bdfae12a%20OR%201289e366-7ad5-4024-94dd-f961f6e114a4%20OR%2013ab5501-8231-4953-b5f9-2e98937b9b8e%20OR%201b85ca53-ad79-4de3-ade5-2050b2c0b602%20OR%20213396c5-4de6-4f6b-bebe-94bfad4faace%20OR%2023a49aa4-c2b0-4c8c-8ccf-fbd1a603e840%20OR%2023f56d76-4133-484f-925a-a70cce278733%20OR%2027b67f26-d697-456d-abfc-891ec582c6f3%20OR%2029c40057-7396-4814-ba14-6f1e79a3fd25%20OR%203467005a-eb51-4a6b-94a7-dbfee5395d1b%20OR%2034c22b02-f587-4267-85b2-9cb839b66525%20OR%203f062d63-b35d-46fe-a526-99e5f1b68a34%20OR%2041177e23-e715-49c9-9188-736c0d0f0c3b%20OR%2041a31ef3-dcbd-4c56-bd4e-29e673674c86%20OR%20528eb112-76ff-471e-948b-f941d41b4ede%20OR%2056f4a2f1-01aa-4260-bf12-ee015ce0e068%20OR%205d6ef22e-2427-4931-9e19-9ba8f2e4c122%20OR%2063798917-9343-469d-9486-c71a1cda2d85%20OR%2063a0bd0d-d405-4121-a803-ec338caaa6bb%20OR%206c6fb389-0cd8-47f7-a005-f88c61aafa05%20OR%2080c38890-d5a9-45a8-ad1f-811434452048%20OR%208234bbae-98e1-4183-bbc7-789283e0ea11%20OR%208f67ea62-abbb-4e62-9d41-3c4fe38c3bab%20OR%20913c3311-e42b-4e8e-9ea6-2344b63a4f70%20OR%20957a9cad-355f-4924-b417-f3caf18ea444%20OR%20978d81ea-3233-4742-9361-84c4ffd60668%20OR%2097b7dffd-781e-4145-bebf-1eb7977ec655%20OR%209f73cf67-657c-42ec-a8ac-5c4cdcd52628%20OR%20a75bbfdc-6a5e-4d08-b5d3-48b3ff72fb5e%20OR%20adb16812-dc69-4de4-8ffa-411736b457ec%20OR%20affee1ad-90f2-4dec-b18d-2935546b5063%20OR%20b5bb04e3-a48a-47eb-93eb-19bbc65be916%20OR%20c062e399-96f0-4dde-9944-5ad41b697859%20OR%20c38cb627-ed36-4c7c-8a5a-93d461b737ad%20OR%20c43e6be1-b382-47cd-9f7a-46af09ec8845%20OR%20cbe4f8c6-c720-4c3e-bbff-a49637c46193%20OR%20ccc1f043-08f7-442a-abbb-f23c0eb0c4b0%20OR%20d0d77a65-fb99-4edb-b2b7-8e0ea13179bd%20OR%20d0db9515-a44f-4fb1-b4cf-394c44790200%20OR%20d592ba8a-241f-4e48-baba-11caafd9f022%20OR%20daee5a31-e5d4-4ad1-9ab3-2d2a57c46912%20OR%20dbda91a8-2536-4312-9943-aaaac45ca698%20OR%20e30c9369-d73f-4a81-8802-b4788ac9e097%20OR%20e8350596-f865-4ef2-b62c-c544fce3a445%20OR%20ef006f2b-b4f0-407e-98bb-1d9349f3145d%20OR%20f0486205-e124-471b-812e-ef67586d6418%20OR%20f19f1e09-9d93-4442-8f97-7edbef6c4be3%20OR%20f5025d8b-b0dd-4e87-9b84-31a96e6c1201%20OR%20f875c716-76a0-4c37-a06e-3dc7c6fd2919%29",
+    "sha256": "e027d4f3d60e34cfb79b9523068bae0ca9a6422514f8e975fd60e634787d3129",
+    "quote": "\"handle\" : \"1721.1/121673\"",
+    "field": "item_handle",
+    "source_item_uuid": "41177e23-e715-49c9-9188-736c0d0f0c3b",
+    "source_item_handle": "1721.1/121673"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%280c1c7d30-ebc3-4524-9975-7b29c50b4158%20OR%200d723859-7e6d-4efe-895d-ac57bdfae12a%20OR%201289e366-7ad5-4024-94dd-f961f6e114a4%20OR%2013ab5501-8231-4953-b5f9-2e98937b9b8e%20OR%201b85ca53-ad79-4de3-ade5-2050b2c0b602%20OR%20213396c5-4de6-4f6b-bebe-94bfad4faace%20OR%2023a49aa4-c2b0-4c8c-8ccf-fbd1a603e840%20OR%2023f56d76-4133-484f-925a-a70cce278733%20OR%2027b67f26-d697-456d-abfc-891ec582c6f3%20OR%2029c40057-7396-4814-ba14-6f1e79a3fd25%20OR%203467005a-eb51-4a6b-94a7-dbfee5395d1b%20OR%2034c22b02-f587-4267-85b2-9cb839b66525%20OR%203f062d63-b35d-46fe-a526-99e5f1b68a34%20OR%2041177e23-e715-49c9-9188-736c0d0f0c3b%20OR%2041a31ef3-dcbd-4c56-bd4e-29e673674c86%20OR%20528eb112-76ff-471e-948b-f941d41b4ede%20OR%2056f4a2f1-01aa-4260-bf12-ee015ce0e068%20OR%205d6ef22e-2427-4931-9e19-9ba8f2e4c122%20OR%2063798917-9343-469d-9486-c71a1cda2d85%20OR%2063a0bd0d-d405-4121-a803-ec338caaa6bb%20OR%206c6fb389-0cd8-47f7-a005-f88c61aafa05%20OR%2080c38890-d5a9-45a8-ad1f-811434452048%20OR%208234bbae-98e1-4183-bbc7-789283e0ea11%20OR%208f67ea62-abbb-4e62-9d41-3c4fe38c3bab%20OR%20913c3311-e42b-4e8e-9ea6-2344b63a4f70%20OR%20957a9cad-355f-4924-b417-f3caf18ea444%20OR%20978d81ea-3233-4742-9361-84c4ffd60668%20OR%2097b7dffd-781e-4145-bebf-1eb7977ec655%20OR%209f73cf67-657c-42ec-a8ac-5c4cdcd52628%20OR%20a75bbfdc-6a5e-4d08-b5d3-48b3ff72fb5e%20OR%20adb16812-dc69-4de4-8ffa-411736b457ec%20OR%20affee1ad-90f2-4dec-b18d-2935546b5063%20OR%20b5bb04e3-a48a-47eb-93eb-19bbc65be916%20OR%20c062e399-96f0-4dde-9944-5ad41b697859%20OR%20c38cb627-ed36-4c7c-8a5a-93d461b737ad%20OR%20c43e6be1-b382-47cd-9f7a-46af09ec8845%20OR%20cbe4f8c6-c720-4c3e-bbff-a49637c46193%20OR%20ccc1f043-08f7-442a-abbb-f23c0eb0c4b0%20OR%20d0d77a65-fb99-4edb-b2b7-8e0ea13179bd%20OR%20d0db9515-a44f-4fb1-b4cf-394c44790200%20OR%20d592ba8a-241f-4e48-baba-11caafd9f022%20OR%20daee5a31-e5d4-4ad1-9ab3-2d2a57c46912%20OR%20dbda91a8-2536-4312-9943-aaaac45ca698%20OR%20e30c9369-d73f-4a81-8802-b4788ac9e097%20OR%20e8350596-f865-4ef2-b62c-c544fce3a445%20OR%20ef006f2b-b4f0-407e-98bb-1d9349f3145d%20OR%20f0486205-e124-471b-812e-ef67586d6418%20OR%20f19f1e09-9d93-4442-8f97-7edbef6c4be3%20OR%20f5025d8b-b0dd-4e87-9b84-31a96e6c1201%20OR%20f875c716-76a0-4c37-a06e-3dc7c6fd2919%29",
+    "sha256": "e027d4f3d60e34cfb79b9523068bae0ca9a6422514f8e975fd60e634787d3129",
+    "quote": "\"dc.contributor.author\" : [ {\n                  \"value\" : \"Girkar, Uma M.\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : 0,\n                  \"place\" : 0\n                } ]",
+    "field": "author",
+    "source_item_uuid": "41177e23-e715-49c9-9188-736c0d0f0c3b",
+    "source_item_handle": "1721.1/121673"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%280c1c7d30-ebc3-4524-9975-7b29c50b4158%20OR%200d723859-7e6d-4efe-895d-ac57bdfae12a%20OR%201289e366-7ad5-4024-94dd-f961f6e114a4%20OR%2013ab5501-8231-4953-b5f9-2e98937b9b8e%20OR%201b85ca53-ad79-4de3-ade5-2050b2c0b602%20OR%20213396c5-4de6-4f6b-bebe-94bfad4faace%20OR%2023a49aa4-c2b0-4c8c-8ccf-fbd1a603e840%20OR%2023f56d76-4133-484f-925a-a70cce278733%20OR%2027b67f26-d697-456d-abfc-891ec582c6f3%20OR%2029c40057-7396-4814-ba14-6f1e79a3fd25%20OR%203467005a-eb51-4a6b-94a7-dbfee5395d1b%20OR%2034c22b02-f587-4267-85b2-9cb839b66525%20OR%203f062d63-b35d-46fe-a526-99e5f1b68a34%20OR%2041177e23-e715-49c9-9188-736c0d0f0c3b%20OR%2041a31ef3-dcbd-4c56-bd4e-29e673674c86%20OR%20528eb112-76ff-471e-948b-f941d41b4ede%20OR%2056f4a2f1-01aa-4260-bf12-ee015ce0e068%20OR%205d6ef22e-2427-4931-9e19-9ba8f2e4c122%20OR%2063798917-9343-469d-9486-c71a1cda2d85%20OR%2063a0bd0d-d405-4121-a803-ec338caaa6bb%20OR%206c6fb389-0cd8-47f7-a005-f88c61aafa05%20OR%2080c38890-d5a9-45a8-ad1f-811434452048%20OR%208234bbae-98e1-4183-bbc7-789283e0ea11%20OR%208f67ea62-abbb-4e62-9d41-3c4fe38c3bab%20OR%20913c3311-e42b-4e8e-9ea6-2344b63a4f70%20OR%20957a9cad-355f-4924-b417-f3caf18ea444%20OR%20978d81ea-3233-4742-9361-84c4ffd60668%20OR%2097b7dffd-781e-4145-bebf-1eb7977ec655%20OR%209f73cf67-657c-42ec-a8ac-5c4cdcd52628%20OR%20a75bbfdc-6a5e-4d08-b5d3-48b3ff72fb5e%20OR%20adb16812-dc69-4de4-8ffa-411736b457ec%20OR%20affee1ad-90f2-4dec-b18d-2935546b5063%20OR%20b5bb04e3-a48a-47eb-93eb-19bbc65be916%20OR%20c062e399-96f0-4dde-9944-5ad41b697859%20OR%20c38cb627-ed36-4c7c-8a5a-93d461b737ad%20OR%20c43e6be1-b382-47cd-9f7a-46af09ec8845%20OR%20cbe4f8c6-c720-4c3e-bbff-a49637c46193%20OR%20ccc1f043-08f7-442a-abbb-f23c0eb0c4b0%20OR%20d0d77a65-fb99-4edb-b2b7-8e0ea13179bd%20OR%20d0db9515-a44f-4fb1-b4cf-394c44790200%20OR%20d592ba8a-241f-4e48-baba-11caafd9f022%20OR%20daee5a31-e5d4-4ad1-9ab3-2d2a57c46912%20OR%20dbda91a8-2536-4312-9943-aaaac45ca698%20OR%20e30c9369-d73f-4a81-8802-b4788ac9e097%20OR%20e8350596-f865-4ef2-b62c-c544fce3a445%20OR%20ef006f2b-b4f0-407e-98bb-1d9349f3145d%20OR%20f0486205-e124-471b-812e-ef67586d6418%20OR%20f19f1e09-9d93-4442-8f97-7edbef6c4be3%20OR%20f5025d8b-b0dd-4e87-9b84-31a96e6c1201%20OR%20f875c716-76a0-4c37-a06e-3dc7c6fd2919%29",
+    "sha256": "e027d4f3d60e34cfb79b9523068bae0ca9a6422514f8e975fd60e634787d3129",
+    "quote": "\"dc.contributor.advisor\" : [ {\n                  \"value\" : \"Peter Szolovits.\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "field": "adviser",
+    "source_item_uuid": "41177e23-e715-49c9-9188-736c0d0f0c3b",
+    "source_item_handle": "1721.1/121673"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%280c1c7d30-ebc3-4524-9975-7b29c50b4158%20OR%200d723859-7e6d-4efe-895d-ac57bdfae12a%20OR%201289e366-7ad5-4024-94dd-f961f6e114a4%20OR%2013ab5501-8231-4953-b5f9-2e98937b9b8e%20OR%201b85ca53-ad79-4de3-ade5-2050b2c0b602%20OR%20213396c5-4de6-4f6b-bebe-94bfad4faace%20OR%2023a49aa4-c2b0-4c8c-8ccf-fbd1a603e840%20OR%2023f56d76-4133-484f-925a-a70cce278733%20OR%2027b67f26-d697-456d-abfc-891ec582c6f3%20OR%2029c40057-7396-4814-ba14-6f1e79a3fd25%20OR%203467005a-eb51-4a6b-94a7-dbfee5395d1b%20OR%2034c22b02-f587-4267-85b2-9cb839b66525%20OR%203f062d63-b35d-46fe-a526-99e5f1b68a34%20OR%2041177e23-e715-49c9-9188-736c0d0f0c3b%20OR%2041a31ef3-dcbd-4c56-bd4e-29e673674c86%20OR%20528eb112-76ff-471e-948b-f941d41b4ede%20OR%2056f4a2f1-01aa-4260-bf12-ee015ce0e068%20OR%205d6ef22e-2427-4931-9e19-9ba8f2e4c122%20OR%2063798917-9343-469d-9486-c71a1cda2d85%20OR%2063a0bd0d-d405-4121-a803-ec338caaa6bb%20OR%206c6fb389-0cd8-47f7-a005-f88c61aafa05%20OR%2080c38890-d5a9-45a8-ad1f-811434452048%20OR%208234bbae-98e1-4183-bbc7-789283e0ea11%20OR%208f67ea62-abbb-4e62-9d41-3c4fe38c3bab%20OR%20913c3311-e42b-4e8e-9ea6-2344b63a4f70%20OR%20957a9cad-355f-4924-b417-f3caf18ea444%20OR%20978d81ea-3233-4742-9361-84c4ffd60668%20OR%2097b7dffd-781e-4145-bebf-1eb7977ec655%20OR%209f73cf67-657c-42ec-a8ac-5c4cdcd52628%20OR%20a75bbfdc-6a5e-4d08-b5d3-48b3ff72fb5e%20OR%20adb16812-dc69-4de4-8ffa-411736b457ec%20OR%20affee1ad-90f2-4dec-b18d-2935546b5063%20OR%20b5bb04e3-a48a-47eb-93eb-19bbc65be916%20OR%20c062e399-96f0-4dde-9944-5ad41b697859%20OR%20c38cb627-ed36-4c7c-8a5a-93d461b737ad%20OR%20c43e6be1-b382-47cd-9f7a-46af09ec8845%20OR%20cbe4f8c6-c720-4c3e-bbff-a49637c46193%20OR%20ccc1f043-08f7-442a-abbb-f23c0eb0c4b0%20OR%20d0d77a65-fb99-4edb-b2b7-8e0ea13179bd%20OR%20d0db9515-a44f-4fb1-b4cf-394c44790200%20OR%20d592ba8a-241f-4e48-baba-11caafd9f022%20OR%20daee5a31-e5d4-4ad1-9ab3-2d2a57c46912%20OR%20dbda91a8-2536-4312-9943-aaaac45ca698%20OR%20e30c9369-d73f-4a81-8802-b4788ac9e097%20OR%20e8350596-f865-4ef2-b62c-c544fce3a445%20OR%20ef006f2b-b4f0-407e-98bb-1d9349f3145d%20OR%20f0486205-e124-471b-812e-ef67586d6418%20OR%20f19f1e09-9d93-4442-8f97-7edbef6c4be3%20OR%20f5025d8b-b0dd-4e87-9b84-31a96e6c1201%20OR%20f875c716-76a0-4c37-a06e-3dc7c6fd2919%29",
+    "sha256": "e027d4f3d60e34cfb79b9523068bae0ca9a6422514f8e975fd60e634787d3129",
+    "quote": "\"dc.title\" : [ {\n                  \"value\" : \"Predicting blood pressure response to fluid bolus therapy in the ICU using attention-based stacked neural networks for clinical interpretability\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "field": "title",
+    "source_item_uuid": "41177e23-e715-49c9-9188-736c0d0f0c3b",
+    "source_item_handle": "1721.1/121673"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%280c1c7d30-ebc3-4524-9975-7b29c50b4158%20OR%200d723859-7e6d-4efe-895d-ac57bdfae12a%20OR%201289e366-7ad5-4024-94dd-f961f6e114a4%20OR%2013ab5501-8231-4953-b5f9-2e98937b9b8e%20OR%201b85ca53-ad79-4de3-ade5-2050b2c0b602%20OR%20213396c5-4de6-4f6b-bebe-94bfad4faace%20OR%2023a49aa4-c2b0-4c8c-8ccf-fbd1a603e840%20OR%2023f56d76-4133-484f-925a-a70cce278733%20OR%2027b67f26-d697-456d-abfc-891ec582c6f3%20OR%2029c40057-7396-4814-ba14-6f1e79a3fd25%20OR%203467005a-eb51-4a6b-94a7-dbfee5395d1b%20OR%2034c22b02-f587-4267-85b2-9cb839b66525%20OR%203f062d63-b35d-46fe-a526-99e5f1b68a34%20OR%2041177e23-e715-49c9-9188-736c0d0f0c3b%20OR%2041a31ef3-dcbd-4c56-bd4e-29e673674c86%20OR%20528eb112-76ff-471e-948b-f941d41b4ede%20OR%2056f4a2f1-01aa-4260-bf12-ee015ce0e068%20OR%205d6ef22e-2427-4931-9e19-9ba8f2e4c122%20OR%2063798917-9343-469d-9486-c71a1cda2d85%20OR%2063a0bd0d-d405-4121-a803-ec338caaa6bb%20OR%206c6fb389-0cd8-47f7-a005-f88c61aafa05%20OR%2080c38890-d5a9-45a8-ad1f-811434452048%20OR%208234bbae-98e1-4183-bbc7-789283e0ea11%20OR%208f67ea62-abbb-4e62-9d41-3c4fe38c3bab%20OR%20913c3311-e42b-4e8e-9ea6-2344b63a4f70%20OR%20957a9cad-355f-4924-b417-f3caf18ea444%20OR%20978d81ea-3233-4742-9361-84c4ffd60668%20OR%2097b7dffd-781e-4145-bebf-1eb7977ec655%20OR%209f73cf67-657c-42ec-a8ac-5c4cdcd52628%20OR%20a75bbfdc-6a5e-4d08-b5d3-48b3ff72fb5e%20OR%20adb16812-dc69-4de4-8ffa-411736b457ec%20OR%20affee1ad-90f2-4dec-b18d-2935546b5063%20OR%20b5bb04e3-a48a-47eb-93eb-19bbc65be916%20OR%20c062e399-96f0-4dde-9944-5ad41b697859%20OR%20c38cb627-ed36-4c7c-8a5a-93d461b737ad%20OR%20c43e6be1-b382-47cd-9f7a-46af09ec8845%20OR%20cbe4f8c6-c720-4c3e-bbff-a49637c46193%20OR%20ccc1f043-08f7-442a-abbb-f23c0eb0c4b0%20OR%20d0d77a65-fb99-4edb-b2b7-8e0ea13179bd%20OR%20d0db9515-a44f-4fb1-b4cf-394c44790200%20OR%20d592ba8a-241f-4e48-baba-11caafd9f022%20OR%20daee5a31-e5d4-4ad1-9ab3-2d2a57c46912%20OR%20dbda91a8-2536-4312-9943-aaaac45ca698%20OR%20e30c9369-d73f-4a81-8802-b4788ac9e097%20OR%20e8350596-f865-4ef2-b62c-c544fce3a445%20OR%20ef006f2b-b4f0-407e-98bb-1d9349f3145d%20OR%20f0486205-e124-471b-812e-ef67586d6418%20OR%20f19f1e09-9d93-4442-8f97-7edbef6c4be3%20OR%20f5025d8b-b0dd-4e87-9b84-31a96e6c1201%20OR%20f875c716-76a0-4c37-a06e-3dc7c6fd2919%29",
+    "sha256": "e027d4f3d60e34cfb79b9523068bae0ca9a6422514f8e975fd60e634787d3129",
+    "quote": "\"dc.date.issued\" : [ {\n                  \"value\" : \"2019\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "field": "issued",
+    "source_item_uuid": "41177e23-e715-49c9-9188-736c0d0f0c3b",
+    "source_item_handle": "1721.1/121673"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?dsoType=ITEM&size=100&query=search.resourceid%3A%280c1c7d30-ebc3-4524-9975-7b29c50b4158%20OR%200d723859-7e6d-4efe-895d-ac57bdfae12a%20OR%201289e366-7ad5-4024-94dd-f961f6e114a4%20OR%2013ab5501-8231-4953-b5f9-2e98937b9b8e%20OR%201b85ca53-ad79-4de3-ade5-2050b2c0b602%20OR%20213396c5-4de6-4f6b-bebe-94bfad4faace%20OR%2023a49aa4-c2b0-4c8c-8ccf-fbd1a603e840%20OR%2023f56d76-4133-484f-925a-a70cce278733%20OR%2027b67f26-d697-456d-abfc-891ec582c6f3%20OR%2029c40057-7396-4814-ba14-6f1e79a3fd25%20OR%203467005a-eb51-4a6b-94a7-dbfee5395d1b%20OR%2034c22b02-f587-4267-85b2-9cb839b66525%20OR%203f062d63-b35d-46fe-a526-99e5f1b68a34%20OR%2041177e23-e715-49c9-9188-736c0d0f0c3b%20OR%2041a31ef3-dcbd-4c56-bd4e-29e673674c86%20OR%20528eb112-76ff-471e-948b-f941d41b4ede%20OR%2056f4a2f1-01aa-4260-bf12-ee015ce0e068%20OR%205d6ef22e-2427-4931-9e19-9ba8f2e4c122%20OR%2063798917-9343-469d-9486-c71a1cda2d85%20OR%2063a0bd0d-d405-4121-a803-ec338caaa6bb%20OR%206c6fb389-0cd8-47f7-a005-f88c61aafa05%20OR%2080c38890-d5a9-45a8-ad1f-811434452048%20OR%208234bbae-98e1-4183-bbc7-789283e0ea11%20OR%208f67ea62-abbb-4e62-9d41-3c4fe38c3bab%20OR%20913c3311-e42b-4e8e-9ea6-2344b63a4f70%20OR%20957a9cad-355f-4924-b417-f3caf18ea444%20OR%20978d81ea-3233-4742-9361-84c4ffd60668%20OR%2097b7dffd-781e-4145-bebf-1eb7977ec655%20OR%209f73cf67-657c-42ec-a8ac-5c4cdcd52628%20OR%20a75bbfdc-6a5e-4d08-b5d3-48b3ff72fb5e%20OR%20adb16812-dc69-4de4-8ffa-411736b457ec%20OR%20affee1ad-90f2-4dec-b18d-2935546b5063%20OR%20b5bb04e3-a48a-47eb-93eb-19bbc65be916%20OR%20c062e399-96f0-4dde-9944-5ad41b697859%20OR%20c38cb627-ed36-4c7c-8a5a-93d461b737ad%20OR%20c43e6be1-b382-47cd-9f7a-46af09ec8845%20OR%20cbe4f8c6-c720-4c3e-bbff-a49637c46193%20OR%20ccc1f043-08f7-442a-abbb-f23c0eb0c4b0%20OR%20d0d77a65-fb99-4edb-b2b7-8e0ea13179bd%20OR%20d0db9515-a44f-4fb1-b4cf-394c44790200%20OR%20d592ba8a-241f-4e48-baba-11caafd9f022%20OR%20daee5a31-e5d4-4ad1-9ab3-2d2a57c46912%20OR%20dbda91a8-2536-4312-9943-aaaac45ca698%20OR%20e30c9369-d73f-4a81-8802-b4788ac9e097%20OR%20e8350596-f865-4ef2-b62c-c544fce3a445%20OR%20ef006f2b-b4f0-407e-98bb-1d9349f3145d%20OR%20f0486205-e124-471b-812e-ef67586d6418%20OR%20f19f1e09-9d93-4442-8f97-7edbef6c4be3%20OR%20f5025d8b-b0dd-4e87-9b84-31a96e6c1201%20OR%20f875c716-76a0-4c37-a06e-3dc7c6fd2919%29",
+    "sha256": "e027d4f3d60e34cfb79b9523068bae0ca9a6422514f8e975fd60e634787d3129",
+    "quote": "\"dc.description.degree\" : [ {\n                  \"value\" : \"M.Eng.\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "field": "degree",
+    "source_item_uuid": "41177e23-e715-49c9-9188-736c0d0f0c3b",
+    "source_item_handle": "1721.1/121673"
+   }
+  ],
+  "reviewed_by": "codex-mit-gates-1117",
+  "reviewed_on": "2026-11-17",
+  "independent_review": {
+   "reviewer": "/root/mit_recall_independent",
+   "receipt_sha256": "8cfed558df6e2509ca6952cda4e0cc8ce0f45b624162ad7a29673b9676100b77"
+  }
+ },
+ {
+  "school": "mit",
+  "pi": "Peter Szolovits",
+  "student": "mit_thesis_author_fa45a377f6f4fb5c93c4",
+  "action": "rename",
+  "name": "So Yeon Min",
+  "aliases": [
+   "Min, So Yeon Tiffany"
+  ],
+  "reason": "The PI-owned literal thesis link identifies this exact primary thesis UUID/handle, author, adviser, title and year. Retain the existing person and canonical name; append only the source-explicit name form. Bulk response URLs identify actual captures; individual item URLs are identifiers only.",
+  "evidence": [
+   {
+    "url": "https://people.csail.mit.edu/psz/web/students.html",
+    "sha256": "57b49ca9cb30eeec647e382bfbe4e4202a8aaa78a2c3ebdef4774458c2f426bd",
+    "quote": "Min, So Yeon Tiffany. “ Towards Knowledge-Based, Robust Question Answering .”\nMaster's Thesis, EECS, MIT, Cambridge, MA, May 2020."
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "sha256": "3f453ef8aff680817b46b9b729d6cf1bb63e15e4ae9ef02415da595c9dc604c7",
+    "quote": "\"uuid\" : \"b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84\"",
+    "field": "item_uuid",
+    "source_item_uuid": "b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "source_item_handle": "1721.1/127462"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "sha256": "3f453ef8aff680817b46b9b729d6cf1bb63e15e4ae9ef02415da595c9dc604c7",
+    "quote": "\"handle\" : \"1721.1/127462\"",
+    "field": "item_handle",
+    "source_item_uuid": "b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "source_item_handle": "1721.1/127462"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "sha256": "3f453ef8aff680817b46b9b729d6cf1bb63e15e4ae9ef02415da595c9dc604c7",
+    "quote": "\"dc.contributor.author\" : [ {\n      \"value\" : \"Min, So Yeon,S.M.Massachusetts Institute of Technology.\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : 200,\n      \"place\" : 0\n    } ]",
+    "field": "author",
+    "source_item_uuid": "b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "source_item_handle": "1721.1/127462"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "sha256": "3f453ef8aff680817b46b9b729d6cf1bb63e15e4ae9ef02415da595c9dc604c7",
+    "quote": "\"dc.contributor.advisor\" : [ {\n      \"value\" : \"Peter Szolovits.\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]",
+    "field": "adviser",
+    "source_item_uuid": "b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "source_item_handle": "1721.1/127462"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "sha256": "3f453ef8aff680817b46b9b729d6cf1bb63e15e4ae9ef02415da595c9dc604c7",
+    "quote": "\"dc.title\" : [ {\n      \"value\" : \"Towards knowledge-based, robust question answering\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]",
+    "field": "title",
+    "source_item_uuid": "b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "source_item_handle": "1721.1/127462"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "sha256": "3f453ef8aff680817b46b9b729d6cf1bb63e15e4ae9ef02415da595c9dc604c7",
+    "quote": "\"dc.date.issued\" : [ {\n      \"value\" : \"2020\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]",
+    "field": "issued",
+    "source_item_uuid": "b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "source_item_handle": "1721.1/127462"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "sha256": "3f453ef8aff680817b46b9b729d6cf1bb63e15e4ae9ef02415da595c9dc604c7",
+    "quote": "\"dc.description.degree\" : [ {\n      \"value\" : \"M.Eng.\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]",
+    "field": "degree",
+    "source_item_uuid": "b983de08-fa7d-44ff-a7d3-b4e1c6d2bc84",
+    "source_item_handle": "1721.1/127462"
+   }
+  ],
+  "reviewed_by": "codex-mit-gates-1117",
+  "reviewed_on": "2026-11-17",
+  "independent_review": {
+   "reviewer": "/root/mit_recall_independent",
+   "receipt_sha256": "8cfed558df6e2509ca6952cda4e0cc8ce0f45b624162ad7a29673b9676100b77"
+  }
  }
 ]
