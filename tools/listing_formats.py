@@ -1470,6 +1470,30 @@ def zju_cs_zuzhi_names(h):
     return out
 
 
+def zju_cs_en_faculty_list(h):
+    """ZJU College of Computer Science and Technology English-site Faculty Directory (www.en.cs.zju.edu.cn/{rgznyjs,jsjrjyjs,jsjxtjgywlaqyjs,gysjyjs,22164}/list.htm, one list per
+    research institute, `div.tearch_class` names it; the 2023 site adds one combined page faculty_lists/list.htm with a `li.wp_sublist` per institute): each teacher is `span.Article_Title a[title]`, printed as pinyin `Family Given` (Zhuang Yueting); names only, no rank."""
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for sub in soup.select('li.wp_sublist'):  # the 2023 combined page "Faculty Lists (by research institutes)": one sub-list per institute
+        title = sub.select_one('h3.sublist_title a')
+        division = clean(title.get_text(' ', strip=True)) if title else None
+        for a in sub.select('ul.t_name_list li a'):
+            printed = ' '.join(a.get_text().split())
+            if printed:
+                out.append(dict(name_listed=printed, quote_name=printed, titles=[], profile=a.get('href'), homepage=None, division=division))
+    if out:
+        return out
+    inst = soup.select_one('div.tearch_class')
+    division = clean(inst.get_text(' ', strip=True)) if inst else None
+    for a in soup.select('ul.wp_article_list span.Article_Title a'):
+        printed = ' '.join((a.get('title') or a.get_text()).split())
+        if printed:
+            out.append(dict(name_listed=printed, quote_name=printed, titles=[], profile=a.get('href'), homepage=None, division=division))
+    return out
+
+
 def zju_cs_old_jiaoshiml(h):
     """Zhejiang College of Computer Science 教师名录, the 2016-2019 PHP site (redir.php?cust=jiaoshiml&id=256, served GB2312): one `<table>` per institute,
     its `<th>` is the institute and each teacher is `<td class="szdw"><div><a href=...object_id=N>name</a>`. Names only (no rank); full-width spaces collapsed."""
@@ -2556,6 +2580,7 @@ FORMATS = {
     'sjtu_cs_en_institutes': (sjtu_cs_en_institutes, re.compile(r'class="Faculty"')),
     'sjtu_cs_ajax_teachers': (sjtu_cs_ajax_teachers, re.compile(r'rc-item')),
     'zju_cs_zuzhi_names': (zju_cs_zuzhi_names, re.compile(r'class="zuzhi"')),
+    'zju_cs_en_faculty_list': (zju_cs_en_faculty_list, re.compile(r'class=.tearch_class.>[^<]*Institute|class=.tearch_class.>State Key Lab|class="sublist_title"')),
     'zju_cs_old_jiaoshiml': (zju_cs_old_jiaoshiml, re.compile(r'class="szdw"')),
     'zju_cad_fixed_researchers': (zju_cad_fixed_researchers, re.compile(r'class="zhuwenn"')),
     'zju_cad_fixed_researchers_2025': (zju_cad_fixed_researchers_2025, re.compile(r'elementor-heading-title[^>]*>院士<')),

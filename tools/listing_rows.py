@@ -408,6 +408,10 @@ def main(key):
     eras = [(s['slot'], s.get('from') or '0', s.get('to') or '9', s.get('format')) for d in S.listing_units(cfg) for s in d.get('listings') or []]
     title_filters = {s['slot']: re.compile(s['title_filter'], re.I) for d in S.listing_units(cfg) for s in d.get('listings') or [] if s.get('title_filter')}
     kind_of = {s['slot']: s['kind'] for s in S.listing_slots(key)}
+    # coverage_only slots (ZJU English-site faculty directory, pinyin names): the capture must parse and counts for coverage.json, but its rows are not people of the
+    # census (they would double every Chinese-named person); they go to rows-coverage-only.json instead.
+    coverage_only = {s['slot'] for d in S.listing_units(cfg) for s in d.get('listings') or [] if s.get('coverage_only')}
+    side_rows = []
     db = P.data('listings-captures.sqlite', key)
     c = sqlite3.connect(f'file:{db}?mode=ro', uri=True) if db.exists() else None
     has_pages = bool(c and c.execute("select 1 from sqlite_master where name='plan_pages'").fetchone())
@@ -451,10 +455,10 @@ def main(key):
                 if not q:
                     n['entries_without_quote'] += 1; continue
                 dt = [t for t in e['titles'] if tm.get(dept, re.compile('.')).search(t)]
-                rows.append(dict(name=given_first(e['name_listed']), name_listed=e['name_listed'], dept=dept, slot=slot, kind=kind_of.get(slot), year=int(obs[:4]),
+                (side_rows if slot in coverage_only else rows).append(dict(name=given_first(e['name_listed']), name_listed=e['name_listed'], dept=dept, slot=slot, kind=kind_of.get(slot), year=int(obs[:4]),
                                  half=half, observed=obs, titles=e['titles'], dept_title=dt, rank=listing_rank(e['titles'], dt, kind_of.get(slot), rw), division=e.get('division'),
                                  homepage=e.get('homepage'), **({'profile': e['profile']} if e.get('profile') else {}), capture_url=cap, sha256=sha, quote=q))
-                n['rows'] += 1
+                n['coverage_only_rows' if slot in coverage_only else 'rows'] += 1
         if parsed_entries == 0:
             cov[dept][year][f'{slot} {half}'] = 'unusable: capture parses zero faculty entries'
     if c:
@@ -477,6 +481,8 @@ def main(key):
     out = P.data('rows.json', key)
     out.parent.mkdir(parents=True, exist_ok=True)  # listings/<key>/derived does not exist for a new school (UChicago friction #12)
     out.write_text(json.dumps(rows, indent=0, ensure_ascii=False))
+    if side_rows or P.data('rows-coverage-only.json', key).exists():
+        P.data_w('rows-coverage-only.json', key).write_text(json.dumps(side_rows, indent=0, ensure_ascii=False))
     P.data_w('coverage.json', key).write_text(json.dumps({d: {str(y): v for y, v in sorted(ys.items())} for d, ys in cov.items()}, indent=1))
     people = collections.defaultdict(set)
     for r in rows:

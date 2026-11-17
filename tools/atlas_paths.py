@@ -349,6 +349,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('logs', 'work', 'hierarchy/logs', 'hierarchy/logs'),
     # routed 2026-10-31 (ROADMAP item 10, infra/datarouting): files the stage tools name
     ('rows.json', 'derived', 'listings/{school}/rows.json', 'listings/{school}/derived/rows.json'),
+    ('rows-coverage-only.json', 'derived', 'listings/{school}/rows-coverage-only.json', 'listings/{school}/derived/rows-coverage-only.json'),   # coverage_only slots (pinyin-named rosters): never census people
     ('pi-basis-evidence.json', 'reviewed', 'hierarchy/{school}/pi-basis-evidence.json', 'hierarchy/{school}/reviewed/pi-basis-evidence.json'),
     ('dblp-ids.json', 'derived', 'hierarchy/{school}/dblp-ids.json', 'hierarchy/{school}/derived/dblp-ids.json'),
     ('homepage-identity.json', 'derived', 'hierarchy/{school}/homepage-identity.json', 'hierarchy/{school}/derived/homepage-identity.json'),

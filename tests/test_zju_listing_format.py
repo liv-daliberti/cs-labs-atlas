@@ -129,3 +129,30 @@ def test_zju_ee_teach_list_2018_template_keeps_printed_title():
     rows = F.FORMATS['zju_ee_teach_list'][0](EE18)
     assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('宋永华', ['英国皇家工程院院士、教授、博士生导师'], '电机工程学系'), ('福义涛', ['副教授'], '电机工程学系')]
     assert F.FORMATS['zju_ee_teach_list'][1].search(EE18)
+
+
+EN = """<div class="tearch_class">Institute of Industrial Design</div><ul class="wp_article_list"><li class="list_item i1"><div class="fields pr_fields"><span class='Article_Index'>1</span>
+<span class='Article_Title'><a href='/_redirect?siteId=416&columnId=22160&articleId=1' target='_blank' title='Zheng Linfeng'>Zheng Linfeng</a></span></div></li>
+<li class="list_item i2"><span class='Article_Index'>2</span><span class='Article_Title'><a href='/x' title='Zhang  Xusheng'>Zhang  Xusheng</a></span></li></ul>"""
+
+
+def test_zju_cs_en_faculty_list_names_and_institute():
+    rows = F.FORMATS['zju_cs_en_faculty_list'][0](EN)
+    assert [r['name_listed'] for r in rows] == ['Zheng Linfeng', 'Zhang Xusheng']
+    assert rows[0]['division'] == 'Institute of Industrial Design' and rows[0]['titles'] == []
+    assert F.FORMATS['zju_cs_en_faculty_list'][1].search(EN) and F.FORMATS['zju_cs_en_faculty_list'][0]('<html></html>') == []
+
+
+def test_zju_charter_english_directory_is_coverage_only_alternative_group():
+    import pathlib
+    import tomllib
+    import school_config as S
+    cfg = tomllib.loads((pathlib.Path(__file__).resolve().parents[1] / 'schools' / 'zju.toml').read_text())
+    dept = next(d for d in cfg['departments'] if d['code'] == 'CS_MAIN')
+    assert S.listing_group_errors(dept) == []
+    en = [s for s in dept['listings'] if s['slot'].startswith('CS_MAIN EN ')]
+    assert len(en) == 6 and all(s.get('coverage_only') and s['format'] == 'zju_cs_en_faculty_list' for s in en)
+    groups = {g['name']: g for g in dept['listing_groups']}
+    two = [g for n, g in groups.items() if n.startswith('English-site')]
+    assert len(two) == 2 and all('not the four staff lists 27060-27063' in g['name'] for g in two)
+    assert {s for g in two for s in g['slots']} == {s['slot'] for s in en}
