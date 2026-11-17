@@ -40,7 +40,7 @@ computing_departments = ["CST"]
 # https://www.medschl.cam.ac.uk/institutions, not multi-PI labs or cross-unit centres.
 # Their individual PI labs remain separate from these academic home units.
 center_units = ["DH"]
-home_units = { "Computer Science and Technology" = 'computer science and technology', "Genetics" = '\bgenetics\b', "Chemistry" = '\bchemistry\b', "Medicine" = '\b(?:department of )?medicine\b', "Psychiatry" = '\bpsychiatry\b', "Plant Sciences" = '\bplant sciences\b', "Architecture" = '\barchitecture\b', "Physiology, Development and Neuroscience" = '\bphysiology,? development,? and neuroscience\b', "Chemical Engineering and Biotechnology" = '\bchemical engineering and biotechnology\b' }
+home_units = { "Computer Science and Technology" = 'computer science and technology', "Cambridge Judge Business School" = '(?:cambridge\s+)?judge\s+business\s+school', "Genetics" = '\bgenetics\b', "Chemistry" = '\bchemistry\b', "Medicine" = '\b(?:department of )?medicine\b', "Psychiatry" = '\bpsychiatry\b', "Plant Sciences" = '\bplant sciences\b', "Architecture" = '\barchitecture\b', "Physiology, Development and Neuroscience" = '\bphysiology,? development,? and neuroscience\b', "Chemical Engineering and Biotechnology" = '\bchemical engineering and biotechnology\b' }
 rank_words = { ladder = '\b(?:prof|reader|university (?:senior )?lecturer)\b' }
 
 [sweep_check]
@@ -372,3 +372,15 @@ host = "eng.ox.ac.uk"
 use = "live"
 purpose = "Official former Cambridge teaching appointments, named PhD co-supervision and independent publication identity evidence"
 probe = "https://eng.ox.ac.uk/computing/people/noa/service"
+
+[[hosts]]
+host = "www.psychometrics.cam.ac.uk"
+use = "live"
+purpose = "Official faculty appointment, academic home and computational psychometric methods"
+probe = "https://www.psychometrics.cam.ac.uk/people/dr-david-stillwell"
+
+[[hosts]]
+host = "davidscottkrueger.com"
+use = "live"
+purpose = "Directly published author CV with explicit former Cambridge faculty month boundaries and independent publication identities"
+probe = "https://davidscottkrueger.com/"

@@ -23,54 +23,12 @@
   "SOC"
  ],
  "counts": {
-  "pending_source_coverage": 343,
-  "accepted": 89,
+  "pending_source_coverage": 338,
+  "accepted": 92,
   "research_or_other_rank": 1,
   "pending_identity_collision": 2
  },
  "decisions": [
-  {
-   "name": "A. Aldo Faisal",
-   "aliases": [
-    "Aldo Faisal",
-    "Aldo A. Faisal"
-   ],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/54/5027"
-    ],
-    "dblp_window": 119,
-    "affiliation_notes": [
-     "Imperial College London, UK",
-     "University of Cambridge, UK"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/54/5027",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Imperial College London, UK"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
   {
    "name": "A. Philip Dawid",
    "aliases": [],
@@ -1343,47 +1301,6 @@
     2018,
     2019
    ],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "Andrew G. Webb",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/01/3369"
-    ],
-    "dblp_window": 17,
-    "affiliation_notes": [
-     "Leiden University Medical Center (LUMC), Department of Radiology, Leiden, The Netherlands",
-     "University of Wurzburg, Department of Physics, Würzburg, Germany",
-     "University of Illinois at Urbana-Champaign, Department of Electrical and Computer Engineering, Champaign, IL, USA",
-     "University of Florida, Department of Radiology, Gainesville, FL, USA"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/01/3369",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Leiden University Medical Center (LUMC), Department of Radiology, Leiden, The Netherlands"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -4163,8 +4080,8 @@
     "David Scott Krueger"
    ],
    "source": "dblp_affiliation",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ENG listing, professor rank) with 124 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/142/2741"
@@ -4180,9 +4097,93 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Cambridge, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5029025914"
+     ],
+     "school_works": 33,
+     "dblp_indexed": 14,
+     "share": 0.424,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5029025914",
+       "basis": "full name: Krueger, David",
+       "works": 33,
+       "dblp_indexed": 14,
+       "years": [
+        2021,
+        2026
+       ],
+       "names": [
+        "Krueger, David",
+        "David Krueger",
+        "Krueger, David Scott"
+       ],
+       "orcids": [
+        "0000-0001-7256-0937"
+       ],
+       "venues": [
+        "neural information processing systems",
+        "Science",
+        "ACM Conference on Fairness, Accountability, and Transparency (FAccT)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W4287164755",
+         "year": 2021,
+         "title": "Goal Misgeneralization in Deep Reinforcement Learning",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W4319323548",
+         "year": 2023,
+         "title": "Blockwise Self-Supervised Learning at Scale",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W4200303997",
+         "year": 2021,
+         "title": "Filling gaps in trustworthy development of AI",
+         "venue": "Science"
+        },
+        {
+         "oa": "https://openalex.org/W4225851334",
+         "year": 2021,
+         "title": "Multi-Domain Balanced Sampling Improves Out-of-Distribution Generalization of Chest X-ray Pathology Prediction Models",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "ENG",
+     "url": "https://davidscottkrueger.com/assets/pdfs/DSK_CV.pdf",
+     "sha256": "542e1122119aba4399623da0d581b0c07f9600fcaf92e48fc2f5fa74269aa87a",
+     "observed": "2026-11-16T21:39:51",
+     "quote": "Assistant Professor: University of Cambridge June 2021 – Sept 2024 Department of Engineering, Information Engineering Division Computational and Biological Learning Lab (CBL)",
+     "ladder": true,
+     "hand": true,
+     "historical_appointment": {
+      "start": "2021-06",
+      "end": "2024-09"
+     }
+    }
+   ],
    "years_listed": [],
    "units_searched": [
     "BSU",
@@ -21792,6 +21793,116 @@
    ]
   },
   {
+   "name": "David Stillwell",
+   "aliases": [],
+   "source": "official_profile_ladder",
+   "decision": "accepted",
+   "reason": "faculty (Cambridge Judge Business School listing, professor rank); computing-share test passes: 12 of 54 school works DBLP-indexed (share 0.22; 1 OpenAlex author ids)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5004868515"
+     ],
+     "school_works": 54,
+     "dblp_indexed": 12,
+     "share": 0.222,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5004868515",
+       "basis": "full name: David Stillwell",
+       "works": 54,
+       "dblp_indexed": 12,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "David Stillwell",
+        "Stillwell, David",
+        "David J. Stillwell"
+       ],
+       "orcids": [
+        "0000-0003-0174-3212"
+       ],
+       "venues": [
+        "PLoS ONE",
+        "Psychological Science",
+        "Proceedings of the International AAAI Conference on Web and Social Media"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2299277274",
+         "year": 2016,
+         "title": "Computational personality recognition in social media",
+         "venue": "User Modeling and User-Adapted Interaction"
+        },
+        {
+         "oa": "https://openalex.org/W2482720053",
+         "year": 2016,
+         "title": "How smart does your profile image look? Estimating intelligence from social network profile images",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2326140006",
+         "year": 2016,
+         "title": "Money Buys Happiness When Spending Fits Our Personality",
+         "venue": "Psychological Science"
+        },
+        {
+         "oa": "https://openalex.org/W2351542870",
+         "year": 2016,
+         "title": "The Song Is You",
+         "venue": "Social Psychological and Personality Science"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "Cambridge Judge Business School",
+     "url": "https://www.psychometrics.cam.ac.uk/people/dr-david-stillwell",
+     "sha256": "b76eb95a395a14d0fca3d47dd015bc9a645957ee1a7493c2df40fa60c4c6d542",
+     "observed": "2026-11-16T21:18:13",
+     "quote": "Dr David Stillwell Academic Director Professor of Computational Social Science Available to supervise doctoral students",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BSU",
+    "CBSU",
+    "DAMTP",
+    "DH",
+    "DPMMS",
+    "ECON",
+    "ENG",
+    "MMLL",
+    "PHYS",
+    "PSY",
+    "SOC"
+   ]
+  },
+  {
    "name": "Ivan Vulić",
    "aliases": [
     "Vulić, Ivan",
@@ -23714,16 +23825,107 @@
     "Paul D W Kirk"
    ],
    "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (BSU listing, reviewed own-group/advising evidence); computing-share test passes: 17 of 71 school works DBLP-indexed (share 0.24; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "pi_basis_review": {
+     "kind": "own_group",
+     "url": "https://www.medschl.cam.ac.uk/institutions/mrc-bsu/research-themes-mrc-biostatistics-unit/biostatistical-machine-learning",
+     "sha256": "e36f0b4f39e7b8dd5244e1a1cfffae663684a620bc43972c7ceb105f58ced700",
+     "quote": "Group Leaders in BML Paul Kirk (Theme Co-Lead), Sach Mukherjee (Theme Co-Lead) and Kyriakos Flouris",
+     "unit": "BSU",
+     "appointment_rank": "research"
+    },
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5058209508"
+     ],
+     "school_works": 71,
+     "dblp_indexed": 17,
+     "share": 0.239,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5058209508",
+       "basis": "candidate author id",
+       "works": 71,
+       "dblp_indexed": 17,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Paul D. W. Kirk",
+        "Kirk, Paul D. W.",
+        "Paul D.W. Kirk"
+       ],
+       "orcids": [
+        "0000-0002-5931-7489"
+       ],
+       "venues": [
+        "Bioinformatics",
+        "Statistical Applications in Genetics and Molecular Biology",
+        "PLoS Computational Biology"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2345593393",
+         "year": 2016,
+         "title": "MEANS: python package for Moment Expansion Approximation, iNference and Simulation",
+         "venue": "Bioinformatics"
+        },
+        {
+         "oa": "https://openalex.org/W2508567769",
+         "year": 2016,
+         "title": "Inferring extrinsic noise from single-cell gene expression data using approximate Bayesian computation",
+         "venue": "BMC Systems Biology"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2175099693",
+         "year": 2016,
+         "title": "A graph theoretical approach to data fusion",
+         "venue": "Statistical Applications in Genetics and Molecular Biology"
+        },
+        {
+         "oa": "https://openalex.org/W2369455137",
+         "year": 2016,
+         "title": "MDI-GPU: accelerating integrative modelling for genomic-scale data using GP-GPU computing",
+         "venue": "Statistical Applications in Genetics and Molecular Biology"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "BSU",
+     "url": "https://www.medschl.cam.ac.uk/people/paul-kirk",
+     "sha256": "9cfb74f8763358e16efacedfd4f52225d442a7876f4e5f20718757d69024920f",
+     "observed": "2026-11-16T21:18:10",
+     "quote": "Professor Paul Kirk (he/him/his) Principal investigator MRC Biostatistics Unit Department of Medicine About Professor Paul Kirk I am a Group Leader at the MRC Biostatistics Unit, in the Biostatistical Machine Learning theme.",
+     "ladder": false,
+     "hand": true,
+     "appointment_rank": "research"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BSU",
     "CBSU",
@@ -23992,38 +24194,6 @@
    "name": "Jasmin Jahić",
    "aliases": [
     "Jasmin Jahic"
-   ],
-   "source": "openalex_rule",
-   "decision": "pending_source_coverage",
-   "reason": "no faculty evidence in the collected pages of BSU, CBSU, DAMTP, DH, DPMMS, ECON, ENG, MMLL, PHYS, PSY, SOC; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BSU",
-    "CBSU",
-    "DAMTP",
-    "DH",
-    "DPMMS",
-    "ECON",
-    "ENG",
-    "MMLL",
-    "PHYS",
-    "PSY",
-    "SOC"
-   ]
-  },
-  {
-   "name": "David Stillwell",
-   "aliases": [
-    "Stillwell, David",
-    "David J. Stillwell",
-    "D. J. Stillwell"
    ],
    "source": "openalex_rule",
    "decision": "pending_source_coverage",
