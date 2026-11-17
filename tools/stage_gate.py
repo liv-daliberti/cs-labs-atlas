@@ -41,7 +41,7 @@ It refuses a released school: this command never writes released data. A step th
 usage: stage_gate.py <key> --traps   (every onboarding trap check, tools/onboarding_traps.py)
        stage_gate.py <key> [stage ...] [--run [--dry-run] [--submit] [--from-worktree] [--force] [--allow-shared]] [--json]
 """
-import collections, json, re, sys, unicodedata
+import collections, json, math, re, sys, unicodedata
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
@@ -422,6 +422,7 @@ CODE = Path(__file__).resolve().parents[1]
 ACCURACY_DIR = CODE / 'accuracy'
 COPIES_TARGET = 0.85
 ACCURACY_BARS = (('lab_precision_uniform', 0.95), ('student_precision_uniform', 0.97), ('lab_coverage', 0.90))
+ACCURACY_FILES = ('pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json')
 
 
 def audit_open(key, checks):
@@ -488,16 +489,27 @@ def g9(key):
     d = read(ACCURACY_DIR / f'summary-{key}.json')
     if not d:
         return [f'accuracy: accuracy/summary-{key}.json missing (accuracy/sample.py --school {key}, then the verdicts and summarize.py)'], {}
+    if not isinstance(d, dict):
+        return ['accuracy: the school summary must be a JSON object'], {}
     bad = []
     for k, bar in ACCURACY_BARS:
-        p = (d.get(k) or {}).get('p')
-        if p is None or p < bar:
+        measure = d.get(k)
+        p = measure.get('p') if isinstance(measure, dict) else None
+        if type(p) not in (int, float) or not math.isfinite(p) or not 0 <= p <= 1:
+            bad.append(f'accuracy: {k} requires a finite probability in [0, 1]')
+        elif p < bar:
             bad.append(f'accuracy: {k} {p} < {bar}')
     # R-ACC-01: the hashes the summary recorded at draw time must equal the LIVE build files (files_now is stored at summarize time
     # and never moves, so comparing it with files could not see a rebuild after the draw)
-    if d.get('files') and d.get('files') != d.get('files_now'):
+    files, files_now = d.get('files'), d.get('files_now')
+    for field, values in (('files', files), ('files_now', files_now)):
+        if (not isinstance(values, dict) or set(values) != set(ACCURACY_FILES)
+                or any(not isinstance(h, str) or not re.fullmatch('[0-9a-f]{64}', h) for h in values.values())):
+            bad.append(f'accuracy: {field} must bind all five sampled build files with SHA-256 hashes')
+    if isinstance(files, dict) and files != files_now:
         bad.append('accuracy: the build changed since the sample was drawn (files != files_now)')
-    stale = [f for f, h in (d.get('files') or {}).items() if live_sha(P.data(f, key)) != h]
+    stale = [f for f in ACCURACY_FILES if isinstance(files, dict) and f in files
+             and live_sha(P.data(f, key)) != files[f]]
     if stale:
         bad.append(f'accuracy: the build changed since the draw ({", ".join(sorted(stale))} differ from the live files); redraw (accuracy/sample.py --round r3 --school {key})')
     return bad, dict(n_verdicts=d.get('n_verdicts'))

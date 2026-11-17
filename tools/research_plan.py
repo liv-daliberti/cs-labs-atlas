@@ -26,6 +26,7 @@ POLICY_FILES = ('docs/RULES.md', 'tools/visiting.py', 'tools/pihier/role_cues.py
                 'tools/labpage_students_school.py', 'tools/student_recall.py')
 CONTEXT_FILES = ('census-overrides-school.json', 'faculty-periods.json', 'lab-websites.json')
 SCHEMA = 1
+REVIEW_FIELDS = ('status', 'coverage', 'outcome', 'reviewer', 'date', 'why', 'receipt')
 
 
 def digest(value):
@@ -325,6 +326,8 @@ def receipt_valid(case, hashes=None):
     try:
         datetime.date.fromisoformat(case.get('date', ''))
         receipt = case.get('receipt') or {}
+        if not isinstance(receipt, dict):
+            return False
         path = Path(receipt.get('path', ''))
         if not path.is_file():
             return False
@@ -364,7 +367,7 @@ def plan(school, pis, students, leads, versions, blocked, policy, contexts, inpu
                         coverage='', outcome='', reviewer='', date='', why='', receipt={})
             old = old_cases.get(case_id)
             if old and old.get('binding') == binding and receipt_valid(old, receipt_hashes):
-                for key in ('status', 'coverage', 'outcome', 'reviewer', 'date', 'why', 'receipt'):
+                for key in REVIEW_FIELDS:
                     case[key] = copy.deepcopy(old[key])
             cases.append(case)
             if url:
@@ -405,6 +408,73 @@ def collect(school, previous=None):
     board['capture_store'] = str(capture_stores[0])
     board['capture_stores'] = [str(path) for path in capture_stores]
     return board
+
+
+def apply_reviews(board, reviews):
+    """Register explicit reviews atomically against a freshly collected board.
+
+    The full binding is required: neither a URL nor a receipt for another PI
+    supplies the missing context. No membership or gate decision is accepted.
+    """
+    if not isinstance(reviews, dict) or reviews.get('school') != board['school'] or not isinstance(reviews.get('cases'), list):
+        raise ValueError('Source reviews need the same school and a cases list')
+    result = copy.deepcopy(board)
+    cases = {case['id']: case for case in result['cases']}
+    seen, hashes = set(), {}
+    for review in reviews['cases']:
+        if not isinstance(review, dict):
+            raise ValueError('Each source review must be an object with its exact binding')
+        ident = review.get('id')
+        if not isinstance(ident, str) or ident not in cases or ident in seen:
+            raise ValueError('Source review case is unknown, changed or repeated: ' + str(ident))
+        seen.add(ident)
+        case = cases[ident]
+        if review.get('binding') != case['binding']:
+            raise ValueError('Source review binding changed; refresh and review the affected context: ' + ident)
+        updated = dict(case, **{key: copy.deepcopy(review.get(key)) for key in REVIEW_FIELDS})
+        if not receipt_valid(updated, hashes):
+            raise ValueError('Source review needs a whole-source decision and an intact receipt: ' + ident)
+        if case['status'] == 'resolved' and any(case[key] != updated[key] for key in REVIEW_FIELDS):
+            raise ValueError('Existing source review must be preserved; record a new source/context to reopen: ' + ident)
+        cases[ident] = updated
+    result['cases'] = [cases[case['id']] for case in result['cases']]
+    pending = sum(case['status'] != 'resolved' for case in result['cases'])
+    result['summary'].update(reusable_reviews=len(cases) - pending, pending=pending,
+                             next_action='finish_source_batch' if pending else 'seal_and_rebuild_once'
+                             if result['summary']['changed_reviewed_inputs'] else 'check_other_build_dependencies')
+    return result
+
+
+def review_batch(board, limit=20):
+    """Read shared sources once, keeping every PI's binding and decision distinct.
+
+    The finite batch prioritizes saved sources for sparse labs; refusal-only
+    cases remain explicit work with an instruction to respect the refusal.
+    """
+    if type(limit) is not int or limit < 1:
+        raise ValueError('Batch size must be a positive integer')
+    groups = {}
+    for case in board['cases']:
+        if case['status'] == 'resolved':
+            continue
+        binding = case['binding']
+        shared = {key: binding[key] for key in ('url', 'source', 'access_refusal')}
+        # Empty leads are individual research tasks, not one shared source.
+        key = digest(shared) if binding['url'] else case['id']
+        group = groups.setdefault(key, dict(shared, next_action=case['next_action'], cases=[]))
+        group['cases'].append(copy.deepcopy(case))
+    priority = {'inspect_saved_source': 0, 'find_owned_roster': 1,
+                'recover_exact_source_or_research_lead': 2, 'respect_recorded_refusal': 3}
+    sources = sorted(groups.values(), key=lambda group: (
+        priority[group['next_action']], min(case['native_members'] for case in group['cases']),
+        -len(group['cases']), group['url'] or '', digest(group['source'])))
+    selected = sources[:limit]
+    return dict(school=board['school'], research=copy.deepcopy(board['research']),
+                source_board_sha256=digest(board), capture_stores=board.get('capture_stores', []),
+                summary=dict(pending_cases=sum(len(group['cases']) for group in sources),
+                             pending_sources=len(sources), selected_sources=len(selected),
+                             selected_cases=sum(len(group['cases']) for group in selected)),
+                sources=selected, qualification=board['qualification'])
 
 
 def validate_board(board):

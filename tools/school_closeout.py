@@ -3,6 +3,8 @@
 atlas closeout stages SCHOOL [--json]
 atlas closeout plan SCHOOL
 atlas closeout research SCHOOL [--previous FILE] [--out FILE] [--json]
+atlas closeout research SCHOOL --previous FILE --reviews FILE --out FILE
+atlas closeout research-batch SCHOOL [--previous FILE] [--batch-size 20] [--out FILE]
 atlas closeout seal SCHOOL --run-dir DIR --repairs FILE
 atlas closeout submit SCHOOL --run-dir DIR
 atlas closeout status|certify|draw SCHOOL --run-dir DIR
@@ -25,7 +27,8 @@ import sys
 import atlas_paths as P
 
 CODE = Path(__file__).resolve().parents[1]
-GATES = (1, 2, 3, 4, 5, 7, 8)
+SOURCE_GATES = (0, 1)
+GATES = (0, 1, 2, 3, 4, 5, 7, 8)
 STAGES = {
     0: ('Charter and access', (), 'Confirm charter, host policy and snapshot coverage.'),
     1: ('Faculty sources', (0,), 'Finish the missing department/year source captures.'),
@@ -108,11 +111,12 @@ def stage_board(school, evaluate=None):
             results[stage] = evaluate(school, str(stage))
         except (OSError, ValueError, KeyError) as exc:
             results[stage] = dict(gate='unmeasured', items=[str(exc)])
-    complete = {stage for stage, result in results.items() if result.get('gate') in ('pass', 'waived')}
-    rows = []
+    complete, rows = set(), []
     for stage, (label, requires, action) in STAGES.items():
         result = results[stage]
         waiting = [n for n in requires if n not in complete]
+        if result.get('gate') in ('pass', 'waived') and not waiting:
+            complete.add(stage)
         items = result.get('unwaived_items', result.get('items', []))
         status = ('complete' if result.get('gate') == 'pass' else 'waived') if stage in complete else (
             'waiting' if waiting else 'unmeasured' if result.get('gate') == 'unmeasured' else 'needs review' if stage in (6, 9) else 'needs work')
@@ -141,6 +145,19 @@ def render_stages(board):
         lines += ['', 'All research stages pass on this data root.']
     lines += ['', board['publication_note']]
     return '\n'.join(lines)
+
+
+def source_preflight(school, evaluate=None):
+    """Source coverage cannot be repaired by spending another native build."""
+    import stage_gate
+    evaluate = evaluate or stage_gate.evaluate
+    results = {}
+    for stage in SOURCE_GATES:
+        try:
+            results[str(stage)] = evaluate(school, str(stage))
+        except (OSError, ValueError, KeyError) as exc:
+            results[str(stage)] = dict(stage=stage, gate='fail', items=['Gate evaluation failed: ' + str(exc)])
+    return results
 
 
 def input_specs(school):
@@ -213,6 +230,11 @@ def seal_run(school, directory, repairs):
     if S.get(school).get('status') != 'onboarding':
         raise ValueError('Closeout writes only onboarding schools')
     preflight.check(school)
+    sources = source_preflight(school)
+    failed = [stage for stage, result in sources.items() if result.get('gate') not in ('pass', 'waived')]
+    if failed:
+        raise ValueError('Source prerequisites fail at stages ' + ', '.join(failed)
+                         + '; inspect closeout stages and finish source repairs before sealing')
     board = repair_cases(repairs, school)
     dirty = subprocess.check_output(['git', '-C', str(CODE), 'diff', '--name-only', 'HEAD'], text=True).strip()
     if dirty:
@@ -226,7 +248,7 @@ def seal_run(school, directory, repairs):
     inputs = {name: dict(spec, fingerprint=fingerprint(name, spec['content'])) for name, spec in specs.items()}
     seal = dict(schema=1, school=school, code_commit=code_commit(), created=now(), data_root=str(P.CODE),
                 hierarchy=str(P.HIERARCHY), school_configs=str(P.SCHOOL_CONFIGS), inputs=inputs, repairs=board,
-                charter=fingerprint(P.SCHOOL_CONFIGS / (school + '.toml')))
+                charter=fingerprint(P.SCHOOL_CONFIGS / (school + '.toml')), source_preflight=sources)
     Path(directory).mkdir(parents=True)
     write(Path(directory) / 'inputs.json', seal)
     write(Path(directory) / 'state.json', dict(status='sealed', phases=[], artifacts={}, submissions=[]))
@@ -279,6 +301,12 @@ def worker(school, directory, run=subprocess.run, evaluate=None):
     directory = Path(directory)
     seal = validate_seal(school, directory)
     state = read(directory / 'state.json')
+    sources = source_preflight(school, evaluate)
+    if any(result.get('gate') not in ('pass', 'waived') for result in sources.values()):
+        state.update(status='preflight_failed', gates=sources, ready_for_reviews=False,
+                     job=os.environ.get('SLURM_JOB_ID'), completed=now())
+        write(directory / 'state.json', state)
+        return state
     start = resume_index(state)
     state['phases'] = state['phases'][:start]
     state.update(status='running', job=os.environ.get('SLURM_JOB_ID'), gates={}, ready_for_reviews=False)
@@ -303,14 +331,16 @@ def worker(school, directory, run=subprocess.run, evaluate=None):
         write(directory / 'state.json', state)
     # Collect ALL gate findings on this one build instead of discovering a new
     # gate only after each expensive rebuild. Human review gates stay separate.
-    state['gates'] = {}
+    state['gates'] = dict(sources)
     for stage in GATES:
+        if stage in SOURCE_GATES:
+            continue
         try:
             state['gates'][str(stage)] = evaluate(school, str(stage))
         except (OSError, ValueError, KeyError) as exc:
             state['gates'][str(stage)] = dict(stage=stage, gate='fail', items=['Gate evaluation failed: ' + str(exc)])
     validate_seal(school, directory)
-    state.update(status='awaiting_completion' if all(g['gate'] == 'pass' for g in state['gates'].values()) else 'gate_failed',
+    state.update(status='awaiting_completion' if all(g['gate'] in ('pass', 'waived') for g in state['gates'].values()) else 'gate_failed',
                  completed=now())
     write(directory / 'state.json', state)
     return state
@@ -337,7 +367,7 @@ def certify(school, directory, run=subprocess.run):
 
 def submission_available(state, run=subprocess.run):
     """One scheduler lookup prevents duplicate jobs and permits timeout recovery."""
-    if state['status'] in ('awaiting_completion', 'review_ready', 'gate_failed'):
+    if state['status'] in ('awaiting_completion', 'review_ready', 'gate_failed', 'preflight_failed'):
         raise ValueError('Native run is complete; certify it or finish a new repair batch')
     if state.get('submissions'):
         job = str(next(iter(state['submissions'][-1].values())))
@@ -379,7 +409,7 @@ def draw_once(school, directory, drawn_by):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['stages', 'plan', 'research', 'seal', 'submit', 'worker', 'status', 'certify', 'draw'])
+    parser.add_argument('command', choices=['stages', 'plan', 'research', 'research-batch', 'seal', 'submit', 'worker', 'status', 'certify', 'draw'])
     parser.add_argument('school')
     parser.add_argument('--run-dir', type=Path)
     parser.add_argument('--repairs', type=Path)
@@ -387,19 +417,28 @@ def main(argv=None):
     parser.add_argument('--json', action='store_true', help='Machine-readable stage advancement')
     parser.add_argument('--previous', type=Path, help='Prior research board with explicit whole-source review receipts')
     parser.add_argument('--out', type=Path, help='Write the research board to this file; existing files are preserved')
+    parser.add_argument('--reviews', type=Path, help='Explicit whole-source decisions with exact current case bindings and receipt hashes')
+    parser.add_argument('--batch-size', type=int, default=20, help='Maximum distinct sources in a research batch')
     args = parser.parse_args(argv)
     try:
-        if args.command == 'research':
+        if args.reviews and args.command != 'research':
+            raise ValueError('--reviews is only supported by the research command')
+        if args.command in ('research', 'research-batch'):
             import research_plan
             if args.out and (args.out.exists() or args.out.is_symlink()):
                 raise ValueError('Research output already exists; preserve it and choose a new path: ' + str(args.out))
             board = research_plan.collect(args.school, read(args.previous) if args.previous else None)
+            if args.reviews:
+                board = research_plan.apply_reviews(board, read(args.reviews))
+            if args.command == 'research-batch':
+                board = research_plan.review_batch(board, args.batch_size)
             if args.out:
                 # A previous board may be the only durable copy of human review work.
                 with args.out.open('x') as handle:
                     json.dump(board, handle, indent=2, ensure_ascii=False)
                     handle.write('\n')
-            print(json.dumps(board, indent=2, ensure_ascii=False) if args.json else research_plan.render(board))
+            print(json.dumps(board, indent=2, ensure_ascii=False) if args.json or args.command == 'research-batch'
+                  else research_plan.render(board))
             return 0
         if args.command == 'stages':
             board = stage_board(args.school)
@@ -408,6 +447,7 @@ def main(argv=None):
         if args.command == 'plan':
             print(json.dumps(dict(school=args.school, data_root=str(P.CODE), code_commit=code_commit(),
                                   phases=[dict(name=n, argv=a) for n, a in phases(args.school)], gates=GATES,
+                                  source_preflight=source_preflight(args.school),
                                   reviews='After certification: one fixed recall draw; fresh independent review; then existing accuracy workflow.'), indent=2))
             return 0
         if not args.run_dir or (args.command == 'seal' and not args.repairs):
@@ -440,7 +480,7 @@ def main(argv=None):
                 else:
                     result = draw_once(args.school, args.run_dir, args.drawn_by)
         print(json.dumps(result, indent=2, ensure_ascii=False))
-        return 1 if result.get('status') in ('phase_failed', 'gate_failed') else 0
+        return 1 if result.get('status') in ('phase_failed', 'gate_failed', 'preflight_failed') else 0
     except (ValueError, OSError, KeyError, subprocess.CalledProcessError) as exc:
         print('Closeout stopped: ' + str(exc), file=sys.stderr)
         return 1

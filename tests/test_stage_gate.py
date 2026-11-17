@@ -56,26 +56,70 @@ def test_gate8_local_share_and_ledger(tree):
 
 
 def test_gate9_thresholds_and_stale_build(tree):
-    (tree.root / 'u' / 'pis.json').write_text('[1]')
-    live = G.live_sha(tree.root / 'u' / 'pis.json')
-    good = {'lab_precision_uniform': {'p': .96}, 'student_precision_uniform': {'p': 1.0}, 'lab_coverage': {'p': .9}, 'files': {'pis.json': live}, 'files_now': {'pis.json': live}}
+    good = accuracy_summary(tree)
     (tree.root / 'acc' / 'summary-u.json').write_text(json.dumps(good))
     assert G.evaluate('u', 9)['gate'] == 'pass'
-    bad = dict(good, lab_precision_uniform={'p': .92}, files_now={'pis.json': 'x'})
+    bad = dict(good, lab_precision_uniform={'p': .92}, files_now=dict(good['files_now'], **{'pis.json': '0' * 64}))
     (tree.root / 'acc' / 'summary-u.json').write_text(json.dumps(bad))
     r = G.evaluate('u', 9)
     assert r['gate'] == 'fail' and r['open'] == 2
 
 
 def test_R_ACC_01_gate9_compares_the_summary_hashes_with_the_live_build(tree):
-    (tree.root / 'u' / 'pis.json').write_text('[1]')
-    live = G.live_sha(tree.root / 'u' / 'pis.json')
-    s = {'lab_precision_uniform': {'p': .96}, 'student_precision_uniform': {'p': 1.0}, 'lab_coverage': {'p': .9}, 'files': {'pis.json': live}, 'files_now': {'pis.json': live}}
+    s = accuracy_summary(tree)
     (tree.root / 'acc' / 'summary-u.json').write_text(json.dumps(s))
     assert G.evaluate('u', 9)['gate'] == 'pass'
     (tree.root / 'u' / 'pis.json').write_text('[1, 2]')   # a rebuild after the draw; files == files_now (both stored at summarize time)
     r = G.evaluate('u', 9)
     assert r['gate'] == 'fail' and r['open'] == 1 and 'pis.json differ from the live files' in r['items'][0]
+
+
+def accuracy_summary(tree):
+    for name in G.ACCURACY_FILES:
+        (tree.root / 'u' / name).write_text('[1]')
+    files = {name: G.live_sha(tree.root / 'u' / name) for name in G.ACCURACY_FILES}
+    return dict(lab_precision_uniform={'p': .96}, student_precision_uniform={'p': 1.0},
+                lab_coverage={'p': .9}, files=files, files_now=dict(files))
+
+
+@pytest.mark.parametrize('broken', ['absent', 'empty', 'partial', 'bad_hash', 'wrong_type', 'unknown_file'])
+def test_accuracy_cannot_pass_without_complete_well_formed_live_build_bindings(tree, broken):
+    summary = accuracy_summary(tree)
+    for field in ('files', 'files_now'):
+        if broken == 'absent':
+            summary.pop(field)
+        elif broken == 'empty':
+            summary[field] = {}
+        elif broken == 'partial':
+            summary[field].pop('copies.json')
+        elif broken == 'bad_hash':
+            summary[field]['pis.json'] = None
+        elif broken == 'wrong_type':
+            summary[field] = ['pis.json']
+        else:
+            summary[field]['unknown-input.json'] = 'a' * 64
+    (tree.root / 'acc' / 'summary-u.json').write_text(json.dumps(summary))
+    result = G.evaluate('u', 9)
+    assert result['gate'] == 'fail'
+    assert any('must bind all five' in item for item in result['items'])
+
+
+@pytest.mark.parametrize('value', [float('nan'), float('inf'), -1, 1.1, True, '1.0'])
+def test_accuracy_cannot_pass_with_nonfinite_or_invalid_probability(tree, value):
+    summary = accuracy_summary(tree)
+    summary['lab_precision_uniform']['p'] = value
+    (tree.root / 'acc' / 'summary-u.json').write_text(json.dumps(summary))
+    result = G.evaluate('u', 9)
+    assert result['gate'] == 'fail'
+    assert 'finite probability' in result['items'][0]
+
+
+def test_accuracy_binding_contract_matches_the_actual_drawer():
+    import ast
+    module = ast.parse((G.CODE / 'accuracy/sample.py').read_text())
+    names = next(ast.literal_eval(node.value) for node in module.body
+                 if isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == 'FILES' for t in node.targets))
+    assert set(names) == set(G.ACCURACY_FILES)
 
 
 def test_waiver_needs_a_reason_and_keeps_the_items(tree):

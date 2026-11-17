@@ -146,6 +146,111 @@ def test_rebuild_advice_batches_work_and_identifies_unchanged_reviewed_inputs(re
     assert current['summary']['changed_reviewed_inputs'] == ['roster-evidence.json']
 
 
+def test_register_reviews_recounts_stale_totals_and_preserves_shared_pi_contexts(research):
+    args, resolve, _ = research
+    board = Q.plan(**args)
+    decisions = resolve(copy.deepcopy(board))
+    board['summary']['pending'] = 672  # A prior manually edited board.
+    reviews = dict(school='u', cases=[decisions['cases'][0]])
+    current = Q.apply_reviews(board, reviews)
+    assert board['cases'][0]['status'] == 'pending'  # Registration is atomic.
+    assert current['summary']['pending'] == 1
+    assert current['summary']['reusable_reviews'] == 1
+    assert current['cases'][1]['status'] == 'pending'
+    assert current['cases'][1]['binding']['url'] == current['cases'][0]['binding']['url']
+    assert Q.plan(**args, previous=current)['summary']['reusable_reviews'] == 1
+    # Exact re-registration resumes; a replacement decision cannot erase work.
+    assert Q.apply_reviews(current, reviews) == current
+    reviews['cases'][0]['why'] = 'Different interpretation on unchanged evidence'
+    with pytest.raises(ValueError, match='must be preserved'):
+        Q.apply_reviews(current, reviews)
+
+
+@pytest.mark.parametrize('invalid', ['wrong_school', 'unknown_id', 'duplicate', 'context', 'source',
+                                    'partial', 'missing_receipt', 'bad_date', 'not_an_object'])
+def test_registration_refuses_stale_or_unverifiable_review_without_partial_updates(research, invalid):
+    args, resolve, _ = research
+    board = Q.plan(**args)
+    reviewed = resolve(resolve(copy.deepcopy(board)), index=1)
+    reviews = dict(school='u', cases=reviewed['cases'])
+    row = reviews['cases'][1]
+    if invalid == 'wrong_school':
+        reviews['school'] = 'other'
+    elif invalid == 'unknown_id':
+        row['id'] = 'source-not-in-this-inventory'
+    elif invalid == 'duplicate':
+        reviews['cases'].append(copy.deepcopy(row))
+    elif invalid == 'context':
+        row['binding']['context_sha256'] = 'different-appointment'
+    elif invalid == 'source':
+        row['binding']['source']['sha256'] = 'b' * 64
+    elif invalid == 'partial':
+        row['coverage'] = 'one_quote'
+    elif invalid == 'missing_receipt':
+        row['receipt'] = {}
+    elif invalid == 'bad_date':
+        row['date'] = '2026-02-30'
+    else:
+        reviews['cases'][1] = 'not a review'
+    original = copy.deepcopy(board)
+    with pytest.raises(ValueError):
+        Q.apply_reviews(board, reviews)
+    assert board == original
+
+
+def test_batch_reads_shared_source_once_without_approving_other_pi(research):
+    args, resolve, _ = research
+    board = Q.plan(**args)
+    batch = Q.review_batch(board, limit=1)
+    assert batch['summary'] == dict(pending_cases=2, pending_sources=1, selected_sources=1, selected_cases=2)
+    assert {c['binding']['pi'] for c in batch['sources'][0]['cases']} == {'Ada Alpha', 'Ben Beta'}
+    assert all(c['status'] == 'pending' for c in batch['sources'][0]['cases'])
+    current = Q.apply_reviews(board, dict(school='u', cases=[resolve(copy.deepcopy(board))['cases'][0]]))
+    assert Q.review_batch(current)['summary']['pending_cases'] == 1
+    assert board['summary']['pending'] == 2
+
+
+def test_batch_keeps_unknown_leads_separate_and_prioritizes_saved_sparse_sources(research):
+    args, _, _ = research
+    args['pis'] += [dict(pi='Unknown One'), dict(pi='Unknown Two'), dict(pi='Blocked')]
+    args['leads']['Blocked'] = {'https://blocked.example/people'}
+    args['blocked']['blocked.example'] = 'robots_disallowed'
+    args['students']['Ada Alpha'] = [dict(name='Member')]
+    board = Q.plan(**args)
+    batch = Q.review_batch(board, limit=2)
+    assert batch['summary']['pending_sources'] == 4
+    assert batch['summary']['selected_sources'] == 2
+    assert batch['sources'][0]['next_action'] == 'inspect_saved_source'
+    assert len(batch['sources'][0]['cases']) == 2
+    assert len(batch['sources'][1]['cases']) == 1
+    assert Q.review_batch(board)['sources'][-1]['next_action'] == 'respect_recorded_refusal'
+    for limit in (0, -1, True):
+        with pytest.raises(ValueError, match='positive integer'):
+            Q.review_batch(board, limit)
+
+
+def test_review_cli_refreshes_bindings_and_never_overwrites_previous_work(research, tmp_path, monkeypatch, capsys):
+    args, resolve, _ = research
+    board = Q.plan(**args)
+    reviewed = resolve(copy.deepcopy(board))
+    reviews = tmp_path / 'reviews.json'
+    reviews.write_text(json.dumps(dict(school='u', cases=[reviewed['cases'][0]])))
+    out = tmp_path / 'registered.json'
+    monkeypatch.setattr(Q, 'collect', lambda *a: copy.deepcopy(board))
+    assert C.main(['research', 'u', '--reviews', str(reviews), '--out', str(out), '--json']) == 0
+    assert json.loads(capsys.readouterr().out)['summary']['pending'] == 1
+    assert json.loads(out.read_text())['summary']['pending'] == 1
+    # A changed context detected during refresh cannot reuse the old decision.
+    board['cases'][0]['binding']['context_sha256'] = 'changed'
+    refused = tmp_path / 'refused.json'
+    assert C.main(['research', 'u', '--reviews', str(reviews), '--out', str(refused)]) == 1
+    assert not refused.exists()
+    assert json.loads(out.read_text())['summary']['pending'] == 1
+    batch = tmp_path / 'batch.json'
+    assert C.main(['research-batch', 'u', '--batch-size', '1', '--out', str(batch)]) == 0
+    assert json.loads(batch.read_text())['summary']['selected_sources'] == 1
+
+
 def test_all_known_sources_are_planned_before_next_build_without_eight_url_cap():
     pi = dict(pi='Ada Alpha', lab=dict(url='https://lab.example/home'))
     students = {'Ada Alpha': [dict(relations=[dict(type='researched_membership',

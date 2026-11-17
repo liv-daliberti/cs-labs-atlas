@@ -64,6 +64,70 @@ def test_native_checks_all_prerequisite_gates_on_one_build(case):
     assert not (case.out / 'draw-original.json').exists()
 
 
+@pytest.mark.parametrize('failed_stage', ['0', '1'])
+def test_source_prerequisite_failure_spends_no_native_work_and_cannot_certify(case, failed_stage):
+    seen = []
+
+    def source_gap(school, stage):
+        seen.append(stage)
+        return dict(gate='fail' if stage == failed_stage else 'pass', items=['Original source gap'])
+
+    state = C.worker('u', case.out, run=case.run, evaluate=source_gap)
+    assert state['status'] == 'preflight_failed'
+    assert seen == ['0', '1']  # Collect all source failures before stopping.
+    assert case.calls == []
+    assert not state['ready_for_reviews']
+    assert not list(case.out.glob('*.log'))
+    with pytest.raises(ValueError, match='incomplete'):
+        C.certify('u', case.out, run=terminal())
+    with pytest.raises(ValueError, match='complete'):
+        C.submission_available(state)
+
+
+def test_source_preflight_reports_both_missing_sources_and_measurement_errors():
+    def broken(school, stage):
+        if stage == '0':
+            raise FileNotFoundError('host inventory absent')
+        return dict(gate='fail', items=['AIR2021 missing'])
+
+    sources = C.source_preflight('u', broken)
+    assert 'host inventory absent' in sources['0']['items'][0]
+    assert sources['1']['items'] == ['AIR2021 missing']
+
+
+def test_source_failure_prevents_sealing_before_repair_hashing_or_directory_creation(tmp_path, monkeypatch):
+    import school_config as S
+    from pihier import preflight
+    monkeypatch.setattr(S, 'get', lambda school: {'status': 'onboarding'})
+    monkeypatch.setattr(preflight, 'check', lambda school: None)
+    monkeypatch.setattr(C, 'source_preflight', lambda school: {'0': {'gate': 'pass'}, '1': {'gate': 'fail'}})
+    monkeypatch.setattr(C, 'repair_cases', lambda *a: pytest.fail('Hashed repairs despite known source failure'))
+    out = tmp_path / 'must-not-exist'
+    with pytest.raises(ValueError, match='Source prerequisites fail at stages 1'):
+        C.seal_run('u', out, tmp_path / 'repairs.json')
+    assert not out.exists()
+
+
+def test_downstream_gate_pass_never_hides_transitive_prerequisite_failure():
+    board = C.stage_board('u', lambda school, stage: dict(gate='fail' if stage == '1' else 'pass', items=[]))
+    assert board['next_stage'] == 1
+    assert not board['native_ready'] and not board['research_ready']
+    for stage in range(2, 11):
+        assert board['stages'][stage]['gate'] == 'pass'
+        assert board['stages'][stage]['status'] == 'waiting'
+        assert board['stages'][stage]['blocked_by']
+
+
+def test_worker_accepts_only_evaluator_authorized_waiver_and_preserves_it(case):
+    def waived(school, stage):
+        return dict(gate='waived' if stage == '1' else 'pass', items=['exact authorized source exception'] if stage == '1' else [])
+
+    state = C.worker('u', case.out, run=case.run, evaluate=waived)
+    assert state['status'] == 'awaiting_completion'
+    assert state['gates']['1']['gate'] == 'waived'
+    assert case.calls == list(C.OUTPUTS)
+
+
 def test_late_phase_failure_resumes_without_rebuilding(case):
     def fail_diagnosis(argv, **kw):
         if 'link_diagnosis.py' in argv[1]:

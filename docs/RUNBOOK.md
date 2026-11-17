@@ -202,6 +202,18 @@ contexts separately. New member observations stay proposals until normal source
 review approves their School, role, date and identity scope. One quoted name does
 not establish that an entire roster has been checked.
 
+Generate a bounded batch from the current inventory instead of hand-selecting
+or refetching pages. This refreshes and validates prior receipts first:
+
+```sh
+bin/atlas closeout research-batch sjtu --previous /absolute/scratch/research-v1.json --batch-size 20 --out /absolute/scratch/source-batch.json
+```
+
+The batch groups exact URL/source versions and carries each PI's complete case
+and binding separately. Saved sources for sparse labs come first. Missing leads
+remain individual tasks; a recorded refusal is never a request to retry that host.
+`capture_stores` names the existing registered stores; source bytes remain there.
+
 For each completed case, retain its `id` and `binding` and explicitly fill:
 
 ```json
@@ -215,6 +227,20 @@ For each completed case, retain its `id` and `binding` and explicitly fill:
   "receipt": {"path": "/absolute/scratch/source-review.json", "sha256": "<actual report SHA-256>"}
 }
 ```
+
+Put those completed cases in a separate `{"school": "sjtu", "cases": [...]}`
+review file, including each case's unchanged `id` and complete `binding`. Register
+them through the command below; this checks all cases and receipt hashes before
+writing, preserves existing decisions, and recomputes totals. Do not manually
+edit a board's case status or summary.
+
+```sh
+bin/atlas closeout research sjtu --previous /absolute/scratch/research-v1.json --reviews /absolute/scratch/source-reviews.json --out /absolute/scratch/research-v2.json
+```
+
+A changed source, policy, PI context, missing receipt or repeated case stops the
+whole registration. Neither sharing a source nor sharing a report approves a
+second PI automatically. Existing output files are never overwritten.
 
 `outcome` can also be `no_roster` or `unavailable`, with the actual search/access
 limit described in `why` and the receipt. A positive review needs preserved source
@@ -245,6 +271,20 @@ requirements as well. If reviewed inputs are unchanged, check `atlas stale sjtu`
 and the existing candidate before submitting another expensive chain: code and
 raw stores may have changed separately. After the final build, keep the existing
 fresh sample, independent review and accuracy requirements.
+
+`atlas closeout plan <school>` includes the current source preflight. Stages 0
+(charter, access and snapshot) and 1 (historical faculty sources) must pass, or
+carry an existing owner-authorized gate exception, before sealing or running the
+native chain. A worker that fails this preflight records `preflight_failed` and
+runs no native phases. Inspect `closeout stages`, finish the source repair batch,
+then seal a new run. Diagnostic research builds can still use the ordinary build
+tools; they do not become a certified closeout. Stage advancement preserves each
+gate's measured result but marks downstream stages as waiting until all their
+prerequisites are complete, including transitive dependencies.
+Stage 9 requires complete SHA-256 bindings for all five files used by the accuracy
+drawer, in both `files` and `files_now`, and compares them with the live package.
+Missing/partial bindings, non-finite probabilities and changed bytes fail the gate;
+the existing precision and coverage thresholds remain unchanged.
 
 ## Housekeeping
 

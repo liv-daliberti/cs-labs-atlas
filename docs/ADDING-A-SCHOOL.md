@@ -476,6 +476,9 @@ current and dated-alumni sections, with individual School, role and date scope.
 Group identical source URLs for reading while keeping each PI's claims separate.
 Record whole-source review receipts on the board as described in
 [RUNBOOK.md](RUNBOOK.md#reuse-source-research-and-batch-school-repairs).
+Use `closeout research-batch` to group a finite set of saved sources, and register
+explicit decisions with `closeout research --reviews <file>`. This validates exact
+case bindings and receipt hashes and updates the totals without manual board edits.
 Refresh with `--previous <board> --out <new-board>` as leads or evidence change.
 Unchanged source work survives a rebuild; new source bytes, capture year, PI
 context or evidence policy reopen the affected work. The board is a known-source
