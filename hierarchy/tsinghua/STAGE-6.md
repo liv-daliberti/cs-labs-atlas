@@ -56,3 +56,27 @@ Final approval: `scratch/tsinghua-mars18-independent-1117/FINAL-MARS18-AND-COMBI
 SHA-256 `b7736fda804ed54123996f55e73146a1c7e8c28add61cee05fdaad0f632dcc68`.
 The broader Stage 6 recall gate remains open. Native rebuild and publication
 are separate from source approval; no Stage 9 judgment is claimed.
+
+## Official thesis records: target of 250 unexplained zero-student labs
+
+Independently reviewed 33 official thesis summaries for 33 previously uncovered
+PIs: 16 doctoral and 17 master's records. Each summary names the author and
+adviser, degree, CS training unit and actual defense date. Every record has a
+separately verified original faculty rank observation in that calendar year.
+These are discrete defense-year membership points; degree awards, alumni status
+and attendance intervals are not inferred. All earlier thesis evidence remains
+unchanged.
+
+The official public abstract-metadata lane is now documented in the charter.
+The source-defined adviser query and returned-record summary links preserve
+request-body hashes, original bytes, robots decisions and shared pacing.
+Full text is outside this lane. The 40-PI collection used 73 requests; seven
+PIs remain held, and 303 additional returned records await summary review.
+No query hit or miss becomes a researched no-students reason.
+
+Independent complete-source acceptance: `scratch/tsinghua-z250-source-review-1117/ACCEPTED33-FINAL.json`,
+SHA-256 `bd94587a0599a3e01073d21b94f21758fe24b54786714c9295b8e5a9c1fb5820`.
+The source-reviewed input arithmetic projects Z from 278 to 245 if all 33 new
+PI records survive the consolidated native build. Native validation is pending;
+this source review supplies no formal recall or accuracy verdict. Stage 1
+remains open until complete originals resolve the six historical source gaps.

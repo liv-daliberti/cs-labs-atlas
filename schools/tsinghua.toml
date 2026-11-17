@@ -680,11 +680,11 @@ url = "https://www.sigs.tsinghua.edu.cn/7644/list.htm"
 listings = []
 
 [thesis]
-kind = "none"
-base_url = ""
-endpoints = []
-robots = "unreachable"
-note = "No public thesis repository/endpoints admitted at this checkpoint; repository discovery/access review remains open. No login, CNKI/Wanfang, API or Wayback access was used for this checkpoint. None denotes unconfigured sources, not an absence of theses."
+kind = "public-metadata"
+base_url = "https://newetds.lib.tsinghua.edu.cn/qh/index"
+endpoints = ["https://newetds.lib.tsinghua.edu.cn/qh/qhSearch/qhGetSingleList", "https://newetds.lib.tsinghua.edu.cn/qh/paper/summary"]
+robots = "allowed"
+note = "Public abstract metadata only. Official homepage captured 2026-11-17 explicitly opens the abstract index to all networks (raw SHA256 8f6fdaa3b220fdd721b4741df4d880679143d5bbdcda9ab5884273513db3f008); full text requires school identity and is outside this lane. Robots.txt returned404 with no rules, and the homepage/search returned200 without an access gate. The source-declared adviser-search POST was verified200 (raw SHA256 3791d1f25e2385546e2696ed1e9e9d3287c5f7724f3d55aa452c38e16caf9383). Cache POST responses by endpoint and exact body hash, honor shared pacing and all refusal/robots rules, and follow only summary links derived from returned records. Each admitted student needs independently reviewed explicit degree, author, adviser, school/unit, defense date and contemporaneous PI support. A defense is not a degree award or attendance interval; query counts and no-hit searches do not prove complete student coverage. No login, full-text, CNKI/Wanfang or guessed record IDs."
 [collector]
 # 2026-11-10 (owner): full-text collection on for this school; same discovery list as the other loops. No wayback_acm (WAYBACK_HOLD=1) and no CORE. Its lab papers come from the registered package copied to scratch/downloads-1110/hierarchy-onboard (school-collector.slurm points the loop there until the school is admitted).
 channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "core", "core_bulk", "europepmc", "pmc", "figshare", "labpages", "pihomes"]
@@ -694,13 +694,13 @@ adviser_directories = []
 defense_lists = []
 adviser_alumni = []
 rosters = []
-sources = ["Individually reviewed owned lab/member pages and explicit role clauses;55committed student memberships only in the original207bundle", "Broader390member observations and17appointment proposals are separate scratch proposals and not automatically consumed"]
+sources = ["Individually reviewed owned lab/member pages and explicit role clauses;55committed student memberships only in the original207bundle", "Broader390member observations and17appointment proposals are separate scratch proposals and not automatically consumed", "Official public thesis summaries naming the author and adviser, with explicit degree and defense date; independently reviewed dated membership points only"]
 [labpages]
 skip_pages = [{url = "https://www.lisglab.com/people", why = "Page explicitly names another PI (Prof. Shuguang Li); an outgoing collaborator link from Tao Du does not establish this as Tao Du's Tsinghua lab."}]
 hints = ["people.iiis.tsinghua.edu.cn", "cg.cs.tsinghua.edu.cn", "madsys.cs.tsinghua.edu.cn", "pacman.cs.tsinghua.edu.cn", "tns.thss.tsinghua.edu.cn"]
 [repository]
-name = "Tsinghua thesis repository discovery unconfigured; no direct repository access admitted"
-pattern = 'thesis\.lib\.tsinghua\.edu\.cn|Tsinghua University Library'
+name = "Tsinghua University Library thesis records (public metadata only)"
+pattern = 'newetds\.lib\.tsinghua\.edu\.cn/qh/paper/summary|thesis\.lib\.tsinghua\.edu\.cn|Tsinghua University Library'
 [store]
 path = "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/stores/tsinghua"
 
@@ -972,6 +972,12 @@ host = "faculty.dpi.tsinghua.edu.cn"
 use = "live"
 purpose = "robots.txt 404 (no rules, no AI-agent rules) on 2026-11-10; faculty list read by the Selenium render tool (one page, honest UA)."
 probe = "https://faculty.dpi.tsinghua.edu.cn/teacher.jsp?urltype=tree.TreeTempUrl&wbtreeid=1052"
+
+[[hosts]]
+host = "newetds.lib.tsinghua.edu.cn"
+use = "live"
+purpose = "Official public thesis abstract metadata: robots404/no rules and source-declared adviser search verified2026-11-17. Summary records require degree/adviser/date review; full text is outside this lane."
+probe = "https://newetds.lib.tsinghua.edu.cn/qh/index"
   [[departments.listings]]
   slot = "PI publish-dpi 5135 archive 2016-2020"
   kind = "main"
