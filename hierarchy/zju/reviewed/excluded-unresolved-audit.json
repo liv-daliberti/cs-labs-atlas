@@ -1257,6 +1257,758 @@
   "Zeke Wang",
   "Zhanjie Zhang"
  ],
- "reviewer": null,
- "verdicts": []
+ "reviewer": "subagent-a57357985bc808cdd",
+ "verdicts": [
+  {
+   "name": "Abhishek Kumar",
+   "verdict": "pass",
+   "evidence": "person.zju.edu.cn/en/abhi (Wayback 20260122, Dr. Abhishek Kumar, College of Electrical Engineering): 'Lecturer (Assistant Professor Equivalent)', research microgrid modelling/control, power electronics, energy-system optimisation incl. AI. DBLP 67/6188-6 ORCID 0000-0003-2424-2445 binds to OA works 'College of Electrical Engineering, ZJU' 2016-2025. Not proven: lecturer title (lecturer-only excluded) and the unit is power/electrical, not CS-related. Borderline (suggestive).",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: Wayback person.zju.edu.cn/en/abhi (identity and rank read) + WebSearch",
+   "fixed": false
+  },
+  {
+   "name": "Ao Liu",
+   "verdict": "pass",
+   "evidence": "No stored roster/capture hit for any hanzi reading or Latin form (work3/hz.out, digest); DBLP 182/7579-9 aff Institute of Power Machinery and Vehicular Engineering (mechanical); OA unbound; no rank anywhere.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, no page identifying this person found; nothing changes the verdict",
+   "fixed": false
+  },
+  {
+   "name": "Bin Zhang",
+   "verdict": "pass",
+   "evidence": "Only roster hit 张斌 (ME jswyjy 20250419: 智能装备与机器人研究所 教授, research hydraulic/fluid actuators, intelligent fluid control, biofabrication). DBLP 13/5236-32 names Laboratory of Applied Research on Electromagnetics: different unit, so identity not pinned and research not computing. cs.zju csen list has only 张小彬/章…, not Bin Zhang.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: stored page read; no live page needed",
+   "fixed": false
+  },
+  {
+   "name": "Bo Jiang [34/2005-16]",
+   "verdict": "pass",
+   "evidence": "No stored roster/capture hit for any hanzi reading or Latin form (work3/hz.out, digest); DBLP affs ECNU Educational Information Technology; ZJUT; ZJU National Lab of Industrial Control Technology (PhD lab). WebSearch: faculty.ecnu.edu.cn lists ZJUT 2014-2020, ECNU associate professor from 2020; ZJU only as PhD (2014). OA 2024 string 'School of Computer Science, ZJU' is one unbound-looking work. No ZJU faculty rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch (ECNU faculty page via search summary)",
+   "fixed": false
+  },
+  {
+   "name": "Chan Qiu",
+   "verdict": "pass",
+   "evidence": "No stored roster/capture hit for any hanzi reading or Latin form (work3/hz.out, digest); OA A5101448218 strings: State Key Lab CAD&CG + School of Mechanical Engineering ZJU 2016-2026, venues assembly/mech design (mixed author); no rank found in any roster (ME jswyjy has no 邱/仇 + 婵/禅 reading).",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: 2 WebSearches (incl. person.zju.edu.cn), nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Cheng Zheng",
+   "verdict": "pass",
+   "evidence": "No stored roster/capture hit for any hanzi reading or Latin form (work3/hz.out, digest); Only hanzi hit 征程 is a news headline (noise). DBLP 37/170-2 'Zhejiang University, Hangzhou' no unit; OA unbound (optics/ICU strings).",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, no page identifying this person found; nothing changes the verdict",
+   "fixed": false
+  },
+  {
+   "name": "Chuangtao Chen",
+   "verdict": "pass",
+   "evidence": "DBLP 279/7900 ORCID 0000-0002-1151-9022, aff College of Electrical Engineering ZJU; OA works 2020-2023 plain 'Zhejiang University'/EE college. No roster hit, no rank; pubs 2020-2026 pattern of a student/postdoc.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Chunbiao Gan",
+   "verdict": "pass",
+   "evidence": "ME roster (me.zju.edu.cn/mecn/jswyjy Wayback 20250419): 甘春标 工业工程研究所 教授、博导 (rank proven; layout is name-unit-title-email-研究方向, so direction = 机械动力学、信号识别与故障诊断、随机振动与控制). OA A5048563318 same college 2016-2026; venues Acta Mech Sinica, J Sound/Vibration, chaos control, structural health monitoring, one DBN fault-diagnosis paper. Research is mechanical/nonlinear dynamics, computing not the object or main method. Borderline (control/signal identification); left as pass.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch (Rankless topics: chaos control, SHM, stochastic dynamics)",
+   "fixed": false
+  },
+  {
+   "name": "Cong Zhao",
+   "verdict": "pass",
+   "evidence": "No stored roster/capture hit for any hanzi reading or Latin form (work3/hz.out, digest); DBLP 25/5509-3: UW-Madison ISE (current), ZJU Dept of Control Science and Engineering (FORMER); pubs 2016-2018 manufacturing systems. CSE rosters 2023-24 have no 赵聪/赵丛/赵琮. No rank for ZJU.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch (csauthors listing only)",
+   "fixed": false
+  },
+  {
+   "name": "Cui Huang",
+   "verdict": "pass",
+   "evidence": "spa.zju.edu.cn roster (js_render) lists 黄萃 with person.zju.edu.cn/huangcui, no rank in captured text; OA A5039810836 School of Public Affairs / Information Resource Management 2019-2025, venues Scientometrics/Journal of Informetrics/policy: public administration and science policy, computing not the object.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: stored roster; no live page needed",
+   "fixed": false
+  },
+  {
+   "name": "Dahai Zhang",
+   "verdict": "pass",
+   "evidence": "DBLP 86/8668-1 ORCID bound OA 69 works: Ocean College ZJU (Zhoushan), Hainan Institute, Fluid Power State Key Lab 2017-2025; wave/ocean energy, mechanical/energy not computing. No rank in stored source.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, no page found",
+   "fixed": false
+  },
+  {
+   "name": "Dingfeng Wu",
+   "verdict": "pass",
+   "evidence": "OA A5022846353: National Clinical Research Center for Child Health, Children's Hospital ZJU School of Medicine 2022-2024; Briefings in Bioinformatics, cyclicpeptide Python package (bioinformatics) but no title/rank anywhere (Crossref via search shows only affiliation). Suggestive only.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch (Crossref affiliation); no title found",
+   "fixed": false
+  },
+  {
+   "name": "Dongfang Ma",
+   "verdict": "pass",
+   "evidence": "person.zju.edu.cn/en/dongfang (Wayback 20260809, updated 2026-07-28; mdf2004@zju.edu.cn): Associate Professor (副教授) | Doctoral supervisor, Ocean College, research Traffic signal control, Smart ocean. OA A5024477428 same college (Institute of Marine Sensing and Networking 2018-2024), venues IEEE T-ITS, TR-C. Ladder rank proven but research is transportation engineering/ITS, not clearly computing-centred and unit is Ocean College. Borderline, left pass; owner should rule on ITS.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: Wayback person.zju.edu.cn/en/dongfang",
+   "fixed": false
+  },
+  {
+   "name": "Fengzhong Qu",
+   "verdict": "fail",
+   "evidence": "person.zju.edu.cn/en/jimqufzen (Wayback 20260415, updated 2026-01-19, jimqufz@zju.edu.cn): 'Qu Fengzhong', Professor | Doctoral supervisor, Ocean College; research Underwater Communications and Networking, Underwater Acoustic Signal Processing, Ocean Observation Technologies. Identity pinned: OA A5028057851 strings Ocean College / Key Lab of Ocean Observation-Imaging Testbed ZJU 2016-2026, venues IEEE JOE/IoT J/Sensors; Ocean College since 2011 (WUWNet'18 bio via search), 瞿逢重 (aminer). Full professor, information/communication engineering (rule: information/electronic engineering). Years 2016-2026. Borderline only because unit is Ocean College.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch + Wayback person page",
+   "fixed": false
+  },
+  {
+   "name": "Guanghua Song",
+   "verdict": "fail",
+   "evidence": "person.zju.edu.cn/en/0092100 (Wayback 20260421, updated 2025-09-11, ghsong@zju.edu.cn): SONG GUANGHUA, professor | Doctoral supervisor, School of Aeronautics and Astronautics, Head of the Institute of Aerospace Information Technology, research 'Computer application, Aerospace Information Technology'. cesc.zju.edu.cn/cescen/2024/1015/c84203a2975076 (fetched live): 'Guanghua SONG, Associate Professor, College of Computer Science, Zhejiang University'. Identity pinned: OA A5066995126 29 works strings School of Aeronautics and Astronautics ZJU 2016-2026 (same unit as the page), venues Q-network UAV routing, software-defined satellite networking, QoS cloud storage; PhD CS ZJU (sciprofiles via search). Full professor/associate professor in CS college, computing research. Years 2016-2026.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: Wayback person page + live CS-college page + WebSearch",
+   "fixed": false
+  },
+  {
+   "name": "Guanglin Li [328/7747]",
+   "verdict": "pass",
+   "evidence": "DBLP 328/7747 ORCID 0009-0000-8996-3775 State Key Lab of CAD&CG, pubs 2022-2026, 3 OA works; no roster hit (CADCG rosters 2016-20, 2025-26 have no 李光林/李广林 etc.); student pattern.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Jiantao Yuan",
+   "verdict": "pass",
+   "evidence": "OA A5010051284: ISEE ZJU 2018-2022, Ocean College 2019-2021, ZJU City College / ZUCC 2021-22; wireless random-access papers. No title in any source; looks like postdoc/short-term; not proven.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch (paper affiliations only)",
+   "fixed": false
+  },
+  {
+   "name": "Jiaqi Liu",
+   "verdict": "pass",
+   "evidence": "DBLP 51/2773-3 homepage kakiiliu.github.io (now 404), State Key Lab of Blockchain and Data Security, pubs 2023-2025, one OA work; no roster/rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: tried homepage (404)",
+   "fixed": false
+  },
+  {
+   "name": "Jiaqi Zheng",
+   "verdict": "pass",
+   "evidence": "DBLP 162/1613-2: Ningbo University College of Science and Technology (current), ZJU State Key Lab of Industrial Control Technology (FORMER), OA 2017-2018 only; no rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Jingyang Jiang",
+   "verdict": "pass",
+   "evidence": "OA A5038667175 Department of Linguistics / School of International Studies ZJU 2016-2025; venues J Quantitative Linguistics, dependency distance: quantitative linguistics, not CS; no rank source found.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, no ZJU page",
+   "fixed": false
+  },
+  {
+   "name": "Jun Huang",
+   "verdict": "pass",
+   "evidence": "DBLP 51/5022-2 affs SDSU EECS, NWPU cybersecurity, CQUPT (former), ZJU State Key Lab Industrial Control (FORMER), BUPT; OA unbound; no ZJU roster/rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "not done separately (DBLP shows former ZJU only)",
+   "fixed": false
+  },
+  {
+   "name": "Jun Li",
+   "verdict": "pass",
+   "evidence": "DBLP 116/1011-99: Second Affiliated Hospital of ZJU Medical School, Surgical Oncology: medicine. Hanzi 李俊成/李军伟 (ISEE 教授)/李俊 hits are different names or other-order substrings.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: stored sources only",
+   "fixed": false
+  },
+  {
+   "name": "Jun Sun",
+   "verdict": "pass",
+   "evidence": "DBLP 68/5216-14 ORCID, ZJU State Key Lab Industrial Control Technology; OA 8 works College of Control Science and Engineering 2018-2021; no roster hit (CSE lists 孙 names absent for this reading), no rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Kai Wang [78/2022-24]",
+   "verdict": "pass",
+   "evidence": "DBLP 78/2022-24: Central South University School of Automation (current) + ZJU State Key Lab Industrial Control; OA 2017-2018 only: ZJU period before CSU appointment, no rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Lei Wang [181/2817-145]",
+   "verdict": "pass",
+   "evidence": "DBLP 181/2817-145 ORCID 0000-0001-8535-0971 bound to OA 11 works School of Mechanical Engineering/State Key Lab of Fluid Power 2017-2021: mechanical, not computing. CSE roster 王雷 (研究员 智能系统与控制研究所, person.zju.edu.cn/leiwang) is bound to DBLP w/LeiWang59, not this person (stored CSE page c72509a2660331 read).",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: stored page read",
+   "fixed": false
+  },
+  {
+   "name": "Lei Wang [181/2817-184]",
+   "verdict": "pass",
+   "evidence": "Stored CSE page (Wayback 2026 c72509a2660331): 王雷 研究员、博导, 智能系统与控制研究所, research 工业智能与优化控制, person.zju.edu.cn/leiwang: admissible but it is the person of DBLP w/LeiWang59 (Institute of Cyber-Systems and Control, ORCID 0000-0002-6109-5619, pubs 2017-2026). This row, DBLP 181/2817-184, has homepage en.control.sdu.edu.cn/info/1062/1195.htm and affs Shandong Univ School of Control Sci & Eng + ZJU College of Control (no institute): nothing separates it from, or binds it to, the roster person (SDU page unreachable: cert mismatch). Not proven.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: tried SDU page (cert error) + WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Meng Zhang [04/6901-45]",
+   "verdict": "pass",
+   "evidence": "Wayback person.zju.edu.cn/en/0016974 (20260421, the DBLP homepage): Researcher | Doctoral supervisor, College of Environmental and Resource Sciences, research environmental microbiology/wastewater: ladder-equivalent but not CS-related; also not ISEE 张明 nor ZJUI 张萌 (DBLP 04/6901-13).",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: stored Wayback page read",
+   "fixed": false
+  },
+  {
+   "name": "Mengze Li",
+   "verdict": "pass",
+   "evidence": "DBLP 173/5918-1 ORCID, OA 46 works plain 'Zhejiang University' and ME Key Lab strings 2020-2026; pubs 2020 to 2026 growing: student/postdoc pattern; no roster, no rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Minjie Mou",
+   "verdict": "pass",
+   "evidence": "OA A5047043274 College of Pharmaceutical Sciences ZJU 2019-2025 (Feng Zhu IDRB group; bioinformatics venues); no title anywhere; likely PhD/postdoc; not proven.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch + idrblab.org contact page (no member list read)",
+   "fixed": false
+  },
+  {
+   "name": "Peng Bo",
+   "verdict": "pass",
+   "evidence": "DBLP 255/7958: Tsinghua ME and ZJU Ocean College (Zhoushan); OA 5 works Ocean College/Hainan Institute 2021-2022; no rank in any source.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Qian Yang",
+   "verdict": "pass",
+   "evidence": "Only hanzi hit is ISEE 杨倩倩 百人计划研究员 (name Qianqian Yang, different name: DBLP 'Qian Yang 0006' would not abbreviate to it; no 杨倩 entry as a standalone name). DBLP 15/3199-6 plain 'Zhejiang University', no unit or ORCID.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: stored sources only",
+   "fixed": false
+  },
+  {
+   "name": "Ruofan Hu",
+   "verdict": "pass",
+   "evidence": "DBLP 321/0629-2 ORCID 0009-..., pubs 2024-2026, OA plain 'Zhejiang University'; no roster/rank; recent-student pattern.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch (covered with Xinrui/Jiaqi queries), nothing",
+   "fixed": false
+  },
+  {
+   "name": "T. C. Yang",
+   "verdict": "pass",
+   "evidence": "DBLP 24/8429-1 ORCID, aff ISEE ZJU and University of Rochester; OA 53 works ISEE 2016-2021 (Yang T.C., Rochester underwater acoustics visiting). No roster hit for any 杨 reading; no ZJU rank; likely visiting/adjunct.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: stored sources only",
+   "fixed": false
+  },
+  {
+   "name": "Tao Lin",
+   "verdict": "fail",
+   "evidence": "person.zju.edu.cn/en/lintaolab (the homepage URL on DBLP 64/4492-8; Wayback 20250326, updated 2025-03-12, lintao1@zju.edu.cn): 'LIN Tao', 'ZJU-100 Professor | Doctoral supervisor', College of Biosystems Engineering and Food Science, research 'Artificial Intelligence and Agricultural Big-Data Systems Analytics'. Identity pinned by DBLP homepage URL + ORCID 0000-0001-9721-5363 + OA 59 works same college 2017-2026 (DBLP also lists NCSA/UIUC earlier). 百人计划 professor = ladder-equivalent; research object is AI/big-data. Years 2017-2026 (OA).",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: Wayback person page",
+   "fixed": false
+  },
+  {
+   "name": "Tianrun Chen",
+   "verdict": "pass",
+   "evidence": "tianrun-chen.github.io (fetched): PhD candidate in CS at ZJU (BS from ISEE), founder/CEO KOKONI Tech; no faculty/postdoc role. OA CS college 2022-2026.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebFetch homepage",
+   "fixed": false
+  },
+  {
+   "name": "Xingyu Liu",
+   "verdict": "pass",
+   "evidence": "DBLP 88/10181-3 ORCID, State Key Lab CAD&CG; OA 3 works 2024-2026 (last one Polymer Science dept); pubs 2024-2026; student pattern, no roster hit.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Xinrui Li",
+   "verdict": "pass",
+   "evidence": "DBLP 151/4579-4 ORCID, State Key Lab of Blockchain and Data Security, pubs 2024-2026, OA 6 works 2025; student pattern; no roster/rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Xinyu Zhang [58/4582-16]",
+   "verdict": "pass",
+   "evidence": "DBLP 58/4582-16 'Zhejiang University' no unit; OA 8 works Institute of Cyberspace Research / School of Cyber Science and Technology 2019-2020; Scholar link only. Not in any stored roster (ICSR English list not matched); no rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Yang Liu [51/3710-357]",
+   "verdict": "pass",
+   "evidence": "DBLP 51/3710-357 ORCID, ZJU Hangzhou + Beihang SKLSDE; OA 2 works 2024-2025; roster hit 刘旸 is ISEE microelectronics 教授 2019, different person (no binding). No rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Yaowu Chen",
+   "verdict": "fail",
+   "evidence": "cbeis.zju.edu.cn/xyjs/list.htm (school-captures js_render): 陈耀武 教授, research 网络多媒体、电子仪器系统, yaowuchen@zju.edu.cn, 生物医学工程与仪器科学学院; Wayback person.zju.edu.cn/0088219 (20260609): 教授 | 博士生导师, unit 生物医学工程与仪器科学学院, research 网络多媒体 / 电子仪器系统. Identity pinned: DBLP 61/4950 aff Institute of Advanced Digital Technology and Instrument + Embedded System Engineering Research Center (ZJU) and OA 94 works College of Biomedical Engineering and Instrument Science 2018-2024 (2016-2024 overall), DBLP name 'Yao-wu Chen'. Full professor, network multimedia/embedded systems = computing. Years about 2016-2026.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: Wayback person.zju.edu.cn/0088219 + WebSearch",
+   "fixed": false
+  },
+  {
+   "name": "Ying Shen",
+   "verdict": "pass",
+   "evidence": "DBLP 01/8558-2 ICSC + State Key Lab of Industrial Control Technology; OA 2017-2019 ICSC, 2021-2023 Dept of Automation, Zhejiang University of Technology: ZJU period is early-career, no rank. Roster 申英男 (ME 研究员) is Yingnan Shen, different name and unit.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: stored sources only",
+   "fixed": false
+  },
+  {
+   "name": "Yining Chen [88/2592-2]",
+   "verdict": "pass",
+   "evidence": "Stored Wayback person.zju.edu.cn/en/yiningchen (20260410): CHEN YINING, College of Integrated Circuits, Distinguished Research Fellow, IC yield/AI in IC manufacturing: admissible-looking BUT DBLP 88/2592-2 (ORCID 0000-0002-3435-2851, 9 pubs 2020-2024) binds via OA to School of Aeronautics and Astronautics 2020-2023, not the IC college, and the page is not the DBLP homepage: homonym, identity not pinned. Suggestive only.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: stored Wayback page read",
+   "fixed": false
+  },
+  {
+   "name": "Yong Chen [67/6351-2]",
+   "verdict": "pass",
+   "evidence": "DBLP 67/6351-2: Hangzhou Dianzi Univ Dept of Mathematics (current), ZJU Dept of Mathematics (FORMER); math, OA unbound; hanzi 陈泳 hit is a student list. No rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: stored sources only",
+   "fixed": false
+  },
+  {
+   "name": "Yu Hu",
+   "verdict": "pass",
+   "evidence": "DBLP 08/6001-5 ORCID, College of Computer Science, State Key Lab CAD&CG, pubs 2017-2020, OA 9 works 2016-2019. CS roster hits 胡昱东 and ME 互与 substring are different names; CADCG 2016-20 rosters have no 胡昱/胡宇. No rank (student/postdoc period).",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Yue Zhu",
+   "verdict": "pass",
+   "evidence": "yuezhu.site (fetched): BEng ZJU EE 2016, MSc ZJU EE 2019, PhD Imperial 2022, now Assistant Professor CityU HK since 2025; ZJU only as student.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebFetch homepage",
+   "fixed": false
+  },
+  {
+   "name": "Yufan Zhou",
+   "verdict": "pass",
+   "evidence": "DBLP 182/8143-5 ORCID, ISEE ZJU, pubs 2025-2026, 4 OA works; student pattern; no roster/rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Yuhang Liu",
+   "verdict": "pass",
+   "evidence": "DBLP 131/6710-5: ZJU School of Software Technology + China Agricultural Univ College of Engineering; pubs 2022-2026; OA unbound; CST rosters 2024-26 contain no 刘宇航/刘雨航 reading; no rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Yuwei Wang",
+   "verdict": "pass",
+   "evidence": "DBLP 22/335-1 plain 'Zhejiang University'; OA 19 works 2023-2026 State Key Lab of Clean Energy Utilization + College of Control Science and Engineering strings; no roster, no rank.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  },
+  {
+   "name": "Zeke Wang",
+   "verdict": "fail",
+   "evidence": "wangzeke.github.io (fetched; no robots file): 'I am a ZJU100 Young Professor at Zhejiang University in Computer Science', wangzeke@zju.edu.cn, research heterogeneous computing (FPGA, GPU, P4, DL training systems). ieee-ceda.org/contact/zeke-wang (fetched): 'tenured associate professor', Computer Science Department, Zhejiang University; PhD ZJU 2011, postdoc NTU/NUS/ETH to 2019. person.zju.edu.cn/en/wzk also exists (not read). Stored: ai.zju.edu.cn list names 王则可 (no rank). Identity pinned: OA A5004837462 47 works (ICDE, DAC, TCAD, TPDS) with strings College of Computer Science and Technology / Dept of Computer Science / Collaborative Innovation Center of AI, ZJU, 2019-2026 = same CS unit as the homepage. 百人计划研究员 + tenured associate professor = ladder-equivalent. Years 2019-2026.",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebFetch homepage + IEEE CEDA bio",
+   "fixed": false
+  },
+  {
+   "name": "Zhanjie Zhang",
+   "verdict": "pass",
+   "evidence": "OA A5061370730 College of Computer Science ZJU 2022-2026 (style-transfer/ACM MM/AAAI): student pattern; no roster/rank; ai.zju/cs lists contain no 张战杰/张展杰 reading (hz.out 0).",
+   "sources_checked": [
+    "derived census-faculty/home-departments/cs-related-candidates(+openalex)/dblp-affiliated/pis",
+    "rows.json (+coverage-only) name search incl. pinyin homophones both orders",
+    "captures.sqlite + school-captures.sqlite + labpage-audit full-text (docs.pkl corpus, regex over all hanzi readings and Latin forms)",
+    "persons.sqlite",
+    "oa_aff.jsonl.gz bound by ORCID/author id",
+    "dblp-affiliated.json"
+   ],
+   "live_lookup": "done: WebSearch, nothing identifying",
+   "fixed": false
+  }
+ ],
+ "reviewed_at": "2026-11-17T22:13:27Z"
 }
