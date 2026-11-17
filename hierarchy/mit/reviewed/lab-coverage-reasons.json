@@ -118,9 +118,10 @@
  },
  "Daniel Sanchez": {
   "review": {
-   "state": "native_verification_pending",
+   "state": "source_review_complete_native_verification_required",
    "reviewed_at": "2026-11-17",
-   "reviewed_by": "codex-sanchez-close-1117"
+   "reviewed_by": "codex-sanchez-close-1117",
+   "closeout_requires_native_projection": true
   },
   "students": {
    "code": "source_review_with_bounded_coverage",
@@ -139,8 +140,22 @@
    ]
   },
   "papers": {
-   "code": "publication_reconciliation_pending",
-   "why": "PI-owned homepage lists 75 entries, including 52 explicitly dated 2016-2026 and two undated. Two apparent gaps are title variants of already-counted papers. Two original PDFs and their bibliographies are retained for source-specific admission review; final native dispositions must be recorded before closeout."
+   "code": "source_reconciled_with_documented_limits",
+   "why": "The complete PI-owned bibliography has 75 entries: 52 explicitly dated 2016-2026, two undated entries matched to accepted 2021 and 2022 papers, and 21 pre-window entries. Two apparent gaps already count under final titles (Taming the Zoo / Unified GraphIt; POSTER: Improving Datacenter Efficiency). Two true missing works have exact retained originals and new source recovery rows: Cache-Guided Scheduling (AGP 2017; explicit MIT byline), and Cache Calculus (CAL journal issue 2017, DOI 10.1109/LCA.2015.2512873). For Cache Calculus preserve 2015-12-28 online date and the owned bibliography 2016 separately; do not treat these as three papers or move the journal issue outside the window. True MIT DBLP PID 67/2030-3 adds independent bibliography coverage; the MICRO 2017 proceedings volume is edited proceedings, not a research paper. A final native build must confirm recovered works and title/edition deduplication. The owned page currently ends at 2024; later works depend on retained indexed records (DBLP 2026-09-01 / OpenAlex collection). No claim covers uncaptured future or unlisted work.",
+   "sources_checked": [
+    "https://people.csail.mit.edu/sanchez/",
+    "https://people.csail.mit.edu/sanchez/papers/2017.cgs.agp.pdf",
+    "https://people.csail.mit.edu/sanchez/papers/2016.cachecalc.cal.pdf",
+    "Official local DBLP dump dblp-2026-09-01.xml.gz, exact person 67/2030-3",
+    "https://api.openalex.org/works/doi:10.1109/LCA.2015.2512873"
+   ],
+   "reviewed_at": "2026-11-17"
+  },
+  "copies": {
+   "code": "per_paper_copy_accounting",
+   "why": "Existing 60 native paper rows were checked with the ordinary exact work/OA/DOI/edition resolver and the catalog quality guard: 57 local copies have existing files and verified SHA-256; Terminus, Azul and Toward a Universal Cryptographic Accelerator have exact publisher_only_closed ledger explanations dated 2026-11-15. The current owned page lists Terminus and Azul without PDF links. The two newly recovered original PDFs are retained in raw/sanchez-closeout-1117 and hash verified; they are source-bundle copies pending standard full-text catalog import, not additional catalog downloads. Do not label them unavailable or inflate the catalog copy count.",
+   "report": "PI-CLOSEOUT-SANCHEZ-20261117.json",
+   "reviewed_at": "2026-11-17"
   }
  }
 }
