@@ -70,6 +70,8 @@ def research_review(monkeypatch, tmp_path, *, own=True, appointment=True, source
             role['scope_evidence'] = dict(url=url if scope_evidence != 'bad_url' else 'https://other.example/avery',
                 sha256=sha if scope_evidence != 'bad_hash' else '0' * 64,
                 observed='20261115', quote='I study information policy and digital society.' if scope_evidence != 'bad_quote' else 'An absent claim.')
+            if scope_evidence == 'blank_quote':
+                role['scope_evidence']['quote'] = '   '
         if scope_evidence == 'bad_status':
             db.execute('update live set status=403')
     candidates = [candidate]
@@ -359,7 +361,7 @@ def test_reviewed_scope_exclusion_keeps_faculty_and_scope_evidence_without_admis
     assert additions == []
 
 
-@pytest.mark.parametrize('evidence', ['missing', 'bad_hash', 'bad_quote', 'bad_url', 'bad_status'])
+@pytest.mark.parametrize('evidence', ['missing', 'bad_hash', 'bad_quote', 'bad_url', 'bad_status', 'blank_quote'])
 def test_scope_disposition_cannot_use_unverified_sources(monkeypatch, tmp_path, evidence):
     with pytest.raises(SystemExit):
         research_review(monkeypatch, tmp_path, candidate_review=candidate_disposition(), scope_evidence=evidence)
@@ -397,6 +399,7 @@ def test_exact_negative_identity_does_not_hide_an_unreviewed_homonym(monkeypatch
     decisions = json.loads((tmp_path / 'cs-related-review.json').read_text())['decisions']
     assert decisions[0]['decision'] == 'research_or_other_rank'
     assert decisions[0]['cs_basis']['dblp'] == ['https://dblp.org/pid/avery/scientist']
+    assert decisions[0]['faculty_evidence'][0]['appointment_rank'] == 'research'
     assert decisions[1]['decision'] == 'pending_identity_collision'
     monkeypatch.setattr(G, 'sweep_gate', lambda key: [])
     assert any('share a display name' in error for error in G.g2('cambridge')[0])

@@ -795,23 +795,25 @@ def reviewed_candidate_dispositions(key, candidates, groups):
     if not entries:
         return out
     db = W.con(key)
+    verified_sources, quote_entries = set(), []
 
     def fail(name, reason):
         raise SystemExit(f'{name}: candidate_review {reason}')
 
     def checked(entry, evidence):
-        if not isinstance(evidence, dict) or not all(isinstance(evidence.get(k), str) and evidence[k]
+        if not isinstance(evidence, dict) or not all(isinstance(evidence.get(k), str) and evidence[k].strip()
                                                    for k in ('url', 'sha256', 'quote', 'observed')):
             fail(entry['name'], 'needs complete saved source evidence')
         url, sha = evidence['url'], evidence['sha256']
-        raw = db.execute('select status,raw_zlib from live where url=? and sha256=?', (url, sha)).fetchone()
-        if raw is None:
-            raw = db.execute('select http_status,raw_zlib from captures where capture_url=? and sha256=?', (url, sha)).fetchone()
-        if not raw or raw[0] != 200 or not raw[1] or hashlib.sha256(zlib.decompress(raw[1])).hexdigest() != sha:
-            fail(entry['name'], 'source URL, successful capture and raw hash must agree')
+        if (url, sha) not in verified_sources:
+            raw = db.execute('select status,raw_zlib from live where url=? and sha256=?', (url, sha)).fetchone()
+            if raw is None:
+                raw = db.execute('select http_status,raw_zlib from captures where capture_url=? and sha256=?', (url, sha)).fetchone()
+            if not raw or raw[0] != 200 or not raw[1] or hashlib.sha256(zlib.decompress(raw[1])).hexdigest() != sha:
+                fail(entry['name'], 'source URL, successful capture and raw hash must agree')
+            verified_sources.add((url, sha))
         ev = {k: evidence[k] for k in ('url', 'sha256', 'quote', 'observed')}
-        hand_evidence(key, db, entries=[dict(name=entry['name'], unit=entry['unit'], ladder=False, **ev)],
-                      label='candidate_review evidence')
+        quote_entries.append(dict(name=entry['name'], unit=entry['unit'], ladder=False, **ev))
         return ev
 
     for entry in entries:
@@ -860,6 +862,7 @@ def reviewed_candidate_dispositions(key, candidates, groups):
         shared = {(e['url'], e['sha256'], e['quote']) for r in peers for e in r['identity']}
         if peers and not own - shared:
             fail(review['entry']['name'], 'homonyms need identity evidence specific to each source ID')
+    hand_evidence(key, db, entries=quote_entries, label='candidate_review evidence')
     return out
 
 
@@ -943,7 +946,9 @@ def review(key):
             dec.append(dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision=d,
                             **({'source_id': ids[0]} if len(ids) == 1 else {'source_ids': ids}),
                             reason=proof['why'], cs_basis=comp,
-                            faculty_evidence=[dict(unit=e['unit'], ladder=bool(e.get('ladder')), **disposition['role'])],
+                            faculty_evidence=[dict(unit=e['unit'], ladder=bool(e.get('ladder')),
+                                                   **({'appointment_rank': e['appointment_rank']} if e.get('appointment_rank') else {}),
+                                                   **disposition['role'])],
                             evidence=disposition['identity'],
                             **({'scope_evidence': disposition['scope'], 'scope_rule': proof['rule']} if disposition['scope'] else {}),
                             identity_note=proof['identity_note'], reviewed_by=e['reviewed_by'], reviewed_on=e['reviewed_on'],
