@@ -32,12 +32,16 @@ Never carry a verdict forward just to avoid a fresh required review.
 
 Before collecting again, run `atlas closeout research SCHOOL --out BOARD.json`
 against the actual candidate overlay. The planner inventories both registered
-recall and school capture caches offline, rehashes original response bytes,
+recall, school and lab-page audit capture caches offline, rehashes original response bytes,
 and retains distinct versions and recorded access refusals. Existing readable
 captures become `inspect_saved_source` work rather than another fetch. An empty
 extracted-text field does not discard saved HTML. Inspect the original bytes;
 a cached page is still pending whole-source review, never an accepted roster
 or a recall verdict. The JSON board lists `capture_stores` for locating them.
+Audit stores retain every matching saved version, using the actual archived
+response URL's year rather than a later fetch year. Refusals remain visible
+even when another store has readable bytes. Captured bytes still require a
+whole-source review; inventorying an old page does not accept its members.
 
 Private school overlays must retain the archived listing source databases as
 well as `rows.json` and coverage summaries. The overlay helper snapshots the

@@ -12,6 +12,7 @@ import datetime
 import hashlib
 import json
 from pathlib import Path
+import re
 import sqlite3
 from urllib.parse import urlsplit
 import zlib
@@ -151,7 +152,80 @@ def cached_sources(path, urls, allow_missing_live=False):
     return versions, blocked
 
 
-def source_caches(paths, urls, optional_live=()):
+def merge_cached_version(versions, url, source):
+    """Merge flat versions, retaining the first cache's primary binding."""
+    incoming = [{k: v for k, v in source.items() if k != 'snapshots'}] + list(source.get('snapshots', []))
+    for row in incoming:
+        if url not in versions:
+            versions[url] = copy.deepcopy(row)
+            continue
+        current = versions[url]
+        if row == {k: v for k, v in current.items() if k != 'snapshots'}:
+            continue
+        snapshots = {digest(item): item for item in current.get('snapshots', [])}
+        snapshots[digest(row)] = copy.deepcopy(row)
+        current['snapshots'] = [snapshots[key] for key in sorted(snapshots)]
+
+
+def cached_audit_sources(path, urls):
+    """Read registered lpcap stores without fetching, copying or accepting rows.
+
+    Unlike school_web's live table, captures can hold many versions per URL;
+    archive dates belong to the actual capture URL, not our later fetch time.
+    """
+    versions, blocked = {}, collections.defaultdict(set)
+    if not Path(path).exists():
+        return versions, {}
+    with contextlib.closing(sqlite3.connect(Path(path).resolve().as_uri() + '?mode=ro', uri=True)) as conn:
+        conn.execute('begin')
+        tables = {row[0] for row in conn.execute("select name from sqlite_master where type='table'")}
+        if 'captures' not in tables:
+            raise ValueError('Audit source cache has no captures table: ' + str(path))
+        if 'blocked' in tables:
+            for host, why in conn.execute('select host,why from blocked'):
+                blocked[host.lower().removeprefix('www.')].add(why)
+        # Refusals on another path of the same host still apply. Do not load
+        # unrelated response bodies merely to inventory their transport status.
+        for url, capture, final, status, error in conn.execute(
+                "select url,capture_url,final_url,status,error from captures where status in (401,403,429) "
+                "or error in ('bot-challenge','robots-disallowed','host-challenged-skip','off-limits-host')"):
+            reason = error if error in ('bot-challenge', 'robots-disallowed', 'host-challenged-skip', 'off-limits-host') else 'HTTP ' + str(status)
+            for target in (capture or url, final):
+                host = (urlsplit(target or '').hostname or '').lower().removeprefix('www.')
+                if host:
+                    blocked[host].add(reason + ' at ' + (capture or url))
+        requested, seen = set(urls), set()
+        ordered = sorted(requested)
+        for start in range(0, len(ordered), 200):
+            batch = ordered[start:start + 200]
+            marks = ','.join('?' for _ in batch)
+            rows = conn.execute('select id,url,capture_url,final_url,fetched_at,status,sha256,content,error from captures '
+                                f'where url in ({marks}) or capture_url in ({marks}) order by id desc', batch + batch)
+            for ident, url, capture, final, fetched, status, sha, raw, error in rows:
+                if ident in seen:
+                    continue
+                seen.add(ident)
+                actual = final or capture or url
+                archive = re.match(r'^https?://(?:web\.)?archive\.org/web/(\d{4})', actual)
+                if (urlsplit(actual).hostname or '') in ('archive.org', 'web.archive.org') and not archive:
+                    raise ValueError('Audit archive URL has no dated timestamp: ' + actual)
+                year = archive.group(1) if archive else str(fetched or '')[:4]
+                source = dict(status=999 if error == 'bot-challenge' else status, capture_year=year)
+                if error:
+                    source['capture_error'] = error if error in ('bot-challenge', 'robots-disallowed', 'robots-unknown',
+                                                                 'host-challenged-skip', 'off-limits-host') else 'transport_error'
+                if error == 'bot-challenge':
+                    source['http_status'] = status
+                if source['status'] == 200 or (raw is not None and sha):
+                    if raw is None or not sha or hashlib.sha256(zlib.decompress(raw)).hexdigest() != sha:
+                        raise ValueError('Cached audit source bytes do not match their hash: ' + url)
+                    source['sha256'] = sha
+                for target in {url, capture} & requested:
+                    merge_cached_version(versions, target, source)
+    return versions, {host: '; '.join(sorted(reasons)) for host, reasons in blocked.items()}
+
+
+def source_caches(paths, urls, optional_live=(), audit_paths=()):
     """Inventory existing registered caches once; retain conflicting versions.
 
     Prefer the recall cache's exact binding when another cache has identical
@@ -160,28 +234,22 @@ def source_caches(paths, urls, optional_live=()):
     """
     versions, blocked, seen = {}, collections.defaultdict(set), set()
     optional_live = {Path(path).resolve() for path in optional_live}
+    audit_paths = {Path(path).resolve() for path in audit_paths}
     for path in paths:
         identity = Path(path).resolve()
         if identity in seen:
             continue
         seen.add(identity)
-        if identity in optional_live:
+        if identity in audit_paths:
+            incoming, refusals = cached_audit_sources(path, urls)
+        elif identity in optional_live:
             incoming, refusals = cached_sources(path, urls, allow_missing_live=True)
         else:
             incoming, refusals = cached_sources(path, urls)
         for host, reason in refusals.items():
             blocked[host].add(reason)
         for url, source in incoming.items():
-            if url not in versions:
-                versions[url] = copy.deepcopy(source)
-                continue
-            current = versions[url]
-            primary = {k: v for k, v in current.items() if k != 'snapshots'}
-            if source == primary:
-                continue
-            snapshots = {digest(row): row for row in current.get('snapshots', [])}
-            snapshots[digest(source)] = dict(source)
-            current['snapshots'] = [snapshots[k] for k in sorted(snapshots)]
+            merge_cached_version(versions, url, source)
     return versions, {host: '; '.join(sorted(reasons)) for host, reasons in blocked.items()}
 
 
@@ -321,9 +389,11 @@ def collect(school, previous=None):
     inputs, docs = reviewed_inputs(school)
     leads = source_leads(pis, students, audit, docs)
     capture_stores = [P.data(name, school) for name in ('student-recall-captures.sqlite', 'school-captures.sqlite')]
+    audit_stores = [P.data(name, school) for name in ('labpage-audit-captures.sqlite', 'labpage-captures.sqlite')]
+    capture_stores += audit_stores
     try:
         versions, blocked = source_caches(capture_stores, {u for us in leads.values() for u in us},
-                                         optional_live=capture_stores[1:])
+                                         optional_live=capture_stores[1:2], audit_paths=audit_stores)
     except (sqlite3.Error, zlib.error) as exc:
         raise ValueError('Cannot read the source cache safely: ' + str(exc)) from exc
     versions = saved_snapshots(docs, leads, versions)

@@ -225,7 +225,7 @@ def test_existing_school_cache_prevents_false_missing_source_and_keeps_reviews_p
     assert board['summary']['pending'] == 1
     assert board['cases'][0]['next_action'] == 'inspect_saved_source'
     assert board['cases'][0]['status'] == 'pending'
-    assert len(board['capture_stores']) == 2
+    assert len(board['capture_stores']) == 4
     assert school_cache.read_bytes() == before
     assert not (tmp_path / 'student-recall-captures.sqlite').exists()
 
@@ -360,3 +360,119 @@ def test_research_cli_preserves_existing_work_and_never_writes_without_out(resea
     original = out.read_bytes()
     assert C.main(['research', 'u', '--out', str(out)]) == 1
     assert out.read_bytes() == original
+
+
+def make_audit_cache(path, entries):
+    with sqlite3.connect(path) as conn:
+        conn.execute('create table captures (id integer primary key, url text, capture_url text, final_url text, '
+                     'fetched_at text, status int, sha256 text, content blob, error text)')
+        for entry in entries:
+            raw = entry.get('raw', b'<html>Actual named members</html>')
+            sha = entry.get('sha256', hashlib.sha256(raw).hexdigest() if raw is not None else None)
+            conn.execute('insert into captures values (NULL,?,?,?,?,?,?,?,?)',
+                         (entry['url'], entry.get('capture_url'), entry.get('final_url'),
+                          entry.get('fetched_at', '2026-11-17T12:00:00+00:00'), entry.get('status', 200),
+                          sha, zlib.compress(raw) if raw is not None else None, entry.get('error')))
+
+
+def test_collect_finds_previously_invisible_audit_bytes_without_accepting_or_writing(tmp_path, monkeypatch):
+    url = 'https://lab.example/people'
+    audit = tmp_path / 'labpage-audit-captures.sqlite'
+    make_audit_cache(audit, [dict(url=url)])
+    before = audit.read_bytes()
+    monkeypatch.setattr(Q.S, 'get', lambda school: {'status': 'onboarding'})
+    monkeypatch.setattr(Q.R, '_pis', lambda school: [dict(pi='Ada Alpha', lab=dict(url=url))])
+    monkeypatch.setattr(Q.R, '_students', lambda school: {})
+    monkeypatch.setattr(Q.R, '_audit', lambda school: {})
+    monkeypatch.setattr(Q.R, 'capture', lambda *a, **kw: pytest.fail('inventory must not fetch'))
+    monkeypatch.setattr(Q, 'reviewed_inputs', lambda school: ({}, {}))
+    monkeypatch.setattr(Q, 'POLICY_FILES', ())
+    monkeypatch.setattr(Q.P, 'data', lambda name, school: tmp_path / name)
+    board = Q.collect('u')
+    assert board['summary']['sources_with_bytes'] == 1
+    assert board['summary']['pending'] == 1 and board['summary']['reusable_reviews'] == 0
+    assert board['cases'][0]['next_action'] == 'inspect_saved_source'
+    assert board['cases'][0]['status'] == 'pending'
+    assert audit.read_bytes() == before
+    assert list(tmp_path.iterdir()) == [audit]
+
+
+def test_audit_versions_remain_flat_and_archive_redirect_dates_use_actual_response(tmp_path):
+    url = 'https://lab.example/people'
+    recall, audit = tmp_path / 'recall.sqlite', tmp_path / 'audit.sqlite'
+    with sqlite3.connect(recall) as conn:
+        conn.execute('create table live (url text, fetched_at text, status int, sha256 text, raw_zlib blob)')
+        conn.execute('insert into live values (?,?,?,?,?)',
+                     (url, '2019-11-01', 200, hashlib.sha256(b'2019 roster').hexdigest(), zlib.compress(b'2019 roster')))
+    requested = 'https://web.archive.org/web/20200101000000id_/' + url
+    actual = 'https://web.archive.org/web/20210101000000id_/' + url
+    make_audit_cache(audit, [dict(url=url, raw=b'2020 roster', capture_url=requested),
+                             dict(url=url, raw=b'2021 roster', capture_url=requested, final_url=actual)])
+    before = {path: path.read_bytes() for path in (recall, audit)}
+    versions, _ = Q.source_caches([recall, audit], {url, requested}, audit_paths=[audit])
+    main = versions[url]
+    assert main['capture_year'] == '2019'
+    assert {item['capture_year'] for item in main['snapshots']} == {'2020', '2021'}
+    assert all('snapshots' not in item for item in main['snapshots'])
+    assert versions[requested]['capture_year'] == '2021'
+    assert versions[requested]['snapshots'][0]['capture_year'] == '2020'
+    assert {path: path.read_bytes() for path in (recall, audit)} == before
+
+
+def test_identical_audit_copy_does_not_change_existing_scientific_binding(tmp_path):
+    url, raw = 'https://lab.example/people', b'Identical original roster'
+    recall, audit = tmp_path / 'recall.sqlite', tmp_path / 'audit.sqlite'
+    with sqlite3.connect(recall) as conn:
+        conn.execute('create table live (url text, fetched_at text, status int, sha256 text, raw_zlib blob)')
+        conn.execute('insert into live values (?,?,?,?,?)',
+                     (url, '2026-11-17', 200, hashlib.sha256(raw).hexdigest(), zlib.compress(raw)))
+    make_audit_cache(audit, [dict(url=url, raw=raw)])
+    baseline, _ = Q.source_caches([recall], {url})
+    merged, _ = Q.source_caches([recall, audit], {url}, audit_paths=[audit])
+    assert merged == baseline
+    assert 'snapshots' not in merged[url]
+
+
+@pytest.mark.parametrize('bad', [dict(sha256='0' * 64), dict(raw=None, sha256='a' * 64)])
+def test_audit_success_with_missing_or_corrupt_original_bytes_fails_closed(tmp_path, bad):
+    audit = tmp_path / 'audit.sqlite'
+    url = 'https://lab.example/people'
+    make_audit_cache(audit, [dict(url=url), dict(url=url, **bad)])
+    with pytest.raises(ValueError, match='audit source bytes do not match'):
+        Q.cached_audit_sources(audit, {url})
+
+
+def test_audit_refusals_on_other_paths_and_http200_challenges_are_preserved(tmp_path):
+    audit = tmp_path / 'audit.sqlite'
+    bot = 'https://challenged.example/people'
+    make_audit_cache(audit, [dict(url='https://blocked.example/other', status=None, raw=None, error='robots-disallowed'),
+                             dict(url=bot, raw=b'Verify you are human', status=200, error='bot-challenge'),
+                             dict(url='https://rate.example/other', status=429, raw=None),
+                             dict(url='https://archived.example/old', status=403, raw=None,
+                                  capture_url='https://web.archive.org/web/20160101000000id_/https://archived.example/old')])
+    versions, refusals = Q.cached_audit_sources(audit, {bot, 'https://blocked.example/people'})
+    assert versions[bot]['status'] == 999 and versions[bot]['http_status'] == 200
+    assert versions[bot]['capture_error'] == 'bot-challenge'
+    assert 'robots-disallowed' in refusals['blocked.example']
+    assert 'bot-challenge' in refusals['challenged.example']
+    assert 'HTTP 429' in refusals['rate.example']
+    assert 'web.archive.org' in refusals and 'archived.example' not in refusals
+    assert 'https://blocked.example/people' not in versions
+
+
+def test_undated_archive_url_cannot_be_presented_as_later_fetch_year(tmp_path):
+    audit = tmp_path / 'audit.sqlite'
+    url = 'https://lab.example/people'
+    make_audit_cache(audit, [dict(url=url, capture_url='https://web.archive.org/web/unknown/' + url)])
+    with pytest.raises(ValueError, match='no dated timestamp'):
+        Q.cached_audit_sources(audit, {url})
+
+
+def test_absent_audit_cache_is_not_created_and_existing_unknown_schema_is_rejected(tmp_path):
+    audit = tmp_path / 'audit.sqlite'
+    assert Q.cached_audit_sources(audit, {'https://lab.example/'}) == ({}, {})
+    assert not audit.exists()
+    with sqlite3.connect(audit) as conn:
+        conn.execute('create table unrelated (value text)')
+    with pytest.raises(ValueError, match='no captures table'):
+        Q.cached_audit_sources(audit, {'https://lab.example/'})
