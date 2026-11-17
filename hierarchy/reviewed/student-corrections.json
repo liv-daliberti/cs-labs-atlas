@@ -2998,5 +2998,734 @@
    "qualification": "No independently supported academic_advising/thesis relation is present in this exact assembled member. Any newly added genuine role/source must fail this guard and receive renewed review."
   },
   "source_observation_years_are_separate_not_continuous": true
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "mit_thesis_author_23ef537ea4bcf3661cba",
+  "expected_member_sha256": "a2166094979eab6e20a3c5ec22b1deba47087cfb549e87ca08fdd78ecb09fb6c",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2026
+  ],
+  "sources": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students\nSarina Sabouri\nSeoyoon Jang\nBaochuang Wang\nZoey (Zhiye) Song\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nMohith Harish Manohara"
+   },
+   {
+    "url": "https://web.archive.org/web/20260607170551id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "b6fd91d5b6b27e28e0209ece9266f795cf5aa7c888b40e00015bdb6266c00059",
+    "quote": "Graduate Students\nAdam Gierlach\nSarina Sabouri\nSeoyoon Jang\nDimple Kochar\nEunseok Lee\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nSaebyeok Shin\nMohith Harish Manohara\nZoey (Zhiye) Song\nAndrea Leang\nBaochuang Wang"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students Sarina Sabouri Seoyoon Jang Baochuang Wang Zoey (Zhiye) Song Jaehong Jung Stella Lee Woobean Lee Aylin Baca Patricia Jastrzebska-Perfect",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=3&f.dateIssued=%5B2022+TO+2022%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "9f4dd5031d86a68a20e2787d236b1db5af09af739268e22134707ebf9226c588",
+    "quote": "\"dc.contributor.author\" : [ {\n                  \"value\" : \"Jastrzebska-Perfect, Patricia\",\n                  \"language\" : null,\n                  \"authority\" : null,\n                  \"confidence\" : 0,\n                  \"place\" : 0\n                } ]",
+    "kind": "separately_scoped_primary_thesis_field",
+    "item_uuid": "d8b7ab92-b5fb-45be-8c47-9b6a6acd1bf5",
+    "field": "dc.contributor.author",
+    "canonical_identifier_url": "https://dspace.mit.edu/server/api/core/items/d8b7ab92-b5fb-45be-8c47-9b6a6acd1bf5",
+    "canonical_identifier_not_claimed_fetched": true
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=3&f.dateIssued=%5B2022+TO+2022%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "9f4dd5031d86a68a20e2787d236b1db5af09af739268e22134707ebf9226c588",
+    "quote": "\"dc.contributor.advisor\" : [ {\n                  \"value\" : \"Niroui, Farnaz\",\n                  \"language\" : null,\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "kind": "separately_scoped_primary_thesis_field",
+    "item_uuid": "d8b7ab92-b5fb-45be-8c47-9b6a6acd1bf5",
+    "field": "dc.contributor.advisor",
+    "canonical_identifier_url": "https://dspace.mit.edu/server/api/core/items/d8b7ab92-b5fb-45be-8c47-9b6a6acd1bf5",
+    "canonical_identifier_not_claimed_fetched": true
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=3&f.dateIssued=%5B2022+TO+2022%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "9f4dd5031d86a68a20e2787d236b1db5af09af739268e22134707ebf9226c588",
+    "quote": "\"dc.date.issued\" : [ {\n                  \"value\" : \"2022-05\",\n                  \"language\" : null,\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "kind": "separately_scoped_primary_thesis_field",
+    "item_uuid": "d8b7ab92-b5fb-45be-8c47-9b6a6acd1bf5",
+    "field": "dc.date.issued",
+    "canonical_identifier_url": "https://dspace.mit.edu/server/api/core/items/d8b7ab92-b5fb-45be-8c47-9b6a6acd1bf5",
+    "canonical_identifier_not_claimed_fetched": true
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=3&f.dateIssued=%5B2022+TO+2022%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "9f4dd5031d86a68a20e2787d236b1db5af09af739268e22134707ebf9226c588",
+    "quote": "\"dc.description.degree\" : [ {\n                  \"value\" : \"S.M.\",\n                  \"language\" : null,\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "kind": "separately_scoped_primary_thesis_field",
+    "item_uuid": "d8b7ab92-b5fb-45be-8c47-9b6a6acd1bf5",
+    "field": "dc.description.degree",
+    "canonical_identifier_url": "https://dspace.mit.edu/server/api/core/items/d8b7ab92-b5fb-45be-8c47-9b6a6acd1bf5",
+    "canonical_identifier_not_claimed_fetched": true
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=3&f.dateIssued=%5B2022+TO+2022%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "9f4dd5031d86a68a20e2787d236b1db5af09af739268e22134707ebf9226c588",
+    "quote": "\"mit.thesis.degree\" : [ {\n                  \"value\" : \"Master\",\n                  \"language\" : null,\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "kind": "separately_scoped_primary_thesis_field",
+    "item_uuid": "d8b7ab92-b5fb-45be-8c47-9b6a6acd1bf5",
+    "field": "mit.thesis.degree",
+    "canonical_identifier_url": "https://dspace.mit.edu/server/api/core/items/d8b7ab92-b5fb-45be-8c47-9b6a6acd1bf5",
+    "canonical_identifier_not_claimed_fetched": true
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=3&f.dateIssued=%5B2022+TO+2022%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "9f4dd5031d86a68a20e2787d236b1db5af09af739268e22134707ebf9226c588",
+    "quote": "\"dc.title\" : [ {\n                  \"value\" : \"On-Site Synthesis of Halide Perovskite Nanocrystals with Sub-50 nm Positional Accuracy\",\n                  \"language\" : null,\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "kind": "separately_scoped_primary_thesis_field",
+    "item_uuid": "d8b7ab92-b5fb-45be-8c47-9b6a6acd1bf5",
+    "field": "dc.title",
+    "canonical_identifier_url": "https://dspace.mit.edu/server/api/core/items/d8b7ab92-b5fb-45be-8c47-9b6a6acd1bf5",
+    "canonical_identifier_not_claimed_fetched": true
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true,
+   "separate_primary_history": {
+    "degree": "S.M. / Master",
+    "year": 2022,
+    "adviser": "Niroui, Farnaz",
+    "scope": "External global Niroui thesis context preserved unchanged; not Chandra degree/advising inference."
+   }
+  }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "mit_thesis_author_db0234b731334d456d26",
+  "expected_member_sha256": "06561ca91ff7c3d41c4c9d7ec65b8c243239ecab7bbc770ab93ad7592e24a512",
+  "roles": [
+   "student",
+   "masters"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2021,
+   2023
+  ],
+  "sources": [
+   {
+    "url": "https://web.archive.org/web/20210926004356id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "1516e153065e7d391abe007e59342c6ededdf7f5a0f77e437950e5661b27b3d7",
+    "quote": "Graduate Students\nAya Amer\nMaitreyi Ashok\nRay Chen\nAdam Gierlach\nAlex (Zexi) Ji\nJaeyoung Jung\nEunseok Lee\nKyungmi Lee\nSaurav Maji\nVipasha Mittal\nRishabh Mittal\nZoey (Zhiye) Song\nMiaorong Wang\nJongchan Woo\nSo-Yoon Yang\nDeniz Yildrim"
+   },
+   {
+    "url": "https://web.archive.org/web/20231205215304id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "a3ee452b0d22b9108f81ed71d46024476d378befb35f9d837d96d26876dd1472",
+    "quote": "Graduate Students\nAya Amer\nMaitreyi Ashok\nRay Chen\nAdam Gierlach\nAlex (Zexi) Ji\nJaeyoung Jung\nEunseok Lee\nDimple Kochar\nKyungmi Lee\nSaurav Maji\nVipasha Mittal\nRishabh Mittal\nZoey (Zhiye) Song\nMiaorong Wang\nSo-Yoon Yang\nMohith Harish Manohara\nDeniz Yildrim"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20231205215304id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "a3ee452b0d22b9108f81ed71d46024476d378befb35f9d837d96d26876dd1472",
+    "quote": "Graduate Students Aya Amer",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2019+TO+2019%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "0006ae4d87cc5b7578afd45cd6b03cbf8d3120035c1f2f41b4f5e3e2f888e5bf",
+    "quote": "\"dc.contributor.author\" : [ {\n                  \"value\" : \"Amer, Aya G.(Aya Galal Mahdy ElSayed)\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : 0,\n                  \"place\" : 0\n                } ]",
+    "kind": "separately_scoped_primary_thesis_field",
+    "item_uuid": "978b1c60-63a6-4075-9e0e-82fe8483dcbc",
+    "field": "dc.contributor.author",
+    "canonical_identifier_url": "https://dspace.mit.edu/server/api/core/items/978b1c60-63a6-4075-9e0e-82fe8483dcbc",
+    "canonical_identifier_not_claimed_fetched": true
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2019+TO+2019%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "0006ae4d87cc5b7578afd45cd6b03cbf8d3120035c1f2f41b4f5e3e2f888e5bf",
+    "quote": "\"dc.contributor.advisor\" : [ {\n                  \"value\" : \"Max M. Shulaker and Anantha P. Chandrakasan.\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "kind": "separately_scoped_primary_thesis_field",
+    "item_uuid": "978b1c60-63a6-4075-9e0e-82fe8483dcbc",
+    "field": "dc.contributor.advisor",
+    "canonical_identifier_url": "https://dspace.mit.edu/server/api/core/items/978b1c60-63a6-4075-9e0e-82fe8483dcbc",
+    "canonical_identifier_not_claimed_fetched": true
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2019+TO+2019%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "0006ae4d87cc5b7578afd45cd6b03cbf8d3120035c1f2f41b4f5e3e2f888e5bf",
+    "quote": "\"dc.date.issued\" : [ {\n                  \"value\" : \"2019\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "kind": "separately_scoped_primary_thesis_field",
+    "item_uuid": "978b1c60-63a6-4075-9e0e-82fe8483dcbc",
+    "field": "dc.date.issued",
+    "canonical_identifier_url": "https://dspace.mit.edu/server/api/core/items/978b1c60-63a6-4075-9e0e-82fe8483dcbc",
+    "canonical_identifier_not_claimed_fetched": true
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2019+TO+2019%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "0006ae4d87cc5b7578afd45cd6b03cbf8d3120035c1f2f41b4f5e3e2f888e5bf",
+    "quote": "\"dc.description.degree\" : [ {\n                  \"value\" : \"S.M.\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "kind": "separately_scoped_primary_thesis_field",
+    "item_uuid": "978b1c60-63a6-4075-9e0e-82fe8483dcbc",
+    "field": "dc.description.degree",
+    "canonical_identifier_url": "https://dspace.mit.edu/server/api/core/items/978b1c60-63a6-4075-9e0e-82fe8483dcbc",
+    "canonical_identifier_not_claimed_fetched": true
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2019+TO+2019%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "0006ae4d87cc5b7578afd45cd6b03cbf8d3120035c1f2f41b4f5e3e2f888e5bf",
+    "quote": "\"mit.thesis.degree\" : [ {\n                  \"value\" : \"Master\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "kind": "separately_scoped_primary_thesis_field",
+    "item_uuid": "978b1c60-63a6-4075-9e0e-82fe8483dcbc",
+    "field": "mit.thesis.degree",
+    "canonical_identifier_url": "https://dspace.mit.edu/server/api/core/items/978b1c60-63a6-4075-9e0e-82fe8483dcbc",
+    "canonical_identifier_not_claimed_fetched": true
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2019+TO+2019%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "0006ae4d87cc5b7578afd45cd6b03cbf8d3120035c1f2f41b4f5e3e2f888e5bf",
+    "quote": "\"dc.title\" : [ {\n                  \"value\" : \"SHARC : self-healing analog with RRAM and CNFETs\",\n                  \"language\" : \"en_US\",\n                  \"authority\" : null,\n                  \"confidence\" : -1,\n                  \"place\" : 0\n                } ]",
+    "kind": "separately_scoped_primary_thesis_field",
+    "item_uuid": "978b1c60-63a6-4075-9e0e-82fe8483dcbc",
+    "field": "dc.title",
+    "canonical_identifier_url": "https://dspace.mit.edu/server/api/core/items/978b1c60-63a6-4075-9e0e-82fe8483dcbc",
+    "canonical_identifier_not_claimed_fetched": true
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true,
+   "separate_primary_history": {
+    "degree": "S.M. / Master",
+    "year": 2019,
+    "advisers": "Max M. Shulaker and Anantha P. Chandrakasan.",
+    "scope": "Historical primary degree/advisers retained in roles/audit; not an assembled2019 relation and not advising during2021/23 membership."
+   }
+  }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "ext:mit:sarina-sabouri",
+  "expected_member_sha256": "7ba08afdbd95d34ddc1790777ce202a37a2347bea0f836d2bd74faadac9634fc",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2026
+  ],
+  "sources": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students\nSarina Sabouri\nSeoyoon Jang\nBaochuang Wang\nZoey (Zhiye) Song\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nMohith Harish Manohara"
+   },
+   {
+    "url": "https://web.archive.org/web/20260607170551id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "b6fd91d5b6b27e28e0209ece9266f795cf5aa7c888b40e00015bdb6266c00059",
+    "quote": "Graduate Students\nAdam Gierlach\nSarina Sabouri\nSeoyoon Jang\nDimple Kochar\nEunseok Lee\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nSaebyeok Shin\nMohith Harish Manohara\nZoey (Zhiye) Song\nAndrea Leang\nBaochuang Wang"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students Sarina Sabouri",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true
+  }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "ext:mit:seoyoon-jang",
+  "expected_member_sha256": "c487b67e60de6bbaf02a007c958b0c3434ed00a4e56d099752961011b524dfa8",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2026
+  ],
+  "sources": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students\nSarina Sabouri\nSeoyoon Jang\nBaochuang Wang\nZoey (Zhiye) Song\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nMohith Harish Manohara"
+   },
+   {
+    "url": "https://web.archive.org/web/20260607170551id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "b6fd91d5b6b27e28e0209ece9266f795cf5aa7c888b40e00015bdb6266c00059",
+    "quote": "Graduate Students\nAdam Gierlach\nSarina Sabouri\nSeoyoon Jang\nDimple Kochar\nEunseok Lee\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nSaebyeok Shin\nMohith Harish Manohara\nZoey (Zhiye) Song\nAndrea Leang\nBaochuang Wang"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students Sarina Sabouri Seoyoon Jang",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true
+  }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "ext:mit:baochuang-wang",
+  "expected_member_sha256": "46fb491b18ee8df33c4fe1039000c03708c42b95a27d2be0e587c519b2328643",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2026
+  ],
+  "sources": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students\nSarina Sabouri\nSeoyoon Jang\nBaochuang Wang\nZoey (Zhiye) Song\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nMohith Harish Manohara"
+   },
+   {
+    "url": "https://web.archive.org/web/20260607170551id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "b6fd91d5b6b27e28e0209ece9266f795cf5aa7c888b40e00015bdb6266c00059",
+    "quote": "Graduate Students\nAdam Gierlach\nSarina Sabouri\nSeoyoon Jang\nDimple Kochar\nEunseok Lee\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nSaebyeok Shin\nMohith Harish Manohara\nZoey (Zhiye) Song\nAndrea Leang\nBaochuang Wang"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students Sarina Sabouri Seoyoon Jang Baochuang Wang",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true
+  }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "ext:mit:jaehong-jung",
+  "expected_member_sha256": "92de35a900bd1e45b86f36795cafb14cf93c91d5282e0c39e0e516c7f6834dbd",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2026
+  ],
+  "sources": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students\nSarina Sabouri\nSeoyoon Jang\nBaochuang Wang\nZoey (Zhiye) Song\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nMohith Harish Manohara"
+   },
+   {
+    "url": "https://web.archive.org/web/20260607170551id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "b6fd91d5b6b27e28e0209ece9266f795cf5aa7c888b40e00015bdb6266c00059",
+    "quote": "Graduate Students\nAdam Gierlach\nSarina Sabouri\nSeoyoon Jang\nDimple Kochar\nEunseok Lee\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nSaebyeok Shin\nMohith Harish Manohara\nZoey (Zhiye) Song\nAndrea Leang\nBaochuang Wang"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students Sarina Sabouri Seoyoon Jang Baochuang Wang Zoey (Zhiye) Song Jaehong Jung",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true
+  }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "ext:mit:stella-lee",
+  "expected_member_sha256": "8242c0840b1bcf644d28d478c5b6e797b96791c9cc87913c5166681535b3b586",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2026
+  ],
+  "sources": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students\nSarina Sabouri\nSeoyoon Jang\nBaochuang Wang\nZoey (Zhiye) Song\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nMohith Harish Manohara"
+   },
+   {
+    "url": "https://web.archive.org/web/20260607170551id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "b6fd91d5b6b27e28e0209ece9266f795cf5aa7c888b40e00015bdb6266c00059",
+    "quote": "Graduate Students\nAdam Gierlach\nSarina Sabouri\nSeoyoon Jang\nDimple Kochar\nEunseok Lee\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nSaebyeok Shin\nMohith Harish Manohara\nZoey (Zhiye) Song\nAndrea Leang\nBaochuang Wang"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students Sarina Sabouri Seoyoon Jang Baochuang Wang Zoey (Zhiye) Song Jaehong Jung Stella Lee",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true
+  }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "ext:mit:woobean-lee",
+  "expected_member_sha256": "be7c8f06e1338082437127f634b88a9490a0c5ca15768caf4c049db70991e480",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2026
+  ],
+  "sources": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students\nSarina Sabouri\nSeoyoon Jang\nBaochuang Wang\nZoey (Zhiye) Song\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nMohith Harish Manohara"
+   },
+   {
+    "url": "https://web.archive.org/web/20260607170551id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "b6fd91d5b6b27e28e0209ece9266f795cf5aa7c888b40e00015bdb6266c00059",
+    "quote": "Graduate Students\nAdam Gierlach\nSarina Sabouri\nSeoyoon Jang\nDimple Kochar\nEunseok Lee\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nSaebyeok Shin\nMohith Harish Manohara\nZoey (Zhiye) Song\nAndrea Leang\nBaochuang Wang"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students Sarina Sabouri Seoyoon Jang Baochuang Wang Zoey (Zhiye) Song Jaehong Jung Stella Lee Woobean Lee",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true
+  }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "ext:mit:aylin-baca",
+  "expected_member_sha256": "7cb429c2ca60f28f6d811067e1604e005cd4debfb347c456ca89605337d6301f",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2026
+  ],
+  "sources": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students\nSarina Sabouri\nSeoyoon Jang\nBaochuang Wang\nZoey (Zhiye) Song\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nMohith Harish Manohara"
+   },
+   {
+    "url": "https://web.archive.org/web/20260607170551id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "b6fd91d5b6b27e28e0209ece9266f795cf5aa7c888b40e00015bdb6266c00059",
+    "quote": "Graduate Students\nAdam Gierlach\nSarina Sabouri\nSeoyoon Jang\nDimple Kochar\nEunseok Lee\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nSaebyeok Shin\nMohith Harish Manohara\nZoey (Zhiye) Song\nAndrea Leang\nBaochuang Wang"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://chandrakasan.mit.edu/team/",
+    "sha256": "b351a7af4aec567e1e7619fe6e3dc0acda412e39917217efa47886f503fcb48b",
+    "quote": "Graduate Students Sarina Sabouri Seoyoon Jang Baochuang Wang Zoey (Zhiye) Song Jaehong Jung Stella Lee Woobean Lee Aylin Baca",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true
+  }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "ext:mit:so-yoon-yang",
+  "expected_member_sha256": "7220dc35802c37b71a730ae83fdb061b2c0935ca4b7c34701ae0771b2ff3c47a",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2021,
+   2023
+  ],
+  "sources": [
+   {
+    "url": "https://web.archive.org/web/20210926004356id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "1516e153065e7d391abe007e59342c6ededdf7f5a0f77e437950e5661b27b3d7",
+    "quote": "Graduate Students\nAya Amer\nMaitreyi Ashok\nRay Chen\nAdam Gierlach\nAlex (Zexi) Ji\nJaeyoung Jung\nEunseok Lee\nKyungmi Lee\nSaurav Maji\nVipasha Mittal\nRishabh Mittal\nZoey (Zhiye) Song\nMiaorong Wang\nJongchan Woo\nSo-Yoon Yang\nDeniz Yildrim"
+   },
+   {
+    "url": "https://web.archive.org/web/20231205215304id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "a3ee452b0d22b9108f81ed71d46024476d378befb35f9d837d96d26876dd1472",
+    "quote": "Graduate Students\nAya Amer\nMaitreyi Ashok\nRay Chen\nAdam Gierlach\nAlex (Zexi) Ji\nJaeyoung Jung\nEunseok Lee\nDimple Kochar\nKyungmi Lee\nSaurav Maji\nVipasha Mittal\nRishabh Mittal\nZoey (Zhiye) Song\nMiaorong Wang\nSo-Yoon Yang\nMohith Harish Manohara\nDeniz Yildrim"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20210926004356id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "1516e153065e7d391abe007e59342c6ededdf7f5a0f77e437950e5661b27b3d7",
+    "quote": "Graduate Students Aya Amer Maitreyi Ashok Ray Chen Adam Gierlach Alex (Zexi) Ji Jaeyoung Jung Eunseok Lee Kyungmi Lee Saurav Maji Vipasha Mittal Rishabh Mittal Zoey (Zhiye) Song Miaorong Wang Jongchan Woo So-Yoon Yang",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true
+  }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "ext:mit:ray-chen",
+  "expected_member_sha256": "f75af32e9443e8973f084ad36ef522470aeecb8aa9ccfff8be2a3deb332831c5",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2021,
+   2023
+  ],
+  "sources": [
+   {
+    "url": "https://web.archive.org/web/20210926004356id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "1516e153065e7d391abe007e59342c6ededdf7f5a0f77e437950e5661b27b3d7",
+    "quote": "Graduate Students\nAya Amer\nMaitreyi Ashok\nRay Chen\nAdam Gierlach\nAlex (Zexi) Ji\nJaeyoung Jung\nEunseok Lee\nKyungmi Lee\nSaurav Maji\nVipasha Mittal\nRishabh Mittal\nZoey (Zhiye) Song\nMiaorong Wang\nJongchan Woo\nSo-Yoon Yang\nDeniz Yildrim"
+   },
+   {
+    "url": "https://web.archive.org/web/20231205215304id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "a3ee452b0d22b9108f81ed71d46024476d378befb35f9d837d96d26876dd1472",
+    "quote": "Graduate Students\nAya Amer\nMaitreyi Ashok\nRay Chen\nAdam Gierlach\nAlex (Zexi) Ji\nJaeyoung Jung\nEunseok Lee\nDimple Kochar\nKyungmi Lee\nSaurav Maji\nVipasha Mittal\nRishabh Mittal\nZoey (Zhiye) Song\nMiaorong Wang\nSo-Yoon Yang\nMohith Harish Manohara\nDeniz Yildrim"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20231205215304id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "a3ee452b0d22b9108f81ed71d46024476d378befb35f9d837d96d26876dd1472",
+    "quote": "Graduate Students Aya Amer Maitreyi Ashok Ray Chen",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true
+  }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "ext:mit:dimple-kochar",
+  "expected_member_sha256": "4b53387fb31a21e727eaa37ceba3229bbb79d79bc70486b0766c7357aaabc60a",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2023,
+   2026
+  ],
+  "sources": [
+   {
+    "url": "https://web.archive.org/web/20231205215304id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "a3ee452b0d22b9108f81ed71d46024476d378befb35f9d837d96d26876dd1472",
+    "quote": "Graduate Students\nAya Amer\nMaitreyi Ashok\nRay Chen\nAdam Gierlach\nAlex (Zexi) Ji\nJaeyoung Jung\nEunseok Lee\nDimple Kochar\nKyungmi Lee\nSaurav Maji\nVipasha Mittal\nRishabh Mittal\nZoey (Zhiye) Song\nMiaorong Wang\nSo-Yoon Yang\nMohith Harish Manohara\nDeniz Yildrim"
+   },
+   {
+    "url": "https://web.archive.org/web/20260607170551id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "b6fd91d5b6b27e28e0209ece9266f795cf5aa7c888b40e00015bdb6266c00059",
+    "quote": "Graduate Students\nAdam Gierlach\nSarina Sabouri\nSeoyoon Jang\nDimple Kochar\nEunseok Lee\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nSaebyeok Shin\nMohith Harish Manohara\nZoey (Zhiye) Song\nAndrea Leang\nBaochuang Wang"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20231205215304id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "a3ee452b0d22b9108f81ed71d46024476d378befb35f9d837d96d26876dd1472",
+    "quote": "Graduate Students Aya Amer Maitreyi Ashok Ray Chen Adam Gierlach Alex (Zexi) Ji Jaeyoung Jung Eunseok Lee Dimple Kochar",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true
+  }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "ext:mit:saebyeok-shin",
+  "expected_member_sha256": "d73328084290b0cae117ebf4b3b64628451563cd6f2fee2090239a4992b16e87",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2026
+  ],
+  "sources": [
+   {
+    "url": "https://web.archive.org/web/20260607170551id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "b6fd91d5b6b27e28e0209ece9266f795cf5aa7c888b40e00015bdb6266c00059",
+    "quote": "Graduate Students\nAdam Gierlach\nSarina Sabouri\nSeoyoon Jang\nDimple Kochar\nEunseok Lee\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nSaebyeok Shin\nMohith Harish Manohara\nZoey (Zhiye) Song\nAndrea Leang\nBaochuang Wang"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20260607170551id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "b6fd91d5b6b27e28e0209ece9266f795cf5aa7c888b40e00015bdb6266c00059",
+    "quote": "Graduate Students Adam Gierlach Sarina Sabouri Seoyoon Jang Dimple Kochar Eunseok Lee Jaehong Jung Stella Lee Woobean Lee Aylin Baca Patricia Jastrzebska-Perfect Saebyeok Shin",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true
+  }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Anantha Chandrakasan",
+  "student": "ext:mit:andrea-leang",
+  "expected_member_sha256": "58f615c6a4789a0532f866d404f13950af9d2a60c9480dd7d509dd3a052ee14e",
+  "roles": [
+   "student"
+  ],
+  "role": "student",
+  "type": "researched_membership",
+  "years": [
+   2026
+  ],
+  "sources": [
+   {
+    "url": "https://web.archive.org/web/20260607170551id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "b6fd91d5b6b27e28e0209ece9266f795cf5aa7c888b40e00015bdb6266c00059",
+    "quote": "Graduate Students\nAdam Gierlach\nSarina Sabouri\nSeoyoon Jang\nDimple Kochar\nEunseok Lee\nJaehong Jung\nStella Lee\nWoobean Lee\nAylin Baca\nPatricia Jastrzebska-Perfect\nSaebyeok Shin\nMohith Harish Manohara\nZoey (Zhiye) Song\nAndrea Leang\nBaochuang Wang"
+   }
+  ],
+  "reason": "The cited owned team source explicitly says Graduate Students and does not specify doctorate or individual advising. Correct only that unsupported source interpretation to degree-unspecified student membership at the actual roster observation years. Preserve independently proven historical degree/adviser facts separately; no claim a PhD or advising never occurred.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20260607170551id_/https://chandrakasan.mit.edu/team/",
+    "sha256": "b6fd91d5b6b27e28e0209ece9266f795cf5aa7c888b40e00015bdb6266c00059",
+    "quote": "Graduate Students Adam Gierlach Sarina Sabouri Seoyoon Jang Dimple Kochar Eunseok Lee Jaehong Jung Stella Lee Woobean Lee Aylin Baca Patricia Jastrzebska-Perfect Saebyeok Shin Mohith Harish Manohara Zoey (Zhiye) Song Andrea Leang",
+    "kind": "old_generic_heading_interpreted_as_phd_advising"
+   }
+  ],
+  "negative_source_review": {
+   "source_review_sha256": "2d812ee08f45986f8cb5ce597c7ff9d07b53ffef3e3590e6cda1adc8d51b2cfb",
+   "only_generic_source_in_exact_assembled_relations": true,
+   "no_assembled_thesis_advising_relation_removed": true,
+   "no_degree_false_or_never_claim": true,
+   "separate_capture_observation_years_not_continuous": true
+  }
  }
 ]
