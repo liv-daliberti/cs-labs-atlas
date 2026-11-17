@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence store row (the claim columns of table evidence; docs/EVIDENCE-STORE.md)",
+  "type": "object",
+  "required": ["school", "layer", "container", "seq", "claim_kind", "record"],
+  "properties": {
+    "school": {"type": "string", "description": "charter key, or _shared for a decision no school owns"},
+    "layer": {"type": "string", "description": "the reviewed file the row came from"},
+    "container": {"type": "integer", "minimum": 0},
+    "seq": {"type": "integer", "minimum": 0},
+    "entry_key": {"type": ["string", "null"]},
+    "sub_key": {"type": ["string", "null"]},
+    "person_key": {"type": ["string", "null"]},
+    "claim_kind": {"enum": ["admission", "exclusion", "excluded_unresolved", "cs_related", "rank", "unit", "period", "identity_link", "student_membership", "hold", "home_department", "paper_claim", "lab_reason", "evidence", "review_note", "other"],
+      "description": "excluded_unresolved is the 2026-11-17 class: no source places the person in the window; never a proven absence (value.reason, value.reason_code, value.sources_tried)"},
+    "facets": {"type": ["array", "null"], "items": {"type": "string"}},
+    "value": {"type": ["object", "null"]},
+    "source_url": {"type": ["string", "null"]},
+    "source_date": {"type": ["string", "null"]},
+    "source_kind": {"type": ["string", "null"]},
+    "decided_by": {"type": ["string", "null"]},
+    "decided_at": {"type": ["string", "null"]},
+    "reviewed_by": {"type": ["string", "null"]},
+    "review_ref": {"type": ["string", "null"]},
+    "supersedes": {"type": ["string", "null"]},
+    "record": {"description": "the original entry, unchanged"}
+  }
+}

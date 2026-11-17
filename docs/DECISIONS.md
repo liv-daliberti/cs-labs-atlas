@@ -19,6 +19,7 @@ section by the coordinator.
 | 2026-10-29 | Stale listings after an evidenced move are not appointments (a reviewed `faculty_end_moved` period closes the appointment) | `docs/RULES.md` R-PAP-03 |
 | 2026-10-30 | Every uncopied lab paper gets an evidence-backed reason; the development history is public on `cs-labs-atlas` | `docs/UNAVAILABLE.md`; `docs/CONTRIBUTING.md` |
 | 2026-11-17 | Gates check correctness, not completeness: unresolved census candidates are `excluded_unresolved` (reason, sources tried; never a proven absence) and audited by a seeded sample (50 per school, independent reviewer, pass at <=2 fixed failures, fail closed if missing or stale); Stage 1 roster year coverage is a reported metric and blocks only a department with no roster source at all | `docs/ADDING-A-SCHOOL.md` stages 1-2; `tools/stage_gate.py`; `tools/excluded_audit.py` |
+| 2026-11-17 | Backend refactor is incremental; phase 1 adds one SQLite evidence store per school (every per-person decision with source, decider, reviewer, supersedes; `excluded_unresolved` is a claim kind) holding the original records losslessly, with exporters that regenerate the reviewed files byte-identically. No reader uses it yet; each later phase replaces one part and is checked by an identical-output build on a passed school | `docs/EVIDENCE-STORE.md`; `tools/evidence_store.py`; `schemas/evidence/` |
 
 ## Lab pages (owner and coordinator)
 | date | decision | where it lives |
