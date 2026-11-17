@@ -207,3 +207,34 @@ def test_single_run_lock_prevents_two_writers(case):
         with pytest.raises(ValueError, match='Another closeout'):
             with C.locked(case.out):
                 pytest.fail('second writer entered')
+
+
+@pytest.mark.parametrize('name', ['census-faculty.json', 'census-faculty-hierarchy.json',
+                                 'collection.json.gz', 'listings.json', 'coverage.json',
+                                 'dblp-recovered.jsonl.gz', 'labpage-recovered.jsonl.gz',
+                                 'labpage-pubs.jsonl.gz'])
+@pytest.mark.parametrize('initially_present', [True, False])
+def test_changed_or_new_upstream_input_refuses_work_before_build(case, monkeypatch, name, initially_present):
+    monkeypatch.setattr(C.P, 'SITE_DATA', case.data / 'site')
+    upstream = case.data / name
+    if initially_present:
+        upstream.write_text('old source population')
+    specs = C.input_specs('u')
+    assert str(upstream) in specs and specs[str(upstream)]['content']
+    assert all(str(case.data / output) not in specs for output in C.OUTPUTS['build'])
+    case.seal['inputs'] = {path: dict(spec, fingerprint=C.fingerprint(path, spec['content']))
+                           for path, spec in specs.items()}
+    C.write(case.out / 'inputs.json', case.seal)
+    upstream.write_text('new source population')
+    with pytest.raises(ValueError, match='Inputs changed'):
+        C.worker('u', case.out, run=case.run, evaluate=passing)
+    assert not case.calls
+
+
+def test_native_outputs_use_registered_school_products():
+    registry = {name: (kind, flat) for name, kind, flat, _ in C.P.DATA_FILES}
+    for name in C.OUTPUTS['build']:
+        kind, flat = registry[name]
+        assert kind == 'derived' and '{school}' in flat
+    assert 'home-departments-school.json' in C.OUTPUTS['build']
+    assert 'home-departments.json' not in C.OUTPUTS['build']

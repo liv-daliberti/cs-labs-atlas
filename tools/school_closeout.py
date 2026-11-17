@@ -40,7 +40,7 @@ STAGES = {
     10: ('Research release', tuple(range(10)), 'Freeze and integrate the reviewed research; prepare and verify publication.'),
 }
 OUTPUTS = {
-    'build': ('pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'report.json', 'home-departments.json'),
+    'build': ('pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'report.json', 'home-departments-school.json'),
     'copies': ('copies.json',),
     'ledger': ('copies.json', 'unavailable.jsonl.gz', 'unavailable-summary.json'),
     'diagnose': ('link-diagnosis.json',),
@@ -150,7 +150,8 @@ def input_specs(school):
     Shared reviewed inputs must be private copies in a school overlay when other
     schools are changing them. Catalog downloads may continue independently.
     """
-    paths = {}
+    from stale_stages import native_upstream_paths
+    paths = {str(path): dict(content=True) for path in native_upstream_paths(school)}
     for name, kind, flat, _split in P.DATA_FILES:
         if kind not in ('raw', 'reviewed') or name == 'student-recall-check.json':
             continue

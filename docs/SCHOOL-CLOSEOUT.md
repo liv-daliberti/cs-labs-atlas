@@ -52,6 +52,15 @@ claims. Use the CLI's reviewed-entry preservation or a documented key-only
 reconciliation; calling the lower-level website generator alone is not a new
 source review. Aliases do not automatically reassign roster ownership.
 
+Check the native representation of open student intervals before sealing.
+The integer-year reader drops a null endpoint: `[2024, null]` alone becomes
+2024, not an interval through the capture date. Keep the original stated
+interval. When a hash-verified captured source explicitly shows the student
+as current with an open stated interval, record a separately reviewed
+observation for that capture year. This records presence, not graduation or
+an inferred end date. Investigate the whole matching class, including roles
+and alumni exclusions; a capture year does not date an undated former member.
+
 ## Reusable commands
 
 Start with `bin/atlas closeout stages <school>`. This shows stages 0–10 with
@@ -100,6 +109,13 @@ inputs. Reviewed content is SHA-256 bound. Large raw stores use size/mtime
 guards to avoid repeated large NFS reads; the resulting package files are
 hashed in full. This is an operational consistency check, not a new scientific
 acceptance decision. Downloads can continue without changing sealed evidence.
+
+The seal also hashes upstream census, collection, yearly listings, coverage
+and recovered-paper files. They are builder inputs despite their registry
+classification as derived or work files. Freshness checks include these same
+inputs, so changing a listing cannot silently reuse an older native build.
+Native outputs remain outside the input seal, allowing checkpointed phases
+to write their results without invalidating their own run.
 
 `submit` schedules one snapshot-bound Slurm job: build → copies → cached-only
 availability ledger → link diagnosis → student audit → gates 1–5, 7, 8. It uses

@@ -19,6 +19,13 @@ import atlas_paths as P  # noqa: E402
 CODE = Path(__file__).resolve().parents[1]
 ALWAYS = ['audits', 'evidence', 'tests', 'regression', 'validate', 'release', 'tree', 'housekeeping']
 BUILD_OUT = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'report.json']
+# These are upstream products consumed by the native builder, even though the
+# registry calls them derived/work rather than raw/reviewed. Never include the
+# builder's own outputs: that would invalidate a run as soon as it writes them.
+NATIVE_UPSTREAM_INPUTS = ('census-faculty.json', 'census-faculty-hierarchy.json',
+                         'collection.json.gz', 'listings.json', 'coverage.json',
+                         'dblp-recovered.jsonl.gz', 'labpage-recovered.jsonl.gz',
+                         'labpage-pubs.jsonl.gz')
 # stage -> (scope, input DATA_FILES names | 'RAW_REVIEWED' | 'catalog', code files, output names)
 STAGES = {
     'build':  ('school', ['RAW_REVIEWED'], ['tools/pi_hierarchy.py', 'tools/pihier'], BUILD_OUT),
@@ -47,11 +54,19 @@ def raw_reviewed_names():
     return [n for n, k, f, s in P.DATA_FILES if k in ('raw', 'reviewed') and '{school}' in f]
 
 
+def native_upstream_paths(school):
+    paths = [P.data(name, school) for name in NATIVE_UPSTREAM_INPUTS]
+    if not Path(P.data('collection.json.gz', school)).exists():
+        paths.append(P.SITE_DATA / f'collection-{school}.json.gz')
+    return paths
+
+
 def input_paths(spec, school):
     out = []
     for item in spec:
         if item == 'RAW_REVIEWED':
             out += [P.data(n, school) for n in raw_reviewed_names()]
+            out += native_upstream_paths(school)
         elif item == 'catalog':
             out.append(P.store(school) / 'catalog.sqlite')
         elif isinstance(item, tuple):
