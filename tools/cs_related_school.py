@@ -558,7 +558,14 @@ def historical_appointment(key, entry):
         named_month = re.fullmatch(r'([A-Za-z]+)\.?\s+(\d{4})', literal) if isinstance(literal, str) else None
         if named_month and named_month[1].lower() in ENGLISH_MONTHS:
             normalized = f'{named_month[2]}-{ENGLISH_MONTHS[named_month[1].lower()]:02d}'
-        boundary = r'\w' if named_month else r'\d'
+        short_range = re.fullmatch(r'(\d{4})\s*[-–—]\s*(\d{2})', literal) if isinstance(literal, str) else None
+        # An abbreviated end year needs its entire range, including this
+        # appointment's start. Never expand an isolated number or a century.
+        if short_range and label == 'end' and precision == 'year' and short_range[1] == start:
+            expanded = start[:2] + short_range[2]
+            if expanded >= start:
+                normalized = expanded
+        boundary = r'\w' if named_month or short_range else r'\d'
         if (not isinstance(literal, str) or normalized != value
                 or not re.search(r'(?<!' + boundary + ')' + re.escape(literal) + r'(?!' + boundary + ')', entry['quote'])):
             raise SystemExit(f"{entry['name']}: historical appointment bounds are absent from its source quote")

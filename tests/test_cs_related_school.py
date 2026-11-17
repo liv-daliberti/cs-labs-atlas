@@ -279,6 +279,46 @@ def test_named_month_literal_cannot_be_cut_out_of_another_word(monkeypatch, tmp_
             period_text='NotJune 2021 – Sept 2024: Assistant Professor at University of Cambridge.')
 
 
+@pytest.mark.parametrize('literal', ['2015–23', '2015-23', '2015 — 23'])
+def test_abbreviated_end_year_needs_the_complete_source_range(monkeypatch, tmp_path, literal):
+    decision, additions = research_review(monkeypatch, tmp_path,
+        historical={'start': '2015', 'end': '2023', 'end_quote': literal},
+        period_text=f'{literal} Royal Society University Research Fellow, University of Cambridge.')
+    assert decision['decision'] == 'accepted'
+    assert additions[0]['rank'] == 'research'
+    assert additions[0]['years_listed'] == decision['years_listed'] == []
+    assert decision['faculty_evidence'][0]['historical_appointment'] == {'start': '2015', 'end': '2023'}
+    assert additions[0]['sources'][0]['kind'] == 'historical_appointment:CS'
+
+
+@pytest.mark.parametrize('start,end,literal', [
+    ('2015', '2023', '23'),
+    ('2015', '2023', '2020–23'),
+    ('2015', '2022', '2015–23'),
+    ('1998', '2023', '1998–23'),
+])
+def test_abbreviated_year_cannot_change_start_end_or_century(monkeypatch, tmp_path, start, end, literal):
+    with pytest.raises(SystemExit, match='bounds are absent from its source quote'):
+        research_review(monkeypatch, tmp_path,
+            historical={'start': start, 'end': end, 'end_quote': literal},
+            period_text=f'{start}; {literal} Royal Society University Research Fellow, University of Cambridge.')
+
+
+def test_abbreviated_range_cannot_be_cut_out_of_another_word(monkeypatch, tmp_path):
+    with pytest.raises(SystemExit, match='bounds are absent from its source quote'):
+        research_review(monkeypatch, tmp_path,
+            historical={'start': '2015', 'end': '2023', 'end_quote': '2015–23'},
+            period_text='2015 Royal Society Fellow; Not2015–23 University of Cambridge.')
+
+
+def test_abbreviated_year_range_does_not_supply_an_independent_pi_basis(monkeypatch, tmp_path):
+    decision, additions = research_review(monkeypatch, tmp_path, own=False,
+        historical={'start': '2015', 'end': '2023', 'end_quote': '2015–23'},
+        period_text='2015–23 Royal Society University Research Fellow, University of Cambridge.')
+    assert decision['decision'] == 'research_or_other_rank'
+    assert additions == []
+
+
 def test_historical_research_still_requires_matching_native_period(monkeypatch, tmp_path):
     import pytest
     with pytest.raises(SystemExit, match='matching source-bound reviewed census period'):
