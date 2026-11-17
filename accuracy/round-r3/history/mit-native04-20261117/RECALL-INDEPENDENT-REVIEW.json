@@ -1,0 +1,88 @@
+{
+  "reviewer": "/root/mit_recall_independent",
+  "date": "2026-11-17T22:41:00Z",
+  "status": "independently_approved_factual_failed_diagnostic_not_gate_pass",
+  "school": "mit",
+  "native": "native-04",
+  "seed": 1364344301,
+  "drawn_by": "codex-mit-gates-1117",
+  "filled_by": "codex-mit-recall-filler-1117-native04",
+  "draw_original_sha256": "5bf6fb1401870de67d01863f0ca50fdc111f47f1c6cefc03e7d32881da04d90b",
+  "unsigned_frozen_sha256": "92421d7d1c85d35aa64d9245e9d8fe26af5afbd0dc7e25282db29fb425949fa8",
+  "signed_record_sha256": "43bc38eead0b7ae655acf76ee34e436a385ef5bfa5b4d6ff428397fd10e69e92",
+  "binds": {
+    "students.json": "e36c9a8d0c7e2e9930e07e706bfb3a71a48f53fad6d4e00075be29ba9a71558d",
+    "pis.json": "268c9174e984878dbb27e929a7617d95ec19359d3eb41a7e830d8b6d719a9f72"
+  },
+  "certified_all_five_outputs": {
+    "pis.json": "268c9174e984878dbb27e929a7617d95ec19359d3eb41a7e830d8b6d719a9f72",
+    "students.json": "e36c9a8d0c7e2e9930e07e706bfb3a71a48f53fad6d4e00075be29ba9a71558d",
+    "lab_papers.jsonl.gz": "839096b5849d30dd1a4273f455f43fff86005f9a4e1eef4a4fe18c3f42b08d97",
+    "student_papers.jsonl.gz": "c326987a7e95003b0a21534786eab68f358573db947495c70a96c696051d0c61",
+    "copies.json": "5da8fc5da575b22cbf33651fbcb8163e8f3e099745b31428ddca33d51282fcc6"
+  },
+  "original_source_bodies_independently_rehashed": 535,
+  "quote_occurrences_checked": 2730,
+  "unique_quoted_source_pages": 52,
+  "record_findings": [],
+  "numbers": {
+    "sample": 30,
+    "readable": 15,
+    "unverifiable": 15,
+    "unverifiable_share": 0.5,
+    "unverifiable_reasons": {
+      "no_member_list_page": 13,
+      "robots_disallowed": 2
+    },
+    "names_listed": 852,
+    "names_excluded": 259,
+    "excluded_share": 0.304,
+    "proven_external_school": 15,
+    "x_counted_exclusions": 244,
+    "x_counted_share": 0.286,
+    "undated_excluded": 371,
+    "eligible_names": 222,
+    "recorded_names": 188,
+    "r1_strict_recall": 0.859,
+    "r2_est_current_phd_recall": 0.762,
+    "r2_bootstrap_p5": 0.583,
+    "sizes": {
+      "0": 0,
+      "1-2": 19,
+      "3+": 270
+    },
+    "largest_gaps": [
+      "Antonio Torralba (14 missing)",
+      "Pattie Maes (6 missing)",
+      "Marta C. González (5 missing)"
+    ]
+  },
+  "gate6_items": [
+    "recall R1: strict recall on readable PIs 0.86 < 0.90 (188 of 222 listed names recorded; largest gaps Antonio Torralba (14 missing); Pattie Maes (6 missing); Marta C. González (5 missing)); add the missing members (member-list rounds), rebuild, draw a new sample",
+    "recall record: 244 of 852 listed names were excluded by the checker without same-line captured proof of another school (29% > 20%; 15 source-checked outside-school names remain visible in the raw 259 exclusions); unsupported exclusions cannot raise recall"
+  ],
+  "old_failed_native02_history_unchanged": true,
+  "source_inputs_changed": false,
+  "native_data_changed": false,
+  "only_live_worksheet_change": "signoff field",
+  "sample_verdict_carry": false,
+  "source_semantics_receipt": "SOURCE-SEMANTIC-NOTES.json",
+  "supporting_receipts": {
+    "SOURCE-SEMANTIC-NOTES.json": "91650181fddbe8d11c83d33ef36eae9dc0cc58a69caff75b123095b4645ec630",
+    "SUPPLEMENT-BYTE-CHECKS.json": "d6c3eb93be6f28c5666ed4742f2973bbc27e06ae4106c049e925e1252f791a1a",
+    "CURRENT-BUILD-DRAW-CHECKS.json": "678de890e457dc1f54cef5f5d867aa88ef34c1781d95b945264e5b72045d5676",
+    "FINAL-ROLE-CORRECTION-DIFF.json": "95673a067acc644bf2b2205265aaf4d3236a0c98104757191c891dc0d2f411ed",
+    "ORIGINAL-BYTE-CHECKS.json": "9ed80a841dbdf45c7c22f000737940a0a0b3be61cf91b4a6959f12a2f5d4a883",
+    "FROZEN-RECORD-CHECKS.json": "9a5d586035a547d7f2d79b5eda2ec321c2ee7bb3e8e1d58e8116e600f130fda6",
+    "SOURCE-BOARD.json": "be100a249eb98a59b5a5655e1eab4fcbd1e95adcd38496a3a03916e0667e9f4d",
+    "LITERAL-LINK-BYTE-CHECKS.json": "6a0dca4efcd1c34fff5c88a43e66f201ed93c0b566cb4e6e7fc8c3876a4f0848"
+  },
+  "student_recall_code_sha256": "ee8d9f35f568a66c44d37640c9f592f23d2bdc4f468685a5b5b70b6152e9425d",
+  "head_at_review": "fb168fada94fc66e1b95af341394a7e924c0b356",
+  "qualification": "Complete source-faithful fixed sample fails existing R1 and X bars.34 unmatched literal labels are not asserted34 new people; aliases and other-global identities remain held pending primary proof. Native05 admissions need separate source/identity review, normal native build and new untouched default sample.",
+  "standard_cli_check": {
+    "command": "CS_ATLAS_CODE=<private overlay> /n/fs/resemble/homogenizing-science/env/atlas/bin/python tools/student_recall.py check mit",
+    "exit_code": 0,
+    "meaning": "Record validation complete; existing gate6 R1 and X still fail as listed, no gate-pass claim."
+  }
+}
