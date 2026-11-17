@@ -35,3 +35,24 @@ Stage 6 remains open for broader roster coverage and the fixed independent recal
 review. This source handcheck supplies neither a recall verdict nor an accuracy
 signoff. Stage 1 still has six open historical source years; the website v23 is
 unchanged by this input batch. Native validation is a separate next step.
+
+## Consolidated MARS addition
+
+Added 18 current membership episodes for Zhao Hang: 13 individually explicit
+PhD roles, two MS, one postdoc and two full-time researchers. All 858 earlier
+episodes are retained, now 876 total; the combined source batch adds 53.
+The official MARS application, declared `/people` component and static data
+module were independently read and rebound to their original HTTP-200 captures.
+The postdoc's own text overrides the graduate-student array heading. Degree
+institution, individual advising and earlier membership years are not inferred
+from the joint Tsinghua-IIIS / Shanghai-Qizhi context. All 37 alumni plus the
+explicitly SJTU PhD card remain held for separate dated/scope review; that hold
+does not deny the card's stated MARS membership.
+
+Combined eligibility was frozen before a fresh uniform 20-row handcheck, seed
+12106756909948785149: zero membership or role/year errors. All 18 MARS rows were
+also checked as a full source census, supplementing the random handcheck.
+Final approval: `scratch/tsinghua-mars18-independent-1117/FINAL-MARS18-AND-COMBINED53-HANDCHECK-APPROVAL.json`,
+SHA-256 `b7736fda804ed54123996f55e73146a1c7e8c28add61cee05fdaad0f632dcc68`.
+The broader Stage 6 recall gate remains open. Native rebuild and publication
+are separate from source approval; no Stage 9 judgment is claimed.
