@@ -80,8 +80,11 @@ def test_overlay_source_files_are_the_exported_ones(root, tmp_path, monkeypatch)
     E.import_all(['aa', 'bb'], dest=tmp_path / 'st', root=root, log=lambda *_: None)
     out = tmp_path / 'ov'
     import overlay_root as O
-    monkeypatch.setattr(O, 'build', lambda school, out, worktree=None, main=None, private=False: (
-        [(out / 'hierarchy' / school / 'reviewed').mkdir(parents=True), (out / 'hierarchy' / 'reviewed').mkdir(parents=True)], 0)[1])
+    def fake_build(school, out, worktree=None, main=None, private=False):
+        for d in (E.school_dir(school, out), E.shared_dir(out)):
+            d.mkdir(parents=True)
+        return out, 0
+    monkeypatch.setattr(O, 'build', fake_build)
     n = E.overlay('aa', out, tmp_path / 'st', root=root)
     assert n and (out / 'hierarchy/aa/reviewed/census-additions.json').read_bytes() == (root / 'hierarchy/aa/reviewed/census-additions.json').read_bytes()
     assert (out / 'hierarchy/reviewed/census-overrides.json').read_bytes() == (root / 'hierarchy/reviewed/census-overrides.json').read_bytes()
