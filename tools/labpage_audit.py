@@ -1936,6 +1936,9 @@ def cmd_discover(school, only=None, redo=False, redo_unrecorded=False):
                               people=rec['chosen'].get('people_page'), pubs=rec['chosen'].get('pubs_page'),
                               checks=len(rec['checks'])), ensure_ascii=False), flush=True)
     out.close()
+    if not only:   # R3d: an explicit completion record; a run cut short (time limit, kill) leaves none and stage_gate keeps the step open
+        import discovery_marker
+        discovery_marker.write_marker(school, now())
 
 
 

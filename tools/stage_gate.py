@@ -637,8 +637,8 @@ def L(name, script, *args, done=(), shared=False, py='project'):
     return dict(name=name, kind='local', script=script, args=list(args), done=list(done), shared=shared, py=py)
 
 
-def Q(name, cmd, cpus=2, mem='16G', time='04:00:00', py='project', done=(), shared=False, check=None, check_py=None, newer_than=()):
-    return dict(name=name, kind='slurm', cmd=cmd, cpus=cpus, mem=mem, time=time, py=py, done=list(done), shared=shared, check=check, check_py=check_py, newer_than=list(newer_than))
+def Q(name, cmd, cpus=2, mem='16G', time='04:00:00', py='project', done=(), shared=False, check=None, check_py=None, newer_than=(), complete=None):
+    return dict(name=name, kind='slurm', cmd=cmd, cpus=cpus, mem=mem, time=time, py=py, done=list(done), shared=shared, check=check, check_py=check_py, newer_than=list(newer_than), complete=complete)
 
 
 def H(name, todo):
@@ -666,7 +666,7 @@ STEPS = {
           L('homes', 'tools/home_departments_school.py', '{key}'),   # school-local file; always re-run (the census changed)
           L('homes-shared', 'tools/home_departments_school.py', '{key}', '--write-shared', shared=True),
           Q('build', 'PY $TOOLS/pi_hierarchy.py {school}', cpus=3, mem='40G', time='02:00:00', done=['pis.json']),   # the lab-page audit reads pis.json (Michigan built at stage 3: UChicago friction 27)
-          Q('labpage-discover', 'PY $TOOLS/labpage_audit.py discover {school}', time='12:00:00', done=['labpage-audit-discovery.jsonl']),
+          Q('labpage-discover', 'PY $TOOLS/labpage_audit.py discover {school}', time='12:00:00', done=['labpage-audit-discovery.jsonl'], complete='discovery_marker'),   # R3d: the file exists after the first PI; done = every pis.json PI has a record
           Q('labpage-audit', 'PY $TOOLS/labpage_audit.py audit {school}', cpus=2, mem='16G', time='02:00:00', done=['labpage-audit.jsonl.gz']),   # discover alone writes labpage-audit-discovery.jsonl; the gate reads the audit's file (friction 29)
           H('pi-basis', 'research and teaching faculty need reviewed evidence of a group or advisees (pi-basis-evidence.json)')],
     '4': [Q('periods-fetch', 'PY $TOOLS/periods_school.py fetch {school}', cpus=1, mem='8G', time='08:00:00'),
@@ -716,6 +716,10 @@ def step_done(key, st, run=None):
         return (run or subprocess.run)(argv, cwd=str(CODE), capture_output=True).returncode == 0
     if not (st.get('done') and all(Path(P.data(n, key)).exists() for n in st['done'])):
         return False
+    if st.get('complete') == 'discovery_marker':   # an append-only output exists from its first record: done means every PI has one (R3d)
+        import discovery_marker
+        if not discovery_marker.status(key)['complete']:
+            return False
     # R12 (Georgia Tech friction 35): a step is stale when an input it reads was rewritten after its output (the build after pi-works)
     ins = [Path(P.data(n, key)) for n in st.get('newer_than') or [] if Path(P.data(n, key)).exists()]
     if ins and not all(Path(P.data(n, key)).stat().st_mtime >= max(i.stat().st_mtime for i in ins) for n in st['done']):

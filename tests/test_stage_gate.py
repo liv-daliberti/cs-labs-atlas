@@ -350,3 +350,24 @@ def test_a_step_is_stale_when_its_input_is_newer_than_its_output(tree):
     assert G.step_done('u', st) is False
     os.utime(out, (300, 300))
     assert G.step_done('u', st) is True
+
+
+def test_labpage_discover_step_is_done_only_when_every_pi_has_a_record(tree):
+    """R3d: the append-only discovery file exists after the first PI; a job cut short at its time limit must leave the step open."""
+    import discovery_marker as DM
+    step = next(s for s in G.STEPS['3'] if s['name'] == 'labpage-discover')
+    tree.put('pis.json', [{'pi': 'A'}, {'pi': 'B'}, {'pi': 'C'}])
+    rec = tree.root / 'u' / 'labpage-audit-discovery.jsonl'
+    rec.write_text(json.dumps({'pi': 'A'}) + '\n' + json.dumps({'pi': 'B'}) + '\n{"pi": "C", "chec')   # half-written last line
+    assert G.step_done('u', step) is False
+    assert DM.status('u')['missing'] == ['C']
+    rec.write_text(rec.read_text().split('{"pi": "C"')[0] + json.dumps({'pi': 'C'}) + '\n')
+    assert G.step_done('u', step) is True
+    assert DM.write_marker('u', '2026-11-17T00:00:00Z') and DM.status('u')['marker'] is True
+    tree.put('pis.json', [{'pi': 'A'}, {'pi': 'B'}, {'pi': 'C'}, {'pi': 'D'}])   # a PI added after the run reopens the step
+    assert G.step_done('u', step) is False and DM.status('u')['marker'] is False
+
+
+def test_discovery_marker_needs_a_pis_json(tree):
+    import discovery_marker as DM
+    assert DM.status('u')['complete'] is False and DM.write_marker('u', 'x') is None
