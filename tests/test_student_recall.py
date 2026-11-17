@@ -391,6 +391,50 @@ def test_capture_never_refetches_a_host_after_challenge_or_robots_refusal(tree, 
     assert calls == ['https://chal.example/a', 'https://nor.example/a']
 
 
+@pytest.mark.parametrize('stamps', [
+    ['2026-11-17T09:30:00+00:00'],
+    ['2026-11-17T10:30:00+01:00'],
+    ['2026-11-17T09:30:00Z'],
+    ['2026-11-17T09:30:00.000000+00:00'],
+    ['2026-11-17T10:00:00+01:00', '2026-11-17T09:30:00+00:00'],
+    None,  # legacy naive local timestamp
+])
+def test_capture_preserves_host_gap_with_iso_offsets_and_legacy_dates(tree, monkeypatch, stamps):
+    import datetime
+    import school_web as W
+    latest = datetime.datetime.fromisoformat('2026-11-17T09:30:00+00:00').timestamp()
+    if stamps is None:
+        stamps = [datetime.datetime.fromtimestamp(latest).isoformat()]
+    c = make_store(tree, {})
+    for i, stamp in enumerate(stamps):
+        c.execute('insert into live values (?,?,?,?,?,?,?)',
+                  (f'https://lab.example/old{i}', stamp, 200, 'a' * 64, 'text/html', None, None))
+    events = []
+    monkeypatch.setattr(R.time, 'time', lambda: latest + 1)
+
+    def live(conn, url):
+        events.append(('fetch', url))
+        conn.execute('insert into live values (?,?,?,?,?,?,?)',
+                     (url, '2026-11-17T09:30:03Z', 200, 'b' * 64, 'text/html', None, None))
+        return 200, 'b' * 64, []
+
+    monkeypatch.setattr(W, 'live', live)
+    result = R.capture('u', 'PI00', 'https://lab.example/new', store=c,
+                       sleep=lambda seconds: events.append(('sleep', seconds)))
+    assert events == [('sleep', 2), ('fetch', 'https://lab.example/new')]
+    assert result['fetched_at'] == '2026-11-17T09:30:03Z'
+    assert [row[0] for row in c.execute("select fetched_at from live where url like '%/old%' order by url")] == stamps
+
+
+def test_invalid_capture_clock_stops_before_network(tree, monkeypatch):
+    import school_web as W
+    c = make_store(tree, {'https://lab.example/old': b'old'})
+    c.execute("update live set fetched_at='not-a-time'")
+    monkeypatch.setattr(W, 'live', lambda *a: pytest.fail('invalid clock must fail closed'))
+    with pytest.raises(ValueError, match='Invalid saved capture timestamp'):
+        R.capture('u', 'PI00', 'https://lab.example/new', store=c)
+
+
 def test_gitignore_whitelists_the_recall_record_for_every_school(tmp_path):
     import subprocess
     root = Path(__file__).resolve().parents[1]

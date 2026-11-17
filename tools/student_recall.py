@@ -526,9 +526,16 @@ def capture(key, pi, url, file=None, store=None, sleep=time.sleep):
     row = c.execute('select why from blocked where host=?', (host,)).fetchone()
     if row:   # a challenge, an access refusal or a robots refusal earlier (any process): the host is never fetched again; the PI is unverifiable
         raise SystemExit(f'{host}: blocked since an earlier refusal or challenge ({row[0]}); never fetched again: record the PI as unverifiable')
-    last = c.execute("select max(fetched_at) from live where url like ?", (f'%//{host}/%',)).fetchone()[0]
-    if last:   # the stored time of a fetch of this host: keep the 3 s gap across invocations
-        age = time.time() - time.mktime(time.strptime(last, '%Y-%m-%dT%H:%M:%S'))
+    saved = [row[0] for row in c.execute("select fetched_at from live where url like ?", (f'%//{host}/%',)) if row[0]]
+    if saved:   # Compare instants: offsets can put the lexically largest timestamp earlier.
+        instants = []
+        for stamp in saved:
+            try:
+                # Naive legacy stamps retain their original local-time semantics.
+                instants.append(datetime.datetime.fromisoformat(stamp.replace('Z', '+00:00')).timestamp())
+            except ValueError:
+                raise ValueError('Invalid saved capture timestamp; no request made: ' + repr(stamp)) from None
+        age = time.time() - max(instants)
         if age < 3:
             sleep(3 - age)
     res = W.live(c, url)
