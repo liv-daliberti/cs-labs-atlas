@@ -18,7 +18,7 @@ def make(tmp_path, atlas_out=''):
     script = tmp_path / 'job.sh'
     script.write_text(f'''#!/bin/bash
 mkdir -p {tmp_path}/logs {tmp_path}/fakebin\nprintf '#!/bin/bash\\n[ -n "$FAKE_QUEUED" ] && echo "$FAKE_QUEUED RUNNING"\\nexit 0\\n' > {tmp_path}/fakebin/squeue; chmod +x {tmp_path}/fakebin/squeue
-export PATH={tmp_path}/fakebin:$PATH CS_ATLAS_FT_LOGS={tmp_path}/logs
+export PATH={tmp_path}/fakebin:$PATH CS_ATLAS_FT_LOGS={tmp_path}/logs CS_ATLAS_FT_RAW={tmp_path}/raw
 export CS_ATLAS_CODE={code} RESTART_LOG={tmp_path}/restart.log SLURM_JOB_ID=7 SLURM_ARRAY_TASK_ID=3
 . {CODE}/fulltext-push/loop_job.sh
 run_restartable fulltext-push/downloads.slurm --array=3 -- bash -c 'trap "echo child-got-TERM >> {child_log}; exit 0" TERM; echo started >> {child_log}; while :; do sleep 0.2; done'
