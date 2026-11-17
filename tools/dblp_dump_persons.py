@@ -82,6 +82,7 @@ def source_targets(school):
     census = census.get('faculty', []) if isinstance(census, dict) else census
     rows = read('pis.json', []) + [x for x in census if x.get('is_pi')]
     rows += [x for x in read('census-additions.json', []) if x.get('is_pi', True)]
+    resolved = read('dblp-ids.json', {})
     overrides = CO.section(school)
     pids, names = set(), set()
     for row in rows:
@@ -89,7 +90,13 @@ def source_targets(school):
         override = overrides.get(name) or {}
         if override.get('exclude'):
             continue
-        pids.update(q.rstrip('/') for q in values(row.get('dblp')) + values(row.get('dblpDropped')) + values(override.get('dblp'))
+        # A resolved name can differ from every literal census name form
+        # (Gareth J. Conduit -> Gareth John Conduit). Collect that selected PID
+        # before native outputs exist; this query target does not bind the PI.
+        selected = (resolved.get(name) or {}).get('pid')
+        if not isinstance(selected, str) or not re.fullmatch(r'https://dblp\.org/pid/\S+', selected):
+            selected = None
+        pids.update(q.rstrip('/') for q in values(row.get('dblp')) + values(row.get('dblpDropped')) + values(override.get('dblp')) + values(selected)
                     if isinstance(q, str) and '/pid/' in q)
         forms = values(row.get('names')) + [name]
         forms += values(row.get('aliases')) + values(override.get('aliases'))

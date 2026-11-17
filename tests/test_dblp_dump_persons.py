@@ -77,3 +77,53 @@ def test_explicit_nonpi_additions_and_reviewed_exclusions_are_not_pi_targets(tar
 def test_missing_optional_native_and_census_files_are_not_stub_requirements(targets):
     lookup, _ = targets
     assert lookup('cambridge') == (set(), set())
+
+
+def test_resolved_pid_is_collected_when_middle_name_differs_from_census(targets, tmp_path):
+    lookup, _ = targets
+    write(tmp_path, 'census-additions.json', [dict(name='Gareth J. Conduit', is_pi=True, dblp=[])])
+    write(tmp_path, 'dblp-ids.json', {'Gareth J. Conduit': {
+        'pid': 'https://dblp.org/pid/235/5206', 'quote': 'Gareth John Conduit', 'basis': 'unique_name',
+    }})
+    pids, names = lookup('cambridge')
+    assert pids == {'https://dblp.org/pid/235/5206'}
+    assert names == {'gareth j conduit'}
+    assert not (tmp_path / 'pis.json').exists()
+
+
+def test_unaccepted_and_nonpi_resolver_records_are_not_added_as_targets(targets, tmp_path):
+    lookup, _ = targets
+    write(tmp_path, 'census-faculty.json', {'faculty': [dict(name='Graduate Student', is_pi=False)]})
+    write(tmp_path, 'dblp-ids.json', {
+        'Graduate Student': {'pid': 'https://dblp.org/pid/student'},
+        'Unaccepted Candidate': {'pid': 'https://dblp.org/pid/unaccepted'},
+    })
+    assert lookup('cambridge') == (set(), set())
+
+
+def test_reviewed_exclusion_still_blocks_a_resolver_target(targets, tmp_path, monkeypatch):
+    lookup, overrides = targets
+    write(tmp_path, 'census-additions.json', [dict(name='Excluded Person', is_pi=True)])
+    write(tmp_path, 'dblp-ids.json', {'Excluded Person': {'pid': 'https://dblp.org/pid/excluded'}})
+    monkeypatch.setattr(overrides, 'section', lambda school: {'Excluded Person': {'exclude': True}})
+    assert lookup('cambridge') == (set(), set())
+
+
+def test_resolved_and_reviewed_pids_are_both_collected_without_selecting_one(targets, tmp_path):
+    lookup, _ = targets
+    census = [dict(name='Avery Scientist', is_pi=True, dblp=['https://dblp.org/pid/reviewed'])]
+    write(tmp_path, 'census-additions.json', census)
+    write(tmp_path, 'dblp-ids.json', {'Avery Scientist': {'pid': 'https://dblp.org/pid/resolved'}})
+    assert lookup('cambridge')[0] == {'https://dblp.org/pid/reviewed', 'https://dblp.org/pid/resolved'}
+    assert json.loads((tmp_path / 'census-additions.json').read_text()) == census
+
+
+def test_missing_or_non_pid_resolution_keeps_literal_name_collection(targets, tmp_path):
+    lookup, _ = targets
+    write(tmp_path, 'census-additions.json', [dict(name='Avery Scientist', is_pi=True)])
+    write(tmp_path, 'dblp-ids.json', {'Avery Scientist': {'pid': None}})
+    assert lookup('cambridge') == (set(), {'avery scientist'})
+    write(tmp_path, 'dblp-ids.json', {'Avery Scientist': {'pid': 'https://school.example/avery'}})
+    assert lookup('cambridge') == (set(), {'avery scientist'})
+    write(tmp_path, 'dblp-ids.json', {'Avery Scientist': {'pid': 'https://school.example/pid/namesake'}})
+    assert lookup('cambridge') == (set(), {'avery scientist'})
