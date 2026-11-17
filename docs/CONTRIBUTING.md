@@ -76,6 +76,9 @@ Today it WARNS only: `tools/agent_worktree.sh land` warns before the fast-forwar
 the lock. To make the land path blocking: `git config atlas.landLock enforce` (every worktree shares it); back with `git config atlas.landLock warn`. A plain `git merge --ff-only` run by hand cannot be blocked
 (git has no pre-fast-forward hook), so the hook only warns; use the land script.
 
+## Coordination log, questions, decisions (V4b, 2026-11-17)
+`leases/coord/` holds `LOG.md`, `QUESTIONS.md` and `DECISIONS.md`; write with `atlas note | ask | answer | decide` (UTC and `$ATLAS_SESSION` added, flock). The old `scratch/top25-goal-1107/OVERNIGHT-*.md` files are read-only archives; `atlas coord sync-legacy` copies stray lines appended to the old log into `LOG.md`. See `AGENTS.md` and `tools/coord.py`.
+
 ## Agent reports (ROADMAP #41)
 An agent's final report has this shape, in this order, and nothing else (under 40 lines; the coordinator reads many):
 ```
