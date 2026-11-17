@@ -12,6 +12,7 @@ import school_web as W
     '<p>We study CAPTCHA security and privacy.</p>',
     '<h1>Faculty homepage</h1><script src="/_Incapsula_Resource?SWJIYLWA=abc" async></script>',
     '<html><head><script src="/_Incapsula_Resource?SWJIYLWA=abc"></script></head><body><h1>Faculty homepage</h1><p>PhD students</p></body></html>',
+    '<title>Group - Yang Gao</title><script>_W.recaptchaUrl = "https://www.google.com/recaptcha/api.js";</script><h2>Ph.D. Students</h2><p>Chuan Wen (2020-)</p>',
 ])
 def test_research_mentions_are_not_challenges(body):
     assert not W.CHALLENGE.search(body)
@@ -28,6 +29,10 @@ def test_research_mentions_are_not_challenges(body):
     'Request unsuccessful. Incapsula incident ID: 123',
     'access denied',
     '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>',
+    '<script src="https://www.google.com/recaptcha/api.js"></script>',
+    "<script async src='https://www.google.com/recaptcha/enterprise.js'></script>",
+    '<script src=https://www.google.com/recaptcha/api.js></script>',
+    '<script>_W.recaptchaUrl = "https://www.google.com/recaptcha/api.js";</script><div class="g-recaptcha"></div>',
     '<html>\r\n<head>\r\n<META NAME="robots" CONTENT="noindex,nofollow">\r\n<script src="/_Incapsula_Resource?SWJIYLWA=abc">\r\n</script>\r\n<body>\r\n</body></html>',
     '<html><head><script src="/_Incapsula_Resource?SWJIYLWA=abc"></script></head><body></body></html>',
 ])
@@ -37,6 +42,8 @@ def test_real_gates_still_match(body):
 
 @pytest.mark.parametrize('status,body,classified,blocked', [
     (200, '<title>Faculty publications</title><p>Research on CAPTCHA-cloaked phishing.</p>', 200, False),
+    (200, '<title>Group - Yang Gao</title><script>_W.recaptchaUrl = "https://www.google.com/recaptcha/api.js";</script><h2>Ph.D. Students</h2>', 200, False),
+    (200, '<script src="https://www.google.com/recaptcha/api.js"></script>', 999, True),
     (403, '<title>Faculty publications</title><p>Research on CAPTCHA-cloaked phishing.</p>', 403, True),
     (200, '<title>CAPTCHA verification</title>', 999, True),
     (200, '<html><head><script src="/_Incapsula_Resource?SWJIYLWA=abc"></script></head><body></body></html>', 999, True),

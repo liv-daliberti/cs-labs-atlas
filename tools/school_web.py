@@ -38,7 +38,10 @@ CHALLENGE = re.compile(r'bot detection|traffic check|Please enable JavaScript to
                        # A script can also serve an empty challenge shell; a readable page may embed the same resource.
                        r'<script[^>]+_Incapsula_Resource[^>]*>\s*</script>\s*(?:</head>\s*)?<body[^>]*>\s*</body>|'
                        # Research citations can contain CAPTCHA; require an actual gate/widget context.
-                       r'g-recaptcha|h-captcha|hcaptcha\.com|recaptcha/(?:api|enterprise)|'
+                       r'g-recaptcha|h-captcha|hcaptcha\.com|'
+                       # Weebly sets _W.recaptchaUrl on ordinary pages without loading a widget.
+                       # An actual API script or widget remains a gate; a configuration URL is not.
+                       r'<script\b[^>]*\bsrc\s*=\s*["\']?[^>\s"\']*recaptcha/(?:api|enterprise)|'
                        r'captcha[-_](?:container|challenge|form|input)|'
                        r'<(?:title|h[1-3])[^>]*>[^<]{0,120}captcha|'
                        r'(?:complete|solve|enter) (?:the |this |a )?captcha|'
