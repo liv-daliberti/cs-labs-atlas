@@ -111,7 +111,7 @@ def test_zju_math_teachers_asp_names_by_institute():
     assert F.FORMATS['zju_math_teachers_asp'][1].search(MATH) and F.FORMATS['zju_math_teachers_asp'][0]('<html></html>') == []
 
 
-CSE = """<h3 class="research-name">工业控制研究所</h3><ul class="teacher-list"><li class="teacher-item"><a href="/2022/0706/c72508a2660272/page.htm">柴利</a></li>
+CSE = """<div class="teacher-box1"><h3 class="research-name">工业控制研究所</h3><ul class="teacher-list"><li class="teacher-item"><a href="/2022/0706/c72508a2660272/page.htm">柴利</a></li>
 <li class="teacher-item"><a href="/x">程鹏</a></li></ul><h3 class="research-name">智能感知与检测研究所</h3><ul class="teacher-list"><li class="teacher-item"><a href="/y">曹云琦</a></li></ul>"""
 
 

@@ -59,4 +59,4 @@ def test_zju_cst_and_cadcg_are_affiliated_units():
     assert {d['code'] for d in cfg['departments']} == {'CS_MAIN'}
     slots = {s['dept']: s for s in S.listing_slots('zju')}
     assert {'CST', 'CADCG', 'CS_MAIN'} <= {s['dept'] for s in S.listing_slots('zju')}
-    assert {u['code'] for u in cfg['affiliated_units'] if u.get('slots')} == {'CST', 'CADCG'} and slots
+    assert {u['code'] for u in cfg['affiliated_units'] if u.get('slots')} == {'CST', 'CADCG', 'CSE', 'ISEE', 'EE', 'MATH'} and slots
