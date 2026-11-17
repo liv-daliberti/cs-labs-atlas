@@ -183,3 +183,36 @@ def test_overlay_of_a_store_sourced_school_takes_only_its_own_files_from_the_sto
     n = E.overlay('aa', tmp_path / 'ov', flagged_aa, root)
     assert n > 0 and not list(E.shared_dir(tmp_path / 'ov').glob('*.json'))
     assert 'New P' in (E.school_dir('aa', tmp_path / 'ov') / 'census-additions.json').read_text()
+
+
+def test_backup_verifies_prunes_and_restores(root, flagged_aa, tmp_path):
+    bk = tmp_path / 'bk'
+    for i in range(4):   # stamps are per second: make them distinct by hand
+        d = bk / f'2026111{i}T000000Z'
+        E.backup_one('aa', d, flagged_aa)
+        (d / 'SHA256SUMS').write_text(f'{E.hashlib.sha256((d / "aa-evidence.sqlite").read_bytes()).hexdigest()}  aa-evidence.sqlite\n')
+    assert len(E.backups_of('aa', bk)) == 4
+    assert E.prune_backups('aa', 2, bk) == 2
+    assert [s for s, _ in E.backups_of('aa', bk)] == ['20261112T000000Z', '20261113T000000Z'] and not (bk / '20261110T000000Z').exists()
+    done = E.backup(['aa'], flagged_aa, bk, keep=3, log=lambda *_: None)
+    assert len(E.backups_of('aa', bk)) == 3 and len(done['aa']) == 64
+    newest = E.backups_of('aa', bk)[-1][1]
+    # a decision recorded after the backup is lost by a restore unless forced; the live file is kept aside
+    E.record('aa', 'census-additions.json', {'name': 'Later P'}, source='s', decided_by='w', stores_dir=flagged_aa)
+    with pytest.raises(E.SourceOfTruth, match='loses 1'):
+        E.restore('aa', newest, flagged_aa, log=lambda *_: None)
+    E.restore('aa', newest, flagged_aa, force=True, log=lambda *_: None)
+    assert list(E.store_path('aa', flagged_aa).parent.glob('evidence.sqlite.pre-restore-*'))
+    assert 'Later P' not in json.dumps(E.rendered('aa', flagged_aa))
+    newest.write_bytes(newest.read_bytes() + b'x')   # a corrupted backup is refused
+    with pytest.raises(RuntimeError, match='sha256 differs'):
+        E.restore('aa', newest, flagged_aa, force=True, log=lambda *_: None)
+
+
+def test_backup_loop_skips_a_recent_backup(root, flagged_aa, tmp_path, monkeypatch):
+    bk = tmp_path / 'bk'
+    monkeypatch.setattr(E, 'flagged', lambda schools=None: ['aa'])
+    out = []
+    E.backup_loop(flagged_aa, bk, every_h=24, once=True, log=out.append)
+    E.backup_loop(flagged_aa, bk, every_h=24, once=True, log=out.append)
+    assert len(E.backups_of('aa', bk)) == 1 and 'backed_up' in out[0] and out[1:] == []

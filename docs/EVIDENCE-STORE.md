@@ -82,6 +82,18 @@ per school: nothing is ever switched for readers only (the store would go stale)
 (28 files, byte-identical to main). Build pair from overlay roots (Slurm 32393134 control, 32393135 store-sourced, 14 min each): `pis.json`,
 `students.json`, `lab_papers.jsonl.gz`, `student_papers.jsonl.gz` byte-identical; `report.json` differs only in `builtAt` and echoed paths.
 
+### Backups and restore (R3b, 2026-11-17)
+The store files are **not in git** and hold decision history (`write_log`, superseded records), so every store-sourced school is backed up:
+`bin/atlas evidence-store backup [school...]` writes `archive/evidence-store-backups/<UTC stamp>/<school>-evidence.sqlite` with the sqlite online
+backup API (safe while a `record` runs), runs `PRAGMA integrity_check` and a row-count check on the copy (a failing copy is discarded), and writes
+`SHA256SUMS` in the stamp directory (`sha256sum -c SHA256SUMS` there). The newest 14 per school are kept (`--keep N`).
+`fulltext-push/evidence-backup.slurm` is the automatic one: a light self-restarting Slurm job in the shape of `disk-guard` (1 CPU, 1 G, 59 min, restarts at USR1),
+`atlas submit fulltext-push/evidence-backup.slurm`; every 15 min it backs up each flagged school whose newest backup is over 24 h old, and skips while the share
+has under 50 GB free. Its log: `fulltext-push/logs/evidence-backup-<jobid>.out`. After a large `record` batch run `backup` by hand too.
+**Restore:** `bin/atlas evidence-store restore <school> --from-file archive/evidence-store-backups/<stamp>/<school>-evidence.sqlite` verifies the SHA256SUMS line and
+`integrity_check`, refuses when the live store has more logged writes than the backup (`--force` overrides), keeps the live file as `evidence.sqlite.pre-restore-<stamp>`,
+and copies the backup in. Then `check <school>`; if the JSON view differs, `sync <school>` and commit it. Never restore by copying over the store while a `record` runs.
+
 ### Record a decision (a worker, Michigan)
 ```
 bin/atlas evidence-store find michigan --layer census-additions.json --key "Jane Doe"       # existing rows: id, container, seq, record

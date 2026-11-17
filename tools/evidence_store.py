@@ -6,6 +6,8 @@
   overlay  <school> --out DIR    an overlay code root (tools/overlay_root.py) whose reviewed files are the exported ones
   coverage <school>... | --all   the files and records the converters cannot represent
 
+  backup / restore   a sqlite online backup (integrity_check, sha256) of every flagged store into archive/evidence-store-backups/<UTC stamp>/, newest 14 per school kept
+           (`backup --loop` is the daily Slurm job fulltext-push/evidence-backup.slurm); restore puts one back (docs/EVIDENCE-STORE.md)
   flagged  / find / record / sync / check   phase 2 (R3a): a school whose charter says [evidence] source = "store" writes its decisions HERE
            (record), and its reviewed JSON files are an export (sync) that check/pre-commit/doctor keep honest.
 Phase 1 builders read none of it; with the flag, readers still read the exported JSON view, so nothing downstream changes. Lossless rule: every decision keeps its original record as JSON (column `record`); the claim columns
@@ -25,6 +27,7 @@ import sqlite3
 import subprocess
 import sys
 import tempfile
+import time
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
@@ -693,6 +696,151 @@ def check_view(school, root=None, stores_dir=None, staged=None):
     return out
 
 
+# ---------------------------------------------------------------- backups: the stores are not in git and hold the decision history (write_log, superseded rows)
+
+BACKUP_KEEP = 14
+BACKUP_NAME = '-evidence.sqlite'
+
+
+def backup_root(d=None):
+    return Path(d or os.environ.get('CS_ATLAS_EVIDENCE_BACKUPS') or Path(P.ARCHIVE) / 'evidence-store-backups')
+
+
+def backup_one(school, dest_dir, stores_dir=None):
+    """sqlite online backup of one store into dest_dir/<school>-evidence.sqlite, then integrity_check on the copy. Returns (path, sha256, nbytes)."""
+    sp = store_path(school, stores_dir)
+    if not sp.exists():
+        raise SourceOfTruth(f'{school}: no evidence store at {sp}')
+    dest_dir = Path(dest_dir)
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    out = dest_dir / f'{school}{BACKUP_NAME}'
+    tmp = out.with_name(out.name + '.part')
+    if tmp.exists():
+        tmp.unlink()
+    with contextlib.closing(connect(sp)) as src, contextlib.closing(sqlite3.connect(str(tmp), timeout=TIMEOUT)) as dst:
+        src.backup(dst)
+        res = dst.execute('PRAGMA integrity_check').fetchall()
+        n = dst.execute('SELECT COUNT(*) FROM evidence').fetchone()[0]
+        n_src = src.execute('SELECT COUNT(*) FROM evidence').fetchone()[0]
+    if res != [('ok',)] or n != n_src:
+        tmp.unlink()
+        raise RuntimeError(f'{school}: backup failed its check (integrity_check {res[:2]}, rows {n} vs {n_src}); nothing kept')
+    os.replace(tmp, out)
+    digest = hashlib.sha256(out.read_bytes()).hexdigest()
+    return out, digest, out.stat().st_size
+
+
+def backups_of(school, root=None):
+    """[(stamp dir name, file)] of the school's backups, oldest first."""
+    r = backup_root(root)
+    if not r.is_dir():
+        return []
+    return [(d.name, d / f'{school}{BACKUP_NAME}') for d in sorted(r.iterdir()) if d.is_dir() and (d / f'{school}{BACKUP_NAME}').exists()]
+
+
+def prune_backups(school, keep=BACKUP_KEEP, root=None):
+    """Delete the school's backups beyond the newest `keep` (and their line in SHA256SUMS; an emptied stamp directory goes). Returns the number removed."""
+    mine = backups_of(school, root)
+    gone = mine[:-keep] if keep > 0 and len(mine) > keep else []
+    for stamp, f in gone:
+        d = f.parent
+        f.unlink()
+        sums = d / 'SHA256SUMS'
+        if sums.exists():
+            lines = [x for x in sums.read_text().splitlines() if not x.endswith(f.name)]
+            sums.write_text('\n'.join(lines) + '\n' if lines else '')
+        if not any(d.glob('*' + BACKUP_NAME)):
+            for x in d.iterdir():
+                x.unlink()
+            d.rmdir()
+    return len(gone)
+
+
+def backup(schools=None, stores_dir=None, root=None, keep=BACKUP_KEEP, log=print):
+    """Back up every flagged school (or `schools`) into <root>/<UTC stamp>/, write SHA256SUMS, prune to the newest `keep` per school. Returns {school: sha256}."""
+    schools = list(schools) if schools else flagged()
+    stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+    dest = backup_root(root) / stamp
+    done = {}
+    lines = []
+    for s in schools:
+        out, digest, n = backup_one(s, dest, stores_dir)
+        lines.append(f'{digest}  {out.name}')   # run `sha256sum -c SHA256SUMS` inside the stamp directory
+        done[s] = digest
+        log(f'backup {s}: {out} ({n} bytes, integrity ok, sha256 {digest[:16]})')
+    if lines:
+        (dest / 'SHA256SUMS').write_text('\n'.join(lines) + '\n')
+    for s in schools:
+        k = prune_backups(s, keep, root)
+        if k:
+            log(f'backup {s}: pruned {k} older than the newest {keep}')
+    return done
+
+
+def last_backup_age_h(school, root=None):
+    b = backups_of(school, root)
+    if not b:
+        return None
+    return (time.time() - b[-1][1].stat().st_mtime) / 3600
+
+
+def backup_loop(stores_dir=None, root=None, keep=BACKUP_KEEP, every_h=24.0, poll_s=900, min_free_gb=50, once=False, log=print):
+    """The daily backup job: every poll_s, back up each flagged school whose newest backup is older than every_h (or missing); skipped while the share has
+    less than min_free_gb free. One JSON line per action."""
+    while True:
+        try:
+            due = [s for s in flagged() if (last_backup_age_h(s, root) is None or last_backup_age_h(s, root) >= every_h)]
+            if due:
+                free = int(subprocess.run(['df', '-B1G', '--output=avail', str(P.ROOT)], capture_output=True, text=True, timeout=60, check=True).stdout.split()[-1])
+                if free < min_free_gb:
+                    log(json.dumps(dict(at=now(), skipped='low disk', free_gb=free, floor_gb=min_free_gb, due=due)))
+                else:
+                    done = backup(due, stores_dir, root, keep, log=lambda *_: None)
+                    log(json.dumps(dict(at=now(), backed_up={s: h[:16] for s, h in done.items()})))
+        except Exception as e:   # a failed backup must not kill the loop: it is retried at the next poll and shows in the log
+            log(json.dumps(dict(at=now(), error=str(e)[:300])))
+        if once:
+            return 0
+        time.sleep(poll_s)
+
+
+def restore(school, from_file, stores_dir=None, force=False, log=print):
+    """Restore a store from a backup file: verify the SHA256SUMS line (when present) and integrity_check, move the live store aside to <store>.pre-restore-<stamp>,
+    copy the backup in. Refuses without --force while a live store exists whose write_log is longer than the backup's."""
+    from_file = Path(from_file)
+    sums = from_file.parent / 'SHA256SUMS'
+    if sums.exists():
+        want = [x.split()[0] for x in sums.read_text().splitlines() if x.endswith(from_file.name)]
+        have = hashlib.sha256(from_file.read_bytes()).hexdigest()
+        if want and want[0] != have:
+            raise RuntimeError(f'{from_file}: sha256 differs from SHA256SUMS; not restoring')
+    with contextlib.closing(connect(from_file)) as con:
+        if con.execute('PRAGMA integrity_check').fetchall() != [('ok',)]:
+            raise RuntimeError(f'{from_file}: integrity_check failed; not restoring')
+    sp = store_path(school, stores_dir)
+    if sp.exists():
+        with contextlib.closing(connect(sp)) as live, contextlib.closing(connect(from_file)) as old:
+            try:
+                nl = live.execute('SELECT COUNT(*) FROM write_log').fetchone()[0]
+            except sqlite3.OperationalError:
+                nl = 0
+            try:
+                no = old.execute('SELECT COUNT(*) FROM write_log').fetchone()[0]
+            except sqlite3.OperationalError:
+                no = 0
+        if nl > no and not force:
+            raise SourceOfTruth(f'{school}: the live store has {nl} logged writes, the backup {no}; restoring loses {nl - no}. Pass --force to do it anyway (the live file is kept as .pre-restore-*)')
+        aside = sp.with_name(sp.name + '.pre-restore-' + datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ'))
+        os.replace(sp, aside)
+        log(f'{school}: live store kept as {aside}')
+    sp.parent.mkdir(parents=True, exist_ok=True)
+    tmp = sp.with_name(sp.name + '.restore-tmp')
+    shutil.copyfile(from_file, tmp)
+    os.replace(tmp, sp)
+    log(f'{school}: restored {sp} from {from_file}; then `evidence_store.py check {school}` and, if the view differs, `sync {school}`')
+    return sp
+
+
 def _find(con, layer, ident=None, entry_key=None, sub_key=None):
     q = 'SELECT e.id, e.container, e.seq, e.entry_key, e.sub_key, e.record FROM evidence e JOIN layer l ON l.layer_id = e.layer_id WHERE l.name = ?'
     a = [layer]
@@ -832,6 +980,24 @@ def phase2(a, ap, root):
         print('\n'.join(flagged()))
         return 0
     schools = a.schools or flagged()
+    if a.cmd == 'backup':
+        if a.loop:
+            return backup_loop(a.store_dir, a.backup_dir, a.keep, every_h=a.every_h, once=a.once, log=lambda m: print(m, flush=True))
+        try:
+            backup(schools, a.store_dir, a.backup_dir, a.keep)
+        except (SourceOfTruth, RuntimeError) as e:
+            print(f'refused: {e}', file=sys.stderr)
+            return 2
+        return 0
+    if a.cmd == 'restore':
+        if len(schools) != 1 or not a.from_file:
+            ap.error('restore takes one school and --from-file BACKUP.sqlite')
+        try:
+            restore(schools[0], a.from_file, a.store_dir, a.force)
+        except (SourceOfTruth, RuntimeError) as e:
+            print(f'refused: {e}', file=sys.stderr)
+            return 2
+        return 0
     if a.cmd == 'check':
         bad = 0
         staged = None
@@ -880,7 +1046,7 @@ def phase2(a, ap, root):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('cmd', choices=['import', 'export', 'verify', 'overlay', 'coverage', 'flagged', 'find', 'record', 'sync', 'check'])
+    ap.add_argument('cmd', choices=['import', 'export', 'verify', 'overlay', 'coverage', 'flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore'])
     ap.add_argument('schools', nargs='*')
     ap.add_argument('--all', action='store_true')
     ap.add_argument('--store-dir', help='default $CS_ATLAS_EVIDENCE_DIR or the stores dir')
@@ -903,9 +1069,16 @@ def main(argv=None):
     ap.add_argument('--note')
     ap.add_argument('--no-sync', action='store_true', help='record: do not rewrite the JSON view afterwards')
     ap.add_argument('--staged', action='store_true', help='check: compare the git-index content of the staged reviewed files (pre-commit)')
+    ap.add_argument('--backup-dir', help='backup/restore: default <archive>/evidence-store-backups')
+    ap.add_argument('--keep', type=int, default=BACKUP_KEEP, help='backup: newest N per school kept (default 14)')
+    ap.add_argument('--loop', action='store_true', help='backup: the daily job (back up what is older than --every-h, poll every 15 min)')
+    ap.add_argument('--once', action='store_true', help='backup --loop: one pass')
+    ap.add_argument('--every-h', type=float, default=24.0)
+    ap.add_argument('--from-file', help='restore: the backup file')
+    ap.add_argument('--force', action='store_true', help='restore: even when the live store has more logged writes')
     a = ap.parse_args(argv)
     root = code_root(a.root)
-    if a.cmd in ('flagged', 'find', 'record', 'sync', 'check'):
+    if a.cmd in ('flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore'):
         # the JSON view is code: write and compare the checkout this tool runs from (your worktree), never the main checkout by accident
         return phase2(a, ap, Path(a.root) if a.root else Path(__file__).resolve().parents[1])
     schools = school_ids(root) if a.all else a.schools
