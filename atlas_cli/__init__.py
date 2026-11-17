@@ -21,7 +21,7 @@ COMMANDS = {
     'ids':        ('py', 'tools/atlas_ids.py', 'stable atlas ids into the packages'),
     'copies':     ('py', 'tools/lab_paper_copies.py', 'copies.json from the stores: atlas copies <school> [...]'),
     'doctor':     ('py', 'tools/onboarding_doctor.py', 'read-only onboarding freshness, next actions and website/local-copy gaps: atlas doctor [school ...] [--gates live|recorded|off] [--site-dir DIR] [--out-dir DIR]'),
-    'closeout':   ('py', 'tools/school_closeout.py', 'explicit stage advancement and resumable closeout: atlas closeout stages|plan|seal|submit|status|certify|draw <school> [--run-dir DIR]'),
+    'closeout':   ('py', 'tools/school_closeout.py', 'source research checkpoints, stage advancement and resumable closeout: atlas closeout research|stages|plan|seal|submit|status|certify|draw <school> [--run-dir DIR]'),
     'ledger':     ('py', 'fulltext-push/unavailable_ledger.py', 'the unavailability ledger: atlas ledger <school> [...]'),
     'audit':      ('py', 'tools/chain_audit.py', 'the chain audit'),
     'evidence':   ('py', 'tools/evidence_check.py', 'the build-time evidence check'),

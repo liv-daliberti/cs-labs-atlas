@@ -118,6 +118,27 @@ new school-specific progress script.
 | L-93 | The published interim school workflow intentionally preserves the November 7 reader allowlist. A newly displayed school can therefore have local files without matching reader entries. | Exact-ID publication reconciliation partitions local papers into hosted, source-linked, missing reader, or absent from the site; the JSON report lists each gap for the next freeze. Never admit files by title or copy a catalog directly to the public reader. |
 | L-94 | `reader_export.py` emits `stored_copy`, but the website importer retained only link location/basis. Local copies linked at source lacked an explicit visible indicator. | Preserve local-copy provenance separately from hosting/read location; retain `confirmed_copy` compatibility for existing reader indexes. Never infer a copy from a candidate-only source link. |
 
+## SJTU research and rebuild efficiency (2026-11-16)
+
+The source-repair history includes separate batches of 66, 37, 67 and 39
+membership episodes before another frozen build and recall review. See
+`hierarchy/sjtu/reports/FRESH-RECALL-REPAIR-20261116.json`,
+`FINITE-SOURCE-REPAIR-20261116.json`, `STUDENT-RECALL-SOURCE159-REPAIR-20261116.json`
+and `SOURCE220-APPLIED-39-FIVE-HOLDS-20261116.json`. These are source corrections,
+not successful final recall results. This repeated work motivates a source
+checkpoint before the existing frozen closeout chain.
+
+| ID | Lesson | Implemented response |
+|---|---|---|
+| L-95 | Repairing only each sampled gap leaves other known sparse rosters for the next review/rebuild cycle. | `atlas closeout research` inventories known sources for all PIs, prioritizes sparse labs, includes unbuilt reviewed evidence, and makes a finite repair board. Seal checks its current inventory and refuses pending cases. |
+| L-96 | A new package invalidates a final sample, while unchanged source facts need not be researched again. | Research case IDs bind source bytes, capture year, PI context and policy, excluding student counts and package hashes. Only explicit whole-source receipts are reusable; final samples, matches, verdicts and fresh signoffs retain their existing rules. |
+| L-97 | Shared sources and repeated receipt checks duplicate I/O, while shared rosters can invite unsupported PI assignments. | Inspect each cached URL once, reuse exact saved capture pointers without refetching, hash a shared review report once per validation pass, and group shared URLs while retaining separate PI cases. |
+
+The planner reads saved data and never fetches, applies scientific corrections,
+restamps acceptance or submits work. Unchanged reviewed inputs prompt a check of
+other build dependencies, not an automatic skip of code/raw-store changes. The
+closeout runner remains responsible for input sealing and native-job completion.
+
 ## Counts (2026-11-05, 89 lessons)
 | Status | Lessons |
 |---|---|

@@ -1,0 +1,316 @@
+"""Finite, reusable source research for school_closeout; never an accuracy signoff.
+
+Case IDs bind school, PI context, source bytes, capture year and evidence policy.
+Student counts and native build hashes are deliberately absent: changing a
+package does not by itself change the factual source work already completed.
+Only an explicit whole-source review receipt resolves a case. No network calls.
+"""
+import collections
+import contextlib
+import copy
+import datetime
+import hashlib
+import json
+from pathlib import Path
+import sqlite3
+from urllib.parse import urlsplit
+import zlib
+
+import atlas_paths as P
+import school_config as S
+import student_recall as R
+
+CODE = Path(__file__).resolve().parents[1]
+POLICY_FILES = ('docs/RULES.md', 'tools/visiting.py', 'tools/pihier/role_cues.py',
+                'tools/labpage_students_school.py', 'tools/student_recall.py')
+CONTEXT_FILES = ('census-overrides-school.json', 'faculty-periods.json', 'lab-websites.json')
+SCHEMA = 1
+
+
+def digest(value):
+    return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False,
+                                    separators=(',', ':'), default=str).encode()).hexdigest()
+
+
+def read_json(path):
+    return json.loads(Path(path).read_text())
+
+
+def reviewed_inputs(school):
+    """Small reviewed files only; never hash gigabyte capture/sweep stores."""
+    result, docs = {}, {}
+    for name, kind, flat, _ in P.DATA_FILES:
+        if kind != 'reviewed' or '{school}' not in flat or name == 'student-recall-check.json':
+            continue
+        path = Path(P.data(name, school))
+        obj = read_json(path) if path.is_file() else None
+        result[name] = digest(obj)
+        if obj is not None:
+            docs[name] = obj
+    return result, docs
+
+
+def context_index(docs, names):
+    index = collections.defaultdict(list)
+
+    def visit(obj, filename):
+        if isinstance(obj, list):
+            for item in obj:
+                visit(item, filename)
+        elif isinstance(obj, dict):
+            pi = obj.get('pi') or obj.get('name')
+            if isinstance(pi, str) and pi in names:
+                index[pi].append(dict(file=filename, context=obj))
+                return
+            for key, value in obj.items():
+                if key in names:
+                    index[key].append(dict(file=filename, context=value))
+                else:
+                    visit(value, filename)
+
+    for name in CONTEXT_FILES:
+        if name in docs:
+            visit(docs[name], name)
+    return index
+
+
+def source_leads(pis, students, audit, docs):
+    """All known leads, without the recall drawer's eight-URL presentation cap.
+
+    Reviewed student sources are discovery leads even when not yet in a native
+    build. Their presence never proves membership or roster completeness.
+    """
+    leads = {p['pi']: set() for p in pis}
+    by = {p['pi']: p for p in pis}
+    for pi in leads:
+        a = audit.get(pi) or {}
+        urls = list(((a.get('lab_page') or {}).get('urls') or {}).values())
+        urls += (a.get('students') or {}).get('pages') or []
+        urls.append((by[pi].get('lab') or {}).get('url'))
+        for row in students.get(pi, []):
+            for rel in row.get('relations') or []:
+                if rel.get('type') not in ('academic_advising', 'thesis_adviser'):
+                    urls += [s.get('url') for s in rel.get('sources') or []]
+        leads[pi].update(u for u in urls if isinstance(u, str) and u.startswith(('http://', 'https://'))
+                         and not R.THESIS_URL.search(u))
+
+    def visit(obj, pi=None, members=False, declared_pages=False):
+        if isinstance(obj, list):
+            for item in obj:
+                visit(item, pi, members, declared_pages)
+        elif isinstance(obj, dict):
+            pi = obj.get('pi', pi)
+            members = members or isinstance(obj.get('students'), list) or 'student' in obj or 'student_name' in obj
+            if isinstance(pi, str) and pi in leads and (members or declared_pages):
+                for key in ('url', 'source_url', 'people_page', 'lab_site'):
+                    url = obj.get(key)
+                    if isinstance(url, str) and url.startswith(('http://', 'https://')) and not R.THESIS_URL.search(url):
+                        leads[pi].add(url)
+            for key, value in obj.items():
+                visit(value, key if key in leads else pi, members, declared_pages)
+        elif declared_pages and isinstance(obj, str) and isinstance(pi, str) and pi in leads:
+            if obj.startswith(('http://', 'https://')) and not R.THESIS_URL.search(obj):
+                leads[pi].add(obj)
+
+    for name, doc in docs.items():
+        declared = name in ('extra-lab-pages.json', 'lab-websites.json')
+        if declared or name.endswith('evidence.json') or name == 'student-decisions.json':
+            visit(doc, declared_pages=declared)
+    return leads
+
+
+def cached_sources(path, urls):
+    """Read each exact URL once; verify actual bytes, preserving refusal facts."""
+    versions, blocked = {}, {}
+    if not Path(path).exists():
+        return versions, blocked
+    with contextlib.closing(sqlite3.connect(Path(path).resolve().as_uri() + '?mode=ro', uri=True)) as conn:
+        conn.execute('begin')
+        tables = {r[0] for r in conn.execute("select name from sqlite_master where type='table'")}
+        if 'blocked' in tables:
+            blocked = {host.lower().removeprefix('www.'): why for host, why in conn.execute('select host,why from blocked')}
+        if 'live' not in tables:
+            raise ValueError('Source cache has no live table: ' + str(path))
+        for url in sorted(urls):
+            row = conn.execute('select fetched_at,status,sha256,raw_zlib from live where url=?', (url,)).fetchone()
+            if row is None:
+                continue
+            fetched, status, sha, raw = row
+            if raw is None or hashlib.sha256(zlib.decompress(raw)).hexdigest() != sha:
+                raise ValueError('Cached source bytes do not match their hash: ' + url)
+            versions[url] = dict(sha256=sha, status=status, capture_year=str(fetched or '')[:4])
+    return versions, blocked
+
+
+def saved_snapshots(docs, leads, versions):
+    """Reuse exact reviewed capture pointers; no directory searches or refetches.
+
+    A saved snapshot is not represented as a fresh HTTP response. Multiple
+    versions stay explicit, and moving identical files does not reopen work.
+    """
+    known_urls = {url for urls in leads.values() for url in urls}
+    snapshots, hashes = collections.defaultdict(dict), {}
+
+    def visit(obj):
+        if isinstance(obj, list):
+            for row in obj:
+                visit(row)
+        elif isinstance(obj, dict):
+            url, sha = obj.get('url'), obj.get('sha256')
+            pointer = obj.get('source_capture') or obj.get('source_raw_path') or obj.get('local_bytes')
+            if isinstance(url, str) and url in known_urls and isinstance(sha, str) and isinstance(pointer, str):
+                path = Path(pointer)
+                path = path if path.is_absolute() else P.CODE / path
+                if path not in hashes:
+                    hashes[path] = hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
+                if hashes[path] == sha:
+                    year = str(obj.get('captured') or obj.get('observedAt') or '')[:4]
+                    snapshot = dict(sha256=sha, capture_year=year, kind='saved_source_file')
+                    snapshots[url][digest(snapshot)] = snapshot
+            for value in obj.values():
+                visit(value)
+
+    for name, doc in docs.items():
+        if name.endswith('evidence.json'):
+            visit(doc)
+    result = copy.deepcopy(versions)
+    for url, rows in snapshots.items():
+        result.setdefault(url, {})['snapshots'] = [rows[k] for k in sorted(rows)]
+    return result
+
+
+def has_source_bytes(source):
+    return bool(source.get('sha256') or source.get('snapshots'))
+
+
+def pi_context(pi):
+    # Derived publication counters inside piBasis are not identity evidence.
+    context = {k: pi.get(k) for k in ('pi', 'personIds', 'names', 'rank', 'title', 'departments', 'periods')}
+    evidence_keys = ('kind', 'url', 'sha256', 'quote', 'observed', 'role')
+
+    def evidence(value):
+        if isinstance(value, list):
+            return [evidence(row) for row in value]
+        if isinstance(value, dict):
+            return {k: value[k] for k in evidence_keys if k in value}
+        return value or {}
+
+    context['piBasis'] = evidence(pi.get('piBasis'))
+    lab = pi.get('lab') or {}
+    context['lab'] = {k: lab.get(k) for k in ('unitId', 'name', 'url', 'basis', 'collectives')}
+    context['lab']['evidence'] = evidence(lab.get('evidence'))
+    return context
+
+
+def receipt_valid(case, hashes=None):
+    if (case.get('status') != 'resolved' or case.get('coverage') != 'whole_source'
+            or case.get('outcome') not in ('reviewed', 'no_roster', 'unavailable')
+            or not str(case.get('reviewer') or '').strip() or not str(case.get('why') or '').strip()):
+        return False
+    if case.get('outcome') != 'unavailable' and not has_source_bytes(case.get('binding', {}).get('source') or {}):
+        return False
+    try:
+        datetime.date.fromisoformat(case.get('date', ''))
+        receipt = case.get('receipt') or {}
+        path = Path(receipt.get('path', ''))
+        if not path.is_file():
+            return False
+        hashes = {} if hashes is None else hashes
+        key = str(path.resolve())
+        if key not in hashes:
+            hashes[key] = hashlib.sha256(path.read_bytes()).hexdigest()
+        return hashes[key] == receipt.get('sha256')
+    except (OSError, TypeError, ValueError):
+        return False
+
+
+def plan(school, pis, students, leads, versions, blocked, policy, contexts, inputs, previous=None):
+    if not pis:
+        raise ValueError('No PI snapshot: finish the census and baseline build before planning source research')
+    previous = previous or {}
+    if previous and (previous.get('school') != school or previous.get('research', {}).get('schema') != SCHEMA):
+        raise ValueError('Previous research board has a different school or unsupported schema')
+    old_cases = {c['id']: c for c in previous.get('cases', [])}
+    if len(old_cases) != len(previous.get('cases', [])):
+        raise ValueError('Previous research board repeats a case ID')
+    cases, groups, receipt_hashes = [], collections.defaultdict(list), {}
+    for p in sorted(pis, key=lambda p: (len(students.get(p['pi'], [])), p['pi'])):
+        pi = p['pi']
+        context = digest(dict(native=pi_context(p), reviewed=contexts.get(pi, [])))
+        for url in sorted(leads.get(pi) or []) or [None]:
+            source = copy.deepcopy(versions.get(url, {}))
+            host = (urlsplit(url).hostname or '').lower().removeprefix('www.') if url else ''
+            refusal = blocked.get(host)
+            binding = dict(school=school, pi=pi, context_sha256=context, url=url,
+                           source=source, access_refusal=refusal, policy_sha256=policy)
+            case_id = 'source-' + digest(binding)
+            case = dict(id=case_id, binding=binding, status='pending',
+                        native_members=len(students.get(pi, [])),
+                        next_action='inspect_saved_source' if has_source_bytes(source) else 'respect_recorded_refusal' if refusal else
+                                    'recover_exact_source_or_research_lead' if url else 'find_owned_roster',
+                        coverage='', outcome='', reviewer='', date='', why='', receipt={})
+            old = old_cases.get(case_id)
+            if old and old.get('binding') == binding and receipt_valid(old, receipt_hashes):
+                for key in ('status', 'coverage', 'outcome', 'reviewer', 'date', 'why', 'receipt'):
+                    case[key] = copy.deepcopy(old[key])
+            cases.append(case)
+            if url:
+                groups[url].append(dict(pi=pi, case_id=case_id))
+    pending = sum(c['status'] != 'resolved' for c in cases)
+    prior_inputs = previous.get('research', {}).get('reviewed_inputs')
+    changed = sorted(n for n in set(inputs) | set(prior_inputs or {}) if inputs.get(n) != (prior_inputs or {}).get(n))
+    advice = 'finish_source_batch' if pending else 'check_other_build_dependencies' if prior_inputs == inputs else 'seal_and_rebuild_once'
+    return dict(school=school, research=dict(schema=SCHEMA, policy_sha256=policy, reviewed_inputs=dict(inputs)),
+        cases=cases, shared_sources=[dict(url=u, contexts=cs) for u, cs in sorted(groups.items()) if len(cs) > 1],
+        summary=dict(pis=len(pis), source_cases=len(cases), unique_urls=len(groups),
+                     sources_with_bytes=sum(has_source_bytes(versions.get(url, {})) for url in groups),
+                     reusable_reviews=len(cases)-pending, pending=pending, retired_cases=len(set(old_cases)-{c['id'] for c in cases}),
+                     changed_reviewed_inputs=changed, next_action=advice),
+        qualification='Research planning only. A resolved case is not membership approval, a passing recall/accuracy verdict or a fresh signoff. '
+                      'Unchanged school-reviewed inputs do not prove the raw stores or build code are unchanged; use atlas stale and closeout seal.')
+
+
+def collect(school, previous=None):
+    charter = S.get(school)
+    pis, students, audit = R._pis(school), R._students(school), R._audit(school)
+    inputs, docs = reviewed_inputs(school)
+    leads = source_leads(pis, students, audit, docs)
+    capture_store = P.data('student-recall-captures.sqlite', school)
+    try:
+        versions, blocked = cached_sources(capture_store, {u for us in leads.values() for u in us})
+    except (sqlite3.Error, zlib.error) as exc:
+        raise ValueError('Cannot read the source cache safely: ' + str(exc)) from exc
+    versions = saved_snapshots(docs, leads, versions)
+    policy = digest(dict(charter=charter, files={name: hashlib.sha256((CODE / name).read_bytes()).hexdigest()
+                                               for name in POLICY_FILES}))
+    board = plan(school, pis, students, leads, versions, blocked, policy,
+                 context_index(docs, {p['pi'] for p in pis}), inputs, previous)
+    board['data_root'] = str(P.CODE)
+    board['capture_store'] = str(capture_store)
+    return board
+
+
+def validate_board(board):
+    current = collect(board['school'], previous=board)
+    if {c['id'] for c in current['cases']} != {c['id'] for c in board['cases']}:
+        raise ValueError('Research inventory changed: refresh closeout research before sealing')
+    if current['summary']['pending']:
+        raise ValueError('Finish whole-source reviews with intact receipts before sealing: '
+                         + str(current['summary']['pending']) + ' pending')
+
+
+def render(board):
+    s = board['summary']
+    lines = [f"{board['school']}: {s['pis']} PIs, {s['unique_urls']} known source URLs; "
+             f"{s['reusable_reviews']} reusable reviews, {s['pending']} pending.",
+             'Next action: ' + s['next_action'], board['qualification']]
+    if board.get('data_root'):
+        lines.append('Selected data root: ' + board['data_root'])
+    if s['unique_urls'] and not s['sources_with_bytes']:
+        lines.append('No source bytes found in this data root. Check the existing candidate overlay and capture pointers before repeating research.')
+    for case in [c for c in board['cases'] if c['status'] != 'resolved'][:12]:
+        b = case['binding']
+        lines.append(f"  {b['pi']} ({case['native_members']} members): {case['next_action']} {b['url'] or ''}")
+    if s['pending'] > 12:
+        lines.append(f"  ... {s['pending'] - 12} more cases in the JSON board")
+    return '\n'.join(lines)

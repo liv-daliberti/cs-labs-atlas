@@ -181,6 +181,71 @@ what to look at and what not to do.
 7. **Tools on the PATH.** A restarted shell has nothing on its PATH: `. paths.sh` first (`$CS_ATLAS_PY`), and for the site `PATH=$CS_ATLAS_NODE/bin:$PATH` before `npm` (Node 22 in `env/site-node`, docs/ENVIRONMENT.md); never `conda install` anything.
 8. Only then pick up the work, in your own worktree, and report.
 
+## Reuse source research and batch school repairs
+
+Use the same `CS_ATLAS_*` data overlay as the candidate build. After the baseline
+PI build, create a finite research board in a private scratch directory:
+
+```sh
+bin/atlas closeout research sjtu --out /absolute/scratch/research-v1.json
+```
+
+The planner reads existing PI/student data, reviewed student evidence and declared
+lab-page leads. It inspects the recall capture store read-only and reuses exact,
+hash-matched `source_capture`/saved-file pointers. It does not search directories,
+fetch sources, submit jobs or change scientific inputs. Missing originals remain
+recovery work. A saved file never becomes a fresh HTTP response.
+
+Work through whole current and dated-alumni sections, starting with sparse PIs.
+Use `shared_sources` to read a common URL once, then judge its individual PI
+contexts separately. New member observations stay proposals until normal source
+review approves their School, role, date and identity scope. One quoted name does
+not establish that an entire roster has been checked.
+
+For each completed case, retain its `id` and `binding` and explicitly fill:
+
+```json
+{
+  "status": "resolved",
+  "coverage": "whole_source",
+  "outcome": "reviewed",
+  "reviewer": "independent-source-reviewer",
+  "date": "2026-11-16",
+  "why": "Complete current and dated-alumni sections checked; scope holds recorded in receipt.",
+  "receipt": {"path": "/absolute/scratch/source-review.json", "sha256": "<actual report SHA-256>"}
+}
+```
+
+`outcome` can also be `no_roster` or `unavailable`, with the actual search/access
+limit described in `why` and the receipt. A positive review needs preserved source
+bytes. Several explicitly reviewed cases can cite one report; its hash is read
+once per validation pass. These are research-work receipts, never membership
+approval, an automatic lab-page hand round, a student-match verdict or a signoff.
+An initial pending case means no qualifying checkpoint has been registered on
+this board. Existing complete source reviews can supply the receipt after their
+source and PI/context bindings are checked; creating a board does not require
+repeating that research or invalidate an existing gate.
+
+Refresh the board after finishing a source batch or receiving new leads:
+
+```sh
+bin/atlas closeout research sjtu --previous /absolute/scratch/research-v1.json --out /absolute/scratch/research-v2.json
+```
+
+Unchanged source/PI/policy bindings retain their explicit review receipts. Changed
+source bytes, capture years, appointments or identity context reopen work; a new
+native student count alone does not. Existing output files are never overwritten.
+The inventory covers known sources, not an exhaustive search of the web.
+
+Consolidate genuine source corrections and holds before a full build. The closed
+board can be passed to `atlas closeout seal sjtu --run-dir <new-run> --repairs
+<board>`; sealing recomputes its inventory and checks all receipt hashes. New or
+unfinished source work stops the seal. Complete ordinary input review and commit
+requirements as well. If reviewed inputs are unchanged, check `atlas stale sjtu`
+and the existing candidate before submitting another expensive chain: code and
+raw stores may have changed separately. After the final build, keep the existing
+fresh sample, independent review and accuracy requirements.
+
 ## Housekeeping
 
 `tools/scratch.py clean` (dry run) / `--apply` removes scratch entries, old rebuild snapshots and old `.equiv/` reports older than 14

@@ -468,6 +468,26 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     first-given-name matches admit namesakes [L-56]; the OpenAlex identity matcher once flagged every candidate a namesake; read proposals first [L-88].
 
 ## Stage 6: students
+**Batch the source work before rebuilding (SJTU, 2026-11-16).** After the baseline
+PI build, run `bin/atlas closeout research <key> --out <scratch>/research.json`.
+This inventories known sources for every PI, including newly reviewed student
+sources before they reach a native package. Start with sparse labs; read whole
+current and dated-alumni sections, with individual School, role and date scope.
+Group identical source URLs for reading while keeping each PI's claims separate.
+Record whole-source review receipts on the board as described in
+[RUNBOOK.md](RUNBOOK.md#reuse-source-research-and-batch-school-repairs).
+Refresh with `--previous <board> --out <new-board>` as leads or evidence change.
+Unchanged source work survives a rebuild; new source bytes, capture year, PI
+context or evidence policy reopen the affected work. The board is a known-source
+inventory, not proof that every possible web source has been found.
+
+Consolidate source corrections and holds into one reviewed batch before the
+expensive closeout chain. A research board can serve as `closeout seal --repairs`;
+sealing rechecks its inventory and receipts and refuses unfinished work. A source
+receipt never carries over a recall verdict, accuracy decision, student-match
+result or signoff. Draw and independently judge the final samples under the
+existing rules after the final build.
+
 Use sources in this order of preference:
 1. Dissertations in the thesis repository with an advisor field (DSpace `dc.contributor.advisor`, or the committee chair). **Learned from Michigan (2026-10-29):** check the repository's robots.txt for AI-agent rules first. Deep Blue disallows them by name, so Michigan starts at source 2.
 2. Department PhD rosters, defence and FPO lists, and graduation lists, from Wayback.

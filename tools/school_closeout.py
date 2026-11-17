@@ -2,6 +2,7 @@
 
 atlas closeout stages SCHOOL [--json]
 atlas closeout plan SCHOOL
+atlas closeout research SCHOOL [--previous FILE] [--out FILE] [--json]
 atlas closeout seal SCHOOL --run-dir DIR --repairs FILE
 atlas closeout submit SCHOOL --run-dir DIR
 atlas closeout status|certify|draw SCHOOL --run-dir DIR
@@ -187,12 +188,19 @@ def repair_cases(path, school):
     ids = [row.get('id') for row in board['cases']]
     if not all(isinstance(i, str) and i for i in ids) or len(set(ids)) != len(ids):
         raise ValueError('Repair case IDs must be nonempty and unique')
+    if 'research' in board:
+        import research_plan
+        research_plan.validate_board(board)
     unresolved = [r['id'] for r in board['cases'] if r.get('status') != 'resolved']
     if unresolved:
         raise ValueError('Finish the repair batch before building: ' + ', '.join(unresolved))
+    receipts = {}
     for case in board['cases']:
         receipt = case.get('receipt') or {}
-        actual = fingerprint(receipt.get('path', ''))
+        path = receipt.get('path', '')
+        if path not in receipts:
+            receipts[path] = fingerprint(path)
+        actual = receipts[path]
         if not actual or not actual.get('sha256') or actual['sha256'] != receipt.get('sha256'):
             raise ValueError('Repair receipt missing or changed: ' + case['id'])
     return board
@@ -370,14 +378,28 @@ def draw_once(school, directory, drawn_by):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['stages', 'plan', 'seal', 'submit', 'worker', 'status', 'certify', 'draw'])
+    parser.add_argument('command', choices=['stages', 'plan', 'research', 'seal', 'submit', 'worker', 'status', 'certify', 'draw'])
     parser.add_argument('school')
     parser.add_argument('--run-dir', type=Path)
     parser.add_argument('--repairs', type=Path)
     parser.add_argument('--drawn-by', default=os.environ.get('ATLAS_SESSION', ''))
     parser.add_argument('--json', action='store_true', help='Machine-readable stage advancement')
+    parser.add_argument('--previous', type=Path, help='Prior research board with explicit whole-source review receipts')
+    parser.add_argument('--out', type=Path, help='Write the research board to this file; existing files are preserved')
     args = parser.parse_args(argv)
     try:
+        if args.command == 'research':
+            import research_plan
+            if args.out and (args.out.exists() or args.out.is_symlink()):
+                raise ValueError('Research output already exists; preserve it and choose a new path: ' + str(args.out))
+            board = research_plan.collect(args.school, read(args.previous) if args.previous else None)
+            if args.out:
+                # A previous board may be the only durable copy of human review work.
+                with args.out.open('x') as handle:
+                    json.dump(board, handle, indent=2, ensure_ascii=False)
+                    handle.write('\n')
+            print(json.dumps(board, indent=2, ensure_ascii=False) if args.json else research_plan.render(board))
+            return 0
         if args.command == 'stages':
             board = stage_board(args.school)
             print(json.dumps(board, indent=2) if args.json else render_stages(board))
