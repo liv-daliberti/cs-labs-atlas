@@ -146,6 +146,17 @@ def gate_reports(key, mode):
     return reports
 
 
+def evidence_view(key):
+    """For a store-sourced school (charter [evidence] source = "store"): does the reviewed JSON view equal the evidence store's export? None for other schools."""
+    import evidence_store as E
+    if E.source_of(key) != 'store':
+        return None
+    try:
+        return dict(source='store', problems=E.check_view(key, P.CODE))
+    except (OSError, ValueError, KeyError, E.SourceOfTruth) as exc:
+        return dict(source='store', problems=[f'{key}: evidence view not measured: {exc}'])
+
+
 def school_report(key, site, reader, gates):
     errors = []
     package = P.data('lab_papers.jsonl.gz', key)
@@ -173,6 +184,7 @@ def school_report(key, site, reader, gates):
         except (OSError, ValueError, KeyError) as exc:
             stale[stage] = dict(stale=None, reason=str(exc))
     reports = gate_reports(key, gates)
+    evidence = evidence_view(key)
     first = next((g for g in reports if g['stage'] < 10 and g['gate'] not in ('pass', 'waived')), None)
     actions = []
     if stale.get('build', {}).get('stale'):
@@ -180,6 +192,9 @@ def school_report(key, site, reader, gates):
     if first:
         actions.append(f'Inspect stage {first["stage"]}: bin/atlas stage-gate {key} {first["stage"]} --json'
                        + (' (recorded evidence only; evaluate live before deciding)' if gates == 'recorded' else ''))
+    if evidence and evidence['problems']:
+        actions.append(f'The {key} JSON view differs from its evidence store ({len(evidence["problems"])} problems): bin/atlas evidence-store check {key}; '
+                       f'if the store is right, bin/atlas evidence-store sync {key} and commit; never edit the reviewed JSON by hand')
     if stale.get('copies', {}).get('stale'):
         actions.append(f'Recount after the build: bin/atlas pipeline copies SCHOOLS={key} --from-worktree')
     if counts and (counts['local_missing_reader'] or counts['local_paper_missing_from_site']):
@@ -189,7 +204,7 @@ def school_report(key, site, reader, gates):
         actions.append('Preserve stored_copy as storedCopy in the site importer and display local-copy provenance separately from read location.')
     return dict(school=key, package=str(package), copies=str(counter), website=str(website),
                 copies_counted_at=(copies or {}).get('summary', {}).get('counted_at'), counts=counts, gaps=gaps,
-                gates_basis=gates, gates=reports, stale=stale, next_actions=actions, errors=errors)
+                gates_basis=gates, gates=reports, evidence_view=evidence, stale=stale, next_actions=actions, errors=errors)
 
 
 def markdown(report):

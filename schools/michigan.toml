@@ -26,6 +26,12 @@ I27837315 'University of Michigan', ROR 00jmfr291, lineage [I27837315] (no paren
 and Flint I4210092198 (ROR 01c3xc117) are separate institutions with their own lineage ('related'), so the lineage filter
 excludes them. Michigan Medicine I4210114445 (ROR 01zcpa714) is 'related' both ways (api.ror.org v2, 2026-10-29)."""
 
+[evidence]
+# Where this school's reviewed decisions are written (docs/EVIDENCE-STORE.md). "json" (default): the reviewed JSON files in
+# hierarchy/<key>/reviewed/ are the source. "store": <stores>/<key>/evidence.sqlite is; the JSON files are an export
+# (evidence_store.py sync) and a direct edit to them is refused by the pre-commit hook, `evidence_store.py check` and atlas doctor.
+source = "store"   # since 2026-11-17 (R3a): the first school whose evidence store is the source of truth
+
 [web]
 domains = ["umich.edu"]
 email_domains = ["umich.edu", "med.umich.edu"]

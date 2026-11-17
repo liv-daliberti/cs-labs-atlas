@@ -7,6 +7,7 @@ Python   import school_config as S
          S.inst_ids(k)         lineage institution ids (['I27837315']); S.inst(k) the primary one
          S.sweep_ids(k)        lineage + related ids (what the OpenAlex sweep filters on)
          S.aff(k)              the affiliation regex (str); S.aff_rx(k) compiled, case-insensitive
+         S.evidence_source(k)  'json' (default) or 'store': where the school's reviewed decisions are written (docs/EVIDENCE-STORE.md)
          S.short_names(), S.full_names(), S.computing(k), S.dblp_sweep(k), S.own_units(k)
 CLI      school_config.py --check [key ...]     validate charters: required fields, ids, regex and its test cases
          school_config.py <key> [dotted.field]  print a charter or one field (JSON)
@@ -86,6 +87,14 @@ def field(cfg, dotted, default=None):
     return x
 
 
+EVIDENCE_SOURCES = ('json', 'store')
+
+
+def evidence_source(key):
+    """[evidence] source of a charter: 'store' = the school's evidence store is the source of truth and its reviewed JSON files are an export."""
+    return field(get(key), 'evidence.source', 'json')
+
+
 def inst_ids(key):
     return list(get(key)['ids']['openalex'])
 
@@ -149,6 +158,8 @@ def check(key):
             out.append(f'{key}: bad OpenAlex institution id {i!r}')
     if set(field(cfg, 'ids.openalex', [])) & set(field(cfg, 'ids.openalex_excluded', [])):
         out.append(f'{key}: an id is both included and excluded')
+    if field(cfg, 'evidence.source', 'json') not in EVIDENCE_SOURCES:
+        out.append(f'{key}: evidence.source must be one of {EVIDENCE_SOURCES}')
     try:
         rx = re.compile(field(cfg, 'affiliation.regex', ''), re.I)
         for s in field(cfg, 'affiliation.must_match', []):

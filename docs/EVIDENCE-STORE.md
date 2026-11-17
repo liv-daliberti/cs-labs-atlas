@@ -1,15 +1,15 @@
 # Evidence store (phase 1 of the backend refactor, 2026-11-17)
 
 One SQLite file per school holds every per-person decision with its source, replacing over time the scattered reviewed-JSON
-layers (`docs/REVIEWED-INPUTS.md`). Phase 1 is a **lossless import and an exporter**: no builder reads the store, no output
-changes. Owner rule: container formats, not many small files (hence SQLite, not a JSON file per decision).
+layers (`docs/REVIEWED-INPUTS.md`). Phase 1 was a **lossless import and an exporter**: no builder reads the store, no output
+changes. Phase 2 (below) makes it the source of truth for one school. Owner rule: container formats, not many small files (hence SQLite, not a JSON file per decision).
 
 ## Files
 | File | What |
 |---|---|
 | `schemas/evidence/evidence-store.sql` | the tables (`meta`, `layer`, `evidence`); the tool creates stores from this file |
 | `schemas/evidence/evidence-row.schema.json` | the claim columns and the `claim_kind` vocabulary |
-| `tools/evidence_store.py` | `import`, `export`, `verify`, `overlay`, `coverage` |
+| `tools/evidence_store.py` | `import`, `export`, `verify`, `overlay`, `coverage`; phase 2: `flagged`, `find`, `record`, `sync`, `check` (`bin/atlas evidence-store ...`) |
 | `tests/test_evidence_store.py` | fixture round trips, claim columns, shared-file split, overlay |
 
 Default location: `<stores>/<school>/evidence.sqlite` (`CS_ATLAS_EVIDENCE_DIR` or `--store-dir` override it). `_shared` is the store
@@ -64,8 +64,45 @@ the root's own files the same way, so a build pair differs only in where the byt
 - Weak projections (the record is intact, only the index is thin): 41k rows are plain `evidence` (lab pages, directories, websites),
   2.5k `other`, 2.5k `review_note` (legacy `pending_*`); 817 `evidence` and 677 `other` rows have no person key (whole-document rows).
 
+## Phase 2 (R3a, 2026-11-17): a store-sourced school
+Michigan is the first school whose store is the **source of truth**. Charter `schools/michigan.toml`: `[evidence] source = "store"`
+(default `"json"`; `school_config.evidence_source(key)`, validated by `school_config.py --check`). Readers and writers switch together,
+per school: nothing is ever switched for readers only (the store would go stale).
+- **The store** is `<stores>/michigan/evidence.sqlite` (imported 2026-11-17 from main's reviewed files). **The JSON view**:
+  `hierarchy/michigan/reviewed/*.json` (28 files) is an export of it, tracked in git exactly as before, so every unchanged tool (pi_hierarchy,
+  stage_gate, atlas doctor, the audits, the release export) keeps reading the same bytes. The shared files `hierarchy/reviewed/*.json` stay
+  JSON-sourced: Michigan's slices in them are only a snapshot (scope `shared`, not authoritative) until a later phase.
+- **Guard.** A direct edit of a store-sourced school's reviewed JSON is refused three ways: the pre-commit hook (`evidence_store.py check --staged`,
+  compares the git-index bytes of staged `hierarchy/<school>/reviewed/*.json` with the store's rendering, also refusing deletions and files the
+  store does not hold), `evidence_store.py check [school]` (worktree vs store, any time), and `atlas doctor` (`evidence_view` per school; a problem
+  becomes a next action). `import` refuses to overwrite an existing store of a flagged school (it would erase recorded decisions).
+- **Gate.** `stage_gate.py` and `atlas doctor` keep reading the JSON view; the doctor adds `evidence_view` (view == store).
+
+### Record a decision (a worker, Michigan)
+```
+bin/atlas evidence-store find michigan --layer census-additions.json --key "Jane Doe"       # existing rows: id, container, seq, record
+bin/atlas evidence-store record michigan --layer census-additions.json \
+    --record '{"name": "Jane Doe", "rank": "Professor", ...}' --source https://... --decided-by <your session> [--reviewed-by <reviewer>] [--note ...]
+bin/atlas evidence-store record michigan --layer census-overrides-school.json --entry-key "Jane Doe" --record '{"aliases": [...]}' ...   # map layers: new key
+bin/atlas evidence-store record michigan --layer census-additions.json --supersede 1234 --record '{...}' ...                             # replace a row (the old record stays in write_log)
+bin/atlas evidence-store sync michigan      # (record already does it) rewrite the JSON view in YOUR worktree; then commit it on your branch and land
+```
+`--record` is the entry exactly as the reviewed file holds it (a list item, or the value of a map entry); `--source` and `--decided-by` are mandatory and
+go to `write_log` (`evidence_id`, action add/supersede, time, decided_by, reviewed_by, source, old record) and to the claim columns the record does
+not itself carry. The store is shared data (it is not in git), the JSON view is code (it lands by commit): between `record` and the landing, `check`
+on main reports the difference, which is the intended signal that a landing is pending. `sync` and `check` act on the checkout the tool runs from.
+Container choice: lists append, maps need a new `--entry-key` (maps keyed school -> person also `--sub-key`); `--container N` for a layer with several.
+Not supported yet: deleting a row (supersede it with the corrected record), adding a new kind of reviewed file (a layer; ask the coordinator).
+
+### Switch another school
+1. `bin/atlas evidence-store import <school>` into the real location (a fresh snapshot of its reviewed files; `verify <school>` first).
+2. Build a control and a store-sourced overlay (`overlay <school> --out DIR [--control]`; a flagged school's overlay takes only its own files from the
+   store) as Slurm jobs and require byte-identical `pis.json`, `students.json`, `lab_papers.jsonl.gz`, `student_papers.jsonl.gz`.
+3. Add `[evidence]` `source = "store"` to the charter in the same commit; from then on the hook, `check` and the doctor guard it.
+4. To go back: set `source = "json"` (the JSON view is already the current state; the store file can be archived).
+
 ## Next phases (not done)
-1. Readers fall back to the store behind a flag (`census_overrides.section`, `pi_hierarchy` reviewed inputs), output compared per school.
-2. Writers (stage tools, `excluded_audit.py`) append rows with `decided_by`/`review_ref` and `supersedes` instead of editing files;
-   the reviewed JSON files become exports.
+1. Michigan's slices of the shared reviewed files (`census-overrides.json`, `student-corrections.json`, ...) move into the store with an export that
+   patches only that school's slice; then a reader may read the store directly (`census_overrides.section`, `pi_hierarchy` reviewed inputs).
+2. Writers (stage tools, `excluded_audit.py`) call `record()` instead of editing files, school by school.
 3. Split rank/unit/period/identity facets into their own rows once the readers use claims rather than records.

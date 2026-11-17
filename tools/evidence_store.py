@@ -6,7 +6,9 @@
   overlay  <school> --out DIR    an overlay code root (tools/overlay_root.py) whose reviewed files are the exported ones
   coverage <school>... | --all   the files and records the converters cannot represent
 
-Nothing reads the store yet. Lossless rule: every decision keeps its original record as JSON (column `record`); the claim columns
+  flagged  / find / record / sync / check   phase 2 (R3a): a school whose charter says [evidence] source = "store" writes its decisions HERE
+           (record), and its reviewed JSON files are an export (sync) that check/pre-commit/doctor keep honest.
+Phase 1 builders read none of it; with the flag, readers still read the exported JSON view, so nothing downstream changes. Lossless rule: every decision keeps its original record as JSON (column `record`); the claim columns
 (person, kind, value, source, who/when) are an index projected from the record by claim() below, best effort and recomputable.
 A file is cut into containers (a list, a map, or a school -> person map); the rest of the file is the skeleton. The shared reviewed
 files (hierarchy/reviewed/) are split over the school stores by school; what names no school goes to the store `_shared`.
@@ -14,11 +16,13 @@ files (hierarchy/reviewed/) are split over the school stores by school; what nam
 import argparse
 import contextlib
 import copy
+import datetime
 import hashlib
 import json
 import os
 import shutil
 import sqlite3
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -445,6 +449,9 @@ def import_all(schools, dest=None, root=None, log=print):
                 builders[s] = Builder(s, tmp)
             return builders[s]
         for s in schools:
+            if source_of(s) == 'store' and store_path(s, dest).exists():
+                raise SourceOfTruth(f'{s}: charter [evidence] source = "store" and {store_path(s, dest)} exists; a fresh import would erase its recorded decisions. '
+                                    f'Record decisions with `evidence_store.py record`; to start over, move the store file away yourself.')
             b = builder(s)
             rep = report['schools'][s] = dict(files=0, rows=0, whole_doc_files=0, verbatim_files=0, empty_files=0, other_files=other_files(school_dir(s, root)))
             for f in layer_files(school_dir(s, root)):
@@ -597,6 +604,195 @@ def verify(schools, root=None, log=print):
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ---------------------------------------------------------------- phase 2: a school whose store is the source of truth
+
+
+class SourceOfTruth(RuntimeError):
+    """A write, an import or an edit that the school's [evidence] source = "store" flag does not allow."""
+
+
+def source_of(school):
+    try:
+        return S.evidence_source(school)
+    except KeyError:
+        return 'json'
+
+
+def flagged(schools=None):
+    return [s for s in (schools if schools is not None else S.keys()) if source_of(s) == 'store']
+
+
+def now():
+    return datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+
+def sha(text):
+    return hashlib.sha256(text.encode()).hexdigest()
+
+
+def rendered(school, stores_dir=None):
+    """{layer name: text} of the school's own (scope 'school') layers as the store renders them now."""
+    sp = store_path(school, stores_dir)
+    if not sp.exists():
+        raise SourceOfTruth(f'{school}: no evidence store at {sp} (import it first: evidence_store.py import {school})')
+    return {n: render(e) for n, e in load_layers([sp]).items() if e['scope'] == 'school' and e['have_desc']}
+
+
+def sync(school, root=None, stores_dir=None):
+    """Write the school's reviewed JSON files (the compatibility view) from its store into the code root; only files whose bytes differ. Returns the changed names."""
+    changed = []
+    d = school_dir(school, root)
+    d.mkdir(parents=True, exist_ok=True)
+    for name, text in sorted(rendered(school, stores_dir).items()):
+        f = d / name
+        if f.exists() and f.read_text() == text:
+            continue
+        tmp = f.with_name(f.name + '.sync-tmp')
+        tmp.write_text(text)
+        os.replace(tmp, f)
+        changed.append(name)
+    return changed
+
+
+def _staged(root, rel):
+    r = subprocess.run(['git', '-C', str(root), 'show', f':{rel}'], capture_output=True, text=True, timeout=60)
+    return r.stdout if r.returncode == 0 else None
+
+
+def check_view(school, root=None, stores_dir=None, staged=None):
+    """Problems of the JSON view of a store-sourced school (empty list: view == store). `staged`: set of repo-relative paths; only those are compared, from the git index."""
+    root = code_root(root)
+    out = []
+    sp = store_path(school, stores_dir)
+    if not sp.exists():
+        return [f'{school}: flagged "store" but {sp} does not exist']
+    text = rendered(school, stores_dir)
+    with contextlib.closing(connect(sp)) as con:
+        recorded = dict(con.execute('SELECT name, sha256 FROM layer WHERE scope = ?', ('school',)))
+    d = school_dir(school, root)
+    for name, t in sorted(text.items()):
+        rel = str(Path('hierarchy') / school / 'reviewed' / name)
+        if staged is not None and rel not in staged:
+            continue
+        if recorded.get(name) != sha(t):
+            out.append(f'{school}/{name}: the store disagrees with its own layer hash (store edited outside evidence_store.py?)')
+        have = _staged(root, rel) if staged is not None else (d / name).read_text() if (d / name).exists() else None
+        if have is None:
+            out.append(f'{rel}: missing from the view; run `evidence_store.py sync {school}`')
+        elif have != t:
+            out.append(f'{rel}: differs from the {school} evidence store. {school} is store-sourced (schools/{school}.toml [evidence] source = "store"): '
+                       f'do NOT edit the JSON. Record the decision with `evidence_store.py record {school} --layer {name} ...`, then `evidence_store.py sync {school}`.')
+    if staged is None:
+        for f in layer_files(d):
+            if f.name not in text:
+                out.append(f'{school}/{f.name}: a reviewed file the store does not hold (the store is the source of truth; a new kind of reviewed file needs a layer added to the store by the coordinator): remove it')
+    else:
+        for rel in sorted(staged):
+            if rel.startswith(f'hierarchy/{school}/reviewed/') and rel.endswith('.json') and Path(rel).name not in text:
+                out.append(f'{rel}: a reviewed file the {school} store does not hold (it is store-sourced); decisions go through `evidence_store.py record`')
+    return out
+
+
+def _find(con, layer, ident=None, entry_key=None, sub_key=None):
+    q = 'SELECT e.id, e.container, e.seq, e.entry_key, e.sub_key, e.record FROM evidence e JOIN layer l ON l.layer_id = e.layer_id WHERE l.name = ?'
+    a = [layer]
+    if ident is not None:
+        q += ' AND e.id = ?'
+        a.append(ident)
+    if entry_key is not None:
+        q += ' AND e.entry_key = ?'
+        a.append(entry_key)
+    if sub_key is not None:
+        q += ' AND e.sub_key = ?'
+        a.append(sub_key)
+    return con.execute(q + ' ORDER BY e.container, e.seq', a).fetchall()
+
+
+def find(school, layer, key=None, text=None, stores_dir=None):
+    """Rows of a layer whose entry key / person key equals `key`, or whose record contains `text`: [(id, container, seq, entry_key, sub_key, record dict)]."""
+    sp = store_path(school, stores_dir)
+    with contextlib.closing(connect(sp)) as con:
+        rows = [(i, c, q, ek, sk, json.loads(r)) for i, c, q, ek, sk, r in _find(con, layer)]
+    return [r for r in rows if (key is None or key in (r[3], r[4]) or key == (claim(layer, r[5], r[3], r[4])['person_key'])) and (text is None or text in json.dumps(r[5], ensure_ascii=False))]
+
+
+def record(school, layer, rec, *, source, decided_by, reviewed_by=None, supersede=None, entry_key=None, sub_key=None, container=None, note=None, stores_dir=None):
+    """Add (or supersede, `supersede` = the evidence id) one decision row of a store-sourced school. `rec` is the entry exactly as the reviewed file holds it
+    (a list item, or the value of a map entry); `source` and `decided_by` are mandatory and logged in write_log. The claim columns are refreshed from the
+    record, the layer hash follows the new rendering. Returns the evidence id. Raises SourceOfTruth for a school that is not store-sourced."""
+    if source_of(school) != 'store':
+        raise SourceOfTruth(f'{school} is not store-sourced (schools/{school}.toml [evidence] source = "store"): edit its reviewed JSON files instead')
+    if not source or not decided_by:
+        raise SourceOfTruth('a recorded decision needs --source and --decided-by')
+    sp = store_path(school, stores_dir)
+    if not sp.exists():
+        raise SourceOfTruth(f'{school}: no evidence store at {sp}')
+    with contextlib.closing(connect(sp)) as con:
+        create(con)   # idempotent: adds write_log to a phase-1 store
+        con.execute('BEGIN IMMEDIATE')
+        try:
+            lay = con.execute('SELECT layer_id, containers FROM layer WHERE name = ? AND scope = ?', (layer, 'school')).fetchone()
+            if not lay:
+                raise SourceOfTruth(f'{school}: no layer {layer!r} in the store (names: {", ".join(r[0] for r in con.execute("SELECT name FROM layer WHERE scope = ? ORDER BY name", ("school",)))})')
+            lid, conts = lay[0], json.loads(lay[1])
+            c = claim(layer, rec, entry_key, sub_key)
+            if supersede is not None:
+                old = con.execute('SELECT id, container, seq, entry_key, sub_key, record FROM evidence WHERE id = ? AND layer_id = ?', (supersede, lid)).fetchone()
+                if not old:
+                    raise SourceOfTruth(f'{school}/{layer}: no decision row {supersede}')
+                eid, ci, seq, ek, sk = old[0], old[1], old[2], old[3], old[4]
+                c = claim(layer, rec, ek, sk)
+                con.execute('UPDATE evidence SET record = ? WHERE id = ?', (compact(rec), eid))
+            else:
+                if container is None:
+                    if len(conts) != 1:
+                        raise SourceOfTruth(f'{layer} has {len(conts)} containers; pass --container N')
+                    container = 0
+                kind = conts[container]['kind']
+                if kind == 'doc':
+                    raise SourceOfTruth(f'{layer} is a whole-document row: supersede it (--supersede ID), there is nothing to add to')
+                if kind == 'list' and (entry_key or sub_key):
+                    raise SourceOfTruth(f'{layer} is a list: no --entry-key/--sub-key')
+                if kind != 'list' and not entry_key:
+                    raise SourceOfTruth(f'{layer} is a map: --entry-key is required' + (' (and --sub-key)' if kind == 'map2' else ''))
+                if kind != 'list' and _find(con, layer, entry_key=entry_key, sub_key=sub_key if kind == 'map2' else None) and (kind == 'map' or sub_key):
+                    raise SourceOfTruth(f'{layer}: entry {entry_key!r} exists; supersede it (find its id with `find`)')
+                seq = (con.execute('SELECT MAX(seq) FROM evidence WHERE layer_id = ? AND container = ?', (lid, container)).fetchone()[0] or -1) + 1
+                ci, ek, sk = container, entry_key, sub_key
+                eid = con.execute('INSERT INTO evidence (school, layer_id, container, seq, entry_key, sub_key, person_key, claim_kind, facets, value, source_url, source_date, '
+                                  'source_kind, decided_by, decided_at, reviewed_by, review_ref, supersedes, record) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                                  (school, lid, ci, seq, ek, sk, c['person_key'], c['claim_kind'], c['facets'], c['value'], c['source_url'], c['source_date'], c['source_kind'],
+                                   c['decided_by'], c['decided_at'], c['reviewed_by'], c['review_ref'], c['supersedes'], compact(rec))).lastrowid
+            # provenance of this write: columns the record does not carry are filled from the arguments (the record stays exactly the file's entry)
+            con.execute('UPDATE evidence SET person_key = ?, claim_kind = ?, facets = ?, value = ?, source_url = ?, source_date = ?, source_kind = ?, '
+                        'decided_by = COALESCE(?, ?), decided_at = COALESCE(?, ?), reviewed_by = COALESCE(?, ?), review_ref = ?, supersedes = ? WHERE id = ?',
+                        (c['person_key'], c['claim_kind'], c['facets'], c['value'], c['source_url'] or (source if str(source).startswith('http') else None), c['source_date'], c['source_kind'],
+                         c['decided_by'], decided_by, c['decided_at'], now(), c['reviewed_by'], reviewed_by, c['review_ref'],
+                         c['supersedes'] or (f'evidence:{supersede}' if supersede is not None else None), eid))
+            con.execute('INSERT INTO write_log (evidence_id, action, at, decided_by, reviewed_by, source, note, old_record) VALUES (?,?,?,?,?,?,?,?)',
+                        (eid, 'supersede' if supersede is not None else 'add', now(), decided_by, reviewed_by, source, note, old[5] if supersede is not None else None))
+            # the layer hash follows the rendering, so check_view tells a store edit made by this API from any other
+            e = load_layers_con(con, sp)[layer]
+            text = render(e)
+            con.execute('UPDATE layer SET sha256 = ?, nbytes = ? WHERE layer_id = ?', (sha(text), len(text.encode()), lid))
+            con.execute('COMMIT')
+        except BaseException:
+            con.execute('ROLLBACK')
+            raise
+    return eid
+
+
+def load_layers_con(con, sp):
+    """load_layers on an open connection (inside a write transaction, so it sees the uncommitted rows)."""
+    out = {}
+    for lid, name, scope, skel, conts, order, style, sh, nbytes, verb, layout in con.execute(
+            'SELECT layer_id, name, scope, skeleton, containers, key_order, style, sha256, nbytes, verbatim, layout_text FROM layer'):
+        rows = [(ci, seq, ek, sk, json.loads(rec)) for ci, seq, ek, sk, rec in con.execute('SELECT container, seq, entry_key, sub_key, record FROM evidence WHERE layer_id = ?', (lid,))]
+        out[name] = dict(scope=scope, skeleton=None if skel is None else json.loads(skel), containers=json.loads(conts), order=None if order is None else json.loads(order),
+                         style=None if style is None else json.loads(style), sha=sh, nbytes=nbytes, verbatim=verb, layout=layout, rows=rows, have_desc=True)
+    return out
+
+
 def overlay(school, out, stores_dir, root=None, worktree=None, control=False):
     """An overlay code root (overlay_root.py) in which the school's reviewed files and the shared reviewed files are the exported ones
     (control: the root's own files, copied the same way, so a comparison differs only in where the bytes came from)."""
@@ -611,11 +807,16 @@ def overlay(school, out, stores_dir, root=None, worktree=None, control=False):
                 (Path(tmp) / rel).mkdir(parents=True)
                 for f in layer_files(root / rel):
                     shutil.copyfile(f, Path(tmp) / rel / f.name)
+        elif source_of(school) == 'store':   # store-sourced: only the school's own files come from its store; the shared files stay the root's
+            d = Path(tmp) / 'hierarchy' / school / 'reviewed'
+            d.mkdir(parents=True)
+            for name, text in rendered(school, stores_dir).items():
+                (d / name).write_text(text)
         else:
             export_files([store_path(s, stores_dir) for s in schools + [SHARED]], tmp)
         n = 0
         for src, rel in ((Path(tmp) / 'hierarchy' / school / 'reviewed', Path('hierarchy') / school / 'reviewed'), (Path(tmp) / 'hierarchy' / 'reviewed', Path('hierarchy') / 'reviewed')):
-            for f in sorted(src.glob('*.json')):
+            for f in sorted(src.glob('*.json')) if src.is_dir() else []:
                 dst = Path(out) / rel / f.name
                 if dst.is_symlink() or dst.exists():
                     dst.unlink()
@@ -626,9 +827,60 @@ def overlay(school, out, stores_dir, root=None, worktree=None, control=False):
     return n
 
 
+def phase2(a, ap, root):
+    if a.cmd == 'flagged':
+        print('\n'.join(flagged()))
+        return 0
+    schools = a.schools or flagged()
+    if a.cmd == 'check':
+        bad = 0
+        staged = None
+        if a.staged:
+            staged = set(subprocess.run(['git', '-C', str(root), 'diff', '--cached', '--name-only', '--diff-filter=ACMRD'], capture_output=True, text=True, timeout=60).stdout.split())
+        for s in schools:
+            if source_of(s) != 'store':
+                print(f'{s}: json-sourced (nothing to check)')
+                continue
+            if staged is not None and not any(x.startswith(f'hierarchy/{s}/reviewed/') for x in staged):
+                continue
+            probs = check_view(s, root, a.store_dir, staged)
+            bad += len(probs)
+            print('\n'.join(probs) if probs else f'{s}: the JSON view matches the store ({len(rendered(s, a.store_dir))} files)')
+        return 1 if bad else 0
+    if len(schools) != 1:
+        ap.error(f'{a.cmd} takes one school')
+    s = schools[0]
+    try:
+        if a.cmd == 'sync':
+            if source_of(s) != 'store':
+                ap.error(f'{s} is not store-sourced')
+            ch = sync(s, root, a.store_dir)
+            print(f'{s}: {len(ch)} reviewed files rewritten from the store' + (': ' + ', '.join(ch) if ch else ''))
+            return 0
+        if not a.layer:
+            ap.error('--layer')
+        if a.cmd == 'find':
+            for i, c, q, ek, sk, rec in find(s, a.layer, a.key, a.text, a.store_dir):
+                print(json.dumps(dict(id=i, container=c, seq=q, entry_key=ek, sub_key=sk, record=rec), ensure_ascii=False))
+            return 0
+        text = a.record if a.record is not None else Path(a.record_file).read_text() if a.record_file else None
+        if text is None:
+            ap.error('--record or --record-file')
+        eid = record(s, a.layer, json.loads(text), source=a.source, decided_by=a.decided_by, reviewed_by=a.reviewed_by, supersede=a.supersede,
+                     entry_key=a.entry_key, sub_key=a.sub_key, container=a.container, note=a.note, stores_dir=a.store_dir)
+        print(f'{s}/{a.layer}: decision row {eid} {"superseded" if a.supersede is not None else "added"}')
+        if not a.no_sync:
+            ch = sync(s, root, a.store_dir)
+            print(f'JSON view rewritten under {school_dir(s, root)}: {", ".join(ch) or "nothing changed"}; commit it on your branch (hook: hierarchy/{s}/reviewed is a store export)')
+        return 0
+    except SourceOfTruth as e:
+        print(f'refused: {e}', file=sys.stderr)
+        return 2
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('cmd', choices=['import', 'export', 'verify', 'overlay', 'coverage'])
+    ap.add_argument('cmd', choices=['import', 'export', 'verify', 'overlay', 'coverage', 'flagged', 'find', 'record', 'sync', 'check'])
     ap.add_argument('schools', nargs='*')
     ap.add_argument('--all', action='store_true')
     ap.add_argument('--store-dir', help='default $CS_ATLAS_EVIDENCE_DIR or the stores dir')
@@ -636,8 +888,26 @@ def main(argv=None):
     ap.add_argument('--root', help='code root to read the reviewed files from (default CS_ATLAS_CODE)')
     ap.add_argument('--json', help='write the report here')
     ap.add_argument('--control', action='store_true', help='overlay: copy the root\'s own reviewed files instead of the exported ones')
+    ap.add_argument('--layer', help='find/record: the reviewed file name, e.g. census-additions.json')
+    ap.add_argument('--key', help='find: entry key or person name')
+    ap.add_argument('--text', help='find: substring of the record')
+    ap.add_argument('--record', help='record: the entry as JSON (exactly as the reviewed file holds it)')
+    ap.add_argument('--record-file', help='record: a file holding that JSON')
+    ap.add_argument('--supersede', type=int, metavar='ID', help='record: replace the row with this evidence id (from `find`)')
+    ap.add_argument('--entry-key', help='record, map layers: the new entry\'s key')
+    ap.add_argument('--sub-key', help='record, school-keyed maps: the inner key')
+    ap.add_argument('--container', type=int)
+    ap.add_argument('--source', help='record: URL or file reference supporting the decision')
+    ap.add_argument('--decided-by')
+    ap.add_argument('--reviewed-by')
+    ap.add_argument('--note')
+    ap.add_argument('--no-sync', action='store_true', help='record: do not rewrite the JSON view afterwards')
+    ap.add_argument('--staged', action='store_true', help='check: compare the git-index content of the staged reviewed files (pre-commit)')
     a = ap.parse_args(argv)
     root = code_root(a.root)
+    if a.cmd in ('flagged', 'find', 'record', 'sync', 'check'):
+        # the JSON view is code: write and compare the checkout this tool runs from (your worktree), never the main checkout by accident
+        return phase2(a, ap, Path(a.root) if a.root else Path(__file__).resolve().parents[1])
     schools = school_ids(root) if a.all else a.schools
     if not schools:
         ap.error('name a school or pass --all')

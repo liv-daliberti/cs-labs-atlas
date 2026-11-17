@@ -25,6 +25,12 @@ openalex_excluded = []    # same-name institutions that are NOT the school (othe
 ror = ""                  # https://ror.org/<id> of the school
 ids_note = ""             # how the ids and the lineage were verified (API call, date)
 
+[evidence]
+# Where this school's reviewed decisions are written (docs/EVIDENCE-STORE.md). "json" (default): the reviewed JSON files in
+# hierarchy/<key>/reviewed/ are the source. "store": <stores>/<key>/evidence.sqlite is; the JSON files are an export
+# (evidence_store.py sync) and a direct edit to them is refused by the pre-commit hook, `evidence_store.py check` and atlas doctor.
+source = "json"
+
 [web]
 domains = []              # web domains of the school (the affiliation regex's domain part comes from these)
 email_domains = []

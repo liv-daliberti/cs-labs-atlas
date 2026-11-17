@@ -87,3 +87,14 @@ def test_school_report_is_read_only_and_distinguishes_absent_school(tmp_path, mo
     (site / 'index.json').write_text('{"schools": [{"id": "u"}]}')
     report = D.school_report('u', tmp_path / 'site', {}, 'off')
     assert report['counts'] is None and report['errors']
+
+
+def test_evidence_view_is_none_for_a_json_sourced_school_and_reports_problems_for_a_store_one(monkeypatch):
+    import evidence_store as E
+    monkeypatch.setattr(E, 'source_of', lambda s: 'json')
+    assert D.evidence_view('x') is None
+    monkeypatch.setattr(E, 'source_of', lambda s: 'store')
+    monkeypatch.setattr(E, 'check_view', lambda s, root=None: ['x/a.json: differs'])
+    assert D.evidence_view('x') == dict(source='store', problems=['x/a.json: differs'])
+    monkeypatch.setattr(E, 'check_view', lambda s, root=None: (_ for _ in ()).throw(E.SourceOfTruth('no store')))
+    assert 'not measured' in D.evidence_view('x')['problems'][0]

@@ -25,6 +25,7 @@ COMMANDS = {
     'ledger':     ('py', 'fulltext-push/unavailable_ledger.py', 'the unavailability ledger: atlas ledger <school> [...]'),
     'audit':      ('py', 'tools/chain_audit.py', 'the chain audit'),
     'evidence':   ('py', 'tools/evidence_check.py', 'the build-time evidence check'),
+    'evidence-store': ('py', 'tools/evidence_store.py', 'per-school evidence store: atlas evidence-store record|find|sync|check|import|export|verify <school> (docs/EVIDENCE-STORE.md)'),
     'validate':   ('py', 'tools/validate.py', 'data files against schemas/: atlas validate [school ...] [--shared --reviewed --tree --export]'),
     'regression': ('py', 'tools/build_regression.py', 'build regression: snapshot | check --before <counts.json>'),
     'make-release': ('py', 'tools/make_release.py', 'cut just the release (refuses on uncommitted code or failed stages)'),

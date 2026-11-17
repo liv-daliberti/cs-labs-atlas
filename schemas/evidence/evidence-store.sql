@@ -47,3 +47,18 @@ CREATE TABLE IF NOT EXISTS evidence (
 );
 CREATE INDEX IF NOT EXISTS evidence_person ON evidence (school, person_key);
 CREATE INDEX IF NOT EXISTS evidence_kind ON evidence (claim_kind);
+
+-- Phase 2 (R3a): who wrote a decision into a store that is the school's source of truth (charter [evidence] source = "store").
+-- One row per add or supersede through evidence_store.py record; `old_record` is the record a supersede replaced (the history).
+-- Imports never write here; an import of a flagged school is refused.
+CREATE TABLE IF NOT EXISTS write_log (
+  id           INTEGER PRIMARY KEY,
+  evidence_id  INTEGER NOT NULL,
+  action       TEXT NOT NULL CHECK (action IN ('add', 'supersede')),
+  at           TEXT NOT NULL,            -- UTC, ISO 8601
+  decided_by   TEXT NOT NULL,
+  reviewed_by  TEXT,
+  source       TEXT NOT NULL,            -- URL or file reference that supports the decision
+  note         TEXT,
+  old_record   TEXT                      -- supersede only: the replaced record (JSON)
+);
