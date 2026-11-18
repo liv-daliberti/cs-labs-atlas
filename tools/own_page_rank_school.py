@@ -44,7 +44,7 @@ def main(key, recall, unit, limit=10**9):
         if 'csr' not in (cand.get('srcs') or []) or len(cand.get('dblp') or []) != 1:
             continue
         for h in cand.get('home') or []:
-            url = h if h.startswith('http') else 'http://' + h
+            url = h if h.startswith('http') else 'https://' + h
             host = re.sub(r'^https?://', '', url).split('/')[0].split(':')[0].lower()
             if not any(host == d or host.endswith('.' + d) for d in doms) or S.host_use(key, host) != 'live':
                 continue
