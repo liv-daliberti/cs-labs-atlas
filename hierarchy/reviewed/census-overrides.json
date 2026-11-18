@@ -4054,7 +4054,7 @@
   },
   "Michael Sipser": {
    "no_papers": true,
-   "why_no_papers": "2026-11-04 (reviewed): Professor, CSAIL, listed 2016-2026. His DBLP person s/MichaelSipser holds 50 records, none dated 2016 or later. His OpenAlex id A5112131750 (the only id of that name with works at MIT) holds six works 2016-2021, none with an institution: the annual 'Report to the President' of the School of Science for 2016-2020 (he was Dean of Science) and a 2021 international edition of his textbook 'Introduction to the Theory of Computation'. None carries an affiliation, so none has a school basis (R-PAP-12 needs an advisee on the byline).",
+   "why_no_papers": "PI-level source review 2026-11-18: zero accepted research papers in the retained 2016-2026 corpus. The exact official DBLP person s/MichaelSipser has 50 records, latest year 2013. The full August2026 owned CV lists no post2013 research paper; the textbook editions listed there are 1997/2005/2012. Retained OpenAlex in-window hits are school administrative reports, later textbook editions and unrelated records, not a demonstrated new MIT research paper. This is a bounded source/corpus result, not proof of no unlisted output.",
    "no_papers_evidence": [
     {
      "url": "https://web.archive.org/web/20160329035244id_/https://www.csail.mit.edu/csaildirectoryoutput/pi",
@@ -4062,9 +4062,48 @@
      "quote": "Michael Sipser Professor",
      "observed": "2016-03-29",
      "kind": "dept_listing:CSAIL"
+    },
+    {
+     "url": "https://math.mit.edu/~sipser/CV2026.pdf",
+     "sha256": "39ded7b4fcec30cc92a9e9dabaf3fb7bb08700751c94dbc8b11760a029aa4fe4",
+     "quote": "Z. Remscrim and M. Sipser, “AC0 Pseudorandomness of Natural Operations,” Electronic Colloquium on Computational Complexity, TR13-088, 2013.",
+     "observed": "2026-11-18T00:42:44.637803+00:00"
     }
    ],
    "periods": [
+    {
+     "id": "sipser_mit_professor_198907_ongoing",
+     "start": "1989-07",
+     "end": null,
+     "asof": "2026-11-18",
+     "datePrecision": "month",
+     "title": "Professor of Applied Mathematics",
+     "evidence": [
+      {
+       "url": "https://math.mit.edu/~sipser/CV2026.pdf",
+       "sha256": "39ded7b4fcec30cc92a9e9dabaf3fb7bb08700751c94dbc8b11760a029aa4fe4",
+       "quote": "Professor of Applied Mathematics (7/89–present).",
+       "observed": "2026-11-18T00:42:44.637803+00:00"
+      }
+     ],
+     "note": "PI-owned August 2026 CV states professor 7/89-present. This explicitly covers the entire 2016-2026 atlas window; earlier assistant/associate ranks are retained in the raw CV, not flattened into this rank."
+    }
+   ],
+   "why_periods": "PI-owned CV supplies an explicit professor period covering 2016-2026; replaces lower-bound 2018 listing bridge.",
+   "dblp": [
+    "https://dblp.org/pid/s/MichaelSipser"
+   ],
+   "dblp_evidence": [
+    {
+     "url": "https://dblp.org/pid/s/MichaelSipser",
+     "dump": "dblp-2026-09-01.xml.gz",
+     "source": "hierarchy/raw/dblp-dump-persons.json.gz",
+     "sha256": "d4ce9f75117342fd6539974c7195bd64820ee049f867d1045f91b3afd744a159",
+     "quote": "Michael Sipser | no affiliation note | orcid -"
+    }
+   ],
+   "why_identity": "2026-11-11 (reviewed, mit-id-1111): DBLP person Michael Sipser is the only DBLP person of the name; its records include Goldwasser-Sipser Private Coins versus Public Coins and the P versus NP history; none dated 2016 or later, so no papers are attributed (existing no_papers review); OpenAlex id A5112131750 carries only unaffiliated works and is not bound",
+   "superseded_period_review": [
     {
      "id": "override_period_gaps_mit_michael_sipser",
      "start": "2018",
@@ -4118,21 +4157,7 @@
      "note": "Bridged from dated evidence for every year 2018-2026: listings, and for the gap years [2022, 2023, 2024, 2025] dated Wayback captures naming the PI with a professor title (hierarchy/mit/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
      "reviewed": "periods_school_gaps_20261030"
     }
-   ],
-   "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps).",
-   "dblp": [
-    "https://dblp.org/pid/s/MichaelSipser"
-   ],
-   "dblp_evidence": [
-    {
-     "url": "https://dblp.org/pid/s/MichaelSipser",
-     "dump": "dblp-2026-09-01.xml.gz",
-     "source": "hierarchy/raw/dblp-dump-persons.json.gz",
-     "sha256": "d4ce9f75117342fd6539974c7195bd64820ee049f867d1045f91b3afd744a159",
-     "quote": "Michael Sipser | no affiliation note | orcid -"
-    }
-   ],
-   "why_identity": "2026-11-11 (reviewed, mit-id-1111): DBLP person Michael Sipser is the only DBLP person of the name; its records include Goldwasser-Sipser Private Coins versus Public Coins and the P versus NP history; none dated 2016 or later, so no papers are attributed (existing no_papers review); OpenAlex id A5112131750 carries only unaffiliated works and is not bound"
+   ]
   },
   "Daniel Sanchez Martin": {
    "pi_basis": {
@@ -5409,7 +5434,36 @@
      "sha256": "e03ccdf65c92ef03fb6fd3e5fb7578aaa4c50150a495173625a605b1454d212f",
      "quote": "Zana Buçinca | no affiliation note | orcid -"
     }
-   ]
+   ],
+   "aliases": [
+    "Zana Buçinca"
+   ],
+   "periods": [
+    {
+     "id": "bucinca_mit_fall_2026_ongoing",
+     "start": "2026 (Fall)",
+     "end": null,
+     "asof": "2026-11-18",
+     "datePrecision": "season",
+     "title": "Assistant Professor",
+     "evidence": [
+      {
+       "url": "https://mitsloan.mit.edu/centers-initiatives/institute-work-and-employment-research/bucinca-to-join-iwer-faculty",
+       "sha256": "481a93272c2a7f68bd5443f40527d5d8a7740ad291dbea415a5096d08ba23439",
+       "quote": "will be joining the faculty of the MIT Institute for Work and Employment Research (IWER) in the fall of 2026",
+       "observed": "2026-11-18T00:42:53.474914+00:00"
+      },
+      {
+       "url": "https://zbucinca.github.io/",
+       "sha256": "fd2438be34bf8326e363947078b11638cc14ec194094692bbea354d2fa27e149",
+       "quote": "I’m an Assistant Professor at MIT, with a shared appointment in the Sloan School of Management and the Department of Electrical Engineering and Computer Science.",
+       "observed": "2026-11-18T00:42:56.845359+00:00"
+      }
+     ],
+     "note": "Official Sloan Feb2026 announcement gives Fall2026 entry, confirmed current by the owned page/CV and school directory. Preserve seasonal precision; no exact employment day inferred."
+    }
+   ],
+   "why_periods": "Official Sloan announcement states Fall2026; current owned homepage and CV confirm the MIT shared appointment. Pre2026 Harvard/Microsoft work is not imported as MIT faculty output."
   },
   "Mitchell Gordon": {
    "openalex": [

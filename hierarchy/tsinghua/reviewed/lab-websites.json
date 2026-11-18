@@ -2657,10 +2657,10 @@
   },
   {
    "pi": "Chen Binyi",
-   "status": "reviewed_absence",
-   "coverage": "none",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://chancharles92.github.io/ was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+   "status": "none_found",
+   "coverage": "website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Both official IIIS profiles visibly print Personal homepage / 个人主页 followed by this exact URL. The field is plain visible text, not an HTML anchor. The owned page independently names Binyi Chen as a current IIIS assistant professor and provides the bibliography; no student roster is published.",
    "checks": [
     {
      "source": "school_profile_page",
@@ -2668,8 +2668,53 @@
      "at": "2026-11-10T00:00:00",
      "result": "ok",
      "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+    },
+    {
+     "source": "pi_level_source_review",
+     "url": "https://chancharles92.github.io/",
+     "at": "2026-11-18",
+     "result": "ok",
+     "sha256": "9aa51592c0866023b19bf9fa3419733cbd0f9ae4c70470e5d42fe7bc62593296",
+     "quote": "I am an assistant professor at Tsinghua University Institute for Interdisciplinary Information Science (IIIS)"
     }
-   ]
+   ],
+   "superseded_pi_level_website_review": {
+    "pi": "Chen Binyi",
+    "status": "reviewed_absence",
+    "coverage": "none",
+    "reason_code": "profile_only_no_homepage",
+    "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://chancharles92.github.io/ was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists."
+   },
+   "url": "https://chancharles92.github.io/",
+   "sha256": "9aa51592c0866023b19bf9fa3419733cbd0f9ae4c70470e5d42fe7bc62593296",
+   "kind": "pi_homepage",
+   "pubs_page": "https://chancharles92.github.io/",
+   "students_page_status": "no_people_section",
+   "papers_page_status": "audited",
+   "found_via": "official_profile_text_url",
+   "listed_on": "https://iiis.tsinghua.edu.cn/en/People/Faculty/chenbinyi_01.htm",
+   "official_link_status": "recorded",
+   "official_link_basis": "literal_visible_profile_url",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_text_url",
+     "on": "https://iiis.tsinghua.edu.cn/en/People/Faculty/chenbinyi_01.htm",
+     "url": "https://chancharles92.github.io/",
+     "linked_url": "https://chancharles92.github.io/",
+     "quote": "Personal homepage https://chancharles92.github.io/",
+     "source_sha256": "b9c7d16e6071f94c50b176f43e20ec3cb704da6327a83510bca01297f56481f0",
+     "at": "2026-11-18",
+     "provenance": "literal_visible_profile_url_no_html_anchor"
+    }
+   ],
+   "evidence": {
+    "url": "https://chancharles92.github.io/",
+    "sha256": "9aa51592c0866023b19bf9fa3419733cbd0f9ae4c70470e5d42fe7bc62593296",
+    "quote": "I am an assistant professor at Tsinghua University Institute for Interdisciplinary Information Science (IIIS)",
+    "observed": "2026-11-18T00:43:19.786059+00:00"
+   },
+   "checked_at": "2026-11-18",
+   "reviewed_by": "codex-pi-batch3-1118"
   },
   {
    "pi": "Du Tao",

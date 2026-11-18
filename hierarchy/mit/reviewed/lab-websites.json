@@ -23806,8 +23806,8 @@
   {
    "pi": "Zana Bucinca",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The department profile (https://www.eecs.mit.edu/people/zana-bucinca/, read 2026-10-30) and the department listing link no personal or lab website for this PI; the site a search found is kept in website_note and is not reached from any official page.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Official Sloan article and official MIT HCI directory both link the owned homepage. Official HCI roster and the named student-owned page supply the missing PhD identity; retain co-advised postdoc separately.",
    "audited_at": "2026-11-11T02:12:39+00:00",
    "checks": [
     {
@@ -23904,6 +23904,14 @@
      "result": "does_not_name_pi_kept_strong_source",
      "via": "school_profile_link",
      "sha256": "14e8e92d2c159b3f5c84710aa93a81017a143c1454f34e6b179e9993196b17dc"
+    },
+    {
+     "source": "pi_level_source_review",
+     "url": "https://zbucinca.github.io/",
+     "at": "2026-11-18",
+     "result": "ok",
+     "sha256": "fd2438be34bf8326e363947078b11638cc14ec194094692bbea354d2fa27e149",
+     "quote": "I’m an Assistant Professor at MIT, with a shared appointment in the Sloan School of Management and the Department of Electrical Engineering and Computer Science."
     }
    ],
    "places_checked": [
@@ -23916,10 +23924,10 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-10-30T19:27:26+00:00",
-   "students_page_status": "no_people_section",
+   "checked_at": "2026-11-18",
+   "students_page_status": "audited",
    "papers_page_status": "audited",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "website_note": {
     "replaced_url": "https://mitcommlab.mit.edu/eecs/",
@@ -23932,7 +23940,68 @@
     "why": "no stored or live official page links this site (reviewed policy, reversible)"
    },
    "reason_type": "search_no_eligible_site",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "superseded_pi_level_website_review": {
+    "pi": "Zana Bucinca",
+    "status": "none_found",
+    "reason_code": "profile_only_no_homepage",
+    "reason": "The department profile (https://www.eecs.mit.edu/people/zana-bucinca/, read 2026-10-30) and the department listing link no personal or lab website for this PI; the site a search found is kept in website_note and is not reached from any official page.",
+    "audited_at": "2026-11-11T02:12:39+00:00",
+    "places_checked": [
+     "candidate_site:does_not_name_pi_kept_strong_source",
+     "dblp_person_url:no_homepage_url",
+     "department_listing:ok",
+     "orcid_researcher_urls:no_urls",
+     "prior_labpage_pass_2026-10-22:ok",
+     "prior_labpage_pass_2026-10-22:recorded_lab_site",
+     "school_profile:ok",
+     "school_profile_link:listed"
+    ],
+    "checked_at": "2026-10-30T19:27:26+00:00",
+    "students_page_status": "no_people_section",
+    "papers_page_status": "audited",
+    "coverage": "reason",
+    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+    "website_note": {
+     "replaced_url": "https://mitcommlab.mit.edu/eecs/",
+     "replaced_sha256": null,
+     "replaced_kind": null,
+     "found_via": null,
+     "people_page": null,
+     "alumni_page": null,
+     "pubs_page": null,
+     "why": "no stored or live official page links this site (reviewed policy, reversible)"
+    },
+    "reason_type": "search_no_eligible_site",
+    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
+   },
+   "url": "https://zbucinca.github.io/",
+   "sha256": "fd2438be34bf8326e363947078b11638cc14ec194094692bbea354d2fa27e149",
+   "kind": "pi_homepage",
+   "pubs_page": "https://zbucinca.github.io/publications/",
+   "people_page": "https://hci.csail.mit.edu/",
+   "found_via": "school_profile_link",
+   "listed_on": "https://mitsloan.mit.edu/centers-initiatives/institute-work-and-employment-research/bucinca-to-join-iwer-faculty",
+   "official_link_status": "recorded",
+   "official_link_basis": "literal_html_href",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "on": "https://mitsloan.mit.edu/centers-initiatives/institute-work-and-employment-research/bucinca-to-join-iwer-faculty",
+     "url": "https://zbucinca.github.io/",
+     "linked_url": "https://zbucinca.github.io/",
+     "anchor": "Learn more about Buçinca and her research",
+     "source_sha256": "481a93272c2a7f68bd5443f40527d5d8a7740ad291dbea415a5096d08ba23439",
+     "at": "2026-11-18"
+    }
+   ],
+   "evidence": {
+    "url": "https://zbucinca.github.io/",
+    "sha256": "fd2438be34bf8326e363947078b11638cc14ec194094692bbea354d2fa27e149",
+    "quote": "I’m an Assistant Professor at MIT, with a shared appointment in the Sloan School of Management and the Department of Electrical Engineering and Computer Science.",
+    "observed": "2026-11-18T00:42:56.845359+00:00"
+   },
+   "reviewed_by": "codex-pi-batch3-1118"
   },
   {
    "pi": "Mohsen Ghaffari",
@@ -29131,7 +29200,7 @@
    "pi": "Michael Sipser",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason": "Owned homepage plus full CV are the lab-page fallback. CV includes supervised PhD, masters and bachelors and the research bibliography; no current student roster or separate lab site is claimed.",
    "audited_at": "2026-11-11T02:14:01+00:00",
    "checks": [
     {
@@ -29198,6 +29267,14 @@
      "source_sha256": "fece357e5a534df1a0d8afaeadf29d97867dfafb1fecea89a02a20e11885f576",
      "source_capture_url": null,
      "provenance": "recovered_from_cached_profile_html"
+    },
+    {
+     "source": "pi_level_source_review",
+     "url": "https://math.mit.edu/~sipser/index.html",
+     "at": "2026-11-18",
+     "result": "ok",
+     "sha256": "75f15361293b582605731039e82ebb068758ee5153bb36924c85b9d48f6dcc1a",
+     "quote": "Michael Sipser is the Donner Professor of Mathematics and member of the Computer Science and Artificial Intelligence Laboratory at MIT."
     }
    ],
    "places_checked": [
@@ -29207,21 +29284,22 @@
     "prior_labpage_pass_2026-10-22:ok",
     "prior_labpage_pass_2026-10-22:recorded_lab_site"
    ],
-   "checked_at": "2026-10-30T19:32:31+00:00",
-   "students_page_status": "no_people_section",
-   "papers_page_status": "no_pubs_page",
-   "url": "http://www-math.mit.edu/~sipser/",
+   "checked_at": "2026-11-18",
+   "students_page_status": "audited",
+   "papers_page_status": "audited",
+   "url": "https://math.mit.edu/~sipser/index.html",
    "kind": "pi_homepage",
    "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
+   "alumni_page": "https://math.mit.edu/~sipser/CV2026.pdf",
+   "pubs_page": "https://math.mit.edu/~sipser/CV2026.pdf",
    "found_via": "prior_labpage_pass_2026-10-22",
    "listed_on": "https://www.csail.mit.edu/person/michael-sipser",
    "sha256": "75f15361293b582605731039e82ebb068758ee5153bb36924c85b9d48f6dcc1a",
    "evidence": {
-    "url": "http://www-math.mit.edu/~sipser/",
+    "url": "https://math.mit.edu/~sipser/index.html",
     "sha256": "75f15361293b582605731039e82ebb068758ee5153bb36924c85b9d48f6dcc1a",
-    "quote": "Michael Sipser Donner Professor of Mathematics Massachusetts Institute of"
+    "quote": "Michael Sipser is the Donner Professor of Mathematics and member of the Computer Science and Artificial Intelligence Laboratory at MIT.",
+    "observed": "2026-11-18T00:42:41.606668+00:00"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -29242,7 +29320,58 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "michael sipser donner professor of mathematics massachusetts institute of technology cam"
+   "verification_quote": "michael sipser donner professor of mathematics massachusetts institute of technology cam",
+   "superseded_pi_level_website_review": {
+    "pi": "Michael Sipser",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "reason": "Captured PI homepage used as the lab-page fallback.",
+    "audited_at": "2026-11-11T02:14:01+00:00",
+    "places_checked": [
+     "dblp_person_url:no_homepage_url",
+     "department_listing:ok",
+     "department_listing:robots_disallowed",
+     "prior_labpage_pass_2026-10-22:ok",
+     "prior_labpage_pass_2026-10-22:recorded_lab_site"
+    ],
+    "checked_at": "2026-10-30T19:32:31+00:00",
+    "students_page_status": "no_people_section",
+    "papers_page_status": "no_pubs_page",
+    "url": "http://www-math.mit.edu/~sipser/",
+    "kind": "pi_homepage",
+    "people_page": null,
+    "alumni_page": null,
+    "pubs_page": null,
+    "found_via": "prior_labpage_pass_2026-10-22",
+    "listed_on": "https://www.csail.mit.edu/person/michael-sipser",
+    "sha256": "75f15361293b582605731039e82ebb068758ee5153bb36924c85b9d48f6dcc1a",
+    "evidence": {
+     "url": "http://www-math.mit.edu/~sipser/",
+     "sha256": "75f15361293b582605731039e82ebb068758ee5153bb36924c85b9d48f6dcc1a",
+     "quote": "Michael Sipser Donner Professor of Mathematics Massachusetts Institute of"
+    },
+    "official_link_status": "recorded",
+    "official_link_evidence": [
+     {
+      "source": "school_profile_link",
+      "url": "http://www-math.mit.edu/~sipser/",
+      "on": "https://www.csail.mit.edu/person/michael-sipser",
+      "at": "2026-10-30T19:32:31+00:00",
+      "result": "listed",
+      "anchor": "Website",
+      "linked_url": "http://www-math.mit.edu/~sipser/",
+      "source_sha256": "fece357e5a534df1a0d8afaeadf29d97867dfafb1fecea89a02a20e11885f576",
+      "source_capture_url": null,
+      "provenance": "recovered_from_cached_profile_html"
+     }
+    ],
+    "coverage": "website",
+    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+    "evidence_gaps": [],
+    "verified": true,
+    "verification_quote": "michael sipser donner professor of mathematics massachusetts institute of technology cam"
+   },
+   "reviewed_by": "codex-pi-batch3-1118"
   },
   {
    "pi": "Russ Tedrake",
