@@ -17,7 +17,7 @@ def card(name, title='Professor of Computer Science', href='/faculty/example/'):
 @pytest.fixture
 def live_setup(tmp_path, monkeypatch):
     paths = {name: tmp_path / name for name in ('live-listing-sources.json', 'school-captures.sqlite',
-                                              'listings-captures.sqlite', 'rows.json', 'coverage.json')}
+                                              'listings-captures.sqlite', 'rows.json', 'coverage.json', 'rows-coverage-only.json')}
     monkeypatch.setattr(R.P, 'data', lambda name, key=None: paths[name])
     monkeypatch.setattr(R.P, 'data_w', lambda name, key=None: paths[name])
     cfg = {'window': [2016, 2026], 'departments': [{'code': 'CS', 'title_match': 'Computer Science',

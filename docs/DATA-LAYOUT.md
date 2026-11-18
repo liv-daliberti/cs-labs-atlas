@@ -226,6 +226,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `BUILD-REGRESSION.md` | derived | `hierarchy/BUILD-REGRESSION.md` | `hierarchy/derived/BUILD-REGRESSION.md` | - | <100MB |
 | `SCHOOL-PROFILES.md` | derived | `hierarchy/SCHOOL-PROFILES.md` | `hierarchy/derived/SCHOOL-PROFILES.md` | - | <100MB |
 | `LABPAGE-AUDIT.md` | derived | `hierarchy/LABPAGE-AUDIT.md` | `hierarchy/derived/LABPAGE-AUDIT.md` | - | <100MB |
+| `rows-coverage-only.json` | derived | `listings/{school}/rows-coverage-only.json` | `listings/{school}/derived/rows-coverage-only.json` | - | <100MB |
 | `rows.json` | derived | `listings/{school}/rows.json` | `listings/{school}/derived/rows.json` | - | <100MB |
 | `pi-basis-evidence.json` | reviewed | `hierarchy/{school}/pi-basis-evidence.json` | `hierarchy/{school}/reviewed/pi-basis-evidence.json` | - | <100MB |
 | `dblp-ids.json` | derived | `hierarchy/{school}/dblp-ids.json` | `hierarchy/{school}/derived/dblp-ids.json` | - | <100MB |
