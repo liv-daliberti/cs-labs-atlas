@@ -183,11 +183,19 @@ def reviewed_source_names(key, rows, doc):
             canonical_names.add(name)
             for ev in item['evidence']:
                 saved = c.execute('select http_status,sha256,raw_zlib,text from captures where capture_url=?', (ev['url'],)).fetchone()
+                if not saved:   # a reviewed current (live) listing page lives in school-captures.sqlite's live table (tools/live_listing_manifest.py)
+                    with sqlite3.connect(P.data('school-captures.sqlite', key).resolve().as_uri() + '?mode=ro', uri=True) as lc:
+                        saved = lc.execute('select status,sha256,raw_zlib,text from live where url=?', (ev['url'],)).fetchone()
                 if not saved or saved[0] != 200 or not saved[2] or saved[1] != ev['sha256'] or hashlib.sha256(zlib.decompress(saved[2])).hexdigest() != ev['sha256']:
                     raise ValueError('source-name evidence hash mismatch: ' + ev['url'])
                 html = wb.text(body(saved[2]))
                 _, entries = LF.parse(html, ev['format'])
                 flat = ' '.join((saved[3] or '').split())
+                if '/web/' not in ev['url']:   # a live page: the flat text listing_rows.live_listing_rows builds from the raw bytes
+                    from school_web import extract as html_extract
+                    flat = ' '.join(' '.join(t for _, t in html_extract.blocks(zlib.decompress(saved[2]), 'text/html', ev['url'])).split())
+                if '/web/' not in ev['url']:   # a live page's rows carry absolute profile urls (listing_rows.live_listing_rows)
+                    entries = [dict(e, profile=urllib.parse.urljoin(ev['url'], e['profile'])) if e.get('profile') else e for e in entries]
                 matches = [e for e in entries if e['name_listed'] == ev['name_listed']
                            and pointer(e.get('profile')) == pointer(ev.get('profile'))
                            and quote_of(flat, e, html) == ev['quote']]

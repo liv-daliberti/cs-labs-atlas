@@ -100,12 +100,15 @@ def main(key, write):
     entries, split_names, attached_total, skipped = [], 0, 0, []
     c = sqlite3.connect(db.resolve().as_uri() + '?mode=ro', uri=True)
     cache = {}
+    lc = sqlite3.connect(P.data('school-captures.sqlite', key).resolve().as_uri() + '?mode=ro', uri=True)
     cfg = S.get(key)
     eras = [(sl['slot'], sl.get('from') or '0', sl.get('to') or '9', sl.get('format')) for d in S.listing_units(cfg) for sl in d.get('listings') or []]
 
     def html_of(url):
         if url not in cache:
             row = c.execute('select http_status,sha256,raw_zlib from captures where capture_url=?', (url,)).fetchone()
+            if not row:   # a current (live) listing page (tools/live_listing_manifest.py)
+                row = lc.execute('select status,sha256,raw_zlib from live where url=?', (url,)).fetchone()
             cache[url] = (row, wb.text(body(row[2])) if row and row[2] else '')
         return cache[url]
 
@@ -121,7 +124,7 @@ def main(key, write):
                     skipped.append((name, r['capture_url']))
                     continue
                 m = re.search(r'/web/(\d{14})id_/', r['capture_url'])
-                named = [f for sl, a, b, f in eras if sl == r['slot'] and f and m and a <= m.group(1)[:8] <= b]
+                named = [f for sl, a, b, f in eras if sl == r['slot'] and f and (not m or a <= m.group(1)[:8] <= b)]   # a live page has no Wayback stamp: the slot's format
                 fmt, es = LF.parse(html, named[0] if named else None)
                 if not es and named:
                     fmt, es = LF.parse(html)
@@ -129,7 +132,16 @@ def main(key, write):
                 if hashlib.sha256(zlib.decompress(row[2])).hexdigest() != r['sha256']:
                     skipped.append((name, r['capture_url']))
                     continue
-                flat = ' '.join((c.execute('select text from captures where capture_url=?', (r['capture_url'],)).fetchone()[0] or '').split())
+                trow = c.execute('select text from captures where capture_url=?', (r['capture_url'],)).fetchone()
+                if trow:
+                    flat = ' '.join((trow[0] or '').split())
+                else:   # a live page: the flat text listing_rows.live_listing_rows builds from the raw bytes
+                    from school_web import extract as html_extract
+                    lrow = lc.execute('select raw_zlib, content_type from live where url=?', (r['capture_url'],)).fetchone()
+                    flat = ' '.join(' '.join(t for _, t in html_extract.blocks(zlib.decompress(lrow[0]), lrow[1], r['capture_url'])).split())
+                if not m:   # a live page's rows carry absolute profile urls (listing_rows.live_listing_rows)
+                    import urllib.parse
+                    es = [dict(e, profile=urllib.parse.urljoin(r['capture_url'], e['profile'])) if e.get('profile') else e for e in es]
                 ok = [e for e in es if e['name_listed'] == r['name_listed'] and C.profile_key(e.get('profile')) == C.profile_key(r.get('profile'))
                       and (e.get('profile') or None) == (r.get('profile') or None) and quote_of(flat, e, html) == r['quote']]
                 if len({(e['name_listed'], C.profile_key(e.get('profile')) or e.get('profile'), quote_of(flat, e, html)) for e in ok}) != 1:
