@@ -1,7 +1,7 @@
 {
  "school": "gatech",
  "against_release": "2026-11-07",
- "decided": "2026-11-18, owner rules applied by the coordinator (Q-0339)",
+ "decided": "2026-11-18, owner rules applied by the coordinator (Q-0339, Q-0350)",
  "classes": [
   {
    "id": "redated_by_venue_version",
@@ -2302,6 +2302,272 @@
       "Georgia State University",
       "Center for Translational Research in Neuroimaging and Data Science"
      ]
+    }
+   ]
+  },
+  {
+   "id": "native_paper_rule",
+   "rule": "The current build excludes the paper under a recorded owner paper rule (named per row with its evidence: the 2026-11-08 paper-delta adjudication where it accepted the native exclusion, else the 2026-11-18 build trace). A coverage gap is not a proven departure: the rows are not removed from the PI, only this paper is not admitted by the rule.",
+   "rows": [
+    {
+     "pi": "Arijit Raychowdhury",
+     "oa": "https://openalex.org/W2902527876",
+     "labId": "atl:l:gatech:arijit-raychowdhury",
+     "atlasWorkId": "atl:w:ab6573f493cf",
+     "title": "MRAM and FinFETs team up",
+     "year": 2018,
+     "rule": "R-PAP-17/18 not papers: OpenAlex type other (NOT_PAPERS)",
+     "evidence": "scratch/gatech-paper-delta-1108/removed-75-adjudication.json (2026-11-08 paper-delta review: accept native exclusion)"
+    },
+    {
+     "pi": "David A. Bader",
+     "oa": "https://openalex.org/W2963858523",
+     "labId": "atl:l:gatech:david-a-bader",
+     "atlasWorkId": "atl:w:f71deaf1231e",
+     "title": "Scalable Katz Ranking Computation in Large Static and Dynamic Graphs",
+     "year": 2018,
+     "rule": "R-PAP-01 (a) (2026-10-21, owner): the authorship must tie the paper to the school; the kept record carries no school affiliation for the PI",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits hit_without_school_affiliation on the kept record W2850868717"
+    },
+    {
+     "pi": "Dhruv Batra",
+     "oa": "https://openalex.org/W4387928475",
+     "labId": "atl:l:gatech:dhruv-batra",
+     "atlasWorkId": "atl:w:f9b4ae7b1bfe",
+     "title": "Habitat 3.0: A Co-Habitat for Humans, Avatars and Robots",
+     "year": 2023,
+     "rule": "R-PAP-01 (a) (2026-10-21, owner): the authorship must tie the paper to the school; the kept record carries no school affiliation for the PI",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits hit_without_school_affiliation"
+    },
+    {
+     "pi": "Edmond Chow",
+     "oa": "https://openalex.org/W2622632603",
+     "labId": "atl:l:gatech:edmond-chow",
+     "atlasWorkId": "atl:w:95eae1fc439a",
+     "title": "Asynchronous Decentralized Framework for Unit Commitment in Power Systems",
+     "year": 2017,
+     "rule": "R-PAP-01 (a) (2026-10-21, owner): the authorship must tie the paper to the school; the kept record carries no school affiliation for the PI",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits hit_without_school_affiliation"
+    },
+    {
+     "pi": "Eric Feron",
+     "oa": "https://openalex.org/W2979448444",
+     "labId": "atl:l:gatech:eric-feron",
+     "atlasWorkId": "atl:w:98bf361d458b",
+     "title": "Decentralized On-line Task Reallocation on Parallel Computing Architectures with Safety-Critical Applications",
+     "year": 2019,
+     "rule": "R-PAP-01 (a) (2026-10-21, owner): the authorship must tie the paper to the school; the kept record carries no school affiliation for the PI",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits hit_without_school_affiliation on the kept record W3159629651"
+    },
+    {
+     "pi": "Eric Gilbert",
+     "oa": "https://openalex.org/W2950035676",
+     "labId": "atl:l:gatech:eric-gilbert",
+     "atlasWorkId": "atl:w:34f447e3bdfe",
+     "title": "Credibility and Dynamics of Collective Attention",
+     "year": 2016,
+     "rule": "R-PAP-01 (a) (2026-10-21, owner): the authorship must tie the paper to the school; the kept record carries no school affiliation for the PI",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits hit_without_school_affiliation on the kept record W2565867633"
+    },
+    {
+     "pi": "Haomin Zhou",
+     "oa": "https://openalex.org/W2619093849",
+     "labId": "atl:l:gatech:haomin-zhou",
+     "atlasWorkId": "atl:w:408023efe684",
+     "title": "A discrete Schrodinger equation via optimal transport on graphs",
+     "year": 2017,
+     "rule": "R-PAP-01 (c) (2026-10-21, owner): the paper date falls outside the evidenced appointment",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits outside_appointment on the kept record W2963103933"
+    },
+    {
+     "pi": "Hongyuan Zha",
+     "oa": "https://openalex.org/W2898277748",
+     "labId": "atl:l:gatech:hongyuan-zha",
+     "atlasWorkId": "atl:w:c05b6d71b331",
+     "title": "A Jump Stochastic Differential Equation Approach for Influence Prediction on Information Propagation Networks",
+     "year": 2018,
+     "rule": "R-PAP-01 (a) (2026-10-21, owner): the authorship must tie the paper to the school; the kept record carries no school affiliation for the PI",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits hit_without_school_affiliation on the kept record W3117250502"
+    },
+    {
+     "pi": "Jianjun Shi",
+     "oa": "https://openalex.org/W6907510843",
+     "labId": "atl:l:gatech:jianjun-shi",
+     "atlasWorkId": "atl:w:9421d370b9dc",
+     "title": "SAGE: Stealthy Attack GEneration for Cyber-Physical Systems - Section 4.1.1 Smooth Sparse Decomposition (SSD) Attack - MATLAB",
+     "year": 2021,
+     "rule": "R-PAP-18 (2026-10-29, owner: accuracy sample) not papers: a software record (Code Ocean)",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): drop_not_papers not_paper:software_record on this work (identity also fails, hit_without_identity)"
+    },
+    {
+     "pi": "Jimeng Sun",
+     "oa": "https://openalex.org/W2411536161",
+     "labId": "atl:l:gatech:jimeng-sun",
+     "atlasWorkId": "atl:w:46e74bcdfca4",
+     "title": "Cloud-based Predictive Modeling System and its Application to Asthma Readmission Prediction.",
+     "year": 2017,
+     "rule": "R-PAP-26 and the 2016-2026 window (owner): the venue version (AMIA 2015) predates the window",
+     "evidence": "scratch/gatech-paper-delta-1108/removed-75-adjudication.json (2026-11-08 paper-delta review: accept native exclusion)"
+    },
+    {
+     "pi": "Jun Xu",
+     "oa": "https://openalex.org/W7160292364",
+     "labId": "atl:l:gatech:jun-xu",
+     "atlasWorkId": "atl:w:28999909dfe3",
+     "title": "U-HNSW: An Efficient Graph-based Solution to ANNS Under Universal Lp Metrics",
+     "year": 2026,
+     "rule": "R-PAP-26 and the window (owner): the 2026 preprint is dated by its EDBT 2027 venue version, outside the window",
+     "evidence": "scratch/gatech-paper-delta-1108/removed-75-adjudication.json (2026-11-08 paper-delta review: accept native exclusion)"
+    },
+    {
+     "pi": "Le Song",
+     "oa": "https://openalex.org/W2104438796",
+     "labId": "atl:l:gatech:le-song",
+     "atlasWorkId": "atl:w:b409b3fd79fe",
+     "title": "Kernel Embeddings of Latent Tree Graphical Models",
+     "year": 2018,
+     "rule": "R-PAP-26 and the window (owner): the 2018 deposit is NIPS 2011",
+     "evidence": "scratch/gatech-paper-delta-1108/removed-75-adjudication.json (2026-11-08 paper-delta review: accept native exclusion)"
+    },
+    {
+     "pi": "Lena H. Ting",
+     "oa": "https://openalex.org/W2907471676",
+     "labId": "atl:l:gatech:lena-h-ting",
+     "atlasWorkId": "atl:w:ccbdfff27abe",
+     "title": "Ask this robot for a helping hand",
+     "year": 2018,
+     "rule": "R-PAP-17/18 not papers: OpenAlex type other (NOT_PAPERS)",
+     "evidence": "scratch/gatech-paper-delta-1108/removed-75-adjudication.json (2026-11-08 paper-delta review: accept native exclusion)"
+    },
+    {
+     "pi": "Magnus B Egerstedt",
+     "oa": "https://openalex.org/W4248486682",
+     "labId": "atl:l:gatech:magnus-b-egerstedt",
+     "atlasWorkId": "atl:w:f06dc7fde4e5",
+     "title": "IFAC Newsletter",
+     "year": 2016,
+     "rule": "R-PAP-17/18 not papers: OpenAlex type other (NOT_PAPERS)",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): identity.hits skips the work at the NOT_PAPERS type test"
+    },
+    {
+     "pi": "Mark Riedl",
+     "oa": "https://openalex.org/W2903364046",
+     "labId": "atl:l:gatech:mark-riedl",
+     "atlasWorkId": "atl:w:dad3debdb100",
+     "title": "Robots without borders",
+     "year": 2018,
+     "rule": "R-PAP-17/18 not papers: OpenAlex type other (NOT_PAPERS)",
+     "evidence": "scratch/gatech-paper-delta-1108/removed-75-adjudication.json (2026-11-08 paper-delta review: accept native exclusion)"
+    },
+    {
+     "pi": "Pan Li",
+     "oa": "https://openalex.org/W4405312301",
+     "labId": "atl:l:gatech:pan-li",
+     "atlasWorkId": "atl:w:9ddeff7723cc",
+     "title": "Underestimated Privacy Risks for Minority Populations in Large Language Model Unlearning",
+     "year": 2024,
+     "rule": "R-PAP-01 (a) (2026-10-21, owner): the authorship must tie the paper to the school; the kept record carries no school affiliation for the PI",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits hit_without_school_affiliation"
+    },
+    {
+     "pi": "Rahul Basole",
+     "oa": "https://openalex.org/W2526606153",
+     "labId": "atl:l:gatech:rahul-basole",
+     "atlasWorkId": "atl:w:b18f0eaa32b2",
+     "title": "Sports Data Visualization [Guest editors' introduction]",
+     "year": 2016,
+     "rule": "R-PAP-18 (2026-10-29, owner: accuracy sample) not papers: a guest editors' introduction (editorial title)",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): admitted by rows_from_hits, dropped by drop_not_papers not_paper:editorial"
+    },
+    {
+     "pi": "Shabbir Ahmed",
+     "oa": "https://openalex.org/W2948446629",
+     "labId": "atl:l:gatech:shabbir-ahmed",
+     "atlasWorkId": "atl:w:9bdf833cfb30",
+     "title": "Adaptive Two-stage Stochastic Programming with an Application to Capacity Expansion Planning",
+     "year": 2019,
+     "rule": "R-PAP-01 (c) (2026-10-21, owner): the paper date falls outside the evidenced appointment",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits outside_appointment on the kept record W4402483113"
+    },
+    {
+     "pi": "Thomas Conte",
+     "oa": "https://openalex.org/W2793922911",
+     "labId": "atl:l:gatech:thomas-conte",
+     "atlasWorkId": "atl:w:7813d553dcb9",
+     "title": "Iterative Modulo Scheduling",
+     "year": 2018,
+     "rule": "R-PAP-27 (2026-11-02, owner: accuracy pass): IEEE Micro column, 3 pages",
+     "evidence": "scratch/gatech-paper-delta-1108/removed-75-adjudication.json (2026-11-08 paper-delta review: accept native exclusion)"
+    },
+    {
+     "pi": "Tushar Krishna",
+     "oa": "https://openalex.org/W4392822095",
+     "labId": "atl:l:gatech:tushar-krishna",
+     "atlasWorkId": "atl:w:bf30c6a248e0",
+     "title": "Enabling Unstructured Sparse Acceleration on Structured Sparse Accelerators",
+     "year": 2024,
+     "rule": "R-PAP-13 (2026-10-29, owner: best judgement): an unaffiliated byline in a transition year proves only its own side of the capture date",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits unaffiliated_transition_year_outside"
+    },
+    {
+     "pi": "Vassilis Zikas",
+     "oa": "https://openalex.org/W4406347760",
+     "labId": "atl:l:gatech:vassilis-zikas",
+     "atlasWorkId": "atl:w:92601afd429a",
+     "title": "Near-Optimal Communication Byzantine Reliable Broadcast Under a Message Adversary",
+     "year": 2025,
+     "rule": "R-PAP-01 (c) (2026-10-21, owner): the paper date falls outside the evidenced appointment (venue year 2024, OPODIS)",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits dated_by_venue_version then outside_appointment"
+    },
+    {
+     "pi": "Xiaoming Huo",
+     "oa": "https://openalex.org/W3127164471",
+     "labId": "atl:l:gatech:xiaoming-huo",
+     "atlasWorkId": "atl:w:f53e734b679a",
+     "title": "Manifold‐Based Learning: Nonlinear Methods",
+     "year": 2019,
+     "rule": "R-PAP-17 not papers: reference entries (NOT_PAPERS)",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): identity.hits skips the work at the NOT_PAPERS type test"
+    },
+    {
+     "pi": "Xiaoming Huo",
+     "oa": "https://openalex.org/W4254120053",
+     "labId": "atl:l:gatech:xiaoming-huo",
+     "atlasWorkId": "atl:w:d8e64453d627",
+     "title": "Manifold‐Based Learning: Linear Methods",
+     "year": 2019,
+     "rule": "R-PAP-17 not papers: reference entries (NOT_PAPERS)",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): identity.hits skips the work at the NOT_PAPERS type test"
+    },
+    {
+     "pi": "Yu (Jeffrey) Hu",
+     "oa": "https://openalex.org/W2613828685",
+     "labId": "atl:l:gatech:yu-jeffrey-hu",
+     "atlasWorkId": "atl:w:275170f83613",
+     "title": "Does Monetary Incentive Lead to Better Stock Recommendations on Social Media?",
+     "year": 2017,
+     "rule": "R-PAP-01 (a) (2026-10-21, owner): the authorship must tie the paper to the school; the kept record carries no school affiliation for the PI",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits hit_without_school_affiliation on the kept record"
+    },
+    {
+     "pi": "Yu (Jeffrey) Hu",
+     "oa": "https://openalex.org/W3123088513",
+     "labId": "atl:l:gatech:yu-jeffrey-hu",
+     "atlasWorkId": "atl:w:8b7151ec898d",
+     "title": "The Effect of Dockless Bike-Sharing on Public Transportation: An Empirical Study",
+     "year": 2018,
+     "rule": "R-PAP-01 (a) (2026-10-21, owner): the authorship must tie the paper to the school; the kept record carries no school affiliation for the PI",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits hit_without_school_affiliation on the kept record"
+    },
+    {
+     "pi": "Zsolt Kira",
+     "oa": "https://openalex.org/W2949777502",
+     "labId": "atl:l:gatech:zsolt-kira",
+     "atlasWorkId": "atl:w:ca5983477c17",
+     "title": "Manifold Graph with Learned Prototypes for Semi-Supervised Image Classification",
+     "year": 2019,
+     "rule": "R-PAP-01 (a) (2026-10-21, owner): the authorship must tie the paper to the school; the kept record carries no school affiliation for the PI",
+     "evidence": "build trace 2026-11-18 (job 32398818, scratch/q0339-1118/trace-out.json): rows_from_hits hit_without_school_affiliation (Virginia Tech only)"
     }
    ]
   }
