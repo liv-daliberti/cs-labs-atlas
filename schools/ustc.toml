@@ -195,7 +195,8 @@ sources = ["lab member pages and PI homepages (live where robots allows, else Wa
 hints = ["<lab>.ustc.edu.cn", "staff.ustc.edu.cn/~<name>/", "faculty.ustc.edu.cn", "<name>.github.io", "personal homepages linked from the faculty list"]
 
 [collector]
-channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "labpages", "pihomes", "wayback_acm"]
+# 2026-11-18 (owner): CORE is allowed everywhere (DECISIONS 2026-11-15); core and core_bulk added after s2 (the longer USTC list is kept, as for SEU).
+channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "core", "core_bulk", "europepmc", "pmc", "labpages", "pihomes", "wayback_acm"]
 
 [repository]
 name = "USTC institutional repository (not chosen; never asked)"

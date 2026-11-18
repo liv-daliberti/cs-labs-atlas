@@ -27,7 +27,7 @@ def test_full_loop_lists_carry_core_after_s2():
         assert ch[ch.index('s2') + 1:ch.index('s2') + 3] == ['core', 'core_bulk'], school
 
 
-ONBOARDING_STANDARD = 'purdue hkust ntu utaustin cambridge hit pku whu'.split()
+ONBOARDING_STANDARD = 'purdue hkust ntu utaustin cambridge hit pku whu cuhk'.split()
 
 
 def test_onboarding_charters_carry_the_standard_download_channels():
@@ -36,5 +36,6 @@ def test_onboarding_charters_carry_the_standard_download_channels():
     have = dict(lists())
     for school in ONBOARDING_STANDARD:
         assert have[school] == ['oa_arxiv', 'openalex', 's2', 'core', 'core_bulk', 'europepmc', 'pmc', 'labpages'], school
-    seu = have['seu']
-    assert seu[seu.index('s2') + 1:seu.index('s2') + 3] == ['core', 'core_bulk']
+    for longer in ('seu', 'ustc'):
+        ch = have[longer]
+        assert ch[ch.index('s2') + 1:ch.index('s2') + 3] == ['core', 'core_bulk'], longer
