@@ -618,22 +618,21 @@
     "observed": "2016-03-21",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5028419 lists Michael S. Brown as co-author of 'Automatic basal slice detection for cardiac analysis' (2016, NUS-era work with Paknezhad), alongside quadcopter mosaicing/CVPR vision works in the evidence.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "CHAN Chee Yong": {
   "openalex": [
-   "https://openalex.org/A5070805897",
    "https://openalex.org/A5111487023"
   ],
-  "why_openalex": "2026-10-30 (reviewed): 2026-11-18 computing-share identity rule applied to a census/accepted PI with no DBLP id: the OpenAlex ids whose raw names carry this person's family name and first spelled-out given name (SURNAME-first listing forms reordered), namesakes with another ORCID set aside; 13 school works, share 0.69, computing test passed (tools/cs_related_school.py share_test).",
+  "why_openalex": "2026-10-30 (reviewed): 2026-11-18 computing-share identity rule applied to a census/accepted PI with no DBLP id: the OpenAlex ids whose raw names carry this person's family name and first spelled-out given name (SURNAME-first listing forms reordered), namesakes with another ORCID set aside; 13 school works, share 0.69, computing test passed (tools/cs_related_school.py share_test). Independent audit 2026-11-18: ids whose raw names are a different given name were removed (namesakes in other fields).",
   "openalex_evidence": [
-   {
-    "url": "https://api.openalex.org/works/W3034559727",
-    "sha256": "a6501f4fe76e2ca04ed145fbb1ea4c23f0e3c84828c552586898683f5a67f7ba",
-    "quote": "Chee Seng Chan | Centre of Image & Signal Processing, Fac.Comp. Sci. & Info.Tech., University of Malaya, Malaysia",
-    "observed": "2020-06-09",
-    "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
-   },
    {
     "url": "https://api.openalex.org/works/W4385270234",
     "sha256": "ec03ec3d4149e2e136189aefec216676cbea94bceb3d9986966bb8dd8e3e9452",
@@ -641,7 +640,15 @@
     "observed": "2023-04-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "fail",
+   "why": "A5070805897 is 'Chee Seng Chan' (Malaya-type CV/remote sensing/music works: 'Style-Conditioned Music Generation', J. Applied Remote Sensing), a different given name than Chee Yong Chan; only A5111487023 (SIGMOD/ICDE) is the NUS person.",
+   "pack": "identity-audit-pack-A.json",
+   "fixed": "bad OpenAlex ids dropped; the remaining/replacement ids re-bound"
+  }
  },
  "CHAN Mun Choon": {
   "openalex": [
@@ -656,7 +663,14 @@
     "observed": "2026-09-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Mun Choon Chan', 'Chan, Mun Choon'] with computing venues e.g. IEEE Transactions on Mobile Computing, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "CHANG Ee-Chien": {
   "openalex": [
@@ -679,7 +693,14 @@
     "observed": "2026-03-07",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Ee-Chien Chang', 'Chang, Ee-Chien'] with computing venues e.g. ACM Asia Conference on Computer and Communications, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "CHIN Wei Ngan": {
   "openalex": [
@@ -694,7 +715,14 @@
     "observed": "2025-01-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Wei-Ngan Chin', 'Chin, Wei-Ngan'] with computing venues e.g. Lecture notes in computer science, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "KAN Min-Yen": {
   "openalex": [
@@ -709,7 +737,14 @@
     "observed": "2026-01-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Min-Yen Kan', 'Kan, Min-Yen'] with computing venues e.g. Annual Meeting of the Association for Computationa, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "LOW Kian Hsiang": {
   "openalex": [
@@ -732,7 +767,14 @@
     "observed": "2020-02-22",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Bryan Kian Hsiang Low', 'Low, Bryan Kian Hsiang'] with computing venues e.g. Proceedings of the AAAI Conference on Artificial I, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "NG Hwee Tou": {
   "openalex": [
@@ -747,7 +789,14 @@
     "observed": "2026-03-14",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Hwee Tou Ng', 'Ng, Hwee Tou'] with computing venues e.g. Conference on Empirical Methods in Natural Languag, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "NG Teck Khim": {
   "openalex": [
@@ -762,7 +811,14 @@
     "observed": "2025-03-12",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Teck Khim Ng', 'Ng, Teck Khim'] with computing venues e.g. Lecture notes in computer science, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "OOI Wei Tsang": {
   "openalex": [
@@ -785,7 +841,14 @@
     "observed": "2026-01-07",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Wei Tsang Ooi', 'Ooi, Wei Tsang'] with computing venues e.g. ACM International Conference on Multimedia (ACM MM, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "OOI Beng Chin": {
   "openalex": [
@@ -800,7 +863,14 @@
     "observed": "2026-04-09",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Beng Chin Ooi', 'Ooi, Beng Chin'] with computing venues e.g. Proceedings of the VLDB Endowment, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "SIM Khe Chai": {
   "openalex": [
@@ -815,7 +885,14 @@
     "observed": "2017-01-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Khe Chai Sim', 'Khe Chai SIM'] with computing venues e.g. IEEE International Conference on Acoustics Speech , consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "TAN Chew Lim": {
   "openalex": [
@@ -830,38 +907,37 @@
     "observed": "2021-09-20",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Chew Lim Tan'] with computing venues e.g. Pattern Recognition, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "TAN Kian Lee": {
   "openalex": [
-   "https://openalex.org/A5075954449",
-   "https://openalex.org/A5077593594",
-   "https://openalex.org/A5087681250"
+   "https://openalex.org/A5077593594"
   ],
-  "why_openalex": "2026-10-30 (reviewed): 2026-11-18 computing-share identity rule applied to a census/accepted PI with no DBLP id: the OpenAlex ids whose raw names carry this person's family name and first spelled-out given name (SURNAME-first listing forms reordered), namesakes with another ORCID set aside; 111 school works, share 0.86, computing test passed (tools/cs_related_school.py share_test).",
+  "why_openalex": "2026-10-30 (reviewed): 2026-11-18 computing-share identity rule applied to a census/accepted PI with no DBLP id: the OpenAlex ids whose raw names carry this person's family name and first spelled-out given name (SURNAME-first listing forms reordered), namesakes with another ORCID set aside; 111 school works, share 0.86, computing test passed (tools/cs_related_school.py share_test). Independent audit 2026-11-18: ids whose raw names are a different given name were removed (namesakes in other fields).",
   "openalex_evidence": [
-   {
-    "url": "https://api.openalex.org/works/W4409255283",
-    "sha256": "c020c95385fb85d1979b2ae6a5264c23de77fa1cc8aca4b2749be024cd72dae4",
-    "quote": "Tan Tze Lee | Department of Family Medicine, National University Health System, Singapore, Singapore",
-    "observed": "2025-04-08",
-    "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
-   },
    {
     "url": "https://api.openalex.org/works/W4417078001",
     "sha256": "74a241cef8917ae956f3ec120f3d398503ac419432013f17138ca645da4cb07f",
     "quote": "Kian-Lee Tan | National University of Singapore",
     "observed": "2026-05-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
-   },
-   {
-    "url": "https://api.openalex.org/works/W4393500968",
-    "sha256": "7ddf3a34d3d3ad9c6989b8e484bf02d5a26dc61f745854bc71fe3e878d25399d",
-    "quote": "Kian How Tan | Dental Branch Singapore Armed Forces Medical Corps  Singapore Singapore",
-    "observed": "2024-04-02",
-    "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "fail",
+   "why": "A5075954449 is 'Tan Tze Lee' (asthma, npj Primary Care Respiratory Medicine) and A5087681250 is 'Kian How Tan' (oral surgery/dental), neither is Tan Kian Lee.",
+   "pack": "identity-audit-pack-A.json",
+   "fixed": "bad OpenAlex ids dropped; the remaining/replacement ids re-bound"
+  }
  },
  "TEO Yong Meng": {
   "openalex": [
@@ -876,14 +952,20 @@
     "observed": "2024-05-30",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Yong Meng Teo', 'Teo, Yong Meng'] with computing venues e.g. Winter Simulation Conference, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "WONG Weng Fai": {
   "openalex": [
-   "https://openalex.org/A5023989495",
-   "https://openalex.org/A5103938622"
+   "https://openalex.org/A5023989495"
   ],
-  "why_openalex": "2026-10-30 (reviewed): 2026-11-18 computing-share identity rule applied to a census/accepted PI with no DBLP id: the OpenAlex ids whose raw names carry this person's family name and first spelled-out given name (SURNAME-first listing forms reordered), namesakes with another ORCID set aside; 108 school works, share 0.78, computing test passed (tools/cs_related_school.py share_test).",
+  "why_openalex": "2026-10-30 (reviewed): 2026-11-18 computing-share identity rule applied to a census/accepted PI with no DBLP id: the OpenAlex ids whose raw names carry this person's family name and first spelled-out given name (SURNAME-first listing forms reordered), namesakes with another ORCID set aside; 108 school works, share 0.78, computing test passed (tools/cs_related_school.py share_test). Independent audit 2026-11-18: ids whose raw names are a different given name were removed (namesakes in other fields).",
   "openalex_evidence": [
    {
     "url": "https://api.openalex.org/works/W7119467617",
@@ -891,15 +973,16 @@
     "quote": "Wong, Weng-Fai | National University of Singapore",
     "observed": "2026-01-07",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
-   },
-   {
-    "url": "https://api.openalex.org/works/W4386055169",
-    "sha256": "9b7c918ab3cd00be9c6ad53fced720f0e98e4dc0fc3d242b70537a708dd84c9a",
-    "quote": "Weng Hoa Wong | Department of Anesthesia, National University Health System, Singapore",
-    "observed": "2023-08-17",
-    "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "fail",
+   "why": "A5103938622 is 'Weng Hoa Wong' (Korean J Transplantation, Singapore Medical Journal, hepatopulmonary syndrome), a different person than Wong Weng Fai.",
+   "pack": "identity-audit-pack-A.json",
+   "fixed": "bad OpenAlex ids dropped; the remaining/replacement ids re-bound"
+  }
  },
  "LEE Gim Hee": {
   "openalex": [
@@ -914,7 +997,14 @@
     "observed": "2026-02-09",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Gim Hee Lee', 'Lee, Gim Hee'] with computing venues e.g. IEEE Computer Society Conference on Computer Visio, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "LEE Mong Li": {
   "openalex": [
@@ -937,7 +1027,14 @@
     "observed": "2026-02-19",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "https://researchr.org/publication/CheeHL25-0 lists Mong-Li Lee at NUS School of Computing on MONET (matches A5126443549 CVPR-style works); main id is DB/AAAI-venue work; one stray knee-society reply in the small id is minor and does not prove a different identity.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "CHANG Yi-Jun": {
   "openalex": [
@@ -952,7 +1049,14 @@
     "observed": "2026-04-04",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Yi-Jun Chang', 'Chang, Yi-Jun'] with computing venues e.g. ACM Symposium on Principles of Distributed Computi, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "LEE Yi-Chieh": {
   "openalex": [
@@ -967,7 +1071,14 @@
     "observed": "2026-04-13",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Yi-Chieh Lee', 'Lee, Yi-Chieh'] with computing venues e.g. CHI Conference on Human Factors in Computing Syste, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "Mike SHOU Zheng": {
   "openalex": [
@@ -990,7 +1101,14 @@
     "observed": "2025-01-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Mike Zheng Shou', 'Shou, Mike Zheng'] with computing venues e.g. IEEE Computer Society Conference on Computer Visio, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "ZHANG Jiaheng": {
   "openalex": [
@@ -1021,7 +1139,14 @@
     "observed": "2026-06-15",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Jiaheng Zhang', 'Zhang, Jiaheng'] with computing venues e.g. Proceedings - IEEE Symposium on Security and Priva, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "LING Chun Kai": {
   "openalex": [
@@ -1036,7 +1161,14 @@
     "observed": "2026-03-14",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Ling, Chun Kai', 'Chun Kai Ling'] with computing venues e.g. Proceedings of the AAAI Conference on Artificial I, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "Brian LIM Youliang": {
   "openalex": [
@@ -1059,7 +1191,14 @@
     "observed": "2026-04-13",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "https://www.comp.nus.edu.sg/cs/bio/brianlim confirms Brian Lim is NUS Computing faculty (explainable AI/HCI) matching CHI/IUI/AAAI venues of both ids.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "Richard MA Tianbai": {
   "openalex": [
@@ -1082,7 +1221,14 @@
     "observed": "2026-01-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Richard T. B. Ma', 'Richard T.B. Ma'] with computing venues e.g. Synthesis lectures on learning, networks, and algo, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "Terence SIM Mong Cheng": {
   "openalex": [
@@ -1097,7 +1243,14 @@
     "observed": "2026-05-25",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Terence Sim', 'Sim, Terence'] with computing venues e.g. IEEE Winter Conference on Applications of Computer, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "Harold SOH Soon Hong": {
   "openalex": [
@@ -1120,7 +1273,14 @@
     "observed": "2026-04-13",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Harold Soh', 'Soh, Harold'] with computing venues e.g. Proceedings - IEEE International Conference on Rob, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "Gary TAN Soon Huat": {
   "openalex": [
@@ -1135,7 +1295,14 @@
     "observed": "2025-09-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Gary Tan', 'Gary S. H. Tan'] with computing venues e.g. IEEE/ACM International Symposium on Distributed Si, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "Roland YAP Hock Chuan": {
   "openalex": [
@@ -1150,7 +1317,14 @@
     "observed": "2026-06-30",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Roland H. C. Yap', 'Roland H.C. Yap'] with computing venues e.g. Lecture notes in computer science, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "LEE Mong Li Janice": {
   "openalex": [
@@ -1173,7 +1347,14 @@
     "observed": "2026-02-19",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "Same ids as row 17 (duplicate binding of Lee Mong Li); https://researchr.org/publication/CheeHL25-0 lists Mong-Li Lee at NUS School of Computing on MONET; the 'Janice' given name is not contradicted but the row duplicates row 17.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "Hock-Hai Teo": {
   "openalex": [
@@ -1188,7 +1369,14 @@
     "observed": "2026-01-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Hock-Hai Teo', 'Hock‐Hai Teo'] with computing venues e.g. Journal of the Association for Information Systems, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "Jungpil Hahn": {
   "openalex": [
@@ -1203,22 +1391,21 @@
     "observed": "2026-04-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Jungpil Hahn', 'Hahn, Jungpil'] with computing venues e.g. Academy of Management Proceedings, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "Chuan-Hoo Tan": {
   "openalex": [
-   "https://openalex.org/A5072856467",
    "https://openalex.org/A5080110833"
   ],
-  "why_openalex": "2026-10-30 (reviewed): 2026-11-18 computing-share identity rule applied to a census/accepted PI with no DBLP id: the OpenAlex ids whose raw names carry this person's family name and first spelled-out given name (SURNAME-first listing forms reordered), namesakes with another ORCID set aside; 38 school works, share 0.68, computing test passed (tools/cs_related_school.py share_test).",
+  "why_openalex": "2026-10-30 (reviewed): 2026-11-18 computing-share identity rule applied to a census/accepted PI with no DBLP id: the OpenAlex ids whose raw names carry this person's family name and first spelled-out given name (SURNAME-first listing forms reordered), namesakes with another ORCID set aside; 38 school works, share 0.68, computing test passed (tools/cs_related_school.py share_test). Independent audit 2026-11-18: ids whose raw names are a different given name were removed (namesakes in other fields).",
   "openalex_evidence": [
-   {
-    "url": "https://api.openalex.org/works/W7172408788",
-    "sha256": "0b055ec05102c097ad99aff4ba4895fa9aaeec21d9cc891aeb833678b8bd128e",
-    "quote": "Chuan Xiang Alvin Tan | National University of Singapore , , ,",
-    "observed": "2026-08-01",
-    "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
-   },
    {
     "url": "https://api.openalex.org/works/W4407913903",
     "sha256": "4c3d29d104472949b618765b5eb7c2f9f08c5bb31d6271ba3b4b3fcc2f8a5baa",
@@ -1226,7 +1413,15 @@
     "observed": "2025-02-25",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "fail",
+   "why": "A5072856467 is 'Chuan Xiang Alvin Tan' (Angewandte Chemie/ACS Catalysis organic chemistry), a different person than Chuan-Hoo Tan (IS scholar, id A5080110833).",
+   "pack": "identity-audit-pack-A.json",
+   "fixed": "bad OpenAlex ids dropped; the remaining/replacement ids re-bound"
+  }
  },
  "Ke-Wei Huang": {
   "openalex": [
@@ -1241,7 +1436,14 @@
     "observed": "2026-05-08",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Ke-Wei Huang', 'Ke‐Wei Huang'] with computing venues e.g. Journal of the Association for Information Systems, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
  },
  "Stanley Kok": {
   "openalex": [
@@ -1256,6 +1458,194 @@
     "observed": "2026-03-14",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/nus/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-A",
+   "verdict": "pass",
+   "why": "File evidence only (no web check): raw names ['Stanley Kok', 'Kok, Stanley'] with computing venues e.g. ACM Transactions on Management Information Systems, consistent with NUS computing faculty.",
+   "pack": "identity-audit-pack-A.json"
+  }
+ },
+ "DONG Jin Song": {
+  "no_identity": false,
+  "dblp": [
+   "https://dblp.org/pid/64/7695-1"
+  ],
+  "aliases": [
+   "Jin Song Dong",
+   "Jin-Song Dong",
+   "Jinsong Dong"
+  ],
+  "alias_evidence": "Latin name form of the identity-bound DBLP person (reordering of the SURNAME-first listing name)",
+  "reviewer": "claude-ns-a-1118",
+  "reviewed_on": "2026-11-18",
+  "identity_resolution": {
+   "decision": "dblp_school_affiliation_unique_name",
+   "confidence": "medium",
+   "reviewed": "2026-11-18",
+   "basis": "D-0010 applied to a Latin roster name: the reordered full name equals the name of exactly one DBLP person whose own DBLP affiliation note names NUS, and exactly one roster person has that name. Medium confidence; covered by the identity audit.",
+   "evidence": [
+    {
+     "url": "https://dblp.org/pid/64/7695-1",
+     "note": "National University of Singapore (NUS), School of Computing, Singapore",
+     "names": [
+      "Jin Song Dong 0001",
+      "Jin-Song Dong 0001",
+      "Jinsong Dong 0001"
+     ],
+     "source": "hierarchy/nus/derived/dblp-affiliated.json (DBLP dump 2026-09-01)"
+    }
+   ]
+  },
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-B",
+   "verdict": "pass",
+   "why": "DBLP note: 'National University of Singapore (NUS), School of Computing, Singapore' (https://dblp.org/pid/64/7695-1); independent hint: https://www.comp.nus.edu.sg/~dongjs/ (NUS SoC faculty homepage)",
+   "pack": "identity-audit-pack-B.json"
+  }
+ },
+ "LEONG Hon Wai": {
+  "no_identity": false,
+  "dblp": [
+   "https://dblp.org/pid/l/HonWaiLeong"
+  ],
+  "aliases": [
+   "Hon Wai Leong",
+   "Hon-Wai Leong"
+  ],
+  "alias_evidence": "Latin name form of the identity-bound DBLP person (reordering of the SURNAME-first listing name)",
+  "reviewer": "claude-ns-a-1118",
+  "reviewed_on": "2026-11-18",
+  "identity_resolution": {
+   "decision": "dblp_school_affiliation_unique_name",
+   "confidence": "medium",
+   "reviewed": "2026-11-18",
+   "basis": "D-0010 applied to a Latin roster name: the reordered full name equals the name of exactly one DBLP person whose own DBLP affiliation note names NUS, and exactly one roster person has that name. Medium confidence; covered by the identity audit.",
+   "evidence": [
+    {
+     "url": "https://dblp.org/pid/l/HonWaiLeong",
+     "note": "National University of Singapore (NUS)",
+     "names": [
+      "Hon Wai Leong",
+      "Hon-Wai Leong"
+     ],
+     "source": "hierarchy/nus/derived/dblp-affiliated.json (DBLP dump 2026-09-01)"
+    }
+   ]
+  },
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-B",
+   "verdict": "pass",
+   "why": "DBLP note: 'National University of Singapore (NUS)' (https://dblp.org/pid/l/HonWaiLeong); independent hint: http://www.comp.nus.edu.sg/~leonghw/ (NUS SoC faculty homepage)",
+   "pack": "identity-audit-pack-B.json"
+  }
+ },
+ "LING Tok Wang": {
+  "no_identity": false,
+  "dblp": [
+   "https://dblp.org/pid/l/TokWangLing"
+  ],
+  "aliases": [
+   "Tok Wang Ling"
+  ],
+  "alias_evidence": "Latin name form of the identity-bound DBLP person (reordering of the SURNAME-first listing name)",
+  "reviewer": "claude-ns-a-1118",
+  "reviewed_on": "2026-11-18",
+  "identity_resolution": {
+   "decision": "dblp_school_affiliation_unique_name",
+   "confidence": "medium",
+   "reviewed": "2026-11-18",
+   "basis": "D-0010 applied to a Latin roster name: the reordered full name equals the name of exactly one DBLP person whose own DBLP affiliation note names NUS, and exactly one roster person has that name. Medium confidence; covered by the identity audit.",
+   "evidence": [
+    {
+     "url": "https://dblp.org/pid/l/TokWangLing",
+     "note": "National University of Singapore (NUS)",
+     "names": [
+      "Tok Wang Ling"
+     ],
+     "source": "hierarchy/nus/derived/dblp-affiliated.json (DBLP dump 2026-09-01)"
+    }
+   ]
+  },
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-B",
+   "verdict": "pass",
+   "why": "DBLP note: 'National University of Singapore (NUS)' (https://dblp.org/pid/l/TokWangLing); independent hint: http://www.comp.nus.edu.sg/~lingtw/ (NUS SoC faculty homepage)",
+   "pack": "identity-audit-pack-B.json"
+  }
+ },
+ "TAN Tiow Seng": {
+  "no_identity": false,
+  "dblp": [
+   "https://dblp.org/pid/t/TiowSengTan"
+  ],
+  "aliases": [
+   "Tiow Seng Tan"
+  ],
+  "alias_evidence": "Latin name form of the identity-bound DBLP person (reordering of the SURNAME-first listing name)",
+  "reviewer": "claude-ns-a-1118",
+  "reviewed_on": "2026-11-18",
+  "identity_resolution": {
+   "decision": "dblp_school_affiliation_unique_name",
+   "confidence": "medium",
+   "reviewed": "2026-11-18",
+   "basis": "D-0010 applied to a Latin roster name: the reordered full name equals the name of exactly one DBLP person whose own DBLP affiliation note names NUS, and exactly one roster person has that name. Medium confidence; covered by the identity audit.",
+   "evidence": [
+    {
+     "url": "https://dblp.org/pid/t/TiowSengTan",
+     "note": "National University of Singapore (NUS)",
+     "names": [
+      "Tiow Seng Tan"
+     ],
+     "source": "hierarchy/nus/derived/dblp-affiliated.json (DBLP dump 2026-09-01)"
+    }
+   ]
+  },
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-B",
+   "verdict": "pass",
+   "why": "DBLP note: 'National University of Singapore (NUS)' (https://dblp.org/pid/t/TiowSengTan); independent hint: http://www.comp.nus.edu.sg/~tants/ (NUS SoC faculty homepage)",
+   "pack": "identity-audit-pack-B.json"
+  }
+ },
+ "WONG Lim Soon": {
+  "no_identity": false,
+  "dblp": [
+   "https://dblp.org/pid/w/LimsoonWong"
+  ],
+  "aliases": [
+   "Limsoon Wong"
+  ],
+  "alias_evidence": "Latin name form of the identity-bound DBLP person (reordering of the SURNAME-first listing name)",
+  "reviewer": "claude-ns-a-1118",
+  "reviewed_on": "2026-11-18",
+  "identity_resolution": {
+   "decision": "dblp_school_affiliation_unique_name",
+   "confidence": "medium",
+   "reviewed": "2026-11-18",
+   "basis": "D-0010 applied to a Latin roster name: the reordered full name equals the name of exactly one DBLP person whose own DBLP affiliation note names NUS, and exactly one roster person has that name. Medium confidence; covered by the identity audit.",
+   "evidence": [
+    {
+     "url": "https://dblp.org/pid/w/LimsoonWong",
+     "note": "National University of Singapore (NUS), Department of Computer Science",
+     "names": [
+      "Limsoon Wong"
+     ],
+     "source": "hierarchy/nus/derived/dblp-affiliated.json (DBLP dump 2026-09-01)"
+    }
+   ]
+  },
+  "identity_audit": {
+   "date": "2026-11-18",
+   "reviewer": "subagent-sonnet-independent-identity-B",
+   "verdict": "pass",
+   "why": "DBLP note: 'National University of Singapore (NUS), Department of Computer Science' (https://dblp.org/pid/w/LimsoonWong); independent hint: http://www.comp.nus.edu.sg/~wongls/ (NUS SoC faculty homepage)",
+   "pack": "identity-audit-pack-B.json"
+  }
  }
 }
