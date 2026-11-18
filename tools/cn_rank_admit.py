@@ -50,6 +50,13 @@ def ivpn(u):
     return ('https://' if https else 'http://') + host + (m.group(3) or '')
 
 
+def _aliases(d):
+    """Latin name forms of the bound DBLP person: the record's own names, else the CSRankings row's name (homonym number dropped)."""
+    if d.get('names'):
+        return list(dict.fromkeys(re.sub(r'\s\d{4}$', '', n) for n in d['names']))
+    return [re.sub(r'\s\d{4}$', '', d['quote'].split(',')[0])]
+
+
 def nurl(u):
     u = re.sub(r'^https?://(?:www\.)?', '', (u or '').strip().lower()).split('#')[0].split('?')[0].rstrip('/')
     return re.sub(r'/index\.(?:html?|jsp)$', '', u)
@@ -250,21 +257,21 @@ def run(key, write=False, dblp_cache=None, csr=None, recall=None):
             basis.append(dict(pi=name, kind='advises_phd', **ev, subject_evidence=dict(url=e['url'], sha256=sha, quote=e['quote']), **rev, why=why))
         else:
             slug = re.sub(r'[^a-z0-9]+', '-', e['key'].lower()) if e['key'].isascii() else 'u' + __import__('hashlib').sha1(e['key'].encode()).hexdigest()[:16]
-            adds.append(dict(name=e['name'], aliases=[], collection_person_id=f'{key}_fac_{slug}', dblp=[(e.get('dblp') or e.get('csr') or e.get('csrname'))['pid']] if (e.get('dblp') or e.get('csr') or e.get('csrname')) else [], rank='other',
+            adds.append(dict(name=e['name'], aliases=_aliases(e.get('dblp') or e.get('csr') or e.get('csrname')) if (e.get('dblp') or e.get('csr') or e.get('csrname')) else [], collection_person_id=f'{key}_fac_{slug}', dblp=[(e.get('dblp') or e.get('csr') or e.get('csrname'))['pid']] if (e.get('dblp') or e.get('csr') or e.get('csrname')) else [], rank='other',
                              title_as_listed='博士生导师', departments=[unit], listed_in=[unit], years_listed=[int(TODAY[:4])], ranks_by_year={TODAY[:4]: ['other']},
                              sources=[dict(url=e['url'], sha256=sha, quote=e['quote'], kind=f'dept_supervisor_list:{unit}', observed=TODAY, rank_as_listed='博士生导师', rank='other')],
                              profile_url=e['href'], is_pi=True, pi_basis=dict(kind='advises_phd', **ev), lab_units=[], added='cn_rank_admit_' + TODAY.replace('-', '')))
         if e.get('csrname') and not e.get('csr') and not e.get('dblp'):
             d = e['csrname']
             o = ov.setdefault(name, {})
-            o.update(no_identity=False, dblp=[d['pid']], **rev,
+            o.update(no_identity=False, dblp=[d['pid']], aliases=_aliases(d), alias_evidence='the Latin name form of the identity-bound DBLP person (identity_resolution evidence); lets the builder keep the DBLP id past its Han-vs-Latin name-conflict check', **rev,
                      identity_resolution=dict(decision='csrankings_unique_fullname_roster', confidence='medium', reviewed=TODAY,
                                               basis='Owner ruling D-0004 (2026-11-18): a CSRankings entry plus a UNIQUE full-name match in the official roster. The pinyin of the roster name equals the CSRankings name (either order); exactly one roster/census Han name has that pinyin and exactly one CSRankings entry of the school has it; the entry maps to one DBLP person. Same-name collisions are held. Medium confidence; covered by the 50-row identity audit.',
                                               evidence=[dict(url=e['url'], sha256=sha, quote=e['quote']), dict(url=CSR_URL, sha256=d['sha256'], quote=d['quote'], pinyin=d['pinyin']), dict(url=d['pid'], note='DBLP person of the CSRankings row (scratch/pi-recall-1118/recall.json)')]))
         elif e.get('csr'):
             d = e['csr']
             o = ov.setdefault(name, {})
-            o.update(no_identity=False, dblp=[d['pid']], **rev,
+            o.update(no_identity=False, dblp=[d['pid']], aliases=_aliases(d), alias_evidence='the Latin name form of the identity-bound DBLP person (identity_resolution evidence); lets the builder keep the DBLP id past its Han-vs-Latin name-conflict check', **rev,
                      identity_resolution=dict(decision='csrankings_homepage_url_binding', reviewed=TODAY,
                                               basis='The official department supervisor list links a homepage URL that is also the homepage of one CSRankings row (commit 5319eddd csrankings.csv); that row maps to one DBLP person. A URL equality, not a name match.',
                                               evidence=[dict(url=e['url'], sha256=sha, quote=e['quote'], homepage=e['href']),
@@ -272,7 +279,7 @@ def run(key, write=False, dblp_cache=None, csr=None, recall=None):
         elif e.get('dblp'):
             d = e['dblp']
             o = ov.setdefault(name, {})
-            o.update(no_identity=False, dblp=[d['pid']], **rev,
+            o.update(no_identity=False, dblp=[d['pid']], aliases=_aliases(d), alias_evidence='the Latin name form of the identity-bound DBLP person (identity_resolution evidence); lets the builder keep the DBLP id past its Han-vs-Latin name-conflict check', **rev,
                      identity_resolution=dict(decision='verified_source_owned_dblp', reviewed=TODAY,
                                               basis='The official department supervisor list links the homepage that DBLP lists as this person\'s own <url>; exactly one non-disambiguation DBLP record lists it. No name matching.',
                                               evidence=[dict(url=e['url'], sha256=sha, quote=e['quote'], homepage=e['href']),
