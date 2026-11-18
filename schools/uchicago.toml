@@ -94,7 +94,20 @@ listing_continuity = true     # R-PAP-37, owner-approved 2026-11-06, 30-paper ha
 
 [census]
 computing_departments = ["CS", "TTIC"]
-home_units = {"Computer Science" = '^(?:Department of )?Computer Science$', "Statistics" = '^(?:Department of )?Statistics$', "Toyota Technological Institute at Chicago" = '^(?:Toyota Technological Institute at Chicago|TTIC)$', "Data Science" = '^(?:Data Science Institute|Department of Data Science|Data Science)$', "Mathematics" = '^(?:Department of )?Mathematics$', "Booth School of Business" = '^(?:Booth School of Business|Chicago Booth)'}
+center_units = ["DSI"]  # institute affiliations do not establish an academic home
+
+[census.home_units]
+"Computer Science" = '^(?:Department of )?Computer Science$'
+"Statistics" = '^(?:Department of )?Statistics$'
+"Toyota Technological Institute at Chicago" = '^(?:Toyota Technological Institute at Chicago|TTIC)$'
+"Mathematics" = '^(?:Department of )?Mathematics$'
+"Booth School of Business" = '^(?:Booth School of Business|Chicago Booth)$'
+"Sociology" = '^(?:Department of )?Sociology$'
+"Radiology" = '^(?:Department of )?Radiology$'
+"Linguistics" = '^(?:Department of )?Linguistics$'
+"Medicine" = '^(?:Department of )?Medicine$'
+"Human Genetics" = '^(?:Department of )?Human Genetics$'
+"Crown Family School of Social Work, Policy, and Practice" = '^Crown Family School of Social Work, Policy, and Practice$'
 
 [sweep_check]
 exceptions = []

@@ -15,6 +15,7 @@ import collections, gzip, importlib.util, json
 
 import atlas_paths as P  # noqa: E402
 import atlas_paths as AP  # noqa: E402  (main() has a local P)  (every path in one place)
+import home_department_registry as HOME
 HERE = P.WORK
 H = P.HIERARCHY   # export_release re-points H at a release's hierarchy/ (flat); hfile follows the layout for the live one
 import school_config as S  # noqa: E402  (the school charters)
@@ -136,9 +137,8 @@ def md(P):
 
 def main():
     homes = collections.defaultdict(dict)  # the site builder's view: accepted reviewed home departments by school
-    for r in json.load(open(AP.hfile(H, 'home-departments.json'))):
-        if r.get('status') == 'accepted' and r.get('home_department'):
-            homes[r['school']][r['name']] = r
+    for school in SCHOOLS:
+        homes[school] = HOME.accepted(school, H)
     audit = load(AP.hfile(H, 'missing-papers-audit.json'), [])
     zero = json.load(open(AP.hfile(H, 'zero-paper-labs.json')))
     P = [profile(s, homes, audit, zero) for s in SCHOOLS]

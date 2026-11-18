@@ -44,7 +44,8 @@ import release_notes  # noqa: E402  (CHANGES.md, generated from the build regres
 import ai_release  # noqa: E402  (ai/: the AI-writing pages' data, opt-in; docs in tools/ai_release.py)
 
 PACKAGE = ['pis.json', 'students.json', 'report.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
-SCHOOL_EXTRA = ['link-diagnosis.json',  # audit output per school (the reviewed per-school inputs come from git)
+SCHOOL_EXTRA = ['home-departments-school.json',  # local home decisions travel with the package
+               'link-diagnosis.json',  # audit output per school (the reviewed per-school inputs come from git)
                 'unavailable.jsonl.gz', 'unavailable-summary.json']  # the unavailability ledger (docs/UNAVAILABLE.md; 2026-10-30)
 TOP = ['home-departments.json', 'zero-paper-labs.json', 'school-profiles.json', 'SCHOOL-PROFILES.md', 'missing-papers-audit.json',
        'CHAIN-AUDIT.md', 'chain-audit.json', 'student-audit.json', 'BUILD-REGRESSION.md', 'BUILD-REGRESSION.json',

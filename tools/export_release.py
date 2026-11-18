@@ -36,6 +36,7 @@ import collections, csv, gzip, hashlib, importlib.util, io, json, os, pickle, re
 from pathlib import Path
 
 import atlas_paths as AP  # noqa: E402  (every path in one place)
+import home_department_registry as HOME
 
 HERE = AP.WORK                       # the code repository (/n/fs/resemble/homogenizing-science/code; was .research-sweeps/claude-schools-20261021)
 DATA = HERE                          # where the data is read: a release directory (configure()) or the working root
@@ -300,7 +301,9 @@ def export_school(repo, s, homes_all, profiles, zero):
         print(f'  {s}: package rebuilt while reading, retrying', file=sys.stderr); time.sleep(30)
     else:
         raise SystemExit(f'{s}: package kept changing')
-    home = {x['name']: x for x in homes_all if x.get('school') == s and x.get('status') == 'accepted' and x.get('home_department')}
+    home_decisions = {x['name']: x for x in homes_all if x.get('school') == s}
+    home = {name: x for name, x in home_decisions.items()
+            if x.get('status') == 'accepted' and x.get('home_department') and HOME.valid_evidence(x)}
     adds = {a['name'] for a in (read(AP.hfile(H, 'census-additions.json', s)) if AP.hfile(H, 'census-additions.json', s).exists() else [])
             if 'cs_related' in str(a.get('added'))}
     site_labs, canon = site_lab_map(s, cfg)
@@ -314,15 +317,14 @@ def export_school(repo, s, homes_all, profiles, zero):
         pid[p['pi']] = i
         dept, cov = SITE.department(s, cfg, p, home)
         lab = p['lab']; unit = lab.get('unitId'); site = canon.get(unit, unit) if unit else None
-        h = home.get(p['pi'])
+        h = home_decisions.get(p['pi'])
         P.append(dict(
             pi_id=i, atlas_id=p.get('atlasId'), atlas_lab_id=p.get('labId'),
             appointments=[dict(school=a['school'], pi_id=f"{a['school']}:{slug(a['pi'])}", atlas_lab_id=a['labId']) for a in p.get('appointments') or []],
             as_student=[dict(school=a['school'], pi_id=f"{a['school']}:{slug(a['pi'])}", atlas_lab_id=a.get('labId')) for a in p.get('asStudent') or []],
             school=s, name=p['pi'], name_forms=p.get('names') or [], merged_census_rows=p.get('mergedCensusRows') or [],
             department=dept, department_coverage=cov, departments_as_listed=p.get('departments') or [],
-            home_department_review=dict(home_department=h['home_department'], also=h.get('also') or [], no_academic_department=bool(h.get('no_academic_department')),
-                                        evidence=source_row(h.get('evidence') or {}), note=h.get('note')) if h else None,
+            home_department_review={**HOME.review(h), 'evidence': source_row(h.get('evidence') or {})} if h else HOME.review(None),
             scope='cs_related_addition' if p['pi'] in adds else 'core_computing_department',
             rank=p.get('rank'), title=p.get('title'),
             identifiers=dict(dblp=p.get('dblp') or [], dblp_basis=p.get('dblpBasis'), dblp_dropped=p.get('dblpDropped') or [],
@@ -855,7 +857,7 @@ def main():
     repo = Path(args[0]).resolve(); repo.mkdir(parents=True, exist_ok=True)
     configure(None if '--from-working' in sys.argv else (rel or 'latest'))
     print('data', RELEASE or f'working root {DATA} (--from-working)', flush=True)
-    homes_all = read(AP.hfile(H, 'home-departments.json'))
+    homes_all = [r for s in EXPORT for r in HOME.load(s, H, read)]
     profiles, zero, derived = derived_ledgers(homes_all)
     summary = dict(schools=[], atlas=None, code=None, derived_ledgers=derived)
     for s in EXPORT:

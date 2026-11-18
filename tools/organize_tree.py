@@ -34,6 +34,7 @@ from collections import defaultdict
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
+import home_department_registry as HOME
 
 HERE = P.WORK; H = P.HIERARCHY  # H is re-pointed at <release>/hierarchy by main()
 OUT = P.SCHOOLS_TREE
@@ -130,6 +131,7 @@ def write_json(path, data):
 
 def build(school, hidden):
     D = P.SchoolDir(school, H)
+    homes = {r['name']: r for r in HOME.load(school, H)}
     pis = json.loads((D / 'pis.json').read_text())
     stu = json.loads((D / 'students.json').read_text())
     lp = defaultdict(list)
@@ -183,7 +185,10 @@ def build(school, hidden):
         n_pdf = len(want)
         lab = dict(id=f'{school}:{ls}', labId=p.get('labId'), piAtlasId=p.get('atlasId'), appointments=p.get('appointments'),
                    asStudent=p.get('asStudent') or None, school=school, pi=p['pi'], names=p.get('names'), lab=(p.get('lab') or {}).get('name'),
-                   departments=p.get('departments'), rank=p.get('rank'), title=p.get('title'), piBasis=p.get('piBasis'),
+                   departments=p.get('departments'), home_department_review=HOME.review(homes.get(p['pi'])),
+                   home_department=(homes.get(p['pi']) or {}).get('home_department')
+                   if (homes.get(p['pi']) or {}).get('status') == 'accepted' and HOME.valid_evidence(homes.get(p['pi'])) else None,
+                   rank=p.get('rank'), title=p.get('title'), piBasis=p.get('piBasis'),
                    periods=p.get('periods'), listings=p.get('listings'), reviewedOpenAlex=p.get('reviewedOpenAlex'),
                    orcid=p.get('orcid'), dblp=p.get('dblp'),
                    counts=dict(papers=len(rows), papers_with_pdf=n_pdf, students=len(srows),
