@@ -26,9 +26,9 @@ def write_pkg(d, pis, with_ids=True):
 @pytest.fixture
 def world(tmp_path, monkeypatch):
     new, rel = tmp_path / 'new', tmp_path / 'rel'
-    monkeypatch.setattr(PR, 'package_dir', lambda key, base=None: new if base is None else base / 'hierarchy' / key)
+    monkeypatch.setattr(PR, 'package_dir', lambda key, base=None: new if base is None else base / 'hierarchy' / key)  # route-ok
     write_pkg(new, ['A', 'B', 'C'])
-    write_pkg(rel / 'hierarchy' / 'x', ['A', 'B'])
+    write_pkg(rel / 'hierarchy' / 'x', ['A', 'B'])  # route-ok
     states = lambda open_: dict(open_pis=sorted(open_), school_items={'6': ['acceptance']},
                                 pis={p: {s: dict(state='open' if p in open_ else 'done', reasons=[f'r-{p}']) for s in PS.ALL} for p in 'ABC'})
     return new, rel, states
