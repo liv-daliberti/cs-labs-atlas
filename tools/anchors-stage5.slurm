@@ -6,7 +6,7 @@
 #SBATCH --mem=32G
 #SBATCH --time=00:58:00
 #SBATCH --output=hierarchy/logs/anchors-stage5-%j.out
-# One stage-5 identity step for one school: STEP=ids|persons|links|stats  SCHOOL=<key>   (submit with `atlas submit --export=ALL,STEP=..,SCHOOL=.. hierarchy/anchors-stage5.slurm`)
+# One stage-5 identity step for one school: STEP=ids|persons|links|stats  SCHOOL=<key>   (submit with `atlas submit --export=ALL,STEP=..,SCHOOL=.. tools/anchors-stage5.slurm`)
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1
 . "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1
 cd "$CS_ATLAS_WORK"
