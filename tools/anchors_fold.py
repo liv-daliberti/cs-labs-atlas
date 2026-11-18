@@ -11,7 +11,7 @@ reviewed override `dblp` with its evidence, only on a URL/ID binding:
 A name-only match (no corroboration) is never written: it is listed in the report for the OpenAlex route or the reviewer step.
 usage: anchors_fold.py <key> [--write] [--report FILE]
 """
-import gzip, json, re, sys
+import gzip, json, sys
 from urllib.parse import urlsplit
 
 import atlas_paths as P  # noqa: E402
@@ -53,7 +53,7 @@ def main(key, write=False, report=None):
         h = hp.get(name) or {}
         if not pid and (h.get('dblp') or {}).get('pid'):
             e = h['dblp']
-            out[name] = dict(dblp=[e['pid']], why_dblp=f"2026-11-18 (pi_homepage_link): the PI's own page links this DBLP person page (href exactly as stored).",
+            out[name] = dict(dblp=[e['pid']], why_dblp="2026-11-18 (pi_homepage_link): the PI's own page links this DBLP person page (href exactly as stored).",
                              dblp_evidence=[dict(url=e['url'], sha256=e['sha256'], quote=e['quote'])])
             rep['strong'].append(name)
             continue
