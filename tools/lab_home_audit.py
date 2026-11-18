@@ -70,7 +70,9 @@ def quote_names_pi(quote, names):
         value = ''.join(c for c in unicodedata.normalize('NFKD', value or '') if not unicodedata.combining(c))
         return ' '.join(''.join(c.casefold() if c.isalnum() else ' ' for c in value).split())
     text = ' ' + fold(quote) + ' '
-    return any(fold(name) and ' ' + fold(name) + ' ' in text for name in names)
+    variants = {fold(name) for name in names if name}
+    variants.update(' '.join(t for t in name.split() if not (len(t) == 1 and t.isascii())) for name in list(variants))
+    return any(name and ' ' + name + ' ' in text for name in variants)
 
 
 def proposed_from_listing(pi, cfg):
@@ -142,7 +144,8 @@ def audit(inventory, out):
             proposal = proposed_from_listing(pi, cfg) if not r else None
             evidence = (r or {}).get('evidence') or {}
             names = [name] + list(pi.get('names') or []) + list((item['census'] or {}).get('aliases') or [])
-            named = quote_names_pi(evidence.get('quote'), names) if r else None
+            named = any(quote_names_pi(e.get('quote'), names) for e in
+                        [evidence] + list((r or {}).get('reviewed_home_evidence') or [])) if r else None
             if r and evidence.get('quote') and not named:
                 issues.append('evidence_name_requires_review')
             results.append(dict(school=school, pi=name, live_built_lab=bool(item['built']),

@@ -29,3 +29,4 @@ def test_quote_for_another_faculty_member_does_not_verify_this_pi():
     assert not A.quote_names_pi('Siu On Chan, Adjunct Assistant Professor', ['CHAN Lai Wan'])
     assert A.quote_names_pi('László Babai, Professor', ['Laszlo Babai'])
     assert A.quote_names_pi('Nathan Srebro, Professor', ['Nati Srebro', 'Nathan Srebro'])
+    assert A.quote_names_pi('James Evans, Professor of Sociology', ['James A. Evans'])
