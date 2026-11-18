@@ -118,10 +118,42 @@
  },
  "Daniel Sanchez": {
   "review": {
-   "state": "source_review_complete_native_verification_required",
+   "state": "source_review_complete_with_documented_limits",
    "reviewed_at": "2026-11-17",
    "reviewed_by": "codex-sanchez-close-1117",
-   "closeout_requires_native_projection": true
+   "closeout_requires_native_projection": true,
+   "native_validation": {
+    "package": "/n/fs/resemble/homogenizing-science/scratch/sanchez-close-1117/final-build/mit",
+    "code_commit": "d38a1bae98acbd0f3504626c757a68311f895a72",
+    "counts": {
+     "members": 28,
+     "papers": 60,
+     "student_paper_links": 82,
+     "owned_current_students": 8,
+     "owned_alumni_source_rows": 22,
+     "owned_eligible_unique_people": 27,
+     "retained_repository_only_person": 1,
+     "pre_window_roster_people": 2,
+     "owned_publication_entries": 75,
+     "dblp_in_window_entries": 59
+    },
+    "checks": {
+     "one_canonical_lab": true,
+     "wrong_dblp_removed": true,
+     "correct_dblp_bound": true,
+     "unreviewed_orcid_not_inherited": true,
+     "original_26_member_ids_preserved": true,
+     "all_original_60_papers_accounted": true,
+     "correct_58_original_papers_preserved": true,
+     "two_namesake_papers_removed": true,
+     "all_shadow_members_have_canonical_counterparts": true,
+     "all_30_owned_roster_rows_accounted": true,
+     "all_75_owned_publications_accounted": true,
+     "all_59_in_window_dblp_records_accounted": true,
+     "two_recovered_papers_pass_native_gates": true
+    }
+   },
+   "scope": "Source-completeness review in the 2016-2026 atlas window; not exhaustive lifetime advising or publications, individual-link accuracy certification, or public release approval."
   },
   "students": {
    "code": "source_review_with_bounded_coverage",
@@ -141,7 +173,7 @@
   },
   "papers": {
    "code": "source_reconciled_with_documented_limits",
-   "why": "The complete PI-owned bibliography has 75 entries: 52 explicitly dated 2016-2026, two undated entries matched to accepted 2021 and 2022 papers, and 21 pre-window entries. Two apparent gaps already count under final titles (Taming the Zoo / Unified GraphIt; POSTER: Improving Datacenter Efficiency). Two true missing works have exact retained originals and new source recovery rows: Cache-Guided Scheduling (AGP 2017; explicit MIT byline), and Cache Calculus (CAL journal issue 2017, DOI 10.1109/LCA.2015.2512873). For Cache Calculus preserve 2015-12-28 online date and the owned bibliography 2016 separately; do not treat these as three papers or move the journal issue outside the window. True MIT DBLP PID 67/2030-3 adds independent bibliography coverage; the MICRO 2017 proceedings volume is edited proceedings, not a research paper. A final native build must confirm recovered works and title/edition deduplication. The owned page currently ends at 2024; later works depend on retained indexed records (DBLP 2026-09-01 / OpenAlex collection). No claim covers uncaptured future or unlisted work.",
+   "why": "The complete PI-owned bibliography has 75 entries: 52 explicitly dated 2016-2026, two undated entries matched to accepted 2021 and 2022 papers, and 21 pre-window entries. Two apparent gaps already count under final titles (Taming the Zoo / Unified GraphIt; POSTER: Improving Datacenter Efficiency). Two true missing works have exact retained originals and new source recovery rows: Cache-Guided Scheduling (AGP 2017; explicit MIT byline), and Cache Calculus (CAL journal issue 2017, DOI 10.1109/LCA.2015.2512873). For Cache Calculus preserve 2015-12-28 online date and the owned bibliography 2016 separately; do not treat these as three papers or move the journal issue outside the window. True MIT DBLP PID 67/2030-3 adds independent bibliography coverage; the MICRO 2017 proceedings volume is edited proceedings, not a research paper. The full isolated native build confirms 60 valid papers: retain 58 correct original papers, remove two papers whose literal byline is Daniel Prado Sanchez (DOIs 10.1145/3205651.3205784 and 10.1007/s10710-020-09389-y), and add the two recovered true works. The net total remains 60; both additions and both removals have exact source dispositions. The owned page currently ends at 2024; later works depend on retained indexed records (DBLP 2026-09-01 / OpenAlex collection). No claim covers uncaptured future or unlisted work.",
    "sources_checked": [
     "https://people.csail.mit.edu/sanchez/",
     "https://people.csail.mit.edu/sanchez/papers/2017.cgs.agp.pdf",
@@ -153,7 +185,7 @@
   },
   "copies": {
    "code": "per_paper_copy_accounting",
-   "why": "Existing 60 native paper rows were checked with the ordinary exact work/OA/DOI/edition resolver and the catalog quality guard: 57 local copies have existing files and verified SHA-256; Terminus, Azul and Toward a Universal Cryptographic Accelerator have exact publisher_only_closed ledger explanations dated 2026-11-15. The current owned page lists Terminus and Azul without PDF links. The two newly recovered original PDFs are retained in raw/sanchez-closeout-1117 and hash verified; they are source-bundle copies pending standard full-text catalog import, not additional catalog downloads. Do not label them unavailable or inflate the catalog copy count.",
+   "why": "Of the 60 final accepted papers, 55 retained catalog copies pass the ordinary exact work/OA/DOI/edition resolver, catalog quality guard, file-existence and SHA-256 checks. Two further original PDFs (Cache Calculus and Cache-Guided Scheduling) are retained, hash verified and pass the ordinary asset quality guard in raw/sanchez-closeout-1117; they await standard catalog import and are not counted as catalog downloads. Terminus, Azul and Toward a Universal Cryptographic Accelerator each have an exact publisher_only_closed ledger reason dated 2026-11-15, with no missing checks. All final 60 papers thus have a verified copy or a specific absence reason. The earlier 57-catalog-copy count applied to the baseline 60, which included the two now-removed Daniel Prado Sanchez papers.",
    "report": "PI-CLOSEOUT-SANCHEZ-20261117.json",
    "reviewed_at": "2026-11-17"
   }
