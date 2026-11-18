@@ -2628,7 +2628,8 @@ def is_paged(html):
     wp = re.search(r'<em class="all_pages">\s*(\d+)\s*</em>', html)
     uestc = re.search(r'\bPAGENUM=([2-9]|[1-9]\d+)\b', html)
     sitebuilder = 'class="p_pages"' in html and bool(re.search(r'class="p_no"><a href="[^"]+/\d+\.htm"', html))   # Webplus p_pages pager (PKU CS)
-    return query_pager or bool(uestc) or sitebuilder or bool('class="wp_paging' in html and wp and int(wp.group(1)) > 1)
+    onethink = bool(re.search(r'class="onethink pagination[^"]*"[^>]*>(?:(?!</div>).)*?<a class="num" href="index\d+\.htm"', html, re.S))   # PKU WICT cards (indexN.htm)
+    return query_pager or bool(uestc) or sitebuilder or onethink or bool('class="wp_paging' in html and wp and int(wp.group(1)) > 1)
 
 
 def page_links(html, base_url):
@@ -2658,6 +2659,10 @@ def page_links(html, base_url):
         prefix = wpp[0][0]
         if last > 1:
             return {n - 1: urllib.parse.urljoin(base_url, f'{prefix}{last - n + 1}.htm') for n in range(2, last + 1)}
+    # PKU WICT `onethink pagination`: page 1 is index.htm, page N+1 is indexN.htm (the pager lists every page number)
+    ot = re.findall(r'<a class="num" href="index(\d+)\.htm"', html) if 'onethink pagination' in html else []
+    if ot:
+        return {int(n): urllib.parse.urljoin(base_url, f'index{n}.htm') for n in sorted(set(ot), key=int)}
     found = {}
     for href in re.findall(r'href="([^"]*[?&;](?:page|pg)=(?:%2C|,)?\d+[^"]*)"', html):
         u = urllib.parse.urljoin(base_url, H.unescape(href))
@@ -3008,4 +3013,56 @@ for _name, _fn in [('cmu_scs_views_table', cmu_scs_views_table), ('cmu_lti_direc
                    ('cmu_bio_h1_h2', cmu_bio_h1_h2), ('cmu_bio_h2_h3', cmu_bio_h2_h3), ('cmu_ri_legacy', cmu_ri_legacy), ('cmu_ri_cards', cmu_ri_cards),
                    ('cmu_hcii_cards', cmu_hcii_cards), ('cmu_s3d_index', cmu_s3d_index), ('cmu_cbd_connections', cmu_cbd_connections),
                    ('cmu_cbd_cards', cmu_cbd_cards)]:
+    FORMATS[_name] = (_fn, re.compile(r'(?!)'))
+
+
+# ---- Peking University: Wangxuan Institute (WICT) and School of Intelligence Science and Technology (SIST), Stage 1 2026-11-18 ----------------------------
+def _pku_clean(t):
+    return ' '.join(t.replace('\xa0', ' ').split())
+
+
+def pku_wict_team_nav(h):
+    """WICT www.icst.pku.edu.cn/team/content_86.htm (2016-2018 site): the left menu `li.leftchild` links read `name_ title` (the underscore divides name and rank)."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for a in soup.select('li.leftchild > a[href]'):
+        name, sep, title = _pku_clean(a.get_text('', strip=True)).partition('_')
+        name, title = name.replace(' ', ''), title.strip()
+        if sep and name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=None, division=None, profile=a['href']))
+    return out
+
+
+def pku_wict_cards(h):
+    """WICT www.icst.pku.edu.cn/xztd/xztd_01/index.htm (2019-): `ul.m-list > li` with `div.m-tt` holding the name link and `<em>` rank (20 per page, `indexN.htm` pager)."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for tt in soup.select('ul.m-list div.m-tt'):
+        a, em = tt.select_one('a[href]'), tt.select_one('em')
+        name = _pku_clean(a.get_text(' ', strip=True)).replace(' ', '') if a else ''
+        title = _pku_clean(em.get_text(' ', strip=True)) if em else ''
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=None, division=None, profile=a['href']))
+    return out
+
+
+def pku_sist_cards(h):
+    """SIST sai.pku.edu.cn/szdw/zzjs.htm (Webplus, 8 per page, reverse-numbered pager): `div.ltjs_text` with `<h3>` name and `<dd><b>职称：</b>rank</dd>`; contact lines are not kept."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for box in soup.select('div.ltjs_text'):
+        h3 = box.select_one('h3')
+        title = ''
+        for dd in box.select('dd'):
+            b = dd.select_one('b')
+            if b and b.get_text(strip=True).rstrip('：:') == '职称':
+                title = _pku_clean(dd.get_text(' ', strip=True))[len(_pku_clean(b.get_text(' ', strip=True))):].strip()
+        a = box.find_parent('a')
+        name = _pku_clean(h3.get_text(' ', strip=True)).replace(' ', '') if h3 else ''
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=None, division=None, profile=a['href'] if a and a.get('href') else None))
+    return out
+
+
+for _name, _fn in [('pku_wict_team_nav', pku_wict_team_nav), ('pku_wict_cards', pku_wict_cards), ('pku_sist_cards', pku_sist_cards)]:
     FORMATS[_name] = (_fn, re.compile(r'(?!)'))

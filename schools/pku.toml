@@ -91,15 +91,24 @@ code = "WICT"
 name = "Wangxuan Institute of Computer Technology (王选计算机研究所)"
 unit = "Peking University"
 title_match = '教授|研究员|讲师'
-coverage = "affiliated"
-url = "https://www.icst.pku.edu.cn/"
+coverage = "full"
+url = "https://www.icst.pku.edu.cn/xztd/xztd_01/index.htm"
+  # 2026-11-18: the home page lists no faculty. Eras: team/content_86.htm (left-menu names, 2016-2018) and xztd/xztd_01/index.htm (20 cards per
+  # page, indexN.htm pager, 2019-). xztd/index.htm itself is a JavaScript redirect to xztd_01. Formats: pku_wict_team_nav, pku_wict_cards.
   [[departments.listings]]
-  slot = "WICT faculty"
+  slot = "WICT academic team"
   kind = "main"
-  url = "www.icst.pku.edu.cn/"
+  url = "www.icst.pku.edu.cn/team/content_86.htm"
   from = "20160101"
+  to = "20181231"
+  format = "pku_wict_team_nav"
+  [[departments.listings]]
+  slot = "WICT academic team"
+  kind = "main"
+  url = "www.icst.pku.edu.cn/xztd/xztd_01/index.htm"
+  from = "20190101"
   to = "20261231"
-  format = ""
+  format = "pku_wict_cards"
 
 [[departments]]
 code = "SIST"
@@ -108,13 +117,14 @@ unit = "Peking University"
 title_match = '教授|研究员|讲师'
 coverage = "full"
 url = "https://sai.pku.edu.cn/szdw/zzjs.htm"
+  # 2026-11-18: 专职教师 (full-time faculty) only; 博士后, 行政教辅 and 荣休教师 are other pages. Archived from 2023-11 (the school was founded 2021).
   [[departments.listings]]
   slot = "SIST faculty"
   kind = "main"
   url = "sai.pku.edu.cn/szdw/zzjs.htm"
   from = "20160101"
   to = "20261231"
-  format = ""
+  format = "pku_sist_cards"
 
 [[affiliated_units]]
 code = "EECS"
