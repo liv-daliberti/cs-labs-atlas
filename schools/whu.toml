@@ -78,7 +78,7 @@ legacy_sweep = ""
 computing_departments = ["CS"]
 center_units = ["AIINST"]    # the Institute of Artificial Intelligence is a university institute: members have a home school
 home_units = {"Computer Science" = '^(?:School of )?Computer Science$|^计算机学院$|^计算机科学系$|^软件工程系$|^智能科学系$', "Cyber Science and Engineering" = '^(?:School of )?Cyber Science and Engineering$|^国家网络安全学院$|^网络空间安全学院$', "Remote Sensing and Information Engineering" = '^(?:School of )?Remote Sensing and Information Engineering$|^遥感信息工程学院$', "Electronic Information" = '^(?:School of )?Electronic Information$|^电子信息学院$', "Information Management" = '^(?:School of )?Information Management$|^信息管理学院$', "Geodesy and Geomatics" = '^(?:School of )?Geodesy and Geomatics$|^测绘学院$', "Mathematics and Statistics" = '^(?:School of )?Mathematics and Statistics$|^数学与统计学院$', "Artificial Intelligence" = '^(?:Institute of )?Artificial Intelligence$|^人工智能研究院$'}
-rank_words = {lecturer = '助教', teaching = '\b讲师\b|\bsenior\s+lecturer\b|\b教学型\b', adjunct = '\b兼职\b|\b客座\b|\bvisiting\s+professor\b', courtesy = '\b兼职教授\b'}
+rank_words = {ladder = '教授', emeritus = '退休|荣休', lecturer = '助教', teaching = '\b讲师\b|\bsenior\s+lecturer\b|\b教学型\b', adjunct = '\b兼职\b|\b客座\b|\bvisiting\s+professor\b', courtesy = '\b兼职教授\b'}
 
 [sweep_check]
 exceptions = []
