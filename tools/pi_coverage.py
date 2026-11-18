@@ -48,7 +48,7 @@ RATCHET_LEVELS = (
     dict(lab_papers=0.20, students=0.25, links=0.40),   # level 2
     dict(lab_papers=0.05, students=0.05, links=0.15),   # level 3: the long-term target (owner may tighten toward 2% / 5%)
 )
-RATCHET_LEVEL = 0
+RATCHET_LEVEL = 1   # owner 2026-11-17 (D-0001, Q-0125-0127): level 1 now, target level 3
 
 
 def bars(level=None):

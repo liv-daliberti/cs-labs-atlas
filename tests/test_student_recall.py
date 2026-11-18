@@ -283,6 +283,8 @@ def test_gate_messages_name_item_and_action(tree, monkeypatch):
 
 
 def test_stage6_gate_carries_the_recall_items(tree, monkeypatch):
+    import pi_coverage
+    monkeypatch.setattr(pi_coverage, 'RATCHET_LEVEL', 0)   # the recall items, not the PI-coverage bar
     cfg = {'status': 'onboarding', 'window': [2016, 2026]}
     monkeypatch.setattr(G.S, 'get', lambda key: cfg)
     monkeypatch.setattr(G, 'traps_for', lambda key, stage: [])

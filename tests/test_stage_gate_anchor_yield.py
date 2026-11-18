@@ -6,11 +6,13 @@ import pytest
 
 import atlas_paths as P
 import atlas_release as AR
+import pi_coverage as PC
 import stage_gate as G
 
 
 @pytest.fixture
 def tree(tmp_path, monkeypatch):
+    monkeypatch.setattr(PC, 'RATCHET_LEVEL', 0)   # these tests are about anchors, not the coverage bar
     monkeypatch.setattr(P, 'data', lambda name, school=None, **k: tmp_path / (school or '_') / name)
     (tmp_path / 'u').mkdir()
     (tmp_path / '_').mkdir()

@@ -662,7 +662,7 @@ OpenAlex co-authorship is never on its own evidence of advising.
   per dimension: **present** (students: >= 3 qualifying graduate-level rows for an active PI, >= 1 for one who left before 2025; lab papers: >= 3 and >= .5 per appointment year inside the appointment;
   links: >= 2 students with a student-paper link), **reason** (lab-coverage-reasons or census-overrides text that is individual, non-boilerplate and names >= 2 sources) or **gap**. Undated thesis-only or
   profile-only rows do not count (strict rule kept); an override text shared by >= 3 PIs is boilerplate, so the Han-name schools' shared `no_identity` holds are gaps, not reasons. Stage 5 (lab papers)
-  and stage 6 (students, links) gain one item per dimension whose gap share exceeds the bar; the bars are `RATCHET_LEVELS` in `tools/pi_coverage.py`, one constant `RATCHET_LEVEL` (now 0 = report-only,
+  and stage 6 (students, links) gain one item per dimension whose gap share exceeds the bar; the bars are `RATCHET_LEVELS` in `tools/pi_coverage.py`, one constant `RATCHET_LEVEL` (now 1 since 2026-11-17, owner D-0001; 0 = report-only,
   no school fails; level 3 is the target). `pi_coverage.py gaps <key>` lists the gap PIs by what would unlock them; `summary` prints the counts and each level's verdict. The recall gate is untouched.
 
 - **v3 (2026-11-05).**
