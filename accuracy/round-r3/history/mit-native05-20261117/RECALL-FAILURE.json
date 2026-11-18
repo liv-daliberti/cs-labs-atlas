@@ -1,0 +1,214 @@
+{
+  "school": "mit",
+  "candidate": "native-05",
+  "archived_at": "2026-11-18T01:11:50.248814+00:00",
+  "producer_commit": "33ec422126d217c5c29518e43c67b15d5368daca",
+  "signed_record_sha256": "4acbd6e030784b1a151b203185146dace8f20e7d602f0fdc5a56de7987f3d78a",
+  "evaluation": {
+    "findings": [
+      "Nir Shavit: extra page http://groups.csail.mit.edu/mag/ is not on the host of the PI's page (ccg.csail.mit.edu); another host cannot validate a name",
+      "Nir Shavit: extra page https://web.archive.org/web/20160117165338id_/http://groups.csail.mit.edu/mag/ is not on the host of the PI's page (ccg.csail.mit.edu); another host cannot validate a name",
+      "Nir Shavit: extra page https://web.archive.org/web/20210917192210id_/http://groups.csail.mit.edu/mag/ is not on the host of the PI's page (ccg.csail.mit.edu); another host cannot validate a name",
+      "Nir Shavit: extra page https://web.archive.org/web/20191026110044id_/http://groups.csail.mit.edu:80/mag/ is not on the host of the PI's page (ccg.csail.mit.edu); another host cannot validate a name"
+    ],
+    "numbers": {
+      "sample": 30,
+      "readable": 12,
+      "unverifiable": 18,
+      "unverifiable_share": 0.6,
+      "unverifiable_reasons": {
+        "no_member_list_page": 16,
+        "bot_challenge": 1,
+        "page_unreachable": 1
+      },
+      "names_listed": 443,
+      "names_excluded": 107,
+      "excluded_share": 0.242,
+      "proven_external_school": 3,
+      "x_counted_exclusions": 104,
+      "x_counted_share": 0.235,
+      "undated_excluded": 127,
+      "eligible_names": 209,
+      "recorded_names": 197,
+      "r1_strict_recall": 0.942,
+      "r2_est_current_phd_recall": 0.563,
+      "r2_bootstrap_p5": 0.32,
+      "sizes": {
+        "0": 0,
+        "1-2": 18,
+        "3+": 271
+      },
+      "largest_gaps": [
+        "Juanjuan Zhang (5 missing)",
+        "Nir Shavit (4 missing)",
+        "Thodoris Lykouris (2 missing)"
+      ]
+    }
+  },
+  "gates": [
+    {
+      "stage": 0,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "hosts": 34,
+      "snapshot_works": 430440
+    },
+    {
+      "stage": 1,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "departments": 2,
+      "reviewed_gap_years": 0,
+      "roster_coverage": {
+        "EECS": {
+          "partial_or_uncovered": [],
+          "has_roster_source": true
+        },
+        "CSAIL": {
+          "partial_or_uncovered": [],
+          "has_roster_source": true
+        }
+      },
+      "roster_years_open": 0
+    },
+    {
+      "stage": 2,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "candidates": 441,
+      "accepted": 120,
+      "not_faculty": 320,
+      "faculty_no_pi_evidence": 11,
+      "excluded_unresolved": 0,
+      "excluded_unresolved_by_reason": {}
+    },
+    {
+      "stage": 3,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "pis": 287,
+      "homes": 294
+    },
+    {
+      "stage": 4,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "contiguous_listings": 128,
+      "period": 146,
+      "gap_reviewed_unproven": 13
+    },
+    {
+      "stage": 5,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "dblp": 137,
+      "dblp+orcid+openalex": 20,
+      "dblp+openalex": 2,
+      "orcid+openalex": 110,
+      "dblp+orcid": 1,
+      "openalex": 17,
+      "anchors_yield_checked": true,
+      "pi_cov_lab_papers_gap": 9,
+      "pi_cov_students_gap": 22,
+      "pi_cov_links_gap": 25
+    },
+    {
+      "stage": 6,
+      "gate": "fail",
+      "open": 6,
+      "items": [
+        "one_person: 1 unexplained of 8272",
+        "recall record: Nir Shavit: extra page http://groups.csail.mit.edu/mag/ is not on the host of the PI's page (ccg.csail.mit.edu); another host cannot validate a name",
+        "recall record: Nir Shavit: extra page https://web.archive.org/web/20160117165338id_/http://groups.csail.mit.edu/mag/ is not on the host of the PI's page (ccg.csail.mit.edu); another host cannot validate a name",
+        "recall record: Nir Shavit: extra page https://web.archive.org/web/20210917192210id_/http://groups.csail.mit.edu/mag/ is not on the host of the PI's page (ccg.csail.mit.edu); another host cannot validate a name",
+        "recall record: Nir Shavit: extra page https://web.archive.org/web/20191026110044id_/http://groups.csail.mit.edu:80/mag/ is not on the host of the PI's page (ccg.csail.mit.edu); another host cannot validate a name",
+        "recall record: 104 of 443 listed names were excluded by the checker without same-line captured proof of another school (24% > 20%; 3 source-checked outside-school names remain visible in the raw 107 exclusions); unsupported exclusions cannot raise recall"
+      ],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [
+        "one_person: 1 unexplained of 8272",
+        "recall record: Nir Shavit: extra page http://groups.csail.mit.edu/mag/ is not on the host of the PI's page (ccg.csail.mit.edu); another host cannot validate a name",
+        "recall record: Nir Shavit: extra page https://web.archive.org/web/20160117165338id_/http://groups.csail.mit.edu/mag/ is not on the host of the PI's page (ccg.csail.mit.edu); another host cannot validate a name",
+        "recall record: Nir Shavit: extra page https://web.archive.org/web/20210917192210id_/http://groups.csail.mit.edu/mag/ is not on the host of the PI's page (ccg.csail.mit.edu); another host cannot validate a name",
+        "recall record: Nir Shavit: extra page https://web.archive.org/web/20191026110044id_/http://groups.csail.mit.edu:80/mag/ is not on the host of the PI's page (ccg.csail.mit.edu); another host cannot validate a name",
+        "recall record: 104 of 443 listed names were excluded by the checker without same-line captured proof of another school (24% > 20%; 3 source-checked outside-school names remain visible in the raw 107 exclusions); unsupported exclusions cannot raise recall"
+      ],
+      "students": 289,
+      "one_person": 8271,
+      "recall_pis_with_current_phd": 83,
+      "recall_zero_recorded_unreasoned": 0,
+      "recall_r1": 0.942,
+      "recall_u": 0.6,
+      "recall_r2": 0.563,
+      "pi_cov_lab_papers_gap": 9,
+      "pi_cov_students_gap": 22,
+      "pi_cov_links_gap": 25
+    },
+    {
+      "stage": 7,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "papers": 286,
+      "links": 3984
+    },
+    {
+      "stage": 8,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "lab_papers": 20479,
+      "local": 14626,
+      "local_share": 0.714,
+      "copy_target": 0.85,
+      "copy_target_met": false
+    },
+    {
+      "stage": 9,
+      "gate": "fail",
+      "open": 1,
+      "items": [
+        "accuracy: accuracy/summary-mit.json missing (accuracy/sample.py --school mit, then the verdicts and summarize.py)"
+      ],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [
+        "accuracy: accuracy/summary-mit.json missing (accuracy/sample.py --school mit, then the verdicts and summarize.py)"
+      ]
+    }
+  ],
+  "owner_decision": "Q-0343 approved verified PI ownership across hosts; implementation deliberately deferred until this signed history is immutable",
+  "rule": "Preserve actual whole30 and full230 judgments; no resampling, signoff carry, threshold changes or unsupported exclusions",
+  "canonical_promoted": false
+}

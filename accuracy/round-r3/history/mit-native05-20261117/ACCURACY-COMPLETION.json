@@ -1,0 +1,141 @@
+{
+ "candidate": "native05",
+ "status": "complete_fixed230_fresh_independent_review_known_error_retained",
+ "reviewer": "mit_accuracy_review",
+ "sealed_code_commit": "33ec422126d217c5c29518e43c67b15d5368daca",
+ "certification_sha256": "ec98cd243505788704aab905ea16243e591c75033b518846d40c6e86bd20283b",
+ "sample_sha256": "25221bcd9963497f650da7b3c44297b7c1d85c396895594f73f578075ede44b2",
+ "review_counts": {
+  "correct": 227,
+  "incorrect": 1,
+  "unclear": 2
+ },
+ "measure_counts": {
+  "lab_precision": 65,
+  "student_precision": 65,
+  "lab_coverage": 50,
+  "student_coverage": 50
+ },
+ "screening": {
+  "first50_confirmed_doctoral_indices": [
+   1,
+   2,
+   3,
+   4,
+   7,
+   12,
+   24,
+   28,
+   30,
+   33,
+   37,
+   45,
+   60,
+   65,
+   68,
+   71,
+   72,
+   75,
+   76,
+   78,
+   82,
+   86,
+   95,
+   98,
+   100,
+   106,
+   107,
+   108,
+   109,
+   114,
+   115,
+   116,
+   117,
+   118,
+   121,
+   122,
+   129,
+   131,
+   133,
+   138,
+   139,
+   144,
+   146,
+   148,
+   151,
+   157,
+   165,
+   167,
+   170,
+   171
+  ],
+  "screened_non_doctoral": 122,
+  "last_examined_draw_order_index": 171,
+  "all_original_degrees_advisors_dates_read": true
+ },
+ "standard_summary_metrics": {
+  "lab_precision_uniform": {
+   "k": 50,
+   "n": 50,
+   "p": 1.0,
+   "lo": 0.9287,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "student_precision_uniform": {
+   "k": 50,
+   "n": 50,
+   "p": 1.0,
+   "lo": 0.9287,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "lab_coverage": {
+   "k": 47,
+   "n": 47,
+   "p": 1.0,
+   "lo": 0.9244,
+   "hi": 1.0
+  },
+  "student_coverage": {
+   "k": 48,
+   "n": 48,
+   "p": 1.0,
+   "lo": 0.9259,
+   "hi": 1.0
+  },
+  "failures": {
+   "not_a_paper": 1
+  }
+ },
+ "summary_limitation": "Standard student_coverage_items.no_coauthored_paper=2 includes one unresolved has_coauthored_paper=null. The two cases are separate here: Aloni Cohen no eligible coauthorship found; Frans Anton Koolen↔Twan identity not source-proven. Do not describe both as established no-coauthorship.",
+ "scientific_errors_require_repair_before_final_closeout": true,
+ "unclear_cases": [
+  "AMIA Blind Inference source and MIT affiliation unverified; OpenReview403 stop retained",
+  "Frans Anton Koolen primary PhD identity not explicitly bridged to Twan byline; zero linked papers"
+ ],
+ "metadata_version_observations": [
+  "Places fullresearch arxiv edition explicitly bound in original OA; representativeJOV metadata may describe abstract. No blanketJOV exclusion."
+ ],
+ "original_bindings_rechecked": {
+  "rows": 180,
+  "changed_or_newlyfound_hashes": 0,
+  "frozen_derived_files_equal_sample": true,
+  "parent_source_input_guard": "Parent independently confirms changed_inputs=[] on sealed native05 rawinputs"
+ },
+ "no_old_verdict_or_doctoral_indices_reused": true,
+ "unchanged_primary_source_facts_reused_with_fresh_read": true,
+ "new_network_requests": 0,
+ "no_scientific_input_native_or_canonical_changes": true,
+ "artifacts": {
+  "/n/fs/resemble/homogenizing-science/worktrees/mit-gates-1117/accuracy/round-r3/verdicts-mit.jsonl": "d732380fa247bbbd462642b6dbe1903240455de01d8920e2dfad094636795512",
+  "/n/fs/resemble/homogenizing-science/worktrees/mit-gates-1117/accuracy/round-r3/screened-mit.jsonl": "d2eef2aedf3d10387dd59290ea2b9345dfcc7b8358e03239c9e6c9d11a266fba",
+  "/n/fs/resemble/homogenizing-science/worktrees/mit-gates-1117/accuracy/round-r3/summary-mit.json": "a0b2de0c323b63b09322d6215fcc270322fab8a39bade14fa28640e1a3a82610",
+  "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-05/accuracy-review/repair-receipts.json": "35517d4c7b5f23cd860833f19b1a935db937f8ff42b69a2eccd0da834b3d5d62",
+  "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-05/accuracy-review/original-evidence.json": "a4c7803b637f8696fc75d9a6900f28b429731b5502651d51650020ecc4875662",
+  "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-05/accuracy-review/doctoral-screening-evidence.json": "8b053bf792a0202ddbd03f8f867ac0cfa0335d62fc480c6460bc0ba6192e1cd8",
+  "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-05/accuracy-review/primary-first-two-pages.json": "ee60f49923488822242262e82c3ebdc28956e6612780f6f516cfe7f6c1799bcb",
+  "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-05/accuracy-review/authoritative-original-cache-recheck.json": "7b101dc7feb877d7d27c8db10da6ef3da001497ca7eabc0b5a4da1bc35e2eb2c",
+  "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-05/accuracy-review/fresh-review-decisions.json": "e7b6749bc29d12825b46a67a92401c1ef32e1851ed26e718bce3953097fe002a"
+ }
+}
