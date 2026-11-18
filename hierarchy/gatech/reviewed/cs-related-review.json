@@ -30,8 +30,8 @@
   "SPP"
  ],
  "counts": {
-  "accepted": 240,
-  "faculty_not_computing": 78,
+  "accepted": 242,
+  "faculty_not_computing": 76,
   "too_few_school_works": 61,
   "not_faculty_listed": 556,
   "census_alias": 8,
@@ -12502,8 +12502,8 @@
    "name": "Chuanyi Ji",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (ECE); computing-share test fails: 1 of 12 school works DBLP-indexed (share 0.08; 1 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "D-0009 computing test (2026-11-18; the share test is only a screen: 1 of 12 school works DBLP-indexed): faculty (ECE Associate Professor, ladder, listed 2016-2025) who heads the Networks and Machine Learning Lab and is affiliated with ML@GT; machine learning for networks and data analysis is the object and method of the work, and she has an own lab (D-0009). Previously faculty_not_computing by the share test alone.",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -12605,7 +12605,19 @@
     "PSYC",
     "SCHELLER",
     "SPP"
-   ]
+   ],
+   "computing_test": {
+    "decision": "computing",
+    "rule": "D-0009 2026-11-18",
+    "lab_evidence": [
+     {
+      "url": "https://ece.gatech.edu/directory/chuanyi-ji",
+      "sha256": "8bb906a989744a67d4db6caa650483d7545a50f1f3cc8b1f337dc85eece008a5",
+      "observed": "2026-11-18",
+      "quote": "Chuanyi Ji Networks and Machine Learning Lab Official Job Title Associate Professor Job Title(s) Affiliated with ML@GT and Strategic Energy Institute @GT"
+     }
+    ]
+   }
   },
   {
    "name": "Yogendra K Joshi",
@@ -25193,8 +25205,8 @@
    "name": "Saurabh Sinha",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (ISYE); computing-share test fails: 0 of 25 school works DBLP-indexed (share 0.00; 2 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "D-0009 computing test (2026-11-18; the share test is only a screen, and the old 0/25 DBLP count reflects that his venues are biology journals, not that the work is not computing): faculty (ISYE listing, Wallace H. Coulter Distinguished Chair and Professor, ladder) who heads his own Sinha Laboratory; the lab's research object is computational method development (machine learning, causal inference, probabilistic modeling; e.g. 'CIMLA: Interpretable AI for inference of differential causal networks', 'A Robust Bayesian Approach to Bulk Gene Expression Deconvolution'), so computing is the method of the work and he has an own lab (D-0009). Previously faculty_not_computing by the share test alone.",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -25329,7 +25341,25 @@
     "PSYC",
     "SCHELLER",
     "SPP"
-   ]
+   ],
+   "computing_test": {
+    "decision": "computing",
+    "rule": "D-0009 2026-11-18",
+    "lab_evidence": [
+     {
+      "url": "https://sites.google.com/view/sinhalaboratorygatech",
+      "sha256": "609b2299b067a35d48526ad29111212a72d6583079e693631722d8c12c902cab",
+      "observed": "2026-11-18",
+      "quote": "Welcome to the laboratory of Saurabh Sinha at Georgia Tech. Our research lies in the interdisciplinary field of bioinformatics, which provides the computational foundation for modern molecular biology"
+     },
+     {
+      "url": "https://sites.google.com/view/sinhalaboratorygatech",
+      "sha256": "609b2299b067a35d48526ad29111212a72d6583079e693631722d8c12c902cab",
+      "observed": "2026-11-18",
+      "quote": "We develop rigorous and interpretable methods for comparative spatial analysis, subcellular RNA organization, cell-cell communication, spatial multi-omics integration. Our work draws on machine learning, causal inference, probabilistic modeling, spatial statistics, and optimization."
+     }
+    ]
+   }
   },
   {
    "name": "Eunhye Song",
