@@ -1,6 +1,7 @@
 import json
 import pytest
 
+import atlas_paths as P
 import home_department_registry as H
 
 
@@ -54,7 +55,7 @@ def test_organized_lab_includes_local_home_and_ambiguity(tmp_path, monkeypatch):
     import gzip
     import organize_tree as T
 
-    school = tmp_path / 'hierarchy/uchicago'
+    school = P.data('pis.json', 'uchicago', root=tmp_path, layout='flat').parent
     school.mkdir(parents=True)
     (school / 'pis.json').write_text(json.dumps([dict(pi='Ann', departments=['CS'], lab=dict(name='Ann lab'))]))
     (school / 'students.json').write_text('{}')
@@ -63,7 +64,7 @@ def test_organized_lab_includes_local_home_and_ambiguity(tmp_path, monkeypatch):
         (school / (name + '.jsonl.gz')).write_bytes(gzip.compress(b''))
     r = row(home_basis='primary_unresolved', primary_unresolved=['Statistics', 'Computer Science'])
     (school / 'home-departments.json').write_text(json.dumps([r]))
-    monkeypatch.setattr(T, 'H', tmp_path / 'hierarchy')
+    monkeypatch.setattr(T, 'H', tmp_path / P.REL_HIERARCHY)
     monkeypatch.setattr(T, 'OUT', tmp_path / 'schools')
     monkeypatch.setattr(T, 'stored_files', lambda school: {})
     T.build('uchicago', {})
