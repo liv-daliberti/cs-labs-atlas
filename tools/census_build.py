@@ -425,7 +425,7 @@ def main(key):
         elif lad_aff:
             why_not = 'pending CS-related review (department coverage affiliated)' if not dec else f"CS-related review: {dec.get('decision')}"
         if basis is None and name in basis_ev:
-            e = basis_ev[name]; basis = {k: e[k] for k in ('kind', 'url', 'sha256', 'quote', 'observed', 'role') if k in e}
+            e = basis_ev[name]; basis = {k: e[k] for k in ('kind', 'url', 'sha256', 'quote', 'observed', 'role', 'home_unit') if k in e}
         if basis is None and why_not is None:
             why_not = f"rank {best[max(best)]} without reviewed advising or own-group evidence"
         if name in not_pi or any(a_ in not_pi for a_ in g['names']):
