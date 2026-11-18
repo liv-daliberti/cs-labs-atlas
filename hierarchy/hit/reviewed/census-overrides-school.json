@@ -909,50 +909,14 @@
   }
  },
  "李治军": {
-  "no_identity": false,
-  "dblp": [
-   "https://dblp.org/pid/89/6527-2"
-  ],
   "reviewed_by": "claude-ns-a-1118",
   "reviewed_on": "2026-11-18",
-  "identity_resolution": {
-   "decision": "csrankings_homepage_url_binding",
-   "reviewed": "2026-11-18",
-   "basis": "The official department supervisor list links a homepage URL that is also the homepage of one CSRankings row (commit 5319eddd csrankings.csv); that row maps to one DBLP person. A URL equality, not a name match.",
-   "evidence": [
-    {
-     "url": "https://cs.hit.edu.cn/22195/list.htm",
-     "sha256": "e398eab8e05c043d2556c29ed61ddbdc6b9d0897640f1991f3e5b0909d3f746d",
-     "quote": "杨东华 李治军",
-     "homepage": "http://homepage.hit.edu.cn/lizhijun"
-    },
-    {
-     "url": "https://raw.githubusercontent.com/emeryberger/CSrankings/5319eddd1e27048c22751de68bb5344a25d7b091/csrankings.csv",
-     "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
-     "quote": "Zhijun Li 0002,Harbin Institute of Technology,http://homepage.hit.edu.cn/lizhijun"
-    },
-    {
-     "url": "https://dblp.org/pid/89/6527-2",
-     "note": "DBLP person of the CSRankings row (scratch/pi-recall-1118/recall.json)"
-    }
-   ]
-  },
-  "aliases": [
-   "Zhijun Li"
-  ],
-  "alias_evidence": "the Latin name form of the identity-bound DBLP person (identity_resolution evidence); lets the builder keep the DBLP id past its Han-vs-Latin name-conflict check",
-  "identity_audit": {
-   "date": "2026-11-18",
-   "reviewer": "subagent-sonnet-independent-identity-C",
-   "verdict": "pass",
-   "why": "https://homepage.hit.edu.cn/lizhijun shows 李治军, HIT Faculty of Computing, IoT/edge computing/OS; DBLP Zhijun Li 0002 (HIT PhD 2006, wireless/IoT papers, HIT School of CS affiliation) matches; Soochow listing is a later appointment, not a homonym.",
-   "pack": "identity-audit-pack-C.json"
-  },
   "window_review": {
    "reviewed_by": "claude-ns-a-1118",
    "reviewed_on": "2026-11-18",
    "note": "DBLP and web sources indicate a later move away from the school. The window stays exactly the stored listing years (no period is extended; years between listings are reviewed unproven; a 2026-only addition has a 2026-only window), so no papers outside listed years enter. A dated source for the end of the appointment would close the period earlier (owner 2026-11-02)."
-  }
+  },
+  "identity_hold_note": "2026-11-18 DBLP person may be a different Zhijun Li (DBLP Zhijun Li 0002 now at Soochow University); unconfirmed from a stored source, so the D-0010 binding is removed and the PI is held without an identity anchor."
  },
  "刘铭": {
   "no_identity": false,
