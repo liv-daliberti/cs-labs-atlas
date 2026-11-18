@@ -173,7 +173,7 @@ The prior verified native candidate has Z=140. This source batch adds
 240 independently accepted membership observations for 52 previously
 uncovered PIs: 44 official thesis defense-year points and 196 eligible
 student observations from complete current lab sections or a dated lab article.
-The source projection is Z=88; native verification is pending at this source landing.
+The completed private native verifies Z=88, below the requested target of 90.
 All 157 prior thesis episodes and all earlier reviewed evidence are retained.
 The private verification uses the frozen Z140 input vector plus this batch.
 Concurrent PI-level repairs from commit `a81afd56` are preserved in the shared
@@ -214,3 +214,31 @@ No PI population, alias, period, campus scope or coverage threshold is changed.
 Formal Stage 6 remains open against its unchanged Z limit of 18 and required
 independent recall/student reviews. The six original historical faculty-roster
 gaps and final accuracy review remain unresolved. No publication is performed.
+
+
+The complete five-phase job `32400884` finished `COMPLETED 0:0`:
+build, copies, cached-only availability ledger, link diagnosis and student audit.
+Its code producer is `234549590163bd6ec9267ef9e404782b9e974e22`; the two scientific input
+blobs are retained at `c4975354fe7576cc0238f960ffb85ab62e51c25e`. All other 37 reviewed
+inputs remain the frozen Z140 baseline. The combined current shared PI batch
+is not certified by this controlled verification.
+
+The native contains 361 unchanged PIs, 1,504 native member IDs, 1,548 PI/member
+pairs and 270 PIs with members. All 52 intended gains survive, with no existing
+member or PI metadata change or loss. Every earlier thesis observation and all
+17,473 PI-paper payloads are retained. All 4,161 earlier link candidates remain;
+53 new candidates give 4,214, with the native complete-chain metric at 53.
+These additional candidates follow the unchanged school-byline and near-year
+rules; 38 paper years precede the 2026 membership observations. They do not
+supply historical attendance or personal-advising dates and still require the
+formal accuracy review. Availability work identities and local-copy/catalog
+fields remain unchanged; the offline ledger refreshes cached reason annotations.
+
+Independent final comparison: `/n/fs/resemble/homogenizing-science/scratch/tsinghua-z90-source-review-1118/NATIVE-COMPARISON.json`,
+SHA-256 `5bbda6adeedbdb074aaad54f62eef0501ca64707e93ae9f7a7d8bee7825a76d1`.
+The final machine-readable result is `scratch/tsinghua-z90-1118/MILESTONE-RESULT.json`;
+its continuation plan and refreshed offline research board retain the open work.
+Source landing passed 4,352 tests with 23 skipped, lint and all 31 charters.
+Formal Stage 6 remains open at its unchanged limit of 18, with fixed recall and
+student reviews outstanding. Final accuracy and the six historical original
+faculty rosters also remain unresolved. No release or publication is made.
