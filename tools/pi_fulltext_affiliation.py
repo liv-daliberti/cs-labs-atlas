@@ -297,7 +297,7 @@ def candidates(school):
         w = json.loads(zlib.decompress(b))
         if w['id'] in done:
             continue
-        a = unaffiliated_pi_authorship(w, mine)
+        a = unaffiliated_pi_authorship(w, mine); cross = False
         forms = names_of.get((a.get('author') or {}).get('id')) if a else None
         if a is None:
             a = None  # (b) the PI's DBLP page names the work and the PI's own authorship lists no institution
@@ -308,19 +308,37 @@ def candidates(school):
                 if a is not None:
                     forms = forms_of[pi]; break
             if a is None:
-                a = cross_affiliated_pi_authorship(w, mine, inst_url)
+                a = cross_affiliated_pi_authorship(w, mine, inst_url); cross = a is not None
                 forms = names_of.get((a.get('author') or {}).get('id')) if a else None
             if a is None:
                 continue
         ax = arxiv_id(w)
         loc = None if ax else (local.get(re.sub(r'^https?://(?:dx\.)?doi\.org/', '', w.get('doi') or '', flags=re.I).lower())
                                or local.get(f"{school}_oa_{w['id'].rsplit('/', 1)[-1]}"))
+        if not ax and not loc and cross:
+            # (R-PAP-29, 2026-11-18) a cross-affiliated byline's page 1 from an open proceedings PDF named by OpenAlex (AAAI: Tambe's SAHELI paper)
+            import dblp_recover as DR
+            for lo in [w.get('primary_location') or {}] + list(w.get('locations') or []):
+                u = lo.get('pdf_url') or ''
+                if u and any(h in u for h in DR.OPEN_HOSTS):
+                    loc = 'url:' + u; break
         if ax or loc:
             out.append((w['id'], ax, forms, loc))
     return out
 
 
 def page1(school, wid, ax, aff, names, loc=None):
+    if isinstance(loc, str) and loc.startswith('url:'):   # an open proceedings PDF (robots.txt, host throttle: dblp_recover.polite_get)
+        import dblp_recover as DR
+        url = loc[4:]; r = DR.polite_get(url)
+        if r is None or r.status_code != 200 or r.content[:4] != b'%PDF':
+            return (wid, None, url, 'fetch_error' if r is None else f'http_{r.status_code}', None, None, None, None)
+        with tempfile.NamedTemporaryFile(suffix='.pdf', dir=os.environ.get('TMPDIR', '/tmp')) as f:
+            f.write(r.content); f.flush()
+            txt = subprocess.run(['pdftotext', '-l', '1', f.name, '-'], capture_output=True, text=True, timeout=120).stdout
+        flat = re.sub(r'\s+', ' ', txt); how, quotes = tie(flat, names, aff)
+        return (wid, None, url, 'ok' if how else ('ok_untied' if aff.search(flat) else 'ok_absent'), hashlib.sha256(r.content).hexdigest(),
+                zlib.compress(txt.encode()), int(bool(how)), json.dumps(dict(how=how, quotes=quotes)) if how else None)
     if loc:  # the full-text catalog's own copy
         path, cid = loc
         try:

@@ -182,3 +182,14 @@ def test_page1_pi_credited_elsewhere_helper():
     assert papers.page1_pi_credited_elsewhere('Dave Danskin, Princeton University. Abstract', names, aff) is None   # the PI is not on page 1
     assert papers.page1_pi_credited_elsewhere('Ada Lovelace Abstract We study', names, aff) is None                  # no affiliation at all
     assert papers.page1_pi_credited_elsewhere('Ada Lovelace, Google Research. Dave Danskin, Princeton University. Abstract', names, aff) is not None
+
+
+def test_cross_affiliated_pi_authorship_selects_pages_to_read():
+    import pi_fulltext_affiliation as F
+    inst = OA + 'I1'
+    def a(aid, kind, iid):
+        return dict(author=dict(id=OA + aid), institutions=[dict(id=OA + iid, type=kind, lineage=[OA + iid])])
+    w = dict(authorships=[a('A1', 'company', 'I99'), a('A2', 'education', 'I1')])
+    assert F.cross_affiliated_pi_authorship(w, {OA + 'A1'}, inst) is w['authorships'][0]
+    assert F.cross_affiliated_pi_authorship(w, {OA + 'A2'}, inst) is None                      # the PI is credited to the school
+    assert F.cross_affiliated_pi_authorship(dict(authorships=[a('A1', 'company', 'I99')]), {OA + 'A1'}, inst) is None   # no school co-author
