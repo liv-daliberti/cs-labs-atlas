@@ -33,7 +33,8 @@ elif [ -e "$ONBOARD/$SCHOOL/derived/lab_papers.jsonl.gz" ]; then export CS_ATLAS
 RESTART_LOG="$CS_ATLAS_FT_LOGS/lab_first_loop-$SCHOOL.out"
 # channels: the charter's [collector].channels, else the default list below. The CHANNELS environment is IGNORED unless CHANNELS_FORCE=1: a loop resubmits
 # itself with its environment, so a CHANNELS set at the first submission pinned the list for ever and hid the charter (2026-11-10).
-if [ "${CHANNELS_FORCE:-0}" != 1 ] || [ -z "${CHANNELS:-}" ]; then
+# a store marker .use-charter-channels releases a loop whose first submission pinned CHANNELS (WHU/PKU 2026-11-18): its next resubmission reads the charter
+if [ "${CHANNELS_FORCE:-0}" != 1 ] || [ -z "${CHANNELS:-}" ] || [ -e "$CS_ATLAS_ROOT/stores/$SCHOOL/.use-charter-channels" ]; then
     CHANNELS=$(PYTHONPATH="$CS_ATLAS_CODE/tools" "$CS_ATLAS_PY" -c "import school_config as S; print(' '.join(S.field(S.get('$SCHOOL'), 'collector.channels', []) or []))" 2>/dev/null)
 fi
 export OA_RESERVE="${OA_RESERVE:-4000}"   # OpenAlex: stop at 4,000 credits left of the shared 10,000 a day (oa_refresh.RESERVE)
