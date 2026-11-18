@@ -20,7 +20,8 @@ from dblp_dump_persons import records, text, AUTH, URL, YEAR  # noqa: E402
 def nurl(u):
     u = re.sub(r'^https?://(?:www\.)?', '', (u or '').strip().lower())
     u = re.sub(r'^([^/]+?):(?:80|443)(?=/|$)', r'\1', u)
-    return u.split('#')[0].rstrip('/')
+    u = re.sub(r'(?i)/(?:zh_cn|en)(?:/index\.html?)?$', '', u.split('#')[0].rstrip('/'))   # the language variants of one personal-site page (jszy/faculty.* /zh_CN, /en)
+    return re.sub(r'/index\.html?$', '', u).rstrip('/')
 
 
 def original_of(capture_url):

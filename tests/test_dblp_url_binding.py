@@ -17,3 +17,8 @@ def test_relative_profile_binds_by_exact_url():
 def test_shared_url_or_two_records_bind_nobody():
     assert B.bind([row('甲', '../a.htm'), row('乙', '../a.htm')], [rec('p1', 'https://cs.x.edu.cn/a.htm')]) == []
     assert B.bind([row('甲', '../a.htm')], [rec('p1', 'https://cs.x.edu.cn/a.htm'), rec('p2', 'cs.x.edu.cn/a.htm')]) == []
+
+
+def test_language_variants_of_one_personal_site_are_one_url():
+    assert B.nurl('http://jszy.whu.edu.cn/yemang/zh_CN/index.htm') == B.nurl('jszy.whu.edu.cn/yemang/en') == 'jszy.whu.edu.cn/yemang'
+    assert B.nurl('http://jszy.whu.edu.cn/a/zh_cn') != B.nurl('http://jszy.whu.edu.cn/b/zh_cn')

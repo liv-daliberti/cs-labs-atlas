@@ -510,10 +510,14 @@ def faculty_evidence(pages, names, teaching_title=''):
     return ev
 
 
-def census_alias(census, names):
-    """The census person a candidate already is: a Name match, or the candidate's tokens are the start of a census
+def census_alias(census, names, dblp=None):
+    """The census person a candidate already is: the same DBLP person id (a direct URL binding of a Han-name roster person,
+    tools/dblp_url_binding_school.py), a Name match, or the candidate's tokens are the start of a census
     name ('Satinder Singh' is 'Satinder Singh Baveja')."""
+    pids = {d for d in ([dblp] if isinstance(dblp, str) else dblp or []) if d}
     for x in census.values():
+        if pids and pids & set(x.get('dblp') or []):
+            return x['name']
         N = Name([x['name']] + list(x.get('aliases') or []))
         for n in names:
             t = toks(n)
@@ -967,7 +971,7 @@ def review(key):
         if name_key in seen:
             n['duplicate_dblp_record'] += 1; continue  # two DBLP records of one name: one decision
         seen.add(name_key)
-        al = census_alias(census, names) if c['source'] not in ('affiliated_department', 'official_profile_ladder') else None
+        al = census_alias(census, names, c.get('dblp')) if c['source'] not in ('affiliated_department', 'official_profile_ladder') else None
         if al:
             n['census_alias'] += 1
             dec.append(dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision='census_alias', census_name=al,
