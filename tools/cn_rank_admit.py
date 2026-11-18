@@ -167,6 +167,26 @@ def run(key, write=False, dblp_cache=None, csr=None, recall=None):
             for h in cnd.get('home') or []:
                 if 'csr' in cnd.get('srcs', []) and len(cnd.get('dblp') or []) == 1:
                     pid_of.setdefault(nurl(h), set()).add('https://dblp.org/pid/' + cnd['dblp'][0])
+    csr_name, pinyin_count, full, csr_rows = {}, {}, {}, {}   # D-0004 (owner 2026-11-18): CSRankings entry + a UNIQUE full-name match in the official roster, medium confidence
+    if csr and recall:
+        from pypinyin import lazy_pinyin
+        for rows_ in csr_home.values():
+            for r in rows_:
+                csr_rows.setdefault(r['name'], r)
+        for cnd in json.load(open(recall))['candidates'].get(key, []):
+            if 'csr' in cnd.get('srcs', []) and len(cnd.get('dblp') or []) == 1:
+                for nm in cnd.get('names') or []:
+                    if re.fullmatch(r"[A-Za-z' .-]+", nm) and len(nm.split()) >= 2:
+                        t = [x.lower() for x in re.findall(r"[A-Za-z']+", re.sub(r'\s\d{4}$', '', nm))]
+                        for kk in {''.join(t), ''.join(reversed(t))}:
+                            full.setdefault(kk, set()).add((nm, cnd['dblp'][0]))
+        han_all = [x['name'] for x in fac] + [z['name'] for z in ents]
+        for hn in han_all:
+            k_ = name_key(hn)
+            if re.fullmatch(r'[\u4e00-\u9fff]{2,4}', k_):
+                py = ''.join(lazy_pinyin(k_)).lower()
+                pinyin_count[py] = pinyin_count.get(py, set()) | {k_}
+        csr_name = {py: next(iter(v)) for py, v in full.items() if len(v) == 1 and len(pinyin_count.get(py, ())) == 1}
     plan = dict(basis=[], additions=[], held=[], identity=[])
     for e in inc:
         rows = by.get(e['key'], [])
@@ -195,10 +215,19 @@ def run(key, write=False, dblp_cache=None, csr=None, recall=None):
         if not e['dblp'] and hp and len(csr_home.get(hp, [])) >= 1 and len(pid_of.get(hp, ())) == 1:
             row = csr_home[hp][0]
             e['csr'] = dict(pid=next(iter(pid_of[hp])), sha256=csr_sha, quote=f"{row['name']},{row['affiliation']},{row['homepage']}")
-        if e['dblp'] or e['csr']:
+        e['csrname'] = None
+        if not e['dblp'] and not e['csr'] and e['key'] not in dup_keys and len(by.get(e['key'], [])) <= 1 and re.fullmatch(r'[\u4e00-\u9fff]{2,4}', e['key']):
+            from pypinyin import lazy_pinyin
+            py = ''.join(lazy_pinyin(e['key'])).lower()
+            if py in csr_name and csr_name[py] == e['key']:
+                nm_, pid_ = next(iter(full[py]))
+                row_ = csr_rows.get(nm_) or next((r for r in csr_rows.values() if r['name'] == re.sub(r'\s\d{4}$', '', nm_)), None)
+                if row_:
+                    e['csrname'] = dict(pid='https://dblp.org/pid/' + pid_, sha256=csr_sha, quote=f"{row_['name']},{row_['affiliation']},{row_['homepage']}", pinyin=py, csr_name=nm_)
+        if e['dblp'] or e['csr'] or e['csrname']:
             plan['identity'].append(e['name'])
     print(json.dumps(dict(listed=len(ents), included=len(inc), basis_records=len(plan['basis']), additions=len(plan['additions']), held=len(plan['held']),
-                          dblp_anchored=len(plan['identity']), held_detail=plan['held'][:30]), ensure_ascii=False))
+                          dblp_anchored=len(plan['identity']), csrname_candidates=len(csr_name), csrname_matched=sum(1 for z in inc if z.get('csrname')), held_detail=plan['held'][:30]), ensure_ascii=False))
     if not write:
         return plan, ents
     rev = dict(reviewed_by=WHO, reviewed_on=TODAY)
@@ -220,11 +249,18 @@ def run(key, write=False, dblp_cache=None, csr=None, recall=None):
             basis.append(dict(pi=name, kind='advises_phd', **ev, subject_evidence=dict(url=e['url'], sha256=sha, quote=e['quote']), **rev, why=why))
         else:
             slug = re.sub(r'[^a-z0-9]+', '-', e['key'].lower()) if e['key'].isascii() else 'u' + __import__('hashlib').sha1(e['key'].encode()).hexdigest()[:16]
-            adds.append(dict(name=e['name'], aliases=[], collection_person_id=f'{key}_fac_{slug}', dblp=[(e.get('dblp') or e.get('csr'))['pid']] if (e.get('dblp') or e.get('csr')) else [], rank='other',
+            adds.append(dict(name=e['name'], aliases=[], collection_person_id=f'{key}_fac_{slug}', dblp=[(e.get('dblp') or e.get('csr') or e.get('csrname'))['pid']] if (e.get('dblp') or e.get('csr') or e.get('csrname')) else [], rank='other',
                              title_as_listed='博士生导师', departments=[unit], listed_in=[unit], years_listed=[int(TODAY[:4])], ranks_by_year={TODAY[:4]: ['other']},
                              sources=[dict(url=e['url'], sha256=sha, quote=e['quote'], kind=f'dept_supervisor_list:{unit}', observed=TODAY, rank_as_listed='博士生导师', rank='other')],
                              profile_url=e['href'], is_pi=True, pi_basis=dict(kind='advises_phd', **ev), lab_units=[], added='cn_rank_admit_' + TODAY.replace('-', '')))
-        if e.get('csr'):
+        if e.get('csrname') and not e.get('csr') and not e.get('dblp'):
+            d = e['csrname']
+            o = ov.setdefault(name, {})
+            o.update(no_identity=False, dblp=[d['pid']], **rev,
+                     identity_resolution=dict(decision='csrankings_unique_fullname_roster', confidence='medium', reviewed=TODAY,
+                                              basis='Owner ruling D-0004 (2026-11-18): a CSRankings entry plus a UNIQUE full-name match in the official roster. The pinyin of the roster name equals the CSRankings name (either order); exactly one roster/census Han name has that pinyin and exactly one CSRankings entry of the school has it; the entry maps to one DBLP person. Same-name collisions are held. Medium confidence; covered by the 50-row identity audit.',
+                                              evidence=[dict(url=e['url'], sha256=sha, quote=e['quote']), dict(url='csrankings.csv (scratch/pi-recall-1118/work/csr)', sha256=d['sha256'], quote=d['quote'], pinyin=d['pinyin']), dict(url=d['pid'], note='DBLP person of the CSRankings row (scratch/pi-recall-1118/recall.json)')]))
+        elif e.get('csr'):
             d = e['csr']
             o = ov.setdefault(name, {})
             o.update(no_identity=False, dblp=[d['pid']], **rev,
