@@ -2024,12 +2024,12 @@
     ]
    },
    "dblp": "https://dblp.org/pid/21/8587-1",
-   "decision": "excluded_unresolved",
-   "profile_class": "directory_match_needs_id_evidence",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
    "units": [
     "SIST"
    ],
-   "reason": "[OPEN ITEM, NOT A CLAIM] full pinyin matches directory name(s) ['龚晨'] (1 page hits; 2 DBLP candidate(s) share the pinyin; DBLP unit(s) ['SIST']): the match is not unique or the unit is not stated in the DBLP affiliation; per-id evidence (own official page / DBLP-OpenAlex id) is needed.",
+   "reason": "教授 (Department of Electronic Engineering and Information Science, School of Information Science and Technology) per https://faculty.ustc.edu.cn/gongchen/zh_CN/index.htm; computing test re-judged 2026-11-18 under the owner reading (communication/information theory, scientific computing as object): in. Wireless/optical-wireless communications: IEEE Trans. Wireless Commun. 3, IEEE Commun. Lett. 2, NOMA VLC power allocation; owner ruling puts wireless/communication theory IN (ORCID record also holds unrelated nano-optics titles).",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -2040,7 +2040,13 @@
     "OpenAlex sweep 2016-2026 (oa-author-stats; candidate rule)",
     "not available: 2016-2022 unit directories (Wayback unit pass not run), per-person official pages (legacy profile pages 404/410), CJK name forms of DBLP persons",
     "gate-2 rework 2026-11-17: stored USTC unit directories (28 units, current 2026 pages plus Wayback 2018-2022 where captured) and the CS census parsed into hierarchy/ustc/raw/unit-directory-rows.jsonl.gz and matched by full pinyin (family+given, both orders); no same-pinyin listing bound to this DBLP person by a stored homepage/ORCID/unit+paper source"
-   ]
+   ],
+   "receipt": {
+    "url": "https://faculty.ustc.edu.cn/gongchen/zh_CN/index.htm",
+    "sha256": "b583b54c00bf2d479785705458649835772505046af5c8d8d5f55010f3c8df8f",
+    "quote": "现为中国科学技术大学教授、博士生导师。",
+    "observed": "2026-11-18"
+   }
   },
   {
    "name": "Chen Tang",
@@ -21306,10 +21312,10 @@
     ]
    },
    "dblp": "https://dblp.org/pid/10/1448-10",
-   "decision": "excluded_unresolved",
-   "profile_class": "directory_match_needs_id_evidence",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
    "units": [],
-   "reason": "[OPEN ITEM, NOT A CLAIM] full pinyin matches directory name(s) ['陈伟东', '陈卫东'] (6 page hits; 2 DBLP candidate(s) share the pinyin; DBLP unit(s) unstated): the match is not unique or the unit is not stated in the DBLP affiliation; per-id evidence (own official page / DBLP-OpenAlex id) is needed. | Gate-2 rework 2026-11-17: stored unit directory lists a same-name person (EEIS, 教授 (陈卫东, 2015 EEIS page) vs 副教授 (陈伟东, 2025)) but unresolved: Identity ambiguous between two same-pinyin people; computing borderline. | Gate-2 rework 2026-11-17: stored unit directory lists a same-name person (EEIS, 教授 (陈卫东) / 副研究员 (陈伟东)) but identity_unbound: Neither profile lists papers or ORCID.",
+   "reason": "讲席教授、教授（二级） (EEIS, School of Information Science and Technology) per https://faculty.ustc.edu.cn/chenweidong/zh_CN/index.htm; computing test re-judged 2026-11-18 under the owner reading (communication/information theory, scientific computing as object): in. Page research is radar signal and information processing; Bayesian ISAR imaging, remote sensing, radar (TAP, AWPL, Remote Sensing); signal processing IN per ruling, though many venues are antenna hardware and ORCID record is noisy (borderline).",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -21321,7 +21327,13 @@
     "not available: 2016-2022 unit directories (Wayback unit pass not run), per-person official pages (legacy profile pages 404/410), CJK name forms of DBLP persons",
     "gate-2 rework: stored unit directories of CUHK (hierarchy/cuhk/raw/unit-directory-rows.jsonl.gz); same-name hit not bound (unresolved)",
     "gate-2 rework: stored unit directories of CUHK (hierarchy/cuhk/raw/unit-directory-rows.jsonl.gz); same-name hit not bound (identity_unbound)"
-   ]
+   ],
+   "receipt": {
+    "url": "https://faculty.ustc.edu.cn/chenweidong/zh_CN/index.htm",
+    "sha256": "fdd00f2cddf98ae016aa743ad4cb895819ab9cc3136e109b530324ddacdd6d09",
+    "quote": "中国科学技术大学讲席教授、教授（二级）、博士生导师",
+    "observed": "2026-11-18"
+   }
   },
   {
    "name": "Weidong Chen",
@@ -22884,12 +22896,12 @@
     ]
    },
    "dblp": "https://dblp.org/pid/64/3062-4",
-   "decision": "faculty_not_computing",
-   "profile_class": "gate2_rework_excluded_not_computing",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
    "units": [
     "BME"
    ],
-   "reason": "副教授 in SME / School of Information Science (stored source); identity: DBLP note USTC Institute of Biomedical Engineering plus sEMG/sign-language recognition titles match profile topics (表面肌电 姿势识别 人机交互) Computing test: biomedical signal detection and rehabilitation engineering; sEMG pattern recognition is a method but the object is neuro-rehabilitation; borderline, judged out Gate-2 rework 2026-11-17.",
+   "reason": "副教授 in SME / School of Information Science (BME) per http://sme.ustc.edu.cn/2022/0601/c31000a556961/page.htm; computing test re-judged 2026-11-18 under the owner reading (communication/information theory, scientific computing as object): in. sEMG/EEG gesture and emotion recognition frameworks (IEEE JBHI 4, THMS, Knowledge-Based Systems, ACM IUI); machine learning/HCI recognition is the method and a substantial share of output (flipped; borderline vs neuro-rehabilitation). Rank (副教授) unchanged from record.",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -22912,7 +22924,13 @@
     }
    ],
    "years_listed": "2022-2026",
-   "reviewed_by": "claude_g2_rework_20261117"
+   "reviewed_by": "claude_g2_rework_20261117",
+   "receipt": {
+    "url": "http://sme.ustc.edu.cn/2022/0601/c31000a556961/page.htm",
+    "sha256": "53ab418a3c2565ea18940641d7c9c2318e3bab053a61876bb07addaf49a8122d",
+    "quote": "陈香 副教授 主要研究方向：生物医学信号检测与处理、智能交互、神经康复工程、移动健康",
+    "observed": "2026-11-17"
+   }
   },
   {
    "name": "Xiang Ji",
@@ -25259,10 +25277,10 @@
     ]
    },
    "dblp": "https://dblp.org/pid/98/5660-2",
-   "decision": "faculty_not_computing",
-   "profile_class": "gate2_rework_excluded_not_computing",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
    "units": [],
-   "reason": "副教授 in School of Microelectronics (stored source); identity: DBLP affiliation note names USTC Department of Electronic Science and Technology (SME) and RIC Chicago FORMER; SME field 神经康复工程 matches the EMG titles. Computing test: Neural rehabilitation engineering, surface EMG and prosthesis control; machine learning is applied to physiological signals and is incidental to the biomedical engineering object. Gate-2 rework 2026-11-17.",
+   "reason": "副教授 in School of Microelectronics (USTC) per http://sme.ustc.edu.cn/zdjswxnw_31000/list.htm; computing test re-judged 2026-11-18 under the owner reading (communication/information theory, scientific computing as object): in. Hand-gesture recognition from sEMG with ML for HCI/prosthesis control (IEEE THMS, Knowledge-Based Systems, ACM IUI, JBHI, TNSRE); ML pattern recognition is the method (flipped, borderline vs biomedical engineering). Rank unchanged from record.",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -25287,7 +25305,13 @@
     2022,
     2026
    ],
-   "reviewed_by": "claude_g2_rework_20261117"
+   "reviewed_by": "claude_g2_rework_20261117",
+   "receipt": {
+    "url": "http://sme.ustc.edu.cn/zdjswxnw_31000/list.htm",
+    "sha256": "d6ac19b4583645acebf9fd35a04da96063443a73949b305e5e6b306c9820463a",
+    "quote": "张旭 副教授 主要研究方向： 开展神经康复工程领域的各类广泛性课题",
+    "observed": "2026-11-15"
+   }
   },
   {
    "name": "Xuan Gao",
@@ -26062,12 +26086,12 @@
     ]
    },
    "dblp": "https://dblp.org/pid/03/4702-8",
-   "decision": "excluded_unresolved",
-   "profile_class": "directory_match_needs_id_evidence",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
    "units": [
     "MATH"
    ],
-   "reason": "[OPEN ITEM, NOT A CLAIM] full pinyin matches directory name(s) ['徐岩'] (2 page hits; 2 DBLP candidate(s) share the pinyin; DBLP unit(s) ['MATH']): the match is not unique or the unit is not stated in the DBLP affiliation; per-id evidence (own official page / DBLP-OpenAlex id) is needed.",
+   "reason": "教授 (MATH) per https://faculty.ustc.edu.cn/yxu/zh_CN/index.htm; computing test re-judged 2026-11-18 under the owner reading (communication/information theory, scientific computing as object): in. Discontinuous Galerkin schemes: J. Comput. Phys. 5, CiCP 4, SISC 3, SINUM 2, J. Sci. Comput. 2, CMAME 2 of 25 works; scientific computing algorithms are the object.",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -26078,7 +26102,13 @@
     "OpenAlex sweep 2016-2026 (oa-author-stats; candidate rule)",
     "not available: 2016-2022 unit directories (Wayback unit pass not run), per-person official pages (legacy profile pages 404/410), CJK name forms of DBLP persons",
     "gate-2 rework 2026-11-17: stored USTC unit directories (28 units, current 2026 pages plus Wayback 2018-2022 where captured) and the CS census parsed into hierarchy/ustc/raw/unit-directory-rows.jsonl.gz and matched by full pinyin (family+given, both orders); no same-pinyin listing bound to this DBLP person by a stored homepage/ORCID/unit+paper source"
-   ]
+   ],
+   "receipt": {
+    "url": "https://faculty.ustc.edu.cn/yxu/zh_CN/index.htm",
+    "sha256": "b391802b09719120448322d7e447300403629877ef2239564581fae6fae4cfcd",
+    "quote": "教授",
+    "observed": "2026-11-18"
+   }
   },
   {
    "name": "Yan Zhong",
@@ -27289,10 +27319,10 @@
     ]
    },
    "dblp": "https://dblp.org/pid/20/1654-4",
-   "decision": "faculty_not_computing",
-   "profile_class": "gate2_rework_excluded_not_computing",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
    "units": [],
-   "reason": "正高 (Cyber 2022); Math list (no title) in Department of Mathematics (stored source); identity: DBLP affiliation \"Department of Mathematics, USTC\" matches the Math faculty list; the Cyber school 正高 row (2022) is a courtesy listing, not a second unit used here. Computing test: Number theory and finite fields (limiting Newton polygons, solutions of congruences, cyclotomic-sequence linear complexity, isogeny graphs): pure mathematics; cryptographic applications are incidental. Gate-2 rework 2026-11-17.",
+   "reason": "正高 (Cyber 2022); Math list (no title) in Department of Mathematics (USTC) per https://math.ustc.edu.cn/azcp/list.htm; computing test re-judged 2026-11-18 under the owner reading (communication/information theory, scientific computing as object): in. Finite fields, coding and cryptography (Finite Fields Appl. 5, Designs Codes Cryptography 2, Adv. Math. Commun. 2, SQIsign2D isogeny signature in LNCS); coding theory/security math is substantial share (flipped, borderline vs pure number theory). Rank evidence noted as courtesy Cyber listing, unchanged.",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -27326,7 +27356,13 @@
     2022,
     2026
    ],
-   "reviewed_by": "claude_g2_rework_20261117"
+   "reviewed_by": "claude_g2_rework_20261117",
+   "receipt": {
+    "url": "https://math.ustc.edu.cn/azcp/list.htm",
+    "sha256": "3bcca7d02ba0b0cd5a86dc498e2a318557bd2e8c5b524fb6c7bcaa4a79696b9e",
+    "quote": "du.cn 新楼516 欧阳毅 代数 yiouyang@ustc.edu.cn 1327 任广斌 分析 rengb@us",
+    "observed": "2026-11-15"
+   }
   },
   {
    "name": "Yi Shi",
@@ -33161,10 +33197,10 @@
    "openalex": [
     "https://openalex.org/A5072373301"
    ],
-   "decision": "excluded_unresolved",
-   "profile_class": "directory_match_needs_id_evidence",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
    "units": [],
-   "reason": "[OPEN ITEM, NOT A CLAIM] full pinyin matches directory name(s) ['徐正元'] (1 page hits; 1 DBLP candidate(s) share the pinyin; DBLP unit(s) unstated): the match is not unique or the unit is not stated in the DBLP affiliation; per-id evidence (own official page / DBLP-OpenAlex id) is needed. | Gate-2 rework 2026-11-17: stored unit directory lists a same-name person (CYBERSEC; EEIS, 正高 (CYBERSEC 20220703105813); 教授 (EEIS 2026-11-15)) but identity_unbound: OA-only candidate: OpenAlex-author-only row (dblp_pid is an OpenAlex author id): no DBLP person, no ORCID or homepage on a stored page, no DBLP affiliation note; the OA record (USTC-lineage works) matches the listed name only, which the rule forbids as binding. | Gate-2 rework 2026-11-17: stored unit directory lists a same-name person (EEIS / CYBERSEC, 教授 heading (EEIS list 2020, 2026); 正高 (CYBERSEC 2022)) but no_rank_source: No person-level rank or field page captured.",
+   "reason": "教授 (EEIS) per https://eeis.ustc.edu.cn/2013/0929/c2648a19471/page.htm; computing test re-judged 2026-11-18 under the owner reading (communication/information theory, scientific computing as object): in. Optical wireless communication, channel modelling and signal processing (IEEE JSAC 2, IEEE Trans. Signal Process. 2, Commun. Mag., Commun. Surv. Tutor.); communication theory IN per ruling.",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -33177,7 +33213,13 @@
     "not available: 2016-2022 unit directories (Wayback unit pass not run), per-person official pages (legacy profile pages 404/410), CJK name forms of DBLP persons",
     "gate-2 rework: stored unit directories of CUHK (hierarchy/cuhk/raw/unit-directory-rows.jsonl.gz); same-name hit not bound (identity_unbound)",
     "gate-2 rework: stored unit directories of CUHK (hierarchy/cuhk/raw/unit-directory-rows.jsonl.gz); same-name hit not bound (no_rank_source)"
-   ]
+   ],
+   "receipt": {
+    "url": "https://eeis.ustc.edu.cn/2013/0929/c2648a19471/page.htm",
+    "sha256": "1aecce768ddb715e0e7f7bc47abfbd31f271c56b2278f6aafb7be9e8444e40e5",
+    "quote": "现为中国科学技术大学教授、博士生导师",
+    "observed": "2026-11-18"
+   }
   },
   {
    "name": "Peiquan Jin",
@@ -36802,10 +36844,10 @@
    "openalex": [
     "https://openalex.org/A5100375178"
    ],
-   "decision": "excluded_unresolved",
-   "profile_class": "directory_match_needs_id_evidence",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
    "units": [],
-   "reason": "[OPEN ITEM, NOT A CLAIM] full pinyin matches directory name(s) ['陈晓辉'] (4 page hits; 1 DBLP candidate(s) share the pinyin; DBLP unit(s) unstated): the match is not unique or the unit is not stated in the DBLP affiliation; per-id evidence (own official page / DBLP-OpenAlex id) is needed. | Gate-2 rework 2026-11-17: stored unit directory lists a same-name person (EEIS, 副教授 (EEIS 2020-09-25, 2022-05-24)) but identity_unbound: Dossier carries only an OpenAlex author id (no DBLP pid, no ORCID, no works/affiliation to compare) and no stored page links one; a same-pinyin directory match is not an identity bind. | Gate-2 rework 2026-11-17: stored unit directory lists a same-name person (EEIS, 副教授) but identity_unbound: Pinyin plus topic.",
+   "reason": "副教授 (series heading 副教授、特任副教授、副研究员...) (EEIS) per https://eeis.ustc.edu.cn/2011/0315/c2615a19384/page.htm; computing test re-judged 2026-11-18 under the owner reading (communication/information theory, scientific computing as object): in. Wireless/MIMO and vehicular communications (IEEE VTC, ICCC, IEEE Signal Process. Lett., IEEE Access); wireless communication IN per ruling.",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -36818,7 +36860,13 @@
     "not available: 2016-2022 unit directories (Wayback unit pass not run), per-person official pages (legacy profile pages 404/410), CJK name forms of DBLP persons",
     "gate-2 rework: stored unit directories of CUHK (hierarchy/cuhk/raw/unit-directory-rows.jsonl.gz); same-name hit not bound (identity_unbound)",
     "gate-2 rework: stored unit directories of CUHK (hierarchy/cuhk/raw/unit-directory-rows.jsonl.gz); same-name hit not bound (identity_unbound)"
-   ]
+   ],
+   "receipt": {
+    "url": "https://eeis.ustc.edu.cn/2011/0315/c2615a19384/page.htm",
+    "sha256": "2e1740b166efbc9310ffed1f0819b095c25acb2887c7dbdb64e20220603969a3",
+    "quote": "副教授、特任副教授、副研究员、特任副研究员、高级工程师、高级实验师等系列老师",
+    "observed": "2026-11-18"
+   }
   },
   {
    "name": "Wenjie Wang",
@@ -36999,10 +37047,12 @@
    "openalex": [
     "https://openalex.org/A5089356327"
    ],
-   "decision": "excluded_unresolved",
-   "profile_class": "directory_match_needs_id_evidence",
-   "units": [],
-   "reason": "[OPEN ITEM, NOT A CLAIM] full pinyin matches directory name(s) ['吕文君'] (15 page hits; 1 DBLP candidate(s) share the pinyin; DBLP unit(s) unstated): the match is not unique or the unit is not stated in the DBLP affiliation; per-id evidence (own official page / DBLP-OpenAlex id) is needed. | Gate-2 rework 2026-11-17: stored unit directory lists a same-name person (AUTO, 副高 (AUTO 吕文君)) but identity_unbound: Rank per directory listing shown; identity unbound. | Gate-2 rework 2026-11-17: stored unit directory lists a same-name person (AUTO, 副高 (AUTO list)) but no_rank_source: No person-level rank.",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
+   "units": [
+    "AUTO"
+   ],
+   "reason": "副高 (副教授-level) in Department of Automation, USTC: listed under the 副高 heading on the AUTO faculty roster (live 2026-11-15 and Wayback 2022-06-27 captures); identity: profile page (auto.ustc.edu.cn/2021/0510/c25977a484862/page.htm) gives wlv@ustc.edu.cn, the same corresponding-author email as the Sensors 2020 transfer-learning paper under USTC Automation; OpenAlex author lists USTC 2013-2026. Computing test: ML/transfer learning and signal processing: passes. Audit g2rework5 reviewer finding, fixed 2026-11-18.",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -37015,7 +37065,13 @@
     "not available: 2016-2022 unit directories (Wayback unit pass not run), per-person official pages (legacy profile pages 404/410), CJK name forms of DBLP persons",
     "gate-2 rework: stored unit directories of CUHK (hierarchy/cuhk/raw/unit-directory-rows.jsonl.gz); same-name hit not bound (identity_unbound)",
     "gate-2 rework: stored unit directories of CUHK (hierarchy/cuhk/raw/unit-directory-rows.jsonl.gz); same-name hit not bound (no_rank_source)"
-   ]
+   ],
+   "receipt": {
+    "url": "https://auto.ustc.edu.cn/25970/list.htm",
+    "sha256": "839ce0ab3d8dbac848c503ee4028c9f4afcf650acd80b1c31c62f8cb9e25b569",
+    "quote": "吕文君",
+    "observed": "2026-11-15"
+   }
   },
   {
    "name": "Jinkang Zhu",
@@ -37241,10 +37297,10 @@
    "openalex": [
     "https://openalex.org/A5046105120"
    ],
-   "decision": "excluded_unresolved",
-   "profile_class": "directory_match_needs_id_evidence",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
    "units": [],
-   "reason": "[OPEN ITEM, NOT A CLAIM] full pinyin matches directory name(s) ['张先得'] (3 page hits; 1 DBLP candidate(s) share the pinyin; DBLP unit(s) unstated): the match is not unique or the unit is not stated in the DBLP affiliation; per-id evidence (own official page / DBLP-OpenAlex id) is needed. | Gate-2 rework 2026-11-17: stored unit directory lists a same-name person (School of Mathematical Sciences, 教授 (SMS 2022, 2026); 副教授 block 2020) but identity_unbound: Dossier carries only an OpenAlex author id (no DBLP pid, no ORCID, no works/affiliation to compare) and no stored page links one; a same-pinyin directory match is not an identity bind. | Gate-2 rework 2026-11-17: stored unit directory lists a same-name person (MATH / CYBERSEC, 正高 (cybersec row 2022-07-03); MATH 师资队伍) but identity_unbound: No stored page text.",
+   "reason": "教授 (MATH) per https://faculty.ustc.edu.cn/zhangxiande/zh_CN/index.htm; computing test re-judged 2026-11-18 under the owner reading (communication/information theory, scientific computing as object): in. Coding theory/combinatorial designs: IEEE Trans. Inf. Theory 10 of 25 works plus ISIT; coding theory IN per ruling.",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -37257,7 +37313,13 @@
     "not available: 2016-2022 unit directories (Wayback unit pass not run), per-person official pages (legacy profile pages 404/410), CJK name forms of DBLP persons",
     "gate-2 rework: stored unit directories of CUHK (hierarchy/cuhk/raw/unit-directory-rows.jsonl.gz); same-name hit not bound (identity_unbound)",
     "gate-2 rework: stored unit directories of CUHK (hierarchy/cuhk/raw/unit-directory-rows.jsonl.gz); same-name hit not bound (identity_unbound)"
-   ]
+   ],
+   "receipt": {
+    "url": "https://faculty.ustc.edu.cn/zhangxiande/zh_CN/index.htm",
+    "sha256": "6221d1ffb36c60d7828b65810e1e4c3ad136a3cff4d5a394a7dc47742c202df6",
+    "quote": "教授",
+    "observed": "2026-11-18"
+   }
   },
   {
    "name": "Yunming Liao",
@@ -37461,10 +37523,10 @@
    "openalex": [
     "https://openalex.org/A5035034346"
    ],
-   "decision": "faculty_not_computing",
-   "profile_class": "gate2_rework_excluded_not_computing",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
    "units": [],
-   "reason": "教授 in MATH (stored source); identity: faculty page cites Math. Comp., J. Comput. Phys., J. Sci. Comput., matching OpenAlex venues Computing test: numerical PDE schemes and scientific computing (Math. Comp., JCP); mathematics, not computing as object; borderline Gate-2 rework 2026-11-17.",
+   "reason": "教授 in MATH (USTC) per https://faculty.ustc.edu.cn/yhxia/zh_CN/index.htm; computing test re-judged 2026-11-18 under the owner reading (communication/information theory, scientific computing as object): in. Numerical PDE schemes: of 25 OpenAlex works J. Comput. Phys. 9, J. Sci. Comput. 5, Math. Comp. 2, CiCP 2, SISC 1 are scientific-computing venues (~80%); algorithm is the object.",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -37496,7 +37558,13 @@
     }
    ],
    "years_listed": "2026",
-   "reviewed_by": "claude_g2_rework_20261117"
+   "reviewed_by": "claude_g2_rework_20261117",
+   "receipt": {
+    "url": "https://faculty.ustc.edu.cn/yhxia/zh_CN/index.htm",
+    "sha256": "37606df6dd676b1dd374f61557875986335d8e5735fc3abed7c69898f5b34988",
+    "quote": "职称：教授",
+    "observed": "2026-11-17"
+   }
   },
   {
    "name": "Jikai Wang",
@@ -38841,10 +38909,10 @@
    "openalex": [
     "https://openalex.org/A5019858170"
    ],
-   "decision": "faculty_not_computing",
-   "profile_class": "gate2_rework_excluded_not_computing",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
    "units": [],
-   "reason": "教授 in School of Mathematical Sciences (stored source); identity: Not bound (OpenAlex-only record; listing gives 科学计算). Computing test: Numerical analysis of discontinuous Galerkin and finite difference schemes for PDEs (J. Comput. Phys., J. Sci. Comput.); applied mathematics and simulation, not computing science as object or method; 26 of 52 works flagged CS only via venue. Gate-2 rework 2026-11-17.",
+   "reason": "教授 in School of Mathematical Sciences (USTC) per https://math.ustc.edu.cn/szdw/list.htm; computing test re-judged 2026-11-18 under the owner reading (communication/information theory, scientific computing as object): in. DG/finite-difference PDE schemes with J. Comput. Phys. 4, SISC 2, J. Sci. Comput. 2, CiCP 1, SINUM 1 (~10 of 25) scientific-computing venues; algorithm development is the object (flipped, borderline-substantial share).",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -38871,7 +38939,13 @@
     2020,
     2026
    ],
-   "reviewed_by": "claude_g2_rework_20261117"
+   "reviewed_by": "claude_g2_rework_20261117",
+   "receipt": {
+    "url": "https://math.ustc.edu.cn/szdw/list.htm",
+    "sha256": "0c0266215d1d8045d89f57890e1ea68556b861d54f218ab990ac5bacc8a82caa",
+    "quote": "张梦萍 科学计算 mpzhang@ustc.edu.cn",
+    "observed": "2026-11-15T22:45:53"
+   }
   },
   {
    "name": "Shaoyin Cheng",
@@ -41476,10 +41550,10 @@
    "openalex": [
     "https://openalex.org/A5012141054"
    ],
-   "decision": "excluded_unresolved",
-   "profile_class": "directory_match_needs_id_evidence",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
    "units": [],
-   "reason": "[OPEN ITEM, NOT A CLAIM] full pinyin matches directory name(s) ['熊涛'] (2 page hits; 1 DBLP candidate(s) share the pinyin; DBLP unit(s) unstated): the match is not unique or the unit is not stated in the DBLP affiliation; per-id evidence (own official page / DBLP-OpenAlex id) is needed.",
+   "reason": "教授 (MATH) per https://faculty.ustc.edu.cn/xiongtao/zh_CN/index.htm; computing test re-judged 2026-11-18 under the owner reading (communication/information theory, scientific computing as object): in. High-order WENO/DG schemes: J. Comput. Phys. 10, J. Sci. Comput. 4, SISC 3, SINUM 1 of 25 works; scientific computing algorithms are the object.",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -41491,7 +41565,13 @@
     "OpenAlex author record (no DBLP affiliation note, no unit named)",
     "not available: 2016-2022 unit directories (Wayback unit pass not run), per-person official pages (legacy profile pages 404/410), CJK name forms of DBLP persons",
     "gate-2 rework 2026-11-17: stored USTC unit directories (28 units, current 2026 pages plus Wayback 2018-2022 where captured) and the CS census parsed into hierarchy/ustc/raw/unit-directory-rows.jsonl.gz and matched by full pinyin (family+given, both orders); no same-pinyin listing bound to this DBLP person by a stored homepage/ORCID/unit+paper source"
-   ]
+   ],
+   "receipt": {
+    "url": "https://faculty.ustc.edu.cn/xiongtao/zh_CN/index.htm",
+    "sha256": "97a48fa7c8dab7d3bd857536eb03915615b51602faf207fb265e1b9fe3882e84",
+    "quote": "中国科学技术大学数学科学学院 教授 计算数学专业",
+    "observed": "2026-11-18"
+   }
   },
   {
    "name": "Qingbo He",
