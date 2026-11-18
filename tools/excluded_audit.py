@@ -73,6 +73,18 @@ def convert(key, dry=False):
     doc = _read(review_path(key), {}) or {}
     n = collections.Counter()
     today = datetime.date.today().isoformat()
+    expanded = []
+    for d in doc.get('decisions', []):
+        code = LEGACY_PENDING.get(d.get('decision'))
+        if code == 'identity_collision' and d.get('candidate_sources') and not d.get('source_id'):
+            # one excluded row per candidate source id: stage_gate g2 wants every identity sharing a display name decided on its own id
+            for cs in d['candidate_sources']:
+                sid = cs.get('dblp') or ''.join(cs.get('openalex') or [])
+                if sid:
+                    expanded.append(dict(d, source_id=sid, candidate_sources=[cs]))
+            if any(e['name'] == d['name'] for e in expanded):
+                d['__drop'] = True
+    doc['decisions'] = [x for x in doc.get('decisions', []) if not x.get('__drop')] + expanded
     for d in doc.get('decisions', []):
         code = LEGACY_PENDING.get(d.get('decision'))
         if not code:

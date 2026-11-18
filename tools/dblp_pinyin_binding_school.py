@@ -145,9 +145,10 @@ def main(keys):
                 recs[k].append(dict(pid='https://dblp.org/pid/' + key.split('/', 1)[1], names=[text(a) for _, a in AUTH.findall(body)], school_note=note or f'<url>{sch_url}</url>',
                                     orcid=sorted({m.group(1) for u in urls for m in [re.search(r'orcid\.org/([0-9X-]{19})', u)] if m}), sha256=hashlib.sha256(body.encode()).hexdigest()))
     for k in keys:
-        bound = bind(people[k], recs[k])
         lo, hi = cfgs[k][0].get('window') or [2016, 2026]
-        owner = {nm: r['pid'] for _, r in bound for nm in r['names']}
+        pkeys = {kk for p in people[k] for kk in keys_of(p['name'])}
+        rel = [r for r in recs[k] if any(fold(re.sub(r'\s+\d{4}$', '', nm)) in pkeys for nm in r['names'])]
+        owner = {nm: r['pid'] for r in rel for nm in r['names']}
         k_cnt = collections.Counter()
         for typ, key, body in records():
             if typ in ('www', 'data'):
@@ -157,6 +158,8 @@ def main(keys):
             if hit and y and lo <= int(y.group(1)) <= hi:
                 for p in hit:
                     k_cnt[p] += 1
+        # a thin record (< MIN_WINDOW records in the window) is neither a candidate nor a competitor: 'Liwei Wang 0015' (2 records) does not block 'Liwei Wang 0011' (12)
+        bound = bind(people[k], [r for r in rel if k_cnt[r['pid']] >= MIN_WINDOW])
         path = P.data_w('dblp-ids.json', k)
         cur = json.loads(path.read_text()) if path.exists() else {}
         ev = {p['name']: p['evidence'] for p in people[k]}

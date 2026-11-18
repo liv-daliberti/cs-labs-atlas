@@ -21,3 +21,15 @@ def test_different_rows_in_one_capture_still_split():
     rs = [row('王伟', 'u1', 'http://x/1', quote='a'), row('王伟', 'u1', 'http://x/2', quote='b')]
     groups, _ = R.clusters('王伟', rs, {'d': {2023}})
     assert len(groups) == 2 and all(g[2] for g in groups)
+
+
+def test_identity_collision_rows_expand_per_source_id(tmp_path, monkeypatch):
+    import excluded_audit as EA
+    doc = dict(decisions=[dict(name='Bin Li', decision='pending_identity_collision', reason='r', units_searched=['U'],
+                               candidate_sources=[dict(source='dblp_affiliation', dblp='d1', openalex=None), dict(source='openalex_rule', dblp=None, openalex=['W1'])])])
+    p = tmp_path / 'r.json'
+    p.write_text(__import__('json').dumps(doc))
+    monkeypatch.setattr(EA, 'review_path', lambda k: p)
+    EA.convert('x')
+    out = __import__('json').loads(p.read_text())['decisions']
+    assert sorted(d['source_id'] for d in out) == ['W1', 'd1'] and all(d['decision'] == 'excluded_unresolved' and d['reason_code'] == 'identity_collision' for d in out)

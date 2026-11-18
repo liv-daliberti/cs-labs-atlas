@@ -283,7 +283,7 @@ def g2(key):
     for name, rows in by_name.items():
         if len(rows) < 2:
             continue
-        source_ids = [c.get('dblp') or c.get('author') or tuple(c.get('openalex') or []) for c in rows]
+        source_ids = [c.get('dblp') or c.get('author') or (''.join(c['openalex']) if len(c.get('openalex') or []) == 1 else tuple(c.get('openalex') or [])) for c in rows]   # a single OpenAlex id is a string, as the decision's source_id
         reviewed = [d for d in decisions if d['name'] == name and d.get('source_id')]
         covered = {d['source_id'] for d in reviewed if d['decision'] not in
                    ('pending_openalex', 'pending_identity_collision', 'pending_source_coverage')
