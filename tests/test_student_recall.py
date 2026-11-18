@@ -562,3 +562,161 @@ def test_recall_source_text_excludes_hidden_html_comments(html):
     for text in (R.page_text(html), R.page_text_lines(html).casefold()):
         assert 'ada visible' in text
         assert 'ryo hidden' not in text
+
+
+def owned_case(tree):
+    rec = R.draw('u', drawn_by='drawer')
+    pi = rec['sample'][-1]['pi']
+    pages = {}
+    rec = fill(rec, pages, {pi: [dict(name='Real One', role='phd', section='current')]})
+    entry = next(x for x in rec['sample'] if x['pi'] == pi)
+    extra = b'<html><body>Current students: Other Student</body></html>'
+    pages['https://second.example/people'] = extra
+    entry['extra_pages'] = [dict(url='https://second.example/people', sha256=hashlib.sha256(extra).hexdigest())]
+    entry['listed'].append(dict(name='Other Student', role='phd', section='current'))
+    proofs = []
+    for host in ['lab.example', 'second.example']:
+        url = f'https://{host}/about'
+        quote = f'Principal Investigator {pi}'
+        raw = f'<html><body>{quote}</body></html>'.encode()
+        pages[url] = raw
+        proofs.append(dict(host=host, pi=pi, url=url, sha256=hashlib.sha256(raw).hexdigest(), quote=quote))
+    entry['host_ownership'] = proofs
+    return rec, entry, pages
+
+
+def test_two_captured_ownership_proofs_allow_another_host(tree):
+    rec, entry, pages = owned_case(tree)
+    conn = make_store(tree, pages)
+    assert R.evaluate_record('u', rec, conn=conn)['findings'] == []
+    assert R.verified_host_ownership(entry, 'lab.example', conn)
+    assert R.verified_host_ownership(entry, 'second.example', conn)
+
+
+@pytest.mark.parametrize('which', [0, 1])
+@pytest.mark.parametrize('bad', ['missing', 'wrong_pi', 'wrong_host', 'off_host_url', 'stale_sha', 'absent_quote', 'no_leadership', 'uncaptured'])
+def test_invalid_ownership_cannot_authorize_a_host(tree, which, bad):
+    rec, entry, pages = owned_case(tree)
+    proof = entry['host_ownership'][which]
+    if bad == 'missing':
+        entry['host_ownership'].pop(which)
+    elif bad == 'wrong_pi':
+        proof['pi'] = 'Different PI'
+    elif bad == 'wrong_host':
+        proof['host'] = 'unrelated.example'
+    elif bad == 'off_host_url':
+        proof['url'] = 'https://unrelated.example/about'
+    elif bad == 'stale_sha':
+        proof['sha256'] = '0' * 64
+    elif bad == 'absent_quote':
+        proof['quote'] = f'Principal Investigator {entry["pi"]} invented statement'
+    elif bad == 'no_leadership':
+        raw = f'<html><body>Professor {entry["pi"]}</body></html>'.encode()
+        pages[proof['url']] = raw
+        proof.update(quote=f'Professor {entry["pi"]}', sha256=hashlib.sha256(raw).hexdigest())
+    elif bad == 'uncaptured':
+        del pages[proof['url']]
+    findings = R.evaluate_record('u', rec, conn=make_store(tree, pages))['findings']
+    assert any('leadership proof is required for both hosts' in f for f in findings)
+
+
+def test_ownership_does_not_replace_roster_capture_binding(tree):
+    rec, entry, pages = owned_case(tree)
+    entry['extra_pages'][0]['sha256'] = '0' * 64
+    findings = R.evaluate_record('u', rec, conn=make_store(tree, pages))['findings']
+    assert any('does not match the stored capture' in f for f in findings)
+
+
+def test_ownership_only_page_does_not_validate_student_names(tree):
+    rec, entry, pages = owned_case(tree)
+    proof = entry['host_ownership'][1]
+    raw = f'<html><body>Principal Investigator {entry["pi"]}; Hidden Student</body></html>'.encode()
+    pages[proof['url']] = raw
+    proof['sha256'] = hashlib.sha256(raw).hexdigest()
+    entry['listed'].append(dict(name='Hidden Student', role='phd', section='current'))
+    findings = R.evaluate_record('u', rec, conn=make_store(tree, pages))['findings']
+    assert any('not on any captured page' in f for f in findings)
+
+
+def test_tokens_still_cannot_combine_across_owned_labs(tree):
+    rec, entry, pages = owned_case(tree)
+    entry['listed'].append(dict(name='Real Student', role='phd', section='current'))
+    findings = R.evaluate_record('u', rec, conn=make_store(tree, pages))['findings']
+    assert any('not on any captured page' in f for f in findings)
+
+
+def test_ownership_original_bytes_and_actual_archive_host_are_bound(tree):
+    rec, entry, pages = owned_case(tree)
+    proof = entry['host_ownership'][1]
+    old = proof['url']
+    archived = 'https://web.archive.org/web/20261001000000id_/https://second.example/about'
+    pages[archived] = pages.pop(old)
+    proof['url'] = archived
+    assert R.evaluate_record('u', rec, conn=make_store(tree, pages))['findings'] == []
+    proof['host'] = 'web.archive.org'
+    assert any('leadership proof' in f for f in R.evaluate_record('u', rec, conn=make_store(tree, pages))['findings'])
+
+
+def test_leadership_proof_does_not_change_numeric_bars():
+    assert R.bars() == dict(R1=.90, Z=.05, X=.20, U=.60, R2=.35)
+
+
+@pytest.mark.parametrize('statement', [
+    'Principal Investigator {pi}man',
+    '{pi} is a visiting scholar. Principal investigator: Other Person.',
+    'Principal investigator: Other Person. {pi} is a coauthor.',
+    '{pi} is not the principal investigator.',
+    'The group is headed by Other Person; {pi} is a visiting scholar.',
+    'The group is not headed by Prof. {pi}.',
+    'Not Principal Investigator: {pi}',
+    'No longer headed by Prof. {pi}',
+    'Never group leader: {pi}',
+])
+def test_unrelated_or_contradictory_leadership_cannot_prove_ownership(tree, statement):
+    rec, entry, pages = owned_case(tree)
+    proof = entry['host_ownership'][1]
+    quote = statement.format(pi=entry['pi'])
+    raw = f'<html><body>{quote}</body></html>'.encode()
+    pages[proof['url']] = raw
+    proof.update(quote=quote, sha256=hashlib.sha256(raw).hexdigest())
+    findings = R.evaluate_record('u', rec, conn=make_store(tree, pages))['findings']
+    assert any('leadership proof is required for both hosts' in f for f in findings)
+
+
+@pytest.mark.parametrize('statement', [
+    'The Multicore Algorithmics group headed by Prof. {pi}',
+    'Principal Investigator\n{pi} : pi@example.edu',
+    '{pi} is the principal investigator',
+    '{pi}, group leader',
+    'This lab does not study biology. Principal Investigator: {pi}',
+])
+def test_local_leadership_clauses_bind_the_exact_pi(tree, statement):
+    rec, entry, pages = owned_case(tree)
+    proof = entry['host_ownership'][1]
+    quote = statement.format(pi=entry['pi'])
+    raw = f'<html><body>{quote}</body></html>'.encode()
+    pages[proof['url']] = raw
+    proof.update(quote=quote, sha256=hashlib.sha256(raw).hexdigest())
+    assert R.evaluate_record('u', rec, conn=make_store(tree, pages))['findings'] == []
+
+
+@pytest.mark.parametrize('field', ['host', 'pi', 'url', 'sha256', 'quote'])
+@pytest.mark.parametrize('value', [123, None, [], {}, ''])
+def test_malformed_proof_fields_reject_without_crashing(tree, field, value):
+    rec, entry, pages = owned_case(tree)
+    entry['host_ownership'][1][field] = value
+    assert any('leadership proof' in f for f in R.evaluate_record('u', rec, conn=make_store(tree, pages))['findings'])
+
+
+@pytest.mark.parametrize('value', [42, 'not a proof', {'host': 'second.example'}])
+def test_malformed_proof_container_rejects_without_crashing(tree, value):
+    rec, entry, pages = owned_case(tree)
+    entry['host_ownership'] = value
+    assert any('leadership proof' in f for f in R.evaluate_record('u', rec, conn=make_store(tree, pages))['findings'])
+
+
+def test_refused_ownership_source_cannot_authorize_another_host(tree):
+    rec, entry, pages = owned_case(tree)
+    conn = make_store(tree, pages)
+    conn.execute('update live set status=403 where url=?', (entry['host_ownership'][1]['url'],))
+    assert any('leadership proof' in f for f in R.evaluate_record('u', rec, conn=conn)['findings'])

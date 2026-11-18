@@ -15,7 +15,7 @@ and the chain audit's students check only asks that a PI has >= 1 student. This 
                    reason <= Z of all PIs; estimated whole-school current-PhD recall (unverifiable PIs count as recall 0) >= R2.
 
 All pages of the PI (owner 2026-11-13, R-STU-28): a PI's `page` may be a list, or `page` plus `extra_pages` [{url, sha256}]: the listed names are looked up on
-ALL captured pages of that PI on the SAME host (people, students, alumni pages and sub-pages); a name on any one page counts, tokens never combine
+ALL captured pages of that PI on the same host, or separately proven PI-owned lab hosts (Q-0343; `host_ownership` proofs); a name on any one page counts, tokens never combine
 across pages, and a name on no captured page is still a finding. Small-caps spacing ('S HEWCHUK') is folded when matching.
 
 Strict rule kept (owner): a listed name counts only when it is DATED (a year in the window) or sits in a CURRENT-members section of the page; undated
@@ -707,6 +707,45 @@ def verified_external_school(entry, pages, conn, key):
     return any(norm_text(line) == q for line in page_text_lines(stored['raw']).splitlines())
 
 
+def verified_host_ownership(entry, host, conn):
+    """Q-0343: captured, independently reviewed PI leadership proof for one roster host.
+
+    This checks the proof's binding, name and explicit leadership wording. The fresh
+    reviewer still checks that the statement actually identifies this PI as this
+    lab's leader. Ownership evidence alone never validates a listed student's name.
+    """
+    proofs = entry.get('host_ownership') or []
+    if conn is None or not isinstance(proofs, (list, tuple)):
+        return False
+    for proof in proofs:
+        if not isinstance(proof, dict):
+            continue
+        if not all(isinstance(proof.get(k), str) and proof[k].strip()
+                   for k in ('host', 'pi', 'url', 'sha256', 'quote')):
+            continue
+        url, sha, quote = (proof.get(k) or '' for k in ('url', 'sha256', 'quote'))
+        if not (proof.get('host') == host and proof.get('pi') == entry.get('pi')
+                and re.match(r'https?://', url) and _host(url) == host
+                and re.fullmatch(r'[0-9a-f]{64}', sha)):
+            continue
+        q, pi = norm_text(quote), norm_text(entry.get('pi') or '')
+        name = r'(?<!\w)' + re.escape(pi) + r'(?!\w)'
+        role = r'(?:principal investigator|group leader|(?:lab|laboratory) director)'
+        title = r'(?:(?:prof(?:essor)?|dr)\.?\s+)?'
+        leadership = (rf'(?:\b{role}\s*[:;,–—-]?\s*{title}{name}'
+                      rf'|\bheaded by\s+{title}{name}'
+                      rf'|{name}\s*(?:[:,–—-]\s*|(?:is|serves as)\s+(?:the\s+)?)\b{role}\b)')
+        negative = r"\b(?:not|never|no(?:\s+longer)?)(?:\s+(?:the|a|an|currently|actually))?\s*[:–—-]?\s*$"
+        matches = list(re.finditer(leadership, q)) if pi else []
+        if not any(not re.search(negative, q[:match.start()]) for match in matches):
+            continue
+        stored = stored_page(conn, url)
+        if (stored and stored['status'] == 200 and stored['sha256'] == sha
+                and q in page_text(stored['raw'], fold_smallcaps=True)):
+            return True
+    return False
+
+
 def _weights(sample_rows, sizes):
     """Per stratum h: N_h / n_h (all sampled) and N_h / n_h_readable."""
     n = collections.Counter(r['stratum'] for r in sample_rows)
@@ -799,8 +838,10 @@ def evaluate_record(key, rec, st=None, binds_now=None, conn=None, pis=None):
                 if not (q.get('url') and re.fullmatch(r'[0-9a-f]{64}', q.get('sha256') or '')):
                     fnd.append(f'{r["pi"]}: extra page {i} needs url and sha256 (64 hex)')
                     bad = True
-                elif i and _host(q['url']) != _host(pg['url']):
-                    fnd.append(f'{r["pi"]}: extra page {q["url"]} is not on the host of the PI\'s page ({_host(pg["url"])}); another host cannot validate a name')
+                elif (i and _host(q['url']) != _host(pg['url'])
+                      and not all(verified_host_ownership(r, host, conn)
+                                  for host in {_host(pg['url']), _host(q['url'])})):
+                    fnd.append(f'{r["pi"]}: extra page {q["url"]} is not on the host of the PI\'s page ({_host(pg["url"])}); captured PI leadership proof is required for both hosts')
                     bad = True
                 else:
                     sp = stored_page(conn, q['url'])
