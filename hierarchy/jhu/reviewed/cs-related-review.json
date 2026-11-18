@@ -1,0 +1,2035 @@
+{
+ "school": "jhu",
+ "reviewed": "2026-11-18",
+ "rule": "T661 PI fill 2026-11-18 (owner goal D-0003: all computing-related PIs, any department, ladder-equivalent rank). Decisions on the 31 strong-missing recall candidates; every row carries its faculty evidence (a stored listing capture or profile page), its computing basis (DBLP records, the OpenAlex computing-share rule) and the units searched. excluded_unresolved = no source places the person in the window or a ladder rank, never a proven absence. The other 200+ DBLP-affiliation candidates of cs-related-candidates.json are not decided here.",
+ "tools": "listings/jhu rows.json, hierarchy/jhu/raw school-captures.sqlite, pi-recall-1118 recall.json + oa-jhu.json.gz + dblp-all.json.gz, OpenAlex sweep (raw/openalex-sweep.sqlite), ORCID public API employments, DBLP dump 2026-09-01",
+ "counts": {
+  "accepted": 18,
+  "research_or_other_rank": 8,
+  "not_faculty_listed": 2,
+  "census_alias": 1,
+  "excluded_unresolved": 4
+ },
+ "decisions": [
+  {
+   "name": "Trac D. Tran",
+   "aliases": [
+    "Trac-Duy Tran"
+   ],
+   "source": "dblp_affiliation",
+   "decision": "accepted",
+   "reason": "faculty (ECE): ECE professor on every yearly ECE faculty listing 2016-2025; 92 DBLP records and 70 of 102 school works DBLP-indexed (share 0.69): signal processing and machine learning",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/02/565"
+    ],
+    "orcid": [
+     "0000-0002-0421-8416"
+    ],
+    "openalex": [
+     "https://openalex.org/A5101413113"
+    ],
+    "dblp_window": 92,
+    "openalex_share": {
+     "ids": [
+      "A5101413113"
+     ],
+     "works": 102,
+     "dblp_indexed": 70,
+     "share": 0.686
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ECE",
+     "url": "https://web.archive.org/web/20160922104956id_/http://engineering.jhu.edu:80/ece/faculty/",
+     "sha256": "33c630d865a5d1edac29f3c6d80ea4d9738aace46914f022ee2659bc0d7ead8b",
+     "observed": "20160922104956",
+     "quote": "Trac D. Tran Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    },
+    {
+     "unit": "ECE",
+     "url": "https://web.archive.org/web/20250318013321id_/https://engineering.jhu.edu/ece/faculty/",
+     "sha256": "af789e830e1e51598be938f0445e0c91d69f0dd46efdcbf2da727af9ee31e2d8",
+     "observed": "20250318013321",
+     "quote": "Trac-Duy Tran Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    }
+   ],
+   "years_listed": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18",
+   "class_note": "T661 PI fill 2026-11-18 (recall strong-missing)",
+   "untitled_listing_years": [
+    2016
+   ]
+  },
+  {
+   "name": "Archana Venkataraman",
+   "aliases": [],
+   "source": "affiliated_department",
+   "decision": "accepted",
+   "reason": "faculty (ECE): ECE assistant professor (Malone Assistant Professor from 2019) on the ECE listing 2016-2023; 44 of 64 school works DBLP-indexed (share 0.69): medical imaging and machine learning; the listing drops her after 2023",
+   "cs_basis": {
+    "dblp": [],
+    "orcid": [
+     "0000-0003-2653-5591"
+    ],
+    "openalex": [
+     "https://openalex.org/A5083233304"
+    ],
+    "dblp_window": 0,
+    "openalex_share": {
+     "ids": [
+      "A5083233304"
+     ],
+     "works": 64,
+     "dblp_indexed": 44,
+     "share": 0.688
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ECE",
+     "url": "https://web.archive.org/web/20160922104956id_/http://engineering.jhu.edu:80/ece/faculty/",
+     "sha256": "33c630d865a5d1edac29f3c6d80ea4d9738aace46914f022ee2659bc0d7ead8b",
+     "observed": "20160922104956",
+     "quote": "Archana Venkataraman Assistant Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    },
+    {
+     "unit": "ECE",
+     "url": "https://web.archive.org/web/20230324200413id_/https://engineering.jhu.edu/ece/faculty/",
+     "sha256": "f4033835c1a19a7a747c268c046f0c64c80680f463a9b7432102dadb94c0fc49",
+     "observed": "20230324200413",
+     "quote": "Archana Venkataraman John C. Malone Assistant Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    }
+   ],
+   "years_listed": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18",
+   "class_note": "T661 PI fill 2026-11-18 (recall strong-missing)",
+   "untitled_listing_years": [
+    2016
+   ],
+   "period_note": "2023 (the ECE listing drops her after 2023)"
+  },
+  {
+   "name": "Ioannis G. Kevrekidis",
+   "aliases": [
+    "Ioannis Kevrekidis",
+    "Ioannis (Yannis) Kevrekidis",
+    "Yannis Kevrekidis"
+   ],
+   "source": "dblp_affiliation",
+   "decision": "accepted",
+   "reason": "faculty (AMS): AMS Bloomberg Distinguished Professor on the AMS listing 2022-2025 (earlier AMS rows 2018-2021 carry no title); 157 DBLP records, 36 of 127 school works DBLP-indexed (share 0.28): scientific computing and machine learning for dynamical systems. DBLP affiliation note names JHU Chemical and Biomolecular Engineering",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/47/6418"
+    ],
+    "orcid": [
+     "0000-0003-2220-3522"
+    ],
+    "openalex": [
+     "https://openalex.org/A5036566464"
+    ],
+    "dblp_window": 157,
+    "openalex_share": {
+     "ids": [
+      "A5036566464"
+     ],
+     "works": 127,
+     "dblp_indexed": 36,
+     "share": 0.283
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "AMS",
+     "url": "https://web.archive.org/web/20220521185442id_/https://engineering.jhu.edu/ams/faculty/",
+     "sha256": "c02a643cb862ac16b19d0b628e566e033b71c4bb163ea77ff8473c389630a4f4",
+     "observed": "20220521185442",
+     "quote": "Ioannis Kevrekidis Bloomberg Distinguished Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    },
+    {
+     "unit": "AMS",
+     "url": "https://web.archive.org/web/20250429081704id_/https://engineering.jhu.edu/ams/faculty/",
+     "sha256": "6d27c3b42c7cec08172e46f1a40333283e55c8d4b1ac228c07d3ad69b8414a1c",
+     "observed": "20250429081704",
+     "quote": "Ioannis (Yannis) Kevrekidis Bloomberg Distinguished Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    }
+   ],
+   "years_listed": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18",
+   "class_note": "T661 PI fill 2026-11-18 (recall strong-missing)",
+   "untitled_listing_years": [
+    2018,
+    2019,
+    2020,
+    2021
+   ]
+  },
+  {
+   "name": "Ioannis Kevrekidis",
+   "aliases": [
+    "Ioannis G. Kevrekidis"
+   ],
+   "source": "affiliated_department",
+   "decision": "accepted",
+   "reason": "faculty (AMS): AMS Bloomberg Distinguished Professor on the AMS listing 2022-2025 (earlier AMS rows 2018-2021 carry no title); 157 DBLP records, 36 of 127 school works DBLP-indexed (share 0.28): scientific computing and machine learning for dynamical systems. DBLP affiliation note names JHU Chemical and Biomolecular Engineering",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/47/6418"
+    ],
+    "orcid": [
+     "0000-0003-2220-3522"
+    ],
+    "openalex": [
+     "https://openalex.org/A5036566464"
+    ],
+    "dblp_window": 157,
+    "openalex_share": {
+     "ids": [
+      "A5036566464"
+     ],
+     "works": 127,
+     "dblp_indexed": 36,
+     "share": 0.283
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "AMS",
+     "url": "https://web.archive.org/web/20220521185442id_/https://engineering.jhu.edu/ams/faculty/",
+     "sha256": "c02a643cb862ac16b19d0b628e566e033b71c4bb163ea77ff8473c389630a4f4",
+     "observed": "20220521185442",
+     "quote": "Ioannis Kevrekidis Bloomberg Distinguished Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    },
+    {
+     "unit": "AMS",
+     "url": "https://web.archive.org/web/20250429081704id_/https://engineering.jhu.edu/ams/faculty/",
+     "sha256": "6d27c3b42c7cec08172e46f1a40333283e55c8d4b1ac228c07d3ad69b8414a1c",
+     "observed": "20250429081704",
+     "quote": "Ioannis (Yannis) Kevrekidis Bloomberg Distinguished Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    }
+   ],
+   "years_listed": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18",
+   "class_note": "T661 PI fill 2026-11-18 (recall strong-missing)",
+   "untitled_listing_years": [
+    2018,
+    2019,
+    2020,
+    2021
+   ]
+  },
+  {
+   "name": "Mauro Maggioni",
+   "aliases": [],
+   "source": "affiliated_department",
+   "decision": "accepted",
+   "reason": "faculty (AMS): AMS Bloomberg Distinguished Professor on the AMS listing 2022-2025 (rows 2016-2021 carry no title); 9 of 39 school works DBLP-indexed (share 0.23, passes 5 and 20 percent): machine learning and data geometry; no DBLP record in the dump",
+   "cs_basis": {
+    "dblp": [],
+    "orcid": [
+     "0000-0003-3258-9297"
+    ],
+    "openalex": [
+     "https://openalex.org/A5089371996"
+    ],
+    "dblp_window": 0,
+    "openalex_share": {
+     "ids": [
+      "A5089371996"
+     ],
+     "works": 39,
+     "dblp_indexed": 9,
+     "share": 0.231
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "AMS",
+     "url": "https://web.archive.org/web/20220521185442id_/https://engineering.jhu.edu/ams/faculty/",
+     "sha256": "c02a643cb862ac16b19d0b628e566e033b71c4bb163ea77ff8473c389630a4f4",
+     "observed": "20220521185442",
+     "quote": "Mauro Maggioni Bloomberg Distinguished Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    },
+    {
+     "unit": "AMS",
+     "url": "https://web.archive.org/web/20250429081704id_/https://engineering.jhu.edu/ams/faculty/",
+     "sha256": "6d27c3b42c7cec08172e46f1a40333283e55c8d4b1ac228c07d3ad69b8414a1c",
+     "observed": "20250429081704",
+     "quote": "Mauro Maggioni Bloomberg Distinguished Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    }
+   ],
+   "years_listed": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18",
+   "class_note": "T661 PI fill 2026-11-18 (recall strong-missing)",
+   "untitled_listing_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021
+   ]
+  },
+  {
+   "name": "Feilim Mac Gabhann",
+   "aliases": [],
+   "source": "affiliated_department",
+   "decision": "accepted",
+   "reason": "faculty (BME): BME associate professor on the BME listing 2021-2025; 14 of 47 school works DBLP-indexed (share 0.30): computational systems biology",
+   "cs_basis": {
+    "dblp": [],
+    "orcid": [
+     "0000-0003-3481-7740"
+    ],
+    "openalex": [
+     "https://openalex.org/A5045576072"
+    ],
+    "dblp_window": 0,
+    "openalex_share": {
+     "ids": [
+      "A5045576072"
+     ],
+     "works": 47,
+     "dblp_indexed": 14,
+     "share": 0.298
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "BME",
+     "url": "https://web.archive.org/web/20210620163739id_/https://www.bme.jhu.edu/people/faculty/?pg=2",
+     "sha256": "d4ee6df12c9cff098ad890a33a14654c26fd824a10a9d304306b71532944a864",
+     "observed": "20210620163739",
+     "quote": "Feilim Mac Gabhann, PhD Associate Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    },
+    {
+     "unit": "BME",
+     "url": "https://web.archive.org/web/20250518073601id_/https://www.bme.jhu.edu/people/faculty/?pg=2",
+     "sha256": "3307b75f3593eefcad812bb66144d872a9af38d73be3c8e89d466f6798ce0cb8",
+     "observed": "20250518073601",
+     "quote": "Feilim Mac Gabhann, PhD Associate Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    }
+   ],
+   "years_listed": [
+    2021,
+    2022,
+    2024,
+    2025
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18",
+   "class_note": "T661 PI fill 2026-11-18 (recall strong-missing)"
+  },
+  {
+   "name": "Kechen Zhang",
+   "aliases": [],
+   "source": "affiliated_department",
+   "decision": "accepted",
+   "reason": "faculty (BME): BME associate professor on the BME listing 2021-2025; 9 of 24 school works DBLP-indexed (share 0.38): computational neuroscience",
+   "cs_basis": {
+    "dblp": [],
+    "orcid": [
+     "0000-0002-2607-4804"
+    ],
+    "openalex": [
+     "https://openalex.org/A5019015929"
+    ],
+    "dblp_window": 0,
+    "openalex_share": {
+     "ids": [
+      "A5019015929"
+     ],
+     "works": 24,
+     "dblp_indexed": 9,
+     "share": 0.375
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "BME",
+     "url": "https://web.archive.org/web/20210620161016id_/https://www.bme.jhu.edu/people/faculty/?pg=3",
+     "sha256": "e7be3b7f5738ca2c4aa640650453a5a266682212b8a857baea3335595f9e6173",
+     "observed": "20210620161016",
+     "quote": "Kechen Zhang, PhD Associate Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    },
+    {
+     "unit": "BME",
+     "url": "https://web.archive.org/web/20250523051243id_/https://www.bme.jhu.edu/people/faculty/?pg=3",
+     "sha256": "fe48aac7ff9cd78ea06b1698d5b8da1993cf28f3778e9ff079fe61c679aa61bf",
+     "observed": "20250523051243",
+     "quote": "Kechen Zhang, PhD Associate Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    }
+   ],
+   "years_listed": [
+    2021,
+    2022,
+    2024,
+    2025
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18",
+   "class_note": "T661 PI fill 2026-11-18 (recall strong-missing)"
+  },
+  {
+   "name": "Nicolas Charon",
+   "aliases": [],
+   "source": "affiliated_department",
+   "decision": "accepted",
+   "reason": "faculty (AMS): AMS assistant professor on the AMS listing 2022-2023 (research-rank rows before, none after; OpenAlex then names the University of Houston); 22 of 40 school works DBLP-indexed (share 0.55): computational shape analysis and imaging",
+   "cs_basis": {
+    "dblp": [],
+    "orcid": [
+     "0000-0002-6032-247X"
+    ],
+    "openalex": [
+     "https://openalex.org/A5064933293"
+    ],
+    "dblp_window": 0,
+    "openalex_share": {
+     "ids": [
+      "A5064933293"
+     ],
+     "works": 40,
+     "dblp_indexed": 22,
+     "share": 0.55
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "AMS",
+     "url": "https://web.archive.org/web/20220521185442id_/https://engineering.jhu.edu/ams/faculty/",
+     "sha256": "c02a643cb862ac16b19d0b628e566e033b71c4bb163ea77ff8473c389630a4f4",
+     "observed": "20220521185442",
+     "quote": "Nicolas Charon Assistant Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    },
+    {
+     "unit": "AMS",
+     "url": "https://web.archive.org/web/20230324190735id_/https://engineering.jhu.edu/ams/faculty/",
+     "sha256": "51df90724553fda6ea04b5fbaa0592d707700d2b0dd7531400eb671a9f2c7590",
+     "observed": "20230324190735",
+     "quote": "Nicolas Charon Assistant Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    }
+   ],
+   "years_listed": [
+    2022,
+    2023
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18",
+   "class_note": "T661 PI fill 2026-11-18 (recall strong-missing)",
+   "untitled_listing_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021
+   ]
+  },
+  {
+   "name": "Jeffrey H. Siewerdsen",
+   "aliases": [
+    "Jeffrey Siewerdsen"
+   ],
+   "source": "affiliated_department",
+   "decision": "accepted",
+   "reason": "faculty (BME): BME professor (Malone Professor) on the BME listing 2016-2025; 72 DBLP records 2016-2026, 56 of 213 school works DBLP-indexed (share 0.26): medical imaging computation and image-guided surgery",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/10/10942"
+    ],
+    "orcid": [
+     "0000-0001-6644-1317"
+    ],
+    "openalex": [
+     "https://openalex.org/A5068070550"
+    ],
+    "dblp_window": 72,
+    "openalex_share": {
+     "ids": [
+      "A5068070550"
+     ],
+     "works": 213,
+     "dblp_indexed": 56,
+     "share": 0.263
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "BME",
+     "url": "https://web.archive.org/web/20160401034740id_/http://www.bme.jhu.edu:80/people/completefacultylist",
+     "sha256": "cab4a4e485d125266b44c65324d24c9ec70fdaa9d6d5dbf98193742f05a2f6f2",
+     "observed": "20160401034740",
+     "quote": "Jeffrey H. Siewerdsen, PhD Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    },
+    {
+     "unit": "BME",
+     "url": "https://web.archive.org/web/20250518073601id_/https://www.bme.jhu.edu/people/faculty/?pg=2",
+     "sha256": "3307b75f3593eefcad812bb66144d872a9af38d73be3c8e89d466f6798ce0cb8",
+     "observed": "20250518073601",
+     "quote": "Jeffrey Siewerdsen, PhD John C. Malone Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    }
+   ],
+   "years_listed": [
+    2016,
+    2017,
+    2019,
+    2020,
+    2021,
+    2022,
+    2024,
+    2025
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18",
+   "class_note": "T661 PI fill 2026-11-18 (recall strong-missing)"
+  },
+  {
+   "name": "Peirong Liu",
+   "aliases": [],
+   "source": "affiliated_department",
+   "decision": "accepted",
+   "reason": "faculty (ECE): ECE assistant professor on the 2025 ECE listing (ORCID employment: JHU ECE assistant professor from 2025); 40 DBLP records 2016-2026 under the DBLP person with the JHU ECE homepage: medical-image computing and machine learning",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/241/2390"
+    ],
+    "orcid": [
+     "0000-0001-7645-009X"
+    ],
+    "openalex": [
+     "https://openalex.org/A5039061529",
+     "https://openalex.org/A5139691845",
+     "https://openalex.org/A5140553875"
+    ],
+    "dblp_window": 40,
+    "openalex_share": {
+     "ids": [
+      "A5039061529",
+      "A5139691845",
+      "A5140553875"
+     ],
+     "works": 0,
+     "dblp_indexed": 0,
+     "share": null
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ECE",
+     "url": "https://web.archive.org/web/20250913114950id_/https://engineering.jhu.edu/ece/faculty/",
+     "sha256": "956a267cb1ce094c53399c9aab6917fa7ef54914d11b13de3ec0c02cb0369090",
+     "observed": "20250913114950",
+     "quote": "Peirong Liu Assistant Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    }
+   ],
+   "years_listed": [
+    2025
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18",
+   "class_note": "T661 PI fill 2026-11-18 (recall strong-missing)"
+  },
+  {
+   "name": "James Allen Fill",
+   "aliases": [
+    "James A. Fill",
+    "James Fill"
+   ],
+   "source": "affiliated_department",
+   "decision": "accepted",
+   "reason": "faculty (AMS): AMS professor on the 2022 AMS listing (emeritus from the second half of 2022, rows 2016-2021 carry no title; only the ladder year is claimed); 19 DBLP records 2016-2026: analysis of algorithms and probability",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/38/6283"
+    ],
+    "orcid": [
+     "0000-0003-1023-0398"
+    ],
+    "openalex": [
+     "https://openalex.org/A5003190989"
+    ],
+    "dblp_window": 19,
+    "openalex_share": {
+     "ids": [
+      "A5003190989"
+     ],
+     "works": 0,
+     "dblp_indexed": 0,
+     "share": null
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "AMS",
+     "url": "https://web.archive.org/web/20220521185442id_/https://engineering.jhu.edu/ams/faculty/",
+     "sha256": "c02a643cb862ac16b19d0b628e566e033b71c4bb163ea77ff8473c389630a4f4",
+     "observed": "20220521185442",
+     "quote": "James Fill Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    }
+   ],
+   "years_listed": [
+    2022
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18",
+   "class_note": "T661 PI fill 2026-11-18 (recall strong-missing)",
+   "untitled_listing_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021
+   ]
+  },
+  {
+   "name": "James A. Fill",
+   "aliases": [
+    "James Allen Fill"
+   ],
+   "source": "affiliated_department",
+   "decision": "accepted",
+   "reason": "faculty (AMS): AMS professor on the 2022 AMS listing (emeritus from the second half of 2022, rows 2016-2021 carry no title; only the ladder year is claimed); 19 DBLP records 2016-2026: analysis of algorithms and probability",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/38/6283"
+    ],
+    "orcid": [
+     "0000-0003-1023-0398"
+    ],
+    "openalex": [
+     "https://openalex.org/A5003190989"
+    ],
+    "dblp_window": 19,
+    "openalex_share": {
+     "ids": [
+      "A5003190989"
+     ],
+     "works": 0,
+     "dblp_indexed": 0,
+     "share": null
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "AMS",
+     "url": "https://web.archive.org/web/20220521185442id_/https://engineering.jhu.edu/ams/faculty/",
+     "sha256": "c02a643cb862ac16b19d0b628e566e033b71c4bb163ea77ff8473c389630a4f4",
+     "observed": "20220521185442",
+     "quote": "James Fill Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    }
+   ],
+   "years_listed": [
+    2022
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18",
+   "class_note": "T661 PI fill 2026-11-18 (recall strong-missing)",
+   "untitled_listing_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021
+   ]
+  },
+  {
+   "name": "Yanif Ahmad",
+   "aliases": [],
+   "source": "affiliated_department",
+   "decision": "accepted",
+   "reason": "faculty (CS): CS assistant professor (ladder) on the 2016 CS faculty listing; the 2017 listing gives a research title; CS is a full-coverage department: databases and data-intensive computing; DBLP records 2016-2026 are few (4)",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/99/770"
+    ],
+    "orcid": [],
+    "openalex": [
+     "https://openalex.org/A5078056606"
+    ],
+    "dblp_window": 4,
+    "openalex_share": {
+     "ids": [
+      "A5078056606"
+     ],
+     "works": 0,
+     "dblp_indexed": 0,
+     "share": null
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "CS",
+     "url": "https://web.archive.org/web/20160407071639id_/http://www.cs.jhu.edu:80/faculty/",
+     "sha256": "6c3d747e96e1bc5ebbf23f3e951a173f9d35715694bda6d5832b957851392701",
+     "observed": "20160407071639",
+     "quote": "Yanif Ahmad Assistant Professor",
+     "ladder": true,
+     "rank_listed": "ladder"
+    }
+   ],
+   "years_listed": [
+    2016
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18",
+   "class_note": "T661 PI fill 2026-11-18 (recall strong-missing)"
+  },
+  {
+   "name": "A. Brinton Cooper III",
+   "aliases": [
+    "A. Brinton Cooper"
+   ],
+   "source": "dblp_affiliation",
+   "decision": "research_or_other_rank",
+   "reason": "ECE listing 2022-2023 gives only \"Associate Research Professor\" (research rank, not ladder); DBLP records 2017-2025 are few (20 over the period) and OpenAlex school works 24 end 2025; no ladder listing in any searched unit",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/74/4030"
+    ],
+    "orcid": [
+     "0000-0002-1687-6408"
+    ],
+    "dblp_window": 20,
+    "openalex": [
+     "https://openalex.org/A5101885566"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5101885566"
+     ],
+     "works": 24,
+     "dblp_indexed": 12,
+     "share": 0.5
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ECE",
+     "url": "https://web.archive.org/web/20220518205203id_/https://engineering.jhu.edu/ece/faculty/",
+     "sha256": "12e66a710405831ceab61c2009ed1ae78ad18ecb57a969266174f2f74da8f4fe",
+     "observed": "20220518205203",
+     "quote": "A. Brinton Cooper Associate Research Professor",
+     "ladder": false,
+     "rank_listed": "research"
+    },
+    {
+     "unit": "ECE",
+     "url": "https://web.archive.org/web/20230930004128id_/https://engineering.jhu.edu/ece/faculty/",
+     "sha256": "0306b128a9be87ae6fac38379678ecd5d7f02c7f4074ebbc9804293ac5512d4f",
+     "observed": "20230930004128",
+     "quote": "A. Brinton Cooper Associate Research Professor",
+     "ladder": false,
+     "rank_listed": "research"
+    }
+   ],
+   "years_listed": [
+    2022,
+    2023
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Jesús Villalba",
+   "aliases": [
+    "Jesús Antonio Villalba López"
+   ],
+   "source": "dblp_affiliation",
+   "decision": "research_or_other_rank",
+   "reason": "ECE listing 2020-2025 and the CLSP faculty page 2019-2026 give \"Assistant Research Scientist\" then \"Assistant Research Professor\" (primary appointment ECE; research rank, not ladder); DBLP 151 records and 56 of 82 school works are DBLP-indexed, so the work is computing, but the rank is research track",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/211/9841"
+    ],
+    "orcid": [
+     "0000-0001-9459-8426"
+    ],
+    "dblp_window": 151,
+    "openalex": [
+     "https://openalex.org/A5057010207"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5057010207"
+     ],
+     "works": 82,
+     "dblp_indexed": 56,
+     "share": 0.683
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ECE",
+     "url": "https://web.archive.org/web/20200308181616id_/http://engineering.jhu.edu/ece/faculty/",
+     "sha256": "4279a54b44e1a1111317b8d84ec9325d434f286ab6ad7a3be5d23482b4b9cd86",
+     "observed": "20200308181616",
+     "quote": "Jesús Villalba Assistant Research Professor",
+     "ladder": false,
+     "rank_listed": "research"
+    },
+    {
+     "unit": "ECE",
+     "url": "https://web.archive.org/web/20250913114950id_/https://engineering.jhu.edu/ece/faculty/",
+     "sha256": "956a267cb1ce094c53399c9aab6917fa7ef54914d11b13de3ec0c02cb0369090",
+     "observed": "20250913114950",
+     "quote": "Jesus Villalba Assistant Research Professor",
+     "ladder": false,
+     "rank_listed": "research"
+    },
+    {
+     "unit": "CLSP",
+     "url": "https://web.archive.org/web/20260114004214id_/https://www.clsp.jhu.edu/faculty/",
+     "sha256": "5ea7d8430b7c0d96830ab2a5ae5d38459bd0c1d27023373043353f341468b45c",
+     "observed": "20260114004214",
+     "quote": "Jesús Villalba Assistant Research Professor Primary Appointment: Department of Electrical and Computer Engineering",
+     "ladder": false
+    }
+   ],
+   "years_listed": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Shinji Watanabe",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "decision": "research_or_other_rank",
+   "reason": "ECE listing 2018-2020 \"Associate Research Professor\"; CLSP page 2021-2024 \"Adjunct associate Professor\" (research then adjunct, never ladder); DBLP names Carnegie Mellon University now and JHU as former; OpenAlex JHU works end 2024",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/39/3245-1"
+    ],
+    "orcid": [
+     "0000-0002-5970-8631"
+    ],
+    "dblp_window": 923,
+    "openalex": [
+     "https://openalex.org/A5001291873"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5001291873"
+     ],
+     "works": 159,
+     "dblp_indexed": 154,
+     "share": 0.969
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "ECE",
+     "url": "https://web.archive.org/web/20180619160500id_/https://engineering.jhu.edu/ece/faculty/",
+     "sha256": "a0c6c61b35ae72447e41bca85f7b3eefe1399c154e050049e50ed5f5bcde525c",
+     "observed": "20180619160500",
+     "quote": "Shinji Watanabe Associate Research Professor",
+     "ladder": false,
+     "rank_listed": "research"
+    },
+    {
+     "unit": "ECE",
+     "url": "https://web.archive.org/web/20200928153017id_/https://engineering.jhu.edu/ece/faculty/",
+     "sha256": "a73483d6d74237c92b2a8e720f1f049153f202d64fe96ae78d45b87bfc18888c",
+     "observed": "20200928153017",
+     "quote": "Shinji Watanabe Associate Research Professor",
+     "ladder": false,
+     "rank_listed": "research"
+    },
+    {
+     "unit": "CLSP",
+     "url": "https://web.archive.org/web/20220113084935id_/https://www.clsp.jhu.edu/faculty/",
+     "sha256": "ac1e12bc30b9cdf3affbf435a7431dda841169af9b7d82738f7342fe0856bb29",
+     "observed": "20220113084935",
+     "quote": "Shinji Watanabe Adjunct associate Professor",
+     "ladder": false
+    }
+   ],
+   "years_listed": [
+    2018,
+    2019,
+    2020
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Iulian Iordachita",
+   "aliases": [
+    "Iulian I. Iordachita"
+   ],
+   "source": "dblp_affiliation",
+   "decision": "research_or_other_rank",
+   "reason": "LCSR faculty page 2016-2025 gives \"Associate Research Professor\" then \"Research Professor\" (research rank, not ladder); computing share 142 of 242 school works DBLP-indexed",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/69/2664"
+    ],
+    "orcid": [
+     "0000-0002-2510-9008"
+    ],
+    "dblp_window": 185,
+    "openalex": [
+     "https://openalex.org/A5063913520"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5063913520"
+     ],
+     "works": 242,
+     "dblp_indexed": 142,
+     "share": 0.587
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "LCSR",
+     "url": "https://web.archive.org/web/20160622051342id_/http://lcsr.jhu.edu:80/people/faculty/",
+     "sha256": "dca90e00f3e22b9b89f5df5bfa5decfa928081ab7892c8b4deded1ce705b9408",
+     "observed": "20160622051342",
+     "quote": "Iulian Iordachita, Ph.D. Associate Research Professor",
+     "ladder": false
+    },
+    {
+     "unit": "LCSR",
+     "url": "https://web.archive.org/web/20250126121954id_/https://lcsr.jhu.edu/people/faculty/",
+     "sha256": "bb0cc2b5a718edc35e08585a9bd6c1a9af2a5402396ba451ce84bf817345eafc",
+     "observed": "20250126121954",
+     "quote": "Iulian Iordachita, Ph.D. Research Professor",
+     "ladder": false
+    }
+   ],
+   "years_listed": [
+    2016,
+    2017,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Kenton Murray",
+   "aliases": [
+    "Kenton W. Murray"
+   ],
+   "source": "dblp_affiliation",
+   "decision": "research_or_other_rank",
+   "reason": "CLSP faculty page 2022-2026: \"Research Scientist, Primary Appointment: Human Language Technology Center of Excellence, Secondary Appointment: Department of Computer Science\" (research staff, not ladder); he is named as a CS PhD adviser, which is a Stage 3 PI-basis question, not a ladder appointment",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/192/2089"
+    ],
+    "orcid": [
+     "0000-0002-5628-1003"
+    ],
+    "dblp_window": 102,
+    "openalex": [
+     "https://openalex.org/A5005840801"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5005840801"
+     ],
+     "works": 50,
+     "dblp_indexed": 40,
+     "share": 0.8
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "CLSP",
+     "url": "https://web.archive.org/web/20260114004214id_/https://www.clsp.jhu.edu/faculty/",
+     "sha256": "5ea7d8430b7c0d96830ab2a5ae5d38459bd0c1d27023373043353f341468b45c",
+     "observed": "20260114004214",
+     "quote": "Kenton Murray Research Scientist Primary Appointment: Human Language Technology Center of Excellence Secondary Appointment: Department of Computer Science",
+     "ladder": false
+    }
+   ],
+   "years_listed": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "L. Paola García-Perera",
+   "aliases": [
+    "Leibny Paola García-Perera",
+    "Leibny Paola García",
+    "Paola García"
+   ],
+   "source": "dblp_affiliation",
+   "decision": "research_or_other_rank",
+   "reason": "CLSP faculty page 2024-2025: \"Assistant RESEARCH SCIENTIST, Primary Appointment: Center for Language and Speech Processing\" (research staff, not ladder)",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/23/4175"
+    ],
+    "orcid": [
+     "0000-0002-7449-5726"
+    ],
+    "dblp_window": 138,
+    "openalex": [
+     "https://openalex.org/A5059858850"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5059858850"
+     ],
+     "works": 48,
+     "dblp_indexed": 44,
+     "share": 0.917
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "CLSP",
+     "url": "https://web.archive.org/web/20250617232800id_/https://www.clsp.jhu.edu/faculty/",
+     "sha256": "eb828012dde61630a935cdc23024106fe4c50ba33e4fed7fc825d601f7bcaa59",
+     "observed": "20250617232800",
+     "quote": "Leibny Paola Garcia Assistant RESEARCH SCIENTIST Primary Appointment: Center for Language and Speech Processing",
+     "ladder": false
+    }
+   ],
+   "years_listed": [
+    2024,
+    2025
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Eugene Yang",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "decision": "research_or_other_rank",
+   "reason": "Own page (live 2026-11-17): \"Senior Research Scientist at HLTCOE\"; employment: HLTCOE research scientist since 2021 (postdoc from May 2021); not a ladder appointment",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/127/0482-1"
+    ],
+    "orcid": [
+     "0000-0002-0051-1535"
+    ],
+    "dblp_window": 137,
+    "openalex": [
+     "https://openalex.org/A5062016266"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5062016266"
+     ],
+     "works": 73,
+     "dblp_indexed": 62,
+     "share": 0.849
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "HLTCOE",
+     "url": "https://www.eugene.zone/",
+     "sha256": "31ee88d172c8b0eb1dee7c4e4395dda6824a4b83c9f6c3a63f8ca95dc502adc7",
+     "observed": "20261117",
+     "quote": "I am currently a Senior Research Scientist at HLTCOE working on cross language and multilingual information retrieval",
+     "ladder": false
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Dawn J. Lawrie",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "decision": "research_or_other_rank",
+   "reason": "ORCID employment record (pub.orcid.org, read 2026-11-18): Johns Hopkins University, Human Language Technology Center of Excellence, Senior Research Scientist since 2019 (previously Full Professor, Loyola University Maryland 2003-2019; DBLP marks Loyola as former); research staff, not a ladder appointment",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/l/DawnLawrie"
+    ],
+    "orcid": [
+     "0000-0001-7347-7086"
+    ],
+    "dblp_window": 109,
+    "openalex": [
+     "https://openalex.org/A5037074105"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5037074105"
+     ],
+     "works": 67,
+     "dblp_indexed": 56,
+     "share": 0.836
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "HLTCOE",
+     "url": "https://pub.orcid.org/v3.0/0000-0001-7347-7086/employments",
+     "sha256": "80a9a3d5cbcee2119d55aa414f58317b549b55936e014d0dd3a124776774bfbe",
+     "observed": "20261118",
+     "quote": "Johns Hopkins University | Human Language Technology Center of Excellence | Senior Research Scientist | 2019",
+     "ladder": false
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Haichong K. Zhang",
+   "aliases": [
+    "Haichong (Kai) Zhang"
+   ],
+   "source": "dblp_affiliation",
+   "decision": "not_faculty_listed",
+   "reason": "Positive student chronology: the WPI faculty page (live 2026-11-17) gives \"PhD Computer Science Johns Hopkins University 2017\" and WPI Robotics Engineering associate professor; ORCID employment lists only WPI (assistant professor from 2019). JHU works 2016-2020 belong to the PhD and its aftermath, with no ladder listing in the CS faculty listings 2016-2020 (CS is a full-coverage unit)",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/150/3109"
+    ],
+    "orcid": [
+     "0000-0002-1314-8456"
+    ],
+    "dblp_window": 48,
+    "openalex": [
+     "https://openalex.org/A5077612510"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5077612510"
+     ],
+     "works": 38,
+     "dblp_indexed": 11,
+     "share": 0.289
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "WPI",
+     "url": "https://www.wpi.edu/people/faculty/hzhang10",
+     "sha256": "b5831fb632c6c5cb1e4da45bd2a13e961e5bcca69863a8651f6473620586b53e",
+     "observed": "20261117",
+     "quote": "Education PhD Computer Science Johns Hopkins University 2017",
+     "ladder": false
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Yiqing Shen",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "decision": "not_faculty_listed",
+   "reason": "JHU CS faculty page of Raman Arora (news item): \"Three graduate students named 2024-2025 AI2AI Fellows Drew Prinster, Yiqing Shen, and Yunjuan Wang\"; own page: Department of Computer Science, JHU; works 2022-2026 with 0 last-author share are a graduate student's",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/76/9743-3"
+    ],
+    "orcid": [
+     "0000-0001-7866-3339"
+    ],
+    "dblp_window": 170,
+    "openalex": [
+     "https://openalex.org/A5072622467"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5072622467"
+     ],
+     "works": 100,
+     "dblp_indexed": 70,
+     "share": 0.7
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "CS",
+     "url": "https://www.cs.jhu.edu/faculty/raman-arora/",
+     "sha256": "41fa0b4fd01613b12c6c19eebd854d8d1d0d15d2981aa23ce4e65a51d2f47f28",
+     "observed": "20261116",
+     "quote": "Three graduate students named 2024–2025 AI2AI Fellows Drew Prinster, Yiqing Shen, and Yunjuan Wang",
+     "ladder": false
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Michael Schatz",
+   "aliases": [],
+   "source": "csrankings",
+   "decision": "census_alias",
+   "census_name": "Michael Schatz",
+   "reason": "already a census PI (CS listing, Bloomberg Distinguished Professor, ladder; DBLP person 89/7065 \"Michael C. Schatz\" bound by school coauthors in dblp-ids.json); CSRankings' pid 28/5383 is an empty 2009 homepage-only \"Michael Schatz\" record with no affiliation, so the recall measure missed the match by DBLP id. No new PI",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/89/7065"
+    ],
+    "rejected_dblp": [
+     "https://dblp.org/pid/28/5383"
+    ]
+   },
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Harold P. Lehmann",
+   "aliases": [
+    "Harold Lehmann"
+   ],
+   "source": "dblp_affiliation",
+   "decision": "accepted",
+   "reason": "faculty: Malone Center people page 2026 (stored capture): \"Harold P. Lehmann Director and Professor, Division of Health Sciences Informatics\" (Johns Hopkins School of Medicine professor, ladder title); computing method and object: biomedical informatics, 36 DBLP records 2016-2026 under the school-affiliated DBLP person, 25 of 101 school works DBLP-indexed (share 0.25, passes 5 and 20 percent)",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/77/1041"
+    ],
+    "orcid": [
+     "0000-0002-7698-219X"
+    ],
+    "dblp_window": 36,
+    "openalex": [
+     "https://openalex.org/A5010827397"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5010827397"
+     ],
+     "works": 101,
+     "dblp_indexed": 25,
+     "share": 0.248
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "MALONE",
+     "url": "https://malonecenter.jhu.edu/people/",
+     "sha256": "31185946eceb3b7a4e9962eecda9a5ae81721dafae74396a87bea0b311824210",
+     "observed": "20261105",
+     "quote": "Harold P. Lehmann Director and Professor",
+     "ladder": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Baruch Awerbuch",
+   "aliases": [],
+   "source": "csrankings",
+   "decision": "excluded_unresolved",
+   "reason_code": "no_source_covers_window",
+   "reason": "no source places him in the 2016-2026 window: he is on no CS faculty listing of any year 2016-2026 (CS is a full-coverage unit; the listing rows name 175 CS people, not him), his DBLP person a/BaruchAwerbuch has no record 2016-2026, OpenAlex has one 2025 byline \"John Hopkins Univ\" with no ORCID, and his own page cs.jhu.edu/~baruch/ is an undated static page (\"Professor of Computer Science\"). A stale CSRankings entry; never a proven absence",
+   "sources_tried": [
+    "CS faculty listings 2016-2026 (listings/jhu rows.json)",
+    "DBLP dump 2026-09-01 person a/BaruchAwerbuch (pubs_by_year empty)",
+    "OpenAlex sweep 2016-2026 (one 2025 byline)",
+    "own page https://www.cs.jhu.edu/~baruch/ (live 2026-11-17, sha256 9963c9771a6c62ff4f0b04feca044e7b8f22c6eb60f5f03870d25d3bb74c9157, undated)"
+   ],
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/a/BaruchAwerbuch"
+    ],
+    "dblp_window": 0
+   },
+   "faculty_evidence": [],
+   "years_listed": [],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Christopher A. Rouff",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "decision": "excluded_unresolved",
+   "reason_code": "no_ladder_source",
+   "reason": "Applied Physics Laboratory staff: DBLP affiliation note and ORCID employment name only \"Johns Hopkins University Applied Physics Laboratory\" (Laurel); the 2025 OpenAlex byline reads \"JHU APL & JHU Whiting School of Engineering\" but no Whiting listing in any year 2016-2026 names him and the charter says APL staff are not JHU faculty. No ladder source; never a proven absence",
+   "sources_tried": [
+    "CS, ECE, AMS and BME faculty listings 2016-2026 (rows.json)",
+    "CLSP, Malone, LCSR, Cognitive Science, DSAI unit captures",
+    "DBLP dump person r/ChristopherARouff (affiliation notes: APL Laurel, Lockheed Martin ATL, SAIC, NASA Goddard)",
+    "ORCID employments (pub.orcid.org, sha256 9c9c35e318af298db71e6b08d4bb5bca55771ae918549f80fc5fbd984ae9e763)",
+    "OpenAlex sweep: 38 school works under APL"
+   ],
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/r/ChristopherARouff"
+    ],
+    "orcid": [
+     "0000-0002-8975-3898"
+    ],
+    "dblp_window": 6,
+    "openalex": [
+     "https://openalex.org/A5024816208"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5024816208"
+     ],
+     "works": 38,
+     "dblp_indexed": 17,
+     "share": 0.447
+    }
+   },
+   "faculty_evidence": [],
+   "years_listed": [],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Philippe Burlina",
+   "aliases": [
+    "Philippe M. Burlina"
+   ],
+   "source": "dblp_affiliation",
+   "decision": "excluded_unresolved",
+   "reason_code": "no_ladder_source",
+   "reason": "Applied Physics Laboratory researcher: ORCID employment names only \"Johns Hopkins University Applied Physics Laboratory\"; OpenAlex bylines read \"Applied Physics Laboratory, The Johns Hopkins University\"; no faculty listing of any searched unit 2016-2026 names him (CS rows have no Burlina), and his own page (pmburlina.com) could not be read (host unreachable for the robots check). No ladder source; never a proven absence",
+   "sources_tried": [
+    "CS, ECE, AMS and BME faculty listings 2016-2026 (rows.json)",
+    "CLSP, Malone, LCSR, Cognitive Science, DSAI unit captures",
+    "DBLP dump person 01/99 (affiliation note: Johns Hopkins University; homepage pmburlina.com)",
+    "ORCID employments (pub.orcid.org, sha256 d4b833a18a853bf071b8f9def2a4829380bd91a8a715dfb3af601b2840dd9b83)",
+    "own page http://pmburlina.com/ (robots/host check failed 2026-11-18)"
+   ],
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/01/99"
+    ],
+    "orcid": [
+     "0000-0002-6353-0880"
+    ],
+    "dblp_window": 63,
+    "openalex": [
+     "https://openalex.org/A5078445265"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5078445265"
+     ],
+     "works": 52,
+     "dblp_indexed": 34,
+     "share": 0.654
+    }
+   },
+   "faculty_evidence": [],
+   "years_listed": [],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Shuo Han",
+   "aliases": [
+    "Shuo Han 0001"
+   ],
+   "source": "dblp_affiliation",
+   "decision": "excluded_unresolved",
+   "reason_code": "no_source_covers_window",
+   "reason": "JHU BME-affiliated author (OpenAlex byline \"Department of Biomedical Engineering Johns Hopkins University\", 39 works 2016-2026, no last-author works, ORCID 0000-0003-2033-9004) who is on no faculty listing: the BME listing is unusable in 2023 and 2026 (paged directory not archived), no profile, homepage or ORCID employment record states a rank. Pattern of a graduate student or postdoc, not proven; no source places him as faculty",
+   "sources_tried": [
+    "BME, ECE, AMS and CS faculty listings 2016-2026 (rows.json; BME 2018, 2023, 2026 gaps)",
+    "DBLP dump person 20/7794-1 (affiliation note JHU Baltimore; only an ORCID url)",
+    "ORCID employments (pub.orcid.org, sha256 b98f84173d6a799f6c9ea8f6144a989ee2ac77089fbed0f1acfc91f53be63324; no employment listed)",
+    "OpenAlex sweep authorship strings"
+   ],
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/20/7794-1"
+    ],
+    "orcid": [
+     "0000-0003-2033-9004"
+    ],
+    "dblp_window": 32,
+    "openalex": [
+     "https://openalex.org/A5070081887"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5070081887"
+     ],
+     "works": 38,
+     "dblp_indexed": 26,
+     "share": 0.684
+    }
+   },
+   "faculty_evidence": [],
+   "years_listed": [],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Susu Xu",
+   "aliases": [],
+   "source": "csrankings",
+   "decision": "accepted",
+   "reason": "faculty: official Whiting School faculty directory page (Wayback 2026-01-13; also captured 2024-02-23 and 2025-01-20): \"Susu Xu Assistant Professor, Department of Civil and Systems Engineering\" (a ladder title in a department outside the listing charter); computing method: statistical machine learning, causal inference and multi-modal sensing for rapid disaster response; 60 DBLP records 2016-2026 (33 in 2023-2026), 8 of 21 school works DBLP-indexed (share 0.38). Joined JHU 2023 (first JHU byline 2023)",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/188/9306"
+    ],
+    "orcid": [
+     "0000-0001-7170-648X"
+    ],
+    "dblp_window": 60,
+    "openalex": [
+     "https://openalex.org/A5000157874"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5000157874"
+     ],
+     "works": 21,
+     "dblp_indexed": 8,
+     "share": 0.381
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "CaSE",
+     "url": "https://web.archive.org/web/20260113190555id_/https://engineering.jhu.edu/faculty/susu-xu/",
+     "sha256": "63112d136ac5eac6e12a06b8770b657f64708b20268bcfaf018bdf03d10544d5",
+     "observed": "20260113190555",
+     "quote": "Susu Xu Assistant Professor Department of Civil and Systems Engineering",
+     "ladder": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI",
+    "CaSE faculty directory"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Chaowei Xiao",
+   "aliases": [],
+   "source": "csrankings",
+   "decision": "accepted",
+   "reason": "faculty: own page (live 2026-11-17): \"Assistant Professor, Johns Hopkins University\" with a jhu.edu address, \"I can hire PhD students from both the ECE and CS departments\"; computing object and method: LLM and AI-agent security and safety; 252 DBLP records 2016-2026 (187 in 2023-2026). JHU bylines start 2025 (first JHU authorship 2025); no JHU faculty listing of 2026 is stored (ECE 2026 roster uncaptured, CS 2026 roster does not list him), so the window is the observation year 2026",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/150/3317"
+    ],
+    "orcid": [
+     "0000-0002-7043-4926"
+    ],
+    "dblp_window": 252,
+    "openalex": [
+     "https://openalex.org/A5005843046",
+     "https://openalex.org/A5146756885",
+     "https://openalex.org/A5122965821"
+    ],
+    "openalex_share": {
+     "note": "2-3 JHU works per id, 2025-2026, too few to measure; the DBLP record count decides",
+     "ids": [],
+     "works": 0,
+     "dblp_indexed": 0,
+     "share": null
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "JHU",
+     "url": "https://xiaocw11.github.io/",
+     "sha256": "753548ff811a7327013a43fd07ec509662c712108bd0e7b9d2277c7c0b0a3b92",
+     "observed": "20261117",
+     "quote": "Chaowei Xiao Assistant Professor · Johns Hopkins University",
+     "ladder": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "Fei Lu",
+   "aliases": [
+    "Fei Lu 0016"
+   ],
+   "source": "dblp_affiliation",
+   "decision": "accepted",
+   "reason": "faculty: own page (Wayback 2025-02-10) \"Associate Professor, Department of Mathematics, Johns Hopkins University\", positions \"Associate Professor 2023 -- present; Assistant Professor 2017--2023\" (ORCID employment agrees; DBLP person 232/2344 names JHU Mathematics); computing method: scientific machine learning, data assimilation and stochastic dynamics, 34 DBLP records 2016-2026, 6 of 24 school works DBLP-indexed (share 0.25, passes 5 and 20 percent). The namesake OpenAlex ids with other ORCIDs (0000-0001-8399-8985, 0000-0003-4948-2672) are excluded",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/232/2344"
+    ],
+    "orcid": [
+     "0000-0001-6842-7922"
+    ],
+    "dblp_window": 34,
+    "openalex": [
+     "https://openalex.org/A5070405591",
+     "https://openalex.org/A5124289036"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5070405591"
+     ],
+     "works": 24,
+     "dblp_indexed": 6,
+     "share": 0.25
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "MATH",
+     "url": "https://web.archive.org/web/20250210132759id_/https://math.jhu.edu/~feilu/",
+     "sha256": "129f2bc6f4da494a87184450e1bb56d98a213b87a14ac45aaf37577cdcc45206",
+     "observed": "20250210132759",
+     "quote": "Fei Lu Associate Professor, Department of Mathematics, Johns Hopkins University",
+     "ladder": true
+    }
+   ],
+   "years_listed": [
+    2025
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  },
+  {
+   "name": "James Taylor",
+   "aliases": [
+    "James Taylor 0001"
+   ],
+   "source": "dblp_affiliation",
+   "decision": "accepted",
+   "reason": "faculty: his own lab page (Wayback 2021-01-23, the DBLP homepage url): \"James Taylor is the Ralph S. O'Connor Professor of Biology and Professor of Computer Science at Johns Hopkins University\" (ORCID employment: JHU Biology, Professor since 2014; DBLP person 46/5674-1 names JHU Department of Biology and the Emory predecessor); computing method and object: computational biology and the Galaxy platform; 13 DBLP records 2016-2026, 11 of 46 school works DBLP-indexed (share 0.24, passes 5 and 20 percent)",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/46/5674-1"
+    ],
+    "orcid": [
+     "0000-0001-5079-840X"
+    ],
+    "dblp_window": 13,
+    "openalex": [
+     "https://openalex.org/A5025611053"
+    ],
+    "openalex_share": {
+     "ids": [
+      "A5025611053"
+     ],
+     "works": 46,
+     "dblp_indexed": 11,
+     "share": 0.239
+    }
+   },
+   "faculty_evidence": [
+    {
+     "unit": "BIOL",
+     "url": "https://web.archive.org/web/20210123104858id_/https://taylorlab.org/people/james/",
+     "sha256": "ea167e4872f7c62827f434fed9cd13124b21dc7a9f765b6a3ddd0bdc105d8138",
+     "observed": "20210123104858",
+     "quote": "James Taylor is the Ralph S. O'Connor Professor of Biology and Professor of Computer Science at Johns Hopkins University",
+     "ladder": true
+    }
+   ],
+   "years_listed": [
+    2021
+   ],
+   "units_searched": [
+    "ECE",
+    "AMS",
+    "BME",
+    "CS",
+    "CLSP",
+    "MALONE",
+    "LCSR",
+    "COGSCI",
+    "MATH",
+    "DSAI"
+   ],
+   "reviewed_by": "claude-pifill-jhu-1118",
+   "reviewed_on": "2026-11-18"
+  }
+ ]
+}
