@@ -1,0 +1,36 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "School-local home-department decisions",
+ "description": "Source-backed home-only reviews, overlaid without changing a PI's identity, eligibility or appointment periods.",
+ "x-file": "hierarchy/<school>/home-department-decisions.json",
+ "x-kind": "reviewed",
+ "x-writer": "source review",
+ "x-readers": ["tools/census_overrides.py", "tools/home_departments_school.py"],
+ "x-rules": ["R-HOME-01"],
+ "type": "object",
+ "additionalProperties": {
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["home_department", "home_department_evidence", "why_home_department"],
+  "properties": {
+   "home_department": {"type": "string", "minLength": 1, "description": "The academic home, or reporting unit when primary_unresolved is present."},
+   "home_department_evidence": {
+    "type": "array", "minItems": 1,
+    "items": {
+     "type": "object", "required": ["url", "sha256", "quote"],
+     "properties": {
+      "url": {"type": "string", "minLength": 1},
+      "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+      "quote": {"type": "string", "minLength": 1},
+      "observed": {"type": "string"},
+      "kind": {"type": "string"}
+     }
+    }
+   },
+   "why_home_department": {"type": "string", "minLength": 1},
+   "primary_stated": {"type": "boolean", "description": "True only when the official source expressly distinguishes the primary appointment."},
+   "primary_unresolved": {"type": "array", "items": {"type": "string"}},
+   "also_home_departments": {"type": "array", "items": {"type": "string"}}
+  }
+ }
+}

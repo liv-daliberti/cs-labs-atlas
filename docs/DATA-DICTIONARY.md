@@ -34,6 +34,7 @@ Paths: `a.b` a key inside an object, `[]` an array item, `<key>` any key of a ma
 - [`hierarchy/<school>/cs-related-review.json`](#hierarchyschoolcs-related-reviewjson)
 - [`hierarchy/<school>/few-students-evidence.json`](#hierarchyschoolfew-students-evidencejson)
 - [`hierarchy/<school>/gap-evidence.json`](#hierarchyschoolgap-evidencejson)
+- [`hierarchy/<school>/home-department-decisions.json`](#hierarchyschoolhome-department-decisionsjson)
 - [`hierarchy/<school>/labpage-additions.json`](#hierarchyschoollabpage-additionsjson)
 - [`hierarchy/<school>/member-paper-review.json`](#hierarchyschoolmember-paper-reviewjson)
 - [`hierarchy/<school>/missing-pi-review.json`](#hierarchyschoolmissing-pi-reviewjson)
@@ -1648,6 +1649,33 @@ A researched student or lab member (with its quote and hash).
 | `host_quote` | string | no | A 'Faculty Host <PI>' line on the same page. |  |  |
 | `auto` | boolean | no | Automatic, unreviewed. |  |  |
 | `relationship` | string | no | Optional reviewed relationship: membership preserves a degree/student role without asserting PI advising; advising requires a student role and cannot override visitor/nonstudent or withheld-role guards. Omission retains legacy inference; a present invalid value fails closed. | one of `membership`, `advising` |  |
+
+## `hierarchy/<school>/home-department-decisions.json`
+
+Source-backed home-only reviews, overlaid without changing a PI's identity, eligibility or appointment periods.
+
+- schema: `schemas/home-department-decisions.schema.json`
+- kind: reviewed (a decision file, tracked in git)
+- format: JSON
+- writer: source review
+- readers: tools/census_overrides.py, tools/home_departments_school.py
+- rules: R-HOME-01
+
+| Field | Type | Required | Meaning | Allowed values | Rules |
+|---|---|---|---|---|---|
+| `<key>` | object | — |  | no other keys |  |
+| `<key>.home_department` | string | yes | The academic home, or reporting unit when primary_unresolved is present. | non-empty |  |
+| `<key>.home_department_evidence` | array of object | yes |  | at least 1 item(s) |  |
+| `<key>.home_department_evidence[]` | object | — |  |  |  |
+| `<key>.home_department_evidence[].url` | string | yes |  | non-empty |  |
+| `<key>.home_department_evidence[].sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `<key>.home_department_evidence[].quote` | string | yes |  | non-empty |  |
+| `<key>.home_department_evidence[].observed` | string | no |  |  |  |
+| `<key>.home_department_evidence[].kind` | string | no |  |  |  |
+| `<key>.why_home_department` | string | yes |  | non-empty |  |
+| `<key>.primary_stated` | boolean | no | True only when the official source expressly distinguishes the primary appointment. |  |  |
+| `<key>.primary_unresolved` | array of string | no |  |  |  |
+| `<key>.also_home_departments` | array of string | no |  |  |  |
 
 ## `hierarchy/<school>/labpage-additions.json`
 

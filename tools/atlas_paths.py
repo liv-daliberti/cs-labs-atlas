@@ -375,6 +375,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('coverage.json', 'derived', 'listings/{school}/coverage.json', 'listings/{school}/derived/coverage.json'),
     ('missing-pi-captures.sqlite', 'raw', 'hierarchy/missing-pi-captures.sqlite', 'hierarchy/raw/missing-pi-captures.sqlite'),
     ('home-departments-school.json', 'derived', 'hierarchy/{school}/home-departments.json', 'hierarchy/{school}/derived/home-departments.json'),
+    ('home-department-decisions-school.json', 'reviewed', 'hierarchy/{school}/home-department-decisions.json', 'hierarchy/{school}/reviewed/home-department-decisions.json'),
     ('sweep.log', 'work', 'hierarchy/sweep-{school}.log', 'hierarchy/work/sweep-{school}.log'),
     ('tmp', 'work', 'hierarchy/{school}/tmp', 'hierarchy/{school}/work/tmp'),
     ('reader.jsonl.gz', 'derived', 'hierarchy/reader/{school}.jsonl.gz', 'hierarchy/derived/reader/{school}.jsonl.gz'),

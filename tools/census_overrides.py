@@ -4,7 +4,9 @@ hierarchy/reviewed/census-overrides.json is TRACKED and shared by the released s
 (charter status) keeps its section in hierarchy/<key>/reviewed/census-overrides-school.json instead ({person: entry}, committed on the
 school's branch), so a stage tool never dirties a tracked file of the main checkout while a release is frozen (UChicago PROTOCOL-FRICTION 31).
 Readers call section(key); writers call open_section(key) and save(). An onboarding school's reviewed identity bindings
-(identity-bindings-school.json) are overlaid last by section(), see bind().
+(identity-bindings-school.json) are overlaid by section(), see bind(). Sourced home
+decisions live separately in home-department-decisions.json; this final layer may
+change only home fields, preserving identity, eligibility and period reviews.
 """
 import json
 
@@ -23,6 +25,10 @@ def _read(p):
     return json.loads(p.read_text()) if p.exists() else {}
 
 
+HOME_FIELDS = {'home_department', 'home_department_evidence', 'why_home_department',
+               'primary_stated', 'primary_unresolved', 'also_home_departments'}
+
+
 def section(key, resolve=None):
     """{person: override entry} of the school: the shared file's section, overlaid per person by the school-local file.
     `resolve(name, school)` finds the data file (default atlas_paths.data; a build root or release passes its own)."""
@@ -32,6 +38,10 @@ def section(key, resolve=None):
         sec[name] = {**(sec.get(name) or {}), **v}
     for name, v in _read(resolve('identity-bindings-school.json', key)).items():
         sec[name] = bind(sec.get(name) or {}, v)
+    for name, v in _read(resolve('home-department-decisions-school.json', key)).items():
+        if not isinstance(v, dict) or set(v) - HOME_FIELDS:
+            raise ValueError(f'{key}/{name}: home-department decisions may contain only home fields')
+        sec[name] = {**(sec.get(name) or {}), **v}
     return sec
 
 

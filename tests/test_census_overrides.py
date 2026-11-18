@@ -47,6 +47,36 @@ def test_a_released_school_still_edits_the_shared_file(tmp_path, monkeypatch):
     assert set(ov['mit']) == {'Bo', 'Di'} and 'u' in ov and not (tmp_path / 'mit-census-overrides-school.json').exists()
 
 
+def test_home_only_review_preserves_identity_periods_and_eligibility(tmp_path, monkeypatch):
+    setup(tmp_path, monkeypatch, 'onboarding')
+    base = dict(is_pi=True, periods=[{'start': '2021'}], dblp=['https://dblp.org/pid/x/Ann'])
+    (tmp_path / 'u-census-overrides-school.json').write_text(json.dumps({'Ann': base}))
+    home = dict(home_department='Computer Science', home_department_evidence=[dict(url='u', sha256='a' * 64, quote='Ann, Professor')],
+                why_home_department='Official faculty appointment row', primary_stated=False)
+    (tmp_path / 'u-home-department-decisions-school.json').write_text(json.dumps({'Ann': home}))
+    result = CO.section('u')['Ann']
+    assert all(result[k] == value for k, value in base.items())
+    assert result['home_department'] == 'Computer Science'
+    assert json.loads((tmp_path / 'u-census-overrides-school.json').read_text()) == {'Ann': base}
+
+
+def test_home_only_review_cannot_override_other_review_facets(tmp_path, monkeypatch):
+    setup(tmp_path, monkeypatch, 'onboarding')
+    (tmp_path / 'u-home-department-decisions-school.json').write_text(json.dumps({'Ann': {'exclude': True}}))
+    with pytest.raises(ValueError, match='only home fields'):
+        CO.section('u')
+
+
+def test_home_only_review_uses_selected_release_resolver(tmp_path, monkeypatch):
+    setup(tmp_path, monkeypatch, 'onboarding')
+    (tmp_path / 'u-home-department-decisions-school.json').write_text(json.dumps({'Ann': {'home_department': 'Live CS'}}))
+    release = tmp_path / 'release'
+    release.mkdir()
+    (release / 'u-home-department-decisions-school.json').write_text(json.dumps({'Ann': {'home_department': 'Release Statistics'}}))
+    resolve = lambda name, school=None: release / ((school or '_') + '-' + name)
+    assert CO.section('u', resolve)['Ann']['home_department'] == 'Release Statistics'
+
+
 def test_oa_identity_review_file_is_optional(tmp_path, monkeypatch):
     O = by_path('oa_identity_school')
     monkeypatch.setattr(O.P, 'data', lambda name, school=None, **k: tmp_path / name)
