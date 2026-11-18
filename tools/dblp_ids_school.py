@@ -58,8 +58,13 @@ def main(key):
         if r.get('homepage') and '/people' not in r['homepage']:
             homes[r['name']].add(nurl(r['homepage']))
     by_fam = collections.defaultdict(list)
+    import census_overrides as CO
+    ov_ = CO.section(key)
+
+    def als(x):
+        return list(x.get('aliases') or []) + list((ov_.get(x['name']) or {}).get('aliases') or [])
     for x in pis:
-        N = Name([x['name']] + list(x.get('aliases') or []))
+        N = Name([x['name']] + als(x))   # reviewed override aliases (e.g. the given-name-first form of a SURNAME-first listing name)
         for f, l in N.forms:
             by_fam[l].append((x['name'], N))
     cands = collections.defaultdict(list)
@@ -119,7 +124,7 @@ def main(key):
     for x in pis:
         cs = cands.get(x['name'], [])
         sch = [c for c in cs if (c['school_note'] or c['school_url']) and not c['disambiguation']]
-        hp = {h for nm in [x['name']] + list(x.get('aliases') or []) for h in homes.get(nm, ())}
+        hp = {h for nm in [x['name']] + als(x) for h in homes.get(nm, ())}
         byhome = [c for c in cs if hp & {nurl(u) for u in c['urls']} and not c['disambiguation']]
         d = None
         if len(byhome) == 1:  # the DBLP record links the homepage the department listing links (learned 2026-10-29)
@@ -130,7 +135,7 @@ def main(key):
         elif len(cs) == 1 and not cs[0]['disambiguation']:  # R-PAP-05: the one record that carries the name (a PI who moved
             c = cs[0]; d = dict(c, basis='unique_name', quote=c['names'][0])  # away has another institution in the notes)
         else:
-            full = {' '.join(toks(nm)) for nm in [x['name']] + list(x.get('aliases') or []) if len(toks(nm)) >= 2}
+            full = {' '.join(toks(nm)) for nm in [x['name']] + als(x) if len(toks(nm)) >= 2}
             ex = [c for c in cs if not c['disambiguation'] and full & {' '.join(toks(re.sub(r'\s+\d{4}$', '', nm))) for nm in c['names']}]
             if len(ex) == 1 and not any(re.search(r'\s\d{4}$', nm) for nm in ex[0]['names']) \
                     and ex[0]['n_window'] >= max(c['n_window'] for c in cs):  # never over a busier record ('Vijay G. Subramanian')
