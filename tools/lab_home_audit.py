@@ -12,6 +12,7 @@ import hashlib
 import io
 import json
 import re
+import unicodedata
 from pathlib import Path
 
 import atlas_paths as P
@@ -58,6 +59,18 @@ def assess(row, shared, local, cfg, rules):
     if 'also listed by' in (row.get('note') or '') and not row.get('home_basis'):
         issues.append('multiple_listings_primary_unreviewed')
     return issues
+
+
+def quote_names_pi(quote, names):
+    """Conservative triage: exact full-name or explicit package alias in the quote.
+
+    A failure requires review; it is never treated as proof of a different person.
+    """
+    def fold(value):
+        value = ''.join(c for c in unicodedata.normalize('NFKD', value or '') if not unicodedata.combining(c))
+        return ' '.join(''.join(c.casefold() if c.isalnum() else ' ' for c in value).split())
+    text = ' ' + fold(quote) + ' '
+    return any(fold(name) and ' ' + fold(name) + ' ' in text for name in names)
 
 
 def proposed_from_listing(pi, cfg):
@@ -128,6 +141,10 @@ def audit(inventory, out):
             pi = item['built'] or {}
             proposal = proposed_from_listing(pi, cfg) if not r else None
             evidence = (r or {}).get('evidence') or {}
+            names = [name] + list(pi.get('names') or []) + list((item['census'] or {}).get('aliases') or [])
+            named = quote_names_pi(evidence.get('quote'), names) if r else None
+            if r and evidence.get('quote') and not named:
+                issues.append('evidence_name_requires_review')
             results.append(dict(school=school, pi=name, live_built_lab=bool(item['built']),
                                 current_census_pi=bool(item['census']), in_inventory=bool(item['inventory']),
                                 inventory_status=(item['inventory'] or {}).get('inventory_status'),
@@ -139,6 +156,7 @@ def audit(inventory, out):
                                 issues=issues, local_home=(lm.get(name) or {}).get('home_department'),
                                 shared_home=(sm.get(name) or {}).get('home_department'),
                                 shared_register_missing=name not in sm, evidence_url=evidence.get('url'),
+                                evidence_names_pi=named,
                                 evidence_sha256=evidence.get('sha256'), evidence_quote=evidence.get('quote'),
                                 proposal=proposal, lab_name=(pi.get('lab') or {}).get('name'),
                                 next_action=('Review captured listing proposal' if proposal else
