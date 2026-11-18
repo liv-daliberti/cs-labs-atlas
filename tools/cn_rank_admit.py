@@ -26,6 +26,7 @@ import atlas_paths as P  # noqa: E402
 import census_overrides as CO  # noqa: E402
 import school_web as W  # noqa: E402
 
+CSR_URL = 'https://raw.githubusercontent.com/emeryberger/CSrankings/5319eddd1e27048c22751de68bb5344a25d7b091/csrankings.csv'   # stored in the school's capture store (live table) with its sha256
 WHO = 'claude-ns-a-1118'
 TODAY = datetime.date.today().isoformat()
 
@@ -259,7 +260,7 @@ def run(key, write=False, dblp_cache=None, csr=None, recall=None):
             o.update(no_identity=False, dblp=[d['pid']], **rev,
                      identity_resolution=dict(decision='csrankings_unique_fullname_roster', confidence='medium', reviewed=TODAY,
                                               basis='Owner ruling D-0004 (2026-11-18): a CSRankings entry plus a UNIQUE full-name match in the official roster. The pinyin of the roster name equals the CSRankings name (either order); exactly one roster/census Han name has that pinyin and exactly one CSRankings entry of the school has it; the entry maps to one DBLP person. Same-name collisions are held. Medium confidence; covered by the 50-row identity audit.',
-                                              evidence=[dict(url=e['url'], sha256=sha, quote=e['quote']), dict(url='csrankings.csv (scratch/pi-recall-1118/work/csr)', sha256=d['sha256'], quote=d['quote'], pinyin=d['pinyin']), dict(url=d['pid'], note='DBLP person of the CSRankings row (scratch/pi-recall-1118/recall.json)')]))
+                                              evidence=[dict(url=e['url'], sha256=sha, quote=e['quote']), dict(url=CSR_URL, sha256=d['sha256'], quote=d['quote'], pinyin=d['pinyin']), dict(url=d['pid'], note='DBLP person of the CSRankings row (scratch/pi-recall-1118/recall.json)')]))
         elif e.get('csr'):
             d = e['csr']
             o = ov.setdefault(name, {})
@@ -267,7 +268,7 @@ def run(key, write=False, dblp_cache=None, csr=None, recall=None):
                      identity_resolution=dict(decision='csrankings_homepage_url_binding', reviewed=TODAY,
                                               basis='The official department supervisor list links a homepage URL that is also the homepage of one CSRankings row (commit 5319eddd csrankings.csv); that row maps to one DBLP person. A URL equality, not a name match.',
                                               evidence=[dict(url=e['url'], sha256=sha, quote=e['quote'], homepage=e['href']),
-                                                        dict(url='csrankings.csv (scratch/pi-recall-1118/work/csr)', sha256=d['sha256'], quote=d['quote']), dict(url=d['pid'], note='DBLP person of the CSRankings row (scratch/pi-recall-1118/recall.json)')]))
+                                                        dict(url=CSR_URL, sha256=d['sha256'], quote=d['quote']), dict(url=d['pid'], note='DBLP person of the CSRankings row (scratch/pi-recall-1118/recall.json)')]))
         elif e.get('dblp'):
             d = e['dblp']
             o = ov.setdefault(name, {})
