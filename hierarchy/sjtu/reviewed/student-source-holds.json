@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "school": "sjtu",
- "scope": "51studentcoverage sourcefacts only; these observations are not researchedstudent inputs",
+ "scope": "Student source observations held rather than wired: conditional enrollment/identity uncertainty or shared-source PI assignment without individual adviser evidence. Full prior observations retained; independent valid sources remain wired.",
  "held_observations": [
   {
    "pi": "孔令和",
@@ -121,6 +121,92 @@
     "note": "Official SJTU Computer Science 2026 outstanding bachelor thesis list explicitly names this student and adviser; year is the thesis cohort."
    },
    "why": "ConfirmedChineseundergraduate2026fact retained here; independentlyconfirmedEnglishZhanShiPhD2026iscanonicalcurrentgraduaterecord. No literalEnglish/Hanidentitybridgeisproved, so neither same-personmerge nor unsupportedtwo-personcountisclaimed. This doesnotupgrade施展toPhD; it preservesbothprimaryfacts withonlyoneindependentlyprovedgraduatenamewired pendingalignment.",
+   "reviewed_by": "codex-sjtu-release-papers-1117",
+   "reviewed_on": "2026-11-17"
+  },
+  {
+   "pi": "蔡鸿明",
+   "name": "谢诚",
+   "status": "held_shared_source_without_individual_PI_assignment",
+   "former_wired_observation": {
+    "name": "谢诚",
+    "role": "phd",
+    "years": [],
+    "years_basis": "shared_collective_roster_individual_currentness_unresolved",
+    "alumni": false,
+    "membership_status": "as_listed_currentness_unknown",
+    "url": "https://ist.sjtu.edu.cn/members",
+    "sha256": "a5bebbbcce6ef2ad000a0dacdb15d8b67e94e7bea460a8a4c680e7304687689b",
+    "quote": "教师 蔡鸿明 步丰林 姜丽红 孙焱 胡畔 于晗 博士后 沈冰清 博士生 谢诚",
+    "source_role": "phd",
+    "auto": false,
+    "reviewed_by": "codex-sjtu-release-papers-1117",
+    "reviewed_on": "2026-11-17",
+    "review_note": "IST lab founder/lead Cai Hongming and PhD student Xie Cheng are named in the same university-hosted lab roster; counts lab membership, not sole advising. Root51scope selector correction: retain source-statedlabmembership; no individuallynamedthesisadvising asserted. Sixfacultysharedroster and earlierindividualhistory do not independentlydate谢诚ascurrent2026PhD underCai; capturetimeisobservationonly.",
+    "relationship": "membership",
+    "previous_capture_years": [
+     2026
+    ]
+   },
+   "why": "Owner-approved R-STU-33, landed while the51-case source work was ongoing: shared multi-PI roster/team membership and corresponding authorship do not assign an individual student to this PI. This source states no individual adviser/co-adviser link. The School student fact is preserved, but this PI assignment is unwired; no claim of non-enrollment or different adviser.",
+   "rule": "R-STU-33",
+   "rule_source": "docs/RULES.md",
+   "rule_decision": "D-0001 item7; owner-approved digest recommendation",
+   "reviewed_by": "codex-sjtu-release-papers-1117",
+   "reviewed_on": "2026-11-17"
+  },
+  {
+   "pi": "徐尔茨",
+   "name": "Haonan Wu",
+   "status": "held_shared_source_without_individual_PI_assignment",
+   "former_wired_observation": {
+    "name": "Haonan Wu",
+    "role": "phd",
+    "years": [
+     2026
+    ],
+    "years_basis": "current_capture_observation_only",
+    "alumni": false,
+    "membership_status": "current_as_listed",
+    "url": "https://oasis-sjtu.github.io/people/",
+    "sha256": "2b5f2924866228c41520cae8ff01d6c609715b97dcbef384509edaac25d0f912",
+    "quote": "PhD Students Haonan Wu @ Alibaba Group (Intern) PhD Student",
+    "source_role": "phd",
+    "auto": false,
+    "reviewed_by": "codex-sjtu-release-papers-1117",
+    "reviewed_on": "2026-11-17",
+    "review_note": "Erci Xu states he leads OASIS Lab; its People page lists Haonan Wu as a PhD student. Counts lab membership, not sole advising. Root51scope selector correction: retain source-statedlabmembership; no individuallynamedthesisadvising asserted.",
+    "relationship": "membership"
+   },
+   "why": "Owner-approved R-STU-33, landed while the51-case source work was ongoing: shared multi-PI roster/team membership and corresponding authorship do not assign an individual student to this PI. This source states no individual adviser/co-adviser link. The School student fact is preserved, but this PI assignment is unwired; no claim of non-enrollment or different adviser.",
+   "rule": "R-STU-33",
+   "rule_source": "docs/RULES.md",
+   "rule_decision": "D-0001 item7; owner-approved digest recommendation",
+   "reviewed_by": "codex-sjtu-release-papers-1117",
+   "reviewed_on": "2026-11-17"
+  },
+  {
+   "pi": "刘满华",
+   "name": "Yue Huang",
+   "status": "held_shared_source_without_individual_PI_assignment",
+   "former_wired_observation": {
+    "name": "Yue Huang",
+    "role": "phd",
+    "relationship": "membership",
+    "years": [
+     2024,
+     2024
+    ],
+    "url": "https://news.sjtu.edu.cn/jdzh/20240717/200350.html",
+    "sha256": "cc339061bbcf32c375d4781566fa21399e1e1690c8b20d75ec4e944940ca296b",
+    "quote": "上海交通大学为论文第一完成单位，人工智能研究院博士生黄跃为论文第一作者，杨小康教授、刘满华教授为论文通讯作者。",
+    "source_class": "official_university_group_paper",
+    "note": "SJTU identifies the work as a Yang Xiaokang and Liu Manhua team result, names doctoral researcher Huang as first author and Liu as corresponding author. Recorded as research-group membership; the article does not state formal thesis advising."
+   },
+   "why": "Owner-approved R-STU-33, landed while the51-case source work was ongoing: shared multi-PI roster/team membership and corresponding authorship do not assign an individual student to this PI. This source states no individual adviser/co-adviser link. The School student fact is preserved, but this PI assignment is unwired; no claim of non-enrollment or different adviser.",
+   "rule": "R-STU-33",
+   "rule_source": "docs/RULES.md",
+   "rule_decision": "D-0001 item7; owner-approved digest recommendation",
    "reviewed_by": "codex-sjtu-release-papers-1117",
    "reviewed_on": "2026-11-17"
   }
