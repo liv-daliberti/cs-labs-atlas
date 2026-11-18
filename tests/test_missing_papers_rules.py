@@ -130,3 +130,55 @@ def test_R_PAP_29_cross_affiliated_paper_on_the_far_side_of_a_transition_listing
     ctx = school(tmp_path, monkeypatch, smola('2020-05-01', elsewhere), [A])
     assert bool(T.rows_of(ctx, 'Grace Hopper').get('Canopy Style Paper')) is kept
     assert ctx.n['cross_affiliation_transition_outside'] == (0 if kept else 1)
+
+
+# ---- R-PAP-29 (2026-11-18): a co-author's school credit does not admit a paper whose page 1 credits the PI elsewhere -------------------------
+
+import re
+import sqlite3
+import zlib
+
+from pihier import papers
+from pi_hierarchy import AFF
+
+SAHELI_PAGE = ('Selective Caches for Hybrid Memory Ada Lovelace1, Dave Danskin2 1Google Research India 2Princeton University '
+               'Abstract We study caches.')
+TIED_PAGE = 'Selective Caches Ada Lovelace1, Dave Danskin2 1Princeton University and Nvidia 2Princeton University Abstract We study caches.'
+
+
+def pages_db(tmp_path, status, text):
+    db = sqlite3.connect(str(T.put(tmp_path, 'pi-works.sqlite')))
+    db.execute('create table works (id text primary key, body blob)')
+    db.execute('create table pages (work text primary key, arxiv text, url text, status text, pdf_sha256 text, page1 blob, school_named int, quote text, fetched_at text)')
+    db.execute('insert into pages values (?,?,?,?,?,?,?,?,?)', (OA + 'W40', '2001.00001', 'https://arxiv.example/v1.pdf', status, 'ab', zlib.compress(text.encode()), 0, None, '2026-11-18'))
+    db.commit(); db.close()
+
+
+@pytest.mark.parametrize('status,text,kept', [('ok_untied', SAHELI_PAGE, False), ('ok_absent', 'Selective Caches Ada Lovelace Google Research India Abstract We study caches.', False),
+                                              ('ok_untied', 'Selective Caches Ada Lovelace1 Dave Danskin2 1Dept of Computing 2Princeton University Abstract x', True)])
+def test_R_PAP_29_page1_crediting_the_pi_elsewhere_refuses_the_cross_affiliated_byline(tmp_path, monkeypatch, status, text, kept):
+    """Tambe's AAAI-23 SAHELI paper: page 1 puts the PI at Google Research India and only a co-author at the school. A page-1 read that names no
+    other institution for the PI ('Dept of Computing' names no institution) leaves the route as it was."""
+    ov = copy.deepcopy(T.OVERRIDES)
+    ov[T.SCHOOL]['Ada Lovelace']['periods'] = [T.OVERRIDES[T.SCHOOL]['Ada Lovelace']['periods'][0]]
+    monkeypatch.setattr(T, 'OVERRIDES', ov)
+    T.write_school(tmp_path, cross())
+    pages_db(tmp_path, status, text)
+    ctx = T.run_stages(tmp_path, upto='papers')
+    assert bool(T.rows_of(ctx, 'Ada Lovelace').get('Selective Caches for Hybrid Memory')) is kept
+    assert ctx.n['cross_affiliation_page1_pi_elsewhere'] == (0 if kept else 1)
+
+
+def test_R_PAP_29_cross_affiliated_byline_without_a_page_read_is_unchanged(tmp_path, monkeypatch):
+    ctx = school(tmp_path, monkeypatch, cross(), [T.OVERRIDES[T.SCHOOL]['Ada Lovelace']['periods'][0]])
+    assert 'Selective Caches for Hybrid Memory' in T.rows_of(ctx, 'Ada Lovelace') and ctx.n['cross_affiliation_page1_pi_elsewhere'] == 0
+
+
+def test_page1_pi_credited_elsewhere_helper():
+    aff = re.compile(AFF[T.SCHOOL], re.I)
+    names = ['Ada Lovelace']
+    assert papers.page1_pi_credited_elsewhere(SAHELI_PAGE, names, aff).endswith('Google Research India')
+    assert papers.page1_pi_credited_elsewhere(TIED_PAGE, names, aff) is None                      # the school beside a company stays the school's
+    assert papers.page1_pi_credited_elsewhere('Dave Danskin, Princeton University. Abstract', names, aff) is None   # the PI is not on page 1
+    assert papers.page1_pi_credited_elsewhere('Ada Lovelace Abstract We study', names, aff) is None                  # no affiliation at all
+    assert papers.page1_pi_credited_elsewhere('Ada Lovelace, Google Research. Dave Danskin, Princeton University. Abstract', names, aff) is not None

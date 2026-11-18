@@ -113,3 +113,22 @@ def test_primary_conference_pdfs_are_supported_without_author_site_allowlisting(
                 'https://www.openproceedings.org/2025/conf/edbt/paper-19.pdf']:
         assert any(host in url for host in D.OPEN_HOSTS)
         assert D.pdf_url(url) == url
+
+
+def test_R_PAP_36_openalex_other_institution_does_not_close_the_record_before_page_1():
+    """2026-11-18 (Harvard gate 9: Brooks, Guess & Sketch): the DOI record's authorship at the PI's name lists only another institution (OpenAlex
+    derived it wrongly). The verdict is 'other_institution', which the page-1 steps then check; the school's own listing still wins."""
+    import re
+    from pi_hierarchy import AFF, INST, Name
+    aff = re.compile(AFF['princeton'], re.I); inst = 'https://openalex.org/' + INST['princeton']
+    nm = Name(['Ada Lovelace'])
+
+    def work(*insts):
+        return dict(id='https://openalex.org/W1', authorships=[dict(raw_author_name='Ada Lovelace', author=dict(id='https://openalex.org/A1', display_name='Ada Lovelace'),
+                    institutions=list(insts), raw_affiliation_strings=[i['display_name'] for i in insts])])
+    cornell = dict(id='https://openalex.org/I205783295', display_name='Cornell University', type='education', lineage=['https://openalex.org/I205783295'])
+    princeton = dict(id=inst, display_name='Princeton University', type='education', lineage=[inst])
+    assert D.doi_authorship_verdict(work(cornell), nm, inst, aff, 'princeton') == ('other_institution', None)
+    assert D.doi_authorship_verdict(work(princeton), nm, inst, aff, 'princeton')[0] == 'school'
+    assert D.doi_authorship_verdict(work(), nm, inst, aff, 'princeton') == (None, None)
+    assert D.doi_authorship_verdict(dict(id='W2', authorships=[]), nm, inst, aff, 'princeton') == (None, None)

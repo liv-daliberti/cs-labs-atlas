@@ -297,6 +297,12 @@ by institution was tried first and rejected: it dropped 8 of 17 true lab papers 
 with no institution at all (pi-0) and a credit to another university are untouched. `school_basis`, `STRONG_IDENTITY`,
 `CROSS_KINDS`; counter `school_via_cross_affiliation`.
 
+### R-PAP-29 addendum (2026-11-18, Harvard gate 9 pi1: Tambe's AAAI-23 SAHELI paper)
+A co-author's school credit does not admit a paper whose page 1 credits the PI elsewhere: when the page-1 read of the work (arXiv v1 or the catalog's copy; `pi_fulltext_affiliation.py pdf`, which now also reads
+works whose PI authorship is credited only to companies/agencies while another author is the school's) puts the PI's own name at an institution or company that is not the school (footnote line of the PI's marker,
+or the sentence after the name; not when it names the school beside another institution), the cross-affiliated route is refused (`page1_pi_credited_elsewhere`, counter `cross_affiliation_page1_pi_elsewhere`).
+No page read, or a page that gives the PI no affiliation, leaves the route as it was (Wenisch).
+
 ### R-PAP-30 (2026-11-02, owner: accuracy pass) — listings OpenAlex contradicts go to review
 Michigan's sample credited Ziyou Song's SSRN preprint to Michigan through a Wayback ECE listing while OpenAlex places his
 works of those years at the National University of Singapore. Two signals, built before the rows from the PI's identified
@@ -346,6 +352,11 @@ comes from the dump XML, and the JMLR host was added (Shah JMLR 2025). IACR ePri
 `school_via: ['page1_dblp: <DBLP key>', 'page 1 (<how>): ...']`, `authorship.page1` with the PDF url, its sha256, the quotes, the DBLP key and the fetch time, identity `dblp_person_page`,
 source `dblp_recover:page1_arxiv|page1_open` and enter the normal flow (appointment, editions, dedup against the sweep's works, copies). `dblp_recover.py <school> --retry` asks again for the
 unconfirmed. A page-1 read from an arXiv v1 posted 4 or more years before the DBLP record's year is not accepted at build time (`arxiv_predates_record`: Mossel's 2016 TOC paper, v1 2012, names Berkeley), and a byline lists each name once. Not used: the publisher's landing text (no open source parsed there). Tests: `tests/test_dblp_recover_page1.py`.
+
+2026-11-18 (Harvard gate 9 pi1, lab coverage .870: Brooks, Guess & Sketch, ICLR 2024; owner 2026-11-05 'DBLP works added with page-1 proof'): OpenAlex's institution for the PI is derived and can be wrong
+(it credited Brooks to Cornell, page 1 says Harvard), so a DOI record whose authorship at the PI's name lists only other institutions no longer closes the record: page 1 is still asked, and the paper is added only
+when page 1 (arXiv v1 or an open proceedings PDF) ties the school to the PI by name; with no tie the record closes as `other_institution` (the PI was elsewhere), as before. Records an earlier run closed on the DOI
+step alone are asked again by the next `dblp_recover.py <school>` run (`doi_authorship_verdict`). No other exclusion changed; the appointment, window and not-a-paper checks still apply at build time.
 
 ### R-PAP-38 (2026-11-06, owner) — book-chapter reprints of older papers
 ACM Books and other anthologies reprint older papers as chapters (Essa's 'Video Textures', SIGGRAPH 2000, appears as a 2023 ACM Books chapter; 39 such chapters over the nine

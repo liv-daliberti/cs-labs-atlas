@@ -237,6 +237,21 @@ def candidates(school, skip_have=True):
     return out
 
 
+def doi_authorship_verdict(w, nm, inst, aff, school):
+    """OpenAlex's authorship at the PI's name in the DOI record: ('school', via) when it lists the school, ('other_institution', None) when it lists
+    only other institutions (not proof that the PI was elsewhere: page 1 decides, R-PAP-36 2026-11-18), (None, None) when it names no institution or
+    no authorship matches the PI."""
+    a = next((a for a in w.get('authorships') or [] if nm.match(a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or '')), None)
+    if a is None:
+        return None, None
+    via = _authorship_school_via(w, a, inst, aff, school=school)
+    if via:
+        return 'school', via
+    if a.get('institutions'):
+        return 'other_institution', None
+    return None, None
+
+
 def db(school):
     c = sqlite3.connect(P.data_w('dblp-recover.sqlite', school), timeout=60, check_same_thread=False)
     c.execute('create table if not exists tries (pi text, dblp_key text, step text, url text, status text, pdf_sha256 text, page1 blob, '
@@ -249,7 +264,11 @@ def run(school, workers):
     c = db(school)
     retry = '--retry' in sys.argv   # R-PAP-36: ask again for the records an earlier run could not confirm (new hosts, a fuller candidate list)
     # a record is done when it was accepted or OpenAlex puts the PI at another institution; --retry asks again for every other (earlier hosts failed or were missing)
-    done = {(r[0], r[1]) for r in c.execute('select pi, dblp_key, status, accepted from tries where accepted is not null') if r[3] == 1 or r[2] == 'other_institution' or not retry}
+    # (R-PAP-36, 2026-11-18) an other_institution from the DOI step alone was closed before page 1 was asked: it is asked again (page-1 rows exist = asked)
+    page1_asked = {(r[0], r[1]) for r in c.execute("select pi, dblp_key from tries where step != 'openalex_doi'")}
+    done = {(r[0], r[1]) for r in c.execute('select pi, dblp_key, status, accepted from tries where accepted is not null')
+            if r[3] == 1 or (r[2] == 'other_institution' and (r[0], r[1]) in page1_asked) or not retry}
+    done -= {(r[0], r[1]) for r in c.execute("select pi, dblp_key from tries where status = 'other_institution' and accepted = 0")} - page1_asked
     # a chain of jobs (59 minutes each) shares one retry: a record asked again since DBLP_RETRY_SINCE (an ISO time, set once for the chain) is done
     since = os.environ.get('DBLP_RETRY_SINCE')
     if retry and since:
@@ -273,7 +292,7 @@ def run(school, workers):
             c.commit()
 
     def one(x):
-        read_pages = []
+        read_pages = []; other_institution = False
         nm = Name(x['names']); names = page1_name_forms(x['names'])
         if x['doi']:  # 1. OpenAlex by DOI; public singleton lookup also works without a key
             try:
@@ -287,13 +306,14 @@ def run(school, workers):
             if w:
                 source_work = w
                 w = school_scope_work(w, school)
-                a = next((a for a in w.get('authorships') or [] if nm.match(a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or '')), None)
-                if a is not None:
-                    via = _authorship_school_via(w, a, inst, aff, school=school)
-                    if via:
-                        record(x, 'openalex_doi', w['id'], 'ok', ok=1, ev=dict(basis='openalex_authorship', oa=w['id'], school_via=via[:3], openalex_work=source_work)); return 'openalex'
-                    if a.get('institutions'):
-                        record(x, 'openalex_doi', w['id'], 'other_institution', ok=0); return 'other_institution'
+                verdict, via = doi_authorship_verdict(w, nm, inst, aff, school)
+                if verdict == 'school':
+                    record(x, 'openalex_doi', w['id'], 'ok', ok=1, ev=dict(basis='openalex_authorship', oa=w['id'], school_via=via[:3], openalex_work=source_work)); return 'openalex'
+                if verdict == 'other_institution':
+                    # R-PAP-36 (2026-11-18, Harvard gate 9: Brooks, Guess & Sketch, OpenAlex says Cornell, page 1 says Harvard): OpenAlex's institution for the PI
+                    # is derived and can be wrong; the paper's own first page outranks it, so the page-1 steps below still run. With no page-1 tie
+                    # the paper stays out (the PI was elsewhere) and the record is closed as other_institution, as before.
+                    record(x, 'openalex_doi', w['id'], 'other_institution', ok=0); other_institution = True
                 for loc in [w.get('primary_location') or {}] + list(w.get('locations') or []):
                     m = re.search(r'arxiv\.org/(?:abs|pdf)/(\d{4}\.\d{4,5})', (loc.get('landing_page_url') or '') + ' ' + (loc.get('pdf_url') or ''))
                     if m and not x['arxiv']:
@@ -324,6 +344,9 @@ def run(school, workers):
                 if how:
                     return 'open'
         # R-PAP-36: no page-1 evidence, so not added; the reason is kept for later (a ledger of what could not be confirmed)
+        if other_institution:
+            record(x, 'none', None, 'other_institution', ok=0, ev=dict(reason='openalex_other_institution_page1_not_tied', dblp_key=bare_key(x['dblp_key']), ee=x['ee'][:4]))
+            return 'other_institution'
         why = ('page1_read_school_not_named' if read_pages else 'no_open_page1_source' if not x['arxiv'] and not any(h in e for e in x['ee'] for h in OPEN_HOSTS) else 'page1_fetch_failed')
         record(x, 'none', None, 'dblp_unconfirmed', ok=0, ev=dict(reason=why, dblp_key=bare_key(x['dblp_key']), ee=x['ee'][:4]))
         return 'none'

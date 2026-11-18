@@ -253,6 +253,21 @@ def unaffiliated_pi_authorship(w, mine):
                  and not x.get('institutions') and not x.get('raw_affiliation_strings')), None)
 
 
+CROSS_KINDS = {'company', 'nonprofit', 'government', 'facility', 'other', 'archive'}   # pihier.papers.CROSS_KINDS (R-PAP-29)
+
+
+def cross_affiliated_pi_authorship(w, mine, inst_url):
+    """(R-PAP-29, 2026-11-18) The authorship of one of the school's PIs (author id in `mine`) credited only to companies, agencies or other non-university
+    institutions while another author of the byline is credited to the school: the byline the cross-affiliation route would admit. Its page 1 is read so the
+    route can be refused when page 1 credits the PI elsewhere (Tambe's AAAI-23 paper: Google Research India; the co-author is Harvard's)."""
+    school_co = any(inst_url in (i.get('lineage') or [i.get('id')]) or i.get('id') == inst_url
+                    for x in w.get('authorships') or [] for i in x.get('institutions') or [])
+    if not school_co:
+        return None
+    return next((x for x in w.get('authorships') or [] if (x.get('author') or {}).get('id') in mine and x.get('institutions')
+                 and {i.get('type') for i in x['institutions']} <= CROSS_KINDS), None)
+
+
 def candidates(school):
     """Works of the school's PIs whose PI authorship lists no institution (needs page 1): (work, arXiv id or None, name forms,
     local catalog PDF or None). Two kinds: (a) a work of one of the PI's anchored or reviewed OpenAlex author ids; (b) (R8,
@@ -274,6 +289,7 @@ def candidates(school):
         for t in titles:
             by_title.setdefault(t, []).append(pi)
     nm = {p['pi']: Name(p['names']) for p in pis}
+    inst_url = 'https://openalex.org/' + INST[school]
     done = {r[0] for r in c.execute('select work from pages')}
     local = local_pdfs(school)
     out = []
@@ -291,6 +307,9 @@ def candidates(school):
                           and nm[pi].match(x.get('raw_author_name') or (x.get('author') or {}).get('display_name') or '')), None)
                 if a is not None:
                     forms = forms_of[pi]; break
+            if a is None:
+                a = cross_affiliated_pi_authorship(w, mine, inst_url)
+                forms = names_of.get((a.get('author') or {}).get('id')) if a else None
             if a is None:
                 continue
         ax = arxiv_id(w)

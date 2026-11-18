@@ -553,6 +553,37 @@ def page1_elsewhere(status, text, school, title=None, author_names=()):
     return None
 
 
+def page1_pi_credited_elsewhere(text, names, aff):
+    """R-PAP-29 (2026-11-18, Harvard gate 9: Tambe's AAAI-23 SAHELI paper, page 1 credits him to Google Research India while a co-author is Harvard's):
+    the quote when page 1 (the text before 'Abstract', or its first 2500 characters) puts the PI's own name at an institution or company that is not
+    the school: the footnote line of the PI's marker, or the text within 160 characters after the name, names another institution and not the school.
+    None when the PI's name is not in the author block, carries no affiliation, or is credited to the school (alone or beside another institution)."""
+    flat = re.sub(r'\s+', ' ', unicodedata.normalize('NFKC', text or ''))
+    ab = re.search(r'\babstract\b', flat[:6000], re.I)
+    head = flat[:ab.start()] if ab else flat[:2500]
+    for n in names or []:
+        t = name_toks(n)
+        if len(t) < 2:
+            continue
+        rx = re.compile(r'(?<![A-Za-z])' + re.escape(t[0][0]) + (re.escape(t[0][1:]) if len(t[0]) > 1 else r'\.?') + r'[\w.\-]*(?:\s+[A-Z][\w.\-]*){0,2}\s+' + re.escape(t[-1]) + r'(?![a-z])', re.I)
+        for m in rx.finditer(head):
+            tail = head[m.end():]
+            mk = re.match(r'\s?([0-9,\s\u2217*\u2020\u2021\u00a7\u00b6]+)', tail[:14])
+            lines = []
+            if mk and mk.group(1).strip(' ,'):
+                for sym in [x for x in re.split(r'[,\s]+', mk.group(1)) if x]:
+                    lines += [ln.group(1) for ln in re.finditer(r'(?:^|\s)' + re.escape(sym) + r'\s?([^0-9\u2217*\u2020\u2021\u00a7\u00b6]{5,160})', tail[len(mk.group(0)):])]
+            else:
+                lines = [re.split(r'[.;]\s', tail[:160])[0]]   # no marker: the affiliation follows the name directly, up to the end of the sentence
+            for ln in lines:
+                if aff.search(ln):
+                    return None
+                first = re.split(r'(?<![A-Za-z])[A-Z][a-z]+\s+[A-Z][a-z]+\s*[0-9\u2217*\u2020\u2021]', ln)[0]
+                if AFFILIATION_MARK.search(first) and re.search(r'univ|institut|college|laborator|\blabs?\b|\binc\b|corp|\bltd\b|gmbh|\bllc\b|hospital|academy|google|microsoft|\bmeta\b|amazon|\bibm\b|nvidia|openai|deepmind|\bresearch\b', first, re.I):
+                    return (flat[m.start():m.end()] + ' ' + first).strip()
+    return None
+
+
 OTHER_INST = re.compile(r'univ|institut|college|polytechn|[ée]cole|laborator|\blabs?\b|\binc\b|corp|\bltd\b|gmbh|\bllc\b|hospital|academy|'
                         r'cent(?:er|re)\b|google|microsoft|\bmeta\b|amazon|\bibm\b|nvidia|openai|deepmind|foundation|\bcnrs\b|\binria\b|'
                         r'\beth\b|max planck|national|company|' + COMPANY_AFFILIATION.pattern, re.I)  # an institution, not a department
@@ -907,6 +938,13 @@ def school_basis(ctx, pi, w, a, ident, page1):
         kinds_ = {i.get('type') for i in a['institutions']}
         school_co = any(x is not a and _authorship_school_via(w, x, inst, aff, school=school) for x in w.get('authorships') or [])
         if kinds_ <= CROSS_KINDS and school_co:
+            # a page-1 read (arXiv v1 or the catalog's copy, pi_fulltext_affiliation.py pdf) that puts the PI's own name at another institution and not the school
+            # shows the co-author's credit is the only school on the byline: not the PI's lab paper (page 1 outranks OpenAlex, as in R-PAP-10)
+            st1, blob1, _u1 = (getattr(ctx, 'page_read', None) or {}).get(w['id']) or (None, None, None)
+            elsewhere1 = page1_pi_credited_elsewhere(zlib.decompress(blob1).decode('utf-8', 'replace'), p['names'], ctx.aff) if blob1 and st1 in ('ok', 'ok_untied', 'ok_absent') else None
+            if elsewhere1:
+                n['cross_affiliation_page1_pi_elsewhere'] += 1
+                return [], page1
             via = ['cross-affiliated byline: PI credited to ' + ', '.join(i.get('display_name') or '?' for i in a['institutions'][:2])
                    + '; a co-author is credited to the school']
             n['school_via_cross_affiliation'] += 1
