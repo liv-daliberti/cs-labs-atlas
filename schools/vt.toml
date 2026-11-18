@@ -52,6 +52,11 @@ legacy_sweep = ""
 
 [census]
 computing_departments = ["CS"]
+# Review decisions 2026-11-18 (VT PI recall fix): courtesy-listed professors of other units who fail the computing/identity test
+not_pi = [
+  {name = "Song Li", reason = "review 2026-11-18: professor in Plant and Environmental Sciences with a CS courtesy listing, but no DBLP person and computing share 6/61 (0.098) below 0.20 (cs-related-review: faculty_not_computing); revisit with an OpenAlex identity"},
+  {name = "Yinlin Chen", reason = "review 2026-11-18: University Libraries assistant professor listed by CS 'by affiliation'; no DBLP/ORCID identity and no computing-output review; excluded until one exists"},
+]
 center_units = ["SANGHANI", "HUME"]
 home_units = {"Computer Science" = 'computer\s+science', "Electrical and Computer Engineering" = 'electrical\s+(?:and|&)\s+computer\s+engineering', "Statistics" = 'statistics', "Industrial and Systems Engineering" = 'industrial\s+(?:and|&)\s+systems', "Mathematics" = 'mathematics', "Plant and Environmental Sciences" = 'plant\s+(?:and|&)\s+environmental\s+sciences', "Physics" = 'physics', "Chemistry" = 'chemistry', "Business Information Technology" = 'business\s+information\s+technology', "School of Visual Arts" = 'school\s+of\s+visual\s+arts'}
 rank_words = {teaching = '\bprofessor\s+of\s+practice\b|\bcollegiate\s+(?:(?:assistant|associate)\s+)?professor\b|\binstructor\b|\bteaching\b', adjunct = '\badjunct\b|\bvisiting\b'}
