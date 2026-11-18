@@ -80,6 +80,24 @@ def apply_reviewed_homes(rows, overrides, normalize):
         old = row.get('home_department')
         home = normalize(home)
         also = [a for a in dict.fromkeys([old] + list(row.get('also') or []) + list(decision.get('also_home_departments') or [])) if a and a != home]
+        # R-HOME-01 retains real secondary appointments. An explicitly reviewed
+        # correction of an erroneous inferred unit must not manufacture one.
+        superseded = decision.get('superseded_home_department')
+        if superseded is not None:
+            reason = decision.get('why_superseded_home_department')
+            if not isinstance(superseded, str) or not superseded.strip() or not isinstance(reason, str) or not reason.strip():
+                raise SystemExit(f"{row['name']}: superseded_home_department requires a unit and a researched reason")
+            rejected = normalize(superseded)
+            named = [normalize(u) for u in (decision.get('also_home_departments') or []) + (decision.get('primary_unresolved') or [])]
+            if rejected == home or rejected in named:
+                raise SystemExit(f"{row['name']}: superseded_home_department conflicts with a retained appointment")
+            previous = row.get('superseded_home_department') or {}
+            if rejected == normalize(old):
+                previous = dict(home_department=old, evidence=row.get('evidence'), reason=reason)
+            elif old != home or previous.get('home_department') != superseded or previous.get('reason') != reason:
+                raise SystemExit(f"{row['name']}: superseded_home_department does not match the previous home")
+            also = [a for a in also if normalize(a) != rejected]
+            row['superseded_home_department'] = previous
         row.update(home_department=home, also=also, status='accepted', evidence=evidence[0],
                    reviewed_home_evidence=evidence, note=decision.get('why_home_department') or 'reviewed home department with sourced evidence')
         # Owner-delegated rule 2026-11-09 (docs/RULES.md R-HOME-01): the home is the primary appointment the official page states. When the page names several

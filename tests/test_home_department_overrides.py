@@ -102,3 +102,43 @@ def test_charter_ladder_title_supplies_its_listing_department(monkeypatch, tmp_p
     assert result[0]['status'] == 'accepted'
     assert result[0]['home_department'] == 'Computer Science and Technology'
     assert result[0]['evidence']['quote'] == row['quote']
+
+
+def test_sourced_correction_does_not_turn_a_disproved_home_into_an_appointment():
+    original_evidence = _ev('A profile collected under a CS directory')[0]
+    rows = [dict(name='A Person', home_department='Computer Science', also=['Mathematics'],
+                 status='accepted', evidence=original_evidence)]
+    decision = dict(home_department='Artificial Intelligence', primary_stated=True,
+                    home_department_evidence=_ev('School/Department: Artificial Intelligence'),
+                    also_home_departments=['Electrical Engineering'],
+                    superseded_home_department='Computer Science',
+                    why_superseded_home_department='CS was inferred from the directory host, not a stated appointment.')
+    result = apply_reviewed_homes(rows, {'A Person': decision}, lambda h: h)
+    assert result[0]['home_department'] == 'Artificial Intelligence'
+    assert result[0]['also'] == ['Mathematics', 'Electrical Engineering']
+    assert result[0]['superseded_home_department'] == dict(
+        home_department='Computer Science', evidence=original_evidence,
+        reason=decision['why_superseded_home_department'])
+    once = copy.deepcopy(result)
+    assert apply_reviewed_homes(result, {'A Person': decision}, lambda h: h) == once
+
+
+@pytest.mark.parametrize('change, message', [
+    ({'why_superseded_home_department': ''}, 'researched reason'),
+    ({'superseded_home_department': True}, 'requires a unit'),
+    ({'superseded_home_department': 'Law'}, 'does not match'),
+    ({'home_department': 'Computer Science'}, 'conflicts'),
+    ({'also_home_departments': ['Computer Science']}, 'conflicts'),
+    ({'primary_unresolved': ['Artificial Intelligence', 'Computer Science']}, 'conflicts'),
+])
+def test_home_correction_rejects_stale_or_conflicting_supersession(change, message):
+    rows = [dict(name='A Person', home_department='Computer Science', also=['Mathematics'])]
+    original = copy.deepcopy(rows)
+    decision = dict(home_department='Artificial Intelligence',
+                    home_department_evidence=_ev('School/Department: Artificial Intelligence'),
+                    superseded_home_department='Computer Science',
+                    why_superseded_home_department='Incorrect directory inference.')
+    decision.update(change)
+    with pytest.raises(SystemExit, match=message):
+        apply_reviewed_homes(rows, {'A Person': decision}, lambda h: h)
+    assert rows == original
