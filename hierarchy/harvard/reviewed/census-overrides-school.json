@@ -988,7 +988,28 @@
     "note": "Dated evidence for every year 2020-2026: unit listings, and dated Wayback captures of the PI's unit profile page naming the PI with a professor title (hierarchy/harvard/profile-year-evidence.json). Start is a lower bound; no end is claimed."
    }
   ],
-  "why_periods": "Bridged by dated Wayback captures that name the PI with a ladder title (tools/periods_school.py gaps and extend, jobs 32180835 and 32180836, 2026-11-10); each period run lists its evidence (url, sha256, quote); a listing proves its own calendar year only."
+  "why_periods": "Bridged by dated Wayback captures that name the PI with a ladder title (tools/periods_school.py gaps and extend, jobs 32180835 and 32180836, 2026-11-10); each period run lists its evidence (url, sha256, quote); a listing proves its own calendar year only.",
+  "dblp": [
+   "https://dblp.org/pid/89/4611"
+  ],
+  "why_dblp": "Exact DBLP-owned homepage displays the full reviewed PI name and same Harvard SEAS endowed title as reviewed institutional profile.",
+  "dblp_evidence": [
+   {
+    "url": "https://people.seas.harvard.edu/~flavio/",
+    "sha256": "619cd4f5f41303f298802f735fa1058f5735dcca4b9d3a9b25c07065e3329c61",
+    "quote": "Flavio du Pin Calmon",
+    "observed": "2026-11-16T01:54:41+00:00"
+   },
+   {
+    "url": "https://people.seas.harvard.edu/~flavio/",
+    "sha256": "619cd4f5f41303f298802f735fa1058f5735dcca4b9d3a9b25c07065e3329c61",
+    "quote": "Thomas D. Cabot Associate Professor of Electrical Engineering, Harvard SEAS",
+    "observed": "2026-11-16T01:54:41+00:00"
+   }
+  ],
+  "aliases": [
+   "Flávio P. Calmon"
+  ]
  },
  "Cengiz Pehlevan": {
   "openalex": [
@@ -2782,7 +2803,11 @@
     "reviewed": "periods_school_gaps_20261030"
    }
   ],
-  "why_periods": "Bridged by dated Wayback captures that name the PI with a ladder title (tools/periods_school.py gaps and extend, jobs 32180835 and 32180836, 2026-11-10); each period run lists its evidence (url, sha256, quote); a listing proves its own calendar year only."
+  "why_periods": "Bridged by dated Wayback captures that name the PI with a ladder title (tools/periods_school.py gaps and extend, jobs 32180835 and 32180836, 2026-11-10); each period run lists its evidence (url, sha256, quote); a listing proves its own calendar year only.",
+  "aliases": [
+   "Himabindu Lakkaraju"
+  ],
+  "why_aliases": "2026-11-18 (reviewed, Harvard promotion): the DBLP dump dblp-2026-09-01 person https://dblp.org/pid/68/9376 (unique-name match recorded in dblp-ids.json) names this person both 'Himabindu Lakkaraju' and 'Hima Lakkaraju'; 110 school authorships in the OpenAlex sweep are bylined 'Himabindu Lakkaraju' / 'Lakkaraju, Himabindu' under the one author id A5015520086, which the 2026-11-16 given-name guard (c8061ba2) held because 'Hima' and 'Himabindu' differ; the alias names the PI's own full given name so those bylines match by name and then need the usual identity anchor."
  },
  "Harry R. Lewis": {
   "no_papers": true,
@@ -2791,5 +2816,3675 @@
  "Mauricio Santillana": {
   "no_papers": true,
   "why_no_papers": "Reviewed 2026-11-10: listed 2021-2022 as 'Assistant Professor of Pediatrics'; the DBLP person (unique name only) has no records dated 2016 or later, no DBLP title matches a school sweep work, and no reviewed OpenAlex id or ORCID is bound; the sweep holds 234 authorships whose raw name contains the family name but none is attributed without an owned identity. No papers attributed."
+ },
+ "Jonghye Woo": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://jschant.github.io/team/",
+    "sha256": "723ecb86633468b6b4632ca99ac7300c40e71cdde9749f2f0acf849f8766bf65",
+    "quote": "Lab Director, Prof. Jonghye Woo Associate Professor, Harvard Medical School",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Patricia C. Dykes": {
+  "home_department": "Medicine",
+  "home_department_evidence": [
+   {
+    "url": "https://psnet.ahrq.gov/perspective/conversation-patricia-dykes-about-ongoing-journey-prevent-patient-falls",
+    "sha256": "3369d4dcb619f939c9f3d369e41816d79097132a5617fbbb12e0fb019aea4c9d",
+    "quote": "a Professor of Medicine at Harvard Medical School.",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Paolo Bonato": {
+  "home_department": "Physical Medicine and Rehabilitation",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-1818-1714/affiliationGroups.json",
+    "sha256": "67ffa2161602d146ee472c61e696f6a5d675e4638b8be3540b3916d2249033cc",
+    "quote": "Associate Professor",
+    "observed": "2026-11-16",
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/2/affiliations/0",
+    "appointment_fields": {
+     "type": "EMPLOYMENT",
+     "institution": "Harvard Medical School",
+     "role": "Associate Professor",
+     "department": "Physical Medicine and Rehabilitation",
+     "start": "2014-09-01",
+     "end": null
+    }
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Yuri Quintana": {
+  "home_department": "Medicine",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0001-6583-0257/affiliationGroups.json",
+    "sha256": "ccd990bfbed46acdb309031d61a834bee132d882b75c3b6c037fa71254a70f4b",
+    "quote": "Assistant Professor of Medicine",
+    "observed": "2026-11-16",
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0",
+    "appointment_fields": {
+     "type": "EMPLOYMENT",
+     "institution": "Harvard University",
+     "role": "Assistant Professor of Medicine",
+     "department": "Department of Medicine, BIDMC",
+     "start": "2014-07-01",
+     "end": null
+    }
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Anastasia Yendiki": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://mbb.harvard.edu/people/anastasia-yendiki",
+    "sha256": "2cee3ec4400f8691a9c8d0e7e5844a72929969ad52a0123c0b5e858675f3fde0",
+    "quote": "Anastasia Yendiki Associate Professor of Radiology, HMS",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Gabriel Kreiman": {
+  "home_department": "Neurology",
+  "home_department_evidence": [
+   {
+    "url": "https://mbb.harvard.edu/people/gabriel-kreiman",
+    "sha256": "e5eb72a15210bde4cd0bab94cedad23f19e890b10483d0b176ab32eefebc11e2",
+    "quote": "Gabriel Kreiman Professor of Neurology and Ophthalmology, HMS",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Harvard MBB explicitly names both Neurology and Ophthalmology without a primary designation. Neurology is the reporting unit only; both remain visible under R-HOME-01.",
+  "home_policy_review_required": false,
+  "primary_unresolved": [
+   "Neurology",
+   "Ophthalmology"
+  ]
+ },
+ "Marco A. Zenati": {
+  "home_department": "Surgery",
+  "home_department_evidence": [
+   {
+    "url": "https://zenati.scholars.harvard.edu/",
+    "sha256": "67912fb3d366a90dc6c8663af2dd013d5c94703d37dd385b3af5647c38d4c4d6",
+    "quote": "Marco A. Zenati MD MSc Professor of Surgery, Harvard Medical School",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Iman Aganj": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://brain.harvard.edu/?people=iman-aganj",
+    "sha256": "0b554f663285cf741e74f3c0f2bd0c1c7c3eadde52e2edd1997bf056f23e6d82",
+    "quote": "Associate Professor of Radiology, Harvard Medical School",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Georg Hahn": {
+  "home_department": "Medicine",
+  "home_department_evidence": [
+   {
+    "url": "https://www.cantab.net/users/ghahn/",
+    "sha256": "7fc5c37d1ff53ef8e43fd3ce183a02f58b03a481e38e772e593e7bcfdbb0433a",
+    "quote": "I am an assistant professor in the Division of Pharmacoepidemiology and Pharmacoeconomics of the Department of Medicine at Brigham and Women's Hospital and Harvard Medical School working on statistics methodology.",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Nobuhiko Hata": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://spl.harvard.edu/people/nobuhiko-hata-phd",
+    "sha256": "f3072a93ade4183c45cd56dbcecac0cbe2307181b549607675e3a9072e0d8c30",
+    "quote": "Professor of Radiology, Harvard Medical School",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "William G. La Cava": {
+  "home_department": "Pediatrics",
+  "home_department_evidence": [
+   {
+    "url": "https://williamlacava.com/",
+    "sha256": "58093920dbe1d0b63a5047803a1231b4429210a9f083c3aa0cf65bc3f445309d",
+    "quote": "Assistant Professor Computational Health Informatics Program Boston Children’s Hospital Harvard Medical School",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Roger D. Dias": {
+  "home_department": "Emergency Medicine",
+  "home_department_evidence": [
+   {
+    "url": "https://learn.hms.harvard.edu/about/leadership-faculty/faculty/roger-daglius-dias",
+    "sha256": "9019c7178ac2f92b819c71a01f318243a7e1ad087f963269e0d3a9087ae1b0e4",
+    "quote": "Associate Professor of Emergency Medicine, Harvard Medical School",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Junichi Tokuda": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://spl.harvard.edu/people/junichi-tokuda-phd",
+    "sha256": "ef4b1941932a972ceeeec75f2617596c68271ed3e6e39c347fb4a2d05e25c222",
+    "quote": "Associate Professor of Radiology, Harvard Medical School",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Sila Kurugol": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://labs.childrenshospital.org/quin/people/sila-kurugol",
+    "sha256": "f2dec9999f284313529f23d8cbace0b2a7a2682c4a2840117ee92d8f61fdbcec",
+    "quote": "Associate Professor of Radiology at Harvard Medical School",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Junwei Lu": {
+  "home_department": "Biostatistics",
+  "home_department_evidence": [
+   {
+    "url": "https://hsph.harvard.edu/profile/junwei-lu/",
+    "sha256": "c6b333dc51574788a5cba2f1df4f6f2c984a3a0d2554667f0267fd5984fac396",
+    "quote": "Associate Professor of Biostatistics",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Giorgio Bonmassar": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://neurospin.umn.edu/sites/neurospin.umn.edu/files/2023-08/bonmassar_nih_bio_2023.pdf",
+    "sha256": "cb966c680386f69c425f8cc263d4decbee174ee771ae91b1362ed8b41c63f9cc",
+    "quote": "Dr. Bonmassar is an Associate Professor in Radiology at the Harvard Medical School",
+    "observed": "2026-11-16"
+   }
+  ],
+  "why_home_department": "Explicit source department. Multiple supported departments retained in census proposal; primary-home policy review required when marked.",
+  "home_policy_review_required": false
+ },
+ "Andrew D. Richardson": {
+  "home_department": "Organismic and Evolutionary Biology",
+  "home_department_evidence": [
+   {
+    "url": "https://ecoss-nau.org/wp-content/uploads/2017/09/Richardson-CV-20-September-2017.pdf",
+    "sha256": "84634f57a93fec1fb26d85b5c455de2bd5300930d07a4338a382dd51fa5156f0",
+    "quote": "Harvard University Department of Organismic and Evolutionary Biology Associate Professor 2013–2017 Assistant Professor 2009–2013",
+    "observedAt": "2026-11-16",
+    "kind": "explicit_faculty_interval",
+    "raw_path": "stores/harvard/metadata/faculty-next-1116/84634f57a93fec1fb26d85b5c455de2bd5300930d07a4338a382dd51fa5156f0.pdf",
+    "format": "pdf"
+   }
+  ],
+  "why_home_department": "Owned CV explicitly names Harvard OEB assistant2009–13/associate2013–17. Historical appointment, not a current directory listing."
+ },
+ "Berkin Bilgic": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://www.nmr.mgh.harvard.edu/~berkin/index.html",
+    "sha256": "21c9f1ed24db82835ff83263655fbc4e386891062280b77018195aa652206c87",
+    "quote": "Berkin Bilgic BRAIN Lab I am an Associate Professor of Radiology at Massachusetts General Hospital (MGH) and Harvard Medical School (HMS)."
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Faisal Mahmood": {
+  "home_department": "Pathology",
+  "home_department_evidence": [
+   {
+    "url": "https://www.hcc.harvard.edu/members/dr-faisal-mahmood",
+    "sha256": "b628a04e805edb9bb3fdf100d860e8ba1312c8e42328f707911e42c0f605a11b",
+    "quote": "Faisal Mahmood, PhD Brigham And Women's Hospital Academic Titles Associate Professor, Pathology, Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Mark Sellke": {
+  "home_department": "Statistics",
+  "home_department_evidence": [
+   {
+    "url": "https://msellke.com/",
+    "sha256": "417f03a8c8309e217cb6687bc4a7216e1cd03abda37f7e47dfae113899400f33",
+    "quote": "I was previously an Assistant Professor of Statistics at Harvard"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Olga V. Demler": {
+  "home_department": "Medicine",
+  "home_department_evidence": [
+   {
+    "url": "https://olgadem.github.io/",
+    "sha256": "60787c479751f38fdc53e3bebc83f84755dc7ea59e7a2504c82ffb7db6d9dd61",
+    "quote": "Olga Demler aboutprojectspublicationsCV about I serve as a biostatistician with dual affiliations. I have a permanent position as a Senior Scientist at the Swiss Federal Institute of Technology (ETH Zurich) and a tenure-track appointment as an Assistant Professor at the Division of Preventive Medicine at Brigham and Women’s Hospital/Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Pardis Sabeti": {
+  "home_department": "Organismic and Evolutionary Biology",
+  "home_department_evidence": [
+   {
+    "url": "https://www.sabetilab.org/pardissabeti/",
+    "sha256": "4d8e7f8ecf46a7b28209cd29d542e018afd84ed894744b05beadb8cb0abddb58",
+    "quote": "Pardis Sabeti is a core institute member of the Broad Institute of MIT and Harvard and a leader in the Broad’s Infectious Disease and Microbiome Program. She is a professor at the Center for Systems Biology and the Department of Organismic and Evolutionary Biology at Harvard University"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Ron Kikinis": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://spl.harvard.edu/people/ron-kikinis",
+    "sha256": "7e7b366ba2e452f04c977cdec4109ebbb19f2afbbb88d42318d0e02d42890a9d",
+    "quote": "Dr. Ron Kikinis is the B. Leonard Holman Professor of Radiology at Harvard Medical School."
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Timothy A. Miller": {
+  "home_department": "Pediatrics",
+  "home_department_evidence": [
+   {
+    "url": "https://tmills.github.io/",
+    "sha256": "255be05a254b4c1ce0077822444b9c8f761582e44ad9d7fefb2a66bd107208f3",
+    "quote": "Tim Miller I am part of the Computational Health Informatics Program (CHIP) located in Boston Children's Hospital, and an Associate Professor at Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Tomer D. Ullman": {
+  "home_department": "Psychology",
+  "home_department_evidence": [
+   {
+    "url": "https://www.tomerullman.org/",
+    "sha256": "69ccbed58cf5d3b5c7bee4ed89b2f825cc9fd600ba08ef48679f7bcbfe571439",
+    "quote": "D. Ullman About Teaching Publications About I am the Morris Kahn Associate Professor of Psychology in the Department of Psychology at Harvard University."
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Gil Alterovitz": {
+  "home_department": "Medicine",
+  "home_department_evidence": [
+   {
+    "url": "https://sites.google.com/usuhs.edu/stsummit/speaker-details/advanced-computing",
+    "sha256": "82567a9fa6a0bd0950e829bbc9a2c32cd424238ef927fb864993e7fd6f4aaa28",
+    "quote": "Dr. Gil Alterovitz | Associate Professor of Medicine, Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Jie Yang": {
+  "home_department": "Medicine",
+  "home_department_evidence": [
+   {
+    "url": "https://drugepi.org/team/jie-yang-phd",
+    "sha256": "4363a94d1def9aefc2a85f00e935f3701089cfe41f266016e7d7223f72bd18aa",
+    "quote": "Jie Yang, PhD, is an Assistant Professor of Medicine at Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Jordan Cotler": {
+  "home_department": "Physics",
+  "home_department_evidence": [
+   {
+    "url": "https://cbs.fas.harvard.edu/directory/jordan-cotler/",
+    "sha256": "a6ae0b7ecb8e188a613ddd0456d09e6a336100605096e04564ea41975b216f91",
+    "quote": "Jordan Cotler Assistant Professor of Physics"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Melissa Dell": {
+  "home_department": "Economics",
+  "home_department_evidence": [
+   {
+    "url": "https://dell-research-harvard.github.io/",
+    "sha256": "d9328fd7d877f36c6e0e5a9177a0c817230e4deed2100ef2b17761385eeb805e",
+    "quote": "Professor Dell is the Andrew E. Furer Professor of Economics at Harvard University."
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Shengwu Li": {
+  "home_department": "Economics",
+  "home_department_evidence": [
+   {
+    "url": "https://www.shengwu.li/",
+    "sha256": "98cbb7e73fdce62132da0d33f2feb0e544b50a2796f05c188fe68c3f6492f7d9",
+    "quote": "Shengwu Li Professor of Economics, Harvard University"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "SueYeon Chung": {
+  "home_department": "Physics",
+  "home_department_evidence": [
+   {
+    "url": "https://cbs.fas.harvard.edu/directory/sueyeon-chung/",
+    "sha256": "5e3f72e47b6fa64276779a507062cd588983766d34a8b6cdf1ab246fe33b65ad",
+    "quote": "SueYeon Chung Assistant Professor of Physics"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Drew Fudenberg": {
+  "home_department": "Economics",
+  "home_department_evidence": [
+   {
+    "url": "https://economics.mit.edu/sites/default/files/2026-09/cv-fudenberg-9.24.26.pdf",
+    "sha256": "095f4bd1066f5205a693e58bffb0fe390b962fc6cf6ee82424b773daba526191",
+    "quote": "Professor, Harvard University, 1993 – 2016"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Sean R. Eddy": {
+  "home_department": "Molecular and Cellular Biology",
+  "home_department_evidence": [
+   {
+    "url": "https://brain.harvard.edu/?people=sean-eddy",
+    "sha256": "f1fc9787ccce8f63124d26feb54b75e91862a4d19dfd5d85f08c372592a9ee7f",
+    "quote": "Sean Eddy, PhD Ellmore C. Patterson Professor of Molecular and Cellular Biology and of Applied Mathematics, Harvard University"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Ben Y. Reis": {
+  "home_department": "Pediatrics",
+  "home_department_evidence": [
+   {
+    "url": "https://research.childrenshospital.org/researchers/ben-reis",
+    "sha256": "b008409894201b0e7cf7dce3e5041e8c3c12537d40cec36e84c03e47566252cc",
+    "quote": "Ben Reis Image Ben Reis PhD Faculty, Computational Health Informatics Program (CHIP); Director, Predictive Medicine Group, Computational Health Informatics Program (CHIP) Associate Professor of Pediatrics, Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Elizabeth Bonawitz": {
+  "home_department": "Harvard Graduate School of Education",
+  "home_department_evidence": [
+   {
+    "url": "https://www.gse.harvard.edu/directory/faculty/elizabeth-bonawitz",
+    "sha256": "2a086ac940aaf615dccbee5aca18d56a711c563ed62e5b302b04edf824f6e922",
+    "quote": "Elizabeth Bonawitz Faculty Info Professor of Education"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Marta Bianciardi": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://phd.uniroma2.it/web/bianciardi-marta_nc4123.aspx",
+    "sha256": "3d354f69213d4c5911b04388c1dfc4fa5989dcbd8bd50731f013c50d8fab4f4b",
+    "quote": "MARTA BIANCIARDI Professore associato email: MARTAB@mgh.harvard.edu RESEARCH POSITIONS: Harvard Medical School, Boston and Massachusetts General Hospital, Massachusetts, USA • Associate Professor in Radiology 10/2023 - present"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Walter Fontana": {
+  "home_department": "Systems Biology",
+  "home_department_evidence": [
+   {
+    "url": "https://www.kli.at/en/people/kli_external_faculty/view/162",
+    "sha256": "7bfaafd57e62c720d2f34f9dc102831e486c120b66dd8a97af17f2cfefc71a4f",
+    "quote": "Walter Fontana is Professor of Systems Biology at the Department of Systems Biology, Harvard Medical School, Boston, Massachusetts."
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Katherine P. Andriole": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://www.emjreviews.com/radiology/article/interview-katherine-p-kathy-andriole-j140423/",
+    "sha256": "bcf03249adac9812dd9dbb47c4abaf84be10900378bcd0c9b3851309d5fb1926",
+    "quote": "Katherine P. (Kathy) Andriole | Associate Professor of Radiology, Brigham and Women’s Hospital, Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Natesh S. Pillai": {
+  "home_department": "Statistics",
+  "home_department_evidence": [
+   {
+    "url": "https://nateshpillai.com/",
+    "sha256": "d21705a93bf9c50fc727604a074c20ca14528df8b69eed0207d1d60e15e9e713",
+    "quote": "I am a Professor in the Dept. of Statistics, Harvard University"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Pragya Sur": {
+  "home_department": "Statistics",
+  "home_department_evidence": [
+   {
+    "url": "https://sites.harvard.edu/prs499/",
+    "sha256": "98a4ee5d3cc10c6c69b192c8dd89c680c13c7847d9b7bf8bdfe6fbe8b3716f8e",
+    "quote": "I am an Assistant Professor of Statistics at Harvard University"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Chris Dede": {
+  "home_department": "Harvard Graduate School of Education",
+  "home_department_evidence": [
+   {
+    "url": "https://www.chrisdede.com/about",
+    "sha256": "0ef1e69e34fb19e85782c134a6faf8768e8befd413e54cdf3e44124be1b3b008",
+    "quote": "Chris Dede is a Senior Research Fellow at the Harvard Graduate School of Education and was for 22 years its Timothy E. Wirth Professor in Learning Technologies."
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Sudeshna Das": {
+  "home_department": "Neurology",
+  "home_department_evidence": [
+   {
+    "url": "https://research.massgeneralbrigham.org/en/institutes-centers/neuroscience-institute/department-of-neurology/mass-general-institute-for-neurodegenerative-disease/data-science-lab",
+    "sha256": "5995d70a3bca9c68e4bd5a80ab3b158ee5409a8417006fe76c5a2ef05a741783",
+    "quote": "Sudeshna Das, PhD, is an Associate Professor of Neurology at MGH and Harvard Medical School."
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Xiaoqing Wang": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://xqwang1.github.io/",
+    "sha256": "289aeb6246b198643c057e1ba2cbac7dbe24c3c82a8e4778c5e5388bf18afba6",
+    "quote": "I am an Assistant Professor of Radiology at Harvard Medical School, leading a group at the department of Radiology, Boston Children’s Hospital."
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Rui Duan": {
+  "home_department": "Biostatistics",
+  "home_department_evidence": [
+   {
+    "url": "https://hsph.harvard.edu/profile/rui-duan/",
+    "sha256": "e8bcc9a14467dbf1e1903228a9d55f93da54703d2127cc6f188f5e69900fe134",
+    "quote": "Primary Faculty Rui Duan Associate Professor of Biostatistics Biostatistics, Harvard T.H. Chan School of Public Health Departments Department of Biostatistics"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Leah H. Somerville": {
+  "home_department": "Psychology",
+  "home_department_evidence": [
+   {
+    "url": "https://andl.wjh.harvard.edu/about/",
+    "sha256": "e90b3dde3464edcc86909cce7b26ffe46210fcaed7eb4cd7ce9c731c9627f281",
+    "quote": "The lab is led by Leah Somerville, Professor of Psychology at Harvard University."
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved.",
+  "not_papers": [
+   {
+    "doi": "10.17605/osf.io/j5nve",
+    "oa": "https://openalex.org/W7153891343",
+    "why": "The sole school work with Somerville in the native link diagnosis, W7153891343 / DOI10.17605/osf.io/j5nve, is explicitly a Pre-registration / StudyRegistration in the original DOI registry. Exact title, both creators and Somerville ORCID match. This is a registered study plan, not a research paper; OpenAlex preprint typing does not change the original resource type. No student-paper link is asserted.",
+    "evidence": [
+     {
+      "url": "https://api.datacite.org/dois/10.17605/osf.io/j5nve",
+      "sha256": "7bb854950c97b32ef2fab1809db091e3ef8a16b329dac45720ab33bc334edff2",
+      "json_pointer": "/data/attributes/types",
+      "quotes": [
+       "Pre-registration",
+       "StudyRegistration"
+      ],
+      "observed": "2026-11-16",
+      "raw_path": "stores/harvard/metadata/hernandez-osf-registration-1116/7bb854950c97b32ef2fab1809db091e3ef8a16b329dac45720ab33bc334edff2.bin"
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.17605/osf.io/j5nve",
+      "sha256": "7bb854950c97b32ef2fab1809db091e3ef8a16b329dac45720ab33bc334edff2",
+      "json_pointer": "/data/attributes/doi",
+      "quotes": [
+       "10.17605/osf.io/j5nve"
+      ],
+      "observed": "2026-11-16",
+      "raw_path": "stores/harvard/metadata/hernandez-osf-registration-1116/7bb854950c97b32ef2fab1809db091e3ef8a16b329dac45720ab33bc334edff2.bin"
+     },
+     {
+      "url": "https://api.datacite.org/dois/10.17605/osf.io/j5nve",
+      "sha256": "7bb854950c97b32ef2fab1809db091e3ef8a16b329dac45720ab33bc334edff2",
+      "json_pointer": "/data/attributes/titles/0/title",
+      "quotes": [
+       "Associations Between Pubertal Timing, Loneliness, and Internalizing Symptoms in Adolescence: Integrating Brain and Behavior"
+      ],
+      "observed": "2026-11-16",
+      "raw_path": "stores/harvard/metadata/hernandez-osf-registration-1116/7bb854950c97b32ef2fab1809db091e3ef8a16b329dac45720ab33bc334edff2.bin"
+     }
+    ],
+    "reviewed": "2026-11-16"
+   }
+  ]
+ },
+ "Xiaofeng Liu": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://datascience.harvard.edu/directory/xiaofeng-liu/",
+    "sha256": "23950d8f5ef49e850a7d37e98af3e76c4975a5c2fb2693b08c2eb7a19515e9ea",
+    "quote": "Xiaofeng Liu Xiaofeng Lu Assistant Professor of Radiology Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Danielle S. Bitterman": {
+  "home_department": "Radiation Oncology",
+  "home_department_evidence": [
+   {
+    "url": "https://www.dana-farber.org/find-a-doctor/danielle-s-bitterman",
+    "sha256": "d067f69823f549142381d8bd40f12da28c58ec853ee30d537e83ca1c4c61c0dd",
+    "quote": "Assistant Professor of Radiation Oncology, Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Randy L. Gollub": {
+  "home_department": "Psychiatry",
+  "home_department_evidence": [
+   {
+    "url": "https://hst.mit.edu/faculty-research/faculty/hirschtick-gollub-randy",
+    "sha256": "f5686c9b4261ec980e747e031c57a893dfc813a187c20cb4976b9b73a4b222dc",
+    "quote": "Randy L. Hirschtick (Gollub), MD, PhD Title Professor, Psychiatry, Massachusetts General Hospital and Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Mert R. Sabuncu": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://people.csail.mit.edu/msabuncu/Vita_Sabuncu_September_2016.pdf",
+    "sha256": "8a1f8ccca40a92e2351299b4233f544205f2f59e8868616008f71b7416e3a47a",
+    "quote": "Assistant Professor of Radiology March 2012-current A.A. Martinos Center for Biomedical Imaging Department of Radiology, Mass. General Hospital/Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Farhad R. Nezami": {
+  "home_department": "Surgery",
+  "home_department_evidence": [
+   {
+    "url": "https://edelmanlab.mit.edu/current-members/farhad-r-nezami/",
+    "sha256": "d7d936d479bb6c8bdd601b7ec0339fda741127f74c5f72bd585c5dadd7e6896f",
+    "quote": "Dr. Farhad Rikhtegar Nezami, is currently Lead Investigator at the Division of Cardiac Surgery of Brigham and Women’s Hospital and Assistant Professor of Surgery at Harvard Medical School."
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Kavishwar B. Wagholikar": {
+  "home_department": "Medicine",
+  "home_department_evidence": [
+   {
+    "url": "https://public.era.nih.gov/pubroster/preRosIndex.era?AGENDA=561206&CID=105251",
+    "sha256": "1b9a8fba59f2942970ff57719e13d096d3f32fc5be853d63fd4c7172424f063c",
+    "quote": "WAGHOLIKAR, KAVISHWAR B, MBBS, PHD * ASSISTANT PROFESSOR DEPARTMENT OF MEDICINE HARVARD MEDICAL SCHOOL"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Pierre E. Jacob": {
+  "home_department": "Statistics",
+  "home_department_evidence": [
+   {
+    "url": "https://pierrejacob.org/pdf/CVPierreJacob2pJanuary2026.pdf",
+    "sha256": "7a4577e6199bc96d775110e7ca112018656bda883c297eff730c579440fc77c3",
+    "quote": "2018–2021 Associate professor, Department of Statistics, Harvard University. 2015–2018 Assistant professor, Department of Statistics, Harvard University."
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Benoit Scherrer": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://www.benoitscherrer.com/",
+    "sha256": "5dd1bc30de7e2b423c5fec358370a687f7d0daa9c7b2a20d049252bb12bda25c",
+    "quote": "Benoit Scherrer Links MisterI Gallery Publications iCV Home Assistant Professor in Radiology at Harvard Medical School."
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Adrian V. Dalca": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://hst.mit.edu/news-events/calendar/memp-phd-thesis-defense-yue-zhi-russ-chua",
+    "sha256": "1716b78f3845352e661ecb069c695787a0cb51efbf2d11133ead5e368eba3ddd",
+    "quote": "Thesis Supervisor: Adrian Dalca, PhD Director of the Computational Core A.A. Martinos Center for Biomedical Imaging, Massachusetts General Hospital Assistant Professor of Radiology, Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Bruce Fischl": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://advances.massgeneral.org/contributors/contributor.aspx?id=2523",
+    "sha256": "1b4e0929a7b74aa0b06bb02bb5f1b3493708b4986246d70c17c60bdc60fedf97",
+    "quote": "Director, Laboratory for Computational Neuroimaging, Martinos Center for Biomedical Imaging Professor of Radiology, Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Caterina Mainero": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://advances.massgeneral.org/contributors/contributor.aspx?id=1905",
+    "sha256": "cb1b7046af54897efdd7bc79c550d2c4ea269fd7bd99116ff7644cb0bb854489",
+    "quote": "Caterina Mainero, MD, PhD Associate Professor of Radiology, Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Gang Luo": {
+  "home_department": "Ophthalmology",
+  "home_department_evidence": [
+   {
+    "url": "https://eye.hms.harvard.edu/gangluo",
+    "sha256": "5e4761b868928bd2ac1ab7765f0043b5b5f63e7b4083c0976f129ebd9a98592a",
+    "quote": "Gang Luo, PhD Associate Professor of Ophthalmology"
+   },
+   {
+    "url": "https://catalyst.harvard.edu/news/article/five-questions-with-gang-luo/",
+    "sha256": "abda5fccf5dae2331eedce3cd0479688e3b6f930e3621ccd9a7790f071679f24",
+    "quote": "Gang Luo , PhD, associate professor of ophthalmology at Harvard Medical School and Schepens Eye Research Institute"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Mengyu Wang": {
+  "home_department": "Ophthalmology",
+  "home_department_evidence": [
+   {
+    "url": "https://eye.hms.harvard.edu/mengyuwang",
+    "sha256": "e45277ef464a3c906b1e9d41ae8179b9df209aa1c28f2e80e59fdb98cd350eb2",
+    "quote": "Mengyu Wang, PhD Associate Professor of Ophthalmology"
+   },
+   {
+    "url": "https://eye.hms.harvard.edu/news/mengyu-wang-phd-receives-international-research-collaborators-award",
+    "sha256": "a6b8b56eb0c82e2b20ac6247692ac1774e25a164eeaaec908a4fa50acdb1f03f",
+    "quote": "Mengyu Wang, PhD, Assistant Professor of Ophthalmology at Harvard Medical School and Co-Director of the Harvard Ophthalmology Artificial Intelligence Lab"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Juan Eugenio Iglesias": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://advances.massgeneral.org/contributors/contributor.aspx?id=2514",
+    "sha256": "58c5e9dabe2a1797951e1202a465207ab38804aca66aca5b63b44893a7394351",
+    "quote": "Associate Professor of Radiology, Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Gottfried Schlaug": {
+  "home_department": "Neurology",
+  "home_department_evidence": [
+   {
+    "url": "https://med.stanford.edu/content/dam/sm/neurology/documents/conferences/SCAN-2016-symposium.pdf",
+    "sha256": "229d2a47f1f6879aff4bda8f187a69729de84acd8d09ff3e52c143d14a8e1907",
+    "quote": "Gottfried Schlaug, MD, PhD, Associate Professor of Neurology, Beth Israel Deaconess Medical Center, Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Reviewed primary appointment source explicitly names this academic department; separate source kinds are preserved."
+ },
+ "Laura Thi Germine": {
+  "home_department": "Psychiatry",
+  "home_department_evidence": [
+   {
+    "url": "https://www.cognitivehealth.tech/laura-germine",
+    "sha256": "dd07901d7fed7c8bc43a393c6fa5b42e60ad23d2c0e65023605b5cc24fdde9bc",
+    "quote": "Laura is Director of the Laboratory for Brain and Cognitive Health Technology and Associate Professor of Psychiatry at Harvard Medical School."
+   },
+   {
+    "url": "https://web.archive.org/web/20210403141730id_/https://www.seas.harvard.edu/computer-science/people?search=&page=%2C3",
+    "sha256": "6b98fdad4961fcff14831a4a16ac8de442ffedf2bdf24025a2a4feb4b05faa51",
+    "quote": "Laura Thi Germine Assistant Professor of Psychiatry"
+   }
+  ],
+  "why_home_department": "The archived CS directory explicitly gives a Psychiatry professor title; it does not establish a CS professor appointment. The current owned laboratory biography independently names her Associate Professor of Psychiatry at HMS. Psychiatry is the actual academic home; the prior directory unit retained by the native helper is CS listing context."
+ },
+ "Samuel Gershman": {
+  "home_department": "Psychology",
+  "home_department_evidence": [
+   {
+    "url": "https://cbs.fas.harvard.edu/people/sam-gershman/",
+    "capture_url": null,
+    "observed": "2026-11-16T01:18:58",
+    "raw_path": "stores/harvard/metadata/faculty-ten-1116/20a4641bd7d115a119a1f5b25f01185ebc45575d7da17cdd0d4090d70bf92fb3.html",
+    "raw_sha256": "20a4641bd7d115a119a1f5b25f01185ebc45575d7da17cdd0d4090d70bf92fb3",
+    "format": "html",
+    "quotes": [
+     "Sam Gershman Professor Department of Psychology"
+    ],
+    "sha256": "20a4641bd7d115a119a1f5b25f01185ebc45575d7da17cdd0d4090d70bf92fb3",
+    "quote": "Sam Gershman Professor Department of Psychology"
+   }
+  ],
+  "why_home_department": "Source-bound academic appointment and named home reviewed, including original structured employment object and institution/department pointers where applicable. Hospital names are not substituted for academic departments."
+ },
+ "Debora S. Marks": {
+  "home_department": "Systems Biology",
+  "home_department_evidence": [
+   {
+    "url": "https://sysbio.med.harvard.edu/facultyprofiles",
+    "capture_url": null,
+    "observed": "2026-11-16T01:40:03",
+    "raw_path": "stores/harvard/metadata/faculty-ten-1116/4c6a9ff57f7bc714bd7fb23c192dea20d1ebcd806fa13a91b3fd622fc3c39f23.html",
+    "raw_sha256": "4c6a9ff57f7bc714bd7fb23c192dea20d1ebcd806fa13a91b3fd622fc3c39f23",
+    "format": "html",
+    "quotes": [
+     "Debora Marks Professor of Systems Biology"
+    ],
+    "sha256": "4c6a9ff57f7bc714bd7fb23c192dea20d1ebcd806fa13a91b3fd622fc3c39f23",
+    "quote": "Debora Marks Professor of Systems Biology"
+   }
+  ],
+  "why_home_department": "Source-bound academic appointment and named home reviewed, including original structured employment object and institution/department pointers where applicable. Hospital names are not substituted for academic departments."
+ },
+ "Jun S. Liu": {
+  "home_department": "Statistics",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-4450-7239/affiliationGroups.json",
+    "raw_sha256": "4d97a4b7919f6b09013a90fcd8f07703b13dc4e84026710fc4a600d7f618236f",
+    "raw_path": "stores/harvard/metadata/faculty-ten-1116/4d97a4b7919f6b09013a90fcd8f07703b13dc4e84026710fc4a600d7f618236f.json",
+    "format": "json",
+    "observed": "2026-11-16T05:51:00+00:00",
+    "quotes": [
+     "Professor in Statistics"
+    ],
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0/roleTitle/value",
+    "context": [
+     {
+      "json_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0/affiliationName/value",
+      "value": "Harvard University"
+     },
+     {
+      "json_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0/departmentName/value",
+      "value": "Statistics"
+     }
+    ],
+    "employment_object_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0",
+    "raw_record": {
+     "visibility": {
+      "errors": [],
+      "required": true,
+      "getRequiredMessage": null,
+      "visibility": "PUBLIC"
+     },
+     "errors": [],
+     "putCode": {
+      "errors": [],
+      "value": "3497030",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationName": {
+      "errors": [],
+      "value": "Harvard University",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "city": {
+      "errors": [],
+      "value": "Cambridge",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "region": {
+      "errors": [],
+      "value": "MA",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "country": {
+      "errors": [],
+      "value": "US",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "roleTitle": {
+      "errors": [],
+      "value": "Professor in Statistics",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "countryForDisplay": "US",
+     "departmentName": {
+      "errors": [],
+      "value": "Statistics",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationType": {
+      "errors": [],
+      "value": "employment",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguatedAffiliationSourceId": {
+      "errors": [],
+      "value": "1812",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguationSource": {
+      "errors": [],
+      "value": "RINGGOLD",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "orgDisambiguatedCity": null,
+     "orgDisambiguatedCountry": null,
+     "orgDisambiguatedId": {
+      "errors": [],
+      "value": "1986",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "orgDisambiguatedName": null,
+     "orgDisambiguatedRegion": null,
+     "orgDisambiguatedUrl": null,
+     "affiliationTypeForDisplay": null,
+     "startDate": {
+      "errors": [],
+      "month": "07",
+      "day": "01",
+      "year": "2000",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "endDate": {
+      "errors": [],
+      "month": "06",
+      "day": "30",
+      "year": "2025",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "sourceName": "Jun S Liu",
+     "source": "0000-0002-4450-7239",
+     "assertionOriginOrcid": null,
+     "assertionOriginClientId": null,
+     "assertionOriginName": null,
+     "dateSortString": "X-2025-06-30-2000-07-01",
+     "createdDate": {
+      "errors": [],
+      "month": "3",
+      "day": "24",
+      "year": "2017",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "lastModified": {
+      "errors": [],
+      "month": "9",
+      "day": "22",
+      "year": "2025",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "url": null,
+     "orgDisambiguatedExternalIdentifiers": null,
+     "affiliationExternalIdentifiers": null,
+     "featured": null
+    },
+    "projection": {
+     "type": "EMPLOYMENT",
+     "institution": "Harvard University",
+     "role": "Professor in Statistics",
+     "department": "Statistics",
+     "start": {
+      "value": "2000-07-01",
+      "precision": "day",
+      "raw_parts": [
+       "2000",
+       "07",
+       "01"
+      ]
+     },
+     "end": {
+      "value": "2025-06-30",
+      "precision": "day",
+      "raw_parts": [
+       "2025",
+       "06",
+       "30"
+      ]
+     },
+     "put_code": "3497030",
+     "json_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0"
+    },
+    "sha256": "4d97a4b7919f6b09013a90fcd8f07703b13dc4e84026710fc4a600d7f618236f",
+    "quote": "Professor in Statistics"
+   }
+  ],
+  "why_home_department": "Source-bound academic appointment and named home reviewed, including original structured employment object and institution/department pointers where applicable. Hospital names are not substituted for academic departments."
+ },
+ "Carlos A. Argüelles Delgado": {
+  "home_department": "Physics",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0003-4186-4182/affiliationGroups.json",
+    "raw_sha256": "5c9a7c956d8a59b788a9bc64f81a01dbcfd7679534879ac085b244aa14c28010",
+    "raw_path": "stores/harvard/metadata/faculty-ten-1116/5c9a7c956d8a59b788a9bc64f81a01dbcfd7679534879ac085b244aa14c28010.json",
+    "format": "json",
+    "observed": "2026-11-16T05:49:12+00:00",
+    "quotes": [
+     "Associate Professor"
+    ],
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/3/affiliations/0/roleTitle/value",
+    "context": [
+     {
+      "json_pointer": "/affiliationGroups/EMPLOYMENT/3/affiliations/0/affiliationName/value",
+      "value": "Universidad de Harvard"
+     },
+     {
+      "json_pointer": "/affiliationGroups/EMPLOYMENT/3/affiliations/0/departmentName/value",
+      "value": "Physics"
+     }
+    ],
+    "employment_object_pointer": "/affiliationGroups/EMPLOYMENT/3/affiliations/0",
+    "raw_record": {
+     "visibility": {
+      "errors": [],
+      "required": true,
+      "getRequiredMessage": null,
+      "visibility": "PUBLIC"
+     },
+     "errors": [],
+     "putCode": {
+      "errors": [],
+      "value": "40571675",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationName": {
+      "errors": [],
+      "value": "Universidad de Harvard",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "city": {
+      "errors": [],
+      "value": "Cambridge",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "region": {
+      "errors": [],
+      "value": "Massachusetts",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "country": {
+      "errors": [],
+      "value": "US",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "roleTitle": {
+      "errors": [],
+      "value": "Associate Professor",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "countryForDisplay": "US",
+     "departmentName": {
+      "errors": [],
+      "value": "Physics",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationType": {
+      "errors": [],
+      "value": "employment",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguatedAffiliationSourceId": {
+      "errors": [],
+      "value": "https://ror.org/03vek6s52",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguationSource": {
+      "errors": [],
+      "value": "ROR",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "orgDisambiguatedCity": null,
+     "orgDisambiguatedCountry": null,
+     "orgDisambiguatedId": {
+      "errors": [],
+      "value": "2140619",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "orgDisambiguatedName": null,
+     "orgDisambiguatedRegion": null,
+     "orgDisambiguatedUrl": null,
+     "affiliationTypeForDisplay": null,
+     "startDate": {
+      "errors": [],
+      "month": "07",
+      "day": "01",
+      "year": "2026",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "endDate": {
+      "errors": [],
+      "month": "",
+      "day": "",
+      "year": "",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "sourceName": "Carlos A. Argüelles",
+     "source": "0000-0003-4186-4182",
+     "assertionOriginOrcid": null,
+     "assertionOriginClientId": null,
+     "assertionOriginName": null,
+     "dateSortString": "Y-2026-07-01",
+     "createdDate": {
+      "errors": [],
+      "month": "11",
+      "day": "12",
+      "year": "2026",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "lastModified": {
+      "errors": [],
+      "month": "11",
+      "day": "12",
+      "year": "2026",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "url": null,
+     "orgDisambiguatedExternalIdentifiers": null,
+     "affiliationExternalIdentifiers": null,
+     "featured": true
+    },
+    "projection": {
+     "type": "EMPLOYMENT",
+     "institution": "Universidad de Harvard",
+     "role": "Associate Professor",
+     "department": "Physics",
+     "start": {
+      "value": "2026-07-01",
+      "precision": "day",
+      "raw_parts": [
+       "2026",
+       "07",
+       "01"
+      ]
+     },
+     "end": null,
+     "put_code": "40571675",
+     "json_pointer": "/affiliationGroups/EMPLOYMENT/3/affiliations/0"
+    },
+    "sha256": "5c9a7c956d8a59b788a9bc64f81a01dbcfd7679534879ac085b244aa14c28010",
+    "quote": "Associate Professor"
+   }
+  ],
+  "why_home_department": "Source-bound academic appointment and named home reviewed, including original structured employment object and institution/department pointers where applicable. Hospital names are not substituted for academic departments."
+ },
+ "Elena Rivas": {
+  "home_department": "Molecular and Cellular Biology",
+  "home_department_evidence": [
+   {
+    "url": "https://www.mcb.harvard.edu/directory/elena-rivas/",
+    "capture_url": null,
+    "observed": "2026-11-16T00:46:50",
+    "raw_path": "stores/harvard/metadata/faculty-ten-1116/421e3d04ef640b7956a88613cb706d0b481dd4d77e53fc8dacfbeadb0213dd89.html",
+    "raw_sha256": "421e3d04ef640b7956a88613cb706d0b481dd4d77e53fc8dacfbeadb0213dd89",
+    "format": "html",
+    "quotes": [
+     "Elena Rivas Senior Research Fellow Lecturer in Molecular and Cellular Biology"
+    ],
+    "sha256": "421e3d04ef640b7956a88613cb706d0b481dd4d77e53fc8dacfbeadb0213dd89",
+    "quote": "Elena Rivas Senior Research Fellow Lecturer in Molecular and Cellular Biology"
+   }
+  ],
+  "why_home_department": "Source-bound academic appointment and named home reviewed, including original structured employment object and institution/department pointers where applicable. Hospital names are not substituted for academic departments."
+ },
+ "Kuang Gong": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-2669-2610/affiliationGroups.json",
+    "raw_sha256": "b7f23fbd3cfe1adbc00ed7d56668b369af6b0865353dd84938ad497a2f42529e",
+    "raw_path": "stores/harvard/metadata/faculty-ten-1116/b7f23fbd3cfe1adbc00ed7d56668b369af6b0865353dd84938ad497a2f42529e.json",
+    "format": "json",
+    "observed": "2026-11-16T05:39:37+00:00",
+    "quotes": [
+     "Assistant Professor"
+    ],
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0/roleTitle/value",
+    "raw_record": {
+     "visibility": {
+      "errors": [],
+      "required": true,
+      "getRequiredMessage": null,
+      "visibility": "PUBLIC"
+     },
+     "errors": [],
+     "putCode": {
+      "errors": [],
+      "value": "8087819",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationName": {
+      "errors": [],
+      "value": "Harvard Medical School",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "city": {
+      "errors": [],
+      "value": "Boston",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "region": {
+      "errors": [],
+      "value": "MA",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "country": {
+      "errors": [],
+      "value": "US",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "roleTitle": {
+      "errors": [],
+      "value": "Assistant Professor",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "countryForDisplay": "US",
+     "departmentName": {
+      "errors": [],
+      "value": "Radiology",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationType": {
+      "errors": [],
+      "value": "employment",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguatedAffiliationSourceId": {
+      "errors": [],
+      "value": "1811",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguationSource": {
+      "errors": [],
+      "value": "RINGGOLD",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "orgDisambiguatedCity": null,
+     "orgDisambiguatedCountry": null,
+     "orgDisambiguatedId": {
+      "errors": [],
+      "value": "1685",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "orgDisambiguatedName": null,
+     "orgDisambiguatedRegion": null,
+     "orgDisambiguatedUrl": null,
+     "affiliationTypeForDisplay": null,
+     "startDate": {
+      "errors": [],
+      "month": "06",
+      "day": "01",
+      "year": "2022",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "endDate": {
+      "errors": [],
+      "month": "08",
+      "day": "15",
+      "year": "2023",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "sourceName": "Kuang Gong",
+     "source": "0000-0002-2669-2610",
+     "assertionOriginOrcid": null,
+     "assertionOriginClientId": null,
+     "assertionOriginName": null,
+     "dateSortString": "X-2023-08-15-2022-06-01",
+     "createdDate": {
+      "errors": [],
+      "month": "6",
+      "day": "17",
+      "year": "2019",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "lastModified": {
+      "errors": [],
+      "month": "1",
+      "day": "14",
+      "year": "2026",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "url": null,
+     "orgDisambiguatedExternalIdentifiers": null,
+     "affiliationExternalIdentifiers": null,
+     "featured": null
+    },
+    "projection": {
+     "type": "EMPLOYMENT",
+     "institution": "Harvard Medical School",
+     "role": "Assistant Professor",
+     "department": "Radiology",
+     "start": {
+      "value": "2022-06-01",
+      "precision": "day",
+      "raw_parts": [
+       "2022",
+       "06",
+       "01"
+      ]
+     },
+     "end": {
+      "value": "2023-08-15",
+      "precision": "day",
+      "raw_parts": [
+       "2023",
+       "08",
+       "15"
+      ]
+     },
+     "put_code": "8087819",
+     "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0"
+    },
+    "context": [
+     {
+      "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0/affiliationName/value",
+      "value": "Harvard Medical School"
+     },
+     {
+      "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0/departmentName/value",
+      "value": "Radiology"
+     }
+    ],
+    "sha256": "b7f23fbd3cfe1adbc00ed7d56668b369af6b0865353dd84938ad497a2f42529e",
+    "quote": "Assistant Professor"
+   }
+  ],
+  "why_home_department": "Source-bound academic appointment and named home reviewed, including original structured employment object and institution/department pointers where applicable. Hospital names are not substituted for academic departments."
+ },
+ "Ying Xu": {
+  "home_department": "Harvard Graduate School of Education",
+  "home_department_evidence": [
+   {
+    "url": "https://www.gse.harvard.edu/directory/faculty/ying-xu",
+    "capture_url": null,
+    "observed": "2026-11-16T00:50:52",
+    "raw_path": "stores/harvard/metadata/faculty-ten-1116/13dcd180ff2241dceea2c267ff5eaf3356bb05b9600fc4319f06b003df040950.html",
+    "raw_sha256": "13dcd180ff2241dceea2c267ff5eaf3356bb05b9600fc4319f06b003df040950",
+    "format": "html",
+    "quotes": [
+     "Ying Xu is an assistant professor of education at the Harvard Graduate School of Education.",
+     "Her research focuses on designing AI technologies that promote language and literacy development, STEM learning, and wellbeing for children and families."
+    ],
+    "sha256": "13dcd180ff2241dceea2c267ff5eaf3356bb05b9600fc4319f06b003df040950",
+    "quote": "Ying Xu is an assistant professor of education at the Harvard Graduate School of Education."
+   }
+  ],
+  "why_home_department": "Source-bound academic appointment and named home reviewed, including original structured employment object and institution/department pointers where applicable. Hospital names are not substituted for academic departments."
+ },
+ "Xianjun Dong": {
+  "home_department": "Neurology",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-8052-9320/affiliationGroups.json",
+    "raw_sha256": "ffd7e1327b3802d5498fce8b51c6d7809603fa0b60298b398e1a3051f8b6e33f",
+    "raw_path": "stores/harvard/metadata/faculty-ten-1116/ffd7e1327b3802d5498fce8b51c6d7809603fa0b60298b398e1a3051f8b6e33f.json",
+    "format": "json",
+    "observed": "2026-11-16T05:41:46+00:00",
+    "quotes": [
+     "Assistant Professor"
+    ],
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/3/affiliations/0/roleTitle/value",
+    "raw_record": {
+     "visibility": {
+      "errors": [],
+      "required": true,
+      "getRequiredMessage": null,
+      "visibility": "PUBLIC"
+     },
+     "errors": [],
+     "putCode": {
+      "errors": [],
+      "value": "11785193",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationName": {
+      "errors": [],
+      "value": "Harvard Medical School",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "city": {
+      "errors": [],
+      "value": "Boston",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "region": {
+      "errors": [],
+      "value": "MA",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "country": {
+      "errors": [],
+      "value": "US",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "roleTitle": {
+      "errors": [],
+      "value": "Assistant Professor",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "countryForDisplay": "US",
+     "departmentName": {
+      "errors": [],
+      "value": "Neurology",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationType": {
+      "errors": [],
+      "value": "employment",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguatedAffiliationSourceId": null,
+     "disambiguationSource": null,
+     "orgDisambiguatedCity": null,
+     "orgDisambiguatedCountry": null,
+     "orgDisambiguatedId": null,
+     "orgDisambiguatedName": null,
+     "orgDisambiguatedRegion": null,
+     "orgDisambiguatedUrl": null,
+     "affiliationTypeForDisplay": null,
+     "startDate": {
+      "errors": [],
+      "month": "04",
+      "day": "01",
+      "year": "2020",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "endDate": {
+      "errors": [],
+      "month": "06",
+      "day": "30",
+      "year": "2024",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "sourceName": "Xianjun Dong",
+     "source": "0000-0002-8052-9320",
+     "assertionOriginOrcid": null,
+     "assertionOriginClientId": null,
+     "assertionOriginName": null,
+     "dateSortString": "X-2024-06-30-2020-04-01",
+     "createdDate": {
+      "errors": [],
+      "month": "6",
+      "day": "13",
+      "year": "2020",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "lastModified": {
+      "errors": [],
+      "month": "8",
+      "day": "7",
+      "year": "2024",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "url": null,
+     "orgDisambiguatedExternalIdentifiers": null,
+     "affiliationExternalIdentifiers": null,
+     "featured": null
+    },
+    "projection": {
+     "type": "EMPLOYMENT",
+     "institution": "Harvard Medical School",
+     "role": "Assistant Professor",
+     "department": "Neurology",
+     "start": {
+      "value": "2020-04-01",
+      "precision": "day",
+      "raw_parts": [
+       "2020",
+       "04",
+       "01"
+      ]
+     },
+     "end": {
+      "value": "2024-06-30",
+      "precision": "day",
+      "raw_parts": [
+       "2024",
+       "06",
+       "30"
+      ]
+     },
+     "put_code": "11785193",
+     "json_pointer": "/affiliationGroups/EMPLOYMENT/3/affiliations/0"
+    },
+    "context": [
+     {
+      "json_pointer": "/affiliationGroups/EMPLOYMENT/3/affiliations/0/affiliationName/value",
+      "value": "Harvard Medical School"
+     },
+     {
+      "json_pointer": "/affiliationGroups/EMPLOYMENT/3/affiliations/0/departmentName/value",
+      "value": "Neurology"
+     }
+    ],
+    "sha256": "ffd7e1327b3802d5498fce8b51c6d7809603fa0b60298b398e1a3051f8b6e33f",
+    "quote": "Assistant Professor"
+   }
+  ],
+  "why_home_department": "Source-bound academic appointment and named home reviewed, including original structured employment object and institution/department pointers where applicable. Hospital names are not substituted for academic departments."
+ },
+ "Liqin Wang": {
+  "home_department": "Medicine",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-8280-8892/affiliationGroups.json",
+    "raw_sha256": "f9d43c7fdf53854e967c15f6f03abcbb1f44e757b9d914331c6bcb55a139ec71",
+    "raw_path": "stores/harvard/metadata/faculty-ten-1116/f9d43c7fdf53854e967c15f6f03abcbb1f44e757b9d914331c6bcb55a139ec71.json",
+    "format": "json",
+    "observed": "2026-11-16T05:39:01+00:00",
+    "quotes": [
+     "Assistant Professor"
+    ],
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0/roleTitle/value",
+    "raw_record": {
+     "visibility": {
+      "errors": [],
+      "required": true,
+      "getRequiredMessage": null,
+      "visibility": "PUBLIC"
+     },
+     "errors": [],
+     "putCode": {
+      "errors": [],
+      "value": "39938166",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationName": {
+      "errors": [],
+      "value": "Harvard University",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "city": {
+      "errors": [],
+      "value": "Cambridge",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "region": {
+      "errors": [],
+      "value": "Massachusetts",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "country": {
+      "errors": [],
+      "value": "US",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "roleTitle": {
+      "errors": [],
+      "value": "Assistant Professor",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "countryForDisplay": "US",
+     "departmentName": {
+      "errors": [],
+      "value": "Medicine",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationType": {
+      "errors": [],
+      "value": "employment",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguatedAffiliationSourceId": {
+      "errors": [],
+      "value": "https://ror.org/03vek6s52",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguationSource": {
+      "errors": [],
+      "value": "ROR",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "orgDisambiguatedCity": null,
+     "orgDisambiguatedCountry": null,
+     "orgDisambiguatedId": {
+      "errors": [],
+      "value": "2140619",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "orgDisambiguatedName": null,
+     "orgDisambiguatedRegion": null,
+     "orgDisambiguatedUrl": null,
+     "affiliationTypeForDisplay": null,
+     "startDate": {
+      "errors": [],
+      "month": "",
+      "day": "",
+      "year": "",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "endDate": {
+      "errors": [],
+      "month": "",
+      "day": "",
+      "year": "",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "sourceName": "Liqin Wang",
+     "source": "0000-0002-8280-8892",
+     "assertionOriginOrcid": null,
+     "assertionOriginClientId": null,
+     "assertionOriginName": null,
+     "dateSortString": "Z-2026-10-15",
+     "createdDate": {
+      "errors": [],
+      "month": "10",
+      "day": "15",
+      "year": "2026",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "lastModified": {
+      "errors": [],
+      "month": "10",
+      "day": "15",
+      "year": "2026",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "url": null,
+     "orgDisambiguatedExternalIdentifiers": null,
+     "affiliationExternalIdentifiers": null,
+     "featured": null
+    },
+    "projection": {
+     "type": "EMPLOYMENT",
+     "institution": "Harvard University",
+     "role": "Assistant Professor",
+     "department": "Medicine",
+     "start": null,
+     "end": null,
+     "put_code": "39938166",
+     "json_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0"
+    },
+    "employment_object_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0",
+    "context": [
+     {
+      "json_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0/affiliationName/value",
+      "value": "Harvard University"
+     },
+     {
+      "json_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0/departmentName/value",
+      "value": "Medicine"
+     }
+    ],
+    "sha256": "f9d43c7fdf53854e967c15f6f03abcbb1f44e757b9d914331c6bcb55a139ec71",
+    "quote": "Assistant Professor"
+   }
+  ],
+  "why_home_department": "Source-bound academic appointment and named home reviewed, including original structured employment object and institution/department pointers where applicable. Hospital names are not substituted for academic departments."
+ },
+ "Ania Syrowatka": {
+  "home_department": "Medicine",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-7161-9770/affiliationGroups.json",
+    "raw_sha256": "699ac08afe97af59b0136438e8de36ac17833466ca95824fd42ff28908dc8e38",
+    "raw_path": "stores/harvard/metadata/faculty-ten-1116/699ac08afe97af59b0136438e8de36ac17833466ca95824fd42ff28908dc8e38.json",
+    "format": "json",
+    "observed": "2026-11-16T05:42:40+00:00",
+    "quotes": [
+     "Assistant Professor of Medicine"
+    ],
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0/roleTitle/value",
+    "raw_record": {
+     "visibility": {
+      "errors": [],
+      "required": true,
+      "getRequiredMessage": null,
+      "visibility": "PUBLIC"
+     },
+     "errors": [],
+     "putCode": {
+      "errors": [],
+      "value": "24300013",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationName": {
+      "errors": [],
+      "value": "Harvard Medical School",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "city": {
+      "errors": [],
+      "value": "Boston",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "region": {
+      "errors": [],
+      "value": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "country": {
+      "errors": [],
+      "value": "US",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "roleTitle": {
+      "errors": [],
+      "value": "Assistant Professor of Medicine",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "countryForDisplay": "US",
+     "departmentName": {
+      "errors": [],
+      "value": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationType": {
+      "errors": [],
+      "value": "employment",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguatedAffiliationSourceId": null,
+     "disambiguationSource": null,
+     "orgDisambiguatedCity": null,
+     "orgDisambiguatedCountry": null,
+     "orgDisambiguatedId": null,
+     "orgDisambiguatedName": null,
+     "orgDisambiguatedRegion": null,
+     "orgDisambiguatedUrl": null,
+     "affiliationTypeForDisplay": null,
+     "startDate": {
+      "errors": [],
+      "month": "",
+      "day": "",
+      "year": "",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "endDate": {
+      "errors": [],
+      "month": "",
+      "day": "",
+      "year": "",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "sourceName": "Ania Syrowatka",
+     "source": "0000-0002-7161-9770",
+     "assertionOriginOrcid": null,
+     "assertionOriginClientId": null,
+     "assertionOriginName": null,
+     "dateSortString": "Z-2024-6-27",
+     "createdDate": {
+      "errors": [],
+      "month": "6",
+      "day": "27",
+      "year": "2024",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "lastModified": {
+      "errors": [],
+      "month": "6",
+      "day": "27",
+      "year": "2024",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "url": null,
+     "orgDisambiguatedExternalIdentifiers": null,
+     "affiliationExternalIdentifiers": null,
+     "featured": null
+    },
+    "projection": {
+     "type": "EMPLOYMENT",
+     "institution": "Harvard Medical School",
+     "role": "Assistant Professor of Medicine",
+     "department": null,
+     "start": null,
+     "end": null,
+     "put_code": "24300013",
+     "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0"
+    },
+    "employment_object_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0",
+    "context": [
+     {
+      "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0/affiliationName/value",
+      "value": "Harvard Medical School"
+     },
+     {
+      "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0/departmentName/value",
+      "value": null
+     }
+    ],
+    "sha256": "699ac08afe97af59b0136438e8de36ac17833466ca95824fd42ff28908dc8e38",
+    "quote": "Assistant Professor of Medicine"
+   }
+  ],
+  "why_home_department": "Source-bound academic appointment and named home reviewed, including original structured employment object and institution/department pointers where applicable. Hospital names are not substituted for academic departments."
+ },
+ "Malte Hoffmann": {
+  "no_identity": true,
+  "why_no_identity": "Reviewed bibliography identity hold (2026-11-16): owned Harvard Radiology PI Malte Hoffmann explicitly identifies ORCID0000-0002-5511-0739. Official DBLP dump person163/0677 is unsplit and includes both this neuroimaging author and2026 Drone Air Traffic Control by Malte Hoffmann with another explicit ORCID0009-0009-6130-0975. Native unique-name discovery demonstrably attaches the whole mixedPID and foreign-paper DOI when dblp=[]; hold all paper attribution and automatic bibliography identities until a source-bound per-paper/person split is reviewed. Faculty appointment, academic home, PI and member collection remain valid.",
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://malte.cz/",
+    "sha256": "f601bd19e4fcb1d54172e067980188772cd9741d605798f72ea32034a19bf23d",
+    "quote": "Malte Hoffmann⬏ Assistant Professor of Radiology, Harvard Medical School"
+   }
+  ],
+  "why_home_department": "Owned primary current faculty biography explicitly names Harvard Medical School Radiology. Exact source-bound mixed native bibliography hold remains in force."
+ },
+ "Hugo J. W. L. Aerts": {
+  "home_department": "Radiation Oncology",
+  "home_department_evidence": [
+   {
+    "url": "https://news.harvard.edu/gazette/story/2025/05/new-ai-tool-predicts-biological-age-by-looking-at-a-face/",
+    "capture_url": null,
+    "observed": "2026-11-16T02:45:11",
+    "raw_path": "stores/harvard/metadata/hugo-neel-source7-1116/59db9a665baccb61a14ced2eedffc4a3fab83ce66ab1f0d6eb315e9888833f1f.bin",
+    "raw_sha256": "59db9a665baccb61a14ced2eedffc4a3fab83ce66ab1f0d6eb315e9888833f1f",
+    "format": "html",
+    "quotes": [
+     "said Hugo Aerts , the study’s co-senior author, director of MGB’s Artificial Intelligence in Medicine program, and professor of radiation oncology at HMS.",
+     "May 15, 2025"
+    ],
+    "sha256": "59db9a665baccb61a14ced2eedffc4a3fab83ce66ab1f0d6eb315e9888833f1f",
+    "quote": "said Hugo Aerts , the study’s co-senior author, director of MGB’s Artificial Intelligence in Medicine program, and professor of radiation oncology at HMS."
+   }
+  ],
+  "why_home_department": "Actual2025 Harvard Gazette academic title explicitly names Radiation Oncology; independently2024 HSPH names the same department. MGB director and Maastricht appointments remain separate. Rank conflict is retained."
+ },
+ "Todd M. Herrington": {
+  "home_department": "Neurology",
+  "home_department_evidence": [
+   {
+    "url": "https://brain.harvard.edu/hbi_events/https-dev-harvard-brain-science-initiative-pantheonsite-io/",
+    "sha256": "5a85fea10e01f7e78d8002811e9e2720ee7432d109c983e64587fd88b54f320b",
+    "quote": "Todd Herrington, MD Director, Deep Brain Stimulation Program Massachusetts General Hospital Assistant Professor of Neurology, Harvard Medical School",
+    "kind": "reviewed_primary_faculty_profile",
+    "observed": "20240124",
+    "captured_on": "20261116",
+    "raw_path": "stores/harvard/metadata/b-native8-10-1116/5a85fea10e01f7e78d8002811e9e2720ee7432d109c983e64587fd88b54f320b.bin"
+   },
+   {
+    "url": "https://advances.massgeneral.org/contributors/contributor.aspx?id=1641",
+    "sha256": "6525d8b33e689bf066b04c2ae0f28b92604bf1c06d5a6fdb326507d0543b5f9e",
+    "quote": "Todd Herrington is a neurologist at Massachusetts General Hospital and assistant professor of Neurology at Harvard Medical School.",
+    "kind": "reviewed_primary_faculty_profile",
+    "observed": "20261116",
+    "raw_path": "stores/harvard/metadata/b-native8-10-1116/6525d8b33e689bf066b04c2ae0f28b92604bf1c06d5a6fdb326507d0543b5f9e.bin"
+   }
+  ],
+  "why_home_department": "Explicit academic HMS Neurology professor title; hospital and current outside-school roles remain separate. Historical source dates retained independently from retrieval dates."
+ },
+ "Catherine Jean Chu": {
+  "home_department": "Neurology",
+  "home_department_evidence": [
+   {
+    "url": "https://www.nimh.nih.gov/sites/default/files/documents/2021_Sleep_and_Neurodevelopment_Symposium_speaker_bios.pdf",
+    "sha256": "e1083bee542ef24ccfce0a7945958df455022bc101e659ad8642fabe49e3ad99",
+    "quote": "Catherine Chu, M.D. Assistant Professor of Neurology Harvard Medical School",
+    "kind": "reviewed_primary_faculty_profile",
+    "observed": "2021",
+    "pdf_text_mode": "layout",
+    "pdf_text_extractor": "pdftotext",
+    "pdf_text_args": [
+     "-layout"
+    ],
+    "captured_on": "20261116",
+    "raw_path": "stores/harvard/metadata/b-native8-10-1116/e1083bee542ef24ccfce0a7945958df455022bc101e659ad8642fabe49e3ad99.bin"
+   }
+  ],
+  "why_home_department": "Explicit academic HMS Neurology professor title; hospital and current outside-school roles remain separate. Historical source dates retained independently from retrieval dates."
+ },
+ "Carl-Fredrik Westin": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "name": "Carl-Fredrik Westin",
+    "unit": "Radiology",
+    "url": "https://www.tidningencurie.se/nyheter/familjekansla-framjar-framgangsrik-forskning",
+    "sha256": "a55ed3e5557d8fffc47c830f37459657f5f310a3fe8594f78d87e3241be32dbd",
+    "quote": "Carl-Fredrik Westin Han disputerade 1994 vid Linköpings universitet. Postdoktor vid Harvard Medical School, Boston, där han också etablerade sin egen forskargrupp. Grundare av the Laboratory of Mathematics in Imaging (LMI). Idag är han professor i radiologi vid Harvard Medical School.",
+    "observed": "20161101",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/original5-oa2-1116/a55ed3e5557d8fffc47c830f37459657f5f310a3fe8594f78d87e3241be32dbd.bin"
+   }
+  ],
+  "why_home_department": "Current own SPL full professor of Radiology and original2016-11-01SwedishResearchCouncil interview explicitly professorofradiologyatHMS. The Swedish wording is retained literally. HMSarrival1996 is not a professorstart; 40standingDBLPpapers are separate from schoolstats0/3. Owned dMRIalgorithmdevelopment supplies computingmethodscope."
+ },
+ "Emery N. Brown": {
+  "home_department": "Anesthesia",
+  "home_department_evidence": [
+   {
+    "name": "Emery N. Brown",
+    "unit": "Anesthesia",
+    "url": "https://bcs.mit.edu/directory/emery-n-brown",
+    "sha256": "09e1e726805bea7c62666b1e5ba1ec6a274022bb96d4495f07e42f1063042ccf",
+    "quote": "Emery N. Brown is an Institute Professor at MIT; the Warren M. Zapol Professor of Anaesthesia at Harvard Medical School;",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/original5-oa2-1116/09e1e726805bea7c62666b1e5ba1ec6a274022bb96d4495f07e42f1063042ccf.bin"
+   }
+  ],
+  "why_home_department": "PrimaryHarvard2016/2024 dated AnesthesiaProfessor title plus currentMIT biography explicitlyseparates MITInstituteProfessor from HMSAnaesthesiaProfessor. Originalsignalprocessingalgorithmdevelopment supplies computingmethodscope; exactacademicunitAnesthesia/Anaesthesiaspelling is retained, with no synthetic hiredate or MITtrainee transfer."
+ },
+ "Sarah F. Frisken": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "name": "Sarah F. Frisken",
+    "unit": "Radiology",
+    "url": "https://www.nousnav.org/team/sarah-frisken",
+    "sha256": "054d0ac2289a9553c6c09ee0b14a4bb6a8cf70ec865ed25664b833571207f21d",
+    "quote": "Dr. Sarah Frisken is an Assistant Professor of Radiology at Harvard Medical School",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/original5-oa2-1116/054d0ac2289a9553c6c09ee0b14a4bb6a8cf70ec865ed25664b833571207f21d.bin"
+   }
+  ],
+  "why_home_department": "Actual2023-09-22Vanderbilt speakerbio states HMSAssociateProfessor and BWHRadiologylead; ownedNousNavcurrentbiostates HMSAssistantProfessorRadiology. Preserve rank/stalenessconflict, both positiveacademicfaculty, without promotion/demotion dates. Originalfastdeformableregistrationmethod and exactnativepublicationidentity supportscope."
+ },
+ "Christoph Lange": {
+  "home_department": "Biostatistics",
+  "home_department_evidence": [
+   {
+    "name": "Christoph Lange",
+    "unit": "Biostatistics",
+    "url": "https://orcid.org/0000-0003-2620-1030/affiliationGroups.json",
+    "sha256": "2d15cc1973e247bc439fb20df99bb7aa122a957c41a182b962533fcdd9ec4bb7",
+    "quote": "Professor",
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0/roleTitle/value",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/original5-oa2-1116/2d15cc1973e247bc439fb20df99bb7aa122a957c41a182b962533fcdd9ec4bb7.bin"
+   }
+  ],
+  "why_home_department": "PrimaryHSPH profile explicitlydesignates primaryBiostatisticsfaculty and PBATmethod/parallelsoftwaredevelopment, separating secondaryHMSMedicineposition and noisyauto-publicationwidget. ExactcanonicalORCID facultyassertions give2000and2003starts; later2003-09-01record used conservatively while preservingboth originals. No namesakeTBresearch inherited."
+ },
+ "Arthur Jaffe": {
+  "home_department": "Mathematics",
+  "home_department_evidence": [
+   {
+    "name": "Arthur Jaffe",
+    "unit": "Mathematics",
+    "url": "https://arthurjaffe.com/Assets/documents/CV.html",
+    "sha256": "1be46d21abe2208effc268b22ba342ae998c88716c477a9e947db04fa71a294e",
+    "quote": "Arthur Jaffe CLICK HERE for a one-page CV in PDF format (revised 2021) CLICK HERE for a List of Publications in PDF format (revised 2021) Present Activities L.T. Clay Professor of Mathematics and Theoretical Science, Harvard University",
+    "observed": "202408",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/original5-oa2-1116/1be46d21abe2208effc268b22ba342ae998c88716c477a9e947db04fa71a294e.bin"
+   }
+  ],
+  "why_home_department": "Owned fullCV explicitly revisedAugust2024 supports2024-08faculty observation, with actual2017-03-02HarvardGazette academicchair/novelquantuminformationprotocol evidence. Ownspecific2022–2025nativepublicationtitles bindidentity. No2026currentlisting inferred from livefetch or Physicswebsite; actualchairdisciplineMathematics retained."
+ },
+ "Yangming Ou": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://labs.childrenshospital.org/yangming.ou",
+    "sha256": "d0cd85e67bddc3f909aca60c47cdb0aea7880b3ca20c95989fcd6e9d0e2b80d6",
+    "quote": "Yangming Ou, PhD Associate Professor of Radiology Harvard Medical School",
+    "observed": "20261116",
+    "raw_path": "stores/harvard/metadata/yangming-ou-1116/d0cd85e67bddc3f909aca60c47cdb0aea7880b3ca20c95989fcd6e9d0e2b80d6.bin"
+   }
+  ],
+  "why_home_department": "Owned individual profile explicitly HMSAssociateProfessorRadiology; MBB independently states the academic title. Other research programs are affiliations, not home departments."
+ },
+ "Yogesh Rathi": {
+  "home_department": "Psychiatry",
+  "home_department_evidence": [
+   {
+    "url": "https://ogephd.hms.harvard.edu/people/yogesh-rathi",
+    "sha256": "8b5e2ffa89e575b203ac64ed520b46b2a70d27593716691be92684ce2c8944bb",
+    "quote": "Yogesh Rathi Associate Professor of Psychiatry and Radiology",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T03:43:30+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-eight-faculty-1116/8b5e2ffa89e575b203ac64ed520b46b2a70d27593716691be92684ce2c8944bb.bin"
+   }
+  ],
+  "why_home_department": "Multiple actual academic appointments are stated; no captured source states a primary. home_department is only the reporting unit. Actual OGE explicitly HMSAssociateProfessor ofPsychiatry andRadiology and personally developed fastdiffusionMRI algorithms. Publisher author object supplies exactORCID and both Harvarddepartments; authenticated-orcid:false is retained. Current2026point only; refusedPNLhistory not inferred. Bothdepartments preserved asprimary_unresolved.",
+  "home_policy_review_required": true,
+  "primary_unresolved": [
+   "Psychiatry",
+   "Radiology"
+  ],
+  "also_home_departments": [
+   "Radiology"
+  ]
+ },
+ "Raúl San José Estépar": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-3677-1996/affiliationGroups.json",
+    "sha256": "8c7d903910d3e0a4a95caa1503d99d8d2dfd3cc01378bdf11aef19ae6d2351b5",
+    "quote": "Associate Professor",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T03:43:40+00:00",
+    "kind": "explicit_ORCID_Harvard_faculty_role",
+    "json_pointer": "/affiliationGroups/QUALIFICATION/0/affiliations/0",
+    "appointment_fields": {
+     "type": "QUALIFICATION",
+     "institution": "Harvard Medical School",
+     "role": "Associate Professor",
+     "department": "Radiology",
+     "start": "2015-01-01",
+     "end": null
+    },
+    "format": "json",
+    "raw_path": "stores/harvard/metadata/aa-eight-faculty-1116/8c7d903910d3e0a4a95caa1503d99d8d2dfd3cc01378bdf11aef19ae6d2351b5.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Kenneth D. Mandl": {
+  "home_department": "Biomedical Informatics",
+  "home_department_evidence": [
+   {
+    "url": "https://www.ariadnelabs.org/profile/kenneth-mandl/",
+    "sha256": "73ac23aec1a6fe2bb1a0873596ce31e8f43cceedf9e7a8a2e401c2266d751a78",
+    "quote": "Donald A.B. Lindberg Professor of Pediatrics and Biomedical Informatics, Harvard Medical School",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T03:48:13+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-eight-faculty-1116/73ac23aec1a6fe2bb1a0873596ce31e8f43cceedf9e7a8a2e401c2266d751a78.bin"
+   }
+  ],
+  "why_home_department": "Multiple actual academic appointments are stated; no captured source states a primary. home_department is only the reporting unit. Current primary Ariadne biography explicitly names HMSPediatrics andBiomedicalInformatics professor and personallydeveloped SMART softwarearchitecture. ActualJune26–27,2017SMARTmeeting independentlynames same rank; preserve2017/current2026points withoutinventedhire/continuousspan. FirstpartySMARTpublication list and exactpublisherORCIDbindidentity. Bothacademicdepartments remainprimary_unresolved.",
+  "home_policy_review_required": true,
+  "primary_unresolved": [
+   "Biomedical Informatics",
+   "Pediatrics"
+  ],
+  "also_home_departments": [
+   "Pediatrics"
+  ]
+ },
+ "Tina Kapur": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://lmi.bwh.harvard.edu/people/tina-kapur-phd",
+    "sha256": "151e11d673adfedb69a890a5770d72ddfb819e871ffe0b966a28f82b9aba45b4",
+    "quote": "Assistant Professor of Radiology, Harvard Medical School",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T03:54:37+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-eight-faculty-1116/151e11d673adfedb69a890a5770d72ddfb819e871ffe0b966a28f82b9aba45b4.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Bertrand Schneider": {
+  "home_department": "Harvard Graduate School of Education",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0003-0922-2593/affiliationGroups.json",
+    "sha256": "47250f27eb78773bb5b1f14ade20f8b2cd85b44c5c8aa89c046e85056351b3f0",
+    "quote": "professor",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T03:43:28+00:00",
+    "kind": "explicit_ORCID_Harvard_faculty_role",
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0",
+    "appointment_fields": {
+     "type": "EMPLOYMENT",
+     "institution": "Harvard University",
+     "role": "professor",
+     "department": "Graduate School of Education",
+     "start": null,
+     "end": null
+    },
+    "format": "json",
+    "raw_path": "stores/harvard/metadata/aa-eight-faculty-1116/47250f27eb78773bb5b1f14ade20f8b2cd85b44c5c8aa89c046e85056351b3f0.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Onur Afacan": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0003-2112-3205/affiliationGroups.json",
+    "sha256": "db04e77f435795d46a69e8f43e4fe270431c85eaf161518db45fe570b1e732a1",
+    "quote": "Associate Professor",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T03:45:22+00:00",
+    "kind": "explicit_ORCID_Harvard_faculty_role",
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0",
+    "appointment_fields": {
+     "type": "EMPLOYMENT",
+     "institution": "Harvard University",
+     "role": "Associate Professor",
+     "department": "Radiology",
+     "start": null,
+     "end": null
+    },
+    "format": "json",
+    "raw_path": "stores/harvard/metadata/aa-eight-faculty-1116/db04e77f435795d46a69e8f43e4fe270431c85eaf161518db45fe570b1e732a1.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Griffin M. Weber": {
+  "home_department": "Biomedical Informatics",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-2597-881X/affiliationGroups.json",
+    "sha256": "7709f4d5469c38f99850f10e44fd3e311fca3e0b0c340a209c90a03cabe9b815",
+    "quote": "Associate Professor of Biomedical Informatics",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T03:46:52+00:00",
+    "kind": "explicit_ORCID_Harvard_faculty_role",
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0",
+    "appointment_fields": {
+     "type": "EMPLOYMENT",
+     "institution": "Harvard Medical School",
+     "role": "Associate Professor of Biomedical Informatics",
+     "department": "Department of Biomedical Informatics",
+     "start": "2018",
+     "end": null
+    },
+    "format": "json",
+    "raw_path": "stores/harvard/metadata/aa-eight-faculty-1116/7709f4d5469c38f99850f10e44fd3e311fca3e0b0c340a209c90a03cabe9b815.bin"
+   }
+  ],
+  "why_home_department": "Multiple actual academic appointments are stated; no captured source states a primary. home_department is only the reporting unit. Exact canonical HMSAssociateProfessorBiomedicalInformatics employment explicitlyfrom2018. PrimaryHarvardCatalystinterview describes own SHRINE querytooldevelopment and independentlynames Medicine appointment; original2021/repost2023dates retained. PreserveDBMI/Medicine asprimary_unresolved, withoutbackdatingHMSfromBIDMC2016.",
+  "home_policy_review_required": true,
+  "primary_unresolved": [
+   "Biomedical Informatics",
+   "Medicine"
+  ],
+  "also_home_departments": [
+   "Medicine"
+  ]
+ },
+ "Hossein Estiri": {
+  "home_department": "Medicine",
+  "home_department_evidence": [
+   {
+    "url": "https://datascience.harvard.edu/directory/hossein-estiri/?cp-dir-id=10",
+    "sha256": "2b213b154c0e4bdfc0e1eec46576c1b1e4cf247535f1b7ab7721c43cd656fdc4",
+    "quote": "Hossein Estiri Associate Professor of Medicine Harvard Medical School",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T04:25:32+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-eight-faculty-1116/2b213b154c0e4bdfc0e1eec46576c1b1e4cf247535f1b7ab7721c43cd656fdc4.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Artem Sokolov": {
+  "home_department": "Biomedical Informatics",
+  "home_department_evidence": [
+   {
+    "url": "https://hmcrs.org/wp-content/uploads/2021/01/2019-Print-Agenda_CRS-Regsci-Symposium-v3.pdf",
+    "sha256": "37f209b6062db2e28a5d4ae96819128ae7ce66d8f952f553893aa2147f801781",
+    "quote": "Artem Sokolov, PhD Director of Informatics and Modeling, Laboratory of Systems Pharmacology Instructor, Department of Biomedical Informatics, Harvard Medical School",
+    "kind": "dated_primary_faculty_rank",
+    "observed": "20190402",
+    "fetched_at": "2026-11-16T09:19:20+00:00",
+    "pdf_text_mode": "layout",
+    "pdf_text_extractor": "pdftotext",
+    "pdf_text_args": [
+     "-layout"
+    ],
+    "raw_path": "stores/harvard/metadata/artem-qualified-faculty-1116/37f209b6062db2e28a5d4ae96819128ae7ce66d8f952f553893aa2147f801781.bin"
+   }
+  ],
+  "why_home_department": "Explicit actual2019 HMSacademicdepartment; hospital/LSPDirector title is separate. Actual April2,2019 Harvard-MITCRS source simultaneously names HMSInstructor inBiomedicalInformatics, explicitly leads scientific computational group, and mentors students/postdocs. This qualifies own_group researchfaculty rather than title-only Instructor or ladder. OriginalMCMICRO method/five new softwarepackages and individualA.S.design/implementation establish scope; exactauthoredCMIG title/orderedauthor/individualHMSaffiliation binds nativePID79/3174-3. Five noncorrection native records meet discoveryfloor. Only qualified2019point admitted;2022positiveInstructor/Director rank held for contemporaneous own-group proof, currentCCSPstale afterindustrymove not2026faculty."
+ },
+ "William M. Wells III": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "name": "William M. Wells III",
+    "unit": "Radiology",
+    "url": "https://spl.harvard.edu/people/william-m-wells-phd",
+    "sha256": "760c27f00421a0182edfd0fc1447506cd9c355ea51f115b832d97c7a3cf94b5b",
+    "quote": "William M. Wells, PhD Professor of Radiology, Harvard Medical School",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-medical4-1116/760c27f00421a0182edfd0fc1447506cd9c355ea51f115b832d97c7a3cf94b5b.bin"
+   }
+  ],
+  "why_home_department": "Actual primarySPL HMSProfessorRadiology and dualMITCSAIL affiliations match exact nativeperson and uniquecredited original mutual-informationregistration withPaulViola matching exactnativeclassicpapers. Compositefull-name/institution/methodidentityreview, no falselyliteralPIDlink or unreviewedORCID. Current2026point only; undatedUTexasseminar nothistoricalfacultydate."
+ },
+ "Jayender Jagadeesan": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "name": "Jayender Jagadeesan",
+    "unit": "Radiology",
+    "url": "https://spl.harvard.edu/people/jayender-jagadeesan-phd",
+    "sha256": "0b58967df04bf4c1b3373b29de14629fee50591785b43a8b5e93881dd48c2faf",
+    "quote": "Jayender Jagadeesan, PhD Associate Professor of Radiology, Harvard Medical School",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-medical4-1116/0b58967df04bf4c1b3373b29de14629fee50591785b43a8b5e93881dd48c2faf.bin"
+   }
+  ],
+  "why_home_department": "Actual September30,2016HarvardGazette AssistantProfessor and currentSPLAssociateProfessorRadiology are separatepoints. Ownprofile personallydeveloped deformationcompensatingnavigation algorithms. ExactauthoredTMI title/twoauthors/individualSPL-BWH-HMS affiliation and exactowncontact bind nativePID with invertednamealias. No name-onlyORCID or synthetic hire/promotion date."
+ },
+ "Guergana K. Savova": {
+  "home_department": "Pediatrics",
+  "home_department_evidence": [
+   {
+    "name": "Guergana K. Savova",
+    "unit": "Pediatrics",
+    "url": "https://deepphe.github.io/team/guergana-savova/",
+    "sha256": "06cfc304c44643e976687de57e8fb16889a6c1a5210a1ec4136a6f48f96ae671",
+    "quote": "Guergana K. Savova is the principal investigator for DeepPhe. She is the Patricia F. Brennan Chair, Professor of Pediatrics at Harvard Medical School, and a faculty member in the Computational Health Informatics Program at Boston Children’s Hospital.",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-medical4-1116/06cfc304c44643e976687de57e8fb16889a6c1a5210a1ec4136a6f48f96ae671.bin"
+   }
+  ],
+  "why_home_department": "Current ownedDeepPheindividualbiography explicitly HMSProfessorPediatrics and principalinvestigator; actual October15,2020VUMCcollaboratorarticle gives AssociateProfessorPediatrics. Ownresearchbio explicitlypersonallycreatedcTAKES and developsDeepPhe NLPmethods. Native and primary literalGoogleScholaridentifier bind exactPID; no newORCID.2010BCH/HMSarrival notinventedfacultyhire;2020/current2026points only."
+ },
+ "Martin Reuter": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "name": "Martin Reuter",
+    "unit": "Neurology",
+    "url": "https://www.dzne.de/en/research/research-areas/population-health-sciences/forschungsgruppen/reuter/curriculum-vitae/",
+    "sha256": "b57bafc53793853da8135bb436e14e4a3de2dcbceb32166ff141abb410cea533",
+    "quote": "Prof. Dr. Martin Reuter Group Leader Venusberg-Campus 1/99 53127 Bonn martin.reuter(at)dzne.de +49 228 43302-380 Further affiliations Assistant Professor in Radiology, Harvard Medical School, Boston, MA, USA Assistant Professor in Neurology, Harvard Medical School, Boston, MA, USA",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-medical4-1116/b57bafc53793853da8135bb436e14e4a3de2dcbceb32166ff141abb410cea533.bin"
+   }
+  ],
+  "why_home_department": "Actual ownedinstitutionalCV explicitly since2015HMSAssistantProfessorRadiology ANDNeurology, yearprecision and ongoing current. Both departments preserved with primary_unresolved; outsideBonn/DZNEjobs are concurrent, notHarvarddeparture. Ownresearch distributesoriginalFastSurfer/FreeSurfermethods; primaryliteralORCID exactlyequals nativeperson, namesakesseparate.",
+  "primary_unresolved": [
+   "Radiology",
+   "Neurology"
+  ],
+  "also_home_departments": [
+   "Neurology"
+  ]
+ },
+ "Lauren J. O’Donnell": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://lmi.bwh.harvard.edu/people/lauren-j-odonnell-phd",
+    "sha256": "3ab6baeb6fc8fc50c193f7d3fb06491347974fb86fbf836ff831f0b23d297a22",
+    "quote": "Associate Professor of Radiology, Harvard Medical School",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T04:06:44+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/lauren-original-methods-faculty-1116/3ab6baeb6fc8fc50c193f7d3fb06491347974fb86fbf836ff831f0b23d297a22.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Fangxu Xing": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://api.crossref.org/works/10.1121/10.0034639",
+    "sha256": "24f5f01f8ea54cd943b5d83c1e77733cdf6229145a8aa24cc4752f50f048800e",
+    "quote": "https://orcid.org/0000-0002-0517-0952",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T09:30:16+00:00",
+    "kind": "publisher_deposited_exact_ORCID_author_binding",
+    "json_pointer": "/message/author/0",
+    "fields": {
+     "ORCID": "https://orcid.org/0000-0002-0517-0952",
+     "authenticated-orcid": false,
+     "given": "Fangxu",
+     "family": "Xing",
+     "sequence": "first",
+     "affiliation": [
+      {
+       "name": "Department of Radiology, Harvard Medical School/Massachusetts General Hospital 1 , Boston, Massachusetts 02114,",
+       "place": [
+        "USA"
+       ]
+      }
+     ],
+     "role": [
+      {
+       "role": "author",
+       "vocabulary": "crossref"
+      }
+     ]
+    },
+    "format": "json",
+    "raw_path": "stores/harvard/metadata/aa-seven-faculty-1116/24f5f01f8ea54cd943b5d83c1e77733cdf6229145a8aa24cc4752f50f048800e.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Simon K. Warfield": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://spl.harvard.edu/files/spl/files/documents/2025-10-24-kikinis-cv.pdf",
+    "sha256": "b267a2990abf1454d68fadb40f5bdd7863026ee49f73bc9e1bf39eadf2b69076",
+    "quote": "Simon Warfield, Ph.D./ Thorne Griscom Professor of Radiology, HMS; Director of Radiology Research, Boston Children’s Hospital",
+    "observedAt": "2025-10-24",
+    "fetchedAt": "2026-11-15T21:14:06",
+    "kind": "primary_faculty_profile",
+    "format": "pdf",
+    "pdf_text_mode": "layout",
+    "pdf_text_extractor": "pdftotext",
+    "pdf_text_args": [
+     "-layout"
+    ],
+    "date_evidence": {
+     "url": "https://spl.harvard.edu/files/spl/files/documents/2025-10-24-kikinis-cv.pdf",
+     "sha256": "b267a2990abf1454d68fadb40f5bdd7863026ee49f73bc9e1bf39eadf2b69076",
+     "quote": "Date Prepared: October 24, 2025",
+     "observedAt": "2026-11-15",
+     "fetchedAt": "2026-11-15T21:14:06",
+     "kind": "actual_document_prepared_date",
+     "format": "pdf",
+     "pdf_text_mode": "layout",
+     "pdf_text_extractor": "pdftotext",
+     "pdf_text_args": [
+      "-layout"
+     ],
+     "raw_path": "stores/harvard/metadata/aa-seven-faculty-1116/b267a2990abf1454d68fadb40f5bdd7863026ee49f73bc9e1bf39eadf2b69076.bin"
+    },
+    "raw_path": "stores/harvard/metadata/aa-seven-faculty-1116/b267a2990abf1454d68fadb40f5bdd7863026ee49f73bc9e1bf39eadf2b69076.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Jeff W. Lichtman": {
+  "home_department": "Molecular and Cellular Biology",
+  "home_department_evidence": [
+   {
+    "url": "https://brain.harvard.edu/people/jeff-lichtman/",
+    "sha256": "16aa45f9661288efd2512465b78cdf6a3ebc8b26cff8613347cbf2f28dff9f55",
+    "quote": "Jeremy R. Knowles Professor of Molecular and Cellular Biology, Harvard University",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T03:56:47+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-seven-faculty-1116/16aa45f9661288efd2512465b78cdf6a3ebc8b26cff8613347cbf2f28dff9f55.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Lipeng Ning": {
+  "home_department": "Psychiatry",
+  "home_department_evidence": [
+   {
+    "url": "https://public.era.nih.gov/pubroster/preSepIndex.era?AGENDA=572767&CID=101323",
+    "sha256": "be8e2a0fc370fa74c3fe454aa19ab7c65aa056f6795c2e6f9069d49d439a6bb5",
+    "quote": "NING, LIPENG, PHD ASSISTANT PROFESSOR DEPARTMENT OF PSYCHIATRY HARVARD MEDICAL SCHOOL",
+    "observedAt": "2026-10-06",
+    "fetchedAt": "2026-11-16T10:00:34+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "date_evidence": {
+     "url": "https://public.era.nih.gov/pubroster/preSepIndex.era?AGENDA=572767&CID=101323",
+     "sha256": "be8e2a0fc370fa74c3fe454aa19ab7c65aa056f6795c2e6f9069d49d439a6bb5",
+     "quote": "10/06/26 - 10/06/26 Meeting Roster",
+     "observedAt": "2026-11-16",
+     "fetchedAt": "2026-11-16T10:00:34+00:00",
+     "kind": "actual_meeting_date",
+     "format": "html",
+     "raw_path": "stores/harvard/metadata/aa-seven-faculty-1116/be8e2a0fc370fa74c3fe454aa19ab7c65aa056f6795c2e6f9069d49d439a6bb5.bin"
+    },
+    "raw_path": "stores/harvard/metadata/aa-seven-faculty-1116/be8e2a0fc370fa74c3fe454aa19ab7c65aa056f6795c2e6f9069d49d439a6bb5.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Quanzheng Li": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://worldmedicalinnovation.org/wp-content/uploads/2023/09/Partners-FORUM-2018-BROCHURE-First-Look.pdf",
+    "sha256": "ab9b46f4af409b9059af13badc08396db3094e3795df657924e3841772f963f7",
+    "quote": "Quanzheng Li, PhD Director, Center for Advanced Medical Computing and Analysis, MGH; Associate Professor, Radiology, HMS",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T10:04:21+00:00",
+    "kind": "actual_2018_Radiology_academic_home",
+    "format": "pdf",
+    "pdf_text_mode": "layout",
+    "pdf_text_extractor": "pdftotext",
+    "pdf_text_args": [
+     "-layout"
+    ],
+    "raw_path": "stores/harvard/metadata/aa-seven-faculty-1116/ab9b46f4af409b9059af13badc08396db3094e3795df657924e3841772f963f7.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Dustin Tingley": {
+  "home_department": "Government",
+  "home_department_evidence": [
+   {
+    "url": "https://www.gov.harvard.edu/directory/dustin-tingley/",
+    "sha256": "b502e91e63b039f728e2e70d9ded5b3190ebd6d73124d0bfb258d93fccdb8eba",
+    "quote": "Dustin Tingley is the Thomas D. Cabot Professor of Public Policy with a joint appointment in the Harvard Kennedy School of Public Policy and the Department of Government.",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T03:59:52+00:00",
+    "kind": "current_primary_faculty_and_joint_homes",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-seven-faculty-1116/b502e91e63b039f728e2e70d9ded5b3190ebd6d73124d0bfb258d93fccdb8eba.bin"
+   }
+  ],
+  "why_home_department": "Joint Government/Kennedy appointment without an explicitprimary; Governmentisreportingunit only. Current officialHarvardGovernmentprofile explicitlyjointGovernment/Kennedyappointment; actualOctober24,2025authoredmanuscript prints exactORCID withProfessorGovernmentHarvard. Original firstauthor mediationRstatisticalsoftware explicitlyimplements statisticalmethods includingcausallydependentmediators, notdigital-society/policyasresearchobjectalone. Bothnamedhomes primary_unresolved;2025/current2026points, noearlierhire.",
+  "home_policy_review_required": true,
+  "primary_unresolved": [
+   "Government",
+   "Harvard Kennedy School"
+  ],
+  "also_home_departments": [
+   "Harvard Kennedy School"
+  ]
+ },
+ "Andriy Fedorov": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://spl.harvard.edu/people",
+    "sha256": "2880ee1a7b92e9a87b55e8ef174ccafe54cd0fad407e5ea4866cecdca9d56031",
+    "quote": "Andrey Fedorov, PhD Associate Professor of Radiology, Harvard Medical School",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T02:31:24+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-seven-faculty-1116/2880ee1a7b92e9a87b55e8ef174ccafe54cd0fad407e5ea4866cecdca9d56031.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Hui Wang": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://cpd.partners.org/content/mgh-frontiers-imaging-hampton-symposium-2023",
+    "sha256": "f37ac6d97eb4507ba1b8eb28ec91b6bc10a1f6d0492d1a266173665d6a1451cb",
+    "quote": "Hui Wang, PhD Assistant Professor of Radiology, Harvard Medical School",
+    "kind": "dated_primary_faculty_rank",
+    "observed": "20230317",
+    "fetched_at": "2026-11-16T09:52:23+00:00",
+    "raw_path": "stores/harvard/metadata/b-three-faculty-1116/f37ac6d97eb4507ba1b8eb28ec91b6bc10a1f6d0492d1a266173665d6a1451cb.bin"
+   }
+  ],
+  "why_home_department": "Actual officialMGBcourse individuallyHMSAssistantProfessorRadiology; literallylinkedagenda givesMarch17,2023 event andindividualtalk. Exactnative39/721-60 bound by actual2024authoredarxiv andtwofullMartinospublicationtitles. Originalsyntheticvasculargeometryconstructs semi-realisticspline trainingdata forimage segmentation, substantive computationalmethod. Admitonly2023-03-17point; refused2019promotion and undatedtraineeCV supplynoperiod."
+ },
+ "Jochen K. Lennerz": {
+  "home_department": "Pathology",
+  "home_department_evidence": [
+   {
+    "url": "https://aaadv.org/2022-agenda/",
+    "sha256": "abfa0f7d394d7f4d2a867c05075dd2c7f9ee78dfb3c4e585b1bec4d3a76e2cf4",
+    "quote": "Speaker: Jochen Lennerz , Associate Professor of Pathology, Harvard Medical School, Medical Director, Center for Integrated Diagnostics, Massachusetts General Hospital",
+    "kind": "dated_primary_faculty_rank",
+    "observed": "20220916",
+    "fetched_at": "2026-11-16T10:05:23+00:00",
+    "raw_path": "stores/harvard/metadata/b-three-faculty-1116/abfa0f7d394d7f4d2a867c05075dd2c7f9ee78dfb3c4e585b1bec4d3a76e2cf4.bin"
+   }
+  ],
+  "why_home_department": "Actual2022AAADVworkshop September16session explicitlyHMSAssociateProfessorPathology, with2022body/eventseparatefromglobal2026navigation. TwoexactnativeauthoredHighdicom2022 andMorphologyDiffusion2023 papersbindPID296/0181; originalhighdicomPythonAPI/library encodesmachinelearningannotations withnewsoftwaredesign, computingmethodscope. Only2022-09-16point;2014–2023MedicalDirectorcareer notfacultyboundaries, no2026Harvardrankafterindustrymove."
+ },
+ "Ronilda C. Lacson": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0003-3300-1176/affiliationGroups.json",
+    "sha256": "6041b38b4f94df0b8458c982661df8569b1dc5cbfe416ff8ece80ace59b50900",
+    "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"32769329\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Massachusetts\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Associate Professor of Radiology\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Brigham and Women's Hospital\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/03vek6s52\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140619\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Ronilda Lacson\",\"source\":\"0000-0003-3300-1176\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Z-2025-11-12\",\"createdDate\":{\"errors\":[],\"month\":\"11\",\"day\":\"12\",\"year\":\"2025\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"1\",\"day\":\"17\",\"year\":\"2026\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+    "kind": "canonical_firstparty_faculty_rank",
+    "observed": "20261116",
+    "fetched_at": "2026-11-16T05:05:36+00:00",
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0",
+    "orcid": "0000-0003-3300-1176",
+    "orcid_basis": "exact official nativeDBLPhomepage ORCID identifier",
+    "role": "Associate Professor of Radiology",
+    "institution": "Harvard University",
+    "raw_department": "Brigham and Women's Hospital",
+    "start": null,
+    "end": null,
+    "raw_path": "stores/harvard/metadata/b-three-faculty-1116/6041b38b4f94df0b8458c982661df8569b1dc5cbfe416ff8ece80ace59b50900.bin"
+   },
+   {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5996775/",
+    "sha256": "7aab0c312df865b073f96ca7d7192a7efdc937e95828757325c2e89e08afa537",
+    "quote": "Ronilda Lacson Ronilda Lacson 1 Center for Evidence-Based Imaging and Department of Radiology, Brigham and Women's Hospital, Harvard Medical School, Boston, Massachusetts, United States",
+    "kind": "primary_individual_authorship_hms_home",
+    "observed": "20261116",
+    "fetched_at": "2026-11-16T10:12:20+00:00",
+    "raw_path": "stores/harvard/metadata/b-three-faculty-1116/7aab0c312df865b073f96ca7d7192a7efdc937e95828757325c2e89e08afa537.bin"
+   }
+  ],
+  "why_home_department": "ExactnativeORCID firstpartyemployment explicitlyHarvardUniversityAssociateProfessorofRadiology; ownindividual2018HMSRadiologyauthorship corroboratesperson/academichome while rawBWHdepartmentfield andblankhiredatesremainunaltered. Original2016authoredAMIAwork develops customcTAKESstructuredIO/schema components andsemanticrepresentation;2018authoredwork developsNLPmalignancy/negationalgorithm andnewcontextualLIS/EHRsoftwareintegration. These originalcomputationalsoftware/pipelinedevelopments satisfycomputingscope; no newRFtheory or standardscikit-learnnoveltyclaimed. Current2026pointonly, not2008hospitalresearchscientiststart."
+ },
+ "Elisabeth Paulson": {
+  "home_department": "Harvard Business School",
+  "home_department_evidence": [
+   {
+    "name": "Elisabeth Paulson",
+    "unit": "Harvard Business School",
+    "url": "https://elisabethpaulson.github.io/",
+    "sha256": "b0f8f7a75919acd8871a97a58a4a5ee0a41cea73d1a9bcd90a40aef228a73bf2",
+    "quote": "Elisabeth Paulson Assistant Professor, Harvard Business School",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-admissions3-1116/b0f8f7a75919acd8871a97a58a4a5ee0a41cea73d1a9bcd90a40aef228a73bf2.bin"
+   }
+  ],
+  "why_home_department": "OwnfullCV explicitlyHBSAssistantProfessor2022ongoing, separatelyHarvardVisitingPostdoctoralFellow2021–2022; visuallyreviewedCVfirstpage andrawlayoutreplay. Ownresearch/paperidentitybindsexactnativePIDwithoutnewcensusORCID orwholeOAaggregate. OriginalAISTATS2024hybridpredictionstrategy has statisticalMLrobustness/distributionshiftmethodcontribution, beyondsocialpolicyasobject. HBSacademicunit andTechnology/OperationsManagementinternalunit retained; actual2022professorrankstart, not2021postdocbackfill."
+ },
+ "William Lotter": {
+  "home_department": "Pathology",
+  "home_department_evidence": [
+   {
+    "name": "William Lotter",
+    "unit": "Pathology",
+    "url": "https://www.hcc.harvard.edu/members/dr-william-edward-lotter",
+    "sha256": "8073a31b2a2e208c4a3b8fcc22f4ad1ac56137aa2cacce2a31a4325e3ca1849d",
+    "quote": "William Lotter, PhD Dana-Farber Cancer Institute Academic Titles Assistant Professor, Pathology, Harvard Medical School",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-admissions3-1116/8073a31b2a2e208c4a3b8fcc22f4ad1ac56137aa2cacce2a31a4325e3ca1849d.bin"
+   }
+  ],
+  "why_home_department": "Current primaryHarvardCancerCenter explicitlyAssistantProfessorPathologyHMS; actualDFCIarticleDecember11,2024 independentlyHMSAssistantProfessor. Twoactualpoints, no2022hire oruncaptured2023event. OwnedLotterLabpublicationbodies/ownprofessionalcontact bind exactnativePID andfrozenOAintendedperson, withoutnewcensusORCID assignment. OriginalFluoroformerattention/channelfusionMILstrategy establishescomputingmethodscope."
+ },
+ "Edoardo M. Airoldi": {
+  "home_department": "Statistics",
+  "home_department_evidence": [
+   {
+    "name": "Edoardo M. Airoldi",
+    "unit": "Statistics",
+    "url": "https://arxiv.org/pdf/1705.05752",
+    "sha256": "61316094998f0863795c5495375c58243856a3265e7050b300f398be988b4dfa",
+    "quote": "Edoardo M. Airoldi is an Associate Professor of Statistics at Harvard University",
+    "observed": "20170516",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-admissions3-1116/61316094998f0863795c5495375c58243856a3265e7050b300f398be988b4dfa.bin"
+   }
+  ],
+  "why_home_department": "Actual ownpreprintv1May16,2017 explicitlyHarvardAssociateProfessorStatistics; currentprimaryTemplehistory expresslyHarvardStatisticsfaculty/director until2018. ReviewedhistoricalacademicStatistics home, notunitlisting. Bounded2017-05-16firstverifiedobservation toexplicit2018yearend, no2009hire or2016presence invented. OriginalJMLRmixed-membershipmodels andgeneralvariationalinferencealgorithm providecomputingmethodscope, currentTemplefaculty nottransferred.",
+  "historical_home_review": {
+   "name": "Edoardo M. Airoldi",
+   "primary_home": "Statistics",
+   "basis": "listed_title",
+   "faculty_observation": {
+    "url": "https://arxiv.org/pdf/1705.05752",
+    "capture_url": null,
+    "observed": "2026-11-16T05:22:22",
+    "raw_path": "stores/harvard/metadata/f-admissions3-1116/61316094998f0863795c5495375c58243856a3265e7050b300f398be988b4dfa.bin",
+    "raw_sha256": "61316094998f0863795c5495375c58243856a3265e7050b300f398be988b4dfa",
+    "format": "pdf",
+    "quotes": [
+     "Edoardo M. Airoldi is an Associate Professor of Statistics at Harvard University"
+    ],
+    "pdf_text_mode": "raw"
+   },
+   "additional_department_quote": {
+    "url": "https://www.fox.temple.edu/directory/edo-airoldi-tuj91381",
+    "capture_url": null,
+    "observed": "2026-11-16T05:22:22",
+    "raw_path": "stores/harvard/metadata/f-admissions3-1116/686e1cac11224e3476b7043fba8ae50e31794b5212f3721ae6cffa38445460a3.bin",
+    "raw_sha256": "686e1cac11224e3476b7043fba8ae50e31794b5212f3721ae6cffa38445460a3",
+    "format": "html",
+    "quotes": [
+     "Prior to joining Fox, Airoldi was on the faculty in the Department of Statistics at Harvard University, where he founded and directed the Harvard Laboratory for Applied Statistics & Data Science, until 2018."
+    ]
+   },
+   "rule": "R-HOME01: historical authoredfacultybio explicitly states AssociateProfessorStatisticsHarvard; current Templeprimaryhistory explicitly DepartmentStatisticsHarvard until2018. This is reviewed historicalhome proof, not a claim that a historical CV or facultybio is a unitdirectory."
+  }
+ },
+ "Dufan Wu": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://explore.wisc.edu/Data-Science-Updates-2024-10-30",
+    "sha256": "313e1eff17d9da848a7b67eb72b2817c8f33f419a70d1ecd2f345edcfe349514",
+    "quote": "Dufan Wu, assistant professor of radiology at Harvard Medical School",
+    "observedAt": "2024-10-30",
+    "fetchedAt": "2026-11-16T10:19:31+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "date_evidence": {
+     "url": "https://explore.wisc.edu/Data-Science-Updates-2024-10-30",
+     "sha256": "313e1eff17d9da848a7b67eb72b2817c8f33f419a70d1ecd2f345edcfe349514",
+     "quote": "October 30, 2024",
+     "observedAt": "2026-11-16",
+     "fetchedAt": "2026-11-16T10:19:31+00:00",
+     "kind": "actual_newsletter_date",
+     "format": "html",
+     "raw_path": "stores/harvard/metadata/aa-six-faculty-1116/313e1eff17d9da848a7b67eb72b2817c8f33f419a70d1ecd2f345edcfe349514.bin"
+    },
+    "raw_path": "stores/harvard/metadata/aa-six-faculty-1116/313e1eff17d9da848a7b67eb72b2817c8f33f419a70d1ecd2f345edcfe349514.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Kyungsang Kim": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://datathon.kr/overview/mentors/",
+    "sha256": "939374d8692e20451497c43c89e80489400886db67cdd2fa1bc8c8338212b1c7",
+    "quote": "Kyungsang Kim Harvard Medical School / MGH Radiology, Assistant Professor of Radiology",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T10:23:29+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-six-faculty-1116/939374d8692e20451497c43c89e80489400886db67cdd2fa1bc8c8338212b1c7.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Adam Wright": {
+  "home_department": "Medicine",
+  "home_department_evidence": [
+   {
+    "url": "https://api.crossref.org/works/10.1097/ACM.0000000000002613",
+    "sha256": "a1ead4169d4027df15677823a6c64a10060ad8d8bd58f3ad67678b2a49ca0577",
+    "quote": "A. Wrightis associate professor, Department of General Medicine, Brigham & Women’s Hospital and Harvard Medical School, Boston, Massachusetts; ORCID:.",
+    "observedAt": "2019-05",
+    "fetchedAt": "2026-11-16T10:19:28+00:00",
+    "kind": "dated_2019_primary_author_faculty_biography",
+    "json_pointer": "/message/author/2/affiliation/0/name",
+    "format": "json",
+    "publication_date_fields": {
+     "published-print": {
+      "date-parts": [
+       [
+        2019,
+        5
+       ]
+      ]
+     },
+     "published": {
+      "date-parts": [
+       [
+        2019,
+        5
+       ]
+      ]
+     }
+    },
+    "raw_path": "stores/harvard/metadata/aa-six-faculty-1116/a1ead4169d4027df15677823a6c64a10060ad8d8bd58f3ad67678b2a49ca0577.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Justin Werfel": {
+  "home_department": "Engineering and Applied Sciences",
+  "home_department_evidence": [
+   {
+    "url": "https://people.seas.harvard.edu/~jkwerfel/cv_jkwerfel.pdf",
+    "sha256": "4148fe2d8c29692ae2fca567334ccf60c68bada1f5e735ea89dd252812a0eeb2",
+    "quote": "Harvard University Cambridge, MA School of Engineering and Applied Sciences Senior Research Fellow Dec 2021–present Lecturer Jul 2021–present",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T03:58:10+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "pdf",
+    "pdf_text_mode": "layout",
+    "pdf_text_extractor": "pdftotext",
+    "pdf_text_args": [
+     "-layout"
+    ],
+    "raw_path": "stores/harvard/metadata/aa-six-faculty-1116/4148fe2d8c29692ae2fca567334ccf60c68bada1f5e735ea89dd252812a0eeb2.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Vahid Tarokh": {
+  "home_department": "Applied Mathematics",
+  "home_department_evidence": [
+   {
+    "url": "https://calendar.duke.edu/show?fq=id%3ACAL-8a0870ef-59d27923-0159-f07448c6-00005013demobedework%40mysite.edu",
+    "sha256": "a1fa7074529728e890e99841c9db35469a752ef54acc35e455de56fb0dea012a",
+    "quote": "Vahid Tarokh is a Perkins Professor of Applied Mathematics and Hammond Vinton Hayes Senior Research Fellow in Electrical Engineering at Harvard University.",
+    "observedAt": "2017-02-06",
+    "fetchedAt": "2026-11-16T10:12:38+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "date_evidence": {
+     "url": "https://calendar.duke.edu/show?fq=id%3ACAL-8a0870ef-59d27923-0159-f07448c6-00005013demobedework%40mysite.edu",
+     "sha256": "a1fa7074529728e890e99841c9db35469a752ef54acc35e455de56fb0dea012a",
+     "quote": "Monday, February 06, 2017",
+     "observedAt": "2026-11-16",
+     "fetchedAt": "2026-11-16T10:12:38+00:00",
+     "kind": "actual_seminar_date",
+     "format": "html",
+     "raw_path": "stores/harvard/metadata/aa-six-faculty-1116/a1fa7074529728e890e99841c9db35469a752ef54acc35e455de56fb0dea012a.bin"
+    },
+    "raw_path": "stores/harvard/metadata/aa-six-faculty-1116/a1fa7074529728e890e99841c9db35469a752ef54acc35e455de56fb0dea012a.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Anuj K. Dalal": {
+  "home_department": "Medicine",
+  "home_department_evidence": [
+   {
+    "url": "https://research.massgeneralbrigham.org/en/education-and-training/graduate-medical-education/medicine/harvard-brigham-research-fellowship-in-hospital-medicine",
+    "sha256": "6dcb015e8fb15907ea536c4625b6d3b64470466bb172834fcc66f112793a6eee",
+    "quote": "Anuj Dalal, MD Fellowship Associate Director Associate Physician, Hospital Medicine Unit, BWH Division of General Internal Medicine and Primary Care, BWH Associate Professor of Medicine, Harvard Medical School",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T10:26:29+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-six-faculty-1116/6dcb015e8fb15907ea536c4625b6d3b64470466bb172834fcc66f112793a6eee.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Wei-Chung Lee": {
+  "home_department": "Neurology",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-4618-295X/affiliationGroups.json",
+    "sha256": "e8cfe7c3223feb8771fedc10c08a506ce467d55e5e26137fc2f3e7f848de8706",
+    "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"19115668\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard Medical School\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Boston\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Associate Professor\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Neurology and Neurobiology\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"1811\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"1685\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"11\",\"day\":\"01\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Wei-Chung Lee\",\"source\":\"0000-0002-4618-295X\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2022-11-01\",\"createdDate\":{\"errors\":[],\"month\":\"12\",\"day\":\"8\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"9\",\"day\":\"16\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+    "kind": "canonical_firstparty_faculty_rank",
+    "observed": "20261116",
+    "fetched_at": "2026-11-16T05:06:21+00:00",
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0",
+    "orcid": "0000-0002-4618-295X",
+    "orcid_basis": "exact official nativeDBLPhomepage ORCID identifier",
+    "role": "Associate Professor",
+    "institution": "Harvard Medical School",
+    "department": "Neurology and Neurobiology",
+    "start": {
+     "value": "2022-11-01",
+     "precision": "day",
+     "raw_parts": [
+      "2022",
+      "11",
+      "01"
+     ]
+    },
+    "end": null,
+    "raw_record": {
+     "visibility": {
+      "errors": [],
+      "required": true,
+      "getRequiredMessage": null,
+      "visibility": "PUBLIC"
+     },
+     "errors": [],
+     "putCode": {
+      "errors": [],
+      "value": "19115668",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationName": {
+      "errors": [],
+      "value": "Harvard Medical School",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "city": {
+      "errors": [],
+      "value": "Boston",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "region": {
+      "errors": [],
+      "value": "MA",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "country": {
+      "errors": [],
+      "value": "US",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "roleTitle": {
+      "errors": [],
+      "value": "Associate Professor",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "countryForDisplay": "US",
+     "departmentName": {
+      "errors": [],
+      "value": "Neurology and Neurobiology",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationType": {
+      "errors": [],
+      "value": "employment",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguatedAffiliationSourceId": {
+      "errors": [],
+      "value": "1811",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguationSource": {
+      "errors": [],
+      "value": "RINGGOLD",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "orgDisambiguatedCity": null,
+     "orgDisambiguatedCountry": null,
+     "orgDisambiguatedId": {
+      "errors": [],
+      "value": "1685",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "orgDisambiguatedName": null,
+     "orgDisambiguatedRegion": null,
+     "orgDisambiguatedUrl": null,
+     "affiliationTypeForDisplay": null,
+     "startDate": {
+      "errors": [],
+      "month": "11",
+      "day": "01",
+      "year": "2022",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "endDate": {
+      "errors": [],
+      "month": "",
+      "day": "",
+      "year": "",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "sourceName": "Wei-Chung Lee",
+     "source": "0000-0002-4618-295X",
+     "assertionOriginOrcid": null,
+     "assertionOriginClientId": null,
+     "assertionOriginName": null,
+     "dateSortString": "Y-2022-11-01",
+     "createdDate": {
+      "errors": [],
+      "month": "12",
+      "day": "8",
+      "year": "2022",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "lastModified": {
+      "errors": [],
+      "month": "9",
+      "day": "16",
+      "year": "2023",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "url": null,
+     "orgDisambiguatedExternalIdentifiers": null,
+     "affiliationExternalIdentifiers": null,
+     "featured": null
+    },
+    "raw_path": "stores/harvard/metadata/b-two-guarded-faculty-1116/e8cfe7c3223feb8771fedc10c08a506ce467d55e5e26137fc2f3e7f848de8706.bin"
+   },
+   {
+    "url": "https://orcid.org/0000-0002-4618-295X/affiliationGroups.json",
+    "sha256": "e8cfe7c3223feb8771fedc10c08a506ce467d55e5e26137fc2f3e7f848de8706",
+    "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"4918221\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard Medical School\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Boston\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Assistant Professor\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Neurology\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"1811\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"1685\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"05\",\"day\":\"01\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"31\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Wei-Chung Lee\",\"source\":\"0000-0002-4618-295X\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2022-10-31-2017-05-01\",\"createdDate\":{\"errors\":[],\"month\":\"11\",\"day\":\"15\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"9\",\"day\":\"16\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+    "kind": "canonical_firstparty_faculty_rank",
+    "observed": "20261116",
+    "fetched_at": "2026-11-16T05:06:21+00:00",
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0",
+    "orcid": "0000-0002-4618-295X",
+    "orcid_basis": "exact official nativeDBLPhomepage ORCID identifier",
+    "role": "Assistant Professor",
+    "institution": "Harvard Medical School",
+    "department": "Neurology",
+    "start": {
+     "value": "2017-05-01",
+     "precision": "day",
+     "raw_parts": [
+      "2017",
+      "05",
+      "01"
+     ]
+    },
+    "end": {
+     "value": "2022-10-31",
+     "precision": "day",
+     "raw_parts": [
+      "2022",
+      "10",
+      "31"
+     ]
+    },
+    "raw_record": {
+     "visibility": {
+      "errors": [],
+      "required": true,
+      "getRequiredMessage": null,
+      "visibility": "PUBLIC"
+     },
+     "errors": [],
+     "putCode": {
+      "errors": [],
+      "value": "4918221",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationName": {
+      "errors": [],
+      "value": "Harvard Medical School",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "city": {
+      "errors": [],
+      "value": "Boston",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "region": {
+      "errors": [],
+      "value": "MA",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "country": {
+      "errors": [],
+      "value": "US",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "roleTitle": {
+      "errors": [],
+      "value": "Assistant Professor",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "countryForDisplay": "US",
+     "departmentName": {
+      "errors": [],
+      "value": "Neurology",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "affiliationType": {
+      "errors": [],
+      "value": "employment",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguatedAffiliationSourceId": {
+      "errors": [],
+      "value": "1811",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "disambiguationSource": {
+      "errors": [],
+      "value": "RINGGOLD",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "orgDisambiguatedCity": null,
+     "orgDisambiguatedCountry": null,
+     "orgDisambiguatedId": {
+      "errors": [],
+      "value": "1685",
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "orgDisambiguatedName": null,
+     "orgDisambiguatedRegion": null,
+     "orgDisambiguatedUrl": null,
+     "affiliationTypeForDisplay": null,
+     "startDate": {
+      "errors": [],
+      "month": "05",
+      "day": "01",
+      "year": "2017",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "endDate": {
+      "errors": [],
+      "month": "10",
+      "day": "31",
+      "year": "2022",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "sourceName": "Wei-Chung Lee",
+     "source": "0000-0002-4618-295X",
+     "assertionOriginOrcid": null,
+     "assertionOriginClientId": null,
+     "assertionOriginName": null,
+     "dateSortString": "X-2022-10-31-2017-05-01",
+     "createdDate": {
+      "errors": [],
+      "month": "11",
+      "day": "15",
+      "year": "2017",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "lastModified": {
+      "errors": [],
+      "month": "9",
+      "day": "16",
+      "year": "2023",
+      "timestamp": null,
+      "required": true,
+      "getRequiredMessage": null
+     },
+     "url": null,
+     "orgDisambiguatedExternalIdentifiers": null,
+     "affiliationExternalIdentifiers": null,
+     "featured": null
+    },
+    "raw_path": "stores/harvard/metadata/b-two-guarded-faculty-1116/e8cfe7c3223feb8771fedc10c08a506ce467d55e5e26137fc2f3e7f848de8706.bin"
+   },
+   {
+    "url": "https://brain.harvard.edu/?people=wei-chung-allen-lee",
+    "sha256": "4ff59c44fa36b90aadbace01e08e00329242955a500963fe03a1cd91bb85c97b",
+    "quote": "Assistant Professor of Neurology and Neurobiology, Harvard Medical School",
+    "kind": "primary_academic_departments_rank_context",
+    "observed": "20261116",
+    "fetched_at": "2026-11-16T03:51:40+00:00",
+    "raw_path": "stores/harvard/metadata/b-two-guarded-faculty-1116/4ff59c44fa36b90aadbace01e08e00329242955a500963fe03a1cd91bb85c97b.bin"
+   }
+  ],
+  "why_home_department": "Exact native ORCID canonical career gives HMS Neurology assistant professor May 1, 2017 to October 31, 2022, followed by Neurology and Neurobiology associate professor November 1, 2022 onward. HBI stale assistant rank retained as a conflict. Original ssEMnet deep-network method and five exact authored connectomics works bind seven native editions; exact ORCID and full-alias/coauthor evidence bind two more. Only nine connectomics records support eligibility. Three ECG DOI holds must apply before identity anchoring: actual 2023 conference programme assigns namesake branch to Taiwan company; two 2024 bylines remain unresolved, not falsely verified foreign. Both academic homes retained without invented primary.",
+  "primary_unresolved": [
+   "Neurology",
+   "Neurobiology"
+  ],
+  "also_home_departments": [
+   "Neurobiology"
+  ]
+ },
+ "Jun Lu": {
+  "home_department": "Neurology",
+  "home_department_evidence": [
+   {
+    "url": "https://campuspress.yale.edu/xliu/people/",
+    "sha256": "b55c614275437a3a64cb82fe1f2a8beb111e2e011cd2c571fc25b302a8f3fe02",
+    "quote": "Jun Lu (Assoc. Prof. of Neurology, Harvard Medical School | BIDMC)",
+    "kind": "primary_collaborator_faculty_rank",
+    "observed": "20261116",
+    "fetched_at": "2026-11-16T03:12:32+00:00",
+    "raw_path": "stores/harvard/metadata/b-two-guarded-faculty-1116/b55c614275437a3a64cb82fe1f2a8beb111e2e011cd2c571fc25b302a8f3fe02.bin"
+   }
+  ],
+  "why_home_department": "Primary collaborator page explicitly identifies HMS/BIDMC associate professor of Neurology and literally links proper lab. Exact authored subtype-aware dynamic domain-adaptation paper, complete ordered authors and individual Jun Lu HMS Neurology PDF footnote bind computational branch, separate from Yale hematology namesake. Current 2026 faculty observation is bounded and possible collaborator-page staleness retained; 2022 affiliation does not establish faculty rank/date. New subtype alignment and dynamic-queue framework establish method scope. Exact unresolved LTE DOI is held before anchoring; nineteen method records remain. Jane/Jia You edition metadata discrepancy retained without adding a second work."
+ },
+ "Patrick L. Purdon": {
+  "home_department": "Anesthesia",
+  "home_department_evidence": [
+   {
+    "url": "https://hst.mit.edu/news-events/twihst/volume-21-number-26",
+    "sha256": "c9b02ba01dc4e9db2767d1a9d75869b8953557741b0207438790fded9849a298",
+    "quote": "Patrick Purdon, PhD, Associate Professor of Anaesthesia, HMS, MGH",
+    "observedAt": "2020-03-06",
+    "fetchedAt": "2026-11-16T10:45:19+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "date_evidence": {
+     "url": "https://hst.mit.edu/news-events/twihst/volume-21-number-26",
+     "sha256": "c9b02ba01dc4e9db2767d1a9d75869b8953557741b0207438790fded9849a298",
+     "quote": "March 06, 2020 Volume 21, Number 26",
+     "observedAt": "2026-11-16",
+     "fetchedAt": "2026-11-16T10:45:19+00:00",
+     "kind": "actual_primary_newsletter_date",
+     "format": "html",
+     "raw_path": "stores/harvard/metadata/aa-purdon-ana-justin-1116/c9b02ba01dc4e9db2767d1a9d75869b8953557741b0207438790fded9849a298.bin"
+    },
+    "raw_path": "stores/harvard/metadata/aa-purdon-ana-justin-1116/c9b02ba01dc4e9db2767d1a9d75869b8953557741b0207438790fded9849a298.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Hiroyuki Yoshida": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://orcid.org/0000-0001-8998-5050/affiliationGroups.json",
+    "sha256": "8851533db597e439de2ceb5e59092913a2c3aad6b97a341ec8393d8687665958",
+    "quote": "Associate Professor of Radiology",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T03:48:13+00:00",
+    "kind": "explicit_ORCID_Harvard_faculty_role",
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0",
+    "appointment_fields": {
+     "type": "EMPLOYMENT",
+     "institution": "Harvard Medical School",
+     "role": "Associate Professor of Radiology",
+     "department": "Radiology",
+     "start": "2006-01-01",
+     "end": null
+    },
+    "format": "json",
+    "raw_path": "stores/harvard/metadata/aa-yoshida-1116/8851533db597e439de2ceb5e59092913a2c3aad6b97a341ec8393d8687665958.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "George A. Alvarez": {
+  "home_department": "Psychology",
+  "home_department_evidence": [
+   {
+    "name": "George A. Alvarez",
+    "unit": "Psychology",
+    "url": "https://visionlab.harvard.edu/george",
+    "sha256": "8f94f89c7f58ef449512f2fb12901aeba7016274f64f2a95ca93969dbebfcb27",
+    "quote": "George A. Alvarez Professor of Psychology Fred Kavli Professor of Neuroscience Harvard University",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-four-hussain-1116/8f94f89c7f58ef449512f2fb12901aeba7016274f64f2a95ca93969dbebfcb27.bin"
+   }
+  ],
+  "why_home_department": "Current owned VisionLab page explicitly professor of Psychology and builds machine-vision models and more robust human-like neural vision systems. Original literally loaded JavaScript publication catalogue names Alvarez and independently matches thirteen exact native titles; source bytes retained, no fabricated rendered page. Actual2008 Harvard new-faculty PDF and current2026 points only; missing CV404 dates are not adopted. Neuroscience endowed chair is not promoted to a second department. Native DBLP12 supplies standing computing route; failed4/88 OpenAlex share flag remains visible."
+ },
+ "Ioannis S. Vlachos": {
+  "home_department": "Pathology",
+  "home_department_evidence": [
+   {
+    "name": "Ioannis S. Vlachos",
+    "unit": "Pathology",
+    "url": "https://research.bidmc.org/spatial-technologies-unit/people/ioannis-vlachos-phd",
+    "sha256": "d96be2d785b5291a59b319e5e0f293546c87811915074ae6bf876fb97601013e",
+    "quote": "Ioannis Vlachos, PhD Director of Spatial Technologies Unit Co - Director of Bioinformatics Unit Associate Professor of Pathology, Harvard Medical School",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-four-hussain-1116/d96be2d785b5291a59b319e5e0f293546c87811915074ae6bf876fb97601013e.bin"
+   }
+  ],
+  "why_home_department": "Current primary BIDMC individual record explicitly HMS associate professor of Pathology and credits original databases, models and algorithms as global resources. Literal exact Google Scholar identifier matches native person without requesting Scholar; exact native ORCID retained. Actual September9,2022 NIH article separately names HMS assistant professor of Pathology. Two observations, no synthetic hire or whole OpenAlex aggregate. Standing native DBLP9 route retained with failed4/99 share flag."
+ },
+ "Eugene I. Shakhnovich": {
+  "home_department": "Chemistry and Chemical Biology",
+  "home_department_evidence": [
+   {
+    "name": "Eugene I. Shakhnovich",
+    "unit": "Chemistry and Chemical Biology",
+    "url": "https://news.harvard.edu/gazette/story/2025/07/forecasting-the-next-variant/",
+    "sha256": "307e86a781c514fe1c530c29b7f3fdfdaf89bc800a5f7b0e8703ee6b3b39dca8",
+    "quote": "senior author Eugene Shakhnovich, Roy G. Gordon Professor of Chemistry.",
+    "observed": "20250703",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-four-hussain-1116/307e86a781c514fe1c530c29b7f3fdfdaf89bc800a5f7b0e8703ee6b3b39dca8.bin"
+   }
+  ],
+  "why_home_department": "Actual Harvard Gazette July7,2017 and July3,2025 faculty observations explicitly name Chemistry and Chemical Biology; literal2017 personal href exactly matches native DBLP homepage. Original VIRAL rapid-active-learning computational framework integrates biophysical model and AI, satisfying computing-method scope beyond biology-only research. Native DBLP6 standing route preserved with failed6/135 share flag. No2026 role from fetch date or early hire assumed; exact academic home added to stated-home allowlist only.",
+  "historical_home_review": {
+   "name": "Eugene I. Shakhnovich",
+   "departments": [
+    "Chemistry and Chemical Biology"
+   ],
+   "primary_home": "Chemistry and Chemical Biology",
+   "primary_home_status": "source_stated",
+   "academic_home_proof": {
+    "url": "https://news.harvard.edu/gazette/story/2025/07/forecasting-the-next-variant/",
+    "capture_url": null,
+    "observed": "2026-11-16T05:50:24",
+    "raw_path": "stores/harvard/metadata/f-four-hussain-1116/307e86a781c514fe1c530c29b7f3fdfdaf89bc800a5f7b0e8703ee6b3b39dca8.bin",
+    "raw_sha256": "307e86a781c514fe1c530c29b7f3fdfdaf89bc800a5f7b0e8703ee6b3b39dca8",
+    "format": "html",
+    "quotes": [
+     "a research team in the Department of Chemistry and Chemical Biology combined biophysics with artificial intelligence"
+    ]
+   },
+   "charter_home_units_additions": [
+    "Chemistry and Chemical Biology"
+   ],
+   "note": "Use actual named academic units. Historical news evidence is not a complete unit listing. Preserve both Golby academic appointments without choosing a primary home."
+  }
+ },
+ "Alexandra J. Golby": {
+  "home_department": "Neurosurgery",
+  "home_department_evidence": [
+   {
+    "name": "Alexandra J. Golby",
+    "unit": "Neurosurgery",
+    "url": "https://www.nousnav.org/team/alex-golby",
+    "sha256": "deceb61170ba8bff6f7fb0466e69112699c93a430baae8aa91699695b36e44a7",
+    "quote": "Alexandra Golby, M.D. Principal Investigator, NousNav Neurosurgeon, Brigham and Women's Hospital Professor, Harvard Medical School  Alexandra Golby, M.D. Principal Investigator, NousNav Neurosurgeon, Brigham and Women's Hospital Professor, Harvard Medical School  Dr. Alexandra Golby is a neurosurgeon, Director of Image Guided Neurosurgery, and Co-director of the Advanced Multi-Modality Image Guided Operating suite at Brigham and Women’s Hospital. Her academic appointment is as Professor of Neurosurgery and Professor of Radiology at Harvard Medical School.",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-four-hussain-1116/deceb61170ba8bff6f7fb0466e69112699c93a430baae8aa91699695b36e44a7.bin"
+   }
+  ],
+  "why_home_department": "Owned NousNav project explicitly names PI and HMS professor of both Neurosurgery and Radiology; actual April10,2019 programme independently gives both titles. Original low-cost neuronavigation project and original conference abstract specify custom software built on3DSlicer. Exact uncommon name, HMS/neurosurgery affiliation and same specific NousNav native publications bind candidate without invented ORCID. Both academic appointments retained with primary unresolved, current2026/actual2019 points, no hospital hire or refused biography body adopted.",
+  "primary_unresolved": [
+   "Neurosurgery",
+   "Radiology"
+  ],
+  "also_home_departments": [
+   "Radiology"
+  ]
+ },
+ "Aapo Nummenmaa": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://hst.mit.edu/news-events/calendar/hst-mempharvard-biophysics-phd-thesis-defense-tuesday-august-20-100-pm-natalie",
+    "sha256": "1f663f529411d185f8475cbbf5700785d9fcf2301bf418bb8f8c140c461b8be0",
+    "quote": "Aapo Nummenmaa, PhD Assistant Professor of Radiology, HMS",
+    "observedAt": "2024-08-20",
+    "fetchedAt": "2026-11-16T10:23:33+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "date_evidence": {
+     "url": "https://hst.mit.edu/news-events/calendar/hst-mempharvard-biophysics-phd-thesis-defense-tuesday-august-20-100-pm-natalie",
+     "sha256": "1f663f529411d185f8475cbbf5700785d9fcf2301bf418bb8f8c140c461b8be0",
+     "quote": "Date and time Tuesday, August 20, 2024 1:00pm - 3:00pm",
+     "observedAt": "2026-11-16",
+     "fetchedAt": "2026-11-16T10:23:33+00:00",
+     "kind": "actual_HST_event_date",
+     "format": "html",
+     "raw_path": "stores/harvard/metadata/aa-four-after-native8-1116/1f663f529411d185f8475cbbf5700785d9fcf2301bf418bb8f8c140c461b8be0.bin"
+    },
+    "raw_path": "stores/harvard/metadata/aa-four-after-native8-1116/1f663f529411d185f8475cbbf5700785d9fcf2301bf418bb8f8c140c461b8be0.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Pierre E. Dupont": {
+  "home_department": "Surgery",
+  "home_department_evidence": [
+   {
+    "url": "https://robotics.tch.harvard.edu/team/",
+    "sha256": "d78965c756b95990207c167e29bdb068f2135d8990d6af57e8a737115f432383",
+    "quote": "Director Pierre E. Dupont, Ph. D. Edward P. Marram Chair and Chief, Pediatric Cardiac Bioengineering, Boston Children’s Hospital, Professor of Surgery, Harvard Medical School",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T10:55:23+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-four-after-native8-1116/d78965c756b95990207c167e29bdb068f2135d8990d6af57e8a737115f432383.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Douglas N. Greve": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://www.zuehlke.com/en/case-studies/freesurfer-supports-collaborative-research-into-neurological-diseases",
+    "sha256": "2101199f0b2977c6a1fbf94676c560bcf97ec62f9e47debc2819342914cd9a01",
+    "quote": "Douglas Greve, Ph.D. Associate Professor of Radiology, Harvard Medical School",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T11:08:31+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-four-after-native8-1116/2101199f0b2977c6a1fbf94676c560bcf97ec62f9e47debc2819342914cd9a01.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Nazim Haouchine": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://spl.harvard.edu/haouchine",
+    "sha256": "0bd02effed4dea5c987eca4c28657bd339d72c92f720bf349032d0fc880212f8",
+    "quote": "Nazim Haouchine Assistant Professor of Radiology, Harvard Medical School",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T03:56:57+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-four-after-native8-1116/0bd02effed4dea5c987eca4c28657bd339d72c92f720bf349032d0fc880212f8.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Lawrence L. Wald": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "name": "Lawrence L. Wald",
+    "unit": "Radiology",
+    "url": "https://hst.mit.edu/faculty-research/faculty/wald-lawrence",
+    "sha256": "44bfde6e84ad12489b705089b524b9b01938576c35725149021bb3c9b4b9e1db",
+    "quote": "Lawrence L. Wald, PhD Title Professor, Radiology, Massachusetts General Hospital and Harvard Medical School",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-three-rank-lauren-1116/44bfde6e84ad12489b705089b524b9b01938576c35725149021bb3c9b4b9e1db.bin"
+   }
+  ],
+  "why_home_department": "Current Harvard-MIT HST explicitly professor of Radiology at MGH/HMS; actual magazine footer dates independent interview August2020, not July upload path or cover range. Exact authored TAMER record and complete author triple bind native identity; original targeted reconstruction optimization is computational method. Separate2020/current2026 professor observations, no older affiliation-only faculty date."
+ },
+ "David W. Bates": {
+  "home_department": "Medicine",
+  "home_department_evidence": [
+   {
+    "name": "David W. Bates",
+    "unit": "Medicine",
+    "url": "https://hsph.harvard.edu/profile/david-westfall-bates/",
+    "sha256": "795441bd0dd4190e3ee862476e04baeb12802990af193ad753e33330261343c3",
+    "quote": "David Westfall Bates Secondary Faculty David Westfall Bates Professor in the Department of Health Policy and Management Health Policy and Management, Harvard T.H. Chan School of Public Health Departments Department of Health Policy and Management Other Positions Professor of Medicine Medicine-Brigham and Women's Hospital, Harvard Medical School",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-three-rank-lauren-1116/795441bd0dd4190e3ee862476e04baeb12802990af193ad753e33330261343c3.bin"
+   },
+   {
+    "name": "David W. Bates",
+    "unit": "Health Policy and Management",
+    "url": "https://hsph.harvard.edu/profile/david-westfall-bates/",
+    "sha256": "795441bd0dd4190e3ee862476e04baeb12802990af193ad753e33330261343c3",
+    "quote": "David Westfall Bates Secondary Faculty David Westfall Bates Professor in the Department of Health Policy and Management Health Policy and Management, Harvard T.H. Chan School of Public Health Departments Department of Health Policy and Management Other Positions Professor of Medicine Medicine-Brigham and Women's Hospital, Harvard Medical School",
+    "observed": "20261116",
+    "ladder": true,
+    "raw_path": "stores/harvard/metadata/f-three-rank-lauren-1116/795441bd0dd4190e3ee862476e04baeb12802990af193ad753e33330261343c3.bin"
+   }
+  ],
+  "why_home_department": "Current HSPH primary faculty profile explicitly Health Policy and Management professor and HMS professor of Medicine; HSPH Secondary Faculty designation retained without inventing an explicit primary. Actual November11,2020 Harvard Gazette independently provides historical professor observation. Original ETHOS generative/tokenized zero-shot health-outcome modeling system, exact native authored work and same three individual clinical affiliations bind scientific person and computing scope. No current hospital chief role transferred from old biography.",
+  "primary_unresolved": [
+   "Medicine",
+   "Health Policy and Management"
+  ],
+  "also_home_departments": [
+   "Health Policy and Management"
+  ]
+ },
+ "Latanya Sweeney": {
+  "home_department": "Government",
+  "home_department_evidence": [
+   {
+    "name": "Latanya Sweeney",
+    "unit": "Government",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-116hhrg36795/pdf/CHRG-116hhrg36795.pdf",
+    "sha256": "7c2b022e4e53631e619f918d9b0ada8b561c2316a2b7747d94afe5aafb6d939a",
+    "quote": "TESTIMONY OF DR. LATANYA SWEENEY, PROFESSOR OF GOVERNMENT AND TECHNOLOGY IN RESIDENCE, DEPARTMENT OF GOVERNMENT, HARVARD UNIVERSITY, INSTITUTE OF QUANTITATIVE SOCIAL SCIENCE",
+    "observed": "20190625",
+    "ladder": false,
+    "appointment_rank": "research",
+    "raw_path": "stores/harvard/metadata/f-three-rank-lauren-1116/7c2b022e4e53631e619f918d9b0ada8b561c2316a2b7747d94afe5aafb6d939a.bin"
+   }
+  ],
+  "why_home_department": "Actual June25,2019 hearing explicitly professor of Government and Technology in Residence, Department of Government, HarvardUniversity. Personally viewed unchanged source PDF page83/printed79: June24,2019 letterhead independently states Director Data Privacy Lab and HarvardUniversity. Both original pixels and reproducible OCR are retained; an independent source reviewer also viewed the same page. Conservative research classification retains exact in-residence title and contemporary own-group basis. Own CV is last modifiedOctober2015 and is retained only as dated historical identity/stated-start evidence, not carried forward as2019/2026 status. Original MinGen/Datafly algorithms establish computing methods, beyond privacy policy as object. Standing native DBLP5 remains;3/6 school works cannot settle the share test. Government is explicit historical academic home; no2026 HKS appointment inferred.",
+  "historical_home_review": {
+   "name": "Latanya Sweeney",
+   "departments": [
+    "Government"
+   ],
+   "primary_home": "Government",
+   "academic_home_proof": {
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-116hhrg36795/pdf/CHRG-116hhrg36795.pdf",
+    "capture_url": null,
+    "observed": "2026-11-16T06:20:43",
+    "raw_path": "stores/harvard/metadata/f-three-rank-lauren-1116/7c2b022e4e53631e619f918d9b0ada8b561c2316a2b7747d94afe5aafb6d939a.bin",
+    "raw_sha256": "7c2b022e4e53631e619f918d9b0ada8b561c2316a2b7747d94afe5aafb6d939a",
+    "format": "pdf",
+    "quotes": [
+     "TESTIMONY OF DR. LATANYA SWEENEY, PROFESSOR OF GOVERNMENT AND TECHNOLOGY IN RESIDENCE, DEPARTMENT OF GOVERNMENT, HARVARD UNIVERSITY, INSTITUTE OF QUANTITATIVE SOCIAL SCIENCE"
+    ],
+    "pdf_text_mode": "raw"
+   },
+   "charter_home_units_additions": [
+    "Government"
+   ],
+   "note": "Actual historical Harvard Department of Government appointment, as named in the June 25, 2019 hearing; no current Kennedy School home is inferred."
+  }
+ },
+ "Shawn N. Murphy": {
+  "home_department": "Neurology",
+  "home_department_evidence": [
+   {
+    "url": "https://www.communityjameel.org/events/mit-mgb-ai-cures-conference-2024",
+    "sha256": "fde54d7f44aa3ca15d1690059d6099ce3b8032abc3b8b36e0608c786e2f51c8b",
+    "quote": "Shawn Murphy Professor of neurology and biomedical informatics, Harvard Medical School",
+    "observedAt": "2024-04-01",
+    "fetchedAt": "2026-11-16T11:28:15+00:00",
+    "kind": "primary_faculty_profile",
+    "format": "html",
+    "date_evidence": {
+     "url": "https://www.communityjameel.org/events/mit-mgb-ai-cures-conference-2024",
+     "sha256": "fde54d7f44aa3ca15d1690059d6099ce3b8032abc3b8b36e0608c786e2f51c8b",
+     "quote": "MIT-MGB AI Cures conference 2024 1 April 2024 07h30-15h00",
+     "observedAt": "2026-11-16",
+     "fetchedAt": "2026-11-16T11:28:15+00:00",
+     "kind": "actual_primary_event_date",
+     "format": "html",
+     "raw_path": "stores/harvard/metadata/aa-murphy-gholipour-1116/fde54d7f44aa3ca15d1690059d6099ce3b8032abc3b8b36e0608c786e2f51c8b.bin"
+    },
+    "raw_path": "stores/harvard/metadata/aa-murphy-gholipour-1116/fde54d7f44aa3ca15d1690059d6099ce3b8032abc3b8b36e0608c786e2f51c8b.bin"
+   }
+  ],
+  "why_home_department": "First-named Neurology is reporting home only. Actual dated source names both academic departments and no primary; preserve both under R-HOME01.",
+  "home_policy_review_required": false,
+  "primary_unresolved": [
+   "Neurology",
+   "Biomedical Informatics"
+  ],
+  "also_home_departments": [
+   "Biomedical Informatics"
+  ]
+ },
+ "Ali Gholipour": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "url": "https://www.fetalhealthfoundation.org/blogs/fetal-health-foundation-awards-50000-research-grant-study-life-threatening-fetal-lung-complication/",
+    "sha256": "849565de8afcf49bbb4fa1343bd7596e56a7d6f24ff563d9b13b43007612d165",
+    "quote": "According to Dr. Gholipour, an assistant professor in radiology at Harvard Medical School",
+    "observedAt": "2017",
+    "fetchedAt": "2026-11-16T12:07:31+00:00",
+    "kind": "explicit_Radiology_home",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-murphy-gholipour-1116/849565de8afcf49bbb4fa1343bd7596e56a7d6f24ff563d9b13b43007612d165.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false,
+  "historical_end_context": {
+   "url": "https://braindevelopment.org/assets/Team-B_sq5wn_.js",
+   "sha256": "c1eb784061ad664b8df995b058f9189855104d46ad6dc1b203e021888ff7ddcb",
+   "quote": "He was a research faculty at Boston Children’s Hospital and Harvard Medical School from 2010 to 2024 before joining UCI.",
+   "observedAt": "2026-11-16",
+   "fetchedAt": "2026-11-16T12:02:28+00:00",
+   "format": "javascript",
+   "text_mode": "raw_utf8",
+   "kind": "owned_literal_team_component_explicit_former_School_role",
+   "interpretation": "Explicit former School research-faculty episode2010–2024. No rank promotion or entire ladder interval is inferred from this generic role. Current institution is UCI.",
+   "raw_path": "stores/harvard/metadata/aa-murphy-gholipour-1116/c1eb784061ad664b8df995b058f9189855104d46ad6dc1b203e021888ff7ddcb.bin"
+  }
+ },
+ "Seth Neel": {
+  "home_department": "Harvard Business School",
+  "home_department_evidence": [
+   {
+    "url": "https://sethneel.com/wp-content/uploads/2024/09/academic_c_v___current_.pdf",
+    "sha256": "70ce918584a9ccc8beba4a553723bb3a7638b50c6ecb9594d66972e25dc37436",
+    "quote": "Seth Neel, Ph.D. # sethneel.ai@gmail.com  @sethinternet  sethneel.com Employment History 2021 – Present ] Assistant Professor of Business Administration at Harvard Business School (tenure- track), and Computer Science Aﬃliate, Harvard SEAS. Aﬃliate faculty in the Harvard Kempner Institute for the Study of A.I. and PI of the SAFR AI Lab.",
+    "observed": "2026-11-16",
+    "format": "pdf",
+    "pdf_text_mode": "raw",
+    "raw_path": "stores/harvard/metadata/seth-karol-1116/70ce918584a9ccc8beba4a553723bb3a7638b50c6ecb9594d66972e25dc37436.bin"
+   }
+  ],
+  "why_home_department": "Owned CV explicitly names the tenure-track Harvard Business School appointment; Computer Science SEAS is explicitly an affiliate appointment, retained outside the primary academic home.",
+  "periods": [
+   {
+    "start": "2021",
+    "end": "2026",
+    "datePrecision": "year",
+    "endDatePrecision": "year",
+    "why": "Owned current biography explicitly states Harvard assistant professor and SAFR AI PI from 2021–2026. Start and end are year precision; sabbatical in 2025–2026 is not an earlier faculty departure.",
+    "evidence": [
+     {
+      "url": "https://sethneel.com/",
+      "sha256": "3f1be2e73f55bb6739ad62f543af654ef472c59ee5778808335aa8753922060d",
+      "quote": "From 2021-2026 I was an assistant professor at Harvard and PI of the SAFR AI Lab, where our research focused on problems in data-centric AI and AI safety.",
+      "observed": "2026-11-16",
+      "raw_path": "stores/harvard/metadata/seth-karol-1116/3f1be2e73f55bb6739ad62f543af654ef472c59ee5778808335aa8753922060d.bin",
+      "format": "html",
+      "kind": "historical_appointment"
+     }
+    ]
+   }
+  ]
+ },
+ "Georges El Fakhri": {
+  "home_department": "Radiology",
+  "home_department_evidence": [
+   {
+    "name": "Georges El Fakhri",
+    "unit": "Radiology",
+    "url": "https://aapm.org/org/history/2017AwardsCeremonyProgram.pdf",
+    "sha256": "3a71ea1aee1c7ee5fd25e60719b9ee3cead91f82b452b1f02f0eee7973f45759",
+    "quote": "Georges El Fakhri is a Professor of Radiology at Harvard Medical School and the founding Director of the Gordon Center for Medical Imaging at Massachusetts General Hospital.",
+    "observed": "20170731",
+    "ladder": true,
+    "pdf_text_mode": "raw",
+    "pdf_text_args": [
+     "-raw"
+    ],
+    "pdf_text_extractor": "pdftotext",
+    "raw_path": "stores/harvard/metadata/el-fakhri-act-seth-website-1116/3a71ea1aee1c7ee5fd25e60719b9ee3cead91f82b452b1f02f0eee7973f45759.bin"
+   }
+  ],
+  "why_home_department": "Actual July31,2017 AAPM programme names HMS ProfessorRadiology and GordonCenter founding director. Rare exact name/nativeGordon affiliation and Yale literalORCID0000-0002-9005-6993 bind PID02/9372. Original ACT2022 full seven-author native title/sequence and individual HMS author footnote match authored arXiv manuscript, which explicitly introduces asymmetric UDA/SSL co-training, confidence-aware pseudo-label exchange and exponential MixUp decay/Algorithm1. Standing125DBLPrecord computing route retained;52/310 failedshare explicitly preserved, no waiver. Only2017 professor point; Yale2023 recruitment not a Harvard end date, and unversioned MGH stale title not current2026 faculty."
+ },
+ "Joseph C. Kvedar": {
+  "home_department": "Dermatology",
+  "home_department_evidence": [
+   {
+    "url": "https://hsph.harvard.edu/ala/faculty/joseph-c-kvedar/",
+    "sha256": "1996a2d8b4f87b9b79736353164337ce7e6e9a76812789c796f5131924701f12",
+    "quote": "Joseph C. Kvedar Associate Professor of Dermatology Harvard Medical School",
+    "observedAt": "2026-11-16",
+    "fetchedAt": "2026-11-16T11:46:28+00:00",
+    "kind": "legacy_official_AssociateProfessor_wording",
+    "format": "html",
+    "raw_path": "stores/harvard/metadata/aa-kvedar-1116/1996a2d8b4f87b9b79736353164337ce7e6e9a76812789c796f5131924701f12.bin"
+   }
+  ],
+  "why_home_department": "Actual source academic department/title, not HMS institution-only fallback. All supported departments are retained in the census.",
+  "home_policy_review_required": false
+ },
+ "Feng Zhu": {
+  "home_department": "Harvard Business School",
+  "home_department_evidence": [
+   {
+    "url": "https://web.archive.org/web/20250903125943id_/https://www.hbs.edu/faculty/Pages/profile.aspx?facId=14938",
+    "sha256": "ef18e18cf62c3bc40e1a9836ed984fe84fd93a6995e9bede801d5d55b9b51738",
+    "quote": "Feng Zhu MBA Class of 1958 Professor of Business Administration",
+    "observed": "20250903"
+   }
+  ],
+  "why_home_department": "Official Harvard profile identifies the home unit; no CS listing exists."
+ },
+ "Shane M. Greenstein": {
+  "home_department": "Harvard Business School",
+  "home_department_evidence": [
+   {
+    "url": "https://web.archive.org/web/20250903112913id_/https://www.hbs.edu/faculty/Pages/profile.aspx?facId=718917",
+    "sha256": "8717ca915143ecabf6d4c67cfe0efd1cb808d3ad33130f5f2e546a0a66250241",
+    "quote": "Shane M. Greenstein Martin Marshall Professor of Business Administration",
+    "observed": "20250903"
+   }
+  ],
+  "why_home_department": "Official Harvard profile identifies the home unit; no CS listing exists."
+ },
+ "Li Zhou": {
+  "home_department": "Harvard Medical School (Medicine)",
+  "home_department_evidence": [
+   {
+    "url": "https://connects.catalyst.harvard.edu/Profiles/display/Person/74124",
+    "sha256": "aceadb345c13a04724538f808a1de9a0f98beda7339edaca016cbf7c0986bbaf",
+    "quote": "Li Zhou, M.D., Ph.D. Title Professor of Medicine Institution Brigham and Women's Hospital Department Medicine",
+    "observed": "20261118"
+   }
+  ],
+  "why_home_department": "Official Harvard profile identifies the home unit; no CS listing exists."
  }
 }

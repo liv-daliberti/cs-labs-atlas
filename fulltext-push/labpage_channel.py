@@ -380,10 +380,14 @@ def captures_db(school):
 
 def iter_captures(school):
     db = sqlite3.connect(f"file:{captures_db(school)}?mode=ro", uri=True, timeout=60)
+    columns = {row[1] for row in db.execute('PRAGMA table_info(captures)')}
+    # A challenge can return HTTP 200 with the site's normal research text.
+    # Failed audit captures are access receipts, never bibliography sources.
+    no_error = " AND COALESCE(error, '') = ''" if 'error' in columns else ''
     hi = db.execute('SELECT MAX(id) FROM captures').fetchone()[0] or 0
     for lo in range(0, hi + 1, 200):
         for row in db.execute("SELECT url, final_url, capture_url, content_type, content FROM captures WHERE id >= ? AND id < ? AND status = 200 "
-                              "AND content IS NOT NULL", (lo, lo + 200)).fetchall():
+                              "AND content IS NOT NULL" + no_error, (lo, lo + 200)).fetchall():
             ct = (row[3] or '').lower()
             if 'json' in ct or 'pdf' in ct or 'image' in ct or '/cdx/' in (row[0] or ''):
                 continue
