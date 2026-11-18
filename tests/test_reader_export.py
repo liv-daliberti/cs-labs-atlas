@@ -37,10 +37,10 @@ def test_normalise_license(raw, want):
     assert R.normalise_license(raw) == want
 
 
-def test_local_hosting_preserves_licence_metadata_without_requiring_one():
+def test_host_set_is_exactly_the_redistributable_licences():
     assert R.HOST == {'cc-by', 'cc-by-sa', 'cc-by-nc', 'cc-by-nc-sa', 'cc-by-nd', 'cc-by-nc-nd', 'cc0', 'public-domain'}
     for lic in ('other-oa', 'tdm', 'arxiv-nonexclusive', None, 'implied-oa'):
-        assert R.decide((lic, 'asset') if lic else None, None, None)[0] == 'host'
+        assert R.decide((lic, 'asset') if lic else None, None, None)[0] == 'link'
     assert R.decide(('CC BY', 'asset'), None, None) == ('host', 'cc-by', 'asset')
 
 
@@ -60,7 +60,7 @@ def test_arxiv_licence_lookup_from_local_openalex_bodies():
     assert A.get('1111.1111') == ('cc-by', 'arxiv_openalex')
     assert A.get('2222.2222') == ('arxiv-nonexclusive', 'arxiv_default')    # seen with no licence = arXiv's non-exclusive licence
     assert A.get('3333.3333') == (None, 'arxiv_unknown')                    # not in any local record: unknown, so LINK
-    assert R.decide(None, '2222.2222', A)[0] == 'host' and R.decide(None, '1111.1111', A)[0] == 'host'
+    assert R.decide(None, '2222.2222', A)[0] == 'link' and R.decide(None, '1111.1111', A)[0] == 'host'
 
 
 def test_source_link_fallback_order():
@@ -127,13 +127,13 @@ def test_school_rows_decisions_and_exclusions(tmp_path, monkeypatch):
     assert (by['w_ccby']['decision'], by['w_ccby']['license'], by['w_ccby']['license_basis']) == ('host', 'cc-by', 'asset')
     assert by['w_ccby']['path'] == f'objects/{SHA(1)}.pdf' and by['w_ccby']['readable'] is True
     assert (by['w_arx_lic']['decision'], by['w_arx_lic']['license_basis']) == ('host', 'arxiv_openalex')
-    assert (by['w_arx_def']['decision'], by['w_arx_def']['license'], by['w_arx_def']['source_url']) == ('host', 'arxiv-nonexclusive', 'https://arxiv.org/abs/2222.2222')
-    assert by['w_arx_def']['path'] == f'objects/{SHA(3)}.pdf' and by['w_arx_def']['readable'] is True              # linked papers are readable too
-    assert (by['w_repo']['decision'], by['w_repo']['source_kind']) == ('host', 'repository')    # repository landing page over the bare PDF url
+    assert (by['w_arx_def']['decision'], by['w_arx_def']['license'], by['w_arx_def']['source_url']) == ('link', 'arxiv-nonexclusive', 'https://arxiv.org/abs/2222.2222')
+    assert by['w_arx_def']['path'] is None and by['w_arx_def']['readable'] is True              # linked papers are readable too
+    assert (by['w_repo']['decision'], by['w_repo']['source_kind']) == ('link', 'repository')    # repository landing page over the bare PDF url
     assert by['w_repo']['source_url'] == 'https://dspace.mit.edu/handle/1721/6'
-    assert (by['w_none']['decision'], by['w_none']['license'], by['w_none']['source_url'], by['w_none']['source_kind']) == ('host', None, 'https://pub.example.com/seven.pdf', 'publisher')
+    assert (by['w_none']['decision'], by['w_none']['license'], by['w_none']['source_url'], by['w_none']['source_kind']) == ('link', None, 'https://pub.example.com/seven.pdf', 'publisher')
     assert (by['w_cand']['decision'], by['w_cand']['license'], by['w_cand']['license_basis']) == ('host', 'cc-by-nc', 'candidate')
-    assert stats['host'] == 6 and stats['link'] == 0 and stats['not_readable'] == 2 and stats['lab_papers'] == 8
+    assert stats['host'] == 3 and stats['link'] == 3 and stats['not_readable'] == 2 and stats['lab_papers'] == 8
 
 
 def test_hosted_not_permitted_is_strict(tmp_path, monkeypatch):
@@ -145,7 +145,7 @@ def test_hosted_not_permitted_is_strict(tmp_path, monkeypatch):
     files = {s: dict(bytes=1000, path=f'papers/{s}.pdf') for s in hosted}
     rows = {r[0]: r for r in R.hosted_not_permitted(files, {'mit': chk})}
     assert SHA(1) not in rows                                       # cc-by: permitted
-    assert SHA(3) not in rows
+    assert rows[SHA(3)][3] == 'license' and rows[SHA(3)][4] == 'arxiv-nonexclusive'
     assert rows[SHA(5)][3] == 'no_confirmed_copy'                  # quarantined
     assert rows[SHA(99)][3] == 'not_in_stores'
 
@@ -164,7 +164,7 @@ def test_full_text_xml_copy_takes_its_file_from_the_asset_row(tmp_path):
     assert R.copy_for('w', w, a, [], R.ArxivLicenses(),store=tmp_path) is None
 
 
-def test_verified_local_copy_does_not_require_a_source_link(tmp_path, monkeypatch):
+def test_link_without_a_source_url_is_not_readable(tmp_path, monkeypatch):
     papers = make_store(tmp_path, monkeypatch)
     db = sqlite3.connect(tmp_path / 'stores' / 'mit' / 'catalog.sqlite')
     db.execute("update works set doi=null, download_url='ftp://nowhere/x.pdf' where id='w_none'")
@@ -172,7 +172,7 @@ def test_verified_local_copy_does_not_require_a_source_link(tmp_path, monkeypatc
     db.commit()
     papers[6]['doi'] = None
     recs, stats, _, _ = R.school_rows('mit', papers, R.ArxivLicenses())
-    assert 'w_none' in {r['key'] for r in recs} and stats['link_without_source_url'] == 0
+    assert 'w_none' not in {r['key'] for r in recs} and stats['link_without_source_url'] == 1
     assert all(r['source_url'] or r['decision'] == 'host' for r in recs)
 
 
@@ -265,10 +265,10 @@ def test_site_sync_lists_what_to_unpublish_and_upload(tmp_path, monkeypatch):
     out = tmp_path / 'o'
     summ = R.write_outputs({'mit': recs}, {'mit': stats}, notp, out, '2026-11-01T00:00:00Z', None, requests={'mit': reqs}, site_files=site)
     rows = {l.split('\t')[0]: l.split('\t') for l in (out / 'unpublish.tsv').read_text().splitlines()[1:]}
-    assert SHA(1) not in rows and SHA(3) not in rows and rows[SHA(5)][3] == 'no_confirmed_copy' and rows[SHA(77)][3] == 'not_in_stores'
+    assert SHA(1) not in rows and rows[SHA(3)][3] == 'license' and rows[SHA(5)][3] == 'no_confirmed_copy' and rows[SHA(77)][3] == 'not_in_stores'
     up = {l.split('\t')[0] for l in (out / 'upload.tsv').read_text().splitlines()[1:]}
     assert SHA(1) not in up and SHA(2) in up                       # w_arx_lic's cc-by arXiv copy is to be added, the kept one is already there
-    assert summ['site_sync']['unpublish'] == 2 and summ['site_sync']['keep'] == 2
+    assert summ['site_sync']['unpublish'] == 3 and summ['site_sync']['keep'] == 1
 
 
 def test_compact_site_admission_preserves_xml_and_rejects_disagreement(tmp_path):

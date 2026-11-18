@@ -28,3 +28,9 @@ the final hosting adapter needs the provider's deployment interface.
 See the site runbook for credentials, checks, resuming uploads and live
 verification. Never claim an export or deployment merely because a release
 was frozen or a handoff written.
+
+## Hosting rule (D-0012, owner 2026-11-18, re-confirming 2026-11-01)
+The site hosts only Creative Commons (CC*) and public-domain full texts. Every other confirmed local copy is shown as a link to its source with a
+local-copy marker (`stored_copy`, `link_basis: confirmed_copy`). `tools/reader_export.py` `decide()` enforces it from the licence (asset, candidate,
+or arXiv/OpenAlex metadata); an unknown licence is a link. Licence and basis stay in every row as metadata. The 2026-11-17 "host every confirmed copy"
+behaviour (commit b780330a) is superseded. An explicitly reviewed independent library snapshot (`--library-snapshot`) is a separate owner-admitted path.
