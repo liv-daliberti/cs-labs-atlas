@@ -188,6 +188,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `person-website-review.json` | reviewed | `hierarchy/{school}/person-website-review.json` | `hierarchy/{school}/reviewed/person-website-review.json` | - | <10MB |
 | `lab-websites-sweep.json` | reviewed | `hierarchy/{school}/lab-websites-sweep.json` | `hierarchy/{school}/reviewed/lab-websites-sweep.json` | - | <10MB |
 | `labpage-audit.jsonl.gz` | derived | `hierarchy/{school}/labpage-audit.jsonl.gz` | `hierarchy/{school}/derived/labpage-audit.jsonl.gz` | - | <100MB |
+| `labpage-audit-errors.json` | derived | `hierarchy/{school}/labpage-audit-errors.json` | `hierarchy/{school}/derived/labpage-audit-errors.json` | - | <1MB |
 | `labpage-audit-discovery.jsonl` | raw | `hierarchy/{school}/labpage-audit-discovery.jsonl` | `hierarchy/{school}/raw/labpage-audit-discovery.jsonl` | - | <100MB |
 | `labpage-audit-discovery.done.json` | raw | `hierarchy/{school}/labpage-audit-discovery.done.json` | `hierarchy/{school}/raw/labpage-audit-discovery.done.json` | - | <1MB |
 | `labpage-audit-history.jsonl` | raw | `hierarchy/{school}/labpage-audit-history.jsonl` | `hierarchy/{school}/raw/labpage-audit-history.jsonl` | - | <10MB |

@@ -386,6 +386,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('labpage-pubs-report.json', 'derived', 'hierarchy/{school}/labpage-pubs-report.json', 'hierarchy/{school}/derived/labpage-pubs-report.json'),
     ('labpage-audit-summary-school.json', 'derived', 'hierarchy/{school}/labpage-audit-summary-school.json', 'hierarchy/{school}/derived/labpage-audit-summary-school.json'),
     ('labpage-audit.jsonl.gz', 'derived', 'hierarchy/{school}/labpage-audit.jsonl.gz', 'hierarchy/{school}/derived/labpage-audit.jsonl.gz'),
+    ('labpage-audit-errors.json', 'derived', 'hierarchy/{school}/labpage-audit-errors.json', 'hierarchy/{school}/derived/labpage-audit-errors.json'),   # V4a: PIs whose audit raised (written only when there are any)
     ('labpage-audit-discovery.jsonl', 'raw', 'hierarchy/{school}/labpage-audit-discovery.jsonl', 'hierarchy/{school}/raw/labpage-audit-discovery.jsonl'),
     ('labpage-audit-discovery.done.json', 'raw', 'hierarchy/{school}/labpage-audit-discovery.done.json', 'hierarchy/{school}/raw/labpage-audit-discovery.done.json'),
     ('labpage-audit-history.jsonl', 'raw', 'hierarchy/{school}/labpage-audit-history.jsonl', 'hierarchy/{school}/raw/labpage-audit-history.jsonl'),   # V4a: the students track's Wayback history; labpage_audit.read_history / discovery_marker read it (absent file = no history)
