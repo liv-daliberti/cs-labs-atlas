@@ -50,9 +50,16 @@ listing_continuity = false
 code = "SCSE"
 name = "School of Computer Science and Engineering"
 unit = "University of Electronic Science and Technology of China"
-title_match = '教授|副教授|讲师|Professor|Lecturer'
+title_match = '教授|副教授|讲师|正高|副高|中级及以下|Professor|Lecturer'
 coverage = "full"
 url = "https://faculty.uestc.edu.cn/xylb.jsp?urltype=tsites.CollegeTeacherList&wbtreeid=1021&st=0&id=2031&lang=zh_CN"
+  [[departments.listings]]
+  slot = "SCSE school roster (title bands)"
+  kind = "main"
+  url = "https://www.scse.uestc.edu.cn/sz.jsp?urltype=tree.TreeTempUrl&wbtreeid=1081"
+  format = "uestc_scse_bands"
+  from = "20160101"
+  to = "20201231"
   [[departments.listings]]
   slot = "SCSE university faculty directory"
   kind = "main"
