@@ -3499,7 +3499,36 @@
    ],
    "orcid": [
     "0000-0003-0420-2235"
-   ]
+   ],
+   "dblp": [
+    "https://dblp.org/pid/80/6881"
+   ],
+   "why_dblp": "2026-11-18 (claude-csr-1118, owner-approved namesake review): the builder's exact-name rule had bound pid 212/0844 (one 2016 record on load disaggregation in rural off-grid solar, no affiliation) which is a namesake; DBLP person 'Rajeev J. Ram' (80/6881) carries the affiliation note 'Massachusetts Institute of Technology, Cambridge, USA' and 23 records on optical transceivers in CMOS, matching the PI (photonics, EECS), the CSRankings pid for MIT, and the reviewed OpenAlex author.",
+   "dblp_identity_review": {
+    "pi": "Rajeev Ram",
+    "school": "mit",
+    "dblp_pids": [
+     "80/6881"
+    ],
+    "dblp_names": [
+     "Rajeev J. Ram"
+    ],
+    "route": "namesake_correction",
+    "evidence": [
+     {
+      "pid": "212/0844",
+      "verdict": "namesake",
+      "titles": 1
+     },
+     {
+      "pid": "80/6881",
+      "note": "Massachusetts Institute of Technology, Cambridge, USA",
+      "titles": 23
+     }
+    ],
+    "confidence": "high",
+    "source": "/n/fs/resemble/homogenizing-science/scratch/csr-1118-mit/pids.json and titles.json (DBLP dump dblp-2026-09-01 streamed on Slurm 32427333)"
+   }
   },
   "Luca Daniel": {
    "pi_basis": {
@@ -3934,7 +3963,35 @@
      "observed": "2019-03-01",
      "source": "OpenAlex sweep 2026-10-29 (hierarchy/mit/openalex-sweep.sqlite)"
     }
-   ]
+   ],
+   "dblp": [
+    "https://dblp.org/pid/66/698"
+   ],
+   "why_dblp": "2026-11-18 (claude-csr-1118, owner-approved namesake review): the exact-name rule had bound pid 272/9185 (two identical 2020 records on handwriting recognition, no affiliation) which is a namesake; DBLP person 'Jae S. Lim' (66/698), the CSRankings pid for MIT, has 83 records including 2017-2019 image/video-coding papers that fit this RLE professor (DSpace@MIT advisor string 'Jae S. Lim.'; reviewed OpenAlex author is Jae S. Lim at RLE).",
+   "dblp_identity_review": {
+    "pi": "Jae Lim",
+    "school": "mit",
+    "dblp_pids": [
+     "66/698"
+    ],
+    "dblp_names": [
+     "Jae S. Lim"
+    ],
+    "route": "namesake_correction",
+    "evidence": [
+     {
+      "pid": "272/9185",
+      "verdict": "namesake",
+      "titles": 2
+     },
+     {
+      "pid": "66/698",
+      "titles": 83
+     }
+    ],
+    "confidence": "high",
+    "source": "/n/fs/resemble/homogenizing-science/scratch/csr-1118-mit/pids.json and titles.json (DBLP dump dblp-2026-09-01 streamed on Slurm 32427333)"
+   }
   },
   "Cynthia Rudin": {
    "periods": [
@@ -5143,7 +5200,38 @@
     2024,
     2025
    ],
-   "why_unproven": "Searched 2026-11-11 (tools/periods_school.py gaps mit, scratch stage3-released-1110 gaps-mit-r1..r4 logs): for each gap year [2022, 2023, 2024, 2025] the Wayback CDX was queried for the PI's own page and the 6 unit pages/listing URLs tried (CSAIL/EECS profile, people listing, role/faculty and the CSAIL directory API); no archived 200 capture of those years names the PI with a ladder professor title, so the years prove nothing (R-PAP-01)."
+   "why_unproven": "Searched 2026-11-11 (tools/periods_school.py gaps mit, scratch stage3-released-1110 gaps-mit-r1..r4 logs): for each gap year [2022, 2023, 2024, 2025] the Wayback CDX was queried for the PI's own page and the 6 unit pages/listing URLs tried (CSAIL/EECS profile, people listing, role/faculty and the CSAIL directory API); no archived 200 capture of those years names the PI with a ladder professor title, so the years prove nothing (R-PAP-01).",
+   "dblp": [
+    "https://dblp.org/pid/57/1913",
+    "https://dblp.org/pid/07/121"
+   ],
+   "why_dblp": "2026-11-18 (claude-csr-1118, owner-approved namesake review): DBLP splits this person in two records: 'Andrew W. Lo' (57/1913, 25 records through 2026) and 'Andrew Lo' (07/121, 4 records, the CSRankings pid); both list the same 2025 paper 'AutoCT: Automating Interpretable Clinical Trial Prediction with LLM Agents' (Lo's Laboratory for Financial Engineering), so they are one person; both ids are bound.",
+   "dblp_identity_review": {
+    "pi": "Andrew Lo",
+    "school": "mit",
+    "dblp_pids": [
+     "57/1913",
+     "07/121"
+    ],
+    "dblp_names": [
+     "Andrew W. Lo",
+     "Andrew Lo"
+    ],
+    "route": "namesake_correction",
+    "evidence": [
+     {
+      "pid": "57/1913",
+      "titles": 25
+     },
+     {
+      "pid": "07/121",
+      "titles": 4,
+      "shared_title": "AutoCT: Automating Interpretable Clinical Trial Prediction with LLM Agents"
+     }
+    ],
+    "confidence": "high",
+    "source": "/n/fs/resemble/homogenizing-science/scratch/csr-1118-mit/pids.json and titles.json (DBLP dump dblp-2026-09-01 streamed on Slurm 32427333)"
+   }
   },
   "Ankur Moitra": {
    "periods": [
