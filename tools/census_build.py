@@ -153,7 +153,7 @@ def reviewed_source_names(key, rows, doc):
         raise ValueError('source-name review school mismatch')
     import listing_formats as LF
     from listing_rows import quote_of
-    from school_web import body
+    from school_web import body, wb
     def pointer(url):
         return profile_key(url) or url or None
     def row_key(url, sha, listed, profile, quote):
@@ -171,7 +171,7 @@ def reviewed_source_names(key, rows, doc):
                 saved = c.execute('select http_status,sha256,raw_zlib,text from captures where capture_url=?', (ev['url'],)).fetchone()
                 if not saved or saved[0] != 200 or not saved[2] or saved[1] != ev['sha256'] or hashlib.sha256(zlib.decompress(saved[2])).hexdigest() != ev['sha256']:
                     raise ValueError('source-name evidence hash mismatch: ' + ev['url'])
-                html = body(saved[2]).decode('utf-8', 'replace')
+                html = wb.text(body(saved[2]))
                 _, entries = LF.parse(html, ev['format'])
                 flat = ' '.join((saved[3] or '').split())
                 matches = [e for e in entries if e['name_listed'] == ev['name_listed']
@@ -214,7 +214,7 @@ def reviewed_profile_names(key, rows):
     import listing_formats as LF
     from bs4 import BeautifulSoup
     from listing_rows import quote_of
-    from school_web import body
+    from school_web import body, wb
     mapping, reviewed_spellings = {}, set()
     db = P.data('listings-captures.sqlite', key)
     with sqlite3.connect(db.resolve().as_uri() + '?mode=ro', uri=True) as c:
@@ -234,7 +234,7 @@ def reviewed_profile_names(key, rows):
                 saved = c.execute('select http_status,sha256,raw_zlib,text from captures where capture_url=?', (ev['url'],)).fetchone()
                 if not saved or saved[0] != 200 or not saved[2] or saved[1] != ev['sha256'] or hashlib.sha256(zlib.decompress(saved[2])).hexdigest() != ev['sha256']:
                     raise ValueError('profile-name evidence hash mismatch: ' + ev['url'])
-                html = body(saved[2]).decode('utf-8', 'replace')
+                html = wb.text(body(saved[2]))
                 _, entries = LF.parse(html, ev['format'])
                 matches = [e for e in entries if profile_key(e.get('profile')) == profile and e['name_listed'] == ev['name_listed']]
                 flat = ' '.join((saved[3] or '').split())

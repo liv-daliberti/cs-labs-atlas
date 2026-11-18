@@ -24,7 +24,7 @@ import listing_formats as LF  # noqa: E402
 import school_config as S  # noqa: E402
 from listing_rows import quote_of  # noqa: E402
 from pihier.names import literal_cjk_name  # noqa: E402
-from school_web import body  # noqa: E402
+from school_web import body, wb  # noqa: E402
 
 RULE = ('same normalized Han name in the one department listing; no capture lists the name twice; no two consecutive covered listing years between the '
         "first and last observation without it. Otherwise split by source profile ('<name> [<profile tail>]'), a link-less row attached to the nearest listing year.")
@@ -106,7 +106,7 @@ def main(key, write):
     def html_of(url):
         if url not in cache:
             row = c.execute('select http_status,sha256,raw_zlib from captures where capture_url=?', (url,)).fetchone()
-            cache[url] = (row, body(row[2]).decode('utf-8', 'replace') if row and row[2] else '')
+            cache[url] = (row, wb.text(body(row[2])) if row and row[2] else '')
         return cache[url]
 
     for name, rs in sorted(todo.items()):
