@@ -27,8 +27,8 @@
   "RI"
  ],
  "counts": {
-  "not_faculty_listed": 700,
-  "accepted": 56,
+  "not_faculty_listed": 698,
+  "accepted": 60,
   "research_or_other_rank": 8,
   "faculty_not_computing": 8,
   "census_alias": 1
@@ -9763,52 +9763,6 @@
       "url": "https://dblp.org/pid/97/6316-1",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Hong Kong University of Science and Technology, Hong Kong"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "BM",
-    "CBE",
-    "CHEM",
-    "CIVL",
-    "ECE",
-    "EMIA",
-    "IAS",
-    "IEDA",
-    "ISD",
-    "ISOM",
-    "LIFS",
-    "MAE",
-    "MATH",
-    "PHYS",
-    "RI"
-   ]
-  },
-  {
-   "name": "Lionel M. Ni",
-   "aliases": [
-    "Lionel Ming-shuan Ni"
-   ],
-   "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BM, CBE, CHEM, CIVL, ECE, EMIA, IAS, IEDA, ISD, ISOM, LIFS, MAE, MATH, PHYS, RI) names them with a professor title",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/n/LionelMNi"
-    ],
-    "dblp_window": 87,
-    "affiliation_notes": [
-     "University of Macau, China",
-     "Hong Kong University of Science and Technology",
-     "Michigan State University, East Lansing, USA"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/n/LionelMNi",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Macau, China"
      }
     ]
    },
@@ -27813,51 +27767,6 @@
    ]
   },
   {
-   "name": "Yuan Xie",
-   "aliases": [
-    "Xie, Yuan"
-   ],
-   "source": "openalex_rule",
-   "decision": "not_faculty_listed",
-   "reason": "OPEN ITEM, NOT A CLAIM (hold, coordinator rule 2026-11-10): no source-bound identity is established for the person listed in the rendered/stored directory, so this candidate is not admitted; the rendered ECE directory lists Yuan XIE (Chair Professor); OpenAlex author A5100385336 has 44 school works (2023-2026, share .75, computer architecture and accelerators) but no DBLP person naming HKUST is in the persons file, so no source-bound DBLP identity exists yet; admit after an identity binding (title-only page route) is reviewed",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [
-    {
-     "unit": "ECE",
-     "url": "https://ece.hkust.edu.hk/people_list",
-     "sha256": "92f89da4db8da335f8298ee89b24e29da2c3cfa10353de709e7dd5c27644e71a",
-     "observed": "20261110",
-     "quote": "Yuan XIE 謝 源 Fang Professor",
-     "ladder": true,
-     "hand": true
-    }
-   ],
-   "years_listed": [],
-   "units_searched": [
-    "BM",
-    "CBE",
-    "CHEM",
-    "CIVL",
-    "ECE",
-    "EMIA",
-    "IAS",
-    "IEDA",
-    "ISD",
-    "ISOM",
-    "LIFS",
-    "MAE",
-    "MATH",
-    "PHYS",
-    "RI"
-   ],
-   "hold": true
-  },
-  {
    "name": "Xianghao Yu",
    "aliases": [
     "Yu, Xianghao"
@@ -36608,6 +36517,193 @@
    },
    "faculty_evidence": [],
    "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Zaixi Zhang",
+   "aliases": [],
+   "source": "coverage_audit",
+   "decision": "accepted",
+   "reason": "PI fill 2026-11-18 (coordinator follow-up): CSE joint-appointments listing (stored capture sha256 85d36d4f..., 2026) names Assistant Professor Primary Appointment: CBE; CBE Assistant Professor (CBE news 'Welcome Prof. Zaixi ZHANG'); CS PhD (USTC), Princeton postdoc; AI for science / AI agents; identity anchor: own homepage; no OpenAlex school works yet (new 2025-26 hire)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "openalex": [],
+    "evidence": []
+   },
+   "faculty_evidence": [
+    {
+     "unit": "CSE",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/?d=textview&c=joint_appointments",
+     "sha256": "85d36d4f6f5bf50e1facac396398c23595185da38df93decc5238ef1f441a987",
+     "observed": "20261110",
+     "quote": "Zaixi ZHANG 張載熙 | Assistant Professor Primary Appointment: CBE",
+     "ladder": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Zijie Zhou",
+   "aliases": [],
+   "source": "coverage_audit",
+   "decision": "accepted",
+   "reason": "PI fill 2026-11-18 (coordinator follow-up): CSE joint-appointments listing (stored capture sha256 85d36d4f..., 2026) names Assistant Professor Primary Appointment: IEDA; IEDA Assistant Professor from Aug 2025; research: LLM inference scheduling (online scheduling with KV-cache constraints), computing as object; BORDERLINE: 6 school works, all Operations Research venues, 0 DBLP-indexed; identity anchor: own homepage + OpenAlex A5048109709 (ORCID 0000-0002-4273-9474)",
+   "cs_basis": {
+    "dblp": [],
+    "dblp_window": 0,
+    "openalex": [
+     "https://openalex.org/A5048109709"
+    ],
+    "evidence": []
+   },
+   "faculty_evidence": [
+    {
+     "unit": "CSE",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/?d=textview&c=joint_appointments",
+     "sha256": "85d36d4f6f5bf50e1facac396398c23595185da38df93decc5238ef1f441a987",
+     "observed": "20261110",
+     "quote": "Zijie ZHOU 周子杰 | Assistant Professor Primary Appointment: IEDA",
+     "ladder": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Lionel M. Ni",
+   "aliases": [
+    "Lionel Ming-shuan Ni"
+   ],
+   "source": "coverage_audit",
+   "decision": "accepted",
+   "reason": "PI fill 2026-11-18 (coordinator follow-up): CSE joint-appointments listing (stored capture sha256 85d36d4f..., 2026) names Chair Professor Primary Appointment: DSA; CSE joint-appointments listing 2026 (HK campus listing); primary appointment DSA (HKUST(GZ) thrust); DBLP n/LionelMNi, OpenAlex A5021357065 with ORCID 0000-0002-2325-6215 (24 school works, 20 DBLP-indexed)",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/n/LionelMNi"
+    ],
+    "dblp_window": 20,
+    "openalex": [
+     "https://openalex.org/A5021357065"
+    ],
+    "evidence": []
+   },
+   "faculty_evidence": [
+    {
+     "unit": "CSE",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/?d=textview&c=joint_appointments",
+     "sha256": "85d36d4f6f5bf50e1facac396398c23595185da38df93decc5238ef1f441a987",
+     "observed": "20261110",
+     "quote": "Lionel M. NI 倪明選 | Chair Professor Primary Appointment: DSA",
+     "ladder": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Yuan Xie",
+   "aliases": [
+    "Xie, Yuan",
+    "Yuan Xie 0001"
+   ],
+   "source": "coverage_audit",
+   "decision": "accepted",
+   "reason": "PI fill 2026-11-18 (coordinator follow-up): CSE joint-appointments listing (stored capture sha256 85d36d4f..., 2026) names Chair Professor Primary Appointment: ECE; replaces the 2026-11-10 hold: CSE joint listing 2026 plus the rendered ECE directory name Yuan XIE (Chair Professor); identity (owner D-0005: CSRankings entry + unique full-name match in the official roster, medium confidence, in the 50-row audit): CSRankings DBLP x/YuanXie with the school profile seng.hkust.edu.hk/about/people/faculty/yuan-xie, OpenAlex A5100385336 carrying ORCID 0000-0003-2093-1788 (44 school works 2023-2026, computer architecture)",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/x/YuanXie"
+    ],
+    "dblp_window": 33,
+    "openalex": [
+     "https://openalex.org/A5100385336"
+    ],
+    "evidence": []
+   },
+   "faculty_evidence": [
+    {
+     "unit": "CSE",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/?d=textview&c=joint_appointments",
+     "sha256": "85d36d4f6f5bf50e1facac396398c23595185da38df93decc5238ef1f441a987",
+     "observed": "20261110",
+     "quote": "Yuan XIE 謝源 | Chair Professor Primary Appointment: ECE",
+     "ladder": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BM",
     "CBE",
