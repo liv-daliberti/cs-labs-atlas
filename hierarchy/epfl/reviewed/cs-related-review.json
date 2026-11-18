@@ -14,7 +14,10 @@
  "mixed_author_exclusions": [
   {
    "author": "https://openalex.org/A5015798012",
-   "candidate_names": ["Daniel Thalmann", "Nadia Magnenat Thalmann"],
+   "candidate_names": [
+    "Daniel Thalmann",
+    "Nadia Magnenat Thalmann"
+   ],
    "reason": "This OpenAlex author candidate mixes the names of two distinct coauthors. Exclude this author ID from person-identity admission and duplicate-display-name coverage; the separately reviewed Daniel Thalmann candidate A5005709068 remains non-PI.",
    "evidence": [
     {
@@ -6101,6 +6104,22 @@
       "https://orcid.org/0000-0003-1020-494X"
      ]
     ]
+   ]
+  },
+  {
+   "name": "Vivek Subramanian",
+   "dblp": "https://dblp.org/pid/97/3084",
+   "decision": "faculty_not_computing",
+   "reason": "faculty_not_computing",
+   "summary": "Professeur ordinaire (full professor), Laboratoire des technologies de fabrication avancees (LAFT, STI/IEM, Neuchatel), directs EPFL PhD theses; he is faculty with a lab and advisees, but the research object is printed/flexible electronics and advanced fabrication, and computing is neither its object nor its method (computing test, D-0009: the share test is only a screen). CSRankings lists him under EPFL; that listing does not make the work computing.",
+   "evidence": [
+    {
+     "url": "https://people.epfl.ch/vivek.subramanian",
+     "sha256": "2a01df1aa7e322b0b82282a0d389c826fe792a9e8dd90e9e8c6c0f74efa52090",
+     "quote": "Professeur ordinaire, Laboratoire des technologies de fabrication avancees EPFL STI IMT LAFT",
+     "kind": "profile_position",
+     "observed": "2026-11-18"
+    }
    ]
   }
  ],
