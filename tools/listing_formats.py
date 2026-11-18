@@ -396,6 +396,62 @@ def uestc_college_teachers(h):
     return out
 
 
+def pku_cs_cards(h):
+    """PKU School of Computer Science 教研系列 (2023-09- cs.pku.edu.cn/szdw/jyxl/amz/ALL.htm): `ul.list15 li` cards, `h3 big` the name, `p` lines
+    `职称：...` (title), `研究所：...` (institute). The ALL page lists every name on one page."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for li in soup.select('ul.list15 li'):
+        big = li.select_one('h3 big')
+        if not big:
+            continue
+        a = li.find('a', href=True)
+        name = re.sub(r'[\s\u3000]+', '', big.get_text())
+        fields = {}
+        for p in li.select('p'):
+            m = re.match(r'\s*(职称|研究所)[：:]\s*(.+)', p.get_text(' ', strip=True))
+            if m:
+                fields[m.group(1)] = ' '.join(m.group(2).split())
+        if name and fields.get('职称'):
+            out.append(dict(name_listed=name, quote_name=' '.join(big.get_text().split()), titles=[fields['职称']], profile=a['href'] if a else None,
+                            homepage=None, division=fields.get('研究所')))
+    return out
+
+
+def pku_cs_namelist(h):
+    """PKU Department of Computer Science and Technology 教研系列 (2020-2023 cs.pku.edu.cn/szdw1/jyxl.htm and its letter pages): `ul#teachernamelist li`
+    with `h4 a` the name, then two `p` lines, the title and the institute."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for li in soup.select('ul#teachernamelist li'):
+        a = li.select_one('h4 a')
+        ps = [' '.join(p.get_text(' ', strip=True).split()) for p in li.select('.txt p')]
+        if not a or not ps:
+            continue
+        name = re.sub(r'[\s\u3000]+', '', a.get_text())
+        if name:
+            out.append(dict(name_listed=name, quote_name=' '.join(a.get_text().split()), titles=[ps[0]], profile=a['href'], homepage=None,
+                            division=ps[1] if len(ps) > 1 else None))
+    return out
+
+
+def uestc_scse_bands(h):
+    """UESTC School of Computer Science and Engineering 师资介绍 (www.scse.uestc.edu.cn/sz.jsp?urltype=tree.TreeTempUrl&wbtreeid=1081, 2019-2020): `div.list`
+    blocks, `.listHead span` the professional-title band printed (正高, 副高, 中级及以下) and `.listBody a` one link per teacher. The band is the title as printed."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for blk in soup.select('div.list'):
+        head = blk.select_one('.listHead span')
+        band = ' '.join(head.get_text(' ', strip=True).split()) if head else ''
+        if not band:
+            continue
+        for a in blk.select('.listBody a[href]'):
+            name = re.sub(r'[\s\u3000]+', '', a.get_text())
+            if name:
+                out.append(dict(name_listed=name, quote_name=' '.join(a.get_text().split()), titles=[band], profile=a['href'], homepage=None, division=None))
+    return out
+
+
 def hit_cs_current_table(h):
     """HIT Faculty of Computing roster: only its explicitly headed CS school."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -2445,6 +2501,9 @@ FORMATS = {
     'utaustin_cs_people': (utaustin_cs_people, re.compile(r'views-field-field-contact-faculty-title')),
     'utaustin_cs_faculty_legacy': (utaustin_cs_faculty_legacy, re.compile(r'class="prof-name"')),
     'ustc_cs_cards': (ustc_cs_cards, re.compile(r'class="col_news_list listcon"')),
+    'pku_cs_cards': (pku_cs_cards, re.compile(r'class="list15 list15s')),
+    'pku_cs_namelist': (pku_cs_namelist, re.compile(r'id="teachernamelist"')),
+    'uestc_scse_bands': (uestc_scse_bands, re.compile(r'class="listHead"')),
     'uestc_college_teachers': (uestc_college_teachers, re.compile(r'urltype=tsites\.CollegeTeacherList.*?class="ex_img"', re.S)),
     'whu_cs_legacy': (whu_cs_legacy, re.compile(r'class="j_name_num"')),
     'whu_cs_zrjs': (whu_cs_zrjs, re.compile(r'class="teacher-list-item".*?class="li-xinxi"', re.S)),
@@ -2568,7 +2627,8 @@ def is_paged(html):
                        re.search(r'(?:[?&]|&amp;)(?:page=(?:%2C|,)?[1-9]\d*|pg=(?:[2-9]|[1-9]\d+))', html))
     wp = re.search(r'<em class="all_pages">\s*(\d+)\s*</em>', html)
     uestc = re.search(r'\bPAGENUM=([2-9]|[1-9]\d+)\b', html)
-    return query_pager or bool(uestc) or bool('class="wp_paging' in html and wp and int(wp.group(1)) > 1)
+    sitebuilder = 'class="p_pages"' in html and bool(re.search(r'class="p_no"><a href="[^"]+/\d+\.htm"', html))   # Webplus p_pages pager (PKU CS)
+    return query_pager or bool(uestc) or sitebuilder or bool('class="wp_paging' in html and wp and int(wp.group(1)) > 1)
 
 
 def page_links(html, base_url):
@@ -2590,6 +2650,14 @@ def page_links(html, base_url):
             last = max(n for n, _ in pages)
             return {n - 1: re.sub(r'(?<=PAGENUM=)\d+', str(n), template, count=1)
                     for n in range(2, last + 1)}
+    # Webplus `p_pages` pager with reverse-numbered files (PKU CS: page 2 of 12 is `jyxl/11.htm`, the last page `jyxl/1.htm`); the last page number K gives
+    # display page n the file K - n + 1.
+    wpp = re.findall(r'class="p_no"><a href="([^"]*?)(\d+)\.htm">(\d+)</a>', html)
+    if 'class="p_pages"' in html and wpp:
+        last = max(int(n) for _, _, n in wpp)
+        prefix = wpp[0][0]
+        if last > 1:
+            return {n - 1: urllib.parse.urljoin(base_url, f'{prefix}{last - n + 1}.htm') for n in range(2, last + 1)}
     found = {}
     for href in re.findall(r'href="([^"]*[?&;](?:page|pg)=(?:%2C|,)?\d+[^"]*)"', html):
         u = urllib.parse.urljoin(base_url, H.unescape(href))
