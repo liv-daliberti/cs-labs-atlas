@@ -177,7 +177,7 @@ def reviewed_source_names(key, rows, doc):
                 matches = [e for e in entries if e['name_listed'] == ev['name_listed']
                            and pointer(e.get('profile')) == pointer(ev.get('profile'))
                            and quote_of(flat, e, html) == ev['quote']]
-                if len(matches) != 1:
+                if len({(e['name_listed'], pointer(e.get('profile')), quote_of(flat, e, html)) for e in matches}) != 1:
                     raise ValueError('source-name heading mismatch: ' + ev['url'])
                 binding = row_key(ev['url'], ev['sha256'], ev['name_listed'], ev.get('profile'), ev['quote'])
                 if binding in mapping:

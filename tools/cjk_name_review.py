@@ -45,7 +45,24 @@ def pointer(r):
     return C.profile_key(r.get('profile')) or r.get('profile') or None
 
 
+def row_binding(r):
+    """The identity of one saved listing row: byte-identical duplicate rows (same capture, listed name, profile, quote) share it."""
+    return (r['capture_url'], r['sha256'], r['name_listed'], pointer(r), r['quote'])
+
+
+def dedupe(rs):
+    """Byte-identical rows of one capture are one observation (a page that prints the same person twice); different rows are kept."""
+    seen, out = set(), []
+    for r in rs:
+        b = row_binding(r)
+        if b not in seen:
+            seen.add(b)
+            out.append(r)
+    return out
+
+
 def clusters(name, rs, covered):
+    rs = dedupe(rs)
     capn = collections.Counter(r['capture_url'] for r in rs)
     dup = any(v > 1 for v in capn.values())
     gap = False
@@ -115,7 +132,7 @@ def main(key, write):
                 flat = ' '.join((c.execute('select text from captures where capture_url=?', (r['capture_url'],)).fetchone()[0] or '').split())
                 ok = [e for e in es if e['name_listed'] == r['name_listed'] and C.profile_key(e.get('profile')) == C.profile_key(r.get('profile'))
                       and (e.get('profile') or None) == (r.get('profile') or None) and quote_of(flat, e, html) == r['quote']]
-                if len(ok) != 1:
+                if len({(e['name_listed'], C.profile_key(e.get('profile')) or e.get('profile'), quote_of(flat, e, html)) for e in ok}) != 1:
                     skipped.append((name, r['capture_url'], 'no unique parse match'))
                     continue
                 ev.append(dict(url=r['capture_url'], sha256=r['sha256'], format=fmt, name_listed=r['name_listed'], profile=r.get('profile'), quote=r['quote']))
