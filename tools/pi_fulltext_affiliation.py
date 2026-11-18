@@ -324,6 +324,36 @@ def candidates(school):
                     loc = 'url:' + u; break
         if ax or loc:
             out.append((w['id'], ax, forms, loc))
+    # (R-PAP-29, 2026-11-18) cross-affiliated bylines of the sweep (works pi-works does not hold: Tambe's SAHELI paper): the sweep's records carry no locations,
+    # so the arXiv id or open PDF comes from OpenAlex's singleton DOI lookup (free)
+    seen = {r[0] for r in out}
+    sweep = P.data('openalex-sweep.sqlite', school)
+    if sweep.exists():
+        import dblp_recover as DR
+        sc = sqlite3.connect(f'file:{sweep}?mode=ro', uri=True)
+        for (b,) in sc.execute('select body from pages'):
+            for w in json.loads(zlib.decompress(b)):
+                if w['id'] in done or w['id'] in seen:
+                    continue
+                a = cross_affiliated_pi_authorship(w, mine, inst_url)
+                if a is None:
+                    continue
+                forms = names_of.get((a.get('author') or {}).get('id'))
+                ax = arxiv_id(w); loc = None
+                doi = re.sub(r'^https?://(?:dx\.)?doi\.org/', '', w.get('doi') or '', flags=re.I).lower()
+                if not ax and doi:
+                    try:
+                        r = requests.get(f'https://api.openalex.org/works/doi:{doi}', params={'select': 'id,locations,primary_location,ids'}, headers={'User-Agent': UA}, timeout=60)
+                        full = r.json() if r.status_code == 200 else {}
+                    except (requests.RequestException, ValueError):
+                        full = {}
+                    ax = arxiv_id(dict(w, **{k: v for k, v in full.items() if k != 'id'}))
+                    for lo in [] if ax else [full.get('primary_location') or {}] + list(full.get('locations') or []):
+                        u = lo.get('pdf_url') or ''
+                        if u and any(h in u for h in DR.OPEN_HOSTS):
+                            loc = 'url:' + u; break
+                if ax or loc:
+                    out.append((w['id'], ax, forms, loc)); seen.add(w['id'])
     return out
 
 
