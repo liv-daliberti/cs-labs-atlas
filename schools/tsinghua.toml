@@ -1044,3 +1044,15 @@ host = "www.med.tsinghua.edu.cn"
 use = "wayback-only"
 probe = "http://www.med.tsinghua.edu.cn:80/Person?method=101&param=124"
 purpose = "Preserved original April2020 faculty-series evidence only. Read the already captured archive original; this entry authorizes no live-origin probe or source request. Cached robots404/no rules is retained separately."
+
+[[hosts]]
+host = "www.gensi-thuair.com"
+use = "live"
+probe = "https://www.gensi-thuair.com/#/portal/about"
+purpose = "Public GenSI group page and its shipped public roster application; source-owned metadata only, without administrative or authenticated access."
+
+[[hosts]]
+host = "aafssknttedpznxoiorb.supabase.co"
+use = "live"
+probe = "https://aafssknttedpznxoiorb.supabase.co/rest/v1/member?select=*,name_cn,description_cn&role=eq.Student&order=sort.asc"
+purpose = "Only the anonymous public member, alumni and group-description reads literally shipped by the GenSI public page. Actual cached robots404 and HTTP200 responses; no administrative access or writes."
