@@ -91,6 +91,11 @@ def charter_usable(con, cap, s, floor=5):
     return True, None
 
 
+def listing_formats_is_paged(html):
+    import listing_formats
+    return listing_formats.is_paged(html)
+
+
 def fetch_pages(con, s, cap, html, lo, hi, dept, min_entries=1):
     """The other pages of a paged directory capture (R3). Page links come from the capture (listing_formats.page_links); each page is the archived
     capture of that exact URL nearest in time to `cap` within the half-year [lo, hi] (the slot's own date window). -> ({n: (url, capture_url, ts)}, [missing n]).
@@ -286,6 +291,14 @@ def run_slot(school, s, con, pis, max_tries=2):
                 pages = {}
                 if (good or (why or '').startswith('paged directory')) and getattr(_CFG.get(school), "CHARTER", False):
                     good, why = charter_usable(con, cap, s)
+                    if good and s.get("partial_ok"):
+                        # a partial_ok slot keeps the first page as a usable PARTIAL source, and still merges every other page the archive holds (PKU CS: later pages
+                        # are archived at other dates in the half-year); the pages that are not archived leave the year partial (no waiver)
+                        html = wb.text(wb.body(con.execute("select raw_zlib from captures where capture_url=?", (cap,)).fetchone()[0]))
+                        if listing_formats_is_paged(html):
+                            pages, miss = fetch_pages(con, s, cap, html, lo, hi, s["dept"])
+                            if miss:
+                                print(f"  partial: pages {miss} not archived in this half-year", flush=True)
                     if not good and why and why.startswith("paged directory"):
                         # R3: a paged directory is one listing: fetch every page of the same half-year and keep the plan row only when all are archived
                         html = wb.text(wb.body(con.execute("select raw_zlib from captures where capture_url=?", (cap,)).fetchone()[0]))

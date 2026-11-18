@@ -114,3 +114,8 @@ def test_partial_ok_slot_keeps_the_first_page_of_a_paged_list(monkeypatch):
         def execute(self, q, a): return type('C', (), {'fetchone': lambda me: (PAGED.encode(),)})()
     assert PF.charter_usable(Con(), 'u', {'partial_ok': True})[0]
     assert not PF.charter_usable(Con(), 'u', {})[0]
+
+
+def test_plan_fetch_partial_ok_helper_detects_paged_list():
+    import plan_fetch as PF
+    assert PF.listing_formats_is_paged(PAGED) and not PF.listing_formats_is_paged('<ul><li>Ann Lee Professor</li></ul>')
