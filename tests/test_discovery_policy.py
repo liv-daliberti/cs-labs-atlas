@@ -15,6 +15,13 @@ def test_every_loop_charter_runs_discovery_without_wayback():
         assert 'wayback_acm' not in ch, s
 
 
+def test_onboarding_loop_charter_without_wayback():
+    """2026-11-18: SEU's list kept wayback_acm after the 2026-11-10 rule; the loops leave web.archive.org to the listing captures."""
+    ch = tomllib.loads((CODE / 'schools' / 'seu.toml').read_text())['collector']['channels']
+    assert 'wayback_acm' not in ch
+    assert {'oa_arxiv', 'openalex', 'proceedings', 'arxiv_title', 'dblp_ee', 's2', 'europepmc', 'pmc', 'labpages', 'pihomes'} <= set(ch)
+
+
 def test_school_collector_reads_the_charter_not_a_stale_environment():
     t = (CODE / 'fulltext-push' / 'school-collector.slurm').read_text()
     assert 'CHANNELS_FORCE' in t and 'OA_RESERVE' in t and 'wayback_acm}' not in t

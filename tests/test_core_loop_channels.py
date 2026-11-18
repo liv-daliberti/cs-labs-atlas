@@ -39,3 +39,4 @@ def test_onboarding_charters_carry_the_standard_download_channels():
     for longer in ('seu', 'ustc'):
         ch = have[longer]
         assert ch[ch.index('s2') + 1:ch.index('s2') + 3] == ['core', 'core_bulk'], longer
+    assert 'wayback_acm' not in have['seu']   # 2026-11-10 rule: no Wayback channel in loop charters
