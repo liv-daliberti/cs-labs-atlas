@@ -3099,3 +3099,19 @@ def pku_cs_big_cards(h):
 
 for _name, _fn in [('pku_cs_m_list9', pku_cs_m_list9), ('pku_cs_big_cards', pku_cs_big_cards), ('pku_wict_team_nav', pku_wict_team_nav), ('pku_wict_cards', pku_wict_cards), ('pku_sist_cards', pku_sist_cards)]:
     FORMATS[_name] = (_fn, re.compile(r'(?!)'))
+
+
+def _first_parse(*fns):
+    def read(h):
+        for fn in fns:
+            es = fn(h)
+            if es:
+                return es
+        return []
+    return read
+
+
+pku_wict_any = _first_parse(pku_wict_team_nav, pku_wict_cards)   # one slot spans both site eras
+pku_cs_any = _first_parse(pku_cs_m_list9, pku_cs_big_cards)
+FORMATS['pku_wict_any'] = (pku_wict_any, re.compile(r'(?!)'))
+FORMATS['pku_cs_any'] = (pku_cs_any, re.compile(r'(?!)'))

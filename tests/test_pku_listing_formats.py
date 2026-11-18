@@ -48,3 +48,8 @@ def test_cs_big_cards_drop_contact():
     es = LF.pku_cs_big_cards(CS_NEW)
     assert [(e['name_listed'], e['titles'], e['division'], e['profile']) for e in es] == [
         ('边凯归', ['长聘副教授'], '数据科学与工程研究所', '../../../info/1061/1602.htm'), ('曹东刚', ['研究员'], '软件研究所', '../../../info/1062/3090.htm')]
+
+
+def test_any_formats_span_both_eras():
+    assert len(LF.pku_wict_any(TEAM)) == 4 and len(LF.pku_wict_any(CARDS)) == 2
+    assert len(LF.pku_cs_any(CS_OLD)) == 2 and len(LF.pku_cs_any(CS_NEW)) == 2
