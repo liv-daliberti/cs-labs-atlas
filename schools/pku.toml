@@ -41,7 +41,7 @@ computing_departments = ["CS", "WICT", "SIST"]
 center_units = []
 home_units = {}
 # Chinese titles; \\b is not used (CJK counts as a word character). 教授 professor (副教授 associate, 助理教授 assistant), 研究员 research-track, 讲师 lecturer.
-rank_words = {ladder = '教授', lecturer = '讲师|助教', research = '研究员', emeritus = '荣休|退休|名誉', adjunct = '兼职', visiting = '客座'}
+rank_words = {ladder = '教授|(?<![助副理后])研究员|大师讲席', lecturer = '讲师|助教', research = '助理研究员|副研究员|博士后', emeritus = '荣休|退休|名誉', adjunct = '兼职', visiting = '客座'}
 
 [sweep_check]
 exceptions = []
