@@ -19,5 +19,6 @@ case $STEP in
   stats) nice -n 5 $CS_ATLAS_PY -u "$T/cs_related_candidates.py" --no-venues --stats --out cs-related-candidates-openalex.json "$SCHOOL" ;;
   oa) nice -n 5 $CS_ATLAS_PY -u "$T/oa_identity_candidates.py" "$SCHOOL" && nice -n 5 $CS_ATLAS_PY -u "$T/oa_identity_school.py" "$SCHOOL" --dry-run ;;
   oareal) nice -n 5 $CS_ATLAS_PY -u "$T/oa_identity_school.py" "$SCHOOL" ;;
+  gaps|extend|deep) nice -n 5 $CS_ATLAS_PY -u "$T/periods_school.py" "$STEP" "$SCHOOL" ;;
   *) echo bad STEP; exit 2 ;;
 esac
