@@ -30,3 +30,13 @@ def test_quote_for_another_faculty_member_does_not_verify_this_pi():
     assert A.quote_names_pi('László Babai, Professor', ['Laszlo Babai'])
     assert A.quote_names_pi('Nathan Srebro, Professor', ['Nati Srebro', 'Nathan Srebro'])
     assert A.quote_names_pi('James Evans, Professor of Sociology', ['James A. Evans'])
+
+
+def test_explicit_uppercase_family_name_first_is_exact_name_evidence():
+    assert A.quote_names_pi('CHEN Tao', ['Tao Chen'])
+    assert A.quote_names_pi('NAIR Chandra M.', ['Chandra Nair'])
+    assert A.quote_names_pi('Pheng Ann Heng, Professor', ['HENG Pheng Ann'])
+    assert not A.quote_names_pi('TAO CHEN', ['Chen Tao'])
+    assert not A.quote_names_pi('CHAN Siu On', ['Lai Wan Chan'])
+    assert not A.quote_names_pi('CHEN T.', ['Tao Chen'])
+    assert not A.quote_names_pi('CHEN Tao, Associate Professor', ['Tao Chen'])

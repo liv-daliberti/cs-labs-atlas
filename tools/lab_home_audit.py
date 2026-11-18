@@ -71,8 +71,24 @@ def quote_names_pi(quote, names):
         return ' '.join(''.join(c.casefold() if c.isalnum() else ' ' for c in value).split())
     text = ' ' + fold(quote) + ' '
     variants = {fold(name) for name in names if name}
+    for name in names:
+        raw = re.findall(r'[^\W_]+', name or '', re.UNICODE)
+        words = fold(name).split()
+        if len(raw) > 1 and len(raw[0]) > 1 and raw[0].isupper() and any(any(c.islower() for c in w) for w in raw[1:]):
+            variants.add(' '.join(words[1:] + words[:1]))
     variants.update(' '.join(t for t in name.split() if not (len(t) == 1 and t.isascii())) for name in list(variants))
-    return any(name and ' ' + name + ' ' in text for name in variants)
+    if any(name and ' ' + name + ' ' in text for name in variants):
+        return True
+    # Engineering directories explicitly print an uppercase family name first.
+    # Rotate only that complete name field; never permute arbitrary quote words
+    # or substitute initials for a full given name.
+    raw_words = re.findall(r'[^\W_]+', quote or '', re.UNICODE)
+    words = fold(quote).split()
+    if len(raw_words) > 1 and len(raw_words[0]) > 1 and raw_words[0].isupper() and any(any(c.islower() for c in w) for w in raw_words[1:]):
+        rotated = words[1:] + words[:1]
+        options = {' '.join(rotated), ' '.join(t for t in rotated if not (len(t) == 1 and t.isascii()))}
+        return bool(options & variants)
+    return False
 
 
 def proposed_from_listing(pi, cfg):
