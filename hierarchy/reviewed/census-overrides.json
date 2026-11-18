@@ -25740,8 +25740,17 @@
    "why": "Owner D-0009 2026-11-18: faculty status plus PhD-advising or own-lab evidence. Faculty status from the school listing already in the census; basis from the source quoted here, bytes saved under raw/source-evidence."
   },
   "Mehran Sahami": {
-   "review_note": "Owner D-0009 2026-11-18: faculty status without PhD-advising or own-lab evidence is not a PI. No advising/lab evidence found. Sources tried: web search and purl.stanford.edu searches (no primary/principal advisor record found; Stanford profiles unreadable).",
-   "is_pi": false
+   "is_pi": true,
+   "pi_basis": {
+    "kind": "advises_phd",
+    "url": "https://purl.stanford.edu/th670xf5197",
+    "sha256": "08f2d0ced7284c818296516adceaaca2d653efc0d9c192f77dd4b1d5328ec851",
+    "quote": "Thesis advisor Sahami, Mehran",
+    "observed": "2026-11-18",
+    "role": "faculty with advising evidence (owner D-0009)",
+    "note": "Stanford PURL record of the 2016 CS dissertation of Christopher James Piech lists Mehran Sahami as thesis advisor (co-advisor; primary advisor Guibas). Supersedes the earlier no-evidence note after the thesis-repository search."
+   },
+   "why": "Owner D-0009 2026-11-18: faculty status plus PhD-advising evidence; thesis-repository search found a co-advised 2016 PhD thesis."
   }
  },
  "michigan": {
