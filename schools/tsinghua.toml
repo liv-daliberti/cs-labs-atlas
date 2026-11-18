@@ -1068,3 +1068,67 @@ host = "www.tsinghua.edu.cn"
 use = "live"
 probe = "https://www.tsinghua.edu.cn/info/1368/81737.htm"
 purpose = "Actual independently reviewed primary proof for acceptedLi2019membership source. Cached robots404/no rules and HTTP200 originals; no new request."
+
+[[hosts]]
+host = "media.au.tsinghua.edu.cn"
+use = "live"
+probe = "https://media.au.tsinghua.edu.cn/cn/td.htm"
+purpose = "Accepted Media current shared-lab membership and actual named faculty context; actual cached policy and HTTP200 source/probe, without a new request."
+
+[[hosts]]
+host = "timlab.cn"
+use = "live"
+probe = "http://timlab.cn"
+http_origin = true
+min_delay = 3
+purpose = "Accepted Tim Group official person ownership and current lab roster; actual cached policy and HTTP200 source/probe, without a new request."
+
+[[hosts]]
+host = "hxu.rocks"
+use = "live"
+probe = "http://hxu.rocks"
+http_origin = true
+min_delay = 3
+purpose = "Owned Huazhe Xu THU Embodied AI lab and current student roster; actual cached policy and HTTP200 source/probe, without a new request."
+
+[[hosts]]
+host = "www.env.tsinghua.edu.cn"
+use = "live"
+probe = "https://www.env.tsinghua.edu.cn/info/1262/6264.htm"
+purpose = "Actual independently reviewed original dated faculty role or status supporting accepted thesis membership; actual cached policy and HTTP200 source/probe, without a new request."
+
+[[hosts]]
+host = "www.hy.tsinghua.edu.cn"
+use = "live"
+probe = "https://www.hy.tsinghua.edu.cn/info/1154/1826.htm"
+purpose = "Actual independently reviewed original dated faculty role or status supporting accepted thesis membership; actual cached policy and HTTP200 source/probe, without a new request."
+
+[[hosts]]
+host = "www.pcs.tsinghua.edu.cn"
+use = "live"
+probe = "https://www.pcs.tsinghua.edu.cn/info/1008/1350.htm"
+purpose = "Actual independently reviewed original dated faculty role or status supporting accepted thesis membership; actual cached policy and HTTP200 source/probe, without a new request."
+
+[[hosts]]
+host = "www.stat.tsinghua.edu.cn"
+use = "live"
+probe = "https://www.stat.tsinghua.edu.cn/info/1023/2415.htm"
+purpose = "Actual independently reviewed original dated faculty role or status supporting accepted thesis membership; actual cached policy and HTTP200 source/probe, without a new request."
+
+[[hosts]]
+host = "www.sppm.tsinghua.edu.cn"
+use = "live"
+probe = "https://www.sppm.tsinghua.edu.cn/info/1025/7449.htm"
+purpose = "Actual independently reviewed original dated faculty role or status supporting accepted thesis membership; actual cached policy and HTTP200 source/probe, without a new request."
+
+[[hosts]]
+host = "web.ee.tsinghua.edu.cn"
+use = "live"
+probe = "https://web.ee.tsinghua.edu.cn/yangfan/zh_CN/index.htm"
+purpose = "Exact named EE faculty personal profile and historical faculty role supporting YangFan adviser disambiguation; actual cached policy and HTTP200 source/probe, without a new request."
+
+[[hosts]]
+host = "www.ee.tsinghua.edu.cn"
+use = "live"
+probe = "https://www.ee.tsinghua.edu.cn/"
+purpose = "Original EE named faculty source and declared person links; cached robots404 and actual200homepage verify current host policy withoutrequests; actual cached policy and HTTP200 source/probe, without a new request."
