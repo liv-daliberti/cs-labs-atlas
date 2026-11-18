@@ -33314,10 +33314,12 @@
    "openalex": [
     "https://openalex.org/A5045121980"
    ],
-   "decision": "excluded_unresolved",
-   "profile_class": "directory_match_needs_id_evidence",
-   "units": [],
-   "reason": "[OPEN ITEM, NOT A CLAIM] full pinyin matches directory name(s) ['陈可江'] (2 page hits; 1 DBLP candidate(s) share the pinyin; DBLP unit(s) unstated): the match is not unique or the unit is not stated in the DBLP affiliation; per-id evidence (own official page / DBLP-OpenAlex id) is needed. | Gate-2 rework 2026-11-17: stored unit directory lists a same-name person (CYBERSEC, 副高 (2022); card without title 2026) but no_rank_source: 副高 only; no title page stored. | Gate-2 rework 2026-11-17: stored unit directory lists a same-name person (Cyber Science and Technology, 副教授 (cybersec page 2021-03-12)) but identity_unbound: Probable but unbound; one homepage fetch away.",
+   "decision": "accepted",
+   "profile_class": "gate2_rework_accepted",
+   "units": [
+    "CYBER"
+   ],
+   "reason": "副教授 in School of Cyber Science and Technology (official unit profile page dated 2021-03-12; also the 2022 副高 list and the 2026 live list); identity: the OpenAlex author record (A5045121980, steganography, generative watermarking, AI security) matches the page's research field; no DBLP person bound, so downstream identity anchor is the OpenAlex id and is held until reviewed. Computing test: AI security / information hiding: passes. Audit g2rework2-ustc-20261118 reviewer finding, fixed 2026-11-18.",
    "converted_from": "pending_identity_collision",
    "converted_on": "2026-11-17",
    "reason_code": "identity_collision",
@@ -33330,7 +33332,13 @@
     "not available: 2016-2022 unit directories (Wayback unit pass not run), per-person official pages (legacy profile pages 404/410), CJK name forms of DBLP persons",
     "gate-2 rework: stored unit directories of CUHK (hierarchy/cuhk/raw/unit-directory-rows.jsonl.gz); same-name hit not bound (no_rank_source)",
     "gate-2 rework: stored unit directories of CUHK (hierarchy/cuhk/raw/unit-directory-rows.jsonl.gz); same-name hit not bound (identity_unbound)"
-   ]
+   ],
+   "receipt": {
+    "url": "https://cybersec.ustc.edu.cn/2022/0616/c25039a559664/page.htm",
+    "sha256": "1fb821645d5e579c836b59b029ef6f23579d125d99bddc2bf5f5e16fb7262624",
+    "quote": "姓名：陈可江 职称：副教授 学院：网络空间安全学院",
+    "observed": "2026-11-18"
+   }
   },
   {
    "name": "Ammar Hawbani",
