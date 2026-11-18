@@ -116,3 +116,27 @@ def test_sample_with_only_pis_draws_only_from_them(world, monkeypatch, tmp_path)
     assert out['subset']['x']['pis'] == ['A', 'B'] and out['subset']['x']['files'] == PR.package_hashes('x', ['A', 'B'])
     full = S.main(['x'], tmp_path / 't.json', cfg=dict(S.ROUNDS['pi1']))
     assert 'subset' not in full and full['schools']['x']['n_lab_papers'] == 3     # without only_pis the draw is the school-wide one
+
+
+def test_recorded_corrections_are_counted_not_flagged(world):
+    """Q-0339: removals an owner rule explains sit in the school's release-corrections record; a student link follows its lab paper; the rest still flag."""
+    _, rel, _ = world
+    rec = dict(against_release=rel.name, decided='2026-11-18', classes=[dict(id='ctrn_excluded', rule='charter openalex_excluded (D3)', rows=[dict(pi='B', oa='WB', labId='atl:l:x:B', atlasWorkId='atl:w:B')])])
+    gone = PR.compare('x', ['A', 'C'], rel, corrections=rec)           # B (a PI) is gone too: only its lab paper and student link are explained
+    assert gone['corrected'] == {'lab_paper:ctrn_excluded': 1, 'student_paper:ctrn_excluded': 1}
+    assert gone['kinds']['lab_paper']['n_removed'] == 0 and gone['kinds']['student_paper']['n_removed'] == 0
+    assert gone['kinds']['pi']['n_removed'] == 1 and gone['flags'] == 3   # PI, lab, student stay flagged
+    assert gone['corrections_record']['classes'] == {'ctrn_excluded': dict(rule='charter openalex_excluded (D3)', rows=1)}
+    kept = PR.compare('x', ['A', 'B', 'C'], rel, corrections=rec)      # restored: nothing removed, the row is reported unused
+    assert kept['flags'] == 0 and kept['corrected'] == {} and kept['corrections_unused'] == 1
+
+
+def test_a_record_written_against_another_release_is_ignored(world, tmp_path, monkeypatch):
+    _, rel, _ = world
+    import atlas_paths as P
+    f = tmp_path / 'rc.json'
+    f.write_text(json.dumps(dict(against_release='2026-01-01', classes=[])))
+    monkeypatch.setattr(P, 'data', lambda name, school=None, **kw: f)
+    assert PR.load_corrections('x', rel) is None
+    f.write_text(json.dumps(dict(against_release=rel.name, classes=[])))
+    assert PR.load_corrections('x', rel)['against_release'] == rel.name

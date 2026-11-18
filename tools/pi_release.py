@@ -13,7 +13,7 @@ release already published (CARRIED: published rows are never removed; if such a 
 
 Nothing here publishes or uploads. docs/PER-PI-ADMISSION.md, section "Per-PI release".
 """
-import argparse, gzip, hashlib, io, json, sys
+import argparse, collections, gzip, hashlib, io, json, sys
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
@@ -170,18 +170,55 @@ def _ids(key, base=None, inc=None, legacy=False):
     return out
 
 
-def compare(key, included, release):
+def load_corrections(key, release):
+    """The reviewed release-corrections record of a school (reviewed/release-corrections.json) when it was written against `release`, else None.
+    It lists, per class, published rows the new package lacks for a reason an owner rule explains (Q-0339, 2026-11-18): each class carries its
+    rule and its rows (pi, oa, labId, atlasWorkId); a student-paper link whose lab paper is listed follows it (cascade)."""
+    p = P.data('release-corrections.json', key)
+    if not p.exists():
+        return None
+    rec = _read_json(p)
+    return rec if rec.get('against_release') == Path(release).resolve().name else None
+
+
+def _accepted_lab_papers(rec, legacy):
+    """{(lab, work): class id} of the corrected lab papers, keyed like `_ids` (pre-id keys when `legacy`, else atlas ids)."""
+    out = {}
+    for cl in rec.get('classes') or []:
+        for r in cl.get('rows') or []:
+            out[(r['pi'], r['oa']) if legacy else (r.get('labId'), r.get('atlasWorkId'))] = cl['id']
+    return out
+
+
+def compare(key, included, release, corrections=None):
     """Monotone check: {kind: {'old', 'new', 'n_removed', 'added', 'removed'}} of the filtered new package against the package of the published
     `release` dir. Any n_removed > 0 is a flag. Compared by atlas ids when both packages carry them, else by the pre-id keys (`basis`); a school
-    absent from the old release has nothing to compare."""
+    absent from the old release has nothing to compare. Removals that the school's release-corrections record explains (`load_corrections`, or the
+    `corrections` argument) are not flags: they are counted per class under `corrected` (a lab paper by its row, a student-paper link by its lab
+    paper) and `corrections_unused` counts recorded rows that are not removed now (restored)."""
     if not (package_dir(key, release) / 'pis.json').exists():
         return dict(school=key, compared=False, flags=0)
     legacy = not (_has_ids(key) and _has_ids(key, release))
     new, old = _ids(key, inc=included, legacy=legacy), _ids(key, base=release, legacy=legacy)
-    res = {k: dict(old=len(old[k]), new=len(new[k]), n_removed=len(old[k] - new[k]), added=len(new[k] - old[k]),
-                   removed=sorted(map(str, old[k] - new[k]))[:5]) for k in old}
-    return dict(school=key, compared=True, release=Path(release).resolve().name, basis='legacy keys (a package has no atlas ids yet)' if legacy else 'atlas ids',
-                kinds=res, flags=sum(v['n_removed'] for v in res.values()))
+    rec = corrections if corrections is not None else load_corrections(key, release)
+    acc = _accepted_lab_papers(rec, legacy) if rec else {}
+    gone = {k: old[k] - new[k] for k in old}
+    corrected = collections.Counter()
+    if acc:
+        for k, cls_of in (('lab_paper', lambda x: acc.get(x)), ('student_paper', lambda x: acc.get((x[0], x[2])))):
+            for x in sorted(gone[k], key=str):
+                if cls_of(x):
+                    corrected[(k, cls_of(x))] += 1
+            gone[k] = {x for x in gone[k] if not cls_of(x)}
+    res = {k: dict(old=len(old[k]), new=len(new[k]), n_removed=len(gone[k]), added=len(new[k] - old[k]),
+                   removed=sorted(map(str, gone[k]))[:5]) for k in old}
+    out = dict(school=key, compared=True, release=Path(release).resolve().name, basis='legacy keys (a package has no atlas ids yet)' if legacy else 'atlas ids',
+               kinds=res, flags=sum(v['n_removed'] for v in res.values()))
+    if rec:
+        out['corrected'] = {f'{k}:{c}': n for (k, c), n in sorted(corrected.items())}
+        out['corrections_unused'] = sum(1 for k in acc if k in new['lab_paper'])
+        out['corrections_record'] = dict(path=str(P.data('release-corrections.json', key)), decided=rec.get('decided'), classes={c['id']: dict(rule=c.get('rule'), rows=len(c.get('rows') or [])) for c in rec.get('classes') or []})
+    return out
 
 
 def gate_findings(key, pl=None):
@@ -212,6 +249,8 @@ def main(argv=None):
         print('  held', h['pi'], '|', '; '.join(h['blocking'])[:200])
     if cmp_ and cmp_['compared']:
         print(f"vs release {cmp_['release']} by {cmp_['basis']}: removed {cmp_['flags']}", {k: (v['old'], v['new'], v['n_removed']) for k, v in cmp_['kinds'].items()})
+        if cmp_.get('corrected'):
+            print('  corrections recorded (not flags):', cmp_['corrected'], 'unused', cmp_['corrections_unused'])
     elif cmp_:
         print('vs last release: school not in it (nothing to compare)')
     return 1 if cmp_ and cmp_['flags'] else 0
