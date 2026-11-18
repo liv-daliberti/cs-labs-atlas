@@ -58,6 +58,7 @@ def display_name(rs, names):
     return plain[-1] if plain else rs[-1]['name']
 
 
+HOME_PROF_OF = re.compile(r"^(?:[A-Z][\w.'\u201c\u201d\- ]+ )?(?:Assistant |Associate )?Professor of ([^,]+?)(?: and [A-Z](?:(?! and )[^,])* (?:Scholar|Director|Chair)\b.*)?$")  # 'Bessie Darling Massey Professor of Biomedical Engineering' (opt-in: [census].courtesy_title_of)
 HOME_PROF_I = re.compile(HOME_PROF.pattern, re.I)  # 'Associate professor, Department of Philosophy' (lowercase p)
 NOT_HOME_CLAUSE = re.compile(r'courtesy|affiliat|emerit|adjunct|visiting', re.I)
 HOME_HEAD = re.compile(r'^(?:head|chair|director|dean)[^,]*, (.+)$', re.I)
@@ -85,6 +86,18 @@ def home_professor(title):
             for later in clauses[i + 1:]:
                 if not NOT_HOME_CLAUSE.search(later) and (h := HOME_HEAD.match(later)):
                     return re.match(r'.*', c), h.group(1).strip()
+    return None, None
+
+
+def home_professor_of(title):
+    """Opt-in ([census].courtesy_title_of, owner 2026-11-18, VT/JHU pattern): (match, unit) when a clause of a courtesy row's title is a professorship
+    OF the home unit with no comma ('Assistant Professor of Statistics; Affiliate in Computer Science'). A Professor of the Practice is a teaching-stream
+    title and never counts; courtesy / affiliate / emeritus / adjunct / visiting clauses are the appointment the department made."""
+    if 'emerit' in title.lower():
+        return None, None
+    for c in (c.strip() for c in re.split(r';\s*(?:and\s+)?', title)):
+        if c and not NOT_HOME_CLAUSE.search(c) and not re.search(r'Professor of (?:the )?Practice', c, re.I) and (m := HOME_PROF_OF.match(c)):
+            return m, m.group(1).strip()
     return None, None
 
 
@@ -413,6 +426,8 @@ def main(key):
                          cs_related=dict(decision='accepted', basis=dec.get('basis'), evidence=dec.get('evidence')))
         elif court:
             home = [(r, m, hu_) for r in court for t in r['titles'] for m, hu_ in [home_professor(t)] if m]
+            if not home and S.field(cfg, 'census.courtesy_title_of'):   # owner rule (2026-11-18): a courtesy row titled 'Professor of <home unit>' counts (JHU, Harvard Janson)
+                home = [(r, m, hu_) for r in court for t in r['titles'] for m, hu_ in [home_professor_of(t)] if m]
             if home:
                 r, m, hu = home[0]
                 of = re.search(r'Professor of (.+?),', m.group(0))
