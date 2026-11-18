@@ -205,7 +205,8 @@ endpoints = []
 robots = "unreachable"
 note = "Student-source discovery remains open. Cached repository robots response is a redirect; no repository endpoint is accepted or fetched by this checkpoint. None means no configured thesis channel, not absence of theses."
 [collector]
-channels = []
+# 2026-11-18 (owner, "let's keep going"): standard onboarding download channels like Purdue (bbd04047); CORE is allowed everywhere (DECISIONS 2026-11-15). No wayback.
+channels = ["oa_arxiv", "openalex", "s2", "core", "core_bulk", "europepmc", "pmc", "labpages"]
 [students]
 directories = []
 adviser_directories = []

@@ -227,8 +227,8 @@ robots = "unreachable"
 note = "Wuhan University theses are held by CNKI (paywalled / login) and the library's Chinese thesis system; there is no open DSpace-style repository to crawl. Students phase is deferred by the brief."
 
 [collector]
-channels = ["oa_arxiv", "openalex", "s2", "labpages"]
-
+# 2026-11-18 (owner, "let's keep going"): standard onboarding download channels like Purdue (bbd04047); CORE is allowed everywhere (DECISIONS 2026-11-15). No wayback.
+channels = ["oa_arxiv", "openalex", "s2", "core", "core_bulk", "europepmc", "pmc", "labpages"]
 [students]
 directories = []
 adviser_directories = []

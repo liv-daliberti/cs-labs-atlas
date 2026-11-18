@@ -25,3 +25,16 @@ def test_full_loop_lists_carry_core_after_s2():
     assert len(full) >= 15
     for school, ch in full:
         assert ch[ch.index('s2') + 1:ch.index('s2') + 3] == ['core', 'core_bulk'], school
+
+
+ONBOARDING_STANDARD = 'purdue hkust ntu utaustin cambridge hit pku whu'.split()
+
+
+def test_onboarding_charters_carry_the_standard_download_channels():
+    """2026-11-18 (owner): the Purdue list (bbd04047) is the standard for onboarding charters: CORE, Europe PMC and PMC beside OpenAlex, S2 and the lab
+    pages, and no Wayback channel. SEU keeps its longer list and gains core and core_bulk after s2."""
+    have = dict(lists())
+    for school in ONBOARDING_STANDARD:
+        assert have[school] == ['oa_arxiv', 'openalex', 's2', 'core', 'core_bulk', 'europepmc', 'pmc', 'labpages'], school
+    seu = have['seu']
+    assert seu[seu.index('s2') + 1:seu.index('s2') + 3] == ['core', 'core_bulk']

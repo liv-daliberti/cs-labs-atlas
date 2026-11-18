@@ -172,7 +172,8 @@ sources = ["lab member pages and PI homepages (live where robots allows, else Wa
 hints = ["<lab>.seu.edu.cn", "cse.seu.edu.cn/~<name>/", "<name>.github.io", "personal homepages linked from the faculty list"]
 
 [collector]
-channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "labpages", "pihomes", "wayback_acm"]
+# 2026-11-18 (owner): core and core_bulk after s2 (CORE allowed everywhere, DECISIONS 2026-11-15)
+channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "core", "core_bulk", "europepmc", "pmc", "labpages", "pihomes", "wayback_acm"]
 
 [repository]
 name = "SEU institutional repository (not chosen; never asked)"

@@ -170,7 +170,8 @@ endpoints = []
 robots = "unreachable"
 note = "Pending host and endpoint verification. Collect explicit thesis supervisor statements only; repository authorship alone is not advising."
 [collector]
-channels = ["oa_arxiv", "openalex", "s2", "labpages"]
+# 2026-11-18 (owner, "let's keep going"): standard onboarding download channels like Purdue (bbd04047); CORE is allowed everywhere (DECISIONS 2026-11-15). No wayback.
+channels = ["oa_arxiv", "openalex", "s2", "core", "core_bulk", "europepmc", "pmc", "labpages"]
 [students]
 directories = []
 adviser_directories = []
