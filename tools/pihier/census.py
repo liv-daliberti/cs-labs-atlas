@@ -242,5 +242,6 @@ def index_pis(ctx):
 
 def reviewed_name_pairs(school):
     """The school's reviewed (name_a, name_b) spellings of one person (census-name-aliases.json; census_build validates them)."""
-    doc = read(P.data('census-name-aliases.json', school), {}) or {}
+    path = P.data('census-name-aliases.json', school)
+    doc = (read(path) if path.exists() else {}) or {}
     return [(r['name_a'], r['name_b']) for r in doc.get('rows') or [] if isinstance(r, dict) and r.get('name_a') and r.get('name_b')]
