@@ -12,7 +12,7 @@ A row counts only for a ladder rank (assistant / associate / full / named profes
 practice, lecturer) and when the given name matches a spelled-out given name of the person (initial-only rows are not used).
 usage: vt_year_proofs.py [--apply] [--file census-additions.json]   rewrites hierarchy/vt/reviewed/census-additions.json (adds sources; never removes one)
 """
-import argparse, hashlib, json, re, sqlite3, sys, unicodedata, zlib
+import argparse, hashlib, json, re, sqlite3, unicodedata, zlib
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
