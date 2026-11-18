@@ -58,6 +58,7 @@ def display_name(rs, names):
     return plain[-1] if plain else rs[-1]['name']
 
 
+PRACTICE_TITLE = re.compile(r'Professor of (?:the )?Practice', re.I)  # teaching-stream: any year's title of a person with one keeps the home-unit opt-in off (Harvard Brennan: Associate Professor of Education 2020-23, Professor of Practice 2026)
 HOME_PROF_OF = re.compile(r"^(?:[A-Z][\w.'\u201c\u201d\- ]+ )?(?:Assistant |Associate )?Professor of ([^,]+?)(?: and [A-Z](?:(?! and )[^,])* (?:Scholar|Director|Chair)\b.*)?$")  # 'Bessie Darling Massey Professor of Biomedical Engineering' (opt-in: [census].courtesy_title_of)
 HOME_PROF_I = re.compile(HOME_PROF.pattern, re.I)  # 'Associate professor, Department of Philosophy' (lowercase p)
 NOT_HOME_CLAUSE = re.compile(r'courtesy|affiliat|emerit|adjunct|visiting', re.I)
@@ -96,7 +97,7 @@ def home_professor_of(title):
     if 'emerit' in title.lower():
         return None, None
     for c in (c.strip() for c in re.split(r';\s*(?:and\s+)?', title)):
-        if c and not NOT_HOME_CLAUSE.search(c) and not re.search(r'Professor of (?:the )?Practice', c, re.I) and (m := HOME_PROF_OF.match(c)):
+        if c and not NOT_HOME_CLAUSE.search(c) and not PRACTICE_TITLE.search(c) and (m := HOME_PROF_OF.match(c)):
             return m, m.group(1).strip()
     return None, None
 
@@ -426,7 +427,7 @@ def main(key):
                          cs_related=dict(decision='accepted', basis=dec.get('basis'), evidence=dec.get('evidence')))
         elif court:
             home = [(r, m, hu_) for r in court for t in r['titles'] for m, hu_ in [home_professor(t)] if m]
-            if not home and S.field(cfg, 'census.courtesy_title_of'):   # owner rule (2026-11-18): a courtesy row titled 'Professor of <home unit>' counts (JHU, Harvard Janson)
+            if not home and S.field(cfg, 'census.courtesy_title_of') and not any(PRACTICE_TITLE.search(t) for r in court for t in r['titles']):   # owner rule (2026-11-18): a courtesy row titled 'Professor of <home unit>' counts (JHU, Harvard Janson)
                 home = [(r, m, hu_) for r in court for t in r['titles'] for m, hu_ in [home_professor_of(t)] if m]
             if home:
                 r, m, hu = home[0]
