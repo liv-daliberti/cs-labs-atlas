@@ -1,6 +1,129 @@
 {
   "school": "washu",
-  "reviewed": "2026-11-07",
+  "reviewed": "2026-11-18",
   "scope": "Supported full-CSE partial package only. Affiliated-department and other-unit candidates remain undecided, retained as open completeness items; no negative faculty or computing decisions are inferred.",
-  "decisions": []
+  "decisions": [
+    {
+      "name": "Albert M. Lai",
+      "aliases": [
+        "Albert Max Lai"
+      ],
+      "source": "coverage_audit",
+      "decision": "accepted",
+      "reason": "PI fill 2026-11-18 (D-0003): official I2DB profile (stored capture sha256 11079b60..., 2026-11-17) gives Professor of Computer Science and Engineering (School of Engineering and Applied Science) beside Professor of Medicine; identity by OpenAlex A5052315320 carrying ORCID 0000-0002-9241-2656 (the CSRankings lead's ORCID is the same), 60 school works 2017-2026, 10 DBLP-indexed (share 0.167, below the 0.20 test: borderline, accepted because the computing department itself appoints him and his work is clinical/biomedical informatics, NLP and LLMs as object; owner question filed)",
+      "cs_basis": {
+        "openalex": [
+          "https://openalex.org/A5052315320"
+        ]
+      },
+      "faculty_evidence": [
+        {
+          "unit": "I2DB",
+          "url": "https://i2db.wustl.edu/people/albert-lai/",
+          "sha256": "11079b60e57b876ab31b8ef363e62e45915c4acea2f0d557458f9b4f976f1f90",
+          "observed": "20261117",
+          "quote": "Albert M. Lai, PhD, FACMI, FAMIA Chief Research Information Officer Assistant Dean for Biomedical Informatics Deputy Director, Institute for Informatics, Data Science and Biostatistics (I2DB) Professor of Medicine, Division of General Medicine & Geriatrics Professor of Computer Science and Engineering, School of Engineering and Applied Science",
+          "ladder": true
+        }
+      ],
+      "years_listed": [
+        2026
+      ],
+      "units_searched": [
+        "CSE",
+        "ESE",
+        "BME",
+        "I2DB",
+        "Pathology & Immunology (SOM profiles)"
+      ]
+    },
+    {
+      "name": "S. Joshua Swamidass",
+      "aliases": [
+        "Sanjay Joshua Swamidass",
+        "S. Joshua Swamidass"
+      ],
+      "source": "coverage_audit",
+      "decision": "accepted",
+      "reason": "PI fill 2026-11-18 (D-0003): official Pathology & Immunology profile (stored capture sha256 23e7a801..., 2026-11-17): Associate Professor, Pathology & Immunology and Associate Professor, Biomedical Engineering; identity by OpenAlex A5086610385 carrying ORCID 0000-0003-2191-0778 (same as the CSRankings lead); computing test: 16 of 70 school works DBLP-indexed (0.229 >= 0.20), machine learning for chemistry and biomedicine as method; replaces the two 'no_appointment_evidence' leads of the missed-labs review",
+      "cs_basis": {
+        "openalex": [
+          "https://openalex.org/A5086610385"
+        ]
+      },
+      "faculty_evidence": [
+        {
+          "unit": "Pathology & Immunology",
+          "url": "https://pathology.wustl.edu/people/s-joshua-swamidass-md-phd/",
+          "sha256": "23e7a801ddb738b4a035e53bc89d08203104f37c0f3585d8761b91cfff88dc6f",
+          "observed": "20261117",
+          "quote": "S. Joshua Swamidass, MD, PhD Associate Professor, Pathology & Immunology",
+          "ladder": true
+        }
+      ],
+      "years_listed": [
+        2026
+      ],
+      "units_searched": [
+        "CSE",
+        "ESE",
+        "BME",
+        "I2DB",
+        "Pathology & Immunology (SOM profiles)"
+      ]
+    },
+    {
+      "name": "Xiaowei Wang 0006",
+      "aliases": [
+        "Xiaowei Wang"
+      ],
+      "source": "coverage_audit",
+      "decision": "excluded_unresolved",
+      "reason": "NOT decided absent: no stored source covers a WashU appointment of this person in the window. DBLP 27/5665-6 notes WashU School of Medicine (older records) and now University of Illinois Chicago (Pharmacology & Regenerative Medicine, Professor); the School of Medicine departments are not captured as dated listings for 2016-2026; needs a dated WashU School of Medicine faculty source",
+      "cs_basis": {
+        "openalex": [
+          "https://openalex.org/A5100460487"
+        ]
+      },
+      "faculty_evidence": [],
+      "years_listed": [],
+      "units_searched": [
+        "CSE",
+        "ESE",
+        "BME",
+        "I2DB",
+        "Pathology & Immunology (SOM profiles)"
+      ],
+      "reason_code": "no_source_covers_window",
+      "sources_tried": [
+        "DBLP dump dblp-2026-09-01.xml.gz",
+        "OpenAlex sweep A5100460487",
+        "chicago.medicine.uic.edu pharmacology profile (web search 2026-11-18)",
+        "washu CSE/ESE/BME listings 2016-2026"
+      ]
+    },
+    {
+      "name": "Jiaming Liu 0001",
+      "aliases": [
+        "Jiaming Liu"
+      ],
+      "source": "coverage_audit",
+      "decision": "not_faculty_listed",
+      "reason": "PI fill 2026-11-18: already decided in the missed-labs review (decision not_faculty: matches a student, postdoc or member recorded for a PI, derived/students.json); no dated listing names him with a professor title; recall candidate DBLP 33/5934-1 is that student/postdoc",
+      "cs_basis": {
+        "openalex": [
+          "https://openalex.org/A5100440970"
+        ]
+      },
+      "faculty_evidence": [],
+      "years_listed": [],
+      "units_searched": [
+        "CSE",
+        "ESE",
+        "BME",
+        "I2DB",
+        "Pathology & Immunology (SOM profiles)"
+      ]
+    }
+  ]
 }
