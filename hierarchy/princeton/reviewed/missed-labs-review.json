@@ -1517,8 +1517,8 @@
   },
   {
    "name": "Roi Livni",
-   "decision": "no_appointment_evidence",
-   "reason": "sources ['dblp', 'openalex']; not found in stored unit faculty listings of every captured unit 2016-2026; OA CS 8/9, DBLP 79, PhD theses naming them 0.",
+   "decision": "not_faculty",
+   "reason": "PI fill 2026-11-18 (D-0003): not a Princeton ladder appointment. His 2017 seminar bio (cs.technion.ac.il/events/2017/2950) lists him as research instructor in the Princeton computer science department (postdoc, non-ladder), and his current page (cris.tau.ac.it / rlivni.sites.tau.ac.il) is Associate Professor, School of Electrical & Computer Engineering, Tel Aviv University; no Princeton listing names him with a professor title (CS listings 2016-2026). DBLP 59/11348, OpenAlex A5089862531.",
    "oa": {
     "id": "https://openalex.org/A5089862531",
     "cs": 8,
@@ -9297,20 +9297,9 @@
   },
   {
    "name": "Dhruv Shah",
-   "decision": "faculty_not_computing",
-   "reason": "ladder listing 2025-2026; CS-venue share 0.00, DBLP 0: computing is not the object or method (rule-based)",
-   "listed": {
-    "titles": [
-     "Assistant Professor of Electrical and Computer Engineering"
-    ],
-    "units": [
-     "Electrical and Computer Engineering"
-    ],
-    "years": [
-     2025,
-     2026
-    ]
-   }
+   "decision": "accepted",
+   "reason": "PI fill 2026-11-18 (D-0003) supersedes the rule-based faculty_not_computing (DBLP was not linked to the new hire, share 0): ECE faculty listing captures 2026-03-01 and 2026-08-22 (Wayback, sha256 5a428e96... / 7efb84c2...) quote 'Dhruv Shah Assistant Professor of Electrical and Computer Engineering'; computing: robot learning and foundation models for robotics (DBLP pid 62/8135, 106 records 2016-2026; ECE core faculty in robotics). Period starts 2026 (earliest verified listing).",
+   "dblp": "https://dblp.org/pid/62/8135"
   },
   {
    "name": "Garry Brown",
@@ -9762,20 +9751,9 @@
   },
   {
    "name": "Tom Silver",
-   "decision": "faculty_not_computing",
-   "reason": "ladder listing 2024-2026; CS-venue share 0.00, DBLP 0: computing is not the object or method (rule-based)",
-   "listed": {
-    "titles": [
-     "Assistant Professor of Electrical and Computer Engineering"
-    ],
-    "units": [
-     "Electrical and Computer Engineering"
-    ],
-    "years": [
-     2024,
-     2026
-    ]
-   }
+   "decision": "accepted",
+   "reason": "PI fill 2026-11-18 (D-0003) supersedes the rule-based faculty_not_computing (DBLP was not linked to the new hire, share 0): ECE faculty listing captures 2026-03-01 and 2026-08-22 (Wayback, sha256 5a428e96... / 7efb84c2...) quote 'Tom Silver Assistant Professor of Electrical and Computer Engineering'; computing: robot planning and machine learning (DBLP pid 202/1778, 66 records 2016-2026; ECE core faculty in robotics). Period starts 2026 (earliest verified listing).",
+   "dblp": "https://dblp.org/pid/202/1778"
   },
   {
    "name": "Otis Chodosh",
@@ -15616,6 +15594,17 @@
      2016
     ]
    }
+  },
+  {
+   "name": "Yi Zhang 0074",
+   "decision": "not_faculty",
+   "reason": "PI fill 2026-11-18 (D-0003): the recall candidate (DBLP 64/6544-74, OpenAlex A5035931692, ORCID 0000-0002-8794-4332) has Princeton University affiliations only in 2018-2021 (OpenAlex), then other institutions; no Princeton listing 2016-2026 names a Yi Zhang with a professor title; a student named Yi Zhang is held in the reviewed lab-page evidence of Princeton labs (labpage-input students_held); treated as a student, not faculty",
+   "oa": {
+    "id": "https://openalex.org/A5035931692",
+    "cs": 0,
+    "works": 13
+   },
+   "dblp": "https://dblp.org/pid/64/6544-74"
   }
  ],
  "wayback_queue": [
