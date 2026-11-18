@@ -98,6 +98,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `labpage-audit-captures.sqlite` | raw | `hierarchy/{school}/labpage-audit-captures.sqlite` | `hierarchy/{school}/raw/labpage-audit-captures.sqlite` | 0/7 | >=100MB |
 | `school-captures.sqlite` | raw | `captures/{school}.sqlite` | `hierarchy/{school}/raw/school-captures.sqlite` | 0/4 | >=100MB |
 | `listings-captures.sqlite` | raw | `listings/{school}/captures.sqlite` | `listings/{school}/raw/captures.sqlite` | 0/6 | >=100MB |
+| `release-corrections.json` | reviewed | `hierarchy/{school}/release-corrections.json` | `hierarchy/{school}/reviewed/release-corrections.json` | 5/5 | <10MB |
 | `gap-evidence.json` | reviewed | `hierarchy/{school}/gap-evidence.json` | `hierarchy/{school}/reviewed/gap-evidence.json` | 5/5 | <100MB |
 | `few-students-evidence.json` | reviewed | `hierarchy/{school}/few-students-evidence.json` | `hierarchy/{school}/reviewed/few-students-evidence.json` | 6/6 | <100MB |
 | `undated-capture-evidence.json` | reviewed | `hierarchy/{school}/undated-capture-evidence.json` | `hierarchy/{school}/reviewed/undated-capture-evidence.json` | 1/9 | <100MB |
