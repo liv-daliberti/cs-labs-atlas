@@ -61,6 +61,21 @@ center_units = ["SANGHANI", "HUME"]
 home_units = {"Computer Science" = 'computer\s+science', "Electrical and Computer Engineering" = 'electrical\s+(?:and|&)\s+computer\s+engineering', "Statistics" = 'statistics', "Industrial and Systems Engineering" = 'industrial\s+(?:and|&)\s+systems', "Mathematics" = 'mathematics', "Plant and Environmental Sciences" = 'plant\s+(?:and|&)\s+environmental\s+sciences', "Physics" = 'physics', "Chemistry" = 'chemistry', "Business Information Technology" = 'business\s+information\s+technology', "School of Visual Arts" = 'school\s+of\s+visual\s+arts'}
 rank_words = {teaching = '\bprofessor\s+of\s+practice\b|\bcollegiate\s+(?:(?:assistant|associate)\s+)?professor\b|\binstructor\b|\bteaching\b', adjunct = '\badjunct\b|\bvisiting\b'}
 
+[period_proofs]
+# Stored official documents that date a professor rank by year (tools/period_proofs.py, stage 4 local first; 2026-11-18)
+root = "scratch/vt-followthrough-1110"
+target_basis = ["courtesy_faculty"]
+documents = [
+  {kind = "salary_layout", year = 2016, file = "bov-2016-17-faculty-salary", url = "https://bov.vt.edu/assets/bov-2016-17-faculty-salary.pdf (stored: scratch/vt-followthrough-1110/bov-2016-17-faculty-salary.pdf)"},
+  {kind = "salary_layout", year = 2018, file = "bov-2018-19-faculty-salary", url = "https://bov.vt.edu/assets/bov-2018-19-faculty-salary.pdf (stored: scratch/vt-followthrough-1110/bov-2018-19-faculty-salary.pdf)"},
+  {kind = "salary_layout", year = 2021, file = "bov-2021-22-faculty-salary", url = "https://bov.vt.edu/assets/bov-2021-22-faculty-salary.pdf (stored: scratch/vt-followthrough-1110/bov-2021-22-faculty-salary.pdf)"},
+  {kind = "salary_layout", year = 2022, file = "bov-2022-23-faculty-salary", url = "https://bov.vt.edu/assets/bov-2022-23-faculty-salary.pdf (stored: scratch/vt-followthrough-1110/bov-2022-23-faculty-salary.pdf)"},
+  {kind = "salary_layout", year = 2023, file = "bov-2023-24-faculty-salary", url = "https://bov.vt.edu/assets/bov-2023-24-faculty-salary.pdf (stored: scratch/vt-followthrough-1110/bov-2023-24-faculty-salary.pdf)"},
+  {kind = "catalog_directory", year = 2017, url = "https://www.undergradcatalog.registrar.vt.edu/1718/faculty.html"},
+  {kind = "catalog_directory", year = 2018, url = "https://www.undergradcatalog.registrar.vt.edu/1819/faculty.html"},
+  {kind = "catalog_directory", year = 2019, url = "https://www.undergradcatalog.registrar.vt.edu/1920/faculty.html"},
+]
+
 [sweep_check]
 exceptions = []
 

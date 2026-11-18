@@ -483,6 +483,8 @@ def main(key):
     for x in read(P.data('census-additions.json', key), []):  # accepted CS-related faculty of other units: a person record each
         if x.get('collection_person_id') and all(p_['id'] != x['collection_person_id'] for p_ in people):
             people.append(dict(id=x['collection_person_id'], name=x['name'], roles=['faculty'], contexts=[], profileUrl=x.get('profile_url')))
+    import period_proofs as PP  # reviewed year proofs of courtesy-listed PIs (census-overrides-school.json year_proofs; tools/period_proofs.py)
+    PP.merge_year_proofs(census, key)
     rule = __doc__.split('\n-> ')[0]
     P.data_w('census-faculty.json', key).write_text(json.dumps(dict(school=key, built_at=datetime.datetime.utcnow().isoformat() + 'Z', rule=rule, faculty=census),
                                                              indent=1, ensure_ascii=False))
