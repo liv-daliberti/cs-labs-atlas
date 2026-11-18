@@ -84,7 +84,7 @@ def charter_usable(con, cap, s, floor=5):
     # shell guard for unreviewed or generic pages.
     if s.get('format') and isinstance(s.get('min_entries'), int) and 1 <= s['min_entries'] <= 5:
         floor = s['min_entries']
-    if es and listing_formats.is_paged(html) and not s.get("prefix"):  # one page of several: a partial list passes the floor (UChicago CS 2017)
+    if es and listing_formats.is_paged(html) and not s.get("prefix") and not s.get("partial_ok"):  # one page of several: a partial list passes the floor (UChicago CS 2017)
         return False, f"paged directory: this capture holds {len(es)} entries of one page (a listing_gaps entry records the year)"
     if len(es) < floor:
         return False, f"listing format {fmt} parses {len(es)} person entries (< {floor})"

@@ -297,6 +297,8 @@ def listing_slots(key):
                 by[s['slot']]['format'] = s['format']   # plan_fetch reads s.get('format'); formats with no detector (hkust_faculty_table) need it
             if s.get('min_entries') is not None:
                 by[s['slot']]['min_entries'] = s['min_entries']
+            if s.get('partial_ok'):
+                by[s['slot']]['partial_ok'] = True   # the first page of a paged list is a usable PARTIAL source (people kept, the year stays open): PKU CS
             out.append(by[s['slot']])
     return out
 

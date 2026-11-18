@@ -16,6 +16,7 @@ import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 from dblp_dump_persons import records, text, AUTH, URL, YEAR  # noqa: E402
 
+MIN_WINDOW = 5
 HAN = re.compile(r'^[㐀-鿿]{2,5}$')
 NOTE_AFF = re.compile(r'<note[^>]*type="affiliation"[^>]*>(.*?)</note>', re.S)
 
@@ -161,8 +162,8 @@ def main(keys):
         ev = {p['name']: p['evidence'] for p in people[k]}
         n = 0
         for person, r in bound:
-            if (cur.get(person) or {}).get('pid'):
-                continue
+            if (cur.get(person) or {}).get('pid') or k_cnt[r['pid']] < MIN_WINDOW:
+                continue   # a thin record (< MIN_WINDOW records in the window) is too weak for a name-derived join (PKU audit: Feng Liu 0049, Feng Chen 0021)
             cur[person] = dict(pid=r['pid'], basis='pinyin_unique_affiliation', confidence='medium', url=r['pid'], dump=P.DBLP_DUMP_FILE, sha256=r['sha256'],
                                quote=r['school_note'], orcid=r['orcid'], names=r['names'], candidates=1, n_window=k_cnt[r['pid']], roster_evidence=ev.get(person))
             n += 1

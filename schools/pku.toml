@@ -78,6 +78,7 @@ url = "https://cs.pku.edu.cn/szdw/jyxl/amz/ALL.htm"
   from = "20200101"
   to = "20231231"
   format = "pku_cs_any"
+  partial_ok = true   # only the first page of the paged list is archived for most half-years: its people are sourced rows, the year stays partial (no waiver)
   [[departments.listings]]
   slot = "CS teaching and research faculty"
   kind = "main"
@@ -85,6 +86,7 @@ url = "https://cs.pku.edu.cn/szdw/jyxl/amz/ALL.htm"
   from = "20230901"
   to = "20261231"
   format = "pku_cs_any"
+  partial_ok = true   # only the first page of the paged list is archived for most half-years: its people are sourced rows, the year stays partial (no waiver)
 
 [[departments]]
 code = "WICT"

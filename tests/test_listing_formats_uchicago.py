@@ -102,3 +102,15 @@ def test_a_paged_capture_is_flagged_and_plan_fetch_rejects_it(monkeypatch):
     assert not ok and 'paged directory' in why
     assert PF.charter_usable(Con(PAGED), 'u', {'prefix': True})[0]
     assert PF.charter_usable(Con('<ul></ul>'), 'u', {})[0]
+
+
+def test_partial_ok_slot_keeps_the_first_page_of_a_paged_list(monkeypatch):
+    import plan_fetch as PF
+    import listing_formats as LF
+    monkeypatch.setattr(LF, 'parse', lambda h, f=None: ('x', [{'name': str(i)} for i in range(9)]))
+    monkeypatch.setattr(PF.wb, 'body', lambda raw: raw)
+
+    class Con:
+        def execute(self, q, a): return type('C', (), {'fetchone': lambda me: (PAGED.encode(),)})()
+    assert PF.charter_usable(Con(), 'u', {'partial_ok': True})[0]
+    assert not PF.charter_usable(Con(), 'u', {})[0]
