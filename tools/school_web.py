@@ -17,7 +17,7 @@ usage (CLI)   school_web.py <key> cdx <url> [prefix]       list Wayback 200 capt
               school_web.py <key> live <url>               fetch one live page (robots honoured), print its text
               school_web.py <key> robots <host>            print the stored robots decision
 """
-import hashlib, json, os, re, sys, time, urllib.parse, urllib.robotparser, zlib
+import hashlib, json, os, re, sqlite3, sys, time, urllib.parse, urllib.robotparser, zlib
 import fcntl
 from contextlib import contextmanager, nullcontext
 from pathlib import Path
@@ -32,7 +32,11 @@ import extract  # noqa: E402
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory; robots.txt honoured)'
 AI_AGENTS = ('ClaudeBot', 'anthropic-ai', 'Claude-Web', 'Claude-User', 'Claude-SearchBot')
 CHALLENGE = re.compile(r'bot detection|traffic check|Please enable JavaScript to view the page content|cf-chl|'
-                       r'checking your browser|are you a robot|access denied|<title>Just a moment\.\.\.</title>|'
+                       r'checking your browser|are you a robot|<title>Just a moment\.\.\.</title>|'
+                       # A bare 'access denied' is not a challenge: a themed CMS 403 page (Drupal at ic/scs/isye/ece.gatech.edu) says so for one path.
+                       # Real WAF stubs: Akamai (head holds only the title, then a Reference # id / errors.edgesuite.net), Sucuri, Cloudflare's own page.
+                       r'<title>\s*access denied\s*</title>\s*</head>\s*<body|errors\.edgesuite\.net|reference(?:&#32;|\s)(?:&\#35;|\#)\d+\.[0-9a-f]+|'
+                       r'sucuri website firewall|access denied \| [\w.-]+ used cloudflare|'
                        r'challenges\.cloudflare\.com|cf_chl_opt|px-captcha|ddos-guard|'
                        r'<(?:iframe|frame)[^>]+_Incapsula_Resource|Incapsula incident ID|Request unsuccessful\. Incapsula|' 
                        # A script can also serve an empty challenge shell; a readable page may embed the same resource.
@@ -51,6 +55,24 @@ _blocked = set()
 
 
 APACHE_PERMISSION_403 = re.compile(rb"(?is)<title>\s*403 Forbidden\s*</title>.{0,400}?(?:don't|do not) have permission to access (?:this resource|/\S* on this server).{0,300}?<address>\s*Apache")
+
+
+CMS_PATH_403_TITLE = re.compile(rb'(?is)<title>[^<]{0,80}(?:access denied|403|forbidden|permissions? issue)[^<]{0,160}</title>')
+CMS_PATH_403_MARK = re.compile(rb'(?i)/sites/default/files/|/themes/(?:custom|contrib)/|drupal-settings-json|/wp-content/')
+
+
+def cms_path_denial(status, body):
+    """A themed CMS 403 (Drupal 'Access denied' / 'Our Apologies (403 error: permissions issue)' at ic, scs, isye, ece, math.gatech.edu):
+    a full site page with the site's own theme refusing that one path, served beside 200 profiles on the same host. Not a bot challenge:
+    no challenge signature, and a short WAF stub or an unthemed page does not qualify. Recorded per path, never retried, host stays open."""
+    body = body or b''
+    return (status == 403 and len(body) >= 8000 and bool(CMS_PATH_403_TITLE.search(body[:20000])) and bool(CMS_PATH_403_MARK.search(body))
+            and not CHALLENGE.search(body[:20000].decode('utf-8', 'replace')))
+
+
+def path_denial(status, body):
+    """True when the refusal is about one path (Apache permission page or themed CMS 403), not the host's stance on automated clients."""
+    return apache_path_denial(status, body) or cms_path_denial(status, body)
 
 
 def apache_path_denial(status, body):
@@ -73,26 +95,33 @@ def con(key):
     c.execute('create table if not exists blocked (host text primary key, at text, why text)')
     c.commit()
     for (h, why) in c.execute('select host, why from blocked'):
-        m = re.match(r'HTTP 403 access refusal at (\S+)$', why or '')
-        if m:   # re-judge a stored 403 block by the stored body of that page: an Apache permission page is a per-path denial
+        m = re.match(r'(?:HTTP 403 access refusal|challenge) at (\S+)$', why or '')
+        if m:   # re-judge a stored 403 / challenge block by the stored body of that page: an Apache permission page or a themed CMS 403 is a per-path denial
             r = c.execute('select status, raw_zlib from live where url=?', (m.group(1),)).fetchone()
-            try:
-                body = zlib.decompress(r[1]) if r and r[1] else b''
-            except zlib.error:
-                body = (r[1] if r else b'') or b''
-            if r and apache_path_denial(r[0], body):
+            if r and _stored_path_denial(c, m.group(1), r[0], r[1]):
                 continue
         _blocked.add(h)
     # Old collectors did not persist plain access refusals as host blocks.
     # Reuse their receipts so a new URL cannot silently retry the same host.
     for url, st, raw in c.execute('select url, status, raw_zlib from live where status in (401,403,429,999)'):
-        try:
-            body = zlib.decompress(raw) if raw else b''
-        except zlib.error:
-            body = raw or b''
-        if not apache_path_denial(st, body):
+        if not _stored_path_denial(c, url, st, raw):
             _blocked.add(urllib.parse.urlsplit(url).netloc)
     return c
+
+
+def _stored_path_denial(c, url, st, raw):
+    """Re-judge a stored refusal: status 999 is school_web's own classification, so the HTTP status comes from live_transport."""
+    try:
+        body = zlib.decompress(raw) if raw else b''
+    except zlib.error:
+        body = raw or b''
+    if st == 999:
+        try:
+            t = c.execute('select http_status from live_transport where url=?', (url,)).fetchone()
+        except sqlite3.Error:
+            t = None
+        st = t[0] if t else st
+    return path_denial(st, body)
 
 
 def cdx_rows(c, url, exact=True, frm='2016', to='2026', collapse='timestamp:6', status_200=True):
@@ -359,7 +388,7 @@ def live(c, url, refresh=False, same_origin=False, min_delay=0):
             body, st, ct = repr(e).encode(), -1, None
         transport_status = st
         _last[host] = time.time()
-        if st in (401, 403, 429) and not apache_path_denial(st, body):
+        if st in (401, 403, 429) and not path_denial(st, body):
             block(c, host, f'HTTP {st} access refusal at {url}')
         if st in (200, 403, 429, 503) and CHALLENGE.search(body[:20000].decode('utf-8', 'replace')):
             st = 999  # a bot challenge: recorded, never worked around; the host is not used again
