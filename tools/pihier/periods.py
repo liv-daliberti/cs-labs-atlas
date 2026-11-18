@@ -150,14 +150,21 @@ def pi_mine(periods, ids, name):
     return [p for p in periods if p.get('personId') in ids or Name([p.get('name') or '']).match(name)]
 
 
-def pi_periods(mine, o):
+def pi_periods(mine, o, name=None):
     """The PI's periods as the package writes them: the collection periods (up to two evidence items, complete ones
     first) and the reviewed periods of census-overrides.json (`o`: the PI's override entry; an open reviewed period is
     current as of today)."""
     return [dict(id=p.get('id'), start=p.get('facultyStart'), end=p.get('facultyEnd'), asof=p.get('ongoingAsOf') or p.get('facultyLastConfirmed'),
                  evidence=best_sources(p.get('evidence'))) for p in mine] \
         + [dict(q, **{k: iso_date(q[k]) for k in ('start', 'end') if q.get(k)},
+                id=q.get('id') or _override_period_id(name or o.get('name'), q),
                 asof=iso_date(q.get('asof')) or (None if q.get('end') else TODAY)) for q in o.get('periods') or []]  # reviewed periods (census-overrides.json)
+
+
+def _override_period_id(name, q):
+    """A reviewed period written without an `id` (the pis.json schema requires one) gets a stable id from its PI, start and end."""
+    slug = re.sub(r'[^a-z0-9]+', '_', str(name or 'pi').lower()).strip('_')
+    return f"override_period_{slug}_{iso_date(q.get('start')) or 'open'}_{iso_date(q.get('end')) or 'open'}"
 
 
 def bridge_periods(periods, direct_years, moved=False):

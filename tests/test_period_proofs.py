@@ -44,3 +44,10 @@ def test_vt_charter_lists_its_documents():
     import school_config as S
     docs = (S.get('vt').get('period_proofs') or {}).get('documents') or []
     assert {d['kind'] for d in docs} == {'salary_layout', 'catalog_directory'} and len(docs) == 8
+
+
+def test_reviewed_override_period_without_id_gets_a_stable_one():
+    from pihier.periods import pi_periods
+    q = dict(start='2021', end='2026', why='x', evidence=[])
+    out = pi_periods([], dict(periods=[q, dict(q, id='kept')]), 'Seth Neel')
+    assert out[0]['id'] == 'override_period_seth_neel_2021_2026' and out[1]['id'] == 'kept'

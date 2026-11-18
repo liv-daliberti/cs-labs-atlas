@@ -205,7 +205,7 @@ def pi_records(ctx):
                         notPapers=list(o.get('not_papers') or []),   # R-PAP-39: reviewed records that are no papers
                         mergedCensusRows=x['mergedCensusRows'], rank=x.get('rank'), title=x.get('title_as_listed'),
                         departments=x.get('departments') or x.get('units') or [], piBasis=o.get('pi_basis') or x.get('pi_basis'), lab=lab,  # a reviewed basis (census-overrides.json) wins
-                        periods=pi_periods(mine, o),  # collection periods + reviewed periods (census-overrides.json)
+                        periods=pi_periods(mine, o, x['name']),  # collection periods + reviewed periods (census-overrides.json)
                         listings=[listings[y] for y in sorted(listings) if y not in after_move],
                         listingsAfterMove=[after_move[y] for y in sorted(after_move)]))
     duplicate_names = [name for name, count in collections.Counter(p['pi'] for p in pis).items() if count > 1]
