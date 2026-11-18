@@ -72,11 +72,20 @@ def test_chain_audit_items_are_per_pi_and_follow_a_waiver_of_their_summary(monke
     assert r['pis']['A B']['7']['state'] == 'excluded_with_reason' and r['open_pis'] == []
 
 
-def test_gate10_judges_pis_of_onboarding_schools_only(monkeypatch):
+def test_gate10_is_per_pi_for_onboarding_schools_only(monkeypatch):
+    """D-0001: a released school keeps its status; an onboarding school needs >= 1 included PI and passing accuracy, an open PI only holds itself."""
+    import pi_release as PR
     import school_config as S
     setup(monkeypatch, {'3': ['A B: PI basis without url/sha256/quote']})
     monkeypatch.setattr(S, 'get', lambda key: dict(status='released'))
     monkeypatch.setattr(SG, 'read', lambda p, default=None: {'counts': {'x': {}}})
     assert SG.g10('x')[0] == []
     monkeypatch.setattr(S, 'get', lambda key: dict(status='onboarding'))
-    assert any('PI A B is open' in b for b in SG.g10('x')[0])
+    monkeypatch.setattr(PR, 'plan', lambda key, **k: dict(package_pis=2, included=['C D'], held={'A B': ['stage 3: x']}, school_items={'3': ['y']}, partial=True))
+    monkeypatch.setattr(SG, 'g9', lambda key: ([], {}))
+    bad, det = SG.g10('x')
+    assert not any('PI A B' in b for b in bad) and det['pis_held'] == 1 and det['partial']
+    monkeypatch.setattr(SG, 'g9', lambda key: (['accuracy: lab_precision_uniform 0.9 < 0.95'], {}))
+    assert any('accuracy' in b for b in SG.g10('x')[0])
+    monkeypatch.setattr(PR, 'plan', lambda key, **k: dict(package_pis=2, included=[], held={'A B': ['s'], 'C D': ['s']}, school_items={}, partial=True))
+    assert any('no PI is done' in b for b in SG.g10('x')[0])

@@ -70,6 +70,11 @@ def one_school(school):
                              policy=r.get('policy')) for r in V if r['verdict'] == 'incorrect'],
              unclear=[dict(sample=r['sample'], item=r['item'], reason=r['reason']) for r in V if r['verdict'] == 'unclear'],
              screened=[json.loads(l) for l in open((round_dir() or ACC) / f'screened-{school}.jsonl')] if ((round_dir() or ACC) / f'screened-{school}.jsonl').exists() else [])
+    sub = (S.get('subset') or {}).get(school)
+    if sub:   # a per-PI release draw (sample.py --round pi1): the summary records the subset it was drawn from (g9 binds to it, not to the whole files)
+        import pi_release
+        d['subset'] = dict(sub, files_now=pi_release.package_hashes(school, sub['pis']))
+        d['files'], d['files_now'] = sub['files'], d['subset']['files_now']
     d['population'] = {k: S['schools'][school][k] for k in ('n_lab_papers', 'n_student_papers', 'n_coverage_pool', 'n_student_candidates')}
     rd = round_dir()
     if rd:  # a round: the sizes drawn against the sizes judged (student coverage is judged as far as the candidates go)

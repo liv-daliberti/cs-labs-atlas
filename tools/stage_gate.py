@@ -571,6 +571,16 @@ def g9(key):
             bad.append(f'accuracy: {k} {p} < {bar}')
     # R-ACC-01: the hashes the summary recorded at draw time must equal the LIVE build files (files_now is stored at summarize time
     # and never moves, so comparing it with files could not see a rebuild after the draw)
+    sub = d.get('subset')
+    if sub:   # a per-PI release (D-0001): the sample was drawn from the included PIs; it is bound to THEIR filtered content, and the set must be unchanged
+        import pi_release as PR
+        pl = PR.plan(key)
+        if sub.get('included_sha') != pl['included_sha']:
+            bad.append(f'accuracy: the included PIs changed since the draw ({len(pl["included"])} now, {sub.get("n_pis")} drawn); redraw on the current subset')
+        live = PR.package_hashes(key, sub.get('pis') or [])
+        if live != sub.get('files'):
+            bad.append('accuracy: the included PIs\' package content changed since the draw (subset files differ); redraw')
+        return bad, dict(n_verdicts=d.get('n_verdicts'), subset_pis=sub.get('n_pis'))
     files, files_now = d.get('files'), d.get('files_now')
     for field, values in (('files', files), ('files_now', files_now)):
         if (not isinstance(values, dict) or set(values) != set(ACCURACY_FILES)
@@ -592,14 +602,18 @@ def g10(key):
     man = read(Path(P.RELEASES) / 'latest' / 'MANIFEST.json') or {}
     if key not in (man.get('counts') or {}):
         bad.append('the newest release does not count this school')
-    # Process v4 (owner decision 1, 2026-11-17): stages 3-7 are judged per PI (tools/pi_states.py) and never hold the school; the RELEASE stays
-    # school-wide and needs every PI done or excluded with a reason, and no open school item (an acceptance, a sample statistic) of stages 2-7.
-    if S.get(key).get('status') == 'released':   # a released school was accepted under the rules of its time: its per-PI state is reported (pi_states.py), not re-judged
+    # D-0001 (owner 2026-11-17): the release is PER PI. A school needs at least one PI that is done (or excluded with a reason) and passing accuracy on
+    # the subset of those PIs (g9); open PIs are HELD and listed (tools/pi_release.py), school items are reported, neither holds the school.
+    # A released school keeps its status: it was accepted under the rules of its time and its per-PI state is only reported (pi_states.py).
+    if S.get(key).get('status') == 'released':
         return bad, {}
-    import pi_states as PS
-    res = PS.compute(key)
-    bad += PS.release_findings(key, res)
-    return bad, dict(pis=res['pis_total'], pis_open=len(res['open_pis']), pis_downloadable=res['downloadable'])
+    import pi_release as PR
+    more, pl = PR.gate_findings(key)
+    bad += more
+    if pl['included']:
+        bad += [f for f in g9(key)[0]]
+    return bad, dict(pis=pl['package_pis'], pis_included=len(pl['included']), pis_held=len(pl['held']), partial=pl['partial'],
+                     school_items_reported=sum(len(v) for v in pl['school_items'].values()))
 
 
 PER_PI_STAGES = ('3', '4', '5', '6', '7')   # judged per PI (tools/pi_states.py); a failing gate here holds the PIs it names, not the school

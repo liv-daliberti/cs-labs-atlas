@@ -19,7 +19,7 @@ stubs that point here. Part A is the v4 process as it now exists; Part B is the 
 4. **Decisions live in the evidence store** (`docs/EVIDENCE-STORE.md`, `docs/REVIEWS.md`): a decision is recorded with its source, and a rerun never asks twice.
 5. **One correctness rule everywhere a gate needs a human read:** exclude with a reason, then a seeded 50-row independent audit by a reviewer who is not the worker
    (`tools/stage_audit.py`, `atlas stage-audit draw | review-page | record`; classes `excluded`, `homes`, `websites`, `identity`, `students`). The same template serves stages 2, 3, 5 and 6; stage 9 keeps its own accuracy sample.
-6. **Release stays owner-reserved and school-wide** (gate 10: every PI done or excluded, no open school item of stages 2-7; a released school is reported, not re-judged).
+6. **Release stays owner-reserved but is PER PI** (D-0001, 2026-11-17, replaces the school-wide gate): publish the done PIs, hold the open ones; gate 10 needs >= 1 included PI and passing accuracy on that subset; a released school keeps its status (see Stage 10, per-PI release).
 
 ### A.2 Tracks
 ```
@@ -762,6 +762,13 @@ The catalogue and the loop do not wait for the stage 3-8 gates. They read the bu
   - Hand off to the site. Codex adds the school to the site builder's `SCHOOLS`, its department mapping and the page copy; the charter's `[site]` table holds the mapping.
   - Upload to Hugging Face.
 - **Gate:** the release exists, and the school appears in `schools/`, the export and the handoff.
+
+### Stage 10, per-PI release (D-0001, 2026-11-17)
+- A release (`make_release.py --per-pi [--add-school S]`) carries a school's done or excluded-with-reason PIs and their labs, papers and students; an open PI is **held** and listed with its blocking reason (`RELEASE-SCOPE.md`).
+  A PI an earlier release published is **carried** even if open now: published rows are never removed (`tools/pi_release.py compare`; `--allow-removals` records a deliberate correction).
+- Stage 9 on the subset: `accuracy/sample.py --round pi1 --school S` draws (seeded) only from the included PIs and binds to their filtered content; g9 fails when the included set or its content changed. Same bars, same independent reviewer.
+- Gate 10 (onboarding schools): >= 1 included PI and g9 passing; held PIs and school items are reported, not blocking. The site reads `release-scope.json` (`hierarchy/<school>/release-scope.json`: `status` complete|partial, `pis_total`, `pis_included`, `pis_held`).
+- Dry run, nothing written: `bin/atlas run tools/pi_release.py <school>`. Details and open points: `docs/PER-PI-ADMISSION.md`, "Per-PI release".
 
 ### Files that must learn a new school
 **Config-driven:** these read `schools/<key>.toml`, or `atlas_paths.SCHOOL_IDS`, which is the released charters.

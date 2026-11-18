@@ -57,7 +57,10 @@ ROUNDS = {'r2': dict(seed=20261102, uniform=50, stratum=5, cov=50, cands=200,
           # VT r10 binds the corrected package currently in derived data.
           # Earlier VT rounds remain in their original branch as history.
           'r10': dict(seed=2026111503, uniform=50, stratum=5, cov=50, cands=200,
-                      schools=['vt'], dir='round-r10')}
+                      schools=['vt'], dir='round-r10'),
+          # pi1 (D-0001, owner 2026-11-17: the release is per PI): the draw is restricted to the school's INCLUDED PIs (tools/pi_release.py plan);
+          # the seed, sizes, strata and bars are the r3 ones, the sample records the PI list and the filtered-file hashes it binds to (subset)
+          'pi1': dict(seed=20261118, uniform=50, stratum=5, cov=50, cands=200, schools=[], dir='round-pi1', subset=True)}
 FILES = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 
 
@@ -157,8 +160,11 @@ def alumni_relation(rel, roles):
     return max(ys) if ys else None
 
 
-def main(schools=None, out_path=None, date='2026-10-29', cfg=None):
+def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None):
+    """`only_pis` (a per-PI release, D-0001; tools/pi_release.py): draw only from these PIs' rows (their lab papers, student papers, DBLP
+    pool and student candidates). With None the draw is exactly the school-wide one (the published draws are unchanged)."""
     cfg = cfg or LEGACY
+    only = set(only_pis) if only_pis is not None else None
     out = {'seed': cfg['seed'], 'date': date, 'sizes': {k: cfg[k] for k in ('uniform', 'stratum', 'cov', 'cands')}, 'schools': {}, 'files': {}}
     if cfg is LEGACY:
         del out['sizes']  # the 2026-10-29 files never carried it
@@ -166,43 +172,55 @@ def main(schools=None, out_path=None, date='2026-10-29', cfg=None):
         rng = random.Random(cfg['seed'])
         d = P.SchoolDir(school)
         out['files'][school] = {f: sha(d / f) for f in FILES}
+        if only is not None:
+            import pi_release
+            out.setdefault('subset', {})[school] = dict(pis=sorted(only), n_pis=len(only), files=pi_release.package_hashes(school, only),
+                                                        included_sha=__import__('hashlib').sha256('\n'.join(sorted(only)).encode()).hexdigest())
         # 1. lab papers
         meta = []
         for i, line in enumerate(gzip.open(d / 'lab_papers.jsonl.gz', 'rt')):
             r = json.loads(line)
+            if only is not None and r['pi'] not in only:
+                continue
             via = (r['authorship'].get('school_via') or [''])[0]
             meta.append(dict(i=i, key=f"{r['pi']}|{r['work']}|{r['oa']}", adv=via.startswith('advisee on an unaffiliated byline'),
                              listing='listing' in (r.get('appointment') or {}), nonrev=r.get('identity') != 'reviewed_openalex_author_id'))
         lab = []
-        taken = set(rng.sample(range(len(meta)), min(cfg['uniform'], len(meta))))
-        lab += [dict(stratum='uniform', i=i, key=meta[i]['key']) for i in sorted(taken)]
+        mk = {m['i']: m['key'] for m in meta}
+        taken = set(rng.sample([m['i'] for m in meta], min(cfg['uniform'], len(meta))))
+        lab += [dict(stratum='uniform', i=i, key=mk[i]) for i in sorted(taken)]
         for st, f in (('advisee_unaffiliated', 'adv'), ('listing', 'listing'), ('identity_not_reviewed', 'nonrev')):
             pool = [m['i'] for m in meta if m[f] and m['i'] not in taken]
             pick = rng.sample(pool, min(cfg['stratum'], len(pool)))
             taken |= set(pick)
-            lab += [dict(stratum=st, i=i, key=meta[i]['key']) for i in sorted(pick)]
+            lab += [dict(stratum=st, i=i, key=mk[i]) for i in sorted(pick)]
         # 2. student papers
         sm = []
         for i, line in enumerate(gzip.open(d / 'student_papers.jsonl.gz', 'rt')):
             r = json.loads(line)
+            if only is not None and r['pi'] not in only:
+                continue
             sm.append(dict(i=i, key=f"{r['pi']}|{r['student']}|{r['oa']}", basis=r.get('basis')))
         stu = []
-        taken = set(rng.sample(range(len(sm)), min(cfg['uniform'], len(sm))))
-        stu += [dict(stratum='uniform', i=i, key=sm[i]['key']) for i in sorted(taken)]
+        sk = {m['i']: m['key'] for m in sm}
+        taken = set(rng.sample([m['i'] for m in sm], min(cfg['uniform'], len(sm))))
+        stu += [dict(stratum='uniform', i=i, key=sk[i]) for i in sorted(taken)]
         short = 0
         for st in ('within_lab_byline_match', 'advisee_name_on_lab_paper_byline', 'full_name_on_lab_paper_byline'):
             pool = [m['i'] for m in sm if m['basis'] == st and m['i'] not in taken]
             pick = rng.sample(pool, min(cfg['stratum'], len(pool)))
             short += cfg['stratum'] - len(pick)
             taken |= set(pick)
-            stu += [dict(stratum=st, i=i, key=sm[i]['key']) for i in sorted(pick)]
+            stu += [dict(stratum=st, i=i, key=sk[i]) for i in sorted(pick)]
         if short:
             pool = [m['i'] for m in sm if m['i'] not in taken]
-            pick = rng.sample(pool, short)
+            pick = rng.sample(pool, min(short, len(pool)))
             taken |= set(pick)
-            stu += [dict(stratum='fill_uniform', i=i, key=sm[i]['key']) for i in sorted(pick)]
+            stu += [dict(stratum='fill_uniform', i=i, key=sk[i]) for i in sorted(pick)]
         # 3. lab coverage from DBLP person pages
         pis = json.load(open(d / 'pis.json'))
+        if only is not None:
+            pis = [p for p in pis if p['pi'] in only]
         wanted = {q for p in pis for q in p.get('dblp') or []}
         pages = dblp_persons(wanted, school)
         pool, seen = [], set()
@@ -250,7 +268,11 @@ def draw_round(rnd, schools=None):
         f = d / f'sample-{school}.json'
         if f.exists():
             _sys.exit(f'{f} exists: a round draw is never overwritten (move it aside by hand to redraw)')
-        main([school], f, datetime.date.today().isoformat(), cfg)
+        only = None
+        if cfg.get('subset'):
+            import pi_release
+            only = pi_release.plan(school)['included']
+        main([school], f, datetime.date.today().isoformat(), cfg, only)
 
 
 if __name__ == '__main__':

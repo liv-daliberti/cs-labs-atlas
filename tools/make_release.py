@@ -24,6 +24,11 @@ tools/pi_hierarchy.py through tools/provenance.py; 2026-10-29), or was rewritten
 has uncommitted changes to tracked build files (--allow-dirty records it instead; collectors' files are recorded only), or the regression check is older than the packages or
 flagged swings (--allow-swings records them instead).
 
+Per-PI release (owner decision D-0001, 2026-11-17; tools/pi_release.py, docs/PER-PI-ADMISSION.md): `--per-pi [--add-school S ...]` filters each school's package to
+its done PIs (plus the PIs an earlier release published; an open PI is held and listed in RELEASE-SCOPE.md), writes release-scope.json (per school: status
+complete|partial, PIs included/total/held; the field the site reads), and refuses when the filtered package would remove a published id (--allow-removals records it)
+or when a partial school would ship school-wide derived files that name held PIs (--allow-derived-unfiltered records it). Without the flag nothing changes.
+
 usage: make_release.py [--before counts.json] [--allow-dirty] [--allow-swings] [--dry-run] [--ai-site-data DIR]
        make_release.py add-note <release id> <SITE-HANDOFF.md|HF-UPLOAD.json> <file>   (add one note file, never a manifest file)
 """
@@ -92,11 +97,11 @@ def rel_of(name, school=None):
     return (P.data(head, school, root=Path('.'), layout='flat') / rest).as_posix()
 
 
-def release_sources(ai_dir=None):
+def release_sources(ai_dir=None, schools=None):
     """{release path: source file} of everything a release copies: the packages and audits per school, the shared derived files, the
     tracked reviewed inputs (under their flat names) and docs/RULES.md. Only files that exist."""
     src = {}
-    for s in P.SCHOOL_IDS:
+    for s in (schools or P.SCHOOL_IDS):
         for f in PACKAGE + SCHOOL_EXTRA:
             if P.data(f, s).exists():
                 src[rel_of(f, s)] = P.data(f, s)
@@ -190,8 +195,31 @@ def point_latest(rid):
     os.replace(tmp, P.RELEASES / 'latest')
 
 
+def per_pi_plans(schools, release_dir=None):
+    """{school: plan, statement, monotone} of a per-PI release (tools/pi_release.py); `release_dir` is the last published release (default latest)."""
+    import pi_release as PR
+    last = release_dir or ((P.RELEASES / 'latest') if (P.RELEASES / 'latest').exists() else None)
+    out = {}
+    for s in schools:
+        pl = PR.plan(s, published=last)
+        out[s] = dict(plan=pl, statement=PR.scope_statement(pl), monotone=PR.compare(s, pl['included'], last) if last else None)
+    return out
+
+
 def make(a):
     ai_dir = a.ai_site_data or os.environ.get('CS_ATLAS_AI_SITE_DATA')
+    schools = list(P.SCHOOL_IDS) + [s for s in (a.add_school or []) if s not in P.SCHOOL_IDS]
+    if (a.add_school or a.allow_removals or a.allow_derived_unfiltered) and not a.per_pi:
+        raise SystemExit('--add-school, --allow-removals and --allow-derived-unfiltered need --per-pi')
+    per = per_pi_plans(schools) if a.per_pi else None
+    if per:
+        flagged = {s: v['monotone']['flags'] for s, v in per.items() if v['monotone'] and v['monotone']['flags']}
+        if flagged and not a.allow_removals:
+            raise SystemExit(f'the filtered packages would remove published rows (monotone check, tools/pi_release.py compare): {flagged}; --allow-removals records them')
+        partial = [s for s, v in per.items() if v['plan']['partial']]
+        if partial and not a.dry_run and not a.allow_derived_unfiltered:
+            import pi_release as PR
+            raise SystemExit(f'partial schools {partial}: the school-wide files {PR.DERIVED_UNFILTERED} still name held PIs; --allow-derived-unfiltered records it')
     head, dirty, other_dirty = code_state()
     if dirty and not a.allow_dirty:
         raise SystemExit(f'uncommitted changes to tracked files (commit first, or --allow-dirty): {dirty[:10]}')
@@ -199,7 +227,7 @@ def make(a):
     if not ok:
         raise SystemExit(f'tests failed: {tests}')
     built, prov = {}, {}
-    for s in P.SCHOOL_IDS:
+    for s in schools:
         for f in PACKAGE:
             if not P.data(f, s).exists():
                 raise SystemExit(f'missing package file {P.data(f, s)}')
@@ -224,7 +252,7 @@ def make(a):
     ev = json.loads(ev_p.read_text()) if ev_p.exists() else None
     if not ev or ev_p.stat().st_mtime < newest or ev.get('mode') != 'strict' or not ev.get('ok'):
         raise SystemExit('EVIDENCE-CHECK.json is missing, older than the packages, not strict, or failed: run tools/evidence_check.py')
-    sources = release_sources(ai_dir)
+    sources = release_sources(ai_dir, schools)
     files = sorted(sources)
     day = datetime.now().strftime('%Y-%m-%d')
     P.RELEASES.mkdir(parents=True, exist_ok=True)
@@ -232,19 +260,30 @@ def make(a):
     if (P.RELEASES / rid).exists():
         raise SystemExit(f'release {rid} exists; releases are never overwritten')
     if a.dry_run:
-        print(json.dumps(dict(release=rid, files=len(files), code=head, dirty=dirty, tests=tests), indent=1)); return
+        print(json.dumps(dict(release=rid, files=len(files), code=head, dirty=dirty, tests=tests,
+                              scope=(None if not per else {s: dict(v['statement'], held=len(v['statement']['held']), monotone_flags=(v['monotone'] or {}).get('flags'))
+                                                           for s, v in per.items()})), indent=1)); return
     tmp = P.RELEASES / f'.tmp-{rid}-{os.getpid()}'
     entries = {}
+    filt = {rel_of(f, s): (s, f) for s in schools for f in PACKAGE if per and per[s]['plan']['partial']}   # release path -> (school, file) to filter
+    src_sha = {}
     for f in files:
         src, dst = sources[f], tmp / f
         dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src, dst)
+        if f in filt:
+            import pi_release as PR
+            src_sha[f] = sha256(src)
+            dst.write_bytes(PR.filtered_bytes(filt[f][0], filt[f][1], per[filt[f][0]]['plan']['included']))
+            shutil.copystat(src, dst)
+        else:
+            shutil.copy2(src, dst)
         entries[f] = dict(bytes=dst.stat().st_size, sha256=sha256(dst))
         if dst.name in content_hash.VOLATILE:   # a stamp is kept but is not content: the hash without it (ROADMAP #22)
             entries[f]['content_sha256'] = content_hash.content_sha256(dst)
-    for s in P.SCHOOL_IDS:  # the package must not have been rebuilt while it was copied
+    for s in schools:  # the package must not have been rebuilt while it was copied
         now = json.loads(P.data('report.json', s).read_text()).get('builtAt')
-        if now != built[s] or sha256(P.data('lab_papers.jsonl.gz', s)) != entries[rel_of('lab_papers.jsonl.gz', s)]['sha256']:
+        lp = rel_of('lab_papers.jsonl.gz', s)
+        if now != built[s] or sha256(P.data('lab_papers.jsonl.gz', s)) != src_sha.get(lp, entries[lp]['sha256']):
             shutil.rmtree(tmp)
             raise SystemExit(f'{s}: package rewritten while copying; rerun')
     if ai_dir:  # ai/manifest.json: bytes and sha256 of every ai/ file (the site's release step re-verifies them)
@@ -257,11 +296,34 @@ def make(a):
         (tmp / 'CHANGES.md').write_text(release_notes.render(reg, rid, prev.name if prev else None, [dict(id=i, decided=d) for i, d in rule_ids()],
                                                              prev_rules, P.WORK))
         entries['CHANGES.md'] = dict(bytes=(tmp / 'CHANGES.md').stat().st_size, sha256=sha256(tmp / 'CHANGES.md'))
+    scope = None
+    if per:   # release-scope.json (per school and in total), RELEASE-SCOPE.md: the field the site reads, the held PIs and why
+        import pi_release as PR
+        scope = dict(per_pi=True, decision='D-0001', schools={s: v['statement'] for s, v in per.items()},
+                     monotone={s: {k: v for k, v in (x['monotone'] or {}).items() if k != 'kinds'} | dict(removed={k: y['n_removed'] for k, y in ((x['monotone'] or {}).get('kinds') or {}).items()})
+                               for s, x in per.items()},
+                     removals_allowed=bool(a.allow_removals), derived_unfiltered=sorted({s for s, v in per.items() if v['plan']['partial']}),
+                     derived_unfiltered_files=PR.DERIVED_UNFILTERED)
+        extra = {'release-scope.json': json.dumps(scope, indent=1, ensure_ascii=False) + '\n',
+                 'RELEASE-SCOPE.md': PR.render_notes([v['statement'] for v in per.values()]) + '\n',
+                 **{f'{REL_HIERARCHY}/{s}/release-scope.json': json.dumps(v['statement'], indent=1, ensure_ascii=False) + '\n' for s, v in per.items()}}
+        for name, text in extra.items():
+            (tmp / name).parent.mkdir(parents=True, exist_ok=True)
+            (tmp / name).write_text(text)
+            entries[name] = dict(bytes=(tmp / name).stat().st_size, sha256=sha256(tmp / name))
     counts = {}
-    for s in P.SCHOOL_IDS:
+    for s in schools:
         rep = json.loads((tmp / REL_HIERARCHY / s / 'report.json').read_text())
         c = rep.get('counts') or {}
         counts[s] = dict(builtAt=rep.get('builtAt'), **{k: c.get(k) for k in COUNT_KEYS})
+        if per and per[s]['plan']['partial']:   # the report counts the whole school: recount what the release carries
+            d = tmp / REL_HIERARCHY / s
+            pis_, stu_ = json.loads((d / 'pis.json').read_text()), json.loads((d / 'students.json').read_text())
+            lp_ = [json.loads(l) for l in gzip.open(d / 'lab_papers.jsonl.gz', 'rt') if l.strip()]
+            sp_ = sum(1 for l in gzip.open(d / 'student_papers.jsonl.gz', 'rt') if l.strip())
+            counts[s] = dict(builtAt=rep.get('builtAt'), **{k: None for k in COUNT_KEYS}, pis=len(pis_), lab_papers=len(lp_), students=sum(len(v) for v in stu_.values()),
+                             lab_student_pairs=sum(len(v) for v in stu_.values()), student_paper_links=sp_,
+                             pis_with_lab_papers=len({r['pi'] for r in lp_}), pis_with_students=sum(1 for v in stu_.values() if v), counts_scope='included PIs only')
     chain = json.loads((tmp / REL_HIERARCHY / 'chain-audit.json').read_text()) if (tmp / REL_HIERARCHY / 'chain-audit.json').exists() else {}
     man = dict(release=rid, created=datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
                code=dict(repository=str(P.WORK), commit=head, uncommitted_tracked_changes=dirty, uncommitted_outside_build=other_dirty,
@@ -279,8 +341,8 @@ def make(a):
                reader=(json.loads((tmp / 'reader/SUMMARY.json').read_text()) if (tmp / 'reader/SUMMARY.json').exists() else None),  # the reader export (tools/reader_export.py)
                ai=(dict(manifest=ai_release.MANIFEST_NAME, last_year=ai_release.LAST_YEAR, files=sum(1 for k in entries if k.startswith('ai/')))
                    if ai_dir else None),  # the AI-writing pages' data (tools/ai_release.py); null: not included
-               counts=counts, upstream=upstream(),
-               ledger={s: ledger_counts(tmp / REL_HIERARCHY / s) for s in P.SCHOOL_IDS},  # docs/UNAVAILABLE.md (2026-10-30)
+               counts=counts, upstream=upstream(), scope=scope,
+               ledger={s: ledger_counts(tmp / REL_HIERARCHY / s) for s in schools},  # docs/UNAVAILABLE.md (2026-10-30)
                ids=({k: v for k, v in json.loads((tmp / REL_HIERARCHY / 'ids/IDS-REPORT.json').read_text()).items() if k != 'conflicts'}
                     if (tmp / REL_HIERARCHY / 'ids/IDS-REPORT.json').exists() else None),  # tools/atlas_ids.py, docs/IDS.md
                layout='paths mirror the working root (hierarchy/, census/, periods/, docs/); hierarchy/<school>/ holds the packages',
@@ -327,6 +389,10 @@ def main(argv=None):
     ap.add_argument('--allow-swings', action='store_true')
     ap.add_argument('--dry-run', action='store_true')
     ap.add_argument('--ai-site-data', help='folder with ai_hist.json ... and all-ai/ (ai-writing/diversity/site-data); the release then carries ai/')
+    ap.add_argument('--per-pi', action='store_true', help='per-PI release (D-0001): filter each package to its done PIs, write release-scope.json')
+    ap.add_argument('--add-school', action='append', help='with --per-pi: an onboarding school with at least one done PI joins this release')
+    ap.add_argument('--allow-removals', action='store_true', help='with --per-pi: record, do not refuse, published rows the new package lacks')
+    ap.add_argument('--allow-derived-unfiltered', action='store_true', help='with --per-pi: ship the school-wide derived files of a partial school anyway (recorded)')
     ap.add_argument('--id', help=argparse.SUPPRESS)  # tests only
     make(ap.parse_args(argv))
 
