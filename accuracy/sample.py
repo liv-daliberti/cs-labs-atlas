@@ -30,7 +30,7 @@ import sys as _sys  # noqa: E402
 from pathlib import Path as _Path  # noqa: E402
 _sys.path.append(str(_Path(__file__).resolve().parents[1] / 'tools'))  # atlas_paths: every path
 import atlas_paths as P  # noqa: E402
-import gzip, hashlib, json, random, re
+import gzip, hashlib, json, os, random, re
 
 SEED = 20261029
 ROOT = P.CODE
@@ -261,7 +261,9 @@ def draw_round(rnd, schools=None):
     reset per school, so a school's draw does not depend on which others are drawn). An existing draw file is never
     overwritten: a draw is the record the verdicts refer to."""
     import datetime
-    cfg = ROUNDS[rnd]
+    cfg = dict(ROUNDS[rnd])
+    if os.environ.get('ACCURACY_REDRAW_SEED'):   # a redraw after a rule fix (a failed gate): the new seed is recorded in the draw file, the round's definition is unchanged
+        cfg['seed'] = int(os.environ['ACCURACY_REDRAW_SEED'])
     d = ACC_DIR / cfg['dir']  # beside this file: a worktree's own accuracy/, not the main checkout's
     d.mkdir(exist_ok=True)
     for school in schools or cfg['schools']:
