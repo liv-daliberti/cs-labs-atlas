@@ -149,6 +149,15 @@ def adviser_source_claims(ctx):
     return claims
 
 
+_TITLE_DOTS = re.compile(r'\b(Prof|Dr|Mr|Ms|Mrs|Assoc|Asst|[A-Z])\.')
+CHAIR_ADVISER = re.compile(r'\b(?:Dr|Prof)\.?\s+([^,;|\n]{3,60}?),\s*(?:(?!Dr\b|Prof\b)[^,;|\n]{1,40},\s*)?(?:Co-?)?(?:Chair,\s*)?(?:Co-?)?Advis[oe]rs?\b')
+
+
+def _undot_titles(text):
+    """Drop the period after a title or a single-letter initial so an adviser field is not cut inside the name."""
+    return _TITLE_DOTS.sub(r'\1', text)
+
+
 def adviser_anchor_basis(pi, member, pi_names, claims):
     """R-PAP-04/11/12 require a stated advisee, not a degree-labelled lab member.
 
@@ -182,8 +191,13 @@ def adviser_anchor_basis(pi, member, pi_names, claims):
                 return dict(basis='literal_named_adviser', source=key)
             # Figshare's labelled adviser field, and an explicitly named advising sentence.
             fields = re.findall(r'"name"\s*:\s*"Advis[oe]r(?:\(s\))?"\s*,\s*"value"\s*:\s*"([^"]+)"', quote, re.I)
-            fields += re.findall(r'\b(?:co[- ]?)?(?:advised|supervised)\s+(?:by|with)\s+([^.;\n]{3,160})', quote, re.I)
-            fields += re.findall(r'\b(?:Ph\.?D\.?|doctoral|master\x27?s?)\s+student\s+of\s+([^.;\n]{3,160})', quote, re.I)
+            undotted = _undot_titles(quote)  # 'Prof. Ümit V. Çatalyürek' must not end the field at its first period
+            fields += re.findall(r'\b(?:co[- ]?)?(?:advised|supervised)\s+(?:by|with)\s+([^.;\n]{3,160})', undotted, re.I)
+            fields += re.findall(r'\b(?:Ph\.?D\.?|doctoral|master\x27?s?)\s+student\s+of\s+([^.;\n]{3,160})', undotted, re.I)
+            if '|' in quote and not ACADEMIC_ADVISER_LABEL.search(quote):  # flattened DSpace 'Advisor(s) A, B; C, D | Date ...'
+                fields += re.findall(r'\bAdvis[oe]rs?(?:\(s\))?\s*:?\s*([^|\n]+)', quote, re.I)
+            if not ACADEMIC_ADVISER_LABEL.search(quote):  # thesis-committee line 'Dr. A B, CoC, Chair, Advisor'
+                fields += CHAIR_ADVISER.findall(quote)
             if not ACADEMIC_ADVISER_LABEL.search(quote):
                 fields += [match.group(1) for rx in ADV_RX for match in rx.finditer(quote)]
             if any(names_full_form(value, pi_names) for value in fields):
