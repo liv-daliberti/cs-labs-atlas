@@ -44,12 +44,18 @@ def published_pis(key, release):
     return [x['pi'] for x in _read_json(p)] if p.exists() else None
 
 
+def _published_pi_ids(key, release):
+    p = package_dir(key, release) / 'pis.json'
+    return {x['atlasId'] for x in _read_json(p) if x.get('atlasId')} if p.exists() else set()
+
+
 def plan(key, res=None, published=None):
     """Who goes into a release of `key`. `res` is pi_states.compute(key) (computed when absent); `published` is the last release dir
     (default: releases/latest). included = package PIs not hard-open, plus carried (published, open now)."""
     import pi_states as PS
     res = res or PS.compute(key)
-    pkg = [x['pi'] for x in _read_json(package_dir(key) / 'pis.json')]
+    pkg_rows = _read_json(package_dir(key) / 'pis.json')
+    pkg = [x['pi'] for x in pkg_rows]
     hard_open = set(res['open_pis'])
     held_all = {pi: [f"stage {s}: {res['pis'][pi][s]['reasons'][0]}" for s in PS.ALL if res['pis'][pi][s]['state'] == 'open'] for pi in sorted(hard_open) if pi in res['pis']}
     done = [pi for pi in pkg if pi not in hard_open]
@@ -57,7 +63,8 @@ def plan(key, res=None, published=None):
         latest = Path(P.RELEASES) / 'latest'
         published = latest if latest.exists() else None
     prev = (published_pis(key, published) or []) if published else []
-    carried = [pi for pi in pkg if pi in hard_open and pi in set(prev)]
+    prev_ids = _published_pi_ids(key, published) if published else set()   # a renamed PI (census alias) keeps its atlas id and stays carried (2026-11-18, Sahinidis)
+    carried = [x['pi'] for x in pkg_rows if x['pi'] in hard_open and (x['pi'] in set(prev) or (x.get('atlasId') and x['atlasId'] in prev_ids))]
     included = [pi for pi in pkg if pi in set(done) or pi in set(carried)]
     held = {pi: r for pi, r in held_all.items() if pi in set(pkg) and pi not in set(carried)}
     for pi in pkg:                       # an open PI the state table does not know (should not happen) is held, never silently included
@@ -190,6 +197,15 @@ def _accepted_lab_papers(rec, legacy):
     return out
 
 
+def _accepted_links(rec, legacy):
+    """{(lab, student, work): class id} of corrected student-paper LINKS whose lab paper stays (class key `links`: a rule that drops the link, not the paper)."""
+    out = {}
+    for cl in rec.get('classes') or []:
+        for r in cl.get('links') or []:
+            out[(r['pi'], r['student'], r['oa']) if legacy else (r.get('labId'), r.get('studentAtlasId'), r.get('atlasWorkId'))] = cl['id']
+    return out
+
+
 def compare(key, included, release, corrections=None):
     """Monotone check: {kind: {'old', 'new', 'n_removed', 'added', 'removed'}} of the filtered new package against the package of the published
     `release` dir. Any n_removed > 0 is a flag. Compared by atlas ids when both packages carry them, else by the pre-id keys (`basis`); a school
@@ -202,10 +218,11 @@ def compare(key, included, release, corrections=None):
     new, old = _ids(key, inc=included, legacy=legacy), _ids(key, base=release, legacy=legacy)
     rec = corrections if corrections is not None else load_corrections(key, release)
     acc = _accepted_lab_papers(rec, legacy) if rec else {}
+    acc_links = _accepted_links(rec, legacy) if rec else {}
     gone = {k: old[k] - new[k] for k in old}
     corrected = collections.Counter()
-    if acc:
-        for k, cls_of in (('lab_paper', lambda x: acc.get(x)), ('student_paper', lambda x: acc.get((x[0], x[2])))):
+    if acc or acc_links:
+        for k, cls_of in (('lab_paper', lambda x: acc.get(x)), ('student_paper', lambda x: acc.get((x[0], x[2])) or acc_links.get(x))):
             for x in sorted(gone[k], key=str):
                 if cls_of(x):
                     corrected[(k, cls_of(x))] += 1

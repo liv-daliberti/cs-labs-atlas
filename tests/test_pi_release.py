@@ -131,6 +131,21 @@ def test_recorded_corrections_are_counted_not_flagged(world):
     assert kept['flags'] == 0 and kept['corrected'] == {} and kept['corrections_unused'] == 1
 
 
+def test_a_recorded_link_class_explains_a_dropped_link_not_the_paper(world):
+    """A class with `links` (7c8fdedd postdoc guard) explains a removed student-paper link whose lab paper stays; a link not listed still flags."""
+    new, rel, _ = world
+    rows = [json.loads(l) for l in gzip.open(new / 'student_papers.jsonl.gz', 'rt')]
+    with gzip.open(new / 'student_papers.jsonl.gz', 'wt') as f:    # the link of C is gone, its paper stays
+        for r in rows:
+            if r['pi'] != 'A':
+                f.write(json.dumps(r) + '\n')
+    rec = dict(against_release=rel.name, classes=[dict(id='postdoc_role_guard_7c8fdedd', rule='7c8fdedd', rows=[],
+               links=[dict(pi='A', student='ext:A-s', oa='WA', labId='atl:l:x:A', studentAtlasId='atl:p:As', atlasWorkId='atl:w:A')])])
+    ok = PR.compare('x', ['A', 'B', 'C'], rel, corrections=rec)
+    assert ok['kinds']['student_paper']['n_removed'] == 0 and ok['corrected'] == {'student_paper:postdoc_role_guard_7c8fdedd': 1}
+    assert PR.compare('x', ['A', 'B', 'C'], rel, corrections=dict(rec, classes=[]))['kinds']['student_paper']['n_removed'] == 1
+
+
 def test_a_record_written_against_another_release_is_ignored(world, tmp_path, monkeypatch):
     _, rel, _ = world
     import atlas_paths as P
@@ -140,3 +155,16 @@ def test_a_record_written_against_another_release_is_ignored(world, tmp_path, mo
     assert PR.load_corrections('x', rel) is None
     f.write_text(json.dumps(dict(against_release=rel.name, classes=[])))
     assert PR.load_corrections('x', rel)['against_release'] == rel.name
+
+
+def test_a_renamed_open_pi_is_carried_by_atlas_id(world, monkeypatch):
+    """A published PI that an alias merge renamed keeps its atlas id; if it is open now it is still carried (published rows never disappear)."""
+    new, rel, states = world
+    rows = json.loads((new / 'pis.json').read_text())
+    for r in rows:
+        if r['pi'] == 'B':
+            r['pi'] = 'B2'; r['atlasId'] = 'atl:p:B'
+    (new / 'pis.json').write_text(json.dumps(rows))
+    st = states({'B2'}); st['pis']['B2'] = st['pis']['B']
+    pl = PR.plan('x', res=st, published=rel)
+    assert 'B2' in pl['carried'] and 'B2' in pl['included']
