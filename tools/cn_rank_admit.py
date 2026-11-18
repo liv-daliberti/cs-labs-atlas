@@ -20,6 +20,7 @@ import json
 import re
 import sys
 import zlib
+from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
 import census_overrides as CO  # noqa: E402
@@ -124,7 +125,7 @@ def census_index(key):
     return fac, by
 
 
-def run(key, write=False, dblp_cache=None):
+def run(key, write=False, dblp_cache=None, csr=None, recall=None):
     c = W.con(key)
     fac, by = census_index(key)
     ents, srcs = [], {}
@@ -154,6 +155,18 @@ def run(key, write=False, dblp_cache=None):
         for p in json.load(gzip.open(dblp_cache, 'rt', encoding='utf-8'))['persons']:
             for u in p['urls']:
                 dblp.setdefault(nurl(u), []).append(p)
+    csr_home, pid_of = {}, {}
+    if csr and recall:   # CSRankings row whose own homepage equals the official-list homepage (a URL binding, never a name match); pid from the recall record of that homepage
+        import csv
+        import hashlib
+        csr_sha = hashlib.sha256(Path(csr).read_bytes()).hexdigest()
+        for r in csv.DictReader(open(csr, encoding='utf-8')):
+            if r['homepage']:
+                csr_home.setdefault(nurl(r['homepage']), []).append(r)
+        for cnd in json.load(open(recall))['candidates'].get(key, []):
+            for h in cnd.get('home') or []:
+                if 'csr' in cnd.get('srcs', []) and len(cnd.get('dblp') or []) == 1:
+                    pid_of.setdefault(nurl(h), set()).add('https://dblp.org/pid/' + cnd['dblp'][0])
     plan = dict(basis=[], additions=[], held=[], identity=[])
     for e in inc:
         rows = by.get(e['key'], [])
@@ -178,7 +191,11 @@ def run(key, write=False, dblp_cache=None):
         recs = [p for p in dblp.get(nurl(e['href']), []) if not p['disambiguation']] if e['href'] else []
         pids = sorted({p['pid'] for p in recs})
         e['dblp'] = recs[0] if len(pids) == 1 else None
-        if e['dblp']:
+        e['csr'] = None
+        if not e['dblp'] and hp and len(csr_home.get(hp, [])) >= 1 and len(pid_of.get(hp, ())) == 1:
+            row = csr_home[hp][0]
+            e['csr'] = dict(pid=next(iter(pid_of[hp])), sha256=csr_sha, quote=f"{row['name']},{row['affiliation']},{row['homepage']}")
+        if e['dblp'] or e['csr']:
             plan['identity'].append(e['name'])
     print(json.dumps(dict(listed=len(ents), included=len(inc), basis_records=len(plan['basis']), additions=len(plan['additions']), held=len(plan['held']),
                           dblp_anchored=len(plan['identity']), held_detail=plan['held'][:30]), ensure_ascii=False))
@@ -203,11 +220,19 @@ def run(key, write=False, dblp_cache=None):
             basis.append(dict(pi=name, kind='advises_phd', **ev, subject_evidence=dict(url=e['url'], sha256=sha, quote=e['quote']), **rev, why=why))
         else:
             slug = re.sub(r'[^a-z0-9]+', '-', e['key'].lower()) if e['key'].isascii() else 'u' + __import__('hashlib').sha1(e['key'].encode()).hexdigest()[:16]
-            adds.append(dict(name=e['name'], aliases=[], collection_person_id=f'{key}_fac_{slug}', dblp=[e['dblp']['pid']] if e.get('dblp') else [], rank='other',
+            adds.append(dict(name=e['name'], aliases=[], collection_person_id=f'{key}_fac_{slug}', dblp=[(e.get('dblp') or e.get('csr'))['pid']] if (e.get('dblp') or e.get('csr')) else [], rank='other',
                              title_as_listed='博士生导师', departments=[unit], listed_in=[unit], years_listed=[int(TODAY[:4])], ranks_by_year={TODAY[:4]: ['other']},
                              sources=[dict(url=e['url'], sha256=sha, quote=e['quote'], kind=f'dept_supervisor_list:{unit}', observed=TODAY, rank_as_listed='博士生导师', rank='other')],
                              profile_url=e['href'], is_pi=True, pi_basis=dict(kind='advises_phd', **ev), lab_units=[], added='cn_rank_admit_' + TODAY.replace('-', '')))
-        if e.get('dblp'):
+        if e.get('csr'):
+            d = e['csr']
+            o = ov.setdefault(name, {})
+            o.update(no_identity=False, dblp=[d['pid']], **rev,
+                     identity_resolution=dict(decision='csrankings_homepage_url_binding', reviewed=TODAY,
+                                              basis='The official department supervisor list links a homepage URL that is also the homepage of one CSRankings row (commit 5319eddd csrankings.csv); that row maps to one DBLP person. A URL equality, not a name match.',
+                                              evidence=[dict(url=e['url'], sha256=sha, quote=e['quote'], homepage=e['href']),
+                                                        dict(url='csrankings.csv (scratch/pi-recall-1118/work/csr)', sha256=d['sha256'], quote=d['quote']), dict(url=d['pid'], note='DBLP person of the CSRankings row (scratch/pi-recall-1118/recall.json)')]))
+        elif e.get('dblp'):
             d = e['dblp']
             o = ov.setdefault(name, {})
             o.update(no_identity=False, dblp=[d['pid']], **rev,
@@ -243,4 +268,5 @@ if __name__ == '__main__':
         fetch(k)
     else:
         cache = sys.argv[sys.argv.index('--dblp') + 1] if '--dblp' in sys.argv else None
-        run(k, write=cmd == 'write', dblp_cache=cache)
+        a = sys.argv
+        run(k, write=cmd == 'write', dblp_cache=cache, csr=a[a.index('--csr') + 1] if '--csr' in a else None, recall=a[a.index('--recall') + 1] if '--recall' in a else None)

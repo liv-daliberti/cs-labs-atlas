@@ -14,7 +14,8 @@
   "ECE"
  ],
  "counts": {
-  "pending_source_coverage": 870,
+  "pending_source_coverage": 860,
+  "accepted": 10,
   "census_alias": 33,
   "pending_identity_collision": 27
  },
@@ -1234,8 +1235,8 @@
    "name": "Atreyi Kankanhalli",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of DISA, ECE; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DISA listing, professor rank) with 70 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/78/3054"
@@ -1250,18 +1251,92 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "National University of Singapore, Singapore"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5007660810"
+     ],
+     "school_works": 71,
+     "dblp_indexed": 53,
+     "share": 0.746,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5007660810",
+       "basis": "full name: Atreyi Kankanhalli",
+       "works": 71,
+       "dblp_indexed": 53,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Atreyi Kankanhalli",
+        "Kankanhalli, Atreyi"
+       ],
+       "orcids": [
+        "0000-0002-7085-6598"
+       ],
+       "venues": [
+        "Journal of the Association for Information Systems",
+        "Information & Management",
+        "MIS Quarterly"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2252204492",
+         "year": 2016,
+         "title": "Which ideas are more likely to be implemented in online user innovation communities? An empirical analysis",
+         "venue": "Decision Support Systems"
+        },
+        {
+         "oa": "https://openalex.org/W2290411768",
+         "year": 2016,
+         "title": "Investigating decision factors in mobile application purchase: A mixed-methods approach",
+         "venue": "Information & Management"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2588244070",
+         "year": 2016,
+         "title": "GEAR analytics: A clinician dashboard for a mobile game assisted rehabilitation system",
+         "venue": "International Conference on User Science and Engineering"
+        },
+        {
+         "oa": "https://openalex.org/W2601429814",
+         "year": 2016,
+         "title": "Absorptive Capacity and Hiring of Foreign Tech Professionals: Evidence from U.S. Semiconductor Firms",
+         "venue": "Academy of Management Proceedings"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "DISA",
-    "ECE"
+   "faculty_evidence": [
+    {
+     "unit": "DISA",
+     "url": "https://www.comp.nus.edu.sg/disa/people/",
+     "sha256": "52129437f02ee7f29a561435bc0bb8d46336255c13bd0e6466711d36a842724f",
+     "observed": "2026-11-17",
+     "quote": "Atreyi KANKANHALLI Provost's Chair Professor",
+     "ladder": true,
+     "hand": true
+    }
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-17",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
     "DISA",
     "ECE"
    ]
@@ -3923,8 +3998,8 @@
     "Danny C. C. Poo"
    ],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of DISA, ECE; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DISA listing, professor rank) with 12 DBLP records 2016-2026; share test cannot measure (0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids))",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/p/DannyChiangChoonPoo"
@@ -3939,18 +4014,48 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "National University of Singapore (NUS)"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "too_few_school_works",
+     "ids": [],
+     "school_works": 0,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [
+      {
+       "author": "https://openalex.org/A5111958129",
+       "why": "works end 2022, before the first listing (2026)",
+       "n": 12,
+       "raw": [
+        "Danny Chiang Choon Poo"
+       ]
+      }
+     ],
+     "authors": [],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "DISA",
-    "ECE"
+   "faculty_evidence": [
+    {
+     "unit": "DISA",
+     "url": "https://www.comp.nus.edu.sg/disa/people/",
+     "sha256": "52129437f02ee7f29a561435bc0bb8d46336255c13bd0e6466711d36a842724f",
+     "observed": "2026-11-17",
+     "quote": "POO Chiang Choon, Danny Associate Professor",
+     "ladder": true,
+     "hand": true
+    }
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-17",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
     "DISA",
     "ECE"
    ]
@@ -10715,8 +10820,8 @@
     "Khim-Yong Goh"
    ],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of DISA, ECE; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DISA listing, professor rank) with 31 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/88/391"
@@ -10731,18 +10836,92 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "National University of Singapore, Department of Information Systems and Analytics"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5022336802"
+     ],
+     "school_works": 30,
+     "dblp_indexed": 19,
+     "share": 0.633,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5022336802",
+       "basis": "full name: Khim Yong Goh",
+       "works": 30,
+       "dblp_indexed": 19,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Khim Yong Goh",
+        "Khim-Yong Goh"
+       ],
+       "orcids": [
+        "0000-0002-9291-2386"
+       ],
+       "venues": [
+        "Journal of the Association for Information Systems",
+        "Information Systems Research",
+        "International Conference on Information Systems"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2545743360",
+         "year": 2016,
+         "title": "The Effects of Communication Patterns on the Success of Open Source Software Projects",
+         "venue": "Journal of Global Information Management"
+        },
+        {
+         "oa": "https://openalex.org/W2552343646",
+         "year": 2016,
+         "title": "CONSUMERS’ ENDORSEMENT EFFECTS ON MARKETER AND USER-GENERATED CONTENT IN A SOCIAL MEDIA BRAND COMMUNITY",
+         "venue": "Pacific Asia Conference on Information Systems"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3082813641",
+         "year": 2018,
+         "title": "Online Product Sampling on E-Commerce Platforms: An Empirical Analysis of Sales Spillover Effects",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W3137630662",
+         "year": 2021,
+         "title": "Individual Investors and Social Media Analysts’ Stock Coverage Behavior",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "DISA",
-    "ECE"
+   "faculty_evidence": [
+    {
+     "unit": "DISA",
+     "url": "https://www.comp.nus.edu.sg/disa/people/",
+     "sha256": "52129437f02ee7f29a561435bc0bb8d46336255c13bd0e6466711d36a842724f",
+     "observed": "2026-11-17",
+     "quote": "GOH Khim Yong Professor",
+     "ladder": true,
+     "hand": true
+    }
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-17",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
     "DISA",
     "ECE"
    ]
@@ -13883,8 +14062,8 @@
    "name": "Na Liu",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of DISA, ECE; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DISA listing, professor rank) with 36 DBLP records 2016-2026; share test cannot measure (0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids))",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/82/385-5"
@@ -13901,18 +14080,39 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Sydney, Faculty of Engineering and IT, School of Information Technologies, Australia"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "too_few_school_works",
+     "ids": [],
+     "school_works": 0,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "DISA",
-    "ECE"
+   "faculty_evidence": [
+    {
+     "unit": "DISA",
+     "url": "https://www.comp.nus.edu.sg/disa/people/",
+     "sha256": "52129437f02ee7f29a561435bc0bb8d46336255c13bd0e6466711d36a842724f",
+     "observed": "2026-11-17",
+     "quote": "LIU Na Assistant Professor",
+     "ladder": true,
+     "hand": true
+    }
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-17",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
     "DISA",
     "ECE"
    ]
@@ -13958,8 +14158,8 @@
    "name": "Nan Chen",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of DISA, ECE; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DISA listing, professor rank) with 21 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/57/6104-2"
@@ -13975,18 +14175,110 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "National University of Singapore, Department of Industrial Systems Engineering and Management, Singapore"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5100442866"
+     ],
+     "school_works": 43,
+     "dblp_indexed": 19,
+     "share": 0.442,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [
+      {
+       "author": "https://openalex.org/A5100442861",
+       "why": "works end 2023, before the first listing (2026)",
+       "n": 13,
+       "raw": [
+        "Nan Chen"
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5002818639",
+       "why": "namesake: ORCID 0000-0002-9961-8905, not the busiest ORCID 0000-0003-2495-5234",
+       "n": 6
+      },
+      {
+       "author": "https://openalex.org/A5077000036",
+       "why": "namesake: ORCID 0000-0003-1504-6813, not the busiest ORCID 0000-0003-2495-5234",
+       "n": 3
+      }
+     ],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5100442866",
+       "basis": "full name: Nan Chen",
+       "works": 43,
+       "dblp_indexed": 19,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Nan Chen"
+       ],
+       "orcids": [
+        "0000-0003-2495-5234"
+       ],
+       "venues": [
+        "Journal of Quality Technology",
+        "IEEE Transactions on Semiconductor Manufacturing",
+        "Technometrics"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2490810337",
+         "year": 2016,
+         "title": "Modeling Regression Quantile Process Using Monotone B-Splines",
+         "venue": "Technometrics"
+        },
+        {
+         "oa": "https://openalex.org/W2547400235",
+         "year": 2016,
+         "title": "A state-space-based prognostics model for lithium-ion battery degradation",
+         "venue": "Reliability Engineering & System Safety"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2345970005",
+         "year": 2016,
+         "title": "Robust Multivariate Control Chart Based on Goodness-of-Fit Test",
+         "venue": "Journal of Quality Technology"
+        },
+        {
+         "oa": "https://openalex.org/W2482654751",
+         "year": 2016,
+         "title": "Closed-Form Estimators for the Gamma Distribution Derived From Likelihood Equations",
+         "venue": "The American Statistician"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "DISA",
-    "ECE"
+   "faculty_evidence": [
+    {
+     "unit": "DISA",
+     "url": "https://www.comp.nus.edu.sg/disa/people/",
+     "sha256": "52129437f02ee7f29a561435bc0bb8d46336255c13bd0e6466711d36a842724f",
+     "observed": "2026-11-17",
+     "quote": "CHEN Nan Assistant Professor",
+     "ladder": true,
+     "hand": true
+    }
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-17",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
     "DISA",
     "ECE"
    ]
@@ -28402,24 +28694,99 @@
     "Hock-Hai TEO"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of DISA, ECE; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DISA listing, professor rank); computing-share test passes: 31 of 48 school works DBLP-indexed (share 0.65; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5088573125"
+     ],
+     "school_works": 48,
+     "dblp_indexed": 31,
+     "share": 0.646,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5088573125",
+       "basis": "candidate author id",
+       "works": 48,
+       "dblp_indexed": 31,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Hock-Hai Teo",
+        "Hock‐Hai Teo",
+        "Hock Hai Teo"
+       ],
+       "orcids": [
+        "0000-0003-2463-7842"
+       ],
+       "venues": [
+        "Journal of the Association for Information Systems",
+        "Information Systems Research",
+        "Pacific Asia Conference on Information Systems"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2481993425",
+         "year": 2016,
+         "title": "The Social Dimension of Mobile Commerce – Engaging Customers Through Group Purchase",
+         "venue": "Lecture notes in computer science"
+        },
+        {
+         "oa": "https://openalex.org/W2557367081",
+         "year": 2016,
+         "title": "UNDERSTANDING YOUNG PEOPLE’S USE OF DANMAKU WEBSITES: THE EFFECT OF PERCEIVED COOLNESS AND SUBCULTURAL IDENTI",
+         "venue": "Pacific Asia Conference on Information Systems"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2610152342",
+         "year": 2017,
+         "title": "Is the Web Site Well Structured?",
+         "venue": "Advances in business strategy and competitive advantage book series"
+        },
+        {
+         "oa": "https://openalex.org/W2905976715",
+         "year": 2017,
+         "title": "Functionality and Time Restrictions in Software Trial Version",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "DISA",
-    "ECE"
+   "faculty_evidence": [
+    {
+     "unit": "DISA",
+     "url": "https://www.comp.nus.edu.sg/disa/people/",
+     "sha256": "52129437f02ee7f29a561435bc0bb8d46336255c13bd0e6466711d36a842724f",
+     "observed": "2026-11-17",
+     "quote": "TEO Hock Hai Provost's Chair Professor",
+     "ladder": true,
+     "hand": true
+    }
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-17",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
     "DISA",
     "ECE"
    ]
@@ -28915,24 +29282,98 @@
     "Hahn, Jungpil"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of DISA, ECE; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DISA listing, professor rank); computing-share test passes: 26 of 52 school works DBLP-indexed (share 0.50; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5002220814"
+     ],
+     "school_works": 52,
+     "dblp_indexed": 26,
+     "share": 0.5,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5002220814",
+       "basis": "candidate author id",
+       "works": 52,
+       "dblp_indexed": 26,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Jungpil Hahn",
+        "Hahn, Jungpil"
+       ],
+       "orcids": [
+        "0000-0001-8388-4865"
+       ],
+       "venues": [
+        "Academy of Management Proceedings",
+        "Journal of the Association for Information Systems",
+        "Information Systems Research"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2293342966",
+         "year": 2016,
+         "title": "Big data and analytics in healthcare: Introduction to the special section",
+         "venue": "Information Systems Frontiers"
+        },
+        {
+         "oa": "https://openalex.org/W2396978404",
+         "year": 2016,
+         "title": "Research Note—Leader Influence on Sustained Participation in Online Collaborative Work Communities: A Simulation-Based Approach",
+         "venue": "Information Systems Research"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2765250531",
+         "year": 2016,
+         "title": "Strategies of Effective Reward Scheme Design on Crowdfunding Platforms",
+         "venue": "Academy of Management Proceedings"
+        },
+        {
+         "oa": "https://openalex.org/W2222324846",
+         "year": 2017,
+         "title": "Learning from Heterogeneous Experiences: A Fine-grained Understanding of Entrepreneurial Learning in Crowdfunding",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "DISA",
-    "ECE"
+   "faculty_evidence": [
+    {
+     "unit": "DISA",
+     "url": "https://www.comp.nus.edu.sg/disa/people/",
+     "sha256": "52129437f02ee7f29a561435bc0bb8d46336255c13bd0e6466711d36a842724f",
+     "observed": "2026-11-17",
+     "quote": "Jungpil HAHN Provost's Chair Professor",
+     "ladder": true,
+     "hand": true
+    }
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-17",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
     "DISA",
     "ECE"
    ]
@@ -29000,24 +29441,156 @@
     "Chuan Hoo Tan"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of DISA, ECE; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DISA listing, professor rank); computing-share test passes: 26 of 38 school works DBLP-indexed (share 0.68; 2 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5072856467",
+      "https://openalex.org/A5080110833"
+     ],
+     "school_works": 38,
+     "dblp_indexed": 26,
+     "share": 0.684,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [
+      {
+       "author": "https://openalex.org/A5003705337",
+       "why": "works end 2022, before the first listing (2026)",
+       "n": 7,
+       "raw": [
+        "Chuan Chien Tan"
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5041466938",
+       "why": "works end 2020, before the first listing (2026)",
+       "n": 17,
+       "raw": [
+        "Chuan Fu Tan"
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5071443163",
+       "why": "namesake: ORCID 0009-0007-0958-0522, not the busiest ORCID 0000-0003-4031-6010",
+       "n": 4
+      }
+     ],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5080110833",
+       "basis": "candidate author id",
+       "works": 29,
+       "dblp_indexed": 26,
+       "years": [
+        2016,
+        2025
+       ],
+       "names": [
+        "Chuan-Hoo Tan",
+        "Chuan‐Hoo Tan",
+        "Chuan Hoo Tan"
+       ],
+       "orcids": [
+        "0000-0003-4031-6010"
+       ],
+       "venues": [
+        "Information & Management",
+        "Journal of the Association for Information Systems",
+        "Lecture notes in computer science"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2477659061",
+         "year": 2016,
+         "title": "HCI Testing in Laboratory or Field Settings",
+         "venue": "Lecture notes in computer science"
+        },
+        {
+         "oa": "https://openalex.org/W2481993425",
+         "year": 2016,
+         "title": "The Social Dimension of Mobile Commerce – Engaging Customers Through Group Purchase",
+         "venue": "Lecture notes in computer science"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2984992742",
+         "year": 2019,
+         "title": "Mobile Advert's Contextual Consistency",
+         "venue": "Advances in library and information science (ALIS) book series"
+        },
+        {
+         "oa": "https://openalex.org/W2989839162",
+         "year": 2019,
+         "title": "Followership in an Open-Source Software Project and its Significance in Code Reuse1",
+         "venue": "MIS Quarterly"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5072856467",
+       "basis": "full name: Chuan Xiang Alvin Tan",
+       "works": 9,
+       "dblp_indexed": 0,
+       "years": [
+        2021,
+        2026
+       ],
+       "names": [
+        "Chuan Xiang Alvin Tan"
+       ],
+       "orcids": [],
+       "venues": [
+        "Angewandte Chemie International Edition",
+        "Angewandte Chemie",
+        "ACS Catalysis"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3120301443",
+         "year": 2021,
+         "title": "Dielectrophilic Allenic Ketone-Enabled [4 + 2] Annulation with 3,3’-Bisoxindoles: Enantioselective Creation of Two Contiguous Quaternary Stereogenic C",
+         "venue": "ACS Catalysis"
+        },
+        {
+         "oa": "https://openalex.org/W3130517610",
+         "year": 2021,
+         "title": "Phosphine-Catalyzed Asymmetric Allylic Alkylation of Achiral MBH Carbonates with 3,3′-Bisindolines: Enantioselective Construction of Quaternary Stereo",
+         "venue": "Organic Letters"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "DISA",
-    "ECE"
+   "faculty_evidence": [
+    {
+     "unit": "DISA",
+     "url": "https://www.comp.nus.edu.sg/disa/people/",
+     "sha256": "52129437f02ee7f29a561435bc0bb8d46336255c13bd0e6466711d36a842724f",
+     "observed": "2026-11-17",
+     "quote": "TAN Chuan Hoo Professor",
+     "ladder": true,
+     "hand": true
+    }
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-17",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
     "DISA",
     "ECE"
    ]
@@ -30418,24 +30991,99 @@
     "Ke-wei Huang"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of DISA, ECE; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DISA listing, professor rank); computing-share test passes: 15 of 24 school works DBLP-indexed (share 0.62; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5061690540"
+     ],
+     "school_works": 24,
+     "dblp_indexed": 15,
+     "share": 0.625,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5061690540",
+       "basis": "candidate author id",
+       "works": 24,
+       "dblp_indexed": 15,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Ke-Wei Huang",
+        "Ke‐Wei Huang",
+        "Huang, Ke-Wei"
+       ],
+       "orcids": [
+        "0000-0002-9932-6195"
+       ],
+       "venues": [
+        "Journal of the Association for Information Systems",
+        "Information Systems Research",
+        "International Conference on Information Systems"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2560065803",
+         "year": 2016,
+         "title": "Does Social Media Marketing Really Work for Online SMEs?: An Empirical Study.",
+         "venue": "International Conference on Information Systems"
+        },
+        {
+         "oa": "https://openalex.org/W2560817118",
+         "year": 2016,
+         "title": "Effects of Fitness Applications with SNS: How Do They Influence Physical Activity",
+         "venue": "International Conference on Information Systems"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2601429814",
+         "year": 2016,
+         "title": "Absorptive Capacity and Hiring of Foreign Tech Professionals: Evidence from U.S. Semiconductor Firms",
+         "venue": "Academy of Management Proceedings"
+        },
+        {
+         "oa": "https://openalex.org/W2952933981",
+         "year": 2018,
+         "title": "Where Should They Hire From? Platform Skills and the Value of New Hires in the Software Industry",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "DISA",
-    "ECE"
+   "faculty_evidence": [
+    {
+     "unit": "DISA",
+     "url": "https://www.comp.nus.edu.sg/disa/people/",
+     "sha256": "52129437f02ee7f29a561435bc0bb8d46336255c13bd0e6466711d36a842724f",
+     "observed": "2026-11-17",
+     "quote": "HUANG Ke Wei Associate Professor",
+     "ladder": true,
+     "hand": true
+    }
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-17",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
     "DISA",
     "ECE"
    ]
@@ -30861,24 +31509,98 @@
     "Kok, Stanley"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of DISA, ECE; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DISA listing, professor rank); computing-share test passes: 12 of 15 school works DBLP-indexed (share 0.80; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5013720432"
+     ],
+     "school_works": 15,
+     "dblp_indexed": 12,
+     "share": 0.8,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5013720432",
+       "basis": "candidate author id",
+       "works": 15,
+       "dblp_indexed": 12,
+       "years": [
+        2020,
+        2026
+       ],
+       "names": [
+        "Stanley Kok",
+        "Kok, Stanley"
+       ],
+       "orcids": [
+        "0000-0002-8624-086X"
+       ],
+       "venues": [
+        "ACM Transactions on Management Information Systems",
+        "The Web Conference (WWW)",
+        "Conference on Empirical Methods in Natural Language Processing (EMNLP)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W3021815340",
+         "year": 2020,
+         "title": "Probabilistic Logic Graph Attention Networks for Reasoning",
+         "venue": "The Web Conference (WWW)"
+        },
+        {
+         "oa": "https://openalex.org/W3044445863",
+         "year": 2020,
+         "title": "E-Commerce Product Categorization via Machine Translation",
+         "venue": "ACM Transactions on Management Information Systems"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W4405033903",
+         "year": 2024,
+         "title": "SailCompass: Towards Reproducible and Robust Evaluation for Southeast Asian Languages",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W4416252449",
+         "year": 2025,
+         "title": "The Shape of Reasoning: Topological Analysis of Reasoning Traces in Large Language Models",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "DISA",
-    "ECE"
+   "faculty_evidence": [
+    {
+     "unit": "DISA",
+     "url": "https://www.comp.nus.edu.sg/disa/people/",
+     "sha256": "52129437f02ee7f29a561435bc0bb8d46336255c13bd0e6466711d36a842724f",
+     "observed": "2026-11-17",
+     "quote": "Stanley KOK Assistant Professor",
+     "ladder": true,
+     "hand": true
+    }
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-17",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
+   "years_listed": [
+    2026
+   ],
+   "units_searched": [
     "DISA",
     "ECE"
    ]
