@@ -30,3 +30,21 @@ def test_wict_cards_and_pager():
 def test_sist_cards_keep_no_contact_lines():
     es = LF.pku_sist_cards(SIST)
     assert [(e['name_listed'], e['titles'], e['profile']) for e in es] == [('陈宝权', ['教授'], '../info/1362/2268.htm'), ('陈婧', ['研究员'], '../info/1362/2249.htm')]
+
+
+CS_OLD = ('<ul class="m-list9" id="teachernamelist"><li id="line_u10_0"><div class="pic"><a href="../info/1008/1090.htm"><img src="x.jpg"></a></div><div class="txt">'
+          '<h4><a href="../info/1008/1090.htm" target="_blank">曹永知</a></h4><p>教授</p><p>软件研究所</p></div></li>'
+          '<li><div class="txt"><h4><a href="../info/1008/1094.htm">陈一峯</a></h4><p>研究员</p><p>软件研究所</p></div></li></ul>')
+CS_NEW = ('<li><a href="../../../info/1061/1602.htm"><div class="con"><h3><big>边凯归</big><small></small></h3><p>职称：长聘副教授</p><p>研究所：数据科学与工程研究所</p>'
+          '<p>电话：86-10-1</p><p>电子邮件：bkg@pku.edu.cn</p></div></a></li>'
+          '<li><a href="../../../info/1062/3090.htm"><div class="con"><h3><big>曹东刚</big></h3><p>职称：研究员</p><p>研究所：软件研究所</p></div></a></li>')
+
+
+def test_cs_old_list():
+    assert [(e['name_listed'], e['titles'], e['division']) for e in LF.pku_cs_m_list9(CS_OLD)] == [('曹永知', ['教授'], '软件研究所'), ('陈一峯', ['研究员'], '软件研究所')]
+
+
+def test_cs_big_cards_drop_contact():
+    es = LF.pku_cs_big_cards(CS_NEW)
+    assert [(e['name_listed'], e['titles'], e['division'], e['profile']) for e in es] == [
+        ('边凯归', ['长聘副教授'], '数据科学与工程研究所', '../../../info/1061/1602.htm'), ('曹东刚', ['研究员'], '软件研究所', '../../../info/1062/3090.htm')]

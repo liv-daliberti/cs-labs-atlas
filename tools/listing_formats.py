@@ -3064,5 +3064,38 @@ def pku_sist_cards(h):
     return out
 
 
-for _name, _fn in [('pku_wict_team_nav', pku_wict_team_nav), ('pku_wict_cards', pku_wict_cards), ('pku_sist_cards', pku_sist_cards)]:
+def pku_cs_m_list9(h):
+    """PKU CS cs.pku.edu.cn/szdw1/jyxl.htm (2020-2023, 教研系列; Webplus, 8 per page, reverse-numbered pager): `ul#teachernamelist > li` with `h4` name link, then `<p>` rank and `<p>` institute."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for li in soup.select('ul#teachernamelist > li'):
+        a = li.select_one('h4 a')
+        ps = [_pku_clean(p.get_text(' ', strip=True)) for p in li.select('div.txt p')]
+        name = _pku_clean(a.get_text(' ', strip=True)).replace(' ', '') if a else ''
+        if name and ps and ps[0]:
+            out.append(dict(name_listed=name, titles=[ps[0]], homepage=None, division=ps[1] if len(ps) > 1 and ps[1] else None, profile=a.get('href')))
+    return out
+
+
+def pku_cs_big_cards(h):
+    """PKU CS cs.pku.edu.cn/szdw/jyxl/amz/ALL.htm (2023-, all series; 12 per page): `div.con` with `<h3><big>name</big>`, `<p>职称：rank</p>`, `<p>研究所：unit</p>`; contact lines are not kept."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for h3 in soup.select('div.con > h3'):
+        big = h3.select_one('big')
+        name = _pku_clean(big.get_text(' ', strip=True)).replace(' ', '') if big else ''
+        title = division = ''
+        for p in h3.find_next_siblings('p'):
+            t = _pku_clean(p.get_text(' ', strip=True))
+            if t.startswith('职称') and not title:
+                title = t.split('：', 1)[-1].split(':', 1)[-1].strip() if ('：' in t or ':' in t) else ''
+            elif t.startswith('研究所') and not division:
+                division = t.split('：', 1)[-1].strip()
+        a = h3.find_parent('a') or (h3.find_parent('li').select_one('a[href]') if h3.find_parent('li') else None)
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=None, division=division or None, profile=a.get('href') if a else None))
+    return out
+
+
+for _name, _fn in [('pku_cs_m_list9', pku_cs_m_list9), ('pku_cs_big_cards', pku_cs_big_cards), ('pku_wict_team_nav', pku_wict_team_nav), ('pku_wict_cards', pku_wict_cards), ('pku_sist_cards', pku_sist_cards)]:
     FORMATS[_name] = (_fn, re.compile(r'(?!)'))
