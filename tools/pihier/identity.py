@@ -44,7 +44,7 @@ def adviser_source_claims(ctx):
     """
     claims = {}
     pis = {p['pi']: p for p in ctx.pis}
-    renames = renamed_pis(ctx.pis)
+    renames = renamed_pis(ctx.pis, ctx.school, ctx.here)
 
     def add(pi, name, source, basis):
         key = _adviser_source_key(source)

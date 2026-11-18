@@ -351,10 +351,31 @@ def people_by_family(people):
     return by_name
 
 
-def renamed_pis(pis):
+def renamed_pis(pis, school=None, here=None):
     """{census name: built name} of PIs a reviewed display_name renamed (R-PAP-34): reviewed and researched files that key a person by the census
-    placeholder ('Y Z') still reach the PI built as 'Yang Zhang'."""
-    return {p['censusName']: p['pi'] for p in pis if p.get('censusName')}
+    placeholder ('Y Z') still reach the PI built as 'Yang Zhang'. With a school, the spelling a reviewed census-name-aliases pair merged away
+    ('Polo Chau' -> 'Duen Horng "Polo" Chau', Georgia Tech 2026-11-18) maps to the built PI too, so students, advisees and papers keyed by the older
+    spelling in reviewed files are not dropped by the merge."""
+    out = {p['censusName']: p['pi'] for p in pis if p.get('censusName')}
+    if school:
+        out.update(merged_alias_spellings(school, pis, here))
+    return out
+
+
+def merged_alias_spellings(school, pis, here=None):
+    """{merged-away spelling: built PI name} from hierarchy/<school>/reviewed/census-name-aliases.json (explicit, source-backed pairs only)."""
+    f = P.data('census-name-aliases.json', school, root=here) if here is not None else P.data('census-name-aliases.json', school)
+    if not Path(f).exists():
+        return {}
+    built = {p['pi'] for p in pis}
+    out = {}
+    for row in (read(f) or {}).get('rows') or []:
+        a, b = row.get('name_a'), row.get('name_b')
+        if a in built and b not in built:
+            out[b] = a
+        elif b in built and a not in built:
+            out[a] = b
+    return out
 
 
 def external_member_id(school, pi, name):
@@ -393,7 +414,7 @@ def researched(ctx, stu, by_name):
     """R-STU-01: researched advisees and lab members with a quote and hash (gap-evidence.json and RESEARCHED_FILES); a
     unique collection person of that name takes the record, else an ext:<school>:<name> id."""
     HERE, school, pis, ge, n = ctx.here, ctx.school, ctx.pis, ctx.ge, ctx.n
-    ren = renamed_pis(pis)
+    ren = renamed_pis(pis, school, HERE)
     ge = {ren.get(k, k): v for k, v in ge.items()}
     fe = collections.defaultdict(lambda: dict(students=[]))  # researched students: thin labs and the thesis hunt
     for fn in RESEARCHED_FILES:

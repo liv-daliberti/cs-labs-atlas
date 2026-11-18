@@ -48,7 +48,8 @@ def prepare(ctx):
     data = json.loads(raw)
     if not isinstance(data, dict) or data.get('version') != 1 or data.get('school') != ctx.school or not isinstance(data.get('decisions'), list):
         raise ValueError('paper claim review must name this school, version 1 and decisions')
-    renamed = {p['censusName']: p['pi'] for p in ctx.pis if p.get('censusName')}
+    from .students import renamed_pis   # imported here: students imports this package's other modules
+    renamed = renamed_pis(ctx.pis, ctx.school, ctx.here)
     ids, signatures, validated = set(), {}, []
     for source in data['decisions']:
         d = copy.deepcopy(source)

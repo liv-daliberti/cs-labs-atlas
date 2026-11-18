@@ -1278,12 +1278,14 @@ def recovered_rows(ctx, rows, seen):
     """Rows from RECOVERED_KINDS: inside the appointment, one per (PI, work); appended to `rows`."""
     HERE, school, n, pid0, cwork = ctx.here, ctx.school, ctx.n, ctx.pid0, ctx.cwork
     present_sources = {(r['pi'], r['oa']) for r in rows}
+    from .students import merged_alias_spellings
+    merged_alias = merged_alias_spellings(school, list(pid0.values()), HERE)   # a merged census alias spelling keys recovered rows too
     # papers on the PI's own DBLP page that only DOI-resolved OpenAlex records or the paper's first page tie to the school
     # (tools/dblp_recover.py -> hierarchy/<school>/dblp-recovered.jsonl.gz), and likewise papers the PI's own lab
     # publications page lists (tools/labpage_recover.py -> hierarchy/<school>/labpage-recovered.jsonl.gz, key 'labpage:<sha1>')
     for kind, label in RECOVERED_KINDS:
         for x in recovered_source(ctx, kind):
-            p = pid0.get(x['pi']) or next((q for q in pid0.values() if q.get('censusName') == x['pi']), None)   # R-PAP-34: rows made under a census placeholder name
+            p = pid0.get(x['pi']) or next((q for q in pid0.values() if q.get('censusName') == x['pi']), None) or pid0.get(merged_alias.get(x['pi']))   # R-PAP-34: rows made under a census placeholder name; a merged-away spelling
             if not p:
                 continue
             x = recovery_reviews.project(ctx, p, dict(x, pi=p['pi']), kind)
