@@ -142,3 +142,55 @@ def test_invalid_role_replacement_fails_before_any_mutation(tmp_path, roles, gua
     with pytest.raises(ValueError, match='roles require guarded'):
         apply(tmp_path, stu, [d])
     assert stu['One PI'][row['person']] == row
+
+
+def test_guarded_relation_replacement_keeps_separate_degree_events_and_identity(tmp_path):
+    row = member()
+    row['aliases'] = ['J. Chen']
+    row['merged'] = ['previous-person-id']
+    sources = [dict(url='https://example.edu/masters', sha256='2' * 64, quote='Masters thesis, 2021.'),
+               dict(url='https://example.edu/doctoral', sha256='3' * 64, quote='Doctoral thesis, 2024.')]
+    relations = [dict(type='researched_advising', role='masters', years=[2021], sources=[sources[0]]),
+                 dict(type='researched_advising', role='phd', years=[2024], sources=[sources[1]])]
+    d = dict(decision(row), action='replace_relations', roles=['masters', 'phd'], relations=relations)
+    stu = {'One PI': {row['person']: copy.deepcopy(row)}, 'Other PI': {row['person']: copy.deepcopy(row)}}
+    apply(tmp_path, stu, [d])
+    corrected = stu['One PI'][row['person']]
+    assert corrected['relations'] == relations and corrected['roles'] == ['masters', 'phd']
+    assert corrected['person'] == row['person'] and corrected['aliases'] == row['aliases']
+    assert corrected['merged'] == row['merged'] and stu['Other PI'][row['person']] == row
+    # The reviewed decision stays independent from downstream relation annotations.
+    corrected['relations'][0]['sources'][0]['quote'] = 'Changed downstream'
+    assert relations[0]['sources'][0]['quote'] == 'Masters thesis, 2021.'
+
+
+@pytest.mark.parametrize('invalid', ['unguarded', 'empty', 'no_source', 'no_hash', 'no_quote', 'bad_year'])
+def test_invalid_relation_replacement_holds_before_an_earlier_drop(tmp_path, invalid):
+    row = member()
+    other = member('Other Student')
+    other['person'] = 'ext:example:other'
+    d = dict(decision(other), action='replace_relations', relations=copy.deepcopy(other['relations']))
+    if invalid == 'unguarded': d.pop('expected_member_sha256')
+    elif invalid == 'empty': d['relations'] = []
+    elif invalid == 'no_source': d['relations'][0]['sources'] = []
+    elif invalid == 'no_hash': d['relations'][0]['sources'][0].pop('sha256')
+    elif invalid == 'no_quote': d['relations'][0]['sources'][0].pop('quote')
+    elif invalid == 'bad_year': d['relations'][0]['years'] = [True]
+    stu = {'One PI': {row['person']: copy.deepcopy(row), other['person']: copy.deepcopy(other)}}
+    before = copy.deepcopy(stu)
+    with pytest.raises(ValueError, match='replace_relations requires'):
+        apply(tmp_path, stu, [decision(row), d])
+    assert stu == before
+
+
+def test_relation_replacement_rejects_new_unreviewed_source(tmp_path):
+    row = member()
+    d = dict(decision(row), action='replace_relations', relations=copy.deepcopy(row['relations']))
+    current = copy.deepcopy(row)
+    current['relations'].append(dict(type='researched_membership', role='student', years=[2026],
+                                     sources=[dict(url='https://example.edu/new', sha256='4' * 64, quote='Current student')]))
+    stu = {'One PI': {row['person']: current}}
+    before = copy.deepcopy(stu)
+    with pytest.raises(ValueError, match='preimage changed'):
+        apply(tmp_path, stu, [d])
+    assert stu == before

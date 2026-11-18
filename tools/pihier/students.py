@@ -3,7 +3,7 @@ R-HIER-03 (no merges across labs), R-HIER-04 (the PI is not their own student), 
 advising and readers), R-STU-03 (adviser names), R-STU-04 (reviewed corrections), R-STU-05 (doubled tokens), R-STU-06
 (hyphen halves), R-STU-07 (a PI's person id is never a student), R-STU-08 (re-captured evidence), R-STU-09 (program-wide
 advisers), R-STU-10 (the student's own roster entry), R-STU-11 (a basis record's advisor field), R-STU-17 (visiting students), R-STU-18 (evidence-confirmed roster pairs)."""
-import collections, hashlib, json, re, unicodedata
+import collections, copy, hashlib, json, re, unicodedata
 from pathlib import Path
 
 import atlas_paths as P  # data paths (DATA_FILES)
@@ -638,10 +638,24 @@ def corrections(ctx, stu):
     for decision in corr:
         if decision.get('school') == school and 'roles' in decision:
             roles = decision['roles']
-            if (decision.get('action') != 'replace_sources' or 'expected_member_sha256' not in decision
+            if (decision.get('action') not in ['replace_sources', 'replace_relations'] or 'expected_member_sha256' not in decision
                     or not isinstance(roles, list) or not roles
                     or any(not isinstance(role, str) or not role.strip() for role in roles)):
-                raise ValueError('student correction roles require guarded replace_sources and a nonempty role list')
+                raise ValueError('student correction roles require guarded source/relation replacement and a nonempty role list')
+        if decision.get('school') == school and decision.get('action') == 'replace_relations':
+            relations = decision.get('relations')
+            if ('expected_member_sha256' not in decision or not isinstance(relations, list) or not relations
+                    or any(not isinstance(rel, dict) or not isinstance(rel.get('type'), str) or not rel['type'].strip()
+                           or not isinstance(rel.get('role'), str) or not rel['role'].strip()
+                           or not isinstance(rel.get('years'), list)
+                           or any(type(year) is not int for year in rel['years'])
+                           or not isinstance(rel.get('sources'), list) or not rel['sources']
+                           or any(not isinstance(src, dict) or not isinstance(src.get('url'), str) or not src['url'].strip()
+                                  or not isinstance(src.get('sha256'), str) or not re.fullmatch(r'[0-9a-f]{64}', src['sha256'])
+                                  or not isinstance(src.get('quote'), str) or not src['quote'].strip()
+                                  for src in rel['sources'])
+                           for rel in relations)):
+                raise ValueError('replace_relations requires a guard and nonempty sourced, role-specific relation objects')
         if 'expected_member_sha256' not in decision or decision.get('school') != school:
             continue
         group = stu.get(decision.get('pi')) or {}
@@ -662,8 +676,11 @@ def corrections(ctx, stu):
             r['aliases'].extend(a for a in x.get('aliases') or [] if a not in r['aliases'])   # reviewed extra name forms (a byline form such as 'Panos Tigas')
             if x.get('person'):
                 r.setdefault('merged', []).append(k); r['person'] = x['person']; S[x['person']] = S.pop(k)
-        elif x['action'] == 'replace_sources':
-            r['relations'] = [dict(type=x.get('type', 'researched_advising'), years=x['years'], role=x.get('role'), sources=x['sources'])]
+        elif x['action'] in ['replace_sources', 'replace_relations']:
+            # Keep distinct master's, doctoral and membership events separate when correcting
+            # a stale claim. A degree year does not define a continuous membership interval.
+            r['relations'] = (copy.deepcopy(x['relations']) if x['action'] == 'replace_relations' else
+                              [dict(type=x.get('type', 'researched_advising'), years=x['years'], role=x.get('role'), sources=x['sources'])])
             # Correct an unsupported displayed degree as well as its evidence. The original
             # accepted source remains immutable; an exact preimage guard demands renewed
             # review if another genuine role or source is added to this member.
