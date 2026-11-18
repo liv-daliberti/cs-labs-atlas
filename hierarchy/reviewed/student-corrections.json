@@ -3727,5 +3727,59 @@
    "no_degree_false_or_never_claim": true,
    "separate_capture_observation_years_not_continuous": true
   }
+ },
+ {
+  "action": "replace_sources",
+  "school": "mit",
+  "pi": "Michael Goemans",
+  "student": "mit_algorithms_person_055fbab2358c6463",
+  "expected_member_sha256": "8db2f7d0605e1e4168af327cbabf2bf1de32128ecb32bc78bc7020ee265a7a9e",
+  "roles": [
+   "phd"
+  ],
+  "role": "phd",
+  "type": "researched_advising",
+  "years": [
+   2021
+  ],
+  "sources": [
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28Terman+OR+Sipser+OR+Berners+OR+Goemans+OR+Sussman+OR+Cheng-Zhi+OR+%28Huang+AND+Anna%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.issued%2CASC",
+    "sha256": "27609b2edac2a4a9d7fade188b94f2cdcdf6e69479cae9ed0d319634951bfb53",
+    "quote": "\"dc.contributor.advisor\" : [ { \"value\" : \"Goemans, Michel X.\", \"language\" : null, \"authority\" : null, \"confidence\" : -1, \"place\" : 0 } ], \"dc.contributor.author\" : [ { \"value\" : \"Urschel, John C"
+   }
+  ],
+  "reason": "Retain the primary MIT doctoral thesis proving Goemans advising and PhD completion in2021. The identical2022/2025/2026 own-roster CurrentPhD label is stale: the exact MIT faculty profile names JohnUrschel, states he joined the faculty in2023, and identifies his same unique thesis. Remove undated active-student/advising interpretations; do not infer a continuous advising interval or erase the genuine2021student relationship.",
+  "evidence": [
+   {
+    "url": "https://math.mit.edu/directory/profile.html?pid=1754",
+    "sha256": "823893371a2fdee036a966df62d4a9f5f94d163da01a45758ab9890256ae9696",
+    "quote": "John Urschel joined the Department of Mathematics at MIT in 2023.",
+    "kind": "current_faculty_role_contradicts_stale_current_student_label"
+   },
+   {
+    "url": "https://math.mit.edu/directory/profile.html?pid=1754",
+    "sha256": "823893371a2fdee036a966df62d4a9f5f94d163da01a45758ab9890256ae9696",
+    "quote": "In 2024, he received the SIAM DiPrima Prize for his thesis Graphs, Principal Minors, and Eigenvalue Problems, and the SIAM Early Career Prize in Linear Algebra.",
+    "kind": "same_unique_primary_thesis_identity_bridge"
+   },
+   {
+    "url": "https://math.mit.edu/~goemans/students.html",
+    "sha256": "91145b41f43d1ed5fc89275593eb64dbe47c4f33899a7e9f81694da95834ef60",
+    "quote": "Current Ph.D. students: John Urschel",
+    "kind": "stale_label_whole_current_student_block_exactly_one_person"
+   }
+  ],
+  "source_observation_years_are_separate_not_continuous": true,
+  "retained_primary_thesis": {
+   "item_uuid": "007ae9e0-f134-4881-80e7-311c8ec6d307",
+   "handle": "1721.1/140006",
+   "author": "Urschel, John C.",
+   "adviser": "Goemans, Michel X.",
+   "issued": "2021-09",
+   "degree": "Ph.D.",
+   "title": "Graphs, Principal Minors, and Eigenvalue Problems"
+  },
+  "scope": "Exact one-member guard; actualFeb2016 three-other-students historicalsource remains unchanged; earlier/later roles require renewed review."
  }
 ]
