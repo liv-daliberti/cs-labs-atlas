@@ -515,13 +515,19 @@ def census_alias(census, names, dblp=None):
     tools/dblp_url_binding_school.py), a Name match, or the candidate's tokens are the start of a census
     name ('Satinder Singh' is 'Satinder Singh Baveja')."""
     pids = {d for d in ([dblp] if isinstance(dblp, str) else dblp or []) if d}
+
+    def surname_first(m):   # 'NG Hwee Tou' (a listing that prints the SURNAME in capitals first) is also 'Hwee Tou NG'; a person in the census under that form is the same candidate
+        w = m.replace(',', ' ').split()
+        return ' '.join(w[1:] + w[:1]) if len(w) >= 2 and len(w[0]) > 1 and w[0].isupper() and not w[1].isupper() else None
     for x in census.values():
         if pids and pids & set(x.get('dblp') or []):
             return x['name']
-        N = Name([x['name']] + list(x.get('aliases') or []))
+        forms = [x['name']] + list(x.get('aliases') or [])
+        forms += [f for f in map(surname_first, forms) if f]
+        N = Name(forms)
         for n in names:
             t = toks(n)
-            if N.match(n) or any(len(t) >= 2 and toks(m)[:len(t)] == t for m in [x['name']] + list(x.get('aliases') or [])):
+            if N.match(n) or any(len(t) >= 2 and toks(m)[:len(t)] == t for m in forms):
                 return x['name']
     return None
 
