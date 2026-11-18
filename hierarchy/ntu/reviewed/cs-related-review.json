@@ -26,7 +26,8 @@
     "research_or_other_rank": 8,
     "excluded_scope": 5,
     "accepted": 81,
-    "faculty_not_computing": 11
+    "faculty_not_computing": 11,
+    "faculty_no_pi_evidence": 2
   },
   "decisions": [
     {
@@ -57652,6 +57653,97 @@
         "normal_review_sha256": "0a53ef15d51dadebd07179d0eafe11d04acc14ae2a31fcd035a387de7f5c8e4b",
         "scope": "Actualnormalreview consumes qualifiedhomepagerule PID73entries; no ORCID/OAID/period admission. ThirtyfiveCoRRand38venueentries, not73uniquepapers."
       }
+    },
+    {
+      "name": "Wen-Jing Hsu",
+      "aliases": [
+        "Hsu Wen-Jing",
+        "Hsu Wen Jing"
+      ],
+      "source": "pifill_recall_1118",
+      "decision": "faculty_no_pi_evidence",
+      "reason": "D-0009 (2026-11-18): faculty (Associate Professor, SCE 2016 and SCSE 2017 staff pages) but no PhD-advising or own-lab evidence found, so not a PI; stays excluded until such evidence is found",
+      "cs_basis": {
+        "dblp": [
+          "https://dblp.org/pid/26/4850"
+        ],
+        "dblp_window": null,
+        "affiliation_notes": [],
+        "evidence": []
+      },
+      "faculty_evidence": [
+        {
+          "unit": "SCE/SCSE",
+          "url": "https://web.archive.org/web/20160304155707id_/http://www3.ntu.edu.sg:80/SCE/moss_staffac.asp",
+          "sha256": "88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644",
+          "observed": "20160304155707",
+          "quote": "Hsu Wen-Jing (Assoc Prof)",
+          "ladder": true
+        },
+        {
+          "unit": "SCE/SCSE",
+          "url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "observed": "20170602224854",
+          "quote": "Hsu Wen-Jing (Assoc Prof)",
+          "ladder": true
+        }
+      ],
+      "years_listed": [
+        2016,
+        2017
+      ],
+      "units_searched": [
+        "SCE",
+        "SCSE"
+      ],
+      "d0009_note": "Sources tried: both staff captures (no homepage or member pointer in his row); his NTU web home (Wayback 2018-01-15 capture, sha256 41399bd3ce145ea042822d9adb54c3580c3d0e0a53aed81b4fa8e2efbaf39cb0) is a 2010 blog stub with no student list; DR-NTU (dr.ntu.edu.sg) answers 405 to automated clients, so thesis supervisors could not be read; the earlier bounded student searches (lab-coverage-reasons.json) found no dated student relation. Unknown, not proven absent."
+    },
+    {
+      "name": "Sze-Yeung Liu",
+      "aliases": [
+        "Liu Sze Yeung, Elvis",
+        "Elvis Liu Sze Yeung",
+        "Elvis Liu"
+      ],
+      "source": "pifill_recall_1118",
+      "decision": "faculty_no_pi_evidence",
+      "reason": "D-0009 (2026-11-18): faculty (Assistant Professor, SCE 2016 and SCSE 2017 staff pages) but no realised PhD advising or own-lab evidence found, so not a PI; stays excluded until such evidence is found",
+      "cs_basis": {
+        "dblp": [
+          "https://dblp.org/pid/184/5757"
+        ],
+        "dblp_window": null,
+        "affiliation_notes": [],
+        "evidence": []
+      },
+      "faculty_evidence": [
+        {
+          "unit": "SCE/SCSE",
+          "url": "https://web.archive.org/web/20160304155707id_/http://www3.ntu.edu.sg:80/SCE/moss_staffac.asp",
+          "sha256": "88381f55ea881aff1b5ebaeeda1030a2fed72c6eb99b680ea009c35e1c214644",
+          "observed": "20160304155707",
+          "quote": "Liu Sze Yeung, Elvis (Asst Prof) BSc HKU, MSc PhD Birmingham, MBCS, MIEEE",
+          "ladder": true
+        },
+        {
+          "unit": "SCE/SCSE",
+          "url": "https://web.archive.org/web/20170602224854id_/http://www3.ntu.edu.sg:80/scse/moss_staffac.asp",
+          "sha256": "d2ca837ca2c60bdd97f5a00d1c7e481c2518ff656ba8076cee04aa830806cd4b",
+          "observed": "20170602224854",
+          "quote": "Liu Sze Yeung, Elvis (Asst Prof) BSc HKU, MSc PhD Birmingham, MBCS, MIEEE",
+          "ladder": true
+        }
+      ],
+      "years_listed": [
+        2016,
+        2017
+      ],
+      "units_searched": [
+        "SCE",
+        "SCSE"
+      ],
+      "d0009_note": "Sources tried: both staff captures; the CCF PhD vacancy (sha256 ed660cc8d2605ff2f6a85805ef19690488674b4bc6af09fcc3b6492e34b930a4) recruits one student for NTU/IBM distributed simulation but names no recruited student (recruitment is not membership); no later NTU listing found (current foreign-school teaching context per lab-coverage-reasons.json). Unknown, not proven absent."
     }
   ],
   "supplemental_review_runs": [
