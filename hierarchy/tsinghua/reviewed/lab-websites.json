@@ -2433,10 +2433,10 @@
   },
   {
    "pi": "Duan Luming",
-   "status": "reviewed_absence",
-   "coverage": "none",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+   "status": "found",
+   "coverage": "website",
+   "reason_code": "actual_individual_profile_and_group_followed",
+   "reason": "Replaces earlier directory-only absence explanation. Actual individual profile and official group source inspected; website existence does not certify roster/bibliography completeness.",
    "checks": [
     {
      "source": "school_profile_page",
@@ -2444,8 +2444,48 @@
      "at": "2026-11-10T00:00:00",
      "result": "ok",
      "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+    },
+    {
+     "source": "pi_level_actual_source_review",
+     "url": "https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Duan_Luming_Research_Group.htm",
+     "sha256": "7bee1250742f184f5dd2399a92ebe1ebe087ef7eb77ff79f0c627ab24b5e1c1f",
+     "at": "2026-11-18",
+     "result": "ok"
     }
-   ]
+   ],
+   "superseded_pi_level_website_review": {
+    "pi": "Duan Luming",
+    "status": "reviewed_absence",
+    "coverage": "none",
+    "reason_code": "profile_only_no_homepage",
+    "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+    "checks": [
+     {
+      "source": "school_profile_page",
+      "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+      "at": "2026-11-10T00:00:00",
+      "result": "ok",
+      "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+     }
+    ]
+   },
+   "kind": "official_group_page",
+   "url": "https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/Duan_Luming_Research_Group.htm",
+   "sha256": "7bee1250742f184f5dd2399a92ebe1ebe087ef7eb77ff79f0c627ab24b5e1c1f",
+   "pubs_page": null,
+   "people_page": null,
+   "students_page_status": "no_complete_roster_found",
+   "papers_page_status": "research_news_requires_bibliography_followup",
+   "found_via": "school_profile_link",
+   "listed_on": "https://iiis.tsinghua.edu.cn/en/Research/Research_Groups.htm",
+   "checked_at": "2026-11-18",
+   "reviewed_by": "codex-pi-batch4-1118",
+   "evidence": {
+    "url": "https://iiis.tsinghua.edu.cn/en/People/Faculty/DuanLuming.htm",
+    "sha256": "921b75c0f7e7bb5d216ca3ba86e9b1b4f3fd41369867df7e604fe3d0a7227119",
+    "quote": "In 2018, he resigned from his position as Fermi Chair Professor at the University of Michigan and returned to work full-time at the Institute for Interdisciplinary Information Sciences, Tsinghua University.",
+    "observed": "2026-11-18T02:29:59.565393+00:00"
+   }
   },
   {
    "pi": "Duan Ran",
@@ -2561,10 +2601,10 @@
   },
   {
    "pi": "Deng Dongling",
-   "status": "reviewed_absence",
-   "coverage": "none",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+   "status": "none_found",
+   "coverage": "website",
+   "reason_code": "actual_individual_profile_and_group_followed",
+   "reason": "Replaces earlier directory-only absence explanation. Actual individual profile and official group source inspected; website existence does not certify roster/bibliography completeness.",
    "checks": [
     {
      "source": "school_profile_page",
@@ -2572,8 +2612,48 @@
      "at": "2026-11-10T00:00:00",
      "result": "ok",
      "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+    },
+    {
+     "source": "pi_level_actual_source_review",
+     "url": "https://iiis.tsinghua.edu.cn/en/People/Faculty/DengDongling.htm",
+     "sha256": "3726d3acca92934701e86da772c16db85eeb5fafafb561fc6a4a8d3d8c55a960",
+     "at": "2026-11-18",
+     "result": "ok"
     }
-   ]
+   ],
+   "superseded_pi_level_website_review": {
+    "pi": "Deng Dongling",
+    "status": "reviewed_absence",
+    "coverage": "none",
+    "reason_code": "profile_only_no_homepage",
+    "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site: no outgoing link other than the unit navigation, and no URL in its text; no prior-ledger website. Not proof that no site exists.",
+    "checks": [
+     {
+      "source": "school_profile_page",
+      "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+      "at": "2026-11-10T00:00:00",
+      "result": "ok",
+      "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+     }
+    ]
+   },
+   "kind": "official_pi_profile",
+   "url": "https://iiis.tsinghua.edu.cn/en/People/Faculty/DengDongling.htm",
+   "sha256": "3726d3acca92934701e86da772c16db85eeb5fafafb561fc6a4a8d3d8c55a960",
+   "pubs_page": "https://iiis.tsinghua.edu.cn/en/People/Faculty/DengDongling.htm",
+   "people_page": null,
+   "students_page_status": "no_complete_roster_found",
+   "papers_page_status": "audited",
+   "found_via": "school_profile_link",
+   "listed_on": "https://iiis.tsinghua.edu.cn/en/People.htm",
+   "checked_at": "2026-11-18",
+   "reviewed_by": "codex-pi-batch4-1118",
+   "evidence": {
+    "url": "https://iiis.tsinghua.edu.cn/en/People/Faculty/DengDongling.htm",
+    "sha256": "3726d3acca92934701e86da772c16db85eeb5fafafb561fc6a4a8d3d8c55a960",
+    "quote": "2024- Tenured Associate Professor, IIIS, Tsinghua University",
+    "observed": "2026-11-18T02:26:33.820383+00:00"
+   }
   },
   {
    "pi": "Gao Mingyu",
@@ -2641,10 +2721,10 @@
   },
   {
    "pi": "Chen Yilei",
-   "status": "reviewed_absence",
-   "coverage": "none",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/IIIS_Cryptography_Study_Group.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+   "status": "none_found",
+   "coverage": "website",
+   "reason_code": "actual_individual_profile_and_group_followed",
+   "reason": "Replaces earlier directory-only absence explanation. Actual individual profile and official group source inspected; website existence does not certify roster/bibliography completeness.",
    "checks": [
     {
      "source": "school_profile_page",
@@ -2652,8 +2732,48 @@
      "at": "2026-11-10T00:00:00",
      "result": "ok",
      "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+    },
+    {
+     "source": "pi_level_actual_source_review",
+     "url": "https://www.chenyilei.net/",
+     "sha256": "937c9420f559766c00643468217108122c06cc2f7d3a7eb8667c33523447582c",
+     "at": "2026-11-18",
+     "result": "ok"
     }
-   ]
+   ],
+   "superseded_pi_level_website_review": {
+    "pi": "Chen Yilei",
+    "status": "reviewed_absence",
+    "coverage": "none",
+    "reason_code": "profile_only_no_homepage",
+    "reason": "The official unit profile (captured 2026-11-10) names no homepage or lab site; a candidate site https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/IIIS_Cryptography_Study_Group.htm was found by search but is not accepted without an official link (rule: official discovery link required). Not proof that no site exists.",
+    "checks": [
+     {
+      "source": "school_profile_page",
+      "url": "https://iiis.tsinghua.edu.cn/en/People.htm",
+      "at": "2026-11-10T00:00:00",
+      "result": "ok",
+      "sha256": "eb8f5b682f3619f39bbe138f2a2f766f684de83e2f80de8784085dd230b0ea01"
+     }
+    ]
+   },
+   "kind": "pi_homepage",
+   "url": "https://www.chenyilei.net/",
+   "sha256": "937c9420f559766c00643468217108122c06cc2f7d3a7eb8667c33523447582c",
+   "pubs_page": "https://www.chenyilei.net/outputs.html",
+   "people_page": "https://iiis.tsinghua.edu.cn/en/People/Faculty/ChenYilei.htm",
+   "students_page_status": "audited",
+   "papers_page_status": "audited",
+   "found_via": "official_profile_text_url",
+   "listed_on": "https://iiis.tsinghua.edu.cn/en/Yao_Class/About_Yao_Class.htm",
+   "checked_at": "2026-11-18",
+   "reviewed_by": "codex-pi-batch4-1118",
+   "evidence": {
+    "url": "https://iiis.tsinghua.edu.cn/en/People/Faculty/ChenYilei.htm",
+    "sha256": "2228e0b59b5ee8a40c385a54e2a8c46774ae16252ba8437d2fd9510d0758ac45",
+    "quote": "I am an assistant professor at Tsinghua University Institute for Interdisciplinary Information Science (IIIS)",
+    "observed": "2026-11-18T02:26:30.841287+00:00"
+   }
   },
   {
    "pi": "Chen Binyi",
