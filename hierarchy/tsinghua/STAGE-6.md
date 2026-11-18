@@ -165,3 +165,52 @@ Formal Stage 6 remains open against its limit of 18 and the fixed independent
 recall review; Stage 9 accuracy review is unfinished. The six historical
 original-roster gaps remain unrecovered. No formal sample or release is
 provided by this source review.
+
+
+## Reviewed student sources: target of 90 unexplained zero-student labs
+
+The prior verified native candidate has Z=140. This source batch adds
+240 independently accepted membership observations for 52 previously
+uncovered PIs: 44 official thesis defense-year points and 196 eligible
+student observations from complete current lab sections or a dated lab article.
+The source projection is Z=88; native verification is pending at this source landing.
+All 157 prior thesis episodes and all earlier reviewed evidence are retained.
+The private verification uses the frozen Z140 input vector plus this batch.
+Concurrent PI-level repairs from commit `a81afd56` are preserved in the shared
+reviewed files as a separate batch; they are outside this controlled candidate.
+
+Two independent reviewers checked the exact selected original responses,
+actual degree/adviser/unit/defense fields, source-stated faculty role or status,
+finer appointment bounds and same-name identities. The full selected EE
+rank-section class was checked after one broad-section metadata error:
+李星’s exact 2022 Professor section supersedes the erroneous proposed rank.
+Both preimages remain preserved. The same-unit 张超 [EE] namesake case stays
+held, as does the undated 郑力 research-project nexus. Query misses and
+access failures supply no researched no-students reasons.
+
+Current shared lab sections establish membership in the actual narrow group,
+without personal advising or an individual degree institution being inferred.
+All source-listed nonstudents, visitors, conflicting entries and unqualified
+alumni sections remain separately held. Generic student roles are not upgraded
+to doctoral roles. Historical thesis/article points do not establish degree
+grants, present enrollment or continuous attendance.
+
+The closed roster pool contains exactly 196 new observations. Its fixed
+20-record independent source check found zero membership and zero role/year
+errors. The original draw and seed are preserved; the final source union's
+roster projection is identical. This source check is separate from the formal
+fixed recall, school/student audits and final accuracy reviews.
+
+Independent source acceptance: `scratch/tsinghua-z90-source-review-1118/ACCEPTED-UNION-FINAL.json`,
+SHA-256 `ee70788c2588afddf79bacd2395739afcd9b3aa4a9d7a5fb34db9cfab3d63577`.
+Source handcheck: `/n/fs/resemble/homogenizing-science/scratch/tsinghua-z90-handcheck-1118/ROSTER-SOURCE-HANDCHECK20-REVIEW.json`, SHA-256 `7ce4216cfa8e751e70ac1f2ed9f7c249e49ac4ce820ccffedf4972042d14fb9f`.
+The thesis collection stopped after 113 public attempts; all returned metadata
+and original holds remain available. Later corrections made no new requests.
+The 68-origin cache-only policy audit passes, including 14 newly used proof
+origins and explicit source-declared HTTP handling for two sites. All 54 prior
+host decisions and every scientific charter setting remain unchanged.
+No PI population, alias, period, campus scope or coverage threshold is changed.
+
+Formal Stage 6 remains open against its unchanged Z limit of 18 and required
+independent recall/student reviews. The six original historical faculty-roster
+gaps and final accuracy review remain unresolved. No publication is performed.
