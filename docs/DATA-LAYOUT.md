@@ -190,6 +190,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `labpage-audit.jsonl.gz` | derived | `hierarchy/{school}/labpage-audit.jsonl.gz` | `hierarchy/{school}/derived/labpage-audit.jsonl.gz` | - | <100MB |
 | `labpage-audit-discovery.jsonl` | raw | `hierarchy/{school}/labpage-audit-discovery.jsonl` | `hierarchy/{school}/raw/labpage-audit-discovery.jsonl` | - | <100MB |
 | `labpage-audit-discovery.done.json` | raw | `hierarchy/{school}/labpage-audit-discovery.done.json` | `hierarchy/{school}/raw/labpage-audit-discovery.done.json` | - | <1MB |
+| `labpage-audit-history.jsonl` | raw | `hierarchy/{school}/labpage-audit-history.jsonl` | `hierarchy/{school}/raw/labpage-audit-history.jsonl` | - | <10MB |
 | `labpage-audit-recover` | work | `hierarchy/{school}/labpage-audit-recover` | `hierarchy/{school}/work/labpage-audit-recover` | - | <100MB |
 | `labpage-handcheck.json` | reviewed | `hierarchy/{school}/labpage-handcheck.json` | `hierarchy/{school}/reviewed/labpage-handcheck.json` | - | <100MB |
 | `gate-exceptions.json` | reviewed | `hierarchy/{school}/gate-exceptions.json` | `hierarchy/{school}/reviewed/gate-exceptions.json` | - | <1MB |
