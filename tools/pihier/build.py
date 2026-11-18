@@ -8,7 +8,7 @@ from pathlib import Path
 import atlas_paths as P  # data paths (DATA_FILES)
 import provenance  # report.json -> provenance
 from .common import HERE, Ctx
-from . import census, identity, links, member_paper_reviews, papers, preflight, reviewed_claims, students
+from . import census, identity, links, match_ids, member_paper_reviews, papers, preflight, reviewed_claims, students
 
 
 def atomic_json(path, value):
@@ -43,6 +43,7 @@ def write(ctx):
                            studentPaperLinks=sum(1 for x in sp if x['pi'] == p['pi']))
     n['pis_with_lab_papers'] = sum(bool(per_pi[p['pi']]) for p in pis)
     n['pis_complete_chain'] = sum(bool(p['counts']['labPapers'] and p['counts']['students'] and p['counts']['studentPaperLinks']) for p in pis)
+    match_ids.add(pis, census.reviewed_name_pairs(school))  # id-first matching fields; adds keys only
     atomic_json(out / 'pis.json', pis)
     atomic_json(out / 'students.json', {k: list(v.values()) for k, v in stu.items()})
     for r in rows:

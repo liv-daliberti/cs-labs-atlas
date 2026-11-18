@@ -238,3 +238,9 @@ def index_pis(ctx):
     # the school shares that family name and initial
     nm_full = {p['pi']: Name([x for x in p['names'] if len((toks(x) or [''])[0]) > 1] or p['names']) for p in pis}
     ctx.pid0, ctx.by_unit, ctx.nm, ctx.by_sur, ctx.by_mono, ctx.nm_full = pid0, by_unit, nm, by_sur, by_mono, nm_full
+
+
+def reviewed_name_pairs(school):
+    """The school's reviewed (name_a, name_b) spellings of one person (census-name-aliases.json; census_build validates them)."""
+    doc = read(P.data('census-name-aliases.json', school), {}) or {}
+    return [(r['name_a'], r['name_b']) for r in doc.get('rows') or [] if isinstance(r, dict) and r.get('name_a') and r.get('name_b')]
