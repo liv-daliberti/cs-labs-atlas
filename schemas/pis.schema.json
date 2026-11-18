@@ -683,6 +683,36 @@
      "x-rules": [
       "R-ID-03"
      ]
+    },
+    "latinAliases": {
+     "description": "Latin-script spellings of the PI the build holds (census name, aliases, reviewed overrides, reviewed name pairs); never transliterated.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "dblpPids": {
+     "description": "DBLP person ids of the PI (from dblp), as 84/3894.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "orcidIds": {
+     "description": "ORCIDs of the PI (from orcid), bare ids.",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$"
+     }
+    },
+    "openalexIds": {
+     "description": "OpenAlex author ids (A...) of the PI: reviewed and anchored ids, never the mixed or namesake ids.",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^A\\d+$"
+     }
     }
    },
    "required": [

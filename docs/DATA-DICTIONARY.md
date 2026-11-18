@@ -382,6 +382,10 @@ One PI: the merged census rows, reviewed corrections, identity, appointment evid
 | `asStudent[].pi` | string | yes | The adviser PI. |  |  |
 | `asStudent[].labId` | string \| null | yes | The adviser's atlas lab id. | pattern `^atl:l:[a-z]+:[a-z0-9]+(-[a-z0-9]+)*$` |  |
 | `asStudent[].record` | string | yes | The student record id (students.json person). |  |  |
+| `latinAliases` | array of string | no | Latin-script spellings of the PI the build holds (census name, aliases, reviewed overrides, reviewed name pairs); never transliterated. |  |  |
+| `dblpPids` | array of string | no | DBLP person ids of the PI (from dblp), as 84/3894. |  |  |
+| `orcidIds` | array of string | no | ORCIDs of the PI (from orcid), bare ids. | items: pattern `^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$` |  |
+| `openalexIds` | array of string | no | OpenAlex author ids (A...) of the PI: reviewed and anchored ids, never the mixed or namesake ids. | items: pattern `^A\d+$` |  |
 
 ### pis: shape `period`
 
