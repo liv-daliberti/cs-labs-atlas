@@ -130,6 +130,7 @@ def test_sourced_correction_does_not_turn_a_disproved_home_into_an_appointment()
     ({'home_department': 'Computer Science'}, 'conflicts'),
     ({'also_home_departments': ['Computer Science']}, 'conflicts'),
     ({'primary_unresolved': ['Artificial Intelligence', 'Computer Science']}, 'conflicts'),
+    ({'primary_unresolved': ['Artificial Intelligence', 'Mathematics']}, 'conflicts'),
 ])
 def test_home_correction_rejects_stale_or_conflicting_supersession(change, message):
     rows = [dict(name='A Person', home_department='Computer Science', also=['Mathematics'])]
@@ -140,5 +141,30 @@ def test_home_correction_rejects_stale_or_conflicting_supersession(change, messa
                     why_superseded_home_department='Incorrect directory inference.')
     decision.update(change)
     with pytest.raises(SystemExit, match=message):
+        apply_reviewed_homes(rows, {'A Person': decision}, lambda h: h)
+    assert rows == original
+
+
+def test_superseded_home_reapplication_compares_canonical_units_and_preserves_raw_history():
+    normalize = lambda unit: {'国家网络安全学院': 'Cyber Science and Engineering'}.get(unit, unit)
+    rows = [dict(name='A Person', home_department='国家网络安全学院', also=[])]
+    decision = dict(home_department='Artificial Intelligence', primary_stated=True,
+                    home_department_evidence=_ev('School/Department: Artificial Intelligence'),
+                    superseded_home_department='Cyber Science and Engineering',
+                    why_superseded_home_department='Previous unit was inferred incorrectly.')
+    once = copy.deepcopy(apply_reviewed_homes(rows, {'A Person': decision}, normalize))
+    assert once[0]['superseded_home_department']['home_department'] == '国家网络安全学院'
+    assert apply_reviewed_homes(rows, {'A Person': decision}, normalize) == once
+
+
+def test_supersession_cannot_leave_an_existing_unresolved_primary_claim_contradictory():
+    rows = [dict(name='A Person', home_department='Computer Science', also=['Mathematics'],
+                 home_basis='primary_unresolved', primary_unresolved=['Computer Science', 'Mathematics'])]
+    original = copy.deepcopy(rows)
+    decision = dict(home_department='Artificial Intelligence', primary_stated=True,
+                    home_department_evidence=_ev('School/Department: Artificial Intelligence'),
+                    superseded_home_department='Computer Science',
+                    why_superseded_home_department='Previous home was inferred incorrectly.')
+    with pytest.raises(SystemExit, match='unresolved appointments'):
         apply_reviewed_homes(rows, {'A Person': decision}, lambda h: h)
     assert rows == original

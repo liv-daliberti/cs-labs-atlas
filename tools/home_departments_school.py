@@ -89,12 +89,15 @@ def apply_reviewed_homes(rows, overrides, normalize):
                 raise SystemExit(f"{row['name']}: superseded_home_department requires a unit and a researched reason")
             rejected = normalize(superseded)
             named = [normalize(u) for u in (decision.get('also_home_departments') or []) + (decision.get('primary_unresolved') or [])]
+            if row.get('primary_unresolved') or decision.get('primary_unresolved'):
+                raise SystemExit(f"{row['name']}: superseded_home_department conflicts with unresolved appointments")
             if rejected == home or rejected in named:
                 raise SystemExit(f"{row['name']}: superseded_home_department conflicts with a retained appointment")
             previous = row.get('superseded_home_department') or {}
             if rejected == normalize(old):
                 previous = dict(home_department=old, evidence=row.get('evidence'), reason=reason)
-            elif old != home or previous.get('home_department') != superseded or previous.get('reason') != reason:
+            elif (old != home or not isinstance(previous, dict)
+                  or normalize(previous.get('home_department')) != rejected or previous.get('reason') != reason):
                 raise SystemExit(f"{row['name']}: superseded_home_department does not match the previous home")
             also = [a for a in also if normalize(a) != rejected]
             row['superseded_home_department'] = previous
