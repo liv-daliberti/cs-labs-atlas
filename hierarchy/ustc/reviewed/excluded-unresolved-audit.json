@@ -1,7 +1,7 @@
 {
  "school": "ustc",
- "drawn_at": "2026-11-18T01:57:12Z",
- "seed": "g2rework2-ustc-20261118",
+ "drawn_at": "2026-11-18T02:43:21Z",
+ "seed": "g2rework3-ustc-20261118",
  "n": 50,
  "worker": "claude-cuhk-ustc-dl-1118",
  "population": {
@@ -621,7 +621,6 @@
   "Xin Sheng": "0a34606cd65cde04",
   "Xin Wang [https://dblp.org/pid/10/5630-40]": "13291fd61cccf8d7",
   "Xin Wang [https://dblp.org/pid/10/5630-179]": "619376631bd57397",
-  "Xin Yao": "728a4f61898483c8",
   "Xin Zhang": "d50e3a8eeb05ad1f",
   "Xin Zhao": "606b70ba53d28534",
   "Xing Zhao": "fd0c133ca15019f0",
@@ -836,7 +835,6 @@
   "Ziyu Zhang": "3d15d269cc657f71",
   "Zongzhang Zhang": "963ed2dc0a017786",
   "Zhengyuan Xu": "5867901aeb1d2f74",
-  "Kejiang Chen": "2bbaded664d4be03",
   "Ammar Hawbani": "284ebece4675865d",
   "Yugang Yu": "796619224624e688",
   "Zengfu Wang": "992648ec418a4ed9",
@@ -981,359 +979,359 @@
   "Yinglei Lai": "2fb206177fcebd9b"
  },
  "sample": [
-  "Anfan Chen",
-  "Bin Luo",
-  "Bingchen Li",
-  "Chang Liu [https://dblp.org/pid/52/5716-140]",
-  "Chunlin Chen",
-  "Cong Zhang [https://dblp.org/pid/18/2908-2]",
-  "Dongdong Chen",
-  "Fang Zhang",
-  "Feng Lin",
-  "Feng Yang [https://dblp.org/pid/22/4613-13]",
-  "Fujiang Lin",
-  "Hao Feng",
-  "Hao Guo",
-  "Hao Tang",
-  "Hao Zhang [https://dblp.org/pid/55/2270-127]",
-  "Jie Liu [https://dblp.org/pid/03/2134-69]",
-  "Jie Xiao",
-  "Jie Zhang [https://dblp.org/pid/84/6889-73]",
-  "Jun Liu [https://dblp.org/pid/95/3736-83]",
-  "Jun Shi [https://dblp.org/pid/31/626-7]",
-  "Junrui Zhang",
-  "Kejiang Chen",
-  "Li Li [https://dblp.org/pid/53/2189-103]",
-  "Li Ni",
-  "Liang Cheng",
-  "Lili Zhao",
-  "Lyuzhou Chen",
-  "Nan Yang",
-  "Peng Yang [https://dblp.org/pid/57/5443-22]",
-  "Qi Zhou",
-  "Qing Li",
-  "Sian-Jheng Lin",
-  "Sihang Li",
-  "Wei Wang [https://dblp.org/pid/35/7092-176]",
-  "Weijia Zhang",
-  "Weilin Chen",
-  "Wenyu Zhang",
-  "Xin Lin [https://dblp.org/pid/50/3323-5]",
-  "Xin Wang [https://dblp.org/pid/10/5630-179]",
-  "Xingmei Wang",
-  "Xinyu Wang",
-  "Xu Shen",
-  "Yanwu Xu",
-  "Yi Kang",
-  "Yi Xu",
-  "Yichuan Deng",
-  "Yihang Lu",
-  "Yixin Zhang",
-  "Yong Xu",
+  "Bo Yuan [https://dblp.org/pid/41/1662-18]",
+  "Bo Yuan [https://dblp.org/pid/41/1662-6]",
+  "Can Zhang",
+  "Chao Wang [https://dblp.org/pid/w/ChaoWang3]",
+  "Chao Zhang [https://dblp.org/pid/94/3019-3]",
+  "Chen Yu",
+  "Chi Zhang [https://dblp.org/pid/91/195-43]",
+  "Dong Yin",
+  "Feng Li [https://dblp.org/pid/92/2954-29]",
+  "Gang Wang",
+  "Hao Cui [https://dblp.org/pid/98/75-4]",
+  "Hui Yuan",
+  "Jian Li [https://dblp.org/pid/33/5448-31]",
+  "Jianhan Wu",
+  "Jinkang Zhu",
+  "Jun Li [https://dblp.org/pid/116/1011-143]",
+  "Ke Sun",
+  "Lei Qu",
+  "Li Ding",
+  "Lingling Yu",
+  "Lun Wang",
+  "Min Wang",
+  "Ming Zhang",
+  "Qi Wu",
+  "Qiankun Li",
+  "Rui Yan",
+  "Tao Huang",
+  "Tian Bai",
+  "Tianshi Chen",
+  "Tong Xiao",
+  "Wei Ji",
+  "Wei Lu",
+  "Wei Wu [https://dblp.org/pid/95/6985-3]",
+  "Wei Yu",
+  "Wei Zhou",
+  "Xi Li",
+  "Xiaolong Guo",
+  "Xiaoya Zhai",
+  "Yan Zhong",
+  "Yang Xu [https://dblp.org/pid/61/3906-20]",
+  "Yang Yang [https://dblp.org/pid/48/450-46]",
+  "Yaojun Wu",
+  "Yu Jiang",
+  "Yu Yang",
+  "Yufei Wu",
+  "Yuyang Tang",
+  "Zhen Pan",
+  "Zhihao Chen",
+  "Zhiyuan Wang",
   "Zhizheng Zhang"
  ],
- "reviewer": "independent-subagents a36c295d8ba538522+acb0b8fda894295a6 (sonnet)",
+ "reviewer": "independent-subagents a88f4d9827a3a38df+a9809bde82513ba71 (sonnet)",
  "verdicts": [
   {
-   "name": "Anfan Chen",
+   "name": "Bo Yuan [https://dblp.org/pid/41/1662-18]",
    "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. Search: HKBU Dept of Communication Studies research assistant professor (coms.hkbu.edu.hk/faculty-and-staff/anfan-chen.html), PhD Tsinghua; no USTC link found.",
+   "evidence": "ORCID 0000-0002-9671-5670 (pub.orcid.org API): employment Huawei from 2021; works are microwave staring correlated radar imaging/ISAR (2018-2021) = PhD-student-era radar signal processing; not CS faculty. CS 袁博 listing not bound. | ",
    "fixed": false
   },
   {
-   "name": "Bin Luo",
+   "name": "Bo Yuan [https://dblp.org/pid/41/1662-6]",
    "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
+   "evidence": "ORCID 0000-0001-9899-8961: USTC School of CS Postdoctoral Fellow 2014-2016 then Associate Researcher (副研究员) 2016-2017; SUSTech Research Assistant Professor from 2017. Not ladder at USTC; DBLP affiliation is SUSTech + USTC-Birmingham joint institute. | ",
    "fixed": false
   },
   {
-   "name": "Bingchen Li",
+   "name": "Can Zhang",
    "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
+   "evidence": "Read the recorded row (reason_code, sources_tried, gate-2 rework notes). Row records no pinyin match in USTC directories/CS census and no source covering the window. No page I read proves admissible faculty status. Additionally checked DBLP-dump affiliation notes/ORCID employments (pub.orcid.org) where an id existed: no USTC ladder-rank proof.",
    "fixed": false
   },
   {
-   "name": "Chang Liu [https://dblp.org/pid/52/5716-140]",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
-   "fixed": false
-  },
-  {
-   "name": "Chunlin Chen",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
-   "fixed": false
-  },
-  {
-   "name": "Cong Zhang [https://dblp.org/pid/18/2908-2]",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. Search found only csauthors profile (USTC + SFU PhD), no title; census 张聪 副教授 stays unbound by pinyin.",
-   "fixed": false
-  },
-  {
-   "name": "Dongdong Chen",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
-   "fixed": false
-  },
-  {
-   "name": "Fang Zhang",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
-   "fixed": false
-  },
-  {
-   "name": "Feng Lin",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
-   "fixed": false
-  },
-  {
-   "name": "Feng Yang [https://dblp.org/pid/22/4613-13]",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. Read cybersec c25039a512722: that page is 张宾宾, not 杨锋; no page proves identity/rank.",
-   "fixed": false
-  },
-  {
-   "name": "Fujiang Lin",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
-   "fixed": false
-  },
-  {
-   "name": "Hao Feng",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
-   "fixed": false
-  },
-  {
-   "name": "Hao Guo",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
-   "fixed": false
-  },
-  {
-   "name": "Hao Tang",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
-   "fixed": false
-  },
-  {
-   "name": "Hao Zhang [https://dblp.org/pid/55/2270-127]",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
-   "fixed": false
-  },
-  {
-   "name": "Jie Liu [https://dblp.org/pid/03/2134-69]",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
-   "fixed": false
-  },
-  {
-   "name": "Jie Xiao",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
-   "fixed": false
-  },
-  {
-   "name": "Jie Zhang [https://dblp.org/pid/84/6889-73]",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. Read eeis.ustc.edu.cn/2020/0508/c2615a420335/page.htm: EEIS 张结 is 副教授 in speech/audio (different person, pid -42 type); -73 is the NTU/A*STAR Jie Zhang; unbound namesake.",
-   "fixed": false
-  },
-  {
-   "name": "Jun Liu [https://dblp.org/pid/95/3736-83]",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. EEIS 刘军 page fetch failed; no CS/Suzhou faculty page found.",
-   "fixed": false
-  },
-  {
-   "name": "Jun Shi [https://dblp.org/pid/31/626-7]",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. Search shows DBLP affiliation USTC CS and medical-segmentation papers but no faculty page or rank found.",
-   "fixed": false
-  },
-  {
-   "name": "Junrui Zhang",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
-   "fixed": false
-  },
-  {
-   "name": "Kejiang Chen",
+   "name": "Chao Wang [https://dblp.org/pid/w/ChaoWang3]",
    "verdict": "fail",
-   "evidence": "Read https://cybersec.ustc.edu.cn/2022/0616/c25039a559664/page.htm (USTC School of Cyber Science and Technology, 陈可江, 职称：副教授, homepage http://home.ustc.edu.cn/~chenkj/, email chenkj AT ustc.edu.cn); also listed in 2022-07-03 Wayback 副高 list and 2026 live list. Research is steganography/generative watermarking/AI security (CS-related; OpenAlex author A5045121980: 141 works, 84% CS, DBLP-venue). 副教授 at USTC 2021-2022 = admissible; identity bound by name+field+OpenAlex record. Caveat: another source says associate research fellow in 2024, but the official page states 副教授.",
-   "fixed": true
-  },
-  {
-   "name": "Li Li [https://dblp.org/pid/53/2189-103]",
-   "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
+   "evidence": "DBLP dump record (derived/dblp-affiliated.json) for w/ChaoWang3 carries its own homepage url http://staff.ustc.edu.cn/~cswang/ and affiliation USTC Department of Computer Science, 2016-2026 pubs. Read https://faculty.ustc.edu.cn/cswang/ (WebFetch): 王超, 教授, 博士生导师, 软件学院副院长、计算机学院副院长, research FPGA reconfigurable computing, intelligent processors, intelligent computing systems (CS). CS census lists 王超 副教授 2016-2023, 特任教授/教授 later. Admissible: CS-related professor at USTC in window. Caveat: DBLP record has two ORCIDs (one empty, one USTC-only), possible merge with namesake. | ",
    "fixed": false
   },
   {
-   "name": "Li Ni",
+   "name": "Chao Zhang [https://dblp.org/pid/94/3019-3]",
    "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. Search: OpenReview/AlphaXiv profiles show Anhui University associate professor from 2024 and USTC PhD student 2015-2020 (not faculty).",
+   "evidence": "DBLP: Xian Jiaotong University School of Electronics + USTC EEIS; ORCID empty; no USTC ladder proof read. | ",
    "fixed": false
   },
   {
-   "name": "Liang Cheng",
+   "name": "Chen Yu",
    "verdict": "pass",
-   "evidence": "Read recorded evidence (no_source_covers_window/identity_collision, no binding row in stored USTC directory rows) and ran WebSearch on the name+USTC; dblp.org was bot-challenged (Anubis) so not used. No page read proves ladder-rank USTC faculty status for this DBLP/OpenAlex person. ",
+   "evidence": "Closest DBLP 98/4839-9: Rochester CS + USTC EEIS student-era; no USTC faculty proof. | ",
    "fixed": false
   },
   {
-   "name": "Lili Zhao",
+   "name": "Chi Zhang [https://dblp.org/pid/91/195-43]",
    "verdict": "pass",
-   "evidence": "CSAuthors/DBLP snippets show a 'Lili Zhao 0002' with USTC affiliation (ML/NLP papers 2021-25) but no rank; no faculty page found; faculty.ustc.edu.cn/lil1 fetch failed and is not shown to be hers. Not proven.",
+   "evidence": "ORCID 0000-0003-1160-5497: Hefei University of Technology Associate Professor (CS & Info Eng) from 2024; DBLP affiliation USTC LINKE Lab wireless-optical (student-era). The USTC cyber 张驰 副教授 (network protocols, joined 2011, pid 91/195-1 staff.ustc.edu.cn/~chizhang) is a different DBLP person. | ",
    "fixed": false
   },
   {
-   "name": "Lyuzhou Chen",
+   "name": "Dong Yin",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "WebSearch (尹东 USTC EEIS) found no matching profile; stored EEIS/CYBER captures list the name only without per-person page (read the directory list text); no ORCID/pid in row. No proof. | ",
    "fixed": false
   },
   {
-   "name": "Nan Yang",
+   "name": "Feng Li [https://dblp.org/pid/92/2954-29]",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "ORCID 0000-0003-2862-2760: PolyU research fellow then Huawei 2020; USTC Physics affiliation in DBLP only; no USTC faculty proof. | ",
    "fixed": false
   },
   {
-   "name": "Peng Yang [https://dblp.org/pid/57/5443-22]",
+   "name": "Gang Wang",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "Row has no pid. Closest DBLP 71/4292-32 ORCID: USTC Professor EEIS since 2010, but EEIS (communications/signal processing) and not bound to the row; no CS-related evidence read. | ",
    "fixed": false
   },
   {
-   "name": "Qi Zhou",
+   "name": "Hao Cui [https://dblp.org/pid/98/75-4]",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "Read the recorded row (reason_code, sources_tried, gate-2 rework notes). Row records no pinyin match in USTC directories/CS census and no source covering the window. No page I read proves admissible faculty status. Additionally checked DBLP-dump affiliation notes/ORCID employments (pub.orcid.org) where an id existed: no USTC ladder-rank proof.",
    "fixed": false
   },
   {
-   "name": "Qing Li",
+   "name": "Hui Yuan",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "Closest DBLP 21/780-2: Princeton ECE PhD; no USTC faculty proof. | ",
    "fixed": false
   },
   {
-   "name": "Sian-Jheng Lin",
-   "verdict": "pass",
-   "evidence": "KAUST profile says 'Project Researcher, USTC' - not ladder rank; no USTC page found.",
+   "name": "Jian Li [https://dblp.org/pid/33/5448-31]",
+   "verdict": "fail",
+   "evidence": "ORCID 0000-0002-6979-4510 is on the DBLP person record; pub.orcid.org employments: University of Science and Technology of China, Associate Professor, School of Cyber Science and Technology. ORCID works 2025-2026 are computer networking/security (DNS exfiltration, quantum networks, privacy-preserving transformer inference, congestion control) = computing is the object. Stored capture https://cybersec.ustc.edu.cn/szdw_23805/list.htm lists 李健 under 副高; DBLP pubs 2016-2026 with USTC affiliation. Caveat: ORCID employment undated. | ",
    "fixed": false
   },
   {
-   "name": "Sihang Li",
+   "name": "Jianhan Wu",
    "verdict": "pass",
-   "evidence": "data-science.ustc.edu.cn author page: PhD student in USTC Lab for Data Science (supervised by Xiang Wang/Xiangnan He) - student, not faculty.",
+   "evidence": "Read the recorded row (reason_code, sources_tried, gate-2 rework notes). Row records no pinyin match in USTC directories/CS census and no source covering the window. No page I read proves admissible faculty status. Additionally checked DBLP-dump affiliation notes/ORCID employments (pub.orcid.org) where an id existed: no USTC ladder-rank proof.",
    "fixed": false
   },
   {
-   "name": "Wei Wang [https://dblp.org/pid/35/7092-176]",
+   "name": "Jinkang Zhu",
    "verdict": "pass",
-   "evidence": "Recorded evidence: same-name CYBERSEC 王伟 is 特任研究员 (not ladder), DBLP person is Electronic Warfare/precision machinery; identity unbound.",
+   "evidence": "Read the recorded row (reason_code, sources_tried, gate-2 rework notes). Row records no pinyin match in USTC directories/CS census and no source covering the window. No page I read proves admissible faculty status. WebSearch for the person plus USTC returned only other people (no matching profile). Additionally checked DBLP-dump affiliation notes/ORCID employments (pub.orcid.org) where an id existed: no USTC ladder-rank proof.",
    "fixed": false
   },
   {
-   "name": "Weijia Zhang",
+   "name": "Jun Li [https://dblp.org/pid/116/1011-143]",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "ORCID 0000-0002-1405-6000 empty (no employments/works); AUTO page lists 李俊 as name only; WebSearch gave no profile. No binding. | ",
    "fixed": false
   },
   {
-   "name": "Weilin Chen",
+   "name": "Ke Sun",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "Read the recorded row (reason_code, sources_tried, gate-2 rework notes). Row records no pinyin match in USTC directories/CS census and no source covering the window. No page I read proves admissible faculty status. Additionally checked DBLP-dump affiliation notes/ORCID employments (pub.orcid.org) where an id existed: no USTC ladder-rank proof.",
    "fixed": false
   },
   {
-   "name": "Wenyu Zhang",
+   "name": "Lei Qu",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "Read the recorded row (reason_code, sources_tried, gate-2 rework notes). Row records no pinyin match in USTC directories/CS census and no source covering the window. No page I read proves admissible faculty status. WebSearch for the person plus USTC returned only other people (no matching profile). Additionally checked DBLP-dump affiliation notes/ORCID employments (pub.orcid.org) where an id existed: no USTC ladder-rank proof.",
    "fixed": false
   },
   {
-   "name": "Xin Lin [https://dblp.org/pid/50/3323-5]",
+   "name": "Li Ding",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "Read the recorded row (reason_code, sources_tried, gate-2 rework notes). Row records no pinyin match in USTC directories/CS census and no source covering the window. No page I read proves admissible faculty status. Additionally checked DBLP-dump affiliation notes/ORCID employments (pub.orcid.org) where an id existed: no USTC ladder-rank proof.",
    "fixed": false
   },
   {
-   "name": "Xin Wang [https://dblp.org/pid/10/5630-179]",
+   "name": "Lingling Yu",
    "verdict": "pass",
-   "evidence": "Recorded evidence: same-name SAFETYSE 王鑫 is 副研究员/副教授 but different person, no binding source; not proven.",
+   "evidence": "Read the recorded row (reason_code, sources_tried, gate-2 rework notes). Row records no pinyin match in USTC directories/CS census and no source covering the window. No page I read proves admissible faculty status. Additionally checked DBLP-dump affiliation notes/ORCID employments (pub.orcid.org) where an id existed: no USTC ladder-rank proof.",
    "fixed": false
   },
   {
-   "name": "Xingmei Wang",
+   "name": "Lun Wang",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "Read the recorded row (reason_code, sources_tried, gate-2 rework notes). Row records no pinyin match in USTC directories/CS census and no source covering the window. No page I read proves admissible faculty status. Additionally checked DBLP-dump affiliation notes/ORCID employments (pub.orcid.org) where an id existed: no USTC ladder-rank proof.",
    "fixed": false
   },
   {
-   "name": "Xinyu Wang",
+   "name": "Min Wang",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "Read the recorded row (reason_code, sources_tried, gate-2 rework notes). Row records no pinyin match in USTC directories/CS census and no source covering the window. No page I read proves admissible faculty status. Additionally checked DBLP-dump affiliation notes/ORCID employments (pub.orcid.org) where an id existed: no USTC ladder-rank proof.",
    "fixed": false
   },
   {
-   "name": "Xu Shen",
+   "name": "Ming Zhang",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "Read the recorded row (reason_code, sources_tried, gate-2 rework notes). Row records no pinyin match in USTC directories/CS census and no source covering the window. No page I read proves admissible faculty status. Additionally checked DBLP-dump affiliation notes/ORCID employments (pub.orcid.org) where an id existed: no USTC ladder-rank proof.",
    "fixed": false
   },
   {
-   "name": "Yanwu Xu",
+   "name": "Qi Wu",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "Read the recorded row (reason_code, sources_tried, gate-2 rework notes). Row records no pinyin match in USTC directories/CS census and no source covering the window. No page I read proves admissible faculty status. Additionally checked DBLP-dump affiliation notes/ORCID employments (pub.orcid.org) where an id existed: no USTC ladder-rank proof.",
    "fixed": false
   },
   {
-   "name": "Yi Kang",
+   "name": "Qiankun Li",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "Closest DBLP 228/7339-4 ORCID: MIT/NTU/Imperial research fellow 2025-2028; not a USTC ladder faculty. | ",
    "fixed": false
   },
   {
-   "name": "Yi Xu",
+   "name": "Rui Yan",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "Read recorded row (no stored page binds the person to a ranked USTC listing); no full-pinyin directory match in stored unit directories; searched public web for own page and checked ORCID public API where DBLP lists an ORCID; found no source proving ladder-equivalent CS-related USTC rank in 2016-2026.",
    "fixed": false
   },
   {
-   "name": "Yichuan Deng",
+   "name": "Tao Huang",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "Read recorded row (no stored page binds the person to a ranked USTC listing); no full-pinyin directory match in stored unit directories; searched public web for own page and checked ORCID public API where DBLP lists an ORCID; found no source proving ladder-equivalent CS-related USTC rank in 2016-2026.",
    "fixed": false
   },
   {
-   "name": "Yihang Lu",
+   "name": "Tian Bai",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "https://sse.ustc.edu.cn/2020/0326/c19871a626042/page.htm: 白天 (SSE 院内教员) is 讲师 (Lecturer); lecturer not admissible.",
    "fixed": false
   },
   {
-   "name": "Yixin Zhang",
+   "name": "Tianshi Chen",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "DBLP affiliations Cambricon/ICT CAS/USTC department (alumnus); no USTC faculty page found.",
    "fixed": false
   },
   {
-   "name": "Yong Xu",
+   "name": "Tong Xiao",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "ORCID 0009-0003-2697-5164 employment: USTC 'Student' 2022; not faculty.",
+   "fixed": false
+  },
+  {
+   "name": "Wei Ji",
+   "verdict": "pass",
+   "evidence": "Read recorded row (no stored page binds the person to a ranked USTC listing); no full-pinyin directory match in stored unit directories; searched public web for own page and checked ORCID public API where DBLP lists an ORCID; found no source proving ladder-equivalent CS-related USTC rank in 2016-2026.",
+   "fixed": false
+  },
+  {
+   "name": "Wei Lu",
+   "verdict": "pass",
+   "evidence": "Read recorded row (no stored page binds the person to a ranked USTC listing); no full-pinyin directory match in stored unit directories; searched public web for own page and checked ORCID public API where DBLP lists an ORCID; found no source proving ladder-equivalent CS-related USTC rank in 2016-2026.",
+   "fixed": false
+  },
+  {
+   "name": "Wei Wu [https://dblp.org/pid/95/6985-3]",
+   "verdict": "pass",
+   "evidence": "ORCID 0000-0003-0748-4952: Associate Professor USTC 2012-2015 then CASIA (Institute of Automation) from 2015; outside 2016-2026 window.",
+   "fixed": false
+  },
+  {
+   "name": "Wei Yu",
+   "verdict": "pass",
+   "evidence": "Read recorded row (no stored page binds the person to a ranked USTC listing); no full-pinyin directory match in stored unit directories; searched public web for own page and checked ORCID public API where DBLP lists an ORCID; found no source proving ladder-equivalent CS-related USTC rank in 2016-2026.",
+   "fixed": false
+  },
+  {
+   "name": "Wei Zhou",
+   "verdict": "pass",
+   "evidence": "ORCID 0000-0003-3641-1429 (pid 69/5011-21): Cardiff Assistant Professor 2023, Waterloo 2021-2023; no USTC faculty role found. Other candidate pid -75 is industry (Ling Yang).",
+   "fixed": false
+  },
+  {
+   "name": "Xi Li",
+   "verdict": "fail",
+   "evidence": "Stored CS directory lists 李曦 as 教授 (副教授 2016-2019). https://sz.ustc.edu.cn/rcdw_show/66.html and https://sse.ustc.edu.cn/2020/0326/c19871a626034/page.htm: 'Li Xi 李曦, professor 教授 and doctoral supervisor' at USTC, embedded/real-time/reconfigurable architecture (computing is the object). Identity bound to DBLP 46/2311-3 (Xi Li 0003, USTC Hefei): page-listed papers co-authored with Gong Lei and Wang Chao (TPDS, TODAES) and DBLP 0003 BibTeX web result shows coauthors Lei Gong, Chao Wang. dblp.org Anubis challenge hit; stopped fetching dblp.",
+   "fixed": false
+  },
+  {
+   "name": "Xiaolong Guo",
+   "verdict": "pass",
+   "evidence": "ORCID 0000-0002-1261-6852: Professor, School of Management USTC from 2023-03; works are operations management/supply chain (EJOR, POM); not CS-related.",
+   "fixed": false
+  },
+  {
+   "name": "Xiaoya Zhai",
+   "verdict": "pass",
+   "evidence": "https://xiaoyazhai.github.io/biography.html: 'Assistant Professor' USTC Math Aug 2023 (geometric computing), but stored math.ustc.edu.cn/szdw/list.htm lists 翟晓雅 under 特任副研究员 (research track), not 教授/副教授; pass on rank.",
+   "fixed": false
+  },
+  {
+   "name": "Yan Zhong",
+   "verdict": "pass",
+   "evidence": "ORCID 0000-0003-0005-2620: Peking University; USTC affiliation former.",
+   "fixed": false
+  },
+  {
+   "name": "Yang Xu [https://dblp.org/pid/61/3906-20]",
+   "verdict": "fail",
+   "evidence": "ORCID 0000-0003-0839-3892 (pub.orcid.org employments/person): 'Associate Professor', dept School of Computer Science and Technology, USTC; bio 'currently an Associate Professor at the School of Computer Science and Technology, USTC ... PhD USTC 2019', AIoT/edge/federated learning (last modified 2026). Stored CS directory lists 许杨 as 副教授 2019-2020 and 特任副研究员 2021-2025; https://sz.ustc.edu.cn/rcdw_show/71.html lists 许杨 as 特任副研究员 (same PhD/IoT profile). Mixed rank evidence; failed because two sources state Associate Professor at USTC SCS in the window (ORCID self-description, CS roster 副教授); reviewer note: a research-track reading would pass.",
+   "fixed": false
+  },
+  {
+   "name": "Yang Yang [https://dblp.org/pid/48/450-46]",
+   "verdict": "pass",
+   "evidence": "pid 48/450-46 is Jiangsu University / USTC-CityU joint centre / CityU HK; ORCID 0000-0001-8782-4819 lists no USTC employment; other same-name pids (Anhui Univ, USTC Math, Management, Suzhou) are different persons and unbound.",
+   "fixed": false
+  },
+  {
+   "name": "Yaojun Wu",
+   "verdict": "pass",
+   "evidence": "ORCID 0000-0002-8138-4186: ByteDance Research Scientist 2021; USTC affiliation is student-era.",
+   "fixed": false
+  },
+  {
+   "name": "Yu Jiang",
+   "verdict": "pass",
+   "evidence": "Read recorded row (no stored page binds the person to a ranked USTC listing); no full-pinyin directory match in stored unit directories; searched public web for own page and checked ORCID public API where DBLP lists an ORCID; found no source proving ladder-equivalent CS-related USTC rank in 2016-2026.",
+   "fixed": false
+  },
+  {
+   "name": "Yu Yang",
+   "verdict": "pass",
+   "evidence": "pid 16/4505-1: CityU School of Data Science, SFU, USTC (education); homepage yuyangcs.github.io; no USTC faculty role found.",
+   "fixed": false
+  },
+  {
+   "name": "Yufei Wu",
+   "verdict": "pass",
+   "evidence": "Read recorded row (no stored page binds the person to a ranked USTC listing); no full-pinyin directory match in stored unit directories; searched public web for own page and checked ORCID public API where DBLP lists an ORCID; found no source proving ladder-equivalent CS-related USTC rank in 2016-2026.",
+   "fixed": false
+  },
+  {
+   "name": "Yuyang Tang",
+   "verdict": "pass",
+   "evidence": "Read recorded row (no stored page binds the person to a ranked USTC listing); no full-pinyin directory match in stored unit directories; searched public web for own page and checked ORCID public API where DBLP lists an ORCID; found no source proving ladder-equivalent CS-related USTC rank in 2016-2026.",
+   "fixed": false
+  },
+  {
+   "name": "Zhen Pan",
+   "verdict": "pass",
+   "evidence": "Read recorded row (no stored page binds the person to a ranked USTC listing); no full-pinyin directory match in stored unit directories; searched public web for own page and checked ORCID public API where DBLP lists an ORCID; found no source proving ladder-equivalent CS-related USTC rank in 2016-2026.",
+   "fixed": false
+  },
+  {
+   "name": "Zhihao Chen",
+   "verdict": "pass",
+   "evidence": "Read recorded row (no stored page binds the person to a ranked USTC listing); no full-pinyin directory match in stored unit directories; searched public web for own page and checked ORCID public API where DBLP lists an ORCID; found no source proving ladder-equivalent CS-related USTC rank in 2016-2026.",
+   "fixed": false
+  },
+  {
+   "name": "Zhiyuan Wang",
+   "verdict": "pass",
+   "evidence": "Read recorded row (no stored page binds the person to a ranked USTC listing); no full-pinyin directory match in stored unit directories; searched public web for own page and checked ORCID public API where DBLP lists an ORCID; found no source proving ladder-equivalent CS-related USTC rank in 2016-2026.",
    "fixed": false
   },
   {
    "name": "Zhizheng Zhang",
    "verdict": "pass",
-   "evidence": "Web searches (name + USTC) and recorded gate-2 evidence (stored unit directories/CS census pinyin match) found no USTC ladder-faculty page binding this person; any hits were namesakes or other people. Not proven.",
+   "evidence": "DBLP: MSRA + USTC CAS Key Lab (student-era); no faculty page found.",
    "fixed": false
   }
  ],
- "reviewed_at": "2026-11-18T02:00:05Z"
+ "reviewed_at": "2026-11-18T02:49:23Z"
 }
