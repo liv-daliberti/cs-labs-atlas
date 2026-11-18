@@ -27,6 +27,7 @@ import census_overrides as CO  # noqa: E402
 import school_web as W  # noqa: E402
 
 CSR_URL = 'https://raw.githubusercontent.com/emeryberger/CSrankings/5319eddd1e27048c22751de68bb5344a25d7b091/csrankings.csv'   # stored in the school's capture store (live table) with its sha256
+SCHOOL_NOTE = re.compile(r'Harbin Inst|Southeast Univ', re.I)
 WHO = 'claude-ns-a-1118'
 TODAY = datetime.date.today().isoformat()
 
@@ -133,7 +134,7 @@ def census_index(key):
     return fac, by
 
 
-def run(key, write=False, dblp_cache=None, csr=None, recall=None):
+def run(key, write=False, dblp_cache=None, csr=None, recall=None, daff=None):
     c = W.con(key)
     fac, by = census_index(key)
     ents, srcs = [], {}
@@ -195,6 +196,25 @@ def run(key, write=False, dblp_cache=None, csr=None, recall=None):
                 py = ''.join(lazy_pinyin(k_)).lower()
                 pinyin_count[py] = pinyin_count.get(py, set()) | {k_}
         csr_name = {py: next(iter(v)) for py, v in full.items() if len(v) == 1 and len(pinyin_count.get(py, ())) == 1}
+    aff_idx = {}   # D-0010 (owner 2026-11-18): unique pinyin full-name match to exactly one DBLP person whose own affiliation note names the school, and one roster person
+    if daff:
+        from pypinyin import lazy_pinyin
+        da_ = json.load(open(daff))
+        for p_ in (da_['persons'] if isinstance(da_, dict) else da_):
+            if not isinstance(p_, dict) or 'pid' not in p_:
+                continue
+            if p_.get('disambiguation') or 'affiliation_note' not in (p_.get('matched_by') or []):
+                continue
+            for nm in p_.get('names') or []:
+                t = [x.lower() for x in re.findall(r"[A-Za-z']+", re.sub(r'\s\d{4}$', '', nm))]
+                if len(t) >= 2:
+                    for kk in {''.join(t), ''.join(reversed(t))}:
+                        aff_idx.setdefault(kk, {})[p_['pid']] = p_
+        han_py = {}
+        for hn in [x['name'] for x in fac] + [z['name'] for z in ents]:
+            k_ = name_key(hn)
+            if re.fullmatch(r'[\u4e00-\u9fff]{2,4}', k_):
+                han_py.setdefault(''.join(lazy_pinyin(k_)).lower(), set()).add(k_)
     plan = dict(basis=[], additions=[], held=[], identity=[])
     for e in inc:
         rows = by.get(e['key'], [])
@@ -232,10 +252,17 @@ def run(key, write=False, dblp_cache=None, csr=None, recall=None):
                 row_ = csr_rows.get(nm_) or next((r for r in csr_rows.values() if r['name'] == re.sub(r'\s\d{4}$', '', nm_)), None)
                 if row_:
                     e['csrname'] = dict(pid='https://dblp.org/pid/' + pid_, sha256=csr_sha, quote=f"{row_['name']},{row_['affiliation']},{row_['homepage']}", pinyin=py, csr_name=nm_)
-        if e['dblp'] or e['csr'] or e['csrname']:
+        e['daff'] = None
+        if not (e['dblp'] or e['csr'] or e['csrname']) and aff_idx and e['key'] not in dup_keys and len(by.get(e['key'], [])) <= 1 and re.fullmatch(r'[\u4e00-\u9fff]{2,4}', e['key']):
+            from pypinyin import lazy_pinyin
+            py = ''.join(lazy_pinyin(e['key'])).lower()
+            if len(han_py.get(py, ())) == 1 and len(aff_idx.get(py, {})) == 1:
+                p_ = next(iter(aff_idx[py].values()))
+                e['daff'] = dict(pid=p_['pid'], names=p_['names'], note=next((a['text'] if isinstance(a, dict) else a for a in p_.get('affiliations') or [] if (a['text'] if isinstance(a, dict) else a) and SCHOOL_NOTE.search(a['text'] if isinstance(a, dict) else a)), ''), sha256=None, pinyin=py)
+        if e['dblp'] or e['csr'] or e['csrname'] or e['daff']:
             plan['identity'].append(e['name'])
     print(json.dumps(dict(listed=len(ents), included=len(inc), basis_records=len(plan['basis']), additions=len(plan['additions']), held=len(plan['held']),
-                          dblp_anchored=len(plan['identity']), csrname_candidates=len(csr_name), csrname_matched=sum(1 for z in inc if z.get('csrname')), held_detail=plan['held'][:30]), ensure_ascii=False))
+                          dblp_anchored=len(plan['identity']), csrname_candidates=len(csr_name), csrname_matched=sum(1 for z in inc if z.get('csrname')), daff_matched=sum(1 for z in inc if z.get('daff')), held_detail=plan['held'][:30]), ensure_ascii=False))
     if not write:
         return plan, ents
     rev = dict(reviewed_by=WHO, reviewed_on=TODAY)
@@ -257,11 +284,18 @@ def run(key, write=False, dblp_cache=None, csr=None, recall=None):
             basis.append(dict(pi=name, kind='advises_phd', **ev, subject_evidence=dict(url=e['url'], sha256=sha, quote=e['quote']), **rev, why=why))
         else:
             slug = re.sub(r'[^a-z0-9]+', '-', e['key'].lower()) if e['key'].isascii() else 'u' + __import__('hashlib').sha1(e['key'].encode()).hexdigest()[:16]
-            adds.append(dict(name=e['name'], aliases=_aliases(e.get('dblp') or e.get('csr') or e.get('csrname')) if (e.get('dblp') or e.get('csr') or e.get('csrname')) else [], collection_person_id=f'{key}_fac_{slug}', dblp=[(e.get('dblp') or e.get('csr') or e.get('csrname'))['pid']] if (e.get('dblp') or e.get('csr') or e.get('csrname')) else [], rank='other',
+            adds.append(dict(name=e['name'], aliases=_aliases(e.get('dblp') or e.get('csr') or e.get('csrname') or e.get('daff')) if (e.get('dblp') or e.get('csr') or e.get('csrname') or e.get('daff')) else [], collection_person_id=f'{key}_fac_{slug}', dblp=[(e.get('dblp') or e.get('csr') or e.get('csrname') or e.get('daff'))['pid']] if (e.get('dblp') or e.get('csr') or e.get('csrname') or e.get('daff')) else [], rank='other',
                              title_as_listed='博士生导师', departments=[unit], listed_in=[unit], years_listed=[int(TODAY[:4])], ranks_by_year={TODAY[:4]: ['other']},
                              sources=[dict(url=e['url'], sha256=sha, quote=e['quote'], kind=f'dept_supervisor_list:{unit}', observed=TODAY, rank_as_listed='博士生导师', rank='other')],
                              profile_url=e['href'], is_pi=True, pi_basis=dict(kind='advises_phd', **ev), lab_units=[], added='cn_rank_admit_' + TODAY.replace('-', '')))
-        if e.get('csrname') and not e.get('csr') and not e.get('dblp'):
+        if e.get('daff') and not (e.get('csrname') or e.get('csr') or e.get('dblp')):
+            d = e['daff']
+            o = ov.setdefault(name, {})
+            o.update(no_identity=False, dblp=[d['pid']], aliases=_aliases(d), alias_evidence='the Latin name form of the identity-bound DBLP person; lets the builder keep the DBLP id past its Han-vs-Latin name-conflict check', **rev,
+                     identity_resolution=dict(decision='dblp_school_affiliation_unique_pinyin', confidence='medium', reviewed=TODAY,
+                                              basis='Owner ruling D-0010 (Q-0353, 2026-11-18): the pinyin of the roster Han name equals the name of exactly one DBLP person whose own DBLP affiliation note names the school, and exactly one roster/census person has that pinyin. Medium confidence; covered by the 50-row identity audit.',
+                                              evidence=[dict(url=e['url'], sha256=sha, quote=e['quote']), dict(url=d['pid'], note=d['note'], names=d['names'], pinyin=d['pinyin'], source='hierarchy/%s/derived/dblp-affiliated.json (DBLP dump 2026-09-01)' % key)]))
+        elif e.get('csrname') and not e.get('csr') and not e.get('dblp'):
             d = e['csrname']
             o = ov.setdefault(name, {})
             o.update(no_identity=False, dblp=[d['pid']], aliases=_aliases(d), alias_evidence='the Latin name form of the identity-bound DBLP person (identity_resolution evidence); lets the builder keep the DBLP id past its Han-vs-Latin name-conflict check', **rev,
@@ -313,4 +347,4 @@ if __name__ == '__main__':
     else:
         cache = sys.argv[sys.argv.index('--dblp') + 1] if '--dblp' in sys.argv else None
         a = sys.argv
-        run(k, write=cmd == 'write', dblp_cache=cache, csr=a[a.index('--csr') + 1] if '--csr' in a else None, recall=a[a.index('--recall') + 1] if '--recall' in a else None)
+        run(k, write=cmd == 'write', dblp_cache=cache, csr=a[a.index('--csr') + 1] if '--csr' in a else None, recall=a[a.index('--recall') + 1] if '--recall' in a else None, daff=a[a.index('--daff') + 1] if '--daff' in a else None)
