@@ -27,10 +27,11 @@
   "RI"
  ],
  "counts": {
-  "not_faculty_listed": 697,
-  "accepted": 55,
-  "research_or_other_rank": 4,
-  "faculty_not_computing": 8
+  "not_faculty_listed": 700,
+  "accepted": 56,
+  "research_or_other_rank": 8,
+  "faculty_not_computing": 8,
+  "census_alias": 1
  },
  "decisions": [
   {
@@ -36201,6 +36202,412 @@
     2020,
     2021
    ],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Qijia Shao",
+   "aliases": [],
+   "source": "coverage_audit",
+   "decision": "accepted",
+   "reason": "PI fill 2026-11-18 (D-0003): CSE joint-appointments listing 2026 names Assistant Professor, primary appointment ISD (stored capture sha256 85d36d4f..., the same page that admitted Sai-Kit Yeung); the person's homepage (sha256 a2364aaf...) says Assistant Professor in ISD and CSE at HKUST; DBLP 211/1208 33 records 2016-2026 (mobile/ubiquitous computing); missed because DBLP carries no HKUST note",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/211/1208"
+    ],
+    "dblp_window": 33,
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/211/1208",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "quote": "recall candidate (CSRankings lead, DBLP pid by ids)"
+     }
+    ]
+   },
+   "faculty_evidence": [
+    {
+     "unit": "CSE",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/?d=textview&c=joint_appointments",
+     "sha256": "85d36d4f6f5bf50e1facac396398c23595185da38df93decc5238ef1f441a987",
+     "observed": "20261110",
+     "quote": "Qijia SHAO 邵琪佳 | Assistant Professor Primary Appointment: ISD",
+     "ladder": true
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "May Fung 0001",
+   "aliases": [
+    "May FUNG",
+    "Yi R. Fung"
+   ],
+   "source": "coverage_audit",
+   "decision": "census_alias",
+   "reason": "PI fill 2026-11-18: the 2025-H1 CSE listing row 'May FUNG Assistant Professor' carries the same profile slug (profile/yrfung) as 'Yi R. FUNG 馮一人', who is a census PI (hkust_fac_yi-r-fung, CSE ladder 2025-2026); the recall candidate is a name variant, not a missing person",
+   "cs_basis": {},
+   "faculty_evidence": [],
+   "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Zhijiang Guo",
+   "aliases": [],
+   "source": "coverage_audit",
+   "decision": "research_or_other_rank",
+   "reason": "PI fill 2026-11-18: own homepage: Assistant Professor at the DSA Thrust, HKUST (GZ), and Affiliated Assistant Professor of HKUST (non-ladder affiliate title); the charter excludes the Guangzhou campus (owner answer 2026-11-10, provisional); no HKUST regular, joint, adjunct, visiting, research or teaching CSE listing names him (captures 2026-11-17/10); DBLP 43/6147 141 records 2016-2026",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/43/6147"
+    ],
+    "dblp_window": 0,
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/43/6147",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "quote": "recall candidate (CSRankings lead, DBLP pid by ids)"
+     }
+    ]
+   },
+   "faculty_evidence": [
+    {
+     "unit": "HKUST(GZ)",
+     "url": "https://cartus.github.io",
+     "sha256": "da2b48747396425ea964f4932abb9d6bd09c0288815c12e6a5850b389c9d2bd6",
+     "observed": "20261117",
+     "quote": "Assistant Professor at the DSA Thrust, HKUST (GZ). I am also an Affiliated Assistant Professor of HKUST.",
+     "ladder": false
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Zeke Xie",
+   "aliases": [],
+   "source": "coverage_audit",
+   "decision": "research_or_other_rank",
+   "reason": "PI fill 2026-11-18: own homepage: Assistant Professor at the Information Hub, HKUST (Guangzhou), 'also an affiliated faculty at HKUST' (non-ladder affiliate title); Guangzhou campus excluded by the charter (owner answer 2026-11-10, provisional); no HKUST CSE listing names him; DBLP 210/1039 88 records 2016-2026",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/210/1039"
+    ],
+    "dblp_window": 0,
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/210/1039",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "quote": "recall candidate (CSRankings lead, DBLP pid by ids)"
+     }
+    ]
+   },
+   "faculty_evidence": [
+    {
+     "unit": "HKUST(GZ)",
+     "url": "https://sites.google.com/view/zeke-xie",
+     "sha256": "7031c6a502d0f90ab457e15a1f5d7481e2451e6c762ef6fde2aeb855c093f75b",
+     "observed": "20261117",
+     "quote": "Assistant Professor of Data Science and Analytics/Artificial Intelligence, HKUST (GZ)",
+     "ladder": false
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Xinyu Chen 0001",
+   "aliases": [
+    "Xinyu Chen"
+   ],
+   "source": "coverage_audit",
+   "decision": "research_or_other_rank",
+   "reason": "PI fill 2026-11-18: own homepage: Assistant Professor, Microelectronics Thrust, HKUST (Guangzhou), 'Affiliate Assistant Professor @ HKUST' (non-ladder affiliate title); Guangzhou campus excluded by the charter; no HKUST CSE listing names him; DBLP 96/3374-1 27 records 2016-2026",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/96/3374-1"
+    ],
+    "dblp_window": 0,
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/96/3374-1",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "quote": "recall candidate (CSRankings lead, DBLP pid by ids)"
+     }
+    ]
+   },
+   "faculty_evidence": [
+    {
+     "unit": "HKUST(GZ)",
+     "url": "https://soldierchen.github.io",
+     "sha256": "39d7fe1601a537a315bd053b053567ad1b13e42f8a0f42d4a710e998ba75162d",
+     "observed": "20261117",
+     "quote": "Assistant Professor The Hong Kong University of Science and Technology (Guangzhou) Affiliate Assistant Professor @ HKUST",
+     "ladder": false
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Jiayi Huang",
+   "aliases": [
+    "Jiayi Huang 0001"
+   ],
+   "source": "coverage_audit",
+   "decision": "not_faculty_listed",
+   "reason": "PI fill 2026-11-18: own homepage: Assistant Professor, Microelectronics Thrust, Function Hub, HKUST(GZ) only; Guangzhou campus excluded by the charter (owner answer 2026-11-10, provisional) and no HKUST (Hong Kong) listing names him (CSE regular/joint/adjunct/visiting/research/teaching captures); DBLP 180/4976 51 records 2016-2026",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/180/4976"
+    ],
+    "dblp_window": 0,
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/180/4976",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "quote": "recall candidate (CSRankings lead, DBLP pid by ids)"
+     }
+    ]
+   },
+   "faculty_evidence": [
+    {
+     "unit": "HKUST(GZ)",
+     "url": "https://jyhuang91.github.io",
+     "sha256": "1b2183c5547c3b3193428b2c77bdf474c7e31fc254c3f9db34f5b57069aedcf8",
+     "observed": "20261117",
+     "quote": "Assistant Professor at the Microelectronics Thrust, the Hong Kong University of Science and Technology (Guangzhou)",
+     "ladder": false
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Jia Li 0009",
+   "aliases": [
+    "Jia Li"
+   ],
+   "source": "coverage_audit",
+   "decision": "not_faculty_listed",
+   "reason": "PI fill 2026-11-18: own homepage: Associate Professor, Data Science and Analytics Thrust, HKUST (Guangzhou) only; Guangzhou campus excluded by the charter (owner answer 2026-11-10, provisional) and no HKUST (Hong Kong) listing names this DBLP person (the earlier 'Jia Li' decision concerns DBLP 23/6950-14, a different CSE person); DBLP 23/6950-9 205 records 2016-2026",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/23/6950-9"
+    ],
+    "dblp_window": 0,
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/23/6950-9",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "quote": "recall candidate (CSRankings lead, DBLP pid by ids)"
+     }
+    ]
+   },
+   "faculty_evidence": [
+    {
+     "unit": "HKUST(GZ)",
+     "url": "https://sites.google.com/view/lijia",
+     "sha256": "c11b88556e5d7d6e941d9f50b64b6bd8b8b7cfd5b2f1431fab3158698be9da9e",
+     "observed": "20261117",
+     "quote": "Associate Professor UG Coordinator of Data Science and Analytics Thrust The Hong Kong University of Science and Technology (Guangzhou)",
+     "ladder": false
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Zeyu Wang 0003",
+   "aliases": [
+    "Zeyu Wang"
+   ],
+   "source": "coverage_audit",
+   "decision": "research_or_other_rank",
+   "reason": "PI fill 2026-11-18: public bios (HKUST(GZ) CMA faculty page cma.hkust-gz.edu.cn/faculty-regular/zeyu-wang, CIS Lab member page, SIGGRAPH Asia 2024 presenter page; found by web search, hkust-gz hosts not fetched here: charter excluded host) give Assistant Professor, Computational Media and Arts, HKUST(GZ), and 'Affiliate Assistant Professor' in CSE HKUST (non-ladder affiliate title); a CV line of an EMIA appointment from April 2024 is not matched by any EMIA or CSE listing capture (no HKUST listing names a Zeyu Wang with a professor title; the CSE 'Zeyu WANG' hits are a 2019 PhD defence); Guangzhou campus excluded by the charter; DBLP 132/7882-3 97 records 2016-2026; revisit if a dated EMIA listing names him",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/132/7882-3"
+    ],
+    "dblp_window": 97,
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/132/7882-3",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "quote": "recall candidate (CSRankings lead, DBLP pid by ids)"
+     }
+    ]
+   },
+   "faculty_evidence": [],
+   "years_listed": [],
+   "units_searched": [
+    "BM",
+    "CBE",
+    "CHEM",
+    "CIVL",
+    "ECE",
+    "EMIA",
+    "IAS",
+    "IEDA",
+    "ISD",
+    "ISOM",
+    "LIFS",
+    "MAE",
+    "MATH",
+    "PHYS",
+    "RI"
+   ]
+  },
+  {
+   "name": "Yun Chen 0004",
+   "aliases": [
+    "Yun Chen"
+   ],
+   "source": "coverage_audit",
+   "decision": "not_faculty_listed",
+   "reason": "PI fill 2026-11-18: the only profile is on facultyprofiles.hkust-gz.edu.cn (HKUST(GZ), an excluded host that robots.txt disallows for fetching); no HKUST (Hong Kong) listing names this person (CSE regular/joint/adjunct/visiting/research/teaching captures); Guangzhou campus excluded by the charter (owner answer 2026-11-10, provisional); DBLP 10/5680-4 15 records 2016-2026; not fetched, so the rank is unverified",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/10/5680-4"
+    ],
+    "dblp_window": 15,
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/10/5680-4",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "quote": "recall candidate (CSRankings lead, DBLP pid by ids)"
+     }
+    ]
+   },
+   "faculty_evidence": [],
+   "years_listed": [],
    "units_searched": [
     "BM",
     "CBE",
