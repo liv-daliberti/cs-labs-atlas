@@ -20,7 +20,7 @@ truncated  the years a department card cut a title short ('Executive Director, I
           profile / homepage captures of exactly those years naming the person with a professor title (see truncated())
 deep      the second look at a PI the gaps/extend pass left open (see deep()): profile-URL variants on the PI's home unit hosts across URL eras, the person's own homepages and
           the reviewed `person-urls.json`; what stays unproven is recorded as `unproven_years` + `why_unproven`
-usage: periods_school.py fetch|extract|gaps|extend|truncated|deep <key>
+usage: periods_school.py fetch|extract|gaps|extend|truncated|deep <key>      (gaps saves per PI and resumes: gaps <key> --max-pis N)
 """
 import collections, json, re, sys, zlib
 
@@ -173,7 +173,7 @@ def extract(key):
     print(json.dumps(dict(school=key, periods=len(periods), holds=len(holds), conflicts=sum(1 for p in periods if p['conflictingStartYears']))))
 
 
-def gaps(key, write=True):
+def gaps(key, write=True, max_pis=None):
     """Gap years (protocol stage 4, learned 2026-10-30 at Michigan): a PI whose listing years have a hole gets, for
     each missing year, the dated Wayback captures of that year (monthly, at most 4 per URL) of the PI's own homepage, of
     the unit listing that lists the PI, and of a UMSI profile page; a capture whose text names the PI with a ladder
@@ -184,15 +184,24 @@ def gaps(key, write=True):
     open. -> hierarchy/<key>/gap-year-evidence.json"""
     import cs_related_school as CR
     c = W.con(key); rx = S.aff_rx(key); out = {}
+    ev_file = P.data_w('gap-year-evidence.json', key)
+    if ev_file.exists():   # resumable (2026-11-18): a PI whose gap years are unchanged and already searched is never searched again
+        out = json.loads(ev_file.read_text())
     add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
     cen = {x['name']: x for x in census_faculty(key)}
     import stage_gate as SG
+    done_now = 0
     for t in targets(key):
         x0 = cen.get(t['name']) or add.get(t['name']) or {}
         miss = SG.span_gaps(x0)  # years of the professor-rank span with no listing (stage_gate.span_gaps)
         ys = sorted(set(x0.get('years_listed') or []))
         if not miss:
             continue
+        prev = out.get(t['name'])
+        if prev and prev.get('gap_years') == miss and prev.get('listing_years') == ys:
+            continue   # searched before: saved result stands (delete the entry to search again)
+        if max_pis is not None and done_now >= max_pis:
+            break
         x = cen.get(t['name']) or add.get(t['name']) or {}
         names = [t['name']] + list(x.get('aliases') or [])
         urls = list(t['urls'])
@@ -231,10 +240,12 @@ def gaps(key, write=True):
                         break
         out[t['name']] = dict(listing_years=ys, gap_years=miss, evidence={str(y): e for y, e in ev.items()}, closed=all(y in ev for y in miss), urls_tried=urls)
         print(json.dumps(dict(pi=t['name'], gaps=miss, closed=sorted(ev))), flush=True)
-    P.data_w('gap-year-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
-    if not write:
-        return out
-    write_gaps(key, out)
+        done_now += 1
+        ev_file.write_text(json.dumps(out, indent=1, ensure_ascii=False))   # per-PI save (2026-11-18): a timeout or a Wayback cooldown loses at most the PI in progress
+        if write and out[t['name']]['closed']:
+            write_gaps(key, {t['name']: out[t['name']]})
+    ev_file.write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    return out
 
 
 def write_gaps(key, out):
@@ -574,4 +585,7 @@ def deep(key, write=True):
 
 
 if __name__ == '__main__':
-    {'fetch': fetch, 'extract': extract, 'gaps': gaps, 'extend': extend, 'truncated': truncated, 'deep': deep}[sys.argv[1]](sys.argv[2])
+    if sys.argv[1] == 'gaps' and '--max-pis' in sys.argv:   # chunked, resumable: gaps <key> --max-pis N
+        gaps(sys.argv[2], max_pis=int(sys.argv[sys.argv.index('--max-pis') + 1]))
+    else:
+        {'fetch': fetch, 'extract': extract, 'gaps': gaps, 'extend': extend, 'truncated': truncated, 'deep': deep}[sys.argv[1]](sys.argv[2])
