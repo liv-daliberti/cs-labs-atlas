@@ -1056,3 +1056,15 @@ host = "aafssknttedpznxoiorb.supabase.co"
 use = "live"
 probe = "https://aafssknttedpznxoiorb.supabase.co/rest/v1/member?select=*,name_cn,description_cn&role=eq.Student&order=sort.asc"
 purpose = "Only the anonymous public member, alumni and group-description reads literally shipped by the GenSI public page. Actual cached robots404 and HTTP200 responses; no administrative access or writes."
+
+[[hosts]]
+host = "zhouh.github.io"
+use = "live"
+probe = "https://zhouh.github.io/"
+purpose = "Actual independently reviewed primary proof for acceptedGenSI PI-groupownership proof. Cached robots404/no rules and HTTP200 originals; no new request."
+
+[[hosts]]
+host = "www.tsinghua.edu.cn"
+use = "live"
+probe = "https://www.tsinghua.edu.cn/info/1368/81737.htm"
+purpose = "Actual independently reviewed primary proof for acceptedLi2019membership source. Cached robots404/no rules and HTTP200 originals; no new request."
