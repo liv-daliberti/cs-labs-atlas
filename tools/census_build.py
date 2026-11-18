@@ -58,6 +58,36 @@ def display_name(rs, names):
     return plain[-1] if plain else rs[-1]['name']
 
 
+HOME_PROF_I = re.compile(HOME_PROF.pattern, re.I)  # 'Associate professor, Department of Philosophy' (lowercase p)
+NOT_HOME_CLAUSE = re.compile(r'courtesy|affiliat|emerit|adjunct|visiting', re.I)
+HOME_HEAD = re.compile(r'^(?:head|chair|director|dean)[^,]*, (.+)$', re.I)
+
+
+def home_professor(title):
+    """(match, home unit) when a courtesy row's title also gives a professor rank in the person's own unit, else (None, None).
+    A title is one clause ('Professor of Medicine, Medical School') or several joined by ';' ('Professor, Bradley Department of
+    Electrical and Computer Engineering; professor by courtesy, Department of Computer Science', the CS listing of a courtesy
+    appointment): the courtesy / affiliate / emeritus clause is the appointment the department made, never the home rank. A named
+    professorship without a unit ('Fred D. Durham Professor of Engineering; head, Kevin T. Crofton Department of ...') takes the
+    unit of the head / chair clause that follows it. Learned 2026-11-18 (VT: 12 professors of other units were excluded because
+    the whole title contained 'courtesy')."""
+    if 'emerit' in title.lower():
+        return None, None
+    if 'courtesy' not in title.lower() and (m := HOME_PROF.match(title)):
+        return m, m.group(1).strip()
+    clauses = [c.strip() for c in re.split(r';\s*(?:and\s+)?', title) if c.strip()]
+    for i, c in enumerate(clauses):
+        if NOT_HOME_CLAUSE.search(c):
+            continue
+        if m := HOME_PROF_I.match(c):
+            return m, m.group(1).strip()
+        if re.search(r'\bprofessor\b', c, re.I) and not re.search(r'\bprofessor\b[^,]*,', c, re.I):
+            for later in clauses[i + 1:]:
+                if not NOT_HOME_CLAUSE.search(later) and (h := HOME_HEAD.match(later)):
+                    return re.match(r'.*', c), h.group(1).strip()
+    return None, None
+
+
 def slug(s):
     original = s
     s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower()
@@ -382,10 +412,10 @@ def main(key):
             basis = dict(kind='ladder_faculty', url=r['capture_url'], sha256=r['sha256'], quote=r['quote'], observed=r['observed'], role='; '.join(r['dept_title']),
                          cs_related=dict(decision='accepted', basis=dec.get('basis'), evidence=dec.get('evidence')))
         elif court:
-            home = [(r, m) for r in court for t in r['titles'] for m in [HOME_PROF.match(t)] if m and 'courtesy' not in t.lower() and 'emerit' not in t.lower()]
+            home = [(r, m, hu_) for r in court for t in r['titles'] for m, hu_ in [home_professor(t)] if m]
             if home:
-                r, m = home[0]
-                hu = m.group(1).strip(); of = re.search(r'Professor of (.+?),', m.group(0))
+                r, m, hu = home[0]
+                of = re.search(r'Professor of (.+?),', m.group(0))
                 if of and re.match(r'(?:Medical School|School of|College of)', hu):  # 'Professor of X, Medical School': the department X
                     hu = of.group(1).strip()
                 basis = dict(kind='courtesy_faculty', url=r['capture_url'], sha256=r['sha256'], quote=r['quote'], observed=r['observed'],
