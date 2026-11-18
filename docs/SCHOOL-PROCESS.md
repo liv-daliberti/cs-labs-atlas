@@ -459,6 +459,7 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
 - **Do:**
   - Run `tools/periods_school.py fetch|extract <key>`. It fetches each PI's listed homepage, live where `host_use` allows and otherwise the Wayback captures nearest 2026 and nearest the first listed year. It extracts appointment statements with `faculty_periods.candidates()`.
   - Mark a departure as `faculty_end_moved` when the person's own page says they moved.
+  - Admitted-once people (CS-related additions, courtesy-listed professors): `tools/period_proofs.py proofs <key> --apply`, then census + build, then `gaps <key> --apply`. It reads the dated official documents the charter `[period_proofs]` lists (salary reports, catalog directories; spelled-out given names, ladder ranks only), adds a source per proven year and records the unproven gap years (R-PAP-01). VT 2026-11-18.
 - **Output:** `periods/<key>-faculty-periods.json` and `periods/<key>-holds.json`.
 - **Learned from Michigan (2026-10-29):**
   - `faculty_periods.candidates()` matches case-sensitively, so pass the school pattern as `(?i:...)`.
