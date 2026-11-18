@@ -22,3 +22,16 @@ def test_two_dblp_records_bind_nobody():
 def test_roster_homophones_bind_nobody():
     people = [dict(name='李艳', evidence=None), dict(name='李燕', evidence=None)]
     assert B.bind(people, [rec('p1', 'Yan Li')]) == []
+
+
+def test_openalex_extension_needs_unique_candidate_and_share():
+    c = dict(name='Hang Tu', aliases=[], source='openalex_rule', openalex=['https://openalex.org/A1'], oa_cs_share=1.0, oa_works=9)
+    people = [dict(name='涂航')]
+    assert [(p, x['openalex'][0]) for p, x in B.oa_bind(people, [c])] == [('涂航', 'https://openalex.org/A1')]
+    assert B.oa_bind(people, [c, dict(c, source='dblp_affiliation')]) == []
+    assert B.oa_bind(people, [dict(c, oa_cs_share=0.5)]) == []
+
+
+def test_alias_spellings_of_one_candidate_do_not_block():
+    c = dict(name='Zongpeng Li', aliases=['Li Zongpeng', 'Zongpeng  Li'], source='openalex_rule', openalex=['https://openalex.org/A9'], oa_cs_share=0.9, oa_works=83)
+    assert len(B.oa_bind([dict(name='李宗鹏')], [c])) == 1

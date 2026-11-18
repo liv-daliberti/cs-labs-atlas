@@ -510,11 +510,14 @@ def faculty_evidence(pages, names, teaching_title=''):
     return ev
 
 
-def census_alias(census, names, dblp=None):
+def census_alias(census, names, dblp=None, openalex=None, oa_map=None):
     """The census person a candidate already is: the same DBLP person id (a direct URL binding of a Han-name roster person,
     tools/dblp_url_binding_school.py), a Name match, or the candidate's tokens are the start of a census
     name ('Satinder Singh' is 'Satinder Singh Baveja')."""
     pids = {d for d in ([dblp] if isinstance(dblp, str) else dblp or []) if d}
+    for a in ([openalex] if isinstance(openalex, str) else openalex or []):   # a reviewed OpenAlex binding of a Han census person (D-0010 extension, Q-0354)
+        if (oa_map or {}).get(a) in census:
+            return oa_map[a]
     for x in census.values():
         if pids and pids & set(x.get('dblp') or []):
             return x['name']
@@ -927,6 +930,8 @@ def review(key):
     NOT_FACULTY = S.field(S.get(key), 'cs_related.not_faculty') or {}   # {name = reason}: owner-decided non-faculty (research engineer, staff) whose listing quote a rule misread
     TEACHING = S.field(S.get(key), 'census.rank_words.teaching') or ''
     searched = sorted({p[0] for p in pages})
+    OA_MAP = {a if a.startswith('http') else 'https://openalex.org/' + a: n for n, d in (read(P.data('openalex-identity-review.json', key), {}) or {}).get('decisions', {}).items()
+              if d.get('basis') == 'pinyin_unique_openalex' for a in d.get('openalex') or []}
     hand = hand_evidence(key)
     group_reviews = reviewed_pi_basis(key)
     dispositions = reviewed_candidate_dispositions(key, cands, group_reviews)
@@ -971,7 +976,7 @@ def review(key):
         if name_key in seen:
             n['duplicate_dblp_record'] += 1; continue  # two DBLP records of one name: one decision
         seen.add(name_key)
-        al = census_alias(census, names, c.get('dblp')) if c['source'] not in ('affiliated_department', 'official_profile_ladder') else None
+        al = census_alias(census, names, c.get('dblp'), c.get('openalex'), OA_MAP) if c['source'] not in ('affiliated_department', 'official_profile_ladder') else None
         if al:
             n['census_alias'] += 1
             dec.append(dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision='census_alias', census_name=al,

@@ -6,6 +6,7 @@ Identity, medium confidence, covered by the 50-row identity audit: a census pers
   (c) exactly ONE such record exists for that name, and exactly ONE census person's Han name has that pinyin key (no homophone pair on either side).
 Nothing else: not a name-only join across schools, and a record without the school in its note never counts. Existing pids are never overwritten.
 
+  dblp_pinyin_binding_school.py --openalex <key> ...   OpenAlex extension (Q-0354): the DBLP note is replaced by an OpenAlex-rule author id with >= 70% computing share; writes hierarchy/<key>/reviewed/openalex-identity-review.json
   dblp_pinyin_binding_school.py <key> [<key> ...]    one streamed pass over the dump; merges into hierarchy/<key>/dblp-ids.json
      {person: {pid, basis: 'pinyin_unique_affiliation', confidence: 'medium', url, dump, sha256, quote, orcid, names, candidates, n_window, roster_evidence}}
 """
@@ -71,6 +72,51 @@ def bind(people, recs):
     return out
 
 
+def oa_bind(people, cands, min_share=0.7):
+    """OpenAlex extension (Q-0354): school-lineage OpenAlex-rule candidates (computing share >= min_share) whose name pinyin-matches exactly one census Han person
+    (and that name key is carried by no other candidate of any source). -> [(person, candidate)]"""
+    by_key = collections.defaultdict(set)
+    for p in people:
+        for k in keys_of(p['name']):
+            by_key[k].add(p['name'])
+    cand_keys = collections.defaultdict(list)
+    for c in cands:
+        for nm in [c['name']] + list(c.get('aliases') or []):
+            k = fold(re.sub(r'\s+\d{4}$', '', nm))
+            if not any(x is c for x in cand_keys[k]):   # one candidate under several alias spellings of one key is one candidate
+                cand_keys[k].append(c)
+    out = []
+    for p in people:
+        hits = {}
+        for k in keys_of(p['name']):
+            if len(by_key[k]) != 1:
+                continue
+            cs = cand_keys.get(k, [])
+            if len(cs) == 1 and cs[0]['source'] == 'openalex_rule' and (cs[0].get('oa_cs_share') or 0) >= min_share and len(cs[0].get('openalex') or []) == 1:
+                hits[cs[0]['openalex'][0]] = cs[0]
+        if len(hits) == 1:
+            out.append((p['name'], next(iter(hits.values()))))
+    return out
+
+
+def write_oa(key, people):
+    cp = P.data('cs-related-candidates.json', key)
+    cands = json.loads(cp.read_text())
+    found = oa_bind(people, cands)
+    path = P.data_w('openalex-identity-review.json', key)
+    doc = json.loads(path.read_text()) if path.exists() else {'decisions': {}}
+    n = 0
+    for person, c in found:
+        if person in doc['decisions']:
+            continue
+        doc['decisions'][person] = dict(openalex=c['openalex'], aliases=[c['name']], basis='pinyin_unique_openalex', confidence='medium',
+                                        why=f"owner D-0010 + Q-0354 (2026-11-18): unique pinyin full-name match of {c['name']} to the census person, OpenAlex author id with {c['oa_works']} school works, {round(100 * c['oa_cs_share'])}% DBLP-indexed; medium confidence, identity audit")
+        n += 1
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(doc, indent=1, ensure_ascii=False))
+    return len(found), n
+
+
 def main(keys):
     cfgs = {k: (S.get(k), S.aff_rx(k)) for k in keys}
     people = {}
@@ -124,5 +170,15 @@ def main(keys):
         print(json.dumps(dict(key=k, unbound_han_people=len(people[k]), school_dblp_records=len(recs[k]), bound=len(bound), written=n)))
 
 
+def oa_main(keys):
+    for k in keys:
+        cen = json.loads(P.data('census-faculty.json', k).read_text())['faculty']
+        people = [dict(name=x['name']) for x in cen if HAN.match(''.join(x['name'].split()))]
+        print(json.dumps(dict(key=k, openalex_bound=write_oa(k, people))))
+
+
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    if sys.argv[1] == '--openalex':
+        oa_main(sys.argv[2:])
+    else:
+        main(sys.argv[1:])
