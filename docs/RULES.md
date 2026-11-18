@@ -157,7 +157,7 @@ Publisher records titled `Notice of Removal: ...` are removal notices, not the r
 Dropped from every lab (`not_a_paper`): OpenAlex type `software` (Zenodo, Figshare, Code Ocean records); supplement and
 artifact records by title (`MOESM1`, `Additional file 2 of ...`, `Supplement 1: ...`, `Artifact for ...`, `(Artifact)`,
 `Reproduction/Replication package`, `Code and data for ...`) and protocols.io protocols; errata (`Publisher/Author
-Correction`, `Correction to:`, `Correction to ...`, `Corrections to ...`, `Erratum`, `Corrigendum`); JST machine translations (`【Powered by NICT】`); Dagstuhl
+Correction`, `Correction to:`, `Correction to ...`, `Corrections to ...`, `Erratum`, `Corrigendum`); JST machine-translation bibliographic records (`【Powered by NICT】`, `【JST・京大機械翻訳】`); Dagstuhl
 Reports and Manifestos (venue, `10.4230/dagrep`, `10.4230/dagman`, a title ending `(Dagstuhl Seminar N)`); Oberwolfach
 Reports (venue, `10.4171/owr`); titles that open as an editorial, foreword, preface, guest editors' introduction,
 introduction to a special issue or section, message from the chairs, or 'in this issue'; award or prize announcements

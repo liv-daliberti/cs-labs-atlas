@@ -393,8 +393,8 @@ def not_a_paper(r, pages=None, bare=False):
         return 'erratum'
     if re.match(r'(?i)^notice of removal\s*:', t):
         return 'removal_notice'
-    if '【Powered by NICT】' in t:
-        return 'machine_translation'  # JST's machine-translated Japanese record of a paper (CMU, OpenPose)
+    if '【Powered by NICT】' in t or '【JST・京大機械翻訳】' in t:
+        return 'machine_translation'  # Explicit JST machine-translation record markers (R-PAP-18).
     if re.search(r'(?i)dagstuhl (?:reports|manifestos)', v) or re.match(r'10\.4230/(?:dagrep|dagman)\b', d) or re.search(r'\(Dagstuhl Seminar \d+\)\s*$', t):
         return 'dagstuhl_report'
     if re.search(r'(?i)oberwolfach', v) or d.startswith('10.4171/owr'):
