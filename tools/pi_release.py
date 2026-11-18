@@ -19,7 +19,7 @@ from pathlib import Path
 import atlas_paths as P  # noqa: E402
 
 PACKAGE = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
-# school-wide files of a release that still name every PI of the school (docs/PER-PI-ADMISSION.md): a partial release must not ship them unfiltered
+# school-wide files of a release that name every PI of the school: tools/pi_release_derived.py restricts them for a partial school (Q-0340); listed in the scope only when --allow-derived-unfiltered ships them as they are
 DERIVED_UNFILTERED = ['report.json', 'unavailable.jsonl.gz', 'unavailable-summary.json', 'link-diagnosis.json', 'reader/', 'home-departments.json',
                       'zero-paper-labs.json', 'school-profiles.json', 'missing-papers-audit.json', 'chain-audit.json', 'student-audit.json']
 

@@ -27,7 +27,8 @@ flagged swings (--allow-swings records them instead).
 Per-PI release (owner decision D-0001, 2026-11-17; tools/pi_release.py, docs/PER-PI-ADMISSION.md): `--per-pi [--add-school S ...]` filters each school's package to
 its done PIs (plus the PIs an earlier release published; an open PI is held and listed in RELEASE-SCOPE.md), writes release-scope.json (per school: status
 complete|partial, PIs included/total/held; the field the site reads), and refuses when the filtered package would remove a published id (--allow-removals records it)
-or when a partial school would ship school-wide derived files that name held PIs (--allow-derived-unfiltered records it). Without the flag nothing changes.
+Its school-wide derived files (reader export, report.json, unavailability ledger, link diagnosis, school-profiles, the audits) are restricted to the included PIs
+(tools/pi_release_derived.py); --allow-derived-unfiltered ships them unfiltered instead (recorded). Without --per-pi nothing changes.
 
 usage: make_release.py [--before counts.json] [--allow-dirty] [--allow-swings] [--dry-run] [--ai-site-data DIR]
        make_release.py add-note <release id> <SITE-HANDOFF.md|HF-UPLOAD.json> <file>   (add one note file, never a manifest file)
@@ -216,10 +217,6 @@ def make(a):
         flagged = {s: v['monotone']['flags'] for s, v in per.items() if v['monotone'] and v['monotone']['flags']}
         if flagged and not a.allow_removals:
             raise SystemExit(f'the filtered packages would remove published rows (monotone check, tools/pi_release.py compare): {flagged}; --allow-removals records them')
-        partial = [s for s, v in per.items() if v['plan']['partial']]
-        if partial and not a.dry_run and not a.allow_derived_unfiltered:
-            import pi_release as PR
-            raise SystemExit(f'partial schools {partial}: the school-wide files {PR.DERIVED_UNFILTERED} still name held PIs; --allow-derived-unfiltered records it')
     head, dirty, other_dirty = code_state()
     if dirty and not a.allow_dirty:
         raise SystemExit(f'uncommitted changes to tracked files (commit first, or --allow-dirty): {dirty[:10]}')
@@ -253,6 +250,10 @@ def make(a):
     if not ev or ev_p.stat().st_mtime < newest or ev.get('mode') != 'strict' or not ev.get('ok'):
         raise SystemExit('EVIDENCE-CHECK.json is missing, older than the packages, not strict, or failed: run tools/evidence_check.py')
     sources = release_sources(ai_dir, schools)
+    derived = {}   # the school-wide derived files of a partial school, restricted to its included PIs (tools/pi_release_derived.py, Q-0340)
+    if per and not a.allow_derived_unfiltered:
+        import pi_release_derived as PD
+        derived = PD.filter_release_files(per, sources)
     files = sorted(sources)
     day = datetime.now().strftime('%Y-%m-%d')
     P.RELEASES.mkdir(parents=True, exist_ok=True)
@@ -265,7 +266,7 @@ def make(a):
                                                            for s, v in per.items()})), indent=1)); return
     tmp = P.RELEASES / f'.tmp-{rid}-{os.getpid()}'
     entries = {}
-    filt = {rel_of(f, s): (s, f) for s in schools for f in PACKAGE if per and per[s]['plan']['partial']}   # release path -> (school, file) to filter
+    filt = {rel_of(f, s): (s, f) for s in schools for f in PACKAGE if per and per[s]['plan']['partial'] and f != 'report.json'}   # report.json: tools/pi_release_derived.py   # release path -> (school, file) to filter
     src_sha = {}
     for f in files:
         src, dst = sources[f], tmp / f
@@ -274,6 +275,9 @@ def make(a):
             import pi_release as PR
             src_sha[f] = sha256(src)
             dst.write_bytes(PR.filtered_bytes(filt[f][0], filt[f][1], per[filt[f][0]]['plan']['included']))
+            shutil.copystat(src, dst)
+        elif f in derived:
+            dst.write_bytes(derived[f])
             shutil.copystat(src, dst)
         else:
             shutil.copy2(src, dst)
@@ -302,8 +306,10 @@ def make(a):
         scope = dict(per_pi=True, decision='D-0001', schools={s: v['statement'] for s, v in per.items()},
                      monotone={s: {k: v for k, v in (x['monotone'] or {}).items() if k != 'kinds'} | dict(removed={k: y['n_removed'] for k, y in ((x['monotone'] or {}).get('kinds') or {}).items()})
                                for s, x in per.items()},
-                     removals_allowed=bool(a.allow_removals), derived_unfiltered=sorted({s for s, v in per.items() if v['plan']['partial']}),
-                     derived_unfiltered_files=PR.DERIVED_UNFILTERED)
+                     removals_allowed=bool(a.allow_removals),
+                     derived_unfiltered=sorted({s for s, v in per.items() if v['plan']['partial']}) if a.allow_derived_unfiltered else [],
+                     derived_unfiltered_files=PR.DERIVED_UNFILTERED if a.allow_derived_unfiltered else [],
+                     derived_filtered_files=sorted(derived))
         extra = {'release-scope.json': json.dumps(scope, indent=1, ensure_ascii=False) + '\n',
                  'RELEASE-SCOPE.md': PR.render_notes([v['statement'] for v in per.values()]) + '\n',
                  **{f'{REL_HIERARCHY}/{s}/release-scope.json': json.dumps(v['statement'], indent=1, ensure_ascii=False) + '\n' for s, v in per.items()}}
