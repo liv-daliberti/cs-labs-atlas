@@ -255,16 +255,19 @@ def washu(etd_json, out):
                 c['outside_window'] += 1
                 continue
             nm = natural(r['author'])
+            if role_of(r['degree']) == 'student':   # R-STU-23 (2026-11-09): doctoral and master's records only; honours and other work never counts
+                c['not_doctoral_or_masters'] += 1
+                continue
             if (pi, nt(nm)) in S.have:
                 c['already_held'] += 1
                 continue
             out_rows[pi][nt(nm)] = dict(
                 name=nm, role=role_of(r['degree']), years=[year, year], url=r['url'], sha256=r['sha256'], quote=(f'Committee Chair {a}' if f'Committee Chair {a}' in r['quote'] else r['quote']),
-                note=f"washu repository item page ({r['degree']}; {r['department']}): '{r['title']}'; Committee Chair '{a}' = {pi}. HELD: "
-                     "WashU Committee Chair counts as the adviser only when the owner approves that rule")
+                note=f"washu repository item page ({r['degree']}; {r['department']}): '{r['title']}'; Committee Chair '{a}' = {pi}. "
+                     f"R-STU-23 ({r.get('collection', 'eng_etds')}).")
             c['rows'] += 1
     rows = [dict(pi=p, students=sorted(v.values(), key=lambda s: (s['years'][0], s['name'])),
-                 notes='HELD (owner rule pending): WashU ETD Committee Chair rows; not read by the build.') for p, v in sorted(out_rows.items())]
+                 notes='WashU ETD Committee Chair rows (R-STU-23).') for p, v in sorted(out_rows.items())]
     Path(out).write_text(json.dumps(rows, indent=1, ensure_ascii=False))
     return dict(c)
 

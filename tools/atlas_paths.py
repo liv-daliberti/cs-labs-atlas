@@ -264,6 +264,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('school-captures.sqlite', 'raw', 'captures/{school}.sqlite', 'hierarchy/{school}/raw/school-captures.sqlite'),
     ('listings-captures.sqlite', 'raw', 'listings/{school}/captures.sqlite', 'listings/{school}/raw/captures.sqlite'),
     # per school: reviewed decisions and researched evidence (the build's inputs)
+    ('bulletin-listing-sources.json', 'reviewed', 'hierarchy/{school}/bulletin-listing-sources.json', 'hierarchy/{school}/reviewed/bulletin-listing-sources.json'),
     ('live-listing-sources.json', 'reviewed', 'hierarchy/{school}/live-listing-sources.json', 'hierarchy/{school}/reviewed/live-listing-sources.json'),
     ('release-corrections.json', 'reviewed', 'hierarchy/{school}/release-corrections.json', 'hierarchy/{school}/reviewed/release-corrections.json'),   # removals of published rows the owner rules explain (tools/pi_release.py compare)
     ('gap-evidence.json', 'reviewed', 'hierarchy/{school}/gap-evidence.json', 'hierarchy/{school}/reviewed/gap-evidence.json'),

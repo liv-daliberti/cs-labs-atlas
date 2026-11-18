@@ -247,6 +247,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `defense-evidence.json` | reviewed | `hierarchy/{school}/defense-evidence.json` | `hierarchy/{school}/reviewed/defense-evidence.json` | - | <100MB |
 | `defense-adviser-evidence.json` | reviewed | `hierarchy/{school}/defense-adviser-evidence.json` | `hierarchy/{school}/reviewed/defense-adviser-evidence.json` | 0/1 | <100MB |
 | `thesis-committee-chair-evidence.json` | reviewed | `hierarchy/{school}/thesis-committee-chair-evidence.json` | `hierarchy/{school}/reviewed/thesis-committee-chair-evidence.json` | 0/1 | <100MB |
+| `bulletin-listing-sources.json` | reviewed | `hierarchy/{school}/bulletin-listing-sources.json` | `hierarchy/{school}/reviewed/bulletin-listing-sources.json` | reviewed Bulletin PDFs (listing_rows) | <1MB |
 | `live-listing-sources.json` | reviewed | `hierarchy/{school}/live-listing-sources.json` | `hierarchy/{school}/reviewed/live-listing-sources.json` | reviewed source groups | <100MB |
 | `directory-evidence.json` | reviewed | `hierarchy/{school}/directory-evidence.json` | `hierarchy/{school}/reviewed/directory-evidence.json` | - | <100MB |
 | `labpage-students-report.json` | derived | `hierarchy/{school}/labpage-students-report.json` | `hierarchy/{school}/derived/labpage-students-report.json` | - | <100MB |

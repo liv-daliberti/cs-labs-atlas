@@ -5,7 +5,9 @@ crawl   fetch the record pages of one ETD collection (default eng_etds, from its
         Pages land in the school's capture container (live table), so a rerun reuses them.
 parse   read the stored record pages into <out>.json: author, title, year, degree, department, Committee Chair, Committee Members,
         url, sha256 of the stored bytes, and a verbatim quote of the page text.
-usage: washu_etd.py crawl|parse [--coll eng_etds] [--delay 5] [--limit N] [--out PATH]
+usage: washu_etd.py crawl|parse|count [--coll eng_etds[,chemeng_etds,...]] [--delay 5] [--limit N] [--out PATH] [--db FILE]
+count   the record ids of each collection's sitemap (one request each), stored records among them
+--db    a separate capture container (a deep-dive crawl running beside other jobs writes its own sqlite; parse reads the same file)
 """
 import argparse
 import html
@@ -32,6 +34,20 @@ def record_urls(c, coll):
     urls = re.findall(r'<loc>([^<]+)</loc>', raw)
     recs = [u for u in urls if re.search(rf'/{coll}/\d+/?$', u)]
     return sorted(recs, key=lambda u: -int(re.search(r'/(\d+)/?$', u).group(1)))
+
+
+def use_db(path):
+    if path:
+        W.db_path = lambda key, _p=Path(path): _p
+
+
+def count(colls):
+    c = W.con(KEY)
+    for coll in colls:
+        urls = record_urls(c, coll)
+        have = sum(1 for u in urls if c.execute('select 1 from live where url=?', (u,)).fetchone())
+        print(json.dumps(dict(coll=coll, records=len(urls), stored=have)), flush=True)
+        time.sleep(3)
 
 
 def crawl(coll, delay, limit):
@@ -71,8 +87,16 @@ def split_names(s):
     return [x.strip() for x in re.split(r'\s*[;,]\s*|\s+and\s+', s) if x.strip()]
 
 
-def parse(coll, out):
+def parse(colls, out):
     c = W.con(KEY)
+    rows = []
+    for coll in colls:
+        rows.extend(parse_one(c, coll))
+    Path(out).write_text(json.dumps(rows, indent=1, ensure_ascii=False))
+    print(len(rows), 'dissertation records with a Committee Chair ->', out)
+
+
+def parse_one(c, coll):
     rows = []
     for u, sha in c.execute("select url, sha256 from live where url like ? and status=200", (f'{BASE}/{coll}/%',)):
         if not re.search(rf'/{coll}/\d+/?$', u):
@@ -88,22 +112,30 @@ def parse(coll, out):
         i = flat.find('Committee Chair')
         quote = flat[i:i + len('Committee Chair') + 1 + len(chair)] if i >= 0 else ''
         rows.append({
-            'url': u, 'sha256': sha, 'author': author, 'title': meta(t, 'bepress_citation_title'),
+            'collection': coll, 'url': u, 'sha256': sha, 'author': author, 'title': meta(t, 'bepress_citation_title'),
             'year': meta(t, 'bepress_citation_date')[:4], 'degree': meta(t, 'bepress_citation_dissertation_name'),
             'department': field(t, 'department'), 'chair': chair, 'chairs': split_names(chair),
             'members': field(t, 'advisor2'), 'quote': quote, 'quote_in_text': quote in flat,
             'author_in_text': author.split(',')[0] in flat,
         })
-    Path(out).write_text(json.dumps(rows, indent=1, ensure_ascii=False))
-    print(len(rows), 'dissertation records with a Committee Chair ->', out)
+    return rows
 
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['crawl', 'parse'])
+    ap.add_argument('cmd', choices=['crawl', 'parse', 'count'])
     ap.add_argument('--coll', default='eng_etds')
+    ap.add_argument('--db', default='')
     ap.add_argument('--delay', type=float, default=5.0)
     ap.add_argument('--limit', type=int, default=0)
     ap.add_argument('--out', default='washu-etd.json')
     a = ap.parse_args()
-    crawl(a.coll, a.delay, a.limit) if a.cmd == 'crawl' else parse(a.coll, a.out)
+    use_db(a.db)
+    colls = [x for x in a.coll.split(',') if x]
+    if a.cmd == 'count':
+        count(colls)
+    elif a.cmd == 'crawl':
+        for coll in colls:
+            crawl(coll, a.delay, a.limit)
+    else:
+        parse(colls, a.out)

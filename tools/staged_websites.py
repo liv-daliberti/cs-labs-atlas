@@ -186,14 +186,14 @@ def individual_profiles(rows):
 
 def roster(school):
     """[dict(pi, profile_url, listing_url, listing_sha, role)] from the newest reviewed PI list."""
-    if school == 'oxford':
+    if school in ('oxford', 'washu'):
         pis = json.loads(P.data('pis.json', school).read_text())
         reg = {r['pi']: r for r in json.loads(P.data('lab-websites.json', school).read_text())['labs']}
         out = []
         addf = P.data('census-additions.json', school)
         adds = {x['name']: x for x in json.loads(addf.read_text())} if addf.exists() else {}
         import urllib.parse as _up
-        cen = {x['name']: _up.urljoin('https://www.cs.ox.ac.uk/', x['profile_url']) for x in json.loads(P.data('census-faculty.json', school).read_text())['faculty'] if x.get('profile_url')}   # PIs added from other units: the profile link their unit listing gives
+        cen = {x['name']: _up.urljoin('https://www.cs.ox.ac.uk/' if school == 'oxford' else 'https://engineering.washu.edu/', x['profile_url']) for x in json.loads(P.data('census-faculty.json', school).read_text())['faculty'] if x.get('profile_url')}   # PIs added from other units: the profile link their unit listing gives
         for p in pis:
             r = reg.get(p['pi']) or {}
             prof = next((c for c in r.get('checks') or [] if c.get('source') == 'school_profile' and c.get('result') in ('ok', 'ok_wayback')), None)
@@ -258,7 +258,7 @@ def build(school, workers=12, deadline=None, fetch_members=True):
     SCRATCH.mkdir(parents=True, exist_ok=True)
     fx = SF.Fetcher(SCRATCH / f'{school}.sqlite', deadline=(time.time() + deadline) if deadline else None)
     ros = roster(school)
-    cx = codex_sites(school) if school != 'oxford' else {}
+    cx = codex_sites(school) if school not in ('oxford', 'washu') else {}
     pool = cf.ThreadPoolExecutor(workers)
 
     def getall(urls):
@@ -323,7 +323,7 @@ def build(school, workers=12, deadline=None, fetch_members=True):
                         continue
                     cands[pi].setdefault(u, dict(ff=dict(kind='official_page', url=r['profile_url'], sha256=g['sha256'], anchor=lk['text']),
                                                  anchor=lk['text']))
-        if school == 'oxford':
+        if school in ('oxford', 'washu'):
             reg = {x['pi']: x for x in json.loads(P.data('lab-websites.json', school).read_text())['labs']}.get(pi) or {}
             for ev in reg.get('official_link_evidence') or []:
                 if ev.get('url'):
@@ -488,7 +488,7 @@ def main():
         doc, labs = build(a.school, a.workers, a.deadline)
         out.mkdir(parents=True, exist_ok=True)
         pw.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n')
-        labs_path = lw if a.school != 'oxford' else out / 'lab-websites-sweep.json'
+        labs_path = lw if a.school not in ('oxford', 'washu') else out / 'lab-websites-sweep.json'
         labs_path.write_text(json.dumps(labs, indent=1, ensure_ascii=False) + '\n')
     doc = json.loads(pw.read_text())
     bad = PW.gate(doc)

@@ -19,7 +19,7 @@ def test_R_STU_23_committee_chair_rows_are_researched_evidence():
         for s in pi['students']:
             n += 1
             assert 'Committee Chair' in s['quote']
-            assert s['url'].startswith('https://repository.library.washu.edu/eng_etds/')
+            assert re.match(r'https://repository\.library\.washu\.edu/(?:eng|art_sci|brown|olin|chemeng|sph)_etds/', s['url'])
             assert re.fullmatch(r'[0-9a-f]{64}', s['sha256'])
             assert min(s['years']) >= 2016
             assert s['role'] in ('phd', 'masters', 'student')

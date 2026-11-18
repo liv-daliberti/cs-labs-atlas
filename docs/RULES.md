@@ -647,12 +647,13 @@ whether to fetch it (tens of GB) is an owner decision (not asked for; no ORCID r
 
 **Effect in UChicago (2026-11-06 scratch build, overlay root, main untouched):** labs with students 89 -> 90 of 134 (CS 53 -> 54); 1 student (Todd Nief, Holtzman's PhD student since 2024) and 3 student-paper links; of 643 co-author candidates 114 had a homepage URL (DBLP, lab-page links, Semantic Scholar), 74 pages read, 23 robots-barred, 5 queued for Wayback; 4 advisee statements, 2 dated (one already in the lab: Xuchen Gong under Tian Li), 2 past-tense statements without a year listed apart. Hand check of all 2 dated rows: 2 of 2 correct (membership, role, years).
 
-### R-STU-23 (2026-11-08, owner: "yes") — a WashU dissertation's Committee Chair is the student's adviser
-On a Washington University in St. Louis Open Scholarship engineering thesis or dissertation record (`repository.library.washu.edu/eng_etds/`), the
-"Committee Chair" names the student's adviser. The record must come from 2016 or later, and the chair must match a WashU PI under R-STU-03. Co-chairs each count, under the co-adviser rule. The role is
-the degree's (phd or masters), and the years are the degree year (R-STU-14). Rows: `hierarchy/washu/reviewed/thesis-committee-chair-evidence.json`
-(a RESEARCHED_FILES file), built by `tools/fulltext_advisers_build.py washu` from `tools/washu_etd.py parse`. Hand check: 30 of 30 correct on chair and PI
-(seed 20261107). 164 rows, 31 PIs.
+### R-STU-23 (2026-11-08, owner: "yes"; extended 2026-11-09, owner: "Make the rule as it makes sense") — a WashU thesis or dissertation's Committee Chair is the student's adviser
+On a Washington University Open Scholarship thesis or dissertation record (any ETD collection of `repository.library.washu.edu`: eng_etds, art_sci_etds, brown_etds, olin_etds, chemeng_etds,
+sph_etds; doctoral or master's, 2016 or later), the "Committee Chair" names the student's adviser, when the chair matches a WashU PI under R-STU-03. Co-chairs each count, under the co-adviser rule.
+The role is the degree's (phd or masters; undergraduate and honours work never counts), and the years are the degree year (R-STU-14). Rows:
+`hierarchy/washu/reviewed/thesis-committee-chair-evidence.json` (a RESEARCHED_FILES file), built by `tools/fulltext_advisers_build.py washu` from `tools/washu_etd.py parse`. A collection is wired in only
+if its hand check passes (27 of 30, or all rows if fewer than 30, seed stated); otherwise its rows stay in `thesis-committee-chair-held.json` with the reason. Engineering: 30 of 30 correct on chair and PI (seed 20261107), 164 rows, 31 PIs.
+Hand checks of the extension (2026-11-09): see the WashU deep-dive report in hierarchy/washu/reports/DEEPDIVE-1109.md.
 
 ### R-LNK-06 (2026-11-05, owner: Hanin deep dive) — a dissertation year is the END of the student's work
 A PhD student known only from dissertation records (every relation role phd, its source quote a DSpace record whose `dc.contributor.advisor` names the PI)

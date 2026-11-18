@@ -95,7 +95,7 @@ not_pi = [
   {name = "William Richard", reason = "Temporary partial-package identity hold: dated CSE professor rows are supported, but five compatible DBLP candidates remain unresolved and the local OpenAlex author-stat pass found no qualifying identity. Preserve the faculty evidence; this does not decide PI eligibility."},
   {name = "Jerome Cox Jr.", reason = "Temporary partial-package identity hold: dated CSE professor row is supported, but compatible DBLP candidates remain unresolved and no qualifying identity was found in the local OpenAlex author-stat pass. Preserve the faculty evidence; this does not decide PI eligibility."},
 ]
-home_units = {"Computer Science and Engineering" = '^(?:Department of )?Computer Science (?:and|&) Engineering$', "Electrical and Systems Engineering" = '^(?:Preston M\. Green )?(?:Department of )?Electrical (?:and|&) Systems Engineering$', "Biomedical Engineering" = '^(?:Department of )?Biomedical Engineering$', "Statistics and Data Science" = '^(?:Department of )?Statistics (?:and|&) Data Science$', "Mathematics and Statistics" = '^(?:Department of )?Mathematics(?: (?:and|&) Statistics)?$', "Olin Business School" = '^(?:Olin Business School|Olin)$', "Psychological and Brain Sciences" = '^(?:Department of )?Psychological (?:and|&) Brain Sciences$', "Institute for Informatics, Data Science and Biostatistics" = '^(?:Institute for Informatics, Data Science (?:and|&) Biostatistics|I2DB)$', "Biostatistics" = '^(?:Division of )?Biostatistics$'}
+home_units = {"Computer Science and Engineering" = '^(?:Department of )?Computer Science (?:and|&) Engineering$', "Electrical and Systems Engineering" = '^(?:Preston M\. Green )?(?:Department of )?Electrical (?:and|&) Systems Engineering$', "Biomedical Engineering" = '^(?:Department of )?Biomedical Engineering$', "Statistics and Data Science" = '^(?:Department of )?Statistics (?:and|&) Data Science$', "Mathematics and Statistics" = '^(?:Department of )?Mathematics(?: (?:and|&) Statistics)?$', "Olin Business School" = '^(?:Olin Business School|Olin)$', "Psychological and Brain Sciences" = '^(?:Department of )?Psychological (?:and|&) Brain Sciences$', "Institute for Informatics, Data Science and Biostatistics" = '^(?:Institute for Informatics, Data Science (?:and|&) Biostatistics|I2DB)$', "Biostatistics" = '^(?:Division of )?Biostatistics$', "Physics" = '^(?:Department of )?Physics$', "Economics" = '^(?:Department of )?Economics$', "Genetics" = '^(?:Department of )?Genetics$', "Brown School" = '^Brown School$', "Mechanical Engineering and Materials Science" = '^(?:Department of )?Mechanical Engineering (?:and|&) Materials Science$', "Energy, Environmental and Chemical Engineering" = '^(?:Department of )?Energy, Environmental (?:and|&) Chemical Engineering$'}
 rank_words = {teaching = '\bprofessor\s+of\s+practice|\bsenior\s+lecturer', adjunct = '\badjunct\b', research = '\bresearch\s+(?:associate|assistant)\s+professor', courtesy = '\baffiliate\s*,'}
 
 [sweep_check]
@@ -183,6 +183,51 @@ url = "https://bme.washu.edu/"
   to = "20261231"
   format = "wu_teaser"  # verified against all 36 cards in the cached 2026 live directory
 
+[[departments]]
+code = "MEMS"
+name = "Department of Mechanical Engineering and Materials Science"
+unit = "McKelvey School of Engineering"
+title_match = '''Mechanical Engineering'''
+coverage = "affiliated"
+url = "https://mems.washu.edu/"
+  [[departments.listings]]
+  # WashU deep dive 2026-11-09: same Drupal-free "wu_teaser" directory as ESE/BME (34 cards live 2026-11-09). Wayback eras provisional; the Bulletin supplies 2016-2025.
+  slot = "MEMS faculty"
+  kind = "main"
+  url = "mems.wustl.edu/faculty-research/directory.html"
+  from = "20160101"
+  to = "20231231"
+  format = "wu_teaser"
+  [[departments.listings]]
+  slot = "MEMS faculty"
+  kind = "main"
+  url = "mems.washu.edu/faculty-research/directory.html"
+  from = "20240101"
+  to = "20261231"
+  format = "wu_teaser"
+
+[[departments]]
+code = "EECE"
+name = "Department of Energy, Environmental and Chemical Engineering"
+unit = "McKelvey School of Engineering"
+title_match = '''Energy, Environmental'''
+coverage = "affiliated"
+url = "https://eece.washu.edu/"
+  [[departments.listings]]
+  slot = "EECE faculty"
+  kind = "main"
+  url = "eece.wustl.edu/faculty-research/directory.html"
+  from = "20160101"
+  to = "20231231"
+  format = "wu_teaser"
+  [[departments.listings]]
+  slot = "EECE faculty"
+  kind = "main"
+  url = "eece.washu.edu/faculty-research/directory.html"
+  from = "20240101"
+  to = "20261231"
+  format = "wu_teaser"
+
 [[affiliated_units]]
 code = "SDS"
 name = "Department of Statistics and Data Science (Arts & Sciences)"
@@ -218,6 +263,30 @@ code = "BIOS"
 name = "Division of Biostatistics (School of Medicine; hosted by I2DB)"
 url = "https://i2db.wustl.edu/faculty-staff/"
 listings = ["biostat.wustl.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "PHYS"
+name = "Department of Physics (Arts & Sciences)"
+url = "https://physics.washu.edu/people"
+listings = ["physics.washu.edu/people", "physics.wustl.edu/people"]
+
+[[affiliated_units]]
+code = "ECON"
+name = "Department of Economics (Arts & Sciences)"
+url = "https://economics.washu.edu/people"
+listings = ["economics.washu.edu/people", "economics.wustl.edu/people"]
+
+[[affiliated_units]]
+code = "GEN"
+name = "Department of Genetics (School of Medicine)"
+url = "https://genetics.wustl.edu/people/"
+listings = ["genetics.wustl.edu/people/"]
+
+[[affiliated_units]]
+code = "BROWN"
+name = "Brown School"
+url = "https://brownschool.washu.edu/faculty-research/"
+listings = ["brownschool.washu.edu/faculty-research/", "brownschool.wustl.edu/faculty-research/"]
 
 [thesis]
 kind = "none"
@@ -312,6 +381,42 @@ host = "i2db.wustl.edu"
 use = "live"
 purpose = "Institute for Informatics, Data Science and Biostatistics (School of Medicine); robots Crawl-delay 30 is the cludo group only"
 probe = "https://i2db.wustl.edu/faculty-staff/"
+
+[[hosts]]
+host = "physics.washu.edu"
+use = "live"
+purpose = "WashU deep dive 2026-11-09: faculty directory (robots allowed; probed live)"
+probe = "https://physics.washu.edu/people"
+
+[[hosts]]
+host = "economics.washu.edu"
+use = "live"
+purpose = "WashU deep dive 2026-11-09: faculty directory (robots allowed; probed live)"
+probe = "https://economics.washu.edu/people"
+
+[[hosts]]
+host = "genetics.wustl.edu"
+use = "live"
+purpose = "WashU deep dive 2026-11-09: faculty directory (robots allowed; probed live)"
+probe = "https://genetics.wustl.edu/people/"
+
+[[hosts]]
+host = "brownschool.washu.edu"
+use = "live"
+purpose = "WashU deep dive 2026-11-09: faculty directory (robots allowed; probed live)"
+probe = "https://brownschool.washu.edu/faculty-research/"
+
+[[hosts]]
+host = "mems.washu.edu"
+use = "live"
+purpose = "WashU deep dive 2026-11-09: faculty directory (robots allowed; probed live)"
+probe = "https://mems.washu.edu/faculty-research/directory.html"
+
+[[hosts]]
+host = "eece.washu.edu"
+use = "live"
+purpose = "WashU deep dive 2026-11-09: faculty directory (robots allowed; probed live)"
+probe = "https://eece.washu.edu/faculty-research/directory.html"
 
 [[hosts]]
 host = "sites.wustl.edu"
