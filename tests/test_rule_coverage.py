@@ -50,3 +50,10 @@ def test_every_rule_has_a_test():
 def test_every_rule_test_names_a_rule():
     stale = {i: t for i, t in ids_tested().items() if i not in set(rule_ids())}
     assert not stale, f'tests named after ids docs/RULES.md does not have: {stale}'
+
+
+def test_R_STU_33_shared_page_rule_is_documented_with_its_exception():
+    """R-STU-33 is a policy rule applied by each school's builder owner; pin that the text keeps the only exception (the row names the PI)."""
+    text = RULES.read_text()
+    sec = text[text.index('### R-STU-33'):]
+    assert 'unless the ROW itself names the PI' in sec and 'one-PI rule of R-STU-30' in sec
