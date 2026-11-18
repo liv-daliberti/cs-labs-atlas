@@ -137,8 +137,17 @@ All source-year, unit/campus and known-bound checks remain in force.
 Independent final acceptance: `scratch/tsinghua-z140-source-review-1117/ACCEPTED50-FINAL.json`,
 SHA-256 `f03f7b5566b0d5ede2f72f9d5ecca7b0b867a2a1d0ed389ed4740700c58647a2`.
 Two independent reviewers checked disjoint source batches and their exact
-preimages. Fifty retained PI gains would give Z=140; the target has no margin.
-Native retention and all five phases remain to be verified on frozen inputs.
+preimages. The completed core native build verified Z=140: 361 PIs, 1,264 native member
+IDs, 1,308 PI/member pairs and 218 PIs with members. All 50 intended gains
+were retained. Independent comparison preserves every prior member, all
+17,473 PI-paper payloads, 4,161 student-paper links and 51 complete chains.
+Core receipt: `scratch/tsinghua-z140-1117/CORE-Z-METRICS.json`, SHA-256
+`02080d495b30903485681d162891a28172ca6f5955741269892e9a8f89cdaea3`.
+All-five-phase completion is tracked in
+`scratch/tsinghua-z140-1117/native/state.json` and the independent comparison
+in `scratch/tsinghua-z140-source-review-1117/NATIVE-COMPARISON.json`.
+The existing recent-PhD proxy counts 22 new 2025 doctoral-defense points;
+these do not attest current 2026 enrollment.
 
 Collection stopped after 134 requests. All 529 returned metadata records
 are retained; 479 additional summaries remain pending. Thirty-two canonical
