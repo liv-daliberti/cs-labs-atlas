@@ -303,12 +303,25 @@ def given_compatible(a, b, fam):
     return False
 
 
-def merge_people(rows, explicit_aliases=()):
+HAN_RUN = re.compile(r'[\u3400-\u9fff\uf900-\ufaff\u3040-\u30ff\uac00-\ud7af]+')
+
+
+def latin_part(name):
+    """Opt-in ([census].han_suffix_merge, HKUST 2026-11-18): 'Dit-Yan YEUNG 楊瓞仁' and 'Dit-Yan YEUNG' are one spelling. The Latin part of a mixed
+    name when it keeps two or more tokens, else the name itself; a pure Han name is untouched (it still merges only by profile)."""
+    if not HAN_RUN.search(name):
+        return name
+    rest = ' '.join(HAN_RUN.sub(' ', name).replace('|', ' ').split())
+    return rest if len(toks(rest)) >= 2 else name
+
+
+def merge_people(rows, explicit_aliases=(), han_suffix=False):
     """Group listing rows into persons: same family name and compatible given names (given_compatible); rows of one
     school only, never across schools."""
     groups, by_fam = [], collections.defaultdict(list)
     for r in sorted((dict(r, name=CLONE_OF.sub('', r['name'])) for r in rows), key=lambda r: r['observed']):   # a Drupal 'Clone of X' card is X
-        t = toks(r['name'])
+        K = latin_part if han_suffix else (lambda s: s)
+        t = toks(K(r['name']))
         literal = literal_cjk_name(r['name'])
         if (len(t) < 2 and not literal) or TITLE_NAME.search(r['name']):
             continue
@@ -320,7 +333,7 @@ def merge_people(rows, explicit_aliases=()):
             g = next((g for g in by_fam[t[-1]] if profile and any(
                 (q.get('profile') or q.get('homepage') or '').rstrip('/') == profile for q in g['rows'])), None)
         else:
-            g = next((g for g in by_fam[t[-1]] if not g.get('reviewed_profile_name') and any(given_compatible(toks(n)[:-1], t[:-1], t[-1]) for n in g['names'])), None)
+            g = next((g for g in by_fam[t[-1]] if not g.get('reviewed_profile_name') and any(given_compatible(toks(K(n))[:-1], t[:-1], t[-1]) for n in g['names'])), None)
         if g is None:
             g = dict(names=[], rows=[])
             if identity:
@@ -386,7 +399,7 @@ def main(key):
                       dump=None)
         d0['orcid'] = sorted(set(d0.get('orcid') or []) | {o['orcid'] for o in h_.get('orcid') or []})
     census, people, listing_rows, n = [], [], [], collections.Counter()
-    groups = merge_people(reviewed_profile_names(key, rows), reviewed_name_aliases(key))
+    groups = merge_people(reviewed_profile_names(key, rows), reviewed_name_aliases(key), han_suffix=bool(S.field(cfg, 'census.han_suffix_merge')))
     labels = [display_name(g['rows'], g['names']) for g in groups]
     duplicates = [name for name, count in collections.Counter(labels).items() if count > 1]
     if duplicates:
