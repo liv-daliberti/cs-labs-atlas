@@ -1,6 +1,6 @@
 """Compact evidence sheets for the drawn items (helper for the hand judgments; reads sample.json and the packages).
 
-usage: evidence.py <school> <lab|student|coverage|scov> > sheet.txt
+usage: evidence.py <school> <lab|student|coverage|scov> [n [start]] > sheet.txt   (n items from index start; scov default n=14)
 """
 import gzip, html, json, re, sys, unicodedata
 from pathlib import Path
@@ -33,8 +33,10 @@ def short(x, n):
     return x if len(x) <= n else x[:n] + '…'
 
 
-def main(school, what):
+def main(school, what, n=None, start=0):
+    """`n`/`start` slice the drawn items of lab, student and coverage (a reviewer batch of at most 25 rows, accuracy/g9_round.py); scov slices its candidate order."""
     S = json.load(open(files(school)[0]))['schools'][school]
+    sl = lambda xs: xs[start:start + n] if n is not None else xs
     pis = {p['pi']: p for p in json.load(open(P.data('pis.json', school)))}
     if what in ('lab', 'coverage'):
         pages = dblp_persons({q for p in pis.values() for q in p.get('dblp') or []}, school)
@@ -42,7 +44,7 @@ def main(school, what):
                    {nt(r['title'].rstrip('.')) for q in p.get('dblp') or [] for r in pages.get(q, [])}) for pi, p in pis.items()}
         del pages
     if what == 'lab':
-        want = {it['i']: it for it in S['lab_precision']}
+        want = {it['i']: it for it in sl(S['lab_precision'])}
         for i, line in enumerate(gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt')):
             if i not in want:
                 continue
@@ -56,7 +58,7 @@ def main(school, what):
             print(f"   VIA={short(a.get('school_via'),110)} | id={r.get('identity')} | appt={ap.get('periodId') or ap.get('listing') and ('listing ' + str(ap['listing'].get('year') if isinstance(ap['listing'], dict) else ap['listing']))} | onPIdblp={ondblp}")
             print(f"   BYLINE({len(r.get('byline') or [])})={short(r.get('byline'),120)} | school={short(r.get('byline_school'),70)} eds={len(r.get('editions') or [])}")
     elif what == 'student':
-        want = {it['i']: it for it in S['student_precision']}
+        want = {it['i']: it for it in sl(S['student_precision'])}
         rows, works = {}, set()
         for i, line in enumerate(gzip.open(P.data('student_papers.jsonl.gz', school), 'rt')):
             if i in want:
@@ -84,7 +86,7 @@ def main(school, what):
             print(f"   P: {short(L.get('title'),100)} | {L.get('date')} | {short(L.get('venue'),35)} | {r['oa'].split('/')[-1]} doi={L.get('doi')}")
             print(f"   byline hits={sorted(set(hit))} | n={len(L.get('byline') or [])} school={short(L.get('byline_school'),120)}")
     elif what == 'coverage':
-        items = S['lab_coverage']
+        items = sl(S['lab_coverage'])
         have = {}
         byrow = {}
         need = {it['pi'] for it in items}
@@ -109,8 +111,7 @@ def main(school, what):
                   + (f" VERSION-CANDIDATES(may be a different paper; judge decides from stored evidence)={cand[:4]}" if cand else ''))
     elif what == 'scov':
         stj = json.load(open(P.data('students.json', school)))
-        n = int(sys.argv[3]) if len(sys.argv) > 3 else 14
-        start = int(sys.argv[4]) if len(sys.argv) > 4 else 0
+        n = 14 if n is None else n
         cands = S['student_coverage_order'][start:start + n]
         need = {c['pi'] for c in cands}
         pages = dblp_persons({q for pi in need for q in pis[pi].get('dblp') or []}, school)
@@ -150,4 +151,4 @@ def main(school, what):
             print(f"   PI-DBLP coauthored={len(co)} ({sum('IN-LAB' in x for x in co)} in lab): {co[:4]}")
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1], sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else None, int(sys.argv[4]) if len(sys.argv) > 4 else 0)

@@ -1,7 +1,7 @@
 {
  "school": "gatech",
  "against_release": "2026-11-07",
- "decided": "2026-11-18, owner rules applied by the coordinator (Q-0339, Q-0350); 2026-11-18 claude-digest-1118: GT install (D-0001 item 9) classes census_alias_rename and rebuild_rule_q0317 (D-0007); 2026-11-18 claude-gt-prerelease-1118: independent per-row review (T692): q0317 class narrowed to rows a patched parser leaves dropped, reviewed_rebuild_drops_1118 and postdoc_role_guard_7c8fdedd added, ids filled",
+ "decided": "2026-11-18, owner rules applied by the coordinator (Q-0339, Q-0350); 2026-11-18 claude-digest-1118: GT install (D-0001 item 9) classes census_alias_rename and rebuild_rule_q0317 (D-0007); 2026-11-18 claude-gt-prerelease-1118: independent per-row review (T692): q0317 class narrowed to rows a patched parser leaves dropped, reviewed_rebuild_drops_1118 and postdoc_role_guard_7c8fdedd added, ids filled; 2026-11-19 claude-freeze-prep-1119 (D-0015/D-0007): classes for rows still flagged vs 2026-11-07 (build trace scratch/freeze-prep-1119/rr/trace, independent 50-row review); author_id_name_guard: only the 2 rows an independent reviewer confirmed (namesake bylines); 7 rows where the guard fires on a misspelt or initials-only byline of the PI are NOT recorded (restore them)",
  "classes": [
   {
    "id": "redated_by_venue_version",
@@ -9949,8 +9949,349 @@
      "labId": "atl:l:gatech:yongxin-chen",
      "studentAtlasId": "atl:p:c11ce1108064",
      "atlasWorkId": "atl:w:ceddb26a1a7f"
+    },
+    {
+     "pi": "Alejandro Toriello",
+     "student": "ext:gatech:weihong-hu",
+     "oa": "https://openalex.org/W2187618504",
+     "labId": "atl:l:gatech:alejandro-toriello",
+     "studentAtlasId": "atl:p:ebe508367030",
+     "atlasWorkId": "atl:w:27f037e11fa7",
+     "name": "Weihong Hu",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Alejandro Toriello",
+     "student": "ext:gatech:mathias-klapp",
+     "oa": "https://openalex.org/W2407395752",
+     "labId": "atl:l:gatech:alejandro-toriello",
+     "studentAtlasId": "atl:p:3384d71020aa",
+     "atlasWorkId": "atl:w:475fbc8557f1",
+     "name": "Mathias Klapp",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Alejandro Toriello",
+     "student": "ext:gatech:alfredo-torrico",
+     "oa": "https://openalex.org/W2772076743",
+     "labId": "atl:l:gatech:alejandro-toriello",
+     "studentAtlasId": "atl:p:9b02fa6d77a5",
+     "atlasWorkId": "atl:w:58b9965faadf",
+     "name": "Alfredo Torrico",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Alejandro Toriello",
+     "student": "ext:gatech:weihong-hu",
+     "oa": "https://openalex.org/W2803946376",
+     "labId": "atl:l:gatech:alejandro-toriello",
+     "studentAtlasId": "atl:p:ebe508367030",
+     "atlasWorkId": "atl:w:abc1cd917506",
+     "name": "Weihong Hu",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Alejandro Toriello",
+     "student": "ext:gatech:mathias-klapp",
+     "oa": "https://openalex.org/W2804957066",
+     "labId": "atl:l:gatech:alejandro-toriello",
+     "studentAtlasId": "atl:p:3384d71020aa",
+     "atlasWorkId": "atl:w:44376efddd4e",
+     "name": "Mathias Klapp",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    },
+    {
+     "pi": "Alejandro Toriello",
+     "student": "ext:gatech:daniel-blado",
+     "oa": "https://openalex.org/W3038024096",
+     "labId": "atl:l:gatech:alejandro-toriello",
+     "studentAtlasId": "atl:p:b01ac2400677",
+     "atlasWorkId": "atl:w:424031514f81",
+     "name": "Daniel Blado",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    },
+    {
+     "pi": "Alejandro Toriello",
+     "student": "ext:gatech:weihong-hu",
+     "oa": "https://openalex.org/W3046496165",
+     "labId": "atl:l:gatech:alejandro-toriello",
+     "studentAtlasId": "atl:p:ebe508367030",
+     "atlasWorkId": "atl:w:28bc748b10a2",
+     "name": "Weihong Hu",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Alejandro Toriello",
+     "student": "ext:gatech:alfredo-torrico",
+     "oa": "https://openalex.org/W2905815131",
+     "labId": "atl:l:gatech:alejandro-toriello",
+     "studentAtlasId": "atl:p:9b02fa6d77a5",
+     "atlasWorkId": "atl:w:46a5b13dd169",
+     "name": "Alfredo Torrico",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    },
+    {
+     "pi": "Juba Ziani",
+     "student": "ext:gatech:aaron-roth",
+     "oa": "https://openalex.org/W3005538141",
+     "labId": "atl:l:gatech:juba-ziani",
+     "studentAtlasId": "atl:p:72da5b87727c",
+     "atlasWorkId": "atl:w:ada24804131c",
+     "name": "Aaron Roth",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    },
+    {
+     "pi": "Juba Ziani",
+     "student": "ext:gatech:aaron-roth",
+     "oa": "https://openalex.org/W4378976963",
+     "labId": "atl:l:gatech:juba-ziani",
+     "studentAtlasId": "atl:p:72da5b87727c",
+     "atlasWorkId": "atl:w:1c6e19428c1d",
+     "name": "Aaron Roth",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    },
+    {
+     "pi": "Juba Ziani",
+     "student": "ext:gatech:aaron-roth",
+     "oa": "https://openalex.org/W4387559302",
+     "labId": "atl:l:gatech:juba-ziani",
+     "studentAtlasId": "atl:p:72da5b87727c",
+     "atlasWorkId": "atl:w:06467447e106",
+     "name": "Aaron Roth",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    },
+    {
+     "pi": "Hyesoon Kim",
+     "student": "ext:gatech:seonjin-na",
+     "oa": "https://openalex.org/W4401211780",
+     "labId": "atl:l:gatech:hyesoon-kim",
+     "studentAtlasId": "atl:p:6c0d9119dd4b",
+     "atlasWorkId": "atl:w:ac1e05c840fb",
+     "name": "Seonjin Na",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Hyesoon Kim",
+     "student": "ext:gatech:seonjin-na",
+     "oa": "https://openalex.org/W4406266041",
+     "labId": "atl:l:gatech:hyesoon-kim",
+     "studentAtlasId": "atl:p:6c0d9119dd4b",
+     "atlasWorkId": "atl:w:5fef43d5efd5",
+     "name": "Seonjin Na",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Juba Ziani",
+     "student": "ext:gatech:natalie-collina",
+     "oa": "https://openalex.org/W6891673411",
+     "labId": "atl:l:gatech:juba-ziani",
+     "studentAtlasId": "atl:p:2a16258f0a36",
+     "atlasWorkId": "atl:w:b55c8454de93",
+     "name": "Natalie Collina",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    },
+    {
+     "pi": "Juba Ziani",
+     "student": "ext:gatech:aaron-roth",
+     "oa": "https://openalex.org/W6891673411",
+     "labId": "atl:l:gatech:juba-ziani",
+     "studentAtlasId": "atl:p:72da5b87727c",
+     "atlasWorkId": "atl:w:b55c8454de93",
+     "name": "Aaron Roth",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    },
+    {
+     "pi": "Alejandro Toriello",
+     "student": "ext:gatech:ignacio-erazo",
+     "oa": "https://openalex.org/W4407026656",
+     "labId": "atl:l:gatech:alejandro-toriello",
+     "studentAtlasId": "atl:p:fcd6b968de2e",
+     "atlasWorkId": "atl:w:2edca33ba24d",
+     "name": "Ignacio Erazo",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    },
+    {
+     "pi": "Juba Ziani",
+     "student": "ext:gatech:guanghui-wang",
+     "oa": "https://openalex.org/W4407569694",
+     "labId": "atl:l:gatech:juba-ziani",
+     "studentAtlasId": "atl:p:466d355a477e",
+     "atlasWorkId": "atl:w:9318d862f921",
+     "name": "Guanghui Wang",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Hyesoon Kim",
+     "student": "ext:gatech:seonjin-na",
+     "oa": "https://openalex.org/W4409248692",
+     "labId": "atl:l:gatech:hyesoon-kim",
+     "studentAtlasId": "atl:p:6c0d9119dd4b",
+     "atlasWorkId": "atl:w:074c639af713",
+     "name": "Seonjin Na",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Hyesoon Kim",
+     "student": "ext:gatech:seonjin-na",
+     "oa": "https://openalex.org/W4412082252",
+     "labId": "atl:l:gatech:hyesoon-kim",
+     "studentAtlasId": "atl:p:6c0d9119dd4b",
+     "atlasWorkId": "atl:w:45b067ede2fd",
+     "name": "Seonjin Na",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Alejandro Toriello",
+     "student": "ext:gatech:rui-gong",
+     "oa": "https://openalex.org/W6966831143",
+     "labId": "atl:l:gatech:alejandro-toriello",
+     "studentAtlasId": "atl:p:68f72ababb47",
+     "atlasWorkId": "atl:w:1fa864394c4b",
+     "name": "Rui Gong",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Hyesoon Kim",
+     "student": "ext:gatech:seonjin-na",
+     "oa": "https://openalex.org/W7092192867",
+     "labId": "atl:l:gatech:hyesoon-kim",
+     "studentAtlasId": "atl:p:6c0d9119dd4b",
+     "atlasWorkId": "atl:w:a59412334c9e",
+     "name": "Seonjin Na",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Hyesoon Kim",
+     "student": "ext:gatech:seonjin-na",
+     "oa": "https://openalex.org/W7118946420",
+     "labId": "atl:l:gatech:hyesoon-kim",
+     "studentAtlasId": "atl:p:6c0d9119dd4b",
+     "atlasWorkId": "atl:w:8ba56c8d9268",
+     "name": "Seonjin Na",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Alejandro Toriello",
+     "student": "ext:gatech:rui-gong",
+     "oa": "https://openalex.org/W7128494343",
+     "labId": "atl:l:gatech:alejandro-toriello",
+     "studentAtlasId": "atl:p:68f72ababb47",
+     "atlasWorkId": "atl:w:52794c9e36f5",
+     "name": "Rui Gong",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Alejandro Toriello",
+     "student": "ext:gatech:ignacio-erazo",
+     "oa": "https://openalex.org/W7131215737",
+     "labId": "atl:l:gatech:alejandro-toriello",
+     "studentAtlasId": "atl:p:fcd6b968de2e",
+     "atlasWorkId": "atl:w:637bf5c617e5",
+     "name": "Ignacio Erazo",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Hyesoon Kim",
+     "student": "ext:gatech:seonjin-na",
+     "oa": "https://openalex.org/W7212053843",
+     "labId": "atl:l:gatech:hyesoon-kim",
+     "studentAtlasId": "atl:p:6c0d9119dd4b",
+     "atlasWorkId": "atl:w:282dc70fdc1c",
+     "name": "Seonjin Na",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    },
+    {
+     "pi": "Ashwin Pananjady",
+     "student": "gatech_fac_jingyan-wang",
+     "oa": "https://openalex.org/W7133198142",
+     "labId": "atl:l:gatech:ashwin-pananjady",
+     "studentAtlasId": "atl:p:c303adf6e316",
+     "atlasWorkId": "atl:w:d22402ebb2ea",
+     "name": "Jingyan Wang",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    }
+   ]
+  },
+  {
+   "id": "moved_to_other_pi_name",
+   "rule": "Same OpenAlex paper kept in the package under another PI's lab (co-author lab or census alias spelling, kept_as_pi): the paper is not lost, its lab assignment follows the current census/alias identity.",
+   "rows": [
+    {
+     "pi": "Alan Ritter",
+     "oa": "https://openalex.org/W4404783052",
+     "labId": null,
+     "atlasWorkId": "atl:w:4eb58827d94b",
+     "title": "ChatHF: Collecting Rich Human Feedback from Real-time Conversations",
+     "year": 2024,
+     "identity_before": "dblp_person_page_doi",
+     "kept_as_pi": [
+      "Wei Xu"
+     ]
+    },
+    {
+     "pi": "Ye-Hwa Chen",
+     "oa": "https://openalex.org/W4391210485",
+     "labId": null,
+     "atlasWorkId": "atl:w:8b135a09046e",
+     "title": "Chasing Tacit Knowledge: Multi-layered Sensing in Woodworking",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "kept_as_pi": [
+      "Michael Nitsche"
+     ]
+    },
+    {
+     "pi": "Umakishore Ramachandran",
+     "oa": "https://openalex.org/W4404787871",
+     "labId": null,
+     "atlasWorkId": "atl:w:36d61815acbf",
+     "title": "BASS: A Resource Orchestrator to Account for Vagaries in Network Conditions in Community Wi-Fi Mesh",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "kept_as_pi": [
+      "Ashutosh Dhekne"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "author_id_name_guard",
+   "rule": "Builder author-id full-given-name guard (a73f5e67 and the 2026-11-16 given-name guard): an author id whose full given name contradicts the PI's is not an identity (build trace counter author_id_full_given_name_conflicts).",
+   "rows": [
+    {
+     "pi": "Yan Wang",
+     "oa": "https://openalex.org/W3016704656",
+     "labId": null,
+     "atlasWorkId": "atl:w:783947fd3071",
+     "title": "Noncontact Sensing Technologies for Bridge Structural Health Assessment",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "author_id_full_given_name_conflicts"
+     ]
+    },
+    {
+     "pi": "Shaolan Li",
+     "oa": "https://openalex.org/W7149427532",
+     "labId": null,
+     "atlasWorkId": "atl:w:c10cb68e5479",
+     "title": "Microstructure-Aware Phase-Field Models of Alloy Oxidation",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "author_id_full_given_name_conflicts"
+     ]
     }
    ]
   }
- ]
+ ],
+ "pi_renames": {
+  "Munmun DeChoudhury": "Munmun De Choudhury",
+  "Polo Chau": "Duen Horng \"Polo\" Chau",
+  "Nick Sahinidis": "Nikolaos Sahinidis"
+ },
+ "open_rows_not_recorded": {
+  "open_not_in_build_hits": 4,
+  "open_hit_without_identity": 3
+ }
 }

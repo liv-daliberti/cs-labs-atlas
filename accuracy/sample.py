@@ -60,6 +60,10 @@ ROUNDS = {'r2': dict(seed=20261102, uniform=50, stratum=5, cov=50, cands=200,
                       schools=['vt'], dir='round-r10'),
           # pi1 (D-0001, owner 2026-11-17: the release is per PI): the draw is restricted to the school's INCLUDED PIs (tools/pi_release.py plan);
           # the seed, sizes, strata and bars are the r3 ones, the sample records the PI list and the filtered-file hashes it binds to (subset)
+          # pi2 (owner 2026-11-19: ONE redraw of every included school after the data freeze, 50 per measure per school, a NEW seed, independent reviewers):
+          # same sizes, strata and bars as pi1; the seed is None on purpose: the launcher passes a fresh one (ACCURACY_REDRAW_SEED, accuracy/g9_round.py draw --seed N)
+          # and the draw refuses a seed any earlier round or draw file used. Any school list is allowed (the included schools at the freeze).
+          'pi2': dict(seed=None, uniform=50, stratum=5, cov=50, cands=200, schools=[], dir='round-pi2', subset=True),
           'pi1': dict(seed=20261118, uniform=50, stratum=5, cov=50, cands=200, schools=[], dir='round-pi1', subset=True)}
 FILES = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 
@@ -160,12 +164,11 @@ def alumni_relation(rel, roles):
     return max(ys) if ys else None
 
 
-def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None, held_links=None):
+def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None):
     """`only_pis` (a per-PI release, D-0001; tools/pi_release.py): draw only from these PIs' rows (their lab papers, student papers, DBLP
     pool and student candidates). With None the draw is exactly the school-wide one (the published draws are unchanged)."""
     cfg = cfg or LEGACY
     only = set(only_pis) if only_pis is not None else None
-    held = {tuple(x) for x in held_links or ()}   # D-0017: held student links (pi, student id) are not in the release package
     out = {'seed': cfg['seed'], 'date': date, 'sizes': {k: cfg[k] for k in ('uniform', 'stratum', 'cov', 'cands')}, 'schools': {}, 'files': {}}
     if cfg is LEGACY:
         del out['sizes']  # the 2026-10-29 files never carried it
@@ -175,7 +178,7 @@ def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None
         out['files'][school] = {f: sha(d / f) for f in FILES}
         if only is not None:
             import pi_release
-            out.setdefault('subset', {})[school] = dict(pis=sorted(only), n_pis=len(only), files=pi_release.package_hashes(school, only, held=held), held=sorted(held),
+            out.setdefault('subset', {})[school] = dict(pis=sorted(only), n_pis=len(only), files=pi_release.package_hashes(school, only),
                                                         included_sha=__import__('hashlib').sha256('\n'.join(sorted(only)).encode()).hexdigest())
         # 1. lab papers
         meta = []
@@ -265,23 +268,24 @@ def draw_round(rnd, schools=None):
     cfg = dict(ROUNDS[rnd])
     if os.environ.get('ACCURACY_REDRAW_SEED'):   # a redraw after a rule fix (a failed gate): the new seed is recorded in the draw file, the round's definition is unchanged
         cfg['seed'] = int(os.environ['ACCURACY_REDRAW_SEED'])
-    d = ACC_DIR / cfg['dir']  # beside this file: a worktree's own accuracy/, not the main checkout's
+    if cfg['seed'] is None:
+        _sys.exit(f'round {rnd} has no fixed seed: set ACCURACY_REDRAW_SEED to a fresh one (accuracy/g9_round.py draw --seed N)')
+    d = _Path(os.environ.get('ACCURACY_DRAW_ROOT') or ACC_DIR) / cfg['dir']  # beside this file (a worktree's own accuracy/), unless ACCURACY_DRAW_ROOT names the main checkout's accuracy/ (g9_round.py draw)
     d.mkdir(exist_ok=True)
     for school in schools or cfg['schools']:
         f = d / f'sample-{school}.json'
         if f.exists():
             _sys.exit(f'{f} exists: a round draw is never overwritten (move it aside by hand to redraw)')
-        only, held = None, None
+        only = None
         if cfg.get('subset'):
             import pi_release
-            pl = pi_release.plan(school)
-            only, held = pl['included'], sorted(pi_release.held_set(pl))
-        main([school], f, datetime.date.today().isoformat(), cfg, only, held)
+            only = pi_release.plan(school)['included']
+        main([school], f, datetime.date.today().isoformat(), cfg, only)
 
 
 if __name__ == '__main__':
     a = _sys.argv[1:]
-    if a[:1] == ['--round'] and len(a) in (2, 4) and a[1] in ROUNDS and (len(a) == 2 or a[2] == '--school'):
+    if a[:1] == ['--round'] and len(a) >= 2 and a[1] in ROUNDS and (len(a) == 2 or (a[2] == '--school' and len(a) >= 4)):   # --school takes one or more keys
         draw_round(a[1], a[3:] or None)
     elif len(a) == 2 and a[0] == '--school':
         import datetime
