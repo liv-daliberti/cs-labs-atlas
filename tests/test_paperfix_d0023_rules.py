@@ -114,3 +114,21 @@ def test_R_PAP_56_uog_congress_abstract():
     r = row(title='OP08.03: Success rate of the subcortical 3D fetal brain segmentation', type='conference-abstract', venue='Ultrasound in Obstetrics and Gynecology', doi='10.1002/uog.25183')
     assert h.not_a_paper(r) == 'meeting_abstract:journal'
     assert h.not_a_paper(dict(r, type='article', title='Fetal brain growth curves from 3D ultrasound')) is None
+
+
+def test_R_PAP_57_annual_report():
+    assert h.not_a_paper(row(title='Report to the President for year ended June 30, 2019, Laboratory for Information and Decision Systems')) == 'annual_report'
+    assert h.not_a_paper(row(title='A report to the president on cache design')) is None
+
+
+def test_R_PAP_39_mit_d0023_reviewed_entries_and_release_corrections():
+    import json
+    root = Path(__file__).resolve().parent.parent / 'hierarchy/mit/reviewed'
+    d = json.loads((root / 'census-overrides-school.json').read_text())
+    for pi, doi in (('Joseph A. Paradiso', '10.1145/3491101.3503708'), ('Pattie Maes', '10.1145/3491101.3503708'), ('Saurabh Amin', '10.21590/448knp75')):
+        e = d[pi]['not_papers'][0]
+        assert e['doi'] == doi and len(e['evidence'][0]['sha256']) == 64 and e['evidence'][0]['quote']
+        assert PA.reviewed_not_paper(dict(notPapers=d[pi]['not_papers']), dict(doi=doi, oa=e['oa']))
+    rc = json.loads((root / 'release-corrections.json').read_text())
+    rows = [r for c in rc['classes'] if c['id'] == 'not_paper_rule' for r in c['rows']]
+    assert sum('not_paper:annual_report' in r['trace'] for r in rows) == 11 and sum('not_paper:reviewed_not_paper' in r['trace'] for r in rows) == 3

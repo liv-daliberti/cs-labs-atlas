@@ -1777,7 +1777,7 @@
   },
   {
    "id": "not_paper_rule",
-   "rule": "R-PAP-17/18/39 not-papers (owner): the current build drops the record as a non-paper (OpenAlex type or genre: editorial, book review, abstract, commentary, deliverable...); named per row by the build-trace counter (drop_not_papers: not_paper:<kind>).",
+   "rule": "R-PAP-17/18/39 not-papers (owner): the current build drops the record as a non-paper (OpenAlex type or genre: editorial, book review, abstract, commentary, deliverable...); named per row by the build-trace counter (drop_not_papers: not_paper:<kind>). D-0023 (2026-11-19, gate-9 pi2): R-PAP-57 drops DSpace@MIT 'Report to the President for year ended ...' institutional annual reports (trace not_paper:annual_report); R-PAP-39 reviewed entries in hierarchy/mit/reviewed/census-overrides-school.json drop the SpaceCHI 2.0 workshop proposal (Paradiso, Maes) and the unregistered-DOI DevOps record attached to Saurabh Amin (trace not_paper:reviewed_not_paper).",
    "rows": [
     {
      "pi": "Emery N. Brown",
@@ -2130,6 +2130,174 @@
      "identity_before": "dblp_person_page",
      "trace": [
       "not_paper:erratum"
+     ]
+    },
+    {
+     "pi": "Jaime Peraire",
+     "oa": "https://openalex.org/W7209834425",
+     "labId": "atl:l:mit:jaime-peraire",
+     "atlasWorkId": "atl:w:180fa426705d",
+     "title": "Report to the President for year ended June 30, 2016, Department of Aeronautics and Astronautics",
+     "year": 2016,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "not_paper:annual_report"
+     ]
+    },
+    {
+     "pi": "Jaime Peraire",
+     "oa": "https://openalex.org/W7208945107",
+     "labId": "atl:l:mit:jaime-peraire",
+     "atlasWorkId": "atl:w:e32d7f60e855",
+     "title": "Report to the President for year ended June 30, 2017, Department of Aeronautics and Astronautics",
+     "year": 2017,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "not_paper:annual_report"
+     ]
+    },
+    {
+     "pi": "Saurabh Amin",
+     "oa": "https://openalex.org/W7216572816",
+     "labId": "atl:l:mit:saurabh-amin",
+     "atlasWorkId": "atl:w:3fc57e4e968c",
+     "title": "An Empirical Study of DevOps Adoption in Enterprise Software Development",
+     "year": 2017,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "not_paper:reviewed_not_paper"
+     ]
+    },
+    {
+     "pi": "Sanjay E. Sarma",
+     "oa": "https://openalex.org/W7209335969",
+     "labId": "atl:l:mit:sanjay-e-sarma",
+     "atlasWorkId": "atl:w:ed44d10a2659",
+     "title": "Report to the President for year ended June 30, 2020, MIT Open Learning",
+     "year": 2020,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "not_paper:annual_report"
+     ]
+    },
+    {
+     "pi": "Bruce Tidor",
+     "oa": "https://openalex.org/W7209646118",
+     "labId": "atl:l:mit:bruce-tidor",
+     "atlasWorkId": "atl:w:fa742f6c5f6a",
+     "title": "Report to the President for year ended June 30, 2020, MIT Skoltech Program",
+     "year": 2020,
+     "identity_before": "advisee_anchored_author_id",
+     "trace": [
+      "not_paper:annual_report"
+     ]
+    },
+    {
+     "pi": "Bruce Tidor",
+     "oa": "https://openalex.org/W7208872437",
+     "labId": "atl:l:mit:bruce-tidor",
+     "atlasWorkId": "atl:w:80391236f042",
+     "title": "Report to the President for year ended June 30, 2021, MIT Skoltech Program",
+     "year": 2021,
+     "identity_before": "advisee_anchored_author_id",
+     "trace": [
+      "not_paper:annual_report"
+     ]
+    },
+    {
+     "pi": "Joseph A. Paradiso",
+     "oa": "https://openalex.org/W4225122531",
+     "labId": "atl:l:mit:joseph-a-paradiso",
+     "atlasWorkId": "atl:w:8a3e26910cef",
+     "title": "SpaceCHI 2.0: Advancing Human-Computer Interaction Systems for Space Exploration",
+     "year": 2022,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "not_paper:reviewed_not_paper"
+     ]
+    },
+    {
+     "pi": "Pattie Maes",
+     "oa": "https://openalex.org/W4225122531",
+     "labId": "atl:l:mit:pattie-maes",
+     "atlasWorkId": "atl:w:8a3e26910cef",
+     "title": "SpaceCHI 2.0: Advancing Human-Computer Interaction Systems for Space Exploration",
+     "year": 2022,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "not_paper:reviewed_not_paper"
+     ]
+    },
+    {
+     "pi": "Anantha Chandrakasan",
+     "oa": "https://openalex.org/W7208876504",
+     "labId": "atl:l:mit:anantha-chandrakasan",
+     "atlasWorkId": "atl:w:78798dca2913",
+     "title": "Report to the President for year ended June 30, 2024, Dean, School of Engineering",
+     "year": 2024,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "not_paper:annual_report"
+     ]
+    },
+    {
+     "pi": "Jinhua Zhao",
+     "oa": "https://openalex.org/W7209783940",
+     "labId": "atl:l:mit:jinhua-zhao",
+     "atlasWorkId": "atl:w:89b4dcc92b4c",
+     "title": "Report to the President for year ended June 30, 2026, MIT Mobility Initiative",
+     "year": 2026,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "not_paper:annual_report"
+     ]
+    },
+    {
+     "pi": "Eytan Modiano",
+     "oa": "https://openalex.org/W7208957463",
+     "labId": "atl:l:mit:eytan-modiano",
+     "atlasWorkId": "atl:w:fb5a75148717",
+     "title": "Report to the President for year ended June 30, 2020, Laboratory for Information and Decision Systems",
+     "year": 2020,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "not_paper:annual_report"
+     ]
+    },
+    {
+     "pi": "Eytan Modiano",
+     "oa": "https://openalex.org/W7209275623",
+     "labId": "atl:l:mit:eytan-modiano",
+     "atlasWorkId": "atl:w:65eee08d581d",
+     "title": "Report to the President for year ended June 30, 2019, Laboratory for Information and Decision Systems",
+     "year": 2019,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "not_paper:annual_report"
+     ]
+    },
+    {
+     "pi": "Jaime Peraire",
+     "oa": "https://openalex.org/W7209494058",
+     "labId": "atl:l:mit:jaime-peraire",
+     "atlasWorkId": "atl:w:82544d086925",
+     "title": "Report to the President for year ended June 30, 2018, Department of Aeronautics and Astronautics",
+     "year": 2018,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "not_paper:annual_report"
+     ]
+    },
+    {
+     "pi": "James J. DiCarlo",
+     "oa": "https://openalex.org/W7209444148",
+     "labId": "atl:l:mit:james-j-dicarlo",
+     "atlasWorkId": "atl:w:1dbe1f18bc60",
+     "title": "Report to the President for year ended June 30, 2023, The MIT Quest for Intelligence",
+     "year": 2023,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "not_paper:annual_report"
      ]
     }
    ]

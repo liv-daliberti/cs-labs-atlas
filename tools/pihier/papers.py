@@ -157,6 +157,10 @@ JOURNAL_STATE_REPORT_TITLE = re.compile(r'(?i)^\s*report on the state and change
 DROPS_COMPLETE_VOLUME_TITLE = re.compile(r'(?i)^\s*(?:LIPIcs|OASIcs),\s*Volume\s+\d+\b.*\bComplete Volume\s*$')
 
 
+# R-PAP-57 (2026-11-19, D-0023; MIT gate 9 pi2, Modiano's LIDS report): an institution's annual 'Report to the President for year ended June 30, YYYY, <unit>' (DSpace@MIT).
+ANNUAL_REPORT_TITLE = re.compile(r'(?i)^\s*report to the president for (?:the )?year ended\b')
+
+
 def all_caps_title(t):
     letters = [c for c in t if c.isalpha()]
     return len(t.split()) >= 4 and len(letters) >= 20 and not any(c.islower() for c in letters)
@@ -398,6 +402,8 @@ def not_a_paper(r, pages=None, bare=False):
         return 'workshop_proposal'
     if JOURNAL_STATE_REPORT_TITLE.search(t):   # R-PAP-51
         return 'editorial'
+    if ANNUAL_REPORT_TITLE.search(t):   # R-PAP-57
+        return 'annual_report'
     if DAGSTUHL_ARTIFACT_DOI.match(d):   # R-PAP-49
         return 'artifact_deposit'
     if ty == 'conference-paper' and (pages is None or pages <= 2) and re.match(r'(?i)^[A-Z]{2,8}(?:[- ]\d{4})?\s+workshop on\b', t):
