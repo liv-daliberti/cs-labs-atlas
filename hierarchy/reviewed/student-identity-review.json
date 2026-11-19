@@ -2170,11 +2170,11 @@
   "memberships": [
    {
     "pi": "Boaz Barak",
-    "person": "harvard_fac_rosie-zhao"
+    "person": "ext:harvard:rosie-zhao"
    },
    {
     "pi": "Sham Kakade",
-    "person": "harvard_fac_rosie-zhao"
+    "person": "ext:harvard:rosie-zhao"
    }
   ],
   "reviewed_by": "codex-harvard-id-holds-1108",
@@ -2192,7 +2192,7 @@
    {
     "kind": "roster_person_link",
     "pi": "Boaz Barak",
-    "person": "harvard_fac_rosie-zhao",
+    "person": "ext:harvard:rosie-zhao",
     "url": "https://web.archive.org/web/20261011204322id_/https://www.boazbarak.org/",
     "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
     "quote": "<a href=\"https://rosieyzh.github.io/\">Rosie Zhao</a>",
@@ -2203,7 +2203,7 @@
    {
     "kind": "roster_person_link",
     "pi": "Sham Kakade",
-    "person": "harvard_fac_rosie-zhao",
+    "person": "ext:harvard:rosie-zhao",
     "url": "https://shamulent.github.io/group",
     "sha256": "d74ed1160c4fdc597820a5059ed60cdd578c8643699787359f71cfe15cd70418",
     "quote": "<a href=\"https://rosieyzh.github.io\" class=\"alink\">Rosie Zhao</a>",
@@ -2232,6 +2232,14 @@
      "previous_url": "https://shamulent.github.io/group",
      "url": "https://shamulent.github.io/group",
      "sha256": "d74ed1160c4fdc597820a5059ed60cdd578c8643699787359f71cfe15cd70418"
+    },
+    {
+     "by": "claude-ids-1119 (coordinator-authorized)",
+     "at": "2026-11-19",
+     "reason": "The 2026-11-19 Harvard rebuild gives Rosie Zhao the native key ext:harvard:rosie-zhao for both advisers again (census-owned key harvard_fac_rosie-zhao no longer applies). Rebased only the membership and roster_person_link person keys; decision, URLs, sha256 and quotes unchanged, and every cited (url, sha256) is still in the unchanged native relation sources.",
+     "pi": "Boaz Barak and Sham Kakade",
+     "previous_person": "harvard_fac_rosie-zhao",
+     "person": "ext:harvard:rosie-zhao"
     }
    ]
   }
