@@ -164,11 +164,12 @@ def alumni_relation(rel, roles):
     return max(ys) if ys else None
 
 
-def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None):
+def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None, held=None):
     """`only_pis` (a per-PI release, D-0001; tools/pi_release.py): draw only from these PIs' rows (their lab papers, student papers, DBLP
     pool and student candidates). With None the draw is exactly the school-wide one (the published draws are unchanged)."""
     cfg = cfg or LEGACY
     only = set(only_pis) if only_pis is not None else None
+    held = {tuple(x) for x in held or ()}   # D-0017: held student links are not in the release package; the draw must not sample them
     out = {'seed': cfg['seed'], 'date': date, 'sizes': {k: cfg[k] for k in ('uniform', 'stratum', 'cov', 'cands')}, 'schools': {}, 'files': {}}
     if cfg is LEGACY:
         del out['sizes']  # the 2026-10-29 files never carried it
@@ -178,7 +179,7 @@ def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None
         out['files'][school] = {f: sha(d / f) for f in FILES}
         if only is not None:
             import pi_release
-            out.setdefault('subset', {})[school] = dict(pis=sorted(only), n_pis=len(only), files=pi_release.package_hashes(school, only),
+            out.setdefault('subset', {})[school] = dict(pis=sorted(only), n_pis=len(only), files=pi_release.package_hashes(school, only, held=held), held=sorted([list(x) for x in held]),
                                                         included_sha=__import__('hashlib').sha256('\n'.join(sorted(only)).encode()).hexdigest())
         # 1. lab papers
         meta = []
@@ -202,7 +203,7 @@ def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None
         sm = []
         for i, line in enumerate(gzip.open(d / 'student_papers.jsonl.gz', 'rt')):
             r = json.loads(line)
-            if only is not None and r['pi'] not in only:
+            if only is not None and (r['pi'] not in only or (r['pi'], r.get('student')) in held):
                 continue
             sm.append(dict(i=i, key=f"{r['pi']}|{r['student']}|{r['oa']}", basis=r.get('basis')))
         stu = []
@@ -245,6 +246,8 @@ def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None
         cands = []
         for p in pis:
             for s in stj.get(p['pi']) or []:
+                if (p['pi'], s.get('person') or s.get('id') or s.get('name')) in held:
+                    continue
                 ys = [y for rel in s.get('relations') or [] for y in [thesis_relation(rel, school, s.get('roles') or [])] if y]
                 if not ys and school not in SCHOOLS:
                     ys = [y for rel in s.get('relations') or [] for y in [alumni_relation(rel, s.get('roles') or [])] if y]
@@ -279,8 +282,11 @@ def draw_round(rnd, schools=None):
         only = None
         if cfg.get('subset'):
             import pi_release
-            only = pi_release.plan(school)['included']
-        main([school], f, datetime.date.today().isoformat(), cfg, only)
+            pl = pi_release.plan(school)
+            only, held = pl['included'], pi_release.held_set(pl)
+        else:
+            held = None
+        main([school], f, datetime.date.today().isoformat(), cfg, only, held)
 
 
 if __name__ == '__main__':

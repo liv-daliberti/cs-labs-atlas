@@ -74,6 +74,18 @@ def one_school(school):
     if sub:   # a per-PI release draw (sample.py --round pi1): the summary records the subset it was drawn from (g9 binds to it, not to the whole files)
         import pi_release
         d['subset'] = dict(sub, files_now=pi_release.package_hashes(school, sub['pis'], held={tuple(x) for x in sub.get('held') or ()}))
+        if 'held' not in sub:   # a draw made before the draw recorded D-0017 held links: rebind to the held-aware package ONLY when the content is otherwise
+            # identical (same package without holds) and no drawn student row/candidate is a held link; the rebind is recorded in the summary
+            pl = pi_release.plan(school)
+            held = pi_release.held_set(pl)
+            nohold = pi_release.package_hashes(school, sub['pis'])
+            drawn_rows = {(it['key'].split('|')[0], it['key'].split('|')[1]) for it in S['schools'][school]['student_precision']}
+            if nohold == sub['files'] and not (drawn_rows & held) and not (S['schools'][school]['student_coverage_order'] and
+                    {(c['pi'], c['person']) for c in S['schools'][school]['student_coverage_order']} & held):
+                live = pi_release.package_hashes(school, sub['pis'], held=held)
+                d['subset']['files'] = d['subset']['files_now'] = live
+                d['subset']['rebound_to_held_aware'] = dict(held_links=len(held), reason='draw predates held-aware hashing; pre-hold package identical, no drawn row is held')
+                sub = dict(sub, files=live)
         d['files'], d['files_now'] = sub['files'], d['subset']['files_now']
     d['population'] = {k: S['schools'][school][k] for k in ('n_lab_papers', 'n_student_papers', 'n_coverage_pool', 'n_student_candidates')}
     rd = round_dir()
