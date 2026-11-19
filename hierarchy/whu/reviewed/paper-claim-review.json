@@ -1,0 +1,488 @@
+{
+  "school": "whu",
+  "decisions": [
+    {
+      "id": "T694-dong-rmot-exact-owned-journal-preprint-join",
+      "pi": "董性平",
+      "decision": "merge",
+      "match": {
+        "doi": "10.48550/arxiv.2406.05039"
+      },
+      "into": {
+        "doi": "10.1109/tpami.2026.3745142"
+      },
+      "why": "The same exact PI-owned bibliography citation block links the current journal paper to arXiv2406.05039. The retained v1 and the 2026 journal provider record are independently eligible; join editions under the actual 2026 publisher record without borrowing affiliation or inventing a lead.",
+      "reviewed_by": "codex-midpoint-1117",
+      "reviewed_at": "2026-11-18",
+      "evidence": [
+        {
+          "url": "https://xingpingdong.github.io/",
+          "sha256": "cb6bd0129b0139021284d4f746311cbc22f56f974a59ba3d145e9d7512f55c18",
+          "quote": "[2] Yani Zhang#, Dongming Wu#, Wencheng Han, Xingping Dong , Shengcai Liao, Bo Du , “Referring Multi-Object Tracking with Diverse Dynamic Expressions”, DOI Bookmark: 10.1109/TPAMI.2026.3745142 in IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI) , doi: 10.1109/TPAMI.2026.3745142. (SCI, IF=18.6, CCF Rank A) IEEE arXiv github"
+        }
+      ]
+    },
+    {
+      "id": "T694-yuan-blood-flow-preprint-journal-join",
+      "pi": "袁志勇",
+      "decision": "merge",
+      "match": {
+        "doi": "10.48550/arxiv.1901.08397"
+      },
+      "into": {
+        "doi": "10.1177/0037549719895087"
+      },
+      "why": "The genuine journal provider body explicitly maps this exact arXiv DOI as its preprint location. The retained complete preprint has the exact stamp, title and original author list. Both native rows are independently eligible; retain the published journal lead and every eligible byline, removing double counting.",
+      "reviewed_by": "codex-midpoint-1117",
+      "reviewed_at": "2026-11-18",
+      "evidence": [
+        {
+          "url": "https://api.openalex.org/works/W2998221004",
+          "sha256": "77f0cdb9f263425132c4d0b3d5ebb5fa50f87daa1bb61ba01be2f3901e37ce2e",
+          "quote": "\"doi\": \"https://doi.org/10.1177/0037549719895087\"; locations: \"doi\": \"https://doi.org/10.48550/arxiv.1901.08397\"; parsed provider body serialized unchanged, retained at /n/fs/resemble/homogenizing-science/scratch/pi-midpoint-batch1-1117/round3/sources/77f0cdb9f263425132c4d0b3d5ebb5fa50f87daa1bb61ba01be2f3901e37ce2e.openalex.json"
+        }
+      ]
+    },
+    {
+      "id": "T706-tan-exact-chengguo-namesake-rejection",
+      "pi": "谭成予",
+      "decision": "reject",
+      "match": {
+        "doi": "10.5194/isprs-archives-xlii-2-w7-1363-2017"
+      },
+      "why": "Complete primary original names Chengguo Tan and Suiyu Yan. Chengguo Tan is not the literal bilingual PI Chengyu Tan/谭成予. Exact-work rejection only; mixed provider ID requires per-work proof.",
+      "reviewed_by": "codex-midpoint-1117",
+      "reviewed_at": "2026-11-18",
+      "evidence": [
+        {
+          "url": "https://isprs-archives.copernicus.org/articles/XLII-2-W7/1363/2017/isprs-archives-XLII-2-W7-1363-2017.pdf",
+          "sha256": "864593ab714034e0d4381951a3b4b333498236400cd11168951948486bf6ba41",
+          "quote": "SPATIOTEMPORAL DATA ORGANIZATION AND APPLICATION RESEARCH Chengguo Tan a, Suiyu Yan b * a Big Data Innovation Center, State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing,Wuhan University, Wuhan, China - tchg@geostar.com.cn b Wuda Geoinformatics Co.,Ltd., Wuhan,China - lucya@geostar.com.cn"
+        }
+      ]
+    },
+    {
+      "id": "worker:xie:arxiv-2311.02862:published-version-chain",
+      "pi": "谢晓园",
+      "decision": "merge",
+      "match": {
+        "oa": "https://dblp.org/rec/journals/corr/abs-2311-02862"
+      },
+      "into": {
+        "doi": "10.1145/3650212.3652107"
+      },
+      "why": "Actual originalv1 and laterversion PDFs carry the same immutable arXiv identifier. The later original carries the published title and complete ordered byline matching the independently eligible native publisher record. Preserve version-specific source dates/bylines; choose the existing normally eligible published row. No affiliation, date or author metadata is copied backward to v1; no new paper is admitted by this merge.",
+      "reviewed_by": "codex-midpoint-1117",
+      "reviewed_at": "2026-11-18",
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2311/2311.02862v1.pdf",
+          "sha256": "d0e69bcd2e4938c82dea329c814bd5945d1cf742bd7f9ac7ae7124de3de4ec55",
+          "raw_file": "/n/fs/resemble/homogenizing-science/scratch/pi-midpoint-batch2-1118/round2-source-bibliography/preprint-v1-captures/sources/d0e69bcd2e4938c82dea329c814bd5945d1cf742bd7f9ac7ae7124de3de4ec55.pdf",
+          "quote": "Generate Complete Logging Statements with an Efficient End-to-End Approach Xiaoyuan Xie∗ Zhipeng Cai xxie@whu.edu.cn zhipengcai@whu.edu.cn School of Computer Science, Wuhan University, China School of Computer Science, Wuhan University, China Songqiang Chen∗ Jifeng Xuan i9s.chen@connect.ust.hk jxuan@whu.edu.cn Department of Computer Science and Engineering, The School of Computer Science, Wuhan University, China Hong Kong University of Science and Technology, China arXiv:2311.02862v1 [cs.SE] 6 Nov 2023 ABSTRACT [3, 18, 21, 24, 40, 47, 50]. Researchers leverage topic modeling and Logs are significant in modern software systems, aiding in various deep learning to suggest logging locations at method level [21] maintenance tasks. To make better use of these logs, many methods and code-block level [24], respectively. On the other hand, some have been proposed to help developers draft suitable logging state- methods help developers decide “what to log” [28, 29]. Li et al. [25] ments. However, these methods only help developers either locate leverage the ordinal nature of log levels and design neural networks logging positions or write partial content of logging statements, or to suggest log levels. Ding et al. [8] build a neural machine transla- cannot efficiently help in generating and inserting complete log- tion model to generate the log messages. However, these works only ging statements. To address their limitations, we introduce a new consider tackling one of the aforementioned three sub-tasks. They method to better support the automated end-to-end generation of cannot fully support developers in a complete logging statement logging statements. Our end-to-end method consists of two steps, generation activity. first utilizing token classification to locate where to inser",
+          "source_version_stamp": "arXiv:2311.02862v1 [cs.SE] 6 Nov 2023"
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2311/2311.02862v2.pdf",
+          "sha256": "f04167b37b6fc00bb0f2483c1e2a15a67c4ce0643433e8deeabd6be5fd8e5a7e",
+          "raw_file": "/n/fs/resemble/homogenizing-science/scratch/pi-midpoint-batch2-1118/round2-source-bibliography/preprint-captures/sources/f04167b37b6fc00bb0f2483c1e2a15a67c4ce0643433e8deeabd6be5fd8e5a7e.pdf",
+          "quote": "FastLog: An End-to-End Method to Efficiently Generate and Insert Logging Statements Xiaoyuan Xie∗ Zhipeng Cai xxie@whu.edu.cn zhipengcai@whu.edu.cn School of Computer Science, Wuhan University, China School of Computer Science, Wuhan University, China Songqiang Chen∗ Jifeng Xuan i9s.chen@connect.ust.hk jxuan@whu.edu.cn Department of Computer Science and Engineering, The School of Computer Science, Wuhan University, China arXiv:2311.02862v2 [cs.SE] 29 Mar 2024 Hong Kong University of Science and Technology, China School of Computer Science, Wuhan University, China ABSTRACT quality of the collected logs. Therefore, the significance of writing Logs play a crucial role in modern software systems, serving as appropriate logging statements cannot be overstated. a means for developers to record essential information for future However, writing appropriate logging statements is not an easy software maintenance. As the performance of these log-based main- task for developers. Previous studies suggest that developers often tenance tasks heavily relies on the quality of logging statements, struggle with determining proper logging locations [12, 44, 49], various works have been proposed to assist developers in writing levels [23, 24], and messages [42], which are three essential sub- appropriate logging statements. However, these works either only tasks in a complete logging statement generation activity. support developers in partial sub-tasks of this whole activity; or per- To assist developers in writing logging statements more ef- form with a relatively high time cost and may introduce unwanted fectively, a variety of approaches have been proposed to assist modifications. To address their limitations, we propose FastLog, with different aspects of this process. On one hand, seve",
+          "source_version_stamp": "arXiv:2311.02862v2 [cs.SE] 29 Mar 2024"
+        }
+      ],
+      "worker_proposal": true,
+      "independent_approval": false,
+      "source_native_record": {
+        "pi": "谢晓园",
+        "work": null,
+        "oa": "https://dblp.org/rec/journals/corr/abs-2311-02862",
+        "doi": "10.48550/arxiv.2311.02862",
+        "title": "Generate Complete Logging Statements with an Efficient End-to-End Approach",
+        "year": 2023,
+        "date": "2023",
+        "type": "preprint",
+        "venue": "CoRR",
+        "landing": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2311/2311.02862v1.pdf",
+        "byline": [
+          "Xiaoyuan Xie",
+          "Zhipeng Cai",
+          "Songqiang Chen",
+          "Jifeng Xuan"
+        ],
+        "byline_school": [],
+        "authorship": {
+          "position": null,
+          "raw_name": null,
+          "author_id": null,
+          "institutions": [],
+          "raw_affiliations": [],
+          "school_via": [
+            "page1_dblp: journals/corr/abs-2311-02862",
+            "page 1 (manual_complete_ordered_byline_and_explicit_affiliation_marker): Generate Complete Logging Statements with an Efficient End-to-End Approach Xiaoyuan Xie∗ Zhipeng Cai xxie@whu.edu.cn zhipengcai@whu.edu.cn School of Computer Science, Wuhan University, China School of Computer Science, Wuhan University, China Songqiang Chen∗ Jifeng Xuan i9s.chen@connect.ust.hk jxuan@whu.edu.cn Department of Computer Science and Engineering, The School of Computer Science, Wuhan University, China Hong Kong University of Science and Technology, China arXiv:2311.02862v1 [cs.SE] 6 Nov 2023 ABSTRACT [3, 18, 21, 24, 40, 47, 50]. Researchers leverage topic modeling and Logs are significant in modern software systems, aiding in various deep learning to suggest logging locations at method level [21] maintenance tasks. To make better use of these logs, many methods and code-block level [24], respectively. On the other hand, some have been proposed to help developers draft suitable logging state- methods help developers decide “what to log” [28, 29]. Li et al. [25] ments. However, these methods only help developers either locate leverage the ordinal nature of log levels and design neural networks logging positions or write partial content of logging statements, or to suggest log levels. Ding et al. [8] build a neural machine transla- cannot efficiently help in generating and inserting complete log- tion model to generate the log messages. However, these works only ging statements. To address their limitations, we introduce a new consider tackling one of the aforementioned three sub-tasks. They method to better support the automated end-to-end generation of cannot fully support developers in a complete logging statement logging statements. Our end-to-end method consi"
+          ],
+          "page1": {
+            "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2311/2311.02862v1.pdf",
+            "pdf_sha256": "d0e69bcd2e4938c82dea329c814bd5945d1cf742bd7f9ac7ae7124de3de4ec55",
+            "how": "manual_complete_ordered_byline_and_explicit_affiliation_marker",
+            "quotes": [
+              "Generate Complete Logging Statements with an Efficient End-to-End Approach Xiaoyuan Xie∗ Zhipeng Cai xxie@whu.edu.cn zhipengcai@whu.edu.cn School of Computer Science, Wuhan University, China School of Computer Science, Wuhan University, China Songqiang Chen∗ Jifeng Xuan i9s.chen@connect.ust.hk jxuan@whu.edu.cn Department of Computer Science and Engineering, The School of Computer Science, Wuhan University, China Hong Kong University of Science and Technology, China arXiv:2311.02862v1 [cs.SE] 6 Nov 2023 ABSTRACT [3, 18, 21, 24, 40, 47, 50]. Researchers leverage topic modeling and Logs are significant in modern software systems, aiding in various deep learning to suggest logging locations at method level [21] maintenance tasks. To make better use of these logs, many methods and code-block level [24], respectively. On the other hand, some have been proposed to help developers draft suitable logging state- methods help developers decide “what to log” [28, 29]. Li et al. [25] ments. However, these methods only help developers either locate leverage the ordinal nature of log levels and design neural networks logging positions or write partial content of logging statements, or to suggest log levels. Ding et al. [8] build a neural machine transla- cannot efficiently help in generating and inserting complete log- tion model to generate the log messages. However, these works only ging statements. To address their limitations, we introduce a new consider tackling one of the aforementioned three sub-tasks. They method to better support the automated end-to-end generation of cannot fully support developers in a complete logging statement logging statements. Our end-to-end method consi"
+            ],
+            "dblp_key": "journals/corr/abs-2311-02862",
+            "fetched_at": "2026-11-18T18:44:43.182501+00:00"
+          }
+        },
+        "identity": "dblp_person_page",
+        "appointment": {
+          "periodId": "bridge_reviewed:whu:xie:2016-owned-source-revision__reviewed:whu:xie:2026-capture"
+        },
+        "source": "dblp_recover:page1_arxiv",
+        "editions": []
+      },
+      "target_native_record": {
+        "pi": "谢晓园",
+        "work": null,
+        "oa": "https://openalex.org/W4402442776",
+        "doi": "10.1145/3650212.3652107",
+        "title": "FastLog: An End-to-End Method to Efficiently Generate and Insert Logging Statements",
+        "year": 2024,
+        "date": "2024-09-11",
+        "type": "conference-paper",
+        "venue": "ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA)",
+        "landing": "https://doi.org/10.1145/3650212.3652107",
+        "byline": [
+          "Xiaoyuan Xie",
+          "Zhipeng Cai",
+          "Songqiang Chen",
+          "Jifeng Xuan"
+        ],
+        "byline_school": [
+          "Xiaoyuan Xie",
+          "Zhipeng Cai",
+          "Songqiang Chen",
+          "Jifeng Xuan"
+        ],
+        "authorship": {
+          "position": "first",
+          "raw_name": "Xiaoyuan Xie",
+          "author_id": "https://openalex.org/A5100746280",
+          "institutions": [
+            "Wuhan University"
+          ],
+          "raw_affiliations": [
+            "Wuhan University, Wuhan, China"
+          ],
+          "school_via": [
+            "Wuhan University",
+            "text: Wuhan University, Wuhan, China"
+          ],
+          "page1": null
+        },
+        "identity": "dblp_person_page_doi",
+        "appointment": {
+          "periodId": "bridge_reviewed:whu:xie:2016-owned-source-revision__reviewed:whu:xie:2026-capture"
+        },
+        "editions": []
+      }
+    },
+    {
+      "id": "worker:xie:arxiv-2311.11791:published-version-chain",
+      "pi": "谢晓园",
+      "decision": "merge",
+      "match": {
+        "oa": "https://dblp.org/rec/journals/corr/abs-2311-11791"
+      },
+      "into": {
+        "doi": "10.1109/tse.2024.3463747"
+      },
+      "why": "Actual originalv1 and laterversion PDFs carry the same immutable arXiv identifier. The later original carries the published title and complete ordered byline matching the independently eligible native publisher record. Preserve version-specific source dates/bylines; choose the existing normally eligible published row. No affiliation, date or author metadata is copied backward to v1; no new paper is admitted by this merge.",
+      "reviewed_by": "codex-midpoint-1117",
+      "reviewed_at": "2026-11-18",
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2311/2311.11791v1.pdf",
+          "sha256": "51b990eb219d1048a34e831f697442a8d1315c30076349e776ec106440234432",
+          "raw_file": "/n/fs/resemble/homogenizing-science/scratch/pi-midpoint-batch2-1118/round2-source-bibliography/preprint-v1-captures/sources/51b990eb219d1048a34e831f697442a8d1315c30076349e776ec106440234432.pdf",
+          "quote": "1 Metamorphic Testing of Image Captioning Systems via Reduction-based Transformations Xiaoyuan Xie†∗ , Xingpeng Li† , Songqiang Chen‡∗ † School of Computer Science, Wuhan University, China ‡ Department of Computer Science and Engineering, The Hong Kong University of Science and Technology, China xxie@whu.edu.cn, lixingpeng@whu.edu.cn, i9s.chen@connect.ust.hk arXiv:2311.11791v1 [cs.SE] 20 Nov 2023 Abstract—Recently, the Image Captioning (IC) technique has inappropriate actions, e.g., users may comment on social been widely applied to describe a given image in text form. media platforms based on incorrect understanding [5], [6]. To However, IC systems including the commercial IC APIs like identify potential issues in the IC systems, it is essential to Microsoft Azure IC API can still produce incorrect captions and lead to misunderstandings. To tackle this problem, several conduct sufficient testing with effective methods. methods have been proposed to test the IC systems. However, To automatically test the IC systems, Yu et al. propose the these approaches still rely on pre-annotated information and first automated IC system testing method, MetaIC [3]. MetaIC hence cannot really alleviate the oracle problem in the testing. inserts an object into the original images to generate new Besides, they adopt AIGC techniques to create follow-up test images and checks whether the IC Software Under Test (SUT) images that may generate unrealistic images as test cases, which leads to meaningless testing results. Thirdly, existing methods correctly depicts all the objects in the source caption plus the have various restrictions on the eligibility of source test cases, and object inserted in the follow-up test case. Later, Yu et al. [7] hence cannot fully utilize the given images to per",
+          "source_version_stamp": "arXiv:2311.11791v1 [cs.SE] 20 Nov 2023"
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2311/2311.11791v3.pdf",
+          "sha256": "a58f98fb205218a41fa81383c0663ae5e683e8c98679c856dd4302362a10bc04",
+          "raw_file": "/n/fs/resemble/homogenizing-science/scratch/pi-midpoint-batch2-1118/round2-source-bibliography/preprint-captures/sources/a58f98fb205218a41fa81383c0663ae5e683e8c98679c856dd4302362a10bc04.pdf",
+          "quote": "1 Metamorphic Testing of Image Captioning Systems via Image-Level Reduction Xiaoyuan Xie†∗ , Xingpeng Li† , Songqiang Chen‡∗ † School of Computer Science, Wuhan University, China ‡ Department of Computer Science and Engineering, The Hong Kong University of Science and Technology, China xxie@whu.edu.cn, lixingpeng@whu.edu.cn, i9s.chen@connect.ust.hk Abstract—The Image Captioning (IC) technique is widely used wrong understanding [12]–[14]. To reveal the potential issues arXiv:2311.11791v3 [cs.SE] 4 Oct 2024 to describe images in natural language. However, even state- in the IC systems, it is essential to conduct sufficient testing of-the-art IC systems can still produce incorrect captions and with effective methods. lead to misunderstandings. Recently, some IC system testing methods have been proposed. However, these methods still rely To automatically test the IC systems, Yu et al. proposed on pre-annotated information and hence cannot really alleviate the first automated IC system testing method, MetaIC [10]. the difficulty in identifying the test oracle. Furthermore, their MetaIC inserts an object into the original images to generate methods artificially manipulate objects, which may generate un- new images and checks if the IC Software Under Test (SUT) real images as test cases and thus lead to less meaningful testing correctly depicts all the objects in the source caption plus results. Thirdly, existing methods have various requirements on the eligibility of source test cases, and hence cannot fully utilize the object inserted in the follow-up test case. Later, Yu et the given images to perform testing. To tackle these issues, in this al. further proposed ROME [15] that generated follow-up test paper, we propose R E IC to perform metamorphic testing for the cases by ",
+          "source_version_stamp": "arXiv:2311.11791v3 [cs.SE] 4 Oct 2024"
+        }
+      ],
+      "worker_proposal": true,
+      "independent_approval": false,
+      "source_native_record": {
+        "pi": "谢晓园",
+        "work": null,
+        "oa": "https://dblp.org/rec/journals/corr/abs-2311-11791",
+        "doi": "10.48550/arxiv.2311.11791",
+        "title": "Metamorphic Testing of Image Captioning Systems via Reduction-based Transformations",
+        "year": 2023,
+        "date": "2023",
+        "type": "preprint",
+        "venue": "CoRR",
+        "landing": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2311/2311.11791v1.pdf",
+        "byline": [
+          "Xiaoyuan Xie",
+          "Xingpeng Li",
+          "Songqiang Chen"
+        ],
+        "byline_school": [],
+        "authorship": {
+          "position": null,
+          "raw_name": null,
+          "author_id": null,
+          "institutions": [],
+          "raw_affiliations": [],
+          "school_via": [
+            "page1_dblp: journals/corr/abs-2311-11791",
+            "page 1 (manual_complete_ordered_byline_and_explicit_affiliation_marker): 1 Metamorphic Testing of Image Captioning Systems via Reduction-based Transformations Xiaoyuan Xie†∗ , Xingpeng Li† , Songqiang Chen‡∗ † School of Computer Science, Wuhan University, China ‡ Department of Computer Science and Engineering, The Hong Kong University of Science and Technology, China xxie@whu.edu.cn, lixingpeng@whu.edu.cn, i9s.chen@connect.ust.hk arXiv:2311.11791v1 [cs.SE] 20 Nov 2023 "
+          ],
+          "page1": {
+            "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2311/2311.11791v1.pdf",
+            "pdf_sha256": "51b990eb219d1048a34e831f697442a8d1315c30076349e776ec106440234432",
+            "how": "manual_complete_ordered_byline_and_explicit_affiliation_marker",
+            "quotes": [
+              "1 Metamorphic Testing of Image Captioning Systems via Reduction-based Transformations Xiaoyuan Xie†∗ , Xingpeng Li† , Songqiang Chen‡∗ † School of Computer Science, Wuhan University, China ‡ Department of Computer Science and Engineering, The Hong Kong University of Science and Technology, China xxie@whu.edu.cn, lixingpeng@whu.edu.cn, i9s.chen@connect.ust.hk arXiv:2311.11791v1 [cs.SE] 20 Nov 2023 "
+            ],
+            "dblp_key": "journals/corr/abs-2311-11791",
+            "fetched_at": "2026-11-18T18:44:48.737346+00:00"
+          }
+        },
+        "identity": "dblp_person_page",
+        "appointment": {
+          "periodId": "bridge_reviewed:whu:xie:2016-owned-source-revision__reviewed:whu:xie:2026-capture"
+        },
+        "source": "dblp_recover:page1_arxiv",
+        "editions": []
+      },
+      "target_native_record": {
+        "pi": "谢晓园",
+        "work": null,
+        "oa": "https://openalex.org/W4402630602",
+        "doi": "10.1109/tse.2024.3463747",
+        "title": "Metamorphic Testing of Image Captioning Systems via Image-Level Reduction",
+        "year": 2024,
+        "date": "2024-09-19",
+        "type": "article",
+        "venue": "IEEE Transactions on Software Engineering",
+        "landing": "https://doi.org/10.1109/tse.2024.3463747",
+        "byline": [
+          "Xiaoyuan Xie",
+          "Xingpeng Li",
+          "Songqiang Chen"
+        ],
+        "byline_school": [
+          "Xiaoyuan Xie",
+          "Xingpeng Li"
+        ],
+        "authorship": {
+          "position": "first",
+          "raw_name": "Xiaoyuan Xie",
+          "author_id": "https://openalex.org/A5100746280",
+          "institutions": [
+            "Wuhan University"
+          ],
+          "raw_affiliations": [
+            "School of Computer Science, Wuhan University, Wuhan, China"
+          ],
+          "school_via": [
+            "Wuhan University",
+            "text: School of Computer Science, Wuhan University, Wuhan, China"
+          ],
+          "page1": null
+        },
+        "identity": "dblp_person_page_doi",
+        "appointment": {
+          "periodId": "bridge_reviewed:whu:xie:2016-owned-source-revision__reviewed:whu:xie:2026-capture"
+        },
+        "editions": []
+      }
+    },
+    {
+      "id": "worker:xie:arxiv-1807.10453:published-version-chain",
+      "pi": "谢晓园",
+      "decision": "merge",
+      "match": {
+        "oa": "https://dblp.org/rec/journals/corr/abs-1807-10453"
+      },
+      "into": {
+        "doi": "10.1109/tr.2020.2972266"
+      },
+      "why": "Actual originalv1 and laterversion PDFs carry the same immutable arXiv identifier. The later original carries the published title and complete ordered byline matching the independently eligible native publisher record. Preserve version-specific source dates/bylines; choose the existing normally eligible published row. No affiliation, date or author metadata is copied backward to v1; no new paper is admitted by this merge.",
+      "reviewed_by": "codex-midpoint-1117",
+      "reviewed_at": "2026-11-18",
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1807/1807.10453v1.pdf",
+          "sha256": "8c04771c04c37e81b8f6daa9868e6ef7abf2185fe977303fd88ebc679ac780d5",
+          "raw_file": "/n/fs/resemble/homogenizing-science/scratch/pi-midpoint-batch2-1118/round2-source-bibliography/preprint-v1-captures/sources/8c04771c04c37e81b8f6daa9868e6ef7abf2185fe977303fd88ebc679ac780d5.pdf",
+          "quote": "A Validation and Quality Assessment Method with Metamorphic Relations for Unsupervised Machine Learning Software Zhiyi Zhang ∗a , Xiaoyuan Xie ∗a , Tsong Yueh Chenb , Yang Liuc and Baowen Xud a School of Computer Science, Wuhan University b Department of Computer Science and Software Engineering, Swinburne University of Technology c School of Computer Science and Engineering, Nanyang Technological University d State Key Laboratory for Novel Software Technology, Nanjing University arXiv:1807.10453v1 [cs.SE] 27 Jul 2018 Abstract Unsupervised machine learning is a task of modeling the underlying structure of “unlabeled data”. Since learning algorithms have been incorporated into many real-world applications, validating the implementa- tions of those algorithms becomes much more important in the aim of software quality assurance. However, validating unsupervised machine learning programs is challenging because there lacks of priori knowledge. Along this line, in this paper, we present a metamorphic testing based method for validating and charac- terizing unsupervised machine learning programs, and conduct an empirical study on a real-world machine learning tool. The results demonstrate to what extent a program may fit to the profile of a specific scenario, which help end-users or software practitioners comprehend its performance in a vivid and light-weight way. And the experimental findings also reveal the gap between theory and implementation in a software artifact which could be easily ignored by people without much practical experience. In our method, metamorphic relations can serve as one type of quality measure, and one type of guidelines for selecting suitable programs. Keywords: Software verification and validation, metamorphic testing, unsupervised machine learning ",
+          "source_version_stamp": "arXiv:1807.10453v1 [cs.SE] 27 Jul 2018"
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1807/1807.10453v4.pdf",
+          "sha256": "d4d12ec990854494b6d11697f0c285906c1accb76b4782383d3f91d0fde49572",
+          "raw_file": "/n/fs/resemble/homogenizing-science/scratch/pi-midpoint-batch2-1118/round2-source-bibliography/preprint-captures/sources/d4d12ec990854494b6d11697f0c285906c1accb76b4782383d3f91d0fde49572.pdf",
+          "quote": "1 METTLE: a METamorphic Testing approach to assessing and validating unsupervised machine LEarning systems Xiaoyuan Xie, Member, IEEE, Zhiyi Zhang, Tsong Yueh Chen, Senior Member, IEEE, Yang Liu, Member, IEEE, Pak-Lok Poon, Member, IEEE and Baowen Xu, Senior Member, IEEE F arXiv:1807.10453v4 [cs.SE] 11 Jun 2019 Abstract—Unsupervised machine learning is the training of an artificial intelligence system using information that is neither classified nor la- beled, with a view to modeling the underlying structure or distribution in a U NSUPERVISED machine learning requires no prior knowledge and can be widely used in a large variety of applications such as market segmentation for targeting dataset. Since unsupervised machine learning systems are widely used customers [1], anomaly or fraud detection in banking [2], in many real-world applications, assessing the appropriateness of these grouping genes or proteins in biological process [3], deriv- systems and validating their implementations with respect to individual users’ requirements and specific application scenarios / contexts are ing climate indices from earth science data [4], and docu- indisputably two important tasks. Such assessment and validation tasks, ment clustering based on content [5]. More recently, unsu- however, are fairly challenging due to the absence of a priori knowledge pervised machine learning has also been used by software of the data. In view of this challenge, we develop a METamorphic testers in predicting software faults [6]. Testing approach to assessing and validating unsupervised machine This paper specifically focuses on clustering systems LEarning systems, abbreviated as METTLE. Our approach provides a (which refer to software systems that implement cluster- new way to unveil the (possibly la",
+          "source_version_stamp": "arXiv:1807.10453v4 [cs.SE] 11 Jun 2019"
+        }
+      ],
+      "worker_proposal": true,
+      "independent_approval": false,
+      "source_native_record": {
+        "pi": "谢晓园",
+        "work": null,
+        "oa": "https://dblp.org/rec/journals/corr/abs-1807-10453",
+        "doi": null,
+        "title": "A Validation and Quality Assessment Method with Metamorphic Relations for Unsupervised Machine Learning Software",
+        "year": 2018,
+        "date": "2018",
+        "type": "preprint",
+        "venue": "CoRR",
+        "landing": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1807/1807.10453v1.pdf",
+        "byline": [
+          "Zhiyi Zhang",
+          "Xiaoyuan Xie",
+          "Tsong Yueh Chen",
+          "Yang Liu",
+          "Baowen Xu"
+        ],
+        "byline_school": [],
+        "authorship": {
+          "position": null,
+          "raw_name": null,
+          "author_id": null,
+          "institutions": [],
+          "raw_affiliations": [],
+          "school_via": [
+            "page1_dblp: journals/corr/abs-1807-10453",
+            "page 1 (manual_complete_ordered_byline_and_explicit_affiliation_marker): A Validation and Quality Assessment Method with Metamorphic Relations for Unsupervised Machine Learning Software Zhiyi Zhang ∗a , Xiaoyuan Xie ∗a , Tsong Yueh Chenb , Yang Liuc and Baowen Xud a School of Computer Science, Wuhan University b Department of Computer Science and Software Engineering, Swinburne University of Technology c School of Computer Science and Engineering, Nanyang Technological University d State Key Laboratory for Novel Software Technology, Nanjing University arXiv:1807.10453v1 [cs.SE] 27 Jul 2018 "
+          ],
+          "page1": {
+            "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1807/1807.10453v1.pdf",
+            "pdf_sha256": "8c04771c04c37e81b8f6daa9868e6ef7abf2185fe977303fd88ebc679ac780d5",
+            "how": "manual_complete_ordered_byline_and_explicit_affiliation_marker",
+            "quotes": [
+              "A Validation and Quality Assessment Method with Metamorphic Relations for Unsupervised Machine Learning Software Zhiyi Zhang ∗a , Xiaoyuan Xie ∗a , Tsong Yueh Chenb , Yang Liuc and Baowen Xud a School of Computer Science, Wuhan University b Department of Computer Science and Software Engineering, Swinburne University of Technology c School of Computer Science and Engineering, Nanyang Technological University d State Key Laboratory for Novel Software Technology, Nanjing University arXiv:1807.10453v1 [cs.SE] 27 Jul 2018 "
+            ],
+            "dblp_key": "journals/corr/abs-1807-10453",
+            "fetched_at": "2026-11-18T18:44:55.036584+00:00"
+          }
+        },
+        "identity": "dblp_person_page",
+        "appointment": {
+          "periodId": "bridge_reviewed:whu:xie:2016-owned-source-revision__reviewed:whu:xie:2026-capture"
+        },
+        "source": "dblp_recover:page1_arxiv",
+        "editions": []
+      },
+      "target_native_record": {
+        "pi": "谢晓园",
+        "work": null,
+        "oa": "https://openalex.org/W2951165326",
+        "doi": "10.1109/tr.2020.2972266",
+        "title": "METTLE: A METamorphic Testing Approach to Assessing and Validating Unsupervised Machine Learning Systems",
+        "year": 2020,
+        "date": "2020-03-13",
+        "type": "article",
+        "venue": "IEEE Transactions on Reliability",
+        "landing": "https://doi.org/10.1109/tr.2020.2972266",
+        "byline": [
+          "Xiaoyuan Xie",
+          "Zhiyi Zhang",
+          "Tsong Yueh Chen",
+          "Yang Liu",
+          "Pak-Lok Poon",
+          "Baowen Xu"
+        ],
+        "byline_school": [
+          "Xiaoyuan Xie",
+          "Zhiyi Zhang"
+        ],
+        "authorship": {
+          "position": "first",
+          "raw_name": "Xiaoyuan Xie",
+          "author_id": null,
+          "institutions": [
+            "Wuhan University"
+          ],
+          "raw_affiliations": [
+            "School of Computer Science, Wuhan University, Wuhan, China"
+          ],
+          "school_via": [
+            "Wuhan University",
+            "text: School of Computer Science, Wuhan University, Wuhan, China"
+          ],
+          "page1": null
+        },
+        "identity": "dblp_person_page_doi",
+        "appointment": {
+          "periodId": "bridge_reviewed:whu:xie:2016-owned-source-revision__reviewed:whu:xie:2026-capture"
+        },
+        "editions": [
+          {
+            "oa": "https://openalex.org/W3099331415",
+            "work": null,
+            "doi": "",
+            "year": 2020,
+            "venue": "Figshare"
+          }
+        ]
+      }
+    },
+    {
+      "id": "worker:jianhui:joss-21-1131:edition-unclear",
+      "pi": "赵俭辉",
+      "decision": "hold",
+      "match": {
+        "doi": "10.16182/j.issn1004731x.joss.21-1131"
+      },
+      "why": "Same research-group primaryChinesearticle has a source-proven method relation to alreadyeligible2023IEEEIoTwork, but independentT715could not establish separate/expanded/translated status without completeIEEEoriginal. Preserve actualChineseoriginal, hold a potentially duplicate new paper count until source resolution; no merge or absence asserted.",
+      "reviewed_by": "codex-midpoint-1117",
+      "reviewed_at": "2026-11-18",
+      "evidence": [
+        {
+          "url": "https://www.china-simulation.com/CN/article/downloadArticleFile.do?attachType=PDF&id=3104",
+          "sha256": "08ac8634ce4cffbbef127fc6ce67770c48f895ce055fe45bcf5bf8fc81494fb0",
+          "quote": "面向虚拟介入手术的单线圈接收端电磁定位新模型"
+        }
+      ],
+      "independent_addendum": "/n/fs/resemble/homogenizing-science/scratch/pi-midpoint-batch1-1117/source-addenda-1118/independent-review/independent-addendum-receipt.json",
+      "independent_addendum_sha256": "ec011d2736f69089ad0b9516efcaa751472bb87b3b8a6a5aaf8d70f3e6481988"
+    },
+    {
+      "id": "T740-xi-counterfactual-v1-no-WHU-affiliation",
+      "pi": "陈曦",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3098494204",
+        "doi": "10.48550/arxiv.2009.02623"
+      },
+      "why": "Complete actual earliestv1, printed6Sep2020, maps XiChen only to2JarvisLab,Tencent; allthreeaffiliationgroupsare Tsinghua/Tencent/CNR, noWHU. Actualpublisher original retains Tencent/jasonxchen contact, unlike selectedownedWHUrobertcx. Reject this exact PI-school paper claim under ordinary school-affiliation precision. Not a blanket person/authorID/other-work rejection; remaining anchored claims need source review.",
+      "reviewed_by": "codex-midpoint-1117-worker-primary-source-review",
+      "reviewed_at": "2026-11-18",
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2009/2009.02623v1.pdf",
+          "sha256": "ff80a589f898e4c7551a27de05b25894f2b632ca9939d4f9ca2d13d9d9f6b7d6",
+          "raw_file": "/n/fs/resemble/homogenizing-science/scratch/pi-midpoint-batch6-1118/earliest-preprint-research-1118/sources/ff80a589f898e4c7551a27de05b25894f2b632ca9939d4f9ca2d13d9d9f6b7d6.pdf",
+          "quote": "                                        Information Theoretic Counterfactual Learning from\n                                                Missing-Not-At-Random Feedback\n\n\n                                         Zifeng Wang1 , Xi Chen2 , Rui Wen2 , Shao-Lun Huang1 , Ercan E. Kuruoglu3 , Yefeng Zheng2\n                                                    1\n                                                        Tsinghua-Berkeley Shenzhen Institute (TBSI), Tsinghua University, China\n                                                                                 2\n                                                                                   Jarvis Lab, Tencent, China\narXiv:2009.02623v1 [cs.LG] 6 Sep 2020\n\n\n\n\n                                                         3\n                                                           Institute of Science and Technologies of Information, CNR, Pisa, Italy\n\n\n\n                                                                                      ",
+          "version": "v1 actualprinted6Sep2020",
+          "actual_first_page_visually_reviewed": true
+        },
+        {
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2020/file/13f3cf8c531952d72e5847c4183e6910-Paper.pdf",
+          "sha256": "19ec887fa9aa28bcc67857021a66c485e28b399373336047d48665d03d3cb774",
+          "raw_file": "/n/fs/resemble/homogenizing-science/scratch/pi-midpoint-batch6-1118/primary-paper-source-captures/19ec887fa9aa28bcc67857021a66c485e28b399373336047d48665d03d3cb774.pdf",
+          "quote": "Information Theoretic Counterfactual Learning from\n        Missing-Not-At-Random Feedback\n\n\n    Zifeng Wang1 ,Xi Chen2 ,Rui Wen2 ,Shao-Lun Huang1 ,Ercan E. Kuruoglu1,3 ,Yefeng Zheng2\n       1                                                                   2\n           Tsinghua-Berkeley Shenzhen Institute, Tsinghua University         Jarvis Lab, Tencent\n                 3\n                   Institute of Science and Technologies of Information, CNR, Pisa, Italy\n       wangzf18@mails.tsinghua.edu.cn {jasonxchen,ruiwen,yefengzheng}@tencent.com\n               shaolun.huang@sz.tsinghua.edu.cn ercan.kuruoglu@isti.cnr.it\n\n\n\n                                               "
+        }
+      ]
+    }
+  ],
+  "version": 1
+}

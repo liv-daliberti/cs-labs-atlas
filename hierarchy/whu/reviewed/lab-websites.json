@@ -1,0 +1,168 @@
+{
+  "school": "whu",
+  "labs": [
+    {
+      "pi": "苏科华",
+      "url": "https://jszy.whu.edu.cn/sukehua/zh_CN/index.htm",
+      "kind": "pi_homepage",
+      "coverage": "website",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Hash-verified official PI-owned faculty-space homepage used as the lab-page fallback; full student/publication navigation reviewed.",
+      "sha256": "764ec8efe1dbc0f63628ac9ee1a06869c9bf2a8a4792d9e54db4cd8cc18630e0",
+      "found_via": "school_profile_link",
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://jszy.whu.edu.cn/sukehua/zh_CN/index.htm",
+          "on": "https://jszy.whu.edu.cn/sukehua/zh_CN/xsxx/268823/list/index.htm",
+          "at": "2026-11-17T23:59:01",
+          "result": "ok",
+          "sha256": "746321d8cb56eef758488a8222ca97e7f28cbe8a9d8d03c347ad7a7fa066e285"
+        }
+      ],
+      "reviewed_by": "codex-midpoint-1117",
+      "verified": true,
+      "verified_by": "hand_review",
+      "verification_reason": "The exact retained official Wuhan faculty-space homepage names 苏科华 in its original Chinese title/header and identifies the computer-science unit. Ownership is checked in the original script; the automatic pinyin-only matcher lacks the full Latin name here. This verifies website ownership only, not current appointment or final independent approval."
+    },
+    {
+      "pi": "袁志勇",
+      "url": "https://jszy.whu.edu.cn/yuanzhiyong/zh_CN/index.htm",
+      "coverage": "website",
+      "reason": "Hash-verified official PI-owned faculty-space homepage used as the lab-page fallback; full student/publication navigation reviewed.",
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://jszy.whu.edu.cn/yuanzhiyong/zh_CN/index.htm",
+          "on": "https://jszy.whu.edu.cn/yuanzhiyong/zh_CN/xsxx/480769/list/index.htm",
+          "at": "2026-11-17T23:58:59",
+          "result": "ok",
+          "sha256": "a5616b229bc96ecd8066b01990494e2830032e5f33dc496ed8e6da18510b0d3f"
+        }
+      ],
+      "kind": "pi_homepage",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "sha256": "5652756a525215eac44494597ec58d9b7567b1de499ca91c4ef355acd103a376",
+      "found_via": "school_profile_link",
+      "reviewed_by": "codex-midpoint-1117",
+      "verified": true,
+      "verified_by": "hand_review",
+      "verification_reason": "The exact retained official Wuhan faculty-space homepage names 袁志勇 in its original Chinese title/header and identifies the computer-science unit. Ownership is checked in the original script; the automatic pinyin-only matcher lacks the full Latin name here. This verifies website ownership only, not current appointment or final independent approval."
+    },
+    {
+      "pi": "董性平",
+      "url": "https://xingpingdong.github.io/",
+      "kind": "pi_homepage",
+      "coverage": "website",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Current owned personal site names the PI at Wuhan University and is explicitly linked by the retained official profile.",
+      "sha256": "cb6bd0129b0139021284d4f746311cbc22f56f974a59ba3d145e9d7512f55c18",
+      "found_via": "school_profile_link",
+      "checks": [
+        {
+          "source": "school_profile_link",
+          "url": "https://xingpingdong.github.io/",
+          "on": "https://jszy.whu.edu.cn/dongxingping/zh_CN/index.htm",
+          "at": "2026-11-17T23:47:26",
+          "result": "ok",
+          "sha256": "b86684837b42c8a915640f6ca92a2127426879be1e3b6e2adcafd2eafbb5978d",
+          "source_quote": "个人英文主页： https://xingpingdong.github.io"
+        }
+      ],
+      "name_quote": "Xingping Dong",
+      "tie_quote": "School of Computer Science, Wuhan University",
+      "reviewed_by": "codex-midpoint-1117",
+      "verified": true,
+      "verification_quote": "xingping dong homepage you are using an outdated browser please upgrade your bro"
+    },
+    {
+      "pi": "袁梦霆",
+      "url": "https://jszy.whu.edu.cn/yuanmengting/zh_CN/index.htm",
+      "status": "pending_source_review",
+      "sha256": null,
+      "reason": "Exact owned profile requests produced transport errors, not a readable page or a supported absence conclusion.",
+      "found_via": "Exact guarded inventory row3073–3075",
+      "coverage": "pending",
+      "verified": false,
+      "reason_code": "pending_source_recovery",
+      "checks": [
+        {
+          "source": "exact_owned_profile_attempt",
+          "url": "https://jszy.whu.edu.cn/yuanmengting/zh_CN/index.htm",
+          "at": "2026-11-18T11:49:54",
+          "result": "transport_error_no_HTTP_response",
+          "client_error_body_sha256": "2e27e46f4b3a4dc799c2815979c55752df56e719a4038253b49c1d89f382f6dd"
+        },
+        {
+          "source": "exact_owned_profile_attempt",
+          "url": "https://jszy.whu.edu.cn/yuanmengting/zh_CN/index.htm",
+          "at": "2026-11-18T11:59:49",
+          "result": "transport_error_no_HTTP_response",
+          "client_error_body_sha256": "15431b19e218c98e8a4ea90d1a22771d3b19d1e42fca12a7370546b5f3616499"
+        }
+      ]
+    },
+    {
+      "pi": "谢晓园",
+      "url": "https://xiaoyuanxie.github.io/",
+      "kind": "pi_homepage",
+      "coverage": "website",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "Original school faculty roster links this exact personal homepage under谢晓园; the retained bilingual owned pages identify Xiaoyuan Xie at Wuhan CS and carry the whole student/publication sections. Website ownership only; current-roster labels still require freshness review.",
+      "sha256": "e3355e7980e924ab13b2123e7503338b73fca958a4d75aca30dd8fc1b389cd55",
+      "found_via": "department_listing_link",
+      "checks": [
+        {
+          "source": "department_listing_link",
+          "url": "https://xiaoyuanxie.github.io/",
+          "on": "https://web.archive.org/web/20250916095321id_/https://cs.whu.edu.cn/szdw/zrjs.htm",
+          "at": "2025-09-16",
+          "result": "ok",
+          "sha256": "b00b5b679f6a571c167f67466cbe48a351374a36de298e1ef07ddd9d1b835dba",
+          "quote": "<a href=\"https://xiaoyuanxie.github.io/\">谢晓园</a>"
+        },
+        {
+          "source": "web_search_reviewed",
+          "url": "https://xiaoyuanxie.github.io/",
+          "at": "2026-11-18T11:51:57",
+          "result": "ok",
+          "sha256": "e3355e7980e924ab13b2123e7503338b73fca958a4d75aca30dd8fc1b389cd55",
+          "name_quote": "DR. Xiaoyuan Xie",
+          "tie_quote": "Professor, School of Computer Science, Wuhan University",
+          "reviewer": "codex-midpoint-1117"
+        }
+      ],
+      "reviewed_by": "codex-midpoint-1117",
+      "verified": true,
+      "verified_by": "hand_review",
+      "verification_reason": "Exact official school roster link plus original bilingual owned page, full PI name and school tie. This is a worker website ownership review, not independent lab approval."
+    },
+    {
+      "pi": "谭成予",
+      "url": "https://jszy.whu.edu.cn/tanchengyu/zh_CN/index.htm",
+      "status": "pending_source_review",
+      "sha256": null,
+      "reason": "Exact owned profile requests produced transport errors, not a readable page or a supported absence conclusion.",
+      "found_via": "Exact guarded inventory row3073–3075",
+      "coverage": "pending",
+      "verified": false,
+      "reason_code": "pending_source_recovery",
+      "checks": [
+        {
+          "source": "exact_owned_profile_attempt",
+          "url": "https://jszy.whu.edu.cn/tanchengyu/zh_CN/index.htm",
+          "at": "2026-11-18T11:51:56",
+          "result": "transport_error_no_HTTP_response",
+          "client_error_body_sha256": "e4cacf724ab75b61e199886e8c0568e0b4758c3accefb1d15cee5592f37b6bc1"
+        },
+        {
+          "source": "exact_owned_profile_attempt",
+          "url": "https://jszy.whu.edu.cn/tanchengyu/zh_CN/index.htm",
+          "at": "2026-11-18T12:01:54",
+          "result": "transport_error_no_HTTP_response",
+          "client_error_body_sha256": "fec737984ba2c0c6fc0b0f7dfa0cf0d2387445bcab21420da471cfdfba9c974c"
+        }
+      ]
+    }
+  ]
+}
