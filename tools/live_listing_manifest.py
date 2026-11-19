@@ -22,7 +22,6 @@ def fetch_all(c, url, fmt, limit=60):
         res = W.live(c, u)
         if not res or res[0] != 200:
             raise SystemExit(f'not fetched (robots, challenge or status {res and res[0]}): {u}')
-        import zlib
         raw = c.execute('select raw_zlib from live where url=?', (u,)).fetchone()[0]
         html = body(raw).decode('utf-8', 'replace') if raw else ''
         _, es = LF.parse(html, fmt)
