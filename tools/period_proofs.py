@@ -146,7 +146,7 @@ def run_proofs(key, apply, root):
         fo.write_text(json.dumps(ov, indent=1, ensure_ascii=False))
 
 
-def run_gaps(key, apply, root):
+def run_gaps(key, apply, root, why=None):
     import stage_gate as G
     per, ov, have = G.periods_have(key)
     fo = P.data('census-overrides-school.json', key, root=root)
@@ -159,7 +159,7 @@ def run_gaps(key, apply, root):
         ys = sorted(set(x.get('years_listed') or []))
         e = cur.setdefault(x['name'], {})
         e['unproven_years'] = gaps
-        e['why_unproven'] = (f"stage 4 (local first): ladder-professor rows proven for {ys} from the stored official documents named in the charter [period_proofs] and the "
+        e['why_unproven'] = why.format(ys=ys, gaps=gaps) if why else (f"stage 4 (local first): ladder-professor rows proven for {ys} from the stored official documents named in the charter [period_proofs] and the "
                              f"listings; no stored dated document names this person for {gaps}, so those years prove nothing (R-PAP-01) and no paper of those years is admitted.")
         n += 1
     print(json.dumps(dict(school=key, unproven_sets_written=n)))
@@ -171,8 +171,9 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument('mode', choices=['proofs', 'gaps']); ap.add_argument('school')
     ap.add_argument('--apply', action='store_true'); ap.add_argument('--root')
+    ap.add_argument('--why', help="gaps: the reason text ({ys} listed years, {gaps} unproven years) when it is not the stage-4 stored-documents one")
     a = ap.parse_args(argv)
-    (run_proofs if a.mode == 'proofs' else run_gaps)(a.school, a.apply, a.root)
+    run_proofs(a.school, a.apply, a.root) if a.mode == 'proofs' else run_gaps(a.school, a.apply, a.root, a.why)
 
 
 if __name__ == '__main__':
