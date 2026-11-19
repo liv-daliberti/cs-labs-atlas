@@ -1680,6 +1680,12 @@ Source-backed home-only reviews, overlaid without changing a PI's identity, elig
 | `<key>.home_department_evidence[].quote` | string | yes |  | non-empty |  |
 | `<key>.home_department_evidence[].observed` | string | no |  |  |  |
 | `<key>.home_department_evidence[].kind` | string | no |  |  |  |
+| `<key>.home_department_evidence[].subject_name` | string | no | Verbatim subject name supported by an existing accepted identity alias or unique native DBLP homepage; never a guessed transliteration. | non-empty |  |
+| `<key>.home_department_evidence[].subject_binding` | object | no | Identity proof: a unique homepage in the existing native DBLP person record, or an explicitly accepted cjk_name with the exact accepted review receipt. Faculty-role evidence is never an identity binding. | no other keys |  |
+| `<key>.home_department_evidence[].subject_binding.kind` | any | yes |  | one of `dblp_homepage`, `accepted_reviewed_alias` |  |
+| `<key>.home_department_evidence[].subject_binding.person_id` | string | yes |  | non-empty |  |
+| `<key>.home_department_evidence[].subject_binding.decision_name` | string | yes |  | non-empty |  |
+| `<key>.home_department_evidence[].subject_binding.homepage` | string | no |  | non-empty |  |
 | `<key>.why_home_department` | string | yes |  | non-empty |  |
 | `<key>.primary_stated` | boolean | no | True only when the official source expressly distinguishes the primary appointment. |  |  |
 | `<key>.primary_unresolved` | array of string | no |  |  |  |
