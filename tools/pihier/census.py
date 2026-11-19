@@ -179,6 +179,8 @@ def pi_records(ctx):
             x['collection_person_id'] = o['collection_person_id']
         x['aliases'] = list(x.get('aliases') or []) + list(o.get('aliases') or [])
         x['dblp'] = list(dict.fromkeys(list(x['dblp']) + as_list(o.get('dblp'))))
+        if o.get('dblp_drop'):  # a reviewed conflated namesake record (2026-11-19): the PI's real record is bound, this one mixes two people
+            x['dblp'] = [q for q in x['dblp'] if q.rstrip('/') not in {d.rstrip('/') for d in as_list(o['dblp_drop'])}]
         x['openalex'] = list(dict.fromkeys(as_list(x.get('openalex')) + as_list(o.get('openalex'))))
         x['orcid'] = list(dict.fromkeys(re.sub(r'^https?://orcid\.org/', '', z) for z in as_list(x.get('orcid')) + as_list(o.get('orcid'))))  # additions give one ORCID as a string
         ids = [i for i in [x.get('collection_person_id')] + list(x.get('collection_person_candidates') or []) if i and i in Pid][:1]
