@@ -35,3 +35,8 @@ def test_openalex_extension_needs_unique_candidate_and_share():
 def test_alias_spellings_of_one_candidate_do_not_block():
     c = dict(name='Zongpeng Li', aliases=['Li Zongpeng', 'Zongpeng  Li'], source='openalex_rule', openalex=['https://openalex.org/A9'], oa_cs_share=0.9, oa_works=83)
     assert len(B.oa_bind([dict(name='李宗鹏')], [c])) == 1
+
+
+def test_added_english_middle_name_binds_when_unique_d0013():
+    assert [(p, r['pid']) for p, r in B.bind([dict(name='李升波', evidence=None)], [rec('p1', 'Shengbo Eben Li')])] == [('李升波', 'p1')]
+    assert B.bind([dict(name='李升波', evidence=None)], [rec('p1', 'Shengbo Eben Li'), rec('p2', 'Shengbo Li')]) == []

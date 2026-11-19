@@ -47,6 +47,16 @@ def keys_of(han):
     return out
 
 
+def name_keys(nm):
+    """The joined keys of a DBLP name: itself, and (owner D-0013) with one token dropped when it has 3+ tokens (an added English middle or given name:
+    'Shengbo Eben Li', 'Sean Xin Xu'); the homonym number is set aside."""
+    toks = re.sub(r'\s+\d{4}$', '', nm).split()
+    out = {fold(''.join(toks))}
+    if len(toks) >= 3:
+        out |= {fold(''.join(toks[:i] + toks[i + 1:])) for i in range(len(toks))}
+    return {k for k in out if k}
+
+
 def bind(people, recs):
     """people: [{name, evidence}] without a pid; recs: [{pid, names, school_note, sha256, ...}] school-affiliated DBLP persons. -> [(person, rec, key)]"""
     by_key = collections.defaultdict(set)
@@ -56,8 +66,8 @@ def bind(people, recs):
     rec_keys = collections.defaultdict(dict)
     for r in recs:
         for nm in r['names']:
-            k = fold(re.sub(r'\s+\d{4}$', '', nm))
-            rec_keys[k][r['pid']] = r
+            for k in name_keys(nm):
+                rec_keys[k][r['pid']] = r
     out = []
     for p in people:
         hits = {}
@@ -147,7 +157,7 @@ def main(keys):
     for k in keys:
         lo, hi = cfgs[k][0].get('window') or [2016, 2026]
         pkeys = {kk for p in people[k] for kk in keys_of(p['name'])}
-        rel = [r for r in recs[k] if any(fold(re.sub(r'\s+\d{4}$', '', nm)) in pkeys for nm in r['names'])]
+        rel = [r for r in recs[k] if any(name_keys(nm) & pkeys for nm in r['names'])]
         owner = {nm: r['pid'] for r in rel for nm in r['names']}
         k_cnt = collections.Counter()
         for typ, key, body in records():
