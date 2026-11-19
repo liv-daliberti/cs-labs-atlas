@@ -8,6 +8,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from sample import P, dblp_persons  # noqa: E402
 from record import files  # noqa: E402
+from version_match import same_work  # noqa: E402
 
 ACC = Path(__file__).parent
 
@@ -85,8 +86,12 @@ def main(school, what):
     elif what == 'coverage':
         items = S['lab_coverage']
         have = {}
+        byrow = {}
+        need = {it['pi'] for it in items}
         for line in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt'):
             r = json.loads(line)
+            if r['pi'] in need:
+                byrow.setdefault(r['pi'], []).append(dict(oa=r['oa'], title=r.get('title'), date=r.get('date'), byline=r.get('byline'), editions=r.get('editions')))
             for e in [r] + list(r.get('editions') or []):
                 if e.get('doi'):
                     have.setdefault(('d', ndoi(e['doi'])), []).append((r['pi'], r['oa']))
@@ -98,7 +103,10 @@ def main(school, what):
             other = sorted({x[0] for x in hits if x[0] != it['pi']})
             print(f"* {it['key']} | {d['type']} {d['year']} | {short(html.unescape(d['title']),110)} | dois={d['dois']}")
             print(f"   authors={short(d['authors'],160)} | PI {yr(p)} depts={p.get('departments')}")
-            print(f"   BUILD: in_PI_lab={own or 'NO'} other_labs={other[:3]}")
+            vm = [(same_work(d, x), x['oa'].split('/')[-1]) for x in byrow.get(it['pi'], [])] if not own else []
+            strong, cand = sorted(w for k, w in vm if k == 'strong'), sorted(w for k, w in vm if k == 'candidate')
+            print(f"   BUILD: in_PI_lab={own or 'NO'} other_labs={other[:3]}" + (f" VERSION(same work, other version, counts as in build)={strong}" if strong else '')
+                  + (f" VERSION-CANDIDATES(may be a different paper; judge decides from stored evidence)={cand[:4]}" if cand else ''))
     elif what == 'scov':
         stj = json.load(open(P.data('students.json', school)))
         n = int(sys.argv[3]) if len(sys.argv) > 3 else 14

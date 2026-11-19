@@ -1,0 +1,349 @@
+{
+ "school": "jhu",
+ "date": "2026-11-18",
+ "seed": 20261118,
+ "n_verdicts": 176,
+ "files": {
+  "pis.json": "e1a00bc1c7602ccd7c7a577844bf039e7dbd217649cbcbb46030bbb031522536",
+  "students.json": "46a61444ff053a6f0b676e1f12c8934c5c5d33e1b1663c2201bb3a0d55a4a300",
+  "lab_papers.jsonl.gz": "80906d9a1a07688a228bdbd05f708a364ff50e46c8ac6b4e1ed17eb72bc53d1c",
+  "student_papers.jsonl.gz": "3479b3a73cf5ceb71b30dbf2e78180ee7dfc9697db49f21b9d0a1c173ffb6717",
+  "copies.json": "cde3438459c64e4ecca848c6be3c5e11638b0deaf761e8929897a38b03858c32"
+ },
+ "files_now": {
+  "pis.json": "e1a00bc1c7602ccd7c7a577844bf039e7dbd217649cbcbb46030bbb031522536",
+  "students.json": "46a61444ff053a6f0b676e1f12c8934c5c5d33e1b1663c2201bb3a0d55a4a300",
+  "lab_papers.jsonl.gz": "80906d9a1a07688a228bdbd05f708a364ff50e46c8ac6b4e1ed17eb72bc53d1c",
+  "student_papers.jsonl.gz": "3479b3a73cf5ceb71b30dbf2e78180ee7dfc9697db49f21b9d0a1c173ffb6717",
+  "copies.json": "cde3438459c64e4ecca848c6be3c5e11638b0deaf761e8929897a38b03858c32"
+ },
+ "lab_precision_uniform": {
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 1,
+   "n": 1,
+   "p": 1.0,
+   "lo": 0.2065,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 60,
+  "n": 61,
+  "p": 0.9836,
+  "lo": 0.9128,
+  "hi": 0.9971,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 10,
+   "n": 10,
+   "p": 1.0,
+   "lo": 0.7225,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 40,
+  "n": 49,
+  "p": 0.8163,
+  "lo": 0.6864,
+  "hi": 0.9002
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 49,
+  "not_lab_papers_absent": 0,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "not_a_paper": 1,
+  "missing_from_build": 9
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Joshua T. Vogelstein|None|https://openalex.org/W3119839667",
+   "failure_type": "not_a_paper",
+   "reason": "Crossref 10.1001/jamapsychiatry.2020.4272: a single page (587) with no abstract in JAMA Psychiatry, i.e. a viewpoint/commentary, not a research paper; JHU affiliation string and 2021 listing are fine",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Randal Burns|journals/jmlr/TomitaBSCPFPYBM20",
+   "failure_type": "missing_from_build",
+   "reason": "JMLR 2020, Burns (JHU CS ladder, listings 2016-2026) is 9th author with Priebe/Vogelstein JHU group; not swept/no JHU-affiliated OA record found in build",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Philipp Koehn|conf/amta/KnowlesK18",
+   "failure_type": "missing_from_build",
+   "reason": "AMTA 2018 Knowles & Koehn, both JHU; Koehn JHU ladder, listing 2018; no DOI, no OpenAlex JHU record found in build",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Benjamin Van Durme|conf/emnlp/OuWSJSCJWLMHWMRKD25",
+   "failure_type": "missing_from_build",
+   "reason": "Findings EMNLP 2025, Van Durme JHU CS (listing 2025), lead authors JHU; absent from stored OpenAlex sweep by title",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Alan Yuille|journals/tmlr/LiuHYCY26",
+   "failure_type": "missing_from_build",
+   "reason": "TMLR 2026 ReVision, Yuille JHU period 2016-, Qihao Liu JHU; no DOI, absent from stored sweep by title",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Najim Dehak|conf/interspeech/Wang0MHTD24",
+   "failure_type": "missing_from_build",
+   "reason": "Interspeech 2024, Dehak JHU ECE/CS listings, Helin Wang/Villalba/Moro-Velazquez/Thebaud JHU CLSP; absent from stored sweep by title",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Yinzhi Cao|conf/uss/Huang0LDC0025",
+   "failure_type": "missing_from_build",
+   "reason": "USENIX Sec 2025, Cao JHU since 2018 (period_0); Fudan-led collaboration so affiliation is thin, but PI is author in a JHU year; no OA JHU record in build",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Yinzhi Cao|conf/uss/LiuLYKC25",
+   "failure_type": "missing_from_build",
+   "reason": "USENIX Sec 2025, all authors Cao's JHU group; only a Zenodo-DOI OA record (W6911995073) lists Zhengyu Liu alone with JHU, no Cao authorship so not bound to PI",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Vishal Patel|conf/icml/WeiZLYPDSWG0P25",
+   "failure_type": "missing_from_build",
+   "reason": "ICML 2025 Perception in Reflection, Patel JHU 2019-2026 listings; no DOI, absent from stored sweep by title",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Tianmin Shu|conf/iclr/LuSYKC25",
+   "failure_type": "missing_from_build",
+   "reason": "ICLR 2025 GenEx, Shu JHU CS (listing 2024-2026), Taiming Lu/Jieneng Chen JHU; no DOI, absent from stored sweep by title",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_coverage",
+   "item": "Holden Lee|conf/alt/Lee22",
+   "reason": "DOUBTFUL: UNSETTLED: dept listing at JHU AMS from 2022 (archived Aug 2022) and the ALT 2022 paper is single-author; no stored affiliation (no DOI, not in OpenAlex cache); the first reviewer assumed Duke from memory, which is not evidence"
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "Abhishek Jain",
+   "Adam Charles",
+   "Alan Yuille",
+   "Alex Marder",
+   "Alex Szalay",
+   "Alexis Battle",
+   "Amitabh Basu",
+   "Anand Bhattad",
+   "Ananya Joshi",
+   "Anjalie Field",
+   "Anqi \"Angie\" Liu",
+   "Axel Krieger",
+   "Ben Langmead",
+   "Benjamin Van Durme",
+   "Berrak Sisman",
+   "Brice Ménard",
+   "Carey Priebe",
+   "Casey Overby Taylor",
+   "Chien-Ming Huang",
+   "Daniel Khashabi",
+   "David Yarowsky",
+   "Enrique Mallada",
+   "Eric Nalisnick",
+   "Erik Rye",
+   "Gillian Hadfield",
+   "Gregory D. Hager",
+   "Haimin Hu",
+   "Holden Lee",
+   "Homanga Bharadhwaj",
+   "Ilya Shpitser",
+   "Jaemin Cho",
+   "Jason Eisner",
+   "Jean Fan",
+   "Jennifer Hu",
+   "Jeremias Sulam",
+   "Jessica Sorrell",
+   "Joel Bader",
+   "John T. Hale",
+   "Jon Donnelly",
+   "Joshua T. Vogelstein",
+   "Krishan Sabnani",
+   "Krishna Murthy Jatavallabhula",
+   "Kristina Gligorić",
+   "Laurent Younes",
+   "Liliana Florea",
+   "Louis Whitcomb",
+   "Luana Ruiz",
+   "Lydia Zakynthinou",
+   "Mahyar Fazlyab",
+   "Mark Dredze",
+   "Mathias Unberath",
+   "Matthew Green",
+   "Michael Dinitz",
+   "Michael Kazhdan",
+   "Michael Oberst",
+   "Michael Schatz",
+   "Mihaela Pertea",
+   "Misha Kazhdan",
+   "Murat Kocaoglu",
+   "Najim Dehak",
+   "Nicolas Christianson",
+   "Nicolas Loizou",
+   "Noah Cowan",
+   "Philipp Koehn",
+   "Rachel Karchin",
+   "Raman Arora",
+   "Randal Burns",
+   "Renjie Zhao",
+   "Roy Adams",
+   "Russell Taylor",
+   "Sanjeev Khudanpur",
+   "Scott Smith",
+   "Sijia Geng",
+   "Soledad Villar",
+   "Soufiane Hayou",
+   "Steven Salzberg",
+   "Suchi Saria",
+   "Tamás Budavári",
+   "Tianmin Shu",
+   "Tinoosh Mohsenin",
+   "Tiziano Piccardi",
+   "Uthsav Chitra",
+   "Vishal Patel",
+   "Vladimir Braverman",
+   "Xin Li",
+   "Yaxing Yao",
+   "Yinzhi Cao",
+   "Yiqun Chen",
+   "Ziang Xiao",
+   "Zih-Yun “Sarah” Chiu",
+   "Ziyang Li",
+   "Zongwei Zhou"
+  ],
+  "n_pis": 92,
+  "files": {
+   "pis.json": "e1a00bc1c7602ccd7c7a577844bf039e7dbd217649cbcbb46030bbb031522536",
+   "students.json": "46a61444ff053a6f0b676e1f12c8934c5c5d33e1b1663c2201bb3a0d55a4a300",
+   "lab_papers.jsonl.gz": "80906d9a1a07688a228bdbd05f708a364ff50e46c8ac6b4e1ed17eb72bc53d1c",
+   "student_papers.jsonl.gz": "3479b3a73cf5ceb71b30dbf2e78180ee7dfc9697db49f21b9d0a1c173ffb6717",
+   "copies.json": "cde3438459c64e4ecca848c6be3c5e11638b0deaf761e8929897a38b03858c32"
+  },
+  "included_sha": "64b348dc645c35b8ad7b878057cbed66e5a463d927c46d7b4831a7209e5352eb",
+  "files_now": {
+   "pis.json": "e1a00bc1c7602ccd7c7a577844bf039e7dbd217649cbcbb46030bbb031522536",
+   "students.json": "46a61444ff053a6f0b676e1f12c8934c5c5d33e1b1663c2201bb3a0d55a4a300",
+   "lab_papers.jsonl.gz": "80906d9a1a07688a228bdbd05f708a364ff50e46c8ac6b4e1ed17eb72bc53d1c",
+   "student_papers.jsonl.gz": "3479b3a73cf5ceb71b30dbf2e78180ee7dfc9697db49f21b9d0a1c173ffb6717",
+   "copies.json": "cde3438459c64e4ecca848c6be3c5e11638b0deaf761e8929897a38b03858c32"
+  }
+ },
+ "population": {
+  "n_lab_papers": 4849,
+  "n_student_papers": 375,
+  "n_coverage_pool": 3487,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi1",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 61,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}
