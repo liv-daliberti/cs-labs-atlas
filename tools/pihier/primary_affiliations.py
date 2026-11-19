@@ -391,6 +391,15 @@ def _resolve_v2(work, page1, page1_text):
             proved = _space(quote).startswith(note['marker']) and bool(re.search(r'(?i)\bequal(?:ly)?\b', quote)) and bool(re.search(r'(?i)\bcontribut', quote))
         elif note.get('kind') == 'correspondence':
             proved = (_space(quote).startswith(note['marker']) and bool(re.search(r'(?i)correspond', quote))) or (note.get('display_symbol') == 'envelope' and note.get('extraction_note') and note['marker'] in {'B', '✉'} and _email_contact(quote))
+        elif note.get('kind') == 'work_during_internship':
+            # This note may repeat an affiliation already assigned in the header;
+            # it cannot introduce a new institution or supply an author's group.
+            group_id = note.get('affiliation_id')
+            group = by_id.get(group_id) if isinstance(group_id, str) else None
+            match = re.fullmatch(re.escape(note['marker']) +
+                                 r'\s*Work done while the author was interning at (.+)\.',
+                                 _space(quote), re.I)
+            proved = bool(group and match and _flat(match[1]) == _flat(group['text']))
         else:
             proved = False
         if not proved:
@@ -426,6 +435,11 @@ def _resolve_v2(work, page1, page1_text):
         accepted.append(dict(block, affiliations=[by_id[g]['text'] for g in gids], block_text=quote))
     if seen_groups != set(by_id) or seen_notes != set(note_by_marker):
         return held('unused_affiliation_or_note_marker')
+    for marker, note in note_by_marker.items():
+        if note.get('kind') == 'work_during_internship':
+            named = [b for b in blocks if marker in b['markers']]
+            if len(named) != 1 or note['affiliation_id'] not in named[0]['affiliation_ids']:
+                return held('internship_note_not_assigned_to_existing_author_affiliation')
     for marker, note in note_by_marker.items():
         if note.get('display_symbol') == 'envelope' and sum(marker in b['markers'] for b in blocks) != 1:
             return held('ambiguous_correspondence_symbol')
