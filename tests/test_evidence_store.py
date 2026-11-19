@@ -268,7 +268,7 @@ def test_add_layer_then_record_sync_check_and_a_second_add_is_refused(root, flag
     with pytest.raises(E.SourceOfTruth, match='already exists'):
         E.add_layer('aa', 'release-corrections.json', key='classes', skeleton=skel, stores_dir=st, root=root)
     assert E.sync('aa', root, st) == ['release-corrections.json']
-    f = root / 'hierarchy' / 'aa' / 'reviewed' / 'release-corrections.json'
+    f = E.school_dir('aa', root) / 'release-corrections.json'
     assert json.loads(f.read_text()) == {'school': 'aa', 'against_release': '2026-11-07', 'classes': []}
     assert E.check_view('aa', root, st) == []
     cls = {'id': 'not_paper_rule', 'rule': 'R-PAP-17', 'rows': [{'pi': 'Ann Lee', 'oa': 'https://openalex.org/W1'}]}
@@ -281,6 +281,6 @@ def test_add_layer_then_record_sync_check_and_a_second_add_is_refused(root, flag
     E.add_layer('aa', 'roots.json', stores_dir=st, root=root)   # a root-list layer
     E.record('aa', 'roots.json', {'a': 1}, source='s', decided_by='t', stores_dir=st)
     E.sync('aa', root, st)
-    assert json.loads((root / 'hierarchy' / 'aa' / 'reviewed' / 'roots.json').read_text()) == [{'a': 1}]
+    assert json.loads((E.school_dir('aa', root) / 'roots.json').read_text()) == [{'a': 1}]
     with pytest.raises(E.SourceOfTruth, match='not store-sourced'):
         E.add_layer('bb', 'x.json', stores_dir=st, root=root)
