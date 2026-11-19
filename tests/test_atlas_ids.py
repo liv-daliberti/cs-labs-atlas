@@ -244,3 +244,13 @@ def test_main_works_on_a_local_copy_and_replaces_the_registry_in_one_step(tmp_pa
         pass
     assert reg.read_bytes() == before                                                           # a failed run changes nothing
     assert sorted(p.name for p in reg.parent.iterdir()) == ['registry.sqlite'] and list(local.iterdir()) == []
+
+
+def test_lab_slug_of_a_cjk_only_name_is_valid_and_stable():
+    import re
+    for name in ('刘绍辉', '王 瑞', 'Dimitrios Stamoulis'):
+        s = A.lab_slug(name)
+        assert re.fullmatch(r'[a-z0-9]+(-[a-z0-9]+)*', s), s
+        assert A.lab_slug(name) == s
+    assert A.lab_slug('刘绍辉') != A.lab_slug('王 瑞')
+    assert A.lab_slug('Dimitrios Stamoulis') == 'dimitrios-stamoulis'

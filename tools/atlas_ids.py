@@ -68,6 +68,12 @@ def slug(s):  # as tools/export_release.py and tools/organize_tree.py
     return re.sub(r'[^a-z0-9]+', '-', s).strip('-')
 
 
+def lab_slug(name):
+    """The `<pi-slug>` of a lab id. A PI whose name has no Latin letters (a CJK-only roster name) slugs to '' and used to mint `atl:l:hit:` /
+    `atl:l:hit:-22`, which fail schemas/*.schema.json (2026-11-18 mints at hit, sjtu, tsinghua). Such a lab gets `lab-<8 hex of sha1(name)>`."""
+    return slug(name) or 'lab-' + hashlib.sha1(unicodedata.normalize('NFC', str(name)).encode()).hexdigest()[:8]
+
+
 def name_toks(s):
     s = fold(s)
     if ',' in s:
@@ -1109,10 +1115,10 @@ def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write
         if row:
             lab_ids[k] = row[0]; stats['labs_reused'] += 1
         else:
-            i = f'atl:l:{k[1]}:{slug(k[2])}'
+            i = f'atl:l:{k[1]}:{lab_slug(k[2])}'
             n = 1
             while db.execute('select 1 from ids where id=?', (i,)).fetchone():
-                n += 1; i = f'atl:l:{k[1]}:{slug(k[2])}-{n}'
+                n += 1; i = f'atl:l:{k[1]}:{lab_slug(k[2])}-{n}'
             db.execute('insert into ids (id, kind, minted_from, issued) values (?,?,?,?)', (i, 'lab', anchors[0][1], today))
             db.execute('insert into anchors (anchor, id, kind, first_seen) values (?,?,?,?)', (anchors[0][1], i, 'lab', today))
             lab_ids[k] = i; stats['labs_minted'] += 1
