@@ -378,8 +378,8 @@ purpose = "OpenAlex (snapshot first; the shared 10k/day key)"
 
 [[hosts]]
 host = "api.ror.org"
-use = "live"
-purpose = "ROR verification"
+use = "none"
+purpose = "ROR verification (done 2026-11-05; api.ror.org answers robots.txt with 403, so no further request is made: use none, 2026-11-19 T757)"
 
 [release]
 ledger_mode = "online"
