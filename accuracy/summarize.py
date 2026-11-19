@@ -73,7 +73,7 @@ def one_school(school):
     sub = (S.get('subset') or {}).get(school)
     if sub:   # a per-PI release draw (sample.py --round pi1): the summary records the subset it was drawn from (g9 binds to it, not to the whole files)
         import pi_release
-        d['subset'] = dict(sub, files_now=pi_release.package_hashes(school, sub['pis']))
+        d['subset'] = dict(sub, files_now=pi_release.package_hashes(school, sub['pis'], held={tuple(x) for x in sub.get('held') or ()}))
         d['files'], d['files_now'] = sub['files'], d['subset']['files_now']
     d['population'] = {k: S['schools'][school][k] for k in ('n_lab_papers', 'n_student_papers', 'n_coverage_pool', 'n_student_candidates')}
     rd = round_dir()

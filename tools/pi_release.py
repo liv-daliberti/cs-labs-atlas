@@ -73,19 +73,50 @@ def plan(key, res=None, published=None):
         if pi not in res['pis'] and pi not in set(included):
             held[pi] = ['no pi-states row']
     sha = hashlib.sha256('\n'.join(sorted(included)).encode()).hexdigest()
-    return dict(school=key, package_pis=len(pkg), done=len(done), carried=carried, included=included, held=held, included_sha=sha,
+    hl = _held_links(key, res, included, published, rec)
+    return dict(school=key, package_pis=len(pkg), done=len(done), carried=carried, included=included, held=held, included_sha=sha, held_links=hl,
                 school_items={s: v for s, v in (res.get('school_items') or {}).items() if v},
                 partial=bool(held), published_from=Path(published).resolve().name if published else None)
 
 
-def filtered_rows_and_json(key, name, included, base=None):
-    """The package file `name` as Python data restricted to `included` PIs: list (pis.json), dict (students.json, copies.json) or rows."""
+def _published_students(key, published, rec):
+    """{PI name in the CURRENT package: {student ids}} of the students the published release already carried (a renamed PI is read under its new name)."""
+    if not published or not (package_dir(key, published) / 'students.json').exists():
+        return {}
+    ren = (rec or {}).get('pi_renames') or {}
+    return {ren.get(pi, pi): {x.get('person') or x.get('id') or x.get('name') for x in v} for pi, v in _read_json(package_dir(key, published) / 'students.json').items()}
+
+
+def _held_links(key, res, included, published, rec):
+    """D-0017: the stage-7 chain-audit `links` flags of the included PIs, minus the links the published release already carried (D-0001: published rows are
+    never removed). {pi: [{student, id, diagnosis, detail}]}."""
+    out = {}
+    pub = _published_students(key, published, rec)
+    for pi in included:
+        rows = [h for h in (res.get('held_links') or {}).get(pi, []) if (h.get('id') or h.get('student')) not in pub.get(pi, set())]
+        if rows:
+            out[pi] = rows
+    return out
+
+
+def held_set(pl_or_links):
+    """{(pi, student id)} of a plan's (or a `held_links` map's) held links, in the key the package files use (student person id, else name)."""
+    links = (pl_or_links.get('held_links') or {}) if isinstance(pl_or_links, dict) and 'included' in pl_or_links else pl_or_links
+    return {(pi, h.get('id') or h.get('student')) for pi, v in (links or {}).items() for h in v}
+
+
+def filtered_rows_and_json(key, name, included, base=None, held=None):
+    """The package file `name` as Python data restricted to `included` PIs: list (pis.json), dict (students.json, copies.json) or rows.
+    `held` ({(pi, student id)}, `held_set`) drops exactly those student links: the student's row in students.json and any student-paper row (D-0017)."""
     inc = set(included)
+    held = held or set()
     d = package_dir(key, base) / name
     if name == 'pis.json':
         return [x for x in _read_json(d) if x['pi'] in inc]
     if name == 'students.json':
-        return {pi: v for pi, v in _read_json(d).items() if pi in inc}
+        return {pi: [x for x in v if (pi, x.get('person') or x.get('id') or x.get('name')) not in held] for pi, v in _read_json(d).items() if pi in inc}
+    if name == 'student_papers.jsonl.gz':
+        return [r for r in _jsonl_gz(d) if r.get('pi') in inc and (r['pi'], r.get('student')) not in held]
     if name.endswith('.jsonl.gz'):
         return [r for r in _jsonl_gz(d) if r.get('pi') in inc]
     if name == 'copies.json':
@@ -98,9 +129,9 @@ def filtered_rows_and_json(key, name, included, base=None):
     raise ValueError(name)
 
 
-def filtered_bytes(key, name, included, base=None):
+def filtered_bytes(key, name, included, base=None, held=None):
     """Deterministic bytes of the filtered package file (gzip mtime 0, sorted-free JSON in source key order)."""
-    data = filtered_rows_and_json(key, name, included, base)
+    data = filtered_rows_and_json(key, name, included, base, held)
     if name.endswith('.jsonl.gz'):
         buf = io.BytesIO()
         with gzip.GzipFile(fileobj=buf, mode='wb', mtime=0) as g:
@@ -110,13 +141,13 @@ def filtered_bytes(key, name, included, base=None):
     return (json.dumps(data, indent=1, ensure_ascii=False) + '\n').encode()
 
 
-def package_hashes(key, included, base=None):
+def package_hashes(key, included, base=None, held=None):
     """{file: sha256 of the filtered content} for the five accuracy files; content-hash, so the gzip framing does not matter."""
     out = {}
     for f in PACKAGE:
         if not (package_dir(key, base) / f).exists():
             continue
-        data = filtered_rows_and_json(key, f, included, base)
+        data = filtered_rows_and_json(key, f, included, base, held)
         h = hashlib.sha256()
         for r in (data if isinstance(data, list) else [data]):
             h.update(json.dumps(r, sort_keys=True, ensure_ascii=False).encode() + b'\n')
@@ -133,7 +164,8 @@ def scope_statement(pl, release_id=None):
         pass
     return dict(school=pl['school'], release=release_id, status='partial' if pl['held'] else 'complete',
                 pis_total=pl['package_pis'], pis_included=len(pl['included']), pis_held=len(pl['held']), pis_carried_open=len(pl['carried']),
-                included_sha=pl['included_sha'],
+                included_sha=pl['included_sha'], held_links_n=sum(len(v) for v in (pl.get('held_links') or {}).values()),
+                held_links=[dict(pi=pi, student=h.get('student'), id=h.get('id'), why=h.get('diagnosis') or 'no linked paper') for pi, v in sorted((pl.get('held_links') or {}).items()) for h in v],
                 held=[dict(pi=pi, atlasId=pis.get(pi, {}).get('atlasId'), labId=pis.get(pi, {}).get('labId'), blocking=r) for pi, r in sorted(pl['held'].items())],
                 carried_open=[dict(pi=pi, atlasId=pis.get(pi, {}).get('atlasId')) for pi in pl['carried']],
                 school_items_reported=sum(len(v) for v in pl['school_items'].values()))
@@ -145,6 +177,8 @@ def render_notes(statements):
            'Held: PIs with an open item; they are not in this release and are listed with the reason. A school with held PIs is partial.', '']
     for s in statements:
         out.append(f"## {s['school']}: {s['status']} ({s['pis_included']} of {s['pis_total']} PIs included, {s['pis_held']} held)")
+        if s.get('held_links_n'):
+            out.append(f"{s['held_links_n']} student links are held (chain-audit stage 7: the student has no linked paper yet; D-0017): the student is not in the PI's lab in this release unless published earlier.")
         if s['pis_carried_open']:
             out.append(f"{s['pis_carried_open']} PIs published earlier are carried although open now (published rows are never removed).")
         for h in s['held']:
@@ -158,7 +192,7 @@ def _has_ids(key, base=None):
     return bool(pis) and all(str(x.get('atlasId', '')).startswith('atl:p:') and str(x.get('labId', '')).startswith('atl:l:') for x in pis)
 
 
-def _ids(key, base=None, inc=None, legacy=False):
+def _ids(key, base=None, inc=None, legacy=False, held=None):
     """Key sets of a package: PIs, labs, (lab, student) pairs, (lab, paper) and (lab, student, paper) links. Atlas ids (docs/IDS.md) when
     `legacy` is false; the pre-id keys (PI name, student person id, OpenAlex id) when a package has no ids yet."""
     d = package_dir(key, base)
@@ -169,12 +203,13 @@ def _ids(key, base=None, inc=None, legacy=False):
                student=set(), lab_paper=set(), student_paper=set())
     for pi, ss in _read_json(d / 'students.json').items():
         if pi in keep:
-            out['student'] |= {(lab_of.get(pi), s.get('person') if legacy else s.get('atlasId')) for s in ss}
+            out['student'] |= {(lab_of.get(pi), s.get('person') if legacy else s.get('atlasId')) for s in ss
+                               if (pi, s.get('person') or s.get('id') or s.get('name')) not in (held or ())}
     for r in _jsonl_gz(d / 'lab_papers.jsonl.gz'):
         if r.get('pi') in keep:
             out['lab_paper'].add((lab_of.get(r['pi']), r.get('oa') if legacy else r.get('atlasWorkId')))
     for r in _jsonl_gz(d / 'student_papers.jsonl.gz'):
-        if r.get('pi') in keep:
+        if r.get('pi') in keep and (r['pi'], r.get('student')) not in (held or ()):
             out['student_paper'].add((lab_of.get(r['pi']), r.get('student') if legacy else r.get('studentAtlasId'), r.get('oa') if legacy else r.get('atlasWorkId')))
     return out
 
@@ -218,7 +253,7 @@ def _accepted_students(rec, legacy):
     return out
 
 
-def compare(key, included, release, corrections=None):
+def compare(key, included, release, corrections=None, held=None):
     """Monotone check: {kind: {'old', 'new', 'n_removed', 'added', 'removed'}} of the filtered new package against the package of the published
     `release` dir. Any n_removed > 0 is a flag. Compared by atlas ids when both packages carry them, else by the pre-id keys (`basis`); a school
     absent from the old release has nothing to compare. Removals that the school's release-corrections record explains (`load_corrections`, or the
@@ -227,7 +262,7 @@ def compare(key, included, release, corrections=None):
     if not (package_dir(key, release) / 'pis.json').exists():
         return dict(school=key, compared=False, flags=0)
     legacy = not (_has_ids(key) and _has_ids(key, release))
-    new, old = _ids(key, inc=included, legacy=legacy), _ids(key, base=release, legacy=legacy)
+    new, old = _ids(key, inc=included, legacy=legacy, held=held), _ids(key, base=release, legacy=legacy)
     rec = corrections if corrections is not None else load_corrections(key, release)
     renames = (rec or {}).get('pi_renames') or {}
     if legacy and renames:   # pre-id packages key by PI name: a census-renamed PI (recorded old -> current) is the same PI, so its rows compare under the current spelling
@@ -275,7 +310,7 @@ def main(argv=None):
     pub = Path(a.published) if a.published else None
     pl = plan(a.school, published=pub)
     st = scope_statement(pl)
-    cmp_ = compare(a.school, pl['included'], pub or (Path(P.RELEASES) / 'latest')) if (pub or (Path(P.RELEASES) / 'latest').exists()) else None
+    cmp_ = compare(a.school, pl['included'], pub or (Path(P.RELEASES) / 'latest'), held=held_set(pl)) if (pub or (Path(P.RELEASES) / 'latest').exists()) else None
     if a.json:
         print(json.dumps(dict(scope=st, compare=cmp_), ensure_ascii=False))
         return 1 if cmp_ and cmp_['flags'] else 0

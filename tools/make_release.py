@@ -230,7 +230,7 @@ def per_pi_plans(schools, release_dir=None):
     out = {}
     for s in schools:
         pl = PR.plan(s, published=last)
-        out[s] = dict(plan=pl, statement=PR.scope_statement(pl), monotone=PR.compare(s, pl['included'], last) if last else None)
+        out[s] = dict(plan=pl, statement=PR.scope_statement(pl), monotone=PR.compare(s, pl['included'], last, held=PR.held_set(pl)) if last else None)
     return out
 
 
@@ -301,7 +301,7 @@ def make(a):
         if f in filt:
             import pi_release as PR
             src_sha[f] = sha256(src)
-            dst.write_bytes(PR.filtered_bytes(filt[f][0], filt[f][1], per[filt[f][0]]['plan']['included']))
+            dst.write_bytes(PR.filtered_bytes(filt[f][0], filt[f][1], per[filt[f][0]]['plan']['included'], held=PR.held_set(per[filt[f][0]]['plan'])))
             shutil.copystat(src, dst)
         elif f in derived:
             dst.write_bytes(derived[f])

@@ -8,7 +8,8 @@ A PI's state at the census and at stages 3 (basis, home, website), 4 (window), 5
 The evidence bar per PI is the existing gate logic (stage_gate.GATES, pi_coverage's per-PI ledger, chain_audit's per-PI items): this module only
 ATTRIBUTES each finding to the person it names. A finding that names no person (a lab-page acceptance, a sample statistic such as recall R1/U/R2,
 a register mismatch) is a SCHOOL item: it never holds a PI, it is reported, and it stays a condition of the school-level release.
-A share bar (pi_coverage ratchet, recall Z) is a `ratchet` school item; its per-PI gaps are open with `ratchet` set: the owner's ratchet tolerates
+A stage-7 chain-audit `links` flag (a lab student with no linked paper) names a LINK, not the person (D-0017): the PI stays done and the link goes into `held_links`
+(the release leaves that student out of the PI's lab unless it was published earlier). A share bar (pi_coverage ratchet, recall Z) is a `ratchet` school item; its per-PI gaps are open with `ratchet` set: the owner's ratchet tolerates
 them for release (the bar is unchanged) but they are listed per person and never hold anyone's downloads.
 
   downloadable PI = census clean (no gate-2 finding names the person) + window settled (stage_gate.period_basis) + identity anchor (identity_basis)
@@ -89,6 +90,7 @@ def compute(key):
     pis = {x['name']: {s: dict(state='done', reasons=[]) for s in ALL} for x in names.pis}
     school_items = {s: [] for s in ('2',) + STAGES}
     waived_school = {}
+    held_links = collections.defaultdict(list)   # D-0017 (owner 2026-11-19): a stage-7 chain-audit `links` flag holds THAT LINK (the student's membership), not the PI
     waived_chain, waived_cov = set(), set()   # (check) / (stage, dim): a gate exception that waives the school-level summary waives the per-PI items it summarises
 
     def put(pi, stage, state, why):
@@ -133,6 +135,9 @@ def compute(key):
                 who = names.of_norm(r.get('pi') or r.get('name'))
                 if who:
                     detail = '; '.join(f'{k}={v}' for k, v in r.items() if k not in ('pi', 'diagnosis_works') and v not in (None, ''))
+                    if check == 'links' and check not in waived_chain:
+                        held_links[who].append(dict(student=r.get('student'), id=r.get('id'), diagnosis=r.get('diagnosis'), detail=detail[:200]))
+                        continue
                     put(who, st, 'excluded_with_reason' if check in waived_chain else 'open',
                         ('waived by gate exception: ' if check in waived_chain else '') + f'chain audit {check}: {detail[:200]}')
                 else:
@@ -186,7 +191,7 @@ def compute(key):
         counts[st]['open_ratchet_only'] = sum(1 for rec in pis.values() if _ratchet_only(rec, st))
     hard_open = sorted(pi for pi, rec in pis.items() if _hard_open(rec))
     return dict(school=key, at=_now(), pis_total=len(pis), downloadable=sum(1 for r in pis.values() if r['downloadable']), counts=counts,
-                open_pis=hard_open, school_items=hard_school, ratchet_items=ratchet_items, waived_school_items=waived_school,
+                open_pis=hard_open, held_links={pi: v for pi, v in sorted(held_links.items())}, school_items=hard_school, ratchet_items=ratchet_items, waived_school_items=waived_school,
                 release_ready=not hard_open and not any(hard_school.values()) and not any(ratchet_items.values()), pis=pis)
 
 

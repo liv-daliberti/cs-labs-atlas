@@ -60,13 +60,13 @@ def test_release_findings_need_every_pi_and_school_item(monkeypatch):
 
 def test_chain_audit_items_are_per_pi_and_follow_a_waiver_of_their_summary(monkeypatch):
     import chain_audit
-    rows = {'links': dict(unexplained=[dict(key='A B | S | id', pi='A B'), dict(key='no-pi-row')])}
+    rows = {'papers': dict(unexplained=[dict(key='A B | S | id', pi='A B'), dict(key='no-pi-row')])}
     monkeypatch.setattr(chain_audit, 'audit', lambda key: dict(checks=rows))
-    setup(monkeypatch, {'7': ['links: 2 unexplained of 9']})
+    setup(monkeypatch, {'7': ['papers: 2 unexplained of 9']})
     monkeypatch.setattr(chain_audit, 'audit', lambda key: dict(checks=rows))
     r = PS.compute('x')
-    assert r['pis']['A B']['7']['state'] == 'open' and r['pis']['C D']['7']['state'] == 'done' and r['school_items']['7'] == ['chain audit links: no-pi-row']
-    setup(monkeypatch, {'7': ['links: 2 unexplained of 9']}, waived={'7': ['links: 2 unexplained of 9']})
+    assert r['pis']['A B']['7']['state'] == 'open' and r['pis']['C D']['7']['state'] == 'done' and r['school_items']['7'] == ['chain audit papers: no-pi-row']
+    setup(monkeypatch, {'7': ['papers: 2 unexplained of 9']}, waived={'7': ['papers: 2 unexplained of 9']})
     monkeypatch.setattr(chain_audit, 'audit', lambda key: dict(checks=rows))
     r = PS.compute('x')
     assert r['pis']['A B']['7']['state'] == 'excluded_with_reason' and r['open_pis'] == []
@@ -89,3 +89,19 @@ def test_gate10_is_per_pi_for_onboarding_schools_only(monkeypatch):
     assert any('accuracy' in b for b in SG.g10('x')[0])
     monkeypatch.setattr(PR, 'plan', lambda key, **k: dict(package_pis=2, included=[], held={'A B': ['s'], 'C D': ['s']}, school_items={}, partial=True))
     assert any('no PI is done' in b for b in SG.g10('x')[0])
+
+
+def test_a_chain_audit_links_flag_holds_the_link_not_the_pi(monkeypatch):
+    """D-0017: a stage-7 `links` flag (a lab student with no linked paper) names a link: the PI stays done and the link is listed as held."""
+    import chain_audit
+    rows = {'links': dict(unexplained=[dict(key='A B | S | s1', pi='A B', student='S', id='s1', diagnosis='no_byline'), dict(key='no-pi-row')])}
+    setup(monkeypatch, {'7': ['links: 2 unexplained of 9']})
+    monkeypatch.setattr(chain_audit, 'audit', lambda key: dict(checks=rows))
+    r = PS.compute('x')
+    assert r['pis']['A B']['7']['state'] == 'done' and r['open_pis'] == []
+    assert r['held_links'] == {'A B': [dict(student='S', id='s1', diagnosis='no_byline', detail='key=A B | S | s1; student=S; id=s1; diagnosis=no_byline')]}
+    assert r['school_items']['7'] == ['chain audit links: no-pi-row']      # a flag that names no PI stays a school item
+    setup(monkeypatch, {'7': ['links: 2 unexplained of 9']}, waived={'7': ['links: 2 unexplained of 9']})
+    monkeypatch.setattr(chain_audit, 'audit', lambda key: dict(checks=rows))
+    r = PS.compute('x')
+    assert r['pis']['A B']['7']['state'] == 'excluded_with_reason' and r['held_links'] == {}   # a waived summary stays a waiver

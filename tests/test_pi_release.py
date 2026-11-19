@@ -181,3 +181,24 @@ def test_a_recorded_student_class_and_pi_rename_explain_legacy_removals(world):
     assert PR.compare('x', ['A', 'B2', 'C'], rel, corrections=rec)['kinds']['pi']['n_removed'] == 0
     gone = PR.compare('x', ['A', 'C'], rel, corrections=dict(rec, classes=[dict(id='st', rule='r', rows=[], students=[dict(pi='B', student='ext:B-s')])]))
     assert gone['kinds']['student']['n_removed'] == 0 and gone['corrected'].get('student:st') == 1
+
+
+def test_held_links_leave_the_package_unless_published_and_do_not_count_as_removals(world):
+    """D-0017: a held link (student with no linked paper) is dropped from the filtered package; one the published release carried is never held (D-0001)."""
+    new, rel, states = world
+    # A and B already published S-students ('ext:A-s', 'ext:B-s'); add a new student 'ext:A-new' of A, flagged now
+    st = json.loads((new / 'students.json').read_text())
+    st['A'].append(dict(person='ext:A-new', atlasId='atl:p:Anew'))
+    (new / 'students.json').write_text(json.dumps(st))
+    res = dict(states(set()), held_links=dict(A=[dict(student='New', id='ext:A-new', diagnosis='x'), dict(student='Old', id='ext:A-s', diagnosis='x')]))
+    pl = PR.plan('x', res, published=rel)
+    assert pl['held_links'] == {'A': [dict(student='New', id='ext:A-new', diagnosis='x')]}     # the published student is carried, not held
+    held = PR.held_set(pl)
+    assert held == {('A', 'ext:A-new')}
+    assert [x['person'] for x in PR.filtered_rows_and_json('x', 'students.json', pl['included'], held=held)['A']] == ['ext:A-s']
+    assert len(PR.filtered_rows_and_json('x', 'students.json', pl['included'])['A']) == 2        # without `held` nothing is dropped
+    sp = PR.filtered_rows_and_json('x', 'student_papers.jsonl.gz', pl['included'], held={('A', 'ext:A-s')})
+    assert all(r['student'] != 'ext:A-s' for r in sp if r['pi'] == 'A')
+    assert PR.compare('x', pl['included'], rel, corrections=dict(against_release=rel.name, classes=[]), held=held)['flags'] == 0
+    st = PR.scope_statement(pl)
+    assert st['held_links_n'] == 1 and st['held_links'][0]['id'] == 'ext:A-new' and '1 student links are held' in PR.render_notes([st])

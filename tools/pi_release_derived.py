@@ -197,7 +197,7 @@ def filtered_profile(school, per, homes, audit, zero):
         d = tmp / 'hierarchy' / school
         d.mkdir(parents=True)
         for f in ('pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json'):
-            (d / f).write_bytes(PR.filtered_bytes(school, f, inc))
+            (d / f).write_bytes(PR.filtered_bytes(school, f, inc, held=PR.held_set(per[school]['plan'])))
         rep = json.loads(P.data('report.json', school).read_text())
         pis = json.loads((d / 'pis.json').read_text())
         stu = json.loads((d / 'students.json').read_text())

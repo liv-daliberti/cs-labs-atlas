@@ -577,7 +577,7 @@ def g9(key):
         pl = PR.plan(key)
         if sub.get('included_sha') != pl['included_sha']:
             bad.append(f'accuracy: the included PIs changed since the draw ({len(pl["included"])} now, {sub.get("n_pis")} drawn); redraw on the current subset')
-        live = PR.package_hashes(key, sub.get('pis') or [])
+        live = PR.package_hashes(key, sub.get('pis') or [], held=PR.held_set(pl))   # D-0017: the held student links are not in the release package; a draw made before them no longer matches it
         if live != sub.get('files'):
             bad.append('accuracy: the included PIs\' package content changed since the draw (subset files differ); redraw')
         return bad, dict(n_verdicts=d.get('n_verdicts'), subset_pis=sub.get('n_pis'))

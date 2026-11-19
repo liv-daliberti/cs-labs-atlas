@@ -160,11 +160,12 @@ def alumni_relation(rel, roles):
     return max(ys) if ys else None
 
 
-def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None):
+def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None, held_links=None):
     """`only_pis` (a per-PI release, D-0001; tools/pi_release.py): draw only from these PIs' rows (their lab papers, student papers, DBLP
     pool and student candidates). With None the draw is exactly the school-wide one (the published draws are unchanged)."""
     cfg = cfg or LEGACY
     only = set(only_pis) if only_pis is not None else None
+    held = {tuple(x) for x in held_links or ()}   # D-0017: held student links (pi, student id) are not in the release package
     out = {'seed': cfg['seed'], 'date': date, 'sizes': {k: cfg[k] for k in ('uniform', 'stratum', 'cov', 'cands')}, 'schools': {}, 'files': {}}
     if cfg is LEGACY:
         del out['sizes']  # the 2026-10-29 files never carried it
@@ -174,7 +175,7 @@ def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None
         out['files'][school] = {f: sha(d / f) for f in FILES}
         if only is not None:
             import pi_release
-            out.setdefault('subset', {})[school] = dict(pis=sorted(only), n_pis=len(only), files=pi_release.package_hashes(school, only),
+            out.setdefault('subset', {})[school] = dict(pis=sorted(only), n_pis=len(only), files=pi_release.package_hashes(school, only, held=held), held=sorted(held),
                                                         included_sha=__import__('hashlib').sha256('\n'.join(sorted(only)).encode()).hexdigest())
         # 1. lab papers
         meta = []
@@ -270,11 +271,12 @@ def draw_round(rnd, schools=None):
         f = d / f'sample-{school}.json'
         if f.exists():
             _sys.exit(f'{f} exists: a round draw is never overwritten (move it aside by hand to redraw)')
-        only = None
+        only, held = None, None
         if cfg.get('subset'):
             import pi_release
-            only = pi_release.plan(school)['included']
-        main([school], f, datetime.date.today().isoformat(), cfg, only)
+            pl = pi_release.plan(school)
+            only, held = pl['included'], sorted(pi_release.held_set(pl))
+        main([school], f, datetime.date.today().isoformat(), cfg, only, held)
 
 
 if __name__ == '__main__':
