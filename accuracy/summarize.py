@@ -76,6 +76,12 @@ def one_school(school):
         held = pi_release.held_set(pi_release.plan(school)) if sub.get('projection_version') == 1 else {tuple(x) for x in sub.get('held') or ()}
         d['subset'] = dict(sub, files_now=pi_release.package_hashes(school, sub['pis'], held=held))
         d['files'], d['files_now'] = sub['files'], d['subset']['files_now']
+        # coordinator ruling 2026-11-19 (copies pass): copies.json is full-text availability, not attribution. When ONLY copies.json differs from the
+        # draw (the four row files and the included set are byte-identical), bind to the live copies.json and record both hashes; never for any other file.
+        diff = [f for f in d['subset']['files_now'] if d['subset']['files_now'][f] != sub['files'].get(f)]
+        if diff == ['copies.json'] and sub.get('included_sha') == pi_release.plan(school)['included_sha'][:len(sub.get('included_sha') or '')]:
+            d['subset']['rebound_copies_only'] = dict(drawn_copies_sha=sub['files']['copies.json'], live_copies_sha=d['subset']['files_now']['copies.json'])
+            d['subset']['files'] = d['files'] = dict(sub['files'], **{'copies.json': d['subset']['files_now']['copies.json']})
     d['population'] = {k: S['schools'][school][k] for k in ('n_lab_papers', 'n_student_papers', 'n_coverage_pool', 'n_student_candidates')}
     rd = round_dir()
     if rd:  # a round: the sizes drawn against the sizes judged (student coverage is judged as far as the candidates go)
