@@ -161,21 +161,24 @@ def filtered_rows_and_json(key, name, included, base=None, held=None):
     if name == 'students.json':
         out = {pi: [x for x in v if (pi, x.get('person') or x.get('id') or x.get('name')) not in held] for pi, v in _read_json(d).items() if pi in inc}
         for pi, entry in (carry or {}).get('rows', {}).get('student', []):
-            out.setdefault(pi, []).append(entry)
+            if pi in inc:
+                out.setdefault(pi, []).append(entry)
         return out
     if name == 'student_papers.jsonl.gz':
-        return [r for r in _jsonl_gz(d) if r.get('pi') in inc and (r['pi'], r.get('student')) not in held] + (carry or {}).get('rows', {}).get('student_paper', [])
+        return [r for r in _jsonl_gz(d) if r.get('pi') in inc and (r['pi'], r.get('student')) not in held] + [r for r in (carry or {}).get('rows', {}).get('student_paper', []) if r.get('pi') in inc]
     if name == 'lab_papers.jsonl.gz':
-        return [r for r in _jsonl_gz(d) if r.get('pi') in inc] + (carry or {}).get('rows', {}).get('lab_paper', [])
+        return [r for r in _jsonl_gz(d) if r.get('pi') in inc] + [r for r in (carry or {}).get('rows', {}).get('lab_paper', []) if r.get('pi') in inc]
     if name.endswith('.jsonl.gz'):
         return [r for r in _jsonl_gz(d) if r.get('pi') in inc]
     if name == 'copies.json':
         c = _read_json(d)
         oa = {r['oa'] for r in _jsonl_gz(package_dir(key, base) / 'lab_papers.jsonl.gz') if r.get('pi') in inc}
+        oa |= {r['oa'] for r in (carry or {}).get('rows', {}).get('lab_paper', []) if r.get('pi') in inc and r.get('oa')}
         out = dict(c)
         out['papers'] = {k: v for k, v in (c.get('papers') or {}).items() if k in oa}
         for k, v in ((carry or {}).get('copies') or {}).items():   # a carried lab paper keeps its published copy entry unless the current build has one
-            out['papers'].setdefault(k, v)
+            if k in oa:
+                out['papers'].setdefault(k, v)
         out['summary_scope'] = 'the school-wide build summary; papers are restricted to the included PIs'
         return out
     raise ValueError(name)

@@ -76,3 +76,35 @@ def test_evidence_refuses_a_changed_release_projection(projection):
     (new / 'students.json').write_text(json.dumps(data))
     with pytest.raises(ValueError, match='projection changed'):
         S.evidence_package('x', sample)
+
+
+def test_evidence_sheet_reads_restored_rows_at_projected_indices(projection, tmp_path, monkeypatch, capsys):
+    import sys
+    sample, _, _ = projection
+    sf = tmp_path / 'draw.json'
+    sf.write_text(json.dumps(sample))
+    monkeypatch.setitem(sys.modules, 'sample', S)
+    evidence = module('projection_evidence', 'evidence.py')
+    monkeypatch.setattr(evidence, 'files', lambda school: (sf, None))
+    capsys.readouterr()
+    evidence.main('x', 'student')
+    sheet = capsys.readouterr().out
+    assert 'STUDENT=restored' in sheet and 'Paper B' in sheet
+    assert 'STUDENT=held' not in sheet
+
+
+def test_summary_binds_to_the_same_restored_release(projection, tmp_path, monkeypatch):
+    import sys
+    sample, plan, _ = projection
+    sf, vf = tmp_path / 'draw.json', tmp_path / 'verdicts.jsonl'
+    sf.write_text(json.dumps(sample))
+    vf.write_text('')
+    monkeypatch.setitem(sys.modules, 'sample', S)
+    summary = module('projection_summary', 'summarize.py')
+    import record
+    monkeypatch.setattr(record, 'files', lambda school: (sf, vf))
+    monkeypatch.setattr(record, 'round_dir', lambda: None)
+    monkeypatch.setattr(summary, 'ACC', tmp_path)
+    summary.one_school('x')
+    data = json.loads((tmp_path / 'summary-x.json').read_text())
+    assert data['files'] == data['files_now'] == PR.package_hashes('x', plan['included'], held=PR.held_set(plan))
