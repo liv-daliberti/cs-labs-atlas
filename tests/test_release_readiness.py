@@ -32,8 +32,8 @@ def test_a_clean_row_has_no_problem():
 
 
 def test_each_failing_check_is_named():
-    p = R.problems(row(ids=False, compare=dict(rc=1, flags=4), g9=dict(state='stale'), validate=dict(violations=2), gates={'2': dict(rc=1, gate='fail', open=3)}))
-    assert p == ['ids', 'gates 2', 'removals 4', 'g9 stale', 'validate 2']
+    p = R.problems(row(ids=False, compare=dict(rc=1, flags=4), g9=dict(state='stale'), validate=dict(violations=2), gates={'8x': dict(rc=1, gate='fail', open=3), '2': dict(rc=1, gate='fail', open=3)}))
+    assert p == ['ids', 'gates 8x', 'removals 4', 'g9 stale', 'validate 2']
 
 
 def test_a_failing_per_pi_gate_holds_pis_not_the_school():
