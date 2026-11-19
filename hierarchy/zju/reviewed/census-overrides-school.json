@@ -3328,12 +3328,11 @@
     ]
   },
   "Lei Wu": {
-    "collection_person_id": "zju_source_fac_bb9b2dfa9d27f06bb9c9",
     "no_identity": true,
-    "why_no_identity": "Only the named official faculty/PI role is source-reviewed for this context. No source-owned bibliography/author identifier has been admitted; hold unreviewed global-name and ORCID inheritance without declaring any identifier false.",
+    "why_no_identity": "Official named faculty role and computing scope verified; no source-owned bibliography identifier is admitted by the faculty-profile correction.",
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only ICSR context; original dump records remain discovery metadata.",
+      "why": "No independently owned ORCID proof supplied.",
       "evidence": []
     }
   },
@@ -5423,11 +5422,11 @@
     "why_home_department": "The official College of Computer Science staff search lists 刘金飞 with the title 百人计划研究员: the college holds the listed appointment; the CAD&CG laboratory is a secondary affiliation (R-HOME-01)."
   },
   "卢丽强": {
-    "no_identity": true,
+    "no_identity": false,
     "why_no_identity": "Only the named official College of Computer Science faculty role is source-reviewed for this person. No source-owned bibliography or author identifier has been admitted; hold unreviewed global-name and ORCID inheritance without declaring any identifier false (HKUST precedent).",
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "DBLP person link is reviewed; its ORCID is not independently PI-owned and remains uninherited.",
       "evidence": []
     },
     "home_department": "Main College of Computer Science",
@@ -5440,7 +5439,31 @@
         "kind": "rendered_unit_listing:CS_MAIN"
       }
     ],
-    "why_home_department": "The official College of Computer Science staff search lists 卢丽强 with the title 百人计划研究员: the college holds the listed appointment; the CAD&CG laboratory is a secondary affiliation (R-HOME-01)."
+    "why_home_department": "The official College of Computer Science staff search lists 卢丽强 with the title 百人计划研究员: the college holds the listed appointment; the CAD&CG laboratory is a secondary affiliation (R-HOME-01).",
+    "prior_identity_hold_1119": {
+      "no_identity": true,
+      "why_no_identity": "Only the named official College of Computer Science faculty role is source-reviewed for this person. No source-owned bibliography or author identifier has been admitted; hold unreviewed global-name and ORCID inheritance without declaring any identifier false (HKUST precedent)."
+    },
+    "dblp": [
+      "https://dblp.org/pid/202/5928"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_dblp",
+      "reviewed": "2026-11-19",
+      "reviewed_by": "codex-zju-complete-1119",
+      "basis": "Exact DBLP person URL explicitly linked by the independently retained named ZJU faculty-owned homepage. Not a CSRankings-based or transliteration-based binding.",
+      "literal_resource_href": "https://dblp.uni-trier.de/pid/202/5928.html",
+      "evidence": [
+        {
+          "url": "https://liqianglu-zju.github.io/",
+          "sha256": "06e0eefee08824ecc7cd6b681a440b8e0c3182168f50924d54a6ed27a0405abe",
+          "quote": "Liqiang Lu - Home Home News Publications People Janus Quantum Cloud Tutorials MICRO 2021 ASPLOS 2024 HPCA 2025 Liqiang Lu Follow East Building #5 Xixi Campus (North) Zhejiang University liqianglu@zju.edu.cn Google Scholar dblp Liqiang Lu ZJU100 Young Professor Assistant Professor of College of Computer Science and Technology Biography I am an assistant professor (ZJU100 Young Professor) in the College of Computer Science at Zhejiang University (ZJU). I received my Ph.D. degree from Peking University in 2022 (advised by Prof. Yun Liang), and Bachelor degree from Peking University in 2017. My research interest is at computer architecture, quantum computing, electronic design automation (EDA), hardware and software co-design. Recently, I mainly focus on the dataflow modeling of tensor computing, software optimization of quantum computing, hybrid algorithm design by mixing classical computing and quantum computing. I have authored over 30 scientific publications in top-tier conferences and journals including ISCA, ASPLOS, HPCA, MICRO, DAC, ICCAD, FCCM, TCAD, IEEE Micro. I also serve in the program committees in the premier conferences including DAC, ICCAD, DATE, FPT, HPCC, and serve as reviewers in several top journals including TPDS, TC, TCAD, TECS, TVLSI. I am looking for highly self-motivated PhD students, postdocs as well as undergraduate interns interested in computer architecture and quantum computing. Students with strong hands-on system building skills, algorithm background and physics background are especially welcomed. Research System, Hardware, Software Optimization for Quantum Computing Software-level optimization and quantum circuit compilation Quantum circuit analysis framework by vectorization ( QuCT@MICRO’23 ) Quantum program verification and repair ( MorphQ",
+          "kind": "pi_owned_explicit_bibliography_resource",
+          "observed": "2026-11-11T21:53:12",
+          "observedAt": "2026-11-11T21:53:12"
+        }
+      ]
+    }
   },
   "卢立": {
     "no_identity": false,
