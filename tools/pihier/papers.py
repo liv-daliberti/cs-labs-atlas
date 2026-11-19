@@ -9,7 +9,7 @@ import school_config as _S  # the school charters (R-PAP-15's foreign-title exce
 from .common import NOT_PAPERS, OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, excluded_school_only, ndoi, norm_title, related_gate, school_scope_work
 from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, name_toks, toks, Name, quotes_name_pi, tie_for_pi  # noqa: F401
-from .periods import _year, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
+from .periods import _year, before_window, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
 from . import identity, primary_affiliations, recovery_reviews, reviewed_claims, source_metadata, title_enrichment
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
@@ -1032,6 +1032,8 @@ def rows_from_hits(ctx):
                 # the venue version predates the atlas window (2016-2026): a later deposit or preprint of an older paper
                 # is not a lab paper of the window (Sandholm's IJCAI 2009 paper, a 2018 KiltHub deposit)
                 n['dated_before_window'] += 1; funnel[pi]['dated_before_window'] += 1; continue
+        if before_window(date):   # any route: a record dated before the atlas window (a re-pulled merged id, an old PI work) is no lab paper of the window
+            n['dated_before_window'] += 1; funnel[pi]['dated_before_window'] += 1; continue
         # R-PAP-37: a listing-continuity period admits only a paper whose own byline names the school
         per = next((q for q in p['periods'] if contains(q['start'], q['end'], date, q['asof'] or TODAY) == 'supported'
                     and (q.get('reviewed') != LISTING_BRIDGE or direct_via(via))), None)

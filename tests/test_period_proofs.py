@@ -51,3 +51,9 @@ def test_reviewed_override_period_without_id_gets_a_stable_one():
     q = dict(start='2021', end='2026', why='x', evidence=[])
     out = pi_periods([], dict(periods=[q, dict(q, id='kept')]), 'Seth Neel')
     assert out[0]['id'] == 'override_period_seth_neel_2021_2026' and out[1]['id'] == 'kept'
+
+
+def test_before_window_catches_a_pre_2016_date_on_any_route():
+    from pihier.periods import before_window
+    assert before_window('2012-05-01') and before_window('2009') and before_window('2015-12-31')
+    assert not before_window('2016') and not before_window('2016-01-01') and not before_window(None) and not before_window('2024-03')

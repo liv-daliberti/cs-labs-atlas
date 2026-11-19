@@ -2,7 +2,7 @@
 R-PAP-02 (not_faculty_row, datebounds seasons), R-PAP-03 (listings_after_move), R-PAP-13 (transition_side)."""
 import calendar, re
 
-from .common import TODAY, best_sources, iso_date, source_year
+from .common import TODAY, WINDOW_START, best_sources, iso_date, source_year
 from .names import Name, nosuffix, toks
 
 SEASON = {'spring': ('01-01', '05-31'), 'summer': ('06-01', '08-31'), 'fall': ('08-01', '12-31'), 'autumn': ('08-01', '12-31')}
@@ -42,6 +42,13 @@ def contains(start, end, date, asof=None):
 def same_year(date):
     b = datebounds(date)
     return int(b[0][:4]) if b and b[0][:4] == b[1][:4] else None
+
+
+def before_window(date):
+    """True when the paper's own date (a day, month or year) lies before the atlas window (WINDOW_START, 2016): no paper of that year is a lab paper, whichever route
+    brought it in (the sweeps fetch 2016 and later, but a by-id re-pull of a merged id, or a PI work file, can hold an older record)."""
+    y = same_year(date)
+    return y is not None and y < WINDOW_START
 
 
 def transition_side(p, lst, date):
