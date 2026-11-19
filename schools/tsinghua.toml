@@ -1053,9 +1053,9 @@ purpose = "Public GenSI group page and its shipped public roster application; so
 
 [[hosts]]
 host = "aafssknttedpznxoiorb.supabase.co"
-use = "live"
-probe = "https://aafssknttedpznxoiorb.supabase.co/rest/v1/member?select=*,name_cn,description_cn&role=eq.Student&order=sort.asc"
+use = "none"
 purpose = "Only the anonymous public member, alumni and group-description reads literally shipped by the GenSI public page. Actual cached robots404 and HTTP200 responses; no administrative access or writes."
+note = "2026-11-19 owner ruling: the anonymous REST read answers http 401 without an API key we do not hold; use = none. Evidence already stored from the earlier cached responses stays."
 
 [[hosts]]
 host = "zhouh.github.io"
