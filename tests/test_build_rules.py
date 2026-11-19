@@ -344,6 +344,12 @@ def test_R_PAP_17_not_paper_types(built):
     assert all(h[1]['id'] != OA + 'W4' for h in built.hits) and 'Some Dataset' not in rows_of(built, 'Ada Lovelace')
 
 
+def test_R_PAP_18_ieee_corrections_notice_is_an_erratum():
+    from pihier.papers import ERRATUM_TITLE
+    assert ERRATUM_TITLE.search('Corrections to "Characterizing Trust and Resilience in Distributed Consensus"')
+    assert ERRATUM_TITLE.search('Correction to: Some paper') and not ERRATUM_TITLE.search('Corrections to the Kalman filter for sparse systems')
+
+
 # ---- students -----------------------------------------------------------------------------------------------------
 
 def test_R_STU_01_student_sources(built):

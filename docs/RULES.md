@@ -168,6 +168,8 @@ Per-pattern counts and ten samples each on the 2026-10-29 build: `archive/docs/n
 ('CACM community') are not caught (no page counts). OpenAlex type `editorial` alone is not dropped (127 such rows have
 research-like titles). Report: `not_paper:<tag>`, samples in `notPaperSamples`.
 
+**R-PAP-18 addendum (2026-11-18, Harvard gate 9 pi1: Gil's T-RO notice)** IEEE correction notices are titled `Corrections to "<article title>"` (Harvard held Gil's `10.1109/tro.2025.3645896` as a lab paper). `ERRATUM_TITLE` now also matches a title that opens `Correction(s) to` followed by a quote mark; `Corrections to the Kalman filter ...` (no quote) stays a paper.
+
 ### R-PAP-19 (2026-10-29, owner: accuracy sample) — meeting abstracts are not papers (R2)
 Dated Oxford Stage 9 review (2026-11-14): `Cardiovascular Research` joins the meeting-abstract journals for records typed `conference-abstract`. The sampled P503 item (DOI `10.1093/cvr/cvy060.360`) is in the publisher's 2018 supplement, page S122, “Abstracts > F. Poster Session III”; ordinary journal articles in that venue stay eligible. Test: `test_oxford_cardiovascular_research_poster_abstract_is_not_a_paper`.
 Dated Oxford Stage 9 review (2026-11-14): BMJ `Heart` British Cardiovascular Society supplement DOIs of the form `10.1136/heartjnl-YYYY-BCS.N` are meeting abstracts. Oxford's own repository labels the sampled `10.1136/heartjnl-2019-BCS.67` as subtype Abstract in volume 105 Supplement 6, page A69. Ordinary `Heart` research articles with other DOI forms remain eligible. Test: `test_oxford_bcs_heart_supplement_abstract_is_not_a_paper`.
