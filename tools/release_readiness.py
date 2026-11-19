@@ -78,8 +78,10 @@ def school_row(key, published):
     row['built_at'] = rep.get('builtAt')
     row['ids'] = PR._has_ids(key)
     import stale_stages as SS   # the package against its reviewed / recovered / raw inputs (the rebuild window, tools/stale_stages.py)
-    stale, why = SS.check('build', key)
-    ins = [(SS.mtime(x), x.name) for x in SS.input_paths(SS.STAGES['build'][1], key) if SS.mtime(x)]
+    outs = [SS.mtime(x) for x in SS.output_paths('build', key)]
+    ins = [(SS.mtime(x), x.name) for x in SS.input_paths(SS.STAGES['build'][1], key) if SS.mtime(x) and x.name != 'release-corrections.json']   # corrections are read by the release, not the build
+    stale = (not outs or any(t is None for t in outs) or (bool(ins) and max(ins)[0] > min(outs)))
+    why = 'an input is newer than the oldest output' if stale else 'fresh'
     row['stale_build'] = dict(stale=bool(stale), why=why, newest_input=(max(ins)[1] if ins else None),
                               newest_input_at=(datetime.fromtimestamp(max(ins)[0], timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ') if ins else None))
     gates = {}
