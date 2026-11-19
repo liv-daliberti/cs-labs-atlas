@@ -63,6 +63,8 @@ def plan(key, res=None, published=None):
         latest = Path(P.RELEASES) / 'latest'
         published = latest if latest.exists() else None
     prev = (published_pis(key, published) or []) if published else []
+    rec = load_corrections(key, published) if published else None
+    prev = prev + list((rec or {}).get('pi_renames', {}).values())   # a PI the census renamed (record `pi_renames`: old spelling -> current) is the published PI, carried
     prev_ids = _published_pi_ids(key, published) if published else set()   # a renamed PI (census alias) keeps its atlas id and stays carried (2026-11-18, Sahinidis)
     carried = [x['pi'] for x in pkg_rows if x['pi'] in hard_open and (x['pi'] in set(prev) or (x.get('atlasId') and x['atlasId'] in prev_ids))]
     included = [pi for pi in pkg if pi in set(done) or pi in set(carried)]
@@ -193,7 +195,7 @@ def _accepted_lab_papers(rec, legacy):
     out = {}
     for cl in rec.get('classes') or []:
         for r in cl.get('rows') or []:
-            out[(r['pi'], r['oa']) if legacy else (r.get('labId'), r.get('atlasWorkId'))] = cl['id']
+            out[(rec.get('pi_renames', {}).get(r['pi'], r['pi']), r['oa']) if legacy else (r.get('labId'), r.get('atlasWorkId'))] = cl['id']
     return out
 
 
@@ -203,6 +205,16 @@ def _accepted_links(rec, legacy):
     for cl in rec.get('classes') or []:
         for r in cl.get('links') or []:
             out[(r['pi'], r['student'], r['oa']) if legacy else (r.get('labId'), r.get('studentAtlasId'), r.get('atlasWorkId'))] = cl['id']
+    return out
+
+
+def _accepted_students(rec, legacy):
+    """{(lab, student): class id} of corrected removed students (class key `students`: rows pi, student / labId, studentAtlasId); their student-paper links follow them."""
+    out = {}
+    renames = rec.get('pi_renames') or {}
+    for cl in rec.get('classes') or []:
+        for r in cl.get('students') or []:
+            out[(renames.get(r['pi'], r['pi']), r['student']) if legacy else (r.get('labId'), r.get('studentAtlasId'))] = cl['id']
     return out
 
 
@@ -217,12 +229,18 @@ def compare(key, included, release, corrections=None):
     legacy = not (_has_ids(key) and _has_ids(key, release))
     new, old = _ids(key, inc=included, legacy=legacy), _ids(key, base=release, legacy=legacy)
     rec = corrections if corrections is not None else load_corrections(key, release)
+    renames = (rec or {}).get('pi_renames') or {}
+    if legacy and renames:   # pre-id packages key by PI name: a census-renamed PI (recorded old -> current) is the same PI, so its rows compare under the current spelling
+        rn = lambda x: tuple(renames.get(x[0], x[0]) if i == 0 else v for i, v in enumerate(x)) if isinstance(x, tuple) else renames.get(x, x)
+        old = {k: {rn(x) for x in v} for k, v in old.items()}
     acc = _accepted_lab_papers(rec, legacy) if rec else {}
     acc_links = _accepted_links(rec, legacy) if rec else {}
+    acc_st = _accepted_students(rec, legacy) if rec else {}
     gone = {k: old[k] - new[k] for k in old}
     corrected = collections.Counter()
-    if acc or acc_links:
-        for k, cls_of in (('lab_paper', lambda x: acc.get(x)), ('student_paper', lambda x: acc.get((x[0], x[2])) or acc_links.get(x))):
+    if acc or acc_links or acc_st:
+        for k, cls_of in (('lab_paper', lambda x: acc.get(x)), ('student', lambda x: acc_st.get(x)),
+                          ('student_paper', lambda x: acc.get((x[0], x[2])) or acc_links.get(x) or acc_st.get(x[:2]))):
             for x in sorted(gone[k], key=str):
                 if cls_of(x):
                     corrected[(k, cls_of(x))] += 1

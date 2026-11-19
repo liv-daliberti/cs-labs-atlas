@@ -168,3 +168,16 @@ def test_a_renamed_open_pi_is_carried_by_atlas_id(world, monkeypatch):
     st = states({'B2'}); st['pis']['B2'] = st['pis']['B']
     pl = PR.plan('x', res=st, published=rel)
     assert 'B2' in pl['carried'] and 'B2' in pl['included']
+
+
+def test_a_recorded_student_class_and_pi_rename_explain_legacy_removals(world):
+    """pi_renames maps a census-renamed PI onto its current spelling (pre-id keys); a `students` class explains a removed student and its links."""
+    new, rel, _ = world
+    write_pkg(new, ['A', 'B2', 'C'], with_ids=False)
+    write_pkg(rel / 'hierarchy' / 'x', ['A', 'B'], with_ids=False)  # route-ok
+    plain = PR.compare('x', ['A', 'B2', 'C'], rel, corrections=dict(against_release=rel.name, classes=[]))
+    assert plain['kinds']['pi']['n_removed'] == 1
+    rec = dict(against_release=rel.name, pi_renames={'B': 'B2'}, classes=[])
+    assert PR.compare('x', ['A', 'B2', 'C'], rel, corrections=rec)['kinds']['pi']['n_removed'] == 0
+    gone = PR.compare('x', ['A', 'C'], rel, corrections=dict(rec, classes=[dict(id='st', rule='r', rows=[], students=[dict(pi='B', student='ext:B-s')])]))
+    assert gone['kinds']['student']['n_removed'] == 0 and gone['corrected'].get('student:st') == 1
