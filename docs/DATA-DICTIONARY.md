@@ -347,6 +347,13 @@ One PI: the merged census rows, reviewed corrections, identity, appointment evid
 | `listingsAfterMove` | array of `listing` | yes | Listing years after an evidenced departure not covered by a later period: stale pages, not appointments. |  | R-PAP-03 |
 | `orcidFromDblp` | array of string | no | ORCIDs the DBLP dump added to this PI (subset of orcid). | items: pattern `^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$` | R-PAP-05 |
 | `dblpBasis` | string | no | How a PI without a DBLP id got one: the unique DBLP person of that exact name. | one of `unique DBLP person of that exact name among the cached publication co-authors`, `unique DBLP person of that exact name in the DBLP dump` | R-PAP-05 |
+| `dblpSignal` | object | no | The school signal that let a name-only DBLP person bind: an affiliation note or a school-domain URL on the record, or >= 3 2016-2026 records shared with the school's other PIs (2026-11-19 namesake audit). | no other keys | R-PAP-05 |
+| `dblpSignal.kind` | string | yes |  | one of `affiliation`, `homepage`, `colleague_records` |  |
+| `dblpSignal.quote` | string | yes |  |  |  |
+| `dblpHeld` | array of object | no | DBLP persons that carry the PI's exact name but were NOT bound: no school affiliation or homepage on the record and too few records with the school's other PIs. |  | R-PAP-05 |
+| `dblpHeld[]` | object | — |  | no other keys |  |
+| `dblpHeld[].pid` | string | yes |  |  |  |
+| `dblpHeld[].why` | string | yes |  |  |  |
 | `dblpDropped` | array of string | no | DBLP pids dropped because the DBLP person name conflicts with the PI names. |  | R-PAP-05 |
 | `oaAuthorIds` | array of string | yes | OpenAlex author ids anchored to the PI by the build (most anchoring works first). | items: pattern `^https://openalex\.org/A\d+$` | R-PAP-04 |
 | `funnel` | object | yes | Where the PI's name hits dropped out of the lab-paper rule (counts). | no other keys |  |
@@ -473,6 +480,7 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `counts.sweep_name_hits` | integer | yes | Sweep authorships matching a PI name. | at least 0 |  |
 | `counts.pi_work_list_hits` | integer | yes | Hits found through the PIs' own work lists. | at least 0 |  |
 | `counts.dblp_ids_dropped_name_mismatch` | integer | yes | DBLP pids dropped on a name conflict (R-PAP-05). | at least 0 |  |
+| `counts.dblp_name_only_held` | integer | no | Exact-name DBLP persons held back because the record shows no school signal (2026-11-19 namesake audit). | at least 0 |  |
 | `counts.dblp_ids_from_dump_name` | integer | no | DBLP pids taken from a unique dump name. | at least 0 |  |
 | `counts.dblp_dump_titles_added` | integer | no | Titles added from the DBLP dump. | at least 0 |  |
 | `counts.pis_orcid_from_dblp` | integer | no | PIs given an ORCID from the DBLP dump. | at least 0 |  |

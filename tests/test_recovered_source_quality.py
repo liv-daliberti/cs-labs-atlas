@@ -149,7 +149,7 @@ def write_owned_publication(root, recovered, monkeypatch, pubtype='inproceedings
     publication = dict(key=key, type=pubtype, title=recovered['title'] + '.', year=recovered['year'],
                        dois=[recovered['doi']] if recovered.get('doi') else [],
                        authors=[[name, None] for name in recovered['byline']])
-    packet = dict(persons={pid: dict(names=['Ada Lovelace'], pubs=[publication], orcid=[])},
+    packet = dict(persons={pid: dict(names=['Ada Lovelace'], affiliations=['Princeton University, NJ, USA'], pubs=[publication], orcid=[])},
                   by_name={'ada lovelace': [pid]})
     T.put(root, 'dblp-dump-persons.json.gz', None).write_bytes(gzip.compress(json.dumps(packet).encode()))
     T.put(root, 'dblp-dump-pages.json.gz', None).write_bytes(gzip.compress(json.dumps(dict(pages={key: pages})).encode()))
