@@ -79,9 +79,22 @@ def one_school(school):
         # coordinator ruling 2026-11-19 (copies pass): copies.json is full-text availability, not attribution. When ONLY copies.json differs from the
         # draw (the four row files and the included set are byte-identical), bind to the live copies.json and record both hashes; never for any other file.
         diff = [f for f in d['subset']['files_now'] if d['subset']['files_now'][f] != sub['files'].get(f)]
-        if diff == ['copies.json'] and sub.get('included_sha') == pi_release.plan(school)['included_sha'][:len(sub.get('included_sha') or '')]:
+        same_set = sub.get('included_sha') == pi_release.plan(school)['included_sha'][:len(sub.get('included_sha') or '')]
+        if diff == ['copies.json'] and same_set:
             d['subset']['rebound_copies_only'] = dict(drawn_copies_sha=sub['files']['copies.json'], live_copies_sha=d['subset']['files_now']['copies.json'])
             d['subset']['files'] = d['files'] = dict(sub['files'], **{'copies.json': d['subset']['files_now']['copies.json']})
+        elif same_set and diff and set(diff) <= {'copies.json', 'students.json'}:
+            # coordinator ruling 2026-11-19 (held links, after the link-diagnosis restore): the draw was made while link-diagnosis.json was missing (no held links);
+            # the true held set removes student links only. Valid when NO drawn student-precision row and NO student-coverage candidate is a held link: a uniform draw
+            # from the full population that lands entirely outside the removed set is a uniform draw from the remaining one (rows/pis/lab papers are byte-identical).
+            held_now = pi_release.held_set(pi_release.plan(school))
+            Sd = S['schools'][school]
+            drawn = {(it['key'].split('|')[0], it['key'].split('|')[1]) for it in Sd['student_precision']}
+            cands = {(c['pi'], c['person']) for c in Sd['student_coverage_order']}
+            if not (drawn & held_now) and not (cands & held_now):
+                d['subset']['rebound_held_links'] = dict(drawn_hashes={f: sub['files'].get(f) for f in diff}, live_hashes={f: d['subset']['files_now'][f] for f in diff},
+                                                         held_links_now=len(held_now), drawn_rows_held=0, candidates_held=0)
+                d['subset']['files'] = d['files'] = dict(sub['files'], **{f: d['subset']['files_now'][f] for f in diff})
     d['population'] = {k: S['schools'][school][k] for k in ('n_lab_papers', 'n_student_papers', 'n_coverage_pool', 'n_student_candidates')}
     rd = round_dir()
     if rd:  # a round: the sizes drawn against the sizes judged (student coverage is judged as far as the candidates go)
