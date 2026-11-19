@@ -132,9 +132,17 @@ def pi_listings(x, yearly, n):
     family name and is a faculty row) and the verified yearly department listings (listings/<school>/listings.json) of
     the PI's census rows; the first listing of a year is kept."""
     listings = {}
+    # A reviewed bilingual faculty record can have a Chinese canonical name and
+    # an English source quote. Require the whole spelled-out alias, never just
+    # its surname or initials, before that quote proves its own calendar year.
+    aliases = [nosuffix(toks(a)) for a in x.get('aliases') or []]
+    aliases = [a for a in aliases if len(a) >= 2 and all(len(t) > 1 for t in a)]
     for s in x.get('sources') or []:
         y = source_year(s); sur = nosuffix(toks(x['name']))[-1] if toks(x['name']) else ''  # R-PAP-08: 'Lionel P. Robert Jr.' is listed as 'Lionel Robert'
-        if y and 2016 <= y <= 2026 and s.get('sha256') and s.get('quote') and sur and sur in ' '.join(toks(s['quote'])) and not not_faculty_row(s['quote']):
+        quote = ' '.join(toks(s.get('quote')))
+        full_alias = any(' ' + ' '.join(a) + ' ' in ' ' + quote + ' ' for a in aliases)
+        named = bool(sur and sur in quote) or full_alias
+        if y and 2016 <= y <= 2026 and s.get('sha256') and s.get('quote') and named and not not_faculty_row(s['quote']):
             listings.setdefault(y, dict(url=s['url'], sha256=s['sha256'], quote=s['quote'], kind=s.get('kind') or '', year=y))
     for nm_ in [x['name']] + list(x.get('mergedCensusRows') or []):
         for r in yearly.get(nm_, []):
