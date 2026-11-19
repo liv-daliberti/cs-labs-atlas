@@ -71,7 +71,7 @@ if has snapshot; then
   $PY $CS_ATLAS_TOOLS/build_regression.py snapshot --out "$BEFORE/counts.json" || fail=1
 fi
 if has build; then
-  $CS_ATLAS_PY -c "import sys; sys.path.insert(0, '$CS_ATLAS_TOOLS'); import atlas_paths as P; [P.data('link-diagnosis.json', s).unlink(missing_ok=True) for s in P.SCHOOL_IDS]"  # stale diagnoses would hide open items from the re-diagnosis
+  $CS_ATLAS_PY -c "import sys; sys.path.insert(0, '$CS_ATLAS_TOOLS'); import atlas_paths as P; [P.data('link-diagnosis.json', s).unlink(missing_ok=True) for s in sys.argv[1:]]" $SCHOOLS  # stale diagnoses would hide open items from the re-diagnosis
   # newest school first (owner 2026-11-03): a school still settling in breaks soonest; the builds are independent, and ids and
   # every later stage keep the charter order
   BUILD_ORDER=$(printf '%s\n' $SCHOOLS | tac | tr '\n' ' ')
@@ -115,7 +115,7 @@ fi
 if has audits; then
   echo "== student audit $(date +%T)"; $PY $CS_ATLAS_TOOLS/student_audit.py $CS_ATLAS_SCHOOLS > /dev/null || fail=1
   echo "== chain audit (open items) $(date +%T)"; $PY $CS_ATLAS_TOOLS/chain_audit.py > /dev/null || fail=1
-  echo "== link diagnosis $(date +%T)"; $PY $CS_ATLAS_TOOLS/link_diagnosis.py $CS_ATLAS_SCHOOLS || true
+  echo "== link diagnosis $(date +%T)"; $PY $CS_ATLAS_TOOLS/link_diagnosis.py $SCHOOLS || true
   echo "== chain audit $(date +%T)"; $PY $CS_ATLAS_TOOLS/chain_audit.py || fail=1
 fi
 if has evidence; then

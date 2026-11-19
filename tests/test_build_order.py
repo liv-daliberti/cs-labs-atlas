@@ -20,3 +20,12 @@ def test_parallel_rebuild_puts_newest_school_at_task_0():
     out = subprocess.run(['bash', '-c', 'SCHOOLS="princeton cmu michigan"; ' + line.split('#')[0].strip() + '; echo $SCHOOLS'],
                          capture_output=True, text=True, check=True).stdout.split()
     assert out == ['michigan', 'cmu', 'princeton']
+
+
+def test_rebuild_scopes_link_diagnosis_to_the_built_schools():
+    """2026-11-19: a one-school rebuild deleted every school's link-diagnosis.json and re-diagnosed only the default five,
+    so held sets flipped. The unlink and the diagnosis both follow $SCHOOLS."""
+    text = (CODE / 'hierarchy/rebuild.sh').read_text()
+    assert 'for s in P.SCHOOL_IDS' not in text.split('link-diagnosis.json', 1)[1].split('\n', 1)[0]
+    assert "for s in sys.argv[1:]]\" $SCHOOLS" in text
+    assert 'link_diagnosis.py $SCHOOLS' in text and 'link_diagnosis.py $CS_ATLAS_SCHOOLS' not in text
