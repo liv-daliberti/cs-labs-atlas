@@ -41,6 +41,12 @@ DBLP_URL_SKIP = re.compile(r'orcid|wikidata|wikipedia|scholar\.google|twitter|li
                            r'genealogy\.|crossref|youtube|facebook', re.I)  # authority records and profiles are not homepages
 
 
+def pi_row(cen, add, name):
+    """The row stage_gate.pis_of judges: the census row when it is a PI, else the census addition, else any census row (an affiliated unit's pending row must not hide the addition's years)."""
+    c = cen.get(name)
+    return c if (c or {}).get('is_pi') else (add.get(name) or c or {})
+
+
 def census_faculty(key):
     """The census rows: {'faculty': [...]} (census_build) or a bare list (a hand-composed released school)."""
     d = json.loads((P.data('census-faculty.json', key)).read_text())
@@ -192,7 +198,7 @@ def gaps(key, write=True, max_pis=None):
     import stage_gate as SG
     done_now = 0
     for t in targets(key):
-        x0 = cen.get(t['name']) or add.get(t['name']) or {}
+        x0 = pi_row(cen, add, t['name'])
         miss = SG.span_gaps(x0)  # years of the professor-rank span with no listing (stage_gate.span_gaps)
         ys = sorted(set(x0.get('years_listed') or []))
         if not miss:
@@ -202,7 +208,7 @@ def gaps(key, write=True, max_pis=None):
             continue   # searched before: saved result stands (delete the entry to search again)
         if max_pis is not None and done_now >= max_pis:
             break
-        x = cen.get(t['name']) or add.get(t['name']) or {}
+        x = pi_row(cen, add, t['name'])
         names = [t['name']] + list(x.get('aliases') or [])
         urls = list(t['urls'])
         for s_ in x.get('sources') or []:
@@ -257,7 +263,7 @@ def write_gaps(key, out):
     for name, g in out.items():
         if not g['closed']:
             continue
-        x = cen.get(name) or add.get(name) or {}
+        x = pi_row(cen, add, name)
         srcs = sorted([s_ for s_ in x.get('sources') or [] if s_.get('quote')], key=lambda s_: str(s_.get('observed') or ''))
         first, last = (srcs[0], srcs[-1]) if srcs else (None, None)
         iso = lambda d: (f'{d[:4]}-{d[4:6]}-{d[6:8]}' if d and re.fullmatch(r'\d{8}(?:\d{2}){0,3}', d) else d)  # contains() reads ISO dates only
@@ -388,7 +394,7 @@ def truncated(key, write=True):
     add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
     tg = {t['name']: t for t in targets(key)}
     for name, years in sorted(truncated_years(rows).items()):
-        x = cen.get(name) or add.get(name) or {}
+        x = pi_row(cen, add, name)
         pi = bool(x.get('is_pi'))
         t = tg.get(name) or dict(name=name, urls=[])
         names = [name] + list(x.get('aliases') or [])
@@ -423,7 +429,7 @@ def truncated(key, write=True):
     for name, g in out.items():
         if not g['pi'] or not g['closed']:
             continue
-        x = cen.get(name) or add.get(name) or {}
+        x = pi_row(cen, add, name)
         lad = sorted(int(y) for y, rk in (x.get('ranks_by_year') or {}).items() if 'ladder' in rk)
         if not lad:
             continue
@@ -490,7 +496,7 @@ def deep(key, write=True):
     only = [a for a in sys.argv[3:] if not a.startswith('--')] or None
     work_years = '--work-years' in sys.argv   # ROADMAP #43: also the years of the PI's identified works outside the listing years (a PI listed in one year only has no span gap)
     for name in (only or open_pis(key)):
-        x = cen.get(name) or add.get(name) or {}
+        x = pi_row(cen, add, name)
         miss = SG.span_gaps(x)
         if work_years:
             miss = sorted(set(miss) | outside_work_years(key, name, x))
@@ -540,7 +546,7 @@ def deep(key, write=True):
     for name, g in out.items():
         if only and name not in only:
             continue
-        x = cen.get(name) or add.get(name) or {}
+        x = pi_row(cen, add, name)
         e = sec.setdefault(name, {})
         if work_years and g['evidence'] and not g['closed']:   # proven years of a work-years pass: one reviewed period per contiguous run of listing and capture years (as extend())
             ys = sorted(set(x.get('years_listed') or []) | {int(y) for y in g['evidence']})
