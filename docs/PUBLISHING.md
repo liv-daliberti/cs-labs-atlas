@@ -34,3 +34,19 @@ The site hosts only Creative Commons (CC*) and public-domain full texts. Every o
 local-copy marker (`stored_copy`, `link_basis: confirmed_copy`). `tools/reader_export.py` `decide()` enforces it from the licence (asset, candidate,
 or arXiv/OpenAlex metadata); an unknown licence is a link. Licence and basis stay in every row as metadata. The 2026-11-17 "host every confirmed copy"
 behaviour (commit b780330a) is superseded. An explicitly reviewed independent library snapshot (`--library-snapshot`) is a separate owner-admitted path.
+
+## Reviewed home departments
+
+A research freeze combines the copied school-local home registers into the
+release's shared `hierarchy/home-departments.json`, which the website hierarchy
+builder reads. Explicit local reviews and holds follow the same precedence as
+the working registry. The freeze uses only its copied inputs; later working-tree
+changes cannot alter the released decisions. Per-PI admission still filters held
+PIs from this shared register unless the owner explicitly selects unfiltered
+school-wide data.
+
+Recording a home department does not publish a lab. A lab must also be included
+in the admitted research/interim site input, and the resulting Site version must
+be deployed. Check the published PI inventory and department labels after that
+step; do not report assignments as live solely because the research review is
+complete.

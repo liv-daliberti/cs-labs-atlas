@@ -129,6 +129,32 @@ def release_sources(ai_dir=None, schools=None):
     return src
 
 
+
+def freeze_home_departments(root, schools, per=None):
+    """Materialize the site's shared register from this release's copied inputs.
+
+    Explicit school-local reviews and holds have the same precedence as the
+    live registry. Never read live decisions after copying a release snapshot.
+    """
+    import home_department_registry as HOME
+
+    hierarchy = root / REL_HIERARCHY
+    shared = P.hfile(hierarchy, 'home-departments.json')
+    if not shared.exists() and not any(P.hfile(hierarchy, 'home-departments-school.json', s).exists() for s in schools):
+        return None
+    original = json.loads(shared.read_text()) if shared.exists() else []
+    rows = [r for r in original if r.get('school') not in schools]
+    for school in schools:
+        rows.extend(HOME.load(school, hierarchy))
+    if per:
+        import pi_release_derived as PD
+        rows = PD.filter_home_departments(rows, per)
+    rows.sort(key=lambda r: (r['school'], r['name']))
+    shared.parent.mkdir(parents=True, exist_ok=True)
+    shared.write_text(json.dumps(rows, indent=1, ensure_ascii=False) + '\n')
+    return dict(bytes=shared.stat().st_size, sha256=sha256(shared))
+
+
 def upstream():
     out = dict(openalex_sweeps={}, dblp_dump=None, site_collections={})
     for s in P.SCHOOL_IDS:
@@ -285,6 +311,9 @@ def make(a):
         entries[f] = dict(bytes=dst.stat().st_size, sha256=sha256(dst))
         if dst.name in content_hash.VOLATILE:   # a stamp is kept but is not content: the hash without it (ROADMAP #22)
             entries[f]['content_sha256'] = content_hash.content_sha256(dst)
+    home_entry = freeze_home_departments(tmp, schools, per if not a.allow_derived_unfiltered else None)
+    if home_entry is not None:
+        entries[rel_of('home-departments.json')] = home_entry
     for s in schools:  # the package must not have been rebuilt while it was copied
         now = json.loads(P.data('report.json', s).read_text()).get('builtAt')
         lp = rel_of('lab_papers.jsonl.gz', s)
