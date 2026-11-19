@@ -253,3 +253,39 @@ def test_unexplained_removals_are_carried_forward_and_recorded_ones_stay_removed
     monkeypatch.setattr(PR, 'load_corrections', lambda k, r: rec)
     pl2 = PR.plan('x', states(set()), published=rel)
     assert pl2['carry']['counts'] == {'student': 1}                      # the recorded lab paper stays removed and its links follow it
+
+
+def test_carried_link_uses_native_keys_of_the_same_exact_atlas_entities(world):
+    new, rel, states = world
+    old = rel / 'hierarchy' / 'x'
+    # Same issued person and work, with different native keys after the rebuild.
+    students = json.loads((old / 'students.json').read_text())
+    students['B'][0]['person'] = 'published:B-student'
+    (old / 'students.json').write_text(json.dumps(students))
+    for directory, work in [(old, 'published:B-work'), (new, 'current:B-work')]:
+        with gzip.open(directory / 'lab_papers.jsonl.gz', 'rt') as f:
+            papers = [json.loads(line) for line in f]
+        for r in papers:
+            if r['pi'] == 'B':
+                r['work'] = work
+        with gzip.open(directory / 'lab_papers.jsonl.gz', 'wt') as f:
+            f.writelines(json.dumps(r) + '\n' for r in papers)
+    with gzip.open(old / 'student_papers.jsonl.gz', 'rt') as f:
+        links = [json.loads(line) for line in f]
+    for r in links:
+        if r['pi'] == 'B':
+            r.update(student='published:B-student', work='published:B-work')
+    with gzip.open(old / 'student_papers.jsonl.gz', 'wt') as f:
+        f.writelines(json.dumps(r) + '\n' for r in links)
+    with gzip.open(new / 'student_papers.jsonl.gz', 'rt') as f:
+        links = [json.loads(line) for line in f if json.loads(line)['pi'] != 'B']
+    with gzip.open(new / 'student_papers.jsonl.gz', 'wt') as f:
+        f.writelines(json.dumps(r) + '\n' for r in links)
+    pl = PR.plan('x', states(set()), published=rel)
+    assert pl['carry']['counts'] == {'student_paper': 1}
+    held = PR.held_set(pl)
+    link = next(r for r in PR.filtered_rows_and_json('x', 'student_papers.jsonl.gz', pl['included'], held=held) if r['pi'] == 'B')
+    assert link['student'] == 'ext:B-s' and link['work'] == 'current:B-work'
+    assert link['studentAtlasId'] == 'atl:p:Bs' and link['atlasWorkId'] == 'atl:w:B'
+    assert len(pl['carry']['reference_normalisations']) == 2
+    assert PR.compare('x', pl['included'], rel, held=held)['flags'] == 0

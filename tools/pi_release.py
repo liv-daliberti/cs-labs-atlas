@@ -141,12 +141,44 @@ def _carry(key, included, published, rec, held):
                     rows[k].append(r); keys[k].add(x)
     if not any(keys.values()):
         return None
+    # Native builder keys may change while the exact atlas work/person identity stays the same.
+    # Reconnect carried links to those existing rows; otherwise organize_tree/evidence can lose
+    # a connection even though compare's atlas-ID sets report no removal.
+    papers = [r for r in _jsonl_gz(package_dir(key) / 'lab_papers.jsonl.gz') if r.get('pi') in inc] + rows['lab_paper']
+    members = [(pi, r) for pi, entries in _read_json(package_dir(key) / 'students.json').items() if pi in inc for r in entries] + rows['student']
+    papers_by_id, papers_by_oa, members_by_id = collections.defaultdict(list), collections.defaultdict(list), collections.defaultdict(list)
+    for r in papers:
+        if r.get('atlasWorkId'):
+            papers_by_id[(r['pi'], r['atlasWorkId'])].append(r)
+        if r.get('oa'):
+            papers_by_oa[(r['pi'], r['oa'])].append(r)
+    for pi, r in members:
+        if r.get('atlasId'):
+            members_by_id[(pi, r['atlasId'])].append(r)
+    normalised = []
+    for r in rows['student_paper']:
+        choices = papers_by_id.get((r['pi'], r.get('atlasWorkId'))) or papers_by_oa.get((r['pi'], r.get('oa'))) or []
+        exact = [p for p in choices if p.get('work') == r.get('work') and p.get('oa') == r.get('oa')]
+        candidates = exact or choices
+        refs = {(p.get('work'), p.get('oa')) for p in candidates}
+        if len(refs) == 1:
+            work, oa = next(iter(refs))
+            if (r.get('work'), r.get('oa')) != (work, oa):
+                normalised.append(dict(pi=r['pi'], atlasWorkId=r.get('atlasWorkId'), old_work=r.get('work'), work=work, old_oa=r.get('oa'), oa=oa))
+                r.update(work=work, oa=oa)
+        members_for_id = members_by_id.get((r['pi'], r.get('studentAtlasId'))) or []
+        if members_for_id and not any(m.get('person') == r.get('student') for m in members_for_id):
+            people = {m.get('person') for m in members_for_id}
+            if len(people) == 1:
+                person = next(iter(people))
+                normalised.append(dict(pi=r['pi'], studentAtlasId=r.get('studentAtlasId'), old_student=r.get('student'), student=person))
+                r['student'] = person
     oldc = package_dir(key, published) / 'copies.json'
     copies = {}
     if oldc.exists():
         have = (_read_json(oldc).get('papers') or {})
         copies = {r['oa']: have[r['oa']] for r in rows['lab_paper'] if r.get('oa') in have}
-    return dict(rows=rows, keys=keys, copies=copies, counts={k: len(v) for k, v in rows.items() if v})
+    return dict(rows=rows, keys=keys, copies=copies, reference_normalisations=normalised, counts={k: len(v) for k, v in rows.items() if v})
 
 
 def filtered_rows_and_json(key, name, included, base=None, held=None):
