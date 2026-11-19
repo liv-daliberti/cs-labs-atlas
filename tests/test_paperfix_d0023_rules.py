@@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'tools'))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'tools' / 'pihier'))
 import pi_hierarchy as h  # noqa: E402
 import pi_fulltext_affiliation as F  # noqa: E402
+from pihier import papers as PA  # noqa: E402
 
 
 def row(**kw):
@@ -103,4 +104,4 @@ def test_R_PAP_39_toronto_d0023_reviewed_not_papers():
     for pi, doi in (('Gerald Penn', '10.1145/3170427.3170660'), ('Elias B. Khalil', '10.1609/aaai.v37i13.26810'), ('Scott Sanner', '10.1145/3726302.3730369')):
         e = d[pi]['not_papers'][0]
         assert e['doi'] == doi and e['why'] and len(e['evidence'][0]['sha256']) == 64 and e['evidence'][0]['quote']
-        assert h.reviewed_not_paper(dict(notPapers=d[pi]['not_papers']), dict(doi=doi, oa=e['oa']))
+        assert PA.reviewed_not_paper(dict(notPapers=d[pi]['not_papers']), dict(doi=doi, oa=e['oa']))
