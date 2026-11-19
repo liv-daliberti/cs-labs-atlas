@@ -89,6 +89,17 @@ def polite_get(url, delay=3.0):
     return r
 
 
+def pdf_alternates(u):
+    """Other PDF locations of the same PMLR paper (R-PAP-36, 2026-11-18, Harvard gate 9: Pillai AISTATS 2016, Glassman ICML 2024). PMLR volumes before about v100
+    serve <vol>/<id>.pdf, volumes from about v200 serve the PDF from the PMLR assets repository that the landing page's own 'Download PDF' link names;
+    pdf_url gives <vol>/<id>/<id>.pdf, which the mid volumes use."""
+    m = re.match(r'https?://proceedings\.mlr\.press/(v\d+)/([\w\-]+)\.html$', u)
+    if not m:
+        return []
+    return [f'https://proceedings.mlr.press/{m.group(1)}/{m.group(2)}.pdf',
+            f'https://raw.githubusercontent.com/mlresearch/{m.group(1)}/main/assets/{m.group(2)}/{m.group(2)}.pdf']
+
+
 def pdf_url(u):
     """A proceedings landing page -> its PDF (the hosts' own URL patterns), else the URL if it already is a PDF."""
     u = u.replace('http://', 'https://')
@@ -278,7 +289,10 @@ def run(school, workers):
     if only_keys:
         todo = [x for x in todo if any(x['dblp_key'].endswith('/' + key) for key in only_keys)]
     pdf_overrides = json.loads(os.environ.get('DBLP_RECOVER_PDF_OVERRIDES', '{}'))
+    arxiv_overrides = json.loads(os.environ.get('DBLP_RECOVER_ARXIV_OVERRIDES', '{}'))   # {bare dblp key: arXiv id}: the record's own arXiv version when the CoRR/OpenAlex guess is another paper (Glassman ICML 2024)
     for x in todo:
+        if bare_key(x['dblp_key']) in arxiv_overrides:
+            x['arxiv'] = arxiv_overrides[bare_key(x['dblp_key'])]
         url = pdf_overrides.get(bare_key(x['dblp_key']))
         if url:
             x['ee'] = list(dict.fromkeys([*x['ee'], url]))
@@ -337,6 +351,12 @@ def run(school, workers):
             if not u:
                 continue
             r = polite_get(u)
+            for alt in pdf_alternates(e.replace('http://', 'https://')):
+                if r is not None and r.status_code == 200 and r.content[:4] == b'%PDF':
+                    break
+                r2 = polite_get(alt)
+                if r2 is not None and r2.status_code == 200 and r2.content[:4] == b'%PDF':
+                    r, u = r2, alt
             if r is not None and r.status_code == 200 and r.content[:4] == b'%PDF':
                 txt = page1_text(r.content); how, quotes = tie(re.sub(r'\s+', ' ', txt), names, aff); read_pages.append(u)
                 record(x, 'open:' + urlsplit(u).netloc, u, 'ok', hashlib.sha256(r.content).hexdigest(), txt, int(bool(how)),

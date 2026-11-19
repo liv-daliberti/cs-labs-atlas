@@ -132,3 +132,9 @@ def test_R_PAP_36_openalex_other_institution_does_not_close_the_record_before_pa
     assert D.doi_authorship_verdict(work(princeton), nm, inst, aff, 'princeton')[0] == 'school'
     assert D.doi_authorship_verdict(work(), nm, inst, aff, 'princeton') == (None, None)
     assert D.doi_authorship_verdict(dict(id='W2', authorships=[]), nm, inst, aff, 'princeton') == (None, None)
+
+
+def test_pmlr_alternate_pdf_locations():
+    assert D.pdf_alternates('http://proceedings.mlr.press/v51/basse16a.html')[0] == 'https://proceedings.mlr.press/v51/basse16a.pdf'
+    assert D.pdf_alternates('https://proceedings.mlr.press/v235/pu24c.html')[1] == 'https://raw.githubusercontent.com/mlresearch/v235/main/assets/pu24c/pu24c.pdf'
+    assert D.pdf_alternates('https://openreview.net/forum?id=abc') == []
