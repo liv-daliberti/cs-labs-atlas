@@ -5,76 +5,13 @@
  "pi_renames": {},
  "classes": [
   {
-   "id": "same_paper_other_id",
-   "rule": "The same paper stays in the package under another OpenAlex id for the same PI (same DOI or same normalised title; OpenAlex id merge, or the published version represents its preprint: R-PAP edition/representative rules 2026-10-28/29).",
-   "rows": [
-    {
-     "pi": "Kunal Agrawal",
-     "oa": "https://openalex.org/W7110413240",
-     "labId": null,
-     "atlasWorkId": "atl:w:e6d46eba0c5f",
-     "title": "Analysis of EDF for Real-Time Multiprocessor Systems with Resource Sharing",
-     "year": 2025,
-     "identity_before": "pi_orcid",
-     "kept_as": "https://openalex.org/W2974660830",
-     "basis": "same PI, same normalised title in the package"
-    },
-    {
-     "pi": "Sanjoy Baruah",
-     "oa": "https://openalex.org/W7110413240",
-     "labId": null,
-     "atlasWorkId": "atl:w:e6d46eba0c5f",
-     "title": "Analysis of EDF for Real-Time Multiprocessor Systems with Resource Sharing",
-     "year": 2025,
-     "identity_before": "pi_orcid",
-     "kept_as": "https://openalex.org/W2974660830",
-     "basis": "same PI, same normalised title in the package"
-    },
-    {
-     "pi": "Yevgeniy Vorobeychik",
-     "oa": "https://openalex.org/W4296088522",
-     "labId": null,
-     "atlasWorkId": "atl:w:5d01a2ca5f57",
-     "title": "Networked Restless Multi-Armed Bandits for Mobile Interventions",
-     "year": 2022,
-     "identity_before": "pi_orcid",
-     "kept_as": "https://openalex.org/W7124315003",
-     "basis": "same PI, same normalised title in the package"
-    },
-    {
-     "pi": "Chenguang Wang",
-     "oa": "https://openalex.org/W4404574583",
-     "labId": null,
-     "atlasWorkId": "atl:w:db5378730352",
-     "title": "MLAN: Language-Based Instruction Tuning Preserves and Transfers Knowledge in Multimodal Language Models",
-     "year": 2024,
-     "identity_before": "dblp_person_page_doi",
-     "kept_as": "https://openalex.org/W4412944397",
-     "basis": "same PI, same normalised title in the package"
-    }
-   ]
-  },
-  {
    "id": "not_paper_rule",
    "rule": "R-PAP-17/18/39 not-papers (owner): the current build drops the record as a non-paper (OpenAlex type or genre: editorial, book review, abstract, commentary, deliverable...); named per row by the build-trace counter (drop_not_papers: not_paper:<kind>).",
    "rows": [
     {
-     "pi": "Neal Patwari",
-     "oa": "https://openalex.org/W3035413370",
-     "labId": null,
-     "atlasWorkId": "atl:w:94ae9a4f223d",
-     "title": "Message from the IPSN 2020 Organizers",
-     "year": 2020,
-     "identity_before": "pi_orcid",
-     "trace": [
-      "not_paper:editor_message",
-      "transition_year_affiliated_outside"
-     ]
-    },
-    {
      "pi": "William Yeoh",
      "oa": "https://openalex.org/W7139004237",
-     "labId": null,
+     "labId": "atl:l:washu:william-yeoh",
      "atlasWorkId": "atl:w:a1cd48960583",
      "title": "On Generating Monolithic and Model Reconciling Explanations in Probabilistic Scenarios (Abstract Reprint)",
      "year": 2026,
@@ -92,7 +29,7 @@
     {
      "pi": "Ulugbek Kamilov",
      "oa": "https://openalex.org/W4398794876",
-     "labId": null,
+     "labId": "atl:l:washu:ulugbek-kamilov",
      "atlasWorkId": "atl:w:3fd0117b6670",
      "title": "Dose-aware Diffusion Model for 3D PET Image Denoising: Multi-institutional Validation with Reader Study and Real Low-dose Data",
      "year": 2024,
@@ -111,7 +48,7 @@
     {
      "pi": "Fuhai Li",
      "oa": "https://openalex.org/W7128064959",
-     "labId": null,
+     "labId": "atl:l:washu:fuhai-li",
      "atlasWorkId": "atl:w:0099ea5dad6f",
      "title": "APOE ‐stratified Proteomic and Metabolomic Analysis Reveals Mitochondrial Dysfunction Inflammation and Lipid Dysregulation in Alzheimer's Disease",
      "year": 2026,
@@ -123,7 +60,7 @@
     {
      "pi": "Fuhai Li",
      "oa": "https://openalex.org/W7129224998",
-     "labId": null,
+     "labId": "atl:l:washu:fuhai-li",
      "atlasWorkId": "atl:w:5fa00346afea",
      "title": "OmniCellTOSG: The First Cell Text-Omic Signaling Graphs Dataset for Graph Language Foundation Modeling",
      "year": 2026,
@@ -135,7 +72,7 @@
     {
      "pi": "Fuhai Li",
      "oa": "https://openalex.org/W7131765535",
-     "labId": null,
+     "labId": "atl:l:washu:fuhai-li",
      "atlasWorkId": "atl:w:10d3bfe93860",
      "title": "AI for Scientific Discovery in Omics Data-Driven Precision Medicine.",
      "year": 2026,
@@ -147,7 +84,7 @@
     {
      "pi": "Fuhai Li",
      "oa": "https://openalex.org/W7215102201",
-     "labId": null,
+     "labId": "atl:l:washu:fuhai-li",
      "atlasWorkId": "atl:w:966c435a69d8",
      "title": "When Clipping Reverses Correction: Failure Dynamics of Pointwise Forward-KL On-Policy Self-Distillation",
      "year": 2026,
@@ -161,6 +98,8 @@
   }
  ],
  "open_rows_not_recorded": {
-  "links_open_student_not_in_lab": 1
+  "open_not_in_build_hits": 0,
+  "open_no_trace_signal": 0,
+  "links_open_other": 1
  }
 }

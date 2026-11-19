@@ -268,6 +268,17 @@ def compare(key, included, release, corrections=None, held=None):
     if legacy and renames:   # pre-id packages key by PI name: a census-renamed PI (recorded old -> current) is the same PI, so its rows compare under the current spelling
         rn = lambda x: tuple(renames.get(x[0], x[0]) if i == 0 else v for i, v in enumerate(x)) if isinstance(x, tuple) else renames.get(x, x)
         old = {k: {rn(x) for x in v} for k, v in old.items()}
+    drift, drifted_pis = {}, set()
+    if not legacy:   # a lab or person id can drift between builds when a PI loses an identity anchor (a new id is minted): follow the PI by name (and recorded rename) so the drift is reported, not counted as a removal
+        o_pis, n_pis = {x['pi']: x for x in _read_json(package_dir(key, release) / 'pis.json')}, {x['pi']: x for x in _read_json(package_dir(key) / 'pis.json')}
+        for pi, x in o_pis.items():
+            y = n_pis.get(renames.get(pi, pi))
+            if y:
+                for f in ('labId', 'atlasId'):
+                    if x.get(f) and y.get(f) and x[f] != y[f]:
+                        drift[x[f]] = y[f]; drifted_pis.add(pi)
+        if drift:
+            old = {k: {(drift.get(x, x) if isinstance(x, str) else tuple(drift.get(v, v) if i == 0 else v for i, v in enumerate(x))) for x in v} for k, v in old.items()}
     acc = _accepted_lab_papers(rec, legacy) if rec else {}
     acc_links = _accepted_links(rec, legacy) if rec else {}
     acc_st = _accepted_students(rec, legacy) if rec else {}
@@ -283,7 +294,7 @@ def compare(key, included, release, corrections=None, held=None):
     res = {k: dict(old=len(old[k]), new=len(new[k]), n_removed=len(gone[k]), added=len(new[k] - old[k]),
                    removed=sorted(map(str, gone[k]))[:5]) for k in old}
     out = dict(school=key, compared=True, release=Path(release).resolve().name, basis='legacy keys (a package has no atlas ids yet)' if legacy else 'atlas ids',
-               kinds=res, flags=sum(v['n_removed'] for v in res.values()))
+               kinds=res, flags=sum(v['n_removed'] for v in res.values()), id_drift=len(drifted_pis), id_drift_pis=sorted(drifted_pis))
     if rec:
         out['corrected'] = {f'{k}:{c}': n for (k, c), n in sorted(corrected.items())}
         out['corrections_unused'] = sum(1 for k in acc if k in new['lab_paper'])

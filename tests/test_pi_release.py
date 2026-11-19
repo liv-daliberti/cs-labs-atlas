@@ -202,3 +202,19 @@ def test_held_links_leave_the_package_unless_published_and_do_not_count_as_remov
     assert PR.compare('x', pl['included'], rel, corrections=dict(against_release=rel.name, classes=[]), held=held)['flags'] == 0
     st = PR.scope_statement(pl)
     assert st['held_links_n'] == 1 and st['held_links'][0]['id'] == 'ext:A-new' and '1 student links are held' in PR.render_notes([st])
+
+
+def test_compare_follows_a_drifted_lab_id_by_pi_name(world):
+    """A PI that lost an identity anchor gets a new person/lab id in the rebuild; the published rows are not removals, the drift is counted."""
+    new, rel, _ = world
+    pis = json.loads((new / 'pis.json').read_text())
+    for p in pis:
+        if p['pi'] == 'A':
+            p['labId'], p['atlasId'] = 'atl:l:x:A-2', 'atl:p:A2'
+    (new / 'pis.json').write_text(json.dumps(pis))
+    rows = [json.loads(l) for l in gzip.open(new / 'lab_papers.jsonl.gz', 'rt')]
+    st = json.loads((new / 'students.json').read_text())
+    assert PR.compare('x', ['A', 'B', 'C'], rel, corrections=dict(against_release=rel.name, classes=[]))['id_drift'] == 1
+    got = PR.compare('x', ['A', 'B', 'C'], rel, corrections=dict(against_release=rel.name, classes=[]))
+    assert got['kinds']['pi']['n_removed'] == 0 and got['kinds']['lab']['n_removed'] == 0 and got['kinds']['lab_paper']['n_removed'] == 0
+    assert rows and st
