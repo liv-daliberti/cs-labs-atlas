@@ -1065,29 +1065,45 @@
     "why_home_department": "The College of Artificial Intelligence staff directory (captured by the project fetcher 2026-11-10, robots allowed) lists 肖俊; the college holds the listed appointment and the CAD&CG laboratory is a secondary affiliation (R-HOME-01). The directory prints no rank."
   },
   "童若锋": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source name are admitted in this proposal, but no independently owned external bibliography identity is admitted. Name-only paper joins remain held.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No personally owned ORCID reviewed for this new source context; dump identifiers unresolved and not inherited.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
     },
-    "collection_person_id": "zju_source_fac_6512d66e7e1e97a77573",
-    "home_department": "Main College of Computer Science",
-    "primary_unresolved": [
-      "Main College of Computer Science",
-      "State Key Laboratory of CAD&CG"
+    "dblp": [
+      "https://dblp.org/pid/11/914-1"
     ],
-    "home_department_evidence": [
-      {
-        "url": "https://web.archive.org/web/20260315201406id_/http://www.cs.zju.edu.cn/csen/27003/list.htm",
-        "sha256": "a3608e0f838420f91abdb4c9902e4db2238de89ffc7821e924ced017b8a1a7fd",
-        "quote": "童若锋",
-        "kind": "archived_unit_listing:CS_MAIN_old_teacher_directory",
-        "observed": "20260315201406"
-      }
-    ],
-    "why_home_department": "The College of Computer Science teacher directory (the archived 教师名录（旧）, institute list 'None', capture 20260315) lists 童若锋, and the CAD&CG roster lists them as well; no page states which appointment is primary, so home_department is only the reporting unit and both units stay visible (R-HOME-01). The directory is the old list, not the current staff search."
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "http://www.cad.zju.edu.cn/innovationteam",
+          "sha256": "91a7f3ce9c8be96a5fe5f6cab58353d75e013d547fce34df40c8f12d832e699b",
+          "quote": "教授/长聘教授 周昆 | 陈为 | 刘振宇 | 沈春华 | 巫英才 | 鲍虎军 庄越挺 | 吴飞 | 何晓飞 | 李玺 | 郑耀 | 许威威 孙凌云 | 罗仕鉴 | 肖俊 | 黄劲 | 吴鸿智 | 童若锋 高曙明 | 刘玉生 | 唐敏 | 孙守迁 | 蔺宏伟 | 冯结青 金小刚 | 刘新国 | 柴春雷 | 陈建军 | 蔡登 | 章国锋 赵洲 | 周晓巍 | 李春光 | 侯廷军 | 吴丹 | 朱强 耿卫东 | 林海 | 虞露 | 王锐 | 夏灵 | 叶学松 鲁东明 | 陈伟芳 | 汤永川 | 应放天 | 张克俊 | 王宏伟 钱徽 | 朱建科 | 汤斯亮 | 张东亮 | 陈文智 | 沈会良 林兰芬 | 黄正行 | 孔德兴 | 张寅 | 杨洋",
+          "kind": "unit_listing:CADCG",
+          "observed": "2026-11-08T02:53:58",
+          "observedAt": "2026-11-08T02:53:58"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Ruo-feng Tong 0001,Zhejiang University,http://give.zju.edu.cn/memberHomepage/TongRuofeng.html",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/11/914-1",
+          "sha256": "f993f9b62682df5f5ff5531c9f519001f4b42b11e39522be3e12bdca4c58ff8f",
+          "quote": "<www mdate=\"2020-11-01\" key=\"homepages/11/914-1\">\n<author>Ruofeng Tong 0001</author>\n<author>Ruo-feng Tong 0001</author>\n<title>Home Page</title>\n<note type=\"affiliation\">Zhejiang University, State Key Lab of CAD&amp;CG, Zhejiang, China</note>\n<url>https://orcid.org/0000-0002-8167-5354</url>\n<url>https://www.wikidata.org/entity/Q91624277</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Ruo feng Tong"
+    ]
   },
   "高曙明": {
     "no_identity": false,
@@ -1197,25 +1213,45 @@
     "why_home_department": "The official College of Computer Science staff search lists 刘玉生 with the title 教授: the college holds the listed appointment; the CAD&CG laboratory is a secondary affiliation (R-HOME-01)."
   },
   "唐敏": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source name are admitted in this proposal, but no independently owned external bibliography identity is admitted. Name-only paper joins remain held.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No personally owned ORCID reviewed for this new source context; dump identifiers unresolved and not inherited.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
     },
-    "collection_person_id": "zju_source_fac_84230879c4c10150df0c",
-    "home_department": "College of Artificial Intelligence",
-    "primary_stated": true,
-    "home_department_evidence": [
-      {
-        "url": "https://min-tang.github.io/Data/home-ch.html",
-        "sha256": "bd206c9a19bae8e3867b00113582810f621859cc92d84ff159a52d905275d107",
-        "quote": "浙江大学人工智能学院教授",
-        "kind": "captured_page_found_by_bounded_search_2026-11-10"
-      }
+    "dblp": [
+      "https://dblp.org/pid/88/5071-1"
     ],
-    "why_home_department": "A page captured by the project fetcher on 2026-11-10 (found by the bounded search) states the appointment in the College of Artificial Intelligence; the CAD&CG laboratory is a secondary affiliation (R-HOME-01)."
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "http://www.cad.zju.edu.cn/innovationteam",
+          "sha256": "91a7f3ce9c8be96a5fe5f6cab58353d75e013d547fce34df40c8f12d832e699b",
+          "quote": "教授/长聘教授 周昆 | 陈为 | 刘振宇 | 沈春华 | 巫英才 | 鲍虎军 庄越挺 | 吴飞 | 何晓飞 | 李玺 | 郑耀 | 许威威 孙凌云 | 罗仕鉴 | 肖俊 | 黄劲 | 吴鸿智 | 童若锋 高曙明 | 刘玉生 | 唐敏 | 孙守迁 | 蔺宏伟 | 冯结青 金小刚 | 刘新国 | 柴春雷 | 陈建军 | 蔡登 | 章国锋 赵洲 | 周晓巍 | 李春光 | 侯廷军 | 吴丹 | 朱强 耿卫东 | 林海 | 虞露 | 王锐 | 夏灵 | 叶学松 鲁东明 | 陈伟芳 | 汤永川 | 应放天 | 张克俊 | 王宏伟 钱徽 | 朱建科 | 汤斯亮 | 张东亮 | 陈文智 | 沈会良 林兰芬 | 黄正行 | 孔德兴 | 张寅 | 杨洋",
+          "kind": "unit_listing:CADCG",
+          "observed": "2026-11-08T02:53:58",
+          "observedAt": "2026-11-08T02:53:58"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Min Tang 0001,Zhejiang University,http://give.zju.edu.cn/memberHomepage/TangMin.html",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/88/5071-1",
+          "sha256": "c0cd2788da65fcf952e2e17f15c2b01982cb1c94a95ee1dfee39954d5a61b5c4",
+          "quote": "<www mdate=\"2025-01-17\" key=\"homepages/88/5071-1\">\n<author>Min Tang 0001</author>\n<title>Home Page</title>\n<url>https://scholar.google.com/citations?user=E1RM9OUAAAAJ</url>\n<url>https://orcid.org/0009-0006-0493-3459</url>\n<note type=\"affiliation\">Zhejiang University, College of Computer Science and Technology, China</note>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Min Tang"
+    ]
   },
   "孙守迁": {
     "no_identity": true,
@@ -1867,29 +1903,45 @@
     "why_home_department": "The College of Computer Science teacher directory (the archived 教师名录（旧）, institute list 'None', capture 20260315) lists 汤永川, and the CAD&CG roster lists them as well; no page states which appointment is primary, so home_department is only the reporting unit and both units stay visible (R-HOME-01). The directory is the old list, not the current staff search."
   },
   "应放天": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source name are admitted in this proposal, but no independently owned external bibliography identity is admitted. Name-only paper joins remain held.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No personally owned ORCID reviewed for this new source context; dump identifiers unresolved and not inherited.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
     },
-    "collection_person_id": "zju_source_fac_164595c2d8afc25b6f23",
-    "home_department": "Main College of Computer Science",
-    "primary_unresolved": [
-      "Main College of Computer Science",
-      "State Key Laboratory of CAD&CG"
+    "dblp": [
+      "https://dblp.org/pid/83/7792"
     ],
-    "home_department_evidence": [
-      {
-        "url": "https://web.archive.org/web/20260315201406id_/http://www.cs.zju.edu.cn/csen/27003/list.htm",
-        "sha256": "a3608e0f838420f91abdb4c9902e4db2238de89ffc7821e924ced017b8a1a7fd",
-        "quote": "应放天",
-        "kind": "archived_unit_listing:CS_MAIN_old_teacher_directory",
-        "observed": "20260315201406"
-      }
-    ],
-    "why_home_department": "The College of Computer Science teacher directory (the archived 教师名录（旧）, institute list 'None', capture 20260315) lists 应放天, and the CAD&CG roster lists them as well; no page states which appointment is primary, so home_department is only the reporting unit and both units stay visible (R-HOME-01). The directory is the old list, not the current staff search."
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "http://www.cad.zju.edu.cn/innovationteam",
+          "sha256": "91a7f3ce9c8be96a5fe5f6cab58353d75e013d547fce34df40c8f12d832e699b",
+          "quote": "教授/长聘教授 周昆 | 陈为 | 刘振宇 | 沈春华 | 巫英才 | 鲍虎军 庄越挺 | 吴飞 | 何晓飞 | 李玺 | 郑耀 | 许威威 孙凌云 | 罗仕鉴 | 肖俊 | 黄劲 | 吴鸿智 | 童若锋 高曙明 | 刘玉生 | 唐敏 | 孙守迁 | 蔺宏伟 | 冯结青 金小刚 | 刘新国 | 柴春雷 | 陈建军 | 蔡登 | 章国锋 赵洲 | 周晓巍 | 李春光 | 侯廷军 | 吴丹 | 朱强 耿卫东 | 林海 | 虞露 | 王锐 | 夏灵 | 叶学松 鲁东明 | 陈伟芳 | 汤永川 | 应放天 | 张克俊 | 王宏伟 钱徽 | 朱建科 | 汤斯亮 | 张东亮 | 陈文智 | 沈会良 林兰芬 | 黄正行 | 孔德兴 | 张寅 | 杨洋",
+          "kind": "unit_listing:CADCG",
+          "observed": "2026-11-08T02:53:58",
+          "observedAt": "2026-11-08T02:53:58"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Fangtian Ying,Zhejiang University,http://mypage.zju.edu.cn/0094123",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/83/7792",
+          "sha256": "5d0148ac974bfdff8e942928650185810b8a23b2c5d34e1ef6634194b84432a1",
+          "quote": "<www mdate=\"2025-01-10\" key=\"homepages/83/7792\">\n<author>Fangtian Ying</author>\n<title>Home Page</title>\n<url>https://orcid.org/0000-0001-9047-0257</url>\n<url>https://www.wikidata.org/entity/Q130932472</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Fangtian Ying"
+    ]
   },
   "张克俊": {
     "no_identity": true,
@@ -2464,25 +2516,45 @@
     "why_home_department": "The official College of Computer Science staff search lists 侯启明 with the title 副教授: the college holds the listed appointment; the CAD&CG laboratory is a secondary affiliation (R-HOME-01)."
   },
   "任重": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source name are admitted in this proposal, but no independently owned external bibliography identity is admitted. Name-only paper joins remain held.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No personally owned ORCID reviewed for this new source context; dump identifiers unresolved and not inherited.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
     },
-    "collection_person_id": "zju_source_fac_5dc577e7ac031d449ef7",
-    "home_department": "Main College of Computer Science",
-    "primary_stated": true,
-    "home_department_evidence": [
-      {
-        "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=10",
-        "sha256": "b579d94e52062d8d8c10af728bdaa70a20f99626f8c448b8f2d2e4e04bed51ef",
-        "quote": "任重 副教授",
-        "kind": "rendered_unit_listing:CS_MAIN"
-      }
+    "dblp": [
+      "https://dblp.org/pid/58/6919-1"
     ],
-    "why_home_department": "The official College of Computer Science staff search lists 任重 with the title 副教授: the college holds the listed appointment; the CAD&CG laboratory is a secondary affiliation (R-HOME-01)."
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "http://www.cad.zju.edu.cn/innovationteam",
+          "sha256": "91a7f3ce9c8be96a5fe5f6cab58353d75e013d547fce34df40c8f12d832e699b",
+          "quote": "副教授/长聘副教授 李明 | 邵天甲 | 郑友怡 | 李峙 | 吴超 | 侯启明 任重 | 陈翔 | 陶煜波 | 蔡铭 | 厉向东 | 徐雯洁 邹宁 | 况琨 | 刘海风 | 胡贤良 | 杨勋年 | 翁彦琳 张宏鑫 | 郑文庭 | 王章野 | 万华根 | 陈实 | 姚琤 鲁伟明",
+          "kind": "unit_listing:CADCG",
+          "observed": "2026-11-08T02:53:58",
+          "observedAt": "2026-11-08T02:53:58"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Zhong Ren 0001,Zhejiang University,http://zren.info",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/58/6919-1",
+          "sha256": "1144ea9f3ae8d49f7507a2dd0fb103d95866d7704cf47841b1b7a104f52514d5",
+          "quote": "<www mdate=\"2024-04-09\" key=\"homepages/58/6919-1\">\n<author>Zhong Ren 0001</author>\n<title>Home Page</title>\n<note type=\"affiliation\">Zhejiang University, State Key Lab of CAD&amp;CG, China</note>\n<url>http://zren.info/</url>\n<url>https://dl.acm.org/profile/81314494646</url>\n<url>https://orcid.org/0000-0002-6798-3035</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Zhong Ren"
+    ]
   },
   "陈翔": {
     "no_identity": false,
@@ -2979,29 +3051,45 @@
     "why_home_department": "The College of Artificial Intelligence staff directory (captured by the project fetcher 2026-11-10, robots allowed) lists 姚琤; the college holds the listed appointment and the CAD&CG laboratory is a secondary affiliation (R-HOME-01). The directory prints no rank."
   },
   "鲁伟明": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source name are admitted in this proposal, but no independently owned external bibliography identity is admitted. Name-only paper joins remain held.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No personally owned ORCID reviewed for this new source context; dump identifiers unresolved and not inherited.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
     },
-    "collection_person_id": "zju_source_fac_57aae3655272ac69aae6",
-    "home_department": "Main College of Computer Science",
-    "primary_unresolved": [
-      "Main College of Computer Science",
-      "State Key Laboratory of CAD&CG"
+    "dblp": [
+      "https://dblp.org/pid/41/5305-1"
     ],
-    "home_department_evidence": [
-      {
-        "url": "https://web.archive.org/web/20260315201406id_/http://www.cs.zju.edu.cn/csen/27003/list.htm",
-        "sha256": "a3608e0f838420f91abdb4c9902e4db2238de89ffc7821e924ced017b8a1a7fd",
-        "quote": "鲁伟明",
-        "kind": "archived_unit_listing:CS_MAIN_old_teacher_directory",
-        "observed": "20260315201406"
-      }
-    ],
-    "why_home_department": "The College of Computer Science teacher directory (the archived 教师名录（旧）, institute list 'None', capture 20260315) lists 鲁伟明, and the CAD&CG roster lists them as well; no page states which appointment is primary, so home_department is only the reporting unit and both units stay visible (R-HOME-01). The directory is the old list, not the current staff search."
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "http://www.cad.zju.edu.cn/innovationteam",
+          "sha256": "91a7f3ce9c8be96a5fe5f6cab58353d75e013d547fce34df40c8f12d832e699b",
+          "quote": "副教授/长聘副教授 李明 | 邵天甲 | 郑友怡 | 李峙 | 吴超 | 侯启明 任重 | 陈翔 | 陶煜波 | 蔡铭 | 厉向东 | 徐雯洁 邹宁 | 况琨 | 刘海风 | 胡贤良 | 杨勋年 | 翁彦琳 张宏鑫 | 郑文庭 | 王章野 | 万华根 | 陈实 | 姚琤 鲁伟明",
+          "kind": "unit_listing:CADCG",
+          "observed": "2026-11-08T02:53:58",
+          "observedAt": "2026-11-08T02:53:58"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Wei-Ming Lu 0001,Zhejiang University,http://mypage.zju.edu.cn/lwm",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/41/5305-1",
+          "sha256": "55aa1885c71b6258b1247d9c4eecb8171353c6cdea82c57d968246ce4ca26b2b",
+          "quote": "<www mdate=\"2025-01-10\" key=\"homepages/41/5305-1\">\n<author>Weiming Lu 0001</author>\n<author>Wei-ming Lu 0001</author>\n<title>Home Page</title>\n<note type=\"affiliation\">Zhejiang University, College of Computer Science and Technology, China</note>\n<url>https://orcid.org/0000-0002-0200-9215</url>\n<url>https://www.wikidata.org/entity/Q130872529</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Wei Ming Lu"
+    ]
   },
   "庄博涵": {
     "no_identity": true,
@@ -4592,24 +4680,45 @@
     "why_home_department": "The official College of Computer Science staff search lists 王志波 with the title 教授: the college holds the listed appointment; the CAD&CG laboratory is a secondary affiliation (R-HOME-01)."
   },
   "王新宇": {
-    "no_identity": true,
-    "why_no_identity": "Only the named official College of Computer Science faculty role is source-reviewed for this person. No source-owned bibliography or author identifier has been admitted; hold unreviewed global-name and ORCID inheritance without declaring any identifier false (HKUST precedent).",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
     },
-    "home_department": "Main College of Computer Science",
-    "primary_stated": true,
-    "home_department_evidence": [
-      {
-        "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=13",
-        "sha256": "776305f0c8a5d45e32fb1af4d3e12c57419a1f272a6c294241bc3c8315e463a3",
-        "quote": "王新宇 教授",
-        "kind": "rendered_unit_listing:CS_MAIN"
-      }
+    "dblp": [
+      "https://dblp.org/pid/68/1277-1"
     ],
-    "why_home_department": "The official College of Computer Science staff search lists 王新宇 with the title 教授: the college holds the listed appointment; the CAD&CG laboratory is a secondary affiliation (R-HOME-01)."
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=13",
+          "sha256": "776305f0c8a5d45e32fb1af4d3e12c57419a1f272a6c294241bc3c8315e463a3",
+          "quote": "王新宇 教授",
+          "kind": "unit_listing:CS_MAIN",
+          "observed": "2026-11-10T10:55:06",
+          "observedAt": "2026-11-10T10:55:06"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Xinyu Wang 0001,Zhejiang University,https://person.zju.edu.cn/en/wangxinyu_en",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/68/1277-1",
+          "sha256": "5f632ff3812f5dc285d1027757654f4a3773fbc579e4f252e48eb9d34537aea5",
+          "quote": "<www mdate=\"2022-09-30\" key=\"homepages/68/1277-1\">\n<author>Xinyu Wang 0001</author>\n<title>Home Page</title>\n<note type=\"affiliation\" label=\"PhD 2007\">Zhejiang University, College of Computer Science and Technology, Hangzhou, China</note>\n<url>https://orcid.org/0000-0002-5507-6569</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Xinyu Wang"
+    ]
   },
   "王海帅": {
     "no_identity": true,
@@ -5156,24 +5265,45 @@
     "why_home_department": "The official College of Computer Science staff search lists 陈璐 with the title 百人计划研究员: the college holds the listed appointment; the CAD&CG laboratory is a secondary affiliation (R-HOME-01)."
   },
   "丁尧相": {
-    "no_identity": true,
-    "why_no_identity": "Only the named official College of Computer Science faculty role is source-reviewed for this person. No source-owned bibliography or author identifier has been admitted; hold unreviewed global-name and ORCID inheritance without declaring any identifier false (HKUST precedent).",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
     },
-    "home_department": "Main College of Computer Science",
-    "primary_stated": true,
-    "home_department_evidence": [
-      {
-        "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=3",
-        "sha256": "4c23847494cb5a4e12958a5be810664f916e4ca5080a846ede0c8d0759f15e02",
-        "quote": "丁尧相 特聘研究员",
-        "kind": "rendered_unit_listing:CS_MAIN"
-      }
+    "dblp": [
+      "https://dblp.org/pid/186/8301-1"
     ],
-    "why_home_department": "The official College of Computer Science staff search lists 丁尧相 with the title 特聘研究员: the college holds the listed appointment; the CAD&CG laboratory is a secondary affiliation (R-HOME-01)."
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=3",
+          "sha256": "4c23847494cb5a4e12958a5be810664f916e4ca5080a846ede0c8d0759f15e02",
+          "quote": "丁尧相 特聘研究员",
+          "kind": "unit_listing:CS_MAIN",
+          "observed": "2026-11-10T10:54:03",
+          "observedAt": "2026-11-10T10:54:03"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Yao-Xiang Ding 0001,Zhejiang University,https://yaoxiangding.github.io",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/186/8301-1",
+          "sha256": "41d07d5121140235a20e96d00c241be4abbeee0ac2c46605e75f38ad542a6c72",
+          "quote": "<www mdate=\"2025-09-05\" key=\"homepages/186/8301-1\">\n<author>Yao-Xiang Ding 0001</author>\n<author>Yaoxiang Ding 0001</author>\n<title>Home Page</title>\n<note type=\"affiliation\">Zhejiang University, State Key Lab of CAD &amp; CG, China</note>\n<note type=\"affiliation\">Nanjing University, National Key Laboratory for Novel Software Technology, China</note>\n<url>https://openreview.net/profile?id=~Yao-Xiang_Ding2</url>\n<url>https://ieeexplore.ieee.org/author/721759572815974</url>\n<url>https://orcid.org/0000-0001-8580-1103</url>\n<url>https://www.wikidata.org/entity/Q131165947</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Yao Xiang Ding"
+    ]
   },
   "冯博": {
     "no_identity": true,
@@ -5420,24 +5550,45 @@
     ]
   },
   "李环": {
-    "no_identity": true,
-    "why_no_identity": "Only the named official College of Computer Science faculty role is source-reviewed for this person. No source-owned bibliography or author identifier has been admitted; hold unreviewed global-name and ORCID inheritance without declaring any identifier false (HKUST precedent).",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
     },
-    "home_department": "Main College of Computer Science",
-    "primary_stated": true,
-    "home_department_evidence": [
-      {
-        "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=8",
-        "sha256": "99d22e4a005365395b88302a67e4c98bb4fab80debed7c527f6c51408e235531",
-        "quote": "李环 百人计划研究员",
-        "kind": "rendered_unit_listing:CS_MAIN"
-      }
+    "dblp": [
+      "https://dblp.org/pid/55/2893-3"
     ],
-    "why_home_department": "The official College of Computer Science staff search lists 李环 with the title 百人计划研究员: the college holds the listed appointment; the CAD&CG laboratory is a secondary affiliation (R-HOME-01)."
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=8",
+          "sha256": "99d22e4a005365395b88302a67e4c98bb4fab80debed7c527f6c51408e235531",
+          "quote": "李环 百人计划研究员",
+          "kind": "unit_listing:CS_MAIN",
+          "observed": "2026-11-10T10:54:34",
+          "observedAt": "2026-11-10T10:54:34"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Huan Li 0003,Zhejiang University,https://mypage.zju.edu.cn/en/lihuan",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/55/2893-3",
+          "sha256": "daa68e0a9f6566f0cc3d36284bcbc7f87f4ffd8cdeb9d4176312515c724a3928",
+          "quote": "<www mdate=\"2025-01-10\" key=\"homepages/55/2893-3\">\n<author>Huan Li 0003</author>\n<title>Home Page</title>\n<note type=\"affiliation\">Zhejiang University, Department of Computer Science and Technology, Hangzhou, China</note>\n<note type=\"affiliation\">Aalborg University, Denmark</note>\n<url>http://people.cs.aau.dk/~lihuan/</url>\n<url>https://longaspire.github.io/</url>\n<url>https://dl.acm.org/profile/99658749743</url>\n<url>https://github.com/longaspire</url>\n<url>https://orcid.org/0000-0003-0084-1662</url>\n<url>https://www.scopus.com/authid/detail.uri?authorId=57188721011</url>\n<url>https://www.wikidata.org/entity/Q130903561</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Huan Li"
+    ]
   },
   "林峰": {
     "no_identity": false,
@@ -7861,138 +8012,618 @@
     }
   },
   "魏宝刚": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/94/4000"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20180823164052id_/http://mypage.zju.edu.cn:80/wbg",
+          "sha256": "bc0e6b61d65c6ae5c2e3c0288c42a7dba5065b5b03e97a50a6c24316ea48c119",
+          "quote": "教授",
+          "kind": "person_page",
+          "observed": "2018-08-23T16:40:52",
+          "observedAt": "2018-08-23T16:40:52"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Baogang Wei,Zhejiang University,http://mypage.zju.edu.cn/wbg",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/94/4000",
+          "sha256": "a6bee9638fee82a6d70b399a5c9c25bf381d027a6c6757c33306b0bca3302ace",
+          "quote": "<www mdate=\"2009-06-10\" key=\"homepages/94/4000\">\n<author>Baogang Wei</author>\n<title>Home Page</title>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Baogang Wei"
+    ]
   },
   "卓成": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/05/853"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20250924080904id_/https://person.zju.edu.cn/en/chengzhuo",
+          "sha256": "08f62a7eec9aac6c690788914ba9a36c048b86ac38488ceb9c432cc0943d1dec",
+          "quote": "Professor",
+          "kind": "person_page",
+          "observed": "2025-09-24T08:09:04",
+          "observedAt": "2025-09-24T08:09:04"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Cheng Zhuo,Zhejiang University,https://person.zju.edu.cn/en/chengzhuo",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/05/853",
+          "sha256": "2fee27836a48112522e45f869ec41460461ccd1b3199b0bdbc13e5040c0d746d",
+          "quote": "<www mdate=\"2025-01-10\" key=\"homepages/05/853\">\n<author>Cheng Zhuo</author>\n<title>Home Page</title>\n<url>https://orcid.org/0000-0002-2610-7522</url>\n<url>https://www.wikidata.org/entity/Q130807505</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Cheng Zhuo"
+    ]
   },
   "陈纯": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/07/4182-0001"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20240414211640id_/https://mypage.zju.edu.cn/chenc",
+          "sha256": "856414a96cdba7a215692fddc9b711fda1b4a53af83e213761461d789f102f34",
+          "quote": "教授",
+          "kind": "person_page",
+          "observed": "2024-04-14T21:16:40",
+          "observedAt": "2024-04-14T21:16:40"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Chun Chen 0001,Zhejiang University,http://mypage.zju.edu.cn/chenc",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/07/4182-0001",
+          "sha256": "ea5390a87ad7b2ddfbba80a9209fdc250369a09e35c5869375b963acfe55191a",
+          "quote": "<www mdate=\"2025-07-10\" key=\"homepages/07/4182-0001\">\n<author>Chun Chen 0001</author>\n<title>Home Page</title>\n<note type=\"affiliation\" label=\"PhD 1990\">Zhejiang University, College of Computer Science and Technology, Hangzhou, China</note>\n<url>https://openreview.net/profile?id=~Chun_Chen1</url>\n<url>https://orcid.org/0000-0002-6198-7481</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Chun Chen"
+    ]
   },
   "邓达臻": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/231/6635"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20260214172231id_/https://person.zju.edu.cn/en/dengdazhen",
+          "sha256": "f038f3874ff55f0aaaac6b145c8305e201cf219264b112225890d131974bff80",
+          "quote": "Assistant Professor",
+          "kind": "person_page",
+          "observed": "2026-02-14T17:22:31",
+          "observedAt": "2026-02-14T17:22:31"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Dazhen Deng,Zhejiang University,https://person.zju.edu.cn/en/dengdazhen",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/231/6635",
+          "sha256": "296643e0c1a990aae78fc6fd3677f2cc07d4bb02a535012bba36a9bfe19cf321",
+          "quote": "<www mdate=\"2025-05-14\" key=\"homepages/231/6635\">\n<author>Dazhen Deng</author>\n<title>Home Page</title>\n<note type=\"affiliation\">Zhejiang University, Ningbo, Zhejiang, China</note>\n<url>https://orcid.org/0000-0002-9057-8353</url>\n<url>https://www.wikidata.org/entity/Q131117983</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Dazhen Deng"
+    ]
   },
   "王东辉": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/20/4854"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20180823155452id_/http://mypage.zju.edu.cn:80/wdh",
+          "sha256": "fae459419cee5f496b6d7f77ffda13f2d7d049f3384453340f349465a5b215c0",
+          "quote": "副教授",
+          "kind": "person_page",
+          "observed": "2018-08-23T15:54:52",
+          "observedAt": "2018-08-23T15:54:52"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Donghui Wang,Zhejiang University,http://mypage.zju.edu.cn/wdh",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/20/4854",
+          "sha256": "f7bffdd3b5a4b47585e10f8347afcab576d5d838ca30dcbcb414c346b6ffe4ae",
+          "quote": "<www mdate=\"2025-02-12\" key=\"homepages/20/4854\" publtype=\"disambiguation\">\n<author>Donghui Wang</author>\n<title>Home Page</title>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Donghui Wang"
+    ]
   },
   "许端清": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/72/3018"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20231113213931id_/https://mypage.zju.edu.cn/0092050",
+          "sha256": "a7cd4a35b486775d6acb4cbca22f144b865175e367261003c794306ee2e4b4b6",
+          "quote": "教授",
+          "kind": "person_page",
+          "observed": "2023-11-13T21:39:31",
+          "observedAt": "2023-11-13T21:39:31"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Duanqing Xu,Zhejiang University,http://mypage.zju.edu.cn/0092050",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/72/3018",
+          "sha256": "fbe16f8f9571c9eb48f1cb9b02013b095c6e656d1f5b331765595e7ccf160580",
+          "quote": "<www mdate=\"2009-06-09\" key=\"homepages/72/3018\">\n<author>Duanqing Xu</author>\n<title>Home Page</title>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Duanqing Xu"
+    ]
   },
   "范鹤鹤": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/184/5722"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20260514193215id_/https://person.zju.edu.cn/hehefan",
+          "sha256": "854e8e258245b7dae6a357db0bc66c6baa296fe47f654a6c387b314a353d6ec3",
+          "quote": "百人计划研究员",
+          "kind": "person_page",
+          "observed": "2026-05-14T19:32:15",
+          "observedAt": "2026-05-14T19:32:15"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Hehe Fan,Zhejiang University,https://person.zju.edu.cn/hehefan",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/184/5722",
+          "sha256": "4b6a1d1b5f95f63ceb84c2a21aa45dc7a654a86bd258440bfe66d80be2b11095",
+          "quote": "<www mdate=\"2025-01-10\" key=\"homepages/184/5722\">\n<author>Hehe Fan</author>\n<title>Home Page</title>\n<url>https://orcid.org/0000-0001-9572-2345</url>\n<url>https://www.wikidata.org/entity/Q131015508</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Hehe Fan"
+    ]
   },
   "李俊成": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/182/7674-6"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20260903125341id_/https://person.zju.edu.cn/juncheng",
+          "sha256": "f7ba78c807bcd45920b4a3aeaef770e923b96effb5b3163b5ee42bd3acb41747",
+          "quote": "百人计划研究员",
+          "kind": "person_page",
+          "observed": "2026-09-03T12:53:41",
+          "observedAt": "2026-09-03T12:53:41"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Juncheng Li 0006,Zhejiang University,https://person.zju.edu.cn/juncheng",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/182/7674-6",
+          "sha256": "f8dcfd8bdb2064efe611be88beef879cc62fdf91b901e09c6cd2098945a02cec",
+          "quote": "<www mdate=\"2025-01-10\" key=\"homepages/182/7674-6\">\n<author>Juncheng Li 0006</author>\n<title>Home Page</title>\n<note type=\"affiliation\">Zhejiang University, Hangzhou, China</note>\n<url>https://orcid.org/0000-0003-2258-1291</url>\n<url>https://ieeexplore.ieee.org/author/37088455671</url>\n<url>https://www.wikidata.org/entity/Q130808623</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Juncheng Li"
+    ]
   },
   "谭思危": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/116/6838"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20250815021346id_/https://person.zju.edu.cn/tansiwei",
+          "sha256": "ea799a28d3d357bb3e9b512662248bc88ba8d22438e6da66651f240e514a8ea6",
+          "quote": "百人计划研究员",
+          "kind": "person_page",
+          "observed": "2025-08-15T02:13:46",
+          "observedAt": "2025-08-15T02:13:46"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Siwei Tan,Zhejiang University,http://person.zju.edu.cn/tansiwei",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/116/6838",
+          "sha256": "b18b96c8f62e30b82e2a8ee222f05626aef350b42fb70e695a95081883b25671",
+          "quote": "<www mdate=\"2012-07-06\" key=\"homepages/116/6838\">\n<author>Siwei Tan</author>\n<title>Home Page</title>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Siwei Tan"
+    ]
   },
   "王文冠": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/145/1078"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20251208070637id_/https://person.zju.edu.cn/wenguanwang",
+          "sha256": "f84a007351d1cd4defcafc1915c2afab4bd064c21b45f3b14cb1f709a4dfd01d",
+          "quote": "百人计划研究员",
+          "kind": "person_page",
+          "observed": "2025-12-08T07:06:37",
+          "observedAt": "2025-12-08T07:06:37"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Wenguan Wang,Zhejiang University,https://person.zju.edu.cn/wenguanwang",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/145/1078",
+          "sha256": "ae1987aa96e06ea8c89023663ebda9ad83a8fdc82e60540b477fb99411c93ff2",
+          "quote": "<www mdate=\"2023-12-14\" key=\"homepages/145/1078\">\n<author>Wenguan Wang</author>\n<title>Home Page</title>\n<url>https://sites.google.com/view/wenguanwang/</url>\n<url>https://scholar.google.com/citations?user=CqAQQkgAAAAJ</url>\n<url>https://orcid.org/0000-0002-0802-9567</url>\n<note type=\"affiliation\">Zhejiang University, China</note>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Wenguan Wang"
+    ]
   },
   "张文祺": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/16/5404-1"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20260519003248id_/https://person.zju.edu.cn/wenqizhang",
+          "sha256": "27b266cff86579d43ef1749fa495418bcd0cd9b2bb93ab04e0ac1b0a3575046c",
+          "quote": "百人计划研究员",
+          "kind": "person_page",
+          "observed": "2026-05-19T00:32:48",
+          "observedAt": "2026-05-19T00:32:48"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Wenqi Zhang 0001,Zhejiang University,https://person.zju.edu.cn/wenqizhang",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/16/5404-1",
+          "sha256": "d8d062b12dcb3280278934f9f230844737d47a7bfd6ae75add4e2724ec41e895",
+          "quote": "<www mdate=\"2025-07-11\" key=\"homepages/16/5404-1\">\n<author>Wenqi Zhang 0001</author>\n<note type=\"uname\">&#24352;&#25991;&#31098;</note>\n<note type=\"affiliation\">Zhejiang University (ZJU), College of Computer Science and Technology, Hangzhou, China</note>\n<title>Home Page</title>\n<url>https://zwq2018.github.io/</url>\n<url>https://orcid.org/0000-0002-8312-0184</url>\n<url>https://scholar.google.com/citations?user=C6Bmfw8AAAAJ</url>\n<url>https://twitter.com/spicysweet1859</url>\n<url>https://github.com/zwq2018</url>\n<url>https://www.wikidata.org/entity/Q130872522</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Wenqi Zhang"
+    ]
   },
   "刘勇": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/29/4867-7"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20260511173909id_/https://person.zju.edu.cn/en/yongliu",
+          "sha256": "c42caa6565a9809b7c267cb1a38fb7dcb9203314c6063de1746276de1f11d8b7",
+          "quote": "professor",
+          "kind": "person_page",
+          "observed": "2026-05-11T17:39:09",
+          "observedAt": "2026-05-11T17:39:09"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Yong Liu 0007,Zhejiang University,https://person.zju.edu.cn/en/yongliu#924823",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/29/4867-7",
+          "sha256": "f0566918280a04effffaf5a66c9196aa37c06bb3e44e85c83bb98ffe571e3f85",
+          "quote": "<www mdate=\"2025-06-02\" key=\"homepages/29/4867-7\">\n<author>Yong Liu 0007</author>\n<title>Home Page</title>\n<note type=\"affiliation\">Zhejiang University, Institute of Cyber-Systems and Control, State Key Laboratory of Industrial Control Technology, Hangzhou, China</note>\n<note type=\"affiliation\" label=\"PhD 2007\">Zhejiang University, College of Computer Science, Hangzhou, China</note>\n<url>https://orcid.org/0000-0003-4822-8939</url>\n<url>https://www.wikidata.org/entity/Q130957843</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Yong Liu"
+    ]
   },
   "潘云鹤": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/15/4553"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20180812195727id_/http://mypage.zju.edu.cn:80/panyunhe",
+          "sha256": "b4afba6832d57d0c6b2d19cc1b7e3e1ea81f59d5cdb15719abdb81aef60884a7",
+          "quote": "教授",
+          "kind": "person_page",
+          "observed": "2018-08-12T19:57:27",
+          "observedAt": "2018-08-12T19:57:27"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Yunhe Pan,Zhejiang University,http://mypage.zju.edu.cn/panyunhe",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/15/4553",
+          "sha256": "8c99c7046e4d48b3ca91b481c51b848d420670c316a4685412b7c1cae69338bb",
+          "quote": "<www mdate=\"2009-06-10\" key=\"homepages/15/4553\">\n<author>Yunhe Pan</author>\n<title>Home Page</title>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Yunhe Pan"
+    ]
   },
   "吴朝晖": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/54/6252-1"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20240420050049id_/https://mypage.zju.edu.cn/wuzhaohui",
+          "sha256": "29992d3bf6a2527551cb01200684ebd99388c760efdc6f7efb894a1ad6f95311",
+          "quote": "教授",
+          "kind": "person_page",
+          "observed": "2024-04-20T05:00:49",
+          "observedAt": "2024-04-20T05:00:49"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Zhaohui Wu 0001,Zhejiang University,http://mypage.zju.edu.cn/wuzhaohui",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/54/6252-1",
+          "sha256": "6c0fc57ade583bd70e0fd51eef2e1dfc2d0cb01b98222bfa2e503c9545a56aba",
+          "quote": "<www mdate=\"2023-02-18\" key=\"homepages/54/6252-1\">\n<author>Zhaohui Wu 0001</author>\n<title>Home Page</title>\n<note type=\"affiliation\">Zhejiang University, College of Computer Science and Technology, Hangzhou, China</note>\n<url>https://twas.org/directory/wu-zhaohui</url>\n<url>https://en.wikipedia.org/wiki/Wu_Zhaohui</url>\n<url>https://orcid.org/0000-0002-4319-3645</url>\n<url>https://www.wikidata.org/entity/Q19849356</url>\n<url>https://id.loc.gov/authorities/names/no2005100544</url>\n<url>https://ieeexplore.ieee.org/author/37278598300</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Zhaohui Wu"
+    ]
   },
   "赵子鸣": {
-    "no_identity": true,
-    "why_no_identity": "Only the named college faculty role in an archived unit listing or unit person page is source-reviewed for this person. The DBLP/OpenAlex person is linked by transliteration and the named unit only; no source-owned bibliography or author identifier is admitted, so unreviewed global-name and ORCID inheritance is held without declaring any identifier false.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
-      "why": "No independent owned ORCID source admitted for this role-only context.",
+      "why": "Only the DBLP person bound through the CSRankings entry is admitted; other DBLP or ORCID identifiers remain unresolved, not proven false.",
       "evidence": []
-    }
+    },
+    "dblp": [
+      "https://dblp.org/pid/331/8204"
+    ],
+    "identity_resolution": {
+      "decision": "csrankings_entry_unique_name_medium",
+      "reviewed": "2026-11-18",
+      "basis": "D-0005 medium confidence: the CSRankings entry (Zhejiang University affiliation) carries the DBLP person's name and the homepage that is this person's own archived person page, whose capture gives the rank and unit; the full name matches exactly one person of the school's official roster/unit page (reviewed census_alias or accepted unit listing). No other name matching; covered by the 50-row audit.",
+      "evidence": [
+        {
+          "url": "https://web.archive.org/web/20260116132329id_/https://person.zju.edu.cn/zhaoziming",
+          "sha256": "d519edb9f13d3094c85ff58dd1b4b080f22c8745f9d6cd20cef6ceb42a6b092f",
+          "quote": "百人计划研究员",
+          "kind": "person_page",
+          "observed": "2026-01-16T13:23:29",
+          "observedAt": "2026-01-16T13:23:29"
+        },
+        {
+          "url": "https://csrankings.org/ (csrankings.csv snapshot used by the PI-recall study)",
+          "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+          "quote": "Ziming Zhao 0008,Zhejiang University,https://person.zju.edu.cn/zhaoziming",
+          "kind": "csrankings_entry"
+        },
+        {
+          "url": "https://dblp.org/pid/331/8204",
+          "sha256": "3777789c3f7bb1081f2cdf043c13924042f69556d40083e465fd97fc7b5d8bd8",
+          "quote": "<www mdate=\"2025-01-10\" key=\"homepages/331/8204\">\n<author>Ziming Zhao 0008</author>\n<title>Home Page</title>\n<note type=\"affiliation\">Zhejiang University, College of Information Science and Electronic Engineering, Hangzhou, China</note>\n<url>https://orcid.org/0000-0003-1455-4330</url>\n<url>https://ieeexplore.ieee.org/author/37089719181</url>\n<url>https://www.wikidata.org/entity/Q130906272</url>\n</www>",
+          "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+        }
+      ]
+    },
+    "aliases": [
+      "Ziming Zhao"
+    ]
   }
 }
