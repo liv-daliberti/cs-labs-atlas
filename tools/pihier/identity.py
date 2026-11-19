@@ -9,6 +9,7 @@ import atlas_paths as P  # every path in one place
 from .common import DBLP, NOT_PAPERS, accepted_additions, ndoi, norm_title, read, school_scope_work, sweep_works
 from .names import tie_for_pi, Name, all_initials, byline_name, clean_person_name, full_pair, given_conflict, middle_conflict, name_conflict, name_toks, names_full_form, nosuffix, toks
 from . import primary_affiliations, reviewed_claims
+from .periods import before_window
 from .students import (ADV_RX, RESEARCHED_FILES, advising_label, dspace_advisors, named_advisers, own_roster_entry,
                        relation_is_weak, relation_names_other_adviser, renamed_pis)
 
@@ -688,6 +689,9 @@ def hits(ctx):
         for (b_,) in con.execute('select body from works'):
             w = school_scope_work(json.loads(zlib.decompress(b_)), school)
             if w['id'] in in_sweep or w.get('type') in NOT_PAPERS:
+                continue
+            if before_window(str(w.get('publication_date') or w.get('publication_year') or '')):   # the sweeps fetch 2016 and later; an older record here (a re-pulled merged id) is no lab paper of the window
+                n['pi_works_before_window'] += 1
                 continue
             for a in w.get('authorships') or []:
                 aid = (a.get('author') or {}).get('id')
