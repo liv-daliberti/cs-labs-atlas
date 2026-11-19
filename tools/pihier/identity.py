@@ -583,7 +583,23 @@ def author_id_name_conflict(pi_names, raw):
             full.append(' '.join(t))
             if len(t) >= 3:
                 full.append(''.join(t[:-1]) + ' ' + t[-1])
+    if full and compact_initials_compatible(pi_names, raw):
+        return False   # 'RW Picard' / 'HH Asada' / 'DK Roy': joined given initials, the first one the PI's own, are not a contradicting full name
     return bool(full) and not Name(full).match(raw) and given_conflict(full, raw, strict=True)
+
+
+def compact_initials_compatible(pi_names, raw):
+    """A byline whose given part is 1-3 capital letters written together ('RW Picard', 'HH Asada', 'JA Paradiso', 'DK ROY') carries only
+    initials: it conflicts with no full given name unless its first letter is no initial of any given word of the PI's forms."""
+    words = re.sub(r'[.,]', ' ', raw or '').split()
+    if len(words) < 2 or not re.fullmatch(r'[A-Z]{2,3}', words[0]):
+        return False
+    firsts = set()
+    for name in pi_names:
+        t = nosuffix(name_toks(name))
+        if len(t) >= 2:
+            firsts |= {w[0] for w in t[:-1] if w}
+    return words[0][0].lower() in firsts
 
 
 def hits(ctx):

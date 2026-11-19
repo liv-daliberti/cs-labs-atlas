@@ -25,6 +25,11 @@ from pihier import identity, names
     (['Song-Hai Zhang'], 'Zhang Songhai', False),
     (['G. Li'], 'Guanghao Li', False),
     (['李国良'], 'Guanghao Li', False),
+    (['Rosalind Picard', 'Rosalind W. Picard'], 'RW Picard', False),
+    (['H. Harry Asada', 'Harry Asada'], 'HH Asada', False),
+    (['Deb Roy'], 'DK ROY', False),
+    (['Joseph A. Paradiso', 'Joseph Paradiso'], 'JA Paradiso', False),
+    (['Rosalind Picard'], 'JW Picard', True),
 ])
 def test_provider_id_full_given_name_conflict(forms, raw, conflict):
     assert identity.author_id_name_conflict(forms, raw) is conflict
