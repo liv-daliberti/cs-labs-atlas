@@ -1,0 +1,213 @@
+{
+ "school": "jhu",
+ "against_release": "2026-11-07",
+ "decided": "; 2026-11-19 claude-freeze-prep-1119 (D-0015/D-0007): classes for rows still flagged vs 2026-11-07 (build trace scratch/freeze-prep-1119/rr/trace, independent 50-row review); independent reviewer relabelled 3 rows (Huang W7221066823 to D-0007; Saria x2 to R-PAP-26 venue-version dating); 16 rows judged, 0 wrong",
+ "classes": [
+  {
+   "id": "same_paper_other_id",
+   "rule": "The same paper stays in the package under another OpenAlex id for the same PI (same DOI or same normalised title; OpenAlex id merge, or the published version represents its preprint: R-PAP edition/representative rules 2026-10-28/29).",
+   "rows": [
+    {
+     "pi": "Jason Eisner",
+     "oa": "https://openalex.org/W2902742944",
+     "labId": null,
+     "atlasWorkId": "atl:w:28366e024d7c",
+     "title": "Are All Languages Equally Hard to Language Model?",
+     "year": 2019,
+     "identity_before": "dblp_person_page_title",
+     "kept_as": "https://openalex.org/W2803214681",
+     "basis": "same PI, same normalised title in the package"
+    },
+    {
+     "pi": "Michael Schatz",
+     "oa": "https://openalex.org/W2987491549",
+     "labId": null,
+     "atlasWorkId": "atl:w:d9a84570bc1b",
+     "title": "Recovering rearranged cancer chromosomes from karyotype graphs",
+     "year": 2019,
+     "identity_before": "dblp_person_page_title",
+     "kept_as": "https://openalex.org/W2994952780",
+     "basis": "same PI, same normalised title in the package"
+    },
+    {
+     "pi": "Berrak Sisman",
+     "oa": "https://openalex.org/W7119234325",
+     "labId": null,
+     "atlasWorkId": "atl:w:0fe904298940",
+     "title": "Discovering and Causally Validating Emotion-Sensitive Neurons in Large Audio-Language Models",
+     "year": 2026,
+     "identity_before": "pi_orcid",
+     "kept_as": "https://openalex.org/W7166800298",
+     "basis": "same PI, same normalised title in the package"
+    },
+    {
+     "pi": "Steven Salzberg",
+     "oa": "https://openalex.org/W7148516261",
+     "labId": null,
+     "atlasWorkId": "atl:w:75132bf040c4",
+     "title": "Evidence of off-target probe binding affecting 10x Genomics Xenium gene panels compromise accuracy of spatial transcriptomic profiling",
+     "year": 2026,
+     "identity_before": "pi_orcid",
+     "kept_as": "https://openalex.org/W4413635754",
+     "basis": "same PI, same normalised title in the package"
+    },
+    {
+     "pi": "Jean Fan",
+     "oa": "https://openalex.org/W7148516261",
+     "labId": null,
+     "atlasWorkId": "atl:w:75132bf040c4",
+     "title": "Evidence of off-target probe binding affecting 10x Genomics Xenium gene panels compromise accuracy of spatial transcriptomic profiling",
+     "year": 2026,
+     "identity_before": "anchored_author_id",
+     "kept_as": "https://openalex.org/W4413635754",
+     "basis": "same PI, same normalised title in the package"
+    }
+   ]
+  },
+  {
+   "id": "school_affiliation_rule",
+   "rule": "R-PAP-01 (a) (owner 2026-10-21): the authorship must tie the paper to the school; the current build finds the PI's name hit without a school affiliation on the record (build trace counter rows_from_hits: hit_without_school_affiliation).",
+   "rows": [
+    {
+     "pi": "Chien-Ming Huang",
+     "oa": "https://openalex.org/W4403786299",
+     "labId": null,
+     "atlasWorkId": "atl:w:3d139bec1b3d",
+     "title": "From Our Lab to Their Homes: Learnings from Longitudinal Field Research with Older Adults",
+     "year": 2024,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Chien-Ming Huang",
+     "oa": "https://openalex.org/W7165133018",
+     "labId": null,
+     "atlasWorkId": "atl:w:576c79a1b730",
+     "title": "Better Adherence, Richer Context: A Field Evaluation of LLM-Powered Conversational Voice Diaries for Sleep",
+     "year": 2026,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "paper_anchor_rules_d0007",
+   "rule": "D-0007 (owner 2026-11-18, Q-0317): 1803966d (source-stated advising for PI paper anchors) and 7c8fdedd (postdoc guard) apply at the school's rebuild. Rows listed carried an anchored-author or advisee identity route (identity_before) and now fail identity in the build trace (hit_without_identity).",
+   "rows": [
+    {
+     "pi": "Chien-Ming Huang",
+     "oa": "https://openalex.org/W4406032606",
+     "labId": null,
+     "atlasWorkId": "atl:w:559d3db59b35",
+     "title": "Efficiency with Rigor! A Trustworthy LLM-powered Workflow for Qualitative Data Analysis",
+     "year": 2025,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Chien-Ming Huang",
+     "oa": "https://openalex.org/W7221066823",
+     "labId": null,
+     "atlasWorkId": "atl:w:a9178122e4c0",
+     "title": "Guided Reflection for Personal Sleep Insight in Everyday Sleep Tracking",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity",
+      "hit_without_school_affiliation"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "postdoc_role_guard_7c8fdedd",
+   "rule": "D-0007 / 7c8fdedd (owner 2026-11-18, Q-0317): a person whose only roles are postdoc/faculty/staff (no student role, R-STU-19 B student_role_ok) is not a student link; the link is dropped, the lab paper stays. Rows: the removed student-paper links whose student carries the postdoc role in the current students.json.",
+   "rows": [],
+   "links": [
+    {
+     "pi": "Chien-Ming Huang",
+     "student": "ext:jhu:tsung-chi-lin",
+     "oa": "https://openalex.org/W4405785581",
+     "labId": "atl:l:jhu:chien-ming-huang",
+     "studentAtlasId": "atl:p:81e6720ff29b",
+     "atlasWorkId": "atl:w:b2a6ac676e05",
+     "name": "Tsung-Chi Lin",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Chien-Ming Huang",
+     "student": "ext:jhu:tsung-chi-lin",
+     "oa": "https://openalex.org/W7169791220",
+     "labId": "atl:l:jhu:chien-ming-huang",
+     "studentAtlasId": "atl:p:81e6720ff29b",
+     "atlasWorkId": "atl:w:38376e77b243",
+     "name": "Tsung-Chi Lin",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    },
+    {
+     "pi": "Chien-Ming Huang",
+     "student": "ext:jhu:tsung-chi-lin",
+     "oa": "https://openalex.org/W7213188350",
+     "labId": "atl:l:jhu:chien-ming-huang",
+     "studentAtlasId": "atl:p:81e6720ff29b",
+     "atlasWorkId": "atl:w:f748f9c9c7ba",
+     "name": "Tsung-Chi Lin",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    }
+   ]
+  },
+  {
+   "id": "student_person_key_changed",
+   "rule": "The same student stays in the lab under the same PI with a new person key: the census now knows the person as a faculty-listed person (jhu_fac_ehsan-azimi, name Ehsan Azimi, relation 'advised by Peter Kazanzides and Russ Taylor 2020' from the same CV source), so the roster key ext:jhu:ehsan-azimi is retired by the person merge.",
+   "rows": [],
+   "students": [
+    {
+     "pi": "Russell Taylor",
+     "student": "ext:jhu:ehsan-azimi",
+     "name": "Ehsan Azimi",
+     "new_person": "jhu_fac_ehsan-azimi"
+    }
+   ]
+  },
+  {
+   "id": "redated_by_venue_version",
+   "rule": "R-PAP-26 and R-PAP-38 (owner 2026-10-29, 2026-11-06): a deposit or reprint is dated by its venue version on the PI's DBLP page (build trace counter dated_by_venue_version).",
+   "rows": [
+    {
+     "pi": "Suchi Saria",
+     "oa": "https://openalex.org/W2187187251",
+     "labId": null,
+     "atlasWorkId": "atl:w:32dfd7706567",
+     "title": "A Framework for Individualizing Predictions of Disease Trajectories by Exploiting Multi-Resolution Structure",
+     "year": 2016,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "dated_before_window",
+      "dated_by_venue_version"
+     ]
+    },
+    {
+     "pi": "Suchi Saria",
+     "oa": "https://openalex.org/W2433904122",
+     "labId": null,
+     "atlasWorkId": "atl:w:2ae9dfab8df9",
+     "title": "A Probabilistic Graphical Model for Individualizing Prognosis in Chronic, Complex Diseases.",
+     "year": 2017,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "dated_before_window",
+      "dated_by_venue_version"
+     ]
+    }
+   ]
+  }
+ ],
+ "pi_renames": {},
+ "open_rows_not_recorded": {}
+}
