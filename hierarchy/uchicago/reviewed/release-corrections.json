@@ -2713,10 +2713,58 @@
      ]
     }
    ]
+  },
+  {
+   "id": "postdoc_role_guard_7c8fdedd",
+   "rule": "D-0007 / 7c8fdedd (owner 2026-11-18, Q-0317): a person whose only roles are postdoc/faculty/staff (no student role, R-STU-19 B student_role_ok) is not a student link; the link is dropped, the lab paper stays. Rows: the removed student-paper links whose student carries the postdoc role in the current students.json.",
+   "rows": [],
+   "links": [
+    {
+     "pi": "Rebecca Willett",
+     "student": "ext:uchicago:daren-wang",
+     "oa": "https://openalex.org/W2973143801",
+     "labId": "atl:l:uchicago:rebecca-willett",
+     "studentAtlasId": "atl:p:f3734bf9f72b",
+     "atlasWorkId": "atl:w:dbc66b4b760e",
+     "name": "Daren Wang",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Rebecca Willett",
+     "student": "ext:uchicago:daren-wang",
+     "oa": "https://openalex.org/W3094269301",
+     "labId": "atl:l:uchicago:rebecca-willett",
+     "studentAtlasId": "atl:p:f3734bf9f72b",
+     "atlasWorkId": "atl:w:0c4fd7f33aab",
+     "name": "Daren Wang",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    },
+    {
+     "pi": "Rebecca Willett",
+     "student": "ext:uchicago:daren-wang",
+     "oa": "https://openalex.org/W3108308450",
+     "labId": "atl:l:uchicago:rebecca-willett",
+     "studentAtlasId": "atl:p:f3734bf9f72b",
+     "atlasWorkId": "atl:w:ddefdb6141fe",
+     "name": "Daren Wang",
+     "old_basis": "byline_name_with_school_affiliation"
+    },
+    {
+     "pi": "Rebecca Willett",
+     "student": "ext:uchicago:daren-wang",
+     "oa": "https://openalex.org/W3108999507",
+     "labId": "atl:l:uchicago:rebecca-willett",
+     "studentAtlasId": "atl:p:f3734bf9f72b",
+     "atlasWorkId": "atl:w:bb1aa067a649",
+     "name": "Daren Wang",
+     "old_basis": "advisee_name_on_lab_paper_byline"
+    }
+   ]
   }
  ],
  "open_rows_not_recorded": {
   "open_hit_without_identity": 1,
-  "open_not_in_build_hits": 19
+  "open_not_in_build_hits": 19,
+  "links_open_other": 10
  }
 }

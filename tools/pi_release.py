@@ -204,7 +204,7 @@ def _accepted_links(rec, legacy):
     out = {}
     for cl in rec.get('classes') or []:
         for r in cl.get('links') or []:
-            out[(r['pi'], r['student'], r['oa']) if legacy else (r.get('labId'), r.get('studentAtlasId'), r.get('atlasWorkId'))] = cl['id']
+            out[(rec.get('pi_renames', {}).get(r['pi'], r['pi']), r['student'], r['oa']) if legacy else (r.get('labId'), r.get('studentAtlasId'), r.get('atlasWorkId'))] = cl['id']
     return out
 
 
