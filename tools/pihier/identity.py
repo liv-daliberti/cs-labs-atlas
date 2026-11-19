@@ -242,7 +242,46 @@ def apply_cached_lists(pis, pubs, dblp_doi, dblp_title, n):
                     dblp_title[pi][title_key] = rec.get('year')
 
 
-def apply_dump(pis, dump, dblp_doi, dblp_title, n):
+NAME_ONLY_MIN_COLLEAGUE_RECORDS = 3  # 2016-2026 records a name-only DBLP record must share with the school's own PIs
+
+
+def school_signal(rec, school):
+    """The school's own mark on a DBLP person record (2026-11-19, namesake audit): an affiliation note that matches the charter's
+    affiliation regex, or a URL on one of the school's web domains. None when the record carries neither."""
+    if not school:
+        return None
+    import school_config as S  # local: the tests that never name a school need no charter
+    try:
+        rx, cfg = S.aff_rx(school), S.get(school)
+    except KeyError:
+        return None
+    doms = [d.lower() for d in (cfg.get('web') or {}).get('domains') or []]
+    excl = [d.lower() for d in (cfg.get('web') or {}).get('excluded_hosts') or []]
+    note = next((a for a in rec.get('affiliations') or [] if rx.search(a)), None)
+    if note:
+        return ('affiliation', note)
+    for u in rec.get('urls') or []:
+        h = re.sub(r'^https?://', '', u).split('/')[0].split(':')[0].lower()
+        if any(h == d or h.endswith('.' + d) for d in doms) and not any(h == x or h.endswith('.' + x) for x in excl):
+            return ('homepage', u)
+    return None
+
+
+def colleague_records(rec, colleague_names, lo=2016, hi=2026):
+    """Records of a DBLP person (2016-2026) whose author list also names one of the school's other PIs (their DBLP name strings)."""
+    own = set(rec.get('names') or [])
+    k = 0
+    for r_ in rec.get('pubs') or []:
+        y = r_.get('year')
+        if y is None or not (lo <= int(y) <= hi):
+            continue
+        if any((a[0] if isinstance(a, (list, tuple)) else a) in colleague_names and (a[0] if isinstance(a, (list, tuple)) else a) not in own
+               for a in r_.get('authors') or []):
+            k += 1
+    return k
+
+
+def apply_dump(pis, dump, dblp_doi, dblp_title, n, school=None):
     """R-PAP-05 with DBLP's own dump (`dump`: hierarchy/dblp-dump-persons.json.gz, {persons, by_name}): name conflicts
     drop an id, a PI still without one takes the unique person of exactly that name (no disambiguation record), every
     record anchors by DOI and title, and the person's ORCIDs join the PI's."""
@@ -254,10 +293,46 @@ def apply_dump(pis, dump, dblp_doi, dblp_title, n):
         if len(keep) < len(p['dblp']):
             n['dblp_ids_dropped_name_mismatch'] += len(p['dblp']) - len(keep)
             p['dblpDropped'] = sorted(set(p.get('dblpDropped') or []) | (set(p['dblp']) - set(keep))); p['dblp'] = keep
+    # A name alone never binds a DBLP record (2026-11-19, namesake audit): 'unique' only means no other record carries the exact
+    # token string, so 'Rajeev Ram' (one 2016 paper, no affiliation) hid 'Rajeev J. Ram' (the MIT professor). The record must show the
+    # school (affiliation note or URL on a school domain) or share >= 3 2016-2026 records with the school's other PIs.
+    colleagues = {nm for p in pis if not p.get('dblpBasis') for q in p['dblp'] for nm in (DP.get(q) or {}).get('names') or []}
+    n.setdefault('dblp_name_only_held', 0)
+    CACHED = 'unique DBLP person of that exact name among the cached publication co-authors'
+    for p in pis:  # the cached-list rule is a name-only bind too: it needs the same signal, read from the person's dump record
+        if p.get('dblpBasis') == CACHED and p['dblp'] and school:
+            q = p['dblp'][0]
+            sig = school_signal(DP[q], school) if q in DP else None
+            if sig:
+                p['dblpSignal'] = dict(kind=sig[0], quote=sig[1])
+            elif q in DP and (k_ := colleague_records(DP[q], colleagues)) >= NAME_ONLY_MIN_COLLEAGUE_RECORDS:
+                p['dblpSignal'] = dict(kind='colleague_records', quote=f"{k_} 2016-2026 records co-written with the school's other PIs")
+            else:
+                p['dblpHeld'] = [dict(pid=q, why='name only: the record carries no school affiliation or homepage and fewer than '
+                                      f'{NAME_ONLY_MIN_COLLEAGUE_RECORDS} records with the school\'s other PIs'
+                                      + ('' if q in DP else ' (the person is not in the DBLP dump)'))]
+                p['dblp'] = []; p.pop('dblpBasis')
+                dblp_doi[p['pi']].clear(); dblp_title[p['pi']].clear()  # the namesake's cached records anchored nothing of the PI's
+                n['dblp_name_only_held'] += 1
+    for p in pis:
         if not p['dblp']:
             c_ = {q for n_ in p['names'] for q in DN.get(' '.join(toks(n_)), [])}
             if len(c_) == 1 and not any(DP[q].get('disambiguation') for q in c_):
-                p['dblp'] = sorted(c_); p['dblpBasis'] = 'unique DBLP person of that exact name in the DBLP dump'; n['dblp_ids_from_dump_name'] += 1
+                q = next(iter(c_))
+                sig = school_signal(DP[q], school) if school else ('unchecked', None)
+                if sig:
+                    signal = None if sig[0] == 'unchecked' else dict(kind=sig[0], quote=sig[1])
+                elif (k_ := colleague_records(DP[q], colleagues)) >= NAME_ONLY_MIN_COLLEAGUE_RECORDS:
+                    signal = dict(kind='colleague_records', quote=f"{k_} 2016-2026 records co-written with the school's other PIs")
+                else:
+                    p['dblpHeld'] = [dict(pid=q, why='name only: the record carries no school affiliation or homepage and fewer than '
+                                          f'{NAME_ONLY_MIN_COLLEAGUE_RECORDS} records with the school\'s other PIs')]
+                    n['dblp_name_only_held'] += 1
+                    continue
+                p['dblp'] = [q]; p['dblpBasis'] = 'unique DBLP person of that exact name in the DBLP dump'; n['dblp_ids_from_dump_name'] += 1
+                if signal:
+                    p['dblpSignal'] = signal
+    for p in pis:
         for q in p['dblp']:
             rec_ = DP.get(q)
             if not rec_:
@@ -321,7 +396,7 @@ def anchors(ctx):
             own = read(dd_s)
             dump = dict(dump, persons={**dump.get('persons', {}), **own['persons']},
                         by_name={k: sorted(set(dump.get('by_name', {}).get(k, [])) | set(own['by_name'].get(k, []))) for k in {*dump.get('by_name', {}), *own['by_name']}})
-        apply_dump(pis, dump, dblp_doi, dblp_title, n)
+        apply_dump(pis, dump, dblp_doi, dblp_title, n, school=school)
     # Venue dates, author counts and page filters need the same school-augmented records.
     # Keep this per build; the shared read-once cache must not absorb school-local records.
     ctx.dblp_persons = dump

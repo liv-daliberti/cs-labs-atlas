@@ -20,7 +20,7 @@ def policy(allowed=()):
 
 
 def dump():
-    return dict(persons={PID: dict(names=['Ada Lovelace'], orcid=[A, B_ID],
+    return dict(persons={PID: dict(names=['Ada Lovelace'], orcid=[A, B_ID], affiliations=['Princeton University, NJ, USA'],
                                    pubs=[dict(key='journals/example/Lovelace20', dois=['10.1/exact'], title='A Source-Bound Paper', year=2020, authors=['Ada Lovelace'], pages='1-10')])},
                 by_name={'ada lovelace': [PID]})
 

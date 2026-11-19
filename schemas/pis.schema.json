@@ -425,6 +425,28 @@
       "R-PAP-05"
      ]
     },
+    "dblpSignal": {
+     "description": "The school signal that let a name-only DBLP person bind: an affiliation note or a school-domain URL on the record, or >= 3 2016-2026 records shared with the school's other PIs (2026-11-19 namesake audit).",
+     "type": "object",
+     "properties": {
+      "kind": {"type": "string", "enum": ["affiliation", "homepage", "colleague_records"]},
+      "quote": {"type": "string"}
+     },
+     "required": ["kind", "quote"],
+     "additionalProperties": false,
+     "x-rules": ["R-PAP-05"]
+    },
+    "dblpHeld": {
+     "description": "DBLP persons that carry the PI's exact name but were NOT bound: no school affiliation or homepage on the record and too few records with the school's other PIs.",
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {"pid": {"type": "string"}, "why": {"type": "string"}},
+      "required": ["pid", "why"],
+      "additionalProperties": false
+     },
+     "x-rules": ["R-PAP-05"]
+    },
     "dblpDropped": {
      "description": "DBLP pids dropped because the DBLP person name conflicts with the PI names.",
      "type": "array",
