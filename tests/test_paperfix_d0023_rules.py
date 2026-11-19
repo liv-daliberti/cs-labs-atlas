@@ -1,13 +1,10 @@
 """D-0023 (2026-11-19): gate-9 pi2 Toronto precision and ZJU coverage rules, R-PAP-48 .. R-PAP-53."""
 import re
-import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'tools'))
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'tools' / 'pihier'))
-import pi_hierarchy as h  # noqa: E402
-import pi_fulltext_affiliation as F  # noqa: E402
-from pihier import papers as PA  # noqa: E402
+import pi_fulltext_affiliation as F
+import pi_hierarchy as h
+from pihier import papers as PA
 
 
 def row(**kw):
@@ -105,3 +102,15 @@ def test_R_PAP_39_toronto_d0023_reviewed_not_papers():
         e = d[pi]['not_papers'][0]
         assert e['doi'] == doi and e['why'] and len(e['evidence'][0]['sha256']) == 64 and e['evidence'][0]['quote']
         assert PA.reviewed_not_paper(dict(notPapers=d[pi]['not_papers']), dict(doi=doi, oa=e['oa']))
+
+
+def test_R_PAP_55_drops_complete_volume():
+    assert h.not_a_paper(row(title='LIPIcs, Volume 198, ICALP 2021, Complete Volume', type='conference-paper', doi='10.4230/lipics.icalp.2021')) == 'proceedings_volume'
+    assert h.not_a_paper(row(title='OASIcs, Volume 139, NINeS 2026, Complete Volume', type='conference-paper')) == 'proceedings_volume'
+    assert h.not_a_paper(row(title='A new bound for coloring', type='conference-paper', doi='10.4230/lipics.icalp.2021.12')) is None
+
+
+def test_R_PAP_56_uog_congress_abstract():
+    r = row(title='OP08.03: Success rate of the subcortical 3D fetal brain segmentation', type='conference-abstract', venue='Ultrasound in Obstetrics and Gynecology', doi='10.1002/uog.25183')
+    assert h.not_a_paper(r) == 'meeting_abstract:journal'
+    assert h.not_a_paper(dict(r, type='article', title='Fetal brain growth curves from 3D ultrasound')) is None

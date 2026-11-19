@@ -153,6 +153,10 @@ WORKSHOP_ORDINAL_TITLE = re.compile(r'^[^:]{2,70}:\s*(?i:the\s+)?(?i:first|secon
 JOURNAL_STATE_REPORT_TITLE = re.compile(r'(?i)^\s*report on the state and changes of the\b[^:]{0,60}\bjournal\b')
 
 
+# R-PAP-55 (2026-11-19, D-0023; Oxford gate 9 pi2, Worrell): a DROPS series volume record, 'LIPIcs, Volume 198, ICALP 2021, Complete Volume' (the editors are on its byline).
+DROPS_COMPLETE_VOLUME_TITLE = re.compile(r'(?i)^\s*(?:LIPIcs|OASIcs),\s*Volume\s+\d+\b.*\bComplete Volume\s*$')
+
+
 def all_caps_title(t):
     letters = [c for c in t if c.isalpha()]
     return len(t.split()) >= 4 and len(letters) >= 20 and not any(c.islower() for c in letters)
@@ -198,7 +202,7 @@ ABSTRACT_DOI = re.compile(r'(?i)^10\.58530/|^10\.5194/(?:egusphere|epsc|wbf)|mee
 ABSTRACT_TITLE = re.compile(r'(?i)^\s*abstract\s+[A-Z]{0,4}[-\s]?\d+\s*[:.]')
 ABSTRACT_JOURNALS = re.compile(r'(?i)^(cancer research|cardiovascular research|circulation|blood|stroke|sleep|journal of clinical oncology|the journal of the acoustical society|'
                                r'biophysical journal|the journal of immunology|neuro-oncology|clinical cancer research|cancer immunology research|'
-                               r'journal of the american society of nephrology|innovation in aging|arteriosclerosis|open forum infectious|'
+                               r'ultrasound in obstetrics|journal of the american society of nephrology|innovation in aging|arteriosclerosis|open forum infectious|'
                                r'genetics in medicine|schizophrenia bulletin|structural dynamics|academy of management proceedings|'
                                r'regular and young investigator|the faseb journal|neurology|biological psychiatry|value in health|'
                                r'annals of the rheumatic diseases|american journal of respiratory and critical care|journal of thoracic oncology)')
@@ -416,6 +420,8 @@ def not_a_paper(r, pages=None, bare=False):
         return 'commentary'
     if PROCEEDINGS_VOLUME.search(t):
         return 'proceedings_volume'
+    if DROPS_COMPLETE_VOLUME_TITLE.search(t):   # R-PAP-55
+        return 'proceedings_volume'
     if SUPPLEMENT_NUMBER.search(t) and ty == 'article' and v.strip():
         return 'supplement_abstract'
     # JAAD volume 95 issue 1S lists five-digit abstract IDs on AB pages. OpenAlex types
@@ -438,8 +444,6 @@ def not_a_paper(r, pages=None, bare=False):
         return 'meeting_abstract:doi'
     if ABSTRACT_TITLE.search(t):
         return 'meeting_abstract:title'
-    if ty in ('article', 'conference-abstract', 'other') and (OUP_SUPPLEMENT_DOI.match(d) or (NMD_CONGRESS_DOI.match(d) and int(NMD_CONGRESS_DOI.match(d).group(1)) >= 100)):
-        return 'meeting_abstract:supplement'   # R-PAP-48
     if ERS_CONGRESS_DOI.match(d) or BCS_CONGRESS_DOI.match(d) or (NEUROM_DOI.match(d) and (ty == 'conference-abstract' or NEUROM_ABSTRACT_CODE.search(t))):
         return 'meeting_abstract:congress'
     if ABSTRACT_FAMILY_DROPS and (TUTORIAL_ABSTRACT_DOI.match(d) or POSTER_CODE_DOI.search(d)
@@ -452,6 +456,8 @@ def not_a_paper(r, pages=None, bare=False):
         return 'meeting_abstract:single_author'
     if ty == 'conference-abstract' and re.search(r'(?i)\bkeynote\b|\binvited talk\b', t):
         return 'meeting_abstract:keynote'
+    if ty in ('article', 'conference-abstract', 'other') and (OUP_SUPPLEMENT_DOI.match(d) or (NMD_CONGRESS_DOI.match(d) and int(NMD_CONGRESS_DOI.match(d).group(1)) >= 100)):
+        return 'meeting_abstract:supplement'   # R-PAP-48
     return nr   # R-PAP-33: a conference abstract not tagged above
 
 
