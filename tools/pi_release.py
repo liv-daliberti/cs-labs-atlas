@@ -74,7 +74,8 @@ def plan(key, res=None, published=None):
             held[pi] = ['no pi-states row']
     sha = hashlib.sha256('\n'.join(sorted(included)).encode()).hexdigest()
     hl = _held_links(key, res, included, published, rec)
-    return dict(school=key, package_pis=len(pkg), done=len(done), carried=carried, included=included, held=held, included_sha=sha, held_links=hl,
+    carry = _carry(key, included, published, rec, held_set(hl)) if published and (package_dir(key, published) / 'pis.json').exists() else None
+    return dict(school=key, package_pis=len(pkg), done=len(done), carried=carried, included=included, held=held, included_sha=sha, held_links=hl, carry=carry,
                 school_items={s: v for s, v in (res.get('school_items') or {}).items() if v},
                 partial=bool(held), published_from=Path(published).resolve().name if published else None)
 
@@ -99,24 +100,73 @@ def _held_links(key, res, included, published, rec):
     return out
 
 
+class Adjust(set):
+    """The held student links {(pi, student id)} of a plan, plus `.carry`: the unexplained removals vs the published release that the release carries
+    forward (D-0021). Every `held=` parameter of this module takes it, so one object adjusts the package files, the compare and the accuracy hashes."""
+    carry = None
+
+
 def held_set(pl_or_links):
-    """{(pi, student id)} of a plan's (or a `held_links` map's) held links, in the key the package files use (student person id, else name)."""
-    links = (pl_or_links.get('held_links') or {}) if isinstance(pl_or_links, dict) and 'included' in pl_or_links else pl_or_links
-    return {(pi, h.get('id') or h.get('student')) for pi, v in (links or {}).items() for h in v}
+    """An `Adjust` of a plan's (or a `held_links` map's) held links {(pi, student id)}, in the key the package files use (student person id, else name);
+    for a plan it also carries `plan['carry']` (the rows carried forward from the published release, D-0021)."""
+    is_plan = isinstance(pl_or_links, dict) and 'included' in pl_or_links
+    links = (pl_or_links.get('held_links') or {}) if is_plan else pl_or_links
+    out = Adjust((pi, h.get('id') or h.get('student')) for pi, v in (links or {}).items() for h in v)
+    out.carry = pl_or_links.get('carry') if is_plan else None
+    return out
+
+
+def _carry(key, included, published, rec, held):
+    """D-0021 (owner 2026-11-19): every removal vs the published release that no recorded rule explains is CARRIED FORWARD: the published row goes back into the
+    release package (a lab paper, a student, a student-paper link). Returns None when nothing is unexplained, else {rows: {kind: [normalised row]}, keys:
+    {kind: {compare key}}, copies: {oa: published copies entry}, counts}. Rows are normalised to the current package: a renamed PI under its current
+    spelling, a drifted lab id under the current one. Held links (D-0017) are never carried, and only rows of included PIs are."""
+    c = compare(key, included, published, corrections=rec, held=Adjust(held), _rows=True)
+    if not c.get('compared') or not c['flags']:
+        return None
+    info, drift, ren = c['carry_rows'], c['carry_rows']['drift'], c['carry_rows']['renames']
+    inc = set(included)
+    fix = lambda r: dict(r, **({'pi': ren.get(r['pi'], r['pi'])} if r.get('pi') in ren else {}), **({'labId': drift[r['labId']]} if r.get('labId') in drift else {}))
+    rows, keys = dict(lab_paper=[], student=[], student_paper=[]), dict(lab_paper=set(), student=set(), student_paper=set())
+    for k, pairs in info['rows'].items():
+        for x, payload in pairs.items():
+            if k == 'student':
+                pi, entry = payload
+                pi = ren.get(pi, pi)
+                if pi in inc:
+                    rows[k].append((pi, entry)); keys[k].add(x)
+            else:
+                r = fix(payload)
+                if r.get('pi') in inc:
+                    rows[k].append(r); keys[k].add(x)
+    if not any(keys.values()):
+        return None
+    oldc = package_dir(key, published) / 'copies.json'
+    copies = {}
+    if oldc.exists():
+        have = (_read_json(oldc).get('papers') or {})
+        copies = {r['oa']: have[r['oa']] for r in rows['lab_paper'] if r.get('oa') in have}
+    return dict(rows=rows, keys=keys, copies=copies, counts={k: len(v) for k, v in rows.items() if v})
 
 
 def filtered_rows_and_json(key, name, included, base=None, held=None):
     """The package file `name` as Python data restricted to `included` PIs: list (pis.json), dict (students.json, copies.json) or rows.
     `held` ({(pi, student id)}, `held_set`) drops exactly those student links: the student's row in students.json and any student-paper row (D-0017)."""
     inc = set(included)
-    held = held or set()
+    held = set() if held is None else held
+    carry = None if base is not None else getattr(held, 'carry', None)   # D-0021 rows are added to the CURRENT package only
     d = package_dir(key, base) / name
     if name == 'pis.json':
         return [x for x in _read_json(d) if x['pi'] in inc]
     if name == 'students.json':
-        return {pi: [x for x in v if (pi, x.get('person') or x.get('id') or x.get('name')) not in held] for pi, v in _read_json(d).items() if pi in inc}
+        out = {pi: [x for x in v if (pi, x.get('person') or x.get('id') or x.get('name')) not in held] for pi, v in _read_json(d).items() if pi in inc}
+        for pi, entry in (carry or {}).get('rows', {}).get('student', []):
+            out.setdefault(pi, []).append(entry)
+        return out
     if name == 'student_papers.jsonl.gz':
-        return [r for r in _jsonl_gz(d) if r.get('pi') in inc and (r['pi'], r.get('student')) not in held]
+        return [r for r in _jsonl_gz(d) if r.get('pi') in inc and (r['pi'], r.get('student')) not in held] + (carry or {}).get('rows', {}).get('student_paper', [])
+    if name == 'lab_papers.jsonl.gz':
+        return [r for r in _jsonl_gz(d) if r.get('pi') in inc] + (carry or {}).get('rows', {}).get('lab_paper', [])
     if name.endswith('.jsonl.gz'):
         return [r for r in _jsonl_gz(d) if r.get('pi') in inc]
     if name == 'copies.json':
@@ -124,6 +174,8 @@ def filtered_rows_and_json(key, name, included, base=None, held=None):
         oa = {r['oa'] for r in _jsonl_gz(package_dir(key, base) / 'lab_papers.jsonl.gz') if r.get('pi') in inc}
         out = dict(c)
         out['papers'] = {k: v for k, v in (c.get('papers') or {}).items() if k in oa}
+        for k, v in ((carry or {}).get('copies') or {}).items():   # a carried lab paper keeps its published copy entry unless the current build has one
+            out['papers'].setdefault(k, v)
         out['summary_scope'] = 'the school-wide build summary; papers are restricted to the included PIs'
         return out
     raise ValueError(name)
@@ -164,7 +216,7 @@ def scope_statement(pl, release_id=None):
         pass
     return dict(school=pl['school'], release=release_id, status='partial' if pl['held'] else 'complete',
                 pis_total=pl['package_pis'], pis_included=len(pl['included']), pis_held=len(pl['held']), pis_carried_open=len(pl['carried']),
-                included_sha=pl['included_sha'], held_links_n=sum(len(v) for v in (pl.get('held_links') or {}).values()),
+                included_sha=pl['included_sha'], held_links_n=sum(len(v) for v in (pl.get('held_links') or {}).values()), carried_forward=dict((pl.get('carry') or {}).get('counts') or {}),
                 held_links=[dict(pi=pi, student=h.get('student'), id=h.get('id'), why=h.get('diagnosis') or 'no linked paper') for pi, v in sorted((pl.get('held_links') or {}).items()) for h in v],
                 held=[dict(pi=pi, atlasId=pis.get(pi, {}).get('atlasId'), labId=pis.get(pi, {}).get('labId'), blocking=r) for pi, r in sorted(pl['held'].items())],
                 carried_open=[dict(pi=pi, atlasId=pis.get(pi, {}).get('atlasId')) for pi in pl['carried']],
@@ -179,6 +231,9 @@ def render_notes(statements):
         out.append(f"## {s['school']}: {s['status']} ({s['pis_included']} of {s['pis_total']} PIs included, {s['pis_held']} held)")
         if s.get('held_links_n'):
             out.append(f"{s['held_links_n']} student links are held (chain-audit stage 7: the student has no linked paper yet; D-0017): the student is not in the PI's lab in this release unless published earlier.")
+        if s.get('carried_forward'):
+            cf = s['carried_forward']
+            out.append(f"{sum(cf.values())} published rows are carried forward from the previous release (D-0021): " + ', '.join(f"{n} {k.replace('_', ' ')}s" for k, n in sorted(cf.items())) + '; the builder dropped them since then and no recorded rule explains it (investigated next release).')
         if s['pis_carried_open']:
             out.append(f"{s['pis_carried_open']} PIs published earlier are carried although open now (published rows are never removed).")
         for h in s['held']:
@@ -192,7 +247,7 @@ def _has_ids(key, base=None):
     return bool(pis) and all(str(x.get('atlasId', '')).startswith('atl:p:') and str(x.get('labId', '')).startswith('atl:l:') for x in pis)
 
 
-def _ids(key, base=None, inc=None, legacy=False, held=None):
+def _ids(key, base=None, inc=None, legacy=False, held=None, rows=None):
     """Key sets of a package: PIs, labs, (lab, student) pairs, (lab, paper) and (lab, student, paper) links. Atlas ids (docs/IDS.md) when
     `legacy` is false; the pre-id keys (PI name, student person id, OpenAlex id) when a package has no ids yet."""
     d = package_dir(key, base)
@@ -203,14 +258,24 @@ def _ids(key, base=None, inc=None, legacy=False, held=None):
                student=set(), lab_paper=set(), student_paper=set())
     for pi, ss in _read_json(d / 'students.json').items():
         if pi in keep:
-            out['student'] |= {(lab_of.get(pi), s.get('person') if legacy else s.get('atlasId')) for s in ss
-                               if (pi, s.get('person') or s.get('id') or s.get('name')) not in (held or ())}
+            for s in ss:
+                if (pi, s.get('person') or s.get('id') or s.get('name')) not in (held or ()):
+                    k = (lab_of.get(pi), s.get('person') if legacy else s.get('atlasId'))
+                    out['student'].add(k)
+                    if rows is not None:
+                        rows['student'][k] = (pi, s)
     for r in _jsonl_gz(d / 'lab_papers.jsonl.gz'):
         if r.get('pi') in keep:
-            out['lab_paper'].add((lab_of.get(r['pi']), r.get('oa') if legacy else r.get('atlasWorkId')))
+            k = (lab_of.get(r['pi']), r.get('oa') if legacy else r.get('atlasWorkId'))
+            out['lab_paper'].add(k)
+            if rows is not None:
+                rows['lab_paper'][k] = r
     for r in _jsonl_gz(d / 'student_papers.jsonl.gz'):
         if r.get('pi') in keep and (r['pi'], r.get('student')) not in (held or ()):
-            out['student_paper'].add((lab_of.get(r['pi']), r.get('student') if legacy else r.get('studentAtlasId'), r.get('oa') if legacy else r.get('atlasWorkId')))
+            k = (lab_of.get(r['pi']), r.get('student') if legacy else r.get('studentAtlasId'), r.get('oa') if legacy else r.get('atlasWorkId'))
+            out['student_paper'].add(k)
+            if rows is not None:
+                rows['student_paper'][k] = r
     return out
 
 
@@ -253,7 +318,7 @@ def _accepted_students(rec, legacy):
     return out
 
 
-def compare(key, included, release, corrections=None, held=None):
+def compare(key, included, release, corrections=None, held=None, _rows=False):
     """Monotone check: {kind: {'old', 'new', 'n_removed', 'added', 'removed'}} of the filtered new package against the package of the published
     `release` dir. Any n_removed > 0 is a flag. Compared by atlas ids when both packages carry them, else by the pre-id keys (`basis`); a school
     absent from the old release has nothing to compare. Removals that the school's release-corrections record explains (`load_corrections`, or the
@@ -262,12 +327,13 @@ def compare(key, included, release, corrections=None, held=None):
     if not (package_dir(key, release) / 'pis.json').exists():
         return dict(school=key, compared=False, flags=0)
     legacy = not (_has_ids(key) and _has_ids(key, release))
-    new, old = _ids(key, inc=included, legacy=legacy, held=held), _ids(key, base=release, legacy=legacy)
+    old_rows = dict(student={}, lab_paper={}, student_paper={}) if _rows else None
+    new, old = _ids(key, inc=included, legacy=legacy, held=held), _ids(key, base=release, legacy=legacy, rows=old_rows)
     rec = corrections if corrections is not None else load_corrections(key, release)
     renames = (rec or {}).get('pi_renames') or {}
+    remaps = []
     if legacy and renames:   # pre-id packages key by PI name: a census-renamed PI (recorded old -> current) is the same PI, so its rows compare under the current spelling
-        rn = lambda x: tuple(renames.get(x[0], x[0]) if i == 0 else v for i, v in enumerate(x)) if isinstance(x, tuple) else renames.get(x, x)
-        old = {k: {rn(x) for x in v} for k, v in old.items()}
+        remaps.append(lambda x: tuple(renames.get(x[0], x[0]) if i == 0 else v for i, v in enumerate(x)) if isinstance(x, tuple) else renames.get(x, x))
     drift, drifted_pis = {}, set()
     if not legacy:   # a lab or person id can drift between builds when a PI loses an identity anchor (a new id is minted): follow the PI by name (and recorded rename) so the drift is reported, not counted as a removal
         o_pis, n_pis = {x['pi']: x for x in _read_json(package_dir(key, release) / 'pis.json')}, {x['pi']: x for x in _read_json(package_dir(key) / 'pis.json')}
@@ -278,7 +344,14 @@ def compare(key, included, release, corrections=None, held=None):
                     if x.get(f) and y.get(f) and x[f] != y[f]:
                         drift[x[f]] = y[f]; drifted_pis.add(pi)
         if drift:
-            old = {k: {(drift.get(x, x) if isinstance(x, str) else tuple(drift.get(v, v) if i == 0 else v for i, v in enumerate(x))) for x in v} for k, v in old.items()}
+            remaps.append(lambda x: drift.get(x, x) if isinstance(x, str) else tuple(drift.get(v, v) if i == 0 else v for i, v in enumerate(x)))
+    for rm in remaps:
+        old = {k: {rm(x) for x in v} for k, v in old.items()}
+        if old_rows is not None:
+            old_rows = {k: {rm(x): p for x, p in v.items()} for k, v in old_rows.items()}
+    carry = getattr(held, 'carry', None)
+    if carry:   # D-0021: rows carried forward from the published release are part of the new package
+        new = {k: set(v) | set((carry['keys'].get(k) or ())) for k, v in new.items()}
     acc = _accepted_lab_papers(rec, legacy) if rec else {}
     acc_links = _accepted_links(rec, legacy) if rec else {}
     acc_st = _accepted_students(rec, legacy) if rec else {}
@@ -295,6 +368,10 @@ def compare(key, included, release, corrections=None, held=None):
                    removed=sorted(map(str, gone[k]))[:5]) for k in old}
     out = dict(school=key, compared=True, release=Path(release).resolve().name, basis='legacy keys (a package has no atlas ids yet)' if legacy else 'atlas ids',
                kinds=res, flags=sum(v['n_removed'] for v in res.values()), id_drift=len(drifted_pis), id_drift_pis=sorted(drifted_pis))
+    if carry:
+        out['carried_forward'] = {k: len(v) for k, v in (carry.get('keys') or {}).items() if v}
+    if _rows:
+        out['carry_rows'] = dict(drift=drift, renames=renames, rows={k: {x: old_rows[k][x] for x in sorted(gone[k], key=str) if x in old_rows[k]} for k in ('lab_paper', 'student', 'student_paper')})
     if rec:
         out['corrected'] = {f'{k}:{c}': n for (k, c), n in sorted(corrected.items())}
         out['corrections_unused'] = sum(1 for k in acc if k in new['lab_paper'])

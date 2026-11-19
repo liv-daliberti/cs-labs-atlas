@@ -105,7 +105,7 @@ def school_row(key, published):
     row['gates'] = gates
     row['copies_json'] = P.data('copies.json', key).exists()
     try:
-        c = PR.compare(key, pl['included'], published) if published else None
+        c = PR.compare(key, pl['included'], published, held=PR.held_set(pl)) if published else None
     except Exception as e:
         c = dict(compared=False, flags=-1, error=repr(e)[:160])
     if c and c.get('compared'):

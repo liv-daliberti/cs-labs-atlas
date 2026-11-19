@@ -218,3 +218,38 @@ def test_compare_follows_a_drifted_lab_id_by_pi_name(world):
     got = PR.compare('x', ['A', 'B', 'C'], rel, corrections=dict(against_release=rel.name, classes=[]))
     assert got['kinds']['pi']['n_removed'] == 0 and got['kinds']['lab']['n_removed'] == 0 and got['kinds']['lab_paper']['n_removed'] == 0
     assert rows and st
+
+
+def test_unexplained_removals_are_carried_forward_and_recorded_ones_stay_removed(world, monkeypatch):
+    """D-0021: a published row the rebuild dropped with no recorded rule goes back into the release package (and is listed); a recorded removal stays removed."""
+    new, rel, states = world
+    keep = lambda rows: [r for r in rows if r['pi'] != 'B']
+    for f in ('lab_papers.jsonl.gz', 'student_papers.jsonl.gz'):
+        rows = [json.loads(l) for l in gzip.open(new / f, 'rt')]
+        with gzip.open(new / f, 'wt') as g:
+            for r in keep(rows):
+                g.write(json.dumps(r) + '\n')
+    st = json.loads((new / 'students.json').read_text()); st['B'] = []
+    (new / 'students.json').write_text(json.dumps(st))
+    cp = json.loads((new / 'copies.json').read_text()); cp['papers'].pop('WB')
+    (new / 'copies.json').write_text(json.dumps(cp))
+    pl = PR.plan('x', states(set()), published=rel)
+    assert pl['carry']['counts'] == {'lab_paper': 1, 'student': 1, 'student_paper': 1}
+    held = PR.held_set(pl)
+    assert PR.compare('x', pl['included'], rel, corrections=dict(against_release=rel.name, classes=[]))['flags'] == 3      # without the carry: three removals
+    got = PR.compare('x', pl['included'], rel, corrections=dict(against_release=rel.name, classes=[]), held=held)
+    assert got['flags'] == 0 and got['carried_forward'] == {'lab_paper': 1, 'student': 1, 'student_paper': 1}
+    inc = pl['included']
+    assert 'WB' in {r['oa'] for r in PR.filtered_rows_and_json('x', 'lab_papers.jsonl.gz', inc, held=held)}
+    assert [s['person'] for s in PR.filtered_rows_and_json('x', 'students.json', inc, held=held)['B']] == ['ext:B-s']
+    assert any(r['pi'] == 'B' for r in PR.filtered_rows_and_json('x', 'student_papers.jsonl.gz', inc, held=held))
+    assert 'WB' in PR.filtered_rows_and_json('x', 'copies.json', inc, held=held)['papers']
+    assert 'WB' not in {r['oa'] for r in PR.filtered_rows_and_json('x', 'lab_papers.jsonl.gz', inc)}                           # no carry without it
+    assert PR.package_hashes('x', inc, held=held) != PR.package_hashes('x', inc)
+    st_ = PR.scope_statement(pl)
+    assert st_['carried_forward'] == {'lab_paper': 1, 'student': 1, 'student_paper': 1} and 'carried forward from the previous release' in PR.render_notes([st_])
+    # a recorded rule keeps the lab paper removed: it is not carried
+    rec = dict(against_release=rel.name, classes=[dict(id='r', rule='x', rows=[dict(pi='B', oa='WB', labId='atl:l:x:B', atlasWorkId='atl:w:B')])])
+    monkeypatch.setattr(PR, 'load_corrections', lambda k, r: rec)
+    pl2 = PR.plan('x', states(set()), published=rel)
+    assert pl2['carry']['counts'] == {'student': 1}                      # the recorded lab paper stays removed and its links follow it

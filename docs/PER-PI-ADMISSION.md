@@ -54,3 +54,12 @@ A stage-7 chain-audit `links` flag (a lab student with no linked paper) names a 
 students (and any student-paper rows of theirs) out of the release package; `compare` does the same on the new side, so a held link is not a removal.
 A link the published release already carried is never held (D-0001). `scope_statement` lists the held links and `render_notes` prints a count per
 school. A flag that names no PI stays a school item; a waived summary stays a waiver. Accuracy draws bind to the filtered content including the holds.
+
+## Carry-forward of unexplained removals (D-0021, owner 2026-11-19)
+A published row (lab paper, student, student-paper link) that the rebuild dropped since the last release and that no recorded rule explains is CARRIED
+FORWARD: `pi_release.plan()['carry']` holds the published rows (normalised to the current PI spelling and lab ids), `held_set(plan).carry` hands them to
+`filtered_rows_and_json` / `filtered_bytes` / `package_hashes` (they are added to lab_papers, student_papers, students.json and the copies entries of the
+carried papers) and to `compare`, which then reports 0 removals and counts them under `carried_forward`. Recorded removals (release-corrections.json:
+paper rules, window rule, charter exclusions, same paper other id, DBLP namesake corrections) stay removed; held student links (D-0017) are never carried.
+`scope_statement` lists the carried rows per school and kind and `render_notes` prints the count. The builder's weak-relation drops are investigated
+before the next release. Carried lab papers have no row in the current reader export (they are not readable on the site until the next build).
