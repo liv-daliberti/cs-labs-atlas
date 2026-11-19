@@ -74,3 +74,42 @@ def test_pi2_draw_refuses_without_a_fresh_seed(monkeypatch):
 def test_used_seed_is_refused(monkeypatch):
     G = load('g9_round', monkeypatch)
     assert 20261118 in G.used_seeds()
+
+
+def test_batches_and_convert_roundtrip(monkeypatch, tmp_path):
+    """accuracy/g9_round.py batches -> reviewer outputs -> convert, on a synthetic pi2 draw: <= 25 rows per batch, every item judged once."""
+    import json
+    import types
+    G = load('g9_round', monkeypatch)
+    acc = tmp_path / 'accuracy'
+    (acc / 'round-pi2').mkdir(parents=True)
+    S = dict(lab_precision=[dict(stratum='uniform', i=i, key=f'k{i}') for i in range(30)],
+             student_precision=[dict(stratum='uniform', i=i, key=f's{i}') for i in range(3)],
+             lab_coverage=[dict(stratum='dblp_person_page', pi='P', key=f'P|d{i}', dblp={}) for i in range(26)],
+             student_coverage_order=[dict(key=f'P|st{i}', pi='P', person=f'st{i}') for i in range(30)])
+    (acc / 'round-pi2' / 'sample-x.json').write_text(json.dumps(dict(seed=1, schools={'x': S})))
+    monkeypatch.setattr(G, 'main_acc', lambda: acc)
+    work = tmp_path / 'work'
+    a = types.SimpleNamespace(schools=None, work=str(work))
+    assert G.cmd_batches(a) == 0
+    plan = json.loads((work / 'batches.json').read_text())
+    by = {}
+    for b in plan['batches']:
+        assert b['n'] <= 25
+        by.setdefault(b['kind'], []).append(b)
+    assert [b['n'] for b in by['lab']] == [25, 5] and [b['n'] for b in by['coverage']] == [25, 1]
+    for b in plan['batches']:
+        (work / 'out').mkdir(exist_ok=True)
+        with open(b['out'], 'w') as f:
+            for r in b['refs']:
+                row = dict(ref=r, verdict='correct', failure_type=None, reason='stored evidence')
+                if b['kind'] == 'coverage':
+                    row.update(true_lab_paper=True, in_build=True)
+                if b['kind'] == 'scov':
+                    row.update(screened=False, has_coauthored_paper=False, linked=False)
+                f.write(json.dumps(row) + '\n')
+    assert G.cmd_convert(a) == 0
+    v = [json.loads(line) for line in open(acc / 'round-pi2' / 'verdicts-x.jsonl')]
+    assert len(v) == 30 + 3 + 26 + 30
+    with pytest.raises(FileExistsError):
+        G.cmd_convert(a)
