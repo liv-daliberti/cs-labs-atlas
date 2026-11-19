@@ -126,6 +126,38 @@ def fetch(school, years, cl, tag=TAG, pi=True):
     c.close()
 
 
+def fetch_ids(school, ids, cl, tag=TAG, batch=50):
+    """Fetch OpenAlex works by id (a list of `W...`/URL ids the build lost: batched `ids.openalex:` filter, `batch` ids per call, no cursor paging) into the
+    stage store as kind 'pi' pages (key `ids:<first id>`), so `merge --ids-only --apply` inserts them into pi-works.sqlite like any PI work. The ids the API
+    returns nothing for (merged away, deleted) are listed in table `missing`. Resumable: a batch already stored is skipped. Returns (fetched, missing)."""
+    c = stage_db(school, tag)
+    c.execute('create table if not exists missing (id text primary key)')
+    want = sorted({short(i) for i in ids if i})
+    got = 0
+    for i in range(0, len(want), batch):
+        part = want[i:i + batch]
+        key = 'ids:' + part[0]
+        if c.execute('select 1 from done where kind=? and key=?', ('pi', key)).fetchone():
+            got += c.execute('select n from done where kind=? and key=?', ('pi', key)).fetchone()[0]
+            continue
+        j, _ = cl.get('works', {'filter': 'ids.openalex:' + '|'.join(part), 'per-page': batch, 'select': SELECT}, kind=f'{school}:ids')
+        res = (j or {}).get('results') or []
+        returned = {short(w['id']) for w in res}
+        for w in res:   # a merged id comes back under its canonical id: both are accounted for
+            returned |= {short(x) for x in (w.get('ids') or {}).get('openalex', '').split('|') if x}
+        c.execute('insert or replace into pages values (?,?,?,?,?,?,?,?)', ('pi', key, 0, None, len(res), len(res), time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), pack(res)))
+        for m in part:
+            if m not in returned:
+                c.execute('insert or ignore into missing values (?)', (m,))
+        c.execute('insert or replace into done values (?,?,?)', ('pi', key, len(res)))
+        c.commit()
+        got += len(res)
+        print(json.dumps(dict(school=school, kind='ids', batch=key, asked=len(part), works=len(res), credits_used=cl.used, remaining=cl.remaining)), flush=True)
+    missing = [r[0] for r in c.execute('select id from missing order by id')]
+    c.close()
+    return got, missing
+
+
 # ------------------------------------------------------------------ merge
 def sweep_source(sc):
     """The snapshot date when the school's sweep came from the snapshot (tools/sweep_from_snapshot.py writes a meta table), else None."""
@@ -286,12 +318,27 @@ def main(argv=None):
     sub = ap.add_subparsers(dest='cmd', required=True)
     f = sub.add_parser('fetch'); f.add_argument('schools', nargs='+'); f.add_argument('--years', default='2026'); f.add_argument('--cap', type=int, default=1000)
     f.add_argument('--floor', type=int, default=8000); f.add_argument('--tag', default=TAG); f.add_argument('--no-pi', action='store_true')
+    f.add_argument('--ids', help='fetch these OpenAlex ids (a file, one W id or URL per line) instead of years: batched ids.openalex filter, 50 per call; one school')
     m = sub.add_parser('merge'); m.add_argument('schools', nargs='+'); m.add_argument('--years', default='2026'); m.add_argument('--apply', action='store_true')
+    m.add_argument('--ids-only', action='store_true', help='merge only the PI works of the stage store (a `fetch --ids` tag): no sweep year is touched')
     m.add_argument('--tag', default=TAG); m.add_argument('--lookups', type=int, default=0, help='singleton lookups allowed for ids the DOI map cannot resolve (API credits)')
     m.add_argument('--cap', type=int, default=100)
     r = sub.add_parser('report'); r.add_argument('schools', nargs='+'); r.add_argument('--tag', default=TAG)
     a = ap.parse_args(argv)
     years = [int(y) for y in re.split(r'[,+]', getattr(a, 'years', '2026'))]  # '+' because sbatch --export splits values on commas
+    if a.cmd == 'merge' and a.ids_only:
+        years = []
+    if a.cmd == 'fetch' and a.ids:
+        if len(a.schools) != 1:
+            ap.error('--ids takes one school')
+        cl = oa_api.Client(cap=a.cap, kind='repull-ids', floor=a.floor)
+        ids = [l.split('#')[0].strip() for l in open(a.ids) if l.split('#')[0].strip()]
+        try:
+            got, missing = fetch_ids(a.schools[0], ids, cl, a.tag)
+        except oa_api.Spent as e:
+            print(json.dumps(dict(school=a.schools[0], stopped=str(e), credits_used=cl.used))); return 2
+        print(json.dumps(dict(school=a.schools[0], asked=len(set(ids)), fetched=got, missing=len(missing), requests=cl.requests, credits_used=cl.used, remaining=cl.remaining)))
+        return 0
     if a.cmd == 'fetch':
         cl = oa_api.Client(cap=a.cap, kind='refresh2026', floor=a.floor)
         for s in a.schools:
