@@ -3,7 +3,7 @@ R-PAP-02 (not_faculty_row, datebounds seasons), R-PAP-03 (listings_after_move), 
 import calendar, re
 
 from .common import TODAY, WINDOW_START, best_sources, iso_date, source_year
-from .names import Name, nosuffix, toks
+from .names import Name, literal_cjk_name, nosuffix, toks
 
 SEASON = {'spring': ('01-01', '05-31'), 'summer': ('06-01', '08-31'), 'fall': ('08-01', '12-31'), 'autumn': ('08-01', '12-31')}
 
@@ -144,11 +144,15 @@ def pi_listings(x, yearly, n):
     # its surname or initials, before that quote proves its own calendar year.
     aliases = [nosuffix(toks(a)) for a in x.get('aliases') or []]
     aliases = [a for a in aliases if len(a) >= 2 and all(len(t) > 1 for t in a)]
+    literal_aliases = [literal_cjk_name(a) for a in x.get('aliases') or []]
+    literal_aliases = [a for a in literal_aliases if a and len(a) >= 2]
     for s in x.get('sources') or []:
         y = source_year(s); sur = nosuffix(toks(x['name']))[-1] if toks(x['name']) else ''  # R-PAP-08: 'Lionel P. Robert Jr.' is listed as 'Lionel Robert'
         quote = ' '.join(toks(s.get('quote')))
         full_alias = any(' ' + ' '.join(a) + ' ' in ' ' + quote + ' ' for a in aliases)
-        named = bool(sur and sur in quote) or full_alias
+        # A recorded Chinese full name is one opaque name, not an initial or surname.
+        literal_alias = any(a in ''.join(str(s.get('quote') or '').split()) for a in literal_aliases)
+        named = bool(sur and sur in quote) or full_alias or literal_alias
         if y and 2016 <= y <= 2026 and s.get('sha256') and s.get('quote') and named and not not_faculty_row(s['quote']):
             listings.setdefault(y, dict(url=s['url'], sha256=s['sha256'], quote=s['quote'], kind=s.get('kind') or '', year=y))
     for nm_ in [x['name']] + list(x.get('mergedCensusRows') or []):

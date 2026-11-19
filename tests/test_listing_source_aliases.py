@@ -65,3 +65,40 @@ def test_absent_alias_is_not_generated_from_a_chinese_name():
     row = person()
     row['aliases'] = []
     assert listings(row) == {}
+
+
+@pytest.mark.parametrize('alias,quote', [
+    ('陈彦', '姓名：陈彦 职称：教授 学院：网络空间安全学院'),
+    ('张文逸', '张文逸博士担任电子工程与信息科学系教授。'),
+    ('周 颢', '周 颢 副教授 通信网络'),
+])
+def test_recorded_literal_chinese_full_alias_proves_actual_year(alias, quote):
+    row = person(quote)
+    row['name'] = 'Existing English Identity'
+    row['aliases'] = [alias]
+    assert set(listings(row)) == {2026}
+    row['sources'][0]['observed'] = '20211117'
+    assert set(listings(row)) == {2021}
+
+
+@pytest.mark.parametrize('alias,quote', [
+    ('陈', '陈彦 教授'),
+    ('陈彦', '陈 张 彦 教授'),
+    ('张文逸', '张文 教授'),
+    ('Yan Chen', '陈彦 教授'),
+])
+def test_literal_alias_requires_recorded_complete_name(alias, quote):
+    row = person(quote)
+    row['name'] = 'Existing English Identity'
+    row['aliases'] = [alias]
+    assert listings(row) == {}
+
+
+def test_literal_alias_keeps_source_and_faculty_guards():
+    row = person('陈彦 PhD student')
+    row['name'] = 'Existing English Identity'
+    row['aliases'] = ['陈彦']
+    assert listings(row) == {}
+    row['sources'][0]['quote'] = '陈彦 教授'
+    row['sources'][0]['sha256'] = ''
+    assert listings(row) == {}
