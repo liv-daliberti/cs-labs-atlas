@@ -257,7 +257,7 @@ def test_unexplained_removals_are_carried_forward_and_recorded_ones_stay_removed
 
 def test_carried_link_uses_native_keys_of_the_same_exact_atlas_entities(world):
     new, rel, states = world
-    old = rel / 'hierarchy' / 'x'
+    old = PR.package_dir('x', rel)
     # Same issued person and work, with different native keys after the rebuild.
     students = json.loads((old / 'students.json').read_text())
     students['B'][0]['person'] = 'published:B-student'

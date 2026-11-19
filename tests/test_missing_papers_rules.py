@@ -73,10 +73,11 @@ def test_R_PAP_28_no_bridge_with_a_missing_year(tmp_path, monkeypatch):
 def test_R_PAP_28_boundary_year_affiliated_paper_is_kept(tmp_path, monkeypatch):
     """A year-precision start cannot place a March paper against it; the paper's own Princeton affiliation settles it. An
     advisee-route paper in the same year does not get that."""
-    sweep = [affiliated('W20', 'First Year Paper', 2015, '03'),
-             work('W24', 'First Year Advisee Route', 2015, [au('Ada Lovelace', 'A1', school=False, pos='first'), au('Alan Turing', 'A9')])]
-    sweep[1]['publication_date'] = '2015-03-01'
-    ctx = school(tmp_path, monkeypatch, sweep, [A])
+    sweep = [affiliated('W20', 'First Year Paper', 2017, '03'),
+             work('W24', 'First Year Advisee Route', 2017, [au('Ada Lovelace', 'A1', school=False, pos='first'), au('Alan Turing', 'A9')])]
+    sweep[1]['publication_date'] = '2017-03-01'
+    arrival = dict(A, start='2017', asof='2017-08-07', evidence=ev('Ada Lovelace, Assistant Professor (captured 2017-08-07)'))
+    ctx = school(tmp_path, monkeypatch, sweep, [arrival])
     ada = T.rows_of(ctx, 'Ada Lovelace')
     assert 'First Year Paper' in ada and ctx.n['period_boundary_affiliated'] == 1
     assert 'First Year Advisee Route' not in ada
