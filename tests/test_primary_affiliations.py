@@ -27,6 +27,48 @@ def test_complete_internship_note_preserves_only_the_assigned_header_groups():
     assert (work, page) == before
 
 
+def asterisk_extraction():
+    work, page, text = internship()
+    review = page['author_affiliation_review']
+    text = text.replace('Lovelace1*', 'Lovelace1∗')
+    author = review['authors'][0]
+    author.update(quote='Ada Lovelace1∗', markers=['1', '∗'])
+    review['byline_quote'] = review['byline_quote'].replace('Lovelace1*', 'Lovelace1∗')
+    review['notes'][0].update(marker='∗', pdf_marker='*',
+                              extraction_note='The source font extracts one asterisk in two literal forms.')
+    rebind(work, page, text)
+    return work, page, text
+
+
+def test_explicit_asterisk_extraction_keeps_both_literal_source_quotes():
+    work, page, text = asterisk_extraction()
+    result = A.resolve(work, page, text)
+    assert result['status'] == 'accepted'
+    assert result['evidence']['marker_notes'][0]['quote'].startswith('*Work done')
+    assert A.school_flags(work, result, school) == ['Lovelace, Ada', 'Turing, Alan']
+
+
+@pytest.mark.parametrize('change', ['no_note', 'other_symbol', 'ambiguous_note', 'group_marker', 'bad_marker_type'])
+def test_asterisk_extraction_cannot_join_distinct_or_unreviewed_markers(change):
+    work, page, text = asterisk_extraction()
+    review = page['author_affiliation_review']
+    note = review['notes'][0]
+    if change == 'no_note':
+        note.pop('extraction_note')
+    elif change == 'other_symbol':
+        note['pdf_marker'] = '†'
+    elif change == 'ambiguous_note':
+        review['notes'].append(dict(marker='*', kind='equal_contribution',
+                                    quote='*Equal Contribution', bbox=[10, 100, 200, 110]))
+        text += '\n*Equal Contribution'
+    elif change == 'group_marker':
+        review['groups'][1]['marker'] = '*'
+    else:
+        note['pdf_marker'] = []
+    rebind(work, page, text)
+    assert A.resolve(work, page, text)['status'] == 'held'
+
+
 @pytest.mark.parametrize('change', [
     'missing_group', 'invalid_group_type', 'unknown_group', 'other_group', 'new_institution',
     'additional_institution', 'wrong_author_group', 'multiple_authors',

@@ -396,10 +396,22 @@ def _resolve_v2(work, page1, page1_text):
             # it cannot introduce a new institution or supply an author's group.
             group_id = note.get('affiliation_id')
             group = by_id.get(group_id) if isinstance(group_id, str) else None
-            match = re.fullmatch(re.escape(note['marker']) +
+            printed_marker = note.get('pdf_marker', note['marker'])
+            literal_marker = printed_marker == note['marker']
+            # Some PDF fonts extract the same asterisk as U+2217 in the
+            # byline and ASCII in its footnote. Keep both literal readings;
+            # an explicit review may join only this otherwise unused pair.
+            if not literal_marker:
+                literal_marker = (isinstance(printed_marker, str)
+                                  and {printed_marker, note['marker']} == {'*', '∗'}
+                                  and isinstance(note.get('extraction_note'), str)
+                                  and bool(note['extraction_note'].strip())
+                                  and printed_marker not in by_marker
+                                  and not any(n.get('marker') == printed_marker for n in notes))
+            match = re.fullmatch(re.escape(printed_marker) +
                                  r'\s*Work done while the author was interning at (.+)\.',
-                                 _space(quote), re.I)
-            proved = bool(group and match and _flat(match[1]) == _flat(group['text']))
+                                 _space(quote), re.I) if isinstance(printed_marker, str) else None
+            proved = bool(literal_marker and group and match and _flat(match[1]) == _flat(group['text']))
         else:
             proved = False
         if not proved:
