@@ -167,3 +167,40 @@ def test_release_mode_skips_a_held_group_without_redirect_join_or_registry_chang
     assert db.execute('select * from anchors order by anchor').fetchall() == anchors
     db.close()
 
+
+
+def _three_member_fixture(shared_page, quotes):
+    """Three memberships of one native external id; the first two cite the same page (one name+URL anchor)."""
+    fx = fixture(quotes=quotes); school = fx['example']; first, second = [p['pi'] for p in school['pis']]
+    person = school['students'][first][0]['person']; third = 'Grace Hopper'
+    school['pis'].append(pi(third))
+    rec = stu(person, school['students'][first][0]['name'], [school['students'][first][0]['relations'][0]['sources'][0]['url']
+                                                            if shared_page else 'https://example.edu/third'])
+    school['students'][third] = [rec]
+    return fx
+
+
+def test_release_mode_keeps_an_anchor_joined_pair_inside_a_skipped_group_when_no_issued_id_is_redirected(tmp_path):
+    # Two memberships already share one issued id through a name+URL anchor; the third has its own. Skipping the
+    # unresolved group must not fail merely because the first two are one person: nothing is redirected or minted.
+    reg = tmp_path / 'registry.sqlite'; before = run(tmp_path / 'before', reg, _three_member_fixture(True, False))
+    old_ids = set(student_ids(before).values()); assert len(old_ids) == 2
+    root = tmp_path / 'after'; write(root, _three_member_fixture(True, True)); db = A.open_registry(reg, seed=False)
+    result = A.run(['example'], root, db, today='2026-11-19', skip_coadvising_holds=True)
+    assert set(student_ids(result).values()) == old_ids
+    assert db.execute("select count(*) from ids where status='redirect'").fetchone()[0] == 0
+    db.close()
+
+
+def test_release_mode_still_raises_when_an_anchor_join_would_redirect_two_issued_ids(tmp_path):
+    reg = tmp_path / 'registry.sqlite'; before = run(tmp_path / 'before', reg, _three_member_fixture(False, False))
+    assert len(set(student_ids(before).values())) == 3
+    fx = _three_member_fixture(False, True); school = fx['example']
+    # a new shared page now joins the first two memberships, whose ids were issued separately
+    first, second = [p['pi'] for p in school['pis']][:2]
+    sources = school['students'][second][0]['relations'][0]['sources']
+    sources.append(dict(sources[0], url=school['students'][first][0]['relations'][0]['sources'][0]['url']))
+    root = tmp_path / 'after'; write(root, fx); db = A.open_registry(reg, seed=False)
+    with pytest.raises(A.CoadvisingIDConflict, match='shared anchor'):
+        A.run(['example'], root, db, today='2026-11-19', skip_coadvising_holds=True)
+    db.close()

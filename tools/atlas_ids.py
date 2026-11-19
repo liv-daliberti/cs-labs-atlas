@@ -816,6 +816,12 @@ def _coadvisers_named(label, pi_names):
     return set()
 
 
+def _issued_of(registry, anchor_sets):
+    """The issued person ids (redirects resolved) that any of these entities' anchors already hit."""
+    return {resolve(registry, row[0]) for anchors in anchor_sets for kind, value in anchors
+            if (row := registry.execute('select id from anchors where anchor=?', (person_anchor_str(kind, value),)).fetchone())}
+
+
 def coadvised_external_groups(data, ents, registry, nick=None, held=None):
     """Join a shared native ext: record only through reciprocal, cited co-adviser evidence within one school.
 
@@ -1079,7 +1085,9 @@ def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write
     for h in held_coadvising or []:
         # A skipped hold must stay unjoined: if an ordinary shared anchor still unites its memberships, that would redirect.
         keys = [('stu', h['school'], r['pi'], h['native_person']) for r in h['records']]
-        if len({uf.find(k) for k in set(keys)}) != len(set(keys)):
+        if len({uf.find(k) for k in set(keys)}) != len(set(keys)) and any(
+                len(_issued_of(registry, [ents[k]['anchors'] for k in set(keys) if uf.find(k) == root])) > 1
+                for root in {uf.find(k) for k in set(keys)}):
             raise CoadvisingIDConflict([dict(h, reason='held co-advising memberships are joined by a shared anchor; skipping cannot keep them apart')])
     comps = collections.defaultdict(set)
     for k in ents:
