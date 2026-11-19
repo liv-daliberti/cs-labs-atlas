@@ -2,11 +2,11 @@
 
 usage: evidence.py <school> <lab|student|coverage|scov> [n [start]] > sheet.txt   (n items from index start; scov default n=14)
 """
-import gzip, html, json, re, sys, unicodedata
+import html, json, re, sys, unicodedata
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from sample import P, dblp_persons  # noqa: E402
+from sample import dblp_persons, evidence_package  # noqa: E402
 from record import files  # noqa: E402
 from version_match import same_work  # noqa: E402
 
@@ -35,9 +35,11 @@ def short(x, n):
 
 def main(school, what, n=None, start=0):
     """`n`/`start` slice the drawn items of lab, student and coverage (a reviewer batch of at most 25 rows, accuracy/g9_round.py); scov slices its candidate order."""
-    S = json.load(open(files(school)[0]))['schools'][school]
+    sample = json.load(open(files(school)[0]))
+    S = sample['schools'][school]
+    package = evidence_package(school, sample)
     sl = lambda xs: xs[start:start + n] if n is not None else xs
-    pis = {p['pi']: p for p in json.load(open(P.data('pis.json', school)))}
+    pis = {p['pi']: p for p in package['pis.json']}
     if what in ('lab', 'coverage'):
         pages = dblp_persons({q for p in pis.values() for q in p.get('dblp') or []}, school)
         dd = {pi: ({ndoi(x) for q in p.get('dblp') or [] for r in pages.get(q, []) for x in r['dois']},
@@ -45,10 +47,10 @@ def main(school, what, n=None, start=0):
         del pages
     if what == 'lab':
         want = {it['i']: it for it in sl(S['lab_precision'])}
-        for i, line in enumerate(gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt')):
+        for i, r in enumerate(package['lab_papers.jsonl.gz']):
             if i not in want:
                 continue
-            r, it = json.loads(line), want[i]
+            it = want[i]
             a, p = r['authorship'], pis[r['pi']]
             ondblp = 'DOI' if r.get('doi') and ndoi(r['doi']) in dd[r['pi']][0] else ('TITLE' if nt(r['title']) in dd[r['pi']][1] else 'no')
             ap = r.get('appointment') or {}
@@ -60,15 +62,14 @@ def main(school, what, n=None, start=0):
     elif what == 'student':
         want = {it['i']: it for it in sl(S['student_precision'])}
         rows, works = {}, set()
-        for i, line in enumerate(gzip.open(P.data('student_papers.jsonl.gz', school), 'rt')):
+        for i, r in enumerate(package['student_papers.jsonl.gz']):
             if i in want:
-                rows[i] = json.loads(line); works.add((rows[i]["pi"], rows[i]["oa"]))
+                rows[i] = r; works.add((rows[i]["pi"], rows[i]["oa"]))
         lp = {}
-        for line in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt'):
-            r = json.loads(line)
+        for r in package['lab_papers.jsonl.gz']:
             if (r["pi"], r["oa"]) in works:
                 lp[(r["pi"], r["oa"])] = r
-        stj = json.load(open(P.data('students.json', school)))
+        stj = package['students.json']
         for i in sorted(rows):
             r, it = rows[i], want[i]
             s = next((x for x in stj.get(r['pi']) or [] if x['person'] == r['student']), {})
@@ -90,8 +91,7 @@ def main(school, what, n=None, start=0):
         have = {}
         byrow = {}
         need = {it['pi'] for it in items}
-        for line in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt'):
-            r = json.loads(line)
+        for r in package['lab_papers.jsonl.gz']:
             if r['pi'] in need:
                 byrow.setdefault(r['pi'], []).append(dict(oa=r['oa'], title=r.get('title'), date=r.get('date'), byline=r.get('byline'), editions=r.get('editions')))
             for e in [r] + list(r.get('editions') or []):
@@ -110,19 +110,17 @@ def main(school, what, n=None, start=0):
             print(f"   BUILD: in_PI_lab={own or 'NO'} other_labs={other[:3]}" + (f" VERSION(same work, other version, counts as in build)={strong}" if strong else '')
                   + (f" VERSION-CANDIDATES(may be a different paper; judge decides from stored evidence)={cand[:4]}" if cand else ''))
     elif what == 'scov':
-        stj = json.load(open(P.data('students.json', school)))
+        stj = package['students.json']
         n = 14 if n is None else n
         cands = S['student_coverage_order'][start:start + n]
         need = {c['pi'] for c in cands}
         pages = dblp_persons({q for pi in need for q in pis[pi].get('dblp') or []}, school)
         sp = {}
-        for line in gzip.open(P.data('student_papers.jsonl.gz', school), 'rt'):
-            r = json.loads(line)
+        for r in package['student_papers.jsonl.gz']:
             if r['pi'] in need:
                 sp.setdefault((r['pi'], r['student']), []).append(r)
         lp = {}
-        for line in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt'):
-            r = json.loads(line)
+        for r in package['lab_papers.jsonl.gz']:
             if r['pi'] in need:
                 lp[(r['pi'], r['oa'])] = r
                 lp.setdefault(('t', r['pi'], nt(r['title'])), r)

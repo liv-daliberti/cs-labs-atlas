@@ -164,12 +164,41 @@ def alumni_relation(rel, roles):
     return max(ys) if ys else None
 
 
-def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None, held=None):
+def release_projection(school, only, plan=None):
+    """The exact release rows and adjustment used by the writer and gate 9."""
+    import pi_release as PR
+    plan = plan or PR.plan(school)
+    if not set(only).issubset(plan['included']):
+        raise ValueError(f'{school}: included PIs changed before the accuracy draw')
+    held = PR.held_set(plan)
+    rows = {f: PR.filtered_rows_and_json(school, f, only, held=held) for f in FILES}
+    return rows, held, PR.package_hashes(school, only, held=held)
+
+
+def evidence_package(school, sample):
+    """Read the draw's release projection, refusing stale evidence. Historical draws keep native row indices."""
+    sub = (sample.get('subset') or {}).get(school)
+    if sub and sub.get('projection_version') == 1:
+        rows, _, hashes = release_projection(school, sub['pis'])
+        if hashes != sub['files']:
+            raise ValueError(f'{school}: release projection changed since the accuracy draw; redraw required')
+        return rows
+    d = P.SchoolDir(school)
+    out = {}
+    for name in FILES:
+        if name.endswith('.gz'):
+            with gzip.open(d / name, 'rt') as f:
+                out[name] = [json.loads(line) for line in f if line.strip()]
+        else:
+            out[name] = json.loads((d / name).read_text())
+    return out
+
+
+def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None, release_plan=None):
     """`only_pis` (a per-PI release, D-0001; tools/pi_release.py): draw only from these PIs' rows (their lab papers, student papers, DBLP
     pool and student candidates). With None the draw is exactly the school-wide one (the published draws are unchanged)."""
     cfg = cfg or LEGACY
     only = set(only_pis) if only_pis is not None else None
-    held = {tuple(x) for x in held or ()}   # D-0017: held student links are not in the release package; the draw must not sample them
     out = {'seed': cfg['seed'], 'date': date, 'sizes': {k: cfg[k] for k in ('uniform', 'stratum', 'cov', 'cands')}, 'schools': {}, 'files': {}}
     if cfg is LEGACY:
         del out['sizes']  # the 2026-10-29 files never carried it
@@ -177,14 +206,23 @@ def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None
         rng = random.Random(cfg['seed'])
         d = P.SchoolDir(school)
         out['files'][school] = {f: sha(d / f) for f in FILES}
+        projected = None
         if only is not None:
-            import pi_release
-            out.setdefault('subset', {})[school] = dict(pis=sorted(only), n_pis=len(only), files=pi_release.package_hashes(school, only, held=held), held=sorted([list(x) for x in held]),
-                                                        included_sha=__import__('hashlib').sha256('\n'.join(sorted(only)).encode()).hexdigest())
+            projected, held, hashes = release_projection(school, only, release_plan)
+            out.setdefault('subset', {})[school] = dict(pis=sorted(only), n_pis=len(only), files=hashes,
+                                                        included_sha=hashlib.sha256('\n'.join(sorted(only)).encode()).hexdigest(),
+                                                        projection_version=1, held=sorted(held),
+                                                        carried_forward=dict((getattr(held, 'carry', None) or {}).get('counts') or {}))
+        def rows(name):
+            if projected is not None:
+                yield from projected[name]
+            else:
+                with gzip.open(d / name, 'rt') as f:
+                    for line in f:
+                        yield json.loads(line)
         # 1. lab papers
         meta = []
-        for i, line in enumerate(gzip.open(d / 'lab_papers.jsonl.gz', 'rt')):
-            r = json.loads(line)
+        for i, r in enumerate(rows('lab_papers.jsonl.gz')):
             if only is not None and r['pi'] not in only:
                 continue
             via = (r['authorship'].get('school_via') or [''])[0]
@@ -201,9 +239,8 @@ def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None
             lab += [dict(stratum=st, i=i, key=mk[i]) for i in sorted(pick)]
         # 2. student papers
         sm = []
-        for i, line in enumerate(gzip.open(d / 'student_papers.jsonl.gz', 'rt')):
-            r = json.loads(line)
-            if only is not None and (r['pi'] not in only or (r['pi'], r.get('student')) in held):
+        for i, r in enumerate(rows('student_papers.jsonl.gz')):
+            if only is not None and r['pi'] not in only:
                 continue
             sm.append(dict(i=i, key=f"{r['pi']}|{r['student']}|{r['oa']}", basis=r.get('basis')))
         stu = []
@@ -223,7 +260,7 @@ def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None
             taken |= set(pick)
             stu += [dict(stratum='fill_uniform', i=i, key=sk[i]) for i in sorted(pick)]
         # 3. lab coverage from DBLP person pages
-        pis = json.load(open(d / 'pis.json'))
+        pis = projected['pis.json'] if projected is not None else json.load(open(d / 'pis.json'))
         if only is not None:
             pis = [p for p in pis if p['pi'] in only]
         wanted = {q for p in pis for q in p.get('dblp') or []}
@@ -242,12 +279,10 @@ def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None
         cov = [dict(stratum='dblp_person_page', **pool[i]) for i in sorted(rng.sample(range(len(pool)), min(cfg['cov'], len(pool))))]
         del pages
         # 4. student coverage candidates
-        stj = json.load(open(d / 'students.json'))
+        stj = projected['students.json'] if projected is not None else json.load(open(d / 'students.json'))
         cands = []
         for p in pis:
             for s in stj.get(p['pi']) or []:
-                if (p['pi'], s.get('person') or s.get('id') or s.get('name')) in held:
-                    continue
                 ys = [y for rel in s.get('relations') or [] for y in [thesis_relation(rel, school, s.get('roles') or [])] if y]
                 if not ys and school not in SCHOOLS:
                     ys = [y for rel in s.get('relations') or [] for y in [alumni_relation(rel, s.get('roles') or [])] if y]
@@ -279,14 +314,12 @@ def draw_round(rnd, schools=None):
         f = d / f'sample-{school}.json'
         if f.exists():
             _sys.exit(f'{f} exists: a round draw is never overwritten (move it aside by hand to redraw)')
-        only = None
+        only, plan = None, None
         if cfg.get('subset'):
             import pi_release
-            pl = pi_release.plan(school)
-            only, held = pl['included'], pi_release.held_set(pl)
-        else:
-            held = None
-        main([school], f, datetime.date.today().isoformat(), cfg, only, held)
+            plan = pi_release.plan(school)
+            only = plan['included']
+        main([school], f, datetime.date.today().isoformat(), cfg, only, plan)
 
 
 if __name__ == '__main__':
