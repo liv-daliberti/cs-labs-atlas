@@ -95,3 +95,12 @@ def test_R_PAP_54_zju_cadcg_key_lab_is_zju():
         assert aff.search(s), s
     for s in ('State Key Laboratory of Industrial Control Technology', 'Zhejiang Lab', 'CAD Lab, Hangzhou Dianzi University'):
         assert not aff.search(s), s
+
+
+def test_R_PAP_39_toronto_d0023_reviewed_not_papers():
+    import json
+    d = json.loads((Path(__file__).resolve().parent.parent / 'hierarchy/toronto/reviewed/census-overrides-school.json').read_text())
+    for pi, doi in (('Gerald Penn', '10.1145/3170427.3170660'), ('Elias B. Khalil', '10.1609/aaai.v37i13.26810'), ('Scott Sanner', '10.1145/3726302.3730369')):
+        e = d[pi]['not_papers'][0]
+        assert e['doi'] == doi and e['why'] and len(e['evidence'][0]['sha256']) == 64 and e['evidence'][0]['quote']
+        assert h.reviewed_not_paper(dict(notPapers=d[pi]['not_papers']), dict(doi=doi, oa=e['oa']))

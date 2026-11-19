@@ -2309,7 +2309,23 @@
    "allowed": [],
    "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
    "evidence": []
-  }
+  },
+  "not_papers": [
+   {
+    "doi": "10.1145/3170427.3170660",
+    "oa": "https://openalex.org/W2795880093",
+    "why": "D-0023 gate-9 pi2 review, 2026-11-19: the ACM page for this CHI EA 2018 record (Paper No. C24, pages 1-4) states that its goal is a course; it is a course description, not a research paper.",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20200701204818id_/https://dl.acm.org/doi/abs/10.1145/3170427.3170660",
+      "sha256": "10480588112cc9116dd79e8340f9a6c120b4ac08454dad64cb3508a4b505a28e",
+      "quote": "The goal of this course is to inform the CHI community of the current state of speech and natural language research",
+      "observed": "2026-11-19",
+      "source": "Wayback Machine capture (20200701204818) of the ACM Digital Library abstract page; dl.acm.org itself challenges automated clients"
+     }
+    ]
+   }
+  ]
  },
  "Toniann Pitassi": {
   "dblp": [
@@ -3539,7 +3555,23 @@
    "allowed": [],
    "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
    "evidence": []
-  }
+  },
+  "not_papers": [
+   {
+    "doi": "10.1609/aaai.v37i13.26810",
+    "oa": "https://openalex.org/W4382318681",
+    "why": "D-0023 gate-9 pi2 review, 2026-11-19: the AAAI publisher page files this single-author record under the section 'New Faculty Highlights', a short invited summary rather than a research paper; OpenAlex types it conference-paper.",
+    "evidence": [
+     {
+      "url": "https://ojs.aaai.org/index.php/AAAI/article/view/26810",
+      "sha256": "912b93d8384096e8c99c4a7c22e3386003b4b2fd7f17be1a35378a1acd606939",
+      "quote": "New Faculty Highlights",
+      "observed": "2026-11-19",
+      "source": "AAAI OJS article page (Section: New Faculty Highlights), fetched with robots.txt honoured"
+     }
+    ]
+   }
+  ]
  },
  "Elvino S. Sousa": {
   "dblp": [
@@ -8092,7 +8124,23 @@
    },
    "candidate_count": 9,
    "window_papers": 217
-  }
+  },
+  "not_papers": [
+   {
+    "doi": "10.1145/3726302.3730369",
+    "oa": "https://openalex.org/W4412378188",
+    "why": "D-0023 gate-9 pi2 review, 2026-11-19: the SIGIR 2025 conference site lists GENNEXT among the conference's workshops; the record is the workshop proposal (seven organizers), not a research paper.",
+    "evidence": [
+     {
+      "url": "https://sigir2025.dei.unipd.it/attend-workshops.html",
+      "sha256": "c884400334538dfa9a010d4e03b4b59464314271d7614642b1bf17da1df1fa34",
+      "quote": "GENNEXT: The Next Generation of IR and Recommender Systems with Language Agents, Generative Models, and Conversational AI",
+      "observed": "2026-11-19",
+      "source": "SIGIR 2025 Attend > Workshops page, fetched with robots.txt honoured"
+     }
+    ]
+   }
+  ]
  },
  "Natalie Enright Jerger": {
   "dblp": [
