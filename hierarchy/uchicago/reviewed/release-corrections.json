@@ -1,0 +1,2722 @@
+{
+ "school": "uchicago",
+ "against_release": "2026-11-07",
+ "decided": "2026-11-19 claude-release-ready-1118 (RP1118), D-0015: each class names its rule; rows cited by a build trace (scratch/release-ready-1118/trace/) were produced by pihier.build on the current inputs. Rows with no rule are NOT listed here and stay flagged (see report).",
+ "pi_renames": {
+  "Nathan Srebro": "Nati Srebro"
+ },
+ "classes": [
+  {
+   "id": "moved_to_other_pi_name",
+   "rule": "Same OpenAlex paper kept in the package under another PI's lab (co-author lab or census alias spelling, kept_as_pi): the paper is not lost, its lab assignment follows the current census/alias identity.",
+   "rows": [
+    {
+     "pi": "Yuxin Chen",
+     "oa": "https://openalex.org/W4408151914",
+     "labId": "atl:l:uchicago:yuxin-chen",
+     "atlasWorkId": "atl:w:c6b59f57c04a",
+     "title": "Expediting field-effect transistor chemical sensor design with neuromorphic spiking graph neural networks",
+     "year": 2025,
+     "identity_before": "advisee_coauthor",
+     "kept_as_pi": [
+      "Claire Donnat"
+     ]
+    },
+    {
+     "pi": "Rebecca Willett",
+     "oa": "https://openalex.org/W4416149869",
+     "labId": "atl:l:uchicago:rebecca-willett",
+     "atlasWorkId": "atl:w:75a40db2ecbb",
+     "title": "Can a calibration metric be both testable and actionable?",
+     "year": 2025,
+     "identity_before": "pi_orcid",
+     "kept_as_pi": [
+      "Rina Foygel Barber"
+     ]
+    },
+    {
+     "pi": "Tian Li",
+     "oa": "https://openalex.org/W7220909814",
+     "labId": "atl:l:uchicago:tian-li",
+     "atlasWorkId": "atl:w:8ab38e0321a4",
+     "title": "Learning Scientific Exploration from Human Research Decision Trajectories",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "kept_as_pi": [
+      "Chenhao Tan"
+     ]
+    },
+    {
+     "pi": "Kevin Gimpel",
+     "oa": "https://openalex.org/W7094397835",
+     "labId": "atl:l:uchicago:kevin-gimpel",
+     "atlasWorkId": "atl:w:4bf572f28eb3",
+     "title": "Beyond the Imitation Game: Quantifying and extrapolating the capabilities of language models",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "kept_as_pi": [
+      "Karen Livescu"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4395671822",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:3625918af3d4",
+     "title": "Advanced Research Directions on AI for Energy",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "kept_as_pi": [
+      "Rick Stevens"
+     ]
+    },
+    {
+     "pi": "Kyle Chard",
+     "oa": "https://openalex.org/W4402673683",
+     "labId": "atl:l:uchicago:kyle-chard",
+     "atlasWorkId": "atl:w:b4a1db5b2171",
+     "title": "Diaspora: Resilience-Enabling Services for Real-Time Distributed Workflows",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "kept_as_pi": [
+      "Ian Foster"
+     ]
+    },
+    {
+     "pi": "Kyle Chard",
+     "oa": "https://openalex.org/W2966520588",
+     "labId": "atl:l:uchicago:kyle-chard",
+     "atlasWorkId": "atl:w:6833c951cb81",
+     "title": "Petrel",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "kept_as_pi": [
+      "Ian Foster"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "same_paper_other_id",
+   "rule": "The same paper stays in the package under another OpenAlex id for the same PI (same DOI or same normalised title; OpenAlex id merge, or the published version represents its preprint: R-PAP edition/representative rules 2026-10-28/29).",
+   "rows": [
+    {
+     "pi": "Raul Castro Fernandez",
+     "oa": "https://openalex.org/W3012656698",
+     "labId": "atl:l:uchicago:raul-castro-fernandez",
+     "atlasWorkId": "atl:w:aea1bc2d69bd",
+     "title": "ARDA: Automatic Relational Data Augmentation for Machine Learning",
+     "year": 2020,
+     "identity_before": "dblp_person_page_title",
+     "kept_as": "https://openalex.org/W3012656698",
+     "basis": "same PI, same normalised title in the package"
+    },
+    {
+     "pi": "Madhur Tulsiani",
+     "oa": "https://openalex.org/W2795113073",
+     "labId": "atl:l:uchicago:madhur-tulsiani",
+     "atlasWorkId": "atl:w:d8f5d6d809f8",
+     "title": "Inapproximability of Matrix p→q Norms.",
+     "year": 2018,
+     "identity_before": "anchored_author_id",
+     "kept_as": "https://openalex.org/W2795113073",
+     "basis": "same PI, same normalised title in the package"
+    },
+    {
+     "pi": "Nathan Srebro",
+     "oa": "https://openalex.org/W2732724430",
+     "labId": "atl:l:uchicago:nathan-srebro",
+     "atlasWorkId": "atl:w:c7b766e6579d",
+     "title": "Exploring Generalization in Deep Learning",
+     "year": 2017,
+     "identity_before": "anchored_author_id",
+     "kept_as": "https://openalex.org/W2963739978",
+     "basis": "same PI, same normalised title in the package"
+    },
+    {
+     "pi": "Avrim Blum",
+     "oa": "https://dblp.org/rec/conf/nips/BlumGLS18",
+     "labId": "atl:l:uchicago:avrim-blum",
+     "atlasWorkId": "atl:w:bb4aca0ee64d",
+     "title": "On preserving non-discrimination when combining expert advice",
+     "year": 2018,
+     "identity_before": "dblp_person_page",
+     "kept_as": "https://dblp.org/rec/conf/nips/BlumGLS18",
+     "basis": "same PI, same normalised title in the package"
+    }
+   ]
+  },
+  {
+   "id": "not_paper_rule",
+   "rule": "R-PAP-17/18/39 not-papers (owner): the current build drops the record as a non-paper (OpenAlex type or genre: editorial, book review, abstract, commentary, deliverable...); named per row by the build-trace counter (drop_not_papers: not_paper:<kind>).",
+   "rows": [
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W2516228048",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:7282395360ff",
+     "title": "Science as a Service [Guest editors' introduction]",
+     "year": 2016,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "not_paper:editorial"
+     ]
+    },
+    {
+     "pi": "John R. Birge",
+     "oa": "https://openalex.org/W2889739823",
+     "labId": "atl:l:uchicago:john-r-birge",
+     "atlasWorkId": "atl:w:d041a58d7f41",
+     "title": "Book Review: Xinbao Liu, Jun Pei, Lin Liu, Hao Cheng, Mi Zhou, and Panos M. Pardalos: Optimization and management in manufacturing engineering. Resource collaborative optimization and management through the Internet of Things. Springer optimization and its applications series",
+     "year": 2018,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "not_paper:book_review"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W2896512386",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:4cdd913badd2",
+     "title": "O3‐03‐01: MECHANISTIC AND DIRECTIONAL TRANSCRIPTIONAL REGULATORY NETWORKS IN ALZHEIMER'S DISEASE",
+     "year": 2018,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "not_paper:meeting_abstract:genre"
+     ]
+    },
+    {
+     "pi": "Kyle Chard",
+     "oa": "https://openalex.org/W4400118483",
+     "labId": "atl:l:uchicago:kyle-chard",
+     "atlasWorkId": "atl:w:87c73258f9d4",
+     "title": "RO-Crate Metadata Specification 0.2",
+     "year": 2019,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "not_paper:repository_deliverable",
+      "transition_year_affiliated_outside"
+     ]
+    },
+    {
+     "pi": "Kyle Chard",
+     "oa": "https://openalex.org/W3162905118",
+     "labId": "atl:l:uchicago:kyle-chard",
+     "atlasWorkId": "atl:w:596e61ea737b",
+     "title": "Workflows Community Summit: Bringing the Scientific Workflows Community Together",
+     "year": 2021,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "not_paper:repository_deliverable"
+     ]
+    },
+    {
+     "pi": "Chenhao Tan",
+     "oa": "https://openalex.org/W4287888326",
+     "labId": "atl:l:uchicago:chenhao-tan",
+     "atlasWorkId": "atl:w:3c7982e2563f",
+     "title": "Human-Centered Evaluation of Explanations",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "not_paper:meeting_abstract:genre"
+     ]
+    },
+    {
+     "pi": "Karen Livescu",
+     "oa": "https://openalex.org/W4287889722",
+     "labId": "atl:l:uchicago:karen-livescu",
+     "atlasWorkId": "atl:w:f1ccf7ad7707",
+     "title": "Self-supervised Representation Learning for Speech Processing",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "not_paper:meeting_abstract:genre"
+     ]
+    },
+    {
+     "pi": "Chenhao Tan",
+     "oa": "https://openalex.org/W4401042416",
+     "labId": "atl:l:uchicago:chenhao-tan",
+     "atlasWorkId": "atl:w:2363e0169e87",
+     "title": "Explanation in the Era of Large Language Models",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "not_paper:meeting_abstract:genre"
+     ]
+    },
+    {
+     "pi": "James A. Evans",
+     "oa": "https://openalex.org/W6892578669",
+     "labId": "atl:l:uchicago:james-a-evans",
+     "atlasWorkId": "atl:w:b96caf82069c",
+     "title": "Datasets for the manuscript \"Large-scale randomized trials show no evidence of gender bias in evaluating scientific abstracts\"",
+     "year": 2024,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "not_paper:dataset_record"
+     ]
+    },
+    {
+     "pi": "James A. Evans",
+     "oa": "https://openalex.org/W7168014513",
+     "labId": "atl:l:uchicago:james-a-evans",
+     "atlasWorkId": "atl:w:db1664366e47",
+     "title": "Book Review: Marion K. Poetz and Henry Sauermann. How and When to Involve Crowds in Scientific Research PoetzMarion K.SauermannHenry. How and When to Involve Crowds in Scientific Research. Edward Elgar Publishing, 2024. 230 pp.",
+     "year": 2026,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "not_paper:book_review"
+     ]
+    },
+    {
+     "pi": "Kyle Chard",
+     "oa": "https://openalex.org/W7168519296",
+     "labId": "atl:l:uchicago:kyle-chard",
+     "atlasWorkId": "atl:w:02869d1bbfec",
+     "title": "NSF CI Compass Virtual Workshop Report: AI meets CI - Intelligent Infrastructure for Major & Midscale Facilities",
+     "year": 2026,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "not_paper:repository_deliverable"
+     ]
+    },
+    {
+     "pi": "James A. Evans",
+     "oa": "https://openalex.org/W7203655134",
+     "labId": "atl:l:uchicago:james-a-evans",
+     "atlasWorkId": "atl:w:4fc8f96d08c8",
+     "title": "Why AI systems are most useful as designers of new scientific tools",
+     "year": 2026,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "not_paper:book_review"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "school_affiliation_rule",
+   "rule": "R-PAP-01 (a) (owner 2026-10-21): the authorship must tie the paper to the school; the current build finds the PI's name hit without a school affiliation on the record (build trace counter rows_from_hits: hit_without_school_affiliation).",
+   "rows": [
+    {
+     "pi": "Andrew A. Chien",
+     "oa": "https://openalex.org/W2589390995",
+     "labId": "atl:l:uchicago:andrew-a-chien",
+     "atlasWorkId": "atl:w:684db0ae6588",
+     "title": "Characterizing curtailed and uneconomic renewable power in the mid-continent independent system operator",
+     "year": 2018,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Junchen Jiang",
+     "oa": "https://openalex.org/W4417150458",
+     "labId": "atl:l:uchicago:junchen-jiang",
+     "atlasWorkId": "atl:w:82fbe088d4ff",
+     "title": "LMCache: An Efficient KV Cache Layer for Enterprise-Scale LLM Inference",
+     "year": 2025,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "James A. Evans",
+     "oa": "https://openalex.org/W7124763227",
+     "labId": "atl:l:uchicago:james-a-evans",
+     "atlasWorkId": "atl:w:6eb38cfc864e",
+     "title": "Reasoning Models Generate Societies of Thought",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Tian Li",
+     "oa": "https://openalex.org/W7131135072",
+     "labId": "atl:l:uchicago:tian-li",
+     "atlasWorkId": "atl:w:22856f0075fa",
+     "title": "Asynchronous Heavy-Tailed Optimization",
+     "year": 2026,
+     "identity_before": "dblp_person_page_doi",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "James A. Evans",
+     "oa": "https://openalex.org/W7147187740",
+     "labId": "atl:l:uchicago:james-a-evans",
+     "atlasWorkId": "atl:w:112cf0773b43",
+     "title": "Theory of Mind and Self-Attributions of Mentality are Dissociable in LLMs",
+     "year": 2026,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rebecca Willett",
+     "oa": "https://openalex.org/W7165369425",
+     "labId": "atl:l:uchicago:rebecca-willett",
+     "atlasWorkId": "atl:w:c682032f0164",
+     "title": "Rigorous uncertainty quantification of probabilistic AI weather forecasts with conformal prediction",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "James A. Evans",
+     "oa": "https://openalex.org/W7172005489",
+     "labId": "atl:l:uchicago:james-a-evans",
+     "atlasWorkId": "atl:w:95481f7e65a7",
+     "title": "Inducing language models to assert their own consciousness restores human beliefs and values",
+     "year": 2026,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "James A. Evans",
+     "oa": "https://openalex.org/W7223118715",
+     "labId": "atl:l:uchicago:james-a-evans",
+     "atlasWorkId": "atl:w:237c02ff4c91",
+     "title": "Stronger artificial intelligence breakthroughs hasten their own exhaustion",
+     "year": 2026,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2269159147",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:5d589e2082cc",
+     "title": "Grain growth in U–7Mo alloy: A combined first-principles and phase field study",
+     "year": 2016,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2502143042",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:98b6126fec4b",
+     "title": "Asynchronous Two-level Checkpointing Scheme for Large-scale Adjoints in the Spectral-Element Solver Nek5000",
+     "year": 2016,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2505522438",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:9a1ee799eeeb",
+     "title": "Efficient Adjoint Computation of Hybrid Systems of Differential Algebraic Equations with Applications in Power Systems",
+     "year": 2016,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2509930068",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:d14a7b761b89",
+     "title": "Mesoscale model for fission-induced recrystallization in U-7Mo alloy",
+     "year": 2016,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2517246689",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:db53272af6de",
+     "title": "A high-performance computing framework for analyzing the economic impacts of wind correlation",
+     "year": 2016,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2582834735",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:1e2c85cf4a1f",
+     "title": "Discrete Adjoint Sensitivity Analysis of Hybrid Dynamical Systems With Switching",
+     "year": 2017,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2781550249",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:c507ecbe1440",
+     "title": "Three-dimensional phase-field simulations of intragranular gas bubble evolution in irradiated U-Mo fuel",
+     "year": 2018,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2782680955",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:cd6e1a1f63fa",
+     "title": "MPC as a DVI: Implications on sampling rates and accuracy",
+     "year": 2017,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2889258499",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:a8606e64c0e2",
+     "title": "Toward Multiperiod AC-Based Contingency Constrained Optimal Power Flow at Large Scale",
+     "year": 2018,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2889310442",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:b0e83bf585f9",
+     "title": "An Asynchronous Decomposition Algorithm for Security Constrained Unit Commitment Under Contingency Events",
+     "year": 2018,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2906226355",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:376e5b6cf2bf",
+     "title": "Uncertainty Propagation in Power System Dynamics with the Method of Moments",
+     "year": 2018,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4221144092",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:d4d0f8b5cf24",
+     "title": "Condensed interior-point methods: porting reduced-space approaches on GPU hardware",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4239626846",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:1860eef408d8",
+     "title": "Solution techniques for transient stability‐constrained optimal power flow – Part I",
+     "year": 2017,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4286963602",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:68dc79e3222c",
+     "title": "Inequality Constrained Stochastic Nonlinear Optimization via Active-Set Sequential Quadratic Programming",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4406810972",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:53012e6bf6d1",
+     "title": "A framework for balancing power grid efficiency and risk with bi-objective stochastic integer optimization",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4406072688",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:d818da5997df",
+     "title": "The statistical spread of transmission outages on a fast protection time scale based on utility data",
+     "year": 2026,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4414416624",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:12d7a307ae83",
+     "title": "Leveraging GPU Batching for Scalable Nonlinear Programming through Massive Lagrangian Decomposition",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W6891812496",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:9b5b2b3ba201",
+     "title": "Simultaneous improvement of control and estimation for battery management systems",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W7116760165",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:72125596ebc6",
+     "title": "Data-Conforming Data-Driven Control: Avoiding Premature Generalizations Beyond Data",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Raul Castro Fernandez",
+     "oa": "https://openalex.org/W3004882836",
+     "labId": "atl:l:uchicago:raul-castro-fernandez",
+     "atlasWorkId": "atl:w:b46b59b11fee",
+     "title": "Data Market Platforms: Trading Data Assets to Solve Data Problems [Vision Paper].",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ravi Chugh",
+     "oa": "https://openalex.org/W2729956188",
+     "labId": "atl:l:uchicago:ravi-chugh",
+     "atlasWorkId": "atl:w:013a5b7ea2c0",
+     "title": "Lightweight Structured Editing with Direct Manipulation.",
+     "year": 2017,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Karen Livescu",
+     "oa": "https://openalex.org/W2884254529",
+     "labId": "atl:l:uchicago:karen-livescu",
+     "atlasWorkId": "atl:w:50390e9ba0bb",
+     "title": "Hierarchical Multitask Learning for CTC-based Speech Recognition",
+     "year": 2018,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Greg Shakhnarovich",
+     "oa": "https://openalex.org/W2556882396",
+     "labId": "atl:l:uchicago:greg-shakhnarovich",
+     "atlasWorkId": "atl:w:4680b5de141c",
+     "title": "Examining the Impact of Blur on Recognition by Convolutional Networks",
+     "year": 2016,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W7116407696",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:8451d28e79cc",
+     "title": "A Grassroots Network and Community Roadmap for Interconnected Autonomous Science Laboratories for Accelerated Discovery",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W2561410072",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:3bb891eed60c",
+     "title": "Measurement-based performance profiles and dynamics of UDT over dedicated connections",
+     "year": 2016,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W4406929659",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:8240b8d1ad2a",
+     "title": "Accurate Dehydrogenation Enthalpies Dataset for Liquid Organic Hydrogen Carriers",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W4407005486",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:712710d862b2",
+     "title": "SinoTx: A Transformer-based Model for Sinogram Inpainting",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W6939576590",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:77a4dde2616d",
+     "title": "Parsl: Pervasive Parallel Programming in Python & funcX: A Federated Function Serving Fabric for Science",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ruey S. Tsay",
+     "oa": "https://openalex.org/W2634506199",
+     "labId": "atl:l:uchicago:ruey-s-tsay",
+     "atlasWorkId": "atl:w:b9a87a5bae09",
+     "title": "High-dimensional Linear Regression for Dependent Observations with Application to Nowcasting",
+     "year": 2017,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ruey S. Tsay",
+     "oa": "https://openalex.org/W2950536256",
+     "labId": "atl:l:uchicago:ruey-s-tsay",
+     "atlasWorkId": "atl:w:dec017cb5d3f",
+     "title": "Tensor Canonical Correlation Analysis.",
+     "year": 2019,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Wei-Biao Wu",
+     "oa": "https://openalex.org/W2885859717",
+     "labId": "atl:l:uchicago:wei-biao-wu",
+     "atlasWorkId": "atl:w:277c8484c005",
+     "title": "Concentration inequalities for empirical processes of linear time series",
+     "year": 2018,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "William Fefferman",
+     "oa": "https://openalex.org/W6910137949",
+     "labId": "atl:l:uchicago:william-fefferman",
+     "atlasWorkId": "atl:w:b99bc00bdf16",
+     "title": "Public-Key Pseudoentanglement and the Hardness of Learning Ground State Entanglement Structure",
+     "year": 2023,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "William Fefferman",
+     "oa": "https://openalex.org/W7123289564",
+     "labId": "atl:l:uchicago:william-fefferman",
+     "atlasWorkId": "atl:w:dea9710ad203",
+     "title": "Peaked quantum advantage using error correction",
+     "year": 2025,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Henry Hoffmann",
+     "oa": "https://openalex.org/W6887747026",
+     "labId": "atl:l:uchicago:henry-hoffmann",
+     "atlasWorkId": "atl:w:cbb6e7e0a5c6",
+     "title": "Environmental and Social Engagement Predicting Crime",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rina Foygel Barber",
+     "oa": "https://openalex.org/W2754482208",
+     "labId": "atl:l:uchicago:rina-foygel-barber",
+     "atlasWorkId": "atl:w:81aba074dffd",
+     "title": "Alternating minimization and alternating descent over nonconvex sets",
+     "year": 2017,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Lek-Heng Lim",
+     "oa": "https://openalex.org/W2472946701",
+     "labId": "atl:l:uchicago:lek-heng-lim",
+     "atlasWorkId": "atl:w:c91020b4aedf",
+     "title": "Statistical Estimation and the Affine Grassmannian",
+     "year": 2016,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Lek-Heng Lim",
+     "oa": "https://openalex.org/W2766249030",
+     "labId": "atl:l:uchicago:lek-heng-lim",
+     "atlasWorkId": "atl:w:5197b78607fc",
+     "title": "Macroeconomics and FinTech: Uncovering Latent Macroeconomic Effects on Peer-to-Peer Lending",
+     "year": 2017,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Lek-Heng Lim",
+     "oa": "https://openalex.org/W4416288260",
+     "labId": "atl:l:uchicago:lek-heng-lim",
+     "atlasWorkId": "atl:w:2df2f82bac25",
+     "title": "Pierce-Birkhoff conjecture is true for splines",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rick Stevens",
+     "oa": "https://openalex.org/W2342513075",
+     "labId": "atl:l:uchicago:rick-stevens",
+     "atlasWorkId": "atl:w:33b9742875e7",
+     "title": "REMap: Operon map of M. tuberculosis based on RNA sequence data",
+     "year": 2016,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rick Stevens",
+     "oa": "https://openalex.org/W2798777838",
+     "labId": "atl:l:uchicago:rick-stevens",
+     "atlasWorkId": "atl:w:42c9985335a6",
+     "title": "Precision Medicine as an Accelerator for Next Generation Cognitive Supercomputing",
+     "year": 2018,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rick Stevens",
+     "oa": "https://openalex.org/W3094050612",
+     "labId": "atl:l:uchicago:rick-stevens",
+     "atlasWorkId": "atl:w:090147501256",
+     "title": "Scalable HPC and AI Infrastructure for COVID-19 Therapeutics",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rick Stevens",
+     "oa": "https://openalex.org/W3134333760",
+     "labId": "atl:l:uchicago:rick-stevens",
+     "atlasWorkId": "atl:w:cade84c5c690",
+     "title": "Pandemic Drugs at Pandemic Speed: Accelerating COVID-19 Drug Discovery with Hybrid Machine Learning- and Physics-based Simulations on High Performance Computers.",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rick Stevens",
+     "oa": "https://openalex.org/W4413383503",
+     "labId": "atl:l:uchicago:rick-stevens",
+     "atlasWorkId": "atl:w:6040949052a7",
+     "title": "Large language models for batteries",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Kyle Chard",
+     "oa": "https://openalex.org/W3118885721",
+     "labId": "atl:l:uchicago:kyle-chard",
+     "atlasWorkId": "atl:w:83eea90edc79",
+     "title": "AI- and HPC-enabled Lead Generation for SARS-CoV-2: Models and Processes to Extract Druglike Molecules Contained in Natural Language Text",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W3118885721",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:83eea90edc79",
+     "title": "AI- and HPC-enabled Lead Generation for SARS-CoV-2: Models and Processes to Extract Druglike Molecules Contained in Natural Language Text",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Kyle Chard",
+     "oa": "https://openalex.org/W4414581310",
+     "labId": "atl:l:uchicago:kyle-chard",
+     "atlasWorkId": "atl:w:295d2c173b39",
+     "title": "AERO: An autonomous platform for continuous research",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Kyle Chard",
+     "oa": "https://openalex.org/W6894025628",
+     "labId": "atl:l:uchicago:kyle-chard",
+     "atlasWorkId": "atl:w:199c63719d47",
+     "title": "Fire-and-Forget Federated Function as a Service",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Kyle Chard",
+     "oa": "https://openalex.org/W6958156964",
+     "labId": "atl:l:uchicago:kyle-chard",
+     "atlasWorkId": "atl:w:504f6d1a57cb",
+     "title": "Easier use of remote computing resources with funcX",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Kyle Chard",
+     "oa": "https://openalex.org/W7077910569",
+     "labId": "atl:l:uchicago:kyle-chard",
+     "atlasWorkId": "atl:w:5c2371620cd4",
+     "title": "Experiences with Model Context Protocol Servers for Science and High Performance Computing",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Kyle Chard",
+     "oa": "https://openalex.org/W7133302790",
+     "labId": "atl:l:uchicago:kyle-chard",
+     "atlasWorkId": "atl:w:f0b3fc2fbb59",
+     "title": "Experiences Building Enterprise-Level Privacy-Preserving Federated Learning to Power AI for Science",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Blase Ur",
+     "oa": "https://openalex.org/W3158457372",
+     "labId": "atl:l:uchicago:blase-ur",
+     "atlasWorkId": "atl:w:6ee7b23abace",
+     "title": "Clap On, Clap Off: Usability of Authentication Methods in the Smart Home",
+     "year": 2018,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Henry Hoffmann",
+     "oa": "https://openalex.org/W2765147047",
+     "labId": "atl:l:uchicago:henry-hoffmann",
+     "atlasWorkId": "atl:w:9f9060137bc3",
+     "title": "Understanding and Auto-Adjusting Performance-Related Configurations",
+     "year": 2017,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Henry Hoffmann",
+     "oa": "https://openalex.org/W7095245338",
+     "labId": "atl:l:uchicago:henry-hoffmann",
+     "atlasWorkId": "atl:w:a0132dc20791",
+     "title": "A Quantitative Evaluation of the RAPL Power Control System",
+     "year": 2016,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Henry Hoffmann",
+     "oa": "https://openalex.org/W7171619457",
+     "labId": "atl:l:uchicago:henry-hoffmann",
+     "atlasWorkId": "atl:w:eea97b4ba884",
+     "title": "GAMBLER: A General-Purpose Adaptive Sampling Policy Under Energy Budgets",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Andrew A. Chien",
+     "oa": "https://openalex.org/W2902076893",
+     "labId": "atl:l:uchicago:andrew-a-chien",
+     "atlasWorkId": "atl:w:73695373bd35",
+     "title": "Extreme Heterogeneity 2018 - Productive Computational Science in the Era of Extreme Heterogeneity: Report for DOE ASCR Workshop on Extreme Heterogeneity",
+     "year": 2018,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Andrew A. Chien",
+     "oa": "https://openalex.org/W3112531074",
+     "labId": "atl:l:uchicago:andrew-a-chien",
+     "atlasWorkId": "atl:w:f57599652865",
+     "title": "Hardware Evaluation: Abstract Machine Models and Proxy Architectures for Exascale Computing",
+     "year": 2018,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Andrew A. Chien",
+     "oa": "https://openalex.org/W4224120822",
+     "labId": "atl:l:uchicago:andrew-a-chien",
+     "atlasWorkId": "atl:w:252afa611357",
+     "title": "Preparing for the Future -- Rethinking Proxy Apps",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Andrew A. Chien",
+     "oa": "https://openalex.org/W4252019069",
+     "labId": "atl:l:uchicago:andrew-a-chien",
+     "atlasWorkId": "atl:w:97268bc6c4ff",
+     "title": "Extreme Heterogeneity 2018: Productive Computational Science in the Era of Extreme Heterogeneity Report for DOE ASCR Basic Research Needs Workshop on Extreme Heterogeneity January 23–25, 2018",
+     "year": 2018,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Yuxin Chen",
+     "oa": "https://openalex.org/W7103748778",
+     "labId": "atl:l:uchicago:yuxin-chen",
+     "atlasWorkId": "atl:w:afe0897cc39e",
+     "title": "Contextual Active Model Selection",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ben Y. Zhao",
+     "oa": "https://openalex.org/W6966644144",
+     "labId": "atl:l:uchicago:ben-y-zhao",
+     "atlasWorkId": "atl:w:a5b827615af4",
+     "title": "Post-breach Recovery: Protection against White-box Adversarial Examples for Leaked DNN Models",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "James A. Evans",
+     "oa": "https://openalex.org/W6910502942",
+     "labId": "atl:l:uchicago:james-a-evans",
+     "atlasWorkId": "atl:w:b52d093aac27",
+     "title": "Biased AI improves human performance but reduces perceived helpfulness",
+     "year": 2025,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4398796700",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:6126469a361f",
+     "title": "Condensed interior-point methods for scalable nonlinear programming on GPUs",
+     "year": 2026,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W7169813922",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:eca0e29ec56f",
+     "title": "Harnessing GPU Acceleration in Large-Scale Process Optimization",
+     "year": 2026,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W7214912109",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:02d4375e85d0",
+     "title": "Control and Estimation Co-Design via Envelope-Theorem Gradients",
+     "year": 2026,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Kyle Chard",
+     "oa": "https://openalex.org/W7212241529",
+     "labId": "atl:l:uchicago:kyle-chard",
+     "atlasWorkId": "atl:w:8f4cc6e09a17",
+     "title": "Globus Search: Search and Analysis over Globally Distributed Data",
+     "year": 2026,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rick Stevens",
+     "oa": "https://openalex.org/W7203935703",
+     "labId": "atl:l:uchicago:rick-stevens",
+     "atlasWorkId": "atl:w:7a6b10d9ab7c",
+     "title": "A simple but hardy bacterial community detoxifies chlorite and breaks down benzene in the cooling water of an exascale supercomputer",
+     "year": 2026,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Marisa Casillas",
+     "oa": "https://openalex.org/W7167896668",
+     "labId": "atl:l:uchicago:marisa-casillas",
+     "atlasWorkId": "atl:w:42096c904454",
+     "title": "Korean Register-Based Social Inferences",
+     "year": 2026,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Yuxin Chen",
+     "oa": "https://openalex.org/W7204520017",
+     "labId": "atl:l:uchicago:yuxin-chen",
+     "atlasWorkId": "atl:w:92aa9616f7a5",
+     "title": "Active Curriculum Refinement for Reinforcement Learning",
+     "year": 2026,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4399416111",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:0cb0886b61fe",
+     "title": "Extended Kalman Filter–Koopman Operator for Tractable Stochastic Optimal Control",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4391346635",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:fd78ef70bf69",
+     "title": "Efficient Mapping Between Void Shapes and Stress Fields Using Deep Convolutional Neural Networks With Sparse Data",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4402727064",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:4c1db134364c",
+     "title": "Scalable Multi-Period AC Optimal Power Flow Utilizing GPUs with High Memory Capacities",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4376104137",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:71462edec000",
+     "title": "Parallel interior-point solver for block-structured nonlinear programs on SIMD/GPU architectures",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Michael Maire",
+     "oa": "https://openalex.org/W4415797140",
+     "labId": "atl:l:uchicago:michael-maire",
+     "atlasWorkId": "atl:w:80886418717e",
+     "title": "Factorized Diffusion Architectures for Unsupervised Image Generation and Segmentation",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4392640062",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:c168bd179692",
+     "title": "Voltage-Dependent Modeling of Electromechanicalwave Propagation for Power System Dynamicstability Analysis",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W4406459161",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:d60eabeddda1",
+     "title": "Model and Data Management for Machine Learning (M2ML): Integrating Instruments, Edge and HPC for Accelerated Machine Learning",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Yuxin Chen",
+     "oa": "https://openalex.org/W4391766432",
+     "labId": "atl:l:uchicago:yuxin-chen",
+     "atlasWorkId": "atl:w:041c31615f5a",
+     "title": "Direct Acquisition Optimization for Low-Budget Active Learning",
+     "year": 2024,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4400999310",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:5d48d22d5c60",
+     "title": "Accelerating Optimal Power Flow with Gpus: Simd Abstraction of Nonlinear Programs and Condensed-Space Interior-Point Methods",
+     "year": 2023,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4320492792",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:2f7f5f5b033a",
+     "title": "Accelerating Condensed Interior-Point Methods on SIMD/GPU Architectures",
+     "year": 2023,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W7133226131",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:7513065ab654",
+     "title": "WordScape: a Pipeline to extract multilingual, visually rich Documents with Layout Annotations from Web Crawl Data",
+     "year": 2023,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4388873716",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:7450241119aa",
+     "title": "Scalable Probabilistic Modeling and Machine Learning With Dimensionality Reduction for Expensive High-Dimensional Problems",
+     "year": 2023,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4367623560",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:6c2cb42eec7a",
+     "title": "Network Cascade Vulnerability using Constrained Bayesian Optimization",
+     "year": 2023,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4361807217",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:d006bec642a3",
+     "title": "Application of probabilistic modeling and automated machine learning framework for high-dimensional stress field",
+     "year": 2023,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W4388328602",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:39b2612e701f",
+     "title": "Deep learning at the edge enables real-time streaming ptychographic imaging",
+     "year": 2023,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W4387527744",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:7dee68e83339",
+     "title": "Uncovering novel liquid organic hydrogen carriers: a systematic exploration of chemical compound space using cheminformatics and quantum chemical methods",
+     "year": 2023,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rick Stevens",
+     "oa": "https://openalex.org/W4392943076",
+     "labId": "atl:l:uchicago:rick-stevens",
+     "atlasWorkId": "atl:w:81d181675dd5",
+     "title": "Transferable Graph Neural Fingerprint Models for Quick Response to Future Bio-Threats",
+     "year": 2023,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Fred Chong",
+     "oa": "https://openalex.org/W4323538161",
+     "labId": "atl:l:uchicago:fred-chong",
+     "atlasWorkId": "atl:w:c9fca80be02a",
+     "title": "Benchmarking the recursive quantum approximate optimization algorithm",
+     "year": 2023,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Daniel Sanz-Alonso",
+     "oa": "https://openalex.org/W4323649812",
+     "labId": "atl:l:uchicago:daniel-sanz-alonso",
+     "atlasWorkId": "atl:w:d408df173696",
+     "title": "Hierarchical ensemble Kalman methods with sparsity-promoting generalized gamma hyperpriors",
+     "year": 2023,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rebecca Willett",
+     "oa": "https://openalex.org/W7133213573",
+     "labId": "atl:l:uchicago:rebecca-willett",
+     "atlasWorkId": "atl:w:199a5a5c8edd",
+     "title": "Training neural operators to preserve invariant measures of chaotic attractors",
+     "year": 2023,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W3118596082",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:d582daefdde1",
+     "title": "Exponential Decay of Sensitivity in Graph-Structured Nonlinear Programs",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4205239771",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:f6ca634bf1de",
+     "title": "Distributed Frequency Divider for Power System Bus Frequency Online Estimation Considering Virtual Inertia From DFIGs",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W3203118433",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:44b6b754a8e3",
+     "title": "A feasible reduced space method for real-time optimal power flow",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W3124854638",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:79d9d5c5a2ad",
+     "title": "Convergence Analysis of Fixed Point Chance Constrained Optimal Power Flow Problems",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W3175896545",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:eb7056ecb270",
+     "title": "Trust-Region Approximation of Extreme Trajectories in Power System Dynamics",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4206210757",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:a067ba46cb99",
+     "title": "Detecting Large Frequency Excursions in the Power Grid With Bayesian Decision Theory",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4285047994",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:0563c52ecfd4",
+     "title": "A Novel Continuum Approximation to Power System Electromechanical Dynamics",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4320067904",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:0c58a0fc2fe5",
+     "title": "Frequency Recovery in Power Grids using High-Performance Computing",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W4229456092",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:a957714d0d11",
+     "title": "A Combined Machine Learning and High-Energy X-ray Diffraction Approach to Understanding Liquid and Amorphous Metal Oxides",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W3217642043",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:753d383e19fd",
+     "title": "High-Performance Ptychographic Reconstruction with Federated Facilities",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W4297630869",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:4bf7e0e2b82f",
+     "title": "Masked Sinogram Model with Transformer for ill-Posed Computed Tomography Reconstruction: a Preliminary Study",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W4281479079",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:6b8012e6d751",
+     "title": "Pushing compute and AI onto detector silicon",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Lek-Heng Lim",
+     "oa": "https://openalex.org/W4288055780",
+     "labId": "atl:l:uchicago:lek-heng-lim",
+     "atlasWorkId": "atl:w:fb13638ca893",
+     "title": "Rank-constrained Hyperbolic Programming",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Daniel Sanz-Alonso",
+     "oa": "https://openalex.org/W3184600788",
+     "labId": "atl:l:uchicago:daniel-sanz-alonso",
+     "atlasWorkId": "atl:w:f8de4c0e6146",
+     "title": "Autodifferentiable Ensemble Kalman Filters",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rebecca Willett",
+     "oa": "https://openalex.org/W3033324301",
+     "labId": "atl:l:uchicago:rebecca-willett",
+     "atlasWorkId": "atl:w:c56939b8c5fe",
+     "title": "Detecting Abrupt Changes in High-Dimensional Self-Exciting Poisson Processes",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Henry Hoffmann",
+     "oa": "https://openalex.org/W4221156503",
+     "labId": "atl:l:uchicago:henry-hoffmann",
+     "atlasWorkId": "atl:w:ebef21eff431",
+     "title": "NURD: Negative-Unlabeled Learning for Online Datacenter Straggler Prediction",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Aaron Potechin",
+     "oa": "https://openalex.org/W7133201746",
+     "labId": "atl:l:uchicago:aaron-potechin",
+     "atlasWorkId": "atl:w:b2bd9825c5fb",
+     "title": "Sub-Exponential Time Sum-Of-Squares Lower Bounds for Principal Components Analysis",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Henry Hoffmann",
+     "oa": "https://openalex.org/W4311407118",
+     "labId": "atl:l:uchicago:henry-hoffmann",
+     "atlasWorkId": "atl:w:16dfa537cd07",
+     "title": "Cost-aware Duration Prediction for Software Upgrades in Datacenters",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Yuxin Chen",
+     "oa": "https://openalex.org/W4320342189",
+     "labId": "atl:l:uchicago:yuxin-chen",
+     "atlasWorkId": "atl:w:fe4b1d69000a",
+     "title": "On the Permanence of Backdoors in Evolving Models",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ben Y. Zhao",
+     "oa": "https://openalex.org/W4320342189",
+     "labId": "atl:l:uchicago:ben-y-zhao",
+     "atlasWorkId": "atl:w:fe4b1d69000a",
+     "title": "On the Permanence of Backdoors in Evolving Models",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Junchen Jiang",
+     "oa": "https://openalex.org/W4225096170",
+     "labId": "atl:l:uchicago:junchen-jiang",
+     "atlasWorkId": "atl:w:10922f57eeb4",
+     "title": "AccMPEG: Optimizing Video Encoding for Video Analytics",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rebecca Willett",
+     "oa": "https://openalex.org/W7133205666",
+     "labId": "atl:l:uchicago:rebecca-willett",
+     "atlasWorkId": "atl:w:7149d567abd5",
+     "title": "Embed and Emulate: Learning to Estimate Parameters of Dynamical Systems with Uncertainty Quantification",
+     "year": 2022,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W3178340234",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:6f26fddd0103",
+     "title": "Power grid frequency prediction using spatiotemporal modeling",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2996213729",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:73991d7350e6",
+     "title": "A Kinetic Monte Carlo Approach for Simulating Cascading Transmission Line Failure",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W4210948918",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:78e5fefe9f6a",
+     "title": "Randomized Algorithms for Scientific Computing (RASC)",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Risi Kondor",
+     "oa": "https://openalex.org/W3170985694",
+     "labId": "atl:l:uchicago:risi-kondor",
+     "atlasWorkId": "atl:w:d878def7127c",
+     "title": "Multiresolution Graph Variational Autoencoder.",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W3203099195",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:e8c195469629",
+     "title": "Domain Decomposition Preconditioners for Unstructured Network Problems in Parallel Vector Architectures",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Risi Kondor",
+     "oa": "https://openalex.org/W4286859903",
+     "labId": "atl:l:uchicago:risi-kondor",
+     "atlasWorkId": "atl:w:abd3b19fbc70",
+     "title": "Learning Multiresolution Matrix Factorization and its Wavelet Networks on Graphs",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W3217668679",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:77a8da5ca771",
+     "title": "MemXCT: Design, Optimization, Scaling, and Reproducibility of X-Ray Tomography Imaging",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W3155671278",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:b124d05466e3",
+     "title": "Achieving 100X faster simulations of complex biological phenomena by coupling ML to HPC ensembles.",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Matthew Stephens",
+     "oa": "https://openalex.org/W3166921113",
+     "labId": "atl:l:uchicago:matthew-stephens",
+     "atlasWorkId": "atl:w:0bad0e18ef5b",
+     "title": "Sum of Single Effects Linear Regression [R package susieR version 0.11.33]",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Matthew Stephens",
+     "oa": "https://openalex.org/W3175343359",
+     "labId": "atl:l:uchicago:matthew-stephens",
+     "atlasWorkId": "atl:w:dfbb7287da0f",
+     "title": "Sum of Single Effects Linear Regression [R package susieR version 0.11.42]",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Matthew Stephens",
+     "oa": "https://openalex.org/W3215777423",
+     "labId": "atl:l:uchicago:matthew-stephens",
+     "atlasWorkId": "atl:w:d335b28fac80",
+     "title": "Sum of Single Effects Linear Regression [R package susieR version 0.11.92]",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rick Stevens",
+     "oa": "https://openalex.org/W4394647094",
+     "labId": "atl:l:uchicago:rick-stevens",
+     "atlasWorkId": "atl:w:027c387ac7e9",
+     "title": "Protein-Ligand Docking Surrogate Models: A SARS-CoV-2 Benchmark for Deep Learning Accelerated Virtual Screening",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rick Stevens",
+     "oa": "https://openalex.org/W3199987505",
+     "labId": "atl:l:uchicago:rick-stevens",
+     "atlasWorkId": "atl:w:7ecd6398d00b",
+     "title": "Scaffold-Induced Molecular Graph (SIMG): Effective Graph Sampling Methods for High-Throughput Computational Drug Discovery",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Daniel Sanz-Alonso",
+     "oa": "https://openalex.org/W3168146524",
+     "labId": "atl:l:uchicago:daniel-sanz-alonso",
+     "atlasWorkId": "atl:w:ec5c865f008e",
+     "title": "Graph-based prior and forward models for inverse problems on manifolds with boundaries",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W3056580136",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:6908a67f3bb3",
+     "title": "A Real-Time Optimization with Warm-Start of Multiperiod AC Optimal Power Flows",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W3021098505",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:b0f5fd1897c2",
+     "title": "Sequential Bayesian parameter estimation of stochastic dynamic load models",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W3117910076",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:de50ef4cac9c",
+     "title": "Variance-Based Sensitivity Analysis of the Composite Dynamic Load Model",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W3087467751",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:d82eae9108b0",
+     "title": "Petascale XCT: 3D Image Reconstruction with Hierarchical Communications on Multi-GPU Nodes",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W3157463640",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:da09f7076f5a",
+     "title": "Deep Learning-based Low-dose Tomography Reconstruction with Hybrid-dose Measurements",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Sanjay Krishnan",
+     "oa": "https://openalex.org/W3004674581",
+     "labId": "atl:l:uchicago:sanjay-krishnan",
+     "atlasWorkId": "atl:w:c513f0d89286",
+     "title": "An Empirical Evaluation of Perturbation-based Defenses",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Matthew Stephens",
+     "oa": "https://openalex.org/W3084920978",
+     "labId": "atl:l:uchicago:matthew-stephens",
+     "atlasWorkId": "atl:w:168a948aab48",
+     "title": "Determinants of telomere length across human tissues",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rina Foygel Barber",
+     "oa": "https://openalex.org/W3092363548",
+     "labId": "atl:l:uchicago:rina-foygel-barber",
+     "atlasWorkId": "atl:w:2daa432b8434",
+     "title": "An Equivalence between Critical Points for Rank Constraints Versus Low-Rank Factorizations",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Robert Grossman",
+     "oa": "https://openalex.org/W3110399671",
+     "labId": "atl:l:uchicago:robert-grossman",
+     "atlasWorkId": "atl:w:641c75143b94",
+     "title": "Evaluating and interpreting caption prediction for histopathology images",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Matthew Stephens",
+     "oa": "https://openalex.org/W3110592964",
+     "labId": "atl:l:uchicago:matthew-stephens",
+     "atlasWorkId": "atl:w:9b32755f7a02",
+     "title": "Multivariate Adaptive Shrinkage [R package mashr version 0.2.38]",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Daniel Sanz-Alonso",
+     "oa": "https://openalex.org/W3080111333",
+     "labId": "atl:l:uchicago:daniel-sanz-alonso",
+     "atlasWorkId": "atl:w:15bcf87e9e57",
+     "title": "Posterior Contraction Rates for Graph-Based Semi-Supervised Classification",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ben Y. Zhao",
+     "oa": "https://openalex.org/W3037928287",
+     "labId": "atl:l:uchicago:ben-y-zhao",
+     "atlasWorkId": "atl:w:563f6c1983b2",
+     "title": "Backdoor Attacks on Facial Recognition in the Physical World",
+     "year": 2020,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W3003296523",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:42595011356d",
+     "title": "Graph Convolutional Neural Networks for Optimal Load Shedding under Line Contingency",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2937637171",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:7d2e03abeae2",
+     "title": "A Structured Quasi-Newton Algorithm for Optimizing with Incomplete Hessian Information",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W3004291705",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:fda3805cb6c5",
+     "title": "A Multiperiod Optimization-Based Metric of Grid Resilience",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Mihai Anitescu",
+     "oa": "https://openalex.org/W2948888898",
+     "labId": "atl:l:uchicago:mihai-anitescu",
+     "atlasWorkId": "atl:w:b0925a9e6fa1",
+     "title": "A Framework for Distributed Approximation of Moments with Higher-Order Derivatives Through Automatic Differentiation",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Henry Hoffmann",
+     "oa": "https://openalex.org/W2984745954",
+     "labId": "atl:l:uchicago:henry-hoffmann",
+     "atlasWorkId": "atl:w:0480c9c594b0",
+     "title": "ALERT: Accurate Anytime Learning for Energy and Timeliness",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Michael Maire",
+     "oa": "https://openalex.org/W2984745954",
+     "labId": "atl:l:uchicago:michael-maire",
+     "atlasWorkId": "atl:w:0480c9c594b0",
+     "title": "ALERT: Accurate Anytime Learning for Energy and Timeliness",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Shan Lu",
+     "oa": "https://openalex.org/W2984745954",
+     "labId": "atl:l:uchicago:shan-lu",
+     "atlasWorkId": "atl:w:0480c9c594b0",
+     "title": "ALERT: Accurate Anytime Learning for Energy and Timeliness",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W2985814104",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:cb22c017d5c7",
+     "title": "MemXCT",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Sanjay Krishnan",
+     "oa": "https://openalex.org/W3004589805",
+     "labId": "atl:l:uchicago:sanjay-krishnan",
+     "atlasWorkId": "atl:w:fe7962ac05e9",
+     "title": "A Perturbation Analysis of Input Transformations for Adversarial Attacks",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Lek-Heng Lim",
+     "oa": "https://openalex.org/W2963925668",
+     "labId": "atl:l:uchicago:lek-heng-lim",
+     "atlasWorkId": "atl:w:716d181e4038",
+     "title": "Numerical Algorithms on the Affine Grassmannian",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Matthew Stephens",
+     "oa": "https://openalex.org/W2944481292",
+     "labId": "atl:l:uchicago:matthew-stephens",
+     "atlasWorkId": "atl:w:a6303e57d9ad",
+     "title": "Empirical Bayes estimation of normal means, accounting for uncertainty in estimated standard errors",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rina Foygel Barber",
+     "oa": "https://openalex.org/W2978292356",
+     "labId": "atl:l:uchicago:rina-foygel-barber",
+     "atlasWorkId": "atl:w:c05c0ed1ad3f",
+     "title": "Convex and Non-convex Approaches for Statistical Inference with Noisy Labels",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Rebecca Willett",
+     "oa": "https://openalex.org/W3004778690",
+     "labId": "atl:l:uchicago:rebecca-willett",
+     "atlasWorkId": "atl:w:18d7b2fced66",
+     "title": "Learning to Solve Linear Inverse Problems in Imaging with Neumann Networks",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Daniel Sanz-Alonso",
+     "oa": "https://openalex.org/W2928718221",
+     "labId": "atl:l:uchicago:daniel-sanz-alonso",
+     "atlasWorkId": "atl:w:cf578f09efa5",
+     "title": "Local Regularization of Noisy Point Clouds: Improved Global Geometric Estimates and Data Analysis",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ben Y. Zhao",
+     "oa": "https://openalex.org/W2937920463",
+     "labId": "atl:l:uchicago:ben-y-zhao",
+     "atlasWorkId": "atl:w:d33a246afe36",
+     "title": "Gotta Catch 'Em All: Using Concealed Trapdoors to Detect Adversarial Attacks on Neural Networks.",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Ben Y. Zhao",
+     "oa": "https://openalex.org/W2977311825",
+     "labId": "atl:l:uchicago:ben-y-zhao",
+     "atlasWorkId": "atl:w:cb2ddb6e3f22",
+     "title": "Persistent and Unforgeable Watermarks for Deep Neural Networks.",
+     "year": 2019,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "appointment_window_rule",
+   "rule": "Appointment-window rule (owner 2026-11-13: no papers outside the PI's appointment window; dated by venue version R-PAP-26/38): build trace counters outside_appointment / dated_before_window / transition_year_affiliated_outside.",
+   "rows": [
+    {
+     "pi": "Yury Makarychev",
+     "oa": "https://openalex.org/W331230322",
+     "labId": "atl:l:uchicago:yury-makarychev",
+     "atlasWorkId": "atl:w:26066bd2eafb",
+     "title": "Finding almost-perfect graph bisections",
+     "year": 2018,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "dated_before_window",
+      "dated_by_venue_version"
+     ]
+    },
+    {
+     "pi": "Kevin Gimpel",
+     "oa": "https://openalex.org/W371426616",
+     "labId": "atl:l:uchicago:kevin-gimpel",
+     "atlasWorkId": "atl:w:a07ce1f9877d",
+     "title": "Improved Part-of-Speech Tagging for Online Conversational Text with Word Clusters",
+     "year": 2018,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "dated_before_window",
+      "dated_by_venue_version"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W3006612373",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:c5c02defcefa",
+     "title": "Big Data Staging with MPI-IO for Interactive X-ray Science",
+     "year": 2020,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "dated_before_window",
+      "dated_by_venue_version",
+      "school_via_cross_affiliation"
+     ]
+    },
+    {
+     "pi": "Yali Amit",
+     "oa": "https://openalex.org/W4239231102",
+     "labId": "atl:l:uchicago:yali-amit",
+     "atlasWorkId": "atl:w:bd150085c99e",
+     "title": "Object Detection",
+     "year": 2021,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "dated_before_window",
+      "dated_by_venue_version"
+     ]
+    },
+    {
+     "pi": "Baris Ata",
+     "oa": "https://openalex.org/W3201933521",
+     "labId": "atl:l:uchicago:baris-ata",
+     "atlasWorkId": "atl:w:d78f5fdb7a1c",
+     "title": "A Dynamic Model for Managing Volunteer Engagement",
+     "year": 2021,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "dated_by_venue_version",
+      "outside_appointment"
+     ]
+    },
+    {
+     "pi": "Alexander A. Razborov",
+     "oa": "https://openalex.org/W4384342526",
+     "labId": "atl:l:uchicago:alexander-a-razborov",
+     "atlasWorkId": "atl:w:6053d6570300",
+     "title": "Propositional proof complexity",
+     "year": 2023,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "dated_before_window",
+      "dated_by_venue_version"
+     ]
+    },
+    {
+     "pi": "Bo Li",
+     "oa": "https://openalex.org/W4399991953",
+     "labId": "atl:l:uchicago:bo-li",
+     "atlasWorkId": "atl:w:42db10813474",
+     "title": "SORRY-Bench: Systematically Evaluating Large Language Model Safety Refusal",
+     "year": 2024,
+     "identity_before": "dblp_person_page_doi",
+     "trace": [
+      "dated_by_venue_version",
+      "outside_appointment"
+     ]
+    },
+    {
+     "pi": "Bo Li",
+     "oa": "https://openalex.org/W4400480697",
+     "labId": "atl:l:uchicago:bo-li",
+     "atlasWorkId": "atl:w:768ccc0c5894",
+     "title": "$R^2$-Guard: Robust Reasoning Enabled LLM Guardrail via Knowledge-Enhanced Logical Reasoning",
+     "year": 2024,
+     "identity_before": "dblp_person_page_doi",
+     "trace": [
+      "dated_by_venue_version",
+      "outside_appointment"
+     ]
+    },
+    {
+     "pi": "Bo Li",
+     "oa": "https://openalex.org/W4401307749",
+     "labId": "atl:l:uchicago:bo-li",
+     "atlasWorkId": "atl:w:be612b9c2bca",
+     "title": "Tamper-Resistant Safeguards for Open-Weight LLMs",
+     "year": 2024,
+     "identity_before": "dblp_person_page_doi",
+     "trace": [
+      "dated_by_venue_version",
+      "outside_appointment"
+     ]
+    },
+    {
+     "pi": "Bo Li",
+     "oa": "https://openalex.org/W4403885104",
+     "labId": "atl:l:uchicago:bo-li",
+     "atlasWorkId": "atl:w:219b37527adb",
+     "title": "EIA: Environmental Injection Attack on Generalist Web Agents for Privacy Leakage",
+     "year": 2024,
+     "identity_before": "dblp_person_page_doi",
+     "trace": [
+      "dated_by_venue_version",
+      "outside_appointment"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "paper_anchor_rules_d0007",
+   "rule": "D-0007 (owner 2026-11-18, Q-0317): 1803966d (source-stated advising for PI paper anchors) and 7c8fdedd (postdoc guard) apply at the school's rebuild. Rows listed carried an anchored-author or advisee identity route (identity_before) and now fail identity in the build trace (hit_without_identity).",
+   "rows": [
+    {
+     "pi": "Wei-Biao Wu",
+     "oa": "https://openalex.org/W2274029167",
+     "labId": "atl:l:uchicago:wei-biao-wu",
+     "atlasWorkId": "atl:w:03a049a6a808",
+     "title": "Performance bounds for parameter estimates of high-dimensional linear models with correlated errors",
+     "year": 2016,
+     "identity_before": "advisee_anchored_author_id",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Wei-Biao Wu",
+     "oa": "https://openalex.org/W2790225213",
+     "labId": "atl:l:uchicago:wei-biao-wu",
+     "atlasWorkId": "atl:w:71daa91968e5",
+     "title": "In vitro 3D regeneration-like growth of human patient brain tissue",
+     "year": 2018,
+     "identity_before": "advisee_anchored_author_id",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Rina Foygel Barber",
+     "oa": "https://openalex.org/W2798699107",
+     "labId": "atl:l:uchicago:rina-foygel-barber",
+     "atlasWorkId": "atl:w:32a3705e0121",
+     "title": "Estimating the spectrum in computed tomography via Kullback–Leibler divergence constrained optimization",
+     "year": 2018,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Wei-Biao Wu",
+     "oa": "https://openalex.org/W3122628544",
+     "labId": "atl:l:uchicago:wei-biao-wu",
+     "atlasWorkId": "atl:w:0d5643a79fb8",
+     "title": "Dynamic Semiparametric Factor Model with a Common Break",
+     "year": 2018,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Wei-Biao Wu",
+     "oa": "https://openalex.org/W3187667125",
+     "labId": "atl:l:uchicago:wei-biao-wu",
+     "atlasWorkId": "atl:w:5c3ebe4b80cf",
+     "title": "Asymptotic Theory for QMLE for Real-Time GARCH(1,1) Model",
+     "year": 2019,
+     "identity_before": "advisee_anchored_author_id",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Rebecca Willett",
+     "oa": "https://openalex.org/W3217070430",
+     "labId": "atl:l:uchicago:rebecca-willett",
+     "atlasWorkId": "atl:w:5affed277d78",
+     "title": "Statistically and Computationally Efficient Change Point Localization in Regression Settings",
+     "year": 2019,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Baris Ata",
+     "oa": "https://openalex.org/W3157755817",
+     "labId": "atl:l:uchicago:baris-ata",
+     "atlasWorkId": "atl:w:534ae6431a2b",
+     "title": "Dynamic Dispatch and Centralized Relocation of Cars in Ride-Hailing Platforms",
+     "year": 2020,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Yuxin Chen",
+     "oa": "https://openalex.org/W3132585319",
+     "labId": "atl:l:uchicago:yuxin-chen",
+     "atlasWorkId": "atl:w:d31e0bb11bd7",
+     "title": "Learning Collision-free Latent Space for Bayesian Optimization",
+     "year": 2021,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Ian Foster",
+     "oa": "https://openalex.org/W3177688233",
+     "labId": "atl:l:uchicago:ian-foster",
+     "atlasWorkId": "atl:w:0b436b9f059f",
+     "title": "Accelerated, scalable and reproducible AI-driven gravitational wave detection",
+     "year": 2021,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Shan Lu",
+     "oa": "https://openalex.org/W6912338091",
+     "labId": "atl:l:uchicago:shan-lu",
+     "atlasWorkId": "atl:w:733a507e410e",
+     "title": "SherLock",
+     "year": 2021,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Shan Lu",
+     "oa": "https://openalex.org/W6968812661",
+     "labId": "atl:l:uchicago:shan-lu",
+     "atlasWorkId": "atl:w:2c3921a51af2",
+     "title": "SherLock-v2",
+     "year": 2021,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Wei-Biao Wu",
+     "oa": "https://openalex.org/W4390883255",
+     "labId": "atl:l:uchicago:wei-biao-wu",
+     "atlasWorkId": "atl:w:016921f7f882",
+     "title": "Simultaneous Inference for Mean Curves of Functional and Longitudinal Data: A Unified Theory",
+     "year": 2024,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Zhiyuan Li",
+     "oa": "https://openalex.org/W4402345711",
+     "labId": "atl:l:uchicago:zhiyuan-li",
+     "atlasWorkId": "atl:w:a98b4b795661",
+     "title": "Why Do You Grok? A Theoretical Analysis of Grokking Modular Addition",
+     "year": 2024,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Yuxin Chen",
+     "oa": "https://openalex.org/W4403251824",
+     "labId": "atl:l:uchicago:yuxin-chen",
+     "atlasWorkId": "atl:w:1777a8aa69d9",
+     "title": "Unlocking the potential: machine learning applications in electrocatalyst design for electrochemical hydrogen energy transformation",
+     "year": 2024,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Yuxin Chen",
+     "oa": "https://openalex.org/W4403577580",
+     "labId": "atl:l:uchicago:yuxin-chen",
+     "atlasWorkId": "atl:w:07a1991131df",
+     "title": "Preference Optimization with Multi-Sample Comparisons",
+     "year": 2024,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "James A. Evans",
+     "oa": "https://openalex.org/W4404782693",
+     "labId": "atl:l:uchicago:james-a-evans",
+     "atlasWorkId": "atl:w:9f36705e185e",
+     "title": "Hidden Persuaders: LLMs’ Political Leaning and Their Influence on Voters",
+     "year": 2024,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Yuxin Chen",
+     "oa": "https://openalex.org/W4414138353",
+     "labId": "atl:l:uchicago:yuxin-chen",
+     "atlasWorkId": "atl:w:0fa28a92eaf6",
+     "title": "Real‐Time Phosphate Monitoring via Plant‐Derived Graphene Ink FET Sensors Integrated with Deep Learning",
+     "year": 2025,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Yuxin Chen",
+     "oa": "https://openalex.org/W4415069620",
+     "labId": "atl:l:uchicago:yuxin-chen",
+     "atlasWorkId": "atl:w:26083dcb01c4",
+     "title": "Bayesian Optimization with Inexact Acquisition: Is Random Grid Search Sufficient?",
+     "year": 2025,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "John R. Birge",
+     "oa": "https://openalex.org/W7108479761",
+     "labId": "atl:l:uchicago:john-r-birge",
+     "atlasWorkId": "atl:w:6793ecd90e01",
+     "title": "Estimating Treatment Effects with Partially Observed General Confounders",
+     "year": 2025,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Brent Doiron",
+     "oa": "https://openalex.org/W7125489291",
+     "labId": "atl:l:uchicago:brent-doiron",
+     "atlasWorkId": "atl:w:6f97caee0462",
+     "title": "Dynamic Mean Field Theories for Nonlinear Noise in Recurrent Neuronal Networks",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Brent Doiron",
+     "oa": "https://openalex.org/W7167590686",
+     "labId": "atl:l:uchicago:brent-doiron",
+     "atlasWorkId": "atl:w:35b700d6b138",
+     "title": "The structure of correlated variability reflects task-relevant information in sensory neurons",
+     "year": 2026,
+     "identity_before": "advisee_anchored_author_id",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Cong Ma",
+     "oa": "https://openalex.org/W7214786686",
+     "labId": "atl:l:uchicago:cong-ma",
+     "atlasWorkId": "atl:w:fbe610818f94",
+     "title": "The Statistical Benefits of Multiple Responses for Learning from Demonstrations",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Zhiyuan Li",
+     "oa": "https://openalex.org/W7214809185",
+     "labId": "atl:l:uchicago:zhiyuan-li",
+     "atlasWorkId": "atl:w:31b3a1df49b0",
+     "title": "Towards Understanding Momentum Acceleration in River-Valley Loss Landscape",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Tian Li",
+     "oa": "https://openalex.org/W7216595939",
+     "labId": "atl:l:uchicago:tian-li",
+     "atlasWorkId": "atl:w:817b60dd2119",
+     "title": "Persistent Watermarking of Text-to-Image Models",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Tian Li",
+     "oa": "https://openalex.org/W7220745429",
+     "labId": "atl:l:uchicago:tian-li",
+     "atlasWorkId": "atl:w:a1e3808f6229",
+     "title": "Principled Top-$k$ Selection for Language Models with Hybrid Gradients",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Wei-Biao Wu",
+     "oa": "https://openalex.org/W7222662256",
+     "labId": "atl:l:uchicago:wei-biao-wu",
+     "atlasWorkId": "atl:w:bdd1a224f906",
+     "title": "Stochastic Gradient Descent: A Nonlinear Time Series Perspective",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Tian Li",
+     "oa": "https://openalex.org/W7222852277",
+     "labId": "atl:l:uchicago:tian-li",
+     "atlasWorkId": "atl:w:d29112810a34",
+     "title": "Private Retrieval Augmented Generation via Random Projection",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Brent Doiron",
+     "oa": "https://openalex.org/W7222999443",
+     "labId": "atl:l:uchicago:brent-doiron",
+     "atlasWorkId": "atl:w:7183f696fcef",
+     "title": "Spontaneous brain-wide rotational dynamics constrain cue-evoked behavior",
+     "year": 2026,
+     "identity_before": "advisee_anchored_author_id",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Tian Li",
+     "oa": "https://openalex.org/W7223037935",
+     "labId": "atl:l:uchicago:tian-li",
+     "atlasWorkId": "atl:w:c37640ed78b5",
+     "title": "Federation over Harness",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    }
+   ]
+  }
+ ],
+ "open_rows_not_recorded": {
+  "open_hit_without_identity": 1,
+  "open_not_in_build_hits": 19
+ }
+}
