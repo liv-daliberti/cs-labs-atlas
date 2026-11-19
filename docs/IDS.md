@@ -205,3 +205,11 @@ bridge stages, and validates post-ID semantic invariance before commit/publicati
 on member relations or aliases. Earlier issued identities remain historical registry state; this mechanism cannot
 split, retire or repair them. Before enabling reviews, compare full-cohort disposable registry copies, including
 anchor owners, redirects and cross-school relations. See `docs/REVIEWS.md` section 4.
+
+
+## A published PI keeps its id (D-0001, 2026-11-19)
+A PI that loses the anchor its id was minted from (a DBLP binding dropped as a namesake) has no anchor hit, so the registry would mint a second id and the
+published atlas id would change. `atlas_ids.py` therefore passes `assign(..., hints=...)` the id the latest release published for the same school and name
+(`published_pi_hints`, default `releases/latest/hierarchy`; `--no-published-hints` turns it off). A component with NO anchor hit takes its hint when the
+id is still active and no other component's anchors hit it; the new anchors then register to the published id, so the next run needs no hint. An id
+already minted for such a PI is repaired once in the registry by redirecting it to the published id (anchors move; backup + sha256 compare-and-swap).

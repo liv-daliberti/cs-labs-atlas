@@ -420,9 +420,12 @@ def mint(db, prefix, anchor, kind, today, taken):
         n += 1
 
 
-def assign(db, kind, prefix, comps, today, stats):
+def assign(db, kind, prefix, comps, today, stats, hints=None):
     """comps: {component key: sorted list of (rank, anchor string)}. Returns {component key: id}. Deterministic: components are
-    processed in the order of their strongest anchor; a registry hit wins; several hits merge into the earliest issued."""
+    processed in the order of their strongest anchor; a registry hit wins; several hits merge into the earliest issued.
+    `hints` {component key: id}: the id a PI published earlier (same school, same name). A component with NO anchor hit takes its hint when that id is
+    still active and no other component's anchors hit it, so a PI that lost the anchor its id was minted from (a DBLP binding dropped as a namesake)
+    keeps the published id (D-0001: published ids never change) instead of minting a second one; the new anchors then register to it."""
     out = {}
     taken = set()
     # an anchor held by two components (two rows of one lab the builder keeps apart behind one OpenAlex record; a join
@@ -439,6 +442,15 @@ def assign(db, kind, prefix, comps, today, stats):
         if holds:
             raise WorkIDConflict(holds)
     order = sorted(comps, key=lambda c: (comps[c], str(c)))
+    hints = hints or {}
+    anchor_ids = set()
+    if hints:
+        for c in comps:
+            for _, a in comps[c]:
+                row = db.execute('select id from anchors where anchor=?', (a,)).fetchone()
+                if row:
+                    anchor_ids.add(resolve(db, row[0]))
+    used_hints = set()
     claims = collections.defaultdict(list)
     issued = lambda i: (db.execute('select issued from ids where id=?', (i,)).fetchone() or ('9',))[0] + i
     for c in order:
@@ -456,6 +468,11 @@ def assign(db, kind, prefix, comps, today, stats):
                     i = resolve(db, row[0]); mf = db.execute('select minted_from from ids where id=?', (i,)).fetchone()
                     if mf and mf[0] in mine:
                         hits.add(i)
+        if not hits and c in hints:
+            h = hints[c]
+            row = db.execute('select status from ids where id=?', (h,)).fetchone()
+            if row and row[0] == 'active' and h not in anchor_ids and h not in used_hints:
+                hits.add(h); used_hints.add(h); stats['published_id_kept'] += 1
         hits = sorted(hits, key=issued)
         if hits:
             keep = hits[0]
@@ -495,6 +512,27 @@ def assign(db, kind, prefix, comps, today, stats):
 
 
 # ---------------------------------------------------------------- reading
+
+def published_pi_hints(data, ents, uf, published=None):
+    """{component: id} of the PIs that a published release (`published`: its hierarchy dir, e.g. releases/latest/hierarchy; the CLI passes it) already
+    carries under the same school and name (<published>/<school>/pis.json). No `published`, no hints (tests and trial runs)."""
+    latest = Path(published) if published else None
+    out = {}
+    if latest is None:
+        return out
+    for s in data:
+        f = latest / s / 'pis.json'
+        if not f.exists():
+            continue
+        try:
+            pub = {x['pi']: x['atlasId'] for x in json.loads(f.read_text()) if x.get('atlasId', '').startswith('atl:p:')}
+        except (OSError, ValueError, KeyError):
+            continue
+        for k, e in ents.items():
+            if e['kind'] == 'pi' and e['school'] == s and e['name'] in pub:
+                out.setdefault(uf.find(k), pub[e['name']])
+    return out
+
 
 def load_school(D):
     pis = json.loads((D / 'pis.json').read_text())
@@ -951,7 +989,7 @@ def byline_author_ids(school, wanted, hdir):
 
 # ---------------------------------------------------------------- main
 
-def run(schools, hdir, registry, use_sweep=True, today=None, write=True, skip_coadvising_holds=False):
+def run(schools, hdir, registry, use_sweep=True, today=None, write=True, skip_coadvising_holds=False, published=None):
     """Validate work-only certificates first; their transaction cannot repair issued identities.
 
     A caller-owned transaction remains owned by the caller. Scoped publication
@@ -964,7 +1002,7 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True, skip_co
         validate_scoped(s, stu, rows, sp, pis=pis)
     guarded = any(work_only(x) for _, _, _, sp in data.values() for x in sp)
     if not guarded:
-        return _run(schools, hdir, registry, data, registry.commit, False, use_sweep, today, write, skip_coadvising_holds)
+        return _run(schools, hdir, registry, data, registry.commit, False, use_sweep, today, write, skip_coadvising_holds, published)
     if registry.in_transaction and write:
         raise ValueError('exact-work ID publication requires its own transaction; caller transaction retained')
     registry.execute('savepoint atlas_exact_member_work')
@@ -976,7 +1014,7 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True, skip_co
         pending = False
 
     try:
-        return _run(schools, hdir, registry, data, finish, True, use_sweep, today, write, skip_coadvising_holds)
+        return _run(schools, hdir, registry, data, finish, True, use_sweep, today, write, skip_coadvising_holds, published)
     except Exception:
         if pending:
             registry.execute('rollback to savepoint atlas_exact_member_work')
@@ -984,7 +1022,7 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True, skip_co
         raise
 
 
-def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write, skip_coadvising_holds=False):
+def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write, skip_coadvising_holds=False, published=None):
     today = today or datetime.now(timezone.utc).strftime('%Y-%m-%d')
     hdir = Path(hdir)
     try:
@@ -1099,7 +1137,7 @@ def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write
     for k in ents:
         comps[uf.find(k)] |= {(RANK[a], person_anchor_str(a, v)) for a, v in ents[k]['anchors']}
     comps = {c: sorted(v) for c, v in comps.items()}
-    pid = assign(db := registry, 'person', 'atl:p:', comps, today, stats)
+    pid = assign(db := registry, 'person', 'atl:p:', comps, today, stats, hints=published_pi_hints(data, ents, uf, published))
     person_of = {k: pid[uf.find(k)] for k in ents}
     for key, issued in scoped_issued.items():
         if issued and (person_of[key] not in issued or any(resolve(registry, old) != old for old in issued)):
@@ -1299,6 +1337,7 @@ def main(argv=None):
     ap.add_argument('schools', nargs='*')
     ap.add_argument('--dir', default=str(P.HIERARCHY))
     ap.add_argument('--registry', default=str(P.data('ids') / 'registry.sqlite'))
+    ap.add_argument('--no-published-hints', action='store_true', help='do not let a PI with no anchor hit take the id the latest release published for the same school and name')
     ap.add_argument('--no-sweep', action='store_true', help='skip the OpenAlex byline author ids (student -> PI elsewhere)')
     ap.add_argument('--skip-coadvising-holds', action='store_true',
                     help='release mode: co-advising groups needing review stay separate people (no redirect, no join) and are listed '
@@ -1338,7 +1377,8 @@ def main(argv=None):
             shutil.copy2(reg, local)
         db = open_registry(local, seed=False)
         res = run(a.schools or list(P.SCHOOL_IDS), a.dir, db, use_sweep=not a.no_sweep,
-                  skip_coadvising_holds=a.skip_coadvising_holds or os.environ.get('ATLAS_IDS_SKIP_COADVISING_HOLDS') == '1')
+                  skip_coadvising_holds=a.skip_coadvising_holds or os.environ.get('ATLAS_IDS_SKIP_COADVISING_HOLDS') == '1',
+                  published=None if a.no_published_hints else (P.RELEASES / 'latest' / P.REL_HIERARCHY if (P.RELEASES / 'latest').exists() else None))
         db.close()
         tmp = reg.with_name(f'.{reg.name}.{os.getpid()}.tmp')
         shutil.copy2(local, tmp); tmp.chmod(0o644)

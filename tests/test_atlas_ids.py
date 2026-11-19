@@ -254,3 +254,29 @@ def test_lab_slug_of_a_cjk_only_name_is_valid_and_stable():
         assert A.lab_slug(name) == s
     assert A.lab_slug('刘绍辉') != A.lab_slug('王 瑞')
     assert A.lab_slug('Dimitrios Stamoulis') == 'dimitrios-stamoulis'
+
+
+def test_a_pi_that_lost_the_anchor_keeps_the_published_id_via_the_hint(tmp_path):
+    """D-0001: a PI whose DBLP binding was dropped (so no anchor matches the registry) keeps the id the latest release published, unless another
+    component's anchors hit that id; the new anchors register to it, so the next run needs no hint."""
+    import collections
+    db = A.open_registry(tmp_path / 'reg.sqlite', seed=False)
+    stats = collections.Counter()
+    first = A.assign(db, 'person', 'atl:p:', {'c1': [(0, 'p|dblp:1/2')], 'c2': [(0, 'p|dblp:3/4')]}, '2026-11-07', stats)
+    old = first['c1']
+    # rebuild: c1 now carries only an ORCID (its dblp was dropped); c2 unchanged
+    later = {'c1': [(0, 'p|orcid:0000-0001')], 'c2': [(0, 'p|dblp:3/4')]}
+    no_hint = A.assign(db, 'person', 'atl:p:', dict(later), '2026-11-19', collections.Counter())
+    assert no_hint['c1'] != old                                     # without the hint a second id is minted
+    db2 = A.open_registry(tmp_path / 'reg2.sqlite', seed=False)
+    A.assign(db2, 'person', 'atl:p:', {'c1': [(0, 'p|dblp:1/2')], 'c2': [(0, 'p|dblp:3/4')]}, '2026-11-07', collections.Counter())
+    st = collections.Counter()
+    kept = A.assign(db2, 'person', 'atl:p:', dict(later), '2026-11-19', st, hints={'c1': old})
+    assert kept['c1'] == old and st['published_id_kept'] == 1 and st['minted'] == 0
+    again = A.assign(db2, 'person', 'atl:p:', dict(later), '2026-11-20', collections.Counter())   # the ORCID anchor now belongs to the published id
+    assert again['c1'] == old
+    # a hint another component's anchor already hits is ignored
+    db3 = A.open_registry(tmp_path / 'reg3.sqlite', seed=False)
+    f3 = A.assign(db3, 'person', 'atl:p:', {'c1': [(0, 'p|dblp:1/2')], 'c2': [(0, 'p|dblp:3/4')]}, '2026-11-07', collections.Counter())
+    got = A.assign(db3, 'person', 'atl:p:', {'c1': [(0, 'p|orcid:x')], 'c2': [(0, 'p|dblp:1/2')]}, '2026-11-19', collections.Counter(), hints={'c1': f3['c1']})
+    assert got['c2'] == f3['c1'] and got['c1'] != f3['c1']
