@@ -259,3 +259,28 @@ def test_unmanaged_files_stay_outside_the_store_and_the_guard(root, tmp_path, mo
     f.write_text('[]\n')   # a tool regenerates it: no complaint
     assert E.check_view('aa', root, tmp_path / 'st') == []
     assert E.is_unmanaged('aa', 'recall-check.json') and not E.is_unmanaged('aa', 'census-additions.json')
+
+
+def test_add_layer_then_record_sync_check_and_a_second_add_is_refused(root, flagged_aa):
+    st = flagged_aa
+    skel = {'school': 'aa', 'against_release': '2026-11-07'}
+    E.add_layer('aa', 'release-corrections.json', key='classes', skeleton=skel, stores_dir=st, root=root)
+    with pytest.raises(E.SourceOfTruth, match='already exists'):
+        E.add_layer('aa', 'release-corrections.json', key='classes', skeleton=skel, stores_dir=st, root=root)
+    assert E.sync('aa', root, st) == ['release-corrections.json']
+    f = root / 'hierarchy' / 'aa' / 'reviewed' / 'release-corrections.json'
+    assert json.loads(f.read_text()) == {'school': 'aa', 'against_release': '2026-11-07', 'classes': []}
+    assert E.check_view('aa', root, st) == []
+    cls = {'id': 'not_paper_rule', 'rule': 'R-PAP-17', 'rows': [{'pi': 'Ann Lee', 'oa': 'https://openalex.org/W1'}]}
+    E.record('aa', 'release-corrections.json', cls, source='scratch/x.json', decided_by='t', stores_dir=st)
+    assert E.sync('aa', root, st) == ['release-corrections.json']
+    assert json.loads(f.read_text())['classes'] == [cls] and E.check_view('aa', root, st) == []
+    f.write_text('{}\n')
+    assert E.check_view('aa', root, st)      # a direct edit is refused
+    E.sync('aa', root, st)
+    E.add_layer('aa', 'roots.json', stores_dir=st, root=root)   # a root-list layer
+    E.record('aa', 'roots.json', {'a': 1}, source='s', decided_by='t', stores_dir=st)
+    E.sync('aa', root, st)
+    assert json.loads((root / 'hierarchy' / 'aa' / 'reviewed' / 'roots.json').read_text()) == [{'a': 1}]
+    with pytest.raises(E.SourceOfTruth, match='not store-sourced'):
+        E.add_layer('bb', 'x.json', stores_dir=st, root=root)

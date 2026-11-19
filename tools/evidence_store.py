@@ -8,6 +8,7 @@
 
   backup / restore   a sqlite online backup (integrity_check, sha256) of every flagged store into archive/evidence-store-backups/<UTC stamp>/, newest 14 per school kept
            (`backup --loop` is the daily Slurm job fulltext-push/evidence-backup.slurm); restore puts one back (docs/EVIDENCE-STORE.md)
+  add-layer <school> --layer NAME.json --shape list [--container-key K [--skeleton JSON]]   a new, empty list layer in a store-sourced school's store (a new kind of reviewed file)
   flagged  / find / record / sync / check   phase 2 (R3a): a school whose charter says [evidence] source = "store" writes its decisions HERE
            (record), and its reviewed JSON files are an export (sync) that check/pre-commit/doctor keep honest.
 Phase 1 builders read none of it; with the flag, readers still read the exported JSON view, so nothing downstream changes. Lossless rule: every decision keeps its original record as JSON (column `record`); the claim columns
@@ -1024,6 +1025,45 @@ def find(school, layer, key=None, text=None, stores_dir=None):
     return [r for r in rows if (key is None or key in (r[3], r[4]) or key == (claim(layer, r[5], r[3], r[4])['person_key'])) and (text is None or text in json.dumps(r[5], ensure_ascii=False))]
 
 
+def add_layer(school, layer, *, key=None, skeleton=None, stores_dir=None, root=None):
+    """Create an EMPTY school-scope layer in a store-sourced school's store (coordinator ruling 2026-11-19: a new kind of reviewed file).
+    The layer is a list container: a root list (`key` None, the file is `[]` until a row is recorded) or the list under top-level `key` of a dict
+    whose other keys are the fixed `skeleton` (e.g. release-corrections.json: school, against_release, decided, pi_renames + `classes`). Rows are then
+    added with `record` and the file written with `sync`; the dump style is the one import gives a new file (indent 1, newline). Raises SourceOfTruth
+    for a json-sourced school, a missing store, or a layer that already exists."""
+    if source_of(school) != 'store':
+        raise SourceOfTruth(f'{school} is not store-sourced (schools/{school}.toml [evidence] source = "store"): create its reviewed JSON file by hand')
+    sp = store_path(school, stores_dir)
+    if not sp.exists():
+        raise SourceOfTruth(f'{school}: no evidence store at {sp}')
+    if not layer.endswith('.json') or '/' in layer:
+        raise SourceOfTruth(f'{layer!r} is not a reviewed file name')
+    skeleton = dict(skeleton or {})
+    if key is None and skeleton:
+        raise SourceOfTruth('a root-list layer has no skeleton: pass --container-key to put the list under a key')
+    if key is not None and key in skeleton:
+        raise SourceOfTruth(f'the skeleton must not hold the container key {key!r}')
+    doc = [] if key is None else {**skeleton, key: []}
+    sk = None if key is None else {**skeleton, key: None}
+    conts = [dict(path=[] if key is None else [key], kind='list')]
+    text = dumps(doc, None)
+    rel = str((school_dir(school, root) / layer).relative_to(code_root(root)))
+    with contextlib.closing(connect(sp)) as con:
+        create(con)
+        con.execute('BEGIN IMMEDIATE')
+        try:
+            if con.execute('SELECT 1 FROM layer WHERE name = ? AND scope = ?', (layer, 'school')).fetchone():
+                raise SourceOfTruth(f'{school}: layer {layer!r} already exists; record rows into it')
+            con.execute('INSERT INTO layer (name, scope, skeleton, containers, key_order, style, sha256, nbytes, source_path, verbatim, layout_text) VALUES (?,?,?,?,?,?,?,?,?,?,?)',
+                        (layer, 'school', None if sk is None else compact(sk), compact(conts), None if key is None else compact(list(sk)),
+                         compact(dict(indent=1, ascii=False, compact=False, sort=False, newline=True)), sha(text), len(text.encode()), rel, None, None))
+            con.execute('COMMIT')
+        except BaseException:
+            con.execute('ROLLBACK')
+            raise
+    return text
+
+
 def record(school, layer, rec, *, source, decided_by, reviewed_by=None, supersede=None, entry_key=None, sub_key=None, container=None, note=None, stores_dir=None, shared=False):
     """Add (or supersede, `supersede` = the evidence id) one decision row of a store-sourced school. `rec` is the entry exactly as the reviewed file holds it
     (a list item, or the value of a map entry); `source` and `decided_by` are mandatory and logged in write_log. The claim columns are refreshed from the
@@ -1197,6 +1237,12 @@ def phase2(a, ap, root):
             sh = sync_shared(s, root, a.store_dir) if shared_of(s) == 'store' else []
             print(f'{s}: {len(ch)} reviewed files rewritten from the store' + (': ' + ', '.join(ch) if ch else '') + (f'; shared files patched (its slice only): {", ".join(sh) or "none changed"}' if shared_of(s) == 'store' else ''))
             return 0
+        if a.cmd == 'add-layer':
+            if not a.layer or a.shape != 'list':
+                ap.error('add-layer needs --layer NAME.json and --shape list')
+            add_layer(s, a.layer, key=a.container_key, skeleton=json.loads(a.skeleton) if a.skeleton else None, stores_dir=a.store_dir, root=root)
+            print(f'{s}/{a.layer}: empty list layer created in the store; record rows with `record`, then `sync` writes the file')
+            return 0
         if a.cmd == 'adopt-shared':
             n = adopt_shared(s, root, a.store_dir)
             print(f'{s}: {n} rows of its slices of the shared files are now in its store; set [evidence] shared = "store" in the charter in the same commit once the build proof passes')
@@ -1224,7 +1270,7 @@ def phase2(a, ap, root):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('cmd', choices=['import', 'export', 'verify', 'overlay', 'coverage', 'flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore', 'adopt-shared'])
+    ap.add_argument('cmd', choices=['import', 'export', 'verify', 'overlay', 'coverage', 'flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore', 'adopt-shared', 'add-layer'])
     ap.add_argument('schools', nargs='*')
     ap.add_argument('--all', action='store_true')
     ap.add_argument('--store-dir', help='default $CS_ATLAS_EVIDENCE_DIR or the stores dir')
@@ -1241,6 +1287,9 @@ def main(argv=None):
     ap.add_argument('--entry-key', help='record, map layers: the new entry\'s key')
     ap.add_argument('--sub-key', help='record, school-keyed maps: the inner key')
     ap.add_argument('--container', type=int)
+    ap.add_argument('--shape', choices=['list'], help='add-layer: the new layer is a list container (`--container list` of the coordinator ruling)')
+    ap.add_argument('--container-key', help='add-layer: the list sits under this top-level key (default: the file is a root list)')
+    ap.add_argument('--skeleton', help='add-layer, with --container-key: the other top-level keys of the file as JSON')
     ap.add_argument('--source', help='record: URL or file reference supporting the decision')
     ap.add_argument('--decided-by')
     ap.add_argument('--reviewed-by')
@@ -1257,7 +1306,7 @@ def main(argv=None):
     ap.add_argument('--force', action='store_true', help='restore: even when the live store has more logged writes')
     a = ap.parse_args(argv)
     root = code_root(a.root)
-    if a.cmd in ('flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore', 'adopt-shared'):
+    if a.cmd in ('flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore', 'adopt-shared', 'add-layer'):
         # the JSON view is code: write and compare the checkout this tool runs from (your worktree), never the main checkout by accident
         return phase2(a, ap, Path(a.root) if a.root else Path(__file__).resolve().parents[1])
     schools = school_ids(root) if a.all else a.schools

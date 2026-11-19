@@ -136,7 +136,7 @@ go to `write_log` (`evidence_id`, action add/supersede, time, decided_by, review
 not itself carry. The store is shared data (it is not in git), the JSON view is code (it lands by commit): between `record` and the landing, `check`
 on main reports the difference, which is the intended signal that a landing is pending. `sync` and `check` act on the checkout the tool runs from.
 Container choice: lists append, maps need a new `--entry-key` (maps keyed school -> person also `--sub-key`); `--container N` for a layer with several.
-Not supported yet: deleting a row (supersede it with the corrected record), adding a new kind of reviewed file (a layer; ask the coordinator).
+Not supported yet: deleting a row (supersede it with the corrected record). A new kind of reviewed file (a layer) is added with `bin/atlas evidence-store add-layer <school> --layer NAME.json --shape list [--container-key K --skeleton '{...}']` (store-sourced schools only; refuses an existing layer), then `record` and `sync` as usual (coordinator ruling 2026-11-19; first use: `release-corrections.json`, container key `classes`).
 
 ### Switch another school
 1. `bin/atlas evidence-store import <school>` into the real location (a fresh snapshot of its reviewed files; `verify <school>` first).
