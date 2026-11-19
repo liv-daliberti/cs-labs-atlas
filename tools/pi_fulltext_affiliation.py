@@ -187,6 +187,12 @@ def _tie_in(block, flat, head, names, aff, allow_single):
                             a_ = aff.search(fn.group(1)[:120])
                             if a_ and FOOTNOTE_UNIT.match(fn.group(1)) and not re.search(r'(?i)equal|contribut|correspond|work (?:was )?done|intern', fn.group(1)[:a_.start()]):
                                 return 'footnote', [block[m.start():m.end() + len(mk.group(0))], fn.group(0).strip()]
+                    if sym.isdigit():   # R-PAP-53 (2026-11-19, D-0023; ZJU OnePose++): a grid author block prints the numbered affiliation BEFORE the names that carry its marker
+                        # ('Xingyi He1* 1 Zhejiang University Jiaming Sun2* Hujun Bao1 ...'): the line opens with the marker and the school, and stands ahead of the PI's name
+                        for pre in re.finditer(r'(?:^|\s)' + re.escape(sym) + r'\s{0,3}([A-Z][^0-9∗*†‡§¶♯]{4,160})', block[:m.start()]):
+                            a_ = aff.search(pre.group(1)[:80])
+                            if a_ and a_.start() <= 40 and not re.search(r'(?i)equal|contribut|correspond|work (?:was )?done|intern', pre.group(1)[:a_.start()]):
+                                return 'marker', [block[m.start():m.end() + len(mk.group(0))], pre.group(0).strip()]
                     # a collective footnote with the marker ('1 The authors are associated with the ... Department, Stanford University')
                     for cf in re.finditer(r'(?:^|\s)' + re.escape(sym) + r'\s?(?:The |All )?authors? (?:are|is) (?:with|associated with|affiliated with|at|from)\b([^{}]{0,220})', flat[len(head):], re.I):
                         if aff.search(cf.group(1)):

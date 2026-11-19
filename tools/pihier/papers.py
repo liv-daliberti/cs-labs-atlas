@@ -138,6 +138,21 @@ JAAD_2026_SUPPLEMENT_DOI = re.compile(r'(?i)^10\.1016/j\.jaad\.2026\.04\.\d{4}$'
 JAAD_ABSTRACT_NUMBER = re.compile(r'^\s*\d{5}\s+\S')
 
 
+# R-PAP-48 (2026-11-19, D-0023; Toronto gate 9 pi2): meeting-supplement abstracts keyed by DOI shape. A journal-supplement item DOI of an OUP journal
+# carries the supplement's article id plus a dotted item number ('10.1093/jcag/gwaf042.015', 'ehz748.0574', 'ofx163.110'); a regular OUP article DOI has no dotted
+# suffix. Neuromuscular Disorders prints the World Muscle Society congress abstracts as items numbered 100 and up ('10.1016/j.nmd.2017.06.320').
+OUP_SUPPLEMENT_DOI = re.compile(r'(?i)^10\.1093/[a-z0-9]+/[a-z]{2,8}\d{2,4}[a-z]?\.\d{2,5}$')
+NMD_CONGRESS_DOI = re.compile(r'(?i)^10\.1016/j\.nmd\.\d{4}\.\d{2}\.(\d{3,4})$')
+# R-PAP-49: Dagstuhl/DROPS artifact-evaluation deposits (software or data artifacts of a paper, DOI series 10.4230/artifacts.N), never the paper.
+DAGSTUHL_ARTIFACT_DOI = re.compile(r'(?i)^10\.4230/artifacts\.\d+')
+# R-PAP-50: a workshop's own front matter or proposal titled 'ACRONYM'YY: Nth/First/Second ... Workshop on ...' (ADVM'21, MuCAI'20, Meta-HCI: First Workshop
+# on Meta-Research in HCI, DRL4IR: 2nd Workshop on ...); only conference records (a 'workshop report' article is not touched).
+WORKSHOP_ORDINAL_TITLE = re.compile(r'^[^:]{2,70}:\s*(?i:the\s+)?(?i:first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|\d+(?:st|nd|rd|th))\s+'
+                                    r'(?:(?:(?i:international|annual|national|joint|virtual|biennial)|[A-Z][\w-]*)\s+){0,5}(?i:workshop)\b')
+# R-PAP-51: a journal's own report on its state and changes (editors-in-chief, annual summary): 'Report on the state and changes of the SoSyM journal (2025 summary)'.
+JOURNAL_STATE_REPORT_TITLE = re.compile(r'(?i)^\s*report on the state and changes of the\b[^:]{0,60}\bjournal\b')
+
+
 def all_caps_title(t):
     letters = [c for c in t if c.isalpha()]
     return len(t.split()) >= 4 and len(letters) >= 20 and not any(c.islower() for c in letters)
@@ -375,6 +390,12 @@ def not_a_paper(r, pages=None, bare=False):
         return 'award_announcement'
     if WORKSHOP_TITLE.search(t) or (TUTORIAL_ON.search(t) and ty in ('conference-paper', 'conference-abstract')):
         return 'workshop_proposal'
+    if ty in ('conference-paper', 'conference-abstract', 'other') and WORKSHOP_ORDINAL_TITLE.search(t):   # R-PAP-50
+        return 'workshop_proposal'
+    if JOURNAL_STATE_REPORT_TITLE.search(t):   # R-PAP-51
+        return 'editorial'
+    if DAGSTUHL_ARTIFACT_DOI.match(d):   # R-PAP-49
+        return 'artifact_deposit'
     if ty == 'conference-paper' and (pages is None or pages <= 2) and re.match(r'(?i)^[A-Z]{2,8}(?:[- ]\d{4})?\s+workshop on\b', t):
         return 'workshop_proposal'
     if HIGHLIGHTS_TITLE.search(t):
@@ -417,6 +438,8 @@ def not_a_paper(r, pages=None, bare=False):
         return 'meeting_abstract:doi'
     if ABSTRACT_TITLE.search(t):
         return 'meeting_abstract:title'
+    if ty in ('article', 'conference-abstract', 'other') and (OUP_SUPPLEMENT_DOI.match(d) or (NMD_CONGRESS_DOI.match(d) and int(NMD_CONGRESS_DOI.match(d).group(1)) >= 100)):
+        return 'meeting_abstract:supplement'   # R-PAP-48
     if ERS_CONGRESS_DOI.match(d) or BCS_CONGRESS_DOI.match(d) or (NEUROM_DOI.match(d) and (ty == 'conference-abstract' or NEUROM_ABSTRACT_CODE.search(t))):
         return 'meeting_abstract:congress'
     if ABSTRACT_FAMILY_DROPS and (TUTORIAL_ABSTRACT_DOI.match(d) or POSTER_CODE_DOI.search(d)
@@ -548,6 +571,13 @@ def page1_elsewhere(status, text, school, title=None, author_names=()):
                    r'(?:University|Institute|Institution|College|Laboratory|Laboratories|Polytechnic|Academy)'
                    r'(?:[ \t]+' + word + r'){0,10}(?=[.,;\n]|$)')
     for note in re.finditer(r'(?m)^\s*(\d{1,2})[.)]?[ \t]+(' + institution + r')', text[abstract.end():]):
+        if note.group(1) in markers:
+            return note.group(2)
+    # R-PAP-52 (2026-11-19, D-0023; Toronto gate 9 pi2, Fleet's arXiv 2302.14816): a company or industry-lab footnote ('1\nGoogle Research. Correspondence to ...';
+    # the marker may stand alone on its line). Only a named company, not a bare lab word, and only the marker of a byline author.
+    company = (r'(?:Google|Microsoft|Meta|Facebook|Amazon|IBM|NVIDIA|Nvidia|OpenAI|DeepMind|Apple|Adobe|Intel|Anthropic|Salesforce|Samsung|Huawei|Tencent|Baidu|Alibaba|ByteDance)'
+               r'(?:[ \t]+(?:Research|AI|Brain|Labs?|DeepMind|Inc|Corp|Corporation|Team|Brain Team|Research India|Research Asia))*(?=[.,;\n]|$)')
+    for note in re.finditer(r'(?m)^\s*(\d{1,2})[.)]?\s+(' + company + r')', text[abstract.end():]):
         if note.group(1) in markers:
             return note.group(2)
     return None
