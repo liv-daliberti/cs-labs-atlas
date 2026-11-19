@@ -297,7 +297,7 @@ by institution was tried first and rejected: it dropped 8 of 17 true lab papers 
 with no institution at all (pi-0) and a credit to another university are untouched. `school_basis`, `STRONG_IDENTITY`,
 `CROSS_KINDS`; counter `school_via_cross_affiliation`.
 
-### R-PAP-29 addendum (2026-11-18, Harvard gate 9 pi1: Tambe's AAAI-23 SAHELI paper)
+**R-PAP-29 addendum (2026-11-18, Harvard gate 9 pi1: Tambe's AAAI-23 SAHELI paper)**
 A co-author's school credit does not admit a paper whose page 1 credits the PI elsewhere: when the page-1 read of the work (arXiv v1 or the catalog's copy; `pi_fulltext_affiliation.py pdf`, which now also reads
 works whose PI authorship is credited only to companies/agencies while another author is the school's) puts the PI's own name at an institution or company that is not the school (footnote line of the PI's marker,
 or the sentence after the name; not when it names the school beside another institution), the cross-affiliated route is refused (`page1_pi_credited_elsewhere`, counter `cross_affiliation_page1_pi_elsewhere`).
