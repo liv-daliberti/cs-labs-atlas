@@ -1,0 +1,160 @@
+{
+ "school": "harvard",
+ "against_release": "2026-11-07",
+ "decided": "; 2026-11-19 claude-freeze-prep-1119 (D-0015/D-0007): classes for rows still flagged vs 2026-11-07 (build trace scratch/freeze-prep-1119/rr/trace, independent 50-row review); Pfister GeCo moved from the appointment-window class to D-0007 by the independent reviewer (the window counter belonged to another PI)",
+ "classes": [
+  {
+   "id": "same_paper_other_id",
+   "rule": "The same paper stays in the package under another OpenAlex id for the same PI (same DOI or same normalised title; OpenAlex id merge, or the published version represents its preprint: R-PAP edition/representative rules 2026-10-28/29).",
+   "rows": [
+    {
+     "pi": "Madhu Sudan",
+     "oa": "https://openalex.org/W2963320196",
+     "labId": null,
+     "atlasWorkId": "atl:w:b60271264862",
+     "title": "Algorithmic Polarization for Hidden Markov Models",
+     "year": 2018,
+     "identity_before": "pi_orcid",
+     "kept_as": "https://openalex.org/W7223730180",
+     "basis": "same PI, same normalised title in the package"
+    },
+    {
+     "pi": "Madhu Sudan",
+     "oa": "https://openalex.org/W4391709362",
+     "labId": null,
+     "atlasWorkId": "atl:w:c65549e39a43",
+     "title": "A Dense Model Theorem for the Boolean Slice",
+     "year": 2024,
+     "identity_before": "pi_orcid",
+     "kept_as": "https://openalex.org/W7110215342",
+     "basis": "same PI, same DOI in the package"
+    },
+    {
+     "pi": "Susan A Murphy",
+     "oa": "https://openalex.org/W7127101785",
+     "labId": null,
+     "atlasWorkId": "atl:w:397a778083ed",
+     "title": "The Missing Discipline in AI: A Call for Behavioural Science",
+     "year": 2026,
+     "identity_before": "pi_orcid",
+     "kept_as": "https://openalex.org/W7131620097",
+     "basis": "same PI, same normalised title in the package"
+    }
+   ]
+  },
+  {
+   "id": "school_affiliation_rule",
+   "rule": "R-PAP-01 (a) (owner 2026-10-21): the authorship must tie the paper to the school; the current build finds the PI's name hit without a school affiliation on the record (build trace counter rows_from_hits: hit_without_school_affiliation).",
+   "rows": [
+    {
+     "pi": "Juncheng Yang",
+     "oa": "https://openalex.org/W7204755998",
+     "labId": null,
+     "atlasWorkId": "atl:w:4beba75c58b1",
+     "title": "Learning-Augmented Heuristics: Simple, yet Smart, Robust and Interpretable Cache Eviction",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    },
+    {
+     "pi": "Juncheng Yang",
+     "oa": "https://openalex.org/W7214661286",
+     "labId": null,
+     "atlasWorkId": "atl:w:c678de3faa8c",
+     "title": "To Store or To Regenerate? A Cost Model for AI-Generated Content at Scale",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_school_affiliation"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "paper_anchor_rules_d0007",
+   "rule": "D-0007 (owner 2026-11-18, Q-0317): 1803966d (source-stated advising for PI paper anchors) and 7c8fdedd (postdoc guard) apply at the school's rebuild. Rows listed carried an anchored-author or advisee identity route (identity_before) and now fail identity in the build trace (hit_without_identity).",
+   "rows": [
+    {
+     "pi": "Minlan Yu",
+     "oa": "https://openalex.org/W7214397909",
+     "labId": null,
+     "atlasWorkId": "atl:w:61a9debfcc5c",
+     "title": "When Fancy Eviction Fails: Rethinking Cache Replacement For LLM Prefix Reuse",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Juncheng Yang",
+     "oa": "https://openalex.org/W7214397909",
+     "labId": null,
+     "atlasWorkId": "atl:w:61a9debfcc5c",
+     "title": "When Fancy Eviction Fails: Rethinking Cache Replacement For LLM Prefix Reuse",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Juncheng Yang",
+     "oa": "https://openalex.org/W7214659315",
+     "labId": null,
+     "atlasWorkId": "atl:w:6fbe336a6a8c",
+     "title": "SR-Gadgets: Make Scan-Resistant Caching Practical",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Juncheng Yang",
+     "oa": "https://openalex.org/W7215051931",
+     "labId": null,
+     "atlasWorkId": "atl:w:a03d578a09b3",
+     "title": "Towards Efficient HPC Systems for Agents: Challenges and Opportunities",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Juncheng Yang",
+     "oa": "https://openalex.org/W7162030016",
+     "labId": null,
+     "atlasWorkId": "atl:w:d8d43e6d559f",
+     "title": "Language-dependent diagnostic safety of medical AI systems: a cross-lingual benchmarking and prospective clinical study",
+     "year": 2026,
+     "identity_before": "anchored_author_id",
+     "trace": [
+      "author_id_full_given_name_conflicts",
+      "hit_without_identity"
+     ]
+    },
+    {
+     "pi": "Hanspeter Pfister",
+     "oa": "https://openalex.org/W7117850995",
+     "labId": null,
+     "atlasWorkId": "atl:w:b14f869b4b48",
+     "title": "GeCo: Evaluating Geometric Consistency for Video Generation via Motion and Structure",
+     "year": 2026,
+     "identity_before": "advisee_coauthor",
+     "trace": [
+      "hit_without_identity",
+      "outside_appointment"
+     ]
+    }
+   ]
+  }
+ ],
+ "pi_renames": {},
+ "open_rows_not_recorded": {
+  "open_not_in_build_hits": 2
+ }
+}
