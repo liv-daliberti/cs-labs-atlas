@@ -504,8 +504,9 @@ def same_paper(t, page):
 
 
 def split_markers(s):
-    """'Mathis6‡' -> 'Mathis6 ‡': a composite marker (affiliation number + equal-contribution sign) as two markers."""
-    return re.sub(r'(?<=[A-Za-z])(\d{1,2})([∗*†‡§¶♯]+)', r'\1 \2', s)
+    """Separate adjacent affiliation numbers and footnote symbols in either order."""
+    s = re.sub(r'(?<=[A-Za-z])(\d{1,2})([∗*†‡§¶♯]+)', r'\1 \2', s)
+    return re.sub(r'(?<=[A-Za-z])([∗*†‡§¶♯]+)(\d{1,2})', r'\1 \2', s)
 
 
 def page1_tie(txt, names, aff, titles):
