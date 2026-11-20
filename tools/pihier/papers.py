@@ -172,6 +172,11 @@ REPOSITORY_BOOK_DEPOSIT_TITLE = re.compile(r'(?i)\((?:data|code|software|source 
 EDITOR_ANNIVERSARY_TITLE = re.compile(r'(?i)^\s*\w+ years? as (?:the )?editor[- ]in[- ]chief\b')
 
 
+# R-PAP-61 (2026-11-20, D-0028; SJTU gate 9 pi2, Li Jianhua's FITEE 2018 record): the opening item of a Frontiers of Information Technology & Electronic Engineering special issue, DOI
+# 10.1631/fitee.YYNNNN0 with item number 0000 ('fitee.1840000' 'Security for cyberspace: challenges and opportunities', fitee.1820000), is the guest editors' introduction.
+FITEE_ISSUE_INTRO_DOI = re.compile(r'(?i)^10\.1631/fitee\.\d{2}[0-9]0000$')
+
+
 def all_caps_title(t):
     letters = [c for c in t if c.isalpha()]
     return len(t.split()) >= 4 and len(letters) >= 20 and not any(c.islower() for c in letters)
@@ -422,6 +427,8 @@ def not_a_paper(r, pages=None, bare=False):
     if ty == 'book' and REPOSITORY_DOI.match(d) and REPOSITORY_BOOK_DEPOSIT_TITLE.search(t):   # R-PAP-59
         return 'dataset_record'
     if EDITOR_ANNIVERSARY_TITLE.search(t):   # R-PAP-60
+        return 'editorial'
+    if FITEE_ISSUE_INTRO_DOI.match(d):   # R-PAP-61
         return 'editorial'
     if DAGSTUHL_ARTIFACT_DOI.match(d):   # R-PAP-49
         return 'artifact_deposit'

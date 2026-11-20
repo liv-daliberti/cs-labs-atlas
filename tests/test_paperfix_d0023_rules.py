@@ -152,3 +152,9 @@ def test_R_PAP_59_slide_deck_and_book_typed_deposit():
 def test_R_PAP_60_editor_anniversary_column():
     assert h.not_a_paper(row(title='Five years as editor-in-chief of Communications')) == 'editorial'
     assert h.not_a_paper(row(title='Ten years as a graduate student: a study')) is None
+
+
+def test_R_PAP_61_fitee_issue_introduction():
+    assert h.not_a_paper(row(title='Security for cyberspace: challenges and opportunities', doi='10.1631/fitee.1840000', type='editorial')) == 'editorial'
+    assert h.not_a_paper(row(title='Security for cyberspace: challenges and opportunities', doi='10.1631/fitee.1840000')) == 'editorial'
+    assert h.not_a_paper(row(title='A real FITEE paper', doi='10.1631/fitee.1800123')) is None
