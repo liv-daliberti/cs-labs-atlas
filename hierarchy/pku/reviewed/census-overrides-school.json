@@ -2860,7 +2860,27 @@
     }
    }
   ],
-  "why_aliases": "2026-11-20 independent full-name review: explicit named university English faculty card plus exact professional-email agreement with the named Chinese individual profile. All existing IDs, exclusions, time observations, and aliases remain; bibliography identities still require native school/homepage/colleague evidence or a separate primary-source binding review."
+  "why_aliases": "2026-11-20 independent full-name review: explicit named university English faculty card plus exact professional-email agreement with the named Chinese individual profile. All existing IDs, exclusions, time observations, and aliases remain; bibliography identities still require native school/homepage/colleague evidence or a separate primary-source binding review.",
+  "source_owned_publication_review": {
+   "decision": "owned_per_work_only",
+   "why": "Actual named publisher-paper byline read from its own first page within the full journal issue; no author-ID ownership or propagation inferred.",
+   "reviewer": "codex-sjtu-zero-1119",
+   "reviewed_on": "2026-11-20",
+   "citations": [
+    {
+     "title": "《同义词词林》的嵌入表示与应用评估",
+     "year": 2018,
+     "doi": "10.6043/j.issn.0438-0479.201805013",
+     "url": "https://jxmu.xmu.edu.cn/Upload/Park/c417199e-a3c2-435e-b264-fd8975be32fb.pdf",
+     "sha256": "5781acac64c08d3c258f047a55418b62086d9514d36b32d4736b8b620bdc3352",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/source-bytes/5781acac64c08d3c258f047a55418b62086d9514d36b32d4736b8b620bdc3352",
+     "source_pdf_page_index": 18,
+     "quote": " 第 57 卷 第6期 厦门大学学报(自然科学版) Vo l.57 No .6 2018 年 11 月 J ourna lofXi amenUn ive rsi ty( Nat ura lSc i e) enc Nov.2018 i: do 6043/ 10. j.i ssn. 0438 -0479. 201805013 《同义词词林 》的嵌入表示与应用评估 段宇光1,2,刘 扬1,3� ,俞士汶1,3 ( 1.北京大学计算语言学教育部重点实验室, 3.北京大学计算语言学研究所,北京 100871) 2.北京大学元培学院, 摘要:在自然语言处理中,嵌入表示是表达语言知识的重要途径和手段,以《同义词词林》为例,提 出 基 于 知 识 库 训 练 嵌 入表示的伪句式构造方法,并在多项任务上测试新方法的有效性 .根据 《同 义 词 词 林》词 义 编 码 反 映 的 层 级 结 构,将 这 些 编码扩展为多种伪句式,并据此生成 不 同 的 伪 语 料 库,采 用 wo rd2ve c 模 型 在 伪 语 料 库 上 训 练 义 素 向 量 及 词 向 量,得 到 C iLi n2Ve c资源,并应用于词义合成、类比 推 理 和 词 义 相 似 度 计 算 等 任 务 .在 词 义 合 成、类 比 推 理 任 务 上 的 准 确 率 达 到 90% 以上,超过了以往在语料库上训得的结果 .证明该方法可以有效地将知识库中的理性知识注入嵌 入 表 示 中,也 显 示 了C iLi n2Ve c嵌入表示资源在应用上的巨大潜力 . 关键词:《同义词词林》;嵌入表示;词义合成;类比推理;相似度 TP391 中图分类号: A 文献标志码: 0438 文章编号: -0479( 2018) 06- 0867 -09 在机器智能时 代,自 然 语 言 的 理 解 和 分 析 具 有 重 入表示的潜在需求,挖掘 Wo rdNet图结构中简化的邻 要价 值 .在 实 现 途 径 上,大 体 分 为 基 于 知 识 库 的 理 性 [ ] 接 关 系 信 息 15 或 者 参 照 多 部 词 典 的 释 义 条 目 信 方法和基于语料库 的 经 验 方 法 .在 理 性 方 法 方 面,《同 息 [16],以此作为训 练 内 容 来 获 得 词 嵌 入 表 示;也 有 人 义词词林》(以下 简 称《词 林》)作 为 汉 语 知 识 库 的 一 个 关注如何由 已 有 的 词 嵌 入 表 示 获 得 义 素 嵌 入 表 示 和 典范代表,由语言学 家 对 汉 语 中 的 词 进 行 划 分、归 类, 同义词集嵌入表示 [17],以及通过建立词嵌入表示到同 形成语义上的层 级 结 构,在 词 义 相 似 度 计 算 [1-3]、实 体 义词集的映射来提高词向量的解释性 [18];另有一些工 关系抽取 [4-5]、语义 角 色 标 注 [6]、文 本 分 类 [7]等 多 种 任 作希望在语料库训 练 中 加 入 词 义、句 法 知 识 以 获 得 更 务或 应 用 中 有 广 泛 影 响;在 经 验 方 法 方 面,建 立 在 语 有效的 词 嵌 入 表 示 [19];或 者 采 用 随 机 游 走 ( random 料统计分析上的分 布 式 表 示 也 在 不 断 发 展,早 期 基 于 wa lk)方法利 用 知 识 库 构 建 伪 语 料,再 通 过 神 经 网 络 词共 现 矩 阵 获 得 词 嵌 入 表 示 [ 8- ,后 来 通 过 前 馈 神 经 10] 训练获得词嵌入表示 [20].这些方法大多是在基于真语 网络学习词嵌入的方法成为主流 [11],并广泛应用于自 料库训练词向量,部 分 地 加 入 或 联 结 了 知 识 库 中 的 词 . 义、句 法 知 识 .之 后 邻 接 关 系 信 息 及 随 机 游 走 方 法 对 [ 1214] - 然语言处理的多种任务或应用 基于知识库 的 理 性 方 法,解 释 性 强,但 一 般 情 况 此有 所 改 进,不 再 依 赖 于 真 语 料 库 的 预 训 练,但 在 利 下需要针对不同任 务 设 计 不 同 算 法,在 不 同 领 域 间 的 用知识库知 识 构 建 嵌 入 表 示 或 构 建 伪 语 料 时 采 用 了 适用 性 较 差 .而 基 于 语 料 库 的 经 验 方 法,往 往 采 用 无 相对间接、繁琐的手 段,其 生 成 过 程 较 为 复 杂 .除 此 之 监督 训 练,自 动 化 程 度 高,获 得 的 词 向 量 可 以 适 用 于 外,针 对 一 般 的 知 识 库 资 源,目 前 也 没 有 相 对 直 接 的 多种任务 .因此,如何 将 两 者 的 优 势 结 合 起 来,采 用 经 应对策略和解决方法 . 验方法在知识库中 自 动 地 提 取 词 义 信 息,最 大 程 度 地 本研究使 用 哈 尔 滨 工 业 大 学 研 发 的 《词 林》扩 展 重复使用已有的人 类 专 家 知 识,获 得 适 用 于 多 种 任 务 版(h ttp:∥www. lt- pcl oud. com/down load)为 知 识 本 的嵌入表示,是一个较新的研究课题 . 体,提出并展示基于 知 识 库 训 练 嵌 入 表 示 的 伪 句 式 构 此前,有研究者注意 到 将 理 性 知 识 注 入 以 改 善 嵌 造方法 .根据 《词 林》词 义 编 码 的 层 级 结 构,将 其 扩 展 收稿日期: 2018-05- 10 录用日期: 2018-08 -06 基金项目:国家重点基础研究发展计划( 973 计划)(2014CB340504);国家社会科学基金重大项目( 12&ZD119);国家社会科 学 基 金( 16BYY137) * 通信作者: l iuyang@pku. edu.cn 引文格式:段宇光,刘扬,俞士汶 .《同义词词林》的嵌入表示与应用评估[ J].厦门大学学报(自然科学版), 2018, 57(6):867 -875. Cit aton: i DUAN Y G, LIU Y, YUSW. Anembeddedr epr esen tat ionfo r\"Tongy iciC ili n\"andi tseval uat ionontsks[ a J].JXiamen Un ivNa tSci,2018,57(6): 867-875.(i nChinese) h ttp:∥j xmu. xmu. edu. cn ",
+     "observed": "2026-11-20T01:20:22",
+     "basis": "Actual primary publisher issue, article first page at zero-based PDF page18: full Chinese author credit 刘扬 and PKU computational linguistics affiliations, explicit journal volume57 issue6 November2018, page867 onward and DOI. Multi-article PDF disambiguated explicitly. Exact-work proof only."
+    }
+   ]
+  }
  },
  "刘田": {
   "unproven_years": [
@@ -8116,6 +8136,858 @@
      "basis": "Reviewed exact personally credited work on the named official primary faculty page, its declared owned bibliography, or primary publisher paper whose byline includes the exact faculty email. No global author/ORCID ownership is inferred."
     }
    ]
+  },
+  "dblp": [
+   "https://dblp.org/pid/271/1102"
+  ],
+  "why_dblp": "R-PAP-44 passed on exact personally credited long works on the officially declared owned homepage. Literal bilingual faculty self-identity is separately sourced; every matched title belongs to this one namesake-compatible record. Native byline, school and actual faculty-window/type gates remain required.",
+  "dblp_identity_review": {
+   "decision": "accepted",
+   "credited_unique_titles": 26,
+   "citations": [
+    {
+     "title": "Revisiting Tampered Scene Text Detection in the Era of Generative AI.",
+     "year": 2025,
+     "doi": "10.1609/aaai.v39i1.32051",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "AAAI 2025 Revisiting Tampered Scene Text Detection in the Era of Generative AI Chenfan Qu, Yiwu Zhong , Fengjun Guo, Lianwen Jin Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/aaai/QuZGJ25",
+      "record_sha256": "c2ad2160ef64754c624f5340b88a5d344125d9067429df36e6eecf400d1bae26",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Comprehensive Image Captioning via Scene Graph Decomposition.",
+     "year": 2020,
+     "doi": "10.1007/978-3-030-58568-6_13",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "ECCV 2020 Comprehensive Image Captioning via Scene Graph Decomposition Yiwu Zhong , Liwei Wang, Jianshu Chen, Dong Yu, Yin Li Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/eccv/ZhongWC0L20",
+      "record_sha256": "f7416e38338c9594cd59864a9731bcd6297d5d14954b817fc28918ce7d55c704",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Learning Procedure-aware Video Representation from Instructional Videos and Their Narrations.",
+     "year": 2023,
+     "doi": "10.1109/cvpr52729.2023.01424",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "CVPR 2023 Learning Procedure-aware Video Representation from Instructional Videos and Their Narrations Yiwu Zhong , Licheng Yu, Yang Bai, Shangwen Li, Xueting Yan*, Yin Li* (*co-corresponding authors) Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/cvpr/ZhongYBLY023",
+      "record_sha256": "c46c58f6588f532be9e425da6d69f2cf586cac1019e97bdf791a41485d46de96",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "PAVE: Patching and Adapting Video Large Language Models.",
+     "year": 2025,
+     "doi": "10.1109/cvpr52734.2025.00314",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "CVPR 2025 PAVE: Patching and Adapting Video Large Language Models Zhuoming Liu, Yiquan Li, Khoi Duc Nguyen, Yiwu Zhong , Yin Li Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/cvpr/0001LNZ025",
+      "record_sha256": "d6c7557e5088cce3e9d9240d5c476d4973076529611672975d71f21ced3264f0",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Towards Learning a Generalist Model for Embodied Navigation.",
+     "year": 2024,
+     "doi": "10.1109/cvpr52733.2024.01293",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "CVPR 2024 Poster Highlight · Top 2.8% Towards Learning a Generalist Model for Embodied Navigation Duo Zheng, Shijia Huang, Lin Zhao, Yiwu Zhong , Liwei Wang Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/cvpr/ZhengHZZ024",
+      "record_sha256": "1ea7558a750f923d25550ff9e38ad1f546a38164bd59d8c77ae3db9199edca02",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Towards Modern Image Manipulation Localization: A Large-Scale Dataset and Novel Methods.",
+     "year": 2024,
+     "doi": "10.1109/cvpr52733.2024.01025",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "CVPR 2024 Towards Modern Image Manipulation Localization: A Large-Scale Dataset and Novel Methods Chenfan Qu, Yiwu Zhong *, Chongyu Liu, Guitao Xu, Dezhi Peng, Fengjun Guo, Lianwen Jin* (*co-corresponding authors) Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/cvpr/QuZLXPGJ24",
+      "record_sha256": "ac485e33cc953e4257268e8c2066e87888c58709ffc686507e0ed4af16495eeb",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Grounded Language-Image Pre-training.",
+     "year": 2022,
+     "doi": "10.1109/cvpr52688.2022.01069",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "CVPR 2022 Best Paper Finalist · Top 0.4% Grounded Language-Image Pre-training Liunian Harold Li, Pengchuan Zhang, Haotian Zhang, Jianwei Yang, Chunyuan Li, Yiwu Zhong , Lijuan Wang, Lu Yuan, Lei Zhang, Jenq-Neng Hwang, Kai-Wei Chang, Jianfeng Gao Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/cvpr/LiZZYLZWYZHCG22",
+      "record_sha256": "2f81e72d05da498fb1fca061b5a86aea8bc94a6270a2850fe0656533102a416b",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "RegionCLIP: Region-based Language-Image Pretraining.",
+     "year": 2022,
+     "doi": "10.1109/cvpr52688.2022.01629",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "CVPR 2022 RegionCLIP: Region-based Language-Image Pretraining Yiwu Zhong , Jianwei Yang, Pengchuan Zhang, Chunyuan Li, Noel Codella, Liunian Harold Li, Luowei Zhou, Xiyang Dai, Lu Yuan, Yin Li, Jianfeng Gao Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/cvpr/ZhongYZLCLZDYLG22",
+      "record_sha256": "c59abf0452ec4a6f3ef69f32141f4314bcc0b54e261d71aa7f7753073664ecbc",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Enhancing Temporal Modeling of Video LLMs via Time Gating.",
+     "year": 2024,
+     "doi": "10.18653/v1/2024.findings-emnlp.162",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "EMNLP Findings 2024 Enhancing Temporal Modeling of Video LLMs via Time Gating Zi-yuan Hu, Yiwu Zhong , Shijia Huang, Michael R. Lyu, Liwei Wang Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/emnlp/HuZHL024",
+      "record_sha256": "4f900ed5742e0147b6b5c12965131626ce2ee42397a2fcb113ccdeb9b7fc4dac",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "A Simple Baseline for Weakly-Supervised Scene Graph Generation.",
+     "year": 2021,
+     "doi": "10.1109/iccv48922.2021.01608",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "ICCV 2021 A Simple Baseline for Weakly-Supervised Scene Graph Generation Jing Shi, Yiwu Zhong , Ning Xu, Yin Li, Chenliang Xu Paper",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/iccv/0005ZX0X21",
+      "record_sha256": "99e8f33daff3d028f88037014a8097cf50fdd82df9af97eba8ac71e3bf7019e3",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Fine-Grained Spatiotemporal Grounding on Egocentric Videos.",
+     "year": 2025,
+     "doi": "10.1109/iccv51701.2025.00876",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "ICCV 2025 Fine-grained Spatiotemporal Grounding on Egocentric Videos Shuo Liang, Yiwu Zhong , Zi-Yuan Hu, Yeyao Tao, Liwei Wang Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/iccv/LiangZHTW25",
+      "record_sha256": "501db8ad91c4e7ffc49a6299c70b938b012d7a978f85b4fe1bcbb20c6ea3f3af",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Learning Concise and Descriptive Attributes for Visual Recognition.",
+     "year": 2023,
+     "doi": "10.1109/iccv51070.2023.00287",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "ICCV 2023 Learning Concise and Descriptive Attributes for Visual Recognition An Yan*, Yu Wang*, Yiwu Zhong *, Chengyu Dong, Zexue He, Yujie Lu, William Wang, Jingbo Shang, Julian McAuley (*co-first authors) Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/iccv/0003WZDHLWSM23",
+      "record_sha256": "b83f4a10e9a2694c7cb25b0f310c6b24644793fd381a2cd8fca1cde1c7d2d03a",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "AIM: Adaptive Inference of Multi-Modal LLMs via Token Merging and Pruning.",
+     "year": 2025,
+     "doi": "10.1109/iccv51701.2025.01877",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "ICCV 2025 AIM: Adaptive Inference of Multi-Modal LLMs via Token Merging and Pruning Yiwu Zhong , Zhuoming Liu, Yin Li, Liwei Wang Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/iccv/ZhongLLW25",
+      "record_sha256": "c313ada958776fe2dd30c034dea4fd096bd026477e8daa5e5791d1b2be87db5a",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Learning to Generate Scene Graph from Natural Language Supervision.",
+     "year": 2021,
+     "doi": "10.1109/iccv48922.2021.00184",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "ICCV 2021 Learning to Generate Scene Graph from Natural Language Supervision Yiwu Zhong , Jing Shi, Jianwei Yang, Chenliang Xu, Yin Li Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "conf/iccv/Zhong0YX021",
+      "record_sha256": "3dccb7fc33356cf501a3ef9c349b808f44a17d82c7591c0e09cdab78788c1a5e",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Beyond Embeddings: The Promise of Visual Table in Multi-Modal Models.",
+     "year": 2024,
+     "doi": "10.48550/arxiv.2403.18252",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "EMNLP 2024 Beyond Embeddings: The Promise of Visual Table in Multi-Modal Models Yiwu Zhong *, Zi-yuan Hu*, Michael R. Lyu, Liwei Wang (*co-first authors) Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "journals/corr/abs-2403-18252",
+      "record_sha256": "467019f67a6a458995cca88b53991590dad7e39305f6abdea9d496ce95de99f8",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Towards Learning a Generalist Model for Embodied Navigation.",
+     "year": 2023,
+     "doi": "10.48550/arxiv.2312.02010",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "CVPR 2024 Poster Highlight · Top 2.8% Towards Learning a Generalist Model for Embodied Navigation Duo Zheng, Shijia Huang, Lin Zhao, Yiwu Zhong , Liwei Wang Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "journals/corr/abs-2312-02010",
+      "record_sha256": "742269edc8b7273124241697b6738728430bf9051f10db4de7900aee9565b9b3",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Learning to Generate Scene Graph from Natural Language Supervision.",
+     "year": 2021,
+     "doi": null,
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "ICCV 2021 Learning to Generate Scene Graph from Natural Language Supervision Yiwu Zhong , Jing Shi, Jianwei Yang, Chenliang Xu, Yin Li Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "journals/corr/abs-2109-02227",
+      "record_sha256": "c8e72c0a33ecd2e30a4b3478b9e6f3e3209086956a518593d804c586385842b9",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "AIM: Adaptive Inference of Multi-Modal LLMs via Token Merging and Pruning.",
+     "year": 2024,
+     "doi": "10.48550/arxiv.2412.03248",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "ICCV 2025 AIM: Adaptive Inference of Multi-Modal LLMs via Token Merging and Pruning Yiwu Zhong , Zhuoming Liu, Yin Li, Liwei Wang Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "journals/corr/abs-2412-03248",
+      "record_sha256": "5ec998c83a9a9a5a38d16b96e36d446482128e449e863c59788a9b51fe6054d8",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Learning Concise and Descriptive Attributes for Visual Recognition.",
+     "year": 2023,
+     "doi": "10.48550/arxiv.2308.03685",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "ICCV 2023 Learning Concise and Descriptive Attributes for Visual Recognition An Yan*, Yu Wang*, Yiwu Zhong *, Chengyu Dong, Zexue He, Yujie Lu, William Wang, Jingbo Shang, Julian McAuley (*co-first authors) Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "journals/corr/abs-2308-03685",
+      "record_sha256": "0c1661dd77b70f927e98254671e45618bbbc336625d153ee4be56efebd32c926",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "PAVE: Patching and Adapting Video Large Language Models.",
+     "year": 2025,
+     "doi": "10.48550/arxiv.2503.19794",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "CVPR 2025 PAVE: Patching and Adapting Video Large Language Models Zhuoming Liu, Yiquan Li, Khoi Duc Nguyen, Yiwu Zhong , Yin Li Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "journals/corr/abs-2503-19794",
+      "record_sha256": "a87417dc9a4526fbff941baaa0f039b4c4a597a43b20b594389b79a3e6913723",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Fine-grained Spatiotemporal Grounding on Egocentric Videos.",
+     "year": 2025,
+     "doi": "10.48550/arxiv.2508.00518",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "ICCV 2025 Fine-grained Spatiotemporal Grounding on Egocentric Videos Shuo Liang, Yiwu Zhong , Zi-Yuan Hu, Yeyao Tao, Liwei Wang Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "journals/corr/abs-2508-00518",
+      "record_sha256": "f540df58b95c9cc54e9484c0e8f50a4f084dc24583722635e1803f1c1c1de85c",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Comprehensive Image Captioning via Scene Graph Decomposition.",
+     "year": 2020,
+     "doi": null,
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "ECCV 2020 Comprehensive Image Captioning via Scene Graph Decomposition Yiwu Zhong , Liwei Wang, Jianshu Chen, Dong Yu, Yin Li Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "journals/corr/abs-2007-11731",
+      "record_sha256": "59a7870a4fcab3f601edcee49500ecc4d52908b348aeab86654195fdf634ed14",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Learning Procedure-aware Video Representation from Instructional Videos and Their Narrations.",
+     "year": 2023,
+     "doi": "10.48550/arxiv.2303.17839",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "CVPR 2023 Learning Procedure-aware Video Representation from Instructional Videos and Their Narrations Yiwu Zhong , Licheng Yu, Yang Bai, Shangwen Li, Xueting Yan*, Yin Li* (*co-corresponding authors) Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "journals/corr/abs-2303-17839",
+      "record_sha256": "9e1b00d2c06d7af2740a26edb055f6edbbf82dd16162f68588bb223299c0f7a5",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "RegionCLIP: Region-based Language-Image Pretraining.",
+     "year": 2021,
+     "doi": null,
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "CVPR 2022 RegionCLIP: Region-based Language-Image Pretraining Yiwu Zhong , Jianwei Yang, Pengchuan Zhang, Chunyuan Li, Noel Codella, Liunian Harold Li, Luowei Zhou, Xiyang Dai, Lu Yuan, Yin Li, Jianfeng Gao Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "journals/corr/abs-2112-09106",
+      "record_sha256": "db901d549abd54e4e4ef87eebf31b4ae6f75f315500f9995ad13da0814adbeee",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Grounded Language-Image Pre-training.",
+     "year": 2021,
+     "doi": null,
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "CVPR 2022 Best Paper Finalist · Top 0.4% Grounded Language-Image Pre-training Liunian Harold Li, Pengchuan Zhang, Haotian Zhang, Jianwei Yang, Chunyuan Li, Yiwu Zhong , Lijuan Wang, Lu Yuan, Lei Zhang, Jenq-Neng Hwang, Kai-Wei Chang, Jianfeng Gao Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "journals/corr/abs-2112-03857",
+      "record_sha256": "e00e24c436ef80206ad447056a31210ac5967af46256b13230029db1b93c1218",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    },
+    {
+     "title": "Enhancing Temporal Modeling of Video LLMs via Time Gating.",
+     "year": 2024,
+     "doi": "10.48550/arxiv.2410.05714",
+     "url": "https://yiwuzhong.github.io/",
+     "sha256": "e436af3509b1683e3a399646452c182769c570ca0d30be2473a9c63f7697f367",
+     "quote": "EMNLP Findings 2024 Enhancing Temporal Modeling of Video LLMs via Time Gating Zi-yuan Hu, Yiwu Zhong , Shijia Huang, Michael R. Lyu, Liwei Wang Paper Code",
+     "observed": "2026-11-20T00:37:01",
+     "credited_name_form": "Yiwu Zhong",
+     "metadata_source": {
+      "record_key": "journals/corr/abs-2410-05714",
+      "record_sha256": "0b86fc7060fc9739166e0471dbb024c49981bb078b87dfa9c4484f296643c98a",
+      "source_corpora": [
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/code/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "4600437444a496ed0624ad4bfd29fc6764edb6a9e9acb54f130abf977b46fbe0",
+        "dump": "dblp-2026-09-01.xml.gz"
+       },
+       {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/pku-evidence/hierarchy/pku/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "07307ae92cbbeb7abfcd22f7f5ea4a510ea6b5efaea1d6136bfcc9e193b7c195",
+        "dump": "dblp-2026-09-01.xml.gz"
+       }
+      ]
+     },
+     "scope": "PROPOSAL ONLY: exact personally credited work candidate; no author identifier binding or scientific admission follows from this proposal."
+    }
+   ],
+   "record_names": [
+    "Yiwu Zhong"
+   ],
+   "reviewer": "codex-sjtu-zero-1119",
+   "reviewed_on": "2026-11-20"
+  },
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No new ORCID independently certified.",
+   "evidence": []
   }
  },
  "朱松纯": {
@@ -8133,5 +9005,81 @@
     "basis": "Literal bilingual self-identification on named official faculty page or its explicitly declared owned homepage. No bibliography identifier or inferred ORCID follows from this alias."
    }
   ]
+ },
+ "杨芙清": {
+  "aliases": [
+   "Yang, Fuqing"
+  ],
+  "alias_evidence": [
+   {
+    "alias": "Yang, Fuqing",
+    "url": "https://eecs.pku.edu.cn/xxkxjsxy/info/1502/6718.htm",
+    "sha256": "3e648c8f1d947cd97babac14889dd30f0eeacba6282c00f7ef915e90985dbad7",
+    "source_file": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/source-bytes/3e648c8f1d947cd97babac14889dd30f0eeacba6282c00f7ef915e90985dbad7",
+    "quote": "Yang, Fuqing-北京大学信息科学技术学院 Peking University | 中文 HOME About Welcome from the Dean Facts & Rankings Organizational Structure History Contact us People Leadership Faculty Visiting Scholars & Professors Alumni Research Institutes & Centers Key Labs Projects Academics Undergraduate Programs Graduate Programs Undergraduate Research Courses Career Prospects News & Events News Events EECS Spotlight Collaboration Student Projects Professional Activities Strategic Partnership Technology Commercialization Recruitment Home Leadership Faculty Visiting Scholars & Professors Alumni Position： Home Home > People > Faculty > Department of Computer Science and Technology > Institute of Software > Content Search by last name: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z Yang, Fuqing Professor Research Interests : Operating systems, software engineering Office Phone : 86-10-6275 6233 Email : yang@sei.pku.edu.cn dean.eecs@pku.edu.cn Dean mailbox Student union Student union Student union Student union Links: China Computer Federation Chinese academic conference online China Higher Education Information Academy Ministry of Education of the People's Republic of China School of Electronics Engineering and Computer Science, Peking University Copyright © 2010-2019",
+    "observed": "2026-11-20T00:26:30",
+    "matched_professional_email": "yang@sei.pku.edu.cn",
+    "paired_chinese_url": "https://cs.pku.edu.cn/info/1085/2725.htm",
+    "paired_chinese_sha256": "3cbaaf6ad0cc3be14048849f2e308506106ff2cd2f44340ae69cf45d08c0cf0d",
+    "paired_chinese_quote": "杨芙清-北京大学计算机学院 北京大学 | 会议室预订 | English 首页 关于我们 概况 组织体系 委员会 院长寄语 学院架构 师资队伍 院士 杰出人才 荣誉学衔 教研系列 研究系列 教学系列 工程系列 博士后 教辅行政 光荣退休 学院新闻 新闻动态 讲座信息 教务通知 科研通知 通知公告 学科建设 研究领域 研究机构 科研基地 科研项目 关联机构 产学研合作 教育教学 本科生教育 研究生教育 招生信息 教务通知 学生工作 党团建设 学生动态 学工通知 国际化 实习生项目 暑期夏令营 留学生项目 International Student Admission 招贤纳士 教师 博士后 专职研究人员 教学科研辅助 教工之家 组织机构 新闻动态 精彩瞬间 院友 院友之家 通知公告 院友活动 科技创新实践课程 校友企业参访 基金捐赠 办公服务 会议室预定 教学类 科研类 行政类 下载区 留言板 首页 关于我们 概况 组织体系 委员会 院长寄语 学院架构 师资队伍 院士 杰出人才 荣誉学衔 教研系列 研究系列 教学系列 工程系列 博士后 教辅行政 光荣退休 学院新闻 新闻动态 讲座信息 教务通知 科研通知 通知公告 学科建设 研究领域 研究机构 科研基地 科研项目 关联机构 产学研合作 教育教学 本科生教育 研究生教育 招生信息 教务通知 学生工作 党团建设 学生动态 学工通知 国际化 实习生项目 暑期夏令营 留学生项目 International Student Admission 招贤纳士 教师 博士后 专职研究人员 教学科研辅助 教工之家 组织机构 新闻动态 精彩瞬间 北京大学 | 会议室预订 | English × 您现在的位置： 首页 » 师资队伍 » 教研系列 » 按名字 » Y » 正文 师资队伍 院士 杰出人才 荣誉学衔 教研系列 研究系列 教学系列 工程系列 博士后 教辅行政 光荣退休 师资队伍 院士 杰出人才 荣誉学衔 教研系列 研究系列 教学系列 工程系列 博士后 教辅行政 光荣退休 Y 杨芙清 职称： 教授 中国科学院院士 研究所： 软件研究所 研究领域： 系统软件，软件工程 办公电话： 86-10-6275 1782 电子邮件： yang sei.pku.edu.cn 详细简历 从事系统软件、软件工程、软件工业化生产技术和系统等方面的教学和研究工作。主持研制成功我国第一台百万次集成电路计算机多道运行操作系统和第一个全部用高级语言书写的操作系统；倡导和推动成立北京大学计算机科技系，1983-1999年担任系主任期间，将该系建成国内一流和国际知名的计算机科学技术研究和人才培养基地；在国内率先倡导软件工程研究，创办了国内第一个软件工程学科；开创了软件技术的基础研究领域；主持了历经多个五年计划的国家重点科技攻关项目——青鸟工程和国家863计划若干重点课题的研究；创建了软件工程国家工程研究中心；提出“人才培养与产业建设互动”的理念，创建了以新机制、新模式办学的示范性软件学院。 多次获得各种荣誉称号和奖励，如：全国科学大会奖、国家科技进步二等奖、电子工业部科技进步特等奖、国家级教学成果奖一等奖等十六项国家及部委级的奖励、全国“三八”红旗手、首都“巾帼十杰”、全国高等学校先进科技工作者、国家“七五”、“八五”、“九五”国家重点科技攻关计划先进个人、“光华科技基金”一等奖、何梁何利科学与技术进步奖、中国计算机学会终身成就奖、北京大学蔡元培奖、国华杰出学者奖等。 发表论文150余篇，编著10部，培养了百余名硕士、博士和博士后。 地址：北京市海淀区颐和园路5号 | 邮编：100871 版权所有 北京大学计算机学院",
+    "same_declared_individual_homepage": null,
+    "basis": "Literal complete English named faculty identity paired to the named Chinese profile by the same professional email field (Chinese page renders the at-sign as an image), and the identical declared individual homepage where present. Literal source name order is retained. No model transliteration."
+   }
+  ]
+ },
+ "曾炜": {
+  "aliases": [
+   "Wei Zeng"
+  ],
+  "alias_evidence": [
+   {
+    "alias": "Wei Zeng",
+    "url": "https://www.ai.pku.edu.cn/en/info/1459/2083.htm",
+    "sha256": "b118ad0375229a22581e0a1d526b06a0393aabbbb2174b72ad649601941cdf2a",
+    "source_file": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/source-bytes/b118ad0375229a22581e0a1d526b06a0393aabbbb2174b72ad649601941cdf2a",
+    "quote": "Wei Zeng-北京大学人工智能研究院 CH | PKU Home About Overview Dean's Message Leadership Centers Centers for Artificial General Intelligence Centers for AI+Humanities and Social Sciences Centers for AI+Medical Centers for AI+Science Faculty Institute for Artificial Intelligence Artificial General Intelligence Centers AI+Humanities and Social Sciences Centers AI+Medical Centers AI+Science Centers News Events Open Menu Home About Overview Dean's Message Leadership Centers Centers for Artificial General Intelligence Centers for AI+Humanities and Social Sciences Centers for AI+Medical Centers for AI+Science Faculty Institute for Artificial Intelligence Artificial General Intelligence Centers AI+Humanities and Social Sciences Centers AI+Medical Centers AI+Science Centers News Events CH PKU Home >> Faculty >> Artificial General Intelligence Centers >> Center for Large model >> Content Wei Zeng Title Research Professor Department School of Computer Science Research Areas AI platform and system, computer vision, media processing Office Tel 86-10-62758116 E-mail weizeng@pku.edu.cn Homepage http://idm.pku.edu.cn/info/1017/1047.htm Zeng,Wei is an research professor of the School of Computer Science, Peking University. He was a senior researcher at NEC Laboratories, China from 2005 to 2015. He worked as a visiting scholar at Stanford University in 2012. He received his PhD degree in Computer Science and Engineering from the Harbin Institute of Technology, in 2005. His research interests include artificial intelligence (AI computing platform), computer vision (object detection and segmentation) and media analysis (video retrieval). He is the authors or coauthors of over 50 refereed journals and conference papers. He is the technology commit member of the OpenI artificial intelligence community, Ministry of science and technology. He was the reviewer of CVPR2021，ICPR20 20, BigMM2020、BigMM2019、BigMM2018， ACCV2018, CVPR2018, ICPR2016. 上一页： Zhifang Sui 下一页： Yunhai Tong No.5 Yiheyuan Road, Haidian District, Beijing, P.R.China 100871 Tel：86-10-62755373 Email：aipku@pku.edu.cn",
+    "observed": "2026-11-20T01:28:11",
+    "matched_professional_email": "weizeng@pku.edu.cn",
+    "paired_chinese_url": "https://cs.pku.edu.cn/info/1086/3081.htm",
+    "paired_chinese_sha256": "725262661df127a2500cbc9018fb6affca1133a2da686537b3e6a04b07a99e3f",
+    "paired_chinese_quote": "曾炜-北京大学计算机学院 北京大学 | 会议室预订 | English 首页 关于我们 概况 组织体系 委员会 院长寄语 学院架构 师资队伍 院士 杰出人才 荣誉学衔 教研系列 研究系列 教学系列 工程系列 博士后 教辅行政 光荣退休 学院新闻 新闻动态 讲座信息 教务通知 科研通知 通知公告 学科建设 研究领域 研究机构 科研基地 科研项目 关联机构 产学研合作 教育教学 本科生教育 研究生教育 招生信息 教务通知 学生工作 党团建设 学生动态 学工通知 国际化 实习生项目 暑期夏令营 留学生项目 International Student Admission 招贤纳士 教师 博士后 专职研究人员 教学科研辅助 教工之家 组织机构 新闻动态 精彩瞬间 院友 院友之家 通知公告 院友活动 科技创新实践课程 校友企业参访 基金捐赠 办公服务 会议室预定 教学类 科研类 行政类 下载区 留言板 首页 关于我们 概况 组织体系 委员会 院长寄语 学院架构 师资队伍 院士 杰出人才 荣誉学衔 教研系列 研究系列 教学系列 工程系列 博士后 教辅行政 光荣退休 学院新闻 新闻动态 讲座信息 教务通知 科研通知 通知公告 学科建设 研究领域 研究机构 科研基地 科研项目 关联机构 产学研合作 教育教学 本科生教育 研究生教育 招生信息 教务通知 学生工作 党团建设 学生动态 学工通知 国际化 实习生项目 暑期夏令营 留学生项目 International Student Admission 招贤纳士 教师 博士后 专职研究人员 教学科研辅助 教工之家 组织机构 新闻动态 精彩瞬间 北京大学 | 会议室预订 | English × 您现在的位置： 首页 » 师资队伍 » 教研系列 » 按名字 » Z » 正文 师资队伍 院士 杰出人才 荣誉学衔 教研系列 研究系列 教学系列 工程系列 博士后 教辅行政 光荣退休 师资队伍 院士 杰出人才 荣誉学衔 教研系列 研究系列 教学系列 工程系列 博士后 教辅行政 光荣退休 Z 曾炜 职称： 研究员 研究所： 视频与视觉技术研究所 研究领域： 人工智能、多媒体 办公电话： 86-10-******** 电子邮件： weizeng pku.edu.cn 个人主页： http://idm.pku.edu.cn/info/1017/1047.htm 主要研究方向 AI平台与系统、计算机视觉、媒体处理、对象检测、运动对象分割 科研/教育经历 2014-05至今，北京大学，计算机学院，数字媒体研究所，副研究员 2005-06至2014-04，日电(中国)有限公司，NEC中国研究院，高级研究员、研究部长 1993-09 至 2005-02，哈尔滨工业大学，计算机系，计算机应用专业，本、硕、博 研究成果概况 曾炜，博士，2005年毕业于哈尔滨工业大学计算机应用技术专业；博士毕业后加入NEC中国研究院，从事多媒体技术应用系统研究，先后任副研究员、研究员、高级研究员、研究部长。2014年5月，曾炜博士加盟北京大学视频与视觉技术国家工程研究中心，任副研究员。曾炜博士拥有20年相关专业研发背景、9年跨国公司研究经历，长期从事人工智能、智能计算系统、图像处理、计算机视觉、模式识别、多媒体领域的研究工作。曾炜博士先后发表50余篇学术论文，申请超过20多项中外专利，获得10多项国家和省部级科研项目资金资助；担任CVPR2021、CVPR2018、BigMM2020、BigMM2019、BigMM2018、ICPR2020，ICPR2016、ACCV2018等的PC Member或审稿人；担任科技部新一代人工智能启智社区技术委员会委员。 主要科研项目： 1.科技部科技创新2030-“新一代人工智能”重大项目，“新一代人工智能开源社区软硬件基础支撑平台”，2020/7-2023/6。 2.科技部重点研发计划，“大规模视频节目的实时检测分析系统与示范应用”，2017/10-2023/03。 3.广东省重点研发计划，“面向AI超算原型机的核心技术研发”，2019/9-2021/8 4.广东省重点研发计划，“可敏捷定制的智能视觉处理器及系统应用”，2020/01-2023/01。 5. 国家自然科学基金重点项目，“近浅海水下捕捞机器人的基础理论与关键技术研究”，2017/1-2021/12 6. 企业合作项目, “NVAIL联合实验室”，2016/1-2020/12。 地址：北京市海淀区颐和园路5号 | 邮编：100871 版权所有 北京大学计算机学院",
+    "same_declared_individual_homepage": "http://idm.pku.edu.cn/info/1017/1047.htm",
+    "basis": "Literal complete English named faculty identity paired to the named Chinese profile by the same professional email field (Chinese page renders the at-sign as an image), and the identical declared individual homepage where present. Literal source name order is retained. No model transliteration."
+   }
+  ],
+  "dblp_identity_review": {
+   "decision": "existing_pid_primary_faculty_biography_correspondence",
+   "pid": "https://dblp.org/pid/80/1961-6",
+   "why": "Independently stated full English faculty identity, exact weizeng@pku faculty email, same declared individual homepage, and distinctive matching Peking video-technology unit, NEC Laboratories predecessor and Harbin computer science background. The existing PID is retained; no new pinyin or name-only binding.",
+   "record_affiliations": [
+    "Peking University, School of Electronics Engineering and Computer Science, National Engineering Laboratory for Video Technology, Beijing, China",
+    "Cooperative Medianet Innovation Center, China",
+    "NEC Laboratories, Beijing, China",
+    "Harbin Institute of Technology, Department of Computer Science, Harbin, China"
+   ],
+   "independent_name_evidence": [
+    {
+     "alias": "Wei Zeng",
+     "url": "https://www.ai.pku.edu.cn/en/info/1459/2083.htm",
+     "sha256": "b118ad0375229a22581e0a1d526b06a0393aabbbb2174b72ad649601941cdf2a",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/source-bytes/b118ad0375229a22581e0a1d526b06a0393aabbbb2174b72ad649601941cdf2a",
+     "quote": "Wei Zeng-北京大学人工智能研究院 CH | PKU Home About Overview Dean's Message Leadership Centers Centers for Artificial General Intelligence Centers for AI+Humanities and Social Sciences Centers for AI+Medical Centers for AI+Science Faculty Institute for Artificial Intelligence Artificial General Intelligence Centers AI+Humanities and Social Sciences Centers AI+Medical Centers AI+Science Centers News Events Open Menu Home About Overview Dean's Message Leadership Centers Centers for Artificial General Intelligence Centers for AI+Humanities and Social Sciences Centers for AI+Medical Centers for AI+Science Faculty Institute for Artificial Intelligence Artificial General Intelligence Centers AI+Humanities and Social Sciences Centers AI+Medical Centers AI+Science Centers News Events CH PKU Home >> Faculty >> Artificial General Intelligence Centers >> Center for Large model >> Content Wei Zeng Title Research Professor Department School of Computer Science Research Areas AI platform and system, computer vision, media processing Office Tel 86-10-62758116 E-mail weizeng@pku.edu.cn Homepage http://idm.pku.edu.cn/info/1017/1047.htm Zeng,Wei is an research professor of the School of Computer Science, Peking University. He was a senior researcher at NEC Laboratories, China from 2005 to 2015. He worked as a visiting scholar at Stanford University in 2012. He received his PhD degree in Computer Science and Engineering from the Harbin Institute of Technology, in 2005. His research interests include artificial intelligence (AI computing platform), computer vision (object detection and segmentation) and media analysis (video retrieval). He is the authors or coauthors of over 50 refereed journals and conference papers. He is the technology commit member of the OpenI artificial intelligence community, Ministry of science and technology. He was the reviewer of CVPR2021，ICPR20 20, BigMM2020、BigMM2019、BigMM2018， ACCV2018, CVPR2018, ICPR2016. 上一页： Zhifang Sui 下一页： Yunhai Tong No.5 Yiheyuan Road, Haidian District, Beijing, P.R.China 100871 Tel：86-10-62755373 Email：aipku@pku.edu.cn",
+     "observed": "2026-11-20T01:28:11",
+     "matched_professional_email": "weizeng@pku.edu.cn",
+     "paired_chinese_url": "https://cs.pku.edu.cn/info/1086/3081.htm",
+     "paired_chinese_sha256": "725262661df127a2500cbc9018fb6affca1133a2da686537b3e6a04b07a99e3f",
+     "paired_chinese_quote": "曾炜-北京大学计算机学院 北京大学 | 会议室预订 | English 首页 关于我们 概况 组织体系 委员会 院长寄语 学院架构 师资队伍 院士 杰出人才 荣誉学衔 教研系列 研究系列 教学系列 工程系列 博士后 教辅行政 光荣退休 学院新闻 新闻动态 讲座信息 教务通知 科研通知 通知公告 学科建设 研究领域 研究机构 科研基地 科研项目 关联机构 产学研合作 教育教学 本科生教育 研究生教育 招生信息 教务通知 学生工作 党团建设 学生动态 学工通知 国际化 实习生项目 暑期夏令营 留学生项目 International Student Admission 招贤纳士 教师 博士后 专职研究人员 教学科研辅助 教工之家 组织机构 新闻动态 精彩瞬间 院友 院友之家 通知公告 院友活动 科技创新实践课程 校友企业参访 基金捐赠 办公服务 会议室预定 教学类 科研类 行政类 下载区 留言板 首页 关于我们 概况 组织体系 委员会 院长寄语 学院架构 师资队伍 院士 杰出人才 荣誉学衔 教研系列 研究系列 教学系列 工程系列 博士后 教辅行政 光荣退休 学院新闻 新闻动态 讲座信息 教务通知 科研通知 通知公告 学科建设 研究领域 研究机构 科研基地 科研项目 关联机构 产学研合作 教育教学 本科生教育 研究生教育 招生信息 教务通知 学生工作 党团建设 学生动态 学工通知 国际化 实习生项目 暑期夏令营 留学生项目 International Student Admission 招贤纳士 教师 博士后 专职研究人员 教学科研辅助 教工之家 组织机构 新闻动态 精彩瞬间 北京大学 | 会议室预订 | English × 您现在的位置： 首页 » 师资队伍 » 教研系列 » 按名字 » Z » 正文 师资队伍 院士 杰出人才 荣誉学衔 教研系列 研究系列 教学系列 工程系列 博士后 教辅行政 光荣退休 师资队伍 院士 杰出人才 荣誉学衔 教研系列 研究系列 教学系列 工程系列 博士后 教辅行政 光荣退休 Z 曾炜 职称： 研究员 研究所： 视频与视觉技术研究所 研究领域： 人工智能、多媒体 办公电话： 86-10-******** 电子邮件： weizeng pku.edu.cn 个人主页： http://idm.pku.edu.cn/info/1017/1047.htm 主要研究方向 AI平台与系统、计算机视觉、媒体处理、对象检测、运动对象分割 科研/教育经历 2014-05至今，北京大学，计算机学院，数字媒体研究所，副研究员 2005-06至2014-04，日电(中国)有限公司，NEC中国研究院，高级研究员、研究部长 1993-09 至 2005-02，哈尔滨工业大学，计算机系，计算机应用专业，本、硕、博 研究成果概况 曾炜，博士，2005年毕业于哈尔滨工业大学计算机应用技术专业；博士毕业后加入NEC中国研究院，从事多媒体技术应用系统研究，先后任副研究员、研究员、高级研究员、研究部长。2014年5月，曾炜博士加盟北京大学视频与视觉技术国家工程研究中心，任副研究员。曾炜博士拥有20年相关专业研发背景、9年跨国公司研究经历，长期从事人工智能、智能计算系统、图像处理、计算机视觉、模式识别、多媒体领域的研究工作。曾炜博士先后发表50余篇学术论文，申请超过20多项中外专利，获得10多项国家和省部级科研项目资金资助；担任CVPR2021、CVPR2018、BigMM2020、BigMM2019、BigMM2018、ICPR2020，ICPR2016、ACCV2018等的PC Member或审稿人；担任科技部新一代人工智能启智社区技术委员会委员。 主要科研项目： 1.科技部科技创新2030-“新一代人工智能”重大项目，“新一代人工智能开源社区软硬件基础支撑平台”，2020/7-2023/6。 2.科技部重点研发计划，“大规模视频节目的实时检测分析系统与示范应用”，2017/10-2023/03。 3.广东省重点研发计划，“面向AI超算原型机的核心技术研发”，2019/9-2021/8 4.广东省重点研发计划，“可敏捷定制的智能视觉处理器及系统应用”，2020/01-2023/01。 5. 国家自然科学基金重点项目，“近浅海水下捕捞机器人的基础理论与关键技术研究”，2017/1-2021/12 6. 企业合作项目, “NVAIL联合实验室”，2016/1-2020/12。 地址：北京市海淀区颐和园路5号 | 邮编：100871 版权所有 北京大学计算机学院",
+     "same_declared_individual_homepage": "http://idm.pku.edu.cn/info/1017/1047.htm",
+     "basis": "Literal complete English named faculty identity paired to the named Chinese profile by the same professional email field (Chinese page renders the at-sign as an image), and the identical declared individual homepage where present. Literal source name order is retained. No model transliteration."
+    }
+   ],
+   "reviewer": "codex-sjtu-zero-1119",
+   "reviewed_on": "2026-11-20"
+  },
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No new ORCID independently certified; existing original identifiers retain their normal checks.",
+   "evidence": []
+  }
  }
 }

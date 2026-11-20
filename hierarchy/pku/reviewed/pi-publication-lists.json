@@ -3281,5 +3281,19 @@
    },
    "basis": "Primary authored paper explicitly credits the independently source-stated full faculty name at Peking University; exact faculty email retained where present. Exact work ownership only, no global author binding."
   }
+ ],
+ "刘扬": [
+  {
+   "title": "《同义词词林》的嵌入表示与应用评估",
+   "year": 2018,
+   "doi": "10.6043/j.issn.0438-0479.201805013",
+   "url": "https://jxmu.xmu.edu.cn/Upload/Park/c417199e-a3c2-435e-b264-fd8975be32fb.pdf",
+   "sha256": "5781acac64c08d3c258f047a55418b62086d9514d36b32d4736b8b620bdc3352",
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/pku5-ts75-whu140-1120/source-bytes/5781acac64c08d3c258f047a55418b62086d9514d36b32d4736b8b620bdc3352",
+   "source_pdf_page_index": 18,
+   "quote": " 第 57 卷 第6期 厦门大学学报(自然科学版) Vo l.57 No .6 2018 年 11 月 J ourna lofXi amenUn ive rsi ty( Nat ura lSc i e) enc Nov.2018 i: do 6043/ 10. j.i ssn. 0438 -0479. 201805013 《同义词词林 》的嵌入表示与应用评估 段宇光1,2,刘 扬1,3� ,俞士汶1,3 ( 1.北京大学计算语言学教育部重点实验室, 3.北京大学计算语言学研究所,北京 100871) 2.北京大学元培学院, 摘要:在自然语言处理中,嵌入表示是表达语言知识的重要途径和手段,以《同义词词林》为例,提 出 基 于 知 识 库 训 练 嵌 入表示的伪句式构造方法,并在多项任务上测试新方法的有效性 .根据 《同 义 词 词 林》词 义 编 码 反 映 的 层 级 结 构,将 这 些 编码扩展为多种伪句式,并据此生成 不 同 的 伪 语 料 库,采 用 wo rd2ve c 模 型 在 伪 语 料 库 上 训 练 义 素 向 量 及 词 向 量,得 到 C iLi n2Ve c资源,并应用于词义合成、类比 推 理 和 词 义 相 似 度 计 算 等 任 务 .在 词 义 合 成、类 比 推 理 任 务 上 的 准 确 率 达 到 90% 以上,超过了以往在语料库上训得的结果 .证明该方法可以有效地将知识库中的理性知识注入嵌 入 表 示 中,也 显 示 了C iLi n2Ve c嵌入表示资源在应用上的巨大潜力 . 关键词:《同义词词林》;嵌入表示;词义合成;类比推理;相似度 TP391 中图分类号: A 文献标志码: 0438 文章编号: -0479( 2018) 06- 0867 -09 在机器智能时 代,自 然 语 言 的 理 解 和 分 析 具 有 重 入表示的潜在需求,挖掘 Wo rdNet图结构中简化的邻 要价 值 .在 实 现 途 径 上,大 体 分 为 基 于 知 识 库 的 理 性 [ ] 接 关 系 信 息 15 或 者 参 照 多 部 词 典 的 释 义 条 目 信 方法和基于语料库 的 经 验 方 法 .在 理 性 方 法 方 面,《同 息 [16],以此作为训 练 内 容 来 获 得 词 嵌 入 表 示;也 有 人 义词词林》(以下 简 称《词 林》)作 为 汉 语 知 识 库 的 一 个 关注如何由 已 有 的 词 嵌 入 表 示 获 得 义 素 嵌 入 表 示 和 典范代表,由语言学 家 对 汉 语 中 的 词 进 行 划 分、归 类, 同义词集嵌入表示 [17],以及通过建立词嵌入表示到同 形成语义上的层 级 结 构,在 词 义 相 似 度 计 算 [1-3]、实 体 义词集的映射来提高词向量的解释性 [18];另有一些工 关系抽取 [4-5]、语义 角 色 标 注 [6]、文 本 分 类 [7]等 多 种 任 作希望在语料库训 练 中 加 入 词 义、句 法 知 识 以 获 得 更 务或 应 用 中 有 广 泛 影 响;在 经 验 方 法 方 面,建 立 在 语 有效的 词 嵌 入 表 示 [19];或 者 采 用 随 机 游 走 ( random 料统计分析上的分 布 式 表 示 也 在 不 断 发 展,早 期 基 于 wa lk)方法利 用 知 识 库 构 建 伪 语 料,再 通 过 神 经 网 络 词共 现 矩 阵 获 得 词 嵌 入 表 示 [ 8- ,后 来 通 过 前 馈 神 经 10] 训练获得词嵌入表示 [20].这些方法大多是在基于真语 网络学习词嵌入的方法成为主流 [11],并广泛应用于自 料库训练词向量,部 分 地 加 入 或 联 结 了 知 识 库 中 的 词 . 义、句 法 知 识 .之 后 邻 接 关 系 信 息 及 随 机 游 走 方 法 对 [ 1214] - 然语言处理的多种任务或应用 基于知识库 的 理 性 方 法,解 释 性 强,但 一 般 情 况 此有 所 改 进,不 再 依 赖 于 真 语 料 库 的 预 训 练,但 在 利 下需要针对不同任 务 设 计 不 同 算 法,在 不 同 领 域 间 的 用知识库知 识 构 建 嵌 入 表 示 或 构 建 伪 语 料 时 采 用 了 适用 性 较 差 .而 基 于 语 料 库 的 经 验 方 法,往 往 采 用 无 相对间接、繁琐的手 段,其 生 成 过 程 较 为 复 杂 .除 此 之 监督 训 练,自 动 化 程 度 高,获 得 的 词 向 量 可 以 适 用 于 外,针 对 一 般 的 知 识 库 资 源,目 前 也 没 有 相 对 直 接 的 多种任务 .因此,如何 将 两 者 的 优 势 结 合 起 来,采 用 经 应对策略和解决方法 . 验方法在知识库中 自 动 地 提 取 词 义 信 息,最 大 程 度 地 本研究使 用 哈 尔 滨 工 业 大 学 研 发 的 《词 林》扩 展 重复使用已有的人 类 专 家 知 识,获 得 适 用 于 多 种 任 务 版(h ttp:∥www. lt- pcl oud. com/down load)为 知 识 本 的嵌入表示,是一个较新的研究课题 . 体,提出并展示基于 知 识 库 训 练 嵌 入 表 示 的 伪 句 式 构 此前,有研究者注意 到 将 理 性 知 识 注 入 以 改 善 嵌 造方法 .根据 《词 林》词 义 编 码 的 层 级 结 构,将 其 扩 展 收稿日期: 2018-05- 10 录用日期: 2018-08 -06 基金项目:国家重点基础研究发展计划( 973 计划)(2014CB340504);国家社会科学基金重大项目( 12&ZD119);国家社会科 学 基 金( 16BYY137) * 通信作者: l iuyang@pku. edu.cn 引文格式:段宇光,刘扬,俞士汶 .《同义词词林》的嵌入表示与应用评估[ J].厦门大学学报(自然科学版), 2018, 57(6):867 -875. Cit aton: i DUAN Y G, LIU Y, YUSW. Anembeddedr epr esen tat ionfo r\"Tongy iciC ili n\"andi tseval uat ionontsks[ a J].JXiamen Un ivNa tSci,2018,57(6): 867-875.(i nChinese) h ttp:∥j xmu. xmu. edu. cn ",
+   "observed": "2026-11-20T01:20:22",
+   "basis": "Actual primary publisher issue, article first page at zero-based PDF page18: full Chinese author credit 刘扬 and PKU computational linguistics affiliations, explicit journal volume57 issue6 November2018, page867 onward and DOI. Multi-article PDF disambiguated explicitly. Exact-work proof only."
+  }
  ]
 }
