@@ -421,6 +421,39 @@ def reviewed_relationship_type(row, role, withheld=False):
     raise ValueError(f"invalid reviewed relationship {relationship!r} for role {role!r}")
 
 
+def unresolved_roster_observations(group):
+    """Source observations remain visible without becoming people, memberships or links.
+
+    A researched-evidence group may explicitly list ``unresolved_students``.
+    These records require a reason and a hashed quote, and have no accepted
+    identity or relationship years. They are carried only on the PI record.
+    """
+    if not group or 'unresolved_students' not in group:
+        return []
+    rows = group['unresolved_students']
+    if not isinstance(rows, list):
+        raise ValueError('unresolved_students must be a list of source observations')
+    result = []
+    for row in rows:
+        if not isinstance(row, dict) or any(not isinstance(row.get(k), str) or not row[k].strip()
+                                          for k in ('name', 'reason', 'url', 'sha256', 'quote')):
+            raise ValueError('unresolved roster observation requires name, reason, url, sha256 and quote')
+        if not re.fullmatch(r'[0-9a-f]{64}', row['sha256']) or not re.match(r'^https?://[^/\s]+', row['url']):
+            raise ValueError('unresolved roster observation requires a SHA-256 and HTTP source URL')
+        if row.get('status', 'unresolved') != 'unresolved' or any(row.get(k) for k in
+                ('person', 'personId', 'personIds', 'student', 'years', 'relationship', 'work', 'works')):
+            raise ValueError('unresolved roster observation cannot assert an accepted identity, dates or relationship')
+        observed = dict(name=row['name'], reason=row['reason'], url=row['url'], sha256=row['sha256'],
+                        quote=row['quote'], status='unresolved')
+        for key in ('source_record_id', 'captured', 'section', 'source_name'):
+            if key in row:
+                if not isinstance(row[key], str) or not row[key].strip():
+                    raise ValueError('unresolved roster observation has invalid ' + key)
+                observed[key] = row[key]
+        result.append(observed)
+    return result
+
+
 def researched(ctx, stu, by_name):
     """R-STU-01: researched advisees and lab members with a quote and hash (gap-evidence.json and RESEARCHED_FILES); a
     unique collection person of that name takes the record, else an ext:<school>:<name> id."""
@@ -428,15 +461,27 @@ def researched(ctx, stu, by_name):
     ren = renamed_pis(pis, school, HERE)
     ge = {ren.get(k, k): v for k, v in ge.items()}
     fe = collections.defaultdict(lambda: dict(students=[]))  # researched students: thin labs and the thesis hunt
+    unresolved = collections.defaultdict(list)
+    for pi, group in ge.items():
+        unresolved[pi].extend(unresolved_roster_observations(group))
     for fn in RESEARCHED_FILES:
         if P.data(fn, school, root=HERE).exists():
             for r in read(P.data(fn, school, root=HERE)):
                 fe[ren.get(r['pi'], r['pi'])]['students'] = list(fe[ren.get(r['pi'], r['pi'])]['students']) + list(r.get('students') or [])
+                unresolved[ren.get(r['pi'], r['pi'])].extend(unresolved_roster_observations(r))
     for s_ in accepted_additions(school, 'students', HERE, ctx.n):  # LP-STU-01, accepted (docs/LAB-PAGES.md): one row per student
         fe[ren.get(s_['pi'], s_['pi'])]['students'] = list(fe[ren.get(s_['pi'], s_['pi'])]['students']) + [s_]
     dec_f = P.data('student-decisions.json', school, root=HERE)
     visiting_decided = {(ren.get(pi_, pi_), SD.fold(nm_)) for pi_, d_ in (read(dec_f) if dec_f.exists() else {}).items() for nm_, v_ in d_.items() if v_.get('decision') == 'visiting'}
     for p in pis:  # researched students (gap-evidence.json, few-students-evidence.json): a stated advisee or lab member, with its quote
+        if unresolved.get(p['pi']):
+            seen = set()
+            p['unresolvedRosterObservations'] = []
+            for observation in unresolved[p['pi']]:
+                key = tuple(observation.get(k) for k in ('name', 'url', 'sha256', 'source_record_id'))
+                if key not in seen:
+                    p['unresolvedRosterObservations'].append(observation)
+                    seen.add(key)
         for s_ in list((ge.get(p['pi']) or {}).get('students') or []) + list((fe.get(p['pi']) or {}).get('students') or []):
             if not (s_.get('name') and s_.get('quote') and s_.get('sha256')):
                 continue

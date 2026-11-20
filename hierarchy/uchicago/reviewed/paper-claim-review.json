@@ -1,0 +1,81 @@
+{
+ "version": 1,
+ "school": "uchicago",
+ "decisions": [
+  {
+   "id": "evans-language-density-preprint-published-20261120",
+   "pi": "James A. Evans",
+   "decision": "merge",
+   "match": {
+    "doi": "10.48550/arxiv.2112.08491"
+   },
+   "into": {
+    "doi": "10.1038/s41562-024-01815-w"
+   },
+   "why": "The primary arXiv record explicitly lists Nat Hum Behav (2024) and the published related DOI; retain the published version as lead and the 2021 preprint as an edition, once both pass native gates.",
+   "reviewed_by": "codex-evans-20261120",
+   "reviewed_at": "2026-11-20",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2112.08491",
+     "sha256": "2c02d7be04f3874ebb2e94ba1b7aabb4e3ae631d91d5347a7fc363ad653cabcb",
+     "quote": "Comments: Nat Hum Behav (2024) Subjects: Computation and Language (cs.CL) Cite as: arXiv:2112.08491 [cs.CL] (or arXiv:2112.08491v2 [cs.CL] for this version) https://doi.org/10.48550/arXiv.2112.08491 Focus to learn more arXiv-issued DOI via DataCite Related DOI : https://doi.org/10.1038/s41562-024-01815-w"
+    }
+   ]
+  },
+  {
+   "id": "evans-simulating-subjects-preprint-published-20261120",
+   "pi": "James A. Evans",
+   "decision": "merge",
+   "match": {
+    "doi": "10.31235/osf.io/vp3j2_v2"
+   },
+   "into": {
+    "doi": "10.1177/00491241251337316"
+   },
+   "why": "Evans own CV publication110 explicitly anchors the journal DOI and the SocArXiv vp3j2 preprint under the same single citation. Retain the verified journal version as lead and the preprint versions as editions; both must still pass normal native gates.",
+   "reviewed_by": "codex-evans-20261120",
+   "reviewed_at": "2026-11-20",
+   "evidence": [
+    {
+     "url": "https://csh.ac.at/wp-content/uploads/2026/03/CV-1.pdf",
+     "sha256": "0e25a503398135e483ed6859fa237267056605192210555a0fc9c87138e5dcc4",
+     "quote": "Kozlowski, Austin, James Evans. 2025. “Simulating Subjects: The Promise and Peril of AI Stand-ins for Social Agents and Interactions.” Sociological Methods & Research. free",
+     "source_links": [
+      "https://journals.sagepub.com/doi/10.1177/00491241251337316?icid=int.sj-full-text.similar-articles.3",
+      "https://osf.io/preprints/socarxiv/vp3j2"
+     ],
+     "page": 5,
+     "link_extraction": "pdftohtml -xml -hidden; same numbered citation110"
+    }
+   ]
+  },
+  {
+   "id": "evans-ai-tools-preprint-published-20261120",
+   "pi": "James A. Evans",
+   "decision": "merge",
+   "match": {
+    "doi": "10.48550/arxiv.2412.07727"
+   },
+   "into": {
+    "doi": "10.1038/s41586-025-09922-y"
+   },
+   "why": "Evans own CV publication123 explicitly anchors both the Nature published DOI and arXiv2412.07727 under the same citation. Retain the independently verified 2026 Nature record as lead, with the 2024 preprint as an edition after native gates.",
+   "reviewed_by": "codex-evans-20261120",
+   "reviewed_at": "2026-11-20",
+   "evidence": [
+    {
+     "url": "https://csh.ac.at/wp-content/uploads/2026/03/CV-1.pdf",
+     "sha256": "0e25a503398135e483ed6859fa237267056605192210555a0fc9c87138e5dcc4",
+     "quote": "Hao, Qianyue, Fengli Xu, Yong Li, James Evans. 2026. “AI Tools Expand Scientists' Impact but Contracts Science's Focus.” Nature. doi.org/10.1038/s41586-025-09922-y. free.",
+     "source_links": [
+      "https://www.nature.com/articles/s41586-025-09922-y",
+      "https://arxiv.org/abs/2412.07727"
+     ],
+     "page": 3,
+     "link_extraction": "pdftohtml -xml -hidden; same numbered citation123"
+    }
+   ]
+  }
+ ]
+}

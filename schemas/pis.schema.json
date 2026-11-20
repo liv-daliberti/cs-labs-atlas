@@ -581,6 +581,66 @@
      ],
      "additionalProperties": false
     },
+    "unresolvedRosterObservations": {
+     "description": "Hashed source names awaiting identity or membership-date review; never accepted people, memberships, student links or paper attribution.",
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string",
+        "minLength": 1
+       },
+       "reason": {
+        "type": "string",
+        "minLength": 1
+       },
+       "url": {
+        "type": "string",
+        "pattern": "^https?://"
+       },
+       "sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+       },
+       "quote": {
+        "type": "string",
+        "minLength": 1
+       },
+       "source_record_id": {
+        "type": "string",
+        "minLength": 1
+       },
+       "captured": {
+        "type": "string",
+        "minLength": 1
+       },
+       "section": {
+        "type": "string",
+        "minLength": 1
+       },
+       "source_name": {
+        "type": "string",
+        "minLength": 1
+       },
+       "status": {
+        "type": "string",
+        "enum": [
+         "unresolved"
+        ]
+       }
+      },
+      "required": [
+       "name",
+       "reason",
+       "url",
+       "sha256",
+       "quote",
+       "status"
+      ],
+      "additionalProperties": false
+     }
+    },
     "counts": {
      "description": "Per-PI totals of the package.",
      "type": "object",
