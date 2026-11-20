@@ -11,11 +11,11 @@
   "copies.json": "e06f78556d51c18780b23e3eb4968552a9c9da30a6450038696d420c237d92a7"
  },
  "files_now": {
-  "pis.json": "cae2b98f430866215695ae19078dc915cb2b208dd4b6767f8231026054236c91",
-  "students.json": "1cc7641f54e942db91e8fec4bbb1d98a78fa8c94298bd64a69d37615801b6e6f",
-  "lab_papers.jsonl.gz": "c0834905867d94abb200b294f9ff4b94506eb69288569d2243522f6d2383eba2",
-  "student_papers.jsonl.gz": "12ff67bf597aaaa2ab6308a5dd272a2f8d82d5e3c3a0e8ccd3158f4fe844a034",
-  "copies.json": "e06f78556d51c18780b23e3eb4968552a9c9da30a6450038696d420c237d92a7"
+  "pis.json": "62f1d86f0922253a875127fc2061e9ccf3d8bb5831630c443ed09c5c8a760492",
+  "students.json": "bd78b3d118bbb553ba1abbd7a7bb69968eef53096a1d02fc01523f4359311e07",
+  "lab_papers.jsonl.gz": "fb9494c01383c0acd5b6a052542e7f3390041eb98a9efa943d3b257599340781",
+  "student_papers.jsonl.gz": "2230fcd20f579c262c2c647b09186961daec5ab81e571851edb69d2fe0143ba2",
+  "copies.json": "8ef0faa045b4a45f61eec1db0e5b5282a9f71710e79aa542e26f6bb3fe3afff4"
  },
  "lab_precision_uniform": {
   "k": 50,
@@ -96,7 +96,13 @@
   "hi": 1.0,
   "unclear": 0
  },
- "lab_coverage": null,
+ "lab_coverage": {
+  "p": null,
+  "n": 0,
+  "population": 0,
+  "not_applicable": true,
+  "reason": "D-0027: empty population (no DBLP coverage pool for the included PIs)"
+ },
  "lab_coverage_items": {
   "drawn": 0,
   "true_lab_papers": 0,
@@ -148,11 +154,11 @@
   ],
   "carried_forward": {},
   "files_now": {
-   "pis.json": "cae2b98f430866215695ae19078dc915cb2b208dd4b6767f8231026054236c91",
-   "students.json": "1cc7641f54e942db91e8fec4bbb1d98a78fa8c94298bd64a69d37615801b6e6f",
-   "lab_papers.jsonl.gz": "c0834905867d94abb200b294f9ff4b94506eb69288569d2243522f6d2383eba2",
-   "student_papers.jsonl.gz": "12ff67bf597aaaa2ab6308a5dd272a2f8d82d5e3c3a0e8ccd3158f4fe844a034",
-   "copies.json": "e06f78556d51c18780b23e3eb4968552a9c9da30a6450038696d420c237d92a7"
+   "pis.json": "62f1d86f0922253a875127fc2061e9ccf3d8bb5831630c443ed09c5c8a760492",
+   "students.json": "bd78b3d118bbb553ba1abbd7a7bb69968eef53096a1d02fc01523f4359311e07",
+   "lab_papers.jsonl.gz": "fb9494c01383c0acd5b6a052542e7f3390041eb98a9efa943d3b257599340781",
+   "student_papers.jsonl.gz": "2230fcd20f579c262c2c647b09186961daec5ab81e571851edb69d2fe0143ba2",
+   "copies.json": "8ef0faa045b4a45f61eec1db0e5b5282a9f71710e79aa542e26f6bb3fe3afff4"
   }
  },
  "population": {

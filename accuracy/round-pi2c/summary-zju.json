@@ -1,0 +1,257 @@
+{
+ "school": "zju",
+ "date": "2026-11-20",
+ "seed": 20261120310207009,
+ "n_verdicts": 175,
+ "files": {
+  "pis.json": "acd11b0d1747c0346e4527852100b718f2bdaaf59a87c8bd98ec5932c107655b",
+  "students.json": "67c709dd9ddcbd6c753afa7d04a6aa4ab37da96dcebe273d4026883c5248bcc9",
+  "lab_papers.jsonl.gz": "de842983e830803f1c0935503e6572dff8a8cafbddacd09ea67abfadddf25f8c",
+  "student_papers.jsonl.gz": "3dba3c01ea3201731dbb04ecc2c1d0f30cd2a7408d0c87ecae1ac5dece3b0285",
+  "copies.json": "bb889a7536996788bef48793d3912a2e4c16366b5760ceeb6ff30cdffbdd119a"
+ },
+ "files_now": {
+  "pis.json": "acd11b0d1747c0346e4527852100b718f2bdaaf59a87c8bd98ec5932c107655b",
+  "students.json": "67c709dd9ddcbd6c753afa7d04a6aa4ab37da96dcebe273d4026883c5248bcc9",
+  "lab_papers.jsonl.gz": "de842983e830803f1c0935503e6572dff8a8cafbddacd09ea67abfadddf25f8c",
+  "student_papers.jsonl.gz": "3dba3c01ea3201731dbb04ecc2c1d0f30cd2a7408d0c87ecae1ac5dece3b0285",
+  "copies.json": "bb889a7536996788bef48793d3912a2e4c16366b5760ceeb6ff30cdffbdd119a"
+ },
+ "lab_precision_uniform": {
+  "k": 48,
+  "n": 50,
+  "p": 0.96,
+  "lo": 0.8654,
+  "hi": 0.989,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 48,
+  "n": 50,
+  "p": 0.96,
+  "lo": 0.8654,
+  "hi": 0.989,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 58,
+  "n": 60,
+  "p": 0.9667,
+  "lo": 0.8864,
+  "hi": 0.9908,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 9,
+   "n": 9,
+   "p": 1.0,
+   "lo": 0.7009,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 1,
+   "n": 1,
+   "p": 1.0,
+   "lo": 0.2065,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 45,
+  "n": 45,
+  "p": 1.0,
+  "lo": 0.9213,
+  "hi": 1.0
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 45,
+  "not_lab_papers_absent": 2,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "namesake": 2
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "王锐|None|https://openalex.org/W3088197495",
+   "failure_type": "namesake",
+   "reason": "Analytical Chemistry DNA-damage foci paper (doi 10.1021/acs.analchem.0c03741, 2020) matched via anchored OA author id A5100431339, which in lab_papers belongs to a biosystems-engineering/food-science/materials Rui Wang (2017-2019 rows with College of Biosystems Engineering aff); the CAD&CG PI's rows use A5100431417; byline is all biomedical authors; the CAD&CG aff string looks like OpenAlex mis-assignment",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "王锐|None|https://openalex.org/W4407627543",
+   "failure_type": "namesake",
+   "reason": "Namesake: 'Rui Wang' with Xiaoyan Liu, Tao Chu on TFLN photonic polarizer (SPIE optoelectronic symposium, 10.1117/12.3056356) is a photonics researcher; PI Rui Wang is CAD&CG rendering; matched only by anchored author id, not on DBLP.",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_coverage",
+   "item": "陈为|journals/tmc/ChenHZLHZCLWW23",
+   "reason": "DOUBTFUL: IEEE TMC 2023 GoComfort (DOI 10.1109/tmc.2022.3198089): lead authors Longbiao Chen/Cheng Wang (Xiamen group); DBLP tags 'Wei Chen 0001' but no OpenAlex authorship or ZJU affiliation is stored (not in cache or lab_papers), so cannot decide whether Wei Chen is the ZJU PI or a namesake. Absent from build."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "沈春华|conf/nips/LinW0ZG0S22",
+   "reason": "DOUBTFUL: NeurIPS 2022 TMVPM: first authors Sun Yat-sen group (Wei-Shi Zheng), Shen last; year 2022 is inside period 2022- but no OpenAlex/page-1 affiliation for Shen is stored (not in cache or lab_papers; DOI absent), so ZJU affiliation unverified. Absent from build."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "王锐|journals/jcise/ShenWGW23",
+   "reason": "DOUBTFUL: Absent from build (no row in lab_papers, no stored OpenAlex/page-1 record for DOI 10.1115/1.4055732). Topic and coauthors (Shuming Gao, Chun Shen, Haiyan Wu, DBLP Rui Wang 0004) match PI's hex-mesh ZJU CAD&CG papers, but 2018-2021 rows of this group carry dual Ningbo University / ZJU affiliations, so 2023 school affiliation cannot be proven from stored evidence"
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "丁尧相",
+   "任重",
+   "何晓飞",
+   "何水兵",
+   "冯结青",
+   "刘忠鑫",
+   "刘玉生",
+   "卢丽强",
+   "卢立",
+   "吴春明",
+   "吴超",
+   "吴鸿智",
+   "周昆",
+   "周晓巍",
+   "唐敏",
+   "夏鑫",
+   "姚培森",
+   "崔兆鹏",
+   "巫英才",
+   "李明",
+   "李晓白",
+   "李松",
+   "李环",
+   "李玺",
+   "林峰",
+   "林海",
+   "沈春华",
+   "王新宇",
+   "王灿",
+   "王章野",
+   "王锐",
+   "章国锋",
+   "童若锋",
+   "蓝磊",
+   "蔡登",
+   "蔺宏伟",
+   "许威威",
+   "邹强",
+   "郑友怡",
+   "金小刚",
+   "陈为",
+   "陈明帅",
+   "陶煜波",
+   "霍宇驰",
+   "顾实",
+   "高艺",
+   "魏成坤",
+   "鲁伟明",
+   "鲍虎军"
+  ],
+  "n_pis": 49,
+  "files": {
+   "pis.json": "acd11b0d1747c0346e4527852100b718f2bdaaf59a87c8bd98ec5932c107655b",
+   "students.json": "67c709dd9ddcbd6c753afa7d04a6aa4ab37da96dcebe273d4026883c5248bcc9",
+   "lab_papers.jsonl.gz": "de842983e830803f1c0935503e6572dff8a8cafbddacd09ea67abfadddf25f8c",
+   "student_papers.jsonl.gz": "3dba3c01ea3201731dbb04ecc2c1d0f30cd2a7408d0c87ecae1ac5dece3b0285",
+   "copies.json": "bb889a7536996788bef48793d3912a2e4c16366b5760ceeb6ff30cdffbdd119a"
+  },
+  "included_sha": "b617b609f9c61f831aa011a06bfc18575e8c98f21023e3f75f6b2edba66d2650",
+  "projection_version": 1,
+  "held": [],
+  "carried_forward": {},
+  "files_now": {
+   "pis.json": "acd11b0d1747c0346e4527852100b718f2bdaaf59a87c8bd98ec5932c107655b",
+   "students.json": "67c709dd9ddcbd6c753afa7d04a6aa4ab37da96dcebe273d4026883c5248bcc9",
+   "lab_papers.jsonl.gz": "de842983e830803f1c0935503e6572dff8a8cafbddacd09ea67abfadddf25f8c",
+   "student_papers.jsonl.gz": "3dba3c01ea3201731dbb04ecc2c1d0f30cd2a7408d0c87ecae1ac5dece3b0285",
+   "copies.json": "bb889a7536996788bef48793d3912a2e4c16366b5760ceeb6ff30cdffbdd119a"
+  }
+ },
+ "population": {
+  "n_lab_papers": 2273,
+  "n_student_papers": 307,
+  "n_coverage_pool": 1617,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2c",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 60,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

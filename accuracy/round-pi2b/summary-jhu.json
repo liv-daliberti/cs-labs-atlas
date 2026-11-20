@@ -1,0 +1,320 @@
+{
+ "school": "jhu",
+ "date": "2026-11-20",
+ "seed": 20261120100456973,
+ "n_verdicts": 176,
+ "files": {
+  "pis.json": "118bd27630649d14f9a19714d4ae73bed1bf0f17e6b2b8a6f71a6cf5262568ed",
+  "students.json": "6b19ed2f7c1106484af179b7c1450d530e2a87e111a728d061cb78d7e69bcc42",
+  "lab_papers.jsonl.gz": "8b6f9af98bebf34812f9fdef9c19d39fa5101bb7f8317bc3bbd0066f461e4751",
+  "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
+  "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
+ },
+ "files_now": {
+  "pis.json": "118bd27630649d14f9a19714d4ae73bed1bf0f17e6b2b8a6f71a6cf5262568ed",
+  "students.json": "6b19ed2f7c1106484af179b7c1450d530e2a87e111a728d061cb78d7e69bcc42",
+  "lab_papers.jsonl.gz": "8b6f9af98bebf34812f9fdef9c19d39fa5101bb7f8317bc3bbd0066f461e4751",
+  "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
+  "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
+ },
+ "lab_precision_uniform": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 1,
+   "n": 1,
+   "p": 1.0,
+   "lo": 0.2065,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 60,
+  "n": 60,
+  "p": 1.0,
+  "lo": 0.9398,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "student_precision_uniform": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 10,
+   "n": 10,
+   "p": 1.0,
+   "lo": 0.7225,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 64,
+  "n": 64,
+  "p": 1.0,
+  "lo": 0.9434,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_coverage": {
+  "k": 44,
+  "n": 45,
+  "p": 0.9778,
+  "lo": 0.8843,
+  "hi": 0.9961
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 45,
+  "not_lab_papers_absent": 2,
+  "not_lab_papers_in_build": 1
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "missing_from_build": 1,
+  "not_a_paper": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Najim Dehak|conf/interspeech/VillalbaCSGMSBR19",
+   "failure_type": "missing_from_build",
+   "reason": "Not in build (no lab_papers row; dblp-recover try says no_open_page1_source, dblp_unconfirmed). Title 'The JHU-MIT Submission for NIST SRE18', Interspeech 2019 (DOI 10.21437/interspeech.2019-2713), JHU CLSP authors (Villalba, Chen, Snyder, Garcia-Romero, McCree) with Dehak listed CS/ECE 2016-2026: true JHU lab paper omitted. No stored page-1 affiliation, so moderately thin.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Ziang Xiao|conf/chi/MadenDLJCLKLXEX26",
+   "failure_type": "not_a_paper",
+   "reason": "In build (W7153838007, DOI 10.1145/3772363.3778709, CHI EA 2026) but the title is 'Third Workshop on Human-Centered Evaluation and Auditing of Language Models', a workshop proposal/extended abstract, not a research paper (JHU affiliation itself is fine: 'Computer Science, Johns Hopkins University').",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Laurent Younes|None|https://openalex.org/W2982579056",
+   "reason": "DOUBTFUL: Younes affiliation JHU AMS 2019 listing fine, but title 'Grant Report on PREDICT-ADFTD' (doi 10.20900/jpbs.20190017) is a grant progress report in a small journal; unclear if research output vs project description"
+  },
+  {
+   "sample": "student_precision",
+   "item": "Alan Yuille|ext:jhu:yixiong-chen|https://openalex.org/W4387206939",
+   "reason": "DOUBTFUL: Byline only has initials 'Y. Chen' among 13 authors of IJROBP 2023 NPC GTV paper (only Zhang and Yuille carry JHU affiliation, raw 'Johns Hopkins University, Baltimore'); no stored evidence Y. Chen is Yixiong Chen (JHU Yuille PhD)"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Mark Dredze|conf/emnlp/SpangherPGD24",
+   "reason": "DOUBTFUL: DBLP-only (dblp-dump persons, doi 10.18653/v1/2024.emnlp-main.1216, year 2024, Dredze listed 2016-2026) but no OpenAlex/raw affiliation stored for this paper (checked cache, pi-works, openalex-sweep); build omits it (in_PI_lab NO). Sibling Spangher-Dredze 2025 paper carries JHU affil, so likely a true lab paper, yet the 2024 school affiliation is unproven"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Berrak Sisman|conf/interspeech/NainiGSMUTMGDSB25",
+   "reason": "DOUBTFUL: Not in build (dblp-recover: no_open_page1_source, dblp_unconfirmed; no OpenAlex cache row). Interspeech 2025 challenge paper (DOI 10.21437/interspeech.2025-1972) with JHU CLSP coauthors (Dehak, Thebaud, Moro-Velazquez) and Sisman listed CS/ECE 2025-2026 with open-start period; her own affiliation on the paper is not stored and window proof is only 2025, so cannot decide true_lab_paper."
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "Abhishek Jain",
+   "Adam Charles",
+   "Alan Yuille",
+   "Alex Marder",
+   "Alex Szalay",
+   "Alexis Battle",
+   "Amitabh Basu",
+   "Anand Bhattad",
+   "Ananya Joshi",
+   "Anjalie Field",
+   "Anqi \"Angie\" Liu",
+   "Axel Krieger",
+   "Ben Langmead",
+   "Benjamin Van Durme",
+   "Berrak Sisman",
+   "Brice Ménard",
+   "Carey Priebe",
+   "Casey Overby Taylor",
+   "Chien-Ming Huang",
+   "Daniel Khashabi",
+   "David Yarowsky",
+   "Enrique Mallada",
+   "Eric Nalisnick",
+   "Erik Rye",
+   "Gillian Hadfield",
+   "Gregory D. Hager",
+   "Haimin Hu",
+   "Holden Lee",
+   "Homanga Bharadhwaj",
+   "Ilya Shpitser",
+   "Jaemin Cho",
+   "Jason Eisner",
+   "Jean Fan",
+   "Jennifer Hu",
+   "Jeremias Sulam",
+   "Jessica Sorrell",
+   "Joel Bader",
+   "John T. Hale",
+   "Jon Donnelly",
+   "Joshua T. Vogelstein",
+   "Krishan Sabnani",
+   "Krishna Murthy Jatavallabhula",
+   "Kristina Gligorić",
+   "Laurent Younes",
+   "Liliana Florea",
+   "Louis Whitcomb",
+   "Luana Ruiz",
+   "Lydia Zakynthinou",
+   "Mahyar Fazlyab",
+   "Mark Dredze",
+   "Mathias Unberath",
+   "Matthew Green",
+   "Michael Dinitz",
+   "Michael Kazhdan",
+   "Michael Oberst",
+   "Michael Schatz",
+   "Mihaela Pertea",
+   "Misha Kazhdan",
+   "Murat Kocaoglu",
+   "Najim Dehak",
+   "Nicolas Christianson",
+   "Nicolas Loizou",
+   "Noah Cowan",
+   "Philipp Koehn",
+   "Rachel Karchin",
+   "Raman Arora",
+   "Randal Burns",
+   "Renjie Zhao",
+   "Roy Adams",
+   "Russell Taylor",
+   "Sanjeev Khudanpur",
+   "Scott Smith",
+   "Sijia Geng",
+   "Soledad Villar",
+   "Soufiane Hayou",
+   "Steven Salzberg",
+   "Suchi Saria",
+   "Tamás Budavári",
+   "Tianmin Shu",
+   "Tinoosh Mohsenin",
+   "Tiziano Piccardi",
+   "Uthsav Chitra",
+   "Vishal Patel",
+   "Vladimir Braverman",
+   "Xin Li",
+   "Yaxing Yao",
+   "Yinzhi Cao",
+   "Yiqun Chen",
+   "Ziang Xiao",
+   "Zih-Yun “Sarah” Chiu",
+   "Ziyang Li",
+   "Zongwei Zhou"
+  ],
+  "n_pis": 92,
+  "files": {
+   "pis.json": "118bd27630649d14f9a19714d4ae73bed1bf0f17e6b2b8a6f71a6cf5262568ed",
+   "students.json": "6b19ed2f7c1106484af179b7c1450d530e2a87e111a728d061cb78d7e69bcc42",
+   "lab_papers.jsonl.gz": "8b6f9af98bebf34812f9fdef9c19d39fa5101bb7f8317bc3bbd0066f461e4751",
+   "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
+   "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
+  },
+  "included_sha": "64b348dc645c35b8ad7b878057cbed66e5a463d927c46d7b4831a7209e5352eb",
+  "projection_version": 1,
+  "held": [
+   [
+    "Krishna Murthy Jatavallabhula",
+    "ext:jhu:anagha-dangle"
+   ],
+   [
+    "Krishna Murthy Jatavallabhula",
+    "ext:jhu:faizal-karim"
+   ],
+   [
+    "Uthsav Chitra",
+    "ext:jhu:leyla-rasheed"
+   ]
+  ],
+  "carried_forward": {
+   "lab_paper": 6,
+   "student": 1,
+   "student_paper": 6
+  },
+  "files_now": {
+   "pis.json": "118bd27630649d14f9a19714d4ae73bed1bf0f17e6b2b8a6f71a6cf5262568ed",
+   "students.json": "6b19ed2f7c1106484af179b7c1450d530e2a87e111a728d061cb78d7e69bcc42",
+   "lab_papers.jsonl.gz": "8b6f9af98bebf34812f9fdef9c19d39fa5101bb7f8317bc3bbd0066f461e4751",
+   "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
+   "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
+  }
+ },
+ "population": {
+  "n_lab_papers": 5346,
+  "n_student_papers": 405,
+  "n_coverage_pool": 3544,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2b",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 61,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

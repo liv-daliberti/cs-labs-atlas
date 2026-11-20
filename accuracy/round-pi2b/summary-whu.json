@@ -1,0 +1,175 @@
+{
+ "school": "whu",
+ "date": "2026-11-20",
+ "seed": 2026112039659180,
+ "n_verdicts": 175,
+ "files": {
+  "pis.json": "24f8f8700ca1380e89c084378d301901ff4ed8e9c28f7406ca4e428bb66805d3",
+  "students.json": "dd6898863228db932ac275ee2b18490e77bc65eeccae941b824205882074e735",
+  "lab_papers.jsonl.gz": "1927435e9b4938cf629cdcb7810321f46fc0c56ee658b223b9885f65079e80e7",
+  "student_papers.jsonl.gz": "10e52268bc0f561f728a0fb4a65dec0e64e20fe9eaba2326afe7fdac52353926",
+  "copies.json": "0ccff8e1af6f67041dc65ced937151b3961c7e033d996bca8a33b478dedb0014"
+ },
+ "files_now": {
+  "pis.json": "24f8f8700ca1380e89c084378d301901ff4ed8e9c28f7406ca4e428bb66805d3",
+  "students.json": "dd6898863228db932ac275ee2b18490e77bc65eeccae941b824205882074e735",
+  "lab_papers.jsonl.gz": "1927435e9b4938cf629cdcb7810321f46fc0c56ee658b223b9885f65079e80e7",
+  "student_papers.jsonl.gz": "10e52268bc0f561f728a0fb4a65dec0e64e20fe9eaba2326afe7fdac52353926",
+  "copies.json": "0ccff8e1af6f67041dc65ced937151b3961c7e033d996bca8a33b478dedb0014"
+ },
+ "lab_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 60,
+  "n": 60,
+  "p": 1.0,
+  "lo": 0.9398,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 9,
+   "n": 9,
+   "p": 1.0,
+   "lo": 0.7009,
+   "hi": 1.0,
+   "unclear": 1
+  }
+ },
+ "student_precision_all40": {
+  "k": 64,
+  "n": 64,
+  "p": 1.0,
+  "lo": 0.9434,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_coverage": {
+  "k": 45,
+  "n": 45,
+  "p": 1.0,
+  "lo": 0.9213,
+  "hi": 1.0
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 45,
+  "not_lab_papers_absent": 5,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {},
+ "incorrect": [],
+ "unclear": [
+  {
+   "sample": "student_precision",
+   "item": "谢晓园|ext:whu:lin-xu|https://openalex.org/W7215065634",
+   "reason": "DOUBTFUL: Byline 'Xu, Lin' on arXiv 2609.39783 (2026) is a very common name; PI authorship affiliation is Wuhan Univ but Xu's own affiliation is not stored (not in OpenAlex cache); coauthors Song Yi/Xie Dongchen/Zhou Chunying plausible group but identity unconfirmed."
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "苏科华",
+   "董性平",
+   "袁志勇",
+   "谢晓园"
+  ],
+  "n_pis": 4,
+  "files": {
+   "pis.json": "24f8f8700ca1380e89c084378d301901ff4ed8e9c28f7406ca4e428bb66805d3",
+   "students.json": "dd6898863228db932ac275ee2b18490e77bc65eeccae941b824205882074e735",
+   "lab_papers.jsonl.gz": "1927435e9b4938cf629cdcb7810321f46fc0c56ee658b223b9885f65079e80e7",
+   "student_papers.jsonl.gz": "10e52268bc0f561f728a0fb4a65dec0e64e20fe9eaba2326afe7fdac52353926",
+   "copies.json": "0ccff8e1af6f67041dc65ced937151b3961c7e033d996bca8a33b478dedb0014"
+  },
+  "included_sha": "782330f086fb4b4876c252a339af8028b72da792bbcc5fdcdab09d37c625497e",
+  "projection_version": 1,
+  "held": [],
+  "carried_forward": {},
+  "files_now": {
+   "pis.json": "24f8f8700ca1380e89c084378d301901ff4ed8e9c28f7406ca4e428bb66805d3",
+   "students.json": "dd6898863228db932ac275ee2b18490e77bc65eeccae941b824205882074e735",
+   "lab_papers.jsonl.gz": "1927435e9b4938cf629cdcb7810321f46fc0c56ee658b223b9885f65079e80e7",
+   "student_papers.jsonl.gz": "10e52268bc0f561f728a0fb4a65dec0e64e20fe9eaba2326afe7fdac52353926",
+   "copies.json": "0ccff8e1af6f67041dc65ced937151b3961c7e033d996bca8a33b478dedb0014"
+  }
+ },
+ "population": {
+  "n_lab_papers": 190,
+  "n_student_papers": 107,
+  "n_coverage_pool": 175,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2b",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 60,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

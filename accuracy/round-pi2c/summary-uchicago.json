@@ -1,0 +1,369 @@
+{
+ "school": "uchicago",
+ "date": "2026-11-20",
+ "seed": 202611203082416654,
+ "n_verdicts": 186,
+ "files": {
+  "pis.json": "d9b055787ed6bf3dae8447bd2e9cdf6bb95912957f96121ba0fe33b53972211b",
+  "students.json": "5f6a8fcd1e411aeb0c4e3a34aa22a035e1bbb6451cfde7d1ff843d6ee3a7b800",
+  "lab_papers.jsonl.gz": "5e062dac47b03bb4a2fb573837f68c603d73328d8f445494a0c5b981050a00e8",
+  "student_papers.jsonl.gz": "a5410239ba6e4957cca58cc2bfa882f60e714a8aad4ab181fbc9f030668ed40c",
+  "copies.json": "68b430382caefb85d0300d579a9b8a32b17c231e80c169ccf5892752a4d2cf13"
+ },
+ "files_now": {
+  "pis.json": "d9b055787ed6bf3dae8447bd2e9cdf6bb95912957f96121ba0fe33b53972211b",
+  "students.json": "5f6a8fcd1e411aeb0c4e3a34aa22a035e1bbb6451cfde7d1ff843d6ee3a7b800",
+  "lab_papers.jsonl.gz": "5e062dac47b03bb4a2fb573837f68c603d73328d8f445494a0c5b981050a00e8",
+  "student_papers.jsonl.gz": "a5410239ba6e4957cca58cc2bfa882f60e714a8aad4ab181fbc9f030668ed40c",
+  "copies.json": "68b430382caefb85d0300d579a9b8a32b17c231e80c169ccf5892752a4d2cf13"
+ },
+ "lab_precision_uniform": {
+  "k": 48,
+  "n": 49,
+  "p": 0.9796,
+  "lo": 0.8931,
+  "hi": 0.9964,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 48,
+  "n": 49,
+  "p": 0.9796,
+  "lo": 0.8931,
+  "hi": 0.9964,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 62,
+  "n": 64,
+  "p": 0.9688,
+  "lo": 0.893,
+  "hi": 0.9914,
+  "unclear": 1
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 37,
+  "n": 38,
+  "p": 0.9737,
+  "lo": 0.8651,
+  "hi": 0.9953
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 38,
+  "not_lab_papers_absent": 10,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": {
+  "k": 6,
+  "n": 6,
+  "p": 1.0,
+  "lo": 0.6097,
+  "hi": 1.0
+ },
+ "student_coverage_items": {
+  "drawn": 6,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "not_a_paper": 2,
+  "missing_from_build": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "James A. Evans|None|https://openalex.org/W7140741146",
+   "failure_type": "not_a_paper",
+   "reason": "Title 'Volume 9, Issue 1 (2026): The Future of Social Computing' doi 10.1145/3803522 (ACM TSC) is an issue front-matter/editorial entry, not a research output; aff Dept of Sociology UChicago fine",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "identity_not_reviewed",
+   "item": "Aaron Potechin|None|https://openalex.org/W4411207295",
+   "failure_type": "not_a_paper",
+   "reason": "Title 'Introduction: ACM-SIAM Symposium on Discrete Algorithms (SODA) 2023 Special Issue', ACM TALG doi 10.1145/3742858 (2025), authors are the guest editors: an editorial/introduction, not a research output (affiliation UChicago and period are fine).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Yuxin Chen|conf/nips/LiuXS024",
+   "failure_type": "missing_from_build",
+   "reason": "NeurIPS 2024 'Contextual Active Model Selection' (DBLP key under Chen's pid 11/5123-1, 'Yuxin Chen 0001'); the stored row in Rick Stevens' lab carries page-1 evidence 'Department of Computer Science, University of Chicago' for the byline, and Chen has CS listings 2019-2026; research paper in the proven window, but Chen's lab does not contain it (other_labs=Rick Stevens only). Page-1 quote names Stevens' affiliation, Chen's own string not quoted (slightly thin).",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Pedro Lopes|None|https://openalex.org/W4288045656",
+   "reason": "DOUBTFUL: Lopes last author aff University of Chicago, 2022 doi 10.1145/3542651 in ACM interactions, a magazine feature; stored evidence cannot settle whether it is a research output vs column (thin)"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Aaron Elmore|conf/cidr/OtakiBEG25",
+   "reason": "DOUBTFUL: Absent from build (not in lab_papers, unavailable.jsonl, OA cache or pi-works). DBLP-dump authors Otaki, Benello, Elmore, Graefe, 2025 (companion 2024 Elmore/UChicago-group paper), Elmore listed 2016-2026 so period proven, but no stored affiliation for this paper; likely a true UChicago lab paper missing, cannot confirm from stored evidence."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Haifeng Xu|conf/nips/RenXD25",
+   "reason": "DOUBTFUL: Absent from build; NeurIPS 2025 paper by Ren, Xu, Deng (no DOI, no stored OpenAlex row or page-1 capture, not in the UChicago year sweep), so Xu's affiliation on it is not stored; Xu has UChicago listings through 2026 so it is plausibly a missed lab paper but unprovable from stored evidence. Thin."
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "Aaron Elmore",
+   "Aaron Potechin",
+   "Aaron Schein",
+   "Alex Kale",
+   "Alexander A. Razborov",
+   "Allyson Ettinger",
+   "Aloni Cohen",
+   "Amy R. Ward",
+   "Anand Bhattad",
+   "Andrew A. Chien",
+   "Andrew Drucker",
+   "Anne Rogers",
+   "Ari Holtzman",
+   "Ariel Feldman",
+   "Avrim Blum",
+   "Baris Ata",
+   "Ben Y. Zhao",
+   "Blase Ur",
+   "Bo Li",
+   "Bradley Shapiro",
+   "Brent Doiron",
+   "Bryon Aragam",
+   "Ce Zhang",
+   "Chao Gao",
+   "Chenhao Tan",
+   "Christopher Thomas Ryan",
+   "Claire Donnat",
+   "Cong Ma",
+   "Dan Nicolae",
+   "Daniel Sanz-Alonso",
+   "David Cash",
+   "David McAllester",
+   "Denis R. Hirschfeldt",
+   "Diana Franklin",
+   "Eric Budish",
+   "Eric Jonas",
+   "Fred Chong",
+   "Frederic Koehler",
+   "Gordon Kindlmann",
+   "Grant Ho",
+   "Greg Shakhnarovich",
+   "Guillaume Bal",
+   "Haifeng Xu",
+   "Haotian Jiang",
+   "Haozhi Qi",
+   "Haryadi Gunawi",
+   "Heather Zheng",
+   "Henry Hoffmann",
+   "Ian Foster",
+   "James A. Evans",
+   "Janos Simon",
+   "Jean-Pierre H. Dube",
+   "Jeremy Hoskins",
+   "Jinbo Xu",
+   "John Goldsmith",
+   "John H. Reppy",
+   "John Lafferty",
+   "John R. Birge",
+   "Jonathan Weare",
+   "Julia Chuzhoy",
+   "Junchen Jiang",
+   "Kanishka Misra",
+   "Karen Livescu",
+   "Ken Nakagaki",
+   "Ketan Mulmuley",
+   "Kevin Gimpel",
+   "Kexin Pei",
+   "Kyle Chard",
+   "L. Ridgway Scott",
+   "Lek-Heng Lim",
+   "Levi DeValve",
+   "Linwei Xin",
+   "Lorenzo Orecchia",
+   "László Babai",
+   "Madhur Tulsiani",
+   "Marisa Casillas",
+   "Marshini Chetty",
+   "Maryanthe Malliaris",
+   "Maryellen L. Giger",
+   "Matthew Stephens",
+   "Matthew Taddy",
+   "Matthew Walter",
+   "Maximilian Muhn",
+   "Michael Franklin",
+   "Michael J. O'Donnell",
+   "Michael Maire",
+   "Mihai Anitescu",
+   "Mina Lee",
+   "Moon Duchin",
+   "Nati Srebro",
+   "Nicholas Tomlin",
+   "Nick Feamster",
+   "Nikolaos (Nikos) Ignatiadis",
+   "Nisha Chandramoorthy",
+   "Norimichi Ukita",
+   "Ozan Candogan",
+   "Pedro Lopes",
+   "Pradeep K. Chintagunta",
+   "Promit Ghosal",
+   "R. Kipp Martin",
+   "Rana Hanocka",
+   "Raul Castro Fernandez",
+   "Ravi Chugh",
+   "Rayid Ghani",
+   "Rebecca Willett",
+   "Rene Caldentey",
+   "Rick Stevens",
+   "Rina Foygel Barber",
+   "Risi Kondor",
+   "Robert Grossman",
+   "Robert Rand",
+   "Ruey S. Tsay",
+   "Sanjay Krishnan",
+   "Sarah Moshary",
+   "Sarah Sebo",
+   "Shan Lu",
+   "Shiry Ginosar",
+   "Stuart Kurtz",
+   "Tengyuan Liang",
+   "Tian Li",
+   "Todd Dupont",
+   "Varun Gupta",
+   "Victor Veitch",
+   "Wei-Biao Wu",
+   "William Fefferman",
+   "William Hoza",
+   "William Merrill",
+   "Xinran Li",
+   "Yali Amit",
+   "Yanjing Li",
+   "Yi Sun",
+   "Yossi Gandelsman",
+   "Yuan Zhong",
+   "Yuehaw Khoo",
+   "Yury Makarychev",
+   "Yuxin Chen",
+   "Zhiyuan Li"
+  ],
+  "n_pis": 137,
+  "files": {
+   "pis.json": "d9b055787ed6bf3dae8447bd2e9cdf6bb95912957f96121ba0fe33b53972211b",
+   "students.json": "5f6a8fcd1e411aeb0c4e3a34aa22a035e1bbb6451cfde7d1ff843d6ee3a7b800",
+   "lab_papers.jsonl.gz": "5e062dac47b03bb4a2fb573837f68c603d73328d8f445494a0c5b981050a00e8",
+   "student_papers.jsonl.gz": "a5410239ba6e4957cca58cc2bfa882f60e714a8aad4ab181fbc9f030668ed40c",
+   "copies.json": "68b430382caefb85d0300d579a9b8a32b17c231e80c169ccf5892752a4d2cf13"
+  },
+  "included_sha": "d3607c021f9b0155e0bbf2118727aacb3ca0a9ff6a8c572a37fd7922d85a0545",
+  "projection_version": 1,
+  "held": [],
+  "carried_forward": {
+   "lab_paper": 21,
+   "student": 1,
+   "student_paper": 12
+  },
+  "files_now": {
+   "pis.json": "d9b055787ed6bf3dae8447bd2e9cdf6bb95912957f96121ba0fe33b53972211b",
+   "students.json": "5f6a8fcd1e411aeb0c4e3a34aa22a035e1bbb6451cfde7d1ff843d6ee3a7b800",
+   "lab_papers.jsonl.gz": "5e062dac47b03bb4a2fb573837f68c603d73328d8f445494a0c5b981050a00e8",
+   "student_papers.jsonl.gz": "a5410239ba6e4957cca58cc2bfa882f60e714a8aad4ab181fbc9f030668ed40c",
+   "copies.json": "68b430382caefb85d0300d579a9b8a32b17c231e80c169ccf5892752a4d2cf13"
+  }
+ },
+ "population": {
+  "n_lab_papers": 5310,
+  "n_student_papers": 2684,
+  "n_coverage_pool": 3693,
+  "n_student_candidates": 6
+ },
+ "round": {
+  "id": "pi2c",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 6
+  }
+ }
+}
