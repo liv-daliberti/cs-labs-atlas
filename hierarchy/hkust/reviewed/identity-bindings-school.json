@@ -1221,7 +1221,23 @@
    "allowed": [],
    "why": "No ORCID inherited globally; resolve paper identity with the reviewed author only.",
    "evidence": []
-  }
+  },
+  "not_papers": [
+   {
+    "oa": "https://openalex.org/W2583663619",
+    "doi": "https://doi.org/10.1145/3020078.3021803",
+    "why": "R-PAP-19: exact record explicitly titled Abstract Only. Retain the separate full research article under its own identifier; this abstract is not an eligible lab paper.",
+    "evidence": [
+     {
+      "url": "https://openalex.org/W2583663619",
+      "sha256": "c638f758cc87383ea5bd16106af4f2885d64f4ef9d468f85d7b512dcef56328e",
+      "artifact": "hierarchy/hkust/reviewed/identity-sources/c638f758cc87383ea5bd16106af4f2885d64f4ef9d468f85d7b512dcef56328e.json",
+      "quote": "Dynamic Partitioning for Library based Placement on Heterogeneous FPGAs (Abstract Only)",
+      "source": "Retained exact locally stored OpenAlex source metadata; no external lookup or genre guess."
+     }
+    ]
+   }
+  ]
  },
  "Zaixi Zhang": {
   "openalex": [

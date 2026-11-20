@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/index.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Playfair Display:400,600" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open Sans:300,400,600" rel="stylesheet">
+<link href="/assets/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+<link href="/assets/fontawesome/css/brands.min.css" rel="stylesheet">
+<link href="/assets/fontawesome/css/solid.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<title>Home | Sehi L'Yi</title>
+<meta name="description" content="Sehi L'Yi is an Assistant Professor at HKUST CSE working at the intersection of visualization, human-AI interaction, and biomedicine.">
+<link rel="canonical" href="https://sehilyi.com/">
+<meta property="og:site_name" content="Sehi L'Yi">
+<meta property="og:title" content="Home | Sehi L'Yi">
+<meta property="og:description" content="Sehi L'Yi is an Assistant Professor at HKUST CSE working at the intersection of visualization, human-AI interaction, and biomedicine.">
+<meta property="og:url" content="https://sehilyi.com/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sehilyi.com/assets/linkedin-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Home | Sehi L'Yi preview image">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Home | Sehi L'Yi">
+<meta name="twitter:description" content="Sehi L'Yi is an Assistant Professor at HKUST CSE working at the intersection of visualization, human-AI interaction, and biomedicine.">
+<meta name="twitter:image" content="https://sehilyi.com/assets/linkedin-preview.png">
+
+<meta name="twitter:site" content="@sehi_lyi">
+
+<link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+<meta name="theme-color" content="#E0F4FF">
+
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <button class="back-to-top" type="button" aria-label="Jump to top">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M6 15l6-6 6 6" />
+      </svg>
+    </button>
+    <header>
+  <nav>
+    <h1>
+      <a href="/">
+        
+          Sehi L'Yi
+        
+      </a>
+    </h1>
+    <button id="menu-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="nav-menu">
+      <li><a href="/" class="active">Home.</a></li>
+      <li><a href="/publications">Publications.</a></li>
+      <li><a href="/join">Work With Me.</a></li>
+    </ul>
+  </nav>
+</header>
+<script>
+  document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.getElementById('nav-menu').classList.toggle('open');
+    this.classList.toggle('open');
+  });
+
+  const header = document.querySelector('header');
+  const backToTop = document.querySelector('.back-to-top');
+  const updateHeaderShadow = () => {
+    const isScrolled = window.scrollY > 0;
+    header.classList.toggle('is-scrolled', isScrolled);
+    backToTop.classList.toggle('is-visible', isScrolled);
+  };
+  updateHeaderShadow();
+  window.addEventListener('scroll', updateHeaderShadow, { passive: true });
+  backToTop.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZ3TL9NNS7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BZ3TL9NNS7');
+</script>
+
+    <main id="main-content" class="content" tabindex="-1">
+      <div class="headshot-container">
+<div class="headshot-mask">
+    <img class="headshot" src="assets/sehi-headshot.png" alt="Photograph of an Asian man with short brown hair, eyeglasses, and a blue shirt, standing in front of buildings and trees." />
+</div>
+<div class="profile-name">Sehi L'Yi<br /><span>이세희 / 李世熙</span></div>
+<div class="elsewhere">
+  <a href="mailto:sehi@ust.hk">
+    <i class="far fa-envelope" aria-hidden="true"></i>
+    <span>sehi@ust.hk</span>
+  </a>
+  <a href="https://scholar.google.co.kr/citations?user=_KASicoAAAAJ&amp;hl=en&amp;oi=ao">
+    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+    <span>Google Scholar</span>
+  </a>
+  <a href="https://github.com/sehilyi">
+    <i class="fab fa-github" aria-hidden="true"></i>
+    <span>@sehilyi</span>
+  </a>
+  <a href="https://www.linkedin.com/in/sehilyi/">
+    <i class="fab fa-linkedin" aria-hidden="true"></i>
+    <span>in/sehilyi</span>
+  </a>
+</div>
+</div>
+
+<p>I’m an Assistant Professor at the <a href="https://hkust.edu.hk/"><img class="institution-logo" src="/assets/institutions/hkust.png" alt="" aria-hidden="true" /> Hong Kong University of Science and Technology (HKUST)</a>’s <a href="https://cse.hkust.edu.hk">Department of Computer Science and Engineering</a>, where I direct the <a href="https://visailab.com">VisAI Lab</a>. Previously, I was an NIH K99/R00 Pathway to Independence Fellow at <a href="https://hms.harvard.edu/"><img class="institution-logo" src="/assets/institutions/harvard.png" alt="" aria-hidden="true" /> Harvard Medical School</a>’s <a href="https://dbmi.hms.harvard.edu/">Department of Biomedical Informatics</a> and a member of the <a href="https://hidivelab.org/">HIDIVE Lab</a> led by <a href="https://hidivelab.org">Nils Gehlenborg</a>. I received my PhD in Computer Science and Engineering from <a href="https://en.snu.ac.kr/"><img class="institution-logo institution-logo--snu" src="/assets/institutions/snu.png" alt="" aria-hidden="true" /> Seoul National University</a> under the supervision of <a href="http://hcil.snu.ac.kr/people/jinwook-seo">Jinwook Seo</a> at the <a href="https://hcil.snu.ac.kr/">Human-Computer Interaction Lab</a>.</p>
+
+<p>My research explores how people can interact more effectively with artificial intelligence, with a particular focus on biomedical applications.
+Previously, I led the design and development of the Gosling visualization grammar, which enables the construction of scalable and interactive genomics data visualizations and the leveraging of AI methods (see <a href="https://www.nature.com/articles/d41586-022-02191-z" target="_blank">Nature’s Technology Feature</a>).</p>
+
+<p>My work has been published in top-tier conferences and journals across my fields, including VIS, TVCG, CHI, UIST, Nature Methods, Nature Medicine, npj Digital Medicine, and Bioinformatics. I have received competitive academic awards, including the NIH/NHGRI K99/R00 Pathway to Independence Award, VIS Best Paper Honorable Mention Award, ISMB BioVis Best Abstract Award, ISMB BioVis Runner-Up Abstract Award, and VIS Best Poster Research Award. I have served on the program committee for top visualization conferences, including VIS, EuroVis, and PacificVis.</p>
+
+<div class="job-market" onclick="(() =&gt; { window.location='/join'; })()">
+    <i class="fa-solid fa-bullhorn"></i> I'm currently looking to recruit PhD students (<s>Fall ’26</s>, Fall ’27) at HKUST CSE. For details, please read the Work With Me page.
+</div>
+
+<h2 id="news-see-all">News <small><a href="/news/">[see all]</a></small></h2>
+<div class="news-cards">
+  
+  
+  <div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-type">SERVICE</span>
+    <span class="news-date">Sep 23, 2026</span>
+  </div>
+  <div class="news-card-title">Organizing Committee @ VIS 2027</div>
+  <div class="news-card-desc">Sehi is invited to serve as a Web Co-Chair on the Organizing Committee at IEEE VIS 2027.</div>
+</div>
+
+  
+  <div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-type">PAPER</span>
+    <span class="news-date">Sep 8, 2026</span>
+  </div>
+  <div class="news-card-title">Three Presentations @ VIS 2026</div>
+  <div class="news-card-desc">A full paper, a short paper, and a poster will be presented at IEEE VIS 2026.</div>
+</div>
+
+  
+  <div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-type">SERVICE</span>
+    <span class="news-date">Sep 8, 2026</span>
+  </div>
+  <div class="news-card-title">Best Conference Paper Committee @ EG VCBM 2026</div>
+  <div class="news-card-desc">Sehi is invited to serve on the Best Conference Paper Committee at EG VCBM 2026.</div>
+</div>
+
+  
+  <div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-type">PAPER</span>
+    <span class="news-date">Jul 6, 2026</span>
+  </div>
+  <div class="news-card-title">Two Abstracts @ ISMB 2026</div>
+  <div class="news-card-desc">Two abstracts on agentic authoring and keyboard accessibility were accepted at ISMB 2026.</div>
+</div>
+
+  
+</div>
+
+<h2 id="selected-projects">Selected Projects</h2>
+<div class="themes">
+    
+    
+    <div class="theme">
+  <img class="theme-thumbnail" src="/assets/publications/gosling-16-by-9.png" alt="Visualization Toolkits for Biomedicine" />
+  <div class="theme-body">
+    <div class="theme-title">Visualization Toolkits for Biomedicine</div>
+    <div class="theme-content">
+      
+      
+      <a class="theme-paper" href="https://arxiv.org/abs/2510.24888">arXiv 2026</a>
+      
+      <a class="theme-paper" href="https://arxiv.org/abs/2606.00370">arXiv 2026</a>
+      
+      <a class="theme-paper" href="https://osf.io/preprints/osf/dtr6u_v1">TVCG 2026</a>
+      
+      <a class="theme-paper" href="https://doi.org/10.1093/bioinformatics/btad050">Bioinformatics 2023</a>
+      
+      <a class="theme-paper" href="https://ieeexplore.ieee.org/document/9904451">TVCG 2023</a>
+      
+      <a class="theme-paper" href="https://ieeexplore.ieee.org/document/9557192">TVCG 2022</a>
+      
+    </div>
+  </div>
+</div>
+
+    
+    <div class="theme">
+  <img class="theme-thumbnail" src="/assets/publications/blace-16-by-9.png" alt="Human–AI Interaction for Visualization" />
+  <div class="theme-body">
+    <div class="theme-title">Human–AI Interaction for Visualization</div>
+    <div class="theme-content">
+      
+      
+      <a class="theme-paper" href="https://osf.io/zatw9_v1">IEEE TVCG 2026</a>
+      
+      <a class="theme-paper" href="">VIS Short 2026</a>
+      
+      <a class="theme-paper" href="https://arxiv.org/abs/2601.19237">CHI 2026</a>
+      
+      <a class="theme-paper" href="https://arxiv.org/abs/2606.00370">arXiv 2026</a>
+      
+      <a class="theme-paper" href="https://arxiv.org/abs/2509.08953">arXiv 2025</a>
+      
+      <a class="theme-paper" href="https://arxiv.org/abs/2510.13816">GenAI@VIS 2025</a>
+      
+      <a class="theme-paper" href="https://osf.io/preprints/osf/pjcn4">TVCG 2025</a>
+      
+      <a class="theme-paper" href="https://osf.io/preprints/osf/6f42j">TVCG 2025</a>
+      
+      <a class="theme-paper" href="https://doi.org/10.1093/bioinformatics/btae670">Bioinformatics 2024</a>
+      
+      <a class="theme-paper" href="https://www.computer.org/csdl/proceedings-article/vis/2023/255700a101/1T3cRKaCB20">VIS Short 2023</a>
+      
+      <a class="theme-paper" href="https://doi.org/10.1145/3544548.3581127">CHI 2023</a>
+      
+      <a class="theme-paper" href="https://www.computer.org/csdl/proceedings-article/vis/2023/255700a111/1T3cSyUQuL6">VIS Short 2023</a>
+      
+      <a class="theme-paper" href="https://ieeexplore.ieee.org/document/9908148">TVCG 2023</a>
+      
+    </div>
+  </div>
+</div>
+
+    
+    <div class="theme">
+  <img class="theme-thumbnail" src="/assets/publications/chromoscope-16-by-9.png" alt="Visual Analytics for Cancer Data" />
+  <div class="theme-body">
+    <div class="theme-title">Visual Analytics for Cancer Data</div>
+    <div class="theme-content">
+      
+      
+      <a class="theme-paper" href="https://doi.org/10.1093/nar/gkad1069">Nucleic Acids Research 2024</a>
+      
+      <a class="theme-paper" href="https://doi.org/10.1093/bioinformatics/btad018">Bioinformatics 2023</a>
+      
+      <a class="theme-paper" href="https://www.nature.com/articles/s41592-023-02056-x">Nature Methods 2023</a>
+      
+    </div>
+  </div>
+</div>
+
+    
+    <div class="theme">
+  <img class="theme-thumbnail" src="/assets/publications/4ce-169.png" alt="COVID-19 Electronic Health Records" />
+  <div class="theme-body">
+    <div class="theme-title">COVID-19 Electronic Health Records</div>
+    <div class="theme-content">
+      
+      
+      <a class="theme-paper" href="https://www.nature.com/articles/s41591-023-02274-y">Nature Medicine 2023</a>
+      
+      <a class="theme-paper" href="https://www.nature.com/articles/s41746-022-00623-8">npj Digital Medicine 2022</a>
+      
+      <a class="theme-paper" href="https://www.nature.com/articles/s41746-022-00601-0">npj Digital Medicine 2022</a>
+      
+      <a class="theme-paper" href="https://pubmed.ncbi.nlm.nih.gov/34533459/">JMIR 2021</a>
+      
+      <a class="theme-paper" href="https://www.nature.com/articles/s41746-020-00308-0">npj Digital Medicine 2020</a>
+      
+    </div>
+  </div>
+</div>
+
+    
+    <div class="theme">
+  <img class="theme-thumbnail" src="/assets/publications/a11y-evaluation-16-by-9.png" alt="Digital Accessibility for Science" />
+  <div class="theme-body">
+    <div class="theme-title">Digital Accessibility for Science</div>
+    <div class="theme-content">
+      
+      
+      <a class="theme-paper" href="https://osf.io/preprints/osf/gqy8k_v1">PLoS Comput Bio 2025</a>
+      
+      <a class="theme-paper" href="https://doi.org/10.31219/osf.io/5v98j">Scientific Reports 2025</a>
+      
+      <a class="theme-paper" href="https://osf.io/3wjsa">AccessViz@VIS 2024</a>
+      
+      <a class="theme-paper" href="https://ieeexplore.ieee.org/document/10747560/">AccessViz@VIS 2024</a>
+      
+    </div>
+  </div>
+</div>
+
+    
+</div>
+
+<h2 id="selected-publications-see-more">Selected Publications <small><a href="/publications/">[see more]</a></small></h2>
+
+<table class="publications">
+    
+    
+    <tr class="publication">
+  <td>
+    
+    <a href="https://arxiv.org/abs/2601.19237"><img class="pub-thumbnail" src="/assets/publications/gosling-draco-169.png" alt="" /></a>
+    
+  </td>
+  <td>
+    <div class="pub-title">
+      
+      <a href="https://arxiv.org/abs/2601.19237">Automatic Synthesis of Visualization Design Knowledge Bases</a>
+      
+    </div>
+    
+    
+      <div class="pub-authors">
+        
+        
+        Hyeok Kim, 
+        
+        <b>Sehi L'Yi</b>, 
+        
+        Nils Gehlenborg, 
+        
+        Jeffrey Heer
+        
+      </div>
+      <div class="pub-venue-and-index">
+        <span class="pub-venue">In Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI ’26)</span> (2026) <span class="pub-index"></span>
+      </div>
+      
+      <div class="pub-acceptance-rate">25.3% acceptance rate</div>
+      
+      
+
+  </td>
+</tr>
+
+    
+    <tr class="publication">
+  <td>
+    
+    <a href="https://doi.org/10.31219/osf.io/5v98j"><img class="pub-thumbnail" src="/assets/publications/a11y-evaluation-16-by-9.png" alt="" /></a>
+    
+  </td>
+  <td>
+    <div class="pub-title">
+      
+      <a href="https://doi.org/10.31219/osf.io/5v98j">A comprehensive evaluation of life sciences data resources reveals significant accessibility barriers</a>
+      
+    </div>
+    
+    
+      <div class="pub-authors">
+        
+        
+        <b>Sehi L'Yi</b>, 
+        
+        Harrison G. Zhang, 
+        
+        Andrew P. Mar, 
+        
+        Thomas C. Smits, 
+        
+        Lawrence Weru, 
+        
+        Sofía Rojas, 
+        
+        Alexander Lex, 
+        
+        Nils Gehlenborg
+        
+      </div>
+      <div class="pub-venue-and-index">
+        <span class="pub-venue">Scientific Reports</span> (2025) <span class="pub-index">15, 23676</span>
+      </div>
+      
+      
+
+  </td>
+</tr>
+
+    
+    <tr class="publication">
+  <td>
+    
+    <a href="https://osf.io/preprints/osf/pjcn4"><img class="pub-thumbnail" src="/assets/publications/blace-16-by-9.png" alt="" /></a>
+    
+  </td>
+  <td>
+    <div class="pub-title">
+      
+      <a href="https://osf.io/preprints/osf/pjcn4">Learnable and Expressive Visualization Authoring Through Blended Interfaces</a>
+      
+    </div>
+    
+    
+      <div class="pub-authors">
+        
+        
+        <b>Sehi L'Yi</b>, 
+        
+        Astrid van den Brandt, 
+        
+        Etowah Adams, 
+        
+        Huyen N. Nguyen, 
+        
+        Nils Gehlenborg
+        
+      </div>
+      <div class="pub-venue-and-index">
+        <span class="pub-venue">IEEE Transactions on Visualization and Computer Graphics (TVCG) (Proc. VIS)</span> (2025) <span class="pub-index"></span>
+      </div>
+      
+      <div class="pub-acceptance-rate">23.2% acceptance rate</div>
+      
+      
+      <div class="fa-solid fa-award"></div>
+      <span class="pub-award">Best Paper Honorable Mention</span>
+      
+
+  </td>
+</tr>
+
+    
+    <tr class="publication">
+  <td>
+    
+    <a href="https://doi.org/10.1093/bioinformatics/btae670"><img class="pub-thumbnail" src="/assets/publications/altgosling.png" alt="" /></a>
+    
+  </td>
+  <td>
+    <div class="pub-title">
+      
+      <a href="https://doi.org/10.1093/bioinformatics/btae670">AltGosling: Automatic Generation of Text Descriptions for Accessible Genomics Data Visualization</a>
+      
+    </div>
+    
+    
+      <div class="pub-authors">
+        
+        
+        Thomas C Smits**, 
+        
+        <b>Sehi L'Yi</b>, 
+        
+        Andrew Patrick Mar, 
+        
+        Nils Gehlenborg
+        
+      </div>
+      <div class="pub-venue-and-index">
+        <span class="pub-venue">Bioinformatics</span> (2024) <span class="pub-index"></span>
+      </div>
+      
+      
+      <div class="fa-solid fa-award"></div>
+      <span class="pub-award">Runner-Up Abstract Award at ISMB BioVis 2025</span>
+      
+
+  </td>
+</tr>
+
+    
+    <tr class="publication">
+  <td>
+    
+    <a href="https://www.nature.com/articles/s41592-023-02056-x"><img class="pub-thumbnail" src="/assets/publications/chromoscope-16-by-9.png" alt="" /></a>
+    
+  </td>
+  <td>
+    <div class="pub-title">
+      
+      <a href="https://www.nature.com/articles/s41592-023-02056-x">Chromoscope: interactive multiscale visualization for structural variation in human genomes</a>
+      
+    </div>
+    
+    
+      <div class="pub-authors">
+        
+        
+        <b>Sehi L'Yi</b>, 
+        
+        Dominika Maziec, 
+        
+        Victoria Stevens, 
+        
+        Trevor Manz, 
+        
+        Alexander Veit, 
+        
+        Michele Berselli, 
+        
+        Peter J Park, 
+        
+        Dominik Głodzik, 
+        
+        Nils Gehlenborg
+        
+      </div>
+      <div class="pub-venue-and-index">
+        <span class="pub-venue">Nature Methods</span> (2023) <span class="pub-index">20, 1834–1835</span>
+      </div>
+      
+      
+
+  </td>
+</tr>
+
+    
+    <tr class="publication">
+  <td>
+    
+    <a href="https://ieeexplore.ieee.org/document/9908148"><img class="pub-thumbnail" src="/assets/publications/genorec-169.png" alt="" /></a>
+    
+  </td>
+  <td>
+    <div class="pub-title">
+      
+      <a href="https://ieeexplore.ieee.org/document/9908148">GenoREC: A Recommendation System for Interactive Genomics Data Visualization</a>
+      
+    </div>
+    
+    
+      <div class="pub-authors">
+        
+        
+        Aditeya Pandey**, 
+        
+        <b>Sehi L'Yi</b>, 
+        
+        Qianwen Wang, 
+        
+        Michelle A Borkin, 
+        
+        Nils Gehlenborg
+        
+      </div>
+      <div class="pub-venue-and-index">
+        <span class="pub-venue">IEEE Transactions on Visualization and Computer Graphics (TVCG) (Proc. VIS)</span> (2023) <span class="pub-index">29(1), 570-580</span>
+      </div>
+      
+      <div class="pub-acceptance-rate">26.5% acceptance rate</div>
+      
+      
+      <div class="fa-solid fa-award"></div>
+      <span class="pub-award">IEEE InfoVis Best Poster Research Award</span>
+      
+
+  </td>
+</tr>
+
+    
+    <tr class="publication">
+  <td>
+    
+    <a href="https://ieeexplore.ieee.org/document/9557192"><img class="pub-thumbnail" src="/assets/publications/gosling-16-by-9.png" alt="" /></a>
+    
+  </td>
+  <td>
+    <div class="pub-title">
+      
+      <a href="https://ieeexplore.ieee.org/document/9557192">Gosling: A Grammar-based Toolkit for Scalable and Interactive Genomics Data Visualization</a>
+      
+    </div>
+    
+    
+      <div class="pub-authors">
+        
+        
+        <b>Sehi L'Yi</b>, 
+        
+        Qianwen Wang, 
+        
+        Fritz Lekschas, 
+        
+        Nils Gehlenborg
+        
+      </div>
+      <div class="pub-venue-and-index">
+        <span class="pub-venue">IEEE Transactions on Visualization and Computer Graphics (TVCG) (Proc. VIS)</span> (2022) <span class="pub-index">28(1), 40-150</span>
+      </div>
+      
+      <div class="pub-acceptance-rate">25.8% acceptance rate</div>
+      
+      
+      <div class="fa-solid fa-award"></div>
+      <span class="pub-award">ISMB/ECCB BioVis Best Abstract Award</span>
+      
+
+  </td>
+</tr>
+
+    
+</table>
+
+<h2 id="media-coverage">Media Coverage</h2>
+<table class="media">
+    <tr>
+        <td>
+            <div class="media-source">
+                <img class="media-nature-icon" src="assets/nature.png" alt="" />
+                <strong>Nature</strong> (TECHNOLOGY FEATURE)
+            </div>
+            <div class="media-title">
+                <a href="https://www.nature.com/articles/d41586-022-02191-z">
+                    A graphics toolkit for visualizing genome data
+                </a>
+            </div>
+            <div class="media-subtitle">
+                Powerful 'grammar' allows geneticists to display their data in interactive and scalable illustrations.
+            </div>
+            <div class="media-desc">
+                "Postdoc Sehi L'Yi, who led Gosling's development, says that what differentiates Gosling from other visualization tools is its expressiveness. With most tools, he says, the graphics that can be made and what they will look like are predefined. 'It is really not easy to customize visualizations as a user.' But with Gosling, users can, for instance, specify the colour, dimensions and placement of the symbol used to represent a centromere or genomic interval, then overlay that on an ideogram of a chromosome to highlight a region of interest."
+            </div>
+        </td>
+        <td>
+        <img class="media-thumbnail" src="https://media.nature.com/w1219/magazine-assets/d41586-022-02191-z/d41586-022-02191-z_23359970.jpg?as=webp" alt="Image with two heatmap visualizations that look like an eyebrow and an eye." />
+    </td>
+</tr>
+</table>
+
+<h2 id="previous-mentees">Previous Mentees</h2>
+
+<ul class="previous-mentees">
+
+  <li>
+    <span class="mentee-name"><a href="https://skylarwalters.github.io/skylar-walters/">Skylar Walters</a></span> (2025-2025)
+     → PhD Student at UC Berkeley
+  </li>
+
+  <li>
+    <span class="mentee-name"><a href="https://www.linkedin.com/in/arthea-valderrama/">Arthea Valderrama</a></span> (2025-2025)
+     → Master’s Student at Harvard Medical School
+  </li>
+
+  <li>
+    <span class="mentee-name"><a href="https://hidivelab.org/team/members/astrid-vandenbrandt/">Astrid van den Brandt</a></span> (2023-2024)
+     → Postdoc at Harvard Medical School
+  </li>
+
+  <li>
+    <span class="mentee-name"><a href="https://aditeyapandey.github.io/">Aditeya Pandey</a></span> (2020-2021)
+     → Visual Data Scientist at Eli Lilly and Company
+  </li>
+
+  <li>
+    <span class="mentee-name"><a href="https://thomcsmits.github.io/">Thomas Smits</a></span> (2023-2025)
+     → PhD Student at Radboud University Medical Center
+  </li>
+
+  <li>
+    <span class="mentee-name"><a href="https://lweru.com/">Lawrence Weru</a></span> (2024-2025)
+     → Secretariat IT Accessibility Officer at Commonwealth of Massachusetts
+  </li>
+
+  <li>
+    <span class="mentee-name"><a href="https://hidivelab.org/team/members/sofia-rojas/">Sofía Rojas</a></span> (2024-2024)
+     → Machine Learning Engineer at Teradyne
+  </li>
+
+  <li>
+    <span class="mentee-name"><a href="https://hidivelab.org/team/members/theresa-harbig/">Theresa Harbig</a></span> (2023-2023)
+     → Research Engineer at Erbe
+  </li>
+
+  <li>
+    <span class="mentee-name"><a href="https://etowahadams.com/">Etowah Adams</a></span> (2023-2024)
+     → PhD Student at Columbia University
+  </li>
+
+  <li>
+    <span class="mentee-name"><a href="https://hidivelab.org/team/members/andrew-mar/">Andrew Mar</a></span> (2024-2025)
+    
+  </li>
+
+  <li>
+    <span class="mentee-name"><a href="https://www.linkedin.com/in/erica-stutz/">Erica Stutz</a></span> (2022-2022)
+     → PhD Student at Yale University
+  </li>
+
+  <li>
+    <span class="mentee-name"><a href="https://www.linkedin.com/in/cynthiajrosas/">Cynthia Rosas</a></span> (2021-2021)
+    
+  </li>
+
+  <li>
+    <span class="mentee-name"><a href="https://hcil.snu.ac.kr/people/thanh-dung-ho">Thanh Dung Ho</a></span> (2019-2020)
+     → Custom Engineering Specialist at Accenture
+  </li>
+
+</ul>
+
+
+    </main>
+    <footer>
+  <span>© 2026 Sehi L'Yi</span>
+</footer>
+
+  </body>
+</html>
