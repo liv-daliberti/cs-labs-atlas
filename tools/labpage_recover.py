@@ -316,7 +316,10 @@ class Index:
                 ct = self.c[i]['ct']
                 if i not in out and (k.startswith(ct) or ct.startswith(k)):
                     out[i] = 'title_with_or_without_subtitle'
-        return {i: how for i, how in out.items() if not year or lo <= int(year) - self.c[i]['year'] <= hi}
+        # Undated bibliography entries use 0 for their listing year. Discovery
+        # may match dated metadata; admission still checks the actual edition's
+        # year, appointment, PI byline and school affiliation in one().
+        return {i: how for i, how in out.items() if not year or not self.c[i]['year'] or lo <= int(year) - self.c[i]['year'] <= hi}
 
 
 def compact(w):

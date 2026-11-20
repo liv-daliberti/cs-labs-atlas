@@ -37,8 +37,9 @@ def test_repeated_same_source_unions_evidence(tmp_path, monkeypatch):
     assert students.merge_within_lab(ctx, native) == 0
 
 
-def test_ambiguous_byline_does_not_assign_either_homonym(tmp_path, monkeypatch):
-    ctx, native = load_rows(tmp_path, monkeypatch, ['doctoral-profile', 'masters-profile'])
+@pytest.mark.parametrize('keys', [['doctoral-profile', 'masters-profile'], ['unresolved-profile']])
+def test_unresolved_source_identity_never_borrows_name_only_authorship(tmp_path, monkeypatch, keys):
+    ctx, native = load_rows(tmp_path, monkeypatch, keys)
     ctx.stu, ctx.pls = native, defaultdict(list)
     ctx.rows = [dict(pi='Example PI', work='work-1', oa='W1', year=2026,
                      byline=['Example PI', 'Ziyu Chen'], _bylines=[(['Example PI', 'Ziyu Chen'], ['Ziyu Chen'])])]

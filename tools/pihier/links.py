@@ -187,8 +187,7 @@ def link_students(ctx):
         # Distinct reviewed source profiles may have the same full name. Neither a school
         # affiliation nor a nearby observation year disambiguates their authorship.
         if stu.get(pi, {}).get(sid, {}).get('sourceRecordKey') is not None:
-            if sum(bool(how(other, raw)) for other in stu.get(pi, {})) > 1:
-                return False
+            return False
         return how(sid, raw) and not student_given_conflict(sid, raw, pi=pi) and not (r is not None and hyper_authored(r) and initials_only(raw))
     guard_samples, guard_kept_samples = [], []
 
@@ -303,6 +302,7 @@ def link_students(ctx):
                     hits_ = []
             if len(hits_) == 1 and hits_[0] not in done_ and wide_relation(S[hits_[0]], r['year']) and not student_given_conflict(hits_[0], raw) \
                     and student_role_ok(S[hits_[0]]) and pi_is_adviser(S[hits_[0]], pi_names_of(ctx, r['pi'])) \
+                    and S[hits_[0]].get('sourceRecordKey') is None \
                     and not (hyper_authored(r) and initials_only(raw)):
                 sid = hits_[0]; done_.add(sid)
                 if not plain_:
