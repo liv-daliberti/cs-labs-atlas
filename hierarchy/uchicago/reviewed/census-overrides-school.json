@@ -276,8 +276,6 @@
    2017
   ],
   "why_unproven": "Searched 2026-11-03 (tools/periods_school.py gaps): 12 dated Wayback captures of the person's pages and the department listings were tried; none is dated 2017 and names the person with a professor title; the only 2017 capture of the CS directory is page 1 of a paged list (5 of about 45 people) and later pages are archived only from 2019. Papers of those years stay outside the appointment (R-PAP-01).",
-  "no_identity": true,
-  "why_no_identity": "2026-11-03: Professor Emeritus (Computational and Applied Mathematics, numerical analysis / PDE). No ORCID found; his homepage (Wayback capture 2022-03-02 of people.cs.uchicago.edu/~dupont/, 'Some Papers' undated) states no in-window publication list; 8 DBLP candidates of the name, none names the school (dblp-ids.json); no OpenAlex author id of the name in the school sweep. No papers are attributed.",
   "home_department": "Computer Science",
   "home_department_evidence": [
    {
@@ -295,7 +293,40 @@
   "primary_unresolved": [
    "Computer Science",
    "Mathematics"
-  ]
+  ],
+  "dblp": [
+   "https://dblp.org/pid/31/9214"
+  ],
+  "aliases": [
+   "Todd F. Dupont"
+  ],
+  "why_dblp": "The original 2001.03082v1 PDF names Todd Dupont, the Chicago CS/Mathematics author address and dupont@cs.uchicago.edu. The exact email and appointment agree with the retained official 2022 faculty profile. DBLP person 31/9214 (Todd F. Dupont) contains that exact arXiv record and its 2025 Journal of Numerical Mathematics version, DOI 10.1515/jnma-2023-0135. This source chain resolves the old no-identity hold, which had searched only Todd Dupont and missed the full middle-initial record. The older exact-name 58/5356 record is not used as proof of a recent paper.",
+  "identity_resolution_review": {
+   "reviewed": "2026-11-20",
+   "reviewer": "codex-washu-jhu-uchicago-papers-1120",
+   "reason": "The original 2001.03082v1 PDF names Todd Dupont, the Chicago CS/Mathematics author address and dupont@cs.uchicago.edu. The exact email and appointment agree with the retained official 2022 faculty profile. DBLP person 31/9214 (Todd F. Dupont) contains that exact arXiv record and its 2025 Journal of Numerical Mathematics version, DOI 10.1515/jnma-2023-0135. This source chain resolves the old no-identity hold, which had searched only Todd Dupont and missed the full middle-initial record. The older exact-name 58/5356 record is not used as proof of a recent paper.",
+   "previous_hold": {
+    "no_identity": true,
+    "why_no_identity": "2026-11-03: Professor Emeritus (Computational and Applied Mathematics, numerical analysis / PDE). No ORCID found; his homepage (Wayback capture 2022-03-02 of people.cs.uchicago.edu/~dupont/, 'Some Papers' undated) states no in-window publication list; 8 DBLP candidates of the name, none names the school (dblp-ids.json); no OpenAlex author id of the name in the school sweep. No papers are attributed."
+   },
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220118200125id_/https://www.cs.uchicago.edu/people/profile/todd-dupont/",
+     "sha256": "3029dad773d5424bb540f6a91abfceabdd0ca1b9389d3f5127d84e979f51fc2b",
+     "artifact": "hierarchy/uchicago/reviewed/identity-sources/3029dad773d5424bb540f6a91abfceabdd0ca1b9389d3f5127d84e979f51fc2b.html",
+     "quote": "Todd Dupont Professor, Departments of Computer Science and Mathematics and the James Franck Institute",
+     "observedAt": "20220118200125"
+    },
+    {
+     "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2001/2001.03082v1.pdf",
+     "sha256": "6800b43b695f9030c1b51535f9c0c675e1662d23e5370173f0e0ae9826777abe",
+     "artifact": "hierarchy/uchicago/reviewed/identity-sources/6800b43b695f9030c1b51535f9c0c675e1662d23e5370173f0e0ae9826777abe.pdf",
+     "quote": "The University of Chicago, Departments of Computer Science and of Mathematics, Chicago, Illinois, 60637; E-mail address: dupont@cs.uchicago.edu",
+     "observedAt": "2026-11-20T10:15:13"
+    }
+   ],
+   "extract_sha256": "048bf451d0fbbaaaf2cebf25cf90236859d4b0213cc5f50109eec3478e745d4b"
+  }
  },
  "Aaron Elmore": {
   "unproven_years": [
@@ -403,7 +434,36 @@
   "unproven_years": [
    2017
   ],
-  "why_unproven": "Searched 2026-11-03 (tools/periods_school.py gaps): 12 dated Wayback captures of the person's pages and the department listings were tried; none is dated 2017 and names the person with a professor title; the only 2017 capture of the CS directory is page 1 of a paged list (5 of about 45 people) and later pages are archived only from 2019. Papers of those years stay outside the appointment (R-PAP-01)."
+  "why_unproven": "Searched 2026-11-03 (tools/periods_school.py gaps): 12 dated Wayback captures of the person's pages and the department listings were tried; none is dated 2017 and names the person with a professor title; the only 2017 capture of the CS directory is page 1 of a paged list (5 of about 45 people) and later pages are archived only from 2019. Papers of those years stay outside the appointment (R-PAP-01).",
+  "periods": [
+   {
+    "id": "uchicago_kurtz_observed_professor_2009_2025",
+    "start": "2009-05-28",
+    "end": null,
+    "asof": "2025-04-01",
+    "datePrecision": "day",
+    "reviewed": "2026-11-20",
+    "note": "Conservative lower bound from an explicitly dated official faculty article calling Kurtz Professor, confirmed through the last 2025 ladder-faculty capture. The 1981 Dickson instructor arrival is not used as the ladder start; the later 2026 emeritus listing does not extend this interval. This resolves the missing 2017 directory observation without inventing a 2017 capture.",
+    "evidence": [
+     {
+      "url": "https://chronicle.uchicago.edu/090528/quantrell-kurtz.shtml",
+      "sha256": "b09bd1bfeb12361f5227e381252a38bd5584aa8cb21350a4e18af212405b7ed0",
+      "artifact": "hierarchy/uchicago/reviewed/identity-sources/b09bd1bfeb12361f5227e381252a38bd5584aa8cb21350a4e18af212405b7ed0.html",
+      "quote": "Stuart Kurtz, Professor in Computer Science and the College",
+      "observedAt": "2026-11-20T10:12:46",
+      "publication_date": "2009-05-28"
+     },
+     {
+      "url": "https://web.archive.org/web/20250401094857id_/https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/",
+      "sha256": "280b21233b81b14bc57f4236b5118153dc91696197f9d8099e8d2b2d517469f5",
+      "quote": "Stuart Kurtz George and Elizabeth Yovovich Professor of Computer Science and the College",
+      "kind": "dept_listing:CS",
+      "year": 2025,
+      "observedAt": "2025-04-01"
+     }
+    ]
+   }
+  ]
  },
  "Ketan Mulmuley": {
   "unproven_years": [

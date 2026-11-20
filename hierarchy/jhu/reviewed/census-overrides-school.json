@@ -277,29 +277,202 @@
   }
  },
  "Alex Marder": {
-  "no_identity": true,
-  "why_no_identity": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open.",
-  "note_identity_scope": "Partial release hold; retain faculty census evidence, attribute no papers until a positive identity match is reviewed."
+  "note_identity_scope": "Partial release hold; retain faculty census evidence, attribute no papers until a positive identity match is reviewed.",
+  "dblp": [
+   "https://dblp.org/pid/189/5385"
+  ],
+  "aliases": [
+   "Alexander Marder"
+  ],
+  "why_dblp": "D-0005 direct URL binding: the retained official JHU Alex Marder profile links alexmarder.github.io, exactly the homepage of the stored Johns Hopkins CSRankings Alexander Marder entry. The captured CSRankings recall source supplies PID 189/5385. The fresh DBLP person is Alexander Marder; the other stored candidates M. Germanus Alex and M. Edington Alex conflict with the full first/family name. The challenged personal site is not used or retried.",
+  "identity_resolution_review": {
+   "reviewed": "2026-11-20",
+   "reviewer": "codex-washu-jhu-uchicago-papers-1120",
+   "reason": "D-0005 direct URL binding: the retained official JHU Alex Marder profile links alexmarder.github.io, exactly the homepage of the stored Johns Hopkins CSRankings Alexander Marder entry. The captured CSRankings recall source supplies PID 189/5385. The fresh DBLP person is Alexander Marder; the other stored candidates M. Germanus Alex and M. Edington Alex conflict with the full first/family name. The challenged personal site is not used or retried.",
+   "previous_hold": {
+    "no_identity": true,
+    "why_no_identity": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open."
+   },
+   "rule": "D-0005",
+   "evidence": [
+    {
+     "url": "https://www.cs.jhu.edu/faculty/alex-marder/",
+     "sha256": "bc07822f9bddeabf728ff8b2324f3b2712a7a8295ffd3467d8a157759b92ce7d",
+     "artifact": "hierarchy/jhu/reviewed/identity-sources/bc07822f9bddeabf728ff8b2324f3b2712a7a8295ffd3467d8a157759b92ce7d.html",
+     "quote": "https://alexmarder.github.io/",
+     "observedAt": "2026-11-06T22:38:41"
+    },
+    {
+     "source": "/n/fs/resemble/homogenizing-science/scratch/pi-recall-1118/work/csr/csrankings.csv",
+     "sha256": "e94191be20b8cfbc2f6e5565a59e438ac19d63bbe087449c15c9dcb5d38107ab",
+     "record": {
+      "name": "Alexander Marder",
+      "affiliation": "Johns Hopkins University",
+      "homepage": "https://alexmarder.github.io",
+      "scholarid": "htWC_lMAAAAJ",
+      "orcid": "0000-0003-3327-1571"
+     }
+    },
+    {
+     "source": "/n/fs/resemble/homogenizing-science/scratch/pi-recall-1118/recall.json",
+     "sha256": "8e41c89fc824116ea70ed57d484484c700654319039a269af2d2e8fb39afb08a",
+     "record": {
+      "name": "Alexander Marder",
+      "names": [
+       "Alexander Marder"
+      ],
+      "srcs": [
+       "csr"
+      ],
+      "strong": true,
+      "dblp": [
+       "189/5385"
+      ],
+      "orcid": [
+       "0000-0003-3327-1571"
+      ],
+      "oa": [],
+      "home": [],
+      "status": "census_pi",
+      "how": "name_only",
+      "matched": [
+       {
+        "name": "Alex Marder",
+        "status": "census_pi",
+        "reason": "ladder",
+        "src": "pis.json"
+       },
+       {
+        "name": "Alex Marder",
+        "status": "census_pi",
+        "reason": "ladder",
+        "src": "census-faculty"
+       }
+      ],
+      "dblp_n": 0,
+      "oa_works": 0,
+      "unit": "https://alexmarder.github.io"
+     }
+    }
+   ]
+  }
  },
  "Joel Bader": {
-  "no_identity": true,
-  "why_no_identity": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open.",
-  "note_identity_scope": "Partial release hold; retain faculty census evidence, attribute no papers until a positive identity match is reviewed."
+  "note_identity_scope": "Partial release hold; retain faculty census evidence, attribute no papers until a positive identity match is reviewed.",
+  "dblp": [
+   "https://dblp.org/pid/59/6746"
+  ],
+  "why_dblp": "The saved official JHU Biomedical Engineering profile explicitly calls this PI Joel S. Bader and links baderzone.org. That directly linked laboratory identifies Joel S. Bader and Lab at Johns Hopkins. The fresh official DBLP record 59/6746 carries that exact full name; the competing J. L. Bader record conflicts with the spelled-out first and middle name. This resolves the earlier incomplete-name hold without selecting an OpenAlex cluster by popularity.",
+  "aliases": [
+   "Joel S. Bader"
+  ],
+  "identity_resolution_review": {
+   "reviewed": "2026-11-20",
+   "reviewer": "codex-washu-jhu-uchicago-papers-1120",
+   "reason": "The saved official JHU Biomedical Engineering profile explicitly calls this PI Joel S. Bader and links baderzone.org. That directly linked laboratory identifies Joel S. Bader and Lab at Johns Hopkins. The fresh official DBLP record 59/6746 carries that exact full name; the competing J. L. Bader record conflicts with the spelled-out first and middle name. This resolves the earlier incomplete-name hold without selecting an OpenAlex cluster by popularity.",
+   "previous_hold": {
+    "no_identity": true,
+    "why_no_identity": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open."
+   },
+   "evidence": [
+    {
+     "url": "https://baderzone.org/",
+     "sha256": "3e395fdad461ef9a65fadfeec5a1935c161b23a3a2ab6819a7312209a922998b",
+     "quote": "Joel S. Bader and Lab",
+     "artifact": "hierarchy/jhu/reviewed/identity-sources/3e395fdad461ef9a65fadfeec5a1935c161b23a3a2ab6819a7312209a922998b.html",
+     "observedAt": "2026-11-20T10:08:01"
+    }
+   ],
+   "bibliography_extract_sha256": "dc1732be8da935aaa166884f2beb54765432cbea0fd72e6638f6828c524f1d66"
+  }
  },
  "Yiqun Chen": {
-  "no_identity": true,
-  "why_no_identity": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open.",
-  "note_identity_scope": "Partial release hold; retain faculty census evidence, attribute no papers until a positive identity match is reviewed."
+  "note_identity_scope": "Partial release hold; retain faculty census evidence, attribute no papers until a positive identity match is reviewed.",
+  "dblp": [
+   "https://dblp.org/pid/59/1143-1"
+  ],
+  "why_dblp": "The PI personal biography identifies Yiqun T. Chen, the JHU biostatistics/computer-science appointment and former Stanford postdoctoral role, matching the retained JHU faculty entry and email yiqunc@jhu.edu. Its literal ORCID link 0000-0002-4100-1507 uniquely matches official DBLP person 59/1143-1. Other Yiqun Chen records remain unbound.",
+  "aliases": [
+   "Yiqun T. Chen"
+  ],
+  "orcid": [
+   "0000-0002-4100-1507"
+  ],
+  "why_orcid": "The PI personal biography identifies Yiqun T. Chen, the JHU biostatistics/computer-science appointment and former Stanford postdoctoral role, matching the retained JHU faculty entry and email yiqunc@jhu.edu. Its literal ORCID link 0000-0002-4100-1507 uniquely matches official DBLP person 59/1143-1. Other Yiqun Chen records remain unbound.",
+  "identity_resolution_review": {
+   "reviewed": "2026-11-20",
+   "reviewer": "codex-washu-jhu-uchicago-papers-1120",
+   "reason": "The PI personal biography identifies Yiqun T. Chen, the JHU biostatistics/computer-science appointment and former Stanford postdoctoral role, matching the retained JHU faculty entry and email yiqunc@jhu.edu. Its literal ORCID link 0000-0002-4100-1507 uniquely matches official DBLP person 59/1143-1. Other Yiqun Chen records remain unbound.",
+   "previous_hold": {
+    "no_identity": true,
+    "why_no_identity": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open."
+   },
+   "evidence": [
+    {
+     "url": "https://yiqunchen.github.io/",
+     "sha256": "54a0149c161fab07b99577a183cae266035d6552f95f9538f87e7c62593e4076",
+     "quote": "https://orcid.org/0000-0002-4100-1507",
+     "artifact": "hierarchy/jhu/reviewed/identity-sources/54a0149c161fab07b99577a183cae266035d6552f95f9538f87e7c62593e4076.html",
+     "observedAt": "2026-11-20T10:08:04"
+    }
+   ],
+   "bibliography_extract_sha256": "dc1732be8da935aaa166884f2beb54765432cbea0fd72e6638f6828c524f1d66"
+  }
  },
  "Jennifer Hu": {
-  "no_identity": true,
-  "why_no_identity": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open.",
-  "note_identity_scope": "Partial release hold; retain faculty census evidence, attribute no papers until a positive identity match is reviewed."
+  "note_identity_scope": "Partial release hold; retain faculty census evidence, attribute no papers until a positive identity match is reviewed.",
+  "dblp": [
+   "https://dblp.org/pid/217/1862"
+  ],
+  "why_dblp": "Official DBLP person 217/1862 links jennhu.github.io, whose captured exact redirect points to www.jenniferhu.org. The separately policy-checked target identifies Jennifer Hu as the JHU cognitive-science/computer-science assistant professor, gives jennhu@jhu.edu and her previous Harvard fellowship/MIT PhD, agreeing with the institutional roster. The earlier Edward J. Hu school-coauthor candidate is a different person and is not selected.",
+  "identity_resolution_review": {
+   "reviewed": "2026-11-20",
+   "reviewer": "codex-washu-jhu-uchicago-papers-1120",
+   "reason": "Official DBLP person 217/1862 links jennhu.github.io, whose captured exact redirect points to www.jenniferhu.org. The separately policy-checked target identifies Jennifer Hu as the JHU cognitive-science/computer-science assistant professor, gives jennhu@jhu.edu and her previous Harvard fellowship/MIT PhD, agreeing with the institutional roster. The earlier Edward J. Hu school-coauthor candidate is a different person and is not selected.",
+   "previous_hold": {
+    "no_identity": true,
+    "why_no_identity": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open."
+   },
+   "evidence": [
+    {
+     "url": "https://www.jenniferhu.org/",
+     "sha256": "cc383b6529859e0e238f4a487a021356665e08642a3da58bb5ee5ac42f2856d6",
+     "quote": "I am an Assistant Professor of Cognitive Science and Computer Science at Johns Hopkins University",
+     "artifact": "hierarchy/jhu/reviewed/identity-sources/cc383b6529859e0e238f4a487a021356665e08642a3da58bb5ee5ac42f2856d6.html",
+     "observedAt": "2026-11-20T10:10:59"
+    }
+   ],
+   "bibliography_extract_sha256": "dc1732be8da935aaa166884f2beb54765432cbea0fd72e6638f6828c524f1d66"
+  }
  },
  "Louis Whitcomb": {
-  "no_identity": true,
-  "why_no_identity": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open.",
-  "note_identity_scope": "Partial release hold; retain faculty census evidence, attribute no papers until a positive identity match is reviewed."
+  "note_identity_scope": "Partial release hold; retain faculty census evidence, attribute no papers until a positive identity match is reviewed.",
+  "dblp": [
+   "https://dblp.org/pid/34/935"
+  ],
+  "why_dblp": "The official JHU CS secondary-faculty roster identifies Louis Whitcomb as professor of Mechanical Engineering, with llw@jhu.edu. Of the two stored DBLP candidates, 34/935 spells Louis L. Whitcomb and has 126 robotics/control publications; 301/2836 is W. C. Louis and contradicts both the given and family names. The fresh 34/935 ORCID 0000-0003-2398-1000 agrees with the 47 retained full-name JHU Mechanical Engineering authorships. This explicit candidate review resolves the incomplete-name hold; initials-only and surname-only alternatives are rejected.",
+  "aliases": [
+   "Louis L. Whitcomb"
+  ],
+  "identity_resolution_review": {
+   "reviewed": "2026-11-20",
+   "reviewer": "codex-washu-jhu-uchicago-papers-1120",
+   "reason": "The official JHU CS secondary-faculty roster identifies Louis Whitcomb as professor of Mechanical Engineering, with llw@jhu.edu. Of the two stored DBLP candidates, 34/935 spells Louis L. Whitcomb and has 126 robotics/control publications; 301/2836 is W. C. Louis and contradicts both the given and family names. The fresh 34/935 ORCID 0000-0003-2398-1000 agrees with the 47 retained full-name JHU Mechanical Engineering authorships. This explicit candidate review resolves the incomplete-name hold; initials-only and surname-only alternatives are rejected.",
+   "previous_hold": {
+    "no_identity": true,
+    "why_no_identity": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open."
+   },
+   "evidence": [
+    {
+     "url": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/",
+     "sha256": "3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81",
+     "quote": "Louis Whitcomb Professor, Mechanical Engineering",
+     "artifact": "hierarchy/jhu/reviewed/identity-sources/3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81.html",
+     "observedAt": "2026-11-06T22:26:42"
+    }
+   ],
+   "bibliography_extract_sha256": "dc1732be8da935aaa166884f2beb54765432cbea0fd72e6638f6828c524f1d66"
+  }
  },
  "Nassir Navab": {
   "openalex": [
@@ -1310,18 +1483,169 @@
   "why_home_department": "2026-11-18 (T757): the census text 'Computer Vision and Artificial Intelligence' is the title of his named chair, not a unit; the dated ECE faculty listing (11 captures 2020-2025) and the BME listing both list him, ECE is the first and longest listing"
  },
  "Kimia Ghobadi": {
-  "no_identity": true,
-  "why_no_identity": "Identity held (owner ruling 2026-11-19, via the coordinator): no positive identity anchor (no matched DBLP person, ORCID or OpenAlex author in the saved listing/profile sources); the person is held for stage-5 identity review and no paper is attributed until that review records source-bound evidence. Faculty census, appointment and member evidence are retained; this is an unresolved identity review, not a claim that no identity or papers exist.",
-  "note_identity_scope": "Held until the stage-5 identity review (docs/IDENTITY-HOLDS.md); clear by a reviewed binding or by setting no_identity false with the new source evidence."
+  "note_identity_scope": "Held until the stage-5 identity review (docs/IDENTITY-HOLDS.md); clear by a reviewed binding or by setting no_identity false with the new source evidence.",
+  "dblp": [
+   "https://dblp.org/pid/167/1975"
+  ],
+  "why_dblp": "Source review resolves the prior no-anchor hold: DBLP person 167/1975 explicitly names Johns Hopkins University and links its official Kimia Ghobadi faculty profile. The retained CS secondary-faculty directory names Kimia Ghobadi. The official dump contains 16 in-window publications; no name-only choice or borrowed author ID is used.",
+  "dblp_evidence": {
+   "url": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/",
+   "sha256": "3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81",
+   "artifact": "hierarchy/jhu/reviewed/identity-sources/3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81.html",
+   "observedAt": "2026-11-06T22:26:42",
+   "quote": "Kimia Ghobadi John C. Malone Assistant Professor of Civil and Systems Engineering Faculty Profile Location: Latrobe Hall 202 Email: kimia@jhu.edu Phone: 410-516-7763 John T. Hale Professor, Cognitive Science Faculty Profile Location: Krieger Hall 243 Email: jthale@jhu.edu Phone: 410-516-7932 Soufian"
+  },
+  "identity_resolution_review": {
+   "reviewed": "2026-11-20",
+   "reviewer": "codex-washu-jhu-uchicago-papers-1120",
+   "reason": "Source review resolves the prior no-anchor hold: DBLP person 167/1975 explicitly names Johns Hopkins University and links its official Kimia Ghobadi faculty profile. The retained CS secondary-faculty directory names Kimia Ghobadi. The official dump contains 16 in-window publications; no name-only choice or borrowed author ID is used.",
+   "previous_hold": {
+    "no_identity": true,
+    "why_no_identity": "Identity held (owner ruling 2026-11-19, via the coordinator): no positive identity anchor (no matched DBLP person, ORCID or OpenAlex author in the saved listing/profile sources); the person is held for stage-5 identity review and no paper is attributed until that review records source-bound evidence. Faculty census, appointment and member evidence are retained; this is an unresolved identity review, not a claim that no identity or papers exist."
+   },
+   "recorded_dblp_selection": {
+    "pid": "https://dblp.org/pid/167/1975",
+    "basis": "school_affiliation",
+    "url": "https://dblp.org/pid/167/1975",
+    "dump": "dblp-2026-09-01.xml.gz",
+    "sha256": "da49acece3f533ef9aa55bba18da521adae301a65033cd91a8a8e8bd081e39e2",
+    "quote": "Johns Hopkins University, Baltimore, MD, USA",
+    "orcid": [],
+    "names": [
+     "Kimia Ghobadi"
+    ],
+    "candidates": 1,
+    "n_window": 16
+   },
+   "source": {
+    "url": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/",
+    "sha256": "3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81",
+    "artifact": "hierarchy/jhu/reviewed/identity-sources/3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81.html",
+    "observedAt": "2026-11-06T22:26:42",
+    "quote": "Kimia Ghobadi John C. Malone Assistant Professor of Civil and Systems Engineering Faculty Profile Location: Latrobe Hall 202 Email: kimia@jhu.edu Phone: 410-516-7763 John T. Hale Professor, Cognitive Science Faculty Profile Location: Krieger Hall 243 Email: jthale@jhu.edu Phone: 410-516-7932 Soufian"
+   },
+   "extract_sha256": "5d6bb6a77b437ed10538c69f98c2df96187ec33ba2c16abbd41fc22fda40b14a"
+  }
  },
  "Kyle Rawlins": {
-  "no_identity": true,
-  "why_no_identity": "Identity held (owner ruling 2026-11-19, via the coordinator): no positive identity anchor (no matched DBLP person, ORCID or OpenAlex author in the saved listing/profile sources); the person is held for stage-5 identity review and no paper is attributed until that review records source-bound evidence. Faculty census, appointment and member evidence are retained; this is an unresolved identity review, not a claim that no identity or papers exist.",
-  "note_identity_scope": "Held until the stage-5 identity review (docs/IDENTITY-HOLDS.md); clear by a reviewed binding or by setting no_identity false with the new source evidence."
+  "note_identity_scope": "Held until the stage-5 identity review (docs/IDENTITY-HOLDS.md); clear by a reviewed binding or by setting no_identity false with the new source evidence.",
+  "dblp": [
+   "https://dblp.org/pid/85/5141"
+  ],
+  "why_dblp": "Source review resolves the prior no-anchor hold: the stored DBLP selection 85/5141 is based on 16 publication records coauthored with the already identified JHU PI Benjamin Van Durme, not a name-only selection. The captured JHU Cognitive Science directory names Kyle Rawlins as Associate Professor and lists computational semantics among his research interests. The fresh official person extract confirms the 22 in-window records.",
+  "dblp_evidence": {
+   "url": "https://web.archive.org/web/20220520130035id_/https://cogsci.jhu.edu/people/",
+   "sha256": "5815b08801a2819e7eb52677a9fa6a535417c0ef77f6020d6d92191d62d3e585",
+   "artifact": "hierarchy/jhu/reviewed/identity-sources/5815b08801a2819e7eb52677a9fa6a535417c0ef77f6020d6d92191d62d3e585.html",
+   "observedAt": "20220520130035",
+   "quote": "Kyle Rawlins\nAssociate Professor\nDirector of Graduate Studies & Admissions\nPhD, University of California Santa Cruz\nkgr@jhu.edu\nKrieger 149 | 105 (lab)\nGroup/Lab Website\nResearch Interests: Formal semantics, pragmatics, syntax, and the interfaces of these areas, computational semantics, philosophy o"
+  },
+  "identity_resolution_review": {
+   "reviewed": "2026-11-20",
+   "reviewer": "codex-washu-jhu-uchicago-papers-1120",
+   "reason": "Source review resolves the prior no-anchor hold: the stored DBLP selection 85/5141 is based on 16 publication records coauthored with the already identified JHU PI Benjamin Van Durme, not a name-only selection. The captured JHU Cognitive Science directory names Kyle Rawlins as Associate Professor and lists computational semantics among his research interests. The fresh official person extract confirms the 22 in-window records.",
+   "previous_hold": {
+    "no_identity": true,
+    "why_no_identity": "Identity held (owner ruling 2026-11-19, via the coordinator): no positive identity anchor (no matched DBLP person, ORCID or OpenAlex author in the saved listing/profile sources); the person is held for stage-5 identity review and no paper is attributed until that review records source-bound evidence. Faculty census, appointment and member evidence are retained; this is an unresolved identity review, not a claim that no identity or papers exist."
+   },
+   "recorded_dblp_selection": {
+    "pid": "https://dblp.org/pid/85/5141",
+    "basis": "school_coauthors",
+    "url": "https://dblp.org/pid/85/5141",
+    "dump": "dblp-2026-09-01.xml.gz",
+    "sha256": "019672001c2662ecb7de912a26dd02cee9a60a2d14820eded6d7733ce3ff67b7",
+    "quote": "Kyle Rawlins",
+    "coauthors": [
+     "Benjamin Van Durme"
+    ],
+    "coauthored_records": 16,
+    "orcid": [],
+    "names": [
+     "Kyle Rawlins"
+    ],
+    "candidates": 2,
+    "n_window": 22
+   },
+   "source": {
+    "url": "https://web.archive.org/web/20220520130035id_/https://cogsci.jhu.edu/people/",
+    "sha256": "5815b08801a2819e7eb52677a9fa6a535417c0ef77f6020d6d92191d62d3e585",
+    "artifact": "hierarchy/jhu/reviewed/identity-sources/5815b08801a2819e7eb52677a9fa6a535417c0ef77f6020d6d92191d62d3e585.html",
+    "observedAt": "20220520130035",
+    "quote": "Kyle Rawlins\nAssociate Professor\nDirector of Graduate Studies & Admissions\nPhD, University of California Santa Cruz\nkgr@jhu.edu\nKrieger 149 | 105 (lab)\nGroup/Lab Website\nResearch Interests: Formal semantics, pragmatics, syntax, and the interfaces of these areas, computational semantics, philosophy o"
+   },
+   "extract_sha256": "5d6bb6a77b437ed10538c69f98c2df96187ec33ba2c16abbd41fc22fda40b14a"
+  }
  },
  "Rebecca Schulman": {
-  "no_identity": true,
-  "why_no_identity": "Identity held (owner ruling 2026-11-19, via the coordinator): no positive identity anchor (no matched DBLP person, ORCID or OpenAlex author in the saved listing/profile sources); the person is held for stage-5 identity review and no paper is attributed until that review records source-bound evidence. Faculty census, appointment and member evidence are retained; this is an unresolved identity review, not a claim that no identity or papers exist.",
-  "note_identity_scope": "Held until the stage-5 identity review (docs/IDENTITY-HOLDS.md); clear by a reviewed binding or by setting no_identity false with the new source evidence."
+  "note_identity_scope": "Held until the stage-5 identity review (docs/IDENTITY-HOLDS.md); clear by a reviewed binding or by setting no_identity false with the new source evidence.",
+  "dblp": [
+   "https://dblp.org/pid/96/6532"
+  ],
+  "why_dblp": "The original author-deposited Sequential Activation of Spatially Localized Oligonucleotides PDF explicitly identifies corresponding author Rebecca Schulman in Chemical and Biomolecular Engineering and Computer Science at Johns Hopkins, with ORCID 0000-0003-4555-3162. This independently confirms the same ORCID in DBLP person 96/6532 and the cached school-authorship records, resolving the prior no-positive-anchor hold. The identity proof does not itself admit the preprint as a corpus paper.",
+  "orcid": [
+   "0000-0003-4555-3162"
+  ],
+  "why_orcid": "The original author-deposited Sequential Activation of Spatially Localized Oligonucleotides PDF explicitly identifies corresponding author Rebecca Schulman in Chemical and Biomolecular Engineering and Computer Science at Johns Hopkins, with ORCID 0000-0003-4555-3162. This independently confirms the same ORCID in DBLP person 96/6532 and the cached school-authorship records, resolving the prior no-positive-anchor hold. The identity proof does not itself admit the preprint as a corpus paper.",
+  "identity_resolution_review": {
+   "reviewed": "2026-11-20",
+   "reviewer": "codex-washu-jhu-uchicago-papers-1120",
+   "reason": "The original author-deposited Sequential Activation of Spatially Localized Oligonucleotides PDF explicitly identifies corresponding author Rebecca Schulman in Chemical and Biomolecular Engineering and Computer Science at Johns Hopkins, with ORCID 0000-0003-4555-3162. This independently confirms the same ORCID in DBLP person 96/6532 and the cached school-authorship records, resolving the prior no-positive-anchor hold. The identity proof does not itself admit the preprint as a corpus paper.",
+   "previous_hold": {
+    "no_identity": true,
+    "why_no_identity": "Identity held (owner ruling 2026-11-19, via the coordinator): no positive identity anchor (no matched DBLP person, ORCID or OpenAlex author in the saved listing/profile sources); the person is held for stage-5 identity review and no paper is attributed until that review records source-bound evidence. Faculty census, appointment and member evidence are retained; this is an unresolved identity review, not a claim that no identity or papers exist."
+   },
+   "evidence": [
+    {
+     "url": "https://www.cambridge.org/engage/api-gateway/coe/assets/orp/resource/item/62a1336f70f8a73478fc3cc7/original/sequential-activation-of-spatially-localized-oligonucleotides.pdf",
+     "sha256": "55bea1b11c61c0f9c7f6535789a63b04565463fde8440cdcb8ef88ba97a645af",
+     "quote": "Rebecca Schulman – Chemical and Biomolecular Engineering and Computer Science, Johns Hopkins University, Baltimore, Maryland 21218, United States; orcid.org/0000-0003- 4555-3162;",
+     "artifact": "hierarchy/jhu/reviewed/identity-sources/55bea1b11c61c0f9c7f6535789a63b04565463fde8440cdcb8ef88ba97a645af.pdf",
+     "observedAt": "2026-11-20T10:11:02"
+    }
+   ],
+   "bibliography_extract_sha256": "dc1732be8da935aaa166884f2beb54765432cbea0fd72e6638f6828c524f1d66"
+  }
+ },
+ "Yana Safonova": {
+  "openalex": [
+   "https://openalex.org/A5005373810"
+  ],
+  "why_openalex": "2026-11-20 standard oa_identity_candidates unique full-name school-author review: unique name match under family name and first given name among the school's OpenAlex authors: 10 school works 2022-2025, raw names ['Yana Safonova'], ORCID ['0000-0002-9634-4216'], venues ['Genome Research', 'Nature Immunology', 'The Journal of Immunology', 'Immunity']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://openalex.org/W4409995522",
+    "sha256": "ec4e96f75bb6f865e3e49b131b231f0fdb7f820b5dcc4e3ad104b1b282fab561",
+    "quote": "{\"author\": {\"display_name\": \"Yana Safonova\", \"id\": \"https://openalex.org/A5005373810\", \"orcid\": \"https://orcid.org/0000-0002-9634-4216\", \"observed_orcids\": [\"https://orcid.org/0000-0002-9634-4216\"]}, \"author_position\": \"last\", \"institutions\": [{\"country_code\": \"US\", \"display_name\": \"Pennsylvania State University\", \"id\": \"https://openalex.org/I130769515\", \"lineage\": [\"https://openalex.org/I130769515\"], \"ror\": \"https://ror.org/04p491231\", \"type\": \"education\"}, {\"country_code\": \"US\", \"display_name\": \"Johns Hopkins University\", \"id\": \"https://openalex.org/I145311948\", \"lineage\": [\"https://openalex.org/I145311948\"], \"ror\": \"https://ror.org/00za53h95\", \"type\": \"education\"}], \"raw_affiliation_strings\": [\"Department of Computer Science, Johns Hopkins University, Baltimore, MD 21218, USA; Computer Science and Engineering Department, Pennsylvania State University, University Park, PA 16802, USA; Huck Institutes of Life Sciences, Pennsylvania State University, University Park, PA 16802, USA. Electronic address: yana@psu.edu\"], \"raw_author_name\": \"Yana Safonova\", \"is_corresponding\": false}",
+    "source": "Retained school OpenAlex sweep; candidate selector output retained in scratch/three-school-zero-1120/jhu/identity-proposals.json"
+   }
+  ]
+ },
+ "Uthsav Chitra": {
+  "openalex": [
+   "https://openalex.org/A5007866726"
+  ],
+  "why_openalex": "2026-11-20 standard oa_identity_candidates unique full-name school-author review: unique name match under family name and first given name among the school's OpenAlex authors: 3 school works 2025-2026, raw names ['Uthsav Chitra'], ORCID ['0000-0001-6016-0960'], venues ['iScience']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://openalex.org/W4408657874",
+    "sha256": "0c2262b3568729d5cca2220f4b1de2b222487a8e84564a522b8c09dff4296db8",
+    "quote": "{\"author\": {\"display_name\": \"Uthsav Chitra\", \"id\": \"https://openalex.org/A5007866726\", \"orcid\": \"https://orcid.org/0000-0001-6016-0960\", \"observed_orcids\": [\"https://orcid.org/0000-0001-6016-0960\"]}, \"author_position\": \"middle\", \"institutions\": [{\"country_code\": \"US\", \"display_name\": \"Broad Institute\", \"id\": \"https://openalex.org/I107606265\", \"lineage\": [\"https://openalex.org/I107606265\"], \"ror\": \"https://ror.org/05a0ya142\", \"type\": \"nonprofit\"}, {\"country_code\": \"US\", \"display_name\": \"Johns Hopkins University\", \"id\": \"https://openalex.org/I145311948\", \"lineage\": [\"https://openalex.org/I145311948\"], \"ror\": \"https://ror.org/00za53h95\", \"type\": \"education\"}], \"raw_affiliation_strings\": [\"Department of Computer Science, Johns Hopkins University, Baltimore, MD 21218, USA\", \"Eric and Wendy Schmidt Center, Broad Institute of MIT and Harvard, Cambridge, MA 02142, USA\"], \"raw_author_name\": \"Uthsav Chitra\", \"is_corresponding\": true}",
+    "source": "Retained school OpenAlex sweep; candidate selector output retained in scratch/three-school-zero-1120/jhu/identity-proposals.json"
+   }
+  ]
+ },
+ "Roy Adams": {
+  "openalex": [
+   "https://openalex.org/A5122939110"
+  ],
+  "why_openalex": "2026-11-20 standard oa_identity_candidates unique full-name school-author review: unique name match under family name and first given name among the school's OpenAlex authors: 4 school works 2026-2026, raw names ['Roy Adams'], ORCID ['0000-0001-6859-3007'], venues ['Prevention Science', 'Journal of Medical Internet Research', 'Alzheimer s & Dementia', 'International Review of Psychiatry']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://openalex.org/W7123708290",
+    "sha256": "410276d18e2cd1943e24f7495ad39e1e7f953fc5c75158ea9daf77b7dbc817cb",
+    "quote": "{\"author\": {\"display_name\": \"Roy Adams\", \"id\": \"https://openalex.org/A5122939110\", \"orcid\": \"https://orcid.org/0000-0001-6859-3007\", \"observed_orcids\": [\"https://orcid.org/0000-0001-6859-3007\"]}, \"author_position\": \"middle\", \"institutions\": [{\"country_code\": \"US\", \"display_name\": \"Johns Hopkins University\", \"id\": \"https://openalex.org/I145311948\", \"lineage\": [\"https://openalex.org/I145311948\"], \"ror\": \"https://ror.org/00za53h95\", \"type\": \"education\"}, {\"country_code\": \"US\", \"display_name\": \"Johns Hopkins Medicine\", \"id\": \"https://openalex.org/I2799853436\", \"lineage\": [\"https://openalex.org/I2799853436\"], \"ror\": \"https://ror.org/037zgn354\", \"type\": \"healthcare\"}], \"raw_affiliation_strings\": [\"Department of Psychiatry and Behavioral Sciences, Johns Hopkins School of Medicine, Baltimore, MD, 21287, USA\"], \"raw_author_name\": \"Roy Adams\", \"is_corresponding\": false}",
+    "source": "Retained school OpenAlex sweep; candidate selector output retained in scratch/three-school-zero-1120/jhu/identity-proposals.json"
+   }
+  ]
  }
 }

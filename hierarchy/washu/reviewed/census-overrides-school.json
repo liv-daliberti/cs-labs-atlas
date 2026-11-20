@@ -760,6 +760,80 @@
     "observed": "2025-07-14",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/washu/openalex-sweep.sqlite)"
    }
+  ],
+  "periods": [
+   {
+    "id": "washu_source_recovery_1120_stern",
+    "start": "2012",
+    "end": null,
+    "asof": "2026-11-20",
+    "datePrecision": "year",
+    "reviewed": "2026-11-20",
+    "note": "Explicit faculty arrival in the PI biography, confirmed by the current faculty role on the same page; no appointment is inferred from paper authorship.",
+    "evidence": [
+     {
+      "url": "https://www.math.wustl.edu/~astern/index.html",
+      "sha256": "57c95b4f4939d1ebcea3d0d215c1e23371f2e1d7df79ee89f87194eed0559170",
+      "artifact": "hierarchy/washu/reviewed/identity-sources/57c95b4f4939d1ebcea3d0d215c1e23371f2e1d7df79ee89f87194eed0559170.html",
+      "observedAt": "2026-11-20T09:57:41",
+      "quote": "Before arriving at WashU in 2012, I was a postdoc in the mathematics department at UCSD, where I worked with Michael Holst."
+     }
+    ]
+   }
   ]
+ },
+ "S. Joshua Swamidass": {
+  "periods": [
+   {
+    "id": "washu_source_recovery_1120_swamidass",
+    "start": "2010",
+    "end": null,
+    "asof": "2026-11-20",
+    "datePrecision": "year",
+    "reviewed": "2026-11-20",
+    "note": "Explicit faculty arrival in the PI biography, confirmed by the current faculty role on the same page; no appointment is inferred from paper authorship.",
+    "evidence": [
+     {
+      "url": "https://swami.wustl.edu/about/",
+      "sha256": "27310cd742ed5aff1e058fe9635faddd8d9613e0a84ad36433d3b315e1199d0b",
+      "artifact": "hierarchy/washu/reviewed/identity-sources/27310cd742ed5aff1e058fe9635faddd8d9613e0a84ad36433d3b315e1199d0b.html",
+      "observedAt": "2026-11-20T09:59:31",
+      "quote": "After residency in clinical pathology at Washington University, and visiting appointments at the Broad Institute of MIT and Harvard and at Pfizer, he joined the Washington University faculty in 2010."
+     }
+    ]
+   }
+  ]
+ },
+ "Heinz Schaettler": {
+  "periods": [
+   {
+    "id": "washu_source_recovery_1120_schaettler",
+    "start": "1987",
+    "end": null,
+    "asof": "2026-11-06",
+    "datePrecision": "year",
+    "reviewed": "2026-11-20",
+    "note": "Explicit faculty arrival in the PI biography, confirmed by the current faculty role on the same page; no appointment is inferred from paper authorship.",
+    "evidence": [
+     {
+      "url": "https://engineering.washu.edu/faculty/Heinz-Schaettler.html",
+      "sha256": "35fb8581dc70ff328cec7c2596322b20a47c3b416b45b25997890595b6758159",
+      "artifact": "hierarchy/washu/reviewed/identity-sources/35fb8581dc70ff328cec7c2596322b20a47c3b416b45b25997890595b6758159.html",
+      "observedAt": "2026-11-06T23:59:10",
+      "quote": "Professor Schaettler joined the Washington University in St. Louis faculty in 1987 as assistant professor in the Department of Systems Science and Mathematics."
+     }
+    ]
+   }
+  ],
+  "aliases": [
+   "Heinz Schättler"
+  ],
+  "alias_evidence": {
+   "url": "https://dblp.org/pid/12/3364",
+   "sha256": "5d6bb6a77b437ed10538c69f98c2df96187ec33ba2c16abbd41fc22fda40b14a",
+   "quote": "Heinz Schättler; Heinz Schaettler",
+   "source": "Official DBLP 2026-09-01 person record; both literal names are in the already owned PID",
+   "reviewed": "2026-11-20"
+  }
  }
 }

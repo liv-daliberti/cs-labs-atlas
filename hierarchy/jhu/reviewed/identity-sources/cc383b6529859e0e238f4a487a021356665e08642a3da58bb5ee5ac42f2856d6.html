@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jennifer Hu</title>
+  <!-- Fontawesome -->
+  <link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="assets/fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="assets/fontawesome/css/solid.css" rel="stylesheet" />
+  <link href="assets/fontawesome/css/sharp-thin.css" rel="stylesheet" />
+  <!-- Remote fonts/styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Fira+Code:wght@300..700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════
+       TOKENS — edit these to retheme instantly
+    ══════════════════════════════════════════ */
+    :root {
+      --bg:        #ffffff;
+      --surface:   #ffffff;
+      --border:    #e8e4dc;
+      --accent:    #8b4513;     /* warm brown */
+      --accent-lt: #f3ece4;
+      --text:      #1a1714;
+      --muted:     #6b6460;
+      --link:      #5c3310;
+
+      --font-serif: 'Alegreya', Georgia, serif;
+      --font-sans:  'Source Sans Pro', system-ui, sans-serif;
+
+      --sidebar-w: 260px;
+      --max-w:     860px;
+      --gap:       2.5rem;
+    }
+
+    /* ══════════════════════════════════════════
+       RESET & BASE
+    ══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { color: var(--accent); }
+
+    img { max-width: 100%; display: block; }
+
+    /* ══════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      gap: 1rem;
+    }
+
+    .nav-name {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.15rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      padding: 0.3rem 0.65rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      background: var(--accent-lt);
+    }
+
+    /* ══════════════════════════════════════════
+       LAYOUT
+    ══════════════════════════════════════════ */
+    main {
+      max-width: var(--max-w);
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    /* ══════════════════════════════════════════
+       PAGE LAYOUT — two columns top to bottom
+    ══════════════════════════════════════════ */
+    .page-grid {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      gap: var(--gap);
+      align-items: start;
+    }
+
+    /* ── LEFT COLUMN: photo + sidebar blocks ── */
+    .left-col {
+      /* display: contents */
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .hero-photo {
+      width: 100%;
+      max-width: var(--sidebar-w);
+      aspect-ratio: 1;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+
+    .hero-photo-placeholder {
+      width: 100%;
+      max-width: var(--sidebar-w);
+      aspect-ratio: 1;
+      border-radius: 8px;
+      background: var(--accent-lt);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      color: var(--accent);
+    }
+
+    /* ── SIDEBAR blocks (under photo) ── */
+    .sidebar { display: flex; flex-direction: column; gap: 2rem; }
+
+    .sidebar-block h3 {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Interests */
+    .interests-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .interests-list li {
+      font-size: 0.88rem;
+      padding: 0.2rem 0;
+      border-left: 2px solid var(--border);
+      padding-left: 0.65rem;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .interests-list li:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Trajectory */
+    .trajectory { display: flex; flex-direction: column; gap: 0.8rem; }
+
+    .traj-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .traj-logo {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      flex-shrink: 0;
+      margin-top: 2px;
+      border-radius: 4px;
+      filter: grayscale(1);
+    }
+
+    .traj-logo-placeholder {
+      width: 28px;
+      height: 28px;
+      background: var(--accent-lt);
+      border-radius: 4px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .traj-text strong { display: block; font-size: 0.82rem; font-weight: 500; }
+    .traj-text span   { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── RIGHT COLUMN header ── */
+    .right-col { display: flex; flex-direction: column; gap: 2.5rem; }
+
+    .hero-body h1 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-body .role {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .hero-body .bio-text {
+      font-family: var(--font-sans-serif);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .hero-meta span { display: flex; gap: 0.4rem; align-items: center; }
+    .hero-meta strong { color: var(--text); }
+
+    .hero-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .hero-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .hero-links a:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-lt); }
+
+    /* Awards */
+    .awards-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .awards-list li { font-size: 0.83rem; line-height: 1.4; }
+    .awards-list li a { font-size: inherit; }
+
+    /* ── MAIN CONTENT ── */
+    .content { display: flex; flex-direction: column; gap: 2.5rem; }
+
+    /* BIO */
+    .bio p { font-family: var(--font-serif); font-size: 1.05rem; line-height: 1.75; }
+
+    /* SECTION HEADINGS */
+    .section > h2 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* NEWS */
+    .news-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .news-item { display: flex; gap: 0.75rem; align-items: baseline; font-size: 0.88rem; }
+
+    .news-year {
+      font-size: 0.75rem;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 36px;
+    }
+
+    .news-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .tag-paper   { background: #e8f0fe; color: #1a56a4; }
+    .tag-award   { background: #ffddec; color: #cf63a6; }
+    .tag-event   { background: #fef3c7; color: #92400e; }
+    .tag-media   { background: #ede9fe; color: #5b21b6; }
+    .tag-talk    { background: #d1fae5; color: #065f46; }
+    .tag-other   { background: var(--accent-lt); color: var(--accent); }
+
+    .news-text { line-height: 1.5; }
+
+    .news-more-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.4rem 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .news-more-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* PUBLICATIONS */
+    .pub-list { display: flex; flex-direction: column; gap: 1.75rem; }
+
+    .pub-item { display: flex; gap: 1.25rem; align-items: flex-start; }
+
+    .pub-thumb {
+      width: 90px;
+      height: 65px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .pub-thumb-placeholder {
+      width: 90px;
+      height: 65px;
+      background: var(--accent-lt);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--accent);
+    }
+
+    .pub-body {}
+
+    .pub-title {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.35;
+      margin-bottom: 0.25rem;
+    }
+
+    .pub-title a { color: var(--text); }
+    .pub-title a:hover { color: var(--accent); }
+
+    .pub-authors {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .pub-venue {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .pub-badge {
+      display: inline-block;
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.1rem 0.45rem;
+      border-radius: 3px;
+      margin-right: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .pub-links { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+    .pub-links a {
+      font-size: 0.78rem;
+      padding: 0.15rem 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .pub-links a:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 720px) {
+      .page-grid { grid-template-columns: 1fr; }
+      .hero-photo, .hero-photo-placeholder { max-width: 180px; margin: auto; }
+      .sidebar { flex-direction: row; flex-wrap: wrap; }
+      .sidebar-block { min-width: 140px; flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     NAV — edit links as needed
+═══════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="#">Jennifer Hu</a>
+    <ul class="nav-links">
+      <li><a href="#">About</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="https://glintlab.org" target="_blank">Lab ↗</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════
+     MAIN
+═══════════════════════════════════ -->
+<main id="about">
+  <div class="page-grid">
+
+    <!-- ══ LEFT COLUMN: photo + sidebar ══ -->
+    <div class="left-col">
+
+      <!-- Photo -->
+      <img class="hero-photo" src="assets/img/hu_headshot.png" alt="Photo">
+
+      <!-- Interests -->
+      <div class="sidebar-block">
+        <h3>Research Interests</h3>
+        <ul class="interests-list">
+          <li>Computational cognitive science</li>
+          <li>AI interpretability</li>
+          <li>Social intelligence</li>
+          <li>Pragmatics</li>
+          <li>Language processing</li>
+        </ul>
+      </div>
+
+    </div><!-- /left-col -->
+
+
+    <!-- ══ RIGHT COLUMN ══ -->
+    <div class="right-col">
+
+      <!-- ─── HEADER: name, role, bio, contact ─── -->
+      <div class="hero-body">
+        <h1>Jennifer Hu</h1>
+
+        <p class="bio-text">
+          I am an Assistant Professor of Cognitive Science and Computer Science at Johns Hopkins University, where I direct the <a href="https://glintlab.org" target="_blank">Group for Language and Intelligence</a>. 
+          My work aims to understand the computational principles that underlie human language, and how language and cognition might be achieved by artificial models. I approach these questions by combining cognitive science and machine learning, with the dual goals of understanding the human mind and safely advancing artificial intelligence. 
+          <br><br>
+          Previously, I was a Research Fellow at the <a href="https://kempnerinstitute.harvard.edu/">Kempner Institute for the Study of Natural and Artificial Intelligence</a> at Harvard University. I earned my Ph.D. in Brain and Cognitive Sciences at MIT, and my B.A. in Mathematics and Linguistics at Harvard. 
+        </p>
+
+        <div class="hero-meta">
+          <span><strong>Email</strong> jennhu@jhu.edu</span>
+          <span><strong>Office</strong> Krieger 167</span>
+        </div>
+
+        <!-- ── Social / external links ── -->
+        <div class="hero-links">
+          <a href="https://scholar.google.com/citations?user=Yn59qc4AAAAJ&hl=en" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
+            Scholar
+          </a>
+          <a href="https://bsky.app/profile/jennhu.bsky.social" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            BlueSky
+          </a>
+          <a href="https://github.com/jennhu" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="assets/pdf/Hu_CV.pdf" target="_blank">📄 CV</a>
+        </div>
+      </div>
+
+
+      <!-- ─── NEWS ─── -->
+      <section class="section" id="news">
+        <h2>Recent News</h2>
+        <ul class="news-list" id="news-list">
+
+          <li class="news-item">
+            <span class="news-year">2026</span>
+            <span class="news-tag tag-talk"><i class="fa-solid fa-comment"></i></span>
+            <span class="news-text">
+              Gave a keynote talk at <a href="https://sites.google.com/view/scil2026">SCiL 2026</a>. 
+            </span>
+          </li>
+
+          <li class="news-item">
+            <span class="news-year">2026</span>
+            <span class="news-tag tag-event"><i class="fa-solid fa-people-group"></i></span>
+            <span class="news-text">
+              Co-organized the Dagstuhl Seminar on <a href="https://www.dagstuhl.de/26241">Social Intelligence in AI Systems</a>.
+            </span>
+          </li>
+
+          <li class="news-item">
+            <span class="news-year">2026</span>
+            <span class="news-tag tag-award"><i class="fa-solid fa-award"></i></span>
+            <span class="news-text">My <a href="https://www.ted.com/tedx/events/64343">TEDxNewEngland</a> talk, "Can AI Show Us How Language Works?", was selected as a TED Global Editor's Pick.</span>
+          </li>
+
+          <li class="news-item">
+            <span class="news-year">2026</span>
+            <span class="news-tag tag-paper"><i class="fa-regular fa-file-lines"></i></span>
+            <span class="news-text">
+              Contributed an article on <a href="https://oecs.mit.edu/pub/dtatgf1j/release/1">AI Model Evaluation</a> for the Open Encyclopedia of Cognitive Science.
+            </span>
+          </li>
+
+          <li class="news-item">
+            <span class="news-year">2026</span>
+            <span class="news-tag tag-talk"><i class="fa-solid fa-comment"></i></span>
+            <span class="news-text">
+              Gave invited talks at the <a href="https://ci.cs.uchicago.edu/seminar/">UChicago/TTIC NLP Seminar</a>, <a href="https://gdr-lift.loria.fr/monthy-online-ilfc-seminar/">ILFC Seminar</a>, and <a href="https://www.lti.cs.cmu.edu/misc-pages/lti-colloquium.html">UT Austin South by Semantics Seminar</a>. 
+            </span>
+          </li>
+
+          <li class="news-item">
+            <span class="news-year">2026</span>
+            <span class="news-tag tag-paper"><i class="fa-regular fa-file-lines"></i></span>
+            <span class="news-text">
+               Two papers accepted at ICLR 2026.
+            </span>
+          </li>
+
+          
+          <!-- Hidden items (shown on "Show more") -->
+          <li class="news-item news-hidden" style="display:none">
+            <span class="news-year">2025</span>
+            <span class="news-tag tag-event"><i class="fa-solid fa-people-group"></i></span>
+            <span class="news-text">
+              Co-organized the Workshop on <a href="https://coginterp.github.io/neurips2025/">CogInterp: Interpreting Cognition in Deep Learning Models</a> at NeurIPS 2025.
+            </span>
+          </li>
+
+          <li class="news-item news-hidden" style="display:none">
+            <span class="news-year">2025</span>
+            <span class="news-tag tag-talk"><i class="fa-solid fa-comment"></i></span>
+            <span class="news-text">
+              Gave an invited talk at the <a href="https://www.lti.cs.cmu.edu/misc-pages/lti-colloquium.html">CMU LTI colloquium</a>. 
+            </span>
+          </li>
+
+          <li class="news-item news-hidden" style="display:none">
+            <span class="news-year">2025</span>
+            <span class="news-tag tag-other"><i class="fa-solid fa-house"></i></span>
+            <span class="news-text">
+              Started as faculty at Johns Hopkins University. 
+            </span>
+          </li>
+
+        </ul>
+        <button class="news-more-btn" onclick="toggleNews(this)">Show more ↓</button>
+      </section>
+
+      <section class="section" id="publications">
+        <h2>Publications</h2>
+
+        Please see my <a href="https://www.glintlab.org/publications/">lab website</a> or <a href="https://scholar.google.com/citations?user=Yn59qc4AAAAJ&hl=en">Google Scholar</a> for a full list of publications.
+
+    </div><!-- /right-col -->
+  </div><!-- /page-grid -->
+</main>
+
+
+<!-- ═══════════════════════════════════
+     FOOTER
+═══════════════════════════════════ -->
+<footer id="footer">
+  <p>Last updated June 2026.</p>
+</footer>
+
+
+<script>
+  // Toggle "Show more / Show less" for news
+  function toggleNews(btn) {
+    const hidden = document.querySelectorAll('.news-hidden');
+    const expanded = hidden[0].style.display !== 'none';
+    hidden.forEach(el => el.style.display = expanded ? 'none' : 'flex');
+    btn.textContent = expanded ? 'Show more ↓' : 'Show less ↑';
+  }
+</script>
+
+</body>
+</html>
