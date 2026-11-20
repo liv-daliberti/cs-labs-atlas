@@ -176,3 +176,11 @@ def test_R_PAP_42_d0029_tsinghua_orcid_conflict_ids_and_holds():
     assert 'https://openalex.org/A5101431332' in (ts['徐枫'].get('mixed_openalex') or []) + (ts['徐枫'].get('not_openalex') or [])
     holds = {(x['pi'], x['match'].get('oa')) for x in json.loads((root / 'tsinghua/reviewed/paper-claim-review.json').read_text())['decisions']}
     assert ('李国良', 'https://openalex.org/W2955351994') in holds and ('郑莉', 'https://openalex.org/W4404587888') in holds
+
+
+def test_sjtu_d0028_student_link_exclusions():
+    import json
+    d = json.loads((Path(__file__).resolve().parent.parent / 'hierarchy/sjtu/reviewed/student-link-exclusions.json').read_text())
+    have = {(e['pi'], e['student'], e['oa']) for e in d['exclusions']}
+    assert ('孔令和', 'Zhe Wang (王哲)', 'https://openalex.org/W4285327696') in have and ('孔令和', 'Zhe Wang (王哲)', 'https://openalex.org/W4280623730') in have
+    assert ('李国强', 'Ruibang Liu', 'https://openalex.org/W7125504239') in have

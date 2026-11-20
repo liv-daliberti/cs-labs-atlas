@@ -583,6 +583,51 @@
    "reviewed_by": "codex-sjtu-release-papers-root-independent-1117",
    "reviewed_on": "2026-11-17",
    "root_approval_sha256": "e84719a3f6515028c07ccaf84df4041e973c0204c12f4c2f580bcac0a64a6d1d"
+  },
+  {
+   "pi": "孔令和",
+   "student": "Zhe Wang (王哲)",
+   "oa": "https://openalex.org/W4285327696",
+   "why": "D-0028 gate-9 pi2b student precision (2026-11-20): the roster student is Zhe Wang (王哲, Ph.D 2024); the byline of this ICPADS 2021 paper has 'Zhen Wang' (8th author, no school affiliation on the authorship), a different given name. The link came from the recurring-variant allowance of the given-name guard (names.given_conflict) and is excluded for this paper.",
+   "kind": "failing",
+   "evidence": {
+    "url": "https://openalex.org/W4285327696",
+    "sha256": "608be89e0694cecd6fec8a11a7182abb9f089ad0690d84a78fcbd93167e56653",
+    "quote": "Zhen Wang",
+    "kind": "original_local_indexed_work_scalar",
+    "source_field": "authorships[].raw_author_name",
+    "sha256_basis": "sha256 of the stored OpenAlex record (canonical JSON), not DOI landing or publisher HTTP"
+   }
+  },
+  {
+   "pi": "孔令和",
+   "student": "Zhe Wang (王哲)",
+   "oa": "https://openalex.org/W4280623730",
+   "why": "Same as above for the WCNC 2022 mNB-IoT paper: byline 'Zhen Wang' (last author), not Zhe Wang; excluded for this paper.",
+   "kind": "failing",
+   "evidence": {
+    "url": "https://openalex.org/W4280623730",
+    "sha256": "5a13da5640c33006c117667dd237c40157c843712f550d3ef1b515a6f4a4ee17",
+    "quote": "Zhen Wang",
+    "kind": "original_local_indexed_work_scalar",
+    "source_field": "authorships[].raw_author_name",
+    "sha256_basis": "sha256 of the stored OpenAlex record (canonical JSON), not DOI landing or publisher HTTP"
+   }
+  },
+  {
+   "pi": "李国强",
+   "student": "Ruibang Liu",
+   "oa": "https://openalex.org/W7125504239",
+   "why": "D-0028 gate-9 pi2b student precision (2026-11-20): the lead record of this paper (AC4, published 2026) has the byline Qizhe Yang, Boxuan Liang, Hao Chen, Guoqiang Li and no Ruibang Liu. The link was made from the byline of the paper's SSRN preprint edition (W4405098323: Hao Chen, Ruibang Liu, Guoqiang Li), which the version differs from; excluded for this paper.",
+   "kind": "failing",
+   "evidence": {
+    "url": "https://openalex.org/W7125504239",
+    "sha256": "b9964941bd1274ab9e598bb8e925cd79fee6b2f05de3094f51dbba2972e354b7",
+    "quote": "Qizhe Yang",
+    "kind": "original_local_indexed_work_scalar",
+    "source_field": "authorships[].raw_author_name",
+    "sha256_basis": "sha256 of the stored OpenAlex record (canonical JSON), not DOI landing or publisher HTTP"
+   }
   }
  ],
  "finite_review_20261116": {
