@@ -202,8 +202,8 @@ probe = "https://drjieliu.github.io/"
 
 [[hosts]]
 host = "journals.sagepub.com"
-use = "live"
-purpose = "Publisher byline and email evidence for Wei Zhang identity; robots and access refusals apply."
+use = "wayback-only"
+purpose = "Direct publisher page challenged on2026-11-20: Wayback-only. Official AAMAS first-page PDF supplies the accepted Wei Zhang identity evidence."
 probe = "https://journals.sagepub.com/doi/10.3233/FAIA251261"
 
 [[hosts]]
@@ -214,8 +214,8 @@ probe = "https://www.ifaamas.org/Proceedings/aamas2024/pdfs/p2606.pdf"
 
 [[hosts]]
 host = "www.preprints.org"
-use = "live"
-purpose = "Public publisher manuscript byline for Wei Jiang; edition and identity gates remain."
+use = "wayback-only"
+purpose = "Direct robots returned403 on2026-11-20; Wayback-only. No direct manuscript or PDF fetch; not used for the accepted Jiang Wei identity."
 probe = "https://www.preprints.org/manuscript/202602.1655/v1"
 
 [[hosts]]
@@ -232,12 +232,12 @@ probe = "https://aiot.hit.edu.cn/info/1003/1184.htm"
 
 [[hosts]]
 host = "orcid.org"
-use = "live"
-purpose = "Public ORCID profile identity evidence where robots allows; pub.orcid.org API remains barred and is never used."
+use = "none"
+purpose = "Public HTML probe yielded only a JavaScript shell; no identity evidence used. ORCID public API remains barred, annual dump is the sanctioned data channel."
 probe = "https://orcid.org/0000-0002-8567-4025"
 
 [[hosts]]
 host = "link.springer.com"
-use = "live"
-purpose = "Public publisher metadata, author affiliations and corresponding email for Wei Jiang GCMRD; no subscription full text requested."
+use = "wayback-only"
+purpose = "Direct robots returned403 on2026-11-20: Wayback-only, no archived copy found. Earlier connected-browser primary metadata extract retained and labelled; no subscription full text or refusal bypass."
 probe = "https://link.springer.com/chapter/10.1007/978-3-032-37356-4_26"
