@@ -512,6 +512,25 @@ def _advisee_coauthor(advisee_names, others, pi_full):
     return False
 
 
+def reviewed_author_matches(ctx, pi, w, aid):
+    """R-PAP-04: an optional exact-work scope restricts a reviewed author ID.
+
+    Mixed bibliographic records can have a positively verified authorship without
+    verifying the entire author cluster. An explicit malformed scope fails closed.
+    Independent DOI, bibliography and other per-work evidence remain available.
+    """
+    if aid not in ctx.reviewed_oa[pi]:
+        return False
+    review = getattr(ctx, 'ov', {}).get(pi, {})
+    if 'openalex_work_scope' not in review:
+        return True
+    scope = review['openalex_work_scope']
+    works = scope.get(aid) if isinstance(scope, dict) else None
+    return (isinstance(works, list) and bool(works)
+            and all(isinstance(wid, str) and re.fullmatch(r'https://openalex.org/W\d+', wid) for wid in works)
+            and w.get('id') in works)
+
+
 def _authorship_identity(ctx, pi, w, a, cw):
     """R-PAP-04, R-PAP-07: the identity that makes authorship `a` of work `w` (collection work `cw`) the PI's, in order,
     or None. An id reviewed as someone else's (or another PI's reviewed id) is never the PI."""
@@ -525,7 +544,7 @@ def _authorship_identity(ctx, pi, w, a, cw):
         return None
     if in_blocked_cluster(pid0[pi], w):
         return None
-    if (a.get('author') or {}).get('id') in reviewed_oa[pi]:
+    if reviewed_author_matches(ctx, pi, w, (a.get('author') or {}).get('id')):
         return 'reviewed_openalex_author_id'
     if re.sub(r'^https?://orcid\.org/', '', (a.get('author') or {}).get('orcid') or '') in orcids[pi]:
         return 'pi_orcid'
@@ -628,7 +647,8 @@ def hits(ctx):
     HERE, school, pis, n, nm, cwork = ctx.here, ctx.school, ctx.pis, ctx.n, ctx.nm, ctx.cwork
     pis_by_name = {p['pi']: p['names'] for p in pis}
     per_work_only = {pi for pi, o in getattr(ctx, 'ov', {}).items()
-                     if (o.get('source_owned_publication_review') or {}).get('decision') == 'owned_per_work_only'}
+                     if (o.get('source_owned_publication_review') or {}).get('decision') == 'owned_per_work_only'
+                     or 'openalex_work_scope' in o}
 
     def identity_of(pi, w, a, cw):
         return authorship_identity(ctx, pi, w, a, cw)
@@ -675,13 +695,14 @@ def hits(ctx):
     seen_pw = {(h[0], h[1]['id']) for h in hits}
     for pi, w, a in surname_only:  # the same surname under an author id anchored (or reviewed) for this PI
         aid = a['author']['id']
-        if (pi, w['id']) in seen_pw or aid in blocked[pi] or not (anchored[pi].get(aid, 0) >= 1 or aid in reviewed_oa[pi]):
+        reviewed_match = reviewed_author_matches(ctx, pi, w, aid)
+        if (pi, w['id']) in seen_pw or aid in blocked[pi] or not (anchored[pi].get(aid, 0) >= 1 or reviewed_match):
             continue
         raw = a.get('raw_author_name') or a['author'].get('display_name') or ''
         if author_id_name_conflict(pis_by_name[pi], raw):
             n['author_id_full_given_name_conflicts'] += 1
             continue
-        seen_pw.add((pi, w['id'])); hits.append((pi, w, a, cwork(w) or None, 'reviewed_openalex_author_id' if aid in reviewed_oa[pi] else 'anchored_author_id', None))
+        seen_pw.add((pi, w['id'])); hits.append((pi, w, a, cwork(w) or None, 'reviewed_openalex_author_id' if reviewed_match else 'anchored_author_id', None))
         n['surname_only_hits_by_anchored_id'] += 1
     # the PI's own works outside the sweep (hierarchy/<school>/pi-works.sqlite, tools/pi_fulltext_affiliation.py): an
     # authorship with no recorded institution whose page 1 ties the school to the PI, and works over the sweep's author cap
@@ -721,10 +742,13 @@ def hits(ctx):
                     raw = a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or ''
                     if aid in blocked[pi] or not nm[pi].match(raw):
                         continue
+                    reviewed_match = reviewed_author_matches(ctx, pi, w, aid)
+                    if not reviewed_match and not anchored[pi].get(aid, 0):
+                        continue
                     if author_id_name_conflict(pis_by_name[pi], raw):
                         n['author_id_full_given_name_conflicts'] += 1
                         continue
-                    ident = 'reviewed_openalex_author_id' if aid in reviewed_oa[pi] else ('anchored_author_id' if anchored[pi][aid] >= 1 else 'advisee_anchored_author_id')
+                    ident = 'reviewed_openalex_author_id' if reviewed_match else ('anchored_author_id' if anchored[pi][aid] >= 1 else 'advisee_anchored_author_id')
                     hits.append((pi, w, a, cwork(w), ident, tie_for_pi(tied.get(w['id']), pis_by_name[pi]) or tied.get(w['id']))); from_pw.add((pi, w['id']))
             # R8 (R-PAP-24, 2026-10-29, owner: accuracy sample): a work whose page 1 ties the school to the PI by name, at an
             # authorship with no institution, under an author id that is not (yet) anchored, is the PI's when the PI's own
