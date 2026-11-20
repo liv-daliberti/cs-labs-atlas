@@ -230,3 +230,8 @@ fallback. It never moves the old shared anchor, deletes an issued record or crea
 existing behavior. Rebuilds retain the certificate, and a later global identifier can join the same individual source
 anchor. No DBLP/OpenAlex/ORCID ownership, appointment interval or paper admission follows from this ID-only certificate.
 Compare all registry tables, package IDs and unrelated identities in isolated preparation before promotion.
+
+A reviewed `source_owned_publication_review.decision: owned_per_work_only` also limits native identity propagation:
+credited works still pass the ordinary school/window filters, but their unreviewed OpenAlex author IDs do not seed
+additional papers or surname-only matches. The same applies to inferred advisee anchors under that explicit scope.
+Unscoped PI decisions retain existing behavior. This is separate from the ID-only source-person separation certificate.

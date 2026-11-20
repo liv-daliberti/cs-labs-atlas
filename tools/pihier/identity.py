@@ -609,6 +609,8 @@ def hits(ctx):
     reviewed id or tied by page 1 (R-PAP-24). Anchored author ids are counted on the way."""
     HERE, school, pis, n, nm, cwork = ctx.here, ctx.school, ctx.pis, ctx.n, ctx.nm, ctx.cwork
     pis_by_name = {p['pi']: p['names'] for p in pis}
+    per_work_only = {pi for pi, o in getattr(ctx, 'ov', {}).items()
+                     if (o.get('source_owned_publication_review') or {}).get('decision') == 'owned_per_work_only'}
 
     def identity_of(pi, w, a, cw):
         return authorship_identity(ctx, pi, w, a, cw)
@@ -642,9 +644,9 @@ def hits(ctx):
                 done.add(pi)
                 if (a.get('author') or {}).get('id') in mixed[pi]:
                     pass  # a mixed record never anchors
-                elif ident and ident != 'advisee_coauthor' and (a.get('author') or {}).get('id'):
+                elif pi not in per_work_only and ident and ident != 'advisee_coauthor' and (a.get('author') or {}).get('id'):
                     anchored[pi][a['author']['id']] += 1
-                elif ident == 'advisee_coauthor' and (a.get('author') or {}).get('id'):
+                elif pi not in per_work_only and ident == 'advisee_coauthor' and (a.get('author') or {}).get('id'):
                     via_advisee[pi][a['author']['id']] += 1
                 hits.append((pi, w, a, cw or None, ident, None))
     for pi, c in via_advisee.items():

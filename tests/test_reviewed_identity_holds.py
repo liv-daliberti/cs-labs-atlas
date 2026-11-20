@@ -138,3 +138,25 @@ def test_secondary_merged_census_name_cannot_lose_explicit_identity_hold(tmp_pat
     ctx = B.run_stages(tmp_path, upto='pis')
     pi = next(p for p in ctx.pis if p['pi'] == 'Dan Klein')
     assert pi['mergedCensusRows'] == ['Daniel Klein'] and pi['identityHold'] == HOLD
+
+
+@pytest.mark.usefixtures('layout')
+def test_owned_per_work_review_does_not_infer_a_global_author_id(tmp_path):
+    owned = B.work('W70', 'An Individually Credited Faculty Publication', 2020, [B.au('Ada Lovelace', 'A70')])
+    other = B.work('W71', 'Another Work Under The Same Unreviewed Author ID', 2020, [B.au('Ada Lovelace', 'A70')])
+    B.write_school(tmp_path, sweep=[owned, other, B.SWEEP[5]])
+    path = B.put(tmp_path, 'census-overrides.json', None)
+    overrides = json.loads(path.read_text())
+    overrides[B.SCHOOL]['Ada Lovelace']['openalex'] = []
+    path.write_text(json.dumps(overrides))
+    B.put(tmp_path, 'pi-publication-lists.json').write_text(json.dumps({'Ada Lovelace': [dict(
+        title=owned['title'], year=2020, url='https://example.edu/ada', sha256=B.SHA,
+        quote='Ada Lovelace: An Individually Credited Faculty Publication')]}))
+    ordinary = B.run_stages(tmp_path)
+    assert {r['oa'] for r in ordinary.rows if r['pi'] == 'Ada Lovelace'} == {owned['id'], other['id']}
+    overrides[B.SCHOOL]['Ada Lovelace']['source_owned_publication_review'] = dict(decision='owned_per_work_only')
+    path.write_text(json.dumps(overrides))
+    scoped = B.run_stages(tmp_path)
+    assert {r['oa'] for r in scoped.rows if r['pi'] == 'Ada Lovelace'} == {owned['id']}
+    assert not scoped.anchored['Ada Lovelace']
+    assert [r for r in scoped.rows if r['pi'] != 'Ada Lovelace'] == [r for r in ordinary.rows if r['pi'] != 'Ada Lovelace']
