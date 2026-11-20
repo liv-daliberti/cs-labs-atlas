@@ -1,0 +1,560 @@
+{
+ "school": "sjtu",
+ "date": "2026-11-19",
+ "seed": 202611201684010636,
+ "n_verdicts": 180,
+ "files": {
+  "pis.json": "0a069cb98bdb26077b1d56cf1044c9239784dd85ca413b40332fd521009fabe3",
+  "students.json": "30c6898b9cbd18ddffc0664f1cce976c5117e4c69247030f472b6fbd626775f0",
+  "lab_papers.jsonl.gz": "7edf96f907b03f4c1bda8ad9cc582e437dcc201e9b50b20565842f7fb6d8babd",
+  "student_papers.jsonl.gz": "139538559cf22b09f8b279b97dae6050992f9dfba94aa87f90a51775cbcf031e",
+  "copies.json": "5f87cdcb3d3a508056226f8a7813c971994f10d95148b715da169df332fe014f"
+ },
+ "files_now": {
+  "pis.json": "0a069cb98bdb26077b1d56cf1044c9239784dd85ca413b40332fd521009fabe3",
+  "students.json": "30c6898b9cbd18ddffc0664f1cce976c5117e4c69247030f472b6fbd626775f0",
+  "lab_papers.jsonl.gz": "7edf96f907b03f4c1bda8ad9cc582e437dcc201e9b50b20565842f7fb6d8babd",
+  "student_papers.jsonl.gz": "139538559cf22b09f8b279b97dae6050992f9dfba94aa87f90a51775cbcf031e",
+  "copies.json": "5f87cdcb3d3a508056226f8a7813c971994f10d95148b715da169df332fe014f"
+ },
+ "lab_precision_uniform": {
+  "k": 48,
+  "n": 50,
+  "p": 0.96,
+  "lo": 0.8654,
+  "hi": 0.989,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 48,
+  "n": 50,
+  "p": 0.96,
+  "lo": 0.8654,
+  "hi": 0.989,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 3,
+   "n": 3,
+   "p": 1.0,
+   "lo": 0.4385,
+   "hi": 1.0,
+   "unclear": 2
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 61,
+  "n": 63,
+  "p": 0.9683,
+  "lo": 0.8914,
+  "hi": 0.9913,
+  "unclear": 2
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 30,
+  "n": 44,
+  "p": 0.6818,
+  "lo": 0.5344,
+  "hi": 0.8
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 44,
+  "not_lab_papers_absent": 3,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "namesake": 1,
+  "not_a_paper": 1,
+  "missing_from_build": 14
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "陈 全|None|https://openalex.org/W4405032446",
+   "failure_type": "namesake",
+   "reason": "arXiv 2412.00127 (2024); Chen, Quan has no institution/raw affiliation in OpenAlex; page-1 quote supports only Zhijie Deng's SJTU affiliation, not Chen's; byline_school empty; Orthus coauthors Jian Jia/Peng Jiang are industry (Kuaishou) so Chen Quan is likely a namesake/industry author.",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "李建华|None|https://openalex.org/W2910166675",
+   "failure_type": "not_a_paper",
+   "reason": "doi 10.1631/fitee.1840000 'Security for cyberspace: challenges and opportunities' type editorial (FITEE 2018, guest editors) - editorial, not research output.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "化存卿|conf/wcsp/HuHCG16",
+   "failure_type": "missing_from_build",
+   "reason": "WCSP 2016-10 DOI 10.1109/wcsp.2016.7752584; stored OpenAlex authorship Cunqing Hua 'School of Information Security Engineering, Shanghai Jiao Tong University' (institution SJTU); PI period 2011-07-2016-12 covers it; true lab paper absent from build (in_PI_lab=NO).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "金耀辉|conf/iccv/TongZJS25",
+   "failure_type": "missing_from_build",
+   "reason": "ICCV 2025 DOI 10.1109/iccv51701.2025.01755; stored authorship Yaohui Jin raw affil 'Shanghai Jiao Tong University' (also first author Junlong Tong SJTU); PI periods 2002-11-2025-02 and 2025-03- cover 2025; absent from build.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "孔令和|conf/ipsn/WangKW0CWX20",
+   "failure_type": "missing_from_build",
+   "reason": "IPSN 2020 DOI 10.1109/ipsn48710.2020.9257302; stored authorship Linghe Kong raw affil 'Shanghai Jiao Tong University, China'; period 2016-09-2021-08 covers 2020; absent from build.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "孔令和|conf/npc/ChenTKXZY19",
+   "failure_type": "missing_from_build",
+   "reason": "NPC 2019 DOI 10.1007/978-3-030-30709-7_13; stored authorship Linghe Kong 'Department of Computer Science and Engineering, Shanghai Jiao Tong University'; period 2016-09-2021-08 covers 2019; absent from build (build has it only under 唐飞龙).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "孔令和|journals/tmc/YuCZCKL17",
+   "failure_type": "missing_from_build",
+   "reason": "IEEE TMC 2017 DOI 10.1109/tmc.2016.2618873 (online 2016-10-19, DBLP 2017); stored authorship Linghe Kong 'Department of Computer Science and Engineering, Shanghai Jiao Tong University'; period 2016-09-2021-08 covers it; absent from Kong's lab (build has it only under 朱燕民).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "刘功申|conf/acl/DuLZJRL24",
+   "failure_type": "missing_from_build",
+   "reason": "ACL Findings 2024 DOI 10.18653/v1/2024.findings-acl.468; Gongshen Liu last author; stored raw affil truncated 'University , School of Cyber Science and Engineering' (school name not stored, thin), but PI is SJTU professor in period 2018-12-2025-06 and coauthors Haodong Zhao/Wei Du are SJTU; judged true lab paper absent from build.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "刘功申|conf/acl/LiLZ26",
+   "failure_type": "missing_from_build",
+   "reason": "Findings of ACL 2026 DOI 10.18653/v1/2026.findings-acl.2142; stored authorship Gongshen Liu 'School of Computer Science , Shanghai Jiao Tong University'; period 2025-01-01- covers 2026; absent from Liu's lab (build only under 张倬胜).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "刘功申|journals/access/WangLL17a",
+   "failure_type": "missing_from_build",
+   "reason": "IEEE Access 2017 DOI 10.1109/access.2017.2769484; stored authorship Gongshen Liu 'Department of Electric Engineering, Shanghai Jiao Tong University'; period 2008-12-31-2018-12-31 covers 2017; absent from Liu's lab (build only under 李建华).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "卢宏涛|journals/isci/LiL18",
+   "failure_type": "missing_from_build",
+   "reason": "Stored OpenAlex W2809624595 (doi 10.1016/j.ins.2018.06.024, 2018-06-20): Hongtao Lu and Yaoyi Li both 'Dept of CSE, Shanghai Jiao Tong University'; PI period 2016-08..2025-05; true lab paper but BUILD in_PI_lab=NO. Only the arXiv preprint W2522343859 (different title 'Multi-View Constraint Propagation...', 2016, 1609.06456) is in lab_papers; same work likely but not confirmable, journal record absent.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "沈艳艳|journals/tkdd/ShenOL22",
+   "failure_type": "missing_from_build",
+   "reason": "W4220729518 doi 10.1145/3497748 (2022-03-09): all three authors 'Dept of CSE, SJTU'; research article by an SJTU CS PI. PI period is open-start (None-) and only a 2026 listing, so build keeps only her 6 papers from 2026 and drops these in-year SJTU-bylined papers (BUILD NO). Truth judged on in-year SJTU byline; policy-sensitive (open-start period).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "沈艳艳|journals/tkdd/XuZSY19",
+   "failure_type": "missing_from_build",
+   "reason": "W2976330027 doi 10.1145/3340847 (2019-09-24): Shen affil 'Shanghai Jiao Tong University, Shanghai, China'; research article by an SJTU CS PI. PI period is open-start (None-) and only a 2026 listing, so build keeps only her 6 papers from 2026 and drops these in-year SJTU-bylined papers (BUILD NO). Truth judged on in-year SJTU byline; policy-sensitive (open-start period).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "沈艳艳|journals/tkde/ZhouSHZZ21",
+   "failure_type": "missing_from_build",
+   "reason": "W2981046731 doi 10.1109/tkde.2019.2948005: Shen affil 'Department of CSE, Shanghai Jiao Tong University'; research article by an SJTU CS PI. PI period is open-start (None-) and only a 2026 listing, so build keeps only her 6 papers from 2026 and drops these in-year SJTU-bylined papers (BUILD NO). Truth judged on in-year SJTU byline; policy-sensitive (open-start period).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "严骏驰|conf/iclr/BaoYRLWY25",
+   "failure_type": "missing_from_build",
+   "reason": "ICLR 2025 'Beyond Circuit Connections...': listed on Junchi Yan's stored SJTU lab-page publication list (identity-bindings-school.json, 'Junchi Yan (correspondence)'), DBLP without DOI, period 2018-04- covers it; peer-reviewed research paper absent from lab_papers (BUILD NO).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "严骏驰|conf/nips/0003BY24",
+   "failure_type": "missing_from_build",
+   "reason": "NeurIPS 2024 'Unveiling The Matthew Effect...': listed on Junchi Yan's stored SJTU lab-page publication list (identity-bindings-school.json, 'Junchi Yan (correspondence)'), DBLP without DOI, period 2018-04- covers it; peer-reviewed research paper absent from lab_papers (BUILD NO).",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "晏轶超|None|https://openalex.org/W7203718958",
+   "reason": "DOUBTFUL: arXiv 2608.16859 (2026, 43 authors) Yichao Yan has no institution/affiliation; page1 ok_absent; SJTU only via advisee Jingnan Gao on unaffiliated byline; PI period 2025- covers year but school not evidenced and identity anchored only by OpenAlex id"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "张伟楠|None|https://openalex.org/W7127609277",
+   "reason": "DOUBTFUL: arXiv 2602.03794 (2026) Weinan Zhang no institution/affiliation; page1 ok_untied; SJTU only via advisee Muning Wen on unaffiliated byline; coauthors Wierman (Caltech)/Gu (Berkeley); period 2016- covers year but school unevidenced"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "刘锦阳|conf/hpdc/YangLSRDUZLCZ26",
+   "reason": "DOUBTFUL: HPDC 2026 DOI 10.1145/3806645.3807811; byline is Argonne/Cincinnati-type collaborators (Di, Underwood, Cappello); no stored affiliation for Jinyang Liu in cache/pi-works; PI period only starts 2026-03 (his SJTU-affiliated paper is KVServe 2026), so work may predate SJTU appointment; cannot decide."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "马汝辉|journals/iotj/LuoCSMNZL25",
+   "reason": "DOUBTFUL: IoT-J 2025 (doi 10.1109/jiot.2024.3497578) research article, but no stored OpenAlex row/affiliation; coauthors (Cao, Niu, Li) are outside SJTU, so Ma's SJTU affiliation on this paper cannot be confirmed (his 2024 TOIS paper does name SJTU EIEE); BUILD NO."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "吴 帆|conf/atal/TangLG00C24",
+   "reason": "DOUBTFUL: W7124286592 doi 10.65109/xlcq8531 (AAMAS 2024, 2024-05-06): Fan Wu affil 'Department of CSE, Shanghai Jiao Tong University' (rest Shandong Univ), period 2021-07-; identity ok; but no stored page count and AAMAS 2024 includes 3-page extended abstracts, so research-output status unverified."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "张丽清|journals/tnn/ZhaoZZCA16",
+   "reason": "DOUBTFUL: TNNLS 2016 (doi 10.1109/tnnls.2015.2423694): no stored OpenAlex row or affiliation string; coauthors Zhao/Zhou/Cichocki/Amari are RIKEN-based, DBLP 'Liqing Zhang 0001' is the SJTU person with 2002- period and SJTU 2016 papers in the build, so likely true, but SJTU affiliation on this paper is not stored; BUILD NO."
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "丁 宁",
+   "丁家昕",
+   "严骏驰",
+   "何哲陟",
+   "侯小凤",
+   "俞 凯",
+   "俞 勇",
+   "俞嘉地",
+   "傅洛伊",
+   "傅育熙",
+   "冯 宇",
+   "冷静文",
+   "刘功申",
+   "刘卫文",
+   "刘思学",
+   "刘方鑫",
+   "刘满华",
+   "刘生钟",
+   "刘盛云",
+   "刘笑宏",
+   "刘胜利",
+   "刘锦阳",
+   "刘鹏飞",
+   "化存卿",
+   "卢宏涛",
+   "卢策吾",
+   "叶南阳",
+   "向立瑶",
+   "吕宝粮",
+   "吴 刚",
+   "吴 帆",
+   "吴 旋",
+   "吴安邦",
+   "吴小宝",
+   "吴晨涛",
+   "唐 灯",
+   "唐俊华",
+   "回 红",
+   "夏虞斌",
+   "姚建国",
+   "孔令和",
+   "孙世轩",
+   "孙士锋",
+   "孙锬锋",
+   "宋卓然",
+   "尹 强",
+   "应 凯",
+   "张丽清",
+   "张伟楠",
+   "张倬胜",
+   "张健夫",
+   "张媛媛",
+   "张宇伦",
+   "张宇昊",
+   "张少霆",
+   "张拳石",
+   "张晓凡",
+   "张驰豪",
+   "徐尔茨",
+   "戚正伟",
+   "易 冉",
+   "晏轶超",
+   "曹 健",
+   "朱开元",
+   "朱弘恣",
+   "朱浩瑾",
+   "朱燕民",
+   "李 伟",
+   "李 超",
+   "李 阳",
+   "李 颉",
+   "李国强",
+   "李希君",
+   "李建华",
+   "李林森",
+   "李钟毓",
+   "李高磊",
+   "杨 宽",
+   "杨 旸",
+   "杨岚青",
+   "杨旭波",
+   "林 云",
+   "林 夕",
+   "桂佳平",
+   "梁晓峣",
+   "梁诗宇",
+   "江 波",
+   "汪哲东",
+   "汪宇霆",
+   "沈 为",
+   "沈备军",
+   "沈艳艳",
+   "洪 义",
+   "涂仕奎",
+   "潘 昊",
+   "潘 烨",
+   "潘 理",
+   "熊国钧",
+   "牛 力",
+   "牛超越",
+   "王 烁",
+   "王 瑞",
+   "王 铮",
+   "王启圣",
+   "王士林",
+   "王德泉",
+   "王新兵",
+   "王浩洋",
+   "王肇国",
+   "王韫博",
+   "申丽萍",
+   "白 石",
+   "盛 斌",
+   "穆 尧",
+   "管海兵",
+   "纪幸辰",
+   "罗欣剑",
+   "肖双九",
+   "胡 畔",
+   "胡云聪",
+   "胡宏盛",
+   "臧斌宇",
+   "董益宏",
+   "董笑菊",
+   "薛 质",
+   "薛广涛",
+   "薛栋梁",
+   "袁 晨",
+   "袁肖赟",
+   "许 强",
+   "谢伟迪",
+   "谷大武",
+   "贺可强",
+   "赖奕甫",
+   "赵 海",
+   "赵世振",
+   "赵杰茹",
+   "过敏意",
+   "邓倩妮",
+   "邓志杰",
+   "邢朝平",
+   "郁 昱",
+   "郑伟龙",
+   "郑圣安",
+   "郑臻哲",
+   "金海明",
+   "金耀辉",
+   "陈 全",
+   "陈 博",
+   "陈 晨",
+   "陈 榕",
+   "陈 谐",
+   "陈国兴",
+   "陈思衡",
+   "陈海波",
+   "陈游旻",
+   "陈玉泉",
+   "陈秀真",
+   "陈翌佳",
+   "陈贵海",
+   "陈雨亭",
+   "陈黎兴",
+   "陶表帅",
+   "韩 帅",
+   "顾小东",
+   "顾尚定",
+   "顾磊磊",
+   "马 超",
+   "马利庄",
+   "马叶涵",
+   "马汝辉",
+   "骆 源",
+   "高 岳",
+   "高晓沨",
+   "魏星达",
+   "黄 征",
+   "黄 涛",
+   "黄林鹏",
+   "黄维然",
+   "龙 宇",
+   "龙 环"
+  ],
+  "n_pis": 181,
+  "files": {
+   "pis.json": "0a069cb98bdb26077b1d56cf1044c9239784dd85ca413b40332fd521009fabe3",
+   "students.json": "30c6898b9cbd18ddffc0664f1cce976c5117e4c69247030f472b6fbd626775f0",
+   "lab_papers.jsonl.gz": "7edf96f907b03f4c1bda8ad9cc582e437dcc201e9b50b20565842f7fb6d8babd",
+   "student_papers.jsonl.gz": "139538559cf22b09f8b279b97dae6050992f9dfba94aa87f90a51775cbcf031e",
+   "copies.json": "5f87cdcb3d3a508056226f8a7813c971994f10d95148b715da169df332fe014f"
+  },
+  "included_sha": "9e9f2db9ca4bfa1f2c98ad42d3ecdb314958343249d66c45f67eb3bf2cc553e6",
+  "projection_version": 1,
+  "held": [
+   [
+    "宋卓然",
+    "ext:sjtu:xiaolong-lin"
+   ],
+   [
+    "宋卓然",
+    "ext:sjtu:xueyuan-liu"
+   ],
+   [
+    "李 阳",
+    "ext:sjtu:jiaqi-xu"
+   ],
+   [
+    "李 阳",
+    "ext:sjtu:wenbo-fei"
+   ],
+   [
+    "李 阳",
+    "ext:sjtu:yang-tang"
+   ],
+   [
+    "李 阳",
+    "ext:sjtu:zhi-han"
+   ],
+   [
+    "李 阳",
+    "ext:sjtu:zicai-cui"
+   ],
+   [
+    "王 烁",
+    "ext:sjtu:name-3fb45f405f122a6613bfc3cc"
+   ],
+   [
+    "王 烁",
+    "ext:sjtu:name-46dd0b688cb883220cf325db"
+   ]
+  ],
+  "carried_forward": {},
+  "files_now": {
+   "pis.json": "0a069cb98bdb26077b1d56cf1044c9239784dd85ca413b40332fd521009fabe3",
+   "students.json": "30c6898b9cbd18ddffc0664f1cce976c5117e4c69247030f472b6fbd626775f0",
+   "lab_papers.jsonl.gz": "7edf96f907b03f4c1bda8ad9cc582e437dcc201e9b50b20565842f7fb6d8babd",
+   "student_papers.jsonl.gz": "139538559cf22b09f8b279b97dae6050992f9dfba94aa87f90a51775cbcf031e",
+   "copies.json": "5f87cdcb3d3a508056226f8a7813c971994f10d95148b715da169df332fe014f"
+  }
+ },
+ "population": {
+  "n_lab_papers": 9203,
+  "n_student_papers": 3244,
+  "n_coverage_pool": 9671,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

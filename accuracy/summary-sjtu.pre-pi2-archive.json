@@ -1,0 +1,227 @@
+{
+ "school": "sjtu",
+ "date": "2026-11-13",
+ "seed": 20261113,
+ "n_verdicts": 175,
+ "files": {
+  "pis.json": "fea8ed9ed548c0c01cc51ea1712771a740a6b6702f45c617bfcd2c12b9c434ac",
+  "students.json": "4a75c06b29dead41d2e678b23b00b2791e755e9e1faa8abda1b06a19b4728f69",
+  "lab_papers.jsonl.gz": "0e55a73cf733e8766714ebe04eead5b08065a3fcc000c5d904b644430a0e7895",
+  "student_papers.jsonl.gz": "c7beaac4f7a2cbbb3690888bd9c0a6b982bd27663c6d12feb291da37ffed0e96",
+  "copies.json": "ec1ab1376d988454a13d2610d2b455ef8698b4701949717b860201146061e191"
+ },
+ "files_now": {
+  "pis.json": "fea8ed9ed548c0c01cc51ea1712771a740a6b6702f45c617bfcd2c12b9c434ac",
+  "students.json": "4a75c06b29dead41d2e678b23b00b2791e755e9e1faa8abda1b06a19b4728f69",
+  "lab_papers.jsonl.gz": "0e55a73cf733e8766714ebe04eead5b08065a3fcc000c5d904b644430a0e7895",
+  "student_papers.jsonl.gz": "c7beaac4f7a2cbbb3690888bd9c0a6b982bd27663c6d12feb291da37ffed0e96",
+  "copies.json": "ec1ab1376d988454a13d2610d2b455ef8698b4701949717b860201146061e191"
+ },
+ "lab_precision_uniform": {
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 59,
+  "n": 60,
+  "p": 0.9833,
+  "lo": 0.9114,
+  "hi": 0.9971,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 8,
+   "n": 8,
+   "p": 1.0,
+   "lo": 0.6756,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 2,
+   "n": 2,
+   "p": 1.0,
+   "lo": 0.3424,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 64,
+  "n": 65,
+  "p": 0.9846,
+  "lo": 0.9179,
+  "hi": 0.9973,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 38,
+  "n": 45,
+  "p": 0.8444,
+  "lo": 0.7122,
+  "hi": 0.9225
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 45,
+  "not_lab_papers_absent": 5,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "wrong_student": 1,
+  "namesake": 1,
+  "missing_from_build": 7
+ },
+ "incorrect": [
+  {
+   "sample": "student_precision",
+   "stratum": "advisee_name_on_lab_paper_byline",
+   "item": "赵杰茹|ext:sjtu:chenqi-zhang|https://openalex.org/W4413985329",
+   "failure_type": "wrong_student",
+   "reason": "Byline hits are Chenyi Zhang and Hao Zhang, not Chenqi Zhang; no author named Chenqi Zhang",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "潘 烨|None|https://openalex.org/W7203481275",
+   "failure_type": "namesake",
+   "reason": "Vascular-surgery paper from Shanghai Sixth People's Hospital; namesake of CS/VR PI Ye Pan (topic and affiliation mismatch)",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "丁家昕|conf/icml/GaoZSLB0FW25",
+   "failure_type": "missing_from_build",
+   "reason": "Jiaxin Ding at SJTU (Hopcroft Center, coauthors Luoyi Fu/Xinbing Wang SJTU), ICML 2025 within 2023-2025 period; build has no match (OA record is arXiv preprint W7125145053 without affiliations)",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "化存卿|conf/acsac/WangZGHH25",
+   "failure_type": "missing_from_build",
+   "reason": "Cunqing Hua SJTU 2025 (within 2025- period); paper linked only to other lab 桂佳平 and not to PI lab",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "李国强|journals/isci/HuFJXLCZYZ22",
+   "failure_type": "missing_from_build",
+   "reason": "Guoqiang Li SJTU School of Software 2022 (period 2013-2024); build has zero papers for PI lab; OA record W4280645289 may be unlinked/ different id",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "马利庄|journals/cvgip/JiangS0MTW20",
+   "failure_type": "missing_from_build",
+   "reason": "Lizhuang Ma SJTU CSE 2020 (period 2002-); build has no match",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "沈艳艳|conf/pakdd/XuSZ19",
+   "failure_type": "missing_from_build",
+   "reason": "Yanyan Shen SJTU CSE 2019; paper in build only under other lab 朱燕民 (PI 沈艳艳 has no period, listing 2026 only) so PI lab lacks it",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "涂仕奎|conf/ictai/YangT19",
+   "failure_type": "missing_from_build",
+   "reason": "Shikui Tu SJTU CSE 2019 within 2017-2023 period; build has no match (PI lab lacks it)",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "张丽清|conf/icml/LiaoLS0XLZ00J025",
+   "failure_type": "missing_from_build",
+   "reason": "Liqing Zhang SJTU (coauthor Li Niu SJTU); ICML 2025 research paper within period 2002-; no OpenAlex match found, PI evidently has no/unlinked build record; evidence thin",
+   "policy": null
+  }
+ ],
+ "unclear": [],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 5562,
+  "n_student_papers": 911,
+  "n_coverage_pool": 5404,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "r3",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 60,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}
