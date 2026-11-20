@@ -158,3 +158,11 @@ def test_R_PAP_61_fitee_issue_introduction():
     assert h.not_a_paper(row(title='Security for cyberspace: challenges and opportunities', doi='10.1631/fitee.1840000', type='editorial')) == 'editorial'
     assert h.not_a_paper(row(title='Security for cyberspace: challenges and opportunities', doi='10.1631/fitee.1840000')) == 'editorial'
     assert h.not_a_paper(row(title='A real FITEE paper', doi='10.1631/fitee.1800123')) is None
+
+
+def test_R_PAP_61_sjtu_stale_holds_released_and_orthus_held():
+    import json
+    d = json.loads((Path(__file__).resolve().parent.parent / 'hierarchy/sjtu/reviewed/paper-claim-review.json').read_text())
+    held = {(x['pi'], x['match'].get('oa')) for x in d['decisions'] if x['decision'] == 'hold'}
+    assert ('孔令和', 'https://openalex.org/W3107465962') not in held and ('孔令和', 'https://openalex.org/W2539417147') not in held
+    assert ('陈 全', 'https://openalex.org/W4405032446') in held
