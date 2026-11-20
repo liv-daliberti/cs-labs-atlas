@@ -71,13 +71,32 @@ def reviewed_inputs(ctx):
         if r.get('collection_person_id') and not o.get('collection_person_id'):
             o['collection_person_id'] = r['collection_person_id']
     ctx.yearly, ctx.ov, ctx.ge = yearly, ov, ge
+    aliases_path = P.data('census-name-aliases.json', school, root=HERE)
+    ctx.native_pi_merges = (read(aliases_path) if aliases_path.exists() else {}).get('native_pi_merges', [])
 
 
-def merge_census_rows(census, ov, n):
+def merge_census_rows(census, ov, n, reviewed_merges=()):
     """The census rows that are PIs (is_pi, or a reviewed is_pi), grouped by person: census duplicate pairs (same DBLP
     PID, same collection person, the same name tokens) and same family name with a nickname-equal given name.
     Returns ({key: [rows]}, [[first name, merged name], ...])."""
     dblp_of = lambda x: as_list(x.get('dblp'))
+    canonical_for = {}
+    present = {x['name'] for x in census
+               if (x.get('is_pi') or (ov.get(x['name']) or {}).get('is_pi')) and not x.get('not_faculty')}
+    for review in reviewed_merges:
+        canonical, aliases = review.get('canonical'), review.get('aliases')
+        evidence = review.get('evidence')
+        if (not isinstance(canonical, str) or not isinstance(aliases, list) or not aliases
+                or canonical in aliases or len(set(aliases)) != len(aliases)
+                or not review.get('reviewed_by') or not review.get('why')
+                or not isinstance(evidence, list) or not evidence
+                or any(not isinstance(e, dict) or not e.get('url') or not e.get('quote')
+                       or not re.fullmatch(r'[0-9a-f]{64}', str(e.get('sha256') or '')) for e in evidence)):
+            raise ValueError('Native census merge requires an explicit canonical name, aliases, reviewer, reason and source evidence')
+        for name in [canonical, *aliases]:
+            if name not in present or name in canonical_for:
+                raise ValueError('Missing or overlapping reviewed census merge name: ' + name)
+            canonical_for[name] = canonical
     merged, first, by_family, nick_merges = collections.defaultdict(list), {}, collections.defaultdict(list), []
     for x in census:  # census duplicate pairs (one person listed twice): same DBLP PID or same collection person
         if not (x.get('is_pi') or (ov.get(x['name']) or {}).get('is_pi')) or x.get('not_faculty'):  # a reviewed is_pi wins
@@ -90,7 +109,9 @@ def merge_census_rows(census, ov, n):
             # Same written CJK names can be different faculty. Only the same profile or an explicit person/PID joins rows.
             profile = (x.get('profile_url') or '').rstrip('/')
             nk = nk + ':profile:' + profile if profile else None
-        k = next((first[q] for q in dblp_of(x) + [x.get('collection_person_id'), nk] if q and q in first), None)
+        reviewed_key = ('reviewed_person:' + canonical_for[x['name']]) if x['name'] in canonical_for else None
+        anchors = [reviewed_key, *dblp_of(x), x.get('collection_person_id'), nk]
+        k = next((first[q] for q in anchors if q and q in first), None)
         if not k and len(personal) >= 2:  # A generational suffix is not a family name; conflicting explicit generations stay separate.
             k = next((k_ for g_, k_, suffix_ in by_family[personal[-1]]
                       if (g_ == personal[0] or nick_ok(g_, personal[0]))
@@ -101,12 +122,20 @@ def merge_census_rows(census, ov, n):
             k = x['name']
             if k in merged:
                 k = (x['name'], len(merged))  # distinct source identities; display-name ambiguity is checked before indexing
-        for q in dblp_of(x) + [x.get('collection_person_id'), nk]:
+        for q in anchors:
             if q:
                 first.setdefault(q, k)
         if len(personal) >= 2:
             by_family[personal[-1]].append((personal[0], k, suffix))
         merged[k].append(x)
+    for group in merged.values():
+        canonical = {canonical_for[x['name']] for x in group if x['name'] in canonical_for}
+        if len(canonical) > 1:
+            raise ValueError('Conflicting source-reviewed census merge groups')
+        if canonical:
+            target = next(iter(canonical))
+            group.sort(key=lambda x: x['name'] != target)
+            n['census_rows_merged_by_source_review'] += sum(x['name'] != target for x in group)
     return merged, nick_merges
 
 
@@ -161,7 +190,7 @@ def pi_records(ctx):
     census, ov, yearly, Pid, units, periods, n = ctx.census, ctx.ov, ctx.yearly, ctx.Pid, ctx.units, ctx.periods, ctx.n
     dblp_of = lambda x: as_list(x.get('dblp'))
     pis = []
-    merged, nick_merges = merge_census_rows(census, ov, n)
+    merged, nick_merges = merge_census_rows(census, ov, n, getattr(ctx, 'native_pi_merges', []))
     excluded = []
     for group in merged.values():
         hit = next((ov[g['name']] for g in group if ov.get(g['name'], {}).get('exclude')), None)
