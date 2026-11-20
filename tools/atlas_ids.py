@@ -987,6 +987,43 @@ def byline_author_ids(school, wanted, hdir):
     return out
 
 
+def reviewed_pi_source_anchor(school, pi):
+    """An opt-in individual-source review separates a corrupt shared name fallback.
+
+    The review remains in faculty-period evidence on every native rebuild. It does
+    not bind global author identifiers or move/retire any previously issued anchor.
+    """
+    proofs = [e for q in pi.get('periods') or [] for e in q.get('evidence') or []
+              if e.get('kind') == 'pi_source_person_identity']
+    if not proofs:
+        return None
+    anchors = set()
+    for e in proofs:
+        r = e.get('source_person_review') or {}
+        full = r.get('full_name') or ''
+        url = e.get('url') or ''
+        names = {nname(n) for n in pi.get('names') or []}
+        if not (r.get('decision') == 'separate_shared_fallback_v1'
+                and r.get('canonical_name') == pi['pi']
+                and len(name_toks(full)) >= 2 and nname(full) in names
+                and nname(full) in nname(e.get('quote'))
+                and urlsplit(url).scheme in {'http', 'https'} and urlsplit(url).netloc
+                and r.get('identity_url') == url
+                and re.fullmatch(r'[0-9a-f]{64}', str(e.get('sha256') or ''))
+                and e.get('observed') and r.get('reviewed_by') and r.get('reviewed_on')
+                and re.fullmatch(r'atl:p:[0-9a-f]{12}', str(r.get('old_person_id') or ''))
+                and str(r.get('old_lab_id') or '').startswith(f'atl:l:{school}:')
+                and r.get('old_counts') == {'labPapers': 0, 'studentPaperLinks': 0}
+                and len(set(r.get('old_shared_pi_names') or [])) >= 2
+                and pi['pi'] in r['old_shared_pi_names']
+                and re.fullmatch(r'[0-9a-f]{64}', str(r.get('baseline_pis_sha256') or ''))):
+            raise ValueError(f'invalid individual PI source review: {school}/{pi["pi"]}')
+        anchors.add(('name', f'{school}:{nname(full)}:{url}'))
+    if len(anchors) != 1:
+        raise ValueError(f'conflicting individual PI source reviews: {school}/{pi["pi"]}')
+    return next(iter(anchors))
+
+
 # ---------------------------------------------------------------- main
 
 def run(schools, hdir, registry, use_sweep=True, today=None, write=True, skip_coadvising_holds=False, published=None):
@@ -1034,6 +1071,17 @@ def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write
     _check_retired_work_anchors(registry, {
         (s, j): sorted((RANK[k], f'w|{WSCHEME[k]}:{v}') for k, v in work_anchors(r, s))
         for s, (_, _, rows, _) in data.items() for j, r in enumerate(rows)})
+    # Validate all explicit separations before assignment can write registry rows.
+    reviewed_pi = {}
+    owners = {}
+    for s, (pis, _, _, _) in data.items():
+        for p in pis:
+            anchor = reviewed_pi_source_anchor(s, p)
+            if anchor:
+                if anchor in owners and owners[anchor] != (s, p['pi']):
+                    raise ValueError('individual PI source review reused by distinct people')
+                owners[anchor] = (s, p['pi'])
+                reviewed_pi[(s, p['pi'])] = anchor
     stats = collections.Counter()
     # ---- people
     ents = {}      # entity key -> dict(kind, school, name, anchors set of (k, v), ref)
@@ -1045,6 +1093,8 @@ def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write
             A |= {('openalex', a) for a in map(norm_oa, p.get('reviewedOpenAlex') or []) if a and a not in mixed}
             A |= {('dblp', d) for d in map(norm_dblp_pid, p.get('dblp') or []) if d}
             A |= {('coll', f'{s}:{i}') for i in p.get('personIds') or [] if i and not str(i).startswith('ext:')}
+            if (source_anchor := reviewed_pi.get((s, p['pi']))):
+                A.add(source_anchor)
             if not A:
                 urls = sorted({e.get('url') for q in p.get('periods') or [] for e in q.get('evidence') or [] if e.get('url')}
                               | {l.get('url') for l in p.get('listings') or [] if l.get('url')})

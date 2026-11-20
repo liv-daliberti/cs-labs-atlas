@@ -213,3 +213,20 @@ published atlas id would change. `atlas_ids.py` therefore passes `assign(..., hi
 (`published_pi_hints`, default `releases/latest/hierarchy`; `--no-published-hints` turns it off). A component with NO anchor hit takes its hint when the
 id is still active and no other component's anchors hit it; the new anchors then register to the published id, so the next run needs no hint. An id
 already minted for such a PI is repaired once in the registry by redirecting it to the published id (anchors move; backup + sha256 compare-and-swap).
+
+## Reviewed separation of a shared PI fallback
+
+A legacy ASCII-normalized Chinese name can become empty and share a roster-URL fallback with distinct faculty.
+An individual primary source can separate a reviewed PI through a `pi_source_person_identity` evidence item in a
+reviewed faculty period. The item retains the original URL, body SHA256, literal full-name quotation and capture date.
+Its `source_person_review` records `decision: separate_shared_fallback_v1`, the exact `canonical_name`, independently
+sourced Latin `full_name` (also a supported PI alias), identical `identity_url`, reviewer/date, baseline pis SHA256,
+`old_person_id`, `old_lab_id`, distinct `old_shared_pi_names`, and `old_counts: {labPapers: 0, studentPaperLinks: 0}`.
+Before approval, verify the source-to-canonical-person link, original bytes and baseline shared identity, and retain any
+existing students and their IDs. This narrow version covers previously empty labs only; other splits need separate review.
+
+The ID stage validates the certificate and adds a school-scoped full-name + individual-URL anchor instead of the generic
+fallback. It never moves the old shared anchor, deletes an issued record or creates a redirect. Unreviewed PIs retain
+existing behavior. Rebuilds retain the certificate, and a later global identifier can join the same individual source
+anchor. No DBLP/OpenAlex/ORCID ownership, appointment interval or paper admission follows from this ID-only certificate.
+Compare all registry tables, package IDs and unrelated identities in isolated preparation before promotion.

@@ -280,3 +280,51 @@ def test_a_pi_that_lost_the_anchor_keeps_the_published_id_via_the_hint(tmp_path)
     f3 = A.assign(db3, 'person', 'atl:p:', {'c1': [(0, 'p|dblp:1/2')], 'c2': [(0, 'p|dblp:3/4')]}, '2026-11-07', collections.Counter())
     got = A.assign(db3, 'person', 'atl:p:', {'c1': [(0, 'p|orcid:x')], 'c2': [(0, 'p|dblp:1/2')]}, '2026-11-19', collections.Counter(), hints={'c1': f3['c1']})
     assert got['c2'] == f3['c1'] and got['c1'] != f3['c1']
+
+
+def test_reviewed_pi_source_separates_shared_fallback_without_rewriting_history(tmp_path):
+    import copy
+    import pytest
+
+    root = tmp_path / 'hierarchy'
+    db = A.open_registry(tmp_path / 'registry.sqlite', seed=False)
+    roster = dict(url='https://example.edu/faculty', year=2026)
+    fx = {'zju': dict(pis=[pi('甲乙', names=['甲乙', 'Kai Bu'], listings=[roster]),
+                           pi('丙丁', names=['丙丁', 'Other Person'], listings=[roster])],
+                      students={}, papers=[], links=[], sweep=[])}
+    write(root, fx)
+    A.run(['zju'], root, db, use_sweep=False, published={})
+    before = json.loads((root / 'zju/pis.json').read_text())
+    assert before[0]['atlasId'] == before[1]['atlasId']
+    old_id = before[0]['atlasId']
+    old_anchors = dict(db.execute('select anchor,id from anchors'))
+    old_ids = set(db.execute('select * from ids'))
+    evidence = dict(kind='pi_source_person_identity', url='https://example.edu/kaibu', sha256='a' * 64,
+                    observed='2026-11-19', quote='Kai Bu (甲乙), Associate Professor, Zhejiang University',
+                    source_person_review=dict(decision='separate_shared_fallback_v1', canonical_name='甲乙',
+                        full_name='Kai Bu', identity_url='https://example.edu/kaibu', old_person_id=old_id,
+                        old_lab_id=before[0]['labId'], old_shared_pi_names=['甲乙', '丙丁'],
+                        old_counts=dict(labPapers=0, studentPaperLinks=0), baseline_pis_sha256='b' * 64,
+                        reviewed_by='fixture-reviewer', reviewed_on='2026-11-19'))
+    reviewed = copy.deepcopy(fx)
+    reviewed['zju']['pis'][0]['periods'] = [dict(start='2026', end='2026', evidence=[evidence])]
+    write(root, reviewed)
+    A.run(['zju'], root, db, use_sweep=False, published={})
+    after = json.loads((root / 'zju/pis.json').read_text())
+    assert after[0]['atlasId'] != old_id
+    assert after[0]['labId'] != before[0]['labId']
+    assert after[1]['atlasId'] == old_id
+    assert old_ids <= set(db.execute('select * from ids'))
+    assert all(dict(db.execute('select anchor,id from anchors'))[k] == v for k, v in old_anchors.items())
+    snapshot = A.registry_fingerprint(db)
+    A.run(['zju'], root, db, use_sweep=False, published={})
+    assert A.registry_fingerprint(db) == snapshot
+    # A wrong subject or uncredited Latin alias fails before any assignments.
+    for key, value in [('canonical_name', '丙丁'), ('full_name', 'Uncredited Author')]:
+        bad = copy.deepcopy(reviewed)
+        bad['zju']['pis'][0]['periods'][0]['evidence'][0]['source_person_review'][key] = value
+        write(root, bad)
+        with pytest.raises(ValueError, match='invalid individual PI source review'):
+            A.run(['zju'], root, db, use_sweep=False, published={})
+        assert A.registry_fingerprint(db) == snapshot
+    db.close()
