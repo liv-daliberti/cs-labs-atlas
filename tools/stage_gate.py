@@ -556,7 +556,12 @@ def live_sha(path):
 
 
 def g9(key):
-    d = read(ACCURACY_DIR / f'summary-{key}.json')
+    d = None
+    for newer in ('round-pi2b',):   # D-0026: the summary of the NEWEST round that has one for the school wins (pi2b redraws supersede a judged pi2 draw)
+        d = read(ACCURACY_DIR / newer / f'summary-{key}.json')
+        if d:
+            break
+    d = d or read(ACCURACY_DIR / f'summary-{key}.json')
     if not d:
         return [f'accuracy: accuracy/summary-{key}.json missing (accuracy/sample.py --school {key}, then the verdicts and summarize.py)'], {}
     if not isinstance(d, dict):

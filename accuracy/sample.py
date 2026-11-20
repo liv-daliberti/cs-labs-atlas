@@ -64,6 +64,9 @@ ROUNDS = {'r2': dict(seed=20261102, uniform=50, stratum=5, cov=50, cands=200,
           # same sizes, strata and bars as pi1; the seed is None on purpose: the launcher passes a fresh one (ACCURACY_REDRAW_SEED, accuracy/g9_round.py draw --seed N)
           # and the draw refuses a seed any earlier round or draw file used. Any school list is allowed (the included schools at the freeze).
           'pi2': dict(seed=None, uniform=50, stratum=5, cov=50, cands=200, schools=[], dir='round-pi2', subset=True),
+          # pi2b (owner D-0026, 2026-11-19): the redraws of schools whose pi2 draw was judged and then superseded (D-0023 rebuilds, held-link binding); same sizes/strata/bars,
+          # its own directory so a pi2b draw never touches a judged pi2 file; the seed rule spans both rounds (g9_round.used_seeds globs round-*/).
+          'pi2b': dict(seed=None, uniform=50, stratum=5, cov=50, cands=200, schools=[], dir='round-pi2b', subset=True),
           'pi1': dict(seed=20261118, uniform=50, stratum=5, cov=50, cands=200, schools=[], dir='round-pi1', subset=True)}
 FILES = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 

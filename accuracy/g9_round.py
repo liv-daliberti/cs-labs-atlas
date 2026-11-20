@@ -29,7 +29,7 @@ ACC = Path(__file__).resolve().parent
 import sample as S0  # noqa: E402,F401  (the script's directory is sys.path[0]; sample.py puts tools/ on the path for atlas_paths)
 import atlas_paths as P  # noqa: E402
 
-ROUND = 'pi2'
+ROUND = 'pi2'          # 'pi2' or 'pi2b' (D-0026: redraws of superseded schools go to accuracy/round-pi2b/); set from --round
 MAX_BATCH = 25
 SCOV_WAVE = 3          # student coverage: judge candidates in order; first wave = 3 batches of 25 candidates, then one more batch per wave until 50 confirmed or the 200 candidates are used
 MEASURES = (('lab_precision', 'lab'), ('student_precision', 'student'), ('lab_coverage', 'coverage'))
@@ -108,7 +108,7 @@ def cmd_draw(a):
 
 
 def drawn(schools=None):
-    d = main_acc() / 'round-pi2'
+    d = main_acc() / S0.ROUNDS[ROUND]['dir']
     out = {}
     for f in sorted(d.glob('sample-*.json')):
         s = f.stem[len('sample-'):]
@@ -175,7 +175,7 @@ def cmd_convert(a):
     work = Path(a.work)
     plan = json.loads((work / 'batches.json').read_text())
     now = datetime.datetime.now().isoformat(timespec='seconds')
-    rd = main_acc() / 'round-pi2'
+    rd = main_acc() / S0.ROUNDS[ROUND]['dir']
     for s, doc in drawn(a.schools).items():
         S = doc['schools'][s]
         mine = [b for b in plan['batches'] if b['school'] == s]
@@ -242,7 +242,10 @@ def main(argv=None):
     ap.add_argument('--work', default=str(Path(P.CODE).parent / 'scratch' / 'g9-pi2'))
     ap.add_argument('--json')
     ap.add_argument('--yes', action='store_true')
+    ap.add_argument('--round', choices=['pi2', 'pi2b'], default='pi2')
     a = ap.parse_args(argv)
+    global ROUND
+    ROUND = a.round
     if a.cmd == 'draw' and not a.seed:
         ap.error('draw needs --seed')
     return globals()['cmd_' + a.cmd](a)
