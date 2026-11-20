@@ -286,7 +286,7 @@ def test_reviewed_pi_source_separates_shared_fallback_without_rewriting_history(
     import copy
     import pytest
 
-    root = tmp_path / 'hierarchy'
+    root = tmp_path / 'packages'
     db = A.open_registry(tmp_path / 'registry.sqlite', seed=False)
     roster = dict(url='https://example.edu/faculty', year=2026)
     fx = {'zju': dict(pis=[pi('甲乙', names=['甲乙', 'Kai Bu'], listings=[roster]),
