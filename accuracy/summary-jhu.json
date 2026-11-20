@@ -1,36 +1,36 @@
 {
  "school": "jhu",
- "date": "2026-11-18",
- "seed": 20261118,
+ "date": "2026-11-19",
+ "seed": 202611191082721799,
  "n_verdicts": 176,
  "files": {
-  "pis.json": "e1a00bc1c7602ccd7c7a577844bf039e7dbd217649cbcbb46030bbb031522536",
-  "students.json": "46a61444ff053a6f0b676e1f12c8934c5c5d33e1b1663c2201bb3a0d55a4a300",
-  "lab_papers.jsonl.gz": "80906d9a1a07688a228bdbd05f708a364ff50e46c8ac6b4e1ed17eb72bc53d1c",
-  "student_papers.jsonl.gz": "3479b3a73cf5ceb71b30dbf2e78180ee7dfc9697db49f21b9d0a1c173ffb6717",
-  "copies.json": "cde3438459c64e4ecca848c6be3c5e11638b0deaf761e8929897a38b03858c32"
+  "pis.json": "5a88d8508d2b8a508100cdcd6b7b911681ad4abbfea8856e7fb2a9dbd4b69ece",
+  "students.json": "4d872c6a64cbf40d41dcfcd11ea5886c927673bf06d7a84c5e993d03d6d21f52",
+  "lab_papers.jsonl.gz": "598366c7cb9026b493b4241fab58a9d861a3f9373554872bb746610620ae76be",
+  "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
+  "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
  },
  "files_now": {
-  "pis.json": "e1a00bc1c7602ccd7c7a577844bf039e7dbd217649cbcbb46030bbb031522536",
-  "students.json": "46a61444ff053a6f0b676e1f12c8934c5c5d33e1b1663c2201bb3a0d55a4a300",
-  "lab_papers.jsonl.gz": "80906d9a1a07688a228bdbd05f708a364ff50e46c8ac6b4e1ed17eb72bc53d1c",
-  "student_papers.jsonl.gz": "3479b3a73cf5ceb71b30dbf2e78180ee7dfc9697db49f21b9d0a1c173ffb6717",
-  "copies.json": "cde3438459c64e4ecca848c6be3c5e11638b0deaf761e8929897a38b03858c32"
+  "pis.json": "5a88d8508d2b8a508100cdcd6b7b911681ad4abbfea8856e7fb2a9dbd4b69ece",
+  "students.json": "4d872c6a64cbf40d41dcfcd11ea5886c927673bf06d7a84c5e993d03d6d21f52",
+  "lab_papers.jsonl.gz": "598366c7cb9026b493b4241fab58a9d861a3f9373554872bb746610620ae76be",
+  "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
+  "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
  },
  "lab_precision_uniform": {
-  "k": 49,
+  "k": 50,
   "n": 50,
-  "p": 0.98,
-  "lo": 0.895,
-  "hi": 0.9965,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
   "unclear": 0
  },
  "lab_precision_uniform_if_abstracts_count": {
-  "k": 49,
+  "k": 50,
   "n": 50,
-  "p": 0.98,
-  "lo": 0.895,
-  "hi": 0.9965,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
   "unclear": 0
  },
  "lab_precision_strata": {
@@ -60,20 +60,20 @@
   }
  },
  "lab_precision_all40": {
-  "k": 60,
+  "k": 61,
   "n": 61,
-  "p": 0.9836,
-  "lo": 0.9128,
-  "hi": 0.9971,
+  "p": 1.0,
+  "lo": 0.9408,
+  "hi": 1.0,
   "unclear": 0
  },
  "student_precision_uniform": {
-  "k": 50,
-  "n": 50,
+  "k": 49,
+  "n": 49,
   "p": 1.0,
-  "lo": 0.9287,
+  "lo": 0.9273,
   "hi": 1.0,
-  "unclear": 0
+  "unclear": 1
  },
  "student_precision_strata": {
   "advisee_name_on_lab_paper_byline": {
@@ -94,25 +94,25 @@
   }
  },
  "student_precision_all40": {
-  "k": 65,
-  "n": 65,
+  "k": 64,
+  "n": 64,
   "p": 1.0,
-  "lo": 0.9442,
+  "lo": 0.9434,
   "hi": 1.0,
-  "unclear": 0
+  "unclear": 1
  },
  "lab_coverage": {
-  "k": 40,
-  "n": 49,
-  "p": 0.8163,
-  "lo": 0.6864,
-  "hi": 0.9002
+  "k": 42,
+  "n": 42,
+  "p": 1.0,
+  "lo": 0.9162,
+  "hi": 1.0
  },
  "lab_coverage_items": {
   "drawn": 50,
-  "true_lab_papers": 49,
-  "not_lab_papers_absent": 0,
-  "not_lab_papers_in_build": 0
+  "true_lab_papers": 42,
+  "not_lab_papers_absent": 5,
+  "not_lab_papers_in_build": 2
  },
  "student_coverage": null,
  "student_coverage_items": {
@@ -120,96 +120,43 @@
   "no_coauthored_paper": 0
  },
  "failures": {
-  "not_a_paper": 1,
-  "missing_from_build": 9
+  "not_a_paper": 1
  },
  "incorrect": [
   {
-   "sample": "lab_precision",
-   "stratum": "uniform",
-   "item": "Joshua T. Vogelstein|None|https://openalex.org/W3119839667",
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Yaxing Yao|conf/ccs/0001LYD25",
    "failure_type": "not_a_paper",
-   "reason": "Crossref 10.1001/jamapsychiatry.2020.4272: a single page (587) with no abstract in JAMA Psychiatry, i.e. a viewpoint/commentary, not a research paper; JHU affiliation string and 2021 listing are fine",
-   "policy": null
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Randal Burns|journals/jmlr/TomitaBSCPFPYBM20",
-   "failure_type": "missing_from_build",
-   "reason": "JMLR 2020, Burns (JHU CS ladder, listings 2016-2026) is 9th author with Priebe/Vogelstein JHU group; not swept/no JHU-affiliated OA record found in build",
-   "policy": null
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Philipp Koehn|conf/amta/KnowlesK18",
-   "failure_type": "missing_from_build",
-   "reason": "AMTA 2018 Knowles & Koehn, both JHU; Koehn JHU ladder, listing 2018; no DOI, no OpenAlex JHU record found in build",
-   "policy": null
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Benjamin Van Durme|conf/emnlp/OuWSJSCJWLMHWMRKD25",
-   "failure_type": "missing_from_build",
-   "reason": "Findings EMNLP 2025, Van Durme JHU CS (listing 2025), lead authors JHU; absent from stored OpenAlex sweep by title",
-   "policy": null
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Alan Yuille|journals/tmlr/LiuHYCY26",
-   "failure_type": "missing_from_build",
-   "reason": "TMLR 2026 ReVision, Yuille JHU period 2016-, Qihao Liu JHU; no DOI, absent from stored sweep by title",
-   "policy": null
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Najim Dehak|conf/interspeech/Wang0MHTD24",
-   "failure_type": "missing_from_build",
-   "reason": "Interspeech 2024, Dehak JHU ECE/CS listings, Helin Wang/Villalba/Moro-Velazquez/Thebaud JHU CLSP; absent from stored sweep by title",
-   "policy": null
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Yinzhi Cao|conf/uss/Huang0LDC0025",
-   "failure_type": "missing_from_build",
-   "reason": "USENIX Sec 2025, Cao JHU since 2018 (period_0); Fudan-led collaboration so affiliation is thin, but PI is author in a JHU year; no OA JHU record in build",
-   "policy": null
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Yinzhi Cao|conf/uss/LiuLYKC25",
-   "failure_type": "missing_from_build",
-   "reason": "USENIX Sec 2025, all authors Cao's JHU group; only a Zenodo-DOI OA record (W6911995073) lists Zhengyu Liu alone with JHU, no Cao authorship so not bound to PI",
-   "policy": null
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Vishal Patel|conf/icml/WeiZLYPDSWG0P25",
-   "failure_type": "missing_from_build",
-   "reason": "ICML 2025 Perception in Reflection, Patel JHU 2019-2026 listings; no DOI, absent from stored sweep by title",
-   "policy": null
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Tianmin Shu|conf/iclr/LuSYKC25",
-   "failure_type": "missing_from_build",
-   "reason": "ICLR 2025 GenEx, Shu JHU CS (listing 2024-2026), Taiming Lu/Jieneng Chen JHU; no DOI, absent from stored sweep by title",
+   "reason": "HAIPS '25 First ACM CCS Workshop (doi 10.1145/3719027.3767663) is a workshop summary/proposal, not a research paper, yet in build as W4416549347",
    "policy": null
   }
  ],
  "unclear": [
   {
+   "sample": "student_precision",
+   "item": "Ilya Shpitser|ext:jhu:jaron-lee|https://openalex.org/W2981598733",
+   "reason": "DOUBTFUL: Byline is only 'J Lee' in abstract (Eur Heart J 2019, ehz746.0647) with Ahmidi/Whitman/Sussman/Shpitser; initial-only, no stored full-name or OpenAlex record to confirm Jaron Lee; plausible Shpitser JHU student but unproven"
+  },
+  {
    "sample": "lab_coverage",
-   "item": "Holden Lee|conf/alt/Lee22",
-   "reason": "DOUBTFUL: UNSETTLED: dept listing at JHU AMS from 2022 (archived Aug 2022) and the ALT 2022 paper is single-author; no stored affiliation (no DOI, not in OpenAlex cache); the first reviewer assumed Duke from memory, which is not evidence"
+   "item": "Misha Kazhdan|conf/eurographics/ZellCGHKTZZ21",
+   "reason": "DOUBTFUL: DOI 10.2312/egt.20211035 is a Eurographics 2021 Tutorial (EGT) abstract, stored via HAL as conference-paper; Kazhdan raw affil JHU, period 2004-, so school/PI tests pass, but a tutorial description is not clearly a research output; in build"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Philipp Koehn|conf/wmt/WangTGLYMLZLMCG23",
+   "reason": "DOUBTFUL: WMT 2023 literary-translation findings (DOI 10.18653/v1/2023.wmt-1.3): no stored row, OpenAlex cache or sweep page for it, so no affiliation evidence; Koehn has 2016-2026 CS listings and findings papers are research output, but school/year unverifiable; not in build"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Benjamin Van Durme|conf/acl/CH-WangDEK24",
+   "reason": "DOUBTFUL: ACL Findings 2024 (DOI 10.18653/v1/2024.findings-acl.260), first author Sky CH-Wang (not JHU) with Van Durme/Eisner/Kedzie; no stored row, OpenAlex cache or sweep page, so no affiliation evidence that Van Durme's work was at JHU (he also holds an industry role); Van Durme has 2016-2026 listings; not in build"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Enrique Mallada|conf/amcc/SiegelmannM26",
+   "reason": "DOUBTFUL: DBLP-only 2026 AMCC paper (Siegelmann, Mallada), not in lab_papers/OA cache; sibling AMCC26 Liu&Mallada carries JHU ECE affiliation and Mallada listed 2016-2026, so likely a true JHU paper absent, but no stored affiliation for it"
   }
  ],
  "screened": [],
@@ -310,29 +257,47 @@
   ],
   "n_pis": 92,
   "files": {
-   "pis.json": "e1a00bc1c7602ccd7c7a577844bf039e7dbd217649cbcbb46030bbb031522536",
-   "students.json": "46a61444ff053a6f0b676e1f12c8934c5c5d33e1b1663c2201bb3a0d55a4a300",
-   "lab_papers.jsonl.gz": "80906d9a1a07688a228bdbd05f708a364ff50e46c8ac6b4e1ed17eb72bc53d1c",
-   "student_papers.jsonl.gz": "3479b3a73cf5ceb71b30dbf2e78180ee7dfc9697db49f21b9d0a1c173ffb6717",
-   "copies.json": "cde3438459c64e4ecca848c6be3c5e11638b0deaf761e8929897a38b03858c32"
+   "pis.json": "5a88d8508d2b8a508100cdcd6b7b911681ad4abbfea8856e7fb2a9dbd4b69ece",
+   "students.json": "4d872c6a64cbf40d41dcfcd11ea5886c927673bf06d7a84c5e993d03d6d21f52",
+   "lab_papers.jsonl.gz": "598366c7cb9026b493b4241fab58a9d861a3f9373554872bb746610620ae76be",
+   "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
+   "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
   },
   "included_sha": "64b348dc645c35b8ad7b878057cbed66e5a463d927c46d7b4831a7209e5352eb",
+  "projection_version": 1,
+  "held": [],
+  "carried_forward": {
+   "lab_paper": 6,
+   "student": 1,
+   "student_paper": 6
+  },
   "files_now": {
-   "pis.json": "e1a00bc1c7602ccd7c7a577844bf039e7dbd217649cbcbb46030bbb031522536",
-   "students.json": "46a61444ff053a6f0b676e1f12c8934c5c5d33e1b1663c2201bb3a0d55a4a300",
-   "lab_papers.jsonl.gz": "80906d9a1a07688a228bdbd05f708a364ff50e46c8ac6b4e1ed17eb72bc53d1c",
-   "student_papers.jsonl.gz": "3479b3a73cf5ceb71b30dbf2e78180ee7dfc9697db49f21b9d0a1c173ffb6717",
-   "copies.json": "cde3438459c64e4ecca848c6be3c5e11638b0deaf761e8929897a38b03858c32"
+   "pis.json": "5a88d8508d2b8a508100cdcd6b7b911681ad4abbfea8856e7fb2a9dbd4b69ece",
+   "students.json": "4d872c6a64cbf40d41dcfcd11ea5886c927673bf06d7a84c5e993d03d6d21f52",
+   "lab_papers.jsonl.gz": "598366c7cb9026b493b4241fab58a9d861a3f9373554872bb746610620ae76be",
+   "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
+   "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
+  },
+  "rebound_held_links": {
+   "drawn_hashes": {
+    "students.json": "a311647fa5b636158dbba47b7e332916a8d33dabbb8fdfea02c020a9aad46763"
+   },
+   "live_hashes": {
+    "students.json": "4d872c6a64cbf40d41dcfcd11ea5886c927673bf06d7a84c5e993d03d6d21f52"
+   },
+   "held_links_now": 12,
+   "drawn_rows_held": 0,
+   "candidates_held": 0
   }
  },
  "population": {
-  "n_lab_papers": 4849,
-  "n_student_papers": 375,
-  "n_coverage_pool": 3487,
+  "n_lab_papers": 5261,
+  "n_student_papers": 405,
+  "n_coverage_pool": 3515,
   "n_student_candidates": 0
  },
  "round": {
-  "id": "pi1",
+  "id": "pi2",
   "sizes": {
    "uniform": 50,
    "stratum": 5,

@@ -1,0 +1,256 @@
+{
+ "school": "zju",
+ "date": "2026-11-19",
+ "seed": 20261120586324115,
+ "n_verdicts": 175,
+ "files": {
+  "pis.json": "29806c3a653de7ca6639fdd039002b69f5e9438303b151a7374fb1f18c0adc14",
+  "students.json": "be75e121da3a72df51a593a0457235d39dc4bf64717188dc11a2450d93ed07e1",
+  "lab_papers.jsonl.gz": "3731cdb5bcbcd69a98ccd3d6c33362d9aff0e04f3654c220419b1ab1410600fc",
+  "student_papers.jsonl.gz": "c4de5f28e8b249b46f46da015b2d00ddb20251e7ce9120ad239d7150c93265bd",
+  "copies.json": "c1e086d813d342e3e535e1ffc294c5043031b774b55554274a4abca1b110486e"
+ },
+ "files_now": {
+  "pis.json": "29806c3a653de7ca6639fdd039002b69f5e9438303b151a7374fb1f18c0adc14",
+  "students.json": "be75e121da3a72df51a593a0457235d39dc4bf64717188dc11a2450d93ed07e1",
+  "lab_papers.jsonl.gz": "3731cdb5bcbcd69a98ccd3d6c33362d9aff0e04f3654c220419b1ab1410600fc",
+  "student_papers.jsonl.gz": "c4de5f28e8b249b46f46da015b2d00ddb20251e7ce9120ad239d7150c93265bd",
+  "copies.json": "c1e086d813d342e3e535e1ffc294c5043031b774b55554274a4abca1b110486e"
+ },
+ "lab_precision_uniform": {
+  "k": 45,
+  "n": 46,
+  "p": 0.9783,
+  "lo": 0.8866,
+  "hi": 0.9962,
+  "unclear": 4
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 45,
+  "n": 46,
+  "p": 0.9783,
+  "lo": 0.8866,
+  "hi": 0.9962,
+  "unclear": 4
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 55,
+  "n": 56,
+  "p": 0.9821,
+  "lo": 0.9055,
+  "hi": 0.9968,
+  "unclear": 4
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 3,
+   "n": 3,
+   "p": 1.0,
+   "lo": 0.4385,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 12,
+   "n": 12,
+   "p": 1.0,
+   "lo": 0.7575,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 45,
+  "n": 46,
+  "p": 0.9783,
+  "lo": 0.8866,
+  "hi": 0.9962
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 46,
+  "not_lab_papers_absent": 3,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "namesake": 1,
+  "missing_from_build": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "高艺|None|https://openalex.org/W7161686709",
+   "failure_type": "namesake",
+   "reason": "Yi Cong Gao, aff 'State Key Laboratory of Fluid Power and Mechatronic Systems, ZJU' (ankle rehabilitation robot, IEEE Access, doi 10.1109/access.2026.3694399); mechatronics engineer, not the CS professor 高艺 (Yi Gao); not on dblp; reviewed OpenAlex id merges two people.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "唐敏|journals/tvcg/ChengTTQS16",
+   "failure_type": "missing_from_build",
+   "reason": "TVCG 2016 (doi 10.1109/tvcg.2015.2511751) by Cheng, Ruofeng Tong 0001, Min Tang 0001 (bound DBLP pid 88/5071-1), Qian, Sarkis; PI appointed ZJU 2000-, sibling 2016 Tang rows in build (3D Body Shapes Estimation from Dressed-Human Silhouettes, ZJU affil) show same group at ZJU; not in build and no OpenAlex row stored (no direct affiliation string, thin).",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "王锐|None|https://openalex.org/W4404712303",
+   "reason": "DOUBTFUL: Sci Rep 10.1038/s41598-024-80678-7 (2024), psychology/vestibular topic with psychologist coauthors (Zaifeng Gao); aff CAD&CG ZJU but email ruiwang@zju.edu.cn and not on PI dblp; possible namesake Rui Wang, anchored only by OpenAlex id."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "许威威|None|https://openalex.org/W4415754474",
+   "reason": "DOUBTFUL: Weiwei Xu last author, aff 'Zhejiang University, Hangzhou, 311121' (311121 is the Hangzhou Normal Univ/Yuhang postcode), coauthors Dandan Ding et al. video coding (LNCS 2025, doi 10.1007/978-981-95-3398-5_37); not on PI dblp; anchored only by OpenAlex id; ZJU attribution/identity uncertain."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "陈为|None|https://openalex.org/W7162464060",
+   "reason": "DOUBTFUL: Wei Chen last author of a 19-author SIGMOD 2026 cloud-storage systems paper (doi 10.1145/3788853.3803082), aff 'Zhejiang University, Hangzhou, China'; topic far from the PI's CAD&CG visualization; matched via DBLP page DOI which may merge Wei Chens; possible namesake."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "周晓巍|None|https://openalex.org/W7171351778",
+   "reason": "DOUBTFUL: Xiaowei Zhou middle author, aff 'State Key Laboratory of CAD&CG, Zhejiang University' (underwater 3D pose, Sensors 2026, doi 10.3390/s26154738); coauthors Hailong Liu/Rong Yu not known collaborators; anchored by OpenAlex id only, not on PI dblp; namesake possible."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "沈春华|conf/nips/GaoLXZ0JS22",
+   "reason": "DOUBTFUL: NeurIPS 2022 PyramidCLIP, no DOI, not in build. Shen's ZJU period starts 2022 (bio 'since 2022', no month), prior affiliation Monash/Adelaide; the stored works/OpenAlex/page-1 stores have no row or affiliation string for this paper, so whether it was done at ZJU (2022 start) cannot be decided."
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "丁尧相",
+   "何晓飞",
+   "何水兵",
+   "冯结青",
+   "刘忠鑫",
+   "刘玉生",
+   "卢丽强",
+   "卢立",
+   "吴春明",
+   "吴超",
+   "吴鸿智",
+   "周昆",
+   "周晓巍",
+   "唐敏",
+   "夏鑫",
+   "姚培森",
+   "崔兆鹏",
+   "巫英才",
+   "李明",
+   "李晓白",
+   "李松",
+   "李玺",
+   "林峰",
+   "沈春华",
+   "王新宇",
+   "王灿",
+   "王章野",
+   "王锐",
+   "章国锋",
+   "童若锋",
+   "蓝磊",
+   "蔡登",
+   "蔺宏伟",
+   "许威威",
+   "邹强",
+   "郑友怡",
+   "金小刚",
+   "陈为",
+   "陈明帅",
+   "陶煜波",
+   "霍宇驰",
+   "顾实",
+   "高艺",
+   "魏成坤",
+   "鲍虎军"
+  ],
+  "n_pis": 45,
+  "files": {
+   "pis.json": "29806c3a653de7ca6639fdd039002b69f5e9438303b151a7374fb1f18c0adc14",
+   "students.json": "be75e121da3a72df51a593a0457235d39dc4bf64717188dc11a2450d93ed07e1",
+   "lab_papers.jsonl.gz": "3731cdb5bcbcd69a98ccd3d6c33362d9aff0e04f3654c220419b1ab1410600fc",
+   "student_papers.jsonl.gz": "c4de5f28e8b249b46f46da015b2d00ddb20251e7ce9120ad239d7150c93265bd",
+   "copies.json": "c1e086d813d342e3e535e1ffc294c5043031b774b55554274a4abca1b110486e"
+  },
+  "included_sha": "d11b84d8da020e322e3606da7954c87a8a068fd48012a7e2b8d2818a44ea6c00",
+  "projection_version": 1,
+  "held": [],
+  "carried_forward": {},
+  "files_now": {
+   "pis.json": "29806c3a653de7ca6639fdd039002b69f5e9438303b151a7374fb1f18c0adc14",
+   "students.json": "be75e121da3a72df51a593a0457235d39dc4bf64717188dc11a2450d93ed07e1",
+   "lab_papers.jsonl.gz": "3731cdb5bcbcd69a98ccd3d6c33362d9aff0e04f3654c220419b1ab1410600fc",
+   "student_papers.jsonl.gz": "c4de5f28e8b249b46f46da015b2d00ddb20251e7ce9120ad239d7150c93265bd",
+   "copies.json": "c1e086d813d342e3e535e1ffc294c5043031b774b55554274a4abca1b110486e"
+  }
+ },
+ "population": {
+  "n_lab_papers": 2089,
+  "n_student_papers": 148,
+  "n_coverage_pool": 1492,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2b",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 60,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

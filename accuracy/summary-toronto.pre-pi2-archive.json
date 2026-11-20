@@ -1,0 +1,166 @@
+{
+ "school": "toronto",
+ "date": "2026-11-10",
+ "seed": 20261029,
+ "n_verdicts": 90,
+ "files": {
+  "pis.json": "8258613f3dff124f08199d52c089fc010e3c37a3ba89d0cdc19f2ebfb4c1f1fd",
+  "students.json": "4b70696d4c767974b120bb2e24dd91e9dc10111f25eb8dcfb0877d1682f229c0",
+  "lab_papers.jsonl.gz": "5be5c3d63a455cccacf36a362db10512843e5a864d902abce586cc4ab5a3d8c3",
+  "student_papers.jsonl.gz": "32f2a3acb95c0e5d92dbf69607f7b59a67d6dd50eddd5da26db26dae7d0903e7",
+  "copies.json": "8f3ffaf3b5ce338c2f94bae4f6d7619596819a7caf26640636c257f828999542"
+ },
+ "files_now": {
+  "pis.json": "8258613f3dff124f08199d52c089fc010e3c37a3ba89d0cdc19f2ebfb4c1f1fd",
+  "students.json": "4b70696d4c767974b120bb2e24dd91e9dc10111f25eb8dcfb0877d1682f229c0",
+  "lab_papers.jsonl.gz": "5be5c3d63a455cccacf36a362db10512843e5a864d902abce586cc4ab5a3d8c3",
+  "student_papers.jsonl.gz": "32f2a3acb95c0e5d92dbf69607f7b59a67d6dd50eddd5da26db26dae7d0903e7",
+  "copies.json": "8f3ffaf3b5ce338c2f94bae4f6d7619596819a7caf26640636c257f828999542"
+ },
+ "lab_precision_uniform": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 35,
+  "n": 35,
+  "p": 1.0,
+  "lo": 0.9011,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 24,
+  "n": 24,
+  "p": 1.0,
+  "lo": 0.862,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 4,
+   "n": 4,
+   "p": 1.0,
+   "lo": 0.5101,
+   "hi": 1.0,
+   "unclear": 1
+  },
+  "fill_uniform": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 38,
+  "n": 38,
+  "p": 1.0,
+  "lo": 0.9082,
+  "hi": 1.0,
+  "unclear": 2
+ },
+ "lab_coverage": {
+  "k": 13,
+  "n": 15,
+  "p": 0.8667,
+  "lo": 0.6212,
+  "hi": 0.9626
+ },
+ "lab_coverage_items": {
+  "drawn": 15,
+  "true_lab_papers": 15,
+  "not_lab_papers_absent": 0,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "missing_from_build": 2
+ },
+ "incorrect": [
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Nick Koudas|conf/edbt/ChaoK0C25",
+   "failure_type": "missing_from_build",
+   "reason": "[true_lab_paper judged from the DBLP record only, affiliation of the paper not checked; a miss may be a correct affiliation exclusion] DBLP inproceedings by Nick Koudas (2025) is a real research paper in the PI's period, but title (first 60 chars, also punctuation-normalized) is absent from lab_papers.jsonl.gz and the PI has no rows there.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "David Lindell|conf/cvpr/LindellVPW22",
+   "failure_type": "missing_from_build",
+   "reason": "[true_lab_paper judged from the DBLP record only, affiliation of the paper not checked; a miss may be a correct affiliation exclusion] DBLP inproceedings by David Lindell (2022) is a real research paper in the PI's period, but title (first 60 chars, also punctuation-normalized) is absent from lab_papers.jsonl.gz and the PI has no rows there.",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "student_precision",
+   "item": "Gerald Penn|ext:toronto:andrew-liu|https://openalex.org/W4396715697",
+   "reason": "[reviewer fetched pages for ambiguous quotes; paper-side namesake not checked] Listed under Current Ph.D. Students on Penn's page, but 'Andrew Liu' is a common name and byline identity was not verified."
+  },
+  {
+   "sample": "student_precision",
+   "item": "Ningning Xie|ext:toronto:han-xu|https://openalex.org/W4411267730",
+   "reason": "[reviewer fetched pages for ambiguous quotes; paper-side namesake not checked] Roster lists Han Xu as past visiting student (Summer 2024), but name is very common and I did not verify the byline is the same person."
+  }
+ ],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 4788,
+  "n_student_papers": 690,
+  "n_coverage_pool": 3771,
+  "n_student_candidates": 0
+ },
+ "note": "2026-11-10 reviewer limits: lab_precision (35 rows) was judged by a fresh reviewer from the packet rows ONLY (authorship affiliation, appointment listing, venue/title, field fit); it fetched no DOI or landing page, so 35/35 is a WEAK check of namesake and affiliation risk. student_precision (40): reviewer fetched pages for ambiguous quotes; paper-side namesakes were not checked; 2 unclear (common names). lab_coverage (15): true_lab_paper judged from the DBLP record alone; the 2 misses (Koudas EDBT 2025, Lindell CVPR 2022) are not in the OpenAlex Toronto sweep. student_coverage: 0 items (no thesis-advisor relations)."
+}

@@ -1,37 +1,37 @@
 {
  "school": "uchicago",
- "date": "2026-11-17",
- "seed": 20261118,
+ "date": "2026-11-19",
+ "seed": 202611191082721799,
  "n_verdicts": 186,
  "files": {
-  "pis.json": "7939da7d5e2a3cddf524f75d6bbd1950c14ae1da3f53efe75d4a494689f5b818",
-  "students.json": "438158895c0dc625932bdd7cde99dbc2ef791d9b6ec29355dcc2c828fee56d08",
-  "lab_papers.jsonl.gz": "4a46023912579fda1ab9fdb161035d2f57be9932ffd06d69725cff19f04ad9f7",
-  "student_papers.jsonl.gz": "20e24fef69b567bd21f59cecd285d85d6d47f3fc96a4aaa572d2e6f6ca33a9bf",
-  "copies.json": "3b5e8f573fba82ba7b51e66830a3b99c5928f331c31fb0c56edfb50751a3d0d5"
+  "pis.json": "1c3cce487130db1b4f675020629b1d273021f876d948bc6247b5de374896209b",
+  "students.json": "cc78735f402f2293119a3792dbd9eddaea18fe6b92a1de0faa94383f2121aeaa",
+  "lab_papers.jsonl.gz": "b7b1c4e17ea67d526e53184d07d05c5afa62d0d300d24953cfcc707885a95a01",
+  "student_papers.jsonl.gz": "46d96692e589e6259a86bf75af81e4d93f42152b38a12efa10a96e84b35d6f39",
+  "copies.json": "2b111d0ca3014c076784609ec4247146ce3bbf9cedb97f029bd2f8e9389f9b54"
  },
  "files_now": {
-  "pis.json": "7939da7d5e2a3cddf524f75d6bbd1950c14ae1da3f53efe75d4a494689f5b818",
-  "students.json": "438158895c0dc625932bdd7cde99dbc2ef791d9b6ec29355dcc2c828fee56d08",
-  "lab_papers.jsonl.gz": "4a46023912579fda1ab9fdb161035d2f57be9932ffd06d69725cff19f04ad9f7",
-  "student_papers.jsonl.gz": "20e24fef69b567bd21f59cecd285d85d6d47f3fc96a4aaa572d2e6f6ca33a9bf",
-  "copies.json": "3b5e8f573fba82ba7b51e66830a3b99c5928f331c31fb0c56edfb50751a3d0d5"
+  "pis.json": "1c3cce487130db1b4f675020629b1d273021f876d948bc6247b5de374896209b",
+  "students.json": "cc78735f402f2293119a3792dbd9eddaea18fe6b92a1de0faa94383f2121aeaa",
+  "lab_papers.jsonl.gz": "b7b1c4e17ea67d526e53184d07d05c5afa62d0d300d24953cfcc707885a95a01",
+  "student_papers.jsonl.gz": "46d96692e589e6259a86bf75af81e4d93f42152b38a12efa10a96e84b35d6f39",
+  "copies.json": "2b111d0ca3014c076784609ec4247146ce3bbf9cedb97f029bd2f8e9389f9b54"
  },
  "lab_precision_uniform": {
-  "k": 48,
-  "n": 50,
-  "p": 0.96,
-  "lo": 0.8654,
-  "hi": 0.989,
-  "unclear": 0
+  "k": 45,
+  "n": 46,
+  "p": 0.9783,
+  "lo": 0.8866,
+  "hi": 0.9962,
+  "unclear": 4
  },
  "lab_precision_uniform_if_abstracts_count": {
-  "k": 48,
-  "n": 50,
-  "p": 0.96,
-  "lo": 0.8654,
-  "hi": 0.989,
-  "unclear": 0
+  "k": 45,
+  "n": 46,
+  "p": 0.9783,
+  "lo": 0.8866,
+  "hi": 0.9962,
+  "unclear": 4
  },
  "lab_precision_strata": {
   "advisee_unaffiliated": {
@@ -60,12 +60,12 @@
   }
  },
  "lab_precision_all40": {
-  "k": 63,
-  "n": 65,
-  "p": 0.9692,
-  "lo": 0.8946,
-  "hi": 0.9915,
-  "unclear": 0
+  "k": 60,
+  "n": 61,
+  "p": 0.9836,
+  "lo": 0.9128,
+  "hi": 0.9971,
+  "unclear": 4
  },
  "student_precision_uniform": {
   "k": 50,
@@ -110,17 +110,17 @@
   "unclear": 0
  },
  "lab_coverage": {
-  "k": 40,
-  "n": 42,
-  "p": 0.9524,
-  "lo": 0.8421,
-  "hi": 0.9868
+  "k": 33,
+  "n": 38,
+  "p": 0.8684,
+  "lo": 0.7267,
+  "hi": 0.9425
  },
  "lab_coverage_items": {
   "drawn": 50,
-  "true_lab_papers": 42,
-  "not_lab_papers_absent": 3,
-  "not_lab_papers_in_build": 2
+  "true_lab_papers": 38,
+  "not_lab_papers_absent": 11,
+  "not_lab_papers_in_build": 1
  },
  "student_coverage": {
   "k": 6,
@@ -134,75 +134,85 @@
   "no_coauthored_paper": 0
  },
  "failures": {
-  "not_at_school": 2,
-  "missing_from_build": 2,
-  "not_a_paper": 2
+  "not_at_school": 1,
+  "missing_from_build": 4,
+  "not_a_paper": 1
  },
  "incorrect": [
   {
    "sample": "lab_precision",
    "stratum": "uniform",
-   "item": "Ian Foster|None|https://openalex.org/W4390690081",
+   "item": "Ian Foster|None|https://openalex.org/W4225286424",
    "failure_type": "not_at_school",
-   "reason": "PI credited only to Argonne National Laboratory on this byline; no UChicago affiliation evidenced",
-   "policy": null
-  },
-  {
-   "sample": "lab_precision",
-   "stratum": "uniform",
-   "item": "Ian Foster|None|https://openalex.org/W4388301326",
-   "failure_type": "not_at_school",
-   "reason": "PI affiliations are Argonne/other DOE labs only (ExaLearn DOE report); no UChicago affiliation",
+   "reason": "Foster, Geosci. Model Dev. 2022 (10.5194/gmd-15-3433-2022); only affiliation '240, Argonne National Laboratory, Lemont IL'; all coauthors Argonne (Maulik, Rao, Wang, Lusch, Balaprakash, Kotamarthi); no UChicago string anywhere, so work is not evidenced at this school despite 2022 CS listing.",
    "policy": null
   },
   {
    "sample": "lab_coverage",
    "stratum": "dblp_person_page",
-   "item": "Mihai Anitescu|journals/siamjo/XuA18",
+   "item": "Karen Livescu|conf/icml/MichaeliWL16",
    "failure_type": "missing_from_build",
-   "reason": "2018 SIAM J Optim, Anitescu has Statistics listing 2016-2026 (no OA affiliation, same R8 case as Fox); not in his lab",
+   "reason": "ICML 2016 Nonparametric CCA (Michaeli, Wang, Livescu): Livescu is TTIC-only in 2016 (ladder listing 2016, TTIC; her other 2016 rows with co-author Weiran Wang carry 'Toyota Technological Institute at Chicago'); research paper absent from the 104 stored Livescu lab rows and from stored OpenAlex works. Affiliation of this exact paper not stored (inferred from co-author Wang), but identity/year/field are unambiguous.",
    "policy": null
   },
   {
    "sample": "lab_coverage",
    "stratum": "dblp_person_page",
-   "item": "Blase Ur|conf/soups/OwensAKU21",
+   "item": "Andrew A. Chien|journals/cacm/Chien22b",
+   "failure_type": "not_a_paper",
+   "reason": "'Five years as editor-in-chief of Communications' (CACM 2022, doi 10.1145/3533672, single author Chien) is an editor's column, not a research output; it IS in the build (W4280637928).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Junchen Jiang|conf/mlsys/DuZAWXJ22",
    "failure_type": "missing_from_build",
-   "reason": "2021 SOUPS paper by Ur (appointed 2016-, listing 2021); no OA match so absent from build",
+   "reason": "AccMPEG (MLSys 2022; arXiv 2204.12534, stored OpenAlex has no affiliations, no DOI): Jiang is UChicago CS (listings 2018-2026); coauthors Kuntai Du and Zhengxu Xia are stored as Jiang's UChicago PhD students (advised 2020-2022, 2024 bio); a true lab paper but in_PI_lab=NO.",
    "policy": null
   },
   {
    "sample": "lab_coverage",
    "stratum": "dblp_person_page",
-   "item": "Pedro Lopes|conf/chi/0001CM21",
-   "failure_type": "not_a_paper",
-   "reason": "CHI 2021 Extended Abstracts SIG proposal (Physiological I/O), not a research output; in build",
+   "item": "Heather Zheng|conf/sp/WangYSLVZZ19",
+   "failure_type": "missing_from_build",
+   "reason": "IEEE S&P 2019 Neural Cleanse 10.1109/sp.2019.00031: stored OpenAlex 'Hai-Tao Zheng' (= DBLP Haitao Zheng 0001, pid 43/4261) affiliation 'University of Chicago'; Zheng CS listings from 2018 cover 2019; paper is in Ben Y. Zhao's lab but in_PI_lab=NO for Zheng (her lab has only 4 rows, 2020-2026).",
    "policy": null
   },
   {
    "sample": "lab_coverage",
    "stratum": "dblp_person_page",
-   "item": "Pedro Lopes|conf/chi/SemertzidisSFWP21",
-   "failure_type": "not_a_paper",
-   "reason": "CHI 2021 Extended Abstracts SIG proposal (SIGHInt), not a research output; in build",
+   "item": "Victor Veitch|conf/icml/ReberRNGV25",
+   "failure_type": "missing_from_build",
+   "reason": "ICML 2025 RATE (arXiv 2410.11348; stored OpenAlex has authors but no affiliations, no DOI): Veitch STAT listings 2021-2026 cover 2025; Todd Nief is a UChicago PhD (since 2024) and Reber's 2026 paper with Veitch carries 'Department of Statistics, University of Chicago'; plausibly a true lab paper but in_PI_lab=NO. Affiliation evidence for this exact paper is indirect.",
    "policy": null
   }
  ],
  "unclear": [
   {
-   "sample": "lab_coverage",
-   "item": "Ian Foster|conf/sc/CastroZ0FK25",
-   "reason": "Foster OpenAlex affiliation is Argonne only; no UChicago affiliation evidence for this 2025 work"
+   "sample": "lab_precision",
+   "item": "Risi Kondor|None|https://openalex.org/W4211060338",
+   "reason": "DOUBTFUL: Biophys. J. 2022 doi 10.1016/j.bpj.2021.11.2799; Kondor last author aff Dept of Computer Science, University of Chicago; listing 2022; anchored author id; (journal meeting-abstract risk: Biophys J Feb 2022 issue abstracts exist, but title is a full-title GNN paper by Thiede/Zhou/Kondor; doi prefix 2799 suggests supplement abstract, thin)"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Ian Foster|None|https://openalex.org/W7125394241",
+   "reason": "DOUBTFUL: Ian Foster, 2026 conference paper (10.1145/3784828.3786262); Foster's own affiliation is only 'Argonne National Lab, Lemont' (no UChicago string), though Foster is CS-listed 2026 and coauthor Kyle Chard of the same work names UChicago; authorship does not itself evidence school."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Greg Shakhnarovich|None|https://openalex.org/W7159614859",
+   "reason": "DOUBTFUL: Shakhnarovich arXiv 2604.27232 (2026); only affiliation 'Toyota Technological Institute at Chicago' with no UChicago string; PI is listed by TTIC (and on UChicago CS faculty page 2019-2022 as TTIC affiliate); whether TTIC counts as this school is policy-dependent; identity good (DBLP DOI)."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Matthew Walter|None|https://openalex.org/W7202147397",
+   "reason": "DOUBTFUL: Walter arXiv 2608.07435 (2026); only affiliation 'Toyota Technological Institute at Chicago', no UChicago string; identity via advisee_coauthor (Lan, Sun, Zhou), not DOI/ORCID; TTIC-as-school is policy-dependent. Evidence thin."
   },
   {
    "sample": "lab_coverage",
-   "item": "Ian Foster|conf/smc2/WozniakLVCNF21",
-   "reason": "Foster OpenAlex affiliation is Argonne only; no UChicago affiliation evidence for this 2022 work"
-  },
-  {
-   "sample": "lab_coverage",
-   "item": "Tian Li|conf/icml/00050B25",
-   "reason": "OA is Oct-2024 preprint with no affiliation for Tian Li; UChicago start/affiliation at time of work not evidenced; absent from build"
+   "item": "Ian Foster|conf/iwsg/BabujiCFKWWW18",
+   "reason": "DOUBTFUL: Parsl IWSG 2018 (W2947033863, CEUR): research paper by Foster, in build, 2018 CS listing exists, but the ONLY stored affiliation for Foster and all co-authors is 'Argonne National Laboratory'; no UChicago string and no page-1 capture, so work-at-school is not evidenced (Argonne-only => not at school under the criteria)."
   }
  ],
  "screened": [],
@@ -297,6 +307,7 @@
    "Mihai Anitescu",
    "Mina Lee",
    "Moon Duchin",
+   "Nati Srebro",
    "Nicholas Tomlin",
    "Nick Feamster",
    "Nikolaos (Nikos) Ignatiadis",
@@ -345,31 +356,49 @@
    "Yuxin Chen",
    "Zhiyuan Li"
   ],
-  "n_pis": 136,
+  "n_pis": 137,
   "files": {
-   "pis.json": "7939da7d5e2a3cddf524f75d6bbd1950c14ae1da3f53efe75d4a494689f5b818",
-   "students.json": "438158895c0dc625932bdd7cde99dbc2ef791d9b6ec29355dcc2c828fee56d08",
-   "lab_papers.jsonl.gz": "4a46023912579fda1ab9fdb161035d2f57be9932ffd06d69725cff19f04ad9f7",
-   "student_papers.jsonl.gz": "20e24fef69b567bd21f59cecd285d85d6d47f3fc96a4aaa572d2e6f6ca33a9bf",
-   "copies.json": "3b5e8f573fba82ba7b51e66830a3b99c5928f331c31fb0c56edfb50751a3d0d5"
+   "pis.json": "1c3cce487130db1b4f675020629b1d273021f876d948bc6247b5de374896209b",
+   "students.json": "cc78735f402f2293119a3792dbd9eddaea18fe6b92a1de0faa94383f2121aeaa",
+   "lab_papers.jsonl.gz": "b7b1c4e17ea67d526e53184d07d05c5afa62d0d300d24953cfcc707885a95a01",
+   "student_papers.jsonl.gz": "46d96692e589e6259a86bf75af81e4d93f42152b38a12efa10a96e84b35d6f39",
+   "copies.json": "2b111d0ca3014c076784609ec4247146ce3bbf9cedb97f029bd2f8e9389f9b54"
   },
-  "included_sha": "0b727e31e7607078a8bc57e5cfc79e28dcdd195b3f5c105a070d78e74bcd8cd1",
+  "included_sha": "d3607c021f9b0155e0bbf2118727aacb3ca0a9ff6a8c572a37fd7922d85a0545",
+  "projection_version": 1,
+  "held": [],
+  "carried_forward": {
+   "lab_paper": 21,
+   "student": 1,
+   "student_paper": 12
+  },
   "files_now": {
-   "pis.json": "7939da7d5e2a3cddf524f75d6bbd1950c14ae1da3f53efe75d4a494689f5b818",
-   "students.json": "438158895c0dc625932bdd7cde99dbc2ef791d9b6ec29355dcc2c828fee56d08",
-   "lab_papers.jsonl.gz": "4a46023912579fda1ab9fdb161035d2f57be9932ffd06d69725cff19f04ad9f7",
-   "student_papers.jsonl.gz": "20e24fef69b567bd21f59cecd285d85d6d47f3fc96a4aaa572d2e6f6ca33a9bf",
-   "copies.json": "3b5e8f573fba82ba7b51e66830a3b99c5928f331c31fb0c56edfb50751a3d0d5"
+   "pis.json": "1c3cce487130db1b4f675020629b1d273021f876d948bc6247b5de374896209b",
+   "students.json": "cc78735f402f2293119a3792dbd9eddaea18fe6b92a1de0faa94383f2121aeaa",
+   "lab_papers.jsonl.gz": "b7b1c4e17ea67d526e53184d07d05c5afa62d0d300d24953cfcc707885a95a01",
+   "student_papers.jsonl.gz": "46d96692e589e6259a86bf75af81e4d93f42152b38a12efa10a96e84b35d6f39",
+   "copies.json": "2b111d0ca3014c076784609ec4247146ce3bbf9cedb97f029bd2f8e9389f9b54"
+  },
+  "rebound_held_links": {
+   "drawn_hashes": {
+    "students.json": "5f6a8fcd1e411aeb0c4e3a34aa22a035e1bbb6451cfde7d1ff843d6ee3a7b800"
+   },
+   "live_hashes": {
+    "students.json": "cc78735f402f2293119a3792dbd9eddaea18fe6b92a1de0faa94383f2121aeaa"
+   },
+   "held_links_now": 18,
+   "drawn_rows_held": 0,
+   "candidates_held": 0
   }
  },
  "population": {
-  "n_lab_papers": 4890,
-  "n_student_papers": 2450,
-  "n_coverage_pool": 3735,
+  "n_lab_papers": 5273,
+  "n_student_papers": 2653,
+  "n_coverage_pool": 3691,
   "n_student_candidates": 6
  },
  "round": {
-  "id": "pi1",
+  "id": "pi2",
   "sizes": {
    "uniform": 50,
    "stratum": 5,

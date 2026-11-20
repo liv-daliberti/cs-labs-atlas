@@ -1,0 +1,386 @@
+{
+ "school": "princeton",
+ "date": "2026-11-19",
+ "seed": 2026111934346776,
+ "n_verdicts": 230,
+ "files": {
+  "pis.json": "073f8025966e364b614d655839e559e9ed1322ac24ea7889faf26f4d16ca05c8",
+  "students.json": "5385160e4f629a8498373a6c4f37c163c3107026af632dd32179d8d04a6dffd7",
+  "lab_papers.jsonl.gz": "1a466eef9955d1b376eb6aca3cd6d880127582ffc5819496108a1c407037a361",
+  "student_papers.jsonl.gz": "0cf2848fd2075e124dff1daa78f24a43f5a40b847d699e7b7b50cb5149949be5",
+  "copies.json": "6f47117bdaade5b31016b1d691eadd34bdd12c52625302665a1ee20998a24493"
+ },
+ "files_now": {
+  "pis.json": "073f8025966e364b614d655839e559e9ed1322ac24ea7889faf26f4d16ca05c8",
+  "students.json": "5385160e4f629a8498373a6c4f37c163c3107026af632dd32179d8d04a6dffd7",
+  "lab_papers.jsonl.gz": "1a466eef9955d1b376eb6aca3cd6d880127582ffc5819496108a1c407037a361",
+  "student_papers.jsonl.gz": "0cf2848fd2075e124dff1daa78f24a43f5a40b847d699e7b7b50cb5149949be5",
+  "copies.json": "6f47117bdaade5b31016b1d691eadd34bdd12c52625302665a1ee20998a24493"
+ },
+ "lab_precision_uniform": {
+  "k": 47,
+  "n": 49,
+  "p": 0.9592,
+  "lo": 0.8629,
+  "hi": 0.9887,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 62,
+  "n": 64,
+  "p": 0.9688,
+  "lo": 0.893,
+  "hi": 0.9914,
+  "unclear": 1
+ },
+ "student_precision_uniform": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 64,
+  "n": 64,
+  "p": 1.0,
+  "lo": 0.9434,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_coverage": {
+  "k": 43,
+  "n": 45,
+  "p": 0.9556,
+  "lo": 0.8517,
+  "hi": 0.9877
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 45,
+  "not_lab_papers_absent": 4,
+  "not_lab_papers_in_build": 1
+ },
+ "student_coverage": {
+  "k": 40,
+  "n": 40,
+  "p": 1.0,
+  "lo": 0.9124,
+  "hi": 1.0
+ },
+ "student_coverage_items": {
+  "drawn": 50,
+  "no_coauthored_paper": 10
+ },
+ "failures": {
+  "not_a_paper": 3,
+  "missing_from_build": 2
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Jeff Thompson|paper_95deeb90697a1e3a04f8|https://openalex.org/W3113105875",
+   "failure_type": "not_a_paper",
+   "reason": "OSA Quantum 2.0 Conference digest abstract (DOI 10.1364/quantum.2020.qtu8b.5, session QTu8B.5), a short meeting abstract; Princeton aff itself is fine",
+   "policy": "meeting_abstract"
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Niraj K. Jha|paper_0772b2295568b96fe125|https://openalex.org/W4387944195",
+   "failure_type": "not_a_paper",
+   "reason": "Jha 2022 item in Medecine et Maladies Infectieuses Formation (doi 10.1016/j.mmifmc.2022.03.115) is a French congress/journal-supplement abstract on smartwatch SARS-CoV-2 detection, not a full paper; PI identity (Princeton, Hassantabar/Ghanakota coauthors) is fine",
+   "policy": "meeting_abstract"
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "David Wentzlaff|conf/nsdi/ArashlooLGRWW20",
+   "failure_type": "missing_from_build",
+   "reason": "NSDI 2020 (Arashloo, Lavrov, Ghobadi, Rexford, Walker, Wentzlaff; Princeton-authored, in period 2011-, listings 2016-2026) is a true research paper but no lab_papers row with this title exists for any PI; BUILD in_PI_lab=NO. Affiliation not in stored cache (judged from authors/PI period; moderately thin).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Tom Griffiths|conf/cogsci/OktarS024",
+   "failure_type": "missing_from_build",
+   "reason": "CogSci 2024 paper (Oktar, Sumers, Griffiths; Princeton, period 2018-) has no lab_papers row; the only candidate W4412429465 is a differently titled 2025 PsyArXiv preprint 'Rational vigilance of intentions and incentives guides learning from advice' (10.31234/osf.io/khtpy_v1), a different output. THIN: could be treated as same work.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "H. Vincent Poor|journals/entropy/GunluSBP23",
+   "failure_type": "not_a_paper",
+   "reason": "W4321497607 (2023, DOI 10.3390/e25030392) is typed 'editorial' (Special Issue editorial 'Information Theoretic Methods for Future Communication Systems') and is in build; Princeton affil fine but not a research output.",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Jennifer Rexford|doi:10.48550/arxiv.1904.06574|https://openalex.org/W2938348746",
+   "reason": "DOUBTFUL: Rexford period 2005-, arXiv 1904.06574 (2019); OpenAlex aff empty, school evidence only via Princeton advisee Gossels on byline and page-1 check status ok_untied; Rexford at Princeton in 2019, plausible but affiliation not directly stored"
+  },
+  {
+   "sample": "student_precision",
+   "item": "Mengdi Wang|ext:princeton:hao-lu|https://openalex.org/W7214926253",
+   "reason": "DOUBTFUL: Hao Lu is a common name; byline Lu, Hao on arXiv 2609.36914 (2026) is not in the Princeton-affiliated byline subset (school list lacks him); Princeton Hao Lu was a 2021 advisee; link rests on name only."
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "Aarti Gupta",
+   "Abhishek Bhattacharjee",
+   "Adam Finkelstein",
+   "Adji Bousso Dieng",
+   "Aleksandra Korolova",
+   "Alex Lombardi",
+   "Allan Sly",
+   "Amir Ali Ahmadi",
+   "Amit Levy",
+   "Amit Singer",
+   "Andrea Goldsmith",
+   "Andrea LaPaugh",
+   "Andrew Appel",
+   "Andrew Houck",
+   "Andrés Monroy-Hernández",
+   "Anirudha Majumdar",
+   "Arash Adel",
+   "Arvind Narayanan",
+   "Assaf Naor",
+   "Barbara Engelhardt",
+   "Bartolomeo Stellato",
+   "Ben Raphael",
+   "Benjamin Eysenbach",
+   "Bernard Chazelle",
+   "Boris Hanin",
+   "Brandon M. Stewart",
+   "Brenden Lake",
+   "Brian Kernighan",
+   "Chi Jin",
+   "Christine Allen-Blanchette",
+   "Clarence W. Rowley",
+   "Dan Trueman",
+   "Daniel I. Rubenstein",
+   "Danqi Chen",
+   "David August",
+   "David Walker",
+   "David Wentzlaff",
+   "Edward Felten",
+   "Elad Hazan",
+   "Elizaveta Rebrova",
+   "Ellen Zhong",
+   "Emmanuel Abbe",
+   "Felix Heide",
+   "Gillat Kol",
+   "H. Mete Soner",
+   "H. Vincent Poor",
+   "Han Liu",
+   "Huacheng Yu",
+   "Ileana M. Cristea",
+   "Ioannis G. Kevrekidis",
+   "Jaime Fernández Fisac",
+   "James C. Sturm",
+   "Janet Vertesi",
+   "Jared Toettcher",
+   "Jason Klusowski",
+   "Jason Lee",
+   "Jason Petta",
+   "Jason W. Fleischer",
+   "Jeff Thompson",
+   "Jennifer Rexford",
+   "Jia Deng",
+   "Jialin Ding",
+   "Jianqing Fan",
+   "Jianxiong Xiao",
+   "John M. Mulvey",
+   "Jonathan D. Cohen",
+   "Jonathan Mayer",
+   "Jonathan W. Pillow",
+   "Kai Li",
+   "Karthik Narasimhan",
+   "Kaushik Sengupta",
+   "Kyle Jamieson",
+   "Larry Peterson",
+   "Leeat Yariv",
+   "Ludovic Tangpi",
+   "Lydia Liu",
+   "Mae Milano",
+   "Manoel Horta Ribeiro",
+   "Margaret Martonosi",
+   "Maria Apostolaki",
+   "Maria Chudnovsky",
+   "Mark Braverman",
+   "Mark Zhandry",
+   "Matias D. Cattaneo",
+   "Matthew Weinberg",
+   "Mengdi Wang",
+   "Michael Freedman",
+   "Miklos Racz",
+   "Minjie Chen",
+   "Mona Singh",
+   "Mung Chiang",
+   "Naomi Ehrich Leonard",
+   "Naveen Verma",
+   "Nicholas B. Turk-Browne",
+   "Nick Feamster",
+   "Niraj K. Jha",
+   "Noga Alon",
+   "Olga Russakovsky",
+   "Olga Troyanskaya",
+   "Parastoo Abtahi",
+   "Paul Cuff",
+   "Paul Seymour",
+   "Peter Henderson",
+   "Peter J. Ramadge",
+   "Pramod Viswanath",
+   "Prateek Mittal",
+   "Pravesh Kothari",
+   "Radhika Nagpal",
+   "Ran Raz",
+   "Ravi Netravali",
+   "Robert Schapire",
+   "Robert Sedgewick",
+   "Robert Tarjan",
+   "Robert Vanderbei",
+   "Ronnie Sircar",
+   "Ruby Lee",
+   "Ruth Fong",
+   "Ryan Adams",
+   "Samory Kpotufe",
+   "Sanjeev Arora",
+   "Sanjeev R. Kulkarni",
+   "Sebastian Seung",
+   "Sergio Verdú",
+   "Sharad Malik",
+   "Sigurd Wagner",
+   "Sneha Goenka",
+   "Sun-Yuan Kung",
+   "Szymon Rusinkiewicz",
+   "Tania Lombrozo",
+   "Thomas Funkhouser",
+   "Tom Griffiths",
+   "Tri Dao",
+   "Victoria Dean",
+   "Warren Powell",
+   "Weinan E",
+   "Wyatt Lloyd",
+   "Yasaman Ghasempour",
+   "Yoram Singer",
+   "Yuri Pritykin",
+   "Yuxin Chen",
+   "Zachary Kincaid",
+   "Zeev Dvir",
+   "Zhuang Liu"
+  ],
+  "n_pis": 143,
+  "files": {
+   "pis.json": "073f8025966e364b614d655839e559e9ed1322ac24ea7889faf26f4d16ca05c8",
+   "students.json": "5385160e4f629a8498373a6c4f37c163c3107026af632dd32179d8d04a6dffd7",
+   "lab_papers.jsonl.gz": "1a466eef9955d1b376eb6aca3cd6d880127582ffc5819496108a1c407037a361",
+   "student_papers.jsonl.gz": "0cf2848fd2075e124dff1daa78f24a43f5a40b847d699e7b7b50cb5149949be5",
+   "copies.json": "6f47117bdaade5b31016b1d691eadd34bdd12c52625302665a1ee20998a24493"
+  },
+  "included_sha": "7c7f68247ac2d67e470bbca4d22db70506d24998e8bd91f475e1f8eedf636f2d",
+  "projection_version": 1,
+  "held": [],
+  "carried_forward": {
+   "lab_paper": 183,
+   "student": 1,
+   "student_paper": 186
+  },
+  "files_now": {
+   "pis.json": "073f8025966e364b614d655839e559e9ed1322ac24ea7889faf26f4d16ca05c8",
+   "students.json": "5385160e4f629a8498373a6c4f37c163c3107026af632dd32179d8d04a6dffd7",
+   "lab_papers.jsonl.gz": "1a466eef9955d1b376eb6aca3cd6d880127582ffc5819496108a1c407037a361",
+   "student_papers.jsonl.gz": "0cf2848fd2075e124dff1daa78f24a43f5a40b847d699e7b7b50cb5149949be5",
+   "copies.json": "6f47117bdaade5b31016b1d691eadd34bdd12c52625302665a1ee20998a24493"
+  }
+ },
+ "population": {
+  "n_lab_papers": 9722,
+  "n_student_papers": 7172,
+  "n_coverage_pool": 4930,
+  "n_student_candidates": 625
+ },
+ "round": {
+  "id": "pi2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  }
+ }
+}

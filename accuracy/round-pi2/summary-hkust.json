@@ -1,0 +1,1251 @@
+{
+ "school": "hkust",
+ "date": "2026-11-19",
+ "seed": 20261119218663692,
+ "n_verdicts": 180,
+ "files": {
+  "pis.json": "259e032665e008f79d00eac41c67108dd54e8fb56a13a757e2061f1e27a47078",
+  "students.json": "a37ba11f6b96526ab53caa27de90f921e7377ea1165a8163e6b5f8d3486cd8b0",
+  "lab_papers.jsonl.gz": "a6b46916eb6b6a4cfe9c7747c5e2b3d6a6aa208a3a3adbf2012489815bebd14b",
+  "student_papers.jsonl.gz": "b1c7372f53d8376e7816062ed8a1edcd2038fafa9784733c1c2b13e8b4785f51",
+  "copies.json": "6606297a76d97866912ebb463c3e087ab4d6d544593a633a143be66fa9d26350"
+ },
+ "files_now": {
+  "pis.json": "259e032665e008f79d00eac41c67108dd54e8fb56a13a757e2061f1e27a47078",
+  "students.json": "94d5d33365bf946187c67a6f4ea5646bb6455ba953b6532428229b47bcdfa096",
+  "lab_papers.jsonl.gz": "a6b46916eb6b6a4cfe9c7747c5e2b3d6a6aa208a3a3adbf2012489815bebd14b",
+  "student_papers.jsonl.gz": "b1c7372f53d8376e7816062ed8a1edcd2038fafa9784733c1c2b13e8b4785f51",
+  "copies.json": "16c4fe5f62bc85e26e9bb233b6d2d6420b309123f86178a84d81f7cc32ec977b"
+ },
+ "lab_precision_uniform": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 3,
+   "n": 5,
+   "p": 0.6,
+   "lo": 0.2307,
+   "hi": 0.8824,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 62,
+  "n": 64,
+  "p": 0.9688,
+  "lo": 0.893,
+  "hi": 0.9914,
+  "unclear": 1
+ },
+ "student_precision_uniform": {
+  "k": 48,
+  "n": 48,
+  "p": 1.0,
+  "lo": 0.9259,
+  "hi": 1.0,
+  "unclear": 2
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 63,
+  "n": 63,
+  "p": 1.0,
+  "lo": 0.9425,
+  "hi": 1.0,
+  "unclear": 2
+ },
+ "lab_coverage": {
+  "k": 40,
+  "n": 42,
+  "p": 0.9524,
+  "lo": 0.8421,
+  "hi": 0.9868
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 42,
+  "not_lab_papers_absent": 7,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "namesake": 1,
+  "not_a_paper": 1,
+  "missing_from_build": 2
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "advisee_unaffiliated",
+   "item": "Bo LI 李波|None|https://openalex.org/W4417265929",
+   "failure_type": "namesake",
+   "reason": "Step-3 arXiv 2507.19427 is a ~100-author StepFun paper; 'Li, Bo' has no institution/affiliation, page1 check ok_absent (no HKUST); link rests only on 'Zhang, Lin' (common name; Bo Li's HKUST student Lin Zhang PhD 2023, now Huawei) so the byline Bo Li is almost surely a StepFun employee. THIN: not confirmed from stored text.",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "advisee_unaffiliated",
+   "item": "Huamin QU 屈華民|None|https://openalex.org/W3160933525",
+   "failure_type": "not_a_paper",
+   "reason": "Record is the JST machine-translation entry (title 'VoiceCoach:...【JST・京大機械翻訳】', landing jglobal.jst.go.jp, venue 'ACM Proceedings', 2020, no DOI) of the CHI 2020 paper, i.e. a translation record, no affiliation stored; underlying paper is real (Xingbo Wang HKUST PhD 2022, Qu).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "James Tin-Yau KWOK 郭天佑|journals/prl/BareziKR17",
+   "failure_type": "missing_from_build",
+   "reason": "Stored OpenAlex W2667174781 (doi 10.1016/j.patrec.2017.06.024, 2017-06-23, article): Kwok raw affil 'CSE Department, Hong Kong University of Technology, Hong Kong' (typo for HKUST CSE; OA institutions empty so the build's school match missed it). Kwok is HKUST CSE Professor in the 2017 listing; research article; not in lab_papers (only the 2018 erratum W2857829548 is in the OA store) so a true lab paper is absent.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Sunil ARYA 安雅信|journals/siamcomp/AryaFM18",
+   "failure_type": "missing_from_build",
+   "reason": "SICOMP 2018 'Approximate Polytope Membership Queries' (doi 10.1137/16m1061096, OpenAlex W2782168774, article, 2018) is a research article by Arya (HKUST CSE, period 1995-, listed 2018) with da Fonseca and Mount; OA stores no affiliations for it, but sibling row #302 (SODA 2017, same authors, a different paper) shows Arya 'Department of Computer Science and Engineering HKUST'; copies.json records the DBLP key as found-not-in-catalog (no lab_papers row). The version candidate W3098818037 is the SODA paper, a different work, so SICOMP is absent. Affiliation for this exact paper not stored, so moderately thin.",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Hao CHEN 陳浩|None|https://openalex.org/W4406069094",
+   "reason": "DOUBTFUL: Hao Chen first author, aff HKUST, SSRN preprint DOI 10.2139/ssrn.5081880, 2025; identity only anchored_author_id (same OA id as PI's 243 papers); topic (tower-crane construction safety) is far from his medical-imaging work and no coauthor (Yu Hin Ng, Ching-Wei Chang, Haobo Liang, Yanke Wang) appears in his student rows or other papers; could be a namesake/merged OA cluster, cannot confirm"
+  },
+  {
+   "sample": "student_precision",
+   "item": "Fengbin Tu|ext:hkust:bohan-yang|https://openalex.org/W4395469090",
+   "reason": "DOUBTFUL: Bohan Yang (Tu PhD from Fall 2024, USTC BS) byline 'Bohan Yang' on April 2024 J. Semiconductors ISSCC trends paper with Fengbin Tu; paper predates enrolment, only the common name links them, no affiliation evidence to confirm same person."
+  },
+  {
+   "sample": "student_precision",
+   "item": "Shaojie Shen|ext:hkust:name-85ab425f6d68646adc4861c7|https://openalex.org/W4398811243",
+   "reason": "DOUBTFUL: byline 'Xu, Yang' on VINS-Multi arXiv 2405.14539 (Luqi Wang, Yang Xu, Shaojie Shen); page-1 footnote says all authors at HKUST ECE, but common name, no author-level affiliation, student record is M.Eng from Sept 2024 (after the May 2024 paper) and not a PhD"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Bo LI 李波|conf/dasfaa/XueHYWLW26",
+   "reason": "DOUBTFUL: DBLP file lists the 2026 DASFAA paper (DOI 10.1007/978-981-92-0366-6_4) under 'Bo Li 0001' (pid 50/3402-1, HKUST prof, but that DBLP person carries two ORCIDs, hinting at a merge); no OpenAlex record or affiliation string for this paper is stored; coauthors Xue/Hong/Wang are not HKUST-linked in stored data; topic (graph contrastive learning) far from Bo Li's networking work. Cannot decide school/identity; not in build."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Fumin Zhang|conf/amcc/ZhaoWZ26",
+   "reason": "DOUBTFUL: AMCC 2026 Augmented Lyapunov-Net (no DOI): only the DBLP record (Yuxuan Zhao, Junkai Wang, Fumin Zhang 0001) is stored, no OpenAlex authorship or page-1 affiliation; Zhang has a 2026 ECE listing and his sibling 2026 paper (W7171828758) names HKUST, so it is probably a lab paper missing from the build, but affiliation cannot be confirmed from stored data."
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "Albert Chi-Shing CHUNG 鍾志成",
+   "Andrew B. HORNER 康立德",
+   "Anyi Rao",
+   "Arpit NARECHANIA",
+   "Bertram E. Shi",
+   "Binhang YUAN 袁彬航",
+   "Bo LI 李波",
+   "Brahim BENSAOU 彭卲邦",
+   "Can Yang",
+   "Chaojian LI 李朝鑒",
+   "Charles ZHANG 張川",
+   "Chi-Keung TANG 鄧智強",
+   "Chi-Ying Tsui",
+   "Cunsheng DING 丁存生",
+   "Dan XU 徐旦",
+   "Daniel Pérez Palomar",
+   "Dimitris PAPADIAS 白德善",
+   "Dimitris PAPADOPOULOS",
+   "Dongdong SHE 佘東冬",
+   "Eric Marberg",
+   "Fangzhen LIN 林方真",
+   "Fengbin Tu",
+   "Fugee Tsung",
+   "Fumin Zhang",
+   "Hai Zhang",
+   "Hao CHEN 陳浩",
+   "Hongbo Fu",
+   "Howard C. Luong",
+   "Huamin QU 屈華民",
+   "James Tin-Yau KWOK 郭天佑",
+   "Jian-Feng Cai",
+   "Jiashuo Jiang",
+   "Jiasi SHEN 沈嘉思",
+   "Jiaya JIA 賈佳亞",
+   "Jie Yuan",
+   "Jiheng Zhang",
+   "Jun Han",
+   "Jun Zhang",
+   "Junxian HE 何俊賢",
+   "Kai CHEN 陳凱",
+   "Kai Tang",
+   "Ke Wang",
+   "Ke YI 易珂",
+   "Khaled Ben Letaief",
+   "Kun Xu",
+   "Lei CHEN 陳雷",
+   "Ling Pan",
+   "Ling Shi",
+   "Lionel PARREAUX",
+   "Long CHEN 陳隆",
+   "Long QUAN 權龍",
+   "Mingxun ZHOU 周銘洵",
+   "Mo LI 李默",
+   "Nevin Lianwen ZHANG 張連文",
+   "Pedro SANDER 辛達德",
+   "Ping Tan",
+   "Qian ZHANG 張黔",
+   "Qifeng CHEN 陳启峰",
+   "Qiong LUO 羅瓊",
+   "Raymond Chi-Wing WONG 黃智榮",
+   "Richard H. Y. So",
+   "Ross Murch",
+   "Sehi L'YI 李世熙",
+   "Shaojie Shen",
+   "Shenghui Song",
+   "Shing-Chi CHEUNG 張成志",
+   "Shuai WANG 王帥",
+   "Siu-Wing CHENG 鄭紹榮",
+   "Song GUO 郭嵩",
+   "Sunil ARYA 安雅信",
+   "Tristan Braud",
+   "Vincent K. N. Lau",
+   "Wai Ho Mow",
+   "Wei WANG 王威",
+   "Weichuan Yu",
+   "Wenhan Luo",
+   "Wilfred Siu-Hung NG 吳兆鴻",
+   "Xiangtong Qi",
+   "Xiaofang ZHOU 周曉方",
+   "Xiaojuan MA 麻曉娟",
+   "Xiaomeng Li",
+   "Xiaomin OUYANG 歐陽小敏",
+   "Xiaowei Zhang",
+   "Yang Xiang",
+   "Yangqiu SONG 宋陽秋",
+   "Yaonan JIN 金耀楠",
+   "Yi R. FUNG 馮一人",
+   "Yi Yang",
+   "Yi-Kuen Lee",
+   "Yiding Feng",
+   "Yike GUO 郭毅可",
+   "Ying-Ju Chen",
+   "Yinghao XU 徐英豪",
+   "Yiwen Wang",
+   "Yuan Yao",
+   "Zexiang Li",
+   "Zhiyao Xie",
+   "Zihan ZHANG 張子函",
+   "Zili Meng"
+  ],
+  "n_pis": 99,
+  "files": {
+   "pis.json": "259e032665e008f79d00eac41c67108dd54e8fb56a13a757e2061f1e27a47078",
+   "students.json": "a37ba11f6b96526ab53caa27de90f921e7377ea1165a8163e6b5f8d3486cd8b0",
+   "lab_papers.jsonl.gz": "a6b46916eb6b6a4cfe9c7747c5e2b3d6a6aa208a3a3adbf2012489815bebd14b",
+   "student_papers.jsonl.gz": "b1c7372f53d8376e7816062ed8a1edcd2038fafa9784733c1c2b13e8b4785f51",
+   "copies.json": "6606297a76d97866912ebb463c3e087ab4d6d544593a633a143be66fa9d26350"
+  },
+  "held": [
+   [
+    "Albert Chi-Shing CHUNG 鍾志成",
+    "ext:hkust:wai-king-so"
+   ],
+   [
+    "Anyi Rao",
+    "ext:hkust:tony-zhang"
+   ],
+   [
+    "Anyi Rao",
+    "ext:hkust:zeqian-zhang"
+   ],
+   [
+    "Binhang YUAN 袁彬航",
+    "ext:hkust:ding-pan"
+   ],
+   [
+    "Binhang YUAN 袁彬航",
+    "ext:hkust:fangyu-ding"
+   ],
+   [
+    "Binhang YUAN 袁彬航",
+    "ext:hkust:jiayi-cheng"
+   ],
+   [
+    "Bo LI 李波",
+    "ext:hkust:lewei-yao"
+   ],
+   [
+    "Can Yang",
+    "ext:hkust:biying-hu"
+   ],
+   [
+    "Can Yang",
+    "ext:hkust:fengming-liu"
+   ],
+   [
+    "Can Yang",
+    "ext:hkust:gao-linxuan"
+   ],
+   [
+    "Can Yang",
+    "ext:hkust:hailin-liu"
+   ],
+   [
+    "Can Yang",
+    "ext:hkust:rijiang-zhou"
+   ],
+   [
+    "Can Yang",
+    "ext:hkust:xu-yixuan"
+   ],
+   [
+    "Can Yang",
+    "ext:hkust:yunxiang-luo"
+   ],
+   [
+    "Can Yang",
+    "ext:hkust:yuxin-jiang"
+   ],
+   [
+    "Chaojian LI 李朝鑒",
+    "ext:hkust:chonghao-zhong"
+   ],
+   [
+    "Charles ZHANG 張川",
+    "ext:hkust:qi-zhang"
+   ],
+   [
+    "Charles ZHANG 張川",
+    "ext:hkust:shuhao-fu"
+   ],
+   [
+    "Charles ZHANG 張川",
+    "ext:hkust:yibo-jin"
+   ],
+   [
+    "Chi-Keung TANG 鄧智強",
+    "ext:hkust:jierong-wang"
+   ],
+   [
+    "Chi-Keung TANG 鄧智強",
+    "ext:hkust:rongzhao-zhang"
+   ],
+   [
+    "Chi-Keung TANG 鄧智強",
+    "ext:hkust:siu-chung-tsang"
+   ],
+   [
+    "Chi-Keung TANG 鄧智強",
+    "ext:hkust:yishuo-zhang"
+   ],
+   [
+    "Chi-Keung TANG 鄧智強",
+    "ext:hkust:ziyi-he"
+   ],
+   [
+    "Dimitris PAPADIAS 白德善",
+    "ext:hkust:christos-koutras"
+   ],
+   [
+    "Dimitris PAPADIAS 白德善",
+    "ext:hkust:dimitris-tsakalidis"
+   ],
+   [
+    "Dimitris PAPADIAS 白德善",
+    "ext:hkust:panagiotis-parchas"
+   ],
+   [
+    "Eric Marberg",
+    "ext:hkust:yihan-xiao"
+   ],
+   [
+    "Fengbin Tu",
+    "ext:hkust:philip-lik-man-gong"
+   ],
+   [
+    "Fugee Tsung",
+    "ext:hkust:botao-wang"
+   ],
+   [
+    "Fugee Tsung",
+    "ext:hkust:jiashun-cheng"
+   ],
+   [
+    "Fumin Zhang",
+    "ext:hkust:meng-wugang"
+   ],
+   [
+    "Fumin Zhang",
+    "ext:hkust:zhao-yingzhuo"
+   ],
+   [
+    "Hai Zhang",
+    "ext:hkust:he-zhang"
+   ],
+   [
+    "Hai Zhang",
+    "ext:hkust:jiantong-hou"
+   ],
+   [
+    "Hai Zhang",
+    "ext:hkust:ruilin-zhang"
+   ],
+   [
+    "Hai Zhang",
+    "ext:hkust:yilang-zhao"
+   ],
+   [
+    "Huamin QU 屈華民",
+    "ext:hkust:barakeel-fanseu-kamhoua"
+   ],
+   [
+    "Huamin QU 屈華民",
+    "ext:hkust:pak-ming-fan"
+   ],
+   [
+    "Huamin QU 屈華民",
+    "ext:hkust:yu-ho-lo"
+   ],
+   [
+    "James Tin-Yau KWOK 郭天佑",
+    "ext:hkust:philipp-blankenhagen"
+   ],
+   [
+    "James Tin-Yau KWOK 郭天佑",
+    "ext:hkust:ruping-huang"
+   ],
+   [
+    "Jian-Feng Cai",
+    "ext:hkust:zhuozhi-xian"
+   ],
+   [
+    "Jiasi SHEN 沈嘉思",
+    "ext:hkust:ahmed-zaher"
+   ],
+   [
+    "Jiasi SHEN 沈嘉思",
+    "ext:hkust:ivan-yin-fung-lok"
+   ],
+   [
+    "Jiasi SHEN 沈嘉思",
+    "ext:hkust:jialu-yang"
+   ],
+   [
+    "Jiasi SHEN 沈嘉思",
+    "ext:hkust:jiaze-wang"
+   ],
+   [
+    "Jiasi SHEN 沈嘉思",
+    "ext:hkust:junping-wang"
+   ],
+   [
+    "Jiasi SHEN 沈嘉思",
+    "ext:hkust:kerim-kochekov"
+   ],
+   [
+    "Jiasi SHEN 沈嘉思",
+    "ext:hkust:pavel-hudec"
+   ],
+   [
+    "Jiasi SHEN 沈嘉思",
+    "ext:hkust:siyu-chen"
+   ],
+   [
+    "Jie Yuan",
+    "ext:hkust:chiye-zhang"
+   ],
+   [
+    "Jie Yuan",
+    "ext:hkust:han-niu"
+   ],
+   [
+    "Jie Yuan",
+    "ext:hkust:huayang-chen"
+   ],
+   [
+    "Jie Yuan",
+    "ext:hkust:kai-chun-eddie-tjon"
+   ],
+   [
+    "Jie Yuan",
+    "ext:hkust:shi-shen"
+   ],
+   [
+    "Jie Yuan",
+    "ext:hkust:siji-huang"
+   ],
+   [
+    "Jie Yuan",
+    "ext:hkust:zhijian-liang"
+   ],
+   [
+    "Jun Han",
+    "ext:hkust:bolin-zhao"
+   ],
+   [
+    "Jun Han",
+    "ext:hkust:huayuan-ye"
+   ],
+   [
+    "Jun Han",
+    "ext:hkust:jiajun-zhu"
+   ],
+   [
+    "Jun Zhang",
+    "ext:hkust:chenxi-li"
+   ],
+   [
+    "Jun Zhang",
+    "ext:hkust:ming-ye"
+   ],
+   [
+    "Jun Zhang",
+    "ext:hkust:qirui-chen"
+   ],
+   [
+    "Jun Zhang",
+    "ext:hkust:ruiqi-fan"
+   ],
+   [
+    "Jun Zhang",
+    "ext:hkust:teng-li"
+   ],
+   [
+    "Jun Zhang",
+    "ext:hkust:xizhi-wang"
+   ],
+   [
+    "Junxian HE 何俊賢",
+    "ext:hkust:liangjun-zhong"
+   ],
+   [
+    "Kai CHEN 陳凱",
+    "ext:hkust:dashan-gao"
+   ],
+   [
+    "Kai CHEN 陳凱",
+    "ext:hkust:hangyu-lin"
+   ],
+   [
+    "Kai CHEN 陳凱",
+    "ext:hkust:hao-xu"
+   ],
+   [
+    "Kai CHEN 陳凱",
+    "ext:hkust:linkai-song"
+   ],
+   [
+    "Kai CHEN 陳凱",
+    "ext:hkust:sheng-wan"
+   ],
+   [
+    "Kai CHEN 陳凱",
+    "ext:hkust:xu-geng"
+   ],
+   [
+    "Kai CHEN 陳凱",
+    "ext:hkust:yu-liu"
+   ],
+   [
+    "Kai CHEN 陳凱",
+    "ext:hkust:zhaoxiang-bao"
+   ],
+   [
+    "Kai Tang",
+    "ext:hkust:rui-liu"
+   ],
+   [
+    "Kai Tang",
+    "ext:hkust:yang-gao"
+   ],
+   [
+    "Kai Tang",
+    "ext:hkust:yehong-lin"
+   ],
+   [
+    "Kai Tang",
+    "ext:hkust:yiwen-zhou"
+   ],
+   [
+    "Kai Tang",
+    "ext:hkust:yongquan-liu"
+   ],
+   [
+    "Kai Tang",
+    "ext:hkust:zherun-li"
+   ],
+   [
+    "Ke YI 易珂",
+    "ext:hkust:di-chen"
+   ],
+   [
+    "Ke YI 易珂",
+    "ext:hkust:han-yin"
+   ],
+   [
+    "Ke YI 易珂",
+    "ext:hkust:xiaoyu-han"
+   ],
+   [
+    "Kun Xu",
+    "ext:hkust:wenhui-ou"
+   ],
+   [
+    "Lei CHEN 陳雷",
+    "ext:hkust:guangneng-hu"
+   ],
+   [
+    "Lei CHEN 陳雷",
+    "ext:hkust:hao-zhang"
+   ],
+   [
+    "Lei CHEN 陳雷",
+    "ext:hkust:linrui-li"
+   ],
+   [
+    "Lei CHEN 陳雷",
+    "ext:hkust:ruiling-li"
+   ],
+   [
+    "Lei CHEN 陳雷",
+    "ext:hkust:xu-geng"
+   ],
+   [
+    "Lei CHEN 陳雷",
+    "ext:hkust:xueyang-wu"
+   ],
+   [
+    "Lei CHEN 陳雷",
+    "ext:hkust:yi-zhang"
+   ],
+   [
+    "Lei CHEN 陳雷",
+    "ext:hkust:yongpan-zou"
+   ],
+   [
+    "Lei CHEN 陳雷",
+    "ext:hkust:yudian-ji"
+   ],
+   [
+    "Lei CHEN 陳雷",
+    "ext:hkust:yuxi-wang"
+   ],
+   [
+    "Ling Pan",
+    "ext:hkust:jiale-ding"
+   ],
+   [
+    "Ling Pan",
+    "ext:hkust:wenrui-zhou"
+   ],
+   [
+    "Ling Pan",
+    "ext:hkust:ziqi-wang"
+   ],
+   [
+    "Ling Shi",
+    "ext:hkust:aaron-yetao-lyu"
+   ],
+   [
+    "Ling Shi",
+    "ext:hkust:david-hin-wang-lin"
+   ],
+   [
+    "Ling Shi",
+    "ext:hkust:emmett-yim-ying-hing"
+   ],
+   [
+    "Ling Shi",
+    "ext:hkust:wenbin-wei"
+   ],
+   [
+    "Lionel PARREAUX",
+    "ext:hkust:anson-yeung"
+   ],
+   [
+    "Lionel PARREAUX",
+    "ext:hkust:ching-hang-mak"
+   ],
+   [
+    "Lionel PARREAUX",
+    "ext:hkust:david-ching-hang-mak"
+   ],
+   [
+    "Lionel PARREAUX",
+    "ext:hkust:gokul-rajiv"
+   ],
+   [
+    "Lionel PARREAUX",
+    "ext:hkust:heung-tung-au"
+   ],
+   [
+    "Lionel PARREAUX",
+    "ext:hkust:mark-pui-hei-ng"
+   ],
+   [
+    "Lionel PARREAUX",
+    "ext:hkust:maxime-mulder"
+   ],
+   [
+    "Lionel PARREAUX",
+    "ext:hkust:mohammad-broughani"
+   ],
+   [
+    "Long CHEN 陳隆",
+    "ext:hkust:chun-wang"
+   ],
+   [
+    "Long CHEN 陳隆",
+    "ext:hkust:jianyu-lai"
+   ],
+   [
+    "Long CHEN 陳隆",
+    "ext:hkust:junzhang-liu"
+   ],
+   [
+    "Long CHEN 陳隆",
+    "ext:hkust:mingzhi-chen"
+   ],
+   [
+    "Long CHEN 陳隆",
+    "ext:hkust:shaodong-wang"
+   ],
+   [
+    "Long QUAN 權龍",
+    "ext:hkust:ningning-ma"
+   ],
+   [
+    "Long QUAN 權龍",
+    "ext:hkust:yisheng-he"
+   ],
+   [
+    "Mingxun ZHOU 周銘洵",
+    "ext:hkust:yue-zhang"
+   ],
+   [
+    "Mo LI 李默",
+    "ext:hkust:chu-cao"
+   ],
+   [
+    "Nevin Lianwen ZHANG 張連文",
+    "ext:hkust:zhao-yinxiu"
+   ],
+   [
+    "Pedro SANDER 辛達德",
+    "ext:hkust:chi-wing-mok"
+   ],
+   [
+    "Pedro SANDER 辛達德",
+    "ext:hkust:giovanna-kobus-conrado"
+   ],
+   [
+    "Pedro SANDER 辛達德",
+    "ext:hkust:jenson-lee"
+   ],
+   [
+    "Pedro SANDER 辛達德",
+    "ext:hkust:rui-hu"
+   ],
+   [
+    "Pedro SANDER 辛達德",
+    "ext:hkust:siu-chung-tsang"
+   ],
+   [
+    "Qian ZHANG 張黔",
+    "ext:hkust:jianben-he"
+   ],
+   [
+    "Qian ZHANG 張黔",
+    "ext:hkust:jinqi-lin"
+   ],
+   [
+    "Qian ZHANG 張黔",
+    "ext:hkust:yuxin-tan"
+   ],
+   [
+    "Qian ZHANG 張黔",
+    "ext:hkust:yuyao-wu"
+   ],
+   [
+    "Qifeng CHEN 陳启峰",
+    "ext:hkust:nicholas-chan"
+   ],
+   [
+    "Qifeng CHEN 陳启峰",
+    "ext:hkust:trung-kien-pham"
+   ],
+   [
+    "Raymond Chi-Wing WONG 黃智榮",
+    "ext:hkust:hon-hing-chak"
+   ],
+   [
+    "Raymond Chi-Wing WONG 黃智榮",
+    "ext:hkust:jinming-zhang"
+   ],
+   [
+    "Raymond Chi-Wing WONG 黃智榮",
+    "ext:hkust:kaibin-lu"
+   ],
+   [
+    "Raymond Chi-Wing WONG 黃智榮",
+    "ext:hkust:rubin-li"
+   ],
+   [
+    "Shaojie Shen",
+    "ext:hkust:name-3246203bec5f8e5b70d1720a"
+   ],
+   [
+    "Shaojie Shen",
+    "ext:hkust:name-561fca28b0f6c924b9901d8a"
+   ],
+   [
+    "Shing-Chi CHEUNG 張成志",
+    "ext:hkust:seyed-hesamoddin-shahrokhi"
+   ],
+   [
+    "Shuai WANG 王帥",
+    "ext:hkust:hetian-shi"
+   ],
+   [
+    "Shuai WANG 王帥",
+    "ext:hkust:jeremy-kulcsar"
+   ],
+   [
+    "Shuai WANG 王帥",
+    "ext:hkust:taojie-wang"
+   ],
+   [
+    "Shuai WANG 王帥",
+    "ext:hkust:wenqiang-li"
+   ],
+   [
+    "Shuai WANG 王帥",
+    "ext:hkust:xing-han"
+   ],
+   [
+    "Shuai WANG 王帥",
+    "ext:hkust:xinzhi-zhang"
+   ],
+   [
+    "Shuai WANG 王帥",
+    "ext:hkust:yongkang-zhang"
+   ],
+   [
+    "Shuai WANG 王帥",
+    "ext:hkust:zeyu-qin"
+   ],
+   [
+    "Shuai WANG 王帥",
+    "ext:hkust:zheng-zhang"
+   ],
+   [
+    "Shuai WANG 王帥",
+    "ext:hkust:zongyi-lv"
+   ],
+   [
+    "Siu-Wing CHENG 鄭紹榮",
+    "ext:hkust:zhitao-he"
+   ],
+   [
+    "Song GUO 郭嵩",
+    "ext:hkust:enze-ma"
+   ],
+   [
+    "Song GUO 郭嵩",
+    "ext:hkust:haoxuan-yu"
+   ],
+   [
+    "Tristan Braud",
+    "ext:hkust:siyan-hu"
+   ],
+   [
+    "Wei WANG 王威",
+    "ext:hkust:lewei-yao"
+   ],
+   [
+    "Wei WANG 王威",
+    "ext:hkust:qinkai-duan"
+   ],
+   [
+    "Wenhan Luo",
+    "ext:hkust:liqi-lin"
+   ],
+   [
+    "Wenhan Luo",
+    "ext:hkust:qingming-liu"
+   ],
+   [
+    "Wenhan Luo",
+    "ext:hkust:weixiang-zhang"
+   ],
+   [
+    "Wenhan Luo",
+    "ext:hkust:zixuan-ye"
+   ],
+   [
+    "Xiaofang ZHOU 周曉方",
+    "ext:hkust:nujibieke-shabuerjiang"
+   ],
+   [
+    "Xiaofang ZHOU 周曉方",
+    "ext:hkust:selena-song"
+   ],
+   [
+    "Xiaofang ZHOU 周曉方",
+    "ext:hkust:yongqi-li"
+   ],
+   [
+    "Xiaofang ZHOU 周曉方",
+    "ext:hkust:zhicheng-hu"
+   ],
+   [
+    "Xiaofang ZHOU 周曉方",
+    "ext:hkust:zhihan-luo"
+   ],
+   [
+    "Xiaojuan MA 麻曉娟",
+    "ext:hkust:tilmann-bruns"
+   ],
+   [
+    "Xiaojuan MA 麻曉娟",
+    "ext:hkust:weiying-liu"
+   ],
+   [
+    "Xiaojuan MA 麻曉娟",
+    "ext:hkust:wenyuan-dai"
+   ],
+   [
+    "Xiaomeng Li",
+    "ext:hkust:chenchang-hu"
+   ],
+   [
+    "Xiaomeng Li",
+    "ext:hkust:huimin-wu"
+   ],
+   [
+    "Xiaomeng Li",
+    "ext:hkust:marawan"
+   ],
+   [
+    "Xiaomeng Li",
+    "ext:hkust:weihang-dai"
+   ],
+   [
+    "Xiaomin OUYANG 歐陽小敏",
+    "ext:hkust:alex-ding"
+   ],
+   [
+    "Xiaomin OUYANG 歐陽小敏",
+    "ext:hkust:bin-zhou"
+   ],
+   [
+    "Xiaomin OUYANG 歐陽小敏",
+    "ext:hkust:dehao-wang"
+   ],
+   [
+    "Xiaomin OUYANG 歐陽小敏",
+    "ext:hkust:kun-qian"
+   ],
+   [
+    "Yangqiu SONG 宋陽秋",
+    "ext:hkust:andy-yau-wai-yim"
+   ],
+   [
+    "Yangqiu SONG 宋陽秋",
+    "ext:hkust:bohuan-xue"
+   ],
+   [
+    "Yangqiu SONG 宋陽秋",
+    "ext:hkust:boyi-zhang"
+   ],
+   [
+    "Yangqiu SONG 宋陽秋",
+    "ext:hkust:dennis-hong-ting-tsang"
+   ],
+   [
+    "Yangqiu SONG 宋陽秋",
+    "ext:hkust:jacky-chun-kit-chan"
+   ],
+   [
+    "Yangqiu SONG 宋陽秋",
+    "ext:hkust:shurui-zhang"
+   ],
+   [
+    "Yi R. FUNG 馮一人",
+    "ext:hkust:guanyu-jiang"
+   ],
+   [
+    "Yi R. FUNG 馮一人",
+    "ext:hkust:longxiang-tang"
+   ],
+   [
+    "Yi R. FUNG 馮一人",
+    "ext:hkust:qi-he"
+   ],
+   [
+    "Yi R. FUNG 馮一人",
+    "ext:hkust:thomas-chi-him-zheng"
+   ],
+   [
+    "Yi R. FUNG 馮一人",
+    "ext:hkust:zhennan-shen"
+   ],
+   [
+    "Yi Yang",
+    "ext:hkust:cheng-yu-chuang"
+   ],
+   [
+    "Yi Yang",
+    "ext:hkust:hongshi-liu"
+   ],
+   [
+    "Yi Yang",
+    "ext:hkust:luke-chen"
+   ],
+   [
+    "Yi Yang",
+    "ext:hkust:monique-tung-kong"
+   ],
+   [
+    "Yi Yang",
+    "ext:hkust:tianle-li"
+   ],
+   [
+    "Yi Yang",
+    "ext:hkust:weixuan-dong"
+   ],
+   [
+    "Yi Yang",
+    "ext:hkust:xinyi-wang"
+   ],
+   [
+    "Yi Yang",
+    "ext:hkust:yang-liu"
+   ],
+   [
+    "Yi Yang",
+    "ext:hkust:yin-tian"
+   ],
+   [
+    "Yi Yang",
+    "ext:hkust:yubai-wei"
+   ],
+   [
+    "Yi Yang",
+    "ext:hkust:yuetong-wu"
+   ],
+   [
+    "Ying-Ju Chen",
+    "ext:hkust:fengxing-wei"
+   ],
+   [
+    "Ying-Ju Chen",
+    "ext:hkust:haoyu-ma"
+   ],
+   [
+    "Ying-Ju Chen",
+    "ext:hkust:hongyi-li"
+   ],
+   [
+    "Ying-Ju Chen",
+    "ext:hkust:jiachen-xu"
+   ],
+   [
+    "Ying-Ju Chen",
+    "ext:hkust:tianshi-wang"
+   ],
+   [
+    "Ying-Ju Chen",
+    "ext:hkust:xiyuan-mirana-yu"
+   ],
+   [
+    "Ying-Ju Chen",
+    "ext:hkust:xun-shan"
+   ],
+   [
+    "Ying-Ju Chen",
+    "ext:hkust:yifan-wu"
+   ],
+   [
+    "Ying-Ju Chen",
+    "ext:hkust:yuan-qiao"
+   ],
+   [
+    "Ying-Ju Chen",
+    "ext:hkust:yuwei-liu"
+   ],
+   [
+    "Ying-Ju Chen",
+    "ext:hkust:yuxuan-wang"
+   ],
+   [
+    "Yinghao XU 徐英豪",
+    "ext:hkust:jiaqi-liao"
+   ],
+   [
+    "Yinghao XU 徐英豪",
+    "ext:hkust:yishu-shen"
+   ],
+   [
+    "Yiwen Wang",
+    "ext:hkust:chongjin-yu"
+   ],
+   [
+    "Yiwen Wang",
+    "ext:hkust:cong-li"
+   ],
+   [
+    "Yiwen Wang",
+    "ext:hkust:song-kang"
+   ],
+   [
+    "Yiwen Wang",
+    "ext:hkust:xingjian-li"
+   ],
+   [
+    "Zhiyao Xie",
+    "ext:hkust:dimitrios-tsaras"
+   ],
+   [
+    "Zhiyao Xie",
+    "ext:hkust:hang-zhou"
+   ],
+   [
+    "Zhiyao Xie",
+    "ext:hkust:jinghua-wang"
+   ],
+   [
+    "Zhiyao Xie",
+    "ext:hkust:jingxiang-wang"
+   ],
+   [
+    "Zili Meng",
+    "ext:hkust:eric-mok-ka-chun"
+   ],
+   [
+    "Zili Meng",
+    "ext:hkust:jinyi-zhuang"
+   ],
+   [
+    "Zili Meng",
+    "ext:hkust:marco-tam"
+   ],
+   [
+    "Zili Meng",
+    "ext:hkust:martin-lee"
+   ],
+   [
+    "Zili Meng",
+    "ext:hkust:maxime-bruno"
+   ],
+   [
+    "Zili Meng",
+    "ext:hkust:michael-wang-shao-fu"
+   ],
+   [
+    "Zili Meng",
+    "ext:hkust:miranda-drummond"
+   ],
+   [
+    "Zili Meng",
+    "ext:hkust:pengwen-qi"
+   ],
+   [
+    "Zili Meng",
+    "ext:hkust:yasna-noushirvani"
+   ],
+   [
+    "Zili Meng",
+    "ext:hkust:zhewen-yang"
+   ]
+  ],
+  "included_sha": "e7d224fe8a286ed7b4d4732f4d7ad67c0c6da92da08046aa27065ae971ddf8c2",
+  "files_now": {
+   "pis.json": "259e032665e008f79d00eac41c67108dd54e8fb56a13a757e2061f1e27a47078",
+   "students.json": "94d5d33365bf946187c67a6f4ea5646bb6455ba953b6532428229b47bcdfa096",
+   "lab_papers.jsonl.gz": "a6b46916eb6b6a4cfe9c7747c5e2b3d6a6aa208a3a3adbf2012489815bebd14b",
+   "student_papers.jsonl.gz": "b1c7372f53d8376e7816062ed8a1edcd2038fafa9784733c1c2b13e8b4785f51",
+   "copies.json": "16c4fe5f62bc85e26e9bb233b6d2d6420b309123f86178a84d81f7cc32ec977b"
+  }
+ },
+ "population": {
+  "n_lab_papers": 7237,
+  "n_student_papers": 6842,
+  "n_coverage_pool": 4951,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

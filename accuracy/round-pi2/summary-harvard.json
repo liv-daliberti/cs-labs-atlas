@@ -1,0 +1,373 @@
+{
+ "school": "harvard",
+ "date": "2026-11-19",
+ "seed": 202611191082721799,
+ "n_verdicts": 175,
+ "files": {
+  "pis.json": "8d8ae2fb57d33e0b47c222d68a5d2b0d8313368b26f0f9badc3c10dcf652a76f",
+  "students.json": "4a2f95bee7011c0edec2942ed9bfb872625b5f1daf2f6eb0b428cdb81760a43e",
+  "lab_papers.jsonl.gz": "61dd4f99ad69d03db2e68f3cab83d5189e579d72186d5dbcc971e3e20133d3ff",
+  "student_papers.jsonl.gz": "b781ccdae8eebf4776c923eb96ab9bb2d112755304e6196a27ebe2403e69bb1b",
+  "copies.json": "9e1ea86be910949e4509524fb0010308007bb3863c131386a238e937c775ab61"
+ },
+ "files_now": {
+  "pis.json": "8d8ae2fb57d33e0b47c222d68a5d2b0d8313368b26f0f9badc3c10dcf652a76f",
+  "students.json": "4a2f95bee7011c0edec2942ed9bfb872625b5f1daf2f6eb0b428cdb81760a43e",
+  "lab_papers.jsonl.gz": "61dd4f99ad69d03db2e68f3cab83d5189e579d72186d5dbcc971e3e20133d3ff",
+  "student_papers.jsonl.gz": "b781ccdae8eebf4776c923eb96ab9bb2d112755304e6196a27ebe2403e69bb1b",
+  "copies.json": "9e1ea86be910949e4509524fb0010308007bb3863c131386a238e937c775ab61"
+ },
+ "lab_precision_uniform": {
+  "k": 48,
+  "n": 49,
+  "p": 0.9796,
+  "lo": 0.8931,
+  "hi": 0.9964,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 58,
+  "n": 59,
+  "p": 0.9831,
+  "lo": 0.91,
+  "hi": 0.997,
+  "unclear": 1
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 4,
+   "n": 4,
+   "p": 1.0,
+   "lo": 0.5101,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 1,
+   "n": 1,
+   "p": 1.0,
+   "lo": 0.2065,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 43,
+  "n": 44,
+  "p": 0.9773,
+  "lo": 0.8819,
+  "hi": 0.996
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 44,
+  "not_lab_papers_absent": 5,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "not_a_paper": 1,
+  "missing_from_build": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Hanspeter Pfister|None|https://openalex.org/W2560479124",
+   "failure_type": "not_a_paper",
+   "reason": "Microscopy and Microanalysis 2016-07 doi 10.1017/s1431927616003536 is the M&M meeting proceedings (22 S3) extended abstract; Harvard SEAS aff, Pfister last, listing 2016 fine but meeting abstract",
+   "policy": "meeting_abstract"
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Kenneth D. Mandl|journals/jamia/WeberABBFMRTZMM17",
+   "failure_type": "missing_from_build",
+   "reason": "JAMIA 2017-06-12 (10.1093/jamia/ocx071): stored OpenAlex raw affil for Mandl includes 'Department of Biomedical Informatics, Harvard Medical School'; year 2017 is within period (start 2017-06-26 is only a dated observation, 'historical point'); true lab paper but absent from build (build's other Mandl 2017 rows are in). Thin: paper date is 14 days before the observed period start.",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Heng Li|None|https://openalex.org/W7155079418",
+   "reason": "DOUBTFUL: Heng Li credited only to Dana-Farber Cancer Institute ('Dana-Farber Cancer Institute 3'), no Harvard in his own affiliation; only coauthor Edwards credited to Harvard; Proc R Soc B 2026 doi 10.1098/rspb.2025.2899; 2026 listing says 'Dana-Farber Cancer Institute and Harvard Medical School' so joint appointee, but byline affiliation does not name the school"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Samuel Gershman|conf/cogsci/BatesG22",
+   "reason": "DOUBTFUL: CogSci 2022 (Bates & Gershman) is absent from build; Gershman is Harvard Psychology since 2015 and Bates is plausibly his student, but no stored affiliation (no DOI, not in OpenAlex Harvard sweep, no page-1 capture) names Harvard for this paper, so true_lab_paper cannot be settled from stored evidence."
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "Alexander Sasha Rush",
+   "Alexandra J. Golby",
+   "Anastasia Yendiki",
+   "Anna Seigal",
+   "Anurag Anshu",
+   "Ariel Procaccia",
+   "Arthur Jaffe",
+   "Benoit Scherrer",
+   "Berkin Bilgic",
+   "Boaz Barak",
+   "Bruce Fischl",
+   "Caterina Mainero",
+   "Cengiz Pehlevan",
+   "Chris Dede",
+   "Conor James Walsh",
+   "Cynthia Dwork",
+   "Danielle S. Bitterman",
+   "David Alvarez-Melis",
+   "David Brooks",
+   "David Parkes",
+   "Debora S. Marks",
+   "Demba Ba",
+   "Donhee Ham",
+   "Eddie Kohler",
+   "Elena Leah Glassman",
+   "Elena Rivas",
+   "Elisabeth Paulson",
+   "Elizabeth Bonawitz",
+   "Emery N. Brown",
+   "Faisal Mahmood",
+   "Farhad R. Nezami",
+   "Fernanda Viegas",
+   "Finale Doshi-Velez",
+   "Flavio du Pin Calmon",
+   "Gage Hills",
+   "Gang Luo",
+   "Georg Hahn",
+   "George A. Alvarez",
+   "Gil Alterovitz",
+   "Giorgio Bonmassar",
+   "Gottfried Schlaug",
+   "Gu-Yeon Wei",
+   "Guergana K. Savova",
+   "H.T. Kung",
+   "Hanspeter Pfister",
+   "Heng Li",
+   "Heng Yang",
+   "Hima Lakkaraju",
+   "Hugo J. W. L. Aerts",
+   "Iman Aganj",
+   "Isaac S. Kohane",
+   "James Mickens",
+   "Jelani Nelson",
+   "Jie Yang",
+   "Jonathan Zittrain",
+   "Jonghye Woo",
+   "Jordan Cotler",
+   "Joseph C. Kvedar",
+   "Juan Eugenio Iglesias",
+   "Jun S. Liu",
+   "Juncheng Yang",
+   "Junichi Tokuda",
+   "Junwei Lu",
+   "Justin Werfel",
+   "Kenneth D. Mandl",
+   "Kianté Brantley",
+   "Krzysztof Z Gajos",
+   "Kuang Gong",
+   "Leah H. Somerville",
+   "Leslie G. Valiant",
+   "Madhu Sudan",
+   "Marco A. Zenati",
+   "Margo I. Seltzer",
+   "Marinka Zitnik",
+   "Mark Sellke",
+   "Martin Wattenberg",
+   "Melanie Weber",
+   "Melissa Dell",
+   "Mengyu Wang",
+   "Mert R. Sabuncu",
+   "Michael D. Mitzenmacher",
+   "Michael D. Smith",
+   "Michael P. Brenner",
+   "Milind Tambe",
+   "Minlan Yu",
+   "Na Li",
+   "Nada Amin",
+   "Natesh S. Pillai",
+   "Nils Gehlenborg",
+   "Nobuhiko Hata",
+   "Olga V. Demler",
+   "Pardis Sabeti",
+   "Patricia C. Dykes",
+   "Paul Avillach",
+   "Pierre E. Jacob",
+   "Pragya Sur",
+   "Pranav Rajpurkar",
+   "Qianqian Wang",
+   "Radhika Nagpal",
+   "Randy L. Gollub",
+   "Robert D. Howe",
+   "Robert J. Wood",
+   "Roger D. Dias",
+   "Ron Kikinis",
+   "Rui Duan",
+   "Ryan P. Adams",
+   "Salil P. Vadhan",
+   "Samuel Gershman",
+   "Sarah F. Frisken",
+   "Scott Duke Kominers",
+   "Scott Kuindersma",
+   "Sean R. Eddy",
+   "Sendhil Mullainathan",
+   "Seth Neel",
+   "Sham Kakade",
+   "Shengwu Li",
+   "Sila Kurugol",
+   "Sitan Chen",
+   "Stephanie Gil",
+   "Stephen Casper",
+   "Stephen Chong",
+   "Steven J. Gortler",
+   "Stratos Idreos",
+   "Stuart M. Shieber",
+   "Sudeshna Das",
+   "SueYeon Chung",
+   "Susan A Murphy",
+   "Timothy A. Miller",
+   "Todd Zickler",
+   "Tomer D. Ullman",
+   "Vijay Janapa Reddi",
+   "William Lotter",
+   "Xianjun Dong",
+   "Xiaofeng Liu",
+   "Xiaoqing Wang",
+   "Yannai A. Gonczarowski",
+   "Yaron Singer",
+   "Yiling Chen",
+   "Yilun Du",
+   "Ying Xu",
+   "Yuri Quintana"
+  ],
+  "n_pis": 141,
+  "files": {
+   "pis.json": "8d8ae2fb57d33e0b47c222d68a5d2b0d8313368b26f0f9badc3c10dcf652a76f",
+   "students.json": "4a2f95bee7011c0edec2942ed9bfb872625b5f1daf2f6eb0b428cdb81760a43e",
+   "lab_papers.jsonl.gz": "61dd4f99ad69d03db2e68f3cab83d5189e579d72186d5dbcc971e3e20133d3ff",
+   "student_papers.jsonl.gz": "b781ccdae8eebf4776c923eb96ab9bb2d112755304e6196a27ebe2403e69bb1b",
+   "copies.json": "9e1ea86be910949e4509524fb0010308007bb3863c131386a238e937c775ab61"
+  },
+  "included_sha": "046a16a370605b4e242f80419c7afcb38907a8f2cb520bbdcd2b4bbaba57d4af",
+  "projection_version": 1,
+  "held": [
+   [
+    "William Lotter",
+    "ext:harvard:roshan-kenia"
+   ]
+  ],
+  "carried_forward": {
+   "lab_paper": 11,
+   "student": 1,
+   "student_paper": 9
+  },
+  "files_now": {
+   "pis.json": "8d8ae2fb57d33e0b47c222d68a5d2b0d8313368b26f0f9badc3c10dcf652a76f",
+   "students.json": "4a2f95bee7011c0edec2942ed9bfb872625b5f1daf2f6eb0b428cdb81760a43e",
+   "lab_papers.jsonl.gz": "61dd4f99ad69d03db2e68f3cab83d5189e579d72186d5dbcc971e3e20133d3ff",
+   "student_papers.jsonl.gz": "b781ccdae8eebf4776c923eb96ab9bb2d112755304e6196a27ebe2403e69bb1b",
+   "copies.json": "9e1ea86be910949e4509524fb0010308007bb3863c131386a238e937c775ab61"
+  },
+  "rebound_held_links": {
+   "drawn_hashes": {
+    "students.json": "9eb798a4847d8ea0cfcb880b1eb5e75481714b5b35a2da3ea5f154ee05e5244b"
+   },
+   "live_hashes": {
+    "students.json": "4a2f95bee7011c0edec2942ed9bfb872625b5f1daf2f6eb0b428cdb81760a43e"
+   },
+   "held_links_now": 148,
+   "drawn_rows_held": 0,
+   "candidates_held": 0
+  }
+ },
+ "population": {
+  "n_lab_papers": 6917,
+  "n_student_papers": 1323,
+  "n_coverage_pool": 3482,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 60,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

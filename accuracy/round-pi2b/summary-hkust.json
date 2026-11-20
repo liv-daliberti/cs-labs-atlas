@@ -1,0 +1,334 @@
+{
+ "school": "hkust",
+ "date": "2026-11-19",
+ "seed": 20261120586324115,
+ "n_verdicts": 180,
+ "files": {
+  "pis.json": "259e032665e008f79d00eac41c67108dd54e8fb56a13a757e2061f1e27a47078",
+  "students.json": "94d5d33365bf946187c67a6f4ea5646bb6455ba953b6532428229b47bcdfa096",
+  "lab_papers.jsonl.gz": "a6b46916eb6b6a4cfe9c7747c5e2b3d6a6aa208a3a3adbf2012489815bebd14b",
+  "student_papers.jsonl.gz": "b1c7372f53d8376e7816062ed8a1edcd2038fafa9784733c1c2b13e8b4785f51",
+  "copies.json": "16c4fe5f62bc85e26e9bb233b6d2d6420b309123f86178a84d81f7cc32ec977b"
+ },
+ "files_now": {
+  "pis.json": "259e032665e008f79d00eac41c67108dd54e8fb56a13a757e2061f1e27a47078",
+  "students.json": "94d5d33365bf946187c67a6f4ea5646bb6455ba953b6532428229b47bcdfa096",
+  "lab_papers.jsonl.gz": "a6b46916eb6b6a4cfe9c7747c5e2b3d6a6aa208a3a3adbf2012489815bebd14b",
+  "student_papers.jsonl.gz": "b1c7372f53d8376e7816062ed8a1edcd2038fafa9784733c1c2b13e8b4785f51",
+  "copies.json": "16c4fe5f62bc85e26e9bb233b6d2d6420b309123f86178a84d81f7cc32ec977b"
+ },
+ "lab_precision_uniform": {
+  "k": 48,
+  "n": 49,
+  "p": 0.9796,
+  "lo": 0.8931,
+  "hi": 0.9964,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 48,
+  "n": 49,
+  "p": 0.9796,
+  "lo": 0.8931,
+  "hi": 0.9964,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 63,
+  "n": 64,
+  "p": 0.9844,
+  "lo": 0.9167,
+  "hi": 0.9972,
+  "unclear": 1
+ },
+ "student_precision_uniform": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 64,
+  "n": 64,
+  "p": 1.0,
+  "lo": 0.9434,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_coverage": {
+  "k": 41,
+  "n": 41,
+  "p": 1.0,
+  "lo": 0.9143,
+  "hi": 1.0
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 41,
+  "not_lab_papers_absent": 2,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "not_a_paper": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Kai CHEN 陳凱|None|https://openalex.org/W7161132710",
+   "failure_type": "not_a_paper",
+   "reason": "IEEE Network doi 10.1109/mnet.2026.3673813 titled 'The 21st International Conference on Emerging Networking Experiments and Technologies 1-4 December 2025, HKUST...' with byline of conference organizers (Kai Chen, Jinshu Su, Ott, Rossi...): a conference announcement/report, not a research output (HKUST aff and Kai Chen identity are fine)",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Yike GUO 郭毅可|None|https://openalex.org/W7133238265",
+   "reason": "DOUBTFUL: MARBLE NeurIPS 2023 (arXiv 2306.10548): OpenAlex gives Yike Guo no affiliation; page-1 marker quote is for Wei Xue ('Wei Xue9 ... 9 Hong Kong University of Science and Technology'), not Yike Guo, so PI-specific school evidence is thin; year 2023 is inside period 2022-12- and identity (author id A5045081171) is the PI, so likely correct but not proven"
+  },
+  {
+   "sample": "student_precision",
+   "item": "Huamin QU 屈華民|ext:hkust:yuzhe-shi|https://openalex.org/W4415068030",
+   "reason": "DOUBTFUL: Byline is 'Shi, Yu-Zhe' on arXiv 2506.11070 (Qu, Huamin plus Hanlu Ma school-affiliated, other coauthors Liu, Xu, He, Ruan, Wang with no school); HKUST student Yuzhe Shi (qualifying exam 2025-08-26, Qu supervisor). Yu-Zhe Shi is also a known PKU researcher; stored evidence cannot rule out a namesake."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Lei CHEN 陳雷|journals/debu/Borromeo0DRT19",
+   "reason": "DOUBTFUL: DEBU 2019 'On Benchmarking for Crowdsourcing and Future of Work Platforms' (OA W3046363503, Zenodo DOI 10.5281/zenodo.6793147): stored OA record has empty institutions/affiliations for all authors, so school affiliation cannot be proven; Chen period 2005- but work could be a vision/special-issue piece; absent from build. Cannot decide."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Yangqiu SONG 宋陽秋|conf/semeval/CaiLLGS25",
+   "reason": "DOUBTFUL: SemEval-2025 Task 9 team paper 'Ustnlp16' (name suggests UST NLP) with PI Yangqiu Song (DBLP pid 86/2159, HKUST CSE, period 2016-, listings 2016-2026) but no DOI and no OpenAlex/affiliation row stored for it; absent from build; true_lab_paper likely true but affiliation unproven"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Hao CHEN 陳浩|conf/nips/BassiLTIWCCKRHY24",
+   "reason": "DOUBTFUL: Touchstone Benchmark NeurIPS 2024 (D&B); Hao Chen 0011 (DBLP pid 86/475-11, HKUST affiliation, listings 2021-2026 cover 2024; HKUST colleague Xiaomeng Li 0001 also coauthor) but no DOI, no OpenAlex row or byline affiliation stored; absent from build (no other-version row). Likely true lab paper missing_from_build but school affiliation not evidenced"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Long CHEN 陳隆|journals/inffus/SunCJW26",
+   "reason": "DOUBTFUL: Information Fusion 2026 doi 10.1016/j.inffus.2026.104556; Long Chen 0016 is HKUST CSE (DBLP pid 64/5725-16, listings 2023-2026) but coauthors Chang Sun/Bin Wu are elsewhere and no OpenAlex row or byline affiliation stored; absent from build; cannot tell if work credited to HKUST"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Zihan ZHANG 張子函|conf/chi/ZhangSA25",
+   "reason": "DOUBTFUL: CHI 2025 doi 10.1145/3706598.3713853 with Black Sun, Pengcheng An; DBLP person pid 178/8599 has no affiliation, listings only 2025-2026, no period; no OpenAlex row stored; identity and school affiliation both unproven; absent from build"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Yaonan JIN 金耀楠|conf/soda/JiangJLL26",
+   "reason": "DOUBTFUL: SODA 2026 doi 10.1137/1.9781611978971.212 with Shaofeng Jiang, Jianing Lou, Pinyan Lu; Yaonan Jin only has a 2026 listing, no period, DBLP pid 218/5430 no affiliation; no stored affiliation, work likely done before listing; absent from build"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Ling Pan|journals/tmlr/LiPHH26",
+   "reason": "DOUBTFUL: TMLR 2026 with Zhuoran Li, Jiatai Huang, Longbo Huang (Tsinghua group); Ling Pan only has a 2026 listing (ECE), no period, DBLP pid 199/9303 no affiliation; no DOI or OpenAlex row stored; absent from build; school credit unproven"
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "Albert Chi-Shing CHUNG 鍾志成",
+   "Andrew B. HORNER 康立德",
+   "Anyi Rao",
+   "Arpit NARECHANIA",
+   "Bertram E. Shi",
+   "Binhang YUAN 袁彬航",
+   "Bo LI 李波",
+   "Brahim BENSAOU 彭卲邦",
+   "Can Yang",
+   "Chaojian LI 李朝鑒",
+   "Charles ZHANG 張川",
+   "Chi-Keung TANG 鄧智強",
+   "Chi-Ying Tsui",
+   "Cunsheng DING 丁存生",
+   "Dan XU 徐旦",
+   "Daniel Pérez Palomar",
+   "Dimitris PAPADIAS 白德善",
+   "Dimitris PAPADOPOULOS",
+   "Dongdong SHE 佘東冬",
+   "Eric Marberg",
+   "Fangzhen LIN 林方真",
+   "Fengbin Tu",
+   "Fugee Tsung",
+   "Fumin Zhang",
+   "Hai Zhang",
+   "Hao CHEN 陳浩",
+   "Hongbo Fu",
+   "Howard C. Luong",
+   "Huamin QU 屈華民",
+   "James Tin-Yau KWOK 郭天佑",
+   "Jian-Feng Cai",
+   "Jiashuo Jiang",
+   "Jiasi SHEN 沈嘉思",
+   "Jiaya JIA 賈佳亞",
+   "Jie Yuan",
+   "Jiheng Zhang",
+   "Jun Han",
+   "Jun Zhang",
+   "Junxian HE 何俊賢",
+   "Kai CHEN 陳凱",
+   "Kai Tang",
+   "Ke Wang",
+   "Ke YI 易珂",
+   "Khaled Ben Letaief",
+   "Kun Xu",
+   "Lei CHEN 陳雷",
+   "Ling Pan",
+   "Ling Shi",
+   "Lionel PARREAUX",
+   "Long CHEN 陳隆",
+   "Long QUAN 權龍",
+   "Mingxun ZHOU 周銘洵",
+   "Mo LI 李默",
+   "Nevin Lianwen ZHANG 張連文",
+   "Pedro SANDER 辛達德",
+   "Ping Tan",
+   "Qian ZHANG 張黔",
+   "Qifeng CHEN 陳启峰",
+   "Qiong LUO 羅瓊",
+   "Raymond Chi-Wing WONG 黃智榮",
+   "Richard H. Y. So",
+   "Ross Murch",
+   "Sehi L'YI 李世熙",
+   "Shaojie Shen",
+   "Shenghui Song",
+   "Shing-Chi CHEUNG 張成志",
+   "Shuai WANG 王帥",
+   "Siu-Wing CHENG 鄭紹榮",
+   "Song GUO 郭嵩",
+   "Sunil ARYA 安雅信",
+   "Tristan Braud",
+   "Vincent K. N. Lau",
+   "Wai Ho Mow",
+   "Wei WANG 王威",
+   "Weichuan Yu",
+   "Wenhan Luo",
+   "Wilfred Siu-Hung NG 吳兆鴻",
+   "Xiangtong Qi",
+   "Xiaofang ZHOU 周曉方",
+   "Xiaojuan MA 麻曉娟",
+   "Xiaomeng Li",
+   "Xiaomin OUYANG 歐陽小敏",
+   "Xiaowei Zhang",
+   "Yang Xiang",
+   "Yangqiu SONG 宋陽秋",
+   "Yaonan JIN 金耀楠",
+   "Yi R. FUNG 馮一人",
+   "Yi Yang",
+   "Yi-Kuen Lee",
+   "Yiding Feng",
+   "Yike GUO 郭毅可",
+   "Ying-Ju Chen",
+   "Yinghao XU 徐英豪",
+   "Yiwen Wang",
+   "Yuan Yao",
+   "Zexiang Li",
+   "Zhiyao Xie",
+   "Zihan ZHANG 張子函",
+   "Zili Meng"
+  ],
+  "n_pis": 99,
+  "files": {
+   "pis.json": "259e032665e008f79d00eac41c67108dd54e8fb56a13a757e2061f1e27a47078",
+   "students.json": "94d5d33365bf946187c67a6f4ea5646bb6455ba953b6532428229b47bcdfa096",
+   "lab_papers.jsonl.gz": "a6b46916eb6b6a4cfe9c7747c5e2b3d6a6aa208a3a3adbf2012489815bebd14b",
+   "student_papers.jsonl.gz": "b1c7372f53d8376e7816062ed8a1edcd2038fafa9784733c1c2b13e8b4785f51",
+   "copies.json": "16c4fe5f62bc85e26e9bb233b6d2d6420b309123f86178a84d81f7cc32ec977b"
+  },
+  "included_sha": "e7d224fe8a286ed7b4d4732f4d7ad67c0c6da92da08046aa27065ae971ddf8c2",
+  "projection_version": 1,
+  "held": [],
+  "carried_forward": {},
+  "files_now": {
+   "pis.json": "259e032665e008f79d00eac41c67108dd54e8fb56a13a757e2061f1e27a47078",
+   "students.json": "94d5d33365bf946187c67a6f4ea5646bb6455ba953b6532428229b47bcdfa096",
+   "lab_papers.jsonl.gz": "a6b46916eb6b6a4cfe9c7747c5e2b3d6a6aa208a3a3adbf2012489815bebd14b",
+   "student_papers.jsonl.gz": "b1c7372f53d8376e7816062ed8a1edcd2038fafa9784733c1c2b13e8b4785f51",
+   "copies.json": "16c4fe5f62bc85e26e9bb233b6d2d6420b309123f86178a84d81f7cc32ec977b"
+  }
+ },
+ "population": {
+  "n_lab_papers": 7237,
+  "n_student_papers": 6842,
+  "n_coverage_pool": 4951,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2b",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

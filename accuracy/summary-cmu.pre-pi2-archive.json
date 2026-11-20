@@ -1,0 +1,198 @@
+{
+ "school": "cmu",
+ "date": "2026-11-11",
+ "seed": 20261029,
+ "n_verdicts": 105,
+ "files": {
+  "pis.json": "ce3d1218989a596380f262e4a9d9c07dc8b55f013fdab2a22a8aac104e90a2bf",
+  "students.json": "1c6407ba6717c5c136fef5a91bed49c4276fb846b950bc912bf46032c934a9a9",
+  "lab_papers.jsonl.gz": "ae74ab5a91489cb1ee9f71f65cb2e5c763470ed6bbb2a5fe249a67b6412f5f73",
+  "student_papers.jsonl.gz": "632a0239014006ae59f6ddfd3681913c4dc6d5e875d142b67f420b857406aefb",
+  "copies.json": "9374819f1c85b6bd31462848ebacdb183aba27154fe1425d7504e4659df44a18"
+ },
+ "files_now": {
+  "pis.json": "ce3d1218989a596380f262e4a9d9c07dc8b55f013fdab2a22a8aac104e90a2bf",
+  "students.json": "1c6407ba6717c5c136fef5a91bed49c4276fb846b950bc912bf46032c934a9a9",
+  "lab_papers.jsonl.gz": "ae74ab5a91489cb1ee9f71f65cb2e5c763470ed6bbb2a5fe249a67b6412f5f73",
+  "student_papers.jsonl.gz": "632a0239014006ae59f6ddfd3681913c4dc6d5e875d142b67f420b857406aefb",
+  "copies.json": "9374819f1c85b6bd31462848ebacdb183aba27154fe1425d7504e4659df44a18"
+ },
+ "lab_precision_uniform": {
+  "k": 22,
+  "n": 24,
+  "p": 0.9167,
+  "lo": 0.7415,
+  "hi": 0.9768,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 23,
+  "n": 24,
+  "p": 0.9583,
+  "lo": 0.7976,
+  "hi": 0.9926,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 4,
+   "n": 4,
+   "p": 1.0,
+   "lo": 0.5101,
+   "hi": 1.0,
+   "unclear": 1
+  },
+  "listing": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 35,
+  "n": 38,
+  "p": 0.9211,
+  "lo": 0.792,
+  "hi": 0.9728,
+  "unclear": 2
+ },
+ "student_precision_uniform": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 39,
+  "n": 40,
+  "p": 0.975,
+  "lo": 0.8712,
+  "hi": 0.9956,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 12,
+  "n": 12,
+  "p": 1.0,
+  "lo": 0.7575,
+  "hi": 1.0
+ },
+ "lab_coverage_items": {
+  "drawn": 15,
+  "true_lab_papers": 12,
+  "not_lab_papers_absent": 2,
+  "not_lab_papers_in_build": 1
+ },
+ "student_coverage": {
+  "k": 10,
+  "n": 10,
+  "p": 1.0,
+  "lo": 0.7225,
+  "hi": 1.0
+ },
+ "student_coverage_items": {
+  "drawn": 10,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "not_a_paper": 3,
+  "wrong_student": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Jon M. Peha|None|https://openalex.org/W2907465087",
+   "failure_type": "not_a_paper",
+   "reason": "Science book review, not a research output",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Kathryn Roeder|cmu_oa_W2975896306|https://openalex.org/W2975896306",
+   "failure_type": "not_a_paper",
+   "reason": "Eur Neuropsychopharmacology congress abstract (all-caps title, supplement DOI)",
+   "policy": "meeting_abstract"
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "listing",
+   "item": "John Michael Galeotti|None|https://openalex.org/W4387248567",
+   "failure_type": "not_a_paper",
+   "reason": "CHEST journal supplement meeting abstract (10.1016/j.chest.2023.07.2607), no affiliation stored",
+   "policy": "meeting_abstract"
+  },
+  {
+   "sample": "student_precision",
+   "stratum": "within_lab_byline_match",
+   "item": "David Wettergreen|cmu_person_de7234afb2eb1f7aa5d1|https://openalex.org/W3152986638",
+   "failure_type": "wrong_student",
+   "reason": "Paper byline (19 authors, Cabrol, Phillips, ... Wettergreen) has no Furlong; match was made on 'Michael Phillips' (a different person) vs Padraig Michael Furlong (aliases P. Michael Furlong)",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Ioannis Gkioulekas|cmu_oa_W4223554223|https://openalex.org/W4223554223",
+   "reason": "DOUBTFUL: Nature Comms reply to a Matters Arising comment; borderline research output"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "William W Cohen|cmu_0f532d49f5559b06f5de|https://openalex.org/W4415795765",
+   "reason": "DOUBTFUL: Cohen last author with Google-affiliated coauthors (Fisch, Maynez, Hofer); no CMU affiliation stored, likely Google work"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Florian Metze|conf/icassp/ManiPMKM20",
+   "reason": "DOUBTFUL: Row #10081: Metze affil is Abridge AI (company), CMU listing says 'On Leave' 2020; only advisee Palaskar is CMU; at-school status undecidable, strict reading favors not_at_school"
+  }
+ ],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 30502,
+  "n_student_papers": 28531,
+  "n_coverage_pool": 22913,
+  "n_student_candidates": 1017
+ }
+}

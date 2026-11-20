@@ -1,0 +1,242 @@
+{
+ "school": "berkeley",
+ "date": "2026-11-13",
+ "seed": 20261113,
+ "n_verdicts": 230,
+ "files": {
+  "pis.json": "267f925d071bfd4f9c6f0491e584ff8149763ff86aa9033005d8ca10f0947eef",
+  "students.json": "9a5cd6601d7f23f47f8c4754718256fcdcf29acdbadbc16d3e8bca84daf57357",
+  "lab_papers.jsonl.gz": "775b652d452f2050733bc3e7c6869820fae79f898432542a5f85ef819492a242",
+  "student_papers.jsonl.gz": "44af526080ad84eb6ff84435dd6796ebfedf3337ce8c2c9e1fc8d89039eb6f21",
+  "copies.json": "aafd530708e4f57fbb5c29cd3a1c80bd4d32d5c444b7982b0da76184d0678d98"
+ },
+ "files_now": {
+  "pis.json": "267f925d071bfd4f9c6f0491e584ff8149763ff86aa9033005d8ca10f0947eef",
+  "students.json": "9a5cd6601d7f23f47f8c4754718256fcdcf29acdbadbc16d3e8bca84daf57357",
+  "lab_papers.jsonl.gz": "775b652d452f2050733bc3e7c6869820fae79f898432542a5f85ef819492a242",
+  "student_papers.jsonl.gz": "44af526080ad84eb6ff84435dd6796ebfedf3337ce8c2c9e1fc8d89039eb6f21",
+  "copies.json": "aafd530708e4f57fbb5c29cd3a1c80bd4d32d5c444b7982b0da76184d0678d98"
+ },
+ "lab_precision_uniform": {
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 64,
+  "n": 65,
+  "p": 0.9846,
+  "lo": 0.9179,
+  "hi": 0.9973,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 64,
+  "n": 65,
+  "p": 0.9846,
+  "lo": 0.9179,
+  "hi": 0.9973,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 43,
+  "n": 45,
+  "p": 0.9556,
+  "lo": 0.8517,
+  "hi": 0.9877
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 45,
+  "not_lab_papers_absent": 4,
+  "not_lab_papers_in_build": 1
+ },
+ "student_coverage": {
+  "k": 45,
+  "n": 46,
+  "p": 0.9783,
+  "lo": 0.8866,
+  "hi": 0.9962
+ },
+ "student_coverage_items": {
+  "drawn": 50,
+  "no_coauthored_paper": 4
+ },
+ "failures": {
+  "wrong_student": 1,
+  "not_a_paper": 2,
+  "missing_from_build": 2,
+  "student_not_linked": 1
+ },
+ "incorrect": [
+  {
+   "sample": "student_precision",
+   "stratum": "uniform",
+   "item": "Michael Jordan|ext:berkeley:nir-yosef|https://openalex.org/W4382632237",
+   "failure_type": "wrong_student",
+   "reason": "student record Nir Yosef is a mis-extracted adviser name from a Jordan/Yosef master's-thesis page; byline is Prof. Nir Yosef, not an MS student",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Sophia Shao|journals/micro/PattersonS20",
+   "failure_type": "not_a_paper",
+   "reason": "IEEE Micro 'Commercial Products' is a special-issue section introduction by two guest editors, not a research output; present in build",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Francesco Borrelli|conf/amcc/JoaBB23",
+   "failure_type": "missing_from_build",
+   "reason": "Berkeley PI (ME, students Joa and Bujarbaruah) 2023 conference paper absent from build; OA has no affiliation",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Alice Agogino|journals/ral/SabelhausLSMBAA20",
+   "failure_type": "missing_from_build",
+   "reason": "Berkeley ME PI Agogino research article (RA-L 2020) absent from build",
+   "policy": null
+  },
+  {
+   "sample": "student_coverage",
+   "stratum": "thesis_advisee_phd_ge_2018",
+   "item": "Stuart J. Russell|berkeley_stu_anand-kumar-siththaranjan",
+   "failure_type": "student_not_linked",
+   "reason": "PhD 2025 thesis; DBLP co-authored with PI (2 papers) but linked=0",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Niloufar Salehi|None|https://openalex.org/W3030654960",
+   "failure_type": "not_a_paper",
+   "reason": "CHI EA workshop proposal/overview (Worker-Centered Design), not a research paper",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "student_coverage",
+   "item": "Alistair Sinclair|berkeley_stu_rachel-lawrence",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Peter Bartlett|berkeley_stu_ishaq-aden-ali",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Michael Jordan|berkeley_stu_akosua-busia",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Prabal Dutta|berkeley_stu_romil-bhardwaj",
+   "reason": "no coauthored paper"
+  }
+ ],
+ "screened": [
+  {
+   "school": "berkeley",
+   "item": "Sergey Levine|berkeley_stu_michael-chang",
+   "reason": "source thesis (Infrastructure Support for Datacenter Applications, 2023) is the datacenter-systems thesis of a different Michael Chang, not a Levine advisee"
+  }
+ ],
+ "population": {
+  "n_lab_papers": 16001,
+  "n_student_papers": 17432,
+  "n_coverage_pool": 10396,
+  "n_student_candidates": 591
+ },
+ "round": {
+  "id": "r3",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  }
+ }
+}

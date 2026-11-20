@@ -1,0 +1,351 @@
+{
+ "school": "harvard",
+ "date": "2026-11-18",
+ "seed": 2026111902,
+ "n_verdicts": 175,
+ "files": {
+  "pis.json": "c1d9a3259a0f26c211ddeeb7fbbe0a29137b4bdcc6ffc83be24a6a00a384bed0",
+  "students.json": "058fa108c174d283b0c9ea368880d93a4821f83ca62c34a037a3f130af2b4fdc",
+  "lab_papers.jsonl.gz": "acbc6abe4b824f966845b596e70603f969e4bbf32e0a80b222bd247bda50a393",
+  "student_papers.jsonl.gz": "b6ea39530a7062583149cbc2cd49ecb0ef5dd12640fd53be82a44b70ca61a26f",
+  "copies.json": "a16d8a74158ca71665b3095e68501aa00818ccdfb06bc645a84072a17fd7b2d6"
+ },
+ "files_now": {
+  "pis.json": "c1d9a3259a0f26c211ddeeb7fbbe0a29137b4bdcc6ffc83be24a6a00a384bed0",
+  "students.json": "058fa108c174d283b0c9ea368880d93a4821f83ca62c34a037a3f130af2b4fdc",
+  "lab_papers.jsonl.gz": "acbc6abe4b824f966845b596e70603f969e4bbf32e0a80b222bd247bda50a393",
+  "student_papers.jsonl.gz": "b6ea39530a7062583149cbc2cd49ecb0ef5dd12640fd53be82a44b70ca61a26f",
+  "copies.json": "a16d8a74158ca71665b3095e68501aa00818ccdfb06bc645a84072a17fd7b2d6"
+ },
+ "lab_precision_uniform": {
+  "k": 47,
+  "n": 49,
+  "p": 0.9592,
+  "lo": 0.8629,
+  "hi": 0.9887,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 48,
+  "n": 49,
+  "p": 0.9796,
+  "lo": 0.8931,
+  "hi": 0.9964,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 56,
+  "n": 59,
+  "p": 0.9492,
+  "lo": 0.8608,
+  "hi": 0.9826,
+  "unclear": 1
+ },
+ "student_precision_uniform": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 8,
+   "n": 8,
+   "p": 1.0,
+   "lo": 0.6756,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 2,
+   "n": 2,
+   "p": 1.0,
+   "lo": 0.3424,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 64,
+  "n": 64,
+  "p": 1.0,
+  "lo": 0.9434,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_coverage": {
+  "k": 43,
+  "n": 47,
+  "p": 0.9149,
+  "lo": 0.8007,
+  "hi": 0.9664
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 47,
+  "not_lab_papers_absent": 1,
+  "not_lab_papers_in_build": 1
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "not_a_paper": 4,
+  "missing_from_build": 2
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Samuel Gershman|None|https://openalex.org/W2560681009",
+   "failure_type": "not_a_paper",
+   "reason": "Crossref 10.1016/j.neuron.2016.11.040: pages 937-939, no abstract (a 3-page Neuron Preview); Neuron Previews commentary (2 authors, ~3 pp, Cikara & Gershman) on a research article; not a research output. Affiliation Harvard Dept of Psychology would otherwise be fine.",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "listing",
+   "item": "Boaz Barak|None|https://openalex.org/W3128381822",
+   "failure_type": "not_a_paper",
+   "reason": "Crossref 10.1038/s41567-020-01126-7: pages 295-296, no abstract (a Nature Physics Comment); Single-author Nature Physics one-page Comment/Viewpoint 'Work with what you've got' (no abstract); a column, not research. Aff Harvard SEAS is fine.",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Jonghye Woo|None|https://openalex.org/W4387234411",
+   "failure_type": "not_a_paper",
+   "reason": "Crossref 10.1016/j.joms.2023.08.189: pages e10-e11 inside an AAOMS meeting track; JOMS 2023 supplement meeting abstract ('Pediatrics, Craniofacial and Orthognathic Surgery Track: VP MR Atlases...', AAOMS annual meeting); also aff list mixes ECU/MGH/HMS.",
+   "policy": "meeting_abstract"
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Finale Doshi-Velez|conf/iclr/SwaroopKD25",
+   "failure_type": "missing_from_build",
+   "reason": "Doshi-Velez Harvard (listing 2016-2026); same work (retitled 'Federated ADMM from Bayesian Duality') is in build as arXiv row #7381 (Harvard affil, 2025) but the ICLR dblp key is not matched; cause: preprint/venue version not linked to dblp key",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Michael D. Mitzenmacher|conf/soda/MitzenmacherS21",
+   "failure_type": "missing_from_build",
+   "reason": "Mitzenmacher continuously Harvard (2016-2026 listings, period gaps), SODA 2021 two-author paper; no OpenAlex/affiliation record stored (absent from Harvard sweep/pi-works) so no lab row was built; cause: no OpenAlex work with Harvard affiliation matched the DBLP record; true status inferred from PI listing only",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Cynthia Dwork|journals/jpc/AbowdDKNRSV24",
+   "failure_type": "not_a_paper",
+   "reason": "'Launching the Society for Privacy and Confidentiality Research to Own the Journal of Privacy and Confidentiality' (2024) is an announcement/editorial, not research; in build as row #6084",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Gu-Yeon Wei|None|https://openalex.org/W3208331640",
+   "reason": "DOUBTFUL: Crossref 10.1109/hcs52781.2021.9567180: proceedings-article, 13 pages, a Hot Chips presentation record; type cannot be settled from stored data; Hot Chips 33 'SM6' entry (IEEE Xplore, slide-deck style presentation record, title carries symposium name); aff 'Harvard University, Cambridge, MA' fine but unclear it is a full paper vs presentation abstract."
+  },
+  {
+   "sample": "student_precision",
+   "item": "Danielle S. Bitterman|ext:harvard:david-chen|https://openalex.org/W7221653486",
+   "reason": "DOUBTFUL: byline 'David Chen' (n=12; school-affiliated names listed: Celi, Bitterman) matches Bitterman-lab page 'David Chen, medical student U Toronto' and topic (LLM trials in medicine) plausible, but very common name with no affiliation/ORCID evidence in stored row"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Finale Doshi-Velez|conf/sdm/XiaPD16",
+   "reason": "DOUBTFUL: 2016 SDM paper, Doshi-Velez+Protopapas (Harvard IACS); PI in period 2016; no stored affiliation string or OpenAlex record found (not in Harvard sweep/pi-works); likely Harvard but unverified; absent from build"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Madhu Sudan|journals/algorithmica/HaramatyS16",
+   "reason": "DOUBTFUL: UNSETTLED: Crossref 10.1007/s00453-015-0107-6 carries no affiliations; the MSR attribution was from memory; Sudan has Harvard periods from 2015/2016"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Ron Kikinis|journals/jmrr/BlackLFRKNHKB19",
+   "reason": "DOUBTFUL: Kikinis (Brigham/HMS, period 1992-) is author of a 2019 research article co-written with Hannover/Fraunhofer MEVIS; no stored affiliation string for this paper; HMS affiliation likely but unverified; absent from build"
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "Alexandra J. Golby",
+   "Anastasia Yendiki",
+   "Anurag Anshu",
+   "Ariel Procaccia",
+   "Benoit Scherrer",
+   "Berkin Bilgic",
+   "Boaz Barak",
+   "Bruce Fischl",
+   "Caterina Mainero",
+   "Cengiz Pehlevan",
+   "Chris Dede",
+   "Cynthia Dwork",
+   "Danielle S. Bitterman",
+   "David Alvarez-Melis",
+   "David Brooks",
+   "Donhee Ham",
+   "Eddie Kohler",
+   "Elena Leah Glassman",
+   "Elena Rivas",
+   "Elisabeth Paulson",
+   "Emery N. Brown",
+   "Farhad R. Nezami",
+   "Fernanda Viegas",
+   "Finale Doshi-Velez",
+   "Flavio du Pin Calmon",
+   "Gang Luo",
+   "Georg Hahn",
+   "George A. Alvarez",
+   "Gil Alterovitz",
+   "Giorgio Bonmassar",
+   "Gottfried Schlaug",
+   "Gu-Yeon Wei",
+   "Guergana K. Savova",
+   "H.T. Kung",
+   "Hanspeter Pfister",
+   "Hima Lakkaraju",
+   "Hugo J. W. L. Aerts",
+   "Iman Aganj",
+   "Isaac S. Kohane",
+   "James Mickens",
+   "Jelani Nelson",
+   "Jonathan Zittrain",
+   "Jonghye Woo",
+   "Joseph C. Kvedar",
+   "Juan Eugenio Iglesias",
+   "Jun S. Liu",
+   "Juncheng Yang",
+   "Junichi Tokuda",
+   "Justin Werfel",
+   "Kenneth D. Mandl",
+   "Kianté Brantley",
+   "Krzysztof Z Gajos",
+   "Kuang Gong",
+   "Leslie G. Valiant",
+   "Madhu Sudan",
+   "Martin Wattenberg",
+   "Mengyu Wang",
+   "Mert R. Sabuncu",
+   "Michael D. Mitzenmacher",
+   "Michael D. Smith",
+   "Michael P. Brenner",
+   "Milind Tambe",
+   "Minlan Yu",
+   "Nada Amin",
+   "Natesh S. Pillai",
+   "Nobuhiko Hata",
+   "Olga V. Demler",
+   "Pardis Sabeti",
+   "Patricia C. Dykes",
+   "Paul Avillach",
+   "Qianqian Wang",
+   "Radhika Nagpal",
+   "Randy L. Gollub",
+   "Roger D. Dias",
+   "Ron Kikinis",
+   "Ryan P. Adams",
+   "Salil P. Vadhan",
+   "Samuel Gershman",
+   "Sarah F. Frisken",
+   "Scott Duke Kominers",
+   "Scott Kuindersma",
+   "Sendhil Mullainathan",
+   "Seth Neel",
+   "Sham Kakade",
+   "Sila Kurugol",
+   "Sitan Chen",
+   "Stephanie Gil",
+   "Stephen Casper",
+   "Stephen Chong",
+   "Steven J. Gortler",
+   "Stratos Idreos",
+   "Stuart M. Shieber",
+   "Susan A Murphy",
+   "Timothy A. Miller",
+   "Vijay Janapa Reddi",
+   "Xiaofeng Liu",
+   "Xiaoqing Wang",
+   "Yannai A. Gonczarowski",
+   "Yaron Singer",
+   "Yiling Chen",
+   "Yilun Du",
+   "Ying Xu",
+   "Yuri Quintana"
+  ],
+  "n_pis": 103,
+  "files": {
+   "pis.json": "c1d9a3259a0f26c211ddeeb7fbbe0a29137b4bdcc6ffc83be24a6a00a384bed0",
+   "students.json": "058fa108c174d283b0c9ea368880d93a4821f83ca62c34a037a3f130af2b4fdc",
+   "lab_papers.jsonl.gz": "acbc6abe4b824f966845b596e70603f969e4bbf32e0a80b222bd247bda50a393",
+   "student_papers.jsonl.gz": "b6ea39530a7062583149cbc2cd49ecb0ef5dd12640fd53be82a44b70ca61a26f",
+   "copies.json": "a16d8a74158ca71665b3095e68501aa00818ccdfb06bc645a84072a17fd7b2d6"
+  },
+  "included_sha": "9a76094c926b3ca66b50884bf996e6017498d6105cdede5a468a77aa7a6d28b8",
+  "files_now": {
+   "pis.json": "c1d9a3259a0f26c211ddeeb7fbbe0a29137b4bdcc6ffc83be24a6a00a384bed0",
+   "students.json": "058fa108c174d283b0c9ea368880d93a4821f83ca62c34a037a3f130af2b4fdc",
+   "lab_papers.jsonl.gz": "acbc6abe4b824f966845b596e70603f969e4bbf32e0a80b222bd247bda50a393",
+   "student_papers.jsonl.gz": "b6ea39530a7062583149cbc2cd49ecb0ef5dd12640fd53be82a44b70ca61a26f",
+   "copies.json": "a16d8a74158ca71665b3095e68501aa00818ccdfb06bc645a84072a17fd7b2d6"
+  }
+ },
+ "population": {
+  "n_lab_papers": 5409,
+  "n_student_papers": 709,
+  "n_coverage_pool": 3018,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi1",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 60,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

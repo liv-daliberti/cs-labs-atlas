@@ -1,0 +1,1345 @@
+{
+ "school": "mit",
+ "date": "2026-11-19",
+ "seed": 20261120586324115,
+ "n_verdicts": 230,
+ "files": {
+  "pis.json": "ebea2e68d9f88633af972ae241f3d9a2fe0271d2974846d9c9192320792448d0",
+  "students.json": "0b91a4a8247974903b7812c3eb61fddd067fd6baf1c61e706005bb623ce013b9",
+  "lab_papers.jsonl.gz": "b7c54f0bbb72754bf7a0b887e45e4d0b4950d3c577a4f7fd895623f5ab5c9ce9",
+  "student_papers.jsonl.gz": "9c4fe273c956baa34e966ab8f1263ce36a3163d7953ad6f49d698f831233159c",
+  "copies.json": "5e18cdbf92f5df8ae8b8c86c23deedbcc7a34b5f28d93a863b4dd28f208d009f"
+ },
+ "files_now": {
+  "pis.json": "ebea2e68d9f88633af972ae241f3d9a2fe0271d2974846d9c9192320792448d0",
+  "students.json": "0b91a4a8247974903b7812c3eb61fddd067fd6baf1c61e706005bb623ce013b9",
+  "lab_papers.jsonl.gz": "b7c54f0bbb72754bf7a0b887e45e4d0b4950d3c577a4f7fd895623f5ab5c9ce9",
+  "student_papers.jsonl.gz": "9c4fe273c956baa34e966ab8f1263ce36a3163d7953ad6f49d698f831233159c",
+  "copies.json": "5e18cdbf92f5df8ae8b8c86c23deedbcc7a34b5f28d93a863b4dd28f208d009f"
+ },
+ "lab_precision_uniform": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 1,
+   "n": 1,
+   "p": 1.0,
+   "lo": 0.2065,
+   "hi": 1.0,
+   "unclear": 4
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 60,
+  "n": 60,
+  "p": 1.0,
+  "lo": 0.9398,
+  "hi": 1.0,
+  "unclear": 5
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 47,
+  "n": 47,
+  "p": 1.0,
+  "lo": 0.9244,
+  "hi": 1.0
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 47,
+  "not_lab_papers_absent": 3,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": {
+  "k": 48,
+  "n": 48,
+  "p": 1.0,
+  "lo": 0.9259,
+  "hi": 1.0
+ },
+ "student_coverage_items": {
+  "drawn": 50,
+  "no_coauthored_paper": 2
+ },
+ "failures": {},
+ "incorrect": [],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Joshua Tenenbaum|mit_e4c8537f463536cf628a|https://openalex.org/W3183402690",
+   "reason": "DOUBTFUL: Tenenbaum on eScholarship (UC) CogSci-type paper 2021; no affiliation stored (inst/raw_aff empty, page1_unchecked), only advisee-byline inference; MIT period 2002- but work site not evidenced."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Suvrit Sra|mit_461e40696209a873f183|https://openalex.org/W7133238393",
+   "reason": "DOUBTFUL: Sra NeurIPS 2023 (doi 10.52202/075280-2963): OpenAlex has no institutions/raw aff for any author; linked only via advisee Kwangjun Ahn; page1_check status ok_untied (PDF read but no MIT tie). EECS listing 2023 makes it plausible but school affiliation not shown in stored evidence."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Joshua Tenenbaum|mit_bde7818b6dbfa934bdbd|https://openalex.org/W3135087940",
+   "reason": "DOUBTFUL: Tenenbaum 'A Task and Motion Approach to the Development of Planning' (eScholarship, 2020, no DOI): no institutions/raw aff, byline school empty, linked only via advisee Kelsey Allen, flag page1_unchecked; CBMM period but school affiliation unproven."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Erik Demaine|mit_algorithms_source_0daa3d1fa56f94e69349|https://openalex.org/W3160091714",
+   "reason": "DOUBTFUL: Demaine, Bridges 2020 'Design of Circular-Arc Curved Creases' (no DOI, venue none): no institutions/raw aff, linked only via advisee Klara Mundilova, page1_unchecked; Demaine has MIT period 2001- but at-school affiliation not evidenced in stored data."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Edward Gibson|None|https://openalex.org/W2904258082",
+   "reason": "DOUBTFUL: Gibson OSF preprint 2016 'Adaptation of the Noisy Channel Model...': no institutions/raw aff, byline school empty, linked only via advisee Richard Futrell, page1_unchecked; BCS catalog listing 2016 but MIT affiliation not shown on the record."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "William Freeman|conf/cvpr/OhDKMFRM19",
+   "reason": "DOUBTFUL: Speech2Face CVPR 2019 (DOI 10.1109/cvpr.2019.00772). Freeman has a 2019 EECS listing but his OpenAlex authorship is credited only to 'Google' (raw 'Google'); school link rests solely on co-authors Oh/Kim/Matusik credited to MIT ('cross-affiliated byline'). No page-1 or MIT affiliation for the PI stored, so not_at_school cannot be excluded; work is probably MIT-based."
+  }
+ ],
+ "screened": [
+  {
+   "ref": "Daniel Jackson|mit_thesis_author_6966130de3925b568aa9",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "SCREENED (not confirmed PhD): DSpace 149761b8 (2020) is an M.Eng. thesis (EECS).",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-01"
+  },
+  {
+   "ref": "John Leonard|mit_thesis_author_343b958e0d23bad6d8c1",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "SCREENED (not confirmed PhD): DSpace d9efa569 (2024-09) is an S.M. thesis (NAME/EECS).",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-01"
+  },
+  {
+   "ref": "Antonio Torralba|mit_thesis_author_18a5bcbef7155f79ebf9",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "SCREENED (not confirmed PhD): DSpace f076a908 (2026-02) is an M.Eng. thesis.",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-01"
+  },
+  {
+   "ref": "Collin Stultz|mit_thesis_author_b83cc104ff00009456af",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "SCREENED (not confirmed PhD): DSpace f6d1a6d9 (2020) is an M.Eng. thesis.",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-01"
+  },
+  {
+   "ref": "Armando Solar-Lezama|mit_thesis_author_f3feb4a65eb04dd7b175",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "SCREENED (not confirmed PhD): DSpace 0d5a7fd2 (2019) is an M.Eng. thesis.",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-01"
+  },
+  {
+   "ref": "Gregory Wornell|mit_thesis_author_e503cc0658911eca46fa",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "SCREENED (not confirmed PhD): DSpace e481e8f9 (2021-06) is an M.Eng. thesis.",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-01"
+  },
+  {
+   "ref": "Alexander Rakhlin|mit_thesis_author_3b7b814ec5d230618e0d",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "SCREENED (not confirmed PhD): Only stored thesis cada1a87 (2022-02) is an S.M. thesis 'Non-parametric threshold for smoothed empirical Wasserstein distance'; no doctorate evidence stored.",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-01"
+  },
+  {
+   "ref": "Lalana Kagal|mit_thesis_author_111a96f4863b0d37f1c3",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "SCREENED (not confirmed PhD): DSpace bf1e0057 (2024-09) is an M.Eng. thesis.",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-01"
+  },
+  {
+   "ref": "William D. Oliver|mit_thesis_author_a28d9df765f7aabf35c1",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "SCREENED (not confirmed PhD): Only stored thesis 6f0a4983 (2023-02) is an S.M. thesis 'Engineering Noise-Protected Superconducting Qubits'; no doctorate evidence stored.",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-01"
+  },
+  {
+   "ref": "Stefanie Mueller|mit_thesis_author_48880e749aef8d597760",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "SCREENED (not confirmed PhD): DSpace d3d55b58 (2018) is an M.Eng. thesis.",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-01"
+  },
+  {
+   "ref": "Neville Hogan|mit_thesis_author_831698c10d4d88c80d25",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "SCREENED (not confirmed PhD): DSpace 7b398626 (2023-06) is an M.Eng. thesis.",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-01"
+  },
+  {
+   "ref": "David Simchi-Levi|mit_thesis_author_d9bfb3b2c5f7e83e85b0",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "SCREENED (not confirmed PhD): DSpace 6ed9a9db (2026-02) is an S.M. thesis (Social and Engineering Systems).",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-01"
+  },
+  {
+   "ref": "Kevin P. O’Brien|mit_thesis_author_214947fa9277414a656f",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace metadata: M.Eng. 2025-02 'All Pass Readout With Ring Resonators for Qubit Measurement'; not a doctorate (sheet phd_year=2025 is wrong)",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Joel Emer|mit_thesis_author_239ac593547d7c1b2ed4",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace: S.M. 2024-05 'Tailors: Accelerating Sparse Tensor Algebra...'; master's",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Marzyeh Ghassemi|mit_roster_7072ce30e7e8f09e",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Roster lists A. Anas Chentouf as MEng Student; DSpace M.Eng. 2025-05",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Karen Sollins|mit_thesis_author_e8b979dd9c5847b65dd6",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace: M.Eng. 2022-09 (Farhat); SuperUROP under Ghobadi; no doctorate",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Fadel Adib|mit_thesis_author_4896b95121fcbe69de67",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace: M.Eng. 2024-05 'Analog Underwater Backscatter'; master's",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Stefanie Jegelka|mit_thesis_author_ef1e8cee23e2380eb58a",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace: M.C.P. 2023-06 (physical activity COVID); master's in city planning",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Deb Roy|mit_thesis_author_f48f9c1764a8eb6dc7df",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace: S.M. 2024-05 'Translations: Designing Restorative Listening Experiences'; master's (relation labelled phd is wrong)",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Neil Thompson|mit_thesis_author_d25c013c1ec74751d111",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace: M.Eng. 2024-02 'Large Language Model Routing with Benchmark Datasets'; master's",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Duane S. Boning|mit_thesis_author_7d2d8e20d3de4af58190",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace: S.M. 2024-05 'Dynamic Time Warping Constraints for Semiconductor Processing'; master's",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Boris Katz|mit_thesis_author_16ed544a1904a09af5a3",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace: M.Eng. 2022-02 'Grounded SCAN Human'; master's",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Aleksander Mądry|mit_thesis_author_f6e6976976a880d90f6e",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace: M.Eng. 2024-05 'Investigation on ImageNet Remaining Errors with TRAK'; master's",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Armando Solar-Lezama|mit_thesis_author_ecbe4fcb961268ac6de0",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace: M.Eng. 2022-02 'An Interactive Approach to Generating SQL Queries'; master's",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Samuel Madden|mit_thesis_author_361e652799971972c6aa",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace: M.Eng. 2025-05 'Optimizing Partitioning for Efficient Parallel Reads'; master's",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Daniel Jackson|mit_thesis_author_87a4592b9f1c476d4e2e",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace: M.Eng. 2021-06 'Joker: A Unified Interaction Model For Web Customization'; master's",
+   "has_coauthored_paper": false,
+   "linked": false,
+   "screened": true,
+   "batch": "mit-scov-02"
+  },
+  {
+   "ref": "Samuel Madden|mit_thesis_author_f8a233815355c58954cc",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Ophelia Min Zhu: DSpace 5effbba0 is M.Eng. 2024-05 (DARQ thesis), not a doctorate.",
+   "screened": true,
+   "batch": "mit-scov-03"
+  },
+  {
+   "ref": "Bonnie Berger|mit_thesis_author_a1c9c8af8e4bf0d6c5dc",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Derek Jia-Wen Yen: DSpace 9e018b9a is M.Eng. 2024-02, not doctorate.",
+   "screened": true,
+   "batch": "mit-scov-03"
+  },
+  {
+   "ref": "Daniel Freund|mit_thesis_author_8000fdb2bb6dd43f7efc",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Thana Somsirivattana: DSpace 5ddedb75 is M.Eng. 2025-05.",
+   "screened": true,
+   "batch": "mit-scov-03"
+  },
+  {
+   "ref": "Yury Polyanskiy|mit_thesis_author_0897b4d1ba413779b5fc",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Fadi Atieh: DSpace 08475097 is M.Eng. 2022-02.",
+   "screened": true,
+   "batch": "mit-scov-03"
+  },
+  {
+   "ref": "Hamsa Balakrishnan|mit_thesis_author_6405b30c98d566997ec3",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Carson Smith: DSpace b9e11776 is M.Eng. 2022-05.",
+   "screened": true,
+   "batch": "mit-scov-03"
+  },
+  {
+   "ref": "Connor Wilson Coley|mit_thesis_author_f3dc7c0a2e397476482f",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Christopher Karpovich: DSpace 54d31b42 degrees are S.M. (EECS and DMSE), 2023-06, not doctorate.",
+   "screened": true,
+   "batch": "mit-scov-03"
+  },
+  {
+   "ref": "Stephen C. Graves|mit_thesis_author_e1795b9750e7d109e52f",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Joseph Li: DSpace 9443b63d degree code MNG (M.Eng.), 2025-05.",
+   "screened": true,
+   "batch": "mit-scov-03"
+  },
+  {
+   "ref": "Manolis Kellis|mit_thesis_author_4a4c86d1202e3d68b154",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Binwei Yan: DSpace edb924c3 is M.Eng. 2024-05.",
+   "screened": true,
+   "batch": "mit-scov-03"
+  },
+  {
+   "ref": "Justin Reich|mit_thesis_author_3e7cb0c26ea5273a96e6",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Natalie Mionis: DSpace a1d1be86 is M.Eng. 2019.",
+   "screened": true,
+   "batch": "mit-scov-03"
+  },
+  {
+   "ref": "Chuchu Fan|mit_thesis_author_eec3d369ba065875450c",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Rujul Gandhi: DSpace fea2931a is M.Eng. 2023-09.",
+   "screened": true,
+   "batch": "mit-scov-03"
+  },
+  {
+   "ref": "Regina Barzilay|mit_thesis_author_b7c328086299e2fb537c",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Janice Yang: DSpace 5589d524 is M.Eng. 2023-06.",
+   "screened": true,
+   "batch": "mit-scov-03"
+  },
+  {
+   "ref": "YuFeng (Kevin) Chen|mit_thesis_author_8ff934b7a84f22e9ed40",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Meenakshi Singh DSpace 7d43a326 (2026-02) degree M.Eng.; listed as thesis student only.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Martin Wainwright|mit_thesis_author_b8ef935fcd58536e5f4f",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Kakei Yamamoto thesis 3c0fba29 (2026-02) is S.M.; group page only says 'Current graduate students'; no doctorate shown.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Regina Barzilay|mit_thesis_author_a7992b8c4ab6bb8ac256",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Kyle Swanson DSpace 01a0846a (2019) M.Eng. in Computer Science and Engineering.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Nir Shavit|mit_thesis_author_6d754bd048a8c3f32455",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Shashata Sawmya DSpace 411073df (2024-05) degree S.M.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Russ Tedrake|mit_thesis_author_6229a1e11f6f4b1bbde7",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Michelle Tan DSpace 91d38889 (2021-06) M.Eng.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Tomaso Poggio|mit_thesis_author_2ef2a20fb3cf260fe05b",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Robert Xinyu Liang DSpace 63798917 (2019) 'Thesis: M. Eng.'.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Tomaso Poggio|mit_thesis_author_0e03313e68e917520afe",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Timothy G. Henry DSpace b3771ebf (2020) 'Thesis: M. Eng.'.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Anantha Chandrakasan|mit_thesis_author_c1b051f9fa581103288d",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Vipasha Mittal DSpace 6b007582 (2021-06) is S.M.; group page (2021 archive) lists 'Graduate Students' only; no doctorate evidence.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Takehiko Nagakura|mit_thesis_author_26fee9beabfbf93dc9c2",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Jim Peraino DSpace ac6f128e (2020) two S.M. theses (Architecture and EECS).",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Charles Leiserson|mit_thesis_author_f0fb9b350a68ab6124e5",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Amanda Li DSpace ab74b5a9 (2023-02) M.Eng.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Dirk Englund|mit_thesis_author_ea2170bb21795f0269b8",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Cole Brabec DSpace 9b8afb8d (2024-02) S.M.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Sangbae Kim|mit_thesis_author_5ff81dfed44a6a6429b2",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Ethan Chun DSpace 8da1cd93 (2025-09) M.Eng.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Isaac Chuang|mit_thesis_author_416cf4bc472791c3bb17",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Samuel Buercklin DSpace 516d3396 (2019) 'Thesis: S.M. ... EECS'.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Hugh Herr|mit_thesis_author_ec7a0d1ee10e4eada8e7",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Samantha Gutierrez Arango DSpace 7d2f2a6e (2024-05) degree S.M.; no doctorate source.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Dylan Hadfield-Menell|mit_person_4038e2febb5c04c5",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Timothy Kostolansky DSpace 4a6a4759 (2024-05) M.Eng.; team page says 'Master of Engineering student'.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Aude Oliva|mit_thesis_author_59106fb3978f0b0f067f",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Not confirmed PhD: Violetta Jusiega DSpace 4342bf6b (2022-05) M.Eng.",
+   "screened": true,
+   "batch": "mit-scov-04"
+  },
+  {
+   "ref": "Daniela Rus|mit_thesis_author_bd4b6d792838ac49b8d7",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "Stored DSpace item (2022-02) is Master of Engineering in EECS (thesis on grocery packing), not a doctorate.",
+   "screened": true,
+   "batch": "mit-scov-05"
+  },
+  {
+   "ref": "Martin Rinard|mit_thesis_author_83e28d531df562d14c5d",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 2025-09 is Master of Engineering in EECS.",
+   "screened": true,
+   "batch": "mit-scov-05"
+  },
+  {
+   "ref": "Robert Miller|mit_thesis_author_7e5cbaec4c6f3c53cdd0",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 2023-06 is Master of Engineering in EECS (Refactoring Tutor).",
+   "screened": true,
+   "batch": "mit-scov-05"
+  },
+  {
+   "ref": "Yanchong Zheng|mit_thesis_author_02776e75a27e26a253e9",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 2023-06 is MBA + S.M. (EECS), no doctorate.",
+   "screened": true,
+   "batch": "mit-scov-05"
+  },
+  {
+   "ref": "Jonathan P. How|mit_thesis_author_9ae5a16e17ac6a2e6b22",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 2021-09 is S.M. Nuclear Science and Engineering / S.M. EECS, no doctorate stored.",
+   "screened": true,
+   "batch": "mit-scov-05"
+  },
+  {
+   "ref": "Devavrat Shah|mit_thesis_author_9cf921d4504986fb6763",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 2024-05 is S.M. in EECS (Exploiting Observation Bias to Improve Matrix Completion), not a doctorate.",
+   "screened": true,
+   "batch": "mit-scov-05"
+  },
+  {
+   "ref": "Adam Chlipala|mit_thesis_author_7b365b3ca74bc8a8b8fc",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "adam.chlipala.net/past.html entry for Jade Philipoom lists only 'Master's thesis: Correct-by-Construction Finite Field Arithmetic in Coq' (DSpace 2018 M.Eng.); no PhD thesis (unlike Jason Gross, same page). Role 'doctoral_student' is not backed by a doctorate.",
+   "screened": true,
+   "batch": "mit-scov-05"
+  },
+  {
+   "ref": "Samuel Madden|mit_thesis_author_3f800c7b3b0c7f229dcd",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 2025-05 is S.M. Architecture Studies / S.M. EECS (Mapping Informality), no doctorate.",
+   "screened": true,
+   "batch": "mit-scov-05"
+  },
+  {
+   "ref": "Stefanie Mueller|mit_thesis_author_f3dd2b0f267d081aefcc",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 2021-06 is Master of Engineering in EECS (Lenticular Objects); hcie lab page only lists as member.",
+   "screened": true,
+   "batch": "mit-scov-05"
+  },
+  {
+   "ref": "Jacob Andreas|mit_thesis_author_2406f97d2c7c6817329e",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 2022-05 is Master of Engineering in EECS (Synthesizing Object Models).",
+   "screened": true,
+   "batch": "mit-scov-05"
+  },
+  {
+   "ref": "Daniel Weitzner|mit_thesis_author_4a5788addab752f1b2c4",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 2018 is M.Eng. (NetworkDissection thesis), no doctorate.",
+   "screened": true,
+   "batch": "mit-scov-05"
+  },
+  {
+   "ref": "Frederic Durand|mit_thesis_author_fed17ebdbcadd1fab7f9",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 2019 is M.Eng. (multi-label image classification).",
+   "screened": true,
+   "batch": "mit-scov-05"
+  },
+  {
+   "ref": "Dylan Hadfield-Menell|mit_roster_2acaa55d10ad2cc0",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Deepika Raman: DSpace thesis 2024-05 degree 'Master of Science in Technology and Policy'; roster says 'was a graduate student'; no doctorate evidenced",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Max Tegmark|mit_thesis_author_7391f3a432a5b6a4f2cf",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Kantamneni: thesis 2025-05 'Master of Engineering in EECS', not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Michael Stonebraker|mit_thesis_author_4a61cd7afaa6f0b79b92",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Zalewski: thesis 2018 'M.Eng.' (dc.description.degree), not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Aleksander Mądry|mit_thesis_author_2ebe4459499b69ba4730",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Miglani: thesis 2019 'M.Eng.' (mit.thesis.degree Master), not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Joshua Tenenbaum|mit_thesis_author_46a874dbd5fc1a22974a",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Jett Wang: thesis 2024-02 'Master of Engineering in EECS', not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Kent Larson|mit_thesis_author_20dc76893bf2c323862f",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Babio Fernandez: thesis 2021-09 'Master of Science in Media Arts and Sciences', not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Leslie Kaelbling|mit_thesis_author_2fb512605548f0da9ecd",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Feng: thesis 2025-02 'Master of Engineering in EECS', not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Srini Devadas|mit_thesis_author_4d416765f8a85fcd6a4f",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Jun Wan: thesis 2018 'S.M.' (dc.description.degree), not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Vivek F. Farias|mit_thesis_author_dee766d767bca3f955b0",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Wu: thesis 2023-09 'Master of Engineering in EECS', not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Takehiko Nagakura|mit_thesis_author_bdff060a086fa6802b3a",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Yichen Jia: thesis 2020 'S.M.' (Architecture/EECS), not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Pattie Maes|mit_thesis_author_3bba9e5ca6797331aa48",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Yuen: thesis 2020 'M.Eng.' EECS, not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Fadel Adib|mit_thesis_author_82bc2f26164e0e857ab6",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Kuka: thesis 2025-05 'Master of Engineering in EECS', not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Luca Daniel|mit_thesis_author_9f3400c58d03a7201b9d",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Molina: thesis 2024-05 'MS in EECS' + 'Naval Engineer', not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Cynthia Breazeal|mit_thesis_author_a35c05190d7845335f86",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Hussein: thesis 2021-09 'Master of Engineering in EECS', not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Hari Balakrishnan|mit_thesis_author_2bfcdddc591ab3fa674f",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Sussman: thesis 2024-05 'MS in EECS', not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "Kent Larson|mit_thesis_author_0662d1119f23055a2595",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "screened: Kapelonis: thesis 2018 'S.M.' Media Arts and Sciences, not PhD",
+   "screened": true,
+   "batch": "mit-scov-06"
+  },
+  {
+   "ref": "John Fisher|mit_thesis_author_0106604a46e8dd910145",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item bff6f74e: degree S.M. 2023 (Forman), master's not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Hari Balakrishnan|mit_thesis_author_24091821fcc01bc26053",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item ece54859: S.M. 2025 (Noorbakhsh), master's not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Retsef Levi|mit_thesis_author_9af6b491d711560fccaa",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item c5a412d7: M.B.A./S.M. 2021, not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Neil Gershenfeld|mit_thesis_author_dfaea6a67a524be11167",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 601c980b: S.M. 2021 (Read), not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Erik Hemberg|mit_thesis_author_56ca748bd8db170e4623",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 081d904d: M.Eng. 2025 (Tulla Lizardi), not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Yanchong Zheng|mit_thesis_author_94316a82295f09b3621a",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item a319a54b: S.M. in Technology and Policy 2018, not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Thomas W. Malone|mit_thesis_author_c075f3b0bbe28ab8d303",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 43341cfd: M.Eng. 2024, not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Muriel Médard|mit_thesis_author_41c8fb68d3f36a0b3486",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 79e344ae: M.Eng. 2022 (Jaba), not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Aram W. Harrow|mit_thesis_author_1eb118ddb4963d66d0e7",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item a75bbfdc: M.Eng. 2019 (Lin), not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Anantha Chandrakasan|mit_thesis_author_2e7847affaa9285113e5",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 4bcb53dd: S.M. 2021 (Ashok); archived lab page only lists 'Graduate Students', no doctorate shown, so unconfirmed PhD (thin: later role phd tag unsupported)",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Stefanie Jegelka|mit_thesis_author_714ec2b8e3e680ab283e",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 401648f4: M.Eng. 2025 (Goel), not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Erik Hemberg|mit_thesis_author_b4945efddc2ddde78aa8",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 3a8ce276: MNG 2025 (Bhattacharya), not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Patrick Winston|mit_thesis_author_aa96ddec005a698d49be",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 5ba52ebd: M.Eng. 2018 (Barnwell), not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Manish Raghavan|mit_thesis_author_7893e903f5bb20ce3c6a",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 0e48cf37: S.M. 2024 (Lee), not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Bonnie Berger|mit_thesis_author_36e6c3eab952b7c948d1",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item b8f814f2: M.Eng. 2026 (Cui), not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Erik Hemberg|mit_thesis_author_c373fd9df82f6b132f66",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 1aaa2be0: M.Eng. 2021 (Flores), not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  },
+  {
+   "ref": "Hal Abelson|mit_thesis_author_92a227b81dd0375beb6d",
+   "verdict": "correct",
+   "failure_type": null,
+   "reason": "DSpace item 323c8fd2: M.Eng. 2022 (Harkavy), not PhD",
+   "screened": true,
+   "batch": "mit-scov-07"
+  }
+ ],
+ "subset": {
+  "pis": [
+   "Adam Belay",
+   "Adam Chlipala",
+   "Alan Edelman",
+   "Alan Oppenheim",
+   "Alberto Rodriguez",
+   "Aleksander Mądry",
+   "Alessandro Bonatti",
+   "Alex Pentland",
+   "Alexander Rakhlin",
+   "Alexandre Jacquillat",
+   "Alexandre Megretski",
+   "Ali Jadbabaie",
+   "Anand V Natarajan",
+   "Anantha Chandrakasan",
+   "Andreea Bobu",
+   "Andrew Lo",
+   "Ankur Moitra",
+   "Antonio Torralba",
+   "Aram W. Harrow",
+   "Armando Solar-Lezama",
+   "Arvind",
+   "Arvind Satyanarayan",
+   "Ashia Wilson",
+   "Asu Ozdaglar",
+   "Aude Oliva",
+   "Bart Van Parys",
+   "Berthold Horn",
+   "Bonnie Berger",
+   "Boris Katz",
+   "Brian Williams",
+   "Bruce Tidor",
+   "Caroline Uhler",
+   "Catherine D'Ignazio",
+   "Cathy Wu",
+   "Chara Podimata",
+   "Charles G. Sodini",
+   "Charles Leiserson",
+   "Cheng Zhi (Anna) Huang",
+   "Christina Delimitrou",
+   "Christopher Terman",
+   "Chuchu Fan",
+   "Collin Stultz",
+   "Connor Wilson Coley",
+   "Constantinos Daskalakis",
+   "Cynthia Barnhart",
+   "Cynthia Breazeal",
+   "Cynthia Rudin",
+   "César A. Hidalgo",
+   "D. Fox Harrell",
+   "Dana Moshkovitz",
+   "Daniel Freund",
+   "Daniel Huttenlocher",
+   "Daniel Jackson",
+   "Daniel Sanchez",
+   "Daniel Weitzner",
+   "Daniela Rus",
+   "Dara Entekhabi",
+   "David Clark",
+   "David E. Pritchard",
+   "David Gamarnik",
+   "David Gifford",
+   "David Karger",
+   "David Simchi-Levi",
+   "David Sontag",
+   "Dean Eckles",
+   "Deb Roy",
+   "Devavrat Shah",
+   "Dimitris Bertsimas",
+   "Dina Katabi",
+   "Dirk Englund",
+   "Domitilla Del Vecchio",
+   "Dor Minzer",
+   "Drew Fudenberg",
+   "Duane S. Boning",
+   "Duncan Simester",
+   "Dylan Hadfield-Menell",
+   "Edward Gibson",
+   "Elchanan Mossel",
+   "Elfar Adalsteinsson",
+   "Emery N. Brown",
+   "Emilio Frazzoli",
+   "Eric Klopfer",
+   "Erik Demaine",
+   "Erik Hemberg",
+   "Ethan Zuckerman",
+   "Eytan Modiano",
+   "Fadel Adib",
+   "Frederic Durand",
+   "Georgia Perakis",
+   "Gerald Sussman",
+   "Gioele Zardini",
+   "Graham M. Jones",
+   "Gregory Wornell",
+   "Guy Bresler",
+   "H. Harry Asada",
+   "Hae-Seung Lee",
+   "Hal Abelson",
+   "Hamsa Balakrishnan",
+   "Hari Balakrishnan",
+   "Henrik Schmidt",
+   "Henry Corrigan-Gibbs",
+   "Hiroshi Ishii",
+   "Howard Shrobe",
+   "Hugh Herr",
+   "Ian W. Hunter",
+   "Ila Fiete",
+   "Isaac Chuang",
+   "Iyad Rahwan",
+   "Jack Dennis",
+   "Jacob Andreas",
+   "Jacob White",
+   "Jae Lim",
+   "Jaime Peraire",
+   "James B. Orlin",
+   "James J. DiCarlo",
+   "Jas Brooks",
+   "Jean-Jacques Slotine",
+   "Jim Glass",
+   "Jinhua Zhao",
+   "Joel Emer",
+   "John Fisher",
+   "John Guttag",
+   "John J. Horton",
+   "John Leonard",
+   "John Tsitsiklis",
+   "Jonathan Kelner",
+   "Jonathan P. How",
+   "Jonathan Ragan-Kelley",
+   "Joseph A. Paradiso",
+   "Josh H. McDermott",
+   "Joshua Tenenbaum",
+   "Juan Pablo Vielma",
+   "Juanjuan Zhang",
+   "Julian Shun",
+   "Julie Shah",
+   "Justin Reich",
+   "Justin Solomon",
+   "Kaiming He",
+   "Kamal Youcef-Toumi",
+   "Karen E. Willcox",
+   "Karen Sollins",
+   "Kent Larson",
+   "Kevin P. O’Brien",
+   "Konstantin Turitsyn",
+   "Lalana Kagal",
+   "Laurent Demanet",
+   "Leia Stirling",
+   "Leslie Kaelbling",
+   "Li-Shiuan Peh",
+   "Lizhong Zheng",
+   "Luca Carlone",
+   "Luca Daniel",
+   "M. Frans Kaashoek",
+   "Manish Raghavan",
+   "Manolis Kellis",
+   "Manya Ghobadi",
+   "Marta C. González",
+   "Martin Rinard",
+   "Martin Wainwright",
+   "Marzyeh Ghassemi",
+   "Max M. Shulaker",
+   "Max Tegmark",
+   "Mengjia Yan",
+   "Michael Cafarella",
+   "Michael Carbin",
+   "Michael Goemans",
+   "Michael Sipser",
+   "Michael Stonebraker",
+   "Mina Konakovic Lukovic",
+   "Mitchel Resnick",
+   "Mitchell Gordon",
+   "Moe Z. Win",
+   "Mohammad Alizadeh",
+   "Mohsen Ghaffari",
+   "Munther Dahleh",
+   "Muriel Médard",
+   "Nancy G. Leveson",
+   "Nancy Lynch",
+   "Navid Azizan",
+   "Negar Reiskarimian",
+   "Negin Golrezaei",
+   "Neil Gershenfeld",
+   "Neil Thompson",
+   "Neville Hogan",
+   "Nicholas C. Makris",
+   "Nicholas Roy",
+   "Nickolai Zeldovich",
+   "Nike Sun",
+   "Nikolaos Trichakis",
+   "Nir Shavit",
+   "Omar Khattab",
+   "Pablo Parrilo",
+   "Pat Pataranutaporn",
+   "Patrick Jaillet",
+   "Patrick Winston",
+   "Pattie Maes",
+   "Paul I. Barton",
+   "Paul Liang",
+   "Peter Shor",
+   "Peter Szolovits",
+   "Philip Harris",
+   "Philippe Rigollet",
+   "Phillip Isola",
+   "Piotr Indyk",
+   "Polina Golland",
+   "Priya Donti",
+   "Pulkit Agrawal",
+   "Qiqi Wang",
+   "Rachit Nigam",
+   "Rafael Gomez-Bombarelli",
+   "Rahul Mazumder",
+   "Rajeev Ram",
+   "Ramesh Raskar",
+   "Randall Davis",
+   "Regina Barzilay",
+   "Retsef Levi",
+   "Richard D. Braatz",
+   "Richard Linares",
+   "Robert Berwick",
+   "Robert M. Freund",
+   "Robert Miller",
+   "Robert Morris",
+   "Roger Levy",
+   "Roger Mark",
+   "Ron Weiss",
+   "Ronald Rivest",
+   "Ronitt Rubinfeld",
+   "Rosalind Picard",
+   "Roy E. Welsch",
+   "Ruonan Han",
+   "Russ Tedrake",
+   "Ruth Rosenholtz",
+   "Ryan Williams",
+   "Sam Hopkins",
+   "Saman Amarasinghe",
+   "Samuel Madden",
+   "Sangbae Kim",
+   "Sanjay E. Sarma",
+   "Sara Beery",
+   "Saurabh Amin",
+   "Scott Aaronson",
+   "Sendhil Mullainathan",
+   "Sertac Karaman",
+   "Seth Lloyd",
+   "Shafrira Goldwasser",
+   "Silvio Micali",
+   "Sinan Aral",
+   "Song Han",
+   "Srini Devadas",
+   "Stefanie Jegelka",
+   "Stefanie Mueller",
+   "Stephen Bates",
+   "Stephen C. Graves",
+   "Steven Leeb",
+   "Suvrit Sra",
+   "Takehiko Nagakura",
+   "Tamara Broderick",
+   "Tauhid Zaman",
+   "Ted Adelson",
+   "Tess Smidt",
+   "Themistoklis P. Sapsis",
+   "Thodoris Lykouris",
+   "Thomas Magnanti",
+   "Thomas W. Malone",
+   "Tim Berners-Lee",
+   "Tim Kraska",
+   "Tomaso Poggio",
+   "Tommi Jaakkola",
+   "Tomás Lozano-Pérez",
+   "Una-May O'Reilly",
+   "Victor Zue",
+   "Vikash Mansinghka",
+   "Vincent Chan",
+   "Vincent Sitzmann",
+   "Vinod Vaikuntanathan",
+   "Virginia Vassilevska Williams",
+   "Vivek F. Farias",
+   "Vivienne Sze",
+   "William D. Oliver",
+   "William Freeman",
+   "Wojciech Matusik",
+   "Yael Kalai",
+   "Yanchong Zheng",
+   "Yoon Kim",
+   "Youssef Marzouk",
+   "YuFeng (Kevin) Chen",
+   "Yufei Zhao",
+   "Yury Polyanskiy",
+   "Zana Bucinca"
+  ],
+  "n_pis": 289,
+  "files": {
+   "pis.json": "ebea2e68d9f88633af972ae241f3d9a2fe0271d2974846d9c9192320792448d0",
+   "students.json": "0b91a4a8247974903b7812c3eb61fddd067fd6baf1c61e706005bb623ce013b9",
+   "lab_papers.jsonl.gz": "b7c54f0bbb72754bf7a0b887e45e4d0b4950d3c577a4f7fd895623f5ab5c9ce9",
+   "student_papers.jsonl.gz": "9c4fe273c956baa34e966ab8f1263ce36a3163d7953ad6f49d698f831233159c",
+   "copies.json": "5e18cdbf92f5df8ae8b8c86c23deedbcc7a34b5f28d93a863b4dd28f208d009f"
+  },
+  "included_sha": "5b22f401eebd6c66a970c84ba41b6fb6f243e3333892f132422a3a0b5af1a999",
+  "projection_version": 1,
+  "held": [],
+  "carried_forward": {
+   "lab_paper": 53,
+   "student": 13,
+   "student_paper": 113
+  },
+  "files_now": {
+   "pis.json": "ebea2e68d9f88633af972ae241f3d9a2fe0271d2974846d9c9192320792448d0",
+   "students.json": "0b91a4a8247974903b7812c3eb61fddd067fd6baf1c61e706005bb623ce013b9",
+   "lab_papers.jsonl.gz": "b7c54f0bbb72754bf7a0b887e45e4d0b4950d3c577a4f7fd895623f5ab5c9ce9",
+   "student_papers.jsonl.gz": "9c4fe273c956baa34e966ab8f1263ce36a3163d7953ad6f49d698f831233159c",
+   "copies.json": "5e18cdbf92f5df8ae8b8c86c23deedbcc7a34b5f28d93a863b4dd28f208d009f"
+  }
+ },
+ "population": {
+  "n_lab_papers": 23185,
+  "n_student_papers": 20278,
+  "n_coverage_pool": 12282,
+  "n_student_candidates": 2419
+ },
+ "round": {
+  "id": "pi2b",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  }
+ }
+}

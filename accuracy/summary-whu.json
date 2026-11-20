@@ -1,0 +1,179 @@
+{
+ "school": "whu",
+ "date": "2026-11-19",
+ "seed": 20261120272853445,
+ "n_verdicts": 124,
+ "files": {
+  "pis.json": "cae2b98f430866215695ae19078dc915cb2b208dd4b6767f8231026054236c91",
+  "students.json": "1cc7641f54e942db91e8fec4bbb1d98a78fa8c94298bd64a69d37615801b6e6f",
+  "lab_papers.jsonl.gz": "c0834905867d94abb200b294f9ff4b94506eb69288569d2243522f6d2383eba2",
+  "student_papers.jsonl.gz": "12ff67bf597aaaa2ab6308a5dd272a2f8d82d5e3c3a0e8ccd3158f4fe844a034",
+  "copies.json": "e06f78556d51c18780b23e3eb4968552a9c9da30a6450038696d420c237d92a7"
+ },
+ "files_now": {
+  "pis.json": "cae2b98f430866215695ae19078dc915cb2b208dd4b6767f8231026054236c91",
+  "students.json": "1cc7641f54e942db91e8fec4bbb1d98a78fa8c94298bd64a69d37615801b6e6f",
+  "lab_papers.jsonl.gz": "c0834905867d94abb200b294f9ff4b94506eb69288569d2243522f6d2383eba2",
+  "student_papers.jsonl.gz": "12ff67bf597aaaa2ab6308a5dd272a2f8d82d5e3c3a0e8ccd3158f4fe844a034",
+  "copies.json": "e06f78556d51c18780b23e3eb4968552a9c9da30a6450038696d420c237d92a7"
+ },
+ "lab_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 4,
+   "n": 4,
+   "p": 1.0,
+   "lo": 0.5101,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 59,
+  "n": 59,
+  "p": 1.0,
+  "lo": 0.9389,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 2,
+   "n": 2,
+   "p": 1.0,
+   "lo": 0.3424,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 13,
+   "n": 13,
+   "p": 1.0,
+   "lo": 0.7719,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": null,
+ "lab_coverage_items": {
+  "drawn": 0,
+  "true_lab_papers": 0,
+  "not_lab_papers_absent": 0,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {},
+ "incorrect": [],
+ "unclear": [],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "董性平",
+   "袁志勇",
+   "谢晓园"
+  ],
+  "n_pis": 3,
+  "files": {
+   "pis.json": "cae2b98f430866215695ae19078dc915cb2b208dd4b6767f8231026054236c91",
+   "students.json": "1cc7641f54e942db91e8fec4bbb1d98a78fa8c94298bd64a69d37615801b6e6f",
+   "lab_papers.jsonl.gz": "c0834905867d94abb200b294f9ff4b94506eb69288569d2243522f6d2383eba2",
+   "student_papers.jsonl.gz": "12ff67bf597aaaa2ab6308a5dd272a2f8d82d5e3c3a0e8ccd3158f4fe844a034",
+   "copies.json": "e06f78556d51c18780b23e3eb4968552a9c9da30a6450038696d420c237d92a7"
+  },
+  "included_sha": "81fd522b62edf8a088964d3c666c682de4c8f0a900de4ac242673f6aad40b1aa",
+  "projection_version": 1,
+  "held": [
+   [
+    "谢晓园",
+    "ext:whu:xiaoxu-niu"
+   ],
+   [
+    "谢晓园",
+    "ext:whu:zhenyu-wan"
+   ],
+   [
+    "谢晓园",
+    "ext:whu:zhou-zou"
+   ],
+   [
+    "谢晓园",
+    "ext:whu:zishuai-li"
+   ]
+  ],
+  "carried_forward": {},
+  "files_now": {
+   "pis.json": "cae2b98f430866215695ae19078dc915cb2b208dd4b6767f8231026054236c91",
+   "students.json": "1cc7641f54e942db91e8fec4bbb1d98a78fa8c94298bd64a69d37615801b6e6f",
+   "lab_papers.jsonl.gz": "c0834905867d94abb200b294f9ff4b94506eb69288569d2243522f6d2383eba2",
+   "student_papers.jsonl.gz": "12ff67bf597aaaa2ab6308a5dd272a2f8d82d5e3c3a0e8ccd3158f4fe844a034",
+   "copies.json": "e06f78556d51c18780b23e3eb4968552a9c9da30a6450038696d420c237d92a7"
+  }
+ },
+ "population": {
+  "n_lab_papers": 108,
+  "n_student_papers": 82,
+  "n_coverage_pool": 0,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 59,
+   "student_precision": 65,
+   "lab_coverage": 0,
+   "student_coverage": 0
+  }
+ }
+}

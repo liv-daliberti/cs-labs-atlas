@@ -1,0 +1,301 @@
+{
+ "school": "mit",
+ "date": "2026-11-13",
+ "seed": 20261113,
+ "n_verdicts": 230,
+ "files": {
+  "pis.json": "252abf44be5600e04744eee21213dce8e5e19e6e4c57cea2b8a951f3a3fbbdfc",
+  "students.json": "0e8dfefae040e1b5b8aeb8cbbf9038d89c75264d61408072529b14bb983356cf",
+  "lab_papers.jsonl.gz": "3673399da6f0e2c8645192aa92964596dc6897404944385c935acf882e9124be",
+  "student_papers.jsonl.gz": "cf046379f127e11be87b19b96553372144470356d87d7a84b45780cfa69c0d63",
+  "copies.json": "d8bb9053a8b99ba1d69f3d755ff60830d620dee52a89d5f149ea9c86163c274d"
+ },
+ "files_now": {
+  "pis.json": "252abf44be5600e04744eee21213dce8e5e19e6e4c57cea2b8a951f3a3fbbdfc",
+  "students.json": "0e8dfefae040e1b5b8aeb8cbbf9038d89c75264d61408072529b14bb983356cf",
+  "lab_papers.jsonl.gz": "3673399da6f0e2c8645192aa92964596dc6897404944385c935acf882e9124be",
+  "student_papers.jsonl.gz": "cf046379f127e11be87b19b96553372144470356d87d7a84b45780cfa69c0d63",
+  "copies.json": "d8bb9053a8b99ba1d69f3d755ff60830d620dee52a89d5f149ea9c86163c274d"
+ },
+ "lab_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 64,
+  "n": 65,
+  "p": 0.9846,
+  "lo": 0.9179,
+  "hi": 0.9973,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 45,
+  "n": 45,
+  "p": 1.0,
+  "lo": 0.9213,
+  "hi": 1.0
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 45,
+  "not_lab_papers_absent": 2,
+  "not_lab_papers_in_build": 1
+ },
+ "student_coverage": {
+  "k": 30,
+  "n": 31,
+  "p": 0.9677,
+  "lo": 0.8381,
+  "hi": 0.9943
+ },
+ "student_coverage_items": {
+  "drawn": 50,
+  "no_coauthored_paper": 19
+ },
+ "failures": {
+  "not_a_paper": 2,
+  "student_not_linked": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Vivienne Sze|conf/isscc/LimBS21",
+   "failure_type": "not_a_paper",
+   "reason": "Session overview (front matter) present in build",
+   "policy": null
+  },
+  {
+   "sample": "student_coverage",
+   "stratum": "thesis_advisee_phd_ge_2018",
+   "item": "Joshua Tenenbaum|mit_thesis_author_ef6287f3bd814902467e",
+   "failure_type": "student_not_linked",
+   "reason": "Riya Arora: PI DBLP shows 1 co-authored but 0 linked, 0 in lab",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "advisee_unaffiliated",
+   "item": "Dirk Englund|None|https://openalex.org/W3016568604",
+   "failure_type": "not_a_paper",
+   "reason": "APS record 2019, no DOI, no venue: Bulletin of APS (March Meeting) abstract style; meeting_abstract policy",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_coverage",
+   "item": "Asu Ozdaglar|conf/icml/Xiao0LO24",
+   "reason": "OA lists Ozdaglar at Univ. of Pennsylvania on the arXiv preprint (likely affiliation mislabel; she is MIT faculty); cannot decide from evidence"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Ramesh Raskar|conf/amia/GharibiGVADKR22",
+   "reason": "No OpenAlex match; no affiliation evidence for Raskar on this TripleBlind-led paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Alan Edelman|mit_thesis_author_82f8c71cf171179e0c87",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Alan Edelman|mit_thesis_author_50eec579aa67681ea48b",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Eric Klopfer|mit_thesis_author_9e40d23773385c985bf1",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Justin Reich|mit_thesis_author_60a5214e66e0acc324d8",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Hal Abelson|mit_thesis_author_ee3d8f4cbfab64665b43",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Vincent Chan|mit_thesis_author_d2dedd052365a88f25b2",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "M. Frans Kaashoek|mit_thesis_author_94482a5190124679388e",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Charles Leiserson|mit_thesis_author_f0fb9b350a68ab6124e5",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Peter Szolovits|mit_thesis_author_941d9cc1bb3fde30e7c3",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Yanchong Zheng|mit_thesis_author_36989c2ae11644121d19",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Howard Shrobe|mit_thesis_author_f136a4df8b6f7980c17f",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Caroline Uhler|mit_thesis_author_93dd7579e108d7e208c4",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Jae Lim|mit_thesis_author_2dd89d1373399b118a93",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Eric Klopfer|mit_thesis_author_a90145307be60d8880ef",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Yoon Kim|mit_thesis_author_b95d960d5b90f9d76776",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Manish Raghavan|mit_thesis_author_a50c8cd6e74dbe6908c1",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Samuel Madden|mit_thesis_author_e0dc884632bc506614fe",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Duane S. Boning|mit_thesis_author_8abbaf5fa63e3cb3680b",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Constantinos Daskalakis|mit_thesis_author_b985195d8dc9e37b6afb",
+   "reason": "no coauthored paper"
+  }
+ ],
+ "screened": [
+  {
+   "school": "mit",
+   "item": "Charles Leiserson|mit_thesis_author_3f11a2807d9efeacb7f5",
+   "reason": "Elizabeth Zou: role 'MEng advisee' (not a PhD)"
+  }
+ ],
+ "population": {
+  "n_lab_papers": 22997,
+  "n_student_papers": 21163,
+  "n_coverage_pool": 13167,
+  "n_student_candidates": 2419
+ },
+ "round": {
+  "id": "r3",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  }
+ }
+}

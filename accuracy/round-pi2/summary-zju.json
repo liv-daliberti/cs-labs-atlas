@@ -1,0 +1,285 @@
+{
+ "school": "zju",
+ "date": "2026-11-19",
+ "seed": 202611191968,
+ "n_verdicts": 175,
+ "files": {
+  "pis.json": "840ec2d2411312d471759315613e3ea2073a3912cdf7e9e15ba891015b197797",
+  "students.json": "b7f3572d9eee492430d31370e6d22d62bb064d6995e6a1f7efe02e93af2a69ac",
+  "lab_papers.jsonl.gz": "dc0e13278e9230172ed4afe21ee52d4e639fdf1965c3364f830700d1d6a7a038",
+  "student_papers.jsonl.gz": "28513c57925b1d8b11c0f3950896fc854b8c4f2e129df885d46b89bd8589e979",
+  "copies.json": "2f17f4415dfd14d7b2c4f421ed193f54ed87ab5fcbc0b74e1cc8513e8d9d52a2"
+ },
+ "files_now": {
+  "pis.json": "840ec2d2411312d471759315613e3ea2073a3912cdf7e9e15ba891015b197797",
+  "students.json": "b7f3572d9eee492430d31370e6d22d62bb064d6995e6a1f7efe02e93af2a69ac",
+  "lab_papers.jsonl.gz": "dc0e13278e9230172ed4afe21ee52d4e639fdf1965c3364f830700d1d6a7a038",
+  "student_papers.jsonl.gz": "28513c57925b1d8b11c0f3950896fc854b8c4f2e129df885d46b89bd8589e979",
+  "copies.json": "2f17f4415dfd14d7b2c4f421ed193f54ed87ab5fcbc0b74e1cc8513e8d9d52a2"
+ },
+ "lab_precision_uniform": {
+  "k": 47,
+  "n": 49,
+  "p": 0.9592,
+  "lo": 0.8629,
+  "hi": 0.9887,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 47,
+  "n": 49,
+  "p": 0.9592,
+  "lo": 0.8629,
+  "hi": 0.9887,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 56,
+  "n": 59,
+  "p": 0.9492,
+  "lo": 0.8608,
+  "hi": 0.9826,
+  "unclear": 1
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 2,
+   "n": 2,
+   "p": 1.0,
+   "lo": 0.3424,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 13,
+   "n": 13,
+   "p": 1.0,
+   "lo": 0.7719,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 43,
+  "n": 48,
+  "p": 0.8958,
+  "lo": 0.7783,
+  "hi": 0.9547
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 48,
+  "not_lab_papers_absent": 2,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "namesake": 2,
+  "not_at_school": 1,
+  "missing_from_build": 5
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "王锐|None|https://openalex.org/W3133366231",
+   "failure_type": "namesake",
+   "reason": "R. Wang is a Postdoctoral Researcher at ZJUI (Haining) on Glubam bamboo civil engineering (J. Materials in Civil Eng., coauthor Y. Xiao); not CAD&CG PI Rui Wang; not on PI DBLP",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "鲍虎军|None|https://openalex.org/W4360618784",
+   "failure_type": "not_at_school",
+   "reason": "PI authorship credited only to Zhejiang Lab (raw affiliations 'Zhejiang Lab Hangzhou 311121'); school credit comes only from coauthors (cross-affiliated byline)",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "identity_not_reviewed",
+   "item": "王锐|None|https://openalex.org/W4281621800",
+   "failure_type": "namesake",
+   "reason": "Energies 2022 deep-sea oil-filled motor paper; aff 'College of Electrical Engineering, ZJU' with EE coauthor Youtong Fang; PI Wang Rui is CAD&CG graphics, not on dblp (onPIdblp=no): different Rui Wang",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "陈为|journals/tist/LiuHZZXC22",
+   "failure_type": "missing_from_build",
+   "reason": "Stored OpenAlex W4224211339 (doi 10.1145/3527622, 2022): Wei Chen, Yijing Liu, Dongming Han, Haiyang Zhu etc. all carry 'State Key Laboratory of CAD and CG, Hangzhou' (ZJU's lab; same group as other in-build CAD&CG papers), within PI period; research article. Not in lab_papers (no title/doi hit) -> missing.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "鲍虎军|conf/iccv/Yang0XLZB0C21",
+   "failure_type": "missing_from_build",
+   "reason": "Stored OpenAlex W3204326360 (doi 10.1109/iccv48922.2021.01352, 2021): Hujun Bao, Guofeng Zhang, Zhaopeng Cui, Bangbang Yang all 'State Key Lab of CAD&CG' (ZJU); research paper in PI period; no lab_papers row for title/doi -> missing.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "鲍虎军|conf/nips/HeSWHBZ22",
+   "failure_type": "missing_from_build",
+   "reason": "arXiv 2301.07673 page-1 (pi-works pages, status ok_untied) lists Zhejiang University for Xingyi He, Yuang Wang, Hujun Bao, Xiaowei Zhou; NeurIPS 2022 research paper, Bao is an author; lab_papers has only OnePose (CVPR22), not OnePose++ -> missing.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "章国锋|conf/nips/YeJ00HZOHZ024",
+   "failure_type": "missing_from_build",
+   "reason": "DiffPano NeurIPS 2024 (arXiv 2410.24203): not in build; OpenAlex NeurIPS record has no affiliations, but sibling DiffPano++ (W7134047812, same authors) names Guofeng Zhang and Weicai Ye at 'State Key Laboratory of CAD and CG, Zhejiang University'; PI period 2007- covers 2024; research paper -> true lab paper absent (evidence thin: no direct affiliation on the NeurIPS record)",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "周晓巍|conf/nips/GuoPYMSBZ23",
+   "failure_type": "missing_from_build",
+   "reason": "Compact Neural Volumetric Video Representations NeurIPS 2023: not in build; stored OpenAlex W7133220945 has no institutions, but coauthors Hujun Bao, Sida Peng, Xiaowei Zhou are ZJU CAD&CG lab members (build holds their ZJU-affiliated papers, e.g. ICCV 2021 W3202804820) and PI period 2018- covers 2023; research paper -> likely true lab paper absent (evidence thin: no direct affiliation stored)",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "金小刚|None|https://openalex.org/W3111105313",
+   "reason": "DOUBTFUL: OpenAlex authorship A5015279307 raw affiliation names State Key Lab of CAD & CG, Zhejiang University, but a 14-author collagen-mineralization/materials paper (Nanoscale, Ruikang Tang group) is far from Jin's CAD&CG field; byline_school lists all authors; not on PI DBLP; identity unsettled"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "陈为|conf/nips/LiuDPLL024",
+   "reason": "DOUBTFUL: No stored OpenAlex/page-1 row for this NeurIPS 2024 paper; Yijing Liu 0003 is Wei Chen's ZJU CAD&CG student (TIST 2022, DTCR 2025 in build) but co-authors Pang/Lin are Sea AI Lab and Wei Chen's affiliation on this paper is not in stored evidence; cannot confirm ZJU vs namesake."
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "何晓飞",
+   "何水兵",
+   "冯结青",
+   "刘忠鑫",
+   "刘玉生",
+   "卢立",
+   "吴超",
+   "吴鸿智",
+   "周昆",
+   "周晓巍",
+   "夏鑫",
+   "姚培森",
+   "崔兆鹏",
+   "巫英才",
+   "李明",
+   "李晓白",
+   "李松",
+   "李玺",
+   "林峰",
+   "沈春华",
+   "王新宇",
+   "王章野",
+   "王锐",
+   "章国锋",
+   "蓝磊",
+   "蔡登",
+   "蔺宏伟",
+   "许威威",
+   "邹强",
+   "郑友怡",
+   "金小刚",
+   "陈为",
+   "陈明帅",
+   "陶煜波",
+   "霍宇驰",
+   "顾实",
+   "高艺",
+   "魏成坤",
+   "鲍虎军"
+  ],
+  "n_pis": 39,
+  "files": {
+   "pis.json": "840ec2d2411312d471759315613e3ea2073a3912cdf7e9e15ba891015b197797",
+   "students.json": "b7f3572d9eee492430d31370e6d22d62bb064d6995e6a1f7efe02e93af2a69ac",
+   "lab_papers.jsonl.gz": "dc0e13278e9230172ed4afe21ee52d4e639fdf1965c3364f830700d1d6a7a038",
+   "student_papers.jsonl.gz": "28513c57925b1d8b11c0f3950896fc854b8c4f2e129df885d46b89bd8589e979",
+   "copies.json": "2f17f4415dfd14d7b2c4f421ed193f54ed87ab5fcbc0b74e1cc8513e8d9d52a2"
+  },
+  "included_sha": "8fb3691b96925f1316dd3d5a8a7d8be9035ddd7001e0ff1acfc684d7e690fa8e",
+  "files_now": {
+   "pis.json": "840ec2d2411312d471759315613e3ea2073a3912cdf7e9e15ba891015b197797",
+   "students.json": "b7f3572d9eee492430d31370e6d22d62bb064d6995e6a1f7efe02e93af2a69ac",
+   "lab_papers.jsonl.gz": "dc0e13278e9230172ed4afe21ee52d4e639fdf1965c3364f830700d1d6a7a038",
+   "student_papers.jsonl.gz": "28513c57925b1d8b11c0f3950896fc854b8c4f2e129df885d46b89bd8589e979",
+   "copies.json": "2f17f4415dfd14d7b2c4f421ed193f54ed87ab5fcbc0b74e1cc8513e8d9d52a2"
+  },
+  "rebound_to_held_aware": {
+   "held_links": 105,
+   "reason": "draw predates held-aware hashing; pre-hold package identical, no drawn row is held"
+  }
+ },
+ "population": {
+  "n_lab_papers": 1899,
+  "n_student_papers": 104,
+  "n_coverage_pool": 1370,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 60,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

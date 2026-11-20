@@ -1,0 +1,206 @@
+{
+ "school": "hit",
+ "date": "2026-11-19",
+ "seed": 20261120272853445,
+ "n_verdicts": 110,
+ "files": {
+  "pis.json": "35f98e977fe3e484e45e4b21c9eeca91e1fb17e96112a97d1753d481691ecec9",
+  "students.json": "eb04f61978d02a2d3ffeeaf1b368ba020c9f0faf5c762416bfc24fc9781b99c2",
+  "lab_papers.jsonl.gz": "17c0e95d3cbac62a5db3f0b07f09024d3b4a425108f252d1f51138282bca615a",
+  "student_papers.jsonl.gz": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "copies.json": "43f990e57c737eb01d6a42336368d15cde1ac268dccb84bb0da3fae5c29af035"
+ },
+ "files_now": {
+  "pis.json": "35f98e977fe3e484e45e4b21c9eeca91e1fb17e96112a97d1753d481691ecec9",
+  "students.json": "eb04f61978d02a2d3ffeeaf1b368ba020c9f0faf5c762416bfc24fc9781b99c2",
+  "lab_papers.jsonl.gz": "17c0e95d3cbac62a5db3f0b07f09024d3b4a425108f252d1f51138282bca615a",
+  "student_papers.jsonl.gz": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "copies.json": "43f990e57c737eb01d6a42336368d15cde1ac268dccb84bb0da3fae5c29af035"
+ },
+ "lab_precision_uniform": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 59,
+  "n": 59,
+  "p": 1.0,
+  "lo": 0.9389,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "student_precision_uniform": {
+  "unclear": 0
+ },
+ "student_precision_strata": {},
+ "student_precision_all40": {
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 35,
+  "n": 35,
+  "p": 1.0,
+  "lo": 0.9011,
+  "hi": 1.0
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 35,
+  "not_lab_papers_absent": 9,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {},
+ "incorrect": [],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "王宏志|None|https://openalex.org/W7202251729",
+   "reason": "DOUBTFUL: ICDE 2026 10.1109/icde65706.2026.00351 title ends '(Extended Abstract)' (short summary of a published journal paper); HIT aff and PI Hongzhi Wang fine, but research-output status unclear from stored data"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "邹兆年|journals/pr/ZhaoZZ26",
+   "reason": "DOUBTFUL: Zou is HIT-affiliated (OpenAlex W4415083358 'School of Computer Science and Technology, Harbin Institute of Technology') but OpenAlex publication_date 2025-10-11 (patcog.2025.112591, online 2025) while DBLP year is 2026; listings only 2018 and 2026, so build excludes it as outside_appointment_2025 per window policy. Real HIT work, year boundary undecidable from stored evidence."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "刘鹏|journals/tmm/LiuLZT18",
+   "reason": "DOUBTFUL: HIT authors (Peng Liu raw affil 'Department of Computer Science, Harbin Institute of Technology', OpenAlex W2761592212) but publication_date 2017-10-06 (online) vs DBLP year 2018 (TMM vol 20); only 2018 and 2026 are evidenced listing years so build drops it as outside_appointment_2017. Boundary, undecidable."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "刘鹏|journals/tnn/XiaoZYXZLWB26",
+   "reason": "DOUBTFUL: Peng Liu raw affil 'Harbin Institute of Technology, Harbin, China' (OpenAlex W4415178611) but publication_date 2025-10-14 (tnnls.2025.3613857) vs DBLP year 2026; 2025 has no listing so build excludes. Real HIT work, year boundary undecidable."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "董剑|journals/tcad/HanWDWLQ26",
+   "reason": "DOUBTFUL: Jian Dong raw affil 'School of Computer Science and Technology, Harbin Institute of Technology' (OpenAlex W4414165726) but publication_date 2025-09-09 (tcad.2025.3608002) vs DBLP year 2026; 2025 not a listing year so build excludes (outside_appointment_2025). Boundary, undecidable."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "王宏志|journals/eswa/XuHWW26",
+   "reason": "DOUBTFUL: True HIT paper (raw aff 'School of CS and Technology, HIT, Harbin', 10.1016/j.eswa.2025.128870) but OpenAlex pub date 2025-07-15 (DBLP volume year 2026); PI listings only 2018 and 2026, no period, so 2025 is outside any evidenced year and the build excludes it (NO). Whether it is a lab paper depends on year handling; stored evidence cannot settle."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "王宏志|journals/tkde/ZhangWLLYLG26",
+   "reason": "DOUBTFUL: True HIT paper (raw aff 'Harbin Institute of Technology, Harbin, China', 10.1109/tkde.2025.3638845) but OpenAlex pub date 2025-11-28 (DBLP year 2026); listings only 2018 and 2026, so 2025 unevidenced and build excludes it (NO). Year-handling question; stored evidence cannot settle."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "程思瑶|journals/ijon/RenCLC26",
+   "reason": "DOUBTFUL: Not in build and not in the HIT OpenAlex sweep, so no stored HIT affiliation for Siyao Cheng on 10.1016/j.neucom.2026.133437 (Ren, Cheng, Li, C.L.P. Chen); topic (federated learning) fits PI but affiliation unverifiable from stored data."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "武小荷|journals/eswa/ChenYLWGD26",
+   "reason": "DOUBTFUL: True HIT paper (Xiaohe Wu raw aff 'School of Computing, HIT, Harbin', 10.1016/j.eswa.2025.130605) but OpenAlex pub date 2025-12-09 (DBLP year 2026); PI listing only 2026, so 2025 unevidenced and build excludes it (NO). Year-handling question; stored evidence cannot settle."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "聂兰顺|conf/acl/YeLYHNYZ26",
+   "reason": "DOUBTFUL: Not in build, DOI 10.18653/v1/2026.findings-acl.630 and title 'MemWeaver' absent from HIT OpenAlex sweep and cache, so Lanshun Nie's affiliation on it is not stored; plausible HIT paper (same coauthor Xue Li 0011 as the in-build SIGIR paper) but unverifiable."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "聂兰顺|journals/tiot/FanNZDGL26",
+   "reason": "DOUBTFUL: True HIT paper (Lanshun Nie raw aff 'Harbin Institute of Technology', 10.1145/3772083) but OpenAlex pub date 2025-10-17 (DBLP year 2026); PI listing only 2026, so 2025 unevidenced and build excludes it (NO). Year-handling question; stored evidence cannot settle."
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "刘宏伟",
+   "刘鹏",
+   "李治军",
+   "武小荷",
+   "汪国华",
+   "王亚东",
+   "王宏志",
+   "程思瑶",
+   "聂兰顺",
+   "胡杨",
+   "董剑",
+   "邹兆年"
+  ],
+  "n_pis": 12,
+  "files": {
+   "pis.json": "35f98e977fe3e484e45e4b21c9eeca91e1fb17e96112a97d1753d481691ecec9",
+   "students.json": "eb04f61978d02a2d3ffeeaf1b368ba020c9f0faf5c762416bfc24fc9781b99c2",
+   "lab_papers.jsonl.gz": "17c0e95d3cbac62a5db3f0b07f09024d3b4a425108f252d1f51138282bca615a",
+   "student_papers.jsonl.gz": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "copies.json": "43f990e57c737eb01d6a42336368d15cde1ac268dccb84bb0da3fae5c29af035"
+  },
+  "included_sha": "0e522b91b8a9cf088ce4e1222876da187687bcfcf68aca6c239e3648f827794d",
+  "projection_version": 1,
+  "held": [],
+  "carried_forward": {},
+  "files_now": {
+   "pis.json": "35f98e977fe3e484e45e4b21c9eeca91e1fb17e96112a97d1753d481691ecec9",
+   "students.json": "eb04f61978d02a2d3ffeeaf1b368ba020c9f0faf5c762416bfc24fc9781b99c2",
+   "lab_papers.jsonl.gz": "17c0e95d3cbac62a5db3f0b07f09024d3b4a425108f252d1f51138282bca615a",
+   "student_papers.jsonl.gz": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "copies.json": "43f990e57c737eb01d6a42336368d15cde1ac268dccb84bb0da3fae5c29af035"
+  }
+ },
+ "population": {
+  "n_lab_papers": 220,
+  "n_student_papers": 0,
+  "n_coverage_pool": 106,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 60,
+   "student_precision": 0,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

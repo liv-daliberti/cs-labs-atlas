@@ -1,0 +1,296 @@
+{
+ "school": "princeton",
+ "date": "2026-11-13",
+ "seed": 20261113,
+ "n_verdicts": 230,
+ "files": {
+  "pis.json": "125882b783f6ee5d6948841ee42d770126b41447896c182dca0d420debebdbd0",
+  "students.json": "7b35f9b5ade50a2aa609119081e9fa3991cd1106aa21657741e19aba752f4767",
+  "lab_papers.jsonl.gz": "7080e4e37d20e9b7e86258053a2537397da9e274a3492ce9990fc378eaa1288a",
+  "student_papers.jsonl.gz": "cba4beb13117bb48b6f8f89f32b9fd048ac474b347499837582f18ee51b76957",
+  "copies.json": "32419d2c08583c63641835ee1f08d1beb48118cb25408b0a87d75702a9bf4b3d"
+ },
+ "files_now": {
+  "pis.json": "125882b783f6ee5d6948841ee42d770126b41447896c182dca0d420debebdbd0",
+  "students.json": "7b35f9b5ade50a2aa609119081e9fa3991cd1106aa21657741e19aba752f4767",
+  "lab_papers.jsonl.gz": "7080e4e37d20e9b7e86258053a2537397da9e274a3492ce9990fc378eaa1288a",
+  "student_papers.jsonl.gz": "cba4beb13117bb48b6f8f89f32b9fd048ac474b347499837582f18ee51b76957",
+  "copies.json": "32419d2c08583c63641835ee1f08d1beb48118cb25408b0a87d75702a9bf4b3d"
+ },
+ "lab_precision_uniform": {
+  "k": 48,
+  "n": 49,
+  "p": 0.9796,
+  "lo": 0.8931,
+  "hi": 0.9964,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 48,
+  "n": 49,
+  "p": 0.9796,
+  "lo": 0.8931,
+  "hi": 0.9964,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 63,
+  "n": 64,
+  "p": 0.9844,
+  "lo": 0.9167,
+  "hi": 0.9972,
+  "unclear": 1
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 44,
+  "n": 47,
+  "p": 0.9362,
+  "lo": 0.8284,
+  "hi": 0.9781
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 47,
+  "not_lab_papers_absent": 2,
+  "not_lab_papers_in_build": 1
+ },
+ "student_coverage": {
+  "k": 41,
+  "n": 42,
+  "p": 0.9762,
+  "lo": 0.8768,
+  "hi": 0.9958
+ },
+ "student_coverage_items": {
+  "drawn": 50,
+  "no_coauthored_paper": 8
+ },
+ "failures": {
+  "not_a_paper": 2,
+  "student_not_linked": 1,
+  "missing_from_build": 3
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Nicholas B. Turk-Browne|paper_3540245ddc99d42ec247|https://openalex.org/W2568274002",
+   "failure_type": "not_a_paper",
+   "reason": "policy: meeting_abstract; Journal of Vision 16(12):1429 is a VSS meeting abstract",
+   "policy": null
+  },
+  {
+   "sample": "student_coverage",
+   "stratum": "thesis_advisee_phd_ge_2018",
+   "item": "Wyatt Lloyd|member_b8ec3c00906cc8be0b2a",
+   "failure_type": "student_not_linked",
+   "reason": "PhD student; DBLP co-authored paper with PI but student not linked",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Danqi Chen|journals/tmlr/AnwarSRPTHLJCSE24",
+   "failure_type": "missing_from_build",
+   "reason": "Research/agenda paper with Danqi Chen as author, Princeton faculty since 2019; OA copies carry no affiliation so the sweep missed it",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Tom Griffiths|conf/cogsci/KrafftG18",
+   "failure_type": "missing_from_build",
+   "reason": "CogSci 2018 paper by Griffiths (Princeton from 2018); OA record has no affiliation data so not matched to Princeton",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Maria Chudnovsky|journals/jcta/ChudnovskyN20",
+   "failure_type": "missing_from_build",
+   "reason": "JCTA research article by Chudnovsky (Princeton math); OA authorship has no institution so sweep missed it",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Naveen Verma|conf/isscc/NagataniHV21",
+   "failure_type": "not_a_paper",
+   "reason": "ISSCC session overview (front matter), not a research output, yet in the build",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "student_coverage",
+   "item": "Kai Li|member_663d937ee4f206b19eba",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Andrew Appel|member_cs_d1d41c165140ce0e6430",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Han Liu|member_dd2a4f1a1e351a6a139a",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Tom Griffiths|paper_253f7508b8d70d4015fd|https://openalex.org/W7196968207",
+   "reason": "Science 'The next Turing tests' likely a Policy Forum/Perspective commentary; sheet cannot settle genre"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Jason Petta|ext:princeton:xuanzi-zhang",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Arvind Narayanan|member_claude_40a988d2bca67886ff98",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Janet Vertesi|member_cs_hunt_394f5f4ad8c9a7a68599",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Edward Felten|member_cs_structure_be5a470484a404136348",
+   "reason": "no coauthored paper"
+  },
+  {
+   "sample": "student_coverage",
+   "item": "Ronnie Sircar|ext:princeton:felix-peadu-ackon",
+   "reason": "no coauthored paper"
+  }
+ ],
+ "screened": [
+  {
+   "school": "princeton",
+   "item": "Chi Jin|member_cs_structure_1d41975a732a9e476e6f",
+   "reason": "source names another person as adviser, not this PI"
+  },
+  {
+   "school": "princeton",
+   "item": "Danqi Chen|member_cs_structure_cb57ac2cf4bed6b827cb",
+   "reason": "source names another person as adviser, not this PI"
+  },
+  {
+   "school": "princeton",
+   "item": "Karthik Narasimhan|member_cs_structure_27a2ac2f24fe56cc429a",
+   "reason": "source names another person as adviser, not this PI"
+  },
+  {
+   "school": "princeton",
+   "item": "Elad Hazan|member_cs_structure_05834a52a88c311f9e64",
+   "reason": "source names another person as adviser, not this PI"
+  },
+  {
+   "school": "princeton",
+   "item": "Jennifer Rexford|member_cs_c2a9fc95062bbdbc5c9a",
+   "reason": "source names another person as adviser, not this PI"
+  },
+  {
+   "school": "princeton",
+   "item": "Benjamin Eysenbach|member_cs_structure_67d6373592bbeedb116f",
+   "reason": "source names another person as adviser, not this PI"
+  },
+  {
+   "school": "princeton",
+   "item": "Adam Finkelstein|member_cs_structure_71e3dccf7bd06c0e6ee8",
+   "reason": "source names another person as adviser, not this PI"
+  }
+ ],
+ "population": {
+  "n_lab_papers": 9549,
+  "n_student_papers": 7557,
+  "n_coverage_pool": 5423,
+  "n_student_candidates": 624
+ },
+ "round": {
+  "id": "r3",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  }
+ }
+}

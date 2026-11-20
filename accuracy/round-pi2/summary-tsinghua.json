@@ -1,0 +1,1547 @@
+{
+ "school": "tsinghua",
+ "date": "2026-11-19",
+ "seed": 20261120272853445,
+ "n_verdicts": 175,
+ "files": {
+  "pis.json": "3766794accb2bb51b2e33f4003444ba092ce236f1ba544dc029cab6b12236c66",
+  "students.json": "c06b154a24860afa6639b3dc9b62e61d78bb7468c87689dd3c76bc462eb47064",
+  "lab_papers.jsonl.gz": "7a2909678d53289ec04327999f83c2da0f8bbafea60c36827a6575d359977225",
+  "student_papers.jsonl.gz": "88eb20989aad8b1d16ba71ff32ea95a75981c623647b5b5e19727cb9a9d32796",
+  "copies.json": "92ce0cabcf91fa8e2e2ac9425955b65dfe1b05ab0a8480c6e21301114adf170c"
+ },
+ "files_now": {
+  "pis.json": "3766794accb2bb51b2e33f4003444ba092ce236f1ba544dc029cab6b12236c66",
+  "students.json": "c06b154a24860afa6639b3dc9b62e61d78bb7468c87689dd3c76bc462eb47064",
+  "lab_papers.jsonl.gz": "7a2909678d53289ec04327999f83c2da0f8bbafea60c36827a6575d359977225",
+  "student_papers.jsonl.gz": "88eb20989aad8b1d16ba71ff32ea95a75981c623647b5b5e19727cb9a9d32796",
+  "copies.json": "92ce0cabcf91fa8e2e2ac9425955b65dfe1b05ab0a8480c6e21301114adf170c"
+ },
+ "lab_precision_uniform": {
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 59,
+  "n": 60,
+  "p": 0.9833,
+  "lo": 0.9114,
+  "hi": 0.9971,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 47,
+  "n": 47,
+  "p": 1.0,
+  "lo": 0.9244,
+  "hi": 1.0,
+  "unclear": 3
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 3,
+   "n": 3,
+   "p": 1.0,
+   "lo": 0.4385,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 4,
+   "n": 4,
+   "p": 1.0,
+   "lo": 0.5101,
+   "hi": 1.0,
+   "unclear": 1
+  },
+  "within_lab_byline_match": {
+   "k": 2,
+   "n": 2,
+   "p": 1.0,
+   "lo": 0.3424,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 61,
+  "n": 61,
+  "p": 1.0,
+  "lo": 0.9408,
+  "hi": 1.0,
+  "unclear": 4
+ },
+ "lab_coverage": {
+  "k": 40,
+  "n": 43,
+  "p": 0.9302,
+  "lo": 0.8139,
+  "hi": 0.976
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 43,
+  "not_lab_papers_absent": 3,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "not_a_paper": 1,
+  "missing_from_build": 3
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "崔鹏|None|https://openalex.org/W4367310414",
+   "failure_type": "not_a_paper",
+   "reason": "'Tutorials at The Web Conference 2023' (doi 10.1145/3543873.3587713) is a 96-author collection of tutorial proposals/abstracts, not a research output; Peng Cui aff Tsinghua is real but record type fails (b)",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "孙立峰|conf/infocom/WangZ0LZPS19",
+   "failure_type": "missing_from_build",
+   "reason": "Lifeng Sun last author of Infocom 2019 DOI 10.1109/infocom.2019.8737456 (Tsinghua DCST, listings 2016-2026, period 2016-): a true lab paper but not in build; the only candidate W3014068862 is the distinct 2020 TNET journal extension 'DeepCast' (different title/venue/DOI), so it does not cover this conference paper. Tsinghua affiliation of this exact record is not stored (inferred from coauthor Haitian Pang/PI listing).",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "朱军|conf/nips/ChenZSZ24",
+   "failure_type": "missing_from_build",
+   "reason": "Jun Zhu 2024 NeurIPS 'Aligning Diffusion Behaviors with Q-functions' (Huayu Chen, Kaiwen Zheng, Hang Su, Jun Zhu): same Tsinghua group as the ICML 2024 paper in build, listings 2021-2026 cover 2024; true lab paper absent from lab_papers and unavailable lists (no title/DOI match). Per-record affiliation not stored; judged from PI group and coauthors.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "徐明伟|journals/mlc/YangHXJ18",
+   "failure_type": "missing_from_build",
+   "reason": "Mingwei Xu is a coauthor of MLC 2018 DOI 10.1007/s13042-015-0375-0 (Shu Yang, Yuanyuan He, Mingwei Xu, Yong Jiang; same Tsinghua network group as FISE 2019 which is in build); listings 2016-2026 cover 2018; absent from build. Per-record affiliation not stored (online-first 2015, so date slightly uncertain); judged true lab paper.",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "student_precision",
+   "item": "王建勇|ext:tsinghua:wei-zhang|https://openalex.org/W3212805424",
+   "reason": "DOUBTFUL: 'Wei Zhang' is a very common name; AAAI 2021 paper 10.1609/aaai.v35i16.17700 stored only Jianyong Wang's Tsinghua affiliation; no stored affiliation for the byline Wei Zhang (coauthors Chen, Dong, Zha suggest ECNU Wei Zhang = Wang's 2016 PhD, but not confirmed in stored evidence)"
+  },
+  {
+   "sample": "student_precision",
+   "item": "Huang Longbo|ext:tsinghua:yu-chen|https://openalex.org/W4294002011",
+   "reason": "DOUBTFUL: 'Yu Chen' very common name; 10.1145/3492866.3549712 (MobiHoc 2022) gives only 'Tsinghua University' for Longbo Huang, nothing for Yu Chen; record says BS Math Tsinghua 2023-present, so identity with the 2022 author is unconfirmed"
+  },
+  {
+   "sample": "student_precision",
+   "item": "徐明伟|ext:tsinghua:jia-zhang|https://openalex.org/W7166514373",
+   "reason": "DOUBTFUL: INFOCOM 2026 doi 10.1109/infocom59046.2026.11571420; byline 'Jia Zhang' is not in the school-credited byline (only Yixuan/Yan Zhang, Jianping Wu), PI Mingwei Xu credited to Quan Cheng Laboratory; very common name, no affiliation for Jia Zhang stored; plausible netlab Ph.D but unconfirmed"
+  },
+  {
+   "sample": "student_precision",
+   "item": "王建勇|ext:tsinghua:wei-zhang|https://openalex.org/W3134849565",
+   "reason": "DOUBTFUL: Byline 'Wei Zhang' on TKDE 2021 (doi 10.1109/tkde.2021.3052244) with Jianyong Wang; student record is Tsinghua PhD 2016 now ECNU professor; very common name, byline gives no affiliation for Wei Zhang and PI's affiliation list also includes Jiangsu Normal Univ; cannot confirm same person"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Jingjing Liu|journals/tmlr/ChenCGWWLW22",
+   "reason": "DOUBTFUL: Jingjing Liu 2022 TMLR (no DOI): PI appointment starts 2021 (AIR statement 'Prior to joining Tsinghua University in 2021'), listing only 2026; coauthors Zhe Gan, Jianfeng Wang, Lijuan Wang suggest Microsoft-era work (likely not at school), but no stored byline affiliation for this record, so cannot decide; absent from build."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "宋士吉|conf/nips/HanYPXSSH22",
+   "reason": "DOUBTFUL: NeurIPS 2022 Latency-aware Spatial-wise Dynamic Networks, no DOI; Shiji Song (appointed 2000-, AU listing 2022) with Gao Huang 0001 likely Tsinghua Automation, but no affiliation string for this paper in the stored Tsinghua OpenAlex sweep, lab_papers or cache (absent from build); cannot confirm school from stored evidence"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "鲁继文|conf/cvpr/ChenYL0018",
+   "reason": "DOUBTFUL: CVPR 2018 Deep Hashing via Discrepancy Minimization (doi 10.1109/cvpr.2018.00715) absent from build; DBLP byline has Jiwen Lu (ORCID 0000-0002-6121-5529 matches PI) and Jie Zhou 0001, period 2015-11- covers 2018, so likely a true lab paper, but no stored affiliation string/OpenAlex record for this paper exists (not in Tsinghua sweep, cache or lab_papers); cannot decide"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "鲁继文|journals/pami/LiuLFZ18",
+   "reason": "DOUBTFUL: TPAMI 2018 Two-Stream Transformer Networks (doi 10.1109/tpami.2017.2734779) absent from build; DBLP byline Jiwen Lu (ORCID match), Jianjiang Feng, Jie Zhou 0001, period covers 2018, likely true; version candidates W2765088865 (Multiscale recurrent regression, s40535-017-0042-5) and W2904324197 (Reasoning-Decision Networks, tpami.2018.2885298) are different papers, so no stored OpenAlex record/affiliation for this one; cannot decide"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Hao Zhou|conf/acl/ShenZHHFH26",
+   "reason": "DOUBTFUL: ACL Findings 2026 PEGRL (doi 10.18653/v1/2026.findings-acl.851) absent from build; PI Hao Zhou (0012) listed at AIR 2026 only, no period, and his stored 2026 rows show both AIR Tsinghua and Tencent WeChat AI affiliations; coauthors (Junlan Feng, Shujian Huang) are non-Tsinghua and no affiliation for this paper is stored; cannot decide"
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "Andrew Chi-Chih Yao",
+   "Chen Jianyu",
+   "Du Tao",
+   "Duan Ran",
+   "Gao Mingyu",
+   "Guyue Zhou",
+   "HU Yang",
+   "Hao Zhou",
+   "He Tianxing",
+   "Hou Pan-Yu",
+   "Huang Longbo",
+   "Jingjing Liu",
+   "Li Jian",
+   "Lyu Kaifeng",
+   "Ma Kaisheng",
+   "Ma Xiongfeng",
+   "Peng Li",
+   "Ting Cao",
+   "Wei-Ying Ma",
+   "Wu Yukai",
+   "Xianyuan Zhan",
+   "Xinyi Fu",
+   "Xu Huazhe",
+   "Xu Mengdi",
+   "Xu Yong",
+   "Yang Liu (Veronica)",
+   "Yanyan Lan",
+   "Yao Jiang",
+   "Yi Li",
+   "Yuan Yang",
+   "Yunxin Liu",
+   "Zaiqing Nie",
+   "Zhang Huanchen",
+   "Zhang Jingzhao",
+   "Zhao Hang",
+   "Zheng Shuran",
+   "丁贵广",
+   "于洋",
+   "于红波",
+   "任丰原",
+   "任勇",
+   "任炬",
+   "任玉新",
+   "何源",
+   "何潇",
+   "何秀强",
+   "侯波",
+   "俞声",
+   "冯元",
+   "冯建华",
+   "冯建江",
+   "冯铃",
+   "刘世霞",
+   "刘义",
+   "刘云浩",
+   "刘保君",
+   "刘华平",
+   "刘嘉",
+   "刘奕群",
+   "刘斌",
+   "刘永进",
+   "刘洋",
+   "刘烨斌",
+   "刘玉身",
+   "刘知远",
+   "史元春",
+   "叶昊",
+   "叶晓俊",
+   "向东",
+   "吴及",
+   "吴嘉敏",
+   "吴建平",
+   "吴文传",
+   "吴热冰",
+   "吴翼",
+   "周伯文",
+   "周彤",
+   "周杰",
+   "周源",
+   "周盛",
+   "唐杰",
+   "喻文健",
+   "喻纯",
+   "姚海龙",
+   "姜宇",
+   "孙家广",
+   "孙富春",
+   "孙楠",
+   "孙立峰",
+   "孙茂松",
+   "孟子阳",
+   "季向阳",
+   "季铮锋",
+   "宋健",
+   "宋士吉",
+   "宋韶旭",
+   "封硕",
+   "尚超",
+   "尹 霞",
+   "崔勇",
+   "崔鹏",
+   "应明生",
+   "张利",
+   "张和明",
+   "张学工",
+   "张广艳",
+   "张强锋",
+   "张敏",
+   "张旭东",
+   "张晗",
+   "张晨",
+   "张松海",
+   "张毅",
+   "张洪明",
+   "张涛",
+   "张长水",
+   "徐勇",
+   "徐华",
+   "徐恪",
+   "徐昆",
+   "徐明伟",
+   "徐枫",
+   "成波",
+   "易鑫",
+   "曾坚阳",
+   "朱军",
+   "朱小燕",
+   "朱文武",
+   "朱松纯",
+   "朱毅",
+   "李丹",
+   "李亮",
+   "李佳",
+   "李克强",
+   "李力",
+   "李勇",
+   "李升波",
+   "李国良",
+   "李学清",
+   "李振华",
+   "李梢",
+   "李涓子",
+   "李琦",
+   "李翀",
+   "李翔",
+   "李越",
+   "李雪明",
+   "杨帆",
+   "杨广文",
+   "杨昉",
+   "杨铮",
+   "林志杰",
+   "柴跃廷",
+   "梁斌",
+   "梁湧",
+   "樊平毅",
+   "欧智坚",
+   "武永卫",
+   "江奔奔",
+   "汪小我",
+   "汪玉",
+   "游科友",
+   "潘浩",
+   "熊智华",
+   "牛志升",
+   "王健楠",
+   "王凌",
+   "王宏宁",
+   "王小云",
+   "王建勇",
+   "王建民",
+   "王志",
+   "王斌",
+   "王昭诚",
+   "王朝坤",
+   "王童",
+   "王继良",
+   "石宗英",
+   "章明星",
+   "索津莉",
+   "翟季冬",
+   "耿华",
+   "胡事民",
+   "胡晓林",
+   "舒继武",
+   "艾清遥",
+   "范文慧",
+   "莫一林",
+   "葛宁",
+   "董晓阳",
+   "薛巍",
+   "袁渊源",
+   "裴丹",
+   "许庆",
+   "许斌",
+   "贺飞",
+   "贾庆山",
+   "贾珈",
+   "赵喆",
+   "赵明国",
+   "赵曦滨",
+   "邓仰东",
+   "邓志东",
+   "陆游游",
+   "陈婧",
+   "陈峰",
+   "陈建军",
+   "陈建鑫",
+   "陈挺",
+   "陈文光",
+   "陈文华",
+   "陈渝",
+   "陈煜波",
+   "陈键飞",
+   "陈震鹏",
+   "陶建华",
+   "陶晓明",
+   "雍俊海",
+   "顾明",
+   "马昱春",
+   "马靓",
+   "高跃",
+   "鲁继文",
+   "黄必清",
+   "黄民烈",
+   "黄高",
+   "龙明盛"
+  ],
+  "n_pis": 227,
+  "files": {
+   "pis.json": "3766794accb2bb51b2e33f4003444ba092ce236f1ba544dc029cab6b12236c66",
+   "students.json": "c06b154a24860afa6639b3dc9b62e61d78bb7468c87689dd3c76bc462eb47064",
+   "lab_papers.jsonl.gz": "7a2909678d53289ec04327999f83c2da0f8bbafea60c36827a6575d359977225",
+   "student_papers.jsonl.gz": "88eb20989aad8b1d16ba71ff32ea95a75981c623647b5b5e19727cb9a9d32796",
+   "copies.json": "92ce0cabcf91fa8e2e2ac9425955b65dfe1b05ab0a8480c6e21301114adf170c"
+  },
+  "included_sha": "9028af63295c3f9a66dcfa793e012bb665bb53d2159e9431b4c63174c96033ba",
+  "projection_version": 1,
+  "held": [
+   [
+    "Andrew Chi-Chih Yao",
+    "ext:tsinghua:jin-kai"
+   ],
+   [
+    "Andrew Chi-Chih Yao",
+    "ext:tsinghua:kangping-xu"
+   ],
+   [
+    "Andrew Chi-Chih Yao",
+    "ext:tsinghua:zhixuan-fang"
+   ],
+   [
+    "Chen Jianyu",
+    "ext:tsinghua:chengming-shi"
+   ],
+   [
+    "Chen Jianyu",
+    "ext:tsinghua:hai-zhong"
+   ],
+   [
+    "Chen Jianyu",
+    "ext:tsinghua:ian-tong"
+   ],
+   [
+    "Chen Jianyu",
+    "ext:tsinghua:xiang-zhu"
+   ],
+   [
+    "Chen Jianyu",
+    "ext:tsinghua:xiaoyu-chen"
+   ],
+   [
+    "Chen Jianyu",
+    "ext:tsinghua:yen-jen-wang"
+   ],
+   [
+    "Chen Jianyu",
+    "ext:tsinghua:yichen-liu"
+   ],
+   [
+    "Chen Jianyu",
+    "ext:tsinghua:zheyuan-jiang"
+   ],
+   [
+    "Duan Ran",
+    "ext:tsinghua:name-e7028e60c0c966c6f966bb3f"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-0833e8ce84b1242c48d5f085"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-10c75e96e6aa8b8261adfe82"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-27ccd71d43adfa33fef7d2d4"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-2f0ae4770f3ded5cd1e1456c"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-4dfef7e30cb19c5d2ee88cf4"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-4e6e95ca6d5339ef60f9db63"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-51994d1704465830c03e5d43"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-6fb0dbddc99ae713f54e825f"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-7030f71bd2a4bb9435649347"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-775b5b0e51ebd9af169fd137"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-7b4c217380c9564f7ee33c7d"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-8577a97df30e56c652d4a262"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-9dc9d0ba17f1046f71aa7853"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-a1bf73135e6ae7526a29fb75"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-acaf19dcabb0b69bf7428b73"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-b37ef600da1c523e697ae905"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-bff27c9d94e6fec6644eb074"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-c69dc8c7d5ef7805496b19e9"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-e24a2b3eb7d7459068399404"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-f4ce37822ac4ab6a8c7bf33f"
+   ],
+   [
+    "Hao Zhou",
+    "ext:tsinghua:name-ff626cc8e1500de88dd681d0"
+   ],
+   [
+    "Hou Pan-Yu",
+    "ext:tsinghua:meng-xiangqian"
+   ],
+   [
+    "Xu Huazhe",
+    "ext:tsinghua:can-chang"
+   ],
+   [
+    "Xu Huazhe",
+    "ext:tsinghua:kaizhe-hu"
+   ],
+   [
+    "Xu Huazhe",
+    "ext:tsinghua:shaoma-anping"
+   ],
+   [
+    "Xu Huazhe",
+    "ext:tsinghua:xianying-chen-widyadewi-soedarmadji"
+   ],
+   [
+    "Xu Mengdi",
+    "ext:tsinghua:jingzhi-cui"
+   ],
+   [
+    "Xu Mengdi",
+    "ext:tsinghua:yutao-ouyang"
+   ],
+   [
+    "Yuan Yang",
+    "ext:tsinghua:haowei-he"
+   ],
+   [
+    "Yuan Yang",
+    "ext:tsinghua:jiaye-teng"
+   ],
+   [
+    "Yuan Yang",
+    "ext:tsinghua:jingqin-yang"
+   ],
+   [
+    "Yuan Yang",
+    "ext:tsinghua:zhenru-lin"
+   ],
+   [
+    "Zhao Hang",
+    "ext:tsinghua:baijun-ye"
+   ],
+   [
+    "Zhao Hang",
+    "ext:tsinghua:bin-zhang"
+   ],
+   [
+    "Zhao Hang",
+    "ext:tsinghua:chenxu-hu"
+   ],
+   [
+    "Zhao Hang",
+    "ext:tsinghua:chuanhao-yan"
+   ],
+   [
+    "Zhao Hang",
+    "ext:tsinghua:guanqi-he"
+   ],
+   [
+    "Zhao Hang",
+    "ext:tsinghua:leo-zhuang"
+   ],
+   [
+    "Zhao Hang",
+    "ext:tsinghua:minghui-qin"
+   ],
+   [
+    "Zhao Hang",
+    "ext:tsinghua:xiangting-meng"
+   ],
+   [
+    "Zhao Hang",
+    "ext:tsinghua:xiaoyu-tian"
+   ],
+   [
+    "Zheng Shuran",
+    "ext:tsinghua:name-d25c31f08a69329ad6315721"
+   ],
+   [
+    "于红波",
+    "ext:tsinghua:name-2671c8b7bdae22c882dc6c07"
+   ],
+   [
+    "任丰原",
+    "ext:tsinghua:name-b6fe692f066e6e8c518e4af1"
+   ],
+   [
+    "任勇",
+    "ext:tsinghua:name-dfe94f22bd713d460b4a64cf"
+   ],
+   [
+    "任玉新",
+    "ext:tsinghua:name-278ef6e32ac06403aa12054b"
+   ],
+   [
+    "何潇",
+    "ext:tsinghua:name-4f60c08cb06e6e5edd505407"
+   ],
+   [
+    "俞声",
+    "ext:tsinghua:name-01830bdf8b21dde5a138da04"
+   ],
+   [
+    "冯建华",
+    "ext:tsinghua:name-664a9ecb259abfd76f24f268"
+   ],
+   [
+    "冯铃",
+    "ext:tsinghua:name-3956ae8bb7b414477193f6f6"
+   ],
+   [
+    "刘保君",
+    "ext:tsinghua:fulin-zhou"
+   ],
+   [
+    "刘奕群",
+    "ext:tsinghua:name-b9548ad19f47074d0576a7c2"
+   ],
+   [
+    "刘奕群",
+    "ext:tsinghua:name-ff29fbf802f2ee11916fd00d"
+   ],
+   [
+    "刘斌",
+    "ext:tsinghua:name-d7661e6aba9e3bd5ba12e6fa"
+   ],
+   [
+    "刘洋",
+    "ext:tsinghua:name-d55c9d736f5ae5bed40729b1"
+   ],
+   [
+    "刘知远",
+    "ext:tsinghua:fang-zhao"
+   ],
+   [
+    "刘知远",
+    "ext:tsinghua:feng-qian"
+   ],
+   [
+    "刘知远",
+    "ext:tsinghua:kaisong-gong"
+   ],
+   [
+    "刘知远",
+    "ext:tsinghua:shang-qin"
+   ],
+   [
+    "刘知远",
+    "ext:tsinghua:shihuai-cai"
+   ],
+   [
+    "刘知远",
+    "ext:tsinghua:xinyuan-zhang"
+   ],
+   [
+    "刘知远",
+    "ext:tsinghua:xiyuan-tan"
+   ],
+   [
+    "刘知远",
+    "ext:tsinghua:yinghao-chen"
+   ],
+   [
+    "史元春",
+    "ext:tsinghua:name-7e770b2d78330261c97840fb"
+   ],
+   [
+    "吴及",
+    "ext:tsinghua:name-ad7f689627814ee64a79b23f"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-01bc6d20ee9083e315a1d25e"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-0d77966099d7ca0067fac5b3"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-0e62c0c55297ccb4fb501aa7"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-1002470e298901499e7ec1b5"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-103aec946eb8c40683e5d4f6"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-21694da81df843a55718718e"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-2435deaeddda5d8c7479dc29"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-2737e6288f57479d265155c7"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-2c63da94d2dabdbf48e99b86"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-2ebe3abb2767615fa4aaa909"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-300af4152d610ad6491979bd"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-50b931046114885a8aa0fc45"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-52d72fb7e2ee6db4162068ee"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-54b5e174f461af376cb5237c"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-575de2c2274f503360d0c119"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-576e15c550c43c62e315df0f"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-5940679c193b69d254a27057"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-627279887cf49d07ef0b6edf"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-64f721333cb17beb05b6279b"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-6608bd5287f113686fd4add8"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-6fb9edd5e2173c1164212c14"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-722de875a637f065f1217461"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-762468bb7c1dcccc04c6826e"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-788cdde56eca8281a0fc8932"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-7d99e83f66b5fb6927d5ce9f"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-7e85ea156d00c5d5c5077790"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-81ed7a6f7be0cfc818515e05"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-85bb8952837e399b30b143e3"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-88f45d233c839d4d9e40d3a3"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-95c5dc20033fe01ca936673c"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-9693d3a73bf844526e09a360"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-98082d8407db970b9bc09a12"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-9fbf158b96b5c2607c25a9f3"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-a4336ae71d381b622316a592"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-a94ecce4863bd99fea6b9146"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-aa7e425e7a6356f330a51cbc"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-ad45a6948faa5c059f8532b7"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-b49e3fe7ab7562394e1d4e27"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-b6832a8679f122dd996f764c"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-b77ba370a073896fca3a3015"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-ba7381935b8fa377c0c0a79e"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-bb93eec74d92d734115bed58"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-c3d7ca6db703adf16e4ff8bb"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-cc7fa16e3fc34b5bc627d089"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-dce1d5f8ff4afac2e9c4d78b"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-e1a1bfb962816508e4be709f"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-e392f58e7d590a3ba5d977dd"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-e3b2d56173fa0686fb4c967c"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-ec2df145dea70473525dc3cc"
+   ],
+   [
+    "吴嘉敏",
+    "ext:tsinghua:name-f0cdcc7e2aa92d9a7e34eb51"
+   ],
+   [
+    "吴建平",
+    "ext:tsinghua:name-397b990787e83c11d8fca027"
+   ],
+   [
+    "吴热冰",
+    "ext:tsinghua:name-6ca9a0bf87565288142aaf93"
+   ],
+   [
+    "吴翼",
+    "ext:tsinghua:name-6bfc7cf24095c30dbb6c4fa8"
+   ],
+   [
+    "周盛",
+    "ext:tsinghua:name-b691faf8bf8b858462dbeead"
+   ],
+   [
+    "唐杰",
+    "ext:tsinghua:ben-keller"
+   ],
+   [
+    "唐杰",
+    "ext:tsinghua:chaoyang-li"
+   ],
+   [
+    "唐杰",
+    "ext:tsinghua:fang-zhang"
+   ],
+   [
+    "唐杰",
+    "ext:tsinghua:mogford-michael"
+   ],
+   [
+    "唐杰",
+    "ext:tsinghua:runzhi-gao"
+   ],
+   [
+    "唐杰",
+    "ext:tsinghua:rytis-kumpa"
+   ],
+   [
+    "唐杰",
+    "ext:tsinghua:valentin-kao"
+   ],
+   [
+    "唐杰",
+    "ext:tsinghua:vincent-couverchel"
+   ],
+   [
+    "唐杰",
+    "ext:tsinghua:xiaochen-wang"
+   ],
+   [
+    "唐杰",
+    "ext:tsinghua:yifeng-zhao"
+   ],
+   [
+    "唐杰",
+    "ext:tsinghua:zhenhuan-chen"
+   ],
+   [
+    "唐杰",
+    "ext:tsinghua:ziwu-sun"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-0f285b2b1b21742c27c35563"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-15f4fa3ece571c9352d6941e"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-1eb066b025c9060b6f212cb7"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-1f3cfa1ef18a24b72e22057f"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-2ebe4256ea7450617a36322d"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-63c1f464283d7cd4b3cdeb11"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-7219596db6a8b9ec81dbcf42"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-97ad6687aefa8dc6eb63b3c8"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-99e00bfca4e0f18c1558cbe7"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-b242c139e512cd1aaeaab2f3"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-b8eafe97ce2c3e8b233e1148"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-cb1ef27addba1159137cb786"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-cfa31a76b3df43c976c95276"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-d26607918aec6d1a3f17f867"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-e581efa32500dc017b6a1164"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-efa085027afa21a6894b6d46"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-f7524f8686b6369cbe68bd7f"
+   ],
+   [
+    "喻文健",
+    "ext:tsinghua:name-fd6bd7420fbcd0370db0c0c1"
+   ],
+   [
+    "姜宇",
+    "ext:tsinghua:name-26bb0eb6194e7d5e3d16dd55"
+   ],
+   [
+    "姜宇",
+    "ext:tsinghua:name-c0a3bb6ac1e33b65b1273a52"
+   ],
+   [
+    "孙家广",
+    "ext:tsinghua:name-718fb55462e01d7bf0182902"
+   ],
+   [
+    "孙富春",
+    "ext:tsinghua:name-2458c7a5ceac9d6f1164edf1"
+   ],
+   [
+    "孙楠",
+    "ext:tsinghua:gao-shi"
+   ],
+   [
+    "孙楠",
+    "ext:tsinghua:jieming-zhang"
+   ],
+   [
+    "孙楠",
+    "ext:tsinghua:jinxuan-li"
+   ],
+   [
+    "孙楠",
+    "ext:tsinghua:kezhuo-liu"
+   ],
+   [
+    "孙楠",
+    "ext:tsinghua:qihan-yang"
+   ],
+   [
+    "孙楠",
+    "ext:tsinghua:yaning-wang"
+   ],
+   [
+    "孙楠",
+    "ext:tsinghua:yian-gao"
+   ],
+   [
+    "孙茂松",
+    "ext:tsinghua:name-6cb3f5150ef4f9f41613f2f4"
+   ],
+   [
+    "孟子阳",
+    "ext:tsinghua:name-b21a8b3c27cdf9f6095c08ad"
+   ],
+   [
+    "季向阳",
+    "ext:tsinghua:xiang-li"
+   ],
+   [
+    "季铮锋",
+    "ext:tsinghua:name-59f62b7ed0171bd83ec29cee"
+   ],
+   [
+    "宋健",
+    "ext:tsinghua:name-bc9c638ad225ba4dc2031c1f"
+   ],
+   [
+    "宋士吉",
+    "ext:tsinghua:name-cc690d4c1a56f9e9dfb56aae"
+   ],
+   [
+    "尚超",
+    "ext:tsinghua:name-3a3404896ef6f87f3eebd32f"
+   ],
+   [
+    "崔勇",
+    "ext:tsinghua:name-b7fc925c225fded803da68ba"
+   ],
+   [
+    "崔鹏",
+    "ext:tsinghua:name-ef8bbc7a8743fc2eb1c0037f"
+   ],
+   [
+    "应明生",
+    "ext:tsinghua:name-532b26f60b7153c8ebbda621"
+   ],
+   [
+    "张广艳",
+    "ext:tsinghua:jike-chen"
+   ],
+   [
+    "张广艳",
+    "ext:tsinghua:peng-xu"
+   ],
+   [
+    "张广艳",
+    "ext:tsinghua:sijie-cai"
+   ],
+   [
+    "张广艳",
+    "ext:tsinghua:tianlang-xue"
+   ],
+   [
+    "张广艳",
+    "ext:tsinghua:xiao-niu"
+   ],
+   [
+    "张广艳",
+    "ext:tsinghua:yi-lu"
+   ],
+   [
+    "张强锋",
+    "ext:tsinghua:jianghui-zhu"
+   ],
+   [
+    "张强锋",
+    "ext:tsinghua:jianhua-huang"
+   ],
+   [
+    "张强锋",
+    "ext:tsinghua:jingle-xu"
+   ],
+   [
+    "张强锋",
+    "ext:tsinghua:kaile-huang"
+   ],
+   [
+    "张强锋",
+    "ext:tsinghua:name-be59a31ae1c0eb9c58aeb38e"
+   ],
+   [
+    "张强锋",
+    "ext:tsinghua:rui-yang"
+   ],
+   [
+    "张强锋",
+    "ext:tsinghua:songyang-li"
+   ],
+   [
+    "张强锋",
+    "ext:tsinghua:weining-fu"
+   ],
+   [
+    "张强锋",
+    "ext:tsinghua:weixi-ning"
+   ],
+   [
+    "张强锋",
+    "ext:tsinghua:xin-wen"
+   ],
+   [
+    "张强锋",
+    "ext:tsinghua:xudong-zeng"
+   ],
+   [
+    "张强锋",
+    "ext:tsinghua:yumeng-chen"
+   ],
+   [
+    "张强锋",
+    "ext:tsinghua:zihan-dominic-li"
+   ],
+   [
+    "张旭东",
+    "ext:tsinghua:name-d71fddf15752ff1f49b0969c"
+   ],
+   [
+    "张晗",
+    "ext:tsinghua:boyang-wang"
+   ],
+   [
+    "张毅",
+    "ext:tsinghua:name-6b4ef96c45f535a7312d49c9"
+   ],
+   [
+    "张长水",
+    "ext:tsinghua:name-6c19e2a2883ca39a73913035"
+   ],
+   [
+    "徐枫",
+    "ext:tsinghua:name-57a5f9563639c9ea8fb76b50"
+   ],
+   [
+    "曾坚阳",
+    "ext:tsinghua:name-24ba17f1936c6c5a81c4d928"
+   ],
+   [
+    "朱小燕",
+    "ext:tsinghua:name-f81e174ebb00d119b59f5534"
+   ],
+   [
+    "朱毅",
+    "ext:tsinghua:name-2794fcedb85077458cf2a275"
+   ],
+   [
+    "李丹",
+    "ext:tsinghua:name-197fe60c6d3c393e97c64d12"
+   ],
+   [
+    "李勇",
+    "ext:tsinghua:name-2bf48552efffe4d375c1b2df"
+   ],
+   [
+    "李升波",
+    "ext:tsinghua:name-10ad8fdc4d717a933c983e26"
+   ],
+   [
+    "李国良",
+    "ext:tsinghua:kang-pan"
+   ],
+   [
+    "李梢",
+    "ext:tsinghua:name-1301fc392b7c395f867909c5"
+   ],
+   [
+    "李越",
+    "ext:tsinghua:name-156a17c8feaf563146a77be7"
+   ],
+   [
+    "李越",
+    "ext:tsinghua:name-6c78e89632aa2dc1273527ee"
+   ],
+   [
+    "杨广文",
+    "ext:tsinghua:name-ae4a2a104e7ccb1a7cf7af2e"
+   ],
+   [
+    "杨昉",
+    "ext:tsinghua:name-f0644a2236f0b2202bf01430"
+   ],
+   [
+    "柴跃廷",
+    "ext:tsinghua:name-b20e3a6c35aea3879e107246"
+   ],
+   [
+    "梁斌",
+    "ext:tsinghua:name-d1fe73c8c10e6da3a6b9b4ad"
+   ],
+   [
+    "梁湧",
+    "ext:tsinghua:name-ed0bc7825653e3c3266ef455"
+   ],
+   [
+    "樊平毅",
+    "ext:tsinghua:name-fbca83329c20fe44aa6c63f4"
+   ],
+   [
+    "武永卫",
+    "ext:tsinghua:name-4d1c82fd432d999e0005dd7d"
+   ],
+   [
+    "汪小我",
+    "ext:tsinghua:name-d84ab9920abe70670c1f2090"
+   ],
+   [
+    "汪玉",
+    "ext:tsinghua:name-72033537163dda557d2324bf"
+   ],
+   [
+    "游科友",
+    "ext:tsinghua:name-d0f90ad981277c484eb8e4eb"
+   ],
+   [
+    "牛志升",
+    "ext:tsinghua:name-6b5484cdb91c7027d34bb661"
+   ],
+   [
+    "王凌",
+    "ext:tsinghua:name-65c9a327cc71f4641b5f9de1"
+   ],
+   [
+    "王志",
+    "ext:tsinghua:name-18d154c2fefc5e8ae3309f30"
+   ],
+   [
+    "王斌",
+    "ext:tsinghua:name-5406a32bd3569c1696145aad"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:ao-zhang"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:chao-chen"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:chuan-liu"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:huanming-shen"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:jianfeng-li"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:jianglang-zhu"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:jingbo-shan"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:juan-yang"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:linzhi-zheng"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:peilin-li"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:qiao-zhao"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:ruili-liu"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:shaofeng-ding"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:xiangtao-yuan"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:xiangyu-chen"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:xin-zhou"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:xu-hu"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:yilei-lu"
+   ],
+   [
+    "章明星",
+    "ext:tsinghua:zuoyuan-zhang"
+   ],
+   [
+    "索津莉",
+    "ext:tsinghua:name-b92568964c6a827eb01254a4"
+   ],
+   [
+    "耿华",
+    "ext:tsinghua:name-cd51821532283c0b4e7d090f"
+   ],
+   [
+    "舒继武",
+    "ext:tsinghua:name-9f7c885b71943f5334bb6ba6"
+   ],
+   [
+    "艾清遥",
+    "ext:tsinghua:name-d4ab24d25b751c190fc734c8"
+   ],
+   [
+    "范文慧",
+    "ext:tsinghua:name-ab8789660968496e9270c066"
+   ],
+   [
+    "莫一林",
+    "ext:tsinghua:name-7418c9dade74c16178dd6535"
+   ],
+   [
+    "葛宁",
+    "ext:tsinghua:name-3a608c7b05d57d79c7c462f2"
+   ],
+   [
+    "裴丹",
+    "ext:tsinghua:name-2f97299e826f1bab909b199f"
+   ],
+   [
+    "贾庆山",
+    "ext:tsinghua:name-cdffa75ea3771daa9494c56f"
+   ],
+   [
+    "陆游游",
+    "ext:tsinghua:name-8beee4af7a686ff847ac2c73"
+   ],
+   [
+    "陈挺",
+    "ext:tsinghua:biqi-chenli"
+   ],
+   [
+    "陈文光",
+    "ext:tsinghua:name-de10f546b8821ea4a05ea470"
+   ],
+   [
+    "雍俊海",
+    "ext:tsinghua:name-736341b8a6101701365b6998"
+   ],
+   [
+    "黄民烈",
+    "ext:tsinghua:name-79d680a33173872fede03928"
+   ],
+   [
+    "黄高",
+    "ext:tsinghua:name-4b010b74434324bddd98bd94"
+   ]
+  ],
+  "carried_forward": {},
+  "files_now": {
+   "pis.json": "3766794accb2bb51b2e33f4003444ba092ce236f1ba544dc029cab6b12236c66",
+   "students.json": "c06b154a24860afa6639b3dc9b62e61d78bb7468c87689dd3c76bc462eb47064",
+   "lab_papers.jsonl.gz": "7a2909678d53289ec04327999f83c2da0f8bbafea60c36827a6575d359977225",
+   "student_papers.jsonl.gz": "88eb20989aad8b1d16ba71ff32ea95a75981c623647b5b5e19727cb9a9d32796",
+   "copies.json": "92ce0cabcf91fa8e2e2ac9425955b65dfe1b05ab0a8480c6e21301114adf170c"
+  }
+ },
+ "population": {
+  "n_lab_papers": 19414,
+  "n_student_papers": 5055,
+  "n_coverage_pool": 12333,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 60,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

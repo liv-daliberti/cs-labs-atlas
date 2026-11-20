@@ -1,0 +1,219 @@
+{
+ "school": "michigan",
+ "date": "2026-11-02",
+ "seed": 20261029,
+ "n_verdicts": 105,
+ "files": {
+  "pis.json": "72f6ad03b275573573a06f5477fa6d791dc68f9a58f39418b200a93bd2faaae6",
+  "students.json": "8d8eb0eef7d6543041d7357416fabe4cea26368779e162d09ff7b30f53c18131",
+  "lab_papers.jsonl.gz": "b560dc664e59099df8c851ea7d81677217e70ccc5c933ed8f7c8e440653e2665",
+  "student_papers.jsonl.gz": "d838a8cb4d07b5eb77fede6657c7ee5918acab5e91e55813ab598dd9f8df05b9",
+  "copies.json": "b819371eee03be90077d15f7f587c0754fe076bcb6304026adf7263a942fb09c"
+ },
+ "files_now": {
+  "pis.json": "72f6ad03b275573573a06f5477fa6d791dc68f9a58f39418b200a93bd2faaae6",
+  "students.json": "8d8eb0eef7d6543041d7357416fabe4cea26368779e162d09ff7b30f53c18131",
+  "lab_papers.jsonl.gz": "b560dc664e59099df8c851ea7d81677217e70ccc5c933ed8f7c8e440653e2665",
+  "student_papers.jsonl.gz": "d838a8cb4d07b5eb77fede6657c7ee5918acab5e91e55813ab598dd9f8df05b9",
+  "copies.json": "b819371eee03be90077d15f7f587c0754fe076bcb6304026adf7263a942fb09c"
+ },
+ "lab_precision_uniform": {
+  "k": 23,
+  "n": 25,
+  "p": 0.92,
+  "lo": 0.7503,
+  "hi": 0.9778,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 23,
+  "n": 25,
+  "p": 0.92,
+  "lo": 0.7503,
+  "hi": 0.9778,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 36,
+  "n": 40,
+  "p": 0.9,
+  "lo": 0.7695,
+  "hi": 0.9604,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 40,
+  "n": 40,
+  "p": 1.0,
+  "lo": 0.9124,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 13,
+  "n": 15,
+  "p": 0.8667,
+  "lo": 0.6212,
+  "hi": 0.9626
+ },
+ "lab_coverage_items": {
+  "drawn": 15,
+  "true_lab_papers": 15,
+  "not_lab_papers_absent": 0,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": {
+  "k": 10,
+  "n": 10,
+  "p": 1.0,
+  "lo": 0.7225,
+  "hi": 1.0
+ },
+ "student_coverage_items": {
+  "drawn": 10,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "not_a_paper": 3,
+  "not_at_school": 1,
+  "missing_from_build": 2
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "listing",
+   "item": "Mark Guzdial|None|https://openalex.org/W2981998115",
+   "failure_type": "not_a_paper",
+   "reason": "CACM Viewpoint (pp. 28-30), an opinion column; borderline: counted not_a_paper like the 2026-10-29 columns",
+   "policy": "commentary_column"
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Mark Guzdial|None|https://openalex.org/W2917722693",
+   "failure_type": "not_a_paper",
+   "reason": "SIGCSE 2019 pp. 502-503: two-page invited keynote abstract (one author)",
+   "policy": "keynote_abstract"
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Thomas F. Wenisch|None|https://openalex.org/W2911565108",
+   "failure_type": "not_a_paper",
+   "reason": "CACM Technical perspective, one page (pp. 97-97): a commentary on another paper, not a research output",
+   "policy": "commentary_column"
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "advisee_unaffiliated",
+   "item": "Ziyou Song|None|https://openalex.org/W4406147831",
+   "failure_type": "not_at_school",
+   "reason": "Preprint credits Song and Bai to the National University of Singapore (the same title in OpenAlex W4405433441); Michigan ECE listing is a stale Wayback directory entry",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Thomas F. Wenisch|conf/hpca/AgarwalNEWDK16",
+   "failure_type": "missing_from_build",
+   "reason": "HPCA 2016, PI at Michigan (NVIDIA research page lists 'Wenisch (University of Michigan)'; OpenAlex gives him NVIDIA); not in the build",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Predrag V. Klasnja|journals/imwut/LiaoGKM20",
+   "failure_type": "missing_from_build",
+   "reason": "IMWUT 2020, Klasnja credited to University of Michigan, inside his 2020 period; the build holds only his 2026 papers",
+   "policy": null
+  }
+ ],
+ "unclear": [],
+ "screened": [
+  {
+   "key": "Y Z|ext:michigan:long-zhou",
+   "name": "Long Zhou",
+   "reason": "degree not stated on the alumni page (PhD and MS entries interleaved) and PI name unresolved (\"Y Z\")"
+  },
+  {
+   "key": "Todd Hollon|ext:michigan:alexander-gedeon",
+   "name": "Alexander Gedeon",
+   "reason": "lab page lists \"Graduate Student (2024)\", no PhD stated"
+  },
+  {
+   "key": "Jean-Baptiste Jeannin|ext:michigan:elanor-tang",
+   "name": "Elanor Tang",
+   "reason": "alumni list does not state her degree"
+  },
+  {
+   "key": "Y Z|ext:michigan:kevin-wandke",
+   "name": "Kevin Wandke",
+   "reason": "PI name unresolved (\"Y Z\"); the PI row mixes people"
+  },
+  {
+   "key": "Todd Hollon|ext:michigan:eric-landgraf",
+   "name": "Eric Landgraf",
+   "reason": "lab page lists \"Graduate Student (2024)\", no PhD stated"
+  }
+ ]
+}

@@ -1,0 +1,1274 @@
+{
+ "school": "ntu",
+ "date": "2026-11-19",
+ "seed": 2026111934346776,
+ "n_verdicts": 180,
+ "files": {
+  "pis.json": "9effc6b1edd20998b322f1aecf11e6db5e1a1d5c0ad3741af3fcbcca7d4ad2b4",
+  "students.json": "5093d80879b870cfa802404f0ee6531908dfa079f24d5861b9a0672e061b172d",
+  "lab_papers.jsonl.gz": "9f7471d6c3acfd81c3bced9557b7e0fa0c2e2ca232d40bc91354661f8a2a8fbb",
+  "student_papers.jsonl.gz": "b45a3d7ec91f1a6de33ec8fd8b0381081ce5b70f90a501e569986c12923bd580",
+  "copies.json": "e96af404935def53635620ef69dd07837e619eb03b9efa862e767968824cc0a8"
+ },
+ "files_now": {
+  "pis.json": "9effc6b1edd20998b322f1aecf11e6db5e1a1d5c0ad3741af3fcbcca7d4ad2b4",
+  "students.json": "5093d80879b870cfa802404f0ee6531908dfa079f24d5861b9a0672e061b172d",
+  "lab_papers.jsonl.gz": "9f7471d6c3acfd81c3bced9557b7e0fa0c2e2ca232d40bc91354661f8a2a8fbb",
+  "student_papers.jsonl.gz": "b45a3d7ec91f1a6de33ec8fd8b0381081ce5b70f90a501e569986c12923bd580",
+  "copies.json": "e96af404935def53635620ef69dd07837e619eb03b9efa862e767968824cc0a8"
+ },
+ "lab_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 4,
+   "n": 4,
+   "p": 1.0,
+   "lo": 0.5101,
+   "hi": 1.0,
+   "unclear": 1
+  },
+  "listing": {
+   "k": 3,
+   "n": 3,
+   "p": 1.0,
+   "lo": 0.4385,
+   "hi": 1.0,
+   "unclear": 2
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 62,
+  "n": 62,
+  "p": 1.0,
+  "lo": 0.9417,
+  "hi": 1.0,
+  "unclear": 3
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 42,
+  "n": 42,
+  "p": 1.0,
+  "lo": 0.9162,
+  "hi": 1.0
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 42,
+  "not_lab_papers_absent": 2,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {},
+ "incorrect": [],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Tao Dacheng|None|https://openalex.org/W7138041589",
+   "reason": "DOUBTFUL: CogniTrust AAAI 2026 doi 10.1609/aaai.v40i6.42431; OA inst for Tao Dacheng is NTU (aff 'Nanyang Technological University'), listing 2026 only, DBLP DOI match; thin: single listing year and no period, bare affiliation string, Tao joined NTU only recently; accept as probable but not fully evidenced"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Dusit Niyato|None|https://openalex.org/W4416048259",
+   "reason": "DOUBTFUL: IEEE ComMag 2026 doi 10.1109/mcom.001.2500321 (arXiv 2505.22320, 2025); no stored affiliation; only link is advisee Hongyang Du whose NTU PhD ended 2024 (OpenReview 2021-2024), so Du was likely not at NTU in 2025-26; Niyato period 2008- does not prove work done at NTU"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Tao Dacheng|None|https://openalex.org/W7172019695",
+   "reason": "DOUBTFUL: ACE-Data-0 arXiv 2607.28625 (2026-07-30); OA authorship has no inst for Tao; page-1 quote '* Nanyang Technological University' is attached to Ziwei Liu/S-Lab, not tied to Tao; Tao only has listing 2026 (CCDS card) and DBLP DOI match; school affiliation of Tao not shown"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Bo An|conf/icml/Tan0XXD0ZYJLAQZ25",
+   "reason": "DOUBTFUL: ICML 2025 Cradle, no DOI; NOT in build; DBLP lists Bo An 0001 but no stored OpenAlex authorship/affiliation or page-1 evidence for NTU; PI period (2013-07-, open) and 2021-2026 listings would cover it, so likely true but cannot confirm school from stored evidence."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Lin Weisi|conf/cvpr/LiYPLSZ0TSWZJZC22",
+   "reason": "DOUBTFUL: NTIRE 2024 UGC-VQA challenge report (CVPRW, DOI 10.1109/cvprw63382.2024.00643); NOT in build. Stored OpenAlex work W4402916351 lists Weisi Lin with EMPTY raw affiliation and institutions, so school cannot be confirmed; challenge report is also a borderline output type."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Liu Yang|conf/icse/LiuLCZ20",
+   "reason": "DOUBTFUL: ICSE 2020 'A Testing Tool for Machine Learning Applications' (DBLP pages 386-387, 2-page demo; DOI 10.1145/3387940.3392694); NOT in build. Coauthors Chen (Swinburne)/Zhou (Wollongong); no stored affiliation for Yang Liu 0003, and a 2-page tool abstract is a borderline output type."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Luo Jun|journals/tdsc/DuLZLPWLCNL26",
+   "reason": "DOUBTFUL: TDSC paper DOI 10.1109/tdsc.2025.3636741 (OpenAlex 2025-11-24, DBLP 2026) NOT in build; stored W4416582708 gives Jun Luo raw affil 'College of Computing and Data Science, Nanyang Technological University' (NTU true). But Luo Jun has no period, only listings 2021 and 2026 (n=2); OA year 2025 falls outside listing years while DBLP year 2026 falls inside, so appointment test undecidable."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Dusit Niyato|journals/comsur/LuWNKH16",
+   "reason": "DOUBTFUL: IEEE COMST 2016 survey (DOI 10.1109/comst.2015.2499783), research output, Niyato at NTU since 2008-07 so period fits; NOT in build and no stored OpenAlex/affiliation evidence found for it (first author Xiao Lu), so NTU affiliation unconfirmed."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Chee Wei Tan|journals/kbs/ChenZGZT26",
+   "reason": "DOUBTFUL: Chee Wei Tan is NTU CCDS (raw aff 'School of Computing and Data Science, NTU') on 10.1016/j.knosys.2025.115160, but OA date is 2025-12-26 (DBLP year 2026) and Tan has only a 2026 listing, no period; build excludes it while 17 other 2026-dated Tan papers are in. Cannot tell if work falls in an evidenced year."
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "A S Madhukumar",
+   "Abdulkadir C. Yucel",
+   "Alexei Sourin",
+   "Andy W. H. Khong",
+   "Anupam Chattopadhyay",
+   "Anwitaman Datta",
+   "Arijit Khan",
+   "Arvind Easwaran",
+   "Bernhard Schmidt",
+   "Bo An",
+   "Cham Tat Jen",
+   "Changyun Wen",
+   "Chau Yuen",
+   "Chee Wei Tan",
+   "Chen Change Loy",
+   "Cheng Yu",
+   "Chien Chern Cheah",
+   "Chip-Hong Chang",
+   "Chirn Chye Boon",
+   "Chng Eng Siong",
+   "Chuanxia Zheng",
+   "Cong Gao",
+   "Conrad Watt",
+   "Dmitrii Ustiugov",
+   "Douglas Leslie Maskell",
+   "Dusit Niyato",
+   "Erik Cambria",
+   "Feng Zhu",
+   "Gaoxi Xiao",
+   "Gary R. W. Greaves",
+   "Gong Tiantian",
+   "Guan Cuntai",
+   "Guoqiang Hu",
+   "He Ying",
+   "Hen-Wei Huang",
+   "Hung Dinh Nguyen",
+   "Jagath Chandana Rajapakse",
+   "Jeremie Houssineau",
+   "Jianfei Yang",
+   "Jiawang Bian",
+   "Jie Xiong",
+   "Joty Shafiq Rayhan",
+   "Juan-Pablo Ortega",
+   "Kah Chan Teh",
+   "Kang Hao Cheong",
+   "Keck Voon Ling",
+   "Kelly Ke Yiping",
+   "Kezhi Mao",
+   "Kim-Hui Yap",
+   "Kum Fai Yuen",
+   "Kwoh Chee Keong",
+   "Kye Yak See",
+   "Lee Bu Sung",
+   "Li Boyang",
+   "Li Mo",
+   "Lihua Xie",
+   "Lihui Chen",
+   "Lin Feng",
+   "Lin Guosheng",
+   "Lin Weisi",
+   "Lipo Wang",
+   "Liu Weichen",
+   "Liu Yang",
+   "Liu Ziwei",
+   "Long Cheng",
+   "Lu Shijian",
+   "Luke Ong （翁之昊）",
+   "Luo Jun",
+   "Luo Siqiang",
+   "Luu Anh Tuan",
+   "Mahardhika Pratama",
+   "Miao Chun Yan",
+   "Mohamed M. Sabry",
+   "Ong Yew Soon",
+   "Pan Xingang",
+   "Patricia J. Y. Wong",
+   "Qian Kemao",
+   "Qichen Wang",
+   "Quek Hiok Chai",
+   "Ran Yan",
+   "Rong Su",
+   "Samantha Chan",
+   "Seah Hock Soon",
+   "Sinno Jialin Pan",
+   "Siu Lun Chau",
+   "Soujanya Poria",
+   "Sourav Saha Bhowmick",
+   "Stefano V. Albrecht",
+   "Sun Aixin",
+   "Sunwoo Lee",
+   "Tan Rui",
+   "Tang Xueyan",
+   "Tao Dacheng",
+   "Tee Hiang Cheng",
+   "Thomas Peyrin",
+   "Tony Tae-Hyoung Kim",
+   "Tupei Chen",
+   "Wang Wenya",
+   "Wang Yong",
+   "Wee Peng Tay",
+   "Wei Dong",
+   "Wen Yonggang",
+   "Wentong Cai",
+   "Will Cong",
+   "Woon-Seng Gan",
+   "Xiaofeng Wang",
+   "Xiaohui Bei",
+   "Xudong Jiang",
+   "Yan Xu",
+   "Yeshwanth Cherapanamjeri",
+   "Yewen Pu",
+   "Yi Tang",
+   "Yong Liang Guan",
+   "Yu Han",
+   "Yuguang Fu",
+   "Zhang Jie",
+   "Zhang Tianwei",
+   "Zhao Jun",
+   "Zheng Jianmin",
+   "Zhiping Lin",
+   "Zinovi Rabinovich",
+   "Ziwei Wang"
+  ],
+  "n_pis": 122,
+  "files": {
+   "pis.json": "9effc6b1edd20998b322f1aecf11e6db5e1a1d5c0ad3741af3fcbcca7d4ad2b4",
+   "students.json": "5093d80879b870cfa802404f0ee6531908dfa079f24d5861b9a0672e061b172d",
+   "lab_papers.jsonl.gz": "9f7471d6c3acfd81c3bced9557b7e0fa0c2e2ca232d40bc91354661f8a2a8fbb",
+   "student_papers.jsonl.gz": "b45a3d7ec91f1a6de33ec8fd8b0381081ce5b70f90a501e569986c12923bd580",
+   "copies.json": "e96af404935def53635620ef69dd07837e619eb03b9efa862e767968824cc0a8"
+  },
+  "included_sha": "153e32f7ce613eee6d579f5cac3828195c6e006b45a7313ecfc99fd6eb8ea047",
+  "projection_version": 1,
+  "held": [
+   [
+    "A S Madhukumar",
+    "ext:ntu:koodathumkal-mathew-libin"
+   ],
+   [
+    "A S Madhukumar",
+    "ext:ntu:syed-naveen-altaf-ahmed"
+   ],
+   [
+    "A S Madhukumar",
+    "ext:ntu:yepuri-sudhakara-rao"
+   ],
+   [
+    "Abdulkadir C. Yucel",
+    "ext:ntu:eng-kee-chua"
+   ],
+   [
+    "Abdulkadir C. Yucel",
+    "ext:ntu:kirthiga-govindan-radhakrishnan"
+   ],
+   [
+    "Abdulkadir C. Yucel",
+    "ext:ntu:xi-wang"
+   ],
+   [
+    "Alexei Sourin",
+    "ext:ntu:bin-weng"
+   ],
+   [
+    "Alexei Sourin",
+    "ext:ntu:chao-zhang"
+   ],
+   [
+    "Alexei Sourin",
+    "ext:ntu:cui-jian"
+   ],
+   [
+    "Alexei Sourin",
+    "ext:ntu:guo-song"
+   ],
+   [
+    "Alexei Sourin",
+    "ext:ntu:ihar-volkov"
+   ],
+   [
+    "Alexei Sourin",
+    "ext:ntu:johannes-edelsbrunner"
+   ],
+   [
+    "Alexei Sourin",
+    "ext:ntu:mohammad-chegini"
+   ],
+   [
+    "Alexei Sourin",
+    "ext:ntu:wang-hanqin"
+   ],
+   [
+    "Alexei Sourin",
+    "ext:ntu:zhang-xingzi"
+   ],
+   [
+    "Anwitaman Datta",
+    "ext:ntu:yeo-yun-siang-geremie"
+   ],
+   [
+    "Arijit Khan",
+    "ext:ntu:ren-chao"
+   ],
+   [
+    "Arvind Easwaran",
+    "ext:ntu:kai-bing-chua"
+   ],
+   [
+    "Arvind Easwaran",
+    "ext:ntu:manoj-kumar-lenka"
+   ],
+   [
+    "Bo An",
+    "ext:ntu:jianing-ju"
+   ],
+   [
+    "Bo An",
+    "ext:ntu:rachmiel-andre-teo-ren-xiang"
+   ],
+   [
+    "Bo An",
+    "ext:ntu:shengming-wang"
+   ],
+   [
+    "Bo An",
+    "ext:ntu:tan-hao-hao"
+   ],
+   [
+    "Changyun Wen",
+    "ext:ntu:xinze-li"
+   ],
+   [
+    "Chau Yuen",
+    "ext:ntu:arhanifsyah-fazil"
+   ],
+   [
+    "Chau Yuen",
+    "ext:ntu:benny-ng-kai-kiat"
+   ],
+   [
+    "Chau Yuen",
+    "ext:ntu:hong-niu"
+   ],
+   [
+    "Chau Yuen",
+    "ext:ntu:james-tai-chun-ket"
+   ],
+   [
+    "Chau Yuen",
+    "ext:ntu:miranda-charles-miranda-christ-clenson"
+   ],
+   [
+    "Chau Yuen",
+    "ext:ntu:qinwen-deng"
+   ],
+   [
+    "Chau Yuen",
+    "ext:ntu:tinapat-limsila"
+   ],
+   [
+    "Chau Yuen",
+    "ext:ntu:vu-huy-nhat-minh"
+   ],
+   [
+    "Chau Yuen",
+    "ext:ntu:yosep-kim"
+   ],
+   [
+    "Chip-Hong Chang",
+    "ext:ntu:ho-truong-phu-truan"
+   ],
+   [
+    "Chip-Hong Chang",
+    "ext:ntu:huishu-zhong"
+   ],
+   [
+    "Chip-Hong Chang",
+    "ext:ntu:yufei-zhang"
+   ],
+   [
+    "Chng Eng Siong",
+    "ext:ntu:andrew-koh-jin-jie"
+   ],
+   [
+    "Chng Eng Siong",
+    "ext:ntu:chong-tze-yuang"
+   ],
+   [
+    "Chng Eng Siong",
+    "ext:ntu:khassan-yerbolat"
+   ],
+   [
+    "Chng Eng Siong",
+    "ext:ntu:ng-dian-wen"
+   ],
+   [
+    "Chng Eng Siong",
+    "ext:ntu:nguyen-duc-hoang-ha"
+   ],
+   [
+    "Chng Eng Siong",
+    "ext:ntu:paul-chan"
+   ],
+   [
+    "Chng Eng Siong",
+    "ext:ntu:rae-koh-jia-xin"
+   ],
+   [
+    "Chng Eng Siong",
+    "ext:ntu:shreyas-gopas"
+   ],
+   [
+    "Chng Eng Siong",
+    "ext:ntu:tuan-truong-duc"
+   ],
+   [
+    "Chng Eng Siong",
+    "ext:ntu:yip-jia-qi"
+   ],
+   [
+    "Chuanxia Zheng",
+    "ext:ntu:dhrubo-saha"
+   ],
+   [
+    "Chuanxia Zheng",
+    "ext:ntu:mengting-li"
+   ],
+   [
+    "Chuanxia Zheng",
+    "ext:ntu:yitong-xia"
+   ],
+   [
+    "Cong Gao",
+    "ext:ntu:hu-yihua"
+   ],
+   [
+    "Cong Gao",
+    "ext:ntu:yuxiao-du"
+   ],
+   [
+    "Conrad Watt",
+    "ext:ntu:antanas-kalkauskas"
+   ],
+   [
+    "Conrad Watt",
+    "ext:ntu:avishkar-mahajan"
+   ],
+   [
+    "Conrad Watt",
+    "ext:ntu:shuhan-he"
+   ],
+   [
+    "Conrad Watt",
+    "ext:ntu:zilin-chen"
+   ],
+   [
+    "Dmitrii Ustiugov",
+    "ext:ntu:colin-hong"
+   ],
+   [
+    "Erik Cambria",
+    "ext:ntu:tang-yi-qwan"
+   ],
+   [
+    "Guan Cuntai",
+    "ext:ntu:debadrita-roy"
+   ],
+   [
+    "Guan Cuntai",
+    "ext:ntu:eric-liu-yuanwei"
+   ],
+   [
+    "Guan Cuntai",
+    "ext:ntu:gan-anan"
+   ],
+   [
+    "Guan Cuntai",
+    "ext:ntu:james-jiang-muyun"
+   ],
+   [
+    "Guan Cuntai",
+    "ext:ntu:joann-wong"
+   ],
+   [
+    "Guan Cuntai",
+    "ext:ntu:kantham-thangthong"
+   ],
+   [
+    "Guan Cuntai",
+    "ext:ntu:lee-jia-qie"
+   ],
+   [
+    "Guan Cuntai",
+    "ext:ntu:rhea-kenneth"
+   ],
+   [
+    "Guan Cuntai",
+    "ext:ntu:wang-yiwen"
+   ],
+   [
+    "Guan Cuntai",
+    "ext:ntu:wu-jinzhou"
+   ],
+   [
+    "Guoqiang Hu",
+    "ext:ntu:xiaoshi-zhang"
+   ],
+   [
+    "He Ying",
+    "ext:ntu:wang-yuancheng"
+   ],
+   [
+    "Hen-Wei Huang",
+    "ext:ntu:chen-yihan"
+   ],
+   [
+    "Hen-Wei Huang",
+    "ext:ntu:lily-sheng"
+   ],
+   [
+    "Hen-Wei Huang",
+    "ext:ntu:sun-yiyang"
+   ],
+   [
+    "Jagath Chandana Rajapakse",
+    "ext:ntu:jing-long-tan"
+   ],
+   [
+    "Jagath Chandana Rajapakse",
+    "ext:ntu:senthisenan-ajith"
+   ],
+   [
+    "Jagath Chandana Rajapakse",
+    "ext:ntu:tiara-natasha"
+   ],
+   [
+    "Jianfei Yang",
+    "ext:ntu:juanxi-tian"
+   ],
+   [
+    "Jiawang Bian",
+    "ext:ntu:ji-fang"
+   ],
+   [
+    "Jiawang Bian",
+    "ext:ntu:yuzhuo-tian"
+   ],
+   [
+    "Jiawang Bian",
+    "ext:ntu:zehao-qi"
+   ],
+   [
+    "Joty Shafiq Rayhan",
+    "ext:ntu:hoang-nghia-tuyen"
+   ],
+   [
+    "Joty Shafiq Rayhan",
+    "ext:ntu:nguyen-thanh-tung"
+   ],
+   [
+    "Juan-Pablo Ortega",
+    "ext:ntu:hannah-lim"
+   ],
+   [
+    "Juan-Pablo Ortega",
+    "ext:ntu:mer-doruk"
+   ],
+   [
+    "Juan-Pablo Ortega",
+    "ext:ntu:niels-goedegebure"
+   ],
+   [
+    "Kelly Ke Yiping",
+    "ext:ntu:liao-chang"
+   ],
+   [
+    "Kezhi Mao",
+    "ext:ntu:xinze-li"
+   ],
+   [
+    "Kwoh Chee Keong",
+    "ext:ntu:aly-mohamed-alaaeldin-aly-ezzat"
+   ],
+   [
+    "Kwoh Chee Keong",
+    "ext:ntu:hou-yubo"
+   ],
+   [
+    "Kwoh Chee Keong",
+    "ext:ntu:luay-aswad"
+   ],
+   [
+    "Kwoh Chee Keong",
+    "ext:ntu:mohamed-ragab-mohamed-adam"
+   ],
+   [
+    "Kwoh Chee Keong",
+    "ext:ntu:pradhan-mohan-rajan"
+   ],
+   [
+    "Kwoh Chee Keong",
+    "ext:ntu:tan-lai-heng"
+   ],
+   [
+    "Lee Bu Sung",
+    "ext:ntu:aike-alexander-steentoft"
+   ],
+   [
+    "Li Boyang",
+    "ext:ntu:cao-gia-bao"
+   ],
+   [
+    "Li Boyang",
+    "ext:ntu:gao-yiming"
+   ],
+   [
+    "Li Mo",
+    "ext:ntu:andreas-kuster"
+   ],
+   [
+    "Li Mo",
+    "ext:ntu:gaole-dai"
+   ],
+   [
+    "Li Mo",
+    "ext:ntu:kaiqi-liu"
+   ],
+   [
+    "Li Mo",
+    "ext:ntu:ya-nan"
+   ],
+   [
+    "Lin Guosheng",
+    "ext:ntu:he-xiaosheng"
+   ],
+   [
+    "Lin Guosheng",
+    "ext:ntu:shi-hanyu"
+   ],
+   [
+    "Liu Weichen",
+    "ext:ntu:tuan-kiet-cao"
+   ],
+   [
+    "Liu Yang",
+    "ext:ntu:brandon-goh-wen-heng"
+   ],
+   [
+    "Liu Yang",
+    "ext:ntu:siow-jing-kai"
+   ],
+   [
+    "Liu Yang",
+    "ext:ntu:yang-xuehuan"
+   ],
+   [
+    "Liu Yang",
+    "ext:ntu:zhang-lvye"
+   ],
+   [
+    "Liu Ziwei",
+    "ext:ntu:jiawei-ren"
+   ],
+   [
+    "Liu Ziwei",
+    "ext:ntu:jing-lin"
+   ],
+   [
+    "Liu Ziwei",
+    "ext:ntu:liangyu-chen"
+   ],
+   [
+    "Liu Ziwei",
+    "ext:ntu:mingze-sun"
+   ],
+   [
+    "Liu Ziwei",
+    "ext:ntu:peiyuan-zhang"
+   ],
+   [
+    "Liu Ziwei",
+    "ext:ntu:siyuan-hu"
+   ],
+   [
+    "Liu Ziwei",
+    "ext:ntu:tianxing-wu"
+   ],
+   [
+    "Liu Ziwei",
+    "ext:ntu:wenxuan-peng"
+   ],
+   [
+    "Liu Ziwei",
+    "ext:ntu:wu-chengrui"
+   ],
+   [
+    "Long Cheng",
+    "ext:ntu:chua-ming-hui"
+   ],
+   [
+    "Long Cheng",
+    "ext:ntu:xi-yuan"
+   ],
+   [
+    "Long Cheng",
+    "ext:ntu:yitao-zheng"
+   ],
+   [
+    "Long Cheng",
+    "ext:ntu:zhonghao-yang"
+   ],
+   [
+    "Lu Shijian",
+    "ext:ntu:han-qiu"
+   ],
+   [
+    "Lu Shijian",
+    "ext:ntu:wenjun-luo"
+   ],
+   [
+    "Lu Shijian",
+    "ext:ntu:yiheng-li"
+   ],
+   [
+    "Lu Shijian",
+    "ext:ntu:yu-wei"
+   ],
+   [
+    "Luke Ong （翁之昊）",
+    "ext:ntu:yunqiao-yang"
+   ],
+   [
+    "Luo Siqiang",
+    "ext:ntu:jiang-yige"
+   ],
+   [
+    "Luo Siqiang",
+    "ext:ntu:wang-fan"
+   ],
+   [
+    "Luo Siqiang",
+    "ext:ntu:zhong-shurui"
+   ],
+   [
+    "Luu Anh Tuan",
+    "ext:ntu:bosheng-ding"
+   ],
+   [
+    "Luu Anh Tuan",
+    "ext:ntu:cao-qi"
+   ],
+   [
+    "Luu Anh Tuan",
+    "ext:ntu:do-duc-anh"
+   ],
+   [
+    "Luu Anh Tuan",
+    "ext:ntu:fengjun-pan"
+   ],
+   [
+    "Luu Anh Tuan",
+    "ext:ntu:guizhen-chen"
+   ],
+   [
+    "Luu Anh Tuan",
+    "ext:ntu:zhang-zhen"
+   ],
+   [
+    "Mahardhika Pratama",
+    "ext:ntu:abhay-aradya"
+   ],
+   [
+    "Miao Chun Yan",
+    "ext:ntu:yuxi-wang"
+   ],
+   [
+    "Pan Xingang",
+    "ext:ntu:chengkai-jin"
+   ],
+   [
+    "Pan Xingang",
+    "ext:ntu:du-an-svilarkovi"
+   ],
+   [
+    "Pan Xingang",
+    "ext:ntu:kaiwen-zhang"
+   ],
+   [
+    "Pan Xingang",
+    "ext:ntu:yu-zhang"
+   ],
+   [
+    "Pan Xingang",
+    "ext:ntu:zexin-he"
+   ],
+   [
+    "Pan Xingang",
+    "ext:ntu:zhexin-liang"
+   ],
+   [
+    "Qian Kemao",
+    "ext:ntu:lim-song-hao-iain"
+   ],
+   [
+    "Quek Hiok Chai",
+    "ext:ntu:chew-yao-kang"
+   ],
+   [
+    "Quek Hiok Chai",
+    "ext:ntu:lee-chun-kiat"
+   ],
+   [
+    "Quek Hiok Chai",
+    "ext:ntu:shreyas-gopas"
+   ],
+   [
+    "Ran Yan",
+    "ext:ntu:bowen-li"
+   ],
+   [
+    "Ran Yan",
+    "ext:ntu:he-lu"
+   ],
+   [
+    "Ran Yan",
+    "ext:ntu:raegeane-hastanjaya"
+   ],
+   [
+    "Ran Yan",
+    "ext:ntu:shaoyue-shi"
+   ],
+   [
+    "Ran Yan",
+    "ext:ntu:tianbing-xia"
+   ],
+   [
+    "Ran Yan",
+    "ext:ntu:yufan-huang"
+   ],
+   [
+    "Ran Yan",
+    "ext:ntu:yunlin-li"
+   ],
+   [
+    "Rong Su",
+    "ext:ntu:guo-yao"
+   ],
+   [
+    "Rong Su",
+    "ext:ntu:lee-kelvin"
+   ],
+   [
+    "Rong Su",
+    "ext:ntu:luo-ruikang"
+   ],
+   [
+    "Rong Su",
+    "ext:ntu:zhao-han"
+   ],
+   [
+    "Rong Su",
+    "ext:ntu:zhao-nanbin"
+   ],
+   [
+    "Sinno Jialin Pan",
+    "ext:ntu:jianjun-zhao"
+   ],
+   [
+    "Siu Lun Chau",
+    "ext:ntu:clayton-chong"
+   ],
+   [
+    "Siu Lun Chau",
+    "ext:ntu:xiaotao-liu"
+   ],
+   [
+    "Soujanya Poria",
+    "ext:ntu:nithish-selvaraj"
+   ],
+   [
+    "Soujanya Poria",
+    "ext:ntu:richmond-sin"
+   ],
+   [
+    "Sourav Saha Bhowmick",
+    "ext:ntu:renchi-yang"
+   ],
+   [
+    "Sourav Saha Bhowmick",
+    "ext:ntu:xi-lin"
+   ],
+   [
+    "Stefano V. Albrecht",
+    "ext:ntu:ka-yiu-lee"
+   ],
+   [
+    "Stefano V. Albrecht",
+    "ext:ntu:pittawat-taveekitworachai"
+   ],
+   [
+    "Stefano V. Albrecht",
+    "ext:ntu:tanisha-annamalai"
+   ],
+   [
+    "Stefano V. Albrecht",
+    "ext:ntu:tianyi-tang"
+   ],
+   [
+    "Stefano V. Albrecht",
+    "ext:ntu:yize-liu"
+   ],
+   [
+    "Sun Aixin",
+    "ext:ntu:fangkai-jiao"
+   ],
+   [
+    "Sunwoo Lee",
+    "ext:ntu:xingyuan-chen"
+   ],
+   [
+    "Tan Rui",
+    "ext:ntu:manjodh-singh"
+   ],
+   [
+    "Tan Rui",
+    "ext:ntu:yaoyang-li"
+   ],
+   [
+    "Tao Dacheng",
+    "ext:ntu:jialiang-tang"
+   ],
+   [
+    "Thomas Peyrin",
+    "ext:ntu:tristan-gu-rand"
+   ],
+   [
+    "Wang Wenya",
+    "ext:ntu:chengtao-lyu"
+   ],
+   [
+    "Wang Wenya",
+    "ext:ntu:ching-chieh-tsao"
+   ],
+   [
+    "Wang Wenya",
+    "ext:ntu:giang-son-nguyen"
+   ],
+   [
+    "Wang Wenya",
+    "ext:ntu:qingyuan-liu"
+   ],
+   [
+    "Wang Yong",
+    "ext:ntu:gnanavel-nishaanthini"
+   ],
+   [
+    "Wee Peng Tay",
+    "ext:ntu:ho-jun-feng-jack"
+   ],
+   [
+    "Wee Peng Tay",
+    "ext:ntu:lau-tze-siong"
+   ],
+   [
+    "Wee Peng Tay",
+    "ext:ntu:lee-see-hian"
+   ],
+   [
+    "Wee Peng Tay",
+    "ext:ntu:wang-chongxiao"
+   ],
+   [
+    "Wei Dong",
+    "ext:ntu:fahong-zhang"
+   ],
+   [
+    "Wei Dong",
+    "ext:ntu:hao-ding"
+   ],
+   [
+    "Wei Dong",
+    "ext:ntu:peng-yang"
+   ],
+   [
+    "Wei Dong",
+    "ext:ntu:soham-vaidya"
+   ],
+   [
+    "Wei Dong",
+    "ext:ntu:xinghe-chen"
+   ],
+   [
+    "Wen Yonggang",
+    "ext:ntu:chen-erdong"
+   ],
+   [
+    "Wentong Cai",
+    "ext:ntu:iryanto-jaya"
+   ],
+   [
+    "Woon-Seng Gan",
+    "ext:ntu:thanh-v-t-tran"
+   ],
+   [
+    "Woon-Seng Gan",
+    "ext:ntu:yeow-jun-wei"
+   ],
+   [
+    "Xiaofeng Wang",
+    "ext:ntu:peng-yang"
+   ],
+   [
+    "Xiaohui Bei",
+    "ext:ntu:tan-jinin-liang"
+   ],
+   [
+    "Xudong Jiang",
+    "ext:ntu:haoge-jiang"
+   ],
+   [
+    "Xudong Jiang",
+    "ext:ntu:letao-liu"
+   ],
+   [
+    "Xudong Jiang",
+    "ext:ntu:zhan-lu"
+   ],
+   [
+    "Yewen Pu",
+    "ext:ntu:do-duc-anh"
+   ],
+   [
+    "Yewen Pu",
+    "ext:ntu:felipe-arias-russi"
+   ],
+   [
+    "Yewen Pu",
+    "ext:ntu:hanxuan-ju"
+   ],
+   [
+    "Yewen Pu",
+    "ext:ntu:rajvir"
+   ],
+   [
+    "Yi Tang",
+    "ext:ntu:jiachi-zhu"
+   ],
+   [
+    "Yi Tang",
+    "ext:ntu:julian-chung-zhong-wei"
+   ],
+   [
+    "Yi Tang",
+    "ext:ntu:minzheng-liu"
+   ],
+   [
+    "Yi Tang",
+    "ext:ntu:ngo-bac-bien"
+   ],
+   [
+    "Yi Tang",
+    "ext:ntu:ong-jing-xian"
+   ],
+   [
+    "Yi Tang",
+    "ext:ntu:rifki-daris-dzulfikar"
+   ],
+   [
+    "Yi Tang",
+    "ext:ntu:shukla-shriya"
+   ],
+   [
+    "Yi Tang",
+    "ext:ntu:tengfei-sun"
+   ],
+   [
+    "Yong Liang Guan",
+    "ext:ntu:lyu-qihao"
+   ],
+   [
+    "Yong Liang Guan",
+    "ext:ntu:zhong-bowen"
+   ],
+   [
+    "Yu Han",
+    "ext:ntu:alistair-jia-jin-yong"
+   ],
+   [
+    "Yu Han",
+    "ext:ntu:bui-le-phuong"
+   ],
+   [
+    "Yu Han",
+    "ext:ntu:haizhou-wang"
+   ],
+   [
+    "Yu Han",
+    "ext:ntu:mengting-li"
+   ],
+   [
+    "Yu Han",
+    "ext:ntu:shu-wang"
+   ],
+   [
+    "Yu Han",
+    "ext:ntu:suizhi-huang"
+   ],
+   [
+    "Yu Han",
+    "ext:ntu:zhijing-xiang"
+   ],
+   [
+    "Zhang Tianwei",
+    "ext:ntu:dikai-liu"
+   ],
+   [
+    "Zhang Tianwei",
+    "ext:ntu:heyang-huang"
+   ],
+   [
+    "Zhang Tianwei",
+    "ext:ntu:heyi-zhang"
+   ],
+   [
+    "Zhang Tianwei",
+    "ext:ntu:hui-en-pang"
+   ],
+   [
+    "Zhang Tianwei",
+    "ext:ntu:ke-jiang"
+   ],
+   [
+    "Zhang Tianwei",
+    "ext:ntu:li-yanxi"
+   ],
+   [
+    "Zhang Tianwei",
+    "ext:ntu:lyu-chengtao"
+   ],
+   [
+    "Zhang Tianwei",
+    "ext:ntu:raymond-pee-yong-nging"
+   ],
+   [
+    "Zhang Tianwei",
+    "ext:ntu:terence-wen-zheng-ng"
+   ],
+   [
+    "Zhao Jun",
+    "ext:ntu:xinyu-zhou"
+   ]
+  ],
+  "carried_forward": {},
+  "files_now": {
+   "pis.json": "9effc6b1edd20998b322f1aecf11e6db5e1a1d5c0ad3741af3fcbcca7d4ad2b4",
+   "students.json": "5093d80879b870cfa802404f0ee6531908dfa079f24d5861b9a0672e061b172d",
+   "lab_papers.jsonl.gz": "9f7471d6c3acfd81c3bced9557b7e0fa0c2e2ca232d40bc91354661f8a2a8fbb",
+   "student_papers.jsonl.gz": "b45a3d7ec91f1a6de33ec8fd8b0381081ce5b70f90a501e569986c12923bd580",
+   "copies.json": "e96af404935def53635620ef69dd07837e619eb03b9efa862e767968824cc0a8"
+  },
+  "rebound_held_links": {
+   "drawn_hashes": {
+    "students.json": "9eebf1e1c250edd54c5dd5393dee66a2bfd6c41d1a4f192fb7330dff3e9cb42f"
+   },
+   "live_hashes": {
+    "students.json": "5093d80879b870cfa802404f0ee6531908dfa079f24d5861b9a0672e061b172d"
+   },
+   "held_links_now": 1,
+   "drawn_rows_held": 0,
+   "candidates_held": 0
+  }
+ },
+ "population": {
+  "n_lab_papers": 10485,
+  "n_student_papers": 3719,
+  "n_coverage_pool": 8101,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

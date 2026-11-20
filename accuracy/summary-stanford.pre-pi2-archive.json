@@ -1,0 +1,180 @@
+{
+ "school": "stanford",
+ "date": "2026-11-11",
+ "seed": 20261029,
+ "n_verdicts": 105,
+ "files": {
+  "pis.json": "c9701a1ec6bfefd90e4057513174a148c523be8db6ba66a0a83ad20708b95394",
+  "students.json": "c6ba2366b207d83483f6e8480fea3c4422e34a8b62ed9b76dac82487b219c871",
+  "lab_papers.jsonl.gz": "f5795e361c8f947ea5ed77fc3aa836601675d372b48bc15ea9187019aeae1007",
+  "student_papers.jsonl.gz": "4d4a33452d252ac3232949552f268622983225efa8a0e9379c141d3afc48aa30",
+  "copies.json": "5e8dced4d090f0ba90e291f98e36214c7d26852b3d699eeaf7a21aa641d6ab05"
+ },
+ "files_now": {
+  "pis.json": "c9701a1ec6bfefd90e4057513174a148c523be8db6ba66a0a83ad20708b95394",
+  "students.json": "c6ba2366b207d83483f6e8480fea3c4422e34a8b62ed9b76dac82487b219c871",
+  "lab_papers.jsonl.gz": "f5795e361c8f947ea5ed77fc3aa836601675d372b48bc15ea9187019aeae1007",
+  "student_papers.jsonl.gz": "4d4a33452d252ac3232949552f268622983225efa8a0e9379c141d3afc48aa30",
+  "copies.json": "5e8dced4d090f0ba90e291f98e36214c7d26852b3d699eeaf7a21aa641d6ab05"
+ },
+ "lab_precision_uniform": {
+  "k": 23,
+  "n": 25,
+  "p": 0.92,
+  "lo": 0.7503,
+  "hi": 0.9778,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 23,
+  "n": 25,
+  "p": 0.92,
+  "lo": 0.7503,
+  "hi": 0.9778,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 37,
+  "n": 40,
+  "p": 0.925,
+  "lo": 0.8014,
+  "hi": 0.9742,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 40,
+  "n": 40,
+  "p": 1.0,
+  "lo": 0.9124,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 13,
+  "n": 13,
+  "p": 1.0,
+  "lo": 0.7719,
+  "hi": 1.0
+ },
+ "lab_coverage_items": {
+  "drawn": 15,
+  "true_lab_papers": 13,
+  "not_lab_papers_absent": 1,
+  "not_lab_papers_in_build": 1
+ },
+ "student_coverage": {
+  "k": 8,
+  "n": 8,
+  "p": 1.0,
+  "lo": 0.6756,
+  "hi": 1.0
+ },
+ "student_coverage_items": {
+  "drawn": 10,
+  "no_coauthored_paper": 2
+ },
+ "failures": {
+  "outside_appointment": 1,
+  "not_a_paper": 2
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "identity_not_reviewed",
+   "item": "Justin Grimmer|None|https://openalex.org/W3021512372",
+   "failure_type": "outside_appointment",
+   "reason": "Paper dated 2017-11 but Grimmer's evidenced Stanford period starts 2019-12-08; 2017 listing entry conflicts with period, OpenAlex affiliation likely retroactive",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Boris Murmann|None|https://openalex.org/W2945020688",
+   "failure_type": "not_a_paper",
+   "reason": "Guest Editorial Overview, an editorial not a research paper",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Diyi Yang|None|https://openalex.org/W4386576738",
+   "failure_type": "not_a_paper",
+   "reason": "EACL 2023 tutorial abstract (acl anthology tutorials.3), a tutorial description rather than a research paper",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_coverage",
+   "item": "Serena Yeung-Levy|conf/iclr/BurgessWZRLDDY25",
+   "reason": "DOUBTFUL: OA preprint names only UC Berkeley for PI; build includes it in lab; cannot confirm Stanford affiliation from sheet"
+  }
+ ],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 20779,
+  "n_student_papers": 16956,
+  "n_coverage_pool": 11985,
+  "n_student_candidates": 1592
+ }
+}

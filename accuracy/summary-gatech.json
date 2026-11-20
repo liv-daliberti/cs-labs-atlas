@@ -1,78 +1,78 @@
 {
  "school": "gatech",
- "date": "2026-11-18",
- "seed": 20261118,
+ "date": "2026-11-19",
+ "seed": 202611191082721799,
  "n_verdicts": 180,
  "files": {
-  "pis.json": "52c84335dbf899a473b7b33bef94c3dc3c158c01be4432bd09a6d448128140c8",
-  "students.json": "12b20e6d44a06d74dddc1b359af28cd609494108b7d8ee647ad56fe91b95e4cc",
-  "lab_papers.jsonl.gz": "4d74e71c00af8821fc6b53641487c62882672c4d86c53c79f9ae3aba11507bca",
-  "student_papers.jsonl.gz": "03c1f6328b0c15d0a7e025ca2d9d89bda23be8bb7e3d7e75729c4598b8c2099c",
-  "copies.json": "e2bee0a075ac2771f2870b4ada5efa9dde9965a413c89b20d07946af970c192a"
+  "pis.json": "bc4ee5891a7e4fe6f681dd7b1d2e85d87386ae87dd832d3f516938f6b8e056ae",
+  "students.json": "015527dc3ba3bc02fdea9a4f6cd4cfc1e2ff3476297b573fe8849cf251fb8845",
+  "lab_papers.jsonl.gz": "febfaa60c1ebd82b12a300b3fa5c8244e0fd68878b8b0977a89d6a6c1291d386",
+  "student_papers.jsonl.gz": "9b35a472e32d05c668c56677c4847b747b7b8601caae30bf43da2ff45887f851",
+  "copies.json": "2ffdbb02d43aad17ceaaa478464e60861015dc9064ea6d2f169efcdfd6ce5899"
  },
  "files_now": {
-  "pis.json": "52c84335dbf899a473b7b33bef94c3dc3c158c01be4432bd09a6d448128140c8",
-  "students.json": "12b20e6d44a06d74dddc1b359af28cd609494108b7d8ee647ad56fe91b95e4cc",
-  "lab_papers.jsonl.gz": "4d74e71c00af8821fc6b53641487c62882672c4d86c53c79f9ae3aba11507bca",
-  "student_papers.jsonl.gz": "03c1f6328b0c15d0a7e025ca2d9d89bda23be8bb7e3d7e75729c4598b8c2099c",
-  "copies.json": "e2bee0a075ac2771f2870b4ada5efa9dde9965a413c89b20d07946af970c192a"
+  "pis.json": "bc4ee5891a7e4fe6f681dd7b1d2e85d87386ae87dd832d3f516938f6b8e056ae",
+  "students.json": "015527dc3ba3bc02fdea9a4f6cd4cfc1e2ff3476297b573fe8849cf251fb8845",
+  "lab_papers.jsonl.gz": "febfaa60c1ebd82b12a300b3fa5c8244e0fd68878b8b0977a89d6a6c1291d386",
+  "student_papers.jsonl.gz": "9b35a472e32d05c668c56677c4847b747b7b8601caae30bf43da2ff45887f851",
+  "copies.json": "2ffdbb02d43aad17ceaaa478464e60861015dc9064ea6d2f169efcdfd6ce5899"
  },
  "lab_precision_uniform": {
-  "k": 49,
-  "n": 50,
-  "p": 0.98,
-  "lo": 0.895,
-  "hi": 0.9965,
-  "unclear": 0
+  "k": 43,
+  "n": 46,
+  "p": 0.9348,
+  "lo": 0.825,
+  "hi": 0.9776,
+  "unclear": 4
  },
  "lab_precision_uniform_if_abstracts_count": {
-  "k": 49,
-  "n": 50,
-  "p": 0.98,
-  "lo": 0.895,
-  "hi": 0.9965,
-  "unclear": 0
+  "k": 43,
+  "n": 46,
+  "p": 0.9348,
+  "lo": 0.825,
+  "hi": 0.9776,
+  "unclear": 4
  },
  "lab_precision_strata": {
   "advisee_unaffiliated": {
-   "k": 5,
+   "k": 4,
    "n": 5,
-   "p": 1.0,
-   "lo": 0.5655,
-   "hi": 1.0,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
    "unclear": 0
   },
   "listing": {
+   "k": 4,
+   "n": 4,
+   "p": 1.0,
+   "lo": 0.5101,
+   "hi": 1.0,
+   "unclear": 1
+  },
+  "identity_not_reviewed": {
    "k": 5,
    "n": 5,
    "p": 1.0,
    "lo": 0.5655,
    "hi": 1.0,
-   "unclear": 0
-  },
-  "identity_not_reviewed": {
-   "k": 3,
-   "n": 5,
-   "p": 0.6,
-   "lo": 0.2307,
-   "hi": 0.8824,
    "unclear": 0
   }
  },
  "lab_precision_all40": {
-  "k": 62,
-  "n": 65,
-  "p": 0.9538,
-  "lo": 0.8729,
-  "hi": 0.9842,
-  "unclear": 0
+  "k": 56,
+  "n": 60,
+  "p": 0.9333,
+  "lo": 0.8407,
+  "hi": 0.9738,
+  "unclear": 5
  },
  "student_precision_uniform": {
-  "k": 50,
+  "k": 49,
   "n": 50,
-  "p": 1.0,
-  "lo": 0.9287,
-  "hi": 1.0,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
   "unclear": 0
  },
  "student_precision_strata": {
@@ -102,23 +102,23 @@
   }
  },
  "student_precision_all40": {
-  "k": 65,
+  "k": 64,
   "n": 65,
-  "p": 1.0,
-  "lo": 0.9442,
-  "hi": 1.0,
+  "p": 0.9846,
+  "lo": 0.9179,
+  "hi": 0.9973,
   "unclear": 0
  },
  "lab_coverage": {
-  "k": 37,
-  "n": 44,
-  "p": 0.8409,
-  "lo": 0.7063,
-  "hi": 0.9207
+  "k": 40,
+  "n": 40,
+  "p": 1.0,
+  "lo": 0.9124,
+  "hi": 1.0
  },
  "lab_coverage_items": {
   "drawn": 50,
-  "true_lab_papers": 44,
+  "true_lab_papers": 40,
   "not_lab_papers_absent": 6,
   "not_lab_papers_in_build": 0
  },
@@ -128,93 +128,98 @@
   "no_coauthored_paper": 0
  },
  "failures": {
-  "not_a_paper": 2,
-  "outside_appointment": 1,
-  "missing_from_build": 7
+  "not_a_paper": 4,
+  "wrong_student": 1
  },
  "incorrect": [
   {
    "sample": "lab_precision",
    "stratum": "uniform",
-   "item": "Carl DiSalvo|None|https://openalex.org/W2913527633",
+   "item": "Omer T Inan|None|https://openalex.org/W2577015365",
    "failure_type": "not_a_paper",
-   "reason": "PDC 2018 proceedings volume (editors byline), not a research output",
+   "reason": "Inan last author, aff GT ECE/Coulter BME, but title 'Live demonstration: ...' IEEE Sensors 2016 doi 10.1109/icsens.2016.7808572 is a live-demo abstract, not a research paper (affiliation and year OK)",
    "policy": null
   },
   {
    "sample": "lab_precision",
-   "stratum": "identity_not_reviewed",
-   "item": "Edward J Coyle|None|https://openalex.org/W2622676567",
-   "failure_type": "outside_appointment",
-   "reason": "ASEE paper is from the 2010 Annual Conference proceedings (OpenAlex raw source name); GT listings start 2016",
+   "stratum": "uniform",
+   "item": "Gari D. Clifford|None|https://openalex.org/W2944775800",
+   "failure_type": "not_a_paper",
+   "reason": "Clifford aff GT/Emory but record type is editorial ('Wearables and mHealth in mental health and neurological disorders', Physiol Meas 2019, doi 10.1088/1361-6579/ab2057), a special-issue editorial",
    "policy": null
   },
   {
    "sample": "lab_precision",
-   "stratum": "identity_not_reviewed",
-   "item": "Vince D Calhoun|None|https://openalex.org/W4394600337",
+   "stratum": "uniform",
+   "item": "Josiah Hester|None|https://openalex.org/W7172401349",
    "failure_type": "not_a_paper",
-   "reason": "Neurology supplement platform abstract (S28.007) from AAN meeting",
-   "policy": "meeting_abstract"
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Sebastian Pokutta|conf/icml/CombettesP20",
-   "failure_type": "missing_from_build",
-   "reason": "Pokutta at GT in 2020 with GT student Combettes (listings 2016-2022); arXiv affiliation is current Berlin only; build lacks it",
+   "reason": "Zenodo record doi 10.5281/zenodo.20668312, type 'book' titled 'Physiohub ... (Data Analysis & DB Schema)': a software/data documentation deposit, not a research paper; Hester aff GT is fine",
    "policy": null
   },
   {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Jianjun Shi|journals/tase/HaoLGS17",
-   "failure_type": "missing_from_build",
-   "reason": "Shi and GT coauthors, GT affiliation, DBLP year 2017 within listings; build lacks it",
+   "sample": "lab_precision",
+   "stratum": "advisee_unaffiliated",
+   "item": "Ling Liu|None|https://openalex.org/W3082394466",
+   "failure_type": "not_a_paper",
+   "reason": "Ling Liu 'Huge Data Analytics with Transparent In-Network Memory Computing (Presentation)': TigerPrints (Clemson) slide presentation from NSF Huge Data workshop (landing tigerprints.clemson.edu/.../presentations/3), a duplicate of the (White Paper) row; no aff on authorship; a slide deck not a research paper.",
    "policy": null
   },
   {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Alexey Tumanov|conf/ml4h/XuXRTZ23",
-   "failure_type": "missing_from_build",
-   "reason": "Tumanov listed at GT 2019-2026, 2023 paper with GT coauthors; no OpenAlex match; build lacks it",
-   "policy": null
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Callie Hao|conf/isqed/SathideviSWJH23",
-   "failure_type": "missing_from_build",
-   "reason": "Cong Hao GT-affiliated 2023 (listings 2022-2025); build lacks it",
-   "policy": null
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Callie Hao|journals/spe/AbiKaramH23",
-   "failure_type": "missing_from_build",
-   "reason": "Cong Hao GT-affiliated 2023 (listings 2022-2025), GT student Abi-Karam; build lacks it",
-   "policy": null
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Humphrey Shi|conf/nips/0011SHSE24",
-   "failure_type": "missing_from_build",
-   "reason": "Humphrey Shi listed at GT 2023-2026, 2024 year; OpenAlex has no affiliations, Google coauthors; judged true by listing-year rule",
-   "policy": null
-  },
-  {
-   "sample": "lab_coverage",
-   "stratum": "dblp_person_page",
-   "item": "Divya Mahajan|conf/icml/WangTP024",
-   "failure_type": "missing_from_build",
-   "reason": "Mahajan (GT 0001) listed 2024-2026, GT student Irene Wang; OpenAlex has no affiliations; judged true by listing-year rule",
+   "sample": "student_precision",
+   "stratum": "uniform",
+   "item": "B. Aditya Prakash|ext:gatech:alex-rodriguez|https://openalex.org/W4401011803",
+   "failure_type": "wrong_student",
+   "reason": "Stored row for FluSight Nature Comms DOI 10.1038/s41467-024-50601-9 (n=100 byline): no 'Alex Rodriguez' or any Rodriguez on the byline; student record only 'Alex Rodriguez, CS PhD' on Prakash 2022 page (also alsoPi Michigan Alexander Rodriguez), so link rests on no byline match.",
    "policy": null
   }
  ],
- "unclear": [],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Gregory Abowd|None|https://openalex.org/W2751398828",
+   "reason": "DOUBTFUL: Abowd middle author, aff GT, UbiComp 2017 doi 10.1145/3123024.3125612; title 'e wrapper' with 12 authors is likely an adjunct poster/demo abstract, page count not stored; affiliation/year OK but research-output status thin"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Shella Keilholz|None|https://openalex.org/W2794691985",
+   "reason": "DOUBTFUL: Keilholz aff 'Emory University/Georgia Institute of Technology' BME, listing 2018; but Optics in the Life Sciences (OSA Translational Biophotonics poster, jth3a.59) is likely a short meeting abstract; stored row has no page count"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Thad Starner|None|https://openalex.org/W4400643263",
+   "reason": "DOUBTFUL: L@S 2024 doi 10.1145/3657604.3664641 'Scaling Classrooms: A Forum for Practitioners...' reads like a workshop description/proposal (not_a_paper) but stored row has no page-1 or type evidence to settle; Starner GT aff and listing 2024 fine"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Bo Zhu|None|https://openalex.org/W7167049889",
+   "reason": "DOUBTFUL: arXiv 2607.00535 Flow-Map GRPO; Zhu, Bo last but OpenAlex authorship has no institution/affiliation, only 'advisee on unaffiliated byline: Li, Zhiqi'; page1_unchecked flag; common name; IC listing 2026 exists but GT affiliation and identity not directly evidenced"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Amy Bruckman|None|https://openalex.org/W4404331413",
+   "reason": "DOUBTFUL: Bruckman 2024 doi 10.1145/3678884.3687141: GT affiliation and IC listing 2024 fine, but DOI prefix 3678884 is the CSCW Companion volume and the 12-author title reads like a workshop proposal; stored row gives type conference-paper only, cannot confirm research output vs workshop proposal."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Thad Starner|conf/lats/CuiDMS24",
+   "reason": "DOUBTFUL: In build; Starner affiliation 'Georgia Institute of Technology, Atlanta' (W4400643263, 2024) fine, but title 'A Forum for Practitioners Seeking, Developing and Adapting their Own Tools' (L@S 2024, DOI 10.1145/3657604.3664641) reads like a workshop proposal and stored row has no page count/type to settle research-output test."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Geoffrey Ye Li|journals/tvt/ChangLL16",
+   "reason": "DOUBTFUL: Absent from build. IEEE TVT 2016 article (DOI 10.1109/tvt.2015.2489699) with Li at GT 2016 (listed 2016-2020; sibling 2016 paper with same coauthor Liang Chang carries 'School of ECE, Georgia Institute of Technology'); likely a true lab paper missing from build, but no stored affiliation for this record itself (thin)."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Negar Kiyavash|journals/todaes/TruongEK18",
+   "reason": "DOUBTFUL: ACM TODAES 2018 (DOI 10.1145/3236617) with Truong/Etesami (Kiyavash's former UIUC circle); DBLP has no affiliation and no OpenAlex/page-1 record is stored; Kiyavash's GT listings start Sept 2018 so the work may predate GT. Cannot decide true_lab_paper from stored evidence; absent from build."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Jesse Thomason|conf/sigdial/ZhangDATT26",
+   "reason": "DOUBTFUL: SIGDIAL 2026 DiPS (no DOI): coauthors Anwar/Zhang/Das/Traum are USC; Thomason's only GT evidence is a 2026 IC listing (captured Oct 2026) and 2026 arXiv rows with GT affiliation, but no stored affiliation or date shows this paper was done at GT rather than USC. Cannot decide; absent from build."
+  }
+ ],
  "screened": [],
  "subset": {
   "pis": [
@@ -523,6 +528,7 @@
    "Neda Mohammadi",
    "Negar Kiyavash",
    "Neha Kumar",
+   "Nikolaos Sahinidis",
    "Nisha Chandramoorthy",
    "Noura Howell",
    "Olivia J. Pinon Fischer",
@@ -666,31 +672,48 @@
    "Zvi Galil",
    "Ümit V. Çatalyürek"
   ],
-  "n_pis": 447,
+  "n_pis": 448,
   "files": {
-   "pis.json": "52c84335dbf899a473b7b33bef94c3dc3c158c01be4432bd09a6d448128140c8",
-   "students.json": "12b20e6d44a06d74dddc1b359af28cd609494108b7d8ee647ad56fe91b95e4cc",
-   "lab_papers.jsonl.gz": "4d74e71c00af8821fc6b53641487c62882672c4d86c53c79f9ae3aba11507bca",
-   "student_papers.jsonl.gz": "03c1f6328b0c15d0a7e025ca2d9d89bda23be8bb7e3d7e75729c4598b8c2099c",
-   "copies.json": "e2bee0a075ac2771f2870b4ada5efa9dde9965a413c89b20d07946af970c192a"
+   "pis.json": "bc4ee5891a7e4fe6f681dd7b1d2e85d87386ae87dd832d3f516938f6b8e056ae",
+   "students.json": "015527dc3ba3bc02fdea9a4f6cd4cfc1e2ff3476297b573fe8849cf251fb8845",
+   "lab_papers.jsonl.gz": "febfaa60c1ebd82b12a300b3fa5c8244e0fd68878b8b0977a89d6a6c1291d386",
+   "student_papers.jsonl.gz": "9b35a472e32d05c668c56677c4847b747b7b8601caae30bf43da2ff45887f851",
+   "copies.json": "2ffdbb02d43aad17ceaaa478464e60861015dc9064ea6d2f169efcdfd6ce5899"
   },
-  "included_sha": "605577b9c1fb2bb0e67c5e0d23f38a4f9fd2cadc4337e84d2e75cb277a740c78",
+  "included_sha": "d2d66da9aff02bf0f88f744c3b372121e463bab9fa477d44bbf8129b9914d03f",
+  "projection_version": 1,
+  "held": [],
+  "carried_forward": {
+   "lab_paper": 22,
+   "student_paper": 6
+  },
   "files_now": {
-   "pis.json": "52c84335dbf899a473b7b33bef94c3dc3c158c01be4432bd09a6d448128140c8",
-   "students.json": "12b20e6d44a06d74dddc1b359af28cd609494108b7d8ee647ad56fe91b95e4cc",
-   "lab_papers.jsonl.gz": "4d74e71c00af8821fc6b53641487c62882672c4d86c53c79f9ae3aba11507bca",
-   "student_papers.jsonl.gz": "03c1f6328b0c15d0a7e025ca2d9d89bda23be8bb7e3d7e75729c4598b8c2099c",
-   "copies.json": "e2bee0a075ac2771f2870b4ada5efa9dde9965a413c89b20d07946af970c192a"
+   "pis.json": "bc4ee5891a7e4fe6f681dd7b1d2e85d87386ae87dd832d3f516938f6b8e056ae",
+   "students.json": "015527dc3ba3bc02fdea9a4f6cd4cfc1e2ff3476297b573fe8849cf251fb8845",
+   "lab_papers.jsonl.gz": "febfaa60c1ebd82b12a300b3fa5c8244e0fd68878b8b0977a89d6a6c1291d386",
+   "student_papers.jsonl.gz": "9b35a472e32d05c668c56677c4847b747b7b8601caae30bf43da2ff45887f851",
+   "copies.json": "2ffdbb02d43aad17ceaaa478464e60861015dc9064ea6d2f169efcdfd6ce5899"
+  },
+  "rebound_held_links": {
+   "drawn_hashes": {
+    "students.json": "db9231182aa6d6023ae47ff4fe0c0b89b430b7c4fc06570f417d6ede05ea1f6c"
+   },
+   "live_hashes": {
+    "students.json": "015527dc3ba3bc02fdea9a4f6cd4cfc1e2ff3476297b573fe8849cf251fb8845"
+   },
+   "held_links_now": 8,
+   "drawn_rows_held": 0,
+   "candidates_held": 0
   }
  },
  "population": {
-  "n_lab_papers": 23789,
-  "n_student_papers": 7231,
-  "n_coverage_pool": 13686,
+  "n_lab_papers": 24415,
+  "n_student_papers": 7479,
+  "n_coverage_pool": 13371,
   "n_student_candidates": 0
  },
  "round": {
-  "id": "pi1",
+  "id": "pi2",
   "sizes": {
    "uniform": 50,
    "stratum": 5,

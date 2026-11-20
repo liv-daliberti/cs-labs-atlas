@@ -1,37 +1,37 @@
 {
  "school": "vt",
- "date": "2026-11-14",
- "seed": 20261029,
- "n_verdicts": 90,
+ "date": "2026-11-19",
+ "seed": 20261119218663692,
+ "n_verdicts": 175,
  "files": {
-  "pis.json": "688f890c7691205a259e85175b335647950ac730c3edbc544f20e742049de916",
-  "students.json": "970c02257b49c064f48d2c25d28ace82060c1861c165cdf46ccec1487c15b5ee",
-  "lab_papers.jsonl.gz": "1dcaed08ea36c82545e8947410fb1f18b17fcc53c1bd932407fa675785d2dc9c",
-  "student_papers.jsonl.gz": "245a0d9fc8a69bf27a4cfa0c74621556c50f5fcbcdb78bcf61f9fc111eccefa0",
-  "copies.json": "4cb0e19cc161d49695431b8c0125a948c89b23436d2232fca1822665516f62af"
+  "pis.json": "c31bdc955bcbe54d2d951ef4f06eae7debdc7229782704179eb9c245c6990c9f",
+  "students.json": "a55bc2ed63980aea129a542bb69e937daaeb62a499a4666df549dad80aec56e8",
+  "lab_papers.jsonl.gz": "2816ab68dc3c6dff50537ccdb780cfa7505225d8119fb9af9e0b8a68dfae4b46",
+  "student_papers.jsonl.gz": "eae09ce869683c8e76053efe964498a10c2577272ebae74d97361cd8c52c3237",
+  "copies.json": "c7fe2b2d34014291e0e79ed61cc4c191d1ec4f5a50d495cb71617a389997b413"
  },
  "files_now": {
-  "pis.json": "688f890c7691205a259e85175b335647950ac730c3edbc544f20e742049de916",
-  "students.json": "970c02257b49c064f48d2c25d28ace82060c1861c165cdf46ccec1487c15b5ee",
-  "lab_papers.jsonl.gz": "1dcaed08ea36c82545e8947410fb1f18b17fcc53c1bd932407fa675785d2dc9c",
-  "student_papers.jsonl.gz": "245a0d9fc8a69bf27a4cfa0c74621556c50f5fcbcdb78bcf61f9fc111eccefa0",
-  "copies.json": "4cb0e19cc161d49695431b8c0125a948c89b23436d2232fca1822665516f62af"
+  "pis.json": "c31bdc955bcbe54d2d951ef4f06eae7debdc7229782704179eb9c245c6990c9f",
+  "students.json": "a55bc2ed63980aea129a542bb69e937daaeb62a499a4666df549dad80aec56e8",
+  "lab_papers.jsonl.gz": "2816ab68dc3c6dff50537ccdb780cfa7505225d8119fb9af9e0b8a68dfae4b46",
+  "student_papers.jsonl.gz": "eae09ce869683c8e76053efe964498a10c2577272ebae74d97361cd8c52c3237",
+  "copies.json": "c7fe2b2d34014291e0e79ed61cc4c191d1ec4f5a50d495cb71617a389997b413"
  },
  "lab_precision_uniform": {
-  "k": 25,
-  "n": 25,
-  "p": 1.0,
-  "lo": 0.8668,
-  "hi": 1.0,
-  "unclear": 0
+  "k": 47,
+  "n": 48,
+  "p": 0.9792,
+  "lo": 0.891,
+  "hi": 0.9963,
+  "unclear": 2
  },
  "lab_precision_uniform_if_abstracts_count": {
-  "k": 25,
-  "n": 25,
+  "k": 48,
+  "n": 48,
   "p": 1.0,
-  "lo": 0.8668,
+  "lo": 0.9259,
   "hi": 1.0,
-  "unclear": 0
+  "unclear": 2
  },
  "lab_precision_strata": {
   "advisee_unaffiliated": {
@@ -55,18 +55,18 @@
   }
  },
  "lab_precision_all40": {
-  "k": 35,
-  "n": 35,
-  "p": 1.0,
-  "lo": 0.9011,
-  "hi": 1.0,
-  "unclear": 0
+  "k": 57,
+  "n": 58,
+  "p": 0.9828,
+  "lo": 0.9086,
+  "hi": 0.9969,
+  "unclear": 2
  },
  "student_precision_uniform": {
-  "k": 25,
-  "n": 25,
+  "k": 50,
+  "n": 50,
   "p": 1.0,
-  "lo": 0.8668,
+  "lo": 0.9287,
   "hi": 1.0,
   "unclear": 0
  },
@@ -97,23 +97,23 @@
   }
  },
  "student_precision_all40": {
-  "k": 40,
-  "n": 40,
+  "k": 65,
+  "n": 65,
   "p": 1.0,
-  "lo": 0.9124,
+  "lo": 0.9442,
   "hi": 1.0,
   "unclear": 0
  },
  "lab_coverage": {
-  "k": 14,
-  "n": 14,
-  "p": 1.0,
-  "lo": 0.7847,
-  "hi": 1.0
+  "k": 46,
+  "n": 47,
+  "p": 0.9787,
+  "lo": 0.8889,
+  "hi": 0.9962
  },
  "lab_coverage_items": {
-  "drawn": 15,
-  "true_lab_papers": 14,
+  "drawn": 50,
+  "true_lab_papers": 47,
   "not_lab_papers_absent": 1,
   "not_lab_papers_in_build": 0
  },
@@ -122,14 +122,196 @@
   "drawn": 0,
   "no_coauthored_paper": 0
  },
- "failures": {},
- "incorrect": [],
- "unclear": [],
+ "failures": {
+  "not_a_paper": 1,
+  "missing_from_build": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Cliff Shaffer|None|https://openalex.org/W2788073698",
+   "failure_type": "not_a_paper",
+   "reason": "Shaffer: OpenAlex type conference-abstract, SIGCSE 2018 doi 10.1145/3159450.3162259 (3162xxx = poster/extended-abstract range), so a meeting abstract not a full paper; VT affiliation and period fine.",
+   "policy": "meeting_abstract"
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Wenjing Lou|journals/tmc/ZengSHLKM16",
+   "failure_type": "missing_from_build",
+   "reason": "IEEE TMC article (DBLP year 2016, DOI 10.1109/tmc.2015.2410772), authors Zeng/Shi/Hou/Lou/Kompella/Midkiff (VT ECE/CS group); Lou is a VT CS professor (2011 catalog entry) with listing/period 2016-. Build has no row for it: the sheet's version candidate W2404790370 is a different paper (TWC 'Cross-Layer Optimization...', DOI 10.1109/twc.2016.2571685, row #100). No OpenAlex authorship stored for this DOI, so the affiliation line and the OpenAlex year (probably 2015 online) are unverified: thin.",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Anuj Karpatne|None|https://openalex.org/W4402268213",
+   "reason": "DOUBTFUL: Karpatne (OpenAlex author id, aff 'Department of Computer Science, Virginia Tech U') on CLEO 2024 FW4Q.2 doi 10.1364/cleo_fs.2024.fw4q.2; identity/school/period fine but CLEO Fundamental Science item is a ~2-page digest summary, no venue stored; cannot rule out meeting-abstract"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Anuj Karpatne|None|https://openalex.org/W6911673329",
+   "reason": "DOUBTFUL: Karpatne (author id A5081622450, aff 'Virginia Tech') on Zenodo record doi 10.5281/zenodo.13328588 (2024-08-08), typed article; identity and period fine but Zenodo deposit with no venue; cannot confirm it is a paper rather than a dataset/software/poster deposit"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Madhav Marathe|journals/ploscb/RangarajanMM19",
+   "reason": "DOUBTFUL: PLoS Comput Biol 2019 (DOI 10.1371/journal.pcbi.1007518), authors Rangarajan/Mody/Marathe. No OpenAlex authorship or affiliation stored (not in sweep or cache). Marathe has a VT 2019 listing, but his only 2019 build row (#1551) reads 'Virginia Tech (now at the University of Virginia)' and the 2018 chapter above lists UVA, so he had likely moved before this late-2019 paper; cannot decide true_lab_paper. Absent from build."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Gang Wang|conf/sdm/WangLWJ18",
+   "reason": "DOUBTFUL: Absent from build. Gang Wang 0011 is the PI (ORCID 0000-0002-8910-8979 via DBLP pid 71/4292-11; CS listed 2018, 2019 catalogs; 2018 SDM in listing year), 18 other 2018-19 VT papers in build. But no stored OpenAlex/page-1 record for 10.1137/1.9781611975321.22 (not in VT OA sweep 2016-2026, not in openalex cache) so VT affiliation on this Tsinghua-led paper cannot be confirmed from stored evidence; true_lab_paper undecidable"
+  }
+ ],
  "screened": [],
+ "subset": {
+  "pis": [
+   "Adrian Sandu",
+   "Aisling Kelliher",
+   "Alberto Cano",
+   "Alexey Onufriev",
+   "Ali Butt",
+   "Ali Vakilian",
+   "Alla Rozovskaya",
+   "Anil Vullikanti",
+   "Anuj Karpatne",
+   "Atul Mantri",
+   "B. Aditya Prakash",
+   "Bert Huang",
+   "Bimal Viswanath",
+   "Bo Ji",
+   "Brendan David-John",
+   "Cal Ribbens",
+   "Chandan Reddy",
+   "Chang-Tien Lu",
+   "Changhee Jung",
+   "Chris Brown",
+   "Chris North",
+   "Chris Thomas",
+   "Christine Julien",
+   "Christopher L. Barrett",
+   "Cliff Shaffer",
+   "Dan Williams",
+   "Daphne Yao",
+   "David H Smith IV.",
+   "Dawei Zhou",
+   "Deborah Tatar",
+   "Debswapna Bhattacharya",
+   "Denis Gracanin",
+   "Dennis Kafura",
+   "Dimitrios Nikolopoulos",
+   "Dongyoon Lee",
+   "Doug Bowman",
+   "Edward Fox",
+   "Eli Tilevich",
+   "Eric Pauley",
+   "Eugenia Rho",
+   "Francisco Servant",
+   "Gang Wang",
+   "Godmar Back",
+   "Hoda Eldardiry",
+   "Huaicheng Li",
+   "Ihudiya Finda Williams",
+   "Ing-Ray Chen",
+   "Ismini Lourentzou",
+   "Jamie Sikora",
+   "Jiaming Cui",
+   "Jiaqi Leng",
+   "Jin-Hee Cho",
+   "Kirk Cameron",
+   "Kirshanthan Sundararajah",
+   "Kurt Luther",
+   "Layne Watson",
+   "Lenwood S. Heath",
+   "Lifu Huang",
+   "Liqing Zhang",
+   "Madhav Marathe",
+   "Matthew Hicks",
+   "Muhammad Ali Gulzar",
+   "Murat Kantarcioglu",
+   "Na Meng",
+   "Naren Ramakrishnan",
+   "Nicholas F. Polys",
+   "Osman Balci",
+   "Palash Sashittal",
+   "Peng Gao",
+   "Pinar Yanardag",
+   "R. Benjamin Knapp",
+   "Ryan P. McMahan",
+   "Sam H. Noh",
+   "Sang Won Lee",
+   "Sanmay Das",
+   "Scott McCrickard",
+   "Shaddi Hasan",
+   "Sharath Raghvendra",
+   "Shengwei An",
+   "Stephen Edwards",
+   "Steven Flammia",
+   "Sumeet Khatri",
+   "T. M. Murali",
+   "Tanushree Mitra",
+   "Thang Hoang",
+   "Tijay Chung",
+   "Wenjing Lou",
+   "Wu-chun Feng",
+   "Xuan Wang",
+   "Xun (Steve) Jian",
+   "Yan Chen",
+   "Yang Cao"
+  ],
+  "n_pis": 92,
+  "files": {
+   "pis.json": "c31bdc955bcbe54d2d951ef4f06eae7debdc7229782704179eb9c245c6990c9f",
+   "students.json": "a55bc2ed63980aea129a542bb69e937daaeb62a499a4666df549dad80aec56e8",
+   "lab_papers.jsonl.gz": "2816ab68dc3c6dff50537ccdb780cfa7505225d8119fb9af9e0b8a68dfae4b46",
+   "student_papers.jsonl.gz": "eae09ce869683c8e76053efe964498a10c2577272ebae74d97361cd8c52c3237",
+   "copies.json": "c7fe2b2d34014291e0e79ed61cc4c191d1ec4f5a50d495cb71617a389997b413"
+  },
+  "held": [],
+  "included_sha": "ba9c07bac00b1ef6731b27898eb9b386d76115dda3eb5baaf02bf83339901c98",
+  "files_now": {
+   "pis.json": "c31bdc955bcbe54d2d951ef4f06eae7debdc7229782704179eb9c245c6990c9f",
+   "students.json": "a55bc2ed63980aea129a542bb69e937daaeb62a499a4666df549dad80aec56e8",
+   "lab_papers.jsonl.gz": "2816ab68dc3c6dff50537ccdb780cfa7505225d8119fb9af9e0b8a68dfae4b46",
+   "student_papers.jsonl.gz": "eae09ce869683c8e76053efe964498a10c2577272ebae74d97361cd8c52c3237",
+   "copies.json": "c7fe2b2d34014291e0e79ed61cc4c191d1ec4f5a50d495cb71617a389997b413"
+  },
+  "rebound_held_links": {
+   "drawn_hashes": {
+    "students.json": "279295803ba96d2b18fd94e34f47f40b1095861f4309b31fcc217a2b69a07ca9",
+    "copies.json": "6c0f2f60c74c744f7f8cf3321b6533c7139514e94e1bb6a3268791ad06d31ffc"
+   },
+   "live_hashes": {
+    "students.json": "a55bc2ed63980aea129a542bb69e937daaeb62a499a4666df549dad80aec56e8",
+    "copies.json": "c7fe2b2d34014291e0e79ed61cc4c191d1ec4f5a50d495cb71617a389997b413"
+   },
+   "held_links_now": 115,
+   "drawn_rows_held": 0,
+   "candidates_held": 0
+  }
+ },
  "population": {
-  "n_lab_papers": 3600,
-  "n_student_papers": 2964,
-  "n_coverage_pool": 2782,
+  "n_lab_papers": 3591,
+  "n_student_papers": 2955,
+  "n_coverage_pool": 2731,
   "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 60,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
  }
 }
