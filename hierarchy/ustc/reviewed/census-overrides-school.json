@@ -10,5 +10,115 @@
  "Naijie Gu": {
   "no_identity": true,
   "why_no_identity": "D-0016: CSRankings link without affiliation/homepage signal (DBLP 61/3467: the record carries no school affiliation note and links no school page; 2026-11-19 audit T746)."
+ },
+ "Weidong Chen": {
+  "mixed_openalex": [
+   "https://openalex.org/A5100357387"
+  ],
+  "why_mixed_openalex": "2026-11-19 current-works review: this auto-discovered author cluster uses ORCID0000-0002-9802-2165 and mixes South China Normal University algorithms/image-processing work with USTC plasma-physics records. It does not independently identify the accepted USTC radar faculty PI, whose accepted DBLP person10/1448-10 carries ORCID0000-0003-1259-7660. Retain exact independently attributed DBLP works where native rules permit; never use the mixed cluster alone to propagate identity to other works. The four newly captured2026 radar records explicitly carry the matching accepted person ORCID and USTC on that authorship.",
+  "mixed_openalex_evidence": [
+   {
+    "source_kind": "saved_structured_OpenAlex_API_response",
+    "source_file": "/n/fs/resemble/homogenizing-science/scratch/pku70-ustc5-1119/weidong-refresh.json",
+    "saved_artifact_sha256": "dd5f2ed67745c920ddc10d0e4164ae30c699fddf6cc7ac3d610481918a1d92c0",
+    "author_id": "https://openalex.org/A5100357387",
+    "records": [
+     {
+      "work": "https://openalex.org/W7131279070",
+      "doi": "https://doi.org/10.1088/1741-4326/ae4917",
+      "title": "Machine learning prediction of plasma behavior from discharge configurations on WEST",
+      "observed_orcid": "https://orcid.org/0000-0002-9802-2165",
+      "institutions": [
+       {
+        "id": "https://openalex.org/I126520041",
+        "display_name": "University of Science and Technology of China",
+        "ror": "https://ror.org/04c4dkn09",
+        "country_code": "CN",
+        "type": "education",
+        "lineage": [
+         "https://openalex.org/I126520041",
+         "https://openalex.org/I19820366"
+        ]
+       }
+      ]
+     },
+     {
+      "work": "https://openalex.org/W7118928462",
+      "doi": "https://doi.org/10.11834/jig.250519",
+      "title": "轻量级稀疏置换自注意力图像超分辨率网络",
+      "observed_orcid": "https://orcid.org/0000-0002-9802-2165",
+      "institutions": [
+       {
+        "id": "https://openalex.org/I187400657",
+        "display_name": "South China Normal University",
+        "ror": "https://ror.org/01kq0pv72",
+        "country_code": "CN",
+        "type": "education",
+        "lineage": [
+         "https://openalex.org/I187400657"
+        ]
+       }
+      ]
+     },
+     {
+      "work": "https://openalex.org/W7125941149",
+      "doi": "https://doi.org/10.1109/tns.2026.3658805",
+      "title": "Design of a Hybrid Single Cavity With a Novel Coupled-Window Structure",
+      "observed_orcid": "https://orcid.org/0000-0002-9802-2165",
+      "institutions": [
+       {
+        "id": "https://openalex.org/I4210107785",
+        "display_name": "China Spallation Neutron Source",
+        "ror": "https://ror.org/01g140v14",
+        "country_code": "CN",
+        "type": "facility",
+        "lineage": [
+         "https://openalex.org/I19820366",
+         "https://openalex.org/I4210107785",
+         "https://openalex.org/I4210137180"
+        ]
+       }
+      ]
+     },
+     {
+      "work": "https://openalex.org/W7126025738",
+      "doi": "https://doi.org/10.1007/978-981-95-5719-6_30",
+      "title": "DED: Integrating Degree Entropy and Dynamic Delay Mechanisms for Influence Maximization in Multilayer Networks",
+      "observed_orcid": "https://orcid.org/0000-0002-9802-2165",
+      "institutions": [
+       {
+        "id": "https://openalex.org/I187400657",
+        "display_name": "South China Normal University",
+        "ror": "https://ror.org/01kq0pv72",
+        "country_code": "CN",
+        "type": "education",
+        "lineage": [
+         "https://openalex.org/I187400657"
+        ]
+       }
+      ]
+     },
+     {
+      "work": "https://openalex.org/W7213872814",
+      "doi": "https://doi.org/10.1088/1741-4326/aeaa6c",
+      "title": "A data-driven model for stable long-horizon autoregressive prediction of plasma current and control-oriented boundary evolution in EAST",
+      "observed_orcid": "https://orcid.org/0000-0002-9802-2165",
+      "institutions": [
+       {
+        "id": "https://openalex.org/I126520041",
+        "display_name": "University of Science and Technology of China",
+        "ror": "https://ror.org/04c4dkn09",
+        "country_code": "CN",
+        "type": "education",
+        "lineage": [
+         "https://openalex.org/I126520041",
+         "https://openalex.org/I19820366"
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
  }
 }
