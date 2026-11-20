@@ -67,6 +67,8 @@ ROUNDS = {'r2': dict(seed=20261102, uniform=50, stratum=5, cov=50, cands=200,
           # pi2b (owner D-0026, 2026-11-19): the redraws of schools whose pi2 draw was judged and then superseded (D-0023 rebuilds, held-link binding); same sizes/strata/bars,
           # its own directory so a pi2b draw never touches a judged pi2 file; the seed rule spans both rounds (g9_round.used_seeds globs round-*/).
           'pi2b': dict(seed=None, uniform=50, stratum=5, cov=50, cands=200, schools=[], dir='round-pi2b', subset=True),
+          # pi2c (owner D-0026 follow-up, 2026-11-20): a THIRD round for a school whose pi2b draw was itself judged and then voided (zju: 45 PIs drawn, 49 now); same sizes/strata/bars, its own directory
+          'pi2c': dict(seed=None, uniform=50, stratum=5, cov=50, cands=200, schools=[], dir='round-pi2c', subset=True),
           'pi1': dict(seed=20261118, uniform=50, stratum=5, cov=50, cands=200, schools=[], dir='round-pi1', subset=True)}
 FILES = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 

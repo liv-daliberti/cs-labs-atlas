@@ -77,9 +77,20 @@ def test_stage_gate_reads_the_newest_round_summary(monkeypatch, tmp_path):
     monkeypatch.setattr(SG, 'read', fake_read)
     monkeypatch.setattr(SG, 'ACCURACY_DIR', tmp_path)
     bad, _ = SG.g9('zzz')
-    assert seen[0] == tmp_path / 'round-pi2b' / 'summary-zzz.json' and seen[1] == tmp_path / 'summary-zzz.json'
+    assert seen[0] == tmp_path / 'round-pi2c' / 'summary-zzz.json' and seen[1] == tmp_path / 'round-pi2b' / 'summary-zzz.json' and seen[2] == tmp_path / 'summary-zzz.json'
     assert bad and 'missing' in bad[0]
     # a pi2b summary shadows the shared slot
     seen.clear()
     monkeypatch.setattr(SG, 'read', lambda p: {'school': 'zzz'} if 'round-pi2b' in str(p) else {'school': 'old'})
     SG.g9('zzz')
+
+
+def test_pi2c_is_a_third_separate_round_and_gate_prefers_it(monkeypatch, tmp_path):
+    S = load('sample')
+    assert S.ROUNDS['pi2c']['dir'] == 'round-pi2c'
+    SG = load('stage_gate', ROOT / 'tools')
+    seen = []
+    monkeypatch.setattr(SG, 'ACCURACY_DIR', tmp_path)
+    monkeypatch.setattr(SG, 'read', lambda p: seen.append(Path(p)) or None)
+    SG.g9('zzz')
+    assert [p.parent.name for p in seen[:2]] == ['round-pi2c', 'round-pi2b']
