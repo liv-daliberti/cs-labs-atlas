@@ -588,7 +588,9 @@ def id_sets(ctx):
     mixed = {p['pi']: set(p.get('mixedOpenAlex') or []) for p in pis}
     # another PI's reviewed author id is never this PI's (2026-10-28: S. Simon Wong's advisees co-wrote with H.-S. Philip
     # Wong, so the advisee rule anchored Philip Wong's reviewed id to Simon Wong through the 'S.' in 'H.-S.')
-    all_reviewed = collections.Counter(a for s_ in reviewed_oa.values() for a in s_)
+    # An exact-work review does not claim ownership of the whole mixed cluster.
+    all_reviewed = collections.Counter(a for pi, s_ in reviewed_oa.items()
+                                       if 'openalex_work_scope' not in getattr(ctx, 'ov', {}).get(pi, {}) for a in s_)
     for p in pis:
         blocked[p['pi']] |= {a for a in all_reviewed if a not in reviewed_oa[p['pi']]}
     n['other_pi_reviewed_ids_blocked'] = sum(len(v) for v in blocked.values())

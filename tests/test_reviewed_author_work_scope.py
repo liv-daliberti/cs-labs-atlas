@@ -33,6 +33,18 @@ def test_legacy_unscoped_review_still_matches():
     assert identity.reviewed_author_matches(ctx, 'Ada Lovelace', {'id': T.OA + 'W2'}, T.OA + 'A1')
 
 
+def test_work_scoped_review_does_not_block_another_pi_from_a_mixed_cluster(tmp_path):
+    ctx = context(tmp_path, ['Hao Zhang'])
+    ctx.pis[0]['reviewedOpenAlex'] = [T.OA + 'A1']
+    ctx.pis.append(dict(pi='Hao Zhang II', reviewedOpenAlex=[], orcid=[], notOpenAlex=[], mixedOpenAlex=[]))
+    ctx.ov = {'Hao Zhang': {'openalex_work_scope': {T.OA + 'A1': [T.OA + 'W1']}}}
+    identity.id_sets(ctx)
+    assert T.OA + 'A1' not in ctx.blocked['Hao Zhang II']
+    ctx.ov = {}
+    identity.id_sets(ctx)
+    assert T.OA + 'A1' in ctx.blocked['Hao Zhang II']
+
+
 @pytest.mark.usefixtures('layout')
 def test_scoped_review_cannot_spread_by_name_surname_or_own_works(tmp_path, monkeypatch):
     ctx = context(tmp_path, ['Hao Zhang'])
