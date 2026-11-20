@@ -52020,8 +52020,30 @@
  "Miao Liu": {
   "source_owned_publication_review": {
    "decision": "owned_per_work_only",
-   "why": "Keep the pre-existing reviewed identity; this recovery uses direct work evidence and does not propagate author clusters."
-  }
+   "why": "Keep existing identity and independently require exact personally listed works; no propagated author clusters."
+  },
+  "institutional_work_identity_review": {
+   "pi": "Miao Liu",
+   "decision": "owned_exact_works_only",
+   "sources": [
+    {
+     "url": "https://aptx4869lm.github.io/",
+     "sha256": "7a1bb7c9443d22c50199a409961976ba1296ef24f3242404daee99a768f90d9b",
+     "observed": "2026-11-20T14:46:18"
+    }
+   ],
+   "works": [
+    "In the Eye of MLLM: Benchmarking Egocentric Video Intent Understanding with Gaze-Guided Prompting",
+    "EgoProx: Evaluating MLLMs on Egocentric 3D Proximity Reasoning Across a Cognitive Hierarchy",
+    "IPIBench: Evaluating Interactive Proactive Intelligence of MLLMs under Continuous Streams",
+    "EgoSAT: A Comprehensive Benchmark of Egocentric Streaming Interaction Understanding",
+    "PIPBench: A Profile-Inclusive Framework for Personalized Image Generation Evaluation",
+    "Unleashing Spatial Reasoning in Multimodal Large Language Models via Textual Representation Guided Reasoning",
+    "MeetingToM: Evaluating Multimodal LLMs on Theory-of-Mind Reasoning in Multi-Party Meetings"
+   ]
+  },
+  "reviewer": "codex-tsinghua-closeout-1120",
+  "reviewed_on": "2026-11-20"
  },
  "Xueyan Zou": {
   "source_owned_publication_review": {
@@ -52405,27 +52427,41 @@
   "why_dblp": "No global DBLP identity approved; exact personally listed works only. Exclude candidate person record from automatic identity reuse without declaring every work on it unrelated.",
   "source_owned_publication_review": {
    "decision": "owned_per_work_only",
-   "why": "Only exact primary-owned publications are reviewed; no broad person binding or cluster propagation."
+   "why": "Direct personally credited source works only; no inferred OpenAlex author-cluster propagation."
   },
   "institutional_work_identity_review": {
    "pi": "王超",
-   "route": "owned_institutional_exact_publications",
-   "source": {
-    "url": "https://faculty.dpi.tsinghua.edu.cn/wangchao/zh_CN/zhym/12780/list/index.htm",
-    "sha256": "b2d096c3f355c15119c816c54af8f7bfd746034ee4b20ff47cb0f697f47a58da",
-    "observed": "2026-11-20T13:22:57"
-   },
+   "decision": "owned_exact_works_only",
+   "sources": [
+    {
+     "url": "https://faculty.dpi.tsinghua.edu.cn/wangchao/zh_CN/zhym/12780/list/index.htm",
+     "sha256": "b2d096c3f355c15119c816c54af8f7bfd746034ee4b20ff47cb0f697f47a58da",
+     "observed": "2026-11-20T13:22:57"
+    }
+   ],
    "works": [
     "Numerical Simulation of Thermoelectric Based Temperature Control system for CubeSat in Space",
     "Multispectral-band radiation thermometry method based on double-stage emissivity neural network",
     "Review of Bionic Crawling Micro-Robots",
     "Dual-Population Social Group Optimization Algorithm Based on Human Social Group Behavior Law",
     "Panoramic Scanning Optical Pyrometer for the Temperature Field Measurement of Turbine Components",
-    "Lightweight Self-Attention Residual Network for Hyperspectral Classification"
+    "Lightweight Self-Attention Residual Network for Hyperspectral Classification",
+    "Measurement of Ti–6Al–4V alloy ignition temperature by reflectivity detection",
+    "Redox-induced thermocells for low-grade heat harvesting: mechanism, progress, and their applications",
+    "Ultrahigh electrochemical performance in mixed-valence Cu1.85Se-based anode for supercapacitors",
+    "Apparent normal spectral emissivity of TBC(ZrO2)-coated TC4 alloy",
+    "Study of the roughness effect on the normal spectral emissivity of GH3044",
+    "Design and application testing of imaging probe for strain measurement",
+    "Simultaneously Enhanced Energy Harvesting and Storage Performance Achieved by 3D Mix‐Phase Mose2‐Nise/NF",
+    "A straightforward spectral emissivity estimating method based on constructing random rough surfaces",
+    "Bismuth-free Mg3Sb2 with enhanced room-temperature thermoelectric and mechanical properties",
+    "Mxene/Vs4 Self-Supporting Thin Film Electrode for Zinc-Ion Flexible Supercapacitors",
+    "Largely improved cycling stability of CoV2O6 supercapacitor electrode synthesized by deep eutectic solvent",
+    "The effect of thermoelectric augmentation dramatically increased the specific capacity for electrochemical energy storage"
    ],
    "dblp_person_binding_approved": false
   },
-  "reviewer": "codex-tsinghua-under25-1120",
+  "reviewer": "codex-tsinghua-closeout-1120",
   "reviewed_on": "2026-11-20"
  },
  "王东": {
@@ -52474,6 +52510,89 @@
    "why": "Require direct per-work source evidence; no propagated author clusters."
   },
   "reviewer": "codex-tsinghua-under25-1120",
+  "reviewed_on": "2026-11-20"
+ },
+ "Pu Yunfei": {
+  "dblp": [],
+  "dblp_drop": [
+   "https://dblp.org/pid/213/0725"
+  ],
+  "aliases": [
+   "Yunfei Pu",
+   "Yun-Fei Pu"
+  ],
+  "source_owned_publication_review": {
+   "decision": "owned_per_work_only",
+   "why": "Direct personally credited source works only; no inferred OpenAlex author-cluster propagation."
+  },
+  "institutional_work_identity_review": {
+   "pi": "Pu Yunfei",
+   "decision": "owned_exact_works_only",
+   "sources": [
+    {
+     "url": "https://cqi.tsinghua.edu.cn/en/People/Faculty/PuYunfei.htm",
+     "sha256": "8740473872d06264e2ea12d5865ca7b3f472aec3f5c94bed08396fdc6e1eaa05",
+     "observed": "2026-11-20T14:41:14"
+    }
+   ],
+   "works": [
+    "Experimental realization of a multiplexed quantum memory with 225 individually accessible memory cells",
+    "Experimental entanglement of 25 individually accessible atomic quantum interfaces",
+    "Long-Distance Entanglement between a Multiplexed Quantum Memory and a Telecom Photon",
+    "High-dimensional entanglement between a photon and a multiplexed atomic quantum memory",
+    "Quantum Communication between Multiplexed Atomic Quantum Memories",
+    "Experimental demonstration of memory-enhanced scaling for entanglement connection of quantum repeater segments",
+    "Multicell Atomic Quantum Memory as a Hardware-Efficient Quantum Repeater Node",
+    "Quantum-Memory-Enhanced Preparation of Nonlocal Graph States",
+    "Realization of a crosstalk-avoided quantum network node with dual-type qubits by the same ion species",
+    "Realization of a Programmable Multipurpose Photonic Quantum Memory with Over-Thousand Qubit Manipulations",
+    "Fast delivery of heralded atom-photon quantum correlation over 12 km fiber through multiplexing enhancement",
+    "Realization of a Crosstalk-Free Two-Ion Node for Long-Distance Quantum Networking"
+   ],
+   "dblp_person_binding_approved": false
+  },
+  "reviewer": "codex-tsinghua-closeout-1120",
+  "reviewed_on": "2026-11-20"
+ },
+ "吴昊": {
+  "dblp": [
+   "https://dblp.org/pid/72/4250-60"
+  ],
+  "aliases": [
+   "Hao Wu"
+  ],
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No ORCID inherited without separate original-source review.",
+   "evidence": []
+  },
+  "why_dblp": "Exact DBLP homepage URL equals the captured personal faculty homepage. Its full English/Chinese names, degree chronology, Tsinghua department and professional email match the named official mathematics profile. Direct URL/person evidence; not a title-only inference.",
+  "dblp_identity_review": {
+   "pi": "吴昊",
+   "decision": "accepted",
+   "route": "source_owned_homepage_url",
+   "pid": "https://dblp.org/pid/72/4250-60",
+   "evidence": [
+    {
+     "url": "https://haowu1983.github.io/",
+     "sha256": "c4eb8c22ec56df8a08eec4d64e4bd30b5ebfc752486566d9dd434e8cb98d6f96",
+     "observed": "2026-11-20T14:41:17",
+     "quote": "Hao Wu(吴昊) Associate Professor"
+    },
+    {
+     "url": "https://haowu1983.github.io/",
+     "sha256": "c4eb8c22ec56df8a08eec4d64e4bd30b5ebfc752486566d9dd434e8cb98d6f96",
+     "observed": "2026-11-20T14:41:17",
+     "quote": "E-mail: hwu@tsinghua.edu.cn"
+    }
+   ],
+   "paired_official_profile": "https://www.math.tsinghua.edu.cn/info/1384/3067.htm"
+  },
+  "source_owned_publication_review": {
+   "decision": "owned_per_work_only",
+   "why": "Direct individual bibliography or exact source-owned works only; never inferred author clusters."
+  },
+  "reviewer": "codex-tsinghua-closeout-1120",
   "reviewed_on": "2026-11-20"
  }
 }
