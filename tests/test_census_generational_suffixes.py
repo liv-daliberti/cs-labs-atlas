@@ -23,3 +23,10 @@ def test_explicit_person_anchor_is_preserved_across_different_name_forms():
             for name in ['Earl E. Swartzlander Jr.', 'Earl Swartzlander']]
     merged, _ = merge_census_rows(rows, {}, Counter())
     assert len(merged) == 1
+
+
+def test_conflicting_explicit_generations_stay_separate_without_anchor():
+    rows = [dict(name=name, is_pi=True) for name in
+            ['Robert Jones Sr.', 'Robert Jones Jr.']]
+    merged, _ = merge_census_rows(rows, {}, Counter())
+    assert len(merged) == 2

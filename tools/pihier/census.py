@@ -82,15 +82,19 @@ def merge_census_rows(census, ov, n):
     for x in census:  # census duplicate pairs (one person listed twice): same DBLP PID or same collection person
         if not (x.get('is_pi') or (ov.get(x['name']) or {}).get('is_pi')) or x.get('not_faculty'):  # a reviewed is_pi wins
             continue
-        t = nosuffix(toks(x['name']))
+        t = toks(x['name'])
+        personal = nosuffix(t)
+        suffix = tuple(t[len(personal):])
         nk = 'name:' + ' '.join(t) if t else None  # an empty token set never identifies a person
         if literal_cjk_name(x['name']):
             # Same written CJK names can be different faculty. Only the same profile or an explicit person/PID joins rows.
             profile = (x.get('profile_url') or '').rstrip('/')
             nk = nk + ':profile:' + profile if profile else None
         k = next((first[q] for q in dblp_of(x) + [x.get('collection_person_id'), nk] if q and q in first), None)
-        if not k and len(t) >= 2:  # "Dan Klein" / "Daniel Klein", "David A. Wagner" / "David Wagner": same family name, nickname-equal given name
-            k = next((k_ for g_, k_ in by_family[t[-1]] if g_ == t[0] or nick_ok(g_, t[0])), None)
+        if not k and len(personal) >= 2:  # A generational suffix is not a family name; conflicting explicit generations stay separate.
+            k = next((k_ for g_, k_, suffix_ in by_family[personal[-1]]
+                      if (g_ == personal[0] or nick_ok(g_, personal[0]))
+                      and not (suffix and suffix_ and suffix != suffix_)), None)
             if k:
                 n['census_rows_merged_by_nickname'] += 1; nick_merges.append([merged[k][0]['name'], x['name']])
         if not k:
@@ -100,8 +104,8 @@ def merge_census_rows(census, ov, n):
         for q in dblp_of(x) + [x.get('collection_person_id'), nk]:
             if q:
                 first.setdefault(q, k)
-        if len(t) >= 2:
-            by_family[t[-1]].append((t[0], k))
+        if len(personal) >= 2:
+            by_family[personal[-1]].append((personal[0], k, suffix))
         merged[k].append(x)
     return merged, nick_merges
 
