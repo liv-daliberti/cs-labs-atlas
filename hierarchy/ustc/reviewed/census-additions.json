@@ -9144,8 +9144,9 @@
     "url": "https://en.nhpcc.ustc.edu.cn/2011/0701/c7565a94099/page.htm",
     "sha256": "a5e982ae9c791ccaaa5286d6a9d0be1c28b6f883b25a4d5767617ac005b2dd56",
     "quote": "Professor HUANG,Liusheng",
-    "kind": "unit_listing:School of Computer Science and Technology",
-    "observed": "2026-11-17"
+    "kind": "superseded_misdirected_individual_profile",
+    "observed": "2026-11-17",
+    "why_superseded": "The page is CHEN,Huaping; HUANG,Liusheng was navigation text. Real archived CS roster observations remain unchanged."
    },
    {
     "url": "https://web.archive.org/web/20191026001102id_/http://cs.ustc.edu.cn:80/2010/0614/c3052a23931/page.htm",
@@ -9153,25 +9154,24 @@
     "quote": "教授 尼 克 安 虹 陈恩红 陈欢欢 程敬原 陈小平 丁 虎 龚 伟 顾乃杰 华 蓓 黄刘生 韩 恺 蒋 凡 李 京 李 曦 李向阳 李 诚 连德富 王上飞 谢希科 熊 焰 徐宏力 许胤龙 徐 云 薛吟兴 杨盘隆 肖明军 张信明 张 兰 张燕咏 周学海 副教授",
     "kind": "unit_listing:School of Computer Science and Technology",
     "observed": "20191026001102"
+   },
+   {
+    "url": "https://cs.ustc.edu.cn/2020/0828/c23235a460081/page.htm",
+    "sha256": "a5c475306eb312fe5eb7d731811a2081652b7afd666c43f655b55b7fc948c7c2",
+    "quote": "黄刘生，男，1957年4月生，教授、博士生导师",
+    "observed": "2026-11-19T21:16:09",
+    "kind": "official_named_faculty_profile_observation"
    }
   ],
   "is_pi": true,
   "pi_basis": {
    "kind": "ladder_faculty",
-   "url": "https://en.nhpcc.ustc.edu.cn/2011/0701/c7565a94099/page.htm",
-   "sha256": "a5e982ae9c791ccaaa5286d6a9d0be1c28b6f883b25a4d5767617ac005b2dd56",
-   "quote": "Professor HUANG,Liusheng",
-   "observed": "2026-11-17",
-   "role": "ladder title on stored unit listing",
-   "cs_related": {
-    "dblp": [
-     "https://dblp.org/pid/51/769"
-    ],
-    "dblp_window": null,
-    "openalex": [
-     "https://openalex.org/A5019604942"
-    ]
-   }
+   "url": "https://cs.ustc.edu.cn/2020/0828/c23235a460081/page.htm",
+   "sha256": "a5c475306eb312fe5eb7d731811a2081652b7afd666c43f655b55b7fc948c7c2",
+   "quote": "黄刘生，男，1957年4月生，教授、博士生导师",
+   "observed": "2026-11-19T21:16:09",
+   "role": "教授、博士生导师",
+   "review_reason": "Exact named official individual faculty profile with explicit doctoral-supervisor role; professional email agrees with independently captured English HUANG,Liusheng profile."
   },
   "lab_units": [],
   "added": "g2_rework_20261117",
@@ -9184,7 +9184,28 @@
   "superseded_dblp": [
    "https://dblp.org/pid/51/769"
   ],
-  "dblp": []
+  "dblp": [],
+  "superseded_pi_basis": [
+   {
+    "kind": "ladder_faculty",
+    "url": "https://en.nhpcc.ustc.edu.cn/2011/0701/c7565a94099/page.htm",
+    "sha256": "a5e982ae9c791ccaaa5286d6a9d0be1c28b6f883b25a4d5767617ac005b2dd56",
+    "quote": "Professor HUANG,Liusheng",
+    "observed": "2026-11-17",
+    "role": "ladder title on stored unit listing",
+    "cs_related": {
+     "dblp": [
+      "https://dblp.org/pid/51/769"
+     ],
+     "dblp_window": null,
+     "openalex": [
+      "https://openalex.org/A5019604942"
+     ]
+    },
+    "why_superseded": "The former URL points to CHEN,Huaping; HUANG,Liusheng occurred in navigation. Corrected with this PI’s exact official individual profile, full professional email and professor/doctoral-supervisor statement."
+   }
+  ],
+  "profile_url": "https://cs.ustc.edu.cn/2020/0828/c23235a460081/page.htm"
  },
  {
   "name": "Shangfei Wang",
