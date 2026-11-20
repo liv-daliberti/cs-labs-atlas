@@ -335,7 +335,7 @@
   },
   {
    "id": "not_paper_rule",
-   "rule": "R-PAP-17/18/39 not-papers (owner): the current build drops the record as a non-paper (OpenAlex type or genre: editorial, book review, abstract, commentary, deliverable...); named per row by the build-trace counter (drop_not_papers: not_paper:<kind>).",
+   "rule": "R-PAP-17/18/39 not-papers (owner): the current build drops the record as a non-paper (OpenAlex type or genre: editorial, book review, abstract, commentary, deliverable...); named per row by the build-trace counter (drop_not_papers: not_paper:<kind>). D-0023/D-0026 (2026-11-19, gate-9 pi2): R-PAP-48 OUP/NMD supplement abstracts, R-PAP-49 Dagstuhl artifacts, R-PAP-50 workshop front matter, R-PAP-51/60 editor columns and journal reports, R-PAP-55 DROPS complete volumes, R-PAP-56 UOG abstracts, R-PAP-57 annual reports, R-PAP-58 live demonstrations, R-PAP-59 slide decks and book-typed deposits (docs/RULES.md).",
    "rows": [
     {
      "pi": "Ian Foster",
@@ -468,6 +468,30 @@
      "identity_before": "pi_orcid",
      "trace": [
       "not_paper:book_review"
+     ]
+    },
+    {
+     "pi": "Andrew A. Chien",
+     "oa": "https://openalex.org/W4280637928",
+     "labId": "atl:l:uchicago:andrew-a-chien",
+     "atlasWorkId": "atl:w:a89c5500aa21",
+     "title": "Five years as editor-in-chief of Communications",
+     "year": 2022,
+     "identity_before": "pi_orcid",
+     "trace": [
+      "not_paper:editorial"
+     ]
+    },
+    {
+     "pi": "William Fefferman",
+     "oa": "https://openalex.org/W7080612080",
+     "labId": "atl:l:uchicago:william-fefferman",
+     "atlasWorkId": "atl:w:6be72fb63d74",
+     "title": "LIPIcs, Volume 350, TQC 2025, Complete Volume",
+     "year": 2025,
+     "identity_before": "reviewed_openalex_author_id",
+     "trace": [
+      "not_paper:proceedings_volume"
      ]
     }
    ]

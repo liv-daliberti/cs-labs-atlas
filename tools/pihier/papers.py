@@ -161,6 +161,17 @@ DROPS_COMPLETE_VOLUME_TITLE = re.compile(r'(?i)^\s*(?:LIPIcs|OASIcs),\s*Volume\s
 ANNUAL_REPORT_TITLE = re.compile(r'(?i)^\s*report to the president for (?:the )?year ended\b')
 
 
+# R-PAP-58 (2026-11-19, D-0026; Georgia Tech gate 9 pi2, Inan's IEEE Sensors 2016 record): IEEE demonstration abstracts titled 'Live demonstration: <system>' (ISCAS, BioCAS, Sensors
+# 'Live Demonstration' sessions): a one-page description of a demo shown at the conference, not a paper.
+LIVE_DEMONSTRATION_TITLE = re.compile(r'(?i)^\s*live demo(?:nstration)?s?\s*[:\-]')
+# R-PAP-59: a slide deck ('(Presentation)' or '(Slides)' as the whole-title suffix; Ling Liu's TigerPrints record) and a Zenodo/Figshare/Dryad deposit typed `book` whose title
+# says it is data, code, a schema or an official implementation ('Physiohub ... (Data Analysis & DB Schema)', 'Official implementation of paper ...', 'Gaps in the Record - Notebooks and Analysis Dataset').
+SLIDE_DECK_TITLE = re.compile(r'(?i)\((?:presentation|slides?)\)\s*$')
+REPOSITORY_BOOK_DEPOSIT_TITLE = re.compile(r'(?i)\((?:data|code|software|source code|schema)\b[^)]*\)\s*$|^\s*official implementa(?:tion|ion) of\b|\banalysis (?:code|dataset)\s*$|\bnotebooks and\b.*\b(?:dataset|data)\s*$')
+# R-PAP-60: an editor-in-chief's anniversary column ('Five years as editor-in-chief of Communications', CACM 2022).
+EDITOR_ANNIVERSARY_TITLE = re.compile(r'(?i)^\s*\w+ years? as (?:the )?editor[- ]in[- ]chief\b')
+
+
 def all_caps_title(t):
     letters = [c for c in t if c.isalpha()]
     return len(t.split()) >= 4 and len(letters) >= 20 and not any(c.islower() for c in letters)
@@ -404,6 +415,14 @@ def not_a_paper(r, pages=None, bare=False):
         return 'editorial'
     if ANNUAL_REPORT_TITLE.search(t):   # R-PAP-57
         return 'annual_report'
+    if LIVE_DEMONSTRATION_TITLE.search(t):   # R-PAP-58
+        return 'demo_abstract'
+    if SLIDE_DECK_TITLE.search(t):   # R-PAP-59
+        return 'presentation_only'
+    if ty == 'book' and REPOSITORY_DOI.match(d) and REPOSITORY_BOOK_DEPOSIT_TITLE.search(t):   # R-PAP-59
+        return 'dataset_record'
+    if EDITOR_ANNIVERSARY_TITLE.search(t):   # R-PAP-60
+        return 'editorial'
     if DAGSTUHL_ARTIFACT_DOI.match(d):   # R-PAP-49
         return 'artifact_deposit'
     if ty == 'conference-paper' and (pages is None or pages <= 2) and re.match(r'(?i)^[A-Z]{2,8}(?:[- ]\d{4})?\s+workshop on\b', t):

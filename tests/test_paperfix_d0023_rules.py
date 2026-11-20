@@ -132,3 +132,23 @@ def test_R_PAP_39_mit_d0023_reviewed_entries_and_release_corrections():
     rc = json.loads((root / 'release-corrections.json').read_text())
     rows = [r for c in rc['classes'] if c['id'] == 'not_paper_rule' for r in c['rows']]
     assert sum('not_paper:annual_report' in r['trace'] for r in rows) == 11 and sum('not_paper:reviewed_not_paper' in r['trace'] for r in rows) == 3
+
+
+def test_R_PAP_58_live_demonstration():
+    assert h.not_a_paper(row(title='Live demonstration: Pulse transit time measurement on a modified weighing scale', type='conference-paper')) == 'demo_abstract'
+    assert h.not_a_paper(row(title='Live Demonstration: A Soft Thermal Modulation System', type='conference-abstract')) == 'demo_abstract'
+    assert h.not_a_paper(row(title='Towards a live demonstration framework for robotics', type='conference-paper')) is None
+
+
+def test_R_PAP_59_slide_deck_and_book_typed_deposit():
+    assert h.not_a_paper(row(title='Huge Data Analytics with Transparent In-Network Memory Computing (Presentation)', type='conference-paper')) == 'presentation_only'
+    z = dict(type='book', doi='10.5281/zenodo.20668312', venue='Zenodo')
+    assert h.not_a_paper(row(title='Physiohub: A Wirelessly Synchronized Multi-Node Wearable System (Data Analysis & DB Schema)', **z)) == 'dataset_record'
+    assert h.not_a_paper(row(title='Gaps in the Record - Notebooks and Analysis Dataset', **z)) == 'dataset_record'
+    assert h.not_a_paper(row(title='Introduction To High Performance Scientific Computing', **z)) is None
+    assert h.not_a_paper(row(title='A deposit (Data Analysis)', type='article', doi='10.5281/zenodo.1')) is None
+
+
+def test_R_PAP_60_editor_anniversary_column():
+    assert h.not_a_paper(row(title='Five years as editor-in-chief of Communications')) == 'editorial'
+    assert h.not_a_paper(row(title='Ten years as a graduate student: a study')) is None
