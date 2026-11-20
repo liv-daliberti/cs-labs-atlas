@@ -187,3 +187,16 @@ def test_cross_lab_schema_requires_a_named_or_typed_identity_basis():
     assert S.validate([row], sch) == []
     row['verdict'] = 'different_people'
     assert S.validate([row], sch)
+
+
+def test_link_diagnosis_accepts_reviewed_outcomes():
+    """Reviewed student-link exclusions and exact paper-uncertainty holds are explained outcomes (chain_audit.DIAG_REASON)."""
+    work = dict(oa='https://openalex.org/W2', year=2024, title='Held paper', byline_name='Ada Lovelace',
+                type='article', excluded='reviewed_paper_hold', pi_affiliation='school')
+    base = dict(pi='Ada Lovelace', roles=['phd'], years=[2023, 2025], n_school_works=1, distinct_author_ids=1, pis_seen=[])
+    held = dict(base, student='A', id='p1', category='reviewed_paper_hold', works=[work])
+    excl = dict(base, student='B', id='p2', category='reviewed_exclusion', works=[])
+    report = dict(summary={'reviewed_paper_hold': 1, 'reviewed_exclusion': 1}, students={'Ada Lovelace | p1': held, 'Ada Lovelace | p2': excl})
+    assert S.validate(report, schema('link-diagnosis')) == []
+    held['category'] = 'reviewed_nonsense'
+    assert S.validate(report, schema('link-diagnosis'))

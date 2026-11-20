@@ -249,7 +249,7 @@ Why each open student (chain check 4) has no linked lab paper, from the school's
 | Field | Type | Required | Meaning | Allowed values | Rules |
 |---|---|---|---|---|---|
 | `summary` | object | yes | Students by category, plus ambiguous_resolved_by_<by>. |  |  |
-| `summary.<key ~ /^(link_missed\|paper_not_lab_paper\|with_pi_outside_appointment\|with_pi_at_other_institution\|with_pi_not_a_paper\|with_pi_before_window\|publishes_without_pi\|linked_in_coadviser_lab\|same_name_record_linked_in_other_lab\|no_school_work\|ambiguous_name)$/>` | integer | — |  | at least 0 |  |
+| `summary.<key ~ /^(link_missed\|paper_not_lab_paper\|with_pi_outside_appointment\|with_pi_at_other_institution\|with_pi_not_a_paper\|with_pi_before_window\|reviewed_exclusion\|reviewed_paper_hold\|publishes_without_pi\|linked_in_coadviser_lab\|same_name_record_linked_in_other_lab\|no_school_work\|ambiguous_name)$/>` | integer | — |  | at least 0 |  |
 | `summary.<key ~ /^ambiguous_resolved_by_[a-z_]+$/>` | integer | — |  | at least 0 |  |
 | `students` | object | yes | Per "<pi> \| <student id>". |  |  |
 | `students.<key ~ /^.+ \\| .*$/>` | `student` (shape below) | — |  |  |  |
@@ -265,7 +265,7 @@ One open student.
 | `id` | string \| null | yes | Student record id. |  |  |
 | `roles` | array of string \| null | yes | Roles. |  |  |
 | `years` | array of integer \| null | yes | [first, last] recorded year, or null. | at least 2 item(s); items: 1900 to 2030 |  |
-| `category` | string | yes | Diagnosis (link_missed and paper_not_lab_paper are work to do; the others are reasons). | one of `link_missed`, `paper_not_lab_paper`, `with_pi_outside_appointment`, `with_pi_at_other_institution`, `with_pi_not_a_paper`, `with_pi_before_window`, `publishes_without_pi`, `linked_in_coadviser_lab`, `same_name_record_linked_in_other_lab`, `no_school_work`, `ambiguous_name` | R-AUD-08 |
+| `category` | string | yes | Diagnosis (link_missed and paper_not_lab_paper are work to do; the others are reasons). | one of `link_missed`, `paper_not_lab_paper`, `with_pi_outside_appointment`, `with_pi_at_other_institution`, `with_pi_not_a_paper`, `with_pi_before_window`, `reviewed_exclusion`, `reviewed_paper_hold`, `publishes_without_pi`, `linked_in_coadviser_lab`, `same_name_record_linked_in_other_lab`, `no_school_work`, `ambiguous_name` | R-AUD-08 |
 | `works` | array of object | yes | Up to 5 evidence works. |  |  |
 | `works[]` | object | — | A school work. | no other keys |  |
 | `works[].oa` | string | yes | OpenAlex work. | pattern `^https://openalex\.org/W\d+$` |  |
@@ -273,7 +273,7 @@ One open student.
 | `works[].title` | string | yes | Title (120 chars). |  |  |
 | `works[].byline_name` | string \| null | yes | Raw byline name. |  |  |
 | `works[].type` | string \| null | yes | Work type. |  |  |
-| `works[].excluded` | string \| null | yes | Why the build rightly left a with-PI work out. | one of `not_a_paper`, `pi_affiliated_elsewhere`, `before_window`, `outside_appointment`, `null` |  |
+| `works[].excluded` | string \| null | yes | Why the build rightly left a with-PI work out. | one of `not_a_paper`, `pi_affiliated_elsewhere`, `before_window`, `outside_appointment`, `reviewed_paper_hold`, `null` |  |
 | `works[].pi_affiliation` | string \| null | yes | Where the PI's authorship sits. | one of `school`, `elsewhere`, `none`, `null` |  |
 | `n_school_works` | integer | yes | School works under the name in the years. | at least 0 |  |
 | `distinct_author_ids` | integer | yes | Distinct OpenAlex author ids among them. | at least 0 |  |
