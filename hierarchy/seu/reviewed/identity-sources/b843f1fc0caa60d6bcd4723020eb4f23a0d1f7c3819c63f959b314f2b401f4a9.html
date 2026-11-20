@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tong Wei's Homepage</title>
+  <meta name="author" content="Tong Wei">
+  <style>
+    body {
+      max-width: 1040px;
+      margin: 24px auto 44px;
+      padding: 0 24px;
+      background: #fcfcfc;
+      color: #111827;
+      font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+      font-size: 17px;
+      line-height: 1.58;
+    }
+
+    a {
+      color: #064f8f;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .masthead {
+      display: grid;
+      grid-template-columns: 164px 1fr;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 14px;
+    }
+
+    .portrait {
+      width: 160px;
+      min-height: 200px;
+      border: 1px solid #d8dee8;
+      background: #eef3f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #315f88;
+      font-family: Arial, "Helvetica Neue", sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      overflow: hidden;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .portrait img[src=""] {
+      display: none;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.15;
+    }
+
+    .affiliation {
+      margin-bottom: 12px;
+    }
+
+    pre.contact {
+      margin: 12px 0 0;
+      padding: 0;
+      white-space: pre-wrap;
+      font-family: "Courier New", monospace;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .nav {
+      margin: 20px 0 18px;
+      padding: 9px 0;
+      border-top: 2px solid #d7dde6;
+      border-bottom: 2px solid #d7dde6;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .nav a {
+      margin-right: 12px;
+      white-space: nowrap;
+    }
+
+    .nav span {
+      color: #7b8491;
+      margin-right: 12px;
+      font-weight: 400;
+    }
+
+    h2 {
+      margin: 24px 0 8px;
+      font-size: 22px;
+      color: #173f67;
+      border-bottom: 1px solid #d7dde6;
+      padding-bottom: 3px;
+    }
+
+    h3 {
+      margin: 14px 0 6px;
+      font-size: 18px;
+      color: #173f67;
+    }
+
+    ul,
+    ol {
+      margin-top: 6px;
+      padding-left: 24px;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+
+    .notice {
+      margin: 10px 0 0;
+      font-style: italic;
+    }
+
+    .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .service-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 16px;
+    }
+
+    .service-table th,
+    .service-table td {
+      padding: 6px 0;
+      vertical-align: top;
+      text-align: left;
+      border-bottom: 1px solid #eceff4;
+    }
+
+    .service-table th {
+      width: 135px;
+      color: #173f67;
+      padding-right: 14px;
+    }
+
+    footer {
+      margin-top: 28px;
+      padding-top: 12px;
+      border-top: 1px solid #d7dde6;
+      color: #5f6b7a;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        margin-top: 16px;
+        padding: 0 16px;
+        font-size: 16px;
+      }
+
+      .masthead,
+      .cols {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait {
+        width: 150px;
+        min-height: 188px;
+      }
+
+      .nav {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="masthead">
+    <div class="portrait">
+      <img alt="Tong Wei" src="./me.JPG" onerror="this.style.display='none'; this.parentElement.append('TW');">
+    </div>
+
+    <div>
+      <h1>Tong Wei&nbsp;&nbsp;<span lang="zh-CN">魏通</span></h1>
+      <div class="affiliation">
+        Associate Professor<br>
+        <a href="https://cse.seu.edu.cn/">School of Computer Science and Engineering</a><br>
+        <a href="https://www.seu.edu.cn/">Southeast University</a><br>
+        Member of the <a href="http://palm.seu.edu.cn">PALM</a> group
+      </div>
+      <pre class="contact">Email:  weit {AT} seu.edu.cn
+Office: School of Computer Science and Engineering, Southeast University</pre>
+      <p class="notice">If you are interested in doing research with me, please get in touch by email.</p>
+    </div>
+  </div>
+
+  <div class="nav" aria-label="Primary navigation">
+    <a href="./index.html">Home</a><span>|</span>
+    <a href="./publication.html">Publications</a><span>|</span>
+    <a href="./students.html">Students</a><span>|</span>
+    <a href="./talks.html">Talks</a><span>|</span>
+    <a href="./teaching.html">Teaching</a>
+  </div>
+
+  <h2>Research</h2>
+  <p>I lead a machine learning group, where we want to develop simple and robust machine learning methods that can improve generalization. My current research interests are:</p>
+  <ol>
+    <li>How do we build robust machine learning models from imperfect supervision? What new possibilities do foundation models unlock? [<a href="publication.html#C16">C16</a>, <a href="publication.html#C18">C18</a>, <a href="publication.html#C21">C21</a>, <a href="publication.html#C24">C24</a>]</li>
+    <li>How do we adapt foundation models to downstream tasks while avoiding catastrophic forgetting? Can we improve multi-task performance by merging or distilling single-task models? [<a href="publication.html#C28">C28</a>, <a href="publication.html#C29">C29</a>]</li>
+    <li>How can we develop reasoning LLMs and agents without relying on large-scale annotations? Can reinforcement learning enables models to solve complex tasks through self-improvement?</li>
+  </ol>
+  <p>I am also interested in diffusion models and unified multimodal understanding and generation models.</p>
+
+  <h2>Selected Publications</h2>
+  <ol>
+    <li><strong>Spectral Imbalance Causes Forgetting in Low-Rank Continual Adaptation</strong>. ICML 2026. [<a href="https://arxiv.org/pdf/2602.00722">pdf</a>] [<a href="https://github.com/haodotgu/EBLoRA">code</a>]</li>
+    <li><strong>DC-Merge: Improving Model Merging with Directional Consistency</strong>. CVPR 2026. [<a href="./paper/CVPR2026_DC-Merge.pdf">pdf</a>] [<a href="https://github.com/Tobeginwith/DC-Merge">code</a>]</li>
+    <li><strong>KeepLoRA: Continual Learning with Residual Gradient Adaptation</strong>. ICLR 2026. [<a href="https://openreview.net/forum?id=T3Vc5fkTzV">pdf</a>] [<a href="https://github.com/MaolinLuo/KeepLoRA">code</a>]</li>
+    <li><strong>Weakly-Supervised Contrastive Learning for Imprecise Class Labels</strong>. ICML 2025, Spotlight. [<a href="https://arxiv.org/pdf/2505.22028">pdf</a>] [<a href="https://github.com/Speechless-10308/WSC">code</a>]</li>
+    <li><strong>Vision-Language Models are Strong Noisy Label Detectors</strong>. NeurIPS 2024. [<a href="https://arxiv.org/pdf/2409.19696">pdf</a>] [<a href="https://github.com/HotanLee/DeFT">code</a>]</li>
+  </ol>
+  <p>See the full list on the <a href="./publication.html">Publications</a> page.</p>
+
+  <h2>Students</h2>
+  <p>I advise Ph.D. and M.S. students in machine learning. See the <a href="./students.html">Students</a> page for the full list. A few group photos are available in the <a href="./gallery.html">Lab Gallery</a>.</p>
+
+  <h2>Services</h2>
+  <table class="service-table">
+    <tbody>
+      <tr>
+        <th scope="row">Area Chair</th>
+        <td>ICML 2025/2026; IJCAI 2025; NeurIPS 2025; ICLR 2026/2027</td>
+      </tr>
+      <tr>
+        <th scope="row">SPC</th>
+        <td>AAAI 2027; IJCAI 2021/2026; ACML 2021/2022</td>
+      </tr>
+      <tr>
+        <th scope="row">PC</th>
+        <td>AAAI 2019/2020/2021/2023/2024/2025/2026; IJCAI 2019/2020/2022; NeurIPS 2020/2021/2022/2023/2024; ICML 2020/2021/2022/2023/2024; ICLR 2020/2021/2022/2023/2024/2025</td>
+      </tr>
+      <tr>
+        <th scope="row">Reviewer</th>
+        <td>TPAMI, TKDE, TKDD, AIJ, SCIENCE CHINA Information Sciences</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <section>
+    <h2>Education</h2>
+    <ul>
+      <li>Ph.D., Department of Computer Science and Technology, Nanjing University, 2021. Advisor: Prof. <a href="https://cs.nju.edu.cn/liyf">Yu-Feng Li</a>.</li>
+      <li>B.S., Department of Computer Science and Technology, Soochow University, 2016.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Awards</h2>
+    <ul>
+      <li>2024年度江苏省优秀本科毕业论文 (Bo Ye) <a href="./awards/2024_outstanding_undergraduate_thesis_of_jiangsu_province.pdf">[source]</a></li>
+      <li>2024第四届计图人工智能挑战赛二等奖 (Mao-Lin Luo, Kai Gan) <a href="https://www.educoder.net/competitions/index/Jittor-5">[source]</a></li>
+      <li>2023-2024年度美团科研合作卓越实践奖 <a href="https://mp.weixin.qq.com/s?__biz=MjM5NjQ5MTI5OA==&mid=2651777413&idx=1&sn=c218587ff12831e96d714ae785f8282e&chksm=bc3a2339fe5452f41e8000807d1316d2b2629c88080cd160fcc38fee41f6788ddb04282ed2c9&mpshare=1&scene=1&srcid=0420vbF3NHYB5S4E0Dj1EJlf&sharer_shareinfo=8dbd40475c588dad75f2456d3b96aca0&sharer_shareinfo_first=0ef1c2187311cf0269adb98fdf7d1954#rd">[source]</a></li>
+      <li>PAKDD 2022 Best Paper Award <a href="https://pakdd.net/awards.html">[source]</a></li>
+    </ul>
+  </section>
+
+  <footer>Last modified: Jul. 22, 2026</footer>
+</body>
+</html>
