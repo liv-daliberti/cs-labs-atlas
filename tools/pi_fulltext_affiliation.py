@@ -204,7 +204,9 @@ def _tie_in(block, flat, head, names, aff, allow_single):
             if a and not re.search(r'(?<![A-Za-z])[A-Z][a-z]+\s+[A-Z][a-z]+\s*[0-9∗*†‡]', near[:a.start()]):  # no other author's name in between
                 return 'near', [block[m.start():m.end() + a.end()]]
             insts = {i.group(0).lower() for i in INSTITUTION.finditer(block)}
-            if allow_single and aff.search(block) and len(insts) <= 1:
+            # An explicit author marker must resolve to its own affiliation;
+            # another author's school cannot supply the single-school fallback.
+            if not mk and allow_single and aff.search(block) and len(insts) <= 1:
                 a2 = aff.search(block)
                 return 'single', [block[m.start():m.end()], block[max(0, a2.start() - 60):a2.end() + 20]]
             if not mk:   # a footnote naming all the authors' unit, for a byline with no markers

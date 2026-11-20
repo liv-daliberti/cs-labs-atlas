@@ -43,7 +43,7 @@ import requests
 sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import read, HERE, INST, AFF, ndoi, norm_title, Name, toks, given, contains, TODAY, NOT_PAPERS  # noqa: E402
 from pi_fulltext_affiliation import tie, arxiv_id  # noqa: E402
-from dblp_recover import pdf_url, OPEN_HOSTS  # noqa: E402
+from dblp_recover import pdf_url, pdf_alternates, OPEN_HOSTS  # noqa: E402
 import mpcap  # noqa: E402  (tools/mpcap.py; was hierarchy/missing-pi-tools/, docs/SCRIPT-MAP.md)
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
@@ -457,6 +457,12 @@ def open_host(u):
     return any(h in u for h in OPEN_HOSTS) and 'dl.acm.org' not in u
 
 
+def proceedings_links(row):
+    """Publisher PDF routes, including the same PMLR mirrors as DBLP recovery."""
+    return list(dict.fromkeys(u for link in row.get('links') or [] if open_host(link)
+                              for u in [pdf_url(link), *pdf_alternates(link)] if u))
+
+
 def in_window(year):
     return bool(year) and 2016 <= int(year) <= 2026
 
@@ -473,7 +479,9 @@ def appointment(p, year):
 
 
 def name_forms(names):
-    return sorted({(given(t[0]), t[-1]) for n in names for t in [toks(n)] if len(t) >= 2} |
+    # Preserve the recorded spelling as well as its canonical nickname form:
+    # given('jon') is 'jonathan', but the original byline can literally say Jon.
+    return sorted({(f, t[-1]) for n in names for t in [toks(n)] if len(t) >= 2 for f in {t[0], given(t[0])}} |
                   {(t[1], t[-1]) for n in names for t in [toks(n)] if len(t) >= 3 and len(t[0]) == 1})
 
 
@@ -682,7 +690,7 @@ def run(school, workers=6, title_credits=600, floor=4000, dry=False):
 
     # 5. OpenAlex title search for rows with nothing at all (no work, no arXiv id, no proceedings link)
     def proc_links(x):
-        return [u for l in x['row'].get('links') or [] if open_host(l) for u in [pdf_url(l)] if u]
+        return proceedings_links(x['row'])
     bare = [i for i, x in enumerate(cands) if i not in found and len(x['title'].split()) >= 4 and len(x['ct']) >= 25]
     # 5a. the local snapshot's extension stores first (free): a bare row whose title is a work of the school's lineage
     snap_hits = 0
