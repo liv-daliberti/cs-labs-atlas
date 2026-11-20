@@ -117,6 +117,34 @@
     "observed": "2025-04-24",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/michigan/openalex-sweep.sqlite)"
    }
+  ],
+  "periods": [
+   {
+    "id": "michigan_sandvig_dated_faculty_2014_2026",
+    "start": "2014-07-22",
+    "end": null,
+    "asof": "2026-01-29",
+    "datePrecision": "day",
+    "reviewed": "2026-11-20",
+    "note": "Conservative lower bound from the dated Harvard-hosted faculty biography, confirmed by the 2026 Michigan faculty directory. This is not an inferred hire date or a paper-derived appointment.",
+    "evidence": [
+     {
+      "url": "https://cyber.harvard.edu/events/luncheon/2014/07/sandvigkarahalios",
+      "sha256": "40d44417af0f9950658c5ff58c6563e0ef297e126b9e7823c2131590aa5fd1b8",
+      "artifact": "hierarchy/michigan/reviewed/identity-sources/40d44417af0f9950658c5ff58c6563e0ef297e126b9e7823c2131590aa5fd1b8.html",
+      "quote": "Christian Sandvig is Steelcase Research Professor and Associate Professor in Communication Studies and at the School of Information at the University of Michigan",
+      "observedAt": "2026-11-20T11:35:09",
+      "publication_date": "2014-07-22"
+     },
+     {
+      "url": "https://web.archive.org/web/20260129025423id_/https://www.si.umich.edu/people/directory/faculty",
+      "sha256": "317d2f54d04f792ed98c927df5ae7dc2d7e49bbe989d30853687d90d7428188a",
+      "artifact": "hierarchy/michigan/reviewed/identity-sources/317d2f54d04f792ed98c927df5ae7dc2d7e49bbe989d30853687d90d7428188a.html",
+      "quote": "Christian Sandvig H Marshall McLuhan Collegiate Professor of Digital Media, Professor of Information, School of Information",
+      "observedAt": "20260129025423"
+     }
+    ]
+   }
   ]
  },
  "Sophia Brueckner": {
@@ -146,6 +174,141 @@
     "quote": "Matthew Bui | School of Information, University of Michigan, Ann Arbor, Michigan, USA",
     "observed": "2026-04-13",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/michigan/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Jing Shuang (Lisa) Li": {
+  "dblp": [
+   "https://dblp.org/pid/263/7507"
+  ],
+  "dblp_drop": [
+   "https://dblp.org/pid/l/JingLi16"
+  ],
+  "aliases": [
+   "Jing Shuang Li",
+   "Jing Shuang Lisa Li"
+  ],
+  "why_dblp": "The September 2026 PI-owned CV explicitly identifies the Michigan control researcher, Caltech 2023 PhD, Michigan faculty from September 2023. At least five exact CV paper titles identify DBLP 263/7507. The census PID l/JingLi16 instead belongs to the separately retained Georgia Tech Jing Li; it has no matching CV title. Correct only the Michigan native-person binding and PI annotation, retain the physical Michigan lab ID and all students, and create no redirect of the other person.",
+  "why_dblp_drop": "The September 2026 PI-owned CV explicitly identifies the Michigan control researcher, Caltech 2023 PhD, Michigan faculty from September 2023. At least five exact CV paper titles identify DBLP 263/7507. The census PID l/JingLi16 instead belongs to the separately retained Georgia Tech Jing Li; it has no matching CV title. Correct only the Michigan native-person binding and PI annotation, retain the physical Michigan lab ID and all students, and create no redirect of the other person.",
+  "identity_correction_review": {
+   "decision": "separate_source_proven_namesake_PI_v1",
+   "reviewed": "2026-11-20",
+   "reviewer": "codex-michigan-cambridge-epfl-papers-1120",
+   "reason": "The September 2026 PI-owned CV explicitly identifies the Michigan control researcher, Caltech 2023 PhD, Michigan faculty from September 2023. At least five exact CV paper titles identify DBLP 263/7507. The census PID l/JingLi16 instead belongs to the separately retained Georgia Tech Jing Li; it has no matching CV title. Correct only the Michigan native-person binding and PI annotation, retain the physical Michigan lab ID and all students, and create no redirect of the other person.",
+   "baseline_pis_sha256": "ebd457b1b60b83cd04d30296cfd7ed864ba64844903ab5ca7e6d79d5926fb03a",
+   "old_person_id": "atl:p:cf555c60e2ed",
+   "retained_lab_id": "atl:l:michigan:jing-shuang-lisa-li",
+   "old_counts": {
+    "verifiedWorks": 0,
+    "labPapers": 0,
+    "students": 2,
+    "studentPaperLinks": 0
+   },
+   "native_anchor_before": [
+    "p|coll:michigan:michigan_fac_jing-shuang-lisa-li",
+    "atl:p:cf555c60e2ed",
+    "person",
+    "2026-11-03"
+   ],
+   "correct_dblp": "https://dblp.org/pid/263/7507",
+   "rejected_dblp": "https://dblp.org/pid/l/JingLi16",
+   "owned_cv_matching_titles": [
+    "Distributed Robust Control for Systems with Structured Uncertainties.",
+    "Nonlinear System Level Synthesis for Polynomial Dynamical Systems.",
+    "Internal Feedback in Biological Control: Diversity, Delays, and Standard Theory.",
+    "Identifying Network Structure of Linear Dynamical Systems: Observability and Edge Misclassification.",
+    "Toward Neuronal Implementations of Delayed Optimal Control.",
+    "Frontiers in Scalable Distributed Control: SLS, MPC, and Beyond.",
+    "Identifying Network Structure of Nonlinear Dynamical Systems: Contraction and Kuramoto Oscillators.",
+    "Separating Controller Design from Closed-Loop Design: A New Perspective on System-Level Controller Synthesis.",
+    "Human Balancing on a Log: A Switched Multi-Layer Controller.",
+    "Two-Layer Attention Optimization for Bimanual Coordination.",
+    "Internal Feedback in Biological Control: Architectures and Examples.",
+    "Distributed Continuous-Time Control via System Level Synthesis.",
+    "Internal Feedback in Biological Control: Locality and System Level Synthesis.",
+    "Distributed and Localized Model Predictive Control - Part II: Theoretical Guarantees.",
+    "Distributed and Localized Model-Predictive Control-Part I: Synthesis and Implementation.",
+    "A Low-Rank Approach to Minimize Sensor-to-Actuator Communication in Finite-Horizon Output Feedback.",
+    "Sparse State-Space Realizations of Linear Controllers.",
+    "Identifying Network Structure of Nonlinear Dynamical Systems: Contraction and Kuramoto Oscillators.",
+    "Associative Memory System via Threshold Linear Networks.",
+    "Distributed Robust Control for Systems with Structured Uncertainties.",
+    "Separating Controller Design from Closed-Loop Design: A New Perspective on System-Level Controller Synthesis.",
+    "Toward Neuronal Implementations of Delayed Optimal Control.",
+    "Identifying Network Structure of Linear Dynamical Systems: Observability and Edge Misclassification.",
+    "Distributed and Localized Model Predictive Control. Part II: Theoretical Guarantees.",
+    "Global Performance Guarantees for Localized Model Predictive Control.",
+    "Two-Layer Attention Optimization for Bimanual Coordination.",
+    "An Evolutionary Algorithm for Actuator-Sensor-Communication Co-Design in Distributed Control.",
+    "Human Balancing on a Log: A Switched Multi-Layer Controller.",
+    "SLSpy: Python-Based System-Level Controller Synthesis Framework.",
+    "A Low Rank Approach to Minimize Sensor-to-Actuator Communication in Finite Horizon Output Feedback.",
+    "Firing Rate Neural Network Implementations of Model Predictive Control."
+   ],
+   "other_person": {
+    "school": "gatech",
+    "pi": "Jing Li",
+    "person_id": "atl:p:cf555c60e2ed",
+    "baseline_pis_sha256": "c62580c6481bd6ad997b73d197781f185ea0b30064712a3d9b445de6169b210a"
+   },
+   "evidence": [
+    {
+     "url": "https://flyingpeach.github.io/assets/jsli_cv_sep29.pdf",
+     "sha256": "4c0fec40cd9f744b777a5d7fcd1d2f12f888109238960efac050c7e8531f5c3f",
+     "artifact": "hierarchy/michigan/reviewed/identity-sources/4c0fec40cd9f744b777a5d7fcd1d2f12f888109238960efac050c7e8531f5c3f.pdf",
+     "quote": "Jing Shuang (Lisa) Li; Assistant Professor of Electrical Engineering and Computer Science; Sep 2023 – Present; University of Michigan; Ph.D. in Control & Dynamical Systems; California Institute of Technology, 2023",
+     "observedAt": "2026-11-20T11:35:06"
+    }
+   ],
+   "registry_preimage_sha256": "587825de5dc2f078ac7162861324486e43e8bcf8049fb644bfa7d760bf1fcb7e"
+  },
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "The correct PID is independently supported by the PI-owned CV; no ORCID is inherited without its own primary source.",
+   "evidence": []
+  }
+ },
+ "Pallab Bhattacharya": {
+  "openalex": [
+   "https://openalex.org/A5086922344"
+  ],
+  "why_openalex": "unique name match under family name and first given name among the school's OpenAlex authors: 55 school works 2016-2023, raw names ['Pallab Bhattacharya', 'P. Bhattacharya', 'Pallab K. Bhattacharya'], ORCID ['0000-0003-1493-9820'], venues ['Applied Physics Letters', 'IEEE Photonics Conference', 'Physical review. B./Physical review. B', 'Physical Review Letters']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_identity_review": {
+   "openalex": [
+    "https://openalex.org/A5086922344"
+   ],
+   "auto": true,
+   "why": "unique name match under family name and first given name among the school's OpenAlex authors: 55 school works 2016-2023, raw names ['Pallab Bhattacharya', 'P. Bhattacharya', 'Pallab K. Bhattacharya'], ORCID ['0000-0003-1493-9820'], venues ['Applied Physics Letters', 'IEEE Photonics Conference', 'Physical review. B./Physical review. B', 'Physical Review Letters']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+   "reviewed": "2026-11-20",
+   "reviewer": "codex-michigan-cambridge-epfl-papers-1120",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160722074343id_/https://www.eecs.umich.edu/ece/faculty/bhattacharya/",
+     "sha256": "9c5c5b7ee217c4615d901e802883b663a3746849d0b0ad2a93550665500d720b",
+     "artifact": "hierarchy/michigan/reviewed/identity-sources/9c5c5b7ee217c4615d901e802883b663a3746849d0b0ad2a93550665500d720b.html",
+     "quote": "Pallab Bhattacharya; Charles M. Vest Distinguished University Professor; James R. Mellor Professor of Engineering; Molecular beam epitaxy; quantum dot lasers and detectors",
+     "observedAt": "20160722074343"
+    }
+   ]
+  },
+  "dblp_drop": [
+   "https://dblp.org/pid/178/3027"
+  ],
+  "why_dblp_drop": "The retained bibliography mixes the Michigan optoelectronics professor and the same-name Meta/NVIDIA software engineer. The latter is explicitly identified by the NVIDIA author biography and software publication records. Bind the professor through the unique school-author candidate; exclude the mixed PID from every native fallback.",
+  "dblp_drop_evidence": [
+   {
+    "url": "https://web.archive.org/web/20160722074343id_/https://www.eecs.umich.edu/ece/faculty/bhattacharya/",
+    "sha256": "9c5c5b7ee217c4615d901e802883b663a3746849d0b0ad2a93550665500d720b",
+    "artifact": "hierarchy/michigan/reviewed/identity-sources/9c5c5b7ee217c4615d901e802883b663a3746849d0b0ad2a93550665500d720b.html",
+    "quote": "Pallab Bhattacharya; Charles M. Vest Distinguished University Professor; James R. Mellor Professor of Engineering; Molecular beam epitaxy; quantum dot lasers and detectors",
+    "observedAt": "20160722074343"
+   },
+   {
+    "url": "https://developer.nvidia.com/blog/author/pallabb/",
+    "sha256": "d69790ca791fa3d0eb5069f2c2546ec1b61155b7d8cbc497c7ec55210072d0d1",
+    "artifact": "hierarchy/michigan/reviewed/identity-sources/d69790ca791fa3d0eb5069f2c2546ec1b61155b7d8cbc497c7ec55210072d0d1.html",
+    "quote": "Pallab Bhattacharya is a distinguished engineer at NVIDIA. Prior to joining NVIDIA, he helped design and deploy AI Training Cluster at Meta",
+    "observedAt": "2026-11-20T11:39:57"
    }
   ]
  }

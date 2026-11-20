@@ -6,7 +6,7 @@ for DBLP-anchored works)."""
 import collections, gzip, html, json, re, sqlite3, zlib
 
 import atlas_paths as P  # every path in one place
-from .common import DBLP, NOT_PAPERS, accepted_additions, ndoi, norm_title, read, school_scope_work, sweep_works
+from .common import DBLP, NOT_PAPERS, accepted_additions, as_list, ndoi, norm_title, read, school_scope_work, sweep_works
 from .names import tie_for_pi, Name, all_initials, byline_name, clean_person_name, full_pair, given_conflict, middle_conflict, name_conflict, name_toks, names_full_form, nosuffix, toks
 from . import primary_affiliations, reviewed_claims
 from .periods import before_window
@@ -206,11 +206,14 @@ def adviser_anchor_basis(pi, member, pi_names, claims):
     return None
 
 
-def apply_cached_lists(pis, pubs, dblp_doi, dblp_title, n):
+def apply_cached_lists(pis, pubs, dblp_doi, dblp_title, n, excluded_pids=None):
     """R-PAP-05 with the pre-protocol schools' cached DBLP publication lists (`pubs`: key -> record with authors {pid:
     name}): a census DBLP id whose names never carry the PI's name is dropped; a PI without one takes the one DBLP person
     of exactly that name; every record of the PI's ids anchors by DOI and title."""
     pis = [p for p in pis if not p.get('identityHold')]
+    excluded_pids = excluded_pids or {}
+    for p in pis:
+        p['dblp'] = [q for q in p['dblp'] if q.rstrip('/') not in excluded_pids.get(p['pi'], set())]
     by_dname = collections.defaultdict(set)  # a PI without a census DBLP id: the one DBLP person of exactly that name, if unique
     for rec in pubs.values():
         for q, dn in (rec.get('authors') or {}).items():
@@ -227,7 +230,8 @@ def apply_cached_lists(pis, pubs, dblp_doi, dblp_title, n):
             n['dblp_ids_dropped_name_mismatch'] += len(p['dblp']) - len(keep); p['dblpDropped'] = sorted(set(p['dblp']) - set(keep)); p['dblp'] = keep
     for p in pis:
         if not p['dblp']:
-            c_ = {q for n_ in p['names'] for q in by_dname.get(' '.join(toks(n_)), set())}
+            c_ = {q for n_ in p['names'] for q in by_dname.get(' '.join(toks(n_)), set())
+                  if q.rstrip('/') not in excluded_pids.get(p['pi'], set())}
             if len(c_) == 1:
                 p['dblp'] = sorted(c_); p['dblpBasis'] = 'unique DBLP person of that exact name among the cached publication co-authors'
     owner = collections.defaultdict(list)
@@ -282,11 +286,14 @@ def colleague_records(rec, colleague_names, lo=2016, hi=2026):
     return k
 
 
-def apply_dump(pis, dump, dblp_doi, dblp_title, n, school=None):
+def apply_dump(pis, dump, dblp_doi, dblp_title, n, school=None, excluded_pids=None):
     """R-PAP-05 with DBLP's own dump (`dump`: hierarchy/dblp-dump-persons.json.gz, {persons, by_name}): name conflicts
     drop an id, a PI still without one takes the unique person of exactly that name (no disambiguation record), every
     record anchors by DOI and title, and the person's ORCIDs join the PI's."""
     pis = [p for p in pis if not p.get('identityHold')]
+    excluded_pids = excluded_pids or {}
+    for p in pis:
+        p['dblp'] = [q for q in p['dblp'] if q.rstrip('/') not in excluded_pids.get(p['pi'], set())]
     DP, DN = dump['persons'], dump['by_name']
     n.setdefault('dblp_ids_dropped_name_mismatch', 0)  # report.schema requires the counter even when nothing is dropped (protocol schools skip apply_cached_lists)
     for p in pis:
@@ -317,7 +324,8 @@ def apply_dump(pis, dump, dblp_doi, dblp_title, n, school=None):
                 n['dblp_name_only_held'] += 1
     for p in pis:
         if not p['dblp']:
-            c_ = {q for n_ in p['names'] for q in DN.get(' '.join(toks(n_)), [])}
+            c_ = {q for n_ in p['names'] for q in DN.get(' '.join(toks(n_)), [])
+                  if q.rstrip('/') not in excluded_pids.get(p['pi'], set())}
             if len(c_) == 1 and not any(DP[q].get('disambiguation') for q in c_):
                 q = next(iter(c_))
                 sig = school_signal(DP[q], school) if school else ('unchecked', None)
@@ -371,12 +379,15 @@ def anchors(ctx):
                            if l.get('status') == 'verified' and l.get('role', 'author') == 'author'
                            and not reviewed_claims.excluded(ctx, p['pi'], dict(ctx.works.get(l['work']) or {}, work=l['work']))} for p in pis}
     dblp_doi, dblp_title = collections.defaultdict(set), collections.defaultdict(dict)
+    overrides = getattr(ctx, 'ov', {})
+    excluded_pids = {p['pi']: {q.rstrip('/') for name in [p['pi'], p.get('censusName'), *p['names']]
+                              for q in as_list(overrides.get(name, {}).get('dblp_drop'))} for p in pis}
     dp = P.archive_sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
     if P.data('dblp_pubs.json.gz', school, root=HERE).exists():  # Princeton: converted from the lab records' cached DBLP answers
         dp = P.data('dblp_pubs.json.gz', school, root=HERE)
     if dp.exists() and dp.name == 'dblp_pubs.json.gz' and (DBLP.get(school) or 'hierarchy' in str(dp)):
         pubs = read(dp)['pubs']
-        apply_cached_lists(pis, pubs, dblp_doi, dblp_title, n)
+        apply_cached_lists(pis, pubs, dblp_doi, dblp_title, n, excluded_pids=excluded_pids)
     # the PI's full DBLP person page from DBLP's own dump (tools/dblp_dump_persons.py -> hierarchy/dblp-dump-persons.json.gz;
     # 2026-10-29): the cached lists above hold only what the census queries returned, so a PI found as a co-author there
     # (Song Mei: 13 of 96 records) or added to the census later had a partial or empty list. Every record of the PI's
@@ -397,7 +408,7 @@ def anchors(ctx):
             own = read(dd_s)
             dump = dict(dump, persons={**dump.get('persons', {}), **own['persons']},
                         by_name={k: sorted(set(dump.get('by_name', {}).get(k, [])) | set(own['by_name'].get(k, []))) for k in {*dump.get('by_name', {}), *own['by_name']}})
-        apply_dump(pis, dump, dblp_doi, dblp_title, n, school=school)
+        apply_dump(pis, dump, dblp_doi, dblp_title, n, school=school, excluded_pids=excluded_pids)
     # Venue dates, author counts and page filters need the same school-augmented records.
     # Keep this per build; the shared read-once cache must not absorb school-local records.
     ctx.dblp_persons = dump
