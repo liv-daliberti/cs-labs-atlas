@@ -273,6 +273,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('surname-adviser-evidence.json', 'reviewed', 'hierarchy/{school}/surname-adviser-evidence.json', 'hierarchy/{school}/reviewed/surname-adviser-evidence.json'),
     ('thesis-evidence.json', 'reviewed', 'hierarchy/{school}/thesis-evidence.json', 'hierarchy/{school}/reviewed/thesis-evidence.json'),
     ('roster-evidence.json', 'reviewed', 'hierarchy/{school}/roster-evidence.json', 'hierarchy/{school}/reviewed/roster-evidence.json'),
+    ('group-source-evidence.json', 'reviewed', 'hierarchy/{school}/group-source-evidence.json', 'hierarchy/{school}/reviewed/group-source-evidence.json'),
     ('defense-adviser-evidence.json', 'reviewed', 'hierarchy/{school}/defense-adviser-evidence.json', 'hierarchy/{school}/reviewed/defense-adviser-evidence.json'),
     ('thesis-committee-chair-evidence.json', 'reviewed', 'hierarchy/{school}/thesis-committee-chair-evidence.json', 'hierarchy/{school}/reviewed/thesis-committee-chair-evidence.json'),   # R-STU-23 (2026-11-08)
     ('department-directory-evidence.json', 'reviewed', 'hierarchy/{school}/department-directory-evidence.json', 'hierarchy/{school}/reviewed/department-directory-evidence.json'),   # 2026-11-11: department graduate-directory rows (Princeton), a researched student source

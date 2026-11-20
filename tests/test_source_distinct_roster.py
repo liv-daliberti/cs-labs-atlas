@@ -12,7 +12,7 @@ def load_rows(tmp_path, monkeypatch, keys):
     rows = [dict(name='Ziyu Chen', role='student', relationship='membership', years=[2026],
                  url='https://example.edu/team', sha256='a' * 64, quote='Ziyu Chen',
                  source_record_key=key) for key in keys]
-    (tmp_path / 'roster-evidence.json').write_text(json.dumps([dict(pi='Example PI', students=rows)]))
+    (tmp_path / 'group-source-evidence.json').write_text(json.dumps([dict(pi='Example PI', students=rows)]))
     monkeypatch.setattr(students.P, 'data', lambda fn, school=None, root=None: tmp_path / fn)
     monkeypatch.setattr(students, 'accepted_additions', lambda *args: [])
     ctx = SimpleNamespace(here=tmp_path, school='example', pis=[dict(pi='Example PI')],
@@ -67,7 +67,7 @@ def held_row(**changes):
 
 def test_held_roster_observations_remain_source_records_without_people_or_links(tmp_path, monkeypatch):
     row = held_row(source_record_id='one')
-    (tmp_path / 'roster-evidence.json').write_text(json.dumps([dict(pi='Example PI', students=[],
+    (tmp_path / 'group-source-evidence.json').write_text(json.dumps([dict(pi='Example PI', students=[],
         unresolved_students=[row, row, held_row(source_record_id='two')])]))
     monkeypatch.setattr(students.P, 'data', lambda fn, school=None, root=None: tmp_path / fn)
     monkeypatch.setattr(students, 'accepted_additions', lambda *args: [])

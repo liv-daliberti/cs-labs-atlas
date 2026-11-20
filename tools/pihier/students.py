@@ -15,7 +15,7 @@ from .names import CJK, Name, _fold, clean_person_name, dedupe_tokens, full_pair
 # Researched student evidence files, hierarchy/<school>/<file>, each a list of {pi, students: [{name, quote, sha256, url,
 # ...}]}. EXTENSION POINT for a new reviewed student source. The lab-page additions (labpage-additions.json `students`)
 # come in through common.accepted_additions, gated by labpage-acceptance.json (2026-10-31).
-RESEARCHED_FILES = ['few-students-evidence.json', 'undated-capture-evidence.json', 'surname-adviser-evidence.json', 'thesis-evidence.json', 'labpage-evidence.json', 'thesis-held-years-evidence.json', 'roster-evidence.json', 'defense-adviser-evidence.json', 'thesis-committee-chair-evidence.json', 'department-directory-evidence.json']
+RESEARCHED_FILES = ['few-students-evidence.json', 'undated-capture-evidence.json', 'surname-adviser-evidence.json', 'thesis-evidence.json', 'labpage-evidence.json', 'thesis-held-years-evidence.json', 'roster-evidence.json', 'defense-adviser-evidence.json', 'thesis-committee-chair-evidence.json', 'department-directory-evidence.json', 'group-source-evidence.json']
 
 ADV_RX = [re.compile(r'(?i:advis[eo]rs?)(?:\(s\))?(?!\s*\(AC\))\s*:?\s*([^;|]+?)(?=\s*(?:Degree:|Research Area|Readers?|Examiners?|;|\||$))'),
           re.compile(r'([A-Z][\w.\- ]+?)\s*\((?:Primary )?Advis[eo]r\)')]  # named adviser fields only, never readers or examiners

@@ -1,0 +1,210 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/group-source-evidence.json",
+ "description": "Independently reviewed whole-group source evidence, with accepted memberships separate from unresolved named observations.",
+ "x-file": "hierarchy/<school>/group-source-evidence.json",
+ "x-kind": "reviewed",
+ "x-writer": "source review (independent group audits)",
+ "x-readers": [
+  "tools/pi_hierarchy.py (tools/pihier/students.py researched)",
+  "tools/chain_audit.py"
+ ],
+ "x-rules": [
+  "R-STU-01"
+ ],
+ "type": "array",
+ "items": {
+  "description": "A lab.",
+  "type": "object",
+  "properties": {
+   "pi": {
+    "description": "PI.",
+    "type": "string",
+    "minLength": 1
+   },
+   "students": {
+    "description": "Researched students.",
+    "type": "array",
+    "items": {
+     "$ref": "#/$defs/student"
+    },
+    "x-rules": [
+     "R-STU-01"
+    ]
+   },
+   "notes": {
+    "description": "Notes.",
+    "type": "string"
+   },
+   "lab_note": {
+    "description": "Lab note.",
+    "type": "string"
+   },
+   "note": {
+    "description": "Note.",
+    "type": "string"
+   },
+   "unresolved_students": {
+    "description": "Hashed source names awaiting identity or membership-date review; never accepted people, memberships, student links or paper attribution.",
+    "type": "array",
+    "items": {
+     "type": "object",
+     "properties": {
+      "name": {
+       "type": "string",
+       "minLength": 1
+      },
+      "reason": {
+       "type": "string",
+       "minLength": 1
+      },
+      "url": {
+       "type": "string",
+       "pattern": "^https?://"
+      },
+      "sha256": {
+       "type": "string",
+       "pattern": "^[0-9a-f]{64}$"
+      },
+      "quote": {
+       "type": "string",
+       "minLength": 1
+      },
+      "source_record_id": {
+       "type": "string",
+       "minLength": 1
+      },
+      "captured": {
+       "type": "string",
+       "minLength": 1
+      },
+      "section": {
+       "type": "string",
+       "minLength": 1
+      },
+      "source_name": {
+       "type": "string",
+       "minLength": 1
+      },
+      "status": {
+       "type": "string",
+       "enum": [
+        "unresolved"
+       ]
+      }
+     },
+     "required": [
+      "name",
+      "reason",
+      "url",
+      "sha256",
+      "quote"
+     ],
+     "additionalProperties": false
+    }
+   }
+  },
+  "required": [
+   "pi",
+   "students"
+  ]
+ },
+ "$defs": {
+  "student": {
+   "description": "A researched student or lab member (with its quote and hash).",
+   "type": "object",
+   "properties": {
+    "name": {
+     "description": "Name as the source writes it.",
+     "type": "string",
+     "minLength": 1
+    },
+    "role": {
+     "description": "Role; 'member' or 'visiting' (R-STU-17) makes a researched_membership relation.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "examples": [
+      "phd",
+      "masters",
+      "undergraduate",
+      "visiting",
+      "postdoc",
+      "member",
+      "other"
+     ]
+    },
+    "years": {
+     "description": "Years.",
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     }
+    },
+    "url": {
+     "description": "The page.",
+     "type": "string",
+     "minLength": 1
+    },
+    "sha256": {
+     "description": "sha256 of the captured page.",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "Verbatim quote naming the student (and the PI or lab).",
+     "type": "string",
+     "minLength": 1
+    },
+    "capture_url": {
+     "description": "The capture (cited instead of url when present).",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "note": {
+     "description": "Note.",
+     "type": "string"
+    },
+    "host_quote": {
+     "description": "A 'Faculty Host <PI>' line on the same page.",
+     "type": "string"
+    },
+    "auto": {
+     "description": "Automatic, unreviewed.",
+     "type": "boolean"
+    },
+    "relationship": {
+     "description": "Optional reviewed relationship: membership preserves a degree/student role without asserting PI advising; advising requires a student role and cannot override visitor/nonstudent or withheld-role guards. Omission retains legacy inference; a present invalid value fails closed.",
+     "type": "string",
+     "enum": [
+      "membership",
+      "advising"
+     ]
+    },
+    "source_record_key": {
+     "type": "string",
+     "minLength": 1,
+     "description": "Unresolved source-scoped identity key; bypasses collection name borrowing and name-only paper links."
+    }
+   },
+   "x-rules": [
+    "R-STU-01"
+   ],
+   "required": [
+    "name",
+    "url",
+    "sha256",
+    "quote"
+   ]
+  }
+ }
+}

@@ -34,6 +34,7 @@ Paths: `a.b` a key inside an object, `[]` an array item, `<key>` any key of a ma
 - [`hierarchy/<school>/cs-related-review.json`](#hierarchyschoolcs-related-reviewjson)
 - [`hierarchy/<school>/few-students-evidence.json`](#hierarchyschoolfew-students-evidencejson)
 - [`hierarchy/<school>/gap-evidence.json`](#hierarchyschoolgap-evidencejson)
+- [`hierarchy/<school>/group-source-evidence.json`](#hierarchyschoolgroup-source-evidencejson)
 - [`hierarchy/<school>/home-department-decisions.json`](#hierarchyschoolhome-department-decisionsjson)
 - [`hierarchy/<school>/labpage-additions.json`](#hierarchyschoollabpage-additionsjson)
 - [`hierarchy/<school>/member-paper-review.json`](#hierarchyschoolmember-paper-reviewjson)
@@ -373,6 +374,18 @@ One PI: the merged census rows, reviewed corrections, identity, appointment evid
 | `funnel.stale_listing_withheld` | integer | no | Advisee-route or unaffiliated papers withheld in a listing year OpenAlex contradicts (review list). | at least 0 | R-PAP-30 |
 | `funnel.twin_record_elsewhere` | integer | no | Papers withheld because their twin record, dated earlier in a contradicted listing year, credits the PI elsewhere. | at least 0 | R-PAP-30 |
 | `funnel.<key ~ /^outside_appointment_\d{4}$/>` | integer | — | Hits outside the appointment, by publication year. | at least 0 | R-PAP-01 |
+| `unresolvedRosterObservations` | array of object | no | Hashed source names awaiting identity or membership-date review; never accepted people, memberships, student links or paper attribution. |  |  |
+| `unresolvedRosterObservations[]` | object | — |  | no other keys |  |
+| `unresolvedRosterObservations[].name` | string | yes |  | non-empty |  |
+| `unresolvedRosterObservations[].reason` | string | yes |  | non-empty |  |
+| `unresolvedRosterObservations[].url` | string | yes |  | pattern `^https?://` |  |
+| `unresolvedRosterObservations[].sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `unresolvedRosterObservations[].quote` | string | yes |  | non-empty |  |
+| `unresolvedRosterObservations[].source_record_id` | string | no |  | non-empty |  |
+| `unresolvedRosterObservations[].captured` | string | no |  | non-empty |  |
+| `unresolvedRosterObservations[].section` | string | no |  | non-empty |  |
+| `unresolvedRosterObservations[].source_name` | string | no |  | non-empty |  |
+| `unresolvedRosterObservations[].status` | string | yes |  | one of `unresolved` |  |
 | `counts` | object | yes | Per-PI totals of the package. | no other keys |  |
 | `counts.verifiedWorks` | integer | yes | Verified collection works of the PI. | at least 0 |  |
 | `counts.labPapers` | integer | yes | Rows of lab_papers.jsonl.gz for this PI. | at least 0 |  |
@@ -849,6 +862,7 @@ One student record of one lab (a person may have records in several labs; never 
 |---|---|---|---|---|---|
 | `person` | string | yes | Record id: the collection person id, else ext:<school>:<name-slug> (researched students, re-keyed PI ids). | non-empty | R-HIER-03, R-STU-07 |
 | `name` | string | yes | Display name (cleaned of catalogue junk and doubled tokens). | non-empty | R-STU-05 |
+| `sourceRecordKey` | string | no | Unresolved, explicitly source-scoped profile key; cannot borrow a collection identity or name-only authorship. | non-empty |  |
 | `roles` | array of string | yes | Roles from the collection person or the researched row (open vocabulary). |  |  |
 | `relations` | array of `relation` | yes | The relations that make this person a student of the lab. |  | R-STU-01 |
 | `aliases` | array of string | no | Other names of the record (raw names before cleaning, merged records' names). |  | R-STU-05, R-STU-06 |
@@ -1658,6 +1672,59 @@ A researched student or lab member (with its quote and hash).
 | `host_quote` | string | no | A 'Faculty Host <PI>' line on the same page. |  |  |
 | `auto` | boolean | no | Automatic, unreviewed. |  |  |
 | `relationship` | string | no | Optional reviewed relationship: membership preserves a degree/student role without asserting PI advising; advising requires a student role and cannot override visitor/nonstudent or withheld-role guards. Omission retains legacy inference; a present invalid value fails closed. | one of `membership`, `advising` |  |
+
+## `hierarchy/<school>/group-source-evidence.json`
+
+Independently reviewed whole-group source evidence, with accepted memberships separate from unresolved named observations.
+
+- schema: `schemas/group-source-evidence.schema.json`
+- kind: reviewed (a decision file, tracked in git)
+- format: JSON
+- writer: source review (independent group audits)
+- readers: tools/pi_hierarchy.py (tools/pihier/students.py researched), tools/chain_audit.py
+- rules: R-STU-01
+
+The file is an array of items.
+
+| Field | Type | Required | Meaning | Allowed values | Rules |
+|---|---|---|---|---|---|
+| `[]` | object | — | A lab. |  |  |
+| `[].pi` | string | yes | PI. | non-empty |  |
+| `[].students` | array of `student` | yes | Researched students. |  | R-STU-01 |
+| `[].notes` | string | no | Notes. |  |  |
+| `[].lab_note` | string | no | Lab note. |  |  |
+| `[].note` | string | no | Note. |  |  |
+| `[].unresolved_students` | array of object | no | Hashed source names awaiting identity or membership-date review; never accepted people, memberships, student links or paper attribution. |  |  |
+| `[].unresolved_students[]` | object | — |  | no other keys |  |
+| `[].unresolved_students[].name` | string | yes |  | non-empty |  |
+| `[].unresolved_students[].reason` | string | yes |  | non-empty |  |
+| `[].unresolved_students[].url` | string | yes |  | pattern `^https?://` |  |
+| `[].unresolved_students[].sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `[].unresolved_students[].quote` | string | yes |  | non-empty |  |
+| `[].unresolved_students[].source_record_id` | string | no |  | non-empty |  |
+| `[].unresolved_students[].captured` | string | no |  | non-empty |  |
+| `[].unresolved_students[].section` | string | no |  | non-empty |  |
+| `[].unresolved_students[].source_name` | string | no |  | non-empty |  |
+| `[].unresolved_students[].status` | string | no |  | one of `unresolved` |  |
+
+### group-source-evidence: shape `student`
+
+A researched student or lab member (with its quote and hash).
+
+| Field | Type | Required | Meaning | Allowed values | Rules |
+|---|---|---|---|---|---|
+| `name` | string | yes | Name as the source writes it. | non-empty |  |
+| `role` | string \| null | no | Role; 'member' or 'visiting' (R-STU-17) makes a researched_membership relation. | e.g. `phd`, `masters`, `undergraduate`, `visiting`, `postdoc`, `member`, `other` |  |
+| `years` | array of integer \| null \| null | no | Years. |  |  |
+| `url` | string | yes | The page. | non-empty |  |
+| `sha256` | string | yes | sha256 of the captured page. | pattern `^[0-9a-f]{64}$` |  |
+| `quote` | string | yes | Verbatim quote naming the student (and the PI or lab). | non-empty |  |
+| `capture_url` | string \| null | no | The capture (cited instead of url when present). |  |  |
+| `note` | string | no | Note. |  |  |
+| `host_quote` | string | no | A 'Faculty Host <PI>' line on the same page. |  |  |
+| `auto` | boolean | no | Automatic, unreviewed. |  |  |
+| `relationship` | string | no | Optional reviewed relationship: membership preserves a degree/student role without asserting PI advising; advising requires a student role and cannot override visitor/nonstudent or withheld-role guards. Omission retains legacy inference; a present invalid value fails closed. | one of `membership`, `advising` |  |
+| `source_record_key` | string | no | Unresolved source-scoped identity key; bypasses collection name borrowing and name-only paper links. | non-empty |  |
 
 ## `hierarchy/<school>/home-department-decisions.json`
 
