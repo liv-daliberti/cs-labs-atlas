@@ -6353,7 +6353,78 @@
     },
     "source_kind": "official public profile; JSON string decoded when present"
    }
-  ]
+  ],
+  "openalex": [
+   "https://openalex.org/A5062662220"
+  ],
+  "mixedOpenAlex": [
+   "https://openalex.org/A5062662220"
+  ],
+  "openalex_work_scope": {
+   "https://openalex.org/A5062662220": [
+    "https://openalex.org/W7225994121"
+   ]
+  },
+  "openalex_identity_review": {
+   "route": "primary_explicit_orcid_exact_work",
+   "confidence": "high",
+   "evidence": [
+    {
+     "url": "https://homepage.hit.edu.cn/TeacherHome/teacherBody.do?id=9ebd92e545d64fe2ba2200f4600a9bf8",
+     "sha256": "2341fd3c477d8ecb29b0a4102b34541b384a9173ac52dbf41b479b05c3f9de6b",
+     "artifact": "hierarchy/hit/reviewed/identity-sources/2341fd3c477d8ecb29b0a4102b34541b384a9173ac52dbf41b479b05c3f9de6b.html",
+     "quote": "ORCID: https://orcid.org/0000-0003-3814-5750"
+    }
+   ],
+   "work": {
+    "id": "https://openalex.org/W7225994121",
+    "doi": "https://doi.org/10.1002/imt2.70189",
+    "sha256": "5cc8b4366608f43d8cbd5fefa4045c0149c2e441d554506726e0fa2d1f7b3a23",
+    "artifact": "hierarchy/hit/reviewed/identity-sources/5cc8b4366608f43d8cbd5fefa4045c0149c2e441d554506726e0fa2d1f7b3a23.openalex.json",
+    "authorship": {
+     "author_position": "middle",
+     "author": {
+      "id": "https://openalex.org/A5062662220",
+      "display_name": "Yan Ping Gao",
+      "orcid": "https://orcid.org/0000-0003-3814-5750",
+      "observed_orcids": [
+       "https://orcid.org/0000-0003-3814-5750"
+      ]
+     },
+     "institutions": [
+      {
+       "id": "https://openalex.org/I204983213",
+       "display_name": "Harbin Institute of Technology",
+       "ror": "https://ror.org/01yqg2h08",
+       "country_code": "CN",
+       "type": "education",
+       "lineage": [
+        "https://openalex.org/I204983213"
+       ]
+      }
+     ],
+     "countries": [
+      "CN"
+     ],
+     "is_corresponding": false,
+     "contributor_roles": [],
+     "raw_author_name": "Yan Gao",
+     "raw_affiliation_strings": [
+      "Harbin Institute of Technology Harbin China"
+     ],
+     "raw_orcid": "https://orcid.org/0000-0003-3814-5750",
+     "affiliations": [
+      {
+       "raw_affiliation_string": "Harbin Institute of Technology Harbin China",
+       "institution_ids": [
+        "https://openalex.org/I204983213"
+       ]
+      }
+     ]
+    }
+   },
+   "why": "The reviewed author identifier is scoped to this exact work only. Other records and namesakes sharing this cluster are not identified or anchored by this review. Native appointment, institution, genre and edition gates still apply."
+  }
  },
  "刘劼": {
   "reviewer": "codex-hit-zero-papers-20261120",
@@ -7228,5 +7299,93 @@
     "note": "Explicit HIT lecturer2019.05–2021.12, Associate Professorfrom2022.01. Interval conservatively confirmed through archived HIT role observation2025-12-21. This is not an inferred departure date; possible2026move to USTB needs dated review. Newly fetched2026Ning Li API works are not added by this recovery."
    }
   ]
+ },
+ "姜伟": {
+  "reviewer": "codex-hit-zero-papers-20261120",
+  "reviewed_on": "2026-11-20",
+  "no_identity": false,
+  "aliases": [
+   "Wei Jiang"
+  ],
+  "openalex": [
+   "https://openalex.org/A5141272850"
+  ],
+  "mixedOpenAlex": [
+   "https://openalex.org/A5141272850"
+  ],
+  "openalex_work_scope": {
+   "https://openalex.org/A5141272850": [
+    "https://openalex.org/W7211994756"
+   ]
+  },
+  "openalex_identity_review": {
+   "route": "primary_publisher_corresponding_email_exact_work",
+   "confidence": "high",
+   "evidence": [
+    {
+     "url": "https://link.springer.com/chapter/10.1007/978-3-032-37356-4_26",
+     "sha256": "763f4e3f3dfe8bde4ba74c7ba38a35ab54e63731402b9e17c35cae6eb5aa9122",
+     "artifact": "hierarchy/hit/reviewed/identity-sources/763f4e3f3dfe8bde4ba74c7ba38a35ab54e63731402b9e17c35cae6eb5aa9122.provider-extract.txt",
+     "quote": "Correspondence to Wei Jiang (jw@hit.edu.cn).",
+     "source_kind": "rendered_primary_publisher_extract",
+     "original_http_bytes_retained": false,
+     "method": "Connected browser/search primary page observed before direct crawler robots refusal; no refusal bypass. Exact DOI, name, school and email cross-checked."
+    },
+    {
+     "url": "https://homepage.hit.edu.cn/TeacherHome/teacherBody.do?id=11d5d9d9ba794aceb835c567c36c27c6",
+     "sha256": "3b39e1d02bcedbdc2506b9755f27f63bb4348f4abd5d535a42b31e3763eb72ea",
+     "artifact": "hierarchy/hit/reviewed/identity-sources/3b39e1d02bcedbdc2506b9755f27f63bb4348f4abd5d535a42b31e3763eb72ea.html",
+     "quote": "E-mail： jw@hit.edu.cn"
+    }
+   ],
+   "work": {
+    "id": "https://openalex.org/W7211994756",
+    "doi": "https://doi.org/10.1007/978-3-032-37356-4_26",
+    "sha256": "43a336fab4f9773bafb533afef4c5acd06b90a1fb3dd5deb302ad1b4a5af93ab",
+    "artifact": "hierarchy/hit/reviewed/identity-sources/43a336fab4f9773bafb533afef4c5acd06b90a1fb3dd5deb302ad1b4a5af93ab.openalex.json",
+    "authorship": {
+     "author_position": "last",
+     "author": {
+      "id": "https://openalex.org/A5141272850",
+      "display_name": "Wei Jiang",
+      "orcid": "https://orcid.org/0009-0001-0748-623X",
+      "observed_orcids": [
+       "https://orcid.org/0009-0001-0748-623X"
+      ]
+     },
+     "institutions": [
+      {
+       "id": "https://openalex.org/I204983213",
+       "display_name": "Harbin Institute of Technology",
+       "ror": "https://ror.org/01yqg2h08",
+       "country_code": "CN",
+       "type": "education",
+       "lineage": [
+        "https://openalex.org/I204983213"
+       ]
+      }
+     ],
+     "countries": [
+      "CN"
+     ],
+     "is_corresponding": true,
+     "contributor_roles": [],
+     "raw_author_name": "Wei Jiang",
+     "raw_affiliation_strings": [
+      "Harbin Institute of Technology, Harbin, China"
+     ],
+     "raw_orcid": null,
+     "affiliations": [
+      {
+       "raw_affiliation_string": "Harbin Institute of Technology, Harbin, China",
+       "institution_ids": [
+        "https://openalex.org/I204983213"
+       ]
+      }
+     ]
+    }
+   },
+   "why": "The reviewed author identifier is scoped to this exact work only. Other records and namesakes sharing this cluster are not identified or anchored by this review. Native appointment, institution, genre and edition gates still apply."
+  }
  }
 }
