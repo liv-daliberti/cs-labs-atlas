@@ -183,6 +183,9 @@ def pi_records(ctx):
             x['dblp'] = [q for q in x['dblp'] if q.rstrip('/') not in {d.rstrip('/') for d in as_list(o['dblp_drop'])}]
         x['openalex'] = list(dict.fromkeys(as_list(x.get('openalex')) + as_list(o.get('openalex'))))
         x['orcid'] = list(dict.fromkeys(re.sub(r'^https?://orcid\.org/', '', z) for z in as_list(x.get('orcid')) + as_list(o.get('orcid'))))  # additions give one ORCID as a string
+        rejected_orcids = {re.sub(r'^https?://orcid\.org/', '', z).rstrip('/') for g in group
+                           for z in as_list(ov.get(g['name'], {}).get('orcid_drop'))}
+        x['orcid'] = [z for z in x['orcid'] if z.rstrip('/') not in rejected_orcids]
         ids = [i for i in [x.get('collection_person_id')] + list(x.get('collection_person_candidates') or []) if i and i in Pid][:1]
         names = ([shown] if shown else []) + [x['name']] + list(x.get('aliases') or []) + [Pid[i]['name'] for i in ids]
         listings = pi_listings(x, yearly, n)

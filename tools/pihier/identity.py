@@ -286,14 +286,17 @@ def colleague_records(rec, colleague_names, lo=2016, hi=2026):
     return k
 
 
-def apply_dump(pis, dump, dblp_doi, dblp_title, n, school=None, excluded_pids=None):
+def apply_dump(pis, dump, dblp_doi, dblp_title, n, school=None, excluded_pids=None, excluded_orcids=None):
     """R-PAP-05 with DBLP's own dump (`dump`: hierarchy/dblp-dump-persons.json.gz, {persons, by_name}): name conflicts
     drop an id, a PI still without one takes the unique person of exactly that name (no disambiguation record), every
     record anchors by DOI and title, and the person's ORCIDs join the PI's."""
     pis = [p for p in pis if not p.get('identityHold')]
     excluded_pids = excluded_pids or {}
+    excluded_orcids = excluded_orcids or {}
     for p in pis:
         p['dblp'] = [q for q in p['dblp'] if q.rstrip('/') not in excluded_pids.get(p['pi'], set())]
+        if excluded_orcids.get(p['pi']):
+            p['orcid'] = [q for q in p.get('orcid') or [] if re.sub(r'^https?://orcid\.org/', '', q).rstrip('/') not in excluded_orcids[p['pi']]]
     DP, DN = dump['persons'], dump['by_name']
     n.setdefault('dblp_ids_dropped_name_mismatch', 0)  # report.schema requires the counter even when nothing is dropped (protocol schools skip apply_cached_lists)
     for p in pis:
@@ -354,7 +357,8 @@ def apply_dump(pis, dump, dblp_doi, dblp_title, n, school=None, excluded_pids=No
                 if t_:
                     dblp_title[p['pi']].setdefault(t_, r_.get('year'))
             n['dblp_dump_titles_added'] += len(dblp_title[p['pi']]) - k0
-            candidates = list(rec_.get('orcid') or [])
+            candidates = [o_ for o_ in rec_.get('orcid') or []
+                          if re.sub(r'^https?://orcid\.org/', '', o_).rstrip('/') not in excluded_orcids.get(p['pi'], set())]
             policy = p.get('dblpOrcidReview')
             if policy is not None:
                 prior = set(p.get('dblpOrcidsWithheld') or [])
@@ -382,6 +386,9 @@ def anchors(ctx):
     overrides = getattr(ctx, 'ov', {})
     excluded_pids = {p['pi']: {q.rstrip('/') for name in [p['pi'], p.get('censusName'), *p['names']]
                               for q in as_list(overrides.get(name, {}).get('dblp_drop'))} for p in pis}
+    excluded_orcids = {p['pi']: {re.sub(r'^https?://orcid\.org/', '', q).rstrip('/')
+                                for name in [p['pi'], p.get('censusName'), *p['names']]
+                                for q in as_list(overrides.get(name, {}).get('orcid_drop'))} for p in pis}
     dp = P.archive_sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
     if P.data('dblp_pubs.json.gz', school, root=HERE).exists():  # Princeton: converted from the lab records' cached DBLP answers
         dp = P.data('dblp_pubs.json.gz', school, root=HERE)
@@ -408,7 +415,7 @@ def anchors(ctx):
             own = read(dd_s)
             dump = dict(dump, persons={**dump.get('persons', {}), **own['persons']},
                         by_name={k: sorted(set(dump.get('by_name', {}).get(k, [])) | set(own['by_name'].get(k, []))) for k in {*dump.get('by_name', {}), *own['by_name']}})
-        apply_dump(pis, dump, dblp_doi, dblp_title, n, school=school, excluded_pids=excluded_pids)
+        apply_dump(pis, dump, dblp_doi, dblp_title, n, school=school, excluded_pids=excluded_pids, excluded_orcids=excluded_orcids)
     # Venue dates, author counts and page filters need the same school-augmented records.
     # Keep this per build; the shared read-once cache must not absorb school-local records.
     ctx.dblp_persons = dump

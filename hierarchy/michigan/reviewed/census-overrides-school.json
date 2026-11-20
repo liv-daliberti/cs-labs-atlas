@@ -194,7 +194,7 @@
    "decision": "separate_source_proven_namesake_PI_v1",
    "reviewed": "2026-11-20",
    "reviewer": "codex-michigan-cambridge-epfl-papers-1120",
-   "reason": "The September 2026 PI-owned CV explicitly identifies the Michigan control researcher, Caltech 2023 PhD, Michigan faculty from September 2023. At least five exact CV paper titles identify DBLP 263/7507. The census PID l/JingLi16 instead belongs to the separately retained Georgia Tech Jing Li; it has no matching CV title. Correct only the Michigan native-person binding and PI annotation, retain the physical Michigan lab ID and all students, and create no redirect of the other person.",
+   "reason": "The September 2026 PI-owned CV explicitly identifies the Michigan control researcher, Caltech 2023 PhD, Michigan faculty from September 2023. At least five exact CV paper titles identify DBLP 263/7507. The census PID l/JingLi16 instead belongs to the separately retained Georgia Tech Jing Li; it has no matching CV title. Correct only the Michigan native-person binding and PI annotation, retain the physical Michigan lab ID and all students, and create no redirect of the other person. The original census also inherited ORCID 0000-0001-7028-3681 from the rejected Georgia Tech DBLP person. Remove that namesake identifier from Michigan, keep it bound to the retained Georgia Tech identity, and adopt no replacement ORCID.",
    "baseline_pis_sha256": "ebd457b1b60b83cd04d30296cfd7ed864ba64844903ab5ca7e6d79d5926fb03a",
    "old_person_id": "atl:p:cf555c60e2ed",
    "retained_lab_id": "atl:l:michigan:jing-shuang-lisa-li",
@@ -258,15 +258,28 @@
      "artifact": "hierarchy/michigan/reviewed/identity-sources/4c0fec40cd9f744b777a5d7fcd1d2f12f888109238960efac050c7e8531f5c3f.pdf",
      "quote": "Jing Shuang (Lisa) Li; Assistant Professor of Electrical Engineering and Computer Science; Sep 2023 – Present; University of Michigan; Ph.D. in Control & Dynamical Systems; California Institute of Technology, 2023",
      "observedAt": "2026-11-20T11:35:06"
+    },
+    {
+     "url": "https://dblp.org/pid/l/JingLi16",
+     "sha256": "bd05bf719d02e2fb48b9e5c9b36e2f40e830ff331a5e38074d50ae2e6ab2cc2e",
+     "artifact": "hierarchy/michigan/reviewed/identity-sources/bd05bf719d02e2fb48b9e5c9b36e2f40e830ff331a5e38074d50ae2e6ab2cc2e.dblp",
+     "source_kind": "official_dblp_dump_extraction",
+     "quote": "Jing Li; ORCID 0000-0001-7028-3681; https://orcid.org/0000-0001-7028-3681; https://www.wikidata.org/entity/Q89399345",
+     "observedAt": "2026-11-20"
     }
    ],
-   "registry_preimage_sha256": "587825de5dc2f078ac7162861324486e43e8bcf8049fb644bfa7d760bf1fcb7e"
+   "registry_preimage_sha256": "587825de5dc2f078ac7162861324486e43e8bcf8049fb644bfa7d760bf1fcb7e",
+   "rejected_orcid": "0000-0001-7028-3681"
   },
   "dblp_orcid_review": {
    "allowed": [],
    "why": "The correct PID is independently supported by the PI-owned CV; no ORCID is inherited without its own primary source.",
    "evidence": []
-  }
+  },
+  "orcid_drop": [
+   "0000-0001-7028-3681"
+  ],
+  "why_orcid_drop": "The September 2026 PI-owned CV explicitly identifies the Michigan control researcher, Caltech 2023 PhD, Michigan faculty from September 2023. At least five exact CV paper titles identify DBLP 263/7507. The census PID l/JingLi16 instead belongs to the separately retained Georgia Tech Jing Li; it has no matching CV title. Correct only the Michigan native-person binding and PI annotation, retain the physical Michigan lab ID and all students, and create no redirect of the other person. The original census also inherited ORCID 0000-0001-7028-3681 from the rejected Georgia Tech DBLP person. Remove that namesake identifier from Michigan, keep it bound to the retained Georgia Tech identity, and adopt no replacement ORCID."
  },
  "Pallab Bhattacharya": {
   "openalex": [
