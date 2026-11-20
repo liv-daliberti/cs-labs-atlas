@@ -369,12 +369,24 @@ def merged_alias_spellings(school, pis, here=None):
         return {}
     built = {p['pi'] for p in pis}
     out = {}
-    for row in (read(f) or {}).get('rows') or []:
+    review = read(f) or {}
+    for row in review.get('rows') or []:
         a, b = row.get('name_a'), row.get('name_b')
         if a in built and b not in built:
             out[b] = a
         elif b in built and a not in built:
             out[a] = b
+    # Native PI merges are validated against the eligible census and original
+    # source evidence before student ingestion. Their historical spellings still
+    # key accepted student and publication files; retain those relationships.
+    for row in review.get('native_pi_merges') or []:
+        canonical = row['canonical']
+        if canonical not in built:
+            continue
+        for alias in row['aliases']:
+            if alias in built or (alias in out and out[alias] != canonical):
+                raise ValueError('Conflicting source-reviewed native PI alias: ' + alias)
+            out[alias] = canonical
     return out
 
 
