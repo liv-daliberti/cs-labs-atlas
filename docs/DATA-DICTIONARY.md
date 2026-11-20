@@ -274,6 +274,7 @@ One open student.
 | `works[].byline_name` | string \| null | yes | Raw byline name. |  |  |
 | `works[].type` | string \| null | yes | Work type. |  |  |
 | `works[].excluded` | string \| null | yes | Why the build rightly left a with-PI work out. | one of `not_a_paper`, `pi_affiliated_elsewhere`, `before_window`, `outside_appointment`, `reviewed_paper_hold`, `null` |  |
+| `works[].paper_hold_decisions` | array of string | no | Ids of the reviewed paper-hold decisions that cover this work (set with excluded reviewed_paper_hold). |  |  |
 | `works[].pi_affiliation` | string \| null | yes | Where the PI's authorship sits. | one of `school`, `elsewhere`, `none`, `null` |  |
 | `n_school_works` | integer | yes | School works under the name in the years. | at least 0 |  |
 | `distinct_author_ids` | integer | yes | Distinct OpenAlex author ids among them. | at least 0 |  |

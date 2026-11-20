@@ -192,7 +192,7 @@ def test_cross_lab_schema_requires_a_named_or_typed_identity_basis():
 def test_link_diagnosis_accepts_reviewed_outcomes():
     """Reviewed student-link exclusions and exact paper-uncertainty holds are explained outcomes (chain_audit.DIAG_REASON)."""
     work = dict(oa='https://openalex.org/W2', year=2024, title='Held paper', byline_name='Ada Lovelace',
-                type='article', excluded='reviewed_paper_hold', pi_affiliation='school')
+                type='article', excluded='reviewed_paper_hold', pi_affiliation='school', paper_hold_decisions=['hold-1'])
     base = dict(pi='Ada Lovelace', roles=['phd'], years=[2023, 2025], n_school_works=1, distinct_author_ids=1, pis_seen=[])
     held = dict(base, student='A', id='p1', category='reviewed_paper_hold', works=[work])
     excl = dict(base, student='B', id='p2', category='reviewed_exclusion', works=[])

@@ -162,6 +162,13 @@
          null
         ]
        },
+       "paper_hold_decisions": {
+        "description": "Ids of the reviewed paper-hold decisions that cover this work (set with excluded reviewed_paper_hold).",
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
        "pi_affiliation": {
         "description": "Where the PI's authorship sits.",
         "type": [
