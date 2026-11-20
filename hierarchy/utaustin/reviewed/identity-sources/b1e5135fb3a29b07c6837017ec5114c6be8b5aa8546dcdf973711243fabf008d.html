@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="ja">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="ja">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="ja">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>yudai tanaka</title>
+<link rel="profile" href="https://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://yudai-tanaka.com/xmlrpc.php">
+<!--[if lt IE 9]>
+<script src="https://s2.wp.com/wp-content/themes/pub/twentytwelve/js/html5.js?m=1394055319i&amp;ver=3.7.0" type="text/javascript"></script>
+<![endif]-->
+<script type="text/javascript">
+  WebFontConfig = {"google":{"families":["Roboto:500:latin,latin-ext","Roboto:r,i,b,bi:latin,latin-ext"]},"api_url":"https:\/\/fonts-api.wp.com\/css"};
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = '/wp-content/plugins/custom-fonts/js/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+	})();
+</script><style id="jetpack-custom-fonts-css">.wf-active .site-header h1{font-family:"Roboto",sans-serif;font-style:normal;font-weight:500}.wf-active body, .wf-active body.custom-font-enabled{font-family:"Roboto",sans-serif}.wf-active .site-header h2{font-family:"Roboto",sans-serif}.wf-active h1, .wf-active h2, .wf-active h3, .wf-active h4, .wf-active h5, .wf-active h6{font-family:"Roboto",sans-serif;font-style:normal;font-weight:500}.wf-active .entry-header .entry-title{font-weight:500;font-style:normal}.wf-active .comment-content h1, .wf-active .entry-content h1{font-style:normal;font-weight:500}.wf-active .comment-content h2, .wf-active .entry-content h2{font-style:normal;font-weight:500}.wf-active .comment-content h3, .wf-active .entry-content h3{font-style:normal;font-weight:500}.wf-active .comment-content h4, .wf-active .entry-content h4{font-style:normal;font-weight:500}.wf-active .comment-content h5, .wf-active .entry-content h5{font-style:normal;font-weight:500}.wf-active .comment-content h6, .wf-active .entry-content h6{font-style:normal;font-weight:500}.wf-active article.format-image footer h1{font-weight:500;font-style:normal}.wf-active article.format-image footer h2{font-style:normal;font-weight:500}.wf-active article.format-link header{font-weight:500;font-style:normal}.wf-active .comments-title{font-weight:500;font-style:normal}.wf-active .comments-area article header h4{font-weight:500;font-style:normal}.wf-active #respond h3#reply-title{font-style:normal;font-weight:500}.wf-active .entry-header .entry-title{font-style:normal;font-weight:500}</style>
+<meta name='robots' content='max-image-preview:large' />
+
+<!-- Async WordPress.com Remote Login -->
+<script id="wpcom_remote_login_js">
+var wpcom_remote_login_extra_auth = '';
+function wpcom_remote_login_remove_dom_node_id( element_id ) {
+	var dom_node = document.getElementById( element_id );
+	if ( dom_node ) { dom_node.parentNode.removeChild( dom_node ); }
+}
+function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+	var dom_nodes = document.querySelectorAll( '.' + class_name );
+	for ( var i = 0; i < dom_nodes.length; i++ ) {
+		dom_nodes[ i ].parentNode.removeChild( dom_nodes[ i ] );
+	}
+}
+function wpcom_remote_login_final_cleanup() {
+	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+}
+
+// Watch for messages back from the remote login
+window.addEventListener( "message", function( e ) {
+	if ( e.origin === "https://r-login.wordpress.com" ) {
+		var data = {};
+		try {
+			data = JSON.parse( e.data );
+		} catch( e ) {
+			wpcom_remote_login_final_cleanup();
+			return;
+		}
+
+		if ( data.msg === 'LOGIN' ) {
+			// Clean up the login check iframe
+			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+
+			var id_regex = new RegExp( /^[0-9]+$/ );
+			var token_regex = new RegExp( /^.*|.*|.*$/ );
+			if (
+				token_regex.test( data.token )
+				&& id_regex.test( data.wpcomid )
+			) {
+				// We have everything we need to ask for a login
+				var script = document.createElement( "script" );
+				script.setAttribute( "id", "wpcom_remote_login_validate" );
+				script.src = '/remote-login.php?wpcom_remote_login=validate'
+					+ '&wpcomid=' + data.wpcomid
+					+ '&token=' + encodeURIComponent( data.token )
+					+ '&host=' + window.location.protocol
+					+ '//' + window.location.hostname
+					+ '&postid=6'
+					+ '&is_singular=';
+				document.body.appendChild( script );
+			}
+
+			return;
+		}
+
+		// Safari ITP, not logged in, so redirect
+		if ( data.msg === 'LOGIN-REDIRECT' ) {
+			window.location = 'https://wordpress.com/log-in?redirect_to=' + window.location.href;
+			return;
+		}
+
+		// Safari ITP, storage access failed, remove the request
+		if ( data.msg === 'LOGIN-REMOVE' ) {
+			var css_zap = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } @media screen and ( max-width: 782px ) { html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } }';
+			var style_zap = document.createElement( 'style' );
+			style_zap.type = 'text/css';
+			style_zap.appendChild( document.createTextNode( css_zap ) );
+			document.body.appendChild( style_zap );
+
+			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			e.parentNode.removeChild( e );
+
+			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
+
+			return;
+		}
+
+		// Safari ITP
+		if ( data.msg === 'REQUEST_ACCESS' ) {
+			console.log( 'request access: safari' );
+
+			// Check ITP iframe enable/disable knob
+			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+				return;
+			}
+
+			// If we are in a "private window" there is no ITP.
+			var private_window = false;
+			try {
+				var opendb = window.openDatabase( null, null, null, null );
+			} catch( e ) {
+				private_window = true;
+			}
+
+			if ( private_window ) {
+				console.log( 'private window' );
+				return;
+			}
+
+			var iframe = document.createElement( 'iframe' );
+			iframe.id = 'wpcom_request_access_iframe';
+			iframe.setAttribute( 'scrolling', 'no' );
+			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
+
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+
+			var style = document.createElement( 'style' );
+			style.type = 'text/css';
+			style.id = 'wpcom_request_access_styles';
+			style.appendChild( document.createTextNode( css ) );
+			document.body.appendChild( style );
+
+			document.body.appendChild( iframe );
+		}
+
+		if ( data.msg === 'DONE' ) {
+			wpcom_remote_login_final_cleanup();
+		}
+	}
+}, false );
+
+// Inject the remote login iframe after the page has had a chance to load
+// more critical resources
+window.addEventListener( "DOMContentLoaded", function( e ) {
+	var iframe = document.createElement( "iframe" );
+	iframe.style.display = "none";
+	iframe.setAttribute( "scrolling", "no" );
+	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.src = "https://r-login.wordpress.com/remote-login.php"
+		+ "?wpcom_remote_login=key"
+		+ "&origin=aHR0cHM6Ly95dWRhaS10YW5ha2EuY29t"
+		+ "&wpcomid=183431160"
+		+ "&time=" + Math.floor( Date.now() / 1000 );
+	document.body.appendChild( iframe );
+}, false );
+</script>
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//fonts-api.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="yudai tanaka &raquo; フィード" href="https://yudai-tanaka.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="yudai tanaka &raquo; コメントフィード" href="https://yudai-tanaka.com/comments/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+	<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#3858e9;--wp-admin-theme-color--rgb:56,88,233;--wp-admin-theme-color-darker-10:#2145e6;--wp-admin-theme-color-darker-10--rgb:33.0384615385,68.7307692308,230.4615384615;--wp-admin-theme-color-darker-20:#183ad6;--wp-admin-theme-color-darker-20--rgb:23.6923076923,58.1538461538,214.3076923077;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}body.admin-color-fresh{--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){body.admin-color-fresh{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}:root .has-inline-color,:root .has-link-color a,:root .has-text-color{-webkit-text-fill-color:currentColor}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;overflow-wrap:normal!important;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}@supports (not (-webkit-backdrop-filter:blur(1px))) and (not (-moz-appearance:none)){mtd[columnalign=right]{text-align:-webkit-right}mtd[columnalign=left]{text-align:-webkit-left}menclose[notation~=top]{border-top:.065em solid;padding-top:.1em}menclose[notation~=bottom]{border-bottom:.065em solid;padding-bottom:.1em}}
+
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.3.1/build/styles/block-library/common.min.css */
+</style>
+<style id="wp-block-group-inline-css">
+.wp-block-group{box-sizing:border-box}:where(.wp-block-group.wp-block-group-is-layout-constrained){position:relative}
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.3.1/build/styles/block-library/group/style.min.css */
+</style>
+<style id="wp-block-group-theme-inline-css">
+:where(.wp-block-group.has-background){padding:var(--wp--style--block-background-padding,1.25em 2.375em)}
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.3.1/build/styles/block-library/group/theme.min.css */
+</style>
+<style id="wp-block-image-inline-css">
+.wp-block-image>a,.wp-block-image>figure>a{color:inherit;display:inline-block}.wp-block-image img{box-sizing:border-box;height:auto;max-width:100%;vertical-align:bottom}@media not (prefers-reduced-motion){.wp-block-image img.hide{visibility:hidden}.wp-block-image img.show{animation:show-content-image .4s}}.wp-block-image[style*=border-radius] img,.wp-block-image[style*=border-radius]>a{border-radius:inherit}.wp-block-image.has-custom-border img{box-sizing:border-box}.wp-block-image.aligncenter{text-align:center}.wp-block-image.alignfull>a,.wp-block-image.alignwide>a{width:100%}.wp-block-image.alignfull img,.wp-block-image.alignwide img{height:auto;width:100%}.wp-block-image .aligncenter,.wp-block-image .alignleft,.wp-block-image .alignright,.wp-block-image.aligncenter,.wp-block-image.alignleft,.wp-block-image.alignright{display:table}.wp-block-image .aligncenter>figcaption,.wp-block-image .alignleft>figcaption,.wp-block-image .alignright>figcaption,.wp-block-image.aligncenter>figcaption,.wp-block-image.alignleft>figcaption,.wp-block-image.alignright>figcaption{caption-side:bottom;display:table-caption}.wp-block-image .alignleft{float:left;margin:.5em 1em .5em 0}.wp-block-image .alignright{float:right;margin:.5em 0 .5em 1em}.wp-block-image .aligncenter{margin-left:auto;margin-right:auto}.wp-block-image :where(figcaption){margin-bottom:1em;margin-top:.5em}.wp-block-image.is-style-circle-mask img{border-radius:9999px}@supports (mask-image:none) or (-webkit-mask-image:none){.wp-block-image.is-style-circle-mask img{border-radius:0;mask-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50'/%3E%3C/svg%3E");mask-mode:alpha;mask-position:center;mask-repeat:no-repeat;mask-size:contain}}:root :where(.wp-block-image.is-style-rounded img,.wp-block-image .is-style-rounded img){border-radius:9999px}.wp-block-image figure{margin:0}.wp-lightbox-container{display:flex;flex-direction:column;position:relative}.wp-lightbox-container img{cursor:zoom-in}.wp-lightbox-container:has(img:hover) button{opacity:1}.wp-lightbox-container button{align-items:center;backdrop-filter:blur(16px) saturate(180%);background-color:rgba(90,90,90,.25);border:none;border-radius:4px;cursor:zoom-in;display:flex;height:20px;justify-content:center;opacity:0;padding:0;position:absolute;right:16px;text-align:center;top:16px;width:20px;z-index:100}@media not (prefers-reduced-motion){.wp-lightbox-container button{transition:opacity .2s ease}}.wp-lightbox-container button:focus-visible{outline:3px auto rgba(90,90,90,.25);outline:3px auto -webkit-focus-ring-color;outline-offset:3px}.wp-lightbox-container button:hover{cursor:pointer;opacity:1}.wp-lightbox-container button:focus{opacity:1}.wp-lightbox-container button:focus,.wp-lightbox-container button:hover,.wp-lightbox-container button:not(:hover):not(:active):not(.has-background){background-color:rgba(90,90,90,.25);border:none}.wp-lightbox-overlay{box-sizing:border-box;cursor:zoom-out;height:100vh;left:0;overflow:hidden;position:fixed;top:0;visibility:hidden;width:100%;z-index:100000}.wp-lightbox-overlay .wp-lightbox-close-button{align-items:center;cursor:pointer;display:flex;font-family:inherit;gap:8px;justify-content:center;line-height:1;min-height:40px;min-width:40px;padding:0 4px;position:absolute;right:calc(env(safe-area-inset-right) + 16px);top:calc(env(safe-area-inset-top) + 16px);z-index:5000000}.wp-lightbox-overlay .wp-lightbox-close-button:focus,.wp-lightbox-overlay .wp-lightbox-close-button:hover,.wp-lightbox-overlay .wp-lightbox-close-button:not(:hover):not(:active):not(.has-background){background:none;border:none}.wp-lightbox-overlay .wp-lightbox-close-button:has(.wp-lightbox-close-text:not([hidden])) .wp-lightbox-close-icon svg{height:1em;width:1em}.wp-lightbox-overlay .wp-lightbox-close-icon svg{display:block}.wp-lightbox-overlay .wp-lightbox-navigation-button-next,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev{align-items:center;bottom:16px;cursor:pointer;display:flex;font-family:inherit;gap:4px;justify-content:center;line-height:1;min-height:40px;min-width:40px;padding:0 8px;position:absolute;z-index:2000002}.wp-lightbox-overlay .wp-lightbox-navigation-button-next[hidden],.wp-lightbox-overlay .wp-lightbox-navigation-button-prev[hidden]{display:none}@media (min-width:960px){.wp-lightbox-overlay .wp-lightbox-navigation-button-next,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev{bottom:50%;transform:translateY(-50%)}}.wp-lightbox-overlay .wp-lightbox-navigation-button-next:focus,.wp-lightbox-overlay .wp-lightbox-navigation-button-next:hover,.wp-lightbox-overlay .wp-lightbox-navigation-button-next:not(:hover):not(:active):not(.has-background),.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:focus,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:hover,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:not(:hover):not(:active):not(.has-background){background:none;border:none;padding:0 8px}.wp-lightbox-overlay .wp-lightbox-navigation-button-next:has(.wp-lightbox-navigation-text:not([hidden])) .wp-lightbox-navigation-icon svg,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:has(.wp-lightbox-navigation-text:not([hidden])) .wp-lightbox-navigation-icon svg{display:block;height:1.5em;width:1.5em}.wp-lightbox-overlay .wp-lightbox-navigation-button-prev{left:calc(env(safe-area-inset-left) + 16px)}.wp-lightbox-overlay .wp-lightbox-navigation-button-next{right:calc(env(safe-area-inset-right) + 16px)}.wp-lightbox-overlay .wp-lightbox-navigation-icon svg{vertical-align:middle}.wp-lightbox-overlay .lightbox-image-container{cursor:default;height:var(--wp--lightbox-container-height);left:50%;overflow:hidden;position:absolute;top:50%;transform:translate(calc(-50% + var(--wp--lightbox-drag-offset, 0px)),-50%);transform-origin:top left;width:var(--wp--lightbox-container-width);z-index:2000001}.wp-lightbox-overlay .wp-block-image{align-items:center;box-sizing:border-box;display:flex;height:100%;justify-content:center;margin:0;position:relative;transform-origin:0 0;width:100%;z-index:3000000}.wp-lightbox-overlay .wp-block-image img{height:var(--wp--lightbox-image-height);min-height:var(--wp--lightbox-image-height);min-width:var(--wp--lightbox-image-width);width:var(--wp--lightbox-image-width)}.wp-lightbox-overlay .wp-block-image figcaption{display:none}.wp-lightbox-overlay .lightbox-thumbnail-container{--wp--lightbox-image-width:var(--wp--lightbox-thumbnail-width);--wp--lightbox-image-height:var(--wp--lightbox-thumbnail-height)}.wp-lightbox-overlay button{background:none;border:none}.wp-lightbox-overlay .scrim{background-color:#fff;height:100%;opacity:.9;position:absolute;width:100%;z-index:2000000}.wp-lightbox-overlay.active{visibility:visible}@media not (prefers-reduced-motion){.wp-lightbox-overlay.active{animation:turn-on-visibility .25s both}.wp-lightbox-overlay.active img{animation:turn-on-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active){animation:turn-off-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active) img{animation:turn-off-visibility .25s both}.wp-lightbox-overlay.zoom.active{animation:none;opacity:1;visibility:visible}.wp-lightbox-overlay.zoom.active .lightbox-image-container{animation:lightbox-zoom-in .4s}.wp-lightbox-overlay.zoom.active .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.active .scrim{animation:turn-on-visibility .4s forwards}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active){animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container{animation:lightbox-zoom-out .4s}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .scrim{animation:turn-off-visibility .4s forwards}}@keyframes show-content-image{0%{visibility:hidden}99%{visibility:hidden}to{visibility:visible}}@keyframes turn-on-visibility{0%{opacity:0}to{opacity:1}}@keyframes turn-off-visibility{0%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible}to{opacity:0;visibility:hidden}}@keyframes lightbox-zoom-in{0%{clip-path:var(--wp--lightbox-initial-clip);transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale))}to{clip-path:inset(0);transform:translate(-50%,-50%) scale(1)}}@keyframes lightbox-zoom-out{0%{clip-path:inset(0);transform:translate(-50%,-50%) scale(1);visibility:visible}99%{visibility:visible}to{clip-path:var(--wp--lightbox-initial-clip);transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale));visibility:hidden}}
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.3.1/build/styles/block-library/image/style.min.css */
+</style>
+<style id="wp-block-image-theme-inline-css">
+:root :where(.wp-block-image figcaption){color:#555;font-size:13px;text-align:center}.is-dark-theme :root :where(.wp-block-image figcaption){color:hsla(0,0%,100%,.65)}.wp-block-image{margin:0 0 1em}
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.3.1/build/styles/block-library/image/theme.min.css */
+</style>
+<style id="wp-block-media-text-inline-css">
+.wp-block-media-text{box-sizing:border-box;direction:ltr;display:grid;grid-template-columns:50% 1fr;grid-template-rows:auto}.wp-block-media-text.has-media-on-the-right{grid-template-columns:1fr 50%}.wp-block-media-text.is-vertically-aligned-top>.wp-block-media-text__content,.wp-block-media-text.is-vertically-aligned-top>.wp-block-media-text__media{align-self:start}.wp-block-media-text.is-vertically-aligned-center>.wp-block-media-text__content,.wp-block-media-text.is-vertically-aligned-center>.wp-block-media-text__media,.wp-block-media-text>.wp-block-media-text__content,.wp-block-media-text>.wp-block-media-text__media{align-self:center}.wp-block-media-text.is-vertically-aligned-bottom>.wp-block-media-text__content,.wp-block-media-text.is-vertically-aligned-bottom>.wp-block-media-text__media{align-self:end}.wp-block-media-text>.wp-block-media-text__media{grid-column:1;grid-row:1;margin:0}.wp-block-media-text>.wp-block-media-text__content{direction:ltr;grid-column:2;grid-row:1;min-width:0;overflow-wrap:anywhere;word-break:normal}:root :where(.wp-block-media-text>.wp-block-media-text__content){padding:0 8%}.wp-block-media-text.has-media-on-the-right>.wp-block-media-text__media{grid-column:2;grid-row:1}.wp-block-media-text.has-media-on-the-right>.wp-block-media-text__content{grid-column:1;grid-row:1}.wp-block-media-text__media a{display:block}.wp-block-media-text__media img,.wp-block-media-text__media video{height:auto;max-width:unset;vertical-align:middle;width:100%}.wp-block-media-text.is-image-fill>.wp-block-media-text__media{background-size:cover;height:100%;min-height:250px}.wp-block-media-text.is-image-fill>.wp-block-media-text__media>a{display:block;height:100%}.wp-block-media-text.is-image-fill>.wp-block-media-text__media img{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.wp-block-media-text.is-image-fill-element>.wp-block-media-text__media{height:100%;min-height:250px;position:relative}.wp-block-media-text.is-image-fill-element>.wp-block-media-text__media>a{display:block;height:100%}.wp-block-media-text.is-image-fill-element>.wp-block-media-text__media img{height:100%;object-fit:cover;position:absolute;width:100%}@media (max-width:600px){.wp-block-media-text.is-stacked-on-mobile{grid-template-columns:100%!important}.wp-block-media-text.is-stacked-on-mobile>.wp-block-media-text__media{grid-column:1;grid-row:1}.wp-block-media-text.is-stacked-on-mobile>.wp-block-media-text__content{grid-column:1;grid-row:2}}
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.3.1/build/styles/block-library/media-text/style.min.css */
+</style>
+<style id="wp-block-paragraph-inline-css">
+.is-small-text{font-size:.875em}.is-regular-text{font-size:1em}.is-large-text{font-size:2.25em}.is-larger-text{font-size:3em}.has-drop-cap:not(:focus):first-letter{float:left;font-size:8.4em;font-style:normal;font-weight:100;line-height:.68;margin:.05em .1em 0 0;text-transform:uppercase}body.rtl .has-drop-cap:not(:focus):first-letter{float:none;margin-left:.1em}p.has-drop-cap.has-background{overflow:hidden}:root :where(p.has-background){padding:var(--wp--style--block-background-padding,1.25em 2.375em)}:where(p.has-text-color:not(.has-link-color)) a{color:inherit}p.has-text-align-left[style*="writing-mode:vertical-lr"],p.has-text-align-right[style*="writing-mode:vertical-rl"]{rotate:180deg}
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.3.1/build/styles/block-library/paragraph/style.min.css */
+</style>
+<style id="wp-block-library-inline-css-extra">
+.has-text-align-justify {
+	text-align:justify;
+}
+.has-text-align-justify{text-align:justify;}
+/*# sourceURL=wp-block-library-inline-css */
+</style>
+
+<style id="classic-theme-styles-inline-css">
+.wp-block-button__link{background-color:#32373c;border-radius:9999px;box-shadow:none;color:#fff;font-size:1.125em;padding:calc(.667em + 2px) calc(1.333em + 2px);text-decoration:none}.wp-block-file__button{background:#32373c;color:#fff}.wp-block-accordion-heading{margin:0}.wp-block-accordion-heading__toggle{background-color:inherit!important;color:inherit!important}.wp-block-accordion-heading__toggle:not(:focus-visible){outline:none}.wp-block-accordion-heading__toggle:focus,.wp-block-accordion-heading__toggle:hover{background-color:inherit!important;border:none;box-shadow:none;color:inherit;padding:var(--wp--preset--spacing--20,1em) 0;text-decoration:none}.wp-block-accordion-heading__toggle:focus-visible{outline:auto;outline-offset:0}.wp-block-tab:not(.has-text-color){color:inherit!important}.wp-block-tab:not(.has-background){background-color:inherit!important}.wp-block-tab:focus,.wp-block-tab:hover{text-decoration:none}.wp-block-tab:focus-visible{outline:auto;outline-offset:0}
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.3.1/build/styles/block-library/classic.min.css */
+</style>
+
+<link crossorigin='anonymous' rel='stylesheet' id='all-css-0-3' href='/wp-content/plugins/gutenberg-blocks/jetpack-layout-grid/style.css?m=1643200914i&cssminify=yes' type='text/css' media='all' />
+
+<style id="coblocks-inline-format-inline-css">
+.uppercase{text-transform:uppercase}
+/*# sourceURL=coblocks-inline-format-inline-css */
+</style>
+<link crossorigin='anonymous' rel='stylesheet' id='all-css-12-1' href='/_static/??-eJx9jEEOAiEQBD/kQECjeDC+ZWEnijIwYWA3/l72op689KFTVXplCCU3zE1z6reYRYfiUwlP0VYZpwxIJE4IFRd10HOU9iFA2iuhCiI7/ROiDt9WxfETT20jCOc4YUIa2D9t5eGA91xRBMZS7ATtPkTZvCtdzNEZt7f2fHq8Afl7R7w=&cssminify=yes' type='text/css' media='all' />
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #fff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--blue: #21759b;--wp--preset--color--dark-gray: #444;--wp--preset--color--medium-gray: #9f9f9f;--wp--preset--color--light-gray: #e6e6e6;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-family--albert-sans: 'Albert Sans', sans-serif;--wp--preset--font-family--alegreya: Alegreya, serif;--wp--preset--font-family--arvo: Arvo, serif;--wp--preset--font-family--bodoni-moda: 'Bodoni Moda', serif;--wp--preset--font-family--bricolage-grotesque: 'Bricolage Grotesque', sans-serif;--wp--preset--font-family--cabin: Cabin, sans-serif;--wp--preset--font-family--chivo: Chivo, sans-serif;--wp--preset--font-family--commissioner: Commissioner, sans-serif;--wp--preset--font-family--cormorant: Cormorant, serif;--wp--preset--font-family--courier-prime: 'Courier Prime', monospace;--wp--preset--font-family--crimson-pro: 'Crimson Pro', serif;--wp--preset--font-family--dm-mono: 'DM Mono', monospace;--wp--preset--font-family--dm-sans: 'DM Sans', sans-serif;--wp--preset--font-family--dm-serif-display: 'DM Serif Display', serif;--wp--preset--font-family--domine: Domine, serif;--wp--preset--font-family--eb-garamond: 'EB Garamond', serif;--wp--preset--font-family--epilogue: Epilogue, sans-serif;--wp--preset--font-family--fahkwang: Fahkwang, sans-serif;--wp--preset--font-family--figtree: Figtree, sans-serif;--wp--preset--font-family--fira-sans: 'Fira Sans', sans-serif;--wp--preset--font-family--fjalla-one: 'Fjalla One', sans-serif;--wp--preset--font-family--fraunces: Fraunces, serif;--wp--preset--font-family--gabarito: Gabarito, system-ui;--wp--preset--font-family--ibm-plex-mono: 'IBM Plex Mono', monospace;--wp--preset--font-family--ibm-plex-sans: 'IBM Plex Sans', sans-serif;--wp--preset--font-family--ibarra-real-nova: 'Ibarra Real Nova', serif;--wp--preset--font-family--instrument-serif: 'Instrument Serif', serif;--wp--preset--font-family--inter: Inter, sans-serif;--wp--preset--font-family--josefin-sans: 'Josefin Sans', sans-serif;--wp--preset--font-family--jost: Jost, sans-serif;--wp--preset--font-family--libre-baskerville: 'Libre Baskerville', serif;--wp--preset--font-family--libre-franklin: 'Libre Franklin', sans-serif;--wp--preset--font-family--literata: Literata, serif;--wp--preset--font-family--lora: Lora, serif;--wp--preset--font-family--merriweather: Merriweather, serif;--wp--preset--font-family--montserrat: Montserrat, sans-serif;--wp--preset--font-family--newsreader: Newsreader, serif;--wp--preset--font-family--noto-sans-mono: 'Noto Sans Mono', sans-serif;--wp--preset--font-family--nunito: Nunito, sans-serif;--wp--preset--font-family--open-sans: 'Open Sans', sans-serif;--wp--preset--font-family--overpass: Overpass, sans-serif;--wp--preset--font-family--pt-serif: 'PT Serif', serif;--wp--preset--font-family--petrona: Petrona, serif;--wp--preset--font-family--piazzolla: Piazzolla, serif;--wp--preset--font-family--playfair-display: 'Playfair Display', serif;--wp--preset--font-family--plus-jakarta-sans: 'Plus Jakarta Sans', sans-serif;--wp--preset--font-family--poppins: Poppins, sans-serif;--wp--preset--font-family--raleway: Raleway, sans-serif;--wp--preset--font-family--roboto: Roboto, sans-serif;--wp--preset--font-family--roboto-slab: 'Roboto Slab', serif;--wp--preset--font-family--rubik: Rubik, sans-serif;--wp--preset--font-family--rufina: Rufina, serif;--wp--preset--font-family--sora: Sora, sans-serif;--wp--preset--font-family--source-sans-3: 'Source Sans 3', sans-serif;--wp--preset--font-family--source-serif-4: 'Source Serif 4', serif;--wp--preset--font-family--space-mono: 'Space Mono', monospace;--wp--preset--font-family--syne: Syne, sans-serif;--wp--preset--font-family--texturina: Texturina, serif;--wp--preset--font-family--urbanist: Urbanist, sans-serif;--wp--preset--font-family--work-sans: 'Work Sans', sans-serif;--wp--preset--text-shadow--light: 0.05em 0.05em 0.1em rgba(0, 0, 0, 0.3);--wp--preset--text-shadow--strong: 0.1em 0.1em 0.25em rgba(0, 0, 0, 0.5);--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-blue-color{color: var(--wp--preset--color--blue) !important;}.has-dark-gray-color{color: var(--wp--preset--color--dark-gray) !important;}.has-medium-gray-color{color: var(--wp--preset--color--medium-gray) !important;}.has-light-gray-color{color: var(--wp--preset--color--light-gray) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-blue-background-color{background-color: var(--wp--preset--color--blue) !important;}.has-dark-gray-background-color{background-color: var(--wp--preset--color--dark-gray) !important;}.has-medium-gray-background-color{background-color: var(--wp--preset--color--medium-gray) !important;}.has-light-gray-background-color{background-color: var(--wp--preset--color--light-gray) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-blue-border-color{border-color: var(--wp--preset--color--blue) !important;}.has-dark-gray-border-color{border-color: var(--wp--preset--color--dark-gray) !important;}.has-medium-gray-border-color{border-color: var(--wp--preset--color--medium-gray) !important;}.has-light-gray-border-color{border-color: var(--wp--preset--color--light-gray) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}.has-albert-sans-font-family{font-family: var(--wp--preset--font-family--albert-sans) !important;}.has-alegreya-font-family{font-family: var(--wp--preset--font-family--alegreya) !important;}.has-arvo-font-family{font-family: var(--wp--preset--font-family--arvo) !important;}.has-bodoni-moda-font-family{font-family: var(--wp--preset--font-family--bodoni-moda) !important;}.has-bricolage-grotesque-font-family{font-family: var(--wp--preset--font-family--bricolage-grotesque) !important;}.has-cabin-font-family{font-family: var(--wp--preset--font-family--cabin) !important;}.has-chivo-font-family{font-family: var(--wp--preset--font-family--chivo) !important;}.has-commissioner-font-family{font-family: var(--wp--preset--font-family--commissioner) !important;}.has-cormorant-font-family{font-family: var(--wp--preset--font-family--cormorant) !important;}.has-courier-prime-font-family{font-family: var(--wp--preset--font-family--courier-prime) !important;}.has-crimson-pro-font-family{font-family: var(--wp--preset--font-family--crimson-pro) !important;}.has-dm-mono-font-family{font-family: var(--wp--preset--font-family--dm-mono) !important;}.has-dm-sans-font-family{font-family: var(--wp--preset--font-family--dm-sans) !important;}.has-dm-serif-display-font-family{font-family: var(--wp--preset--font-family--dm-serif-display) !important;}.has-domine-font-family{font-family: var(--wp--preset--font-family--domine) !important;}.has-eb-garamond-font-family{font-family: var(--wp--preset--font-family--eb-garamond) !important;}.has-epilogue-font-family{font-family: var(--wp--preset--font-family--epilogue) !important;}.has-fahkwang-font-family{font-family: var(--wp--preset--font-family--fahkwang) !important;}.has-figtree-font-family{font-family: var(--wp--preset--font-family--figtree) !important;}.has-fira-sans-font-family{font-family: var(--wp--preset--font-family--fira-sans) !important;}.has-fjalla-one-font-family{font-family: var(--wp--preset--font-family--fjalla-one) !important;}.has-fraunces-font-family{font-family: var(--wp--preset--font-family--fraunces) !important;}.has-gabarito-font-family{font-family: var(--wp--preset--font-family--gabarito) !important;}.has-ibm-plex-mono-font-family{font-family: var(--wp--preset--font-family--ibm-plex-mono) !important;}.has-ibm-plex-sans-font-family{font-family: var(--wp--preset--font-family--ibm-plex-sans) !important;}.has-ibarra-real-nova-font-family{font-family: var(--wp--preset--font-family--ibarra-real-nova) !important;}.has-instrument-serif-font-family{font-family: var(--wp--preset--font-family--instrument-serif) !important;}.has-inter-font-family{font-family: var(--wp--preset--font-family--inter) !important;}.has-josefin-sans-font-family{font-family: var(--wp--preset--font-family--josefin-sans) !important;}.has-jost-font-family{font-family: var(--wp--preset--font-family--jost) !important;}.has-libre-baskerville-font-family{font-family: var(--wp--preset--font-family--libre-baskerville) !important;}.has-libre-franklin-font-family{font-family: var(--wp--preset--font-family--libre-franklin) !important;}.has-literata-font-family{font-family: var(--wp--preset--font-family--literata) !important;}.has-lora-font-family{font-family: var(--wp--preset--font-family--lora) !important;}.has-merriweather-font-family{font-family: var(--wp--preset--font-family--merriweather) !important;}.has-montserrat-font-family{font-family: var(--wp--preset--font-family--montserrat) !important;}.has-newsreader-font-family{font-family: var(--wp--preset--font-family--newsreader) !important;}.has-noto-sans-mono-font-family{font-family: var(--wp--preset--font-family--noto-sans-mono) !important;}.has-nunito-font-family{font-family: var(--wp--preset--font-family--nunito) !important;}.has-open-sans-font-family{font-family: var(--wp--preset--font-family--open-sans) !important;}.has-overpass-font-family{font-family: var(--wp--preset--font-family--overpass) !important;}.has-pt-serif-font-family{font-family: var(--wp--preset--font-family--pt-serif) !important;}.has-petrona-font-family{font-family: var(--wp--preset--font-family--petrona) !important;}.has-piazzolla-font-family{font-family: var(--wp--preset--font-family--piazzolla) !important;}.has-playfair-display-font-family{font-family: var(--wp--preset--font-family--playfair-display) !important;}.has-plus-jakarta-sans-font-family{font-family: var(--wp--preset--font-family--plus-jakarta-sans) !important;}.has-poppins-font-family{font-family: var(--wp--preset--font-family--poppins) !important;}.has-raleway-font-family{font-family: var(--wp--preset--font-family--raleway) !important;}.has-roboto-font-family{font-family: var(--wp--preset--font-family--roboto) !important;}.has-roboto-slab-font-family{font-family: var(--wp--preset--font-family--roboto-slab) !important;}.has-rubik-font-family{font-family: var(--wp--preset--font-family--rubik) !important;}.has-rufina-font-family{font-family: var(--wp--preset--font-family--rufina) !important;}.has-sora-font-family{font-family: var(--wp--preset--font-family--sora) !important;}.has-source-sans-3-font-family{font-family: var(--wp--preset--font-family--source-sans-3) !important;}.has-source-serif-4-font-family{font-family: var(--wp--preset--font-family--source-serif-4) !important;}.has-space-mono-font-family{font-family: var(--wp--preset--font-family--space-mono) !important;}.has-syne-font-family{font-family: var(--wp--preset--font-family--syne) !important;}.has-texturina-font-family{font-family: var(--wp--preset--font-family--texturina) !important;}.has-urbanist-font-family{font-family: var(--wp--preset--font-family--urbanist) !important;}.has-work-sans-font-family{font-family: var(--wp--preset--font-family--work-sans) !important;}.has-light-text-shadow{text-shadow: var(--wp--preset--text-shadow--light) !important;}.has-strong-text-shadow{text-shadow: var(--wp--preset--text-shadow--strong) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='twentytwelve-fonts-css' href='https://fonts-api.wp.com/css?family=Open+Sans%3A400italic%2C700italic%2C400%2C700&#038;subset=latin%2Clatin-ext&#038;display=fallback' media='all' />
+<link crossorigin='anonymous' rel='stylesheet' id='all-css-16-1' href='/_static/??-eJzTLy/QTc7PK0nNK9EvyUjNTS3WLyhN0i8pBwpUAsmcslT94pLKnFS95OJiHX0iVAPV6Sfl5CdnF4O02OfaGpqbWpibWJiZW2YBADBZKMU=&cssminify=yes' type='text/css' media='all' />
+<link crossorigin='anonymous' rel='stylesheet' id='all-css-18-1' href='/_static/??-eJx9i0EOwjAMBD+EcUEiggPiLW1k0iAnjmqnUX9PuLUXLqud1Q62Al6yUTa0mRIpljqhtT5sPXklVNuYoBUv6exVT7hzUoXCNcSsuNDEEnoN2F87/CcFEmDxo0XJB4A3j3H5qa/0vNyGh3PD1d0/X5shQdY=&cssminify=yes' type='text/css' media='all' />
+<style id="jetpack-global-styles-frontend-style-inline-css">
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+/*# sourceURL=jetpack-global-styles-frontend-style-inline-css */
+</style>
+<link crossorigin='anonymous' rel='stylesheet' id='all-css-20-1' href='/wp-content/themes/h4/global.css?m=1420737423i&cssminify=yes' type='text/css' media='all' />
+<script id="wpcom-actionbar-placeholder-js-extra">
+var actionbardata = {"siteID":"183431160","postID":"6","siteURL":"https://yudai-tanaka.com","xhrURL":"https://yudai-tanaka.com/wp-admin/admin-ajax.php","nonce":"9884d60d7b","isLoggedIn":"","statusMessage":"","statusSubscribed":"","subsEmailDefault":"instantly","proxyScriptUrl":"https://s0.wp.com/wp-content/js/wpcom-proxy-request.js?m=1513050504i&amp;ver=20211021","shortlink":"https://wp.me/PcpEP6-6","i18n":{"followedText":"\u3053\u306e\u30b5\u30a4\u30c8\u306e\u65b0\u3057\u3044\u6295\u7a3f\u306f \u003Ca href=\"https://wordpress.com/reader\"\u003EReader\u003C/a\u003E \u306b\u8868\u793a\u3055\u308c\u308b\u3088\u3046\u306b\u306a\u308a\u307e\u3057\u305f","foldBar":"\u3053\u306e\u30d0\u30fc\u3092\u6298\u308a\u305f\u305f\u3080","unfoldBar":"\u3053\u306e\u30d0\u30fc\u3092\u5c55\u958b","shortLinkCopied":"\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u306b\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f\u3002"}};
+//# sourceURL=wpcom-actionbar-placeholder-js-extra
+</script>
+<script id="jetpack-mu-wpcom-settings-js-before">
+var JETPACK_MU_WPCOM_SETTINGS = {"assetsUrl":"https://s1.wp.com/wp-content/mu-plugins/jetpack-mu-wpcom-plugin/sun/jetpack_vendor/automattic/jetpack-mu-wpcom/src/build/"};
+//# sourceURL=jetpack-mu-wpcom-settings-js-before
+</script>
+<script crossorigin='anonymous' type='text/javascript'  src='/_static/??-eJzTLy/QTc7PK0nNK9HPKtYvyinRLSjKr6jUyyrW0QfKZeYl55SmpBaDJLMKS1OLKqGUXm5mHkFFurmZ6UWJJalQxfa5tobmRgamxgZmFpZZACbyLJI='></script>
+<script id="rlt-proxy-js-after">
+	rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+//# sourceURL=rlt-proxy-js-after
+</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://yudaitanakacom.wordpress.com/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://yudai-tanaka.com/" />
+<link rel='shortlink' href='https://wp.me/PcpEP6-6' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fyudai-tanaka.com%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fyudai-tanaka.com%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="yudai tanaka" />
+<meta property="og:url" content="https://yudai-tanaka.com/" />
+<meta property="og:site_name" content="yudai tanaka" />
+<meta property="og:image" content="https://yudai-tanaka.com/wp-content/uploads/2024/07/2024june21_410.jpg" />
+<meta property="og:image:width" content="2000" />
+<meta property="og:image:height" content="2000" />
+<meta property="og:image:alt" content="" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+<meta name="twitter:text:title" content="yudai tanaka" />
+<meta name="twitter:image" content="https://yudai-tanaka.com/wp-content/uploads/2024/07/2024june21_410.jpg?w=640" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="詳しくは投稿をご覧ください。" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="search" type="application/opensearchdescription+xml" href="https://yudai-tanaka.com/osd.xml" title="yudai tanaka" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<meta name="theme-color" content="#ffffff" />
+<meta name="description" content="Hiring Joining UT Austin CS in January 2027 I will be j&hellip;" />
+	<style type="text/css" id="twentytwelve-header-css">
+			.site-title,
+		.site-description {
+			position: absolute;
+			clip: rect(1px 1px 1px 1px); /* IE7 */
+			clip: rect(1px, 1px, 1px, 1px);
+		}
+		</style>
+	<style id="custom-background-css">
+body.custom-background { background-color: #ffffff; }
+</style>
+<style type="text/css" id="custom-colors-css">.menu-toggle,
+input[type="submit"],
+li.bypostauthor cite span {
+	background-color: rgba(225, 225, 225, .9);
+	background-image: -moz-linear-gradient(top, rgba(244, 244, 244, .8), rgba(230, 230, 230, .8));
+	background-image: -ms-linear-gradient(top, rgba(244, 244, 244, .8), rgba(230, 230, 230, .8));
+	background-image: -webkit-linear-gradient(top, rgba(244, 244, 244, .8), rgba(230, 230, 230, .8));
+	background-image: -o-linear-gradient(top, rgba(244, 244, 244, .8), rgba(230, 230, 230, .8));
+	background-image: linear-gradient(top, rgba(244, 244, 244, .8), rgba(230, 230, 230, .8));
+}
+.menu-toggle:hover,
+.menu-toggle:focus,
+input[type="submit"]:hover {
+	background-color: rgba(235, 235, 235, .9);
+	background-image: -moz-linear-gradient(top, rgba(249, 249, 249, .8), rgba(235, 235, 235, .8));
+	background-image: -ms-linear-gradient(top, rgba(249, 249, 249, .8), rgba(235, 235, 235, .8));
+	background-image: -webkit-linear-gradient(top, rgba(249, 249, 249, .8), rgba(235, 235, 235, .8));
+	background-image: -o-linear-gradient(top, rgba(249, 249, 249, .8), rgba(235, 235, 235, .8));
+	background-image: linear-gradient(top, rgba(249, 249, 249, .8), rgba(235, 235, 235, .8));
+}
+.menu-toggle:active,
+.menu-toggle.toggled-on,
+input[type="submit"]:active,
+input[type="submit"].toggled-on {
+	background-color: rgba(225, 225, 225, .9);
+	background-image: -moz-linear-gradient(top, rgba(235, 235, 235, .8), rgba(225, 225, 225, .8));
+	background-image: -ms-linear-gradient(top, rgba(235, 235, 235, .8), rgba(225, 225, 225, .8));
+	background-image: -webkit-linear-gradient(top, rgba(235, 235, 235, .8), rgba(225, 225, 225, .8));
+	background-image: -o-linear-gradient(top, rgba(235, 235, 235, .8), rgba(225, 225, 225, .8));
+	background-image: linear-gradient(top, rgba(235, 235, 235, .8), rgba(225, 225, 225, .8));
+}
+.site { background-color: #fff;}
+.site { background-color: rgba( 255, 255, 255, 0.95 );}
+body.custom-background-empty { background-color: #fff;}
+body.custom-background-empty { background-color: rgba( 255, 255, 255, 0.95 );}
+body.custom-background-empty { background-color: #fff;}
+body.custom-background-empty { background-color: rgba( 255, 255, 255, 0.9 );}
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], textarea { background-color: #fff;}
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], textarea { background-color: rgba( 255, 255, 255, 0.4 );}
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="url"], textarea:focus { background-color: #fff;}
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="url"], textarea:focus { background-color: rgba( 255, 255, 255, 0.9 );}
+.menu-toggle, input[type="submit"], li.bypostauthor cite span { border-color: #d2d2d2;}
+.menu-toggle, input[type="submit"], li.bypostauthor cite span { border-color: rgba( 210, 210, 210, 0.8 );}
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], textarea { border-color: #ccc;}
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], textarea { border-color: rgba( 204, 204, 204, 0.4 );}
+.comments-area article header cite a { color: #444;}
+.main-navigation ul.nav-menu, .main-navigation div.nav-menu > ul, .main-navigation li ul li a { border-color: #000;}
+.main-navigation ul.nav-menu, .main-navigation div.nav-menu > ul, .main-navigation li ul li a { border-color: rgba( 0, 0, 0, 0.1 );}
+#author-info { border-color: #000;}
+#author-info { border-color: rgba( 0, 0, 0, 0.1 );}
+footer[role="contentinfo"] { border-color: #000;}
+footer[role="contentinfo"] { border-color: rgba( 0, 0, 0, 0.1 );}
+article.sticky .featured-post { border-color: #000;}
+article.sticky .featured-post { border-color: rgba( 0, 0, 0, 0.1 );}
+pre, table, td, hr { border-color: #000;}
+pre, table, td, hr { border-color: rgba( 0, 0, 0, 0.1 );}
+.site-content article { border-color: #000;}
+.site-content article { border-color: rgba( 0, 0, 0, 0.1 );}
+.archive-header, .page-header { border-color: #000;}
+.archive-header, .page-header { border-color: rgba( 0, 0, 0, 0.1 );}
+.template-home .widget-area { border-color: #000;}
+.template-home .widget-area { border-color: rgba( 0, 0, 0, 0.1 );}
+body { background-color: #ffffff;}
+.menu-toggle, input[type="submit"], li.bypostauthor cite span { background-color: #ffffff;}
+.menu-toggle, input[type="submit"], li.bypostauthor cite span { background-color: rgba( 255, 255, 255, 0.1 );}
+article.format-aside .aside { background-color: #ffffff;}
+article.format-aside .aside { background-color: rgba( 255, 255, 255, 0.1 );}
+article.format-aside .aside { border-color: #ffffff;}
+article.format-aside .aside { border-color: rgba( 255, 255, 255, 0.3 );}
+article.format-link header, article.format-quote .entry-content blockquote { background-color: #ffffff;}
+article.format-link header, article.format-quote .entry-content blockquote { background-color: rgba( 255, 255, 255, 0.1 );}
+a, li.bypostauthor cite span, .site-header h1 a { color: #1A5F7E;}
+footer[role="contentinfo"] a, a.comment-reply-link { color: #1A5F7E;}
+.widget-area .widget a, .comments-link a, .entry-meta a, .template-home .widget-area .widget li a { color: #144C66;}
+.main-navigation a, .main-navigation li a { color: #144C66;}
+.menu-toggle, input[type="submit"], li.bypostauthor cite span { color: #1A5F7E;}
+a:hover, .site-header h1 a:hover, .site-header h2 a:hover, .comments-area article header a:hover { color: #0F3647;}
+.widget-area .widget a:hover, .comments-link a:hover, .entry-meta a:hover, .template-home .widget-area .widget li a:hover, .main-navigation a:hover, .main-navigation li a:hover, footer[role="contentinfo"] a:hover, a.comment-reply-link:hover { color: #0F3647;}
+.menu-toggle:hover, .menu-toggle:focus, input[type="submit"]:hover { color: #0F3647;}
+.menu-toggle:active, .menu-toggle.toggled-on, input[type="submit"]:active, input[type="submit"].toggled-on { color: #0F3647;}
+</style>
+<link rel="icon" href="https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=32" sizes="32x32" />
+<link rel="icon" href="https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=192" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=180" />
+<meta name="msapplication-TileImage" content="https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=270" />
+			<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s2.wp.com/?custom-css=1&#038;csblog=cpEP6&#038;cscache=6&#038;csrev=12" />
+			<link crossorigin='anonymous' rel='stylesheet' id='all-css-2-5' href='/_static/??-eJyNjMEKgzAQBX9IfS0NqIfipxRdF4kmm+Bm8fdLwXr2OMMwOHJNSQpLQbQ6B1u8KFYueaTtZKgJPl4IU0i0KfTwmfeGVCvcHsQ0W2AFjXsy5XA1f/H7DfH9bPtH51z/cusXroE6rg==&cssminify=yes' type='text/css' media='all' />
+
+</head>
+
+<body class="home wp-singular page-template-default page page-id-6 page-parent custom-background wp-embed-responsive wp-theme-pubtwentytwelve customizer-styles-applied full-width custom-font-enabled single-author jetpack-reblog-enabled custom-colors">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header">
+				<hgroup>
+			<h1 class="site-title"><a href="https://yudai-tanaka.com/" title="yudai tanaka" rel="home">yudai tanaka</a></h1>
+			<h2 class="site-description"></h2>
+		</hgroup>
+
+		<nav id="site-navigation" class="main-navigation">
+			<button class="menu-toggle">メニュー</button>
+			<a class="assistive-text" href="#content" title="コンテンツへ移動">コンテンツへ移動</a>
+					</nav><!-- #site-navigation -->
+
+			</header><!-- #masthead -->
+
+	<div id="main" class="wrapper">
+	<div id="primary" class="site-content">
+		<div id="content" role="main">
+
+							
+	<article id="post-6" class="post-6 page type-page status-publish hentry">
+		<header class="entry-header">
+												<h1 class="entry-title">yudai tanaka</h1>
+		</header>
+
+		<div class="entry-content">
+			<div class="wp-block-image is-style-rounded">
+<figure class="alignleft size-large is-resized"><img data-attachment-id="391" data-permalink="https://yudai-tanaka.com/yudai-tanaka/2024june21_410/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2024/07/2024june21_410.jpg" data-orig-size="2000,2000" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;5.6&quot;,&quot;camera&quot;:&quot;Canon EOS R5&quot;,&quot;caption&quot;:&quot;Yudai Tanaka in the \u00ecHuman-Computer Integration\u00ee lab at Crerar Library at the University of Chicago June 21, 2024. (photo by John Zich)&quot;,&quot;created_timestamp&quot;:&quot;1719004010&quot;,&quot;focal_length&quot;:&quot;172&quot;,&quot;iso&quot;:&quot;2500&quot;,&quot;shutter_speed&quot;:&quot;0.0025&quot;,&quot;orientation&quot;:&quot;1&quot;}" data-image-title="2024June21_410" data-image-description="" data-image-caption="&lt;p&gt;Yudai Tanaka in the ìHuman-Computer Integrationî lab at Crerar Library at the University of Chicago June 21, 2024. (photo by John Zich)&lt;/p&gt;
+" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2024/07/2024june21_410.jpg?w=960" width="1024" height="1024" src="https://yudai-tanaka.com/wp-content/uploads/2024/07/2024june21_410.jpg?w=1024" alt="" class="wp-image-391" style="width:175px;height:175px" srcset="https://yudai-tanaka.com/wp-content/uploads/2024/07/2024june21_410.jpg?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2024/07/2024june21_410.jpg?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2024/07/2024june21_410.jpg?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2024/07/2024june21_410.jpg?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2024/07/2024june21_410.jpg?w=1440 1440w, https://yudai-tanaka.com/wp-content/uploads/2024/07/2024june21_410.jpg 2000w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+</div>
+
+
+<div class="hiring-highlight-box">
+  <div class="hiring-highlight-label">Hiring</div>
+
+  <h2>Joining UT Austin CS in January 2027</h2>
+
+  <p>
+    I will be joining <strong>UT Austin Computer Science</strong> as an Assistant Professor
+    and starting the
+    <strong><a href="https://symbiotic-interfaces.cs.utexas.edu/">Symbiotic Interfaces Lab</a></strong>.
+  </p>
+
+  <p>
+    I am recruiting <strong>PhD students for Fall 2027</strong>, as well as
+    <strong>postdocs and researchers at all ranks</strong> throughout the year.
+  </p>
+
+  <a class="hiring-highlight-button" href="https://forms.gle/WMbb7NYts1fX5BYG7" target="_blank" rel="noopener">
+    Research Interest form
+  </a>
+</div>
+
+
+
+<div class="wp-block-group alignfull has-dark-gray-color has-text-color"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<div class="wp-block-jetpack-layout-grid alignfull column1-desktop-grid__span-12 column1-desktop-grid__row-1 column1-tablet-grid__span-8 column1-tablet-grid__row-1 column1-mobile-grid__span-4 column1-mobile-grid__row-1 wp-block-jetpack-layout-gutter__nowrap">
+<div class="wp-block-jetpack-layout-grid-column wp-block-jetpack-layout-grid__padding-none is-vertically-aligned-top">
+<p class="has-dark-gray-color has-text-color has-normal-font-size wp-block-paragraph" style="line-height:1.4"><mark style="background-color:rgba(0, 0, 0, 0);color:#000000" class="has-inline-color"><strong>Yudai Tanaka</strong> is an incoming Assistant Professor</mark> <mark style="background-color:rgba(0, 0, 0, 0);color:#000000" class="has-inline-color">of Computer Science at UT Austin and is currently a PhD candidate at University of Chicago </mark>advised by <a href="http://plopes.org/" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0,0,0,0)" class="has-inline-color has-blue-color">Pedro Lopes</mark></a>. His work is supported by <a href="https://research.google/programs-and-events/phd-fellowship/" target="_blank" rel="noreferrer noopener"><strong>Google PhD Fellowship</strong></a> and <a href="https://www.siebelscholars.com/" target="_blank" rel="noreferrer noopener"><strong>Siebel Scholars Program</strong></a>.</p>
+
+
+
+<p class="has-dark-gray-color has-text-color has-normal-font-size wp-block-paragraph" style="line-height:1.4"><mark style="background-color:rgba(0, 0, 0, 0);color:#000000" class="has-inline-color">His research explores computer interfaces that generate sensory feedback by<strong> interfacing directly with users&#8217; brains and nervous systems</strong> (e.g.,</mark> <a href="https://www.youtube.com/watch?v=q6G8Htzq_gQ" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">transmitting signals straight to nerves</mark></a><mark style="background-color:rgba(0, 0, 0, 0);color:#000000" class="has-inline-color">; or even</mark> <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://youtu.be/-Y61l38F81s?si=wP9r9mSMM9L5pgwQ" target="_blank" rel="noopener">delivering senses directly to the brain</a></mark></mark>). Yudai envisions that these interface as the foundation for the next generation of interactive systems, able to <strong>augment physical abilities and accelerate skill acquisition</strong>.</p>
+
+
+
+<p class="has-dark-gray-color has-text-color has-normal-font-size wp-block-paragraph" style="line-height:1.4"><mark style="background-color:rgba(0, 0, 0, 0);color:#000000" class="has-inline-color">Yudai has published his work in top&nbsp;Human-Computer Interaction (HCI) venues,&nbsp;including&nbsp;ACM CHI &amp; UIST, earni</mark>ng <mark style="background-color:rgba(0, 0, 0, 0);color:#000000" class="has-inline-color"><strong>🏆</strong></mark> <mark style="background-color:rgba(0, 0, 0, 0);color:#000000" class="has-inline-color"><strong>Best Paper Award</strong></mark> <mark style="background-color:rgba(0, 0, 0, 0);color:#000000" class="has-inline-color">(CHI&#8217;23), <strong>🏅 Best Paper Honorable Mentions</strong> (CHI&#8217;24, UIST&#8217;24) and <strong>⚙</strong></mark> <mark style="background-color:rgba(0, 0, 0, 0);color:#000000" class="has-inline-color"><strong>Best Demo Awards</strong> (CHI&#8217;22, UIST&#8217;24). His research has been featured in <em>IEEE Spectrum</em>, <em>New Scientist</em>, and <em>CBS</em>.</mark></p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph"><strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://yudai-tanaka.com/wp-content/uploads/2026/09/cv-20260923.pdf" target="_blank" rel="noopener">Curriculum Vitae</a></mark></strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-dark-gray-color">| </mark><a href="https://scholar.google.com/citations?user=MEfDWsoAAAAJ&amp;hl=en"><strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Google Scholar</mark></strong></a><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-dark-gray-color"><a href="https://scholar.google.com/citations?user=MEfDWsoAAAAJ&amp;hl=en"></a>| </mark><a href="https://twitter.com/_yudaitanaka" target="_blank" rel="noreferrer noopener"><strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Twitter</mark></strong></a><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-dark-gray-color">| Email: yudait [at] cs.utexas.edu OR yudaitanaka [at] uchicago.edu</mark></p>
+</div>
+</div>
+</div></div>
+
+
+
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:0"><strong><mark style="background-color:rgba(0, 0, 0, 0);color:#000000" class="has-inline-color">news</mark></strong></p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="line-height:1.4"><strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-medium-gray-color"><mark style="background-color:rgba(0,0,0,0);color:#707070" class="has-inline-color"><strong>2026.09</strong></mark></mark></strong>&nbsp;serving for <strong>CHI 2027 program committee</strong> as an AC.<br><strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-medium-gray-color"><mark style="background-color:rgba(0,0,0,0);color:#707070" class="has-inline-color"><strong>2026.01</strong></mark></mark></strong>&nbsp;<strong>three (x3) papers got accepted to</strong> <strong>CHI 2026</strong> (congrats to the team)!<br><strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-medium-gray-color"><mark style="background-color:rgba(0,0,0,0);color:#707070" class="has-inline-color"><strong>2025.10</strong></mark></mark></strong>&nbsp;honored to be named a <strong><a href="https://cs.uchicago.edu/news/celebrating-excellence-in-human-computer-interaction-yudai-tanaka-named-2025-google-north-america-phd-fellow/">2025 Google PhD Fellow</a></strong>!<br><mark style="background-color:rgba(0,0,0,0);color:#707070" class="has-inline-color"><strong>2025.09</strong></mark> honored to be named a <strong><a href="https://www.siebelscholars.com/scholar-profile/3963/" target="_blank" rel="noreferrer noopener">Siebel Scholar</a></strong>!<br><strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-medium-gray-color"><mark style="background-color:rgba(0,0,0,0);color:#707070" class="has-inline-color"><strong>2025.07</strong></mark></mark></strong>&nbsp;<strong>two papers got accepted to</strong> <strong>UIST 2025</strong> (congrats to the team)!<br><mark style="background-color:rgba(0,0,0,0);color:#707070" class="has-inline-color"><strong>2025.03</strong></mark> serving as <strong>Web Chair</strong> for <strong>CHI 2026</strong> and as <strong>Demo Chair</strong> for <strong>TEI 2026</strong>.<br><br><a href="https://yudai-tanaka.com/yudai-tanaka/news/" target="_blank" rel="noreferrer noopener">view all news</a></p>
+
+
+
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1"><br><br>core PhD work<mark style="background-color:rgba(0, 0, 0, 0);color:#000000" class="has-inline-color"> (fully refereed): </mark><strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">installing abilities</mark> into users&#8217; nervous systems</strong></p>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="338" data-permalink="https://yudai-tanaka.com/personalweb/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2024/05/personalweb.png" data-orig-size="1200,909" data-comments-opened="1" data-image-title="personalWeb" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2024/05/personalweb.png?w=960" width="1024" height="775" src="https://yudai-tanaka.com/wp-content/uploads/2024/05/personalweb.png?w=1024" alt="" class="wp-image-338 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2024/05/personalweb.png?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2024/05/personalweb.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2024/05/personalweb.png?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2024/05/personalweb.png?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2024/05/personalweb.png 1200w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2"><strong>Haptic Source-Effector</strong>: Full-Body Haptics via Non-Invasive Brain Stimulation</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1"><strong>Yudai Tanaka</strong>, Jacob Serfaty, and Pedro Lopes.<br><strong><mark style="background-color:rgba(0, 0, 0, 0);color:#cf2e2e" class="has-inline-color">CHI &#8217;24 Best Paper Honorable Mention (top 5%)</mark></strong><br><strong><mark style="background-color:rgba(0, 0, 0, 0);color:#cf2e2e" class="has-inline-color">UIST &#8217;24 Best Demo Honorable Mention</mark></strong> </p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><a href="https://www.youtube.com/watch?v=-Y61l38F81s" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Video</mark></a> | <a href="https://lab.plopes.org/published/2024-CHI-HapticSourceEffector.pdf" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Paper</mark></a> | <a href="https://doi.org/10.1145/3613904.3642483" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Publication</mark></a> | <a href="https://www.youtube.com/watch?v=JQUndFOJ-s8" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Talk</mark></a></p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="236" data-permalink="https://yudai-tanaka.com/thumbnail-2/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2023/02/thumbnail.png" data-orig-size="2800,2470" data-comments-opened="1" data-image-title="thumbnail" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2023/02/thumbnail.png?w=960" width="1024" height="903" src="https://yudai-tanaka.com/wp-content/uploads/2023/02/thumbnail.png?w=1024" alt="" class="wp-image-236 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2023/02/thumbnail.png?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2023/02/thumbnail.png?w=2048 2048w, https://yudai-tanaka.com/wp-content/uploads/2023/02/thumbnail.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2023/02/thumbnail.png?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2023/02/thumbnail.png?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2023/02/thumbnail.png?w=1440 1440w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2"><strong>Full-Hand Electro-Tactile </strong>Feedback without Obstructing Palmar Side of Hand</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1"><strong>Yudai Tanaka</strong>, Alan Shen, Andy Kong, and Pedro Lopes.<br><strong><mark style="background-color:rgba(0, 0, 0, 0);color:#cf2e2e" class="has-inline-color">CHI &#8217;23 Best Paper (top 1%)</mark></strong></p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><a href="https://youtu.be/q6G8Htzq_gQ" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Video</mark></a> | <a href="https://lab.plopes.org/published/2023-CHI-BackOfHandElectroTactile.pdf" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Paper</mark></a> | <a href="https://dl.acm.org/doi/10.1145/3544548.3581382" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Publication</mark></a> | <a href="https://www.youtube.com/watch?v=BV3e_dCDMw4" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Talk</mark></a></p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="529" data-permalink="https://yudai-tanaka.com/yudai-tanaka/myoaction-web/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2026/02/myoaction-web.png" data-orig-size="1200,900" data-comments-opened="1" data-image-title="MyoAction-web" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2026/02/myoaction-web.png?w=960" loading="lazy" width="625" height="468" src="https://yudai-tanaka.com/wp-content/uploads/2026/02/myoaction-web.png?w=625" alt="" class="wp-image-529 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2026/02/myoaction-web.png?w=625 625w, https://yudai-tanaka.com/wp-content/uploads/2026/02/myoaction-web.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2026/02/myoaction-web.png?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2026/02/myoaction-web.png?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2026/02/myoaction-web.png?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2026/02/myoaction-web.png 1200w" sizes="auto, (max-width: 625px) 100vw, 625px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2"><strong>Myo Action</strong>: Accelerating <em>Voluntary</em> Actions via Electromyography and Muscle Stimulation</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1"><strong>Yudai Tanaka</strong>, Che-Wei Hsu, Bruno Felalaga, and Pedro Lopes.<br><strong>CHI 2026</strong> (acceptance rate: 25.3%)</p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://youtu.be/M0EVjipRmPU?si=2a6aIHOGlrsSDcCo" target="_blank" rel="noreferrer noopener">Video</a></mark> | <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://lab.plopes.org/published/2026-CHI-MyoAction.pdf" target="_blank" rel="noreferrer noopener">Paper</a></mark> | <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://dl.acm.org/doi/10.1145/3772318.3791103" target="_blank" rel="noreferrer noopener">Publication</a></mark> | <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://www.youtube.com/watch?v=oZWaMaBYOgo" target="_blank" rel="noreferrer noopener">Talk</a></mark></p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="494" data-permalink="https://yudai-tanaka.com/yudai-tanaka/thumbnail-copy/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2025/10/thumbnail-copy.png" data-orig-size="500,399" data-comments-opened="1" data-image-title="thumbnail copy" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2025/10/thumbnail-copy.png?w=500" loading="lazy" width="500" height="399" src="https://yudai-tanaka.com/wp-content/uploads/2025/10/thumbnail-copy.png?w=500" alt="" class="wp-image-494 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2025/10/thumbnail-copy.png 500w, https://yudai-tanaka.com/wp-content/uploads/2025/10/thumbnail-copy.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2025/10/thumbnail-copy.png?w=300 300w" sizes="auto, (max-width: 500px) 100vw, 500px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2"><strong>Primed Action</strong>: Preserving Agency while Accelerating Reaction Time via Subthreshold Brain Stimulation</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1"><strong>Yudai Tanaka</strong>, Hunter Mathews, and Pedro Lopes.<br><strong>UIST 2025</strong> (acceptance rate: 22.2%)</p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://www.youtube.com/watch?v=FpyPQ6JZDWM" target="_blank" rel="noreferrer noopener">Video</a></mark> | <a href="https://lab.plopes.org/published/2025-UIST-PrimedAction.pdf" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Paper</mark></a> | <a href="https://dl.acm.org/doi/10.1145/3746059.3747634" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Publication</mark></a> | <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://youtu.be/ur-O6NihVY8" target="_blank" rel="noreferrer noopener">Talk</a></mark></p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="387" data-permalink="https://yudai-tanaka.com/yudai-tanaka/thumbnailyudaiweb-2/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnailyudaiweb-1.png" data-orig-size="1200,900" data-comments-opened="1" data-image-title="thumbnailYudaiWeb" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnailyudaiweb-1.png?w=960" loading="lazy" width="1024" height="768" src="https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnailyudaiweb-1.png?w=1024" alt="" class="wp-image-387 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnailyudaiweb-1.png?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnailyudaiweb-1.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnailyudaiweb-1.png?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnailyudaiweb-1.png?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnailyudaiweb-1.png 1200w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2"><strong>Can a Smartwatch Move Your Fingers?</strong>: Compact and Practical Electrical Muscle Stimulation in a Smartwatch</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1">Akifumi Takahashi, <strong>Yudai Tanaka</strong>, Archit Tamhane, Alan Shen, Shan-Yuan Teng, and Pedro Lopes.<br><strong><mark style="background-color:rgba(0, 0, 0, 0);color:#cf2e2e" class="has-inline-color">UIST &#8217;24 Best Paper Honorable Mention (top 2%)</mark></strong></p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><a href="https://www.youtube.com/watch?v=20OZ2aFdwXc" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Video</mark></a> | <a href="https://lab.plopes.org/published/2024-UIST-WristEMS.pdf" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Paper</mark></a> | <a href="https://dl.acm.org/doi/10.1145/3654777.3676373" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Publication</mark></a></p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="396" data-permalink="https://yudai-tanaka.com/yudai-tanaka/thumbnail-4/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnail.png" data-orig-size="1400,1071" data-comments-opened="1" data-image-title="thumbnail" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnail.png?w=960" loading="lazy" width="1024" height="783" src="https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnail.png?w=1024" alt="" class="wp-image-396 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnail.png?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnail.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnail.png?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnail.png?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2024/07/thumbnail.png 1400w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2"><strong>ReaWristic</strong>: Remote Touch Sensation to Fingers from a Wristband via Visually Augmented Electro-Tactile Feedback</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1"><strong>Yudai Tanaka</strong>, Neil Weiss, Robert Cole Bolger-Cruz, Jess Hartcher-O&#8217;Brien, Brendan Flynn, Roger Boldu, and Nicholas Colonnese.<br><strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-dark-gray-color">ISMAR 2024</mark></strong></p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1"><a href="https://youtu.be/00LsiLrTP9s" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Video</mark></a> | <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://yudai-tanaka.com/wp-content/uploads/2024/10/reawristic-1.pdf" target="_blank" rel="noreferrer noopener">Paper</a></mark> | <a href="https://ieeexplore.ieee.org/document/10765490" target="_blank" rel="noreferrer noopener">Publication</a></p>
+</div></div>
+
+
+
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1"><mark style="background-color:rgba(0, 0, 0, 0);color:#000000" class="has-inline-color"><br><br>more publications in top-tier HCI venues (fully refereed)</mark></p>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="531" data-permalink="https://yudai-tanaka.com/yudai-tanaka/balancevision-web/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2026/02/balancevision-web.png" data-orig-size="1200,900" data-comments-opened="1" data-image-title="BalanceVision-web" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2026/02/balancevision-web.png?w=960" loading="lazy" width="625" height="468" src="https://yudai-tanaka.com/wp-content/uploads/2026/02/balancevision-web.png?w=625" alt="" class="wp-image-531 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2026/02/balancevision-web.png?w=625 625w, https://yudai-tanaka.com/wp-content/uploads/2026/02/balancevision-web.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2026/02/balancevision-web.png?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2026/02/balancevision-web.png?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2026/02/balancevision-web.png?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2026/02/balancevision-web.png 1200w" sizes="auto, (max-width: 625px) 100vw, 625px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2"><strong>Next Generation Wearable Haptics</strong> Should Balance Virtual and Real-world Fidelity</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1">Shan-Yuan Teng, <strong>Yudai Tanaka</strong>, Alex Mazursky, and Pedro Lopes.<br><strong>CHI 2026</strong> (acceptance rate: 25.3%)</p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://lab.plopes.org/published/2026-CHI-HandsFreeHaptics.pdf" target="_blank" rel="noreferrer noopener">Paper</a></mark> | <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://dl.acm.org/doi/10.1145/3772318.3790996" target="_blank" rel="noreferrer noopener">Publication</a></mark> | <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://www.youtube.com/watch?v=vd-Ev2J4BjI" target="_blank" rel="noreferrer noopener">Talk</a></mark></p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="530" data-permalink="https://yudai-tanaka.com/yudai-tanaka/embodieddevices-web/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2026/02/embodieddevices-web.png" data-orig-size="1200,900" data-comments-opened="1" data-image-title="EmbodiedDevices-web" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2026/02/embodieddevices-web.png?w=960" loading="lazy" width="625" height="468" src="https://yudai-tanaka.com/wp-content/uploads/2026/02/embodieddevices-web.png?w=625" alt="" class="wp-image-530 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2026/02/embodieddevices-web.png?w=625 625w, https://yudai-tanaka.com/wp-content/uploads/2026/02/embodieddevices-web.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2026/02/embodieddevices-web.png?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2026/02/embodieddevices-web.png?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2026/02/embodieddevices-web.png?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2026/02/embodieddevices-web.png 1200w" sizes="auto, (max-width: 625px) 100vw, 625px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2">Increasing Input Accuracy of <strong>Embodied Devices</strong> via Muscle Stimulation</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1">Lonnie Chien, <strong>Yudai Tanaka</strong>, Noor Amin, Jas Brooks, and Pedro Lopes.<br><strong>CHI 2026</strong> (acceptance rate: 25.3%)</p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://www.youtube.com/watch?v=PBqnaxGNOj0" target="_blank" rel="noreferrer noopener">Video</a></mark> | <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://lab.plopes.org/published/2026-CHI-EmbodiedDevices.pdf" target="_blank" rel="noreferrer noopener">Paper</a></mark> | <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://dl.acm.org/doi/10.1145/3772318.3791134" target="_blank" rel="noreferrer noopener">Publication</a></mark> | <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color"><a href="https://www.youtube.com/watch?v=DSJRM0Op-S0" target="_blank" rel="noreferrer noopener">Talk</a></mark></p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="495" data-permalink="https://yudai-tanaka.com/yudai-tanaka/uist25-gvshandredirection-copy/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2025/10/uist25-gvshandredirection-copy.jpg" data-orig-size="695,522" data-comments-opened="1" data-image-meta="{&quot;orientation&quot;:&quot;1&quot;}" data-image-title="UIST25-GVSHandRedirection copy" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2025/10/uist25-gvshandredirection-copy.jpg?w=695" loading="lazy" width="695" height="522" src="https://yudai-tanaka.com/wp-content/uploads/2025/10/uist25-gvshandredirection-copy.jpg?w=695" alt="" class="wp-image-495 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2025/10/uist25-gvshandredirection-copy.jpg 695w, https://yudai-tanaka.com/wp-content/uploads/2025/10/uist25-gvshandredirection-copy.jpg?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2025/10/uist25-gvshandredirection-copy.jpg?w=300 300w" sizes="auto, (max-width: 695px) 100vw, 695px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2"><strong>Vestibular</strong> Stimulation Enhances <strong>Hand Redirection</strong></p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1">Kensuke Katori, <strong>Yudai Tanaka</strong>, Yoichi Ochiai and Pedro Lopes.<br><strong>UIST 2025</strong> (acceptance rate: 22.2%)</p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><a href="https://www.youtube.com/watch?v=tpcovBqYYAo" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Video</mark></a> | <a href="https://lab.plopes.org/published/2025-UIST-GVSHandRedirection.pdf" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Paper</mark></a> | <a href="https://dl.acm.org/doi/10.1145/3746059.3747776" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Publication</mark></a> | <a href="https://youtu.be/b_7iQVkUubc?si=ab9P7LG_sPjfIZbv" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Talk</mark></a></p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="276" data-permalink="https://yudai-tanaka.com/yudai-tanaka/thumbnail-3-2/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2023/08/thumbnail-3.png" data-orig-size="1454,1080" data-comments-opened="1" data-image-title="thumbnail-3" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2023/08/thumbnail-3.png?w=960" loading="lazy" width="1024" height="760" src="https://yudai-tanaka.com/wp-content/uploads/2023/08/thumbnail-3.png?w=1024" alt="" class="wp-image-276 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2023/08/thumbnail-3.png?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2023/08/thumbnail-3.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2023/08/thumbnail-3.png?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2023/08/thumbnail-3.png?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2023/08/thumbnail-3.png?w=1440 1440w, https://yudai-tanaka.com/wp-content/uploads/2023/08/thumbnail-3.png 1454w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2">Interactive Benefits from Switching Electrical to <strong>Magnetic Muscle Stimulation</strong></p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1"><strong>Yudai Tanaka</strong>, Akifumi Takahashi, and Pedro Lopes.<br><strong>UIST 2023</strong> (acceptance rate: 25.1%)</p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><a href="https://youtu.be/i8CHVqIF-bc?si=KNb-ta4RKAHQOaSn" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Video</mark></a> | <a href="https://lab.plopes.org/published/2023-UIST-MMS-AuthorCopy.pdf" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Paper</mark></a> | <a href="https://dl.acm.org/doi/10.1145/3586183.3606812" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Publication</mark></a> | <a href="https://www.youtube.com/watch?v=Zh0NIeWJL5A&amp;t=9s" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Talk</mark></a></p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="237" data-permalink="https://yudai-tanaka.com/lipio_thumbnail/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2023/02/lipio_thumbnail.png" data-orig-size="3080,1856" data-comments-opened="1" data-image-title="LipIO_thumbnail" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2023/02/lipio_thumbnail.png?w=960" loading="lazy" width="1024" height="617" src="https://yudai-tanaka.com/wp-content/uploads/2023/02/lipio_thumbnail.png?w=1024" alt="" class="wp-image-237 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2023/02/lipio_thumbnail.png?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2023/02/lipio_thumbnail.png?w=2048 2048w, https://yudai-tanaka.com/wp-content/uploads/2023/02/lipio_thumbnail.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2023/02/lipio_thumbnail.png?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2023/02/lipio_thumbnail.png?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2023/02/lipio_thumbnail.png?w=1440 1440w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2"><strong>LipIO</strong>: Enabling Lips as both Input and Output Surface</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1">Arata Jingu, <strong>Yudai Tanaka</strong>, and Pedro Lopes.<br><strong>CHI 2023</strong> (acceptance rate: 27.6%)</p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><a href="https://youtu.be/eooxckEgJZA" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Video</mark></a> | <a href="https://lab.plopes.org/published/2023-CHI-LipIO.pdf" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Paper</mark></a> | <a href="https://dl.acm.org/doi/10.1145/3544548.3580775" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Publication</mark></a></p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="215" data-permalink="https://yudai-tanaka.com/yudai-tanaka/rep-2/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2022/09/intr_rep-1.jpg" data-orig-size="880,612" data-comments-opened="1" data-image-meta="{&quot;created_timestamp&quot;:&quot;1631052081&quot;,&quot;title&quot;:&quot;rep&quot;,&quot;orientation&quot;:&quot;1&quot;}" data-image-title="rep" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2022/09/intr_rep-1.jpg?w=880" loading="lazy" width="880" height="612" src="https://yudai-tanaka.com/wp-content/uploads/2022/09/intr_rep-1.jpg?w=880" alt="" class="wp-image-215 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2022/09/intr_rep-1.jpg 880w, https://yudai-tanaka.com/wp-content/uploads/2022/09/intr_rep-1.jpg?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2022/09/intr_rep-1.jpg?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2022/09/intr_rep-1.jpg?w=768 768w" sizes="auto, (max-width: 880px) 100vw, 880px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2"><strong>DigituSync</strong>: Dual-User Passive Exoskeleton Glove That Adaptively Shares Hand Gestures</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1">Jun Nishida, <strong>Yudai Tanaka</strong>, Romain Nith, and Pedro Lopes. </p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:0"><strong>UIST 2022</strong> (acceptance rate: 25.9%)</p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><a href="https://youtu.be/ljytGz4nnho" target="_blank" rel="noreferrer noopener">Video</a> | <a href="https://lab.plopes.org/published/2022-UIST-DigituSync.pdf" target="_blank" rel="noreferrer noopener">Paper</a> | <a href="https://dl.acm.org/doi/abs/10.1145/3526113.3545630" target="_blank" rel="noreferrer noopener">Publication</a> </p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="211" data-permalink="https://yudai-tanaka.com/yudai-tanaka/1-main_figure_with_labels/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2022/09/1.main_figure_with_labels.png" data-orig-size="1221,1080" data-comments-opened="1" data-image-title="1.main_figure_with_labels" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2022/09/1.main_figure_with_labels.png?w=960" loading="lazy" width="1024" height="905" src="https://yudai-tanaka.com/wp-content/uploads/2022/09/1.main_figure_with_labels.png?w=1024" alt="" class="wp-image-211 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2022/09/1.main_figure_with_labels.png?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2022/09/1.main_figure_with_labels.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2022/09/1.main_figure_with_labels.png?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2022/09/1.main_figure_with_labels.png?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2022/09/1.main_figure_with_labels.png 1221w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2"><strong>Electrical Head Actuation</strong>: Enabling Interactive Systems to Directly Manipulate Head Orientation</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1"><strong>Yudai Tanaka</strong>, Jun Nishida, and Pedro Lopes.<br><strong>CHI 2022</strong> (minor revision: 12.5%)<br><strong><mark style="background-color:rgba(0, 0, 0, 0);color:#cf2e2e" class="has-inline-color">CHI &#8217;22 Best Demo</mark></strong><br><strong>SIGGRAPH E-tech 2022</strong></p>
+
+
+
+<p class="wp-block-paragraph" style="font-size:16px;line-height:0"><a href="https://youtu.be/vqpH9gNGpts" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Video</mark></a> | <a href="https://lab.plopes.org/published/2022-CHI-ElectricalHeadActuation.pdf" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Paper</mark></a> | <a href="https://dl.acm.org/doi/10.1145/3491102.3501910" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Publication</mark></a></p>
+
+
+
+<p class="wp-block-paragraph" style="font-size:16px;line-height:0"><a href="https://youtu.be/POlk_UGLo8U" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Talk</mark></a> | <a href="https://youtu.be/BVqq-xZ7SpM" target="_blank" rel="noreferrer noopener"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-blue-color">Demo</mark></a><br></p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="53" data-permalink="https://yudai-tanaka.com/fig1_new/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2020/09/fig1_new.png" data-orig-size="320,200" data-comments-opened="1" data-image-title="fig1_new" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2020/09/fig1_new.png?w=320" loading="lazy" width="320" height="200" src="https://yudai-tanaka.com/wp-content/uploads/2020/09/fig1_new.png?w=320" alt="" class="wp-image-53 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2020/09/fig1_new.png 320w, https://yudai-tanaka.com/wp-content/uploads/2020/09/fig1_new.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2020/09/fig1_new.png?w=300 300w" sizes="auto, (max-width: 320px) 100vw, 320px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2"><strong>DualVib</strong>: Simulating Haptic Sensation of Dynamic Mass<br>by Combining Pseudo-Force and Texture Feedback</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1"><strong>Yudai Tanaka</strong>, Arata Horie, and Xiang &#8216;Anthony&#8217; Chen. </p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:0"><strong>VRST 2020</strong> (acceptance rate: 26.5%)</p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><a href="https://vimeo.com/455326878" target="_blank" rel="noreferrer noopener">Video</a> | <a href="https://yudai-tanaka.com/wp-content/uploads/2021/04/vrst20-dualvib.pdf" target="_blank" rel="noreferrer noopener">Paper</a> | <a href="https://dl.acm.org/doi/10.1145/3385956.3418964" target="_blank" rel="noreferrer noopener">Publication</a> | <a href="https://youtu.be/apH1O_5-Z2Y" target="_blank" rel="noreferrer noopener">Talk</a></p>
+</div></div>
+
+
+
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1"><mark style="background-color:rgba(0, 0, 0, 0);color:#000000" class="has-inline-color"><br><br>other publications</mark></p>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile has-dark-gray-color has-text-color" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="172" data-permalink="https://yudai-tanaka.com/aipf_thumbnail-2/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2022/02/aipf_thumbnail-4.png" data-orig-size="1440,810" data-comments-opened="1" data-image-title="AIPF_thumbnail" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2022/02/aipf_thumbnail-4.png?w=960" loading="lazy" width="1024" height="576" src="https://yudai-tanaka.com/wp-content/uploads/2022/02/aipf_thumbnail-4.png?w=1024" alt="" class="wp-image-172 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2022/02/aipf_thumbnail-4.png?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2022/02/aipf_thumbnail-4.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2022/02/aipf_thumbnail-4.png?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2022/02/aipf_thumbnail-4.png?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2022/02/aipf_thumbnail-4.png 1440w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2">Understanding Crowdsourcing Requesters’ Wage Setting Behaviors using Bayesian Growth Curve Modeling</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1">Kotaro Hara, <strong>Yudai Tanaka</strong>.</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:0"><strong>CHI 2022</strong> Late-Breaking Work<br></p>
+
+
+
+<p class="wp-block-paragraph" style="font-size:16px;line-height:0"><a href="https://yudai-tanaka.com/wp-content/uploads/2024/02/3491101.3519660.pdf" target="_blank" rel="noreferrer noopener">Paper</a> | <a href="https://dl.acm.org/doi/10.1145/3491101.3519660" target="_blank" rel="noreferrer noopener">Publication</a> | <a href="https://youtu.be/SOwabe4tSRA" target="_blank" rel="noreferrer noopener">Talk</a><br></p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile has-dark-gray-color has-text-color" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="68" data-permalink="https://yudai-tanaka.com/bulkscreen-1/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2020/09/bulkscreen-1.png" data-orig-size="1920,1200" data-comments-opened="1" data-image-title="bulkscreen-1" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2020/09/bulkscreen-1.png?w=960" loading="lazy" width="1024" height="640" src="https://yudai-tanaka.com/wp-content/uploads/2020/09/bulkscreen-1.png?w=1024" alt="" class="wp-image-68 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2020/09/bulkscreen-1.png?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2020/09/bulkscreen-1.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2020/09/bulkscreen-1.png?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2020/09/bulkscreen-1.png?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2020/09/bulkscreen-1.png?w=1440 1440w, https://yudai-tanaka.com/wp-content/uploads/2020/09/bulkscreen-1.png 1920w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2"><strong>BulkScreen</strong>:<br>Saliency-Based Automatic Shape Representation of Digital Images with a Vertical Pin-Array Screen</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1"><strong>Yudai Tanaka</strong>*, Riku Arakawa*, Hiromu Kawarasaki, and Kiyosu Maeda (*: equal contribution).</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:0"><strong>TEI 2020</strong> Poster</p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><a href="https://youtu.be/BonHHCFfqos" target="_blank" rel="noreferrer noopener">Video</a> | <a href="https://yudai-tanaka.com/wp-content/uploads/2021/04/tei20-bulkscreen.pdf" target="_blank" rel="noreferrer noopener">Paper</a></p>
+</div></div>
+
+
+
+<div class="wp-block-media-text alignwide is-stacked-on-mobile has-dark-gray-color has-text-color" style="grid-template-columns:32% auto"><figure class="wp-block-media-text__media"><img data-attachment-id="70" data-permalink="https://yudai-tanaka.com/remind/" data-orig-file="https://yudai-tanaka.com/wp-content/uploads/2020/09/remind.png" data-orig-size="1920,1200" data-comments-opened="1" data-image-title="remind" data-image-description="" data-image-caption="" data-large-file="https://yudai-tanaka.com/wp-content/uploads/2020/09/remind.png?w=960" loading="lazy" width="1024" height="640" src="https://yudai-tanaka.com/wp-content/uploads/2020/09/remind.png?w=1024" alt="" class="wp-image-70 size-full" srcset="https://yudai-tanaka.com/wp-content/uploads/2020/09/remind.png?w=1024 1024w, https://yudai-tanaka.com/wp-content/uploads/2020/09/remind.png?w=150 150w, https://yudai-tanaka.com/wp-content/uploads/2020/09/remind.png?w=300 300w, https://yudai-tanaka.com/wp-content/uploads/2020/09/remind.png?w=768 768w, https://yudai-tanaka.com/wp-content/uploads/2020/09/remind.png?w=1440 1440w, https://yudai-tanaka.com/wp-content/uploads/2020/09/remind.png 1920w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size wp-block-paragraph" style="line-height:1.2">A Formative Study for Record-time Manual Annotation of First-person Videos</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:1"><strong>Yudai Tanaka</strong>, Sohei Wakisaka, and Masahiko Inami.</p>
+
+
+
+<p class="has-normal-font-size wp-block-paragraph" style="line-height:0"><strong>MobileHCI 2019</strong> Poster</p>
+
+
+
+<p class="has-blue-color has-text-color has-normal-font-size wp-block-paragraph" style="line-height:0"><strong><mark style="background-color:rgba(0, 0, 0, 0);color:#cf2e2e" class="has-inline-color">Best Poster Honorable Mention</mark></strong> <br><br></p>
+
+
+
+<p class="has-dark-gray-color has-text-color wp-block-paragraph" style="font-size:16px;line-height:0"><a href="https://youtu.be/rXxC6HdH690" target="_blank" rel="noreferrer noopener">Video</a> | <a href="https://yudai-tanaka.com/wp-content/uploads/2021/04/mobilehci19-remind.pdf" target="_blank" rel="noreferrer noopener">Paper</a></p>
+</div></div>
+					</div><!-- .entry-content -->
+		<footer class="entry-meta">
+					</footer><!-- .entry-meta -->
+	</article><!-- #post -->
+				
+<div id="comments" class="comments-area">
+
+	
+	
+	
+</div><!-- #comments .comments-area -->
+			
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+
+		</div><!-- #main .wrapper -->
+	<footer id="colophon" role="contentinfo">
+		<div class="site-info">
+									<a href="https://wordpress.com/ja/?ref=footer_custom_svg" title="WordPress.com でサイトを作成" rel="nofollow"><svg style="fill: currentColor; position: relative; top: 1px;" width="14px" height="15px" viewBox="0 0 14 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-labelledby="title" role="img">
+				<desc id="title">WordPress.com でサイトを作成</desc>
+				<path d="M12.5225848,4.97949746 C13.0138466,5.87586309 13.2934037,6.90452431 13.2934037,7.99874074 C13.2934037,10.3205803 12.0351007,12.3476807 10.1640538,13.4385638 L12.0862862,7.88081544 C12.4453251,6.98296834 12.5648813,6.26504621 12.5648813,5.62667922 C12.5648813,5.39497674 12.549622,5.17994084 12.5225848,4.97949746 L12.5225848,4.97949746 Z M7.86730089,5.04801561 C8.24619178,5.02808979 8.58760099,4.98823815 8.58760099,4.98823815 C8.9267139,4.94809022 8.88671369,4.44972248 8.54745263,4.46957423 C8.54745263,4.46957423 7.52803983,4.54957381 6.86996227,4.54957381 C6.25158863,4.54957381 5.21247202,4.46957423 5.21247202,4.46957423 C4.87306282,4.44972248 4.83328483,4.96816418 5.17254589,4.98823815 C5.17254589,4.98823815 5.49358462,5.02808979 5.83269753,5.04801561 L6.81314716,7.73459399 L5.43565839,11.8651647 L3.14394256,5.04801561 C3.52312975,5.02808979 3.86416859,4.98823815 3.86416859,4.98823815 C4.20305928,4.94809022 4.16305906,4.44972248 3.82394616,4.46957423 C3.82394616,4.46957423 2.80475558,4.54957381 2.14660395,4.54957381 C2.02852925,4.54957381 1.88934333,4.54668493 1.74156477,4.54194422 C2.86690406,2.83350881 4.80113651,1.70529256 6.99996296,1.70529256 C8.638342,1.70529256 10.1302017,2.33173369 11.2498373,3.35765419 C11.222726,3.35602457 11.1962815,3.35261718 11.1683554,3.35261718 C10.5501299,3.35261718 10.1114609,3.89113285 10.1114609,4.46957423 C10.1114609,4.98823815 10.4107217,5.42705065 10.7296864,5.94564049 C10.969021,6.36482346 11.248578,6.90326506 11.248578,7.68133501 C11.248578,8.21992476 11.0413918,8.84503256 10.7696866,9.71584277 L10.1417574,11.8132391 L7.86730089,5.04801561 Z M6.99996296,14.2927074 C6.38218192,14.2927074 5.78595654,14.2021153 5.22195356,14.0362644 L7.11048207,8.54925635 L9.04486267,13.8491542 C9.05760348,13.8802652 9.07323319,13.9089317 9.08989995,13.9358945 C8.43574834,14.1661896 7.73285573,14.2927074 6.99996296,14.2927074 L6.99996296,14.2927074 Z M0.706448182,7.99874074 C0.706448182,7.08630113 0.902152921,6.22015756 1.25141403,5.43749503 L4.25357806,13.6627848 C2.15393732,12.6427902 0.706448182,10.4898387 0.706448182,7.99874074 L0.706448182,7.99874074 Z M6.99996296,0.999 C3.14016476,0.999 0,4.13905746 0,7.99874074 C0,11.8585722 3.14016476,14.999 6.99996296,14.999 C10.8596871,14.999 14,11.8585722 14,7.99874074 C14,4.13905746 10.8596871,0.999 6.99996296,0.999 L6.99996296,0.999 Z" id="wordpress-logo-simplified-cmyk" stroke="none" fill=“currentColor” fill-rule="evenodd"></path>
+			</svg></a>
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<!--  -->
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/files/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/pub/twentytwelve/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script id="grofiles-cards-js" src="//0.gravatar.com/js/hovercards/hovercards.min.js?ver=202645fffb5f6f8dc7a9c7ad08f16ba2e694fddff32cc1793b3fe3b32aaa232a52550e"></script>
+<script id="wpgroho-js-extra">
+var WPGroHo = {"my_hash":""};
+//# sourceURL=wpgroho-js-extra
+</script>
+<script crossorigin='anonymous' type='text/javascript'  src='/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240i'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init(
+					'body',
+					'#wp-admin-bar-my-account',
+					{
+						i18n: {
+							'Edit your profile →': 'プロフィールを編集 →',
+							'View profile →': 'プロフィールを表示→',
+							'Contact': 'お問い合わせ',
+							'Send money': '送金する',
+							'Sorry, we are unable to load this Gravatar profile.': 'この Gravatar プロフィールを読み込めません。',
+							'Gravatar not found.': 'Gravatar が見つかりません。',
+							'Too Many Requests.': 'リクエスト数が多すぎます。',
+							'Internal Server Error.': '内部サーバーエラー。',
+							'Is this you?': 'このユーザーはあなたですか ?',
+							'Claim your free profile.': '無料プロフィールを取得しましょう。',
+							'Email': 'メール',
+							'Home Phone': '自宅電話番号',
+							'Work Phone': '職場電話番号',
+							'Cell Phone': '携帯電話番号',
+							'Contact Form': 'お問い合わせフォーム',
+							'Calendar': 'カレンダー',
+						},
+					}
+				);
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	</div>
+			<div id="actionbar" dir="ltr" style="display: none;"
+				class="actnbr-pub-twentytwelve" role="region" aria-label="サイトのアクション">
+			<span class="actnbr-live" aria-live="polite"></span>
+			<ul>
+										<li class="actnbr-btn actnbr-hidden">
+										<a class="actnbr-action actnbr-actn-follow " href="" role="button" aria-haspopup="dialog" aria-expanded="false">
+				<svg class="actnbr-icon actnbr-icon-bell" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M17 11.5c0 1.353.17 2.368.976 3 .266.209.602.376 1.024.5v1H5v-1c.422-.124.757-.291 1.024-.5.806-.632.976-1.647.976-3V9c0-2.8 2.2-5 5-5s5 2.2 5 5v2.5ZM15.5 9v2.5c0 .93.066 1.98.515 2.897l.053.103H7.932a4.018 4.018 0 0 0 .053-.103c.449-.917.515-1.967.515-2.897V9c0-1.972 1.528-3.5 3.5-3.5s3.5 1.528 3.5 3.5Zm-5.492 9.008c0-.176.023-.346.065-.508h3.854A1.996 1.996 0 0 1 12 20c-1.1 0-1.992-.892-1.992-1.992Z"/></svg>				<span>定期購入</span>
+			</a>
+			<a class="actnbr-action actnbr-actn-following  no-display" href="" role="button">
+				<svg class="actnbr-icon actnbr-icon-check" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="fill: none" stroke="currentColor" stroke-width="1.5"><path d="M7 12L10 15L17 8" vector-effect="non-scaling-stroke"/></svg>				<span>開始日</span>
+			</a>
+									<div class="actnbr-popover actnbr-panel actnbr-notice" id="follow-bubble" role="dialog" aria-label="yudai tanaka を購読">
+								<div class="actnbr-follow-bubble">
+								<div class="actnbr-panel__group"><a class="actnbr-menu__item actnbr-sitename" href="https://yudai-tanaka.com"><img loading='lazy' alt='' src='https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=50' srcset='https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=50 1x, https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=75 1.5x, https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=100 2x, https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=150 3x, https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=200 4x' class='avatar avatar-50' height='50' width='50' /><span class="actnbr-menu__label">yudai tanaka</span></a></div>																	<div class="actnbr-panel__group">
+										<div class="actnbr-message no-display" aria-live="polite"></div>
+										<form method="post" action="https://subscribe.wordpress.com" accept-charset="utf-8" class="no-display">
+																						<input type="email" name="email" placeholder="更新が必要ですか ?  メールアドレスを入力" class="actnbr-email-field" aria-label="メールアドレス" />
+											<input type="hidden" name="action" value="subscribe" />
+											<input type="hidden" name="blog_id" value="183431160" />
+											<input type="hidden" name="source" value="https://yudai-tanaka.com/" />
+											<input type="hidden" name="sub-type" value="actionbar-follow" />
+											<input type="hidden" id="_wpnonce" name="_wpnonce" value="55180092a4" />											<button type="submit" class="actnbr-button">登録する</button>
+										</form>
+										<p class="actnbr-login-nudge">
+											WordPress.com のアカウントをお持ちですか ?  <a href="https://wordpress.com/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fyudai-tanaka.com%252F">今すぐログインしてください。</a>										</p>
+									</div>
+																	</div>
+							</div>
+						</li>
+									<li class="actnbr-ellipsis actnbr-hidden">
+					<button type="button" class="actnbr-more-toggle" aria-haspopup="true" aria-expanded="false" aria-label="詳細設定">
+						<svg class="actnbr-icon actnbr-icon-more-horizontal" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor"><path d="M11 13h2v-2h-2v2zm-6 0h2v-2H5v2zm12-2v2h2v-2h-2z"/></svg>					</button>
+					<div class="actnbr-popover actnbr-menu" role="menu" aria-label="サイトオプション">
+						<div class="actnbr-menu__group" role="group"><a role="menuitem" class="actnbr-menu__item actnbr-sitename" href="https://yudai-tanaka.com"><img loading='lazy' alt='' src='https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=50' srcset='https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=50 1x, https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=75 1.5x, https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=100 2x, https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=150 3x, https://yudai-tanaka.com/wp-content/uploads/2020/09/cropped-unnamed-1.png?w=200 4x' class='avatar avatar-50' height='50' width='50' /><span class="actnbr-menu__label">yudai tanaka</span></a></div><div class="actnbr-menu__group" role="group"><a role="menuitem" class="actnbr-menu__item actnbr-shortlink" href="https://wp.me/PcpEP6-6"><span class="actnbr-menu__label actnbr-shortlink__text">短縮リンクをコピー</span><span class="actnbr-menu__icon actnbr-shortlink__icon"><svg class="actnbr-icon actnbr-icon-copy" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M5 4.5h11a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V5a.5.5 0 0 1 .5-.5ZM3 5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5Zm17 3v10.75c0 .69-.56 1.25-1.25 1.25H6v1.5h12.75a2.75 2.75 0 0 0 2.75-2.75V8H20Z"/></svg></span><span class="actnbr-menu__icon actnbr-shortlink__icon-copied"><svg class="actnbr-icon actnbr-icon-check" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="fill: none" stroke="currentColor" stroke-width="1.5"><path d="M7 12L10 15L17 8" vector-effect="non-scaling-stroke"/></svg></span></a><a role="menuitem" class="actnbr-menu__item actnbr-reader" href="https://wordpress.com/reader/blogs/183431160/posts/6"><span class="actnbr-menu__label">Reader で投稿を表示</span></a></div><div class="actnbr-menu__group" role="group"><a role="menuitem" class="actnbr-menu__item actnbr-subs" href="https://subscribe.wordpress.com/"><span class="actnbr-menu__label">購読管理</span></a><a role="menuitem" class="actnbr-menu__item actnbr-signup" href="https://wordpress.com/start/"><span class="actnbr-menu__label">登録</span></a><a role="menuitem" class="actnbr-menu__item actnbr-login" href="https://wordpress.com/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fyudai-tanaka.com%252F"><span class="actnbr-menu__label">ログイン</span></a></div><div class="actnbr-menu__group" role="group"><a role="menuitem" class="actnbr-menu__item flb-report" href="https://wordpress.com/abuse/?report_url=https://yudai-tanaka.com/" target="_blank" rel="noopener noreferrer"><span class="actnbr-menu__label">このコンテンツを報告</span><span class="actnbr-menu__icon"><svg class="actnbr-icon actnbr-icon-external" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor"><path d="M19.5 4.5h-7V6h4.44l-5.97 5.97 1.06 1.06L18 7.06v4.44h1.5v-7Zm-13 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3H17v3a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h3V5.5h-3Z"/></svg></span></a></div><div class="actnbr-menu__group" role="group"><a role="menuitem" class="actnbr-menu__item actnbr-fold" href=""><span class="actnbr-menu__label">このバーを折りたたむ</span></a></div>					</div>
+				</li>
+			</ul>
+		</div>
+		<script>
+window.addEventListener( "DOMContentLoaded", function () {
+				var link = document.createElement( "link" );
+				link.href = "\/wp-content\/mu-plugins\/jetpack-plugin\/sun\/jetpack_vendor\/automattic\/jetpack-newsletter\/src\/..\/build\/action-bar.css?ver=35dd33285eb46dc308dd";
+				link.rel = "stylesheet";
+				document.head.appendChild( link );
+
+				var script = document.createElement( "script" );
+				script.src = "\/wp-content\/mu-plugins\/jetpack-plugin\/sun\/jetpack_vendor\/automattic\/jetpack-newsletter\/src\/..\/build\/action-bar.js?ver=35dd33285eb46dc308dd";
+				document.body.appendChild( script );
+			} );
+</script>
+<link rel="prefetch" href="/wp-content/mu-plugins/jetpack-plugin/sun/_inc/blocks/swiper.js" as="script" />
+		<div id="jp-carousel-loading-overlay" style="display: none;">
+			<div id="jp-carousel-loading-wrapper">
+				<span id="jp-carousel-library-loading"><svg class="jetpack-spinner" width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="46" fill="none" stroke="#ddd" stroke-width="8"/><path d="M 50 4 A 46 46 0 0 1 96 50" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" dur="1.4s" from="0 50 50" to="360 50 50" repeatCount="indefinite"/></path></svg></span>
+			</div>
+		</div>
+		<div class="jp-carousel-overlay" style="display: none;">
+
+		<div class="jp-carousel-container">
+			<!-- The Carousel Swiper -->
+			<div
+				class="jp-carousel-wrap swiper jp-carousel-swiper-container jp-carousel-transitions"
+				itemscope
+				itemtype="https://schema.org/ImageGallery">
+				<div class="jp-carousel swiper-wrapper"></div>
+				<div class="jp-swiper-button-prev swiper-button-prev">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskPrev" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="9" height="12">
+							<path d="M16.2072 16.59L11.6496 12L16.2072 7.41L14.8041 6L8.8335 12L14.8041 18L16.2072 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskPrev)">
+							<rect x="0.579102" width="23.8823" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+				<div class="jp-swiper-button-next swiper-button-next">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskNext" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="8" height="12">
+							<path d="M8.59814 16.59L13.1557 12L8.59814 7.41L10.0012 6L15.9718 12L10.0012 18L8.59814 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskNext)">
+							<rect x="0.34375" width="23.8822" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+			</div>
+			<!-- The main close buton -->
+			<div class="jp-carousel-close-hint">
+				<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<mask id="maskClose" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="15" height="14">
+						<path d="M19.3166 6.41L17.9135 5L12.3509 10.59L6.78834 5L5.38525 6.41L10.9478 12L5.38525 17.59L6.78834 19L12.3509 13.41L17.9135 19L19.3166 17.59L13.754 12L19.3166 6.41Z" fill="white"/>
+					</mask>
+					<g mask="url(#maskClose)">
+						<rect x="0.409668" width="23.8823" height="24" fill="#FFFFFF"/>
+					</g>
+				</svg>
+			</div>
+			<!-- Image info, comments and meta -->
+			<div class="jp-carousel-info">
+				<div class="jp-carousel-info-footer">
+					<div class="jp-carousel-pagination-container">
+						<div class="jp-swiper-pagination swiper-pagination"></div>
+						<div class="jp-carousel-pagination"></div>
+					</div>
+					<div class="jp-carousel-photo-title-container">
+						<div class="jp-carousel-photo-caption"></div>
+					</div>
+					<div class="jp-carousel-photo-icons-container">
+						<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-info" aria-label="写真のメタデータ表示を切り替え">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskInfo" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M12.7537 2C7.26076 2 2.80273 6.48 2.80273 12C2.80273 17.52 7.26076 22 12.7537 22C18.2466 22 22.7046 17.52 22.7046 12C22.7046 6.48 18.2466 2 12.7537 2ZM11.7586 7V9H13.7488V7H11.7586ZM11.7586 11V17H13.7488V11H11.7586ZM4.79292 12C4.79292 16.41 8.36531 20 12.7537 20C17.142 20 20.7144 16.41 20.7144 12C20.7144 7.59 17.142 4 12.7537 4C8.36531 4 4.79292 7.59 4.79292 12Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskInfo)">
+										<rect x="0.8125" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+							</span>
+						</a>
+												<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-comments" aria-label="写真のコメント表示を切り替え">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskComments" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M4.3271 2H20.2486C21.3432 2 22.2388 2.9 22.2388 4V16C22.2388 17.1 21.3432 18 20.2486 18H6.31729L2.33691 22V4C2.33691 2.9 3.2325 2 4.3271 2ZM6.31729 16H20.2486V4H4.3271V18L6.31729 16Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskComments)">
+										<rect x="0.34668" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+
+								<span class="jp-carousel-has-comments-indicator" aria-label="この画像にはコメントがあります。"></span>
+							</span>
+						</a>
+											</div>
+				</div>
+				<div class="jp-carousel-info-extra">
+					<div class="jp-carousel-info-content-wrapper">
+						<div class="jp-carousel-photo-title-container">
+							<div class="jp-carousel-photo-title"></div>
+						</div>
+						<div class="jp-carousel-comments-wrapper">
+															<div id="jp-carousel-comments-loading">
+									<span>コメントを読み込み中…</span>
+								</div>
+								<div class="jp-carousel-comments"></div>
+								<div id="jp-carousel-comment-form-container">
+									<span id="jp-carousel-comment-form-spinner"><svg class="jetpack-spinner" width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="46" fill="none" stroke="#ddd" stroke-width="8"/><path d="M 50 4 A 46 46 0 0 1 96 50" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" dur="1.4s" from="0 50 50" to="360 50 50" repeatCount="indefinite"/></path></svg></span>
+									<div id="jp-carousel-comment-post-results"></div>
+																														<form id="jp-carousel-comment-form">
+												<label for="jp-carousel-comment-form-comment-field" class="screen-reader-text">コメントをどうぞ</label>
+												<textarea
+													name="comment"
+													class="jp-carousel-comment-form-field jp-carousel-comment-form-textarea"
+													id="jp-carousel-comment-form-comment-field"
+													placeholder="コメントをどうぞ"
+												></textarea>
+												<div id="jp-carousel-comment-form-submit-and-info-wrapper">
+													<div id="jp-carousel-comment-form-commenting-as">
+																													<fieldset>
+																<label for="jp-carousel-comment-form-email-field">メール (必須)</label>
+																<input type="text" name="email" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-email-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-author-field">名前 (必須)</label>
+																<input type="text" name="author" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-author-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-url-field">サイト</label>
+																<input type="text" name="url" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-url-field" />
+															</fieldset>
+																											</div>
+													<input
+														type="submit"
+														name="submit"
+														class="jp-carousel-comment-form-button"
+														id="jp-carousel-comment-form-button-submit"
+														value="コメントを送信" />
+												</div>
+											</form>
+																											</div>
+													</div>
+						<div class="jp-carousel-image-meta">
+							<div class="jp-carousel-title-and-caption">
+								<div class="jp-carousel-photo-info">
+									<div class="jp-carousel-caption" itemprop="caption description"></div>
+								</div>
+
+								<div class="jp-carousel-photo-description"></div>
+							</div>
+							<a class="jp-carousel-image-download" href="#" aria-label="画像をダウンロード" target="_blank" style="display: none;">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="3" width="19" height="18">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M5.84615 5V19H19.7775V12H21.7677V19C21.7677 20.1 20.8721 21 19.7775 21H5.84615C4.74159 21 3.85596 20.1 3.85596 19V5C3.85596 3.9 4.74159 3 5.84615 3H12.8118V5H5.84615ZM14.802 5V3H21.7677V10H19.7775V6.41L9.99569 16.24L8.59261 14.83L18.3744 5H14.802Z" fill="white"/>
+									</mask>
+									<g mask="url(#mask0)">
+										<rect x="0.870605" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+								<span class="jp-carousel-download-text"></span>
+							</a>
+							<div class="jp-carousel-image-map" style="display: none;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+		
+	<script type="text/javascript">
+		(function () {
+			var wpcom_reblog = {
+				source: 'toolbar',
+
+				toggle_reblog_box_flair: function (obj_id, post_id) {
+
+					// Go to site selector. This will redirect to their blog if they only have one.
+					const postEndpoint = `https://wordpress.com/post`;
+
+					// Ideally we would use the permalink here, but fortunately this will be replaced with the 
+					// post permalink in the editor.
+					const originalURL = `${ document.location.href }?page_id=${ post_id }`; 
+					
+					const url =
+						postEndpoint +
+						'?url=' +
+						encodeURIComponent( originalURL ) +
+						'&is_post_share=true' +
+						'&v=5';
+
+					const redirect = function () {
+						if (
+							! window.open( url, '_blank' )
+						) {
+							location.href = url;
+						}
+					};
+
+					if ( /Firefox/.test( navigator.userAgent ) ) {
+						setTimeout( redirect, 0 );
+					} else {
+						redirect();
+					}
+				},
+			};
+
+			window.wpcom_reblog = wpcom_reblog;
+		})();
+	</script>
+<script id="coblocks-loader-js-extra">
+var wpcom_coblocks_js = {"coblocks_masonry_js":"https://s2.wp.com/wp-content/plugins/coblocks/2.18.1-simple-rev.4/dist/js/coblocks-masonry.min.js?m=1681832297i","coblocks_lightbox_js":"https://s2.wp.com/wp-content/plugins/coblocks/2.18.1-simple-rev.4/dist/js/coblocks-lightbox.min.js?m=1681832297i","jquery_core_js":"/wp-includes/js/jquery/jquery.min.js","jquery_migrate_js":"/wp-includes/js/jquery/jquery-migrate.min.js","masonry_js":"/wp-includes/js/masonry.min.js","imagesloaded_js":"/wp-includes/js/imagesloaded.min.js"};
+var coblocksLigthboxData = {"closeLabel":"Close Gallery","leftLabel":"\u524d","rightLabel":"\u6b21"};
+//# sourceURL=coblocks-loader-js-extra
+</script>
+<script id="jetpack-carousel-js-extra">
+var jetpackSwiperLibraryPath = {"url":"/wp-content/mu-plugins/jetpack-plugin/sun/_inc/blocks/swiper.js"};
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"ja","ajaxurl":"https://yudai-tanaka.com/wp-admin/admin-ajax.php","nonce":"68d64dde72","display_exif":"1","display_comments":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"\u30b3\u30e1\u30f3\u30c8","post_comment":"\u30b3\u30e1\u30f3\u30c8\u3092\u9001\u4fe1","write_comment":"\u30b3\u30e1\u30f3\u30c8\u3092\u3069\u3046\u305e","image_label":"\u753b\u50cf\u3092\u30d5\u30eb\u30b9\u30af\u30ea\u30fc\u30f3\u3067\u958b\u304d\u307e\u3059\u3002","download_original":"\u30d5\u30eb\u30b5\u30a4\u30ba\u8868\u793a \u003Cspan class=\"photo-size\"\u003E{0}\u003Cspan class=\"photo-size-times\"\u003E\u00d7\u003C/span\u003E{1}\u003C/span\u003E","no_comment_text":"\u30b3\u30e1\u30f3\u30c8\u306e\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u3054\u8a18\u5165\u304f\u3060\u3055\u3044\u3002","no_comment_email":"\u30b3\u30e1\u30f3\u30c8\u3059\u308b\u306b\u306f\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u3092\u3054\u8a18\u5165\u304f\u3060\u3055\u3044\u3002","no_comment_author":"\u30b3\u30e1\u30f3\u30c8\u3059\u308b\u306b\u306f\u304a\u540d\u524d\u3092\u3054\u8a18\u5165\u304f\u3060\u3055\u3044\u3002","comment_post_error":"\u30b3\u30e1\u30f3\u30c8\u6295\u7a3f\u306e\u969b\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002\u5f8c\u307b\u3069\u3082\u3046\u4e00\u5ea6\u304a\u8a66\u3057\u304f\u3060\u3055\u3044\u3002","comment_approved":"\u30b3\u30e1\u30f3\u30c8\u304c\u627f\u8a8d\u3055\u308c\u307e\u3057\u305f\u3002","comment_unapproved":"\u30b3\u30e1\u30f3\u30c8\u306f\u627f\u8a8d\u5f85\u3061\u4e2d\u3067\u3059\u3002","camera":"\u30ab\u30e1\u30e9","aperture":"\u7d5e\u308a","shutter_speed":"\u30b7\u30e3\u30c3\u30bf\u30fc\u30b9\u30d4\u30fc\u30c9","focal_length":"\u7126\u70b9\u8ddd\u96e2","copyright":"\u8457\u4f5c\u6a29\u8868\u793a","comment_registration":"0","require_name_email":"1","login_url":"https://yudaitanakacom.wordpress.com/wp-login.php?redirect_to=https%3A%2F%2Fyudai-tanaka.com%2F","blog_id":"183431160","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"loading_comments":"\u30b3\u30e1\u30f3\u30c8\u3092\u8aad\u307f\u8fbc\u307f\u4e2d\u2026","stats_query_args":"blog=183431160&v=wpcom&tz=-6&user_id=0&subd=yudaitanakacom","is_public":"1"};
+//# sourceURL=jetpack-carousel-js-extra
+</script>
+<script crossorigin='anonymous' type='text/javascript'  src='/_static/??-eJxtjl0KwjAQhC9ksq0Wqg/iUSRNl7pp/ugmKd7eClaL+jIwwzfDwByFDj6hTxBtHsgz6NDZoEeGvayPshZMLloUExbZQE+cwHwgYYPqcZKOvDS8g81euqFDhpg7SPMS3Be1BZ9trwoNKlH4Kbks1h8GU1R6fHng7OFKXkOXyfag1RQyo31ja/DvymZ1xcQcdXBfduld3LluT1XVVoemMQ9I92pY'></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/","ext":".png","svgUrl":"https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/svg/","svgExt":".svg","source":{"concatemoji":"/wp-includes/js/wp-emoji-release.min.js?m=1783090810i&ver=7.1.4-alpha-64893"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\udec8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
+//# sourceURL=/wp-includes/js/wp-emoji-loader.min.js
+</script>
+<script src="//stats.wp.com/w.js?71" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'183431160','blog_tz':'-6','user_lang':'ja','blog_lang':'ja','user_id':'0'}]);
+		// Prevent sending pageview tracking from WP-Admin pages.
+		_stq.push(['view', {'blog':'183431160','v':'wpcom','tz':'-6','user_id':'0','post':'6','subd':'yudaitanakacom'}]);
+		_stq.push(['extra', {'crypt':'UE5tW3cvZGQ/JUs1UEpSdi1BRVlaLixtWWVadUtMUFdyOEIzaTFrTVVbWXl5X2FTRUxSZlR2TE94Qk9INEVNd3IyMmRzZFg/Yk1LYmVzPUErbkFjY1NJczRZOENBSy0zNV1wRUpfUUp5TmJSfk5oaDhKWnZHfjVYVXRBRnUyZy1KbkNnUk1VQnREV19BdGI3bjdSaT9ubiw2bis/cFl5UGlHOCszQ2NlS3c3Rm1MdjNaSE1IX1RrbDVZJjRGQ204YXAreUQyOHZj'}]);
+_stq.push([ 'clickTrackerInit', '183431160', '6' ]);
+</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<meta id="bilmur" property="bilmur:data" content="" data-provider="wordpress.com" data-service="simple" data-site-tz="America/Chicago" data-custom-props="{&quot;enq_jquery&quot;:&quot;1&quot;,&quot;logged_in&quot;:&quot;0&quot;,&quot;wptheme&quot;:&quot;pub\/twentytwelve&quot;,&quot;wptheme_is_block&quot;:&quot;0&quot;}"   >
+		<script defer src="/wp-content/js/bilmur.min.js?i=19&amp;m=202645"></script> 	</body>
+</html>
