@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Named Professorship at HKUST</title>
+		<link rel="icon" href="images/HKUST.ico" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+<meta name="description" content="HKUST's Named Professorships honor the achievements of first-class scholars, providing recognition and funding to attract, foster and retain the very best minds. 香港科技大學的冠名教授席對傑出學者的成就予以表揚，是一項重要的嘉許，教授席並提供額外的經費以吸引、培養和留住最優秀的人才。">
+
+<!--<meta name="viewport" content="width=1440">-->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="css/style.css?t=1795207804" />
+<link rel="stylesheet" type="text/css" href="css/style2.css" />
+<link rel="stylesheet" type="text/css" href="css/header_css.css?t=1795207804" />
+<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<!--<link rel="stylesheet" href="css/demo-slideshow.css">-->
+<script src="js/jquery-1.12.0.min.js"></script>
+<script src="js/common.js?t=1795207804"></script>
+<script src="js/menu.js"></script>
+<script src="js/function.js"></script>
+
+<Script>
+ 				$(function(){
+ 				
+ 				$(".subMenu-word").mouseover(
+				    function() {
+				    	index=$(".subMenu-word").index(this);	
+				    	console.log(index);
+				    	 var linkParent = $(this).parent('li');
+				    	 linkParent.css('background-color', '#B59117');
+				    	 
+				       // $("ul.sb_menu-ul > li a.active").css("background-color", "red");
+				    }
+				    
+				    
+				  );
+  
+  
+  				$(".subMenu-word").mouseout(
+  				
+  				 function(){
+			           var $linkParent = $(this).parent('li');
+			            $linkParent.css('background-color', '#DDB633');
+			        }
+			        
+			     );
+			     
+			   	});    
+			       
+</Script>		
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-109406264-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+	   
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-34587787-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-34587787-3');
+</script>  		<script>
+			$(function(){	
+				scroll=0;
+				b2_hide=1;			
+				selectMenu(2);
+				/* selectSubMenu(3); */
+				$(window).resize(function() {
+					//setTimeout(function() { $(".top-minds-details-right").height($(".top-minds-details-left").height()); } ,100);
+					win_size=$(window).width();
+					console.log(win_size);
+					if(win_size<769-getScrollBarWidth()) {
+						$(".top-minds-details-msg").prepend($(".tmd-table"));
+						if(win_size<720-getScrollBarWidth()) {
+							$(".top-minds-details-msg").append($(".tmd-table"));
+						}
+					} else {
+						$(".top-minds-details-right").append($(".tmd-table"));
+					}
+					
+					
+				});
+				
+				$(window).resize();
+				
+				$(".tmd-previous").mouseover(function() {
+					$(this).attr("src","images/previous_r.png");
+				});
+				
+				$(".tmd-previous").mouseout(function() {
+					$(this).attr("src","images/previous.png");
+				});
+				
+				$(".tmd-next").mouseover(function() {
+					$(this).attr("src","images/next_r.png");
+				});
+				
+				$(".tmd-next").mouseout(function() {
+					$(this).attr("src","images/next.png");
+				});
+				
+				$(".photo1").click(function() {
+					if(b2_hide) {
+						$(".video_layout1").hide();
+						$(".video_layout1").html("&nbsp;");
+						$(".video_layout2").hide();
+						$(".video_layout2").html("&nbsp;");
+						
+						$(".photo1").hide();
+						
+						$("#playimg").show();
+						
+						$(window).scrollTop(scroll);
+					}
+					//$(".photo1").hide();
+					//$(window).scrollTop(scroll);
+					
+				});
+				
+				$(".photo2").click(function() {
+					if(b2_hide) {
+						$(".video_layout1").hide();
+						$(".video_layout1").html("&nbsp;");
+						$(".video_layout2").hide();
+						$(".video_layout2").html("&nbsp;");
+						
+						$(".photo2").hide();
+						
+						$("#playimg").show();
+						$(window).scrollTop(scroll);
+					}
+				});
+				
+				
+				
+				$(".ceremony-photo img").click(function() {
+					win_size=$(window).width();
+					scroll=$(window).scrollTop();
+					$(window).scrollTop(0);
+					
+					
+					
+					var type1 = $(this).attr("data3");
+					var data = $(this).attr("data");
+						
+						$(".video_layout1").hide();
+						$(".video_layout1").html("&nbsp;");
+						$(".video_layout2").hide();
+						$(".video_layout2").html("&nbsp;");
+						
+						if(win_size>1024-getScrollBarWidth()) {
+							
+							$(".video_layout1").show();
+							$(".video_layout1").html("<iframe  style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' src='"+data+"' frameborder='0' allowfullscreen></iframe>");
+							
+							//$(".video_layout1").html("<iframe  src='"+data+"' frameborder='0' width=100% height=100% allowfullscreen></iframe>");
+						} else {
+							
+							$(".video_layout2").show();
+							$(".video_layout2").html("<iframe  style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' src='"+data+"' frameborder='0' allowfullscreen></iframe>");
+							
+						}
+						$(".b-pic").hide();
+						//$(".photo-msg").html($(this).attr("data2"));
+						
+						
+						
+						
+						
+						
+					
+					
+					if(win_size>1024-getScrollBarWidth()) {
+						$(".photo1").show();
+						//photo_index=$(".ceremony-photo img").index(this);
+					} else {
+						$(".photo2").show();
+						//photo_index=$(".ceremony-photo img").index(this);
+					}
+					//alert(photo_index);
+				});
+				
+				
+				
+			});
+			
+			$(window).on("load", function() {
+			});
+						
+		</script>
+		
+		
+		<Script>
+		
+		
+		function change_index1(data) {
+					win_size=$(window).width();
+					scroll=$(window).scrollTop();
+					$(window).scrollTop(0);
+					
+					
+					$("#playimg").hide();
+					//var type1 = $(this).attr("data3");
+					//var data = $(this).attr("data");
+						//$("#playimg").show();
+						$(".video_layout1").hide();
+						$(".video_layout1").html("&nbsp;");
+						$(".video_layout2").hide();
+						$(".video_layout2").html("&nbsp;");
+						
+						if(win_size>1024-getScrollBarWidth()) {
+							//$("#playimg").hide();
+							
+							/*var win_size2 = ((win_size * 0.9) - 60);
+							var hh1 = win_size2 * 0.56;
+							if (win_size2 >= 1000) {
+								hh1 = 565;
+							}
+							
+							 var ww = $(".video_layout1").width();
+							 $(".video_layout1").css("height", hh1);
+							console.log(hh1);*/
+							
+							$(".video_layout1").show();
+							
+							$(".video_layout1").html("<iframe  style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' src='"+data+"' frameborder='0' allowfullscreen></iframe>");
+							
+							
+							//$(".video_layout1").html("<iframe  src='"+data+"' frameborder='0' width=100% height=100% allowfullscreen></iframe>");
+							
+						} else {
+							//$("#playimg").hide();
+							/*var hh1 = win_size * 0.57;
+							console.log(hh1);
+							
+							 $(".video_layout2").css("height", hh1);
+							*/
+							$(".video_layout2").show();
+							$(".video_layout2").html("<iframe  style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' src='"+data+"' frameborder='0' allowfullscreen></iframe>");
+							
+						}
+						$(".b-pic").hide();
+						
+					
+					
+					if(win_size>1024-getScrollBarWidth()) {
+						$(".photo1").show();
+						
+					} else {
+						$(".photo2").show();
+						
+					}
+			
+		}
+		function change_cmy(v) {
+			if (v != "") {
+			location.href='ceremony.php?id='+v;
+			}
+		}
+		
+		</script>
+		
+		
+	
+                                <script>!function(e){var n="https://s.go-mpulse.net/boomerang/";if("False"=="True")e.BOOMR_config=e.BOOMR_config||{},e.BOOMR_config.PageParams=e.BOOMR_config.PageParams||{},e.BOOMR_config.PageParams.pci=!0,n="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="KRV2S-QGSNQ-K7SGC-SMJ7U-GMZF3",function(){function e(){if(!i){var e=document.createElement("script");e.id="boomr-scr-as",e.src=window.BOOMR.url,e.async=!0,o.parentNode.appendChild(e),i=!0}}function t(e){i=!0;var n,t,a,r,d=document,O=window;if(window.BOOMR.snippetMethod=e?"if":"i",t=function(e,n){var t=d.createElement("script");t.id=n||"boomr-if-as",t.src=window.BOOMR.url,BOOMR_lstart=(new Date).getTime(),e=e||d.body,e.appendChild(t)},!window.addEventListener&&window.attachEvent&&navigator.userAgent.match(/MSIE [67]\./))return window.BOOMR.snippetMethod="s",void t(o.parentNode,"boomr-async");a=document.createElement("IFRAME"),a.src="about:blank",a.title="",a.role="presentation",a.loading="eager",r=(a.frameElement||a).style,r.width=0,r.height=0,r.border=0,r.display="none",o.parentNode.appendChild(a);try{O=a.contentWindow,d=O.document.open()}catch(_){n=document.domain,a.src="javascript:var d=document.open();d.domain='"+n+"';void(0);",O=a.contentWindow,d=O.document.open()}if(n)d._boomrl=function(){this.domain=n,t()},d.write("<bo"+"dy onload='document._boomrl();'>");else if(O._boomrl=function(){t()},O.addEventListener)O.addEventListener("load",O._boomrl,!1);else if(O.attachEvent)O.attachEvent("onload",O._boomrl);d.close()}function a(e){window.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!window.BOOMR||!window.BOOMR.version&&!window.BOOMR.snippetExecuted){window.BOOMR=window.BOOMR||{},window.BOOMR.snippetStart=(new Date).getTime(),window.BOOMR.snippetExecuted=!0,window.BOOMR.snippetVersion=12,window.BOOMR.url=n+"KRV2S-QGSNQ-K7SGC-SMJ7U-GMZF3";var o=document.currentScript||document.getElementsByTagName("script")[0],i=!1,r=document.createElement("link");if(r.relList&&"function"==typeof r.relList.supports&&r.relList.supports("preload")&&"as"in r)window.BOOMR.snippetMethod="p",r.href=window.BOOMR.url,r.rel="preload",r.as="script",r.addEventListener("load",e),r.addEventListener("error",function(){t(!0)}),setTimeout(function(){if(!i)t(!0)},3e3),BOOMR_lstart=(new Date).getTime(),o.parentNode.appendChild(r);else t(!1);if(window.addEventListener)window.addEventListener("load",a,!1);else if(window.attachEvent)window.attachEvent("onload",a)}}(),"".length>0)if(e&&"performance"in e&&e.performance&&"function"==typeof e.performance.setResourceTimingBufferSize)e.performance.setResourceTimingBufferSize();!function(){if(BOOMR=e.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var n=""=="true"?1:0,t="",a="qbyixraxgbuiq2yawj6a-f-dacd99ef9-clientnsv4-s.akamaihd.net",o="false"=="true"?2:1,i={"ak.v":"41","ak.cp":"2106469","ak.ai":parseInt("1431241",10),"ak.ol":"0","ak.cr":7,"ak.ipv":4,"ak.proto":"http/1.1","ak.rid":"fc05d719","ak.r":47496,"ak.a2":n,"ak.m":"","ak.n":"essl","ak.cport":34138,"ak.gh":"23.48.100.147","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"bbr","ak.t":"1795207804","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==6HvcHUDN91hBCEZflauNWKOM/Qtx10yLvOGVXthlWOwIY6ZV002Ss1dlpifL/r8cLHT1gKQaoogP6R3brI2bWolk22oLEjH39LYq6xz8cVi2WvVVohKnzI5qraLN5G5SOKhWbtV5U+aLY3LpuLbsLnDg3dnvCIsdtokRm+TfeRyzYtd08B9AE5sUTJObcpJ9qjEDumsbh/3fh3NAT3vQW+67qqvCLBWT7rKj1l9UpafXRPvJzFHo9DLvAxEngCmCHyu+LAeWTd9VGL/qp+ky2xWgTG+qZBkqed145YseUQtSi6mf2CfXzhKLMmQjoua+DUVe9WpoZyIWdAaaHMXwXBkP1ZKLKPvyWHb3dgF1UzWr7mA1YUX8ntklYyCCFiObtzMsyYbO8hDin5PkfTFtI1vmYtBYHP2eLSXX/iYIk0Y=","ak.pv":"1","ak.dpoabenc":"","ak.tf":o};if(""!==t)i["ak.ruds"]=t;var r={i:!1,av:function(n){var t="http.initiator";if(n&&(!n[t]||"spa_hard"===n[t]))i["ak.feo"]=void 0!==e.aFeoApplied?1:0,BOOMR.addVar(i)},rv:function(){var e=["ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(e)}};BOOMR.plugins.AK={akVars:i,akDNSPreFetchDomain:a,init:function(){if(!r.i){var e=BOOMR.subscribe;e("before_beacon",r.av,null,null),e("onbeacon",r.rv,null,null),r.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script></head>
+	<body>
+		
+		<div class="photo photo1">
+			<div class="white">
+				<div class="video_layout1" style="position: relative; padding-bottom: 56.25%; padding-top: 0px; height: 0; overflow: hidden;"></div>
+				
+				<img src="images/ceremony-b.jpg" class="b-pic"/>
+				
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="photo photo2">
+			<div class="white2">
+			
+				
+				<div class="video_layout2" style="position: relative; padding-bottom: 56.25%; padding-top: 0px; height: 0; overflow: hidden;"></div>
+				
+				<img src="images/ceremony-b.jpg" class="b-pic"/>
+				
+			
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="mainContainer" style="background:#FFF">
+			
+<script>
+$(document).ready(function () {
+
+    $(".navbar1").hover(function () {
+        $(this).find('.secondlevel').show();
+    }, function () {
+        $(this).find('.secondlevel').hide();
+    });
+
+    /*$(".secondarylink").hover(function () {
+        $(this).find('.thirdlevel').show();
+    }, function () {
+        $(this).find('.thirdlevel').hide();
+    });*/
+    
+    
+    
+   	 var click_num = 1;		
+	$( ".drawer-toggle" ).click(function() {
+		
+		
+	
+		
+	     $('#drawer').slideToggle('1000');	
+
+		if ($(".drawer-toggle").hasClass('transfer_180'))
+	    {
+	            $(".drawer-toggle").removeClass("transfer_180");
+	        	$(".drawer-toggle").addClass("transfer_0");
+	    }
+	    else
+	    {
+	        	
+	            $(".drawer-toggle").removeClass("transfer_0");
+	        	$(".drawer-toggle").addClass("transfer_180");	
+	           
+	    }   
+	         
+	
+	  
+	});
+
+
+
+});
+
+
+
+
+</script>
+
+
+<div class="drawer" id="drawer" style="display: none">
+
+
+
+	
+	
+		<div class="drawer-content-wrapper">
+                          <div class="drawer-content">
+                          
+                          <div class="center">
+                              <div class="more-about">More about HKUST</div>
+                              <div class="more-about2">
+                               <div class="row">
+                                  
+                                      <a class="page" href="https://hkust.edu.hk/news" target="_blank">University News</a>
+                                      <a class="page" href="https://hkust.edu.hk/academics/list" target="_blank">Academic Departments A-Z</a>
+                                      <a class="page" href="https://hkust.edu.hk/lifehkust" target="_blank">Life@HKUST</a>
+                                      <a class="page" href="https://library.ust.hk" target="_blank">Library</a>
+                            
+                              </div>
+                              <div class="row">
+                        
+                                      <a class="page" href="https://hkust.edu.hk/visit" target="_blank">Map &amp; Directions</a>
+                                      <a class="page" href="https://hkustcareers.ust.hk" target="_blank">Jobs@HKUST</a>
+                                      <a class="page" href="https://facultyprofiles.ust.hk" target="_blank">Faculty Profiles</a>
+                                      <a class="page" href="https://hkust.edu.hk/about" target="_blank">About HKUST</a>
+                                
+                              </div>
+                             </div>
+                          </div>
+                          
+               		</div>
+ 		</div>
+	
+</div>
+
+<div class="header-data">
+	
+	<div class="header">
+	
+		<div class="site-header-content">
+			
+			
+			
+			<div style="float:left; width:100%">
+	    	
+	    		<!--div style="float:left; width:30%">
+	    		
+	    			&nbsp;
+	    			
+	    			
+				
+	    		
+	    		</div-->
+	    		
+	    		<!--div style="float:left; width:40%;text-align:center;">
+	    			&nbsp;
+	    		
+	    		</div-->
+	    		
+	    		<div style="float:left; width:100%; margin-top:0px">
+	    			
+	    			<div class="right">
+	    			
+	    			<div class="right_sitename">
+	    			<a href="https://dao.hkust.edu.hk/" class="right_sitename" title="Development and Alumni Office" target=_blank>DAO</a>
+					<a href="detail.php?id=4" class="right_sitename">Contact Us</a>
+					</div>
+	    			
+	    			<div class="right1">
+	    			 <div class="drawer-toggle end-menu">
+                                  <img src="./header_img/btn_menu_arrow1.jpg" border=0>
+                                 </div>
+                               </div>  
+                                 
+                 
+				 
+				<div class="navbar1">
+				  <ul>
+				    <li class="navlink"><a href="#"><img src="./header_img/lang_btn.png?t=1795207804" style="display: flex; align-items: center;  width:60px" border=0></a>
+				    
+				    <div class="secondlevel">
+				        <ul>
+				         <li><a href="javascript:changeLang('en','en');" class="header_lang_link">ENG</a></li>
+						 <li><a href="javascript:changeLang('en','tc');" class="header_lang_link">繁體</a></li>
+				         <li><a href="javascript:changeLang('en','sc');" class="header_lang_link">简体</a></li>
+						 
+				        </ul> 
+				    </div>     
+				    
+				    </li>
+				   </ul> 
+				</div> 
+				
+				
+				<div class="mobile_search">
+				<A href="search_result.php"><img  class="header-mobile-menu" src="./header_img/mobile_search_btn.jpg?t=1795207804" border=0></a>
+				</div>
+			   
+				
+				
+                              
+                              </div>
+                              
+	    			
+			    	
+	    		
+	    		
+	    		</div>
+	    		</div>
+	    	
+	    	
+	    	
+			
+		</div>
+	</div>
+	
+	<div class="pc-header-menu">
+		<div class="main-menu">
+		<div class="pc_left">
+			<div class="hkust-logo">
+			<A href="http://www.hkust.edu.hk" target=_blank><img src="./header_img/ust_logo.png?t=1795207804" border=0></a>
+			</div>
+			
+			<div class="site">
+			<A href="index.php"><img src="./header_img/site_name.png?t=1795207804" border=0></a>
+			</div>
+			
+			
+		</div>
+		
+		
+		<div class="pc_right">
+			
+			
+
+
+			<div class="search">
+			<A href="search_result.php"><img src="./header_img/search_btn.jpg?t=1795207804" border=0 style="width:90%"></a>
+			</div>
+			
+			
+		</div>
+		
+		
+		
+		</div>
+	</div>	
+	
+	
+	<div class="mobile-header-menu">
+		<div class="main-menu">
+		
+		
+		<Table border=0 cellpadding=0 cellspacing=0 width=100%>
+		<tr>
+		<td align=left valign=top>
+			<Table border=0 cellpadding=0 cellspacing=0 >
+			<tr>
+			<Td><A href="http://www.hkust.edu.hk" target=_blank><img src="./header_img/ust_logo.png?t=1795207804" border=0 style="max-width:100%"></a></td>
+			<Td><A href="index.php"><img src="./header_img/site_name.png?t=1795207804" border=0 style="max-width:100%"></a></td>
+			</tr>
+			</table>
+		</td>	
+		<td width=10%></td>
+		<Td align=right><div class="rmenu-logo"><img id="mobile_menu0" src="./header_img/btn_mobile_menu.jpg?t=1795207804" border=0 style="max-width:100%"></div></td>
+		
+		
+		</tr>
+		</table>
+		
+		
+		
+		
+		</div>
+	</div>	
+	
+</div>	
+
+			<!--div class="banner">
+				<div class="banner-wrapper">
+					<a href="index.php"><img src="images/logo.jpg" class="logo"/></a>
+					<a href="http://www.ust.hk/" target="_blank"><img src="images/ust_logo.png" class="ust-logo"/></a>
+					<img src="images/rmenu.jpg" class="rmenu-logo"/>
+				</div>
+			</div-->				
+			
+					
+	
+	
+	
+	
+
+			<div class="menu">
+				<div class="menu-wrapper">
+					<ul>
+										
+					
+						<li><a href="detail.php?id=1">Why It Matters</a></li>
+									    
+				    
+				  	
+						
+			
+					  	
+										
+					
+						<li><a href="top_minds.php">Top Minds</a></li>
+									    
+				    
+				  	
+						
+			
+					  	
+										
+					
+						<li><a href="who_supported.php">Our Donors</a></li>
+									    
+				    
+				  	
+						
+			
+					  	
+											<li>
+							<a href="javascript:void(0)">To Learn More</a>
+							<ul class="sb_menu-ul">
+						
+									   		
+																										
+									<li>
+										<!--img src="images/arrow.jpg" class="subMenu-arrow"-->
+										<div class="subMenu-word mobile_top">
+											
+											<a href="ceremony_list.php" class= >List of Named Professorships</a>
+											
+										</div>
+									</li>
+									
+									
+																	
+								
+																				   		
+																									<li>
+									<!--img src="images/arrow.jpg" class="subMenu-arrow"-->
+									<div class="subMenu-word">
+										
+										<a href="ceremony.php">Ceremonies</a>
+										
+									</div>
+								</li>
+								
+								
+																
+								
+															   		
+																	
+																		
+									<li>
+										<!--img src="images/arrow.jpg" class="subMenu-arrow"-->
+										<div class="subMenu-word mobile_bottom">
+											
+											<a href="detail.php?id=7" >FAQ</a>
+											
+										</div>
+									</li>
+									
+									
+									
+																	
+								
+																			
+							</ul>
+						</li>
+				   	 	
+				   	 
+				    
+				    				    
+				    
+				  	
+						
+			
+					  	
+										
+					
+						<li><a href="detail.php?id=4">Make Your Gift</a></li>
+									    
+				    
+				  	
+						
+			
+					  	
+						
+					
+					<li class=blue_li><a href="https://dao.ust.hk" class="submenu_link" target=_blank>DAO</a></li>
+					<li class=blue_li_last><a href="detail.php?id=4" class="submenu_link">Contact Us</a></li>
+						
+					</ul>
+					
+					
+					
+					
+			
+			
+			
+			
+			
+			
+					
+					<!--div class="menu-lang">
+						<img src="images/lang_icon.png" class="lang_icon"/>
+						ENG
+						<img src="images/lang_tri.png" class="lang_tri"/>
+					</div-->
+				</div>
+			</div>
+
+
+			
+			
+			
+			<div class="lang">
+				<div class="lang-wrapper">
+					<ul>
+						<li><a href="#" class="lang-en lang-active">ENG</a></li>
+						<li><a href="javascript:changeLang('en', 'tc');" class="lang-tc">繁體</a></li>
+						<li><a href="javascript:changeLang('en', 'sc');" class="lang-sc">簡體</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="rmenu">
+				<div class="lang-wrapper-con"></div>
+				<div class="menu-wrapper-con"></div>
+			</div>						<div class="content" style="background:#FFF">
+				<div class="content-wrapper">
+					<div class="top-minds-details-left">
+						<div class="top-minds-details-title">Colin Lam Ko Yin Professorship</div>
+						<div class="top-minds-details-name">Professor Zexiang Li</div>
+						<div class=ceremony-appointed-title>Director, Hong Kong Center for Construction Robotics<br />
+Professor, Department of Electronic and Computer Engineering</div>
+						<div class="top-minds-details-line"></div>
+						<div class="top-minds-details-msg">
+						<p>For more than two decades, Professor Li Zexiang&#39;s mission has been to bridge the gap between academia and industry to drive forward social and economic development. In today&rsquo;s rapidly technologizing society, his pioneering robotics and manufacturing solutions are helping to foster an age of smart automation.</p>
+
+<p>Born in Hunan, China, Professor Li was one of the first mainland Chinese students to study the emerging field of robotics in the U.S. in the 1980s. He obtained his B.S. degree in Electrical Engineering and Economics (with honors) from Carnegie-Mellon University, followed by an M.A. in Mathematics and Ph.D. in Electrical Engineering and Computer Science from the University of California, Berkeley.</p>
+
+<p>After 13 years spent exploring robotics and artificial intelligence at leading institutions in the U.S., Professor Li joined HKUST&#39;s School of Engineering in 1992, just a year after the University&#39;s&nbsp;founding. It was there, challenged by an industrialist to retrofit a piece of Japanese machinery, that he recognized the potential of translating research output into practice.</p>
+
+<p>&quot;From then on, we began to think about how to take our research from the laboratory and turn it into useful products for industries around us.&rdquo;</p>
+
+<p>Professor Li&#39;s&nbsp;expertise lies in multi-fingered robotic hands, precision assembly and motion controllers, all key directions for the automation of China&#39;s&nbsp;rapidly growing computer, communications and consumer electronics manufacturing industry. Googol Technology, co-founded by Professor Li just a month before its more famous U.S. namesake, was the first hi-tech company in the Asia-Pacific region to focus on motion controllers and controller-based systems. Even more spectacularly, Da-Jiang Innovations (commonly known as DJI), co-founded by Professor Li and entrepreneur Frank Wang, has rapidly become the world&#39;s&nbsp;largest manufacturer of consumer drones and aerial imaging technology, with a market share of over 70%.</p>
+
+<p>In 1998, Professor Li set up HKUST&#39;s&nbsp;Automation Technology Center, where he, his colleagues and his students explore the theory of assembly processes and knowledge transfer to industry in the region. He is also a prominent member of the HKUST Robotics Institute, a multidisciplinary University-wide platform established in 2015.</p>
+
+<p>Professor Li&#39;s drive to push the boundaries of automated manufacturing is matched only by his passion for incubating creative talents and next-generation startups. Through mentorship, seed funding and supply chain support, his entrepreneurial projects have already supported around 50 companies from the region and worldwide, powering the hi-tech start-up ecosystem emerging in southern China&#39;s&nbsp;Greater Bay Area.</p>
+
+<p>Professor Li sees automation and robotics as a social good, helping to deal with the challenges caused by a rapidly aging population.&nbsp;</p>
+
+<p>&ldquo;We are already working on areas such as construction, autonomous driving and logistics,&rdquo; he explains. &ldquo;So you won&rsquo;t see a sudden switch to a different way of living. But, after a while, people will not remember what life was like before such products were available.&rdquo;</p>
+
+<p>Professor Li&#39;s&nbsp;inimitable synergy of research and entrepreneurship has received international recognition. He was named an IEEE Fellow in 2008, the highest honor in his field, and is a co-recipient of the prestigious 2019 IEEE Robotics and Automation Award for his unique contributions to robotics, innovation and entrepreneurship.</p>						</div>
+					</div>
+					<div class="top-minds-details-right">
+						<table cellpadding="0" cellspacing="0" height="100%" class="tmd-table">
+							<tr><td valign="top" class="tmd-td1">
+																											
+									
+								</td>
+							</tr>
+							
+							
+							
+														<tr><td valign="top" class="tmd-td1">
+							<div class="ceremony-photob">
+							<div class="cphoto_ppl"><img class="imgs" src="../files/ppl/1597284087_vl.jpg" data3="video" data="https://video.ust.hk/Watch.aspx?Video=627C18805112FBA2&embed=Y" />
+							<div class="c-play" onCLick="javascript:change_index1('https://video.ust.hk/Watch.aspx?Video=627C18805112FBA2&embed=Y');"><img id=playimg src="images/play.png"></div>
+							</div>
+							</div>
+							</td></tr>
+														
+							
+														<tr>
+								<td class="tmd-td2b">
+									<div class="top-minds-details-donor">
+										<div class="top-minds-details-donor-title">
+											<span class="top-minds-details-donor-title-word">DONOR</span>
+										</div>
+																				<A href="who_supported_details.php?id=65" class=top-minds-details-donor-name_link>
+										<div class="top-minds-details-donor-name">
+											Dr. Colin Lam Ko Yin										</div>
+										</a>
+																				<div class="top-minds-details-donor-line">&nbsp;</div>
+									</div>
+								</td>
+							</tr>
+														
+							
+							
+		    	
+		    	
+							
+						</table>
+						
+						
+					
+					
+					</div>
+					<BR><BR><BR><BR>
+				
+										<!--div class="top-minds-details-button">
+						<a href="top_minds_details.php?id=83" class="tmd-previous-a"><img src="images/previous.png" class="tmd-previous"/></a>
+						<a href="top_minds_details.php?id=82" class="tmd-next-a"><img src="images/next.png" class="tmd-next"/></a>
+					</div-->
+				</div>
+			</div>
+						
+			
+						
+			
+						
+			
+			
+
+
+		<div class="footer-data-pc">
+			<div class="ust-footer">
+			
+				<div class="main-menu">
+				<div class="left">
+					<div class="hkust-mlogo">
+					<A href="http://www.hkust.edu.hk" target=_blank><img src="./header_img/ust_logo2.png" border=0></a>
+					</div>
+					
+					<div class="site">
+						<div class="privacy">
+						<table border=0 cellpadding=0 cellspacing=0>
+						<tr>
+						<Td valign=middle align=left><A href="https://www.hkust.edu.hk/privacy-policy/" class=flink target=_blank>Privacy<a/></td>
+						<Td width=20></td>
+						<Td valign=middle align=left><A href="sitemap.php" class=flink>Sitemap</a></td>
+						</tr>
+						</table>
+						</div>
+						<div class="copyright">Copyright &copy; The Hong Kong University of Science and Technology. All rights reserved.</div>
+					</div>
+					
+					
+				</div>
+				
+				
+				
+				
+					
+					
+				<div class="right">
+
+<a href="https://hkust.edu.hk" target=_blank><img src="./images/ust.hk_EN_B.png" width="154" height="53" border=0></a>
+
+
+				
+					<div class="search">
+					<table border=0 cellpadding=0 cellspacing=0 width=100%>
+					<tr>
+					<Td valign=middle align=left>Follow HKUST on</td>
+					<Td width=10></td>
+					<Td valign=top align=left><a href="http://facebook.com/HKUST" target=_blank><img src="./header_img/btn_face.png" border=0></a></td>
+					<Td width=8></td>
+					<Td valign=top align=left><a href="https://www.instagram.com/hkust/" target=_blank><img src="./header_img/btn_in.png" border=0></a></td>
+					<Td width=8></td>
+					<Td valign=top align=left><a href="https://www.linkedin.com/school/11966" target=_blank><img src="./header_img/btn_link.png" border=0></a></td>
+					<Td width=8></td>
+					<Td valign=top align=left><a href="http://www.youtube.com/user/HKUST" target=_blank><img src="./header_img/btn_tube.png" border=0></a></td>
+					</tr>
+					</table>
+					
+					</div>
+				</div>
+				
+				
+				</div>
+			</div>
+			
+			
+		</div>	
+		
+		
+		
+		
+	
+		<div class="footer-data-mobile">
+			<div class="ust-footer">
+			
+				<div class="main-menu">
+				
+				
+				
+				<div class="site">
+						<div class="privacy">
+						<table border=0 cellpadding=0 cellspacing=0 align=center>
+						<tr>
+						<Td valign=middle align=left><A href="https://www.hkust.edu.hk/privacy-policy/" class=flink target=_blank>Privacy<a/></td>
+						<Td width=50></td>
+						<Td valign=middle align=left><A href="sitemap.php" class=flink>Sitemap</a></td>
+						</tr>
+						</table>
+						</div>
+						
+				</div>
+					
+
+
+				<div class="search">
+                                        <table border=0 cellpadding=0 cellspacing=0 align=center>
+                                        <tr>
+                                        <Td valign=middle align=left class=follow><a href="https://hkust.edu.hk" target=_blank><img src="./images/ust.hk_EN_B.png" width="154" height="53" border=0></a></td>
+                                        </tr>
+                                        </table>
+                               </div>
+
+
+
+					
+				<div class="search">
+					<table border=0 cellpadding=0 cellspacing=0 align=center>
+					<tr>
+					<Td valign=middle align=left>Follow HKUST on</td>
+					</tr>
+					</table>
+					
+			      </div>
+			      <div class="search">
+					<table border=0 cellpadding=0 cellspacing=0 align=center>
+					<tr>
+					<Td valign=top align=left><a href="http://facebook.com/HKUST" target=_blank><img src="./header_img/btn_face.png" border=0></a></td>
+					<Td width=10></td>
+					<Td valign=top align=left><a href="https://www.instagram.com/hkust/" target=_blank><img src="./header_img/btn_in.png" border=0></a></td>
+					<Td width=10></td>
+					<Td valign=top align=left><a href="https://www.linkedin.com/school/11966" target=_blank><img src="./header_img/btn_link.png" border=0></a></td>
+					<Td width=10></td>
+					<Td valign=top align=left><a href="http://www.youtube.com/user/HKUST" target=_blank><img src="./header_img/btn_tube.png" border=0></a></td>
+					</tr>
+					</table>
+					
+			      </div>
+					
+					
+			      <div class="hkust-mlogo">
+					<A href="http://www.hkust.edu.hk" target=_blank><img src="./header_img/ust_logo2.png" border=0  style="width:110px"></a>
+			      </div>
+						
+					
+			      <div class="copyright">Copyright &copy; The Hong Kong University of Science and Technology. <BR>All rights reserved.</div>
+
+	
+				
+				
+				
+				
+				
+				</div>
+			</div>
+			
+			
+		</div>	
+
+
+
+			<!--div class="footer">
+				<div class="footer-wrapper">
+					<div class="footer-copyright">
+						<div class=footer_ust_logo><img src="images/ust_logo.png"></div>
+						<div class="footer-q">DEVELOPMENT AND ALUMNI OFFICE</div>
+						<div class="footer-a">
+							&copy; 2017 HKUST&nbsp;&nbsp;ALL RIGHTS RESERVED&nbsp;&nbsp;DESIGNED BY <a href="http://ptc.ust.hk/" target="_blank">PTC</a>
+						</div>
+					</div>
+					
+					<div class="footer-menu">
+						<ul>
+							<li><a href="detail.php?id=4">CONTACT US</a></li>
+							<li><a href="http://dao.ust.hk/" target=_blank>DAO</a></li>
+							<li><a href="index.php" target=_blank>HOME</a></li>
+						</ul>
+						
+					</div>
+					
+					<div class="footer-copyright-wrapper2">
+					</div>
+				</div>
+			</div-->		</div>
+	</body>
+</html>

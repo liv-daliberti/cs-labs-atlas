@@ -1145,5 +1145,103 @@
    "why": "No new DBLP ORCID is inherited without primary-source review.",
    "evidence": []
   }
+ },
+ "Wei Zhang": {
+  "dblp": [
+   "https://dblp.org/pid/10/4661-12"
+  ],
+  "dblp_drop": [
+   "https://dblp.org/pid/10/4661-1"
+  ],
+  "openalex": [
+   "https://openalex.org/A5061515087"
+  ],
+  "why_dblp": "Source-bound resolution of explicit hold: official ECE page and local DBLP Wei Zhang0012 have the exact eeweiz profile path and identical Google Scholar user1nl6hScAAAAJ. Wei Zhang0001 instead has the UNSW homepage and a different Scholar user/ORCID; remove that wrong census PID. Faculty history2013HKUST,2010-2013NTU,PrincetonPhD also matches0012.",
+  "why_openalex": "A5061515087 school author metadata carries ORCID0000-0002-7622-6714 of the source-bound DBLP0012 record, with matching FPGA/architecture publication titles; ordinary school and time gates remain required.",
+  "reviewer": "codex-hkust-zero-1120",
+  "reviewed_on": "2026-11-20",
+  "identity_evidence": [
+   {
+    "url": "https://ece.hkust.edu.hk/eeweiz",
+    "sha256": "61b9fc62f772b4814317327e6141e48307d97de27d606926d295bd620b4ac35a",
+    "artifact": "hierarchy/hkust/reviewed/identity-sources/61b9fc62f772b4814317327e6141e48307d97de27d606926d295bd620b4ac35a.html",
+    "quote": "She joins Hong Kong University of Science and Technology in 2013 and establishes Reconfigurable System Lab."
+   }
+  ],
+  "dblp_identity_review": {
+   "correct": {
+    "names": [
+     "Wei Zhang 0012"
+    ],
+    "urls": [
+     "http://www.ece.ust.hk/ece.php/profile/facultydetail/eeweiz",
+     "http://repository.ust.hk/ir/AuthorProfile/zhang-wei",
+     "https://scholar.google.com/citations?user=1nl6hScAAAAJ",
+     "https://orcid.org/0000-0002-7622-6714",
+     "https://www.wikidata.org/entity/Q51548167",
+     "https://www.scopus.com/authid/detail.uri?authorId=55323850100",
+     "https://www.scopus.com/authid/detail.uri?authorId=36350399400",
+     "https://ieeexplore.ieee.org/author/37085379157"
+    ],
+    "orcid": [
+     "0000-0002-7622-6714"
+    ],
+    "affiliations": [
+     "Hong Kong University of Science and Technology, Department of Electronic and Computer Engineering, China",
+     "Nanyang Technological University, Singapore",
+     "Princeton University, NJ, USA"
+    ]
+   },
+   "rejected": {
+    "names": [
+     "Wei Zhang 0001"
+    ],
+    "urls": [
+     "http://www2.eet.unsw.edu.au/~wzhang/",
+     "https://scholar.google.com/citations?user=PJi27JMAAAAJ",
+     "https://mathgenealogy.org/id.php?id=173773",
+     "https://orcid.org/0000-0002-1059-3642",
+     "https://www.researcherid.com/rid/C-3736-2011",
+     "https://www.researchgate.net/profile/Wei-Zhang-316/2",
+     "https://ieeexplore.ieee.org/author/37086641009"
+    ],
+    "orcid": [
+     "0000-0002-1059-3642"
+    ],
+    "affiliations": [
+     "University of New South Wales, Sydney, NSW, Australia",
+     "Hong Kong University of Science and Technology, Department of Electronic Engineering, Hong Kong",
+     "Chinese University of Hong Kong, Hong Kong"
+    ]
+   },
+   "dump": "/n/fs/resemble/homogenizing-science/code/hierarchy/hkust/raw/dblp-dump-persons-school.json.gz",
+   "dump_sha256": "8be84ceda8b9016478974bf3c58701403eac09faefb312af4df626a4de9d7dbb"
+  },
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No ORCID inherited globally; resolve paper identity with the reviewed author only.",
+   "evidence": []
+  }
+ },
+ "Zaixi Zhang": {
+  "openalex": [
+   "https://openalex.org/A5063733770"
+  ],
+  "why_openalex": "The owned HKUST-email homepage lists the exact CVPR2023 title Backdoor Defense via Deconfounded Representation Learning and links arXiv2303.06818. Stored OA W4386072159 names Zaixi Zhang and authorA5063733770 on that same publication. This identifies the author only; the2023USTC work stays out, while the separate October2026 own-HKUST authorship passes ordinary faculty-year checks.",
+  "reviewer": "codex-hkust-zero-1120",
+  "reviewed_on": "2026-11-20",
+  "identity_evidence": [
+   {
+    "url": "https://zaixizhang.github.io/index.html",
+    "sha256": "d46e245920416347ff24379f6d34345d6e6689dcbe747ffaba503401b463d277",
+    "artifact": "hierarchy/hkust/reviewed/identity-sources/d46e245920416347ff24379f6d34345d6e6689dcbe747ffaba503401b463d277.html",
+    "quote": "Backdoor Defense via Deconfounded Representation Learning"
+   }
+  ],
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No new DBLP ORCID inherited.",
+   "evidence": []
+  }
  }
 }

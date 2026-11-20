@@ -2909,7 +2909,24 @@
   },
   "Wei Zhang": {
     "no_identity": true,
-    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. Common name: the DBLP person 'Wei Zhang 0001' lists UNSW first and HKUST Electronic Engineering only as one of three affiliations, with no HKUST homepage URL on the record; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md)."
+    "why_no_identity": "2026-11-10 (claude-hkust-admit-1109, coordinator direction): held. Common name: the DBLP person 'Wei Zhang 0001' lists UNSW first and HKUST Electronic Engineering only as one of three affiliations, with no HKUST homepage URL on the record; not bound on name alone. Papers are attributed only after a source-bound identity review (docs/IDENTITY-HOLDS.md).",
+    "periods": [
+      {
+        "id": "hkust-zero-1120-wei-zhang",
+        "start": "2013",
+        "end": null,
+        "asof": "2026-11-20",
+        "evidence": [
+          {
+            "url": "https://ece.hkust.edu.hk/eeweiz",
+            "sha256": "61b9fc62f772b4814317327e6141e48307d97de27d606926d295bd620b4ac35a",
+            "artifact": "hierarchy/hkust/reviewed/identity-sources/61b9fc62f772b4814317327e6141e48307d97de27d606926d295bd620b4ac35a.html",
+            "quote": "She joins Hong Kong University of Science and Technology in 2013 and establishes Reconfigurable System Lab.",
+            "kind": "own_faculty_page_cv"
+          }
+        ]
+      }
+    ]
   },
   "Daniel Pérez Palomar": {
     "dblp": [
@@ -3147,7 +3164,9 @@
   "Tony F. CHAN": {
     "review_note": "Owner D-0009 2026-11-18 (PI fill): ladder professor in the dated CSE listings 2016-2021 (Professor Emeritus) but no PhD-advising or own-lab evidence: no stored HKUST CSE PhD defence, qualifying or proposal page 2016-2026 names the person as Supervisor and no lab page is held; faculty status alone is not a PI. reason_code no_advising_or_lab_evidence. Revisit if advising evidence is found (listing years end before or inside the window).",
     "reason_code": "no_advising_or_lab_evidence",
-    "is_pi": false
+    "is_pi": false,
+    "exclude": true,
+    "why": "Owner D-0009 2026-11-18 (PI fill): ladder professor in the dated CSE listings 2016-2021 (Professor Emeritus) but no PhD-advising or own-lab evidence: no stored HKUST CSE PhD defence, qualifying or proposal page 2016-2026 names the person as Supervisor and no lab page is held; faculty status alone is not a PI. reason_code no_advising_or_lab_evidence. Revisit if advising evidence is found (listing years end before or inside the window). 2026-11-20: replay this existing owner decision through the native exclude gate because legacy census is_pi=true otherwise wins over is_pi=false. This is a PI-scope correction, not paper recovery."
   },
   "Shueng-Han Gary CHAN": {
     "is_pi": true,
@@ -3295,22 +3314,30 @@
   "David Paul ROSSITER": {
     "review_note": "Owner D-0009 2026-11-18 (PI fill): ladder professor in the dated CSE listings 2016-2021 (Associate Professor of Engineering Educa) but no PhD-advising or own-lab evidence: no stored HKUST CSE PhD defence, qualifying or proposal page 2016-2026 names the person as Supervisor and no lab page is held; faculty status alone is not a PI. reason_code no_advising_or_lab_evidence. Revisit if advising evidence is found (listing years end before or inside the window).",
     "reason_code": "no_advising_or_lab_evidence",
-    "is_pi": false
+    "is_pi": false,
+    "exclude": true,
+    "why": "Owner D-0009 2026-11-18 (PI fill): ladder professor in the dated CSE listings 2016-2021 (Associate Professor of Engineering Educa) but no PhD-advising or own-lab evidence: no stored HKUST CSE PhD defence, qualifying or proposal page 2016-2026 names the person as Supervisor and no lab page is held; faculty status alone is not a PI. reason_code no_advising_or_lab_evidence. Revisit if advising evidence is found (listing years end before or inside the window). 2026-11-20: replay this existing owner decision through the native exclude gate because legacy census is_pi=true otherwise wins over is_pi=false. This is a PI-scope correction, not paper recovery."
   },
   "Gibson LAM": {
     "review_note": "Owner D-0009 2026-11-18 (PI fill): ladder professor in the dated CSE listings 2016-2021 (Assistant Professor of Engineering Educa) but no PhD-advising or own-lab evidence: no stored HKUST CSE PhD defence, qualifying or proposal page 2016-2026 names the person as Supervisor and no lab page is held; faculty status alone is not a PI. reason_code no_advising_or_lab_evidence. Revisit if advising evidence is found (listing years end before or inside the window).",
     "reason_code": "no_advising_or_lab_evidence",
-    "is_pi": false
+    "is_pi": false,
+    "exclude": true,
+    "why": "Owner D-0009 2026-11-18 (PI fill): ladder professor in the dated CSE listings 2016-2021 (Assistant Professor of Engineering Educa) but no PhD-advising or own-lab evidence: no stored HKUST CSE PhD defence, qualifying or proposal page 2016-2026 names the person as Supervisor and no lab page is held; faculty status alone is not a PI. reason_code no_advising_or_lab_evidence. Revisit if advising evidence is found (listing years end before or inside the window). 2026-11-20: replay this existing owner decision through the native exclude gate because legacy census is_pi=true otherwise wins over is_pi=false. This is a PI-scope correction, not paper recovery."
   },
   "Wai Ting LEUNG": {
     "review_note": "Owner D-0009 2026-11-18 (PI fill): ladder professor in the dated CSE listings 2016-2021 (Assistant Professor of Engineering Educa) but no PhD-advising or own-lab evidence: no stored HKUST CSE PhD defence, qualifying or proposal page 2016-2026 names the person as Supervisor and no lab page is held; faculty status alone is not a PI. reason_code no_advising_or_lab_evidence. Revisit if advising evidence is found (listing years end before or inside the window).",
     "reason_code": "no_advising_or_lab_evidence",
-    "is_pi": false
+    "is_pi": false,
+    "exclude": true,
+    "why": "Owner D-0009 2026-11-18 (PI fill): ladder professor in the dated CSE listings 2016-2021 (Assistant Professor of Engineering Educa) but no PhD-advising or own-lab evidence: no stored HKUST CSE PhD defence, qualifying or proposal page 2016-2026 names the person as Supervisor and no lab page is held; faculty status alone is not a PI. reason_code no_advising_or_lab_evidence. Revisit if advising evidence is found (listing years end before or inside the window). 2026-11-20: replay this existing owner decision through the native exclude gate because legacy census is_pi=true otherwise wins over is_pi=false. This is a PI-scope correction, not paper recovery."
   },
   "Desmond Yau Chat TSOI": {
     "review_note": "Owner D-0009 2026-11-18 (PI fill): ladder professor in the dated CSE listings 2016-2021 (Assistant Professor of Engineering Educa) but no PhD-advising or own-lab evidence: no stored HKUST CSE PhD defence, qualifying or proposal page 2016-2026 names the person as Supervisor and no lab page is held; faculty status alone is not a PI. reason_code no_advising_or_lab_evidence. Revisit if advising evidence is found (listing years end before or inside the window).",
     "reason_code": "no_advising_or_lab_evidence",
-    "is_pi": false
+    "is_pi": false,
+    "exclude": true,
+    "why": "Owner D-0009 2026-11-18 (PI fill): ladder professor in the dated CSE listings 2016-2021 (Assistant Professor of Engineering Educa) but no PhD-advising or own-lab evidence: no stored HKUST CSE PhD defence, qualifying or proposal page 2016-2026 names the person as Supervisor and no lab page is held; faculty status alone is not a PI. reason_code no_advising_or_lab_evidence. Revisit if advising evidence is found (listing years end before or inside the window). 2026-11-20: replay this existing owner decision through the native exclude gate because legacy census is_pi=true otherwise wins over is_pi=false. This is a PI-scope correction, not paper recovery."
   },
   "Kwang-Ting Tim CHENG": {
     "is_pi": true,
@@ -3362,7 +3389,10 @@
       "role": "faculty with advising evidence (owner D-0009)",
       "note": "PhD Qualifying Examination page (12 October 2022) names the person as Supervisor; 12 PhD defence/qualifying/proposal pages 2016-2026 in the stored CSE postgraduate pages; ladder faculty in the dated CSE listings 2019-2021 (Chair Professor Primary Appointment: MAT)"
     },
-    "why": "Owner D-0009 2026-11-18 (PI fill): HKUST Han-suffix merge made this listed CSE professor a census person; admitted only with PhD-advising evidence."
+    "why": "Owner D-0009 2026-11-18 (PI fill): HKUST Han-suffix merge made this listed CSE professor a census person; admitted only with PhD-advising evidence.",
+    "mixed_openalex": [
+      "https://openalex.org/A5100378792"
+    ]
   },
   "Tim Kwang-Ting CHENG": {
     "review_note": "Owner D-0009 2026-11-18 (PI fill): same person as 'Kwang-Ting Tim CHENG' (word-order or Han-suffix spelling of one census person); not a second PI.",
@@ -3439,5 +3469,31 @@
     "review_note": "Owner D-0009 2026-11-18 (PI fill 2; coordinator ruling 2026-11-19): CSRankings member; the only HKUST CSE ladder-or-emeritus evidence is the dated CSE listings 2016-2021 giving Professor Emeritus (not a ladder rank) and the 2016-04-02 thesis-defence page naming him Supervisor (https://cse.hkust.edu.hk/pg/defenses/S16/zsuab-02-04-2016.html, sha256 252d4b67bd0e90900299a7c2dfc16848df7eca91f7ef46f0edff1c3224688f37, quote 'Prof. Mounir Hamdi (Supervisor)'); no year in the 2016-2026 window has both a ladder rank and advising evidence, and no listing exists from 2022 (HKUST(GZ) vice-presidency, out of scope by D-0014); no lab page is held. An earlier admission (da0475ba) and a 2016-only period (726e64d2) are withdrawn. Excluded until ladder-rank-with-advising or own-lab evidence is found. reason_code no_advising_or_lab_evidence.",
     "reason_code": "no_advising_or_lab_evidence",
     "is_pi": false
+  },
+  "Zexiang Li": {
+    "periods": [
+      {
+        "id": "hkust-zero-1120-zexiang-li",
+        "start": "1992",
+        "end": null,
+        "asof": "2026-11-20",
+        "evidence": [
+          {
+            "url": "https://np.hkust.edu.hk/en/top_minds_details.php?id=59",
+            "sha256": "f1af68f17413b84b24b0327489b1a9ebfdb210770c6a884519ddc352622be452",
+            "artifact": "hierarchy/hkust/reviewed/identity-sources/f1af68f17413b84b24b0327489b1a9ebfdb210770c6a884519ddc352622be452.html",
+            "quote": "Professor Li joined HKUST's School of Engineering in 1992",
+            "kind": "own_faculty_page_cv"
+          },
+          {
+            "url": "https://seng.hkust.edu.hk/about/people/faculty/zexiang-li",
+            "sha256": "3bf9f0d019f5418dcbd1425f409bf91e6b7c13f8cd7bf80a027414bc71e97c6e",
+            "artifact": "hierarchy/hkust/reviewed/identity-sources/3bf9f0d019f5418dcbd1425f409bf91e6b7c13f8cd7bf80a027414bc71e97c6e.html",
+            "quote": "Colin Lam Ko Yin Professor of Engineering Professor, Department of Electronic and Computer Engineering",
+            "kind": "current_faculty_profile"
+          }
+        ]
+      }
+    ]
   }
 }
