@@ -328,3 +328,87 @@ def test_reviewed_pi_source_separates_shared_fallback_without_rewriting_history(
             A.run(['zju'], root, db, use_sweep=False, published={})
         assert A.registry_fingerprint(db) == snapshot
     db.close()
+
+
+def test_source_scoped_homonyms_get_distinct_stable_ids_without_url_or_collection_joins(tmp_path):
+    fx = fixture()
+    fx['berkeley']['students']['Michael Jordan'] = [
+        stu('ext:berkeley:ziyu-one', 'Ziyu Chen', ['https://example.edu/team'], sourceRecordKey='profile-one'),
+        stu('ext:berkeley:ziyu-two', 'Ziyu Chen', ['https://example.edu/team'], sourceRecordKey='profile-two'),
+    ]
+    write(tmp_path / 'data', fx)
+    first, report = ids(tmp_path / 'data', tmp_path / 'registry.sqlite')
+    second, rerun = ids(tmp_path / 'data', tmp_path / 'registry.sqlite')
+    one = ('stu', 'berkeley', 'Michael Jordan', 'ext:berkeley:ziyu-one')
+    two = ('stu', 'berkeley', 'Michael Jordan', 'ext:berkeley:ziyu-two')
+    assert first[one] != first[two]
+    assert first == second
+    assert report['report']['stats']['source_scoped_records'] == 2
+    assert rerun['report']['stats'].get('minted', 0) == 0
+    assert rerun['report']['stats'].get('redirects_new', 0) == 0
+
+
+def test_source_record_key_in_two_labs_never_implies_global_identity_or_coadvising(tmp_path):
+    fx = fixture()
+    shared = 'ext:berkeley:unresolved'
+    for owner, other in [('Michael Jordan', 'Alex Dimakis'), ('Alex Dimakis', 'Michael Jordan')]:
+        record = stu(shared, 'Ziyu Chen', ['https://example.edu/team'], sourceRecordKey='same-source-profile')
+        record['relations'][0]['sources'][0]['quote'] = f'Ziyu Chen is co-advised by {owner} and {other}.'
+        fx['berkeley']['students'][owner] = [record]
+    write(tmp_path / 'data', fx)
+    out, report = ids(tmp_path / 'data', tmp_path / 'registry.sqlite')
+    assert out['stu', 'berkeley', 'Michael Jordan', shared] != out['stu', 'berkeley', 'Alex Dimakis', shared]
+    assert report['report']['coadvised_student_groups'] == 0
+    assert not any(g['native_person'] == shared for g in report['report']['coadvising_evidence'])
+
+
+def test_source_scoped_profile_cannot_borrow_faculty_collection_or_byline_author_id(tmp_path):
+    fx = fixture()
+    owner = 'Michael Jordan'
+    # Both an inherited collection key and an exact OpenAlex byline would otherwise
+    # identify this record with Chi Jin's faculty identity in the fixture.
+    student = stu('berkeley_person_cj', 'Chi Jin', ['https://example.edu/team'],
+                  sourceRecordKey='unresolved-undergraduate', merged=['berkeley_fac_mij'])
+    fx['berkeley']['students'][owner] = [student]
+    write(tmp_path / 'data', fx)
+    out, report = ids(tmp_path / 'data', tmp_path / 'registry.sqlite')
+    sid = out['stu', 'berkeley', owner, 'berkeley_person_cj']
+    assert sid != out['pi', 'princeton', 'Chi Jin'][0]
+    assert sid != out['pi', 'berkeley', 'Michael Jordan'][0]
+    assert report['report']['students_matched_to_pi_elsewhere'] == 0
+
+
+def test_invalid_source_record_key_refuses_before_registry_or_package_writes(tmp_path):
+    import pytest
+    for j, invalid in enumerate(['', '   ', None, 0, [], False]):
+        root = tmp_path / str(j)
+        fx = fixture()
+        fx['berkeley']['students']['Michael Jordan'][0]['sourceRecordKey'] = invalid
+        write(root, fx)
+        before = (root / 'berkeley/students.json').read_bytes()
+        db = A.open_registry(tmp_path / f'registry-{j}.sqlite', seed=False)
+        try:
+            with pytest.raises(ValueError, match='sourceRecordKey'):
+                A.run(['berkeley', 'princeton'], root, db)
+            assert db.execute('select count(*) from ids').fetchone()[0] == 0
+            assert (root / 'berkeley/students.json').read_bytes() == before
+        finally:
+            db.close()
+
+
+def test_source_scoped_records_join_only_after_exact_positive_identity_review(tmp_path):
+    fx = fixture(); native = 'ext:berkeley:reviewed-source-profile'; name = 'Sam Student'
+    owners = ['Michael Jordan', 'Alex Dimakis']; person_url = 'https://person.example.edu/sam'
+    for j, owner in enumerate(owners):
+        fx['berkeley']['students'][owner] = [stu(native, name, [f'https://example.edu/group-{j}'], sourceRecordKey='profile-one')]
+    root = tmp_path / 'data'; write(root, fx)
+    review = dict(scope='cross_lab', school='berkeley', verdict='same_person', canonical_name=name,
+        identity_url=person_url, memberships=[dict(pi=owner, person=native) for owner in owners],
+        evidence=[dict(kind='primary_person_page', url=person_url, sha256='1' * 64, quote='Sam Student personal page')] +
+            [dict(kind='roster_person_link', pi=owner, person=native, url=f'https://example.edu/group-{j}',
+                  sha256='0' * 64, quote=f'<a href="{person_url}">Sam Student</a>') for j, owner in enumerate(owners)])
+    (root / 'student-identity-review.json').write_text(json.dumps([review]))
+    out, result = ids(root, tmp_path / 'registry.sqlite')
+    assert out['stu', 'berkeley', owners[0], native] == out['stu', 'berkeley', owners[1], native]
+    assert result['report']['reviewed_cross_lab_identity_groups'] == 1
+    assert result['report']['stats'].get('redirects_new', 0) == 0

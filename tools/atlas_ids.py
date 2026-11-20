@@ -546,6 +546,17 @@ def student_urls(r):
     return sorted({q.get('url') for rel in r.get('relations') or [] for q in rel.get('sources') or [] if q.get('url')})
 
 
+def source_record_anchor(school, pi, student):
+    """An unresolved source profile is a lab-scoped observation, not a global name/URL identity."""
+    if 'sourceRecordKey' not in student:
+        return None
+    key = student['sourceRecordKey']
+    if not isinstance(key, str) or not key.strip():
+        raise ValueError('sourceRecordKey must be a nonempty string')
+    value = json.dumps([pi, key], ensure_ascii=False, separators=(',', ':'))
+    return ('name', f'{school}:source-record:' + hashlib.sha256(value.encode()).hexdigest())
+
+
 COADVISED = re.compile(r'\bco[-\s]?(?:advised|supervised)\s*(?:with\b|by\b|w/)\s*', re.I)
 COADVISED_MENTION = re.compile(r'\bco[-\s]?(?:advis|supervis)', re.I)
 STUDENT_DESCRIPTORS = {'phd', 'ph', 'd', 'student', 'master', 'masters', 'msc', 'ms', 'm', 's', 'sc',
@@ -799,6 +810,7 @@ def reviewed_cross_lab_identities(data, ents, hdir, nick=None):
             token = dict(public_name=name)  # shared object identity; never read from native records or serialized
             for key in keys:
                 ents[key]['anchors'].add(anchor); ents[key]['_repository_author_proof'] = token
+                ents[key]['_positive_identity_review'] = True
             seen.update(keys); proofs.append(dict(school=school, native_person=keys[0][3], keys=keys,
                                                   canonical_name=name, evidence=review.get('evidence'), repository_author=source_proof,
                                                   reviewed_input_sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
@@ -827,6 +839,7 @@ def reviewed_cross_lab_identities(data, ents, hdir, nick=None):
         anchor = ('name', f'{school}:{nname(name)}:{url}')
         for key in keys:
             ents[key]['anchors'].add(anchor)
+            ents[key]['_positive_identity_review'] = True
         seen.update(keys); proofs.append(dict(school=school, native_person=keys[0][3], keys=keys,
                                               canonical_name=name, identity_url=url, evidence=evidence,
                                               reviewed_input_sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
@@ -881,8 +894,10 @@ def coadvised_external_groups(data, ents, registry, nick=None, held=None):
     for school, (pis, students, _, _) in data.items():
         for pi, records in students.items():
             for r in records:
-                if str(r['person']).startswith('ext:'):
-                    groups[school, r['person']].append((('stu', school, pi, r['person']), r))
+                key = ('stu', school, pi, r['person'])
+                if str(r['person']).startswith('ext:') and (not ents[key].get('source_scoped') or
+                                                           ents[key].get('_positive_identity_review')):
+                    groups[school, r['person']].append((key, r))
     joins, holds = [], []
     for (school, person), records in sorted(groups.items()):
         if len(records) < 2:
@@ -1104,11 +1119,15 @@ def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write
             for r in recs:
                 k = ('stu', s, pi, r['person'])
                 ids_ = [r['person']] + [m for m in r.get('merged') or []]
-                A = {('coll', f'{s}:{i}') for i in ids_ if i and not str(i).startswith('ext:')}
+                source_anchor = source_record_anchor(s, pi, r)
+                A = {source_anchor} if source_anchor else {('coll', f'{s}:{i}') for i in ids_ if i and not str(i).startswith('ext:')}
                 if not A:
                     urls = student_urls(r)
                     A = {('name', f'{s}:{nname(r["name"])}:{u}') for u in urls} or {('name', f'{s}:{nname(r["name"])}:lab:{slug(pi)}')}
                 ents[k] = dict(kind='stu', school=s, name=r['name'], names=[r['name']] + list(r.get('aliases') or []), anchors=A)
+                if source_anchor:
+                    ents[k]['source_scoped'] = True
+                    stats['source_scoped_records'] += 1
     # Existing normal member anchors identify issued history, not certificate URLs.
     # A certificate cannot silently split or redirect that history after removing an OA bridge.
     scoped_issued = {}
@@ -1145,10 +1164,12 @@ def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write
             for x in sp:
                 if work_only(x):
                     continue  # another ordinary row may have populated this same (work, byline) key
+                sk = ('stu', s, x['pi'], x['student'])
+                if ents.get(sk, {}).get('source_scoped'):
+                    continue  # a name-only byline cannot identify an unresolved source observation
                 aid = got.get((norm_oa(x.get('oa'), 'W'), x.get('byline')))
                 if not aid or aid not in pi_by_oa:
                     continue
-                sk = ('stu', s, x['pi'], x['student'])
                 if sk not in ents:
                     continue
                 for pk in pi_by_oa[aid]:
