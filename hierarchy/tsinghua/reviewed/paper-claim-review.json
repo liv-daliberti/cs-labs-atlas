@@ -3646,6 +3646,27 @@
           "kind": "frozen_native_candidate_claim_under_review"
         }
       ]
+    },
+    {
+      "id": "tsinghua-xiaomin-sun-student-abstract-W3037576402-1120",
+      "pi": "孙晓民",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W3037576402",
+        "doi": "10.1609/aaai.v34i10.7248"
+      },
+      "why": "Primary publisher PDF explicitly labels this exact two-page item Student Abstract, while the stored OpenAlex record calls it conference-paper. Hold this source-specific claim for the source-type discrepancy under R-PAP-33, rather than treating provider type as independent research-paper evidence. Other full papers and this PI identity remain unaffected.",
+      "reviewed_by": "codex-tsinghua-closeout-1120",
+      "reviewed_at": "2026-11-20",
+      "evidence": [
+        {
+          "url": "https://ojs.aaai.org/index.php/AAAI/article/download/7248/7102",
+          "sha256": "09a653d21aa4214d0120d2818e8e25aedb390ac12707f8966de5f2052b089fe0",
+          "quote": "                                     The Thirty-Fourth AAAI Conference on Artiﬁcial Intelligence (AAAI-20)\n\n\n\n\n                       Combining Fine-Tuning with a Feature-Based\n                Approach for Aspect Extraction on Reviews (Student Abstract)\n                             Xili Wang,1,2,3 Hua Xu,1,2 Xiaomin Sun,1,2 Guangcan Tao4\n      1\n          State Key Laboratory of Intelligent Technology and Systems, Department of Computer Science and Technology,\n                                            Tsinghua University, Beijing 100084, China\n           2\n             Beijing National Research Center for Information Science and Technology(BNRist), Beijing 100084, China\n                             3\n                               Department of Automation, Tsinghua University, Beijing 100084, China\n                              4\n                                Food Safety and Nutrition (Guizhou) Information Technology Co., Ltd\n                                zdlp@sina.cn, {xuhua, sxm123}@tsinghua.edu.cn, tgcan@fsnip.com\n\n                           Abstract                                         works (Hewitt and Manning 2019) found that context em-\n                                                                            beddings (e.g., BERT) contain word sense(e.g., is ”ba",
+          "kind": "primary_publisher_complete_two_page_student_abstract",
+          "pages": 2
+        }
+      ]
     }
   ]
 }
