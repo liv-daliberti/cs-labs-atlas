@@ -378,13 +378,24 @@ def merged_alias_spellings(school, pis, here=None):
     return out
 
 
-def external_member_id(school, pi, name):
+def external_member_id(school, pi, name, source_record_key=None):
     """Retain legacy Latin IDs; unromanized names need a nonempty, lab-scoped identity (R-HIER-03)."""
     slug = re.sub('[^a-z0-9]+', '-', name.lower()).strip('-')
     if not slug or CJK.search(name):
         key = json.dumps([pi, unicodedata.normalize('NFKC', name).strip()], ensure_ascii=False)
         slug = 'name-' + hashlib.sha256(key.encode()).hexdigest()[:24]
+    if source_record_key is not None:
+        if not isinstance(source_record_key, str) or not source_record_key.strip():
+            raise ValueError('source_record_key must be a nonempty string')
+        key = json.dumps([pi, source_record_key], ensure_ascii=False)
+        slug += '-source-' + hashlib.sha256(key.encode()).hexdigest()[:20]
     return f'ext:{school}:{slug}'
+
+
+def compatible_source_records(a, b):
+    """Explicit unresolved source records cannot be consolidated by name alone."""
+    ka, kb = a.get('sourceRecordKey'), b.get('sourceRecordKey')
+    return ka == kb if ka is not None or kb is not None else True
 
 
 def researched_relation_type(role, withheld=False):
@@ -430,8 +441,9 @@ def researched(ctx, stu, by_name):
             if not (s_.get('name') and s_.get('quote') and s_.get('sha256')):
                 continue
             t_ = toks(s_['name']); nm_ = Name([s_['name']])
-            match_ = [q for q in by_name.get(t_[-1] if t_ else '', []) if nm_.match(q['name'])]
-            sid = match_[0]['id'] if len(match_) == 1 else external_member_id(school, p['pi'], s_['name'])
+            source_key = s_.get('source_record_key')
+            match_ = [] if source_key is not None else [q for q in by_name.get(t_[-1] if t_ else '', []) if nm_.match(q['name'])]
+            sid = match_[0]['id'] if len(match_) == 1 else external_member_id(school, p['pi'], s_['name'], source_key)
             # a lab-page entry whose role the audit withheld (role null, role_basis withheld_*: Berkeley, 2026-11-01) is a plain lab MEMBER, not a
             # student: it may be a postdoc or a visitor. roles ['member'] shows as 'Lab member' on the site (build-cs-hierarchy.py role_label).
             role_ = 'visiting' if (p['pi'], SD.fold(s_['name'])) in visiting_decided else s_.get('role')   # R-STU-17: decided `visiting` in student-decisions.json
@@ -444,6 +456,8 @@ def researched(ctx, stu, by_name):
             r = stu[p['pi']].setdefault(sid, dict(person=sid, name=match_[0]['name'] if len(match_) == 1 else s_['name'],
                                                   roles=['member'] if withheld else [role_ or 'student'], relations=[]))
             r['roles'] = list(dict.fromkeys(r['roles'] + (['member'] if withheld else [role_ or 'student'])))
+            if source_key is not None:
+                r['sourceRecordKey'] = source_key
             # a visiting student is a lab member, never an adviser relation (R-STU-17): researched_membership, like `member`
             r['relations'].append(dict(type=relation_type, years=as_years(s_.get('years'), n),
                                        role=role_, **({'role_withheld': True} if withheld else {}), sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])]
@@ -528,10 +542,11 @@ def merge_within_lab(ctx, stu):
         recs.sort(key=lambda r: (str(r['person']).startswith('ext:'), -len(r['relations'])))  # a collection person wins
         keep = []
         for r in recs:
-            tgt = next((k for k in keep if Name([k['name']] + k.get('aliases', [])).match(r['name']) or Name([r['name']]).match(k['name'])
-                        or any(same_student(r['name'], q, initials=False) for q in [k['name']] + k.get('aliases', []))), None)
+            tgt = next((k for k in keep if compatible_source_records(k, r) and (
+                        Name([k['name']] + k.get('aliases', [])).match(r['name']) or Name([r['name']]).match(k['name'])
+                        or any(same_student(r['name'], q, initials=False) for q in [k['name']] + k.get('aliases', [])))), None)
             if tgt is None:  # R-STU-13: the same, with the initial-only tokens optional; counted apart
-                tgt = next((k for k in keep if any(initials_optional(r['name'], q) for q in [k['name']] + k.get('aliases', []))), None)
+                tgt = next((k for k in keep if compatible_source_records(k, r) and any(initials_optional(r['name'], q) for q in [k['name']] + k.get('aliases', []))), None)
                 if tgt is not None:
                     n['student_records_merged_initials_optional'] += 1
                     ctx.initials_merges.append(dict(pi=p['pi'], kept=[tgt['person'], tgt['name']], merged=[r['person'], r['name']]))

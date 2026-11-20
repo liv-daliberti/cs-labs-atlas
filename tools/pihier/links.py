@@ -184,6 +184,11 @@ def link_students(ctx):
     lab_names = {pi_: {' '.join(gwords(clean_person_name(f))) for sid in S_ for f in forms[sid]} for pi_, S_ in stu.items()}
 
     def byline_ok(sid, raw, how, pi=None, r=None):
+        # Distinct reviewed source profiles may have the same full name. Neither a school
+        # affiliation nor a nearby observation year disambiguates their authorship.
+        if stu.get(pi, {}).get(sid, {}).get('sourceRecordKey') is not None:
+            if sum(bool(how(other, raw)) for other in stu.get(pi, {})) > 1:
+                return False
         return how(sid, raw) and not student_given_conflict(sid, raw, pi=pi) and not (r is not None and hyper_authored(r) and initials_only(raw))
     guard_samples, guard_kept_samples = [], []
 
