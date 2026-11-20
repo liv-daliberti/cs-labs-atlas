@@ -175,3 +175,27 @@ purpose = "OpenAlex (snapshot first; the shared 10k/day key)"
 host = "api.ror.org"
 use = "none"
 purpose = "ROR lookup held: robots.txt returned 403 to the project client on 2026-11-11; local OpenAlex snapshot supplies the recorded ROR ID"
+
+[[hosts]]
+host = "xk.qust.edu.cn"
+use = "live"
+purpose = "Official former-HIT faculty profile: Cheng Yuanzhi employment dates and owned bibliography; no QUST papers are admitted as HIT by this host approval."
+probe = "https://xk.qust.edu.cn/info/1082/4731.htm"
+
+[[hosts]]
+host = "ai.ustb.edu.cn"
+use = "live"
+purpose = "Official Ning Li biography: dated HIT Weihai faculty roles and departure; no USTB appointment is treated as HIT."
+probe = "https://ai.ustb.edu.cn/szdw/xsszmjs/L/c5e7c1d0bb6d4e9a8e2385d526242f15.htm"
+
+[[hosts]]
+host = "gejingquan.github.io"
+use = "live"
+purpose = "Faculty-owned biography and bibliography linked to the HIT Jingquan Ge profile; papers still require HIT byline and appointment evidence."
+probe = "https://gejingquan.github.io/"
+
+[[hosts]]
+host = "drjieliu.github.io"
+use = "live"
+purpose = "Jie Liu personal biography and publication list linked by HIT own research center."
+probe = "https://drjieliu.github.io/"
