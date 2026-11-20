@@ -7,7 +7,7 @@ import atlas_paths as P  # data paths (DATA_FILES)
 import census_overrides as CO  # reviewed overrides: shared file + an onboarding school's own
 
 from .common import AFF, INST, as_list, collection_work_matcher, read
-from .names import Name, literal_cjk_name, nick_ok, placeholder_name, toks
+from .names import Name, literal_cjk_name, nick_ok, nosuffix, placeholder_name, toks
 from .periods import listings_after_move, pi_listings, pi_mine, pi_periods
 
 COLLECTIVE = re.compile(r'\b(cent(?:er|re)|initiative|consortium|program(?:me)?|project|cluster|institute)\b', re.I)  # not labs (owner, 2026-10-21)
@@ -82,7 +82,7 @@ def merge_census_rows(census, ov, n):
     for x in census:  # census duplicate pairs (one person listed twice): same DBLP PID or same collection person
         if not (x.get('is_pi') or (ov.get(x['name']) or {}).get('is_pi')) or x.get('not_faculty'):  # a reviewed is_pi wins
             continue
-        t = toks(x['name'])
+        t = nosuffix(toks(x['name']))
         nk = 'name:' + ' '.join(t) if t else None  # an empty token set never identifies a person
         if literal_cjk_name(x['name']):
             # Same written CJK names can be different faculty. Only the same profile or an explicit person/PID joins rows.
