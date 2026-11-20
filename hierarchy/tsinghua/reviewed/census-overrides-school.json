@@ -841,9 +841,92 @@
       "scope": "Author identity and complete official-dump bibliography only. No career record is admitted as a Tsinghua paper.2016–2026 appointment and per-work school affiliation remain mandatory."
     },
     "mixed_openalex": [
-      "https://openalex.org/A5129710882"
+      "https://openalex.org/A5129710882",
+      "https://openalex.org/A5100402534",
+      "https://openalex.org/A5100402538",
+      "https://openalex.org/A5100402458",
+      "https://openalex.org/A5101534107"
     ],
-    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06)."
+    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06).",
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/33/5448-15",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-6408-6075",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2344429530",
+        "sha256": "bc526028c4cac113b09f1b70d9f15e70e7e9b1e140d53d6f83f3163a24e3c376",
+        "quote": "https://orcid.org/0009-0008-3313-6162",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100402534",
+        "weak_relations": 2
+      },
+      {
+        "url": "https://dblp.org/pid/33/5448-15",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-6408-6075",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2419272040",
+        "sha256": "9567bab35d8a745f1659c7b736188248f6f80ed70251be131901191e8e64c896",
+        "quote": "https://orcid.org/0000-0002-7725-4346",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100402538",
+        "weak_relations": 54
+      },
+      {
+        "url": "https://dblp.org/pid/33/5448-15",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-6408-6075",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2617610611",
+        "sha256": "ad5a619df397222d3362967fb2f57b0d48626f0568966774444481e1b6f7d730",
+        "quote": "https://orcid.org/0000-0002-8758-0401",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100402458",
+        "weak_relations": 1
+      },
+      {
+        "url": "https://dblp.org/pid/33/5448-15",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-6408-6075",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2796251934",
+        "sha256": "6c42a8e29a35848215a6ceed32b7f31cbfb85e7d94a1d75e52e4f587db8d290a",
+        "quote": "https://orcid.org/0000-0001-7099-6622",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101534107",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does.",
+    "not_openalex": [
+      "https://openalex.org/A5100402511"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/33/5448-15",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-6408-6075",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2422717986",
+        "sha256": "23b6f25f8d2048c48bb095363410a7c3fe12e73e512ae9dd4d686dbea73b6c4c",
+        "quote": "https://orcid.org/0000-0002-5309-1773",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100402511",
+        "weak_relations": 1
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "朱松纯": {
     "aliases": [
@@ -1760,7 +1843,8 @@
     "reviewer": "claude-tsinghua-bib-1109",
     "reviewed_on": "2026-11-09",
     "mixed_openalex": [
-      "https://openalex.org/A5100402120"
+      "https://openalex.org/A5100402120",
+      "https://openalex.org/A5027592563"
     ],
     "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06).",
     "mixed_openalex_evidence": [
@@ -1768,9 +1852,24 @@
         "url": "https://api.openalex.org/works/W2775516195",
         "sha256": "cdf06c285cc4a5114a5bfc447049400732c28cb84e6db5b6114f2e981d75f7cf",
         "quote": "id ...100402120: 'Medical image based hemodynamic analysis' (Medicine); reviewer: namesake: Medical hemodynamics vs OS researcher; different field"
+      },
+      {
+        "url": "https://dblp.org/pid/87/1254-4",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0009-0007-8455-3663",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2613071178",
+        "sha256": "5edd8957ca07ccfe2897b23fccf26cc3f95fb5231f2a9579588b43c1cc125582",
+        "quote": "https://orcid.org/0009-0008-1833-0645",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5027592563",
+        "weak_relations": 2
       }
     ],
-    "why": "2026-11-14 anchored-only row screen: per-id fresh-reviewer bad rate >= 50% of rows tied only through the id; R-PAP-06 (neither anchor nor block). DBLP-tied rows stay."
+    "why": "2026-11-14 anchored-only row screen: per-id fresh-reviewer bad rate >= 50% of rows tied only through the id; R-PAP-06 (neither anchor nor block). DBLP-tied rows stay.",
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "刘永进": {
     "dblp": [
@@ -3327,9 +3426,27 @@
       "https://openalex.org/A5100665809",
       "https://openalex.org/A5100665814",
       "https://openalex.org/A5100737915",
-      "https://openalex.org/A5102985816"
+      "https://openalex.org/A5102985816",
+      "https://openalex.org/A5101591535"
     ],
-    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06)."
+    "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06).",
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/181/2626-2",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-2587-8517",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2779553769",
+        "sha256": "7681816f5df69755561469c2735e341a45e30d1938da86dd3806085352e1f1dd",
+        "quote": "https://orcid.org/0000-0002-3277-3521",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101591535",
+        "weak_relations": 5
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "尹 霞": {
     "dblp": [
@@ -4068,7 +4185,15 @@
       "https://openalex.org/A5100354631",
       "https://openalex.org/A5100388342",
       "https://openalex.org/A5100711543",
-      "https://openalex.org/A5100728379"
+      "https://openalex.org/A5100728379",
+      "https://openalex.org/A5100688166",
+      "https://openalex.org/A5100388033",
+      "https://openalex.org/A5104005675",
+      "https://openalex.org/A5073404846",
+      "https://openalex.org/A5100388295",
+      "https://openalex.org/A5077055393",
+      "https://openalex.org/A5100388053",
+      "https://openalex.org/A5100388365"
     ],
     "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06). Native 6 (2026-11-10): with pre-2021 listings new anchored ids appeared and a 50-row review showed namesake works (microscopy, building energy, pearl oyster, Alzheimer), so these ids are mixed too.",
     "mixed_openalex_evidence": [
@@ -4101,9 +4226,122 @@
         "url": "https://api.openalex.org/works/W4402509848",
         "sha256": "9d76ab7db239e0daa0d2ebb5fa3bb84603e19cda3a9c92b157341d8b8565bfce",
         "quote": "id ...100728379: 'Tuning Vision-Language Models With Multiple Prototypes Clustering' (Computer Science); reviewer: namesake: VLM tuning with Shi-Min Hu group; Yi Zhang namesake"
+      },
+      {
+        "url": "https://dblp.org/pid/64/6544-29",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-5526-866X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2508638061",
+        "sha256": "8ec63feabe0bfc38bbb332303b3e4d407ed961090a93d7ed21dd8a884fe55dd8",
+        "quote": "https://orcid.org/0009-0008-6412-2185",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100688166",
+        "weak_relations": 74
+      },
+      {
+        "url": "https://dblp.org/pid/64/6544-29",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-5526-866X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2243705225",
+        "sha256": "912854d12d554d4bbd57a6417c172da912d7b8fe28ea2dba26817cc0ee9cc430",
+        "quote": "https://orcid.org/0009-0006-2126-3522",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100388033",
+        "weak_relations": 8
+      },
+      {
+        "url": "https://dblp.org/pid/64/6544-29",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-5526-866X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2551621012",
+        "sha256": "2c5ce1b9b6b630d9c10c7d2aece109032a32aa8dfb2389332407d8774e540f32",
+        "quote": "https://orcid.org/0009-0000-1263-4930",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5104005675",
+        "weak_relations": 2
+      },
+      {
+        "url": "https://dblp.org/pid/64/6544-29",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-5526-866X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2865154361",
+        "sha256": "5eae58af51d361071bb8233e09523cb9b641073d85d92d858f64f1983ed936a8",
+        "quote": "https://orcid.org/0000-0002-5179-3202",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5073404846",
+        "weak_relations": 9
+      },
+      {
+        "url": "https://dblp.org/pid/64/6544-29",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-5526-866X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2558720333",
+        "sha256": "cb9a373e8aa1aa1c1263c3110cbed74e3a9e970b7ce10febad158d9f07c11c57",
+        "quote": "https://orcid.org/0000-0003-1970-9397",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100388295",
+        "weak_relations": 13
+      },
+      {
+        "url": "https://dblp.org/pid/64/6544-29",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-5526-866X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W3111463277",
+        "sha256": "c2b21d23ab7b035849274eec57d0983fc6ad9a0049aaf9c961406338f4822663",
+        "quote": "https://orcid.org/0000-0003-0019-8945",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5077055393",
+        "weak_relations": 2
+      },
+      {
+        "url": "https://dblp.org/pid/64/6544-29",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-5526-866X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W3085932561",
+        "sha256": "79a9e8d7d31a4721457cb0c0e21f2d4d8d0135364f400a3e89f26b63a8b3095b",
+        "quote": "https://orcid.org/0009-0004-5995-0251",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100388053",
+        "weak_relations": 5
+      },
+      {
+        "url": "https://dblp.org/pid/64/6544-29",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-5526-866X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4293764755",
+        "sha256": "33a6e73c0d79b8cfa5554df47d887b3148133136aa7aea77080b02a0e414b764",
+        "quote": "https://orcid.org/0009-0007-1768-0566",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100388365",
+        "weak_relations": 1
       }
     ],
-    "why": "2026-11-14 anchored-only row screen: per-id fresh-reviewer bad rate >= 50% of rows tied only through the id; R-PAP-06 (neither anchor nor block). DBLP-tied rows stay."
+    "why": "2026-11-14 anchored-only row screen: per-id fresh-reviewer bad rate >= 50% of rows tied only through the id; R-PAP-06 (neither anchor nor block). DBLP-tied rows stay.",
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "李力": {
     "dblp": [
@@ -4319,7 +4557,9 @@
       "https://openalex.org/A5100770462",
       "https://openalex.org/A5100770464",
       "https://openalex.org/A5103087953",
-      "https://openalex.org/A5111512943"
+      "https://openalex.org/A5111512943",
+      "https://openalex.org/A5066557235",
+      "https://openalex.org/A5101853761"
     ],
     "mixed_openalex_why": "2026-11-10 (claude-tsinghua-bib-1109): anchored OpenAlex ids carrying zero works of the owned DBLP bibliography; the 52-PID native sample showed Chinese-name collisions (wastewater, optics, materials works under 王斌, 李丹, 刘奕群, 翟季冬). Mixed: each authorship needs per-work evidence (R-PAP-06). Native 6 (2026-11-10): with pre-2021 listings new anchored ids appeared and a 50-row review showed namesake works (microscopy, building energy, pearl oyster, Alzheimer), so these ids are mixed too.",
     "mixed_openalex_evidence": [
@@ -4347,9 +4587,38 @@
         "url": "https://api.openalex.org/works/W4404741315",
         "sha256": "7680e296e3bff6f4c39a3192251cf79ce2f8a465a0b41d36f61a8e1966b96b6c",
         "quote": "id ...111512943: 'Quantum State Transfer between Superconducting Cavities via Exchange-Free Interactions' (Computer Science); reviewer: namesake: Quantum physics PRL (Luyan Sun lab); different Jie Zhou"
+      },
+      {
+        "url": "https://dblp.org/pid/00/5012-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-7701-234X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2747804831",
+        "sha256": "c8e15c9cce79e298994cf3947b357d8d54ab079db16e4e12c5d4bb01b7317386",
+        "quote": "https://orcid.org/0009-0001-7276-8487",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5066557235",
+        "weak_relations": 4
+      },
+      {
+        "url": "https://dblp.org/pid/00/5012-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-7701-234X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W3020267361",
+        "sha256": "26fdebcd9062ecb9b551a64ba4edbe2ce9da9ec361302d097f4a57a6e9f22a18",
+        "quote": "https://orcid.org/0009-0004-3384-0556",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101853761",
+        "weak_relations": 1
       }
     ],
-    "why": "2026-11-14 anchored-only row screen: per-id fresh-reviewer bad rate >= 50% of rows tied only through the id; R-PAP-06 (neither anchor nor block). DBLP-tied rows stay."
+    "why": "2026-11-14 anchored-only row screen: per-id fresh-reviewer bad rate >= 50% of rows tied only through the id; R-PAP-06 (neither anchor nor block). DBLP-tied rows stay.",
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "冯建华": {
     "no_identity": false,
@@ -4399,13 +4668,53 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: a name-compatible Tsinghua-affiliated DBLP person exists (l/GuoliangLi) but no source tie (profile link, owned-page title list or reciprocal URL) was found on the official profile or its linked pages. Pinyin-name-only matches never bind (R-PAP-44). Held pending an owned bibliography source.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5100451569"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/l/GuoliangLi",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-1398-0621",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2743568160",
+        "sha256": "9212c2a2b26b5b1ec9a22b8af029ece6b0c0d39081ca2aff2d504eaab7578483",
+        "quote": "https://orcid.org/0000-0001-7951-9750",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100451569",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "唐杰": {
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: DBLP person t/JieTang is name-compatible, Tsinghua-affiliated and 3 exact long titles are credited on the PI's own official page, but R-PAP-44 needs at least 10 and no source-stated English name exists. Held; not bound.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5100670350"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/t/JieTang",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6882-4044",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4237695611",
+        "sha256": "37d5dae605fcd877311a8fe79938b17136df9ee891838daff0095c9b47056110",
+        "quote": "https://orcid.org/0000-0001-8602-7754",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100670350",
+        "weak_relations": 2
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "喻文健": {
     "no_identity": false,
@@ -7564,7 +7873,27 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: official profile (and linked homepage where one exists) checked; no name-compatible Tsinghua-affiliated person in the local DBLP dump extract (2026-09-01), no ORCID or reviewed OpenAlex id on the sources. PI role is established by the official faculty listing; bibliographic identity held for a later exact-source admission. No name-only author join or paper admission.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5033698712"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/45/6733",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-0460-1586",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4396873880",
+        "sha256": "2a5ad58d8d46f650571f2305e177c88e7ad88201a8be1a52d78f29a24cbde3f1",
+        "quote": "https://orcid.org/0009-0009-8014-9369",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5033698712",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "朱文武": {
     "no_identity": false,
@@ -7622,8 +7951,41 @@
     "reviewer": "claude-tsinghua-bib-1109",
     "reviewed_on": "2026-11-10",
     "mixed_openalex": [
-      "https://openalex.org/A5100443206"
-    ]
+      "https://openalex.org/A5100443206",
+      "https://openalex.org/A5100443212",
+      "https://openalex.org/A5112877658"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/19/1766-6",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-3228-9166",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2603444149",
+        "sha256": "ca28aa0cae0ccaadd7317659cd9b743ffd0937e9fb8e8c6b1c8a50dd56ecc341",
+        "quote": "https://orcid.org/0000-0003-1725-7956",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100443212",
+        "weak_relations": 1
+      },
+      {
+        "url": "https://dblp.org/pid/19/1766-6",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-3228-9166",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2605920051",
+        "sha256": "422961b4ac41fef3d096901d961acb9ff200cded44bef8c32e0a1c7767084027",
+        "quote": "https://orcid.org/0000-0002-0472-9128",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5112877658",
+        "weak_relations": 5
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "邓志东": {
     "no_identity": true,
@@ -7677,7 +8039,62 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: a name-compatible Tsinghua-affiliated DBLP person exists (69/1097-1) but no source tie (profile link, owned-page title list or reciprocal URL) was found on the official profile or its linked pages. Pinyin-name-only matches never bind (R-PAP-44). Held pending an owned bibliography source.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5101678495",
+      "https://openalex.org/A5101678494"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/69/1097-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-4042-6044",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2547774901",
+        "sha256": "5e82ea2d2344720f4bcc4aad6f505a577144e35f110d8a6b3a94c9a5467222df",
+        "quote": "https://orcid.org/0000-0001-7419-2947",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101678495",
+        "weak_relations": 4
+      },
+      {
+        "url": "https://dblp.org/pid/69/1097-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-4042-6044",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2277058173",
+        "sha256": "20d5b421f3d495affa9e70dab6256ee4976c68005d4792683afd9c037a7ace5b",
+        "quote": "https://orcid.org/0000-0001-7017-4127",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101678494",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does.",
+    "not_openalex": [
+      "https://openalex.org/A5050770348"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/69/1097-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-4042-6044",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W7077889719",
+        "sha256": "4e576636c340a852cae3d16930d004f2cc8970ba68b05dc35e50680811102e3e",
+        "quote": "https://orcid.org/0009-0009-1290-4297",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5050770348",
+        "weak_relations": 1
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "刘洋": {
     "no_identity": false,
@@ -7705,13 +8122,53 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: a name-compatible Tsinghua-affiliated DBLP person exists (02/2737-1) but no source tie (profile link, owned-page title list or reciprocal URL) was found on the official profile or its linked pages. Pinyin-name-only matches never bind (R-PAP-44). Held pending an owned bibliography source.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5111876340"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/02/2737-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-3546-6305",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4388356577",
+        "sha256": "0ebd07d0b4fbc1ae944e4dec0d905b0c0d8ba6c14800bf8ff3378dfaa41566c1",
+        "quote": "https://orcid.org/0000-0002-9169-951X",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5111876340",
+        "weak_relations": 5
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "孙茂松": {
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: a name-compatible Tsinghua-affiliated DBLP person exists (95/3291) but no source tie (profile link, owned-page title list or reciprocal URL) was found on the official profile or its linked pages. Pinyin-name-only matches never bind (R-PAP-44). Held pending an owned bibliography source.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5129648219"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/95/3291",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6011-6115",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W7117252524",
+        "sha256": "36d1e3809e587d606ee3aa7a9960a10096de81a99784af13ed4cf30755dbb2e0",
+        "quote": "https://orcid.org/0009-0008-0075-8088",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5129648219",
+        "weak_relations": 2
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "应明生": {
     "no_identity": true,
@@ -7747,7 +8204,57 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: a name-compatible Tsinghua-affiliated DBLP person exists (83/5342-31, 83/5342-6) but no source tie (profile link, owned-page title list or reciprocal URL) was found on the official profile or its linked pages. Pinyin-name-only matches never bind (R-PAP-44). Held pending an owned bibliography source.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5100402986",
+      "https://openalex.org/A5100402924",
+      "https://openalex.org/A5100402911"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/83/5342-6",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-3158-1920",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2587931838",
+        "sha256": "697a1196f3d0e3ac7bfe84b5521993f6a111e7ebb2b52fd0466831c89567e9d2",
+        "quote": "https://orcid.org/0000-0002-0671-8457",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100402986",
+        "weak_relations": 10
+      },
+      {
+        "url": "https://dblp.org/pid/83/5342-6",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-3158-1920",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2747731117",
+        "sha256": "2af00f7f66d2c3c9367105d0f8499cab07320c65cdc5c924be363223b41ff589",
+        "quote": "https://orcid.org/0000-0002-6042-7036",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100402924",
+        "weak_relations": 3
+      },
+      {
+        "url": "https://dblp.org/pid/83/5342-6",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-3158-1920",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2576736306",
+        "sha256": "c1302dfbb1f6d732c5cec4348e4d4037900ce76747d4a53555bd1e9fe56b7bf1",
+        "quote": "https://orcid.org/0000-0002-3895-5510",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100402911",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "朱军": {
     "no_identity": true,
@@ -7755,8 +8262,101 @@
     "reviewer": "claude-tsinghua-bib-1109",
     "reviewed_on": "2026-11-10",
     "mixed_openalex": [
-      "https://openalex.org/A5002320979"
-    ]
+      "https://openalex.org/A5002320979",
+      "https://openalex.org/A5100606993",
+      "https://openalex.org/A5100686240",
+      "https://openalex.org/A5102221583",
+      "https://openalex.org/A5103865065",
+      "https://openalex.org/A5136268278",
+      "https://openalex.org/A5048188910"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/50/2644-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6254-2388",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2228369830",
+        "sha256": "e4362f69b9b7397ccf95a40a234c2e57ab0de449994b3c0630c3458ea665edda",
+        "quote": "https://orcid.org/0000-0002-1833-3917",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100606993",
+        "weak_relations": 23
+      },
+      {
+        "url": "https://dblp.org/pid/50/2644-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6254-2388",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2785391921",
+        "sha256": "73aba4c04439022d7fbfc6c1935e3c4e93deb5a14f074e0728341638d9542a3c",
+        "quote": "https://orcid.org/0009-0006-6405-742X",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100686240",
+        "weak_relations": 4
+      },
+      {
+        "url": "https://dblp.org/pid/50/2644-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6254-2388",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4386076667",
+        "sha256": "3d8cf7e508e3fd7d24801d6e9f51f46d881d14b560533df891303003d1917bcf",
+        "quote": "https://orcid.org/0000-0001-9559-0960",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5102221583",
+        "weak_relations": 2
+      },
+      {
+        "url": "https://dblp.org/pid/50/2644-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6254-2388",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4386047807",
+        "sha256": "95a37ae0c9c9c81e83c6958fcb26719bce85dc97c9450febbecb773495e3c539",
+        "quote": "https://orcid.org/0009-0003-6486-6823",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5103865065",
+        "weak_relations": 1
+      },
+      {
+        "url": "https://dblp.org/pid/50/2644-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6254-2388",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W7161248219",
+        "sha256": "acd3a2dfe74b839aae9addbd88618466e067b5dfbba07e5a34486de59b39a81c",
+        "quote": "https://orcid.org/0009-0006-7668-2425",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5136268278",
+        "weak_relations": 1
+      },
+      {
+        "url": "https://dblp.org/pid/50/2644-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6254-2388",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2587206624",
+        "sha256": "a807098734697da4be86076634559d989b3133765d8b8fa7060012d1ea7b84bf",
+        "quote": "https://orcid.org/0009-0007-3024-3635",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5048188910",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "艾清遥": {
     "no_identity": true,
@@ -7768,7 +8368,42 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: a name-compatible Tsinghua-affiliated DBLP person exists (48/6809-1) but no source tie (profile link, owned-page title list or reciprocal URL) was found on the official profile or its linked pages. Pinyin-name-only matches never bind (R-PAP-44). Held pending an owned bibliography source.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5100641283",
+      "https://openalex.org/A5055874248"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/48/6809-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-9279-6098",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2334088143",
+        "sha256": "2f4552c398e068cb639da9957cfdcc8c3dfe00e33e5c8493c6e9e30de5466c74",
+        "quote": "https://orcid.org/0000-0003-4107-5706",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100641283",
+        "weak_relations": 1
+      },
+      {
+        "url": "https://dblp.org/pid/48/6809-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-9279-6098",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2798798513",
+        "sha256": "8dba72c349595f99c35d9db2ba8c6f9d03d00caa0f04597b644fad168c4889dc",
+        "quote": "https://orcid.org/0000-0001-9291-5926",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5055874248",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "陈建鑫": {
     "no_identity": false,
@@ -7826,8 +8461,26 @@
     "reviewer": "claude-tsinghua-bib-1109",
     "reviewed_on": "2026-11-10",
     "mixed_openalex": [
-      "https://openalex.org/A5020897406"
-    ]
+      "https://openalex.org/A5020897406",
+      "https://openalex.org/A5101540579"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/91/2346-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-5171-739X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2330684392",
+        "sha256": "8f16deb1135d0cbdba58808741cbbe76ebdf0396de632a9fd0e7957a194f6bb6",
+        "quote": "https://orcid.org/0000-0001-6954-3220",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101540579",
+        "weak_relations": 3
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "刘斌": {
     "no_identity": false,
@@ -7863,7 +8516,57 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: a name-compatible Tsinghua-affiliated DBLP person exists (97/2834-1) but no source tie (profile link, owned-page title list or reciprocal URL) was found on the official profile or its linked pages. Pinyin-name-only matches never bind (R-PAP-44). Held pending an owned bibliography source.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5100687151",
+      "https://openalex.org/A5100687149",
+      "https://openalex.org/A5100687147"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/97/2834-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-1260-4982",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2555535980",
+        "sha256": "e0d351b4e6671ae9e23d8a6aee3559949eabea14f0a72d41e08240a2e96c62e3",
+        "quote": "https://orcid.org/0000-0003-1251-0051",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100687151",
+        "weak_relations": 24
+      },
+      {
+        "url": "https://dblp.org/pid/97/2834-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-1260-4982",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2518083608",
+        "sha256": "a8e51d6a6df4191f175c64e631e2c16ce46e27d3f6c0d1f980b6dbecfdd02e32",
+        "quote": "https://orcid.org/0000-0002-5449-9180",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100687149",
+        "weak_relations": 6
+      },
+      {
+        "url": "https://dblp.org/pid/97/2834-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-1260-4982",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2579808902",
+        "sha256": "aa14e4274833dafe5c7d5c2a659337c7187ac84152e7d2cab0704102597572dc",
+        "quote": "https://orcid.org/0000-0002-2276-2159",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100687147",
+        "weak_relations": 5
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "任丰原": {
     "no_identity": true,
@@ -9799,7 +10502,27 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: a name-compatible Tsinghua-affiliated DBLP person exists (61/7672-1) but no source tie (profile link, owned-page title list or reciprocal URL) was found on the official profile or its linked pages. Pinyin-name-only matches never bind (R-PAP-44). Held pending an owned bibliography source.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5101577487"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/61/7672-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-8433-7281",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2795118915",
+        "sha256": "58b0c1903dbf18fdad7a79588dd687269241ab6f6811d6d50082495fd822aec2",
+        "quote": "https://orcid.org/0000-0003-4678-6937",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101577487",
+        "weak_relations": 6
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "Ma Kaisheng": {
     "no_identity": false,
@@ -11075,7 +11798,122 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: a name-compatible Tsinghua-affiliated DBLP person exists (21/4633-1, 21/4633-10) but no source tie (profile link, owned-page title list or reciprocal URL) was found on the official profile or its linked pages. Pinyin-name-only matches never bind (R-PAP-44). Held pending an owned bibliography source.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5076992719",
+      "https://openalex.org/A5037178287",
+      "https://openalex.org/A5108722893",
+      "https://openalex.org/A5005163555",
+      "https://openalex.org/A5101690709",
+      "https://openalex.org/A5109491290"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/21/4633-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-0955-503X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2189338742",
+        "sha256": "ac9861c0725f14a2b29fbdbcd31c69068b926d3371931376360a1340e0dbd7d0",
+        "quote": "https://orcid.org/0000-0001-8377-3591",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5076992719",
+        "weak_relations": 15
+      },
+      {
+        "url": "https://dblp.org/pid/21/4633-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-0955-503X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2612591825",
+        "sha256": "62ca45ceaedd18555f5c5d4dcf94b27975ec7c2456881d52e4f128c7558c341a",
+        "quote": "https://orcid.org/0000-0001-9025-3375",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5037178287",
+        "weak_relations": 1
+      },
+      {
+        "url": "https://dblp.org/pid/21/4633-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-0955-503X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W3209381785",
+        "sha256": "ebbe575be9edb940f31e1c66270d3a9bf0bc157d4f354ad98324af6fcdca46f5",
+        "quote": "https://orcid.org/0009-0001-6118-2181",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5108722893",
+        "weak_relations": 3
+      },
+      {
+        "url": "https://dblp.org/pid/21/4633-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-0955-503X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4225010582",
+        "sha256": "937520fc2da45c8ea3dc902eaef07263b913e2e5c5216238c01abfa560ef86fd",
+        "quote": "https://orcid.org/0000-0001-7111-2374",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5005163555",
+        "weak_relations": 4
+      },
+      {
+        "url": "https://dblp.org/pid/21/4633-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-0955-503X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4229759690",
+        "sha256": "1f8b4988ef9a3821ed41d9a7914db51135c6fe0cc8fd3bbe9d3deddd7550eb2d",
+        "quote": "https://orcid.org/0009-0001-5455-8582",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101690709",
+        "weak_relations": 2
+      },
+      {
+        "url": "https://dblp.org/pid/21/4633-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-0955-503X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2613814223",
+        "sha256": "30af95b3a22eb823ffe9cd9566c41c58461abb91dd3d583b8329f9a4e8978412",
+        "quote": "https://orcid.org/0009-0003-0550-2421",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5109491290",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does.",
+    "not_openalex": [
+      "https://openalex.org/A5136500755"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/21/4633-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-0955-503X",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W6894130821",
+        "sha256": "12305ca5666e0dd1221776a4e711141146ea998c0be3b6f914e7d74cafac5fef",
+        "quote": "https://orcid.org/0009-0006-2862-0289",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5136500755",
+        "weak_relations": 1
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "叶晓俊": {
     "no_identity": false,
@@ -11103,7 +11941,42 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: a name-compatible Tsinghua-affiliated DBLP person exists (06/3456-1) but no source tie (profile link, owned-page title list or reciprocal URL) was found on the official profile or its linked pages. Pinyin-name-only matches never bind (R-PAP-44). Held pending an owned bibliography source.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "not_openalex": [
+      "https://openalex.org/A5100779552",
+      "https://openalex.org/A5100370328"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/06/3456-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-6841-7943",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4399784126",
+        "sha256": "f14c05fe4c402f31a0f44ffa1efbb4522535acad8cd0a148e2c3cb12ca3bb462",
+        "quote": "https://orcid.org/0000-0001-9626-2029",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100779552",
+        "weak_relations": 1
+      },
+      {
+        "url": "https://dblp.org/pid/06/3456-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-6841-7943",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2597614424",
+        "sha256": "188c1b2f915d0681bf7bf4f73efccfe6cb72bb913072b2b9fe1c29c4affd266e",
+        "quote": "https://orcid.org/0000-0002-5756-7505",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100370328",
+        "weak_relations": 1
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "王朝坤": {
     "no_identity": false,
@@ -11181,7 +12054,62 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10: a name-compatible Tsinghua-affiliated DBLP person exists (03/2611-5, 03/2611-6) but no source tie (profile link, owned-page title list or reciprocal URL) was found on the official profile or its linked pages. Pinyin-name-only matches never bind (R-PAP-44). Held pending an owned bibliography source.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5048473676",
+      "https://openalex.org/A5101431332"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/03/2611-5",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-0953-1057",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2498399910",
+        "sha256": "b6c1e1f036c4f290f07ba061598c9ae3a1d4b3ecf8947b8e32e7031101b73efb",
+        "quote": "https://orcid.org/0000-0002-7034-9705",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5048473676",
+        "weak_relations": 30
+      },
+      {
+        "url": "https://dblp.org/pid/03/2611-5",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-0953-1057",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2896222781",
+        "sha256": "72a0e99674295f3c61e8fd873844e2c83f0f7cb795f6c0a71ab3895c157a310b",
+        "quote": "https://orcid.org/0000-0002-3150-715X",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101431332",
+        "weak_relations": 7
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does.",
+    "not_openalex": [
+      "https://openalex.org/A5103654161"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/03/2611-5",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-0953-1057",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4375843925",
+        "sha256": "accbdfe0b2f84c8743b8429b0d04fb99cb79bdf10ec427e75e7d20b2fc457ab8",
+        "quote": "https://orcid.org/0000-0002-9048-7144",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5103654161",
+        "weak_relations": 1
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "潘浩": {
     "no_identity": true,
@@ -12429,7 +13357,27 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10 (stage 2, EE addition): PI role established by the official EE profile (literal title 副教授); a pinyin-compatible Tsinghua DBLP person (34/4858-1, 291 records) exists but no owned-page or >=10 credited-title tie is established, and pinyin never binds (R-PAP-44). No name-only author join or paper admission.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5123931670"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/34/4858-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-0651-0071",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W7155554337",
+        "sha256": "a5a0282c96044b9e5a7c3bbfff07b02206947d02e9e2df8dc94ca12a865dea51",
+        "quote": "https://orcid.org/0000-0003-3645-1041",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5123931670",
+        "weak_relations": 2
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "陈文华": {
     "no_identity": false,
@@ -12558,7 +13506,27 @@
     "superseded_identity_hold": {
       "no_identity": true,
       "why_no_identity": "Reviewed 2026-11-10 (stage 2, EE addition): PI role established by the official EE profile (literal title 教授); a pinyin-compatible Tsinghua DBLP person (76/6824-1, 358 records) exists but no owned-page or >=10 credited-title tie is established, and pinyin never binds (R-PAP-44). No name-only author join or paper admission."
-    }
+    },
+    "not_openalex": [
+      "https://openalex.org/A5100755262"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/76/6824-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-3825-2230",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2519090893",
+        "sha256": "6f8dc9ae812a971eb49b56ac43ecfef7ad488f304a577ed95d7f7ce3b0331922",
+        "quote": "https://orcid.org/0000-0001-5185-491X",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100755262",
+        "weak_relations": 2
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "吴及": {
     "no_identity": true,
@@ -12824,7 +13792,27 @@
     "superseded_identity_hold": {
       "no_identity": true,
       "why_no_identity": "Reviewed 2026-11-10 (stage 2, EE addition): PI role established by the official EE profile (literal title 教授); a pinyin-compatible Tsinghua DBLP person (y/JianYang11, 151 records) exists but no owned-page or >=10 credited-title tie is established, and pinyin never binds (R-PAP-44). No name-only author join or paper admission."
-    }
+    },
+    "mixed_openalex": [
+      "https://openalex.org/A5110818289"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/y/JianYang11",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-0036-9233",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W3215430877",
+        "sha256": "8dcb14db5708f03c7b4e12231e1756eeb120039a10d26d767a9a408efba843f1",
+        "quote": "https://orcid.org/0009-0008-6493-014X",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5110818289",
+        "weak_relations": 7
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "王学谦": {
     "no_identity": true,
@@ -12878,7 +13866,62 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10 (stage 2 addition): PI role established by the named official profile (literal title 副教授); a pinyin-compatible Tsinghua DBLP person exists but pinyin never binds (R-PAP-44); no owned-page or >=10 credited-title tie. No name-only author join or paper admission.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5100460768",
+      "https://openalex.org/A5101473591"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/79/2151",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-7825-4137",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2291081697",
+        "sha256": "c14a8ce6a1e7d266697958600bef00a57d50b0d0da2cb55c85bf8d0eca2ab263",
+        "quote": "https://orcid.org/0000-0001-8419-1227",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100460768",
+        "weak_relations": 96
+      },
+      {
+        "url": "https://dblp.org/pid/79/2151",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-7825-4137",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2420474551",
+        "sha256": "dda7d7ef14b94d6a152b506da4afb694c220b5c286e4b25395b83453776724f3",
+        "quote": "https://orcid.org/0000-0002-7825-0320",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101473591",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does.",
+    "not_openalex": [
+      "https://openalex.org/A5115602022"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/79/2151",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-7825-4137",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2511279408",
+        "sha256": "b11c1a4128374f4f4e52d11d7801bec0d778ee3811271998e141595b4fdfbdce",
+        "quote": "https://orcid.org/0009-0009-2306-5855",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5115602022",
+        "weak_relations": 2
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "王继龙": {
     "no_identity": true,
@@ -13186,13 +14229,133 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10 (stage 2 addition): faculty evidence from the EE archived listing rows ([2021, 2022]); a pinyin-compatible Tsinghua DBLP person (Xing Li) exists but pinyin never binds (R-PAP-44); no owned-page or >=10 credited-title tie. No name-only author join or paper admission.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5100600286",
+      "https://openalex.org/A5100358713"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/26/379-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-1260-8657",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2257619495",
+        "sha256": "1607d81d4b5add47485986b9dcd4a80981bd2da49bc4eb152b167b09f1964a6b",
+        "quote": "https://orcid.org/0000-0002-5306-1742",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100600286",
+        "weak_relations": 6
+      },
+      {
+        "url": "https://dblp.org/pid/26/379-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-1260-8657",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4291927166",
+        "sha256": "f6979e0f897f2689004ad5bc5dbebc8a139481a56bb79f3ee280cea32f31bbb2",
+        "quote": "https://orcid.org/0000-0003-4892-3210",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100358713",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "张旭东": {
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10 (stage 2 addition): faculty evidence from the EE archived listing rows ([2021, 2022, 2023, 2024, 2025]); a pinyin-compatible Tsinghua DBLP person (Xudong Zhang) exists but pinyin never binds (R-PAP-44); no owned-page or >=10 credited-title tie. No name-only author join or paper admission.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5028755002",
+      "https://openalex.org/A5100441866",
+      "https://openalex.org/A5107862315",
+      "https://openalex.org/A5100441863"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/58/6205-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6465-7437",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W3157774958",
+        "sha256": "46a07d5e39faea8735c8f248a2b41d6b24ec32e3f58bf5efe8c00b80e3c7de16",
+        "quote": "https://orcid.org/0000-0001-5720-2138",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5028755002",
+        "weak_relations": 8
+      },
+      {
+        "url": "https://dblp.org/pid/58/6205-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6465-7437",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2900089771",
+        "sha256": "72c5caf0e88e55412ee0bf85450bf42aa5b1331f5f0dbcdc8ff80a839b69b167",
+        "quote": "https://orcid.org/0000-0002-8136-6834",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100441866",
+        "weak_relations": 2
+      },
+      {
+        "url": "https://dblp.org/pid/58/6205-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6465-7437",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2511322806",
+        "sha256": "5d1f3f9b0b6047f4d0761965c388c4a47431a42360c202f1290caf11a9c7da73",
+        "quote": "https://orcid.org/0009-0002-8631-3632",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5107862315",
+        "weak_relations": 3
+      },
+      {
+        "url": "https://dblp.org/pid/58/6205-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6465-7437",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2595975317",
+        "sha256": "9ab0ed6289e83e0b94fab8e91a1722b116e9c0d75546f1d4837aa644b1c37dd7",
+        "quote": "https://orcid.org/0000-0003-2671-8275",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100441863",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does.",
+    "not_openalex": [
+      "https://openalex.org/A5100441858"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/58/6205-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6465-7437",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2514174884",
+        "sha256": "0f69a903661ad94c25b39cb39bfd4e83d6025f452e0288047eeb17db111deff4",
+        "quote": "https://orcid.org/0000-0002-8341-0878",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100441858",
+        "weak_relations": 1
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "张彧": {
     "no_identity": true,
@@ -13280,7 +14443,27 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10 (claude-tsinghua-stage2-newpis-1110): PI role established by the official profile title; the pinyin-compatible DBLP person is not tied to the profile (no ORCID/homepage/>=10 credited titles; R-PAP-44). Identity held for a later exact-source admission; no name-only author join or paper admission.",
     "reviewer": "claude-tsinghua-stage2-newpis-1110",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "not_openalex": [
+      "https://openalex.org/A5100657311"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/48/6735-8",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-3839-9470",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2615373644",
+        "sha256": "1639d77defb0cdb4b1ffdfba652cdd20078efb4076dc16fcd45002d9407aa8ee",
+        "quote": "https://orcid.org/0000-0002-6702-7094",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100657311",
+        "weak_relations": 1
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "刘保君": {
     "no_identity": false,
@@ -13340,7 +14523,27 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10 (claude-tsinghua-s2-focus-matched-1110): PI role established by the captured directory row; the pinyin-compatible DBLP person https://dblp.org/pid/89/5992-23 is unit-consistent but not tied to the person by ORCID, homepage or >=10 credited titles (R-PAP-44). Identity held for a later exact-source admission; no name-only author join or paper admission.",
     "reviewer": "claude-tsinghua-s2-focus-matched-1110",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "not_openalex": [
+      "https://openalex.org/A5100425762"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/89/5992-23",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-9321-3421",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2767056143",
+        "sha256": "f871f39255b2c094aa0a9636bc3cee2bd045bd1e73213d7a08260c002553d96c",
+        "quote": "https://orcid.org/0000-0003-3633-9578",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100425762",
+        "weak_relations": 3
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "孙楠": {
     "no_identity": false,
@@ -14007,7 +15210,27 @@
     "superseded_identity_hold": {
       "no_identity": true,
       "why_no_identity": "Reviewed 2026-11-10 (claude-tsinghua-s2-focus-matched-1110): PI role established by the captured directory row; the pinyin-compatible DBLP person https://dblp.org/pid/78/3993-2 is unit-consistent but not tied to the person by ORCID, homepage or >=10 credited titles (R-PAP-44). Identity held for a later exact-source admission; no name-only author join or paper admission."
-    }
+    },
+    "mixed_openalex": [
+      "https://openalex.org/A5108113833"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/78/3993-2",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-7672-7682",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4296635142",
+        "sha256": "1e222e0b08adf9a27dfbc1a194aea5faf70519073a6cacc699f997cb3df003a2",
+        "quote": "https://orcid.org/0000-0003-4987-6428",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5108113833",
+        "weak_relations": 3
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "Tianyang Wang": {
     "no_identity": true,
@@ -14103,7 +15326,42 @@
     "no_identity": true,
     "why_no_identity": "R-PAP-44: pinyin compatibility plus a unit-level DBLP affiliation is not identity; no owned-page tie and no >=10 credited titles checked here.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5042732459",
+      "https://openalex.org/A5100779283"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/19/5635-8",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-3856-1087",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2616074382",
+        "sha256": "996cead9847fccf00c9f729b5d3a387d6f33a47f6ac258a91e42890d346a0edf",
+        "quote": "https://orcid.org/0000-0001-5810-8135",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5042732459",
+        "weak_relations": 1
+      },
+      {
+        "url": "https://dblp.org/pid/19/5635-8",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-3856-1087",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4392418539",
+        "sha256": "be2291801a8ee12eb8e133b09b2bf5c842a193885a7d59248cac001c10e98482",
+        "quote": "https://orcid.org/0009-0001-2286-1624",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100779283",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "都东": {
     "no_identity": true,
@@ -14151,7 +15409,42 @@
     "no_identity": true,
     "why_no_identity": "R-PAP-44: pinyin compatibility plus a unit-level DBLP affiliation is not identity; no owned-page tie and no >=10 credited titles checked here.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5100436358",
+      "https://openalex.org/A5005249547"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/24/4505-3",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-3235-2708",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4205658679",
+        "sha256": "b8be243af153b3fc0f9fc85c52eceac4bf37d52e65e9d0a26a63328f21f5ceb0",
+        "quote": "https://orcid.org/0000-0001-7668-4881",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100436358",
+        "weak_relations": 2
+      },
+      {
+        "url": "https://dblp.org/pid/24/4505-3",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-3235-2708",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4389065989",
+        "sha256": "fb8ad57462059d39ecbf8065d8215f8e53518b936be1e764ea979fe9291c8cf5",
+        "quote": "https://orcid.org/0009-0003-9079-5934",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5005249547",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "罗建文": {
     "no_identity": true,
@@ -14169,7 +15462,27 @@
     "no_identity": true,
     "why_no_identity": "R-PAP-44: pinyin compatibility plus a unit-level DBLP affiliation is not identity; no owned-page tie and no >=10 credited titles checked here.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "not_openalex": [
+      "https://openalex.org/A5100758508"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/125/1074-2",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-4200-8487",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2605498580",
+        "sha256": "11f37d0eec579d8551d433b0d74781f28f7169021bd71fab3876558ae4532470",
+        "quote": "https://orcid.org/0000-0002-1323-053X",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100758508",
+        "weak_relations": 17
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "赵磊": {
     "no_identity": true,
@@ -14215,7 +15528,27 @@
     "no_identity": true,
     "why_no_identity": "R-PAP-44: pinyin compatibility plus a unit-level DBLP affiliation is not identity; no owned-page tie and no >=10 credited titles checked here.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "not_openalex": [
+      "https://openalex.org/A5101737182"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/50/5190-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-8397-7129",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2498167898",
+        "sha256": "66d1f3ef4eec85b96358bbba9de0592578955589ba6c563b708df66f9419757b",
+        "quote": "https://orcid.org/0000-0002-9109-5943",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101737182",
+        "weak_relations": 2
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "许庆": {
     "no_identity": false,
@@ -14353,7 +15686,27 @@
     "no_identity": true,
     "why_no_identity": "R-PAP-44: pinyin compatibility plus a unit-level DBLP affiliation is not identity; no owned-page tie and no >=10 credited titles checked here.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "not_openalex": [
+      "https://openalex.org/A5100630886"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/40/7018-1",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-9198-6586",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2560565159",
+        "sha256": "aaef16fe8f12e567218561df5dc7e7c957ec30c8aeacf655342d13a225ebdc8f",
+        "quote": "https://orcid.org/0000-0002-2481-205X",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100630886",
+        "weak_relations": 1
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "林志杰": {
     "no_identity": false,
@@ -14826,7 +16179,42 @@
           "Tsinghua University"
         ]
       }
-    ]
+    ],
+    "mixed_openalex": [
+      "https://openalex.org/A5001578944",
+      "https://openalex.org/A5100374048"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/94/4084-7",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-4767-9597",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4292974472",
+        "sha256": "53a97abda242bc36254847ef3e7c070497e9e71958a6df4ec472a17e333296a4",
+        "quote": "https://orcid.org/0000-0002-5311-8446",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5001578944",
+        "weak_relations": 1
+      },
+      {
+        "url": "https://dblp.org/pid/94/4084-7",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-4767-9597",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4285600291",
+        "sha256": "f76e029709b93299ff97333314c8712c13c6bc11c49e1b60cec10bdffa277765",
+        "quote": "https://orcid.org/0009-0006-3407-2282",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100374048",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "陈建军": {
     "no_identity": false,
@@ -14854,7 +16242,27 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10 (claude-tsinghua-s2-dirhits-1110): PI role from the captured directory row; DBLP person https://dblp.org/pid/49/2488-2 is unit-consistent, not tied by ORCID/homepage/>=10 titles (R-PAP-44).",
     "reviewer": "claude-tsinghua-s2-dirhits-1110",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "not_openalex": [
+      "https://openalex.org/A5101876395"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/49/2488-2",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-8774-2936",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2729103951",
+        "sha256": "03b933d9f43f3574380e1fc63ccc18700da0f62289a082494a9db2863ea13710",
+        "quote": "https://orcid.org/0000-0001-6458-4939",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101876395",
+        "weak_relations": 1
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "王小云": {
     "no_identity": false,
@@ -15002,7 +16410,77 @@
     "superseded_identity_hold": {
       "no_identity": true,
       "why_no_identity": "R-PAP-44: pinyin compatibility plus unit-level DBLP/OpenAlex affiliation is not identity."
-    }
+    },
+    "mixed_openalex": [
+      "https://openalex.org/A5101633136",
+      "https://openalex.org/A5100346622",
+      "https://openalex.org/A5100346602"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/29/3081-27",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-0362-4236",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2507922158",
+        "sha256": "db097cb3f01af7618d76850786ddd1d9457746a482e5380a2abc1babfdfe8fda",
+        "quote": "https://orcid.org/0009-0002-1456-773X",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101633136",
+        "weak_relations": 9
+      },
+      {
+        "url": "https://dblp.org/pid/29/3081-27",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-0362-4236",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2553638838",
+        "sha256": "f9d9ffda691d7ad9479e66a4067c4c74d38b0e660850619b5e472b3757fa0cfe",
+        "quote": "https://orcid.org/0000-0002-9810-6975",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100346622",
+        "weak_relations": 3
+      },
+      {
+        "url": "https://dblp.org/pid/29/3081-27",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-0362-4236",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4221162983",
+        "sha256": "d6b0172ff3c7042de67c9544621f0686c4788cac40d7653e579107d4dd7793cc",
+        "quote": "https://orcid.org/0000-0002-0378-060X",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100346602",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does.",
+    "not_openalex": [
+      "https://openalex.org/A5102014086"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/29/3081-27",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-0362-4236",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2777346590",
+        "sha256": "87a19a34ef80bc8d6891336382c9405756c57467cf4406faa725eeac80631782",
+        "quote": "https://orcid.org/0000-0002-0940-4218",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5102014086",
+        "weak_relations": 2
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "成波": {
     "no_identity": false,
@@ -15044,7 +16522,27 @@
     "no_identity": true,
     "why_no_identity": "R-PAP-44: pinyin compatibility plus unit-level DBLP/OpenAlex affiliation is not identity.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "not_openalex": [
+      "https://openalex.org/A5100361956"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/116/1011-82",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-0437-5112",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2191562515",
+        "sha256": "be672b6f56f3745c0f6ff1a3df0fb1ed975010163208667f281250f770e76bec",
+        "quote": "https://orcid.org/0000-0001-7747-4851",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100361956",
+        "weak_relations": 16
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "李克强": {
     "no_identity": false,
@@ -15106,7 +16604,27 @@
     "no_identity": true,
     "why_no_identity": "R-PAP-44: pinyin compatibility plus unit-level DBLP/OpenAlex affiliation is not identity.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "not_openalex": [
+      "https://openalex.org/A5100328441"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/181/2830-2",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-6347-0507",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4295288972",
+        "sha256": "508251c8d8d18b93078185a21e85ff23a80aeeb1fcc6e952cdb36b2630a6026c",
+        "quote": "https://orcid.org/0000-0001-7769-9102",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100328441",
+        "weak_relations": 1
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "李升波": {
     "no_identity": true,
@@ -15906,7 +17424,27 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10 (stage 2, past faculty): faculty evidence from the dated department directory captures; a pinyin-compatible Tsinghua DBLP person agrees by unit but pinyin never binds (R-PAP-44); no owned-page or >=10 credited-title tie.",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5101460210"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/95/6861-3",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-4637-2518",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2337403844",
+        "sha256": "a0c993b5f3bc7a1ef9b940607ce218bfc61b9b264b6a3526f34f364ab6c795c6",
+        "quote": "https://orcid.org/0000-0002-7090-7869",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5101460210",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "李琦": {
     "no_identity": false,
@@ -15957,13 +17495,208 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10 (stage 2): EE directory rows and the named EE profile; the DBLP person 94/3019-31 agrees by unit and biography (Cambridge Engineering) but there is no exact-title list; pinyin and biography never bind (R-PAP-44).",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5100460223",
+      "https://openalex.org/A5024272804",
+      "https://openalex.org/A5100460071",
+      "https://openalex.org/A5115596350"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/94/3019-31",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-7730-5131",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2564632249",
+        "sha256": "68a1e84828f907251e2d60a7be7e5ef36b322d95f1a11516cf9e465f4f8dd1e0",
+        "quote": "https://orcid.org/0000-0002-9583-0722",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100460223",
+        "weak_relations": 13
+      },
+      {
+        "url": "https://dblp.org/pid/94/3019-31",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-7730-5131",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2989837574",
+        "sha256": "44829ee1cc412a879caffaf0cbdae5106303f83047d46d5b7c07077850c81977",
+        "quote": "https://orcid.org/0009-0005-9711-5203",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5024272804",
+        "weak_relations": 2
+      },
+      {
+        "url": "https://dblp.org/pid/94/3019-31",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-7730-5131",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4205898584",
+        "sha256": "92db07a658d1cb8a5c879b216d7b1606760a7e2d3b393aa7a105a8fe854eeb63",
+        "quote": "https://orcid.org/0000-0001-6357-1095",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100460071",
+        "weak_relations": 1
+      },
+      {
+        "url": "https://dblp.org/pid/94/3019-31",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-7730-5131",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4402303414",
+        "sha256": "0469d1eed3673c9a96cdc933a6ea8b4685e9d36baa492c062f0500eb7d871e93",
+        "quote": "https://orcid.org/0000-0003-4377-8376",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5115596350",
+        "weak_relations": 3
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does.",
+    "not_openalex": [
+      "https://openalex.org/A5100460139",
+      "https://openalex.org/A5063675054"
+    ],
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/94/3019-31",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-7730-5131",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2294275150",
+        "sha256": "b926908b43b2d8c6fb859da0675f9244a83aded5f166b038684b169a7d9a1310",
+        "quote": "https://orcid.org/0000-0002-1018-4144",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100460139",
+        "weak_relations": 1
+      },
+      {
+        "url": "https://dblp.org/pid/94/3019-31",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0002-7730-5131",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4385187234",
+        "sha256": "e403c5035e4c5f6eb159aeedfc2ecc4e5c8104ad7c70cc4329caf765f2b53e17",
+        "quote": "https://orcid.org/0000-0002-8924-7629",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5063675054",
+        "weak_relations": 8
+      }
+    ],
+    "why_not_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "王剑": {
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10 (stage 2): EE directory row and the named EE profile (研究员, 博士生导师); DBLP 39/449-30 agrees by unit and research field, but no exact-title list; pinyin never binds (R-PAP-44).",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5100370396",
+      "https://openalex.org/A5100370523",
+      "https://openalex.org/A5075434724",
+      "https://openalex.org/A5100773357",
+      "https://openalex.org/A5091821367",
+      "https://openalex.org/A5100711285"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/39/449-30",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-7683-6937",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2334279343",
+        "sha256": "ae4d5fe1ef47b3430219be786180994aef6d1896682ac852fce8e0dd29b79c35",
+        "quote": "https://orcid.org/0000-0003-1617-2002",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100370396",
+        "weak_relations": 55
+      },
+      {
+        "url": "https://dblp.org/pid/39/449-30",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-7683-6937",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2506545605",
+        "sha256": "bdf73f42ae739f0377660f8076a2ed8e70f775655d1255ee3823c838da9326a9",
+        "quote": "https://orcid.org/0000-0002-9849-7558",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100370523",
+        "weak_relations": 15
+      },
+      {
+        "url": "https://dblp.org/pid/39/449-30",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-7683-6937",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2751547291",
+        "sha256": "cbca515c26bdc0b06d27405b196ddf38d70fb748317a8735956c6d282c46afe7",
+        "quote": "https://orcid.org/0009-0001-3212-3967",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5075434724",
+        "weak_relations": 4
+      },
+      {
+        "url": "https://dblp.org/pid/39/449-30",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-7683-6937",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W3042895515",
+        "sha256": "d78678bfba260127eec15ddcdf8e3dd23dda8ade3163fee97bf178a604b8a33e",
+        "quote": "https://orcid.org/0000-0003-2951-688X",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100773357",
+        "weak_relations": 1
+      },
+      {
+        "url": "https://dblp.org/pid/39/449-30",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-7683-6937",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W4213338437",
+        "sha256": "5955d6b63ada5d1a0c2ef141cd2c8317c2c9053db81a1cf16aa8d8935ea6bda9",
+        "quote": "https://orcid.org/0000-0003-3279-9948",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5091821367",
+        "weak_relations": 1
+      },
+      {
+        "url": "https://dblp.org/pid/39/449-30",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0001-7683-6937",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2923088732",
+        "sha256": "5323e37f6800e11907eeedef324ab90392a827820844b02ff92c1fb65366aa09",
+        "quote": "https://orcid.org/0000-0002-7701-8511",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100711285",
+        "weak_relations": 1
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "郑方": {
     "no_identity": true,
@@ -16005,7 +17738,57 @@
     "no_identity": true,
     "why_no_identity": "Reviewed 2026-11-10 (claude-tsinghua-s2-dirhits-1110): ladder-equivalent title from an owner-supplied text; the DBLP person matches by affiliations and titles but the pasted title list is truncated (7 exact + 5 prefix matches of 12 headline titles), so the exact-title bar of 10 is not shown (R-PAP-44).",
     "reviewer": "claude-tsinghua-bib-1109",
-    "reviewed_on": "2026-11-10"
+    "reviewed_on": "2026-11-10",
+    "mixed_openalex": [
+      "https://openalex.org/A5115602248",
+      "https://openalex.org/A5086000078",
+      "https://openalex.org/A5100355854"
+    ],
+    "mixed_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/51/3710-165",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-3800-3533",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W3112833681",
+        "sha256": "571640fc3929605c99b8ea011db823e445b4b4fb86231ed98ca08cd79a2e3bbd",
+        "quote": "https://orcid.org/0000-0002-7240-1546",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5115602248",
+        "weak_relations": 5
+      },
+      {
+        "url": "https://dblp.org/pid/51/3710-165",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-3800-3533",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2343245819",
+        "sha256": "a869783091815b6f6a026021a30dc1782d017253c222f0758cebc5dd41171d93",
+        "quote": "https://orcid.org/0000-0002-3087-242X",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5086000078",
+        "weak_relations": 11
+      },
+      {
+        "url": "https://dblp.org/pid/51/3710-165",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "quote": "https://orcid.org/0000-0003-3800-3533",
+        "kind": "original_DBLP_person_record_local_dump_2026-09-01"
+      },
+      {
+        "url": "https://openalex.org/W2573202386",
+        "sha256": "bcc50dc1dd9a9985333d5a40f0ffa60df1c105f2ff2b50a31adc36b3de57e042",
+        "quote": "https://orcid.org/0000-0002-0862-6046",
+        "kind": "original_stored_OpenAlex_work_projection_not_primary_PDF",
+        "author_id": "https://openalex.org/A5100355854",
+        "weak_relations": 16
+      }
+    ],
+    "why_mixed_openalex": "D-0029 (2026-11-20, Tsinghua/ZJU gate-9 namesakes) applying R-PAP-42(a): each id added carries an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so it is another person's record: 'mixed' when a DBLP-DOI-verified work of the PI sits under the id (neither anchor nor block, per-work evidence needed), 'not' when none does."
   },
   "Xinyi Fu": {
     "no_identity": false,

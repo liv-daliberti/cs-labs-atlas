@@ -166,3 +166,13 @@ def test_R_PAP_61_sjtu_stale_holds_released_and_orthus_held():
     held = {(x['pi'], x['match'].get('oa')) for x in d['decisions'] if x['decision'] == 'hold'}
     assert ('孔令和', 'https://openalex.org/W3107465962') not in held and ('孔令和', 'https://openalex.org/W2539417147') not in held
     assert ('陈 全', 'https://openalex.org/W4405032446') in held
+
+
+def test_R_PAP_42_d0029_tsinghua_orcid_conflict_ids_and_holds():
+    import json
+    root = Path(__file__).resolve().parent.parent / 'hierarchy'
+    ts = json.loads((root / 'tsinghua/reviewed/census-overrides-school.json').read_text())
+    assert 'https://openalex.org/A5100460768' in (ts['王会'].get('mixed_openalex') or []) + (ts['王会'].get('not_openalex') or [])
+    assert 'https://openalex.org/A5101431332' in (ts['徐枫'].get('mixed_openalex') or []) + (ts['徐枫'].get('not_openalex') or [])
+    holds = {(x['pi'], x['match'].get('oa')) for x in json.loads((root / 'tsinghua/reviewed/paper-claim-review.json').read_text())['decisions']}
+    assert ('李国良', 'https://openalex.org/W2955351994') in holds and ('郑莉', 'https://openalex.org/W4404587888') in holds

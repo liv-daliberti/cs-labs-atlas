@@ -3305,6 +3305,50 @@
           "kind": "primary_PDF_page1_affiliation_marker1"
         }
       ]
+    },
+    {
+      "id": "tsinghua-20261120-d0029-mercury-guoliang-li",
+      "pi": "李国良",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W2955351994"
+      },
+      "why": "D-0029 gate-9 pi2b (Tsinghua lab precision): 'A Review on Adsorption Technologies for Mercury Emission' is an environmental-science paper credited to Guoliang Li of the State Key Joint Laboratory of Environment Simulation and Pollution Control; PI Guoliang Li is the Department of Computer Science database researcher (DBLP l/GuoliangLi). The author id carries the PI's ORCID and a second one, so it is a merged profile; this row is held as a namesake. The namesake finding is a reviewer inference from the unit and field, recorded as such.",
+      "reviewed_by": "claude-paperfix-1119",
+      "reviewed_at": "2026-11-20",
+      "flag_rule": "hold_namesake",
+      "evidence": [
+        {
+          "url": "https://openalex.org/W2955351994",
+          "sha256": "e04a86f93d4839e900b71a1b44ab9528e389ab242a538b3fb8bfcdfc4e3d0a90",
+          "quote": "State Key Joint Laboratory of Environment Simulation and Pollution Control, School of Environment, Tsinghua University",
+          "kind": "original_local_indexed_work_scalar",
+          "source_field": "authorships[].raw_affiliation_strings",
+          "sha256_basis": "sha256 of the stored OpenAlex sweep record (canonical JSON), not DOI landing or publisher HTTP"
+        }
+      ]
+    },
+    {
+      "id": "tsinghua-20261120-d0029-hydrogen-li-zheng",
+      "pi": "郑莉",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W4404587888"
+      },
+      "why": "D-0029 gate-9 pi2b: 'A Robust Model for Hydrogen Supply Chain Network Design' (J. Comput. Inf. Sci. Eng.) is credited to Li Zheng of the Department of Industrial Engineering; PI 郑莉 is a Department of Computer Science professor (object-oriented programming and software education). The DBLP person page 78/5587 lists this DOI, so the DBLP record appears to merge two people; this row is held as a namesake. The namesake finding is a reviewer inference from the department and field.",
+      "reviewed_by": "claude-paperfix-1119",
+      "reviewed_at": "2026-11-20",
+      "flag_rule": "hold_namesake",
+      "evidence": [
+        {
+          "url": "https://openalex.org/W4404587888",
+          "sha256": "3e320777391ba760683a900a9aec88904d922a9e0ea20779b527c2e095c776f3",
+          "quote": "Tsinghua University Department of Industrial Engineering",
+          "kind": "original_local_indexed_work_scalar",
+          "source_field": "authorships[].raw_affiliation_strings",
+          "sha256_basis": "sha256 of the stored OpenAlex sweep record (canonical JSON), not DOI landing or publisher HTTP"
+        }
+      ]
     }
   ]
 }
