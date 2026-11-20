@@ -37,6 +37,16 @@ def prec(rows, abstracts_ok=False):
     return out
 
 
+def not_applicable(pop):
+    """D-0027 (owner 2026-11-20): a measure whose POPULATION is empty is NOT APPLICABLE and is disclosed; never for a small sample. `pop` is the draw's population counts."""
+    out = {}
+    if not pop.get('n_coverage_pool'):
+        out['lab_coverage'] = dict(p=None, n=0, population=0, not_applicable=True, reason='D-0027: empty population (no DBLP coverage pool for the included PIs)')
+    if not pop.get('n_student_papers'):
+        out['student_precision_uniform'] = dict(p=None, n=0, population=0, not_applicable=True, reason='D-0027: empty population (no student-paper links for the included PIs)')
+    return out
+
+
 def one_school(school):
     """The four measures of a school outside the six released ones (draw sample-<school>.json, verdicts-<school>.jsonl) into
     summary-<school>.json; nothing is pooled and the released figures are not touched."""
@@ -100,6 +110,9 @@ def one_school(school):
                                                          held_links_now=len(held_now), drawn_rows_held=0, candidates_held=0)
                 d['subset']['files'] = d['files'] = dict(sub['files'], **{f: live_hashes[f] for f in diff})
     d['population'] = {k: S['schools'][school][k] for k in ('n_lab_papers', 'n_student_papers', 'n_coverage_pool', 'n_student_candidates')}
+    for k, v in not_applicable(d['population']).items():   # only an empty population, and only when no verdict exists for the measure
+        if (d.get(k) or {}).get('n') in (None, 0):
+            d[k] = v
     rd = round_dir()
     if rd:  # a round: the sizes drawn against the sizes judged (student coverage is judged as far as the candidates go)
         d['round'] = dict(id=os.environ['ACCURACY_ROUND'], sizes=S.get('sizes'), judged={k: sum(r['sample'] == k for r in V) for k in

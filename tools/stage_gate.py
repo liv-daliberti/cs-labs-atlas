@@ -569,6 +569,8 @@ def g9(key):
     bad = []
     for k, bar in ACCURACY_BARS:
         measure = d.get(k)
+        if isinstance(measure, dict) and measure.get('not_applicable') is True and measure.get('population') == 0 and measure.get('n') == 0:
+            continue   # D-0027: an EMPTY population is not applicable (disclosed in the summary); a measure with any sampled item still needs its probability
         p = measure.get('p') if isinstance(measure, dict) else None
         if type(p) not in (int, float) or not math.isfinite(p) or not 0 <= p <= 1:
             bad.append(f'accuracy: {k} requires a finite probability in [0, 1]')
