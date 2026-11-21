@@ -215,22 +215,25 @@ def test_failed_submit_is_retried_next_tick(env):
     assert env.c.load()['pending'] == [] and len(calls) == 2
 
 
-def test_queue_sql_counts_archive_only_works_waiting_on_the_archive(tmp_path):
+def test_queue_sql_counts_works_waiting_on_the_archive(tmp_path):
     db = sqlite3.connect(tmp_path / 'c.sqlite')
     db.executescript("""CREATE TABLE works (id TEXT PRIMARY KEY, status TEXT); CREATE TABLE candidates (work_id TEXT, url TEXT);
-      CREATE TABLE attempts (id INTEGER PRIMARY KEY, work_id TEXT, detail TEXT);""")
-    rows = [('a', 'needs_access_review', ['https://web.archive.org/web/1/x'], 'source_paused: HTTP 429'),    # counts
-            ('b', 'queued', ['https://web.archive.org/web/1/y'], None),                                      # counts: never tried
-            ('c', 'needs_access_review', ['https://web.archive.org/web/1/z'], '404 not found'),             # a real failure: not waiting
-            ('d', 'needs_access_review', ['https://web.archive.org/web/1/q', 'https://example.org/q.pdf'], 'source_paused: HTTP 429'),  # has another host
-            ('e', 'downloaded', ['https://web.archive.org/web/1/w'], None)]
-    for w, st, urls, det in rows:
+      CREATE TABLE attempts (id INTEGER PRIMARY KEY, work_id TEXT, url TEXT, detail TEXT);""")
+    W_ = 'https://web.archive.org/web/1/'
+    rows = [('a', 'needs_access_review', [(W_ + 'x', 'source_paused: HTTP 429')]),                     # counts: only the hold
+            ('b', 'queued', [(W_ + 'y', None)]),                                                        # counts: never tried
+            ('c', 'needs_access_review', [(W_ + 'z', '404 not found')]),                               # a real failure: not waiting
+            ('d', 'needs_access_review', [(W_ + 'q', 'source_paused: HTTP 429'), ('https://example.org/q.pdf', None)]),  # live candidate untried: goes first
+            ('e', 'downloaded', [(W_ + 'w', None)]),
+            ('f', 'needs_access_review', [(W_ + 'n', None), ('https://hdl.handle.net/10356/1', '405 Client Error: Not Allowed')]),  # counts: live one failed
+            ('g', 'needs_access_review', [(W_ + 'm', None), (W_ + 'm2', 'source_paused: held')])]       # counts once
+    for w, st, cands in rows:
         db.execute('INSERT INTO works VALUES (?, ?)', (w, st))
-        for u in urls:
+        for u, det in cands:
             db.execute('INSERT INTO candidates VALUES (?, ?)', (w, u))
-        if det:
-            db.execute('INSERT INTO attempts (work_id, detail) VALUES (?, ?)', (w, det))
-    assert db.execute(W.QUEUE_SQL).fetchone()[0] == 2
+            if det:
+                db.execute('INSERT INTO attempts (work_id, url, detail) VALUES (?, ?, ?)', (w, u, det))
+    assert db.execute(W.QUEUE_SQL).fetchone()[0] == 4
 
 
 def test_submit_passes_the_hold_in_the_environment(tmp_path, monkeypatch):

@@ -45,11 +45,19 @@ CHECK_FAILED = 'foreign-fetcher check failed'
 FOREIGN_JOB_WORDS = tuple(os.environ.get('WAYBACK_ROTATE_FOREIGN_JOBS', 'wayback listing-capture').split())
 ROTATOR_JOB = 'wayback-rotator'
 OWN_TITLE = 'Rotating single Wayback fetcher'
-ARCHIVE = "(c.url LIKE '%://web.archive.org/%' OR c.url LIKE '%://archive.org/%' OR c.url LIKE '%.archive.org/%')"
-QUEUE_SQL = f"""SELECT COUNT(*) FROM (SELECT c.work_id w FROM candidates c JOIN works x ON x.id = c.work_id
-  WHERE x.status NOT IN ('downloaded', 'fulltext_xml') GROUP BY c.work_id HAVING SUM(CASE WHEN {ARCHIVE} THEN 0 ELSE 1 END) = 0) ao
-  LEFT JOIN attempts a ON a.work_id = ao.w AND a.id = (SELECT MAX(id) FROM attempts b WHERE b.work_id = ao.w)
-  WHERE a.id IS NULL OR a.detail LIKE 'source_paused%'"""
+def _archive(a):
+    return f"({a}.url LIKE '%://web.archive.org/%' OR {a}.url LIKE '%://archive.org/%' OR {a}.url LIKE '%.archive.org/%')"
+
+
+ARCHIVE = _archive('c')
+# A work waits for Wayback when it is not local, holds an archive candidate that was never really tried (no attempt, or only source_paused
+# ones: the hold), and every other candidate of it was already tried (2026-11-21: DR-NTU's Wayback copies sit beside the live dr.ntu.edu.sg
+# candidates that failed with the WAF's 405; "all candidates on archive hosts" never counted them). An untried live candidate still goes first.
+QUEUE_SQL = f"""SELECT COUNT(DISTINCT c.work_id) FROM candidates c JOIN works x ON x.id = c.work_id
+  WHERE x.status NOT IN ('downloaded', 'fulltext_xml') AND {ARCHIVE}
+  AND NOT EXISTS (SELECT 1 FROM attempts a WHERE a.work_id = c.work_id AND a.url = c.url AND COALESCE(a.detail, '') NOT LIKE 'source_paused%')
+  AND NOT EXISTS (SELECT 1 FROM candidates o WHERE o.work_id = c.work_id AND NOT {_archive('o')}
+                  AND NOT EXISTS (SELECT 1 FROM attempts b WHERE b.work_id = o.work_id AND b.url = o.url))"""
 
 
 def iso(t):

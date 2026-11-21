@@ -157,6 +157,10 @@ Four channels that match a bulk source to the lab papers LOCALLY (DOI first, the
   record; a DOI match also needs a compatible title). `core_bulk`: no copy downloaded yet, so no check was possible; its candidates stay.
 - eScholarship (Berkeley; escholarship.org blocks us at its CDN): `wayback_escholarship` adds the Internet Archive capture of the item PDF (`id_` URL form,
   one CDX lookup per 8 s); CORE's hosted copies (`core.ac.uk/download/...`) answer a Cloudflare challenge, so they are not used.
+- DR-NTU (NTU; dr.ntu.edu.sg answers our client 405 at its WAF, ruled out of bounds live): `wayback_drntu` (D-0033, 2026-11-21) adds the latest
+  Internet Archive capture of each file under `dr.ntu.edu.sg/bitstream/10356/<n>/` (one CDX prefix lookup per handle on the shared 8 s slot, cached in
+  `raw/wayback_lookups.jsonl` kind `drntu`); never a live DR-NTU request. `WAYBACK_DRNTU_LIMIT` (default 50) caps new lookups per run (the pilot).
+  The rotator counts a work as waiting for Wayback once its live candidates were all tried, so these works earn NTU a turn.
 
 ### Gaps closed and limits found (2026-11-04, later)
 - **EPFL:** the OAI endpoint answered HTTP 405 at page ~282 (28,167 records kept) and is not asked again. `oai_repo.py harvest-rest epfl` enumerates the
