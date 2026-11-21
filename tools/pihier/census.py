@@ -184,6 +184,22 @@ def choose_lab(x, units, Pid, ids, names):
     return lab
 
 
+def _reviewed_merge_person_ids(ctx, group, people):
+    """Preserve IDs explicitly declared by a source-reviewed duplicate merge."""
+    reviews = [r for r in getattr(ctx, 'native_pi_merges', [])
+               if r.get('canonical') == group[0]['name'] and 'person_ids' in r]
+    if not reviews:
+        return None
+    ids = reviews[0]['person_ids']
+    expected = {g.get('collection_person_id') for g in group}
+    if (len(reviews) != 1 or not isinstance(ids, list) or not ids
+            or any(not isinstance(i, str) or not i for i in ids)
+            or len(set(ids)) != len(ids) or set(ids) != expected
+            or not expected <= people.keys()):
+        raise ValueError('Reviewed merge person IDs must exactly match its existing census people')
+    return list(ids)
+
+
 def pi_records(ctx):
     """One record per PI (pis.json): merged rows, reviewed corrections (census-overrides.json), identity, listings,
     periods and the lab; the reviewed exclusions are kept apart."""
@@ -219,7 +235,9 @@ def pi_records(ctx):
         rejected_orcids = {re.sub(r'^https?://orcid\.org/', '', z).rstrip('/') for g in group
                            for z in as_list(ov.get(g['name'], {}).get('orcid_drop'))}
         x['orcid'] = [z for z in x['orcid'] if z.rstrip('/') not in rejected_orcids]
-        ids = [i for i in [x.get('collection_person_id')] + list(x.get('collection_person_candidates') or []) if i and i in Pid][:1]
+        ids = _reviewed_merge_person_ids(ctx, group, Pid)
+        if ids is None:
+            ids = [i for i in [x.get('collection_person_id')] + list(x.get('collection_person_candidates') or []) if i and i in Pid][:1]
         names = ([shown] if shown else []) + [x['name']] + list(x.get('aliases') or []) + [Pid[i]['name'] for i in ids]
         listings = pi_listings(x, yearly, n)
         mine = pi_mine(periods, ids, x['name'])
