@@ -1,6 +1,6 @@
 # UT Austin: empty-lab paper recovery, 2026-11-20
 
-Of the original 28 zero-paper lab records, 3 now have verified eligible papers. 25 remain unresolved. Added 6 PI–paper links; original 8605 paper rows, all PIs, student records and issued identifiers are preserved.
+Of the original 28 zero-paper lab records, 4 now have verified eligible papers. 24 remain unresolved. Added 7 PI–paper links; original 8605 paper rows, all PIs, student records and issued identifiers are preserved.
 
 Scope: research papers/preprints from2016–2026 with this PI on the byline, an individual own-school affiliation and a reviewed faculty period or same-year faculty listing. The owner confirmed retaining this scope. Older and prior-employer work is not added to these labs. Zero here means no eligible paper verified, not proof the person never published.
 
@@ -16,7 +16,7 @@ The native builds ran in private overlays. The final package is a scoped additiv
 | Devdatta Kulkarni | 0 | 0 | Owned lab bibliography lists industry presentations and older research; no eligible 2016–2026 own-UT paper verified. |
 | Alison Norman | 0 | 0 | Owned selected publications are from 2000/2011; no eligible 2016–2026 work verified. |
 | Gordon Novak | 0 | 0 | No eligible2016–2026 own-school research paper verified. Older/indexed work does not supply a complete eligible claim. |
-| Bruce Porter | 0 | 0 | Recent name hits include a reissued Knowledge Patterns chapter and an industry preprint; no qualifying new own-UT research paper verified. |
+| Bruce Porter | 0 | 1 | Independently verified2017 primary paper; exact-work author identity, UT CS footnote/email and2017 faculty listing. |
 | Michael Scott | 0 | 0 | School name hits include social-science namesakes; no identity-safe computing paper verified. |
 | Karen Landolt | 0 | 0 | No eligible2016–2026 own-school research paper verified. Bibliographic identity remains unconfirmed. |
 | Angela Beasley | 0 | 0 | School name hits concern public-health namesakes; no identity-safe computing paper verified. |
@@ -41,6 +41,7 @@ Verified added papers:
 
 | PI | Year | Paper | Identity |
 |---|---:|---|---|
+| Bruce Porter | 2017 | [Artificial Intelligence Approaches To UCAV Autonomy](https://doi.org/10.48550/arxiv.1701.07103) | reviewed_openalex_author_id |
 | Oscar Gonzalez | 2017 | [Absolute versus Relative Entropy Parameter Estimation in a Coarse-Grain Model of DNA](https://doi.org/10.1137/16m1086091) | dblp_person_page_doi |
 | Tina Peterson | 2023 | [Abstracted Power and Responsibility in Computer Science Ethics Education](https://doi.org/10.1109/tts.2022.3233776) | pi_institutional_publication_list |
 | Tina Peterson | 2025 | [Multi-Institutional Study on Impostor Phenomenon](https://doi.org/10.1145/3748665) | dblp_person_page_doi |
@@ -59,3 +60,5 @@ Review and reproduction:
 Source observations retained:
 
 Tina Peterson’s2023 paper is a full IEEE Transactions on Technology and Society article in the primary manuscript. OpenAlex labels it conference-abstract; that index genre discrepancy is retained rather than silently rewritten. Current on-leave employment information is not used to infer earlier departure dates. The2025 paper is admitted by the owned bibliography plus normal native affiliation/date gates; the publisher PDF request was blocked, so no local PDF is claimed for it.
+
+Bruce Porter is bound only to exact work W2580729953 under OpenAlex author A5108790119. The institutional email and dagger footnote are primary-verified. The binding does not claim the whole mixed index cluster or inherit a DBLP-listed identity.
