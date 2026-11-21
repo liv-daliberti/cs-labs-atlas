@@ -3,13 +3,19 @@
  "reviewed": "2026-11-21",
  "rule": "Lab hunt 2026-11-21 (owner D-0031/D-0032/D-0034): official unit profile pages of strong-reference leads and of never-reviewed directory entries. Accepted = an official page names the person with a ladder (or ladder-equivalent, D-0005) or research rank AND a PhD-advising or own-lab quote (D-0009), and computing is the object or method of the research (full-coverage CS school, an AI unit, or the research-direction quote). Otherwise faculty_no_pi_evidence (held until advising/lab evidence is found), research_or_other_rank, not_faculty_listed or excluded_unresolved with reason.",
  "units_searched": [
-  "CS"
+  "BME",
+  "CS",
+  "GC",
+  "GIFT",
+  "SOAI"
  ],
  "counts": {
-  "research_or_other_rank": 67,
-  "accepted": 15,
-  "not_faculty_listed": 4,
-  "faculty_no_pi_evidence": 5
+  "research_or_other_rank": 90,
+  "accepted": 38,
+  "not_faculty_listed": 5,
+  "faculty_no_pi_evidence": 45,
+  "faculty_not_computing": 10,
+  "excluded_unresolved": 1
  },
  "decisions": [
   {
@@ -364,32 +370,6 @@
    ],
    "pi_basis": null,
    "computing_quote": null,
-   "lead": null,
-   "reviewed_by": "claude-labhunt-1121",
-   "reviewed_on": "2026-11-21",
-   "added": "lab_hunt_20261121"
-  },
-  {
-   "name": "蒋力",
-   "aliases": [],
-   "source": "lab_hunt_profile",
-   "decision": "faculty_no_pi_evidence",
-   "unit": "CS",
-   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/jiangli.html",
-   "title_as_listed": "研究员",
-   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
-   "faculty_evidence": [
-    {
-     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/jiangli.html",
-     "sha256": "270e2996d4b22dd99d57b2f48d78d822fa2728494f6f00121d080f31c0efce64",
-     "observed": "2026-11-21T15:26:30",
-     "observedAt": "2026-11-21T15:26:30",
-     "quote": "蒋力 研究员",
-     "kind": "official_academic_role"
-    }
-   ],
-   "pi_basis": null,
-   "computing_quote": "研究方向为计算机系统结构，芯片设计自动化",
    "lead": null,
    "reviewed_by": "claude-labhunt-1121",
    "reviewed_on": "2026-11-21",
@@ -2426,6 +2406,3283 @@
    "reviewed_by": "claude-labhunt-1121",
    "reviewed_on": "2026-11-21",
    "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "蒋力",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/jiangli.html",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/jiangli.html",
+     "sha256": "270e2996d4b22dd99d57b2f48d78d822fa2728494f6f00121d080f31c0efce64",
+     "observed": "2026-11-21T15:26:30",
+     "observedAt": "2026-11-21T15:26:30",
+     "quote": "蒋力 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "研究员 · 博士生导师",
+    "url": "https://jianglisjtu.github.io/",
+    "sha256": "0d6769e21e801dbf6c4cb11ef87d18dbc143cdafc1364d9a38fb02778412f848",
+    "observed": "2026-11-21T15:56:26",
+    "owned_page_linked_from": "https://www.cs.sjtu.edu.cn/jiaoshiml/jiangli.html"
+   },
+   "computing_quote": "研究方向为计算机系统结构，芯片设计自动化",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "supersedes": {
+    "decision": "faculty_no_pi_evidence",
+    "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)"
+   }
+  },
+  {
+   "name": "机构设置",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/administrationteam/rcfwb",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/administrationteam/rcfwb",
+     "sha256": "2d4d43b5c40baae21bfb6de88477ae6388f79b1c1a43ac433fc9ee4473ad31ef",
+     "observed": "2026-11-21T15:34:17",
+     "observedAt": "2026-11-21T15:34:17",
+     "quote": "介 专门委员会 学院领导 机构设置 人才服务部 人才培养部 大事记 学院导览 师资队伍 专职教师 双聘/客",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "大事记",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/article/dsj",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/article/dsj",
+     "sha256": "f0d999d6499dfb2b8215edbab7b2fe3ae46bdd69af8896797a77fceefef02ce3",
+     "observed": "2026-11-21T15:53:49",
+     "observedAt": "2026-11-21T15:53:49",
+     "quote": "大事记 - 上海交通大学人工智能学院 首页 学院概况 学院简介 专门委员会 学院领导 机构设置 人才服务部 人才培养部 大事记 学院导览 师资队伍 专职教师 双聘/客座 工程师序列 博士后 科学研究 科研概况 科研动态 人才培养 本科生培养 研究生培",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "博士后",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/teacher/bsh",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/teacher/bsh",
+     "sha256": "7cdd646fef4974a793e81412d0d1cc86755369f41efc0f449dbb13ba73635ae4",
+     "observed": "2026-11-21T15:53:54",
+     "observedAt": "2026-11-21T15:53:54",
+     "quote": "博士后 - 上海交通大学人工智能学院 首页 学院概况 学院简介 专门委员会 学院",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向： 人工智能与集成电路领域的交叉研究、智能系统、复杂数据分析及前沿技术的实际应用 联系邮箱：bchen4@sjtu.edu.cn 范頔 研究方向： 因果学习与推理、AI for Science等 邮箱： fandi01@sjtu.edu.cn 胡晨曦 研究方向： AI for Science、量子神经网络等 邮箱： huc",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "人才培养",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/news/bkspy",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/news/bkspy",
+     "sha256": "31a72cde64bc4588af4d744452c86fa5b92dfcad065ffc610beccae59efda51c",
+     "observed": "2026-11-21T15:53:59",
+     "observedAt": "2026-11-21T15:53:59",
+     "quote": "首页 学院概况 学院简介 专门委员会 学院领导 机构设置 人才服务部 人才培养部 大事记 学院导览 师资队伍 专职教师 双聘/客座 工程师序列 博士后",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "学生工作",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/news/xgdt",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/news/xgdt",
+     "sha256": "606c845905183f2ddb5d5ef8acfbc09211665d6430c9a9322236288b29d8d282",
+     "observed": "2026-11-21T15:54:08",
+     "observedAt": "2026-11-21T15:54:08",
+     "quote": "职教师 双聘/客座 工程师序列 博士后 科学研究 科研概况 科研动态 人才培养 本科生培养 研究生培养 硕士生培养 博士生培养 学生工作 学工动态 党建德育 团学工作 学生事务 生涯导航 学创空间 党建工作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "团学工作",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/news/txgz",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/news/txgz",
+     "sha256": "56d76bd461eee3ef819ae5e65cd2d083a404e0a38f043b2b0d38923157deb6b9",
+     "observed": "2026-11-21T15:54:13",
+     "observedAt": "2026-11-21T15:54:13",
+     "quote": "团学工作 - 上海交通大学人工智能学院 首页 学院概况 学院简介 专门委员会 学院领导 机构设置 人才服务部 人才培养部 大事记 学院导览 师资队伍 专职教师 双聘/客座 工程师序列 博士后 科学研究 科研概况 科研动态 人才培养 本科生培养 研究生培",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "学生事务",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/list/xssw",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/list/xssw",
+     "sha256": "94794363ed8b57a3fd473e05a591cb769bdaa55037037ce8b3af6002c236659d",
+     "observed": "2026-11-21T15:54:18",
+     "observedAt": "2026-11-21T15:54:18",
+     "quote": "学生事务 - 上海交通大学人工智能学院 首页 学院概况 学院简介 专门委员会 学院领导 机构设置 人才服务部 人才培养部 大事记 学院导览 师资队伍 专职教师 双聘/客座 工程师序列 博士后 科学研究 科研概况 科研动态 人才培养 本科生培养 研究生培",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "生涯导航",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/list/sydh",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/list/sydh",
+     "sha256": "785add44d11f12d8d4e726a62512f97c6a3d95ccef672e4015394d4463ef8a44",
+     "observed": "2026-11-21T15:54:23",
+     "observedAt": "2026-11-21T15:54:23",
+     "quote": "生涯导航 - 上海交通大学人工智能学院 首页 学院概况 学院简介 专门委员会 学院领导 机构设置 人才服务部 人才培养部 大事记 学院导览 师资队伍 专职教师 双聘/客座 工程师序列 博士后 科学研究 科研概况 科研动态 人才培养 本科生培养 研究生培",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "学创空间",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/article/xckj",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/article/xckj",
+     "sha256": "c2236f185c2e0eb05954411d5d85631260c2c9e397b8e39070f83eda91f6863f",
+     "observed": "2026-11-21T15:54:28",
+     "observedAt": "2026-11-21T15:54:28",
+     "quote": "学创空间 - 上海交通大学人工智能学院 首页 学院概况 学院简介 专门委员会 学院领导 机构设置 人才服务部 人才培养部 大事记 学院导览 师资队伍 专职教师 双聘/客座 工程师序列 博士后 科学研究 科研概况 科研动态 人才培养 本科生培养 研究生培",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "党务工作",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/list/dwgz",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/list/dwgz",
+     "sha256": "545ad6657e58e2127923b246e8619729fdeebaf7b278cbf89fa53bdb6dd65b3f",
+     "observed": "2026-11-21T15:54:33",
+     "observedAt": "2026-11-21T15:54:33",
+     "quote": "党务工作 - 上海交通大学人工智能学院 首页 学院概况 学院简介 专门委员会 学院领导 机构设置 人才服务部 人才培养部 大事记 学院导览 师资队伍 专职教师 双聘/客座 工程师序列 博士后 科学研究 科研概况 科研动态 人才培养 本科生培养 研究生培",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "诚聘英才",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/list/qpqs",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/list/qpqs",
+     "sha256": "a40e02dfd7bd77d24bf16871d5b33d567ca67fa7bfd3858902d7f224889e5543",
+     "observed": "2026-11-21T15:54:44",
+     "observedAt": "2026-11-21T15:54:44",
+     "quote": "职教师 双聘/客座 工程师序列 博士后 科学研究 科研概况 科研动态 人才培养 本科生培养 研究生培养 硕士生培养 博士生培养 学生工作 学工动态 党建德育 团学工作 学生事务 生涯导航 学创空间 党建工作 党委概况 党务工作 党建动态 工会概况 工会动态 青少年AI 简介 新闻动态 诚聘英才 招聘启示 人才计划 下载专区 首页 / 诚聘英才 / 招聘启示 诚聘英",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "招聘启示",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/list/qpqs",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/list/qpqs",
+     "sha256": "a40e02dfd7bd77d24bf16871d5b33d567ca67fa7bfd3858902d7f224889e5543",
+     "observed": "2026-11-21T15:54:44",
+     "observedAt": "2026-11-21T15:54:44",
+     "quote": "招聘启示 - 上海交通大学人工智能学院 首页 学院概况 学院简介 专门委员会 学院领导 机构设置 人才服务部 人才培养部 大事记 学院导览 师资队伍 专职教师 双聘/客座 工程师序列 博士后 科学研究 科研概况 科研动态 人才培养 本科生培养 研究生培",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "人才计划",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/list/rcjh",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/list/rcjh",
+     "sha256": "6b71856ad017d71bc909570bd4f62d20bdb7bad5e41ce6012842d2d1b0eaa945",
+     "observed": "2026-11-21T15:34:32",
+     "observedAt": "2026-11-21T15:34:32",
+     "quote": "人才计划 - 上海交通大学人工智能学院 首页 学院概况 学院简介 专门委员会 学院领导 机构设置 人才服务部 人才培养部 大事记 学院导览 师资队伍 专职教师 双聘/客座 工程师序列 博士后 科学研究 科研概况 科研动态 人才培养 本科生培养 研究生培",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "曹钦翔",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/caoqinxiang",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/caoqinxiang",
+     "sha256": "0fdfb5f9e440f4b046833ce3726ff690fb86abe4547668df786ed6667ff1cb7d",
+     "observed": "2026-11-21T15:55:09",
+     "observedAt": "2026-11-21T15:55:09",
+     "quote": "工程师序列 博士后 曹钦翔 职称：副教授 邮箱：caoqinxiang@sjtu.edu.cn 个人简介 副",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": {
+    "src": "recall",
+    "name": "Qinxiang Cao",
+    "cls": "undecided",
+    "srcs": "csr+listing+oa",
+    "dblp": "141/1017",
+    "recent": "0"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "141/1017",
+    "records_2016_2026": 0,
+    "affiliation_note": "",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "蔡盼盼",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/caipanpan",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/caipanpan",
+     "sha256": "32441ba25d766fed619ab368a67f0fae091cf554018725f3826505067ca1456d",
+     "observed": "2026-11-21T15:55:14",
+     "observedAt": "2026-11-21T15:55:14",
+     "quote": "工程师序列 博士后 蔡盼盼 职称：副教授 邮箱：cai_panpan@sjtu.edu.cn 个人主页： h",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究领域为具身智能、机器人决策与学习、自动驾驶决策，在机器人顶刊及顶会IJRR、T-RO、RSS等发表大量高水平论文",
+   "lead": {
+    "src": "recall",
+    "name": "Panpan Cai",
+    "cls": "undecided",
+    "srcs": "csr+listing+oa",
+    "dblp": "215/4265",
+    "recent": "0"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "215/4265",
+    "records_2016_2026": 0,
+    "affiliation_note": "",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "程远",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/chengyuan",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/chengyuan",
+     "sha256": "f3cd6c8cf5dbe07eb97e427e9ec9b1569ed1b5de4fa8f2a8203ce293b7bb5372",
+     "observed": "2026-11-21T15:55:19",
+     "observedAt": "2026-11-21T15:55:19",
+     "quote": "工程师序列 博士后 程远 职称：副教授 邮箱：cyuan328@sjtu.edu.cn 个人主页： htt",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "副教授，博导，2021年在上海交通大学微电子系获得博士学位，曾任清华大学"
+   },
+   "computing_quote": "研究方向聚焦光芯片、端侧计算、软硬协同、AI计算架构，成果包括Nature/Science系列文章8篇、SIGGRAPH、CVPR、AAAI等顶刊顶会论文40余篇，获得发明专利80余项",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "陈立鹏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/chenlipeng",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/chenlipeng",
+     "sha256": "92b11b47c236125c7354c92621598ff4f346dc08201237dd4833270450eda98e",
+     "observed": "2026-11-21T15:55:23",
+     "observedAt": "2026-11-21T15:55:23",
+     "quote": "工程师序列 博士后 陈立鹏 职称：副教授 邮箱：lipeng.chen@sjtu.edu.cn 个人主页：",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "他的研究方向涵盖了机器人抓取和操作、运动控制、人机交互与协作等关键技术领域，在机器人顶级 期刊和会议 TRO 、IJRR、ICRA等发表数篇高水平论文",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "陈明达",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/chenmingda",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/chenmingda",
+     "sha256": "98c7605578c09c1104780a1a8d25476d9518775fe9afc6504580d624cc2e1124",
+     "observed": "2026-11-21T15:55:28",
+     "observedAt": "2026-11-21T15:55:28",
+     "quote": "工程师序列 博士后 陈明达 职称：副教授 邮箱：mingdachen@sjtu.edu.cn 个人主页： h",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "副教授、博士生导师，国家高层次青年人才"
+   },
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "崔少波",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/cuishaobo",
+   "title_as_listed": "助理教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/cuishaobo",
+     "sha256": "92eea3d37ad26bcc6f9687b43e5651a9da1deb7c94f07c96074681b880fb7c91",
+     "observed": "2026-11-21T15:55:33",
+     "observedAt": "2026-11-21T15:55:33",
+     "quote": "工程师序列 博士后 崔少波 职称：助理教授 邮箱：shaobo.cui@sjtu.edu.cn 个人主页：",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "博士生导师，国家高层次青年人才"
+   },
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "陈颢天",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/chenhaotian",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/chenhaotian",
+     "sha256": "6fb86b694c8145debb1ab487a55db8e4534472d5f9365b637f1dd6c905b444e2",
+     "observed": "2026-11-21T15:55:38",
+     "observedAt": "2026-11-21T15:55:38",
+     "quote": "工程师序列 博士后 陈颢天 职称：助理研究员 邮箱：haotianchen@sjtu.edu.cn 个人主页",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "陈颢天，助理研究员，研究方向为大语言模型智能体，聚焦于提升智能体长难任务的解决能力，主要探索智能体工具学习、强化学习、自演化、高效决策等技术，应用于深度研究、量化金融、GUI操作等真实世界场景",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "戴国浩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/daiguohao",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/daiguohao",
+     "sha256": "679629a68022fec3d0db4ebffaf0a66e546723ece08fa6944ad91c0d86560b89",
+     "observed": "2026-11-21T15:55:43",
+     "observedAt": "2026-11-21T15:55:43",
+     "quote": "工程师序列 博士后 戴国浩 职称：副教授 邮箱：daiguohao@sjtu.edu.cn 个人主页： ht",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "副教授、博导，主要研究方向为稀疏计算电路与系统"
+   },
+   "computing_quote": "副教授、博导，主要研究方向为稀疏计算电路与系统",
+   "lead": {
+    "src": "recall",
+    "name": "Guohao Dai 0001",
+    "cls": "undecided",
+    "srcs": "csr+dblp+listing+oa",
+    "dblp": "147/1470",
+    "recent": "150"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "147/1470",
+    "records_2016_2026": 193,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Artificial Intelligence, Shanghai, China || Tsinghua University, Department of Electronic Engineering, Beijing, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "符芳诚",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/fufangcheng",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/fufangcheng",
+     "sha256": "6214c01ec17e3e5aea270ed890f96d10d7de3f6167387e2e9c39d295958d94a7",
+     "observed": "2026-11-21T15:55:48",
+     "observedAt": "2026-11-21T15:55:48",
+     "quote": "工程师序列 博士后 符芳诚 职称：副教授 邮箱：ccchengff@sjtu.edu.cn 个人主页： ht",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": {
+    "src": "recall",
+    "name": "Fangcheng Fu",
+    "cls": "undecided",
+    "srcs": "csr",
+    "dblp": "219/9677",
+    "recent": "0"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "219/9677",
+    "records_2016_2026": 0,
+    "affiliation_note": "",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "冯二虎",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/fengerhu",
+   "title_as_listed": "助理教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/fengerhu",
+     "sha256": "2e79131f9faf73a917e4426e97e9aff97f6968ea58432d8c661f3afa2af32f76",
+     "observed": "2026-11-21T15:55:53",
+     "observedAt": "2026-11-21T15:55:53",
+     "quote": "工程师序列 博士后 冯二虎 职称：助理教授 邮箱：fengerhu1@sjtu.edu.cn 个人主页： h",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "上海交通大学人工智能学院助理教授，研究领域为操作系统，体系结构、AI加速器与大模型训推优化等，相关成果发表在SOSP、OSDI，ISCA，ASPLOS，HPCA等操作系统和体系架构领域的国际顶级会议上，担任操作系统顶会ATC审稿人",
+   "lead": {
+    "src": "recall",
+    "name": "Erhu Feng",
+    "cls": "undecided",
+    "srcs": "csr",
+    "dblp": "299/3243",
+    "recent": "0"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "299/3243",
+    "records_2016_2026": 0,
+    "affiliation_note": "",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "郭宁",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/guoning",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/guoning",
+     "sha256": "73a3bf935cae369ead9b2612bc256ce0584be3795c1c4d6d6d929ed0a0537762",
+     "observed": "2026-11-21T15:55:58",
+     "observedAt": "2026-11-21T15:55:58",
+     "quote": "工程师序列 博士后 郭宁 职称：助理研究员 邮箱：sjtu7439612@sjtu.edu.cn 个人主页",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "南方科技大学工学博士，主要研究方向为视触觉感知机理与机器人灵巧操作",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "金梦",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/jinmeng",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/jinmeng",
+     "sha256": "3320c2d6e8e2b408ea6e6057ea299aa2410260c2a5ff33bcfc3cf9b6476a1182",
+     "observed": "2026-11-21T15:56:03",
+     "observedAt": "2026-11-21T15:56:03",
+     "quote": "工程师序列 博士后 金梦 职称：教授 邮箱：jinm@sjtu.edu.cn 个人主页： https://",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "上海交通大学教授，博导，中组部国家级高层次人才"
+   },
+   "computing_quote": "金梦博士的研究领域为海洋科学智能、 文献度量、无源物联网",
+   "lead": {
+    "src": "recall",
+    "name": "Meng Jin 0002",
+    "cls": "undecided",
+    "srcs": "csr+dblp+listing+oa",
+    "dblp": "33/6937-2",
+    "recent": "36"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "33/6937-2",
+    "records_2016_2026": 78,
+    "affiliation_note": "Shanghai Jiao Tong University, John Hopcroft Center for Computer Science, China || Tsinghua University, School of Software and BNRist, Beijing, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "连文昭",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/lianwenzhao",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/lianwenzhao",
+     "sha256": "430b086ae5a3d0a6afe3cf550fb43c06ebb7a3f30ce41d4e2442f8134137d202",
+     "observed": "2026-11-21T15:56:08",
+     "observedAt": "2026-11-21T15:56:08",
+     "quote": "工程师序列 博士后 连文昭 职称：教授 邮箱：lianwenzhao@sjtu.edu.cn 个人主页： h",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "教授，国家级青年人才，主要研究领域包括智能机器人、灵巧操作和机器学习",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "林洲汉",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/linzhouhan",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/linzhouhan",
+     "sha256": "9658700b1a1cc0a8f58a8f3e62638c18fe67d795d4a03a8af1d4e5ed8c0a99a6",
+     "observed": "2026-11-21T15:56:13",
+     "observedAt": "2026-11-21T15:56:13",
+     "quote": "工程师序列 博士后 林洲汉 职称：教授 邮箱：hantek@sjtu.edu.cn 个人主页： https:",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究领域为机器学习和自然语言处理",
+   "lead": {
+    "src": "recall",
+    "name": "Zhouhan Lin",
+    "cls": "undecided",
+    "srcs": "csr+listing+oa",
+    "dblp": "121/7919",
+    "recent": "0"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "121/7919",
+    "records_2016_2026": 0,
+    "affiliation_note": "",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "李永露",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/liyonglu",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/liyonglu",
+     "sha256": "51835e2463109c12a59ab8586427eb1a684b901b50ebe6397c2aae7b246f4d36",
+     "observed": "2026-11-21T15:56:18",
+     "observedAt": "2026-11-21T15:56:18",
+     "quote": "工程师序列 博士后 李永露 职称：副教授 邮箱：yonglu_li@sjtu.edu.cn 个人主页： ht",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": {
+    "src": "recall",
+    "name": "Yong-Lu Li 0001",
+    "cls": "undecided",
+    "srcs": "csr+dblp+listing",
+    "dblp": "198/9345",
+    "recent": "76"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "198/9345",
+    "records_2016_2026": 121,
+    "affiliation_note": "Shanghai Jiao Tong University, Department of Electrical and Computer Engineering, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "刘松桦",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/liusonghua",
+   "title_as_listed": "助理教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/liusonghua",
+     "sha256": "77736eeb38a7399f7b989ca30d1a9cdd146748e3a781231ac426d392d6a63d32",
+     "observed": "2026-11-21T15:56:23",
+     "observedAt": "2026-11-21T15:56:23",
+     "quote": "工程师序列 博士后 刘松桦 职称：助理教授 邮箱：liusonghua@sjtu.edu.cn 个人主页：",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "5年获新加坡国立大学（NUS）博士学位，研究方向为生成式人工智能与生成数据驱动的模型训练",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "李彦玮",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/liyanwei",
+   "title_as_listed": "助理教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/liyanwei",
+     "sha256": "d637325de8c5f70a19818c37e4f8b54bea1786bf2b0cfea20b343afc5898ea92",
+     "observed": "2026-11-21T15:56:27",
+     "observedAt": "2026-11-21T15:56:27",
+     "quote": "工程师序列 博士后 李彦玮 职称：助理教授 邮箱：liyanwei@sjtu.edu.cn 个人主页： ht",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "钱忱",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/qianchen",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/qianchen",
+     "sha256": "5f65136d39f505b0009bde284306cf282273314a6c2201c7a8d9c6b8eab7567e",
+     "observed": "2026-11-21T15:56:32",
+     "observedAt": "2026-11-21T15:56:32",
+     "quote": "工程师序列 博士后 钱忱 职称：副教授 邮箱：qianc@sjtu.edu.cn 个人主页： https:",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "副教授，博士生导师，2021年获得清华大学工学博士学位，研究方向包括大语言模型"
+   },
+   "computing_quote": "师，2021年获得清华大学工学博士学位，研究方向包括大语言模型、自主智能体、多智能体系统",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "任麒冰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/renqibing",
+   "title_as_listed": "助理教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/renqibing",
+     "sha256": "73b74b8d343b48e1d8d1e6beb381b25137e349e709789a7d0fa25f6f91ec9ef6",
+     "observed": "2026-11-21T15:56:37",
+     "observedAt": "2026-11-21T15:56:37",
+     "quote": "工程师序列 博士后 任麒冰 职称：助理教授 邮箱：renqibing@sjtu.edu.cn 个人主页： h",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "任麒冰，上海交通大学人工智能学院助理教授，博导，上海交大计算机博士，加州理工学院访问学者"
+   },
+   "computing_quote": "imax M1, M2大模型核心开发者，研究方向为工业智能体和工业世界模型",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "孙健华",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/Jianhua",
+   "title_as_listed": "助理教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/Jianhua",
+     "sha256": "185be331120f30897b3c5b1d377191e2169a41ebc958a7fd9a8572416e2794b6",
+     "observed": "2026-11-21T15:56:42",
+     "observedAt": "2026-11-21T15:56:42",
+     "quote": "工程师序列 博士后 孙健华 职称：助理教授 邮箱：gothic@sjtu.edu.cn 个人主页： http",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "王延峰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/wangyanfeng",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/wangyanfeng",
+     "sha256": "a5fbdcb8a21453521d6403f8ffdd1e3d75ede69ba49a4818223221576b7d5a2c",
+     "observed": "2026-11-21T15:56:47",
+     "observedAt": "2026-11-21T15:56:47",
+     "quote": "工程师序列 博士后 王延峰 职称：教授 邮箱：wangyanfeng@sjtu.edu.cn 个人主页： h",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "教授，博士生导师，上海交通大学人工智能学院执行院长，上海交大工业创新研究院理"
+   },
+   "computing_quote": null,
+   "lead": {
+    "src": "recall",
+    "name": "Yanfeng Wang 0001",
+    "cls": "accepted_not_built",
+    "srcs": "csr+dblp+oa",
+    "dblp": "55/5407-1",
+    "recent": "375"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "55/5407-1",
+    "records_2016_2026": 481,
+    "affiliation_note": "Shanghai Jiao Tong University, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "王钰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/wangyu",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/wangyu",
+     "sha256": "526729cbe12bf321a86f715cca982aa6957dc39b91059d80377a45b587f1218d",
+     "observed": "2026-11-21T15:56:52",
+     "observedAt": "2026-11-21T15:56:52",
+     "quote": "工程师序列 博士后 王钰 职称：副教授 邮箱：yuwangsjtu@sjtu.edu.cn 个人主页： h",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "长聘副教授、博士生导师， 上海交通大学学术发展与成果处副处长（挂职） ，研究领域为"
+   },
+   "computing_quote": "通大学学术发展与成果处副处长（挂职） ，研究领域为大语言模型后训练和多模态交互智能",
+   "lead": {
+    "src": "recall",
+    "name": "Yu Wang 0027",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "02/5889-27",
+    "recent": "117"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "02/5889-27",
+    "records_2016_2026": 148,
+    "affiliation_note": "Shanghai Jiao Tong University, Cooperative Medianet Innovation Center, China || University of Cambridge, Department of Engineering, UK || Imperial College London, Speech and Audio Processing Group, UK",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "温颖",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/wenying",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/wenying",
+     "sha256": "7aae38086367412703fdc46f93296bd829fe7414411a11b71ec73ff339cb3e6d",
+     "observed": "2026-11-21T15:56:57",
+     "observedAt": "2026-11-21T15:56:57",
+     "quote": "工程师序列 博士后 温颖 职称：副教授 邮箱：ying.wen@sjtu.edu.cn 个人主页： htt",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "副教授，上海海外高层次人才，研究领域为强化学习，多智能体系统",
+   "lead": {
+    "src": "recall",
+    "name": "Ying Wen 0001",
+    "cls": "undecided",
+    "srcs": "csr+dblp+listing+oa",
+    "dblp": "41/4203-1",
+    "recent": "82"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "41/4203-1",
+    "records_2016_2026": 133,
+    "affiliation_note": "Shanghai Jiao Tong University, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "汶川",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/wenchuan",
+   "title_as_listed": "助理教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/wenchuan",
+     "sha256": "b2428f02943107d523dce01a4707c8f9ffcc936bf00f67b6c79d657e8642e3f5",
+     "observed": "2026-11-21T15:57:02",
+     "observedAt": "2026-11-21T15:57:02",
+     "quote": "工程师序列 博士后 汶川 职称：助理教授 邮箱：wenchuan@sjtu.edu.cn 个人主页： ht",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "汶川，上海交通大学人工智能学院助理教授，研究方向为具身智能，具体为智能机器人感知与控制",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "吴超逸",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/wuchaoyi",
+   "title_as_listed": "助理教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/wuchaoyi",
+     "sha256": "df527133c02095dd84b69377f19c7e583523a263fd28080b615e8a3bb88569bb",
+     "observed": "2026-11-21T15:57:07",
+     "observedAt": "2026-11-21T15:57:07",
+     "quote": "工程师序列 博士后 吴超逸 职称：助理教授 邮箱：wtzxxxwcy02@sjtu.edu.cn 个人主页：",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "上海交通大学人工智能学院助理教授，研究方向聚焦于医学基础模型，包括医学语言模型、知识增强的表征学习以及多模态基础模型等领域",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "温睦宁",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/wenmuning",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/wenmuning",
+     "sha256": "04f3f8d28ad6433acafb9897acedfaf13f29d3889f52dfc97b1ce250c37a9f40",
+     "observed": "2026-11-21T15:57:12",
+     "observedAt": "2026-11-21T15:57:12",
+     "quote": "工程师序列 博士后 温睦宁 职称：助理研究员 邮箱：muningwen@sjtu.edu.cn 个人主页：",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向为强化学习，大模型智能体以及多智能体系统",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "相里元博",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/xiangliyuanbo",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/xiangliyuanbo",
+     "sha256": "d0cee2fd0e7c87603db1eeffa715b82a28c729c818d2bd7c4d01b485bcfd78e7",
+     "observed": "2026-11-21T15:57:17",
+     "observedAt": "2026-11-21T15:57:17",
+     "quote": "工程师序列 博士后 相里元博 职称：副教授 邮箱：yxiangli@sjtu.edu.cn 个人主页： htt",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "长聘教轨副教授，博士生导师"
+   },
+   "computing_quote": "研究兴趣在于计算机视觉、计算机图形学及多 / 跨模态理解与生成，于 CVPR 、 ICCV 、 NeurIPS 、 ECCV 、 ICLR 等国际会议发表文章，谷歌引用两千逾次",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "肖帅",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/xiaoshuai",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/xiaoshuai",
+     "sha256": "0fd99834a2a2ab6d36ff4542740138794e5b6a762e2dcd1e7eb8fbf23348dcfa",
+     "observed": "2026-11-21T15:57:22",
+     "observedAt": "2026-11-21T15:57:22",
+     "quote": "工程师序列 博士后 肖帅 职称：副教授 邮箱：shuai.xiao@sjtu.edu.cn 个人主页： h",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "肖帅，上海交通大学人工智能学院副教授、博士生导师，上海市青年人才，入选上海市东方英才计划和上海产业菁英高层次"
+   },
+   "computing_quote": "研究方向聚焦大模型与多模态智能，包括大模型及视觉语言模型的数据治理与合成、多模态预训练、视频生成和智能体系统",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "夏纫秋",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/xiarenqiu",
+   "title_as_listed": "助理教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/xiarenqiu",
+     "sha256": "ff916cf1eaf28ccea64e3dc2286d97c728b0a5bc5f1cddeb93f816b1d2b3e087",
+     "observed": "2026-11-21T15:57:27",
+     "observedAt": "2026-11-21T15:57:27",
+     "quote": "工程师序列 博士后 夏纫秋 职称：助理教授 邮箱：xiarenqiu@sjtu.edu.cn 个人主页： h",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "助理教授，上海交通大学博士，主要研究兴趣包括多模态推理大模型、多智能体系统和神经网络架构搜索等，尤其关注文档理解、数学物理推理和自动化科研等应用场景",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "杨一博",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/yangyibo",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/yangyibo",
+     "sha256": "781913fc1f08b6c0e643888dd2eca0884567bda5bdeadddaeac44b8526b82e96",
+     "observed": "2026-11-21T15:57:32",
+     "observedAt": "2026-11-21T15:57:32",
+     "quote": "工程师序列 博士后 杨一博 职称：副教授 邮箱：yibo.yang@sjtu.edu.cn 个人主页： ht",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向为大模型/智能体、终身学习和可信AI",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "杨理欣",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/yanglixin",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/yanglixin",
+     "sha256": "9d61137c53fe8012444bd4e88d5b3838212e7ac9cfe19544969649b7084332fb",
+     "observed": "2026-11-21T15:57:36",
+     "observedAt": "2026-11-21T15:57:36",
+     "quote": "工程师序列 博士后 杨理欣 职称：助理研究员 邮箱：siriusyang@sjtu.edu.cn 个人主页：",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "助理研究员，博士生导师， 上海市启明星-扬帆人才， 上海创智学院具身标杆项目导师成"
+   },
+   "computing_quote": "导师成员，主持国自然青年基金（C类）， 研究领域为3D行为理解与具身智能 ； 他 于2023年获得上海交通大学博士学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张娅",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhangya",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhangya",
+     "sha256": "6a6eff968fbe3ba43a5d0ff7520e463faed166fe0e8d5a1d4c2ac5568e553a9c",
+     "observed": "2026-11-21T15:57:41",
+     "observedAt": "2026-11-21T15:57:41",
+     "quote": "工程师序列 博士后 张娅 职称：教授 邮箱：ya_zhang@sjtu.edu.cn 个人主页： http",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": {
+    "src": "recall",
+    "name": "Ya Zhang 0002",
+    "cls": "undecided",
+    "srcs": "csr+dblp+oa",
+    "dblp": "85/3714-2",
+    "recent": "254"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "85/3714-2",
+    "records_2016_2026": 465,
+    "affiliation_note": "Shanghai Jiao Tong University, Cooperative Medianet Innovation Center / Shanghai Key Laboratory of Multimedia Processing and Transmissions, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "赵沛霖",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhaopeilin",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhaopeilin",
+     "sha256": "db8a1213d440863214cc96f504b46d140d2c3fc9ed3175993f69e5ef2057da86",
+     "observed": "2026-11-21T15:57:46",
+     "observedAt": "2026-11-21T15:57:46",
+     "quote": "工程师序列 博士后 赵沛霖 职称：教授 邮箱：peilinzhao@sjtu.edu.cn 个人主页： ht",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "他的研究兴趣集中在机器学习及其应用，领导参与了大型语言模型的安全对齐、强化学习、自动化学习，以及制药AI、新闻推荐、公益风控等项目，并发表一系列顶级期刊会议文章，包括Nature子刊、TPAMI、JMLR、NeurIPS、ICML、ICLR等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "赵波",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhaobo",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhaobo",
+     "sha256": "176de5ec4226dd9584d822f387eb04bf547f897849735b4dc6be36d59fe5902f",
+     "observed": "2026-11-21T15:57:51",
+     "observedAt": "2026-11-21T15:57:51",
+     "quote": "工程师序列 博士后 赵波 职称：副教授 邮箱：bo.zhao@sjtu.edu.cn 个人主页： http",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向包括具身智能、 多模态大模型、 数据智能等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张志鹏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhangzhipeng",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhangzhipeng",
+     "sha256": "64e10fc68304549dd0b5f7338a5008cfa0ef1aadd3357bdc5b54b41ea99edd46",
+     "observed": "2026-11-21T15:57:56",
+     "observedAt": "2026-11-21T15:57:56",
+     "quote": "工程师序列 博士后 张志鹏 职称：副教授 邮箱：zhipengzhang@sjtu.edu.cn 个人主页：",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "副教授，博士生导师"
+   },
+   "computing_quote": "当前主要研究方向包括 3D视觉重建与几何基础模型，自 动驾驶与具身智能（感知，端到端，VLA, 世界模型 ）",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "钟志航",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhongzhihang",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhongzhihang",
+     "sha256": "5487eeaa323b7e689825a6f18d49385099b35f8aa05e1019c2a77974bddbaf4f",
+     "observed": "2026-11-21T15:58:01",
+     "observedAt": "2026-11-21T15:58:01",
+     "quote": "工程师序列 博士后 钟志航 职称：副教授 邮箱：zhongzhihang@sjtu.edu.cn 个人主页：",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "副教授、博士生导师，上海市海外人才引进计划青年项目获得者"
+   },
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "周晓",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhouxiao",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhouxiao",
+     "sha256": "631ad1c276a7d9d6415d0ac6084d109a64d1b182a712bed01c5f920a4010c342",
+     "observed": "2026-11-21T15:58:06",
+     "observedAt": "2026-11-21T15:58:06",
+     "quote": "工程师序列 博士后 周晓 职称：副教授 邮箱：zhou_xiao@sjtu.edu.cn 个人主页： ht",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "长聘教轨副教授，博士生导师，2023年获得清华大学博士学位，在上海人工智能实验室完成博"
+   },
+   "computing_quote": "研究方向包括计算病理、多组学等人工智能在癌症诊疗领域的交叉研究，在重要国际会议和期刊发表多篇文章，包括Cancer Cell，Nature Communications，CVPR，ECCV等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张小嫚",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhangxiaoman",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhangxiaoman",
+     "sha256": "745ae65ee1941175897b5cd58f2bee2013bce6b3b0e3a403c44246b8498045b2",
+     "observed": "2026-11-21T15:58:11",
+     "observedAt": "2026-11-21T15:58:11",
+     "quote": "工程师序列 博士后 张小嫚 职称：副教授 邮箱：xm99sjtu@sjtu.edu.cn 个人主页： htt",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "长聘教轨副教授，博士生导师"
+   },
+   "computing_quote": "研究兴趣聚焦于AI for Life Sciences，包括虚拟细胞与生物系统模拟、靶点发现与药物研发",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张林峰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhanglinfeng",
+   "title_as_listed": "助理教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhanglinfeng",
+     "sha256": "44ba8f491d97fc2d5106b7df35e24e454d5418fae0f39a46953f7f174f142f16",
+     "observed": "2026-11-21T15:58:16",
+     "observedAt": "2026-11-21T15:58:16",
+     "quote": "工程师序列 博士后 张林峰 职称：助理教授 邮箱：zhanglinfeng@sjtu.edu.cn 个人主页",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "当前，他的研究方向为人工智能模型与数据的压缩加速",
+   "lead": {
+    "src": "recall",
+    "name": "Linfeng Zhang 0001",
+    "cls": "undecided",
+    "srcs": "csr+dblp+oa",
+    "dblp": "93/488-1",
+    "recent": "159"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "93/488-1",
+    "records_2016_2026": 186,
+    "affiliation_note": "Shanghai Jiao Tong University, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "张王优",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhangwangyou",
+   "title_as_listed": "助理教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/zhangwangyou",
+     "sha256": "b8515427b1fb2ef2c46587ba4932c4eda4374170b65697d47d805860e703e058",
+     "observed": "2026-11-21T15:58:21",
+     "observedAt": "2026-11-21T15:58:21",
+     "quote": "工程师序列 博士后 张王优 职称：助理教授 邮箱：wyz-97@sjtu.edu.cn 个人主页： http",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向包括语音信号处理、鲁棒语音识别、自监督语音预训练等",
+   "lead": {
+    "src": "oa1109",
+    "name": "Wangyou Zhang",
+    "cls": "unclear",
+    "cs": "55",
+    "oa": "A5071937621"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "邹应天",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SOAI",
+   "profile_url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/juyingtian",
+   "title_as_listed": "助理教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/juyingtian",
+     "sha256": "6c90aea656c5e61e1642f3db44ad81e76bc55d7aac338c8a7af29a50ea47fe89",
+     "observed": "2026-11-21T15:58:26",
+     "observedAt": "2026-11-21T15:58:26",
+     "quote": "工程师序列 博士后 邹应天 职称：助理教授 邮箱：yingtianzou@sjtu.edu.cn 个人主页：",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "柴新禹",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/4",
+   "title_as_listed": "长聘教授",
+   "reason": "hand review 2026-11-21: neural engineering and visual prostheses; computing incidental to physiology/devices",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/4",
+     "sha256": "c576d4f7859d1f4f037a4c7f618367f403e96b25023dd4e3b4c9a8dfa2707b72",
+     "observed": "2026-11-21T15:58:28",
+     "observedAt": "2026-11-21T15:58:28",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 柴新禹 长聘教授，博士生导师。1998年获得西安交通大学生物医学工程专业博士学位",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "长聘教授，博士生导师"
+   },
+   "computing_quote": "研究方向 1.神经工程 2.视觉功能修复及视觉假体 3.人工视觉信息处理及其优化 4.脑光学成像、光声成像及其应用 5.基于生理信号的情感识别 科研项目 1. 国家自然科学基金项目：视网膜电刺激虚拟通道产生机理及其与视觉神经系统相互作用机制研究； 2. 国家自然科学基金项目：视网膜假体中人工视觉最小信息需求及其优化研究； 3",
+   "lead": {
+    "src": "oa1109",
+    "name": "Xinyu Chai",
+    "cls": "unclear",
+    "cs": "8",
+    "oa": "A5050942599"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "陈浩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/968",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/968",
+     "sha256": "5a4765524a660c6e53cba50d4f79ee983bdfbd16824db152a2a385901197c840",
+     "observed": "2026-11-21T15:58:33",
+     "observedAt": "2026-11-21T15:58:33",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 陈浩 助理研究员。博士毕业于厦门大学， 2019年在上海交通大学从事博士后研究，",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要从事磁共振成像设备技术研究及磁共振成像和波谱方法研究",
+   "lead": {
+    "src": "oa1109",
+    "name": "Hao Chen",
+    "cls": "unclear",
+    "cs": "9",
+    "oa": "A5079335291"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "丁显廷",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/67",
+   "title_as_listed": "特聘教授",
+   "reason": "hand review 2026-11-21: primary direction is single-cell proteomics technology; bioinformatics/AI modelling one of three directions (computing incidental to biology)",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/67",
+     "sha256": "e411de126a2918cce01b7cfac945879b27a615451523d11f392416463bfa69ee",
+     "observed": "2026-11-21T15:58:39",
+     "observedAt": "2026-11-21T15:58:39",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 丁显廷 上海交通大学特聘教授、博士生导师、校学位评定委员会学部委员、 个性化医学",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "上海交通大学特聘教授、博士生导师、校学位评定委员会学部委员、 个性化医学研究院常务副院长、"
+   },
+   "computing_quote": "研究方向： 1. 基于功能新材料的活细胞微量蛋白组、修饰化蛋白组的富集分离纯化技术； 2. 单细胞时空蛋白组学技术、生物信息学大数据分析 和 人工智能建模； 3. 基于单细胞技术的重大 疾病（癌症、代谢性疾病、心脑疾病、神经系统疾病等）的早期预警研究； 4. 痕量临床样本（单细胞）蛋白检验新装置的集成化和微型化（科学仪器研制、微",
+   "lead": {
+    "src": "oa1109",
+    "name": "Xianting Ding",
+    "cls": "unclear",
+    "cs": "12",
+    "oa": "A5100776872"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "顾力栩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/37",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/37",
+     "sha256": "3c11bf7f5ef140398aec506145ebd1cb69be89d51ec7e465a7e7dcb806797d6d",
+     "observed": "2026-11-21T15:58:44",
+     "observedAt": "2026-11-21T15:58:44",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 顾力栩 研究员，博士生导师。1999年毕业于日本丰桥技术科学大学，获计算机科学工",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "研究员，博士生导师"
+   },
+   "computing_quote": "研究方向 医学图像处理，模式识别，机器人视觉，计算机图形学，计算机辅助最小侵入手术，计算机辅助诊断及治疗，手术导航、手术机器人",
+   "lead": {
+    "src": "oa1109",
+    "name": "Lixu Gu",
+    "cls": "likely_faculty",
+    "cs": "33",
+    "oa": "A5022846767"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "管月",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/953",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/953",
+     "sha256": "30a7a0dabe740d9bcd24e47f9c94780a733beff85023b7a19d374b698cba5fbf",
+     "observed": "2026-11-21T15:58:49",
+     "observedAt": "2026-11-21T15:58:49",
+     "quote": "院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 管月 管月，博士，上海交通大学生物医学工程学院助理研究员。管月博士分别于 201",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "目前的研究方向包括快速高分辨率磁共振成像、深度学习及多分子脑影像智能分析与临床转化",
+   "lead": {
+    "src": "oa1109",
+    "name": "Yue Guan",
+    "cls": "unclear",
+    "cs": "6",
+    "oa": "A5114626347"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "郭遥",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/889",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/889",
+     "sha256": "89f2e833c634c5cce38ef83a79393abded58593ce15954a64e097f340c186804",
+     "observed": "2026-11-21T15:58:55",
+     "observedAt": "2026-11-21T15:58:55",
+     "quote": "我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 郭遥 长期从事面向智能医疗机器人的人体行为与认知分析、机器人视觉、人机交互等领域",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 机器视觉、人机交互、手术自动化 显微外科手术机器人与脑机接口 基于视觉的神经系统疾病智能诊断与评估 科研项目 国自然青年项目 结题 主持 上海市浦江人才计划 结题 主持 上海交通大学医工交叉中心项目 在研 合作方主持 上海市科技重大专项 在研 主要参与 上海市基础特区计划 在研 主要参与 上海市东方英才计划 在研 主持",
+   "lead": {
+    "src": "recall",
+    "name": "Yao Guo 0002",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "07/6300-2",
+    "recent": "24"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "07/6300-2",
+    "records_2016_2026": 69,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Biomedical Engineering, China || Imperial College London, Hamlyn Centre for Robotic Surgery, UK || City University of Hong Kong, Department of Mechanical and B",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "韩玎",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/955",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/955",
+     "sha256": "e7b035a1b7a718666cbd8282ad0d62cd6752b2376e7979fee805e01a0e9e9e52",
+     "observed": "2026-11-21T15:59:00",
+     "observedAt": "2026-11-21T15:59:00",
+     "quote": "交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 韩玎 韩玎，上海交通大学助理研究员。 2016 年获上海交通大学工学博士学位。",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要从事医用精密仪器设计及控制，包括微型机器人技术、无线能量传输技术、传感器技术以及拓扑数据分析的研究与应用",
+   "lead": {
+    "src": "recall",
+    "name": "Han Ding 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "88/886-1",
+    "recent": "117"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "88/886-1",
+    "records_2016_2026": 213,
+    "affiliation_note": "Huazhong University of Science and Technology, School of Mechanical Science and Engineering, State Key Laboratory of Digital Manufacturing Equipment and Technology, Wuhan, China || Shanghai Jiaotong U",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "贺号",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/13",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/13",
+     "sha256": "9f5270cfba3e6d0efe76a07a7c6829685fed2c604016b3a4fabdd01f480e90e3",
+     "observed": "2026-11-21T15:59:05",
+     "observedAt": "2026-11-21T15:59:05",
+     "quote": "工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 贺号 贺号，上海交通大学生物医学工程学院教授，博士生导师。 2006 年本科毕业",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "贺号，上海交通大学生物医学工程学院教授，博士生导师"
+   },
+   "computing_quote": null,
+   "lead": {
+    "src": "recall",
+    "name": "Hao He 0007",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "18/813-7",
+    "recent": "30"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "18/813-7",
+    "records_2016_2026": 57,
+    "affiliation_note": "Shanghai Jiao Tong University, Department of Electronic Engineering, State Key Laboratory of Advanced Optical Communication Systems and Networks, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "黄秋",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/39",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/39",
+     "sha256": "dde9d32ce79c9cad26bdf89dfef4011f50186599da7d982b19ecbcab36352f7a",
+     "observed": "2026-11-21T15:59:10",
+     "observedAt": "2026-11-21T15:59:10",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 黄秋 副研究员， 博士生导师。 上海交通大学医学院附属瑞金医院“广慈”引智教授，",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "副研究员， 博士生导师"
+   },
+   "computing_quote": "主要从事核医学成像系统研制，医学成像建模和反问题研究（如核医学影像的重建算法研发），以及图像处理和图像分析",
+   "lead": {
+    "src": "oa1109",
+    "name": "Qiu Huang",
+    "cls": "unclear",
+    "cs": "7",
+    "oa": "A5073105215"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "李力",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/45",
+   "title_as_listed": "研究员",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/45",
+     "sha256": "4bfffb2d27a85296c57db0bbdc4f602faf9e54640ee5436a713a5d8868b2a943",
+     "observed": "2026-11-21T15:59:16",
+     "observedAt": "2026-11-21T15:59:16",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 李力 研究员，博士生导师。北京大学学士，军事医学科学院博士，英国牛津大学博士后，",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "研究员，博士生导师"
+   },
+   "computing_quote": "研究方向 肿瘤和发育相关疾病的发生机制和干预修复手段，细胞和基因治疗，表观遗传学，疾病动物模型",
+   "lead": {
+    "src": "oa1109",
+    "name": "李 力",
+    "cls": "unclear",
+    "cs": "",
+    "oa": ""
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "林俐",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/917",
+   "title_as_listed": "长聘教轨副教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/917",
+     "sha256": "18b2aec85420e864b529bbc1c9f292e6191805daa1232901b29e97abcdb740e5",
+     "observed": "2026-11-21T15:59:21",
+     "observedAt": "2026-11-21T15:59:21",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 林俐 长聘教轨副教授，博导， 上海市教委晨光学者 。于上海交通大学生物医学工程学",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "长聘教轨副教授，博导， 上海市教委晨光学者"
+   },
+   "computing_quote": "研究兴趣集中在表面增强拉曼光谱、纳米颗粒选择性检测应用、拉曼光活检用于消化道肿瘤诊断、基于光学方法的无创病灶定位和重建等",
+   "lead": {
+    "src": "oa1109",
+    "name": "Li Lin",
+    "cls": "unclear",
+    "cs": "8",
+    "oa": "A5100624895"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "钱晓华",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/46",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/46",
+     "sha256": "1e862cdfa76181ff042c286aa481af05929ba7b935989f959ff57dcca6395fa9",
+     "observed": "2026-11-21T15:59:26",
+     "observedAt": "2026-11-21T15:59:26",
+     "quote": "学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 钱晓华 长聘（Tenured）副教授、博士生导师。曾为美国德克萨斯大学生物医学信",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "长聘（Tenured）副教授、博士生导师"
+   },
+   "computing_quote": "研究方向 1. 主要研究兴趣： 医学图像处理与分析，人工智能算法研究 ，包括图像（视频）的细粒度分类与预测，医学图像的检测与分割，以及健康大数据挖掘与分析；主要解决的技术挑战：小样本和细粒度分析，模型的稳定性与泛化性",
+   "lead": {
+    "src": "oa1109",
+    "name": "Xiaohua Qian",
+    "cls": "likely_faculty",
+    "cs": "28",
+    "oa": "A5063759279"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "秦斌杰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/47",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/47",
+     "sha256": "455d6d530710ddf7925e51a70eb8aabd18609323659aafe3f39b28781347f8ac",
+     "observed": "2026-11-21T15:59:32",
+     "observedAt": "2026-11-21T15:59:32",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 秦斌杰 副教授，硕士生导师。2002年获上海交通大学生物医学工程专业博士学位。2",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要从事生物医学成像和图像视频处理、机器学习和人工智能、信号处理和生命科学仪器、以及中华传统文化和 跨学科 创新研发活动",
+   "lead": {
+    "src": "oa1109",
+    "name": "Binjie Qin",
+    "cls": "likely_faculty",
+    "cs": "21",
+    "oa": "A5033716596"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "孙建奇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/49",
+   "title_as_listed": "研究员",
+   "reason": "hand review 2026-11-21: primary direction is high-end medical devices; image processing one of three directions",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/49",
+     "sha256": "6def4a95f58c17a32088fda04ea6bb94c926ab34a67774153c4e75a2b9a12b3d",
+     "observed": "2026-11-21T15:59:37",
+     "observedAt": "2026-11-21T15:59:37",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 孙建奇 研究员，博士生导师，现任上海交通大学Med-X研究院副院长。在上海交通大",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "研究员，博士生导师，现任上海交通大学Med-X研究院副院长"
+   },
+   "computing_quote": "研究方向 高端医疗装备（包括热物理治疗、多模态免疫调控）； 智能医学工程（包括医学成像、图像处理与分析）； 医疗器械监管科学",
+   "lead": {
+    "src": "oa1109",
+    "name": "Jianqi Sun",
+    "cls": "unclear",
+    "cs": "10",
+    "oa": "A5100671671"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "涂圣贤",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/17",
+   "title_as_listed": "特聘教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/17",
+     "sha256": "5bdd3663ce8c8e17e74a22ac18949e031f45ebb65af65b9600b8afc9cd98209d",
+     "observed": "2026-11-21T15:59:42",
+     "observedAt": "2026-11-21T15:59:42",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 涂圣贤 上海交通大学特聘教授，博士生导师，生物医学工程学院生物医疗仪器纵主任，生",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "上海交通大学特聘教授，博士生导师，生物医学工程学院生物医疗仪器纵主任，生物医学仪器研究所心血"
+   },
+   "computing_quote": "主要从事心血管成像及生理功能学评估技术的研发与临床应用研究",
+   "lead": {
+    "src": "oa1109",
+    "name": "Shengxian Tu",
+    "cls": "likely_faculty",
+    "cs": "15",
+    "oa": "A5016955803"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "王耀",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/82",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/82",
+     "sha256": "45418f53516598b23bd0e76c6b5d098171d97aa42af5aa88b2693f334a86171c",
+     "observed": "2026-11-21T15:59:48",
+     "observedAt": "2026-11-21T15:59:48",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 王耀 副研究员，硕士生导师。毕业于上海交通大学生物医学工程学院，取得工学博士学位",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1、具有精密结构的微纳米载体材料设计及生物医学应用 2 、悬浮芯片技术及单管多指标生物检测平台 3 、数字式超灵敏免疫检测方法学研究 科研项目 主持国家自然科学基金面上项目、 国家自然科学基金青年项目、 上海市自然科学基金、 上海市青年科技英才扬帆计划 ， 共 主持 多项 上海交通大学医工交叉项目（与交大各附属医院 ）",
+   "lead": {
+    "src": "recall",
+    "name": "Yao Wang 0021",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "72/628-21",
+    "recent": "8"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "72/628-21",
+    "records_2016_2026": 12,
+    "affiliation_note": "Shanghai Jiao Tong University, Shanghai, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "魏红江",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/72",
+   "title_as_listed": "教授",
+   "reason": "hand review 2026-11-21: research direction 'MRI定量成像，人工智能重建' is computational imaging (owner 2026-10-28 computing test)",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/72",
+     "sha256": "4934f75206d41a061275efe5f678425517d119a2bcee4ba0953b86aae8c4282f",
+     "observed": "2026-11-21T15:59:53",
+     "observedAt": "2026-11-21T15:59:53",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 魏红江 教授、博士生导师，生物医学工程学院副院长， 磁共振诊疗高端技术国家工程研",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "教授、博士生导师，生物医学工程学院副院长， 磁共振诊疗高端技术国家工程研究中"
+   },
+   "computing_quote": "研究方向：MRI定量成像，人工智能重建等",
+   "lead": {
+    "src": "oa1109",
+    "name": "Hongjiang Wei",
+    "cls": "likely_faculty",
+    "cs": "19",
+    "oa": "A5058095576"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "向孙程",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/956",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/956",
+     "sha256": "6b85802ec5c42993f8abbe6d9d15a3e73d1965e032dd53abedb5621ad7ddab49",
+     "observed": "2026-11-21T15:59:59",
+     "observedAt": "2026-11-21T15:59:59",
+     "quote": "我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 向孙程 向孙程，工学博士，SCS-CV专委会委员，蒙民伟国际交流基金获得者，目前",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "委会委员，蒙民伟国际交流基金获得者，目前主要从事计算机视觉、机器学习以及可解释人工智能方面的研究，探索解耦表达、组合泛化等深度学习领域基础科学问题",
+   "lead": {
+    "src": "oa1109",
+    "name": "Suncheng Xiang",
+    "cls": "unclear",
+    "cs": "48",
+    "oa": "A5027871520"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "杨广中",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/636",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/636",
+     "sha256": "9e6b878b79db6c104a28765b1e6430f3772c9bbbf428bcc178befa6510a77f62",
+     "observed": "2026-11-21T15:36:22",
+     "observedAt": "2026-11-21T15:36:22",
+     "quote": "学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 杨广中 英国皇家工程院院士 ， 讲席 教授， 上海交通大学医疗机器人研究院创始人",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 医疗机器人 版权所有：Copyright@2021 上海交通大学生物医学工程学院 地址：上海市徐汇区华山路1954号 沪交ICP备05227 English 相 关 链 接 我的数字交大 图书馆 科研院 教务处 人力资源处 研究生院 财务计划处 国际合作交流处 知识产权信息管理平台 产业技术研究院",
+   "lead": {
+    "src": "oa1109",
+    "name": "Guang‐Zhong Yang",
+    "cls": "likely_faculty",
+    "cs": "46",
+    "oa": "A5085036036"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "余辉",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/617",
+   "title_as_listed": "长聘副教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/617",
+     "sha256": "45e23219aad16ca946dc24b7e8c99518ee045da72ce5ca0d039ab10460dbdf0a",
+     "observed": "2026-11-21T16:00:04",
+     "observedAt": "2026-11-21T16:00:04",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 余辉 长聘副教授，博士生导师。2011年博士毕业于浙江大学生物医学工程学院，并在",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "长聘副教授，博士生导师"
+   },
+   "computing_quote": "国加入上海交通大学生物医学工程学院，主要研究方向为生物传感技术及仪器，生物光学成像技术",
+   "lead": {
+    "src": "recall",
+    "name": "Hui Yu 0002",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "26/6190-2",
+    "recent": "2"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "26/6190-2",
+    "records_2016_2026": 11,
+    "affiliation_note": "Shanghai Jiao Tong University, Department of Electronic Engineering, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "张立箎",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/77",
+   "title_as_listed": "长聘副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/77",
+     "sha256": "0470c312564f5ab453ee87a60ce07b6277a98883936f5efcb15cddecba167669",
+     "observed": "2026-11-21T16:00:09",
+     "observedAt": "2026-11-21T16:00:09",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 张立箎 长聘副教授，博士生导师。于2008年获得北京邮电大学网络工程本科学位，后",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "长聘副教授，博士生导师"
+   },
+   "computing_quote": "研究方向 主要研究方向为计算机视觉和医学图像处理，长期聚焦人工智能驱动的医学影像分析前沿，在脑影像、骨影像和病理图像分析领域的人工智能算法研发方面取得一系列成果",
+   "lead": {
+    "src": "oa1109",
+    "name": "Lichi Zhang",
+    "cls": "likely_faculty",
+    "cs": "64",
+    "oa": "A5006447298"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张岩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/54",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/54",
+     "sha256": "66775b80e4a97dbc2e733cc1781a043c53542299cebbeaeb9a9646c2ebe8d659",
+     "observed": "2026-11-21T16:00:14",
+     "observedAt": "2026-11-21T16:00:14",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 张岩 副研究员（院特别研究员），博士生导师。 山东医科大学学士，山东大学博士，美",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "副研究员（院特别研究员），博士生导师"
+   },
+   "computing_quote": "研究方向 智慧免疫：疾病相关免疫细胞的分化和极化的机制研究；AI+免疫 免疫工程：用于细胞治疗的合成免疫学研究 代表性论文专著 1. Wang LH #, Zhu J#, Ding ZQ, Xie ZY, Liu XC, Zhang FH, Meng XX, Liu XJ*, Zhang Y *, Chen HY*; Immun",
+   "lead": {
+    "src": "oa1109",
+    "name": "Yan Zhang",
+    "cls": "unclear",
+    "cs": "7",
+    "oa": "A5030335492"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "赵俊",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/76",
+   "title_as_listed": "长聘教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/76",
+     "sha256": "53a769aa7fcf80f9269629f3c1f9a53ba496d2fd0c7f9cb5c9022d214ac3c7b8",
+     "observed": "2026-11-21T16:00:19",
+     "observedAt": "2026-11-21T16:00:19",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 赵俊 长聘教授，博士生导师。于2006年获上海交通大学生物医学工程博士学位。19",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "长聘教授，博士生导师"
+   },
+   "computing_quote": "主要研究领域是医学成像及医学图像处理",
+   "lead": {
+    "src": "recall",
+    "name": "Jun Zhao 0010",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "47/2026-10",
+    "recent": "20"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "47/2026-10",
+    "records_2016_2026": 44,
+    "affiliation_note": "Shanghai Jiaotong University, Department of Biomedical Engineering, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "郑国焱",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/124",
+   "title_as_listed": "长聘教授",
+   "reason": "hand review 2026-11-21: profile research direction is only '智能诊疗技术' with a lab URL; no DBLP record tied to the BME unit; revisit with the lab site",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/124",
+     "sha256": "5294da84a2d1124b9e5a8f8848cf9bb5aa56ffc1cccf21b65460e3ad31bb8c89",
+     "observed": "2026-11-21T16:00:24",
+     "observedAt": "2026-11-21T16:00:24",
+     "quote": "首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 郑国焱 郑国焱，瑞士伯尔尼大学博士，上海交通大学长聘教授、博导。现担任上海交通大",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "郑国焱，瑞士伯尔尼大学博士，上海交通大学长聘教授、博导"
+   },
+   "computing_quote": "研究方向 智能诊疗技术 实验室网址： https://citi-imr.sjtu.edu.cn/ 代表性论文专著 1. G Zeng, G Zheng * . Holistic decomposition convolution for effective semantic segmentation of medical vo",
+   "lead": {
+    "src": "oa1109",
+    "name": "Guoyan Zheng",
+    "cls": "likely_faculty",
+    "cs": "63",
+    "oa": "A5088035307"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "reason_code": "computing_evidence_thin",
+   "sources_tried": [
+    "https://bme.sjtu.edu.cn/Web/FacultyDetail/124"
+   ]
+  },
+  {
+   "name": "周越",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "BME",
+   "profile_url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/56",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/56",
+     "sha256": "36867992b9138127fa58918f894f80914a6e033f6e76a4b769c3510d41c1c9ea",
+     "observed": "2026-11-21T16:00:29",
+     "observedAt": "2026-11-21T16:00:29",
+     "quote": "上海交通大学生物医学工程学院 首页 学院概况 学院介绍 历史沿革 领导团队 历任领导 行政机构 党政办公室 本科生教务办公室 研究生教务办公室 学生工作办公室 科研与学科建设办公室 公共平台及实验室办公室 基地管理办公室 专门委员会 学术委员会列表 联系我们 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 学在生医工 本科生 培养方案 课程大纲 办事指南 通知公告 研究生 研究生培养 硕士-核心课程 博士-核心课程 办事指南 招生信息 本科生招生 研究生招生 学生园地 学生党建 团学风采 学生事务 通知公告 办事指南 科学研究 科学研究概况 研究方向 科研成果 高水平论文 科研进展 成果转化 科研基地 工程中心 重点实验室 校内平台 产学研联合基地 磁共振国家工程研究中心 中心概况 中心动态 平台建设 人才培养 仪器设备 临床转化中心 公共平台 纳米、分子及再生医学 平台 生物医疗仪器 影像、计算机系统生物学系统 国际交流 资讯公告 办事指南 学生交流 Study at BME 国际交流动态 医疗机器人研究院 医学影像前沿技术研讨会 “创之声”中国实验医学大会 运动生物力学与临床转化会议 办事指南 生医工人 教工之家 榜样力量 民主管理 暖心惠工 工韵风采 心声直达 校友概况 校友名录 本科生 硕博士生 校友活动 校友服务 校友捐赠 校友基金 我要捐赠 常用下载 党委之声 概况 组织介绍 组织架构 学习资料 支部风采 改革发展 办事流程 办事流程 下载专区 规章制度 English --> English | 中文 交大主页 师资队伍 知名教授 教师名录 荣休教工 永远怀念 博士后工作 人才招聘 周越 教授，博士生导师。1991年复旦大学生物学本科毕业，1994年在交通大学医",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "教授，博士生导师"
+   },
+   "computing_quote": "开展分子细胞生物学和组织工程学交叉研究，研究方向主要为生物材料力学性能对血管修复重建的影响和相关分子生物学机制",
+   "lead": {
+    "src": "recall",
+    "name": "Yue Zhou 0005",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "78/6191-5",
+    "recent": "40"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "78/6191-5",
+    "records_2016_2026": 79,
+    "affiliation_note": "Shanghai Jiao Tong University, Institute of Image Processing and Pattern Recognition, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "刘嘉成",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GIFT",
+   "profile_url": "https://gift.sjtu.edu.cn/faculty/45951",
+   "title_as_listed": "长聘教轨副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gift.sjtu.edu.cn/faculty/45951",
+     "sha256": "ce9edd423151c01101e95ae67d536f62e530d4780c61faafa8da5c2446bc50c7",
+     "observed": "2026-11-21T15:39:03",
+     "observedAt": "2026-11-21T15:39:03",
+     "quote": "溥渊未来技术学院 --> --> EN 导航 关于溥渊 学院概况 溥渊大事记 领导小组 名誉院长 学术委员会 领导团队 行政团队 工会 党建工作 党建动态 党员培养 党务公开 理论学习 相关下载 师资力量 人才培养 本科生人才培养 研究生人才培养 医工交叉“MD+PhD”双博士学位项目 国际项目 溥渊未来学者计划 溥渊大讲坛 通知公告 办事指南 联系我们 科学研究 研究中心 校企合作 办事指南 校园生活 学生组织 学生活动 奖学金 办事指南 生涯发展 加入我们 加入我们 联系我们 办事指南 办事指南 会议室预约 SJTU Canvas 视觉形象识别系统 下载中心 师资力量 上海交通大学溥渊未来技术学院是教育部公布的全国首批12所 上海市唯一的一所未来技术学院 --> 全部 长聘系列 双聘/客座 科研系列 中 刘嘉成 长聘教轨副教授，上海交通大学溥渊未来技术学院 博士，上海交通大学 办公地",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向包括大模型、智能体、人工智能交叉应用等，在相关领域顶级会议与期刊发表CCF-A类论文30余篇，获得3项国际会议最佳论文（提名）奖",
+   "lead": {
+    "src": "recall",
+    "name": "Jiacheng Liu 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "202/3902-1",
+    "recent": "47"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "202/3902-1",
+    "records_2016_2026": 63,
+    "affiliation_note": "Shanghai Jiaotong University, School of Software, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "王景川",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GIFT",
+   "profile_url": "https://gift.sjtu.edu.cn/faculty/40899",
+   "title_as_listed": "研究员",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gift.sjtu.edu.cn/faculty/40899",
+     "sha256": "5f4666091df10da1ceccc87301571ba86b8dd7289156a49bdff6def6619cbd36",
+     "observed": "2026-11-21T16:00:32",
+     "observedAt": "2026-11-21T16:00:32",
+     "quote": "溥渊未来技术学院 --> --> EN 导航 关于溥渊 学院概况 溥渊大事记 领导小组 名誉院长 学术委员会 领导团队 行政团队 工会 党建工作 党建动态 党员培养 党务公开 理论学习 相关下载 师资力量 人才培养 本科生人才培养 研究生人才培养 医工交叉“MD+PhD”双博士学位项目 国际项目 溥渊未来学者计划 溥渊大讲坛 通知公告 办事指南 联系我们 科学研究 研究中心 校企合作 办事指南 校园生活 学生组织 学生活动 奖学金 办事指南 生涯发展 加入我们 加入我们 联系我们 办事指南 办事指南 会议室预约 SJTU Canvas 视觉形象识别系统 下载中心 师资力量 上海交通大学溥渊未来技术学院是教育部公布的全国首批12所 上海市唯一的一所未来技术学院 --> 全部 长聘系列 双聘/客座 科研系列 中 王景川 研究员，上海交通大学溥渊未来技术学院 博士，上海交通大学 办公地点 ：上",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究领域 移动机器人导航控制 机器人SLAM 康复机器人 所获荣誉 2025 上海交通大学教学成果一等奖 2024 中国电子学会科技进步一等奖 2024 CAA教学成果评价特别贡献奖 2022 上海市教学成果特等奖 2020 浙江省科技进步奖二等奖 2020 上海市技术发明奖一等奖 2020 上海交通大学教学成果特等奖 2019",
+   "lead": {
+    "src": "oa1109",
+    "name": "Jingchuan Wang",
+    "cls": "likely_faculty",
+    "cs": "24",
+    "oa": "A5083038366"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "陈昊",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "GIFT",
+   "profile_url": "https://gift.sjtu.edu.cn/faculty/40848",
+   "title_as_listed": "长聘教轨副教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://gift.sjtu.edu.cn/faculty/40848",
+     "sha256": "335512a8960510f315f1f52fcf6918a33fffdf3ae49d9c8d30aeed1e8a0b35f8",
+     "observed": "2026-11-21T16:00:37",
+     "observedAt": "2026-11-21T16:00:37",
+     "quote": "溥渊未来技术学院 --> --> EN 导航 关于溥渊 学院概况 溥渊大事记 领导小组 名誉院长 学术委员会 领导团队 行政团队 工会 党建工作 党建动态 党员培养 党务公开 理论学习 相关下载 师资力量 人才培养 本科生人才培养 研究生人才培养 医工交叉“MD+PhD”双博士学位项目 国际项目 溥渊未来学者计划 溥渊大讲坛 通知公告 办事指南 联系我们 科学研究 研究中心 校企合作 办事指南 校园生活 学生组织 学生活动 奖学金 办事指南 生涯发展 加入我们 加入我们 联系我们 办事指南 办事指南 会议室预约 SJTU Canvas 视觉形象识别系统 下载中心 师资力量 上海交通大学溥渊未来技术学院是教育部公布的全国首批12所 上海市唯一的一所未来技术学院 --> 全部 长聘系列 双聘/客座 科研系列 中 陈昊 长聘教轨副教授，上海交通大学溥渊未来技术学院 博士，上海科技大学（中科院联",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "陈昊，副教授，博士生导师，2024年入选国家及上海市高层次青年人才计划，2025年被"
+   },
+   "computing_quote": "研究方向聚焦于钙钛矿光电材料与器件研究，在反式结构（p-i-n）钙钛矿光伏和全钙钛矿多结叠层光伏领域取得了一系列国际领先的成果，曾创造单结钙钛矿光伏器件认证效率世界纪录值26.15%（小面积）和25.2%（大面积），率先实现反式结构（p-i-n）钙钛矿光伏器件认证效率对传统正式结构（n-i-p）器件认证效率的超越",
+   "lead": {
+    "src": "oa1109",
+    "name": "Hao Chen",
+    "cls": "unclear",
+    "cs": "9",
+    "oa": "A5079335291"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "李冕",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GIFT",
+   "profile_url": "https://gift.sjtu.edu.cn/faculty/40875",
+   "title_as_listed": "长聘教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gift.sjtu.edu.cn/faculty/40875",
+     "sha256": "64d5190b203bc9ff8e9802f5dbaf8a639282edc3449c9b0f366091c9e84fbcbc",
+     "observed": "2026-11-21T16:00:43",
+     "observedAt": "2026-11-21T16:00:43",
+     "quote": "溥渊未来技术学院 --> --> EN 导航 关于溥渊 学院概况 溥渊大事记 领导小组 名誉院长 学术委员会 领导团队 行政团队 工会 党建工作 党建动态 党员培养 党务公开 理论学习 相关下载 师资力量 人才培养 本科生人才培养 研究生人才培养 医工交叉“MD+PhD”双博士学位项目 国际项目 溥渊未来学者计划 溥渊大讲坛 通知公告 办事指南 联系我们 科学研究 研究中心 校企合作 办事指南 校园生活 学生组织 学生活动 奖学金 办事指南 生涯发展 加入我们 加入我们 联系我们 办事指南 办事指南 会议室预约 SJTU Canvas 视觉形象识别系统 下载中心 师资力量 上海交通大学溥渊未来技术学院是教育部公布的全国首批12所 上海市唯一的一所未来技术学院 --> 全部 长聘系列 双聘/客座 科研系列 中 李冕 长聘教授，上海交通大学溥渊未来技术学院 博士，美国马里兰大学 博士后，美国",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究领域 系统设计与优化 先进控制理论 数据分析方法与决策理论 所获荣誉 2023 上海交通大学教书育人奖二等奖 2020 美国机械工程师学会会士 2020 上海交通大学教书育人奖集体二等奖 2019 上海交通大学国家级大学生创新项目优秀导师奖 2019 上海交通大学沪港交流奖励基金 2016 上海交通大学 第6届“凯源”十佳教",
+   "lead": {
+    "src": "recall",
+    "name": "Mian Li 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "30/3672-1",
+    "recent": "14"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "30/3672-1",
+    "records_2016_2026": 24,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, UM-SJTU Joint Institute, China || University of Maryland, College Park, MD, USA",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "刘峰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "GIFT",
+   "profile_url": "https://gift.sjtu.edu.cn/faculty/42473",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://gift.sjtu.edu.cn/faculty/42473",
+     "sha256": "b581629bc63c32ac98093046e61f37dd9ffc71bfa84aa4452627cf5b86cc39a4",
+     "observed": "2026-11-21T16:00:48",
+     "observedAt": "2026-11-21T16:00:48",
+     "quote": "溥渊未来技术学院 --> --> EN 导航 关于溥渊 学院概况 溥渊大事记 领导小组 名誉院长 学术委员会 领导团队 行政团队 工会 党建工作 党建动态 党员培养 党务公开 理论学习 相关下载 师资力量 人才培养 本科生人才培养 研究生人才培养 医工交叉“MD+PhD”双博士学位项目 国际项目 溥渊未来学者计划 溥渊大讲坛 通知公告 办事指南 联系我们 科学研究 研究中心 校企合作 办事指南 校园生活 学生组织 学生活动 奖学金 办事指南 生涯发展 加入我们 加入我们 联系我们 办事指南 办事指南 会议室预约 SJTU Canvas 视觉形象识别系统 下载中心 师资力量 上海交通大学溥渊未来技术学院是教育部公布的全国首批12所 上海市唯一的一所未来技术学院 --> 全部 长聘系列 双聘/客座 科研系列 中 刘峰 长聘副研究员，上海交通大学溥渊未来技术学院 博士，中国科学院大学/中国科学",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究领域 有机光电功能材料 人工智能材料设计 光电转换功能器件 印刷可穿戴光电子器件 神经形态视觉传感系统 科研项目 主持国家自然科学基金青年科学基金项目（B、C类）、面上项目、山西省基础研究计划重点项目、山西省青年人才项目等",
+   "lead": {
+    "src": "recall",
+    "name": "Feng Liu 0039",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "77/1318-39",
+    "recent": "44"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "77/1318-39",
+    "records_2016_2026": 78,
+    "affiliation_note": "Shanghai Jiao Tong University, China || New York University Shanghai, College of Arts and Sciences, China || East China Normal University, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "郑毅",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GIFT",
+   "profile_url": "https://gift.sjtu.edu.cn/faculty/40932",
+   "title_as_listed": "长聘副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gift.sjtu.edu.cn/faculty/40932",
+     "sha256": "6b273c6d4e2f0b8544ed04b4248d70a010b5cc931f1bd01ee06543b3c85716bd",
+     "observed": "2026-11-21T16:00:54",
+     "observedAt": "2026-11-21T16:00:54",
+     "quote": "溥渊未来技术学院 --> --> EN 导航 关于溥渊 学院概况 溥渊大事记 领导小组 名誉院长 学术委员会 领导团队 行政团队 工会 党建工作 党建动态 党员培养 党务公开 理论学习 相关下载 师资力量 人才培养 本科生人才培养 研究生人才培养 医工交叉“MD+PhD”双博士学位项目 国际项目 溥渊未来学者计划 溥渊大讲坛 通知公告 办事指南 联系我们 科学研究 研究中心 校企合作 办事指南 校园生活 学生组织 学生活动 奖学金 办事指南 生涯发展 加入我们 加入我们 联系我们 办事指南 办事指南 会议室预约 SJTU Canvas 视觉形象识别系统 下载中心 师资力量 上海交通大学溥渊未来技术学院是教育部公布的全国首批12所 上海市唯一的一所未来技术学院 --> 全部 长聘系列 双聘/客座 科研系列 中 郑毅 长聘副教授，上海交通大学溥渊未来技术学院 博士，美国加州大学戴维斯分校 办",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究领域 生物能源 生物质材料的生物医学应用 有机废物资源化利用 生物过程的数学模型 获奖 2019年，美国NSF CAREER Award 2019年，中国农业工程学会40周年最佳论文奖 2019年，美国堪萨斯州立大学优秀导师奖 学术兼职 《International Journal of Agriculture and Bi",
+   "lead": {
+    "src": "recall",
+    "name": "Yi Zheng 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "39/6163-1",
+    "recent": "7"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "39/6163-1",
+    "records_2016_2026": 15,
+    "affiliation_note": "Shanghai Jiao Tong University, Department of Automation, Shanghai, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "王耀",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "GIFT",
+   "profile_url": "https://gift.sjtu.edu.cn/faculty/40902",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://gift.sjtu.edu.cn/faculty/40902",
+     "sha256": "08209f705aa8df2a067354c31751307b43e35166d38436e7621a9f071bc3f9e3",
+     "observed": "2026-11-21T16:00:59",
+     "observedAt": "2026-11-21T16:00:59",
+     "quote": "溥渊未来技术学院 --> --> EN 导航 关于溥渊 学院概况 溥渊大事记 领导小组 名誉院长 学术委员会 领导团队 行政团队 工会 党建工作 党建动态 党员培养 党务公开 理论学习 相关下载 师资力量 人才培养 本科生人才培养 研究生人才培养 医工交叉“MD+PhD”双博士学位项目 国际项目 溥渊未来学者计划 溥渊大讲坛 通知公告 办事指南 联系我们 科学研究 研究中心 校企合作 办事指南 校园生活 学生组织 学生活动 奖学金 办事指南 生涯发展 加入我们 加入我们 联系我们 办事指南 办事指南 会议室预约 SJTU Canvas 视觉形象识别系统 下载中心 师资力量 上海交通大学溥渊未来技术学院是教育部公布的全国首批12所 上海市唯一的一所未来技术学院 --> 全部 长聘系列 双聘/客座 科研系列 中 王耀 助理研究员，上海交通大学溥渊未来技术学院 上海交通大学 上海交通大学 博士",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究领域 纳米晶材料的制备与应用 未来光伏材料与器件的制备 所获荣誉 2021 上海交通大学晨星博士后激励计划 2021 苏州大学优秀博士毕业生 科研项目 国家自然科学基金青年项目，主持，2025-2027 中国博士后科学基金面上项目，主持，2022-2024 学术兼职 Frontiers in Photonics, Journ",
+   "lead": {
+    "src": "recall",
+    "name": "Yao Wang 0021",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "72/628-21",
+    "recent": "8"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "72/628-21",
+    "records_2016_2026": 12,
+    "affiliation_note": "Shanghai Jiao Tong University, Shanghai, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "杨明",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GIFT",
+   "profile_url": "https://gift.sjtu.edu.cn/faculty/40818",
+   "title_as_listed": "特聘教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gift.sjtu.edu.cn/faculty/40818",
+     "sha256": "052b99a9d3ec66c111ac57f6c13010add34cc8ec6ed8cb573569e37d95f9afb0",
+     "observed": "2026-11-21T16:01:05",
+     "observedAt": "2026-11-21T16:01:05",
+     "quote": "溥渊未来技术学院 --> --> EN 导航 关于溥渊 学院概况 溥渊大事记 领导小组 名誉院长 学术委员会 领导团队 行政团队 工会 党建工作 党建动态 党员培养 党务公开 理论学习 相关下载 师资力量 人才培养 本科生人才培养 研究生人才培养 医工交叉“MD+PhD”双博士学位项目 国际项目 溥渊未来学者计划 溥渊大讲坛 通知公告 办事指南 联系我们 科学研究 研究中心 校企合作 办事指南 校园生活 学生组织 学生活动 奖学金 办事指南 生涯发展 加入我们 加入我们 联系我们 办事指南 办事指南 会议室预约 SJTU Canvas 视觉形象识别系统 下载中心 师资力量 上海交通大学溥渊未来技术学院是教育部公布的全国首批12所 上海市唯一的一所未来技术学院 --> 全部 长聘系列 双聘/客座 科研系列 中 杨明 特聘教授，上海交通大学溥渊未来技术学院； 博士，清华大学 邮箱 ：ming",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": {
+    "src": "recall",
+    "name": "Xiaokang Yang 0001",
+    "cls": "undecided",
+    "srcs": "csr+dblp+listing+oa",
+    "dblp": "06/3071-1|98/2604-2",
+    "recent": "384"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "06/3071-1|98/2604-2",
+    "records_2016_2026": 693,
+    "affiliation_note": "Shanghai Jiao Tong University, Shanghai, China || Shanghai Jiao Tong University, Department of Automation, China || Tsinghua University, Beijing, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "张倩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "GIFT",
+   "profile_url": "https://gift.sjtu.edu.cn/faculty/42613",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://gift.sjtu.edu.cn/faculty/42613",
+     "sha256": "3ed432c067a11043cd52cb4fa0371942ffa9fc1e7e5e9d5450d6d43881b2e23f",
+     "observed": "2026-11-21T16:01:10",
+     "observedAt": "2026-11-21T16:01:10",
+     "quote": "溥渊未来技术学院 --> --> EN 导航 关于溥渊 学院概况 溥渊大事记 领导小组 名誉院长 学术委员会 领导团队 行政团队 工会 党建工作 党建动态 党员培养 党务公开 理论学习 相关下载 师资力量 人才培养 本科生人才培养 研究生人才培养 医工交叉“MD+PhD”双博士学位项目 国际项目 溥渊未来学者计划 溥渊大讲坛 通知公告 办事指南 联系我们 科学研究 研究中心 校企合作 办事指南 校园生活 学生组织 学生活动 奖学金 办事指南 生涯发展 加入我们 加入我们 联系我们 办事指南 办事指南 会议室预约 SJTU Canvas 视觉形象识别系统 下载中心 师资力量 上海交通大学溥渊未来技术学院是教育部公布的全国首批12所 上海市唯一的一所未来技术学院 --> 全部 长聘系列 双聘/客座 科研系列 中 张倩 助理研究员，上海交通大学溥渊未来技术学院 博士，北京化工大学 办公地点 ：",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究领域 超分子材料 界面组装机理 Micro-LED新型显示巨量转移 所获荣誉 2022年度北京市优秀毕业生 2022年度北京化工大学优秀博士论文 2021年度北京化工大学博士研究生校长奖学金 科研项目 2024-2026 国家自然科学基金青年项目，主持，在研 2023-2025，中国博士后科学基金会面上资助项目，主持，已结题",
+   "lead": {
+    "src": "recall",
+    "name": "Qian Zhang 0012",
+    "cls": "undecided",
+    "srcs": "csr+dblp+listing",
+    "dblp": "04/2024-12",
+    "recent": "11"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "04/2024-12",
+    "records_2016_2026": 43,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Software, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "戴文斌",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GC",
+   "profile_url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/86043/",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/86043/",
+     "sha256": "fa3296ee58a5d110c9bec775ec8fb9bfd7c550222176a76d5b68c65accd9a175",
+     "observed": "2026-11-21T16:01:18",
+     "observedAt": "2026-11-21T16:01:18",
+     "quote": "教师 | 上海交通大学浦江国际学院 上海交通大学浦江国际学院 SJTU Global College 在校学生 教职工 校友 家长 学院概况 发展愿景 发展历程 学院领导 杰出学者 组织架构 教职员工 龙宾楼 地图指引 加入我们 新闻 学院聚焦 综合新闻 科研动态 师生风采 菁菁校园 支持学院 活动 人才培养 本科生教育 研究生教育 国际项目 课程 学术诚信 教学实验室 教育中心 科学研究 科研领域 研究中心 科研实验室 科研资源 本科生科研 党建工作 校园生活 学生组织 学生活动 咨询支持 奖助学金 校园服务 办事指南 招生信息 本科招生 国际招生 硕博招生 支持我们 影响与改变 支持项目 我要支持 企业支持 感恩致谢 选择页面 --> 上海交通大学浦江国际学院 > 学院概况 > 教职员工 > 教师 学院概况 发展愿景 发展历程 学院领导 组织架构 学院党委 行政部门 行政办公室 人力资源办公室 财务办公室 科研办公室 IT办公室 本科生教务办公室 研究生教务办公室 学生事务办公室 国际项目办公室 本科招生办公室 国际本科招生办公室 唐君远学生创新创业中心 宣传办公室 实验室与设备办公室 发展与合作办公室 美国办公室 教职员工 教师 职工 龙宾楼 地图指引 加入我们 教师 Wenbin Dai 教授 办公室: 电话: +86-21-34206765 传真: +86-21-34206765 电子邮箱: w.dai@sjtu.edu.cn --> 戴文斌 教授 办公室 电话 +86-21-34206765 电子邮箱 w.dai",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": {
+    "src": "oa1109",
+    "name": "Wenbin Dai",
+    "cls": "likely_faculty",
+    "cs": "18",
+    "oa": "A5035337842"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "郭鑫斐",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GC",
+   "profile_url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/28808/",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/28808/",
+     "sha256": "de70ba4ec01d5b2c97b86e737f9871c8bbc2ba9b09cf2be3821241aa8a8388bd",
+     "observed": "2026-11-21T16:01:29",
+     "observedAt": "2026-11-21T16:01:29",
+     "quote": "教师 | 上海交通大学浦江国际学院 上海交通大学浦江国际学院 SJTU Global College 在校学生 教职工 校友 家长 学院概况 发展愿景 发展历程 学院领导 杰出学者 组织架构 教职员工 龙宾楼 地图指引 加入我们 新闻 学院聚焦 综合新闻 科研动态 师生风采 菁菁校园 支持学院 活动 人才培养 本科生教育 研究生教育 国际项目 课程 学术诚信 教学实验室 教育中心 科学研究 科研领域 研究中心 科研实验室 科研资源 本科生科研 党建工作 校园生活 学生组织 学生活动 咨询支持 奖助学金 校园服务 办事指南 招生信息 本科招生 国际招生 硕博招生 支持我们 影响与改变 支持项目 我要支持 企业支持 感恩致谢 选择页面 --> 上海交通大学浦江国际学院 > 学院概况 > 教职员工 > 教师 学院概况 发展愿景 发展历程 学院领导 组织架构 学院党委 行政部门 行政办公室 人力资源办公室 财务办公室 科研办公室 IT办公室 本科生教务办公室 研究生教务办公室 学生事务办公室 国际项目办公室 本科招生办公室 国际本科招生办公室 唐君远学生创新创业中心 宣传办公室 实验室与设备办公室 发展与合作办公室 美国办公室 教职员工 教师 职工 龙宾楼 地图指引 加入我们 教师 Xinfei Guo 副教授 办公室: 419 电话: +86-21-3420-6765 Ext. 4191 传真: +86-21-3420-6765 Ext. 4191 电子邮箱: xinfei.guo@sjtu.edu.cn --> 郭鑫斐 副教授 办公室 419 电话 +86-21-3420-6765 Ext.",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究领域 AI/Machine learning-assisted Electronic Design Automation (EDA) Techniques Hardware/Software Co-Design for Edge Intelligence Power and energy-efficient circuit",
+   "lead": {
+    "src": "recall",
+    "name": "Xinfei Guo",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "145/9137",
+    "recent": "41"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "145/9137",
+    "records_2016_2026": 60,
+    "affiliation_note": "Shanghai Jiao Tong University, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "韩充",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GC",
+   "profile_url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/90/",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/90/",
+     "sha256": "b14b9b222514416a7610cfc809763966f0199c366682fcd4fbe989bf0bff782c",
+     "observed": "2026-11-21T16:01:40",
+     "observedAt": "2026-11-21T16:01:40",
+     "quote": "教师 | 上海交通大学浦江国际学院 上海交通大学浦江国际学院 SJTU Global College 在校学生 教职工 校友 家长 学院概况 发展愿景 发展历程 学院领导 杰出学者 组织架构 教职员工 龙宾楼 地图指引 加入我们 新闻 学院聚焦 综合新闻 科研动态 师生风采 菁菁校园 支持学院 活动 人才培养 本科生教育 研究生教育 国际项目 课程 学术诚信 教学实验室 教育中心 科学研究 科研领域 研究中心 科研实验室 科研资源 本科生科研 党建工作 校园生活 学生组织 学生活动 咨询支持 奖助学金 校园服务 办事指南 招生信息 本科招生 国际招生 硕博招生 支持我们 影响与改变 支持项目 我要支持 企业支持 感恩致谢 选择页面 --> 上海交通大学浦江国际学院 > 学院概况 > 教职员工 > 教师 学院概况 发展愿景 发展历程 学院领导 组织架构 学院党委 行政部门 行政办公室 人力资源办公室 财务办公室 科研办公室 IT办公室 本科生教务办公室 研究生教务办公室 学生事务办公室 国际项目办公室 本科招生办公室 国际本科招生办公室 唐君远学生创新创业中心 宣传办公室 实验室与设备办公室 发展与合作办公室 美国办公室 教职员工 教师 职工 龙宾楼 地图指引 加入我们 教师 Chong Han 副教授 办公室: 408 电话: +86-21-34206765 Ext. 4081 传真: +86-21-34206765 Ext. 4081 电子邮箱: chong.han@sjtu.edu.cn --> 韩充 副教授 办公室 408 电话 +86-21-34206765 Ext. 4",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": {
+    "src": "recall",
+    "name": "Chong Han 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "65/8230-1",
+    "recent": "97"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "65/8230-1",
+    "records_2016_2026": 210,
+    "affiliation_note": "Shenzhen Institute of Terahertz Technology and Innovation, China || University of Michigan-Shanghai Jiao Tong University, UM-SJTU, Joint Institute, China || Georgia Institute of Technology, Department",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "黄晓霖",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GC",
+   "profile_url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/86071/",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/86071/",
+     "sha256": "644d936768bfbbeb275362fafa2be5175173b853f140c9ace731f550250f76e0",
+     "observed": "2026-11-21T16:01:51",
+     "observedAt": "2026-11-21T16:01:51",
+     "quote": "教师 | 上海交通大学浦江国际学院 上海交通大学浦江国际学院 SJTU Global College 在校学生 教职工 校友 家长 学院概况 发展愿景 发展历程 学院领导 杰出学者 组织架构 教职员工 龙宾楼 地图指引 加入我们 新闻 学院聚焦 综合新闻 科研动态 师生风采 菁菁校园 支持学院 活动 人才培养 本科生教育 研究生教育 国际项目 课程 学术诚信 教学实验室 教育中心 科学研究 科研领域 研究中心 科研实验室 科研资源 本科生科研 党建工作 校园生活 学生组织 学生活动 咨询支持 奖助学金 校园服务 办事指南 招生信息 本科招生 国际招生 硕博招生 支持我们 影响与改变 支持项目 我要支持 企业支持 感恩致谢 选择页面 --> 上海交通大学浦江国际学院 > 学院概况 > 教职员工 > 教师 学院概况 发展愿景 发展历程 学院领导 组织架构 学院党委 行政部门 行政办公室 人力资源办公室 财务办公室 科研办公室 IT办公室 本科生教务办公室 研究生教务办公室 学生事务办公室 国际项目办公室 本科招生办公室 国际本科招生办公室 唐君远学生创新创业中心 宣传办公室 实验室与设备办公室 发展与合作办公室 美国办公室 教职员工 教师 职工 龙宾楼 地图指引 加入我们 教师 Xiaolin Huang 兼职教授 办公室: 电话: +86-21-34206765 传真: +86-21-34206765 电子邮箱: xiaolinhuang@sjtu.edu.cn --> 黄晓霖 兼职教授 办公室 电话 +86-21-34206765 电子邮箱 xia",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "His research interest is in understanding the generalization behavior of machine learning. His works on kernel method, training algorithm, and adversarial attack lead to many recent",
+   "lead": {
+    "src": "recall",
+    "name": "Xiaolin Huang",
+    "cls": "undecided",
+    "srcs": "csr+oa",
+    "dblp": "61/2227",
+    "recent": "0"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "61/2227",
+    "records_2016_2026": 0,
+    "affiliation_note": "",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "金力",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GC",
+   "profile_url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/25039/",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/25039/",
+     "sha256": "9df4e71c6d7726a5d954fad6688fb26acffb71003b46a73545dbe11170705e8e",
+     "observed": "2026-11-21T16:02:02",
+     "observedAt": "2026-11-21T16:02:02",
+     "quote": "教师 | 上海交通大学浦江国际学院 上海交通大学浦江国际学院 SJTU Global College 在校学生 教职工 校友 家长 学院概况 发展愿景 发展历程 学院领导 杰出学者 组织架构 教职员工 龙宾楼 地图指引 加入我们 新闻 学院聚焦 综合新闻 科研动态 师生风采 菁菁校园 支持学院 活动 人才培养 本科生教育 研究生教育 国际项目 课程 学术诚信 教学实验室 教育中心 科学研究 科研领域 研究中心 科研实验室 科研资源 本科生科研 党建工作 校园生活 学生组织 学生活动 咨询支持 奖助学金 校园服务 办事指南 招生信息 本科招生 国际招生 硕博招生 支持我们 影响与改变 支持项目 我要支持 企业支持 感恩致谢 选择页面 --> 上海交通大学浦江国际学院 > 学院概况 > 教职员工 > 教师 学院概况 发展愿景 发展历程 学院领导 组织架构 学院党委 行政部门 行政办公室 人力资源办公室 财务办公室 科研办公室 IT办公室 本科生教务办公室 研究生教务办公室 学生事务办公室 国际项目办公室 本科招生办公室 国际本科招生办公室 唐君远学生创新创业中心 宣传办公室 实验室与设备办公室 发展与合作办公室 美国办公室 教职员工 教师 职工 龙宾楼 地图指引 加入我们 教师 Li Jin 副教授 办公室: 424 电话: +86-21-34206765 Ext. 4241 传真: +86-21-34206765 Ext. 4241 电子邮箱: li.jin@sjtu.edu.cn --> 金力 副教授 办公室 424 电话 +86-21-34206765 Ext. 4",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": {
+    "src": "recall",
+    "name": "Li Jin 0004",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "42/1899-4",
+    "recent": "17"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "42/1899-4",
+    "records_2016_2026": 39,
+    "affiliation_note": "Shanghai Jiao Tong University, Department of Automation, UM Joint Institute, China || New York University, School of Engineering, NY, USA || Massachusetts Institute of Technology, MIT, Department of C",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "钱炜慷",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GC",
+   "profile_url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/109/",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/109/",
+     "sha256": "d111f0de9d46bb5a7609cbcc3bc590883a69ddbbbb093f7217d366e581a3a9ec",
+     "observed": "2026-11-21T16:02:13",
+     "observedAt": "2026-11-21T16:02:13",
+     "quote": "教师 | 上海交通大学浦江国际学院 上海交通大学浦江国际学院 SJTU Global College 在校学生 教职工 校友 家长 学院概况 发展愿景 发展历程 学院领导 杰出学者 组织架构 教职员工 龙宾楼 地图指引 加入我们 新闻 学院聚焦 综合新闻 科研动态 师生风采 菁菁校园 支持学院 活动 人才培养 本科生教育 研究生教育 国际项目 课程 学术诚信 教学实验室 教育中心 科学研究 科研领域 研究中心 科研实验室 科研资源 本科生科研 党建工作 校园生活 学生组织 学生活动 咨询支持 奖助学金 校园服务 办事指南 招生信息 本科招生 国际招生 硕博招生 支持我们 影响与改变 支持项目 我要支持 企业支持 感恩致谢 选择页面 --> 上海交通大学浦江国际学院 > 学院概况 > 教职员工 > 教师 学院概况 发展愿景 发展历程 学院领导 组织架构 学院党委 行政部门 行政办公室 人力资源办公室 财务办公室 科研办公室 IT办公室 本科生教务办公室 研究生教务办公室 学生事务办公室 国际项目办公室 本科招生办公室 国际本科招生办公室 唐君远学生创新创业中心 宣传办公室 实验室与设备办公室 发展与合作办公室 美国办公室 教职员工 教师 职工 龙宾楼 地图指引 加入我们 教师 Weikang Qian 副教授 办公室: 430 电话: +86-21-34206765 Ext. 4301 传真: +86-21-34206765 Ext. 4301 电子邮箱: qianwk@sjtu.edu.cn --> 钱炜慷 副教授 办公室 430 电话 +86-21-34206765 Ext.",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究领域 Novel Paradigm for Computation Circuit Design for Emerging Technologies Logic Synthesis and Verification for VLSI Circuits Computer Architecture for Probabilist",
+   "lead": {
+    "src": "oa1109",
+    "name": "Weikang Qian",
+    "cls": "likely_faculty",
+    "cs": "15",
+    "oa": "A5036572182"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "王贺升",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GC",
+   "profile_url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/61204/",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/61204/",
+     "sha256": "167a5a848e5f0397b30d9a327ef6688a7d41ffe3114e643b42738072a262953a",
+     "observed": "2026-11-21T16:02:24",
+     "observedAt": "2026-11-21T16:02:24",
+     "quote": "教师 | 上海交通大学浦江国际学院 上海交通大学浦江国际学院 SJTU Global College 在校学生 教职工 校友 家长 学院概况 发展愿景 发展历程 学院领导 杰出学者 组织架构 教职员工 龙宾楼 地图指引 加入我们 新闻 学院聚焦 综合新闻 科研动态 师生风采 菁菁校园 支持学院 活动 人才培养 本科生教育 研究生教育 国际项目 课程 学术诚信 教学实验室 教育中心 科学研究 科研领域 研究中心 科研实验室 科研资源 本科生科研 党建工作 校园生活 学生组织 学生活动 咨询支持 奖助学金 校园服务 办事指南 招生信息 本科招生 国际招生 硕博招生 支持我们 影响与改变 支持项目 我要支持 企业支持 感恩致谢 选择页面 --> 上海交通大学浦江国际学院 > 学院概况 > 教职员工 > 教师 学院概况 发展愿景 发展历程 学院领导 组织架构 学院党委 行政部门 行政办公室 人力资源办公室 财务办公室 科研办公室 IT办公室 本科生教务办公室 研究生教务办公室 学生事务办公室 国际项目办公室 本科招生办公室 国际本科招生办公室 唐君远学生创新创业中心 宣传办公室 实验室与设备办公室 发展与合作办公室 美国办公室 教职员工 教师 职工 龙宾楼 地图指引 加入我们 教师 Hesheng Wang 院长 & 教授 办公室: 400A 电话: +86-21-3420-6045 Ext.4001 传真: +86-21-3420-6045 Ext.4001 电子邮箱: wanghesheng@sjtu.edu.cn --> 王贺升 院长 & 教授 办公室 400A 电话 +86-21-3420-6045",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1) 视觉伺服 2) 服务机器人 3) 无人驾驶 4) 机器人控制 5) 计算机视觉 浦江国际学院 地址：上海交通大学 上海市闵行区东川路800号 邮编：200240 关于学院 教学教务 科研工作 我是学生 我是教职员工 联系我们 院长书记信箱 院历 下载中心 上海交通大学 Wechat Weibo © 2024 Sh",
+   "lead": {
+    "src": "recall",
+    "name": "Hesheng Wang 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "08/2190-1",
+    "recent": "250"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "08/2190-1",
+    "records_2016_2026": 417,
+    "affiliation_note": "Shanghai Jiao Tong University, Department of Automation, Key Laboratory of System Control and Information Processing, Shanghai, China || Chinese University of Hong Kong, Department of Automation and C",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "张峻",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GC",
+   "profile_url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/149/",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/149/",
+     "sha256": "d4f03f4799c6bcdd9a2bcda033a47fec6595d697a2f22e84c99014beb0cfc0a0",
+     "observed": "2026-11-21T16:02:35",
+     "observedAt": "2026-11-21T16:02:35",
+     "quote": "教师 | 上海交通大学浦江国际学院 上海交通大学浦江国际学院 SJTU Global College 在校学生 教职工 校友 家长 学院概况 发展愿景 发展历程 学院领导 杰出学者 组织架构 教职员工 龙宾楼 地图指引 加入我们 新闻 学院聚焦 综合新闻 科研动态 师生风采 菁菁校园 支持学院 活动 人才培养 本科生教育 研究生教育 国际项目 课程 学术诚信 教学实验室 教育中心 科学研究 科研领域 研究中心 科研实验室 科研资源 本科生科研 党建工作 校园生活 学生组织 学生活动 咨询支持 奖助学金 校园服务 办事指南 招生信息 本科招生 国际招生 硕博招生 支持我们 影响与改变 支持项目 我要支持 企业支持 感恩致谢 选择页面 --> 上海交通大学浦江国际学院 > 学院概况 > 教职员工 > 教师 学院概况 发展愿景 发展历程 学院领导 组织架构 学院党委 行政部门 行政办公室 人力资源办公室 财务办公室 科研办公室 IT办公室 本科生教务办公室 研究生教务办公室 学生事务办公室 国际项目办公室 本科招生办公室 国际本科招生办公室 唐君远学生创新创业中心 宣传办公室 实验室与设备办公室 发展与合作办公室 美国办公室 教职员工 教师 职工 龙宾楼 地图指引 加入我们 教师 Jun Zhang 教授 办公室: 418 电话: +86-21-34206765 Ext. 4181 传真: +86-21-34206765 Ext. 4181 电子邮箱: zhangjun12@sjtu.edu.cn --> 张峻 教授 办公室 418 电话 +86-21-34206765 Ext. 41",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": {
+    "src": "oa1109",
+    "name": "Jun Zhang",
+    "cls": "unclear",
+    "cs": "9",
+    "oa": "A5100433129"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "郑文立",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GC",
+   "profile_url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/86069/",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/86069/",
+     "sha256": "706627dfb7eee02ba53577da4b1785cdefafb4b10375f958b0cc598928a65ae6",
+     "observed": "2026-11-21T16:02:46",
+     "observedAt": "2026-11-21T16:02:46",
+     "quote": "教师 | 上海交通大学浦江国际学院 上海交通大学浦江国际学院 SJTU Global College 在校学生 教职工 校友 家长 学院概况 发展愿景 发展历程 学院领导 杰出学者 组织架构 教职员工 龙宾楼 地图指引 加入我们 新闻 学院聚焦 综合新闻 科研动态 师生风采 菁菁校园 支持学院 活动 人才培养 本科生教育 研究生教育 国际项目 课程 学术诚信 教学实验室 教育中心 科学研究 科研领域 研究中心 科研实验室 科研资源 本科生科研 党建工作 校园生活 学生组织 学生活动 咨询支持 奖助学金 校园服务 办事指南 招生信息 本科招生 国际招生 硕博招生 支持我们 影响与改变 支持项目 我要支持 企业支持 感恩致谢 选择页面 --> 上海交通大学浦江国际学院 > 学院概况 > 教职员工 > 教师 学院概况 发展愿景 发展历程 学院领导 组织架构 学院党委 行政部门 行政办公室 人力资源办公室 财务办公室 科研办公室 IT办公室 本科生教务办公室 研究生教务办公室 学生事务办公室 国际项目办公室 本科招生办公室 国际本科招生办公室 唐君远学生创新创业中心 宣传办公室 实验室与设备办公室 发展与合作办公室 美国办公室 教职员工 教师 职工 龙宾楼 地图指引 加入我们 教师 Wenli Zheng 兼职教授 办公室: 电话: +86-21-34206765 传真: +86-21-34206765 电子邮箱: zheng-wl@cs.sjtu.edu.cn --> 郑文立 兼职教授 办公室 电话 +86-21-34206765 电子邮箱 zhe",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "er programming. His research focuses primarily on computing resource scheduling and related topics in computer systems. His research has been supported by the National Natural Science Foundation of",
+   "lead": {
+    "src": "recall",
+    "name": "Wenli Zheng",
+    "cls": "undecided",
+    "srcs": "csr+listing+oa",
+    "dblp": "147/1003",
+    "recent": "0"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "147/1003",
+    "records_2016_2026": 0,
+    "affiliation_note": "",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "朱怡飞",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "GC",
+   "profile_url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/1402/",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/1402/",
+     "sha256": "62127af3ac9465f70ef11caaa1c3d7f739792009a73a77255ab97357f2c2c483",
+     "observed": "2026-11-21T16:02:57",
+     "observedAt": "2026-11-21T16:02:57",
+     "quote": "教师 | 上海交通大学浦江国际学院 上海交通大学浦江国际学院 SJTU Global College 在校学生 教职工 校友 家长 学院概况 发展愿景 发展历程 学院领导 杰出学者 组织架构 教职员工 龙宾楼 地图指引 加入我们 新闻 学院聚焦 综合新闻 科研动态 师生风采 菁菁校园 支持学院 活动 人才培养 本科生教育 研究生教育 国际项目 课程 学术诚信 教学实验室 教育中心 科学研究 科研领域 研究中心 科研实验室 科研资源 本科生科研 党建工作 校园生活 学生组织 学生活动 咨询支持 奖助学金 校园服务 办事指南 招生信息 本科招生 国际招生 硕博招生 支持我们 影响与改变 支持项目 我要支持 企业支持 感恩致谢 选择页面 --> 上海交通大学浦江国际学院 > 学院概况 > 教职员工 > 教师 学院概况 发展愿景 发展历程 学院领导 组织架构 学院党委 行政部门 行政办公室 人力资源办公室 财务办公室 科研办公室 IT办公室 本科生教务办公室 研究生教务办公室 学生事务办公室 国际项目办公室 本科招生办公室 国际本科招生办公室 唐君远学生创新创业中心 宣传办公室 实验室与设备办公室 发展与合作办公室 美国办公室 教职员工 教师 职工 龙宾楼 地图指引 加入我们 教师 Yifei Zhu 副教授 办公室: 440 电话: +86-21-34206765 Ext. 4401 传真: +86-21-34206765 Ext. 4401 电子邮箱: yifei.zhu@sjtu.edu.cn --> 朱怡飞 副教授 办公室 440 电话 +86-21-34206765 Ext.",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究领域 Cloud/edge Computing Multimedia Networking Distributed Machine Learning Systems Network Economics 发表论文 Journal Articles: Wang, Y. Zhu, F. Wang, J. Liu, X. Ma, X",
+   "lead": {
+    "src": "recall",
+    "name": "Yifei Zhu 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "174/2169-1",
+    "recent": "80"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "174/2169-1",
+    "records_2016_2026": 119,
+    "affiliation_note": "Shanghai Jiao Tong University, UM-SJTU Joint Institute, Shanghai, China || Simon Fraser University, Greater Vancouver, BC, Canada",
+    "names_profile_unit": false
+   }
   }
  ]
 }
