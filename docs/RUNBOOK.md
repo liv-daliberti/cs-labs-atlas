@@ -36,7 +36,7 @@ Set up a shell: `. /n/fs/resemble/homogenizing-science/code/paths.sh` (gives `$C
   happened; a refused or failed resubmit leaves the loop down (the status page alarm). `scancel` (TERM) stops for good: no resubmit.
   Michigan's collector job restarts as `downloads.slurm --array=6`, the loop alone. Proof: `tests/test_loop_job.py`.
 - **Download yield (2026-11-03).** A loop only asks the collector for candidates its catalog holds, once each. Three things keep
-  open copies out of reach and are handled in code: (1) `downloads.slurm` runs the channels `ledger_found` and `reader_link` before the
+  open copies out of reach and are handled in code: (1) `downloads.slurm` and (since 2026-11-21, only when the ledger or reader changed: `stores/<school>/staged/ledger-found.stamp`) `school-collector.slurm` run the channels `ledger_found` and `reader_link` before the
   loop, so the release's new open copies and the reader's confirmed links become candidates; (2) a timeout / 500 is asked again for the
   priority papers (`priority_retry.py`, at most twice per URL, 6 h apart); (3) an HTTP 429 is a timed cooldown shared by all loops
   (`host_throttle.py`, raw/host-throttle.json: 5 min, doubling per 429 within 2 h, cap 1 h; up to 15 min is waited out, longer pauses the

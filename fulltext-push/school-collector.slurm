@@ -38,11 +38,27 @@ if [ "${CHANNELS_FORCE:-0}" != 1 ] || [ -z "${CHANNELS:-}" ] || [ -e "$CS_ATLAS_
     CHANNELS=$(PYTHONPATH="$CS_ATLAS_CODE/tools" "$CS_ATLAS_PY" -c "import school_config as S; print(' '.join(S.field(S.get('$SCHOOL'), 'collector.channels', []) or []))" 2>/dev/null)
 fi
 export OA_RESERVE="${OA_RESERVE:-4000}"   # OpenAlex: stop at 4,000 credits left of the shared 10,000 a day (oa_refresh.RESERVE)
+# 2026-11-21: the downloads.slurm pre-step (owner 2026-11-03, download yield) for every school loop. The loop only asks the collector for
+# candidates the catalog holds, and the ledger's found open copies (new_open_urls: arXiv -> GCS bulk, PMC -> the PMC S3 files, URLs) and the
+# reader's confirmed links were never written as candidates once the loops moved here: 7.7k ledger-found papers in 22 schools had none.
+# ledger_found + reader_link run only when the school's ledger or the latest release's reader file changed since their last run (the stamp
+# holds both mtimes), so a 44-minute self-restart does not re-read the catalog for nothing. A failure only loses the new candidates.
+PRIORITY="$CS_ATLAS_FT_RAW/$SCHOOL-priority-work-ids.tsv"
+$CS_ATLAS_COLLECTOR_PY -I priority_file.py "$SCHOOL" >> "$RESTART_LOG" 2>&1 || rm -f "$PRIORITY"
+PRIORITY_ARGS=(); [ -s "$PRIORITY" ] && PRIORITY_ARGS=(--priority-file "$PRIORITY")
+LF_STAMP="$CS_ATLAS_STORES/$SCHOOL/staged/ledger-found.stamp"
+LF_SIG="$(stat -Lc '%n %Y' "$CS_ATLAS_HIERARCHY/$SCHOOL/derived/unavailable.jsonl.gz" "$CS_ATLAS_RELEASES/latest/reader/$SCHOOL.jsonl.gz" 2>/dev/null)"
 ./run_steps.sh "$SCHOOL" ${CHANNELS:-oa_arxiv openalex proceedings arxiv_title dblp_ee s2 europepmc pmc figshare labpages pihomes} \
     >> "$CS_ATLAS_FT_LOGS/steps-$SCHOOL.log" 2>&1 < /dev/null &
 EXTRA_PIDS=($!)
+if [ -n "$LF_SIG" ] && [ "$LF_SIG" != "$(cat "$LF_STAMP" 2>/dev/null)" ]; then
+    # one school at a time (the lock downloads.slurm used); the stamp is written only after a clean run, so a restart mid-wait retries
+    ( flock 9; $CS_ATLAS_COLLECTOR_PY -I -u channel_runner.py "$SCHOOL" ledger_found reader_link && printf '%s\n' "$LF_SIG" > "$LF_STAMP" ) \
+        9>>"$CS_ATLAS_FT_LOGS/run_steps-ledger_found.lock" >> "$RESTART_LOG" 2>&1 < /dev/null &
+    EXTRA_PIDS+=($!)
+fi
 run_restartable "fulltext-push/school-collector.slurm" -- \
-    nice -n 5 $CS_ATLAS_COLLECTOR_PY -I -u lab_first_loop.py "$SCHOOL" --recent-first 2023 \
+    nice -n 5 $CS_ATLAS_COLLECTOR_PY -I -u lab_first_loop.py "$SCHOOL" --recent-first 2023 "${PRIORITY_ARGS[@]}" \
     >> "$CS_ATLAS_FT_LOGS/lab_first_loop-$SCHOOL.out" 2>&1 < /dev/null
 rc=$?
 wait
