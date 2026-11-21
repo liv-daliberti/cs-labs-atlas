@@ -3,7 +3,7 @@
  "generated_at": "2026-11-20",
  "tool": "source review UT-PURDUE-PAPERS-1120",
  "standard": "docs/LAB-PAGES.md",
- "status": "proposed; independent source review pending",
+ "status": "Three initial rows independently passed; Ying Zhu exact owned-citation row pending later independent review.",
  "students": [],
  "papers": [
   {
@@ -142,6 +142,52 @@
    "owned_publications_page": {
     "url": "https://pickspeng.github.io/",
     "sha256": "45df34530a95fbe2ad4bb5351cd0399955319a175ce1a0d434c252eba6afa6fa"
+   }
+  },
+  {
+   "pi": "Ying Zhu",
+   "title": "High Dimensional Inference in Partially Linear Models.",
+   "year": 2019,
+   "doi": null,
+   "venue": "AISTATS 2019",
+   "byline": [
+    "Ying Zhu",
+    "Zhuqing Yu",
+    "Guang Cheng"
+   ],
+   "type": "conference-paper",
+   "evidence": {
+    "basis": "page1_open",
+    "how": "near",
+    "quotes": [
+     "Ying Zhu Purdue University"
+    ],
+    "url": "https://proceedings.mlr.press/v89/zhu19c/zhu19c.pdf",
+    "pdf_sha256": "77eb9048546e095aa492d213bb5b8eca96cbcf39fe8ef7a9fe91dda772212e8b",
+    "fetched_at": "2026-11-20T20:54:59"
+   },
+   "review_sources": [
+    {
+     "url": "https://proceedings.mlr.press/v89/zhu19c/zhu19c.pdf",
+     "sha256": "77eb9048546e095aa492d213bb5b8eca96cbcf39fe8ef7a9fe91dda772212e8b",
+     "artifact": "hierarchy/purdue/raw/paper-source-77eb9048546e095aa492d213bb5b8eca96cbcf39fe8ef7a9fe91dda772212e8b.pdf",
+     "quote": "Ying Zhu Purdue University",
+     "observed": "2026-11-20T20:54:59",
+     "page1_text_sha256": "b3976f1d4b7a18c65a30c3fc3912fa88119ad3476c3700629da20d0747610652"
+    },
+    {
+     "url": "https://sites.google.com/view/ying-zhu/",
+     "sha256": "6aebf850e7e754f921e8fecf31fba62fc572cb3303f68737a1d0d975dcb00411",
+     "artifact": "hierarchy/purdue/reviewed/identity-sources/6aebf850e7e754f921e8fecf31fba62fc572cb3303f68737a1d0d975dcb00411.html",
+     "quote": "High Dimensional Inference in Partially Linear Models"
+    }
+   ],
+   "reviewed_bibliographic_locator": "conf/aistats/ZhuYC19",
+   "key": "labpage:19d1017064eb693d2c6d5ff5",
+   "rule": "LP-PAP-01",
+   "owned_publications_page": {
+    "url": "https://sites.google.com/view/ying-zhu/",
+    "sha256": "6aebf850e7e754f921e8fecf31fba62fc572cb3303f68737a1d0d975dcb00411"
    }
   }
  ]
