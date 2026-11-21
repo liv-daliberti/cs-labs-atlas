@@ -7470,51 +7470,44 @@
   },
   "source_owned_publication_review": {
    "decision": "owned_per_work_only",
-   "reviewed_on": "2026-11-20",
-   "why": "Use direct per-work bibliography/owned-publication proof. Never expand an author cluster from one confirmed paper.",
+   "reviewed_on": "2026-11-21",
+   "why": "Exact original NUS authorship, without binding a whole author cluster.",
    "evidence": [
     {
-     "url": "https://www.comp.nus.edu.sg/cs/people/jiangwq",
-     "sha256": "dc86d4d42d71f3d02db5549f962fe4611ec6d1facb723a6465083be2c3c3c2dc",
-     "quote": " Wenqi Jiang, Suvinay Subramanian, Cat Graves, Gustavo Alonso, Amir Yazdanbakhsh, and Vidushi Dadu \"RAGO: Systematic Performance Optimization for Retrieval-Augmented Generation Serving \" (ISCA'25) [Best Paper] Wenqi Jiang, Marco Zeller, Roger Waleffe, Torsten Hoefler, and Gustavo Alonso \"Chameleon: a Heterogeneous and Disaggregated Accelerator System for Retriev",
-     "artifact": "/n/fs/resemble/homogenizing-science/scratch/websites-c/nus.sqlite",
-     "title": "RAGO: Systematic Performance Optimization for Retrieval-Augmented Generation Serving.",
-     "year": 2025,
-     "dblp_work_key": "conf/isca/JiangSGAYD25",
-     "kind": "official_or_verified_owned_publication"
-    },
-    {
-     "url": "https://www.comp.nus.edu.sg/cs/people/jiangwq",
-     "sha256": "dc86d4d42d71f3d02db5549f962fe4611ec6d1facb723a6465083be2c3c3c2dc",
-     "quote": "n Hardware\" (SIGMOD'25) Wenqi Jiang, Shuai Zhang, Boran Han, Jie Wang, Bernie Wang, and Tim Kraska \"PipeRAG: Fast Retrieval-Augmented Generation via Adaptive Pipeline Parallelism\" (KDD'25) Wenqi Jiang, Shigang Li, Yu Zhu, Johannes de Fine Licht, Zhenhao He, Runbin Shi, Cedric Renggli, Shuai Zhang, Theodoros Rekatsinas, Torsten Hoefler, and Gustavo Alonso \"",
-     "artifact": "/n/fs/resemble/homogenizing-science/scratch/websites-c/nus.sqlite",
-     "title": "PipeRAG: Fast Retrieval-Augmented Generation via Adaptive Pipeline Parallelism.",
-     "year": 2025,
-     "dblp_work_key": "conf/kdd/JiangZHW0K25",
-     "kind": "official_or_verified_owned_publication"
-    },
-    {
-     "url": "https://www.comp.nus.edu.sg/cs/people/jiangwq",
-     "sha256": "dc86d4d42d71f3d02db5549f962fe4611ec6d1facb723a6465083be2c3c3c2dc",
-     "quote": "val-Augmented Language Models\" (VLDB'25) Wenqi Jiang, Hang Hu, Torsten Hoefler, and Gustavo Alonso \"Fast Graph Vector Search via Hardware Acceleration and Delayed-Synchronization Traversal\" (VLDB'25) Wenqi Jiang, Oleh-Yevhen Khavrona, Martin Parvanov, and Gustavo Alonso \"SwiftSpatial: Spatial Joins on Modern Hardware\" (SIGMOD'25) Wenqi Jiang, Shuai Zhang, Boran Han,",
-     "artifact": "/n/fs/resemble/homogenizing-science/scratch/websites-c/nus.sqlite",
-     "title": "Fast Graph Vector Search via Hardware Acceleration and Delayed-Synchronization Traversal.",
-     "year": 2025,
-     "dblp_work_key": "journals/pvldb/JiangHHA25",
-     "kind": "official_or_verified_owned_publication"
-    },
-    {
-     "url": "https://www.comp.nus.edu.sg/cs/people/jiangwq",
-     "sha256": "dc86d4d42d71f3d02db5549f962fe4611ec6d1facb723a6465083be2c3c3c2dc",
-     "quote": "zation Traversal\" (VLDB'25) Wenqi Jiang, Oleh-Yevhen Khavrona, Martin Parvanov, and Gustavo Alonso \"SwiftSpatial: Spatial Joins on Modern Hardware\" (SIGMOD'25) Wenqi Jiang, Shuai Zhang, Boran Han, Jie Wang, Bernie Wang, and Tim Kraska \"PipeRAG: Fast Retrieval-Augmented Generation via Adaptive Pipeline Parallelism\" (KDD'25) W",
-     "artifact": "/n/fs/resemble/homogenizing-science/scratch/websites-c/nus.sqlite",
-     "title": "SwiftSpatial: Spatial Joins on Modern Hardware.",
-     "year": 2025,
-     "dblp_work_key": "journals/pacmmod/JiangKPA25",
-     "kind": "official_or_verified_owned_publication"
+     "url": "https://arxiv.org/pdf/2611.03103",
+     "sha256": "cbd6f8a0d456b648d0a054ce284810a78804e2a8cdfb726e9a305ddf05093672",
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/nus-zero-1121/source-captures.sqlite",
+     "quote": "                                                              VLAL AG B ENCH : U NDERSTANDING W HEN AND W HY\n                                                                    VLA I NFERENCE L ATENCY M ATTERS\n\n\n                                               Qi Wen 1 Borui Xu 1 Hussein Amro 1 Hongshi Tan 1 Hanmin Lin 2 Chaoyi Ruan 1 Shanghao Liu 1\n                                               Gang Yang 1 Yuejiang Liu 1 3 Jiafei Duan 1 Bingsheng He 1 Jason Clemons 4 Christos Kozyrakis 3 4\n                                                                                         Wenqi Jiang 1\n                                                     1                                      2                                      3                         4\n                                                         National University of Singapore       Nanyang Technological University       Stanford University       NVIDIA\narXiv:2611.03103v2 [cs.RO] 16 Nov 2026\n\n\n\n\n                                                                                                 A BSTRACT\n                                              Vision-language-action (VLA) models offer a promising path toward general-purpose robot manipulation. While\n                                              inference latency can affect task success in a constantly evolving physical world, the relationship between latency\n                                              and task success rate remains poorly understood. In this paper, we introduce VLAL AG B ENCH, a comprehensive\n                                              benchmark for studying VLA inference latency sensitivity across task types, object speeds, execution modes\n                                              (synchronous and asynchronous), and VLA policies. Using VLAL AG B ENCH, we find that even a modest\n                                              inference latency of 100 ms can nearly halve task success on moving targets, with sensitivity varying substantially\n                                              across tasks and policies. These differences refl",
+     "kind": "primary_paper_named_nus_authorship"
     }
    ]
-  }
+  },
+  "openalex_work_scope": {
+   "https://openalex.org/A5018202004": [
+    "https://openalex.org/W7225184335"
+   ]
+  },
+  "openalex": [
+   "https://openalex.org/A5018202004"
+  ],
+  "exact_work_identity_reviews": [
+   {
+    "reviewed_by": "Codex",
+    "reviewed_on": "2026-11-21",
+    "works": [
+     "https://openalex.org/W7225184335"
+    ],
+    "evidence": [
+     {
+      "url": "https://arxiv.org/pdf/2611.03103",
+      "sha256": "cbd6f8a0d456b648d0a054ce284810a78804e2a8cdfb726e9a305ddf05093672",
+      "artifact": "/n/fs/resemble/homogenizing-science/scratch/nus-zero-1121/source-captures.sqlite",
+      "quote": "                                                              VLAL AG B ENCH : U NDERSTANDING W HEN AND W HY\n                                                                    VLA I NFERENCE L ATENCY M ATTERS\n\n\n                                               Qi Wen 1 Borui Xu 1 Hussein Amro 1 Hongshi Tan 1 Hanmin Lin 2 Chaoyi Ruan 1 Shanghao Liu 1\n                                               Gang Yang 1 Yuejiang Liu 1 3 Jiafei Duan 1 Bingsheng He 1 Jason Clemons 4 Christos Kozyrakis 3 4\n                                                                                         Wenqi Jiang 1\n                                                     1                                      2                                      3                         4\n                                                         National University of Singapore       Nanyang Technological University       Stanford University       NVIDIA\narXiv:2611.03103v2 [cs.RO] 16 Nov 2026\n\n\n\n\n                                                                                                 A BSTRACT\n                                              Vision-language-action (VLA) models offer a promising path toward general-purpose robot manipulation. While\n                                              inference latency can affect task success in a constantly evolving physical world, the relationship between latency\n                                              and task success rate remains poorly understood. In this paper, we introduce VLAL AG B ENCH, a comprehensive\n                                              benchmark for studying VLA inference latency sensitivity across task types, object speeds, execution modes\n                                              (synchronous and asynchronous), and VLA policies. Using VLAL AG B ENCH, we find that even a modest\n                                              inference latency of 100 ms can nearly halve task success on moving targets, with sensitivity varying substantially\n                                              across tasks and policies. These differences refl",
+      "kind": "primary_paper_named_nus_authorship"
+     }
+    ]
+   }
+  ]
  },
  "LI Wei": {
   "aliases": [
