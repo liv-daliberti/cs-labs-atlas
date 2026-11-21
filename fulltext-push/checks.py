@@ -67,17 +67,37 @@ def record(school, rows, path=None, batch=200):
     return n
 
 
+READ_TRIES, READ_WAIT_S = 40, 15
+
+
+def _read(p, query):
+    """query(db) on a fresh read-only connection, retried. The download loops' channels write the checks stores while the ledger
+    reads them; a read-only connection that meets a writer's hot rollback journal cannot roll it back and raises 'attempt to write
+    a readonly database' (the 2026-11-19 ledger run died on it). Writers commit in short batches, so the journal clears: wait and
+    reopen (at most READ_TRIES x READ_WAIT_S = 10 min), then raise."""
+    for i in range(READ_TRIES):
+        db = sqlite3.connect(f'file:{p}?mode=ro', uri=True, timeout=120)
+        try:
+            db.execute('PRAGMA busy_timeout=120000')
+            return query(db)
+        except sqlite3.OperationalError as e:
+            if i == READ_TRIES - 1 or not any(s in str(e) for s in ('readonly database', 'locked', 'disk I/O error')):
+                raise
+        finally:
+            db.close()
+        time.sleep(READ_WAIT_S)
+
+
 def latest(school, path=None, channels=None):
     """{(paper_key, channel): row dict} of the newest check per paper and channel (detail parsed when JSON)."""
     p = Path(path) if path else DIR / f'{school}.sqlite'
     out = {}
     if not p.exists():
         return out
-    db = sqlite3.connect(f'file:{p}?mode=ro', uri=True, timeout=120)
-    db.execute('PRAGMA busy_timeout=120000')
-    hi = db.execute('SELECT MAX(id) FROM checks').fetchone()[0] or 0
+    hi = _read(p, lambda d: d.execute('SELECT MAX(id) FROM checks').fetchone()[0]) or 0
     for lo in range(0, hi + 1, 20000):
-        for row in db.execute(f'SELECT {", ".join(COLS)} FROM checks WHERE id >= ? AND id < ? ORDER BY id', (lo, lo + 20000)).fetchall():
+        rows = _read(p, lambda d: d.execute(f'SELECT {", ".join(COLS)} FROM checks WHERE id >= ? AND id < ? ORDER BY id', (lo, lo + 20000)).fetchall())
+        for row in rows:
             r = dict(zip(COLS, row))
             if channels and r['channel'] not in channels:
                 continue
@@ -88,7 +108,6 @@ def latest(school, path=None, channels=None):
             k = (r['paper_key'], r['channel'])
             if k not in out or r['at'] >= out[k]['at']:
                 out[k] = r
-    db.close()
     return out
 
 
