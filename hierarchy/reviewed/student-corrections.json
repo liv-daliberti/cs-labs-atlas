@@ -4069,5 +4069,55 @@
     ],
     "reviewed_by": "codex-purdue-students25-1121",
     "reviewed_on": "2026-11-21"
+  },
+  {
+    "school": "purdue",
+    "pi": "Tianyi Zhang",
+    "student": "ext:purdue:y-charlie-hu",
+    "action": "drop",
+    "expected_member_sha256": "3ebb75b2f7ff23cec9ff74fc411daffa5f62d5329c43b3ce791aca8c75e09195",
+    "reason": "Inherited fuzzy faculty-name collision: the primary source names different literal student identities. Remove only this exact corrupted student preimage; independently reviewed lab-scoped literal replacements are supplied in Purdue labpage-evidence.json, without retaining the wrong faculty name as an alias.",
+    "evidence": [
+      {
+        "url": "https://tianyi-zhang.github.io/students/",
+        "sha256": "f230185b7e1eaf3e2cb2a1ecfdcbccd0a32c15d7cca6526918497df52afb1ce1",
+        "quote": "Yichen Hu (Purdue CS Undergrad, Spring 2025-Summer 2025)"
+      }
+    ]
+  },
+  {
+    "school": "purdue",
+    "pi": "Majid Kazemian",
+    "student": "ext:purdue:y-charlie-hu",
+    "action": "drop",
+    "expected_member_sha256": "0a5a8034bda5ab728f1373ac3bae42e019dd619ee0480f9e40c80b3c3ff6a24d",
+    "reason": "Inherited fuzzy faculty-name collision: the primary source names different literal student identities. Remove only this exact corrupted student preimage; independently reviewed lab-scoped literal replacements are supplied in Purdue labpage-evidence.json, without retaining the wrong faculty name as an alias.",
+    "evidence": [
+      {
+        "url": "https://kazemianlab.com/members.php",
+        "sha256": "6e29c31d411d24410ad22c1c9b2c721d29c242692ec86cb4aab56ad12be4a3ea",
+        "quote": "Yonghua (Jenn) Hu, Undergraduate Student, May 2019-May 2021"
+      }
+    ]
+  },
+  {
+    "school": "purdue",
+    "pi": "Zachary Kingston",
+    "student": "ext:purdue:andrew-l-liu",
+    "action": "drop",
+    "expected_member_sha256": "a1fd2b1172b04dc7a0a75439cf088d28460e2ae95752339e64ae37db02042a24",
+    "reason": "Inherited fuzzy faculty-name collision: the primary source names different literal student identities. Remove only this exact corrupted student preimage; independently reviewed lab-scoped literal replacements are supplied in Purdue labpage-evidence.json, without retaining the wrong faculty name as an alias.",
+    "evidence": [
+      {
+        "url": "https://commalab.org/assets/pdf/cv/kingston.pdf",
+        "sha256": "b33791e8292f729ffbae80993d9660fc3ec042255477d18c268291a901572e8d",
+        "quote": "Andrew Z. Liu, Purdue University, 2025–2026"
+      },
+      {
+        "url": "https://commalab.org/assets/pdf/cv/kingston.pdf",
+        "sha256": "b33791e8292f729ffbae80993d9660fc3ec042255477d18c268291a901572e8d",
+        "quote": "Andrew H. Liu, Purdue University, 2025–2026"
+      }
+    ]
   }
 ]
