@@ -1,0 +1,2431 @@
+{
+ "school": "sjtu",
+ "reviewed": "2026-11-21",
+ "rule": "Lab hunt 2026-11-21 (owner D-0031/D-0032/D-0034): official unit profile pages of strong-reference leads and of never-reviewed directory entries. Accepted = an official page names the person with a ladder (or ladder-equivalent, D-0005) or research rank AND a PhD-advising or own-lab quote (D-0009), and computing is the object or method of the research (full-coverage CS school, an AI unit, or the research-direction quote). Otherwise faculty_no_pi_evidence (held until advising/lab evidence is found), research_or_other_rank, not_faculty_listed or excluded_unresolved with reason.",
+ "units_searched": [
+  "CS"
+ ],
+ "counts": {
+  "research_or_other_rank": 67,
+  "accepted": 15,
+  "not_faculty_listed": 4,
+  "faculty_no_pi_evidence": 5
+ },
+ "decisions": [
+  {
+   "name": "董明凯",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/dongmingkai.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/dongmingkai.html",
+     "sha256": "724f501fe3bf377f16a77e99ddfcb01b82e866f8f570ed6e6fae7b0471df8598",
+     "observed": "2026-11-21T15:25:28",
+     "observedAt": "2026-11-21T15:25:28",
+     "quote": "董明凯 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向为操作系统、文件与存储系统、DNA存储与计算，相关工作发表在FAST、USENIX ATC、SOSP等操作系统顶级国际会议",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "杜冬冬",
+   "aliases": [
+    "Dong Du"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/dudongdong.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/dudongdong.html",
+     "sha256": "53788a804ca19b9a341264993d7cc7c29a10b8b7771135d3225589ff1205253c",
+     "observed": "2026-11-21T15:25:32",
+     "observedAt": "2026-11-21T15:25:32",
+     "quote": "杜冬冬 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向为操作系统与体系结构、模型原生系统、智能体系统、服务器无感知（Serverless）计算、系统安全",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "古金宇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/gujinyu.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/gujinyu.html",
+     "sha256": "e2ba1308a41731c052bc250d455d93dce9c2401dd09c15246db321358e01f52d",
+     "observed": "2026-11-21T15:25:37",
+     "observedAt": "2026-11-21T15:25:37",
+     "quote": "古金宇 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向为操作系统、具身智能系统、系统安全",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "华志超",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huazhichao.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huazhichao.html",
+     "sha256": "5b3b172b74b889a2fcc44475b62613e92263c4a8b119ae8b1f7df5c48d3d4ee6",
+     "observed": "2026-11-21T15:25:42",
+     "observedAt": "2026-11-21T15:25:42",
+     "quote": "华志超 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "academic_research_faculty_doctoral_supervisor",
+    "quote": "上海交通大学副研究员、博导，主要研究方向为操作系统、系统结构与大模型基础软件"
+   },
+   "computing_quote": "人简介 上海交通大学副研究员、博导，主要研究方向为操作系统、系统结构与大模型基础软件",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "糜泽羽",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/mizeyu.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/mizeyu.html",
+     "sha256": "335557bf46eac348672cd3119114ee63edbae9d99e460771fdbe83f8794f1cbb",
+     "observed": "2026-11-21T15:25:46",
+     "observedAt": "2026-11-21T15:25:46",
+     "quote": "糜泽羽 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "academic_research_faculty_doctoral_supervisor",
+    "quote": "糜泽羽博士，上海交通大学副教授/博士生导师"
+   },
+   "computing_quote": "主要研究领域为大模型系统和操作系统",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "吴明瑜",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wumingyu.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wumingyu.html",
+     "sha256": "239109582b736c90af091b6f06fd528acb391ed1d696a62a0702368f0c8c4617",
+     "observed": "2026-11-21T15:25:51",
+     "observedAt": "2026-11-21T15:25:51",
+     "quote": "吴明瑜 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "academic_research_faculty_doctoral_supervisor",
+    "quote": "上海交通大学副研究员、博士生导师"
+   },
+   "computing_quote": "主要研究兴趣为操作系统和语言运行时系统",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "姚旭佳",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yaoxujia.html",
+   "title_as_listed": "实验师",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yaoxujia.html",
+     "sha256": "1fddc5c87290ef993a4219863b4272a8a48fc84907b2c96c90db5bb51843c986",
+     "observed": "2026-11-21T15:25:56",
+     "observedAt": "2026-11-21T15:25:56",
+     "quote": "姚旭佳 实验师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "余炀",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyang.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyang.html",
+     "sha256": "1e5504a8d96a1ffd2638e6d42f3c1d9bda99685440b3e6b43925b0522ec4c703",
+     "observed": "2026-11-21T15:26:02",
+     "observedAt": "2026-11-21T15:26:02",
+     "quote": "余炀 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向为操作系统、系统结构与开源鸿蒙系统",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "陈露",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenlu.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenlu.html",
+     "sha256": "82fbc3315d380e737a8393b74479f458611c06cd18dc64efda9c9699b7b519f5",
+     "observed": "2026-11-21T15:26:06",
+     "observedAt": "2026-11-21T15:26:06",
+     "quote": "陈露 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "academic_research_faculty_doctoral_supervisor",
+    "quote": "陈露，上海交通大学计算机学院副教授 / 博导，上海创智学院全时导师， X-LANCE 实验室 成员"
+   },
+   "computing_quote": "研究方向为大语言模型基础技术、智能体系统及其在科学领域的交叉应用，以第一作者或通讯作者（含共同）在 Cell 子刊、 TPAMI 、 TACL 期刊以及 NeurIPS 、 ICML 、 ACL 等人工智能领域重要国际会议发表论文 60 余篇",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "吴梦玥",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wumengyue.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wumengyue.html",
+     "sha256": "7e66f0f8a9ed5878a6b7108ac12190c3f9a37d621f4d722b33b88e18a6a7eaa9",
+     "observed": "2026-11-21T15:26:11",
+     "observedAt": "2026-11-21T15:26:11",
+     "quote": "吴梦玥 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "academic_research_faculty_doctoral_supervisor",
+    "quote": "上海交通大学计算机学院（网络空间安全学院）副研究员/副教授, 博导"
+   },
+   "computing_quote": "研究方向围绕计算精神健康的音频信号及自然语言处理，包括大模型共情、主动对话系统、病理音频分析、医疗大模型安全伦理以及落地应用的心理筛查及咨询系统",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "招浩华",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohaohua.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohaohua.html",
+     "sha256": "7331e6a0f91a695b89b39678c6bcd71a95c8888998a83249bff43bcd1cac74b8",
+     "observed": "2026-11-21T15:26:15",
+     "observedAt": "2026-11-21T15:26:15",
+     "quote": "招浩华 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "机器学习与计算机视觉领域的前沿研究，主要研究方向包括机器学习、计算机视觉、类脑计算与深度学习等前沿领域",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "李晨达",
+   "aliases": [
+    "Chenda Li"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/lichenda.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/lichenda.html",
+     "sha256": "1c9ec2989428f818b4b38b285dec4e11557f5b1075d4a6f56d8a786706d44f23",
+     "observed": "2026-11-21T15:26:20",
+     "observedAt": "2026-11-21T15:26:20",
+     "quote": "李晨达 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向包括语音增强与分离、多模态语音与音频处理、语音语言模型及生成式音频建模，在 IEEE T-ASLP、ICASSP、Interspeech 等国际期刊与会议发表论文50余篇",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "钱彦旻",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/qianyanmin.html",
+   "title_as_listed": "特聘研究员",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/qianyanmin.html",
+     "sha256": "98f1c6d773eef0774eb4b577b07cefad023ce0c5eed7725f9692052227fa47ac",
+     "observed": "2026-11-21T15:26:25",
+     "observedAt": "2026-11-21T15:26:25",
+     "quote": "钱彦旻 特聘研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "蒋力",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/jiangli.html",
+   "title_as_listed": "研究员",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/jiangli.html",
+     "sha256": "270e2996d4b22dd99d57b2f48d78d822fa2728494f6f00121d080f31c0efce64",
+     "observed": "2026-11-21T15:26:30",
+     "observedAt": "2026-11-21T15:26:30",
+     "quote": "蒋力 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向为计算机系统结构，芯片设计自动化",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "李健",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/lijian.html",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/lijian.html",
+     "sha256": "20f533f62469d4a0fe2a6f53242c1bd0fa8f9cd6af77d4dca87b36093e459b00",
+     "observed": "2026-11-21T15:26:34",
+     "observedAt": "2026-11-21T15:26:34",
+     "quote": "李健 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "李健，现任职于上海交通大学计算机学院研究员、博导，软件定义云平台（SDIC）研究组负责人"
+   },
+   "computing_quote": "基地、上海市可扩展计算与系统重点实验室，研究领域包括AI Infra, 新型异构云计算架构，虚拟化技术",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "宋涛",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/songtao.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/songtao.html",
+     "sha256": "d5f505cda2d03648cc9016d41630da0a7cc8ce9b54feb65af3f1204dbad1fc97",
+     "observed": "2026-11-21T15:26:39",
+     "observedAt": "2026-11-21T15:26:39",
+     "quote": "宋涛 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "academic_research_faculty_doctoral_supervisor",
+    "quote": "上海交通大学计算机学院副研究员，博士生导师，省部共建国家重点实验室培育基地、上海市可扩展计算与系统重点"
+   },
+   "computing_quote": "他当前的主要研究方向为： 分布式机器学习 、 多模态大模型 、 AI+X 等领域，近年来，已在一系列计算机领域的顶级会议和期刊发表论文50余篇，包括PPoPP, SoCC, SIGKDD, VLDB, ICML, NeurIPS, CVPR, ICCV, EC",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "归琳",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/guilin.html",
+   "title_as_listed": "特聘研究员",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/guilin.html",
+     "sha256": "43a46dfd9dd559aafb14bad99662e87829fa69683244b3c38e3f61cde9900bed",
+     "observed": "2026-11-21T15:26:44",
+     "observedAt": "2026-11-21T15:26:44",
+     "quote": "归琳 特聘研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "李晶晶",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/lijingjing.html",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/lijingjing.html",
+     "sha256": "5e0f2092fcb9b4388e7bebcb17ce5e4c9be7fb1e0b20eb8fafdf99758897f1e0",
+     "observed": "2026-11-21T15:26:48",
+     "observedAt": "2026-11-21T15:26:48",
+     "quote": "李晶晶 工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "任锐",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/renrui.html",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/renrui.html",
+     "sha256": "9357605001a40ee2aea23764b8be4ee964114f88d512e50beb11e067b43e8d72",
+     "observed": "2026-11-21T15:26:53",
+     "observedAt": "2026-11-21T15:26:53",
+     "quote": "任锐 工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "于晗",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuhan.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuhan.html",
+     "sha256": "feb8f1b4018676a348c68d72c0ef83902c598c19b59da9400b25de73409a8ad5",
+     "observed": "2026-11-21T15:26:57",
+     "observedAt": "2026-11-21T15:26:57",
+     "quote": "于晗 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向为工业软件，工业大数据，知识图谱，AI4Engineering等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "许可",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xuke.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xuke.html",
+     "sha256": "5dd638fc5799ddf95c071bb2d714494f8467be902da0baa4cb97009ff6057aad",
+     "observed": "2026-11-21T15:27:02",
+     "observedAt": "2026-11-21T15:27:02",
+     "quote": "许可 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "academic_research_faculty_doctoral_supervisor",
+    "quote": "博士毕业于上海交通大学，现为上海交通大学计算机学院（网络空间安全学院）副研究员、博士研究生导师"
+   },
+   "computing_quote": "研究工作聚焦数字媒体内容安全，主要从事视频内容安全理解、视频对抗样本攻防等技术的基础理论研究及技术实现",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "段苏峰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/duansufeng.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/duansufeng.html",
+     "sha256": "cf699f85432bd5fa9eebd329fb845f986d742f35338eb418f34a2ab5f809465c",
+     "observed": "2026-11-21T15:27:07",
+     "observedAt": "2026-11-21T15:27:07",
+     "quote": "段苏峰 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向包括大语言模型安全、机器翻译、自然语言处理等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "黄林庆",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huanglinqing.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huanglinqing.html",
+     "sha256": "75d69bb1c5638725b56b6e94ecdfd99debc23ef0e648618846baac5da84a350a",
+     "observed": "2026-11-21T15:27:12",
+     "observedAt": "2026-11-21T15:27:12",
+     "quote": "黄林庆 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "academic_research_faculty_doctoral_supervisor",
+    "quote": "黄林庆，博士，上海交通大学计算机学院（网络空间安全学院、密码学院）助理研究员、博导，中国图象图形学会-数字媒体取证与安全专委会委员"
+   },
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "孟岩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/mengyan.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/mengyan.html",
+     "sha256": "29a8d74472d5ef4f9b0073264e36512c3d6af4d53c697ca2bd0969b52470f090",
+     "observed": "2026-11-21T15:27:17",
+     "observedAt": "2026-11-21T15:27:17",
+     "quote": "孟岩 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "孟岩，研究方向为物联网安全，获得2022年ACM中国优博奖，入选2023年度中国科协青年人才托举工程",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张月国",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangyueguo.html",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangyueguo.html",
+     "sha256": "8068b847ce86bc55bfac8efd2ac2bc472bb8b3e32f6858a69554b1b2143a99f5",
+     "observed": "2026-11-21T15:27:21",
+     "observedAt": "2026-11-21T15:27:21",
+     "quote": "张月国 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究领域包括：信息内容安全、人工智能安全、移动应用和Android安全、网络安全管理",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "丁玥",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/dingyue.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/dingyue.html",
+     "sha256": "4569f7c02eb993e76691e990f0bc303d4ae2af205b649d7d8a32c8e360cf3ef9",
+     "observed": "2026-11-21T15:27:26",
+     "observedAt": "2026-11-21T15:27:26",
+     "quote": "丁玥 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向为计算机视觉、具身智能、数据挖掘和推荐系统，目前研究兴趣包括： （1） 高效鲁棒的视觉-语言-动作（VLA）模型 （2） 机器人目标（Goal-Oriented）导航 （3）多模态大模型 （4）自动驾驶 （5）多任务学习（图像密集预测） （",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "柯晶",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/kejing.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/kejing.html",
+     "sha256": "4a2d9ca78f98995874666820847f04f22d1b0b8b261d753e4e0840c31a1f1053",
+     "observed": "2026-11-21T15:27:31",
+     "observedAt": "2026-11-21T15:27:31",
+     "quote": "柯晶 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "academic_research_faculty_doctoral_supervisor",
+    "quote": "柯晶，博士毕业于澳大利亚新南威尔士大学，目前在上海交通大学计算机系任副教授、博导，任新南威尔士大学联席高级讲师（Adjunct Senior"
+   },
+   "computing_quote": "目前主要的研究方向为基于AI的医学图像及GPU异构计算，在IEEE Transactions on Medical Imaging, Medical Image Analysis, MICCAI等国际期刊会议发表论文五十余篇，出版著作一部",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "苏锐丹",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/suruidan.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/suruidan.html",
+     "sha256": "ce030c656a2369d94d33129df65db2782ba87069c85c9093c7055e33a9412911",
+     "observed": "2026-11-21T15:27:36",
+     "observedAt": "2026-11-21T15:27:36",
+     "quote": "苏锐丹 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "段圣雄",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/duanshengxiong.html",
+   "title_as_listed": "实验师",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/duanshengxiong.html",
+     "sha256": "eb1ee222e6730283a69dd386acfb63e40908faf31a9dfef60555a96e511e2c68",
+     "observed": "2026-11-21T15:27:40",
+     "observedAt": "2026-11-21T15:27:40",
+     "quote": "段圣雄 实验师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "林祥",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/linxiang.html",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/linxiang.html",
+     "sha256": "971b5ccb63d204f52b96c3bdc2abcb88faf789616b5e366797c37f6845139c06",
+     "observed": "2026-11-21T15:27:45",
+     "observedAt": "2026-11-21T15:27:45",
+     "quote": "林祥 工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "李强",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liqiang.html",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liqiang.html",
+     "sha256": "a3f6dad8193420b783c73308b462c65666bae591ab31968ec4680f3c368864f5",
+     "observed": "2026-11-21T15:27:49",
+     "observedAt": "2026-11-21T15:27:49",
+     "quote": "李强 工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "目前主要研究兴趣为后量子密码及其高性能实现与迁移、秘密分享、安全多方计算",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "马进",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/majin.html",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/majin.html",
+     "sha256": "b94a2d512b242d4ba21c5295e23f8ce7f02ededc5331ed12942645007a5586c3",
+     "observed": "2026-11-21T15:27:54",
+     "observedAt": "2026-11-21T15:27:54",
+     "quote": "马进 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "马颖华",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/mayinghua.html",
+   "title_as_listed": "讲师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/mayinghua.html",
+     "sha256": "8c538533ea440745708b7c9df6d7c4620e49b89e44ffabdcf7fdeb152d0000af",
+     "observed": "2026-11-21T15:27:59",
+     "observedAt": "2026-11-21T15:27:59",
+     "quote": "马颖华 讲师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "目前研究方向为：代码安全、内容安全、数据安全合规性分析 教育背景 专业背景： 电力自动化、无线电电子学，通讯与信息系统 教授课程 程序设计语言 安全开发模型与安全编程 公众号二维码 小红书二维码 哔哩哔哩二维码 学院地址：上海市东川路800号 Emai",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "苏波",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/subo.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/subo.html",
+     "sha256": "1edfb4caa51cd1617838184269098b24e2518b5d2b0aeab0d99d81c82c6440a0",
+     "observed": "2026-11-21T15:28:03",
+     "observedAt": "2026-11-21T15:28:03",
+     "quote": "苏波 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "唐鹏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/tangpeng.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/tangpeng.html",
+     "sha256": "be9b7961d2dd61005371174b143aad45f2bab033a76cd8c7e6927a679dce2486",
+     "observed": "2026-11-21T15:28:08",
+     "observedAt": "2026-11-21T15:28:08",
+     "quote": "唐鹏 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "大学网络空间安全学院担任助理研究员，主要研究方向为隐私保护、人工智能安全、数据流通共享安全等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "王国忠",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangguozhong.html",
+   "title_as_listed": "讲师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangguozhong.html",
+     "sha256": "fcc66736d4d4c3f736184b9c2d417b9f3d60fa9faee595675d7c7cfcf2bae074",
+     "observed": "2026-11-21T15:28:12",
+     "observedAt": "2026-11-21T15:28:12",
+     "quote": "王国忠 讲师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "吴鹏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wupeng.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wupeng.html",
+     "sha256": "13210e53e5e3401daf0a511bbe3b29c3aacec5b10b496b53be67546c72d91273",
+     "observed": "2026-11-21T15:28:17",
+     "observedAt": "2026-11-21T15:28:17",
+     "quote": "吴鹏 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "当前主要研究方向为网络空间内容治理，大模型安全，大模型在虚假信检测、推荐系统、恶意软件检测等方面的应用等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "夏正敏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xiazhengmin.html",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xiazhengmin.html",
+     "sha256": "3abca578762dc0b4cfd308a0a0f08e8aee1531b77d3769b8d0ca0c74ff45fb9c",
+     "observed": "2026-11-21T15:28:22",
+     "observedAt": "2026-11-21T15:28:22",
+     "quote": "夏正敏 工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "博士，研究方向主要为大数据分析、人工智能安全、车联网安全、工业互联网安全等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "徐寒松",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xuhansong.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xuhansong.html",
+     "sha256": "f426b59ec6964b8fe13b0721e06717a9be9b63b71a0a816bf6da182f27b90ba3",
+     "observed": "2026-11-21T15:28:26",
+     "observedAt": "2026-11-21T15:28:26",
+     "quote": "徐寒松 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向包括物联网、网络安全等领域的理论与技术",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "徐磊",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xulei.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xulei.html",
+     "sha256": "47108291ef645f24c4532cd8b1a532cc01be1d4fdadc3e92e7c6c5cd490245b3",
+     "observed": "2026-11-21T15:28:31",
+     "observedAt": "2026-11-21T15:28:31",
+     "quote": "徐磊 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向包括确定性网络设计、工业具身智能、工业互联网安全等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "银鹰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yinying.html",
+   "title_as_listed": "高级实验师",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yinying.html",
+     "sha256": "e66a96ee341e441a3358af302cda86fc80670ebb5efef4fa82caa152f735f5ba",
+     "observed": "2026-11-21T15:28:36",
+     "observedAt": "2026-11-21T15:28:36",
+     "quote": "银鹰 高级实验师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "信息安全服务技术研究实验室副主任 主要研究方向 ：安全脆弱性分析与评估、应用密码学、数据安全与隐私保护、智能网联汽车安全、信息安全管理与审计等 负责实验室的科研工作，先后主持 / 参与二十余项国家和省部级科研项目； 负责实验室日常管理运行与业务发展",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "易平",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yiping.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yiping.html",
+     "sha256": "08c57d74cebd7cf3e8b42c94645e8da44dece4f16267f0c2ee0f5ed87699f92f",
+     "observed": "2026-11-21T15:28:41",
+     "observedAt": "2026-11-21T15:28:41",
+     "quote": "易平 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张保稳",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangbaowen.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangbaowen.html",
+     "sha256": "351d2f88e5bbea00a70e5655899051accb2fc58528e845ad29993b8e33bb042a",
+     "observed": "2026-11-21T15:28:46",
+     "observedAt": "2026-11-21T15:28:46",
+     "quote": "张保稳 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向包括新型网络与信息系统安全度量与与评估、信息安全本体、面向安全关键场景的人工智能安全（神经网络鲁棒性度量）等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张全海",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangquanhai.html",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangquanhai.html",
+     "sha256": "5a93200c05f08b6e2e60cde6128d1d82bdd84e74cf3876e24f5378d54829c16e",
+     "observed": "2026-11-21T15:28:50",
+     "observedAt": "2026-11-21T15:28:50",
+     "quote": "张全海 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张晓涵",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangxiaohan.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangxiaohan.html",
+     "sha256": "3426bb8f02ad2efc867d490e89e3af54ccdff1d840b259fccc061617b46b87e4",
+     "observed": "2026-11-21T15:28:55",
+     "observedAt": "2026-11-21T15:28:55",
+     "quote": "张晓涵 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "郑聪惠",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhengconghui.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhengconghui.html",
+     "sha256": "b0435502a119e0dadc6e3d0a4e77aa72d47245753b756a8f547aaa3f3a2e4274",
+     "observed": "2026-11-21T15:29:00",
+     "observedAt": "2026-11-21T15:29:00",
+     "quote": "郑聪惠 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "当前主要研究方向为网络空间信息内容安全治理，图神经网络在社交网络用户行为分析的应用等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "周志洪",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhouzhihong.html",
+   "title_as_listed": "讲师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhouzhihong.html",
+     "sha256": "11cbfe4e4e1963bfac95c69026dd7af12466df37d1355ecae4c572b41cd68591",
+     "observed": "2026-11-21T15:29:05",
+     "observedAt": "2026-11-21T15:29:05",
+     "quote": "周志洪 讲师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "朱贇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuyun.html",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhuyun.html",
+     "sha256": "9391a49f0b381194935f1c03469ba7fe5ea581350923754229de0c4330d95fab",
+     "observed": "2026-11-21T15:29:09",
+     "observedAt": "2026-11-21T15:29:09",
+     "quote": "朱贇 工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "及 网络攻防，安全评估，等保测评，近几年主要从事网络安全等级保护测评工作，负责整个测评实验室的项目实施管理和技术发展研究",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "吴越",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wuyue.html",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wuyue.html",
+     "sha256": "daf880a2c3271ea447b60af4ec6b93bedaff8b21b8d867b0bd5c2f0093979a74",
+     "observed": "2026-11-21T15:29:14",
+     "observedAt": "2026-11-21T15:29:14",
+     "quote": "吴越 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "博士，研究员、博士生导师， IEEE Senior 会员， ACM 会员"
+   },
+   "computing_quote": "主要研究领域为物联网安全、 5G/6G 移动通信安全、车联网安全、卫星网络安全和人工智能安全与隐私保护等，主持了一批重要科研项目，包括国家重点研发计划 “宽带通信和新型网络”、“网络空间安全”重点专项课题 2 项、国家自然科学基金 - 法国国家科学研究",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "陈力波",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenlibo.html",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenlibo.html",
+     "sha256": "9505299fef01304bc6a74608fbcd601a7a5129b736841d4c7913b66da8086c39",
+     "observed": "2026-11-21T15:29:19",
+     "observedAt": "2026-11-21T15:29:19",
+     "quote": "陈力波 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "洪佳楠",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/hongjianan.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/hongjianan.html",
+     "sha256": "8109854835d5437c80322563672145ce9e24003fe7e8e958192205be2b79d175",
+     "observed": "2026-11-21T15:29:24",
+     "observedAt": "2026-11-21T15:29:24",
+     "quote": "洪佳楠 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要从事网络安全与隐私认证、区块链、物理层安全等方向研究",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "侯勤胜",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/houqinsheng.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/houqinsheng.html",
+     "sha256": "98e3053612ff15979b49ad405c8d444047e1c8b50df937eefc121163923dbe6d",
+     "observed": "2026-11-21T15:29:28",
+     "observedAt": "2026-11-21T15:29:28",
+     "quote": "侯勤胜 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向包括系统与软件安全、 人工智能安全",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "刘铭",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liuming.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liuming.html",
+     "sha256": "52cb15caeadb626f9f255633d887cb4fa916b5d1a5eca06ed83c18dcc8bbbd26",
+     "observed": "2026-11-21T15:29:33",
+     "observedAt": "2026-11-21T15:29:33",
+     "quote": "刘铭 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究兴趣为可扩展计算、入侵检测、隐私保护",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "施勇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/shiyong.html",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/shiyong.html",
+     "sha256": "6f453c6daa5a772d442a46fbc1a1aa13181871f457676004dc0d1ea721c6aa19",
+     "observed": "2026-11-21T15:29:37",
+     "observedAt": "2026-11-21T15:29:37",
+     "quote": "施勇 工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "王轶骏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangyijun.html",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangyijun.html",
+     "sha256": "e05c783df0b113df318ef5e73c47dc51ed8ef31d122dc9c3aaadbc65879d1835",
+     "observed": "2026-11-21T15:29:42",
+     "observedAt": "2026-11-21T15:29:42",
+     "quote": "王轶骏 工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "李力",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/lili.html",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/lili.html",
+     "sha256": "583eac9ef45db6c986e2aa9c2fa44e0fd5a72cf6c7517247735e3250726ddc1f",
+     "observed": "2026-11-21T15:29:47",
+     "observedAt": "2026-11-21T15:29:47",
+     "quote": "李力 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向包括并行计算、普适计算、传感器网络等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "庞浦",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/pangpu.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/pangpu.html",
+     "sha256": "020005d2d08ee99e623751e9d64b96e11c8cd1bbc293d35f4503ddbf0701779f",
+     "observed": "2026-11-21T15:29:51",
+     "observedAt": "2026-11-21T15:29:51",
+     "quote": "庞浦 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "阮娜",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/ruanna.html",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/ruanna.html",
+     "sha256": "571f9482d325d2d8bcd266fff4a91ab0dbe04e779f77df275b7eb9a6b433f782",
+     "observed": "2026-11-21T15:29:56",
+     "observedAt": "2026-11-21T15:29:56",
+     "quote": "阮娜 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "上海交通大学计算机学院研究员、博士生导师，国家级青年人才，教育部网络信息安全管理与服务工程研究中心副"
+   },
+   "computing_quote": "主要从事网络安全与数据隐私、区块链、人工智能安全研究，发表Usenix Security、ACM CCS、CVPR、ASE、TIFS、TDSC、TMC、TON、TC等高水平论文70余篇，合著学术专著2部，参与国际/行业标准7项（副主席2项）",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "沈耀",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/shenyao.html",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/shenyao.html",
+     "sha256": "5bd354ee02c5675163b0b600d49149d61f2c7cfffb1af8b82f1b5aae434200c1",
+     "observed": "2026-11-21T15:30:01",
+     "observedAt": "2026-11-21T15:30:01",
+     "quote": "沈耀 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究兴趣包括：大数据处理；云计算与分布式系统；人工智能与智能体；计算机网络",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "赵涵",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohan.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohan.html",
+     "sha256": "b16db0b7ff98cf597d6a2a14cf290f2ae009e0eb9af42bc7b244b93601a316ce",
+     "observed": "2026-11-21T15:30:06",
+     "observedAt": "2026-11-21T15:30:06",
+     "quote": "赵涵 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "杨小康",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yangxiaokang.html",
+   "title_as_listed": "讲席研究员",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yangxiaokang.html",
+     "sha256": "4a2a44089a4d5958e82d94b129e7e1bd8d084bd0400f3163c07284909fa3b97c",
+     "observed": "2026-11-21T15:30:10",
+     "observedAt": "2026-11-21T15:30:10",
+     "quote": "杨小康 讲席研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "何黎明",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/heliming.html",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/heliming.html",
+     "sha256": "e42262640abaa430d2022458bd1456b1d12f4006a94aac30b9116b73a3c4a7f6",
+     "observed": "2026-11-21T15:30:15",
+     "observedAt": "2026-11-21T15:30:15",
+     "quote": "何黎明 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张维夏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangweixia.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangweixia.html",
+     "sha256": "6660e3aa1b86321e63c780ee6563b66ef1e67ac2497cb1208a829a6b86c00520",
+     "observed": "2026-11-21T15:30:19",
+     "observedAt": "2026-11-21T15:30:19",
+     "quote": "张维夏 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究兴趣：多媒体质量评价，感知优化，计算摄影，工业视觉分析 教育背景 2015-2018 武汉大学，博士，电路与系统 2011-2013 University of Rochester，硕士，Electrical and Computer Engi",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "黄俊钦",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huangjunqin.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huangjunqin.html",
+     "sha256": "4f9913a166bfad37e7cd41a8255f267400e76e91974eb5c15d251111d18fd06a",
+     "observed": "2026-11-21T15:30:24",
+     "observedAt": "2026-11-21T15:30:24",
+     "quote": "黄俊钦 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "于上海交通大学计算机系获得博士学位，主要研究方向包括区块链、物联网、数据安全及可信计算等领域",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "李沁雅",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liqinya.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liqinya.html",
+     "sha256": "57490e77839755d9f44252fbf5841b5590d3a6fcba5ad9df2b5a76d9dcf6412f",
+     "observed": "2026-11-21T15:30:29",
+     "observedAt": "2026-11-21T15:30:29",
+     "quote": "李沁雅 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要从事移动计算、边缘智能、移动端人工智能、分布式机器学习等方向的研究，长期招收博士生、硕士生和本科生！ 教育背景 2015.9-2020.8 上海交通大学 计算机科学与技术 博士 2011.9-2015.6 东北大学 物联网工程 本科 工作履历",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "刘雨桐",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liuyutong.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liuyutong.html",
+     "sha256": "a12774b88de1a68ffe37a308d17162ffadccc848e6fc431ac9e02c0921a6598a",
+     "observed": "2026-11-21T15:30:34",
+     "observedAt": "2026-11-21T15:30:34",
+     "quote": "刘雨桐 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "先进网络研究所孔令和团队助理研究员，主要研究方向为物联网感知与智能计算（IoT+AI），面向“天-地-海”三大智能计算维度，除传统地面物联网感知智能计算以外，同时研究天基物联网感知智能计算与海底感知智能计算",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "曹培",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/caopei.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/caopei.html",
+     "sha256": "f25a9d233421f527e4135f6f0fee0a1cf71189f8a8ee82d3570cdbd7b648ea1b",
+     "observed": "2026-11-21T15:30:39",
+     "observedAt": "2026-11-21T15:30:39",
+     "quote": "曹培 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "贺超翔",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/hechaoxiang.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/hechaoxiang.html",
+     "sha256": "0a3bba70e7bcb9bb273eebdef7a44f8ec8e0006b53c47c4c01220fbce13e1004",
+     "observed": "2026-11-21T15:30:43",
+     "observedAt": "2026-11-21T15:30:43",
+     "quote": "贺超翔 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "码与计算机安全（LoCCS）实验室，主要研究方向为 可信人工智能 和 人工智能模型的安全与隐私保护 ，包括大模型与智能体安全和云环境大模型基础设施安全等领域",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "胡易坤",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huyikun.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huyikun.html",
+     "sha256": "e51e2ba2a8ef80e8c6582f76a8cba4e85c4317d983c5801a622450df3409db38",
+     "observed": "2026-11-21T15:30:48",
+     "observedAt": "2026-11-21T15:30:48",
+     "quote": "胡易坤 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "李宋宋",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/lisongsong.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/lisongsong.html",
+     "sha256": "7ae20109f20372ee2b49a756efa507096897ae6bfdf03f70f0c94eeb3a18fd83",
+     "observed": "2026-11-21T15:30:53",
+     "observedAt": "2026-11-21T15:30:53",
+     "quote": "李宋宋 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向包括 代数编码及其在密码学中的应用， 零知识证明， 以及椭圆曲线相关的公钥密码学",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "陆海宁",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/luhaining.html",
+   "title_as_listed": "工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/luhaining.html",
+     "sha256": "c096e8e80133491d36a80a2aa6d9aa9ec8983809fe0608c2be188311711e954d",
+     "observed": "2026-11-21T15:30:57",
+     "observedAt": "2026-11-21T15:30:57",
+     "quote": "陆海宁 工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "海宁，上海交通大学计算机学院工程师，主要研究方向为密码软硬件安全性分析与安全实现",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "王更",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wanggeng.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wanggeng.html",
+     "sha256": "807f4a3945b35415d633e6ba1ed340b183a785e267796cb92d181465524398c8",
+     "observed": "2026-11-21T15:31:02",
+     "observedAt": "2026-11-21T15:31:02",
+     "quote": "王更 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向包括后量子密码，尤其是格密码的安全性分析；函数加密、同态加密等隐私计算相关密码学理论",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "徐燕虹",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xuyanhong.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xuyanhong.html",
+     "sha256": "8e20f0355c04d83517205cfcde21ef7b84d7c1355ba93737675dd17f189a0696",
+     "observed": "2026-11-21T15:31:06",
+     "observedAt": "2026-11-21T15:31:06",
+     "quote": "徐燕虹 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向为基于后量子密码学假设的隐私保护协议，相关 论文发表在亚密会、PKC，CT-RSA, Theoretical Computer Science 等重要学术会议和期刊上",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "应臣浩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yingchenhao.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yingchenhao.html",
+     "sha256": "ac2a79970b762e59d3058d464eb80f4df5830db8f7e20e74baefd236daffbef4",
+     "observed": "2026-11-21T15:31:11",
+     "observedAt": "2026-11-21T15:31:11",
+     "quote": "应臣浩 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张驰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangchi.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangchi.html",
+     "sha256": "ffd89551830e3d0ab6ec9549ba449d72935a52ac1792f36911387325b152487d",
+     "observed": "2026-11-21T15:31:16",
+     "observedAt": "2026-11-21T15:31:16",
+     "quote": "张驰 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向聚焦于密码工程与系统安全，主要研究密码模块数学物理分析，密码算法高效安全实现，后量子密码工程，密码系统安全防护，密码模块检测技术等理论方法与工程技术",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "邹福泰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zoufutai.html",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zoufutai.html",
+     "sha256": "d00f35a805d038ecf84708d04f8a3c9e0e00688fb04d1eb2e6987d2597061fd7",
+     "observed": "2026-11-21T15:31:20",
+     "observedAt": "2026-11-21T15:31:20",
+     "quote": "邹福泰 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向为系统与软件安全、网络威胁感知、人工智能安全等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "娄炯",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/loujiong.html",
+   "title_as_listed": "助理研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/loujiong.html",
+     "sha256": "dc99294d140a9c0221fecadf6ca855a006784cf70d4d750615deef256323f798",
+     "observed": "2026-11-21T15:31:25",
+     "observedAt": "2026-11-21T15:31:25",
+     "quote": "娄炯 助理研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "钱诗友",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/qianshiyou.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/qianshiyou.html",
+     "sha256": "46cfd77c834ff7cfda9e6e71da40a043d4923622e890443b682e75c6add65102",
+     "observed": "2026-11-21T15:31:30",
+     "observedAt": "2026-11-21T15:31:30",
+     "quote": "钱诗友 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "academic_research_faculty_doctoral_supervisor",
+    "quote": "博士，副研究员，博士生导师，主要研究方向包括云计算、大数据分析、推荐系统及算法"
+   },
+   "computing_quote": "人简介 博士，副研究员，博士生导师，主要研究方向包括云计算、大数据分析、推荐系统及算法",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "钟浩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhonghao.html",
+   "title_as_listed": "研究员",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhonghao.html",
+     "sha256": "ca8e3c6bb621b7729aae6afd984e5ab4cb2f34389f9b14ca3edf5a1ada76d4d1",
+     "observed": "2026-11-21T15:31:34",
+     "observedAt": "2026-11-21T15:31:34",
+     "quote": "钟浩 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "郭捷",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/guojie.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/guojie.html",
+     "sha256": "89f8e9d32634d9106780e18b31530de4e8f026e617c3d87962995fb5b67ea95b",
+     "observed": "2026-11-21T15:31:39",
+     "observedAt": "2026-11-21T15:31:39",
+     "quote": "郭捷 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究领域：视频行为分析、多媒体安全、图象处理与模式识别、人工智能等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "刘海涛",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liuhaitao.html",
+   "title_as_listed": "讲师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/liuhaitao.html",
+     "sha256": "c05caf1901585d38b3a8959cba94bfc0b06561fbfb7e11f5f19bc018a9d4b598",
+     "observed": "2026-11-21T15:31:44",
+     "observedAt": "2026-11-21T15:31:44",
+     "quote": "刘海涛 讲师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "马融",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/marong.html",
+   "title_as_listed": "助理工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/marong.html",
+     "sha256": "14e85f5b57ee8b7bb220853224ffda3fe6e03dcb2712ec06b9d257243d8f0ac7",
+     "observed": "2026-11-21T15:31:48",
+     "observedAt": "2026-11-21T15:31:48",
+     "quote": "马融 助理工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "单蓉胜",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/shanrongsheng.html",
+   "title_as_listed": "讲师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/shanrongsheng.html",
+     "sha256": "44eeea41704e9c35353a2714ca91fddf00c377e3364befc002c6907ec1849381",
+     "observed": "2026-11-21T15:31:53",
+     "observedAt": "2026-11-21T15:31:53",
+     "quote": "单蓉胜 讲师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "苏贵洋",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/suguiyang.html",
+   "title_as_listed": "讲师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/suguiyang.html",
+     "sha256": "b7b8de4ee625693bd25d84659b78eabc9f241599cef063d6a5f2525c22fed7e3",
+     "observed": "2026-11-21T15:31:58",
+     "observedAt": "2026-11-21T15:31:58",
+     "quote": "苏贵洋 讲师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "孙焱",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/sunyan.html",
+   "title_as_listed": "讲师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/sunyan.html",
+     "sha256": "2fc03b232ce5df0e6d9dc1207c3370caebd719bc1228a34b9621ca6a9d572279",
+     "observed": "2026-11-21T15:32:02",
+     "observedAt": "2026-11-21T15:32:02",
+     "quote": "孙焱 讲师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "唐新怀",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/tangxinhuai.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/tangxinhuai.html",
+     "sha256": "8c61045d61a122e0b9b08b2d034491f0405eb7343e6b1aa3f1b5998e2ecfdc68",
+     "observed": "2026-11-21T15:32:07",
+     "observedAt": "2026-11-21T15:32:07",
+     "quote": "唐新怀 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "王赓",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wanggeng1.html",
+   "title_as_listed": "高级实验师",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wanggeng1.html",
+     "sha256": "e89fa48557b84be383f5accac861b09ed41bae30af22e23a3b8881a480cfecaa",
+     "observed": "2026-11-21T15:32:11",
+     "observedAt": "2026-11-21T15:32:11",
+     "quote": "王赓 高级实验师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "王强民",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangqiangmin.html",
+   "title_as_listed": "讲师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangqiangmin.html",
+     "sha256": "62ee0027baa58cf34a33afd1f240e113740c201820946b3b67c065edf7cf12d4",
+     "observed": "2026-11-21T15:32:16",
+     "observedAt": "2026-11-21T15:32:16",
+     "quote": "王强民 讲师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "吴奇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wuqi.html",
+   "title_as_listed": "特聘研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wuqi.html",
+     "sha256": "61d915fd138bc9deb2462e32222528a810d8fcee66f368e0f76dece6412591ba",
+     "observed": "2026-11-21T15:32:21",
+     "observedAt": "2026-11-21T15:32:21",
+     "quote": "吴奇 特聘研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "吴奇，上海交通大学教授、博导，国家杰出青年基金获得者"
+   },
+   "computing_quote": "研究方向聚焦机器人、类脑计算、具身智能、智能体对抗、博弈与决策等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张爱新",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangaixin.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangaixin.html",
+     "sha256": "591bb69523c0b3838016bcdef410857219f75f72bdb153d8f68a49ce4db7110d",
+     "observed": "2026-11-21T15:32:25",
+     "observedAt": "2026-11-21T15:32:25",
+     "quote": "张爱新 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张谦",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CS",
+   "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangqian.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangqian.html",
+     "sha256": "707bb2db542fe8e907dde16bd30eafcb8f781d9212a8c643361cae14d6428f5d",
+     "observed": "2026-11-21T15:32:30",
+     "observedAt": "2026-11-21T15:32:30",
+     "quote": "张谦 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "academic_research_faculty_doctoral_supervisor",
+    "quote": "上海交通大学计算机学院副研究员、博士生导师"
+   },
+   "computing_quote": "主要研究方向为物联网、普适计算和无线感知",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  }
+ ]
+}
