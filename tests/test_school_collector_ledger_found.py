@@ -33,5 +33,6 @@ def test_stamp_skips_an_unchanged_ledger():
 def test_loop_gets_the_priority_file():
     t = text()
     assert 'priority_file.py "$SCHOOL"' in t
+    assert 'latest/hierarchy/$SCHOOL/unavailable.jsonl.gz' in t   # unreleased schools skip it
     loop = next(l for l in t.splitlines() if 'lab_first_loop.py "$SCHOOL"' in l)
     assert '"${PRIORITY_ARGS[@]}"' in loop

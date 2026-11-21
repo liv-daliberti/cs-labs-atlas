@@ -44,7 +44,10 @@ export OA_RESERVE="${OA_RESERVE:-4000}"   # OpenAlex: stop at 4,000 credits left
 # ledger_found + reader_link run only when the school's ledger or the latest release's reader file changed since their last run (the stamp
 # holds both mtimes), so a 44-minute self-restart does not re-read the catalog for nothing. A failure only loses the new candidates.
 PRIORITY="$CS_ATLAS_FT_RAW/$SCHOOL-priority-work-ids.tsv"
-$CS_ATLAS_COLLECTOR_PY -I priority_file.py "$SCHOOL" >> "$RESTART_LOG" 2>&1 || rm -f "$PRIORITY"
+# a school the latest release does not hold yet has no release ledger: no priority file (and no traceback at every restart)
+if [ -e "$CS_ATLAS_RELEASES/latest/hierarchy/$SCHOOL/unavailable.jsonl.gz" ]; then
+    $CS_ATLAS_COLLECTOR_PY -I priority_file.py "$SCHOOL" >> "$RESTART_LOG" 2>&1 || rm -f "$PRIORITY"
+else rm -f "$PRIORITY"; fi
 PRIORITY_ARGS=(); [ -s "$PRIORITY" ] && PRIORITY_ARGS=(--priority-file "$PRIORITY")
 LF_STAMP="$CS_ATLAS_STORES/$SCHOOL/staged/ledger-found.stamp"
 LF_SIG="$(stat -Lc '%n %Y' "$CS_ATLAS_HIERARCHY/$SCHOOL/derived/unavailable.jsonl.gz" "$CS_ATLAS_RELEASES/latest/reader/$SCHOOL.jsonl.gz" 2>/dev/null)"
