@@ -102,3 +102,10 @@ def test_stage5_dblp_ids_fold_into_hand_additions_without_replacing_their_own():
     assert a['dblp_evidence'] == dict(url='u', sha256='s', quote='q')
     assert b['dblp'] == ['https://dblp.org/pid/mine'] and 'dblp_basis' not in b
     assert c == dict(name='Nobody', dblp=[])
+
+
+def test_arriving_professor_is_not_yet_a_dated_appointment():
+    import listing_rows as LR
+    assert LR.rank_of(['Associate Professor (Arriving January 2027)']) == 'other'
+    assert LR.rank_of(['Assistant Professor, joining in fall 2026']) == 'other'
+    assert LR.rank_of(['Associate Professor']) == 'ladder'

@@ -49,7 +49,8 @@ def rank_of(titles, extra=None):
     """The rank a title list reads as. `extra` = the charter's [census].rank_words ({rank = regex}): title words of one school that
     join the shared RANKS patterns for that rank (UChicago PROTOCOL-FRICTION 17, R3), so a new school never edits the shared table."""
     t = ' | '.join(titles)
-    if re.search(r'\b(?:incoming|future)\s+(?:\w+\s+){0,5}professor\b', t, re.I):
+    if re.search(r'\b(?:incoming|future)\s+(?:\w+\s+){0,5}professor\b', t, re.I) \
+            or re.search(r'professor\W{0,3}\(?\s*(?:arriving|joining|starting)\b', t, re.I):   # 'Associate Professor (Arriving January 2027)' (UW Allen 2026-11-22)
         return 'other'  # an announced future appointment is not a dated faculty appointment
     for r, rx in RANKS:
         if extra and extra.get(r):
