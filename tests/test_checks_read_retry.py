@@ -42,3 +42,30 @@ def test_other_errors_and_exhaustion_raise(tmp_path, monkeypatch):
         raise sqlite3.OperationalError('database is locked')
     with pytest.raises(sqlite3.OperationalError, match='locked'):
         C._read(p, always)
+
+
+def abandoned_journal(tmp_path):
+    """A copy of a store taken mid-transaction: the database file already holds uncommitted pages and its hot journal sits
+    beside it with no writer alive, as a channel killed mid-commit leaves it."""
+    src = store(tmp_path)
+    w = sqlite3.connect(src, isolation_level=None)
+    w.execute('PRAGMA cache_size=1'); w.execute('BEGIN')
+    for i in range(3000):
+        w.execute('INSERT INTO checks (paper_key, channel) VALUES (?, ?)', (f'p{i}' * 20, 'openalex'))
+    dst = tmp_path / 'y.sqlite'
+    assert (tmp_path / 'x.sqlite-journal').exists()
+    dst.write_bytes(src.read_bytes()); (tmp_path / 'y.sqlite-journal').write_bytes((tmp_path / 'x.sqlite-journal').read_bytes())
+    w.execute('ROLLBACK'); w.close()
+    return dst
+
+
+def test_an_abandoned_journal_is_rolled_back(tmp_path, monkeypatch):
+    p = abandoned_journal(tmp_path)
+    monkeypatch.setattr(C, 'READ_WAIT_S', 0)
+    with pytest.raises(sqlite3.OperationalError, match='readonly'):
+        db = sqlite3.connect(f'file:{p}?mode=ro', uri=True)
+        db.execute('SELECT COUNT(*) FROM checks').fetchone()
+    db.close()
+    assert C._read(p, lambda d: d.execute('SELECT COUNT(*) FROM checks').fetchone()[0]) == 1   # the last committed state
+    assert not (tmp_path / 'y.sqlite-journal').exists()
+    assert list(C.latest('y', path=p)) == [('k1', 'openalex')]

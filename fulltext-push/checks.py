@@ -67,15 +67,34 @@ def record(school, rows, path=None, batch=200):
     return n
 
 
-READ_TRIES, READ_WAIT_S = 40, 15
+READ_TRIES, READ_WAIT_S, ROLLBACK_AFTER = 40, 15, 4
+
+
+def _roll_back_abandoned_journal(p):
+    """One read on a read-write connection. A writer killed mid-commit (a loop's step timed out or its job was cancelled) leaves
+    a hot journal that no read-only connection can roll back, and no writer may come for that school for hours (the 2026-11-22
+    ledger run died on Berkeley's, abandoned since 14:14Z). SQLite rolls a journal back on the first read only when no other
+    connection holds a write lock, so a live writer's journal is left alone; the rollback restores the last committed state."""
+    db = sqlite3.connect(p, timeout=120)
+    try:
+        db.execute('PRAGMA busy_timeout=120000')
+        db.execute('SELECT COUNT(*) FROM sqlite_master').fetchone()
+    finally:
+        db.close()
 
 
 def _read(p, query):
     """query(db) on a fresh read-only connection, retried. The download loops' channels write the checks stores while the ledger
     reads them; a read-only connection that meets a writer's hot rollback journal cannot roll it back and raises 'attempt to write
-    a readonly database' (the 2026-11-19 ledger run died on it). Writers commit in short batches, so the journal clears: wait and
-    reopen (at most READ_TRIES x READ_WAIT_S = 10 min), then raise."""
+    a readonly database' (the 2026-11-19 ledger run died on it). Writers commit in short batches, so the journal usually clears:
+    wait and reopen (at most READ_TRIES x READ_WAIT_S = 10 min), then raise. A journal still there after ROLLBACK_AFTER tries is
+    taken for abandoned and rolled back once (_roll_back_abandoned_journal)."""
     for i in range(READ_TRIES):
+        if i == ROLLBACK_AFTER and Path(f'{p}-journal').exists():
+            try:
+                _roll_back_abandoned_journal(p)
+            except sqlite3.OperationalError:
+                pass  # locked by a live writer: keep waiting
         db = sqlite3.connect(f'file:{p}?mode=ro', uri=True, timeout=120)
         try:
             db.execute('PRAGMA busy_timeout=120000')
