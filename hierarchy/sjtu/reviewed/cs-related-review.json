@@ -9,15 +9,16 @@
   "GIFT",
   "ICISEE",
   "IMR",
+  "ME",
   "MRI",
   "SAIS",
   "SOAI"
  ],
  "counts": {
-  "accepted": 223,
-  "not_faculty_listed": 11,
-  "research_or_other_rank": 144,
-  "faculty_not_computing": 30,
+  "accepted": 242,
+  "not_faculty_listed": 42,
+  "research_or_other_rank": 145,
+  "faculty_not_computing": 36,
   "faculty_no_pi_evidence": 94,
   "excluded_unresolved": 3
  },
@@ -17790,6 +17791,2121 @@
    "supersedes": {
     "decision": "faculty_no_pi_evidence",
     "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)"
+   }
+  },
+  {
+   "name": "朱利民",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/zhulimin.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/zhulimin.html",
+     "sha256": "8f50109861cc385c71c90678deb81f664284b3d5ac2a3368b3368417594667f2",
+     "observed": "2026-11-21T22:45:06",
+     "observedAt": "2026-11-21T22:45:06",
+     "quote": "朱利民-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 精密超精密加工与检测： （1）超精密制造与检测 * 超精密运动控制与检测 * 微纳光学制造 * 原子级表面制造 * 扫描探针显微镜检测与纳米操作 * 多轴联动CAM编程、运动控制与数控系统 （2）生产计量与质量控制 * 三坐标测量（含三维机器视觉） * 在机测量与误差补偿 * 显微/干涉测量 作为导师指导毕业博士生19",
+   "lead": {
+    "src": "recall",
+    "name": "Limin Zhu 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "72/2089",
+    "recent": "63"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "72/2089",
+    "records_2016_2026": 118,
+    "affiliation_note": "Shanghai Jiao Tong University, Department of Mechanical Engineering, Shanghai, China || Southeast University, Nanjing, Jiangsu, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "任明俊",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/renmingjun.html",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/renmingjun.html",
+     "sha256": "ba2f9ddd861db7b644f7788c7b5bd97d2ed7e8b90ac04859c908f2e9fba2aada",
+     "observed": "2026-11-21T22:45:11",
+     "observedAt": "2026-11-21T22:45:11",
+     "quote": "任明俊-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "2019-至今 上海交通大学 机械与动力工程学院 副教授，硕士生导师，博士生导师"
+   },
+   "computing_quote": "研究方向 机器视觉 --- 物理模型驱动立体计算成像技术 机器学习 --- 贝叶斯随机过程、深度学习等数据建模、融合、识别技术",
+   "lead": {
+    "src": "oa1109",
+    "name": "Mingjun Ren",
+    "cls": "likely_faculty",
+    "cs": "28",
+    "oa": "A5073798631"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "习俊通",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/xijuntong.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/xijuntong.html",
+     "sha256": "b17468a4ab258fa91e777197a194beb52c8dd6babe9ed2997a2c58a65eb61a26",
+     "observed": "2026-11-21T22:45:16",
+     "observedAt": "2026-11-21T22:45:16",
+     "quote": "习俊通-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 （1）视觉测量与图像图形处理； （2）在线在位检测技术与系统； （3）智能制造感知与物联技术；",
+   "lead": {
+    "src": "oa1109",
+    "name": "Juntong Xi",
+    "cls": "likely_faculty",
+    "cs": "53",
+    "oa": "A5050259999"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "郑宇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory2/zhengyu.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory2/zhengyu.html",
+     "sha256": "24080741e0f0462e650630eeefab852d06d6ae7131f0187ff6d8c33ffe44a0d2",
+     "observed": "2026-11-21T22:45:21",
+     "observedAt": "2026-11-21T22:45:21",
+     "quote": "郑宇-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 （1）数字孪生 （2）智能工厂、工业大模型 （3）数据驱动的时序分析和诊断 （4）智能制造信息工程和PLM 招收博士后、博士、硕士研究生，欢迎联系报考",
+   "lead": {
+    "src": "recall",
+    "name": "Yu Zheng 0012",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "87/1585-12",
+    "recent": "27"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "87/1585-12",
+    "records_2016_2026": 57,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, Institute of Intelligent Manufacturing and Information Engineering, Shanghai, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "陈晓波",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory3/chenxiaobo.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory3/chenxiaobo.html",
+     "sha256": "a5fd0d73ebecbfaa4a3a5338e843c2f54bb73bb546799678d2929b0e51a6c0df",
+     "observed": "2026-11-21T22:45:26",
+     "observedAt": "2026-11-21T22:45:26",
+     "quote": "陈晓波-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 光学三维测量、机器视觉、在线/在位智能传感",
+   "lead": {
+    "src": "recall",
+    "name": "Xiaobo Chen 0002",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "21/4778-2",
+    "recent": "6"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "21/4778-2",
+    "records_2016_2026": 14,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, Shanghai, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "何清波",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/heqingbo.html",
+   "title_as_listed": "特聘教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/heqingbo.html",
+     "sha256": "3c91e4ecdcb0c8f6628b45b05f5956ebea31a26dc7d7b7f325d3a48270be0c56",
+     "observed": "2026-11-21T22:45:31",
+     "observedAt": "2026-11-21T22:45:31",
+     "quote": "何清波-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "交通大学 特聘教授 2018– 至今 上海交通大学 机械与动力工程学院 教授，博导 2009–2018 中国科学技术大学 工程科学学院 副"
+   },
+   "computing_quote": "研究方向 复杂装备动力学与智能运维 动态测试计算感知与智能传感器 信号处理、大数据与感知智能",
+   "lead": {
+    "src": "oa1109",
+    "name": "Qingbo He",
+    "cls": "unclear",
+    "cs": "10",
+    "oa": "A5108063853"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "蒋伟康",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/jiangweikang.html",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/jiangweikang.html",
+     "sha256": "93869d8d2e372cabd5de0441522a5484585da367bf1ea61aa80c3104d576c9d3",
+     "observed": "2026-11-21T22:45:36",
+     "observedAt": "2026-11-21T22:45:36",
+     "quote": "蒋伟康 -上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "99-2001 上海交通大学动力机械与能源工程学院振动、冲击、噪声研究所 教授、博士生导师 2002- 上海交通大学机械与动力工程学院振动、"
+   },
+   "computing_quote": "研究方向 声场可视化理论与方法：近场声全息， 波束成形，声源的可视化辨识与反演 管道声学：管道内声模态和声源的可视化辨识与反演，新型声衬的理论与技术 声学测量与分析：主要声源和异常声源的辨识方法，喷流噪声的建模与反演 机电产品噪声：车辆、飞行器、船舶、机电设备与家用电器的噪声振动的分析与控制",
+   "lead": {
+    "src": "oa1109",
+    "name": "Weikang Jiang",
+    "cls": "likely_faculty",
+    "cs": "28",
+    "oa": "A5078457527"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "彭志科",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/pengzhike.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/pengzhike.html",
+     "sha256": "caf1370691f0bb5f840b8ec93e348fa33c1ddc82ce49f8b6e190716a38574ca3",
+     "observed": "2026-11-21T22:45:41",
+     "observedAt": "2026-11-21T22:45:41",
+     "quote": "彭志科-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1) 信号分析与智能运维 2) 振动分析与控制 3) 微波感知技术 4) 海上浮式风力发电 5) 超材料设计与动力学 毕业博士生： 1) 杨 扬, 2010 - 2013, 牛津大学 2) 程长明，2012 - 2015， 上海交通大学 3) 李星占，2012 - 2016， 中国工程物理研究院 4) 王新宽，2014",
+   "lead": {
+    "src": "oa1109",
+    "name": "Zhike Peng",
+    "cls": "likely_faculty",
+    "cs": "19",
+    "oa": "A5073030532"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "饶柱石",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/raozhushi.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/raozhushi.html",
+     "sha256": "4e6e0e2ed8e817c32b5a65f89a62ed3e124cd053dc490045eee3d0cb7c8731fc",
+     "observed": "2026-11-21T22:45:46",
+     "observedAt": "2026-11-21T22:45:46",
+     "quote": "饶柱石 -上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1. 结构振动噪声分析与控制 2. 模态分析与应用 3. 生物力学与仿生学 4. 转子动力学",
+   "lead": {
+    "src": "oa1109",
+    "name": "Zhushi Rao",
+    "cls": "unclear",
+    "cs": "5",
+    "oa": "A5063860145"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "吴海军",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/wuhaijun.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/wuhaijun.html",
+     "sha256": "bf4bc8fd1a1dfb95b3a2fcb8a3d05b35b1479537673a416413dc9744df6edd87",
+     "observed": "2026-11-21T22:45:51",
+     "observedAt": "2026-11-21T22:45:51",
+     "quote": "吴海军-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "硕士生导师，博士生导师 2018.01—至今 上海交通大学，振动冲击"
+   },
+   "computing_quote": "研究方向 声学分析的高性能科学计算方法: 1. 边界元法的理论及快速计算方法（快速多极子、矩阵压缩等）； 2. 有限元法的理论及其高性能计算（等几何分析、并行计算等）； 3. 结构、流体和声学耦合分析方法 智能声感识理论及应用： 1. 声学逆向重建理论和算法（远场、近场声全息理论） 2. 声源智能辨识理论及应用（卷积/",
+   "lead": {
+    "src": "oa1109",
+    "name": "Haijun Wu",
+    "cls": "unclear",
+    "cs": "9",
+    "oa": "A5101633857"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "杨斌堂",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/yangbintang.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/yangbintang.html",
+     "sha256": "03012f6f52aceef71b22b672db40edfe8b3d12e01f4bb7b1394ea64b6b30e4b3",
+     "observed": "2026-11-21T22:45:56",
+     "observedAt": "2026-11-21T22:45:56",
+     "quote": "杨斌堂-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 超精密驱动理论与智能驱动技术 智能材料驱动器、传感器及其系统集成设计 精密电磁驱动系统集成设计 振动控制及振动装备、微振动主动控制方法及实现 智能材料器件数字化分析仿真及辅助优化设计研究 超精密加工制造系统、微小机器人、微型工厂研究",
+   "lead": {
+    "src": "oa1109",
+    "name": "Bintang Yang",
+    "cls": "unclear",
+    "cs": "6",
+    "oa": "A5016792657"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "塔娜",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory3/tana.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory3/tana.html",
+     "sha256": "8ca9def492d3f345ecc198f5b4a290f1e016d0788116eb3bcea8b62c4c07caf8",
+     "observed": "2026-11-21T22:46:01",
+     "observedAt": "2026-11-21T22:46:01",
+     "quote": "塔娜-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1.非线性理论及应用 2.模态分析与应用 3.生物力学、仿生学",
+   "lead": {
+    "src": "oa1109",
+    "name": "Na Ta",
+    "cls": "unclear",
+    "cs": "5",
+    "oa": "A5101980675"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "王皓",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/wanghao.html",
+   "title_as_listed": "特聘教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/wanghao.html",
+     "sha256": "52735b6e2402d6ef2202add7f5dfd4266a2af0d1c4abc90553453e8a9188f2ba",
+     "observed": "2026-11-21T22:46:06",
+     "observedAt": "2026-11-21T22:46:06",
+     "quote": "王皓-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "王皓，男，工学博士，上海交通大学特聘教授，博士生导师，国家重大人才计划入选者，重大装备设计与控制工程研究所长"
+   },
+   "computing_quote": "主要从事机器人学、机构学、机器人型智能装备、德国工业4.0方面的研究",
+   "lead": {
+    "src": "recall",
+    "name": "Hao Wang 0015",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "w/HaoWang-15",
+    "recent": "19"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "w/HaoWang-15",
+    "records_2016_2026": 34,
+    "affiliation_note": "Shanghai Jiao Tong University, State Key Laboratory of Mechanical Systems and Vibration, Shanghai, China || Tianjin University, Tianjing, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "高峰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/gaofeng.html",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/gaofeng.html",
+     "sha256": "9a53d2be9317ad8694766f2afa3efca4b61522757a09997d07b368edf9d17633",
+     "observed": "2026-11-21T22:46:11",
+     "observedAt": "2026-11-21T22:46:11",
+     "quote": "高峰 -上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "1995 燕山大学教授、博士生导师"
+   },
+   "computing_quote": "研究方向 并联机器人和并联数控装备设计理论及其应用关键技术研究",
+   "lead": {
+    "src": "recall",
+    "name": "Feng Gao 0011",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "10/2674-11",
+    "recent": "30"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "10/2674-11",
+    "records_2016_2026": 69,
+    "affiliation_note": "Shanghai Jiao Tong University, State Key Laboratory of Mechanical System and Vibration, Shanghai, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "郭为忠",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/guoweizhong.html",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/guoweizhong.html",
+     "sha256": "ba4bc6d10983507a6084da8654ca72ca4cf76983f0585a4cbbf1c62ff1a5a21b",
+     "observed": "2026-11-21T22:46:16",
+     "observedAt": "2026-11-21T22:46:16",
+     "quote": "郭为忠-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "上海交通大学 机械与动力工程学院 重大装备设计与控制工程研究所 教授，博士生导师 2016.08 ― 上海交通大学 机"
+   },
+   "computing_quote": "研究方向 研究兴趣 ： 机器、生物、自然界的机械运动问题及其机构学原理（认知、设计、优化、规划、智能）、广义机器 ——人机环大系统协同演化机制",
+   "lead": {
+    "src": "recall",
+    "name": "Feng Gao 0011",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "10/2674-11",
+    "recent": "30"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "10/2674-11",
+    "records_2016_2026": 69,
+    "affiliation_note": "Shanghai Jiao Tong University, State Key Laboratory of Mechanical System and Vibration, Shanghai, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "胡洁",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/hujie.html",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/hujie.html",
+     "sha256": "ace35e1a9cf71d6df9ff467ecd2790f0f71495d84d9acedc783c83e5b7afdccf",
+     "observed": "2026-11-21T22:46:21",
+     "observedAt": "2026-11-21T22:46:21",
+     "quote": "胡洁-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "2009-至今，上海交通大学机械与动力工程学院，教授/博导"
+   },
+   "computing_quote": "研究方向 设计与制造中的智能化理论与技术 * 基于知识的工程（KBE） * 知识融合与创新设计 * 生物信息处理及编码 * 智能装备的智能感知与决策",
+   "lead": {
+    "src": "recall",
+    "name": "Jie Hu 0002",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "90/5064-2",
+    "recent": "17"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "90/5064-2",
+    "records_2016_2026": 56,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, Shanghai, China || Tsighua University, Department of Automation, Beijing, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "戚进",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/qijin.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/qijin.html",
+     "sha256": "ed2f92693c24cdb8a9d36b47ddcbafed6dac8a8e22a2f434568bc007b3f03ca2",
+     "observed": "2026-11-21T22:46:26",
+     "observedAt": "2026-11-21T22:46:26",
+     "quote": "戚进-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 创新设计、智能设计、 知识工程、产品设计",
+   "lead": {
+    "src": "recall",
+    "name": "Jin Qi 0002",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "62/2704-2",
+    "recent": "18"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "62/2704-2",
+    "records_2016_2026": 45,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, State Key Laboratory of Mechanical System and Vibration, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "陈晓军",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/chenxiaojun.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/chenxiaojun.html",
+     "sha256": "6e4023cbf2aa89c6e193ed9a1ad6558df809045f43bd31b38f30992004d5ce73",
+     "observed": "2026-11-21T22:46:31",
+     "observedAt": "2026-11-21T22:46:31",
+     "quote": "陈晓军-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "10―2018 上海交通大学 生物医学制造与生命质量工程研究所 副研究员、博士生导师 2018―2025 上海交通大学 生物医学制造与生命"
+   },
+   "computing_quote": "研究方向 人工智能与医疗 手术导航、手术机器人 虚拟现实/增强现实/混合现实 3D打印、CAD/CAM与数字医疗 医学图像处理、计算机图形学 计算机辅助手术 本研究方向为信息科学、机械工程与现代医学的交叉前沿与热点领域",
+   "lead": {
+    "src": "recall",
+    "name": "Xiaojun Chen 0003",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "20/3215-3",
+    "recent": "52"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "20/3215-3",
+    "records_2016_2026": 96,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "张执南",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/zhangzhinan.html",
+   "title_as_listed": "长聘教授",
+   "reason": "hand review 2026-11-21: tribology primary (data-model methods secondary)",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/zhangzhinan.html",
+     "sha256": "a8b4274e9696d248d667c96fa6a3f4f2992173f1cf26eb036e3e5ed3991a6a1c",
+     "observed": "2026-11-21T22:46:36",
+     "observedAt": "2026-11-21T22:46:36",
+     "quote": "张执南-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "2025.06 -----至今 上海交通大学 机械与动力工程学院 长聘教授、博士生导师 2021.12 -----至今 上海交通大学 机械与动力"
+   },
+   "computing_quote": "研究方向 摩擦信息学（Tribo-informatics/Triboinformatics） 基础研究：数据-模型协同驱动的摩擦学研究（AI for tribology）、多尺度模拟、表界面行为机理、摩擦起电、摩擦学系统设计方法 应用研究：机器健康监测与诊断、润滑性能控制技术、 转子-轴承系统摩擦动力学、多模态摩擦过程信息融合、",
+   "lead": {
+    "src": "oa1109",
+    "name": "Zhinan Zhang",
+    "cls": "unclear",
+    "cs": "7",
+    "oa": "A5013059882"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "朱向阳",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/zhuxiangyang.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/zhuxiangyang.html",
+     "sha256": "a746ae7d84ee3f7e5640f213bb00a6a5d76dc0c6fa055f5949998db6446e7c10",
+     "observed": "2026-11-21T22:46:41",
+     "observedAt": "2026-11-21T22:46:41",
+     "quote": "朱向阳-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1. 生机电一体化智能系统与神经交互技术（ Biomechatronics & Neuro-interfacing ） 2. 软体机器人学（ Soft Robotics ） 3. 机器人约束运动规划与自主操作技术（ Robot Motion Planning & Autonomous Ma",
+   "lead": {
+    "src": "oa1109",
+    "name": "Xiangyang Zhu",
+    "cls": "unclear",
+    "cs": "13",
+    "oa": "A5078125284"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "丁烨",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/dingye.html",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/dingye.html",
+     "sha256": "068701402f0f1400b90b41e4f5f4cd9aae3b38aa2534a94d55d06f22f8010f3e",
+     "observed": "2026-11-21T22:46:46",
+     "observedAt": "2026-11-21T22:46:46",
+     "quote": "丁烨-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "2019-今 上海交通大学机械与动力工程学院机器人研究所，教授、博士生导师 2016-2019 上海交通大学机械与动力工程学院机器人研"
+   },
+   "computing_quote": "研究方向 机器人学与机器学习 1. 机器人动力学与控制 2. 机器人学习与操作技术 3. 机器人加工技术",
+   "lead": {
+    "src": "recall",
+    "name": "Ye Ding 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "17/4099-1",
+    "recent": "14"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "17/4099-1",
+    "records_2016_2026": 28,
+    "affiliation_note": "Shanghai Jiao Tong University, State Key Laboratory of Mechanical System and Vibration, China || University of Bremen, Laboratory for Precision Machining, Germany || Shanghai Jiao Tong University, Sch",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "董伟",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/dongwei1.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/dongwei1.html",
+     "sha256": "5cde9069462d08d470f44a4408f0295fd602e03ec662305b116c13bcb2adb103",
+     "observed": "2026-11-21T22:46:51",
+     "observedAt": "2026-11-21T22:46:51",
+     "quote": "董伟-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1、多模态机器人与 机器人集群 2、主动视觉与感知系统 3、基于强化学习的机器人运动规划与控制 4、旋翼机器人/无人机自主检测系统 （ 招生说明附后; 2026年学生已招满，望勿费时函询 ）",
+   "lead": {
+    "src": "recall",
+    "name": "Wei Dong 0008",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "92/748-8",
+    "recent": "26"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "92/748-8",
+    "records_2016_2026": 65,
+    "affiliation_note": "Shanghai Jiao Tong University, State Key Laboratory of Mechanical System and Vibration, School of Mechanical Engineering, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "付庄",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/fuzhuang.html",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/fuzhuang.html",
+     "sha256": "ac789b52f6303bf46dc7c69701c97b2701595e72dcd469e99f953b360e79fbfd",
+     "observed": "2026-11-21T22:46:56",
+     "observedAt": "2026-11-21T22:46:56",
+     "quote": "付庄-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "生导师 2010-至今 上海交通大学机械与动力工程学院， 机器人研究所， 教授/博士生导师"
+   },
+   "computing_quote": "研究方向 1 医疗机器人、特种机器人、服务机器人 、工业机器人 2 仿生机器人及其智能控制系统 3 多自由度经济型机器人 4 智能控制系统设计 5 机电产品、机电生产线设计 6 智能测量设备",
+   "lead": {
+    "src": "oa1109",
+    "name": "Zhuang Fu",
+    "cls": "likely_faculty",
+    "cs": "18",
+    "oa": "A5058388737"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "谷国迎",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/guguoying.html",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/guguoying.html",
+     "sha256": "0391f8070cb82e164c6d8117c7e15b4e690fd97179870ab730cfd18cd6f7ab8d",
+     "observed": "2026-11-21T22:47:01",
+     "observedAt": "2026-11-21T22:47:01",
+     "quote": "谷国迎-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "018.07-至今 上海交通大学机械与动力工程学院，教授，博导 2018.03-2018.10 美国麻省理工学院"
+   },
+   "computing_quote": "研究方向 机器人学与机电控制技术: 1）软体机器人学 2）仿生机器人与智能穿戴式机器人 3）智能材料驱动、传感与运动控制 4）机器学习与3D打印 欢迎有软体机器人学、机器人设计与控制、智能/功能材料与制备、力学与机器学习背景的博士后、博士生、硕士生联系学习和交流！",
+   "lead": {
+    "src": "oa1109",
+    "name": "Guoying Gu",
+    "cls": "unclear",
+    "cs": "7",
+    "oa": "A5070063268"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "盛鑫军",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/shengxinjun.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/shengxinjun.html",
+     "sha256": "8cb3ddba19e4c708fc46c8be7c92f47627b40ca82df15dffb0e783f9f43a0f3d",
+     "observed": "2026-11-21T22:47:07",
+     "observedAt": "2026-11-21T22:47:07",
+     "quote": "盛鑫军-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1）机器人学 2）生机电一体化智能系统",
+   "lead": {
+    "src": "recall",
+    "name": "Xinjun Sheng",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "37/7627",
+    "recent": "46"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "37/7627",
+    "records_2016_2026": 157,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "吴建华",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/wujianhua.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/wujianhua.html",
+     "sha256": "92de2295a4e3cfaeb2a48636ffb7b22c372597d9f9e068e7dcc049789b70d872",
+     "observed": "2026-11-21T22:47:12",
+     "observedAt": "2026-11-21T22:47:12",
+     "quote": "吴建华-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "今 上海交通大学机械与动力工程学院机器人所 副研究员，教授，博导 2016 麻省理工学院"
+   },
+   "computing_quote": "研究方向 1. 机器人学 2. 智能机器人与无人系统 3. 高性能运动控制",
+   "lead": {
+    "src": "recall",
+    "name": "Jianhua Wu 0005",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "99/3589-5",
+    "recent": "14"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "99/3589-5",
+    "records_2016_2026": 41,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, State Key Laboratory of Mechanical Systems and Vibration, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "熊振华",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/xiongzhenhua.html",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/xiongzhenhua.html",
+     "sha256": "3a2906cfd87aeb6ee4138678931ef440f8b0b059045bd352e11b62833fc3755c",
+     "observed": "2026-11-21T22:47:17",
+     "observedAt": "2026-11-21T22:47:17",
+     "quote": "熊振华-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "上海交通大学机械与动力工程学院机器人研究所 研究员/博导 2002.5-2010.12 上海交通大学机"
+   },
+   "computing_quote": "研究方向 1. 机电运动控制 2. 机器人技术 3. 智能制造",
+   "lead": {
+    "src": "recall",
+    "name": "Zhenhua Xiong 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "66/771-1",
+    "recent": "46"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "66/771-1",
+    "records_2016_2026": 101,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, State Key Laboratory of Mechanical System and Vibration, China || Hong Kong University of Science and Technology, School of Electrical ",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "徐凯",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/xukai.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/xukai.html",
+     "sha256": "f8cdb9ebed151b7b3bfbb6e8a3e42728573783276f5c75ac3d4244868bdd809d",
+     "observed": "2026-11-21T22:47:22",
+     "observedAt": "2026-11-21T22:47:22",
+     "quote": "徐凯-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1. 医疗机器人 （1）机器人辅助腹腔镜手术系统 （2）机器人辅助基于内窥镜的无创手术系统 （3）可穿戴式机动外骨骼辅助康复治疗 （4）用于心血管和颅内手术的微机器人 2. 特种工业机器人 用于深腔检测的柔性冗余机械臂 3. 服务业机器人 （1）智能假肢 （2）拟人机器人 （3）特种轮式移动平台 4. 机器人学理论 （",
+   "lead": {
+    "src": "recall",
+    "name": "Kai Xu 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "30/495-1",
+    "recent": "8"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "30/495-1",
+    "records_2016_2026": 51,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, China || UM-SJTU Joint Institute, Shanghai, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "刘超",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory2/liuchao.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory2/liuchao.html",
+     "sha256": "ed0b9d4e8e4c41fa3adf74826c744a2d833f6856a9f9a64d0f0a1282024ac08d",
+     "observed": "2026-11-21T22:47:27",
+     "observedAt": "2026-11-21T22:47:27",
+     "quote": "刘超-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 伺服运动系统建模、分析与控制 —— 直线伺服系统快速抑振与精密定位 —— 超冗余机器人结构设计与精确操控 —— 机器人作业系统集成与精细操作",
+   "lead": {
+    "src": "recall",
+    "name": "Chao Liu 0019",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "15/5923-19",
+    "recent": "19"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "15/5923-19",
+    "records_2016_2026": 34,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, State Key Laboratory of Mechanical System and Vibration, Shanghai, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "任杰骥",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory2/renjieji.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory2/renjieji.html",
+     "sha256": "addb57895f223bf8e763bf192cd379d66bd9207708b41415dcab730dcf709c73",
+     "observed": "2026-11-21T22:47:31",
+     "observedAt": "2026-11-21T22:47:31",
+     "quote": "任杰骥-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 触觉传感、数据采集、遥操作、具身智能、灵巧操作 亮点工作 基于视触觉感知的高效数采引擎与双臂协同精细操作 高速高精度 可穿戴视触觉数采系统 模块化 视触觉传感器",
+   "lead": {
+    "src": "oa1109",
+    "name": "Jieji Ren",
+    "cls": "unclear",
+    "cs": "16",
+    "oa": "A5062010548"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "刘成良",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/liuchengliang.html",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/liuchengliang.html",
+     "sha256": "cff93c17b8c0671eea7dd3dab861620544c58ce6c7c99b3ce89d2701605f148a",
+     "observed": "2026-11-21T22:47:36",
+     "observedAt": "2026-11-21T22:47:36",
+     "quote": "刘成良-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "2002.04-至今 上海交通大学 机电控制与物流装备研究所 教授\\博导\\所长"
+   },
+   "computing_quote": "研究方向 1、机器健康与智能运维 2、流体传动及控制 3、农业装备智能控制与农业机器人 4、智能感知与机电融合设计",
+   "lead": {
+    "src": "recall",
+    "name": "Chengliang Liu 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "30/5444-1",
+    "recent": "59"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "30/5444-1",
+    "records_2016_2026": 132,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, Shanghai, China || Southeast University, Nanjing, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "贡亮",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/gongliang.html",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/gongliang.html",
+     "sha256": "ca5be97efa4b90fb85e77a5a9f8a2828060a96ce06998aca0e0d8d5cf12c21a1",
+     "observed": "2026-11-21T22:47:42",
+     "observedAt": "2026-11-21T22:47:42",
+     "quote": "贡亮 -上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "与动力工程学院 机电控制与物流装备研究所 教授 (2016.04- 至今, 博士生导师) 2015.12-2023.12 上海交通大学 机械与动"
+   },
+   "computing_quote": "研究方向 【野外机器人/Field Robotics】 1. 农业机器人、农用AI芯片设计、农业机器人操作系统 2. 野战机器人、察打一体机器人 3. 港口/电厂/矿山机器人、低空飞行机器人 博士后招聘 ：机器人设计与控制、无人驾驶、图像处理、芯片设计、软件工程 提供有竞争力薪酬、支持博新计划申报",
+   "lead": {
+    "src": "oa1109",
+    "name": "Liang Gong",
+    "cls": "unclear",
+    "cs": "9",
+    "oa": "A5041133234"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "金衍瑞",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/jinyanrui.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/jinyanrui.html",
+     "sha256": "1ec63cfdae4e340ed79420f72c9fd6d5c3a69980e8cc22040084c34c747d8410",
+     "observed": "2026-11-21T22:47:47",
+     "observedAt": "2026-11-21T22:47:47",
+     "quote": "金衍瑞-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1 、人工智能/大模型在医学中交叉 2 、自演进医疗智能体开发与应用 3 、机器健康与智能运维 团队致力于探索端-边-云联动的多模态信息智能感知及基于大模型的智能分析方法，实现各类机器人在非受控环境下（医疗、工业等应用场景）的智能决策",
+   "lead": {
+    "src": "recall",
+    "name": "Chengjin Qin",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "238/0848",
+    "recent": "22"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "238/0848",
+    "records_2016_2026": 44,
+    "affiliation_note": "Shanghai Jiao Tong University, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "李彦明",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/liyanming.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/liyanming.html",
+     "sha256": "c7b2f843366dba6e8f487eaa6635130b759a028272aa733a10b598e1aac5a231",
+     "observed": "2026-11-21T22:47:52",
+     "observedAt": "2026-11-21T22:47:52",
+     "quote": "李彦明 -上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1. 野外及非结构环境移动机器人运动及自主作业控制； 2.非道路车辆无人驾驶感知与控制技术； 3.机器人视觉与雷达多传感融合环境感知及视觉伺服控制； 4.嵌入式控制系统设计与开发； 培养研究生毕业去向： 2025：刘子翔 上海泰则半导体有限公司； 肖扬帆 广东",
+   "lead": {
+    "src": "oa1109",
+    "name": "Yanming Li",
+    "cls": "unclear",
+    "cs": "6",
+    "oa": "A5100393258"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张希",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/zhangxi.html",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/zhangxi.html",
+     "sha256": "2236051cb4ec30abac1af8f9c43ba6ea39bd92ede4dc08fb795aa35f290cc1c6",
+     "observed": "2026-11-21T22:47:57",
+     "observedAt": "2026-11-21T22:47:57",
+     "quote": "张希-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "4―2017 上海交通大学机械与动力工程学院 副研究员，博士生导师 2017―2018 上汽通用五菱汽车股份有限公司新能源"
+   },
+   "computing_quote": "研究方向 高安全硫化物全固态电池技术 新能源汽车智能电池管理与无线充电技术 智能网联汽车环境感知与智能决策技术",
+   "lead": {
+    "src": "recall",
+    "name": "Xi Zhang 0016",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "87/1222-16",
+    "recent": "32"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "87/1222-16",
+    "records_2016_2026": 48,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "胡川",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/huchuan.html",
+   "title_as_listed": "副教授",
+   "reason": "hand review 2026-11-21: unmanned vehicles and mobile embodied-intelligence lab",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/huchuan.html",
+     "sha256": "18c049160a42c667e1aa927f88058f5df468f450dd6db2b028920b9a6f603d13",
+     "observed": "2026-11-21T22:48:02",
+     "observedAt": "2026-11-21T22:48:02",
+     "quote": "胡川-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "副教授，博导，机械与动力工程学院，上海交通大学，上海，中国，2022.0"
+   },
+   "computing_quote": "研究方向 上海交通大学无人车辆与移动具身智能实验室 Lab of Unmanned Vehicles and Mobile Embodied Intelligence 研究领域主要围绕“智能网联汽车”、“无人车辆” 以及“人机交互与人机共驾”",
+   "lead": {
+    "src": "recall",
+    "name": "Chuan Hu 0003",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "47/11058-3",
+    "recent": "80"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "47/11058-3",
+    "records_2016_2026": 109,
+    "affiliation_note": "Shanghai Jiao Tong University, Shanghai, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "黄宏成",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/huanghongcheng.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/huanghongcheng.html",
+     "sha256": "d4c6db19a0ff00eb534120b3afb4b5a26728655efe89354fcc7a35909e52bf4e",
+     "observed": "2026-11-21T22:48:07",
+     "observedAt": "2026-11-21T22:48:07",
+     "quote": "黄宏成-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 汽车电器与电子技术 新能源与智能网联汽车 动力电池梯次利用",
+   "lead": {
+    "src": "oa1109",
+    "name": "Hongcheng Huang",
+    "cls": "unclear",
+    "cs": "12",
+    "oa": "A5060964250"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "王亚飞",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/wangyafei.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/wangyafei.html",
+     "sha256": "5447ccd1d6e6fcb7666ccb01228f491fdd2072aea25d5e3b6d19dcd91a2465ce",
+     "observed": "2026-11-21T22:48:12",
+     "observedAt": "2026-11-21T22:48:12",
+     "quote": "王亚飞-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1. 特种车辆无人驾驶 2. 无人驾驶建图与规划 3. 端到端自动驾驶 4. 车路协同",
+   "lead": {
+    "src": "recall",
+    "name": "Yafei Wang 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "21/9583-1",
+    "recent": "32"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "21/9583-1",
+    "records_2016_2026": 44,
+    "affiliation_note": "Shanghai Jiao Tong University, Shanghai, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "朱平",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/zhuping.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/zhuping.html",
+     "sha256": "ab400beb0058c3c2549470bebce8283d5ec750fb2dd6f9cb0fab781e4f6cbb80",
+     "observed": "2026-11-21T22:48:17",
+     "observedAt": "2026-11-21T22:48:17",
+     "quote": "朱平-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1. 轻量化设计与制造 2. 汽车安全性与可靠性 3. 大数据与数字孪生 4. 数据驱动的超材料优化设计 5. 材料-结构-工艺-性能一体化设计",
+   "lead": {
+    "src": "oa1109",
+    "name": "Ping Zhu",
+    "cls": "likely_faculty",
+    "cs": "22",
+    "oa": "A5085346031"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "殷承良",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory2/yinchengliang.html",
+   "title_as_listed": "研究员",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory2/yinchengliang.html",
+     "sha256": "70af9297b7c8ed7eeea21e1da883555bf21f35f70b71eac8eb3f34ae81dd93e2",
+     "observed": "2026-11-21T22:48:22",
+     "observedAt": "2026-11-21T22:48:22",
+     "quote": "殷承良-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "2004 ― 上海交通大学机械与动力工程学院 研究员，博士生导师"
+   },
+   "computing_quote": "研究方向 智能网联汽车 混合动力电动汽车、纯电动汽车整车集成与开发 混合动力电动汽车变速器技术 电池管理系统及混合能量存储系统技术 汽车电子控制技术",
+   "lead": {
+    "src": "oa1109",
+    "name": "Chengliang Yin",
+    "cls": "unclear",
+    "cs": "8",
+    "oa": "A5045085749"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "周登极",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/zhoudengji.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/zhoudengji.html",
+     "sha256": "9de415a31cfeabf0fb1ffd653a6e3dbac58796e9bfdfa4a069758b7537e70aad",
+     "observed": "2026-11-21T22:48:27",
+     "observedAt": "2026-11-21T22:48:27",
+     "quote": "周登极-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 能源与动力装备系统仿真、智能控制 研究对象：航空发动机、燃气轮机、新型空天动力系统",
+   "lead": {
+    "src": "oa1109",
+    "name": "Dengji Zhou",
+    "cls": "unclear",
+    "cs": "7",
+    "oa": "A5074318841"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "董威",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/dongwei.html",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/dongwei.html",
+     "sha256": "17b89b908a3ba6904f2e88f2fa42fc8d6c70f9e16fb6682ea117e09b875f57df",
+     "observed": "2026-11-21T22:48:32",
+     "observedAt": "2026-11-21T22:48:32",
+     "quote": "董威-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "上海交通大学机械与动力工程学院 教授、博导"
+   },
+   "computing_quote": "研究方向 1、航空动力系统的 流动传热及热管理 2、航空动力系统总体性能及仿真 3、飞机及航空发动机结冰与防冰 4、 交叉学科的流体力学与传热学 5、航空、航天、新能源等领域的流体及传热冷却技术 6、 高速飞行器气动加热及热防护",
+   "lead": {
+    "src": "recall",
+    "name": "Wei Dong 0008",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "92/748-8",
+    "recent": "26"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "92/748-8",
+    "records_2016_2026": 65,
+    "affiliation_note": "Shanghai Jiao Tong University, State Key Laboratory of Mechanical System and Vibration, School of Mechanical Engineering, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "王倩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/wangqian.html",
+   "title_as_listed": "教授",
+   "reason": "hand review 2026-11-21: bio-inspired flow energy harvesting and combustion primary; imaging algorithms secondary",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/wangqian.html",
+     "sha256": "a3769cf13fcf01bce6ea92e6e598e142772fa350be80999632348c6814d819e2",
+     "observed": "2026-11-21T22:48:37",
+     "observedAt": "2026-11-21T22:48:37",
+     "quote": "王倩 -上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "2025-至今， 上海交通大学机动学院，工程热物理研究所，教授，博导 2017-2024, 上海交通大学机动学院，工程热物理研究"
+   },
+   "computing_quote": "研究方向 • 仿生流场能量采集器设计 • 火焰动态特性、点火特性及燃烧不稳定性研究 • 高精度三维成像优化算法开发 • 图像处理与深度学习算法应用 • 高帧频三维流场测速技术开发 • 相变材料开发、相变传热数值模拟与实验测试 1、课程名称： ME315 传热学（英文授课） 授课对象：本科生 学时数：24/48 学分：",
+   "lead": {
+    "src": "recall",
+    "name": "Qian Wang 0001",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "75/5723-1",
+    "recent": "116"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "75/5723-1",
+    "records_2016_2026": 255,
+    "affiliation_note": "ShanghaiTech University, School of Biomedical Engineering, State Key Laboratory of Advanced Medical Materials and Devices, Shanghai, China || Shanghai Clinical Research and Trial Center, Shanghai, Chi",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "马涛",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/matao.html",
+   "title_as_listed": "教授",
+   "reason": "hand review 2026-11-21: solar energy technology",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/matao.html",
+     "sha256": "a20f90a222049d157831f8c97d9f56f8e79bcdccaf54e57767481faf8c086a99",
+     "observed": "2026-11-21T22:48:42",
+     "observedAt": "2026-11-21T22:48:42",
+     "quote": "马涛-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": ".12 ― 至今 上海交通大学/机械与动力工程学院 教授/博士生导师 2020.12―2025.12 上海交通大学/机械与"
+   },
+   "computing_quote": "研究方向 1. 太阳能技术基础研究：光电热综合性能建模与仿真、光伏热效应与热管理、光谱及辐射调控技术 2. 新型光伏技术与多场景应用：高效彩色光伏、半透明晶硅光伏、建筑光伏一体化（BIPV），以及面向建筑、交通、农业等场景的集成光伏技术 3. 风光储可再生能源系统：高原清洁能源开发与利用、多能互补系统建模仿真与优化、数智能源技术",
+   "lead": {
+    "src": "oa1109",
+    "name": "Tao Ma",
+    "cls": "unclear",
+    "cs": "7",
+    "oa": "A5003991860"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "杨帆",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/yangfan.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/yangfan.html",
+     "sha256": "0874555e5a65e93a04b75669212b1a8c1e8a8062b9f49eba1151b7cc3aab84dd",
+     "observed": "2026-11-21T22:48:47",
+     "observedAt": "2026-11-21T22:48:47",
+     "quote": "杨帆-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 陶瓷与涂层 电催化材料 氧化物凝固 燃料电池/水电解",
+   "lead": {
+    "src": "oa1109",
+    "name": "Fan Yang",
+    "cls": "unclear",
+    "cs": "6",
+    "oa": "A5100346622"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "陈震",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/chenzhen.html",
+   "title_as_listed": "长聘教轨副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/chenzhen.html",
+     "sha256": "28d80d4324ab007b89b2b6955593448d90d2c147c634ada809dbd70a1d846946",
+     "observed": "2026-11-21T22:48:52",
+     "observedAt": "2026-11-21T22:48:52",
+     "quote": "陈震-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": ".01-至今 上海交通大学，机械与动力工程学院，长聘教轨副教授、博导 2022.07-2023.12 上海交通大学，机械与动"
+   },
+   "computing_quote": "研究方向 装备可靠性智能设计与健康管理技术 1. 部件性能退化建模与寿命预测，系统 状态监控、故障预测与健康管理决策方法 2. 装备全寿命周期可靠性智能设计、评估及优化 3. 复杂制造过程质量统计控制、缺陷预警 4. 物理信息深度学习、多源工业大数据融合、生成式大模型 课题组招收硕士、直博、申请考核制博士研究生，招收博士后、科研",
+   "lead": {
+    "src": "recall",
+    "name": "Zhen Chen 0017",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "11/1266-17",
+    "recent": "44"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "11/1266-17",
+    "records_2016_2026": 58,
+    "affiliation_note": "Shanghai Jiao Tong University, Department of Industry Engineering, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "蒋祖华",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/jiangzuhua.html",
+   "title_as_listed": "教授",
+   "reason": "hand review 2026-11-21: knowledge engineering and artificial intelligence",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/jiangzuhua.html",
+     "sha256": "05b2c10c16d105fba314068b6d8f9db8ae4cf99469845dee2a3a603b3dd49045",
+     "observed": "2026-11-21T22:48:57",
+     "observedAt": "2026-11-21T22:48:57",
+     "quote": "蒋祖华-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "蒋祖华，上海交通大学博士（1998），教授（2002），博士生导师（2003）"
+   },
+   "computing_quote": "研究方向 主要方向是知识工程和知识管理、设备预防性维护、人因工程、人工智能、物流管理. 毕业博士研究生15名（截至2019年底） 1. 2006年3月，孟祥慧（导师朱训生，蒋祖华），面向大批量定制的产品族规划和设计方法研究（Research on the Product Family Planning and Designing",
+   "lead": {
+    "src": "oa1109",
+    "name": "Zuhua Jiang",
+    "cls": "unclear",
+    "cs": "9",
+    "oa": "A5011789987"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "李娜",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/lina.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/lina.html",
+     "sha256": "2e55e232767a7d486f162b27c65d140f68fba8496eae38d757bd5a0a6aeaf155",
+     "observed": "2026-11-21T22:49:02",
+     "observedAt": "2026-11-21T22:49:02",
+     "quote": "李娜 -上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 服务系统运作管理 ； 生产系统运作调度与控制； 能源系统规划与调度管理；",
+   "lead": {
+    "src": "recall",
+    "name": "Na Li 0007",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "18/3173-7",
+    "recent": "8"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "18/3173-7",
+    "records_2016_2026": 19,
+    "affiliation_note": "Shanghai Jiao Tong University, Department of Industrial Engineering and Management, School of Mechanical Engineering, China || Tsinghua University, Beijing, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "刘冉",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/liuran.html",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/liuran.html",
+     "sha256": "4fabfd93a8dafc82cd2347aa09483f740c1181b0313e1e496cee6d6b585e1543",
+     "observed": "2026-11-21T22:49:07",
+     "observedAt": "2026-11-21T22:49:07",
+     "quote": "刘冉-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "2025 －至今 上海交通大学机械与动力工程学院，工业工程与管理系，教授，博导 2017 － 2025 上海交通大学机械与动力工程学院，工"
+   },
+   "computing_quote": "研究方向 研究方向：运筹优化、优化算法、机器学习 应用场景：服务与制造系统（医疗服务、智能制造） 欢迎对运筹优化、优化算法、机器学习等方向有兴趣的本科同学（工业工程、机械、动力、数学等理工专业）参与到课题研究工作",
+   "lead": {
+    "src": "recall",
+    "name": "Ran Liu 0005",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "65/2726-5",
+    "recent": "11"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "65/2726-5",
+    "records_2016_2026": 26,
+    "affiliation_note": "Shanghai Jiao Tong University, Department of Industrial Engineering and Logistics Management, China || Shanghai Jiao Tong University, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "明新国",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/mingxinguo.html",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/mingxinguo.html",
+     "sha256": "a725f0bb47aa047ed5fe27013c2120fa5c9b4335b679f0465bc31f7f9ee51d6d",
+     "observed": "2026-11-21T22:49:11",
+     "observedAt": "2026-11-21T22:49:11",
+     "quote": "明新国-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "ntist 2005年6月 - 上海交通大学机械与动力工程学院 教师、教授、博导"
+   },
+   "computing_quote": "研究方向 工业人工智能（Industrial Artificial Intelligence） -人工智能的智慧来源：事实+数字=数据、数据+关系=信息、信息+行动=知识、知识+决策=智慧； -人工智能的知识管理：知识的发现、表达、集成、分享、学习、使用、创造； -人工智能的能力层次：自感知、自认知、自适应、自控制、自学习、自组",
+   "lead": {
+    "src": "recall",
+    "name": "Xin Guo Ming",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "30/7396",
+    "recent": "41"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "30/7396",
+    "records_2016_2026": 103,
+    "affiliation_note": "School of Mechanical Engineering, Shanghai Jiao Tong University, Shanghai, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "秦威",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/qinwei.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/qinwei.html",
+     "sha256": "8cc2c850f44b89bc4a0f3c86bc742673ae3848f49d838b931887824316434dee",
+     "observed": "2026-11-21T22:49:16",
+     "observedAt": "2026-11-21T22:49:16",
+     "quote": "秦威 -上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 复杂制造与物流系统建模、控制与优化；机器智能理论、方法与应用 招收博士后、博士、硕士研究生，欢迎联系报读！",
+   "lead": {
+    "src": "oa1109",
+    "name": "Wei Qin",
+    "cls": "unclear",
+    "cs": "10",
+    "oa": "A5054830882"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "王迪",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/wangdi.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/wangdi.html",
+     "sha256": "aa5e3b1c21b3ffbfc49e9f4391cd6cdadd31c853007fe6fe6edcedca6f171c9c",
+     "observed": "2026-11-21T22:49:21",
+     "observedAt": "2026-11-21T22:49:21",
+     "quote": "王迪-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 基于人工智能和统计学习的复杂工程系统分析，涉及时空统计、时空人工智能、小样本深度学习、工业大模型等前沿理论研究 • 时空动态系统的预测、监控、诊断与决策（轨道交通系统、城市物联网系统、储备粮质量管理系统等） • 基于深度学习和多元传感数据融合的工业设备健康预测管理（PHM） 招收2027年入学博士、硕士，指导本科生科研",
+   "lead": {
+    "src": "recall",
+    "name": "Di Wang 0019",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "18/5410-19",
+    "recent": "25"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "18/5410-19",
+    "records_2016_2026": 32,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, Department of Industrial Engineering and Management, Shanghai, China",
+    "names_profile_unit": true
+   }
+  },
+  {
+   "name": "施圣贤",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/shishengxian.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/shishengxian.html",
+     "sha256": "26435c101ba204de1470270de0d2d5371e809b3151515ea9d57a01836f805550",
+     "observed": "2026-11-21T22:49:26",
+     "observedAt": "2026-11-21T22:49:26",
+     "quote": "施圣贤-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1）超透镜/微透镜光场三维成像 2）AI+多维数据重构+多物理场重构 3）高温、三维形貌、流场速度场光学测试技术 4）测试技术在航空发动机、燃气轮机部件试验的应用研究 热工测试技术（中文授课, 2023-） 授课对象：本科生 学时数： 48 学分：3 测试原理与技术（英文授课, 2019-） 授课",
+   "lead": {
+    "src": "oa1109",
+    "name": "Shengxian Shi",
+    "cls": "likely_faculty",
+    "cs": "16",
+    "oa": "A5030739517"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "陈凯",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/chenkai.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/chenkai.html",
+     "sha256": "811e0d725957c6aa62f4b93c07a9700c509e14b0247de717c4f7725303284702",
+     "observed": "2026-11-21T22:49:31",
+     "observedAt": "2026-11-21T22:49:31",
+     "quote": "陈凯-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1. 反应堆结构材料(燃料包壳、不锈钢、镍基合金)的腐蚀失效行为与机理研究 2. 核级增材制造不锈钢及其服役行为评价 3. 核电材料腐蚀失效预测与寿命评估 4. 反应堆水化学与缓蚀机制研究 5. 多尺度材料表征技术 6. 耐蚀材料设计与制备",
+   "lead": {
+    "src": "oa1109",
+    "name": "Kai Chen",
+    "cls": "unclear",
+    "cs": "17",
+    "oa": "A5100437924"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "张磊",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory1/zhanglei.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory1/zhanglei.html",
+     "sha256": "fce5e7ea47d59bf16ab8bb3e85c9f41176955b266431eff7b1d7a2b61b8454d9",
+     "observed": "2026-11-21T22:49:41",
+     "observedAt": "2026-11-21T22:49:41",
+     "quote": "张磊-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 致力于结合固体力学、结构优化、微分几何、人工智能、材料科学等多学科知识和增材制造技术，研究轻量化高性能多功能点阵结构的设计制造一体化方法",
+   "lead": {
+    "src": "recall",
+    "name": "Lei Zhang 0027",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "64/5666-27",
+    "recent": "16"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "64/5666-27",
+    "records_2016_2026": 32,
+    "affiliation_note": "Shanghai Jiao Tong University, Department of Mathematics and Institute of Natural Sciences, China || University of Oxford, Mathematical Institute, UK || University of Bonn, Hausdorff Center for Mathem",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "郭伟超",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory2/guoweichao.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory2/guoweichao.html",
+     "sha256": "1242c01bf89929a3f77f70e31beb67b44b8e0088dc3dd3e16ebade83f1c67922",
+     "observed": "2026-11-21T22:49:46",
+     "observedAt": "2026-11-21T22:49:46",
+     "quote": "郭伟超-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1. 生机电一体化智能系统 2. 多指灵巧手与机器人智能体上肢",
+   "lead": {
+    "src": "oa1109",
+    "name": "Weichao Guo",
+    "cls": "unclear",
+    "cs": "5",
+    "oa": "A5061965423"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121"
+  },
+  {
+   "name": "于洋",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ME",
+   "profile_url": "https://me.sjtu.edu.cn/teacher_directory2/yuyang.html",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://me.sjtu.edu.cn/teacher_directory2/yuyang.html",
+     "sha256": "ec220ba54e974369f1a945b2956ac68e950f13f5fb935d8851b2b5791b31317a",
+     "observed": "2026-11-21T22:49:51",
+     "observedAt": "2026-11-21T22:49:51",
+     "quote": "于洋-上海交通大学机械与动力工程学院 师资招聘 学院OA系统 jAccount登录 ENGLISH 学院概况 学院介绍 历史沿革 办学概况 领导团队 行政机构 学院地图 教书育人 育人概况 本科生 研究生 非全日制专硕 学生工作 师资队伍 院士学者 教师名录 博士后 人事服务 科学研究 科研机构 科研基地 科研服务 实验室管理 科研合作",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究方向 1. 生机电一体化机器人 2. 神经交互技术 3. 机器人智能体与灵巧操作（AI for Robotics） 4. 人工智能赋能神经接口（AI for Neural Interface） 欢迎具有机械/电子工程、计算机与人工智能、自动化等背景的本科生、硕士生和博士生联系交流",
+   "lead": {
+    "src": "recall",
+    "name": "Yang Yu 0019",
+    "cls": "undecided",
+    "srcs": "dblp+oa",
+    "dblp": "46/2181-19",
+    "recent": "9"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "46/2181-19",
+    "records_2016_2026": 23,
+    "affiliation_note": "Shanghai Jiao Tong University, School of Mechanical Engineering, State Key Laboratory of Mechanical System and Vibration, Shanghai, China",
+    "names_profile_unit": true
    }
   }
  ]
