@@ -128,3 +128,25 @@ def test_surname_first_card_without_middle_initial_supplies_the_listing_link():
     hit = W.listing_link_context(html, base, W.normalized_link('http://www2.ee.washington.edu/people/faculty/otis_brian/'), 'Brian P. Otis')
     assert hit and hit[1] == 'Otis, Brian'
     assert W.listing_link_context(html, base, W.normalized_link('http://www2.ee.washington.edu/people/faculty/other/'), 'Brian P. Otis') is None
+
+
+def test_shared_group_site_is_verified_by_its_own_people_page_when_an_official_profile_links_it(monkeypatch, tmp_path):
+    db = tmp_path / 'caps.sqlite'
+    con = sqlite3.connect(db)
+    con.execute('create table captures(sha256 text, content blob)')
+    con.execute('insert into captures values (?,?)', ('a' * 64, zlib.compress(b'<h1>Systems Lab</h1><p>We build systems.</p>')))
+    con.execute('insert into captures values (?,?)', ('b' * 64, zlib.compress(b'<p>Top row: Dan Ports, Tom Anderson, Hank Levy</p>')))
+    con.commit()
+    monkeypatch.setattr(W, 'capture_stores', lambda s: [db])
+    monkeypatch.setattr(W, 'wayback_captures', lambda s: {})
+    monkeypatch.setattr(W, 'website_review', lambda s, near=None: {})
+    monkeypatch.setattr(W.P, 'data', lambda name, school=None, **k: tmp_path / name)
+    prof = 'https://www.school.edu/people/faculty/tom-anderson/'
+    row = dict(pi='Tom Anderson', url='https://syslab.school.edu/', coverage='website', sha256='a' * 64, official_link_status='recorded',
+               checks=[dict(source='school_profile_link', url='https://syslab.school.edu/', on=prof, result='listed'),
+                       dict(source='people_link', url='https://syslab.school.edu/people/', on='https://syslab.school.edu/', result='ok', sha256='b' * 64)])
+    other = dict(row, pi='Hank Levy', checks=[c for c in row['checks'] if c['source'] == 'people_link'])   # no official link: never via the people page
+    doc = W.verify_websites('u', {'labs': [row, other]})
+    a, b = doc['labs']
+    assert a['verified'] and a['verified_via']['sha256'] == 'b' * 64 and a['url'] == 'https://syslab.school.edu/'
+    assert not b.get('verified')

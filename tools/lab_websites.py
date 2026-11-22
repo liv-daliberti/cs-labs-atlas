@@ -708,6 +708,7 @@ def verify_websites(school, doc, near=None):
             shared.setdefault(normalized_link(r['url']), set()).add(r['pi'])
     rows = [r for r in doc['labs'] if r.get('url') and r.get('coverage') == 'website']
     shas = {r['sha256'] for r in rows if r.get('sha256')}
+    shas |= {c['sha256'] for r in rows for c in r.get('checks') or [] if c.get('source') == 'people_link' and c.get('sha256')}
     text = {}
     for path in capture_stores(school):
         con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
@@ -751,6 +752,17 @@ def verify_websites(school, doc, near=None):
             r['verified'], r['unverified_reason'] = False, 'no stored capture of the page to check against'
             continue
         r['verified'], quote = names_person(body, r['pi'], reg_names.get(r['pi']))
+        if not r['verified'] and any(official_check(c, r['url']) for c in r.get('checks') or []):
+            # a shared group site the PI's official profile links, whose own people page names the PI (UW Tom Anderson: the Allen
+            # profile links syslab.cs.washington.edu; its front page names nobody, /people/ lists 'Tom Anderson')
+            for c in r.get('checks') or []:
+                pb = text.get(c.get('sha256')) if c.get('source') == 'people_link' and c.get('result') == 'ok' else None
+                if pb is not None and normalized_link(c.get('on')) == normalized_link(r['url']):
+                    ok, q = names_person(pb, r['pi'], reg_names.get(r['pi']))
+                    if ok:
+                        r['verified'], quote = True, q
+                        r['verified_via'] = dict(source='people_link', url=c['url'], sha256=c['sha256'])
+                        break
         if r['verified']:
             r['verification_quote'] = quote
             r.pop('unverified_reason', None)
