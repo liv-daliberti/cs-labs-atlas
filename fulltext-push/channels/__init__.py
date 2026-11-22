@@ -40,8 +40,8 @@ class Result(namedtuple('Result', 'paper_key work_id status urls query detail'))
 NAMES = ['oa_arxiv', 'openalex', 'arxiv_title', 'proceedings', 's2', 'core', 'europepmc', 'pmc', 'figshare', 'techrpt', 'pubpages',
          'homepages', 'dspace', 'infoscience', 'labpages', 'pihomes', 'oar', 'wayback_acm', 'dblp_ee', 'oa_refresh', 'oa_editions', 's2_title',
          'arxiv_loose', 'ledger_found', 'oa_publisher', 'reader_link', 'oai_repo',
-         'oa_locations', 's2_bulk', 'core_bulk', 'arxiv_bulk', 'wayback_escholarship', 'wayback_drntu', 'sonar']
-NATIVE = ['arxiv_loose', 'ledger_found', 'oa_publisher', 'reader_link', 'oai_repo', 'oa_locations', 's2_bulk', 'core_bulk', 'arxiv_bulk', 'wayback_escholarship', 'wayback_drntu', 'sonar']  # written for the interface (the others run a lab_channels.py step through channels/_legacy.py)
+         'oa_locations', 's2_bulk', 'core_bulk', 'arxiv_bulk', 'wayback_escholarship', 'wayback_drntu', 'sonar', 'wayback_acm_vol']
+NATIVE = ['arxiv_loose', 'ledger_found', 'oa_publisher', 'reader_link', 'oai_repo', 'oa_locations', 's2_bulk', 'core_bulk', 'arxiv_bulk', 'wayback_escholarship', 'wayback_drntu', 'sonar', 'wayback_acm_vol']  # written for the interface (the others run a lab_channels.py step through channels/_legacy.py)
 
 
 def load(name):
