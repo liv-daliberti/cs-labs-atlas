@@ -13,6 +13,21 @@ from .periods import listings_after_move, pi_listings, pi_mine, pi_periods
 COLLECTIVE = re.compile(r'\b(cent(?:er|re)|initiative|consortium|program(?:me)?|project|cluster|institute)\b', re.I)  # not labs (owner, 2026-10-21)
 
 
+def fold_dblp_ids(additions, dblp_ids):
+    """Stage 5's DBLP ids (tools/dblp_ids_school.py) for reviewed census additions that carry none, the way tools/census_build.py folds
+    them into listing rows: a hand row written before stage 5 ran ('dblp': []) otherwise never gets its id (UW 2026-11-22: Choi, Levine,
+    Guestrin, Fox and nine more departed or adjunct PIs). An addition's own DBLP id or ORCID is never replaced."""
+    out = []
+    for a in additions:
+        d_ = dblp_ids.get(a.get('name')) or {}
+        if not a.get('dblp') and d_.get('pid'):
+            a = dict(a, dblp=[d_['pid']], dblp_basis=d_.get('basis'),
+                     dblp_evidence={k: d_[k] for k in ('url', 'dump', 'sha256', 'quote') if k in d_} or None,
+                     orcid=a.get('orcid') or list(d_.get('orcid') or []))
+        out.append(a)
+    return out
+
+
 def load(ctx):
     """The school's census (plus census/<school>-additions.json), its collection (a school's own collection.json.gz, else
     the site's), the faculty periods (collection + periods/<school>-faculty-periods.json), the charter's institution and
@@ -22,7 +37,8 @@ def load(ctx):
     census = read(cf if cf.exists() else P.data('census-faculty.json', school, root=HERE))
     census = census.get('faculty', census) if isinstance(census, dict) else census
     if P.data('census-additions.json', school, root=HERE).exists():  # listed faculty the census missed (tools/listed_not_in_census.py)
-        census = list(census) + read(P.data('census-additions.json', school, root=HERE))
+        census = list(census) + fold_dblp_ids(read(P.data('census-additions.json', school, root=HERE)),
+                                              read(P.data('dblp-ids.json', school, root=HERE)) if P.data('dblp-ids.json', school, root=HERE).exists() else {})
     own_c = P.data('collection.json.gz', school, root=HERE)  # a school without a site collection (Berkeley) brings its own
     C = read(own_c if own_c.exists() else SITE / f'collection-{school}.json.gz')
     people = C['people'] if isinstance(C['people'], list) else list(C['people'].values())

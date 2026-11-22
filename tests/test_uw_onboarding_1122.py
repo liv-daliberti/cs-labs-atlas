@@ -91,3 +91,14 @@ def test_affiliate_titles_are_not_ladder_only_where_the_charter_says_so():
     assert ev('Hoifung Poon', uw) == [False] and ev('Kim Example', uw) == [False] and ev('Wanda Pratt', uw) == [False]
     # without the charter setting (Georgia Tech: 'Affiliate Assistant Professor' is a ladder cross-listing) the rank stands
     assert ev('Kim Example', '') == [True] and ev('Hoifung Poon', '') == [True]
+
+
+def test_stage5_dblp_ids_fold_into_hand_additions_without_replacing_their_own():
+    from pihier.census import fold_dblp_ids
+    ids = {'Yejin Choi': dict(pid='https://dblp.org/pid/89/579-1', basis='homepage_url', url='u', sha256='s', quote='q', orcid=['0000-0001']),
+           'Own Id': dict(pid='https://dblp.org/pid/x', basis='school_affiliation')}
+    a, b, c = fold_dblp_ids([dict(name='Yejin Choi', dblp=[]), dict(name='Own Id', dblp=['https://dblp.org/pid/mine']), dict(name='Nobody', dblp=[])], ids)
+    assert a['dblp'] == ['https://dblp.org/pid/89/579-1'] and a['dblp_basis'] == 'homepage_url' and a['orcid'] == ['0000-0001']
+    assert a['dblp_evidence'] == dict(url='u', sha256='s', quote='q')
+    assert b['dblp'] == ['https://dblp.org/pid/mine'] and 'dblp_basis' not in b
+    assert c == dict(name='Nobody', dblp=[])
