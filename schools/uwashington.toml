@@ -373,6 +373,12 @@ purpose = "The Information School"
 probe = "https://ischool.uw.edu/people/faculty"
 
 [[hosts]]
+host = "www.stat.washington.edu"
+use = "wayback-only"
+purpose = "Statistics old host and faculty homepages (/mmp/ ...): live TLS verification fails like stat.uw.edu (2026-11-22); we never disable verification"
+probe = ""
+
+[[hosts]]
 host = "stat.uw.edu"
 use = "wayback-only"
 purpose = "Statistics (live host fails TLS verification: unable to get local issuer certificate; we never disable verification)"
