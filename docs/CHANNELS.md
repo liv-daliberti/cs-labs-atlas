@@ -161,8 +161,9 @@ Four channels that match a bulk source to the lab papers LOCALLY (DOI first, the
   Internet Archive capture of each file under `dr.ntu.edu.sg/bitstream/10356/<n>/` (one CDX prefix lookup per handle on the shared 8 s slot, cached in
   `raw/wayback_lookups.jsonl` kind `drntu`); never a live DR-NTU request. `WAYBACK_DRNTU_LIMIT` (default 50) caps new lookups per run (the pilot).
 - ACM (any school): `wayback_acm_vol` (2026-11-21) asks wayback_acm's question, a status-200 PDF capture of `dl.acm.org/doi/pdf/<doi>` or its
-  `?download=true` twin, with one CDX *prefix* lookup per ACM volume (`10.1145/<volume>.`) on the shared web.archive.org slot (host_throttle,
-  a 429 stops it). One request answers every paper of the volume and both URL forms; wayback_acm asks up to two exact lookups per paper at its
+  `?download=true` twin, with one CDX *prefix* lookup per ACM volume (`10.1145/<7-digit first part>`) on the shared web.archive.org slot
+  (host_throttle, a 429 stops it). One request answers every paper of the volume and both URL forms, for every school (the whole answer is
+  cached, kind `acm_prefix`): 11,938 missing ACM DOIs were 4,807 volumes on 2026-11-21; wayback_acm asks up to two exact lookups per paper at its
   own 8 s pace outside host_throttle. Answers go to `raw/wayback_lookups.jsonl` in wayback_acm's record form, so wayback_acm and the ledger's
   wayback_acm source skip those URLs. Run it with `fulltext-push/wayback-acm-vol.slurm` (SCHOOLS most ACM papers first; passes retry after a stop).
   The rotator counts a work as waiting for Wayback once its live candidates were all tried, so these works earn NTU a turn.

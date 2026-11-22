@@ -8,7 +8,7 @@ from channels import wayback_acm_vol as V
 
 
 def test_volume_and_forms():
-    assert V.volume('10.1145/3442381.3449999') == '10.1145/3442381.'
+    assert V.volume('10.1145/3442381.3449999') == '10.1145/3442381'
     assert V.volume('10.1145/3375633') == '10.1145/3375633'
     rows = [['2021', 'https://dl.acm.org/doi/pdf/10.1145/3442381.3449999', 'application/pdf', '200'],
             ['2023', 'https://dl.acm.org/doi/pdf/10.1145/3442381.3449999', 'application/pdf', '200'],
@@ -76,12 +76,14 @@ def test_one_request_per_volume_records_both_forms(env):
     ps = [paper('a', '10.1145/3442381.1'), paper('b', '10.1145/3442381.2'), paper('c', '10.1145/3442381.3'), paper('d', '10.1145/777')]
     ctx = Ctx([(200, [pdf('10.1145/3442381.1'), pdf('10.1145/3442381.2', '?download=true')]), (200, [])])
     res = {r.work_id: r for r in V.discover('x', ps, ctx)}
-    assert ctx.asked == ['dl.acm.org/doi/pdf/10.1145/3442381.', 'dl.acm.org/doi/pdf/10.1145/777'] and env.waits == ['web.archive.org'] * 2
+    assert ctx.asked == ['dl.acm.org/doi/pdf/10.1145/3442381', 'dl.acm.org/doi/pdf/10.1145/777'] and env.waits == ['web.archive.org'] * 2
     assert {w: r.status for w, r in res.items()} == dict(a='found', b='found', c='none', d='none')
     assert all(u.get('written_by_step') for r in res.values() for u in r.urls)
     assert sorted(x['work_id'] for x in ctx.written) == ['a', 'b'] and {x['source'] for x in ctx.written} == {'wayback_acm_dl'}
     recs = [json.loads(x) for x in env.log.read_text().splitlines()]
-    assert len(recs) == 8 and all(r['kind'] == 'acm' and r['status'] == 200 for r in recs)
+    acm = [r for r in recs if r['kind'] == 'acm']
+    assert len(acm) == 8 and all(r['status'] == 200 for r in acm)
+    assert [r['volume'] for r in recs if r['kind'] == 'acm_prefix'] == ['10.1145/3442381', '10.1145/777']
     # a rerun asks nothing and writes nothing twice (the papers now hold their Wayback URL, so APPLIES drops them; here: the cache answers)
     ctx2 = Ctx([])
     assert len(list(V.discover('x', ps, ctx2))) == 4 and ctx2.asked == []
@@ -92,8 +94,20 @@ def test_truncated_volume_is_asked_per_doi(env, monkeypatch):
     ps = [paper('a', '10.1145/5.1'), paper('b', '10.1145/5.2')]
     ctx = Ctx([(200, [pdf('10.1145/5.9')] * 2), (200, [pdf('10.1145/5.1')]), (200, [])])
     res = {r.work_id: r.status for r in V.discover('x', ps, ctx)}
-    assert ctx.asked == ['dl.acm.org/doi/pdf/10.1145/5.', 'dl.acm.org/doi/pdf/10.1145/5.1', 'dl.acm.org/doi/pdf/10.1145/5.2']
+    assert ctx.asked == ['dl.acm.org/doi/pdf/10.1145/5', 'dl.acm.org/doi/pdf/10.1145/5.1', 'dl.acm.org/doi/pdf/10.1145/5.2']
     assert res == dict(a='found', b='none') and ctx.n['wayback_acm_vol_truncated'] == 1
+    vols = {}
+    V.cached([env.log], vols)
+    assert vols == {}                                       # a truncated volume answer never answers another paper
+
+
+def test_a_volume_asked_for_one_school_answers_the_next(env):
+    ctx = Ctx([(200, [pdf('10.1145/3442381.1'), pdf('10.1145/3442381.2', '?download=true')])])
+    list(V.discover('one', [paper('a', '10.1145/3442381.1')], ctx))
+    ctx2 = Ctx([])
+    res = {r.work_id: r.status for r in V.discover('two', [paper('b', '10.1145/3442381.2'), paper('c', '10.1145/3442381.3')], ctx2)}
+    assert ctx2.asked == [] and res == dict(b='found', c='none')
+    assert [x['url'] for x in ctx2.written] == ['https://web.archive.org/web/2024id_/https://dl.acm.org/doi/pdf/10.1145/3442381.2?download=true']
 
 
 def test_429_records_and_stops_leaving_the_rest_open(env):

@@ -3,8 +3,8 @@
 Same question as wayback_acm (lab_channels.step_wayback_acm): for a missing paper with an ACM DOI (10.1145/*), no Wayback candidate and no arXiv
 candidate, has the Internet Archive a status-200 application/pdf capture of dl.acm.org/doi/pdf/<doi> or of its ?download=true twin? wayback_acm
 asks one exact CDX lookup per URL (up to two per paper, at its own 8 s pace, outside host_throttle). This channel asks one CDX *prefix* lookup per
-volume, dl.acm.org/doi/pdf/10.1145/<volume>. (the DOI up to its last dot; a DOI without one is its own prefix), which answers every paper of
-that volume and both URL forms at once, and it takes the shared web.archive.org slot (host_throttle.wait_slot; a 429 is recorded for every
+volume, dl.acm.org/doi/pdf/10.1145/<volume> (the DOI's 7-digit first part), which answers every paper of that volume and both URL forms
+at once, for every school: the answer is cached whole (kind 'acm_prefix', its PDF rows), so a volume asked for one school answers the others, and it takes the shared web.archive.org slot (host_throttle.wait_slot; a 429 is recorded for every
 client and stops the run). Past hit rates (raw/wayback_lookups.jsonl, 2026-11-21): plain 30%, ?download=true 39% of the plain misses.
 
 Every answer is written to raw/wayback_lookups.jsonl in wayback_acm's own record form (kind 'acm', url, status 200, capture) for both URL
@@ -44,12 +44,12 @@ def twin(d):
 
 
 def volume(d):
-    tail = d.split('/', 1)[1]
-    return d.rsplit('.', 1)[0] + '.' if '.' in tail else d
+    return d.split('/', 1)[0] + '/' + d.split('/', 1)[1].split('.', 1)[0]
 
 
-def cached(files):
-    """-> {url without scheme: capture or None}: every status-200 answer of wayback_acm, the ledger and this channel."""
+def cached(files, vols=None):
+    """-> {url without scheme: capture or None}: every status-200 answer of wayback_acm, the ledger and this channel; `vols` (a dict) gets
+    {volume: split_rows(its rows)} of every complete prefix answer."""
     done = {}
     for lf in files:
         if lf.exists():
@@ -58,7 +58,10 @@ def cached(files):
                     r = json.loads(line)
                 except ValueError:
                     continue
-                if r.get('status') == 200 and r.get('url'):
+                if r.get('kind') == 'acm_prefix':
+                    if vols is not None and r.get('status') == 200 and not r.get('truncated'):
+                        vols[r['volume']] = split_rows(r.get('rows') or [])
+                elif r.get('status') == 200 and r.get('url'):
                     done[re.sub(r'^https?://', '', r['url'])] = r.get('capture')
     return done
 
@@ -90,13 +93,16 @@ def split_rows(rows):
     return out
 
 
-def answer(done, d):
-    """-> (capture or None, asked): the plain form first, then the twin, as wayback_acm decides."""
+def answer(done, d, vols=None):
+    """-> (capture or None, asked): the plain form first, then the twin, as wayback_acm decides; a volume's prefix answer covers both."""
     p, t = plain(d), twin(d)
     if p in done and done[p]:
         return done[p], True
     if p in done and t in done:
         return done[t], True
+    if vols and volume(d) in vols:
+        f = vols[volume(d)].get(d, {})
+        return f.get('plain') or f.get('dl'), True
     return None, False
 
 
@@ -105,11 +111,12 @@ def discover(school, papers, ctx):
     import host_throttle as H
     cap_n = int(os.environ.get('WAYBACK_ACM_VOL_LIMIT', '0') or 0)
     log_f = F.P.FT_RAW / 'wayback_lookups.jsonl'
-    done = cached(cache_files())
+    vols = {}
+    done = cached(cache_files(), vols)
     by_doi = defaultdict(list)
     for p in papers:
         by_doi[doi_of(p).lower()].append(p)
-    todo = [d for d in by_doi if not answer(done, d)[1]]
+    todo = [d for d in by_doi if not answer(done, d, vols)[1]]
     groups = defaultdict(list)
     for d in todo:
         groups[volume(d)].append(d)
@@ -126,7 +133,7 @@ def discover(school, papers, ctx):
                                 version='publishedVersion', source='wayback_acm_dl', detail=plain(d)))
 
     for d in by_doi:   # answered before (wayback_acm, the ledger, an earlier run) but never written: APPLIES says no Wayback URL is known
-        cap, was_asked = answer(done, d)
+        cap, was_asked = answer(done, d, vols)
         if was_asked and cap:
             ctx.n['wayback_acm_vol_cached_hits'] += 1
             add(d, cap)
@@ -145,7 +152,7 @@ def discover(school, papers, ctx):
             for url, form in ((plain(d), 'plain'), (twin(d), 'dl')):
                 done[url] = got.get(form)
                 f.write(json.dumps(dict(work_id=by_doi[d][0].work_id, kind='acm', url=url, status=200, capture=done[url], via=via, at=F.now())) + '\n')
-            cap = answer(done, d)[0]
+            cap = answer(done, d, vols)[0]
             if cap:
                 ctx.n['wayback_acm_vol_hits'] += 1
                 add(d, cap)
@@ -176,7 +183,13 @@ def discover(school, papers, ctx):
                 if status != 200:
                     ctx.n[f'wayback_acm_vol_http_{status}'] += 1
                     continue
-                if len(rows) >= LIMIT and len(ds) > 1:   # possibly truncated: each DOI on its own prefix (both URL forms in one request)
+                truncated = len(rows) >= LIMIT
+                if prefix == plain(v):   # the volume's answer, whole: later schools' papers of this volume are answered from it
+                    keep = [[ts, o] for ts, o, *_ in rows if PDF.search(o)]
+                    f.write(json.dumps(dict(kind='acm_prefix', volume=v, url=prefix, status=200, truncated=truncated, rows=keep, at=F.now())) + '\n')
+                    if not truncated:
+                        vols[v] = split_rows(keep)
+                if truncated and len(ds) > 1:   # possibly truncated: each DOI on its own prefix (both URL forms in one request)
                     ctx.n['wayback_acm_vol_truncated'] += 1
                     queue += [(plain(d), [d]) for d in ds]
                     continue
@@ -187,7 +200,7 @@ def discover(school, papers, ctx):
                 print(json.dumps(dict(school=school, step=NAME, requests=asked, of=len(order), hits=ctx.n['wayback_acm_vol_hits'])), flush=True)
     flush_rows()
     for d, ps in by_doi.items():
-        cap, was_asked = answer(done, d)
+        cap, was_asked = answer(done, d, vols)
         if not was_asked:
             continue   # not asked (dry run, stop, cap): no Result, so the check stays open
         for p in ps:
