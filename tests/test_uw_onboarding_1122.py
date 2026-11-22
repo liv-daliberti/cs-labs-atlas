@@ -109,3 +109,22 @@ def test_arriving_professor_is_not_yet_a_dated_appointment():
     assert LR.rank_of(['Associate Professor (Arriving January 2027)']) == 'other'
     assert LR.rank_of(['Assistant Professor, joining in fall 2026']) == 'other'
     assert LR.rank_of(['Associate Professor']) == 'ladder'
+
+
+def test_official_link_variants_compare_equal_but_hosts_and_paths_never_merge():
+    n = W.normalized_link
+    assert n('http://vsdesign.org//index.shtml') == n('https://vsdesign.org/')
+    assert n('http://www2.ee.washington.edu:80/people/faculty/otis_brian/') == n('http://www2.ee.washington.edu/people/faculty/otis_brian')
+    assert n('http://www.ee.washington.edu/people/faculty/x/') != n('http://www2.ee.washington.edu/people/faculty/x/')
+    assert n('https://a.edu/~ann/') != n('https://a.edu/~bob/') and n('https://a.edu:8080/') != n('https://a.edu/')
+    chk = dict(source='school_profile_link', url='http://vsdesign.org//index.shtml', on='https://ischool.uw.edu/people/faculty/profile/dhendry')
+    assert W.official_check(chk, 'https://vsdesign.org/')
+
+
+def test_surname_first_card_without_middle_initial_supplies_the_listing_link():
+    html = (b"<table><tr><td><strong><a href='/people/faculty/otis_brian/'>Otis, Brian</a></strong></td></tr>"
+            b"<tr><td><strong><a href='/people/faculty/other/'>Other, Brian</a></strong></td></tr></table>")
+    base = 'http://www2.ee.washington.edu:80/people/faculty/'
+    hit = W.listing_link_context(html, base, W.normalized_link('http://www2.ee.washington.edu/people/faculty/otis_brian/'), 'Brian P. Otis')
+    assert hit and hit[1] == 'Otis, Brian'
+    assert W.listing_link_context(html, base, W.normalized_link('http://www2.ee.washington.edu/people/faculty/other/'), 'Brian P. Otis') is None

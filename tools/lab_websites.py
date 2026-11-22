@@ -72,12 +72,12 @@ def official_check(check, url):
     if check.get('source') == 'web_search_reviewed':
         return bool(check.get('url') == url and check.get('at') and re.fullmatch(r'[a-fA-F0-9]{64}', check.get('sha256') or '')
                     and (check.get('tie_quote') or '').strip() and (check.get('name_quote') or '').strip() and check.get('reviewer'))
-    if check.get('source') not in OFFICIAL_LINK_SOURCES or check.get('url') != url or not check.get('on'):
+    if check.get('source') not in OFFICIAL_LINK_SOURCES or normalized_link(check.get('url')) != normalized_link(url) or not check.get('on'):
         return False
     if check['source'] != 'official_link_chain':
         return True
     chain = check.get('provenance_chain') or []
-    if len(chain) != 2 or chain[0].get('source_url') != check['on'] or chain[-1].get('url') != url:
+    if len(chain) != 2 or chain[0].get('source_url') != check['on'] or normalized_link(chain[-1].get('url')) != normalized_link(url):
         return False
     if normalized_link(chain[0].get('url')) != normalized_link(chain[1].get('source_url')):
         return False
@@ -265,9 +265,18 @@ def preserve_reviewed_entries(previous, current, aliases=None):
 
 
 def normalized_link(url):
-    """Compare http/https and fragment variants, never different hosts or paths."""
+    """Compare http/https, default-port (:80/:443), doubled-slash, directory-index ('/index.shtml') and fragment variants, never different
+    hosts or paths (UW 2026-11-22: the iSchool profile links 'http://vsdesign.org//index.shtml' for https://vsdesign.org/; the archived EE
+    listing at www2.ee.washington.edu:80 links the profile recorded as http://www2.ee.washington.edu/...)."""
     p = urlsplit(url or '')
-    return p.netloc.lower(), p.path.rstrip('/'), p.query
+    try:
+        port = p.port
+    except ValueError:
+        port = None
+    host = (p.hostname or '').lower() + (f':{port}' if port not in (None, 80, 443) else '')
+    path = re.sub(r'/{2,}', '/', p.path)
+    path = re.sub(r'/index\.(?:s?html?|php)$', '/', path, flags=re.I)
+    return host, path.rstrip('/'), p.query
 
 
 def listing_link_context(content, base, target, pi):
@@ -283,6 +292,8 @@ def listing_link_context(content, base, target, pi):
     if len([p for p in parts if len(p) > 1]) < 2:
         return None  # initials need an explicit reviewed identity mapping
     names = {name, ' '.join(parts[-1:] + parts[:-1])}
+    core = [p for p in parts if len(p) > 1]   # a card without the middle initial ('Otis, Brian' for Brian P. Otis, UW EE 2016 table)
+    names |= {' '.join(core), ' '.join(core[-1:] + core[:-1])}
     try:
         content = zlib.decompress(content)
     except (zlib.error, TypeError):
@@ -568,9 +579,10 @@ def archived_official_links(school, doc):
                     body = zlib.decompress(raw)
                 except zlib.error:
                     continue
-                if needle not in body or not sha:
-                    continue
                 page = original(cu)
+                # a same-host page links relatively ('/people/faculty/otis_brian/' on the archived EE table): the path alone is the prefilter there
+                if not sha or not (needle in body or (normalized_link(page)[0] == t_net and t_path.encode() in body)):
+                    continue
                 if not on_domain.search(urlsplit(page).hostname or ''):
                     continue
                 if kind == 'listing':
