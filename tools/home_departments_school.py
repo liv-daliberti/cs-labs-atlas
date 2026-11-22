@@ -37,6 +37,13 @@ def sourced_pi_key(row):
 SCHOOL_LEVEL = re.compile(r'^(?:Medical School|School of|College of|Rackham)', re.I)
 
 
+def home_title(prof):
+    """The (row, title) that names the home among a person's professor titles in listing order: the latest regular one; a later adjunct,
+    emeritus or visiting title in another unit never outranks it (UW Tim Althoff, 2026-11-22: CSE 'Associate Professor' and iSchool 'Adjunct
+    Associate Professor' in the same years). Only when every title is such a title does the latest one stand."""
+    return ([p for p in prof if not NOT_HOME.search(p[1])] or prof)[-1]
+
+
 def unit_of(title):
     """'Professor, School of Information' -> 'School of Information'; 'Assistant Professor of Computational Medicine and
     Bioinformatics, Medical School' -> 'Computational Medicine and Bioinformatics' (the department, not the school)."""
@@ -163,7 +170,9 @@ def main(key, write_shared=False):
         else:
             prof = [(r, t) for r in rs for t in r['titles'] if faculty_title(t) and not re.search('courtesy|affiliate|status-only', t, re.I)]
             if prof:
-                r, t = prof[-1]
+                # a regular professor title outranks a later adjunct/emeritus/visiting one in another unit (UW Tim Althoff: CSE 'Associate Professor',
+                # iSchool 'Adjunct Associate Professor' in the same years; the adjunct row was read as the home)
+                r, t = home_title(prof)
                 u, joint = clean_unit(unit_of(t))
                 home = deps[r['dept']]['name'] if (not u or tm[r['dept']].search(u)) else u
                 if joint:

@@ -150,3 +150,11 @@ def test_shared_group_site_is_verified_by_its_own_people_page_when_an_official_p
     a, b = doc['labs']
     assert a['verified'] and a['verified_via']['sha256'] == 'b' * 64 and a['url'] == 'https://syslab.school.edu/'
     assert not b.get('verified')
+
+
+def test_regular_professor_title_outranks_a_later_adjunct_title_for_the_home():
+    import home_departments_school as H
+    prof = [({'dept': 'CSE'}, 'Associate Professor'), ({'dept': 'INFO'}, 'Adjunct Associate Professor')]
+    assert H.home_title(prof)[0]['dept'] == 'CSE'
+    assert H.home_title([({'dept': 'X'}, 'Professor'), ({'dept': 'Y'}, 'Professor Emeritus')])[0]['dept'] == 'X'
+    assert H.home_title([({'dept': 'Y'}, 'Adjunct Professor')])[0]['dept'] == 'Y'
