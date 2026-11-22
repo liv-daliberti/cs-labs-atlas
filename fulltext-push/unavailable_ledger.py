@@ -1120,13 +1120,29 @@ def run(schools, max_age, offline, only=None, skip=()):
                 else:
                     need.setdefault(s, []).append(p)
         t0 = time.time()
+        saved = 0
         if need:
             got = fn(need)
             for s, d in got.items():
+                # 2026-11-22 checkpoint: the reusable answers go to the checks store as soon as the stage ends, so a run that dies later (the
+                # 1-day limit on 11-18 and 11-22, a read-only store on 11-19) keeps them and its successor reuses them; the rest are recorded at the end
+                cid = {p['key']: p['cid'] for p in need.get(s, [])}
+                rows = []
                 for k, c in d.items():
-                    res[src][(s, k)] = c; fresh_new[src].add((s, k))
+                    res[src][(s, k)] = c
+                    if c and c.get('result') in ('found', 'none', 'not_applicable') and k in cid:
+                        rows.append(dict(paper_key=k, work_id=cid[k], channel='ledger.' + src, at=c.get('at') or now(), query=c.get('query'),
+                                         result=c['result'], detail=c.get('detail')))
+                    else:
+                        fresh_new[src].add((s, k))
+                if rows:
+                    try:
+                        saved += C.record(s, rows)
+                    except Exception as e:   # the store refused: keep them for the end-of-run record instead
+                        fresh_new[src].update((s, r['paper_key']) for r in rows)
+                        print(json.dumps(dict(source=src, school=s, checkpoint_failed=str(e)[:200])), flush=True)
         print(json.dumps(dict(source=src, reused=sum(len(ps) for ps in papers_by_school.values()) - sum(len(v) for v in need.values()), asked=sum(len(v) for v in need.values()),
-                              seconds=round(time.time() - t0))), flush=True)
+                              checkpointed=saved, seconds=round(time.time() - t0))), flush=True)
 
     per = lambda src: {s: {k: c for (s2_, k), c in res[src].items() if s2_ == s} for s in schools}
     stage('openalex', OA_AGE, lambda need: {s: src_openalex(ps, offline, n) for s, ps in need.items()}, by_school)
