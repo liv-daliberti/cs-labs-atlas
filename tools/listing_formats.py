@@ -1118,6 +1118,37 @@ def uw_allen_cards(h):
     return out
 
 
+
+def uw_allen_directory(h):
+    """Allen School faculty directory before the 2025 redesign: 2016's Drupal view (div.people-short-listing-name) and the 2017-2024
+    Bootstrap rows (div.directory-name). The page states no per-person rank; every entry sits under the page heading 'Faculty', which
+    is recorded as the title (census rank 'other' unless a dated profile gives the rank)."""
+    out, seen = [], set()
+    for m in re.finditer(r"<div class=['\"](?:directory-name|people-short-listing-name)['\"]>\s*<a href=['\"]([^'\"]+)['\"]>\s*([^<]+?)\s*</a>", h):
+        name = clean(m.group(2))
+        if not name or name in seen:
+            continue
+        seen.add(name)
+        out.append(dict(name_listed=name, titles=['Faculty'], homepage=H.unescape(m.group(1)), division=None))
+    return out
+
+
+def uw_stat_people(h):
+    """UW Statistics people view (stat.uw.edu/people/faculty): span.person-name holds the name link; field-position the rank
+    (plus the named position and job title as further titles)."""
+    out = []
+    for blk in re.split(r'<div class="faculty-column', h)[1:]:
+        nm = re.search(r'<span class="field-content person-name"><a href="([^"]+)"[^>]*>(.*?)</a>', blk, re.S)
+        if not nm:
+            continue
+        titles = []
+        for fld in ('field-position', 'field-named-faculty-position', 'field-job-title'):
+            m = re.search(r'views-field-' + fld + r'"><[a-z]+ class="field-content">(.*?)</(?:strong|em|div)>', blk, re.S)
+            if m and clean(m.group(1)):
+                titles.append(clean(m.group(1)))
+        out.append(dict(name_listed=clean(nm.group(2)), titles=titles, homepage=H.unescape(nm.group(1)), division=None))
+    return out
+
 def uw_ece_staff(h):
     out = []
     for p in re.split(r'<div class="stafftemplate--entry">', h)[1:]:
@@ -2698,6 +2729,8 @@ FORMATS = {
     'wu_teaser': (wu_teaser, re.compile(r'class="faculty-directory__teaser"')),
     'isye_card': (isye_card, re.compile(r'class="w-100 px-0 pt-0 person-name"')),
     'uw_allen_cards': (uw_allen_cards, re.compile(r'aria-label="Read the bio for')),
+    'uw_stat_people': (uw_stat_people, re.compile(r'(?s)(?=.*stat\.uw\.edu)(?=.*class="field-content person-name").*views-field-field-position')),
+    'uw_allen_directory': (uw_allen_directory, re.compile(r"(?s)class=['\"](?:directory-name|people-short-listing-name)['\"]>\s*<a href=['\"][^'\"]*cs\.washington\.edu")),
     'uw_ece_staff': (uw_ece_staff, re.compile(r'class="stafftemplate--entry"')),
     'uw_ischool_card': (uw_ischool_card, re.compile(r'<article aria-label="[^"]*" id="card-[^"]*" class="card clearfix" data-type=')),
     'uw_amath_directory': (uw_amath_directory, re.compile(r'class="directory-item__name"')),

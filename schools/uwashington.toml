@@ -134,6 +134,7 @@ url = "https://www.cs.washington.edu/"
   url = "www.cs.washington.edu/people/faculty/"
   from = "20160101"
   to = "20250630"
+  format = "uw_allen_directory"
   [[departments.listings]]
   slot = "CSE faculty"
   kind = "main"
@@ -208,11 +209,29 @@ url = "https://www.hcde.washington.edu/"
   to = "20261231"
   format = "uw_hcde_columns"   # live 2026-11-07: 24 entries
 
-[[affiliated_units]]
+# Lab hunt / UW onboarding 2026-11-22: Statistics moved from a searched unit to an affiliated-coverage department, so every listed
+# ladder statistician becomes a candidate decided by the computing share test (as a searched unit, only DBLP/OpenAlex candidates
+# could enter: 1 of ~25 ladder faculty did). stat.uw.edu is wayback-only (TLS failure), so its listings come from Wayback.
+[[departments]]
 code = "STAT"
 name = "Department of Statistics"
+unit = "College of Arts and Sciences"
+title_match = '''Statistics'''
+coverage = "affiliated"
 url = "https://stat.uw.edu/people/faculty"
-listings = ["stat.uw.edu/people/faculty", "www.stat.washington.edu/people/faculty/"]
+  [[departments.listings]]
+  slot = "STAT faculty"
+  kind = "main"
+  url = "stat.uw.edu/people/faculty"
+  from = "20160101"
+  to = "20261231"
+  format = "uw_stat_people"
+  [[departments.listings]]
+  slot = "STAT faculty"
+  kind = "main"
+  url = "www.stat.washington.edu/people/faculty/"
+  from = "20160101"
+  to = "20191231"
 
 [[affiliated_units]]
 code = "AMATH"

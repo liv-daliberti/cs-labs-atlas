@@ -59,3 +59,27 @@ def test_charter_rank_words_classify_uw_titles():
     assert rank_of(['Assistant Teaching Professor'], rw) == 'teaching'
     assert rank_of(['Adjunct', 'Department of Applied Mathematics'], rw) == 'adjunct'
     assert rank_of(['Professor'], rw) == 'ladder' and rank_of(['Teaching Professor Emeritus'], rw) == 'emeritus'
+
+
+ALLEN_2019 = """<h2>Faculty</h2><div class='row directory-row'> <div class='col-sm-10'> <div class='directory-name'><a href='http://www.timalthoff.com/'>Tim Althoff</a></div> <div class='directory-office'>CSE2 313</div> </div></div>
+<div class='row directory-row'> <div class='col-sm-10'> <div class='directory-name'><a href='https://www.cs.washington.edu/people/faculty/anderson/'>Richard Anderson</a></div> </div></div>"""
+
+ALLEN_2016 = """<h2>Faculty</h2><a name='A'></a> <div class='people-short-listing-name'><a href='https://www.cs.washington.edu/people/faculty/anderson/'> <div class='people-short-listing-contact'> <div class='people-short-listing-name'><a href='https://www.cs.washington.edu/people/faculty/anderson/'>Richard Anderson</a></div></a></div>"""
+
+
+def test_allen_directory_eras_read_names_under_the_faculty_heading():
+    for html, want in ((ALLEN_2019, ['Tim Althoff', 'Richard Anderson']), (ALLEN_2016, ['Richard Anderson'])):
+        name, rows = F.parse(html)
+        assert name == 'uw_allen_directory'
+        assert [r['name_listed'] for r in rows] == want
+        assert all(r['titles'] == ['Faculty'] for r in rows)   # no per-person rank on these pages
+
+
+STAT = """<link rel="canonical" href="https://stat.uw.edu/people/faculty" /><div class="faculty-column views-col col-1"><div class="views-field views-field-title"><span class="field-content person-name"><a href="/people/yen-chi-chen" hreflang="en">Yen-Chi Chen</a></span></div><div class="views-field views-field-field-position"><strong class="field-content"><a href="/taxonomy/term/1437" hreflang="en">Associate Professor</a></strong></div><div class="views-field views-field-field-named-faculty-position"><em class="field-content"></em></div></div>
+<div class="faculty-column views-col col-2"><div class="views-field views-field-title"><span class="field-content person-name"><a href="/people/fang-han" hreflang="en">Fang Han</a></span></div><div class="views-field views-field-field-position"><strong class="field-content"><a href="/taxonomy/term/1" hreflang="en">Professor</a></strong></div><div class="views-field views-field-field-named-faculty-position"><em class="field-content">Job &amp; Gertrude Tamaki Endowed Professorship</em></div></div>"""
+
+
+def test_stat_people_rank_and_named_position():
+    name, rows = F.parse(STAT)
+    assert name == 'uw_stat_people'
+    assert [(r['name_listed'], r['titles']) for r in rows] == [('Yen-Chi Chen', ['Associate Professor']), ('Fang Han', ['Professor', 'Job & Gertrude Tamaki Endowed Professorship'])]
