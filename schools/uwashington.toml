@@ -241,7 +241,8 @@ note = """ResearchWorks Archive (digital.lib.washington.edu, DSpace). Its robots
 Its holdings (UW theses and dissertations) reach us only through OpenAlex and CORE (CORE is paused). Students therefore come from lab pages, PhD graduation lists and the Allen School's own pages, stage 6."""
 
 [collector]
-channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "figshare", "labpages", "pihomes", "wayback_acm"]
+# 2026-11-21: aligned with the current standard (owner 2026-11-10: wayback_acm stays OFF while Wayback listing captures run; CORE allowed everywhere, DECISIONS 2026-11-15).
+channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "core", "core_bulk", "europepmc", "pmc", "figshare", "labpages", "pihomes"]
 
 [students]
 rosters = []
