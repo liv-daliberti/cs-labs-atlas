@@ -181,6 +181,12 @@ def fold(s):
     return ''.join(c for c in s if not unicodedata.combining(c)).lower()
 
 
+def word_in(word, text):
+    """The (folded) family name as a whole word of the (folded) page text, never a substring of another word (UW 2026-11-22: 'shi' is in
+    'washington', so the University of Washington home page 'named' C. J. Richard Shi and became his website)."""
+    return bool(word) and re.search(r'(?<![a-z0-9])' + re.escape(word) + r'(?![a-z0-9])', text or '') is not None
+
+
 def norm_title(s):
     """pi_hierarchy.norm_title: ASCII-folded, lowercase, letters and digits only."""
     s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
@@ -1574,7 +1580,7 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
                 txt = kit.lpcap.page_text(r['content'], r.get('content_type'))
             except Exception:  # noqa: BLE001
                 txt = ''
-        names_pi = bool(fam and fam in fold(txt))
+        names_pi = word_in(fam, fold(txt))
         if txt and not names_pi:   # a Han-keyed PI's Latin-only page: the shared name signal (registry Latin names + pinyin family AND given), never identity (owner: pypinyin allowed as a signal)
             try:
                 import pi_name_signal as N_
@@ -1659,7 +1665,7 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
                     rtxt_ = kit.lpcap.page_text(rr_['content'], rr_.get('content_type'))
                 except Exception:  # noqa: BLE001
                     rtxt_ = ''
-            rnames_ = bool(fam and fam in fold(rtxt_))
+            rnames_ = word_in(fam, fold(rtxt_))
             add('site_root_of_pubs_page', ru_, result_of(rr_) if rnames_ else 'does_not_name_pi', on=sites[0]['url'], sha256=rr_.get('sha256'))
             if rnames_:
                 rm_ = re.search(rb'<title[^>]*>(.*?)</title>', rr_['content'][:20000], re.I | re.S)

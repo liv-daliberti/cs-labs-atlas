@@ -58,7 +58,13 @@ def plausible_owner(url, person):
     import unicodedata
     u = unicodedata.normalize('NFKD', url or '').encode('ascii', 'ignore').decode().lower()
     toks = [w for w in re.sub(r'[^a-z ]+', ' ', unicodedata.normalize('NFKD', person).encode('ascii', 'ignore').decode().lower()).split() if len(w) >= 3]
-    return any(t in u for t in toks) or any(t[:3] in re.sub(r'[^a-z]', '', urlsplit(u).path) for t in toks[-1:])
+    sp = urlsplit(u if '//' in u else '//' + u)
+    host = sp.hostname or ''
+    reg = registrable(host)
+    if re.search(r'(?:^|\.)(?:edu|ac\.[a-z]{2}|edu\.[a-z]{2})$', reg):   # an institution's own domain names no person ('shi' is in 'washington.edu', UW 2026-11-22)
+        host = host[:-len(reg)]
+    where = host + ' ' + sp.path + ('?' + sp.query if sp.query else '')
+    return any(t in where for t in toks) or any(t[:3] in re.sub(r'[^a-z]', '', sp.path) for t in toks[-1:])
 
 
 GENERIC = re.compile(r'feedback|post-a-job|machineshop|studentaffairs|life-design|/directory|/jobs?\b|careers|/news|/events?\b|/contact|login|/admissions', re.I)

@@ -158,3 +158,15 @@ def test_regular_professor_title_outranks_a_later_adjunct_title_for_the_home():
     assert H.home_title(prof)[0]['dept'] == 'CSE'
     assert H.home_title([({'dept': 'X'}, 'Professor'), ({'dept': 'Y'}, 'Professor Emeritus')])[0]['dept'] == 'X'
     assert H.home_title([({'dept': 'Y'}, 'Adjunct Professor')])[0]['dept'] == 'Y'
+
+
+def test_short_surnames_never_match_inside_other_words_or_the_institution_domain():
+    import labpage_audit as LA
+    import person_fetch as F
+    assert not LA.word_in('shi', 'university of washington home')
+    assert LA.word_in('shi', 'prof. richard shi, silicon systems research lab') and LA.word_in('shi', "shi's lab")
+    assert not F.plausible_owner('http://www.washington.edu', 'C. J. Richard Shi')
+    assert F.plausible_owner('https://homes.cs.washington.edu/~svlevine/', 'Sergey Levine')
+    assert F.plausible_owner('https://eunhyesong.info/', 'Eunhye Song')
+    assert F.plausible_owner('http://faculty.washington.edu/shlizee/', 'Eli Shlizerman')
+    assert F.plausible_owner('https://shi-lab.ece.uw.edu/', 'C. J. Richard Shi')   # a host label left of the institution domain still counts
