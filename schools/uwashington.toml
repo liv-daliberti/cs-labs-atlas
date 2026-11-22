@@ -100,7 +100,7 @@ foreign_title_exception = false
 [census]
 center_units = []
 computing_departments = ["CSE"]
-home_units = {"Computer Science and Engineering" = '^(?:Paul G\. Allen School of )?Computer Science (?:and|&) Engineering$', "Electrical and Computer Engineering" = '^(?:Department of )?Electrical (?:and|&) Computer Engineering$', "Information School" = '^(?:The )?Information School$|^Information$', "Statistics" = '^(?:Department of )?Statistics$', "Applied Mathematics" = '^(?:Department of )?Applied Mathematics$', "Human Centered Design and Engineering" = '^(?:Department of )?Human Centered Design (?:and|&) Engineering$', "Bioengineering" = '^(?:Department of )?Bioengineering$', "Genome Sciences" = '^(?:Department of )?Genome Sciences$', "Biostatistics" = '^(?:Department of )?Biostatistics$', "Astronomy" = '^(?:Department of )?Astronomy$', "Linguistics" = '^(?:Department of )?Linguistics$', "Mathematics" = '^(?:Department of )?Mathematics$', "Mechanical Engineering" = '^(?:Department of )?Mechanical Engineering$', "Aeronautics and Astronautics" = '^(?:William E\. Boeing Department of )?Aeronautics (?:and|&) Astronautics$', "Biomedical Informatics and Medical Education" = '^(?:Department of )?Biomedical Informatics and Medical Education$', "Foster School of Business" = '^(?:Michael G\. )?Foster School of Business$'}
+home_units = {"Computer Science and Engineering" = '^(?:Paul G\. Allen School of )?Computer Science (?:and|&) Engineering$', "Electrical and Computer Engineering" = '^(?:Department of )?Electrical (?:and|&) Computer Engineering$', "Information School" = '^(?:The )?Information School$|^Information$', "Statistics" = '^(?:Department of )?Statistics$', "Applied Mathematics" = '^(?:Department of )?Applied Mathematics$', "Human Centered Design and Engineering" = '^(?:Department of )?Human Centered Design (?:and|&) Engineering$', "Bioengineering" = '^(?:Department of )?Bioengineering$', "Genome Sciences" = '^(?:Department of )?Genome Sciences$', "Biostatistics" = '^(?:Department of )?Biostatistics$', "Astronomy" = '^(?:Department of )?Astronomy$', "Linguistics" = '^(?:Department of )?Linguistics$', "Mathematics" = '^(?:Department of )?Mathematics$', "Mechanical Engineering" = '^(?:Department of )?Mechanical Engineering$', "Aeronautics and Astronautics" = '^(?:William E\. Boeing Department of )?Aeronautics (?:and|&) Astronautics$', "Biomedical Informatics and Medical Education" = '^(?:Department of )?Biomedical Informatics and Medical Education$', "Foster School of Business" = '^(?:Michael G\. )?Foster School of Business$', "Civil and Environmental Engineering" = '^(?:Department of )?Civil (?:and|&) Environmental Engineering$', "Industrial and Systems Engineering" = '^(?:Department of )?Industrial (?:and|&) Systems Engineering$', "Environmental and Forest Sciences" = '^(?:School of )?Environmental (?:and|&) Forest Sciences$'}
 rank_words = {teaching = '\bteaching\s+professor|\bprofessor\s+of\s+practice|\bprincipal\s+lecturer', adjunct = '\badjunct\b', research = '\bresearch\s+(?:associate\s+|assistant\s+)?professor|\bresearch\s+scientist', courtesy = '\b(?:affiliate|joint)\s+(?:associate\s+|assistant\s+)?professor'}
 
 [sweep_check]
@@ -289,6 +289,33 @@ name = "Department of Genome Sciences (computational faculty only)"
 url = "https://www.gs.washington.edu/about/directory/faculty/"
 listings = ["www.gs.washington.edu/about/directory/faculty/", "www.gs.washington.edu/faculty/faculty.htm"]
 
+# 2026-11-22 (second stage-2 rework, before the redrawn excluded audit): engineering and environment units whose faculty publish computing
+# work (DBLP-indexed UW faculty in the excluded class: Xuegang Ban CEE/ISE, Linda Ng Boyle ISE, Daniel G. Brown and L. Monika Moskal SEFS,
+# Yingfei Wang Foster); a person counts only through faculty evidence in the unit plus the computing share test.
+[[affiliated_units]]
+code = "CEE"
+name = "Department of Civil and Environmental Engineering"
+url = "https://www.ce.washington.edu/facultyfinder"
+listings = ["www.ce.washington.edu/facultyfinder"]
+
+[[affiliated_units]]
+code = "ISE"
+name = "Department of Industrial and Systems Engineering"
+url = "https://ise.washington.edu/facultyfinder"
+listings = ["ise.washington.edu/facultyfinder"]
+
+[[affiliated_units]]
+code = "SEFS"
+name = "School of Environmental and Forest Sciences"
+url = "https://sefs.uw.edu/research/faculty/"
+listings = ["sefs.uw.edu/research/faculty/"]
+
+[[affiliated_units]]
+code = "FOSTER"
+name = "Foster School of Business"
+url = "https://foster.uw.edu/faculty-research/directory/"
+listings = ["foster.uw.edu/faculty-research/directory/"]
+
 [thesis]
 kind = "none"
 base_url = "https://digital.lib.washington.edu/"
@@ -426,3 +453,27 @@ probe = "https://www.washington.edu/"
 host = "digital.lib.washington.edu"
 use = "none"
 purpose = "ResearchWorks Archive: robots.txt names anthropic-ai (Disallow /); never used, Wayback included"
+
+[[hosts]]
+host = "www.ce.washington.edu"
+use = "live"
+purpose = "Civil and Environmental Engineering facultyfinder; robots checked by school_web (added 2026-11-22)"
+probe = "https://www.ce.washington.edu/"
+
+[[hosts]]
+host = "ise.washington.edu"
+use = "live"
+purpose = "Industrial and Systems Engineering facultyfinder; robots checked by school_web (added 2026-11-22)"
+probe = "https://ise.washington.edu/"
+
+[[hosts]]
+host = "sefs.uw.edu"
+use = "live"
+purpose = "Environmental and Forest Sciences faculty page; robots checked by school_web (added 2026-11-22)"
+probe = "https://sefs.uw.edu/"
+
+[[hosts]]
+host = "foster.uw.edu"
+use = "live"
+purpose = "Foster School of Business faculty directory; robots checked by school_web (added 2026-11-22)"
+probe = "https://foster.uw.edu/"

@@ -446,6 +446,9 @@ def unit_pages(key):
 CUT = re.compile(r'Send Email|\bProfile\b|\S+@\S+|Ph\.?\s?D\.?\s+(?:Student|Candidate)|Graduate Student|\(\d{3}\)|\d{3}[-.]\d{3}[-.]\d{4}', re.I)
 
 
+CONTACT_LEAD = re.compile(r"\s*(?P<phone>\(\d{3}\)\s*\d{3}[-.]\d{4}\s*)?(?P<email>[\w.+-]+@[\w.-]+\.[a-z]{2,}\s*)?(?:[A-Z]{2,5}\s+[A-Z]?\d{1,4}[A-Z]?\s+)?")
+
+
 def faculty_evidence(pages, names, teaching_title='', single_person=False):
     """Every (unit, url, sha, observed, quote, ladder) where a page names the person and a professor title follows the
     name directly: the title must start within 60 characters of the name, nothing between them may be a non-ladder
@@ -476,7 +479,12 @@ def faculty_evidence(pages, names, teaching_title='', single_person=False):
                 nxt = flat[m.end():m.end() + 1]
                 if nxt and (nxt.isalnum() or nxt in "-'"):
                     continue
-                seg = flat[m.end():m.end() + 220]
+                seg = flat[m.end():m.end() + 260]
+                # a directory card that puts the contact block between the name and the unit/title ('Morgansen, Kristi (206) 616-5950
+                # morgansn@uw.edu AER 234 Aeronautics & Astronautics Professor', UW facultyfinder 2026-11-22): skip the block, then read as usual
+                lead = CONTACT_LEAD.match(seg)
+                off = lead.end() if lead and (lead.group('phone') or lead.group('email')) else 0
+                seg = seg[off:off + 220]
                 cut = CUT.search(seg)
                 seg = seg[:cut.start()] if cut else seg
                 pt = PROF_T.search(seg)
@@ -496,7 +504,7 @@ def faculty_evidence(pages, names, teaching_title='', single_person=False):
                 # the rank ('Gina-Anne Levow (she/her) Professor Contact Information', UW 2026-11-22)
                 if not single_person and pt.group(0).lower() == 'professor' and re.match(r'\s+[A-Z][\w’\'-]+\s+[A-Z][\w’\'-]+', after_title):
                     continue
-                q = flat[m.start():m.end() + pt.end()]
+                q = flat[m.start():m.end() + off + pt.end()]
                 # the rank is read up to the title's own 'Professor': the 'of <unit>' tail can run on into a second
                 # appointment ('Associate Professor of Information, School of Information and Research Associate
                 # Professor, ICPSR', learned 2026-10-30, Libby Hemphill)

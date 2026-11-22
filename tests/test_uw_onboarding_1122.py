@@ -63,3 +63,13 @@ def test_archived_listing_card_and_archived_profile_supply_official_links(monkey
     assert a['official_link_evidence'][0]['source'] == 'department_listing_link' and a['official_link_evidence'][0]['source_sha256'] == 'd' * 64
     assert b['official_link_evidence'][0]['source'] == 'school_profile_link' and b['listed_on'] == 'https://www.school.edu/people/faculty/bo/'
     assert c.get('official_link_status') != 'recorded'
+
+
+def test_contact_block_between_name_and_title_is_skipped_on_a_directory_card():
+    flat = ('Space Systems Morgansen, Kristi (206) 616-5950 morgansn@uw.edu AER 234 Aeronautics & Astronautics Professor Electrical & Computer '
+            'Engineering Adjunct Professor Mesbahi, Mehran (206) 543-7238 mesbahi@uw.edu GUG 311 Aeronautics & Astronautics Professor')
+    ev = C.faculty_evidence([('AA', 'u', 'sha', '20261122', flat)], ['Kristi A. Morgansen'])
+    assert ev and ev[0]['ladder'] and ev[0]['quote'].endswith('AER 234 Aeronautics & Astronautics Professor')
+    # a phone that ENDS an entry still stops the reading: the next person's title is never this one's
+    assert C.faculty_evidence([('X', 'u', 's', '2026', 'Lauro Ojeda Assistant Research Scientist (734) 555-1212 Chinedum Okwudire Associate Professor')],
+                              ['Lauro Ojeda']) == []
