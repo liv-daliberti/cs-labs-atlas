@@ -1,0 +1,393 @@
+{
+ "school": "seu",
+ "reviewed": "2026-11-21",
+ "rule": "Lab hunt 2026-11-21 (owner D-0031/D-0032/D-0034): official unit profile pages of strong-reference leads and of never-reviewed directory entries. Accepted = an official page names the person with a ladder (or ladder-equivalent, D-0005) or research rank AND a PhD-advising or own-lab quote (D-0009), and computing is the object or method of the research (full-coverage CS school, an AI unit, or the research-direction quote). Otherwise faculty_no_pi_evidence (held until advising/lab evidence is found), research_or_other_rank, not_faculty_listed or excluded_unresolved with reason.",
+ "units_searched": [
+  "AUTO",
+  "CYBER",
+  "IC",
+  "MATH"
+ ],
+ "counts": {
+  "accepted": 7,
+  "excluded_unresolved": 1,
+  "faculty_no_pi_evidence": 1
+ },
+ "decisions": [
+  {
+   "name": "闫浩",
+   "aliases": [
+    "Hao Yan"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "IC",
+   "profile_url": "https://ic.seu.edu.cn/yanhao/main.htm",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://ic.seu.edu.cn/yanhao/main.htm",
+     "sha256": "b8e2849fddde5cf414188cd48b12137d6f539e95758f31b229736ed56aabb71e",
+     "observed": "2026-11-21T20:47:48",
+     "observedAt": "2026-11-21T20:47:48",
+     "quote": "实验室与设备管理 闫浩 职务： 单位： 国家ASIC工程中心 电话： 025-83793265 出生年月： 1988-09-23 邮箱： yanhao@seu.edu.cn 学历： 博士 地址： 职称： 副教授，博导 基本信息 教学授课 科学研究 荣誉奖励 团队及招生情况 个",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "职称： 副教授，博导"
+   },
+   "computing_quote": "研究领域或方向 领域：智能EDA，面向先进工艺、高能效电路设计中存在的问题，应用人工智能算法辅助电路设计； 方向：先进制程/低电压下的时序分析与优化； 研究项目 国家重点研发计划课题“超低电压时序分布模型与仿真分析及应用示范”（2019-2022） 国家自然科学基金-青年项目“面向MEMS稳健性设计的随机分析理论与实验研究”（",
+   "lead": {
+    "src": "recall",
+    "name": "Hao Yan 0002",
+    "cls": "undecided",
+    "srcs": "csr+dblp",
+    "dblp": "77/6310-2"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "77/6310-2",
+    "records_2016_2026": 42,
+    "affiliation_note": "Southeast University, National ASIC Center, Nanjing, China",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "邱远",
+   "aliases": [
+    "Yuan Qiu"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn:443/qy/",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn:443/qy/",
+     "sha256": "889183065fbbd9e509899ac2d20bd3e34ec14166c5d9d536cc6a6054eede94c7",
+     "observed": "2026-11-21T20:47:58",
+     "observedAt": "2026-11-21T20:47:58",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 邱远(Yuan Qiu) 教授 电话： 办公室：九龙湖图书馆北434 个人主页： ht",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "东南大学，网络空间安全学院，青年首席教授，博导 2025年9月 2025年7月 新加坡国立大学 与 CNR"
+   },
+   "computing_quote": "研究领域 数据隐私保护、查询优化、算法设计与分析 研究概况 邱远，东南大学青年首席教授、博士生导师，入选国家高层次青年人才计划",
+   "lead": {
+    "src": "recall",
+    "name": "Yuan Qiu 0002",
+    "cls": "undecided",
+    "srcs": "csr+dblp",
+    "dblp": "166/6079-2"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "166/6079-2",
+    "records_2016_2026": 13,
+    "affiliation_note": "Southeast University, School of Cyber Science and Engineering, Nanjing, China || National University of Singapore, Singapore || Hong Kong University of Science and Technology, Hong Kong",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "Duxin Chen",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "MATH",
+   "profile_url": "https://math.seu.edu.cn/cdx/list.htm",
+   "title_as_listed": null,
+   "reason": "the fetched page does not name the person",
+   "faculty_evidence": [
+    {
+     "url": "https://math.seu.edu.cn/cdx/list.htm",
+     "sha256": "6ed9168fe4789db43e54e4dfb7734f758c8e84e19f8faaa33f404879f4c82151",
+     "observed": "2026-11-21T20:48:02",
+     "observedAt": "2026-11-21T20:48:02",
+     "quote": "",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": {
+    "src": "recall",
+    "name": "Duxin Chen",
+    "cls": "undecided",
+    "srcs": "csr",
+    "dblp": "223/9507"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "reason_code": "name_not_on_page",
+   "sources_tried": [
+    "https://math.seu.edu.cn/cdx/list.htm"
+   ]
+  },
+  {
+   "name": "达飞鹏",
+   "aliases": [
+    "Feipeng Da"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "AUTO",
+   "profile_url": "https://automation.seu.edu.cn/dfp/list.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://automation.seu.edu.cn/dfp/list.htm",
+     "sha256": "5e93d61f4bd2b29f9b6848dff2f5cad9c51d821bb0ab3848772933a68ef23ab9",
+     "observed": "2026-11-21T20:48:07",
+     "observedAt": "2026-11-21T20:48:07",
+     "quote": "学校主页 ENGLISH 学院概况 学院简介 发展历程 组织架构 现任领导 历任领导 院庆专栏 标识系统 联系我们 师资力量 全体教师 院士 国家级人才 博士生导师 硕士生导师 科学研究 科研通知 学术交流 科研基地 科技成果 人才培养 本科生培养 研究生培养 党群工作 党务工作 党建风采 工会工作 关工委 学生工作 就业服务 通知公告 榜样力量 学工动态 校友工作 校友风采 校友活动 人才招聘 学术年专栏 达飞鹏 / 男 博士 教授 博士生导师,硕士生导师,全体教师 姓名:",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "男 博士 教授 博士生导师,硕士生导师,全体教师"
+   },
+   "computing_quote": "研究领域包括：（1）博士阶段和后续研究（1996-）：从事智能优化控制理论研究；（2）博士后阶段和后续研究（1998-2003）：在先进制造技术领域，在国内较早地开展研究并实施了产品正向和逆向开发（包括快速成形（三维打印））技术，带领项目组完成了投资500余万元的国家级研发中心项目“产品快速开发系统集成研究”；（3）光学三维测",
+   "lead": {
+    "src": "recall",
+    "name": "Feipeng Da",
+    "cls": "undecided",
+    "srcs": "csr",
+    "dblp": "04/6129"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "04/6129",
+    "records_2016_2026": 0,
+    "affiliation_note": "",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "Jie Gui",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/gj/list.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/gj/list.htm",
+     "sha256": "3dc7be129a5b97b70b4d5a7ac988310b6602abff656f51cc026f05a5718a127b",
+     "observed": "2026-11-21T20:48:08",
+     "observedAt": "2026-11-21T20:48:08",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 桂杰(Jie Gui) 教授 电话： 办公室： 个人主页：https://guijie",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "研究领域 https://guijiejie.github.io/interests.html 研究概况 研究课题 纵向 ：主持国家自然科学基金海外优青项目、面上项目三项、青年基金项目一项",
+   "lead": {
+    "src": "recall",
+    "name": "Jie Gui",
+    "cls": "undecided",
+    "srcs": "csr",
+    "dblp": "45/794"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "45/794",
+    "records_2016_2026": 0,
+    "affiliation_note": "",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "杜松林",
+   "aliases": [
+    "Songlin Du"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "AUTO",
+   "profile_url": "https://automation.seu.edu.cn/dsl/list.htm",
+   "title_as_listed": "副教授",
+   "reason": "hand review 2026-11-21: 3D machine vision and spatial intelligence",
+   "faculty_evidence": [
+    {
+     "url": "https://automation.seu.edu.cn/dsl/list.htm",
+     "sha256": "b3444c8fc3dfce2092d3ee9c7237b13a5da918bdeeca9c42b815332175b6d2e4",
+     "observed": "2026-11-21T20:48:11",
+     "observedAt": "2026-11-21T20:48:11",
+     "quote": "男 博士 副教授、院长助理 博士生导师,硕士生导师,全体教师 姓名:杜松林 地点:四牌楼校区中心楼 电话: 教师主页:www.songlin.ac.cn 邮箱:sdu@seu.edu.cn 基本信息 杜松林，副教授，博士生导师 ，入选东南大学“至善青年学者” A 层次、东南大学“小米青年学者”、江苏省科协青年科技人才托举工程、深圳市优秀科技创新人才培养项目。主持国家自然科学基金项目、江苏省基础研究计划（自然科学基金）项目、广东省基础与应用基础研究基金项目、深圳市基础研究专项（自然科学基金）项目、南京市留学人员科技创新择优资助项目、东南大学优秀青年教师科学研究资助项目、 中国航天科工集团***项目、三星电子 技术研发项目 等，作为科研骨干参与国家重点研发计划项目、江苏省前沿技术研发计划项目、国家电网公司总部科技项目、日本学术振兴会基础研究项目、早稻田大学特别研究课题等。在 IEEE TPAMI 、IEEE TIP、 IEEE TCSVT 、IEEE TMM、 IEEE TII 、 IEEE TASE 、 IEEE TITS 、 Pattern Recognition 和CVPR、 ICCV 、 ECCV 、 AAAI 等学术期刊/会议发表论文100余篇，出版英文专著 Human Pose Analysis (Singapore: Springer Nature, 2024) 。研究成果获 ISPACS2017 国际会议 “ 最佳论文奖 ” 、 ICISIP2018 国际会议 “ 最佳报告奖 ” 、 ISIPS2018 国际会议 “ 杰出论文奖 ” 、 AIVR2019 国际会议计算机视觉分会场 “ 最佳报告奖 ” 等学术奖项。主讲本科生 “ 人工智能 ” 、 “ 模式识别与机器学习 ”和“数字图像处理”等 课程、研究生 “ 人工智能及其应用 ” 课程，被评为 东南大学本科生优秀导师 。担任国家人工智能学院导师、国家自然科学基金函评专家、教育部学位中心研究生学位论文评审专家、国家留学基金评审专家、广东省科技咨询专家、南京市科技咨询专家、航空科学基金评审专家、三星电子中国研发中心技术顾问、Pattern Recognition副编辑，以及IEEE TPAMI、 IEEE TIP 、 IEEE TII 、 IEEE TCSVT 、 IEEE TASE 、 IEEE TIM 、 IEEE TGRS 、 IEEE/CAA JAS 、IEEE TCE、 Pattern Recognition和CVPR、ICCV、AAAI 等学术期刊/会议审稿人。兼任电气与电子工程师协会 （ IEEE ）高级会员、中国图象图形学学会 机器视觉专委会委员、中国图象图形学学会 视觉大数据专委会委员、 中国图象图形学学会 多媒体专委会委员、 中国自动化学会 模式识别与机器智能专委会委员、 中国自动化学会 机器人专委会委员、 江 苏省自动化学会学术工委会秘书长。 招生计划： 每年招收博士研究生1~2名、硕士研究生3~4名，研究方向主要是三维机器视觉与空间智能，详见 songlin.ac.cn 。 专著: ☐ Songlin Du and Takeshi Ik ena ga, Human",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "男 博士 副教授、院长助理 博士生导师,硕士生导师,全体教师"
+   },
+   "computing_quote": "博士研究生1~2名、硕士研究生3~4名，研究方向主要是三维机器视觉与空间智能，详见 songlin.ac.cn",
+   "lead": {
+    "src": "recall",
+    "name": "Songlin Du",
+    "cls": "undecided",
+    "srcs": "csr",
+    "dblp": "154/7687"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "154/7687",
+    "records_2016_2026": 0,
+    "affiliation_note": "",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "李松泽",
+   "aliases": [
+    "Songze Li"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/lsz/list.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/lsz/list.htm",
+     "sha256": "b3eb78a2ce35a210f748ab04c5250531470526672c03bf9ae9a3a0059c92c5aa",
+     "observed": "2026-11-21T20:48:13",
+     "observedAt": "2026-11-21T20:48:13",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 李松泽 教授 电话： 办公室： 个人主页：https://s3ic-lab.gi",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "东南大学青年首席教授、博士生导师，香港科技大学（广州）兼职助理教授"
+   },
+   "computing_quote": "研究领域 大语言模型及多模态大模型安全、大模型智能体安全 隐私保护、可信机器学习 安全多方计算 区块链安全及隐私 课题组长年招收本科生、硕士及博士研究生、博士后、研究助理，特别欢迎对科研有热情、有野心的同学加入团队",
+   "lead": {
+    "src": "recall",
+    "name": "Songze Li",
+    "cls": "undecided",
+    "srcs": "csr",
+    "dblp": "119/2630"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "119/2630",
+    "records_2016_2026": 0,
+    "affiliation_note": "",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "路小波",
+   "aliases": [
+    "Xiaobo Lu"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "AUTO",
+   "profile_url": "https://automation.seu.edu.cn/lxb/list.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://automation.seu.edu.cn/lxb/list.htm",
+     "sha256": "643593948a981eafb1957da935738c378348d845af63d80714f04a5cac94c197",
+     "observed": "2026-11-21T20:48:15",
+     "observedAt": "2026-11-21T20:48:15",
+     "quote": "学校主页 ENGLISH 学院概况 学院简介 发展历程 组织架构 现任领导 历任领导 院庆专栏 标识系统 联系我们 师资力量 全体教师 院士 国家级人才 博士生导师 硕士生导师 科学研究 科研通知 学术交流 科研基地 科技成果 人才培养 本科生培养 研究生培养 党群工作 党务工作 党建风采 工会工作 关工委 学生工作 就业服务 通知公告 榜样力量 学工动态 校友工作 校友风采 校友活动 人才招聘 学术年专栏 路小波 / 男 博士 教授 全体教师,博士生导师,硕士生导师 姓名:",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "男 博士 教授 全体教师,博士生导师,硕士生导师"
+   },
+   "computing_quote": "研究兴趣 1、图像处理与模式识别 2、智能监控技术 3、检测技术与智能系统",
+   "lead": {
+    "src": "recall",
+    "name": "Xiaobo Lu",
+    "cls": "undecided",
+    "srcs": "csr",
+    "dblp": "93/8545"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "93/8545",
+    "records_2016_2026": 0,
+    "affiliation_note": "",
+    "names_profile_unit": false
+   }
+  },
+  {
+   "name": "蒲自源",
+   "aliases": [
+    "Ziyuan Pu"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://tc.seu.edu.cn/pzy/main.psp",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://tc.seu.edu.cn/pzy/main.psp",
+     "sha256": "d652f2fd040183ca7c061fcd2fb9b473482bd5d8d8ad3aca3595e1d3934a9ed4",
+     "observed": "2026-11-21T20:48:20",
+     "observedAt": "2026-11-21T20:48:20",
+     "quote": "中文信息 首页 联系我们 会议室预约 实验室预约 捐赠通道 English 东南大学 旧版入口 师资登录 学院概况 学院简介 历史发展 历任领导 现任领导 院务公告 机构设置 学院标识 联系我们 奠基人物 科学研究 科研概况 科研通知 科研项目 科研团队 科研成果 学术著作 发明专利 产业服务 学术期刊 平台基地 科研类平台 师资队伍 师资概览 师资骨干 教师查询 各系名单 硕博导师 教师风采 人才培养 本科生培养 研究生培养 党群工作 党务公告 机构设置 组织建设 政绩观专题教育 工会工作 党务管理 关心下一代工作委员会 专题学习 学生工作 学工概况 本科生管理通知 研究生管理通知 学生动态 品牌活动 组织机构 优秀典型 学科竞赛 下载专区 招生就业 就业信息 就业通知 专业介绍（就业） 本科招生 研究生招生 暑期学校 合作交流 本科生对外交流 校友天地 校友新闻 校友信息 校友留影 毕业合影 SOUTHEAST UNIVERSITY SEU SITE 中文 About History Founding Figures Leadership Departments Intelligent Systems & Traffic Engineerin... Intelligent Roadway & Airport Engineerin... Underground & Geotechnical Engineering Bridge Engineering Intelligent Transportation & Logistics E... Intelligent Vehicles & Transportation In... Intelligent Low Altitude & Spatial Infor... Intelligent Water Transportation & Ocean... Admission Postgraduate Programs Scholarships Research Laboratory Centers Projects National Smooth Traffic Project Nanjing BRT National Xiong'an New Area Intelligent Highway Capacity Expansion Highways in Complex Regions Yanchong Winter Olympics Ice and Snow Fi... Hong Kong-Zhuhai-Macau Bridge Island and... Hangzhou Bay Bridge Guangzhou Nansha Juxing Bridge Awards People Faculty Faculty Key Faculty Teacher Search Department List Master Supervisor Doctor Supervisor Staff Academicans Students JOIN Activities JOIN Forum-Be With Masters Beyond Campus Cooperation JOIN Academics Joined Programs International Conferences Industry Services Contact 蒲自源 上岗研究员 院长助理 办公室： 915 邮箱： ziyuanpu@seu",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "大学青年首席教授，国家级高层次青年人才，小米青年学者，交通学院、网络空间安全学院博士生导师，深圳河套学院兼职教授，澳大利亚蒙纳士大学客座高级研究员"
+   },
+   "computing_quote": "主要研究方向为智能交通感知与高效能计算、自动驾驶等",
+   "lead": {
+    "src": "recall",
+    "name": "Ziyuan Pu",
+    "cls": "undecided",
+    "srcs": "csr",
+    "dblp": "229/8257"
+   },
+   "reviewed_by": "claude-labhunt-1121",
+   "reviewed_on": "2026-11-21",
+   "added": "lab_hunt_20261121",
+   "dblp_basis": {
+    "pid": "229/8257",
+    "records_2016_2026": 0,
+    "affiliation_note": "",
+    "names_profile_unit": false
+   }
+  }
+ ]
+}
