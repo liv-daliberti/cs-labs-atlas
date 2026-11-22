@@ -380,6 +380,10 @@ def main():
             return 3
         work_metadata={r['id']:dict(r) for r in db.execute('SELECT id,title,doi,year FROM works')}
         for wid,locations in grouped.items():
+            # local edit 2026-11-22: a candidate URL without a host ('http:///jama/...') made sorted(by_host) raise on None and every pass of
+            # the school ended at once (Harvard and JHU downloaded nothing 11-19..11-22); such a location is skipped, never asked
+            locations=[r for r in locations if urlsplit(r['url'] or '').hostname]
+            if not locations:continue
             w=work_metadata[wid]
             w['locations']=sorted(locations,key=lambda r:(priority(r),r['url']))
             by_host[urlsplit(w['locations'][0]['url']).hostname].append(w)

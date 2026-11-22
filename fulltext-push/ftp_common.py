@@ -344,7 +344,8 @@ def write_batches(db, sql, rows, batch=BATCH):
 def write_candidates(school, rows, evidence, label):
     """rows: dicts work_id, url, landing_url, version, source, detail -> evidence JSON + INSERT OR IGNORE candidates
     (committed per batch). Returns the number of new candidate rows."""
-    rows = list({(r['work_id'], r['url']): r for r in rows}.values())
+    # 2026-11-22: a URL without a host is never a candidate (one such row stopped every collector pass of Harvard and JHU for three days)
+    rows = list({(r['work_id'], r['url']): r for r in rows if urlsplit(r.get('url') or '').hostname}.values())
     if not rows:
         return 0
     evidence.parent.mkdir(parents=True, exist_ok=True)
