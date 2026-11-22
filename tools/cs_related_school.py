@@ -446,7 +446,19 @@ def unit_pages(key):
 CUT = re.compile(r'Send Email|\bProfile\b|\S+@\S+|Ph\.?\s?D\.?\s+(?:Student|Candidate)|Graduate Student|\(\d{3}\)|\d{3}[-.]\d{3}[-.]\d{4}', re.I)
 
 
+# words that open a role or unit phrase after a rank, never a person's given name (the next-person rule in faculty_evidence)
+ROLE_WORDS = {'graduate', 'undergraduate', 'program', 'director', 'co-director', 'associate', 'assistant', 'chair', 'vice', 'head', 'dean',
+              'adjunct', 'affiliate', 'primary', 'joint', 'core', 'emeritus', 'emerita', 'endowed', 'faculty', 'research', 'teaching',
+              'department', 'school', 'division', 'college', 'institute', 'center', 'centre', 'computer', 'electrical',
+              'information', 'human', 'biomedical', 'industrial', 'mechanical', 'civil', 'applied', 'principal', 'senior', 'founding'}
 CONTACT_LEAD = re.compile(r"\s*(?P<phone>\(\d{3}\)\s*\d{3}[-.]\d{4}\s*)?(?P<email>[\w.+-]+@[\w.-]+\.[a-z]{2,}\s*)?(?:[A-Z]{2,5}\s+[A-Z]?\d{1,4}[A-Z]?\s+)?")
+
+
+def not_ladder_titles(key):
+    """The charter's teaching titles plus its `census.rank_words.not_ladder` (titles a school gives non-ladder people that are a real
+    rank elsewhere: UW 'Affiliate Assistant Professor' is unpaid outside faculty, Georgia Tech's is a ladder cross-listing; 2026-11-22)."""
+    cfg = S.get(key)
+    return '|'.join(x for x in (S.field(cfg, 'census.rank_words.teaching'), S.field(cfg, 'census.rank_words.not_ladder')) if x)
 
 
 def faculty_evidence(pages, names, teaching_title='', single_person=False):
@@ -502,14 +514,16 @@ def faculty_evidence(pages, names, teaching_title='', single_person=False):
                 after_title = seg[pt.end():]
                 # `single_person`: the person's own profile page (`profile`), where no next entry exists and a heading follows
                 # the rank ('Gina-Anne Levow (she/her) Professor Contact Information', UW 2026-11-22)
-                if not single_person and pt.group(0).lower() == 'professor' and re.match(r'\s+[A-Z][\w’\'-]+\s+[A-Z][\w’\'-]+', after_title):
+                # A role phrase after the rank is not a name ('John Gennari, PhD Professor Graduate Program Director', UW BIME 2026-11-22)
+                nm = re.match(r'\s+([A-Z][\w’\'-]+)\s+[A-Z][\w’\'-]+', after_title)
+                if not single_person and pt.group(0).lower() == 'professor' and nm and nm.group(1).lower() not in ROLE_WORDS:
                     continue
                 q = flat[m.start():m.end() + off + pt.end()]
                 # the rank is read up to the title's own 'Professor': the 'of <unit>' tail can run on into a second
                 # appointment ('Associate Professor of Information, School of Information and Research Associate
                 # Professor, ICPSR', learned 2026-10-30, Libby Hemphill)
                 core = seg[:pt.start() + re.search(r'Professor', seg[pt.start():], re.I).end()]
-                _m = re.match(r'[\s,]*(?:Emerit\w+|Adjunct|\(?Status[- ]only\)?|\(cross-appointed\)|Teaching[- ]Stream|CLTA)', seg[len(core):], re.I)
+                _m = re.match(r'[\s,]*(?:Emerit\w+|Adjunct|Affiliate\b|\(?Status[- ]only\)?|\(cross-appointed\)|Teaching[- ]Stream|CLTA)', seg[len(core):], re.I)
                 core += _m.group(0) if _m else ''  # 'Professor Emeritus' is emeritus, not ladder (Toronto 2026-11-10)
                 hit = dict(unit=unit, url=url, sha256=sha, observed=obs, quote=q,
                            ladder=not NOT_LADDER.search(core) and not (teaching and teaching.search(core)))
@@ -902,7 +916,7 @@ def profile(key, name, unit, url):
             if st == 200:
                 pages.append((unit, cap, sha, r['timestamp'], W.flat(b)))
                 break
-    teaching = S.field(S.get(key), 'census.rank_words.teaching') or ''
+    teaching = not_ladder_titles(key)
     ev = [e for e in faculty_evidence(pages, names, teaching, single_person=True) if e['ladder']]
     if not ev:
         print(json.dumps(dict(name=name, result='no professor title after the name', pages=len(pages))))
@@ -938,7 +952,7 @@ def review(key):
     SETTLE = list(S.field(S.get(key), 'cs_related.share_test_settles') or [])
     CENTERS = set(S.field(S.get(key), 'census.center_units') or [])
     NOT_FACULTY = S.field(S.get(key), 'cs_related.not_faculty') or {}   # {name = reason}: owner-decided non-faculty (research engineer, staff) whose listing quote a rule misread
-    TEACHING = S.field(S.get(key), 'census.rank_words.teaching') or ''
+    TEACHING = not_ladder_titles(key)
     searched = sorted({p[0] for p in pages})
     OA_MAP = {a if a.startswith('http') else 'https://openalex.org/' + a: n for n, d in (read(P.data('openalex-identity-review.json', key), {}) or {}).get('decisions', {}).items()
               if d.get('basis') == 'pinyin_unique_openalex' for a in d.get('openalex') or []}

@@ -73,3 +73,21 @@ def test_contact_block_between_name_and_title_is_skipped_on_a_directory_card():
     # a phone that ENDS an entry still stops the reading: the next person's title is never this one's
     assert C.faculty_evidence([('X', 'u', 's', '2026', 'Lauro Ojeda Assistant Research Scientist (734) 555-1212 Chinedum Okwudire Associate Professor')],
                               ['Lauro Ojeda']) == []
+
+
+def test_role_phrase_after_the_rank_is_not_the_next_persons_name():
+    flat = ('John Gennari, PhD Professor Graduate Program Director Primary BHI gennari@uw.edu Website Interests: Ontologies. '
+            'Dr Chao Li Professor Benedikt Loewe Professor')
+    ev = C.faculty_evidence([('BIME', 'u', 'sha', '20241102', flat)], ['John H. Gennari'])
+    assert ev and ev[0]['ladder'] and ev[0]['quote'] == 'John Gennari, PhD Professor'
+    assert C.faculty_evidence([('X', 'u', 's', '2026', flat)], ['Chao Li']) == []
+
+
+def test_affiliate_titles_are_not_ladder_only_where_the_charter_says_so():
+    flat = ('Hoifung Poon, PhD Assistant Professor Affiliate BHI hoifung@microsoft.com Wanda Pratt, PhD, FACMI Professor Adjunct BHI '
+            'Kim Example Affiliate Assistant Professor ')
+    uw = C.not_ladder_titles('uwashington')
+    ev = lambda n, t: [e['ladder'] for e in C.faculty_evidence([('BIME', 'u', 's', '2026', flat)], [n], t)]
+    assert ev('Hoifung Poon', uw) == [False] and ev('Kim Example', uw) == [False] and ev('Wanda Pratt', uw) == [False]
+    # without the charter setting (Georgia Tech: 'Affiliate Assistant Professor' is a ladder cross-listing) the rank stands
+    assert ev('Kim Example', '') == [True] and ev('Hoifung Poon', '') == [True]

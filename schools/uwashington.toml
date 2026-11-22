@@ -101,7 +101,7 @@ foreign_title_exception = false
 center_units = []
 computing_departments = ["CSE"]
 home_units = {"Computer Science and Engineering" = '^(?:Paul G\. Allen School of )?Computer Science (?:and|&) Engineering$', "Electrical and Computer Engineering" = '^(?:Department of )?Electrical (?:and|&) Computer Engineering$', "Information School" = '^(?:The )?Information School$|^Information$', "Statistics" = '^(?:Department of )?Statistics$', "Applied Mathematics" = '^(?:Department of )?Applied Mathematics$', "Human Centered Design and Engineering" = '^(?:Department of )?Human Centered Design (?:and|&) Engineering$', "Bioengineering" = '^(?:Department of )?Bioengineering$', "Genome Sciences" = '^(?:Department of )?Genome Sciences$', "Biostatistics" = '^(?:Department of )?Biostatistics$', "Astronomy" = '^(?:Department of )?Astronomy$', "Linguistics" = '^(?:Department of )?Linguistics$', "Mathematics" = '^(?:Department of )?Mathematics$', "Mechanical Engineering" = '^(?:Department of )?Mechanical Engineering$', "Aeronautics and Astronautics" = '^(?:William E\. Boeing Department of )?Aeronautics (?:and|&) Astronautics$', "Biomedical Informatics and Medical Education" = '^(?:Department of )?Biomedical Informatics and Medical Education$', "Foster School of Business" = '^(?:Michael G\. )?Foster School of Business$', "Civil and Environmental Engineering" = '^(?:Department of )?Civil (?:and|&) Environmental Engineering$', "Industrial and Systems Engineering" = '^(?:Department of )?Industrial (?:and|&) Systems Engineering$', "Environmental and Forest Sciences" = '^(?:School of )?Environmental (?:and|&) Forest Sciences$'}
-rank_words = {teaching = '\bteaching\s+professor|\bprofessor\s+of\s+practice|\bprincipal\s+lecturer', adjunct = '\badjunct\b', research = '\bresearch\s+(?:associate\s+|assistant\s+)?professor|\bresearch\s+scientist', courtesy = '\b(?:affiliate|joint)\s+(?:associate\s+|assistant\s+)?professor'}
+rank_words = {teaching = '\bteaching\s+professor|\bprofessor\s+of\s+practice|\bprincipal\s+lecturer', adjunct = '\badjunct\b', research = '\bresearch\s+(?:associate\s+|assistant\s+)?professor|\bresearch\s+scientist', courtesy = '\b(?:affiliate|joint)\s+(?:associate\s+|assistant\s+)?professor', not_ladder = '\baffiliate\b|\bacting\s+(?:associate\s+|assistant\s+)?professor'}
 
 [sweep_check]
 exceptions = []
@@ -281,7 +281,8 @@ listings = ["amath.washington.edu/people/faculty", "amath.washington.edu/people/
 code = "BIOE"
 name = "Department of Bioengineering (computational faculty only)"
 url = "https://bioe.uw.edu/faculty-staff/"
-listings = ["bioe.uw.edu/faculty-staff/", "www.bioe.washington.edu/people/faculty/"]
+# 2026-11-22: faculty-staff/ is a hub page (no people; the "shell years"); the directory is one level down
+listings = ["bioe.uw.edu/faculty-staff/faculty-directory/", "bioe.uw.edu/faculty-staff/", "www.bioe.washington.edu/people/faculty/"]
 
 [[affiliated_units]]
 code = "GS"
@@ -385,9 +386,8 @@ probe = "https://math.washington.edu/"
 
 [[hosts]]
 host = "www.math.washington.edu"
-use = "live"
-purpose = "Mathematics (old host); robots checked by school_web (added 2026-11-22)"
-probe = "https://www.math.washington.edu/"
+use = "wayback-only"
+purpose = "Mathematics (old host; live it 302-redirects to math.washington.edu, 2026-11-22): archived listings only"
 
 [[hosts]]
 host = "linguistics.washington.edu"
