@@ -503,6 +503,99 @@ def unit_listing_alias_links(school, doc):
     return doc
 
 
+def archived_official_links(school, doc):
+    """Official links from the school's own stored pages, no network (UW 2026-11-22: departed PIs whose current directory no longer lists them,
+    and profile links that reach the site through a stub page). For a website row with no recorded official link:
+    (1) a profile link to a stub page whose recorded `meta_refresh_target` check lands on the selected site is the profile linking that site
+        (the stub's refresh is a redirect; Sumit Roy depts.washington.edu/funlab/ -> wp.ece.uw.edu/funlab/);
+    (2) an archived department listing (stage-1 store listings/<key>/raw/captures.sqlite) whose card for this PI links the site literally
+        (listing_link_context, card-scoped) -> `department_listing_link`, with the capture's hash and Wayback URL;
+    (3) an archived official profile (school-captures.sqlite `captures`, a Wayback id_ capture on the school's own domain) that names the PI and
+        links the site literally -> `school_profile_link`. Literal hrefs only; the newest capture wins."""
+    import labpage_audit as L
+    domain = L.SCHOOLS[school]['domain']
+    on_domain = re.compile(r'(?:^|\.)(?:' + domain + r')$')
+    todo = [r for r in doc.get('labs', []) if r.get('coverage') == 'website' and r.get('official_link_status') != 'recorded' and r.get('url')]
+    if not todo:
+        return doc
+
+    def record(r, check):
+        r['checks'].append(check)
+        r['official_link_status'] = 'recorded'
+        r['official_link_evidence'] = [check]
+        r['listed_on'] = check['on']
+
+    def original(cu):
+        return re.sub(r'^https?://web\.archive\.org/web/[0-9]+(?:id_)?/', '', cu)
+
+    def rows(path, sql):
+        if not Path(path).exists():
+            return []
+        try:
+            con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+            return list(con.execute(sql))
+        except sqlite3.DatabaseError:
+            return []
+
+    left = []
+    for r in todo:
+        checks = r.get('checks') or []
+        refresh = next((c for c in checks if c.get('source') == 'meta_refresh_target' and c.get('result') == 'ok'
+                        and normalized_link(c.get('url')) == normalized_link(r['url']) and c.get('on')), None)
+        link = refresh and next((c for c in checks if c.get('source') == 'school_profile_link' and c.get('on')
+                                 and normalized_link(c.get('url')) == normalized_link(refresh['on'])), None)
+        prof = link and next((c for c in checks if c.get('source') == 'school_profile' and c.get('url') == link['on'] and c.get('result') == 'ok'), None)
+        if link and prof and on_domain.search(urlsplit(link['on']).hostname or ''):
+            record(r, dict(source='school_profile_link', url=r['url'], on=link['on'], at=link.get('at'), result='listed', anchor=link.get('anchor'),
+                           linked_url=link['url'], via='meta_refresh', refresh_check_at=refresh.get('at'), source_sha256=prof.get('sha256'),
+                           provenance='recovered_profile_link_through_meta_refresh_stub'))
+        else:
+            left.append(r)
+    if not left:
+        return doc
+    listing_caps = rows(P.data('listings-captures.sqlite', school),
+                        "select capture_url, wayback_timestamp, sha256, raw_zlib from captures where http_status=200 and raw_zlib is not null order by wayback_timestamp desc")
+    profile_caps = rows(P.data('school-captures.sqlite', school),
+                        "select capture_url, wayback_timestamp, sha256, raw_zlib from captures where http_status=200 and raw_zlib is not null order by wayback_timestamp desc")
+    for r in left:
+        t_net, t_path, _ = normalized_link(r['url'])
+        needle = (t_net.removeprefix('www.') + t_path).encode()
+        tokens = [x for x in re.findall(r'\w+', unicodedata.normalize('NFKD', r['pi']).encode('ascii', 'ignore').decode()) if len(x) > 1]
+        done = False
+        for kind, caps in (('listing', listing_caps), ('profile', profile_caps)):
+            for cu, ts, sha, raw in caps:
+                try:
+                    body = zlib.decompress(raw)
+                except zlib.error:
+                    continue
+                if needle not in body or not sha:
+                    continue
+                page = original(cu)
+                if not on_domain.search(urlsplit(page).hostname or ''):
+                    continue
+                if kind == 'listing':
+                    match = listing_link_context(body, page, normalized_link(r['url']), r['pi'])
+                    if not match:
+                        continue
+                    check = dict(source='department_listing_link', url=r['url'], on=page, at=ts, result='listed', anchor=match[1], linked_url=match[0],
+                                 source_quote=match[2][:600], source_sha256=sha, source_capture_url=cu, provenance='recovered_from_archived_department_listing')
+                else:
+                    text = body.decode('utf-8', 'replace')
+                    if len(tokens) < 2 or not re.search(r'(?<!\w)' + r'[\W_]+'.join(map(re.escape, tokens)) + r'(?!\w)', text, re.I):
+                        continue
+                    hit = next(((u, a, h) for u, a, h in literal_links(body, page) if normalized_link(u) == normalized_link(r['url'])), None)
+                    if not hit:
+                        continue
+                    check = dict(source='school_profile_link', url=r['url'], on=page, at=ts, result='listed', anchor=hit[1], linked_url=hit[0],
+                                 href=hit[2], source_sha256=sha, source_capture_url=cu, provenance='recovered_from_archived_official_profile')
+                record(r, check)
+                done = True
+                break
+            if done:
+                break
+    return doc
+
+
 def official_homepage_fallback(school, doc):
     """Owner-delegated choice (coordinator, 2026-11-10, HKUST; reversible): a website whose URL no official link reaches is replaced by the official personal page the
     department profile itself links ('Personal Webpage', a school_profile_link check) when a stored 200 capture of that exact page exists. The earlier selection (a lab
@@ -723,6 +816,7 @@ def main():
         if a.cmd == 'build':
             doc = unit_listing_alias_links(s, doc)
             doc = official_homepage_fallback(s, doc)
+            doc = archived_official_links(s, doc)
         if a.enrich_official_links or a.cmd == 'enrich':
             doc = enrich_official_links(s, attach_stored_captures(s, doc))
         if a.cmd in ('build', 'enrich'):

@@ -3244,3 +3244,27 @@ pku_wict_any = _first_parse(pku_wict_team_nav, pku_wict_cards)   # one slot span
 pku_cs_any = _first_parse(pku_cs_m_list9, pku_cs_big_cards)
 FORMATS['pku_wict_any'] = (pku_wict_any, re.compile(r'(?!)'))
 FORMATS['pku_cs_any'] = (pku_cs_any, re.compile(r'(?!)'))
+
+
+def uw_hcde_h3(h):
+    """UW HCDE faculty page, archived eras 2016-2025 (Wayback): an A-Z table, one cell per person: `<h3>` holding a photo and the name (as
+    `<strong><a>`, `<a><strong>`, `<a><img/><strong>` or a bare `<a>`; anchors `<a id="A">` carry no text), then the first `<p>` (sometimes inside a
+    `<div>`) with the title, which 2016-2019 continues after `<br/>` with Website | Email links (cut at the first `<br/><strong>` / `<strong>` / `<a`).
+    A heading counts only when it holds a photo or a bold name and the name has two words (menus and sidebars: 'Helpful Links', 'People')."""
+    out = []
+    for m in re.finditer(r'<h3>(.*?)</h3>\s*(?:<div>\s*)?<p>(.*?)</p>', h, re.S):
+        inner, p = m.group(1), m.group(2)
+        if '<img' not in inner and '<strong>' not in inner:
+            continue
+        nm = clean(re.sub(r'<img\b[^>]*>', ' ', inner))
+        if not nm or len(nm.split()) < 2 or len(nm) > 60:
+            continue
+        hrefs = [x for x in re.findall(r'<a\s+href="([^"#][^"]*)"', inner)]
+        p = re.split(r'<br\s*/?>\s*(?:<strong>|<a\b)|<strong>|<a\b', p, maxsplit=1)[0]
+        out.append(dict(name_listed=nm, titles=_titles(p), homepage=H.unescape(hrefs[-1]) if hrefs else None, division=None))
+    return out
+
+
+uw_hcde_any = _first_parse(uw_hcde_columns, uw_hcde_h3)   # one slot spans the archived (h3 table) and current (h2 columns) eras
+FORMATS['uw_hcde_h3'] = (uw_hcde_h3, re.compile(r'(?!)'))
+FORMATS['uw_hcde_any'] = (uw_hcde_any, re.compile(r'(?!)'))

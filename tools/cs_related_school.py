@@ -446,7 +446,7 @@ def unit_pages(key):
 CUT = re.compile(r'Send Email|\bProfile\b|\S+@\S+|Ph\.?\s?D\.?\s+(?:Student|Candidate)|Graduate Student|\(\d{3}\)|\d{3}[-.]\d{3}[-.]\d{4}', re.I)
 
 
-def faculty_evidence(pages, names, teaching_title=''):
+def faculty_evidence(pages, names, teaching_title='', single_person=False):
     """Every (unit, url, sha, observed, quote, ladder) where a page names the person and a professor title follows the
     name directly: the title must start within 60 characters of the name, nothing between them may be a non-ladder
     title, and the segment is cut at the entry's own furniture ('Send Email', 'Profile', an email or phone, 'Ph.D.
@@ -492,7 +492,9 @@ def faculty_evidence(pages, names, teaching_title=''):
                 # "Dr Chao Li Professor Benedikt Loewe". Unlike "Professor of
                 # Mathematics", the title is immediately followed by a name.
                 after_title = seg[pt.end():]
-                if pt.group(0).lower() == 'professor' and re.match(r'\s+[A-Z][\w’\'-]+\s+[A-Z][\w’\'-]+', after_title):
+                # `single_person`: the person's own profile page (`profile`), where no next entry exists and a heading follows
+                # the rank ('Gina-Anne Levow (she/her) Professor Contact Information', UW 2026-11-22)
+                if not single_person and pt.group(0).lower() == 'professor' and re.match(r'\s+[A-Z][\w’\'-]+\s+[A-Z][\w’\'-]+', after_title):
                     continue
                 q = flat[m.start():m.end() + pt.end()]
                 # the rank is read up to the title's own 'Professor': the 'of <unit>' tail can run on into a second
@@ -893,7 +895,7 @@ def profile(key, name, unit, url):
                 pages.append((unit, cap, sha, r['timestamp'], W.flat(b)))
                 break
     teaching = S.field(S.get(key), 'census.rank_words.teaching') or ''
-    ev = [e for e in faculty_evidence(pages, names, teaching) if e['ladder']]
+    ev = [e for e in faculty_evidence(pages, names, teaching, single_person=True) if e['ladder']]
     if not ev:
         print(json.dumps(dict(name=name, result='no professor title after the name', pages=len(pages))))
         return 1
@@ -977,6 +979,10 @@ def review(key):
             n['duplicate_dblp_record'] += 1; continue  # two DBLP records of one name: one decision
         seen.add(name_key)
         al = census_alias(census, names, c.get('dblp'), c.get('openalex'), OA_MAP) if c['source'] not in ('affiliated_department', 'official_profile_ladder') else None
+        # a census row whose listing gave no rank ('other': UW's 2016-2024 Allen directory heads every card 'Faculty') and that is no PI does not
+        # settle the person: the unit evidence decides, as for a person outside the census (UW 2026-11-22, Emanuel Todorov: AMATH archived listing)
+        if al and not census[al].get('is_pi') and census[al].get('rank') == 'other':
+            al = None
         if al:
             n['census_alias'] += 1
             dec.append(dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision='census_alias', census_name=al,
@@ -1102,8 +1108,13 @@ def review(key):
     doc = dict(school=key, reviewed=TODAY, rule=__doc__.split('\nusage')[0], min_dblp=MIN_DBLP, share_test=dict(min_dblp_indexed=SHARE_MIN_CS, min_share=SHARE_MIN,
                min_works_for_negative=SHARE_MIN_N, applied=bool(SH)), units_searched=searched, counts=dict(n), decisions=dec)
     P.data_w('cs-related-review.json', key).write_text(json.dumps(doc, indent=1, ensure_ascii=False))
-    P.data_w('census-additions.json', key).write_text(json.dumps(adds, indent=1, ensure_ascii=False))
-    print(json.dumps(dict(decisions=len(dec), additions=len(adds), **n)))
+    # rows a reviewer added by hand (`reviewed_by`, e.g. UW 2026-11-22: Allen adjuncts by home-unit rank, departed professors by dated archived
+    # profiles whose listing card says only 'Faculty') are not this review's output: carry them over unless the review now adds the same person
+    mine = {' '.join(toks(a['name'])) for a in adds}
+    kept = [x for x in read(P.data('census-additions.json', key), []) or []
+            if isinstance(x.get('reviewed_by'), str) and x['reviewed_by'].strip() and ' '.join(toks(x['name'])) not in mine]
+    P.data_w('census-additions.json', key).write_text(json.dumps(adds + kept, indent=1, ensure_ascii=False))
+    print(json.dumps(dict(decisions=len(dec), additions=len(adds), hand_rows_kept=len(kept), **n)))
 
 
 if __name__ == '__main__':
