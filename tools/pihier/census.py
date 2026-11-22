@@ -17,6 +17,7 @@ def fold_dblp_ids(additions, dblp_ids):
     """Stage 5's DBLP ids (tools/dblp_ids_school.py) for reviewed census additions that carry none, the way tools/census_build.py folds
     them into listing rows: a hand row written before stage 5 ran ('dblp': []) otherwise never gets its id (UW 2026-11-22: Choi, Levine,
     Guestrin, Fox and nine more departed or adjunct PIs). An addition's own DBLP id or ORCID is never replaced."""
+    dblp_ids = dblp_ids if isinstance(dblp_ids, dict) else {}
     out = []
     for a in additions:
         d_ = dblp_ids.get(a.get('name')) or {}

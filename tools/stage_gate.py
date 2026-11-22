@@ -65,6 +65,8 @@ def pis_of(key):
     cen = read(P.data('census-faculty.json', key), {})
     cen = cen.get('faculty', []) if isinstance(cen, dict) else cen   # a composed first-native school keeps a bare list
     add = read(P.data('census-additions.json', key), [])
+    from pihier.census import fold_dblp_ids   # the build's own rule: stage-5 DBLP ids for additions that carry none
+    add = fold_dblp_ids(add, read(P.data('dblp-ids.json', key), {}) or {})
     by_name = {}
     by_source = set()
     for x in cen + add:
