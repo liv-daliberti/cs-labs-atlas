@@ -3,7 +3,7 @@
 # computing-heavy units of other departments (ECE, the Information School, Statistics, Applied Math, HCDE, and BioE / Genome Sciences only for computational
 # faculty) under the CS-related rule (docs/RULES.md). A unit's affiliation strings stay in `loose` / `own_units` so papers of in-scope PIs are credited; they
 # never add PIs or labs. Window 2016 onward, no 2026 in plots. The look-alike exclusions are identity, not scope, and always apply.
-# D-rules below are the agent's RECOMMENDATIONS, not yet confirmed by the owner (hierarchy/uwashington/reports/STAGE-0.md): the snapshot extension filters by them.
+# D-rules below were the agent's recommendations; the owner CONFIRMED D1 and D2 on 2026-11-21 (leases/coord/DECISIONS.md D-0039) (hierarchy/uwashington/reports/STAGE-0.md): the snapshot extension filters by them.
 
 key = "uwashington"
 name = "University of Washington"
@@ -17,9 +17,9 @@ window = [2016, 2026]
 
 [ids]
 openalex = ["I201448701"]
-# D1 (recommended): Seattle campus only. University of Washington Tacoma I4210150356 and Bothell I4210138624 are lineage children of I201448701 but separate campuses with their own faculty;
+# D1 (owner-confirmed 2026-11-21, D-0039): Seattle campus only. University of Washington Tacoma I4210150356 and Bothell I4210138624 are lineage children of I201448701 but separate campuses with their own faculty;
 # they are excluded (an authorship that carries them but not the Seattle id is not UW Seattle) and the regex refuses their names.
-# D2 (recommended): related (regex-only) = UW Medical Center I2801852214, Harborview I2802336062, Seattle Children's I1295499534 (+ its Research Institute I4405262941), Fred Hutch I4210089486 is NOT related (a separate institution, joint appointments are handled by the CS-related rule).
+# D2 (owner-confirmed 2026-11-21, D-0039): related (regex-only) = UW Medical Center I2801852214, Harborview I2802336062, Seattle Children's I1295499534 (+ its Research Institute I4405262941), Fred Hutch I4210089486 is NOT related (a separate institution, joint appointments are handled by the CS-related rule).
 # Lineage children kept (swept): Applied Physics Laboratory I4210138199, Friday Harbor I4387153569, Harborview Injury Prevention I4210126198, Burke Museum, CEGA, CloudBank I4405259881, Sea Grant, etc.
 openalex_related = ["I2801852214", "I2802336062", "I1295499534", "I4405262941"]
 openalex_excluded = ["I4210150356", "I4210138624"]
