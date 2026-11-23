@@ -624,7 +624,7 @@ def roster_coauthor_students(key, forms):
         url, kind = ro['url'], ro.get('kind') or 'students'
         caps = []
         full = url if url.startswith('http') else 'https://' + url
-        if not ro.get('paged') and S.host_use(key, full.split('/')[2]) == 'live':   # the live roster of a live charter host (robots honoured by W.live), dated today
+        if ro.get('live') and not ro.get('paged') and S.host_use(key, full.split('/')[2]) == 'live':   # opt-in (`live = true`): the live roster of a live charter host (robots honoured by W.live), dated today
             res = W.live(c, full)
             if res and res[0] == 200:
                 caps.append((full, res[1], dict(timestamp=_t.strftime('%Y%m%d%H%M%S')), W.flat(res[2])))
