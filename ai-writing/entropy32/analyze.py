@@ -1,0 +1,249 @@
+"""Continuous AI dose x knowledge entropy, 32 schools (owner 2026-11-23), on e32.py's build.
+
+Knowledge entropy exactly as diversity/figures.py fig3_fulltext (Hao et al. Fig. 3, our operationalisation): SPECTER2 base full-text (main body)
+vectors of the 2023-2025 papers, k-means with 50 clusters fitted on all of them, entropy (nats) of a sample's spread over the clusters, over
+repeated equal-size draws; knowledge extent alongside. Two geometries, as before: 'euclidean' (raw vectors, the default) and 'cosine' (unit vectors,
+so k-means is spherical k-means; extent = 1 - min cosine to the centroid).
+
+The exposure is continuous: ai_share_main, the share of a paper's scored main-body passages detector v3 flags (0-1).
+
+  curve     dose-response: papers with share 0, then sliding windows over the rank of the positive shares (WIN papers each, GRID centres); each
+            window gives DRAWS draws of n papers (n equal for every window). 'adjusted' draws re-weight each window to the pooled school x year mix
+            of the 2023-2025 papers (so a window is not just "2025 papers" or "one school"); 'raw' draws are uniform. -> curve_<metric>.csv
+  paper     paper-level: topic surprisal -log p(cluster) under the pooled 2023-2025 cluster shares (its mean over a group is the cross-entropy
+            that entropy is bounded by) regressed on the AI share with school x year and lab fixed effects, lab-clustered CR1 errors; and per school
+            -> paper_<metric>.json, school_slopes_<metric>.csv
+  lab       labs with >= LAB_MIN usable papers both in 2016-2022 and 2023-2025: entropy of LAB_N-paper draws (mean of 200) in each period, the
+            change against the lab's mean post AI share; OLS with school fixed effects, lab-bootstrap interval -> labs_<metric>.csv, lab_<metric>.json
+  map       t-SNE (cosine on the unit vectors) of up to MAP_N 2023-2025 papers -> map.parquet
+  figure    -> figures/ai_dose_entropy.png (+ .pdf), figures/ai_dose_entropy_<metric>_detail.png
+  check     the overlap with the sealed 2026-11-08 v3 table (same detector): per-paper agreement of ai_share_main
+usage: analyze.py [all|curve|paper|lab|map|figure|check] [--id 20261123]
+"""
+import argparse
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+import e32  # noqa: E402
+
+SEED = 20261123
+K = 50
+POST = (2023, 2025)
+PRE = (2016, 2022)
+WIN, GRID, DRAWS = 3000, 36, 400
+LAB_MIN, LAB_N = 8, 8
+MAP_N = 30000
+METRICS = ('euclidean', 'cosine')
+
+
+def load(a):
+    w = e32.work_dir(a.id)
+    df = pd.read_parquet(w / 'papers_scored.parquet')
+    X = np.load(w / 'X_specter2_base.npy').astype(np.float32)
+    df = df[df.has_emb & df.ai_share_main.notna()].copy()
+    df['row'] = df['emb_row'].astype(int)
+    df['lab'] = df['labs'].map(lambda s: (json.loads(s) or [None])[0])
+    return w, df.reset_index(drop=True), X
+
+
+def space(X, metric):
+    return X / np.linalg.norm(X, axis=1, keepdims=True) if metric == 'cosine' else X
+
+
+def clusters(w, df, X, metric):
+    """k-means on the 2023-2025 papers (fit), labels for every paper (predict); cached."""
+    from sklearn.cluster import KMeans
+    f = w / 'analysis' / f'clusters_{metric}.npz'
+    post = df.year.between(*POST).values
+    tag = f'{len(df)}-{int(post.sum())}-{K}-{SEED}'
+    if f.exists():
+        z = np.load(f)
+        if str(z['tag']) == tag:
+            return z['labels'], z['centers']
+    Z = space(X[df.row.values], metric)
+    km = KMeans(K, n_init=3, random_state=SEED).fit(Z[post])
+    lab = km.predict(Z)
+    np.savez(f, labels=lab, centers=km.cluster_centers_, tag=tag)
+    return lab, km.cluster_centers_
+
+
+def ent(L):
+    p = np.bincount(L, minlength=K) / len(L)
+    p = p[p > 0]
+    return float(-(p * np.log(p)).sum())
+
+
+def ext(V, metric):
+    c = V.mean(0)
+    if metric == 'cosine':
+        return float(1 - (V @ c).min() / np.linalg.norm(c))
+    return float(np.sqrt(((V - c) ** 2).sum(1)).max())
+
+
+def stage_curve(a):
+    w, df, X = load(a)
+    r = np.random.default_rng(SEED)
+    post = df[df.year.between(*POST)].reset_index(drop=True)
+    cell = post.home_school + ':' + post.year.astype(str)
+    target = cell.value_counts(normalize=True)
+    dose = post.ai_share_main.values
+    pos = np.flatnonzero(dose > 0)
+    pos = pos[np.argsort(dose[pos], kind='stable')]
+    zero = np.flatnonzero(dose == 0)
+    win = min(WIN, len(pos) // 4)
+    centres = np.linspace(win // 2, len(pos) - win // 2 - 1, GRID).round().astype(int)
+    windows = [('zero', zero)] + [(f'w{j:02d}', pos[max(0, c - win // 2): c + win // 2]) for j, c in enumerate(centres)]
+    n = int(min(1000, 0.8 * min(len(ix) for _, ix in windows)))
+    out = []
+    for metric in METRICS:
+        lab_all, _ = clusters(w, df, X, metric)
+        lab = lab_all[df.year.between(*POST).values]
+        Z = space(X[post.row.values], metric)
+        for name, ix in windows:
+            cw = cell.values[ix]
+            share = pd.Series(cw).value_counts(normalize=True)
+            p = (target.reindex(cw).values / share.reindex(cw).values)
+            p = p / p.sum()
+            for mode, prob in (('adjusted', p), ('raw', None)):
+                E, X_ = [], []
+                for _ in range(DRAWS):
+                    i = r.choice(ix, n, replace=False, p=prob)
+                    E.append(ent(lab[i])); X_.append(ext(Z[i], metric))
+                E, X_ = np.array(E), np.array(X_)
+                out.append(dict(metric=metric, mode=mode, window=name, n_papers=len(ix), n_draw=n, dose_median=float(np.median(dose[ix])),
+                                dose_lo=float(dose[ix].min()), dose_hi=float(dose[ix].max()), year_mean=float(post.year.values[ix].mean()),
+                                entropy=float(np.median(E)), entropy_lo=float(np.quantile(E, .025)), entropy_hi=float(np.quantile(E, .975)),
+                                extent=float(np.median(X_)), extent_lo=float(np.quantile(X_, .025)), extent_hi=float(np.quantile(X_, .975))))
+            print(json.dumps({k: out[-2][k] for k in ('metric', 'window', 'dose_median', 'entropy', 'n_draw')}), flush=True)
+    pd.DataFrame(out).to_csv(w / 'analysis' / 'curve.csv', index=False)
+
+
+def demean(y, groups, iters=50):
+    """Within transform for several fixed effects by alternating projections."""
+    y = y.astype(float).copy()
+    for _ in range(iters):
+        before = y.copy()
+        for g in groups:
+            y -= pd.Series(y).groupby(g).transform('mean').values
+        if np.abs(y - before).max() < 1e-10:
+            break
+    return y
+
+
+def fe_slope(y, x, groups, cluster):
+    yt, xt = demean(y, groups), demean(x, groups)
+    b = float((xt @ yt) / (xt @ xt))
+    e = yt - b * xt
+    s = pd.Series(xt * e).groupby(cluster).sum().values
+    G, N = len(s), len(y)
+    v = (s @ s) / (xt @ xt) ** 2 * G / (G - 1) * (N - 1) / (N - 2)
+    return b, float(np.sqrt(v)), G
+
+
+def stage_paper(a):
+    w, df, X = load(a)
+    res = {}
+    for metric in METRICS:
+        lab_all, _ = clusters(w, df, X, metric)
+        m = df.year.between(*POST).values & df.lab.notna().values
+        d = df[m].copy()
+        L = lab_all[m]
+        p = np.bincount(L, minlength=K) / len(L)
+        d['surprisal'] = -np.log(p[L])
+        x = d.ai_share_main.values * 10          # per 10 points of AI share
+        cell = (d.home_school + ':' + d.year.astype(str)).values
+        b, se, G = fe_slope(d.surprisal.values, x, [cell, d.lab.values], d.lab.values)
+        b0, se0, _ = fe_slope(d.surprisal.values, x, [cell], d.lab.values)
+        res[metric] = dict(papers=len(d), labs=G, slope_per_10pts_school_year_lab_fe=b, se=se, ci=[b - 1.96 * se, b + 1.96 * se],
+                           slope_per_10pts_school_year_fe=b0, se_school_year=se0, ci_school_year=[b0 - 1.96 * se0, b0 + 1.96 * se0],
+                           mean_surprisal=float(d.surprisal.mean()), pooled_entropy=float(-(p[p > 0] * np.log(p[p > 0])).sum()))
+        rows = []
+        for s, g in d.groupby('home_school'):
+            if len(g) < 300 or (g.ai_share_main > 0).sum() < 50:
+                continue
+            bs, ses, Gs = fe_slope(g.surprisal.values, g.ai_share_main.values * 10, [g.year.astype(str).values, g.lab.values], g.lab.values)
+            rows.append(dict(school=s, papers=len(g), labs=Gs, ai_any=float((g.ai_share_main > 0).mean()), slope=bs, se=ses, lo=bs - 1.96 * ses, hi=bs + 1.96 * ses))
+        pd.DataFrame(rows).to_csv(w / 'analysis' / f'school_slopes_{metric}.csv', index=False)
+        print(json.dumps({metric: res[metric]}), flush=True)
+    (w / 'analysis' / 'paper.json').write_text(json.dumps(res, indent=1))
+
+
+def stage_lab(a):
+    w, df, X = load(a)
+    r = np.random.default_rng(SEED)
+    res = {}
+    for metric in METRICS:
+        lab_all, _ = clusters(w, df, X, metric)
+        d = df.assign(cl=lab_all)[df.lab.notna()]
+        rows = []
+        for lab, g in d.groupby('lab'):
+            pre, post = g[g.year.between(*PRE)], g[g.year.between(*POST)]
+            if len(pre) < LAB_MIN or len(post) < LAB_MIN:
+                continue
+            hp = np.mean([ent(r.choice(pre.cl.values, LAB_N, replace=False)) for _ in range(200)])
+            hq = np.mean([ent(r.choice(post.cl.values, LAB_N, replace=False)) for _ in range(200)])
+            rows.append(dict(lab=lab, school=g.home_school.iloc[0], n_pre=len(pre), n_post=len(post), h_pre=hp, h_post=hq, dh=hq - hp,
+                             ai_post=float(post.ai_share_main.mean()), ai_pre=float(pre.ai_share_main.mean())))
+        L = pd.DataFrame(rows)
+        L.to_csv(w / 'analysis' / f'labs_{metric}.csv', index=False)
+        x, y = L.ai_post.values * 10, L.dh.values
+        b, se, G = fe_slope(y, x, [L.school.values], L.school.values)
+        bs = []
+        for _ in range(500):
+            i = r.integers(0, len(L), len(L))
+            xt, yt = demean(x[i], [L.school.values[i]]), demean(y[i], [L.school.values[i]])
+            bs.append((xt @ yt) / (xt @ xt))
+        res[metric] = dict(labs=len(L), slope_dh_per_10pts=b, boot_ci=[float(np.quantile(bs, .025)), float(np.quantile(bs, .975))],
+                           mean_dh=float(L.dh.mean()), corr=float(np.corrcoef(x, y)[0, 1]))
+        print(json.dumps({metric: res[metric]}), flush=True)
+    (w / 'analysis' / 'lab.json').write_text(json.dumps(res, indent=1))
+
+
+def stage_map(a):
+    from sklearn.decomposition import PCA
+    from sklearn.manifold import TSNE
+    w, df, X = load(a)
+    r = np.random.default_rng(SEED)
+    post = np.flatnonzero(df.year.between(*POST).values)
+    ix = np.sort(r.choice(post, min(MAP_N, len(post)), replace=False))
+    Z = space(X[df.row.values[ix]], 'cosine')
+    Z = PCA(50, random_state=SEED).fit_transform(Z)
+    Y = TSNE(2, perplexity=40, init='pca', random_state=SEED, n_jobs=-1).fit_transform(Z)
+    lab_e, _ = clusters(w, df, X, 'cosine')
+    pd.DataFrame(dict(k=df.k.values[ix], x=Y[:, 0], y=Y[:, 1], ai=df.ai_share_main.values[ix], year=df.year.values[ix], school=df.home_school.values[ix],
+                      cl_cosine=lab_e[ix])).to_parquet(w / 'analysis' / 'map.parquet')
+
+
+def stage_check(a):
+    w, df, _ = load(a)
+    snap = Path(e32.P.HOMOGENIZATION_STUDY) / 'snapshots' / '2026-11-08' / 'ai' / 'papers_v3.parquet'
+    old = pd.read_parquet(snap, columns=['paper_id', 'ai_share_main'])
+    m = df.merge(old, on='paper_id', suffixes=('', '_v3')).dropna(subset=['ai_share_main', 'ai_share_main_v3'])
+    res = dict(overlap=len(m), pearson=float(np.corrcoef(m.ai_share_main, m.ai_share_main_v3)[0, 1]),
+               mean_abs_diff=float((m.ai_share_main - m.ai_share_main_v3).abs().mean()), identical_share=float((m.ai_share_main == m.ai_share_main_v3).mean()))
+    (w / 'analysis' / 'check_v3.json').write_text(json.dumps(res, indent=1))
+    print(json.dumps(res))
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check'])
+    ap.add_argument('--id', default='20261123')
+    a = ap.parse_args()
+    (e32.work_dir(a.id) / 'analysis').mkdir(exist_ok=True)
+    for s in (['check', 'curve', 'paper', 'lab', 'map', 'figure'] if a.stage == 'all' else [a.stage]):
+        if s == 'figure':
+            import figure
+            figure.main(e32.work_dir(a.id))
+        else:
+            globals()['stage_' + s](a)
+
+
+if __name__ == '__main__':
+    main()
