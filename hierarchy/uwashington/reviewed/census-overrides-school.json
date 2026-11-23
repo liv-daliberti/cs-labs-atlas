@@ -93,7 +93,20 @@
     "quote": "LinkedIn: Profile Page Updated Jul 6 2020 Faculty Positions Professor and Chair, Department of Biomedical Informatics and Medical Education Division Head, Divi"
    }
   ],
-  "why_home_department": "2026-11-22 (independent homes audit: 3 of these failed as CSE): an Allen School adjunct; the Allen bio names the home unit and the home unit page gives the professor rank"
+  "why_home_department": "2026-11-22 (independent homes audit: 3 of these failed as CSE): an Allen School adjunct; the Allen bio names the home unit and the home unit page gives the professor rank",
+  "openalex": [
+   "https://openalex.org/A5075184354"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): hand review (stage 5, no DBLP id placed by dblp_ids_school.py): A5075184354: 29 UW-affiliated works 2016-2026 as ['Peter Z Tarczy-Hornoch'], e.g. 'Department of Biomedical Informatics and Medical Education, University of Washington, Seattle, Washi'",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7166184686",
+    "sha256": "d1c35982ebec3462f23b62ccae5fc4632a3e275b39e94b816fd3632e0e14c8a0",
+    "quote": "Peter Tarczy-Hornoch | Department of Biomedical Informatics and Medical Education, School of Medicine, University of Washington, 222 15th Street SW, Rochester, MN, 55902, United States, 1 5107095904",
+    "observed": "2026-06-26",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
  },
  "Karen Leung": {
   "home_department": "Aeronautics and Astronautics",
@@ -124,5 +137,1698 @@
    }
   ],
   "why_home_department": "2026-11-22 independent homes audit: the Allen School profile names the Boeing Professorship in CSE and a joint ECE appointment; CSE is the home, ECE in also"
+ },
+ "Eric Shea-Brown": {
+  "periods": [
+   {
+    "id": "override_period_gaps_uwashington_eric_shea_brown",
+    "start": "2019",
+    "end": null,
+    "asof": "2026-11-07",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20190501181254id_/https://amath.washington.edu/people/faculty",
+      "sha256": "9e679d9acee4ce287866fb09c3c2da597a9b1094d7f51197c54ad9de3592daea",
+      "quote": "Eric Shea-Brown Professor",
+      "observed": "2019-05-01",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20220704221338id_/https://amath.washington.edu/people/faculty",
+      "sha256": "164b4806dd250ffb2862cb16bc536053cdcf63d419c39ee027799b0b0852c541",
+      "quote": "Eric Shea-Brown Professor",
+      "observed": "2022-07-04",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20230518232234id_/https://amath.washington.edu/people/faculty",
+      "sha256": "af15d4275d49724a9756206de30ee6ad2f1e389a05491566dba4deb11dadd8af",
+      "quote": "Eric Shea-Brown Professor",
+      "observed": "2023-05-18",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://amath.washington.edu/people/faculty",
+      "sha256": "fd9ee1a8d11c257cea2d9b76cb4c3dfae23de68aa375b4aa6f7e8c823493bd90",
+      "quote": "Eric T. Shea-Brown Professor",
+      "observed": "2026-11-07",
+      "kind": "dept_listing"
+     }
+    ],
+    "note": "Bridged from dated evidence for every year 2019-2026: listings, and for the gap years [2022, 2023] dated Wayback captures naming the PI with a professor title (hierarchy/uwashington/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+    "reviewed": "periods_school_gaps_20261030"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
+ },
+ "Michael A. Buice": {
+  "periods": [
+   {
+    "id": "override_period_gaps_uwashington_michael_a_buice",
+    "start": "2019",
+    "end": null,
+    "asof": "2026-11-07",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20190501181254id_/https://amath.washington.edu/people/faculty",
+      "sha256": "9e679d9acee4ce287866fb09c3c2da597a9b1094d7f51197c54ad9de3592daea",
+      "quote": "Michael Buice Affiliate Professor of Applied Mathematics, Scientist II, Allen Institute for Brain Science View ",
+      "observed": "2019-05-01",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20220704221338id_/https://amath.washington.edu/people/faculty",
+      "sha256": "164b4806dd250ffb2862cb16bc536053cdcf63d419c39ee027799b0b0852c541",
+      "quote": "Michael Buice Affiliate Professor of Applied Mathematics, Associate Investigator, Allen Institute for Brain Science Ma",
+      "observed": "2022-07-04",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20230518232234id_/https://amath.washington.edu/people/faculty",
+      "sha256": "af15d4275d49724a9756206de30ee6ad2f1e389a05491566dba4deb11dadd8af",
+      "quote": "Michael Buice Affiliate Professor of Applied Mathematics Associate Investigator, Allen Institute for Brain Science Mat",
+      "observed": "2023-05-18",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://amath.washington.edu/people/faculty",
+      "sha256": "fd9ee1a8d11c257cea2d9b76cb4c3dfae23de68aa375b4aa6f7e8c823493bd90",
+      "quote": "Buice, Michael Affiliate Associate Professor",
+      "observed": "2026-11-07",
+      "kind": "dept_listing"
+     }
+    ],
+    "note": "Bridged from dated evidence for every year 2019-2026: listings, and for the gap years [2022, 2023] dated Wayback captures naming the PI with a professor title (hierarchy/uwashington/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+    "reviewed": "periods_school_gaps_20261030"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
+ },
+ "Stefan Mihalas": {
+  "periods": [
+   {
+    "id": "override_period_gaps_uwashington_stefan_mihalas",
+    "start": "2019",
+    "end": null,
+    "asof": "2026-11-07",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20190501181254id_/https://amath.washington.edu/people/faculty",
+      "sha256": "9e679d9acee4ce287866fb09c3c2da597a9b1094d7f51197c54ad9de3592daea",
+      "quote": "Stefan Mihalas Affiliate Professor of Applied Mathematics, Assistant Investigator, Allen Institute for Brain Science ",
+      "observed": "2019-05-01",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20220704221338id_/https://amath.washington.edu/people/faculty",
+      "sha256": "164b4806dd250ffb2862cb16bc536053cdcf63d419c39ee027799b0b0852c541",
+      "quote": "Stefan Mihalas Affiliate Professor of Applied Mathematics, Assistant Investigator, Allen Institute for Brain Science ",
+      "observed": "2022-07-04",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20230518232234id_/https://amath.washington.edu/people/faculty",
+      "sha256": "af15d4275d49724a9756206de30ee6ad2f1e389a05491566dba4deb11dadd8af",
+      "quote": "Stefan Mihalas Affiliate Professor of Applied Mathematics Investigator, Allen Institute for Brain Science ",
+      "observed": "2023-05-18",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://amath.washington.edu/people/faculty",
+      "sha256": "fd9ee1a8d11c257cea2d9b76cb4c3dfae23de68aa375b4aa6f7e8c823493bd90",
+      "quote": "Mihalas, Stefan Affiliate Professor",
+      "observed": "2026-11-07",
+      "kind": "dept_listing"
+     }
+    ],
+    "note": "Bridged from dated evidence for every year 2019-2026: listings, and for the gap years [2022, 2023] dated Wayback captures naming the PI with a professor title (hierarchy/uwashington/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+    "reviewed": "periods_school_gaps_20261030"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
+ },
+ "Jingwei Hu": {
+  "unproven_years": [
+   2025
+  ],
+  "why_unproven": "Second look 2026-11-04: 17 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2025]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "Matt Reynolds": {
+  "openalex": [
+   "https://openalex.org/A5019543377"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5019543377: full name: Matthew S. Reynolds",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7204085407",
+    "sha256": "200bb45e25d7ea5c4b832e65809db95fc44bc4380db058ee694833c2454b532e",
+    "quote": "Matthew S. Reynolds | University of Washington",
+    "observed": "2026-07-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Charlotte P. Lee": {
+  "openalex": [
+   "https://openalex.org/A5016966514"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5016966514: full name: Charlotte P. Lee",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7214084721",
+    "sha256": "6ef94ecb0cad6a2cea5785e5e61377b9ef4ea709b1d9538a715bf5247d5aff35",
+    "quote": "Charlotte P. Lee | University of Washington",
+    "observed": "2026-09-23",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "unproven_years": [
+   2018
+  ],
+  "why_unproven": "Second look 2026-11-04: 12 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "David Ribes": {
+  "openalex": [
+   "https://openalex.org/A5074771697"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5074771697: full name: David Ribes",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7147242161",
+    "sha256": "c85fd5bab3bc2d4998d1dbad273842ba8b1f726119219280c1b839ae867b8fa3",
+    "quote": "David Ribes | Human Centered Design and Engineering (HCDE), University of Washington",
+    "observed": "2026-04-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "unproven_years": [
+   2018
+  ],
+  "why_unproven": "Second look 2026-11-04: 11 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "Hala Annabi": {
+  "openalex": [
+   "https://openalex.org/A5008665961"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5008665961: full name: Hala Annabi",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W3137976928",
+    "sha256": "fb36a553cb75b71d7e61f238d2b78e4d1a1be58c37e117ff4a4ade68f3988f42",
+    "quote": "Hala Annabi | ACCESS-IT Research Group, University of Washington, Seattle, WA, 98105, USA",
+    "observed": "2021-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Megan Finn": {
+  "openalex": [
+   "https://openalex.org/A5074662132"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5074662132: full name: Megan Finn",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7138846251",
+    "sha256": "13dbdfd3c7eeae75157c6e0a30795b99d0ba0e3f444553538a61ce0a97784c4e",
+    "quote": "Megan Finn | University of Washington",
+    "observed": "2026-03-20",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Karen E. Fisher": {
+  "openalex": [
+   "https://openalex.org/A5101998237"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5101998237: full name: Karen E. Fisher",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7163902767",
+    "sha256": "7425dd9b983d0901b67df2a83dc65f7bddc2cca3db73dbadac92faa643ddf527",
+    "quote": "Karen E. Fisher | University of Washington",
+    "observed": "2026-06-08",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Ricardo Gomez": {
+  "openalex": [
+   "https://openalex.org/A5038792782"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5038792782: full name: Ricardo Gomez",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4401234433",
+    "sha256": "ed69bdea47b3895e1e2aff3134da8521a7e895570de78cba5386bb99dec7a5ae",
+    "quote": "Ricardo Gomez | University of Washington, Seattle, WA, USA",
+    "observed": "2024-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Anna Lauren Hoffmann": {
+  "openalex": [
+   "https://openalex.org/A5016849838"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5016849838: full name: Anna Lauren Hoffmann",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4414759224",
+    "sha256": "b77611a3822412ceb2df5f041c6c2b86303f098549b0dc0cbb6264f7ac596e86",
+    "quote": "Anna Lauren Hoffmann | Information School. University of Washington (Hoffmann)",
+    "observed": "2025-09-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Carole Palmer": {
+  "openalex": [
+   "https://openalex.org/A5082602312"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5082602312: full name: Carole L. Palmer",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7092180258",
+    "sha256": "e690fcc524c8d510db18c23530074809a2d21dc9bddb02704e47878c9db643ff",
+    "quote": "Carole L. Palmer | University of Washington  USA",
+    "observed": "2025-10-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Jaime Snyder": {
+  "openalex": [
+   "https://openalex.org/A5082803912"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5082803912: full name: Jaime Snyder",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7141978748",
+    "sha256": "ed0f53c655e23d75beb45d35fc629592b2b01cfd08537ec579d64966eabedb58",
+    "quote": "Jaime Snyder | Information School, University of Washington, Seattle, Washington, USA",
+    "observed": "2026-04-13",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Marika Cifor": {
+  "openalex": [
+   "https://openalex.org/A5089893806"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5089893806: full name: Marika Cifor",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4414344167",
+    "sha256": "4bfd9ab287c52089731f75a4dc2a061f382083eb97e63278cab894001de1acaa",
+    "quote": "Marika Cifor | Information School, University of Washington",
+    "observed": "2025-09-18",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Jason Young": {
+  "openalex": [
+   "https://openalex.org/A5012039174"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5012039174: full name: Jason C. Young",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7154019722",
+    "sha256": "2efb1e0d2939dcd6647622e9e5f1e1ab39efd29978ed2164759f788ddfa4488b",
+    "quote": "Jason C Young | Information School, University of Washington, Seattle, Washington, USA",
+    "observed": "2026-04-13",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Sucheta Ghoshal": {
+  "openalex": [
+   "https://openalex.org/A5004979407"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5004979407: full name: Sucheta Ghoshal",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7169888138",
+    "sha256": "530402afcf75583fb93b81b0f648501e38bab0c35cb88b411f5e3f553edee600",
+    "quote": "Sucheta Ghoshal | Sucheta Ghoshal, Human Centered Design & Engineering, University of Washington. Email: sghoshal@uw.edu",
+    "observed": "2026-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Lindah Kotut": {
+  "openalex": [
+   "https://openalex.org/A5063967746"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5063967746: full name: Lindah Kotut",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7214082248",
+    "sha256": "9cfc0ea58ee4f79af8713a4c7a858b9034105ded92094448e948835a4c0a1379",
+    "quote": "Lindah Kotut | Information School",
+    "observed": "2026-09-23",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Melanie Walsh": {
+  "openalex": [
+   "https://openalex.org/A5055370366"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5055370366: full name: Melanie Walsh",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7133243590",
+    "sha256": "dcc992e2fa1e3d1f8234138e566c6d44bbdfc6ea99c6f3369122a2ad9c06d235",
+    "quote": "Walsh, Melanie | University of Washington",
+    "observed": "2026-03-02",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Sayamindu Dasgupta": {
+  "openalex": [
+   "https://openalex.org/A5069721021"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5069721021: full name: Sayamindu Dasgupta",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4407571772",
+    "sha256": "f46e9e4b7a19204e3735fba8f041053e1d44f1b48fbb02a8b4f1ee867a09143d",
+    "quote": "Sayamindu Dasgupta | Human Centered Design and Engineering, University of Washington, Seattle, Washington, USA",
+    "observed": "2025-04-24",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Nassim Parvin": {
+  "openalex": [
+   "https://openalex.org/A5022731839"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5022731839: full name: Nassim Parvin",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7118197334",
+    "sha256": "17eed906cd6e87d875a42191b34a5a3df2a46c228a6c36711df7679cc819fde1",
+    "quote": "Nassim Parvin | University of Washington",
+    "observed": "2026-01-05",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Abel Rodriguez": {
+  "openalex": [
+   "https://openalex.org/A5105758910"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5105758910: full name: Abel Rodríguez",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7125929741",
+    "sha256": "a887a5ec95c5a2fa6439b521c39402bd7e2d47e2d6c2bdb59b4b9ab57889c64c",
+    "quote": "Rodriguez, Abel | Department of Statistics , University of Washington , Seattle , 98195 , Washington , United States of America",
+    "observed": "2026-01-27",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Blake Hannaford": {
+  "openalex": [
+   "https://openalex.org/A5074967911"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5074967911: full name: Blake Hannaford",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7131862692",
+    "sha256": "ae2d741b96a6a25ebbc44a32ceb11b2ee5f12c40734b54a52b041c300e7ccf2c",
+    "quote": "Blake Hannaford | BioRobotics Lab (BRL), Electrical and Computer Engineering, University of Washington, 185 Stevens Way, Seattle Washington 98195, United States",
+    "observed": "2026-02-27",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Yiyue Luo": {
+  "openalex": [
+   "https://openalex.org/A5007246518"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5007246518: full name: Yiyue Luo",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7134201200",
+    "sha256": "9f42834673519dbd4ed51cdc16eb9f910d359c67e8210301babd7a10897d001e",
+    "quote": "Yiyue Luo | ECE, University of Washington, Seattle, Washington, USA",
+    "observed": "2026-03-07",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Sajjad Moazeni": {
+  "openalex": [
+   "https://openalex.org/A5068618458"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5068618458: full name: Sajjad Moazeni",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7163270866",
+    "sha256": "5d93193044319021ebdc370e70400fa90e89def2066aa3c203def95c32a8ea64",
+    "quote": "Sajjad Moazeni | University of Washington Department of Electrical and Computer Engineering, Seattle, USA",
+    "observed": "2026-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Gina-Anne Levow": {
+  "openalex": [
+   "https://openalex.org/A5031004017"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5031004017: full name: Gina-Anne Levow",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7133345472",
+    "sha256": "2b8106823dce15943e7dbab384974b84078fed00b56328ea7d7a6cd11cc9cac1",
+    "quote": "Levow, Gina-Anne | Department of Linguistics , University of Washington",
+    "observed": "2026-03-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "unproven_years": [
+   2022
+  ],
+  "why_unproven": "Second look 2026-11-04: 17 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2022]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "Andrea L Hartzler": {
+  "openalex": [
+   "https://openalex.org/A5090625741"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5090625741: full name: Andrea L Hartzler",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7152453970",
+    "sha256": "1c9f7f82f087e160f04d5bee70af4c1108eecdf72ea92f740611c010c614e917",
+    "quote": "Hartzler, Andrea | University of Washington , Seattle , WA ,",
+    "observed": "2026-03-11",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "periods": [
+   {
+    "id": "override_period_gaps_uwashington_andrea_l_hartzler",
+    "start": "2024",
+    "end": null,
+    "asof": "2026-11-22",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20241102072159id_/http://bime.uw.edu/faculty/",
+      "sha256": "c086400314ad515e05eecb1c0e9903272ff352481eb36c02252226b2348cd0c6",
+      "quote": "Andrea Hartzler, PhD Professor",
+      "observed": "2024-11-02",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20250216222521id_/http://bime.uw.edu/faculty/andrea-hartzler/",
+      "sha256": "c340a0f3d4ce084553b102206e48671e48920f08e3bc7440b3606f48a4ee7c8f",
+      "quote": "Andrea Hartzler Andrea Hartzler, PhD Professor",
+      "observed": "2025-02-16",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://bime.uw.edu/faculty/andrea-hartzler/",
+      "sha256": "922bc89c202566bb35223129e4ef15e396f6d410daad700007c68cbb67e75fd3",
+      "quote": "Andrea Hartzler Andrea Hartzler, PhD Professor",
+      "observed": "2026-11-22",
+      "kind": "dept_listing"
+     }
+    ],
+    "note": "Bridged from dated evidence for every year 2024-2026: listings, and for the gap years [2025] dated Wayback captures naming the PI with a professor title (hierarchy/uwashington/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+    "reviewed": "periods_school_gaps_20261030"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
+ },
+ "Mehran Mesbahi": {
+  "openalex": [
+   "https://openalex.org/A5040511603"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5040511603: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7125935559",
+    "sha256": "22d2cbab4395adc5fc1f7e4fc9f9685903db37b7b422bb9908c974d298886fa5",
+    "quote": "Mehran Mesbahi | University of Washington",
+    "observed": "2026-01-08",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Yinhai Wang": {
+  "openalex": [
+   "https://openalex.org/A5012268687"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5012268687: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4414968663",
+    "sha256": "7999fc49b078e7b19544df181e68e1208d017ec048027986376b979811555d12",
+    "quote": "Yinhai Wang | University of Washington",
+    "observed": "2026-07-20",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Sreeram Kannan": {
+  "openalex": [
+   "https://openalex.org/A5100722219"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5100722219: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4390647613",
+    "sha256": "d6c9cf7b8b9db946acb105cc964b83ac41d6712bf6b8cc9f47a953d9b3fd22a3",
+    "quote": "Kannan, Sreeram | University of Washington at Seattle",
+    "observed": "2024-01-04",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Trevor Cohen": {
+  "openalex": [
+   "https://openalex.org/A5071178113",
+   "https://openalex.org/A5133251552"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5071178113: candidate author id; A5133251552: full name: Cohen, Trevor",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4415200411",
+    "sha256": "0dd0ba987f671b90d1dc7ec1a164917f01a610fc98ba050b7069047e1e732844",
+    "quote": "Trevor Cohen | Biomedical Informatics and Medical Education, University of Washington, Seattle, WA, USA",
+    "observed": "2026-04-25",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7152453970",
+    "sha256": "1c9f7f82f087e160f04d5bee70af4c1108eecdf72ea92f740611c010c614e917",
+    "quote": "Cohen, Trevor | University of Washington , Seattle , WA ,",
+    "observed": "2026-03-11",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "periods": [
+   {
+    "id": "override_period_deep_uwashington_trevor_cohen",
+    "start": "2024",
+    "end": null,
+    "asof": "2025-01-20",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20241102072159id_/http://bime.uw.edu/faculty/",
+      "sha256": "c086400314ad515e05eecb1c0e9903272ff352481eb36c02252226b2348cd0c6",
+      "quote": "Trevor Cohen, MBChB, PhD, FACMI Professor",
+      "observed": "2024-11-02",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20250120000626id_/https://bime.uw.edu/faculty/trevor-cohen/",
+      "sha256": "2dc9c55e6015a5cb2dcac39675c86ec27af233f4d60c1abe453af8a653785338",
+      "quote": "Trevor Cohen Trevor Cohen, MBChB, PhD, FACMI Professor",
+      "observed": "2025-01-20",
+      "kind": "unit_page_capture"
+     }
+    ],
+    "note": "Bridged: listings plus dated captures for the gap years [2025] (hierarchy/uwashington/deep-gap-evidence.json). Start is a lower bound; no end is claimed.",
+    "reviewed": "periods_school_deep_20261104"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures in the second look (tools/periods_school.py deep)."
+ },
+ "Herbert M. Sauro": {
+  "openalex": [
+   "https://openalex.org/A5044484291"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5044484291: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7124450961",
+    "sha256": "5376ba264e18d5399b553ce50ac4d43cb1cd892e931f683681d440af8b44e254",
+    "quote": "Herbert M. Sauro | University of Washington",
+    "observed": "2026-01-16",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Zelda B. Zabinsky": {
+  "openalex": [
+   "https://openalex.org/A5056796690"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5056796690: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4408718525",
+    "sha256": "bcbbe73586d7bbc9de9bfb240c77e970bb6fbba80e87203150f658b741f64c34",
+    "quote": "Zelda  B. Zabinsky | University of Washington",
+    "observed": "2026-04-28",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Dmitriy Drusvyatskiy": {
+  "openalex": [
+   "https://openalex.org/A5033142494"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5033142494: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4406247999",
+    "sha256": "e05d9d0296128d42b5e768ed3ae45e8ec76525768aaea4ce4308e69b819061cb",
+    "quote": "Dmitriy Drusvyatskiy | Department of Mathematics, University of Washington, Seattle, WA 98195 USA",
+    "observed": "2025-01-10",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Anne M. Turner": {
+  "openalex": [
+   "https://openalex.org/A5031179413"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5031179413: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7127388224",
+    "sha256": "7b6da04dfaafca65702fcc6cca459d2176e9bac406f3059474246ba42f6aa7b3",
+    "quote": "Anne M. Turner | Department of Biomedical Informatics and Medical Education School of Medicine University of Washington  Seattle Washington USA",
+    "observed": "2026-02-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "periods": [
+   {
+    "id": "override_period_deep_uwashington_anne_m_turner",
+    "start": "2024",
+    "end": null,
+    "asof": "2025-01-19",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20241102072159id_/http://bime.uw.edu/faculty/",
+      "sha256": "c086400314ad515e05eecb1c0e9903272ff352481eb36c02252226b2348cd0c6",
+      "quote": "Anne M. Turner, MD, MLIS, MPH, FACMI Professor",
+      "observed": "2024-11-02",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20250119231204id_/https://bime.uw.edu/faculty/anne-turner/",
+      "sha256": "9547731324bef90b58cc5a87bc12c82b1dd587517bc72cc556022bbe6944211d",
+      "quote": "Turner Anne M. Turner, MD, MLIS, MPH, FACMI Professor",
+      "observed": "2025-01-19",
+      "kind": "unit_page_capture"
+     }
+    ],
+    "note": "Bridged: listings plus dated captures for the gap years [2025] (hierarchy/uwashington/deep-gap-evidence.json). Start is a lower bound; no end is claimed.",
+    "reviewed": "periods_school_deep_20261104"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures in the second look (tools/periods_school.py deep)."
+ },
+ "Santosh Devasia": {
+  "openalex": [
+   "https://openalex.org/A5070381429"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5070381429: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7083800872",
+    "sha256": "b02d3143e2f0be68d998196b886a84e6e8ca2ec11405d2189ca577b833fe0dd6",
+    "quote": "Santosh Devasia | University of Washington",
+    "observed": "2026-06-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Ashis G. Banerjee": {
+  "openalex": [
+   "https://openalex.org/A5001953637"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5001953637: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4415332635",
+    "sha256": "1fe97f3e7c4cd6cc4137e0392ea54074a21a38bf4f754846000c566541111832",
+    "quote": "Ashis G. Banerjee | University of Washington",
+    "observed": "2026-06-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Shane Steinert-Threlkeld": {
+  "openalex": [
+   "https://openalex.org/A5017484646"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5017484646: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7124848584",
+    "sha256": "d97b11b119ae2f6cc01376c26bea155b0c50b2babc5928632d7995320a685d63",
+    "quote": "Shane Steinert-Threlkeld | Department of Linguistics, University of Washington, Seattle, WA, USA",
+    "observed": "2026-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "unproven_years": [
+   2022
+  ],
+  "why_unproven": "Second look 2026-11-04: 17 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2022]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "Bamdad Hosseini": {
+  "openalex": [
+   "https://openalex.org/A5012461935"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5012461935: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4323322764",
+    "sha256": "906e790f33f792a712555b1e6828afa81f02f1f84f194495e6aa01bc36d42b6d",
+    "quote": "Bamdad Hosseini | Department of Applied Mathematics, University of Washington, Seattle, WA, USA",
+    "observed": "2026-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "L. Monika Moskal": {
+  "openalex": [
+   "https://openalex.org/A5028784803"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5028784803: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7123355021",
+    "sha256": "d6f1d79c5e327ddbf9ea8e5db0ecfeaec2f9d29c8b6140f89a0bc18b4d3ede40",
+    "quote": "L. Monika Moskal | University of Washington",
+    "observed": "2026-01-12",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "John H. Gennari": {
+  "openalex": [
+   "https://openalex.org/A5010618664"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5010618664: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7126261810",
+    "sha256": "f805f966b62eaa3416f57062a9af7b9e96735ff656fcee6e130a8e1bd8e339dc",
+    "quote": "John H Gennari | Department of Medical Education and Biomedical Informatics, University of Washington, 1410 NE Campus Pkwy, 98195, WA, United States",
+    "observed": "2026-01-30",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "periods": [
+   {
+    "id": "override_period_deep_uwashington_john_h_gennari",
+    "start": "2024",
+    "end": null,
+    "asof": "2025-01-20",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20241102072159id_/http://bime.uw.edu/faculty/",
+      "sha256": "c086400314ad515e05eecb1c0e9903272ff352481eb36c02252226b2348cd0c6",
+      "quote": "John Gennari, PhD Professor",
+      "observed": "2024-11-02",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20250120025128id_/http://bime.uw.edu/faculty/john-gennari/",
+      "sha256": "0126f9e586c0160e2aadb1920bbc782cfe22d0e0b242db09e190f4834695662a",
+      "quote": "John Gennari John Gennari, PhD Professor",
+      "observed": "2025-01-20",
+      "kind": "unit_page_capture"
+     }
+    ],
+    "note": "Bridged: listings plus dated captures for the gap years [2025] (hierarchy/uwashington/deep-gap-evidence.json). Start is a lower bound; no end is claimed.",
+    "reviewed": "periods_school_deep_20261104"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures in the second look (tools/periods_school.py deep)."
+ },
+ "Kristi A. Morgansen": {
+  "openalex": [
+   "https://openalex.org/A5042329051"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5042329051: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7129038677",
+    "sha256": "5bf64c7fcd6a7bd024296ea1d5a111a1d39639680eaacc12d27207760e44c92a",
+    "quote": "Kristi A. Morgansen | University of Washington",
+    "observed": "2026-02-16",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "periods": [
+   {
+    "id": "override_period_gaps_uwashington_kristi_a_morgansen",
+    "start": "2016",
+    "end": null,
+    "asof": "2026-11-22",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20260210173855id_/https://www.aa.washington.edu/facultyfinder?page=1",
+      "sha256": "240702206a6100d510018834ff7d4934841cfbd1b55664d4ab93a2373b8a516f",
+      "quote": "Morgansen, Kristi (206) 616-5950 morgansn@uw.edu AER 234 Aeronautics & Astronautics Professor",
+      "observed": "2026-02-10",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20190716164101id_/https://www.aa.washington.edu/facultyfinder/Kristi-Morgansen",
+      "sha256": "e74ae19ce58a18cb4801051f0797f7ffb8fa8410acaee33f846eecfe00a5f23d",
+      "quote": "Kristi Morgansen Kristi Morgansen Professor",
+      "observed": "2019-07-16",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20201126042239id_/https://www.aa.washington.edu/facultyfinder/Kristi-Morgansen",
+      "sha256": "210ce898f529e4fb842daeacbbe8e70f4aec1f310b03c619f850ca435a477699",
+      "quote": "Kristi Morgansen Professor",
+      "observed": "2020-11-26",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20210120202639id_/https://www.aa.washington.edu/facultyfinder/Kristi-Morgansen",
+      "sha256": "c25976c003ec6ad50f298528055394f3b1b98f38ffb8de63fb3ee86b943833da",
+      "quote": "Kristi Morgansen Professor",
+      "observed": "2021-01-20",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20220111220839id_/https://www.aa.washington.edu/facultyfinder/kristi-morgansen",
+      "sha256": "b19b272eca12cd97564170f48889d245c9e4746c8da22c7c9f8e004a258666e1",
+      "quote": "Kristi Morgansen Chair, Department of Aeronautics and Astronautics Professor",
+      "observed": "2022-01-11",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20230329070450id_/https://www.aa.washington.edu/facultyfinder/Kristi-Morgansen",
+      "sha256": "eb5d993e5f1bd64f16ea7c196c4d6c76940f012a72682c43cd030617649edafd",
+      "quote": "Kristi Morgansen Chair, Department of Aeronautics and Astronautics Professor",
+      "observed": "2023-03-29",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20240226180209id_/https://www.aa.washington.edu/facultyfinder/Kristi-Morgansen",
+      "sha256": "a430854198c02cc6f0c808ead9bf3174b4aeed4fb58d40b49d5689047c42313b",
+      "quote": "Kristi Morgansen Chair, Department of Aeronautics and Astronautics Professor",
+      "observed": "2024-02-26",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20251111012311id_/https://www.aa.washington.edu/facultyfinder?page=1",
+      "sha256": "ea29eb40501d18a1200fe4ba1fb4d01651697fd47810e2c0c76e75f50bd408ba",
+      "quote": "Morgansen, Kristi (206) 616-5950 morgansn@uw.edu GUG 211E Aeronautics & Astronautics Professor",
+      "observed": "2025-11-11",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://www.aa.washington.edu/facultyfinder/kristi-morgansen",
+      "sha256": "6967c34bf0576664b7491decbfe045ba29b24f1780dd7ea0c9078eba886625a7",
+      "quote": "Kristi Morgansen Professor",
+      "observed": "2026-11-22",
+      "kind": "dept_listing"
+     }
+    ],
+    "note": "Bridged from dated evidence for every year 2016-2026: listings, and for the gap years [2019, 2020, 2021, 2022, 2023, 2024, 2025] dated Wayback captures naming the PI with a professor title (hierarchy/uwashington/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+    "reviewed": "periods_school_gaps_20261030"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
+ },
+ "Archis Ghate": {
+  "openalex": [
+   "https://openalex.org/A5068691426"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5068691426: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4396622878",
+    "sha256": "d5aa584e8ea94f1d769fffec3a10c647d99226d2138f8695a752ec72a7a1a9d8",
+    "quote": "Archis Ghate | Industrial and Systems Engineering, University of Washington, BOX 352650, Seattle, WA 98195, United States",
+    "observed": "2024-05-03",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Yingfei Wang": {
+  "openalex": [
+   "https://openalex.org/A5037984091"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5037984091: full name: Yingfei Wang",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7164809821",
+    "sha256": "e286d1dc3f8c91fe48d0a0ea8c96bb2eac9d080c232fb489267f26b4d2047215",
+    "quote": "Yong Tan | Michael G. Foster School of Business, University of Washington, Seattle, Washington 98195",
+    "observed": "2026-06-15",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Prashanth Rajivan": {
+  "openalex": [
+   "https://openalex.org/A5068816674"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5068816674: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7127925822",
+    "sha256": "7315fa49664b58ebc5811a5121eb7fff963c2d29116d5fd97e9a8af643309485",
+    "quote": "Prashanth Rajivan | Industrial and System Engineering, University of Washington, Seattle, WA, USA",
+    "observed": "2026-02-06",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "unproven_years": [
+   2023
+  ],
+  "why_unproven": "Second look 2026-11-04: 17 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2023]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "Debabrata Dey": {
+  "openalex": [
+   "https://openalex.org/A5061459812"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5061459812: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W3126171625",
+    "sha256": "fbcfc09c23fd68976b52264f01c199a0a83ab3c9f9741d7c4f1dfb8530a2c750",
+    "quote": "Debabrata Dey | School of Business University of Washington , Seattle",
+    "observed": "2021-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Howard J. Chizeck": {
+  "openalex": [
+   "https://openalex.org/A5079984254"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5079984254: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4404688896",
+    "sha256": "35566dbbd595cd60e6f231ae11a24486654eb6c764672a210af4331acaefd124",
+    "quote": "Howard Chizeck | University of Washington,Electrical and Computer Eng. Dept,Seattle,WA",
+    "observed": "2024-09-23",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "unproven_years": [
+   2018
+  ],
+  "why_unproven": "Second look 2026-11-04: 17 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "Amin Sayedi": {
+  "openalex": [
+   "https://openalex.org/A5002098376"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5002098376: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7083456075",
+    "sha256": "b2ceb2725ab26b8b06bea59d323a6eeab427003ca1b54163950af4d2a5de1520",
+    "quote": "Amin Sayedi | University of Washington - Michael G. Foster School of Business",
+    "observed": "2025-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Joseph L. Garbini": {
+  "openalex": [
+   "https://openalex.org/A5041163608"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5041163608: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7152039131",
+    "sha256": "0ba42eca520c8c91cf7367f149fab0adcb46bfd9b0a0a86c364fffc3049f9f3f",
+    "quote": "Joseph L. Garbini | Department of Mechanical Engineering, University of Washington, 352600, 3720 15th Ave NE, Seattle, WA 98195, USA",
+    "observed": "2026-04-08",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "unproven_years": [
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023
+  ],
+  "why_unproven": "Second look 2026-11-04: 17 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018, 2019, 2020, 2021, 2022, 2023]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "Ming Fan": {
+  "openalex": [
+   "https://openalex.org/A5100692957"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5100692957: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4391751930",
+    "sha256": "c17bd4499f115d666a9d1b5a77fd4c743a9ac64c6d2a9d59678aabc257803f7c",
+    "quote": "Ming Fan | Foster School of Business, University of Washington, Seattle, WA, USA",
+    "observed": "2024-02-11",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Chantel S. Prat": {
+  "openalex": [
+   "https://openalex.org/A5053499195"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5053499195: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4414162467",
+    "sha256": "4031010ce9cec3abafcb9a324f431fcbd9bcdd4c0b3bca34832bf8c22515419f",
+    "quote": "Chantel Prat | Department of Psychology, University of Washington, Seattle, WA USA",
+    "observed": "2025-09-12",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "unproven_years": [
+   2022
+  ],
+  "why_unproven": "Second look 2026-11-04: 17 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2022]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "Jeffrey D. Shulman": {
+  "openalex": [
+   "https://openalex.org/A5030751881"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5030751881: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7203477097",
+    "sha256": "78e170c231d66806f3f0f6bfceb8b5f9f67a343fc81d9f39f3318d83f9d9e861",
+    "quote": "Jeffrey D. Shulman | Department of Marketing, Michael G. Foster School of Business, University of Washington, Seattle, Washington 98195",
+    "observed": "2026-08-14",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Kamran Moinzadeh": {
+  "openalex": [
+   "https://openalex.org/A5033636391"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5033636391: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7214575740",
+    "sha256": "a97d9450a8ad5c45067d4811f949f8bb123294310413e17d6b9f36402a31d4d1",
+    "quote": "Kamran Moinzadeh | Foster School of Business - University of Washington, Foster School of Business, University of Washington, Seattle, WA 98195-3200, United States",
+    "observed": "2026-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Krithika Manohar": {
+  "openalex": [
+   "https://openalex.org/A5060988111",
+   "https://openalex.org/A5113289807"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5060988111: candidate author id; A5113289807: full name: Krithika Manohar",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7160720491",
+    "sha256": "9224a2170bb8565dcdd0d831ee079861099021b6942dce6612312d374f6050ea",
+    "quote": "Krithika Manohar | Department of Mechanical Engineering, University of Washington, Seattle, Washington, 98195, USA. Electronic address: kmanohar@uw.edu",
+    "observed": "2026-05-09",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7129633887",
+    "sha256": "8f5a941f0b751db564e2bf2a06780fb034bf59b9d2c39efa7b9301840242aca8",
+    "quote": "Manohar, Krithika | University of Washington",
+    "observed": "2026-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Colin Studholme": {
+  "openalex": [
+   "https://openalex.org/A5029437650"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5029437650: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4404681846",
+    "sha256": "378cb48a8ab954856677d5d487b10f42be9e63bce48fa32de5ce4a39a4917d98",
+    "quote": "Colin Studholme | Department of Pediatrics , Biomedical Image Computing Group, , Seattle, WA 98105,",
+    "observed": "2024-11-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Chiwei Yan": {
+  "openalex": [
+   "https://openalex.org/A5009243454"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5009243454: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4321487121",
+    "sha256": "ab84eaf67661df21f8c617adba045998adcce2ab69bd1988560abaa65e9114d7",
+    "quote": "Chiwei Yan | Department of Industrial and Systems Engineering, University of Washington, Box 352650, Seattle WA 98195, USA",
+    "observed": "2023-02-22",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Anshu Narang-Siddarth": {
+  "openalex": [
+   "https://openalex.org/A5015309430"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5015309430: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W2781880624",
+    "sha256": "d39002a283e5ed5c948f69708da5f77580a0667b3d3ee876f13f001620be7ccd",
+    "quote": "Anshu Narang-Siddarth | University of Washington, Seattle",
+    "observed": "2018-01-07",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Hamed Mamani": {
+  "openalex": [
+   "https://openalex.org/A5029818550"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5029818550: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W3096889808",
+    "sha256": "43b3874ef7f4352d1a17002b624af1997262b9f17523bb4a9d0fbdf0ab992fb8",
+    "quote": "Hamed Mamani | Foster School of Business, University of Washington, Seattle, Washington 98195",
+    "observed": "2021-11-15",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Yong-Pin Zhou": {
+  "openalex": [
+   "https://openalex.org/A5025550875"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5025550875: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7214123157",
+    "sha256": "a9fdbcc652a60422093ba26f3eaf1cf5f417a1c1e711a2799a580580b8b7b955",
+    "quote": "Yong-Pin Zhou | University of Washington - Department of Information Systems and Operations Management, BOx 353226, Foster School of Business, University of Washington, Seattle, WA Washington 98195-3226, United States",
+    "observed": "2026-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Duane Storti": {
+  "openalex": [
+   "https://openalex.org/A5072289905"
+  ],
+  "why_openalex": "2026-10-30 (share_test): computing-share identity rule (hierarchy/uwashington/cs-related-review.json, University of Washington): A5072289905: candidate author id",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4415597896",
+    "sha256": "fd2fcafa2c444e5f6668b632ef714104b1107f56466dbfd00e2227aeff51c5f4",
+    "quote": "Duane Storti | University of Washington , , ,",
+    "observed": "2025-08-17",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "unproven_years": [
+   2018,
+   2019,
+   2020,
+   2023
+  ],
+  "why_unproven": "Second look 2026-11-04: 17 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018, 2019, 2020, 2023]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "James R. Lee": {
+  "openalex": [
+   "https://openalex.org/A5028879014",
+   "https://openalex.org/A5088482193"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): hand review (stage 5, no DBLP id placed by dblp_ids_school.py): A5028879014: 21 UW-affiliated works 2016-2024 as ['James R. Lee'], e.g. 'COMPUTER SCIENCE UNIVERSITY OF WASHINGTON BOX 352350 185 STEVENS WAY SEATTLE , WASHINGTON 98195 USA '; A5088482193: 1 UW-affiliated works 2017-2017 as ['James R. Lee'], e.g. 'Computer Science , University of Washington , Seattle , USA | University of Washington, Seattle, Uni'; two OpenAlex ids, both with Computer Science, University of Washington raw affiliations; A5100367867 (James C. Lee, Cardiology) set aside",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4399520892",
+    "sha256": "afcf64b4fcbae36be9458312b01b3498ffad23132642adf4a6ee1e5fe5cd5803",
+    "quote": "James R. Lee | University of Washington, Seattle, USA",
+    "observed": "2024-06-10",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   },
+   {
+    "url": "https://api.openalex.org/works/W2963158052",
+    "sha256": "4728465fd05cb0da8628becfdfe8b8ab4729030383e1d4b72b4f90421cf0f5bc",
+    "quote": "Lee, James R. | Computer Science , University of Washington , Seattle , USA",
+    "observed": "2017-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Joshua R. Smith": {
+  "openalex": [
+   "https://openalex.org/A5019043770",
+   "https://openalex.org/A5074758070"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): hand review (stage 5, no DBLP id placed by dblp_ids_school.py): A5019043770: 84 UW-affiliated works 2016-2025 as ['Joshua R. Smith'], e.g. 'University of Washington, Seattle, WA, USA'; A5074758070: 3 UW-affiliated works 2025-2026 as ['Joshua R. Smith'], e.g. 'University of Washington,Electrical and Computer Engineering Department'; two ids with UW Seattle / UW ECE raw affiliations; A5027978348 (Joshua Ryan Smith, a different person) set aside",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4406457629",
+    "sha256": "e0d665c7866c0c8a687b58f67beb730d9592940bb45155697b390d10178248be",
+    "quote": "Smith, Joshua R. | Allen School and",
+    "observed": "2025-01-14",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   },
+   {
+    "url": "https://api.openalex.org/works/W4417081419",
+    "sha256": "54495c7399798b6ab3c4d0f0ab1336846b2bbc9e13f2f5ac820ba85e07508bc4",
+    "quote": "Joshua Smith | University of Washington",
+    "observed": "2026-04-21",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Su-In Lee": {
+  "openalex": [
+   "https://openalex.org/A5028723221"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): hand review (stage 5, no DBLP id placed by dblp_ids_school.py): A5028723221: 99 UW-affiliated works 2016-2026 as ['Su‐In Lee'], e.g. 'School of Computer Science and Engineering, University of Washington, Seattle, Washington | School o'",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7157246378",
+    "sha256": "6aabac47265b2095b109bc231fb5d9c0d1c3fe5df5683db02926c2d43bb51783",
+    "quote": "Su-In Lee | Paul G. Allen School of Computer Science & Engineering, University of Washington, Seattle, WA, USA",
+    "observed": "2026-04-28",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Larry Ruzzo": {
+  "openalex": [
+   "https://openalex.org/A5086685720"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): hand review (stage 5, no DBLP id placed by dblp_ids_school.py): A5086685720: 11 UW-affiliated works 2016-2022 as ['Walter L. Ruzzo'], e.g. 'Center for Cancer Innovation, University of Washington, Seattle, WA | Computer Science and Engineeri'; listed as Larry Ruzzo; OpenAlex and bylines spell Walter L. Ruzzo",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4210379656",
+    "sha256": "e7bcb14c3636626fe3a5200c87e4b2aec23a5d97c3982f461840df1f4a113359",
+    "quote": "Walter L Ruzzo | Center for non-coding RNA in Technology and Health (RTH), University of Copenhagen, Denmark",
+    "observed": "2022-01-25",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "aliases": [
+   "Walter L. Ruzzo"
+  ]
+ },
+ "Jeff Nivala": {
+  "openalex": [
+   "https://openalex.org/A5005023517"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): hand review (stage 5, no DBLP id placed by dblp_ids_school.py): A5005023517: 880 UW-affiliated works 2018-2026 as ['Jeff Nivala'], e.g. 'Department of Genetics, Harvard Medical School, Boston, MA, USA | Paul G. Allen School of Computer S'; the id also holds deposited nanopore data files (.fast5 dataset records); papers only are used",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7131086376",
+    "sha256": "a3ccd4be86b353bce68c1356028466383abae1b766aa9e84fb87751a18422573",
+    "quote": "Jeff Nivala | 1Paul G. Allen School of Computer Science and Engineering, University of Washington, Seattle, Washington, USA; email: jmdn@cs.washington.edu",
+    "observed": "2026-02-23",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Chris Thachuk": {
+  "openalex": [
+   "https://openalex.org/A5012131505"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): hand review (stage 5, no DBLP id placed by dblp_ids_school.py): A5012131505: 10 UW-affiliated works 2020-2025 as ['Chris Thachuk'], e.g. 'Dept of Computing & Mathematical Science, California Institute of Technology, Pasadena, CA 91125, US'",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4412009613",
+    "sha256": "e506e050c5246facb3135016fceed2dc36fb3205065bf8dec22f251b6853fb25",
+    "quote": "Chris Thachuk | University of Washington;",
+    "observed": "2025-07-03",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Sara Mostafavi": {
+  "openalex": [
+   "https://openalex.org/A5065367298"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): hand review (stage 5, no DBLP id placed by dblp_ids_school.py): A5065367298: 45 UW-affiliated works 2021-2026 as ['Sara Mostafavi'], e.g. 'Paul Allen School of Computer Science and Engineering, University of Washington, Seattle, WA, USA'",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7127293915",
+    "sha256": "4d61eb44ed6a18838028e3a7aaa5b3bc06ce810215cc61a582589bb6711ad8c7",
+    "quote": "Sara Mostafavi | University of Washington;",
+    "observed": "2026-02-03",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Andrea Coladangelo": {
+  "openalex": [
+   "https://openalex.org/A5091749382"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): hand review (stage 5, no DBLP id placed by dblp_ids_school.py): A5091749382: 19 UW-affiliated works 2023-2026 as ['Andrea Coladangelo'], e.g. 'School of Computer Science and Engineering , University of Washington'",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4416399847",
+    "sha256": "98ad7093540a9f6f88a6a71a96a806c1aa72d4e1ea9290c1bc7fdada86aeefc9",
+    "quote": "Andrea Coladangelo | University of Washington, Seattle, USA",
+    "observed": "2026-06-09",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Matthew Golub": {
+  "openalex": [
+   "https://openalex.org/A5008892922"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): hand review (stage 5, no DBLP id placed by dblp_ids_school.py): A5008892922: 10 UW-affiliated works 2024-2026 as ['Matthew D. Golub'], e.g. 'Center for the Neural Basis of Cognition, Pittsburgh, PA 15213, USA; Department of Electrical and Co'",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7134034648",
+    "sha256": "45f89c42c2d659afa5bb694665303909792796611334f8d0498b39b228186a02",
+    "quote": "Matthew Golub | Allen Institute for Neural Dynamics, Seattle, WA, USA",
+    "observed": "2026-03-05",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Mitali Bafna": {
+  "openalex": [
+   "https://openalex.org/A5039083557"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): hand review (stage 5, no DBLP id placed by dblp_ids_school.py): A5039083557: 3 UW-affiliated works 2026-2026 as ['Mitali Bafna'], e.g. 'University of Washington, Seattle, WA, USA'",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7147318085",
+    "sha256": "f15ba55a5ed5f19ea92da54bd91f75691b3f2b226ab28b74ec0436c5e6a62b77",
+    "quote": "Mitali Bafna | University of Washington, Seattle, WA, USA",
+    "observed": "2026-03-31",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Andres Erbsen": {
+  "dblp": [
+   "https://dblp.org/pid/222/4224"
+  ],
+  "orcid": [
+   "0000-0002-9854-7500"
+  ],
+  "identity_reviewed_at": "2026-11-22",
+  "identity_reviewed_by": "claude-labhunt-1121",
+  "why_dblp": "2026-11-22 source-reviewed: the official Allen School profile https://www.cs.washington.edu/people/faculty/erbsen-andres/ (sha256 815e35b46dde561b409c79aeb8a90fdf73f2e5a292416e794aa07693d611c381, Assistant Professor) links the PI-owned homepage https://andres.systems/ (fetched as /index.html, the only path its robots.txt allows besides /; sha256 5a7473a982e480a22e136a51e6519cee56d1e491f9b1f8a540c042e3359f5d5e), which says 'I'm on the CS faculty at the University of Washington (PLSE lab) ... Previously, I was a PhD student in the lab of Adam Chlipala at MIT CSAIL'. DBLP 222/4224 (dump dblp-2026-09-01) is the only Andres Erbsen with Chlipala coauthorships (24 records) and carries ORCID 0000-0002-9854-7500. dblp_ids_school.py held it as name-only (no school affiliation yet: UW listing 2026 only).",
+  "identity_evidence": [
+   {
+    "url": "https://www.cs.washington.edu/people/faculty/erbsen-andres/",
+    "sha256": "815e35b46dde561b409c79aeb8a90fdf73f2e5a292416e794aa07693d611c381",
+    "quote": "Andres Erbsen Assistant Professor",
+    "observed": "2026-11-22",
+    "links_to": "https://andres.systems/"
+   },
+   {
+    "url": "https://andres.systems/index.html",
+    "sha256": "5a7473a982e480a22e136a51e6519cee56d1e491f9b1f8a540c042e3359f5d5e",
+    "quote": "I'm on the CS faculty at the University of Washington ( PLSE lab ). ... Previously, I was a PhD student in the lab of Adam Chlipala at MIT CSAIL",
+    "observed": "2026-11-22"
+   }
+  ]
+ },
+ "Gary Hsieh": {
+  "periods": [
+   {
+    "id": "override_period_gaps_uwashington_gary_hsieh",
+    "start": "2016",
+    "end": null,
+    "asof": "2026-11-04",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20160415025843id_/http://www.hcde.washington.edu:80/faculty",
+      "sha256": "55944e0eb0b77aed4287e77f05749e2e1978a3d62b94c453b58abd5d2f3dd0c3",
+      "quote": "Gary Hsieh Assistant Professor",
+      "observed": "2016-04-15",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20180503060610id_/https://www.hcde.washington.edu/hsieh",
+      "sha256": "8e45ef7be2da89f5909f79b96dae2d06e0179e096b6e423d167ea276d45b9596",
+      "quote": "Gary Hsieh Gary Hsieh, PhD Associate Professor",
+      "observed": "2018-05-03",
+      "kind": "homepage_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20261104225137id_/https://www.cs.washington.edu/people/adjunct/",
+      "sha256": "711464de6791dde067a6df341606c04d0d9c061147842f25c680c8ed6ecb5f5c",
+      "quote": "Gary Hsieh Adjunct Department of Human-Centered Design & Engineering",
+      "observed": "2026-11-04",
+      "kind": "dept_listing"
+     }
+    ],
+    "note": "Bridged from dated evidence for every year 2016-2026: listings, and for the gap years [2018] dated Wayback captures naming the PI with a professor title (hierarchy/uwashington/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+    "reviewed": "periods_school_gaps_20261030"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
+ },
+ "Julie Kientz": {
+  "periods": [
+   {
+    "id": "override_period_gaps_uwashington_julie_kientz",
+    "start": "2016",
+    "end": null,
+    "asof": "2026-11-04",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20160415025843id_/http://www.hcde.washington.edu:80/faculty",
+      "sha256": "55944e0eb0b77aed4287e77f05749e2e1978a3d62b94c453b58abd5d2f3dd0c3",
+      "quote": "Julie Kientz Associate Professor",
+      "observed": "2016-04-15",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20180502152344id_/https://www.hcde.washington.edu/kientz",
+      "sha256": "e07252c25cf7cc03a4cbd33933e0fc5e7a32cca8eb17f5dfc40a8eadf2021a3b",
+      "quote": "Julie Kientz Julie Kientz, PhD Associate Professor",
+      "observed": "2018-05-02",
+      "kind": "homepage_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20261104225137id_/https://www.cs.washington.edu/people/adjunct/",
+      "sha256": "711464de6791dde067a6df341606c04d0d9c061147842f25c680c8ed6ecb5f5c",
+      "quote": "Julie Kientz Adjunct Department of Human-Centered Design & Engineering",
+      "observed": "2026-11-04",
+      "kind": "dept_listing"
+     }
+    ],
+    "note": "Bridged from dated evidence for every year 2016-2026: listings, and for the gap years [2018] dated Wayback captures naming the PI with a professor title (hierarchy/uwashington/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+    "reviewed": "periods_school_gaps_20261030"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
+ },
+ "Sean Munson": {
+  "periods": [
+   {
+    "id": "override_period_gaps_uwashington_sean_munson",
+    "start": "2016",
+    "end": null,
+    "asof": "2026-11-04",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20160415025843id_/http://www.hcde.washington.edu:80/faculty",
+      "sha256": "55944e0eb0b77aed4287e77f05749e2e1978a3d62b94c453b58abd5d2f3dd0c3",
+      "quote": "Sean Munson Assistant Professor",
+      "observed": "2016-04-15",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20180503060554id_/https://www.hcde.washington.edu/munson",
+      "sha256": "36657857516aab4d324df6bf0afa5330b00f2f82374f1a7e711f1432d1cb3e75",
+      "quote": "Sean A. Munson, PhD Assistant Professor",
+      "observed": "2018-05-03",
+      "kind": "homepage_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20261104225137id_/https://www.cs.washington.edu/people/adjunct/",
+      "sha256": "711464de6791dde067a6df341606c04d0d9c061147842f25c680c8ed6ecb5f5c",
+      "quote": "Sean Munson Adjunct Department of Human-Centered Design & Engineering",
+      "observed": "2026-11-04",
+      "kind": "dept_listing"
+     }
+    ],
+    "note": "Bridged from dated evidence for every year 2016-2026: listings, and for the gap years [2018] dated Wayback captures naming the PI with a professor title (hierarchy/uwashington/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+    "reviewed": "periods_school_gaps_20261030"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
+ },
+ "Kate Starbird": {
+  "periods": [
+   {
+    "id": "override_period_gaps_uwashington_kate_starbird",
+    "start": "2016",
+    "end": null,
+    "asof": "2026-11-04",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20160415025843id_/http://www.hcde.washington.edu:80/faculty",
+      "sha256": "55944e0eb0b77aed4287e77f05749e2e1978a3d62b94c453b58abd5d2f3dd0c3",
+      "quote": "Kate Starbird Assistant Professor",
+      "observed": "2016-04-15",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20180101093847id_/https://www.hcde.washington.edu/starbird",
+      "sha256": "9da38817857a93cdbd9024e7149a4d8cf76b72fee3acc4f526f2adced20c7411",
+      "quote": "Kate Starbird Kate Starbird, PhD Assistant Professor",
+      "observed": "2018-01-01",
+      "kind": "homepage_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20261104225137id_/https://www.cs.washington.edu/people/adjunct/",
+      "sha256": "711464de6791dde067a6df341606c04d0d9c061147842f25c680c8ed6ecb5f5c",
+      "quote": "Kate Starbird Adjunct Department of Human-Centered Design & Engineering",
+      "observed": "2026-11-04",
+      "kind": "dept_listing"
+     }
+    ],
+    "note": "Bridged from dated evidence for every year 2016-2026: listings, and for the gap years [2018] dated Wayback captures naming the PI with a professor title (hierarchy/uwashington/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+    "reviewed": "periods_school_gaps_20261030"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
+ },
+ "Gang Luo": {
+  "periods": [
+   {
+    "id": "override_period_gaps_uwashington_gang_luo",
+    "start": "2024",
+    "end": null,
+    "asof": "2026-11-22",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20241102072159id_/http://bime.uw.edu/faculty/",
+      "sha256": "c086400314ad515e05eecb1c0e9903272ff352481eb36c02252226b2348cd0c6",
+      "quote": "Gang Luo, PhD Professor",
+      "observed": "2024-11-02",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20250328164109id_/https://pages.cs.wisc.edu/~gangluo/",
+      "sha256": "62ab69bf2dc7cb07a5b90240164f24167ecd21c869c3c6cc2eb62bd21dd742ad",
+      "quote": "Gang Luo Professor",
+      "observed": "2025-03-28",
+      "kind": "homepage_capture"
+     },
+     {
+      "url": "https://bime.uw.edu/faculty/",
+      "sha256": "da94d52eeb8c790a78ca05d7be8d03a31e05393bd28b3aa824fa0e3ab882edc1",
+      "quote": "Gang Luo, PhD Professor",
+      "observed": "2026-11-22",
+      "kind": "dept_listing"
+     }
+    ],
+    "note": "Bridged from dated evidence for every year 2024-2026: listings, and for the gap years [2025] dated Wayback captures naming the PI with a professor title (hierarchy/uwashington/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+    "reviewed": "periods_school_gaps_20261030"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
+ },
+ "Beth Kolko": {
+  "unproven_years": [
+   2018
+  ],
+  "why_unproven": "Second look 2026-11-04: 12 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "David W. McDonald": {
+  "unproven_years": [
+   2018
+  ],
+  "why_unproven": "Second look 2026-11-04: 12 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "Daniela Rosner": {
+  "unproven_years": [
+   2018
+  ],
+  "why_unproven": "Second look 2026-11-04: 13 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "Mark Zachry": {
+  "unproven_years": [
+   2018
+  ],
+  "why_unproven": "Second look 2026-11-04: 11 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "David R. Haynor": {
+  "unproven_years": [
+   2018
+  ],
+  "why_unproven": "Second look 2026-11-04: 26 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "Fei Xia": {
+  "unproven_years": [
+   2023
+  ],
+  "why_unproven": "Second look 2026-11-04: 17 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2023]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+ },
+ "Meliha Yetisgen": {
+  "periods": [
+   {
+    "id": "override_period_deep_uwashington_meliha_yetisgen",
+    "start": "2016",
+    "end": null,
+    "asof": "2023-02-03",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20241102072159id_/http://bime.uw.edu/faculty/",
+      "sha256": "c086400314ad515e05eecb1c0e9903272ff352481eb36c02252226b2348cd0c6",
+      "quote": "Meliha Yetisgen, PhD Professor",
+      "observed": "2024-11-02",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://web.archive.org/web/20220119144722id_/http://bime.uw.edu/faculty/meliha-yetisgen/",
+      "sha256": "3dc976645924ddd227bfe31299aaa8f3c728a1200c319c10b6e332d690c42b4a",
+      "quote": "Meliha Yetisgen Meliha Yetisgen, PhD Associate Professor",
+      "observed": "2022-01-19",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20230203024740id_/https://bime.uw.edu/faculty/meliha-yetisgen/",
+      "sha256": "d5f72aa4aa2533ce22ba992470b04389826220c4185009d8397e23d1f2cffe0d",
+      "quote": "Meliha Yetisgen Meliha Yetisgen, PhD Associate Professor",
+      "observed": "2023-02-03",
+      "kind": "unit_page_capture"
+     }
+    ],
+    "note": "Bridged: listings plus dated captures for the gap years [2022, 2023] (hierarchy/uwashington/deep-gap-evidence.json). Start is a lower bound; no end is claimed.",
+    "reviewed": "periods_school_deep_20261104"
+   }
+  ],
+  "why_periods": "Gap years closed by dated captures in the second look (tools/periods_school.py deep)."
+ },
+ "Paul E. Kinahan": {
+  "unproven_years": [
+   2019
+  ],
+  "why_unproven": "Second look 2026-11-04: 27 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2019]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
  }
 }
