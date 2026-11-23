@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>哈尔滨工业大学教师个人主页</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="inside-network/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="style/homepage/header-footer.css" />
+    <link rel="stylesheet" type="text/css" href="style/style-3qi.css" />
+    <link rel="stylesheet" type="text/css" href="style/slick.css" />
+    <!--皮肤改版-->
+    <link rel="stylesheet" charset="utf-8" type="text/css" href="style/skin-3qi.css" />
+</head>
+<style>
+    .m-subj .ul-pic1 li:nth-child(3n) {
+        margin-right: 0;
+    }
+
+    .snav #myCollapse::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+        /**/
+    }
+
+    .snav #myCollapse::-webkit-scrollbar-track {
+        background: rgb(239, 239, 239);
+        border-radius: 2px;
+    }
+
+    .snav #myCollapse::-webkit-scrollbar-thumb {
+        background: #bfbfbf;
+        border-radius: 10px;
+    }
+
+    .snav #myCollapse::-webkit-scrollbar-thumb:hover {
+        background: #333;
+    }
+
+    .snav #myCollapse::-webkit-scrollbar-corner {
+        background: #179a16;
+    }
+    .floorName {
+        font-size: 18px;
+        font-family: Microsoft YaHei;
+        font-weight: bold;
+        color: #011C43;
+        line-height: 34px;
+        border-bottom: 3px solid #d6ac66;
+        padding-bottom: 18px;
+        margin-bottom:28px;
+    }
+
+    .floordom {
+        display: flex;
+        flex-wrap: wrap;
+        /* margin-bottom: 30px; */
+    }
+
+    .Initial-search {
+        width: 28px;
+        color: #fff;
+        background: #1874cd;
+        border-radius: 14px;
+        position: fixed;
+        right: 10px;
+        top: 230px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+
+    .Initial-search a {
+        color: #fff;
+        margin-bottom: 10px;
+    }
+    .ul-pic1 .con {
+        height: 120px;
+        margin: 0 13px 0 0;
+        padding: 18px;
+        padding-top: 28px;
+        box-sizing: border-box;
+        background-color: #fff;
+        position: relative;
+    }
+</style>
+
+<body>
+
+    <!-- 顶部是读取其它html页面出来的，别乱动 -->
+    <div class="header">
+        <div class="row1"></div>
+    </div>
+    <!-- 搜索区 -->
+    <div class="Initial-search">
+    
+    </div>
+    <div class="m-srch" id="sSearchPart">
+    </div>
+    <div class="main">
+        <div class="banner-in">
+            <img src="images/out/banner2-index.jpg" alt="">
+            <div class="txt"><img src="images/out/banner-t2.png"></div>
+        </div>
+        <div class="m-search-school-dept">
+            <div class="search_11">
+                <span class="search_11_home">
+                    <a href="">首页</a>
+                </span>
+                /
+                <span>
+                    <a href="" class="teac"></a>
+                </span>
+            </div>
+            <div class="search_12">
+                <img src="" class="search_11_img" alt="">
+                <input type="text" placeholder="请输入关键词" style="-webkit-user-select: text!important;">
+                <span onclick="teacherSearch(this)">教师检索<i></i></span>
+            </div>
+        </div>
+        <div class="dept-type">
+            <div class="wp">
+                <div id="xq1" data-campusId="" class="dept-typeItem">校本部</div>
+                <div id="xq2" data-campusId="999950" class="dept-typeItem">威海校区</div>
+                <div id="xq3" data-campusId="999960" class="dept-typeItem">深圳校区</div>
+                <div id="xq4" data-campusId="999970" class="dept-typeItem">地方研究院</div>
+            </div>
+        </div>
+        <div class="m-comm">
+            <div class="wp">
+                <div class="m-subj" style="padding: 0;">
+                    <div class="snav">
+                        <h3 class="tit-snav"></h3>
+                        <ul id="myCollapse">
+                            <!--拼接-->
+                        </ul>   
+                    </div>
+                    <div class="col-r">
+                        <div class="con-comm" style="background-color:#f5f4f4!important;padding: 0;margin-left: 20px;">
+                            <!-- <h3 class="tit-in" style="background-image: url(images/out/ico-5.png)"></h3> -->
+                            <ul class="ul-tab-g1 TAB_CLICK2" id=".m-slider">
+                                <li class="on" onclick="visitorOrder()">
+                                    <a class="a1 change-language" href="javascript:void(0);" id="visitor"
+                                        data-en="visits" data-zh="本月访问最高">访问量排序</a>
+                                    <!-- <a class="m-more-g1 change-language" onclick="maximumVisitbyOneMonth()" data-en="more"
+                                    data-zh="查看更多">查看更多</a> -->
+                                </li>
+                                <li  onclick="AlphabeticalOrder()">
+                                    <a class="a1 change-language" href="javascript:;void(0)" id="Alphabetical"
+                                        data-en="Alphabetical" data-zh="全部访问最高">姓名首字母排序</a>
+                                    <!-- <a class="m-more-g1 change-language" onclick="maximumVisitbyAll()" data-en="more"
+                                    data-zh="查看更多">查看更多</a> -->
+                                </li>
+                                
+                                <li onclick="updateOrder()">
+                                    <a class="a1 change-language" href="javascript:void(0);" id="updateTime"
+                                        data-en="updateTime" data-zh="本周访问最高">更新日期排序</a>
+                                    <!-- <a class="m-more-g1 change-language" onclick="maximumVisitbySevenDays()" data-en="more"
+                                    data-zh="查看更多">查看更多</a> -->
+                                </li>
+                            </ul>
+                            <div class="acad">
+                                <!--拼接-->
+                                <img class="loading" src="images/loading.gif">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="m-idt">
+                <ul>
+
+                </ul>
+            </div> -->
+            </div>
+        </div>
+
+    </div>
+    <div id="top-edit-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="wmBtn_cancle wmBtn cancel" data-dismiss="modal">cancel</button>
+                    <button type="button" class="wmBtn_sure wmBtn top-edit-modal-affirm" data-id=""
+                        onclick="updateTeacher(this)">update
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--尾部-->
+    <div class="footer">
+
+    </div>
+
+    <script type="text/javascript" charset="utf-8" src="inside-network/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="inside-network/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="scripts/lib.js"></script>
+    <script type="text/javascript" charset="utf-8" src="scripts/base.js"></script>
+    <script type="text/javascript" charset="utf-8" src="scripts/slick.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="scripts/homepage/header-footer.js"></script>
+    <script type="text/javascript" charset="utf-8" src="scripts/homepage/school-dept.js"></script>
+</body>
+
+</html>
