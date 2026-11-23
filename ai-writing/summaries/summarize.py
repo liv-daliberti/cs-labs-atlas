@@ -52,29 +52,34 @@ CHUNK = int(os.environ.get('SUM_CHUNK', 192))   # papers per generate() call and
 
 SYSTEM = 'You are a careful scientific editor. You write accurate, clear and neutral summaries of research papers.'
 
-# Pilot 1 (2026-11-23, 60 papers): "about 1,000 words" gave a median of ~620 words, so the length is now set per paragraph (7 x ~150).
-STYLE = """Write a summary of this paper of about 1,000 words: exactly seven paragraphs of about 150 words each.
+# Pilot 1 (2026-11-23, 60 papers): "about 1,000 words" gave a median of ~620 words. Pilot 2 (7 x ~150 words) gave a median of ~860: the
+# model writes ~125 words per "150-word" paragraph, so v3 asks for eight. Pilot 2 also repeated paragraph 3 in paragraph 4, echoed the
+# prompt ("stated one by one... Firstly"), let LaTeX through and (AWQ) misread a flattened results table: v3 addresses each.
+STYLE = """Write a summary of this paper of about 1,000 words: exactly eight paragraphs of about 150 words each.
 
-The seven paragraphs, in this order:
+The eight paragraphs, in this order:
 1. The problem the paper addresses and why it matters.
-2. The paper's main contributions, stated one by one in prose.
+2. What the paper contributes, in plain sentences.
 3. The approach: its key ideas and how it works.
-4. The approach in more depth: the important technical details, design choices, assumptions or theoretical results.
+4. Further technical detail that paragraph 3 did not cover: important design choices, assumptions, components or theoretical results.
 5. How the paper tests its claims: the experiments, data, baselines and metrics, or the proofs, analyses or studies it uses.
-6. The main results, with the important numbers exactly as the paper reports them.
-7. The limitations, open questions and implications that the authors themselves state.
+6. The main results, with the important numbers.
+7. Further findings: comparisons, ablations, analyses or secondary results the paper reports.
+8. The limitations, open questions and implications that the authors themselves state.
 
 Requirements:
 - Be faithful. State only what the paper itself says. Do not add outside knowledge, speculation or your own evaluation. Do not invent applications, future work or numbers the paper does not give. If the paper says nothing on a point, say less rather than fill the gap.
+- Numbers must be exact. Tables in the text above have lost their layout, so read each number from its correct row and column, and report a number only when you are sure which method, dataset, setting and metric it belongs to.
+- Each paragraph adds new content; never restate what an earlier paragraph said.
 - Write clear, precise prose for a reader with a general computer science background. Briefly define specialized terms the first time they appear, and keep the paper's own names for its methods, models, datasets and metrics. Describe mathematical results in words, using only simple inline notation when it is needed.
 - Refer to the work as "the paper" or "the authors", in the present tense. Do not name the authors or their institutions, and do not cite other works by reference number.
-- Use continuous prose only: no headings, paragraph labels, bullet points, numbered lists, tables, LaTeX or markdown. Do not end with a generic concluding sentence or paragraph.
+- Use continuous prose only: no headings, paragraph labels, bullet points, numbered lists, enumerations such as "firstly" and "secondly", tables, LaTeX or markdown. Do not end with a generic concluding sentence or paragraph.
 - Return only the summary, beginning directly with its first sentence."""
 
-REVISE = {'too_short': ('Your summary has {n} words, but it must be about 1,000 words (seven paragraphs of about 150 words each). Rewrite it in full at '
+REVISE = {'too_short': ('Your summary has {n} words, but it must be about 1,000 words (eight paragraphs of about 150 words each). Rewrite it in full at '
                         'that length by adding more of the paper\'s own specific content: the details of the method, the setup of the evidence and '
-                        'the results with their numbers. Keep every requirement above. Return only the summary.'),
-          'too_long': ('Your summary has {n} words, but it must be about 1,000 words (seven paragraphs of about 150 words each). Rewrite it in full '
+                        'the results with their numbers, without repeating anything. Keep every requirement above. Return only the summary.'),
+          'too_long': ('Your summary has {n} words, but it must be about 1,000 words (eight paragraphs of about 150 words each). Rewrite it in full '
                        'at that length, keeping the most important content and every requirement above. Return only the summary.')}
 
 DIRECT = 'Below is the main text of a research paper titled "{title}" ({year}).\n\n<paper>\n{text}\n</paper>\n\n' + STYLE
@@ -104,7 +109,7 @@ create table if not exists meta (key text primary key, value text);'''
 LEAD = re.compile(r'^(?:here is|here\'s|below is|sure|certainly|summary\b|the following)', re.I)
 TAIL = re.compile(r'^(?:note:|this summary|word count|\(word count|\[word count|i hope|let me know)', re.I)
 REFUSE = re.compile(r"\b(?:I'm sorry|I am sorry|I cannot|I can't|as an AI)\b", re.I)
-MD = re.compile(r'(^\s*(?:#+\s|[-*•]\s|\d+[.)]\s))|\*\*|__|\|\s*-{3}', re.M)
+MD = re.compile(r'(^\s*(?:#+\s|[-*•]\s|\d+[.)]\s))|\*\*|__|\|\s*-{3}|\\[()\[\]]|\$[^$\s\d][^$]*\$|\\(?:frac|mathbf|mathcal|sum|alpha|beta|theta)\b', re.M)   # markdown, lists, LaTeX
 
 
 def log(**kw):
@@ -124,7 +129,7 @@ def clean(raw):
     for i, p in enumerate(paras):
         if i > 0 and TAIL.match(p.lstrip('*#>-• ')):
             paras = paras[:i]; break
-    paras = [re.sub(r'\*\*|__', '', p) for p in paras]
+    paras = [re.sub(r'\*\*|__|\\[()]', '', p) for p in paras]   # inline-math delimiters \( \) are dropped, their content kept
     return '\n\n'.join(paras)
 
 
