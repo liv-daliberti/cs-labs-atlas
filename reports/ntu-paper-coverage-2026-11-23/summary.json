@@ -1,0 +1,41 @@
+{
+  "before": {
+    "pis": 196,
+    "without_papers": 76,
+    "paper_rows": 10486,
+    "empty_rosters": 63,
+    "no_qualifying_student_records": 78
+  },
+  "after": {
+    "pis": 196,
+    "without_papers": 28,
+    "paper_rows": 11469,
+    "empty_rosters": 63,
+    "no_qualifying_student_records": 78
+  },
+  "recovered_labs": 48,
+  "added_paper_rows": 983,
+  "added_student_paper_links": 502,
+  "pi_exclusions": 0,
+  "original_student_roster_unchanged": true,
+  "all_issued_identifiers_preserved": true,
+  "landed_commits": [
+    "29b5127df5782ae8f9000682cfd92f7733259f8d",
+    "42ffde6adbdcb1938f84ef33d0126e48d809ec51",
+    "f26a1f10572634862d42d67781d4d95205c75aac",
+    "2fae7346148545aac9cddbd6c8f3104da5407091"
+  ],
+  "as_of_utc": "2026-11-23T21:00:17.109805+00:00",
+  "as_of_eastern": "2026-11-23T16:00:17.109805-05:00",
+  "comparison_baseline_utc": "2026-11-20T00:51:06.584897+00:00",
+  "school_scope": "The 31 schools in the requested comparison table; canonical working packages, including held PIs. This is not a website-release status report.",
+  "definitions": {
+    "no_papers": "PI counts.labPapers == 0; native school-corpus association, not lifetime publications or missing PDFs.",
+    "empty_roster": "PI counts.students == 0; verified against actual students.json roster length; includes any role.",
+    "no_qualifying_students": "Existing pi_coverage.student_facts qualifying == 0: graduate/alumni/unspecified student roles; excludes postdocs, staff, undergraduates and weak undated thesis/profile-only records. Missing records do not establish no real students.",
+    "comparison": "Changes use the saved November 19 evening package snapshot. Its nested earlier baseline is retained separately, with no new timestamp inferred."
+  },
+  "verification": "NTU: five schema checks per applied batch; all original scientific rows, student rosters and issued identifiers retained. Every coverage input was hashed before and after the recount.",
+  "zero_target_reached": false,
+  "remaining_count": 28
+}
