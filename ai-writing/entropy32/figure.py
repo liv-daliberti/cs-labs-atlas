@@ -207,7 +207,7 @@ def timeband(w):
     cb = fig.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=SEQ), cax=cax, orientation='horizontal', extend='both')
     cb.set_label('average citation age (years): light = cites recent work, dark = cites older work', color=INK2); cb.outline.set_visible(False); cb.ax.tick_params(colors=MUTED)
     fig.text(0.42, 0.06, 'Lines = AI-written share of the main body (detector v3): 0%, under 10%, 10–25%, 25–50%, 50% and more; a band appears in a year once it holds '
-             f'{int(T.band_min.iloc[0])}+ papers.\nWhiskers: 95% of draws. Citation age from OpenAlex referenced_works and the publication years in the 2026-10-14 snapshot; negative ages count as 0.',
+             f'{int(T.band_min.iloc[0])}+ papers.\nWhiskers: 95% of draws. Citation age from the years in each paper\'s own reference section (97–98% of papers; OpenAlex covers 49–71% after 2022); negative ages count as 0.',
              fontsize=8, color=MUTED)
     fig.savefig(out / 'time_ai_entropy_citeage.png', dpi=200); fig.savefig(out / 'time_ai_entropy_citeage.pdf'); plt.close(fig)
     print(json.dumps(dict(figure=str(out / 'time_ai_entropy_citeage.png'))))

@@ -20,7 +20,7 @@ HERE=/n/fs/resemble/homogenizing-science/worktrees/ai-entropy-32/ai-writing/entr
 cd "$HERE"
 if [ -e "$W/REFRESH_STOP" ]; then echo "REFRESH_STOP present: not running, not rescheduling"; exit 0; fi
 # never stack rounds: if an earlier round's jobs are still queued or running, only reschedule
-if squeue -u "$USER" -h -o "%j" | grep -qE '^e32-(sections|gpu|analyze|schools|schools-prep|schools-figs)$'; then
+if squeue -u "$USER" -h -o "%j" | grep -qE '^e32-(sections|gpu|analyze|schools|schools-prep|schools-figs|ftrefs|ftrefs-merge)$'; then
   echo "earlier round still in the queue; skipping today"
 else
   out=$($CS_ATLAS_ENV_PY -u e32.py delta --id "$ID" --min-new 200 | tee /dev/stderr | grep -E '^DELTA=')
@@ -28,7 +28,11 @@ else
   if [ -n "$D" ] && [ "$D" != none ]; then
     c=$(sbatch --parsable --array=0-$((N-1)) --export=ALL,E32_ID=$D e32_cpu.slurm)
     g=$(sbatch --parsable --array=0-$((N-1))%14 --dependency=aftercorr:$c --kill-on-invalid-dep=yes --export=ALL,E32_ID=$D e32_gpu.slurm)
-    a=$(sbatch --parsable --dependency=afterok:$g --kill-on-invalid-dep=yes --export=ALL,E32_ID=$ID,STAGE=all e32_analyze.slurm)
+    # citation years from the new papers' reference sections (same shards), then re-merge the table
+    t=$(sbatch --parsable --array=0-$((N-1)) --dependency=aftercorr:$c --kill-on-invalid-dep=yes --export=ALL,E32_BASE=$ID,FTREFS_DIR=entropy32-$D e32_ftrefs.slurm)
+    tm=$(sbatch --parsable --dependency=afterok:$t --kill-on-invalid-dep=yes --job-name=e32-ftrefs-merge --cpus-per-task=2 --mem=16G --time=00:20:00 \
+        --output=$W/logs/ftrefs-merge-%j.out --wrap="cd $HERE && $CS_ATLAS_ENV_PY -u ftrefs.py merge --id $ID && $CS_ATLAS_ENV_PY -u ftrefs.py check --id $ID")
+    a=$(sbatch --parsable --dependency=afterok:$g:$tm --kill-on-invalid-dep=yes --export=ALL,E32_ID=$ID,STAGE=all e32_analyze.slurm)
     # per-school figures after the all-schools run (prep re-selects schools with >= 1,000 papers in 2023-25 and rewrites their views)
     p=$(sbatch --parsable --dependency=afterok:$a --kill-on-invalid-dep=yes --job-name=e32-schools-prep --cpus-per-task=4 --mem=32G --time=00:30:00 \
         --output=$W/logs/schools-prep-%j.out --wrap="cd $HERE && $CS_ATLAS_ENV_PY -u schools.py prep --id $ID")

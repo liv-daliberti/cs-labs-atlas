@@ -203,7 +203,7 @@ def cmd_citeage_fig(a):
     d = d[d.has_emb & d.ai_share_main.notna() & d.year.between(2023, 2025)]
     sch = json.loads((B / 'schools' / 'SCHOOLS.json').read_text())
     counts = _school_counts(d, sch)
-    ca = pd.read_parquet(B / 'citeage' / 'citeage.parquet', columns=['k', 'cite_age_mean'])
+    ca = A.citeage_table(B)[['k', 'cite_age_mean']]
     d = d.merge(ca, on='k', how='left').dropna(subset=['cite_age_mean'])
     d['band'] = _bands(d.ai_share_main.values)
     rows = []
@@ -226,7 +226,7 @@ def cmd_citeage_fig(a):
     (B / 'analysis').mkdir(exist_ok=True)
     D.to_csv(B / 'analysis' / 'schools_citeage.csv', index=False)
     _multiples(D, ['ALL'] + list(sch), 'cite_age', 'Average citation age by amount of AI-written text, per school',
-               'Full-text lab papers 2023–2025. Years between each paper and the works it cites (OpenAlex), averaged over the papers in each AI band of the main body;\n'
+               'Full-text lab papers 2023–2025. Years between each paper and the works it cites (read from its own reference section), averaged over the papers in each AI band of the main body;\n'
                'bands re-weighted to the school\'s 0% papers\' year mix; bars 95% CI. Lower = cites more recent work.',
                'citation age (years)',
                'Number in each corner: the highest AI band minus the 0% band (years). Under each band: its papers with dated references; bands with fewer than 30 are left out ("<min"). '

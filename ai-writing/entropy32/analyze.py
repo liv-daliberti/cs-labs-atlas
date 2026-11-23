@@ -43,6 +43,21 @@ MAP_N = 30000
 METRICS = ('euclidean', 'cosine')
 
 
+MIN_REF_YEARS = 5
+
+
+def citeage_table(w):
+    """Per-paper average citation age, from the paper's own reference section (ftrefs.py: years found in the full text, >= MIN_REF_YEARS of them).
+    OpenAlex reference lists (citeage.py) cover only 71/60/49% of the 2023/2024/2025 full texts against 97-98% here; on the 107k papers with both,
+    r = 0.91 and the full-text ages are 0.5 years younger on average. Columns: k, cite_age_mean, n_refs_dated (as citeage.py's)."""
+    ft = w / 'ftrefs' / 'ftrefs.parquet'
+    if not ft.exists():
+        ft = w.parent.parent / 'ftrefs' / 'ftrefs.parquet'        # a school view (WORK/schools/<s>) reads the base's table
+    f = pd.read_parquet(ft, columns=['k', 'ft_n_years', 'ft_cite_age_mean'])
+    f = f[f.ft_n_years >= MIN_REF_YEARS]
+    return f.rename(columns={'ft_cite_age_mean': 'cite_age_mean', 'ft_n_years': 'n_refs_dated'})
+
+
 def load(a):
     w = e32.work_dir(a.id)
     df = pd.read_parquet(w / 'papers_scored.parquet')
@@ -240,7 +255,7 @@ def stage_timeband(a):
     'adjusted' re-weights a cell to its year's school mix. Citation age of a cell = mean of its papers' average citation age (citeage.py),
     with a paper-bootstrap interval. -> analysis/timeband.csv"""
     w, df, X = load(a)
-    ca = pd.read_parquet(w / 'citeage' / 'citeage.parquet')
+    ca = citeage_table(w)
     df = df.merge(ca[['k', 'cite_age_mean', 'n_refs_dated']], on='k', how='left')
     r = np.random.default_rng(SEED)
     s = df.ai_share_main.values
@@ -298,7 +313,7 @@ def stage_distshift(a):
       dists    per-paper values of 2023-2025 for 0% and >= HEAVY papers -> analysis/paper_measures.parquet (also the source of the histograms)
       time     per year, 0% and >= HEAVY papers: mean and SD of each measure (cells >= 100 papers) -> analysis/dist_time.csv"""
     w, df, X = load(a)
-    ca = pd.read_parquet(w / 'citeage' / 'citeage.parquet')
+    ca = citeage_table(w)
     df = df.merge(ca[['k', 'cite_age_mean']], on='k', how='left')
     r = np.random.default_rng(SEED)
     post = df.year.between(*POST).values

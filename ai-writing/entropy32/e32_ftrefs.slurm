@@ -13,4 +13,4 @@ set -uo pipefail
 export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1
 export TMPDIR=${TMPDIR:-/tmp}
 cd /n/fs/resemble/homogenizing-science/worktrees/ai-entropy-32/ai-writing/entropy32
-$CS_ATLAS_ENV_PY -u ftrefs.py shard --id "${E32_ID:-20261123}" -j 8
+$CS_ATLAS_ENV_PY -u ftrefs.py shard --id "${E32_BASE:-20261123}" ${FTREFS_DIR:+--dir $FTREFS_DIR} -j 8
