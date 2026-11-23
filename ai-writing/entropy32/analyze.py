@@ -572,6 +572,57 @@ def stage_fullsample(a):
     figure.fullsample(w)
 
 
+YGROUPS = [('0%', lambda s: s == 0), ('any flagged', lambda s: s > 0), ('≥10%', lambda s: s >= .10), ('≥25%', lambda s: s >= .25)]
+
+
+def stage_allyears(a):
+    """Owner 2026-11-23: "the full paper numbers -- the 148k papers". Every scored full-text paper 2016-2025 (no draws): per year and AI group
+    (0%, any flagged passage, >= 10%, >= 25%; cells >= 250 papers) the Miller-Madow entropy of all its papers, re-weighted to that year's 0% school mix,
+    with a 200-replicate bootstrap SE; the gap to the 0% papers of the same year; and the placebo-style difference: mean gap 2023-2025 minus mean gap
+    2016-2022 for 'any flagged' (the only AI group with enough papers before ChatGPT: there they are the detector's false positives).
+    -> analysis/allyears.csv, allyears_counts.csv, allyears.json, figures/allyears.png"""
+    w, df, X = load(a)
+    r = np.random.default_rng(SEED)
+    s, yr, sch = df.ai_share_main.values, df.year.values, df.home_school.values
+    counts = pd.DataFrame({g: pd.Series(yr[f(s)]).value_counts() for g, f in YGROUPS}).reindex(range(e32.FIRST, e32.LAST + 1)).fillna(0).astype(int)
+    counts.insert(0, 'all papers', pd.Series(yr).value_counts().reindex(counts.index).fillna(0).astype(int))
+    counts.to_csv(w / 'analysis' / 'allyears_counts.csv')
+    rows, summ = [], {}
+    for metric in METRICS:
+        lab, _ = clusters(w, df, X, metric)
+        for y in range(e32.FIRST, e32.LAST + 1):
+            base = (yr == y) & (s == 0)
+            tgt = pd.Series(sch[base]).value_counts(normalize=True)
+            for g, f in YGROUPS:
+                ix = np.flatnonzero((yr == y) & f(s))
+                if len(ix) < 250:
+                    continue
+                sh = pd.Series(sch[ix]).value_counts(normalize=True)
+                wt = np.ones(len(ix)) if g == '0%' else np.nan_to_num(tgt.reindex(sch[ix]).values / sh.reindex(sch[ix]).values)
+                mm = ent_mm(lab[ix], wt)[1]
+                bs = [ent_mm(lab[ix][i], wt[i])[1] for i in (r.integers(0, len(ix), len(ix)) for _ in range(200))]
+                rows.append(dict(metric=metric, year=y, group=g, papers=len(ix), entropy=mm, se=float(np.std(bs))))
+        D = pd.DataFrame([x for x in rows if x['metric'] == metric])
+        z = D[D.group == '0%'].set_index('year')
+        gaps = {}
+        for g in ('any flagged', '≥10%', '≥25%'):
+            d = D[D.group == g].set_index('year')
+            gaps[g] = pd.DataFrame(dict(gap=d.entropy - z.entropy.reindex(d.index), se=np.sqrt(d.se ** 2 + z.se.reindex(d.index) ** 2))).dropna()
+        af = gaps['any flagged']
+        pre, post = af[af.index <= 2022], af[af.index >= 2023]
+        did = post.gap.mean() - pre.gap.mean()
+        did_se = float(np.sqrt((post.se ** 2).sum() / len(post) ** 2 + (pre.se ** 2).sum() / len(pre) ** 2))
+        summ[metric] = dict(any_flagged_gap_pre=float(pre.gap.mean()), any_flagged_gap_post=float(post.gap.mean()), change_post_minus_pre=float(did),
+                            change_se=did_se, change_ci=[did - 1.96 * did_se, did + 1.96 * did_se],
+                            gaps={g: {int(y): round(float(v), 4) for y, v in gaps[g].gap.items()} for g in gaps})
+        print(json.dumps({metric: {k: v for k, v in summ[metric].items() if k != 'gaps'}}), flush=True)
+    pd.DataFrame(rows).to_csv(w / 'analysis' / 'allyears.csv', index=False)
+    (w / 'analysis' / 'allyears.json').write_text(json.dumps(summ, indent=1))
+    print(counts.to_string())
+    import figure
+    figure.allyears(w)
+
+
 def stage_check(a):
     w, df, _ = load(a)
     snap = Path(e32.P.HOMOGENIZATION_STUDY) / 'snapshots' / '2026-11-08' / 'ai' / 'papers_v3.parquet'
@@ -585,11 +636,11 @@ def stage_check(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check', 'timeband', 'distshift', 'entropy_scale', 'centroid', 'entropy_full', 'fullsample'])
+    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check', 'timeband', 'distshift', 'entropy_scale', 'centroid', 'entropy_full', 'fullsample', 'allyears'])
     ap.add_argument('--id', default='20261123')
     a = ap.parse_args()
     (e32.work_dir(a.id) / 'analysis').mkdir(exist_ok=True)
-    for s in (['check', 'curve', 'paper', 'lab', 'map', 'figure', 'timeband', 'distshift', 'entropy_scale', 'centroid', 'entropy_full', 'fullsample'] if a.stage == 'all' else [a.stage]):
+    for s in (['check', 'curve', 'paper', 'lab', 'map', 'figure', 'timeband', 'distshift', 'entropy_scale', 'centroid', 'entropy_full', 'fullsample', 'allyears'] if a.stage == 'all' else [a.stage]):
         if s == 'figure':
             import figure
             figure.main(e32.work_dir(a.id))

@@ -544,3 +544,64 @@ def fullsample(w):
     fig.savefig(out / 'fullsample.png', dpi=200); fig.savefig(out / 'fullsample.pdf'); plt.close(fig)
     plt.rcParams.update({'font.size': 9})
     print(json.dumps(dict(figure=str(out / 'fullsample.png'))))
+
+
+def allyears(w, metric='euclidean'):
+    """Every full-text paper 2016-2025: entropy by year and AI group, the gap to the 0% papers (placebo before ChatGPT), and the paper counts."""
+    a, out = w / 'analysis', w / 'figures'
+    D = pd.read_csv(a / 'allyears.csv')
+    N = pd.read_csv(a / 'allyears_counts.csv', index_col=0)
+    S = json.loads((a / 'allyears.json').read_text())
+    G = {'0%': (BLUE, '-'), 'any flagged': ('#1baf7a', '-'), '≥10%': (ORANGE, (0, (4, 2))), '≥25%': ('#e34948', (0, (1.5, 1.5)))}
+    plt.rcParams.update({'font.size': 10.5})
+    fig = plt.figure(figsize=(16, 10.5))
+    gs = fig.add_gridspec(2, 2, height_ratios=[1.15, 1], hspace=0.42, wspace=0.2, left=0.06, right=0.98, top=0.86, bottom=0.07)
+    tot = int(N['all papers'].sum())
+    fig.text(0.06, 0.955, f'All {tot:,} full-text lab papers, 2016–2025', fontsize=18, fontweight='bold', color=INK)
+    s = S[metric]
+    fig.text(0.06, 0.915, f'Knowledge entropy of EVERY paper in each year × AI group (no sampling; Miller–Madow, AI groups re-weighted to the year\'s 0% school mix).\n'
+             f'Before ChatGPT the "any flagged" papers are the detector\'s false positives, so their gap is the baseline: it was {s["any_flagged_gap_pre"]:+.3f} nats in 2016–22 and '
+             f'{s["any_flagged_gap_post"]:+.3f} after, a change of {s["change_post_minus_pre"]:+.3f} [{s["change_ci"][0]:+.3f}, {s["change_ci"][1]:+.3f}].',
+             fontsize=10.5, color=INK2, va='top')
+    ax = fig.add_subplot(gs[0, 0])
+    d = D[D.metric == metric]
+    labels = []
+    for g, (c, ls) in G.items():
+        x = d[d.group == g].sort_values('year')
+        ax.fill_between(x.year, x.entropy - 1.96 * x.se, x.entropy + 1.96 * x.se, color=c, alpha=0.15, lw=0)
+        ax.plot(x.year, x.entropy, color=c, ls=ls, lw=2.2, marker='o', ms=5, mec=SURF)
+        labels.append((x.year.iloc[-1], x.entropy.iloc[-1], g))
+    ax.axvspan(2022.5, 2025.5, color=GRID, alpha=0.35, lw=0, zorder=0)
+    ax.set_xticks(range(2016, 2026)); ax.set_xlim(2015.6, 2026.5); ax.grid(axis='x', visible=False)
+    end_labels(ax, labels)
+    ax.set_ylabel('knowledge entropy, every paper (nats)'); ax.set_title(f'A  Entropy by year and AI group · {NAME[metric]}')
+    ax = fig.add_subplot(gs[0, 1])
+    for g in ('any flagged', '≥10%', '≥25%'):
+        c, ls = G[g]
+        x = d[d.group == g].set_index('year')
+        z = d[d.group == '0%'].set_index('year').reindex(x.index)
+        gap, se = x.entropy - z.entropy, np.sqrt(x.se ** 2 + z.se ** 2)
+        ax.errorbar(gap.index + {'any flagged': -0.12, '≥10%': 0, '≥25%': 0.12}[g], gap, yerr=1.96 * se, color=c, ls=ls, lw=1.8, marker='o', ms=6, mec=SURF, capsize=0, label=g)
+    ax.axhline(0, color=MUTED, lw=1)
+    pre, post = s['any_flagged_gap_pre'], s['any_flagged_gap_post']
+    ax.hlines(pre, 2015.7, 2022.4, color='#1baf7a', lw=1, ls=(0, (2, 2))); ax.hlines(post, 2022.6, 2025.4, color='#1baf7a', lw=1, ls=(0, (2, 2)))
+    ax.axvspan(2022.5, 2025.5, color=GRID, alpha=0.35, lw=0, zorder=0)
+    ax.set_xticks(range(2016, 2026)); ax.grid(axis='x', visible=False); ax.legend(frameon=False, fontsize=9.5, loc='lower left', title='AI group minus 0% papers', title_fontsize=9)
+    ax.set_ylabel('entropy gap to the 0% papers (nats)'); ax.set_title('B  The gap, with its pre-ChatGPT baseline (dotted: period means)')
+    ax = fig.add_subplot(gs[1, :])
+    yrs = N.index.values
+    b0 = N['0%'].values; b1 = N['any flagged'].values - N['≥10%'].values; b2 = N['≥10%'].values - N['≥25%'].values; b3 = N['≥25%'].values
+    bottom = np.zeros(len(yrs))
+    for vals, c, lab in ((b0, BLUE, '0% flagged'), (b1, '#1baf7a', 'some flagged, < 10%'), (b2, ORANGE, '10–25%'), (b3, '#e34948', '≥ 25%')):
+        ax.bar(yrs, vals, bottom=bottom, color=c, width=0.72, label=lab, edgecolor=SURF, linewidth=1.5)
+        bottom += vals
+    for y, t in zip(yrs, N['all papers'].values):
+        ax.text(y, t * 1.01, f'{t:,}', ha='center', va='bottom', fontsize=9, color=INK2)
+    ax.set_xticks(yrs); ax.grid(axis='x', visible=False); ax.set_ylim(0, N['all papers'].max() * 1.12)
+    ax.set_ylabel('full-text papers'); ax.legend(frameon=False, fontsize=9.5, ncol=4, loc='upper left')
+    ax.set_title(f'C  How many papers: {tot:,} scored and embedded full texts (of 148,075 held), by AI-written share of the main body')
+    fig.text(0.06, 0.012, 'Cells with ≥ 250 papers. ± 1.96 bootstrap SE. Cosine numbers are in allyears.json. "Any flagged" = at least one main-body passage flagged by detector v3 '
+             '(0.3% false positives per passage).', fontsize=8.5, color=MUTED)
+    fig.savefig(out / 'allyears.png', dpi=200); fig.savefig(out / 'allyears.pdf'); plt.close(fig)
+    plt.rcParams.update({'font.size': 9})
+    print(json.dumps(dict(figure=str(out / 'allyears.png'))))
