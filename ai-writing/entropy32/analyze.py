@@ -221,6 +221,52 @@ def stage_map(a):
                       cl_cosine=lab_e[ix])).to_parquet(w / 'analysis' / 'map.parquet')
 
 
+BANDS = [(0, 0, '0%'), (1e-9, 0.10, '<10%'), (0.10, 0.25, '10–25%'), (0.25, 0.50, '25–50%'), (0.50, 1.0, '50%+')]
+BAND_N, BAND_MIN = 200, 250
+
+
+def stage_timeband(a):
+    """Owner 2026-11-23: time x %AI x entropy, colored by average citation age. Cells = publication year (2016-2025) x AI-share band (all schools
+    pooled); per cell DRAWS draws of BAND_N papers (cells under BAND_MIN papers are left out), entropy over the 50 clusters fitted on 2023-2025;
+    'adjusted' re-weights a cell to its year's school mix. Citation age of a cell = mean of its papers' average citation age (citeage.py),
+    with a paper-bootstrap interval. -> analysis/timeband.csv"""
+    w, df, X = load(a)
+    ca = pd.read_parquet(w / 'citeage' / 'citeage.parquet')
+    df = df.merge(ca[['k', 'cite_age_mean', 'n_refs_dated']], on='k', how='left')
+    r = np.random.default_rng(SEED)
+    s = df.ai_share_main.values
+    band = np.full(len(df), -1)
+    for j, (lo, hi, _) in enumerate(BANDS):
+        band[(s == 0) if hi == 0 else ((s >= lo) & (s <= hi) if j == len(BANDS) - 1 else (s >= lo) & (s < hi))] = j
+    out = []
+    for metric in METRICS:
+        lab, _ = clusters(w, df, X, metric)
+        for y in range(e32.FIRST, e32.LAST + 1):
+            yr = df.year.values == y
+            target = df.home_school[yr].value_counts(normalize=True)
+            for j, (_, _, name) in enumerate(BANDS):
+                ix = np.flatnonzero(yr & (band == j))
+                if len(ix) < BAND_MIN:
+                    continue
+                sch = df.home_school.values[ix]
+                share = pd.Series(sch).value_counts(normalize=True)
+                p = target.reindex(sch).values / share.reindex(sch).values
+                p = p / p.sum()
+                for mode, prob in (('adjusted', p), ('raw', None)):
+                    E = np.array([ent(lab[r.choice(ix, BAND_N, replace=False, p=prob)]) for _ in range(DRAWS)])
+                    age = df.cite_age_mean.values[ix]
+                    age = age[~np.isnan(age)]
+                    bs = [r.choice(age, len(age)).mean() for _ in range(200)] if len(age) else [np.nan]
+                    out.append(dict(metric=metric, mode=mode, year=y, band=name, band_i=j, papers=len(ix), n_draw=BAND_N, band_min=BAND_MIN, ai_median=float(np.median(s[ix])),
+                                    entropy=float(np.median(E)), entropy_lo=float(np.quantile(E, .025)), entropy_hi=float(np.quantile(E, .975)),
+                                    cite_age=float(age.mean()) if len(age) else np.nan, cite_age_lo=float(np.quantile(bs, .025)), cite_age_hi=float(np.quantile(bs, .975)),
+                                    cite_age_papers=int(len(age))))
+                print(json.dumps({k: out[-2][k] for k in ('metric', 'year', 'band', 'papers', 'entropy', 'cite_age')}), flush=True)
+    pd.DataFrame(out).to_csv(w / 'analysis' / 'timeband.csv', index=False)
+    import figure
+    figure.timeband(w)
+
+
 def stage_check(a):
     w, df, _ = load(a)
     snap = Path(e32.P.HOMOGENIZATION_STUDY) / 'snapshots' / '2026-11-08' / 'ai' / 'papers_v3.parquet'
@@ -234,7 +280,7 @@ def stage_check(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check'])
+    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check', 'timeband'])
     ap.add_argument('--id', default='20261123')
     a = ap.parse_args()
     (e32.work_dir(a.id) / 'analysis').mkdir(exist_ok=True)

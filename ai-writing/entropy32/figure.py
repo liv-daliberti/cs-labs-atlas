@@ -137,3 +137,74 @@ def main(w):
     axs[0, 0].legend(frameon=False, fontsize=8)
     fig.tight_layout(); fig.savefig(out / 'ai_dose_entropy_detail.png', dpi=180); plt.close(fig)
     print(json.dumps(dict(figures=[str(out / 'ai_dose_entropy.png'), str(out / 'ai_dose_entropy_detail.png')], schools=n_sch, run=run['id'])))
+
+
+DASH = {'0%': '-', '<10%': (0, (6, 2)), '10–25%': (0, (3, 2)), '25–50%': (0, (1, 1.6)), '50%+': (0, (5, 1.5, 1, 1.5))}
+LINE = {'0%': '#9a9993', '<10%': '#77766f', '10–25%': '#52514e', '25–50%': '#2f2e2b', '50%+': '#0b0b0b'}
+
+
+def end_labels(ax, items, gap_frac=0.055):
+    """Direct labels at the line ends, nudged apart vertically so they never overlap: items = [(x, y, text)]."""
+    lo, hi = ax.get_ylim()
+    gap = (hi - lo) * gap_frac
+    items = sorted(items, key=lambda t: t[1])
+    ys = [t[1] for t in items]
+    for i in range(1, len(ys)):
+        ys[i] = max(ys[i], ys[i - 1] + gap)
+    shift = max(0.0, ys[-1] - (hi - gap / 2)) if ys else 0.0
+    for (x, y, t), yy in zip(items, ys):
+        ax.annotate(t, (x, y), xytext=(x + 0.3, yy - shift), textcoords='data', va='center', fontsize=8.5, color=INK2,
+                    arrowprops=dict(arrowstyle='-', color=GRID, lw=0.8, shrinkA=0, shrinkB=4))
+
+
+def timeband(w):
+    """Time x AI-share band x knowledge entropy, dots filled by the cell's mean citation age (analyze.py timeband)."""
+    from matplotlib.colors import Normalize
+    T = pd.read_csv(w / 'analysis' / 'timeband.csv')
+    T = T[T['mode'] == 'adjusted']
+    out = w / 'figures'
+    out.mkdir(exist_ok=True)
+    vals = T.cite_age.dropna()
+    norm = Normalize(vmin=np.floor(vals.quantile(0.02) * 2) / 2, vmax=np.ceil(vals.quantile(0.98) * 2) / 2)
+    fig = plt.figure(figsize=(17, 6.6))
+    gs = fig.add_gridspec(1, 3, width_ratios=[1, 1, 0.9], wspace=0.22, left=0.045, right=0.985, top=0.8, bottom=0.2)
+    fig.text(0.045, 0.95, 'Knowledge entropy over time, by how much of the paper is AI-written', fontsize=16, fontweight='bold', color=INK)
+    fig.text(0.045, 0.895, f'Lab papers 2016–2025, all schools pooled; each point = one year × AI-share band, {int(T.n_draw.iloc[0])} papers per draw, '
+             'school mix re-weighted to the year\'s. Dot fill = the papers\' average citation age (years between the paper and the works it cites).',
+             fontsize=9.5, color=INK2)
+    for j, metric in enumerate(('euclidean', 'cosine')):
+        ax = fig.add_subplot(gs[0, j])
+        d = T[T.metric == metric]
+        labels = []
+        for band, g in d.groupby('band', sort=False):
+            g = g.sort_values('year')
+            ax.plot(g.year, g.entropy, color=LINE[band], ls=DASH[band], lw=1.6, zorder=2)
+            ax.vlines(g.year, g.entropy_lo, g.entropy_hi, color=LINE[band], lw=1, alpha=0.5, zorder=2)
+            ax.scatter(g.year, g.entropy, s=70, c=SEQ(norm(g.cite_age)), edgecolors=LINE[band], linewidths=1.3, zorder=4)
+            labels.append((g.year.iloc[-1], g.entropy.iloc[-1], band))
+        ax.set_xticks(range(2016, 2026)); ax.set_xlim(2015.6, 2026.4)
+        end_labels(ax, labels)
+        ax.axvspan(2022.5, 2025.6, color=GRID, alpha=0.35, lw=0, zorder=0)
+        ax.text(2022.6, 0.985, 'after ChatGPT', transform=ax.get_xaxis_transform(), fontsize=8, color=MUTED, va='top')
+        ax.set_ylabel('knowledge entropy (nats, 50 clusters)'); ax.grid(axis='x', visible=False)
+        ax.set_title(f'{"AB"[j]}  {NAME[metric]}')
+    ax = fig.add_subplot(gs[0, 2])
+    d = T[T.metric == 'euclidean']
+    labels = []
+    for band, g in d.groupby('band', sort=False):
+        g = g.sort_values('year')
+        ax.plot(g.year, g.cite_age, color=LINE[band], ls=DASH[band], lw=1.6)
+        ax.fill_between(g.year, g.cite_age_lo, g.cite_age_hi, color=LINE[band], alpha=0.12, lw=0)
+        ax.scatter(g.year, g.cite_age, s=40, c=SEQ(norm(g.cite_age)), edgecolors=LINE[band], linewidths=1.1, zorder=4)
+        labels.append((g.year.iloc[-1], g.cite_age.iloc[-1], band))
+    ax.set_xticks(range(2016, 2026, 2)); ax.set_xlim(2015.6, 2026.4); ax.grid(axis='x', visible=False)
+    end_labels(ax, labels)
+    ax.set_ylabel('average citation age (years)'); ax.set_title('C  The color, as values: citation age')
+    cax = fig.add_axes([0.045, 0.075, 0.3, 0.025])
+    cb = fig.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=SEQ), cax=cax, orientation='horizontal', extend='both')
+    cb.set_label('average citation age (years): light = cites recent work, dark = cites older work', color=INK2); cb.outline.set_visible(False); cb.ax.tick_params(colors=MUTED)
+    fig.text(0.42, 0.06, 'Lines = AI-written share of the main body (detector v3): 0%, under 10%, 10–25%, 25–50%, 50% and more; a band appears in a year once it holds '
+             f'{int(T.band_min.iloc[0])}+ papers.\nWhiskers: 95% of draws. Citation age from OpenAlex referenced_works and the publication years in the 2026-10-14 snapshot; negative ages count as 0.',
+             fontsize=8, color=MUTED)
+    fig.savefig(out / 'time_ai_entropy_citeage.png', dpi=200); fig.savefig(out / 'time_ai_entropy_citeage.pdf'); plt.close(fig)
+    print(json.dumps(dict(figure=str(out / 'time_ai_entropy_citeage.png'))))
