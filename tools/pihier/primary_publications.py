@@ -54,7 +54,7 @@ def capture(source, cache):
         else:
             raise ValueError('unsupported_original_capture_format')
         text = normalize(text)
-        if any(v in text for v in ['Verify you are human', 'Security Verification', 'Just a moment...']):
+        if any(v in text for v in ['Verify you are human', 'Security Verification', 'Just a moment...', '安全验证', '完成安全验证后继续访问']):
             raise ValueError('access_challenge')
         cache[key] = text
     return cache[key]
@@ -116,6 +116,8 @@ def project(ctx, review, cache):
         raise ValueError('school_proof_not_this_publisher_record')
     school_quote = quote(school['source'], school['quote'], cache)
     affiliation = school['affiliation']
+    if re.search(r'出版社|出版公司|\b(?:press|publishing)\b', affiliation, re.I):
+        raise ValueError('publisher_imprint_is_not_author_affiliation')
     if (school['name'] != name or name not in school_quote or affiliation not in school_quote
             or not own_school(ctx.school, affiliation)
             or excluded_school_only(dict(raw_affiliation_strings=[affiliation], institutions=[]), ctx.school)):
@@ -156,7 +158,7 @@ def project(ctx, review, cache):
         raise ValueError('publication_doi_not_attested')
     # A real source identifier, never a fabricated provider record or a lab-page citation.
     key = 'publisher:' + hashlib.sha1((('doi:' + doi) if doi else ('isbn:' + isbn)).encode()).hexdigest()
-    return dict(pi=p['pi'], key=key, title=pub['title'], year=pub['year'], date=date, doi=doi, type=pub['type'],
+    return dict(pi=p['pi'], key=key, title=pub['title'], year=pub['year'], date=date, doi=doi or None, type=pub['type'],
                 venue=pub['venue'], byline=list(byline), evidence=dict(basis='reviewed_primary_publisher', url=source['url'],
                 sha256=source['sha256'], school_via=['primary publisher [' + source['sha256'] + ']: ' + school_quote],
                 review_id=review['id'], quotes=[school_quote]))

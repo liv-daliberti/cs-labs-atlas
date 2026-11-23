@@ -162,3 +162,10 @@ def test_book_isbn_and_publication_year_are_not_a_reprint_date(tmp_path):
     d['publication']['isbn'] = '9787307221063'
     with pytest.raises(ValueError, match='invalid_book_isbn'):
         R.project(ctx, d, {})
+
+
+def test_publisher_imprint_cannot_stand_in_for_individual_school_affiliation(tmp_path):
+    ctx, p, d = case(tmp_path)
+    d['school_authorship']['affiliation'] = '武汉大学出版社'
+    with pytest.raises(ValueError, match='publisher_imprint_is_not_author_affiliation'):
+        R.project(ctx, d, {})
