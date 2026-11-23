@@ -736,12 +736,46 @@ def dated_listing(entry, pdf):
 
 def faculty_observed(entry):
     """Date of the faculty assertion, distinct from retrieval of an old document."""
-    dated = entry.get('dated_listing')
+    dated = entry.get('dated_listing') or entry.get('dated_roster')
     return dated['date'].replace('-', '') if dated else entry.get('observed') or ''
 
 
 def dated_source_fields(entry):
-    return dict(dated_listing=entry['dated_listing'], retrieved_at=entry['observed']) if entry.get('dated_listing') else {}
+    field = 'dated_listing' if entry.get('dated_listing') else 'dated_roster' if entry.get('dated_roster') else None
+    return {field: entry[field], 'retrieved_at': entry['observed']} if field else {}
+
+
+def dated_roster(entry, rows):
+    """Bind one reviewed appointment to its original campus/unit/person/title row."""
+    from appointment_rosters import regular_professor
+    proof = entry['dated_roster']
+    if (not isinstance(proof, dict) or proof.get('format') != 'illinois_graybook'
+            or entry.get('historical_appointment') or entry.get('dated_listing')):
+        raise SystemExit(f"{entry['name']}: dated roster needs a single supported observation")
+    required = ('page', 'entry_name', 'title', 'unit', 'college', 'date', 'date_quote', 'employee_class')
+    if any(k not in proof for k in required) or type(proof['page']) is not int:
+        raise SystemExit(f"{entry['name']}: dated roster lacks a complete row binding")
+    matches = [r for r in rows if all(r[k] == proof[p] for k, p in (
+        ('page', 'page'), ('name', 'entry_name'), ('title', 'title'), ('unit', 'unit'),
+        ('college', 'college'), ('document_date', 'date'), ('date_quote', 'date_quote'),
+        ('employee_class', 'employee_class'))) and r['quote'] == ' '.join(entry['quote'].split())]
+    if len(matches) != 1:
+        raise SystemExit(f"{entry['name']}: dated roster does not bind exactly one original appointment")
+    row = matches[0]
+    full_name = ' '.join(reversed(row['name'].split(', ', 1))) if ', ' in row['name'] else row['name']
+    if not Name([entry['name']]).match(full_name) or middle_conflict([entry['name']], full_name):
+        raise SystemExit(f"{entry['name']}: dated roster name conflicts with the candidate")
+    retrieved = re.sub(r'\D', '', entry.get('observed') or '')[:8]
+    try:
+        datetime.datetime.strptime(retrieved, '%Y%m%d')
+    except ValueError:
+        raise SystemExit(f"{entry['name']}: dated roster needs a valid retrieval date")
+    if (not 2016 <= row['year'] <= 2026
+            or row['document_date'].replace('-', '') > retrieved):
+        raise SystemExit(f"{entry['name']}: dated roster outside the observation window")
+    if entry.get('ladder', True) and not regular_professor(row['title']):
+        raise SystemExit(f"{entry['name']}: dated roster does not establish a regular professor")
+    return dict(proof)
 
 
 def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
@@ -753,6 +787,8 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
     out = {}
     json_by_sha = {}
     pdf_by_sha = {}
+    rosters_by_sha = {}
+    roster_shas = {e['sha256'] for e in ents if e.get('dated_roster') is not None}
     texts_by_sha = {}  # a catalog PDF can support many reviewed names; extract it once per raw hash
     for e in ents:
         if not all(e.get(k) for k in ('name', 'unit', 'url', 'sha256', 'quote')):
@@ -782,6 +818,12 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
                         texts.append(text)
                         if hashlib.sha256(body).hexdigest() == e['sha256']:
                             pdf_by_sha.setdefault(e['sha256'], {})[url] = text
+                            if e['sha256'] in roster_shas:
+                                from appointment_rosters import illinois_graybook
+                                layout = subprocess.run(['pdftotext', '-layout', '-', '-'], input=body,
+                                                        capture_output=True, check=True, timeout=120)
+                                rosters_by_sha.setdefault(e['sha256'], {})[url] = illinois_graybook(
+                                    layout.stdout.decode('utf-8', 'replace'))
                 else:
                     texts.append(W.flat(W.extract.blocks(body, 'text/html', url)))
             try:   # a JavaScript-rendered page (tools/js_render_capture.py): the stored rendered DOM, matched by its dom_sha256
@@ -812,11 +854,20 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
             if raw is None:
                 raise SystemExit(f"{e['name']}: dated listing needs hash-verified PDF bytes at its exact source URL")
             dated = dated_listing(e, raw)
+        roster = None
+        if e.get('dated_roster') is not None:
+            if key != 'uiuc':
+                raise SystemExit(f"{e['name']}: Illinois appointment roster does not establish faculty at {key}")
+            rows = (rosters_by_sha.get(e['sha256']) or {}).get(e['url'])
+            if rows is None:
+                raise SystemExit(f"{e['name']}: dated roster needs hash-verified PDF bytes at its exact source URL")
+            roster = dated_roster(e, rows)
         out.setdefault(' '.join(toks(e['name'])), []).append(dict(unit=e['unit'], url=e['url'], sha256=e['sha256'], observed=e.get('observed') or '', quote=e['quote'],
                                                                    ladder=bool(e.get('ladder', True)), hand=True,
                                                                    **({'json_pointer': e['json_pointer']} if 'json_pointer' in e else {}),
                                                                    **({'appointment_rank': e['appointment_rank']} if e.get('appointment_rank') else {}),
                                                                    **({'dated_listing': dated} if dated else {}),
+                                                                   **({'dated_roster': roster} if roster else {}),
                                                                    **({'historical_appointment': historical} if historical else {})))
     return out
 
@@ -1139,6 +1190,8 @@ def review(key):
                 basis_role = 'source-stated historical faculty appointment'
             elif basis.get('dated_listing'):
                 basis_role = ('Reader' if basis['dated_listing']['heading'] == 'READERS' else 'Professor') + ' on the dated officer listing'
+            elif basis.get('dated_roster'):
+                basis_role = 'professor title on the dated academic appointment roster'
             adds.append(dict(name=c['name'], aliases=row['aliases'], collection_person_id=f'{key}_fac_' + re.sub(r'[^a-z0-9]+', '-', ' '.join(toks(c['name']))).strip('-'),
                              dblp=comp['dblp'][:1], rank=group_basis['appointment_rank'] if using_group else 'ladder', title_as_listed=last['quote'], departments=units_by_recency(pi_fac, CENTERS),
                              years_listed=row['years_listed'], sources=[dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], kind=f"{'historical_appointment' if e.get('historical_appointment') else 'unit_listing'}:{e['unit']}",
