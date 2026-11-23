@@ -1,0 +1,3126 @@
+{
+ "kind": "aggregate_of_existing_independent_receipts",
+ "parts": [
+  {
+   "folder": "homes50h-1123",
+   "decisions_sha256": "b9767a208c81df5328d2a9e5222318a07b97e0a8771545233379e301b9acc7b8",
+   "review_receipt_sha256": "0cd3227e289982681c8f44e7b1680a5ca3482107264ce41911fed51b5c5d16b1"
+  },
+  {
+   "folder": "homes-final-1123",
+   "decisions_sha256": "3caa63364d98dfb405968dc10cb5112bc8a7b2e6474f5a19258f1118d5eb313c",
+   "review_receipt_sha256": "ee9ee774c612ea34e3b39129607fc2b70aa8e04596e41885c13957e1e7ef5ed8"
+  }
+ ],
+ "selected_count": 62,
+ "pass_count": 62,
+ "concrete_decisions_sha256": "d041e2911ad0361e949ade4dd3a39c7669337ca42f5850fecf0939afe0bd9315",
+ "verdicts": [
+  {
+   "school": "cmu",
+   "name": "Fernando Diaz",
+   "verdict": "pass",
+   "home_department": "LTI",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://lti.cmu.edu/people/faculty/diaz-fernando.html",
+     "sha256": "55bb6905e3ef3d2147b6cabd959a55992bbd2b027fd4d847a491a628345b294a",
+     "observed": "2026-10-29",
+     "quote": "Fernando Diaz",
+     "kind": "named_faculty_subject",
+     "subject_name": "Fernando Diaz",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Fernando Diaz"
+     }
+    },
+    {
+     "url": "https://lti.cmu.edu/people/faculty/diaz-fernando.html",
+     "sha256": "55bb6905e3ef3d2147b6cabd959a55992bbd2b027fd4d847a491a628345b294a",
+     "observed": "2026-10-29",
+     "quote": "Fernando Diaz is an Associate Professor at Carnegie Mellon University's Language Technologies Institute (LTI).",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/cmu/raw/relation-captures.sqlite",
+   "url": "https://lti.cmu.edu/people/faculty/diaz-fernando.html",
+   "sha256": "55bb6905e3ef3d2147b6cabd959a55992bbd2b027fd4d847a491a628345b294a",
+   "source_window": "2026-10-29",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Fernando Diaz"
+   },
+   "decision_sha256": "6769b4d81ebba6d00ebae3b40d1e8a90df43afb45b46540d068bf5c22b6ebb3b",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "cmu",
+   "name": "Irene Kaplow",
+   "verdict": "pass",
+   "home_department": "Biological Sciences",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Biological Sciences",
+    "CBD"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20250317103341id_/https://cbd.cmu.edu/people/voting-faculty.html",
+     "sha256": "376a854c199ccc8ee463fd86f70404d08eb5198581df504aab4242348059e7ec",
+     "observed": "2025-03-17",
+     "quote": "Irene Kaplow",
+     "kind": "named_faculty_subject",
+     "subject_name": "Irene Kaplow",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Irene Kaplow"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20250317103341id_/https://cbd.cmu.edu/people/voting-faculty.html",
+     "sha256": "376a854c199ccc8ee463fd86f70404d08eb5198581df504aab4242348059e7ec",
+     "observed": "2025-03-17",
+     "quote": "Irene Kaplow Assistant Professor Carnegie Mellon University Department of Biological Sciences and Ray and Stephanie Lane Computational Biology Department",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/listings/cmu/raw/captures.sqlite",
+   "url": "https://web.archive.org/web/20250317103341id_/https://cbd.cmu.edu/people/voting-faculty.html",
+   "sha256": "376a854c199ccc8ee463fd86f70404d08eb5198581df504aab4242348059e7ec",
+   "source_window": "2025-03-17",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Irene Kaplow"
+   },
+   "decision_sha256": "40cad1883a95e3e804b31cfc6f36effb3a66d21eecc335f0ab9be9d014eee4e2",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "cmu",
+   "name": "Kathryn Roeder",
+   "verdict": "pass",
+   "home_department": "Statistics & Data Science",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Statistics & Data Science",
+    "CBD"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20250317103341id_/https://cbd.cmu.edu/people/voting-faculty.html",
+     "sha256": "376a854c199ccc8ee463fd86f70404d08eb5198581df504aab4242348059e7ec",
+     "observed": "2025-03-17",
+     "quote": "Kathryn Roeder",
+     "kind": "named_faculty_subject",
+     "subject_name": "Kathryn Roeder",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Kathryn Roeder"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20250317103341id_/https://cbd.cmu.edu/people/voting-faculty.html",
+     "sha256": "376a854c199ccc8ee463fd86f70404d08eb5198581df504aab4242348059e7ec",
+     "observed": "2025-03-17",
+     "quote": "Kathryn Roeder UPMC Professor of Statistics and Life Sciences Carnegie Mellon University Department of Statistics and Data Science and Ray and Stephanie Lane Computational Biology Department",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/listings/cmu/raw/captures.sqlite",
+   "url": "https://web.archive.org/web/20250317103341id_/https://cbd.cmu.edu/people/voting-faculty.html",
+   "sha256": "376a854c199ccc8ee463fd86f70404d08eb5198581df504aab4242348059e7ec",
+   "source_window": "2025-03-17",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Kathryn Roeder"
+   },
+   "decision_sha256": "abb84e11aab11859b3a21b845e18790639ae82d74359506e1d035c6777d51ec8",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "cmu",
+   "name": "Virgil Gligor",
+   "verdict": "pass",
+   "home_department": "ECE",
+   "home_basis": "primary_stated",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://www.csd.cs.cmu.edu/people/faculty/virgil-gligor",
+     "sha256": "b0ec69e68798f2d3166eeef8d30055f8fc4b78c8339229080e535c6586791e0b",
+     "observed": "2026-11-23",
+     "quote": "Virgil Gligor",
+     "kind": "named_faculty_subject",
+     "subject_name": "Virgil Gligor",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Virgil Gligor"
+     }
+    },
+    {
+     "url": "https://www.csd.cs.cmu.edu/people/faculty/virgil-gligor",
+     "sha256": "b0ec69e68798f2d3166eeef8d30055f8fc4b78c8339229080e535c6586791e0b",
+     "observed": "2026-11-23",
+     "quote": "Department CIT - Electrical and Computer Engineering Computer Science Department: Affiliated",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-cmu.sqlite",
+   "url": "https://www.csd.cs.cmu.edu/people/faculty/virgil-gligor",
+   "sha256": "b0ec69e68798f2d3166eeef8d30055f8fc4b78c8339229080e535c6586791e0b",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Virgil Gligor"
+   },
+   "decision_sha256": "71e359bb451e3161725c4e85d85bed5929d79b7636dece2a1af0786506f2aa91",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "cmu",
+   "name": "Richard Scheines",
+   "verdict": "pass",
+   "home_department": "Philosophy",
+   "home_basis": "primary_stated",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://www.cmu.edu/dietrich/philosophy/people/faculty/scheines.html",
+     "sha256": "30a7aa633e26f729346dd908b4341394f6b58cdb4e2c2b8f7af146d598b7c88e",
+     "observed": "2026-11-23",
+     "quote": "Richard Scheines",
+     "kind": "named_faculty_subject",
+     "subject_name": "Richard Scheines",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Richard Scheines"
+     }
+    },
+    {
+     "url": "https://www.cmu.edu/dietrich/philosophy/people/faculty/scheines.html",
+     "sha256": "30a7aa633e26f729346dd908b4341394f6b58cdb4e2c2b8f7af146d598b7c88e",
+     "observed": "2026-11-23",
+     "quote": "Richard Scheines University Professor of Philosophy, Dean Emeritus",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://www.cmu.edu/dietrich/philosophy/people/faculty/scheines.html",
+     "sha256": "30a7aa633e26f729346dd908b4341394f6b58cdb4e2c2b8f7af146d598b7c88e",
+     "observed": "2026-11-23",
+     "quote": "Faculty Appointments University Professor of Philosophy, Dean Emeritus (2026–Present) Professor, Department of Philosophy (2003–2026) Professor (secondary appointment): Human-Computer Interaction Institute",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://www.cmu.edu/dietrich/philosophy/people/faculty/scheines.html",
+     "sha256": "30a7aa633e26f729346dd908b4341394f6b58cdb4e2c2b8f7af146d598b7c88e",
+     "observed": "2026-11-23",
+     "quote": "courtesy appointment in the Machine Learning Department",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://www.cmu.edu/dietrich/philosophy/people/faculty/scheines.html",
+     "sha256": "30a7aa633e26f729346dd908b4341394f6b58cdb4e2c2b8f7af146d598b7c88e",
+     "observed": "2026-11-23",
+     "quote": "courtesy appointment in the Human-Computer Interaction Institute",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-cmu.sqlite",
+   "url": "https://www.cmu.edu/dietrich/philosophy/people/faculty/scheines.html",
+   "sha256": "30a7aa633e26f729346dd908b4341394f6b58cdb4e2c2b8f7af146d598b7c88e",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Richard Scheines"
+   },
+   "decision_sha256": "bd0fb70ab8f2b4cb2319b917f683da942528bce8f29bc3ab9046874936a3b799",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "cmu",
+   "name": "Raj Reddy",
+   "verdict": "pass",
+   "home_department": "RI",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "RI",
+    "CSD"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://www.ri.cmu.edu/ri-faculty/raj-reddy/",
+     "sha256": "fe477ce9cba37c91a658811fc5354cd814536a87774410f9ec8b4b5fc654af56",
+     "observed": "2026-11-23",
+     "quote": "Raj Reddy",
+     "kind": "named_faculty_subject",
+     "subject_name": "Raj Reddy",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Raj Reddy"
+     }
+    },
+    {
+     "url": "https://www.ri.cmu.edu/ri-faculty/raj-reddy/",
+     "sha256": "fe477ce9cba37c91a658811fc5354cd814536a87774410f9ec8b4b5fc654af56",
+     "observed": "2026-11-23",
+     "quote": "Raj Reddy Moza Bint Nasser University Professor Home Department: RI / CSD",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-cmu.sqlite",
+   "url": "https://www.ri.cmu.edu/ri-faculty/raj-reddy/",
+   "sha256": "fe477ce9cba37c91a658811fc5354cd814536a87774410f9ec8b4b5fc654af56",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Raj Reddy"
+   },
+   "decision_sha256": "8129a3151162351e89d816f3965c91c0969a700f7fd8a3544628949d46ead7af",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "mit",
+   "name": "Sendhil Mullainathan",
+   "verdict": "pass",
+   "home_department": "EECS",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "EECS",
+    "Economics"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20260311163629id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "7406a8d4d803a87030cfa01fa6fc6bdfbeff07768ceebf61a013b038ffa91c14",
+     "observed": "2026-03-11",
+     "quote": "Sendhil Mullainathan",
+     "kind": "named_faculty_subject",
+     "subject_name": "Sendhil Mullainathan",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Sendhil Mullainathan"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20260311163629id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "7406a8d4d803a87030cfa01fa6fc6bdfbeff07768ceebf61a013b038ffa91c14",
+     "observed": "2026-03-11",
+     "quote": "Sendhil Mullainathan Peter de Florez Professor, Professor of EECS; Professor of Economics, Dual Appointment [AI+D]",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/listings/mit/raw/captures.sqlite",
+   "url": "https://web.archive.org/web/20260311163629id_/https://www.eecs.mit.edu/role/faculty/",
+   "sha256": "7406a8d4d803a87030cfa01fa6fc6bdfbeff07768ceebf61a013b038ffa91c14",
+   "source_window": "2026-03-11",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Sendhil Mullainathan"
+   },
+   "decision_sha256": "ae0cce61a09a545c6248efe9a5d062237e09061c43ae63ec2899d30dbe80d9db",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "mit",
+   "name": "Stephen Bates",
+   "verdict": "pass",
+   "home_department": "EECS",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://stephenbates19.github.io/",
+     "sha256": "f0271e5284ddddfca3a07cb504cb8500fcad7cc57dabaf849cb650ee3575edb6",
+     "observed": "2026-11-23",
+     "quote": "Stephen Bates",
+     "kind": "named_faculty_subject",
+     "subject_name": "Stephen Bates",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Stephen Bates"
+     }
+    },
+    {
+     "url": "https://stephenbates19.github.io/",
+     "sha256": "f0271e5284ddddfca3a07cb504cb8500fcad7cc57dabaf849cb650ee3575edb6",
+     "observed": "2026-11-23",
+     "quote": "I'm an Assistant Professor of AI and Decision-making in the MIT EECS department.",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-mit.sqlite",
+   "url": "https://stephenbates19.github.io/",
+   "sha256": "f0271e5284ddddfca3a07cb504cb8500fcad7cc57dabaf849cb650ee3575edb6",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Stephen Bates"
+   },
+   "decision_sha256": "41744a5cba5ec2c3a2d254b3179ad9581475f1a268f51bdd6efe22884c9f9da8",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "stanford",
+   "name": "Jennifer Widom",
+   "verdict": "pass",
+   "home_department": "CS",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "CS",
+    "EE"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20260501044207id_/https://www.cs.stanford.edu/people-cs/faculty-name",
+     "sha256": "1937dfcd09871cbabdb3a5c7991af5efbfe9b9020a0536ede886556067e3c7c1",
+     "observed": "2026-05-01",
+     "quote": "Jennifer Widom",
+     "kind": "named_faculty_subject",
+     "subject_name": "Jennifer Widom",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Jennifer Widom"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20260501044207id_/https://www.cs.stanford.edu/people-cs/faculty-name",
+     "sha256": "1937dfcd09871cbabdb3a5c7991af5efbfe9b9020a0536ede886556067e3c7c1",
+     "observed": "2026-05-01",
+     "quote": "Jennifer Widom Frederick Emmons Terman Dean of the School of Engineering Fletcher Jones Professor in Computer Science and Electrical Engineering",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/stanford/raw/school-captures.sqlite",
+   "url": "https://web.archive.org/web/20260501044207id_/https://www.cs.stanford.edu/people-cs/faculty-name",
+   "sha256": "1937dfcd09871cbabdb3a5c7991af5efbfe9b9020a0536ede886556067e3c7c1",
+   "source_window": "2026-05-01",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Jennifer Widom"
+   },
+   "decision_sha256": "52f3003286120b94f08724ef2bd8cbcf626a87c3aa262f0522a42f0fe4b70dca",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "stanford",
+   "name": "Peter Bailis",
+   "verdict": "pass",
+   "home_department": "CS",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20200506223906id_/https://cs.stanford.edu/directory/faculty",
+     "sha256": "3b4820c084c7d745fcbb1abf10c913dbb00aa644e7e31913e6fa7fde0d35dd08",
+     "observed": "2020-05-06",
+     "quote": "Peter Bailis",
+     "kind": "named_faculty_subject",
+     "subject_name": "Peter Bailis",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Peter Bailis"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20200506223906id_/https://cs.stanford.edu/directory/faculty",
+     "sha256": "3b4820c084c7d745fcbb1abf10c913dbb00aa644e7e31913e6fa7fde0d35dd08",
+     "observed": "2020-05-06",
+     "quote": "Peter Bailis Gates 410",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20200506223906id_/https://cs.stanford.edu/directory/faculty",
+     "sha256": "3b4820c084c7d745fcbb1abf10c913dbb00aa644e7e31913e6fa7fde0d35dd08",
+     "observed": "2020-05-06",
+     "quote": "Stanford Computer Science",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20260616094603id_/https://www.cs.stanford.edu/people/faculty",
+     "sha256": "6f2c51f679d93601544ad6032d049d9da27d2884d2f16a38f4f086e079134f45",
+     "observed": "2026-06-16",
+     "quote": "Peter Bailis Adjunct Professor",
+     "kind": "subsequent_appointment_status"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/stanford/raw/school-captures.sqlite",
+   "url": "https://web.archive.org/web/20200506223906id_/https://cs.stanford.edu/directory/faculty",
+   "sha256": "3b4820c084c7d745fcbb1abf10c913dbb00aa644e7e31913e6fa7fde0d35dd08",
+   "source_window": "2020-05-06",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Peter Bailis"
+   },
+   "decision_sha256": "a33d367e8204e858aecb8976d75990f3a0d3329e2a4428efc78209d2361bfb54",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "washu",
+   "name": "Albert M. Lai",
+   "verdict": "pass",
+   "home_department": "Medicine (Division of General Medicine & Geriatrics)",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Medicine (Division of General Medicine & Geriatrics)",
+    "Computer Science and Engineering"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://i2db.wustl.edu/people/albert-lai/",
+     "sha256": "11079b60e57b876ab31b8ef363e62e45915c4acea2f0d557458f9b4f976f1f90",
+     "observed": "2026-11-17",
+     "quote": "Albert M. Lai",
+     "kind": "named_faculty_subject",
+     "subject_name": "Albert M. Lai",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Albert M. Lai"
+     }
+    },
+    {
+     "url": "https://i2db.wustl.edu/people/albert-lai/",
+     "sha256": "11079b60e57b876ab31b8ef363e62e45915c4acea2f0d557458f9b4f976f1f90",
+     "observed": "2026-11-17",
+     "quote": "Professor of Medicine, Division of General Medicine & Geriatrics Professor of Computer Science and Engineering, School of Engineering and Applied Science",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/washu/raw/school-captures.sqlite",
+   "url": "https://i2db.wustl.edu/people/albert-lai/",
+   "sha256": "11079b60e57b876ab31b8ef363e62e45915c4acea2f0d557458f9b4f976f1f90",
+   "source_window": "2026-11-17",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Albert M. Lai"
+   },
+   "decision_sha256": "970f29e404ca833b6207a60e97d09eb3737de4be8a20e18bac4f1486a716acd0",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "washu",
+   "name": "S. Joshua Swamidass",
+   "verdict": "pass",
+   "home_department": "Pathology & Immunology",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Pathology & Immunology",
+    "Biomedical Engineering"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://pathology.wustl.edu/people/s-joshua-swamidass-md-phd/",
+     "sha256": "23e7a801ddb738b4a035e53bc89d08203104f37c0f3585d8761b91cfff88dc6f",
+     "observed": "2026-11-17",
+     "quote": "S. Joshua Swamidass",
+     "kind": "named_faculty_subject",
+     "subject_name": "S. Joshua Swamidass",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "S. Joshua Swamidass"
+     }
+    },
+    {
+     "url": "https://pathology.wustl.edu/people/s-joshua-swamidass-md-phd/",
+     "sha256": "23e7a801ddb738b4a035e53bc89d08203104f37c0f3585d8761b91cfff88dc6f",
+     "observed": "2026-11-17",
+     "quote": "Associate Professor, Pathology & Immunology",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://pathology.wustl.edu/people/s-joshua-swamidass-md-phd/",
+     "sha256": "23e7a801ddb738b4a035e53bc89d08203104f37c0f3585d8761b91cfff88dc6f",
+     "observed": "2026-11-17",
+     "quote": "Titles Associate Professor, Biomedical Engineering",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/washu/raw/school-captures.sqlite",
+   "url": "https://pathology.wustl.edu/people/s-joshua-swamidass-md-phd/",
+   "sha256": "23e7a801ddb738b4a035e53bc89d08203104f37c0f3585d8761b91cfff88dc6f",
+   "source_window": "2026-11-17",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "S. Joshua Swamidass"
+   },
+   "decision_sha256": "d7674631b407838eef8ef67064da0b5c02a7cd02272a91527b214d33f594d697",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "washu",
+   "name": "Po-Yin Yen",
+   "verdict": "pass",
+   "home_department": "Medicine (Division of General Medicine & Geriatrics)",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://i2db.wustl.edu/faculty-staff/",
+     "sha256": "42e79a5a5a0dc58033998e7a31777e00ff119c5bc32084575e19901303f50a2d",
+     "observed": "2026-11-05",
+     "quote": "Po-Yin Yen",
+     "kind": "named_faculty_subject",
+     "subject_name": "Po-Yin Yen",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Po-Yin Yen"
+     }
+    },
+    {
+     "url": "https://i2db.wustl.edu/faculty-staff/",
+     "sha256": "42e79a5a5a0dc58033998e7a31777e00ff119c5bc32084575e19901303f50a2d",
+     "observed": "2026-11-05",
+     "quote": "Po-Yin Yen, PhD, RN, FACMI, FAMIA, FAAN Deputy Director for Education Associate Professor of Medicine, Division of General Medicine & Geriatrics Associate Professor, Goldfarb School of Nursing, Barnes Jewish College",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/washu/raw/school-captures.sqlite",
+   "url": "https://i2db.wustl.edu/faculty-staff/",
+   "sha256": "42e79a5a5a0dc58033998e7a31777e00ff119c5bc32084575e19901303f50a2d",
+   "source_window": "2026-11-05",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Po-Yin Yen"
+   },
+   "decision_sha256": "0eda62debd162ea52036364f760d25f36b4f70c2fcf5499532252f2db26389be",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "ustc",
+   "name": "Xiangnan He",
+   "verdict": "pass",
+   "home_department": "Information Science and Technology",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Information Science and Technology",
+    "Data Science"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://eeis.ustc.edu.cn/2019/0402/c2648a377500/page.htm",
+     "sha256": "ab57f2370c021d62db377c8da059419ef1d7f56a9b94b463b8daa7d324348d04",
+     "observed": "2026-11-17",
+     "quote": "何向南",
+     "kind": "named_faculty_subject",
+     "subject_name": "何向南",
+     "identity_basis": {
+      "kind": "existing_named_pi_basis",
+      "canonical_name": "Xiangnan He",
+      "pi_basis_sha256": "e63b221432e2364c17a91f5db435c94e08774f1fe0510183a6588ef2fcd34373",
+      "source_display_name": "何向南"
+     }
+    },
+    {
+     "url": "https://eeis.ustc.edu.cn/2019/0402/c2648a377500/page.htm",
+     "sha256": "ab57f2370c021d62db377c8da059419ef1d7f56a9b94b463b8daa7d324348d04",
+     "observed": "2026-11-17",
+     "quote": "单位：信息科学技术学院 / 大数据学院",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "正高 全职 俞能海",
+     "kind": "academic_roster_type"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "戴旭初 何向南 苑震生",
+     "kind": "dated_secondary_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "中国科学技术大学网络空间安全学院",
+     "kind": "academic_unit_context"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/ustc/raw/school-captures.sqlite",
+   "url": "https://eeis.ustc.edu.cn/2019/0402/c2648a377500/page.htm",
+   "sha256": "ab57f2370c021d62db377c8da059419ef1d7f56a9b94b463b8daa7d324348d04",
+   "source_window": "2026-11-17",
+   "identity_basis": {
+    "kind": "existing_named_pi_basis",
+    "canonical_name": "Xiangnan He",
+    "pi_basis_sha256": "e63b221432e2364c17a91f5db435c94e08774f1fe0510183a6588ef2fcd34373",
+    "source_display_name": "何向南"
+   },
+   "decision_sha256": "d098c248ab2f807aebfba3150a814caafd6747e0599eebe08138fc6dcb1c2e91",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "ustc",
+   "name": "Jingrun Chen",
+   "verdict": "pass",
+   "home_department": "School of Mathematical Sciences (数学科学学院)",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "School of Mathematical Sciences (数学科学学院)",
+    "Data Science and Artificial Intelligence (Suzhou Institute for Advanced Research; 数据科学与人工智能学院（筹）)"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://faculty.ustc.edu.cn/chenjingrun/",
+     "sha256": "fc11d2816ac6f448b223f690d97140dc11d7061681865758587485223e0684b1",
+     "observed": "2026-11-17",
+     "quote": "陈景润",
+     "kind": "named_faculty_subject",
+     "subject_name": "陈景润",
+     "identity_basis": {
+      "kind": "existing_named_pi_basis",
+      "canonical_name": "Jingrun Chen",
+      "pi_basis_sha256": "b531a72aee2fc62e0dbca662f1a1f0968eb668c7d287d10da3b8b9db8d3e480e",
+      "source_display_name": "陈景润"
+     }
+    },
+    {
+     "url": "https://faculty.ustc.edu.cn/chenjingrun/",
+     "sha256": "fc11d2816ac6f448b223f690d97140dc11d7061681865758587485223e0684b1",
+     "observed": "2026-11-17",
+     "quote": "陈景润，中国科学技术大学本部（合肥）数学科学学院以及苏州高等研究院（苏州）数据科学与人工智能学院（筹）教授，博士生导师。",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/ustc/raw/school-captures.sqlite",
+   "url": "https://faculty.ustc.edu.cn/chenjingrun/",
+   "sha256": "fc11d2816ac6f448b223f690d97140dc11d7061681865758587485223e0684b1",
+   "source_window": "2026-11-17",
+   "identity_basis": {
+    "kind": "existing_named_pi_basis",
+    "canonical_name": "Jingrun Chen",
+    "pi_basis_sha256": "b531a72aee2fc62e0dbca662f1a1f0968eb668c7d287d10da3b8b9db8d3e480e",
+    "source_display_name": "陈景润"
+   },
+   "decision_sha256": "61854d40cc0a70ba60cc89e3715998ac084a7cbc680f748224154b2ac70ae870",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "ustc",
+   "name": "Xu Zhang",
+   "verdict": "pass",
+   "home_department": "Electronic Science and Technology (电子科学与技术系)",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "http://sme.ustc.edu.cn/2022/0601/c31000a556963/page.htm",
+     "sha256": "761fc422b876d374f3c886a1f4ea692cbc0aadedfd44e09c8231b8a788e600e5",
+     "observed": "2026-11-23",
+     "quote": "张旭",
+     "kind": "named_faculty_subject",
+     "subject_name": "张旭",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "张旭"
+     }
+    },
+    {
+     "url": "http://sme.ustc.edu.cn/2022/0601/c31000a556963/page.htm",
+     "sha256": "761fc422b876d374f3c886a1f4ea692cbc0aadedfd44e09c8231b8a788e600e5",
+     "observed": "2026-11-23",
+     "quote": "2013-至今 中国科学技术大学电子科学与技术系，副教授",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-ustc.sqlite",
+   "url": "http://sme.ustc.edu.cn/2022/0601/c31000a556963/page.htm",
+   "sha256": "761fc422b876d374f3c886a1f4ea692cbc0aadedfd44e09c8231b8a788e600e5",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "张旭"
+   },
+   "decision_sha256": "522883ee5ea22e5ea5175fad3dae5df6b52e88b7e3a92b1bc755c150d7ed01d7",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "ustc",
+   "name": "Qing Ling",
+   "verdict": "pass",
+   "home_department": "Automation (自动化系)",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://etherial-h.github.io/QingLing2025.pdf",
+     "sha256": "7999224e96bad92cb057c8d3c33f89c14f5275d2ebb5575fb0a7b146adcedd2e",
+     "observed": "2026-11-23",
+     "quote": "Qing Ling",
+     "kind": "named_faculty_subject",
+     "subject_name": "Qing Ling",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Qing Ling"
+     }
+    },
+    {
+     "url": "https://etherial-h.github.io/QingLing2025.pdf",
+     "sha256": "7999224e96bad92cb057c8d3c33f89c14f5275d2ebb5575fb0a7b146adcedd2e",
+     "observed": "2026-11-23",
+     "quote": "Associate Professor 2009.09–2017.11 Department of Automation, University of Science and Technology of China",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-ustc.sqlite",
+   "url": "https://etherial-h.github.io/QingLing2025.pdf",
+   "sha256": "7999224e96bad92cb057c8d3c33f89c14f5275d2ebb5575fb0a7b146adcedd2e",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Qing Ling"
+   },
+   "decision_sha256": "33b6831b235a337693a84e37b3214492b51936e0403ecafff5fcd9006bc2314f",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "ustc",
+   "name": "Jie Wang",
+   "verdict": "pass",
+   "home_department": "Electronic Engineering and Information Science (电子工程与信息科学系)",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Electronic Engineering and Information Science (电子工程与信息科学系)",
+    "Cyber Science and Technology"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://eeis.ustc.edu.cn/2648/list5.htm",
+     "sha256": "53b0fae68c65bb1e775b90d7ab200077a690124292de69ec484529d11ab3d0bf",
+     "observed": "2026-11-15",
+     "quote": "王 杰",
+     "kind": "named_faculty_subject",
+     "subject_name": "王 杰",
+     "identity_basis": {
+      "kind": "existing_named_pi_basis",
+      "canonical_name": "Jie Wang",
+      "pi_basis_sha256": "e490591a84665321232c27cdfce0d259b3f825f7989c96b8f6c9a096fa86a7b5",
+      "source_display_name": "王 杰"
+     }
+    },
+    {
+     "url": "https://eeis.ustc.edu.cn/2648/list5.htm",
+     "sha256": "53b0fae68c65bb1e775b90d7ab200077a690124292de69ec484529d11ab3d0bf",
+     "observed": "2026-11-15",
+     "quote": "王 杰 机器学习、图像处理",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://eeis.ustc.edu.cn/2648/list5.htm",
+     "sha256": "53b0fae68c65bb1e775b90d7ab200077a690124292de69ec484529d11ab3d0bf",
+     "observed": "2026-11-15",
+     "quote": "中国科学技术大学电子工程与信息科学系",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "正高 全职",
+     "kind": "academic_roster_type"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "陈志波 李厚强 王杰 吴枫 熊志伟 ",
+     "kind": "dated_academic_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "中国科学技术大学网络空间安全学院",
+     "kind": "academic_unit_context"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/ustc/raw/school-captures.sqlite",
+   "url": "https://eeis.ustc.edu.cn/2648/list5.htm",
+   "sha256": "53b0fae68c65bb1e775b90d7ab200077a690124292de69ec484529d11ab3d0bf",
+   "source_window": "2026-11-15",
+   "identity_basis": {
+    "kind": "existing_named_pi_basis",
+    "canonical_name": "Jie Wang",
+    "pi_basis_sha256": "e490591a84665321232c27cdfce0d259b3f825f7989c96b8f6c9a096fa86a7b5",
+    "source_display_name": "王 杰"
+   },
+   "decision_sha256": "437a9262d9e47e91c52ac64dba6ae2958fe9be07e5a37029a8d9fe0fa9989c7b",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "ustc",
+   "name": "Peilin Hong",
+   "verdict": "pass",
+   "home_department": "Electronic Engineering and Information Science (电子工程与信息科学系)",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Electronic Engineering and Information Science (电子工程与信息科学系)",
+    "Cyber Science and Technology"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a20139/page.htm",
+     "sha256": "f62618a4f2c43e49a495cff9cf5d2fe70f43746043f1429b68bf15308de44d82",
+     "observed": "2026-11-17",
+     "quote": "洪佩琳",
+     "kind": "named_faculty_subject",
+     "subject_name": "洪佩琳",
+     "identity_basis": {
+      "kind": "existing_named_pi_basis",
+      "canonical_name": "Peilin Hong",
+      "pi_basis_sha256": "09f027055ae0051c7cc71c5a31e1f0f9703f25a0d2cf6e2349c4c80e6ecbdb2a",
+      "source_display_name": "洪佩琳"
+     }
+    },
+    {
+     "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a20139/page.htm",
+     "sha256": "f62618a4f2c43e49a495cff9cf5d2fe70f43746043f1429b68bf15308de44d82",
+     "observed": "2026-11-17",
+     "quote": "中国科学技术大学电子工程与信息科学系教授",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a20139/page.htm",
+     "sha256": "f62618a4f2c43e49a495cff9cf5d2fe70f43746043f1429b68bf15308de44d82",
+     "observed": "2026-11-17",
+     "quote": "中国科学技术大学电子工程与信息科学系",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "正高 全职",
+     "kind": "academic_roster_type"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "虎 曹刚 陈巍 洪佩琳 熊焰 黄刘生 ",
+     "kind": "dated_academic_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "中国科学技术大学网络空间安全学院",
+     "kind": "academic_unit_context"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/ustc/raw/school-captures.sqlite",
+   "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a20139/page.htm",
+   "sha256": "f62618a4f2c43e49a495cff9cf5d2fe70f43746043f1429b68bf15308de44d82",
+   "source_window": "2026-11-17",
+   "identity_basis": {
+    "kind": "existing_named_pi_basis",
+    "canonical_name": "Peilin Hong",
+    "pi_basis_sha256": "09f027055ae0051c7cc71c5a31e1f0f9703f25a0d2cf6e2349c4c80e6ecbdb2a",
+    "source_display_name": "洪佩琳"
+   },
+   "decision_sha256": "5ef590644a46b90c759ddabac3c612cc0d43e7fad276f48b75b1ca90e1b976e3",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "ustc",
+   "name": "Nenghai Yu",
+   "verdict": "pass",
+   "home_department": "Electronic Engineering and Information Science (电子工程与信息科学系)",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Electronic Engineering and Information Science (电子工程与信息科学系)",
+    "Cyber Science and Technology"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a19486/page.htm",
+     "sha256": "e2327c47b8f5f8e758155426d4dbdecbce4ca050d7b6c0996b5d78062d78254e",
+     "observed": "2026-11-17",
+     "quote": "俞能海",
+     "kind": "named_faculty_subject",
+     "subject_name": "俞能海",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "俞能海"
+     }
+    },
+    {
+     "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a19486/page.htm",
+     "sha256": "e2327c47b8f5f8e758155426d4dbdecbce4ca050d7b6c0996b5d78062d78254e",
+     "observed": "2026-11-17",
+     "quote": "1992年4月至今，在中国科学技术大学电子工程与信息科学系从事教学、科研工作",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a19486/page.htm",
+     "sha256": "e2327c47b8f5f8e758155426d4dbdecbce4ca050d7b6c0996b5d78062d78254e",
+     "observed": "2026-11-17",
+     "quote": "中国科学技术大学电子工程与信息科学系",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "正高 全职",
+     "kind": "academic_roster_type"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "正高 全职 俞能海 张卫明 陈彦 ",
+     "kind": "dated_academic_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "中国科学技术大学网络空间安全学院",
+     "kind": "academic_unit_context"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/ustc/raw/school-captures.sqlite",
+   "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a19486/page.htm",
+   "sha256": "e2327c47b8f5f8e758155426d4dbdecbce4ca050d7b6c0996b5d78062d78254e",
+   "source_window": "2026-11-17",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "俞能海"
+   },
+   "decision_sha256": "0e5cd8bad99d6272b7f0489f0f2867126dbbb48b3928e812cc501f8aaf73e052",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "ustc",
+   "name": "Feng Wu",
+   "verdict": "pass",
+   "home_department": "Electronic Engineering and Information Science (电子工程与信息科学系)",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Electronic Engineering and Information Science (电子工程与信息科学系)",
+    "Cyber Science and Technology"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://ustc-ivclab.github.io/people/2014/02/01/wu%2c-feng.html",
+     "sha256": "e6ba25a2beeca3a67b4ed4cfa461102ac3fade0eb5fc5d31aca48e81aa044d4c",
+     "observed": "2026-11-17",
+     "quote": "Feng Wu",
+     "kind": "named_faculty_subject",
+     "subject_name": "Feng Wu",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Feng Wu"
+     }
+    },
+    {
+     "url": "https://eeis.ustc.edu.cn/2648/list5.htm",
+     "sha256": "53b0fae68c65bb1e775b90d7ab200077a690124292de69ec484529d11ab3d0bf",
+     "observed": "2026-11-15",
+     "quote": "吴 枫 多媒体信息检索、视觉信息处理、模式识别",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://eeis.ustc.edu.cn/2648/list5.htm",
+     "sha256": "53b0fae68c65bb1e775b90d7ab200077a690124292de69ec484529d11ab3d0bf",
+     "observed": "2026-11-15",
+     "quote": "中国科学技术大学电子工程与信息科学系",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "正高 全职",
+     "kind": "academic_roster_type"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": " 李厚强 王杰 吴枫 熊志伟 徐正元",
+     "kind": "dated_academic_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "中国科学技术大学网络空间安全学院",
+     "kind": "academic_unit_context"
+    },
+    {
+     "url": "https://ustc-ivclab.github.io/people/2014/02/01/wu%2c-feng.html",
+     "sha256": "e6ba25a2beeca3a67b4ed4cfa461102ac3fade0eb5fc5d31aca48e81aa044d4c",
+     "observed": "2026-11-17",
+     "quote": "Wu, Feng (吴枫)",
+     "kind": "explicit_bilingual_subject_binding"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/ustc/raw/school-captures.sqlite",
+   "url": "https://ustc-ivclab.github.io/people/2014/02/01/wu%2c-feng.html",
+   "sha256": "e6ba25a2beeca3a67b4ed4cfa461102ac3fade0eb5fc5d31aca48e81aa044d4c",
+   "source_window": "2026-11-17",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Feng Wu"
+   },
+   "decision_sha256": "95eb45b388b591714e5e5356bee831a5b30919ae35ae2d44bc83f63432461994",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "ustc",
+   "name": "Xuehai Zhou",
+   "verdict": "pass",
+   "home_department": "Computer Science and Technology",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Computer Science and Technology",
+    "Software Engineering"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://sse.ustc.edu.cn/2020/0326/c19871a626033/page.htm",
+     "sha256": "c85d74d288416750ec2cf2315a0e0b37f8d99b08aa971b2c7295dbcc621113bf",
+     "observed": "2026-11-17",
+     "quote": "周学海",
+     "kind": "named_faculty_subject",
+     "subject_name": "周学海",
+     "identity_basis": {
+      "kind": "existing_named_pi_basis",
+      "canonical_name": "Xuehai Zhou",
+      "pi_basis_sha256": "119d03d2e6ed4f89748666b0547a4b1a41a96e49fabba31739721c3b8e1cdf28",
+      "source_display_name": "周学海"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20220919033951id_/http://cs.ustc.edu.cn/js_23235/list2.htm",
+     "sha256": "39fa2c13eb5cb7eee8bc1f36ef38aad0276c461a9a0cfb015f4effc9e45c528d",
+     "observed": "2022-09-19",
+     "quote": "周学海 xhzhou@ustc.edu.cn",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20220919033951id_/http://cs.ustc.edu.cn/js_23235/list2.htm",
+     "sha256": "39fa2c13eb5cb7eee8bc1f36ef38aad0276c461a9a0cfb015f4effc9e45c528d",
+     "observed": "2022-09-19",
+     "quote": "中国科学技术大学计算机科学与技术学院",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://sse.ustc.edu.cn/2020/0326/c19871a626033/page.htm",
+     "sha256": "c85d74d288416750ec2cf2315a0e0b37f8d99b08aa971b2c7295dbcc621113bf",
+     "observed": "2026-11-17",
+     "quote": "院内教员",
+     "kind": "academic_unit_context"
+    },
+    {
+     "url": "https://sse.ustc.edu.cn/2020/0326/c19871a626033/page.htm",
+     "sha256": "c85d74d288416750ec2cf2315a0e0b37f8d99b08aa971b2c7295dbcc621113bf",
+     "observed": "2026-11-17",
+     "quote": "周学海，教授，博士生导师。",
+     "kind": "academic_appointment"
+    },
+    {
+     "url": "https://sse.ustc.edu.cn/2020/0326/c19871a626033/page.htm",
+     "sha256": "c85d74d288416750ec2cf2315a0e0b37f8d99b08aa971b2c7295dbcc621113bf",
+     "observed": "2026-11-17",
+     "quote": "曾任教育部计算机基础课程教指委秘书长，中国科学技术大学软件学院执行院长。",
+     "kind": "former_administrative_role"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/ustc/raw/school-captures.sqlite",
+   "url": "https://sse.ustc.edu.cn/2020/0326/c19871a626033/page.htm",
+   "sha256": "c85d74d288416750ec2cf2315a0e0b37f8d99b08aa971b2c7295dbcc621113bf",
+   "source_window": "2026-11-17",
+   "identity_basis": {
+    "kind": "existing_named_pi_basis",
+    "canonical_name": "Xuehai Zhou",
+    "pi_basis_sha256": "119d03d2e6ed4f89748666b0547a4b1a41a96e49fabba31739721c3b8e1cdf28",
+    "source_display_name": "周学海"
+   },
+   "decision_sha256": "78dc5adc93d362e7632e4c4bed137477f00c27503471fcad5e41ba582495b39c",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "ustc",
+   "name": "Chao Wang",
+   "verdict": "pass",
+   "home_department": "Computer Science and Technology",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Computer Science and Technology",
+    "Cyber Science and Technology"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "http://staff.ustc.edu.cn/~cswang/index_files/bio.html",
+     "sha256": "90b542f3cd5f936846c373d5371fe5ed751be23d122804228a7444b4e286bb28",
+     "observed": "2026-11-23",
+     "quote": "Chao Wang",
+     "kind": "named_faculty_subject",
+     "subject_name": "Chao Wang",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Chao Wang"
+     }
+    },
+    {
+     "url": "http://staff.ustc.edu.cn/~cswang/index_files/bio.html",
+     "sha256": "90b542f3cd5f936846c373d5371fe5ed751be23d122804228a7444b4e286bb28",
+     "observed": "2026-11-23",
+     "quote": "Chao Wang Professor, School of Computer Science Vice Dean, School of Software Engineering University of Science and Technology of China",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "副高 全职",
+     "kind": "academic_roster_type"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "田野 王超 王上飞",
+     "kind": "dated_academic_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
+     "observed": "2022-07-03",
+     "quote": "中国科学技术大学网络空间安全学院",
+     "kind": "academic_unit_context"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-ustc.sqlite",
+   "url": "http://staff.ustc.edu.cn/~cswang/index_files/bio.html",
+   "sha256": "90b542f3cd5f936846c373d5371fe5ed751be23d122804228a7444b4e286bb28",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Chao Wang"
+   },
+   "decision_sha256": "8226669f8ac30a35edb72425b15e46318b9a87dac3a2c61f618b08ec802e405f",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "berkeley",
+   "name": "Henry Corrigan-Gibbs",
+   "verdict": "pass",
+   "home_department": "EECS",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://people.eecs.berkeley.edu/~henrycg/",
+     "sha256": "659e43afac7068c3c11269b59db234791dfee52b0bbf6977a0a0c6faa4723897",
+     "observed": "2026-10-22",
+     "quote": "Henry Corrigan-Gibbs",
+     "kind": "named_faculty_subject",
+     "subject_name": "Henry Corrigan-Gibbs",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Henry Corrigan-Gibbs"
+     }
+    },
+    {
+     "url": "https://people.eecs.berkeley.edu/~henrycg/",
+     "sha256": "659e43afac7068c3c11269b59db234791dfee52b0bbf6977a0a0c6faa4723897",
+     "observed": "2026-10-22",
+     "quote": "I am an associate professor in the EECS Department at UC Berkeley.",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/berkeley/raw/labpage-captures.sqlite",
+   "url": "https://people.eecs.berkeley.edu/~henrycg/",
+   "sha256": "659e43afac7068c3c11269b59db234791dfee52b0bbf6977a0a0c6faa4723897",
+   "source_window": "2026-10-22",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Henry Corrigan-Gibbs"
+   },
+   "decision_sha256": "073e8b55a44cfe284403016ac83dd1aeecf59c12d5308a2e972f86d952e6163f",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "berkeley",
+   "name": "Jennifer Chayes",
+   "verdict": "pass",
+   "home_department": "EECS",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "EECS",
+    "School of Information",
+    "Mathematics",
+    "Statistics"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://cdss.berkeley.edu/about/people",
+     "sha256": "0bc28e035deb5adda9f819fa9151b373fea14730f8cd42883d240942f8f5a2d4",
+     "observed": "2026-11-23",
+     "quote": "Jennifer Chayes",
+     "kind": "named_faculty_subject",
+     "subject_name": "Jennifer Chayes",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Jennifer Chayes"
+     }
+    },
+    {
+     "url": "https://cdss.berkeley.edu/about/people",
+     "sha256": "0bc28e035deb5adda9f819fa9151b373fea14730f8cd42883d240942f8f5a2d4",
+     "observed": "2026-11-23",
+     "quote": "She is also Professor of Electrical Engineering and Computer Sciences, Information, Mathematics, and Statistics.",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-berkeley.sqlite",
+   "url": "https://cdss.berkeley.edu/about/people",
+   "sha256": "0bc28e035deb5adda9f819fa9151b373fea14730f8cd42883d240942f8f5a2d4",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Jennifer Chayes"
+   },
+   "decision_sha256": "b72d6d4f779a9b742eb1556150038e27761eeeea385d492b2041e450e1af836e",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "berkeley",
+   "name": "Ahmed Alaa",
+   "verdict": "pass",
+   "home_department": "Computational Precision Health",
+   "home_basis": "primary_stated",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://statistics.berkeley.edu/about/news/statistics-adds-two-affiliated-assistant-professors",
+     "sha256": "3d13f09361ae90db4b560db2e405370adba858f3341146435d5de1ea6e53d61d",
+     "observed": "2026-11-23",
+     "quote": "Ahmed Alaa",
+     "kind": "named_faculty_subject",
+     "subject_name": "Ahmed Alaa",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Ahmed Alaa"
+     }
+    },
+    {
+     "url": "https://statistics.berkeley.edu/about/news/statistics-adds-two-affiliated-assistant-professors",
+     "sha256": "3d13f09361ae90db4b560db2e405370adba858f3341146435d5de1ea6e53d61d",
+     "observed": "2026-11-23",
+     "quote": "Alaa is an assistant professor in the Computational Precision Health (CPH) program at UC Berkeley and UCSF, and is affiliated with the Department of Electrical Engineering and Computer Sciences and Statistics at UC Berkeley.",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-berkeley.sqlite",
+   "url": "https://statistics.berkeley.edu/about/news/statistics-adds-two-affiliated-assistant-professors",
+   "sha256": "3d13f09361ae90db4b560db2e405370adba858f3341146435d5de1ea6e53d61d",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Ahmed Alaa"
+   },
+   "decision_sha256": "d50850ec3726c3b85d9b5db872e666c5d239858768e83b950e06f4ac14dd91a5",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "berkeley",
+   "name": "David Bamman",
+   "verdict": "pass",
+   "home_department": "School of Information",
+   "home_basis": "primary_stated",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20261020013709id_/https://people.ischool.berkeley.edu/~dbamman/",
+     "sha256": "fb1a4f52304043e0b2634868008c124fe8834a2c7df436012c2df54c36816114",
+     "observed": "2026-10-20",
+     "quote": "David Bamman",
+     "kind": "named_faculty_subject",
+     "subject_name": "David Bamman",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "David Bamman"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20261020013709id_/https://people.ischool.berkeley.edu/~dbamman/",
+     "sha256": "fb1a4f52304043e0b2634868008c124fe8834a2c7df436012c2df54c36816114",
+     "observed": "2026-10-20",
+     "quote": "David Bamman Associate Professor School of Information University of California, Berkeley Affiliated appointments: EECS, Linguistics, Computational Precision Health",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20261020013709id_/https://people.ischool.berkeley.edu/~dbamman/",
+     "sha256": "fb1a4f52304043e0b2634868008c124fe8834a2c7df436012c2df54c36816114",
+     "observed": "2026-10-20",
+     "quote": "David Bamman is an associate professor in the School of Information at UC Berkeley",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/berkeley/raw/labpage-audit-captures.sqlite",
+   "url": "https://web.archive.org/web/20261020013709id_/https://people.ischool.berkeley.edu/~dbamman/",
+   "sha256": "fb1a4f52304043e0b2634868008c124fe8834a2c7df436012c2df54c36816114",
+   "source_window": "2026-10-20",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "David Bamman"
+   },
+   "decision_sha256": "a777c5600430f87584e32d6188f68b5ad980d6c43128b16284ea12ad78ef0834",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "berkeley",
+   "name": "Michael Franklin",
+   "verdict": "pass",
+   "home_department": "EECS (CS division)",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20160725084109id_/http://www.eecs.berkeley.edu:80/Faculty/Homepages/franklin.html",
+     "sha256": "6af81d9da2ca52dcfd01ff8cb9b84f2c569d4a8c5db803291ac794b4dbb17935",
+     "observed": "2016-07-25",
+     "quote": "Michael Franklin",
+     "kind": "named_faculty_subject",
+     "subject_name": "Michael Franklin",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Michael Franklin"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20160425041548id_/http://www.cs.berkeley.edu:80/~franklin/",
+     "sha256": "f277927cf590fc3bc708eb47e9d8e9f3faae1f1ea691694129fb61bc1fbb1444",
+     "observed": "2016-04-25",
+     "quote": "I am a Professor of Computer Science at UC Berkeley",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20160725084109id_/http://www.eecs.berkeley.edu:80/Faculty/Homepages/franklin.html",
+     "sha256": "6af81d9da2ca52dcfd01ff8cb9b84f2c569d4a8c5db803291ac794b4dbb17935",
+     "observed": "2016-07-25",
+     "quote": "Adjunct Professor of Computer Science at UC Berkeley",
+     "kind": "subsequent_appointment_status"
+    },
+    {
+     "url": "https://web.archive.org/web/20160725084109id_/http://www.eecs.berkeley.edu:80/Faculty/Homepages/franklin.html",
+     "sha256": "6af81d9da2ca52dcfd01ff8cb9b84f2c569d4a8c5db803291ac794b4dbb17935",
+     "observed": "2016-07-25",
+     "quote": "Professor and Chair of Computer Science at the University of Chicago",
+     "kind": "later_external_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/berkeley/raw/gap-captures.sqlite",
+   "url": "https://web.archive.org/web/20160725084109id_/http://www.eecs.berkeley.edu:80/Faculty/Homepages/franklin.html",
+   "sha256": "6af81d9da2ca52dcfd01ff8cb9b84f2c569d4a8c5db803291ac794b4dbb17935",
+   "source_window": "2016-07-25",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Michael Franklin"
+   },
+   "decision_sha256": "6812b3d46e79cb3ae250f1b38a94cad693f75c401e80a57eea921fb64141ab55",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "whu",
+   "name": "静永程",
+   "verdict": "pass",
+   "home_department": "Computer Science",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://ycjing.github.io/",
+     "sha256": "30dffcfcd011bd4c8aca85f26425ec14f5ebeed1b6a855ddd4150c2a86acc5b1",
+     "observed": "2026-11-23",
+     "quote": "Yongcheng Jing",
+     "kind": "named_faculty_subject",
+     "subject_name": "Yongcheng Jing",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Yongcheng Jing"
+     }
+    },
+    {
+     "url": "https://ycjing.github.io/",
+     "sha256": "30dffcfcd011bd4c8aca85f26425ec14f5ebeed1b6a855ddd4150c2a86acc5b1",
+     "observed": "2026-11-23",
+     "quote": "Yongcheng Jing Biography I am currently a Full Professor in the School of Computer Science at Wuhan University.",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-whu.sqlite",
+   "url": "https://ycjing.github.io/",
+   "sha256": "30dffcfcd011bd4c8aca85f26425ec14f5ebeed1b6a855ddd4150c2a86acc5b1",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Yongcheng Jing"
+   },
+   "decision_sha256": "2f78dff9e9958f81d0430c892669713c6935075dd065e1ac73a074a9f9190270",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "whu",
+   "name": "Yue Cao",
+   "verdict": "pass",
+   "home_department": "Cyber Science and Engineering",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Cyber Science and Engineering",
+    "Computer Science"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "http://jszy.whu.edu.cn/caoyue2/zh_cn",
+     "sha256": "4e26caabf0a08d8388fabc8c1467b89286079fe66d7b127b6b7aa8ee0f73ecc9",
+     "observed": "2026-11-17",
+     "quote": "Yue Cao",
+     "kind": "named_faculty_subject",
+     "subject_name": "Yue Cao",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Yue Cao"
+     }
+    },
+    {
+     "url": "http://jszy.whu.edu.cn/caoyue2/zh_cn",
+     "sha256": "4e26caabf0a08d8388fabc8c1467b89286079fe66d7b127b6b7aa8ee0f73ecc9",
+     "observed": "2026-11-17",
+     "quote": "I am currently the Head of Department of Cyberspace Security, and Professor at School of Cyber Science and Engineering, Wuhan University (China).",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "http://jszy.whu.edu.cn/caoyue2/zh_cn",
+     "sha256": "4e26caabf0a08d8388fabc8c1467b89286079fe66d7b127b6b7aa8ee0f73ecc9",
+     "observed": "2026-11-17",
+     "quote": "School/Department: 计算机学院",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/whu/raw/school-captures.sqlite",
+   "url": "http://jszy.whu.edu.cn/caoyue2/zh_cn",
+   "sha256": "4e26caabf0a08d8388fabc8c1467b89286079fe66d7b127b6b7aa8ee0f73ecc9",
+   "source_window": "2026-11-17",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Yue Cao"
+   },
+   "decision_sha256": "8ad3a93dd0c3692d5f38a05671f0c1f21cefd7a4f61d116901e2dec12609c62a",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "whu",
+   "name": "Lican Kang",
+   "verdict": "pass",
+   "home_department": "Wuhan Institute of Mathematics and Artificial Intelligence (武汉数学与智能研究院)",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "http://jszy.whu.edu.cn/kanglican/en",
+     "sha256": "c0fa0f144098f276df1fb991532ec3c9616614c9f93d581f77a24debaa8719c5",
+     "observed": "2026-11-17",
+     "quote": "康利灿",
+     "kind": "named_faculty_subject",
+     "subject_name": "康利灿",
+     "identity_basis": {
+      "kind": "existing_named_pi_basis",
+      "canonical_name": "Lican Kang",
+      "pi_basis_sha256": "db27f3bc930608f0ac6b4c3368ee6477ed896c481f6ed64743212f1eb997d129",
+      "source_display_name": "康利灿"
+     }
+    },
+    {
+     "url": "http://jszy.whu.edu.cn/kanglican/en",
+     "sha256": "c0fa0f144098f276df1fb991532ec3c9616614c9f93d581f77a24debaa8719c5",
+     "observed": "2026-11-17",
+     "quote": "康利灿",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "http://jszy.whu.edu.cn/kanglican/en",
+     "sha256": "c0fa0f144098f276df1fb991532ec3c9616614c9f93d581f77a24debaa8719c5",
+     "observed": "2026-11-17",
+     "quote": "School/Department: 武汉数学与智能研究院",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "http://jszy.whu.edu.cn/kanglican/en",
+     "sha256": "c0fa0f144098f276df1fb991532ec3c9616614c9f93d581f77a24debaa8719c5",
+     "observed": "2026-11-17",
+     "quote": "Professional Title: Professor Status: Employed",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "http://jszy.whu.edu.cn/kanglican/en",
+     "sha256": "c0fa0f144098f276df1fb991532ec3c9616614c9f93d581f77a24debaa8719c5",
+     "observed": "2026-11-17",
+     "quote": "Teacher College: 武汉数学与智能研究院",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/whu/raw/school-captures.sqlite",
+   "url": "http://jszy.whu.edu.cn/kanglican/en",
+   "sha256": "c0fa0f144098f276df1fb991532ec3c9616614c9f93d581f77a24debaa8719c5",
+   "source_window": "2026-11-17",
+   "identity_basis": {
+    "kind": "existing_named_pi_basis",
+    "canonical_name": "Lican Kang",
+    "pi_basis_sha256": "db27f3bc930608f0ac6b4c3368ee6477ed896c481f6ed64743212f1eb997d129",
+    "source_display_name": "康利灿"
+   },
+   "decision_sha256": "b808ff68c92c7ebbd248b826fbe754c5272389102ae28708b6d06a6f9e9351e9",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "vt",
+   "name": "Thinh T. Doan",
+   "verdict": "pass",
+   "home_department": "Electrical and Computer Engineering",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://www.research.vt.edu/impact-recognition/grants-awards/2024/february.html",
+     "sha256": "d608230cd0ccbea396065414fab07a0d8caae18c74c524be9e08a207013380ea",
+     "observed": "2026-11-23",
+     "quote": "Doan, Thinh T.",
+     "kind": "named_faculty_subject",
+     "subject_name": "Doan, Thinh T.",
+     "identity_basis": {
+      "kind": "existing_family_first_alias",
+      "alias": "Thinh T. Doan"
+     }
+    },
+    {
+     "url": "https://www.research.vt.edu/impact-recognition/grants-awards/2024/february.html",
+     "sha256": "d608230cd0ccbea396065414fab07a0d8caae18c74c524be9e08a207013380ea",
+     "observed": "2026-11-23",
+     "quote": "Doan, Thinh T. Assistant Professor Bradley Department of Electrical and Computer Engineering College of Engineering",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-vt.sqlite",
+   "url": "https://www.research.vt.edu/impact-recognition/grants-awards/2024/february.html",
+   "sha256": "d608230cd0ccbea396065414fab07a0d8caae18c74c524be9e08a207013380ea",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_family_first_alias",
+    "alias": "Thinh T. Doan"
+   },
+   "decision_sha256": "529c9f15ccab7bf89bb768b61bff1d59593e18be56ece80ffdacecc040256f62",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "vt",
+   "name": "R. Michael Buehrer",
+   "verdict": "pass",
+   "home_department": "Electrical and Computer Engineering",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://www.undergradcatalog.registrar.vt.edu/2122/faculty.html",
+     "sha256": "370f8fc61976fe07cbfc7cf09a4e769873e57fa0cece4987f15ab623df18ce3c",
+     "observed": "2026-11-23",
+     "quote": "BUEHRER, Michael",
+     "kind": "named_faculty_subject",
+     "subject_name": "BUEHRER, Michael",
+     "identity_basis": {
+      "kind": "existing_named_pi_basis",
+      "canonical_name": "R. Michael Buehrer",
+      "pi_basis_sha256": "f9e792dde7d60afdf3577592727986bd049a3d2fef2c960b4a7f77559274fd37",
+      "source_display_name": "BUEHRER, Michael"
+     }
+    },
+    {
+     "url": "https://www.undergradcatalog.registrar.vt.edu/2122/faculty.html",
+     "sha256": "370f8fc61976fe07cbfc7cf09a4e769873e57fa0cece4987f15ab623df18ce3c",
+     "observed": "2026-11-23",
+     "quote": "BUEHRER, Michael (2001), Professor of Electrical and Computer Engineering",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-vt.sqlite",
+   "url": "https://www.undergradcatalog.registrar.vt.edu/2122/faculty.html",
+   "sha256": "370f8fc61976fe07cbfc7cf09a4e769873e57fa0cece4987f15ab623df18ce3c",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_named_pi_basis",
+    "canonical_name": "R. Michael Buehrer",
+    "pi_basis_sha256": "f9e792dde7d60afdf3577592727986bd049a3d2fef2c960b4a7f77559274fd37",
+    "source_display_name": "BUEHRER, Michael"
+   },
+   "decision_sha256": "680aca6d8d7f0d7a4bb3c2d905f3fe66e643a3cde5d5b78751c0d04531aea3c3",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "vt",
+   "name": "Jia-Bin Huang",
+   "verdict": "pass",
+   "home_department": "Electrical and Computer Engineering",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://bov.vt.edu/assets/Attachment%20OO_Approval%20of%202018-19%20Faculty%20Salary%20Program_June%202019.pdf",
+     "sha256": "ee4d8ee9fb8663af0b586be51158f6044c182833055a5ae50309221a87cde3bb",
+     "observed": "2026-11-23",
+     "quote": "Huang, Jia-Bin",
+     "kind": "named_faculty_subject",
+     "subject_name": "Huang, Jia-Bin",
+     "identity_basis": {
+      "kind": "existing_family_first_alias",
+      "alias": "Jia-Bin Huang"
+     }
+    },
+    {
+     "url": "https://bov.vt.edu/assets/Attachment%20OO_Approval%20of%202018-19%20Faculty%20Salary%20Program_June%202019.pdf",
+     "sha256": "ee4d8ee9fb8663af0b586be51158f6044c182833055a5ae50309221a87cde3bb",
+     "observed": "2026-11-23",
+     "quote": "Huang, Jia-Bin Assistant Professor",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://bov.vt.edu/assets/Attachment%20OO_Approval%20of%202018-19%20Faculty%20Salary%20Program_June%202019.pdf",
+     "sha256": "ee4d8ee9fb8663af0b586be51158f6044c182833055a5ae50309221a87cde3bb",
+     "observed": "2026-11-23",
+     "quote": "ELECTRICAL AND COMPUTER ENGINEERING",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-vt.sqlite",
+   "url": "https://bov.vt.edu/assets/Attachment%20OO_Approval%20of%202018-19%20Faculty%20Salary%20Program_June%202019.pdf",
+   "sha256": "ee4d8ee9fb8663af0b586be51158f6044c182833055a5ae50309221a87cde3bb",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_family_first_alias",
+    "alias": "Jia-Bin Huang"
+   },
+   "decision_sha256": "0068d63f9c425302fd273cc3f729981fd1f3831563ba4acce550c5e55551ca05",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "epfl",
+   "name": "Joseph Sifakis",
+   "verdict": "pass",
+   "home_department": "School of Computer and Communication Sciences (IC)",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20160108114526id_/http://ic.epfl.ch:80/professors",
+     "sha256": "86a781642cac3650303681a4625a315072a95a81dccfec446a7026017f23531b",
+     "observed": "2016-01-08",
+     "quote": "Joseph Sifakis",
+     "kind": "named_faculty_subject",
+     "subject_name": "Joseph Sifakis",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Joseph Sifakis"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20160108114526id_/http://ic.epfl.ch:80/professors",
+     "sha256": "86a781642cac3650303681a4625a315072a95a81dccfec446a7026017f23531b",
+     "observed": "2016-01-08",
+     "quote": "School of Computer and Communication Sciences",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20160108114526id_/http://ic.epfl.ch:80/professors",
+     "sha256": "86a781642cac3650303681a4625a315072a95a81dccfec446a7026017f23531b",
+     "observed": "2016-01-08",
+     "quote": "Joseph Sifakis RISD joseph.sifakis@epfl.ch",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/missing-pi-captures.sqlite",
+   "url": "https://web.archive.org/web/20160108114526id_/http://ic.epfl.ch:80/professors",
+   "sha256": "86a781642cac3650303681a4625a315072a95a81dccfec446a7026017f23531b",
+   "source_window": "2016-01-08",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Joseph Sifakis"
+   },
+   "decision_sha256": "f1c3caaa68b0a684f028e5edc526207081e4e41e8274921dd098882e9a7a17cb",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "jhu",
+   "name": "Michael D. Shields",
+   "verdict": "pass",
+   "home_department": "Civil and Systems Engineering",
+   "home_basis": "primary_stated",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20250328095408id_/https://engineering.jhu.edu/faculty/michael-shields/",
+     "sha256": "954903dccc7b8144fa1020f583712e9af6d972cae06fff7654d8d1f2e46710e0",
+     "observed": "2025-03-28",
+     "quote": "Michael Shields",
+     "kind": "named_faculty_subject",
+     "subject_name": "Michael Shields",
+     "identity_basis": {
+      "kind": "existing_named_pi_basis",
+      "canonical_name": "Michael D. Shields",
+      "pi_basis_sha256": "dc7cf0dabf8d28c5537dcc1a6f8a81cc0ac490061a8dabdf3421465b140de8dd",
+      "source_display_name": "Michael Shields"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20250328095408id_/https://engineering.jhu.edu/faculty/michael-shields/",
+     "sha256": "954903dccc7b8144fa1020f583712e9af6d972cae06fff7654d8d1f2e46710e0",
+     "observed": "2025-03-28",
+     "quote": "Michael Shields is an associate professor in the Department of Civil and Systems Engineering, holds a secondary appointment in the Department of Materials Science and Engineering, and is a fellow in the Hopkins Extreme Materials Institute",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/missed-labs-profile/jhu.sqlite",
+   "url": "https://web.archive.org/web/20250328095408id_/https://engineering.jhu.edu/faculty/michael-shields/",
+   "sha256": "954903dccc7b8144fa1020f583712e9af6d972cae06fff7654d8d1f2e46710e0",
+   "source_window": "2025-03-28",
+   "identity_basis": {
+    "kind": "existing_named_pi_basis",
+    "canonical_name": "Michael D. Shields",
+    "pi_basis_sha256": "dc7cf0dabf8d28c5537dcc1a6f8a81cc0ac490061a8dabdf3421465b140de8dd",
+    "source_display_name": "Michael Shields"
+   },
+   "decision_sha256": "c22b795c87a63521e49f7235aac2507c78f14e39866b8d86d977db27b57364d2",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "jhu",
+   "name": "Gregory Falco",
+   "verdict": "pass",
+   "home_department": "Civil and Systems Engineering",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20230130013655id_/https://engineering.jhu.edu/faculty/gregory-falco/",
+     "sha256": "bd6bcd11eeba6ff0f13126d55b18d21731d8b1bf6fafeac28b7cd6914c5583b3",
+     "observed": "2023-01-30",
+     "quote": "Gregory Falco",
+     "kind": "named_faculty_subject",
+     "subject_name": "Gregory Falco",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Gregory Falco"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20230130013655id_/https://engineering.jhu.edu/faculty/gregory-falco/",
+     "sha256": "bd6bcd11eeba6ff0f13126d55b18d21731d8b1bf6fafeac28b7cd6914c5583b3",
+     "observed": "2023-01-30",
+     "quote": "Gregory Falco is an assistant professor in the Department of Civil and Systems Engineering and the Institute for Assured Autonomy , where he holds an appointment at the Applied Physics Laboratory in the Asymmetric Operations Sector. He is also a member of the Center for Systems Science and Engineering",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/missed-labs-profile/jhu.sqlite",
+   "url": "https://web.archive.org/web/20230130013655id_/https://engineering.jhu.edu/faculty/gregory-falco/",
+   "sha256": "bd6bcd11eeba6ff0f13126d55b18d21731d8b1bf6fafeac28b7cd6914c5583b3",
+   "source_window": "2023-01-30",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Gregory Falco"
+   },
+   "decision_sha256": "48a92187fca5f37ef499f90da15ea6531c3f7360235eaf287caaed5c0ea2e145",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "jhu",
+   "name": "Ernst Niebur",
+   "verdict": "pass",
+   "home_department": "Neuroscience",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Neuroscience",
+    "Psychological and Brain Sciences",
+    "Electrical and Computer Engineering"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20240719200430id_/https://engineering.jhu.edu/faculty/ernst-niebur/",
+     "sha256": "c4a32b0999d2dcb8477ccd19b08baaea21c6fa16e12068b6b8d0f42007d26aea",
+     "observed": "2024-07-19",
+     "quote": "Ernst Niebur",
+     "kind": "named_faculty_subject",
+     "subject_name": "Ernst Niebur",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Ernst Niebur"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20240719200430id_/https://engineering.jhu.edu/faculty/ernst-niebur/",
+     "sha256": "c4a32b0999d2dcb8477ccd19b08baaea21c6fa16e12068b6b8d0f42007d26aea",
+     "observed": "2024-07-19",
+     "quote": "Ernst Niebur Professor Department of Electrical and Computer Engineering",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20240719200430id_/https://engineering.jhu.edu/faculty/ernst-niebur/",
+     "sha256": "c4a32b0999d2dcb8477ccd19b08baaea21c6fa16e12068b6b8d0f42007d26aea",
+     "observed": "2024-07-19",
+     "quote": "Ernst Niebur is a professor of neuroscience at the Johns Hopkins University School of Medicine, and a professor of psychological and brain sciences at the Johns Hopkins Krieger School of Arts and Sciences.",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/missed-labs-profile/jhu.sqlite",
+   "url": "https://web.archive.org/web/20240719200430id_/https://engineering.jhu.edu/faculty/ernst-niebur/",
+   "sha256": "c4a32b0999d2dcb8477ccd19b08baaea21c6fa16e12068b6b8d0f42007d26aea",
+   "source_window": "2024-07-19",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Ernst Niebur"
+   },
+   "decision_sha256": "2a8fc3738d5c41cd4547fb985cf6231f9e0746193bbbb61c578c34a11616a000",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "jhu",
+   "name": "James Taylor",
+   "verdict": "pass",
+   "home_department": "Biology",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Biology",
+    "Computer Science"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20210123104858id_/https://taylorlab.org/people/james/",
+     "sha256": "ea167e4872f7c62827f434fed9cd13124b21dc7a9f765b6a3ddd0bdc105d8138",
+     "observed": "2021-01-23",
+     "quote": "James Taylor",
+     "kind": "named_faculty_subject",
+     "subject_name": "James Taylor",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "James Taylor"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20210123104858id_/https://taylorlab.org/people/james/",
+     "sha256": "ea167e4872f7c62827f434fed9cd13124b21dc7a9f765b6a3ddd0bdc105d8138",
+     "observed": "2021-01-23",
+     "quote": "James Taylor is the Ralph S. O'Connor Professor of Biology and Professor of Computer Science at Johns Hopkins University.",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+   "url": "https://web.archive.org/web/20210123104858id_/https://taylorlab.org/people/james/",
+   "sha256": "ea167e4872f7c62827f434fed9cd13124b21dc7a9f765b6a3ddd0bdc105d8138",
+   "source_window": "2021-01-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "James Taylor"
+   },
+   "decision_sha256": "91e305e6a45dfd5dc104490f6419755ca8251ac11b4f5efb7209c0fdf4e734f8",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "jhu",
+   "name": "Brian Caffo",
+   "verdict": "pass",
+   "home_department": "Bloomberg School of Public Health",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://malonecenter.jhu.edu/people/",
+     "sha256": "31185946eceb3b7a4e9962eecda9a5ae81721dafae74396a87bea0b311824210",
+     "observed": "2026-11-05",
+     "quote": "Brian Caffo",
+     "kind": "named_faculty_subject",
+     "subject_name": "Brian Caffo",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Brian Caffo"
+     }
+    },
+    {
+     "url": "https://malonecenter.jhu.edu/people/",
+     "sha256": "31185946eceb3b7a4e9962eecda9a5ae81721dafae74396a87bea0b311824210",
+     "observed": "2026-11-05",
+     "quote": "Brian Caffo Professor, Bloomberg School of Public Health",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+   "url": "https://malonecenter.jhu.edu/people/",
+   "sha256": "31185946eceb3b7a4e9962eecda9a5ae81721dafae74396a87bea0b311824210",
+   "source_window": "2026-11-05",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Brian Caffo"
+   },
+   "decision_sha256": "9b34f4d20cc0ff222fa322dfb6b44303dd15062010cb7f0800f89c8c29ecca2f",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "jhu",
+   "name": "Robert D. Stevens",
+   "verdict": "pass",
+   "home_department": "Anesthesiology and Critical Care Medicine",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Anesthesiology and Critical Care Medicine",
+    "Neurosurgery",
+    "Biomedical Engineering",
+    "Neurology",
+    "Radiology and Radiological Science"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20240412133110id_/https://www.hopkinsmedicine.org/profiles/details/robert-stevens",
+     "sha256": "8734250b0cf0d6cf86960e8e96f51ea2f910aefc20f9a14987727613f81b0779",
+     "observed": "2024-04-12",
+     "quote": "Robert Stevens",
+     "kind": "named_faculty_subject",
+     "subject_name": "Robert Stevens",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Robert Stevens"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20240412133110id_/https://www.hopkinsmedicine.org/profiles/details/robert-stevens",
+     "sha256": "8734250b0cf0d6cf86960e8e96f51ea2f910aefc20f9a14987727613f81b0779",
+     "observed": "2024-04-12",
+     "quote": "Associate Professor of Anesthesiology and Critical Care Medicine Assistant Professor of Neurosurgery Associate Professor of Biomedical Engineering Associate Professor of Neurology Associate Professor of Radiology and Radiological Science",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+   "url": "https://web.archive.org/web/20240412133110id_/https://www.hopkinsmedicine.org/profiles/details/robert-stevens",
+   "sha256": "8734250b0cf0d6cf86960e8e96f51ea2f910aefc20f9a14987727613f81b0779",
+   "source_window": "2024-04-12",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Robert Stevens"
+   },
+   "decision_sha256": "0472c226d0b6a3a742a115733604558ae6cb43059d5345d39d8315de2ff5167c",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "jhu",
+   "name": "Mehran Armand",
+   "verdict": "pass",
+   "home_department": "Orthopaedic Surgery",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Orthopaedic Surgery",
+    "Mechanical Engineering",
+    "Computer Science"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20240315065415id_/https://lcsr.jhu.edu/people/faculty/",
+     "sha256": "8dfe8f05c814d4b0eca619b341c552382a7c8990d0ee95bc3b22cd0372f3e3de",
+     "observed": "2024-03-15",
+     "quote": "Mehran Armand",
+     "kind": "named_faculty_subject",
+     "subject_name": "Mehran Armand",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Mehran Armand"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20240315065415id_/https://lcsr.jhu.edu/people/faculty/",
+     "sha256": "8dfe8f05c814d4b0eca619b341c552382a7c8990d0ee95bc3b22cd0372f3e3de",
+     "observed": "2024-03-15",
+     "quote": "Mehran Armand, Ph.D. Professor Department of Orthopaedic Surgery, Mechanical Engineering, and Computer Science Principal Staff Johns Hopkins University Applied Physics Laboratory",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+   "url": "https://web.archive.org/web/20240315065415id_/https://lcsr.jhu.edu/people/faculty/",
+   "sha256": "8dfe8f05c814d4b0eca619b341c552382a7c8990d0ee95bc3b22cd0372f3e3de",
+   "source_window": "2024-03-15",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Mehran Armand"
+   },
+   "decision_sha256": "c94a192f4c90e276dae4d75c83b7d72529a035d2f57e6ac22f71c6e6b0315d14",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "jhu",
+   "name": "Dan Stoianovici",
+   "verdict": "pass",
+   "home_department": "Urology",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Urology",
+    "Mechanical Engineering",
+    "Neurosurgery",
+    "Oncology"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20240304042000id_/https://www.hopkinsmedicine.org/profiles/details/dan-stoianovici",
+     "sha256": "c6ab0e77a0b5c41194f4255bef601772eb2abd8dae0d3a6f5cea141b722eca3a",
+     "observed": "2024-03-04",
+     "quote": "Dan Stoianovici",
+     "kind": "named_faculty_subject",
+     "subject_name": "Dan Stoianovici",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Dan Stoianovici"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20240304042000id_/https://www.hopkinsmedicine.org/profiles/details/dan-stoianovici",
+     "sha256": "c6ab0e77a0b5c41194f4255bef601772eb2abd8dae0d3a6f5cea141b722eca3a",
+     "observed": "2024-03-04",
+     "quote": "Dr. Dan Stoianovici is a professor of urology, mechanical engineering and neurosurgery at the Johns Hopkins School of Medicine.",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20240304042000id_/https://www.hopkinsmedicine.org/profiles/details/dan-stoianovici",
+     "sha256": "c6ab0e77a0b5c41194f4255bef601772eb2abd8dae0d3a6f5cea141b722eca3a",
+     "observed": "2024-03-04",
+     "quote": "Titles Director, Urology Robotics Program Professor of Urology Professor of Neurosurgery Professor of Oncology",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+   "url": "https://web.archive.org/web/20240304042000id_/https://www.hopkinsmedicine.org/profiles/details/dan-stoianovici",
+   "sha256": "c6ab0e77a0b5c41194f4255bef601772eb2abd8dae0d3a6f5cea141b722eca3a",
+   "source_window": "2024-03-04",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Dan Stoianovici"
+   },
+   "decision_sha256": "b1805a652005d3629f85455ccb3e44d430d748bfad7ebd93481362519be83365",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "oxford",
+   "name": "Rui Ponte Costa",
+   "verdict": "pass",
+   "home_department": "Physiology, Anatomy and Genetics",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20260716164520id_/https://www.dpag.ox.ac.uk/team/rui-ponte-costa",
+     "sha256": "0f109af9dd5ad11ce09703d6bd3cf74fcc5ec3b5d12b4faf32d0a18ff7467168",
+     "observed": "2026-07-16",
+     "quote": "Rui Ponte Costa",
+     "kind": "named_faculty_subject",
+     "subject_name": "Rui Ponte Costa",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Rui Ponte Costa"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20260716164520id_/https://www.dpag.ox.ac.uk/team/rui-ponte-costa",
+     "sha256": "0f109af9dd5ad11ce09703d6bd3cf74fcc5ec3b5d12b4faf32d0a18ff7467168",
+     "observed": "2026-07-16",
+     "quote": "Rui Ponte Costa — Department of Physiology, Anatomy and Genetics (DPAG)",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20260716164520id_/https://www.dpag.ox.ac.uk/team/rui-ponte-costa",
+     "sha256": "0f109af9dd5ad11ce09703d6bd3cf74fcc5ec3b5d12b4faf32d0a18ff7467168",
+     "observed": "2026-07-16",
+     "quote": "Rui Ponte Costa Associate Professor Rui leads the Neural & Machine Learning group",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/oxford/raw/school-captures.sqlite",
+   "url": "https://web.archive.org/web/20260716164520id_/https://www.dpag.ox.ac.uk/team/rui-ponte-costa",
+   "sha256": "0f109af9dd5ad11ce09703d6bd3cf74fcc5ec3b5d12b4faf32d0a18ff7467168",
+   "source_window": "2026-07-16",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Rui Ponte Costa"
+   },
+   "decision_sha256": "916f7ce562fad87c54959846ad6c034aa568ba82a35400d5e96174ed738362d5",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "zju",
+   "name": "李春光",
+   "verdict": "pass",
+   "home_department": "Electronic Engineering (电子工程系)",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20190502120525id_/http://www.isee.zju.edu.cn:80/21034/list15.psp",
+     "sha256": "104560079cac8ab6428d044bb12ce27b2f4e0018d58d71cb09a6fcc31d140ef8",
+     "observed": "2019-05-02",
+     "quote": "李春光",
+     "kind": "named_faculty_subject",
+     "subject_name": "李春光",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "李春光"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20190502120525id_/http://www.isee.zju.edu.cn:80/21034/list15.psp",
+     "sha256": "104560079cac8ab6428d044bb12ce27b2f4e0018d58d71cb09a6fcc31d140ef8",
+     "observed": "2019-05-02",
+     "quote": "李春光 教授 电子工程系",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/listings/zju/raw/captures.sqlite",
+   "url": "https://web.archive.org/web/20190502120525id_/http://www.isee.zju.edu.cn:80/21034/list15.psp",
+   "sha256": "104560079cac8ab6428d044bb12ce27b2f4e0018d58d71cb09a6fcc31d140ef8",
+   "source_window": "2019-05-02",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "李春光"
+   },
+   "decision_sha256": "40c2b6602742dc6d4691d69d159bf7e88f97ee8afd40c3389ba5a8df894b029f",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "zju",
+   "name": "杨洋",
+   "verdict": "pass",
+   "home_department": "Main College of Computer Science",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
+     "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
+     "observed": "2019-06-15",
+     "quote": "杨洋",
+     "kind": "named_faculty_subject",
+     "subject_name": "杨洋",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "杨洋"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
+     "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
+     "observed": "2019-06-15",
+     "quote": " 涛 翁彦琳 吴 飞 吴江琴 肖 俊 邢 卫 徐从富 许端清 杨建刚 杨洋 袁 昕 张 寅 张 引 赵 磊 赵 洲 郑扣根 郑小林 朱淼良 庄越",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
+     "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
+     "observed": "2019-06-15",
+     "quote": "当前位置： 首页 > 师资队伍 > 教师名录",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
+     "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
+     "observed": "2019-06-15",
+     "quote": "浙江大学计算机学院",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/zju/raw/school-captures.sqlite",
+   "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
+   "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
+   "source_window": "2019-06-15",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "杨洋"
+   },
+   "decision_sha256": "90c8b1dd9fe01a8203807bf8a5efc40ca247badf45b22ed9a2902e5c75ed5323",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "zju",
+   "name": "万华根",
+   "verdict": "pass",
+   "home_department": "Main College of Computer Science",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
+     "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
+     "observed": "2019-06-15",
+     "quote": "万华根",
+     "kind": "named_faculty_subject",
+     "subject_name": "万华根",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "万华根"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
+     "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
+     "observed": "2019-06-15",
+     "quote": " 明 李伟青 林 海 刘新国 刘玉生 吕思超 任 重 邵天甲 陶煜波 万华根 王 锐 王章野 巫英才 吴鸿智 许威威 于金辉 张宏鑫 章国锋 郑文",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
+     "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
+     "observed": "2019-06-15",
+     "quote": "当前位置： 首页 > 师资队伍 > 教师名录",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
+     "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
+     "observed": "2019-06-15",
+     "quote": "浙江大学计算机学院",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/zju/raw/school-captures.sqlite",
+   "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
+   "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
+   "source_window": "2019-06-15",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "万华根"
+   },
+   "decision_sha256": "009f59bdc383b6899365837a7c44edfd3d53dfb857507c2e2f65fb3f64bfce9c",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "zju",
+   "name": "于慧敏",
+   "verdict": "pass",
+   "home_department": "Information and Communication Engineering (信息与通信工程系)",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20190904075432id_/http://www.isee.zju.edu.cn:80/21034/list13.psp",
+     "sha256": "a84515a89ee507bd2c628f15858f80e2bc48a31c1ae8ff0e7c69dac06b52e78e",
+     "observed": "2019-09-04",
+     "quote": "于慧敏",
+     "kind": "named_faculty_subject",
+     "subject_name": "于慧敏",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "于慧敏"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20190904075432id_/http://www.isee.zju.edu.cn:80/21034/list13.psp",
+     "sha256": "a84515a89ee507bd2c628f15858f80e2bc48a31c1ae8ff0e7c69dac06b52e78e",
+     "observed": "2019-09-04",
+     "quote": "于慧敏 教授 信息与通信工程系",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/listings/zju/raw/captures.sqlite",
+   "url": "https://web.archive.org/web/20190904075432id_/http://www.isee.zju.edu.cn:80/21034/list13.psp",
+   "sha256": "a84515a89ee507bd2c628f15858f80e2bc48a31c1ae8ff0e7c69dac06b52e78e",
+   "source_window": "2019-09-04",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "于慧敏"
+   },
+   "decision_sha256": "ae2fa07886955dc623e51dea806dae977050f4fa5de4534ec5c2bc5400d02322",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "zju",
+   "name": "甘春标",
+   "verdict": "pass",
+   "home_department": "Institute of Industrial Engineering (工业工程研究所)",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20250419112340id_/http://me.zju.edu.cn/mecn/jswyjy/list.htm",
+     "sha256": "f5edf74cb3c8d32461fd95fe3f05663f7b26400b89cc5c253a2792d9a638165c",
+     "observed": "2025-04-19",
+     "quote": "甘春标",
+     "kind": "named_faculty_subject",
+     "subject_name": "甘春标",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "甘春标"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20250419112340id_/http://me.zju.edu.cn/mecn/jswyjy/list.htm",
+     "sha256": "f5edf74cb3c8d32461fd95fe3f05663f7b26400b89cc5c253a2792d9a638165c",
+     "observed": "2025-04-19",
+     "quote": "甘春标 工业工程研究所 教授、博导",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/zju/raw/school-captures.sqlite",
+   "url": "https://web.archive.org/web/20250419112340id_/http://me.zju.edu.cn/mecn/jswyjy/list.htm",
+   "sha256": "f5edf74cb3c8d32461fd95fe3f05663f7b26400b89cc5c253a2792d9a638165c",
+   "source_window": "2025-04-19",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "甘春标"
+   },
+   "decision_sha256": "46449cdff388149792210cbe45e69d59a36476c60534289ca32b67953a74499e",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "zju",
+   "name": "卓成",
+   "verdict": "pass",
+   "home_department": "College of Integrated Circuits",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20250924080904id_/https://person.zju.edu.cn/en/chengzhuo",
+     "sha256": "08f62a7eec9aac6c690788914ba9a36c048b86ac38488ceb9c432cc0943d1dec",
+     "observed": "2025-09-24",
+     "quote": "Cheng ZHUO",
+     "kind": "named_faculty_subject",
+     "subject_name": "Cheng ZHUO",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Cheng Zhuo"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20250924080904id_/https://person.zju.edu.cn/en/chengzhuo",
+     "sha256": "08f62a7eec9aac6c690788914ba9a36c048b86ac38488ceb9c432cc0943d1dec",
+     "observed": "2025-09-24",
+     "quote": "Cheng ZHUO Ph.D. Professor | Doctoral supervisor Department college of integrated circuits",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20190113022423id_/http://www.isee.zju.edu.cn:80/21034/list16.htm",
+     "sha256": "9e006861590f3669af984238b84613cebbca705a489aabd8b1b67b77ed435e3f",
+     "observed": "2019-01-13",
+     "quote": "卓成 研究员 微电子学院",
+     "kind": "historical_academic_unit"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju-final-1117/persons/persons.sqlite",
+   "url": "https://web.archive.org/web/20250924080904id_/https://person.zju.edu.cn/en/chengzhuo",
+   "sha256": "08f62a7eec9aac6c690788914ba9a36c048b86ac38488ceb9c432cc0943d1dec",
+   "source_window": "2025-09-24",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Cheng Zhuo"
+   },
+   "decision_sha256": "f739ae49f446db09e30d309ede8fa08a65618c9fd7a16dde2b23e03540c1718a",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "tsinghua",
+   "name": "粟欣",
+   "verdict": "pass",
+   "home_department": "Electronic Engineering",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20241007222713id_/https://www.ee.tsinghua.edu.cn/ryqk/teacher/xxgdzyjs/js2.htm",
+     "sha256": "a6a907a12ef99524f9bc08e937bc12d7efa08c880affb8e829dd4bb0eb90340f",
+     "observed": "2024-10-07",
+     "quote": "粟欣",
+     "kind": "named_faculty_subject",
+     "subject_name": "粟欣",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "粟欣"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20241007222713id_/https://www.ee.tsinghua.edu.cn/ryqk/teacher/xxgdzyjs/js2.htm",
+     "sha256": "a6a907a12ef99524f9bc08e937bc12d7efa08c880affb8e829dd4bb0eb90340f",
+     "observed": "2024-10-07",
+     "quote": "教授-清华大学电子工程系",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20241007222713id_/https://www.ee.tsinghua.edu.cn/ryqk/teacher/xxgdzyjs/js2.htm",
+     "sha256": "a6a907a12ef99524f9bc08e937bc12d7efa08c880affb8e829dd4bb0eb90340f",
+     "observed": "2024-10-07",
+     "quote": "通信研究所 教 授： 陈巍 戴凌龙 樊平毅 冯伟 葛宁 谷源涛 陆建华 粟欣",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/listings/tsinghua/raw/captures.sqlite",
+   "url": "https://web.archive.org/web/20241007222713id_/https://www.ee.tsinghua.edu.cn/ryqk/teacher/xxgdzyjs/js2.htm",
+   "sha256": "a6a907a12ef99524f9bc08e937bc12d7efa08c880affb8e829dd4bb0eb90340f",
+   "source_window": "2024-10-07",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "粟欣"
+   },
+   "decision_sha256": "ec72a29097e046bd9af59f21fc46fec61887b136aca362222fef527f3a1dc79e",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "zju",
+   "name": "王宏伟",
+   "verdict": "pass",
+   "home_department": "ZJU-UIUC Institute",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://zjui.intl.zju.edu.cn/node/778",
+     "sha256": "20a1a39074078f567e3649f7f02f1c85b38612f6d4e627c7f1a6e1547349d85d",
+     "observed": "2026-11-23",
+     "quote": "王宏伟",
+     "kind": "named_faculty_subject",
+     "subject_name": "王宏伟",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "王宏伟"
+     }
+    },
+    {
+     "url": "https://zjui.intl.zju.edu.cn/node/778",
+     "sha256": "20a1a39074078f567e3649f7f02f1c85b38612f6d4e627c7f1a6e1547349d85d",
+     "observed": "2026-11-23",
+     "quote": "王宏伟 | 浙江大学ZJUI（ZJU-UIUC Institute）",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://zjui.intl.zju.edu.cn/node/778",
+     "sha256": "20a1a39074078f567e3649f7f02f1c85b38612f6d4e627c7f1a6e1547349d85d",
+     "observed": "2026-11-23",
+     "quote": "王宏伟 职位： 长聘教授 / 研究员",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20251112115927id_/https://person.zju.edu.cn/hwang",
+     "sha256": "17f45d22ea82cb681910eb4cd81316081b263f6346660a64193e59cfdeec7cd6",
+     "observed": "2025-11-12",
+     "quote": "王宏伟 博士 长聘教授 | 博士生导师 单位 浙江大学伊利诺伊大学厄巴纳香槟校区联合学院 | 国际联合学院",
+     "kind": "explicit_academic_unit"
+    },
+    {
+     "url": "https://zjui.intl.zju.edu.cn/team/teacher",
+     "sha256": "182048c760becce98f5dcca44bb43e4a596df6b0ffdf8781f239b31f64a48ed2",
+     "observed": "2026-11-23",
+     "quote": "王宏伟 长聘教授 / 研究员",
+     "kind": "ordinary_academic_faculty_roster"
+    },
+    {
+     "url": "https://dske.zju.edu.cn/people_profile/?user_id=3",
+     "sha256": "cdaa905fabf17c2638ca87f5ca416e83d28234c93b0b4f8b4b900791cd9e997c",
+     "observed": "2026-11-10",
+     "quote": "王宏伟博士，浙江大学长聘教授、博士生导师，担任 浙江大学-UIUC联合学院 副院长、数据与信息科学研究部主任，UIUC工学院兼聘教授。",
+     "kind": "dated_secondary_roles"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-zju.sqlite",
+   "url": "https://zjui.intl.zju.edu.cn/node/778",
+   "sha256": "20a1a39074078f567e3649f7f02f1c85b38612f6d4e627c7f1a6e1547349d85d",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "王宏伟"
+   },
+   "decision_sha256": "2b21f97f4b2fdd8eacce1a938ffe6d9d9ec09996840c17dc907b428090fde6f4",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "zju",
+   "name": "彭群生",
+   "verdict": "pass",
+   "home_department": "Main College of Computer Science",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://hr.zju.edu.cn/cn/2018/0710/c29598a1283771/page.htm",
+     "sha256": "f0da42ee21ff86d67bf3515a50c108160cc2284e5e48e8aa2cc61aa63e9379ca",
+     "observed": "2026-11-23",
+     "quote": "彭群生",
+     "kind": "named_faculty_subject",
+     "subject_name": "彭群生",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "彭群生"
+     }
+    },
+    {
+     "url": "https://hr.zju.edu.cn/cn/2018/0710/c29598a1283771/page.htm",
+     "sha256": "f0da42ee21ff86d67bf3515a50c108160cc2284e5e48e8aa2cc61aa63e9379ca",
+     "observed": "2026-11-23",
+     "quote": "2018年6月高级专家退休返聘人员名单",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://hr.zju.edu.cn/cn/2018/0710/c29598a1283771/page.htm",
+     "sha256": "f0da42ee21ff86d67bf3515a50c108160cc2284e5e48e8aa2cc61aa63e9379ca",
+     "observed": "2026-11-23",
+     "quote": "36 计算机科学与技术学院 T12014059 彭群生 教授 2018.7.1-2019.6.30",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20170514220600id_/http://www.math.zju.edu.cn:80/teachers.asp",
+     "sha256": "483fc1bb4809bde6d26ffa5c9fbd7070b58e922d1dedf9ea7f0512648d0c5a12",
+     "observed": "2017-05-14",
+     "quote": "近年退休教师",
+     "kind": "historical_status"
+    },
+    {
+     "url": "https://web.archive.org/web/20170514220600id_/http://www.math.zju.edu.cn:80/teachers.asp",
+     "sha256": "483fc1bb4809bde6d26ffa5c9fbd7070b58e922d1dedf9ea7f0512648d0c5a12",
+     "observed": "2017-05-14",
+     "quote": "彭群生",
+     "kind": "historical_academic_unit"
+    },
+    {
+     "url": "https://web.archive.org/web/20170514220600id_/http://www.math.zju.edu.cn:80/teachers.asp",
+     "sha256": "483fc1bb4809bde6d26ffa5c9fbd7070b58e922d1dedf9ea7f0512648d0c5a12",
+     "observed": "2017-05-14",
+     "quote": "浙江大学数学系",
+     "kind": "historical_academic_unit"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-zju.sqlite",
+   "url": "https://hr.zju.edu.cn/cn/2018/0710/c29598a1283771/page.htm",
+   "sha256": "f0da42ee21ff86d67bf3515a50c108160cc2284e5e48e8aa2cc61aa63e9379ca",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "彭群生"
+   },
+   "decision_sha256": "7dba42ac3189374e0d794cd5ad34ac7d295cafa4e3a8470622b95a9cba409c9d",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "zju",
+   "name": "李峙",
+   "verdict": "pass",
+   "home_department": "Psychology and Behavioral Sciences (心理与行为科学系)",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "http://www.cad.zju.edu.cn/innovationteam",
+     "sha256": "91a7f3ce9c8be96a5fe5f6cab58353d75e013d547fce34df40c8f12d832e699b",
+     "observed": "2026-11-08",
+     "quote": "李峙",
+     "kind": "named_faculty_subject",
+     "subject_name": "李峙",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "李峙"
+     }
+    },
+    {
+     "url": "http://www.cad.zju.edu.cn/innovationteam",
+     "sha256": "91a7f3ce9c8be96a5fe5f6cab58353d75e013d547fce34df40c8f12d832e699b",
+     "observed": "2026-11-08",
+     "quote": "李峙",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://hr.zju.edu.cn/cn/2021/0107/c29598a2242335/page.htm",
+     "sha256": "7dd98e8df4c3918af9617273f475841ca15a6b3abf395f0c96d00d0ea39c6f3e",
+     "observed": "2026-11-23",
+     "quote": "二、长聘副教授（18人）",
+     "kind": "academic_rank_section"
+    },
+    {
+     "url": "https://hr.zju.edu.cn/cn/2021/0107/c29598a2242335/page.htm",
+     "sha256": "7dd98e8df4c3918af9617273f475841ca15a6b3abf395f0c96d00d0ea39c6f3e",
+     "observed": "2026-11-23",
+     "quote": "心理与行为科学系 ：李 峙",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju-first-native-1108/native-v2/inputs/hierarchy/zju/raw/school-captures.sqlite",
+   "url": "http://www.cad.zju.edu.cn/innovationteam",
+   "sha256": "91a7f3ce9c8be96a5fe5f6cab58353d75e013d547fce34df40c8f12d832e699b",
+   "source_window": "2026-11-08",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "李峙"
+   },
+   "decision_sha256": "b94ad7ba40bf5761ba29a19493b5716edea150edfe09b270b74b5e2007732b68",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "zju",
+   "name": "蒋卓人",
+   "verdict": "pass",
+   "home_department": "School of Public Affairs",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20260518094636id_/https://person.zju.edu.cn/0020027",
+     "sha256": "90efe8476198056203264e97767132155518f3a56d90f8d8eda30e6ede8247cf",
+     "observed": "2026-05-18",
+     "quote": "蒋卓人",
+     "kind": "named_faculty_subject",
+     "subject_name": "蒋卓人",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "蒋卓人"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20260518094636id_/https://person.zju.edu.cn/0020027",
+     "sha256": "90efe8476198056203264e97767132155518f3a56d90f8d8eda30e6ede8247cf",
+     "observed": "2026-05-18",
+     "quote": "蒋卓人 博士 百人计划研究员 | 博士生导师 单位 公共管理学院",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju-final-1117/persons/persons.sqlite",
+   "url": "https://web.archive.org/web/20260518094636id_/https://person.zju.edu.cn/0020027",
+   "sha256": "90efe8476198056203264e97767132155518f3a56d90f8d8eda30e6ede8247cf",
+   "source_window": "2026-05-18",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "蒋卓人"
+   },
+   "decision_sha256": "1859b9606bf4a8beb93245bac3ff4499a36304c2797988fc829d4e7b2a4380a4",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "zju",
+   "name": "王爱丽",
+   "verdict": "pass",
+   "home_department": "ZJU-UIUC Institute",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20240528112528id_/https://person.zju.edu.cn/ailiwang",
+     "sha256": "b383287738b85e01729425696490019054205db7ca1e909c7a5ff4ede560ece0",
+     "observed": "2024-05-28",
+     "quote": "王爱丽",
+     "kind": "named_faculty_subject",
+     "subject_name": "王爱丽",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "王爱丽"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20240528112528id_/https://person.zju.edu.cn/ailiwang",
+     "sha256": "b383287738b85e01729425696490019054205db7ca1e909c7a5ff4ede560ece0",
+     "observed": "2024-05-28",
+     "quote": "王爱丽 博士 研究员，助理教授 | 博士生导师 单位 浙江大学伊利诺伊大学厄巴纳香槟校区联合学院 | 国际联合学院",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju-final-1117/persons/persons.sqlite",
+   "url": "https://web.archive.org/web/20240528112528id_/https://person.zju.edu.cn/ailiwang",
+   "sha256": "b383287738b85e01729425696490019054205db7ca1e909c7a5ff4ede560ece0",
+   "source_window": "2024-05-28",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "王爱丽"
+   },
+   "decision_sha256": "f4a255ca14108356c74148fb8d9d4f7c438761aa22de55d1f25c280216211b34",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "zju",
+   "name": "范鹤鹤",
+   "verdict": "pass",
+   "home_department": "College of Artificial Intelligence",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20260514193215id_/https://person.zju.edu.cn/hehefan",
+     "sha256": "854e8e258245b7dae6a357db0bc66c6baa296fe47f654a6c387b314a353d6ec3",
+     "observed": "2026-05-14",
+     "quote": "范鹤鹤",
+     "kind": "named_faculty_subject",
+     "subject_name": "范鹤鹤",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "范鹤鹤"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20260514193215id_/https://person.zju.edu.cn/hehefan",
+     "sha256": "854e8e258245b7dae6a357db0bc66c6baa296fe47f654a6c387b314a353d6ec3",
+     "observed": "2026-05-14",
+     "quote": "范鹤鹤 博士 百人计划研究员 | 博士生导师 单位 人工智能学院",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju-final-1117/persons/persons.sqlite",
+   "url": "https://web.archive.org/web/20260514193215id_/https://person.zju.edu.cn/hehefan",
+   "sha256": "854e8e258245b7dae6a357db0bc66c6baa296fe47f654a6c387b314a353d6ec3",
+   "source_window": "2026-05-14",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "范鹤鹤"
+   },
+   "decision_sha256": "1f60c9a4a4f1f7732d3c6852414306df18d5412bb70b8a11d180adcfdd1ae271",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "zju",
+   "name": "Lei Wu",
+   "verdict": "pass",
+   "home_department": "Main College of Computer Science",
+   "home_basis": "listed_title",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://person.zju.edu.cn/en/lei_wu",
+     "sha256": "3d5a3e3271b8974ad9c16f293538e31fb7efe57299e87bba403774a6a4856bb1",
+     "observed": "2026-11-07",
+     "quote": "Lei Wu",
+     "kind": "named_faculty_subject",
+     "subject_name": "Lei Wu",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Lei Wu"
+     }
+    },
+    {
+     "url": "https://person.zju.edu.cn/en/lei_wu",
+     "sha256": "3d5a3e3271b8974ad9c16f293538e31fb7efe57299e87bba403774a6a4856bb1",
+     "observed": "2026-11-07",
+     "quote": "Lei Wu Ph.D. Associate Professor | Doctoral supervisor Department College of Computer Science and Technology",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju200-1120/zju-captures.sqlite",
+   "url": "https://person.zju.edu.cn/en/lei_wu",
+   "sha256": "3d5a3e3271b8974ad9c16f293538e31fb7efe57299e87bba403774a6a4856bb1",
+   "source_window": "2026-11-07",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Lei Wu"
+   },
+   "decision_sha256": "867643e3bc93883016ed44b29740e95de0d7d524bacb03f1d984b13d35d387c2",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "gatech",
+   "name": "Saurabh Sinha",
+   "verdict": "pass",
+   "home_department": "Biomedical Engineering",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Biomedical Engineering",
+    "Industrial and Systems Engineering"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://people.research.gatech.edu/saurabh-sinha-phd",
+     "sha256": "e542ec8e79a94414926e83fbb15fa7df94d18be5386c6976b6491578dd4b85ab",
+     "observed": "2026-11-23",
+     "quote": "Saurabh Sinha",
+     "kind": "named_faculty_subject",
+     "subject_name": "Saurabh Sinha",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Saurabh Sinha"
+     }
+    },
+    {
+     "url": "https://people.research.gatech.edu/saurabh-sinha-phd",
+     "sha256": "e542ec8e79a94414926e83fbb15fa7df94d18be5386c6976b6491578dd4b85ab",
+     "observed": "2026-11-23",
+     "quote": "Saurabh Sinha, Ph.D.",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://people.research.gatech.edu/saurabh-sinha-phd",
+     "sha256": "e542ec8e79a94414926e83fbb15fa7df94d18be5386c6976b6491578dd4b85ab",
+     "observed": "2026-11-23",
+     "quote": "He joined Georgia Institute of Technology in 2022, as Wallace H. Coulter Distinguished Chair in Biomedical Engineering, with joint appointments in Biomedical Engineering and Industrial & Systems Engineering.",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-gatech.sqlite",
+   "url": "https://people.research.gatech.edu/saurabh-sinha-phd",
+   "sha256": "e542ec8e79a94414926e83fbb15fa7df94d18be5386c6976b6491578dd4b85ab",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Saurabh Sinha"
+   },
+   "decision_sha256": "142571cca5096b37fb0bf7c914ec499cc3c5943d2cfdd734cf5ffd998a4e84e9",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "utaustin",
+   "name": "Justin F. Rousseau",
+   "verdict": "pass",
+   "home_department": "Neurology",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Neurology",
+    "Population Health"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://sites.utexas.edu/mulva-clinic-for-the-neurosciences/2022/09/07/justin-rousseau-building-bridges-with-health-care-data/",
+     "sha256": "444c01fc78b7c494ccf2dbd8503caecd3b1f7a1936c6c82624f6c888822ac70e",
+     "observed": "2026-11-23",
+     "quote": "Justin Rousseau",
+     "kind": "named_faculty_subject",
+     "subject_name": "Justin Rousseau",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Justin Rousseau"
+     }
+    },
+    {
+     "url": "https://sites.utexas.edu/mulva-clinic-for-the-neurosciences/2022/09/07/justin-rousseau-building-bridges-with-health-care-data/",
+     "sha256": "444c01fc78b7c494ccf2dbd8503caecd3b1f7a1936c6c82624f6c888822ac70e",
+     "observed": "2026-11-23",
+     "quote": "Justin Rousseau , M.D., MMSc",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://sites.utexas.edu/mulva-clinic-for-the-neurosciences/2022/09/07/justin-rousseau-building-bridges-with-health-care-data/",
+     "sha256": "444c01fc78b7c494ccf2dbd8503caecd3b1f7a1936c6c82624f6c888822ac70e",
+     "observed": "2026-11-23",
+     "quote": "Rousseau, an assistant professor in Dell Medical School’s departments of Neurology and Population Health",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/scratch/homes50h-1123/live-utaustin.sqlite",
+   "url": "https://sites.utexas.edu/mulva-clinic-for-the-neurosciences/2022/09/07/justin-rousseau-building-bridges-with-health-care-data/",
+   "sha256": "444c01fc78b7c494ccf2dbd8503caecd3b1f7a1936c6c82624f6c888822ac70e",
+   "source_window": "2026-11-23",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Justin Rousseau"
+   },
+   "decision_sha256": "31f85d0d4690178fa28c387f716a32d4b35ee222c9847263360a240f466d691b",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "utaustin",
+   "name": "Jason Baldridge",
+   "verdict": "pass",
+   "home_department": "Linguistics",
+   "home_basis": "primary_unresolved",
+   "primary_unresolved": [
+    "Linguistics",
+    "Computer Science"
+   ],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20160202163945id_/http://robotics.utexas.edu:80/people",
+     "sha256": "85d13733a1946924a77ff1a425c59e263d9aad602b92b893e6a9ff59d7fc3775",
+     "observed": "2016-02-02",
+     "quote": "Jason Baldridge",
+     "kind": "named_faculty_subject",
+     "subject_name": "Jason Baldridge",
+     "identity_basis": {
+      "kind": "existing_exact_alias",
+      "alias": "Jason Baldridge"
+     }
+    },
+    {
+     "url": "https://catalog.utexas.edu/archive/2016-17/undergraduate/liberal-arts/faculty/",
+     "sha256": "979174bfd89003fee123c7484565ec343d6621beeef475aa81b706b22f6b05f3",
+     "observed": "2026-11-23",
+     "quote": "Jason M Baldridge , Associate Professor Linguistics PhD, University of Edinburgh, 2002",
+     "kind": "academic_home_appointment"
+    },
+    {
+     "url": "https://web.archive.org/web/20160202163945id_/http://robotics.utexas.edu:80/people",
+     "sha256": "85d13733a1946924a77ff1a425c59e263d9aad602b92b893e6a9ff59d7fc3775",
+     "observed": "2016-02-02",
+     "quote": "Jason Baldridge , PhD. Associate Professor Computer Science",
+     "kind": "same_window_other_academic_unit"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/utaustin/raw/school-captures.sqlite",
+   "url": "https://web.archive.org/web/20160202163945id_/http://robotics.utexas.edu:80/people",
+   "sha256": "85d13733a1946924a77ff1a425c59e263d9aad602b92b893e6a9ff59d7fc3775",
+   "source_window": "2016-02-02",
+   "identity_basis": {
+    "kind": "existing_exact_alias",
+    "alias": "Jason Baldridge"
+   },
+   "decision_sha256": "9ee9f8e5434db165225ea01190e35ecd86693ca9e633d6dbbcce4fea7a2389de",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  },
+  {
+   "school": "michigan",
+   "name": "Yang Zhang",
+   "verdict": "pass",
+   "home_department": "Nuclear Engineering and Radiological Sciences",
+   "home_basis": "primary_stated",
+   "primary_unresolved": [],
+   "reviewed_evidence": [
+    {
+     "url": "https://web.archive.org/web/20241002205442id_/https://cse.engin.umich.edu/people/faculty/",
+     "sha256": "eee14453d98cc0fa96acdb15e505b7f5c05b9ef56ff2c2d80ff2ee4f9dfa4220",
+     "observed": "2024-10-02",
+     "quote": "Z, Y",
+     "kind": "named_faculty_subject",
+     "subject_name": "Z, Y",
+     "identity_basis": {
+      "kind": "existing_family_first_alias",
+      "alias": "Y Z"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20241002205442id_/https://cse.engin.umich.edu/people/faculty/",
+     "sha256": "eee14453d98cc0fa96acdb15e505b7f5c05b9ef56ff2c2d80ff2ee4f9dfa4220",
+     "observed": "2024-10-02",
+     "quote": "Z, Y Professor, Department of Nuclear Engineering and Radiological Sciences Professor (courtesy), Electrical Engineering and Computer Science",
+     "kind": "academic_home_appointment"
+    }
+   ],
+   "original_sha256_verified": true,
+   "http_status": 200,
+   "source_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/michigan/work/tmp/listings-captures.pre-gzip-repair.sqlite",
+   "url": "https://web.archive.org/web/20241002205442id_/https://cse.engin.umich.edu/people/faculty/",
+   "sha256": "eee14453d98cc0fa96acdb15e505b7f5c05b9ef56ff2c2d80ff2ee4f9dfa4220",
+   "source_window": "2024-10-02",
+   "identity_basis": {
+    "kind": "existing_family_first_alias",
+    "alias": "Y Z"
+   },
+   "decision_sha256": "9a2f7d669bba28304d542b96997717759105a36ea5f9a22d2c573fa6591decd9",
+   "note": "Independently reviewed original HTTP-200 database bytes, recalculated SHA-256, literal quotations including explicitly labeled raw HTML school metadata, existing subject bindings and source-window academic appointment; secondary appointments preserved."
+  }
+ ]
+}

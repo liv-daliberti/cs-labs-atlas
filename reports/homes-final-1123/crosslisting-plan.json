@@ -1,0 +1,61 @@
+{
+ "owner_decision": "D-0044: documented research-unit homes are valid allocations; keep no_academic_department explicit",
+ "unit_of_count": "One canonical school-lab once. Extra affiliations do not create extra labs.",
+ "appointment_roles": [
+  "stated primary academic",
+  "joint academic with primary unresolved",
+  "courtesy or affiliate",
+  "research institute/center/lab",
+  "administrative",
+  "nested parent school",
+  "external institution",
+  "historical",
+  "role not established"
+ ],
+ "detection_steps": [
+  "Compare named academic appointments across official profiles and faculty rosters, using canonical unit aliases and existing accepted PI identities.",
+  "Keep source dates and explicitly stated appointment intervals. A later departmental move is not automatically a joint appointment.",
+  "Resolve primary from explicit primary or tenure-line language, or a single academic title with other roles expressly secondary. Never use title order.",
+  "Treat also entries and joint wording as candidates for source review; do not assume every listed unit is a second department.",
+  "Audit 50 seeded rows across explicit unresolved groups, joint/order signals, other affiliations, and a comparison group with no second affiliation recorded. Bind verdicts to the exact inventory and allocation hashes."
+ ],
+ "recommended_policy": {
+  "university_totals": "Deduplicate school-labs; total weight one per lab.",
+  "department_main_view": "Use a source-reviewed primary when available; retain a visible bucket for primary not recorded as resolved. Existing status flags are not fresh source certification.",
+  "sensitivity_view": "Compare the reporting label with 1/k membership across structurally valid, explicit primary-candidate sets. Exclude malformed, affiliate-marked or incomplete groups from splitting. This comparison holds untyped legacy reporting units fixed.",
+  "other_affiliations": "Store source-backed roles, dates and units as attributes. Do not silently turn courtesy, center, administrative, external or historical roles into extra academic departments.",
+  "future_scientific_test": "After role review, compare downstream estimates under primary and fractional-joint definitions. Report denominator changes and sensitivity; full-count departmental displays require deduplicated university totals."
+ },
+ "priority_queue": [
+  "Repair malformed unresolved-candidate metadata first.",
+  "Review primary-by-position and uncoded joint-wording flags, allowing overlap.",
+  "Classify explicit unresolved groups as simultaneous joints, conflicting sources or historical moves.",
+  "Backfill legacy primary-basis metadata from original appointment evidence; absence of a basis does not prove cross-listing.",
+  "Classify all also affiliations by actual role; their count is not a count of cross-listed academic appointments."
+ ],
+ "projected_counts": {
+  "labs": 6836,
+  "allocation_complete": 6836,
+  "research_unit_homes_no_academic_department": 13,
+  "recorded_primary_resolved": 2284,
+  "explicit_primary_unresolved": 235,
+  "other_affiliations_recorded": 908,
+  "flags": {
+   "other_affiliations_recorded": 908,
+   "explicit_primary_unresolved": 235,
+   "joint_wording_needs_role_review": 21,
+   "legacy_primary_basis_unrecorded": 4251,
+   "primary_chosen_by_position_needs_review": 66,
+   "malformed_primary_candidates": 1
+  }
+ },
+ "original_source_review_scope": "The 62 final-batch records were independently checked against original HTTP200 captures; inherited records receive structural/status checks in this run, not fresh original-source certification.",
+ "counts_status": "Projected sealed checkpoint; crosslisting-summary.json after live application is authoritative if concurrent inventory changes.",
+ "invariants": [
+  "Each lab has an accepted home allocation with complete recorded evidence.",
+  "Every counting view conserves one lab per school and globally.",
+  "Only explicit primary candidates passing structural/role checks are split fractionally.",
+  "Research-unit exceptions remain explicit under D-0044.",
+  "Unknown roles and primaries are never filled by list order."
+ ]
+}

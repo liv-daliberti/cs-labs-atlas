@@ -1,0 +1,29 @@
+{
+ "selected": 62,
+ "schema_violations": 0,
+ "independent_passed": 62,
+ "original_captures": 71,
+ "primary_resolved": 37,
+ "primary_unresolved": 25,
+ "prior_350_preserved": true,
+ "canonical_units_idempotent": true,
+ "charters_only_home_normalizers": {
+  "schools/whu.toml": true,
+  "schools/ustc.toml": true,
+  "schools/jhu.toml": true,
+  "schools/cmu.toml": true,
+  "schools/zju.toml": true,
+  "schools/oxford.toml": true,
+  "schools/utaustin.toml": true,
+  "schools/washu.toml": true
+ },
+ "checks": {
+  "targeted_home_tests": 59,
+  "crosslisting_scenarios": 8,
+  "receipt_tamper_scenarios": 2,
+  "lint": "passed",
+  "charters": "passed",
+  "whitespace": "passed"
+ },
+ "validation_scope": "Pre-integration checks; the mandatory full-suite completion is recorded in verification.json after landing."
+}
