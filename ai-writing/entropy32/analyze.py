@@ -431,6 +431,50 @@ def stage_entropy_scale(a):
     figure.entropy_scale(w)
 
 
+def stage_centroid(a):
+    """Owner 2026-11-23: cosine similarity to the year centroid as a function of AI writing. Per paper (2023-2025): cosine between its SPECTER2
+    full-text vector and the mean unit vector of ALL papers of its year (native 768 dimensions), from distshift's paper_measures.parquet
+    (cos = 1 - dist_cosine). Same windows as the entropy curve (0% papers, then sliding windows over the rank of the positive AI shares).
+    'raw' = window mean; 'adjusted' = de-meaned within school x year (y - cell mean + grand mean) before averaging; 95% paper-bootstrap intervals.
+    Paper-level slopes per +10 points with school x year FE and with school x year + lab FE (lab-clustered). -> analysis/centroid_curve.csv,
+    centroid.json, figures/centroid_cosine.png"""
+    w = e32.work_dir(a.id)
+    pm = pd.read_parquet(w / 'analysis' / 'paper_measures.parquet')
+    labs = pd.read_parquet(w / 'papers_scored.parquet', columns=['k', 'labs']).assign(lab=lambda d: d['labs'].map(lambda s: (json.loads(s) or [None])[0]))
+    d = pm.merge(labs[['k', 'lab']], on='k', how='left')
+    d['cos'] = 1 - d['dist_cosine']
+    d['cell'] = d.home_school + ':' + d.year.astype(str)
+    d['cos_adj'] = d['cos'] - d.groupby('cell')['cos'].transform('mean') + d['cos'].mean()
+    r = np.random.default_rng(SEED)
+    dose = d.ai_share_main.values
+    pos = np.flatnonzero(dose > 0)
+    pos = pos[np.argsort(dose[pos], kind='stable')]
+    win = min(WIN, len(pos) // 4)
+    centres = np.linspace(win // 2, len(pos) - win // 2 - 1, GRID).round().astype(int)
+    windows = [('zero', np.flatnonzero(dose == 0))] + [(f'w{j:02d}', pos[max(0, c - win // 2): c + win // 2]) for j, c in enumerate(centres)]
+    rows = []
+    for name, ix in windows:
+        for mode, col in (('raw', 'cos'), ('adjusted', 'cos_adj')):
+            v = d[col].values[ix]
+            bs = [v[r.integers(0, len(v), len(v))].mean() for _ in range(300)]
+            rows.append(dict(window=name, mode=mode, n=len(ix), dose_median=float(np.median(dose[ix])), cos=float(v.mean()), sd=float(v.std()),
+                             lo=float(np.quantile(bs, .025)), hi=float(np.quantile(bs, .975))))
+    C = pd.DataFrame(rows)
+    C.to_csv(w / 'analysis' / 'centroid_curve.csv', index=False)
+    m = d.lab.notna().values
+    x, y = d.ai_share_main.values[m] * 10, d['cos'].values[m]
+    b1, s1, _ = fe_slope(y, x, [d.cell.values[m]], d.lab.values[m])
+    b2, s2, G = fe_slope(y, x, [d.cell.values[m], d.lab.values[m]], d.lab.values[m])
+    sd0 = float(d.loc[dose == 0, 'cos'].std())
+    res = dict(papers=int(m.sum()), labs=G, sd_nonai=sd0, mean_nonai=float(d.loc[dose == 0, 'cos'].mean()),
+               slope_school_year=b1, ci_school_year=[b1 - 1.96 * s1, b1 + 1.96 * s1], slope_school_year_lab=b2, ci_school_year_lab=[b2 - 1.96 * s2, b2 + 1.96 * s2],
+               slope_lab_in_nonai_sds=b2 / sd0)
+    (w / 'analysis' / 'centroid.json').write_text(json.dumps(res, indent=1))
+    print(json.dumps(res))
+    import figure
+    figure.centroid(w)
+
+
 def stage_check(a):
     w, df, _ = load(a)
     snap = Path(e32.P.HOMOGENIZATION_STUDY) / 'snapshots' / '2026-11-08' / 'ai' / 'papers_v3.parquet'
@@ -444,7 +488,7 @@ def stage_check(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check', 'timeband', 'distshift', 'entropy_scale'])
+    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check', 'timeband', 'distshift', 'entropy_scale', 'centroid'])
     ap.add_argument('--id', default='20261123')
     a = ap.parse_args()
     (e32.work_dir(a.id) / 'analysis').mkdir(exist_ok=True)

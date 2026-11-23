@@ -381,3 +381,33 @@ def entropy_scale(w):
              'curves is what is real; the school and year dots show how much entropy differs between natural groups of the same size.', fontsize=8, color=MUTED)
     fig.savefig(out / 'entropy_scale.png', dpi=200); fig.savefig(out / 'entropy_scale.pdf'); plt.close(fig)
     print(json.dumps(dict(figure=str(out / 'entropy_scale.png'))))
+
+
+def centroid(w):
+    """Cosine similarity to the year centroid against the AI share (analyze.py centroid)."""
+    a, out = w / 'analysis', w / 'figures'
+    C = pd.read_csv(a / 'centroid_curve.csv')
+    R = json.loads((a / 'centroid.json').read_text())
+    fig, ax = plt.subplots(figsize=(9.5, 6.2))
+    fig.subplots_adjust(left=0.1, right=0.97, top=0.8, bottom=0.17)
+    fig.text(0.1, 0.94, 'Do AI-written papers sit closer to the year\'s average paper?', fontsize=14, fontweight='bold', color=INK)
+    fig.text(0.1, 0.885, 'Lab papers 2023–2025. Cosine similarity between each paper\'s SPECTER2 full-text vector\nand the mean direction of all papers of its year '
+             '(native 768 dimensions; higher = more typical). Window means with 95% bootstrap intervals.', fontsize=9, color=INK2)
+    for mode, col, lw, ls, lab in (('raw', MUTED, 1.4, (0, (3, 2)), 'unadjusted'), ('adjusted', BLUE, 2.0, '-', 'de-meaned within school × year')):
+        d = C[(C['mode'] == mode) & (C.window != 'zero')].sort_values('dose_median')
+        x = sq(d.dose_median * 100)
+        if mode == 'adjusted':
+            ax.fill_between(x, d.lo, d.hi, color=col, alpha=0.16, lw=0)
+        ax.plot(x, d.cos, color=col, lw=lw, ls=ls, label=lab)
+        z = C[(C['mode'] == mode) & (C.window == 'zero')].iloc[0]
+        ax.errorbar([0], [z.cos], yerr=[[z.cos - z.lo], [z.hi - z.cos]], fmt='o', ms=7 if mode == 'adjusted' else 5, color=col, mec=SURF, mew=2, elinewidth=2, zorder=5)
+    ticks = [0, 1, 5, 10, 25, 50, 75, 100]
+    ax.set_xticks(sq(np.array(ticks))); ax.set_xticklabels([f'{t}%' for t in ticks]); ax.set_xlim(-0.4, sq(100) + 0.2)
+    ax.set_xlabel('AI-written share of the main body (detector v3, √ scale)'); ax.set_ylabel('cosine similarity to the year centroid')
+    ax.grid(axis='x', visible=False); ax.legend(frameon=False, fontsize=8.5, loc='upper left')
+    ax.text(0.98, 0.04, f'paper level, +10 pts AI → {R["slope_school_year_lab"]:+.4f} cosine [{R["ci_school_year_lab"][0]:+.4f}, {R["ci_school_year_lab"][1]:+.4f}]\n'
+            f'= {R["slope_lab_in_nonai_sds"]:+.3f} non-AI SDs (school × year + lab FE, lab-clustered; non-AI SD = {R["sd_nonai"]:.3f})',
+            transform=ax.transAxes, ha='right', va='bottom', fontsize=8, color=INK2)
+    fig.text(0.1, 0.03, 'The 0% point is the papers with no flagged passage. The centroid includes every paper of the year, AI-written ones too.', fontsize=8, color=MUTED)
+    fig.savefig(out / 'centroid_cosine.png', dpi=200); fig.savefig(out / 'centroid_cosine.pdf'); plt.close(fig)
+    print(json.dumps(dict(figure=str(out / 'centroid_cosine.png'))))
